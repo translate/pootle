@@ -2299,13 +2299,13 @@ html[dir="rtl"] .breadcrumb li
 }
 
 /* HACK: display background as a thin line */
-.select2-results .select2-result-unselectable
+.breadcrumb-dropdown .select2-result-unselectable
 {
     height: 1px;
     margin: 0.5em;
 }
 
-.select2-results .select2-result-unselectable .select2-result-label
+.breadcrumb-dropdown .select2-result-unselectable .select2-result-label
 {
     cursor: default;
 }
