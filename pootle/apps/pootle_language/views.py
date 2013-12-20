@@ -32,7 +32,6 @@ from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import nice_percentage
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission
@@ -78,10 +77,6 @@ def overview(request, language):
     tp_count = len(user_tps)
     items = (make_project_item(tp) for tp in user_tps)
 
-    # XXX: KH AJAX
-    total = language.get_total_wordcount()
-    translated = language.get_translated_wordcount()
-    average = nice_percentage(translated, total)
     topstats = gentopstats_language(language)
 
     table_fields = ['name', 'progress', 'total', 'need-translation', 'activity']
@@ -99,11 +94,9 @@ def overview(request, language):
           'code': language.code,
           'name': tr_lang(language.fullname),
           'description': language.description,
-          'summary': ungettext('%(projects)d project, %(average)d%% translated',
-                               '%(projects)d projects, %(average)d%% translated',
-                               tp_count, {
-                                   "projects": tp_count,
-                                   "average": average}),
+          'summary': ungettext('%(projects)d project',
+                               '%(projects)d projects',
+                               tp_count, {"projects": tp_count}),
         },
         'feed_path': '%s/' % language.code,
         'topstats': topstats,

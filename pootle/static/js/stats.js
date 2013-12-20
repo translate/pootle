@@ -43,6 +43,13 @@
       setTdWidth($td.find('td.untranslated'), untranslated);
     },
 
+    updateSummary: function ($summary, data) {
+      var summary,
+          percent = PTL.stats.nicePercentage(data.translated, data.total);
+      summary = interpolate(gettext(', %s% translated'), [percent]);
+      $summary.append(summary);
+    },
+
     updateTranslationStats: function ($tr, total, value) {
       $tr.find('.stats-number a').html(value);
       $tr.find('.stats-percentage span').html(
@@ -82,6 +89,7 @@
           var $table = $('#content table.stats'),
               now = parseInt(Date.now() / 1000, 10);
           PTL.stats.updateProgressbar($('#progressbar'), data);
+          PTL.stats.updateSummary($('#summary'), data);
 
           for (var name in data.children) {
             var item = data.children[name],

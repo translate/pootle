@@ -42,7 +42,6 @@ from pootle_app.views.index.index import getprojects
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import nice_percentage
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_project.forms import (TranslationProjectFormSet,
@@ -91,18 +90,9 @@ def get_project_base_template_vars(request, project, can_edit):
 
     languagecount = len(translation_projects)
 
-    # XXX: KH AJAX
-    project_stats = project.get_stats()
-
-    summary_dict = {
-        "languages": languagecount,
-        "average": nice_percentage(project_stats['translated'],
-                                   project_stats['total']),
-    }
-
-    summary = ungettext('%(languages)d language, %(average)d%% translated',
-                        '%(languages)d languages, %(average)d%% translated',
-                        languagecount, summary_dict)
+    summary = ungettext('%(languages)d language',
+                        '%(languages)d languages',
+                        languagecount, {"languages": languagecount})
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
                     'activity', 'tags']
