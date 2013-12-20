@@ -221,10 +221,15 @@ When creating commits take into account the following:
 What to commit
   As far as possible, try to commit individual changes in individual commits.
   Where different changes depend on each other, but are related to different
-  parts of a problem / solution, try to commit then in quick succession.
+  parts of a problem / solution, try to commit them in quick succession.
 
-  Try not to put documentation and code changes in the same commit, unless they
-  are minor changes.
+  If a change in the code requires some change in the documentation then all
+  those changes must be in the same commit.
+
+  If code and documentation changes are unrelated then it is recommended to put
+  them in separate commits, despite that sometimes it is acceptable to mix
+  those changes in the same commit, for example cleanups changes both in code
+  and documentation.
 
 Commit messages
   Begin the commit message with a single short (less than 50 character) line
