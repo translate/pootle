@@ -245,6 +245,7 @@
         url: s(['js/mt/', backend, '.js'].join('')),
         async: false,
         dataType: 'script',
+        cache: 'true',
         success: function () {
           setTimeout(function () {
             PTL.editor.mt[backend].init(key);
@@ -263,6 +264,7 @@
         url: s(['js/lookup/', backend, '.js'].join('')),
         async: false,
         dataType: 'script',
+        cache: 'true',
         success: function () {
           setTimeout(function () {
             PTL.editor.lookup[backend].init();
