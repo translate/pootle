@@ -31,7 +31,7 @@ Release `2013-12-19`_
   + The editor search box is now displayed in the action links section,
     keeping its positioning consistent with the overview page. (`#83`_)
 
-  + A new action link in the editor, *"Go back to overview"*, allows users
+  + A new action link in the editor, *Go back to overview*, allows users
     to go back to the same place they entered translation mode from.
     (`#77`_)
 
@@ -101,8 +101,8 @@ Release `2013-11-28`_
   (`6ab0c05e0a`_)
 
 - Overview pages now report the last time a unit was added to a
-  store/project. In the browsing tables a *"Last Updated"* column is
-  displayed and in the extended stats *"Created"* and *"Last Updated"*
+  store/project. In the browsing tables a *Last Updated* column is
+  displayed and in the extended stats *Created* and *Last Updated*
   dates. (`#61`_)
 
 - If the currently-submitted unit has pending checks, the editor won't
@@ -134,7 +134,7 @@ Release `2013-11-15`_
 - Added maintenance mode via middleware. (`#39`_)
 
 - Removed the concept of *pages* in the editor and its underlying APIs.
-  This was problematic buggy. (`#48`_)
+  This was problematic and buggy. (`#48`_)
 
 - Table sorting is now remembered across overview pages, and not
   separately in project, language and translation project pages. (`#47`_)
@@ -154,7 +154,7 @@ Release `2013-11-08`_
 - Incorporated ``refresh_all_stats`` functionality into ``refresh_stats``.
   (`f1bb127e3f`_)
 
-- Fixed and avoided any inconsitencies in the unit's submitter
+- Fixed and avoided any inconsistencies in the unit's submitter
   information. (`#33`_)
 
 - `Commit comparison wrt previous release
@@ -204,7 +204,7 @@ Release `2013-10-29`_
 Release `2013-08-27`_
 ---------------------
 
-- `Forked upstream project`_. 
+- `Forked upstream project`_.
 
 - Major cleanups and removed unused features. For more details check the
   `<upstream-differences>`_ document.

@@ -135,9 +135,9 @@ Layout Differences
 
 - Critical errors are prominently displayed.
 
-- No *Top Contributors" tables.
+- No *Top Contributors* tables.
 
-- No home page. Users are redirected to their preferrend language pages
+- No home page. Users are redirected to their preferred language pages
   instead, falling back to the project listings page.
 
 - Single-column and wide browsing table.
@@ -146,7 +146,7 @@ Layout Differences
   and have been reorganized and sorted.
 
 - `Modern browser support <browsers>`_. This includes latest stable
-  versions  of major browsers, and therefore some JavaScript libraries
+  versions of major browsers, and therefore some JavaScript libraries
   that don't rely on old browsers can be used (namely jQuery 2.x). Some
   CSS prefixes have been removed too.
 
@@ -157,6 +157,6 @@ Other Notable Differences
 - Hard dependency differences. Check the *requirements/* directory for
   details.
 
-- URLs have been unified an all follow the same scheme. URLs ending in
+- URLs have been unified and all follow the same scheme. URLs ending in
   *.html* have been removed altogether. ``reverse()`` and ``{% url %}``
   are used almost everywhere.
