@@ -81,24 +81,8 @@ class Command(NoArgsCommand):
                     call_command("migrate", app, "0001", fake=True)
 
             call_command('migrate')
-
-            if current_buildversion < 25200:
-                populate_tm()
-
             call_command('upgrade')
 
             logging.info('Successfully upgraded Pootle.')
         else:
             logging.info('Pootle is already up-to-date.')
-
-
-def populate_tm():
-    """Populate local TM from existing translation units."""
-    from django.db import transaction
-    from pootle_store.models import Unit, TMUnit
-    from pootle_store.util import TRANSLATED
-
-    with transaction.commit_on_success():
-        for unit in Unit.objects.filter(state__gte=TRANSLATED).iterator():
-            tmunit = TMUnit().create(unit)
-            tmunit.save()
