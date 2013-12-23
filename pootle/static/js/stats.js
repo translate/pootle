@@ -194,7 +194,7 @@
           if ($table.length) {
             for (var name in data.children) {
               var item = data.children[name],
-                  code = name.replace(/\./g, '-').replace(/@/g, '\\@'),
+                  code = name.replace(/[\.@]/g, '-'),
                   $td = $table.find('#total-words-' + code);
 
               PTL.stats.updateItemStats($td, item.total);
