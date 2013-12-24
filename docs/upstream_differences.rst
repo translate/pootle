@@ -104,6 +104,8 @@ incorporated.
 
 - Local Translation Memory.
 
+- ``assign_permissions`` management command (688b8482)
+
 
 Editor Differences
 ------------------
