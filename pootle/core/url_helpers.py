@@ -37,7 +37,7 @@ def split_pootle_path(pootle_path):
     project_code = None
     ctx = ''
 
-    if slash_count != 0:
+    if slash_count != 0 and pootle_path != '/projects/':
         # /<lang_code>/
         if slash_count == 2:
             language_code = parts[0]
