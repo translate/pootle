@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-import json
 import sys
 import traceback
 
@@ -39,16 +38,17 @@ except ImportError:
 
 from pootle.core.exceptions import Http400
 from pootle_misc.baseurl import l, get_next
+from pootle_misc.utils import jsonify
 
 
 class ErrorPagesMiddleware(object):
     """Friendlier error pages."""
 
     def _ajax_error(self, rcode, msg):
-        json = {
+        error_body = {
             'msg': msg,
         }
-        response = json.dumps(json)
+        response = jsonify(error_body)
         return HttpResponse(response, status=rcode,
                             mimetype="application/json")
 

@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-import json
 import logging
 import os
 from itertools import groupby
@@ -667,7 +666,7 @@ def timeline(request, unit):
         c = RequestContext(request, context)
         json['timeline'] = t.render(c).replace('\n', '')
 
-        response = json.dumps(json)
+        response = jsonify(json)
         return HttpResponse(response, mimetype="application/json")
     else:
         return render_to_response('unit/timeline.html', context,
@@ -707,7 +706,7 @@ def comment(request, unit):
         json = {'msg': _("Comment submission failed.")}
         rcode = 400
 
-    response = json.dumps(json)
+    response = jsonify(json)
 
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
