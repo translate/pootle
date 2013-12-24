@@ -320,24 +320,56 @@ def project_admin_permissions(request, project):
 
 @get_path_obj
 @permission_required('view')
-def projects_index(request, root):
+def projects_overview(request, project_set):
     """Page listing all projects."""
-    user_accessible_projects = Project.accessible_by_user(request.user)
-    user_projects = Project.objects.filter(code__in=user_accessible_projects)
-    items = [make_project_list_item(project) for project in user_projects]
+    items = [make_project_list_item(project)
+             for project in project_set.get_children()]
 
-    table_fields = ['name']
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'suggestions', 'critical', 'last-updated', 'activity']
 
-    ctx = {
+    ctx = get_overview_context(request)
+    ctx.update({
         'table': {
             'id': 'projects',
             'fields': table_fields,
             'headings': get_table_headings(table_fields),
             'items': items,
         },
-    }
 
-    response = render(request, 'projects/list.html', ctx)
+        'browser_extends': 'projects/all/base.html',
+    })
+
+    response = render(request, 'browser/overview.html', ctx)
     response.set_cookie('pootle-language', 'projects')
 
     return response
+
+
+@get_path_obj
+@permission_required('view')
+def projects_translate(request, project_set):
+    ctx = get_translation_context(request)
+    ctx.update({
+        'language': None,
+        'project': None,
+
+        'editor_extends': 'projects/all/base.html',
+    })
+
+    return render_to_response('editor/main.html', ctx,
+                              context_instance=RequestContext(request))
+
+
+@get_path_obj
+@permission_required('view')
+def projects_export_view(request, project_set):
+    ctx = get_export_view_context(request)
+    ctx.update({
+        'source_language': 'en',
+        'language': None,
+        'project': None,
+    })
+
+    return render_to_response('editor/export_view.html', ctx,
+                              context_instance=RequestContext(request))

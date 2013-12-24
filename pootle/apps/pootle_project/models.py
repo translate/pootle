@@ -77,8 +77,16 @@ class ProjectURLMixin(object):
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+
+        if proj is not None:
+            pattern_name = 'pootle-project-translate'
+            pattern_args = [proj, dir, fn]
+        else:
+            pattern_name = 'pootle-projects-translate'
+            pattern_args = []
+
         return u''.join([
-            reverse('pootle-project-translate', args=[proj, dir, fn]),
+            reverse(pattern_name, args=pattern_args),
             get_editor_filter(**kwargs),
         ])
 
@@ -532,6 +540,16 @@ class ProjectResource(VirtualResource, ProjectURLMixin):
 
     def _get_code(self, resource):
         return resource.translation_project.language.code
+
+    ### /TreeItem
+
+
+class ProjectSet(VirtualResource, ProjectURLMixin):
+
+    ### TreeItem
+
+    def _get_code(self, project):
+        return project.code
 
     ### /TreeItem
 

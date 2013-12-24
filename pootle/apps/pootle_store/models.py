@@ -222,9 +222,11 @@ class UnitManager(RelatedManager):
                 units_path = ''.join(['/%/', proj, '/', filename])
             else:
                 units_path = ''.join(['/%/', proj, '/%'])
+        # /projects/translate/*
+        elif lang is None and proj is None:
+            units_path = '/%'
         # /<lang_code>/<project_code>/translate/*
         # /<lang_code>/translate/*
-        # /translate/*
         else:
             units_path = ''.join([pootle_path, '%'])
 

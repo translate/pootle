@@ -22,10 +22,18 @@ from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns('pootle_project.views',
-    # Listing of all projects
+    # All projects
     url(r'^$',
-        'projects_index',
-        name='pootle-project-list'),
+        'projects_overview',
+        name='pootle-projects-overview'),
+
+    url(r'^translate/$',
+        'projects_translate',
+        name='pootle-projects-translate'),
+
+    url(r'^export-view/$',
+        'projects_export_view',
+        name='pootle-projects-export-view'),
 
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin/settings/$',

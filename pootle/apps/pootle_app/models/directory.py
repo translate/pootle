@@ -156,7 +156,7 @@ class Directory(models.Model, TreeItem):
             pattern_name = 'pootle-project-translate'
             pattern_args = [proj]
         else:
-            pattern_name = 'pootle-translate'
+            pattern_name = 'pootle-projects-translate'
             pattern_args = []
 
         return u''.join([

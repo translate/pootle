@@ -39,7 +39,7 @@ def view(request):
     if lang is not None and lang not in ('projects', ''):
         url = reverse('pootle-language-overview', args=[lang])
     else:
-        url = reverse('pootle-project-list')
+        url = reverse('pootle-projects-overview')
 
     # Preserve query strings
     args = request.GET.urlencode()
