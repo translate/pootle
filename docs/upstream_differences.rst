@@ -41,7 +41,8 @@ Changed Features
 ^^^^^^^^^^^^^^^^
 
 - Richer and more responsive statistics. *Last Updated* dates for stores
-  and projects are tracked, for instance.
+  and projects are tracked, for instance. These statistics are also
+  available for the *All Projects* view.
 
 - ``refresh_stats`` has been refined to be faster, and allows extra
   options.

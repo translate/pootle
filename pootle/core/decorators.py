@@ -32,7 +32,7 @@ from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
 from pootle_profile.models import get_profile
 from pootle_language.models import Language
-from pootle_project.models import Project, ProjectResource
+from pootle_project.models import Project, ProjectSet, ProjectResource
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
@@ -93,8 +93,15 @@ def get_path_obj(func):
             path_obj = get_object_or_404(Language, code=language_code)
         elif project_code:
             path_obj = get_object_or_404(Project, code=project_code)
-        else:  # No arguments: treat it like the root directory
-            path_obj = Directory.objects.root
+        else:  # No arguments: all user-accessible projects
+            user_projects = Project.accessible_by_user(request.user)
+            user_projects = Project.objects.filter(code__in=user_projects)
+            path_obj = ProjectSet(user_projects, '/projects/')
+
+            # HACKISH: inject directory so that permissions can be
+            # queried
+            directory = Directory.objects.get(pootle_path='/projects/')
+            setattr(path_obj, 'directory', directory)
 
         request.ctx_obj = path_obj
         request.ctx_path = path_obj.pootle_path

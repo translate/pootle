@@ -10,8 +10,13 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- *All Projects* page now shares the same browsing table as available in any
+  other overview page. (`#58`_)
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+
+.. _#58: https://github.com/evernote/pootle/issues/58
 
 
 Release `2013-12-19`_

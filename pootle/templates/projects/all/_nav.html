@@ -1,0 +1,25 @@
+{% load i18n %}
+{% load url from future %}
+<option
+  value="overview"
+  data-href="{% url 'pootle-projects-overview' %}">
+  {% trans "Overview" %}
+</option>
+<option
+  value="translate"
+  data-href="{% url 'pootle-projects-translate' %}">
+  {% trans "Translate" %}
+</option>
+{% if user.is_superuser or request.permissions.administrate %}
+<option disabled></option>
+<option
+  value="admin-languages" class="admin"
+  data-href="{% url 'pootle-admin-languages' %}">
+  {% trans "Languages" %}
+</option>
+<option
+  value="admin-permissions" class="admin"
+  data-href="{% url 'pootle-admin-permissions' %}">
+  {% trans "Permissions" %}
+</option>
+{% endif %}

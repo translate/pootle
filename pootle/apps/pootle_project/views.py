@@ -204,13 +204,13 @@ def project_admin_permissions(request, project):
 
 @get_path_obj
 @permission_required('view')
-def projects_index(request, root):
+def projects_overview(request, project_set):
     """Page listing all projects"""
-    user_accessible_projects = Project.accessible_by_user(request.user)
-    user_projects = Project.objects.filter(code__in=user_accessible_projects)
-    items = [make_project_list_item(project) for project in user_projects]
+    items = [make_project_list_item(project)
+             for project in project_set.get_children()]
 
-    table_fields = ['name']
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'suggestions', 'critical', 'last-updated', 'activity']
     table = {
         'id': 'projects',
         'fields': table_fields,
@@ -218,12 +218,44 @@ def projects_index(request, root):
         'items': items,
     }
 
-    ctx = {
+    ctx = get_overview_context(request)
+    ctx.update({
         'table': table,
-    }
 
-    response = render_to_response('projects/list.html', ctx,
+        'browser_extends': 'projects/all/base.html',
+    })
+
+    response = render_to_response('browser/overview.html', ctx,
                                   RequestContext(request))
     response.set_cookie('pootle-language', 'projects')
 
     return response
+
+
+@get_path_obj
+@permission_required('view')
+def projects_translate(request, project_set):
+    ctx = get_translation_context(request)
+    ctx.update({
+        'language': None,
+        'project': None,
+
+        'editor_extends': 'projects/all/base.html',
+    })
+
+    return render_to_response('editor/main.html', ctx,
+                              context_instance=RequestContext(request))
+
+
+@get_path_obj
+@permission_required('view')
+def projects_export_view(request, project_set):
+    ctx = get_export_view_context(request)
+    ctx.update({
+        'source_language': 'en',
+        'language': None,
+        'project': None,
+    })
+
+    return render_to_response('editor/export_view.html', ctx,
+                              context_instance=RequestContext(request))
