@@ -99,8 +99,9 @@ def get_path_obj(func):
             setattr(path_obj, 'directory', path_obj)
 
         request.ctx_obj = path_obj
+        request.ctx_path = path_obj.pootle_path
         request.resource_obj = path_obj
-        request.pootle_path = request.resource_obj.pootle_path
+        request.pootle_path = path_obj.pootle_path
 
         return func(request, path_obj, *args, **kwargs)
 
