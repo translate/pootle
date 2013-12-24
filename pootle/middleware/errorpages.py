@@ -39,7 +39,7 @@ except ImportError:
 
 from pootle.core.exceptions import Http400
 from pootle_misc.baseurl import l, get_next
-from pootle_misc.utils import jsonify
+from pootle_misc.util import jsonify
 
 
 class ErrorPagesMiddleware(object):
