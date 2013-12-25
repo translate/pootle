@@ -372,7 +372,7 @@ def get_step_query(request, units_queryset):
             elif unit_filter == 'suggestions':
                 #FIXME: is None the most efficient query
                 match_queryset = units_queryset.exclude(suggestion=None)
-            elif unit_filter == 'user-suggestions':
+            elif unit_filter in ('my-suggestions', 'user-suggestions'):
                 match_queryset = units_queryset.filter(
                         suggestion__user=profile,
                     ).distinct()
@@ -395,11 +395,12 @@ def get_step_query(request, units_queryset):
                 match_queryset = units_queryset.filter(
                         id__in=unit_ids,
                     ).distinct()
-            elif unit_filter == 'user-submissions':
+            elif unit_filter in ('my-submissions', 'user-submissions'):
                 match_queryset = units_queryset.filter(
                         submission__submitter=profile,
                     ).distinct()
-            elif unit_filter == 'user-submissions-overwritten':
+            elif (unit_filter in ('my-submissions-overwritten',
+                                  'user-submissions-overwritten')):
                 match_queryset = units_queryset.filter(
                         submission__submitter=profile,
                     ).exclude(submitted_by=profile).distinct()
