@@ -1,0 +1,27 @@
+{% load i18n %}
+<ul>
+  <li id="js-action-continue">
+    <a class="continue-translation" href="{{ url_action_continue }}">
+      <span class="caption">{% trans 'Continue translation' %}</span>
+      <span class="counter">0</span>
+    </a>
+  </li>
+  <li id="js-action-review">
+    <a class="review-suggestions" href="{{ url_action_review }}">
+      <span class="caption">{% trans 'Review suggestions' %}</span>
+      <span class="counter">0</span>
+    </a>
+  </li>
+  <li id="js-action-fix-critical">
+    <a class="fix-errors" href="{{ url_action_fixcritical }}">
+      <span class="caption">{% trans 'Fix critical errors' %}</span>
+      <span class="counter">0</span>
+    </a>
+  </li>
+  <li id="js-action-view-all">
+    <a class="translation-complete" href="{{ url_action_view_all }}">
+      <span class="caption">{% trans 'View all' %}</span>
+      <span class="counter">0</span>
+    </a>
+  </li>
+</ul>
