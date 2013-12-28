@@ -32,6 +32,7 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
 from pootle_misc import siteconfig
+from pootle_misc.upgrade.pootle import create_local_tm
 from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
 
@@ -66,6 +67,8 @@ def initdb():
             raise
         else:
             transaction.commit()
+
+    create_local_tm()
 
     config = siteconfig.load_site_config()
     if not config.get('POOTLE_BUILDVERSION', None):
