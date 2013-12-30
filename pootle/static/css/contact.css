@@ -24,6 +24,10 @@
 #contact textarea
 {
     font-family: "Segoe UI", "Ubuntu", sans-serif;
+}
+
+#contact textarea
+{
     font-size: 1em;
     padding-left: 0.2em;
     padding-right: 0.2em;
