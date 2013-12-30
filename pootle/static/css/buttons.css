@@ -21,7 +21,6 @@
 
     /* btn-normal size */
     font-size: inherit;
-    min-width: 110px;
     padding: 0.5em 1em;
 }
 
@@ -38,28 +37,22 @@ a.btn:link
 .btn-xl
 {
     font-size: 1.6em;
-    min-width: 250px;
-
-    height: 3em;
-    padding: 0 2em;
+    padding: 1em 2em;
 }
 
 .btn-lg
 {
     font-size: 1.4em;
-    min-width: 150px;
 }
 
 .btn-sm
 {
     font-size: 0.9em;
-    min-width: 80px;
 }
 
 .btn-xs
 {
     font-size: 0.8em;
-    min-width: 40px;
     borde-radius: 3px;
 }
 

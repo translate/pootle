@@ -1044,6 +1044,7 @@ li.check.false-positive > a
 .translate-buttons-block .btn
 {
     margin-bottom: 0.5em;
+    min-width: 110px;
 }
 
 .translate-buttons-block input.suggest
