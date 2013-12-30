@@ -89,6 +89,16 @@ a.btn:link
     background-color: #d2322d;
 }
 
+.btn:hover,
+.btn:focus
+{
+    /* Webkit */
+    -webkit-filter: brightness(120%);
+
+    /* Firefox: saturation more than 100% doesn't work; increase brightness instead */
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'saturate\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'1.2\'/><feFuncG type=\'linear\' slope=\'1.2\'/><feFuncB type=\'linear\' slope=\'1.2\'/></feComponentTransfer></filter></svg>#saturate");
+}
+
 .btn:disabled,
 .btn-disabled,
 .btn:disabled:active,
@@ -108,16 +118,6 @@ a.btn:link
 
     /* Firefox */
     filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.5\'/></filter></svg>#grayscale");
-}
-
-.btn:hover,
-.btn:focus
-{
-    /* Webkit */
-    -webkit-filter: brightness(120%);
-
-    /* Firefox: saturation more than 100% doesn't work; increase brightness instead */
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'saturate\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'1.2\'/><feFuncG type=\'linear\' slope=\'1.2\'/><feFuncB type=\'linear\' slope=\'1.2\'/></feComponentTransfer></filter></svg>#saturate");
 }
 
 /* Zoom */
