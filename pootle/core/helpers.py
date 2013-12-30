@@ -58,7 +58,9 @@ def get_filter_name(GET):
         # Translators: This is the name of a filter
         'search': _('Search'),
         'checks': _('Checks'),
+        'my-submissions': _('My submissions'),
         'user-submissions': _('Submissions'),
+        'my-submissions-overwritten': _('My overwritten submissions'),
         'user-submissions-overwritten': _('Overwritten submissions'),
     }.get(filter)
 
