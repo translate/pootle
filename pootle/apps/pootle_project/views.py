@@ -42,7 +42,7 @@ from pootle_app.views.index.index import getprojects
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import stats_descriptions
+from pootle_misc.stats import stats_descriptions, nice_percentage
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile
 from pootle_project.forms import (TranslationProjectFormSet,
@@ -66,10 +66,11 @@ def make_language_item(translation_project):
     href_all = translation_project.get_translate_url()
     href_todo = translation_project.get_translate_url(state='incomplete')
 
-    project_stats = get_raw_stats(translation_project)
+    project_stats = translation_project.get_stats()
 
     tooltip_dict = {
-        'percentage': project_stats['translated']['percentage']
+        'percentage': nice_percentage(project_stats['translated'],
+                                      project_stats['total'])
     }
 
     info = {
@@ -107,11 +108,12 @@ def get_project_base_template_vars(request, project, can_edit):
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     languagecount = len(translation_projects)
-    project_stats = get_raw_stats(project)
+    project_stats = project.get_stats()
 
     summary_dict = {
         "languages": languagecount,
-        "average": project_stats['translated']['percentage'],
+        "average": nice_percentage(project_stats['translated'],
+                                   project_stats['total']),
     }
 
     summary = ungettext('%(languages)d language, %(average)d%% translated',

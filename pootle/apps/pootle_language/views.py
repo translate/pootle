@@ -52,7 +52,7 @@ def make_project_item(translation_project):
     href_all = translation_project.get_translate_url()
     href_todo = translation_project.get_translate_url(state='incomplete')
 
-    project_stats = get_raw_stats(translation_project)
+    project_stats = translation_project.get_stats()
 
     info = {
         'code': project.code,
@@ -65,7 +65,8 @@ def make_project_item(translation_project):
         'lastactivity': get_last_action(translation_project),
         'isproject': True,
         'tooltip': _('%(percentage)d%% complete',
-                     {'percentage': project_stats['translated']['percentage']}),
+                     {'percentage': nice_percentage(project_stats['translated'],
+                                                    project_stats['total'])}),
     }
 
     errors = project_stats.get('errors', 0)

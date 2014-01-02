@@ -55,8 +55,7 @@ from pootle_misc.browser import (get_children, get_goal_children,
                                  get_table_headings, get_parent,
                                  make_goal_item)
 from pootle_misc.checks import get_quality_check_failures
-from pootle_misc.stats import (get_raw_stats, get_translation_stats,
-                               get_path_summary)
+from pootle_misc.stats import get_translation_stats, get_path_summary
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes

@@ -24,7 +24,6 @@ from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
 
 from pootle.core.api import StatisticsModelResource
-from pootle_misc.stats import get_raw_stats
 from pootle_project.models import Project
 from pootle_translationproject.api import TranslationProjectResource
 
@@ -70,4 +69,4 @@ class ProjectResource(StatisticsModelResource):
 
     def retrieve_statistics(self, bundle):
         """Retrieve the statistics for the current resource object."""
-        return get_raw_stats(bundle.obj, include_suggestions=True)
+        return bundle.obj.get_stats()

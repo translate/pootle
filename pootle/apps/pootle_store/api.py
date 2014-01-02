@@ -25,7 +25,6 @@ from tastypie.http import HttpNotImplemented
 from tastypie.resources import ModelResource
 
 from pootle.core.api import StatisticsModelResource
-from pootle_misc.stats import get_raw_stats
 from pootle_store.models import Store, Suggestion, Unit
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 
@@ -165,4 +164,4 @@ class StoreResource(StatisticsModelResource):
 
     def retrieve_statistics(self, bundle):
         """Given a ``Bundle``, return the statistics for it."""
-        return get_raw_stats(bundle.obj, include_suggestions=True)
+        return bundle.obj.get_stats()
