@@ -43,7 +43,7 @@ from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.stats import stats_message, stats_message_raw
-from pootle_misc.util import deletefromcache, dictsum
+from pootle_misc.util import cached_property, deletefromcache, dictsum
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
