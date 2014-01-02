@@ -122,10 +122,11 @@ def get_path_summary(path_obj, path_stats, latest_action):
                 "which is translated.",
                 "This folder has %(num)d words, %(percentage)d%% of "
                 "which are translated.",
-                path_stats['total']['words'],
+                path_stats['total'],
                 {
-                    'num': path_stats['total']['words'],
-                    'percentage': path_stats['translated']['percentage']
+                    'num': path_stats['total'],
+                    'percentage': nice_percentage(path_stats['translated'],
+                                  path_stats['total'])
                 })
         )
     else:
@@ -134,10 +135,11 @@ def get_path_summary(path_obj, path_stats, latest_action):
                 "which is translated.",
                 "This file has %(num)d words, %(percentage)d%% of "
                 "which are translated.",
-                path_stats['total']['words'],
+                path_stats['total'],
                 {
-                    'num': path_stats['total']['words'],
-                    'percentage': path_stats['translated']['percentage']
+                    'num': path_stats['total'],
+                    'percentage': nice_percentage(path_stats['translated'],
+                                  path_stats['total'])
                 })
         )
 
@@ -157,10 +159,8 @@ def get_path_summary(path_obj, path_stats, latest_action):
     ]))
 
 
-    if (path_stats['untranslated']['words'] > 0 or
-        path_stats['fuzzy']['words'] > 0):
-
-        num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
+    num_words = path_stats['total'] - path_stats['translated']
+    if num_words > 0:
         incomplete.extend([
             u'<a class="path-incomplete" href="%(url)s">' % {
                     'url': path_obj.get_translate_url(state='incomplete')
@@ -246,10 +246,11 @@ def stats_descriptions(quick_stats):
     """Provide a dictionary with two textual descriptions of the work
     outstanding.
     """
-    total_words = quick_stats["total"]["words"]
-    untranslated = quick_stats["untranslated"]["words"]
-    fuzzy = quick_stats["fuzzy"]["words"]
-    todo_words = untranslated + fuzzy
+    total_words = quick_stats["total"]
+    translated = quick_stats["translated"]
+    fuzzy = quick_stats["fuzzy"]
+    untranslated = total_words - translated - fuzzy
+    todo_words = total_words - translated
 
     todo_text = ungettext("%d word needs attention",
                           "%d words need attention", todo_words, todo_words)
