@@ -36,9 +36,8 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.signals import (post_file_upload, post_template_update,
                                        post_vc_update)
 from pootle_misc.checks import category_names, check_names
-from pootle_misc.stats import add_percentages, get_processed_stats
 from pootle_store.signals import translation_submitted
-from pootle_store.util import (OBSOLETE, completestatssum, statssum,
+from pootle_store.util import (OBSOLETE, completestatssum,
                                suggestions_sum)
 
 from .decorators import get_from_cache_for_path
@@ -229,7 +228,7 @@ class Goal(TagBase):
         return path_objs
 
     @classmethod
-    def get_most_important_incomplete_for_path(cls, pootle_path):
+    def get_most_important_incomplete_for_path(cls, path_obj):
         """Return the most important incomplete goal for this path or None.
 
         If this is not the 'templates' translation project for the project then
@@ -240,15 +239,15 @@ class Goal(TagBase):
         than a goal have the lower priority then the alphabetical order is
         taken in account.
 
-        :param pootle_path: A string with a valid pootle path.
+        :param path_obj: A pootle path object.
         """
         most_important = None
-        for goal in cls.get_goals_for_path(pootle_path):
+        for goal in cls.get_goals_for_path(path_obj.pootle_path):
             if (most_important is None or
                 goal.priority < most_important.priority or
                 (goal.priority == most_important.priority and
                  goal.name < most_important.name)):
-                if goal.get_incomplete_words_in_path(pootle_path):
+                if goal.get_incomplete_words_in_path(path_obj):
                     most_important = goal
 
         return most_important
@@ -446,57 +445,15 @@ class Goal(TagBase):
     def slugify(self, tag, i=None):
         return slugify_tag_name(tag)
 
-    def delete_cache_for_path(self, pootle_path):
-        """Delete this goal cache for a given path and upper directories.
-
-        The cache is deleted for the given path, for the directories between
-        the given path and the translation project, and for the translation
-        project itself.
-
-        :param pootle_path: A string with a valid pootle path.
-        """
-        path_objs = cls.get_trail_for_path(pootle_path)
-
-        keys = []
-        for path_obj in path_objs:
-            for function_name in self.CACHED_FUNCTIONS:
-                keys.append(iri_to_uri(self.pootle_path + ":" +
-                                       path_obj.pootle_path + ":" +
-                                       function_name))
-        cache.delete_many(keys)
-
-    @get_from_cache_for_path
-    def get_raw_stats_for_path(self, pootle_path):
-        """Return a raw stats dictionary for this goal inside the given path.
-
-        If this is a project goal the stats returned are the ones for the
-        stores in the given path that correspond to the stores inside this goal
-        that are present in the matching path in the 'templates' TP.
-
-        :param pootle_path: A string with a valid pootle path.
-        """
-        # Retrieve the stores for this goal in the path.
-        tp_stores_for_this_goal = self.get_stores_for_path(pootle_path)
-
-        # Get and sum the stats for the stores.
-        quickstats = statssum(tp_stores_for_this_goal)
-        stats = get_processed_stats(add_percentages(quickstats))
-
-        # Get and sum the suggestion counts for the stores.
-        stats['suggestions'] = suggestions_sum(tp_stores_for_this_goal)
-
-        return stats
-
-    def get_failing_checks_for_path(self, pootle_path):
+    def get_failing_checks_for_path(self, path_obj):
         """Return a failed quality checks list sorted by importance.
 
-        :param pootle_path: A string with a valid pootle path.
+        :param path_obj: A pootle path object.
         """
         checks = []
-        path_stats = self.get_raw_stats_for_path(pootle_path)
-        goal_stores_for_path = self.get_stores_for_path(pootle_path)
+        goal_stores_for_path = self.get_stores_for_path(path_obj.pootle_path)
         property_stats = completestatssum(goal_stores_for_path)
-        total = path_stats['total']['units']
+        total = path_obj.get_total_wordcount()
 
         keys = property_stats.keys()
         keys.sort(reverse=True)
@@ -530,13 +487,14 @@ class Goal(TagBase):
 
         return checks
 
-    def get_incomplete_words_in_path(self, pootle_path):
+    def get_incomplete_words_in_path(self, path_obj):
         """Return the number of incomplete words for this goal in the path.
 
-        :param pootle_path: A string with a valid pootle path.
+        :param path_obj: A pootle path object.
         """
-        stats = self.get_raw_stats_for_path(pootle_path)
-        return stats['untranslated']['words'] + stats['fuzzy']['words']
+        total = path_obj.get_total_wordcount()
+        translated = path_obj.get_translated_wordcount()
+        return total - translated
 
 
 class ItemWithGoal(GenericTaggedItemBase):

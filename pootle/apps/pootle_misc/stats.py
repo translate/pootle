@@ -41,58 +41,6 @@ def nice_percentage(count, total):
     return int(round(percentage))
 
 
-def add_percentages(quick_stats):
-    """Add percentages onto the raw stats dictionary."""
-    trans_percent = nice_percentage(quick_stats['translatedsourcewords'],
-                                    quick_stats['totalsourcewords'])
-
-    fuzzy_percent = nice_percentage(quick_stats['fuzzysourcewords'],
-                                    quick_stats['totalsourcewords'])
-
-    strtrans_percent = nice_percentage(quick_stats['translated'],
-                                       quick_stats['total'])
-
-    strfuzzy_percent = nice_percentage(quick_stats['fuzzy'],
-                                       quick_stats['total'])
-
-    quick_stats.update({
-        'translatedpercentage': trans_percent,
-        'fuzzypercentage':  fuzzy_percent,
-        'untranslatedpercentage': 100 - trans_percent - fuzzy_percent,
-        'strtranslatedpercentage': strtrans_percent,
-        'strfuzzypercentage': strfuzzy_percent,
-        'struntranslatedpercentage': 100 - strtrans_percent - strfuzzy_percent,
-    })
-    return quick_stats
-
-
-def get_processed_stats(quick_stats):
-    """Return a processed dictionary of raw stats."""
-    return {
-        'total': {
-            'words': quick_stats['totalsourcewords'],
-            'percentage': 100,
-            'units': quick_stats['total'],
-        },
-        'translated': {
-            'words': quick_stats['translatedsourcewords'],
-            'percentage': quick_stats['translatedpercentage'],
-            'units': quick_stats['translated'],
-        },
-        'fuzzy': {
-            'words': quick_stats['fuzzysourcewords'],
-            'percentage': quick_stats['fuzzypercentage'],
-            'units': quick_stats['fuzzy'],
-        },
-        'untranslated': {
-            'words': quick_stats['untranslatedsourcewords'],
-            'percentage': quick_stats['untranslatedpercentage'],
-            'units': quick_stats['untranslated'],
-        },
-        'errors': quick_stats['errors'],
-        'suggestions': -1,
-    }
-
 # TODO delete
 def get_raw_stats(path_obj, include_suggestions=False):
     """Return a dictionary of raw stats for `path_obj`.
@@ -228,10 +176,10 @@ def get_path_summary(path_obj, path_stats, latest_action):
             from pootle_tagging.models import Goal
 
             pootle_path = path_obj.pootle_path
-            goal = Goal.get_most_important_incomplete_for_path(pootle_path)
+            goal = Goal.get_most_important_incomplete_for_path(path_obj)
 
             if goal is not None:
-                goal_words = goal.get_incomplete_words_in_path(pootle_path)
+                goal_words = goal.get_incomplete_words_in_path(path_obj)
                 goal_url = goal.get_translate_url_for_path(pootle_path,
                                                            state='incomplete')
                 incomplete.extend([

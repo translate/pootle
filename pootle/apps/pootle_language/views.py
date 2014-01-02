@@ -93,9 +93,9 @@ def overview(request, language):
     tp_count = len(user_tps)
     items = (make_project_item(tp) for tp in user_tps)
 
-    totals = language.getquickstats()
-    average = nice_percentage(totals['translatedsourcewords'],
-                              totals['totalsourcewords'])
+    total = language.get_total_wordcount()
+    translated = language.get_translated_wordcount()
+    average = nice_percentage(translated, total)
     topstats = gentopstats_language(language)
 
     table_fields = ['name', 'progress', 'total', 'need-translation', 'activity']

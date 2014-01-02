@@ -887,7 +887,7 @@ def get_failing_checks(request, path_obj):
             goal = Goal.objects.get(slug=request.GET['goal'])
         except Goal.DoesNotExist:
             raise Http404
-        failures = goal.get_failing_checks_for_path(path_obj.pootle_path)
+        failures = goal.get_failing_checks_for_path(path_obj)
     else:
         stats = get_raw_stats(path_obj)
         failures = get_quality_check_failures(path_obj, stats,

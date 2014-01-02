@@ -1939,18 +1939,3 @@ class Store(models.Model, base.TranslationStore, TreeItem):
             except PootleProfile.DoesNotExist:
                 pass
         return None
-
-
-################################ Signal handlers ##############################
-
-# NOTE: for some strange reason it was impossible to use m2m_changed signal.
-def flush_goal_stats_for_tp_cache(sender, instance, **kwargs):
-    """Flush goal stats for a TP if the goal is (un)applied to a store."""
-    # Make sure that the signal was sent when (un)applying a goal to a store.
-    if isinstance(instance.content_object, Store):
-        goal = instance.tag
-        store_path = instance.content_object.pootle_path
-        goal.delete_cache_for_path(store_path)
-
-post_save.connect(flush_goal_stats_for_tp_cache, sender=Store.goals.through)
-pre_delete.connect(flush_goal_stats_for_tp_cache, sender=Store.goals.through)
