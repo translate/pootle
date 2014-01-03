@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -25,7 +25,7 @@ from django.conf import settings
 
 
 translate_min_required_ver = (1, 11, 0)
-django_min_required_ver = (1, 4, 10)
+django_min_required_ver = (1, 5, 5)
 lxml_min_required_ver = (2, 1, 4, 0)
 
 
