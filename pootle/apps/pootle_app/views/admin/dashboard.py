@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2008-2014 Zuza Software Foundation
 # Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -50,7 +50,7 @@ def required_depcheck():
         trans_vars = {
             'installed': version,
             'required': ".".join([str(i) for i in
-                                  depcheck.translate_min_required_ver]),
+                                  depcheck.TTK_MINIMUM_REQUIRED_VERSION]),
         }
         text = _("Translate Toolkit version %(installed)s installed. Pootle "
                  "requires at least version %(required)s.", trans_vars)
@@ -85,7 +85,7 @@ def required_depcheck():
         trans_vars = {
             'installed': version,
             'required': ".".join([str(i) for i in
-                                  depcheck.lxml_min_required_ver]),
+                                  depcheck.LXML_MINIMUM_REQUIRED_VERSION]),
         }
         text = _("lxml version %(installed)s is installed. Pootle requires at "
                  "least version %(required)s.", trans_vars)
