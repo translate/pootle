@@ -345,10 +345,6 @@ def translate(request, project):
                               context_instance=RequestContext(request))
 
 
-
-
-
-
 @get_path_obj
 @permission_required('administrate')
 def project_admin(request, current_project):
