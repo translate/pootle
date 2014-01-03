@@ -67,8 +67,13 @@ def required_depcheck():
         text = _('Django version %s is installed.', version)
         state = 'tick'
     else:
-        text = _("Django version %s is installed, but a higher version is "
-                 "highly recommended.", version)
+        trans_vars = {
+            'installed': version,
+            'required': ".".join([str(i) for i in
+                                  depcheck.DJANGO_MINIMUM_REQUIRED_VERSION]),
+        }
+        text = _("Django version %(installed)s is installed. Pootle requires "
+                 "at least version %(required)s.", trans_vars)
         state = 'error'
 
     required.append({
