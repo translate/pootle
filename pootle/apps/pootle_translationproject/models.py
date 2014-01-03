@@ -380,9 +380,6 @@ class TranslationProject(models.Model, TreeItem):
         if not monolingual:
             self.sync()
 
-        if pootle_path is None:
-            oldstats = self.getquickstats()
-
         from pootle_app.project_tree import (convert_template,
                                              get_translated_name,
                                              get_translated_name_gnu)
@@ -451,11 +448,8 @@ class TranslationProject(models.Model, TreeItem):
                     pass
 
         if pootle_path is None:
-            newstats = self.getquickstats()
-
             from pootle_app.models.signals import post_template_update
-            post_template_update.send(sender=self, oldstats=oldstats,
-                                      newstats=newstats)
+            post_template_update.send(sender=self)
 
     def scan_files(self, vcs_sync=True):
         """Scan the file system and return a list of translation files.
@@ -517,7 +511,6 @@ class TranslationProject(models.Model, TreeItem):
             pass
 
         # Keep a copy of working files in memory before updating
-        oldstats = store.getquickstats()
         working_copy = store.file.store
 
         try:
@@ -544,7 +537,6 @@ class TranslationProject(models.Model, TreeItem):
             logging.debug(u"Parsing version control copy of %s into db",
                           store.file.name)
             store.update(update_structure=True, update_translation=True)
-            remotestats = store.getquickstats()
 
             #FIXME: try to avoid merging if file was not updated
             logging.debug(u"Merging %s with version control update",
@@ -559,14 +551,10 @@ class TranslationProject(models.Model, TreeItem):
             store.update(update_structure=True, update_translation=True)
             raise
 
-        newstats = store.getquickstats()
-        return oldstats, remotestats, newstats
-
     def update_dir(self, request=None, directory=None):
         """Updates translation project's files from version control, retaining
         uncommitted translations.
         """
-        old_stats = self.getquickstats()
         remote_stats = {}
 
         from pootle_misc import versioncontrol
@@ -593,9 +581,6 @@ class TranslationProject(models.Model, TreeItem):
 
         for store in stores.iterator():
             if store in new_file_set:
-                # these won't have to be merged, since they are new
-                remotestats = store.getquickstats()
-                remote_stats = dictsum(remote_stats, remotestats)
                 continue
 
             store.sync(update_translation=True)
@@ -623,7 +608,6 @@ class TranslationProject(models.Model, TreeItem):
                 logging.debug(u"Parsing version control copy of %s into db",
                               store.file.name)
                 store.update(update_structure=True, update_translation=True)
-                remotestats = store.getquickstats()
 
                 #FIXME: Try to avoid merging if file was not updated
                 logging.debug(u"Merging %s with version control update",
@@ -638,46 +622,28 @@ class TranslationProject(models.Model, TreeItem):
                 store.update(update_structure=True, update_translation=True)
                 raise
 
-            remote_stats = dictsum(remote_stats, remotestats)
-
-        new_stats = self.getquickstats()
-
         if request:
-            msg = [
+            msg = \
                 _(u'Updated project <em>%(project)s</em> from version control',
-                  {'project': self.fullname}),
-                stats_message(_(u"Working copy"), old_stats),
-                stats_message(_(u"Remote copy"), remote_stats),
-                stats_message(_(u"Merged copy"), new_stats)
-            ]
-            msg = u"<br/>".join([force_unicode(m) for m in msg])
+                  {'project': self.fullname})
             messages.info(request, msg)
 
         from pootle_app.models.signals import post_vc_update
-        post_vc_update.send(sender=self, oldstats=old_stats,
-                            remotestats=remote_stats, newstats=new_stats)
+        post_vc_update.send(sender=self)
 
     def update_file(self, request, store):
         """Updates file from version control, retaining uncommitted
         translations"""
         try:
-            old_stats, remote_stats, new_stats = \
-                    self.update_file_from_version_control(store)
+            self.update_file_from_version_control(store)
 
             # FIXME: This belongs to views
-            msg = [
-                _(u'Updated file <em>%(filename)s</em> from version control',
-                  {'filename': store.file.name}),
-                stats_message(_(u"Working copy"), old_stats),
-                stats_message(_(u"Remote copy"), remote_stats),
-                stats_message(_(u"Merged copy"), new_stats)
-            ]
-            msg = u"<br/>".join([force_unicode(m) for m in msg])
+            msg = _(u'Updated file <em>%(filename)s</em> from version control',
+                    {'filename': store.file.name})
             messages.info(request, msg)
 
             from pootle_app.models.signals import post_vc_update
-            post_vc_update.send(sender=self, oldstats=old_stats,
-                                remotestats=remote_stats, newstats=new_stats)
+            post_vc_update.send(sender=self)
         except VersionControlError as e:
             # FIXME: This belongs to views
             msg = _(u"Failed to update <em>%(filename)s</em> from "
@@ -697,11 +663,14 @@ class TranslationProject(models.Model, TreeItem):
         This does not do permission checking.
         """
         self.sync()
-        stats = self.getquickstats()
+        total = directory.get_total_wordcount()
+        translated = directory.get_translated_wordcount()
+        fuzzy = directory.get_fuzzy_wordcount()
         author = user.username
 
         message = stats_message_raw("Commit from %s by user %s." %
-                                    (settings.TITLE, author), stats)
+                                    (settings.TITLE, author),
+                                    total, translated, fuzzy)
 
         # Try to append email as well, since some VCS does not allow omitting
         # it (ie. Git).
@@ -760,7 +729,7 @@ class TranslationProject(models.Model, TreeItem):
                 pass
 
         from pootle_app.models.signals import post_vc_commit
-        post_vc_commit.send(sender=self, path_obj=directory, stats=stats,
+        post_vc_commit.send(sender=self, path_obj=directory,
                             user=user, success=success)
 
         return success
@@ -772,11 +741,13 @@ class TranslationProject(models.Model, TreeItem):
         """
         store.sync(update_structure=False, update_translation=True,
                    conservative=True)
-        stats = store.getquickstats()
+        total = store.get_total_wordcount()
+        translated = store.get_translated_wordcount()
+        fuzzy = store.get_fuzzy_wordcount()
         author = user.username
 
         message = stats_message_raw("Commit from %s by user %s." % \
-                (settings.TITLE, author), stats)
+                (settings.TITLE, author), total, translated, fuzzy)
 
         # Try to append email as well, since some VCS does not allow omitting
         # it (ie. Git).
@@ -830,7 +801,7 @@ class TranslationProject(models.Model, TreeItem):
             pass
 
         from pootle_app.models.signals import post_vc_commit
-        post_vc_commit.send(sender=self, path_obj=store, stats=stats,
+        post_vc_commit.send(sender=self, path_obj=store,
                             user=user, success=success)
 
         return success

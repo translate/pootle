@@ -138,51 +138,33 @@ def unit_updated(sender, instance, raw=False, **kwargs):
 
 ##### TranslationProject Events #####
 
-def updated_against_template(sender, oldstats, newstats, **kwargs):
-    if oldstats == newstats:
-        # Nothing changed, no need to report.
-        return
-
+def updated_against_template(sender, **kwargs):
     args = {
         'url': sender.get_absolute_url(),
         'sender': sender.fullname,
     }
-    message = ('Updated <a href="%(url)s">%(sender)s</a> to latest template'
-               '<br />' % args)
-    message += stats_message_raw("Before update", oldstats) + " <br />"
-    message += stats_message_raw("After update", newstats) + " <br />"
+    message = ('Updated <a href="%(url)s">%(sender)s</a> '
+               'to latest template' % args)
     new_object(True, message, sender.directory)
 
 
-def updated_from_version_control(sender, oldstats, remotestats, newstats,
-                                 **kwargs):
+def updated_from_version_control(sender, **kwargs):
     if sender.is_template_project:
         # Add template news to project instead of translation project.
         directory = sender.project.directory
     else:
         directory = sender.directory
 
-    if oldstats == newstats:
-        # Nothing changed, no need to report.
-        return
-
     args = {
         'url': sender.get_absolute_url(),
         'sender': sender.fullname,
     }
-    message = ('Updated <a href="%(url)s">%(sender)s</a> from version control'
-               '<br />' % args)
-    message += stats_message_raw("Before update", oldstats) + " <br />"
-
-    if not remotestats == newstats:
-        message += stats_message_raw("Remote copy", remotestats) + " <br />"
-
-    message += stats_message_raw("After update", newstats)
+    message = ('Updated <a href="%(url)s">%(sender)s</a> '
+               'from version control' % args)
     new_object(True, message, directory)
 
 
-def committed_to_version_control(sender, path_obj, stats, user, success,
-                                 **kwargs):
+def committed_to_version_control(sender, path_obj, user, success, **kwargs):
     args = {
         'user_url': user.get_absolute_url(),
         'user': get_profile(user),
@@ -192,7 +174,11 @@ def committed_to_version_control(sender, path_obj, stats, user, success,
     message = ('<a href="%(user_url)s">%(user)s</a> committed <a '
                'href="%(path_obj_url)s">%(path_obj)s</a> to version control' %
                args)
-    message = stats_message_raw(message, stats)
+
+    total = path_obj.get_total_wordcount()
+    translated = path_obj.get_translated_wordcount()
+    fuzzy = path_obj.get_fuzzy_wordcount()
+    message = stats_message_raw(message, total, translated, fuzzy)
     new_object(success, message, sender.directory)
 
 
@@ -220,6 +206,14 @@ def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
         message = ('<a href="%(user_url)s">%(user)s</a> uploaded a file to '
                    '<a href="%(sender_url)s">%(sender)s</a> <br />' % args)
 
-    message += stats_message_raw('Before upload', oldstats) + ' <br />'
-    message += stats_message_raw('After upload', newstats) + ' <br />'
+    old_total = oldstats["total"]
+    new_total = newstats["total"]
+    old_translated = oldstats["translated"]
+    new_translated = newstats["translated"]
+    old_fuzzy = oldstats["fuzzy"]
+    new_fuzzy = newstats["fuzzy"]
+    message += stats_message_raw('Before upload', old_total, old_translated,
+                                 old_fuzzy) + ' <br />'
+    message += stats_message_raw('After upload', new_total, new_translated,
+                                 new_fuzzy) + ' <br />'
     new_object(True, message, directory)

@@ -259,7 +259,7 @@ def _handle_upload_form(request, current_path, translation_project, directory):
 
             # XXX Why do we scan here?
             translation_project.scan_files(vcs_sync=False)
-            oldstats = translation_project.getquickstats()
+            oldstats = translation_project.get_stats()
 
             # The URL relative to the URL of the translation project. Thus, if
             # directory.pootle_path == /af/pootle/foo/bar, then
@@ -275,7 +275,7 @@ def _handle_upload_form(request, current_path, translation_project, directory):
                             store=upload_to)
 
             translation_project.scan_files(vcs_sync=False)
-            newstats = translation_project.getquickstats()
+            newstats = translation_project.get_stats()
 
             # Create a submission. Doesn't fix stats but at least shows up in
             # last activity column.
