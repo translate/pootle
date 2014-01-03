@@ -17,16 +17,21 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+import os
 import subprocess
 import sys
-import os
 
 from django.conf import settings
 
 
-translate_min_required_ver = (1, 11, 0)
-django_min_required_ver = (1, 5, 5)
-lxml_min_required_ver = (2, 1, 4, 0)
+# Minimum Translate Toolkit version required for Pootle to run.
+TTK_MINIMUM_REQUIRED_VERSION = (1, 11, 0)
+
+# Minimum Django version required for Pootle to run.
+DJANGO_MINIMUM_REQUIRED_VERSION = (1, 5, 5)
+
+# Minimum lxml version required for Pootle to run.
+LXML_MINIMUM_REQUIRED_VERSION = (2, 1, 4, 0)
 
 
 ##########################
@@ -36,7 +41,7 @@ lxml_min_required_ver = (2, 1, 4, 0)
 def test_translate():
     try:
         from translate.__version__ import ver, sver
-        if ver >= translate_min_required_ver:
+        if ver >= TTK_MINIMUM_REQUIRED_VERSION:
             return True, sver
         else:
             return False, sver
@@ -58,7 +63,7 @@ def test_sqlite():
 
 def test_django():
     from django import VERSION, get_version
-    if VERSION >= django_min_required_ver:
+    if VERSION >= DJANGO_MINIMUM_REQUIRED_VERSION:
         return True, get_version()
     else:
         return False, get_version()
@@ -67,7 +72,7 @@ def test_django():
 def test_lxml():
     try:
         from lxml.etree import LXML_VERSION, __version__
-        if LXML_VERSION >= lxml_min_required_ver:
+        if LXML_VERSION >= LXML_MINIMUM_REQUIRED_VERSION:
             return True, __version__
         else:
             return False, __version__
