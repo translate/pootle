@@ -19,6 +19,7 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import ldap
+import ldap.filter  # special needed import
 import logging
 
 from django.conf import settings
