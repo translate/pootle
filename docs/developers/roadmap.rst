@@ -35,7 +35,8 @@ Estimated release April 2014
 
 - Mozilla specific features:
 
-  - Proper plural forms handling in Pootle for Firefox Desktop.
+  - `Proper plural forms handling in Pootle for Firefox Desktop
+    <https://docs.google.com/a/translate.org.za/document/d/1Xpc_4TCrpWkm3KDCHDK3iQ43qZcS2XAQ9uDjDJRbMmU/edit#>`_.
   - Integration of compare-locale errors to the translator error page.
 
 - Contributions by a translator to a given project and language.
