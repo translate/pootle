@@ -18,9 +18,10 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 import ldap
 import ldap.filter  # It is necessary to explicitly import ldap.filter.
-import logging
 
 from django.conf import settings
 from django.contrib.auth.models import User
