@@ -52,7 +52,7 @@
     /* Compile templates */
     this.tmpl = {vUnit: _.template($('#view_unit').html()),
                  tm: _.template($('#tm_suggestions').html()),
-                 editCtx: _.template($('#editCtx').html())}
+                 editCtx: _.template($('#editCtx').html())};
 
     /* Initialize search */
     // TODO: pass the environment option to the init
