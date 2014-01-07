@@ -212,11 +212,12 @@ class UnitManager(RelatedManager):
         return self.get(unitid_hash=unitid_hash,
                         store__pootle_path=pootle_path)
 
-    def get_for_path(self, pootle_path, profile):
+    def get_for_path(self, pootle_path, profile, permission_code='view'):
         """Returns units that fall below the `pootle_path` umbrella.
 
         :param pootle_path: An internal pootle path.
         :param profile: The user profile who is accessing the units.
+        :param permission_code: The permission code to check units for.
         """
         lang, proj, dir_path, filename = split_pootle_path(pootle_path)
 
@@ -238,6 +239,14 @@ class UnitManager(RelatedManager):
         else:
             units_qs = units_qs.filter(
                 store__pootle_path__startswith=pootle_path,
+            )
+
+        # Non-superusers are limited to the projects they have access to
+        if not profile.user.is_superuser:
+            from pootle_project.models import Project
+            visible_projects = Project.objects.accessible_by_user(profile.user)
+            units_qs = units_qs.filter(
+                store__translation_project__project__in=visible_projects,
             )
 
         return units_qs

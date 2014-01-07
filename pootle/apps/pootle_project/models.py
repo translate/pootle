@@ -18,13 +18,17 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+import logging
 import os
 
+from django.conf import settings
+from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
+from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks
@@ -33,6 +37,7 @@ from translate.lang.data import langcode_re
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import get_editor_filter
+from pootle_app.models.permissions import PermissionSet
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache, cached_property
@@ -42,6 +47,7 @@ from pootle_store.models import Unit, Suggestion
 from pootle_store.util import absolute_real_path, statssum, OBSOLETE
 
 
+# FIXME: Generate key dynamically
 CACHE_KEY = 'pootle-projects'
 
 RESERVED_PROJECT_CODES = ('admin', 'translate',)
@@ -51,6 +57,69 @@ class ProjectManager(RelatedManager):
 
     def get_by_natural_key(self, code):
         return self.get(code=code)
+
+    def cached(self):
+        projects = cache.get(CACHE_KEY)
+        if not projects:
+            projects = self.order_by('fullname').all()
+            cache.set(CACHE_KEY, projects, settings.OBJECT_CACHE_TIMEOUT)
+
+        return projects
+
+    def for_username(self, username):
+        """Returns a list of projects available to `username`.
+
+        Checks for `view` permissions in project directories, and if no
+        explicit permissions are available, falls back to the root
+        directory for that user.
+        """
+        key = iri_to_uri('projects:accessible:%s' % username)
+        user_projects = cache.get(key, None)
+
+        if user_projects is None:
+            logging.debug(u'Cache miss for %s', key)
+            lookup_args = {
+                'directory__permission_sets__positive_permissions__codename':
+                    'view',
+                'directory__permission_sets__profile__user__username':
+                    username,
+            }
+            user_projects = self.cached().filter(**lookup_args)
+
+            # No explicit permissions for projects, let's examine the root
+            if not user_projects.count():
+                root_permissions = PermissionSet.objects.filter(
+                    directory__pootle_path='/',
+                    profile__user__username=username,
+                    positive_permissions__codename='view',
+                )
+                if root_permissions.count():
+                    user_projects = self.cached()
+
+            cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
+
+        return user_projects
+
+    def accessible_by_user(self, user):
+        """Returns a list of projects accessible by `user`.
+
+        First checks for `user`, and if no explicit `view` permissions
+        have been found, falls back to `default` (if logged-in) and
+        `nobody` users.
+        """
+        user_projects = []
+
+        check_usernames = ['nobody']
+        if user.is_authenticated():
+            check_usernames = [user.username, 'default', 'nobody']
+
+        for username in check_usernames:
+            user_projects = self.for_username(username)
+
+            if user_projects:
+                break
+
+        return user_projects
 
 
 class Project(models.Model):
@@ -189,7 +258,9 @@ class Project(models.Model):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
-        cache.set(CACHE_KEY, Project.objects.order_by('fullname').all(), 0)
+        users_list = User.objects.values_list('username', flat=True)
+        cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
+                              users_list))
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -233,6 +304,9 @@ class Project(models.Model):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
+        users_list = User.objects.values_list('username', flat=True)
+        cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
+                              users_list))
 
     def get_absolute_url(self):
         return l(self.pootle_path)

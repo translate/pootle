@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -34,6 +35,7 @@ from pootle_store.models import Unit, Suggestion
 from pootle_store.util import statssum, OBSOLETE
 
 
+# FIXME: Generate key dynamically
 CACHE_KEY = 'pootle-languages'
 
 
@@ -58,6 +60,14 @@ class LiveLanguageManager(models.Manager):
                 translationproject__isnull=False,
                 project__isnull=True,
             ).distinct()
+
+    def cached(self):
+        languages = cache.get(CACHE_KEY)
+        if not languages:
+            languages = self.all()
+            cache.set(CACHE_KEY, languages, settings.OBJECT_CACHE_TIMEOUT)
+
+        return languages
 
 
 class Language(models.Model):
@@ -161,7 +171,6 @@ class Language(models.Model):
 
         # FIXME: far from ideal, should cache at the manager level instead.
         cache.delete(CACHE_KEY)
-        cache.set(CACHE_KEY, Language.live.all(), 0)
 
     def delete(self, *args, **kwargs):
         directory = self.directory

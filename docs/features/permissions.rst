@@ -46,11 +46,15 @@ override all permissions.
 Available permissions
 ---------------------
 
-The following permissions may be set for the server or per language, or
-language-project combination:
+The following permissions may be set server-wide or for projects:
 
 view
-  Limits access to project of language but does not limit it's visibility.
+  Limits access to a project but does not limit its visibility. Giving
+  access to a project automatically gives access to all the languages
+  available for that project.
+
+The following permissions may be set server-wide or per language, or
+language-project combination:
 
 suggest
   The right to :doc:`suggest <suggestions>` a translation for a specific

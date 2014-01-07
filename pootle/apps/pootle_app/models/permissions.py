@@ -123,10 +123,27 @@ def check_profile_permission(profile, permission_codename, directory,
 
 
 def check_permission(permission_codename, request):
-    """Check if the current user has the permission the perform
-    ``permission_codename``."""
+    """Check if the current user has `permission_codename`
+    permissions.
+    """
     if request.user.is_superuser:
         return True
+
+    # `view` permissions are project-centric, and we must treat them
+    # differently
+    if permission_codename == 'view':
+        project = None
+        if hasattr(request, 'translation_project'):
+            project = request.translation_project.project
+        elif hasattr(request, 'project'):
+            project = request.project
+        else:
+            # always allow to view language page
+            return True
+
+        if project is not None:
+            from pootle_project.models import Project
+            return project in Project.objects.accessible_by_user(request.user)
 
     return ("administrate" in request.permissions or
             permission_codename in request.permissions)
@@ -182,10 +199,22 @@ class PermissionSet(models.Model):
 
     def save(self, *args, **kwargs):
         super(PermissionSet, self).save(*args, **kwargs)
-        key = iri_to_uri('Permissions:%s' % self.profile.user.username)
-        cache.delete(key)
+        # FIXME: can we use `post_save` signals or invalidate caches in
+        # model managers, please?
+        username = self.profile.user.username
+        keys = [
+            iri_to_uri('Permissions:%s' % username),
+            iri_to_uri('projects:accessible:%s' % username),
+        ]
+        cache.delete_many(keys)
 
     def delete(self, *args, **kwargs):
         super(PermissionSet, self).delete(*args, **kwargs)
-        key = iri_to_uri('Permissions:%s' % self.profile.user.username)
-        cache.delete(key)
+        # FIXME: can we use `post_delete` signals or invalidate caches in
+        # model managers, please?
+        username = self.profile.user.username
+        keys = [
+            iri_to_uri('Permissions:%s' % username),
+            iri_to_uri('projects:accessible:%s' % username),
+        ]
+        cache.delete_many(keys)
