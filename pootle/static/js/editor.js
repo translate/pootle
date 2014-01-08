@@ -170,6 +170,7 @@
       }
     });
 
+    shortcut.add('ctrl+j', this.jumpToPreviousPlaceable);
     shortcut.add('ctrl+k', this.jumpToNextPlaceable);
 
     shortcut.add('ctrl+space', function (e) {
@@ -438,6 +439,30 @@
       }, {'unescape': true});
     }, 1); // not sure why we had a 1000ms timeout here
 
+  },
+
+  /* Jump to the previous placeable */
+  jumpToPreviousPlaceable: function () {
+    // Cycle backwards through the existing placeables.
+
+    var $selectedPlaceable = $('#js-selected-placeable');
+
+    // If no placeable is selected.
+    if (!$selectedPlaceable.length) {
+      // Get the last placeable in the source string and highlight it.
+      $('div.original .js-placeable:last').attr('id', 'js-selected-placeable');
+    } else {
+      // Remove highlight from currently highlighted placeable.
+      $selectedPlaceable.removeAttr('id');
+
+      // If the previously highlighted placeable is not the first placeable in
+      // the source string.
+      if (!$('div.original .js-placeable:first').is($selectedPlaceable)) {
+        // Highlight the next placeable in the source string.
+        $selectedPlaceable.prev('div.original .js-placeable')
+                          .attr('id', 'js-selected-placeable');
+      };
+    };
   },
 
   /* Jump to the next placeable */
