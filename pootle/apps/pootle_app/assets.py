@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -33,11 +33,14 @@ js_common = Bundle(
     'js/vendor/jquery/jquery.select2.js',
     'js/vendor/bootstrap/bootstrap-alert.js',
     'js/vendor/bootstrap/bootstrap-transition.js',
+    'js/vendor/underscore.js',
+    'js/vendor/backbone.js',
     'js/browser.js',
     'js/captcha.js',
     'js/common.js',
     'js/contact.js',
     'js/login.js',
+    'js/msg.js',
     'js/search.js',
     'js/stats.js',
     'js/utils.js',
@@ -62,8 +65,6 @@ js_editor = Bundle(
     'js/vendor/jquery/jquery.highlightRegex.js',
     'js/vendor/jquery/jquery.jsonp.js',
     'js/vendor/iso8601.js',
-    'js/vendor/underscore.js',
-    'js/vendor/backbone.js',
     'js/vendor/backbone-relational.js',
     'js/models.js',
     'js/collections.js',

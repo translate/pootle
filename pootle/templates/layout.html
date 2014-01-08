@@ -137,8 +137,7 @@
           <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>
         </div>
       </noscript>
-      {% if messages %}
-      <div id="alerts" class="affix">
+      <div id="alerts" class="affix js-alerts">
         {% for message in messages %}
         <div class="alert alert-block alert-{{ message.tags }} fade in" lang="{{ LANGUAGE_CODE }}">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -146,7 +145,6 @@
         </div>
         {% endfor %}
       </div>
-      {% endif %}
 
       <div id="navbar">
         <div id="navbar-inner">

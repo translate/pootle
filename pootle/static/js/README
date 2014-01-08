@@ -32,6 +32,9 @@ Directory contents
     This includes unit navigation, submission, suggestions' handling, copying
     functions, fuzzy/unfuzzy, and several other helper stuff.
 
+  - msg.js :
+    Generic alert messages.
+
   - stats.js :
     Statistics/overview browser page code.
 
