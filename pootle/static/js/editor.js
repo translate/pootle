@@ -763,11 +763,8 @@
 
   /* Displays error messages on top of the toolbar */
   displayError: function (msg) {
-    if (msg) {
-      this.hideActivity();
-      $("#js-editor-error span").text(msg).parent().parent().stop(true, true)
-                                .fadeIn(300).delay(2000).fadeOut(3500);
-      }
+    this.hideActivity();
+    PTL.msg.show({text: msg, level: 'error'});
   },
 
 

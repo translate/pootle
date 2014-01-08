@@ -1,4 +1,4 @@
-/* glue: 0.3 hash: e422c56f7d */
+/* glue: 0.4 hash: c80f5e0d84 */
 .icon-desc,
 .icon-ascdesc,
 .icon-asc,
@@ -18,7 +18,6 @@
 .icon-folder,
 .icon-folder-parent,
 .icon-file,
-.icon-error,
 .icon-copy,
 .icon-comment-user,
 .icon-comment-add,
@@ -47,13 +46,12 @@
 .icon-folder{background-position:-32px -50px;width:16px;height:16px;}
 .icon-folder-parent{background-position:-48px -50px;width:16px;height:16px;}
 .icon-file{background-position:-70px 0px;width:16px;height:16px;}
-.icon-error{background-position:-70px -16px;width:16px;height:16px;}
-.icon-copy{background-position:-70px -32px;width:16px;height:16px;}
-.icon-comment-user{background-position:-70px -48px;width:16px;height:16px;}
-.icon-comment-add{background-position:0px -66px;width:16px;height:16px;}
-.icon-block{background-position:-16px -66px;width:16px;height:16px;}
-.icon-block-muted{background-position:-32px -66px;width:16px;height:16px;}
-.icon-apertium{background-position:-48px -66px;width:16px;height:16px;}
-.icon-accept{background-position:-64px -66px;width:16px;height:16px;}
-.icon-back{background-position:-86px 0px;width:14px;height:13px;}
-.icon-external-link{background-position:-86px -13px;width:12px;height:12px;}
+.icon-copy{background-position:-70px -16px;width:16px;height:16px;}
+.icon-comment-user{background-position:-70px -32px;width:16px;height:16px;}
+.icon-comment-add{background-position:-70px -48px;width:16px;height:16px;}
+.icon-block{background-position:0px -66px;width:16px;height:16px;}
+.icon-block-muted{background-position:-16px -66px;width:16px;height:16px;}
+.icon-apertium{background-position:-32px -66px;width:16px;height:16px;}
+.icon-accept{background-position:-48px -66px;width:16px;height:16px;}
+.icon-back{background-position:-64px -66px;width:14px;height:13px;}
+.icon-external-link{background-position:-86px 0px;width:12px;height:12px;}
