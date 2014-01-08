@@ -42,5 +42,7 @@ beginning of the text in the target field.
 
 To insert a given placeable using the mouse just click on it.
 
-See the :ref:`Keyboard shortcuts reference <shortcuts#editing>` for the
-shortcuts used to manipulate placeables.
+To insert a placeable using the keyboard it is necessary to first select it.
+After inserting a placeable the next one will be automatically selected. See
+the :ref:`Keyboard shortcuts reference <shortcuts#editing>` for the shortcuts
+used to manipulate placeables.
