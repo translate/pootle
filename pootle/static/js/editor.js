@@ -171,6 +171,7 @@
 
     shortcut.add('ctrl+j', this.jumpToPreviousPlaceable);
     shortcut.add('ctrl+k', this.jumpToNextPlaceable);
+    shortcut.add('ctrl+l', this.insertSelectedPlaceable);
 
     shortcut.add('ctrl+space', function (e) {
       // To prevent the click event which occurs in Firefox
@@ -482,6 +483,23 @@
         $selectedPlaceable.next('div.original .js-placeable')
                           .attr('id', 'js-selected-placeable');
       };
+    };
+  },
+
+  /* Insert the selected placeable */
+  insertSelectedPlaceable: function () {
+    // Copy the text of the selected placeable (if any) to the translation
+    // field, and select the next placeable.
+
+    var $selectedPlaceable = $('#js-selected-placeable');
+
+    // If there is a selected placeable.
+    if ($selectedPlaceable.length) {
+      // Trigger the click event on the selected placeable to copy it.
+      $selectedPlaceable.trigger('click');
+
+      // Select the next placeable.
+      PTL.editor.jumpToNextPlaceable();
     };
   },
 
