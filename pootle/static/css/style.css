@@ -893,7 +893,7 @@ button.close
     padding: 0 0 4em;
     position: relative;
     width: 100%;
-    overflow: hidden;
+    display: inline-block;
     /* height calculated via js */
 }
 
@@ -2034,6 +2034,11 @@ body.js-not-loaded #translate-actions li
 .breadcrumb li
 {
     display: inline;
+}
+
+.breadcrumb li.hide
+{
+    display: none;
 }
 
 .breadcrumb li:before

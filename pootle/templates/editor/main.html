@@ -14,12 +14,12 @@
 {% include 'editor/_actions.html' %}
 {% endblock %}
 
-{% block content %}
-{% include 'editor/_editor.html' %}
+{% block pre_content %}
+{% include 'editor/_toolbar.html' %}
 {% endblock %}
 
-{% block post_content %}
-{% include 'editor/_toolbar.html' %}
+{% block content %}
+{% include 'editor/_editor.html' %}
 {% endblock %}
 
 {% block scripts_extra %}
@@ -27,6 +27,4 @@
 {% include 'editor/_scripts.html' %}
 {% endblock %}
 
-{% block footer %}
-<div id="translate-footer"></div>
-{% endblock footer %}
+{% block footer %}{% endblock footer %}

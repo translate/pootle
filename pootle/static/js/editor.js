@@ -2,6 +2,13 @@
 
   window.PTL = window.PTL || {};
 
+
+  var filterSelectOpts = {
+      dropdownAutoWidth: true,
+      width: 'off'
+  };
+
+
   PTL.editor = {
 
   /* Initializes the editor */
@@ -57,6 +64,9 @@
     PTL.search.init({
       onSubmit: this.search
     });
+
+    /* Select2 */
+    $('#js-filter-status').select2(filterSelectOpts);
 
     /*
      * Bind event handlers
@@ -120,9 +130,8 @@
     $(document).on('click', '.js-toggle-check', this.toggleCheck);
 
     /* Filtering */
-    $("#filter-checks").hide();
-    $(document).on('change', '#filter-status select', this.filterStatus);
-    $(document).on('change', '#filter-checks select', this.filterChecks);
+    $(document).on('change', '#js-filter-status', this.filterStatus);
+    $(document).on('change', '#js-filter-checks', this.filterChecks);
     $(document).on('click', '.js-more-ctx', function () {
       PTL.editor.moreContext(false);
     });
@@ -285,7 +294,7 @@
             ].join(''));
           }
           $(".js-user-filter").remove();
-          $('#filter-status select').append(newOpts.join(''))
+          $('#js-filter-status').append(newOpts.join(''));
         }
 
         if ('search' in params) {
@@ -307,14 +316,16 @@
         // disable navigation on UI toolbar events to prevent data reload
         PTL.editor.preventNavigation = true;
 
-        $('#filter-status select').select2('val', PTL.editor.filter);
+        $('#js-filter-status').select2('val', PTL.editor.filter);
         if (PTL.editor.filter == "checks") {
           // if the checks selector is empty (i.e. the 'change' event was not fired
           // because the selection did not change), force the update to populate the selector
-          if ($("#filter-checks").is(':hidden')) {
-            PTL.editor.filterStatus();
+          if ($('#js-filter-checks').is(':hidden')) {
+            PTL.editor.getCheckOptions({
+              success: PTL.editor.appendChecks
+            });
           }
-          $('#filter-checks select').select2('val', PTL.editor.checks[0]);
+          $('#js-filter-checks').select2('val', PTL.editor.checks[0]);
         }
 
         if (PTL.editor.filter == "search") {
@@ -343,7 +354,7 @@
           });
 
           // Remove any possible applied checks
-          $('#filter-checks').remove();
+          $('#js-filter-checks').remove();
         }
 
         // re-enable normal event handling
@@ -725,14 +736,13 @@
   },
 
   updateExportLink: function () {
-    var urlStr = window.location.href.replace('/translate/',
-                                              '/export-view/')
-                                     .replace('#', '?'),
-        exportLink = [
-          '<a href="', l(urlStr), '">', gettext('Export View'), '</a>'
-        ].join('');
+    var $exportOpt = $('.js-export-view'),
+        baseUrl = $exportOpt.data('export-url'),
+        hash = window.location.hash.replace(/^#/, '')
+                                   .replace(/(\#|&)unit=\d+/, ''),
+        exportLink = hash ? [baseUrl, hash].join('?') : baseUrl;
 
-    $("#js-editor-export").html(exportLink);
+    $exportOpt.data('href', exportLink);
   },
 
   /*
@@ -1348,16 +1358,16 @@
 
   /* Adds the failing checks to the UI */
   appendChecks: function (checks) {
-    // If there are any failing checks, add them in a dropdown
     if (Object.keys(checks).length) {
-      $("#filter-checks").show();
-      $("#filter-checks").find('optgroup').each(function (e) {
+      var $checks = $('#js-filter-checks');
+
+      $checks.find('optgroup').each(function (e) {
         var empty = true,
             $gr = $(this);
 
         $gr.find('option').each(function (e) {
           var $opt = $(this),
-              value = $opt.attr('value');
+              value = $opt.val();
 
           if (value in checks) {
             empty = false;
@@ -1371,13 +1381,12 @@
           $gr.hide();
         }
       });
-      $("#filter-checks").show();
-      $("#js-select2-filter-checks").select2({
-        width: "resolve"
-      });
+
+      $checks.select2(filterSelectOpts).select2('val', 'none');
+      $('.js-filter-checks-wrapper').css('display', 'inline-block');
     } else { // No results
       PTL.editor.displayMsg(gettext("No results."));
-      $('#filter-status select').select2('val', PTL.editor.filter);
+      $('#js-filter-status').select2('val', PTL.editor.filter);
     }
   },
 
@@ -1385,7 +1394,7 @@
   filterStatus: function () {
     // this function can be executed in different contexts,
     // so using the full selector here
-    var $selected = $("#filter-status option:selected"),
+    var $selected = $('#js-filter-status option:selected'),
         filterBy = $selected.val(),
         isUserFilter = $selected.data('user');
 
@@ -1394,7 +1403,7 @@
         success: PTL.editor.appendChecks
       });
     } else { // Normal filtering options (untranslated, fuzzy...)
-      $("#filter-checks").hide();
+      $('.js-filter-checks-wrapper').hide();
       if (!PTL.editor.preventNavigation) {
         var newHash = "filter=" + filterBy;
         if (PTL.editor.user && isUserFilter) {

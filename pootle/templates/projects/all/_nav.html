@@ -10,6 +10,15 @@
   data-href="{% url 'pootle-projects-translate' %}">
   {% trans "Translate" %}
 </option>
+{% if page == 'translate' %}
+<option disabled></option>
+<option
+  value="export" class="js-export-view"
+  data-new-tab="true"
+  data-export-url="{% url 'pootle-projects-export-view' %}">
+  {% trans "Export View" %}
+</option>
+{% endif %}
 {% if user.is_superuser or request.permissions.administrate %}
 <option disabled></option>
 <option

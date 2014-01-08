@@ -29,11 +29,22 @@
 
     return PTL.utils.makeSelectableInput(selector, opts,
       function (e) {
-        var $opt = $(e.target).find('option:selected'),
-            href = $opt.data('href');
+        var $select = $(this),
+            $opt = $select.find('option:selected'),
+            href = $opt.data('href'),
+            openInNewTab;
 
         if (href) {
-          window.location.href = href;
+          openInNewTab = $opt.data('new-tab');
+
+          if (openInNewTab) {
+            window.open(href, '_blank');
+            // Reset drop-down to its original value
+            $select.select2('val', $select.data('initial-code'));
+          } else {
+            window.location.href = href;
+          }
+
           return false;
         }
 

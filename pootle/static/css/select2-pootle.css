@@ -163,17 +163,9 @@
     max-width: 30em;
 }
 
-.select2-username,
-.select2-filter-status
+.select2-username
 {
     width: 20em;
     min-width: 20em;
     max-width: 20em;
-}
-
-.select2-filter-checks
-{
-    width: 24em;
-    min-width: 24em;
-    max-width: 30em;
 }
