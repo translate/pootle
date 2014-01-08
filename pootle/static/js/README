@@ -32,8 +32,14 @@ Directory contents
     This includes unit navigation, submission, suggestions' handling, copying
     functions, fuzzy/unfuzzy, and several other helper stuff.
 
+  - stats.js :
+    Statistics/overview browser page code.
+
   - search.js :
     Search functionality, shared across pages.
+
+  - utils.js :
+    Common utilities.
 
   - zoom.js :
     Functions that control the page zoom.
