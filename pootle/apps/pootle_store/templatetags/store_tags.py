@@ -89,8 +89,9 @@ def highlight_placeables(text):
             description = PLACEABLE_DESCRIPTIONS.get(class_name,
                                                      _("Unknown placeable"))
 
-            output += (u'<span class="%s js-editor-copytext" title="%s">%s'
-                       u'</span>') % (css_class, description, content)
+            output += (u'<span class="%s js-editor-copytext js-placeable" '
+                       u'title="%s">%s</span>') % (css_class, description,
+                                                   content)
         else:
             # It is not a placeable, so just concatenate to output string.
             output += unicode(item)

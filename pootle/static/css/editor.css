@@ -1235,7 +1235,8 @@ a.editor-specialchar:hover
 }
 
 .placeable:hover,
-.highlight-escape:hover
+.highlight-escape:hover,
+#js-selected-placeable
 {
     color: #000;
     background-color: #90ee90;

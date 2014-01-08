@@ -34,8 +34,13 @@ Some examples of placeables that Pootle can help you with are:
 Selecting and Inserting
 =======================
 
+Placeables can be handled using either the mouse or the keyboard.
+
 When inserting a placeable it will be automatically inserted on the target
 field where the cursor is. If no cursor is present then it will inserted at the
 beginning of the text in the target field.
 
 To insert a given placeable using the mouse just click on it.
+
+See the :ref:`Keyboard shortcuts reference <shortcuts#editing>` for the
+shortcuts used to manipulate placeables.
