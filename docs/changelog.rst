@@ -22,6 +22,9 @@ Not released yet. *Planned release date late April 2014*
   :setting:`PODIRECTORY` ``$project/.pootle/icon.png`` provide an icon to the
   TM result.
 
+- The "view" permission is now project-centric, it can be set server-wide or
+  for projects, but not for individual language-project combinations.
+
 Version 2.5.1
 -------------
 
@@ -63,9 +66,6 @@ Not released yet. *Planned release date late November 2013*
   group of files.
 
 - Pootle allows custom scripts to be exposed in the Actions menu for a project.
-
-- The "view" permission is now project-centric, it can be set server-wide or
-  for projects, but not for individual language-project combinations.
 
 
 Version 2.5.0
