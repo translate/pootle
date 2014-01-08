@@ -40,6 +40,9 @@ Editing
 | Copy the contents from        |                         | :kbd:`Alt+Down`      |
 | the original language         |                         |                      |
 +-------------------------------+-------------------------+----------------------+
+| Select previous               | :kbd:`Ctrl+J`           |                      |
+| :ref:`placeable <placeables>` |                         |                      |
++-------------------------------+-------------------------+----------------------+
 | Select next                   | :kbd:`Ctrl+K`           |                      |
 | :ref:`placeable <placeables>` |                         |                      |
 +-------------------------------+-------------------------+----------------------+
