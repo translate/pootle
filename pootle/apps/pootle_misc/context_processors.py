@@ -34,7 +34,7 @@ def _agreement_context(request):
                      settings.LEGALPAGE_NOCHECK_PREFIXES)
     display_agreement = False
 
-    if (request.user.is_authenticated() and not nocheck and
+    if (request.user.is_authenticated() and LegalPage.objects.exists() and not nocheck and
         LegalPage.objects.pending_user_agreement(request.user).exists()):
         display_agreement = True
 
