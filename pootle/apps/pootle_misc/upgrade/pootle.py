@@ -155,26 +155,10 @@ def upgrade_to_25100():
     Directory.objects.root.get_or_make_subdir('goals')
 
 
-def create_local_tm():
-    """Create the local TM using translations from existing projects."""
-    from django.db import transaction
-
-    from pootle_store.models import TMUnit, Unit
-    from pootle_store.util import TRANSLATED
-
-    # Populate local TM from existing translation units.
-    logging.info('About to create local TM using existing translations')
-
-    with transaction.commit_on_success():
-        for unit in Unit.objects.filter(state__gte=TRANSLATED).iterator():
-            tmunit = TMUnit().create(unit)
-            tmunit.save()
-
-        logging.info('Succesfully created local TM from existing translations')
-
-
 def upgrade_to_25200():
     """Post-upgrade actions for upgrades to 25200."""
+    from pootle.core.initdb import create_local_tm
+
     create_local_tm()
 
 

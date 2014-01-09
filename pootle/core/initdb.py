@@ -33,9 +33,10 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
 from pootle_misc import siteconfig
-from pootle_misc.upgrade.pootle import create_local_tm
 from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
+from pootle_store.models import TMUnit, Unit
+from pootle_store.util import TRANSLATED
 
 
 def initdb():
@@ -353,3 +354,19 @@ def create_default_admin():
     admin = User(**criteria)
     admin.set_password("admin")
     admin.save()
+
+
+def create_local_tm():
+    """Create the local TM using translations from existing projects.
+
+    Iterates over all the translation units and creates the corresponding local
+    TM units.
+    """
+    logging.info('About to create local TM using existing translations')
+
+    with transaction.commit_on_success():
+        for unit in Unit.objects.filter(state__gte=TRANSLATED).iterator():
+            tmunit = TMUnit().create(unit)
+            tmunit.save()
+
+        logging.info('Succesfully created local TM from existing translations')
