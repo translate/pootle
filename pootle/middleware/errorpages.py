@@ -89,6 +89,10 @@ class ErrorPagesMiddleware(object):
             # check the class name instead. Since python uses duck typing
             # I will call this
             # poking-the-duck-until-it-quacks-like-a-duck-test
+
+            if request.is_ajax():
+                return self._ajax_error(500, msg)
+
             return HttpResponseServerError(
                     render_to_string('db_error.html', {'exception': msg},
                                      RequestContext(request))
