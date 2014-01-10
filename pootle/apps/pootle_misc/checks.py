@@ -101,6 +101,7 @@ check_names = {
     'accelerators': _(u"Accelerators"),
     'unbalanced_tags': _(u"Unbalanced tags"),
     'unbalanced_curly_braces': _(u"Curly braces"),
+    'potential_placeholders': _(u"Potential placeholders"),
 }
 
 excluded_filters = ['hassuggestion', 'spellcheck']
@@ -204,6 +205,8 @@ broken_entities_regex_5 = re.compile(u"&#([^x\d])([0-9a-fA-F]+);")
 broken_entities_regex_6 = re.compile(u"&#(\d+);")
 broken_entities_regex_7 = re.compile(u"&#x(\w+);", re.U)
 
+fmt = u"[$%_@]"
+potential_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
 class ENChecker(checks.TranslationChecker):
 
@@ -733,7 +736,31 @@ class ENChecker(checks.TranslationChecker):
         else:
             raise checks.FilterFailure(u"Broken HTML entities")
 
-def run_given_filters(checker, unit, checks=[]):
+    @critical
+    def potential_placeholders(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            chunks = potential_placeholders_regex.split(str)
+            translate = False
+            fingerprint = 1
+
+            for chunk in chunks:
+                translate = not translate
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # placeholder sign
+                fingerprint += 1
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Potential placeholders")
+
+
+def run_given_filters(checker, unit, check_names=[]):
     """Run all the tests in this suite.
 
     :rtype: Dictionary
@@ -744,15 +771,15 @@ def run_given_filters(checker, unit, checks=[]):
     Do some optimisation by caching some data of the unit for the
     benefit of :meth:`~TranslationChecker.run_test`.
     """
-    unit.source = data.normalized_unicode(unit.source) or u""
-    unit.target = data.normalized_unicode(unit.target) or u""
+    checker.str1 = data.normalized_unicode(unit.source) or u""
+    checker.str2 = data.normalized_unicode(unit.target) or u""
     checker.hasplural = unit.hasplural()
     checker.locations = unit.getlocations()
 
     checker.results_cache = {}
     failures = {}
 
-    for functionname in checks:
+    for functionname in check_names:
         filterfunction = getattr(checker, functionname, None)
 
         # This filterfunction may only be defined on another checker if

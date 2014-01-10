@@ -183,7 +183,7 @@ class Command(PootleCommand):
         if not unit.target:
             return
 
-        qc_failures = run_given_filters(self.checker, unit, checks=checks)
+        qc_failures = run_given_filters(self.checker, unit, check_names=checks)
 
         for name in qc_failures.iterkeys():
             if name == 'fuzzy':
