@@ -99,7 +99,7 @@ check_names = {
     'objective_c_format': _(u"Objective-C format"),
     'android_format': _(u"Android format"),
     'accelerators': _(u"Accelerators"),
-    'tags differ': _(u"Tags differ"),
+    'tags_differ': _(u"Tags differ"),
     'unbalanced_curly_braces': _(u"Curly braces"),
     'potential_unwanted_placeholders': _(u"Potential unwanted placeholders"),
 }
