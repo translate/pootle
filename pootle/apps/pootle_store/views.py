@@ -395,6 +395,10 @@ def get_units(request):
     limit = request.profile.get_unit_rows()
 
     units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
+    units_qs = units_qs.select_related(
+        'store__translation_project__project',
+        'store__translation_project__language',
+    )
     step_queryset = get_step_query(request, units_qs)
 
     is_initial_request = request.GET.get('initial', False)
