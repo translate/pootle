@@ -101,7 +101,7 @@ check_names = {
     'accelerators': _(u"Accelerators"),
     'unbalanced_tags': _(u"Unbalanced tags"),
     'unbalanced_curly_braces': _(u"Curly braces"),
-    'potential_placeholders': _(u"Potential placeholders"),
+    'potential_unwanted_placeholders': _(u"Potential unwanted placeholders"),
 }
 
 excluded_filters = ['hassuggestion', 'spellcheck']
@@ -737,11 +737,11 @@ class ENChecker(checks.TranslationChecker):
             raise checks.FilterFailure(u"Broken HTML entities")
 
     @critical
-    def potential_placeholders(self, str1, str2):
+    def potential_unwanted_placeholders(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
             chunks = potential_placeholders_regex.split(str)
             translate = False
-            fingerprint = 1
+            fingerprint = 0
 
             for chunk in chunks:
                 translate = not translate
@@ -754,10 +754,13 @@ class ENChecker(checks.TranslationChecker):
 
             return fingerprint
 
-        if check_translation(get_fingerprint, str1, str2):
+        a_fingerprint = get_fingerprint(str1, True, str2)
+        b_fingerprint = get_fingerprint(str2, False, str1)
+
+        if a_fingerprint >= b_fingerprint:
             return True
         else:
-            raise checks.FilterFailure(u"Potential placeholders")
+            raise checks.FilterFailure(u"Potential unwanted placeholders")
 
 
 def run_given_filters(checker, unit, check_names=[]):
