@@ -99,7 +99,7 @@ check_names = {
     'objective_c_format': _(u"Objective-C format"),
     'android_format': _(u"Android format"),
     'accelerators': _(u"Accelerators"),
-    'unbalanced_tags': _(u"Unbalanced tags"),
+    'tags differ': _(u"Tags differ"),
     'unbalanced_curly_braces': _(u"Curly braces"),
     'potential_unwanted_placeholders': _(u"Potential unwanted placeholders"),
 }
@@ -183,8 +183,8 @@ fmt = u'^<(Sync Required|None|no attributes|no tags|' + \
 no_tags_regex = re.compile(fmt, re.U)
 
 fmt = u"<\/?[\w]+.*?>"
-unbalanced_tags_regex_0 = re.compile(u"(%s)" % fmt, re.U)
-unbalanced_tags_regex_1 = re.compile(u"<(\/?[\w]+).*?>", re.U)
+tags_differ_regex_0 = re.compile(u"(%s)" % fmt, re.U)
+tags_differ_regex_1 = re.compile(u"<(\/?[\w]+).*?>", re.U)
 
 accelerators_regex_0 = re.compile(u"&(\w+);", re.U)
 fmt = u"[&_\^]"
@@ -495,10 +495,7 @@ class ENChecker(checks.TranslationChecker):
         def get_fingerprint(str, is_source=False, translation=''):
             chunks = unbalanced_tag_braces_regex.split(str)
             translate = False
-            count = 0
             level = 0
-            opening_count = 0
-            closing_count = 0
 
             for chunk in chunks:
                 translate = not translate
@@ -507,23 +504,14 @@ class ENChecker(checks.TranslationChecker):
                     continue
 
                 # special text
-                count += 1
                 if level >= 0:
                     if chunk == '<':
                         level += 1
-                        opening_count += 1
 
                     if chunk == '>':
                         level -= 1
-                        closing_count -= 1
 
-            # 1) check that total number of opening and closing brackets is
-            # equal in source and translation
-            # 2) check that the number of opening brackets matches the number
-            # of closing brackets
-            count_list = [count, level, opening_count, closing_count]
-
-            return u"\001".join(map(lambda x: u"%d" % x, count_list))
+            return level
 
         if check_translation(get_fingerprint, str1, str2):
             return True
@@ -567,7 +555,7 @@ class ENChecker(checks.TranslationChecker):
             raise checks.FilterFailure(u"Unbalanced curly braces")
 
     @critical
-    def unbalanced_tags(self, str1, str2):
+    def tags_differ(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
 
             if is_source:
@@ -581,7 +569,7 @@ class ENChecker(checks.TranslationChecker):
                 if no_tags_regex.match(str):
                     return None
 
-            chunks = unbalanced_tags_regex_0.split(str)
+            chunks = tags_differ_regex_0.split(str)
             translate = False
             fingerprint = ''
             d = {}
@@ -593,7 +581,7 @@ class ENChecker(checks.TranslationChecker):
                     continue
 
                 # special text
-                mo = unbalanced_tags_regex_1.match(chunk)
+                mo = tags_differ_regex_1.match(chunk)
 
                 if mo:
                     tag = mo.group(1)
@@ -610,7 +598,7 @@ class ENChecker(checks.TranslationChecker):
         if check_translation(get_fingerprint, str1, str2):
             return True
         else:
-            raise checks.FilterFailure(u"Unbalanced tags")
+            raise checks.FilterFailure(u"Tags differ")
 
     @critical
     def accelerators(self, str1, str2):
