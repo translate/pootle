@@ -2,6 +2,11 @@
  * TRANSLATE PAGE
  */
 
+body.translate
+{
+    padding: 0;
+}
+
 body.translate #content
 {
     margin: 1em 0;
