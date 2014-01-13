@@ -143,7 +143,8 @@
           parts = ['', languageCode, projectCode, action, resource],
           urlParts = parts.filter(function (p, i) {
             return i === 0 || p !== '';
-          });
+          }),
+          newUrl;
 
       if (!resource) {
         urlParts.push('');
