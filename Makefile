@@ -59,6 +59,7 @@ help:
 	@echo "Help"
 	@echo "----"
 	@echo
+	@echo "  assets - collect and rebuild the static assets"
 	@echo "  build - create sdist with required prep"
 	@echo "  sprite - create CSS sprite"
 	@echo "  pot - update the POT translations templates"
