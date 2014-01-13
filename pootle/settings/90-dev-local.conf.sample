@@ -193,8 +193,10 @@ MIDDLEWARE_CLASSES += [
 ]
 
 DEBUG_TOOLBAR_CONFIG = {
+    # Toolbar options
+    'SHOW_COLLAPSED': True,
+    # Panel options
     'INTERCEPT_REDIRECTS': False,
-    'HIDE_DJANGO_SQL': True,
 }
 
 
