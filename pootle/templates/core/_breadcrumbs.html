@@ -84,4 +84,13 @@
     {% endfor %}
   </select>
 </li>
+<li class="js-filter-sort-wrapper hide">
+  {# Translators: a drop-down control follows this string, creating a sentence such as "Sort: as in file", or "Sort: by time" #}
+  <span>{% trans "Sort" %}</span>
+  <select id="js-filter-sort">
+    <option selected value="file">{% trans "as in file" %}</option>
+    <option value="-time">{% trans "by submission time, newest on top" %}</option>
+    <option value="+time">{% trans "by sumission time, oldest on top" %}</option>
+  </select>
+</li>
 {% endif %}

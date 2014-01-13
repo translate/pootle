@@ -8,6 +8,10 @@
       width: 'off'
   };
 
+  var sortableFilters = [
+    'my-submissions', 'user-submissions', 'my-suggestions', 'user-suggestions'
+  ];
+
 
   PTL.editor = {
 
@@ -28,6 +32,7 @@
 
     this.filter = 'all';
     this.checks = [];
+    this.sortBy = 'file';
     this.user = null;
     this.ctxGap = 0;
     this.ctxQty = parseInt($.cookie('ctxQty'), 10) || 1;
@@ -67,6 +72,7 @@
 
     /* Select2 */
     $('#js-filter-status').select2(filterSelectOpts);
+    $('#js-filter-sort').select2(filterSelectOpts);
 
     /*
      * Bind event handlers
@@ -132,6 +138,7 @@
     /* Filtering */
     $(document).on('change', '#js-filter-status', this.filterStatus);
     $(document).on('change', '#js-filter-checks', this.filterChecks);
+    $(document).on('change', '#js-filter-sort', this.filterSort.bind(this));
     $(document).on('click', '.js-more-ctx', function () {
       PTL.editor.moreContext(false);
     });
@@ -248,7 +255,10 @@
           }
         }
 
+        // Reset to defaults
         PTL.editor.filter = 'all';
+        PTL.editor.checks = [];
+        PTL.editor.sortBy = 'file';
 
         if ('filter' in params) {
           var filterName = params['filter'];
@@ -258,8 +268,9 @@
 
           if (filterName === 'checks' && 'checks' in params) {
             PTL.editor.checks = params['checks'].split(',');
-          } else {
-            PTL.editor.checks = [];
+          } else if (sortableFilters.indexOf(filterName) !== -1 &&
+                     'sort' in params) {
+            PTL.editor.sortBy = params.sort;
           }
         }
 
@@ -317,6 +328,7 @@
         PTL.editor.preventNavigation = true;
 
         $('#js-filter-status').select2('val', PTL.editor.filter);
+
         if (PTL.editor.filter == "checks") {
           // if the checks selector is empty (i.e. the 'change' event was not fired
           // because the selection did not change), force the update to populate the selector
@@ -326,6 +338,11 @@
             });
           }
           $('#js-filter-checks').select2('val', PTL.editor.checks[0]);
+        }
+
+        if (sortableFilters.indexOf(PTL.editor.filter) !== -1) {
+          $('.js-filter-sort-wrapper').css('display', 'inline-block');
+          $('#js-filter-sort').select2('val', PTL.editor.sortBy);
         }
 
         if (PTL.editor.filter == "search") {
@@ -832,6 +849,14 @@
         reqData.soptions = this.searchOptions;
         break;
 
+      case "my-suggestions":
+      case "user-suggestions":
+      case "my-submissions":
+      case "user-submissions":
+        reqData.filter = this.filter;
+        reqData.sort = this.sortBy;
+        break;
+
       case "all":
         break;
 
@@ -865,23 +890,22 @@
   /* Builds the editor rows */
   buildRows: function () {
     var unitGroups = this.getUnitGroups(),
-        groupSize = _.size(unitGroups),
         currentUnit = this.units.getCurrent(),
         rows = [],
         i, unit;
 
-    _.each(unitGroups, function (unitGroup, key) {
+    _.each(unitGroups, function (unitGroup) {
       // Don't display a delimiter row if all units have the same origin
-      if (groupSize !== 1) {
+      if (unitGroups.length !== 1) {
         rows.push([
           '<tr class="delimiter-row"><td colspan="2">',
-            '<div class="hd"><h2>', key, '</h2></div>',
+            '<div class="hd"><h2>', unitGroup.path, '</h2></div>',
           '</td></tr>'
         ].join(''));
       }
 
-      for (i=0; i<unitGroup.length; i++) {
-        unit = unitGroup[i];
+      for (i=0; i<unitGroup.units.length; i++) {
+        unit = unitGroup.units[i];
 
         if (unit.id === currentUnit.id) {
           rows.push(this.getEditUnit());
@@ -922,7 +946,9 @@
         currentUnit = this.units.getCurrent(),
         curIndex = this.units.indexOf(currentUnit),
         begin = curIndex - limit,
-        end = curIndex + 1 + limit;
+        end = curIndex + 1 + limit,
+        prevPath = null,
+        pootlePath;
 
     if (begin < 0) {
       end = end + -begin;
@@ -936,9 +962,22 @@
       end = unitCount;
     }
 
-    return _.groupBy(this.units.slice(begin, end), function (unit) {
-      return unit.get('store').get('pootlePath');
-    }, this);
+    return _.reduce(this.units.slice(begin, end), function (out, unit) {
+      pootlePath = unit.get('store').get('pootlePath');
+
+      if (pootlePath === prevPath) {
+        out[out.length-1].units.push(unit);
+      } else {
+        out.push({
+          path: pootlePath,
+          units: [unit]
+        });
+      }
+
+      prevPath = pootlePath;
+
+      return out;
+    }, []);
   },
 
 
@@ -1385,6 +1424,7 @@
       });
 
       $checks.select2(filterSelectOpts).select2('val', 'none');
+      $('.js-filter-sort-wrapper').hide();
       $('.js-filter-checks-wrapper').css('display', 'inline-block');
     } else { // No results
       PTL.editor.displayMsg(gettext("No results."));
@@ -1392,20 +1432,35 @@
     }
   },
 
+  filterSort: function () {
+    var filterBy = $('#js-filter-status').val(),
+        sortBy = $('#js-filter-sort').val(),
+        newHash = {
+          filter: filterBy,
+          sort: sortBy
+        };
+    $.history.load($.param(newHash));
+  },
+
+
   /* Loads units based on filtering */
   filterStatus: function () {
     // this function can be executed in different contexts,
     // so using the full selector here
     var $selected = $('#js-filter-status option:selected'),
         filterBy = $selected.val(),
-        isUserFilter = $selected.data('user');
+        isUserFilter = $selected.data('user'),
+        $sortWrapper = $('.js-filter-sort-wrapper'),
+        $checksWrapper = $('.js-filter-checks-wrapper');
 
     if (filterBy == "checks") {
       PTL.editor.getCheckOptions({
         success: PTL.editor.appendChecks
       });
     } else { // Normal filtering options (untranslated, fuzzy...)
-      $('.js-filter-checks-wrapper').hide();
+      $checksWrapper.hide();
+      $sortWrapper.hide();
+
       if (!PTL.editor.preventNavigation) {
         var newHash = {filter: filterBy};
 
@@ -1414,6 +1469,12 @@
         } else {
           PTL.editor.user = null;
           $(".js-user-filter").remove();
+
+          if (sortableFilters.indexOf(filterBy) !== -1) {
+            $sortWrapper.css('display', 'inline-block');
+
+            newHash.sort = PTL.editor.sortBy;
+          }
         }
 
         $.history.load($.param(newHash));

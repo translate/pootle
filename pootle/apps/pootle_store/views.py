@@ -25,7 +25,7 @@ from itertools import groupby
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.urlresolvers import reverse
-from django.db.models import Q
+from django.db.models import Max, Q
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
@@ -59,6 +59,21 @@ from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
                    find_altsrcs, get_sugg_list)
+
+
+#: Mapping of allowed sorting criteria.
+#: Keys are supported query strings, values are the field + order that
+#: will be used against the DB.
+ALLOWED_SORTS = {
+    'suggestions': {
+        '+time': 'submission__from_suggestion__creation_time',
+        '-time': '-submission__from_suggestion__creation_time',
+    },
+    'submissions': {
+        '+time': 'submission__creation_time',
+        '-time': '-submission__creation_time',
+    },
+}
 
 
 def get_alt_src_langs(request, profile, translation_project):
@@ -176,6 +191,8 @@ def get_step_query(request, units_queryset):
     if 'filter' in request.GET:
         unit_filter = request.GET['filter']
         username = request.GET.get('user', None)
+        sort_by_param = request.GET.get('sort', None)
+        sort_by = None
 
         profile = request.profile
         if username is not None:
@@ -207,6 +224,8 @@ def get_step_query(request, units_queryset):
                 match_queryset = units_queryset.filter(
                         suggestion__user=profile,
                     ).distinct()
+
+                sort_by = ALLOWED_SORTS['suggestions'].get(sort_by_param, None)
             elif unit_filter == 'user-suggestions-accepted':
                 # FIXME: Oh, this is pretty lame, we need a completely
                 # different way to model suggestions
@@ -230,6 +249,8 @@ def get_step_query(request, units_queryset):
                 match_queryset = units_queryset.filter(
                         submission__submitter=profile,
                     ).distinct()
+
+                sort_by = ALLOWED_SORTS['submissions'].get(sort_by_param, None)
             elif (unit_filter in ('my-submissions-overwritten',
                                   'user-submissions-overwritten')):
                 match_queryset = units_queryset.filter(
@@ -244,6 +265,15 @@ def get_step_query(request, units_queryset):
                         qualitycheck__name__in=checks
                     ).distinct()
 
+            if sort_by is not None:
+                # It's necessary to use `Max()` here because we can't
+                # use `distinct()` and `order_by()` at the same time
+                # (unless PostreSQL is used and `distinct(field_name)`)
+                sort_by_max = '%s__max' % sort_by
+                # Omit leading `-` sign
+                max_field = sort_by[1:] if sort_by[0] == '-' else sort_by
+                match_queryset = match_queryset.annotate(Max(max_field)) \
+                                               .order_by(sort_by_max)
 
             units_queryset = match_queryset
 
@@ -377,7 +407,13 @@ def get_units(request):
     uid_list = []
 
     if is_initial_request:
-        uid_list = list(step_queryset.values_list('id', flat=True))
+        # Not using `values_list()` here because it doesn't know about all
+        # existing relations when `extra()` has been used before in the
+        # queryset. This affects annotated names such as those ending in
+        # `__max`, where Django thinks we're trying to lookup a field on a
+        # relationship field.
+        # https://code.djangoproject.com/ticket/19434
+        uid_list = [u.id for u in step_queryset]
 
         if len(uids) == 1:
             try:
