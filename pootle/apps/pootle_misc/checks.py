@@ -898,7 +898,7 @@ def check_translation(get_fingerprint_func, string, translation):
 
     a_fingerprint = get_fingerprint_func(string, True, translation)
 
-    if not a_fingerprint:
+    if a_fingerprint is None:
         # skip translation as it doesn't match required criteria
         return True
 
