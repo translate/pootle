@@ -153,8 +153,10 @@
       newUrl = l(urlParts.join('/'));
 
       if (PTL.hasOwnProperty('editor')) {
-        var hash = window.location.hash.replace(/(\#|&)unit=\d+/, '');
-        newUrl = [newUrl, hash].join('');
+        var hash = PTL.utils.getHash().replace(/&?unit=\d+/, '');
+        if (hash !== '') {
+          newUrl = [newUrl, hash].join('#');
+        }
       }
 
       var changed = projChanged ? 'project' :

@@ -738,8 +738,7 @@
   updateExportLink: function () {
     var $exportOpt = $('.js-export-view'),
         baseUrl = $exportOpt.data('export-url'),
-        hash = window.location.hash.replace(/^#/, '')
-                                   .replace(/(\#|&)unit=\d+/, ''),
+        hash = PTL.utils.getHash().replace(/&?unit=\d+/, ''),
         exportLink = hash ? [baseUrl, hash].join('?') : baseUrl;
 
     $exportOpt.data('href', exportLink);

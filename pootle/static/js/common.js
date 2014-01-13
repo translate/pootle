@@ -18,14 +18,18 @@
       $('#navbar').on('focus click', '#js-login', function (e) {
         var $anchor = $(this),
             currentURL = $anchor.attr('href'),
-            cleanURL = currentURL,
+            newURL = currentURL,
             hashIndex = currentURL.indexOf(encodeURIComponent('#')),
-            newURL;
+            hash = PTL.utils.getHash();
 
         if (hashIndex !== -1) {
-          cleanURL = currentURL.slice(0, hashIndex);
+          newURL = currentURL.slice(0, hashIndex);
         }
-        newURL = [cleanURL, encodeURIComponent(window.location.hash)].join('');
+        if (hash !== '') {
+          newURL = [
+            newURL, encodeURIComponent(hash)
+          ].join(encodeURIComponent('#'));
+        }
         $anchor.attr('href', newURL);
       });
 
