@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from translate.__version__ import build as code_tt_buildversion
 
 from django.contrib.auth.models import User, Permission
