@@ -1350,8 +1350,11 @@
     var filterBy = $("option:selected", this).val();
 
     if (filterBy != "none") {
-      var newHash = "filter=checks&checks=" + encodeURIComponent(filterBy);
-      $.history.load(newHash);
+      var newHash = {
+        filter: 'checks',
+        checks: filterBy
+      };
+      $.history.load($.param(newHash));
     }
   },
 
@@ -1404,14 +1407,16 @@
     } else { // Normal filtering options (untranslated, fuzzy...)
       $('.js-filter-checks-wrapper').hide();
       if (!PTL.editor.preventNavigation) {
-        var newHash = "filter=" + filterBy;
+        var newHash = {filter: filterBy};
+
         if (PTL.editor.user && isUserFilter) {
-          newHash += '&user=' + PTL.editor.user;
+          newHash.user = PTL.editor.user;
         } else {
           PTL.editor.user = null;
           $(".js-user-filter").remove();
         }
-        $.history.load(newHash);
+
+        $.history.load($.param(newHash));
       }
     }
   },
