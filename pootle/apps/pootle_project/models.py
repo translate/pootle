@@ -39,10 +39,11 @@ from translate.lang.data import langcode_re
 
 from pootle.core.cache import make_method_key
 from pootle.core.managers import RelatedManager
-from pootle.core.mixins import TreeItem
+from pootle.core.mixins import TreeItem, CachedMethods
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
                                      split_pootle_path)
+from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
@@ -138,6 +139,8 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
+
+    disabled = models.BooleanField(verbose_name=_('Disabled'))
 
     objects = ProjectManager()
 
@@ -298,6 +301,12 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         users_list = User.objects.values_list('username', flat=True)
         cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                               users_list))
+
+        # clear stats cache
+        # FIXME: should clear if self.disabled attribute was changed
+        self.clear_cache()
+        for tp in self.get_children():
+            tp.language.clear_cache()
 
     def delete(self, *args, **kwargs):
         directory = self.directory

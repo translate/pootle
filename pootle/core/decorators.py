@@ -67,7 +67,8 @@ def get_path_obj(func):
             try:
                 path_obj = TranslationProject.objects.get(
                     language__code=language_code,
-                    project__code=project_code
+                    project__code=project_code,
+                    project__disabled=False
                 )
             except TranslationProject.DoesNotExist:
                 path_obj = None
@@ -92,10 +93,12 @@ def get_path_obj(func):
         elif language_code:
             path_obj = get_object_or_404(Language, code=language_code)
         elif project_code:
-            path_obj = get_object_or_404(Project, code=project_code)
+            path_obj = get_object_or_404(Project, code=project_code,
+                                         disabled=False)
         else:  # No arguments: all user-accessible projects
             user_projects = Project.accessible_by_user(request.user)
-            user_projects = Project.objects.filter(code__in=user_projects)
+            user_projects = Project.objects.filter(code__in=user_projects,
+                                                   disabled=False)
             path_obj = ProjectSet(user_projects, '/projects/')
 
             # HACKISH: inject directory so that permissions can be
