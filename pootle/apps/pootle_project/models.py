@@ -339,6 +339,10 @@ class Project(models.Model, TreeItem):
     def get_cachekey(self):
         return self.directory.pootle_path
 
+    def get_parents(self):
+        from pootle_app.models.directory import Directory
+        return [Directory.objects.projects]
+
     ### /TreeItem
 
     def translated_percentage(self):
