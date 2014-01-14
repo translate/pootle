@@ -74,6 +74,15 @@
     $('#js-filter-status').select2(filterSelectOpts);
     $('#js-filter-sort').select2(filterSelectOpts);
 
+    /* Screenshot images */
+    $(document).magnificPopup({
+      type: 'image',
+      delegate: '.js-dev-img',
+      gallery: {
+        enabled: true
+      }
+    });
+
     /*
      * Bind event handlers
      */

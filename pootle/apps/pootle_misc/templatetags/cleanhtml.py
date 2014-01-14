@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -23,7 +23,7 @@ import random
 import re
 
 from lxml.etree import ParserError
-from lxml.html import rewrite_links
+from lxml.html import fromstring, rewrite_links, tostring
 from lxml.html.clean import clean_html
 
 from django import template
@@ -80,6 +80,41 @@ def obfuscate(text):
 def url_target_blank(text):
     """Sets the target="_blank" for hyperlinks."""
     return mark_safe(text.replace('<a ', '<a target="_blank" '))
+
+
+TRIM_URL_LENGTH = 70
+
+def trim_url(link):
+    """Trims `link` if it's longer than `TRIM_URL_LENGTH` chars.
+
+    Trimming is done by always keeping the scheme part, and replacing
+    everything up to the last path part with three dots. Example::
+
+    https://www.evernote.com/shard/s12/sh/f6f3eb18-c11c/iPhone5_AppStore_01_Overview.png?resizeSmall&width=832
+    becomes
+    https://.../iPhone5_AppStore_01_Overview.png?resizeSmall&width=832
+    """
+    link_text = link
+
+    if len(link_text) > TRIM_URL_LENGTH:
+        scheme_index = link.rfind('://') + 3
+        last_slash_index = link.rfind('/')
+        text_to_replace = link[scheme_index:last_slash_index]
+        link_text = link_text.replace(text_to_replace, '...')
+
+    return link_text
+
+
+@register.filter
+@stringfilter
+def url_trim(html):
+    """Trims anchor texts that are longer than 70 chars."""
+    fragment = fromstring(html)
+    for el, attrib, link, pos in fragment.iterlinks():
+        new_link_text = trim_url(el.text_content())
+        el.text = new_link_text
+
+    return mark_safe(tostring(fragment, encoding=unicode))
 
 
 LANGUAGE_LINK_RE = re.compile(ur'/xx/', re.IGNORECASE)

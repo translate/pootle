@@ -28,12 +28,15 @@
       <div class="comments sidebar">
         {% if unit.developer_comment %}
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
-        <div class="developer-comments" lang="{{ source_language.code }}" dir="{{ source_language.direction }}"{% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|url_target_blank|linebreaks }}</div>
+        <div class="developer-comments" lang="{{ source_language.code }}"
+          dir="{{ source_language.direction }}"
+          {% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|url_target_blank|url_trim|linebreaks }}</div>
         {% with image_urls=unit.developer_comment|image_urls %}
           {% if image_urls %}
           <div class="developer-images hr">
           {% for image_url in image_urls %}
-            <a class="js-dev-img" href="{{ image_url }}">
+            <a class="js-dev-img" href="{{ image_url }}"
+               title="{% trans 'Click to open the image in a popup' %}">
             <img src="{{ image_url }}"/>
             </a>
           {% endfor %}
