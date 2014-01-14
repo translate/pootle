@@ -13,10 +13,14 @@ Release .next
 - *All Projects* page now shares the same browsing table as available in any
   other overview page. (`#58`_)
 
+- When using the *My submissions* and *My suggestions* filters, units can
+  be sorted according to the date. (`#89`_)
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 .. _#58: https://github.com/evernote/pootle/issues/58
+.. _#89: https://github.com/evernote/pootle/issues/89
 
 
 Release `2013-12-19`_

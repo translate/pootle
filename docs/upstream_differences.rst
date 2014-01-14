@@ -123,6 +123,9 @@ Editor Differences
 - When going through all units in the translation editor, users will be
   automatically redirected back to overview.
 
+- When using the *My submissions* and *My suggestions* filters, units can
+  be sorted according to the date.
+
 - The Wikipedia lookup backend has been removed.
 
 
