@@ -59,6 +59,10 @@ class CachedMethods(object):
     MTIME = 'get_mtime'
     LAST_UPDATED = 'get_last_updated'
 
+    @classmethod
+    def get_all(self):
+        return [getattr(self, x) for x in
+                filter(lambda x: x[:2] != '__' and x != 'get_all', dir(self))]
 
 class TreeItem(object):
     def __init__(self, *args, **kwargs):
@@ -310,9 +314,8 @@ class TreeItem(object):
             self._flagged_for_deletion.add(key)
 
     def flush_cache(self, children=True):
-        for a in filter(lambda x: x[:2] != '__', dir(CachedMethods)):
-            cachekey = iri_to_uri(self.get_cachekey() + ":" +
-                                  getattr(CachedMethods, a))
+        for name in CachedMethods.get_all():
+            cachekey = iri_to_uri(self.get_cachekey() + ":" + name)
             cache.delete(cachekey)
 
         if children:
@@ -336,11 +339,6 @@ class TreeItem(object):
         super(TreeItem, self).before_delete()
 
     def clear_cache(self):
-        self.flag_for_deletion(CachedMethods.TOTAL,
-                               CachedMethods.FUZZY,
-                               CachedMethods.TRANSLATED,
-                               CachedMethods.SUGGESTIONS,
-                               CachedMethods.LAST_ACTION,
-                               CachedMethods.LAST_UPDATED,
-                               CachedMethods.CHECKS)
+        all_cache_methods = CachedMethods.get_all()
+        self.flag_for_deletion(*all_cache_methods)
         self.update_cache()
