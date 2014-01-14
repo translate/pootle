@@ -1190,12 +1190,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.update_cache()
 
     def delete(self, *args, **kwargs):
-        self.flag_for_deletion(CachedMethods.TOTAL,
-                               CachedMethods.FUZZY,
-                               CachedMethods.TRANSLATED,
-                               CachedMethods.SUGGESTIONS,
-                               CachedMethods.LAST_ACTION,
-                               CachedMethods.CHECKS)
+        all_cache_methods = CachedMethods.get_all()
+        self.flag_for_deletion(*all_cache_methods)
         self.update_cache()
 
         super(Store, self).delete(*args, **kwargs)
