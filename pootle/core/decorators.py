@@ -63,7 +63,8 @@ def get_path_obj(func):
             try:
                 path_obj = TranslationProject.objects.get(
                     language__code=language_code,
-                    project__code=project_code
+                    project__code=project_code,
+                    project__disabled=False
                 )
             except TranslationProject.DoesNotExist:
                 path_obj = None
@@ -88,9 +89,11 @@ def get_path_obj(func):
         elif language_code:
             path_obj = get_object_or_404(Language, code=language_code)
         elif project_code:
-            path_obj = get_object_or_404(Project, code=project_code)
+            path_obj = get_object_or_404(Project, code=project_code,
+                                         disabled=False)
         else:  # No arguments: treat it like the root directory.
             path_obj = Directory.objects.root
+
             # HACKISH: inject directory so that permissions can be
             # queried
             setattr(path_obj, 'directory', path_obj)

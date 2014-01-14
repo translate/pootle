@@ -36,8 +36,9 @@ from translate.lang.data import langcode_re
 
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
-from pootle.core.mixins import TreeItem
+from pootle.core.mixins import TreeItem, CachedMethods
 from pootle.core.url_helpers import get_editor_filter
+from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_misc.aggregate import max_column
 from pootle_misc.util import getfromcache, cached_property
@@ -141,6 +142,8 @@ class Project(models.Model, TreeItem):
         help_text=_('An email address where issues with the source text can '
                     'be reported.'),
     )
+
+    disabled = models.BooleanField(verbose_name=_('Disabled'), default=False)
 
     objects = ProjectManager()
 
