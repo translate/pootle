@@ -160,7 +160,7 @@
       e.preventDefault();
       $('#editor-comment').slideToggle('fast');
     });
-    $(document).on('submit', '#comment-form', this.comment);
+    $(document).on('submit', '#js-comment-form', this.comment);
 
     /* Misc */
     $(document).on('click', '.js-editor-msg-hide', this.hideMsg);
