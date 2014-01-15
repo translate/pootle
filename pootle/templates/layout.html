@@ -110,12 +110,13 @@
         opacity: 1,
         live: '[title], [original-title]'
       });
-      $.ajaxSetup({ traditional: true });
-      $.ajaxPrefilter(function (options, originalOptions) {
-        if (options.type === 'post' || options.type === 'POST') {
-          options.data = $.param(
-            $.extend(originalOptions.data,
-                     { csrfmiddlewaretoken: '{{ csrf_token }}' }) );
+      $.ajaxSetup({
+        traditional: true,
+        crossDomain: false,
+        beforeSend: function (xhr, settings) {
+          if (!/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type)) {
+            xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+          }
         }
       });
 
