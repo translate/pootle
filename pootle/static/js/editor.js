@@ -161,6 +161,7 @@
       $('#editor-comment').slideToggle('fast');
     });
     $(document).on('submit', '#js-comment-form', this.comment);
+    $(document).on('click', '.js-comment-remove', this.removeComment);
 
     /* Misc */
     $(document).on('click', '.js-editor-msg-hide', this.hideMsg);
@@ -1652,6 +1653,22 @@
     });
 
     return false;
+  },
+
+  /* Removes last comment */
+  removeComment: function (e) {
+    e.preventDefault();
+
+    var url = $(this).data('url');
+
+    $.ajax({
+      url: url,
+      type: 'DELETE',
+      success: function () {
+        $('.js-comment-first').fadeOut(200);
+      },
+      error: PTL.editor.error
+    });
   },
 
 

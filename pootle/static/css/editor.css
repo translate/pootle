@@ -602,12 +602,18 @@ body.zoom-out-2 .sidebar
 }
 
 .sidetitle,
+.unit-empty,
 .unit-meta,
 .extra-item-meta,
 .extra-item-title
 {
     color: #999;
     font-size: 85%;
+}
+
+.unit-empty
+{
+    font-style: italic;
 }
 
 .unit-meta
@@ -712,12 +718,14 @@ html[dir="rtl"] #extras-bar a
     margin-bottom: 0;
 }
 
+a.comment-action,
 a.suggestion-action,
 a.suggestion-vote
 {
     float: right;
 }
 
+html[dir="rtl"] .comment-action,
 html[dir="rtl"] .suggestion-action,
 html[dir="rtl"] .suggestion-vote
 {
