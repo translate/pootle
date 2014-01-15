@@ -584,42 +584,25 @@
 
   /* Does the actual diffing */
   doDiff: function (a, b) {
-    var d, op, text,
-        textDiff = "",
-        removed = "",
-        diff = this.differencer.diff_main(a, b);
+    var html = [],
+        diff = this.differencer.diff_main(a, b),
+        op, text, i;
 
     this.differencer.diff_cleanupSemantic(diff);
 
-    $.each(diff, function (k, v) {
-      op = v[0];
-      text = v[1];
-
-      if (op === 0) {
-          if (removed) {
-            textDiff += '<span class="diff-delete">' + PTL.utils.fancyEscape(removed) + '</span>'
-            removed = "";
-          }
-          textDiff += PTL.utils.fancyEscape(text);
-      } else if (op === 1) {
-        if (removed) {
-          // This is part of a substitution, not a plain insertion. We
-          // will format this differently.
-          textDiff += '<span class="diff-replace">' + PTL.utils.fancyEscape(text) + '</span>';
-          removed = "";
-        } else {
-          textDiff += '<span class="diff-insert">' + PTL.utils.fancyEscape(text) + '</span>';
-        }
-      } else if (op === -1) {
-        removed = text;
+    for (i=0; i<diff.length; i++) {
+      op = diff[i][0];
+      text = PTL.utils.fancyEscape(diff[i][1]);
+      if (op === DIFF_INSERT) {
+        html[i] = ['<span class="diff-insert">', text, '</span>'].join('');
+      } else if (op === DIFF_DELETE) {
+        html[i] = ['<span class="diff-delete">', text, '</span>'].join('');
+      } else if (op === DIFF_EQUAL) {
+        html[i] = ['<span>', text, '</span>'].join('');
       }
-    });
-
-    if (removed) {
-      textDiff += '<span class="diff-delete">' + PTL.utils.fancyEscape(removed) + '</span>';
     }
 
-    return textDiff;
+    return html.join('');
   },
 
 
