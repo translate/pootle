@@ -261,6 +261,7 @@ class UnitManager(RelatedManager):
             user_projects = Project.accessible_by_user(profile.user)
             units_qs = units_qs.filter(
                 store__translation_project__project__code__in=user_projects,
+                store__translation_project__project__disable=False,
             )
 
         return units_qs

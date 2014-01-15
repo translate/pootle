@@ -39,5 +39,6 @@ urlpatterns = patterns('pootle_language.views',
     # Admin
     url(r'^(?P<language_code>[^/]*)/admin/permissions/$',
         'language_admin',
-        name='pootle-language-admin-permissions'),
+        name='pootle-language-admin-permissions',
+        kwargs={'admin': True}),
 )

@@ -144,6 +144,8 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
     objects = ProjectManager()
 
+
+
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_project'
@@ -283,6 +285,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
     def __init__(self, *args, **kwargs):
         super(Project, self).__init__(*args, **kwargs)
+        self.__disabled = self.disabled
 
     def save(self, *args, **kwargs):
         # Create file system directory if needed
@@ -294,19 +297,23 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         self.directory = Directory.objects.projects \
                                           .get_or_make_subdir(self.code)
 
+        # check if a Project is not saved to DB
+        create = not self.id
         super(Project, self).save(*args, **kwargs)
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
-        users_list = User.objects.values_list('username', flat=True)
-        cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
-                              users_list))
+        if create:
+            users_list = User.objects.values_list('username', flat=True)
+            cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
+                                  users_list))
 
         # clear stats cache
-        # FIXME: should clear if self.disabled attribute was changed
-        self.clear_cache()
-        for tp in self.get_children():
-            tp.language.clear_cache()
+        if self.__disabled != self.disabled:
+            self.clear_cache()
+            for tp in self.get_children():
+                tp.language.clear_cache()
+            self.__disabled = self.disabled
 
     def delete(self, *args, **kwargs):
         directory = self.directory
