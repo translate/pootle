@@ -573,12 +573,18 @@ html[dir="rtl"] .sidebar
 }
 
 .sidetitle,
+.unit-empty,
 .unit-meta,
 .extra-item-meta,
 .extra-item-title
 {
     color: #999;
     font-size: 85%;
+}
+
+.unit-empty
+{
+    font-style: italic;
 }
 
 .unit-meta
@@ -689,11 +695,13 @@ html[dir="rtl"] #extras-bar a
     opacity: 0.1;
 }
 
+a.comment-action,
 a.suggestion-action
 {
     float: right;
 }
 
+html[dir="rtl"] .comment-action,
 html[dir="rtl"] .suggestion-action
 {
     float: left;

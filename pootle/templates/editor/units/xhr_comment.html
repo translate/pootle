@@ -1,5 +1,5 @@
-{% load i18n profile_tags %}
-<div class="extra-item-block">
+{% load i18n locale profile_tags %}
+<div class="extra-item-block js-comment-first">
   <div class="extra-item-content">
     {% if unit.commented_by %}
     <div class="extra-item-gravatar">
@@ -9,7 +9,14 @@
     </div>
     {% endif %}
     <div class="extra-item">
-      <span class="sidetitle">{% trans "Comment:" %}</span>
+      {% if cansuggest or cantranslate %}
+      <a class="comment-action js-comment-remove"
+        data-url="{% url 'pootle-xhr-units-comment' unit.id %}">
+        <i class="icon-reject" dir="{% locale_dir %}"
+          title="{% trans 'Remove comment' %}"></i>
+      </a>
+      {% endif %}
+      <span class="sidetitle">{% trans "Last comment:" %}</span>
       <span class="extra-item-comment">{{ unit.translator_comment }}</span>
     </div>
     {% if unit.commented_by and unit.commented_on %}

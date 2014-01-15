@@ -317,7 +317,20 @@ def unit_comment_form_factory(language):
 
         def __init__(self, *args, **kwargs):
             self.request = kwargs.pop('request', None)
+            self.previous_value = ''
+
             super(UnitCommentForm, self).__init__(*args, **kwargs)
+
+            if self.request.method == 'DELETE':
+                self.fields['translator_comment'].required = False
+
+        def clean_translator_comment(self):
+            # HACKISH: Setting empty string when `DELETE` is being used
+            if self.request.method == 'DELETE':
+                self.previous_value = self.instance.translator_comment
+                return ''
+
+            return self.cleaned_data['translator_comment']
 
         def save(self):
             """Register the submission and save the comment."""
@@ -332,7 +345,7 @@ def unit_comment_form_factory(language):
                     unit=self.instance,
                     field=SubmissionFields.COMMENT,
                     type=SubmissionTypes.NORMAL,
-                    old_value=u"",
+                    old_value=self.previous_value,
                     new_value=self.cleaned_data['translator_comment']
                 )
                 sub.save()

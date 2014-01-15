@@ -41,7 +41,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import timezone
 from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_http_methods
 
 from taggit.models import Tag
 
@@ -623,7 +623,10 @@ def timeline(request, unit):
     timeline = Submission.objects.filter(unit=unit, field__in=[
         SubmissionFields.TARGET, SubmissionFields.STATE,
         SubmissionFields.COMMENT, SubmissionFields.NONE
-    ])
+    ]).exclude(
+        field=SubmissionFields.COMMENT,
+        creation_time=unit.commented_on
+    )
     timeline = timeline.select_related("submitter__user",
                                        "translation_project__language")
 
@@ -721,10 +724,42 @@ def get_overview_stats(request, *args, **kwargs):
     return HttpResponse(response, content_type="application/json")
 
 
-@require_POST
 @ajax_required
+@require_http_methods(['POST', 'DELETE'])
 @get_unit_context('translate')
 def comment(request, unit):
+    """Dispatches the comment action according to the HTTP verb."""
+    if request.method == 'DELETE':
+        return delete_comment(request, unit)
+    elif request.method == 'POST':
+        return save_comment(request, unit)
+
+
+def delete_comment(request, unit):
+    """Deletes a comment by blanking its contents and records a new
+    submission.
+    """
+    unit.commented_by = None
+    unit.commented_on = None
+
+    language = request.translation_project.language
+    comment_form_class = unit_comment_form_factory(language)
+    form = comment_form_class({}, instance=unit, request=request)
+
+    if form.is_valid():
+        form.save()
+        json = {}
+        rcode = 200
+    else:
+        json = {'msg': _("Failed to remove comment.")}
+        rcode = 400
+
+    response = jsonify(json)
+
+    return HttpResponse(response, status=rcode, mimetype="application/json")
+
+
+def save_comment(request, unit):
     """Stores a new comment for the given ``unit``.
 
     :return: If the form validates, the cleaned comment is returned.
@@ -783,7 +818,7 @@ def get_edit_unit(request, unit):
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(instance=unit, request=request)
     comment_form_class = unit_comment_form_factory(language)
-    comment_form = comment_form_class({}, instance=unit)
+    comment_form = comment_form_class({}, instance=unit, request=request)
 
     store = unit.store
     directory = store.parent
