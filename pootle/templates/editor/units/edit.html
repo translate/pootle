@@ -223,7 +223,8 @@
         <a id="js-hide-timeline" class="hide">{% trans 'Hide Timeline' %}</a>
         {% if cantranslate %}
         <div id="editor-comment" class="hide">
-          <form id="comment-form" action="{% url 'pootle-xhr-units-comment' unit.id %}" method="post">
+          <form id="js-comment-form" method="POST"
+            action="{% url 'pootle-xhr-units-comment' unit.id %}">
             <p>{{ comment_form.translator_comment }}</p>
             <p><input type="submit" class="btn btn-xs btn-primary"
                       value="{% trans 'Submit' %}" /></p>
