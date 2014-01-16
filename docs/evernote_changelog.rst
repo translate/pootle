@@ -18,12 +18,24 @@ Release .next
 
 - Fixed the gallery mode for unit images and related fixes. (`#96`_)
 
+- TM diffs now display what has been removed and what's being added.
+  (`#30`_)
+
+- Latest translator comments can be "removed" or, in other words, can be
+  blanked. The action is recorded in the timeline. (`#88`_)
+
+- Projects can be disabled from the administration page, allowing to hide
+  them temporarily while retaining statistics. (`#97`_)
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 .. _#58: https://github.com/evernote/pootle/issues/58
 .. _#89: https://github.com/evernote/pootle/issues/89
 .. _#96: https://github.com/evernote/pootle/issues/96
+.. _#30: https://github.com/evernote/pootle/issues/30
+.. _#88: https://github.com/evernote/pootle/issues/88
+.. _#97: https://github.com/evernote/pootle/issues/97
 
 
 Release `2013-12-19`_

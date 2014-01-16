@@ -34,6 +34,8 @@ Added Features
 
 - Screenshot prefix URL to allow integrating screenshots for units.
 
+- Projects can be temporarily disabled.
+
 - Evernote-specific apps: reports and stats.
 
 
@@ -125,6 +127,10 @@ Editor Differences
 
 - When using the *My submissions* and *My suggestions* filters, units can
   be sorted according to the date.
+
+- TM diffs show what has been removed and what's being added.
+
+- Latest translator comments can be removed/blanked.
 
 - The Wikipedia lookup backend has been removed.
 
