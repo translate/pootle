@@ -144,8 +144,6 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
     objects = ProjectManager()
 
-
-
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_project'
