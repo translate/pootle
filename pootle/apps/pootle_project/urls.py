@@ -40,11 +40,9 @@ urlpatterns = patterns('pootle_project.views',
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin/languages/$',
         'project_admin',
-        kwargs={'admin': True},
         name='pootle-project-admin-languages'),
     url(r'^(?P<project_code>[^/]*)/admin/permissions/$',
         'project_admin_permissions',
-        kwargs={'admin': True},
         name='pootle-project-admin-permissions'),
 
     # Specific project

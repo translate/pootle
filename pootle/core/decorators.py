@@ -63,18 +63,13 @@ def get_path_obj(func):
             language_code = kwargs.pop('language_code', None)
             project_code = kwargs.pop('project_code', None)
 
-        admin = kwargs.pop('admin', False)
         if language_code and project_code:
             try:
-                conditions = {
-                    'language__code': language_code,
-                    'project__code': project_code,
-                }
-                if not admin:
-                    conditions.update({'project__disabled': False})
-
-                path_obj = TranslationProject.objects.get(**conditions)
-
+                path_obj = TranslationProject.objects.get(
+                    language__code=language_code,
+                    project__code=project_code,
+                    project__disabled=False
+                )
             except TranslationProject.DoesNotExist:
                 path_obj = None
 
@@ -98,17 +93,12 @@ def get_path_obj(func):
         elif language_code:
             path_obj = get_object_or_404(Language, code=language_code)
         elif project_code:
-            conditions = {'code': project_code}
-            if not admin:
-                conditions.update({'disabled': False})
-            path_obj = get_object_or_404(Project, **conditions)
+            path_obj = get_object_or_404(Project, code=project_code,
+                                         disabled=False)
         else:  # No arguments: all user-accessible projects
             user_projects = Project.accessible_by_user(request.user)
-            conditions = {'code__in': user_projects}
-            if not admin:
-                conditions.update({'disabled': False})
-            user_projects = Project.objects.filter(**conditions)
-
+            user_projects = Project.objects.filter(code__in=user_projects,
+                                                   disabled=False)
             path_obj = ProjectSet(user_projects, '/projects/')
 
             # HACKISH: inject directory so that permissions can be

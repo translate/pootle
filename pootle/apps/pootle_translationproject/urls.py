@@ -28,7 +28,6 @@ urlpatterns = patterns('pootle_translationproject.views',
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
         r'/admin/permissions/',
         'admin_permissions',
-        kwargs={'admin': True},
         name='pootle-tp-admin-permissions'),
 
     # Translation
