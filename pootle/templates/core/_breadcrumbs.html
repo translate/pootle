@@ -74,7 +74,7 @@
 </li>
 <li class="js-filter-checks-wrapper hide">
   <select id="js-filter-checks">
-    <option selected value="none">------</option>
+    <option selected value="none">{% trans 'Select type' %}</option>
     {% for item in check_categories %}
     <optgroup label="{{ item.title }}">
       {% for check in item.checks %}
