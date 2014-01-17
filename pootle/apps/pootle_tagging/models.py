@@ -388,10 +388,6 @@ class Goal(TagBase):
         the given path and the translation project, and for the translation
         project itself.
 
-        If the goal is a 'project goal' then delete the cache for all the
-        translation projects in the same project for the specified translation
-        project.
-
         :param pootle_path: A string with a valid pootle path.
         """
         # Putting the next imports at the top of the file causes circular
@@ -409,53 +405,21 @@ class Goal(TagBase):
                 # provided pootle_path, then abort.
                 return
 
-        translation_project = path_obj.translation_project
+        if isinstance(path_obj, Store):
+            path_dir = path_obj.parent
+        else:  # Else it is a directory.
+            path_dir = path_obj
 
-        if self.project_goal and isinstance(path_obj, Store):
-            # Putting the next imports at the top of the file causes circular
-            # import issues.
-            if translation_project.file_style == 'gnu':
-                from pootle_app.project_tree import (get_translated_name_gnu as
-                                                     get_translated_name)
-            else:
-                from pootle_app.project_tree import get_translated_name
+        # Note: Not including path_obj (if it is a store) in path_objs since we
+        # still don't support including units in a goal.
+        path_objs = chain([path_obj.translation_project], path_dir.trail())
 
-        if self.project_goal:
-            # Delete the cached stats for all the translation projects in the
-            # same project.
-            tps = translation_project.project.translationproject_set.all()
-        else:
-            # Just delete the cached stats for the given translation project.
-            tps = [translation_project]
-
-        # For each TP get the pootle_path for all the directories in between
-        # the path_obj and TP.
         keys = []
-        for tp in tps:
-            if isinstance(path_obj, Store):
-                if tp != translation_project:
-                    store_path = get_translated_name(tp, path_obj)[0]
-                    try:
-                        tp_store = Store.objects.get(pootle_path=store_path)
-                        path_dir = tp_store.parent
-                    except Store.DoesNotExist:
-                        # If there is no matching store in this TP then just
-                        # jump to the next TP.
-                        continue
-                else:
-                    path_dir = path_obj.parent
-            elif isinstance(path_obj, Directory):
-                path_dir = path_obj
-
-            # Note: Not including path_obj (if it is a store) in path_objs
-            # since we still don't support including units in a goal.
-            path_objs = chain([tp], path_dir.trail())
-
-            for path_obj in path_objs:
-                for function_name in self.CACHED_FUNCTIONS:
-                    keys.append(iri_to_uri(self.pootle_path + ":" +
-                                           path_obj.pootle_path + ":" +
-                                           function_name))
+        for path_obj in path_objs:
+            for function_name in self.CACHED_FUNCTIONS:
+                keys.append(iri_to_uri(self.pootle_path + ":" +
+                                       path_obj.pootle_path + ":" +
+                                       function_name))
         cache.delete_many(keys)
 
     @get_from_cache_for_path
