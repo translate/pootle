@@ -1,0 +1,33 @@
+{% load i18n %}
+<ul class="breadcrumb js-breadcrumb">
+  <li>
+    <select id="js-filter-status">
+      {# Translators: This refers to "All strings" #}
+      <option selected="selected" value="all">{% trans "All" %}</option>
+      <option value="translated">{% trans "Translated" %}</option>
+      <option value="incomplete">{% trans "Incomplete" %}</option>
+      <option value="untranslated">{% trans "Untranslated" %}</option>
+      <option value="fuzzy">{% trans "Needs work" %}</option>
+      <option value="suggestions">{% trans "Suggestions" %}</option>
+      <option value="my-suggestions">{% trans "My suggestions" %}</option>
+      <option value="my-submissions">{% trans "My submissions" %}</option>
+      {% comment %}Translators: This is a type of filtering criterion that
+      selects the strings that have been submitted by me at some point
+      in time but have been overwritten by other users.{% endcomment %}
+      <option value="my-submissions-overwritten">{% trans "My overwritten submissions" %}</option>
+      <option value="checks">{% trans "Checks" %}</option>
+    </select>
+  </li>
+  <li class="js-filter-checks-wrapper hide">
+    <select id="js-filter-checks">
+      <option selected value="none">{% trans 'Select type' %}</option>
+      {% for item in check_categories %}
+      <optgroup label="{{ item.title }}">
+        {% for check in item.checks %}
+        <option value="{{ check.code }}" data-title="{{ check.title }}"></option>
+        {% endfor %}
+      </optgroup>
+      {% endfor %}
+    </select>
+  </li>
+</ul>

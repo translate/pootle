@@ -1904,12 +1904,47 @@ html[dir="rtl"] .overview-description-toggle
 }
 
 /*
+ * HEADER FILTERING
+ */
+
+#translate-filters
+{
+    display: inline-block;
+}
+
+#translate-filters .breadcrumb
+{
+    font-size: 1em;
+    padding: 0;
+    margin-left: 2em;
+    vertical-align: text-top;
+}
+
+#translate-filters .breadcrumb .select2-container .select2-choice
+{
+    height: auto;
+    padding: 0 0 0 4px;
+    line-height: 28px;
+}
+
+#translate-filters .breadcrumb .select2-container .select2-choice div
+{
+    top: 0;
+}
+
+
+/*
  * HEADER ACTIONS
  */
 
 #actions
 {
     padding-bottom: 1em;
+}
+
+body.translate #actions
+{
+    padding-bottom: 0.5em;
 }
 
 #translate-actions
@@ -2029,6 +2064,7 @@ body.js-not-loaded #translate-actions li
     margin-left: -5px;
     padding-top: 5px;
     min-height: 2.05em;
+    display: inline-block;
 }
 
 .breadcrumb li
