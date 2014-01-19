@@ -21,6 +21,8 @@ script:
   - TESTPID=$!
   - sleep 100
   - kill -2 $TESTPID
+  - python manage.py test
+
 
 notifications:
   email:
