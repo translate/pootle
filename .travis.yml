@@ -13,7 +13,7 @@ install:
   - pip install -r requirements/build.txt --use-mirrors --timeout=240
   - python -V; pip freeze  # Print all installed versions for reference.
 before_script:
-  - sh -c "cp pootle/settings/90-dev-local.conf.sample pootle/settings/90-dev-local.conf"
+  - sh -c "cp pootle/settings/90-local.conf.sample pootle/settings/90-local.conf"
 script:
   - make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
   - python manage.py syncdb --noinput
