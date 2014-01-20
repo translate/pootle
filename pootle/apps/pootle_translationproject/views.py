@@ -704,6 +704,31 @@ def export_view(request, translation_project, dir_path, filename=None):
                               context_instance=RequestContext(request))
 
 
+@ajax_required
+@get_path_obj
+@permission_required('view')
+def path_summary_more(request, translation_project, dir_path, project_code,
+                      language_code, filename=None):
+    """Returns an HTML snippet with more detailed summary information
+       for the current path."""
+    current_path = translation_project.directory.pootle_path + dir_path
+
+    if filename:
+        current_path = current_path + filename
+        store = get_object_or_404(Store, pootle_path=current_path)
+        directory = store.parent
+    else:
+        store = None
+        directory = get_object_or_404(Directory, pootle_path=current_path)
+
+    path_obj = store or directory
+    context = {
+        'check_failures': get_quality_check_failures(path_obj),
+    }
+    return render_to_response('translation_project/xhr-path_summary.html',
+                              context, RequestContext(request))
+
+
 @require_POST
 @ajax_required
 @get_path_obj

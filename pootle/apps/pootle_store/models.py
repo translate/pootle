@@ -43,7 +43,7 @@ from taggit.managers import TaggableManager
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_misc.aggregate import group_by_count, max_column
+from pootle_misc.aggregate import group_by_count, group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
 from pootle_misc.util import (cached_property, deletefromcache,
@@ -1465,6 +1465,24 @@ class Store(models.Model, base.TranslationStore, TreeItem):
                 self.sync_time = timezone.now()
             self.save()
 
+    #TODO process cache for _get_checks
+    def require_qualitychecks(self):
+        """make sure quality checks are run"""
+        if self.state < CHECKED:
+            self.update_qualitychecks()
+            # new qualitychecks, let's flush cache
+            deletefromcache(self, ["getcompletestats"])
+
+    @commit_on_success
+    def update_qualitychecks(self):
+        logging.debug(u"Updating quality checks for %s", self.pootle_path)
+        for unit in self.units.iterator():
+            unit.update_qualitychecks()
+
+        if self.state < CHECKED:
+            self.state = CHECKED
+            self.save()
+
     def sync(self, update_structure=False, update_translation=False,
              conservative=True, create=False, profile=None, skip_missing=False,
              modified_since=0):
@@ -1695,11 +1713,13 @@ class Store(models.Model, base.TranslationStore, TreeItem):
 
     def _get_checks(self):
         try:
+            self.require_qualitychecks()
             queryset = QualityCheck.objects.filter(unit__store=self,
                                                    unit__state__gt=UNTRANSLATED,
                                                    false_positive=False)
-            return group_by_count(queryset, 'name')
-        except e:
+
+            return group_by_count_extra(queryset, 'name', 'category')
+        except Exception, e:
             logging.info(u"Error getting quality checks for %s\n%s",
                          self.name, e)
             return {}

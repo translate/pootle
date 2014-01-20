@@ -178,7 +178,10 @@ class TreeItem(object):
         result = self._get_checks()
         self.initialize_children()
         for item in self.children:
-            result = dictsum(result, item.get_checks())
+            item_checks = item.get_checks()
+            for cat in set(item_checks) | set(result):
+                result[cat] = dictsum(result.get(cat, {}),
+                                      item_checks.get(cat, {}))
 
         return result
 

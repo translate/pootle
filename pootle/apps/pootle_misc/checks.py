@@ -121,3 +121,54 @@ def get_qualitycheck_schema(path_obj=None):
 def get_qualitychecks_by_category(category):
     checks = get_qualitychecks()
     return filter(lambda x: checks[x] == category, checks)
+
+
+def get_quality_check_failures(path_obj):
+    """Returns a list of the failed checks sorted by their importance.
+
+    :param path_obj: An object which has the ``getcompletestats`` method.
+    """
+    checks = []
+
+    try:
+        property_stats = path_obj.get_checks()
+        path_stats = path_obj.get_stats()
+        total = path_stats['total']
+        keys = property_stats.keys()
+        keys.sort(reverse=True)
+
+        for i, category in enumerate(keys):
+            checks.append({
+                'checks': []
+            })
+
+            if category != Category.NO_CATEGORY:
+                checks[i].update({
+                    'name': category,
+                    'display_name': unicode(category_names[category]),
+                })
+
+            cat_keys = property_stats[category].keys()
+            cat_keys.sort()
+
+            for checkname in cat_keys:
+                checkcount = property_stats[category][checkname]
+
+                if total and checkcount:
+                    check_display = unicode(check_names.get(checkname,
+                                                            checkname))
+                    check = {
+                        'name': checkname,
+                        'display_name': check_display,
+                        'count': checkcount
+                    }
+
+                    check['url'] = path_obj.get_translate_url(
+                            check=checkname,
+                        )
+
+                    checks[i]['checks'].append(check)
+    except IOError:
+        pass
+
+    return checks
