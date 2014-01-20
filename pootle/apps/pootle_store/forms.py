@@ -189,13 +189,13 @@ def unit_form_factory(language, snplurals=None, request=None):
         'class': 'translation expanding focusthis',
         'rows': 5,
         'tabindex': 10,
-        }
+    }
 
     fuzzy_attrs = {
         'accesskey': 'f',
         'class': 'fuzzycheck',
         'tabindex': 13,
-        }
+    }
 
     if action_disabled:
         target_attrs['disabled'] = 'disabled'
@@ -208,14 +208,24 @@ def unit_form_factory(language, snplurals=None, request=None):
                        'submitted_by', 'commented_by']
 
         id = forms.IntegerField(required=False)
-        source_f = MultiStringFormField(nplurals=snplurals or 1,
-                                        required=False, textarea=False)
-        target_f = MultiStringFormField(nplurals=tnplurals, required=False,
-                                        attrs=target_attrs)
-        state = UnitStateField(required=False, label=_('Needs work'),
-                               widget=forms.CheckboxInput(
-                                   attrs=fuzzy_attrs,
-                                   check_test=lambda x: x == FUZZY))
+        source_f = MultiStringFormField(
+            nplurals=snplurals or 1,
+            required=False,
+            textarea=False,
+        )
+        target_f = MultiStringFormField(
+            nplurals=tnplurals,
+            required=False,
+            attrs=target_attrs,
+        )
+        state = UnitStateField(
+            required=False,
+            label=_('Needs work'),
+            widget=forms.CheckboxInput(
+                attrs=fuzzy_attrs,
+                check_test=lambda x: x == FUZZY,
+            ),
+        )
 
         def __init__(self, *args, **argv):
             super(UnitForm, self).__init__(*args, **argv)
@@ -230,7 +240,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                                             to_db(self.instance.source),
                                             to_db(value)))
             if snplurals == 1:
-                # plural with single form, insert placeholder
+                # Plural with single form, insert placeholder.
                 value.append(PLURAL_PLACEHOLDER)
 
             return value
@@ -260,7 +270,6 @@ def unit_form_factory(language, snplurals=None, request=None):
             else:
                 new_state = UNTRANSLATED
 
-
             if old_state != new_state:
                 self.instance._state_updated = True
                 self.updated_fields.append((SubmissionFields.STATE,
@@ -284,27 +293,24 @@ def unit_comment_form_factory(language):
         'tabindex': 15,
     }
 
-
     class UnitCommentForm(forms.ModelForm):
 
         class Meta:
             fields = ('translator_comment',)
             model = Unit
 
-
-        translator_comment = forms.CharField(required=True,
-                                             label=_("Translator comment"),
-                                             widget=forms.Textarea(
-                                                 attrs=comment_attrs))
-
+        translator_comment = forms.CharField(
+            required=True,
+            label=_("Translator comment"),
+            widget=forms.Textarea(attrs=comment_attrs),
+        )
 
         def __init__(self, *args, **kwargs):
             self.request = kwargs.pop('request', None)
             super(UnitCommentForm, self).__init__(*args, **kwargs)
 
-
         def save(self):
-            """Registers the submission and saves the comment."""
+            """Register the submission and save the comment."""
             if self.has_changed():
                 creation_time = timezone.now()
                 translation_project = self.request.translation_project
