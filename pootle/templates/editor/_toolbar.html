@@ -5,8 +5,8 @@
     <button id="js-nav-prev" class="btn btn-xs"
       title="{% trans 'Go to the previous string (Ctrl+Up)' %}">{% trans '＜' %}</button>
     <span id="item-navigation">
-      <input id="item-number" type="text" value="1" size="4"
-        title="{% trans 'Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press Enter<br/>to go to any position' %}" />
+      <span contenteditable id="item-number" class="js-unit-index"
+        title="{% trans 'Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press Enter<br/>to go to any position' %}">1</span>
       /
       <span id="items-count" title="{% trans 'Total strings' %}"></span>
     </span>

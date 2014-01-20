@@ -126,12 +126,8 @@
     $(document).on('editor_ready', 'table.translate-table', this.ready);
     $(document).on('noResults', 'table.translate-table', this.noResults);
     $(document).on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
-    $(document).on('keypress', '#item-number', function (e) {
-      // Perform action only when the 'Enter' key is pressed
-      if (e.which === 13) {
-        PTL.editor.gotoIndex(parseInt($('#item-number').val(), 10));
-      }
-    });
+    $(document).on('keypress', '.js-unit-index', this.gotoIndex.bind(this));
+    $(document).on('dblclick', '.js-unit-index', this.unitIndex);
     $(document).on('click', 'input.submit', this.submit);
     $(document).on('click', 'input.suggest', this.suggest);
     $(document).on('click', '#js-nav-prev', this.gotoPrev.bind(this));
@@ -199,9 +195,7 @@
       );
     }
 
-    shortcut.add('ctrl+shift+n', function () {
-      $('#item-number').focus().select();
-    });
+    shortcut.add('ctrl+shift+n', this.unitIndex);
 
     /* XHR activity indicator */
     $(document).ajaxStart(function () {
@@ -1132,7 +1126,7 @@
     var currentUnit = PTL.editor.units.getCurrent();
     if (currentUnit !== undefined) {
       var uIndex = this.units.uIds.indexOf(currentUnit.id) + 1;
-      $("#item-number").val(uIndex);
+      $('.js-unit-index').text(uIndex);
     }
 
   },
@@ -1344,13 +1338,34 @@
     }
   },
 
+  /* FIXME: `unitIndex` and `gotoIndex` should part of a view on its own */
+
+  /* Selects the element's contents and sets the focus */
+  unitIndex: function (e) {
+    e.preventDefault();
+
+    var el = $('.js-unit-index')[0],
+        selection = window.getSelection(),
+        range = document.createRange();
+
+    range.selectNodeContents(el);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    el.focus();
+  },
+
   /* Loads the editor on a index */
-  gotoIndex: function (index) {
-    if (index && !isNaN(index) && index > 0 &&
-        index <= PTL.editor.units.total) {
-      var uId = PTL.editor.units.uIds[index-1],
-          newHash = PTL.utils.updateHashPart('unit', uId);
-      $.history.load(newHash);
+  gotoIndex: function (e) {
+    if (e.which === 13) { // Enter key
+      e.preventDefault();
+      var index = parseInt($('.js-unit-index').text(), 10);
+
+      if (index && !isNaN(index) && index > 0 &&
+          index <= this.units.total) {
+        var uId = this.units.uIds[index-1],
+            newHash = PTL.utils.updateHashPart('unit', uId);
+        $.history.load(newHash);
+      }
     }
   },
 
