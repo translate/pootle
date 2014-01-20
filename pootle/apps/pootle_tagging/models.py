@@ -66,28 +66,37 @@ class Goal(TagBase):
     It inherits from TagBase instead of Tag because that way it is possible to
     reduce the number of DB queries.
     """
-    description_help_text = _('A description of this goal. This is useful to '
-                              'give more information or instructions. Allowed '
-                              'markup: %s', get_markup_filter_name())
-    description = MarkupField(verbose_name=_("Description"), blank=True,
-                              help_text=description_help_text)
+    description = MarkupField(
+        verbose_name=_("Description"),
+        blank=True,
+        help_text=_('A description of this goal. This is useful to give more '
+                    'information or instructions. Allowed markup: %s',
+                    get_markup_filter_name()),
+    )
 
     # Priority goes from 1 to 10, being 1 the greater and 10 the lower.
-    priority = models.IntegerField(verbose_name=_("Priority"), default=10,
-                                   help_text=_("The priority for this goal."))
+    priority = models.IntegerField(
+        verbose_name=_("Priority"),
+        default=10,
+        help_text=_("The priority for this goal."),
+    )
 
     # Tells if the goal is going to be shared across a project. This might be
     # seen as a 'virtual goal' because it doesn't apply to any real TP, but to
     # the templates one.
-    project_goal_help_text = _("Designates that this is a project goal "
-                               "(shared across all languages in the project).")
-    project_goal = models.BooleanField(verbose_name=_("Project goal?"),
-                                       default=False,
-                                       help_text=project_goal_help_text)
+    project_goal = models.BooleanField(
+        verbose_name=_("Project goal?"),
+        default=False,
+        help_text=_("Designates that this is a project goal (shared across "
+                    "all languages in the project)."),
+    )
 
     # Necessary for assigning and checking permissions.
-    directory = models.OneToOneField('pootle_app.Directory', db_index=True,
-                                     editable=False)
+    directory = models.OneToOneField(
+        'pootle_app.Directory',
+         db_index=True,
+         editable=False,
+    )
 
     CACHED_FUNCTIONS = ["get_raw_stats_for_path"]
 
