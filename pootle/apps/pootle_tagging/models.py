@@ -199,14 +199,17 @@ class Goal(TagBase):
 
         :param pootle_path: A string with a valid pootle path.
         """
-        # Putting the next imports at the top of the file causes circular
-        # import issues.
-        from pootle_app.models.directory import Directory
+        # Putting the next import at the top of the file causes circular import
+        # issues.
         from pootle_store.models import Store
 
         try:
             path_obj = Store.objects.get(pootle_path=pootle_path)
         except Store.DoesNotExist:
+            # Putting the next import at the top of the file causes circular
+            # import issues.
+            from pootle_app.models.directory import Directory
+
             try:
                 path_obj = Directory.objects.get(pootle_path=pootle_path)
             except Directory.DoesNotExist:
