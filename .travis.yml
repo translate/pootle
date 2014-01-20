@@ -18,10 +18,10 @@ script:
   - python manage.py migrate
   - python manage.py initdb
   - ./manage.py runserver &
+  - sh -c "curl  -L http://localhost:8000/"
   - TESTPID=$!
   - sleep 10
   - kill -2 $TESTPID
-  - sh -c "curl  -L http://localhost:8000/"
 
 
 notifications:
