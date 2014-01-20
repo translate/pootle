@@ -182,13 +182,20 @@ class Goal(TagBase):
 
     @classmethod
     def get_trail_for_path(self, pootle_path):
-        """Return the trail for the given path.
+        """Return a list with the trail for the given path.
+
+        If the pootle path does not exist, then an empty list is returned.
 
         The trail is all the directories that correspond to the given pootle
-        path, plus the Translation project where the given pootle path is.
+        path, plus the Translation project where the given pootle path is. For
+        example for the pootle path /ru/firefoxos/add-ons/dropbox/nvda.po the
+        following trail is returned:
 
-        If the pootle path does not exist, then an empty list is returned. Else
-        a list with the complete trail is returned.
+        * Translation project object for /ru/firefoxos/
+        * Directory object for /ru/firefoxos/add-ons/
+        * Directory object for /ru/firefoxos/add-ons/dropbox/
+
+        Note that no object for the store is included in the returned trail.
 
         :param pootle_path: A string with a valid pootle path.
         """
