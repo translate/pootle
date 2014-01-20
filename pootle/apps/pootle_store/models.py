@@ -228,6 +228,7 @@ class UnitManager(RelatedManager):
 
         units_qs = super(UnitManager, self).get_query_set().filter(
             state__gt=OBSOLETE,
+            store__translation_project__project__disabled=False,
         )
 
         # /projects/<project_code>/translate/*
@@ -261,7 +262,6 @@ class UnitManager(RelatedManager):
             user_projects = Project.accessible_by_user(profile.user)
             units_qs = units_qs.filter(
                 store__translation_project__project__code__in=user_projects,
-                store__translation_project__project__disable=False,
             )
 
         return units_qs
