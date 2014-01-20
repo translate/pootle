@@ -261,12 +261,29 @@ class Goal(TagBase):
         """Remove the cache for all the goals in the given path and upper
         directories.
 
+        The cache is deleted for the given path, for the directories between
+        the given path and the translation project, and for the translation
+        project itself.
+
         :param pootle_path: A string with a valid pootle path.
         """
+        # Get all the affected objects just once, to avoid querying the
+        # database all the time if there are too many objects involved.
+        affected_trail = cls.get_trail_for_path(pootle_path)
+
+        if not affected_trail:
+            return
+
         affected_goals = cls.get_goals_for_path(pootle_path)
 
+        keys = []
         for goal in affected_goals:
-            goal.delete_cache_for_path(pootle_path)
+            for path_obj in affected_trail:
+                for function_name in cls.CACHED_FUNCTIONS:
+                    keys.append(iri_to_uri(goal.pootle_path + ":" +
+                                           path_obj.pootle_path + ":" +
+                                           function_name))
+        cache.delete_many(keys)
 
     def save(self, *args, **kwargs):
         # Putting the next import at the top of the file causes circular import
