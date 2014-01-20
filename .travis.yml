@@ -19,9 +19,9 @@ script:
   - python manage.py initdb
   - ./manage.py runserver &
   - TESTPID=$!
-  - sleep 100
+  - sleep 10
   - kill -2 $TESTPID
-  - python manage.py test
+  - sh -c "curl  -L http://localhost:8000/"
 
 
 notifications:
