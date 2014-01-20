@@ -70,7 +70,15 @@ body.zoom-out-2 #toolbar
     text-align: center;
     position: relative;
     top: 1px;
+    border: 1px solid transparent;
+    background: transparent;
 }
+
+#prevnext #item-number:hover {
+    background: #fff;
+    border: 1px solid #d9d9d9;
+}
+
 
 #prevnext #items-count
 {
