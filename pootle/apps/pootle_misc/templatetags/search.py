@@ -31,10 +31,11 @@ register = template.Library()
 @register.inclusion_tag('search.html', takes_context=True)
 def render_search(context, form=None, action=None):
     request = context['request']
-    if form is None:
 
+    if form is None:
         is_terminology = False
         tp = context.get('translation_project', None)
+
         if tp is not None:
             is_terminology = tp.project.is_terminology
 
