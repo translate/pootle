@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6
 
 h1, h2, h3
 {
-    font-family: webfont_bold, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+    font-family: webfont_bold, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
 }
@@ -1915,6 +1915,7 @@ html[dir="rtl"] .overview-description-toggle
 #translate-filters .breadcrumb
 {
     font-size: 1em;
+    font-family: sans-serif;
     padding: 0;
     margin-left: 2em;
     vertical-align: text-top;
