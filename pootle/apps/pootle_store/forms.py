@@ -212,15 +212,24 @@ def unit_form_factory(language, snplurals=None, request=None):
             fields = ('id', 'index', 'source_f', 'target_f', 'state',)
 
         id = forms.IntegerField(required=False)
-        source_f = MultiStringFormField(nplurals=snplurals or 1,
-                                        required=False, textarea=False)
-        target_f = MultiStringFormField(nplurals=tnplurals, required=False,
-                                        attrs=target_attrs)
-        state = UnitStateField(required=False, label=_('Needs work'),
-                               widget=forms.CheckboxInput(
-                                   attrs=fuzzy_attrs,
-                                   check_test=lambda x: x == FUZZY))
-        similarity = forms.FloatField(required=False)
+        source_f = MultiStringFormField(
+            nplurals=snplurals or 1,
+            required=False,
+            textarea=False,
+        )
+        target_f = MultiStringFormField(
+            nplurals=tnplurals,
+            required=False,
+            attrs=target_attrs,
+        )
+        state = UnitStateField(
+            required=False,
+            label=_('Needs work'),
+            widget=forms.CheckboxInput(
+                attrs=fuzzy_attrs,
+                check_test=lambda x: x == FUZZY,
+            ),
+        )
         mt_similarity = forms.FloatField(required=False)
 
         def __init__(self, *args, **kwargs):
@@ -240,7 +249,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                                             to_db(self.instance.source),
                                             to_db(value)))
             if snplurals == 1:
-                # plural with single form, insert placeholder
+                # Plural with single form, insert placeholder.
                 value.append(PLURAL_PLACEHOLDER)
 
             return value
@@ -335,19 +344,17 @@ def unit_comment_form_factory(language):
         'tabindex': 15,
     }
 
-
     class UnitCommentForm(forms.ModelForm):
 
         class Meta:
             fields = ('translator_comment',)
             model = Unit
 
-
-        translator_comment = forms.CharField(required=True,
-                                             label=_("Translator comment"),
-                                             widget=forms.Textarea(
-                                                 attrs=comment_attrs))
-
+        translator_comment = forms.CharField(
+            required=True,
+            label=_("Translator comment"),
+            widget=forms.Textarea(attrs=comment_attrs),
+        )
 
         def __init__(self, *args, **kwargs):
             self.request = kwargs.pop('request', None)
@@ -367,7 +374,7 @@ def unit_comment_form_factory(language):
             return self.cleaned_data['translator_comment']
 
         def save(self):
-            """Registers the submission and saves the comment."""
+            """Register the submission and save the comment."""
             if self.has_changed():
                 self.instance._comment_updated = True
                 creation_time = timezone.now()
