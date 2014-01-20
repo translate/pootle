@@ -129,6 +129,7 @@ def view(request, root_dir):
         'can_edit': can_edit,
         'languages_table': languages_table,
         'projects_table': projects_table,
+        'resource_obj': request.resource_obj,
     }
     visible_langs = [l for l in languages if l['stats']['total'] != 0]
     templatevars['moreprojects'] = (len(projects) > len(visible_langs))

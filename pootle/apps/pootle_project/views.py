@@ -124,6 +124,7 @@ def get_project_base_template_vars(request, project, can_edit):
                     'activity', 'tags']
 
     template_vars = {
+        'resource_obj': request.resource_obj,
         'project': {
             'code': project.code,
             'name': project.fullname,

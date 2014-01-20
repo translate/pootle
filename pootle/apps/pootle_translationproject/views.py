@@ -450,6 +450,7 @@ def overview(request, translation_project, dir_path, filename=None,
         description = goal.description
 
     template_vars.update({
+        'resource_obj': request.resource_obj,
         'translation_project': translation_project,
         'description': description,
         'project': project,

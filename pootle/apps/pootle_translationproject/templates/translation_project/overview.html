@@ -187,6 +187,12 @@
 <script type="text/javascript">
 $(function() {
   PTL.search.init();
+  PTL.stats.init({
+      pootlePath: "{{ resource_obj.pootle_path }}",
+  });
+  PTL.stats.load(function () {
+    $("body").spin(false);
+  });
 
   PTL.common.updateRelativeDates();
   setInterval(PTL.common.updateRelativeDates, 6e4);

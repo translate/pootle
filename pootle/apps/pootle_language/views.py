@@ -108,6 +108,7 @@ def overview(request, language):
     }
 
     templatevars = {
+        'resource_obj': request.resource_obj,
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
