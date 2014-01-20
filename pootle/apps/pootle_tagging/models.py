@@ -172,6 +172,44 @@ class Goal(TagBase):
             return list(chain(regular_goals, project_goals))
 
     @classmethod
+    def get_trail_for_path(self, pootle_path):
+        """Return the trail for the given path.
+
+        The trail is all the directories that correspond to the given pootle
+        path, plus the Translation project where the given pootle path is.
+
+        If the pootle path does not exist, then an empty list is returned. Else
+        a list with the complete trail is returned.
+
+        :param pootle_path: A string with a valid pootle path.
+        """
+        # Putting the next imports at the top of the file causes circular
+        # import issues.
+        from pootle_app.models.directory import Directory
+        from pootle_store.models import Store
+
+        try:
+            path_obj = Store.objects.get(pootle_path=pootle_path)
+        except Store.DoesNotExist:
+            try:
+                path_obj = Directory.objects.get(pootle_path=pootle_path)
+            except Directory.DoesNotExist:
+                # If it is not possible to retrieve any path_obj for the
+                # provided pootle_path, then abort.
+                return []
+
+        if isinstance(path_obj, Store):
+            path_dir = path_obj.parent
+        else:  # Else it is a directory.
+            path_dir = path_obj
+
+        # Note: Not including path_obj (if it is a store) in path_objs since we
+        # still don't support including units in a goal.
+        path_objs = chain([path_obj.translation_project], path_dir.trail())
+
+        return path_objs
+
+    @classmethod
     def get_most_important_incomplete_for_path(cls, pootle_path):
         """Return the most important incomplete goal for this path or None.
 
@@ -381,29 +419,7 @@ class Goal(TagBase):
 
         :param pootle_path: A string with a valid pootle path.
         """
-        # Putting the next imports at the top of the file causes circular
-        # import issues.
-        from pootle_app.models.directory import Directory
-        from pootle_store.models import Store
-
-        try:
-            path_obj = Store.objects.get(pootle_path=pootle_path)
-        except Store.DoesNotExist:
-            try:
-                path_obj = Directory.objects.get(pootle_path=pootle_path)
-            except Directory.DoesNotExist:
-                # If it is not possible to retrieve any path_obj for the
-                # provided pootle_path, then abort.
-                return
-
-        if isinstance(path_obj, Store):
-            path_dir = path_obj.parent
-        else:  # Else it is a directory.
-            path_dir = path_obj
-
-        # Note: Not including path_obj (if it is a store) in path_objs since we
-        # still don't support including units in a goal.
-        path_objs = chain([path_obj.translation_project], path_dir.trail())
+        path_objs = cls.get_trail_for_path(pootle_path)
 
         keys = []
         for path_obj in path_objs:
