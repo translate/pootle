@@ -249,11 +249,11 @@ class CaptchaMiddleware:
 
             t = loader.get_template('captcha-xhr.html')
             c = RequestContext(request, ec)
-            json = {
+            json_data = {
                 'captcha': t.render(c),
             }
 
-            response = json.dumps(json)
+            response = json.dumps(json_data)
             return HttpResponse(response, mimetype="application/json")
         else:
             return render_to_response('captcha.html', ec,
