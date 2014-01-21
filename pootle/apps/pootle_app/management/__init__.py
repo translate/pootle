@@ -35,6 +35,8 @@ def fix_permission_content_type_pre(sender, instance, **kwargs):
         global permission_queryset
         permission_queryset = [permission for permission in \
                                Permission.objects.filter(content_type=instance)]
+
+
 pre_delete.connect(fix_permission_content_type_pre, sender=ContentType)
 
 
@@ -49,4 +51,6 @@ def fix_permission_content_type_post(sender, instance, **kwargs):
             permission.content_type = dir_content_type
             permission.save()
         permission_queryset = None
+
+
 post_delete.connect(fix_permission_content_type_post, sender=ContentType)
