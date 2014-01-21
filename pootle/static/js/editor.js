@@ -787,26 +787,17 @@
   getReqData: function () {
     var reqData = {};
 
-    switch (this.filter) {
+    if (this.filter === 'checks' && this.checks.length) {
+      reqData.checks = this.checks.join(",");
+    }
 
-      case "checks":
-        reqData.filter = this.filter;
-        if (this.checks.length) {
-          reqData.checks = this.checks.join(",");
-        }
-        this.sortBy !== 'default' && (reqData.sort = this.sortBy);
-        break;
-
-      case "search":
-        reqData.search = this.searchText;
-        reqData.sfields = this.searchFields;
-        reqData.soptions = this.searchOptions;
-        break;
-
-      default:
-        reqData.filter = this.filter;
-        this.sortBy !== 'default' && (reqData.sort = this.sortBy);
-        break;
+    if (this.filter === 'search') {
+      reqData.search = this.searchText;
+      reqData.sfields = this.searchFields;
+      reqData.soptions = this.searchOptions;
+    } else {
+      reqData.filter = this.filter;
+      this.sortBy !== 'default' && (reqData.sort = this.sortBy);
     }
 
     if (this.user) {
