@@ -549,22 +549,6 @@
   },
 
 
-  /* Gets selected text */
-  getSelectedText: function () {
-    var t = '';
-
-    if (window.getSelection) {
-      t = window.getSelection();
-    } else if (document.getSelection) {
-      t = document.getSelection();
-    } else if (document.selection) {
-      t = document.selection.createRange().text;
-    }
-
-    return t;
-  },
-
-
   /* Does the actual diffing */
   doDiff: function (a, b) {
     var html = [],
@@ -1306,7 +1290,7 @@
     }
 
     // Don't load anything if we're just selecting text
-    if (PTL.editor.getSelectedText() != "") {
+    if (window.getSelection().toString() !== '') {
       return;
     }
 
