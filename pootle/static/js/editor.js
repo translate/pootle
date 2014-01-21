@@ -329,7 +329,6 @@
               success: PTL.editor.appendChecks
             });
           }
-          $('#js-filter-checks').select2('val', PTL.editor.checks[0]);
         }
 
         if (sortableFilters.indexOf(PTL.editor.filter) !== -1) {
@@ -1380,7 +1379,8 @@
   /* Adds the failing checks to the UI */
   appendChecks: function (checks) {
     if (Object.keys(checks).length) {
-      var $checks = $('#js-filter-checks');
+      var $checks = $('#js-filter-checks'),
+          selectedValue = PTL.editor.checks[0] || 'none';
 
       $checks.find('optgroup').each(function (e) {
         var empty = true,
@@ -1403,8 +1403,7 @@
         }
       });
 
-      $checks.select2(filterSelectOpts).select2('val', 'none');
-      $('.js-filter-sort-wrapper').hide();
+      $checks.select2(filterSelectOpts).select2('val', selectedValue);
       $('.js-filter-checks-wrapper').css('display', 'inline-block');
     } else { // No results
       PTL.editor.displayMsg(gettext("No results."));
