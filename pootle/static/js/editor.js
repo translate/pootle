@@ -361,8 +361,7 @@
             }
           });
 
-          // Remove any possible applied checks
-          $('#js-filter-checks').remove();
+          $('.js-filter-checks-wrapper').hide();
         }
 
         // re-enable normal event handling
