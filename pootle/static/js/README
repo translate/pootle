@@ -147,12 +147,6 @@ Directory contents
 
         http://gsgd.co.uk/sandbox/jquery/easing/
 
-      - jquery.fieldselection.js :
-        jQuery plugin to retrieve or replace text selections within
-        textareas.
-
-        http://laboratorium.0xab.cd/jquery/fieldselection/0.1.0/
-
       - jquery.highlighRegex.js :
         Plugin to highlight text on selected elements using regular expressions.
 
