@@ -23,7 +23,7 @@ script:
   - TESTPID=$!
   - sleep 10
   - kill -2 $TESTPID
-  - sh -c 'curl -sL -w "HTTP Code: %{http_code}\\t Time: %{time_total}\\t %{url_effective}\\n"  "http://localhost:8000" -o /dev/null'
+  - sh -c "curl -s 'http://localhost:8000' -o /dev/null"
 
 notifications:
   email:
