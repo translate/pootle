@@ -110,18 +110,6 @@
       PTL.editor.copyOriginal($(this).parents('.source-language').find('.translation-text'));
     });
 
-    /* Copy suggestion */
-    $(document).on('click', 'div.suggestion', function () {
-      // Don't copy if text has been selected
-      if (PTL.editor.getSelectedText()) {
-        return;
-      }
-      if ($('.js-translation-area').attr('disabled')) {
-        return;
-      }
-      PTL.editor.copyOriginal($('.suggestion-translation', this));
-    });
-
     /* Editor navigation/submission */
     $(document).on('editor_ready', 'table.translate-table', this.ready);
     $(document).on('noResults', 'table.translate-table', this.noResults);
