@@ -4,13 +4,12 @@
 
 
   var filterSelectOpts = {
-      dropdownAutoWidth: true,
-      width: 'off'
-  };
-
-  var sortableFilters = [
-    'my-submissions', 'user-submissions', 'my-suggestions', 'user-suggestions'
-  ];
+        dropdownAutoWidth: true,
+        width: 'off'
+      },
+      sortSelectOpts = _.extend({
+        minimumResultsForSearch: -1
+      }, filterSelectOpts);
 
 
   PTL.editor = {
@@ -32,7 +31,7 @@
 
     this.filter = 'all';
     this.checks = [];
-    this.sortBy = 'file';
+    this.sortBy = 'default';
     this.user = null;
     this.ctxGap = 0;
     this.ctxQty = parseInt($.cookie('ctxQty'), 10) || 1;
@@ -72,7 +71,7 @@
 
     /* Select2 */
     $('#js-filter-status').select2(filterSelectOpts);
-    $('#js-filter-sort').select2(filterSelectOpts);
+    $('#js-filter-sort').select2(sortSelectOpts);
 
     /* Screenshot images */
     $(document).magnificPopup({
@@ -250,7 +249,7 @@
         // Reset to defaults
         PTL.editor.filter = 'all';
         PTL.editor.checks = [];
-        PTL.editor.sortBy = 'file';
+        PTL.editor.sortBy = 'default';
 
         if ('filter' in params) {
           var filterName = params['filter'];
@@ -260,8 +259,8 @@
 
           if (filterName === 'checks' && 'checks' in params) {
             PTL.editor.checks = params['checks'].split(',');
-          } else if (sortableFilters.indexOf(filterName) !== -1 &&
-                     'sort' in params) {
+          }
+          if ('sort' in params) {
             PTL.editor.sortBy = params.sort;
           }
         }
@@ -331,10 +330,7 @@
           }
         }
 
-        if (sortableFilters.indexOf(PTL.editor.filter) !== -1) {
-          $('.js-filter-sort-wrapper').css('display', 'inline-block');
-          $('#js-filter-sort').select2('val', PTL.editor.sortBy);
-        }
+        $('#js-filter-sort').select2('val', PTL.editor.sortBy);
 
         if (PTL.editor.filter == "search") {
           $("#id_search").val(PTL.editor.searchText);
@@ -798,6 +794,7 @@
         if (this.checks.length) {
           reqData.checks = this.checks.join(",");
         }
+        this.sortBy !== 'default' && (reqData.sort = this.sortBy);
         break;
 
       case "search":
@@ -806,19 +803,9 @@
         reqData.soptions = this.searchOptions;
         break;
 
-      case "my-suggestions":
-      case "user-suggestions":
-      case "my-submissions":
-      case "user-submissions":
-        reqData.filter = this.filter;
-        reqData.sort = this.sortBy;
-        break;
-
-      case "all":
-        break;
-
       default:
         reqData.filter = this.filter;
+        this.sortBy !== 'default' && (reqData.sort = this.sortBy);
         break;
     }
 
@@ -1364,13 +1351,17 @@
     if (PTL.editor.preventNavigation) {
       return;
     }
-    var filterBy = $("option:selected", this).val();
+    var filterChecks = $('#js-filter-checks').val();
 
-    if (filterBy != "none") {
-      var newHash = {
-        filter: 'checks',
-        checks: filterBy
-      };
+    if (filterChecks !== 'none') {
+      var sortBy = $('#js-filter-sort').val(),
+          newHash = {
+            filter: 'checks',
+            checks: filterChecks
+          };
+
+      sortBy !== 'default' && (newHash.sort = sortBy);
+
       $.history.load($.param(newHash));
     }
   },
@@ -1412,11 +1403,13 @@
 
   filterSort: function () {
     var filterBy = $('#js-filter-status').val(),
+        filterChecks = $('#js-filter-checks').val(),
         sortBy = $('#js-filter-sort').val(),
-        newHash = {
-          filter: filterBy,
-          sort: sortBy
-        };
+        newHash = { filter: filterBy };
+
+    filterChecks !== 'none' && (newHash.checks = filterChecks);
+    sortBy !== 'default' && (newHash.sort = sortBy);
+
     $.history.load($.param(newHash));
   },
 
@@ -1428,7 +1421,6 @@
     var $selected = $('#js-filter-status option:selected'),
         filterBy = $selected.val(),
         isUserFilter = $selected.data('user'),
-        $sortWrapper = $('.js-filter-sort-wrapper'),
         $checksWrapper = $('.js-filter-checks-wrapper');
 
     if (filterBy == "checks") {
@@ -1437,7 +1429,6 @@
       });
     } else { // Normal filtering options (untranslated, fuzzy...)
       $checksWrapper.hide();
-      $sortWrapper.hide();
 
       if (!PTL.editor.preventNavigation) {
         var newHash = {filter: filterBy};
@@ -1448,11 +1439,7 @@
           PTL.editor.user = null;
           $(".js-user-filter").remove();
 
-          if (sortableFilters.indexOf(filterBy) !== -1) {
-            $sortWrapper.css('display', 'inline-block');
-
-            newHash.sort = PTL.editor.sortBy;
-          }
+          PTL.editor.sortBy !== 'default' && (newHash.sort = PTL.editor.sortBy);
         }
 
         $.history.load($.param(newHash));

@@ -1,6 +1,14 @@
 {% load i18n locale %}
 {% get_current_language as LANGUAGE_CODE %}
 <div id="toolbar">
+  <div>
+    <select id="js-filter-sort">
+      <option selected value="default">{% trans "Default order" %}</option>
+      <option value="-time">{% trans "Newest first" %}</option>
+      <option value="+time">{% trans "Oldest first" %}</option>
+    </select>
+  </div>
+
   <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
     <button id="js-nav-prev" class="btn btn-xs"
       title="{% trans 'Go to the previous string (Ctrl+Up)' %}">{% trans '＜' %}</button>

@@ -125,8 +125,7 @@ Editor Differences
 - When going through all units in the translation editor, users will be
   automatically redirected back to overview.
 
-- When using the *My submissions* and *My suggestions* filters, units can
-  be sorted according to the date.
+- Filters allow sorting units according to their last action date.
 
 - TM diffs show what has been removed and what's being added.
 

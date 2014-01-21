@@ -66,6 +66,10 @@ from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
 #: Keys are supported query strings, values are the field + order that
 #: will be used against the DB.
 ALLOWED_SORTS = {
+    'units': {
+        '+time': 'mtime',
+        '-time': '-mtime',
+    },
     'suggestions': {
         '+time': 'submission__from_suggestion__creation_time',
         '-time': '-submission__from_suggestion__creation_time',
@@ -75,6 +79,11 @@ ALLOWED_SORTS = {
         '-time': '-submission__creation_time',
     },
 }
+
+
+#: List of fields from `ALLOWED_SORTS` that can be sorted by simply using
+#: `order_by(field)`
+SIMPLY_SORTED = ['units']
 
 
 def get_alt_src_langs(request, profile, translation_project):
@@ -193,7 +202,7 @@ def get_step_query(request, units_queryset):
         unit_filter = request.GET['filter']
         username = request.GET.get('user', None)
         sort_by_param = request.GET.get('sort', None)
-        sort_by = None
+        sort_on = 'units'
 
         profile = request.profile
         if username is not None:
@@ -225,8 +234,7 @@ def get_step_query(request, units_queryset):
                 match_queryset = units_queryset.filter(
                         suggestion__user=profile,
                     ).distinct()
-
-                sort_by = ALLOWED_SORTS['suggestions'].get(sort_by_param, None)
+                sort_on = 'suggestions'
             elif unit_filter == 'user-suggestions-accepted':
                 # FIXME: Oh, this is pretty lame, we need a completely
                 # different way to model suggestions
@@ -250,8 +258,7 @@ def get_step_query(request, units_queryset):
                 match_queryset = units_queryset.filter(
                         submission__submitter=profile,
                     ).distinct()
-
-                sort_by = ALLOWED_SORTS['submissions'].get(sort_by_param, None)
+                sort_on = 'submissions'
             elif (unit_filter in ('my-submissions-overwritten',
                                   'user-submissions-overwritten')):
                 match_queryset = units_queryset.filter(
@@ -266,15 +273,19 @@ def get_step_query(request, units_queryset):
                         qualitycheck__name__in=checks
                     ).distinct()
 
+            sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param, None)
             if sort_by is not None:
-                # It's necessary to use `Max()` here because we can't
-                # use `distinct()` and `order_by()` at the same time
-                # (unless PostreSQL is used and `distinct(field_name)`)
-                sort_by_max = '%s__max' % sort_by
-                # Omit leading `-` sign
-                max_field = sort_by[1:] if sort_by[0] == '-' else sort_by
-                match_queryset = match_queryset.annotate(Max(max_field)) \
-                                               .order_by(sort_by_max)
+                if sort_on in SIMPLY_SORTED:
+                    match_queryset = match_queryset.order_by(sort_by)
+                else:
+                    # It's necessary to use `Max()` here because we can't
+                    # use `distinct()` and `order_by()` at the same time
+                    # (unless PostreSQL is used and `distinct(field_name)`)
+                    sort_by_max = '%s__max' % sort_by
+                    # Omit leading `-` sign
+                    max_field = sort_by[1:] if sort_by[0] == '-' else sort_by
+                    match_queryset = match_queryset.annotate(Max(max_field)) \
+                                                   .order_by(sort_by_max)
 
             units_queryset = match_queryset
 

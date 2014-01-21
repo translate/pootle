@@ -13,8 +13,8 @@ Release .next
 - *All Projects* page now shares the same browsing table as available in any
   other overview page. (`#58`_)
 
-- When using the *My submissions* and *My suggestions* filters, units can
-  be sorted according to the date. (`#89`_)
+- Filters allow sorting units according to their last action date.
+  (`#89`_, `#102`_)
 
 - Fixed the gallery mode for unit images and related fixes. (`#96`_)
 
@@ -32,6 +32,7 @@ Release .next
 
 .. _#58: https://github.com/evernote/pootle/issues/58
 .. _#89: https://github.com/evernote/pootle/issues/89
+.. _#102: https://github.com/evernote/pootle/issues/102
 .. _#96: https://github.com/evernote/pootle/issues/96
 .. _#30: https://github.com/evernote/pootle/issues/30
 .. _#88: https://github.com/evernote/pootle/issues/88

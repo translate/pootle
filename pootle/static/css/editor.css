@@ -42,6 +42,11 @@ html[dir="rtl"] #toolbar
     right: auto;
 }
 
+#toolbar > div
+{
+    display: inline-block;
+}
+
 
 /* Zoom levels */
 
