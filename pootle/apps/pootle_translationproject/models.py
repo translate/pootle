@@ -39,7 +39,6 @@ from pootle_language.models import Language
 from pootle_misc.util import cached_property
 from pootle_misc.checks import excluded_filters, ENChecker
 from pootle_project.models import Project
-from pootle_statistics.models import Submission
 from pootle_store.models import (Store, Unit, PARSED)
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                OBSOLETE)
@@ -364,8 +363,8 @@ class TranslationProject(models.Model, TreeItem):
             return
 
         if mtime != self.non_db_state.termmatchermtime:
-            from translate.search import match
-            self.non_db_state.termmatcher = match.terminologymatcher(
+            from pootle_misc.match import Matcher
+            self.non_db_state.termmatcher = Matcher(
                     terminology_stores.iterator(),
             )
             self.non_db_state.termmatchermtime = mtime
