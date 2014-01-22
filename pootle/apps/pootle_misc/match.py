@@ -52,17 +52,18 @@ class TerminologyComparer(terminology.TerminologyComparer):
         match_gap = 0
         pos = 0
         term_count = len(term_list)
+        matched_index = 0
 
         for i, term_word in enumerate(term_list):
-            for j, text_word in enumerate(text_list):
+            for j, text_word in enumerate(text_list[matched_index:], start=matched_index):
                 text_word_len = len(text_word)
                 text_word = text_word[:len(term_word)]
                 if text_word == term_word:
                     if matched_count == 0:
                         match_info = {'pos': pos}
                     matched_count += 1
-                    if matched_count == term_count:
-                        break
+                    matched_index = j
+                    break
                 else:
                     if matched_count > 0:
                         match_gap += 1
@@ -70,6 +71,7 @@ class TerminologyComparer(terminology.TerminologyComparer):
                     if match_gap > 2:
                         matched_count = 0
                         match_gap = 0
+                        matched_index = 0
 
                 pos += text_word_len + 1
 
