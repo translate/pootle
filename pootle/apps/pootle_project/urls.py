@@ -47,11 +47,11 @@ urlpatterns = patterns('pootle_project.views',
     url(r'^ajax/tags/list/(?P<project_code>.*\.*)?$',
         'ajax_list_tags',
         name='pootle-project-ajax-list-tags'),
+
+    # Admin
     url(r'^(?P<project_code>[^/]*)/edit_settings.html?$',
         'project_settings_edit',
         name='pootle-project-edit-settings'),
-
-    # Admin
     url(r'^(?P<project_code>[^/]*)/admin.html$',
         'project_admin',
         name='pootle-project-admin'),
