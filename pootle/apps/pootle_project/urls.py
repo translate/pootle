@@ -57,5 +57,5 @@ urlpatterns = patterns('pootle_project.views',
         name='pootle-project-admin'),
     url(r'^(?P<project_code>[^/]*)/permissions.html$',
         'project_admin_permissions',
-        name='pootle-project-permissions'),
+        name='pootle-project-admin-permissions'),
 )
