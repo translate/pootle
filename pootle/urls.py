@@ -24,8 +24,7 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-urlpatterns = patterns(
-    '',
+urlpatterns = patterns('',
     url(r'^django_admin/', include(admin.site.urls)),
 
     # JavaScript i18n.
@@ -52,8 +51,7 @@ if settings.POOTLE_ENABLE_API:
         url(r'^api/', include(api_factory().urls)),
     )
 
-urlpatterns += patterns(
-    '',
+urlpatterns += patterns('',
     # Pootle URLs.
     url(r'^pages/', include('staticpages.urls')),
     url(r'', include('pootle_app.urls')),

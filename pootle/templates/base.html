@@ -217,8 +217,8 @@
           {% if settings.CAN_CONTACT %}
           <li><a href='{{ "/contact/"|l }}'>{% trans "Contact Us" %}</a></li>
           {% endif %}
-          <li><a href='{% url 'pootle_app.views.index.about.view' %}'>{% trans "About this Pootle Server" %}</a></li>
-          <li><a href='{% url 'pootle_app.views.index.contributors.view' %}'>{% trans "Contributors" %}</a></li>
+          <li><a href="{% url 'pootle_app.views.index.about.view' %}">{% trans "About this Pootle Server" %}</a></li>
+          <li><a href="{% url 'pootle_app.views.index.contributors.view' %}">{% trans "Contributors" %}</a></li>
           {% cache settings.CACHE_TIMEOUT legalpages LANGUAGE_CODE %}
           {% get_legalpages as legalpages %}
           {% for lp in legalpages %}
