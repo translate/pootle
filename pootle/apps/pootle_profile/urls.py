@@ -39,7 +39,8 @@ urlpatterns = patterns('pootle_profile.views',
 
 urlpatterns += patterns('django.contrib.auth.views',
     url(r'^password/change/$',
-        'password_change'),
+        'password_change',
+        name='pootle-password-change'),
     url(r'^password/change/done/$',
         'password_change_done'),
     url(r'^password/reset/$',
@@ -60,7 +61,7 @@ if settings.CAN_REGISTER:
     urlpatterns += patterns('',
         url(r'^register/?$',
             PootleRegistrationView.as_view(),
-            name='registration_register'),
+            name='pootle-registration-register'),
         url(r'',
             include('registration.backends.default.urls')),
     )
