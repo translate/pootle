@@ -20,7 +20,7 @@
 {% endif %}
 {% if 'priority' in table.fields %}
 <td class="stats-number">
-  <span class="muted">{{ item.priority }}</span>
+  <span class="zero muted">{{ item.priority }}</span>
 </td>
 {% endif %}
 {% if 'progress' in table.fields %}
@@ -34,13 +34,13 @@
 {% if 'total' in table.fields %}
 <td id="total-words-{{ item.code }}" class="stats-number total js-total">
   <a href="{{ item.href_all }}"></a>
-  <span class="muted">0</span>
+  <span class="zero muted">0</span>
 </td>
 {% endif %}
 {% if 'need-translation' in table.fields %}
 <td id="need-translation-{{ item.code }}" class="stats-number need-translation js-need-translation">
   <a href="{{ item.href_todo }}"></a>
-  <span class="muted">0</span>
+  <span class="zero muted">0</span>
 </td>
 {% endif %}
 {% if 'suggestions' in table.fields %}
