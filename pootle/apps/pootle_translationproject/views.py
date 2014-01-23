@@ -355,7 +355,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
     #TODO enable again some actions when drilling down a goal.
     if goal is None:
-        actions = action_groups(request, path_obj, path_stats=path_stats)
+        actions = action_groups(request, path_obj)
     else:
         actions = []
 
