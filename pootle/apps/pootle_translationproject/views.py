@@ -343,14 +343,8 @@ def overview(request, translation_project, dir_path, filename=None,
 
     path_obj = store or directory
 
-    latest_action = ''
-    # If current directory is the TP root directory.
-    if not directory.path:
-        latest_action = translation_project.get_latest_submission()
-    elif store is None:  # If this is not a file.
-        latest_action = Submission.get_latest_for_dir(path_obj)
-
-    path_summary = get_path_summary(path_obj, latest_action)
+    url_args = [language.code, project.code, path_obj.path]
+    path_summary_url = reverse('tp.path_summary', args=url_args)
 
     #TODO enable again some actions when drilling down a goal.
     if goal is None:
@@ -456,7 +450,7 @@ def overview(request, translation_project, dir_path, filename=None,
         'language': language,
         'path_obj': path_obj,
         'resource_path': request.resource_path,
-        'path_summary': path_summary,
+        'path_summary_url': path_summary_url,
         'topstats': gentopstats_translation_project(translation_project),
         'feed_path': directory.pootle_path[1:],
         'action_groups': actions,
@@ -700,6 +694,39 @@ def export_view(request, translation_project, dir_path, filename=None):
 
     return render_to_response('translation_project/export_view.html', ctx,
                               context_instance=RequestContext(request))
+
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+def path_summary(request, translation_project, dir_path, project_code,
+                      language_code, filename=None):
+    """Returns an HTML snippet with summary information for the current
+    path."""
+    current_path = translation_project.directory.pootle_path + dir_path
+
+    if filename:
+        current_path = current_path + filename
+        store = get_object_or_404(Store, pootle_path=current_path)
+        directory = store.parent
+    else:
+        store = None
+        directory = get_object_or_404(Directory, pootle_path=current_path)
+
+    path_obj = store or directory
+
+    latest_action = ''
+    # If current directory is the TP root directory.
+    if not directory.path:
+        latest_action = translation_project.get_latest_submission()
+    elif store is None:  # If this is not a file.
+        latest_action = Submission.get_latest_for_dir(path_obj)
+
+    context = {
+        'path_summary': get_path_summary(path_obj, latest_action),
+    }
+    return render_to_response('translation_project/xhr-path_summary.html',
+                              context, RequestContext(request))
 
 
 @ajax_required

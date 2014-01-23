@@ -43,6 +43,21 @@
       setTdWidth($td.find('td.untranslated'), untranslated);
     },
 
+    updatePathSummary: function () {
+      var $summary = $('#path-summary-head');
+      var url = $summary.attr('data-url'),
+          reqData = {
+            path: PTL.stats.pootlePath
+          };
+      $.ajax({
+        url: url,
+        data: reqData,
+        success: function (data) {
+          $summary.append(data);
+        },
+      });
+    },
+
     updateSummary: function ($summary, data) {
       var summary,
           percent = PTL.stats.nicePercentage(data.translated, data.total);
@@ -76,6 +91,7 @@
     },
 
     load: function (callback) {
+      PTL.stats.updatePathSummary();
       var url = l('/xhr/stats/overview/'),
           reqData = {
             path: this.pootlePath

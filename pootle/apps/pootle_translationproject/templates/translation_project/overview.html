@@ -27,10 +27,7 @@
     </h2>
   </div>
   <div id="path-summary" class="bd">
-    <ul>
-      {% for summary_item in path_summary %}
-      <li>{{ summary_item|safe }}</li>
-      {% endfor %}
+    <ul id="path-summary-head" data-url="{{ path_summary_url }}">
     </ul>
     <div id="progressbar">
       {% include "common/_progressbar.html" %}
