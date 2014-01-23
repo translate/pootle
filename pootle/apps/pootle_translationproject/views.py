@@ -723,7 +723,7 @@ def path_summary_more(request, translation_project, dir_path, project_code,
     context = {
         'check_failures': get_quality_check_failures(path_obj),
     }
-    return render_to_response('translation_project/xhr-path_summary.html',
+    return render_to_response('translation_project/xhr-path_summary_more.html',
                               context, RequestContext(request))
 
 
