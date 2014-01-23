@@ -50,8 +50,8 @@ Preparation
       from version control. Separation allows Pootle to work reliably on
       Distributed Version Control Systems (Git, Mercurial, etc).
 
-.. note:: The setup of version control has to be done outside of Pootle admin
-   interface.
+.. note:: The setup of version control has to be done outside of the Pootle
+   admin interface.
 
 To have any sort of integration with version control from within Pootle, it is
 necessary to construct the correct file system structure in the
@@ -232,10 +232,12 @@ Subversion (HTTP)
   necessary (e.g. read `subversion authorization
   <http://svnbook.red-bean.com/nightly/en/svn.serverconfig.httpd.html#svn.serverconfig.httpd.authz>`_)
 
-- Make sure, that the *pootle* user has write access for `~/.subversion/` to
-  store authentication tokens
+- Make sure, that the *pootle user* has write access for `~/.subversion/` to
+  store authentication tokens.  The *pootle user* is whichever user is running
+  the Pootle application.  When running behind a webserver this might be the
+  webserver user. Thus on some systems using Apache that user is *www-data*.
 
-- Do a real ``svn commit`` with the uid *pootle* in order to
+- Do a real ``svn commit`` with the uid of the *pootle user* in order to:
 
   - Import (possibly) an SSL certificate
 
@@ -248,8 +250,8 @@ Subversion (HTTP)
   authentication information, for example.
 
 
-From now on, *pootle* should use these stored access credentials when uploading
-commits for this repository.
+From now on, the *pootle user* should use these stored access credentials when
+uploading commits for this repository.
 
 
 .. _version_control#adding:
