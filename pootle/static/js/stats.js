@@ -22,6 +22,11 @@
     },
 
     updateProgressbar: function ($td, item) {
+      if (item.total === 0) {
+        $td.hide();
+        return;
+      }
+
       var translated = PTL.stats.nicePercentage(item.translated, item.total),
           fuzzy = PTL.stats.nicePercentage(item.fuzzy, item.total),
           untranslated = 100 - translated - fuzzy,
