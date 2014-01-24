@@ -8,6 +8,6 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<li>{% if has_page_model %}<a href="{% url 'staticpages' %}">{% endif %}{% trans "Static Pages" %}{% if has_page_model %}</a>{% endif %}</li>
+<li>{% if has_page_model %}<a href="{% url 'pootle-staticpages' %}">{% endif %}{% trans "Static Pages" %}{% if has_page_model %}</a>{% endif %}</li>
 {% if has_page_model %}<li>{{ object.display_name }}</li>{% endif %}
 {% endblock %}
