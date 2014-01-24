@@ -7,17 +7,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-18 02:31+0000\n"
-"Last-Translator: Adolfo <fitoschido@gmail.com>\n"
+"PO-Revision-Date: 2014-01-04 09:10+0000\n"
+"Last-Translator: Adolfo <fitoschido@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1384741892.0\n"
+"X-POOTLE-MTIME: 1388826633.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -779,7 +779,7 @@ msgstr "Pootle %(pootle_ver)s funciona con Translate Toolkit %(toolkit_ver)s"
 #: apps/pootle_misc/browser.py:230 apps/pootle_project/views.py:88
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr "%(percentage)d% % completo"
+msgstr "%(percentage)d %% completo"
 
 #: apps/pootle_language/models.py:66
 msgid ""
@@ -1150,11 +1150,11 @@ msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
-"Esta carpeta tiene %(num)d palabra, de las cuales el %(percentage)d%% está "
+"Esta carpeta tiene %(num)d palabra, de la cual el %(percentage)d %% está "
 "traducida."
 msgstr[1] ""
-"Esta carpeta tiene %(num)d palabras, de las cuales el %(percentage)d%% están "
-"traducidas."
+"Esta carpeta tiene %(num)d palabras, de las cuales el %(percentage)d %% "
+"están traducidas."
 
 #: apps/pootle_misc/stats.py:184
 #, python-format
@@ -1162,11 +1162,11 @@ msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
-"Este archivo tiene %(num)d palabra, de las cuales el %(percentage)d%% está "
+"Este archivo tiene %(num)d palabra, de la cual el %(percentage)d %% está "
 "traducida."
 msgstr[1] ""
-"Este archivo tiene %(num)d palabras, de las cuales el %(percentage)d%% están "
-"traducidas."
+"Este archivo tiene %(num)d palabras, de las cuales el %(percentage)d %% "
+"están traducidas."
 
 #: apps/pootle_misc/stats.py:206
 msgid "Expand details"
@@ -1239,7 +1239,7 @@ msgstr[1] "%d palabras necesitan revisión"
 #: apps/pootle_misc/templates/progressbar.html:3
 #, python-format
 msgid "%(percent)s%% complete"
-msgstr "%(percent)s% % completo"
+msgstr "%(percent)s %% completo"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/templates/search.html:5 core/helpers.py:59
@@ -1617,7 +1617,7 @@ msgstr "Propiedades de Java (UTF-8)"
 #. files have another name in your language
 #: apps/pootle_store/filetypes.py:98
 msgid "OS X Strings"
-msgstr "OS X «strings»"
+msgstr "«Strings» de OS X"
 
 #: apps/pootle_store/filetypes.py:104
 msgid "PHP arrays"
@@ -2827,7 +2827,7 @@ msgstr "Ayuda"
 #: templates/contact_form/contact_form.html:7
 #: templates/contact_form/contact_form.html:12
 msgid "Contact Us"
-msgstr "Contacte con nostros"
+msgstr "Contáctenos"
 
 #: templates/base.html:200
 msgid "About this Pootle Server"

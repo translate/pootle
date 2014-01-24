@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-09-25 11:57+0000\n"
-"Last-Translator: df910105 <df910105@yahoo.com.tw>\n"
+"PO-Revision-Date: 2014-01-17 04:01+0000\n"
+"Last-Translator: wwycheuk <wwycheuk@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1380110256.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1389931309.000000\n"
 
 # PC鍵盤上顯示的是「Ctrl」，所以將原文Control改成Ctrl。
 #: strings.py:8
@@ -1538,8 +1538,9 @@ msgstr "路徑"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:121
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "標籤"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:122
@@ -1586,12 +1587,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "建議或投票已不再有效。"
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "您沒有管理 %s 的權限。"
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "您沒有管理 %s 的權限。"
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -2189,8 +2192,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "管理您的專案"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2316,8 +2320,9 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:51
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
-msgstr ""
+msgstr "如果設置，則任何與這個法律頁面相關的指南都將會重定向到這個URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:98
@@ -2329,12 +2334,14 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:111
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "有效頁面"
 
 #: apps/staticpages/models.py:122
+#, fuzzy
 msgid "Regular Page"
-msgstr ""
+msgstr "編輯有效頁面"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
@@ -2404,16 +2411,19 @@ msgid "Legal Pages"
 msgstr "有效頁面"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "編輯有效頁面"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
+#, fuzzy
 msgid "Regular Pages"
-msgstr ""
+msgstr "編輯有效頁面"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "編輯有效頁面"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2441,8 +2451,9 @@ msgid "Checks"
 msgstr "檢查"
 
 #: core/helpers.py:62
+#, fuzzy
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "我被覆蓋的提交"
 
 #: core/initdb.py:143
 msgid "Can view a translation project"
@@ -2785,7 +2796,7 @@ msgstr "改變您的個人資訊"
 #: templates/user_profile_menu.html:6 templates/profiles/edit_personal.html:4
 #: templates/profiles/edit_personal.html:7
 msgid "Profile"
-msgstr ""
+msgstr "簡介檔案"
 
 #: templates/user_profile_menu.html:7
 msgid "Change your password"
@@ -2908,8 +2919,9 @@ msgid ""
 msgstr "您可以在這裡設定與翻譯介面和語言偏好設定相關的設定值。"
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "最大貢獻者"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -2925,7 +2937,7 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "這個使用者尚未有作出任何貢獻."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"

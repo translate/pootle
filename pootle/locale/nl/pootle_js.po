@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-10-28 17:56+0000\n"
-"Last-Translator: DiGro <th.groskamp@quicknet.nl>\n"
+"PO-Revision-Date: 2013-12-26 15:32+0000\n"
+"Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1382982965.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1388071924.000000\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
@@ -44,11 +44,11 @@ msgstr "Deze bewerking kan niet ongedaan worden gemaakt."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr "Tags weergeven"
+msgstr "Labels tonen"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:357
 msgid "Hide tags"
-msgstr "Tags verbergen"
+msgstr "Labels verbergen"
 
 #: static/js/common.js:293 static/js/common.js.c:309
 msgid "Hide filtering"
@@ -56,45 +56,45 @@ msgstr "Filter verbergen"
 
 #: static/js/common.js:296 static/js/common.js.c:303
 msgid "Show filtering"
-msgstr "Filter weergeven"
+msgstr "Filter tonen"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr "Ga naar de volgende tekenreels (Ctrl+.)"
+msgstr "Naar de volgende tekenreeks (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr "Ga naar de vorige tekenreels (Ctrl+,)"
+msgstr "Naar de vorige tekenreeks (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr "%s's openstaande suggesties"
+msgstr "Openstaande suggesties van %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr "%s's geaccepteerde suggesties"
+msgstr "Geaccepteerde suggesties van %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr "%s's verworpen suggesties"
+msgstr "Afgewezen suggesties van %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr "%s's bijdragen"
+msgstr "Bijdragen van %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr "%s's overschreven bijdragen"
+msgstr "Overschreven bijdragen van %s"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."

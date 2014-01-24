@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-04-12 05:28+0000\n"
-"Last-Translator: zorigoo03 <zr.go03@gmail.com>\n"
+"PO-Revision-Date: 2013-12-13 16:28+0000\n"
+"Last-Translator: gabi <gan_bayar44@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1365744525.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1386952108.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -686,9 +686,8 @@ msgid "Active languages"
 msgstr "Идэвхтэй хэлүүд"
 
 #: apps/pootle_app/views/admin/dashboard.py:274
-#, fuzzy
 msgid "Translated strings"
-msgstr "Миний тэмдэгт мөрийг орчуулах"
+msgstr "Орчуулагдсан тэмдэгтийн цуваанууд"
 
 #: apps/pootle_app/views/admin/dashboard.py:275
 msgid "Translated words"
@@ -919,7 +918,7 @@ msgstr ""
 #: apps/pootle_misc/checks.py:45
 #, fuzzy
 msgid "E-mail"
-msgstr "Э-майл"
+msgstr "Э-Шуудан"
 
 #: apps/pootle_misc/checks.py:46
 msgid "Ending punctuation"
@@ -964,7 +963,7 @@ msgstr ""
 #: apps/pootle_misc/checks.py:56
 #, fuzzy
 msgid "Number of plurals"
-msgstr "Олон тооны хэлбэрийн тоо"
+msgstr "Олон төрлийн тоо"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Don't translate words"
@@ -1074,7 +1073,7 @@ msgstr "Байрлал"
 #: apps/pootle_misc/forms.py:131
 #, fuzzy
 msgid "Source Terms"
-msgstr "Эх бичвэр"
+msgstr "Эх нэр томъёо"
 
 #: apps/pootle_misc/forms.py:132
 #, fuzzy
@@ -1141,7 +1140,7 @@ msgstr[1] ""
 #: apps/pootle_misc/stats.py:249
 #, fuzzy
 msgid "Translation is complete"
-msgstr "Орчуулгууд бүрэн дууссан"
+msgstr "Тогтсон нэр томъёо"
 
 #: apps/pootle_misc/stats.py:260
 #, python-format
@@ -1188,7 +1187,7 @@ msgstr[1] "%d үгс хянагдах ёстой"
 #, python-format
 #, fuzzy, python-format
 msgid "%(percent)s%% complete"
-msgstr "%(percent)s%% дууссан"
+msgstr "%(хувь) нь %% дууссан"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/templates/search.html:5 core/helpers.py:59
@@ -1640,12 +1639,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Танд хаягийг устгах эрх байхгүй байна."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Танд хаягуудийг нэмэх эрх байхгүй байна."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -2227,7 +2228,8 @@ msgstr "Танд файлуудыг илгээх эрх алга."
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
-msgstr "Доор та энэ хэлний хандах эрхийг нэмж, устгаж, засаж чадна."
+msgstr ""
+"Доор та энэ орчуулгийн төслийн хандах эрхийг нэмж , засах мөн устгаж чадна."
 
 #. Translators: A view showing the export of strings in a flat form.
 #. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
@@ -2248,8 +2250,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Төслийн зорилгоо удирдан зохион байгуулах."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2708,7 +2711,7 @@ msgstr "Энэ Пүүтл сэрвэрийн тухай"
 #: templates/about/contributors.html:9
 #, fuzzy
 msgid "Contributors"
-msgstr "Шилдэг ажилтан"
+msgstr "Хувь оруулагчид"
 
 #: templates/captcha-xhr.html:8 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2909,44 +2912,46 @@ msgstr ""
 #: templates/editor/_toolbar.html:18
 #, fuzzy
 msgid "My suggestions"
-msgstr "Санлууд"
+msgstr "Миний саналууд"
 
 #: templates/editor/_toolbar.html:19
 msgid "My submissions"
-msgstr ""
+msgstr "Миний хүсэлтүүд"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: templates/editor/_toolbar.html:23
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Миний зассан хүсэлтүүд"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Өмнөх тэмдэгтийн цуваа руу буцах (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Жинхэнэ тэмдэгтийн цувааны дугаар (Ctrl+Shift+U)<br/><br/> Тоог засах болон "
+"Enter дарна <br/> ямар ч байршил руу шилжих"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "Нийт тэмдэгтийн цуваанууд"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Дараагийн тэмдэгтийн цуваа руу шилжих (Ctrl+Down)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
-"Та энд хувийн мэдээллээ оруулна уу. Энэ мэдээлэл орчуулгын файлуудын толгойд "
-"хэрэглэгддэг."
+"Та энд өөрийн хувийн мэдээллийн дэлгэрэнгүйг өөрчлөх боломжтой. Энэ мэдээлэл "
+"орчуулгын файлуудын толгой хэсэгт хэрэглэгдэнэ."
 
 #: templates/profiles/edit_personal.html:18
 msgid "First Name"
@@ -2958,7 +2963,7 @@ msgstr "Эцгийн нэр"
 
 #: templates/profiles/edit_personal.html:28
 msgid "Email address"
-msgstr "Э-майл хаяг"
+msgstr "Цахим шуудангийн хаяг"
 
 #: templates/profiles/edit_profile.html:4
 #: templates/profiles/edit_profile.html:7
@@ -2966,48 +2971,54 @@ msgid "Translation Settings"
 msgstr "Орчуулгын тохиргоо"
 
 #: templates/profiles/edit_profile.html:12
+#, fuzzy
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
-msgstr "Та энд орчуулгын гадаргуу ба хэлний тохиргоог хийх боломжтой."
+msgstr ""
+"Та энд өөрийн хэлний тохиргоотой адилаар орчуулгын холбоост тохируулан "
+"холбож өгөх боломжтой."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Хувь нэмэр"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
+"Та www.gravatar.com дахь өөрийн хөрөг зургаа байршуулах болон өөрчлөх "
+"боломжтой."
 
 #: templates/profiles/profile_detail.html:42
 msgid "Suggestions Pending"
-msgstr "Хүлээгдэж буй санал"
+msgstr "Хүлээгдэж буй саналууд"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "Дарж бичих"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "Энэ хэрэглэгчид одоохондоо хувь нэмэр алга."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr "Бүртгэлийн жагсаалт"
+msgstr "Бүртгэлүүдийн жагсаалт"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr "Нэр"
+msgstr "Өөрийн нэр"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr "Овог"
+msgstr "Эцгийн нэр"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:8
 #: templates/registration/activate.html:13
 msgid "Account Activated"
-msgstr "Данс идэвхжлээ"
+msgstr "Данс идэвхижлээ"
 
 #: templates/registration/activate.html:14
 #, python-format
@@ -3015,16 +3026,16 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
-"\"%(account)s\" хэрэглэгчийн нэртэй данс идэвхжлээ. Та одоо нэвтрэх боломжтой."
+"\"%(Данс)г\" хэрэглэгчийн нэртэй данс идэвхжлээ. Та одоо нэвтрэх боломжтой."
 
 #: templates/registration/activation_email.html:4
 msgid "Pootle Account Created!"
-msgstr ""
+msgstr "Pootle данс үүсгэгдсэн."
 
 #: templates/registration/activation_email.html:5
 #: templates/registration/activation_email.txt:2
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Энэ имэйл хаягаар Pootle данс үүслээ."
+msgstr "Энэ шуудангын хаягаар Pootle данс үүсгэгдлээ."
 
 #: templates/registration/activation_email.html:6
 #: templates/registration/activation_email.txt:3

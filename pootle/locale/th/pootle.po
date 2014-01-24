@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-06-03 15:20+0000\n"
+"PO-Revision-Date: 2013-12-19 10:18+0000\n"
 "Last-Translator: teerapat.top <teerapat.top@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1370272811.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1387448325.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -35,7 +35,7 @@ msgstr ""
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "ช่องนี้จำเป็นต้องกรอก"
 
 #: strings.py:12
 #, python-format
@@ -48,7 +48,7 @@ msgstr ""
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "บันทึกและแก้ไขต่อไป"
 
 #: strings.py:15
 #: apps/staticpages/templates/staticpages/admin/page_create.html:5
@@ -71,7 +71,7 @@ msgstr ""
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "ตั้งค่ารหัสผ่านใหม่บน %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -86,7 +86,7 @@ msgstr "เพิ่ม %(name)s"
 #. configured option is displayed (such as a project or language)
 #: strings.py:31
 msgid "View on site"
-msgstr ""
+msgstr "ดูบนเว็บไซต์"
 
 #: strings.py:33
 msgid "first name"
@@ -102,7 +102,7 @@ msgstr "ที่อยู่อีเมล"
 
 #: strings.py:36
 msgid "active"
-msgstr ""
+msgstr "ใช้งานอยู่"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
@@ -114,26 +114,26 @@ msgstr ""
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:47
 #: apps/pootle_project/models.py:97
 msgid "Source Language"
-msgstr ""
+msgstr "ภาษาต้นฉบับ"
 
 #: strings.py:45
 msgid "Android strings"
-msgstr ""
+msgstr "ข้อความของ Android"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "นโยบายความเป็นส่วนตัว"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "ข้อกฎหมาย"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "ใบอนุญาต"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
@@ -143,12 +143,12 @@ msgstr ""
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "เงื่อนไขการใช้งาน"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "เงื่อนไขการให้บริการ"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
@@ -190,11 +190,11 @@ msgstr ""
 
 #: apps/pootle_app/admin.py:71
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "รหัสของโครงการจะต้องมีแค่ตัวอักษร, ตัวเลข และ _"
 
 #: apps/pootle_app/admin.py:83
 msgid "Advanced Options"
-msgstr ""
+msgstr "ตัวเลือกขั้นสูง"
 
 #: apps/pootle_app/forms.py:30 apps/pootle_notifications/forms.py:42
 #: apps/staticpages/models.py:45
@@ -203,7 +203,7 @@ msgstr ""
 
 #: apps/pootle_app/forms.py:31
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "ชื่อสำหรับเซิร์ฟเวอร์ Pootle นี้"
 
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
@@ -236,8 +236,9 @@ msgid "Rejected"
 msgstr "ไม่รับ"
 
 #: apps/pootle_app/templates/top_contributers_table.html:8
+#, fuzzy
 msgid "Top Contributors"
-msgstr ""
+msgstr "ผู้สนับสนุน"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
@@ -276,13 +277,11 @@ msgstr ""
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:159 apps/pootle_store/util.py:46
 #: core/helpers.py:55 templates/editor/_toolbar.html:15
-#, fuzzy
 msgid "Untranslated"
-msgstr "แปลแล้ว"
+msgstr "ยังไม่แปล"
 
 #: apps/pootle_app/templates/admin/admin_general.html:15
 #: apps/pootle_terminology/templates/terminology/manage.html:50
-#, fuzzy
 msgid "Save Changes"
 msgstr "บันทึกการเปลี่ยนแปลง"
 
@@ -347,7 +346,7 @@ msgstr ""
 #: apps/pootle_app/templates/admin/admin_general_settings.html:4
 #: apps/pootle_app/templates/admin/admin_general_settings.html:9
 msgid "General Settings"
-msgstr ""
+msgstr "การตั้งค่าทั่วไป"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:12
 msgid "Configure here the general settings for your site."
@@ -370,19 +369,19 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:13
 msgid "Server Statistics"
-msgstr ""
+msgstr "สถิติเซิร์ฟเวอร์"
 
 #: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
-msgstr ""
+msgstr "ข้อเสนอแนะที่รออยู่"
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
-msgstr ""
+msgstr "เพิ่มเติม..."
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
-msgstr ""
+msgstr "สนับสนุน"
 
 #: apps/pootle_app/templates/admin/dashboard.html:42
 msgid ""
@@ -412,9 +411,8 @@ msgid "Dependency Checks"
 msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
-#, fuzzy
 msgid "Optional"
-msgstr "ตัวเลือก"
+msgstr "ไม่จำเป็น"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
@@ -422,11 +420,11 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/edit_links.html:2
 msgid "Edit"
-msgstr ""
+msgstr "แก้ไข"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "ยกเลิก"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
@@ -442,7 +440,7 @@ msgstr ""
 #: apps/pootle_app/templates/index/index.html:62
 #: apps/pootle_notifications/templates/notices.html:77
 msgid "Latest News"
-msgstr ""
+msgstr "ข่าวล่าสุด"
 
 #: apps/pootle_app/templates/index/index.html:65
 msgid "Subscribe to the RSS feed."
@@ -451,13 +449,12 @@ msgstr ""
 #: apps/pootle_app/templates/index/login.html:4
 #: apps/pootle_app/templates/index/login.html:7
 #: apps/pootle_app/templates/index/login.html:23
-#, fuzzy
 msgid "Login"
 msgstr "เข้าสู่ระบบ"
 
 #: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
-msgstr ""
+msgstr "เข้าสู่ระบบ Pootle"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
@@ -658,7 +655,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:274
 msgid "Translated strings"
-msgstr ""
+msgstr "ข้อความที่แปลแล้ว"
 
 #: apps/pootle_app/views/admin/dashboard.py:275
 msgid "Translated words"
@@ -777,7 +774,7 @@ msgstr[0] ""
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] ""
+msgstr[0] "%(projects)d โครงการ, แปลแล้ว %(average)d%%"
 
 #: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
 #: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
@@ -1071,14 +1068,14 @@ msgstr[0] ""
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
+msgstr[0] "โฟลเดอร์นี้มี %(num)d คำ, แปลแล้ว %(percentage)d%%"
 
 #: apps/pootle_misc/stats.py:184
 #, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
+msgstr[0] "ไฟล์นี้มี %(num)d คำ, แปลแล้ว %(percentage)d%%"
 
 #: apps/pootle_misc/stats.py:206
 msgid "Expand details"
@@ -1117,6 +1114,8 @@ msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
 msgstr[0] ""
+"%(type)s: แปลแล้ว %(translated)d จาก %(total)d ข้อความ (%(fuzzy)d "
+"ที่ต้องตรวจสอบ)"
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1128,7 +1127,7 @@ msgstr[0] ""
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] ""
+msgstr[0] "ยังไม่ได้แปล %d คำ"
 
 #: apps/pootle_misc/stats.py:310
 #, python-format
@@ -1245,7 +1244,7 @@ msgstr ""
 #: templates/language_menu.html:5 templates/project_menu.html:5
 #: templates/tp_menu.html:5
 msgid "News"
-msgstr ""
+msgstr "ข่าว"
 
 #: apps/pootle_notifications/templates/notices.html:54
 msgid "Publish News"
@@ -1333,7 +1332,7 @@ msgstr ""
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] ""
+msgstr[0] "%(languages)d ภาษา, แปลแล้ว %(average)d%%"
 
 #: apps/pootle_project/views.py:377
 #: apps/pootle_translationproject/actions.py:209
@@ -1593,12 +1592,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "คุณไม่มีสิทธิ์ที่จะจัดการโครงงานนี้ค่ะ"
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "คุณไม่มีสิทธิ์ที่จะจัดการโครงงานนี้ค่ะ"
 
 #: apps/pootle_store/templates/unit/comment.html:12
 #, fuzzy
@@ -2564,7 +2565,7 @@ msgstr ""
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
 msgid "Overview"
-msgstr ""
+msgstr "ภาพรวม"
 
 #: templates/_main_tabs.html:7 templates/language_menu.html:6
 #: templates/project_menu.html:7 templates/tp_menu.html:6
@@ -2785,7 +2786,7 @@ msgstr "ข้อมูลส่วนตัว"
 
 #: templates/user_profile_menu.html:4
 msgid "Overview of your account"
-msgstr ""
+msgstr "ภาพรวมบัญชีของคุณ"
 
 #: templates/user_profile_menu.html:4
 msgid "Dashboard"
@@ -2906,12 +2907,14 @@ msgid ""
 msgstr ""
 
 #: templates/profiles/edit_personal.html:18
+#, fuzzy
 msgid "First Name"
-msgstr ""
+msgstr "ชื่อจริง"
 
 #: templates/profiles/edit_personal.html:23
+#, fuzzy
 msgid "Last Name"
-msgstr ""
+msgstr "นามสกุล"
 
 #: templates/profiles/edit_personal.html:28
 msgid "Email address"
@@ -2929,8 +2932,9 @@ msgid ""
 msgstr ""
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "ผู้สนับสนุน"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -2953,12 +2957,14 @@ msgid "Profiles list"
 msgstr ""
 
 #: templates/profiles/profile_list.html:12
+#, fuzzy
 msgid "First name"
-msgstr ""
+msgstr "ชื่อจริง"
 
 #: templates/profiles/profile_list.html:13
+#, fuzzy
 msgid "Last name"
-msgstr ""
+msgstr "นามสกุล"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:8

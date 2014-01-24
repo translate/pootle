@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-12 17:11+0000\n"
+"PO-Revision-Date: 2014-01-22 07:44+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -15,9 +15,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1384276270.0\n"
+"X-POOTLE-MTIME: 1390376643.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -475,7 +475,7 @@ msgstr "Oturum Aç"
 
 #: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
-msgstr "Pootle'a Oturum Aç"
+msgstr "Pootle'a Oturum Açın"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
@@ -493,7 +493,7 @@ msgstr "Henüz hesabınız yok mu?"
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
 msgid "Register."
-msgstr "Kayıt olun."
+msgstr "Kayıt Olun."
 
 #: apps/pootle_app/views/admin/adminprojects.py:90
 #: apps/pootle_project/models.py:221
@@ -518,8 +518,8 @@ msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires at least "
 "version %(required)s."
 msgstr ""
-"Translate Toolkit sürüm %(installed)s yüklü. Pootle en az sürüm %(required)s "
-"gerektirir."
+"Translate Toolkit sürüm %(installed)s yüklü. Pootle en az %(required)s "
+"sürümünü gerektirir."
 
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
@@ -544,7 +544,8 @@ msgid ""
 "lxml version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
-"lxml sürüm %(installed)s yüklü. Pootle en az sürüm %(required)s gerektirir."
+"lxml sürüm %(installed)s yüklü. Pootle en az %(required)s sürümünü "
+"gerektirir."
 
 #: apps/pootle_app/views/admin/dashboard.py:83
 msgid "lxml is not installed. Pootle requires lxml."
@@ -1481,8 +1482,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
-"%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi geri "
-"döndürdü"
+"<i><a href=\"%(url)s\">%(source)s</a></i> dizgisi için çeviriyi %(user)s "
+"geri çevirdi"
 
 #: apps/pootle_statistics/models.py:155
 #, python-format
@@ -1490,8 +1491,8 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
-"%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için öneriyi kabul "
-"etti"
+"<i><a href=\"%(url)s\">%(source)s</a></i> dizgisi için öneriyi %(user)s "
+"kabul etti"
 
 #: apps/pootle_statistics/models.py:158
 #, python-format
@@ -1504,7 +1505,7 @@ msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
-"%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi "
+"<i><a href=\"%(url)s\">%(source)s</a></i> dizgisi için çeviriyi %(user)s "
 "gönderdi"
 
 #: apps/pootle_statistics/models.py:176
@@ -1513,8 +1514,8 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
-"%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için \"çalışma "
-"gerekli\" olarak çeviriyi gönderdi"
+"<i><a href=\"%(url)s\">%(source)s</a></i> dizgisi için \"çalışma gerekli\" "
+"olarak çeviriyi %(user)s gönderdi"
 
 #: apps/pootle_statistics/models.py:179
 #, python-format
@@ -1522,7 +1523,7 @@ msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
-"%(user)s, <i><a href=\"%(url)s\">%(source)s</a></i> satırı için çeviriyi "
+"<i><a href=\"%(url)s\">%(source)s</a></i> dizgisi için çeviriyi %(user)s "
 "kaldırdı"
 
 #: apps/pootle_store/decorators.py:63
@@ -1685,7 +1686,7 @@ msgstr "Yorum:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr "Satır %(id)s"
+msgstr "Dizgi %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -2762,7 +2763,7 @@ msgstr "Oturumu Kapat"
 #: templates/registration/registration_form.html:7
 #: templates/registration/registration_form.html:48
 msgid "Register"
-msgstr "Kayıt ol"
+msgstr "Kayıt Ol"
 
 #: templates/base.html:149
 msgid "Log In"
@@ -2859,7 +2860,7 @@ msgstr "Dil izinlerinizi yönetin"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr "Ana"
+msgstr "Ana Sayfa"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -3318,7 +3319,7 @@ msgstr "Lütfen hesabınızı etkinleştirmek için epostanızı kontrol edin."
 
 #: templates/registration/registration_form.html:12
 msgid "Register a New Pootle Account"
-msgstr "Yeni Pootle Hesabı Kaydettir"
+msgstr "Yeni bir Pootle Hesabına Kayıt Olun"
 
 #: templates/registration/registration_form.html:13
 msgid "Fill in the following form to get started translating."
@@ -3334,7 +3335,7 @@ msgstr "Zaten hesabınız var mı?"
 
 #: templates/registration/registration_form.html:54
 msgid "Log In."
-msgstr "Oturum Aç."
+msgstr "Oturum Açın."
 
 #~ msgid ""
 #~ "\n"

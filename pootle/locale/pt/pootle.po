@@ -7,17 +7,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-17 15:34+0000\n"
-"Last-Translator: smarquespt <smarquespt@gmail.com>\n"
+"PO-Revision-Date: 2013-12-25 17:06+0000\n"
+"Last-Translator: Manuela <manuela.silva@sky.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1384702497.0\n"
+"X-POOTLE-MTIME: 1387991174.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -45,8 +45,8 @@ msgstr "Este campo é obrigatório."
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
-"Certifique-se que este valor tem, no máximo, %(max)d caracteres (este tem %"
-"(length)d)."
+"Certifique-se se este valor tem no máximo %(max)d carateres (este tem "
+"%(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
@@ -72,8 +72,8 @@ msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
-"Por favor introduza um nome de utilizador e senha válidos. Tenha em atenção "
-"que os campos diferenciam maiúsculas e minúsculas."
+"Por favor, insira um nome de utilizador e senha corretos. Note que ambos os "
+"campos são sensíveis a maiúsculas e minúsculas."
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
