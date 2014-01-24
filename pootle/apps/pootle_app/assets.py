@@ -73,6 +73,7 @@ register('js_editor', js_editor)
 
 css_common = Bundle(
     'css/style.css',
+    'css/actions.css',
     'css/buttons.css',
     'css/contact.css',
     'css/login.css',
