@@ -3,19 +3,28 @@ language: python
 python:
   - 2.6
   - 2.7
+  - 3.2
+  - 3.3
 env:
   - DJANGO_VERSION=1.5.5
   - DJANGO_VERSION=1.6
 install:
-  - pip install --use-mirrors Django==$DJANGO_VERSION --timeout=240
-  - pip install -r requirements/build.txt --use-mirrors --timeout=240
+  - pip install --use-mirrors Django==$DJANGO_VERSION 
+  - pip install -r requirements/build.txt --use-mirrors
   - python -V; pip freeze  # Print all installed versions for reference.
+before_script:
+  - sh -c "cp pootle/settings/90-local.conf.sample pootle/settings/90-local.conf"
 script:
   - make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
+  - python manage.py syncdb --noinput
+  - python manage.py migrate
+  - python manage.py initdb
   - ./manage.py runserver &
   - TESTPID=$!
-  - sleep 100
+  - sleep 10
   - kill -2 $TESTPID
+  - sh -c "curl -s 'http://localhost:8000' -o /dev/null"
+
 notifications:
   email:
     on_failure: always
