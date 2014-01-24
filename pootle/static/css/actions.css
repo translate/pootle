@@ -12,11 +12,15 @@ body.translate #actions
     padding-bottom: 0.5em;
 }
 
+#actions > div
+{
+    vertical-align: middle;
+}
+
 #translate-actions
 {
     display: inline-block;
     position: relative;
-    top: 4px;
 }
 
 #translate-actions a
