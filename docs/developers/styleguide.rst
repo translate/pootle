@@ -184,8 +184,8 @@ Pootle specific settings must be named like ``POOTLE_*``, for example:
 ``POOTLE_ENABLE_API``, ``POOTLE_VCS_DIRECTORY`` or ``POOTLE_MARKUP_FILTER``
 
 
-Pootle-specific markup
-^^^^^^^^^^^^^^^^^^^^^^
+Pootle-specific documentation guidelines
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For documenting several things, Pootle defines custom Sphinx roles.
 
@@ -207,8 +207,6 @@ For documenting several things, Pootle defines custom Sphinx roles.
 
   E.g. ``|icon:icon-google-translate|`` will insert this
   |icon:icon-google-translate| icon.
-
-
 
 
 JavaScript
