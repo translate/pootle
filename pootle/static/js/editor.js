@@ -114,7 +114,7 @@
     $(document).on('noResults', 'table.translate-table', this.noResults);
     $(document).on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
     $(document).on('keypress', '.js-unit-index', this.gotoIndex.bind(this));
-    $(document).on('dblclick', '.js-unit-index', this.unitIndex);
+    $(document).on('dblclick click', '.js-unit-index', this.unitIndex);
     $(document).on('click', 'input.submit', this.submit);
     $(document).on('click', 'input.suggest', this.suggest);
     $(document).on('click', '#js-nav-prev', this.gotoPrev.bind(this));
