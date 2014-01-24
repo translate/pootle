@@ -41,11 +41,13 @@ def nice_percentage(count, total):
     return int(round(percentage))
 
 
-def get_path_summary(path_obj, path_stats, latest_action):
+def get_path_summary(path_obj, latest_action):
     """Return a list of sentences to be displayed for each ``path_obj``."""
     summary = []
     incomplete = []
     suggestions = []
+
+    path_stats = path_obj.get_stats(False)
 
     if path_obj.is_dir:
         summary.append(

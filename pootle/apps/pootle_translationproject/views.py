@@ -350,8 +350,7 @@ def overview(request, translation_project, dir_path, filename=None,
     elif store is None:  # If this is not a file.
         latest_action = Submission.get_latest_for_dir(path_obj)
 
-    path_stats = path_obj.get_stats(False)
-    path_summary = get_path_summary(path_obj, path_stats, latest_action)
+    path_summary = get_path_summary(path_obj, latest_action)
 
     #TODO enable again some actions when drilling down a goal.
     if goal is None:
