@@ -3091,7 +3091,7 @@ msgstr "这个密码重设链接已失效，可能是已经被使用过了。请
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
-msgstr "我们将像您提交的电子邮件地址发送设定密码的介绍。您将很快收到这封邮件。"
+msgstr "我们将向您提交的电子邮件地址发送设定密码的介绍。您将很快收到这封邮件。"
 
 #: templates/registration/password_reset_email.html:3
 #, python-format
