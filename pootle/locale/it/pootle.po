@@ -7,17 +7,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-03 14:27+0000\n"
-"Last-Translator: paolopoz <paolo@z2z.it>\n"
+"PO-Revision-Date: 2014-01-07 21:05+0000\n"
+"Last-Translator: Tania <tania.monti@gmx.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1383488877.0\n"
+"X-POOTLE-MTIME: 1389128742.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -1684,8 +1684,9 @@ msgid "Failed to process submission."
 msgstr "Errore durante il processo di invio."
 
 #: apps/pootle_store/views.py:930
+#, fuzzy
 msgid "Failed to process suggestion."
-msgstr ""
+msgstr "Errore durante il processo di invio."
 
 #: apps/pootle_store/views.py:952
 msgid "You do not have rights to access review mode."
@@ -1748,7 +1749,7 @@ msgstr ""
 #: apps/pootle_store/templates/unit/edit.html:100
 #: apps/pootle_store/templates/unit/edit.html:121
 msgid "Copy into translation"
-msgstr ""
+msgstr "Copia nella traduzione"
 
 #: apps/pootle_store/templates/unit/edit.html:119
 msgid "Report a problem with the source string"
@@ -1771,7 +1772,7 @@ msgstr "Suggerisci"
 
 #: apps/pootle_store/templates/unit/edit.html:139
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "Suggerisci traduzione e vai alla stringa suggestiva (Ctrl+Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:146
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
@@ -1791,8 +1792,9 @@ msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:181
+#, fuzzy
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr ""
+msgstr "Inserisci RLE (embedding da destra a sinistra) nell'editor"
 
 #: apps/pootle_store/templates/unit/edit.html:184
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
@@ -1807,12 +1809,14 @@ msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "Inserisci LRE (embedding da sinistra a destra) nell'editor"
 
 #: apps/pootle_store/templates/unit/edit.html:193
+#, fuzzy
 msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr ""
+msgstr "Inserisci RLE (embedding da destra a sinistra) nell'editor"
 
 #: apps/pootle_store/templates/unit/edit.html:196
+#, fuzzy
 msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr ""
+msgstr "Inserisci LRE (embedding da sinistra a destra) nell'editor"
 
 #: apps/pootle_store/templates/unit/edit.html:199
 msgid "Insert PDF (Pop Directional Format ) into the editor"
@@ -2300,8 +2304,9 @@ msgid "Export View"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:99
+#, fuzzy
 msgid "Goal"
-msgstr ""
+msgstr "Obiettivi"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
@@ -2339,8 +2344,9 @@ msgid "Translation Statistics"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
+#, fuzzy
 msgid "Failing Checks"
-msgstr ""
+msgstr "Controlli falliti:"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:44
 msgid "Nothing to show"
@@ -2538,8 +2544,9 @@ msgid "Add Legal Page"
 msgstr "Nuova pagina legale"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
+#, fuzzy
 msgid "Regular Pages"
-msgstr ""
+msgstr "Nuova pagina legale"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 #, fuzzy
@@ -2547,8 +2554,9 @@ msgid "Add Regular Page"
 msgstr "Nuova pagina legale"
 
 #: core/decorators.py:178
+#, fuzzy
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Permessi insufficienti per accedere a questa cartella."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2885,8 +2893,9 @@ msgid "Manage terminology"
 msgstr ""
 
 #: templates/tp_menu.html:8
+#, fuzzy
 msgid "Terminology"
-msgstr ""
+msgstr "Terminologia:"
 
 #: templates/tp_menu.html:9
 msgid "Administrate your project permissions"
@@ -2944,8 +2953,9 @@ msgid "About"
 msgstr "Informazioni"
 
 #: templates/common/_table_row.html:87
+#, fuzzy
 msgid "Add a tag"
-msgstr ""
+msgstr "Aggiungi tag"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"

@@ -4,17 +4,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-12 17:50+0000\n"
-"Last-Translator: ellibrecomoelchaval <el.libre@gmail.com>\n"
+"PO-Revision-Date: 2013-12-23 10:46+0000\n"
+"Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1384278624.0\n"
+"X-POOTLE-MTIME: 1387795583.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -607,11 +607,13 @@ msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
+"No es pot trobar el paquet que proporciona que es pugui utilitzar el "
+"marcatge «%s». Es torna a l'HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "El valor «%s» al MARKUP_FILTER no és vàlid. Tornant a l'HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -1172,8 +1174,8 @@ msgstr[1] "Continua la traducció (queden %(num)d paraules)"
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El proper més important objectiu  (queda %(num)d paraula)"
+msgstr[1] "El proper més important objectiu  (queden %(num)d paraules)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1197,7 +1199,11 @@ msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
 msgstr[0] ""
+"%(type)s: %(translated)d de %(total)d cadena traduïda (%(fuzzy)d necessita "
+"revisió)."
 msgstr[1] ""
+"%(type)s: %(translated)d de %(total)d cadenes traduïdes (%(fuzzy)d "
+"necessiten revisió)."
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1462,7 +1468,7 @@ msgstr "Filtra utilitzant les etiquetes seleccionades"
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "Afegeix una etiqueta"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1500,6 +1506,8 @@ msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s ha revertit la traducció de la cadena <i><a href=\"%(url)s\""
+">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:155
 #, python-format
@@ -1507,11 +1515,13 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s ha acceptat el suggeriment de la cadena <i><a href=\"%(url)s\""
+">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s ha pujat un fitxer"
 
 #: apps/pootle_statistics/models.py:173
 #, python-format
@@ -1519,6 +1529,8 @@ msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s ha enviat una traducció de la cadena <i><a href=\"%(url)s\""
+">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:176
 #, python-format
@@ -1526,6 +1538,8 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"%(user)s ha enviat una traducció per revisar de la cadena <i><a href=\"%(url)"
+"s\">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:179
 #, python-format
@@ -1533,10 +1547,12 @@ msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
+"%(user)s ha eliminat la traducció de la cadena <i><a href=\"%(url)s\""
+">%(source)s</a></i>"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "No tens prou permisos per accedir a aquest directori."
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
@@ -1881,12 +1897,17 @@ msgid ""
 "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Els noms de les etiquetes no poden començar ni acabar amb espais, dos punts "
+"(:), guions (-), guions baixos (_), barres (/) ni punts (.)!"
 
 #: apps/pootle_tagging/forms.py:53
 msgid ""
 "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 "hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Els noms de les etiquetes no poden contenir dos o més caràcters consecutius "
+"que siguin:  espais, dos punts (:), guions (-), guions baixos (_), barres (/)"
+" o punts (.)!"
 
 #: apps/pootle_tagging/forms.py:60
 msgid ""
@@ -1894,16 +1915,21 @@ msgid ""
 "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Els noms de les etiquetes han de ser cadenes alfanumèriques en minúscules "
+"que no comencin ni acabin amb: espais, dos punts (:), guions (-), guions "
+"baixos (_), barres (/) o punts (.)!"
 
 #: apps/pootle_tagging/forms.py:74
 msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
 msgstr ""
+"El nom no pot contenir després de l'«objectiu» algun dels caràcters següents:"
+" espais, dos punts (:), guions (-), guions baixos (_), barres (/) o punts (.)"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "Ja existeix un objectiu amb aquest nom. Trieu-ne un altre."
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1911,16 +1937,22 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Els 'slugs' d'etiqueta han de ser igual que el nom de l'etiqueta, però "
+"reemplaçant amb un únic guió tota coincidència (simple o múltiple) dels "
+"caràcters següents: dos punts (:), guions (-), guions baixos (_), barres (/) "
+"ni punts (.)!"
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "Ja existeix un objectiu amb aquest «slug»."
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
 "Warning: Changing the name also changes the slug, so it won't be possible to "
 "view this goal on this page!"
 msgstr ""
+"Avís: canviar el nom també comporta que l'«slug» canviï. Per tant, no serà "
+"possible veure l'objectiu en aquesta pàgina."
 
 #: apps/pootle_tagging/models.py:66
 #, python-format
@@ -1928,6 +1960,8 @@ msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Una descripció de l'objectiu. Això és útils per a proporcionar més "
+"informació o instruccions. Etiquetes permeses: %s"
 
 #: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
@@ -1938,6 +1972,8 @@ msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
 msgstr ""
+"Designa que és un objectiu del projecte (compartit en totes les llengües del "
+"projectes)."
 
 #: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
@@ -2242,12 +2278,12 @@ msgstr "S'ha produït un error en provar de suprimir el fitxer."
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "No s'ha pogut trobar «%(action)s» a «%(extdir)s»"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Error while running '%s' extension action"
-msgstr ""
+msgstr "S'ha produït un error mentre s'executava l'acció de l'extensió «%s»"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2304,7 +2340,7 @@ msgstr "No hi ha cap cadena."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "Fitxers i carpetes del projecte de traducció"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
@@ -2404,6 +2440,7 @@ msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
+"He llegit i acceptat: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2471,6 +2508,8 @@ msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
 msgstr ""
+"Aquesta pàgina és inactiva i visible només per als administradors. Podeu "
+"activar-la  <a href=\"%s\">editant-ne les propietats</a>."
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
@@ -2478,7 +2517,7 @@ msgstr "Acció requerida"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "Abans de continuar, cal que llegiu i accepteu els documents següents."
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
@@ -2537,7 +2576,7 @@ msgstr "Afegir pàgina normal"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "No teniu permisos suficients per accedir a la pàgina."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2545,7 +2584,7 @@ msgstr "No teniu permisos per administrar el Pootle."
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "Hi manca l'usuari"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2625,13 +2664,15 @@ msgstr ""
 #: scripts/actions.py:529
 #, python-format
 msgid "Failed to copy download file to export directory %s"
-msgstr ""
+msgstr "No s'ha pogut copiar el fitxer de baixada al directori d'exportació %s"
 
 #: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
 msgstr ""
+"Ha finalitzat el muntatge del paquet d'idioma. Feu clic a l'enllaç per "
+"baixar-lo."
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2668,7 +2709,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "Pàgina principal"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2719,7 +2760,7 @@ msgstr "Gestiona els permisos per defecte"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "Gestiona les pàgines estàtiques"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2798,13 +2839,16 @@ msgstr "Confirmeu"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "Error de la base de dades"
 
 #: templates/db_error.html:14
 msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"El Pootle no es pot connectar a la base de dades, la base de dades no està\n"
+"inicialitzada encara, o cal una actualització de l'esquema abans de "
+"continuar."
 
 #: templates/db_error.html:18
 #, python-format
@@ -2816,6 +2860,12 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"\n"
+"Llegiu la <a href=\"%(url)s\">documentació del Pootle</a> per a les "
+"instruccions\n"
+"d'instal·lació i actualització. Contacteu amb l'administrador del servidor "
+"si creieu que\n"
+"això és un error."
 
 #: templates/db_error.html:24
 msgid "The reported error was:"
@@ -2831,7 +2881,7 @@ msgstr "Notícies de la llengua"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "Tradueix aquesta llengua"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2839,7 +2889,7 @@ msgstr "Administreu els vostres permisos de llengua"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "Principal"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2944,7 +2994,7 @@ msgstr "Quant a"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "Afegeix una etiqueta"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -2997,13 +3047,15 @@ msgstr "Els meus enviaments sobreescrits"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Aneu a la cadena anterior (Ctrl+Amunt)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Número de cadena actual (Ctrl+Shift+U)<br/><br/>Escriviu el número i premeu "
+"Retorn<br />per anar a qualsevol posició"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
@@ -3011,7 +3063,7 @@ msgstr "Cadenes totals"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr " Aneu a la cadena següent (Ctrl+Avall) "
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -3060,11 +3112,11 @@ msgstr "Suggeriments pendents"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "Sobreescrit"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
-msgstr ""
+msgstr "Aquest usuari encara no ha fet cap contribució."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"

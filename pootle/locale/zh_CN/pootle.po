@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-18 12:35+0000\n"
-"Last-Translator: Wei <contact@huwei.name>\n"
+"PO-Revision-Date: 2014-01-24 10:12+0000\n"
+"Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1384778123.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1390558325.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -434,7 +434,7 @@ msgstr "Pootle 警告"
 #: apps/pootle_project/templates/project/overview.html:61
 #: apps/pootle_translationproject/templates/translation_project/overview.html:124
 msgid "No description set."
-msgstr "没有设定描述。"
+msgstr "没有描述。"
 
 #: apps/pootle_app/templates/index/index.html:62
 #: apps/pootle_notifications/templates/notices.html:77
@@ -1099,7 +1099,7 @@ msgstr "翻译已完成"
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] "审阅建议 (%(num)d left)"
+msgstr[0] "审阅建议 (%(num)d 剩余)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
@@ -1797,12 +1797,14 @@ msgid ""
 "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"标签名必须是一个小写字母和数字组成的字符串，并且不能以如下字符开始或结束（但可以在中间）：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号"
+"(.)！ "
 
 #: apps/pootle_tagging/forms.py:74
 msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
-msgstr ""
+msgstr "在'goal:'之后的名称不能包含任何如下字符：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号(.)"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
@@ -1817,20 +1819,20 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "已经存在一个含有这个缩略名的目标。"
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
 "Warning: Changing the name also changes the slug, so it won't be possible to "
 "view this goal on this page!"
-msgstr ""
+msgstr "警告：改变名字的同时也会改变缩略名，所以将无法在这个页面看到这个目标！"
 
 #: apps/pootle_tagging/models.py:66
 #, python-format
 msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
-msgstr ""
+msgstr "一个关于这个目标的描述。这对于提供更多的信息和介绍是有用的。允许的。允许的名字：%s"
 
 #: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
@@ -2282,7 +2284,7 @@ msgstr "注册个人信息"
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
-msgstr ""
+msgstr "我已经阅读并接受：<a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2348,7 +2350,7 @@ msgstr "第 %d 页"
 msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
-msgstr ""
+msgstr "这个页面是未激活且只有管理员可见的。您可以通过<a href=\"%s\">编辑属性</a>来激活它"
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
@@ -2675,6 +2677,8 @@ msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle 无法连接到数据库，数据库没有\n"
+"被初始化， 或者在继续前需要进行一次架构升级。"
 
 #: templates/db_error.html:18
 #, python-format
@@ -3091,7 +3095,7 @@ msgstr "这个密码重设链接已失效，可能是已经被使用过了。请
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
-msgstr "我们将像您提交的电子邮件地址发送设定密码的介绍。您将很快收到这封邮件。"
+msgstr "我们将向您提交的电子邮件地址发送设定密码的介绍。您将很快收到这封邮件。"
 
 #: templates/registration/password_reset_email.html:3
 #, python-format

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-07-02 15:06+0000\n"
+"PO-Revision-Date: 2013-12-19 09:48+0000\n"
 "Last-Translator: teerapat.top <teerapat.top@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -15,16 +15,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1372777563.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1387446503.000000\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "ภาษาทั้งหมด"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "โครงการทั้งหมด"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -40,23 +40,23 @@ msgstr "คุณแน่ใจหรือไม่ที่จะทำต่
 
 #: static/js/common.js:92
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "การกระทำนี้ไม่สามารถยกเลิกได้"
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "แสดงป้ายกำกับ"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:357
 msgid "Hide tags"
-msgstr ""
+msgstr "ซ่อนป้ายกำกับ"
 
 #: static/js/common.js:293 static/js/common.js.c:309
 msgid "Hide filtering"
-msgstr ""
+msgstr "ซ่อนตัวกรอง"
 
 #: static/js/common.js:296 static/js/common.js.c:303
 msgid "Show filtering"
-msgstr ""
+msgstr "แสดงตัวกรอง"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
@@ -70,31 +70,31 @@ msgstr ""
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "ข้อเสนอแนะของ %s ที่รออยู่"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "ข้อเสนอแนะของ %s ที่ยอมรับแล้ว"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "ข้อเสนอแนะของ %s ที่ถูกปฏิเสธ"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "การส่งของ %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "การส่งเพื่อเขียนทับของ %s"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
@@ -102,15 +102,15 @@ msgstr "ไม่มีผลลัพธ์"
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "มุมมองส่งออก"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะกำลังเชื่อมต่อไปยังเซิร์ฟเวอร์"
 
 #: static/js/editor.js:800
 msgid "Server error"
-msgstr ""
+msgstr "เซิร์ฟเวอร์เกิดข้อผิดพลาด"
 
 #: static/js/editor.js:802
 msgid "The server seems down. Try again later."
@@ -118,7 +118,7 @@ msgstr ""
 
 #: static/js/editor.js:809
 msgid "Unknown error"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดที่ไม่รู้จัก"
 
 #: static/js/editor.js:1367
 msgid "You reached the beginning of the list"
@@ -126,11 +126,11 @@ msgstr ""
 
 #: static/js/editor.js:1370
 msgid "You reached the end of the list."
-msgstr ""
+msgstr "คุณมาถึงจุดสิ้นสุดของรายการ"
 
 #: static/js/editor.js:1372
 msgid "Return to the overview page."
-msgstr ""
+msgstr "กลับไปยังหน้าภาพรวม"
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra

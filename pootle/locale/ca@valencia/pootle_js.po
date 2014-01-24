@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-02-27 07:19+0000\n"
-"Last-Translator: ellibrecomoelchaval <el.libre@gmail.com>\n"
+"PO-Revision-Date: 2013-11-03 11:44+0000\n"
+"Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
@@ -113,9 +113,8 @@ msgid "Server error"
 msgstr "Error del servidor"
 
 #: static/js/editor.js:802
-#, fuzzy
 msgid "The server seems down. Try again later."
-msgstr "Sembla que el servidor no funciona. Proveu-ho més tard."
+msgstr "Pareix que el servidor no funciona. Proveu-ho més tard."
 
 #: static/js/editor.js:809
 msgid "Unknown error"
