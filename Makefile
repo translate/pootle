@@ -99,7 +99,7 @@ requirements.txt: $(REQFILE)
 	     pip install --use-mirrors -r $(REQFILE);			\
 	     : trap removes partial/empty target on failure;		\
 	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
-	     pip freeze | grep -v '^wsgiref==' | sort >> $@ ;;		\
+	     pip freeze | grep -v '^wsgiref==' | sort -f >> $@ ;;		\
 	   *)								\
 	     : only pip 1.3.1+ processes --download recursively;	\
 	     rm -rf $(REQS); mkdir $(REQS);				\
@@ -107,7 +107,7 @@ requirements.txt: $(REQFILE)
 	     pip install --download $(REQS) -r $(REQFILE);		\
 	     : trap removes partial/empty target on failure;		\
 	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
-	     (cd $(REQS) && ls *.tar* |					\
+	     (cd $(REQS) && ls *.tar* *.whl |					\
 	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') >> $@;	\
 	 esac; 
 
@@ -118,4 +118,4 @@ min-required.txt: requirements/*.txt
 	@echo "creating $@"
 	@echo "# Automatically generated: DO NOT EDIT" > $@
 	@echo "# Regenerate using 'make requirements'" >> $@
-	@cat $^ | sed -n '/=/{s/>=/==/;s/<.*//;p;}' >> $@
+	@cat $^ | sed -n '/=/{s/>=/==/;s/,<.*//;p;}' >> $@
