@@ -149,12 +149,8 @@ When writing the URL patterns:
     some cases, like URLs on *pootle_app* app):
 
     - ``{app}`` is the app name, which sometimes can be shortened, e.g. using
-      **tp** to avoid the longish **translationproject**. If either a shortened
-      app name or a full one is being used, the chosen app name must be used
-      consistently across all the URL patterns for the app. The only exception
-      to this are AJAX URL patterns which can use a different value for
-      ``{app}``, that must be consistently used among all the AJAX URL patterns
-      in the app.
+      **tp** to avoid the longish **translationproject**. The chosen app name
+      must be used consistently across all the URL patterns for the app.
     - ``{view}`` is a unique string which might consist on several words,
       separated with hyphens, that might not match the name of the view that is
       handled by the URL pattern.
