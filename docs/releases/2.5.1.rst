@@ -19,7 +19,7 @@ on our :ref:`roadmap <roadmap>` for Pootle 2.5.2.
 
 Changes in Requirements
 =======================
-- Django >= 1.4.10
+- Django >= 1.4.10 (note that Django 1.5 and 1.6 are not yet supported)
 - `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
   1.11.0
 - Python >= 2.6
