@@ -12,6 +12,11 @@ body.translate #content
     margin: 1em 0;
 }
 
+body.translate #body
+{
+    padding-bottom: 0;
+}
+
 /* MAIN TOOLBAR */
 
 textarea#view_unit
