@@ -26,10 +26,8 @@ Changes in Requirements
 
 Installation and Upgrade
 ========================
-- `Installation
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
-- `Upgrade
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/upgrading.html>`_
+- :doc:`Installation </server/installation>`
+- :doc:`Upgrade </server/upgrading>`
 
 Major Changes
 =============
