@@ -586,7 +586,7 @@ def _add_tag(request, translation_project, tag_like_object):
 @ajax_required
 @get_path_obj
 @permission_required('administrate')
-def ajax_add_tag_to_tp(request, translation_project):
+def ajax_add_tag_to_tp(request, translation_project, **kwargs):
     """Return an HTML snippet with the failed form or blank if valid."""
 
     add_tag_form = TagForm(request.POST)

@@ -50,7 +50,12 @@ def get_path_obj(func):
     @wraps(func)
     def wrapped(request, *args, **kwargs):
         if request.is_ajax():
-            pootle_path = request.GET.get('path', None)
+            pootle_path = None
+            if request.GET:
+                pootle_path = request.GET.get('path', None)
+            elif request.POST:
+                pootle_path = request.POST.get('path', None)
+
             if pootle_path is None:
                 raise Http400(_('Arguments missing.'))
 
