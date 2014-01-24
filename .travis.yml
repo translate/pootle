@@ -12,9 +12,12 @@ install:
   - python -V; pip freeze  # Print all installed versions for reference.
 script:
   - make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
+  - python manage.py syncdb --noinput
+  - python manage.py migrate
+  - python manage.py initdb
   - ./manage.py runserver &
   - TESTPID=$!
-  - sleep 100
+  - sleep 20
   - kill -2 $TESTPID
 notifications:
   email:
