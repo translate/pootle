@@ -2099,14 +2099,20 @@ body.js-not-loaded #translate-actions li
 
 /* select2 dropdown widgets in breadcrumbs */
 
-.breadcrumb .select2-container .select2-choice
+.breadcrumb .select2-container .select2-choice,
+.unit-sort .select2-container .select2-choice
 {
     height: auto;
     padding: 0 0 0 4px;
+}
+
+.breadcrumb .select2-container .select2-choice
+{
     line-height: 44px;
 }
 
-.breadcrumb .navigation .select2-choice
+.breadcrumb .navigation .select2-choice,
+.unit-sort .navigation .select2-choice
 {
     color: #0489b7;
 }

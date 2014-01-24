@@ -45,6 +45,24 @@ html[dir="rtl"] #toolbar
 #toolbar > div
 {
     display: inline-block;
+    margin-right: 1em;
+}
+
+html[dir="rtl"] #toolbar > div
+{
+    margin-right: auto;
+    margin-left: 1em;
+}
+
+#toolbar > div:last-child
+{
+    margin-right: 0;
+}
+
+html[dir="rtl"] #toolbar > div:last-child
+{
+    margin-right: auto;
+    margin-left: 0;
 }
 
 

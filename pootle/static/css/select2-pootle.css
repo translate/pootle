@@ -10,6 +10,11 @@
     top: -2px; /* needed because of the border */
 }
 
+.unit-sort .select2-container
+{
+    top: 0;
+}
+
 .select2-container .select2-choice
 {
     border: 1px solid #d9d9d9;
@@ -19,7 +24,8 @@
     background-image: linear-gradient(to bottom, #fcfcfc 0%, #eeeeee 50%);
 }
 
-.breadcrumb .select2-container .select2-choice
+.breadcrumb .select2-container .select2-choice,
+.unit-sort .select2-container .select2-choice
 {
     border: 1px solid transparent;
     background-color: transparent;
@@ -58,7 +64,8 @@
     background-image: linear-gradient(to top, #dddddd 0%, #eeeeee 60%);
 }
 
-.breadcrumb .select2-container .select2-choice div
+.breadcrumb .select2-container .select2-choice div,
+.unit-sort .select2-container .select2-choice div
 {
     border-left: 1px solid transparent;
     background-color: transparent;
@@ -78,13 +85,15 @@
 }
 
 .breadcrumb .select2-dropdown-open .select2-choice,
+.unit-sort .select2-dropdown-open .select2-choice,
 .select2-dropdown-open .select2-choice
 {
     border: 1px solid #d9d9d9;
     border-bottom-color: transparent;
 }
 
-.breadcrumb .select2-dropdown-open .select2-choice
+.breadcrumb .select2-dropdown-open .select2-choice,
+.unit-sort .select2-dropdown-open .select2-choice
 {
     background-color: #eee;
     background-image: linear-gradient(to bottom, #ffffff 0%,#eeeeee 50%);
