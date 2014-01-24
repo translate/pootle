@@ -318,7 +318,9 @@
         // disable navigation on UI toolbar events to prevent data reload
         PTL.editor.preventNavigation = true;
 
-        $('#js-filter-status').select2('val', PTL.editor.filter);
+        var filterValue = PTL.editor.filter === 'search' ? 'all' :
+                                                            PTL.editor.filter;
+        $('#js-filter-status').select2('val', filterValue);
 
         if (PTL.editor.filter == "checks") {
           // if the checks selector is empty (i.e. the 'change' event was not fired
