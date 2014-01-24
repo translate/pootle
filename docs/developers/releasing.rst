@@ -152,6 +152,8 @@ the previous number, and there have been any changes to code touching stats or
 quality checks.  An increased build number will force a toolkit user, like
 Pootle, to regenerate the stats and checks.
 
+.. FIXME I don't think the above about build number is correct for Pootle
+
 For ``conf.py`` change ``version`` and ``release``
 
 .. note:: FIXME -- We might want to automate the version and release info so
@@ -171,6 +173,15 @@ release of a ``$MINOR`` version will always have a ``$MICRO`` of ``.0``. So
 ``1.10.0`` and never just ``1.10``.
 
 
+Check copyright dates
+---------------------
+
+Update any copyright dates in ``docs/conf.py:copright`` and anywhere else that
+needs fixing.::
+
+    $ git grep 2013  # Should pick up anything that should be examined
+
+
 Update requirements versions
 ----------------------------
 Update the minimum version number for the requirements in:
@@ -183,8 +194,14 @@ Update the requirements files::
 
     make requirements
 
-.. note:: I'm still not 100% why or if we need these, but until we work it out
-   lets make sure we ship with correct files.
+.. note:: This creates the following files:
+
+       - min-require.txt -- the minimum requirements we specified at this time.
+         Using that to deploy can ensure that you don't use a newer version
+         that breaks Pootle.
+       - requirements.txt - the maximum available version when we released.
+         Chances are we've tested with these and they are good.  Using this
+         would prevent a person from intalling something newer but untested.
 
 
 Update translations
