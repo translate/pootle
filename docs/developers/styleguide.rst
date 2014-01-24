@@ -177,6 +177,34 @@ When writing the URL patterns:
     )
 
 
+Variables naming
+~~~~~~~~~~~~~~~~
+
+In order to have a more consistent code the use of specific names for some
+heavily used variables is encouraged:
+
+- ``ctx``: Name for the dictionary with the context passed to a template for
+  rendering. Also known as *context*, *template variables* or *template vars*.
+
+  .. code-block:: python
+
+    # Good.
+    ctx = {
+        'language': language,
+    }
+
+
+    # Bad.
+    context = {
+      ...
+
+    templatevars = {
+      ...
+
+    template_vars = {
+      ...
+
+
 Settings naming
 ~~~~~~~~~~~~~~~
 
