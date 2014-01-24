@@ -194,16 +194,19 @@ Update the translations from the `Pootle server
 
 #. Download all translations::
 
-      # On pootle.locamotion.org
-      ./manage.py sync_stores --project=pootle
-      
-      # On your computer
-      scp -rp $user@pootle.locamotion.org/$location pootle/locales
+       $ make get-translations
 
 #. Update ``pootle/locale/LINGUAS`` to list the languages we would like to
    ship. While we package all PO files, this is an indication of which ones we
-   want packagers to use.  The requirement is roughly 100% translated with no
-   obvious variable errors.
+   want packagers to use.  The requirement is roughly 80% translated with no
+   obvious variable errors. Languages with a small userbase can be included. ::
+
+       $ make linguas
+
+   Check the output and make any adjustments such as adding back languages that
+   don't quite make the target but you wish to ship.
+
+#. Build translations to check for errors:
 
    .. code-block:: bash
 
