@@ -36,7 +36,7 @@ from pootle.__version__ import build as NEW_POOTLE_BUILD
 class Command(NoArgsCommand):
     help = 'Runs the install/upgrade machinery.'
 
-    def handle_noargs(self, **options):
+    def get_current_buildversion(self):
         try:
             config = siteconfig.load_site_config()
             current_buildversion = config.get('POOTLE_BUILDVERSION', None)
@@ -48,6 +48,15 @@ class Command(NoArgsCommand):
             # Assume that the DatabaseError is because we have a blank database
             # from a new install, is there a better way to do this?
             current_buildversion = None
+
+        return current_buildversion
+
+    def handle_noargs(self, **options):
+        """Run the install or upgrade machinery.
+
+        If there is an up-to-date Pootle setup then no action is performed.
+        """
+        current_buildversion = self.get_current_buildversion()
 
         if current_buildversion is None:
             logging.info('Setting up a new Pootle installation.')
@@ -85,4 +94,5 @@ class Command(NoArgsCommand):
 
             logging.info('Successfully upgraded Pootle.')
         else:
-            logging.info('Pootle is already up-to-date.')
+            logging.info('Pootle already was up-to-date. No action has been '
+                         'performed.')
