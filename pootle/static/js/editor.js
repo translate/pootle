@@ -360,6 +360,8 @@
           });
 
           $('.js-filter-checks-wrapper').hide();
+        } else {
+          $("#id_search").val('').trigger('blur');
         }
 
         // re-enable normal event handling
