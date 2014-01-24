@@ -19,6 +19,6 @@ lxml>=2.1.4
 #django-tastypie
 
 # Translate Toolkit
-translate-toolkit>=1.11.0-rc1
+translate-toolkit>=1.11.0
 # If you want to use Translate Toolkit 'master'
 #-e git://github.com/translate/translate.git#egg=translate-toolkit
