@@ -72,7 +72,7 @@ Visual Changes
 --------------
 - User contribution are displayed in the users profile page.
 - Breadcrumbs now follow the way a translator would interact with Pootle and
-  are unified across all vies of the project.
+  are unified across all views of the project.
 - Global search allows you to search across all projects and all languages.
 - Last activity messages show quickly what last change was made to the
   translations.
