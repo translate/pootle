@@ -26,8 +26,8 @@ Changes in Requirements
 
 Installation and Upgrade
 ========================
-- :doc:`Installation </server/installation.html>`
-- :doc:`Upgrade </server/upgrading.html>`
+- :doc:`Installation </server/installation>`
+- :doc:`Upgrade </server/upgrading>`
 
 Major Changes
 =============
