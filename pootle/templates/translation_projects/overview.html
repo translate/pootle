@@ -123,12 +123,12 @@
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}
     {% if can_edit %}
-      {% include "admin/edit_links.html" %}
+      {% include "admin/_settings_edit.html" %}
     {% endif %}
     </div>
   {% if can_edit %}
     <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-      {% include "admin/general_settings_form.html" %}
+      {% include "admin/_settings_form.html" %}
     </div>
   {% endif %}
 

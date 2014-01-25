@@ -25,14 +25,14 @@
       <p class="placeholder muted">{% trans "No description set." %}</p>
     {% endif %}
     {% if can_edit %}
-      {% include "admin/edit_links.html" %}
+      {% include "admin/_settings_edit.html" %}
     {% endif %}
   </div>
 {% endif %}
 {% if can_edit %}
   <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
     {% url 'pootle-admin-edit-settings' as edit_settings_url %}
-    {% include "admin/general_settings_form.html" with form_action=edit_settings_url %}
+    {% include "admin/_settings_form.html" with form_action=edit_settings_url %}
   </div>
 {% endif %}
 {% endblock precontent %}

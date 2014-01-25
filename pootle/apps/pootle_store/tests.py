@@ -254,7 +254,7 @@ class XHRTestAnonymous(PootleTestCase):
         r = self.client.get("/unit/edit/%s" % self.uid,
                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(r.status_code, 200)
-        self.assertTemplateUsed(r, 'unit/edit.html')
+        self.assertTemplateUsed(r, 'editor/units/edit.html')
 
     #
     # Tests for the get_failing_checks() view.

@@ -74,7 +74,7 @@ def edit_settings(request):
         "form": form,
         "form_action": reverse('pootle-admin-edit-settings'),
     }
-    t = loader.get_template('admin/general_settings_form.html')
+    t = loader.get_template('admin/_settings_form.html')
     c = RequestContext(request, context)
     response['form'] = t.render(c)
 

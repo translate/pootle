@@ -3,14 +3,14 @@
 // Python code, nor Django templates, nor any format that Django makemessages
 // is able to parse.
 
-// Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
+// Translators: from pootle/templates/editor/units/xhr_edit_ctx.html
 gettext("More");
 
-// Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
+// Translators: from pootle/templates/editor/units/xhr_edit_ctx.html
 gettext("Hide");
 
-// Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
+// Translators: from pootle/templates/editor/units/xhr_edit_ctx.html
 gettext("Less");
 
-// Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
+// Translators: from pootle/templates/editor/units/xhr_edit_ctx.html
 gettext("Show");

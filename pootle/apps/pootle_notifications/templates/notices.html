@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 
 {% comment %}
 Oh yeah, I know, this template code is horrible, and actually there are three
@@ -26,7 +26,7 @@ the future we have to take a different approach for this.
 {% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}{% include 'common/_breadcrumbs.html' %}
+{{ block.super }}{% include 'core/_breadcrumbs.html' %}
 {% endblock %}
 
 {% block extra_head %}
@@ -37,12 +37,12 @@ the future we have to take a different approach for this.
 
 {% block tabs %}
   {% if directory.is_language %}
-    {% include "language_menu.html" %}
+    {% include "languages/_tabs.html" %}
   {% else %}
     {% if directory.is_project %}
-      {% include "project_menu.html" %}
+      {% include "projects/_tabs.html" %}
     {% else %}
-      {% include "tp_menu.html" %}
+      {% include "translation_projects/_tabs.html" %}
     {% endif %}
   {% endif %}
 {% endblock %}
