@@ -78,16 +78,15 @@ from .forms import DescriptionForm, upload_form_factory
 @get_path_obj
 @permission_required('administrate')
 def admin_permissions(request, translation_project):
-    template_vars = {
+    ctx = {
         'translation_project': translation_project,
-        "project": translation_project.project,
-        "language": translation_project.language,
-        "directory": translation_project.directory,
-        "feed_path": translation_project.pootle_path[1:],
+        'project': translation_project.project,
+        'language': translation_project.language,
+        'directory': translation_project.directory,
+        'feed_path': translation_project.pootle_path[1:],
     }
     return admin_perms(request, translation_project.directory,
-                       "translation_project/admin_permissions.html",
-                       template_vars)
+                       "translation_project/admin_permissions.html", ctx)
 
 
 @get_path_obj
@@ -316,23 +315,23 @@ def overview(request, translation_project, dir_path, filename=None,
         current_path = current_path + filename
         store = get_object_or_404(Store, pootle_path=current_path)
         directory = store.parent
-        template_vars = {
+        ctx = {
             'store_tags': store.tag_like_objects,
         }
-        template = "translation_project/store_overview.html"
+        template_name = "translation_project/store_overview.html"
     else:
         store = None
         directory = get_object_or_404(Directory, pootle_path=current_path)
-        template_vars = {
+        ctx = {
             'tp_tags': translation_project.tag_like_objects,
         }
-        template = "translation_project/overview.html"
+        template_name = "translation_project/overview.html"
 
     if (check_permission('translate', request) or
         check_permission('suggest', request) or
         check_permission('overwrite', request)):
 
-        template_vars.update({
+        ctx.update({
             'upload_form': _handle_upload_form(request, current_path,
                                                translation_project, directory),
         })
@@ -443,7 +442,7 @@ def overview(request, translation_project, dir_path, filename=None,
     else:
         description = goal.description
 
-    template_vars.update({
+    ctx.update({
         'resource_obj': request.resource_obj,
         'translation_project': translation_project,
         'description': description,
@@ -471,7 +470,7 @@ def overview(request, translation_project, dir_path, filename=None,
                             'need-translation', 'suggestions']
             items = [make_goal_item(path_obj_goal, path_obj.pootle_path)
                      for path_obj_goal in path_obj_goals]
-            template_vars.update({
+            ctx.update({
                 'table': {
                     'id': 'tp-goals',
                     'proportional': False,
@@ -487,7 +486,7 @@ def overview(request, translation_project, dir_path, filename=None,
             table_fields = ['name', 'progress', 'total', 'need-translation',
                             'suggestions']
 
-            template_vars.update({
+            ctx.update({
                 'table': {
                     'id': 'tp-goals',
                     'proportional': True,
@@ -504,7 +503,7 @@ def overview(request, translation_project, dir_path, filename=None,
             # Then show the files tab.
             table_fields = ['name', 'progress', 'total', 'need-translation',
                             'suggestions']
-            template_vars.update({
+            ctx.update({
                 'table': {
                     'id': 'tp-files',
                     'proportional': True,
@@ -516,7 +515,7 @@ def overview(request, translation_project, dir_path, filename=None,
                 'path_obj_has_goals': path_obj_has_goals,
             })
     elif goal is not None:
-        template_vars.update({
+        ctx.update({
             'goal': goal,
             'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
         })
@@ -541,14 +540,14 @@ def overview(request, translation_project, dir_path, filename=None,
             edit_form_action = reverse('pootle-tagging-ajax-edit-goal',
                                        args=[goal.slug])
 
-        template_vars.update({
+        ctx.update({
             'form': edit_form,
             'form_action': edit_form_action,
             'add_tag_form': TagForm(),
             'add_tag_action_url': add_tag_action_url,
         })
 
-    return render_to_response(template, template_vars,
+    return render_to_response(template_name, ctx,
                               context_instance=RequestContext(request))
 
 
