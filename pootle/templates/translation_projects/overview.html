@@ -44,7 +44,7 @@
     {% endif %}
     <ul class="js-tags tag-list">
       {% block tag_list %}
-      {% include "translation_project/xhr_tags_list.html" %}
+      {% include "translation_projects/xhr_tags_list.html" %}
       {% endblock %}
     </ul>
     <br />
@@ -172,7 +172,7 @@
 {% if can_edit and add_tag_form %}
 <div id="js-add-tag-dialog" class="form popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
   <h2>{% trans "Add tag" %}</h2>
-  {% include "common/xhr_add_tag_form.html" %}
+  {% include "core/xhr_add_tag_form.html" %}
 </div>
 {% endif %}
 {% endblock content %}

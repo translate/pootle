@@ -1198,7 +1198,7 @@ def _add_tag(request, store, tag_like_object):
         'path_obj': store,
         'can_edit': check_permission('administrate', request),
     }
-    response = render_to_response('store/xhr_tags_list.html', context,
+    response = render_to_response('stores/xhr_tags_list.html', context,
                                   RequestContext(request))
     response.status_code = 201
     return response
@@ -1250,5 +1250,5 @@ def ajax_add_tag_to_store(request, store_pk):
                 'add_tag_action_url': reverse('pootle-store-ajax-add-tag',
                                               args=[store.pk])
             }
-            return render_to_response('common/xhr_add_tag_form.html', context,
+            return render_to_response('core/xhr_add_tag_form.html', context,
                                       RequestContext(request))

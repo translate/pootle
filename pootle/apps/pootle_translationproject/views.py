@@ -318,7 +318,7 @@ def overview(request, translation_project, dir_path, filename=None,
         ctx = {
             'store_tags': store.tag_like_objects,
         }
-        template_name = "translation_project/store_overview.html"
+        template_name = "translation_projects/store_overview.html"
     else:
         store = None
         directory = get_object_or_404(Directory, pootle_path=current_path)
@@ -576,7 +576,7 @@ def _add_tag(request, translation_project, tag_like_object):
         'project': translation_project.project,
         'can_edit': check_permission('administrate', request),
     }
-    response = render_to_response('translation_project/xhr_tags_list.html',
+    response = render_to_response('translation_projects/xhr_tags_list.html',
                                   context, RequestContext(request))
     response.status_code = 201
     return response
@@ -629,7 +629,7 @@ def ajax_add_tag_to_tp(request, translation_project, **kwargs):
                 'add_tag_action_url': reverse('tp.ajax_add_tag',
                                               kwargs=url_kwargs)
             }
-            return render_to_response('common/xhr_add_tag_form.html', context,
+            return render_to_response('core/xhr_add_tag_form.html', context,
                                       RequestContext(request))
 
 

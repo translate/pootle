@@ -152,7 +152,7 @@ def ajax_remove_tag_from_tp_in_project(request, translation_project, tag_name):
         'project': translation_project.project.code,
         'language': translation_project.language.code,
     }
-    response = render_to_response('project/xhr_tags_list.html',
+    response = render_to_response('projects/xhr_tags_list.html',
                                   context, RequestContext(request))
     response.status_code = 201
     return response
@@ -168,7 +168,7 @@ def _add_tag(request, translation_project, tag_like_object):
         'project': translation_project.project.code,
         'language': translation_project.language.code,
     }
-    response = render_to_response('project/xhr_tags_list.html',
+    response = render_to_response('projects/xhr_tags_list.html',
                                   context, RequestContext(request))
     response.status_code = 201
     return response
@@ -230,7 +230,7 @@ def ajax_add_tag_to_tp_in_project(request, project):
                 'add_tag_action_url': reverse('project.ajax_add_tag_to_tp',
                                               kwargs=url_kwargs)
             }
-            return render_to_response('common/xhr_add_tag_form.html',
+            return render_to_response('core/xhr_add_tag_form.html',
                                       context, RequestContext(request))
 
 

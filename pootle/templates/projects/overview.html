@@ -75,7 +75,7 @@
 {% if user.is_superuser or request.permissions.administrate %}
 <div id="js-add-tag-dialog" class="form popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
   <h2>{% trans "Add tag" %}</h2>
-  {% include "common/xhr_add_tag_form.html" %}
+  {% include "core/xhr_add_tag_form.html" %}
 </div>
 {% endif %}
 {% endblock content %}

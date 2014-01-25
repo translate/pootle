@@ -80,7 +80,7 @@ def view(request, path):
         template_vars['form'] = handle_form(request, directory, proj, lang,
                                             template_vars)
 
-    return render_to_response('notices.html', template_vars,
+    return render_to_response('notifications/notices.html', template_vars,
                               context_instance=RequestContext(request))
 
 
@@ -226,5 +226,5 @@ def view_notice_item(request, path, notice_id):
         "title": _("View News Item"),
         "notice_message": notice.message,
     }
-    return render_to_response('viewnotice.html', template_vars,
+    return render_to_response('notifications/view_notice.html', template_vars,
                               context_instance=RequestContext(request))
