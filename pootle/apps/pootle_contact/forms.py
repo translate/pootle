@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Zuza Software Foundation
+# Copyright 2013-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -24,12 +24,10 @@ from contact_form.forms import ContactForm
 
 class PootleContactForm(ContactForm):
 
-    def __init__(self, data=None, files=None, request=None, *args, **kwargs):
-        super(PootleContactForm, self).__init__(data=data, files=files,
-                                                request=request, *args,
-                                                **kwargs)
-        # Now do the Pootle customization.
-        self.fields['name'].label = _('Name')
+    def __init__(self, *args, **kwargs):
+        super(PootleContactForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].label = _(u'Name')
         name_placeholder = _('Please enter your name')
         self.fields['name'].widget.attrs['placeholder'] = name_placeholder
 
