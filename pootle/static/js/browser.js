@@ -96,6 +96,15 @@
     ].join('');
   };
 
+  var removeCtxEntries = function (results, container, query) {
+    if (query.term) {
+      return _.filter(results, function (result) {
+        return result.id.slice(0, 4) !== 'ctx-';
+      });
+    }
+    return results;
+  };
+
 
   PTL.browser = {
 
@@ -111,7 +120,8 @@
       });
       makeNavDropdown(sel.resource, {
         placeholder: gettext("Entire Project"),
-        formatResult: formatResource
+        formatResult: formatResource,
+        sortResults: removeCtxEntries
       });
     },
 
