@@ -182,6 +182,34 @@ When writing the URL patterns:
     )
 
 
+Variables naming
+~~~~~~~~~~~~~~~~
+
+In order to have a more consistent code the use of specific names for some
+heavily used variables is encouraged:
+
+- ``ctx``: Name for the dictionary with the context passed to a template for
+  rendering. Also known as *context*, *template variables* or *template vars*.
+
+  .. code-block:: python
+
+    # Good.
+    ctx = {
+        'language': language,
+    }
+
+
+    # Bad.
+    context = {
+      ...
+
+    templatevars = {
+      ...
+
+    template_vars = {
+      ...
+
+
 Settings naming
 ~~~~~~~~~~~~~~~
 
@@ -367,6 +395,20 @@ Template naming
   - If a template is intended to be included by other templates, and it is not
     going to be used directly, start its name with an underscore, e.g.
     *_included_template.html*.
+
+Miscellany
+  - Always use double quotes for HTML attribute values:
+
+    .. code-block:: html
+
+        <!-- Good -->
+        <a href="{% url 'whatever' %}" class="highlight">
+
+
+
+        <!-- Bad -->
+        <a href='{% url 'whatever' %}' class='highlight'>
+
 
 CSS
 ---
