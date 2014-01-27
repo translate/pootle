@@ -132,18 +132,16 @@ def check_permission(permission_codename, request):
     # `view` permissions are project-centric, and we must treat them
     # differently
     if permission_codename == 'view':
-        project = None
+        path_obj = None
         if hasattr(request, 'translation_project'):
-            project = request.translation_project.project
+            path_obj = request.translation_project
         elif hasattr(request, 'project'):
-            project = request.project
-        else:
-            # always allow to view language page
-            return True
+            path_obj = request.project
 
-        if project is not None:
-            from pootle_project.models import Project
-            return project in Project.objects.accessible_by_user(request.user)
+        if path_obj is None:
+            return True  # Always allow to view language pages
+
+        return path_obj.is_accessible_by(request.user)
 
     return ("administrate" in request.permissions or
             permission_codename in request.permissions)

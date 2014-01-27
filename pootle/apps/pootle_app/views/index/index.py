@@ -39,12 +39,12 @@ from pootle_project.models import Project
 from pootle_statistics.models import Submission
 
 
-def get_items(request, model, get_last_action, name_func):
+def get_items(request, objects, get_last_action, name_func):
     items = []
     if not check_permission('view', request):
         return items
 
-    for item in model.objects.iterator():
+    for item in objects:
         stats = get_raw_stats(item)
 
         translated_percentage = stats['translated']['percentage']
@@ -70,7 +70,7 @@ def getlanguages(request):
         except Submission.DoesNotExist:
             return ''
 
-    return get_items(request, Language, get_last_action, tr_lang)
+    return get_items(request, Language.objects.all(), get_last_action, tr_lang)
 
 
 def getprojects(request):
@@ -81,7 +81,9 @@ def getprojects(request):
         except Submission.DoesNotExist:
             return ''
 
-    return get_items(request, Project, get_last_action, lambda name: name)
+    objects = filter(lambda x: x.is_accessible_by(request.user),
+                     Project.objects.all())
+    return get_items(request, objects, get_last_action, lambda name: name)
 
 
 @get_path_obj
