@@ -21,7 +21,9 @@
     style="visibility: hidden;">
     <option value=""></option>
     {% for proj in ALL_PROJECTS %}
+    {% if not proj.disabled %}
     <option value="{{ proj.code }}">{{ proj.name }}</option>
+    {% endif %}
     {% endfor %}
   </select>
 </li>
