@@ -67,16 +67,16 @@ from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
 #: will be used against the DB.
 ALLOWED_SORTS = {
     'units': {
-        '+time': 'mtime',
-        '-time': '-mtime',
+        'oldest': 'mtime',
+        'newest': '-mtime',
     },
     'suggestions': {
-        '+time': 'submission__from_suggestion__creation_time',
-        '-time': '-submission__from_suggestion__creation_time',
+        'oldest': 'submission__from_suggestion__creation_time',
+        'newest': '-submission__from_suggestion__creation_time',
     },
     'submissions': {
-        '+time': 'submission__creation_time',
-        '-time': '-submission__creation_time',
+        'oldest': 'submission__creation_time',
+        'newest': '-submission__creation_time',
     },
 }
 
