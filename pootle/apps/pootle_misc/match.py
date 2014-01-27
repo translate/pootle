@@ -67,7 +67,7 @@ class TerminologyComparer(terminology.TerminologyComparer):
                     if matched_count == 0:
                         match_info = {'pos': pos}
                     matched_count += 1
-                    matched_index = j
+                    matched_index = j + 1
                     break
                 else:
                     if matched_count > 0:
