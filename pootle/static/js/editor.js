@@ -1398,7 +1398,9 @@
 
   filterSort: function () {
     var filterBy = $('#js-filter-status').val(),
-        filterChecks = $('#js-filter-checks').val(),
+        // #104: Since multiple values can't be selected in the select
+        // element, we also need to check for `this.checks`.
+        filterChecks = $('#js-filter-checks').val() || this.checks.join(','),
         sortBy = $('#js-filter-sort').val(),
         newHash = { filter: filterBy };
 
