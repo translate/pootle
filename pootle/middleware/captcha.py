@@ -21,6 +21,8 @@
 import re
 
 from django.conf import settings
+from django.core.urlresolvers import resolve
+from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
@@ -28,6 +30,10 @@ from pootle.core.forms import MathCaptchaForm
 
 
 URL_RE = re.compile('http://|https://', re.I)
+
+CAPTCHA_EXEMPT_URLPATTERNS = (
+    'login',
+)
 
 
 class CaptchaMiddleware:
@@ -40,12 +46,13 @@ class CaptchaMiddleware:
             request.session.get('ishuman', False)):
             return
 
-        # FIXME: Can we replace the URL checks and just compare the names
-        # returned by urlresolvers.resolve(request.path)?
-        if (request.path.endswith('accounts/login') or
-            request.path.endswith('accounts/login/')):
-            # Exclude login form.
-            return
+        try:
+            # No captcha for exempted pages.
+            resolver_match = resolve(request.path_info)
+            if resolver_match.url_name in CAPTCHA_EXEMPT_URLPATTERNS:
+                return
+        except Http404:
+            pass
 
         if request.user.is_authenticated():
 
