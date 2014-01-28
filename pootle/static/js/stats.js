@@ -85,12 +85,12 @@
 
           for (var name in data.children) {
             var item = data.children[name],
-                code = name.replace(/\./g, '-'),
+                code = name.replace(/\./g, '-').replace(/@/g, '\\@'),
                 $td = $table.find('#total-words-' + code);
 
             PTL.stats.updateItemStats($td, item.total);
 
-            var ratio = item.total === 0 ? 1 : item.translated / item.total;
+            var ratio = item.total === 0 ? 0 : item.translated / item.total;
             $table.find('#translated-ratio-' + code).text(ratio);
 
             $td = $table.find('#need-translation-' + code);
