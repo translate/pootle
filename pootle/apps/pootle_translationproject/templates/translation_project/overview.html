@@ -32,7 +32,9 @@
       <li>{{ summary_item|safe }}</li>
       {% endfor %}
     </ul>
-    <div id="progressbar"></div>
+    <div id="progressbar">
+      {% include "common/_progressbar.html" %}
+    </div>
     <div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
     </div>
   </div>

@@ -26,8 +26,10 @@
 {% if item.stats %}
 {% if 'progress' in table.fields %}
 <td class="stats-graph">
-  <div id="translated-percentage-{{ item.code }}" class="sortkey"></div>
-  <div id="progressbar-{{ item.code }}"></div>
+  <div id="translated-ratio-{{ item.code }}" class="sortkey"></div>
+  <div id="progressbar-{{ item.code }}">
+    {% include "common/_progressbar.html" %}
+  </div>
 </td>
 {% endif %}
 {% if 'total' in table.fields %}
