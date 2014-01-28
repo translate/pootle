@@ -94,6 +94,9 @@ def get_path_obj(func):
             path_obj = get_object_or_404(Project, code=project_code)
         else:  # No arguments: treat it like the root directory.
             path_obj = Directory.objects.root
+            # HACKISH: inject directory so that permissions can be
+            # queried
+            setattr(path_obj, 'directory', path_obj)
 
         request.ctx_obj = path_obj
         request.resource_obj = path_obj
