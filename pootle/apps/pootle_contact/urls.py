@@ -19,11 +19,14 @@
 
 from django.conf.urls import patterns, url
 
-from .views import PootleContactFormView
+from .views import PootleContactFormView, PootleReportFormView
 
 
 urlpatterns = patterns('',
     url(r'^$',
         PootleContactFormView.as_view(),
         name='pootle-contact'),
+    url(r'report/$',
+        PootleReportFormView.as_view(),
+        name='pootle-contact-report-error'),
 )

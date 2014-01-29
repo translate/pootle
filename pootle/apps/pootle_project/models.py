@@ -138,6 +138,13 @@ class Project(models.Model, TreeItem):
         db_index=True,
         editable=False,
     )
+    report_email = models.EmailField(
+        max_length=254,
+        blank=True,
+        verbose_name=_("Errors Report Email"),
+        help_text=_('An email address where issues with the source text can '
+                    'be reported.'),
+    )
 
     objects = ProjectManager()
 

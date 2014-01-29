@@ -19,6 +19,7 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django import forms
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from contact_form.forms import ContactForm
@@ -60,3 +61,26 @@ class PootleContactForm(MathCaptchaForm, ContactForm):
             self.cleaned_data['name'],
             self.cleaned_data['email']
         )
+
+
+class PootleReportForm(PootleContactForm):
+    """Contact form used to report errors on strings."""
+
+    report_email = forms.EmailField(
+        max_length=254,
+        required=False,
+        widget=forms.HiddenInput(),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(PootleReportForm, self).__init__(*args, **kwargs)
+        self.fields.keyOrder += ['report_email']
+
+    def recipient_list(self):
+        # Try to report string error to the report email for the project
+        # (injected in the 'report_email' field with initial values). If the
+        # project doesn't have a report email then fall back to the global
+        # string errors report email.
+        if self.cleaned_data['report_email']:
+            return [self.cleaned_data['report_email']]
+        return [settings.POOTLE_REPORT_STRING_ERRORS_EMAIL]

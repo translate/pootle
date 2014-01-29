@@ -6,7 +6,7 @@
     <h1>{% trans "Contact Us" %}</h1>
     <p>{% blocktrans %}Use the form below to contact us. You need to fill all
 the fields.{% endblocktrans %}</p>
-    <form method="post" action="{% url 'pootle-contact' %}">
+    <form method="post" action="{{ contact_form_url }}">
       {% csrf_token %}
       {{ form.as_p }}
       <p class="buttons">

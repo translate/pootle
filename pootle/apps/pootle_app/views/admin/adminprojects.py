@@ -97,6 +97,6 @@ def view(request):
             Project,
             link='/projects/%s/admin.html',
             form=ProjectForm,
-            exclude=('description',),
+            exclude=('description', 'report_email'),
             can_delete=True,
     )
