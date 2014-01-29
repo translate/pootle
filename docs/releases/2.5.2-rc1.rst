@@ -1,0 +1,36 @@
+===================================
+Welcome to the new Pootle 2.5.2-rc1
+===================================
+
+*Not yet released*
+
+For those who can't wait you might be interested to know what we've got planned
+on our :ref:`roadmap <roadmap>`.
+
+Changes in Requirements
+=======================
+- Django >= 1.5.5 < 1.6
+- `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
+  1.12.0-rc1
+- Python >= 2.6
+
+Major Changes
+=============
+
+These are by no means exhaustive, check the `git log
+<https://github.com/translate/pootle/compare/stable%2F2.5.1...master>`_
+for more details.
+
+- Local Translation Memory (TM) that allows to reuse translations done in
+  Pootle.
+- The ``view`` permission is now project-centric. So you need to assign view
+  permissions again!
+- Dropped code for several external apps from Pootle codebase. Also upgraded to
+  newer versions of those apps.
+- Some changes in the API.
+- New management command to assign permissions to a user.
+
+
+...and lots of refactoring, upgrades of upstream code, cleanups to remove
+Django 1.4 specifics, improved documentation and of course, loads of bugs were
+fixed.
