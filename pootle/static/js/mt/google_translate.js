@@ -54,15 +54,19 @@
         var transData = {key: PTL.editor.mt.google_translate.apiKey,
                          q: sourceText,
                          source: langFrom,
-                         target: langTo}
-        $.getJSON(PTL.editor.mt.google_translate.url, transData, function (r) {
-          if (r.data && r.data.translations) {
-            resultCallback(r.data.translations[0].translatedText);
-          } else {
-            if (r.error && r.error.message) {
-              resultCallback(false, "Google Translate Error: " + r.error.message);
+                         target: langTo};
+        $.jsonp({
+          url: PTL.editor.mt.google_translate.url,
+          data: transData,
+          success: function (r) {
+            if (r.data && r.data.translations) {
+              resultCallback(r.data.translations[0].translatedText);
             } else {
-              resultCallback(false, "Malformed response from Google Translate API");
+              if (r.error && r.error.message) {
+                resultCallback(false, "Google Translate Error: " + r.error.message);
+              } else {
+                resultCallback(false, "Malformed response from Google Translate API");
+              }
             }
           }
         });
