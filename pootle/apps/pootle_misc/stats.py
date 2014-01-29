@@ -214,7 +214,7 @@ def get_path_summary(path_obj, path_stats, latest_action):
         num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
         incomplete.extend([
             u'<a class="path-incomplete" href="%(url)s">' % {
-                    'url': path_obj.get_translate_url(state='incomplete')
+                    'url': path_obj.get_translate_url(state='untranslated')
                 },
             ungettext(u'Continue translation (%(num)d word left)',
                       u'Continue translation (%(num)d words left)',
@@ -233,7 +233,7 @@ def get_path_summary(path_obj, path_stats, latest_action):
             if goal is not None:
                 goal_words = goal.get_incomplete_words_in_path(pootle_path)
                 goal_url = goal.get_translate_url_for_path(pootle_path,
-                                                           state='incomplete')
+                                                           state='untranslated')
                 incomplete.extend([
                     u'<br /><a class="path-incomplete" href="%(url)s">' % {
                             'url': goal_url,
