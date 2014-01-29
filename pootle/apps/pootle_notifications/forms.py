@@ -31,51 +31,59 @@ def form_factory(current_directory):
 
     class _NoticeForm(forms.ModelForm):
         directory = forms.ModelChoiceField(
-                queryset=Directory.objects.filter(pk=current_directory.pk),
-                initial=current_directory.pk,
-                widget=forms.HiddenInput,
+            queryset=Directory.objects.filter(pk=current_directory.pk),
+            initial=current_directory.pk,
+            widget=forms.HiddenInput(),
         )
-        publish_rss = forms.BooleanField(label=_('Publish on news feed'),
-                required=False, initial=True,
+        publish_rss = forms.BooleanField(
+            label=_('Publish on news feed'),
+            required=False,
+            initial=True,
         )
-        send_email = forms.BooleanField(label=_('Send email'), required=False)
-        email_header = forms.CharField(label=_('Title'), required=False)
+        send_email = forms.BooleanField(
+            label=_('Send email'),
+            required=False,
+        )
+        email_header = forms.CharField(
+            label=_('Title'),
+            required=False,
+        )
         restrict_to_active_users = forms.BooleanField(
-                label=_('Email only to recently active users'),
-                required=False,
-                initial=True,
+            label=_('Email only to recently active users'),
+            required=False,
+            initial=True,
         )
 
         # Project selection
         if current_directory.is_language() or is_root:
             project_all = forms.BooleanField(
-                    label=_('All Projects'),
-                    required=False,
+                label=_('All Projects'),
+                required=False,
             )
             project_selection = forms.ModelMultipleChoiceField(
-                    label=_("Project Selection"),
-                    queryset=Project.objects.all(),
-                    required=False,
-                    widget=forms.SelectMultiple(attrs={
-                        'class': 'js-select2 select2-multiple',
-                        'data-placeholder': _('Select one or more projects'),
-                    }),
+                label=_("Project Selection"),
+                queryset=Project.objects.all(),
+                required=False,
+                widget=forms.SelectMultiple(attrs={
+                    'class': 'js-select2 select2-multiple',
+                    'data-placeholder': _('Select one or more projects'),
+                }),
             )
 
         # Language selection
         if current_directory.is_project() or is_root:
             language_all = forms.BooleanField(
-                    label=_('All Languages'),
-                    required=False,
+                label=_('All Languages'),
+                required=False,
             )
             language_selection = forms.ModelMultipleChoiceField(
-                    label=_("Language Selection"),
-                    queryset=current_directory.project.languages,
-                    required=False,
-                    widget=forms.SelectMultiple(attrs={
-                        'class': 'js-select2 select2-multiple',
-                        'data-placeholder': _('Select one or more languages'),
-                    }),
+                label=_("Language Selection"),
+                queryset=current_directory.project.languages,
+                required=False,
+                widget=forms.SelectMultiple(attrs={
+                    'class': 'js-select2 select2-multiple',
+                    'data-placeholder': _('Select one or more languages'),
+                }),
             )
 
         class Meta:
