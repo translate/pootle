@@ -6,7 +6,7 @@
     {% block contact_preamble %}
     <p>{% blocktrans %}You have to fill all the fields, and please <b>write in English</b>.{% endblocktrans %}</p>
     {% endblock %}
-    <form method="post" action="{% url 'pootle-contact' %}">
+    <form method="post" action="{{ contact_form_url }}">
       {% csrf_token %}
       {{ form.as_p }}
       <p class="buttons">

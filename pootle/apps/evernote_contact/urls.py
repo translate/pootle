@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Evernote Corporation
+# Copyright 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -21,11 +22,14 @@
 
 from django.conf.urls import patterns, url
 
-from .views import EvernoteContactFormView
+from .views import EvernoteContactFormView, PootleReportFormView
 
 
 urlpatterns = patterns('',
    url(r'^$',
        EvernoteContactFormView.as_view(),
        name='pootle-contact'),
+    url(r'report/$',
+        PootleReportFormView.as_view(),
+        name='pootle-contact-report-error'),
 )

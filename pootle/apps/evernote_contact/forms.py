@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
+# Copyright 2013-2015 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -20,6 +21,7 @@
 
 
 from django import forms
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from contact_form.forms import ContactForm
@@ -64,3 +66,28 @@ class EvernoteContactForm(MathCaptchaForm, ContactForm):
             self.cleaned_data['name'],
             self.cleaned_data['email']
         )
+
+
+class PootleReportForm(EvernoteContactForm):
+    """Contact form used to report errors on strings."""
+
+    report_email = forms.EmailField(
+        max_length=254,
+        required=False,
+        widget=forms.HiddenInput(),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(PootleReportForm, self).__init__(*args, **kwargs)
+        # It is necessary to set the following because keyOrder is altered in
+        # the parent form.
+        self.fields.keyOrder += ['report_email']
+
+    def recipient_list(self):
+        # Try to report string error to the report email for the project
+        # (injected in the 'report_email' field with initial values). If the
+        # project doesn't have a report email then fall back to the global
+        # string errors report email.
+        if self.cleaned_data['report_email']:
+            return [self.cleaned_data['report_email']]
+        return [settings.POOTLE_REPORT_STRING_ERRORS_EMAIL]

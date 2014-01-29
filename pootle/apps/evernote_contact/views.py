@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
+# Copyright 2013 Zuza Software Foundation
 # Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -24,7 +25,7 @@ from contact_form.views import ContactFormView
 
 from pootle.core.views import AjaxResponseMixin
 
-from .forms import EvernoteContactForm
+from .forms import EvernoteContactForm, PootleReportForm
 
 
 SUBJECT_TEMPLATE = 'Unit #%d (%s)'
@@ -42,6 +43,15 @@ Your question or comment:
 class EvernoteContactFormView(AjaxResponseMixin, ContactFormView):
     form_class = EvernoteContactForm
 
+    def get_context_data(self, **kwargs):
+        # Provide the form action URL to use in the template that renders the
+        # contact dialog.
+        context = {
+            'contact_form_url': reverse('pootle-contact'),
+        }
+        context.update(kwargs)
+        return super(EvernoteContactFormView, self).get_context_data(**context)
+
     def get_initial(self):
         initial = super(EvernoteContactFormView, self).get_initial()
 
@@ -52,6 +62,29 @@ class EvernoteContactFormView(AjaxResponseMixin, ContactFormView):
                 'email': user.email,
             })
 
+        return initial
+
+    def get_success_url(self):
+        # XXX: This is unused. We don't need a `/contact/sent/` URL, but
+        # the parent :cls:`ContactView` enforces us to set some value here
+        return reverse('pootle-contact')
+
+
+class PootleReportFormView(PootleContactFormView):
+    form_class = PootleReportForm
+
+    def get_context_data(self, **kwargs):
+        # Provide the form action URL to use in the template that renders the
+        # contact dialog.
+        context = {
+            'contact_form_url': reverse('pootle-contact-report-error'),
+        }
+        context.update(kwargs)
+        return super(PootleReportFormView, self).get_context_data(**context)
+
+    def get_initial(self):
+        initial = super(PootleReportFormView, self).get_initial()
+
         report = self.request.GET.get('report', False)
         if report:
             try:
@@ -61,7 +94,7 @@ class EvernoteContactFormView(AjaxResponseMixin, ContactFormView):
                     unit = Unit.objects.select_related(
                         'store__translation_project__project',
                     ).get(id=uid)
-                    if unit.is_accessible_by(user):
+                    if unit.is_accessible_by(self.request.user):
                         unit_absolute_url = self.request.build_absolute_uri(
                                 unit.get_translate_url()
                             )
@@ -75,6 +108,8 @@ class EvernoteContactFormView(AjaxResponseMixin, ContactFormView):
                                 unit.source,
                                 unit.target
                             ),
+                            'report_email': unit.store.translation_project \
+                                                      .project.report_email,
                         })
                 except Unit.DoesNotExist:
                     pass
@@ -82,8 +117,3 @@ class EvernoteContactFormView(AjaxResponseMixin, ContactFormView):
                 pass
 
         return initial
-
-    def get_success_url(self):
-        # XXX: This is unused. We don't need a `/contact/sent/` URL, but
-        # the parent :cls:`ContactView` enforces us to set some value here
-        return reverse('pootle-contact')

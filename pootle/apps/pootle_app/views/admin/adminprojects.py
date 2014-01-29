@@ -52,6 +52,7 @@ def view(request):
             fields = (
                 'code', 'fullname', 'checkstyle', 'localfiletype', 'treestyle',
                 'source_language', 'screenshot_search_prefix', 'disabled',
+                'report_email',
             )
 
         def __init__(self, *args, **kwargs):

@@ -157,6 +157,10 @@ DEFAULT_FROM_EMAIL = 'info@YOUR_DOMAIN.com'
 CONTACT_EMAIL = 'info@YOUR_DOMAIN.com'
 CAN_CONTACT = True
 
+# Email address to report string errors to, unless a report email was set for
+# the project for which the string error is being reported.
+POOTLE_REPORT_STRING_ERRORS_EMAIL = 'string_errors_manager@YOUR_DOMAIN.com'
+
 # Mail server settings
 
 # By default Pootle uses the SMTP server on localhost. If the server is not

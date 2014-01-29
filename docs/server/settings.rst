@@ -109,6 +109,14 @@ Site-specific settings.
   have effect if :setting:`CAN_CONTACT` is set to ``True``.
 
 
+.. setting:: POOTLE_REPORT_STRING_ERRORS_EMAIL
+
+``POOTLE_REPORT_STRING_ERRORS_EMAIL``
+  Default: ``string_errors_manager@YOUR_DOMAIN.com``
+
+  Email address to report errors on strings.
+
+
 40-apps.conf
 ^^^^^^^^^^^^
 
