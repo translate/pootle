@@ -60,12 +60,17 @@ In the editor:
 
 In the overview page:
 
+- Several features from translation projects have been merged into the
+  *Overview* tab, including quality check failures and directory- and
+  file-level actions. As a consequence the *Review* tab has been dropped and
+  the *Translate* tab serves solely to display the actual translation
+  editor.
 - The overview page allows you to drill down into certain types of units
   matching a translation state or with an error.
 - It is now easier to see what work needs attentions, as we highlight next
   actions for your project.
 - With editable project and language descriptions you can supply description
-  for projects. These are editable using Markdown, reStructured or HTML.
+  for projects. These are editable using Markdown, reStructuredText or HTML.
 - News alerts can now be sent via email to project participants.
 - The overview page provides an expanded checks page that highlights all
   failing checks.
@@ -86,20 +91,53 @@ Version Control
 
 Commands
 --------
+New and changed commands:
+
 - `list_languages
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#list-languages>`_
+  <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/commands.html#list-languages>`_
 - `list_projects
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#list-projects>`_
+  <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/commands.html#list-projects>`_
 - `latest_change_id
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#latest-change-id>`_
-- --modified-since flag for `update_stores
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#update-stores>`_
+  <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/commands.html#latest-change-id>`_
+- :setting:`--modified-since` flag for `update_stores
+  <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/commands.html#update-stores>`_
   and `sync_stores
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#sync-stores>`_
+  <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/commands.html#sync-stores>`_
 - `commit_to_vcs
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#commit-to-vcs>`_
+  <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/commands.html#commit-to-vcs>`_
 - `update_from_vcs
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#update-from-vcs>`_
+  <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/commands.html#update-from-vcs>`_
+- ``update_from_templates`` has been renamed to `update_against_templates
+  <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.0/server/commands.html#update-against-templates>`_
+
+
+Important server admin changes
+------------------------------
+
+- Static files are now handled by the ``django.contrib.staticfiles`` module.
+  This means you will need to run the ``pootle collectstatic`` command on
+  production and serve the *pootle/assets/* directory from your webserver at
+  */assets/*. If you are upgrading from a previous version, you will need to
+  replace the occurrences of *static* with *assets* within your web server
+  configuration.
+
+- Static files are bundled into assets by using `django-assets
+  <http://elsdoerfer.name/docs/django-assets/>`_.
+
+- Settings have been migrated from *localsettings.py* into *settings/\*.conf*
+  files. Your customizations now go in a :ref:`separate configuration file
+  <settings#customizing>` (or in *settings/90-local.conf* if running from a
+  repository clone).
+
+- The ``PootleServer`` script has been phased out in favor of a ``pootle``
+  runner script.
+
+- If you will be using Pootle with Django 1.3, you *have* to keep the timezone
+  on ``UTC``, unless you are using PostgreSQL. Users of PostgreSQL or Django
+  1.4 or later are free to set the time zone as they prefer.
+- Make sure to use the minimum required South version when performing
+  database upgrades.
+
 
 Infrastructure
 --------------
