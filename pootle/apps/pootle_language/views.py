@@ -55,7 +55,7 @@ def make_project_item(translation_project):
     project_stats = translation_project.get_stats()
 
     info = {
-        'code': project.code,
+        'code': translation_project.code,
         'href': href,
         'href_all': href_all,
         'href_todo': href_todo,

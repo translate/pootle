@@ -75,7 +75,7 @@ def make_language_item(translation_project):
 
     info = {
         'project': translation_project.project.code,
-        'code': translation_project.language.code,
+        'code': translation_project.code,
         'href': href,
         'href_all': href_all,
         'href_todo': href_todo,
