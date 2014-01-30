@@ -1660,6 +1660,16 @@ table.graph .fuzzy
 
 /* PROGRESSBAR LEGEND */
 
+div.legend
+{
+    text-align: left;
+}
+
+html[dir="rtl"] div.legend
+{
+    text-align: right;
+}
+
 span.legend
 {
     display: inline-block;
