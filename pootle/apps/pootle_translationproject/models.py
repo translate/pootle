@@ -817,6 +817,7 @@ class TranslationProject(models.Model, TreeItem):
         from pootle_misc import ptempfile as tempfile
 
         tempzipfile = None
+        archivecontents = None
 
         try:
             # Using zip command line is fast
@@ -824,14 +825,17 @@ class TranslationProject(models.Model, TreeItem):
             # security reasons
             fd, tempzipfile = tempfile.mkstemp(prefix='pootle', suffix='.zip')
             os.close(fd)
+            archivecontents = open(tempzipfile, "wb")
 
             file_list = u" ".join(
                 store.abs_real_path[len(self.abs_real_path)+1:] \
                 for store in stores.iterator()
             )
-            result = subprocess.Popen(['zip', '-r', file_list,
-                                       '--out', tempzipfile],
-                                      cwd=self.abs_real_path)
+            process = subprocess.Popen(['zip', '-r', '-', file_list],
+                                       cwd=self.abs_real_path,
+                                       stdout=archivecontents)
+            result = process.wait()
+            os.close(fd)
 
             if result == 0:
                 if path is not None:
@@ -841,18 +845,20 @@ class TranslationProject(models.Model, TreeItem):
                     filedata = open(tempzipfile, "r").read()
                     if filedata:
                         return filedata
-        finally:
-            if tempzipfile is not None and os.path.exists(tempzipfile):
-                os.remove(tempzipfile)
-
-        # But if it doesn't work, we can do it from python
-        archivecontents = None
-        try:
+                    else:
+                        raise Exception("failed to read temporary zip file")
+            else:
+                raise Exception("zip command returned error code: %d" % result)
+        except Exception as e:
+            # But if it doesn't work, we can do it from Python.
+            logging.debug(e)
+            logging.debug("falling back to zipfile module")
             if path is not None:
-                fd, tempzipfile = tempfile.mkstemp(prefix='pootle',
-                                                   suffix='.zip')
-                os.close(fd)
-                archivecontents = open(tempzipfile, "wb")
+                if tempzipfile is None:
+                    fd, tempzipfile = tempfile.mkstemp(prefix='pootle',
+                                                       suffix='.zip')
+                    os.close(fd)
+                    archivecontents = open(tempzipfile, "wb")
             else:
                 import cStringIO
                 archivecontents = cStringIO.StringIO()
