@@ -11,18 +11,6 @@ If you are upgrading Pootle, you might want to see some tips to ensure your
 :ref:`upgrade goes smoothly <upgrading>`
 
 
-Version 2.1.6
--------------
-
-Bugfix release, released on April 13th 2011.
-
-- This is the first version that is compatible with Django 1.2.5 and
-  Django 1.3.
-
-- You also need Translate Toolkit 1.9.0 to be able to use these newer
-  versions of Django.
-
-
 Version 2.1.1
 -------------
 
