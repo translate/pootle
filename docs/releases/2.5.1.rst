@@ -58,14 +58,33 @@ Changes since 2.5.1-rc1
 
 Important server admin changes
 ------------------------------
-- Pootle now uses South to manage database upgrades.  A single command replaces
-  the various command used previously and the automatic update has been
-  removed.
+- The minimum required Python version is now 2.6.x. While Django 1.4.x supports
+  Python 2.5, it is no longer supported by the Python Foundation neither by
+  several third party apps.
+- The database schema upgrade procedure has been redefined:
+
+  - The `updatedb
+    <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.1/server/commands.html#updatedb>`_
+    management command has been phased out in favor of South's own
+    `migrate <http://south.readthedocs.org/en/latest/commands.html#migrate>`_
+    command.
+  - Post schema upgrade actions have been moved to the `upgrade
+    <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.1/server/commands.html#upgrade>`_
+    command.
+  - The automatic update has been removed.
+
+- The `setup
+  <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.1/server/commands.html#setup>`_
+  management command was added to hide the complexities in the altering of the
+  DB when installing or upgrading Pootle.
 - Fabric deployment scripts have been improved to make deployment easier.
 - Security fixes identified by a Mozilla security audit have been implemented.
 - Optimisations of asset caching such as Expires headers have been enabled.
 - Various LDAP fixes.
 - Static pages can now be used to track the acceptance of terms of use.
+- The quality check for spell checking has been globally disabled. It wasn't
+  properly advertised nor documented, and it didn't perform well enough to be
+  considered useful.
 
 
 Visual Changes
