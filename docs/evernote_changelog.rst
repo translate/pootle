@@ -12,10 +12,13 @@ Release .next
 
 - Fixed Google Translate. (`#107`_)
 
+- Fixed contact form. (`#114`_)
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 .. _#107: https://github.com/evernote/pootle/issues/107
+.. _#114: https://github.com/evernote/pootle/issues/114
 
 
 Release `2014-01-27`_
