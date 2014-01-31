@@ -81,6 +81,8 @@ build is what is in VC and doesn't contain any of your uncommitted changes.  It
 also ensure that someone else could replicate your process. ::
 
     git clone git@github.com:translate/pootle.git pootle-release
+    cd pootle-release
+    git submodule update --init
     mkvirtualenv pootle-release
     pip install -r requirements/build.txt
 
