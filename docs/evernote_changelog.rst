@@ -10,13 +10,23 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+
+
+Release `2014-01-31`_
+---------------------
+
+- Bugfix release.
+
 - Fixed Google Translate. (`#107`_)
 
 - Fixed contact form. (`#114`_)
 
 - `Commit comparison wrt previous release
-  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+  <https://github.com/evernote/pootle/compare/release-2014-01-27...release-2014-01-31>`_
 
+.. _2014-01-31: https://github.com/evernote/pootle/releases/tag/release-2014-01-31
 .. _#107: https://github.com/evernote/pootle/issues/107
 .. _#114: https://github.com/evernote/pootle/issues/114
 
