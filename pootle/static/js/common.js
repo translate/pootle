@@ -62,7 +62,6 @@
         delegate: '.js-popup-ajax',
         mainClass: 'popup-ajax'
       });
-      $('.js-popup-inline').magnificPopup();
 
       /* Generic toggle */
       $(document).on("click", ".js-toggle", function (e) {
