@@ -1,4 +1,4 @@
-/* glue: 0.3 hash: 403a2d7c95 */
+/* glue: 0.4 hash: 26f0803c26 */
 .bar-untranslated,
 .bar-translated,
 .bar-fuzzy,
@@ -31,6 +31,7 @@
 .icon-block,
 .icon-apertium,
 .icon-accept,
+.translation-space,
 .icon-vcs-update,
 .icon-vcs-commit,
 .icon-upload,
@@ -71,6 +72,7 @@
 .icon-block{background-position:-16px -84px;width:16px;height:16px;}
 .icon-apertium{background-position:-32px -84px;width:16px;height:16px;}
 .icon-accept{background-position:-48px -84px;width:16px;height:16px;}
+.translation-space{background-position:-196px -49px;width:4px;height:14px;}
 .icon-vcs-update{background-position:-64px -84px;width:14px;height:14px;}
 .icon-vcs-commit{background-position:-78px -84px;width:14px;height:14px;}
 .icon-upload{background-position:-92px -84px;width:14px;height:14px;}
