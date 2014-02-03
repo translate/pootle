@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -133,6 +133,8 @@ def set_resource(request, path_obj, dir_path, filename):
     directory = None
     store = None
 
+    is_404 = False
+
     if filename:
         pootle_path = pootle_path + filename
         resource_path = resource_path + filename
@@ -144,14 +146,27 @@ def set_resource(request, path_obj, dir_path, filename):
             ).get(pootle_path=pootle_path)
             directory = store.parent
         except Store.DoesNotExist:
-            raise Http404
+            is_404 = True
 
-    if directory is None:
+    if directory is None and not is_404:
         if dir_path:
-            directory = get_object_or_404(Directory,
-                                          pootle_path=pootle_path)
+            try:
+                directory = Directory.objects.get(pootle_path=pootle_path)
+            except Directory.DoesNotExist:
+                is_404 = True
         else:
             directory = obj_directory
+
+    if is_404:  # Try parent directory
+        language_code, project_code, dp, fn = split_pootle_path(pootle_path)
+        if not filename:
+            dir_path = dir_path[:dir_path[:-1].rfind('/') + 1]
+
+        url = reverse('pootle-tp-overview',
+                      args=[language_code, project_code, dir_path])
+        request.redirect_url = url
+
+        raise Http404
 
     request.store = store
     request.directory = directory
@@ -228,13 +243,22 @@ def get_resource(func):
         except Http404:
             if not request.is_ajax():
                 user_choice = request.COOKIES.get('user-choice', None)
-                if user_choice and user_choice in ('language', 'resource',):
+                url = None
+
+                if hasattr(request, 'redirect_url'):
+                    url = request.redirect_url
+                elif user_choice in ('language', 'resource',):
                     project = (path_obj if isinstance(path_obj, Project)
                                         else path_obj.project)
                     url = reverse('pootle-project-overview',
                                   args=[project.code, dir_path, filename])
+
+                if url is not None:
                     response = redirect(url)
-                    response.delete_cookie('user-choice')
+
+                    if user_choice in ('language', 'resource',):
+                        # XXX: should we rather delete this in a single place?
+                        response.delete_cookie('user-choice')
 
                     return response
 
