@@ -20,8 +20,6 @@
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _, ungettext
 
-from pootle_misc.stats import get_raw_stats, stats_descriptions
-
 
 HEADING_CHOICES = [
     {
@@ -53,25 +51,30 @@ HEADING_CHOICES = [
     },
     {
         'id': 'total',
-        'class': 'stats-number sorttable_numeric',
+        'class': 'stats-number sorttable_numeric when-loaded',
         # Translators: Heading representing the total number of words of a file
         # or directory
         'display_name': _("Total"),
     },
     {
         'id': 'need-translation',
-        'class': 'stats-number sorttable_numeric',
+        'class': 'stats-number sorttable_numeric when-loaded',
         'display_name': _("Need Translation"),
     },
     {
         'id': 'suggestions',
-        'class': 'stats-number sorttable_numeric',
+        'class': 'stats-number sorttable_numeric when-loaded',
         # Translators: The number of suggestions pending review
         'display_name': _("Suggestions"),
     },
     {
+        'id': 'critical',
+        'class': 'stats-number sorttable_numeric when-loaded',
+        'display_name': _("Critical"),
+    },
+    {
         'id': 'activity',
-        'class': 'stats',
+        'class': 'stats sorttable_numeric when-loaded',
         'display_name': _("Last Activity"),
     },
     # NOTE: 'tags' heading is not included here on purpose to avoid the
@@ -86,43 +89,16 @@ def get_table_headings(choices):
 
 
 def make_generic_item(path_obj):
-    """Template variables for each row in the table.
-
-    :func:`make_directory_item` and :func:`make_store_item` will add onto these
-    variables.
-    """
-    action = path_obj.pootle_path
-    try:
-        stats = get_raw_stats(path_obj, include_suggestions=True)
-        info = {
-            'href': action,
-            'href_all': path_obj.get_translate_url(),
-            'href_todo': path_obj.get_translate_url(state='incomplete'),
-            'href_sugg': path_obj.get_translate_url(state='suggestions'),
-            'stats': stats,
-            'tooltip': _('%(percentage)d%% complete',
-                         {'percentage': stats['translated']['percentage']}),
-            'title': path_obj.name,
-        }
-
-        errors = stats.get('errors', 0)
-        if errors:
-            info['errortooltip'] = ungettext('Error reading %d file',
-                                             'Error reading %d files',
-                                             errors, errors)
-
-        info.update(stats_descriptions(stats))
-    except IOError as e:
-        info = {
-            'href': action,
-            'errortooltip': e.strerror,
-            'data': {
-                'errors': 1,
-            },
-            'title': path_obj.name,
-        }
-
-    return info
+    """Template variables for each row in the table."""
+    return {
+        'href': path_obj.get_absolute_url(),
+        'href_all': path_obj.get_translate_url(),
+        'href_todo': path_obj.get_translate_url(state='incomplete'),
+        'href_sugg': path_obj.get_translate_url(state='suggestions'),
+        'href_critical': path_obj.get_critical_url(),
+        'title': path_obj.name,
+        'code': path_obj.code
+    }
 
 
 def make_directory_item(directory):
@@ -142,19 +118,17 @@ def make_store_item(store):
     })
     return item
 
-
-def get_parent_item_list(directory):
-    """Return a list with the parent directory item.
-
-    If the parent directory is the directory for a language or a project then
-    return an empty list.
-    """
+def get_parent(directory):
     parent_dir = directory.parent
 
     if not (parent_dir.is_language() or parent_dir.is_project()):
-        return [{'title': u'..', 'href': parent_dir}]
+        return {
+            'icon': 'folder-parent',
+            'title': _("Back to parent folder"),
+            'href': parent_dir.get_absolute_url()
+        }
     else:
-        return []
+        return None
 
 
 def get_children(directory):
@@ -164,95 +138,47 @@ def get_children(directory):
     The elements of the list are dictionaries which keys are populated after in
     the templates.
     """
-    parent = get_parent_item_list(directory)
-
     directories = [make_directory_item(child_dir)
                    for child_dir in directory.child_dirs.iterator()]
 
     stores = [make_store_item(child_store)
               for child_store in directory.child_stores.iterator()]
 
-    return parent + directories + stores
+    return directories + stores
 
 
 ################################ Goal specific ################################
 
 def make_goal_item(goal, pootle_path):
     """Create the item row for a goal."""
-    try:
-        stats = goal.get_raw_stats_for_path(pootle_path)
-        info = {
-            'href_all': goal.get_translate_url_for_path(pootle_path),
-            'href_todo': goal.get_translate_url_for_path(pootle_path,
-                                                         state='incomplete'),
-            'href_sugg': goal.get_translate_url_for_path(pootle_path,
-                                                         state='suggestions'),
-            'stats': stats,
-            'tooltip': _('%(percentage)d%% complete',
-                         {'percentage': stats['translated']['percentage']}),
-        }
-
-        errors = stats.get('errors', 0)
-        if errors:
-            msg = ungettext('Error reading %d file', 'Error reading %d files',
-                            errors, errors)
-            info['errortooltip'] = msg
-
-        info.update(stats_descriptions(stats))
-    except IOError as e:
-        info = {
-            'errortooltip': e.strerror,
-            'data': {
-                'errors': 1,
-            },
-        }
-
-    info.update({
+    return {
         'href': goal.get_drill_down_url_for_path(pootle_path),
+        'href_all': goal.get_translate_url_for_path(pootle_path),
+        'href_todo': goal.get_translate_url_for_path(pootle_path,
+                                                     state='incomplete'),
+        'href_sugg': goal.get_translate_url_for_path(pootle_path,
+                                                     state='suggestions'),
         'isdir': True,
         'priority': goal.priority,
         'title': goal.goal_name,
-    })
-    return info
+        'code': goal.slug,
+    }
 
 
 def make_goal_dir_item(directory, goal):
     """Template variables for each row in the table."""
-    try:
-        stats = goal.get_raw_stats_for_path(directory.pootle_path)
-        item = {
-            'href_all': goal.get_translate_url_for_path(directory.pootle_path),
-            'href_todo': goal.get_translate_url_for_path(directory.pootle_path,
-                                                         state='incomplete'),
-            'href_sugg': goal.get_translate_url_for_path(directory.pootle_path,
-                                                         state='suggestions'),
-            'stats': stats,
-            'tooltip': _('%(percentage)d%% complete',
-                         {'percentage': stats['translated']['percentage']}),
-        }
-
-        errors = stats.get('errors', 0)
-        if errors:
-            msg = ungettext('Error reading %d file', 'Error reading %d files',
-                            errors, errors)
-            item['errortooltip'] = msg
-
-        item.update(stats_descriptions(stats))
-    except IOError as e:
-        item = {
-            'errortooltip': e.strerror,
-            'data': {
-                'errors': 1,
-            },
-        }
-
-    item.update({
+    return {
         'href': goal.get_drill_down_url_for_path(directory.pootle_path),
+        'href_all': goal.get_translate_url_for_path(directory.pootle_path),
+        'href_todo': goal.get_translate_url_for_path(directory.pootle_path,
+                                                     state='incomplete'),
+        'href_sugg': goal.get_translate_url_for_path(directory.pootle_path,
+                                                     state='suggestions'),
         'title': directory.name,
         'icon': 'folder',
         'isdir': True,
-    })
-    return item
+        'code': goal.slug,
+    }
 
 
 def make_goal_store_item(store, goal):

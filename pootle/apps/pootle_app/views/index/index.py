@@ -33,7 +33,6 @@ from pootle_app.models.permissions import (get_matching_permissions,
 from pootle_app.views.top_stats import gentopstats_root
 from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import get_raw_stats
 from pootle_profile.models import get_profile
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
@@ -45,16 +44,10 @@ def get_items(request, objects, get_last_action, name_func):
         return items
 
     for item in objects:
-        stats = get_raw_stats(item)
-
-        translated_percentage = stats['translated']['percentage']
         items.append({
             'code': item.code,
             'name': name_func(item.fullname),
             'lastactivity': get_last_action(item),
-            'stats': stats,
-            'completed_title': _("%(percentage)d%% complete",
-                                 {'percentage': translated_percentage}),
         })
 
     items.sort(lambda x, y: locale.strcoll(x['name'], y['name']))
@@ -99,7 +92,7 @@ def view(request, root_dir):
         'proportional': False,
         'fields': languages_table_fields,
         'headings': get_table_headings(languages_table_fields),
-        'items': filter(lambda x: x['stats']['total']['words'] != 0, languages),
+        'items': languages,
     }
 
     projects = getprojects(request)
@@ -129,9 +122,9 @@ def view(request, root_dir):
         'can_edit': can_edit,
         'languages_table': languages_table,
         'projects_table': projects_table,
+        'resource_obj': request.resource_obj,
     }
-    visible_langs = [l for l in languages if l['stats']['total']['words'] != 0]
-    templatevars['moreprojects'] = (len(projects) > len(visible_langs))
+    templatevars['moreprojects'] = (len(projects) > len(languages))
 
     if can_edit:
         from pootle_misc.siteconfig import load_site_config

@@ -69,7 +69,7 @@ def parse_store(store):
     try:
         logging.debug(u'Importing strings from %s', store.real_path)
         store.require_units()
-        count = store.getquickstats()['total']
+        count = store.get_total_wordcount()
         logging.debug(u'Imported strings (%d) from %s', store.real_path, count)
     except:
         logging.debug(u'Failed to import strings from %s', store.real_path)

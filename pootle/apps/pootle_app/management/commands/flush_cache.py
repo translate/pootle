@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -19,24 +18,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django import template
-from django.template.defaultfilters import stringfilter
+import os
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+
+from pootle_app.management.commands import PootleCommand
 
 
-register = template.Library()
+class Command(PootleCommand):
+    help = "Flush stats cache."
 
+    def handle_all_stores(self, translation_project, **options):
+        translation_project.flush_cache()
 
-@register.inclusion_tag('common/table.html', takes_context=True)
-def display_table(context, table):
-    return {
-        'table': table,
-        'user': context.get('user', None),
-        'request': context.get('request', None),
-    }
+    def handle_store(self, store, **options):
+        store.flush_cache()
 
+    def handle_language(self, lang, **options):
+        lang.flush_cache(False)
 
-@register.filter
-@stringfilter
-def makeid(value):
-    """Replaces all '.' with '-'."""
-    return value.replace(u'.', u'-')
+    def handle_project(self, prj, **options):
+        prj.flush_cache(False)

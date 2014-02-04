@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -87,6 +88,7 @@ class Submission(models.Model):
     new_value = models.TextField(blank=True, default=u"")
 
     objects = RelatedManager()
+    simple_objects = models.Manager()
 
     class Meta:
         ordering = ["creation_time"]

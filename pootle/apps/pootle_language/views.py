@@ -32,8 +32,6 @@ from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.top_stats import gentopstats_language
 from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
-from pootle_misc.stats import (get_raw_stats, nice_percentage,
-                               stats_descriptions)
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission
@@ -53,30 +51,16 @@ def make_project_item(translation_project):
     href_all = translation_project.get_translate_url()
     href_todo = translation_project.get_translate_url(state='incomplete')
 
-    project_stats = get_raw_stats(translation_project)
-
     info = {
-        'code': project.code,
+        'code': translation_project.code,
         'href': href,
         'href_all': href_all,
         'href_todo': href_todo,
         'title': project.fullname,
         'description': project.description,
-        'stats': project_stats,
         'lastactivity': get_last_action(translation_project),
         'isproject': True,
-        'tooltip': _('%(percentage)d%% complete',
-                     {'percentage': project_stats['translated']['percentage']}),
     }
-
-    errors = project_stats.get('errors', 0)
-
-    if errors:
-        info['errortooltip'] = ungettext('Error reading %d file',
-                                         'Error reading %d files',
-                                         errors, errors)
-
-    info.update(stats_descriptions(project_stats))
 
     return info
 
@@ -93,9 +77,6 @@ def overview(request, language):
     tp_count = len(user_tps)
     items = (make_project_item(tp) for tp in user_tps)
 
-    totals = language.getquickstats()
-    average = nice_percentage(totals['translatedsourcewords'],
-                              totals['totalsourcewords'])
     topstats = gentopstats_language(language)
 
     table_fields = ['name', 'progress', 'total', 'need-translation', 'activity']
@@ -108,15 +89,14 @@ def overview(request, language):
     }
 
     templatevars = {
+        'resource_obj': request.resource_obj,
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
           'description': language.description,
-          'summary': ungettext('%(projects)d project, %(average)d%% translated',
-                               '%(projects)d projects, %(average)d%% translated',
-                               tp_count, {
-                                   "projects": tp_count,
-                                   "average": average}),
+          'summary': ungettext('%(projects)d project',
+                               '%(projects)d projects',
+                               tp_count, {"projects": tp_count}),
         },
         'feed_path': '%s/' % language.code,
         'topstats': topstats,
@@ -173,7 +153,6 @@ def language_settings_edit(request, language):
 def translate(request, language):
     request.pootle_path = language.pootle_path
     request.ctx_path = language.pootle_path
-    request.resource_path = ''
 
     request.store = None
     request.directory = language.directory

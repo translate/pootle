@@ -41,18 +41,21 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
 from pootle.core.managers import RelatedManager
+from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_misc.aggregate import group_by_count_extra, max_column
+from pootle_misc.aggregate import group_by_count, group_by_count_extra, max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names
-from pootle_misc.util import (cached_property, getfromcache, deletefromcache,
-                              datetime_min)
-from pootle_statistics.models import SubmissionFields, SubmissionTypes
+from pootle_misc.util import (cached_property, get_cached_value,
+                              deletefromcache, datetime_min)
+from pootle_statistics.models import (Submission, SubmissionFields,
+                                      SubmissionTypes)
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
-from pootle_store.util import (calculate_stats, empty_quickstats,
-                               OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED)
+from pootle_store.util import (calc_total_wordcount, calc_translated_wordcount,
+                               calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED,
+                               FUZZY, TRANSLATED)
 from pootle_tagging.models import ItemWithGoal
 
 
@@ -68,6 +71,7 @@ NEW = 0
 PARSED = 1
 # Quality checks run
 CHECKED = 2
+
 
 
 ############### Quality Check #############
@@ -425,7 +429,36 @@ class Unit(models.Model, base.TranslationUnit):
         self._target_updated = False
         self._encoding = 'UTF-8'
 
+    def flag_store_before_going_away(self):
+        self.store.flag_for_deletion(CachedMethods.TOTAL,
+                                     CachedMethods.LAST_UPDATED)
+
+        if self.state == FUZZY:
+            self.store.flag_for_deletion(CachedMethods.FUZZY)
+        elif self.state == TRANSLATED:
+            self.store.flag_for_deletion(CachedMethods.TRANSLATED)
+
+        if self.suggestion_set.count() > 0:
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
+
+        if self.get_qualitychecks():
+            self.store.flag_for_deletion(CachedMethods.CHECKS)
+
+        # Check if unit currently being deleted is the one referenced in
+        # last_action
+        la = get_cached_value(self.store, 'get_last_action')
+        if not la or not 'id' in la or la['id'] == self.id:
+            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
+
+    def delete(self, *args, **kwargs):
+        self.flag_store_before_going_away()
+
+        super(Unit, self).delete(*args, **kwargs)
+
     def save(self, *args, **kwargs):
+        if not self.id:
+            self.store.flag_for_deletion(CachedMethods.TOTAL)
+
         if self._source_updated:
             # update source related fields
             self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
@@ -436,11 +469,15 @@ class Unit(models.Model, base.TranslationUnit):
             # update target related fields
             self.target_wordcount = count_words(self.target_f.strings)
             self.target_length = len(self.target_f)
+            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
                     self.state = TRANSLATED
+                    self.store.flag_for_deletion(CachedMethods.TRANSLATED)
+            # if it was TRANSLATED then set to UNTRANSLATED
             elif self.state > FUZZY:
                 self.state = UNTRANSLATED
+                self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
         super(Unit, self).save(*args, **kwargs)
 
@@ -458,20 +495,17 @@ class Unit(models.Model, base.TranslationUnit):
             self.store.update_store_header()
             self.store.file.savestore()
 
-        if (self.store.state >= CHECKED and
-            (self._source_updated or self._target_updated)):
-            #FIXME: are we sure only source and target affect quality checks?
+        if self._source_updated or self._target_updated:
             self.update_qualitychecks()
 
         # done processing source/target update remove flag
         self._source_updated = False
         self._target_updated = False
 
+        # update cache only if we are updating a single unit
         if self.store.state >= PARSED:
-            # updated caches
-            store = self.store
-            deletefromcache(store, ["getquickstats", "getcompletestats",
-                                    "get_mtime", "get_suggestion_count"])
+            self.store.flag_for_deletion(CachedMethods.MTIME)
+            self.store.update_cache()
 
     def get_absolute_url(self):
         return l(self.store.pootle_path)
@@ -682,14 +716,14 @@ class Unit(models.Model, base.TranslationUnit):
 
         if not created:
             checks = self.qualitycheck_set.all()
-
             if keep_false_positives:
                 existing = set(checks.filter(false_positive=True) \
                                      .values_list('name', flat=True))
                 checks = checks.filter(false_positive=False)
-
+            # all checks should be recalculated
             checks.delete()
 
+        # no checks if unit is untranslated
         if not self.target:
             return
 
@@ -697,7 +731,8 @@ class Unit(models.Model, base.TranslationUnit):
                                 .run_filters(self, categorised=True)
 
         for name in qc_failures.iterkeys():
-            if name == 'isfuzzy' or name in existing:
+            if name == 'fuzzy' or name in existing:
+                # keep false-positive checks
                 continue
 
             message = qc_failures[name]['message']
@@ -705,6 +740,9 @@ class Unit(models.Model, base.TranslationUnit):
 
             self.qualitycheck_set.create(name=name, message=message,
                                          category=category)
+
+            self.store.flag_for_deletion(CachedMethods.CHECKS)
+
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
@@ -787,6 +825,13 @@ class Unit(models.Model, base.TranslationUnit):
         if self.state <= OBSOLETE:
             return
 
+        if value != (self.state == FUZZY):
+            # when Unit toggles its FUZZY state the number of translated words
+            # also changes
+            self.store.flag_for_deletion(CachedMethods.FUZZY,
+                                         CachedMethods.TRANSLATED,
+                                         CachedMethods.LAST_ACTION)
+
         if value:
             self.state = FUZZY
         elif self.state <= FUZZY:
@@ -806,6 +851,10 @@ class Unit(models.Model, base.TranslationUnit):
 
     def makeobsolete(self):
         if self.state > OBSOLETE:
+            # when Unit becomes obsolete the cache flags should be updated
+            self.flag_store_before_going_away()
+            self._save_action = UNIT_OBSOLETE
+
             self.state = OBSOLETE
 
     def resurrect(self):
@@ -907,6 +956,7 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.target = translation
         try:
             suggestion.save()
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
             if touch:
                 self.save()
         except:
@@ -930,6 +980,7 @@ class Unit(models.Model, base.TranslationUnit):
         # ``save``, otherwise the quality checks won't be properly updated
         # when saving the unit.
         suggestion.delete()
+        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
         self.save()
 
         if settings.AUTOSYNC and self.file:
@@ -947,11 +998,20 @@ class Unit(models.Model, base.TranslationUnit):
             return False
 
         suggestion.delete()
+        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
         # Update timestamp
         self.save()
 
         return True
 
+    def reject_qualitycheck(self, check_id):
+        check = self.qualitycheck_set.get(id=check_id)
+        check.false_positive = True
+        check.save()
+        # update timestamp
+
+        self.store.flag_for_deletion(CachedMethods.CHECKS)
+        self.save()
 
     def get_terminology(self):
         """get terminology suggestions"""
@@ -978,7 +1038,7 @@ class StoreManager(RelatedManager):
         return self.get(pootle_path=pootle_path)
 
 
-class Store(models.Model, base.TranslationStore):
+class Store(models.Model, TreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
 
     file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs,
@@ -1102,6 +1162,13 @@ class Store(models.Model, base.TranslationStore):
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
 
+    @property
+    def code(self):
+        return self.name.replace('.', '-')
+
+    def __init__(self, *args, **kwargs):
+        super(Store, self).__init__(*args, **kwargs)
+
     def __unicode__(self):
         return unicode(self.pootle_path)
 
@@ -1120,14 +1187,14 @@ class Store(models.Model, base.TranslationStore):
                 unit.index = index + i
                 unit.save()
         if self.state >= PARSED:
-            # new units, let's flush cache
-            deletefromcache(self, ["getquickstats", "getcompletestats",
-                                   "get_mtime", "get_suggestion_count"])
+            self.update_cache()
 
     def delete(self, *args, **kwargs):
+        all_cache_methods = CachedMethods.get_all()
+        self.flag_for_deletion(*all_cache_methods)
+        self.update_cache()
+
         super(Store, self).delete(*args, **kwargs)
-        deletefromcache(self, ["getquickstats", "getcompletestats",
-                               "get_mtime", "get_suggestion_count"])
 
     def get_absolute_url(self):
         return l(self.pootle_path)
@@ -1138,10 +1205,6 @@ class Store(models.Model, base.TranslationStore):
             reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
             get_editor_filter(**kwargs),
         ])
-
-    @getfromcache
-    def get_mtime(self):
-        return max_column(self.unit_set.all(), 'mtime', datetime_min)
 
     def require_units(self):
         """Make sure file is parsed and units are created."""
@@ -1335,6 +1398,10 @@ class Store(models.Model, base.TranslationStore):
                 obsolete_dbids = [self.dbid_index.get(uid)
                                   for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
+                    # Use the same (parent) object since units will accumulate
+                    # the list of cache attributes to clear in the parent Store
+                    # object
+                    unit.store = self
                     if unit.istranslated():
                         unit.makeobsolete()
                         unit.save()
@@ -1352,11 +1419,6 @@ class Store(models.Model, base.TranslationStore):
                         if match_unit:
                             newunit.save()
                             self._remove_obsolete(match_unit.source)
-
-                    # Update quality checks for the new unit in case they were
-                    # calculated for the store before
-                    if old_state >= CHECKED:
-                        newunit.update_qualitychecks(created=True)
 
             if update_translation or modified_since:
                 modified_units = set()
@@ -1388,6 +1450,10 @@ class Store(models.Model, base.TranslationStore):
 
                 common_dbids = list(common_dbids)
                 for unit in self.findid_bulk(common_dbids):
+                    # Use the same (parent) object since units will accumulate
+                    # the list of cache attributes to clear in the parent Store
+                    # object
+                    unit.store = self
                     newunit = store.findid(unit.getid())
 
                     if (monolingual and not
@@ -1409,10 +1475,7 @@ class Store(models.Model, base.TranslationStore):
                             self._remove_obsolete(match_unit.source)
 
                     if changed:
-                        do_checks = unit._source_updated or unit._target_updated
                         unit.save()
-                        if do_checks and old_state >= CHECKED:
-                            unit.update_qualitychecks()
         finally:
             # Unlock store
             self.state = old_state
@@ -1421,6 +1484,7 @@ class Store(models.Model, base.TranslationStore):
                 self.sync_time = timezone.now()
             self.save()
 
+    #TODO process cache for _get_checks
     def require_qualitychecks(self):
         """make sure quality checks are run"""
         if self.state < CHECKED:
@@ -1646,44 +1710,75 @@ class Store(models.Model, base.TranslationStore):
         if self.file and hasattr(self.file.store, 'header'):
             return self.file.store.header()
 
-    ########################### Stats ############################
+    ### TreeItem
 
-    @getfromcache
-    def getquickstats(self):
-        """calculate translation statistics"""
-        try:
-            return calculate_stats(self.units)
-        except IntegrityError:
-            logging.info(u"Duplicate IDs in %s", self.abs_real_path)
-        except base.ParseError as e:
-            logging.info(u"Failed to parse %s\n%s", self.abs_real_path, e)
-        except (IOError, OSError) as e:
-            logging.info(u"Can't access %s\n%s", self.abs_real_path, e)
-        stats = {}
-        stats.update(empty_quickstats)
-        stats['errors'] += 1
-        return stats
+    def get_parents(self):
+        if self.parent.is_translationproject():
+            return [self.translation_project]
+        else:
+            return [self.parent]
 
-    @getfromcache
-    def getcompletestats(self):
-        """report result of quality checks"""
+    def get_cachekey(self):
+        return self.pootle_path
+
+    def _get_total_wordcount(self):
+        """calculate total wordcount statistics"""
+        return calc_total_wordcount(self.units)
+
+    def _get_translated_wordcount(self):
+        """calculate translated units statistics"""
+        return calc_translated_wordcount(self.units)
+
+    def _get_fuzzy_wordcount(self):
+        """calculate untranslated units statistics"""
+        return calc_fuzzy_wordcount(self.units)
+
+    def _get_checks(self):
         try:
             self.require_qualitychecks()
             queryset = QualityCheck.objects.filter(unit__store=self,
                                                    unit__state__gt=UNTRANSLATED,
                                                    false_positive=False)
+
             return group_by_count_extra(queryset, 'name', 'category')
-        except Exception as e:
+        except Exception, e:
             logging.info(u"Error getting quality checks for %s\n%s",
                          self.name, e)
             return {}
 
-    @getfromcache
-    def get_suggestion_count(self):
+    def _get_mtime(self):
+        return max_column(self.unit_set.all(), 'mtime', datetime_min)
+
+    def _get_last_action(self, submission=None):
+        if submission is None:
+            try:
+                max_unit = Unit.objects.filter(store=self) \
+                    .aggregate(max_time=models.Max('submitted_on'))
+                max_time = max_unit['max_time']
+                units = Unit.objects.filter(store=self, submitted_on=max_time)
+                try:
+                    sub = Submission.simple_objects \
+                                    .filter(unit=units[0]) \
+                                    .order_by('-creation_time')[0]
+                except IndexError:
+                    raise Submission.DoesNotExist
+            except Submission.DoesNotExist:
+                return  {'id': 0, 'mtime': 0, 'snippet': ''}
+        else:
+            sub = submission
+
+        return {
+            'id': sub.unit.id,
+            'mtime': int(time.mktime(sub.creation_time.timetuple())),
+            'snippet': sub.get_submission_message()
+        }
+
+    def _get_suggestion_count(self):
         """Check if any unit in the store has suggestions"""
         return Suggestion.objects.filter(unit__store=self,
                                          unit__state__gt=OBSOLETE).count()
 
+    ### /TreeItem
 
     ############################ Translation #############################
 
@@ -1751,9 +1846,7 @@ class Store(models.Model, base.TranslationStore):
                 allownewstrings):
                 new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
                 for unit in new_units:
-                    newunit = self.addunit(unit)
-                    if old_state >= CHECKED:
-                        newunit.update_qualitychecks(created=True)
+                    self.addunit(unit)
 
             if obsoletemissing:
                 obsolete_dbids = [self.dbid_index.get(uid)
@@ -1782,12 +1875,7 @@ class Store(models.Model, base.TranslationStore):
                     else:
                         changed = oldunit.merge(newunit, overwrite=True)
                         if changed:
-                            do_checks = (oldunit._source_updated or
-                                         oldunit._target_updated)
                             oldunit.save()
-
-                            if do_checks and old_state >= CHECKED:
-                                oldunit.update_qualitychecks()
 
             if allownewstrings or obsoletemissing:
                 self.sync(update_structure=True, update_translation=True,
@@ -1798,6 +1886,10 @@ class Store(models.Model, base.TranslationStore):
             self.state = old_state
             self.save()
 
+    def refresh_stats(self, include_children=True):
+        """This TreeItem method is used on directories, translation projects,
+        languages and projects. For stores do nothing"""
+        return
 
     def update_store_header(self, profile=None):
         language = self.translation_project.language
@@ -1921,18 +2013,3 @@ class Store(models.Model, base.TranslationStore):
             except PootleProfile.DoesNotExist:
                 pass
         return None
-
-
-################################ Signal handlers ##############################
-
-# NOTE: for some strange reason it was impossible to use m2m_changed signal.
-def flush_goal_stats_for_tp_cache(sender, instance, **kwargs):
-    """Flush goal stats for a TP if the goal is (un)applied to a store."""
-    # Make sure that the signal was sent when (un)applying a goal to a store.
-    if isinstance(instance.content_object, Store):
-        goal = instance.tag
-        store_path = instance.content_object.pootle_path
-        goal.delete_cache_for_path(store_path)
-
-post_save.connect(flush_goal_stats_for_tp_cache, sender=Store.goals.through)
-pre_delete.connect(flush_goal_stats_for_tp_cache, sender=Store.goals.through)

@@ -39,9 +39,9 @@ if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
 
 
-def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
+def getfromcachebyname(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
-        key = iri_to_uri(instance.pootle_path + ":" + function.__name__)
+        key = iri_to_uri(instance.pootle_path + ":" + args[0] + function.__name__)
         result = cache.get(key)
         if result is None:
             logging.debug(u"cache miss for %s", key)
@@ -49,6 +49,29 @@ def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
             cache.set(key, result, timeout)
         return result
     return _getfromcache
+
+
+def get_cached_value(obj, fn):
+    key = iri_to_uri(obj.get_cachekey() + ":" + fn)
+    return cache.get(key)
+
+
+def set_cached_value(obj, fn, value, timeout=settings.OBJECT_CACHE_TIMEOUT):
+    key = iri_to_uri(obj.get_cachekey() + ":" + fn)
+    return cache.set(key, value, timeout)
+
+
+def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
+    def _getfromcache(instance, *args, **kwargs):
+        key = iri_to_uri(instance.get_cachekey() + ":" + function.__name__)
+        result = cache.get(key)
+        if result is None:
+            logging.debug(u"cache miss for %s", key)
+            result = function(instance, *args, **kwargs)
+            cache.set(key, result, timeout)
+        return result
+    return _getfromcache
+
 
 
 def deletefromcache(sender, functions, **kwargs):
@@ -134,6 +157,8 @@ def ajax_required(f):
     return wrapper
 
 
+# TODO: replace with `django.utils.functional.cached_property` when we're
+# in Django 1.5+
 def cached_property(f):
     """A property which value is computed only once and then stored with
     the instance for quick repeated retrieval.

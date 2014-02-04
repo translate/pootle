@@ -41,131 +41,13 @@ def nice_percentage(count, total):
     return int(round(percentage))
 
 
-def add_percentages(quick_stats):
-    """Add percentages onto the raw stats dictionary."""
-    trans_percent = nice_percentage(quick_stats['translatedsourcewords'],
-                                    quick_stats['totalsourcewords'])
-
-    fuzzy_percent = nice_percentage(quick_stats['fuzzysourcewords'],
-                                    quick_stats['totalsourcewords'])
-
-    strtrans_percent = nice_percentage(quick_stats['translated'],
-                                       quick_stats['total'])
-
-    strfuzzy_percent = nice_percentage(quick_stats['fuzzy'],
-                                       quick_stats['total'])
-
-    quick_stats.update({
-        'translatedpercentage': trans_percent,
-        'fuzzypercentage':  fuzzy_percent,
-        'untranslatedpercentage': 100 - trans_percent - fuzzy_percent,
-        'strtranslatedpercentage': strtrans_percent,
-        'strfuzzypercentage': strfuzzy_percent,
-        'struntranslatedpercentage': 100 - strtrans_percent - strfuzzy_percent,
-    })
-    return quick_stats
-
-
-def get_processed_stats(quick_stats):
-    """Return a processed dictionary of raw stats."""
-    return {
-        'total': {
-            'words': quick_stats['totalsourcewords'],
-            'percentage': 100,
-            'units': quick_stats['total'],
-        },
-        'translated': {
-            'words': quick_stats['translatedsourcewords'],
-            'percentage': quick_stats['translatedpercentage'],
-            'units': quick_stats['translated'],
-        },
-        'fuzzy': {
-            'words': quick_stats['fuzzysourcewords'],
-            'percentage': quick_stats['fuzzypercentage'],
-            'units': quick_stats['fuzzy'],
-        },
-        'untranslated': {
-            'words': quick_stats['untranslatedsourcewords'],
-            'percentage': quick_stats['untranslatedpercentage'],
-            'units': quick_stats['untranslated'],
-        },
-        'errors': quick_stats['errors'],
-        'suggestions': -1,
-    }
-
-
-def get_raw_stats(path_obj, include_suggestions=False):
-    """Return a dictionary of raw stats for `path_obj`.
-
-    :param path_obj: A Directory/Store object.
-    :param include_suggestions: Whether to include suggestion count in the
-                                output or not.
-
-    Example::
-
-        {'translated': {'units': 0, 'percentage': 0, 'words': 0},
-         'fuzzy': {'units': 0, 'percentage': 0, 'words': 0},
-         'untranslated': {'units': 34, 'percentage': 100, 'words': 181},
-         'total': {'units': 34, 'percentage': 100, 'words': 181}
-         'suggestions': 4 }
-    """
-    stats = get_processed_stats(add_percentages(path_obj.getquickstats()))
-
-    if include_suggestions:
-        stats['suggestions'] = path_obj.get_suggestion_count()
-
-    return stats
-
-
-def get_translation_stats(path_obj, path_stats):
-    """Return a list of statistics for ``path_obj`` ready to be displayed.
-
-    :param path_obj: A :cls:`pootle_app.models.directory.Directory` or
-                     :cls:`pootle_store.models.Store` object.
-    :param path_stats: A dictionary of raw stats, as returned by
-                       :func:`pootle_misc.stats.get_raw_stats`.
-    """
-    stats = []
-
-    def make_stats_dict(title, state, filter_url=True):
-        filter_name = filter_url and state or None
-        return {
-            'title': title,
-            'words': ungettext('<a href="%(url)s">%(num)d word</a>',
-                               '<a href="%(url)s">%(num)d words</a>',
-                               path_stats['untranslated']['words'],
-                               {'url': path_obj.get_translate_url(
-                                   state=filter_name,
-                                ),
-                                'num': path_stats[state]['words']}),
-            'percentage': _("%(num)d%%",
-                            {'num': path_stats[state]['percentage']}),
-            'units': ungettext("(%(num)d string)",
-                               "(%(num)d strings)",
-                               path_stats[state]['units'],
-                               {'num': path_stats[state]['units']})
-        }
-
-    if path_stats['total']['units'] > 0:
-        stats.append(make_stats_dict(_("Total"), 'total', filter_url=False))
-
-    if path_stats['translated']['units'] > 0:
-        stats.append(make_stats_dict(_("Translated"), 'translated'))
-
-    if path_stats['fuzzy']['units'] > 0:
-        stats.append(make_stats_dict(_("Needs work"), 'fuzzy'))
-
-    if path_stats['untranslated']['units'] > 0:
-        stats.append(make_stats_dict(_("Untranslated"), 'untranslated'))
-
-    return stats
-
-
-def get_path_summary(path_obj, path_stats, latest_action):
+def get_path_summary(path_obj, latest_action):
     """Return a list of sentences to be displayed for each ``path_obj``."""
     summary = []
     incomplete = []
     suggestions = []
+
+    path_stats = path_obj.get_stats(False)
 
     if path_obj.is_dir:
         summary.append(
@@ -173,10 +55,11 @@ def get_path_summary(path_obj, path_stats, latest_action):
                 "which is translated.",
                 "This folder has %(num)d words, %(percentage)d%% of "
                 "which are translated.",
-                path_stats['total']['words'],
+                path_stats['total'],
                 {
-                    'num': path_stats['total']['words'],
-                    'percentage': path_stats['translated']['percentage']
+                    'num': path_stats['total'],
+                    'percentage': nice_percentage(path_stats['translated'],
+                                  path_stats['total'])
                 })
         )
     else:
@@ -185,10 +68,11 @@ def get_path_summary(path_obj, path_stats, latest_action):
                 "which is translated.",
                 "This file has %(num)d words, %(percentage)d%% of "
                 "which are translated.",
-                path_stats['total']['words'],
+                path_stats['total'],
                 {
-                    'num': path_stats['total']['words'],
-                    'percentage': path_stats['translated']['percentage']
+                    'num': path_stats['total'],
+                    'percentage': nice_percentage(path_stats['translated'],
+                                  path_stats['total'])
                 })
         )
 
@@ -208,10 +92,8 @@ def get_path_summary(path_obj, path_stats, latest_action):
     ]))
 
 
-    if (path_stats['untranslated']['words'] > 0 or
-        path_stats['fuzzy']['words'] > 0):
-
-        num_words = path_stats['untranslated']['words'] + path_stats['fuzzy']['words']
+    num_words = path_stats['total'] - path_stats['translated']
+    if num_words > 0:
         incomplete.extend([
             u'<a class="path-incomplete" href="%(url)s">' % {
                     'url': path_obj.get_translate_url(state='incomplete')
@@ -228,10 +110,10 @@ def get_path_summary(path_obj, path_stats, latest_action):
             from pootle_tagging.models import Goal
 
             pootle_path = path_obj.pootle_path
-            goal = Goal.get_most_important_incomplete_for_path(pootle_path)
+            goal = Goal.get_most_important_incomplete_for_path(path_obj)
 
             if goal is not None:
-                goal_words = goal.get_incomplete_words_in_path(pootle_path)
+                goal_words = goal.get_incomplete_words_in_path(path_obj)
                 goal_url = goal.get_translate_url_for_path(pootle_path,
                                                            state='incomplete')
                 incomplete.extend([
@@ -270,52 +152,7 @@ def get_path_summary(path_obj, path_stats, latest_action):
             u''.join(suggestions)]
 
 
-def stats_message_raw(version, stats):
+def stats_message_raw(version, total, translated, fuzzy):
     """Build a message of statistics used in VCS actions."""
     return "%s: %d of %d strings translated (%d need review)." % \
-           (version, stats.get("translated", 0), stats.get("total", 0),
-            stats.get("fuzzy", 0))
-
-
-def stats_message(version, stats):
-    """Build a localized message of statistics used in VCS actions."""
-    # Translators: 'type' is the type of VCS file: working, remote,
-    # or merged copy.
-    return ungettext(u"%(type)s: %(translated)d of %(total)d string translated "
-                            u"(%(fuzzy)d need review).",
-                     u"%(type)s: %(translated)d of %(total)d strings translated "
-                            u"(%(fuzzy)d need review).",
-                     stats.get("total", 0),
-                     {
-                          'type': version,
-                          'translated': stats.get("translated", 0),
-                          'total': stats.get("total", 0),
-                          'fuzzy': stats.get("fuzzy", 0)
-                     })
-
-
-def stats_descriptions(quick_stats):
-    """Provide a dictionary with two textual descriptions of the work
-    outstanding.
-    """
-    total_words = quick_stats["total"]["words"]
-    untranslated = quick_stats["untranslated"]["words"]
-    fuzzy = quick_stats["fuzzy"]["words"]
-    todo_words = untranslated + fuzzy
-
-    todo_text = ungettext("%d word needs attention",
-                          "%d words need attention", todo_words, todo_words)
-
-    untranslated_tooltip = ungettext("%d word untranslated",
-                                     "%d words untranslated",
-                                     untranslated, untranslated)
-    fuzzy_tooltip = ungettext("%d word needs review",
-                              "%d words need review", fuzzy, fuzzy)
-    todo_tooltip = u"<br>".join([untranslated_tooltip, fuzzy_tooltip])
-
-    return {
-        'total_words': total_words,
-        'todo_words': todo_words,
-        'todo_text': todo_text,
-        'todo_tooltip': todo_tooltip,
-    }
+           (version, translated, total, fuzzy)

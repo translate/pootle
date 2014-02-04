@@ -21,7 +21,7 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import check_permission
-from pootle_misc.checks import check_names
+from pootle_misc.checks import check_names, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 
 
@@ -82,7 +82,10 @@ def get_translation_context(request, is_terminology=False):
 
         'pootle_path': request.pootle_path,
         'ctx_path': request.ctx_path,
-        'resource_path': request.resource_path,
+        'resource_path': (request.resource_path
+                          if hasattr(request, 'resource_path') else ''),
+
+        'check_categories': get_qualitycheck_schema(),
 
         'search_form': make_search_form(request=request,
                                         terminology=is_terminology),

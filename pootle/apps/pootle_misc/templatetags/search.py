@@ -42,7 +42,7 @@ def render_search(context, form=None, action=None):
         form = make_search_form(request=request, terminology=is_terminology)
 
     if action is None:
-        action = request.ctx_obj.get_translate_url()
+        action = request.resource_obj.get_translate_url()
 
     template_vars = {
         'search_form': form,

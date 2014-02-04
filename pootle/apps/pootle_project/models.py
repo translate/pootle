@@ -36,6 +36,7 @@ from translate.lang.data import langcode_re
 
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle_app.models.permissions import PermissionSet
 from pootle_misc.aggregate import max_column
@@ -44,7 +45,7 @@ from pootle_misc.util import getfromcache, cached_property
 from pootle_store.filetypes import (filetype_choices, factory_classes,
                                     is_monolingual)
 from pootle_store.models import Unit, Suggestion
-from pootle_store.util import absolute_real_path, statssum, OBSOLETE
+from pootle_store.util import absolute_real_path, OBSOLETE
 
 
 # FIXME: Generate key dynamically
@@ -67,7 +68,7 @@ class ProjectManager(RelatedManager):
         return projects
 
 
-class Project(models.Model):
+class Project(models.Model, TreeItem):
 
     code = models.CharField(
         max_length=255,
@@ -248,6 +249,9 @@ class Project(models.Model):
     def __unicode__(self):
         return self.fullname
 
+    def __init__(self, *args, **kwargs):
+        super(Project, self).__init__(*args, **kwargs)
+
     def save(self, *args, **kwargs):
         # Create file system directory if needed
         project_path = self.get_real_path()
@@ -327,33 +331,25 @@ class Project(models.Model):
                 _('"%s" cannot be used as a project code' % (self.code,))
             )
 
-    @getfromcache
-    def get_mtime(self):
-        project_units = Unit.objects.filter(
-                store__translation_project__project=self
-        )
-        return max_column(project_units, 'mtime', None)
+    ### TreeItem
 
-    @getfromcache
-    def getquickstats(self):
-        return statssum(self.translationproject_set.iterator())
+    def get_children(self):
+        return self.translationproject_set.all()
 
-    @getfromcache
-    def get_suggestion_count(self):
-        """
-        Check if any unit in the stores for the translation project in this
-        project has suggestions.
-        """
-        criteria = {
-            'unit__store__translation_project__project': self,
-            'unit__state__gt': OBSOLETE,
-        }
-        return Suggestion.objects.filter(**criteria).count()
+    def get_cachekey(self):
+        return self.directory.pootle_path
+
+    def get_parents(self):
+        from pootle_app.models.directory import Directory
+        return [Directory.objects.projects]
+
+    ### /TreeItem
 
     def translated_percentage(self):
-        qs = self.getquickstats()
-        max_words = max(qs['totalsourcewords'], 1)
-        return int(100.0 * qs['translatedsourcewords'] / max_words)
+        total = self.get_total_wordcount()
+        translated = self.get_translated_wordcount()
+        max_words = max(total, 1)
+        return int(100.0 * translated / max_words)
 
     def get_real_path(self):
         return absolute_real_path(self.code)
