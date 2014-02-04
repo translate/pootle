@@ -1,6 +1,6 @@
 {% extends "tp_base.html" %}
 {% load url from future %}
-{% load assets baseurl cache cleanhtml i18n locale progressbar search translation_project_tags goal_tags common_tags profile_tags %}
+{% load assets baseurl cache cleanhtml i18n locale search translation_project_tags goal_tags common_tags profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body_id %}tpoverview{% endblock %}
@@ -27,12 +27,11 @@
     </h2>
   </div>
   <div id="path-summary" class="bd">
-    <ul>
-      {% for summary_item in path_summary %}
-      <li>{{ summary_item|safe }}</li>
-      {% endfor %}
+    <ul id="path-summary-head" data-url="{{ path_summary_url }}">
     </ul>
-    {% progressbar stats stats.total.words %}
+    <div id="progressbar">
+      {% include "common/_progressbar.html" %}
+    </div>
     <div id="js-path-summary-more" data-loaded="false" data-collapsed="true">
     </div>
   </div>
@@ -187,6 +186,12 @@
 <script type="text/javascript">
 $(function() {
   PTL.search.init();
+  PTL.stats.init({
+      pootlePath: "{{ resource_obj.pootle_path }}",
+  });
+  PTL.stats.load(function () {
+    $("body").spin(false);
+  });
 
   PTL.common.updateRelativeDates();
   setInterval(PTL.common.updateRelativeDates, 6e4);

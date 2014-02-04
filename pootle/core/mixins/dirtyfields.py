@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -16,6 +17,8 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
+
+__all__ = ('DirtyFieldsMixin',)
 
 from django.db.models.signals import post_save
 

@@ -38,6 +38,8 @@ from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
+from translate.filters.decorators import Category
+
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle.core.helpers import get_filter_name, get_translation_context
@@ -52,10 +54,10 @@ from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
 from pootle_misc.browser import (get_children, get_goal_children,
-                                 get_table_headings, make_goal_item)
+                                 get_table_headings, get_parent,
+                                 make_goal_item)
 from pootle_misc.checks import get_quality_check_failures
-from pootle_misc.stats import (get_raw_stats, get_translation_stats,
-                               get_path_summary)
+from pootle_misc.stats import get_path_summary
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
@@ -258,7 +260,7 @@ def _handle_upload_form(request, current_path, translation_project, directory):
 
             # XXX Why do we scan here?
             translation_project.scan_files(vcs_sync=False)
-            oldstats = translation_project.getquickstats()
+            oldstats = translation_project.get_stats()
 
             # The URL relative to the URL of the translation project. Thus, if
             # directory.pootle_path == /af/pootle/foo/bar, then
@@ -274,7 +276,7 @@ def _handle_upload_form(request, current_path, translation_project, directory):
                             store=upload_to)
 
             translation_project.scan_files(vcs_sync=False)
-            newstats = translation_project.getquickstats()
+            newstats = translation_project.get_stats()
 
             # Create a submission. Doesn't fix stats but at least shows up in
             # last activity column.
@@ -341,19 +343,12 @@ def overview(request, translation_project, dir_path, filename=None,
 
     path_obj = store or directory
 
-    latest_action = ''
-    # If current directory is the TP root directory.
-    if not directory.path:
-        latest_action = translation_project.get_latest_submission()
-    elif store is None:  # If this is not a file.
-        latest_action = Submission.get_latest_for_dir(path_obj)
-
-    path_stats = get_raw_stats(path_obj, include_suggestions=True)
-    path_summary = get_path_summary(path_obj, path_stats, latest_action)
+    url_args = [language.code, project.code, path_obj.path]
+    path_summary_url = reverse('tp.path_summary', args=url_args)
 
     #TODO enable again some actions when drilling down a goal.
     if goal is None:
-        actions = action_groups(request, path_obj, path_stats=path_stats)
+        actions = action_groups(request, path_obj)
     else:
         actions = []
 
@@ -448,14 +443,14 @@ def overview(request, translation_project, dir_path, filename=None,
         description = goal.description
 
     template_vars.update({
+        'resource_obj': request.resource_obj,
         'translation_project': translation_project,
         'description': description,
         'project': project,
         'language': language,
         'path_obj': path_obj,
         'resource_path': request.resource_path,
-        'path_summary': path_summary,
-        'stats': path_stats,
+        'path_summary_url': path_summary_url,
         'topstats': gentopstats_translation_project(translation_project),
         'feed_path': directory.pootle_path[1:],
         'action_groups': actions,
@@ -481,6 +476,7 @@ def overview(request, translation_project, dir_path, filename=None,
                     'proportional': False,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
+                    'parent': get_parent(directory),
                     'items': items,
                 },
                 'path_obj_has_goals': True,
@@ -496,6 +492,7 @@ def overview(request, translation_project, dir_path, filename=None,
                     'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
+                    'parent': get_parent(directory),
                     'items': get_goal_children(directory, goal),
                 },
                 'goal': goal,
@@ -512,6 +509,7 @@ def overview(request, translation_project, dir_path, filename=None,
                     'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
+                    'parent': get_parent(directory),
                     'items': get_children(directory),
                 },
                 'path_obj_has_goals': path_obj_has_goals,
@@ -588,7 +586,7 @@ def _add_tag(request, translation_project, tag_like_object):
 @ajax_required
 @get_path_obj
 @permission_required('administrate')
-def ajax_add_tag_to_tp(request, translation_project):
+def ajax_add_tag_to_tp(request, translation_project, **kwargs):
     """Return an HTML snippet with the failed form or blank if valid."""
 
     add_tag_form = TagForm(request.POST)
@@ -641,10 +639,14 @@ def ajax_add_tag_to_tp(request, translation_project):
 def translate(request, translation_project, dir_path, filename):
     language = translation_project.language
     project = translation_project.project
+    directory = request.directory
+    store = request.store
+    resource_obj = store or directory
 
     is_terminology = (project.is_terminology or request.store and
                                                 request.store.is_terminology)
     context = get_translation_context(request, is_terminology=is_terminology)
+
     context.update({
         'language': language,
         'project': project,
@@ -696,7 +698,42 @@ def export_view(request, translation_project, dir_path, filename=None):
 
 @ajax_required
 @get_path_obj
-def path_summary_more(request, translation_project, dir_path, filename=None):
+@permission_required('view')
+def path_summary(request, translation_project, dir_path, project_code,
+                      language_code, filename=None):
+    """Returns an HTML snippet with summary information for the current
+    path."""
+    current_path = translation_project.directory.pootle_path + dir_path
+
+    if filename:
+        current_path = current_path + filename
+        store = get_object_or_404(Store, pootle_path=current_path)
+        directory = store.parent
+    else:
+        store = None
+        directory = get_object_or_404(Directory, pootle_path=current_path)
+
+    path_obj = store or directory
+
+    latest_action = ''
+    # If current directory is the TP root directory.
+    if not directory.path:
+        latest_action = translation_project.get_latest_submission()
+    elif store is None:  # If this is not a file.
+        latest_action = Submission.get_latest_for_dir(path_obj)
+
+    context = {
+        'path_summary': get_path_summary(path_obj, latest_action),
+    }
+    return render_to_response('translation_project/xhr-path_summary.html',
+                              context, RequestContext(request))
+
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+def path_summary_more(request, translation_project, dir_path, project_code,
+                      language_code, filename=None):
     """Returns an HTML snippet with more detailed summary information
        for the current path."""
     current_path = translation_project.directory.pootle_path + dir_path
@@ -710,12 +747,10 @@ def path_summary_more(request, translation_project, dir_path, filename=None):
         directory = get_object_or_404(Directory, pootle_path=current_path)
 
     path_obj = store or directory
-    path_stats = get_raw_stats(path_obj)
     context = {
-        'check_failures': get_quality_check_failures(path_obj, path_stats),
-        'trans_stats': get_translation_stats(path_obj, path_stats),
+        'check_failures': get_quality_check_failures(path_obj),
     }
-    return render_to_response('translation_project/xhr-path_summary.html',
+    return render_to_response('translation_project/xhr-path_summary_more.html',
                               context, RequestContext(request))
 
 

@@ -1,7 +1,4 @@
-/* glue: 0.3 hash: 403a2d7c95 */
-.bar-untranslated,
-.bar-translated,
-.bar-fuzzy,
+/* glue: 0.3 hash: 9732506b70 */
 .logo,
 .icon-desc,
 .icon-ascdesc,
@@ -21,6 +18,7 @@
 .icon-information,
 .icon-google-translate,
 .icon-folder,
+.icon-folder-parent,
 .icon-filter,
 .icon-file,
 .icon-feed,
@@ -39,43 +37,41 @@
 .icon-download,
 .icon-delete-path,
 .icon-external-link{background-image:url('../images/sprite.png');background-repeat:no-repeat}
-.bar-untranslated{background-position:0px 0px;width:200px;height:12px;}
-.bar-translated{background-position:0px -12px;width:200px;height:12px;}
-.bar-fuzzy{background-position:0px -24px;width:200px;height:12px;}
-.logo{background-position:0px -36px;width:52px;height:32px;}
-.icon-desc{background-position:-52px -36px;width:21px;height:4px;}
-.icon-ascdesc{background-position:-52px -40px;width:21px;height:9px;}
-.icon-asc{background-position:-73px -36px;width:21px;height:4px;}
-.icon-wikipedia{background-position:-52px -49px;width:16px;height:16px;}
-.icon-web-translate{background-position:-68px -49px;width:16px;height:16px;}
-.icon-warning{background-position:-84px -49px;width:16px;height:16px;}
-.icon-vote-inactive{background-position:-100px -49px;width:16px;height:16px;}
-.icon-vote-active{background-position:-116px -49px;width:16px;height:16px;}
-.icon-tick{background-position:-132px -49px;width:16px;height:16px;}
-.icon-tag{background-position:-148px -49px;width:16px;height:16px;}
-.icon-tag-remove{background-position:-164px -49px;width:16px;height:16px;}
-.icon-tag-add{background-position:-180px -49px;width:16px;height:16px;}
-.icon-search{background-position:0px -68px;width:16px;height:16px;}
-.icon-report-bug{background-position:-16px -68px;width:16px;height:16px;}
-.icon-reject{background-position:-32px -68px;width:16px;height:16px;}
-.icon-information{background-position:-48px -68px;width:16px;height:16px;}
-.icon-google-translate{background-position:-64px -68px;width:16px;height:16px;}
-.icon-folder{background-position:-80px -68px;width:16px;height:16px;}
-.icon-filter{background-position:-96px -68px;width:16px;height:16px;}
-.icon-file{background-position:-112px -68px;width:16px;height:16px;}
-.icon-feed{background-position:-128px -68px;width:16px;height:16px;}
-.icon-error{background-position:-144px -68px;width:16px;height:16px;}
-.icon-copy{background-position:-160px -68px;width:16px;height:16px;}
-.icon-comment-user{background-position:-176px -68px;width:16px;height:16px;}
-.icon-comment-add{background-position:0px -84px;width:16px;height:16px;}
-.icon-block{background-position:-16px -84px;width:16px;height:16px;}
-.icon-apertium{background-position:-32px -84px;width:16px;height:16px;}
-.icon-accept{background-position:-48px -84px;width:16px;height:16px;}
-.icon-vcs-update{background-position:-64px -84px;width:14px;height:14px;}
-.icon-vcs-commit{background-position:-78px -84px;width:14px;height:14px;}
-.icon-upload{background-position:-92px -84px;width:14px;height:14px;}
-.icon-update-templates{background-position:-106px -84px;width:14px;height:14px;}
-.icon-rescan-files{background-position:-120px -84px;width:14px;height:14px;}
-.icon-download{background-position:-134px -84px;width:14px;height:14px;}
-.icon-delete-path{background-position:-148px -84px;width:14px;height:14px;}
-.icon-external-link{background-position:-162px -84px;width:12px;height:12px;}
+.logo{background-position:0px 0px;width:52px;height:32px;}
+.icon-desc{background-position:0px -32px;width:21px;height:4px;}
+.icon-ascdesc{background-position:0px -36px;width:21px;height:9px;}
+.icon-asc{background-position:-21px -32px;width:21px;height:4px;}
+.icon-wikipedia{background-position:-52px 0px;width:16px;height:16px;}
+.icon-web-translate{background-position:-52px -16px;width:16px;height:16px;}
+.icon-warning{background-position:0px -45px;width:16px;height:16px;}
+.icon-vote-inactive{background-position:-16px -45px;width:16px;height:16px;}
+.icon-vote-active{background-position:-32px -45px;width:16px;height:16px;}
+.icon-tick{background-position:-48px -45px;width:16px;height:16px;}
+.icon-tag{background-position:-68px 0px;width:16px;height:16px;}
+.icon-tag-remove{background-position:-68px -16px;width:16px;height:16px;}
+.icon-tag-add{background-position:-68px -32px;width:16px;height:16px;}
+.icon-search{background-position:0px -61px;width:16px;height:16px;}
+.icon-report-bug{background-position:-16px -61px;width:16px;height:16px;}
+.icon-reject{background-position:-32px -61px;width:16px;height:16px;}
+.icon-information{background-position:-48px -61px;width:16px;height:16px;}
+.icon-google-translate{background-position:-64px -61px;width:16px;height:16px;}
+.icon-folder{background-position:-84px 0px;width:16px;height:16px;}
+.icon-folder-parent{background-position:-84px -16px;width:16px;height:16px;}
+.icon-filter{background-position:-84px -32px;width:16px;height:16px;}
+.icon-file{background-position:-84px -48px;width:16px;height:16px;}
+.icon-feed{background-position:0px -77px;width:16px;height:16px;}
+.icon-error{background-position:-16px -77px;width:16px;height:16px;}
+.icon-copy{background-position:-32px -77px;width:16px;height:16px;}
+.icon-comment-user{background-position:-48px -77px;width:16px;height:16px;}
+.icon-comment-add{background-position:-64px -77px;width:16px;height:16px;}
+.icon-block{background-position:-80px -77px;width:16px;height:16px;}
+.icon-apertium{background-position:-100px 0px;width:16px;height:16px;}
+.icon-accept{background-position:-100px -16px;width:16px;height:16px;}
+.icon-vcs-update{background-position:-100px -32px;width:14px;height:14px;}
+.icon-vcs-commit{background-position:-100px -46px;width:14px;height:14px;}
+.icon-upload{background-position:-100px -60px;width:14px;height:14px;}
+.icon-update-templates{background-position:-100px -74px;width:14px;height:14px;}
+.icon-rescan-files{background-position:0px -93px;width:14px;height:14px;}
+.icon-download{background-position:-14px -93px;width:14px;height:14px;}
+.icon-delete-path{background-position:-28px -93px;width:14px;height:14px;}
+.icon-external-link{background-position:-84px -64px;width:12px;height:12px;}

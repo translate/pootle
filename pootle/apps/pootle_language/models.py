@@ -26,13 +26,14 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache
 from pootle_store.models import Unit, Suggestion
-from pootle_store.util import statssum, OBSOLETE
+from pootle_store.util import OBSOLETE
 
 
 # FIXME: Generate key dynamically
@@ -69,8 +70,7 @@ class LiveLanguageManager(models.Manager):
 
         return languages
 
-
-class Language(models.Model):
+class Language(models.Model, TreeItem):
 
     code = models.CharField(
         max_length=50,
@@ -156,6 +156,9 @@ class Language(models.Model):
 
     ############################ Methods ######################################
 
+    def __init__(self, *args, **kwargs):
+        super(Language, self).__init__(*args, **kwargs)
+
     def __repr__(self):
         return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
 
@@ -189,29 +192,17 @@ class Language(models.Model):
             get_editor_filter(**kwargs),
         ])
 
-    @getfromcache
-    def get_mtime(self):
-        return max_column(Unit.objects.filter(
-            store__translation_project__language=self), 'mtime', None)
+    ### TreeItem
 
-    @getfromcache
-    def getquickstats(self):
-        return statssum(self.translationproject_set.iterator())
+    def get_children(self):
+        return self.translationproject_set.all()
 
-    @getfromcache
-    def get_suggestion_count(self):
-        """Check the number of suggestions for this language.
+    def get_cachekey(self):
+        return self.directory.pootle_path
 
-        This checks all units in the stores for all the translation projects in
-        this language.
-        """
-        criteria = {
-            'unit__store__translation_project__language': self,
-            'unit__state__gt': OBSOLETE,
-        }
-        return Suggestion.objects.filter(**criteria).count()
+    ### /TreeItem
 
     def translated_percentage(self):
-        qs = self.getquickstats()
-        word_count = max(qs['totalsourcewords'], 1)
-        return int(100.0 * qs['translatedsourcewords'] / word_count)
+        total = max(self.get_total_wordcount(), 1)
+        translated = self.get_translated_wordcount()
+        return int(100.0 * translated / total)

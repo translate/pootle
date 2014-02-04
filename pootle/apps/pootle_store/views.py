@@ -45,14 +45,14 @@ from taggit.models import Tag
 
 from pootle.core.exceptions import Http400
 from pootle.core.url_helpers import split_pootle_path
+from pootle.core.decorators import (get_path_obj, get_resource_context,
+                                    permission_required)
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (check_permission,
                                            check_profile_permission)
 from pootle_language.models import Language
 from pootle_misc.baseurl import redirect
-from pootle_misc.checks import get_quality_check_failures
 from pootle_misc.forms import make_search_form
-from pootle_misc.stats import get_raw_stats
 from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import paginate, ajax_required, jsonify
 from pootle_profile.models import get_profile
@@ -63,8 +63,7 @@ from pootle_tagging.forms import TagForm
 from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
 
-from .decorators import (get_store_context, get_unit_context,
-                         get_xhr_resource_context)
+from .decorators import get_store_context, get_unit_context
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
 from .models import Store, TMUnit, Unit
@@ -674,6 +673,26 @@ def timeline(request, unit):
                                   context_instance=RequestContext(request))
 
 
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def get_qualitycheck_stats(request, path_obj, **kwargs):
+    qc_stats = request.resource_obj.get_checks()
+
+    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
+
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def get_overview_stats(request, path_obj, **kwargs):
+    stats = request.resource_obj.get_stats()
+
+    return HttpResponse(jsonify(stats), mimetype="application/json")
+
+
 @require_POST
 @ajax_required
 @get_unit_context('translate')
@@ -872,30 +891,6 @@ def get_tm_results(request, unit):
             results.append(result)
 
     return HttpResponse(jsonify(results), mimetype="application/json")
-
-
-@ajax_required
-@get_xhr_resource_context('view')
-def get_failing_checks(request, path_obj):
-    """Gets a list of failing checks for the current object.
-
-    :return: JSON string with a list of failing check categories which
-             include the actual checks that are failing.
-    """
-    if 'goal' in request.GET and request.GET['goal']:
-        try:
-            goal = Goal.objects.get(slug=request.GET['goal'])
-        except Goal.DoesNotExist:
-            raise Http404
-        failures = goal.get_failing_checks_for_path(path_obj.pootle_path)
-    else:
-        stats = get_raw_stats(path_obj)
-        failures = get_quality_check_failures(path_obj, stats,
-                                              include_url=False)
-
-    response = jsonify(failures)
-
-    return HttpResponse(response, mimetype="application/json")
 
 
 @require_POST
@@ -1153,17 +1148,13 @@ def vote_up(request, unit, suggid):
 
 @ajax_required
 @get_unit_context('review')
-def reject_qualitycheck(request, unit, checkid):
+def reject_qualitycheck(request, unit, check_id):
     json = {}
     json["udbid"] = unit.id
-    json["checkid"] = checkid
+    json["checkid"] = check_id
     if request.POST.get('reject'):
         try:
-            check = unit.qualitycheck_set.get(id=checkid)
-            check.false_positive = True
-            check.save()
-            # update timestamp
-            unit.save()
+            unit.reject_qualitycheck(check_id)
         except ObjectDoesNotExist:
             raise Http404
 

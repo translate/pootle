@@ -49,42 +49,6 @@
       });
       $('.js-popup-inline').magnificPopup();
 
-      /* Path summary */
-      $(document).on("click", "#js-path-summary", function (e) {
-        e.preventDefault();
-        var node = $("#" + $(this).data('target')),
-            $textNode = $(this),
-            data = node.data();
-
-        function hideShow() {
-          node.slideToggle('slow', 'easeOutQuad', function () {
-            node.data('collapsed', !data.collapsed);
-            var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
-            $textNode.text(newText);
-          });
-        }
-
-        if (data.loaded) {
-          hideShow();
-        } else {
-          var url = $(this).attr('href');
-          $.ajax({
-            url: url,
-            success: function (data) {
-              node.html(data).hide();
-              node.data('loaded', true);
-              hideShow();
-            },
-            beforeSend: function () {
-              node.spin();
-            },
-            complete: function () {
-              node.spin(false);
-            },
-          });
-        }
-      });
-
       /* Overview actions */
       $("#overview-actions").on("click", ".js-overview-actions-delete-path",
         function (e) {
@@ -221,6 +185,8 @@
         // Submit the form through AJAX.
         var action = $("#js-add-tag-form").attr('action');
         var formData = $("#js-add-tag-form").serializeObject();
+
+        formData["path"] = PTL.stats.pootlePath;
 
         $.post(action, formData, function (data, textStatus, jqXHR) {
           if (jqXHR.status === 201) {

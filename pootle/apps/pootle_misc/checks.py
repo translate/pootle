@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -19,6 +20,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from translate.filters.decorators import Category
+from translate.filters import checks
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -71,27 +73,67 @@ check_names = {
     # Translators: This refers to tabulation characters
     'tabs': _(u"Tabs"),
     'unchanged': _(u"Unchanged"),
+    'untranslated': _(u"Untranslated"),
     'urls': _(u"URLs"),
     'validchars': _(u"Valid characters"),
     'variables': _(u"Placeholders"),
     'xmltags': _(u"XML tags"),
 }
 
+excluded_filters = ['hassuggestion', 'spellcheck']
 
-def get_quality_check_failures(path_obj, path_stats, include_url=True):
+
+def get_qualitychecks():
+    sc = checks.StandardChecker()
+    for filt in sc.defaultfilters:
+        if not filt in excluded_filters:
+            # don't use an empty string because of
+            # http://bugs.python.org/issue18190
+            getattr(sc, filt)(u'_', u'_')
+
+    return sc.categories
+
+
+def get_qualitycheck_schema(path_obj=None):
+    d = {}
+    checks = get_qualitychecks()
+
+    for check, cat in checks.items():
+        if not cat in d:
+            d[cat] = {
+                'code': cat,
+                'title': u"%s" % category_names[cat],
+                'checks': []
+            }
+        d[cat]['checks'].append({
+            'code': check,
+            'title': u"%s" % check_names.get(check, check),
+            'url': path_obj.get_translate_url(check=check) if path_obj else ''
+        })
+
+    result = sorted([item for code, item in d.items()],
+                    key=lambda x: x['code'],
+                    reverse=True)
+
+    return result
+
+
+def get_qualitychecks_by_category(category):
+    checks = get_qualitychecks()
+    return filter(lambda x: checks[x] == category, checks)
+
+
+def get_quality_check_failures(path_obj):
     """Returns a list of the failed checks sorted by their importance.
 
     :param path_obj: An object which has the ``getcompletestats`` method.
-    :param path_stats: A dictionary of raw stats, as returned by
-                       :func:`pootle_misc.stats.get_raw_stats`.
-    :param include_url: Whether to include URLs in the returning result
-                        or not.
     """
     checks = []
 
     try:
-        property_stats = path_obj.getcompletestats()
-        total = path_stats['total']['units']
+        property_stats = path_obj.get_checks()
+        path_stats = path_obj.get_stats()
+        total = path_stats['total']
         keys = property_stats.keys()
         keys.sort(reverse=True)
 
@@ -121,10 +163,9 @@ def get_quality_check_failures(path_obj, path_stats, include_url=True):
                         'count': checkcount
                     }
 
-                    if include_url:
-                        check['url'] = path_obj.get_translate_url(
-                                check=checkname,
-                            )
+                    check['url'] = path_obj.get_translate_url(
+                            check=checkname,
+                        )
 
                     checks[i]['checks'].append(check)
     except IOError:

@@ -1514,6 +1514,11 @@ td.stats-number
     padding-right: 26px !important; /* magic number to put padding between right and left aligned column, and to right-align heading with number */
 }
 
+td.stats-percentage
+{
+    display: none;
+}
+
 table.stats .number,
 th.stats-number,
 td.stats-number
@@ -1549,21 +1554,22 @@ html[dir="rtl"] td.stats-name,
 
 /* Expanded checks */
 
-.checks td
+.checks
 {
-    height: 100%;
-}
-
-.checks td a
-{
-    display: inline-block;
     height: 100%;
     width: 100%;
 }
 
+.check
+{
+    width: 50%;
+    float: left;
+}
+
 .check-name
 {
-    width: 22%;
+    width: 50%;
+    display: inline-block;
 }
 
 .check-count
@@ -1579,7 +1585,7 @@ html[dir="rtl"] .check-count
     padding-left: 5%;
 }
 
-#check-100 td a
+#check-100 a
 {
     background-color: inherit;
     color: #c30;
@@ -1609,26 +1615,79 @@ div.small
 }
 
 
-/*
- * Pretty Graphs, mostly from http://l10n.gnome.org/
- */
+/* PROGRESSBAR */
 
-div.graph
+table.graph
 {
-    height: 14px;
-    width: 100px;
-    border: 0 none;
-    position: relative;
+    height: 9px;
+    width: 200px;
+    background-color: #ccc;
+    font-size: 1px;
 }
 
-div.graph[dir="ltr"] div.translated
+/* When browser size is 950px or less, show the smaller version of the progressbar */
+@media screen and (max-width: 950px)
 {
-    left: 0%;
+    table.graph
+    {
+        width: 100px;
+    }
 }
 
-div.graph[dir="rtl"] div.translated
+/* When browser size is 1600px or less, show the smaller version of the progressbar on the main page */
+@media screen and (max-width: 1600px)
 {
-    right: 0%;
+    #main-overview table.graph
+    {
+        width: 100px;
+    }
+}
+
+table.graph td
+{
+    padding: 0 !important;
+}
+
+table.graph .translated
+{
+    background-color: #090;
+}
+
+table.graph .fuzzy
+{
+    background-color: #9c9;
+}
+
+/* PROGRESSBAR LEGEND */
+
+div.legend
+{
+    text-align: left;
+}
+
+html[dir="rtl"] div.legend
+{
+    text-align: right;
+}
+
+span.legend
+{
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: #ccc;
+    margin-right: 0.3em;
+    margin-bottom: -0.1em;
+}
+
+span.legend.translated
+{
+    background-color: #090;
+}
+
+span.legend.fuzzy
+{
+    background-color: #9c9;
 }
 
 /* SORTABLE */
@@ -2234,6 +2293,33 @@ html[dir="rtl"] .pull-right
 {
     border-top: 1px solid #eee;
     padding: 1em 0 0;
+}
+
+table.stats span.muted
+{
+    /* by default, hide the zero placeholders */
+    display: none;
+}
+
+body.js-not-loaded span.zero,
+body.js-not-loaded span.non-zero,
+body.js-not-loaded th.when-loaded
+{
+    /* Hide placeholders and certain headers by default */
+    display: none;
+}
+
+body.js-not-loaded table.graph
+{
+    filter:alpha(opacity=30);
+    opacity: 0.3;
+}
+
+table.stats td.zero span.zero,
+table.stats td.non-zero span.non-zero
+{
+    /* Show appropriate placeholders when 'zero' or 'non-zero' class is set */
+    display: inline;
 }
 
 .muted

@@ -22,6 +22,6 @@ from django.dispatch import Signal
 
 post_file_upload = Signal(providing_args=["user", "oldstats", "newstats",
                                           "archive"])
-post_template_update = Signal(providing_args=["oldstats", "newstats"])
-post_vc_commit = Signal(providing_args=["store", "stats", "user", "success"])
-post_vc_update = Signal(providing_args=["oldstats", "remotestats", "newstats"])
+post_template_update = Signal()
+post_vc_commit = Signal(providing_args=["store", "user", "success"])
+post_vc_update = Signal()
