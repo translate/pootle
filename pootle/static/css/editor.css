@@ -27,7 +27,7 @@ textarea#view_unit
 #toolbar
 {
     position: absolute;
-    right: 1em;
+    right: 2em;
     z-index: 100;
 
     background-color: #eee;
@@ -35,10 +35,11 @@ textarea#view_unit
     border-width: medium 1px 1px;
     border-style: none solid solid;
 
-
     padding: 0 0.5em;
-    margin-top: -1px;
-    padding: 10px 12px;
+    margin-top: -11px;
+    padding: 10px 12px 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
 }
 
 html[dir="rtl"] #toolbar
@@ -97,7 +98,6 @@ body.zoom-out-2 #toolbar
     padding: 0;
     text-align: center;
     position: relative;
-    top: 1px;
     border: 1px solid transparent;
     background: transparent;
 }

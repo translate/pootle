@@ -4,7 +4,9 @@
 
 #actions
 {
-    padding-bottom: 1em;
+    padding-bottom: .5em;
+    z-index: 200;
+    position: relative;
 }
 
 body.translate #actions
