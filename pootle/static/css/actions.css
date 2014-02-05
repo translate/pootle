@@ -149,7 +149,6 @@ body.js-not-loaded #translate-actions li
     padding: 0 0 0 4px;
     line-height: 28px;
     min-height: 28px;
-    min-width: 100px;
 }
 
 #translate-filters .breadcrumb .select2-container .select2-choice div
