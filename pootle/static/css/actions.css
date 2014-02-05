@@ -143,15 +143,19 @@ body.js-not-loaded #translate-actions li
     vertical-align: text-top;
 }
 
+#translate-filters .breadcrumb .select2-container
+{
+    top: 0;
+}
+
 #translate-filters .breadcrumb .select2-container .select2-choice
 {
     height: auto;
-    padding: 0 0 0 4px;
-    line-height: 28px;
-    min-height: 28px;
+    line-height: 24px;
+    min-height: 24px;
 }
 
 #translate-filters .breadcrumb .select2-container .select2-choice div
 {
-    top: 0;
+    top: -1px;
 }
