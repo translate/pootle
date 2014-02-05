@@ -36,7 +36,7 @@ from fabric.utils import abort
 
 
 def production(branch=None, repo=None, feature=None):
-    """Work on the production environment"""
+    """Work on the production environment."""
 
     try:
         from deploy.production import fabric
@@ -51,7 +51,7 @@ def production(branch=None, repo=None, feature=None):
 
 
 def staging(branch=None, repo=None, feature=None):
-    """Work on the staging environment"""
+    """Work on the staging environment."""
 
     try:
         from deploy.staging import fabric
@@ -103,7 +103,7 @@ def _get_new_settings(branch=None, repo=None, feature=None):
 
 
 def _remove_directories():
-    """Removes initial directories"""
+    """Remove initial directories."""
     if exists('%(project_path)s' % env):
         sudo('rm -rf %(project_path)s' % env)
     if exists('%(translations_path)s' % env):
@@ -113,7 +113,7 @@ def _remove_directories():
 
 
 def _init_directories():
-    """Creates initial directories"""
+    """Create initial directories."""
     print('\n\nCreating initial directories...')
 
     _remove_directories()
@@ -129,7 +129,7 @@ def _init_directories():
 
 
 def _init_virtualenv():
-    """Creates initial virtualenv"""
+    """Create initial virtualenv."""
     print('\n\nCreating virtualenv...')
 
     run('virtualenv -p %(python)s --no-site-packages %(env_path)s' % env)
@@ -138,14 +138,14 @@ def _init_virtualenv():
 
 
 def _clone_repo():
-    """Clones the Git repository"""
+    """Clone the Git repository."""
     print('\n\nCloning the repository...')
 
     run('git clone %(project_repo)s %(project_repo_path)s' % env)
 
 
 def _update_repo():
-    """Updates the Git repository and checks out the specified branch"""
+    """Update the Git repository and checks out the specified branch."""
     print('\n\nUpdating repository branch...')
 
     with cd(env.project_repo_path):
@@ -158,8 +158,8 @@ def _update_repo():
 
 
 def _install_requirements():
-    """Installs dependencies defined in the requirements file"""
-    print('\n\nInstalling requirements...')
+    """Install dependencies defined in the deploy requirements file."""
+    print('\n\nInstalling deploy requirements...')
 
     with prefix('source %(env_path)s/bin/activate' % env):
         run('pip install -r %(project_repo_path)s/requirements/deploy.txt' % env)
@@ -167,8 +167,8 @@ def _install_requirements():
 
 
 def _update_requirements():
-    """Updates dependencies defined in the requirements file"""
-    print('\n\nUpdating requirements...')
+    """Update dependencies defined in the deploy requirements file."""
+    print('\n\nUpdating deploy requirements...')
 
     with prefix('source %(env_path)s/bin/activate' % env):
         run('pip install -U -r %(project_repo_path)s/requirements/deploy.txt' % env)
@@ -176,7 +176,7 @@ def _update_requirements():
 
 
 def bootstrap():
-    """Bootstraps a Pootle deployment."""
+    """Bootstrap a Pootle deployment."""
     require('environment', provided_by=[production, staging])
 
     if (not exists('%(project_path)s' % env) or
@@ -193,7 +193,7 @@ def bootstrap():
 
 
 def stage_feature():
-    """Deploys a Pootle server for testing a feature branch.
+    """Deploy a Pootle server for testing a feature branch.
 
     This copies the DB from a previous Pootle deployment.
     """
@@ -213,7 +213,7 @@ def stage_feature():
 
 
 def unstage_feature():
-    """Remove a Pootle server deployed using the stage_feature command"""
+    """Remove a Pootle server deployed using the stage_feature command."""
     require('environment', provided_by=[staging])
 
     # Run the commands for completely removing this Pootle install
@@ -225,7 +225,7 @@ def unstage_feature():
 
 
 def create_db():
-    """Creates a new DB"""
+    """Create a new DB."""
     require('environment', provided_by=[production, staging])
 
     create_db_cmd = ("CREATE DATABASE `%(db_name)s` "
@@ -248,7 +248,10 @@ def create_db():
 
 
 def drop_db():
-    """Drops the current DB - losing all data!"""
+    """Drop the current database.
+
+     This will remove all the data on the database!
+     """
     require('environment', provided_by=[production, staging])
 
     print('\n\nDropping DB...')
@@ -262,7 +265,7 @@ def drop_db():
 
 
 def setup():
-    """Runs `setup` to create or upgrade the DB as required."""
+    """Run `setup` to create or upgrade the DB as required."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nRunning `setup` command...')
@@ -274,7 +277,7 @@ def setup():
 
 
 def setup_db():
-    """Runs all the necessary steps to create the DB schema from scratch"""
+    """Run all the necessary steps to create the DB schema from scratch."""
     require('environment', provided_by=[production, staging])
 
     syncdb()
@@ -283,7 +286,7 @@ def setup_db():
 
 
 def _copy_db():
-    """Copies the data in the source DB into the DB to use for deployment"""
+    """Copy the data in the source DB into the DB to use for deployment."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nCloning DB...')
@@ -312,7 +315,7 @@ def _copy_db():
 
 
 def syncdb():
-    """Runs `syncdb` to create the DB schema"""
+    """Run `syncdb` to create the DB schema."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nRunning `syncdb` command...')
@@ -324,7 +327,7 @@ def syncdb():
 
 
 def initdb():
-    """Runs `initdb` to initialize the DB"""
+    """Run `initdb` to initialize the DB."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nRunning `initdb` command...')
@@ -336,7 +339,7 @@ def initdb():
 
 
 def migratedb():
-    """Runs `migrate` to bring the DB up to date with the latest schema"""
+    """Run `migrate` to bring the DB up to date with the latest schema."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nRunning `migrate` command...')
@@ -348,8 +351,10 @@ def migratedb():
 
 
 def update_db():
-    """Runs all the necessary (and probably some unnecessary) steps to
-    update DB to the latest schema version
+    """Update the database to the latest schema version.
+
+    Runs all the necessary (and probably some unnecessary) steps to update the
+    DB to the latest schema version.
     """
     require('environment', provided_by=[production, staging])
 
@@ -360,7 +365,7 @@ def update_db():
 
 
 def _updatedb():
-    """Updates database schemas up to Pootle version 2.5"""
+    """Update the database schema up to Pootle version 2.5.0."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nRunning `updatedb` command...')
@@ -372,7 +377,7 @@ def _updatedb():
 
 
 def _migrate_fake():
-    """Runs `migrate --fake` to convert the DB to migrations"""
+    """Run `migrate --fake` to convert the DB to migrations."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nRunning `migrate --fake` command...')
@@ -386,7 +391,7 @@ def _migrate_fake():
 
 
 def upgrade():
-    """Runs `upgrade` to upgrade the DB for new Pootle/Translate Toolkit"""
+    """Run `upgrade` to upgrade the DB for new Pootle/Translate Toolkit."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nRunning `upgrade` command...')
@@ -398,7 +403,7 @@ def upgrade():
 
 
 def load_db(dumpfile=None):
-    """Loads data from a SQL script to Pootle DB"""
+    """Load data from a SQL script to Pootle DB."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nLoading data into the DB...')
@@ -426,7 +431,7 @@ def load_db(dumpfile=None):
 
 
 def dump_db(dumpfile="pootle_DB_backup.sql"):
-    """Dumps the DB as a SQL script and downloads it"""
+    """Dump the DB as a SQL script and downloads it."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nDumping DB...')
@@ -457,7 +462,7 @@ def dump_db(dumpfile="pootle_DB_backup.sql"):
 
 
 def update_code():
-    """Updates the source code and its requirements"""
+    """Update the source code and its requirements."""
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
@@ -466,7 +471,7 @@ def update_code():
 
 
 def deploy_static():
-    """Runs `collectstatic` to collect all the static files"""
+    """Run `collectstatic` to collect all the static files."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nCollecting static files and building assets...')
@@ -481,7 +486,7 @@ def deploy_static():
 
 
 def deploy():
-    """Updates the code and installs the production site"""
+    """Update the code and installs the production site."""
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
@@ -493,7 +498,7 @@ def deploy():
 
 
 def install_site():
-    """Configures the server and enables the site"""
+    """Configure the server and enables the site."""
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
@@ -502,7 +507,7 @@ def install_site():
 
 
 def update_config():
-    """Updates server configuration files"""
+    """Update server configuration files."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nUpdating server configuration...')
@@ -524,7 +529,7 @@ def update_config():
 
 
 def _remove_config():
-    """Removes server configuration files"""
+    """Remove server configuration files."""
     print('\n\nRemoving server configuration...')
 
     sudo('rm -rf %(vhost_file)s' % env)
@@ -533,7 +538,7 @@ def _remove_config():
 
 
 def enable_site():
-    """Enables the site"""
+    """Enable the site."""
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
@@ -541,7 +546,7 @@ def enable_site():
 
 
 def disable_site():
-    """Disables the site"""
+    """Disable the site."""
     require('environment', provided_by=[production, staging])
 
     with settings(hide('stdout', 'stderr')):
@@ -549,7 +554,7 @@ def disable_site():
 
 
 def _switch_site(enable):
-    """Switches site's status to enabled or disabled"""
+    """Switch site's status to enabled or disabled."""
 
     action = "Enabling" if enable else "Disabling"
     print('\n\n%s site...' % action)
@@ -560,7 +565,7 @@ def _switch_site(enable):
 
 
 def touch():
-    """Reloads daemon processes by touching the WSGI file"""
+    """Reload daemon processes by touching the WSGI file."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nRunning `touch`...')
@@ -570,7 +575,7 @@ def touch():
 
 
 def compile_translations():
-    """Compiles PO translations"""
+    """Compile PO translations."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nCompiling translations...')
@@ -581,7 +586,7 @@ def compile_translations():
                 run('python setup.py build_mo')
 
 def mysql_conf():
-    """Sets up .my.cnf file for passwordless MySQL operation"""
+    """Set up .my.cnf file for passwordless MySQL operation."""
     require('environment', provided_by=[production, staging])
 
     print('\n\nSetting up MySQL password configuration...')
