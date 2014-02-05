@@ -402,17 +402,8 @@ class Unit(models.Model, base.TranslationUnit):
         if self._source_updated:
             # update source related fields
             self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
-            self.source_wordcount = count_words(self.source_f.strings)
             self.source_length = len(self.source_f)
-
-            if self.source_wordcount == 0:
-                # auto-translate unit (as fuzzy)
-                # however we can't set the actual wordcount to zero since the
-                # unit will essentially disappear from statistics thus for
-                # such units set word count to 1
-                self.target = self.source
-                self.state = FUZZY
-                self.source_wordcount = 1
+            self.update_wordcount(auto_translate=True)
 
         if self._target_updated:
             # update target related fields
@@ -677,6 +668,24 @@ class Unit(models.Model, base.TranslationUnit):
                 changed = True
 
         return changed
+
+    def update_wordcount(auto_translate=False):
+        """Updates the source wordcount for a unit.
+
+        :param auto_translate: when set to `True`, it will coopy the
+            source string into the target field.
+        """
+        self.source_wordcount = count_words(self.source_f.strings)
+
+        if self.source_wordcount == 0:
+            # We can't set the actual wordcount to zero since the unit
+            # will essentially disappear from statistics thus for such
+            # units set word count to 1
+            self.source_wordcount = 1
+
+            if auto_translate:
+                self.target = self.source
+                self.state = FUZZY
 
     def update_qualitychecks(self, created=False, keep_false_positives=False):
         """Run quality checks and store result in the database."""

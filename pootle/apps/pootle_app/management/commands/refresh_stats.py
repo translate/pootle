@@ -38,7 +38,7 @@ from pootle_misc.checks import ENChecker, run_given_filters
 from pootle_misc.util import datetime_min
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
-from pootle_store.models import Store, Unit, QualityCheck, Suggestion, count_words
+from pootle_store.models import Store, Unit, QualityCheck, Suggestion
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 
 from . import PootleCommand
@@ -137,12 +137,7 @@ class Command(PootleCommand):
                 logging.info("calculate wordcount for %s" % store.pootle_path)
                 for unit in store.unit_set.iterator():
                     unit_count += 1
-                    unit.source_wordcount = count_words(unit.source_f.strings)
-                    # we can't set the actual wordcount to zero since the
-                    # unit will essentially disappear from statistics thus for
-                    # such units set word count to 1
-                    if unit.source_wordcount == 0:
-                        unit.source_wordcount = 1
+                    unit.update_wordcount()
                     unit.save()
 
                 if i % 20 == 0:
