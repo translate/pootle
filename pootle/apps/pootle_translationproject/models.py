@@ -53,12 +53,21 @@ class TranslationProjectNonDBState(object):
         self.termmatcher = None
         self.termmatchermtime = None
 
+def create_or_enable_translation_project(language, project):
+    tp = create_translation_project(language, project)
+    if tp is not None:
+        if tp.disabled:
+            tp.disabled = False
+            tp.save()
+            logging.info(u"Enabled %s", tp)
+        else:
+            logging.info(u"Created %s", tp)
 
 def create_translation_project(language, project):
     from pootle_app import project_tree
     if project_tree.translation_project_should_exist(language, project):
         try:
-            translation_project, created = TranslationProject.objects \
+            translation_project, created = TranslationProject.objects.all() \
                     .get_or_create(language=language, project=project)
             return translation_project
         except OSError:
@@ -74,6 +83,9 @@ def scan_translation_projects():
 
 
 class TranslationProjectManager(RelatedManager):
+    # disabled objects are hidden for related objects too
+    use_for_related_fields = True
+
     def get_by_natural_key(self, pootle_path):
         #FIXME: should we use Language and Project codes instead?
         return self.get(pootle_path=pootle_path)
@@ -89,6 +101,9 @@ class TranslationProjectManager(RelatedManager):
         return self.get(language=language_id,
                         project__checkstyle='terminology')
 
+    def enabled(self):
+        return self.filter(disabled=False)
+
 
 class TranslationProject(models.Model, TreeItem):
 
@@ -98,6 +113,9 @@ class TranslationProject(models.Model, TreeItem):
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
             db_index=True, editable=False)
+    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
+                                         editable=False, null=True)
+    disabled = models.BooleanField()
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
             settings.PARSE_POOL_CULL_FREQUENCY)
@@ -188,12 +206,14 @@ class TranslationProject(models.Model, TreeItem):
         created = self.id is None
 
         project_dir = self.project.get_real_path()
-        from pootle_app.project_tree import get_translation_project_dir
-        self.abs_real_path = get_translation_project_dir(self.language,
-                project_dir, self.file_style, make_dirs=True)
-        self.directory = self.language.directory \
-                                      .get_or_make_subdir(self.project.code)
-        self.pootle_path = self.directory.pootle_path
+        if not self.disabled:
+            from pootle_app.project_tree import get_translation_project_dir
+            self.abs_real_path = get_translation_project_dir(self.language,
+                 project_dir, self.file_style, make_dirs=not self.disabled)
+
+            self.directory = self.language.directory \
+                                          .get_or_make_subdir(self.project.code)
+            self.pootle_path = self.directory.pootle_path
 
         super(TranslationProject, self).save(*args, **kwargs)
 
@@ -202,10 +222,11 @@ class TranslationProject(models.Model, TreeItem):
 
     def delete(self, *args, **kwargs):
         directory = self.directory
+        # clear cache for translation_project parents only
+        # children cache will be cleared in directory.delete()
+        self.clear_all_cache(parents=True, children=False)
 
         super(TranslationProject, self).delete(*args, **kwargs)
-        #TODO: avoid an access to directory while flushing the cache
-        directory.flush_cache()
         directory.delete()
 
     def get_absolute_url(self):

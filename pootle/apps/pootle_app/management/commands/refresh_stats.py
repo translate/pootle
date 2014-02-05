@@ -73,25 +73,25 @@ class Command(PootleCommand):
 
     def handle_all_stores(self, translation_project, **options):
         # TODO use the faster method
-        translation_project.flush_cache()
+        translation_project.clear_all_cache(parents=False)
         translation_project.get_stats()
         translation_project.get_mtime()
 
     def handle_store(self, store, **options):
         # TODO use the faster method
-        store.flush_cache()
+        store.clear_all_cache(parents=False)
         store.get_stats()
         store.get_mtime()
 
     def handle_language(self, lang, **options):
         # TODO use the faster method
-        lang.flush_cache(False)
+        lang.clear_all_cache(children=False)
         lang.get_stats()
         lang.get_mtime()
 
     def handle_project(self, prj, **options):
         # TODO use the faster method
-        prj.flush_cache(False)
+        prj.clear_all_cache(children=False)
         prj.get_stats()
         prj.get_mtime()
 

@@ -27,7 +27,7 @@ import errno
 
 from pootle_app.management.commands import PootleCommand
 
-from pootle_translationproject.models import create_translation_project
+from pootle_translationproject.models import create_or_enable_translation_project
 from pootle_language.models import Language
 from pootle_project.models import Project
 
@@ -53,27 +53,34 @@ class Command(PootleCommand):
            "adds them to database."
 
     def handle_project(self, project, **options):
+        clean = options.get('clean', False)
+        if clean and does_not_exist(project.get_real_path()):
+            logging.info(u"Disabling %s", project)
+            project.disabled = True
+            project.save()
+            project.clear_all_cache(parents=True, children=False)
+            return
+
         lang_query = Language.objects.exclude(
-                id__in=project.translationproject_set \
+                id__in=project.translationproject_set.enabled() \
                               .values_list('language', flat=True)
             )
         for language in lang_query.iterator():
-            tp = create_translation_project(language, project)
-            if tp:
-                logging.info(u"Created %s", tp)
+            create_or_enable_translation_project(language, project)
 
     def handle_language(self, language, **options):
         project_query = Project.objects.exclude(
-                id__in=language.translationproject_set \
+                id__in=language.translationproject_set.enabled() \
                                .values_list('project', flat=True)
             )
         for project in project_query.iterator():
-            tp = create_translation_project(language, project)
-            if tp:
-                logging.info(u"Created %s", tp)
+            create_or_enable_translation_project(language, project)
 
     def handle_translation_project(self, translation_project, **options):
         clean = options.get('clean', False)
-        if clean and does_not_exist(translation_project.abs_real_path):
-            logging.info(u"Deleting %s", translation_project)
-            translation_project.delete()
+        if not translation_project.disabled and \
+                clean and does_not_exist(translation_project.abs_real_path):
+            logging.info(u"Disabling %s", translation_project)
+            translation_project.disabled = True
+            translation_project.save()
+            translation_project.clear_all_cache(parents=True, children=False)

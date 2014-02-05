@@ -229,6 +229,7 @@ class UnitManager(RelatedManager):
         units_qs = super(UnitManager, self).get_query_set().filter(
             state__gt=OBSOLETE,
             store__translation_project__project__disabled=False,
+            store__translation_project__disabled=False,
         )
 
         # /projects/<project_code>/translate/*
@@ -459,7 +460,7 @@ class Unit(models.Model, base.TranslationUnit):
         # update cache only if we are updating a single unit
         if self.store.state >= PARSED:
             self.store.flag_for_deletion(CachedMethods.MTIME)
-            self.store.update_cache()
+            self.store.clear_flagged_cache()
 
     def get_absolute_url(self):
         return l(self.store.pootle_path)
@@ -1232,15 +1233,14 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 unit.index = index + i
                 unit.save()
         if self.state >= PARSED:
-            self.update_cache()
+            self.clear_flagged_cache()
 
     def delete(self, *args, **kwargs):
         self.before_delete()
-        self.clear_cache()
-
         super(Store, self).delete(*args, **kwargs)
 
     def before_delete(self):
+        super(Store, self).before_delete()
         store_log(user='system', action=STORE_DELETED,
                   path=self.pootle_path, store=self.id)
 

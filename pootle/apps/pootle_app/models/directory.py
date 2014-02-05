@@ -238,10 +238,5 @@ class Directory(models.Model, TreeItem):
 
     def delete(self, *args, **kwargs):
         self.before_delete()
-        self.clear_cache()
         super(Directory, self).delete(*args, **kwargs)
 
-    def before_delete(self):
-        self.initialize_children()
-        for item in self.children:
-            item.before_delete()

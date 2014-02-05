@@ -308,9 +308,9 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
         # clear stats cache
         if self.__disabled != self.disabled:
-            self.clear_cache()
+            self.clear_all_cache(parents=True, children=False)
             for tp in self.get_children():
-                tp.language.clear_cache()
+                tp.language.clear_all_cache(parents=True, children=False)
             self.__disabled = self.disabled
 
     def delete(self, *args, **kwargs):
@@ -368,13 +368,17 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
     ### TreeItem
 
     def get_children(self):
-        return self.translationproject_set.all()
+        return self.translationproject_set.enabled()
 
     def get_cachekey(self):
         return self.directory.pootle_path
 
     def get_parents(self):
         return [Directory.objects.projects]
+
+    def before_delete(self):
+        # everything will be done in directory.delete()
+        pass
 
     ### /TreeItem
 

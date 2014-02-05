@@ -228,8 +228,8 @@ class TreeItem(object):
         if include_children:
             for item in self.children:
                 item.refresh_stats()
-
-        self.flush_cache(False)
+            else:
+                self.clear_all_cache(parents=True, children=False)
 
         self.get_total_wordcount()
         self.get_translated_wordcount()
@@ -294,34 +294,9 @@ class TreeItem(object):
         critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
         return self.get_translate_url(check=critical)
 
-    def _delete_from_cache(self, keys):
-        itemkey = self.get_cachekey()
-        for key in keys:
-            cachekey = iri_to_uri(itemkey + ":" + key)
-            cache.delete(cachekey)
-        log("%s deleted from %s cache" % (keys, itemkey))
-
-        parents = self.get_parents()
-        for p in parents:
-            p._delete_from_cache(keys)
-
-    def update_cache(self):
-        self._delete_from_cache(self._flagged_for_deletion)
-        self._flagged_for_deletion = set()
-
     def flag_for_deletion(self, *args):
         for key in args:
             self._flagged_for_deletion.add(key)
-
-    def flush_cache(self, children=True):
-        for name in CachedMethods.get_all():
-            cachekey = iri_to_uri(self.get_cachekey() + ":" + name)
-            cache.delete(cachekey)
-
-        if children:
-            self.initialize_children()
-            for item in self.children:
-                item.flush_cache()
 
     def set_last_action(self, last_action):
         set_cached_value(self, 'get_last_action', last_action)
@@ -335,10 +310,36 @@ class TreeItem(object):
         self.initialize_children()
         for item in self.children:
             item.detele()
+        else:
+            # clear cache form leaf to the root
+            self.clear_all_cache(parents=True, children=False)
 
         super(TreeItem, self).before_delete()
 
-    def clear_cache(self):
+    def _clear_cache(self, keys, parents=True, children=False):
+        itemkey = self.get_cachekey()
+        for key in keys:
+            cachekey = iri_to_uri(itemkey + ":" + key)
+            cache.delete(cachekey)
+        if keys:
+            log("%s deleted from %s cache" % (keys, itemkey))
+
+        if parents:
+            parents = self.get_parents()
+            for p in parents:
+                p._clear_cache(keys, parents=parents, children=False)
+
+        if children:
+            self.initialize_children()
+            for item in self.children:
+                item._clear_cache(keys, parents=False, children=True)
+
+    def clear_flagged_cache(self, parents=True, children=False):
+        self._clear_cache(self._flagged_for_deletion,
+                          parents=parents, children=children)
+        self._flagged_for_deletion = set()
+
+    def clear_all_cache(self, children=True, parents=True):
         all_cache_methods = CachedMethods.get_all()
         self.flag_for_deletion(*all_cache_methods)
-        self.update_cache()
+        self.clear_flagged_cache(children=children, parents=parents)

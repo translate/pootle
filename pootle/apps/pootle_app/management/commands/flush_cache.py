@@ -29,13 +29,13 @@ class Command(PootleCommand):
     help = "Flush stats cache."
 
     def handle_all_stores(self, translation_project, **options):
-        translation_project.flush_cache()
+        translation_project.clear_all_cache()
 
     def handle_store(self, store, **options):
-        store.flush_cache()
+        store.clear_all_cache()
 
     def handle_language(self, lang, **options):
-        lang.flush_cache(False)
+        lang.clear_all_cache(children=False)
 
     def handle_project(self, prj, **options):
-        prj.flush_cache(False)
+        prj.clear_all_cache(children=False)
