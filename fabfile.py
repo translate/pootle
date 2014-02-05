@@ -212,16 +212,33 @@ def stage_feature():
     print('\n\nSuccessfully deployed at:\n\n\thttp://%(project_url)s\n' % env)
 
 
+def drop_deployment():
+    """Wipe out a Pootle deployment.
+
+    The deployment might have not been completed.
+    """
+    require('environment', provided_by=[production, staging])
+
+    try:
+        disable_site()
+    except:
+        print('\n\nSeems that the site was not enabled on Apache.')
+
+    try:
+        drop_db()
+    except:
+        print("\n\nSeems that database didn't exist.")
+
+    _remove_config()
+    _remove_directories()
+    print('\n\nRemoved Pootle deployment for http://%(project_url)s' % env)
+
+
 def unstage_feature():
     """Remove a Pootle server deployed using the stage_feature command."""
     require('environment', provided_by=[staging])
 
-    # Run the commands for completely removing this Pootle install
-    disable_site()
-    drop_db()
-    _remove_config()
-    _remove_directories()
-    print('\n\nRemoved Pootle deployment for http://%(project_url)s' % env)
+    drop_deployment()
 
 
 def create_db():

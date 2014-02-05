@@ -184,6 +184,35 @@ Examples:
     $ fab production drop_db
 
 
+.. _fabric-commands#drop-deployment:
+
+drop_deployment
+---------------
+
+.. versionadded:: 2.5.2
+
+This command:
+
+- Calls the :ref:`disable_site <fabric-commands#disable-site>` command
+- Calls the :ref:`drop_db <fabric-commands#drop-db>` command
+- Removes the configuration files created by the :ref:`update_config
+  <fabric-commands#update-config>` command
+- Removes the directories created during the deployment, including the ones
+  holding the translation files and the repositories for those translation
+  files
+
+.. note:: This command is capable of removing uncompleted deployments.
+
+.. note:: While running it may ask for the remote server ``root`` password and
+   the specified ``db_user`` password.
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab production drop_deployment
+
+
 .. _fabric-commands#dump-db:
 
 dump_db
@@ -643,17 +672,11 @@ Examples:
 unstage_feature
 ---------------
 
-.. versionadded:: 2.5.1
+.. versionchanged:: 2.5.2
 
 This command:
 
-- Calls the :ref:`disable_site <fabric-commands#disable-site>` command
-- Calls the :ref:`drop_db <fabric-commands#drop-db>` command
-- Removes the configuration files created by the :ref:`update_config
-  <fabric-commands#update-config>` command
-- Removes the directories created during the deployment, including the ones
-  holding the translation files and the repositories for those translation
-  files
+- Calls the :ref:`drop_deployment <fabric-commands#drop-deployment>` command
 
 .. note:: While running it may ask for the remote server ``root`` password and
    the specified ``db_user`` password.
