@@ -20,12 +20,19 @@ interested in:
 Enabling the Pootle API
 =======================
 
-Pootle API is disabled by default. To enable it just put the following line on
-your custom settings:
+Pootle API is disabled by default. To enable it just install
+``django-tastypie`` and put the following line on your custom settings:
 
 .. code-block:: python
 
   POOTLE_ENABLE_API = True
+
+
+.. warning::
+
+    If you are running Pootle using Apache with ``mod_wsgi`` you will need to
+    enable ``WSGIPassAuthorization On`` as told in
+    :ref:`Tastypie authentication docs <tastypie:authentication>`.
 
 
 .. _api#using:
