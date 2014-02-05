@@ -1942,7 +1942,8 @@ html[dir="rtl"] .overview-description-toggle
 
 .breadcrumb li.navigation + li::before
 {
-    content: ":";
+    content: "";
+    margin-left: 0.2em;
 }
 
 /* select2 dropdown widgets in breadcrumbs */
