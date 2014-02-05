@@ -8,8 +8,18 @@ PTL.collections = PTL.collections || {};
  * PTL.collections.Units
  */
 
-collections.UnitCollection = Backbone.Collection.extend({
+collections.UnitSet = Backbone.Collection.extend({
   model: models.Unit,
+
+  initialize: function (model, opts) {
+    this.chunkSize = opts.chunkSize;
+    this.uIds = [];
+    this.total = 0;
+  },
+
+  comparator: function (unit) {
+    return this.uIds.indexOf(unit.id);
+  },
 
   getCurrent: function () {
     return this.activeUnit;
@@ -19,6 +29,12 @@ collections.UnitCollection = Backbone.Collection.extend({
   },
   setFirstAsCurrent: function () {
     this.setCurrent(this.at(0));
+  },
+
+  fetchedIds: function () {
+    return this.map(function (unit) {
+      return unit.id;
+    });
   },
 
   next: function () {

@@ -15,10 +15,9 @@
     options && $.extend(this.settings, options);
 
     /* Initialize variables */
-    this.units = new PTL.collections.UnitCollection;
-
-    this.pager = {current: 1};
-    this.pagesGot = {};
+    this.units = new PTL.collections.UnitSet([], {
+      chunkSize: this.settings.chunkSize
+    });
 
     this.filter = 'all';
     this.checks = [];
@@ -283,28 +282,29 @@
     setTimeout(function () {
       $.history.init(function (hash) {
         var params = PTL.utils.getParsedHash(hash),
-            withUid = 0,
-            tmpParamValue;
+            isInitial = true,
+            uId = 0;
 
         // Walk through known filtering criterias and apply them to the editor object
 
         if (params['unit']) {
-          tmpParamValue = parseInt(params['unit'], 10);
+          var uIdParam = parseInt(params['unit'], 10);
 
-          if (tmpParamValue && !isNaN(tmpParamValue)) {
+          if (uIdParam && !isNaN(uIdParam)) {
             var current = PTL.editor.units.getCurrent(),
-                newUnit = PTL.editor.units.get(tmpParamValue);
+                newUnit = PTL.editor.units.get(uIdParam);
             if (newUnit && newUnit !== current) {
               PTL.editor.units.setCurrent(newUnit);
               PTL.editor.displayEditUnit();
               return;
             } else {
-              withUid = tmpParamValue;
+              uId = uIdParam;
+              // Don't retrieve initial data if there are existing results
+              isInitial = !PTL.editor.units.length;
             }
           }
         }
 
-        PTL.editor.pager.current = 1;
         PTL.editor.filter = 'all';
 
         if ('filter' in params) {
@@ -419,19 +419,18 @@
         // re-enable normal event handling
         PTL.editor.preventNavigation = false;
 
-        // Load the units that match the given criterias
-        PTL.editor.getViewUnits({pager: true, withUid: withUid});
-
-        if (PTL.editor.hasResults) {
-          // ensure all the data is preloaded before rendering the table
-          // otherwise, when the page is reloaded, some pages will not yet be there
-          PTL.editor.fetchPages({async: false});
-
-          if (PTL.editor.units.getCurrent() === undefined) {
-            PTL.editor.units.setFirstAsCurrent();
+        PTL.editor.fetchUnits({
+          initial: isInitial,
+          uId: uId,
+          success: function () {
+            if (uId > 0) {
+              PTL.editor.units.setCurrent(uId);
+            } else {
+              PTL.editor.units.setFirstAsCurrent();
+            }
+            PTL.editor.displayEditUnit();
           }
-          PTL.editor.displayEditUnit();
-        }
+        });
 
       }, {'unescape': true});
     }, 1); // not sure why we had a 1000ms timeout here
@@ -865,111 +864,6 @@
    * Unit navigation, display, submission
    */
 
-  /* Gets the view units that refer to the current page */
-  getViewUnits: function (opts) {
-    var extraData, reqData,
-        defaults = {async: false, page: this.pager.current,
-                    pager: false, withUid: 0},
-        viewUrl = l('/xhr/units/');
-    // Merge passed arguments with defaults
-    opts = $.extend({}, defaults, opts);
-
-    extraData = {
-      page: opts.page,
-      path: this.settings.pootlePath
-    };
-    if (opts.pager) {
-      extraData.pager = opts.pager;
-    }
-    if (opts.withUid > 0) {
-      extraData.uid = opts.withUid;
-      // We don't know the page number beforehand —
-      // delete the parameter as it's useless
-      delete extraData.page
-    }
-    reqData = $.extend(extraData, this.getReqData());
-
-    $.ajax({
-      url: viewUrl,
-      data: reqData,
-      dataType: 'json',
-      async: opts.async,
-      success: function (data) {
-        // Receive pager in case we have asked for it
-        if (opts.pager && data.pager) {
-          // FIXME: can we get rid of this, please?
-          PTL.editor.hasResults = true;
-
-          // Clear old data and add new results
-          PTL.editor.pagesGot = {};
-          PTL.editor.units.reset();
-          PTL.editor.pager = data.pager;
-        }
-
-        // Store view units in the client
-        if (data.unit_groups.length) {
-          // Determine in which page we want to save units, as we may not
-          // have specified it in the GET parameters — in that case, the
-          // page number is specified within the response pager
-          if (data.pager) {
-            var page = data.pager.current;
-          } else {
-            var page = opts.page;
-          }
-
-          PTL.editor.pagesGot[page] = [];
-
-          // Calculate where to insert the new set of units
-          var pages = $.map(PTL.editor.pagesGot, function (value, key) {
-                return parseInt(key, 10);
-              }).sort(PTL.utils.numberCmp),
-              pageIndex = pages.indexOf(page),
-              at = PTL.editor.pager.perPage * pageIndex;
-
-          // FIXME: can we avoid this?
-          var urlStr = [
-            PTL.editor.settings.ctxPath, 'translate/',
-            PTL.editor.settings.resourcePath, '#unit=',
-          ].join('');
-
-          var i, j, unit, unitGroup;
-          for (i=0; i<data.unit_groups.length; i++) {
-            unitGroup = data.unit_groups[i];
-            $.each(unitGroup, function (pootlePath, group) {
-              var storeData = $.extend({pootlePath: pootlePath}, group.meta),
-                  units = _.map(group.units, function (unit) {
-                    return $.extend(unit, {store: storeData});
-                  });
-              PTL.editor.units.set(units, {at: at, remove: false});
-              at += group.units.length;
-
-              // FIXME: can we avoid this?
-              for (j=0; j<group.units.length; j++) {
-                unit = PTL.editor.units.get(group.units[j].id);
-                unit.set('url', l(urlStr + unit.id));
-
-                PTL.editor.pagesGot[page].push(unit.id);
-              }
-            });
-          }
-
-          if (opts.withUid) {
-            PTL.editor.units.setCurrent(opts.withUid);
-          } else if (data.pager) {
-            var firstInPage = PTL.editor.pagesGot[data.pager.current][0];
-            PTL.editor.units.setCurrent(firstInPage);
-          }
-
-          PTL.editor.hasResults = true;
-        } else {
-          PTL.editor.hasResults = false;
-          $("table.translate-table").trigger("noResults");
-        }
-      },
-      error: PTL.editor.error
-    });
-  },
-
 
   /* Builds a single row */
   buildRow: function (unit, cls) {
@@ -1020,16 +914,11 @@
         currentUnit = this.units.getCurrent(),
         cls = "even",
         even = true,
-        rows = "",
-        urlStr = [
-          PTL.editor.settings.ctxPath, 'translate/',
-          PTL.editor.settings.resourcePath, '#unit=',
-        ].join('');
+        rows = '';
 
     for (i=0; i<units.length; i++) {
       // FIXME: Please let's use proper models for context units
       unit = units[i];
-      unit['url'] = l(urlStr + unit.id);
       unit = $.extend({}, currentUnit.toJSON(), unit);
 
       rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls +
@@ -1047,7 +936,7 @@
 
   /* Returns the unit groups for the current editor state */
   getUnitGroups: function () {
-    var limit = parseInt(((this.pager.perPage - 1) / 2), 10),
+    var limit = parseInt(((this.units.chunkSize - 1) / 2), 10),
         unitCount = this.units.length,
         currentUnit = this.units.getCurrent(),
         curIndex = this.units.indexOf(currentUnit),
@@ -1074,10 +963,8 @@
 
   /* Sets the edit view for the current active unit */
   displayEditUnit: function () {
-    if (PTL.editor.hasResults) {
-      // Fetch pages asynchronously — we already have the needed pages
-      // so this will return units whenever it can
-      this.fetchPages();
+    if (PTL.editor.units.length) {
+      this.fetchUnits();
 
       // Hide any visible message
       this.hideMsg();
@@ -1136,85 +1023,109 @@
   },
 
 
-  /* Fetches more view unit pages in case they're needed */
-  fetchPages: function (opts) {
+  /* Fetches more units in case they're needed */
+  fetchUnits: function (opts) {
+    // TODO: move logic into UnitSet
     var defaults = {
-          async: true,
-          page: this.pager.current
+          initial: false,
+          uId: 0
+        },
+        viewUrl = l('/xhr/units/'),
+        reqData = {
+          path: this.settings.pootlePath
         };
 
     opts = $.extend({}, defaults, opts);
 
-    var current = opts.page,
-        candidates = [current, current + 1, current - 1],
-        pages = [],
-        i;
+    if (opts.initial) {
+      reqData.initial = opts.initial;
 
-    // We will only fetch valid pages and pages that haven't
-    // already been fetched
-    for (i=0; i<candidates.length; i++) {
-      if (candidates[i] <= this.pager.numPages &&
-          candidates[i] > 0 &&
-          !(candidates[i] in this.pagesGot)) {
-        pages.push(candidates[i]);
+      if (opts.uId > 0) {
+        reqData.uids = opts.uId;
       }
+    } else {
+      // Only fetch units limited to an offset, and omit units that have
+      // already been fetched
+      var fetchedIds = this.units.fetchedIds(),
+          offset = this.units.chunkSize,
+          curUId = opts.uId > 0 ? opts.uId : this.units.getCurrent().id,
+          uIndex = this.units.uIds.indexOf(curUId),
+          uIds, begin, end;
+
+      begin = Math.max(uIndex - offset, 0);
+      end = Math.min(uIndex + offset + 1, this.units.total);
+
+      // Ensure we retrieve chunks of the right size
+      if (opts.uId === 0) {
+        if (fetchedIds.indexOf(this.units.uIds[begin]) === -1) {
+          begin = Math.max(begin - offset, 0);
+        }
+        if (fetchedIds.indexOf(this.units.uIds[end - 1]) === -1) {
+          end = Math.min(end + offset + 1, this.units.total);
+        }
+      }
+
+      uIds = this.units.uIds.slice(begin, end);
+      uIds = _.difference(uIds, fetchedIds);
+
+      if (!uIds.length) {
+        return;  // Nothing to be done
+      }
+
+      reqData.uids = uIds.join(',');
     }
 
-    // Do the actual fetching
-    for (i=0; i<pages.length; i++) {
-      this.getViewUnits({async: opts.async, page: pages[i]});
-    }
+    $.extend(reqData, this.getReqData());
+
+    $.ajax({
+      url: viewUrl,
+      data: reqData,
+      dataType: 'json',
+      cache: false,
+      success: function (data) {
+        if (data.uIds) {
+          // Clear old data and add new results
+          PTL.editor.units.reset();
+
+          PTL.editor.units.uIds = data.uIds;
+          PTL.editor.units.total = data.uIds.length;
+        }
+
+        // Store view units in the client
+        if (data.unitGroups.length) {
+          var i, unitGroup;
+          for (i=0; i<data.unitGroups.length; i++) {
+            unitGroup = data.unitGroups[i];
+            $.each(unitGroup, function (pootlePath, group) {
+              var storeData = $.extend({pootlePath: pootlePath}, group.meta),
+                  units = _.map(group.units, function (unit) {
+                    return $.extend(unit, {store: storeData});
+                  });
+              PTL.editor.units.set(units, {remove: false});
+            });
+          }
+
+          if (opts.success && $.isFunction(opts.success)) {
+            opts.success();
+          }
+        } else {
+          $("table.translate-table").trigger("noResults");
+        }
+      },
+      error: PTL.editor.error
+    });
   },
 
-  /* Updates the pager */
-  updatePager: function () {
-    var pager = this.pager;
-
-    $("#items-count").text(pager.count);
+  /* Updates the navigation controls */
+  updateNav: function () {
+    $("#items-count").text(this.units.total);
 
     var currentUnit = PTL.editor.units.getCurrent();
     if (currentUnit !== undefined) {
-      // Calculate the global index number for the current unit.
-      // Note that we can't just use `indexOf(currentUnit)` in the
-      // collection because we don't load the entire collection at once
-      var uId = currentUnit.id,
-          uIndexInPage = PTL.editor.pagesGot[pager.current].indexOf(uId) + 1,
-          uIndex = (pager.current - 1) * pager.perPage + uIndexInPage;
+      var uIndex = this.units.uIds.indexOf(currentUnit.id) + 1;
       $("#item-number").val(uIndex);
     }
 
-  },
-
-  /* Creates a pager based on the current client data and the given uid */
-  createPager: function (uid) {
-    var newPager = this.pager;
-    // In case the given uid is not within the current page,
-    // calculate in which page it is
-    if ($.inArray(uid, this.pagesGot[this.pager.current]) == -1) {
-      var newPageNumber,
-          i = this.pager.current,
-          j = this.pager.current + 1,
-          found = false;
-      // Search uid within the pages the client knows of
-      while (!found && (i > 0 || j <= this.pager.numPages)) {
-        if (i > 0 && $.inArray(uid, this.pagesGot[i]) != -1) {
-          newPageNumber = i;
-          found = true;
-        } else if ($.inArray(uid, this.pagesGot[j]) != -1) {
-          newPageNumber = j;
-          found = true;
-        }
-
-        i--;
-        j++;
-      }
-
-      if (found) {
-        newPager.current = newPageNumber;
-      }
-    }
-
-    return newPager;
   },
 
   /* Loads the edit unit for the current active unit */
@@ -1224,20 +1135,17 @@
         currentUnit = this.units.getCurrent(),
         uid = currentUnit.id,
         editUrl = l(['/xhr/units/', uid, '/edit/'].join('')),
-        reqData = this.getReqData(),
         widget = '',
         ctx = {before: [], after: []};
 
     $.ajax({
       url: editUrl,
       async: false,
-      data: reqData,
       dataType: 'json',
       success: function (data) {
         widget = data['editor'];
-        // Update pager in case it's needed
-        PTL.editor.pager = PTL.editor.createPager(uid);
-        PTL.editor.updatePager();
+
+        PTL.editor.updateNav();
 
         if (data.ctx) {
           // Initialize context gap to the maximum context rows available
@@ -1415,24 +1323,11 @@
   },
 
   /* Loads the editor on a index */
-  // FIXME: we probably want to retrieve sorted list of all the UIDs
-  // affecting the current query, so we wouldn't need to do ugly things
-  // to figure out the mapping between indexes and unit IDs
   gotoIndex: function (index) {
     if (index && !isNaN(index) && index > 0 &&
-        index <= PTL.editor.pager.count) {
-      var preceding = index - 1,
-          page = parseInt(preceding / PTL.editor.pager.perPage + 1, 10) || 1,
-          uIndexInPage = preceding % PTL.editor.pager.perPage,
-          uId;
-
-      if (!(page in PTL.editor.pagesGot)) {
-        PTL.editor.fetchPages({async: false, page: page});
-      }
-
-      uId = PTL.editor.pagesGot[page][uIndexInPage];
-
-      var newHash = PTL.utils.updateHashPart("unit", uId);
+        index <= PTL.editor.units.total) {
+      var uId = PTL.editor.units.uIds[index-1],
+          newHash = PTL.utils.updateHashPart('unit', uId);
       $.history.load(newHash);
     }
   },
