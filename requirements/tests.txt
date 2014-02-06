@@ -1,0 +1,4 @@
+-r deploy.txt
+
+pytest
+pytest-django
