@@ -14,7 +14,7 @@ cssmin>=0.1.4
 lxml>=2.1.4
 
 # For providing API
-#django-tastypie
+#django-tastypie<=0.9.16
 
 # Translate Toolkit
 translate-toolkit>=1.11.0
