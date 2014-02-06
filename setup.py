@@ -22,12 +22,14 @@
 import glob
 import os
 import re
+import sys
 
 from distutils import log
 from distutils.command.build import build as DistutilsBuild
 from distutils.errors import DistutilsOptionError
 
 from setuptools import find_packages, setup
+from setuptools.command.test import test as TestCommand
 
 from pootle.__version__ import sver as pootle_version
 
@@ -52,6 +54,20 @@ def parse_requirements(file_name):
             requirements.append(line)
 
     return requirements
+
+
+class PyTest(TestCommand):
+
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = ['--tb=short', 'tests/']
+        self.test_suite = True
+
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
 
 
 class PootleBuildMo(DistutilsBuild):
@@ -151,6 +167,7 @@ setup(
     download_url="http://sourceforge.net/projects/translate/files/Pootle/" + pootle_version,
 
     install_requires=parse_requirements('requirements/base.txt'),
+    tests_require=parse_requirements('requirements/tests.txt'),
 
     platforms=["any"],
     classifiers=[
@@ -179,6 +196,7 @@ setup(
         ],
     },
     cmdclass={
-        'build_mo': PootleBuildMo
+        'build_mo': PootleBuildMo,
+        'test': PyTest,
     },
 )
