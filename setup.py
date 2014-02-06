@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -41,8 +42,10 @@ def parse_requirements(file_name):
     """
     requirements = []
     for line in open(file_name, 'r').read().split('\n'):
-        if re.match(r'(\s*#)|(\s*$)', line):
+        # Ignore comments, blank lines and included requirements files
+        if re.match(r'(\s*#)|(\s*$)|(-r .*$)', line):
             continue
+
         if re.match(r'\s*-e\s+', line):
             requirements.append(re.sub(r'\s*-e\s+.*#egg=(.*)$', r'\1', line))
         elif re.match(r'\s*-f\s+', line):
