@@ -169,6 +169,11 @@
         $('input.submit').trigger('click');
       }
     });
+
+    shortcut.add('ctrl+j', this.jumpToPreviousPlaceable);
+    shortcut.add('ctrl+k', this.jumpToNextPlaceable);
+    shortcut.add('ctrl+l', this.insertSelectedPlaceable);
+
     shortcut.add('ctrl+space', function (e) {
       // To prevent the click event which occurs in Firefox
       // but not in Chrome (and not in IE)
@@ -435,6 +440,70 @@
       }, {'unescape': true});
     }, 1); // not sure why we had a 1000ms timeout here
 
+  },
+
+  /* Jump to the previous placeable */
+  jumpToPreviousPlaceable: function () {
+    // Cycle backwards through the existing placeables.
+
+    var $selectedPlaceable = $('#js-selected-placeable');
+
+    // If no placeable is selected.
+    if (!$selectedPlaceable.length) {
+      // Get the last placeable in the source string and highlight it.
+      $('div.original .js-placeable:last').attr('id', 'js-selected-placeable');
+    } else {
+      // Remove highlight from currently highlighted placeable.
+      $selectedPlaceable.removeAttr('id');
+
+      // If the previously highlighted placeable is not the first placeable in
+      // the source string.
+      if (!$('div.original .js-placeable:first').is($selectedPlaceable)) {
+        // Highlight the next placeable in the source string.
+        $selectedPlaceable.prev('div.original .js-placeable')
+                          .attr('id', 'js-selected-placeable');
+      };
+    };
+  },
+
+  /* Jump to the next placeable */
+  jumpToNextPlaceable: function () {
+    // Cycle forward through the existing placeables.
+
+    var $selectedPlaceable = $('#js-selected-placeable');
+
+    // If no placeable is selected.
+    if (!$selectedPlaceable.length) {
+      // Get the first placeable in the source string and highlight it.
+      $('div.original .js-placeable:first').attr('id', 'js-selected-placeable');
+    } else {
+      // Remove highlight from currently highlighted placeable.
+      $selectedPlaceable.removeAttr('id');
+
+      // If the previously highlighted placeable is not the latest placeable.
+      if (!$('div.original .js-placeable:last').is($selectedPlaceable)) {
+        // Highlight the next placeable in the source string.
+        $selectedPlaceable.next('div.original .js-placeable')
+                          .attr('id', 'js-selected-placeable');
+      };
+    };
+  },
+
+  /* Insert the selected placeable */
+  insertSelectedPlaceable: function () {
+    // Copy the text of the selected placeable (if any) to the translation
+    // field, and select the next placeable.
+
+    var $selectedPlaceable = $('#js-selected-placeable');
+
+    // If there is a selected placeable.
+    if ($selectedPlaceable.length) {
+      // Trigger the click event on the selected placeable to copy it.
+      $selectedPlaceable.trigger('click');
+
+      // Select the next placeable.
+      PTL.editor.jumpToNextPlaceable();
+    };
   },
 
   /* Stuff to be done when the editor is ready  */

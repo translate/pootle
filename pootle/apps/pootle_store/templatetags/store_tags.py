@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -21,7 +21,8 @@
 import re
 
 from translate.misc.multistring import multistring
-from translate.storage.placeables import general
+from translate.storage.placeables import parse as parse_placeables
+from translate.storage.placeables.interfaces import BasePlaceable
 
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
@@ -31,9 +32,71 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
 from pootle_store.fields import list_empty
+from pootle_store.placeables import PLACEABLE_PARSERS, PLACEABLE_DESCRIPTIONS
 
 
 register = template.Library()
+
+
+@register.filter
+@stringfilter
+def highlight_placeables(text):
+    """Wrap placeables to easily distinguish and manipulate them."""
+    output = u""
+
+    # Get a flat list of placeables and StringElem instances.
+    flat_items = parse_placeables(text, PLACEABLE_PARSERS).flatten()
+
+    for item in flat_items:
+        if isinstance(item, BasePlaceable):
+            # It is a placeable, so highlight it.
+
+            class_name = item.__class__.__name__
+            placeable = unicode(item)  # String representation for placeable.
+
+            # CSS class used to highlight the placeable.
+            css_class = {
+                'PootleEscapePlaceable': "highlight-escape",
+                'PootleSpacesPlaceable': "translation-space",
+                'PootleTabEscapePlaceable': "highlight-escape",
+                'NewlinePlaceable': "highlight-escape",
+            }.get(class_name, "placeable")
+
+            # Some placeables require changing the representation in order to
+            # correctly display them on the translation editor.
+
+            def replace_whitespace(string):
+                fancy_space = '&nbsp;'
+                if string.startswith(' '):
+                    return fancy_space * len(string)
+                return string[0] + fancy_space * (len(string) - 1)
+
+            content = {
+                'PootleEscapePlaceable': u'\\\\',
+                'PootleTabEscapePlaceable': u'\\t',
+                'PootleSpacesPlaceable': replace_whitespace(placeable),
+                'NewlinePlaceable': {
+                        u'\r\n': u'\\r\\n<br/>\n',
+                        u'\r': u'\\r<br/>\n',
+                        u'\n': u'\\n<br/>\n',
+                    }.get(placeable),
+                'XMLEntityPlaceable': placeable.replace('&', '&amp;'),
+                'XMLTagPlaceable': placeable.replace('<', '&lt;') \
+                                            .replace('>', '&gt;'),
+            }.get(class_name, placeable)
+
+            # Provide a description for the placeable using a tooltip.
+            description = PLACEABLE_DESCRIPTIONS.get(class_name,
+                                                     _("Unknown placeable"))
+
+            output += (u'<span class="%s js-editor-copytext js-placeable" '
+                       u'title="%s">%s</span>') % (css_class, description,
+                                                   content)
+        else:
+            # It is not a placeable, so just concatenate to output string.
+            output += unicode(item)
+
+    return mark_safe(output)
 
 
 IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))")
@@ -71,34 +134,6 @@ def fancy_escape(text):
     return ESCAPE_RE.sub(replace, text)
 
 
-WHITESPACE_RE = re.compile('^ +| +$|[\r\n\t] +| {2,}')
-def fancy_spaces(text):
-    """Highlight spaces to make them easily visible."""
-    def replace(match):
-        fancy_space = '<span class="translation-space"> </span>'
-        if match.group().startswith(' '):
-            return fancy_space * len(match.group())
-        return match.group()[0] + fancy_space * (len(match.group()) - 1)
-    return WHITESPACE_RE.sub(replace, text)
-
-
-PUNCTUATION_RE = general.PunctuationPlaceable().regex
-def fancy_punctuation_chars(text):
-    """Wrap punctuation chars found in the ``text`` around tags."""
-    def replace(match):
-        fancy_special_char = ('<span class="highlight-punctuation '
-                              'js-editor-copytext">%s</span>')
-        return fancy_special_char % match.group()
-
-    return PUNCTUATION_RE.sub(replace, text)
-
-
-@register.filter
-@stringfilter
-def fancy_highlight(text):
-    return mark_safe(fancy_punctuation_chars(fancy_spaces(fancy_escape(text))))
-
-
 def call_highlight(old, new):
     """Call diff highlighting code only if the target is set.
 
@@ -109,7 +144,7 @@ def call_highlight(old, new):
     else:
         old_value = old
     if list_empty(old_value):
-        return fancy_highlight(new)
+        return highlight_placeables(new)
     else:
         return highlight_diffs(old, new)
 

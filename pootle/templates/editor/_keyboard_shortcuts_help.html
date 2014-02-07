@@ -1,0 +1,54 @@
+{% load i18n locale %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<a id="keyboard-button" href="#js-display-keyboard-shortcuts"
+   class="js-popup-inline" title="{% trans 'Help on keyboard shorcuts' %}">
+  {% trans "Keyboard shortcuts" %} <i class="icon-keyboard"></i>
+</a>
+
+<div id="js-display-keyboard-shortcuts" class="popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
+  <h2>{% trans "Available keyboard shortcuts" %}</h2>
+
+  <br />
+  <p>{% trans 'See the <a href="http://docs.translatehouse.org/projects/pootle/en/latest/features/shortcuts.html">Pootle online documentation</a> for more keyboard shortcuts.' %}</p>
+  <br />
+
+  <table>
+    <tr>
+      <td class="keyboard-shortcut">{% trans "<kbd>Ctrl</kbd>+<kbd>Enter</kbd>" %}</td>
+      <td>{% trans "Send translation/Send suggestion and move to next string." %}</td>
+    </tr>
+    <tr>
+      <td class="keyboard-shortcut">{% trans "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd>" %}</td>
+      <td>{% trans "Switch translation mode. Either 'Translate' or 'Suggest'." %}</td>
+    </tr>
+    <tr>
+      <td class="keyboard-shortcut">{% trans "<kbd>Ctrl</kbd>+<kbd>Space</kbd>" %}</td>
+      <td>{% trans "Toggle 'Needs work' status." %}</td>
+    </tr>
+    <tr>
+      <td class="keyboard-shortcut">{% trans "<kbd>Ctrl</kbd>+<kbd>Down</kbd> or <kbd>Ctrl</kbd>+<kbd>.</kbd>" %}</td>
+      <td>{% trans "Move to next string." %}</td>
+    </tr>
+    <tr>
+      <td class="keyboard-shortcut">{% trans "<kbd>Ctrl</kbd>+<kbd>Up</kbd> or <kbd>Ctrl</kbd>+<kbd>,</kbd>" %}</td>
+      <td>{% trans "Move to previous string." %}</td>
+    </tr>
+    <tr>
+      <td class="keyboard-shortcut">{% trans "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>" %}</td>
+      <td>{% trans "Go to search box." %}</td>
+    </tr>
+    <tr>
+      <td class="keyboard-shortcut">{% trans "<kbd>Ctrl</kbd>+<kbd>J</kbd>" %}</td>
+      <td>{% trans "Select previous placeable." %}</td>
+    </tr>
+    <tr>
+      <td class="keyboard-shortcut">{% trans "<kbd>Ctrl</kbd>+<kbd>K</kbd>" %}</td>
+      <td>{% trans "Select next placeable." %}</td>
+    </tr>
+    <tr>
+      <td class="keyboard-shortcut">{% trans "<kbd>Ctrl</kbd>+<kbd>L</kbd>" %}</td>
+      <td>{% trans "Copy the selected placeable to the target." %}</td>
+    </tr>
+  </table>
+</div>
