@@ -34,3 +34,5 @@ notifications:
   email:
     on_failure: always
     on_success: change
+services:
+  - memcached
