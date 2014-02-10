@@ -344,7 +344,7 @@ def overview(request, translation_project, dir_path, filename=None,
     path_obj = store or directory
 
     url_args = [language.code, project.code, path_obj.path]
-    path_summary_url = reverse('tp.path_summary', args=url_args)
+    path_summary_url = reverse('pootle-tp-summary', args=url_args)
 
     #TODO enable again some actions when drilling down a goal.
     if goal is None:
