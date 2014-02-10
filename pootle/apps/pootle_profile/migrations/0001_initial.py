@@ -18,43 +18,10 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('pootle_profile', ['PootleProfile'])
 
-        # Adding M2M table for field languages on 'PootleProfile'
-        db.create_table('pootle_app_pootleprofile_languages', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('pootleprofile', models.ForeignKey(orm['pootle_profile.pootleprofile'], null=False)),
-            ('language', models.ForeignKey(orm['pootle_language.language'], null=False))
-        ))
-        db.create_unique('pootle_app_pootleprofile_languages', ['pootleprofile_id', 'language_id'])
-
-        # Adding M2M table for field projects on 'PootleProfile'
-        db.create_table('pootle_app_pootleprofile_projects', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('pootleprofile', models.ForeignKey(orm['pootle_profile.pootleprofile'], null=False)),
-            ('project', models.ForeignKey(orm['pootle_project.project'], null=False))
-        ))
-        db.create_unique('pootle_app_pootleprofile_projects', ['pootleprofile_id', 'project_id'])
-
-        # Adding M2M table for field alt_src_langs on 'PootleProfile'
-        db.create_table('pootle_app_pootleprofile_alt_src_langs', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('pootleprofile', models.ForeignKey(orm['pootle_profile.pootleprofile'], null=False)),
-            ('language', models.ForeignKey(orm['pootle_language.language'], null=False))
-        ))
-        db.create_unique('pootle_app_pootleprofile_alt_src_langs', ['pootleprofile_id', 'language_id'])
-
 
     def backwards(self, orm):
         # Deleting model 'PootleProfile'
         db.delete_table('pootle_app_pootleprofile')
-
-        # Removing M2M table for field languages on 'PootleProfile'
-        db.delete_table('pootle_app_pootleprofile_languages')
-
-        # Removing M2M table for field projects on 'PootleProfile'
-        db.delete_table('pootle_app_pootleprofile_projects')
-
-        # Removing M2M table for field alt_src_langs on 'PootleProfile'
-        db.delete_table('pootle_app_pootleprofile_alt_src_langs')
 
 
     models = {

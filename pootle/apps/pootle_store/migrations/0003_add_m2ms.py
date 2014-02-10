@@ -2,39 +2,49 @@
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
-from django.db import models
+from django.db import models, connection
 
 
 class Migration(SchemaMigration):
-    depends_on = (
-        ("pootle_app", "0002_add_m2ms"),
-        ("pootle_profile", "0001_initial"),
-        ("pootle_project", "0001_initial"),
-        ("pootle_language", "0001_initial"),
-    )
 
     def forwards(self, orm):
-        # Adding model 'TMUnit'
-        db.create_table('pootle_store_tmunit', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('project', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pootle_project.Project'])),
-            ('source_lang', self.gf('django.db.models.fields.related.ForeignKey')(related_name='tmunit_source_lang', to=orm['pootle_language.Language'])),
-            ('target_lang', self.gf('django.db.models.fields.related.ForeignKey')(related_name='tmunit_target_lang', to=orm['pootle_language.Language'])),
-            ('source_f', self.gf('pootle_store.fields.MultiStringField')(null=True)),
-            ('source_length', self.gf('django.db.models.fields.SmallIntegerField')(default=0, db_index=True)),
-            ('target_f', self.gf('pootle_store.fields.MultiStringField')(null=True)),
-            ('target_length', self.gf('django.db.models.fields.SmallIntegerField')(default=0, db_index=True)),
-            ('submitted_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name='tmunit_submitted_by', null=True, to=orm['pootle_profile.PootleProfile'])),
-            ('submitted_on', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, null=True, db_index=True, blank=True)),
-            ('unit', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pootle_store.Unit'])),
-        ))
-        db.send_create_signal('pootle_store', ['TMUnit'])
+        cursor = connection.cursor()
+        if "user_id" in [column[0] for column in connection.introspection.get_table_description(cursor, "pootle_store_suggestion")]:
+            # skip the migration if it shouldnt be applied
+            return
 
+        # Adding field 'Suggestion.user'
+        db.add_column('pootle_store_suggestion', 'user',
+                      self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pootle_profile.PootleProfile'], null=True),
+                      keep_default=False)
+
+        # Adding field 'Unit.submitted_by'
+        db.add_column('pootle_store_unit', 'submitted_by',
+                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='submitted', null=True, to=orm['pootle_profile.PootleProfile']),
+                      keep_default=False)
+
+        # Adding field 'Unit.commented_by'
+        db.add_column('pootle_store_unit', 'commented_by',
+                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='commented', null=True, to=orm['pootle_profile.PootleProfile']),
+                      keep_default=False)
+
+        # Adding field 'Store.translation_project'
+        db.add_column('pootle_store_store', 'translation_project',
+                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='stores', null=True, to=orm['pootle_translationproject.TranslationProject']),
+                      keep_default=False)
 
     def backwards(self, orm):
-        # Deleting model 'TMUnit'
-        db.delete_table('pootle_store_tmunit')
+        # Deleting field 'Suggestion.user'
+        db.delete_column('pootle_store_suggestion', 'user')
 
+        # Deleting field 'Unit.submitted_by'
+        db.delete_column('pootle_store_unit', 'submitted_by')
+
+        # Deleting field 'Unit.commented_by'
+        db.delete_column('pootle_store_unit', 'commented_by')
+
+        # Deleting field 'Store.translation_project'
+        db.delete_column('pootle_store_store', 'translation_project')
 
     models = {
         'auth.group': {
