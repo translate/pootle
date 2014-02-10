@@ -4,8 +4,10 @@ python:
   - 2.6
   - 2.7
 env:
-  - DJANGO_VERSION=1.5.5
-  - DJANGO_VERSION=1.6
+  matrix:
+    - DJANGO_VERSION=1.5.5 DATABASE_BACKEND=sqlite
+    - DJANGO_VERSION=1.5.5 DATABASE_BACKEND=postgres
+    - DJANGO_VERSION=1.6
 matrix:
   allow_failures:
     - env: DJANGO_VERSION=1.6
@@ -15,6 +17,8 @@ install:
   - pip install -r requirements/travis.txt --use-mirrors --timeout=240
   - pip install --use-mirrors "Django>=$DJANGO_VERSION,<"$(echo $(echo $DJANGO_VERSION | cut -d"." -f1,2) + 0.1 | bc) --timeout=240
   - python -V; pip freeze  # Print all installed versions for reference.
+before_script:
+  - if [[ $DATABASE_BACKEND == 'postgres' ]]; then psql -c 'create database pootle;' -U postgres; fi
 script:
   - make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
   - python manage.py syncdb --noinput
