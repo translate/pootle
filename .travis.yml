@@ -12,7 +12,7 @@ matrix:
 before_install:
   - sudo apt-get install bc
 install:
-  - pip install -r requirements/build.txt --use-mirrors --timeout=240
+  - pip install -r requirements/travis.txt --use-mirrors --timeout=240
   - pip install --use-mirrors "Django>=$DJANGO_VERSION,<"$(echo $(echo $DJANGO_VERSION | cut -d"." -f1,2) + 0.1 | bc) --timeout=240
   - python -V; pip freeze  # Print all installed versions for reference.
 script:
