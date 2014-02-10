@@ -61,7 +61,7 @@ urlpatterns = patterns('pootle_translationproject.views',
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary',
         name='pootle-xhr-summary'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary_more/'
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary-more/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary_more',
         name='pootle-xhr-summary-more'),
