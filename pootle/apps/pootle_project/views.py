@@ -227,7 +227,7 @@ def ajax_add_tag_to_tp_in_project(request, project):
             }
             context = {
                 'add_tag_form': add_tag_form,
-                'add_tag_action_url': reverse('project.ajax_add_tag_to_tp',
+                'add_tag_action_url': reverse('pootle-xhr-tag-tp-in-project',
                                               kwargs=url_kwargs)
             }
             return render_to_response('core/xhr_add_tag_form.html',
@@ -250,7 +250,7 @@ def overview(request, project):
         templatevars.update({
             'form': DescriptionForm(instance=project),
             'add_tag_form': TranslationProjectTagForm(project=project),
-            'add_tag_action_url': reverse('project.ajax_add_tag_to_tp',
+            'add_tag_action_url': reverse('pootle-xhr-tag-tp-in-project',
                                           kwargs=url_kwargs),
         })
 

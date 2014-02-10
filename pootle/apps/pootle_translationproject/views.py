@@ -344,7 +344,7 @@ def overview(request, translation_project, dir_path, filename=None,
     path_obj = store or directory
 
     url_args = [language.code, project.code, path_obj.path]
-    path_summary_url = reverse('pootle-tp-summary', args=url_args)
+    path_summary_url = reverse('pootle-xhr-summary', args=url_args)
 
     #TODO enable again some actions when drilling down a goal.
     if goal is None:
@@ -526,9 +526,10 @@ def overview(request, translation_project, dir_path, filename=None,
                 'language_code': language.code,
                 'project_code': project.code,
             }
-            add_tag_action_url = reverse('tp.ajax_add_tag', kwargs=url_kwargs)
+            add_tag_action_url = reverse('pootle-xhr-tag-tp',
+                                         kwargs=url_kwargs)
         else:
-            add_tag_action_url = reverse('pootle-store-ajax-add-tag',
+            add_tag_action_url = reverse('pootle-xhr-tag-store',
                                          args=[path_obj.pk])
 
         if goal is None:
@@ -626,7 +627,7 @@ def ajax_add_tag_to_tp(request, translation_project, **kwargs):
             }
             context = {
                 'add_tag_form': add_tag_form,
-                'add_tag_action_url': reverse('tp.ajax_add_tag',
+                'add_tag_action_url': reverse('pootle-xhr-tag-tp',
                                               kwargs=url_kwargs)
             }
             return render_to_response('core/xhr_add_tag_form.html', context,

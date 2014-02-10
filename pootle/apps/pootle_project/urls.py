@@ -39,14 +39,14 @@ urlpatterns = patterns('pootle_project.views',
     # XHR views
     url(r'^(?P<project_code>[^/]*)/ajax-add-tag-to-tp/?$',
         'ajax_add_tag_to_tp_in_project',
-        name='project.ajax_add_tag_to_tp'),
+        name='pootle-xhr-tag-tp-in-project'),
     url(r'^(?P<project_code>[^/]*)/ajax-remove-tag-from-tp/'
         r'(?P<language_code>[^/]*)/(?P<tag_name>.*\.*)?$',
         'ajax_remove_tag_from_tp_in_project',
-        name='project.ajax_remove_tag_from_tp'),
+        name='pootle-xhr-untag-tp-in-project'),
     url(r'^ajax/tags/list/(?P<project_code>.*\.*)?$',
         'ajax_list_tags',
-        name='pootle-project-ajax-list-tags'),
+        name='pootle-xhr-list-project-tags'),
 
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin/settings/$',

@@ -60,18 +60,18 @@ urlpatterns = patterns('pootle_translationproject.views',
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary',
-        name='pootle-tp-summary'),
+        name='pootle-xhr-summary'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary_more/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary_more',
-        name='pootle-tp-summary-more'),
+        name='pootle-xhr-summary-more'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-add-tag/?$',
         'ajax_add_tag_to_tp',
-        name='tp.ajax_add_tag'),
+        name='pootle-xhr-tag-tp'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-remove-tag/'
         r'(?P<tag_name>.*\.*)?$',
         'ajax_remove_tag_from_tp',
-        name='tp.ajax_remove_tag'),
+        name='pootle-xhr-untag-tp'),
 
     # Exporting files
     (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',

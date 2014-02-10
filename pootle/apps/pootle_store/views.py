@@ -1244,7 +1244,7 @@ def ajax_add_tag_to_store(request, store_pk):
             # the form with the error messages.
             context = {
                 'add_tag_form': add_tag_form,
-                'add_tag_action_url': reverse('pootle-store-ajax-add-tag',
+                'add_tag_action_url': reverse('pootle-xhr-tag-store',
                                               args=[store.pk])
             }
             return render_to_response('core/xhr_add_tag_form.html', context,
