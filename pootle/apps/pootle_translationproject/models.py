@@ -874,7 +874,6 @@ class TranslationProject(models.Model):
                                        cwd=self.abs_real_path,
                                        stdout=archivecontents)
             result = process.wait()
-            os.close(fd)
 
             if result == 0:
                 if path is not None:
