@@ -1,1 +1,3 @@
 -r build.txt
+
+psycopg2==2.5.2
