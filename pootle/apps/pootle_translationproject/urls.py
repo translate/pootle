@@ -74,7 +74,8 @@ urlpatterns = patterns('pootle_translationproject.views',
         name='pootle-xhr-untag-tp'),
 
     # Exporting files
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'(?P<file_path>.*)export/zip$',
         'export_zip'),
 
     # Translation

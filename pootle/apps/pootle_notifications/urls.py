@@ -29,8 +29,8 @@ urlpatterns = patterns('pootle_notifications',
         feeds.NoticeFeed(),
         name="pootle-notifications-feed"),
 
-    (r'^(?P<path>.*)notices/?$',
+    url(r'^(?P<path>.*)notices/?$',
         'views.view'),
-    (r'^(?P<path>.*)notices/(?P<notice_id>[0-9]+)/?$',
+    url(r'^(?P<path>.*)notices/(?P<notice_id>[0-9]+)/?$',
         'views.view_notice_item'),
 )

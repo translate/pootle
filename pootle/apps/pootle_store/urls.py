@@ -23,11 +23,11 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_store.views',
     # Download and export
-    (r'^download/(?P<pootle_path>.*)/?$',
+    url(r'^download/(?P<pootle_path>.*)/?$',
         'download'),
-    (r'^export-file/xlf/(?P<pootle_path>.*)/?$',
+    url(r'^export-file/xlf/(?P<pootle_path>.*)/?$',
         'export_as_xliff'),
-    (r'^export-file/(?P<filetype>.*)/(?P<pootle_path>.*)/?$',
+    url(r'^export-file/(?P<filetype>.*)/(?P<pootle_path>.*)/?$',
         'export_as_type'),
 
     # XHR
