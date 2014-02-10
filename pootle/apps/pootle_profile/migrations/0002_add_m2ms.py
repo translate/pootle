@@ -2,70 +2,51 @@
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
-from django.db import models
+from django.db import models, connection
 
 
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Suggestion'
-        db.create_table('pootle_app_suggestion', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('unit', self.gf('django.db.models.fields.IntegerField')(db_index=True)),
-            ('state', self.gf('django.db.models.fields.CharField')(default='pending', max_length=16, db_index=True)),
-            ('creation_time', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, db_index=True, blank=True)),
-            ('review_time', self.gf('django.db.models.fields.DateTimeField')(null=True, db_index=True)),
-        ))
-        db.send_create_signal('pootle_app', ['Suggestion'])
+        cursor = connection.cursor()
+        if "pootle_app_pootleprofile_languages" in connection.introspection.get_table_list(cursor):
+            # skip the migration if it shouldnt be applied
+            return
 
-        # Adding model 'Directory'
-        db.create_table('pootle_app_directory', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('parent', self.gf('django.db.models.fields.related.ForeignKey')(related_name='child_dirs', null=True, to=orm['pootle_app.Directory'])),
-            ('pootle_path', self.gf('django.db.models.fields.CharField')(max_length=255, db_index=True)),
-        ))
-        db.send_create_signal('pootle_app', ['Directory'])
-
-        # Adding model 'PermissionSet'
-        db.create_table('pootle_app_permissionset', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('directory', self.gf('django.db.models.fields.related.ForeignKey')(related_name='permission_sets', to=orm['pootle_app.Directory'])),
-        ))
-        db.send_create_signal('pootle_app', ['PermissionSet'])
-
-        # Adding M2M table for field positive_permissions on 'PermissionSet'
-        db.create_table('pootle_app_permissionset_positive_permissions', (
+        # Adding M2M table for field languages on 'PootleProfile'
+        db.create_table('pootle_app_pootleprofile_languages', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('permissionset', models.ForeignKey(orm['pootle_app.permissionset'], null=False)),
-            ('permission', models.ForeignKey(orm['auth.permission'], null=False))
+            ('pootleprofile', models.ForeignKey(orm['pootle_profile.pootleprofile'], null=False)),
+            ('language', models.ForeignKey(orm['pootle_language.language'], null=False))
         ))
-        db.create_unique('pootle_app_permissionset_positive_permissions', ['permissionset_id', 'permission_id'])
+        db.create_unique('pootle_app_pootleprofile_languages', ['pootleprofile_id', 'language_id'])
 
-        # Adding M2M table for field negative_permissions on 'PermissionSet'
-        db.create_table('pootle_app_permissionset_negative_permissions', (
+        # Adding M2M table for field projects on 'PootleProfile'
+        db.create_table('pootle_app_pootleprofile_projects', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('permissionset', models.ForeignKey(orm['pootle_app.permissionset'], null=False)),
-            ('permission', models.ForeignKey(orm['auth.permission'], null=False))
+            ('pootleprofile', models.ForeignKey(orm['pootle_profile.pootleprofile'], null=False)),
+            ('project', models.ForeignKey(orm['pootle_project.project'], null=False))
         ))
-        db.create_unique('pootle_app_permissionset_negative_permissions', ['permissionset_id', 'permission_id'])
+        db.create_unique('pootle_app_pootleprofile_projects', ['pootleprofile_id', 'project_id'])
+
+        # Adding M2M table for field alt_src_langs on 'PootleProfile'
+        db.create_table('pootle_app_pootleprofile_alt_src_langs', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('pootleprofile', models.ForeignKey(orm['pootle_profile.pootleprofile'], null=False)),
+            ('language', models.ForeignKey(orm['pootle_language.language'], null=False))
+        ))
+        db.create_unique('pootle_app_pootleprofile_alt_src_langs', ['pootleprofile_id', 'language_id'])
 
 
     def backwards(self, orm):
-        # Deleting model 'Suggestion'
-        db.delete_table('pootle_app_suggestion')
+        # Removing M2M table for field languages on 'PootleProfile'
+        db.delete_table('pootle_app_pootleprofile_languages')
 
-        # Deleting model 'Directory'
-        db.delete_table('pootle_app_directory')
+        # Removing M2M table for field projects on 'PootleProfile'
+        db.delete_table('pootle_app_pootleprofile_projects')
 
-        # Deleting model 'PermissionSet'
-        db.delete_table('pootle_app_permissionset')
-
-        # Removing M2M table for field positive_permissions on 'PermissionSet'
-        db.delete_table('pootle_app_permissionset_positive_permissions')
-
-        # Removing M2M table for field negative_permissions on 'PermissionSet'
-        db.delete_table('pootle_app_permissionset_negative_permissions')
+        # Removing M2M table for field alt_src_langs on 'PootleProfile'
+        db.delete_table('pootle_app_pootleprofile_alt_src_langs')
 
 
     models = {
@@ -112,22 +93,6 @@ class Migration(SchemaMigration):
             'parent': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'child_dirs'", 'null': 'True', 'to': "orm['pootle_app.Directory']"}),
             'pootle_path': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'})
         },
-        'pootle_app.permissionset': {
-            'Meta': {'unique_together': "(('profile', 'directory'),)", 'object_name': 'PermissionSet'},
-            'directory': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'permission_sets'", 'to': "orm['pootle_app.Directory']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'negative_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'permission_sets_negative'", 'symmetrical': 'False', 'to': "orm['auth.Permission']"}),
-            'positive_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'db_index': 'True', 'related_name': "'permission_sets_positive'", 'symmetrical': 'False', 'to': "orm['auth.Permission']"}),
-            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pootle_profile.PootleProfile']"})
-        },
-        'pootle_app.suggestion': {
-            'Meta': {'object_name': 'Suggestion'},
-            'creation_time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'db_index': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'review_time': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_index': 'True'}),
-            'state': ('django.db.models.fields.CharField', [], {'default': "'pending'", 'max_length': '16', 'db_index': 'True'}),
-            'unit': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'})
-        },
         'pootle_language.language': {
             'Meta': {'ordering': "['code']", 'object_name': 'Language', 'db_table': "'pootle_app_language'"},
             'code': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
@@ -165,18 +130,7 @@ class Migration(SchemaMigration):
             'report_target': ('django.db.models.fields.CharField', [], {'max_length': '512', 'blank': 'True'}),
             'source_language': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pootle_language.Language']"}),
             'treestyle': ('django.db.models.fields.CharField', [], {'default': "'auto'", 'max_length': '20'})
-        },
-        'pootle_translationproject.translationproject': {
-            'Meta': {'unique_together': "(('language', 'project'),)", 'object_name': 'TranslationProject', 'db_table': "'pootle_app_translationproject'"},
-            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'description_html': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'directory': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['pootle_app.Directory']", 'unique': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'language': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pootle_language.Language']"}),
-            'pootle_path': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255', 'db_index': 'True'}),
-            'project': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pootle_project.Project']"}),
-            'real_path': ('django.db.models.fields.FilePathField', [], {'max_length': '100'})
         }
     }
 
-    complete_apps = ['pootle_app']
+    complete_apps = ['pootle_profile']

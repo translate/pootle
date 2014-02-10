@@ -2,33 +2,25 @@
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
-from django.db import models
+from django.db import models, connection
 
 
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Project'
-        db.create_table('pootle_app_project', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('code', self.gf('django.db.models.fields.CharField')(unique=True, max_length=255, db_index=True)),
-            ('fullname', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('description_html', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('checkstyle', self.gf('django.db.models.fields.CharField')(default='standard', max_length=50)),
-            ('localfiletype', self.gf('django.db.models.fields.CharField')(default='po', max_length=50)),
-            ('treestyle', self.gf('django.db.models.fields.CharField')(default='auto', max_length=20)),
-            ('ignoredfiles', self.gf('django.db.models.fields.CharField')(default='', max_length=255, blank=True)),
-            ('directory', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['pootle_app.Directory'], unique=True)),
-            ('report_target', self.gf('django.db.models.fields.CharField')(max_length=512, blank=True)),
-        ))
-        db.send_create_signal('pootle_project', ['Project'])
+        cursor = connection.cursor()
+        if "source_language_id" in [column[0] for column in connection.introspection.get_table_description(cursor, "pootle_app_project")]:
+            # skip the migration if it shouldnt be applied
+            return
 
+        # Adding field 'Project.source_language'
+        db.add_column('pootle_app_project', 'source_language',
+                      self.gf('django.db.models.fields.related.ForeignKey')(null=True, to=orm['pootle_language.Language']),
+                      keep_default=False)
 
     def backwards(self, orm):
-        # Deleting model 'Project'
-        db.delete_table('pootle_app_project')
-
+        # Deleting field 'Project.source_language'
+        db.delete_column('pootle_app_project', 'source_language')
 
     models = {
         'pootle_app.directory': {
@@ -62,6 +54,7 @@ class Migration(SchemaMigration):
             'ignoredfiles': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '255', 'blank': 'True'}),
             'localfiletype': ('django.db.models.fields.CharField', [], {'default': "'po'", 'max_length': '50'}),
             'report_target': ('django.db.models.fields.CharField', [], {'max_length': '512', 'blank': 'True'}),
+            'source_language': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pootle_language.Language']"}),
             'treestyle': ('django.db.models.fields.CharField', [], {'default': "'auto'", 'max_length': '20'})
         }
     }

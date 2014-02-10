@@ -25,7 +25,6 @@ class Migration(SchemaMigration):
             ('target_f', self.gf('pootle_store.fields.MultiStringField')()),
             ('target_hash', self.gf('django.db.models.fields.CharField')(max_length=32, db_index=True)),
             ('unit', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pootle_store.Unit'])),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pootle_profile.PootleProfile'], null=True)),
             ('translator_comment_f', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
         ))
         db.send_create_signal('pootle_store', ['Suggestion'])
@@ -53,9 +52,7 @@ class Migration(SchemaMigration):
             ('context', self.gf('django.db.models.fields.TextField')(null=True)),
             ('state', self.gf('django.db.models.fields.IntegerField')(default=0, db_index=True)),
             ('mtime', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, auto_now_add=True, db_index=True, blank=True)),
-            ('submitted_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name='submitted', null=True, to=orm['pootle_profile.PootleProfile'])),
             ('submitted_on', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, null=True, db_index=True, blank=True)),
-            ('commented_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name='commented', null=True, to=orm['pootle_profile.PootleProfile'])),
             ('commented_on', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, null=True, db_index=True, blank=True)),
         ))
         db.send_create_signal('pootle_store', ['Unit'])
@@ -70,7 +67,6 @@ class Migration(SchemaMigration):
             ('pending', self.gf('pootle_store.fields.TranslationStoreField')(ignore='.pending', max_length=255)),
             ('tm', self.gf('pootle_store.fields.TranslationStoreField')(ignore='.tm', max_length=255)),
             ('parent', self.gf('django.db.models.fields.related.ForeignKey')(related_name='child_stores', to=orm['pootle_app.Directory'])),
-            ('translation_project', self.gf('django.db.models.fields.related.ForeignKey')(related_name='stores', to=orm['pootle_translationproject.TranslationProject'])),
             ('pootle_path', self.gf('django.db.models.fields.CharField')(unique=True, max_length=255, db_index=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=128)),
             ('sync_time', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(1, 1, 1, 0, 0))),
@@ -80,7 +76,6 @@ class Migration(SchemaMigration):
 
         # Adding unique constraint on 'Store', fields ['parent', 'name']
         db.create_unique('pootle_store_store', ['parent_id', 'name'])
-
 
     def backwards(self, orm):
         # Removing unique constraint on 'Store', fields ['parent', 'name']
@@ -103,7 +98,6 @@ class Migration(SchemaMigration):
 
         # Deleting model 'Store'
         db.delete_table('pootle_store_store')
-
 
     models = {
         'auth.group': {

@@ -2,70 +2,55 @@
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
-from django.db import models
-
+from django.db import models, connection
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("pootle_translationproject", "0001_initial"),
+        ("pootle_profile", "0001_initial"),
+    )
 
     def forwards(self, orm):
-        # Adding model 'Suggestion'
-        db.create_table('pootle_app_suggestion', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('unit', self.gf('django.db.models.fields.IntegerField')(db_index=True)),
-            ('state', self.gf('django.db.models.fields.CharField')(default='pending', max_length=16, db_index=True)),
-            ('creation_time', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, db_index=True, blank=True)),
-            ('review_time', self.gf('django.db.models.fields.DateTimeField')(null=True, db_index=True)),
-        ))
-        db.send_create_signal('pootle_app', ['Suggestion'])
+        cursor = connection.cursor()
+        if "translation_project_id" in [column[0] for column in connection.introspection.get_table_description(cursor, "pootle_app_suggestion")]:
+            # skip the migration if it shouldnt be applied
+            return
 
-        # Adding model 'Directory'
-        db.create_table('pootle_app_directory', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('parent', self.gf('django.db.models.fields.related.ForeignKey')(related_name='child_dirs', null=True, to=orm['pootle_app.Directory'])),
-            ('pootle_path', self.gf('django.db.models.fields.CharField')(max_length=255, db_index=True)),
-        ))
-        db.send_create_signal('pootle_app', ['Directory'])
+        # Adding field 'Suggestion.translation_project'
+        db.add_column('pootle_app_suggestion', 'translation_project',
+                      self.gf('django.db.models.fields.related.ForeignKey')(null=True, to=orm['pootle_translationproject.TranslationProject']),
+                      keep_default=False)
 
-        # Adding model 'PermissionSet'
-        db.create_table('pootle_app_permissionset', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('directory', self.gf('django.db.models.fields.related.ForeignKey')(related_name='permission_sets', to=orm['pootle_app.Directory'])),
-        ))
-        db.send_create_signal('pootle_app', ['PermissionSet'])
+        # Adding field 'Suggestion.suggester'
+        db.add_column('pootle_app_suggestion', 'suggester',
+                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='suggester', null=True, to=orm['pootle_profile.PootleProfile']),
+                      keep_default=False)
 
-        # Adding M2M table for field positive_permissions on 'PermissionSet'
-        db.create_table('pootle_app_permissionset_positive_permissions', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('permissionset', models.ForeignKey(orm['pootle_app.permissionset'], null=False)),
-            ('permission', models.ForeignKey(orm['auth.permission'], null=False))
-        ))
-        db.create_unique('pootle_app_permissionset_positive_permissions', ['permissionset_id', 'permission_id'])
+        # Adding field 'Suggestion.reviewer'
+        db.add_column('pootle_app_suggestion', 'reviewer',
+                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='reviewer', null=True, to=orm['pootle_profile.PootleProfile']),
+                      keep_default=False)
 
-        # Adding M2M table for field negative_permissions on 'PermissionSet'
-        db.create_table('pootle_app_permissionset_negative_permissions', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('permissionset', models.ForeignKey(orm['pootle_app.permissionset'], null=False)),
-            ('permission', models.ForeignKey(orm['auth.permission'], null=False))
-        ))
-        db.create_unique('pootle_app_permissionset_negative_permissions', ['permissionset_id', 'permission_id'])
+        db.add_column('pootle_app_permissionset', 'profile',
+                      self.gf('django.db.models.fields.related.ForeignKey')(null=True, to=orm['pootle_profile.PootleProfile']),
+                      keep_default=False)
+
+        # Adding unique constraint on 'PermissionSet', fields ['profile', 'directory']
+        db.create_unique('pootle_app_permissionset', ['profile_id', 'directory_id'])
 
 
     def backwards(self, orm):
-        # Deleting model 'Suggestion'
-        db.delete_table('pootle_app_suggestion')
+        # Removing unique constraint on 'PermissionSet', fields ['profile', 'directory']
+        db.delete_unique('pootle_app_permissionset', ['profile_id', 'directory_id'])
 
-        # Deleting model 'Directory'
-        db.delete_table('pootle_app_directory')
+        # Deleting field 'Suggestion.translation_project'
+        db.delete_column('pootle_app_suggestion', 'translation_project')
 
-        # Deleting model 'PermissionSet'
-        db.delete_table('pootle_app_permissionset')
+        # Deleting field 'Suggestion.suggester'
+        db.delete_column('pootle_app_suggestion', 'suggester')
 
-        # Removing M2M table for field positive_permissions on 'PermissionSet'
-        db.delete_table('pootle_app_permissionset_positive_permissions')
-
-        # Removing M2M table for field negative_permissions on 'PermissionSet'
-        db.delete_table('pootle_app_permissionset_negative_permissions')
+        # Deleting field 'Suggestion.reviewer'
+        db.delete_column('pootle_app_suggestion', 'reviewer')
 
 
     models = {
@@ -125,7 +110,10 @@ class Migration(SchemaMigration):
             'creation_time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'db_index': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'review_time': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_index': 'True'}),
+            'reviewer': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'reviewer'", 'null': 'True', 'to': "orm['pootle_profile.PootleProfile']"}),
             'state': ('django.db.models.fields.CharField', [], {'default': "'pending'", 'max_length': '16', 'db_index': 'True'}),
+            'suggester': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'suggester'", 'null': 'True', 'to': "orm['pootle_profile.PootleProfile']"}),
+            'translation_project': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pootle_translationproject.TranslationProject']"}),
             'unit': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'})
         },
         'pootle_language.language': {

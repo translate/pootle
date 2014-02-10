@@ -13,17 +13,10 @@ class Migration(SchemaMigration):
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
             ('description_html', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('language', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pootle_language.Language'])),
-            ('project', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pootle_project.Project'])),
             ('real_path', self.gf('django.db.models.fields.FilePathField')(max_length=100)),
-            ('directory', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['pootle_app.Directory'], unique=True)),
             ('pootle_path', self.gf('django.db.models.fields.CharField')(unique=True, max_length=255, db_index=True)),
         ))
         db.send_create_signal('pootle_translationproject', ['TranslationProject'])
-
-        # Adding unique constraint on 'TranslationProject', fields ['language', 'project']
-        db.create_unique('pootle_app_translationproject', ['language_id', 'project_id'])
-
 
     def backwards(self, orm):
         # Removing unique constraint on 'TranslationProject', fields ['language', 'project']
@@ -31,7 +24,6 @@ class Migration(SchemaMigration):
 
         # Deleting model 'TranslationProject'
         db.delete_table('pootle_app_translationproject')
-
 
     models = {
         'pootle_app.directory': {
