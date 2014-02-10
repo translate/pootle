@@ -4,7 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block extra_head %}
-<link rel="alternate" type="application/rss+xml" href="{% url 'pootle_notifications__feed' "" %}" />
+<link rel="alternate" type="application/rss+xml" href="{% url 'pootle-notifications-feed' "" %}" />
 {% endblock %}
 
 {% block body_id %}main-overview{% endblock %}
@@ -63,7 +63,7 @@
   <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
   <div class="bd">
     {% render_latest_news "" 5 %}
-    <p class="subscribe"><a href="{% url 'pootle_notifications__feed' "" %}"><i class="icon-feed"></i> {% trans "Subscribe to the RSS feed." %}</a></p>
+    <p class="subscribe"><a href="{% url 'pootle-notifications-feed' '' %}"><i class="icon-feed"></i> {% trans "Subscribe to the RSS feed." %}</a></p>
   </div>
 </div>
 
