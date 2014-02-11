@@ -9,8 +9,9 @@ VERSION=$(shell python setup.py --version)
 FULLNAME=$(shell python setup.py --fullname)
 SFUSERNAME=$(shell egrep -A5 sourceforge ~/.ssh/config | egrep -m1 User | cut -d" " -f2)
 FORMATS=--formats=bztar
+TEST_ENV_NAME = pootle_test_env
 
-.PHONY: all build sprite pot mo mo-all requirements help docs assets
+.PHONY: all build clean sprite test pot mo mo-all requirements help docs assets
 
 all: help
 
@@ -29,6 +30,15 @@ docs:
 
 sprite:
 	glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
+
+clean:
+	rm -rf ${TEST_ENV_NAME}
+
+test: clean assets
+	virtualenv ${TEST_ENV_NAME} && \
+	source ${TEST_ENV_NAME}/bin/activate && \
+	pip install --allow-all-external --allow-unverified pyDes -r requirements/tests.txt && \
+	python setup.py test
 
 pot:
 	@${SRC_DIR}/tools/createpootlepot
@@ -70,6 +80,8 @@ help:
 	@echo "  assets - collect and rebuild the static assets"
 	@echo "  build - create sdist with required prep"
 	@echo "  sprite - create CSS sprite"
+	@echo "  clean - remove any temporal files"
+	@echo "  test - run test suite"
 	@echo "  pot - update the POT translations templates"
 	@echo "  get-translations - retreive Pootle translations from server (requires ssh config for pootletranslations)"
 	@echo "  linguas - update the LINGUAS file with languages over 80% complete"
@@ -112,7 +124,7 @@ requirements-pinned.txt: requirements-pinned.txt.in $(REQFILE)
 	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
 	     (cd $(REQS) && ls *.tar* *.whl |					\
 	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') >> $@;	\
-	 esac; 
+	 esac;
 
 requirements-min-versions.txt: requirements-min-versions.txt.in requirements/*.txt
 	@if grep -q '>[0-9]' $^; then				\
