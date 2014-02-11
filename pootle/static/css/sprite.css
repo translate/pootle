@@ -1,4 +1,4 @@
-/* glue: 0.4 hash: c80f5e0d84 */
+/* glue: 0.3 hash: 00b88feae9 */
 .icon-desc,
 .icon-ascdesc,
 .icon-asc,
@@ -23,6 +23,8 @@
 .icon-comment-add,
 .icon-block,
 .icon-block-muted,
+.icon-arrow-up,
+.icon-arrow-down,
 .icon-apertium,
 .icon-accept,
 .icon-back,
@@ -51,7 +53,9 @@
 .icon-comment-add{background-position:-70px -48px;width:16px;height:16px;}
 .icon-block{background-position:0px -66px;width:16px;height:16px;}
 .icon-block-muted{background-position:-16px -66px;width:16px;height:16px;}
-.icon-apertium{background-position:-32px -66px;width:16px;height:16px;}
-.icon-accept{background-position:-48px -66px;width:16px;height:16px;}
-.icon-back{background-position:-64px -66px;width:14px;height:13px;}
-.icon-external-link{background-position:-86px 0px;width:12px;height:12px;}
+.icon-arrow-up{background-position:-32px -66px;width:9px;height:16px;}
+.icon-arrow-down{background-position:-41px -66px;width:9px;height:16px;}
+.icon-apertium{background-position:-50px -66px;width:16px;height:16px;}
+.icon-accept{background-position:-66px -66px;width:16px;height:16px;}
+.icon-back{background-position:-86px 0px;width:14px;height:13px;}
+.icon-external-link{background-position:-86px -13px;width:12px;height:12px;}

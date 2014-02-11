@@ -46,14 +46,18 @@ textarea#view_unit
         border-width: medium 1px 1px;
         border-style: none solid solid;
 
-        padding: 10px 12px 5px;
+        padding: 10px 8px 5px;
         top: -11px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         border-radius: 5px;
     }
 }
 
-
+#toolbar button
+{
+    position: relative;
+    top: -1px;
+}
 
 html[dir="rtl"] #toolbar
 {
@@ -103,6 +107,8 @@ body.zoom-out-2 #toolbar
 #prevnext #item-navigation
 {
     margin: 0 0.5em;
+    position: relative;
+    top: 2px;
 }
 
 #prevnext #item-number
@@ -126,7 +132,6 @@ body.zoom-out-2 #toolbar
 #prevnext #items-count
 {
     display: inline-block;
-    min-width: 1em;
 }
 
 

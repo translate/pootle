@@ -11,14 +11,14 @@
 
   <div id="prevnext" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
     <button id="js-nav-prev" class="btn btn-xs"
-      title="{% trans 'Go to the previous string (Ctrl+Up)' %}">{% trans '＜' %}</button>
+      title="{% trans 'Go to the previous string (Ctrl+Up)' %}"><i class="icon-arrow-up"></i></button>
     <span id="item-navigation">
       <span contenteditable id="item-number" class="js-unit-index"
-        title="{% trans 'Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press Enter<br/>to go to any position' %}">1</span>
+        title="{% trans 'Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press Enter<br/>to go to any position' %}">0</span>
       /
-      <span id="items-count" title="{% trans 'Total strings' %}"></span>
+      <span id="items-count" title="{% trans 'Total strings' %}">0</span>
     </span>
     <button id="js-nav-next" class="btn btn-xs"
-      title="{% trans 'Go to the next string (Ctrl+Down)' %}">{% trans '＞' %}</button>
+      title="{% trans 'Go to the next string (Ctrl+Down)' %}"><i class="icon-arrow-down"></i></button>
   </div>
 </div>
