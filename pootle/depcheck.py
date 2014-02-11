@@ -51,11 +51,7 @@ def test_translate():
 
 def test_sqlite():
     try:
-        #TODO: work out if we need certain versions
-        try:
-            from sqlite3 import dbapi2
-        except ImportError:
-            from pysqlite2 import dbapi2
+        from sqlite3 import dbapi2
         return True
     except ImportError:
         return False
