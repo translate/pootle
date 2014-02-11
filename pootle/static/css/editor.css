@@ -24,23 +24,36 @@ textarea#view_unit
     display: none;
 }
 
+/* By default, show the unit navigation toolbar inside the main toolbar */
 #toolbar
 {
     position: absolute;
     right: 2em;
-    z-index: 100;
+    z-index: 300; /* show above the main toolbar */
 
-    background-color: #eee;
-    border-color: #d9d9d9;
-    border-width: medium 1px 1px;
-    border-style: none solid solid;
-
-    padding: 0 0.5em;
-    margin-top: -11px;
-    padding: 10px 12px 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
+    top: -35px;
 }
+
+/* When browser size is 950px or less, show navigation toolbar below the main toolbar */
+@media screen and (max-width: 950px)
+{
+    #toolbar
+    {
+        z-index: 100; /* show below the main toolbar, to hide the shadow top edge */
+
+        background-color: #eee;
+        border-color: #d9d9d9;
+        border-width: medium 1px 1px;
+        border-style: none solid solid;
+
+        padding: 10px 12px 5px;
+        top: -11px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+    }
+}
+
+
 
 html[dir="rtl"] #toolbar
 {
