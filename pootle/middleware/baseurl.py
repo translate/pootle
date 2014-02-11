@@ -45,7 +45,9 @@ class BaseUrlMiddleware(object):
             #
             # Poison sites cache using detected domain.
             from django.contrib.sites import models as sites_models
+            from pootle_misc.siteconfig import load_site_config
 
+            siteconfig = load_site_config()
             new_site = sites_models.Site(settings.SITE_ID, request.get_host(),
-                                         settings.TITLE)
+                                         siteconfig.get('TITLE'))
             sites_models.SITE_CACHE[settings.SITE_ID] = new_site

@@ -29,13 +29,16 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
+from pootle_misc.siteconfig import load_site_config
+
 
 def view(request):
     from translate import __version__ as toolkitversion
     from pootle import __version__ as pootleversion
 
+    siteconfig = load_site_config()
     data = {
-        'description': _(settings.DESCRIPTION),
+        'description': _(siteconfig.get('DESCRIPTION')),
         'keywords': ['Pootle',
                      'locamotion',
                      'translate',

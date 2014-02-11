@@ -42,6 +42,7 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.baseurl import l
+from pootle_misc.siteconfig import load_site_config
 from pootle_misc.stats import stats_message_raw
 from pootle_misc.util import cached_property
 from pootle_misc.checks import excluded_filters
@@ -408,8 +409,9 @@ class TranslationProject(models.Model, TreeItem):
 
         if new_files and versioncontrol.hasversioning(project_path):
             from pootle.scripts import hooks
+            siteconfig = load_site_config()
             message = ("New files added from %s based on templates" %
-                       settings.TITLE)
+                       siteconfig.get('TITLE'))
 
             filestocommit = []
             for new_file in new_files:
@@ -662,8 +664,9 @@ class TranslationProject(models.Model, TreeItem):
         fuzzy = directory.get_fuzzy_wordcount()
         author = user.username
 
+        siteconfig = load_site_config()
         message = stats_message_raw("Commit from %s by user %s." %
-                                    (settings.TITLE, author),
+                                    (siteconfig.get('TITLE'), author),
                                     total, translated, fuzzy)
 
         # Try to append email as well, since some VCS does not allow omitting
@@ -740,8 +743,9 @@ class TranslationProject(models.Model, TreeItem):
         fuzzy = store.get_fuzzy_wordcount()
         author = user.username
 
+        siteconfig = load_site_config()
         message = stats_message_raw("Commit from %s by user %s." % \
-                (settings.TITLE, author), total, translated, fuzzy)
+                (siteconfig.get('TITLE'), author), total, translated, fuzzy)
 
         # Try to append email as well, since some VCS does not allow omitting
         # it (ie. Git).

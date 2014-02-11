@@ -33,6 +33,7 @@ from pootle_app.models.permissions import (get_matching_permissions,
 from pootle_app.views.top_stats import gentopstats_root
 from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
+from pootle_misc.siteconfig import load_site_config
 from pootle_profile.models import get_profile
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
@@ -105,8 +106,9 @@ def view(request, root_dir):
         'items': projects,
     }
 
+    siteconfig = load_site_config()
     templatevars = {
-        'description': _(settings.DESCRIPTION),
+        'description': _(siteconfig.get('DESCRIPTION')),
         'keywords': [
             'Pootle',
             'translate',
@@ -127,9 +129,7 @@ def view(request, root_dir):
     templatevars['moreprojects'] = (len(projects) > len(languages))
 
     if can_edit:
-        from pootle_misc.siteconfig import load_site_config
         from pootle_app.forms import GeneralSettingsForm
-        siteconfig = load_site_config()
         setting_form = GeneralSettingsForm(siteconfig)
         templatevars['form'] = setting_form
 
