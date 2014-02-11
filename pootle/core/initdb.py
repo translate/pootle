@@ -58,16 +58,9 @@ def initdb():
     create_pootle_permissions()
     create_pootle_permission_sets()
 
-    with transaction.commit_manually():
-        try:
-            create_default_projects()
-            create_default_languages()
-            create_default_admin()
-        except:
-            transaction.rollback()
-            raise
-        else:
-            transaction.commit()
+    create_default_projects()
+    create_default_languages()
+    create_default_admin()
 
     config = siteconfig.load_site_config()
     if not config.get('POOTLE_BUILDVERSION', None):
