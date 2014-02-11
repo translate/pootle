@@ -23,6 +23,7 @@ from django.core.cache import cache
 
 from pootle.__version__ import sver
 from pootle_language.models import Language, CACHE_KEY as LANG_CACHE_KEY
+from pootle_misc.siteconfig import load_site_config
 from pootle_project.models import Project, CACHE_KEY as PROJ_CACHE_KEY
 from staticpages.models import LegalPage
 
@@ -69,11 +70,12 @@ def _agreement_context(request):
 
 def pootle_context(request):
     """Exposes settings to templates."""
+    siteconfig = load_site_config()
     #FIXME: maybe we should expose relevant settings only?
     context = {
         'settings': {
-            'TITLE': settings.TITLE,
-            'DESCRIPTION': settings.DESCRIPTION,
+            'TITLE': siteconfig.get('TITLE'),
+            'DESCRIPTION':  siteconfig.get('DESCRIPTION'),
             'CAN_REGISTER': settings.CAN_REGISTER,
             'CAN_CONTACT': settings.CAN_CONTACT and settings.CONTACT_EMAIL,
             'SCRIPT_NAME': settings.SCRIPT_NAME,

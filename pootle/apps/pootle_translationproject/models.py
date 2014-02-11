@@ -42,6 +42,7 @@ from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.aggregate import group_by_count_extra, max_column
 from pootle_misc.baseurl import l
+from pootle_misc.siteconfig import load_site_config
 from pootle_misc.stats import stats_message, stats_message_raw
 from pootle_misc.util import getfromcache, dictsum, deletefromcache
 from pootle_project.models import Project
@@ -421,8 +422,9 @@ class TranslationProject(models.Model):
 
         if new_files and versioncontrol.hasversioning(project_path):
             from pootle.scripts import hooks
+            siteconfig = load_site_config()
             message = ("New files added from %s based on templates" %
-                       settings.TITLE)
+                       siteconfig.get('TITLE'))
 
             filestocommit = []
             for new_file in new_files:
@@ -704,8 +706,9 @@ class TranslationProject(models.Model):
         stats = self.getquickstats()
         author = user.username
 
+        siteconfig = load_site_config()
         message = stats_message_raw("Commit from %s by user %s." %
-                                    (settings.TITLE, author), stats)
+                                    (siteconfig.get('TITLE'), author), stats)
 
         # Try to append email as well, since some VCS does not allow omitting
         # it (ie. Git).
@@ -779,8 +782,9 @@ class TranslationProject(models.Model):
         stats = store.getquickstats()
         author = user.username
 
+        siteconfig = load_site_config()
         message = stats_message_raw("Commit from %s by user %s." % \
-                (settings.TITLE, author), stats)
+                (siteconfig.get('TITLE'), author), stats)
 
         # Try to append email as well, since some VCS does not allow omitting
         # it (ie. Git).

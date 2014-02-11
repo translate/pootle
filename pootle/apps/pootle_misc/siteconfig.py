@@ -24,8 +24,7 @@ NOTE: Import this file in your urls.py or some place before any code relying on
 
 from django.contrib.sites.models import Site
 
-from djblets.siteconfig.django_settings import (apply_django_settings,
-                                                generate_defaults)
+from djblets.siteconfig.django_settings import generate_defaults
 from djblets.siteconfig.models import SiteConfiguration
 
 
@@ -49,5 +48,4 @@ def load_site_config():
     if not siteconfig.get_defaults():
         siteconfig.add_defaults(generate_defaults(SETTINGS_MAP))
 
-    apply_django_settings(siteconfig, SETTINGS_MAP)
     return siteconfig
