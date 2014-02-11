@@ -9,8 +9,9 @@ VERSION=$(shell python setup.py --version)
 FULLNAME=$(shell python setup.py --fullname)
 SFUSERNAME=$(shell egrep -A5 sourceforge ~/.ssh/config | egrep -m1 User | cut -d" " -f2)
 FORMATS=--formats=bztar
+TEST_ENV_NAME = pootle_test_env
 
-.PHONY: all build sprite pot mo mo-all help docs assets
+.PHONY: all build clean sprite test pot mo mo-all help docs assets
 
 all: help
 
@@ -31,6 +32,15 @@ docs:
 
 sprite:
 	glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
+
+clean:
+	rm -rf ${TEST_ENV_NAME}
+
+test: clean assets
+	virtualenv ${TEST_ENV_NAME} && \
+	source ${TEST_ENV_NAME}/bin/activate && \
+	pip install --allow-all-external --allow-unverified pyDes -r requirements/tests.txt && \
+	python setup.py test
 
 pot:
 	@${SRC_DIR}/tools/createpootlepot
@@ -61,6 +71,8 @@ help:
 	@echo
 	@echo "  build - create sdist with required prep"
 	@echo "  sprite - create CSS sprite"
+	@echo "  clean - remove any temporal files"
+	@echo "  test - run test suite"
 	@echo "  pot - update the POT translations templates"
 	@echo "  mo - build MO files for languages listed in 'pootle/locale/LINGUAS'"
 	@echo "  mo-all - build MO files for all languages (only use for testing)"
