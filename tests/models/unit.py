@@ -18,13 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import json
 import time
 
-from translate.storage import factory, statsdb
+from translate.storage import factory
 
 from pootle.tests import PootleTestCase
-from pootle_store.models import Store, Unit
+from pootle_store.models import Store
 
 
 class UnitTests(PootleTestCase):
@@ -129,19 +128,3 @@ class UnitTests(PootleTestCase):
         self.assertEqual(dbunit.getnotes(origin="translator"), storeunit.getnotes(origin="translator"))
         pofile = factory.getobject(self.store.file.path)
         self.assertEqual(dbunit.getnotes(origin="translator"), pofile.units[dbunit.index].getnotes(origin="translator"))
-
-
-class SuggestionTests(PootleTestCase):
-    def setUp(self):
-        super(SuggestionTests, self).setUp()
-        self.store = Store.objects.get(pootle_path="/af/tutorial/pootle.po")
-
-    def test_hash(self):
-        unit = self.store.getitem(0)
-        suggestion = unit.add_suggestion("gras")
-        first_hash = suggestion.target_hash
-        suggestion.translator_comment = "my nice comment"
-        second_hash = suggestion.target_hash
-        assert first_hash != second_hash
-        suggestion.target = "gras++"
-        assert first_hash != second_hash != suggestion.target_hash
