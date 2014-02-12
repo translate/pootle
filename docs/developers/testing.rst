@@ -5,25 +5,47 @@ Testing
 
 .. warning::
 
-   This page needs expanding and updating.
+   Work in progress. For now only Python testing is being added. Future
+   coverage will include JavaScript code too.
 
-This page contains notes about Pootle's unit tests and how they should be used,
-interpreted and expanded. See the :ref:`Translate Toolkit testing docs
-<toolkit:testing>` for notes on writing tests.
+Pootle's unit tests use the py.test Python test suite and its integration
+with Django is done using `pytest-django <http://pytest.org/latest/>`_.
 
-Pootle's unit tests use the Django testing framework, and can be executed with:
+The entire test suite can be executed from a checkout by running:
 
 .. code-block:: bash
 
-    $ python manage.py test pootle_store pootle_app pootle_translationproject
+    $ make test
 
-Although you can run tests for all applications, several of the external
-applications are not passing their tests which renders this less useful.
+This will create a new virtual environment, install the required
+dependencies and run the test suite. Alternatively, if you have setup a
+development environment, you can install the testing requirements
+(*requirements/tests.txt*) and simply run ``py.test tests/`` from the root
+of the repository.
 
-Tests could be run with ``py.test`` using `pytest-django`_ or alternately by
-adding a `django-pytest`_ app to Pootle (conceivably both could be done) --
-however this is not currently supported or implemented.
+The py.test runner offers several options, check `its documentation
+<http://pytest.org/latest/>`_ for further details.
 
-.. _pytest-django: http://pypi.python.org/pypi/pytest-django/
+Settings for Tests
+------------------
 
-.. _django-pytest: http://github.com/buchuki/django-pytest#readme
+In short, you can place testing-specific settings both in the
+*90-tests.conf* and *90-tests-local.conf* files within the
+*pootle/settings/* directory. Other *90-\*.conf* files will be ignored.
+
+.. note:: *90-tests.conf* doesn't contain any database settings, and you
+   are encouraged to set those in *90-tests-local.conf*. If nothing is
+   specified SQLite will be used by default, which might not actually be what
+   you want to run the tests against.
+
+In further detail, Pootle's test runner will use the usual
+``pootle.settings`` module for settings. This module ensures that all
+files in the *pootle/settings/* directory are read and interpreted in
+order.
+
+In testing environments, the needs might differ from other environments,
+so the settings module will have a slightly different behavior:
+
+- All *.conf* files will be read from *pootle/settings/* as usual
+- The usual custom settings named as *90-\*.conf* will be ignored
+- *90-tests.conf* and *90-tests-local.conf* will be taken into account
