@@ -63,24 +63,6 @@ def init_settings(settings_filepath, template_filename):
     fp.close()
 
 
-def parse_args(args):
-    """Parses the given arguments.
-
-    :param args: List of command-line arguments as got from sys.argv.
-    :return: 3-element tuple: (args, command, command_args)
-    """
-    index = None
-    for i, arg in enumerate(args):
-        if not arg.startswith('-'):
-            index = i
-            break
-
-    if index is None:
-        return (args, None, [])
-
-    return (args[:index], args[index], args[(index + 1):])
-
-
 def configure_app(project, config_path, django_settings_module, runner_name):
     """Determines which settings file to use and sets environment variables
     accordingly.
@@ -124,39 +106,32 @@ def run_app(project, default_settings_path, settings_template,
     :param django_settings_module: The module that ``DJANGO_SETTINGS_MODULE``
         will be set to.
     """
-    sys_args = sys.argv
-    runner_name = os.path.basename(sys_args[0])
+    runner_name = os.path.basename(sys.argv[0])
 
-    (args, command, command_args) = parse_args(sys_args[1:])
+    parser = ArgumentParser()
 
-    if not (command or args):
-        # XXX: Should we display a more verbose help/usage message?
-        print("Usage: %s [--config=/path/to/settings.conf] [command] " \
-              "[options]" % runner_name)
-        sys.exit(2)
+    parser.add_argument("--config",
+                        default=default_settings_path,
+                        help=u"Use the specified configuration file.")
+    parser.add_argument("-v", "--version", action="version", version=get_version())
 
-    if command == 'init':
-        noinput = '--noinput' in command_args
-        if noinput:
-            command_args.remove('--noinput')
+    subparsers = parser.add_subparsers(dest="command")
+    init_parser = subparsers.add_parser("init")
+    init_parser.add_argument("--noinput", action="store_true", default=False,
+                             help=u"Never prompt for input")
 
-        # Determine which config file to write
-        try:
-            import re
-            config_path = command_args[0]
-            # Remove possible initial dashes
-            config_path = re.sub('^-+', '', config_path)
-        except IndexError:
-            config_path = default_settings_path
+    args = parser.parse_args(sys.argv[1:])
 
-        config_path = os.path.expanduser(config_path)
+    if args.command == 'init':
+        config_path = os.path.expanduser(args.config)
 
         if os.path.exists(config_path):
             resp = None
-            if noinput:
+            if args.noinput:
                 resp = 'n'
             while resp not in ('Y', 'n'):
-                resp = input('File already exists at %r, overwrite? [nY] ' % config_path)
+                resp = input('File already exists at %r, overwrite? [nY] '
+                             % config_path)
             if resp == 'n':
                 print("File already exists, not overwriting.")
                 return
@@ -171,28 +146,6 @@ def run_app(project, default_settings_path, settings_template,
 
         return
 
-    parser = ArgumentParser()
-
-    parser.add_argument('--config',
-                      default=default_settings_path,
-                      help=u'Use the specified configuration file.')
-    parser.add_argument('-v', '--version', action='store_true',
-                      default=False,
-                      help=u'Display version information and exit.')
-
-    args = parser.parse_args(args)
-
-    if args.version:
-        from pootle import __version__
-        from translate import __version__ as tt_version
-        from django import get_version
-
-        print("Pootle %s" % __version__.sver)
-        print("Translate Toolkit %s" % tt_version.sver)
-        print("Django %s" % get_version())
-
-        return
-
     configure_app(project=project, config_path=args.config,
                   django_settings_module=django_settings_module,
                   runner_name=runner_name)
@@ -200,6 +153,15 @@ def run_app(project, default_settings_path, settings_template,
     management.execute_from_command_line([runner_name, command] + command_args)
 
     sys.exit(0)
+
+
+def get_version():
+    from pootle import __version__
+    from translate import __version__ as tt_version
+    from django import get_version as django_version
+
+    return ("Pootle %s (Django %s, Translate Toolkit %s)" %
+            (__version__.sver, tt_version.sver, django_version()))
 
 
 def main():
