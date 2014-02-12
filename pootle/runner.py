@@ -120,6 +120,9 @@ def run_app(project, default_settings_path, settings_template,
     init_parser.add_argument("--noinput", action="store_true", default=False,
                              help=u"Never prompt for input")
 
+    start_parser = subparsers.add_parser("start")
+    start_parser.add_argument("arguments", nargs="?", default=[])
+
     args = parser.parse_args(sys.argv[1:])
 
     if args.command == 'init':
@@ -146,11 +149,12 @@ def run_app(project, default_settings_path, settings_template,
 
         return
 
-    configure_app(project=project, config_path=args.config,
-                  django_settings_module=django_settings_module,
-                  runner_name=runner_name)
+    if args.command == "start":
+        configure_app(project=project, config_path=args.config,
+                      django_settings_module=django_settings_module,
+                      runner_name=runner_name)
 
-    management.execute_from_command_line([runner_name, command] + command_args)
+        management.execute_from_command_line([runner_name, args.command] + args.arguments)
 
     sys.exit(0)
 
