@@ -2,7 +2,7 @@
  * at the supplied CSS files for ideas. This CSS file will be applied to all
  * pages, unless you modify the default base template (templates/layout.html).
  *
- * You can refer to your own images in this directory in the CSS directly by
- * name without a path, for example:
- *   url('image.png') to refer to /assets/css/custom/image.png
+ * You can refer to images in the CSS directly using paths relative to the css
+ * directory, for example:
+ *   url('custom/image.png') to refer to /css/custom/image.png
  */
