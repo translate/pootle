@@ -34,8 +34,8 @@ Rebuilding assets after customization
 Customizing CSS
 ---------------
 
-Edit the file in *static/css/custom/custom.css* to override any rules from the
-main CSS file. That CSS file will be included in every page.
+Edit the file in :file:`static/css/custom/custom.css` to override any rules
+from the main CSS file. That CSS file will be included in every page.
 
 
 .. _customization#images:
@@ -43,9 +43,9 @@ main CSS file. That CSS file will be included in every page.
 Customizing images
 ------------------
 
-Any custom images can be placed in *static/css/custom/*. The *custom.css* file
-can refer to it directly by name, without having to specify a path, since it is
-in the same directory.
+Any custom images can be placed in :file:`static/css/custom/`. The
+:file:`custom.css` file can refer to it directly by name, without having to
+specify a path, since it is in the same directory.
 
 
 .. _customization#favicon:
@@ -54,10 +54,10 @@ Customizing the favicon
 -----------------------
 
 The favicon can be customized by editing the base template directly
-*templates/base.html*). This has the downside that you have to reimplement this
-on upgrades if the base template is replaced. Alternatively the base template
-can be overridden as a whole with the favicon customized to your needs (see the
-next section).
+:file:`templates/base.html`). This has the downside that you have to
+reimplement this on upgrades if the base template is replaced. Alternatively
+the base template can be overridden as a whole with the favicon customized to
+your needs (see the next section).
 
 
 .. _customization#templates:
@@ -65,9 +65,9 @@ next section).
 Customizing templates
 ---------------------
 
-In case you need to change a template, copy it into *templates/custom/* with
-the same name as it had before. Make sure that you have a complete copy of the
-template and then make any changes you require.
+In case you need to change a template, copy it into :file:`templates/custom/`
+with the same name as it had before. Make sure that you have a complete copy of
+the template and then make any changes you require.
 
 If you edit any templates, keep in mind that any changes to the text could
 result in untranslated text for users of the non-English user interface.
