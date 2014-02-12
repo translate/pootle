@@ -36,6 +36,9 @@ DEFAULT_SETTINGS_PATH = '~/.pootle/pootle.conf'
 #: Template that will be used to initialize settings from
 SETTINGS_TEMPLATE_FILENAME = 'settings/90-local.conf.sample'
 
+# Python 2+3 support for input()
+input = getattr(__builtins__, "raw_input", input)
+
 
 def init_settings(settings_filepath, template_filename):
     """Initializes a sample settings file for new installations.
@@ -153,8 +156,7 @@ def run_app(project, default_settings_path, settings_template,
             if noinput:
                 resp = 'n'
             while resp not in ('Y', 'n'):
-                resp = raw_input('File already exists at %r, overwrite? [nY] ' \
-                                 % config_path)
+                resp = input('File already exists at %r, overwrite? [nY] ' % config_path)
             if resp == 'n':
                 print("File already exists, not overwriting.")
                 return
