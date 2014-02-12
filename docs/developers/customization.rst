@@ -43,9 +43,10 @@ main CSS file. That CSS file will be included in every page.
 Customizing images
 ------------------
 
-Any custom images can be placed in *static/css/custom/*. The *custom.css* file
-can refer to it directly by name, without having to specify a path, since it is
-in the same directory.
+Any custom images can be placed in :file:`static/css/custom/`. The
+:file:`custom.css` file can refer to it directly by name, including any paths
+relative to :file:`static/css` directory, for example:
+``url('custom/image.png')`` to refer to :file:`static/css/custom/image.png`.
 
 
 .. _customization#favicon:
