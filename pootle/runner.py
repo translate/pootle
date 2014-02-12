@@ -20,8 +20,7 @@
 
 import os
 import sys
-
-from optparse import OptionParser
+from argparse import ArgumentParser
 
 from django.core import management
 
@@ -170,18 +169,18 @@ def run_app(project, default_settings_path, settings_template,
 
         return
 
-    parser = OptionParser()
+    parser = ArgumentParser()
 
-    parser.add_option('--config', metavar='CONFIG',
+    parser.add_argument('--config',
                       default=default_settings_path,
                       help=u'Use the specified configuration file.')
-    parser.add_option('-v', '--version', action='store_true',
+    parser.add_argument('-v', '--version', action='store_true',
                       default=False,
                       help=u'Display version information and exit.')
 
-    (opts, opt_args) = parser.parse_args(args)
+    args = parser.parse_args(args)
 
-    if opts.version:
+    if args.version:
         from pootle import __version__
         from translate import __version__ as tt_version
         from django import get_version
@@ -192,7 +191,7 @@ def run_app(project, default_settings_path, settings_template,
 
         return
 
-    configure_app(project=project, config_path=opts.config,
+    configure_app(project=project, config_path=args.config,
                   django_settings_module=django_settings_module,
                   runner_name=runner_name)
 
