@@ -27,3 +27,4 @@ def pytest_configure(config):
     if not settings.configured:
         from pootle import syspath_override
         os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+        os.environ['POOTLE_SETTINGS_TESTS'] = '90-tests.conf'
