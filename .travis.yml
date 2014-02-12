@@ -8,10 +8,9 @@ env:
     - DJANGO_VERSION=1.5.5 DATABASE_BACKEND=sqlite
     - DJANGO_VERSION=1.5.5 DATABASE_BACKEND=postgres
     - DJANGO_VERSION=1.5.5 DATABASE_BACKEND=mysql
-    - DJANGO_VERSION=1.6
-matrix:
-  allow_failures:
-    - env: DJANGO_VERSION=1.6
+    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=sqlite
+    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=postgres
+    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=mysql
 before_install:
   - sudo apt-get install bc
 install:
