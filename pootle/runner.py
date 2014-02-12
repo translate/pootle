@@ -162,8 +162,8 @@ def run_app(project, default_settings_path, settings_template,
         try:
             init_settings(config_path, settings_template)
         except (IOError, OSError) as e:
-            raise e.__class__, 'Unable to write default settings file to %r' \
-                                % config_path
+            raise e.__class__('Unable to write default settings file to %r'
+                % config_path)
 
         print("Configuration file created at %r" % config_path)
 
