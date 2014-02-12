@@ -99,10 +99,10 @@ def configure_app(project, config_path, django_settings_module, runner_name):
 
     if not (os.path.exists(config_path) or
             os.environ.get(settings_envvar, None)):
-        print u"Configuration file does not exist at %r or " \
-              u"%r environment variable has not been set.\n" \
-              u"Use '%s init' to initialize the configuration file." % \
-                (config_path, settings_envvar, runner_name)
+        print(u"Configuration file does not exist at %r or "
+              u"%r environment variable has not been set.\n"
+              u"Use '%s init' to initialize the configuration file." %
+                (config_path, settings_envvar, runner_name))
         sys.exit(2)
 
     os.environ.setdefault(settings_envvar, config_path)
@@ -128,8 +128,8 @@ def run_app(project, default_settings_path, settings_template,
 
     if not (command or args):
         # XXX: Should we display a more verbose help/usage message?
-        print "Usage: %s [--config=/path/to/settings.conf] [command] " \
-              "[options]" % runner_name
+        print("Usage: %s [--config=/path/to/settings.conf] [command] " \
+              "[options]" % runner_name)
         sys.exit(2)
 
     if command == 'init':
@@ -156,7 +156,7 @@ def run_app(project, default_settings_path, settings_template,
                 resp = raw_input('File already exists at %r, overwrite? [nY] ' \
                                  % config_path)
             if resp == 'n':
-                print "File already exists, not overwriting."
+                print("File already exists, not overwriting.")
                 return
 
         try:
@@ -165,7 +165,7 @@ def run_app(project, default_settings_path, settings_template,
             raise e.__class__, 'Unable to write default settings file to %r' \
                                 % config_path
 
-        print "Configuration file created at %r" % config_path
+        print("Configuration file created at %r" % config_path)
 
         return
 
@@ -185,9 +185,9 @@ def run_app(project, default_settings_path, settings_template,
         from translate import __version__ as tt_version
         from django import get_version
 
-        print "Pootle %s" % __version__.sver
-        print "Translate Toolkit %s" % tt_version.sver
-        print "Django %s" % get_version()
+        print("Pootle %s" % __version__.sver)
+        print("Translate Toolkit %s" % tt_version.sver)
+        print("Django %s" % get_version())
 
         return
 
