@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -17,10 +18,96 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.urlresolvers import reverse
+
 from contact_form.views import ContactFormView
 
-from .forms import PootleContactForm
+from pootle.core.views import AjaxResponseMixin
+
+from .forms import PootleContactForm, PootleReportForm
 
 
-class PootleContactFormView(ContactFormView):
+BODY_TEMPLATE = '''
+Unit: %s
+
+Source: %s
+
+Current translation: %s
+
+Your question or comment:
+'''
+
+
+class PootleContactFormView(AjaxResponseMixin, ContactFormView):
     form_class = PootleContactForm
+
+    def get_context_data(self, **kwargs):
+        # Provide the form action URL to use in the template that renders the
+        # contact dialog.
+        context = {
+            'contact_form_url': reverse('pootle-contact'),
+        }
+        context.update(kwargs)
+        return super(PootleContactFormView, self).get_context_data(**context)
+
+    def get_initial(self):
+        initial = super(PootleContactFormView, self).get_initial()
+
+        user = self.request.user
+        if user.is_authenticated():
+            initial.update({
+                'name': user.get_profile().fullname,
+                'email': user.email,
+            })
+
+        return initial
+
+    def get_success_url(self):
+        # XXX: This is unused. We don't need a `/contact/sent/` URL, but
+        # the parent :cls:`ContactView` enforces us to set some value here
+        return reverse('pootle-contact')
+
+
+class PootleReportFormView(PootleContactFormView):
+    form_class = PootleReportForm
+
+    def get_context_data(self, **kwargs):
+        # Provide the form action URL to use in the template that renders the
+        # contact dialog.
+        context = {
+            'contact_form_url': reverse('pootle-contact-report-error'),
+        }
+        context.update(kwargs)
+        return super(PootleReportFormView, self).get_context_data(**context)
+
+    def get_initial(self):
+        initial = super(PootleReportFormView, self).get_initial()
+
+        report = self.request.GET.get('report', False)
+        if report:
+            try:
+                from pootle_store.models import Unit
+                uid = int(report)
+                try:
+                    unit = Unit.objects.select_related(
+                        'store__translation_project__project',
+                    ).get(id=uid)
+                    if unit.is_accessible_by(self.request.user):
+                        unit_absolute_url = self.request.build_absolute_uri(
+                                unit.get_translate_url()
+                            )
+                        initial.update({
+                            'body': BODY_TEMPLATE % (
+                                unit_absolute_url,
+                                unit.source,
+                                unit.target
+                            ),
+                            'report_email': unit.store.translation_project \
+                                                      .project.report_email,
+                        })
+                except Unit.DoesNotExist:
+                    pass
+            except ValueError:
+                pass
+
+        return initial

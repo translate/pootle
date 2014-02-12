@@ -93,10 +93,10 @@ def view(request):
 
     return util.edit(
             request,
-            'admin/admin_general_projects.html',
+            'admin/projects.html',
             Project,
             link='/projects/%s/admin.html',
             form=ProjectForm,
-            exclude=('description', 'report_target'),
+            exclude=('description', 'report_email'),
             can_delete=True,
     )

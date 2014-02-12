@@ -1,0 +1,9 @@
+{% load url from future %}
+      {% for tp_tag in tp_tags %}
+      <li>
+        <span class="tag">{{ tp_tag }}</span>{% if can_edit %}
+        <a href="{% url 'pootle-xhr-untag-tp' language.code project.code tp_tag.name %}"
+          class="tag-remove"></a>{% endif %}
+      </li>
+      {% endfor %}
+

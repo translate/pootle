@@ -1,0 +1,241 @@
+{% load url from future %}
+{% load i18n assets baseurl cache staticpages locale profile_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}{{ settings.TITLE }}{% endblock title %}</title>
+    {% block meta %}
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="description" content="{{ settings.DESCRIPTION|striptags }}" />
+    <meta name="viewport" content="width=device-width">
+    <meta name="keywords" content="{{ keywords|join:", " }}" />
+    <meta name="application-name" content="{{ settings.TITLE }}" />
+    <link rel="icon" href="{{ "images/app-32x32.png"|s }}" sizes="32x32" />
+    <link rel="icon" href="{{ "images/app-64x64.png"|s }}" sizes="64x64" />
+    {% endblock meta %}
+    {% block css %}
+    {% assets "css_common" %}
+    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+    {% endassets %}
+    <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="{{ "css/ie.css"|s }}" />
+    <![endif]-->
+    {% endblock css %}
+    {% block favicon %}
+    <link rel="shortcut icon" href="{{ "favicon.ico"|s }}" />
+    {% endblock favicon %}
+    {% block js %}
+    {% assets "js_common" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    <script type="text/javascript">
+      Spinner.defaults = {
+        lines: 11,
+        length: 2,
+        width: 5,
+        radius: 11,
+        rotate: 0,
+        corners: 1,
+        color: '#000',
+        direction: 1,
+        speed: 1,
+        trail: 50,
+        opacity: 1/4,
+        fps: 20,
+        zIndex: 2e9,
+        className: 'spinner',
+        top: 'auto',
+        left: 'auto',
+        position: 'relative'
+      };
+
+    function l(path) {
+      var basepath = "{{ settings.SCRIPT_NAME  }}";
+      if (path[0] == '/') {
+        return basepath + path;
+      }
+      return path;
+    }
+    function s(path) {
+      return "{{ STATIC_URL }}" + path;
+    }
+    {% if display_agreement %}
+    PTL.common.displayAgreementPopup = function () {
+      $.magnificPopup.open({
+        items: {
+          src: '{% url "pootle-staticpages-legal-agreement" %}',
+          type: 'ajax'
+        },
+        callbacks: {
+          parseAjax: function (jqXHR) {
+            jqXHR.responseText = jQuery.parseJSON(jqXHR.responseText).form;
+          }
+        },
+        modal: true
+      });
+    };
+
+    $(document).on('click', '.js-agreement-popup', function (e) {
+      e.preventDefault();
+      $.magnificPopup.close();
+      $.magnificPopup.open({
+        items: {
+          src: this.href,
+          type: 'ajax'
+        },
+        callbacks: {
+          afterClose: PTL.common.displayAgreementPopup
+        },
+        mainClass: 'popup-ajax'
+      });
+    });
+    $(document).on('submit', '.js-agreement-form', function (e) {
+      e.preventDefault();
+      PTL.common.submitAgreementForm();
+    });
+    {% endif %}
+
+    $(function() {
+      $("[title], [original-title]").tipsy({
+        gravity: $.fn.tipsy.autoBounds(150, 'n'),
+        html: true, fade: true, delayIn: 750, live: true});
+      $.ajaxSetup({ traditional: true });
+      $.ajaxPrefilter(function (options, originalOptions) {
+        if (options.type === 'post' || options.type === 'POST') {
+          options.data = $.param(
+            $.extend(originalOptions.data,
+                     { csrfmiddlewaretoken: '{{ csrf_token }}' }) );
+        }
+      });
+
+      {% if display_agreement %}
+      PTL.common.displayAgreementPopup();
+      {% endif %}
+    });
+    </script>
+    {% endblock js %}
+    {% block extra_head %}{% endblock %}
+  </head>
+
+  <body id="{% block body_id %}{% endblock %}">
+    {% block body %}
+    <div id="wrapper">
+      {% if messages %}
+      <div id="alerts" class="affix">
+        {% for message in messages %}
+        <div class="alert alert-block alert-{{ message.tags }} fade in" lang="{{ LANGUAGE_CODE }}">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ message|safe }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div id="navbar">
+        <div id="navbar-inner">
+          {% block navbar %}
+          <div id="nav-access">
+            <a href="#nav-main">{% trans 'skip to navigation' %}</a>
+          </div>
+          <a href="{{ "/"|l }}" class="brand"><i class="logo"></i>{{ settings.TITLE }}</a>
+
+          <div id="zoom">
+            <a id="zoom-out" title="{% trans "Zoom out (Ctrl+Shift+-)" %}"
+              href="javascript:PTL.zoom.zoom(-1)">&ndash;</a>
+            <a id="zoom-reset" title="{% trans "Reset zoom (Ctrl+Shift+0)" %}"
+              href="javascript:PTL.zoom.zoom(0)">T</a>
+            <a id="zoom-in" title="{% trans "Zoom in (Ctrl+Shift++)" %}"
+              href="javascript:PTL.zoom.zoom(1)">+</a>
+          </div>
+          <ul id="nav-main">
+            {% if user.is_authenticated %}
+            <li id="user">
+              <a href="{{ user.get_profile.get_absolute_url }}">
+              <img src="{{ user.get_profile|gravatar:20 }}" />{{ user.username }}</a>
+            </li>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans "ADMIN" %}</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li><a href='{{ "/accounts/logout/"|l }}'>{% trans "Log Out" %}</a></li>
+            {% else %}
+            {% if settings.CAN_REGISTER %}
+            <li><a href='{{ "/accounts/register/"|l }}'>{% trans "Register" %}</a></li>
+            {% endif %}
+            <li><a href="{{ "/accounts/login/"|l }}{{ request|get_next }}">{% trans "Log In" %}</a></li>
+            {% endif %}
+          </ul>
+          {% block navbar_extra %}{% endblock %}
+          {% endblock %}
+        </div>
+      </div>
+
+    {% block header_block %}
+      {% block header_meta_block %}
+      <div id="header-meta" class="header">
+        {% block header_meta %}{% endblock %}
+
+        {% block breadcrumbs_block %}
+        <ul class="breadcrumb">
+        {% block breadcrumbs %}{% endblock %}
+        </ul>
+        {% endblock %}
+      </div>
+      {% endblock %}
+
+      {% block header_tabs_block %}
+      <div id="header-tabs" class="header">
+        {% block search %}{% endblock %}
+        {% block tabs %}{% endblock %}
+      </div>
+      {% endblock %}
+    {% endblock %}
+
+      <div id="body">
+        <div id="precontent">
+          {% block precontent %}{% endblock %}
+        </div>
+
+        <div id="content">
+          {% block content %}{% endblock %}
+        </div>
+
+        <div id="postcontent">
+          {% block postcontent %}{% endblock %}
+        </div>
+        {% block extra_content %}{% endblock %}
+      </div>
+
+      {% block footer %}
+      <div id="footer">
+        <ul class="nav">
+          <li><a href="http://docs.translatehouse.org/projects/pootle/">{% trans "Help" %}</a></li>
+          {% if settings.CAN_CONTACT %}
+          <li>
+            <a class="js-popup-ajax"
+               href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a>
+          </li>
+          {% endif %}
+          <li><a href="{% url 'pootle_app.views.index.about.view' %}">{% trans "About this Pootle Server" %}</a></li>
+          <li><a href="{% url 'pootle_app.views.index.contributors.view' %}">{% trans "Contributors" %}</a></li>
+          {% cache settings.CACHE_TIMEOUT legalpages LANGUAGE_CODE %}
+          {% get_legalpages as legalpages %}
+          {% for lp in legalpages %}
+          <li><a href="{{ lp.get_absolute_url }}">{{ lp.localized_title }}</a></li>
+          {% endfor %}
+          {% endcache %}
+        </ul>
+      </div>
+      {% endblock footer %}
+    </div>
+    {% block scripts %}
+    {% block scripts_extra %}{% endblock %}
+    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+    {% endblock scripts %}
+    {% endblock body %}
+  </body>
+</html>

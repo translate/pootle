@@ -26,7 +26,7 @@ from django.template.defaultfilters import stringfilter
 register = template.Library()
 
 
-@register.inclusion_tag('common/table.html', takes_context=True)
+@register.inclusion_tag('core/table.html', takes_context=True)
 def display_table(context, table):
     return {
         'table': table,

@@ -1,9 +1,0 @@
-{% load url from future %}
-      {% for tag in store_tags %}
-      <li>
-        <span class="tag">{{ tag }}</span>{% if can_edit %}
-        <a href="{% url 'pootle-store-ajax-remove-tag' tag.slug path_obj.pk %}"
-          class="tag-remove"></a>{% endif %}
-      </li>
-      {% endfor %}
-

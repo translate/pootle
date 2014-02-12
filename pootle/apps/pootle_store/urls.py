@@ -23,11 +23,11 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_store.views',
     # Download and export
-    (r'^download/(?P<pootle_path>.*)/?$',
+    url(r'^download/(?P<pootle_path>.*)/?$',
         'download'),
-    (r'^export-file/xlf/(?P<pootle_path>.*)/?$',
+    url(r'^export-file/xlf/(?P<pootle_path>.*)/?$',
         'export_as_xliff'),
-    (r'^export-file/(?P<filetype>.*)/(?P<pootle_path>.*)/?$',
+    url(r'^export-file/(?P<filetype>.*)/(?P<pootle_path>.*)/?$',
         'export_as_type'),
 
     # XHR
@@ -86,10 +86,10 @@ urlpatterns = patterns('pootle_store.views',
     # XHR for tags.
     url(r'^ajax/tags/add/store/(?P<store_pk>[0-9]+)?$',
         'ajax_add_tag_to_store',
-        name='pootle-store-ajax-add-tag'),
+        name='pootle-xhr-tag-store'),
 
     url(r'^ajax/tags/remove/(?P<tag_slug>[a-z0-9-]+)/store/'
         r'(?P<store_pk>[0-9]+)?$',
         'ajax_remove_tag_from_store',
-        name='pootle-store-ajax-remove-tag'),
+        name='pootle-xhr-untag-store'),
 )

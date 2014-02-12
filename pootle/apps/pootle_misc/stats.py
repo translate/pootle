@@ -82,7 +82,7 @@ def get_path_summary(path_obj, latest_action):
 
     # Build URL for getting more summary information for the current path.
     url_args = [language.code, project.code, path_obj.path]
-    url_path_summary_more = reverse('tp.path_summary_more', args=url_args)
+    url_path_summary_more = reverse('pootle-xhr-summary-more', args=url_args)
 
     summary.append(u''.join([
         ' <a id="js-path-summary" data-target="js-path-summary-more" '

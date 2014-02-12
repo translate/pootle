@@ -32,6 +32,7 @@ from taggit.models import Tag
 
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_translation_context
+from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
@@ -151,7 +152,7 @@ def ajax_remove_tag_from_tp_in_project(request, translation_project, tag_name):
         'project': translation_project.project.code,
         'language': translation_project.language.code,
     }
-    response = render_to_response('project/xhr_tags_list.html',
+    response = render_to_response('projects/xhr_tags_list.html',
                                   context, RequestContext(request))
     response.status_code = 201
     return response
@@ -167,7 +168,7 @@ def _add_tag(request, translation_project, tag_like_object):
         'project': translation_project.project.code,
         'language': translation_project.language.code,
     }
-    response = render_to_response('project/xhr_tags_list.html',
+    response = render_to_response('projects/xhr_tags_list.html',
                                   context, RequestContext(request))
     response.status_code = 201
     return response
@@ -226,10 +227,10 @@ def ajax_add_tag_to_tp_in_project(request, project):
             }
             context = {
                 'add_tag_form': add_tag_form,
-                'add_tag_action_url': reverse('project.ajax_add_tag_to_tp',
+                'add_tag_action_url': reverse('pootle-xhr-tag-tp-in-project',
                                               kwargs=url_kwargs)
             }
-            return render_to_response('common/xhr_add_tag_form.html',
+            return render_to_response('core/xhr_add_tag_form.html',
                                       context, RequestContext(request))
 
 
@@ -249,11 +250,11 @@ def overview(request, project):
         templatevars.update({
             'form': DescriptionForm(instance=project),
             'add_tag_form': TranslationProjectTagForm(project=project),
-            'add_tag_action_url': reverse('project.ajax_add_tag_to_tp',
+            'add_tag_action_url': reverse('pootle-xhr-tag-tp-in-project',
                                           kwargs=url_kwargs),
         })
 
-    return render_to_response('project/overview.html', templatevars,
+    return render_to_response('projects/overview.html', templatevars,
                               context_instance=RequestContext(request))
 
 
@@ -283,11 +284,12 @@ def project_settings_edit(request, project):
 
         response["description"] = the_html
 
+    action_url = reverse('pootle-project-admin-settings', args=[project.code])
     context = {
         "form": form,
-        "form_action": project.pootle_path + "edit_settings.html",
+        "form_action": action_url,
     }
-    t = loader.get_template('admin/general_settings_form.html')
+    t = loader.get_template('admin/_settings_form.html')
     c = RequestContext(request, context)
     response['form'] = t.render(c)
 
@@ -313,7 +315,7 @@ def translate(request, project):
         'language': language,
         'project': project,
 
-        'editor_extends': 'project_base.html',
+        'editor_extends': 'projects/base.html',
         'editor_body_id': 'projecttranslate',
     })
 
@@ -338,13 +340,14 @@ def project_admin(request, current_project):
         }
     }
 
-    link = lambda instance: '<a href="%s">%s</a>' % (
-            l(instance.pootle_path + 'admin_permissions.html'),
-            instance.language,
-    )
+    def generate_link(tp):
+        path_args = split_pootle_path(tp.pootle_path)[:2]
+        perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
+        return '<a href="%s">%s</a>' % (perms_url, tp.language)
 
-    return util.edit(request, 'project/project_admin.html', TranslationProject,
-                     model_args, link, linkfield="language", queryset=queryset,
+    return util.edit(request, 'projects/admin/languages.html',
+                     TranslationProject, model_args, generate_link,
+                     linkfield="language", queryset=queryset,
                      can_delete=True, form=tp_form_class,
                      formset=TranslationProjectFormSet,
                      exclude=('description',))
@@ -359,7 +362,7 @@ def project_admin_permissions(request, project):
         "feed_path": project.pootle_path[1:],
     }
     return admin_permissions(request, project.directory,
-                             "project/admin_permissions.html", template_vars)
+                             "projects/admin/permissions.html", template_vars)
 
 
 @get_path_obj
@@ -379,5 +382,5 @@ def projects_index(request, root):
         'topstats': gentopstats_root(),
     }
 
-    return render_to_response('project/projects.html', templatevars,
+    return render_to_response('projects/list.html', templatevars,
                               RequestContext(request))

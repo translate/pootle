@@ -1,0 +1,19 @@
+{% extends "admin/staticpages/base.html" %}
+{% load url from future %}
+{% load i18n %}
+
+{% block title %}{% trans "Add" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Add" %}</li>
+{% endblock %}
+
+{% block section_body %}
+<div class="staticpages settings-container centered">
+  <div class="staticpages-edit">
+    <div class="bd">
+    {% include 'admin/staticpages/_form.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}

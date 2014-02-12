@@ -18,8 +18,14 @@ Directory contents
     To sort a new select element, add the end of the element id to the 'ids'
     array.
 
+  - captcha.js :
+    Code for interacting with the site-wide captcha.
+
   - common.js :
     Common code that is included in every page.
+
+  - contact.js :
+    Contact form code.
 
   - editor.js :
     Code that sets up the editor and handles all the actions involved there.

@@ -27,10 +27,10 @@ urlpatterns = patterns('pootle_notifications',
     # Feed
     url(r'^(?P<path>.*)notices/rss.xml$',
         feeds.NoticeFeed(),
-        name="pootle_notifications__feed"),
+        name="pootle-notifications-feed"),
 
-    (r'^(?P<path>.*)notices/?$',
+    url(r'^(?P<path>.*)notices/?$',
         'views.view'),
-    (r'^(?P<path>.*)notices/(?P<notice_id>[0-9]+)/?$',
+    url(r'^(?P<path>.*)notices/(?P<notice_id>[0-9]+)/?$',
         'views.view_notice_item'),
 )

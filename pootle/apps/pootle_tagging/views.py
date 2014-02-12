@@ -55,7 +55,7 @@ def ajax_edit_goal(request, goal):
         'form_action': reverse('pootle-tagging-ajax-edit-goal',
                                args=[goal.slug]),
     }
-    t = loader.get_template('admin/general_settings_form.html')
+    t = loader.get_template('admin/_settings_form.html')
     c = RequestContext(request, context)
     response['form'] = t.render(c)
 

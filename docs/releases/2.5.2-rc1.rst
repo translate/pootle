@@ -32,6 +32,11 @@ for more details.
   for projects, but not for individual language-project combinations.
 - Dropped code for several external apps from Pootle codebase. Also upgraded to
   newer versions of those apps.
+- The contact form has been converted to an AJAX form.
+- The report target for reporting string errors has been dropped in favor of a
+  report email address. The report is now sent using an automatically
+  pre-filled  contact form. If the project doesn't have a report email then the
+  reports are sent to :setting:`POOTLE_REPORT_STRING_ERRORS_EMAIL`.
 - Some changes in the API.
 - New management command to assign permissions to a user.
 

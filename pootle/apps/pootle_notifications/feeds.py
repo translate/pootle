@@ -32,8 +32,8 @@ from pootle_profile.models import get_profile
 
 
 class NoticeFeed(Feed):
-    title_template = "notice_title.html"
-    description_template = "notice_body.html"
+    title_template = "notifications/notice_title.html"
+    description_template = "notifications/notice_body.html"
 
     def get_object(self, request, path):
         pootle_path = '/%s' % path

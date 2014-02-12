@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009, 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,13 +22,11 @@ from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns('pootle_terminology.views',
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'terminology_extract.html',
-        'extract'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'terminology_manage.html',
-        'manage'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'(?P<path>.*?)/terminology_manage.html',
-        'manage'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
+        r'/terminology/extract/$',
+        'extract',
+        name='pootle-terminology-extract'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/terminology/',
+        'manage',
+        name='pootle-terminology-manage'),
 )

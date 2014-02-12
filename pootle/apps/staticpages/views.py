@@ -64,7 +64,7 @@ class PageModelMixin(object):
 
 class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
 
-    template_name = 'staticpages/admin/page_list.html'
+    template_name = 'admin/staticpages/page_list.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(AdminTemplateView, self).get_context_data(**kwargs)
@@ -77,8 +77,8 @@ class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
 
 class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
 
-    success_url = reverse_lazy('staticpages.admin')
-    template_name = 'staticpages/admin/page_create.html'
+    success_url = reverse_lazy('pootle-staticpages')
+    template_name = 'admin/staticpages/page_create.html'
 
     def get_initial(self):
         initial = super(PageModelMixin, self).get_initial()
@@ -92,8 +92,8 @@ class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
 
 class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
 
-    success_url = reverse_lazy('staticpages.admin')
-    template_name = 'staticpages/admin/page_update.html'
+    success_url = reverse_lazy('pootle-staticpages')
+    template_name = 'admin/staticpages/page_update.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(PageUpdateView, self).get_context_data(**kwargs)
@@ -106,7 +106,7 @@ class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
 
 class PageDeleteView(SuperuserRequiredMixin, PageModelMixin, DeleteView):
 
-    success_url = reverse_lazy('staticpages.admin')
+    success_url = reverse_lazy('pootle-staticpages')
 
 
 def display_page(request, virtual_path):

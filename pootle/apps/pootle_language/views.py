@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
@@ -107,7 +108,7 @@ def overview(request, language):
         from pootle_language.forms import DescriptionForm
         templatevars['form'] = DescriptionForm(instance=language)
 
-    return render_to_response("language/overview.html", templatevars,
+    return render_to_response("languages/overview.html", templatevars,
                               context_instance=RequestContext(request))
 
 
@@ -135,11 +136,12 @@ def language_settings_edit(request, language):
 
         response["description"] = the_html
 
+    action_url = reverse('pootle-language-admin-settings', args=[language.code])
     context = {
         "form": form,
-        "form_action": language.pootle_path + "edit_settings.html",
+        "form_action": action_url,
     }
-    t = loader.get_template('admin/general_settings_form.html')
+    t = loader.get_template('admin/_settings_form.html')
     c = RequestContext(request, context)
     response['form'] = t.render(c)
 
@@ -163,7 +165,7 @@ def translate(request, language):
         'language': language,
         'project': project,
 
-        'editor_extends': 'language_base.html',
+        'editor_extends': 'languages/base.html',
         'editor_body_id': 'languagetranslate',
     })
 
@@ -180,4 +182,4 @@ def language_admin(request, language):
         "feed_path": '%s/' % language.code,
     }
     return admin_permissions(request, language.directory,
-                             "language/language_admin.html", template_vars)
+                             'languages/admin/permissions.html', template_vars)

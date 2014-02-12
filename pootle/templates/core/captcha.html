@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% load i18n baseurl %}
+
+{% block title %}{% trans "Are You Human?" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Are You Human?" %}</li>
+{% endblock %}
+
+{% block content %}
+{% include "core/xhr_captcha.html" %}
+{% endblock content %}

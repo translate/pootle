@@ -1,2 +1,6 @@
-{{ body|safe }}
+Username: {% if request.user.is_authenticated %}{{ request.user.username }}{% else %}anonymous user{% endif %}
+Current URL: {{ request.META.HTTP_REFERER }}
+IP address: {{ request.META.REMOTE_ADDR }}
+User-Agent: {{ request.META.HTTP_USER_AGENT }}
 
+{{ body|safe }}

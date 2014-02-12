@@ -123,6 +123,12 @@ class PootleProfile(models.Model):
     ############################ Properties ###################################
 
     @property
+    def fullname(self):
+        # FIXME: "first name + last name" is just lame
+        return ('%s %s' % (self.user.first_name,
+                           self.user.last_name)).strip()
+
+    @property
     def isopen(self):
         return True
 

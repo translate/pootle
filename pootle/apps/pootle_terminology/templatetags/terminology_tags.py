@@ -23,7 +23,8 @@ from django import template
 register = template.Library()
 
 
-@register.inclusion_tag('terminology/term_edit.html', takes_context=True)
+@register.inclusion_tag('translation_projects/terminology/_term_edit.html',
+                        takes_context=True)
 def render_term_edit(context, form):
     template_vars = {
         'unit': form.instance,

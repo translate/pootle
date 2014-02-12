@@ -25,19 +25,26 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_translationproject.views',
     # Admin views
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/((.*/)*)admin_permissions.html$',
-        'admin_permissions'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
+        r'/admin/permissions/',
+        'admin_permissions',
+        name='pootle-tp-admin-permissions'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
+        r'/admin/settings/$',
+        'edit_settings',
+        name='pootle-tp-admin-settings'),
 
     # Management actions
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/rescan/?$',
         'rescan_files',
-        name='tp.rescan'),
+        name='pootle-tp-rescan'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/update/?$',
         'update_against_templates',
-        name='tp.update_against_templates'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/delete/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        name='pootle-tp-update-against-templates'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/delete/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'delete_path_obj',
-        name='tp.delete_path_obj'),
+        name='pootle-tp-delete-path-obj'),
 
     # VCS
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
@@ -50,26 +57,25 @@ urlpatterns = patterns('pootle_translationproject.views',
         name='pootle-vcs-update'),
 
     # XHR views
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'edit_settings.html$',
-        'edit_settings',
-        name='pootle-tp-ajax-edit-settings'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary',
-        name='tp.path_summary'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary_more/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        name='pootle-xhr-summary'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary-more/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary_more',
-        name='tp.path_summary_more'),
+        name='pootle-xhr-summary-more'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-add-tag/?$',
         'ajax_add_tag_to_tp',
-        name='tp.ajax_add_tag'),
+        name='pootle-xhr-tag-tp'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-remove-tag/'
         r'(?P<tag_name>.*\.*)?$',
         'ajax_remove_tag_from_tp',
-        name='tp.ajax_remove_tag'),
+        name='pootle-xhr-untag-tp'),
 
     # Exporting files
-    (r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<file_path>.*)export/zip$',
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'(?P<file_path>.*)export/zip$',
         'export_zip'),
 
     # Translation
@@ -82,7 +88,7 @@ urlpatterns = patterns('pootle_translationproject.views',
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'export-view/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'export_view',
-        name='export-view'),
+        name='pootle-tp-export-view'),
 
     # Goals
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
@@ -96,7 +102,8 @@ urlpatterns = patterns('pootle_translationproject.views',
         name='pootle-tp-goal-drill-down'),
 
     # Overview
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'overview',
         name='pootle-tp-overview'),
 

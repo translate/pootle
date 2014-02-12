@@ -51,7 +51,7 @@ from pootle_store.util import absolute_real_path, OBSOLETE
 # FIXME: Generate key dynamically
 CACHE_KEY = 'pootle-projects'
 
-RESERVED_PROJECT_CODES = ('admin', 'translate',)
+RESERVED_PROJECT_CODES = ('admin', 'translate', 'settings')
 
 
 class ProjectManager(RelatedManager):
@@ -138,12 +138,12 @@ class Project(models.Model, TreeItem):
         db_index=True,
         editable=False,
     )
-    report_target = models.CharField(
-        max_length=512,
+    report_email = models.EmailField(
+        max_length=254,
         blank=True,
-        verbose_name=_("Report Target"),
-        help_text=_('A URL or an email address where issues with the source '
-                    'text can be reported.'),
+        verbose_name=_("Errors Report Email"),
+        help_text=_('An email address where issues with the source text can '
+                    'be reported.'),
     )
 
     objects = ProjectManager()

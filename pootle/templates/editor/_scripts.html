@@ -1,12 +1,12 @@
 {% load assets store_tags %}
 <script id="view_unit" type="text/template">
-{% include_raw "unit/xhr-view.html" %}
+{% include_raw "editor/units/xhr_view.html" %}
 </script>
 <script id="tm_suggestions" type="text/template">
-{% include_raw "unit/xhr-tm.html" %}
+{% include_raw "editor/units/xhr_tm.html" %}
 </script>
 <script id="editCtx" type="text/template">
-{% include_raw "unit/xhr-edit-ctx.html" %}
+{% include_raw "editor/units/xhr_edit_ctx.html" %}
 </script>
 {% assets "js_editor" %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>

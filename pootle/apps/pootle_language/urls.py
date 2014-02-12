@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008,2012 Zuza Software Foundation
+# Copyright 2008-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -31,9 +31,10 @@ urlpatterns = patterns('pootle_language.views',
         name='pootle-language-translate'),
 
     # Admin
-    url(r'^(?P<language_code>[^/]*)/edit_settings.html$',
-        'language_settings_edit'),
-    url(r'^(?P<language_code>[^/]*)/admin.html$',
+    url(r'^(?P<language_code>[^/]*)/admin/settings/$',
+        'language_settings_edit',
+        name='pootle-language-admin-settings'),
+    url(r'^(?P<language_code>[^/]*)/admin/permissions/$',
         'language_admin',
-        name='pootle-language-admin'),
+        name='pootle-language-admin-permissions'),
 )

@@ -43,17 +43,16 @@ from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
-from pootle.core.exceptions import Http400
-from pootle.core.url_helpers import split_pootle_path
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
+from pootle.core.exceptions import Http400
+from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (check_permission,
                                            check_profile_permission)
 from pootle_language.models import Language
 from pootle_misc.baseurl import redirect
 from pootle_misc.forms import make_search_form
-from pootle_misc.url_manip import ensure_uri
 from pootle_misc.util import ajax_required, jsonify, to_int
 from pootle_profile.models import get_profile
 from pootle_project.models import Project
@@ -670,14 +669,14 @@ def timeline(request, unit):
         # the unit on screen at the time of receiving this, so we add the uid.
         json = {'uid': unit.id}
 
-        t = loader.get_template('unit/xhr-timeline.html')
+        t = loader.get_template('editor/units/xhr_timeline.html')
         c = RequestContext(request, context)
         json['timeline'] = t.render(c).replace('\n', '')
 
         response = jsonify(json)
         return HttpResponse(response, mimetype="application/json")
     else:
-        return render_to_response('unit/timeline.html', context,
+        return render_to_response('editor/units/timeline.html', context,
                                   context_instance=RequestContext(request))
 
 
@@ -725,7 +724,7 @@ def comment(request, unit):
             'unit': unit,
             'language': language,
         }
-        t = loader.get_template('unit/comment.html')
+        t = loader.get_template('editor/units/xhr_comment.html')
         c = RequestContext(request, context)
 
         json = {'comment': t.render(c)}
@@ -770,7 +769,6 @@ def get_edit_unit(request, unit):
     profile = request.profile
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
-    report_target = ensure_uri(project.report_target)
 
     suggestions = get_sugg_list(unit)
     template_vars = {
@@ -790,14 +788,13 @@ def get_edit_unit(request, unit):
         'canreview': check_profile_permission(profile, "review", directory),
         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
                                 project=project),
-        'report_target': report_target,
         'suggestions': suggestions,
     }
 
     if translation_project.project.is_terminology or store.is_terminology:
-        t = loader.get_template('unit/term_edit.html')
+        t = loader.get_template('editor/units/term_edit.html')
     else:
-        t = loader.get_template('unit/edit.html')
+        t = loader.get_template('editor/units/edit.html')
     c = RequestContext(request, template_vars)
     json['editor'] = t.render(c)
 
@@ -1198,7 +1195,7 @@ def _add_tag(request, store, tag_like_object):
         'path_obj': store,
         'can_edit': check_permission('administrate', request),
     }
-    response = render_to_response('store/xhr_tags_list.html', context,
+    response = render_to_response('stores/xhr_tags_list.html', context,
                                   RequestContext(request))
     response.status_code = 201
     return response
@@ -1247,8 +1244,8 @@ def ajax_add_tag_to_store(request, store_pk):
             # the form with the error messages.
             context = {
                 'add_tag_form': add_tag_form,
-                'add_tag_action_url': reverse('pootle-store-ajax-add-tag',
+                'add_tag_action_url': reverse('pootle-xhr-tag-store',
                                               args=[store.pk])
             }
-            return render_to_response('common/xhr_add_tag_form.html', context,
+            return render_to_response('core/xhr_add_tag_form.html', context,
                                       RequestContext(request))

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ page.title }} | {{ block.super }}{% endblock title %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{{ page.title }}</li>
+{% endblock %}
+
+{% block content %}
+{% include "staticpages/_body.html" %}
+{% endblock content %}

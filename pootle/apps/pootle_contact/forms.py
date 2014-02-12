@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Zuza Software Foundation
+# Copyright 2013-2014 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -17,19 +18,29 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django import forms
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from contact_form.forms import ContactForm
 
+from pootle.core.forms import MathCaptchaForm
 
-class PootleContactForm(ContactForm):
 
-    def __init__(self, data=None, files=None, request=None, *args, **kwargs):
-        super(PootleContactForm, self).__init__(data=data, files=files,
-                                                request=request, *args,
-                                                **kwargs)
-        # Now do the Pootle customization.
-        self.fields['name'].label = _('Name')
+class PootleContactForm(MathCaptchaForm, ContactForm):
+
+    subject = forms.CharField(
+        max_length=100,
+        label=_(u'Summary'),
+        widget=forms.TextInput(
+            attrs={'placeholder': _('Please enter your message summary')}
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(PootleContactForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].label = _(u'Name')
         name_placeholder = _('Please enter your name')
         self.fields['name'].widget.attrs['placeholder'] = name_placeholder
 
@@ -41,9 +52,35 @@ class PootleContactForm(ContactForm):
         body_placeholder = _('Please enter your message')
         self.fields['body'].widget.attrs['placeholder'] = body_placeholder
 
+        self.fields.keyOrder = ['name', 'email', 'subject', 'body',
+                                'captcha_answer', 'captcha_token']
+
     def from_email(self):
         # Pootle customization.
         return u'%s <%s>' % (
             self.cleaned_data['name'],
             self.cleaned_data['email']
         )
+
+
+class PootleReportForm(PootleContactForm):
+    """Contact form used to report errors on strings."""
+
+    report_email = forms.EmailField(
+        max_length=254,
+        required=False,
+        widget=forms.HiddenInput(),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(PootleReportForm, self).__init__(*args, **kwargs)
+        self.fields.keyOrder += ['report_email']
+
+    def recipient_list(self):
+        # Try to report string error to the report email for the project
+        # (injected in the 'report_email' field with initial values). If the
+        # project doesn't have a report email then fall back to the global
+        # string errors report email.
+        if self.cleaned_data['report_email']:
+            return [self.cleaned_data['report_email']]
+        return [settings.POOTLE_REPORT_STRING_ERRORS_EMAIL]

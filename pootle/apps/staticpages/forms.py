@@ -61,7 +61,7 @@ def agreement_form_factory(pages, user, base_class=forms.Form,
 
         def add_page_field(self, page):
             """Add `page` as a required field to this form."""
-            url = page.url and page.url or reverse('staticpages.display',
+            url = page.url and page.url or reverse('pootle-staticpages-display',
                                                    args=[page.virtual_path])
             label_params = {
                 'url': url,

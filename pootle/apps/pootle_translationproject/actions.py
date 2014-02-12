@@ -191,7 +191,8 @@ def commit_dir_to_vcs(request, path_obj, **kwargs):
 def rescan_project_files(request, path_obj, **kwargs):
     if check_permission('administrate', request):
         tp = path_obj.translation_project
-        link = reverse('tp.rescan', args=[tp.language.code, tp.project.code])
+        link = reverse('pootle-tp-rescan',
+                       args=[tp.language.code, tp.project.code])
         text = _("Rescan project files")
 
         return {
@@ -204,8 +205,8 @@ def rescan_project_files(request, path_obj, **kwargs):
 def update_against_templates(request, path_obj, **kwargs):
     if check_permission('administrate', request):
         tp = path_obj.translation_project
-        link = reverse('tp.update_against_templates', args=[tp.language.code,
-                                                            tp.project.code])
+        link = reverse('pootle-tp-update-against-templates',
+                       args=[tp.language.code, tp.project.code])
         text = _("Update against templates")
 
         return {
@@ -218,9 +219,8 @@ def update_against_templates(request, path_obj, **kwargs):
 def delete_path_obj(request, path_obj, **kwargs):
     if check_permission('administrate', request):
         tp = path_obj.translation_project
-        link = reverse('tp.delete_path_obj', args=[tp.language.code,
-                                                   tp.project.code,
-                                                   path_obj.path])
+        link = reverse('pootle-tp-delete-path-obj',
+                       args=[tp.language.code, tp.project.code, path_obj.path])
 
         if path_obj.is_dir:
             text = _("Delete this folder...")

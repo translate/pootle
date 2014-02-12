@@ -1,0 +1,10 @@
+{% load url from future %}
+    {% for tp_tag in tp_tags %}
+    <li>
+      <span class="js-tag-item tag">{{ tp_tag }}</span>
+      {% if user.is_superuser or request.permissions.administrate %}
+      <a href="{% url 'pootle-xhr-untag-tp-in-project' project language tp_tag.name %}"
+        class="tag-remove"></a>
+      {% endif %}
+    </li>
+    {% endfor %}

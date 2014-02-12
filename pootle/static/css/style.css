@@ -1222,7 +1222,7 @@ ul.errorlist
     margin-top: 1em;
 }
 
-.form .captcha .question
+.form .captcha label
 {
     font-size: 120%;
 }
@@ -2060,9 +2060,6 @@ body #file-tabs a.selected-tab
     color: #444;
     font-weight: bold;
 }
-
-
-
 
 .title a
 {
