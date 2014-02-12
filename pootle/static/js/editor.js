@@ -1405,10 +1405,12 @@
         // element, we also need to check for `this.checks`.
         filterChecks = $('#js-filter-checks').val() || this.checks.join(','),
         sortBy = $('#js-filter-sort').val(),
+        user = this.user || null,
         newHash = { filter: filterBy };
 
     filterChecks !== 'none' && (newHash.checks = filterChecks);
     sortBy !== 'default' && (newHash.sort = sortBy);
+    user !== null && (newHash.user = user);
 
     $.history.load($.param(newHash));
   },
