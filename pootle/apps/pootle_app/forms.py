@@ -20,12 +20,10 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from djblets.siteconfig.forms import SiteSettingsForm
-
 from pootle_misc.siteconfig import load_site_config
 
 
-class GeneralSettingsForm(SiteSettingsForm):
+class GeneralSettingsForm(forms.Form):
     TITLE = forms.CharField(
         label=_("Title"),
         help_text=_("The name for this Pootle server"),
@@ -41,6 +39,19 @@ class GeneralSettingsForm(SiteSettingsForm):
         widget=forms.Textarea,
     )
 
+    def __init__(self, *args, **kwargs):
+        forms.Form.__init__(self, *args, **kwargs)
+        self.siteconfig = load_site_config()
+
+        for field in self.fields:
+            value = self.siteconfig.get(field, None)
+
+            if value is not None:
+                self.fields[field].initial = value
+
     def save(self):
-        super(GeneralSettingsForm, self).save()
-        load_site_config()
+        if not self.errors:
+            for field, value in self.cleaned_data.iteritems():
+                self.siteconfig.set(field, value)
+
+            self.siteconfig.save()
