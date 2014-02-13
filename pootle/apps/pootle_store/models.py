@@ -670,7 +670,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         return changed
 
-    def update_wordcount(auto_translate=False):
+    def update_wordcount(self, auto_translate=False):
         """Updates the source wordcount for a unit.
 
         :param auto_translate: when set to `True`, it will coopy the
