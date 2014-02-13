@@ -237,6 +237,10 @@ class Directory(models.Model, TreeItem):
             return translation_project.real_path + path_prefix
 
     def delete(self, *args, **kwargs):
-        self.before_delete()
+        # cache will be cleared from child stores
+        self.initialize_children()
+        for item in self.children:
+            item.detele()
+
         super(Directory, self).delete(*args, **kwargs)
 

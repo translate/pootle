@@ -376,10 +376,6 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
     def get_parents(self):
         return [Directory.objects.projects]
 
-    def before_delete(self):
-        # everything will be done in directory.delete()
-        pass
-
     ### /TreeItem
 
     def translated_percentage(self):

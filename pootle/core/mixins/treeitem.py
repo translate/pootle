@@ -306,16 +306,6 @@ class TreeItem(object):
             if pla and pla['mtime'] < last_action['mtime']:
                 p.set_last_action(last_action)
 
-    def before_delete(self):
-        self.initialize_children()
-        for item in self.children:
-            item.detele()
-        else:
-            # clear cache form leaf to the root
-            self.clear_all_cache(parents=True, children=False)
-
-        super(TreeItem, self).before_delete()
-
     def _clear_cache(self, keys, parents=True, children=False):
         itemkey = self.get_cachekey()
         for key in keys:

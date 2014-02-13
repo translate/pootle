@@ -1236,11 +1236,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.clear_flagged_cache()
 
     def delete(self, *args, **kwargs):
-        self.before_delete()
-        super(Store, self).delete(*args, **kwargs)
+        self.clear_all_cache(parents=True, children=False)
 
-    def before_delete(self):
-        super(Store, self).before_delete()
         store_log(user='system', action=STORE_DELETED,
                   path=self.pootle_path, store=self.id)
 
@@ -1248,6 +1245,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         for unit in self.unit_set.iterator():
             action_log(user='system', action=UNIT_DELETED, lang=lang,
                        unit=unit.id, Translation='', path=self.pootle_path)
+
+        super(Store, self).delete(*args, **kwargs)
 
     def get_absolute_url(self):
         return l(self.pootle_path)

@@ -223,6 +223,7 @@ class TranslationProject(models.Model, TreeItem):
     def delete(self, *args, **kwargs):
         directory = self.directory
         # clear cache for translation_project parents only
+        # (they differ from directory ones)
         # children cache will be cleared in directory.delete()
         self.clear_all_cache(parents=True, children=False)
 
