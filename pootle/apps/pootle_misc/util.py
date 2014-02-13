@@ -65,11 +65,13 @@ def set_cached_value(obj, fn, value, timeout=settings.OBJECT_CACHE_TIMEOUT):
 def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
     def _getfromcache(instance, *args, **kwargs):
         key = iri_to_uri(instance.get_cachekey() + ":" + function.__name__)
-        result = cache.get(key)
+        no_cache = getattr(instance, 'no_cache', False)
+        result = None if no_cache else cache.get(key)
         if result is None:
             logging.debug(u"cache miss for %s", key)
             result = function(instance, *args, **kwargs)
-            cache.set(key, result, timeout)
+            if not no_cache:
+                cache.set(key, result, timeout)
         return result
     return _getfromcache
 

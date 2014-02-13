@@ -40,6 +40,9 @@ class VirtualResource(TreeItem):
         self.resources = resources  #: Collection of underlying resources
         self.pootle_path = pootle_path
 
+        # do not cache statistic for a virtual resources
+        self.no_cache = True
+
         super(VirtualResource, self).__init__(*args, **kwargs)
 
     def __unicode__(self):
