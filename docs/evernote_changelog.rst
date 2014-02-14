@@ -15,7 +15,7 @@ Release .next
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
-.. _#108: https://github.com/evernote/pootle/issues/106
+.. _#106: https://github.com/evernote/pootle/issues/106
 
 
 Release `2014-01-31`_
