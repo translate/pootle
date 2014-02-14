@@ -65,6 +65,9 @@ Changed Features
   translated). Non-empty units with 0 words are immediately translated and
   marked as fuzzy.
 
+- Adjusted ``update_translation_projects`` behavior not to delete
+  directories from the filesystem.
+
 
 Removed Features
 ^^^^^^^^^^^^^^^^

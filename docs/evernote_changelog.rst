@@ -12,10 +12,15 @@ Release .next
 
 - When selecting languages, redirect logic is smarter now. (`#106`_)
 
+- Translation projects are not deleted from the filesystem but marked as
+  disabled in the DB when running ``update_translation_projects
+  --cleanup``. (`#118`_)
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 .. _#106: https://github.com/evernote/pootle/issues/106
+.. _#118: https://github.com/evernote/pootle/issues/118
 
 
 Release `2014-01-31`_

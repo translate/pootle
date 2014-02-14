@@ -246,7 +246,7 @@ added to the project then adds them. It basically repeats the discovery process
 done by Pootle when you create a new project.
 
 Using the ``--cleanup`` command line option, languages added to projects that
-no longer have matching files on the filesystem will be deleted.
+have no matching files on the filesystem will be disabled.
 
 
 .. _commands#list_languages:
