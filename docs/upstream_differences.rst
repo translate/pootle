@@ -51,13 +51,6 @@ Changed Features
 
 - Quality checks. A custom set of quality checks has been incorporated.
 
-- Report target field has been removed. This functionality has been
-  integrated into a new contact form.
-
-- Table sorting is remembered across overview pages.
-
-- Captcha implementation details have been refined.
-
 - Authentication is handled via Evernote (*evernote_auth* app).
 
 - Word count function can be customized in the settings, and a new method
@@ -112,6 +105,8 @@ incorporated.
 
 - ``assign_permissions`` management command (688b8482)
 
+- Placeables support in the editor (2cb03709 .. 97f92ad3)
+
 
 Editor Differences
 ------------------
@@ -156,9 +151,6 @@ Layout Differences
 
 - Single-column and wide browsing table.
 
-- All templates are gathered in a single location (*pootle/templates*),
-  and have been reorganized and sorted.
-
 - `Modern browser support <browsers>`_. This includes latest stable
   versions of major browsers, and therefore some JavaScript libraries
   that don't rely on old browsers can be used (namely jQuery 2.x). Some
@@ -174,3 +166,21 @@ Other Notable Differences
 - URLs have been unified and all follow the same scheme. URLs ending in
   *.html* have been removed altogether. ``reverse()`` and ``{% url %}``
   are used almost everywhere.
+
+
+Features Merged Back to Upstream
+--------------------------------
+
+Some of the work done in our fork has been merged back to upstream. Some
+of these might contain small differences, mostly because
+Pootle-as-a-product has different business needs.
+
+- Report target field has been removed. This functionality has been
+  integrated into a new contact form.
+
+- Table sorting is remembered across overview pages.
+
+- Captcha implementation details have been refined.
+
+- All templates are gathered in a single location (*pootle/templates*),
+  and have been reorganized and sorted.
