@@ -145,15 +145,22 @@ When writing the URL patterns:
     - To split long URLs use implicit string continuation. Note that URLs are
       raw strings.
 
-  - URL pattern names must be named like ``pootle-{app}-{view}`` (except in
-    some cases, like URLs on *pootle_app* app):
+- URL pattern names must be named like ``pootle-{app}-{view}`` (except in some
+  specific cases):
 
-    - ``{app}`` is the app name, which sometimes can be shortened, e.g. using
-      **tp** to avoid the longish **translationproject**. The chosen app name
-      must be used consistently across all the URL patterns for the app.
-    - ``{view}`` is a unique string which might consist on several words,
-      separated with hyphens, that might not match the name of the view that is
-      handled by the URL pattern.
+  - ``{app}`` is the app name, which sometimes can be shortened, e.g. using
+    **tp** to avoid the longish **translationproject**. The chosen app name
+    must be used consistently across all the URL patterns for the app.
+  - ``{view}`` is a unique string which might consist on several words,
+    separated with hyphens, that might not match the name of the view that is
+    handled by the URL pattern.
+  - The exceptions to this naming convention are:
+
+    - URL patterns for AJAX views must be named like ``pootle-xhr-{view}``.
+    - URL patterns in *pootle_app* app must be named like:
+
+      - *pootle_app* admin URLs must be named like ``pootle-admin-{view}``
+      - Other *pootle_app* URLs must be named like ``pootle-{view}``.
 
 .. code-block:: python
 
