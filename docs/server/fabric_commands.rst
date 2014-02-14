@@ -7,17 +7,34 @@ Available Fabric commands
 
    Starting in this release, Pootle includes Fabric deployment scripts.
 
+
+.. _fabric-commands#introduction:
+
+Introduction
+------------
+
 The sample Fabric scripts provide several commands that you can use to easily
 deploy your Pootle site.
 
 .. note:: Most of the examples in this section will use the ``production``
    environment, but remember that other environments can be used as well.
 
+Please read first the :ref:`How to run Fabric commands
+<fabric-deployment#how-to-run-fabric-commands>` section in order to know how
+this commands can be run. Reading the :ref:`Typical Usage Example
+<fabric-deployment#typical-usage-example>` section might be helpful as well.
+
+
+.. _fabric-commands#available-commands:
+
+Available commands
+------------------
+
 
 .. _fabric-commands#bootstrap:
 
 bootstrap
----------
+^^^^^^^^^
 
 This command:
 
@@ -48,7 +65,7 @@ Examples:
 .. _fabric-commands#compile-translations:
 
 compile_translations
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 This command:
 
@@ -64,7 +81,7 @@ Examples:
 .. _fabric-commands#create-db:
 
 create_db
----------
+^^^^^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -93,7 +110,7 @@ Examples:
 .. _fabric-commands#deploy:
 
 deploy
-------
+^^^^^^
 
 This command:
 
@@ -122,7 +139,7 @@ Examples:
 .. _fabric-commands#deploy-static:
 
 deploy_static
--------------
+^^^^^^^^^^^^^
 
 This command:
 
@@ -141,7 +158,7 @@ Examples:
 .. _fabric-commands#disable-site:
 
 disable_site
-------------
+^^^^^^^^^^^^
 
 This command:
 
@@ -162,7 +179,7 @@ Examples:
 .. _fabric-commands#drop-db:
 
 drop_db
----------
+^^^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -187,7 +204,7 @@ Examples:
 .. _fabric-commands#drop-deployment:
 
 drop_deployment
----------------
+^^^^^^^^^^^^^^^
 
 .. versionadded:: 2.5.2
 
@@ -216,7 +233,7 @@ Examples:
 .. _fabric-commands#dump-db:
 
 dump_db
--------
+^^^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -254,7 +271,7 @@ Examples:
 .. _fabric-commands#enable-site:
 
 enable_site
------------
+^^^^^^^^^^^
 
 This command:
 
@@ -275,7 +292,7 @@ Examples:
 .. _fabric-commands#initdb:
 
 initdb
-------
+^^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -293,7 +310,7 @@ Examples:
 .. _fabric-commands#install-site:
 
 install_site
-------------
+^^^^^^^^^^^^
 
 This command:
 
@@ -314,7 +331,7 @@ Examples:
 .. _fabric-commands#load-db:
 
 load_db
--------
+^^^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -354,7 +371,7 @@ Examples:
 .. _fabric-commands#migratedb:
 
 migratedb
----------
+^^^^^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -373,7 +390,7 @@ Examples:
 .. _fabric-commands#mysql-conf:
 
 mysql_conf
-----------
+^^^^^^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -394,7 +411,7 @@ Examples:
 .. _fabric-commands#production:
 
 production
-----------
+^^^^^^^^^^
 
 This command:
 
@@ -476,7 +493,7 @@ altering is necessary for working with feature-staging servers.
 .. _fabric-commands#setup:
 
 setup
------
+^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -495,7 +512,7 @@ Examples:
 .. _fabric-commands#setup-db:
 
 setup_db
---------
+^^^^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -516,7 +533,7 @@ Examples:
 .. _fabric-commands#stage-feature:
 
 stage_feature
--------------
+^^^^^^^^^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -555,7 +572,7 @@ Examples:
 .. _fabric-commands#staging:
 
 staging
--------
+^^^^^^^
 
 This command:
 
@@ -636,7 +653,7 @@ altering is necessary for working with feature-staging servers.
 .. _fabric-commands#syncdb:
 
 syncdb
-------
+^^^^^^
 
 .. versionadded:: 2.5.1
 
@@ -654,7 +671,7 @@ Examples:
 .. _fabric-commands#touch:
 
 touch
------
+^^^^^
 
 This command:
 
@@ -670,7 +687,7 @@ Examples:
 .. _fabric-commands#unstage-feature:
 
 unstage_feature
----------------
+^^^^^^^^^^^^^^^
 
 .. versionchanged:: 2.5.2
 
@@ -697,7 +714,7 @@ Examples:
 .. _fabric-commands#update-code:
 
 update_code
------------
+^^^^^^^^^^^
 
 This command:
 
@@ -721,7 +738,7 @@ Examples:
 .. _fabric-commands#update-config:
 
 update_config
--------------
+^^^^^^^^^^^^^
 
 This command:
 
@@ -747,7 +764,7 @@ Examples:
 .. _fabric-commands#update-db:
 
 update_db
----------
+^^^^^^^^^
 
 This command:
 
@@ -764,7 +781,7 @@ Examples:
 .. _fabric-commands#upgrade:
 
 upgrade
--------
+^^^^^^^
 
 .. versionadded:: 2.5.1
 
