@@ -110,7 +110,7 @@
 
   {% if description or project.description or language.description or can_edit %}
   <div class="hd">
-    <h2>{% trans "Description" %}</h2>
+    <h2>{% trans "Instructions" %}</h2>
   </div>
 
   <div id="overview-description" class="bd">
@@ -120,7 +120,7 @@
     {% if description %}
       {{ description }}
     {% else %}
-      <p class="placeholder muted">{% trans "No description set." %}</p>
+      <p class="placeholder muted">{% trans "No instructions set." %}</p>
     {% endif %}
     {% if can_edit %}
       {% include "admin/_settings_edit.html" %}
@@ -131,22 +131,33 @@
       {% include "admin/_settings_form.html" %}
     </div>
   {% endif %}
+  </div>
 
-    {% if project.description %}
-    <a class="overview-description-toggle js-toggle" href="#overview-description-project">{% blocktrans with project.fullname as project %}{{ project }} project information{% endblocktrans %}</a>
-    <div id="overview-description-project" class="markup-body hide">
+  {% if project.description %}
+  <div class="hd">
+    <h2>{% trans "Project instructions" %}</h2>
+  </div>
+  <div id="project-description" class="bd">
+    <div id="overview-description-project" class="markup-body">
       {{ project.description }}
     </div>
-    {% endif %}
+  </div>
+  {% endif %}
 
-    {% if language.description %}
-    <a class="overview-description-toggle js-toggle" href="#overview-description-language">{% blocktrans with language.name as language %}{{ language }} language information{% endblocktrans %}</a>
-    <div id="overview-description-language" class="markup-body hide">
+  {% if language.description %}
+  <div class="hd">
+    <h2>{% trans "Language instructions" %}</h2>
+  </div>
+  <div id="language-description" class="bd">
+    <div class="hd">
+      <h2>{% trans "Language instructions" %}</h2>
+    </div>
+    <div id="overview-description-language" class="markup-body">
       {{ language.description }}
     </div>
-    {% endif %}
-
   </div>
+  {% endif %}
+
   {% endif %}
 </div>
 
