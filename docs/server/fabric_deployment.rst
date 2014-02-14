@@ -171,10 +171,10 @@ Fabric commands.
    security impact.
 
 
-.. _fabric-deployment#how-to-run-commands:
+.. _fabric-deployment#how-to-run-fabric-commands:
 
-How to run commands
--------------------
+How to run Fabric commands
+--------------------------
 
 In order to run Fabric commands for Pootle it is necessary that the directory
 containing the :file:`fabfile.py` file and the ``deploy`` subdirectory be
