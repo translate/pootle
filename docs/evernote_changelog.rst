@@ -16,11 +16,14 @@ Release .next
   disabled in the DB when running ``update_translation_projects
   --cleanup``. (`#118`_)
 
+- Translation projects now have a ``creation_time`` field. (`#120`_)
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 .. _#106: https://github.com/evernote/pootle/issues/106
 .. _#118: https://github.com/evernote/pootle/issues/118
+.. _#120: https://github.com/evernote/pootle/issues/120
 
 
 Release `2014-01-31`_
