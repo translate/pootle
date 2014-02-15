@@ -1918,9 +1918,31 @@ html[dir="rtl"] .overview-description-toggle
     display: inline-block;
 }
 
+/* By default (on small screens), place resource dropdown on the second line */
+#js-breadcrumb-resource
+{
+    display: block;
+}
+
+/* When browser window is wide enough, force breadcrumbs to be on the single line */
+@media screen and (min-width: 1350px)
+{
+    .breadcrumb
+    {
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    #js-breadcrumb-resource
+    {
+        display: inline-block;
+    }
+}
+
 .breadcrumb li
 {
-    display: inline;
+    display: inline-block;
+    margin-left: 0.3em;
 }
 
 .breadcrumb li.hide
@@ -1928,22 +1950,10 @@ html[dir="rtl"] .overview-description-toggle
     display: none;
 }
 
-.breadcrumb li:before
-{
-    content: " / ";
-    font-weight: normal;
-    color: #999;
-}
-
 .breadcrumb li:first-child:before
 {
+    margin-left: 0;
     content: normal;
-}
-
-.breadcrumb li.navigation + li::before
-{
-    content: "";
-    margin-left: 0.2em;
 }
 
 /* select2 dropdown widgets in breadcrumbs */

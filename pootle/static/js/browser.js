@@ -67,6 +67,7 @@
           initial = $el.data('initial-code');
       $el.select2('val', initial);
     }
+    PTL.browser.fixResourcePathBreadcrumbGeometry();
     $(sel.breadcrumbs).css('visibility', 'visible');
   };
 
@@ -122,6 +123,11 @@
         placeholder: gettext("Entire Project"),
         formatResult: formatResource,
         sortResults: removeCtxEntries
+      });
+
+      /* Adjust breadcrumb layout on window resize */
+      $(window).on("resize", function (e) {
+        PTL.browser.fixResourcePathBreadcrumbGeometry();
       });
     },
 
@@ -179,7 +185,21 @@
       }
 
       window.location.href = newUrl;
-    }
+    },
+
+    /* Recalculate breadcrumb geometry on window resize */
+    fixResourcePathBreadcrumbGeometry: function () {
+      var $projectDropdown = $('#s2id_js-select-project');
+      var $resourceDropdown = $('#s2id_js-select-resource');
+
+      var sideMargin = $('#s2id_js-select-navigation').position().left;
+
+      var maxHeaderWidth = $('#header-meta').outerWidth() - sideMargin;
+      var resourceDropdownLeft = $resourceDropdown.position().left;
+
+      var maxWidth = maxHeaderWidth - resourceDropdownLeft;
+      $resourceDropdown.css("max-width", maxWidth);
+    },
 
   };
 
