@@ -1978,12 +1978,13 @@ html[dir="rtl"] .overview-description-toggle
 
 .breadcrumb .select2-container .select2-choice div
 {
-    top: 10px;
+    top: 8px;
 }
 
 .breadcrumb .select2-container .select2-choice abbr
 {
-    top: 17px;
+    top: 15px;
+    right: 22px;
 }
 
 /* HACK: display background as a thin line */
