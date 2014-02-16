@@ -191,14 +191,16 @@
     fixResourcePathBreadcrumbGeometry: function () {
       var $projectDropdown = $('#s2id_js-select-project');
       var $resourceDropdown = $('#s2id_js-select-resource');
+      // on some pages there's no resource dropdown
+      if ($resourceDropdown.length) {
+        var sideMargin = $('#s2id_js-select-navigation').position().left;
 
-      var sideMargin = $('#s2id_js-select-navigation').position().left;
+        var maxHeaderWidth = $('#header-meta').outerWidth() - sideMargin;
+        var resourceDropdownLeft = $resourceDropdown.position().left;
 
-      var maxHeaderWidth = $('#header-meta').outerWidth() - sideMargin;
-      var resourceDropdownLeft = $resourceDropdown.position().left;
-
-      var maxWidth = maxHeaderWidth - resourceDropdownLeft;
-      $resourceDropdown.css("max-width", maxWidth);
+        var maxWidth = maxHeaderWidth - resourceDropdownLeft;
+        $resourceDropdown.css("max-width", maxWidth);
+      }
     },
 
   };
