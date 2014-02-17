@@ -13,9 +13,8 @@
   <span class="num-votes">
   {% if vote.object != sugg %}
     {% if score %}{{ score.score|add:"1" }}{% else %}1{% endif %}
-  {% else %}
-    {# Switch to elif when deprecating Django 1.3 support #}
-    {% if score %}{{ score.score }}{% endif %}
+  {% elif score %}
+    {{ score.score }}
   {% endif %}
   </span>
   <i class="icon-vote-active" title="{% trans 'Your current vote. Click to remove this vote.' %}" dir="{% locale_dir %}"></i>
@@ -25,9 +24,8 @@
     <span class="num-votes">
     {% if vote.object == sugg %}
       {{ score.score|add:"-1" }}
-    {% else %}
-      {# Switch to elif when deprecating Django 1.3 support #}
-      {% if score %}{{ score.score }}{% endif %}
+    {% elif score %}
+      {{ score.score }}
     {% endif %}
     </span>
     <i class="icon-vote-inactive" title="{% trans 'Vote for this suggestion' %}" dir="{% locale_dir %}"></i>
