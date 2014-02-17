@@ -41,40 +41,6 @@ def language_list(request):
     return choices
 
 
-def lang_auth_form_factory(request, **kwargs):
-
-    class LangAuthenticationForm(AuthenticationForm):
-
-        language = forms.ChoiceField(
-            label=_('Interface Language'),
-            choices=language_list(request),
-            initial="",
-            required=False,
-            widget=forms.Select(attrs={
-                'class': 'js-select2 select2-language',
-            }),
-        )
-
-        def clean(self):
-            username = self.cleaned_data.get('username')
-            password = self.cleaned_data.get('password')
-
-            if username and password:
-                self.user_cache = auth.authenticate(username=username,
-                                                    password=password)
-
-                if self.user_cache is None:
-                    msg = _("Please enter a correct username and password. "
-                            "Note that both fields are case-sensitive.")
-                    raise forms.ValidationError(msg)
-                elif not self.user_cache.is_active:
-                    raise forms.ValidationError(_("This account is inactive."))
-
-            return self.cleaned_data
-
-    return LangAuthenticationForm(**kwargs)
-
-
 class UserForm(forms.ModelForm):
 
     class Meta:

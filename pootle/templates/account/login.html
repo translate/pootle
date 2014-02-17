@@ -10,8 +10,7 @@
 {% block content %}
 <div id="login" class="form" dir="{% locale_dir %}">
     <h2>{% trans 'Login to Pootle' %}</h2>
-    <form method="post" action="{% url 'pootle-profile-login' %}"
-      name="loginform" id="loginform">
+    <form method="post" action="{% url 'account_login' %}" name="loginform">
     {% csrf_token %}
     {% if form.errors %}
         <div class="error">
@@ -19,9 +18,11 @@
         </div>
     {% endif %}
     {{ form.as_p }}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
     <p class="buttons">
-        <input type="submit" class="login" name="login" value="{% trans 'Login' %}" />
-        <input type="hidden" name="next" value="{{ next }}" />
+        <input type="submit" class="login" value="{% trans 'Login' %}" />
     </p>
     </form>
 </div>
@@ -31,7 +32,7 @@
 </h2>
 {% if settings.CAN_REGISTER %}
 <h2 class="formlink">{% trans "Don't have an account yet?" %}
-    <a href="{% url 'pootle-registration-register' %}" title="{% trans 'Register.' %}">{% trans 'Register.' %}</a>
+    <a href="{{ signup_url }}" title="{% trans 'Register.' %}">{% trans "Register." %}</a>
 </h2>
 {% endif %}
 {% endblock content %}

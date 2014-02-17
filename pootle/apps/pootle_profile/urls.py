@@ -23,9 +23,6 @@ from django.conf.urls import include, patterns, url
 
 
 urlpatterns = patterns('pootle_profile.views',
-    url(r'^login/?$',
-        'login',
-        name='pootle-profile-login'),
     url(r'^edit/?$',
         'profile_edit',
         name='pootle-profile-edit'),
@@ -50,15 +47,3 @@ urlpatterns += patterns('django.contrib.auth.views',
     url(r'^password/reset/done/$',
         'password_reset_done'),
 )
-
-# Only include registration urls if registration is enabled.
-if settings.CAN_REGISTER:
-    from .views import PootleRegistrationView
-
-    urlpatterns += patterns('',
-        url(r'^register/?$',
-            PootleRegistrationView.as_view(),
-            name='pootle-registration-register'),
-        url(r'',
-            include('registration.backends.default.urls')),
-    )
