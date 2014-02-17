@@ -42,8 +42,7 @@
     </div>
   {% if can_edit %}
     <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-      {% url 'pootle-language-admin-settings' language.code as action_url %}
-      {% include "admin/_settings_form.html" with form_action=action_url %}
+      {% include "admin/_settings_form.html" %}
     </div>
   {% endif %}
 

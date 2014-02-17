@@ -106,7 +106,11 @@ def overview(request, language):
 
     if can_edit:
         from pootle_language.forms import DescriptionForm
-        templatevars['form'] = DescriptionForm(instance=language)
+        templatevars.update({
+            'form': DescriptionForm(instance=language),
+            'form_action': reverse('pootle-language-admin-settings',
+                                   args=[language.code]),
+        })
 
     return render_to_response("languages/overview.html", templatevars,
                               context_instance=RequestContext(request))
