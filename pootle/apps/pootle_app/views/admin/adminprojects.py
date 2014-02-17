@@ -40,15 +40,19 @@ def view(request):
 
 
     class ProjectForm(forms.ModelForm):
+
+        source_language = forms.ModelChoiceField(
+            label=_('Source Language'),
+            initial=default_lang.pk,
+            queryset=queryset,
+        )
+
         class Meta:
             model = Project
             fields = (
                 'code', 'fullname', 'checkstyle', 'localfiletype', 'treestyle',
                 'source_language', 'screenshot_search_prefix', 'disabled',
             )
-
-        source_language = forms.ModelChoiceField(label=_('Source Language'),
-                initial=default_lang.pk, queryset=queryset)
 
         def __init__(self, *args, **kwargs):
             super(ProjectForm, self).__init__(*args, **kwargs)
@@ -89,9 +93,8 @@ def view(request):
         def clean_code(self):
             value = self.cleaned_data['code']
             if value in RESERVED_PROJECT_CODES:
-                raise ValidationError(
-                    _('"%s" cannot be used as a project code' % (value,))
-                )
+                raise ValidationError(_('"%s" cannot be used as a project '
+                                        'code' % value))
             return value
 
     def generate_link(project):

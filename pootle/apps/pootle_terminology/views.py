@@ -215,8 +215,7 @@ def manage(request, translation_project):
         if len(stores) == 1:
             # There is only one, and we're not going to offer file-level
             # activities, so let's just edit the one that is there.
-            return manage_store(request, ctx,
-                                translation_project.language, stores[0])
+            return manage_store(request, ctx, ctx['language'], stores[0])
         elif len(stores) > 1:
             for store in stores:
                 path_length = len(translation_project.pootle_path)
@@ -232,9 +231,7 @@ def manage(request, translation_project):
         term_store = Store.objects.get(
             pootle_path=translation_project.pootle_path + terminology_filename,
         )
-
-        return manage_store(request, ctx, translation_project.language,
-                            term_store)
+        return manage_store(request, ctx, ctx['language'], term_store)
     except Store.DoesNotExist:
         template_name = 'translation_projects/terminology/manage.html'
         return render_to_response(template_name, ctx,

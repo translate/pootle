@@ -289,11 +289,11 @@ def server_stats_more(request):
 
 @admin_required
 def view(request):
-    template_vars = {
+    ctx = {
         'server_stats': server_stats(),
         'required': required_depcheck(),
         'optional': optional_depcheck(),
         'optimal': optimal_depcheck(),
     }
-    return render_to_response("admin/dashboard.html", template_vars,
+    return render_to_response("admin/dashboard.html", ctx,
                               context_instance=RequestContext(request))

@@ -102,10 +102,10 @@ def form_set_as_table(formset, link=None, linkfield='code'):
             if field == linkfield and linkfield in form.initial and link:
                 if callable(link):
                     result.append(link(form.instance))
-                    result.append(form[field].as_hidden())
                 else:
                     link = l(link % form.initial[linkfield])
-                    result.append("<a href='"+link+"'>"+form.initial[linkfield]+"</a>")
+                    result.append('<a href="%s">%s</a>' %
+                                  (link, form.initial[linkfield]))
                     result.append(form[field].as_hidden())
             else:
                 result.append(form[field].as_widget())

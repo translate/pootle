@@ -74,6 +74,18 @@ class Directory(models.Model, TreeItem):
     def is_template_project(self):
         return self.pootle_path.startswith('/templates/')
 
+    ############################ Cached properties ############################
+
+    @cached_property
+    def path(self):
+        """Returns just the path part omitting language and project codes.
+
+        If the `pootle_path` of a :cls:`Directory` object `dir` is
+        `/af/project/dir1/dir2/file.po`, `dir.path` will return
+        `dir1/dir2/file.po`.
+        """
+        return u'/'.join(self.pootle_path.split(u'/')[3:])
+
     @cached_property
     def translation_project(self):
         """Returns the translation project belonging to this directory."""
@@ -89,16 +101,6 @@ class Directory(models.Model, TreeItem):
                     aux_dir = aux_dir.parent
 
                 return aux_dir.translationproject
-
-    @cached_property
-    def path(self):
-        """Returns just the path part omitting language and project codes.
-
-        If the `pootle_path` of a :cls:`Directory` object `dir` is
-        `/af/project/dir1/dir2/file.po`, `dir.path` will return
-        `dir1/dir2/file.po`.
-        """
-        return u'/'.join(self.pootle_path.split(u'/')[3:])
 
     def __unicode__(self):
         return self.pootle_path
