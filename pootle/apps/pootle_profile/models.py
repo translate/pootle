@@ -21,6 +21,7 @@
 from hashlib import md5
 
 from django.contrib.auth.models import User, UserManager, AnonymousUser
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
@@ -263,7 +264,7 @@ class PootleProfile(models.Model):
         return username
 
     def get_absolute_url(self):
-        return l('/accounts/%s/' % self.user.username)
+        return l(reverse("profiles_profile_detail", kwargs={"username": self.user.username}))
 
     def gravatar_url(self, size=80):
         if not self.get_email_hash:
