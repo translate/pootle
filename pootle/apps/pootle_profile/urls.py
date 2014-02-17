@@ -65,8 +65,3 @@ if settings.CAN_REGISTER:
         url(r'',
             include('registration.backends.default.urls')),
     )
-
-urlpatterns += patterns('',
-    url(r'',
-        include('profiles.urls')),
-)

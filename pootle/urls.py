@@ -41,6 +41,7 @@ urlpatterns = patterns('',
     # External apps.
     url(r'^contact/', include('pootle_contact.urls')),
     url(r'^accounts/', include('pootle_profile.urls')),
+    url(r'^profiles/', include('profiles.urls')),
 )
 
 if settings.POOTLE_ENABLE_API:
