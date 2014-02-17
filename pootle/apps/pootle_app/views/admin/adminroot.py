@@ -22,12 +22,10 @@ from pootle.core.decorators import admin_required
 from pootle_app.models.directory import Directory
 from pootle_app.views.admin.permissions import admin_permissions
 
+
 @admin_required
 def view(request):
-
-    directory = Directory.objects.root
-    template_vars = {
-        'directory': directory,
+    ctx = {
+        'directory': Directory.objects.root,
     }
-    return admin_permissions(request, directory, "admin/permissions.html",
-                             template_vars)
+    return admin_permissions(request, directory, "admin/permissions.html", ctx)

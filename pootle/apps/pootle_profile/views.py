@@ -52,13 +52,14 @@ def edit_personal_info(request):
 
         if user_form.is_valid():
             user_form.save()
-            response = redirect(reverse("profiles_profile_detail", kwargs={"username": request.user.username}))
+            redirect_url = reverse('profiles_profile_detail',
+                                   kwargs={'username': request.user.username})
+            response = redirect(redirect_url)
     else:
         user_form = UserForm(instance=request.user)
 
-    template_vars = {
+    ctx = {
         'form': user_form,
     }
-
-    return render_to_response('profiles/settings/personal.html', template_vars,
+    return render_to_response('profiles/settings/personal.html', ctx,
                               context_instance=RequestContext(request))

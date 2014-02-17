@@ -40,7 +40,6 @@ from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.index.index import getprojects
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
-from pootle_misc.baseurl import l
 from pootle_misc.browser import get_table_headings
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.models import get_profile

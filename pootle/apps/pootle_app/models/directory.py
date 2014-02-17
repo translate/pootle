@@ -83,6 +83,10 @@ class Directory(models.Model, TreeItem):
     def is_template_project(self):
         return self.pootle_path.startswith('/templates/')
 
+    @property
+    def code(self):
+        return self.name.replace('.', '-')
+
     ############################ Cached properties ############################
 
     @cached_property
@@ -114,10 +118,6 @@ class Directory(models.Model, TreeItem):
 
     def __unicode__(self):
         return self.pootle_path
-
-    @property
-    def code(self):
-        return self.name.replace('.', '-')
 
     def __init__(self, *args, **kwargs):
         super(Directory, self).__init__(*args, **kwargs)

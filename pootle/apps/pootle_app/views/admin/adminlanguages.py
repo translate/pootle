@@ -19,9 +19,10 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from pootle.core.decorators import admin_required
+from pootle_app.admin import MyLanguageAdminForm
 from pootle_app.views.admin import util
 from pootle_language.models import Language
-from pootle_app.admin import MyLanguageAdminForm
+
 
 @admin_required
 def view(request):

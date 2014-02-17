@@ -107,7 +107,7 @@ def view(request, root_dir):
     }
 
     siteconfig = load_site_config()
-    templatevars = {
+    ctx = {
         'description': _(siteconfig.get('DESCRIPTION')),
         'keywords': [
             'Pootle',
@@ -125,13 +125,14 @@ def view(request, root_dir):
         'languages_table': languages_table,
         'projects_table': projects_table,
         'resource_obj': request.resource_obj,
+        'moreprojects': (len(projects) > len(languages))
     }
-    templatevars['moreprojects'] = (len(projects) > len(languages))
 
     if can_edit:
         from pootle_app.forms import GeneralSettingsForm
-        setting_form = GeneralSettingsForm(siteconfig)
-        templatevars['form'] = setting_form
+        ctx.update({
+            'form': GeneralSettingsForm(siteconfig),
+        })
 
-    return render_to_response('home/home.html', templatevars,
+    return render_to_response('home/home.html', ctx,
                               RequestContext(request))
