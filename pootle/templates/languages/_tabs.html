@@ -1,5 +1,5 @@
 {% load url from future %}
-{% load i18n baseurl %}
+{% load i18n %}
 <ul id="tabs">
   <li><a href="{% url 'pootle-language-overview' language.code %}" class="languageoverview" title="{% trans 'Language main page' %}">{% trans "Overview" %}</a></li>
   <li><a href="{% url 'pootle-language-overview' language.code %}notices" class="languagenews" title="{% trans 'Language news' %}">{% trans "News" %}{% if user.is_superuser or request.permissions.administrate %} <span class="admin">+</span>{%endif%}</a></li>
