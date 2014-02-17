@@ -51,8 +51,3 @@ urlpatterns += patterns('django.contrib.auth.views',
     url(r'^password/reset/done/$',
         'password_reset_done'),
 )
-
-urlpatterns += patterns('',
-    url(r'',
-        include('profiles.urls')),
-)

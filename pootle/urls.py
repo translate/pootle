@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     # External apps
     url(r'^contact/', include('evernote_contact.urls')),
     url(r'^accounts/', include('pootle_profile.urls')),
+    url(r'^profiles/', include('profiles.urls')),
 
     # URLs added by Evernote
     url(r'', include('evernote_auth.urls')),
