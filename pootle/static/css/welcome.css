@@ -6,6 +6,7 @@
 {
   background: url(../images/translation-toons.jpg) 50% 0px no-repeat;
   min-height: 500px;
+  margin: 0;
 }
 
 #welcome-page .top
@@ -54,7 +55,7 @@
 {
     display: inline-block;
     text-align: left;
-    width: 1000px;
+    width: 960px;
 }
 
 #welcome-page .left-column,
