@@ -17,7 +17,7 @@
         <tr class="{% cycle 'even' 'odd' %}">
           {% for user in row %}
           <td class="stats-name">
-            {% if user.username == "nobody" %}
+            {% if not user.username or user.username == "nobody" %}
               <span class="user-nobody">{% trans 'anonymous users' %}</span>
             {% else %}
               <a href="{% url 'profiles_profile_detail' username=user.username %}">{{ user.username|obfuscate }}</a>
