@@ -22,33 +22,33 @@ from __future__ import absolute_import
 
 import sys
 
-import django
+from translate import __version__ as toolkitversion
 
+import django
 from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
+from pootle import __version__ as pootleversion
 from pootle_misc.siteconfig import load_site_config
 
 
 def view(request):
-    from translate import __version__ as toolkitversion
-    from pootle import __version__ as pootleversion
-
     siteconfig = load_site_config()
-    data = {
+    ctx = {
         'description': _(siteconfig.get('DESCRIPTION')),
-        'keywords': ['Pootle',
-                     'locamotion',
-                     'translate',
-                     'translation',
-                     'localisation',
-                     'localization',
-                     'l10n',
-                     'traduction',
-                     'traduire',
-                    ],
+        'keywords': [
+            'Pootle',
+            'locamotion',
+            'translate',
+            'translation',
+            'localisation',
+            'localization',
+            'l10n',
+            'traduction',
+            'traduire',
+        ],
         'pootle_version': _("Pootle %(pootle_ver)s is powered by Translate "
                             "Toolkit %(toolkit_ver)s",
                             {'pootle_ver': pootleversion.sver,
@@ -59,6 +59,5 @@ def view(request):
             "Running on %s" % sys.platform,
         ]),
     }
-
-    return render_to_response('about/about.html', data,
+    return render_to_response('about/about.html', ctx,
                               context_instance=RequestContext(request))
