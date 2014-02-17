@@ -2539,3 +2539,116 @@ span.email .i
 {
     display: none;
 }
+
+/*
+ * Welcome page-specific styles
+ */
+
+#welcome-page #content
+{
+  background: url(../images/translation-toons.jpg) 50% 0px no-repeat;
+  min-height: 500px;
+}
+
+#welcome-page .top
+{
+    text-align: center;
+    padding-top: 120px;
+}
+
+#welcome-page .top h1
+{
+    font-size: 44px;
+}
+
+#welcome-page .top h2
+{
+    font-family: 'webfont_light_italic', sans-serif;
+    font-size: 23px;
+    font-weight: normal;
+    color: #1a1a1a;
+    margin-top: 0.5em;
+}
+
+#welcome-page #evernote-login
+{
+    margin: 3em auto;
+}
+
+#welcome-page .top .btn
+{
+    padding: 0.8em 1.5em;
+}
+
+
+#welcome-page .section
+{
+    margin: 2em 0;
+}
+
+#welcome-page .columns
+{
+    text-align: center;
+    margin: 2em 0;
+}
+
+#welcome-page .columns-inner
+{
+    display: inline-block;
+    text-align: left;
+    width: 1000px;
+}
+
+#welcome-page .left-column,
+#welcome-page .right-column
+{
+    width: 480px;
+    float: left;
+}
+
+#welcome-page .right-column
+{
+    float: right;
+}
+
+#welcome-page .section h1
+{
+    color: #5a8295;
+}
+
+#welcome-page .section p
+{
+    margin: 0.7em 0;
+}
+
+#welcome-page .section .btn
+{
+    width: 4em;
+}
+
+#welcome-page #vote-lang
+{
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+#welcome-page #search-form,
+#welcome-page #vote-lang-form
+{
+    padding: 1px;
+}
+
+#welcome-page input[type="text"]
+{
+    border: 0 none;
+    height: 26px;
+    line-height: 26px;
+    padding: 0px 4px;
+    width: 300px;
+    background-color: #fff;
+    color: #666;
+    font-size: 18px;
+    outline: 0;
+}
