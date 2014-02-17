@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008, 2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -19,6 +20,7 @@
 
 from django.conf.urls import include, patterns, url
 from django.views.generic.simple import direct_to_template
+
 
 urlpatterns = patterns('',
     url(r'^admin',
