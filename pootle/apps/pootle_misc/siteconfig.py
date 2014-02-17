@@ -45,6 +45,8 @@ def load_site_config():
                                        version="1.0")
         siteconfig.save()
 
+    # If TITLE and DESCRIPTION are not on the database then pick the defaults
+    # from the settings and save them in the database.
     if not siteconfig.get_defaults():
         siteconfig.add_defaults(generate_defaults(SETTINGS_MAP))
 
