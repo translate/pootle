@@ -188,7 +188,7 @@ def unit_form_factory(language, snplurals=None, request=None):
     target_attrs = {
         'lang': language.code,
         'dir': language.direction,
-        'class': 'translation expanding focusthis',
+        'class': 'translation expanding focusthis js-translation-area',
         'rows': 5,
         'tabindex': 10,
     }

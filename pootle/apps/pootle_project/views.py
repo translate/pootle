@@ -249,6 +249,8 @@ def overview(request, project):
         }
         templatevars.update({
             'form': DescriptionForm(instance=project),
+            'form_action': reverse('pootle-project-admin-settings',
+                                   args=[project.code]),
             'add_tag_form': TranslationProjectTagForm(project=project),
             'add_tag_action_url': reverse('pootle-xhr-tag-tp-in-project',
                                           kwargs=url_kwargs),

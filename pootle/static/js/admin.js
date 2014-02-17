@@ -30,7 +30,7 @@ $(function () {
       }
     });
   };
-  $(".slide").bind('click', slideTable);
+  $(".slide").on('click', slideTable);
 
   /* Sets background color to table rows when checking selects */
   $("td.DELETE input[type=checkbox]").change(function (e) {

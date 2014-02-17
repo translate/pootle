@@ -980,6 +980,24 @@ li.check > a
     margin-bottom: 0.5em;
 }
 
+.unit-submit:disabled,
+.unit-submit:disabled:active,
+.unit-submit:disabled:hover
+{
+    border: 0 !important;
+    box-shadow: 0px 0px 2px #000 !important;
+}
+
+.submit.unit-submit:disabled
+{
+    background: linear-gradient(to bottom, #ffe, #ae7) !important;
+}
+
+.suggest.unit-submit:disabled
+{
+    background: linear-gradient(to bottom, #ffe, #ed8) !important;
+}
+
 .buttons input[type="submit"].submit
 {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#aaee77');

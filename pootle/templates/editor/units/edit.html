@@ -130,10 +130,16 @@
           <!-- Buttons, resize links, special characters -->
           <div class="buttons translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             {% if cantranslate %}
-            <input type="submit" name="submit" class="submit" tabindex="11" accesskey="s" value="{% trans 'Submit' %}" title="{% trans 'Submit translation and go to the next string (Ctrl+Enter)' %}" />
+            <input type="submit" name="submit" tabindex="11" accesskey="s"
+              class="submit unit-submit js-submit" disabled
+              value="{% trans 'Submit' %}"
+              title="{% trans 'Submit translation and go to the next string (Ctrl+Enter)' %}" />
             {% endif %}
             {% if cansuggest %}
-            <input type="submit" name="suggest" class="suggest" tabindex="11" accesskey="s" value="{% trans 'Suggest' %}" title="{% trans 'Suggest translation and go to the next string (Ctrl+Enter)' %}" />
+            <input type="submit" name="suggest" tabindex="11" accesskey="s"
+              class="suggest unit-submit js-submit" disabled
+              value="{% trans 'Suggest' %}"
+              title="{% trans 'Suggest translation and go to the next string (Ctrl+Enter)' %}" />
             {% endif %}
             <input type="hidden" name="store" value="{{ store }}" />
             <input type="hidden" name="path" value="{{ store|l }}" />

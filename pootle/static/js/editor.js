@@ -64,26 +64,15 @@
      * Bind event handlers
      */
 
-    /* Fuzzy / unfuzzy */
-    $(document).on('keyup blur', 'textarea.translation', function () {
-      if (!PTL.editor.keepState &&
-          $(this).prop('defaultValue') !== $(this).val()) {
-        PTL.editor.ungoFuzzy();
-      }
-    });
-    $(document).on('click', 'input.fuzzycheck', function () {
-      if (PTL.editor.isFuzzy()) {
-        PTL.editor.doFuzzyArea();
-      } else {
-        PTL.editor.undoFuzzyArea();
-      }
-    });
+    /* State changes */
+    $(document).on('input', '.js-translation-area',
+                   this.onTextareaChange.bind(this));
+    $(document).on('change', 'input.fuzzycheck',
+                   this.onStateChange.bind(this));
 
     /* Suggest / submit */
-    $(document).on('click', '.switch-suggest-mode a', function () {
-      PTL.editor.toggleSuggestMode();
-      return false;
-    });
+    $(document).on('click', '.switch-suggest-mode a',
+                   this.toggleSuggestMode.bind(this));
 
     /* Update focus when appropriate */
     $(document).on('focus', '.focusthis', function (e) {
@@ -105,7 +94,7 @@
       if (PTL.editor.getSelectedText()) {
         return;
       }
-      if ($('#id_target_f_0').attr('disabled')) {
+      if ($('.js-translation-area').attr('disabled')) {
         return;
       }
       PTL.editor.copyOriginal($('.suggestion-translation', this));
@@ -166,39 +155,14 @@
     shortcut.add('ctrl+k', this.jumpToNextPlaceable);
     shortcut.add('ctrl+l', this.insertSelectedPlaceable);
 
-    shortcut.add('ctrl+space', function (e) {
-      // To prevent the click event which occurs in Firefox
-      // but not in Chrome (and not in IE)
-      if (e && e.preventDefault) {
-        e.preventDefault();
-      }
+    shortcut.add('ctrl+space', this.toggleState.bind(this));
+    shortcut.add('ctrl+shift+space', this.toggleSuggestMode.bind(this));
 
-      // Prevent automatic unfuzzying on keyup
-      PTL.editor.keepState = true;
+    shortcut.add('ctrl+up', this.gotoPrev.bind(this));
+    shortcut.add('ctrl+,', this.gotoPrev.bind(this));
 
-      if (PTL.editor.isFuzzy()) {
-        PTL.editor.ungoFuzzy();
-      } else {
-        PTL.editor.goFuzzy();
-      }
-    });
-    shortcut.add('ctrl+shift+space', function () {
-      PTL.editor.toggleSuggestMode();
-    });
-
-    shortcut.add('ctrl+up', function () {
-      $('#js-nav-prev').trigger('click');
-    });
-    shortcut.add('ctrl+,', function () {
-      $('#js-nav-prev').trigger('click');
-    });
-
-    shortcut.add('ctrl+down', function () {
-      $('#js-nav-next').trigger('click');
-    });
-    shortcut.add('ctrl+.', function () {
-      $('#js-nav-next').trigger('click');
-    });
+    shortcut.add('ctrl+down', this.gotoNext.bind(this));
+    shortcut.add('ctrl+.', this.gotoNext.bind(this));
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
@@ -510,8 +474,9 @@
     $('.suggestion-translation-body').filter(':not([dir])').bidi();
 
     // Focus on the first textarea, if any
-    if ($(".focusthis").get(0)) {
-      $(".focusthis").get(0).focus();
+    var firstArea = $('.focusthis')[0];
+    if (firstArea) {
+      firstArea.focus();
     }
 
     PTL.editor.hlSearch();
@@ -616,11 +581,11 @@
     element = $(PTL.editor.focused);
 
     if (action === "overwrite") {
-      element.val(text);
+      element.val(text).trigger('input');
       start = text.length;
     } else {
       start = element.caret().start + text.length;
-      element.val(element.caret().replace(text));
+      element.val(element.caret().replace(text)).trigger('input');
     }
 
     element.caret(start, start);
@@ -634,18 +599,18 @@
       cleanSources[i] = $(this).text();
     });
 
-    var targets = $("[id^=id_target_f_]");
+    var targets = $('.js-translation-area');
     if (targets.length) {
       var i, active,
           max = cleanSources.length - 1;
 
       for (var i=0; i<targets.length; i++) {
         var newval = cleanSources[i] || cleanSources[max];
-        $(targets.get(i)).val(newval);
+        $(targets.get(i)).val(newval).trigger('input');
       }
 
       // Focus on the first textarea
-      active = $(targets).get(0);
+      active = $(targets)[0];
       active.focus();
       // Make this fuzzy
       PTL.editor.goFuzzy();
@@ -733,13 +698,13 @@
 
   /* Checks the current unit's fuzzy checkbox */
   doFuzzyBox: function () {
-    $("input.fuzzycheck").attr("checked", "checked");
+    $('input.fuzzycheck').prop('checked', true);
   },
 
 
   /* Unchecks the current unit's fuzzy checkbox */
   undoFuzzyBox: function () {
-    $("input.fuzzycheck").removeAttr("checked");
+    $('input.fuzzycheck').prop('checked', false);
   },
 
 
@@ -765,7 +730,59 @@
 
   /* Returns whether the current unit is fuzzy or not */
   isFuzzy: function () {
-    return $("input.fuzzycheck").attr("checked");
+    return $('input.fuzzycheck').prop('checked');
+  },
+
+  toggleFuzzy: function () {
+    if (this.isFuzzy()) {
+      this.doFuzzyArea();
+    } else {
+      this.undoFuzzyArea();
+    }
+  },
+
+  toggleState: function () {
+    // Prevent automatic unfuzzying on keyup
+    this.keepState = true;
+
+    // `blur()` prevents a double-click effect if the checkbox was
+    // previously clicked using the mouse
+    $('input.fuzzycheck').blur().click();
+  },
+
+  handleTranslationChange: function () {
+    var $submit = $('.js-submit'),
+        translations = $('.js-translation-area').get(),
+        checkbox = $('#id_state')[0],
+        stateChanged = checkbox.defaultChecked !== checkbox.checked,
+        areaChanged = false,
+        area, i;
+
+    for (i=0; i<translations.length && areaChanged === false; i++) {
+      area = translations[i];
+      areaChanged = area.defaultValue !== area.value;
+    }
+
+    $submit.each(function () {
+      this.disabled = !(stateChanged || areaChanged);
+    });
+  },
+
+  onStateChange: function () {
+    this.handleTranslationChange();
+
+    this.toggleFuzzy();
+  },
+
+  onTextareaChange: function (e) {
+    this.handleTranslationChange();
+
+    var el = e.target,
+        hasChanged = el.defaultValue !== el.value;
+
+    if (hasChanged && ! this.keepState) {
+      this.ungoFuzzy();
+    }
   },
 
 
@@ -792,7 +809,8 @@
 
 
   /* Toggles suggest/submit modes */
-  toggleSuggestMode: function () {
+  toggleSuggestMode: function (e) {
+    e.preventDefault();
     if (this.isSuggestMode()) {
       this.undoSuggestMode();
     } else {
@@ -1244,19 +1262,26 @@
   submit: function (e) {
     e.preventDefault();
 
-    var reqData, submitUrl, translations,
-        unit = PTL.editor.units.getCurrent(),
-        form = $("#translate"),
+    var el = e.target,
+        uId = PTL.editor.units.getCurrent().id,
+        submitUrl = l(['/xhr/units/', uId].join('')),
+        $form = $("#translate"),
+        reqData = $form.serializeObject(),
         captchaCallbacks = {
           sfn: 'PTL.editor.processSubmission',
           efn: 'PTL.editor.error'
         };
 
-    submitUrl = l(['/xhr/units/', unit.id].join(''));
-
-    // Serialize data to be sent and get required attributes for the request
-    reqData = form.serializeObject();
     $.extend(reqData, PTL.editor.getReqData(), captchaCallbacks);
+
+    el.disabled = true;
+
+    // Update default value properties
+    $('.js-translation-area').each(function () {
+      this.defaultValue = this.value;
+    });
+    var checkbox = $('#id_state')[0];
+    checkbox.defaultChecked = checkbox.checked;
 
     $.ajax({
       url: submitUrl,
@@ -1270,7 +1295,7 @@
 
   processSubmission: function (data) {
     // FIXME: handle this via events
-    translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
+    var translations = $('.js-translation-area').map(function (i, el) {
       return $(el).val();
     }).get();
 
@@ -1286,18 +1311,15 @@
   suggest: function (e) {
     e.preventDefault();
 
-    var reqData, suggestUrl,
-        uid = PTL.editor.units.getCurrent().id,
-        form = $("#translate"),
+    var uId = PTL.editor.units.getCurrent().id,
+        suggestUrl = l(['/xhr/units/', uId, '/suggestions/'].join('')),
+        $form = $("#translate"),
+        reqData = $form.serializeObject(),
         captchaCallbacks = {
           sfn: 'PTL.editor.processSuggestion',
           efn: 'PTL.editor.error'
         };
 
-    suggestUrl = l(['/xhr/units/', uid, '/suggestions/'].join(''));
-
-    // Serialize data to be sent and get required attributes for the request
-    reqData = form.serializeObject();
     $.extend(reqData, PTL.editor.getReqData(), captchaCallbacks);
 
     $.ajax({
@@ -1315,10 +1337,16 @@
   },
 
 
+  /* Loads the previous unit */
+  gotoPrev: function () {
+    // Buttons might be disabled so we need to fake an event
+    this.gotoPrevNext($.Event('click', {target: '#js-nav-prev'}));
+  },
+
   /* Loads the next unit */
   gotoNext: function () {
     // Buttons might be disabled so we need to fake an event
-    PTL.editor.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
+    this.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
   },
 
 
@@ -1914,7 +1942,7 @@
         });
 
         // FIXME: handle this via events
-        translations = $("textarea[id^=id_target_f_]").map(function (i, el) {
+        translations = $('.js-translation-area').map(function (i, el) {
           return $(el).val();
         }).get();
         unit.setTranslation(translations);
@@ -2093,7 +2121,7 @@
   },
 
   translate: function (linkObject, providerCallback) {
-    var areas = $("[id^=id_target_f_]");
+    var areas = $('.js-translation-area');
     var sources = $(linkObject).parent().parent().parent().find('.translation-text');
     var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
     var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
