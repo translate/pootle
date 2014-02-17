@@ -207,7 +207,7 @@ def manage_store(request, ctx, language, term_store):
 
 @get_path_obj
 @permission_required('administrate')
-def manage(request, translation_project):
+def manage(request, translation_project, path=None):
     ctx = {
         'translation_project': translation_project,
         'language': translation_project.language,
@@ -217,6 +217,16 @@ def manage(request, translation_project):
     }
     
     if translation_project.project.is_terminology:
+        if path:
+            try:
+                pootle_path = translation_project.pootle_path + path
+                store = Store.objects.get(pootle_path=pootle_path)
+                return manage_store(request, ctx, translation_project.language,
+                                    store)
+            except Store.DoesNotExist:
+                # FIXME   flash message and show list?
+                pass
+
         # Which file should we edit?
         stores = list(Store.objects.filter(
             translation_project=translation_project,
