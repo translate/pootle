@@ -1,5 +1,5 @@
 {% extends "editor/units/edit.html" %}
-{% load i18n baseurl store_tags cleanhtml cache locale %}
+{% load i18n store_tags cleanhtml cache locale %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview report_target altsrcs profile.id LANGUAGE_CODE %}
