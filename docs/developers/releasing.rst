@@ -71,8 +71,8 @@ If we do have a string freeze break then announce those to people.
 A string freeze would normally run between an RC1 and a released version.
 
 
-Doube check version dependencies
---------------------------------
+Double check version dependencies
+---------------------------------
 Make sure the versions listed in docs/server/installation.rst match those in
 requirements/base.txt
 
