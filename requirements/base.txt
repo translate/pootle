@@ -1,3 +1,5 @@
+# Make sure you update docs/server/installation.rst and, if needed, the release
+# notes in docs/releases/$next when bumping Django versions and dependencies
 Django>=1.5.5,<1.6
 
 # Django apps
