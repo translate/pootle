@@ -28,13 +28,6 @@ from djblets.siteconfig.django_settings import generate_defaults
 from djblets.siteconfig.models import SiteConfiguration
 
 
-SETTINGS_MAP = {
-    # siteconfig key    settings.py key
-    'DESCRIPTION': 'DESCRIPTION',
-    'TITLE': 'TITLE',
-}
-
-
 def load_site_config():
     """Set up the SiteConfiguration, provide defaults and sync settings."""
     try:
@@ -48,6 +41,11 @@ def load_site_config():
     # If TITLE and DESCRIPTION are not on the database then pick the defaults
     # from the settings and save them in the database.
     if not siteconfig.get_defaults():
+        SETTINGS_MAP = {
+            # siteconfig key    settings.py key
+            'DESCRIPTION': 'DESCRIPTION',
+            'TITLE': 'TITLE',
+        }
         siteconfig.add_defaults(generate_defaults(SETTINGS_MAP))
 
     return siteconfig
