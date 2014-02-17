@@ -179,9 +179,9 @@
             <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans "Admin" %}</a></li>
             {% endif %}
             {% if user.is_authenticated %}
-            <li><a href="{% url 'pootle-profile-logout' %}">{% trans "Log Out" %}</a></li>
+            <li><a href="{% url 'pootle-profile-logout' %}">{% trans "Sign Out" %}</a></li>
             {% else %}
-            <li><a id="js-login" href="{% url 'pootle-profile-login' %}{{ request|get_next }}"><span class="btn btn-success">{% trans "Log In" %}</span></a></li>
+            <li><a id="js-login" href="{% url 'pootle-profile-login' %}{{ request|get_next }}"><span class="btn btn-success">{% trans "Sign In" %}</span></a></li>
             {% endif %}
           </ul>
           {% block navbar_extra %}{% endblock %}
