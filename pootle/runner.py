@@ -37,7 +37,8 @@ DEFAULT_SETTINGS_PATH = '~/.pootle/pootle.conf'
 SETTINGS_TEMPLATE_FILENAME = 'settings/90-local.conf.sample'
 
 # Python 2+3 support for input()
-input = getattr(__builtins__, "raw_input", input)
+if sys.version_info[0] < 3:
+    input = raw_input
 
 
 def init_settings(settings_filepath, template_filename):
