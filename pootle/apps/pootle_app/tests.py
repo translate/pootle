@@ -55,8 +55,12 @@ class AdminTests(PootleTestCase):
     def test_add_project(self):
         """Checks that we can add a project successfully."""
         response = self.client.get(reverse('pootle-admin-projects'))
-        self.assertContains(response, "<a href='/projects/tutorial/admin.html'>tutorial</a>")
-        self.assertContains(response, "<a href='/projects/terminology/admin.html'>terminology</a>")
+        self.assertContains(response, '<a href="%s">tutorial</a>' %
+                                       reverse('pootle-project-admin-languages',
+                                               args=['tutorial']))
+        self.assertContains(response, '<a href="%s">terminology</a>' %
+                                      reverse('pootle-project-admin-languages',
+                                              args=['terminology']))
         en = Language.objects.get(code='en')
         add_dict = {
             "code": "testproject",
@@ -69,7 +73,9 @@ class AdminTests(PootleTestCase):
 
         response = self.client.post(reverse('pootle-admin-projects'),
                                     formset_dict([add_dict]))
-        self.assertContains(response, "<a href='/projects/testproject/admin.html'>testproject</a>")
+        self.assertContains(response, '<a href="%s">testproject</a>' %
+                                      reverse('pootle-project-admin-languages',
+                                              args=[add_dict['code']]))
 
         # check for the actual model
         testproject = Project.objects.get(code="testproject")
@@ -86,7 +92,8 @@ class AdminTests(PootleTestCase):
         fish = Language(code="fish", fullname="fish")
         fish.save()
 
-        response = self.client.get("/projects/tutorial/admin.html")
+        response = self.client.get(reverse('pootle-project-admin-languages',
+                                           args=['tutorial']))
         self.assertContains(response, "fish")
 
         project = Project.objects.get(code='tutorial')
@@ -94,7 +101,9 @@ class AdminTests(PootleTestCase):
             "language": fish.id,
             "project": project.id,
             }
-        response = self.client.post("/projects/tutorial/admin.html", formset_dict([add_dict]))
+        response = self.client.post(reverse('pootle-project-admin-languages',
+                                            args=['tutorial']),
+                                    formset_dict([add_dict]))
         self.assertContains(response, '/fish/tutorial/')
 
         response = self.client.get("/fish/")
