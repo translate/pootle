@@ -30,6 +30,7 @@ urlpatterns = patterns('pootle_terminology.views',
         'manage',
         name='pootle-terminology-manage'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/(?P<path>.*?)'
-        r'/terminology_manage.html',
-        'manage'),
+        r'/terminology/',
+        'manage',
+        name='pootle-terminology-manage-store'),
 )

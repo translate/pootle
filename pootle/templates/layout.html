@@ -140,7 +140,7 @@
           <div id="nav-access">
             <a href="#nav-main">{% trans 'skip to navigation' %}</a>
           </div>
-          <a href="{{ "/"|l }}" class="brand"><i class="logo"></i>{{ settings.TITLE }}</a>
+          <a href="{% url 'pootle-home' %}" class="brand"><i class="logo"></i>{{ settings.TITLE }}</a>
 
           <div id="zoom">
             <a id="zoom-out" title="{% trans "Zoom out (Ctrl+Shift+-)" %}"

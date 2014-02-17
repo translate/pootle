@@ -13,11 +13,11 @@
     <h2>
       {% if goal %}
         {% cache settings.CACHE_TIMEOUT path_with_goal_trail path_obj.id goal.pk %}
-        <span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / <a href="{{ goal_url }}">{{ goal.name }}</a> / {{ path_obj|goal_trail:goal }}</span>
+        <span><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">{{ project.code }}</a> / <a href="{{ goal_url }}">{{ goal.name }}</a> / {{ path_obj|goal_trail:goal }}</span>
         {% endcache %}
       {% else %}
         {% cache settings.CACHE_TIMEOUT path_trail path_obj.id %}
-        <span><a href="{{ translation_project.pootle_path|l }}">{{ project.code }}</a> / {{ path_obj|trail:"/" }}</span>
+        <span><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">{{ project.code }}</a> / {{ path_obj|trail:"/" }}</span>
         {% endcache %}
       {% endif %}
       <a href="" id="js-toggle-tags" class="hide tags-aside tags-toggle">
