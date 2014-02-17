@@ -20,6 +20,7 @@
 
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import admin_required
@@ -92,11 +93,15 @@ def view(request):
                                         'code' % value))
             return value
 
+    def generate_link(project):
+        url = reverse('pootle-project-admin-languages', args=[project.code])
+        return '<a href="%s">%s</a>' % (url, project)
+
     return util.edit(
             request,
             'admin/projects.html',
             Project,
-            link='/projects/%s/admin.html',
+            link=generate_link,
             form=ProjectForm,
             exclude=('description', 'report_email'),
             can_delete=True,

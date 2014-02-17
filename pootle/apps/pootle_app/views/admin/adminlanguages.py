@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.core.urlresolvers import reverse
+
 from pootle.core.decorators import admin_required
 from pootle_app.admin import MyLanguageAdminForm
 from pootle_app.views.admin import util
@@ -26,6 +28,12 @@ from pootle_language.models import Language
 
 @admin_required
 def view(request):
+
+    def generate_link(language):
+        url = reverse('pootle-language-admin-permissions',
+                      args=[language.code])
+        return '<a href="%s">%s</a>' % (url, language)
+
     return util.edit(request, 'admin/languages.html', Language,
-                     link='/%s/admin.html', form=MyLanguageAdminForm,
+                     link=generate_link, form=MyLanguageAdminForm,
                      exclude='description', can_delete=True)
