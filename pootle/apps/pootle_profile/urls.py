@@ -32,11 +32,6 @@ urlpatterns = patterns('pootle_profile.views',
 )
 
 urlpatterns += patterns('django.contrib.auth.views',
-    url(r'^password/change/$',
-        'password_change',
-        name='pootle-password-change'),
-    url(r'^password/change/done/$',
-        'password_change_done'),
     url(r'^password/reset/$',
         'password_reset',
         name='pootle-password-reset'),
