@@ -34,6 +34,7 @@ def get_supported_formats():
     try:
         from translate.storage.xliff import xlifffile
         formats.append(('xlf', _('XLIFF'), xlifffile, 'bilingual'))
+        formats.append(('xliff', _('XLIFF'), xlifffile, 'bilingual'))
     except ImportError:
         pass
 
