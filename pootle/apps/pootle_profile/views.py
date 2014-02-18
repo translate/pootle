@@ -25,41 +25,12 @@ from django.utils.encoding import iri_to_uri
 from django.utils.http import is_safe_url, urlquote
 
 from profiles.views import edit_profile
-from registration.backends.default.views import RegistrationView
-from registration.forms import RegistrationForm
 
 from pootle_misc.baseurl import redirect
 from staticpages.forms import agreement_form_factory
 from staticpages.models import Agreement, LegalPage
 
-from .forms import (UserForm, lang_auth_form_factory,
-                    pootle_profile_form_factory)
-
-
-class PootleRegistrationView(RegistrationView):
-    """User registration page.
-
-    Overrides `registration` app's view to use a custom form.
-    """
-    def get_form_class(self, request=None):
-        # Save the list of legal pages for further use.
-        self._legal_pages = LegalPage.objects.live().all()
-
-        return agreement_form_factory(self._legal_pages, request.user,
-                                      base_class=RegistrationForm,
-                                      anchor_class='js-popup-ajax')
-
-    def register(self, request, **cleaned_data):
-        new_user = super(PootleRegistrationView, self).register(request,
-                                                                **cleaned_data)
-        # Now save the agreements for this user.
-        for page in self._legal_pages:
-            agreement, created = Agreement.objects.get_or_create(
-                user=new_user, document=page,
-            )
-            agreement.save()
-
-        return new_user
+from .forms import UserForm, pootle_profile_form_factory
 
 
 def profile_edit(request):
@@ -91,48 +62,3 @@ def edit_personal_info(request):
 
     return render_to_response('profiles/settings/personal.html', template_vars,
                               context_instance=RequestContext(request))
-
-
-def redirect_after_login(request):
-    redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, None)
-
-    if not is_safe_url(url=redirect_to, host=request.get_host()):
-        redirect_to = iri_to_uri(reverse("profiles_profile_detail", kwargs={"username": request.user.username}))
-
-    return redirect(redirect_to)
-
-
-def login(request):
-    """Log the user in."""
-    if request.user.is_authenticated():
-        return redirect_after_login(request)
-    else:
-        if request.POST:
-            form = lang_auth_form_factory(request, data=request.POST)
-            next = request.POST.get(auth.REDIRECT_FIELD_NAME, '')
-
-            # Do login here.
-            if form.is_valid():
-                auth.login(request, form.get_user())
-
-                language = request.POST.get('language')
-                request.session['django_language'] = language
-
-                return redirect_after_login(request)
-        else:
-            form = lang_auth_form_factory(request)
-            next = request.GET.get(auth.REDIRECT_FIELD_NAME, '')
-
-        context = {
-            'form': form,
-            'next': next,
-        }
-
-        return render_to_response("login.html", context,
-                                  context_instance=RequestContext(request))
-
-
-def logout(request):
-    from django.contrib.auth import logout
-    logout(request)
-    return redirect('/')

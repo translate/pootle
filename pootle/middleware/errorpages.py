@@ -24,6 +24,7 @@ import traceback
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.mail import mail_admins
+from django.core.urlresolvers import reverse
 from django.http import (Http404, HttpResponse, HttpResponseForbidden,
                          HttpResponseServerError)
 from django.template import RequestContext
@@ -70,7 +71,7 @@ class ErrorPagesMiddleware(object):
 
             if not request.user.is_authenticated():
                 msg_args = {
-                    'login_link': "%s%s" % (l("/accounts/login/"),
+                    'login_link': "%s%s" % (l(reverse("account_login")),
                                             get_next(request)),
                 }
                 login_msg = _('You need to <a href="%(login_link)s">login</a> '
