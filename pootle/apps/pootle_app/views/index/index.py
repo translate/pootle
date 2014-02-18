@@ -22,6 +22,7 @@
 import locale
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -132,6 +133,7 @@ def view(request, root_dir):
         from pootle_app.forms import GeneralSettingsForm
         ctx.update({
             'form': GeneralSettingsForm(siteconfig),
+            'form_action': reverse('pootle-admin-edit-settings'),
         })
 
     return render_to_response('home/home.html', ctx,
