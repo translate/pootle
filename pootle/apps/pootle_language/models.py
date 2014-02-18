@@ -28,7 +28,6 @@ from django.utils.translation import ugettext_lazy as _
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
-from pootle_misc.baseurl import l
 
 
 # FIXME: Generate key dynamically
@@ -148,7 +147,7 @@ class Language(models.Model, TreeItem):
         cache.delete(CACHE_KEY)
 
     def get_absolute_url(self):
-        return l(self.pootle_path)
+        return reverse('pootle-language-overview', args=[self.code])
 
     def get_translate_url(self, **kwargs):
         return u''.join([

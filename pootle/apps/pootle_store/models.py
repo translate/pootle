@@ -53,7 +53,6 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
-from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names, run_given_filters, get_checker
 from pootle_misc.util import datetime_min, get_cached_value, import_func
 from pootle_statistics.models import (SubmissionFields,
@@ -511,7 +510,8 @@ class Unit(models.Model, base.TranslationUnit):
             self.store.clear_flagged_cache()
 
     def get_absolute_url(self):
-        return l(self.store.pootle_path)
+        lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
+        return reverse('pootle-tp-overview', args=[lang, proj, dir, fn])
 
     def get_translate_url(self):
         lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
@@ -1348,7 +1348,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         super(Store, self).delete(*args, **kwargs)
 
     def get_absolute_url(self):
-        return l(self.pootle_path)
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return reverse('pootle-tp-overview', args=[lang, proj, dir, fn])
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)

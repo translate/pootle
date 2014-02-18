@@ -46,7 +46,6 @@ from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
                                      split_pootle_path)
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
-from pootle_misc.baseurl import l
 from pootle_store.filetypes import filetype_choices, factory_classes
 from pootle_store.util import absolute_real_path
 
@@ -82,7 +81,7 @@ class ProjectURLMixin(object):
     """
 
     def get_absolute_url(self):
-        return l(self.pootle_path)
+        return reverse('pootle-project-overview', args=[self.code])
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
