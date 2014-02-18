@@ -41,7 +41,6 @@ from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
-from pootle_misc.baseurl import l
 from pootle_misc.siteconfig import load_site_config
 from pootle_misc.stats import stats_message_raw
 from pootle_misc.util import cached_property
@@ -272,7 +271,8 @@ class TranslationProject(models.Model, TreeItem):
         directory.delete()
 
     def get_absolute_url(self):
-        return l(self.pootle_path)
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        return reverse('pootle-tp-overview', args=[lang, proj, dir, fn])
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)

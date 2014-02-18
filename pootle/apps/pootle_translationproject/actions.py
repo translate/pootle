@@ -24,7 +24,6 @@ from django.utils.translation import ugettext as _
 
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
-from pootle_misc.baseurl import l
 from pootle_misc.versioncontrol import hasversioning
 from pootle.scripts import actions
 
@@ -54,13 +53,15 @@ def store(fn):
 @directory
 def download_zip(request, path_obj, **kwargs):
     if check_permission('archive', request):
-        if path_obj.is_dir:
-            current_folder = path_obj.pootle_path
-        else:
-            current_folder = path_obj.parent.pootle_path
+        if not path_obj.is_dir:
+            path_obj = path_obj.parent
+
+        language_code = path_obj.translation_project.language.code
+        project_code = path_obj.translation_project.project.code
 
         text = _('Download (.zip)')
-        link = l("%sexport/zip" % current_folder)
+        link = reverse('pootle-tp-export-zip',
+                       args=[language_code, project_code, path_obj.path])
 
         return {
             'icon': 'icon-download',
@@ -75,7 +76,8 @@ def download_source(request, path_obj, **kwargs):
     if path_obj.name.startswith("pootle-terminology"):
         text = _("Download XLIFF")
         tooltip = _("Download file in XLIFF format")
-        href = l('/export-file/%s%s' % ('xlf', path_obj.pootle_path))
+        href = reverse('pootle-store-export-xliff',
+                       args=[path_obj.pootle_path])
     elif path_obj.translation_project.project.is_monolingual:
         text = _('Export')
         tooltip = _('Export translations')
@@ -85,7 +87,8 @@ def download_source(request, path_obj, **kwargs):
 
     return {
         'icon': 'icon-download',
-        'href': href or l('/download%s' % path_obj.pootle_path),
+        'href': href or reverse('pootle-store-download',
+                                args=[path_obj.pootle_path]),
         'text': text,
         'tooltip': tooltip,
     }
@@ -100,7 +103,7 @@ def download_xliff(request, path_obj):
 
     text = _("Download XLIFF")
     tooltip = _('Download XLIFF file for offline translation')
-    href = l('/export-file/%s%s' % ('xlf', path_obj.pootle_path))
+    href = reverse('pootle-store-export-xliff', args=[path_obj.pootle_path])
 
     return {
         'icon': 'icon-download',

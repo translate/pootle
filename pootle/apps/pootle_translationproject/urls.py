@@ -76,7 +76,8 @@ urlpatterns = patterns('pootle_translationproject.views',
     # Exporting files
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'(?P<file_path>.*)export/zip$',
-        'export_zip'),
+        'export_zip',
+        name='pootle-tp-export-zip'),
 
     # Translation
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'

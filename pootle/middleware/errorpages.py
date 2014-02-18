@@ -38,7 +38,7 @@ except ImportError:
     sentry_exception_handler = None
 
 from pootle.core.exceptions import Http400
-from pootle_misc.baseurl import l, get_next
+from pootle_misc.baseurl import get_next
 from pootle_misc.util import jsonify
 
 
@@ -71,7 +71,7 @@ class ErrorPagesMiddleware(object):
 
             if not request.user.is_authenticated():
                 msg_args = {
-                    'login_link': "%s%s" % (l(reverse("account_login")),
+                    'login_link': "%s%s" % (reverse("account_login"),
                                             get_next(request)),
                 }
                 login_msg = _('You need to <a href="%(login_link)s">login</a> '

@@ -29,7 +29,6 @@ from django.utils.html import simple_email_re as email_re
 from django.utils.translation import ugettext_lazy as _
 
 from pootle_language.models import Language
-from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_translationproject.models import TranslationProject
@@ -247,7 +246,8 @@ class PootleProfile(models.Model):
         return username
 
     def get_absolute_url(self):
-        return l(reverse("profiles_profile_detail", kwargs={"username": self.user.username}))
+        return reverse('profiles_profile_detail',
+                       kwargs={'username': self.user.username})
 
     def gravatar_url(self, size=80):
         if not self.get_email_hash:
