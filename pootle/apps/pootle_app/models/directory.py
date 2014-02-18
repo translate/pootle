@@ -44,7 +44,7 @@ class DirectoryManager(models.Manager):
     def projects(self):
         return self.get(pootle_path='/projects/')
 
-    @property
+    @cached_property
     def goals(self):
         return self.get(pootle_path='/goals/')
 
