@@ -204,12 +204,16 @@ Update the requirements files::
 
 .. note:: This creates the following files:
 
-       - min-require.txt -- the minimum requirements we specified at this time.
-         Using that to deploy can ensure that you don't use a newer version
-         that breaks Pootle.
-       - requirements.txt - the maximum available version when we released.
-         Chances are we've tested with these and they are good.  Using this
-         would prevent a person from intalling something newer but untested.
+       - requirements-min-versions.txt -- the minimum requirements we specified
+         at this time.  Using that to deploy can ensure that you don't use a
+         newer version that breaks Pootle.
+       - requirements-pinned.txt - the maximum available version when we
+         released.  Chances are we've tested with these and they are good.
+         Using this would prevent a person from intalling something newer but
+         untested.
+
+.. FIXME check that these are actually packaged next time we build as they are
+   files for release.
 
 
 Update translations
