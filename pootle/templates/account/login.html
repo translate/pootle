@@ -11,19 +11,14 @@
 <div id="login" class="form" dir="{% locale_dir %}">
     <h2>{% trans 'Login to Pootle' %}</h2>
     <form method="post" action="{% url 'account_login' %}" name="loginform">
-    {% csrf_token %}
-    {% if form.errors %}
-        <div class="error">
-        {% trans "Your username and password didn't match. Please try again." %}
-        </div>
-    {% endif %}
-    {{ form.as_p }}
-    {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-    {% endif %}
-    <p class="buttons">
-        <input type="submit" class="login" value="{% trans 'Login' %}" />
-    </p>
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <p class="buttons">
+            <input type="submit" class="login" value="{% trans 'Login' %}" />
+        </p>
     </form>
 </div>
 
