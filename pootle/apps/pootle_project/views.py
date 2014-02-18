@@ -285,10 +285,10 @@ def project_settings_edit(request, project):
 
         response["description"] = the_html
 
-    action_url = reverse('pootle-project-admin-settings', args=[project.code])
     context = {
         "form": form,
-        "form_action": action_url,
+        "form_action": reverse('pootle-project-admin-settings',
+                               args=[project.code]),
     }
     t = loader.get_template('admin/_settings_form.html')
     c = RequestContext(request, context)
