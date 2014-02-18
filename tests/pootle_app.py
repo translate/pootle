@@ -420,9 +420,6 @@ msgstr "resto"
 
 
 class NonprivTests(PootleTestCase):
-    def setUp(self):
-        super(NonprivTests, self).setUp()
-        self.client.login(username='nonpriv', password='nonpriv')
 
     def test_non_admin_rights(self):
         """checks that non privileged users cannot access admin pages"""
