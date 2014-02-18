@@ -36,13 +36,13 @@ class DirectoryManager(models.Manager):
         return super(DirectoryManager, self).get_query_set() \
                                             .select_related('parent')
 
-    def _get_root(self):
+    @cached_property
+    def root(self):
         return self.get(pootle_path='/')
-    root = property(_get_root)
 
-    def _get_projects(self):
+    @cached_property
+    def projects(self):
         return self.get(pootle_path='/projects/')
-    projects = property(_get_projects)
 
 
 class Directory(models.Model, TreeItem):
