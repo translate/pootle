@@ -36,11 +36,6 @@ def l(path):
     return path
 
 
-def abs_l(path):
-    """Filter paths adding full URL prefix if required."""
-    return settings.BASE_URL + path
-
-
 def m(path):
     """Filter URLs adding MEDIA_URL prefix if required."""
     return l(settings.MEDIA_URL + path)
