@@ -18,27 +18,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import os
-from pkgutil import iter_modules
-
-from django.conf import settings
-
-from . import fixtures
+import pytest
 
 
-def pytest_configure(config):
-    if not settings.configured:
-        from pootle import syspath_override
-        os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-        os.environ['POOTLE_SETTINGS_TESTS'] = '90-tests.conf'
+def _require_tp(language, project):
+    """Helper to get/create a new translation project."""
+    from pootle_translationproject.models import create_translation_project
+
+    return create_translation_project(language, project)
 
 
-def _load_fixtures():
-    path = fixtures.__path__
-    prefix = '%s.' % fixtures.__name__
-
-    return [name for loader, name, is_pkg in iter_modules(path, prefix)
-            if not is_pkg]
-
-
-pytest_plugins = _load_fixtures()
+@pytest.fixture
+def afrikaans_tutorial(afrikaans, tutorial):
+    """Require Afrikaans Tutorial."""
+    return _require_tp(afrikaans, tutorial)

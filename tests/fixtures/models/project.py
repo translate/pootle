@@ -18,27 +18,29 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import os
-from pkgutil import iter_modules
-
-from django.conf import settings
-
-from . import fixtures
+import pytest
 
 
-def pytest_configure(config):
-    if not settings.configured:
-        from pootle import syspath_override
-        os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-        os.environ['POOTLE_SETTINGS_TESTS'] = '90-tests.conf'
+def _require_project(code, name, source_language):
+    """Helper to get/create a new project."""
+    # XXX: should accept more params, but is enough for now
+    from pootle_project.models import Project
+
+    criteria = {
+        'code': code,
+        'fullname': name,
+        'source_language': source_language,
+        'checkstyle': 'standard',
+        'localfiletype': 'po',
+        'treestyle': 'auto',
+    }
+    new_project = Project(**criteria)
+    new_project.save()
+
+    return new_project
 
 
-def _load_fixtures():
-    path = fixtures.__path__
-    prefix = '%s.' % fixtures.__name__
-
-    return [name for loader, name, is_pkg in iter_modules(path, prefix)
-            if not is_pkg]
-
-
-pytest_plugins = _load_fixtures()
+@pytest.fixture
+def tutorial(projects, english):
+    """Require `tutorial` test project."""
+    return _require_project('tutorial', 'Tutorial', english)
