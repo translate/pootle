@@ -169,7 +169,7 @@ class UserResource(StatisticsModelResource):
 
         form = PasswordResetForm({'email': bundle.obj.email})
         form.full_clean()
-        tpl = 'registration/password_reset_email_for_api_user_creation.html'
+        tpl = "account/password_reset_email_for_api_user_creation.html"
         form.save(email_template_name=tpl,
                   from_email=settings.DEFAULT_FROM_EMAIL)
 
