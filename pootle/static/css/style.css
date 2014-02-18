@@ -498,6 +498,52 @@ html[dir="rtl"] #nav-main li
     margin: -2px 5px 0;
 }
 
+/* Language picker */
+
+#s2id_js-language-picker
+{
+    padding-top: 8px;
+}
+
+#s2id_js-language-picker:not(.select2-dropdown-open) {
+    width: auto !important;
+    padding-left: 8px;
+}
+
+#s2id_js-language-picker:not(.select2-dropdown-open) a
+{
+    background: transparent;
+    border: 0;
+    padding: 0 0 0 30px !important;
+}
+
+#s2id_js-language-picker.select2-container-active {
+    box-shadow: none;
+}
+
+#s2id_js-language-picker.select2-dropdown-open a
+{
+    color: rgb(72, 112, 117);
+    padding: 0 0 0 12px !important;
+    text-shadow: none;
+}
+
+#s2id_js-language-picker a:hover
+{
+    color: rgb(110, 188, 197);
+}
+
+#s2id_js-language-picker:not(.select2-dropdown-open) .select2-choice div
+{
+    background: none;
+    border: 0;
+}
+
+#s2id_js-language-picker:not(.select2-dropdown-open) .select2-choice div b
+{
+    background: none;
+}
+
 
 /*
  * FOOTER
