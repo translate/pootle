@@ -141,22 +141,6 @@ Configuration settings for applications used by Pootle.
   templates as ``{{ custom.<key> }}``.
 
 
-.. setting:: EMAIL_SEND_HTML
-
-``EMAIL_SEND_HTML``
-  Default: ``False``
-
-  By default Pootle sends only text emails. If your organization would prefer
-  to send mixed HTML/TEXT emails, set this to ``True``, and update
-  *activation_email.txt* and *activation_email.html* in the
-  *templates/registration/* directory.
-
-  .. note::
-
-    Password reset emails will still be sent in plain text. This is a limitation
-    of the underlying system.
-
-
 .. setting:: FUZZY_MATCH_MAX_LENGTH
 
 ``FUZZY_MATCH_MAX_LENGTH``
@@ -436,7 +420,7 @@ Translation environment configuration settings.
   ``GOOGLE_TRANSLATE``: Google Translate service.
     For this service you need to set the API key. Note that Google Translate
     API is a paid service. See more at
-    https://developers.google.com/translate/v2/pricing 
+    https://developers.google.com/translate/v2/pricing
 
 
 .. setting:: PARSE_POOL_CULL_FREQUENCY
