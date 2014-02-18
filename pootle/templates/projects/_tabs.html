@@ -2,7 +2,7 @@
 {% load i18n %}
 <ul id="tabs">
   <li><a href="{% url 'pootle-project-overview' project.code %}" class="projectoverview" title="{% trans 'Project main page' %}">{% trans "Overview" %}</a></li>
-  <li><a href="{% url 'pootle-project-overview' project.code %}notices" class="tpnews" title="{% trans 'Project news' %}">{% trans "News" %}{% if user.is_superuser or request.permissions.administrate %} <span class="admin">+</span>{%endif%}</a></li>
+  <li><a href="{% url 'pootle-notifications-project-notices' project.code %}" class="tpnews" title="{% trans 'Project news' %}">{% trans "News" %}{% if user.is_superuser or request.permissions.administrate %} <span class="admin">+</span>{%endif%}</a></li>
   <li><a href="{% url 'pootle-project-translate' project.code %}"
       class="projecttranslate" title="{% trans 'Translate this project' %}">{% trans "Translate" %}</a></li>
   {% if user.is_superuser or request.permissions.administrate %}
