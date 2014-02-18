@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -67,7 +68,7 @@ def view(request, path):
         proj = directory.project
 
     template_vars = {
-        'path': path,
+        'notification_url': reverse('pootle-notifications-feed', args=[path]),
         'directory': directory,
         'title': directory_to_title(directory),
         'notices': Notice.objects.filter(**criteria) \
