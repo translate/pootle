@@ -161,12 +161,12 @@
             <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans "ADMIN" %}</a></li>
             {% endif %}
             {% if user.is_authenticated %}
-            <li><a href="{% filter l %}{% url 'account_logout' %}{% endfilter %}">{% trans "Log Out" %}</a></li>
+            <li><a href="{% url 'account_logout' %}">{% trans "Log Out" %}</a></li>
             {% else %}
             {% if settings.CAN_REGISTER %}
-            <li><a href="{% filter l %}{% url 'account_signup' %}{% endfilter %}">{% trans "Register" %}</a></li>
+            <li><a href="{% url 'account_signup' %}">{% trans "Register" %}</a></li>
             {% endif %}
-            <li><a href="{% filter l %}{% url 'account_login' %}{% endfilter %}{{ request|get_next }}">{% trans "Log In" %}</a></li>
+            <li><a href="{% url 'account_login' %}{{ request|get_next }}">{% trans "Log In" %}</a></li>
             {% endif %}
             <li>
               <select id="js-language-picker" default="{{ LANGUAGE_CODE }}"></select>

@@ -1,5 +1,5 @@
 {% load url from future %}
-{% load i18n baseurl store_tags cleanhtml cache profile_tags locale %}
+{% load i18n store_tags cleanhtml cache profile_tags locale %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs profile.id LANGUAGE_CODE %}
@@ -152,7 +152,7 @@
               title="{% trans 'Suggest translation and go to the next string (Ctrl+Enter)' %}" />
             {% endif %}
             <input type="hidden" name="store" value="{{ store }}" />
-            <input type="hidden" name="path" value="{{ store|l }}" />
+            <input type="hidden" name="path" value="{{ store }}" />
             <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
             {% if cansuggest and cantranslate %}
             <div class="switch-suggest-mode tiny" lang="{{ LANGUAGE_CODE }}">

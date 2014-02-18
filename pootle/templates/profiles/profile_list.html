@@ -1,5 +1,5 @@
 {% extends "layout.html"  %}
-{% load i18n baseurl cleanhtml %}
+{% load i18n cleanhtml %}
 
 {% block content %}
 
@@ -15,7 +15,7 @@
         <tr><td colspan="4"><hr width="75%" align="left"></td></tr>
         {% for profile in object_list %}
         <tr>
-            <td><a href="{% filter l %}{% url 'profiles_profile_detail' username=profile.user.username %}{% endfilter %}">
+            <td><a href="{% url 'profiles_profile_detail' username=profile.user.username %}">
                     {{ profile.user.username|obfuscate }}
             </a></td>
             <td>{{ profile.user.first_name }}</td>
