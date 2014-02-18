@@ -3,12 +3,12 @@
 Django>=1.5.5,<1.6
 
 # Django apps
+django-allauth==0.15.0
+django-assets>=0.8
+django-contact-form==1.0
+django-taggit>=0.10,<0.11.2
 django-voting==0.1
 South>=0.7.6
-django-assets>=0.8
-django-taggit>=0.10,<0.11.2
-django-registration==1.0
-django-contact-form==1.0
 
 # Required by webassets, isn't shipped in Python < 2.7
 argparse
