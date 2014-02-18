@@ -25,7 +25,6 @@ from django.shortcuts import get_object_or_404
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
-from pootle_misc.baseurl import l
 from pootle_notifications.models import Notice
 from pootle_notifications.views import directory_to_title
 from pootle_profile.models import get_profile
@@ -46,7 +45,7 @@ class NoticeFeed(Feed):
             raise PermissionDenied
 
         self.directory = directory
-        self.link = l(directory.pootle_path)
+        self.link = directory.get_absolute_url()
         self.recusrive = request.GET.get('all', False)
 
         return self.directory
