@@ -78,13 +78,6 @@ msgstr[1] ""
 ''')
         pofile.close()
 
-    def _setup_test_users(self):
-        nonpriv = User(username=u"nonpriv",
-                       first_name="Non privileged test user",
-                       is_active=True)
-        nonpriv.set_password("nonpriv")
-        nonpriv.save()
-
     def _teardown_test_podir(self):
         shutil.rmtree(self.testpodir)
 
@@ -94,7 +87,6 @@ msgstr[1] ""
         #FIXME: replace initdb with a fixture
         call_command('initdb')
 
-        self._setup_test_users()
         scan_translation_projects()
 
     def tearDown(self):
