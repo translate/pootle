@@ -80,14 +80,16 @@ help:
 
 # Perform forced build using -W for the (.PHONY) requirements target
 requirements:
-	$(MAKE) -W $(REQFILE) min-required.txt requirements.txt
+	$(MAKE) -W $(REQFILE) requirements-pinned.txt requirements-min-versions.txt
 
 REQS=.reqs
 REQFILE=requirements/base.txt
 
-requirements.txt: $(REQFILE)
+requirements-pinned.txt: requirements-pinned.txt.in $(REQFILE)
 	@echo "# Automatically generated: DO NOT EDIT" > $@
 	@echo "# Regenerate using 'make requirements'" >> $@
+	@echo >> $@
+	@cat $< >> $@
 	@set -e;							\
 	 case `pip --version` in					\
 	   "pip 0"*|"pip 1.[012]"*)					\
@@ -109,11 +111,13 @@ requirements.txt: $(REQFILE)
 	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') >> $@;	\
 	 esac; 
 
-min-required.txt: requirements/*.txt
+requirements-min-versions.txt: requirements-min-versions.txt.in requirements/*.txt
 	@if grep -q '>[0-9]' $^; then				\
 	   echo "Use '>=' not '>' for requirements"; exit 1;	\
 	 fi
 	@echo "creating $@"
 	@echo "# Automatically generated: DO NOT EDIT" > $@
 	@echo "# Regenerate using 'make requirements'" >> $@
+	@echo >> $@
+	@cat $< >> $@
 	@cat $^ | sed -n '/=/{s/>=/==/;s/,<.*//;p;}' >> $@

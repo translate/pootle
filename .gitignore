@@ -61,3 +61,5 @@ Pootle.egg-info/
 
 # Requirements generation
 .reqs
+requirements-min-versions.txt
+requirements-pinned.txt
