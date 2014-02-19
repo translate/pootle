@@ -84,6 +84,11 @@ class Directory(models.Model, TreeItem):
         return self.pootle_path.startswith('/templates/')
 
     @property
+    def is_root(self):
+        """Tell if this directory is the root directory."""
+        return self.pootle_path == '/'
+
+    @property
     def code(self):
         return self.name.replace('.', '-')
 
