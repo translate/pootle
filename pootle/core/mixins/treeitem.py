@@ -57,6 +57,7 @@ class CachedMethods(object):
     LAST_ACTION = 'get_last_action'
     SUGGESTIONS = 'get_suggestion_count'
     MTIME = 'get_mtime'
+    LAST_REVISION = 'get_last_revision'
     LAST_UPDATED = 'get_last_updated'
 
     @classmethod
@@ -110,6 +111,10 @@ class TreeItem(object):
     def _get_mtime(self):
         """This method will be overridden in descendants"""
         return datetime_min
+
+    def _get_last_revision(self):
+        """This method will be overridden in descendants"""
+        return 0
 
     def _get_last_updated(self):
         """This method will be overridden in descendants"""
@@ -180,6 +185,16 @@ class TreeItem(object):
         return max(
             [self._get_mtime()] +
             [item.get_mtime() for item in self.children]
+        )
+
+    @getfromcache
+    @statslog
+    def get_last_revision(self):
+        """get latest unit.revision"""
+        self.initialize_children()
+        return max(
+            [self._get_last_revision()] +
+            [item.get_last_revision() for item in self.children]
         )
 
     @getfromcache

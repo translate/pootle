@@ -28,7 +28,7 @@ from django.utils.translation import ugettext_noop as _
 
 import pootle_app.models
 from pootle.__version__ import build as code_buildversion
-from pootle_app.models import Directory
+from pootle_app.models import Directory, Revision
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
 from pootle_misc import siteconfig
@@ -49,6 +49,7 @@ def initdb():
     except:
         pass
 
+    create_revision()
     create_essential_users()
     create_root_directories()
     create_template_languages()
@@ -74,6 +75,8 @@ def initdb():
         config.set('TT_BUILDVERSION', code_tt_buildversion)
     config.save()
 
+def create_revision():
+    Revision.objects.get_or_create(id=1)
 
 def create_essential_users():
     """Create the 'default' and 'nobody' User instances.

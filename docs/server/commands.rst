@@ -163,17 +163,8 @@ obsolete and updating the file's structure.
 With the ``--skip-missing`` option, files that are missing on disk will be
 ignored, and no new files will be created.
 
-.. versionadded:: 2.5
-
-With the ``--modified-since`` option it is possible to give a change identifier
-(from the output of :ref:`commands#latest_change_id`) to specifically indicate
-which changes need to be synced to disk. This will override Pootle on what
-has/hasn't been synced to disk, and specifically those changes will be synced.
-Note that bulk changes (from uploads and version control actions) don't yet
-record fine-grained changes, and these will therefore not be synced to disk.
-However, these should already be on disk, since those actions always sync to
-disk anyway.
-
+With the ``--force`` option, files that were synced after the last change in DB
+won't be ignored.
 
 .. _commands#update_stores:
 
@@ -190,43 +181,18 @@ within the projects.
 You must run this command after running scripts that modify translation files
 directly on the file system.
 
-``update_stores`` has an extra command line option ``--keep`` that will
-prevent it from overwriting any existing translation in the database, thus
-only updating new translations, removing obsolete strings and discovering
-new files and strings.
+``update_stores`` has an extra command line option ``--overwrite`` that will
+overwrite any existing translation in the database, without this
+option only updating new translations, removing obsolete strings and discovering
+new files and strings will be done.
 
 .. versionchanged:: 2.5.1
 
-Note that ``--keep`` doesn't keep obsolete units around anymore, they are
+Note that ``update_stores`` doesn't keep obsolete units around anymore, they are
 either deleted in case the string is untranslated or marked as obsolete in
 case the string was translated.
 
 .. versionchanged:: 2.5
-
-Along with ``--keep``, the ``--modified-since`` option can be used to
-control the set of translations that will be updated: translations with a
-change ID **greater than** the given value will be kept.
-
-To illustrate the results of these two options, the following table
-emulates the behavior of a ``pootle update_stores --modified-since=5
---keep`` run:
-
-========================================== ============= =================
- File on disk                               DB before     DB after
-                                            (change ID)   (result)
-========================================== ============= =================
- New string appeared in existing file       <none>        String added
- Existing string changed in existing file   <none>        String updated
- Existing string changed in existing file   2             String updated
- Existing string changed in existing file   5             String updated
- Existing string changed in existing file   8             String kept
- New string in a new file                   <none>        String added
- String removed from the file               3             String removed
- String removed from the file               10            String removed
- File removed                               4             Strings removed
- File removed                               12            Strings removed
-========================================== ============= =================
-
 
 By default, ``update_stores`` will only update files that appear to have changed
 on disk since the last synchronization with Pootle. To force all files to
@@ -259,13 +225,6 @@ list_languages
 This command prints all the language codes on the server. This might be useful
 for automation.
 
-Accepts the ``--modified-since`` parameter to list only those languages
-modified since the change id given by :ref:`commands#latest_change_id`.
-
-The option ``--project`` limits the output to one or more projects. Specify the
-option multiple times for more than one project.
-
-
 .. _commands#list_projects:
 
 list_projects
@@ -276,21 +235,14 @@ list_projects
 This command prints all the project codes on the server. This might be useful
 for automation.
 
-Accepts the ``--modified-since`` parameter to list only those projects
-modified since the change id given by :ref:`commands#latest_change_id`.
+.. _commands#revision:
 
-
-.. _commands#latest_change_id:
-
-latest_change_id
+revision
 ^^^^^^^^^^^^^^^^
 
 .. versionadded:: 2.5
 
-This command prints the ID of the latest change (submission) made on the
-server. This is mostly useful in combination with other commands that operate
-with these IDs.
-
+This command prints the number of current revision.
 
 .. _commands#test_checks:
 

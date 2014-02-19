@@ -359,7 +359,7 @@ def convert_template(translation_project, template_store, target_pootle_path,
                                         classes=factory_classes)
     if template_store.file:
         if store:
-            store.update(update_structure=True, update_translation=True,
+            store.update(update_structure=True, overwrite=True,
                          store=output_file, fuzzy=True)
         output_file.settargetlanguage(translation_project.language.code)
         output_file.savefile(target_path)

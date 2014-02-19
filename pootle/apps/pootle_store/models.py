@@ -44,6 +44,7 @@ from django.utils.importlib import import_module
 from translate.filters.decorators import Category
 from translate.storage import base
 
+from pootle_app.models import Revision
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              UNIT_OBSOLETE, STORE_ADDED, STORE_DELETED,
@@ -293,6 +294,7 @@ class Unit(models.Model, base.TranslationUnit):
     context = models.TextField(null=True, editable=False)
 
     state = models.IntegerField(null=False, default=UNTRANSLATED, db_index=True)
+    revision = models.IntegerField(null=False, default=0, db_index=True, blank=True)
 
     # Metadata
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
@@ -353,6 +355,8 @@ class Unit(models.Model, base.TranslationUnit):
         self._source_updated = False
         self._rich_target = None
         self._target_updated = False
+        self._state_updated = False
+        self._comment_updated = False
         self._encoding = 'UTF-8'
 
     # should be called to flag the store cache for a deletion
@@ -428,6 +432,11 @@ class Unit(models.Model, base.TranslationUnit):
                     self.state = UNTRANSLATED
                     self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
+        if self._target_updated or self._state_updated or \
+            self._comment_updated:
+            self.store.flag_for_deletion(CachedMethods.LAST_REVISION)
+            self.revision = Revision.objects.inc()
+
         if self.id and hasattr(self, '_save_action'):
             action_log(user=self._log_user, action=self._save_action,
                 lang=self.store.translation_project.language.code,
@@ -456,6 +465,8 @@ class Unit(models.Model, base.TranslationUnit):
         # done processing source/target update remove flag
         self._source_updated = False
         self._target_updated = False
+        self._state_updated = False
+        self._comment_updated = False
 
         # update cache only if we are updating a single unit
         if self.store.state >= PARSED:
@@ -836,6 +847,7 @@ class Unit(models.Model, base.TranslationUnit):
         if self.state > OBSOLETE:
             # when Unit becomes obsolete the cache flags should be updated
             self.flag_store_before_going_away()
+            self._state_updated = True
             self._save_action = UNIT_OBSOLETE
 
             self.state = OBSOLETE
@@ -1153,6 +1165,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             db_index=True)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
+    last_sync_revision = models.IntegerField(db_index=True, default=0)
 
     objects = StoreManager()
 
@@ -1373,8 +1386,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             obsolete_unit.delete()
 
     @commit_on_success
-    def update(self, update_structure=False, update_translation=False,
-               store=None, fuzzy=False, only_newer=False, modified_since=0):
+    def update(self, update_structure=False, overwrite=False,
+               store=None, fuzzy=False, only_newer=False):
         """Update DB with units from file.
 
         :param update_structure: Whether to update store's structure by marking
@@ -1386,8 +1399,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         :param fuzzy: Whether to perform fuzzy matching or not.
         :param only_newer: Whether to update only the files that changed on
             disk after the last sync.
-        :param modified_since: Don't update translations that have been
-            modified since the given change ID.
         """
         self.clean_stale_lock()
 
@@ -1447,11 +1458,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     # the list of cache attributes to clear in the parent Store
                     # object
                     unit.store = self
-                    if unit.istranslated():
-                        unit.makeobsolete()
-                        unit.save()
-                    else:
-                        unit.delete()
+                    if not unit.isobsolete():
+                        if unit.istranslated():
+                            unit.makeobsolete()
+                            unit.save()
+                        else:
+                            unit.delete()
 
                 # Add new units to the store
                 new_units = (store.findid(uid) for uid in new_ids - old_ids)
@@ -1465,99 +1477,90 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             newunit.save()
                             self._remove_obsolete(match_unit.source)
 
-            if update_translation or modified_since:
-                modified_units = set()
+            # Get units that were modified after last sync
+            modified_units = set(
+                Unit.objects.filter(revision__gt=self.last_sync_revision,
+                                    store=self)
+                            .values_list('id', flat=True).distinct())
 
-                if modified_since:
-                    self_unit_ids = set(self.dbid_index.values())
+            common_dbids = set(self.dbid_index.get(uid)
+                               for uid in old_ids & new_ids)
 
-                    modified_units = set(Submission.objects.filter(
-                            id__gt=modified_since,
-                            unit__id__in=self_unit_ids,
-                    ).values_list('unit', flat=True).distinct())
+            # If some units have been modified since last sync
+            # keep them safe
+            common_dbids -= modified_units
 
-                common_dbids = set(self.dbid_index.get(uid) \
-                                   for uid in old_ids & new_ids)
+            common_dbids = list(common_dbids)
+            system = User.objects.get_system_user().get_profile()
+            for unit in self.findid_bulk(common_dbids):
+                # Use the same (parent) object since units will accumulate
+                # the list of cache attributes to clear in the parent Store
+                # object
+                unit.store = self
+                newunit = store.findid(unit.getid())
+                old_target_f = unit.target_f
+                old_unit_state = unit.state
 
-                # If some units have been modified since a given change ID,
-                # keep them safe and avoid overwrites
-                if modified_units:
-                    common_dbids -= modified_units
+                changed = unit.update(newunit)
 
-                common_dbids = list(common_dbids)
-                system = User.objects.get_system_user().get_profile()
-                for unit in self.findid_bulk(common_dbids):
-                    # Use the same (parent) object since units will accumulate
-                    # the list of cache attributes to clear in the parent Store
-                    # object
-                    unit.store = self
-                    newunit = store.findid(unit.getid())
-                    old_target_f = unit.target_f
-                    old_unit_state = unit.state
+                # Unit's index within the store might have changed
+                if update_structure and unit.index != newunit.index:
+                    unit.index = newunit.index
+                    changed = True
 
-                    changed = unit.update(newunit)
-
-                    # Unit's index within the store might have changed
-                    if update_structure and unit.index != newunit.index:
-                        unit.index = newunit.index
+                # Fuzzy match non-empty target strings
+                if fuzzy and not filter(None, unit.target.strings):
+                    match_unit = unit.fuzzy_translate(matcher)
+                    if match_unit:
                         changed = True
+                        self._remove_obsolete(match_unit.source)
 
-                    # Fuzzy match non-empty target strings
-                    if fuzzy and not filter(None, unit.target.strings):
-                        match_unit = unit.fuzzy_translate(matcher)
-                        if match_unit:
-                            changed = True
-                            self._remove_obsolete(match_unit.source)
+                if changed:
+                    create_subs = {}
 
-                    if changed:
-                        create_subs = {}
+                    if unit._target_updated:
+                        create_subs[SubmissionFields.TARGET] = \
+                            [old_target_f, unit.target_f]
 
-                        if unit._target_updated:
-                            create_subs[SubmissionFields.TARGET] = \
-                                [old_target_f, unit.target_f]
+                    # Set unit fields if submission should be created
+                    if create_subs:
+                        unit.submitted_by = system
+                        unit.submitted_on = timezone.now()
+                    unit.save()
+                    # check unit state after saving
+                    if old_unit_state != unit.state:
+                        create_subs[SubmissionFields.STATE] = [old_unit_state,
+                                                               unit.state]
 
-                        # Set unit fields if submission should be created
-                        if create_subs:
-                            unit.submitted_by = system
-                            unit.submitted_on = timezone.now()
-                        unit.save()
-                        # check unit state after saving
-                        if old_unit_state != unit.state:
-                            create_subs[SubmissionFields.STATE] = [old_unit_state,
-                                                                   unit.state]
-
-                        # Create Submission after unit saved
-                        for field in create_subs:
-                            sub = Submission(
-                                creation_time=unit.submitted_on,
-                                translation_project=self.translation_project,
-                                submitter=system,
-                                unit=unit,
-                                store=unit.store,
-                                field=field,
-                                type=SubmissionTypes.SYSTEM,
-                                old_value=create_subs[field][0],
-                                new_value=create_subs[field][1]
-                            )
-                            sub.save()
-
+                    # Create Submission after unit saved
+                    for field in create_subs:
+                        sub = Submission(
+                            creation_time=unit.submitted_on,
+                            translation_project=self.translation_project,
+                            submitter=system,
+                            unit=unit,
+                            store=unit.store,
+                            field=field,
+                            type=SubmissionTypes.SYSTEM,
+                            old_value=create_subs[field][0],
+                            new_value=create_subs[field][1]
+                        )
+                        sub.save()
         finally:
             # Unlock store
             self.state = old_state
-            if (update_structure and
-                (update_translation or modified_since)):
-                self.sync_time = timezone.now()
             self.save()
 
-    def sync(self, update_structure=False, update_translation=False,
-             conservative=True, create=False, profile=None, skip_missing=False,
-             modified_since=0):
+    def sync(self, update_structure=False, conservative=True, create=False,
+             profile=None, skip_missing=False, only_newer=False):
         """Sync file with translations from DB."""
         if skip_missing and not self.file.exists():
             return
+        last_revision = self.get_last_revision()
+        last_mtime = self.get_mtime()
 
-        if (not modified_since and conservative and
-            self.sync_time >= self.get_mtime()):
+        if (only_newer and
+            self.last_sync_revision >= last_revision):
             return
 
         if not self.file:
@@ -1575,7 +1578,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 self.file = store_path
                 self.update_store_header(profile=profile)
                 self.file.savestore()
-                self.sync_time = self.get_mtime()
+                self.sync_time = last_mtime
+                self.last_sync_revision = last_revision
 
                 self.save()
             return
@@ -1612,37 +1616,30 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 disk_store.addunit(newunit)
                 file_changed = True
 
-        if update_translation:
-            modified_units = set()
+        modified_units = set(Unit.objects \
+                    .filter(revision__gte=last_revision, store=self)
+                    .values_list('id', flat=True).distinct())
 
-            if modified_since:
-                from pootle_statistics.models import Submission
-                self_unit_ids = set(self.dbid_index.values())
-
-                modified_units = set(Submission.objects.filter(
-                        id__gt=modified_since,
-                        unit__id__in=self_unit_ids,
-                ).values_list('unit', flat=True).distinct())
-
-            common_dbids = set(self.dbid_index.get(uid) \
+        common_dbids = set(self.dbid_index.get(uid) \
                                for uid in old_ids & new_ids)
+        if conservative:
+            common_dbids &= modified_units
 
-            if modified_units:
-                common_dbids &= modified_units
+        common_dbids = list(common_dbids)
 
-            common_dbids = list(common_dbids)
-            for unit in self.findid_bulk(common_dbids):
-                match = disk_store.findid(unit.getid())
-                if match is not None:
-                    changed = unit.sync(match)
-                    if changed:
-                        file_changed = True
+        for unit in self.findid_bulk(common_dbids):
+            match = disk_store.findid(unit.getid())
+            if match is not None:
+                changed = unit.sync(match)
+                if changed:
+                    file_changed = True
 
         if file_changed:
             self.update_store_header(profile=profile)
             self.file.savestore()
 
-        self.sync_time = timezone.now()
+        self.sync_time = last_mtime
+        self.last_sync_revision = last_revision
         self.save()
 
     def get_file_class(self):
@@ -1815,6 +1812,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                          self.name, e)
             return {}
 
+    def _get_last_revision(self):
+        return max_column(self.unit_set.all(), 'revision', 0)
+
     def _get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
 
@@ -1956,8 +1956,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             oldunit.save()
 
             if allownewstrings or obsoletemissing:
-                self.sync(update_structure=True, update_translation=True,
-                          conservative=False, create=False, profile=profile)
+                self.sync(update_structure=True, conservative=False,
+                          create=False, profile=profile)
 
         finally:
             # Unlock store

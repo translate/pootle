@@ -22,17 +22,18 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.core.management.base import NoArgsCommand
-from pootle_statistics.models import Submission
+from pootle_app.models import Revision
 
 
 class Command(NoArgsCommand):
 
-    help = "Print the ID of the latest change made."
+    help = "Print the number of the current revision."
 
     def handle_noargs(self, **options):
         try:
-            print Submission.objects.values_list('id', flat=True) \
-                                    .select_related("").latest()
-        except Submission.DoesNotExist:
+            r = Revision.objects.get()
+            print r.counter
+
+        except Revision.DoesNotExist:
             # if there is no latest id, treat it as id 0
             print 0

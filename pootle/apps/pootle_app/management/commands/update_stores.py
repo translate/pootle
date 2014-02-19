@@ -26,38 +26,29 @@ import sys
 
 from optparse import make_option
 
-from pootle_app.management.commands import PootleCommand, ModifiedSinceMixin
+from pootle_app.management.commands import PootleCommand
 
 
-class Command(ModifiedSinceMixin, PootleCommand):
+class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
-        make_option('--keep', action='store_true', dest='keep', default=False,
-                    help="Keep existing translations; just update "
-                         "untranslated units and add new units."),
+        make_option('--overwrite', action='store_true', dest='overwrite',
+                    default=False,
+                    help="Don't just update untranslated units "
+                         "and add new units, but overwrite database "
+                         "translations to reflect state in files."),
         make_option('--force', action='store_true', dest='force', default=False,
                     help="Unconditionally process all files (even if they "
                          "appear unchanged)."),
         )
     help = "Update database stores from files."
 
-    def handle_noargs(self, **options):
-        keep = options.get('keep', False)
-        change_id = options.get('modified_since', 0)
-
-        if change_id and not keep:
-            logging.error(u"Both --keep and --modified-since must be set.")
-            sys.exit(1)
-
-        super(Command, self).handle_noargs(**options)
-
     def handle_translation_project(self, translation_project, **options):
         logging.info(u"Scanning for new files in %s", translation_project)
         translation_project.scan_files()
 
     def handle_store(self, store, **options):
-        keep = options.get('keep', False)
+        overwrite = options.get('overwrite', False)
         force = options.get('force', False)
-        change_id = options.get('modified_since', 0)
 
-        store.update(update_translation=not keep, update_structure=True,
-                     only_newer=not force, modified_since=change_id)
+        store.update(overwrite=overwrite, update_structure=True,
+                     only_newer=not force)

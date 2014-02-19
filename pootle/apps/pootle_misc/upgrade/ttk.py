@@ -34,5 +34,5 @@ def upgrade_to_12008():
         'file__iendswith': '.ts',
     }
     for store in Store.objects.filter(**criteria).iterator():
-        store.sync(update_translation=True)
-        store.update(update_structure=True, update_translation=True)
+        store.sync()
+        store.update(update_structure=True)

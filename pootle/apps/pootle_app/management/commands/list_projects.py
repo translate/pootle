@@ -21,12 +21,11 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from pootle_app.management.commands import (NoArgsCommandMixin,
-                                            ModifiedSinceMixin)
+from pootle_app.management.commands import NoArgsCommandMixin
 from pootle_project.models import Project
 
 
-class Command(ModifiedSinceMixin, NoArgsCommandMixin):
+class Command(NoArgsCommandMixin):
 
     def handle_noargs(self, **options):
         super(Command, self).handle_noargs(**options)
@@ -34,17 +33,6 @@ class Command(ModifiedSinceMixin, NoArgsCommandMixin):
 
     def list_projects(self, **options):
         """List all projects on the server."""
-        change_id = options.get('modified_since', 0)
 
-        if change_id:
-            from pootle_translationproject.models import TranslationProject
-            projects = TranslationProject.objects \
-                                         .filter(submission__id__gt=change_id) \
-                                         .distinct() \
-                                         .values('project__code')
-
-            for project in projects:
-                print project['project__code']
-        else:
-            for project in Project.objects.all():
+        for project in Project.objects.all():
                 print project.code

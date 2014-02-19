@@ -40,7 +40,7 @@ class UnitTests(PootleTestCase):
         if 'translator_comment' in newvalues:
             unit.translator_comment = newvalues['translator_comment']
         unit.save()
-        self.store.sync(update_translation=True)
+        self.store.sync()
         return self.store.getitem(item)
 
     def test_getorig(self):

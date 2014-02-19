@@ -23,11 +23,10 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from optparse import make_option
 
-from pootle_app.management.commands import (NoArgsCommandMixin,
-                                            ModifiedSinceMixin)
+from pootle_app.management.commands import NoArgsCommandMixin
 
 
-class Command(ModifiedSinceMixin, NoArgsCommandMixin):
+class Command(NoArgsCommandMixin):
     option_list = NoArgsCommandMixin.option_list + (
             make_option('--project', action='append', dest='projects',
                         help='Limit to PROJECTS'),
@@ -40,15 +39,11 @@ class Command(ModifiedSinceMixin, NoArgsCommandMixin):
 
     def list_languages(self, **options):
         """List all languages on the server or the given projects."""
-        change_id = options.get('modified_since', 0)
         projects = options.get('projects', [])
 
         from pootle_translationproject.models import TranslationProject
         tps = TranslationProject.objects.distinct()
         tps = tps.exclude(language__code='templates').order_by('language__code')
-
-        if change_id:
-            tps = tps.filter(submission__id__gt=change_id)
 
         if projects:
             tps = tps.filter(project__code__in=projects)
