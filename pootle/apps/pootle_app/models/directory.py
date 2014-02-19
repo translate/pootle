@@ -60,9 +60,7 @@ class Directory(models.Model, TreeItem):
         ordering = ['name']
         app_label = "pootle_app"
 
-    @property
-    def code(self):
-        return self.name.replace('.', '-')
+    ############################ Properties ###################################
 
     @property
     def stores(self):
@@ -73,6 +71,15 @@ class Directory(models.Model, TreeItem):
     @property
     def is_template_project(self):
         return self.pootle_path.startswith('/templates/')
+
+    @property
+    def is_root(self):
+        """Tell if this directory is the root directory."""
+        return self.pootle_path == '/'
+
+    @property
+    def code(self):
+        return self.name.replace('.', '-')
 
     ############################ Cached properties ############################
 
