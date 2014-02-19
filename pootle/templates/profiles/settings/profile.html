@@ -1,6 +1,6 @@
 {% extends "profiles/settings/base.html"  %}
 {% load assets i18n baseurl %}
- 
+
 {% block title %}{% trans "Translation Settings" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
@@ -9,7 +9,7 @@
 
 {% block body_id %}settings{% endblock %}
 
-{% block section_description %}{% trans "Here you can configure the settings related to the translation interface as well as your language preferences." %}{% endblock %}
+{% block section_description %}{% trans "Here you can configure the settings related to the translation interface." %}{% endblock %}
 
 {% block section_body %}
 <form method="post" action="">

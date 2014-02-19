@@ -168,6 +168,9 @@
             {% endif %}
             <li><a href="{% filter l %}{% url 'account_login' %}{% endfilter %}{{ request|get_next }}">{% trans "Log In" %}</a></li>
             {% endif %}
+            <li>
+              <select id="js-language-picker" default="{{ LANGUAGE_CODE }}"></select>
+            </li>
           </ul>
           {% block navbar_extra %}{% endblock %}
           {% endblock %}

@@ -466,6 +466,21 @@ $(function ($) {
   });
   // Hide the help messages for the Select2 multiple selects.
   $("select[multiple].js-select2").siblings("span.help_text").hide();
+
+  // build the language picker
+  var picker = $("#js-language-picker");
+  for (i in PTL.languages) {
+    var code = PTL.languages[i][0]
+    var lang = PTL.languages[i][1];
+    picker.append($("<option>", {value: code}).text(lang))
+  }
+  // select2 the picker separately because we want to give it a dynamic width
+  picker.select2({width: "element"})
+    .select2("val", picker.attr("default"))
+    .on("change", function(e) {
+        $.cookie("django_language", e.val, {path: "/"});
+        location.reload();
+    });
 });
 
 // We can't use `e.persisted` here. See bug 2949 for reference

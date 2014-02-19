@@ -26,21 +26,6 @@ from django.utils.translation import ugettext_lazy as _
 from .models import PootleProfile
 
 
-def language_list(request):
-    """Return the list of localised language names, with 'default'."""
-    tr_default = _("Default")
-
-    if tr_default != "Default":
-        tr_default = u"%s | \u202dDefault" % tr_default
-
-    from pootle.i18n.override import lang_choices
-
-    choices = lang_choices()
-    choices.insert(0, ('', tr_default))
-
-    return choices
-
-
 class UserForm(forms.ModelForm):
 
     class Meta:
@@ -62,8 +47,6 @@ def pootle_profile_form_factory(exclude_fields):
             # Delete the fields the user can't edit.
             for field in self.exclude_fields:
                 del self.fields[field]
-            self.fields['ui_lang'].widget.attrs['class'] = \
-                "js-select2 select2-language"
             self.fields['alt_src_langs'].widget.attrs['class'] = \
                 "js-select2 select2-multiple"
             self.fields['alt_src_langs'].widget.attrs['data-placeholder'] = \
