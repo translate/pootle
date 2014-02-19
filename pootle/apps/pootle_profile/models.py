@@ -28,7 +28,6 @@ from django.db.models.signals import post_save
 from django.utils.html import simple_email_re as email_re
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.i18n.override import lang_choices
 from pootle_language.models import Language
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
@@ -100,7 +99,6 @@ class PootleProfile(models.Model):
         max_length=50,
         blank=True,
         null=True,
-        choices=(choice for choice in lang_choices()),
         verbose_name=_('Interface Language'),
     )
     alt_src_langs = models.ManyToManyField(
