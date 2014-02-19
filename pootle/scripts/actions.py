@@ -298,7 +298,7 @@ class ExtensionAction(object):
         >>> ExtensionAction(category='X', title='Do it')._query_url("foo/bar")
         'foo/bar?ext_actions=Do+it'
         """
-        return ''.join([pootle_path, '?', urlencode({EXTDIR: self.title})])
+        return ''.join([l(pootle_path), '?', urlencode({EXTDIR: self.title})])
 
     @property
     def category(self):
@@ -464,7 +464,7 @@ class TranslationProjectAction(ExtensionAction):
         def link_func(_request, path_obj, **_kwargs):
             """Curried link function with self bound from instance method"""
             link = {'text': _(self.title),
-                    'href': l(self._query_url(path_obj.pootle_path)),
+                    'href': self._query_url(path_obj.pootle_path),
                     'icon': getattr(self, 'icon', 'icon-vote-inactive')}
             if type(self).__doc__:
                 link['tooltip'] = ' '.join(type(self).__doc__.split())
@@ -571,7 +571,7 @@ class DownloadAction(ExtensionAction):
                     link['href'] = reverse('pootle-export', args=[export_path])
             if 'href' not in link:
                 # no usable cache file, link to action query to generate it
-                link['href'] = l(self._query_url(path_obj.pootle_path))
+                link['href'] = self._query_url(path_obj.pootle_path)
             if type(self).__doc__:
                 # return docstring with normalized whitespace as tooltip
                 link['tooltip'] = ' '.join(type(self).__doc__.split())
