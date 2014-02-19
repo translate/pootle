@@ -35,6 +35,7 @@ js_common = Bundle(
     'js/vendor/bootstrap/bootstrap-transition.js',
     'js/captcha.js',
     'js/common.js',
+    'js/languages.js',
     'js/contact.js',
     'js/search.js',
     'js/stats.js',
