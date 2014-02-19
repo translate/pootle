@@ -39,7 +39,7 @@ urlpatterns = patterns('pootle_notifications',
         'views.view',
         name='pootle-notifications-tp-notices'),
 
-    url(r'^(?P<path>.*)notices/(?P<notice_id>[0-9]+)/?$',
+    url(r'^(?P<path>.*)notices/(?P<notice_id>[0-9]+)/$',
         'views.view_notice_item',
         name='pootle-notifications-notice'),
 )
