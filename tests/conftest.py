@@ -24,6 +24,7 @@ from pkgutil import iter_modules
 from django.conf import settings
 
 from . import fixtures
+from .fixtures import models as fixture_models
 
 
 def pytest_configure(config):
@@ -33,12 +34,14 @@ def pytest_configure(config):
         os.environ['POOTLE_SETTINGS_TESTS'] = '90-tests.conf'
 
 
-def _load_fixtures():
-    path = fixtures.__path__
-    prefix = '%s.' % fixtures.__name__
+def _load_fixtures(*modules):
+    for mod in modules:
+        path = mod.__path__
+        prefix = '%s.' % mod.__name__
 
-    return [name for loader, name, is_pkg in iter_modules(path, prefix)
-            if not is_pkg]
+        for loader, name, is_pkg in iter_modules(path, prefix):
+            if not is_pkg:
+                yield name
 
 
-pytest_plugins = _load_fixtures()
+pytest_plugins = tuple(_load_fixtures(fixtures, fixture_models), )
