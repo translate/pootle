@@ -36,11 +36,6 @@ def l(path):
     return path
 
 
-def m(path):
-    """ filter urls adding media url prefix if required """
-    return l(settings.MEDIA_URL + path)
-
-
 def s(path):
     """Filter URLs adding STATIC_URL prefix."""
     return settings.STATIC_URL + path
