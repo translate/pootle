@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2012 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -24,13 +24,10 @@ from django.utils.translation import ugettext as _
 
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
-from pootle_misc import dispatch
 from pootle_misc.baseurl import l
 from pootle_misc.versioncontrol import hasversioning
 from pootle.scripts import actions
 
-
-# FIXME: Replace dispatch.* calls by django.core.urlresolvers.reverse
 
 def directory(fn):
     """Decorator that returns links only for directory objects."""
@@ -57,8 +54,13 @@ def store(fn):
 @directory
 def download_zip(request, path_obj, **kwargs):
     if check_permission('archive', request):
+        if path_obj.is_dir:
+            current_folder = path_obj.pootle_path
+        else:
+            current_folder = path_obj.parent.pootle_path
+
         text = _('Download (.zip)')
-        link = dispatch.download_zip(path_obj)
+        link = l("%sexport/zip" % current_folder)
 
         return {
             'icon': 'icon-download',
@@ -73,7 +75,7 @@ def download_source(request, path_obj, **kwargs):
     if path_obj.name.startswith("pootle-terminology"):
         text = _("Download XLIFF")
         tooltip = _("Download file in XLIFF format")
-        href = dispatch.export(path_obj.pootle_path, 'xlf')
+        href = l('/export-file/%s%s' % ('xlf', path_obj.pootle_path))
     elif path_obj.translation_project.project.is_monolingual:
         text = _('Export')
         tooltip = _('Export translations')
@@ -98,7 +100,7 @@ def download_xliff(request, path_obj):
 
     text = _("Download XLIFF")
     tooltip = _('Download XLIFF file for offline translation')
-    href = dispatch.export(path_obj.pootle_path, 'xlf')
+    href = l('/export-file/%s%s' % ('xlf', path_obj.pootle_path))
 
     return {
         'icon': 'icon-download',
