@@ -31,57 +31,6 @@ from .models import PootleProfile
 User = get_user_model()
 
 
-def language_list(request):
-    """Return the list of localised language names, with 'default'."""
-    tr_default = _("Default")
-
-    if tr_default != "Default":
-        tr_default = u"%s | \u202dDefault" % tr_default
-
-    from pootle.i18n.override import lang_choices
-
-    choices = lang_choices()
-    choices.insert(0, ('', tr_default))
-
-    return choices
-
-
-def lang_auth_form_factory(request, **kwargs):
-
-    class LangAuthenticationForm(AuthenticationForm):
-
-        language = forms.ChoiceField(
-            label=_('Interface Language'),
-            choices=language_list(request),
-            initial="",
-            required=False,
-            widget=forms.Select(attrs={
-                'class': 'js-select2 select2-language',
-            }),
-        )
-
-
-        def clean(self):
-            username = self.cleaned_data.get('username')
-            password = self.cleaned_data.get('password')
-
-            if username and password:
-                self.user_cache = auth.authenticate(username=username,
-                                                    password=password)
-
-                if self.user_cache is None:
-                    raise forms.ValidationError(
-                        _("Please enter a correct username and password. "
-                          "Note that both fields are case-sensitive.")
-                    )
-                elif not self.user_cache.is_active:
-                    raise forms.ValidationError(_("This account is inactive."))
-
-            return self.cleaned_data
-
-    return LangAuthenticationForm(**kwargs)
-
-
 class UserForm(forms.ModelForm):
 
     class Meta:
@@ -103,8 +52,6 @@ def pootle_profile_form_factory(exclude_fields):
             # Delete the fields the user can't edit
             for field in self.exclude_fields:
                 del self.fields[field]
-            self.fields['ui_lang'].widget.attrs['class'] = \
-                "js-select2 select2-language"
             self.fields['alt_src_langs'].widget.attrs['class'] = \
                 "js-select2 select2-multiple"
             self.fields['alt_src_langs'].widget.attrs['data-placeholder'] = \
