@@ -52,8 +52,7 @@ def ajax_edit_goal(request, goal):
                                        _(u"No description yet."))
     ctx = {
         'form': form,
-        'form_action': reverse('pootle-tagging-ajax-edit-goal',
-                               args=[goal.slug]),
+        'form_action': reverse('pootle-xhr-edit-goal', args=[goal.slug]),
     }
     t = loader.get_template('admin/_settings_form.html')
     c = RequestContext(request, ctx)
