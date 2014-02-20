@@ -117,9 +117,6 @@ Editor Differences
 
 - Quality checks can be individually muted/unmuted.
 
-- The *Submit*/*Suggest* button is not enabled until a change over the
-  initial state of the unit is detected.
-
 - When going through all units in the translation editor, users will be
   automatically redirected back to overview.
 
@@ -184,3 +181,6 @@ Pootle-as-a-product has different business needs.
 
 - All templates are gathered in a single location (*pootle/templates*),
   and have been reorganized and sorted.
+
+- The *Submit*/*Suggest* button is not enabled until a change over the
+  initial state of the unit is detected.
