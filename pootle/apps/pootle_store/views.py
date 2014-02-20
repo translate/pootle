@@ -886,7 +886,7 @@ def get_tm_results(request, unit):
                 suggestions = SuggestionStat.objects.filter(
                                 suggester=profile,
                                 ).distinct().count()
-                translations = submissions - suggestions # XXX: is this correct?
+                translations = submissions - suggestions  # XXX: is this correct?
                 title = _("By %s on %s<br/><br/>%s translations<br/>%s suggestions" %(
                             profile.user.get_full_name(),
                             tmunit.submitted_on,
