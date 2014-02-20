@@ -1647,12 +1647,15 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 file_changed = True
 
         # Get units modified after last sync and before this sync started
-        filter = {'revision__lte': last_revision, 'store': self}
+        filter_by = {
+            'revision__lte': last_revision,
+            'store': self,
+        }
         # Sync all units if first sync
         if self.last_sync_revision is not None:
             filter_by.update({'revision__gt': self.last_sync_revision})
 
-        modified_units = set(Unit.objects.filter(**filter)
+        modified_units = set(Unit.objects.filter(**filter_by)
                                  .values_list('id', flat=True).distinct())
 
         common_dbids = set(self.dbid_index.get(uid)
