@@ -1426,7 +1426,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             if disk_mtime <= self.sync_time:
                 # The file on disk wasn't changed since the last sync
                 logging.debug(u"File didn't change since last sync, skipping "
-                    u"%s" % self.pootle_path)
+                              u"%s" % self.pootle_path)
                 return
 
         if store is None:
@@ -1563,7 +1563,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.state = old_state
             self.save()
             logging.debug(u"[update] %s in %s [%d]" % (
-                get_change_str(changes), self.pootle_path, self.get_last_revision()))
+                get_change_str(changes), self.pootle_path,
+                self.get_last_revision()),
+            )
 
 
     def sync(self, update_structure=False, conservative=True, create=False,
