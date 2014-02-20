@@ -22,8 +22,10 @@ def precommit(commitfile, author, message):
         htmlfile = os.path.join(settings.PODIRECTORY, os.path.dirname(commitfile), 'help.html')
         template = os.path.join(settings.VCS_DIRECTORY, commitfile.split('/')[0], 'de_DE/help.html')
         print 'Converting po to html: %s to %s' % (pofile, htmlfile)
-        with open(pofile, 'r') as po, open(htmlfile, 'w') as html, open(template, 'r') as templ:
-            po2html.converthtml(po, html, templ)
+        with open(pofile, 'r') as po:
+            with open(htmlfile, 'w') as html:
+                with open(template, 'r') as templ:
+                    po2html.converthtml(po, html, templ)
         print 'commit to %s' % htmlfile
         return [htmlfile]
 
@@ -45,8 +47,9 @@ def postupdate(updatedfile):
         potfile = os.path.join(settings.PODIRECTORY, updatedfile)
         htmlfile = os.path.join(settings.VCS_DIRECTORY, updatedfile.split('/')[0], 'de_DE/help.html')
         print 'Converting de_DE html to pot: %s to %s' % (htmlfile, potfile)
-        with open(htmlfile, 'r') as html, open(potfile, 'w') as pot:
-            html2po.converthtml(html, pot, None, pot=True)
+        with open(htmlfile, 'r') as html:
+            with open(potfile, 'w') as pot:
+                html2po.converthtml(html, pot, None, pot=True)
 
 def pretemplateupdate(updatedfile):
     print "*************** pretemplateupdate %s" % updatedfile
