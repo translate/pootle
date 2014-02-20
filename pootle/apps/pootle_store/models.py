@@ -432,8 +432,8 @@ class Unit(models.Model, base.TranslationUnit):
                     self.state = UNTRANSLATED
                     self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
-        if self._target_updated or self._state_updated or \
-            self._comment_updated:
+        if (self._target_updated or self._state_updated or
+            self._comment_updated):
             self.store.flag_for_deletion(CachedMethods.LAST_REVISION)
             self.revision = Revision.objects.inc()
 
@@ -1481,7 +1481,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             modified_units = set(
                 Unit.objects.filter(revision__gt=self.last_sync_revision,
                                     store=self)
-                            .values_list('id', flat=True).distinct())
+                            .values_list('id', flat=True).distinct()
+            )
 
             common_dbids = set(self.dbid_index.get(uid)
                                for uid in old_ids & new_ids)
@@ -1556,6 +1557,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         """Sync file with translations from DB."""
         if skip_missing and not self.file.exists():
             return
+
         last_revision = self.get_last_revision()
         last_mtime = self.get_mtime()
 
@@ -1616,12 +1618,13 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 disk_store.addunit(newunit)
                 file_changed = True
 
-        modified_units = set(Unit.objects \
-                    .filter(revision__gte=last_revision, store=self)
-                    .values_list('id', flat=True).distinct())
+        modified_units = set(
+            Unit.objects.filter(revision__gte=last_revision, store=self)
+                        .values_list('id', flat=True).distinct()
+        )
 
-        common_dbids = set(self.dbid_index.get(uid) \
-                               for uid in old_ids & new_ids)
+        common_dbids = set(self.dbid_index.get(uid)
+                           for uid in old_ids & new_ids)
         if conservative:
             common_dbids &= modified_units
 

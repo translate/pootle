@@ -76,8 +76,10 @@ def initdb():
         config.set('TT_BUILDVERSION', code_tt_buildversion)
     config.save()
 
+
 def create_revision():
     Revision.objects.get_or_create(id=1)
+
 
 def create_essential_users():
     """Create the 'default' and 'nobody' User instances.

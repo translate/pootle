@@ -21,6 +21,7 @@
 
 from django.db import models, connections
 
+
 class RevisionManager(models.Manager):
     def inc(self):
         cursor = connections[self.db].cursor()
@@ -35,6 +36,7 @@ class RevisionManager(models.Manager):
         result = cursor.fetchall()
 
         return result[0][0]
+
 
 class Revision(models.Model):
     counter = models.IntegerField(null=False, default=0)
