@@ -54,13 +54,15 @@
           reqData = {
             path: PTL.stats.pootlePath
           };
-      $.ajax({
-        url: url,
-        data: reqData,
-        success: function (data) {
-          $summary.append(data);
-        },
-      });
+      if (url) {
+        $.ajax({
+          url: url,
+          data: reqData,
+          success: function (data) {
+            $summary.append(data);
+          },
+        });
+      }
     },
 
     updateSummary: function ($summary, data) {
