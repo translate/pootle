@@ -40,7 +40,7 @@ def gentopstats_root():
         top_sub    = group_by_sort(User.objects.exclude(pootleprofile__submission=None),
                                    'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
         result = map(None, top_sugg, top_review, top_sub)
-        cache.set(key, result, settings.CACHE_MIDDLEWARE_SECONDS * 3)
+        cache.set(key, result, settings.POOTLE_TOP_STATS_CACHE_TIMEOUT)
     return result
 
 
@@ -66,7 +66,7 @@ def gentopstats_language(language):
                                    'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
 
         result = map(None, top_sugg, top_review, top_sub)
-        cache.set(key, result, settings.CACHE_MIDDLEWARE_SECONDS * 2)
+        cache.set(key, result, settings.POOTLE_TOP_STATS_CACHE_TIMEOUT)
     return result
 
 
@@ -92,7 +92,7 @@ def gentopstats_project(project):
                                    'pootleprofile__submission', ['username'])[:settings.TOPSTAT_SIZE]
 
         result = map(None, top_sugg, top_review, top_sub)
-        cache.set(key, result, settings.CACHE_MIDDLEWARE_SECONDS * 2)
+        cache.set(key, result, settings.POOTLE_TOP_STATS_CACHE_TIMEOUT)
     return result
 
 
