@@ -73,6 +73,14 @@ Backend and caching settings.
   Time in seconds the Pootle's statistics cache will last.
 
 
+.. setting:: POOTLE_TOP_STATS_CACHE_TIMEOUT
+
+``POOTLE_TOP_STATS_CACHE_TIMEOUT``
+  Default: ``86400``
+
+  Time in seconds the Pootle's top statistics cache will last.
+
+
 30-site.conf
 ^^^^^^^^^^^^
 
