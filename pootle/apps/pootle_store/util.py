@@ -151,6 +151,6 @@ def get_change_str(changes):
            for key in changes if changes[key] > 0]
 
     if res:
-        return ",".join(res)
+        return ", ".join(res)
 
     return "nothing changed"
