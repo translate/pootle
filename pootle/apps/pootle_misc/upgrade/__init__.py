@@ -172,7 +172,7 @@ def get_upgrade_functions(mod, old_buildversion, new_buildversion):
         functions,
     )
 
-    return sorted(filtered_functions, cmp=lambda x,y: cmp(x[1], y[1]))
+    return sorted(filtered_functions, cmp=lambda x, y: cmp(x[1], y[1]))
 
 
 def run_upgrade(old_ptl_buildversion=None, new_ptl_buildversion=None,
