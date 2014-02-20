@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding field 'Store.last_sync_revision'
         db.add_column('pootle_store_store', 'last_sync_revision',
-                      self.gf('django.db.models.fields.IntegerField')(default=0, db_index=True),
+                      self.gf('django.db.models.fields.IntegerField')(null=True, db_index=True),
                       keep_default=False)
 
         # Adding field 'Unit.revision'
@@ -119,7 +119,7 @@ class Migration(SchemaMigration):
             'creation_time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'db_index': 'True', 'blank': 'True'}),
             'file': ('pootle_store.fields.TranslationStoreField', [], {'max_length': '255', 'db_index': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_sync_revision': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
+            'last_sync_revision': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'db_index': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'parent': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'child_stores'", 'to': "orm['pootle_app.Directory']"}),
             'pootle_path': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255', 'db_index': 'True'}),

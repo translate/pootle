@@ -139,3 +139,14 @@ def get_sugg_list(unit):
         sugg_list.append((sugg, score))
 
     return sugg_list
+
+
+def get_change_str(changes):
+    res = []
+    for key in changes:
+        if changes[key] > 0:
+            res.append(u"%s: %d" % (key, changes[key]))
+    if res:
+        return ",".join(res)
+    else:
+        return "nothing changed"

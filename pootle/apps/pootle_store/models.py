@@ -49,7 +49,7 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              UNIT_OBSOLETE, STORE_ADDED, STORE_DELETED,
                              MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
-                             action_log, store_log)
+                             action_log, store_log, log)
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
@@ -65,7 +65,7 @@ from .fields import (TranslationStoreField, MultiStringField,
 from .filetypes import factory_classes
 from .util import (calc_total_wordcount, calc_translated_wordcount,
                    calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED,
-                   FUZZY, TRANSLATED)
+                   FUZZY, TRANSLATED, get_change_str)
 from .signals import translation_submitted
 
 
@@ -1165,7 +1165,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             db_index=True)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
-    last_sync_revision = models.IntegerField(db_index=True, default=0)
+    last_sync_revision = models.IntegerField(db_index=True, null=True)
 
     objects = StoreManager()
 
@@ -1425,8 +1425,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
             if disk_mtime <= self.sync_time:
                 # The file on disk wasn't changed since the last sync
-                logging.debug(u"File didn't change since last sync, skipping "
-                              u"%s", self.pootle_path)
+                log(u"[update] File didn't change since last sync, skipping "
+                              u"%s [%d]" % (self.pootle_path, self.last_sync_revision))
                 return
 
         if store is None:
@@ -1439,6 +1439,13 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         self.save()
 
         try:
+            changes = {
+                'obsolete': 0,
+                'deleted': 0,
+                'updated': 0,
+                'added': 0
+            }
+
             if fuzzy:
                 matcher = self.get_matcher()
 
@@ -1462,13 +1469,16 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         if unit.istranslated():
                             unit.makeobsolete()
                             unit.save()
+                            changes['obsolete'] += 1
                         else:
                             unit.delete()
+                            changes['deleted'] += 1
 
                 # Add new units to the store
                 new_units = (store.findid(uid) for uid in new_ids - old_ids)
                 for unit in new_units:
                     newunit = self.addunit(unit, unit.index)
+                    changes['added'] += 1
 
                     # Fuzzy match non-empty target strings
                     if fuzzy and not filter(None, newunit.target.strings):
@@ -1517,6 +1527,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         self._remove_obsolete(match_unit.source)
 
                 if changed:
+                    changes['updated'] += 1
                     create_subs = {}
 
                     if unit._target_updated:
@@ -1551,6 +1562,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             # Unlock store
             self.state = old_state
             self.save()
+            log(u"[update] %s in %s [%d]" %
+                (get_change_str(changes),
+                 self.pootle_path, self.get_last_revision()))
+
 
     def sync(self, update_structure=False, conservative=True, create=False,
              profile=None, skip_missing=False, only_newer=False):
@@ -1563,6 +1578,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         if (only_newer and
             self.last_sync_revision >= last_revision):
+            log(u"[sync] No updates for %s after [%d]" %
+                (self.pootle_path, self.last_sync_revision))
             return
 
         if not self.file:
@@ -1576,6 +1593,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 )
                 store = self.convert(storeclass)
                 store.savefile(store_path)
+                log(u"Created file for %s [%d]" %
+                    (self.pootle_path, last_revision))
 
                 self.file = store_path
                 self.update_store_header(profile=profile)
@@ -1597,6 +1616,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         new_ids = set(self.dbid_index.keys())
 
         file_changed = False
+        changes = {
+            'obsolete': 0,
+            'deleted': 0,
+            'updated': 0,
+            'added': 0
+        }
 
         if update_structure:
             obsolete_units = (disk_store.findid(uid) \
@@ -1605,10 +1630,13 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 if not unit.istranslated():
                     del unit
                 elif not conservative:
+                    changes['obsolete'] += 1
                     unit.makeobsolete()
 
                     if not unit.isobsolete():
+                        changes['deleted'] += 1
                         del unit
+
 
                 file_changed = True
 
@@ -1616,16 +1644,23 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             for unit in self.findid_bulk(new_dbids):
                 newunit = unit.convert(disk_store.UnitClass)
                 disk_store.addunit(newunit)
+                changes['added'] += 1
                 file_changed = True
 
-        modified_units = set(
-            Unit.objects.filter(revision__gte=last_revision, store=self)
-                        .values_list('id', flat=True).distinct()
-        )
+        # Get units modified after last sync and before this sync started
+        filter = {'revision__lte': last_revision, 'store': self}
+        # Sync all units if first sync
+        if not self.last_sync_revision is None:
+            filter.update({'revision__gt': self.last_sync_revision})
+
+        modified_units = set(Unit.objects.filter(**filter)
+                                 .values_list('id', flat=True).distinct())
 
         common_dbids = set(self.dbid_index.get(uid)
-                           for uid in old_ids & new_ids)
+                               for uid in old_ids & new_ids)
+
         if conservative:
+            # Sync only modified units
             common_dbids &= modified_units
 
         common_dbids = list(common_dbids)
@@ -1635,11 +1670,17 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             if match is not None:
                 changed = unit.sync(match)
                 if changed:
+                    changes['updated'] += 1
                     file_changed = True
 
         if file_changed:
             self.update_store_header(profile=profile)
             self.file.savestore()
+
+            log(u"[sync] %s in %s [%d]" %
+                (get_change_str(changes), self.pootle_path, last_revision))
+        else:
+            log(u"[sync] nothing changed in %s [%d]" % (self.pootle_path, last_revision))
 
         self.sync_time = last_mtime
         self.last_sync_revision = last_revision
