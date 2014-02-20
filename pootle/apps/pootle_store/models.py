@@ -234,7 +234,7 @@ class UnitManager(RelatedManager):
                 where=[
                     '`pootle_store_store`.`pootle_path` LIKE %s',
                     '`pootle_store_store`.`pootle_path` NOT LIKE %s',
-                ], params=[''.join(['/%/', proj ,'/%']), '/templates/%']
+                ], params=[''.join(['/%/', proj, '/%']), '/templates/%']
             )
         # /<lang_code>/<project_code>/translate/*
         # /<lang_code>/translate/*
