@@ -132,7 +132,7 @@ def ajax_list_tags(request, project):
         "taggit_taggeditem_items__object_id__in": translation_projects,
     }
 
-    queryset = Tag.objects.filter(**criteria).distinct()  #.values_list("id", "name")
+    queryset = Tag.objects.filter(**criteria).distinct()  # .values_list("id", "name")
 
     return HttpResponse(serializers.serialize("json", queryset))
 
