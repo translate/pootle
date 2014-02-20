@@ -853,7 +853,6 @@ class Unit(models.Model, base.TranslationUnit):
         if self.state > OBSOLETE:
             # when Unit becomes obsolete the cache flags should be updated
             self.flag_store_before_going_away()
-            self._save_action = UNIT_OBSOLETE
 
             self.state = OBSOLETE
 
