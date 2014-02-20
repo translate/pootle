@@ -1426,7 +1426,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             if disk_mtime <= self.sync_time:
                 # The file on disk wasn't changed since the last sync
                 log(u"[update] File didn't change since last sync, skipping "
-                              u"%s [%d]" % (self.pootle_path, self.last_sync_revision))
+                    u"%s [%d]" % (self.pootle_path, self.last_sync_revision))
                 return
 
         if store is None:
@@ -1443,7 +1443,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 'obsolete': 0,
                 'deleted': 0,
                 'updated': 0,
-                'added': 0
+                'added': 0,
             }
 
             if fuzzy:
@@ -1620,11 +1620,11 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             'obsolete': 0,
             'deleted': 0,
             'updated': 0,
-            'added': 0
+            'added': 0,
         }
 
         if update_structure:
-            obsolete_units = (disk_store.findid(uid) \
+            obsolete_units = (disk_store.findid(uid)
                               for uid in old_ids - new_ids)
             for unit in obsolete_units:
                 if not unit.istranslated():
@@ -1636,7 +1636,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     if not unit.isobsolete():
                         changes['deleted'] += 1
                         del unit
-
 
                 file_changed = True
 
@@ -1650,14 +1649,14 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         # Get units modified after last sync and before this sync started
         filter = {'revision__lte': last_revision, 'store': self}
         # Sync all units if first sync
-        if not self.last_sync_revision is None:
-            filter.update({'revision__gt': self.last_sync_revision})
+        if self.last_sync_revision is not None:
+            filter_by.update({'revision__gt': self.last_sync_revision})
 
         modified_units = set(Unit.objects.filter(**filter)
                                  .values_list('id', flat=True).distinct())
 
         common_dbids = set(self.dbid_index.get(uid)
-                               for uid in old_ids & new_ids)
+                           for uid in old_ids & new_ids)
 
         if conservative:
             # Sync only modified units
