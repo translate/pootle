@@ -142,11 +142,15 @@ def get_sugg_list(unit):
 
 
 def get_change_str(changes):
-    res = []
-    for key in changes:
-        if changes[key] > 0:
-            res.append(u"%s: %d" % (key, changes[key]))
+    """Returns a formatted string for the non-zero items of a `changes`
+    dictionary.
+
+    If all elements are zero, `nothing changed` is returned.
+    """
+    res = [u'%s: %d' % (key, changes[key])
+           for key in changes if changes[key] > 0]
+
     if res:
         return ",".join(res)
-    else:
-        return "nothing changed"
+
+    return "nothing changed"
