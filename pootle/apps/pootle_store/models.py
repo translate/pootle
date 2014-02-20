@@ -2001,7 +2001,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             try:
                 sub = Submission.simple_objects.filter(store=self).latest()
             except Submission.DoesNotExist:
-                return  {'id': 0, 'mtime': 0, 'snippet': ''}
+                return {'id': 0, 'mtime': 0, 'snippet': ''}
         else:
             sub = submission
 
