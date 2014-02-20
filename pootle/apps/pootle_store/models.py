@@ -1763,7 +1763,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 except IndexError:
                     raise Submission.DoesNotExist
             except Submission.DoesNotExist:
-                return  {'id': 0, 'mtime': 0, 'snippet': ''}
+                return {'id': 0, 'mtime': 0, 'snippet': ''}
         else:
             sub = submission
 
