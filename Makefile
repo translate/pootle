@@ -46,6 +46,9 @@ mo:
 mo-all:
 	python setup.py build_mo --all
 
+pep8:
+	@./pootle/tools/pep8.sh travis
+
 publish-pypi:
 	python setup.py sdist ${FORMATS} upload
 
