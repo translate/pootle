@@ -31,9 +31,6 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         try:
-            r = Revision.objects.get()
-            print r.counter
-
-        except Revision.DoesNotExist:
-            # if there is no latest id, treat it as id 0
-            print 0
+            print Revision.objects.values_list('counter')[0]
+        except IndexError:
+            print 0  # No revision stored yet, consider it 0
