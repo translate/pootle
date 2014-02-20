@@ -238,11 +238,9 @@ for automation.
 .. _commands#revision:
 
 revision
-^^^^^^^^^^^^^^^^
+^^^^^^^^
 
-.. versionadded:: 2.5
-
-This command prints the number of current revision.
+This command prints the number of the latest revision.
 
 .. _commands#test_checks:
 
