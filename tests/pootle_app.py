@@ -27,30 +27,10 @@ def unit_dict(pootle_path):
     return result
 
 
-class AnonTests(PootleTestCase):
-    def test_admin_not_logged(self):
-        """checks that admin pages are not accessible without login"""
-        response = self.client.get(reverse('pootle-admin'))
-        self.assertContains(response, '', status_code=403)
-
-    def test_missing_end_slash(self):
-        response = self.client.get("/ar")
-        self.assertRedirects(response, "/ar/", status_code=301)
-        response = self.client.get("/projects/terminology")
-        self.assertRedirects(response, "/projects/terminology/", status_code=301)
-
-
 class AdminTests(PootleTestCase):
     def setUp(self):
         super(AdminTests, self).setUp()
         self.client.login(username='admin', password='admin')
-
-    def test_admin_rights(self):
-        """checks that admin user can access admin pages"""
-        response = self.client.get('/')
-        self.assertContains(response, "<a class=\"admin\" href='%s'>Admin</a>" % reverse('pootle-admin'))
-        response = self.client.get(reverse('pootle-admin'))
-        self.assertContains(response, 'Dependency Checks')
 
     def test_add_project(self):
         """Checks that we can add a project successfully."""
@@ -432,11 +412,6 @@ msgstr "resto"
 
 
 class NonprivTests(PootleTestCase):
-
-    def test_non_admin_rights(self):
-        """checks that non privileged users cannot access admin pages"""
-        response = self.client.get(reverse('pootle-admin'))
-        self.assertContains(response, '', status_code=403)
 
     def test_upload_suggestions(self):
         """Tests that we can upload when we only have suggest rights."""
