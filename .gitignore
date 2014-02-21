@@ -63,3 +63,6 @@ Pootle.egg-info/
 .reqs
 requirements-min-versions.txt
 requirements-pinned.txt
+
+# Coverage
+.coverage.*

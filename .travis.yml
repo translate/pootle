@@ -23,14 +23,17 @@ before_script:
 script:
   - python -m compileall -q -f .
   - make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
-  - python manage.py syncdb --noinput
-  - python manage.py migrate
-  - python manage.py initdb
-  - ./manage.py runserver &
+  - coverage run --parallel-mode manage.py syncdb --noinput
+  - coverage run --parallel-mode manage.py migrate
+  - coverage run --parallel-mode manage.py initdb
+  - coverage run --parallel-mode ./manage.py runserver &
   - TESTPID=$!
   - sleep 20
   - kill -2 $TESTPID
   - make pep8
+after_success:
+  - coverage combine
+  - coveralls
 notifications:
   email:
     on_failure: always
