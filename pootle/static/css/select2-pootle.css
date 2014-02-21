@@ -62,7 +62,7 @@
          -o-box-shadow: 0 -4px 5px rgba(0, 0, 0, .15);
 }
 
-.select2-container .select2-choice div
+.select2-container .select2-choice .select2-arrow
 {
     border-left: 1px solid #d9d9d9;
     -webkit-border-radius: 0 2px 2px 0;
@@ -79,7 +79,7 @@
     background-image: linear-gradient(top, #dddddd 0%, #eeeeee 60%);
 }
 
-.breadcrumb .select2-container .select2-choice div
+.breadcrumb .select2-container .select2-choice .select2-arrow
 {
     border-left: 1px solid transparent;
     background-color: transparent;
