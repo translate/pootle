@@ -173,23 +173,23 @@ A sample Apache configuration with mod_wsgi might look like this:
         # Turn off directory listing by default.
         Options -Indexes
 
+        # Compress before being sent to the client over the network.
+        # This might require enabling the 'deflate' module.
+        SetOutputFilter DEFLATE
+        AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript
+
         # Set expiration for some types of files.
         # This might require enabling the 'expires' module.
         ExpiresActive On
 
-        ExpiresByType image/jpg "access plus 2 hours"
-        ExpiresByType image/png "access plus 2 hours"
-
+        ExpiresByType image/jpg "access plus 10 years"
+        ExpiresByType image/png "access plus 10 years"
         ExpiresByType text/css "access plus 10 years"
         ExpiresByType application/x-javascript "access plus 10 years"
 
         # Optimal caching by proxies.
         # This might require enabling the 'headers' module.
         Header set Cache-Control "public"
-
-        # gzip compression
-        SetOutputFilter DEFLATE
-        AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript
 
         # Directly serve static files like css and images, no need to go
         # through mod_wsgi and Django. For high performance consider having a
