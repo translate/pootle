@@ -1,5 +1,4 @@
 window.PTL.languages = [
-    ["", "(Default)"],
     ["ach", "‪ach‬"],
     ["af", "‪Afrikaans‬"],
     ["ak", "‪Akan‬"],
