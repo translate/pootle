@@ -177,9 +177,8 @@ A sample Apache configuration with mod_wsgi might look like this:
         # This might require enabling the 'expires' module.
         ExpiresActive On
 
-        ExpiresByType image/jpg "access plus 2 hours"
-        ExpiresByType image/png "access plus 2 hours"
-
+        ExpiresByType image/jpg "access plus 10 years"
+        ExpiresByType image/png "access plus 10 years"
         ExpiresByType text/css "access plus 10 years"
         ExpiresByType application/x-javascript "access plus 10 years"
 
