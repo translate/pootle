@@ -1,6 +1,5 @@
 <li>
-  <select id="js-select-language" data-initial-code="{{ language.code }}"
-    style="visibility: hidden;">
+  <select id="js-select-language" data-initial-code="{{ language.code }}">
     <option value=""></option>
     {% for lang in ALL_LANGUAGES %}
     <option value="{{ lang.code }}"
@@ -11,8 +10,7 @@
   </select>
 </li>
 <li>
-  <select id="js-select-project" data-initial-code="{{ project.code }}"
-    style="visibility: hidden;">
+  <select id="js-select-project" data-initial-code="{{ project.code }}">
     <option value=""></option>
     {% for proj in ALL_PROJECTS %}
     <option value="{{ proj.code }}"
