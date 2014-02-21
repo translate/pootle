@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009, 2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -18,21 +19,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from pootle.tests import PootleTestCase
-from pootle_store.models import Store
+import pytest
 
 
-class SuggestionTests(PootleTestCase):
-    def setUp(self):
-        super(SuggestionTests, self).setUp()
-        self.store = Store.objects.get(pootle_path="/af/tutorial/pootle.po")
+@pytest.mark.django_db
+def test_hash(af_tutorial_po):
+    """Tests that target hash changes when suggestion is modified"""
+    unit = af_tutorial_po.getitem(0)
+    suggestion = unit.add_suggestion("gras")
 
-    def test_hash(self):
-        unit = self.store.getitem(0)
-        suggestion = unit.add_suggestion("gras")
-        first_hash = suggestion.target_hash
-        suggestion.translator_comment = "my nice comment"
-        second_hash = suggestion.target_hash
-        assert first_hash != second_hash
-        suggestion.target = "gras++"
-        assert first_hash != second_hash != suggestion.target_hash
+    first_hash = suggestion.target_hash
+    suggestion.translator_comment = "my nice comment"
+    second_hash = suggestion.target_hash
+    assert first_hash != second_hash
+
+    suggestion.target = "gras++"
+    assert first_hash != second_hash != suggestion.target_hash
