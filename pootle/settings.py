@@ -24,12 +24,19 @@ import os
 DEFAULT_TEST_SETTINGS = ['90-tests.conf', '90-tests-local.conf']
 
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
+ROOT_DIR = os.path.dirname(WORKING_DIR)
 
 
 def working_path(filename):
     """Return an absolute path for :param:`filename` by joining it to
     ``WORKING_DIR``."""
     return os.path.join(WORKING_DIR, filename)
+
+
+def root_path(filename):
+    """Return an absolute path for :param:`filename` by joining it to
+    ``ROOT_DIR``."""
+    return os.path.join(ROOT_DIR, filename)
 
 
 def remove_custom_settings(file_path):
