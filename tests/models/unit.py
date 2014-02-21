@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009, 2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -18,113 +19,148 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import time
+import pytest
 
 from translate.storage import factory
 
-from pootle.tests import PootleTestCase
-from pootle_store.models import Store
+
+def _update_translation(store, item, new_values):
+    unit = store.getitem(item)
+
+    if 'target' in new_values:
+        unit.target = new_values['target']
+
+    if 'fuzzy' in new_values:
+        unit.markfuzzy(new_values['fuzzy'])
+
+    if 'translator_comment' in new_values:
+        unit.translator_comment = new_values['translator_comment']
+
+    unit.save()
+    store.sync()
+
+    return store.getitem(item)
 
 
-class UnitTests(PootleTestCase):
-    def setUp(self):
-        super(UnitTests, self).setUp()
-        self.store = Store.objects.get(pootle_path="/af/tutorial/pootle.po")
+@pytest.mark.django_db
+def test_getorig(af_tutorial_po):
+    """Tests that the in-DB Store and on-disk Store match by checking that
+    units match in order.
+    """
+    for db_unit in af_tutorial_po.units.iterator():
+        store_unit = db_unit.getorig()
+        assert db_unit.getid() == store_unit.getid()
 
-    def _update_translation(self, item, newvalues):
-        unit = self.store.getitem(item)
-        time.sleep(1)
-        if 'target' in newvalues:
-            unit.target = newvalues['target']
-        if 'fuzzy' in newvalues:
-            unit.markfuzzy(newvalues['fuzzy'])
-        if 'translator_comment' in newvalues:
-            unit.translator_comment = newvalues['translator_comment']
-        unit.save()
-        self.store.sync()
-        return self.store.getitem(item)
 
-    def test_getorig(self):
-        for dbunit in self.store.units.iterator():
-            storeunit = dbunit.getorig()
-            self.assertEqual(dbunit.getid(), storeunit.getid())
+@pytest.mark.django_db
+def test_convert(af_tutorial_po):
+    """Tests that in-DB and on-disk units match after format conversion."""
+    for db_unit in af_tutorial_po.units.iterator():
+        if db_unit.hasplural() and not db_unit.istranslated():
+            # Skip untranslated plural units, they will always look
+            # different
+            continue
 
-    def test_convert(self):
-        for dbunit in self.store.units.iterator():
-            if dbunit.hasplural() and not dbunit.istranslated():
-                # skip untranslated plural units, they will always look different
-                continue
-            storeunit = dbunit.getorig()
-            newunit = dbunit.convert(self.store.file.store.UnitClass)
-            self.assertEqual(str(newunit), str(storeunit))
+        store_unit = db_unit.getorig()
+        newunit = db_unit.convert(af_tutorial_po.file.store.UnitClass)
 
-    def test_update_target(self):
-        dbunit = self._update_translation(0, {'target': u'samaka'})
-        storeunit = dbunit.getorig()
+        assert str(newunit) == str(store_unit)
 
-        self.assertEqual(dbunit.target, u'samaka')
-        self.assertEqual(dbunit.target, storeunit.target)
-        pofile = factory.getobject(self.store.file.path)
-        self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
 
-    def test_empty_plural_target(self):
-        """test we don't delete empty plural targets"""
-        dbunit = self._update_translation(2, {'target': [u'samaka']})
-        storeunit = dbunit.getorig()
-        self.assertEqual(len(storeunit.target.strings), 2)
-        dbunit = self._update_translation(2, {'target': u''})
-        self.assertEqual(len(storeunit.target.strings), 2)
+@pytest.mark.django_db
+def test_update_target(af_tutorial_po):
+    """Tests that target changes are properly sync'ed to disk."""
+    db_unit = _update_translation(af_tutorial_po, 0, {'target': u'samaka'})
+    store_unit = db_unit.getorig()
 
-    def test_update_plural_target(self):
-        dbunit = self._update_translation(2, {'target': [u'samaka', u'samak']})
-        storeunit = dbunit.getorig()
+    assert db_unit.target == u'samaka'
+    assert db_unit.target == store_unit.target
 
-        self.assertEqual(dbunit.target.strings, [u'samaka', u'samak'])
-        self.assertEqual(dbunit.target.strings, storeunit.target.strings)
-        pofile = factory.getobject(self.store.file.path)
-        self.assertEqual(dbunit.target.strings, pofile.units[dbunit.index].target.strings)
+    po_file = factory.getobject(af_tutorial_po.file.path)
+    assert db_unit.target == po_file.units[db_unit.index].target
 
-        self.assertEqual(dbunit.target, u'samaka')
-        self.assertEqual(dbunit.target, storeunit.target)
-        self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
 
-    def test_update_plural_target_dict(self):
-        dbunit = self._update_translation(2, {'target': {0: u'samaka', 1: u'samak'}})
-        storeunit = dbunit.getorig()
+@pytest.mark.django_db
+def test_empty_plural_target(af_tutorial_po):
+    """Tests empty plural targets are not deleted."""
+    db_unit = _update_translation(af_tutorial_po, 2, {'target': [u'samaka']})
+    store_unit = db_unit.getorig()
+    assert len(store_unit.target.strings) == 2
 
-        self.assertEqual(dbunit.target.strings, [u'samaka', u'samak'])
-        self.assertEqual(dbunit.target.strings, storeunit.target.strings)
-        pofile = factory.getobject(self.store.file.path)
-        self.assertEqual(dbunit.target.strings, pofile.units[dbunit.index].target.strings)
+    db_unit = _update_translation(af_tutorial_po, 2, {'target': u''})
+    assert len(store_unit.target.strings) == 2
 
-        self.assertEqual(dbunit.target, u'samaka')
-        self.assertEqual(dbunit.target, storeunit.target)
-        self.assertEqual(dbunit.target, pofile.units[dbunit.index].target)
 
-    def test_update_fuzzy(self):
-        dbunit = self._update_translation(0, {'target': u'samaka', 'fuzzy': True})
-        storeunit = dbunit.getorig()
+@pytest.mark.django_db
+def test_update_plural_target(af_tutorial_po):
+    """Tests plural translations are stored and sync'ed."""
+    db_unit = _update_translation(af_tutorial_po, 2,
+                                 {'target': [u'samaka', u'samak']})
+    store_unit = db_unit.getorig()
 
-        self.assertTrue(dbunit.isfuzzy())
-        self.assertEqual(dbunit.isfuzzy(), storeunit.isfuzzy())
-        pofile = factory.getobject(self.store.file.path)
-        self.assertEqual(dbunit.isfuzzy(), pofile.units[dbunit.index].isfuzzy())
+    assert db_unit.target.strings == [u'samaka', u'samak']
+    assert db_unit.target.strings == store_unit.target.strings
 
-        time.sleep(1)
+    po_file = factory.getobject(af_tutorial_po.file.path)
+    assert db_unit.target.strings == po_file.units[db_unit.index].target.strings
 
-        dbunit = self._update_translation(0, {'fuzzy': False})
-        storeunit = dbunit.getorig()
+    assert db_unit.target == u'samaka'
+    assert db_unit.target == store_unit.target
+    assert db_unit.target == po_file.units[db_unit.index].target
 
-        self.assertFalse(dbunit.isfuzzy())
-        self.assertEqual(dbunit.isfuzzy(), storeunit.isfuzzy())
-        pofile = factory.getobject(self.store.file.path)
-        self.assertEqual(dbunit.isfuzzy(), pofile.units[dbunit.index].isfuzzy())
 
-    def test_update_comment(self):
-        dbunit = self._update_translation(0, {'translator_comment': u'7amada'})
-        storeunit = dbunit.getorig()
+@pytest.mark.django_db
+def test_update_plural_target_dict(af_tutorial_po):
+    """Tests plural translations are stored and sync'ed (dict version)."""
+    db_unit = _update_translation(af_tutorial_po, 2,
+                                 {'target': {0: u'samaka', 1: u'samak'}})
+    store_unit = db_unit.getorig()
 
-        self.assertEqual(dbunit.getnotes(origin="translator"), u'7amada')
-        self.assertEqual(dbunit.getnotes(origin="translator"), storeunit.getnotes(origin="translator"))
-        pofile = factory.getobject(self.store.file.path)
-        self.assertEqual(dbunit.getnotes(origin="translator"), pofile.units[dbunit.index].getnotes(origin="translator"))
+    assert db_unit.target.strings == [u'samaka', u'samak']
+    assert db_unit.target.strings == store_unit.target.strings
+
+    po_file = factory.getobject(af_tutorial_po.file.path)
+    assert db_unit.target.strings == po_file.units[db_unit.index].target.strings
+
+    assert db_unit.target == u'samaka'
+    assert db_unit.target == store_unit.target
+    assert db_unit.target == po_file.units[db_unit.index].target
+
+
+@pytest.mark.django_db
+def test_update_fuzzy(af_tutorial_po):
+    """Tests fuzzy state changes are stored and sync'ed."""
+    db_unit = _update_translation(af_tutorial_po, 0,
+                                 {'target': u'samaka', 'fuzzy': True})
+    store_unit = db_unit.getorig()
+
+    assert db_unit.isfuzzy() == True
+    assert db_unit.isfuzzy() == store_unit.isfuzzy()
+
+    po_file = factory.getobject(af_tutorial_po.file.path)
+    assert db_unit.isfuzzy() == po_file.units[db_unit.index].isfuzzy()
+
+    db_unit = _update_translation(af_tutorial_po, 0, {'fuzzy': False})
+    store_unit = db_unit.getorig()
+
+    assert db_unit.isfuzzy() == False
+    assert db_unit.isfuzzy() == store_unit.isfuzzy()
+
+    po_file = factory.getobject(af_tutorial_po.file.path)
+    assert db_unit.isfuzzy() == po_file.units[db_unit.index].isfuzzy()
+
+
+@pytest.mark.django_db
+def test_update_comment(af_tutorial_po):
+    """Tests translator comments are stored and sync'ed."""
+    db_unit = _update_translation(af_tutorial_po, 0,
+                                 {'translator_comment': u'7amada'})
+    store_unit = db_unit.getorig()
+
+    assert db_unit.getnotes(origin='translator') == u'7amada'
+    assert db_unit.getnotes(origin='translator') == \
+            store_unit.getnotes(origin='translator')
+
+    po_file = factory.getobject(af_tutorial_po.file.path)
+    assert db_unit.getnotes(origin='translator') == \
+            po_file.units[db_unit.index].getnotes(origin='translator')
