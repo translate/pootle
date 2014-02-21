@@ -20,8 +20,9 @@
 
 import os
 
+from django.test import TestCase
+
 from pootle.core.initdb import require_english
-from pootle.tests import PootleTestCase
 
 from pootle_project.models import Project
 from pootle_store.models import Store
@@ -30,7 +31,7 @@ from pootle_language.models import Language
 from pootle_store.util import OBSOLETE
 
 
-class GnuTests(PootleTestCase):
+class GnuTests(TestCase):
     """Tests for Gnu Style projects"""
 
     template_text = r'''msgid ""
@@ -276,7 +277,7 @@ class NonGnuTests(GnuTests):
         self.assertEqual(self.project.get_treestyle(), 'nongnu')
 
 
-class XliffTests(PootleTestCase):
+class XliffTests(TestCase):
     """tests for XLIFF projects"""
 
     template_text = r'''<?xml version="1.0" encoding="utf-8"?>

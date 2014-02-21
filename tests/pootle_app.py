@@ -4,11 +4,21 @@ import zipfile
 
 from translate.misc import wStringIO
 
-from pootle.tests import PootleTestCase, formset_dict
+from django.test import TestCase
 
 from pootle_project.models import Project
 from pootle_language.models import Language
 from pootle_store.models import Store
+
+
+def formset_dict(data):
+    """convert human readable POST dictionary into brain dead django formset
+    dictionary"""
+    new_data = {'form-TOTAL_FORMS': len(data), 'form-INITIAL_FORMS': 0}
+    for i in range(len(data)):
+        for key, value in data[i].iteritems():
+            new_data["form-%d-%s" % (i, key)] = value
+    return new_data
 
 
 def unit_dict(pootle_path):
@@ -25,7 +35,7 @@ def unit_dict(pootle_path):
     return result
 
 
-class AdminTests(PootleTestCase):
+class AdminTests(TestCase):
     def setUp(self):
         super(AdminTests, self).setUp()
         self.client.login(username='admin', password='admin')
@@ -399,7 +409,7 @@ msgstr "resto"
         self.assertEqual(store.units[0].getnotes(), 'goodbye\nand thanks for all the fish')
 
 
-class NonprivTests(PootleTestCase):
+class NonprivTests(TestCase):
 
     def test_upload_suggestions(self):
         """Tests that we can upload when we only have suggest rights."""
