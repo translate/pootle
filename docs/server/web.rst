@@ -143,7 +143,7 @@ A sample Apache configuration with mod_wsgi might look like this:
         # - Include the following setting in your custom Pootle settings:
         #   STATIC_URL = '/your-pootle/assets/'
         ServerName my-pootle.example.com
- 
+
         # Set the 'POOTLE_SETTINGS' environment variable pointing at your custom
         # Pootle settings file.
         #
@@ -186,6 +186,10 @@ A sample Apache configuration with mod_wsgi might look like this:
         # Optimal caching by proxies.
         # This might require enabling the 'headers' module.
         Header set Cache-Control "public"
+
+        # gzip compression
+        SetOutputFilter DEFLATE
+        AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript
 
         # Directly serve static files like css and images, no need to go
         # through mod_wsgi and Django. For high performance consider having a
@@ -269,6 +273,7 @@ and the dynamic content will be produced by the app server.
       server_name  pootle.example.com;
 
       access_log /path/to/pootle/logs/nginx-access.log;
+      gzip on; # Enable gzip compression
 
       charset utf-8;
 
@@ -310,6 +315,7 @@ And add the following lines to your Nginx config file:
       listen  80;  # port and optionally hostname where nginx listens
       server_name  example.com translate.example.com; # names of your site
       # Change the values above to the appropriate values
+      gzip on; # Enable gzip compression
 
       location ^~ /assets/ {
           root /path/to/pootle/;
