@@ -27,7 +27,6 @@ from pootle_project.models import Project
 
 
 def form_factory(current_directory):
-    is_root = current_directory.pootle_path == '/'
 
     class _NoticeForm(forms.ModelForm):
         directory = forms.ModelChoiceField(
@@ -55,7 +54,7 @@ def form_factory(current_directory):
         )
 
         # Project selection
-        if current_directory.is_language() or is_root:
+        if current_directory.is_language() or current_directory.is_root:
             project_all = forms.BooleanField(
                 label=_('All Projects'),
                 required=False,
@@ -71,7 +70,7 @@ def form_factory(current_directory):
             )
 
         # Language selection
-        if current_directory.is_project() or is_root:
+        if current_directory.is_project() or current_directory.is_root:
             language_all = forms.BooleanField(
                 label=_('All Languages'),
                 required=False,

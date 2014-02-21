@@ -136,7 +136,9 @@ def view(request):
             contributors.append((language, projects))
     contributors.sort()
 
-    data = {'contributors': contributors}
+    ctx = {
+        'contributors': contributors,
+    }
 
-    return render_to_response('about/contributors.html', data,
+    return render_to_response('about/contributors.html', ctx,
                               context_instance=RequestContext(request))

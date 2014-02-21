@@ -36,15 +36,15 @@ class DirectoryManager(models.Manager):
         return super(DirectoryManager, self).get_query_set() \
                                             .select_related('parent')
 
-    @property
+    @cached_property
     def root(self):
         return self.get(pootle_path='/')
 
-    @property
+    @cached_property
     def projects(self):
         return self.get(pootle_path='/projects/')
 
-    @property
+    @cached_property
     def goals(self):
         return self.get(pootle_path='/goals/')
 
@@ -83,6 +83,15 @@ class Directory(models.Model, TreeItem):
     def is_template_project(self):
         return self.pootle_path.startswith('/templates/')
 
+    @property
+    def is_root(self):
+        """Tell if this directory is the root directory."""
+        return self.pootle_path == '/'
+
+    @property
+    def code(self):
+        return self.name.replace('.', '-')
+
     ############################ Cached properties ############################
 
     @cached_property
@@ -114,10 +123,6 @@ class Directory(models.Model, TreeItem):
 
     def __unicode__(self):
         return self.pootle_path
-
-    @property
-    def code(self):
-        return self.name.replace('.', '-')
 
     def __init__(self, *args, **kwargs):
         super(Directory, self).__init__(*args, **kwargs)

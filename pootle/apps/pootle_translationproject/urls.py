@@ -65,7 +65,7 @@ urlpatterns = patterns('pootle_translationproject.views',
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'path_summary_more',
         name='pootle-xhr-summary-more'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-add-tag/?$',
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-add-tag/$',
         'ajax_add_tag_to_tp',
         name='pootle-xhr-tag-tp'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-remove-tag/'
@@ -75,8 +75,9 @@ urlpatterns = patterns('pootle_translationproject.views',
 
     # Exporting files
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'(?P<file_path>.*)export/zip$',
-        'export_zip'),
+        r'(?P<file_path>.*)export/zip/$',
+        'export_zip',
+        name='pootle-tp-export-zip'),
 
     # Translation
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
@@ -92,7 +93,7 @@ urlpatterns = patterns('pootle_translationproject.views',
 
     # Goals
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'(?P<dir_path>(.*/)*)goals$',
+        r'(?P<dir_path>(.*/)*)goals/$',
         'goals_overview',
         name='pootle-tp-goals'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'

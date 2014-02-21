@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% load i18n baseurl cache staticpages locale %}
+{% load i18n cache staticpages locale %}
 
 {% block title %}{% trans "Register" %} | {{ block.super }}{% endblock %}
 
@@ -51,7 +51,7 @@
 </div>
 
 <h2 class="formlink">{% trans "Already have an account?" %}
-    <a href="{% filter l %}{% url 'account_login' %}{% endfilter %}" title="{% trans 'Log In.' %}">{% trans "Log In." %}</a>
+    <a href="{% url 'account_login' %}" title="{% trans 'Log In.' %}">{% trans "Log In." %}</a>
 </h2>
 {% endblock %}
 

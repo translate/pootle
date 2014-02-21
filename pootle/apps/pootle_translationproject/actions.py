@@ -1,22 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2012 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 """Actions available for the translation project overview page."""
 
@@ -25,13 +24,9 @@ from django.utils.translation import ugettext as _
 
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
-from pootle_misc import dispatch
-from pootle_misc.baseurl import l
 from pootle_misc.versioncontrol import hasversioning
 from pootle.scripts import actions
 
-
-# FIXME: Replace dispatch.* calls by django.core.urlresolvers.reverse
 
 def directory(fn):
     """Decorator that returns links only for directory objects."""
@@ -58,8 +53,15 @@ def store(fn):
 @directory
 def download_zip(request, path_obj, **kwargs):
     if check_permission('archive', request):
+        if not path_obj.is_dir:
+            path_obj = path_obj.parent
+
+        language_code = path_obj.translation_project.language.code
+        project_code = path_obj.translation_project.project.code
+
         text = _('Download (.zip)')
-        link = dispatch.download_zip(path_obj)
+        link = reverse('pootle-tp-export-zip',
+                       args=[language_code, project_code, path_obj.path])
 
         return {
             'icon': 'icon-download',
@@ -74,7 +76,8 @@ def download_source(request, path_obj, **kwargs):
     if path_obj.name.startswith("pootle-terminology"):
         text = _("Download XLIFF")
         tooltip = _("Download file in XLIFF format")
-        href = dispatch.export(path_obj.pootle_path, 'xlf')
+        href = reverse('pootle-store-export-xliff',
+                       args=[path_obj.pootle_path])
     elif path_obj.translation_project.project.is_monolingual:
         text = _('Export')
         tooltip = _('Export translations')
@@ -84,7 +87,8 @@ def download_source(request, path_obj, **kwargs):
 
     return {
         'icon': 'icon-download',
-        'href': href or l('/download%s' % path_obj.pootle_path),
+        'href': href or reverse('pootle-store-download',
+                                args=[path_obj.pootle_path]),
         'text': text,
         'tooltip': tooltip,
     }
@@ -99,7 +103,7 @@ def download_xliff(request, path_obj):
 
     text = _("Download XLIFF")
     tooltip = _('Download XLIFF file for offline translation')
-    href = dispatch.export(path_obj.pootle_path, 'xlf')
+    href = reverse('pootle-store-export-xliff', args=[path_obj.pootle_path])
 
     return {
         'icon': 'icon-download',

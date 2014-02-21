@@ -1,27 +1,26 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008 Zuza Software Foundation
+# Copyright 2008-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# Pootle is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with Pootle; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import admin_required
@@ -41,11 +40,15 @@ def view(request):
 
 
     class ProjectForm(forms.ModelForm):
+
+        source_language = forms.ModelChoiceField(
+            label=_('Source Language'),
+            initial=default_lang.pk,
+            queryset=queryset,
+        )
+
         class Meta:
             model = Project
-
-        source_language = forms.ModelChoiceField(label=_('Source Language'),
-                initial=default_lang.pk, queryset=queryset)
 
         def __init__(self, *args, **kwargs):
             super(ProjectForm, self).__init__(*args, **kwargs)
@@ -86,16 +89,19 @@ def view(request):
         def clean_code(self):
             value = self.cleaned_data['code']
             if value in RESERVED_PROJECT_CODES:
-                raise ValidationError(
-                    _('"%s" cannot be used as a project code' % (value,))
-                )
+                raise ValidationError(_('"%s" cannot be used as a project '
+                                        'code' % value))
             return value
+
+    def generate_link(project):
+        url = reverse('pootle-project-admin-languages', args=[project.code])
+        return '<a href="%s">%s</a>' % (url, project)
 
     return util.edit(
             request,
             'admin/projects.html',
             Project,
-            link='/projects/%s/admin.html',
+            link=generate_link,
             form=ProjectForm,
             exclude=('description', 'report_email'),
             can_delete=True,

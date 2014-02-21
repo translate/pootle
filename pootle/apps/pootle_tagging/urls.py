@@ -23,7 +23,7 @@ from django.conf.urls import patterns, url
 urlpatterns = patterns('pootle_tagging.views',
 
     # XHR views
-    url(r'^(?P<goal_slug>[a-z0-9-]+)/edit$',
+    url(r'^(?P<goal_slug>[a-z0-9-]+)/edit/$',
         'ajax_edit_goal',
-        name='pootle-tagging-ajax-edit-goal'),
+        name='pootle-xhr-edit-goal'),
 )

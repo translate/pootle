@@ -23,10 +23,10 @@ from django.conf.urls import include, patterns, url
 
 
 urlpatterns = patterns('pootle_profile.views',
-    url(r'^edit/?$',
+    url(r'^edit/$',
         'profile_edit',
         name='pootle-profile-edit'),
-    url(r'^personal/edit/?$',
+    url(r'^personal/edit/$',
         'edit_personal_info',
         name='pootle-profile-personal-edit'),
 )

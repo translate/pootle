@@ -538,7 +538,7 @@ def overview(request, translation_project, dir_path, filename=None,
                                        args=[language.code, project.code])
         else:
             edit_form = GoalForm(instance=goal)
-            edit_form_action = reverse('pootle-tagging-ajax-edit-goal',
+            edit_form_action = reverse('pootle-xhr-edit-goal',
                                        args=[goal.slug])
 
         ctx.update({

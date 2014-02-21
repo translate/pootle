@@ -21,7 +21,7 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db.transaction import commit_on_success
-from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
@@ -207,7 +207,7 @@ def manage_store(request, ctx, language, term_store):
 
 @get_path_obj
 @permission_required('administrate')
-def manage(request, translation_project):
+def manage(request, translation_project, path=None):
     ctx = {
         'translation_project': translation_project,
         'language': translation_project.language,
@@ -217,6 +217,11 @@ def manage(request, translation_project):
     }
     
     if translation_project.project.is_terminology:
+        if path:
+            pootle_path = translation_project.pootle_path + path
+            store = get_object_or_404(Store, pootle_path=pootle_path)
+            return manage_store(request, ctx, ctx['language'], store)
+
         # Which file should we edit?
         stores = list(Store.objects.filter(
             translation_project=translation_project,
@@ -224,8 +229,7 @@ def manage(request, translation_project):
         if len(stores) == 1:
             # There is only one, and we're not going to offer file-level
             # activities, so let's just edit the one that is there.
-            return manage_store(request, ctx, translation_project.language,
-                                stores[0])
+            return manage_store(request, ctx, ctx['language'], stores[0])
         elif len(stores) > 1:
             for store in stores:
                 path_length = len(translation_project.pootle_path)
@@ -241,9 +245,7 @@ def manage(request, translation_project):
         term_store = Store.objects.get(
             pootle_path=translation_project.pootle_path + terminology_filename,
         )
-
-        return manage_store(request, ctx, translation_project.language,
-                            term_store)
+        return manage_store(request, ctx, ctx['language'], term_store)
     except Store.DoesNotExist:
         template_name = 'translation_projects/terminology/manage.html'
         return render_to_response(template_name, ctx,

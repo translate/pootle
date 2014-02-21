@@ -19,10 +19,13 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
+from pootle.core.decorators import get_path_obj
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
@@ -35,10 +38,24 @@ from pootle_profile.models import get_profile, PootleProfile
 from pootle_translationproject.models import TranslationProject
 
 
-def view(request, path):
-    #FIXME: why do we have leading and trailing slashes in pootle_path?
-    pootle_path = '/%s' % path
-    directory = get_object_or_404(Directory, pootle_path=pootle_path)
+@get_path_obj
+def view(request, path_obj):
+    directory = path_obj.directory
+
+    # Find language and project defaults, passed to handle_form.
+    proj = None
+    lang = None
+    if directory.is_translationproject():
+        trans_proj = path_obj
+        lang = path_obj.language
+        proj = path_obj.project
+    elif directory.is_language():
+        lang = path_obj
+    elif directory.is_project():
+        proj = path_obj
+    else:
+        # Notices lists are only shown for languages, projects or TPs.
+        raise Http404
 
     # Set permissions on request in order to allow check them later using
     # different functions.
@@ -54,20 +71,9 @@ def view(request, path):
             'directory': directory,
         }
 
-    # Find language and project defaults, passed to handle_form
-    proj = None
-    lang = None
-    if not directory.is_language() and not directory.is_project():
-        trans_proj = directory.translation_project
-        lang = trans_proj.language
-        proj = trans_proj.project
-    elif directory.is_language():
-        lang = directory.language
-    elif directory.is_project():
-        proj = directory.project
-
     template_vars = {
-        'path': path,
+        'notification_url': reverse('pootle-notifications-feed',
+                                    args=[path_obj.pootle_path[:1]]),
         'directory': directory,
         'title': directory_to_title(directory),
         'notices': Notice.objects.filter(**criteria) \

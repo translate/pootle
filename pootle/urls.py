@@ -36,7 +36,8 @@ urlpatterns = patterns('',
     # Direct download of translation files.
     url(r'^export/(?P<path>.*)$',
         'django.views.static.serve',
-        {'document_root': settings.PODIRECTORY}, ),
+        {'document_root': settings.PODIRECTORY},
+        name='pootle-export'),
 
     # External apps.
     url(r'^contact/', include('pootle_contact.urls')),

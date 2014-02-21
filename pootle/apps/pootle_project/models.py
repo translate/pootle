@@ -40,7 +40,6 @@ from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle_app.models.permissions import PermissionSet
 from pootle_misc.aggregate import max_column
-from pootle_misc.baseurl import l
 from pootle_misc.util import getfromcache, cached_property
 from pootle_store.filetypes import (filetype_choices, factory_classes,
                                     is_monolingual)
@@ -317,7 +316,7 @@ class Project(models.Model, TreeItem):
                               users_list))
 
     def get_absolute_url(self):
-        return l(self.pootle_path)
+        return reverse('pootle-project-overview', args=[self.code])
 
     def get_translate_url(self, **kwargs):
         return u''.join([

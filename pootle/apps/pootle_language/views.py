@@ -140,10 +140,10 @@ def language_settings_edit(request, language):
 
         response["description"] = the_html
 
-    action_url = reverse('pootle-language-admin-settings', args=[language.code])
     context = {
         "form": form,
-        "form_action": action_url,
+        "form_action": reverse('pootle-language-admin-settings',
+                               args=[language.code]),
     }
     t = loader.get_template('admin/_settings_form.html')
     c = RequestContext(request, context)

@@ -50,13 +50,12 @@ def ajax_edit_goal(request, goal):
         else:
             response["description"] = (u'<p class="placeholder muted">%s</p>' %
                                        _(u"No description yet."))
-    context = {
+    ctx = {
         'form': form,
-        'form_action': reverse('pootle-tagging-ajax-edit-goal',
-                               args=[goal.slug]),
+        'form_action': reverse('pootle-xhr-edit-goal', args=[goal.slug]),
     }
     t = loader.get_template('admin/_settings_form.html')
-    c = RequestContext(request, context)
+    c = RequestContext(request, ctx)
     response['form'] = t.render(c)
 
     return HttpResponse(jsonify(response), status=rcode,

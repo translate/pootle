@@ -1,5 +1,5 @@
 {% load url from future %}
-{% load i18n baseurl store_tags cleanhtml cache profile_tags locale %}
+{% load i18n store_tags cleanhtml cache profile_tags locale %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs profile.id LANGUAGE_CODE %}
@@ -68,7 +68,7 @@
       {% if unit.get_qualitychecks.count %}
       <!-- Quality Checks -->
       <div id="translate-checks-block" dir="{% locale_dir %}">
-          <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title='{% trans "Possible issues with the translation" %}'>{% trans "Failing checks:" %}</div>
+          <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Possible issues with the translation' %}">{% trans "Failing checks:" %}</div>
           <ul class="checks">
           {% for check in unit.get_qualitychecks.iterator %}
           <li class="check">
@@ -97,7 +97,9 @@
                 <div class="language-name">{{ altunit.store.translation_project.language.name }}</div>
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
-                  <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                  <span class="js-toolbar-buttons">
+                    <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                  </span>
                 </div>
                 {% endif %}
               </div>
@@ -115,7 +117,15 @@
                 <div class="language-name">{{ source_language.name }}</div>
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
-                  <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                  <span class="report-issue">
+                    <a class="js-popup-ajax"
+                       href="{% url 'pootle-contact-report-error' %}?report={{ unit.id }}">
+                      {% trans "Report a problem with this string" %}
+                    </a>
+                  </span>
+                  <span class="js-toolbar-buttons">
+                    <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                  </span>
                 </div>
                 {% endif %}
               </div>
@@ -142,7 +152,7 @@
               title="{% trans 'Suggest translation and go to the next string (Ctrl+Enter)' %}" />
             {% endif %}
             <input type="hidden" name="store" value="{{ store }}" />
-            <input type="hidden" name="path" value="{{ store|l }}" />
+            <input type="hidden" name="path" value="{{ store }}" />
             <input type="hidden" name="pootle_path" value="{{ store.pootle_path }}" />
             {% if cansuggest and cantranslate %}
             <div class="switch-suggest-mode tiny" lang="{{ LANGUAGE_CODE }}">
@@ -294,15 +304,6 @@
         </div>
         {% endif %}
       </div>
-    </div>
-
-    <div class="unit-footer">
-      <span class="report-issue">
-        <a class="js-popup-ajax"
-           href="{% url 'pootle-contact-report-error' %}?report={{ unit.id }}">
-          {% trans "Report a problem with this string" %}
-        </a>
-      </span>
     </div>
   </div>
 </td>

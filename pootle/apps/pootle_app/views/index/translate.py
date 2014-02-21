@@ -38,8 +38,8 @@ def view(request, root_dir):
     language = None
     project = None
 
-    context = get_translation_context(request)
-    context.update({
+    ctx = get_translation_context(request)
+    ctx.update({
         'language': language,
         'project': project,
 
@@ -47,5 +47,5 @@ def view(request, root_dir):
         'editor_body_id': 'main-translate',
     })
 
-    return render_to_response('editor/main.html', context,
+    return render_to_response('editor/main.html', ctx,
                               context_instance=RequestContext(request))

@@ -34,10 +34,8 @@ from .forms import UserForm, pootle_profile_form_factory
 
 
 def profile_edit(request):
-    # TODO: Remove 'languages' and 'projects' once the fields have been
-    # removed from the model.
     # FIXME: better to whitelist fields rather than blacklisting them.
-    excluded = ('user', 'languages', 'projects', 'ui_lang')
+    excluded = ('user', 'ui_lang')
 
     return edit_profile(request,
                         form_class=pootle_profile_form_factory(excluded),
@@ -52,13 +50,14 @@ def edit_personal_info(request):
 
         if user_form.is_valid():
             user_form.save()
-            response = redirect(reverse("profiles_profile_detail", kwargs={"username": request.user.username}))
+            redirect_url = reverse('profiles_profile_detail',
+                                   kwargs={'username': request.user.username})
+            response = redirect(redirect_url)
     else:
         user_form = UserForm(instance=request.user)
 
-    template_vars = {
+    ctx = {
         'form': user_form,
     }
-
-    return render_to_response('profiles/settings/personal.html', template_vars,
+    return render_to_response('profiles/settings/personal.html', ctx,
                               context_instance=RequestContext(request))

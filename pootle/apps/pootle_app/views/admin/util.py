@@ -26,7 +26,6 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
 from pootle.core.paginator import paginate
-from pootle_misc.baseurl import l
 
 
 def form_set_as_table(formset, link=None, linkfield='code'):
@@ -101,12 +100,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
             if field == linkfield and linkfield in form.initial and link:
                 if callable(link):
                     result.append(link(form.instance))
-                    result.append(form[field].as_hidden())
-                else:
-                    link = l(link % form.initial[linkfield])
-                    result.append("<a href='" + link + "'>" +
-                                  form.initial[linkfield] + "</a>")
-                    result.append(form[field].as_hidden())
+                result.append(form[field].as_hidden())
             else:
                 result.append(form[field].as_widget())
 
