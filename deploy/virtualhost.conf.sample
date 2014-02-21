@@ -13,6 +13,9 @@ WSGIPythonOptimize 1
 
     Options -Indexes
 
+    SetOutputFilter DEFLATE
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript
+
     ExpiresActive On
 
     ExpiresByType image/jpg "access plus 2 hours"
