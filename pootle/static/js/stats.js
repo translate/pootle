@@ -50,11 +50,11 @@
 
     updatePathSummary: function () {
       var $summary = $('#path-summary-head');
-      var url = $summary.attr('data-url'),
-          reqData = {
-            path: PTL.stats.pootlePath
-          };
-      if (url) {
+      if ($summary.length) {
+        var url = $summary.attr('data-url'),
+            reqData = {
+              path: PTL.stats.pootlePath
+            };
         $.ajax({
           url: url,
           data: reqData,
