@@ -1131,9 +1131,6 @@ class Unit(models.Model, base.TranslationUnit):
 # media dir
 fs = FileSystemStorage(location=settings.PODIRECTORY)
 
-# regexp to parse suggester name from msgidcomment
-suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
-
 
 class StoreManager(RelatedManager):
     def get_by_natural_key(self, pootle_path):
