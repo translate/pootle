@@ -173,7 +173,8 @@ A sample Apache configuration with mod_wsgi might look like this:
         # Turn off directory listing by default.
         Options -Indexes
 
-        # gzip compression
+        # Compress before being sent to the client over the network.
+        # This might require enabling the 'deflate' module.
         SetOutputFilter DEFLATE
         AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript
 
