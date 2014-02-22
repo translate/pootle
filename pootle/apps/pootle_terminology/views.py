@@ -215,7 +215,7 @@ def manage(request, translation_project, path=None):
         'source_language': translation_project.project.source_language,
         'directory': translation_project.directory,
     }
-    
+
     if translation_project.project.is_terminology:
         if path:
             pootle_path = translation_project.pootle_path + path

@@ -234,7 +234,7 @@ class UnitManager(RelatedManager):
                 where=[
                     '`pootle_store_store`.`pootle_path` LIKE %s',
                     '`pootle_store_store`.`pootle_path` NOT LIKE %s',
-                ], params=[''.join(['/%/', proj ,'/%']), '/templates/%']
+                ], params=[''.join(['/%/', proj, '/%']), '/templates/%']
             )
         # /<lang_code>/<project_code>/translate/*
         # /<lang_code>/translate/*
@@ -1763,7 +1763,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 except IndexError:
                     raise Submission.DoesNotExist
             except Submission.DoesNotExist:
-                return  {'id': 0, 'mtime': 0, 'snippet': ''}
+                return {'id': 0, 'mtime': 0, 'snippet': ''}
         else:
             sub = submission
 

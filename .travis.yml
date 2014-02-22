@@ -30,6 +30,7 @@ script:
   - TESTPID=$!
   - sleep 20
   - kill -2 $TESTPID
+  - make pep8
 notifications:
   email:
     on_failure: always

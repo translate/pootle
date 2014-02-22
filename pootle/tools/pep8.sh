@@ -15,8 +15,12 @@ if [ "$files" == ""  ]; then
 	files="."
 fi
 
+if [ "$select" == "travis" ]; then
+	select="E10,E11,E251,E26,E27,E401,E70,E711,E721,W191,W291,W292,W293,W391,W60"
+fi
+
 pep8 \
---exclude=djblets,assets,profiles \
+--exclude=djblets,assets,profiles,migrations \
 --select=$select \
 --statistics \
 $files
