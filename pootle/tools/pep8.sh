@@ -16,7 +16,7 @@ if [ "$files" == ""  ]; then
 fi
 
 if [ "$select" == "travis" ]; then
-	select="E10,E11,E26,E27,E401,E70,E711,E721,W191,W291,W292,W293,W391,W60"
+	select="E10,E11,E251,E26,E27,E401,E70,E711,E721,W191,W291,W292,W293,W391,W60"
 fi
 
 pep8 \
