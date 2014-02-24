@@ -187,8 +187,6 @@
         var action = $("#js-add-tag-form").attr('action');
         var formData = $("#js-add-tag-form").serializeObject();
 
-        formData["path"] = PTL.stats.pootlePath;
-
         $.post(action, formData, function (data, textStatus, jqXHR) {
           if (jqXHR.status === 201) {
             // Tag was added, replace the old tags list with the new one.
