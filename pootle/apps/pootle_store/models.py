@@ -1508,6 +1508,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 filter_by = {'store': self}
                 if not self.last_sync_revision is None:
                     filter_by.update({'revision__gt': self.last_sync_revision})
+
                 modified_units = set(
                     Unit.objects.filter(**filter_by)
                                 .values_list('id', flat=True).distinct()
