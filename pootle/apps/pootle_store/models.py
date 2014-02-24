@@ -357,6 +357,8 @@ class Unit(models.Model, base.TranslationUnit):
         self._target_updated = False
         self._state_updated = False
         self._comment_updated = False
+        self._from_update_stores = False
+        self._auto_translated = False
         self._encoding = 'UTF-8'
 
     # should be called to flag the store cache for a deletion
@@ -432,8 +434,12 @@ class Unit(models.Model, base.TranslationUnit):
                     self.state = UNTRANSLATED
                     self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
-        if (self._target_updated or self._state_updated or
-            self._comment_updated):
+        # Updating unit from the .po file should not change its revision property,
+        # since that change doesn't require further sync but note that
+        # auto_translated units require further sync
+        if ((not self._from_update_stores or self._auto_translated) and
+            (self._target_updated or self._state_updated
+             or self._comment_updated)):
             self.store.flag_for_deletion(CachedMethods.LAST_REVISION)
             self.revision = Revision.objects.inc()
 
@@ -467,6 +473,8 @@ class Unit(models.Model, base.TranslationUnit):
         self._target_updated = False
         self._state_updated = False
         self._comment_updated = False
+        self._from_update_stores = False
+        self._auto_translated = False
 
         # update cache only if we are updating a single unit
         if self.store.state >= PARSED:
@@ -679,6 +687,11 @@ class Unit(models.Model, base.TranslationUnit):
 
                 changed = True
 
+        # Assume that
+        if changed:
+            #TODO: check that Store.update() is in the traceback
+            self._from_update_stores = True
+
         return changed
 
     def update_wordcount(self, auto_translate=False):
@@ -695,9 +708,11 @@ class Unit(models.Model, base.TranslationUnit):
             # units set word count to 1
             self.source_wordcount = 1
 
-            if auto_translate:
+            if (auto_translate
+                and not bool(filter(None, self.target_f.strings))):
                 self.target = self.source
                 self.state = FUZZY
+                self._auto_translated = True
 
     def update_qualitychecks(self, created=False, keep_false_positives=False):
         """Run quality checks and store result in the database."""
@@ -1465,6 +1480,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     if not unit.isobsolete():
                         if unit.istranslated():
                             unit.makeobsolete()
+                            unit._from_update_stores = True
                             unit.save()
                             changes['obsolete'] += 1
                         else:
@@ -1484,19 +1500,22 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             newunit.save()
                             self._remove_obsolete(match_unit.source)
 
-            # Get units that were modified after last sync
-            modified_units = set(
-                Unit.objects.filter(revision__gt=self.last_sync_revision,
-                                    store=self)
-                            .values_list('id', flat=True).distinct()
-            )
-
             common_dbids = set(self.dbid_index.get(uid)
                                for uid in old_ids & new_ids)
 
-            # If some units have been modified since last sync
-            # keep them safe
-            common_dbids -= modified_units
+            if not overwrite:
+                # Get units that were modified after last sync
+                filter_by = {'store': self}
+                if not self.last_sync_revision is None:
+                    filter_by.update({'revision__gt': self.last_sync_revision})
+                modified_units = set(
+                    Unit.objects.filter(**filter_by)
+                                .values_list('id', flat=True).distinct()
+                )
+
+                # If some units have been modified since last sync
+                # keep them safe
+                common_dbids -= modified_units
 
             common_dbids = list(common_dbids)
             system = User.objects.get_system_user().get_profile()
@@ -1559,10 +1578,11 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             # Unlock store
             self.state = old_state
             self.save()
-            logging.debug(u"[update] %s in %s [%d]" % (
-                get_change_str(changes), self.pootle_path,
-                self.get_last_revision()),
-            )
+            if filter(lambda x: changes[x] > 0, changes):
+                log(u"[update] %s in %s [%d]" % (
+                    get_change_str(changes), self.pootle_path,
+                    self.get_last_revision())
+                )
 
 
     def sync(self, update_structure=False, conservative=True, create=False,
@@ -1576,7 +1596,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         if (only_newer and
             self.last_sync_revision >= last_revision):
-            log(u"[sync] No updates for %s after [%d]" %
+            logging.info(u"[sync] No updates for %s after [%d]" %
                 (self.pootle_path, self.last_sync_revision))
             return
 
@@ -1607,7 +1627,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             # don't save to templates
             return
 
-        logging.debug(u"Syncing %s", self.pootle_path)
+        logging.info(u"Syncing %s", self.pootle_path)
         self.require_dbid_index(update=True)
         disk_store = self.file.store
         old_ids = set(disk_store.getids())
@@ -1680,7 +1700,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             log(u"[sync] %s in %s [%d]" %
                 (get_change_str(changes), self.pootle_path, last_revision))
         else:
-            logging.debug(u"[sync] nothing changed in %s [%d]" %
+            logging.info(u"[sync] nothing changed in %s [%d]" %
                           (self.pootle_path, last_revision))
 
         self.sync_time = last_mtime
