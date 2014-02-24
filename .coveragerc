@@ -1,0 +1,8 @@
+[run]
+source =
+    pootle
+omit =
+    pootle/apps/djblets/*
+    tests
+    pootle/tests.py
+    pootle/apps/*/tests.py
