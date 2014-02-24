@@ -503,21 +503,29 @@ html[dir="rtl"] #nav-main li
 #s2id_js-language-picker
 {
     padding-top: 8px;
+    width: auto !important;
 }
 
-#s2id_js-language-picker:not(.select2-dropdown-open) {
-    width: auto !important;
-    padding-left: 8px;
+#s2id_js-language-picker:not(.select2-dropdown-open)
+{
+    opacity: 0.5;
+    padding-left: 14px;
+}
+
+#s2id_js-language-picker:not(.select2-dropdown-open):hover
+{
+    opacity: 1.0;
 }
 
 #s2id_js-language-picker:not(.select2-dropdown-open) a
 {
     background: transparent;
     border: 0;
-    padding: 0 0 0 30px !important;
+    padding: 0 !important;
 }
 
-#s2id_js-language-picker.select2-container-active {
+#s2id_js-language-picker.select2-container-active
+{
     box-shadow: none;
 }
 
@@ -528,20 +536,20 @@ html[dir="rtl"] #nav-main li
     text-shadow: none;
 }
 
-#s2id_js-language-picker a:hover
-{
-    color: rgb(110, 188, 197);
-}
-
-#s2id_js-language-picker:not(.select2-dropdown-open) .select2-choice div
+#s2id_js-language-picker:not(.select2-dropdown-open) .select2-arrow
 {
     background: none;
     border: 0;
 }
 
-#s2id_js-language-picker:not(.select2-dropdown-open) .select2-choice div b
+#s2id_js-language-picker:not(.select2-dropdown-open) .select2-arrow b
 {
     background: none;
+}
+
+.select2-drop.s2js-freefloat-drop {
+    padding-top: 5px;
+    width: auto !important;
 }
 
 

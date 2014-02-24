@@ -468,13 +468,28 @@ $(function ($) {
   // build the language picker
   var picker = $("#js-language-picker");
   for (i in PTL.languages) {
-    var code = PTL.languages[i][0]
+    var code = PTL.languages[i][0];
     var lang = PTL.languages[i][1];
-    picker.append($("<option>", {value: code}).text(lang))
+    picker.append($("<option>", {value: code}).text(lang));
+  }
+  var getLocale = function(lang) {
+    var locale = lang.slice(0, lang.indexOf("-"));
+    var country = lang.indexOf("-") != -1 ? lang.slice(lang.indexOf("-"), -1) : null;
+    var generic;
+
+    for (i in PTL.languages) {
+      var code = PTL.languages[i][0];
+      if (lang == code) {
+        return code;
+      } else if (code == locale) {
+        generic = code;
+      }
+    }
+    return generic;
   }
   // select2 the picker separately because we want to give it a dynamic width
-  picker.select2({width: "element"})
-    .select2("val", picker.attr("default"))
+  picker.select2({dropdownCssClass: 's2js-freefloat-drop'})
+    .select2("val", getLocale(picker.attr("default")))
     .on("change", function(e) {
         $.cookie("django_language", e.val, {path: "/"});
         location.reload();
