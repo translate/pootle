@@ -687,7 +687,6 @@ class Unit(models.Model, base.TranslationUnit):
 
                 changed = True
 
-        # Assume that
         if changed:
             #TODO: check that Store.update() is in the traceback
             self._from_update_stores = True
@@ -1580,7 +1579,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.state = old_state
             self.save()
             if filter(lambda x: changes[x] > 0, changes):
-                log(u"[update] %s in %s [%d]" % (
+                log(u"[update] %s units in %s [revision: %d]" % (
                     get_change_str(changes), self.pootle_path,
                     self.get_last_revision())
                 )
@@ -1597,7 +1596,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         if (only_newer and
             self.last_sync_revision >= last_revision):
-            logging.info(u"[sync] No updates for %s after [%d]" %
+            logging.info(u"[sync] No updates for %s after [revision: %d]" %
                 (self.pootle_path, self.last_sync_revision))
             return
 
@@ -1612,7 +1611,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 )
                 store = self.convert(storeclass)
                 store.savefile(store_path)
-                log(u"Created file for %s [%d]" %
+                log(u"Created file for %s [revision: %d]" %
                     (self.pootle_path, last_revision))
 
                 self.file = store_path
@@ -1698,10 +1697,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.update_store_header(profile=profile)
             self.file.savestore()
 
-            log(u"[sync] %s in %s [%d]" %
+            log(u"[sync] %s units in %s [revision: %d]" %
                 (get_change_str(changes), self.pootle_path, last_revision))
         else:
-            logging.info(u"[sync] nothing changed in %s [%d]" %
+            logging.info(u"[sync] nothing changed in %s [revision: %d]" %
                           (self.pootle_path, last_revision))
 
         self.sync_time = last_mtime

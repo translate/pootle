@@ -147,7 +147,7 @@ def get_change_str(changes):
 
     If all elements are zero, `nothing changed` is returned.
     """
-    res = [u'%s: %d' % (key, changes[key])
+    res = [u'%s %d' % (key, changes[key])
            for key in changes if changes[key] > 0]
 
     if res:
