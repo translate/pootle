@@ -1403,8 +1403,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         :param update_structure: Whether to update store's structure by marking
             common DB units as obsolete and adding new units.
-        :param update_translation: Whether to update existing translations or
-            not.
+        :param overwrite: Whether to update all existing translations or
+            keep safe units that updated after the last sync.
         :param store: The target :class:`~pootle_store.models.Store`. If unset,
             the current file will be used as a target.
         :param fuzzy: Whether to perform fuzzy matching or not.
