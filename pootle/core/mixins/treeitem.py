@@ -59,6 +59,8 @@ class CachedMethods(object):
     LAST_REVISION = 'get_last_revision'
     LAST_UPDATED = 'get_last_updated'
 
+    # Check refresh_stats command when add a new CachedMethod
+
     @classmethod
     def get_all(self):
         return [getattr(self, x) for x in

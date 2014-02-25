@@ -147,6 +147,8 @@ class Command(PootleCommand):
         self._set_qualitycheck_stats(timeout)
 
         if not check_names:
+            logging.info('Setting last revision values for all stores...')
+            self._set_last_revision_stats(timeout)
             logging.info('Setting last action values for all stores...')
             self._set_last_action_stats(timeout)
             logging.info('Setting last updated values for all stores...')
@@ -157,6 +159,7 @@ class Command(PootleCommand):
             self._set_wordcount_stats(timeout)
             logging.info('Setting suggestion count values for all stores...')
             self._set_suggestion_stats(timeout)
+
 
         logging.info('Setting empty values for other cache entries...')
         self._set_empty_values(timeout)
@@ -284,6 +287,7 @@ class Command(PootleCommand):
                 'get_translated_wordcount': 0,
                 'get_fuzzy_wordcount': 0,
                 'get_mtime': datetime_min,
+                'get_last_revision': 0,
                 'get_last_updated': {'id': 0, 'creation_time': 0,
                                      'snippet': ''},
             })
@@ -339,6 +343,18 @@ class Command(PootleCommand):
             cache.set(iri_to_uri(key + ':get_mtime'),
                       item['max_mtime'], timeout)
             del self.cache_values[key]['get_mtime']
+
+    def _set_last_revision_stats(self, timeout):
+        queryset = Unit.objects.values('store').annotate(
+            max_revision=Max('revision')
+        )
+
+        for item in queryset.iterator():
+            key = Store.objects.get(id=item['store']).get_cachekey()
+            logging.info('Set last revision for %s' % key)
+            cache.set(iri_to_uri(key + ':get_last_revision'),
+                      item['max_revision'], timeout)
+            del self.cache_values[key]['get_last_revision']
 
     def _set_last_updated_stats(self, timeout):
         queryset = Unit.objects.values('store').annotate(
