@@ -40,6 +40,7 @@ from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle.scripts import hooks
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.siteconfig import load_site_config
@@ -508,7 +509,6 @@ class TranslationProject(models.Model, TreeItem):
         return all_files, new_files
 
     def update_file_from_version_control(self, store):
-        from pootle.scripts import hooks
         store.sync(update_translation=True)
 
         filetoupdate = store.file.name
@@ -578,8 +578,6 @@ class TranslationProject(models.Model, TreeItem):
 
         all_files, new_files = self.scan_files()
         new_file_set = set(new_files)
-
-        from pootle.scripts import hooks
 
         # Go through all stores except any pootle-terminology.* ones
         if directory.is_translationproject():
@@ -693,7 +691,6 @@ class TranslationProject(models.Model, TreeItem):
 
         filestocommit = []
 
-        from pootle.scripts import hooks
         for store in stores:
             try:
                 filestocommit.extend(hooks.hook(self.project.code, "precommit",
@@ -764,7 +761,6 @@ class TranslationProject(models.Model, TreeItem):
         if user.is_authenticated() and len(user.email):
             author += " <%s>" % user.email
 
-        from pootle.scripts import hooks
         try:
             filestocommit = hooks.hook(self.project.code, "precommit",
                                        store.file.name, author=author,
@@ -818,7 +814,6 @@ class TranslationProject(models.Model, TreeItem):
 
     def initialize(self):
         try:
-            from pootle.scripts import hooks
             hooks.hook(self.project.code, "initialize", self.real_path,
                     self.language.code)
         except Exception:
