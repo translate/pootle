@@ -17,29 +17,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
-
-import os
-from pkgutil import iter_modules
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-os.environ['POOTLE_SETTINGS_TESTS'] = '90-tests.conf'
-
-from django.conf import settings
-
-from pootle import syspath_override
-
-from . import fixtures
-from .fixtures import models as fixture_models
+"""Monkeypatching fixtures."""
 
 
-def _load_fixtures(*modules):
-    for mod in modules:
-        path = mod.__path__
-        prefix = '%s.' % mod.__name__
+# HACKISH: monkeypatching decorator here, should be cleaner to do it in a
+# fixture, but pytest's `monkeypatch` decorator is function-scoped, and by
+# the time it's run the decorators have already been applied to the
+# functions, therefore the patching has no effect
+from _pytest.monkeypatch import monkeypatch
 
-        for loader, name, is_pkg in iter_modules(path, prefix):
-            if not is_pkg:
-                yield name
-
-
-pytest_plugins = tuple(_load_fixtures(fixtures, fixture_models), )
+mp = monkeypatch()
+mp.setattr('pootle_misc.util.cached_property', property)
