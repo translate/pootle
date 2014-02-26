@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+import sys
 import gettext
 import logging
 import os
@@ -379,7 +380,16 @@ class TranslationProject(models.Model, TreeItem):
                                              get_translated_name,
                                              get_translated_name_gnu)
 
-        for store in template_translation_project.stores.iterator():
+        stores = template_translation_project.stores.all()
+        stores_count = stores.count()
+        _old = ""
+        for i, store in enumerate(stores.all()):
+            msg = "(%i/%i) Loading %s..." % (i, stores_count, store.file)
+            clear = abs(len(_old) - len(msg))
+            sys.stdout.write("\r" + msg + (" " * clear) + ("\b" * clear))
+            sys.stdout.flush()
+            _old = msg
+
             if self.file_style == 'gnu':
                 new_pootle_path, new_path = get_translated_name_gnu(self, store)
             else:
@@ -395,12 +405,14 @@ class TranslationProject(models.Model, TreeItem):
                 if not hooks.hook(self.project.code, "pretemplateupdate",
                                   relative_po_path):
                     continue
-            except:
+            except Exception:
                 # Assume hook is not present.
                 pass
 
             convert_template(self, store, new_pootle_path, new_path,
                              monolingual)
+
+        sys.stdout.write("\n")
 
         all_files, new_files = self.scan_files(vcs_sync=False)
 
