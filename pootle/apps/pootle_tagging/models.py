@@ -485,7 +485,8 @@ def flush_goal_caches(sender, **kwargs):
     This signal handler is called, for example, when the TP is updated against
     the templates, or a new file is uploaded, or the TP is updated from VCS.
     """
-    if kwargs['oldstats'] == kwargs['newstats']:
+    # Not all signals has stats args, so we check their presence first.
+    if 'oldstats' in kwargs and kwargs['oldstats'] == kwargs['newstats']:
         # Nothing changed, no need to flush goal cached stats.
         return
     else:
