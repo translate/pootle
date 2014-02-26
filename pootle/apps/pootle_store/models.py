@@ -22,7 +22,6 @@
 import datetime
 import logging
 import os
-import re
 
 from hashlib import md5
 
@@ -36,15 +35,17 @@ from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
 from django.template.defaultfilters import escape, truncatechars
 from django.utils import dateformat, timezone, tzinfo
-from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import iri_to_uri
 from django.utils.http import urlquote
-from django.utils.safestring import mark_safe
 from django.utils.importlib import import_module
+from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext_lazy as _
 
 from translate.filters.decorators import Category
 from translate.storage import base
 
 from pootle_app.models import Revision
+from django.core.cache import cache
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              UNIT_OBSOLETE, STORE_ADDED, STORE_DELETED,
@@ -1140,6 +1141,7 @@ class Unit(models.Model, base.TranslationUnit):
 
 ###################### Store ###########################
 
+GET_FILE_MTIME = "get_file_mtime"
 
 # custom storage otherwise django assumes all files are uploads headed to
 # media dir
@@ -1396,6 +1398,25 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         if obsolete_unit:
             obsolete_unit.delete()
 
+    def get_file_mtime(self):
+        disk_mtime = datetime.datetime \
+                     .fromtimestamp(self.file.getpomtime()[0])
+        if settings.USE_TZ:
+            tz = timezone.get_default_timezone()
+            disk_mtime = timezone.make_aware(disk_mtime, tz)
+
+        return disk_mtime
+
+    def set_file_mtime(self, value, timeout=settings.OBJECT_CACHE_TIMEOUT):
+        key = iri_to_uri(self.get_cachekey() + ":%s" % GET_FILE_MTIME)
+        cache.set(key, value, timeout)
+
+    def get_file_mtime_from_cache(self):
+        key = iri_to_uri(self.get_cachekey() + ":%s" % GET_FILE_MTIME)
+        return cache.get(key)
+
+    file_mtime = property(get_file_mtime_from_cache, set_file_mtime)
+
     @commit_on_success
     def update(self, update_structure=False, overwrite=False,
                store=None, fuzzy=False, only_newer=False):
@@ -1427,18 +1448,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.parse(store=store)
             return
 
-        if only_newer:
-            disk_mtime = datetime.datetime \
-                                 .fromtimestamp(self.file.getpomtime()[0])
-            if settings.USE_TZ:
-                tz = timezone.get_default_timezone()
-                disk_mtime = timezone.make_aware(disk_mtime, tz)
-
-            if disk_mtime <= self.sync_time:
-                # The file on disk wasn't changed since the last sync
-                logging.debug(u"File didn't change since last sync, skipping "
-                              u"%s" % self.pootle_path)
-                return
+        disk_mtime = self.get_file_mtime()
+        if only_newer and disk_mtime == self.file_mtime:
+            # The file on disk wasn't changed since the last sync
+            logging.debug(u"File didn't change since last sync, skipping "
+                          u"%s" % self.pootle_path)
+            return
 
         if store is None:
             store = self.file.store
@@ -1574,6 +1589,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             new_value=create_subs[field][1]
                         )
                         sub.save()
+
+            self.file_mtime = disk_mtime
+
         finally:
             # Unlock store
             self.state = old_state
@@ -1592,7 +1610,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             return
 
         last_revision = self.get_last_revision()
-        last_mtime = self.get_mtime()
 
         if (only_newer and
             self.last_sync_revision >= last_revision):
@@ -1617,7 +1634,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 self.file = store_path
                 self.update_store_header(profile=profile)
                 self.file.savestore()
-                self.sync_time = last_mtime
+                self.file_mtime = self.get_file_mtime()
+                self.sync_time = timezone.now()
                 self.last_sync_revision = last_revision
 
                 self.save()
@@ -1696,6 +1714,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         if file_changed:
             self.update_store_header(profile=profile)
             self.file.savestore()
+            self.file_mtime = self.get_file_mtime()
+            self.sync_time = timezone.now()
 
             log(u"[sync] %s units in %s [revision: %d]" %
                 (get_change_str(changes), self.pootle_path, last_revision))
@@ -1703,7 +1723,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             logging.info(u"[sync] nothing changed in %s [revision: %d]" %
                           (self.pootle_path, last_revision))
 
-        self.sync_time = last_mtime
         self.last_sync_revision = last_revision
         self.save()
 
