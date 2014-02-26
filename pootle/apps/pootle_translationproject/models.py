@@ -515,7 +515,7 @@ class TranslationProject(models.Model, TreeItem):
         try:
             filetoupdate = hooks.hook(self.project.code, "preupdate",
                                       store.file.name)
-        except:
+        except Exception:
             pass
 
         # Keep a copy of working files in memory before updating
@@ -538,7 +538,7 @@ class TranslationProject(models.Model, TreeItem):
 
         try:
             hooks.hook(self.project.code, "postupdate", store.file.name)
-        except:
+        except Exception:
             pass
 
         try:
@@ -596,7 +596,7 @@ class TranslationProject(models.Model, TreeItem):
             try:
                 filetoupdate = hooks.hook(self.project.code, "preupdate",
                                           store.file.name)
-            except:
+            except Exception:
                 pass
 
             # keep a copy of working files in memory before updating
@@ -609,7 +609,7 @@ class TranslationProject(models.Model, TreeItem):
             try:
                 hooks.hook(self.project.code, "postupdate",
                            store.file.name)
-            except:
+            except Exception:
                 pass
 
             try:
@@ -732,7 +732,7 @@ class TranslationProject(models.Model, TreeItem):
             try:
                 hooks.hook(self.project.code, "postcommit", store.file.name,
                            success=success)
-            except:
+            except Exception:
                 #FIXME: We should not hide the exception - makes development
                 # impossible
                 pass
@@ -805,7 +805,7 @@ class TranslationProject(models.Model, TreeItem):
         try:
             hooks.hook(self.project.code, "postcommit", store.file.name,
                        success=success)
-        except:
+        except Exception:
             #FIXME: We should not hide the exception - makes development
             # impossible
             pass
