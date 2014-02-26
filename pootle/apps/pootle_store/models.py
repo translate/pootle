@@ -27,6 +27,7 @@ from hashlib import md5
 
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ImproperlyConfigured
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
@@ -45,7 +46,6 @@ from translate.filters.decorators import Category
 from translate.storage import base
 
 from pootle_app.models import Revision
-from django.core.cache import cache
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              UNIT_OBSOLETE, STORE_ADDED, STORE_DELETED,
