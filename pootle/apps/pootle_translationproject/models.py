@@ -43,6 +43,7 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle.scripts import hooks
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
+from pootle_misc import versioncontrol
 from pootle_misc.siteconfig import load_site_config
 from pootle_misc.stats import stats_message_raw
 from pootle_misc.util import cached_property
@@ -523,7 +524,6 @@ class TranslationProject(models.Model, TreeItem):
 
         try:
             logging.debug(u"Updating %s from version control", store.file.name)
-            from pootle_misc import versioncontrol
             versioncontrol.update_file(filetoupdate)
             store.file._delete_store_cache()
             store.file._update_store_cache()
@@ -565,7 +565,6 @@ class TranslationProject(models.Model, TreeItem):
         """
         remote_stats = {}
 
-        from pootle_misc import versioncontrol
         try:
             versioncontrol.update_dir(self.real_path)
         except IOError as e:
