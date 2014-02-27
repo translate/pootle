@@ -586,8 +586,12 @@ class Unit(models.Model, base.TranslationUnit):
                 changed = True
 
         self_notes = self.getnotes(origin="translator")
-        if unit.getnotes(origin="translator") != self_notes or '':
-            unit.addnote(self_notes, origin="translator", position="replace")
+        unit_notes = unit.getnotes(origin="translator")
+        if unit_notes != (self_notes or ''):
+            if self_notes != '':
+                unit.addnote(self_notes, origin="translator", position="replace")
+            else:
+                unit.removenotes()
             changed = True
 
         if unit.isfuzzy() != self.isfuzzy():
