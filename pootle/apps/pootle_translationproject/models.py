@@ -17,12 +17,15 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import division
+
 import sys
 import gettext
 import logging
 import os
 from itertools import chain
 
+from translate.convert import pot2po
 from translate.misc.lru import LRUCachingDict
 from translate.storage.base import ParseError
 
@@ -42,6 +45,9 @@ from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle.scripts import hooks
 from pootle_app.models.directory import Directory
+from pootle_app.project_tree import (ensure_target_dir_exists,
+                                     get_translated_name,
+                                     get_translated_name_gnu)
 from pootle_language.models import Language
 from pootle_misc import versioncontrol
 from pootle_misc.siteconfig import load_site_config
@@ -50,6 +56,7 @@ from pootle_misc.util import cached_property
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
+from pootle_store.filetypes import factory_classes
 from pootle_store.models import (Store, Unit, PARSED)
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                OBSOLETE)
@@ -67,6 +74,147 @@ def create_translation_project(language, project):
             return None
         except IndexError:
             return None
+
+
+def update_against_templates(base, projects, pootle_path=None, verbose=False):
+    """Update translation project from templates."""
+    template = base.get_template_translationproject()
+    # FIXME file_style = base.file_style
+    file_style = projects[0].file_style
+    get_name = get_translated_name_gnu if file_style == "gnu" else get_translated_name
+    monolingual = base.is_monolingual
+    project_path = base.get_real_path()
+    template_stores = template.stores.all()
+    stores_count = template_stores.count()
+    total_count = len(projects) * stores_count
+    i = 0
+    _old = ""
+
+    _stores = Store.objects.filter(translation_project__project=base)
+    if len(projects) == 1:
+        _stores = _stores.filter(translation_project=projects[0])
+    _stores_count = _stores.count()
+    stores = {}
+    for store in _stores:
+        stores[store.pootle_path] = store
+
+    for project in projects:
+        if project.is_template_project or template == project:
+            continue
+
+        if not monolingual:
+            project.sync()
+
+        for template_store in template_stores:
+            if verbose:
+                i += 1
+                msg = "[%i%%] Loading %s:%s..." % (i / total_count * 100, project, template_store.file)
+                clear = abs(len(_old) - len(msg))
+                sys.stdout.write("\r" + msg + (" " * clear) + ("\b" * clear))
+                sys.stdout.flush()
+                _old = msg
+
+            new_pootle_path, new_path = get_name(project, template_store)
+            if pootle_path is not None and new_pootle_path != pootle_path:
+                continue
+
+            try:
+                relative_po_path = os.path.relpath(new_path, settings.PODIRECTORY)
+                if not hooks.hook(base.code, "pretemplateupdate", relative_po_path):
+                    continue
+            except Exception:
+                # Assume hook is not present.
+                pass
+
+            # Run pot2po to update or initialize the file on target_path with template_store
+            ensure_target_dir_exists(new_path)
+
+            if template_store.file:
+                template_file = template_store.file.store
+            else:
+                template_file = template_store
+
+            try:
+                store = stores[new_pootle_path]
+
+                if monolingual and store.state < PARSED:
+                    #HACKISH: exploiting update from templates to parse monolingual files
+                    store.update(store=template_file, update_translation=True)
+                    return
+
+                if not store.file or monolingual:
+                    original_file = store
+                else:
+                    original_file = store.file.store
+            except Store.DoesNotExist:
+                original_file = None
+                store = None
+
+            output_file = pot2po.convert_stores(template_file, original_file,
+                                                fuzzymatching=False,
+                                                classes=factory_classes)
+            if template_store.file:
+                if store:
+                    store.update(update_structure=True, update_translation=True,
+                                store=output_file, fuzzy=True)
+                output_file.settargetlanguage(project.language.code)
+                output_file.savefile(new_path)
+            elif store:
+                store.mergefile(output_file, None, allownewstrings=True,
+                                suggestions=False, notranslate=False,
+                                obsoletemissing=True)
+            else:
+                output_file.project = project
+                output_file.name = template_store.name
+                output_file.parent = project.directory
+                output_file.state = PARSED
+                output_file.save()
+
+            # pot2po modifies its input stores so clear caches is needed
+            if template_store.file:
+                template_store.file._delete_store_cache()
+            if store and store.file:
+                store.file._delete_store_cache()
+
+        all_files, new_files = project.scan_files(vcs_sync=False)
+
+        if new_files and versioncontrol.hasversioning(project_path):
+            siteconfig = load_site_config()
+            message = ("New files added from %s based on templates" %
+                       siteconfig.get("TITLE"))
+
+            filestocommit = []
+            for new_file in new_files:
+                try:
+                    hook_files = hooks.hook(base.code, "precommit",
+                                            new_file.file.name, author=None,
+                                            message=message)
+                    filestocommit.extend(hook_files)
+                except ImportError:
+                    # Failed to import the hook - we're going to assume there
+                    # just isn't a hook to import. That means we'll commit the
+                    # original file.
+                    filestocommit.append(new_file.file.name)
+
+            success = True
+            try:
+                versioncontrol.add_files(project_path, filestocommit, message)
+            except Exception:
+                logging.exception("Failed to add files")
+                success = False
+
+            for new_file in new_files:
+                try:
+                    hooks.hook(base.code, "postcommit",
+                               new_file.file.name, success=success)
+                except Exception:
+                    #FIXME: We should not hide the exception - makes
+                    # development impossible
+                    pass
+
+        if pootle_path is None:
+            from pootle_app.models.signals import post_template_update
+            post_template_update.send(sender=project)
 
 
 def scan_translation_projects():
@@ -361,105 +509,7 @@ class TranslationProject(models.Model, TreeItem):
     ### /TreeItem
 
     def update_against_templates(self, pootle_path=None):
-        """Update translation project from templates."""
-
-        if self.is_template_project:
-            return
-
-        template_translation_project = self.project \
-                                           .get_template_translationproject()
-
-        if (template_translation_project is None or
-            template_translation_project == self):
-            return
-
-        monolingual = self.project.is_monolingual
-
-        if not monolingual:
-            self.sync()
-
-        from pootle_app.project_tree import (convert_template,
-                                             get_translated_name,
-                                             get_translated_name_gnu)
-
-        stores = template_translation_project.stores.all()
-        stores_count = stores.count()
-        _old = ""
-        for i, store in enumerate(stores.all()):
-            msg = "(%i/%i) Loading %s..." % (i, stores_count, store.file)
-            clear = abs(len(_old) - len(msg))
-            sys.stdout.write("\r" + msg + (" " * clear) + ("\b" * clear))
-            sys.stdout.flush()
-            _old = msg
-
-            if self.file_style == 'gnu':
-                new_pootle_path, new_path = get_translated_name_gnu(self, store)
-            else:
-                new_pootle_path, new_path = get_translated_name(self, store)
-
-            if pootle_path is not None and new_pootle_path != pootle_path:
-                continue
-
-            try:
-                from pootle.scripts import hooks
-                relative_po_path = os.path.relpath(new_path,
-                                                   settings.PODIRECTORY)
-                if not hooks.hook(self.project.code, "pretemplateupdate",
-                                  relative_po_path):
-                    continue
-            except Exception:
-                # Assume hook is not present.
-                pass
-
-            convert_template(self, store, new_pootle_path, new_path,
-                             monolingual)
-
-        sys.stdout.write("\n")
-
-        all_files, new_files = self.scan_files(vcs_sync=False)
-
-        from pootle_misc import versioncontrol
-        project_path = self.project.get_real_path()
-
-        if new_files and versioncontrol.hasversioning(project_path):
-            from pootle.scripts import hooks
-            siteconfig = load_site_config()
-            message = ("New files added from %s based on templates" %
-                       siteconfig.get('TITLE'))
-
-            filestocommit = []
-            for new_file in new_files:
-                try:
-                    hook_files = hooks.hook(self.project.code, "precommit",
-                                            new_file.file.name, author=None,
-                                            message=message)
-                    filestocommit.extend(hook_files)
-                except ImportError:
-                    # Failed to import the hook - we're going to assume there
-                    # just isn't a hook to import. That means we'll commit the
-                    # original file.
-                    filestocommit.append(new_file.file.name)
-
-            success = True
-            try:
-                output = versioncontrol.add_files(project_path, filestocommit,
-                                                  message)
-            except Exception:
-                logging.exception(u"Failed to add files")
-                success = False
-
-            for new_file in new_files:
-                try:
-                    hooks.hook(self.project.code, "postcommit",
-                               new_file.file.name, success=success)
-                except:
-                    #FIXME: We should not hide the exception - makes
-                    # development impossible
-                    pass
-
-        if pootle_path is None:
-            from pootle_app.models.signals import post_template_update
-            post_template_update.send(sender=self)
+        return update_against_templates(self.project, [self], pootle_path)
 
     def scan_files(self, vcs_sync=True):
         """Scan the file system and return a list of translation files.
