@@ -840,6 +840,11 @@ class Unit(models.Model, base.TranslationUnit):
             self.store.flag_for_deletion(CachedMethods.FUZZY,
                                          CachedMethods.TRANSLATED,
                                          CachedMethods.LAST_ACTION)
+            self._state_updated = True
+            # that's additional check
+            # but leave old value in case _save_action is set
+            if not hasattr(self, '_save_action'):
+                self._save_action = TRANSLATION_CHANGED
 
         if value:
             self.state = FUZZY
@@ -848,6 +853,10 @@ class Unit(models.Model, base.TranslationUnit):
                 self.state = TRANSLATED
             else:
                 self.state = UNTRANSLATED
+                # that's additional check
+                # but leave old value in case _save_action is set
+                if not hasattr(self, '_save_action'):
+                    self._save_action = TRANSLATION_DELETED
 
     def hasplural(self):
         return (self.source is not None and
