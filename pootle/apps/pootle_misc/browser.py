@@ -194,28 +194,32 @@ def make_goal_store_item(store, goal):
     return item
 
 
-def get_goal_parent_item_list(directory, goal):
-    """Return a list with the parent directory item in a drill down view.
+def get_goal_parent(directory, goal):
+    """Return the parent directory in a drill down view.
 
     If the parent directory is the directory for a language or a project then
     return an item pointing at the goals tab.
     """
-    if directory.parent.is_language() or directory.parent.is_project():
+    parent_dir = directory.parent
+
+    if parent_dir.is_language() or parent_dir.is_project():
         url_kwargs = {
             'language_code': directory.translation_project.language.code,
             'project_code': directory.translation_project.project.code,
             'dir_path': directory.path,
         }
-        return [{
-            'title': u'..',
+        return {
+            'icon': 'folder-parent',
+            'title': _("Back to goals list"),
             'href': reverse('pootle-tp-goals', kwargs=url_kwargs),
-        }]
+        }
     else:
         parent_path = directory.parent.pootle_path
-        return [{
-            'title': u'..',
+        return {
+            'icon': 'folder-parent',
+            'title': _("Back to parent folder"),
             'href': goal.get_drill_down_url_for_path(parent_path),
-        }]
+        }
 
 
 def get_goal_children(directory, goal):
@@ -230,12 +234,10 @@ def get_goal_children(directory, goal):
     dir_stores, dir_subdirs = goal.get_children_for_path(directory.pootle_path)
 
     # Now get and return the items for those stores and subdirectories.
-    parent = get_goal_parent_item_list(directory, goal)
-
     directories = [make_goal_dir_item(child_dir, goal)
                    for child_dir in dir_subdirs]
 
     stores = [make_goal_store_item(child_store, goal)
               for child_store in dir_stores]
 
-    return parent + directories + stores
+    return directories + stores
