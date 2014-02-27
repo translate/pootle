@@ -1440,6 +1440,47 @@ div.settings-container
     display: block;
 }
 
+#login-wrapper
+{
+    margin: auto;
+    overflow: hidden;
+    padding: 2em;
+}
+
+#login-alternative
+{
+    float: right;
+    padding-top: 2em;
+    text-align: right;
+}
+
+html[dir="rtl"] #login-alternative
+{
+    float: left;
+    text-align: left;
+}
+
+#login-alternative h4
+{
+    margin-bottom: 0.7em;
+}
+
+#login-alternative h5
+{
+    font-size: 1.15em;
+    margin-bottom: 0.5em;
+}
+
+#forgot-password
+{
+    float: left;
+}
+
+html[dir="rtl"] #forgot-password
+{
+    float: right;
+}
+
 .settings-container table
 {
     width: 100%;
