@@ -10,6 +10,11 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- Changed the way units needing to be sync'ed to disk is determined. Units
+  now have a unique revision number within the store they belong to and
+  they'll be synchronized based on the `last_sync_revision` field of the
+  store. (`#136`_, `#137`_, `#138`_)
+
 - When selecting languages, redirect logic is smarter now. (`#106`_)
 
 - Translation projects are not deleted from the filesystem but marked as
@@ -18,12 +23,17 @@ Release .next
 
 - Translation projects now have a ``creation_time`` field. (`#120`_)
 
+- Several layout improvements that take into account different screen sizes.
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 .. _#106: https://github.com/evernote/pootle/issues/106
 .. _#118: https://github.com/evernote/pootle/issues/118
 .. _#120: https://github.com/evernote/pootle/issues/120
+.. _#136: https://github.com/evernote/pootle/issues/136
+.. _#137: https://github.com/evernote/pootle/issues/137
+.. _#138: https://github.com/evernote/pootle/issues/138
 
 
 Release `2014-01-31`_

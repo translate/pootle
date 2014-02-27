@@ -61,6 +61,8 @@ Changed Features
 - Adjusted ``update_translation_projects`` behavior not to delete
   directories from the filesystem.
 
+- Changed the way we determine which units need to be sync'ed to disk.
+
 
 Removed Features
 ^^^^^^^^^^^^^^^^
@@ -106,6 +108,8 @@ incorporated.
 - ``assign_permissions`` management command (688b8482)
 
 - Placeables support in the editor (2cb03709 .. 97f92ad3)
+
+- Integration with django-allauth. We use our own auth mechanisms.
 
 
 Editor Differences
