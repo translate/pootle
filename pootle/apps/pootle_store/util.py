@@ -153,4 +153,4 @@ def get_change_str(changes):
     if res:
         return ", ".join(res)
 
-    return "nothing changed"
+    return "no changed"

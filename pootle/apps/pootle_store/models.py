@@ -1730,7 +1730,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.file_mtime = self.get_file_mtime()
             self.sync_time = timezone.now()
 
-            log(u"[sync] %s units in %s [revision: %d]" %
+            log(u"[sync] File saved; %s units in %s [revision: %d]" %
                 (get_change_str(changes), self.pootle_path, last_revision))
         else:
             logging.info(u"[sync] nothing changed in %s [revision: %d]" %
