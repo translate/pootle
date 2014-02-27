@@ -657,6 +657,7 @@ class Unit(models.Model, base.TranslationUnit):
             (self.translator_comment or notes)):
             self.translator_comment = notes or None
             changed = True
+            self._comment_updated = True
 
         locations = "\n".join(unit.getlocations())
         if self.locations != locations and (self.locations or locations):
@@ -714,6 +715,7 @@ class Unit(models.Model, base.TranslationUnit):
 
             if (auto_translate
                 and not bool(filter(None, self.target_f.strings))):
+                # auto-translate untranslated strings
                 self.target = self.source
                 self.state = FUZZY
                 self._auto_translated = True
@@ -1524,6 +1526,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     if fuzzy and not filter(None, newunit.target.strings):
                         match_unit = newunit.fuzzy_translate(matcher)
                         if match_unit:
+                            newunit._from_update_stores = True
                             newunit.save()
                             self._remove_obsolete(match_unit.source)
 

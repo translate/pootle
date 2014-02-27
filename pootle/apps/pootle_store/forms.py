@@ -338,7 +338,7 @@ def unit_comment_form_factory(language):
         def save(self):
             """Registers the submission and saves the comment."""
             if self.has_changed():
-                self.instance._comment_changed = True
+                self.instance._comment_updated = True
                 creation_time = timezone.now()
                 translation_project = self.request.translation_project
 
