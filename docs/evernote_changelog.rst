@@ -15,6 +15,8 @@ Release .next
   they'll be synchronized based on the `last_sync_revision` field of the
   store. (`#136`_, `#137`_, `#138`_)
 
+- Tests have been resurrected. (`#117`_)
+
 - When selecting languages, redirect logic is smarter now. (`#106`_)
 
 - Translation projects are not deleted from the filesystem but marked as
@@ -29,6 +31,7 @@ Release .next
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 .. _#106: https://github.com/evernote/pootle/issues/106
+.. _#117: https://github.com/evernote/pootle/issues/117
 .. _#118: https://github.com/evernote/pootle/issues/118
 .. _#120: https://github.com/evernote/pootle/issues/120
 .. _#136: https://github.com/evernote/pootle/issues/136
