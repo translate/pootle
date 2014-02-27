@@ -13,7 +13,7 @@ Release .next
 - Changed the way units needing to be sync'ed to disk is determined. Units
   now have a unique revision number within the store they belong to and
   they'll be synchronized based on the `last_sync_revision` field of the
-  store. (`#136`_, `#137`_, `#138`_)
+  store. (`#136`_, `#137`_, `#138`_, `#139`_, `#140`_, `#141`_)
 
 - Tests have been resurrected. (`#117`_)
 
@@ -37,6 +37,9 @@ Release .next
 .. _#136: https://github.com/evernote/pootle/issues/136
 .. _#137: https://github.com/evernote/pootle/issues/137
 .. _#138: https://github.com/evernote/pootle/issues/138
+.. _#139: https://github.com/evernote/pootle/issues/139
+.. _#140: https://github.com/evernote/pootle/issues/140
+.. _#141: https://github.com/evernote/pootle/issues/141
 
 
 Release `2014-01-31`_
