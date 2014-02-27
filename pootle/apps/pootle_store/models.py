@@ -1617,13 +1617,14 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
 
     def sync(self, update_structure=False, conservative=True, create=False,
-             profile=None, skip_missing=False, only_newer=False):
+             profile=None, skip_missing=False, only_newer=True):
         """Sync file with translations from DB."""
         if skip_missing and not self.file.exists():
             return
 
         last_revision = self.get_last_revision()
 
+        #TODO only_newer -> not force
         if (only_newer and
             self.last_sync_revision >= last_revision):
             logging.info(u"[sync] No updates for %s after [revision: %d]" %
@@ -1724,7 +1725,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     changes['updated'] += 1
                     file_changed = True
 
-        if file_changed:
+        #TODO conservative -> not overwrite
+        if file_changed or not conservative:
             self.update_store_header(profile=profile)
             self.file.savestore()
             self.file_mtime = self.get_file_mtime()
