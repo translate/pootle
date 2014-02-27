@@ -31,7 +31,7 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_misc.util import jsonify
 from pootle_profile.models import get_profile
 
-from .models import Unit
+from .models import Unit, Store
 
 
 def _common_context(request, translation_project, permission_codes):
