@@ -190,16 +190,6 @@ class TreeItem(object):
 
     @getfromcache
     @statslog
-    def get_last_revision(self):
-        """get latest unit.revision"""
-        self.initialize_children()
-        return max(
-            [self._get_last_revision()] +
-            [item.get_last_revision() for item in self.children]
-        )
-
-    @getfromcache
-    @statslog
     def get_last_updated(self):
         """get last updated"""
         self.initialize_children()

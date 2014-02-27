@@ -1615,7 +1615,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             if filter(lambda x: changes[x] > 0, changes):
                 log(u"[update] %s units in %s [revision: %d]" % (
                     get_change_str(changes), self.pootle_path,
-                    self.get_last_revision())
+                    self.get_max_unit_revision())
                 )
 
 
@@ -1625,7 +1625,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         if skip_missing and not self.file.exists():
             return
 
-        last_revision = self.get_last_revision()
+        last_revision = self.get_max_unit_revision()
 
         #TODO only_newer -> not force
         if (only_newer and
@@ -1865,6 +1865,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         if self.file and hasattr(self.file.store, 'header'):
             return self.file.store.header()
 
+    def get_max_unit_revision(self):
+        return max_column(self.unit_set.all(), 'revision', 0)
+
     ### TreeItem
 
     def get_parents(self):
@@ -1913,9 +1916,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             logging.info(u"Error getting quality checks for %s\n%s",
                          self.name, e)
             return {}
-
-    def _get_last_revision(self):
-        return max_column(self.unit_set.all(), 'revision', 0)
 
     def _get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
