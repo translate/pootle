@@ -1293,7 +1293,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         lang = self.translation_project.language.code
         for unit in self.unit_set.iterator():
             action_log(user='system', action=UNIT_DELETED, lang=lang,
-                       unit=unit.id, Translation='', path=self.pootle_path)
+                       unit=unit.id, translation='', path=self.pootle_path)
 
         super(Store, self).delete(*args, **kwargs)
 
