@@ -102,7 +102,7 @@ class TranslationProjectManager(RelatedManager):
                         project__checkstyle='terminology')
 
     def enabled(self):
-        return self.filter(disabled=False)
+        return self.filter(disabled=False, project__disabled=False)
 
 
 class TranslationProject(models.Model, TreeItem):
