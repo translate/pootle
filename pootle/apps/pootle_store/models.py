@@ -1226,6 +1226,17 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def real_path(self):
         return self.file.name
 
+    @property
+    def file_mtime(self):
+        key = iri_to_uri(self.get_cachekey() + ":%s" % GET_FILE_MTIME)
+        return cache.get(key)
+
+    @file_mtime.setter
+    def file_mtime(self, value):
+        timeout = settings.OBJECT_CACHE_TIMEOUT
+        key = iri_to_uri(self.get_cachekey() + ":%s" % GET_FILE_MTIME)
+        cache.set(key, value, timeout)
+
     @cached_property
     def path(self):
         """Returns just the path part omitting language and project codes.
@@ -1429,16 +1440,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             disk_mtime = timezone.make_aware(disk_mtime, tz)
 
         return disk_mtime
-
-    def set_file_mtime(self, value, timeout=settings.OBJECT_CACHE_TIMEOUT):
-        key = iri_to_uri(self.get_cachekey() + ":%s" % GET_FILE_MTIME)
-        cache.set(key, value, timeout)
-
-    def get_file_mtime_from_cache(self):
-        key = iri_to_uri(self.get_cachekey() + ":%s" % GET_FILE_MTIME)
-        return cache.get(key)
-
-    file_mtime = property(get_file_mtime_from_cache, set_file_mtime)
 
     @commit_on_success
     def update(self, update_structure=False, overwrite=False,
