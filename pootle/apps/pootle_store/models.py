@@ -442,7 +442,6 @@ class Unit(models.Model, base.TranslationUnit):
         if ((not self._from_update_stores or self._auto_translated) and
             (self._target_updated or self._state_updated
              or self._comment_updated)):
-            self.store.flag_for_deletion(CachedMethods.LAST_REVISION)
             self.revision = Revision.objects.inc()
 
         if self.id and hasattr(self, '_save_action'):

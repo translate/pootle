@@ -56,7 +56,6 @@ class CachedMethods(object):
     LAST_ACTION = 'get_last_action'
     SUGGESTIONS = 'get_suggestion_count'
     MTIME = 'get_mtime'
-    LAST_REVISION = 'get_last_revision'
     LAST_UPDATED = 'get_last_updated'
 
     # Check refresh_stats command when add a new CachedMethod
@@ -112,10 +111,6 @@ class TreeItem(object):
     def _get_mtime(self):
         """This method will be overridden in descendants"""
         return datetime_min
-
-    def _get_last_revision(self):
-        """This method will be overridden in descendants"""
-        return 0
 
     def _get_last_updated(self):
         """This method will be overridden in descendants"""
