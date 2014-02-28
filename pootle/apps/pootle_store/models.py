@@ -48,7 +48,8 @@ from translate.storage import base
 from pootle_app.models import Revision
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
-                             UNIT_OBSOLETE, STORE_ADDED, STORE_DELETED,
+                             UNIT_OBSOLETE, UNIT_RESURRECTED,
+                             STORE_ADDED, STORE_DELETED,
                              MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
                              action_log, store_log, log)
 from pootle.core.managers import RelatedManager
@@ -888,8 +889,15 @@ class Unit(models.Model, base.TranslationUnit):
 
         if filter(None, self.target_f.strings):
             self.state = TRANSLATED
+            # when Unit toggles its OBSOLETE state the number of translated words
+            # also changes
+            self.store.flag_for_deletion(CachedMethods.TRANSLATED)
         else:
             self.state = UNTRANSLATED
+
+        self.store.flag_for_deletion(CachedMethods.TOTAL)
+        self._state_updated = True
+        self._save_action = UNIT_RESURRECTED
 
     def istranslated(self):
         if self._target_updated and not self.isfuzzy():
