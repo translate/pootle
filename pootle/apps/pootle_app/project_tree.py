@@ -365,65 +365,6 @@ def read_original_target(target_path):
         return None
 
 
-def convert_template(translation_project, template_store, target_pootle_path,
-                     target_path, monolingual=False):
-    """Run pot2po to update or initialize the file on `target_path` with
-    `template_store`.
-    """
-
-    ensure_target_dir_exists(target_path)
-
-    if template_store.file:
-        template_file = template_store.file.store
-    else:
-        template_file = template_store
-
-    try:
-        store = Store.objects.get(pootle_path=target_pootle_path)
-
-        if monolingual and store.state < PARSED:
-            #HACKISH: exploiting update from templates to parse monolingual files
-            store.update(store=template_file)
-            store.update(update_translation=True)
-            return
-
-        if not store.file or monolingual:
-            original_file = store
-        else:
-            original_file = store.file.store
-    except Store.DoesNotExist:
-        original_file = None
-        store = None
-
-    from translate.convert import pot2po
-    from pootle_store.filetypes import factory_classes
-    output_file = pot2po.convert_stores(template_file, original_file,
-                                        fuzzymatching=False,
-                                        classes=factory_classes)
-    if template_store.file:
-        if store:
-            store.update(update_structure=True, update_translation=True,
-                         store=output_file, fuzzy=True)
-        output_file.settargetlanguage(translation_project.language.code)
-        output_file.savefile(target_path)
-    elif store:
-        store.mergefile(output_file, None, allownewstrings=True,
-                        suggestions=False, notranslate=False,
-                        obsoletemissing=True)
-    else:
-        output_file.translation_project = translation_project
-        output_file.name = template_store.name
-        output_file.parent = translation_project.directory
-        output_file.state = PARSED
-        output_file.save()
-
-    # pot2po modifies its input stores so clear caches is needed
-    if template_store.file:
-        template_store.file._delete_store_cache()
-    if store and store.file:
-        store.file._delete_store_cache()
-
-
 def get_translated_name_gnu(translation_project, store):
     """Given a template :param:`store` and a :param:`translation_project` return
     target filename.
