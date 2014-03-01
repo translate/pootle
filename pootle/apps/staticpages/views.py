@@ -22,7 +22,6 @@
 
 from __future__ import absolute_import
 
-from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponse
@@ -185,15 +184,12 @@ def display_page(request, virtual_path):
     if page.url:
         return redirect(page.url)
 
-    if request.user.is_superuser and not page.active:
-        msg = _('This page is inactive and visible to administrators '
-                'only. You can activate it by <a href="%s">editing its '
-                'properties</a>', page.get_edit_url())
-        messages.warning(request, msg)
-
     template_name = 'staticpages/page_display.html'
     if request.is_ajax():
         template_name = 'staticpages/_body.html'
+
+    # render the value to easily access it via template
+    page.edit_url = page.get_edit_url();
 
     ctx = {
         'page': page,

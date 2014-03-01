@@ -74,6 +74,8 @@ def overview(request, translation_project, dir_path, filename=None):
         announcement = StaticPage.objects.live(request.user).get(
             virtual_path=ann_virtual_path,
         )
+        # render the value to easily access it via template
+        announcement.edit_url = announcement.get_edit_url();
     except StaticPage.DoesNotExist:
         announcement = None
 
