@@ -32,6 +32,6 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         try:
-            print Revision.objects.values_list('counter')[0]
+            print Revision.objects.values_list('counter')[0][0]
         except IndexError:
             print 0  # No revision stored yet, consider it 0
