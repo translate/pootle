@@ -21,6 +21,9 @@ These are by no means exhaustive, check the `git log
 <https://github.com/translate/pootle/compare/stable%2F2.5.1...master>`_
 for more details.
 
+- The registration and authentication layer is now handled by django-allauth.
+  This gives Pootle implicit support for OpenID, OAuth, OAuth2 and Persona
+  sign-in support.
 - Placeables are used to highlight parts of the source text and easily insert
   them into the translation.
 - Local Translation Memory (TM) augments the already available `amaGama
