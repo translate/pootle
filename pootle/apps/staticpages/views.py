@@ -188,9 +188,6 @@ def display_page(request, virtual_path):
     if request.is_ajax():
         template_name = 'staticpages/_body.html'
 
-    # render the value to easily access it via template
-    page.edit_url = page.get_edit_url();
-
     ctx = {
         'page': page,
     }
