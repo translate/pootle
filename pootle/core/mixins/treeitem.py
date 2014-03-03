@@ -90,7 +90,7 @@ class TreeItem(object):
 
     def _get_path_summary(self):
         """This method will be overridden in descendants"""
-        return []
+        return {}
 
     def _get_last_action(self):
         """This method will be overridden in descendants"""

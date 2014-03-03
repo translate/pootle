@@ -48,12 +48,68 @@
       setTdWidth($td.find('td.untranslated'), untranslated);
     },
 
-    updatePathSummary: function ($summary, data) {
-      var pathsummary = data.pathsummary;
-      pathsummary.push(data.lastaction.snippet);
-      $.each(pathsummary, function (i, v) {
-        $summary.append($('<li/>').append(v));
+    updatePathSummary: function ($pathSummary, data) {
+      var incomplete = data.total - data.translated,
+          translated = PTL.stats.nicePercentage(data.translated, data.total),
+          summary;
+
+      if (data.pathsummary.is_dir) {
+        var fmt = ngettext('This folder has %s word, %s% of which is translated.',
+                           'This folder has %s words, %s% of which are translated.',
+                           data.total);
+        summary = interpolate(fmt, [data.total, translated]);
+      } else {
+        var fmt = ngettext('This file has %s word, %s% of which is translated.',
+                           'This file has %s words, %s% of which are translated.',
+                           data.total);
+        summary = interpolate(fmt, [data.total, translated]);
+      }
+
+      var $pathSummaryMore = $("<a />", {
+        'id': 'js-path-summary',
+        'href': data.pathsummary.summary_more_url,
+        'text': gettext('Expand details'),
+        'data-target': 'js-path-summary-more',
       });
+
+      $pathSummary.append(
+        $('<li/>').append(summary)
+                  .append(' ')
+                  .append($pathSummaryMore)
+                  .append(data.pathsummary.goals_summary)
+      );
+
+      if (incomplete > 0) {
+        var fmt = ngettext('Continue translation (%s word left)',
+                           'Continue translation (%s words left)', incomplete);
+        var $incomplete = $("<a />", {
+          'class': 'path-incomplete',
+          'href': data.pathsummary.incomplete_url,
+          'text': interpolate(fmt, [incomplete]),
+        });
+
+        $pathSummary.append($('<li/>').append($incomplete));
+      } else {
+        var $incomplete = $("<a />", {
+          'class': 'path-incomplete',
+          'href': data.pathsummary.translate_url,
+          'text': gettext('Translation is complete'),
+        });
+
+        $pathSummary.append($('<li/>').append($incomplete));
+      }
+
+      if (data.suggestions > 0) {
+        var fmt = ngettext('Review suggestion (%s left)',
+                           'Review suggestions (%s left)', data.suggestions);
+        var $suggestions = $("<a />", {
+          'class': 'path-incomplete',
+          'href': data.pathsummary.suggestions_url,
+          'text': interpolate(fmt, [data.suggestions]),
+        });
+
+        $pathSummary.append($('<li/>').append($suggestions));
+      }
     },
 
     updateSummary: function ($summary, data) {

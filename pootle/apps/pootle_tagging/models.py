@@ -142,7 +142,10 @@ class Goal(TagBase):
                                                         .get_for_model(Store),
             'items_with_goal__object_id__in': stores_pks,
         }
-        tp = directory.translation_project
+        try:
+            tp = directory.translation_project
+        except:
+            return []
 
         if tp.is_template_project:
             # Return the 'project goals' applied to stores in this path.
