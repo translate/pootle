@@ -113,10 +113,8 @@
     },
 
     updateSummary: function ($summary, data) {
-      var summary,
-          percent = PTL.stats.nicePercentage(data.translated, data.total);
-      summary = interpolate(gettext(', %s% translated'), [percent]);
-      $summary.append(summary);
+      var percent = PTL.stats.nicePercentage(data.translated, data.total);
+      $summary.append(interpolate(gettext(', %s% translated'), [percent]));
     },
 
     updateTranslationStats: function ($tr, total, value) {
