@@ -468,7 +468,8 @@ class Unit(models.Model, base.TranslationUnit):
             # update target related fields
             self.target_wordcount = count_words(self.target_f.strings)
             self.target_length = len(self.target_f)
-            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
+            self.store.flag_for_deletion(CachedMethods.LAST_ACTION,
+                                         CachedMethods.PATH_SUMMARY)
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
                     self.state = TRANSLATED
@@ -830,7 +831,8 @@ class Unit(models.Model, base.TranslationUnit):
             # also changes
             self.store.flag_for_deletion(CachedMethods.FUZZY,
                                          CachedMethods.TRANSLATED,
-                                         CachedMethods.LAST_ACTION)
+                                         CachedMethods.LAST_ACTION,
+                                         CachedMethods.PATH_SUMMARY)
 
         if value:
             self.state = FUZZY
@@ -955,7 +957,8 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.target = translation
         try:
             suggestion.save()
-            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
+                                         CachedMethods.PATH_SUMMARY)
             if touch:
                 self.save()
         except:
@@ -979,7 +982,8 @@ class Unit(models.Model, base.TranslationUnit):
         # ``save``, otherwise the quality checks won't be properly updated
         # when saving the unit.
         suggestion.delete()
-        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
+        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
+                                     CachedMethods.PATH_SUMMARY)
         self.save()
 
         if settings.AUTOSYNC and self.file:
@@ -1777,6 +1781,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         """Check if any unit in the store has suggestions"""
         return Suggestion.objects.filter(unit__store=self,
                                          unit__state__gt=OBSOLETE).count()
+
+    def _get_path_summary(self):
+        from pootle_misc.stats import get_path_summary
+        return get_path_summary(self)
 
     ### /TreeItem
 
