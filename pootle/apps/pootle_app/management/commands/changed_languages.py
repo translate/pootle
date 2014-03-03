@@ -19,15 +19,20 @@
 
 
 import os
+import sys
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+
+from optparse import make_option
 
 from django.core.management.base import NoArgsCommand
 from django.db.models import Max
-from optparse import make_option
-from pootle_app.management.commands import BaseRunCommand
+
 from pootle_app.models import Revision
 from pootle_store.models import Store, Unit
-import sys
+
+from . import BaseRunCommand
+
 
 class Command(NoArgsCommand):
     help = "List languages that were changed since last synchronization"
@@ -39,17 +44,17 @@ class Command(NoArgsCommand):
     )
 
     def handle_noargs(self, **options):
-        last_known_revision = self.getLastKnownRevision();
+        last_known_revision = self.get_last_known_revision()
 
         if options['after_revision'] != None:
             after_revision = int(options['after_revision'])
         else:
-            after_revision = Store.objects.all().\
-                aggregate(Max('last_sync_revision'))['last_sync_revision__max']\
-                or -1
+            after_revision = Store.objects.all().aggregate(
+                    Max('last_sync_revision')
+                )['last_sync_revision__max'] or -1
 
-        print >> sys.stderr, "Will show languages changed between revisions",\
-                             after_revision, "(exclusive) and",\
+        print >> sys.stderr, "Will show languages changed between revisions", \
+                             after_revision, "(exclusive) and", \
                              last_known_revision, "(inclusive)"
 
         # if the requested revision is the same or is greater than
@@ -58,17 +63,21 @@ class Command(NoArgsCommand):
             print >> sys.stderr, "(no known changes)"
             return
 
-        q = Unit.objects.filter(revision__gt=after_revision)\
-            .values('store__translation_project__language__code')\
-            .distinct().order_by('store__translation_project__language__code')
+        q = Unit.objects.filter(
+                revision__gt=after_revision
+            ).values(
+                'store__translation_project__language__code',
+            ).order_by(
+                'store__translation_project__language__code',
+            ).distinct()
 
-        languages = q.values_list('store__translation_project__language__code',\
-            flat=True)
+        languages = q.values_list('store__translation_project__language__code',
+                                  flat=True)
 
         # list languages separated by comma for easy parsing
         print ','.join(languages)
 
-    def getLastKnownRevision(self):
+    def get_last_known_revision(self):
         try:
             return Revision.objects.values_list('counter')[0][0]
         except IndexError:
