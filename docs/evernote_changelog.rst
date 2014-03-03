@@ -10,6 +10,13 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+
+
+Release `2014-02-28`_
+---------------------
+
 - Changed the way units needing to be sync'ed to disk is determined. Units
   now have a unique revision number within the store they belong to and
   they'll be synchronized based on the `last_sync_revision` field of the
@@ -28,7 +35,7 @@ Release .next
 - Several layout improvements that take into account different screen sizes.
 
 - `Commit comparison wrt previous release
-  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+  <https://github.com/evernote/pootle/compare/release-2014-01-31...release-2014-02-28>`_
 
 .. _#106: https://github.com/evernote/pootle/issues/106
 .. _#117: https://github.com/evernote/pootle/issues/117
