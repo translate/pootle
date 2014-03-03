@@ -132,8 +132,7 @@ def get_quality_check_failures(path_obj):
 
     try:
         property_stats = path_obj.get_checks()
-        path_stats = path_obj.get_stats()
-        total = path_stats['total']
+        total = path_obj.get_total_wordcount()
         keys = property_stats.keys()
         keys.sort(reverse=True)
 
