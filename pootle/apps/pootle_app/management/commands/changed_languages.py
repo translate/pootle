@@ -44,7 +44,7 @@ class Command(NoArgsCommand):
     )
 
     def handle_noargs(self, **options):
-        last_known_revision = self.get_last_known_revision()
+        last_known_revision = Revision.objects.last()
 
         if options['after_revision'] != None:
             after_revision = int(options['after_revision'])
@@ -76,9 +76,3 @@ class Command(NoArgsCommand):
 
         # list languages separated by comma for easy parsing
         print ','.join(languages)
-
-    def get_last_known_revision(self):
-        try:
-            return Revision.objects.values_list('counter')[0][0]
-        except IndexError:
-            return 0

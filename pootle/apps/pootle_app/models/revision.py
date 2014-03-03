@@ -23,6 +23,7 @@ from django.db import models, connections
 
 
 class RevisionManager(models.Manager):
+
     def inc(self):
         cursor = connections[self.db].cursor()
         cursor.execute("UPDATE %(table)s "
@@ -36,6 +37,13 @@ class RevisionManager(models.Manager):
         result = cursor.fetchall()
 
         return result[0][0]
+
+    def last(self):
+        """Returns the latest revision number."""
+        try:
+            return self.get_query_set().values_list('counter')[0][0]
+        except IndexError:
+            return 0
 
 
 class Revision(models.Model):

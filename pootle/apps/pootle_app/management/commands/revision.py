@@ -31,7 +31,4 @@ class Command(NoArgsCommand):
     help = "Print the number of the current revision."
 
     def handle_noargs(self, **options):
-        try:
-            print Revision.objects.values_list('counter')[0][0]
-        except IndexError:
-            print 0  # No revision stored yet, consider it 0
+        print Revision.objects.last()
