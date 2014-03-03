@@ -342,15 +342,6 @@ class TranslationProject(models.Model, TreeItem):
 
         return all_files, new_files
 
-    def initialize(self):
-        try:
-            from pootle.scripts import hooks
-            hooks.hook(self.project.code, "initialize", self.real_path,
-                    self.language.code)
-        except Exception as e:
-            logging.error(u"Failed to initialize (%s): %s", self.language.code,
-                    e)
-
     ###########################################################################
 
     def gettermmatcher(self):

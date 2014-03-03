@@ -92,6 +92,8 @@ Removed Features
 
 - Project/Language/Translation Project descriptions.
 
+- Hooks.
+
 
 Unmerged Features
 ^^^^^^^^^^^^^^^^^

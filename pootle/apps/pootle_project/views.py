@@ -138,9 +138,6 @@ def project_admin(request, current_project):
 
 
     class TranslationProjectForm(forms.ModelForm):
-        #FIXME: maybe we can detect if initialize is needed to avoid
-        # displaying it when not relevant
-        #initialize = forms.BooleanField(required=False, label=_("Initialize"))
 
         project = forms.ModelChoiceField(
                 queryset=Project.objects.filter(pk=current_project.pk),
@@ -158,11 +155,6 @@ def project_admin(request, current_project):
         class Meta:
             prefix = "existing_language"
             model = TranslationProject
-
-        def process_extra_fields(self):
-            if self.instance.pk is not None:
-                if self.cleaned_data.get('initialize', None):
-                    self.instance.initialize()
 
     queryset = TranslationProject.objects.filter(project=current_project) \
                                          .order_by('pootle_path')
