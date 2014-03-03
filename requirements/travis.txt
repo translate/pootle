@@ -5,3 +5,5 @@ MySQL-python==1.2.5
 psycopg2==2.5.2
 python-memcached==1.53
 pep8
+pytest
+pytest-django
