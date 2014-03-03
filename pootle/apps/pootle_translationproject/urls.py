@@ -57,10 +57,6 @@ urlpatterns = patterns('pootle_translationproject.views',
         name='pootle-vcs-update'),
 
     # XHR views
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/summary/'
-        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'path_summary',
-        name='pootle-xhr-summary'),
     url(r'^xhr/summary-more/?$',
         'path_summary_more',
         name='pootle-xhr-summary-more'),

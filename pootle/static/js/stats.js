@@ -48,21 +48,12 @@
       setTdWidth($td.find('td.untranslated'), untranslated);
     },
 
-    updatePathSummary: function () {
-      var $summary = $('#path-summary-head');
-      if ($summary.length) {
-        var url = $summary.attr('data-url'),
-            reqData = {
-              path: PTL.stats.pootlePath
-            };
-        $.ajax({
-          url: url,
-          data: reqData,
-          success: function (data) {
-            $summary.append(data);
-          },
-        });
-      }
+    updatePathSummary: function ($summary, data) {
+      var pathsummary = data.pathsummary;
+      pathsummary.push(data.lastaction.snippet);
+      $.each(pathsummary, function (i, v) {
+        $summary.append($('<li/>').append(v));
+      });
     },
 
     updateSummary: function ($summary, data) {
@@ -98,7 +89,6 @@
     },
 
     load: function (callback) {
-      PTL.stats.updatePathSummary();
       var url = l('/xhr/stats/overview/'),
           reqData = {
             path: this.pootlePath
@@ -113,6 +103,7 @@
               now = parseInt(Date.now() / 1000, 10);
           PTL.stats.updateProgressbar($('#progressbar'), data);
           PTL.stats.updateSummary($('#summary'), data);
+          PTL.stats.updatePathSummary($('#path-summary-head'), data);
 
           PTL.stats.updateAction($('#action-view-all'), data.total);
           PTL.stats.updateAction($('#action-continue'),
@@ -186,7 +177,7 @@
             }
           } else {
             $('#js-path-summary').click();
-	  }
+          }
 
           if (callback) {
             callback(data);

@@ -41,13 +41,11 @@ def nice_percentage(count, total):
     return int(round(percentage))
 
 
-def get_path_summary(path_obj, latest_action):
+def get_path_summary(path_obj):
     """Return a list of sentences to be displayed for each ``path_obj``."""
     summary = []
     incomplete = []
     suggestions = []
-
-    path_stats = path_obj.get_stats(False)
 
     if path_obj.is_dir:
         summary.append(
@@ -55,11 +53,11 @@ def get_path_summary(path_obj, latest_action):
                 "which is translated.",
                 "This folder has %(num)d words, %(percentage)d%% of "
                 "which are translated.",
-                path_stats['total'],
+                path_obj.get_total_wordcount(),
                 {
-                    'num': path_stats['total'],
-                    'percentage': nice_percentage(path_stats['translated'],
-                                  path_stats['total'])
+                    'num': path_obj.get_total_wordcount(),
+                    'percentage': nice_percentage(path_obj.get_translated_wordcount(),
+                                  path_obj.get_total_wordcount())
                 })
         )
     else:
@@ -68,11 +66,11 @@ def get_path_summary(path_obj, latest_action):
                 "which is translated.",
                 "This file has %(num)d words, %(percentage)d%% of "
                 "which are translated.",
-                path_stats['total'],
+                path_obj.get_total_wordcount(),
                 {
-                    'num': path_stats['total'],
-                    'percentage': nice_percentage(path_stats['translated'],
-                                  path_stats['total'])
+                    'num': path_obj.get_total_wordcount(),
+                    'percentage': nice_percentage(path_obj.get_translated_wordcount(),
+                                  path_obj.get_total_wordcount())
                 })
         )
 
@@ -87,7 +85,7 @@ def get_path_summary(path_obj, latest_action):
     ]))
 
 
-    num_words = path_stats['total'] - path_stats['translated']
+    num_words = path_obj.get_total_wordcount() - path_obj.get_translated_wordcount()
     if num_words > 0:
         incomplete.extend([
             u'<a class="path-incomplete" href="%(url)s">' % {
@@ -131,19 +129,19 @@ def get_path_summary(path_obj, latest_action):
     incomplete.append(u'</a>')
 
 
-    if path_stats['suggestions'] > 0:
+    if path_obj.get_suggestion_count() > 0:
         suggestions.append(u'<a class="path-incomplete" href="%(url)s">' % {
             'url': path_obj.get_translate_url(state='suggestions')
         })
         suggestions.append(
             ungettext(u'Review suggestion (%(num)d left)',
                       u'Review suggestions (%(num)d left)',
-                      path_stats['suggestions'],
-                      {'num': path_stats['suggestions'], })
+                      path_obj.get_suggestion_count(),
+                      {'num': path_obj.get_suggestion_count(), })
         )
         suggestions.append(u'</a>')
 
-    return [u''.join(summary), latest_action, u''.join(incomplete),
+    return [u''.join(summary), u''.join(incomplete),
             u''.join(suggestions)]
 
 

@@ -280,7 +280,8 @@ def unit_form_factory(language, snplurals=None, request=None):
                 # also changes
                 self.instance.store.flag_for_deletion(CachedMethods.FUZZY,
                                                       CachedMethods.TRANSLATED,
-                                                      CachedMethods.LAST_ACTION)
+                                                      CachedMethods.LAST_ACTION,
+                                                      CachedMethods.PATH_SUMMARY)
 
             if old_state != new_state:
                 self.instance._state_updated = True

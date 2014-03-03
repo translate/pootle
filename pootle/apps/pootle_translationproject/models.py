@@ -311,14 +311,6 @@ class TranslationProject(models.Model, TreeItem):
                        skip_missing=skip_missing,
                        modified_since=modified_since)
 
-    def get_latest_submission(self):
-        """Get the latest submission done in the Translation project."""
-        try:
-            sub = Submission.objects.filter(translation_project=self).latest()
-        except Submission.DoesNotExist:
-            return ''
-        return sub.get_submission_message()
-
     def get_mtime(self):
         return self.directory.get_mtime()
 
@@ -354,6 +346,10 @@ class TranslationProject(models.Model, TreeItem):
 
     def get_parents(self):
         return [self.language, self.project]
+
+    def _get_path_summary(self):
+        from pootle_misc.stats import get_path_summary
+        return get_path_summary(self.directory)
 
     ### /TreeItem
 
