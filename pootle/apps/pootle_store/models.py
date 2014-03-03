@@ -1291,6 +1291,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 unit.store = self
                 unit.index = index + i
                 unit.save()
+
         if self.state >= PARSED:
             self.clear_flagged_cache()
 
