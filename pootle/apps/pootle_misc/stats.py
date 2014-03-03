@@ -19,97 +19,30 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.urlresolvers import reverse
-from django.utils.encoding import force_unicode
-from django.utils.translation import ugettext_lazy as _, ungettext
-
-
-def nice_percentage(count, total):
-    """Return an integer percentage for count in respect to total.
-
-    Avoid returning 0% or 100% for percentages closer to them since it might be
-    misleading.
-    """
-    percentage = 100.0 * count / max(total, 1)
-
-    # Let's try to be clever and make sure than anything above 0.0 and below
-    # 0.5 will show as at least 1%, and anything above 99.5% and less than 100%
-    # will show as 99%.
-    if 99 < percentage < 100:
-        return 99
-    if 0 < percentage < 1:
-        return 1
-    return int(round(percentage))
+from django.utils.translation import ungettext
 
 
 def get_path_summary(path_obj):
     """Return a list of sentences to be displayed for each ``path_obj``."""
-    summary = []
-    incomplete = []
-    suggestions = []
-
-    if path_obj.is_dir:
-        summary.append(
-            ungettext("This folder has %(num)d word, %(percentage)d%% of "
-                "which is translated.",
-                "This folder has %(num)d words, %(percentage)d%% of "
-                "which are translated.",
-                path_obj.get_total_wordcount(),
-                {
-                    'num': path_obj.get_total_wordcount(),
-                    'percentage': nice_percentage(path_obj.get_translated_wordcount(),
-                                  path_obj.get_total_wordcount())
-                })
-        )
-    else:
-        summary.append(
-            ungettext("This file has %(num)d word, %(percentage)d%% of "
-                "which is translated.",
-                "This file has %(num)d words, %(percentage)d%% of "
-                "which are translated.",
-                path_obj.get_total_wordcount(),
-                {
-                    'num': path_obj.get_total_wordcount(),
-                    'percentage': nice_percentage(path_obj.get_translated_wordcount(),
-                                  path_obj.get_total_wordcount())
-                })
-        )
+    goals_summary = []
 
     # Build URL for getting more summary information for the current path.
     url_path_summary_more = reverse('pootle-xhr-summary-more')
 
-    summary.append(u''.join([
-        ' <a id="js-path-summary" data-target="js-path-summary-more" '
-        'href="%s">' % url_path_summary_more,
-        force_unicode(_(u'Expand details')),
-        '</a>'
-    ]))
+    if path_obj.is_dir:
+        # Putting the next import at the top of the file causes circular
+        # import issues.
+        from pootle_tagging.models import Goal
 
+        pootle_path = path_obj.pootle_path
+        goal = Goal.get_most_important_incomplete_for_path(path_obj)
 
-    num_words = path_obj.get_total_wordcount() - path_obj.get_translated_wordcount()
-    if num_words > 0:
-        incomplete.extend([
-            u'<a class="path-incomplete" href="%(url)s">' % {
-                    'url': path_obj.get_translate_url(state='incomplete')
-                },
-            ungettext(u'Continue translation (%(num)d word left)',
-                      u'Continue translation (%(num)d words left)',
-                      num_words,
-                      {'num': num_words, }),
-        ])
-
-        if path_obj.is_dir:
-            # Putting the next import at the top of the file causes circular
-            # import issues.
-            from pootle_tagging.models import Goal
-
-            pootle_path = path_obj.pootle_path
-            goal = Goal.get_most_important_incomplete_for_path(path_obj)
-
-            if goal is not None:
-                goal_words = goal.get_incomplete_words_in_path(path_obj)
-                goal_url = goal.get_translate_url_for_path(pootle_path,
-                                                           state='incomplete')
-                incomplete.extend([
+        if goal is not None:
+            goal_words = goal.get_incomplete_words_in_path(path_obj)
+            goal_url = goal.get_translate_url_for_path(pootle_path,
+                                                       state='incomplete')
+            if goal_words > 0:
+                goals_summary.extend([
                     u'<br /><a class="path-incomplete" href="%(url)s">' % {
                             'url': goal_url,
                         },
@@ -118,31 +51,13 @@ def get_path_summary(path_obj):
                               goal_words,
                               {'num': goal_words, }),
                 ])
-    else:
-        incomplete.extend([
-            u'<a class="path-incomplete" href="%(url)s">' % {
-                    'url': path_obj.get_translate_url(state='all')
-                },
-            force_unicode(_('Translation is complete')),
-        ])
 
-    incomplete.append(u'</a>')
-
-
-    if path_obj.get_suggestion_count() > 0:
-        suggestions.append(u'<a class="path-incomplete" href="%(url)s">' % {
-            'url': path_obj.get_translate_url(state='suggestions')
-        })
-        suggestions.append(
-            ungettext(u'Review suggestion (%(num)d left)',
-                      u'Review suggestions (%(num)d left)',
-                      path_obj.get_suggestion_count(),
-                      {'num': path_obj.get_suggestion_count(), })
-        )
-        suggestions.append(u'</a>')
-
-    return [u''.join(summary), u''.join(incomplete),
-            u''.join(suggestions)]
+    return {'is_dir': path_obj.is_dir,
+            'goals_summary': u''.join(goals_summary),
+            'summary_more_url': url_path_summary_more,
+            'translate_url': path_obj.get_translate_url(state='all'),
+            'incomplete_url': path_obj.get_translate_url(state='incomplete'),
+            'suggestions_url': path_obj.get_translate_url(state='suggestions')}
 
 
 def stats_message_raw(version, total, translated, fuzzy):
