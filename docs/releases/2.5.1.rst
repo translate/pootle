@@ -80,7 +80,8 @@ Important server admin changes
 - Fabric deployment scripts have been improved to make deployment easier.
 - Security fixes identified by a Mozilla security audit have been implemented.
 - Optimisations of asset caching such as Expires headers have been enabled.
-- Various LDAP fixes.
+- LDAP authentication backend moved to
+  ``pootle.core.auth.ldap_backend.LdapBackend`` and received various fixes.
 - Static pages can now be used to track the acceptance of terms of use.
 - The quality check for spell checking has been globally disabled. It wasn't
   properly advertised nor documented, and it didn't perform well enough to be
