@@ -1610,6 +1610,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             old_value=create_subs[field][0],
                             new_value=create_subs[field][1]
                         )
+                        # FIXME: we can store these objects in a list and
+                        # `bulk_create()` them in a single go
                         sub.save()
 
             self.file_mtime = disk_mtime
