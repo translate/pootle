@@ -111,23 +111,6 @@ def export_view(request, project, dir_path, filename):
                               context_instance=RequestContext(request))
 
 
-class TranslationProjectFormSet(forms.models.BaseModelFormSet):
-
-    def save_existing(self, form, instance, commit=True):
-        result = super(TranslationProjectFormSet, self) \
-                .save_existing(form, instance, commit)
-        form.process_extra_fields()
-
-        return result
-
-
-    def save_new(self, form, commit=True):
-        result = super(TranslationProjectFormSet, self).save_new(form, commit)
-        form.process_extra_fields()
-
-        return result
-
-
 @get_path_obj
 @permission_required('administrate')
 def project_admin(request, current_project):
@@ -176,8 +159,7 @@ def project_admin(request, current_project):
     return util.edit(request, 'projects/admin/languages.html',
                      TranslationProject, ctx, generate_link,
                      linkfield="language", queryset=queryset,
-                     can_delete=True, form=TranslationProjectForm,
-                     formset=TranslationProjectFormSet)
+                     can_delete=True, form=TranslationProjectForm)
 
 
 @get_path_obj
