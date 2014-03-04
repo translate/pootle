@@ -1442,12 +1442,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         return disk_mtime
 
     @commit_on_success
-    def update(self, update_structure=False, overwrite=False,
-               store=None, fuzzy=False, only_newer=False):
+    def update(self, overwrite=False, store=None, fuzzy=False,
+               only_newer=False):
         """Update DB with units from file.
 
-        :param update_structure: Whether to update store's structure by marking
-            common DB units as obsolete and adding new units.
         :param overwrite: Whether to update all existing translations or
             keep safe units that updated after the last sync.
         :param store: The target :class:`~pootle_store.models.Store`. If unset,
@@ -1505,39 +1503,38 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             old_ids = set(self.dbid_index.keys())
             new_ids = set(store.getids())
 
-            if update_structure:
-                # Remove old units or make them obsolete if they were already
-                # translated
-                obsolete_dbids = [self.dbid_index.get(uid)
-                                  for uid in old_ids - new_ids]
-                for unit in self.findid_bulk(obsolete_dbids):
-                    # Use the same (parent) object since units will accumulate
-                    # the list of cache attributes to clear in the parent Store
-                    # object
-                    unit.store = self
-                    if not unit.isobsolete():
-                        if unit.istranslated():
-                            unit.makeobsolete()
-                            unit._from_update_stores = True
-                            unit.save()
-                            changes['obsolete'] += 1
-                        else:
-                            unit.delete()
-                            changes['deleted'] += 1
+            # Remove old units or make them obsolete if they were already
+            # translated
+            obsolete_dbids = [self.dbid_index.get(uid)
+                              for uid in old_ids - new_ids]
+            for unit in self.findid_bulk(obsolete_dbids):
+                # Use the same (parent) object since units will accumulate
+                # the list of cache attributes to clear in the parent Store
+                # object
+                unit.store = self
+                if not unit.isobsolete():
+                    if unit.istranslated():
+                        unit.makeobsolete()
+                        unit._from_update_stores = True
+                        unit.save()
+                        changes['obsolete'] += 1
+                    else:
+                        unit.delete()
+                        changes['deleted'] += 1
 
-                # Add new units to the store
-                new_units = (store.findid(uid) for uid in new_ids - old_ids)
-                for unit in new_units:
-                    newunit = self.addunit(unit, unit.index)
-                    changes['added'] += 1
+            # Add new units to the store
+            new_units = (store.findid(uid) for uid in new_ids - old_ids)
+            for unit in new_units:
+                newunit = self.addunit(unit, unit.index)
+                changes['added'] += 1
 
-                    # Fuzzy match non-empty target strings
-                    if fuzzy and not filter(None, newunit.target.strings):
-                        match_unit = newunit.fuzzy_translate(matcher)
-                        if match_unit:
-                            newunit._from_update_stores = True
-                            newunit.save()
-                            self._remove_obsolete(match_unit.source)
+                # Fuzzy match non-empty target strings
+                if fuzzy and not filter(None, newunit.target.strings):
+                    match_unit = newunit.fuzzy_translate(matcher)
+                    if match_unit:
+                        newunit._from_update_stores = True
+                        newunit.save()
+                        self._remove_obsolete(match_unit.source)
 
             common_dbids = set(self.dbid_index.get(uid)
                                for uid in old_ids & new_ids)
@@ -1571,7 +1568,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 changed = unit.update(newunit)
 
                 # Unit's index within the store might have changed
-                if update_structure and unit.index != newunit.index:
+                if unit.index != newunit.index:
                     unit.index = newunit.index
                     changed = True
 

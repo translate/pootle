@@ -36,4 +36,4 @@ def upgrade_to_12008():
     }
     for store in Store.objects.filter(**criteria).iterator():
         store.sync()
-        store.update(update_structure=True)
+        store.update()

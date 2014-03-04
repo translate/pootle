@@ -51,5 +51,4 @@ class Command(PootleCommand):
         overwrite = options.get('overwrite', False)
         force = options.get('force', False)
 
-        store.update(overwrite=overwrite, update_structure=True,
-                     only_newer=not force)
+        store.update(overwrite=overwrite, only_newer=not force)

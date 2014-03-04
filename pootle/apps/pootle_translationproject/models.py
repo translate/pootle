@@ -259,7 +259,7 @@ class TranslationProject(models.Model, TreeItem):
         """Update all stores to reflect state on disk"""
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
-            store.update(update_structure=True, overwrite=overwrite)
+            store.update(overwrite=overwrite)
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
         """Sync unsaved work on all stores to disk"""
