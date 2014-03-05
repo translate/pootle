@@ -33,26 +33,9 @@ for further details.
 Settings for Tests
 ------------------
 
-You can place testing-specific settings both in the *90-tests.conf* and
-*90-tests-local.conf* files within the *pootle/settings/* directory. Other
-*90-\*.conf* files will be ignored.
-
-.. note:: *90-tests.conf* doesn't contain any database settings, and you
-   are encouraged to set those in *90-tests-local.conf*. If nothing is
-   specified SQLite will be used by default, which might not actually be what
-   you want to run the tests against.
-
-In further detail, Pootle's test runner will use the usual
-``pootle.settings`` module for settings. This module ensures that all
-files in the *pootle/settings/* directory are read and interpreted in
-order.
-
-In testing environments, the needs might differ from other environments,
-so the settings module will have a slightly different behavior:
-
-- All *.conf* files will be read from *pootle/settings/* as usual
-- The usual custom settings named as *90-\*.conf* will be ignored
-- *90-tests.conf* and *90-tests-local.conf* will be taken into account
+Some testing-specific settings are loaded from the *tests/settings.py*
+file and override any previous setting you might have set in the
+*settings/\*.conf* files.
 
 
 Writing Tests
