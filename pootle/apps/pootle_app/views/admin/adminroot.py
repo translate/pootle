@@ -25,7 +25,8 @@ from pootle_app.views.admin.permissions import admin_permissions
 
 @admin_required
 def view(request):
+    directory = Directory.objects.root
     ctx = {
-        'directory': Directory.objects.root,
+        'directory': directory,
     }
     return admin_permissions(request, directory, "admin/permissions.html", ctx)
