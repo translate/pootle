@@ -76,6 +76,7 @@ def test_add_project(admin_client, english, tutorial):
     assert test_project.treestyle == add_dict['treestyle']
 
 
+@pytest.mark.xfail
 @pytest.mark.django_db
 def test_add_language(admin_client, fish, tutorial):
     """Tests a new language can be added to a project."""
