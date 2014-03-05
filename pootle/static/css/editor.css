@@ -816,6 +816,14 @@ html[dir="rtl"] .extra-item-tm-project
     unicode-bidi: embed;
 }
 
+.extra-item .tm-context
+{
+    font-size: 85%;
+    margin-top: 0.6em;
+    color: rgba(150, 140, 0, 0.8);
+    font-style: italic;
+}
+
 .timeline-extra
 {
     position:absolute;

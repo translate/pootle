@@ -1939,10 +1939,12 @@
       results[i].source = this.doDiff(source, results[i].source);
       results[i].target = PTL.utils.fancyHl(results[i].target);
       quality = Math.round(results[i].quality);
-      // Translators: This is the quality match percentage of a TM result.
-      // '%s' will be replaced by a number, and you should keep the extra
-      // '%' symbol to denote a percentage is being used.
-      results[i].qTitle = interpolate(gettext('%s% match'), [quality]);
+      if (!results[i].fullname) {
+        results[i].fullname = gettext('someone');
+      }
+      if (results[i].username = 'nobody') {
+        results[i].fullname = gettext('some anonymous user');
+      }
       filtered.push(results[i]);
     }
 

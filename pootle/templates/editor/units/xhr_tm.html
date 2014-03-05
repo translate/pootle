@@ -3,12 +3,13 @@
   <% _.each(suggs, function (sugg, i) { %>
   <div id="tm<%= i %>" class="extra-item-block"
     data-translation-aid="<%= sugg.target %>">
-    <div class="extra-item-content" title="<%= sugg.qTitle %>">
+    <div class="extra-item-content">
       <div class="extra-item js-editor-copytext" data-action="overwrite">
         <div class="suggestion-original" lang="<%= store.source_lang %>"
           dir="<%= store.source_dir %>"><%= sugg.source %></div>
         <div class="suggestion-translation" lang="<%= store.target_lang %>"
           dir="<%= store.target_dir %>"><%= sugg.target %></div>
+        <div class="tm-context">Translated by <%= sugg.fullname %> in &ldquo;<span title="<%= sugg.path %>"><%= sugg.project %></span>&rdquo; project</div>
       </div>
     </div>
   </div>
