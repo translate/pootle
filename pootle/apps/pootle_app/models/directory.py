@@ -240,7 +240,7 @@ class Directory(models.Model, TreeItem):
         # cache will be cleared from child stores
         self.initialize_children()
         for item in self.children:
-            item.detele()
+            item.delete()
 
         super(Directory, self).delete(*args, **kwargs)
 
