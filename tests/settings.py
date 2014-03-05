@@ -3,11 +3,12 @@
 
 """Test settings."""
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+import os
 
-INTERNAL_IPS = ('127.0.0.1',)
 
-PODIRECTORY = root_path('tests/data/po/')
+ROOT_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+PODIRECTORY = os.path.join(ROOT_DIR, 'tests', 'data', 'po')
+
 
 # In-memory caching
 CACHES = {
@@ -26,7 +27,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
-
-
-# Markup filter
-MARKUP_FILTER = (None, {})
