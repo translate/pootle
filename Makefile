@@ -25,7 +25,7 @@ assets:
 docs:
 	# The following creates the HTML docs.
 	# NOTE: cd and make must be in the same line.
-	cd ${DOCS_DIR}; make html ${TAIL}
+	cd ${DOCS_DIR}; make SPHINXOPTIONS=-W html ${TAIL}
 
 sprite:
 	glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
