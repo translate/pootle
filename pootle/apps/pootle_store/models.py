@@ -2085,7 +2085,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         from translate.storage import poheader
         if isinstance(disk_store, poheader.poheader):
             mtime = self.get_mtime()
-            if mtime is None:
+            if mtime == datetime_min:
                 mtime = timezone.now()
             if profile is None:
                 try:
