@@ -95,7 +95,7 @@ def view(request):
 
     def generate_link(project):
         url = reverse('pootle-project-admin-languages', args=[project.code])
-        return '<a href="%s">%s</a>' % (url, project)
+        return '<a href="%s">%s</a>' % (url, project.code)
 
     return util.edit(
             request,
