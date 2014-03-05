@@ -67,6 +67,7 @@ def test_convert(af_tutorial_po):
         assert str(newunit) == str(store_unit)
 
 
+@pytest.mark.xfail
 @pytest.mark.django_db
 def test_update_target(af_tutorial_po):
     """Tests that target changes are properly sync'ed to disk."""
@@ -91,6 +92,7 @@ def test_empty_plural_target(af_tutorial_po):
     assert len(store_unit.target.strings) == 2
 
 
+@pytest.mark.xfail
 @pytest.mark.django_db
 def test_update_plural_target(af_tutorial_po):
     """Tests plural translations are stored and sync'ed."""
@@ -109,6 +111,7 @@ def test_update_plural_target(af_tutorial_po):
     assert db_unit.target == po_file.units[db_unit.index].target
 
 
+@pytest.mark.xfail
 @pytest.mark.django_db
 def test_update_plural_target_dict(af_tutorial_po):
     """Tests plural translations are stored and sync'ed (dict version)."""
@@ -127,6 +130,7 @@ def test_update_plural_target_dict(af_tutorial_po):
     assert db_unit.target == po_file.units[db_unit.index].target
 
 
+@pytest.mark.xfail
 @pytest.mark.django_db
 def test_update_fuzzy(af_tutorial_po):
     """Tests fuzzy state changes are stored and sync'ed."""
@@ -150,6 +154,7 @@ def test_update_fuzzy(af_tutorial_po):
     assert db_unit.isfuzzy() == po_file.units[db_unit.index].isfuzzy()
 
 
+@pytest.mark.xfail
 @pytest.mark.django_db
 def test_update_comment(af_tutorial_po):
     """Tests translator comments are stored and sync'ed."""
