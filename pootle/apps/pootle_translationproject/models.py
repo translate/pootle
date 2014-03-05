@@ -266,7 +266,7 @@ class TranslationProject(models.Model, TreeItem):
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
             store.sync(update_structure=not conservative,
-                       conservative=conservative, create=False,
+                       conservative=conservative,
                        skip_missing=skip_missing, only_newer=only_newer)
 
     def get_mtime(self):

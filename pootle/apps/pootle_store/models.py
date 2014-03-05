@@ -1627,7 +1627,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 )
 
 
-    def sync(self, update_structure=False, conservative=True, create=False,
+    def sync(self, update_structure=False, conservative=True,
              profile=None, skip_missing=False, only_newer=True):
         """Sync file with translations from DB."""
         if skip_missing and not self.file.exists():
@@ -1642,29 +1642,28 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 (self.pootle_path, self.last_sync_revision))
             return
 
-        if not self.file:
-            if create:
-                # File doesn't exist let's create it
-                logging.debug(u"Creating file %s", self.pootle_path)
+        if not self.file and not skip_missing:
+            # File doesn't exist let's create it
+            logging.debug(u"Creating file %s", self.pootle_path)
 
-                storeclass = self.get_file_class()
-                store_path = os.path.join(
-                    self.translation_project.abs_real_path, self.name
-                )
-                store = self.convert(storeclass)
-                store.savefile(store_path)
-                log(u"Created file for %s [revision: %d]" %
-                    (self.pootle_path, last_revision))
+            # FIXME: put this is a `create_file()` method
+            storeclass = self.get_file_class()
+            store_path = os.path.join(
+                self.translation_project.abs_real_path, self.name
+            )
+            store = self.convert(storeclass)
+            store.savefile(store_path)
+            log(u"Created file for %s [revision: %d]" %
+                (self.pootle_path, last_revision))
 
-                self.file = store_path
-                self.update_store_header(profile=profile)
-                self.file.savestore()
-                self.file_mtime = self.get_file_mtime()
-                self.sync_time = timezone.now()
-                self.last_sync_revision = last_revision
+            self.file = store_path
+            self.update_store_header(profile=profile)
+            self.file.savestore()
+            self.file_mtime = self.get_file_mtime()
+            self.sync_time = timezone.now()
+            self.last_sync_revision = last_revision
 
-                self.save()
-            return
+            self.save()
 
         if conservative and self.translation_project.is_template_project:
             # don't save to templates
@@ -2067,7 +2066,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
             if allownewstrings or obsoletemissing:
                 self.sync(update_structure=True, conservative=False,
-                          create=False, profile=profile)
+                          profile=profile)
 
         finally:
             # Unlock store
