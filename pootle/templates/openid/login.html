@@ -9,7 +9,7 @@
 
 {% block content %}
 <div id="login-wrapper">
-<div id="login" class="form" dir="{% locale_dir %}">
+<div id="login" class="form">
     <h2>{% trans 'OpenID Login' %}</h2>
     <form id="openid_login_form" class="openid_login" method="post" action="{% url 'openid_login' %}">
         {% csrf_token %}

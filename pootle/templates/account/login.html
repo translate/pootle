@@ -23,7 +23,7 @@
     </div>
 {% endif %}
 
-<div id="login" class="form" dir="{% locale_dir %}">
+<div id="login" class="form">
     <h2>{% trans 'Login to Pootle' %}</h2>
     <form method="post" action="{% url 'account_login' %}" name="loginform">
         {% csrf_token %}
