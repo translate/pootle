@@ -22,6 +22,9 @@ Added Features
 - General *system* user which is the author of the batch actions performed
   via management commands.
 
+- New management commands: ``revision``, ``changed_languages``,
+  ``test_checks``.
+
 - Timeline tracks all changes done to units.
 
 - Whole new set of quality checks (plus the related ``test_checks``
