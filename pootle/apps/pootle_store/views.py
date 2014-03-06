@@ -836,6 +836,10 @@ def get_edit_unit(request, unit):
     response = jsonify(json)
     return HttpResponse(response, status=rcode, content_type="application/json")
 
+@get_unit_context('view')
+def permalink_redirect(request, unit):
+    return redirect(request.build_absolute_uri(unit.get_translate_url()))
+
 
 def _get_project_icon(project):
     path = "/".join(["", project.code, ".pootle", "icon.png"])
