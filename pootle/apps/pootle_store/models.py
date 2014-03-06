@@ -1542,7 +1542,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             if not overwrite:
                 # Get units that were modified after last sync
                 filter_by = {'store': self}
-                if not self.last_sync_revision is None:
+                if self.last_sync_revision is not None:
                     filter_by.update({'revision__gt': self.last_sync_revision})
 
                 modified_units = set(
