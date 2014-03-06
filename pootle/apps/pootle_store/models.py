@@ -403,6 +403,7 @@ class Unit(models.Model, base.TranslationUnit):
     def save(self, *args, **kwargs):
         if not hasattr(self, '_log_user'):
             self._log_user = 'system'
+
         if not self.id:
             self._save_action = UNIT_ADDED
             self.store.flag_for_deletion(CachedMethods.TOTAL,
