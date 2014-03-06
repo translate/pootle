@@ -19,10 +19,13 @@ Release `2014-03-05`_
 
 - Bugfix release, fixing critical typo.
 
+- Added the ``changed_languages`` management command. (`9dd4023110`_)
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-2014-02-28...release-2014-03-05>`_
 
 .. _2014-03-05: https://github.com/evernote/pootle/releases/tag/release-2014-03-05
+.. _9dd4023110: https://github.com/evernote/pootle/commit/9dd4023110
 
 
 Release `2014-02-28`_

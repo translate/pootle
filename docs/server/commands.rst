@@ -245,6 +245,19 @@ revision
 This command prints the number of the latest revision.
 
 
+.. _commands#changed_languages:
+
+changed_languages
+^^^^^^^^^^^^^^^^^
+
+Lists a comma-separated list of language codes that changed since the last
+sync operation.
+
+When ``--after-revision`` is specified with a revision number as an
+argument, it will print the language codes that changed since the
+specified revision.
+
+
 .. _commands#test_checks:
 
 test_checks
