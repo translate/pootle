@@ -22,9 +22,6 @@
 import logging
 import os
 import re
-import shutil
-
-from translate.lang import data as langdata
 
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
@@ -38,11 +35,6 @@ LANGCODE_RE = re.compile('^[a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?$',
 #: Case insensitive match for language codes as postfix
 LANGCODE_POSTFIX_RE = re.compile('^.*?[-_.]([a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?)$',
                                  re.IGNORECASE)
-
-
-def language_match_filename(language_code, filename):
-    name, ext = os.path.splitext(os.path.basename(filename))
-    return langdata.languagematch(language_code, name)
 
 
 def direct_language_match_filename(language_code, path_name):
@@ -268,28 +260,10 @@ def translation_project_should_exist(language, project):
     return False
 
 
-def get_extension(language, project):
-    """File extension used for this project, returns pot if it's a po project
-    and language is templates.
-    """
-    ext = project.localfiletype
-    if language.code == 'templates' and ext == 'po':
-        return 'pot'
-    else:
-        return ext
-
-
 def ensure_target_dir_exists(target_path):
     target_dir = os.path.dirname(target_path)
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
-
-
-def read_original_target(target_path):
-    try:
-        return open(target_path, "rb")
-    except:
-        return None
 
 
 def convert_template(translation_project, template_store, target_pootle_path,
