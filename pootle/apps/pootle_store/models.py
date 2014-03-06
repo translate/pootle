@@ -1665,6 +1665,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
             self.save()
 
+            return
+
         if conservative and self.translation_project.is_template_project:
             # don't save to templates
             return
