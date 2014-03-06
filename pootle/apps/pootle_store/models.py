@@ -35,7 +35,7 @@ from django.db import models, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
 from django.template.defaultfilters import escape, truncatechars
-from django.utils import dateformat, timezone, tzinfo
+from django.utils import dateformat, timezone
 from django.utils.encoding import iri_to_uri
 from django.utils.http import urlquote
 from django.utils.importlib import import_module
@@ -1246,25 +1246,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         """
         return u'/'.join(self.pootle_path.split(u'/')[3:])
 
-    @classmethod
-    def _get_mtime_from_header(cls, store):
-        mtime = None
-        from translate.storage import poheader
-        if isinstance(store, poheader.poheader):
-            try:
-                _mtime = store.parseheader().get('X-POOTLE-MTIME', None)
-                if _mtime:
-                    mtime = datetime.datetime.fromtimestamp(float(_mtime))
-                    if settings.USE_TZ:
-                        # Africa/Johanesburg - pre-2.1 default
-                        tz = tzinfo.FixedOffset(120)
-                        mtime = timezone.make_aware(mtime, tz)
-                    else:
-                        mtime -= datetime.timedelta(hours=2)
-            except Exception as e:
-                logging.debug("failed to parse mtime: %s", e)
-        return mtime
-
     def __init__(self, *args, **kwargs):
         super(Store, self).__init__(*args, **kwargs)
 
@@ -1980,100 +1961,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def getitem(self, item):
         """Returns a single unit based on the item number."""
         return self.units[item]
-
-    @commit_on_success
-    def mergefile(self, newfile, profile, allownewstrings, suggestions,
-                  notranslate, obsoletemissing):
-        """Merges :param:`newfile` with the current store.
-
-        :param newfile: The file that will be merged into the current store.
-        :param profile: A :cls:`~pootle_profile.models.PootleProfile` user
-            profile.
-        :param allownewstrings: Whether to add or not units from
-            :param:`newfile` not present in the current store.
-        :param suggestions: Try to add conflicting units as suggestions in case
-            the new file's modified time is unknown or older that the in-DB
-            unit).
-        :param notranslate: Don't translate/merge in-DB units but rather add
-            them as suggestions.
-        :param obsoletemissing: Whether to remove or not units present in the
-            current store but not in :param:`newfile`.
-        """
-        if not newfile.units:
-            return
-
-        self.clean_stale_lock()
-
-        # Must be done before locking the file in case it wasn't already parsed
-        self.require_units()
-
-        if self.state == LOCKED:
-            # File currently being updated
-            # FIXME: shall we idle wait for lock to be released first? what
-            # about stale locks?
-            logging.info(u"Attemped to merge %s while locked", self.pootle_path)
-            return
-
-        logging.debug(u"Merging %s", self.pootle_path)
-
-        # Lock store
-        old_state = self.state
-        self.state = LOCKED
-        self.save()
-
-        if suggestions:
-            mtime = self._get_mtime_from_header(newfile)
-        else:
-            mtime = None
-
-        try:
-            self.require_dbid_index(update=True, obsolete=True)
-            old_ids = set(self.dbid_index.keys())
-            if issubclass(self.translation_project.project.get_file_class(),
-                          newfile.__class__):
-                new_ids = set(newfile.getids())
-            else:
-                new_ids = set(newfile.getids(self.name))
-
-            if (self.translation_project.is_template_project and
-                allownewstrings):
-                new_units = (newfile.findid(uid) for uid in new_ids - old_ids)
-                for unit in new_units:
-                    self.addunit(unit)
-
-            if obsoletemissing:
-                obsolete_dbids = [self.dbid_index.get(uid)
-                                  for uid in old_ids - new_ids]
-                for unit in self.findid_bulk(obsolete_dbids):
-                    if unit.istranslated():
-                        unit.makeobsolete()
-                        unit.save()
-                    else:
-                        unit.delete()
-
-            common_dbids = [self.dbid_index.get(uid)
-                            for uid in old_ids & new_ids]
-            for oldunit in self.findid_bulk(common_dbids):
-                newunit = newfile.findid(oldunit.getid())
-
-                if newunit.istranslated():
-                    if (notranslate or suggestions and
-                        oldunit.istranslated() and
-                        (not mtime or mtime < oldunit.mtime)):
-                        oldunit.add_suggestion(newunit.target, profile)
-                    else:
-                        changed = oldunit.merge(newunit, overwrite=True)
-                        if changed:
-                            oldunit.save()
-
-            if allownewstrings or obsoletemissing:
-                self.sync(update_structure=True, conservative=False,
-                          profile=profile)
-
-        finally:
-            # Unlock store
-            self.state = old_state
-            self.save()
 
 
     def update_store_header(self, profile=None):
