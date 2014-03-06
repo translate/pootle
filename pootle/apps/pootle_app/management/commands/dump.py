@@ -19,7 +19,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
-
 import os
 import json
 
@@ -47,6 +46,7 @@ DUMPED = {
                 'treestyle', 'source_language', 'ignoredfiles',
                 'screenshot_search_prefix', 'disabled')
 }
+
 
 class Command(PootleCommand):
     help = "Dump data."
@@ -81,7 +81,6 @@ class Command(PootleCommand):
         if data:
             self._dump_item(tp.directory, 0, stop_level=stop_level)
 
-
     def dump_stats(self):
         root = Directory.objects.root
         projects = Directory.objects.projects
@@ -98,10 +97,11 @@ class Command(PootleCommand):
 
         if stop_level != 0 and item.children:
             res[item.code]['children'] = {}
-            if not stop_level is None:
+            if stop_level is not None:
                 stop_level = stop_level - 1
             for child in item.children:
-                self._dump_stats(child, res[item.code]['children'], stop_level=stop_level)
+                self._dump_stats(child, res[item.code]['children'],
+                                 stop_level=stop_level)
 
         res[item.code].update(item.get_stats(include_children=False))
 
@@ -144,5 +144,8 @@ class Command(PootleCommand):
             (
                 item.id,
                 item._meta.object_name,
-                "\t".join(u"%s=%s" % (k, v) for k, v in map(get_param, DUMPED[item._meta.object_name]))
+                "\t".join(
+                    u"%s=%s" % (k, v)
+                    for k, v in map(get_param, DUMPED[item._meta.object_name])
+                )
             )
