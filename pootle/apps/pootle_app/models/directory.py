@@ -211,7 +211,9 @@ class Directory(models.Model, TreeItem):
 
     def is_language(self):
         """does this directory point at a language"""
-        return self.pootle_path.count('/') == 2
+        return (self.pootle_path.count('/') == 2 and
+                not self.pootle_path.startswith('/projects/'))
+
 
     def is_project(self):
         return (self.pootle_path.startswith('/projects/') and
