@@ -92,7 +92,7 @@ help:
 
 # Perform forced build using -W for the (.PHONY) requirements target
 requirements:
-	$(MAKE) -W $(REQFILE) requirements-pinned.txt requirements-min-versions.txt
+	$(MAKE) -W $(REQFILE) requirements-pinned.txt requirements/min-versions.txt
 
 REQS=.reqs
 REQFILE=requirements/base.txt
@@ -123,13 +123,21 @@ requirements-pinned.txt: requirements-pinned.txt.in $(REQFILE)
 	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') >> $@;	\
 	 esac;
 
-requirements-min-versions.txt: requirements-min-versions.txt.in requirements/*.txt
+requirements/min-versions.txt: requirements/*.txt
 	@if grep -q '>[0-9]' $^; then				\
 	   echo "Use '>=' not '>' for requirements"; exit 1;	\
 	 fi
 	@echo "creating $@"
 	@echo "# Automatically generated: DO NOT EDIT" > $@
 	@echo "# Regenerate using 'make requirements'" >> $@
+	@echo "# ====================================" >> $@
+	@echo "# Minimum Requirements" >> $@
+	@echo "# ====================================" >> $@
+	@echo "#" >> $@
+	@echo "# These are the minimum versions of dependencies that the Pootle developers" >> $@
+	@echo "# claim will work with Pootle." >> $@
+	@echo "#" >> $@
+	@echo "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $@
+	@echo "#" >> $@
 	@echo >> $@
-	@cat $< >> $@
 	@cat $^ | sed -n '/=/{s/>=/==/;s/,<.*//;p;}' >> $@
