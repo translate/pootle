@@ -37,6 +37,7 @@ Release `2014-02-28`_
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-2014-01-31...release-2014-02-28>`_
 
+.. _2014-02-28: https://github.com/evernote/pootle/releases/tag/release-2014-02-28
 .. _#106: https://github.com/evernote/pootle/issues/106
 .. _#117: https://github.com/evernote/pootle/issues/117
 .. _#118: https://github.com/evernote/pootle/issues/118
