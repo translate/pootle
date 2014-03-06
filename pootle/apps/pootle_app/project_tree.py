@@ -25,8 +25,6 @@ import re
 
 from django.conf import settings
 
-from translate.lang import data as langdata
-
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_store.models import Store
@@ -40,11 +38,6 @@ LANGCODE_RE = re.compile('^[a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?$',
 #: Case insensitive match for language codes as postfix
 LANGCODE_POSTFIX_RE = re.compile('^.*?[-_.]([a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?)$',
                                  re.IGNORECASE)
-
-
-def language_match_filename(language_code, filename):
-    name, ext = os.path.splitext(os.path.basename(filename))
-    return langdata.languagematch(language_code, name)
 
 
 def direct_language_match_filename(language_code, path_name):
@@ -148,36 +141,6 @@ def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
             files.append(child_path)
         elif os.path.isdir(full_child_path):
             dirs.append(child_path)
-
-    return files, dirs
-
-
-def recursive_files_and_dirs(ignored_files, ext, real_dir, file_filter):
-    """Traverses :param:`real_dir` searching for files and directories.
-
-    :param ignored_files: List of files that will be ignored.
-    :param ext: Only files ending with this extension will be considered.
-    :param real_dir:
-    :param file_filter: Filtering function applied to the list of files found.
-    :return: A tuple of lists of files and directories found when traversing the
-        given path and after applying the given restrictions.
-    """
-    real_dir = add_trailing_slash(real_dir)
-    files = []
-    dirs = []
-
-    for _path, _dirs, _files in os.walk(real_dir, followlinks=True):
-        # Make it relative:
-        _path = _path[len(real_dir):]
-        files += [os.path.join(_path, f) for f in filter(file_filter, _files)
-                  if f.endswith(ext) and f not in ignored_files]
-
-        # Edit _dirs in place to avoid further recursion into hidden directories
-        for d in _dirs:
-            if is_hidden_file(d):
-                _dirs.remove(d)
-
-        dirs += _dirs
 
     return files, dirs
 
@@ -302,30 +265,6 @@ def translation_project_should_exist(language, project):
             pass
 
     return False
-
-
-def get_extension(language, project):
-    """File extension used for this project, returns pot if it's a po project
-    and language is templates.
-    """
-    ext = project.localfiletype
-    if language.code == 'templates' and ext == 'po':
-        return 'pot'
-    else:
-        return ext
-
-
-def ensure_target_dir_exists(target_path):
-    target_dir = os.path.dirname(target_path)
-    if not os.path.exists(target_dir):
-        os.makedirs(target_dir)
-
-
-def read_original_target(target_path):
-    try:
-        return open(target_path, "rb")
-    except:
-        return None
 
 
 def get_translated_name_gnu(translation_project, store):
