@@ -14,6 +14,17 @@ Release .next
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 
+Release `2014-03-05`_
+---------------------
+
+- Bugfix release, fixing critical typo.
+
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-2014-02-28...release-2014-03-05>`_
+
+.. _2014-03-05: https://github.com/evernote/pootle/releases/tag/release-2014-03-05
+
+
 Release `2014-02-28`_
 ---------------------
 
