@@ -23,6 +23,11 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_store.views',
+    # permalinks
+    url(r'^unit/(?P<uid>[0-9]+)/?$',
+        'permalink_redirect',
+        name='pootle-unit-permalink'),
+
     # XHR
     url(r'^xhr/stats/checks/?$',
         'get_qualitycheck_stats',

@@ -43,6 +43,7 @@ from pootle.core.decorators import (get_path_obj, get_resource,
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
+from pootle_misc.baseurl import redirect
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, jsonify, to_int
@@ -725,6 +726,10 @@ def get_edit_unit(request, unit):
 
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
+
+@get_unit_context('view')
+def permalink_redirect(request, unit):
+    return redirect(request.build_absolute_uri(unit.get_translate_url()))
 
 
 @ajax_required
