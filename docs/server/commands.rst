@@ -225,6 +225,7 @@ list_languages
 This command prints all the language codes on the server. This might be useful
 for automation.
 
+
 .. _commands#list_projects:
 
 list_projects
@@ -235,12 +236,14 @@ list_projects
 This command prints all the project codes on the server. This might be useful
 for automation.
 
+
 .. _commands#revision:
 
 revision
 ^^^^^^^^
 
 This command prints the number of the latest revision.
+
 
 .. _commands#test_checks:
 
