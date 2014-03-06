@@ -23,7 +23,7 @@ import re
 from translate.misc.multistring import multistring
 from translate.storage.placeables import parse as parse_placeables
 from translate.storage.placeables.interfaces import BasePlaceable
-
+from diff_match_patch import diff_match_patch
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
 from django.template.defaultfilters import stringfilter
@@ -149,7 +149,8 @@ def call_highlight(old, new):
         return highlight_diffs(old, new)
 
 
-def _google_highlight_diffs(old, new):
+differencer = diff_match_patch()
+def highlight_diffs(old, new):
     """Highlight the differences between old and new."""
 
     textdiff = u""  # To store the final result.
@@ -179,39 +180,6 @@ def _google_highlight_diffs(old, new):
         textdiff += ('<span class="diff-delete">%s</span>' %
                      fancy_escape(removed))
     return mark_safe(textdiff)
-
-
-def _difflib_highlight_diffs(old, new):
-    """Highlight the differences between old and new.
-
-    The differences are highlighted such that they show what would be required
-    to transform old into new.
-    """
-    textdiff = ""
-    for tag, i1, i2, j1, j2 in SequenceMatcher(None, old, new).get_opcodes():
-        if tag == 'equal':
-            textdiff += fancy_escape(old[i1:i2])
-        if tag == "insert":
-            textdiff += ('<span class="diff-insert">%s</span>' %
-                         fancy_escape(new[j1:j2]))
-        if tag == "delete":
-            textdiff += ('<span class="diff-delete">%s</span>' %
-                         fancy_escape(old[i1:i2]))
-        if tag == "replace":
-            # We don't show text that was removed as part of a change:
-            #textdiff += "<span>%s</span>" % fance_escape(a[i1:i2])}
-            textdiff += ('<span class="diff-replace">%s</span>' %
-                         fancy_escape(new[j1:j2]))
-    return mark_safe(textdiff)
-
-
-try:
-    from translate.misc.diff_match_patch import diff_match_patch
-    differencer = diff_match_patch()
-    highlight_diffs = _google_highlight_diffs
-except ImportError:
-    from difflib import SequenceMatcher
-    highlight_diffs = _difflib_highlight_diffs
 
 
 @register.filter('pluralize_source')
