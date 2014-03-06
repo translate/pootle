@@ -200,13 +200,10 @@ Update the minimum version number for the requirements in:
 
 Update the requirements files::
 
-    make requirements
+    make requirements-pinned.txt
 
 .. note:: This creates the following files:
 
-       - requirements-min-versions.txt -- the minimum requirements we specified
-         at this time.  Using that to deploy can ensure that you don't use a
-         newer version that breaks Pootle.
        - requirements-pinned.txt - the maximum available version when we
          released.  Chances are we've tested with these and they are good.
          Using this would prevent a person from intalling something newer but
