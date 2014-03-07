@@ -103,6 +103,15 @@ This will fetch and install the minimum set of required dependencies as well.
 
   lxml also require the development packages of libxml2 and libxslt.
 
+.. note::
+   Older versions of pip may try installing pre-release versions of Pootle,
+   e.g. installing 2.5.1-rc1 instead of 2.5.1.  In that case run:
+
+   .. code-block:: bash
+
+      (env) $ pip install Pootle==2.5.1
+
+
 If everything went well, you will now be able to access the ``pootle`` command
 line tool within your environment.
 
