@@ -27,6 +27,9 @@ docs:
 	# NOTE: cd and make must be in the same line.
 	cd ${DOCS_DIR}; make SPHINXOPTIONS=-W html ${TAIL}
 
+docs-review: docs
+	python -mwebbrowser file://$(shell pwd)/${DOCS_DIR}/_build/html/index.html
+
 sprite:
 	glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
 
@@ -72,6 +75,8 @@ help:
 	@echo
 	@echo "  assets - collect and rebuild the static assets"
 	@echo "  build - create sdist with required prep"
+	@echo "  docs - build Sphinx docs"
+	@echo "  docs-review - launch webbrowser to review docs"
 	@echo "  sprite - create CSS sprite"
 	@echo "  test - run test suite"
 	@echo "  pot - update the POT translations templates"
