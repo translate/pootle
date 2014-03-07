@@ -1717,7 +1717,7 @@
 
   /* Filters TM results and does some processing (add diffs, extra texts...) */
   filterTMResults: function (results) {
-    // FIXME: this just retrieves the first four results
+    // FIXME: this just retrieves the first three results
     // we could limit based on a threshold too.
     var source = $("[id^=id_source_f_]").first().val(),
         filtered = [],
