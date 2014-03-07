@@ -1723,6 +1723,19 @@
         filtered = [],
         quality;
 
+    if (results.length > 0) {
+      if (results[0].source == source) {
+        element = $(PTL.editor.focused);
+        // set only if the textarea is empty
+        if (element.val() == '') {
+          text = results[0].target;
+          element.val(text).trigger('input');
+          element.caret(text.length, text.length);
+          PTL.editor.goFuzzy();
+        }
+      }
+    }
+
     for (var i=0; i<results.length && i<3; i++) {
       results[i].source = this.doDiff(source, results[i].source);
       results[i].target = PTL.utils.fancyHl(results[i].target);
