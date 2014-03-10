@@ -30,7 +30,7 @@
     init: function (apiKey) {
       /* Init variables */
       this.pairs = [];
-      for (var i = 0; i < this.supported_languages.length; i++) {
+      for (var i=0; i<this.supported_languages.length; i++) {
         this.pairs.push({
           'source': this.supported_languages[i],
           'target': this.supported_languages[i]

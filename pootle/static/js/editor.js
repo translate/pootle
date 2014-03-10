@@ -1724,10 +1724,10 @@
         quality;
 
     if (results.length > 0) {
-      if (results[0].source == source) {
+      if (results[0].source === source) {
         element = $(PTL.editor.focused);
         // set only if the textarea is empty
-        if (element.val() == '') {
+        if (element.val() === '') {
           text = results[0].target;
           element.val(text).trigger('input');
           element.caret(text.length, text.length);
