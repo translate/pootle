@@ -727,6 +727,7 @@ def get_edit_unit(request, unit):
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
+
 @get_unit_context('view')
 def permalink_redirect(request, unit):
     return redirect(request.build_absolute_uri(unit.get_translate_url()))
