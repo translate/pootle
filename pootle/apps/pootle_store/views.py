@@ -772,7 +772,7 @@ def get_edit_unit(request, unit):
         snplurals = None
 
     form_class = unit_form_factory(language, snplurals, request)
-    form = form_class(instance=unit)
+    form = form_class(instance=unit, request=request)
     comment_form_class = unit_comment_form_factory(language)
     comment_form = comment_form_class({}, instance=unit)
 
@@ -937,7 +937,7 @@ def submit(request, unit):
     unit.submitted_on = current_time
 
     form_class = unit_form_factory(language, snplurals, request)
-    form = form_class(request.POST, instance=unit)
+    form = form_class(request.POST, instance=unit, request=request)
 
     if form.is_valid():
         if form.updated_fields:
@@ -991,7 +991,7 @@ def suggest(request, unit):
         snplurals = None
 
     form_class = unit_form_factory(language, snplurals, request)
-    form = form_class(request.POST, instance=unit)
+    form = form_class(request.POST, instance=unit, request=request)
 
     if form.is_valid():
         if form.instance._target_updated:
