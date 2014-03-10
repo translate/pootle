@@ -1725,12 +1725,12 @@
 
     if (results.length > 0) {
       if (results[0].source === source) {
-        var element = $(PTL.editor.focused);
+        var $element = $(PTL.editor.focused);
         // set only if the textarea is empty
-        if (element.val() === '') {
+        if ($element.val() === '') {
           var text = results[0].target;
-          element.val(text).trigger('input');
-          element.caret(text.length, text.length);
+          $element.val(text).trigger('input');
+          $element.caret(text.length, text.length);
           PTL.editor.goFuzzy();
         }
       }
