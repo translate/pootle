@@ -222,6 +222,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                                    check_test=lambda x: x == FUZZY))
 
         def __init__(self, *args, **kwargs):
+            self.request = kwargs.pop('request', None)
             super(UnitForm, self).__init__(*args, **kwargs)
             self.updated_fields = []
 
@@ -254,6 +255,11 @@ def unit_form_factory(language, snplurals=None, request=None):
             old_state = self.instance.state  # Integer
             is_fuzzy = self.cleaned_data['state']  # Boolean
             new_target = self.cleaned_data['target_f']
+
+            if (self.request is not None and
+                not check_permission('administrate', self.request) and
+                is_fuzzy == True):
+                raise forms.ValidationError(_('Fuzzy flag must be cleared'))
 
             if new_target:
                 if old_state == UNTRANSLATED:
