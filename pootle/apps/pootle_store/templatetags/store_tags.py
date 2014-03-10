@@ -20,10 +20,11 @@
 
 import re
 
+from diff_match_patch import diff_match_patch
 from translate.misc.multistring import multistring
 from translate.storage.placeables import parse as parse_placeables
 from translate.storage.placeables.interfaces import BasePlaceable
-from diff_match_patch import diff_match_patch
+
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
 from django.template.defaultfilters import stringfilter
