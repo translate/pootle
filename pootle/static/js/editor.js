@@ -1728,7 +1728,7 @@
         element = $(PTL.editor.focused);
         // set only if the textarea is empty
         if (element.val() === '') {
-          text = results[0].target;
+          var text = results[0].target;
           element.val(text).trigger('input');
           element.caret(text.length, text.length);
           PTL.editor.goFuzzy();
