@@ -1738,12 +1738,13 @@
     for (var i=0; i<results.length && i<3; i++) {
       results[i].source = this.doDiff(source, results[i].source);
       results[i].target = PTL.utils.fancyHl(results[i].target);
-      if (!results[i].fullname) {
+
+      if (results[i].username === 'nobody') {
+        results[i].fullname = gettext('some anonymous user');
+      } else if (!results[i].fullname) {
         results[i].fullname = gettext('someone');
       }
-      if (results[i].username = 'nobody') {
-        results[i].fullname = gettext('some anonymous user');
-      }
+
       filtered.push(results[i]);
     }
 
