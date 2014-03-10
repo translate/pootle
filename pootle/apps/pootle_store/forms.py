@@ -221,8 +221,8 @@ def unit_form_factory(language, snplurals=None, request=None):
                                    attrs=fuzzy_attrs,
                                    check_test=lambda x: x == FUZZY))
 
-        def __init__(self, *args, **argv):
-            super(UnitForm, self).__init__(*args, **argv)
+        def __init__(self, *args, **kwargs):
+            super(UnitForm, self).__init__(*args, **kwargs)
             self.updated_fields = []
 
         def clean_source_f(self):
