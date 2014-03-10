@@ -420,7 +420,7 @@ div.translate-container
 
 div.unit-path
 {
-    background: rgba(0, 0, 0, 0.6);
+    background-color: #0489b7;
     position: absolute;
     top: 0;
     width: 100%;
