@@ -966,10 +966,14 @@
         rows = [],
         i, unit;
 
-    _.each(unitGroups, function (unitGroup) {
+    _.each(unitGroups, function (unitGroup, key) {
       // Don't display a delimiter row if all units have the same origin
       if (groupSize !== 1) {
-        rows.push('<tr class="delimiter-row"><td colspan="2"></td></tr>');
+        rows.push([
+          '<tr class="delimiter-row"><td colspan="2">',
+            '<div class="hd"><h2>', key, '</h2></div>',
+          '</td></tr>'
+        ].join(''));
       }
 
       for (i=0; i<unitGroup.length; i++) {
@@ -1241,6 +1245,7 @@
     });
 
     eClass += currentUnit.get('isfuzzy') ? " fuzzy-unit" : "";
+    eClass += PTL.editor.filter !== 'all' ? " with-ctx" : "";
 
     hasData = ctx.before.length || ctx.after.length;
     editCtxWidgets = this.editCtxUI({hasData: hasData});

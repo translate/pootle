@@ -6,7 +6,7 @@
   <li><a href="{% url 'pootle-project-translate' project.code %}"
       class="projecttranslate" title="{% trans 'Translate this project' %}">{% trans "Translate" %}</a></li>
   {% if user.is_superuser or request.permissions.administrate %}
-  <li><a href="{% url 'pootle-project-admin-languages' project.code %}" class="projectadmin admintab" title="{% trans 'Administrate your project' %}">{% trans "Administrate" %}</a></li>
+  <li><a href="{% url 'pootle-project-admin-languages' project.code %}" class="projectadmin admintab" title="{% trans 'Administrate your project' %}">{% trans "Languages" %}</a></li>
   <li><a href="{% url 'pootle-project-admin-permissions' project.code %}" class="projectperm admintab" title="{% trans 'Manage project permissions' %}">{% trans "Permissions" %}</a></li>
   {% endif %}
 </ul>

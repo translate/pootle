@@ -13,8 +13,15 @@
 
 {% block content %}
 <div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
-    <p>{% block section_description %}{% endblock %}</p>
+  <p>{% block section_description %}{% endblock %}</p>
 
-    {% block section_body %}{% endblock %}
+  {% block section_body %}{% endblock %}
 </div>
+{% endblock %}
+
+{% block scripts_extra %}
+{{ block.super }}
+{% assets "js_admin" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 {% endblock %}

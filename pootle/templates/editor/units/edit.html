@@ -3,17 +3,15 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs profile.id LANGUAGE_CODE %}
-<td colspan="3" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
+<td colspan="2" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
   <div class="translate-container">
     <div class="unit-path">
-      <span class="pull-{% locale_align %}">
-        <p class="sidetitle" title="{{ unit.store.path }}">
-          {{ language.name }} / {{ project }} / {{ unit.store.path }}
-        </p>
-      </span>
-      <span class="pull-{% locale_reverse_align %}">
-        <a href="{{ unit.get_translate_url }}">{% blocktrans with id=unit.id %}String {{ id }}{% endblocktrans %}</a>
-      </span>
+      <ul>
+        <li><span class="content-wrapper">{{ language.name }}</span></li>
+        <li><span class="content-wrapper">{{ project }}</span></li>
+        <li><span class="content-wrapper">{{ unit.store.path }}</span></li>
+        <li><span class="content-wrapper"><a href="{{ unit.get_translate_url }}">{% blocktrans with id=unit.id %}String #{{ id }}{% endblocktrans %}</a></span></li>
+      </ul>
     </div>
     <div class="translate-{% locale_align %}">
       {% if unit.getcontext and unit.locations != unit.context %}

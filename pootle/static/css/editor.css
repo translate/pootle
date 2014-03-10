@@ -2,9 +2,9 @@
  * TRANSLATE PAGE
  */
 
-#tptranslate #content
+body.translate #content
 {
-    margin: 1em 0 0;
+    margin: 1em 0;
 }
 
 /* MAIN TOOLBAR */
@@ -128,6 +128,16 @@ body.zoom-out-2 .toolbar > div
     text-align: center;
     position: relative;
     top: 1px;
+    border: 1px solid transparent;
+    background: transparent;
+}
+
+#prevnext #item-number:hover,
+#prevnext #item-number:focus
+{
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    outline: 0;
 }
 
 #prevnext #items-count
@@ -242,12 +252,29 @@ th.translate-translation
 
 tr.edit-row
 {
-    background-color: #f1f7f8;
+    /*background-color: #f1f7f8;*/
 }
 
-.delimiter-row
+tr.edit-row.with-ctx
 {
-    background-color: #e5f3f8;
+    background-color: #dbe3e4;
+}
+
+.delimiter-row td
+{
+    padding: 0;
+}
+
+.delimiter-row .hd h2
+{
+    margin: 1em 25px 0.5em;
+    font-size: 1.7em;
+    border-bottom: 1px solid #ccc;
+}
+
+.delimiter-row:first-child .hd h2
+{
+    margin-top: 0;
 }
 
 /* Context */
@@ -261,6 +288,8 @@ tr.edit-ctx td
 {
     text-align: center;
     color: #d9d9d9;
+    padding: 0;
+    overflow: hidden;
 }
 
 tr.edit-ctx a
@@ -279,16 +308,20 @@ tr.edit-ctx a:hover
      opacity: 1;
 }
 
-tr.edit-ctx.before td
+tr.edit-ctx.before .edit-ctx-wrapper
 {
-    border-top: 1px solid #d9d9d9;
-    border-bottom: 1px dashed #d9d9d9;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2) inset;
+    padding: 10px 0 20px;
+    margin: 0 -20px -10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-tr.edit-ctx.after td
+tr.edit-ctx.after .edit-ctx-wrapper
 {
-    border-top: 1px dashed #d9d9d9;
-    border-bottom: 1px solid #d9d9d9;
+    box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.2) inset;
+    padding: 20px 0 10px;
+    margin: -10px -20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 tr.ctx-row,
@@ -301,28 +334,17 @@ tr.view-row
 tr.edit-ctx,
 tr.ctx-row
 {
-    background-color: #f8fbfb;
+    background-color: #dbe3e4;
 }
 
 tr.ctx-row
 {
-    color: #777;/*#76a1b0;*/
+    color: #889294;
 }
 
-tr.ctx-row.before
+tr.ctx-row:hover
 {
-    border-bottom: 1px solid #fff;
-}
-
-tr.ctx-row.after
-{
-    border-top: 1px solid #fff;
-}
-
-tr.view-row
-{
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #fff;
+    background-color: #ccdadb;
 }
 
 tr.view-row:hover
@@ -403,27 +425,78 @@ body.zoom-out-2 div.sources .alternative .translation-text
 div.translate-container
 {
     position: relative;
+    margin: -5px 5px;
+    padding: 1em 0;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    background-color: #f1f7f8;
+    overflow: hidden;
+    clear: both;
+}
+
+div.unit-path
+{
+    background-color: #0489b7;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 5px 20px;
+    color: rgba(255, 255, 255, 0.4);
+
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+div.unit-path li
+{
+    display: inline-block;
+    margin-right: 0.3em;
+}
+
+div.unit-path li:after
+{
+    content: '→';
+}
+
+div.unit-path li:last-child:after
+{
+    content: '';
+}
+
+div.unit-path li span.content-wrapper
+{
+    display: inline-block;
+    margin-right: 0.5em;
+    color: #fff;
+}
+
+div.unit-path li a
+{
+    color: #cff;
+    filter: alpha(opacity=80);
+    opacity: .8;
 }
 
 div.translate-left,
 div.translate-right
 {
-    margin-top: 1em;
+    margin-top: 2em;
 }
-
 
 div.translate-left
 {
-    float: left;
+    display: inline-block;
     width: 24.5%;
-    clear: both;
 }
 
 div.translate-middle
 {
-    float: left;
+    display: inline-block;
+    vertical-align: top;
     width: 50%;
-    margin: 0 auto;
+    margin: 1em auto 0.5em;
     position: relative;
 }
 
@@ -461,17 +534,28 @@ div.language-name
     color: #130f30;
 }
 
-div.alternative
+div.source-language.alternative
 {
     color: #777;
+    margin-bottom: 2em;
 }
 
 table td.translate-original,
 table td.translate-translation
 {
     padding: 0.5em 5px;
+    width: 50%;
 }
 
+table td.translate-original
+{
+    padding-left: 25px;
+}
+
+table td.translate-translation
+{
+    padding-right: 25px;
+}
 
 /* COMMENTS */
 
@@ -554,8 +638,6 @@ table td.translate-translation
 
 td.translate-focus
 {
-    border-top: 1px solid #d9d9d9;
-    border-bottom: 1px solid #d9d9d9;
     vertical-align: top;
 }
 
@@ -638,14 +720,16 @@ html[dir="rtl"] .extra-item-meta
 {
     margin: 0 0.5em 0.5em 0;
     padding: 0.1em 0.5em;
+    background-color: #ffc;
     border: 1px dotted #999;
     cursor: pointer;
     display: inline-block;
     font-size: 90%;
 }
 
-.tm-unit:hover {
-    background-color: #fff;
+.tm-unit:hover
+{
+    background-color: #ff9;
 }
 
 .tm-original
@@ -934,7 +1018,7 @@ li.check
     display: inline-block;
     border: 1px dotted #900;
     margin: 0 0.5em 0.5em 0;
-    padding: 0.1em 0.1em 0.1em 0.5em;
+    padding: 0.1em 0.5em;
 
 }
 
@@ -1003,7 +1087,8 @@ li.check > a
     background:         linear-gradient(top,  #ffe,  #ae7);
 }
 
-.translate-buttons-block input.submit:hover {
+.translate-buttons-block input.submit:hover
+{
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#bbff88');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#bf8));
     background: -webkit-linear-gradient(top,  #fff,  #bf8);
@@ -1035,7 +1120,8 @@ li.check > a
     background:         linear-gradient(top,  #ffe,  #ed8);
 }
 
-.translate-buttons-block input.suggest:hover {
+.translate-buttons-block input.suggest:hover
+{
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffee99');
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fe9));
     background: -webkit-linear-gradient(top,  #fff,  #fe9);
@@ -1075,6 +1161,7 @@ table.suggest-mode .translate-buttons-block input.submit
 {
     text-align: center;
     font-style: italic;
+    white-space: nowrap;
 }
 
 .translate-fuzzy-block label

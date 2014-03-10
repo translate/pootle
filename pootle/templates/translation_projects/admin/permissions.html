@@ -1,6 +1,6 @@
 {% extends "translation_projects/admin/base.html" %}
 
-{% load assets i18n %}
+{% load i18n %}
 
 {% block title %}{% trans "Permissions" %} | {{ block.super }}{% endblock %}
 
@@ -8,17 +8,10 @@
 
 {% block section_body %}
 <div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
-    <p class="info">{% trans "Below you can add, edit, and delete the permissions for this translation project." %}</p>
-    <p class="help">
-      {% trans "The user “nobody” refers to any user that is not logged in (an anonymous, unidentified user). The user “default” refers to the rights that all logged in users will have by default, unless other specific rights were assigned to them." %}
-    </p>
-    {% include "admin/_generic_formset.html" %}
+  <p class="info">{% trans "Below you can add, edit, and delete the permissions for this translation project." %}</p>
+  <p class="help">
+    {% trans "The user “nobody” refers to any user that is not logged in (an anonymous, unidentified user). The user “default” refers to the rights that all logged in users will have by default, unless other specific rights were assigned to them." %}
+  </p>
+  {% include "admin/_generic_formset.html" %}
 </div>
-{% endblock %}
-
-{% block scripts_extra %}
-{{ block.super }}
-{% assets "js_admin" %}
-<script type="text/javascript" src="{{ ASSET_URL }}"></script>
-{% endassets %}
 {% endblock %}
