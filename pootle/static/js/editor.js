@@ -1725,7 +1725,7 @@
 
     if (results.length > 0) {
       if (results[0].source === source) {
-        element = $(PTL.editor.focused);
+        var element = $(PTL.editor.focused);
         // set only if the textarea is empty
         if (element.val() === '') {
           var text = results[0].target;
