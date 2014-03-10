@@ -1720,8 +1720,7 @@
     // FIXME: this just retrieves the first three results
     // we could limit based on a threshold too.
     var source = $("[id^=id_source_f_]").first().val(),
-        filtered = [],
-        quality;
+        filtered = [];
 
     if (results.length > 0) {
       if (results[0].source === source) {
@@ -1739,7 +1738,6 @@
     for (var i=0; i<results.length && i<3; i++) {
       results[i].source = this.doDiff(source, results[i].source);
       results[i].target = PTL.utils.fancyHl(results[i].target);
-      quality = Math.round(results[i].quality);
       if (!results[i].fullname) {
         results[i].fullname = gettext('someone');
       }
