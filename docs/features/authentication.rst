@@ -6,7 +6,7 @@ Authentication Backends
 .. _authentication#social:
 
 Social Authentication
--------------------
+---------------------
 
 Pootle uses Django-Allauth for authentication, which supports several social
 authentication backends. By default, support for OpenID as well as
