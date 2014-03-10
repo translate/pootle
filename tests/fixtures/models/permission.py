@@ -66,6 +66,13 @@ def suggest(pootle_content_type):
 
 
 @pytest.fixture
+def translate(pootle_content_type):
+    """Require the `translate` permission."""
+    return _require_permission('translate', 'Can submit translations',
+                               pootle_content_type)
+
+
+@pytest.fixture
 def review(pootle_content_type):
     """Require the `suggest` permission."""
     return _require_permission('review', 'Can review translations',
