@@ -798,6 +798,8 @@ def get_edit_unit(request, unit):
                                                  directory),
         'cansuggest': check_profile_permission(profile, "suggest", directory),
         'canreview': check_profile_permission(profile, "review", directory),
+        'is_admin': check_profile_permission(profile, 'administrate',
+                                             directory),
         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
                                 project=project),
         'suggestions': suggestions,

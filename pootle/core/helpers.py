@@ -83,6 +83,7 @@ def get_translation_context(request, is_terminology=False):
         'cantranslate': check_permission("translate", request),
         'cansuggest': check_permission("suggest", request),
         'canreview': check_permission("review", request),
+        'is_admin': check_permission('administrate', request),
         'profile': request.profile,
 
         'pootle_path': request.pootle_path,

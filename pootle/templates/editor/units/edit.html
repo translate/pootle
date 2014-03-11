@@ -158,7 +158,9 @@
               <div class="submit"><a href="#" title="{% trans 'Switch to suggestion mode (Ctrl+Shift+Space)' %}">&harr; {% trans "Suggest" %}</a></div>
             </div>
             {% endif %}
-            <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Mark this string as needing further work (Ctrl+Space)' %}">
+            <div class="translate-fuzzy-block js-fuzzy-block{% if not is_admin and not unit.isfuzzy %} hide{% endif %}"
+              lang="{{ LANGUAGE_CODE }}"
+              title="{% trans 'Mark this string as needing further work (Ctrl+Space)' %}">
               {{ form.state }} {{ form.state.label_tag }}
             </div>
           </div>
