@@ -592,13 +592,23 @@
 
   /* Checks the current unit's fuzzy checkbox */
   doFuzzyBox: function () {
-    $('input.fuzzycheck').prop('checked', true);
+    var $checkbox = $('input.fuzzycheck');
+    $checkbox.prop('checked', true);
+
+    if (!this.settings.isAdmin) {
+      $('.js-fuzzy-block').show();
+      $checkbox[0].defaultChecked = true;
+    }
+
+    $checkbox.trigger('change');
   },
 
 
   /* Unchecks the current unit's fuzzy checkbox */
   undoFuzzyBox: function () {
-    $('input.fuzzycheck').prop('checked', false);
+    var $checkbox = $('input.fuzzycheck');
+    $checkbox.prop('checked', false);
+    $checkbox.trigger('change');
   },
 
 
@@ -650,15 +660,22 @@
         checkbox = $('#id_state')[0],
         stateChanged = checkbox.defaultChecked !== checkbox.checked,
         areaChanged = false,
+        needsReview = false,
         area, i;
+
+    // Non-admin users are required to clear the fuzzy checkbox
+    if (!this.settings.isAdmin) {
+      needsReview = checkbox.checked === true;
+    }
 
     for (i=0; i<translations.length && areaChanged === false; i++) {
       area = translations[i];
       areaChanged = area.defaultValue !== area.value;
     }
 
+    var disableSubmit = !(stateChanged || areaChanged) || needsReview;
     $submit.each(function () {
-      this.disabled = !(stateChanged || areaChanged);
+      this.disabled = disableSubmit;
     });
   },
 

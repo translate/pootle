@@ -126,6 +126,8 @@ Editor Differences
 
 - Quality checks can be individually muted/unmuted.
 
+- Non-admin users can't submit units in fuzzy state.
+
 - When going through all units in the translation editor, users will be
   automatically redirected back to overview.
 
