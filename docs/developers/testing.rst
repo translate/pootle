@@ -25,6 +25,12 @@ However, if you're developing you can simply run
 from the root of the repository. Note that you need to install the testing
 requirements into your virtualenv first (*requirements/tests.txt*).
 
+.. note::
+
+    Since the test runner automatically sets the ``DEBUG`` setting to
+    ``False``, the static assets need to be collected before running the
+    view tests. You can run ``make assets`` for building them.
+
 The ``py.test`` runner command offers several options which are extended
 by plugins as well. Check `its documentation <http://pytest.org/latest/>`_
 for further details.
