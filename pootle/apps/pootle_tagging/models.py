@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Zuza Software Foundation
+# Copyright 2013, 2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -182,7 +182,7 @@ class Goal(TagBase):
             return list(chain(regular_goals, project_goals))
 
     @classmethod
-    def get_trail_for_path(self, pootle_path):
+    def get_trail_for_path(cls, pootle_path):
         """Return a list with the trail for the given path.
 
         If the pootle path does not exist, then an empty list is returned.
