@@ -51,11 +51,14 @@ class PootleCommand(NoArgsCommand):
         if hasattr(self, "handle_translation_project"):
             logging.info(u"Running %s over %s", self.name, tp)
             try:
-                self.handle_translation_project(tp, **options)
+                process_stores = self.handle_translation_project(tp, **options)
             except Exception as e:
                 logging.error(u"Failed to run %s over %s:\n%s",
                               self.name, tp, e)
                 return
+
+        if not process_stores:
+            return
 
         if not pootle_path and hasattr(self, "handle_all_stores"):
             logging.info(u"Running %s over %s's files", self.name, tp)

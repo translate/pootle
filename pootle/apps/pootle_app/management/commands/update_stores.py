@@ -44,8 +44,15 @@ class Command(PootleCommand):
     help = "Update database stores from files."
 
     def handle_translation_project(self, translation_project, **options):
-        logging.info(u"Scanning for new files in %s", translation_project)
-        translation_project.scan_files()
+        """
+        :return: flag if child stores should be updated
+        """
+        if not translation_project.disabled:
+            logging.info(u"Scanning for new files in %s", translation_project)
+            translation_project.scan_files()
+            return True
+        else:
+            return False
 
     def handle_store(self, store, **options):
         overwrite = options.get('overwrite', False)
