@@ -233,7 +233,6 @@ def ajax_add_tag_to_tp_in_project(request, project):
                                       context, RequestContext(request))
 
 
-
 @get_path_obj
 @permission_required('view')
 def overview(request, project):
