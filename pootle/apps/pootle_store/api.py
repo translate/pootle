@@ -148,11 +148,9 @@ class StoreResource(StatisticsModelResource):
         fields = [
             'file',
             'name',
-            'pending',
             'pootle_path',
             'state',
             'sync_time',
-            'tm',
             'translation_project',
             'units',
         ]
