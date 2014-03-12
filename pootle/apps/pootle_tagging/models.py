@@ -172,7 +172,7 @@ class Goal(TagBase):
             return list(chain(regular_goals, project_goals))
 
     @classmethod
-    def get_trail_for_path(self, pootle_path):
+    def get_trail_for_path(cls, pootle_path):
         """Return the trail for the given path.
 
         The trail is all the directories that correspond to the given pootle
