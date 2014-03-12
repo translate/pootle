@@ -27,7 +27,7 @@ Pootle has specific conventions for Python coding style.
 Imports
 ~~~~~~~
 
-Like in `Python import conventions 
+Like in `Python import conventions
 <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
 in Translate styleguide, but imports should be grouped in the following order:
 
