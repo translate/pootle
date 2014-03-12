@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -71,7 +71,7 @@ def view(request, path_obj):
             'directory': directory,
         }
 
-    template_vars = {
+    ctx = {
         'notification_url': reverse('pootle-notifications-feed',
                                     args=[path_obj.pootle_path[:1]]),
         'directory': directory,
@@ -83,10 +83,9 @@ def view(request, path_obj):
     }
 
     if check_permission('administrate', request):
-        template_vars['form'] = handle_form(request, directory, proj, lang,
-                                            template_vars)
+        ctx['form'] = handle_form(request, directory, proj, lang, ctx)
 
-    return render_to_response('notifications/notices.html', template_vars,
+    return render_to_response('notifications/notices.html', ctx,
                               context_instance=RequestContext(request))
 
 
@@ -144,7 +143,7 @@ def get_recipients(restrict_to_active_users, directory):
 
 
 def handle_form(request, current_directory, current_project, current_language,
-                template_vars):
+                ctx):
     if request.method != 'POST':
         # Not a POST method. Return a default starting state of the form
         return form_factory(current_directory)()
@@ -158,7 +157,7 @@ def handle_form(request, current_directory, current_project, current_language,
     languages = form.cleaned_data.get('language_selection', [])
     projects = form.cleaned_data.get('project_selection', [])
     publish_dirs = []
-    template_vars['notices_published'] = []
+    ctx['notices_published'] = []
 
     # Figure out which directories, projects, and languages are involved
     if current_language and current_project:
@@ -209,7 +208,7 @@ def handle_form(request, current_directory, current_project, current_language,
     if form.cleaned_data['publish_rss']:
         for d in publish_dirs:
             new_notice = create_notice(request.user, message, d)
-            template_vars['notices_published'].append(new_notice)
+            ctx['notices_published'].append(new_notice)
 
     # E-mail
     if form.cleaned_data['send_email']:
@@ -228,9 +227,9 @@ def handle_form(request, current_directory, current_project, current_language,
 
 def view_notice_item(request, path, notice_id):
     notice = get_object_or_404(Notice, id=notice_id)
-    template_vars = {
+    ctx = {
         "title": _("View News Item"),
         "notice_message": notice.message,
     }
-    return render_to_response('notifications/view_notice.html', template_vars,
+    return render_to_response('notifications/view_notice.html', ctx,
                               context_instance=RequestContext(request))
