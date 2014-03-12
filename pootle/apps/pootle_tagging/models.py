@@ -436,7 +436,7 @@ class Goal(TagBase):
 
         :param pootle_path: A string with a valid pootle path.
         """
-        path_objs = cls.get_trail_for_path(pootle_path)
+        path_objs = self.get_trail_for_path(pootle_path)
 
         keys = []
         for path_obj in path_objs:
