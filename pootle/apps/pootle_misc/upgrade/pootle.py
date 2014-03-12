@@ -59,8 +59,8 @@ def import_suggestions(store):
             count = store.get_suggestion_count()
 
         if count:
-            logging.debug(u'Imported suggestions (%d) from %s',
-                          store.real_path, count)
+            logging.debug(u'Imported %d suggestions from %s', count,
+                          store.real_path)
     except:
         logging.debug(u'Failed to import suggestions from %s', store.real_path)
 
