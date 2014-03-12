@@ -63,20 +63,19 @@ def edit_settings(request):
     if form.is_valid():
         form.save()
         rcode = 200
+        response.update({
+            'description': u"<div>%s</div>" % form.cleaned_data['DESCRIPTION'],
+        })
 
-        the_html = u"".join([
-            u"<div>", form.cleaned_data['DESCRIPTION'], "</div>"
-        ])
-
-        response["description"] = the_html
-
-    context = {
-        "form": form,
-        "form_action": reverse('pootle-admin-edit-settings'),
+    ctx = {
+        'form': form,
+        'form_action': reverse('pootle-admin-edit-settings'),
     }
+    c = RequestContext(request, ctx)
     t = loader.get_template('admin/_settings_form.html')
-    c = RequestContext(request, context)
-    response['form'] = t.render(c)
 
+    response.update({
+        'form': t.render(c),
+    })
     return HttpResponse(jsonify(response), status=rcode,
                         mimetype="application/json")
