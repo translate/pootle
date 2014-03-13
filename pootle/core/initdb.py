@@ -33,7 +33,7 @@ from pootle.__version__ import build as code_buildversion
 from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
-from pootle_misc import siteconfig
+from pootle_misc.siteconfig import load_site_config
 from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
 from pootle_store.models import TMUnit, Unit
@@ -66,7 +66,7 @@ def initdb():
 
     create_local_tm()
 
-    config = siteconfig.load_site_config()
+    config = load_site_config()
     if not config.get('POOTLE_BUILDVERSION', None):
         config.set('POOTLE_BUILDVERSION', code_buildversion)
     if not config.get('TT_BUILDVERSION', None):
