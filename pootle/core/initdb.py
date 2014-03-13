@@ -29,7 +29,6 @@ from django.db import transaction
 from django.db.models.signals import post_syncdb, pre_delete, post_delete
 from django.utils.translation import ugettext_noop as _
 
-import pootle_app.models
 from pootle.__version__ import build as code_buildversion
 from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
