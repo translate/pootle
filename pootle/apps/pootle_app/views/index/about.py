@@ -20,11 +20,8 @@
 
 from __future__ import absolute_import
 
-import sys
-
 from translate import __version__ as toolkitversion
 
-import django
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -49,11 +46,6 @@ def view(request):
                             "Toolkit %(toolkit_ver)s",
                             {'pootle_ver': pootleversion.sver,
                              'toolkit_ver': toolkitversion.sver}),
-        'version_details': "\n".join([
-            "Django %s" % django.get_version(),
-            "Python %s" % sys.version,
-            "Running on %s" % sys.platform,
-        ]),
     }
     return render_to_response('about/about.html', ctx,
                               context_instance=RequestContext(request))
