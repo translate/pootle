@@ -51,8 +51,8 @@ class Command(PootleCommand):
             logging.info(u"Scanning for new files in %s", translation_project)
             translation_project.scan_files()
             return True
-        else:
-            return False
+
+        return False
 
     def handle_store(self, store, **options):
         overwrite = options.get('overwrite', False)

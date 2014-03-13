@@ -48,6 +48,8 @@ class PootleCommand(NoArgsCommand):
     option_list = NoArgsCommand.option_list + shared_option_list
 
     def do_translation_project(self, tp, pootle_path, **options):
+        process_stores = True
+
         if hasattr(self, "handle_translation_project"):
             logging.info(u"Running %s over %s", self.name, tp)
             try:
