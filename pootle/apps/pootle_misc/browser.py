@@ -118,6 +118,7 @@ def make_store_item(store):
     })
     return item
 
+
 def get_parent(directory):
     parent_dir = directory.parent
 
