@@ -20,13 +20,12 @@
 
 from __future__ import absolute_import
 
-from translate import __version__ as toolkitversion
+from translate.__version__ import sver as toolkit_version
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.translation import ugettext as _
 
-from pootle import __version__ as pootleversion
+from pootle.__version__ import sver as pootle_version
 
 
 def view(request):
@@ -42,10 +41,8 @@ def view(request):
             'traduction',
             'traduire',
         ],
-        'pootle_version': _("Pootle %(pootle_ver)s is powered by Translate "
-                            "Toolkit %(toolkit_ver)s",
-                            {'pootle_ver': pootleversion.sver,
-                             'toolkit_ver': toolkitversion.sver}),
+        'pootle_version': pootle_version,
+        'toolkit_version': toolkit_version,
     }
     return render_to_response('about/about.html', ctx,
                               context_instance=RequestContext(request))
