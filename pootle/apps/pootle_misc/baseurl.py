@@ -46,9 +46,9 @@ def redirect(url, **kwargs):
         # A catch-all to fix any issues on Windows
         url = url.replace("\\", "/")
     if len(kwargs) > 0:
-        return HttpResponseRedirect(l('%s?%s' % (url, urlencode(kwargs))))
+        return HttpResponseRedirect('%s?%s' % (url, urlencode(kwargs)))
     else:
-        return HttpResponseRedirect(l(url))
+        return HttpResponseRedirect(url)
 
 
 def get_next(request):
