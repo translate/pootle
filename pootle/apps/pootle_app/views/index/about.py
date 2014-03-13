@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009, 2013 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -25,19 +25,15 @@ import sys
 from translate import __version__ as toolkitversion
 
 import django
-from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from pootle import __version__ as pootleversion
-from pootle_misc.siteconfig import load_site_config
 
 
 def view(request):
-    siteconfig = load_site_config()
     ctx = {
-        'description': _(siteconfig.get('DESCRIPTION')),
         'keywords': [
             'Pootle',
             'locamotion',
