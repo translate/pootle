@@ -10,11 +10,21 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+
+
+Release `2014-03-13`_
+---------------------
+
+- Bugfix release.
+
 - Only admins can set the fuzzy flag on the unit. Non-admin users are not
   shown the fuzzy checkbox by default, but in case it's displayed (because
   the unit was already fuzzy, or some other action turned it fuzzy, such
   as using MT), they are always forced to clear the flag. (`#157`_)
 
+.. _2014-03-13: https://github.com/evernote/pootle/releases/tag/release-2014-03-13
 .. _#157: https://github.com/evernote/pootle/issues/157
 
 - `Commit comparison wrt previous release
