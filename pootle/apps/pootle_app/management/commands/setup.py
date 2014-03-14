@@ -29,7 +29,7 @@ from django.core.management import call_command
 from django.core.management.base import NoArgsCommand
 from django.db.utils import DatabaseError
 
-from pootle_misc import siteconfig
+from pootle_misc.siteconfig import load_site_config
 from pootle.__version__ import build as NEW_POOTLE_BUILD
 
 
@@ -39,7 +39,7 @@ class Command(NoArgsCommand):
     def get_current_buildversion(self):
         """Retrieve the build version for the current deployment, if any."""
         try:
-            config = siteconfig.load_site_config()
+            config = load_site_config()
             current_buildversion = config.get('POOTLE_BUILDVERSION', None)
 
             if current_buildversion is None:
