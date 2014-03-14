@@ -19,7 +19,7 @@
         <span id="js-toggle-tags-text">{% trans "Show tags" %}</span>
       </a>
       <a href="" id="js-toggle-filter" class="hide filter-aside filter-toggle"
-        title="{% trans "Show filtering" %}">
+        title="{% trans 'Show filtering' %}">
         <i class="icon-filter"></i>
       </a>
     </h2>
@@ -30,12 +30,12 @@
       enctype="multipart/form-data">
       {% csrf_token %}
       <input type="hidden" id="js-tag-filtering" class="select2-multiple"
-        data-placeholder="{% trans "Filter using one or more tags" %}"
+        data-placeholder="{% trans 'Filter using one or more tags' %}"
         data-ajaxurl="{% url 'pootle-xhr-list-project-tags' project.code %}">
       </input>
       <input type="submit" id="js-filter-form-button"
-        value="{% trans "Filter" context "verb" %}"
-        title="{% trans "Filter using the selected tags" %}" />
+        value="{% trans 'Filter' context 'verb' %}"
+        title="{% trans 'Filter using the selected tags' %}" />
     </form>
   </div>
 
