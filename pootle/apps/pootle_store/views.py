@@ -1014,11 +1014,6 @@ def suggest(request, unit):
 @ajax_required
 @get_unit_context('review')
 def reject_suggestion(request, unit, suggid):
-    json = {}
-    translation_project = request.translation_project
-
-    json["udbid"] = unit.id
-    json["sugid"] = suggid
     if request.POST.get('reject'):
         try:
             sugg = unit.suggestion_set.get(id=suggid)
@@ -1033,6 +1028,10 @@ def reject_suggestion(request, unit, suggid):
         unit.reject_suggestion(sugg, request.translation_project,
                                request.profile)
 
+    json = {
+        'udbid': unit.id,
+        'sugid': suggid,
+    }
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
@@ -1044,15 +1043,14 @@ def accept_suggestion(request, unit, suggid):
         'udbid': unit.id,
         'sugid': suggid,
     }
-    translation_project = request.translation_project
-
     if request.POST.get('accept'):
         try:
             suggestion = unit.suggestion_set.get(id=suggid)
         except ObjectDoesNotExist:
             raise Http404
 
-        unit.accept_suggestion(suggestion, translation_project, request.profile)
+        unit.accept_suggestion(suggestion, request.translation_project,
+                               request.profile)
 
         json['newtargets'] = [highlight_whitespace(target)
                               for target in unit.target.strings]
