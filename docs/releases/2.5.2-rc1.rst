@@ -62,6 +62,7 @@ These are the features we got rid of:
 
 - .pending and .tm files support: Not necessary since the updatetm tool was
   removed in Pootle 2.5.0.
+- Live translation: Rarely enabled, and it was discouraged to use it.
 
 
 ...and lots of refactoring, upgrades of upstream code, cleanups to remove
