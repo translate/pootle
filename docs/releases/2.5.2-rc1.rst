@@ -21,6 +21,7 @@ These are by no means exhaustive, check the `git log
 <https://github.com/translate/pootle/compare/stable%2F2.5.1...master>`_
 for more details.
 
+- Direct upgrade is now only possible from 2.1.1 and later.
 - The registration and authentication layer is now handled by django-allauth.
   This gives Pootle implicit support for OpenID, OAuth, OAuth2 and Persona
   sign-in support.
@@ -44,6 +45,23 @@ for more details.
 - New management command to assign permissions to a user.
 - Using dumpdata and loaddata to move between databases is no longer supported.
   If you need to move, please use proper SQL scripts instead.
+
+
+Removal of legacy features
+==========================
+
+We have dropped some legacy features we kept around for allowing a swift
+upgrade in the past.
+
+The removal of some of these feature required extensive changes on the
+upgrading code, which resulted in that upgrading directly from ancient versions
+is no longer possible. In case you are trying to upgrade from Pootle 2.1.0 or
+older you must first upgrade to 2.1.6 before upgrading to this version.
+
+These are the features we got rid of:
+
+- .pending and .tm files support: Not necessary since the updatetm tool was
+  removed in Pootle 2.5.0.
 
 
 ...and lots of refactoring, upgrades of upstream code, cleanups to remove
