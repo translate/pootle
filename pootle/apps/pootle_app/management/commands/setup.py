@@ -37,6 +37,7 @@ class Command(NoArgsCommand):
     help = 'Runs the install/upgrade machinery.'
 
     def get_current_buildversion(self):
+        """Retrieve the build version for the current deployment, if any."""
         try:
             config = siteconfig.load_site_config()
             current_buildversion = config.get('POOTLE_BUILDVERSION', None)
