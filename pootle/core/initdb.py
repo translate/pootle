@@ -363,4 +363,4 @@ def create_local_tm():
             tmunit = TMUnit().create(unit)
             tmunit.save()
 
-        logging.info('Succesfully created local TM from existing translations')
+        logging.info('Successfully created local TM from existing translations')
