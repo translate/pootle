@@ -22,6 +22,7 @@
 
 from django.db.models import Sum, Count, Max
 
+
 def max_column(queryset, column, default):
     result = queryset.aggregate(result=Max(column))['result']
 
@@ -29,6 +30,7 @@ def max_column(queryset, column, default):
         return default
     else:
         return result
+
 
 def sum_column(queryset, columns, count=False):
     arg_dict = {}

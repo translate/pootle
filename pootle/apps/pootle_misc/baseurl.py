@@ -45,10 +45,11 @@ def redirect(url, **kwargs):
     if os.name == 'nt':
         # A catch-all to fix any issues on Windows
         url = url.replace("\\", "/")
+
     if len(kwargs) > 0:
-        return HttpResponseRedirect('%s?%s' % (url, urlencode(kwargs)))
-    else:
-        return HttpResponseRedirect(url)
+        url += '?%s' % urlencode(kwargs)
+
+    return HttpResponseRedirect(url)
 
 
 def get_next(request):
