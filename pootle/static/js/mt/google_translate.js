@@ -19,7 +19,7 @@
      * FIXME Note that an API does exist to query if Google supports
      * a given language */
 
-    supported_languages: [
+    supportedLanguages: [
       'af','sq','ar','az','eu','bn','be','bg','ca','zh-CN','zh-TW','hr',
       'cs','da','nl','en','eo','et','tl','fi','fr','gl','ka','de','el',
       'gu','ht','iw','hi','hu','is','id','ga','it','ja','kn','ko','la',
@@ -30,10 +30,10 @@
     init: function (apiKey) {
       /* Init variables */
       this.pairs = [];
-      for (var i=0; i<this.supported_languages.length; i++) {
+      for (var i=0; i<this.supportedLanguages.length; i++) {
         this.pairs.push({
-          'source': this.supported_languages[i],
-          'target': this.supported_languages[i]
+          'source': this.supportedLanguages[i],
+          'target': this.supportedLanguages[i]
         });
       };
 
