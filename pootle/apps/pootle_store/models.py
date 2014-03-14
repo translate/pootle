@@ -1547,7 +1547,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             modified_units = set()
 
             if modified_since:
-                from pootle_statistics.models import Submission
                 self_unit_ids = set(self.dbid_index.values())
 
                 try:

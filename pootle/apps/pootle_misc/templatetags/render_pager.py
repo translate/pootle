@@ -18,9 +18,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.utils.translation import ugettext as _
 from django import template
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext as _
+
 
 def render_pager(pager):
     """Render a pager block with next and previous links"""

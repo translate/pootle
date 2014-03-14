@@ -34,6 +34,7 @@ from pootle_misc.util import jsonify, ajax_required
 @admin_required
 def view(request):
     siteconfig = load_site_config()
+
     if request.POST:
         setting_form = GeneralSettingsForm(siteconfig, data=request.POST)
 
@@ -42,11 +43,10 @@ def view(request):
     else:
         setting_form = GeneralSettingsForm(siteconfig)
 
-    template = 'admin/settings.html'
-    template_vars = {
+    ctx = {
         'form': setting_form,
     }
-    return render_to_response(template, template_vars,
+    return render_to_response('admin/settings.html', ctx,
                               context_instance=RequestContext(request))
 
 
