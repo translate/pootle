@@ -45,6 +45,8 @@ for more details.
 - New management command to assign permissions to a user.
 - Using dumpdata and loaddata to move between databases is no longer supported.
   If you need to move, please use proper SQL scripts instead.
+- Added a new ``system`` user to attribute to changes done by the management
+  commands.
 
 
 Removal of legacy features
