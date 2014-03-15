@@ -181,6 +181,28 @@ release of a ``$MINOR`` version will always have a ``$MICRO`` of ``.0``. So
 ``1.10.0`` and never just ``1.10``.
 
 
+Merge upgrade paths
+-------------------
+
+During development it is common to add new things that require upgrading. To
+ease the development each bit that needs to be done to upgrade is done in a
+separate function, but when it comes to releasing that is just confussing, so
+instead it is better to combine them in just a single function to call when
+upgrading to a determined release.
+
+For example during development for ``2.5.2`` the following upgrade functions
+were added:
+
+- ``upgrade_to_25200``
+- ``upgrade_to_25201``
+- ``upgrade_to_25202``
+
+That just before releasing can be combined into ``upgrade_to_25200``. This
+won't affect the developers if they run all the upgrades before releasing, and
+having a slightly greater build version number on their development
+environments won't have any side effect.
+
+
 Check copyright dates
 ---------------------
 
