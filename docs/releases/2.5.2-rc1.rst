@@ -47,6 +47,9 @@ for more details.
   If you need to move, please use proper SQL scripts instead.
 - Added a new ``system`` user to attribute to changes done by the management
   commands.
+- The ``update_translation_projects`` management command no longer removes
+  projects when using the ``--cleanup`` option. This was an undocumented
+  behavior.
 
 
 Removal of legacy features
