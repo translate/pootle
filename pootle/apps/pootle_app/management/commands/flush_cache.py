@@ -20,6 +20,7 @@
 
 import os
 
+# This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand

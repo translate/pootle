@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009, 2013 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -19,17 +19,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import logging
 import os
+import time
+from optparse import make_option
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-
-
-
-import logging
-import time
-
-from optparse import make_option
 
 from django.conf import settings
 from django.core.cache import cache
