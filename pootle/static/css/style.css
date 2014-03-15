@@ -348,14 +348,12 @@ html[dir="rtl"] #nav-access
     right: -1000px;
 }
 
-#precontent,
 #content,
 #postcontent
 {
     margin: 0 1em;
 }
 
-#precontent,
 #content
 {
     clear: both;
