@@ -65,6 +65,8 @@ These are the features we got rid of:
 - .pending and .tm files support: Not necessary since the updatetm tool was
   removed in Pootle 2.5.0.
 - Live translation: Rarely enabled, and it was discouraged to use it.
+- Autosync: It was recommended to never use it. The files can now be synced
+  instead using the appropriate management commands.
 
 
 ...and lots of refactoring, upgrades of upstream code, cleanups to remove
