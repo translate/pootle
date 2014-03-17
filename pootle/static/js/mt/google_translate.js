@@ -60,12 +60,18 @@
           data: transData,
           success: function (r) {
             if (r.data && r.data.translations) {
-              resultCallback(r.data.translations[0].translatedText);
+              resultCallback({
+                translation: r.data.translations[0].translatedText
+              });
             } else {
               if (r.error && r.error.message) {
-                resultCallback(false, "Google Translate Error: " + r.error.message);
+                resultCallback({
+                  msg: "Google Translate Error: " + r.error.message
+                });
               } else {
-                resultCallback(false, "Malformed response from Google Translate API");
+                resultCallback({
+                  msg: "Malformed response from Google Translate API"
+                });
               }
             }
           }
