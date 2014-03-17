@@ -2094,16 +2094,22 @@
         // Fix whitespace which may have been added around [N] blocks
         for (i=0; i<that.argSubs.length; i++) {
           if (sourceText.match(new RegExp("\\[" + i + "\\][^\\s]"))) {
-            translation = translation.replace(new RegExp("\\[" + i + "\\]\\s+"), "[" + i + "]");
+            translation = translation.replace(
+              new RegExp("\\[" + i + "\\]\\s+"), "[" + i + "]"
+            );
           }
           if (sourceText.match(new RegExp("[^\\s]\\[" + i + "\\]"))) {
-            translation = translation.replace(new RegExp("\\s+\\[" + i + "\\]"), "[" + i + "]");
+            translation = translation.replace(
+              new RegExp("\\s+\\[" + i + "\\]"), "[" + i + "]"
+            );
           }
         }
 
         // Replace temporary [N] placeholders back to their real values
         for (i=0; i<that.argSubs.length; i++) {
-          var value = that.argSubs[i].replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
+          value = that.argSubs[i].replace(/\&/g, '&amp;')
+                                 .replace(/\</g, '&lt;')
+                                 .replace(/\>/g, '&gt;');
           translation = translation.replace("[" + i + "]", value);
         }
 
