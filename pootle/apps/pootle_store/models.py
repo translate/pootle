@@ -131,10 +131,6 @@ class SuggestionManager(models.Manager):
             )
         )
 
-    def get_by_natural_key(self, target_hash, unitid_hash, pootle_path):
-        return self.get(target_hash=target_hash, unit__unitid_hash=unitid_hash,
-                 unit__store__pootle_path=pootle_path)
-
     def pending(self):
         return self.get_queryset().filter(state=SuggestionStates.PENDING)
 
@@ -171,11 +167,6 @@ class Suggestion(models.Model, base.TranslationUnit):
     review_time = models.DateTimeField(null=True, db_index=True)
 
     objects = SuggestionManager()
-
-    def natural_key(self):
-        return (self.target_hash, self.unit.unitid_hash,
-                self.unit.store.pootle_path)
-    natural_key.dependencies = ['pootle_store.Unit', 'pootle_store.Store']
 
     def __unicode__(self):
         return unicode(self.target)
@@ -250,10 +241,6 @@ class UnitManager(models.Manager):
                 'store', 'submitted_by', 'commented_by', 'reviewed_by',
             )
         )
-
-    def get_by_natural_key(self, unitid_hash, pootle_path):
-        return self.get(unitid_hash=unitid_hash,
-                        store__pootle_path=pootle_path)
 
     def get_for_path(self, pootle_path, profile, permission_code='view'):
         """Returns units that fall below the `pootle_path` umbrella.
@@ -360,10 +347,6 @@ class Unit(models.Model, base.TranslationUnit):
         ordering = ['store', 'index']
         unique_together = ('store', 'unitid_hash')
         get_latest_by = 'mtime'
-
-    def natural_key(self):
-        return (self.unitid_hash, self.store.pootle_path)
-    natural_key.dependencies = ['pootle_store.Store']
 
     @property
     def _source(self):
@@ -1266,10 +1249,6 @@ class StoreManager(models.Manager):
             )
         )
 
-    def get_by_natural_key(self, pootle_path):
-        return self.get(pootle_path=pootle_path)
-
-
 class Store(models.Model, TreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
     UnitClass = Unit
@@ -1302,10 +1281,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     class Meta:
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
-
-    def natural_key(self):
-        return (self.pootle_path,)
-    natural_key.dependencies = ['pootle_app.Directory']
 
     @property
     def code(self):

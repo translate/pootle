@@ -95,10 +95,6 @@ class TranslationProjectManager(models.Manager):
             )
         )
 
-    def get_by_natural_key(self, pootle_path):
-        #FIXME: should we use Language and Project codes instead?
-        return self.get(pootle_path=pootle_path)
-
     def get_terminology_project(self, language_id):
         #FIXME: the code below currently uses the same approach to determine
         # the 'terminology' kind of a project as 'Project.is_terminology()',
@@ -137,11 +133,6 @@ class TranslationProject(models.Model, TreeItem):
     class Meta:
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
-
-    def natural_key(self):
-        return (self.pootle_path,)
-    natural_key.dependencies = ['pootle_app.Directory',
-            'pootle_language.Language', 'pootle_project.Project']
 
     @cached_property
     def code(self):

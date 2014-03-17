@@ -160,10 +160,6 @@ class PermissionSetManager(models.Manager):
             )
         )
 
-    def get_by_natural_key(self, username, pootle_path):
-        return self.get(profile__user__username=username,
-                        directory__pootle_path=pootle_path)
-
 
 class PermissionSet(models.Model):
 
@@ -182,12 +178,6 @@ class PermissionSet(models.Model):
     # compatibility with older versions.
     negative_permissions = models.ManyToManyField(Permission, editable=False,
             related_name='permission_sets_negative')
-
-    def natural_key(self):
-        return (self.profile.user.username, self.directory.pootle_path)
-    natural_key.dependencies = [
-        'pootle_app.Directory', 'pootle_profile.PootleProfile'
-    ]
 
     def __unicode__(self):
         return "%s : %s" % (self.profile.user.username,

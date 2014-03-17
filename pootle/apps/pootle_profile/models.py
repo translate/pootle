@@ -75,9 +75,6 @@ class PootleProfileManager(models.Manager):
         return super(PootleProfileManager, self).get_queryset() \
                                                 .select_related('alt_src_langs')
 
-    def get_by_natural_key(self, username):
-        return self.get(user__username=username)
-
 
 class PootleProfile(models.Model):
     objects = PootleProfileManager()
@@ -103,10 +100,6 @@ class PootleProfile(models.Model):
     rate = models.FloatField(null=False, default=0)
     review_rate = models.FloatField(null=False, default=0)
     score = models.FloatField(null=False, default=0)
-
-    def natural_key(self):
-        return (self.user.username,)
-    natural_key.dependencies = ['auth.User']
 
     def __unicode__(self):
         username = self.user.username

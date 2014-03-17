@@ -67,9 +67,6 @@ class ProjectManager(models.Manager):
             )
         )
 
-    def get_by_natural_key(self, code):
-        return self.get(code=code)
-
     def cached(self):
         projects = cache.get(CACHE_KEY)
         if not projects:
@@ -155,10 +152,6 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_project'
-
-    def natural_key(self):
-        return (self.code,)
-    natural_key.dependencies = ['pootle_app.Directory']
 
     @classmethod
     def for_username(self, username):
