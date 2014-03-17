@@ -2104,9 +2104,10 @@
         }
 
         $areas.eq(j).val($('<div />').html(translation).text());
-        $areas.eq(j).focus();
       });
     });
+
+    $areas[0].focus();
 
     PTL.editor.goFuzzy();
     return false;
