@@ -2083,7 +2083,8 @@
 
       var result = providerCallback(sourceText, langFrom, langTo, function (opts) {
         var translation = opts.translation,
-            msg = opts.msg;
+            msg = opts.msg,
+            i, value;
 
         if (translation === undefined && msg) {
           PTL.editor.displayError(msg);
@@ -2091,7 +2092,7 @@
         }
 
         // Fix whitespace which may have been added around [N] blocks
-        for (var i=0; i<that.argSubs.length; i++) {
+        for (i=0; i<that.argSubs.length; i++) {
           if (sourceText.match(new RegExp("\\[" + i + "\\][^\\s]"))) {
             translation = translation.replace(new RegExp("\\[" + i + "\\]\\s+"), "[" + i + "]");
           }
@@ -2101,7 +2102,7 @@
         }
 
         // Replace temporary [N] placeholders back to their real values
-        for (var i=0; i<that.argSubs.length; i++) {
+        for (i=0; i<that.argSubs.length; i++) {
           var value = that.argSubs[i].replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
           translation = translation.replace("[" + i + "]", value);
         }
