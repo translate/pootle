@@ -95,11 +95,6 @@ class QualityCheck(models.Model):
 
 ################# Suggestion ################
 
-class SuggestionManager(RelatedManager):
-    def get_by_natural_key(self, target_hash, unitid_hash, pootle_path):
-        return self.get(target_hash=target_hash, unit__unitid_hash=unitid_hash,
-                 unit__store__pootle_path=pootle_path)
-
 
 class Suggestion(models.Model, base.TranslationUnit):
     """Suggested translation for a :cls:`~pootle_store.models.Unit`, provided
@@ -112,15 +107,10 @@ class Suggestion(models.Model, base.TranslationUnit):
 
     translator_comment_f = models.TextField(null=True, blank=True)
 
-    objects = SuggestionManager()
+    objects = RelatedManager()
 
     class Meta:
         unique_together = ('unit', 'target_hash')
-
-    def natural_key(self):
-        return (self.target_hash, self.unit.unitid_hash,
-                self.unit.store.pootle_path)
-    natural_key.dependencies = ['pootle_store.Unit', 'pootle_store.Store']
 
     ############################ Properties ###################################
 
@@ -210,11 +200,6 @@ def stringcount(string):
 
 
 class UnitManager(RelatedManager):
-
-    def get_by_natural_key(self, unitid_hash, pootle_path):
-        return self.get(unitid_hash=unitid_hash,
-                        store__pootle_path=pootle_path)
-
     def get_for_path(self, pootle_path, profile, permission_code='view'):
         """Returns units that fall below the `pootle_path` umbrella.
 
@@ -385,10 +370,6 @@ class Unit(models.Model, base.TranslationUnit):
         ordering = ['store', 'index']
         unique_together = ('store', 'unitid_hash')
         get_latest_by = 'mtime'
-
-    def natural_key(self):
-        return (self.unitid_hash, self.store.pootle_path)
-    natural_key.dependencies = ['pootle_store.Store']
 
     ############################ Properties ###################################
 
@@ -1036,11 +1017,6 @@ fs = FileSystemStorage(location=settings.PODIRECTORY)
 suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
 
 
-class StoreManager(RelatedManager):
-    def get_by_natural_key(self, pootle_path):
-        return self.get(pootle_path=pootle_path)
-
-
 class Store(models.Model, TreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
 
@@ -1078,15 +1054,11 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     Name = "Model Store"
     is_dir = False
 
-    objects = StoreManager()
+    objects = RelatedManager()
 
     class Meta:
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
-
-    def natural_key(self):
-        return (self.pootle_path,)
-    natural_key.dependencies = ['pootle_app.Directory']
 
     ############################ Properties ###################################
 

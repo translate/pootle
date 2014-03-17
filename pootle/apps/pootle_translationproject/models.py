@@ -90,12 +90,6 @@ class TranslationProjectNonDBState(object):
         self.indexer = None
 
 
-class TranslationProjectManager(RelatedManager):
-    def get_by_natural_key(self, pootle_path):
-        #FIXME: should we use Language and Project codes instead?
-        return self.get(pootle_path=pootle_path)
-
-
 class TranslationProject(models.Model, TreeItem):
     description = MarkupField(
         blank=True,
@@ -131,16 +125,11 @@ class TranslationProject(models.Model, TreeItem):
                                          settings.PARSE_POOL_CULL_FREQUENCY)
     index_directory = ".translation_index"
 
-    objects = TranslationProjectManager()
+    objects = RelatedManager()
 
     class Meta:
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
-
-    def natural_key(self):
-        return (self.pootle_path,)
-    natural_key.dependencies = ['pootle_app.Directory',
-            'pootle_language.Language', 'pootle_project.Project']
 
     ############################ Properties ###################################
 

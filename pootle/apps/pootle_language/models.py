@@ -39,12 +39,6 @@ from pootle_store.util import OBSOLETE
 CACHE_KEY = 'pootle-languages'
 
 
-class LanguageManager(RelatedManager):
-
-    def get_by_natural_key(self, code):
-        return self.get(code=code)
-
-
 class LiveLanguageManager(models.Manager):
     """Manager that only considers `live` languages.
 
@@ -126,16 +120,12 @@ class Language(models.Model, TreeItem):
         editable=False,
     )
 
-    objects = LanguageManager()
+    objects = RelatedManager()
     live = LiveLanguageManager()
 
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_language'
-
-    def natural_key(self):
-        return (self.code,)
-    natural_key.dependencies = ['pootle_app.Directory']
 
     ############################ Properties ###################################
 

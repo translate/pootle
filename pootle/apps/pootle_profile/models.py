@@ -66,9 +66,6 @@ class PootleProfileManager(models.Manager):
         return super(PootleProfileManager, self).get_query_set() \
                                                 .select_related('alt_src_langs')
 
-    def get_by_natural_key(self, username):
-        return self.get(user__username=username)
-
 
 class PootleProfile(models.Model):
 
@@ -98,10 +95,6 @@ class PootleProfile(models.Model):
 
     class Meta:
         db_table = 'pootle_app_pootleprofile'
-
-    def natural_key(self):
-        return (self.user.username,)
-    natural_key.dependencies = ['auth.User']
 
     ############################ Properties ###################################
 

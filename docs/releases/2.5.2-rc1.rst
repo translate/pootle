@@ -42,6 +42,8 @@ for more details.
   reports are sent to :setting:`POOTLE_REPORT_STRING_ERRORS_EMAIL`.
 - Some changes in the API.
 - New management command to assign permissions to a user.
+- Using dumpdata and loaddata to move between databases is no longer supported.
+  If you need to move, please use proper SQL scripts instead.
 
 
 ...and lots of refactoring, upgrades of upstream code, cleanups to remove
