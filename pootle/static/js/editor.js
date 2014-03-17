@@ -2011,20 +2011,21 @@
    */
   addMTButtons: function (provider) {
     if (this.isSupportedTarget(provider.pairs, PTL.editor.settings.targetLang)) {
-      var _this = this;
-      var sources = $(".translate-toolbar");
-      $(sources).each(function () {
-        var source = _this.normalizeCode($(this).parents('.source-language').find('.translation-text').attr("lang"));
+      var that = this,
+          $sources = $(".translate-toolbar"),
+          ok;
 
-        var ok;
+      $sources.each(function () {
+        var source = that.normalizeCode($(this).parents('.source-language').find('.translation-text').attr("lang"));
+
         if (provider.validatePairs) {
-          ok = _this.isSupportedPair(provider.pairs, source, PTL.editor.settings.targetLang);
+          ok = that.isSupportedPair(provider.pairs, source, PTL.editor.settings.targetLang);
         } else {
-          ok = _this.isSupportedSource(provider.pairs, source);
+          ok = that.isSupportedSource(provider.pairs, source);
         }
 
         if (ok) {
-          _this.addMTButton($(this).find('.js-toolbar-buttons'),
+          that.addMTButton($(this).find('.js-toolbar-buttons'),
             provider.buttonClassName,
             provider.hint + ' (' + source.toUpperCase() + '&rarr;' + PTL.editor.settings.targetLang.toUpperCase() + ')');
         }
@@ -2051,33 +2052,32 @@
   },
 
   translate: function (linkObject, providerCallback) {
-    var areas = $('.js-translation-area');
-    var sources = $(linkObject).parents('.source-language').find('.translation-text');
-    var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
-    var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
+    var that = this,
+        $areas = $('.js-translation-area'),
+        $sources = $(linkObject).parents('.source-language').find('.translation-text'),
+        langFrom = PTL.editor.normalizeCode($sources.eq(0).attr("lang")),
+        langTo = PTL.editor.normalizeCode($areas.eq(0).attr("lang"));
 
-    var htmlPat = /<[\/]?\w+.*?>/g;
+    var htmlPat = /<[\/]?\w+.*?>/g,
     // The printf regex based on http://phpjs.org/functions/sprintf:522
-    var cPrintfPat = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
-    var csharpStrPat = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
-    var percentNumberPat = /%\d+/g;
-    var pos = 0;
+        cPrintfPat = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g,
+        csharpStrPat = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g,
+        percentNumberPat = /%\d+/g,
+        pos = 0;
 
-    var _this = this;
-
-    $(sources).each(function (j) {
+    $sources.each(function (j) {
       var sourceText = $(this).text();
 
       // Reset collected arguments array and counter
-      _this.argSubs = new Array();
-      _this.argPos = 0;
+      that.argSubs = [];
+      that.argPos = 0;
 
       // Walk through known patterns and replace them with [N] placeholders
 
-      sourceText = sourceText.replace(htmlPat, function(s) { return _this.collectArguments(s) });
-      sourceText = sourceText.replace(cPrintfPat, function(s) { return _this.collectArguments(s) });
-      sourceText = sourceText.replace(csharpStrPat, function(s) { return _this.collectArguments(s) });
-      sourceText = sourceText.replace(percentNumberPat, function(s) { return _this.collectArguments(s) });
+      sourceText = sourceText.replace(htmlPat, function(s) { return that.collectArguments(s) });
+      sourceText = sourceText.replace(cPrintfPat, function(s) { return that.collectArguments(s) });
+      sourceText = sourceText.replace(csharpStrPat, function(s) { return that.collectArguments(s) });
+      sourceText = sourceText.replace(percentNumberPat, function(s) { return that.collectArguments(s) });
 
       var result = providerCallback(sourceText, langFrom, langTo, function(translation, message) {
         if (translation === false) {
@@ -2086,7 +2086,7 @@
         }
 
         // Fix whitespace which may have been added around [N] blocks
-        for (var i = 0; i < _this.argSubs.length; i++) {
+        for (var i=0; i<that.argSubs.length; i++) {
           if (sourceText.match(new RegExp("\\[" + i + "\\][^\\s]"))) {
             translation = translation.replace(new RegExp("\\[" + i + "\\]\\s+"), "[" + i + "]");
           }
@@ -2096,13 +2096,13 @@
         }
 
         // Replace temporary [N] placeholders back to their real values
-        for (var i = 0; i < _this.argSubs.length; i++) {
-          var value = _this.argSubs[i].replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
+        for (var i=0; i<that.argSubs.length; i++) {
+          var value = that.argSubs[i].replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
           translation = translation.replace("[" + i + "]", value);
         }
 
-        areas.eq(j).val($('<div />').html(translation).text());
-        areas.eq(j).focus();
+        $areas.eq(j).val($('<div />').html(translation).text());
+        $areas.eq(j).focus();
       });
     });
 
