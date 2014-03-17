@@ -147,13 +147,6 @@ def check_permission(permission_codename, request):
             permission_codename in request.permissions)
 
 
-class PermissionSetManager(RelatedManager):
-
-    def get_by_natural_key(self, username, pootle_path):
-        return self.get(profile__user__username=username,
-                        directory__pootle_path=pootle_path)
-
-
 class PermissionSet(models.Model):
 
     profile = models.ForeignKey('pootle_profile.PootleProfile', db_index=True)
@@ -175,17 +168,11 @@ class PermissionSet(models.Model):
         related_name='permission_sets_negative',
     )
 
-    objects = PermissionSetManager()
+    objects = RelatedManager()
 
     class Meta:
         unique_together = ('profile', 'directory')
         app_label = "pootle_app"
-
-    def natural_key(self):
-        return (self.profile.user.username, self.directory.pootle_path)
-    natural_key.dependencies = [
-        'pootle_app.Directory', 'pootle_profile.PootleProfile'
-    ]
 
     def __unicode__(self):
         return "%s : %s" % (self.profile.user.username,
