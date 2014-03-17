@@ -2055,8 +2055,8 @@
     var that = this,
         $areas = $('.js-translation-area'),
         $sources = $(linkObject).parents('.source-language').find('.translation-text'),
-        langFrom = PTL.editor.normalizeCode($sources.eq(0).attr("lang")),
-        langTo = PTL.editor.normalizeCode($areas.eq(0).attr("lang"));
+        langFrom = PTL.editor.normalizeCode($sources[0].lang),
+        langTo = PTL.editor.normalizeCode($areas[0].lang);
 
     var htmlPat = /<[\/]?\w+.*?>/g,
     // The printf regex based on http://phpjs.org/functions/sprintf:522
