@@ -47,9 +47,13 @@
         content.type = "txt";
         apertium.translate(content, langFrom, langTo, function (result) {
           if (result.translation) {
-            resultCallback(result.translation);
+            resultCallback({
+              translation: result.translation
+            });
           } else {
-            resultCallback(false, "Apertium Error: " + result.error.message);
+            resultCallback({
+              msg: "Apertium Error: " + result.error.message
+            });
           }
         });
       });

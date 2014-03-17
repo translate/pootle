@@ -2081,9 +2081,12 @@
                               .replace(percentNumberPat,
                                        that.collectArguments.bind(that));
 
-      var result = providerCallback(sourceText, langFrom, langTo, function(translation, message) {
-        if (translation === false) {
-          PTL.editor.displayError(message);
+      var result = providerCallback(sourceText, langFrom, langTo, function (opts) {
+        var translation = opts.translation,
+            msg = opts.msg;
+
+        if (translation === undefined && msg) {
+          PTL.editor.displayError(msg);
           return;
         }
 
