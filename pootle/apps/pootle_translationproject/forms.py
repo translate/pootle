@@ -32,7 +32,7 @@ class DescriptionForm(forms.ModelForm):
         fields = ("description",)
 
 
-def upload_form_factory(request, current_path):
+def upload_form_factory(request):
     translation_project = request.translation_project
     choices = []
 
@@ -53,7 +53,7 @@ def upload_form_factory(request, current_path):
 
     class StoreFormField(forms.ModelChoiceField):
         def label_from_instance(self, instance):
-            return instance.pootle_path[len(current_path):]
+            return instance.pootle_path[len(request.pootle_path):]
 
     class DirectoryFormField(forms.ModelChoiceField):
         def label_from_instance(self, instance):
@@ -72,7 +72,7 @@ def upload_form_factory(request, current_path):
             required=False,
             label=_('Upload to'),
             queryset=translation_project.stores.filter(
-                pootle_path__startswith=current_path),
+                pootle_path__startswith=request.pootle_path),
             help_text=_("Optionally select the file you want to merge with. "
                         "If not specified, the uploaded file's name is used.")
         )

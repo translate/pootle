@@ -114,6 +114,12 @@ Step by step database upgrade
   <upgrading#simplified-upgrade>` procedure doesn't work for you.
 
 
+.. warning::
+
+  If you are upgrading from Pootle 2.1.0 or older you must first upgrade to
+  2.1.6, before upgrading to this version.
+
+
 The step by step database upgrade procedure lets you control the upgrade
 process and tweak it. This is useful for debugging purposes.
 

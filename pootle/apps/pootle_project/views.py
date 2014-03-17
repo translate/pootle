@@ -23,7 +23,7 @@ import locale
 from django import forms
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 from django.views.decorators.http import require_POST
@@ -41,7 +41,6 @@ from pootle_app.views.index.index import getprojects
 from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_misc.browser import get_table_headings
 from pootle_misc.util import ajax_required, jsonify
-from pootle_profile.models import get_profile
 from pootle_project.forms import (TranslationProjectFormSet,
                                   TranslationProjectTagForm, tp_form_factory)
 from pootle_project.models import Project
@@ -82,8 +81,8 @@ def get_project_base_template_vars(request, project, can_edit):
     """Get the base template vars for project overview view."""
     translation_projects = project.translationproject_set.all()
 
-    items = [make_language_item(translation_project) \
-            for translation_project in translation_projects.iterator()]
+    items = [make_language_item(translation_project)
+             for translation_project in translation_projects.iterator()]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     languagecount = len(translation_projects)

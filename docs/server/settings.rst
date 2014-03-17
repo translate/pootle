@@ -350,24 +350,6 @@ Translation environment configuration settings.
   the trailing slash.
 
 
-.. setting:: AUTOSYNC
-
-``AUTOSYNC``
-  Default: ``False``
-
-  Set this to ``True`` if you want translation files to be updated
-  immediately.
-
-  .. note::
-
-    This negatively affects performance and should be avoided unless another
-    application needs direct access to the files.
-
-  .. warning::
-
-    This feature is not maintained anymore, use it at your own risk.
-
-
 .. setting:: EXPORTED_DIRECTORY_MODE
 
 ``EXPORTED_DIRECTORY_MODE``
@@ -386,17 +368,6 @@ Translation environment configuration settings.
   On POSIX systems, exported files will be assigned this permission. Use
   ``0644`` for publically-readable files or ``0600`` if you want only the
   Pootle user to be able to read them.
-
-
-.. setting:: LIVE_TRANSLATION
-
-``LIVE_TRANSLATION``
-  Default: ``False``
-
-  Live translation means that the project called *Pootle* is used to provide
-  the localized versions of Pootle. Set this to ``True`` to enable live
-  translation of Pootle's UI. This is a good way to learn how to use Pootle,
-  but it has high impact on performance.
 
 
 .. setting:: LOOKUP_BACKENDS

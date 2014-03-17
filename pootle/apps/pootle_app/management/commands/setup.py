@@ -26,7 +26,7 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.core.management import call_command
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import CommandError, NoArgsCommand
 from django.db.utils import DatabaseError
 
 from pootle_misc.siteconfig import load_site_config
@@ -69,6 +69,13 @@ class Command(NoArgsCommand):
             logging.info('Successfully deployed new Pootle.')
         elif current_buildversion < NEW_POOTLE_BUILD:
             logging.info('Upgrading existing Pootle installation.')
+
+            if current_buildversion < 21010:
+                # We are trying to upgrade a very old installation (older than
+                # Pootle 2.1.1) and we can't provide a direct upgrade.
+                raise CommandError('This Pootle installation is too old. '
+                                   'Please upgrade first to 2.1.6 before '
+                                   'upgrading to this version.')
 
             from .upgrade import DEFAULT_POOTLE_BUILDVERSION
 

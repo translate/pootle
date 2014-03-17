@@ -20,7 +20,7 @@
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import render_to_response
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
@@ -30,10 +30,8 @@ from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_app.views.top_stats import gentopstats_language
-from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
 from pootle_misc.util import jsonify, ajax_required
-from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission
 
 
@@ -59,7 +57,6 @@ def make_project_item(translation_project):
         'title': project.fullname,
         'description': project.description,
         'lastactivity': get_last_action(translation_project),
-        'isproject': True,
     }
 
     return info

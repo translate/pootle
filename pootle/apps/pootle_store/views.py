@@ -663,10 +663,11 @@ def timeline(request, unit):
     # Let's reverse the chronological order
     entries_group.reverse()
 
+    # May be better to show all translations?
     # Remove first timeline item if it's solely a change to the target
-    if (entries_group and len(entries_group[0]['entries']) == 1 and
-        entries_group[0]['entries'][0]['field'] == SubmissionFields.TARGET):
-        del entries_group[0]
+    #if (entries_group and len(entries_group[0]['entries']) == 1 and
+    #    entries_group[0]['entries'][0]['field'] == SubmissionFields.TARGET):
+    #    del entries_group[0]
 
     context['entries_group'] = entries_group
 
@@ -906,7 +907,7 @@ def get_tm_results(request, unit):
 
 @require_POST
 @ajax_required
-@get_unit_context('')
+@get_unit_context('translate')
 def submit(request, unit):
     """Processes translation submissions and stores them in the database.
 
@@ -914,11 +915,6 @@ def submit(request, unit):
              units for the unit next to unit ``uid``.
     """
     json = {}
-
-    cantranslate = check_permission("translate", request)
-    if not cantranslate:
-        raise PermissionDenied(_("You do not have rights to access "
-                                 "translation mode."))
 
     translation_project = request.translation_project
     language = translation_project.language
@@ -972,7 +968,7 @@ def submit(request, unit):
 
 @require_POST
 @ajax_required
-@get_unit_context('')
+@get_unit_context('suggest')
 def suggest(request, unit):
     """Processes translation suggestions and stores them in the database.
 
@@ -980,11 +976,6 @@ def suggest(request, unit):
              units for the unit next to unit ``uid``.
     """
     json = {}
-
-    cansuggest = check_permission("suggest", request)
-    if not cansuggest:
-        raise PermissionDenied(_("You do not have rights to access "
-                                 "translation mode."))
 
     translation_project = request.translation_project
     language = translation_project.language
@@ -1021,39 +1012,26 @@ def suggest(request, unit):
 
 
 @ajax_required
-@get_unit_context('')
+@get_unit_context('review')
 def reject_suggestion(request, unit, suggid):
-    json = {}
-    translation_project = request.translation_project
-
-    json["udbid"] = unit.id
-    json["sugid"] = suggid
     if request.POST.get('reject'):
         try:
             sugg = unit.suggestion_set.get(id=suggid)
         except ObjectDoesNotExist:
             raise Http404
 
-        if (not check_permission('review', request) and
-            (not request.user.is_authenticated() or sugg and
-                 sugg.user != request.profile)):
+        if (not request.user.is_authenticated() or sugg and
+            sugg.user != request.profile):
             raise PermissionDenied(_("You do not have rights to access "
                                      "review mode."))
 
-        success = unit.reject_suggestion(suggid)
-        if sugg is not None and success:
-            # FIXME: we need a totally different model for tracking stats, this
-            # is just lame
-            suggstat, created = SuggestionStat.objects.get_or_create(
-                    translation_project=translation_project,
-                    suggester=sugg.user,
-                    state='pending',
-                    unit=unit.id,
-            )
-            suggstat.reviewer = request.profile
-            suggstat.state = 'rejected'
-            suggstat.save()
+        unit.reject_suggestion(sugg, request.translation_project,
+                               request.profile)
 
+    json = {
+        'udbid': unit.id,
+        'sugid': suggid,
+    }
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
@@ -1065,16 +1043,14 @@ def accept_suggestion(request, unit, suggid):
         'udbid': unit.id,
         'sugid': suggid,
     }
-    translation_project = request.translation_project
-
     if request.POST.get('accept'):
         try:
             suggestion = unit.suggestion_set.get(id=suggid)
         except ObjectDoesNotExist:
             raise Http404
 
-        old_target = unit.target
-        success = unit.accept_suggestion(suggid)
+        unit.accept_suggestion(suggestion, request.translation_project,
+                               request.profile)
 
         json['newtargets'] = [highlight_whitespace(target)
                               for target in unit.target.strings]
@@ -1083,39 +1059,6 @@ def accept_suggestion(request, unit, suggid):
             json['newdiffs'][sugg.id] = \
                     [highlight_diffs(unit.target.strings[i], target)
                      for i, target in enumerate(sugg.target.strings)]
-
-        if suggestion is not None and success:
-            if suggestion.user:
-                translation_submitted.send(sender=translation_project,
-                                           unit=unit, profile=suggestion.user)
-
-            # FIXME: we need a totally different model for tracking stats, this
-            # is just lame
-            suggstat, created = SuggestionStat.objects.get_or_create(
-                    translation_project=translation_project,
-                    suggester=suggestion.user,
-                    state='pending',
-                    unit=unit.id,
-            )
-            suggstat.reviewer = request.profile
-            suggstat.state = 'accepted'
-            suggstat.save()
-
-            # For now assume the target changed
-            # TODO: check all fields for changes
-            creation_time = timezone.now()
-            sub = Submission(
-                    creation_time=creation_time,
-                    translation_project=translation_project,
-                    submitter=suggestion.user,
-                    from_suggestion=suggstat,
-                    unit=unit,
-                    field=SubmissionFields.TARGET,
-                    type=SubmissionTypes.SUGG_ACCEPT,
-                    old_value=old_target,
-                    new_value=unit.target,
-            )
-            sub.save()
 
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")

@@ -29,11 +29,12 @@ from translate.filters.decorators import Category
 from translate.storage import base
 
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
 from django.db import models, DatabaseError, IntegrityError
-from django.db.models.signals import post_delete, post_save, pre_delete
+from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
 from django.utils import timezone, tzinfo
 from django.utils.translation import ugettext_lazy as _
@@ -43,6 +44,7 @@ from taggit.managers import TaggableManager
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle_app.models import Suggestion as SuggestionStat
 from pootle_misc.aggregate import group_by_count, group_by_count_extra, max_column
 from pootle_misc.checks import check_names
 from pootle_misc.util import (cached_property, get_cached_value,
@@ -56,6 +58,8 @@ from pootle_store.util import (calc_total_wordcount, calc_translated_wordcount,
                                calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED,
                                FUZZY, TRANSLATED)
 from pootle_tagging.models import ItemWithGoal
+
+from .signals import translation_submitted
 
 
 #
@@ -215,19 +219,19 @@ class UnitManager(RelatedManager):
 
         # /projects/<project_code>/translate/*
         if lang is None and proj is not None:
-            units_qs = units_qs.extra(
-                where=[
-                    '`pootle_store_store`.`pootle_path` LIKE %s',
-                    '`pootle_store_store`.`pootle_path` NOT LIKE %s',
-                ], params=[''.join(['/%/', proj, '/%']), '/templates/%']
-            )
+            units_path = ''.join(['/%/', proj, '/%'])
         # /<lang_code>/<project_code>/translate/*
         # /<lang_code>/translate/*
         # /translate/*
         else:
-            units_qs = units_qs.filter(
-                store__pootle_path__startswith=pootle_path,
-            )
+            units_path = ''.join([pootle_path, '%'])
+
+        units_qs = units_qs.extra(
+            where=[
+                '`pootle_store_store`.`pootle_path` LIKE %s',
+                '`pootle_store_store`.`pootle_path` NOT LIKE %s',
+            ], params=[units_path, '/templates/%']
+        )
 
         # Non-superusers are limited to the projects they have access to
         if not profile.user.is_superuser:
@@ -351,6 +355,8 @@ class Unit(models.Model, base.TranslationUnit):
     state = models.IntegerField(null=False, default=UNTRANSLATED, db_index=True)
 
     # Metadata
+    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
+                                         editable=False, null=True)
     mtime = models.DateTimeField(auto_now=True, auto_now_add=True,
                                  db_index=True, editable=False)
 
@@ -467,14 +473,6 @@ class Unit(models.Model, base.TranslationUnit):
             if (self.source is not None) and (self.target is not None):
                 tmunit = TMUnit().create(self)
                 tmunit.save()
-
-        if (settings.AUTOSYNC and self.store.file and
-            self.store.state >= PARSED and
-            (self._target_updated or self._source_updated)):
-            #FIXME: last translator information is lost
-            self.sync(self.getorig())
-            self.store.update_store_header()
-            self.store.file.savestore()
 
         if self._source_updated or self._target_updated:
             self.update_qualitychecks()
@@ -947,39 +945,71 @@ class Unit(models.Model, base.TranslationUnit):
             return None
         return suggestion
 
-    def accept_suggestion(self, suggid):
-        try:
-            suggestion = self.suggestion_set.get(id=suggid)
-        except Suggestion.DoesNotExist:
-            return False
+    def accept_suggestion(self, suggestion, translation_project, reviewer):
+        if suggestion is not None:
+            old_target = self.target
+            self.target = suggestion.target
+            self.state = TRANSLATED
 
-        self.target = suggestion.target
-        self.state = TRANSLATED
+            suggestion_user = suggestion.user
+            self.submitted_by = suggestion_user
+            self.submitted_on = timezone.now()
 
-        self.submitted_by = suggestion.user
-        self.submitted_on = timezone.now()
+            # It is important to first delete the suggestion before calling
+            # ``save``, otherwise the quality checks won't be properly updated
+            # when saving the unit.
+            suggestion.delete()
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
+                                         CachedMethods.PATH_SUMMARY)
+            self.save()
 
-        # It is important to first delete the suggestion before calling
-        # ``save``, otherwise the quality checks won't be properly updated
-        # when saving the unit.
-        suggestion.delete()
-        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
-                                     CachedMethods.PATH_SUMMARY)
-        self.save()
+            # FIXME: we need a totally different model for tracking stats, this
+            # is just lame
+            suggstat, created = SuggestionStat.objects.get_or_create(
+                    translation_project=translation_project,
+                    suggester=suggestion_user,
+                    state='pending',
+                    unit=self.id,
+            )
+            suggstat.reviewer = reviewer
+            suggstat.state = 'accepted'
+            suggstat.save()
 
-        if settings.AUTOSYNC and self.file:
-            #FIXME: update alttrans
-            self.sync(self.getorig())
-            self.store.update_store_header(profile=suggestion.user)
-            self.file.savestore()
+            # For now assume the target changed
+            # TODO: check all fields for changes
+            creation_time = timezone.now()
+            sub = Submission(
+                    creation_time=creation_time,
+                    translation_project=translation_project,
+                    submitter=suggestion_user,
+                    from_suggestion=suggstat,
+                    unit=self,
+                    field=SubmissionFields.TARGET,
+                    type=SubmissionTypes.SUGG_ACCEPT,
+                    old_value=old_target,
+                    new_value=self.target,
+            )
+            sub.save()
+
+            if suggestion_user:
+                translation_submitted.send(sender=translation_project,
+                                           unit=self, profile=suggestion_user)
 
         return True
 
-    def reject_suggestion(self, suggid):
-        try:
-            suggestion = self.suggestion_set.get(id=suggid)
-        except Suggestion.DoesNotExist:
-            return False
+    def reject_suggestion(self, suggestion, translation_project, reviewer):
+        if suggestion is not None:
+            # FIXME: we need a totally different model for tracking stats, this
+            # is just lame
+            suggstat, created = SuggestionStat.objects.get_or_create(
+                    translation_project=translation_project,
+                    suggester=suggestion.user,
+                    state='pending',
+                    unit=self.id,
+            )
+            suggstat.reviewer = reviewer
+            suggstat.state = 'rejected'
+            suggstat.save()
 
         suggestion.delete()
         self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
@@ -1022,12 +1052,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
     file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs,
             db_index=True, null=False, editable=False)
-
-    # Deprecated
-    pending = TranslationStoreField(ignore='.pending', upload_to="fish",
-            max_length=255, storage=fs, editable=False)
-    tm = TranslationStoreField(ignore='.tm', upload_to="fish", max_length=255,
-            storage=fs, editable=False)
 
     parent = models.ForeignKey('pootle_app.Directory',
             related_name='child_stores', db_index=True, editable=False)
@@ -1400,7 +1424,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 modified_units = set()
 
                 if modified_since:
-                    from pootle_statistics.models import Submission
                     self_unit_ids = set(self.dbid_index.values())
 
                     try:
@@ -1425,12 +1448,14 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     common_dbids -= modified_units
 
                 common_dbids = list(common_dbids)
+                system = User.objects.get_system_user().get_profile()
                 for unit in self.findid_bulk(common_dbids):
                     # Use the same (parent) object since units will accumulate
                     # the list of cache attributes to clear in the parent Store
                     # object
                     unit.store = self
                     newunit = store.findid(unit.getid())
+                    old_target_f = unit.target_f
 
                     if (monolingual and not
                         self.translation_project.is_template_project):
@@ -1451,7 +1476,20 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             self._remove_obsolete(match_unit.source)
 
                     if changed:
+                        create_submission = unit._target_updated
                         unit.save()
+                        if create_submission:
+                            sub = Submission(
+                                creation_time=timezone.now(),
+                                translation_project=self.translation_project,
+                                submitter=system,
+                                unit=unit,
+                                field=SubmissionFields.TARGET,
+                                type=None,
+                                old_value=old_target_f,
+                                new_value=unit.target_f
+                            )
+                            sub.save()
         finally:
             # Unlock store
             self.state = old_state
@@ -1547,7 +1585,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             modified_units = set()
 
             if modified_since:
-                from pootle_statistics.models import Submission
                 self_unit_ids = set(self.dbid_index.values())
 
                 try:
@@ -1928,68 +1965,3 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             if language.nplurals and language.pluralequation:
                 disk_store.updateheaderplural(language.nplurals,
                                               language.pluralequation)
-
-
-    ########################## Pending Files #################################
-    # The .pending files are deprecated since Pootle 2.1.0, but support for
-    # them are kept here to be able to do migrations from older Pootle
-    # versions.
-
-    def init_pending(self):
-        """initialize pending translations file if needed"""
-        if self.pending:
-            # pending file already referenced in db, but does it
-            # really exist
-            if os.path.exists(self.pending.path):
-                # pending file exists
-                return
-            else:
-                # pending file doesn't exist anymore
-                self.pending = None
-                self.save()
-
-        pending_name = os.extsep.join(self.file.name.split(os.extsep)[:-1] + \
-                       ['po', 'pending'])
-        pending_path = os.path.join(settings.PODIRECTORY, pending_name)
-
-        # check if pending file already exists, just in case it was
-        # added outside of pootle
-        if os.path.exists(pending_path):
-            self.pending = pending_name
-            self.save()
-
-    @commit_on_success
-    def import_pending(self):
-        """import suggestions from legacy .pending files, into database"""
-        self.init_pending()
-        if not self.pending:
-            return
-
-        for sugg in [sugg for sugg in self.pending.store.units
-                     if sugg.istranslatable() and sugg.istranslated()]:
-            if not sugg.istranslatable() or not sugg.istranslated():
-                continue
-            unit = self.findunit(sugg.source)
-            if unit:
-                suggester = self.getsuggester_from_pending(sugg)
-                unit.add_suggestion(sugg.target, suggester, touch=False)
-                self.pending.store.units.remove(sugg)
-        if len(self.pending.store.units) >  1:
-            self.pending.savestore()
-        else:
-            self.pending.delete()
-            self.pending = None
-            self.save()
-
-    def getsuggester_from_pending(self, unit):
-        """returns who suggested the given item's suggitem if
-        recorded, else None"""
-        suggestedby = suggester_regexp.search(unit.msgidcomment)
-        if suggestedby:
-            username = suggestedby.group(1)
-            from pootle_profile.models import PootleProfile
-            try:
-                return PootleProfile.objects.get(user__username=username)
-            except PootleProfile.DoesNotExist:
-                pass
-        return None

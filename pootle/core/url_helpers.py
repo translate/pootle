@@ -27,7 +27,7 @@ def split_pootle_path(pootle_path):
     :return: A tuple containing each part of a pootle_path`::
         (language code, project code, directory path, filename)
     """
-    slash_count = pootle_path.count('/')
+    slash_count = pootle_path.count(u'/')
     parts = pootle_path.split(u'/', 3)[1:]
 
     language_code = None

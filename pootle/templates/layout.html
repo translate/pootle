@@ -8,9 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>{% block title %}{{ settings.TITLE }}{% endblock title %}</title>
     {% block meta %}
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="description" content="{{ settings.DESCRIPTION|striptags }}" />
-    <meta name="viewport" content="width=device-width">
     <meta name="keywords" content="{{ keywords|join:", " }}" />
     <meta name="application-name" content="{{ settings.TITLE }}" />
     <link rel="icon" href="{{ "images/app-32x32.png"|s }}" sizes="32x32" />
@@ -183,7 +181,7 @@
         {% block header_meta %}{% endblock %}
 
         {% block breadcrumbs_block %}
-        <ul class="breadcrumb">
+        <ul class="breadcrumb js-breadcrumb">
         {% block breadcrumbs %}{% endblock %}
         </ul>
         {% endblock %}
@@ -199,10 +197,6 @@
     {% endblock %}
 
       <div id="body">
-        <div id="precontent">
-          {% block precontent %}{% endblock %}
-        </div>
-
         <div id="content">
           {% block content %}{% endblock %}
         </div>

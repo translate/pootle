@@ -18,7 +18,7 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext_lazy as _, ungettext
+from django.utils.translation import ugettext_lazy as _
 
 
 HEADING_CHOICES = [

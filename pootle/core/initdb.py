@@ -75,9 +75,13 @@ def initdb():
 
 
 def create_essential_users():
-    """Create the 'default' and 'nobody' User instances.
+    """Create the 'default', 'nobody' and 'system' User instances.
 
-    These users are required for Pootle's permission system.
+    The 'default' and 'nobody' users are required for Pootle's permission
+    system.
+
+    The 'system' user is required for logging the actions performed by the
+    management commands.
     """
     # The nobody user is used to represent an anonymous user in cases where
     # we need to associate model information with such a user. An example is
@@ -109,6 +113,26 @@ def create_essential_users():
     if created:
         default.set_unusable_password()
         default.save()
+
+    # Now create the 'system' user.
+    create_system_user()
+
+
+def create_system_user():
+    """Create the 'system' User instance.
+
+    The 'system' user represents a system, and is used to associate updates
+    done by bulk commands as update_stores.
+    """
+    criteria = {
+        'username': u"system",
+        'first_name': u"system user",
+        'is_active': True,
+    }
+    system, created = User.objects.get_or_create(**criteria)
+    if created:
+        system.set_unusable_password()
+        system.save()
 
 
 def create_pootle_permissions():
