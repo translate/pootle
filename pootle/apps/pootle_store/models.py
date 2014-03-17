@@ -59,6 +59,7 @@ from pootle_store.util import (calc_total_wordcount, calc_translated_wordcount,
                                FUZZY, TRANSLATED)
 from pootle_tagging.models import ItemWithGoal
 
+from .caching import unit_update_cache
 from .signals import translation_submitted
 
 
@@ -184,16 +185,6 @@ def fix_monolingual(oldunit, newunit, monolingual=None):
     if monolingual and newunit.source != oldunit.source:
         newunit.target = newunit.source
         newunit.source = oldunit.source
-
-
-def count_words(strings):
-    from translate.storage import statsdb
-    wordcount = 0
-
-    for string in strings:
-        wordcount += statsdb.wordcount(string)
-
-    return wordcount
 
 
 def stringcount(string):
@@ -442,30 +433,7 @@ class Unit(models.Model, base.TranslationUnit):
         super(Unit, self).delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.store.flag_for_deletion(CachedMethods.TOTAL)
-
-        if self._source_updated:
-            # update source related fields
-            self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
-            self.source_wordcount = count_words(self.source_f.strings)
-            self.source_length = len(self.source_f)
-
-        if self._target_updated:
-            # update target related fields
-            self.target_wordcount = count_words(self.target_f.strings)
-            self.target_length = len(self.target_f)
-            self.store.flag_for_deletion(CachedMethods.LAST_ACTION,
-                                         CachedMethods.PATH_SUMMARY)
-            if filter(None, self.target_f.strings):
-                if self.state == UNTRANSLATED:
-                    self.state = TRANSLATED
-                    self.store.flag_for_deletion(CachedMethods.TRANSLATED)
-            # if it was TRANSLATED then set to UNTRANSLATED
-            elif self.state > FUZZY:
-                self.state = UNTRANSLATED
-                self.store.flag_for_deletion(CachedMethods.TRANSLATED)
-
+        unit_update_cache(self)
         super(Unit, self).save(*args, **kwargs)
 
         if self._source_updated or self._target_updated:
