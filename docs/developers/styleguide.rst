@@ -397,8 +397,10 @@ Template naming
     going to be used directly, start its name with an underscore, e.g.
     *_included_template.html*.
 
-Miscellany
-  - Always use double quotes for HTML attribute values:
+Quoting
+  - Always use double quotes for HTML attribute values.
+  - Always use single quotes for Django template tags and template filters
+    located inside HTML attribute values.
 
     .. code-block:: html
 
@@ -408,7 +410,9 @@ Miscellany
 
 
         <!-- Bad -->
+        <a href="{% url "whatever" %}" class="highlight">
         <a href='{% url 'whatever' %}' class='highlight'>
+        <a href='{% url "whatever" %}' class='highlight'>
 
 
 CSS
