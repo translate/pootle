@@ -19,9 +19,6 @@ Added Features
 
 - Commands and store action logging.
 
-- General *system* user which is the author of the batch actions performed
-  via management commands.
-
 - New management commands: ``revision``, ``changed_languages``,
   ``test_checks``.
 
@@ -79,8 +76,6 @@ Removed Features
 - Support for Version Control Systems.
 
 - News, notifications and RSS feeds.
-
-- Live Translation.
 
 - Lookup backends.
 
@@ -171,10 +166,6 @@ Other Notable Differences
 - Hard dependency differences. Check the *requirements/* directory for
   details.
 
-- URLs have been unified and all follow the same scheme. URLs ending in
-  *.html* have been removed altogether. ``reverse()`` and ``{% url %}``
-  are used almost everywhere.
-
 
 Features Merged Back to Upstream
 --------------------------------
@@ -195,3 +186,14 @@ Pootle-as-a-product has different business needs.
 
 - The *Submit*/*Suggest* button is not enabled until a change over the
   initial state of the unit is detected.
+
+- General *system* user which is the author of the batch actions performed
+  via management commands.
+
+- Removed Live Translation.
+
+- Removed support for autosync.
+
+- URLs have been unified and all follow the same scheme. URLs ending in
+  *.html* have been removed altogether. ``reverse()`` and ``{% url %}``
+  are used almost everywhere.
