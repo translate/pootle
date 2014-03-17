@@ -6,8 +6,9 @@ Database Migration
 .. note:: Please note that the database migration must be performed before
    upgrading Pootle.
 
-Using manage.py dumpdata and loaddata commands to migrate between databases is
-no longer supported.
+
+Using :command:`dumpdata` and :command:`loaddata` commands to migrate between
+databases is no longer supported.
 
 There are several tools available to migrate between databases. We recommend
 having a look through this list for the following supported backends:
