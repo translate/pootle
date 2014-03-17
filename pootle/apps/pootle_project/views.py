@@ -21,7 +21,7 @@
 from django import forms
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 from django.views.decorators.http import require_POST
@@ -84,8 +84,7 @@ def ajax_remove_tag_from_tp_in_project(request, translation_project, tag_name):
         'project': translation_project.project.code,
         'language': translation_project.language.code,
     }
-    response = render_to_response('projects/xhr_tags_list.html',
-                                  ctx, RequestContext(request))
+    response = render(request, "projects/xhr_tags_list.html", ctx)
     response.status_code = 201
     return response
 
@@ -100,8 +99,7 @@ def _add_tag(request, translation_project, tag_like_object):
         'project': translation_project.project.code,
         'language': translation_project.language.code,
     }
-    response = render_to_response('projects/xhr_tags_list.html',
-                                  ctx, RequestContext(request))
+    response = render(request, "projects/xhr_tags_list.html", ctx)
     response.status_code = 201
     return response
 
@@ -162,8 +160,7 @@ def ajax_add_tag_to_tp_in_project(request, project):
                 'add_tag_action_url': reverse('pootle-xhr-tag-tp-in-project',
                                               kwargs=url_kwargs)
             }
-            return render_to_response('core/xhr_add_tag_form.html',
-                                      ctx, RequestContext(request))
+            return render(request, "core/xhr_add_tag_form.html", ctx)
 
 
 @get_path_obj
@@ -235,8 +232,7 @@ def overview(request, project):
             'add_tag_action_url': tag_action_url,
         })
 
-    return render_to_response('projects/overview.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "projects/overview.html", ctx)
 
 
 @require_POST
@@ -297,8 +293,7 @@ def translate(request, project):
         'editor_body_id': 'projecttranslate',
     })
 
-    return render_to_response('editor/main.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/main.html", ctx)
 
 
 @get_path_obj
@@ -363,5 +358,4 @@ def projects_index(request, root):
         'topstats': gentopstats_root(),
     }
 
-    return render_to_response('projects/list.html', ctx,
-                              RequestContext(request))
+    return render(request, "projects/list.html", ctx)
