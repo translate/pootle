@@ -2066,18 +2066,20 @@
         pos = 0;
 
     $sources.each(function (j) {
-      var sourceText = $(this).text();
-
       // Reset collected arguments array and counter
       that.argSubs = [];
       that.argPos = 0;
 
       // Walk through known patterns and replace them with [N] placeholders
-
-      sourceText = sourceText.replace(htmlPat, function(s) { return that.collectArguments(s) });
-      sourceText = sourceText.replace(cPrintfPat, function(s) { return that.collectArguments(s) });
-      sourceText = sourceText.replace(csharpStrPat, function(s) { return that.collectArguments(s) });
-      sourceText = sourceText.replace(percentNumberPat, function(s) { return that.collectArguments(s) });
+      var sourceText = $(this).text()
+                              .replace(htmlPat,
+                                       that.collectArguments.bind(that))
+                              .replace(cPrintfPat,
+                                       that.collectArguments.bind(that))
+                              .replace(csharpStrPat,
+                                       that.collectArguments.bind(that))
+                              .replace(percentNumberPat,
+                                       that.collectArguments.bind(that));
 
       var result = providerCallback(sourceText, langFrom, langTo, function(translation, message) {
         if (translation === false) {
