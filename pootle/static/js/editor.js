@@ -2157,7 +2157,7 @@
                               .replace(percentNumberPat,
                                        that.collectArguments.bind(that));
 
-      var result = providerCallback(sourceText, langFrom, langTo, function (opts) {
+      providerCallback(sourceText, langFrom, langTo, function (opts) {
         var translation = opts.translation,
             msg = opts.msg,
             i, value;
