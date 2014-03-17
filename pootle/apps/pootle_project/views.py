@@ -78,15 +78,15 @@ def overview(request, project, dir_path, filename):
 def translate(request, project, dir_path, filename):
     language = None
 
-    context = get_translation_context(request)
-    context.update({
+    ctx= get_translation_context(request)
+    ctx.update({
         'language': language,
         'project': project,
 
         'editor_extends': 'projects/base.html',
     })
 
-    return render_to_response('editor/main.html', context,
+    return render_to_response('editor/main.html', ctx,
                               context_instance=RequestContext(request))
 
 
@@ -113,8 +113,8 @@ def project_admin(request, current_project):
     """Adding and deleting project languages."""
     tp_form_class = tp_form_factory(current_project)
 
-    queryset = TranslationProject.objects.filter(project=current_project) \
-                                         .order_by('pootle_path')
+    queryset = TranslationProject.objects.filter(project=current_project)
+    queryset = queryset.order_by('pootle_path')
 
     ctx = {
         'page': 'admin-languages',
