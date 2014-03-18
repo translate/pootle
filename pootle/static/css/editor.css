@@ -767,6 +767,11 @@ html[dir="rtl"] #extras-bar a
 {
     clear: both;
     position: relative;
+
+    background-color: #f1f7e4;
+    border: 1px dotted #d9d9d9;
+    color: #444;
+}
 }
 
 .extra-item-block:last-child
@@ -822,9 +827,6 @@ html[dir="rtl"] .suggestion-vote
 
 .extra-item
 {
-    background-color: #f1f7e4;
-    border: 1px dotted #d9d9d9;
-    color: #444;
     line-height: 140%;
     padding: 0.5em;
 }
@@ -1251,6 +1253,22 @@ a.editor-specialchar,
 .highlight
 {
     background-color: #FFC;
+}
+
+/* HIGHLIGHT SIMILAR MATCHES */
+
+.best-match
+{
+    z-index: 100;
+    box-shadow: 0 0 3px #6daa00;
+    border: 1px solid transparent;
+    transition: all 0.25s linear 0s;
+}
+
+.exact-match
+{
+    box-shadow: 0 0 6px #6daa00;
+    background-color: #ebfacc;
 }
 
 /* FUZZY TRANSLATION */

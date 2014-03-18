@@ -754,7 +754,8 @@
     var currentUnit = this.units.getCurrent(),
         newTranslation = $('.js-translation-area').val(),
         simHuman = {max: 0, boxId: null},
-        simMT = {max: 0, boxId: null};
+        simMT = {max: 0, boxId: null},
+        similarity;
 
     if ($aidElements.length) {
       simHuman = this.calculateSimilarity(newTranslation, $aidElements,
@@ -769,6 +770,26 @@
       similarityHuman: simHuman.max,
       similarityMT: simMT.max
     });
+
+    similarity = (simHuman.max > simMT.max) ? simHuman : simMT;
+    this.highlightBox(similarity.boxId, similarity.max === 1);
+  },
+
+  /* Applies highlight classes to `boxId`. */
+  highlightBox: function (boxId, isExact) {
+    var bestMatchCls = 'best-match',
+        exactMatchCls = 'exact-match';
+
+    $('.translate-table').find(['.', bestMatchCls].join(''))
+                         .removeClass([bestMatchCls, exactMatchCls].join(' '));
+
+    if (boxId === null) {
+      return false;
+    }
+
+    var hlClasses = [bestMatchCls];
+    isExact && hlClasses.push(exactMatchCls);
+    $(boxId).addClass(hlClasses.join(' '));
   },
 
 
