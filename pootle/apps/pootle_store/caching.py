@@ -40,8 +40,12 @@ def unit_update_cache(unit):
     if unit._source_updated:
         # update source related fields
         unit.source_hash = md5(unit.source_f.encode("utf-8")).hexdigest()
-        unit.source_wordcount = count_words(unit.source_f.strings)
+        _new_wordcount = count_words(unit.source_f.strings)
+        difference = _new_wordcount - unit.source_wordcount
+        unit.source_wordcount = _new_wordcount
         unit.source_length = len(unit.source_f)
+        if not orig:
+            unit.store.total_wordcount += difference
 
     if unit._target_updated:
         # update target related fields
