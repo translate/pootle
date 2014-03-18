@@ -3,7 +3,8 @@
   <div class="extra-item-title"><%= name %></div>
 <% } %>
   <% _.each(suggs, function (sugg, i) { %>
-  <div id="tm<%= i %>" class="extra-item-block">
+  <div id="tm<%= i %>" class="extra-item-block"
+    data-translation-aid="<%= sugg.target %>">
     <% if ('translator' in sugg) { %>
     <div class="extra-item-tm-user">
       <a href="<%= sugg.translator.absolute_url %>"><img src="<%= sugg.translator.gravatar %>"

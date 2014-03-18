@@ -69,6 +69,11 @@ Directory contents
 
       https://github.com/csnover/js-iso8601
 
+    - levenshtein.js :
+      Library to calculate Levenshtein edit distance/similarity ratio.
+
+      https://github.com/julen/levenshtein.js
+
     - shortcut.js :
       Small library to ease adding keyboard shortcuts.
 

@@ -47,6 +47,8 @@
 
     /* Differencer */
     this.differencer = new diff_match_patch();
+    /* Levenshtein word comparer */
+    this.wordComparer = new Levenshtein({compare: 'words'});
 
     /* Compile templates */
     this.tmpl = {vUnit: _.template($('#view_unit').html()),
@@ -838,12 +840,85 @@
   onTextareaChange: function (e) {
     this.handleTranslationChange();
 
-    var el = e.target,
+    var that = this,
+        el = e.target,
         hasChanged = el.defaultValue !== el.value;
 
     if (hasChanged && !this.keepState) {
       this.ungoFuzzy();
     }
+
+    clearTimeout(this.similarityTimer);
+    this.similarityTimer = setTimeout(function () {
+      that.checkSimilarTranslations();
+      that.similarityTimer = null;  // So we know the code was run
+    }, 500);
+  },
+
+
+  /*
+   * Translation's similarity
+   */
+
+  getSimilarityData: function () {
+    var currentUnit = this.units.getCurrent();
+    return {
+      similarity: currentUnit.get('similarityHuman'),
+      mt_similarity: currentUnit.get('similarityMT')
+    };
+  },
+
+  calculateSimilarity: function (newTranslation, $elements, dataSelector) {
+    var maxSimilarity = 0,
+        boxId = null,
+        $element, aidText, similarity, i;
+
+    for (i=0; i<$elements.length; i++) {
+      $element = $elements.eq(i);
+      aidText = $element.data(dataSelector);
+      similarity = this.wordComparer.similarity(newTranslation, aidText);
+
+      if (similarity > maxSimilarity) {
+        maxSimilarity = similarity;
+        boxId = $element.hasClass('js-translation-area') ?
+                null : $element.val('id');
+      }
+    }
+
+    return {
+      max: maxSimilarity,
+      boxId: boxId
+    };
+  },
+
+  checkSimilarTranslations: function () {
+    var dataSelector = 'translation-aid',
+        dataSelectorMT = 'translation-aid-mt',
+        $aidElements = $(['[data-', dataSelector, ']'].join('')),
+        $aidElementsMT = $(['[data-', dataSelectorMT, ']'].join(''));
+
+    if (!$aidElements.length && !$aidElementsMT.length) {
+      return false;
+    }
+
+    var currentUnit = this.units.getCurrent(),
+        newTranslation = $('.js-translation-area').val(),
+        simHuman = {max: 0, boxId: null},
+        simMT = {max: 0, boxId: null};
+
+    if ($aidElements.length) {
+      simHuman = this.calculateSimilarity(newTranslation, $aidElements,
+                                          dataSelector);
+    }
+    if ($aidElementsMT.length) {
+      simMT = this.calculateSimilarity(newTranslation, $aidElementsMT,
+                                       dataSelectorMT);
+    }
+
+    currentUnit.set({
+      similarityHuman: simHuman.max,
+      similarityMT: simMT.max
+    });
   },
 
 
@@ -1319,7 +1394,16 @@
           efn: 'PTL.editor.error'
         };
 
-    $.extend(reqData, PTL.editor.getReqData(), captchaCallbacks);
+    // If similarities were in the process of being calculated by the time
+    // the submit button was clicked, clear the timer and calculate them
+    // straight away
+    if (PTL.editor.similarityTimer !== null) {
+      clearTimeout(PTL.editor.similarityTimer);
+      PTL.editor.checkSimilarTranslations();
+    }
+
+    $.extend(reqData, PTL.editor.getReqData(), PTL.editor.getSimilarityData(),
+             captchaCallbacks);
 
     el.disabled = true;
 
@@ -2211,6 +2295,12 @@
         }
 
         $area.val($('<div />').html(translation).text());
+
+        // Save a copy of the resulting text in the DOM for further
+        // similarity comparisons
+        if (opts.storeResult) {
+          $area.attr('data-translation-aid-mt', translation);
+        }
       });
     });
 
