@@ -2084,6 +2084,7 @@
       providerCallback(sourceText, langFrom, langTo, function (opts) {
         var translation = opts.translation,
             msg = opts.msg,
+            $area = $areas.eq(j),
             i, value;
 
         if (translation === undefined && msg) {
@@ -2113,7 +2114,8 @@
           translation = translation.replace("[" + i + "]", value);
         }
 
-        $areas.eq(j).val($('<div />').html(translation).text());
+        $area.val($('<div />').html(translation).text());
+        $area.trigger('input');
       });
     });
 
