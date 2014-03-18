@@ -59,6 +59,7 @@ register('js_admin', js_admin)
 js_editor = Bundle(
     'js/vendor/jquery/jquery.history.js',
     'js/vendor/jquery/jquery.textarea-expander.js',
+    'js/vendor/levenshtein.js',
     'js/vendor/diff_match_patch.js',
     'js/vendor/jquery/jquery.caret.js',
     'js/vendor/jquery/jquery.highlightRegex.js',

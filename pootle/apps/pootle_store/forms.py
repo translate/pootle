@@ -226,6 +226,9 @@ def unit_form_factory(language, snplurals=None, request=None):
             super(UnitForm, self).__init__(*args, **kwargs)
             self.updated_fields = []
 
+            self.fields['target_f'].widget.attrs['data-translation-aid'] = \
+                self['target_f'].value()
+
         def clean_source_f(self):
             value = self.cleaned_data['source_f']
 

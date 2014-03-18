@@ -10,6 +10,11 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- Translation similarities are calculated in the client and sent to the
+  server to calculate the user's score. (`#155`_)
+
+.. _#155: https://github.com/evernote/pootle/issues/155
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 

@@ -61,7 +61,8 @@
           success: function (r) {
             if (r.data && r.data.translations) {
               resultCallback({
-                translation: r.data.translations[0].translatedText
+                translation: r.data.translations[0].translatedText,
+                storeResult: true
               });
             } else {
               if (r.error && r.error.message) {
