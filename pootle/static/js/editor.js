@@ -478,7 +478,9 @@
       firstArea.focus();
     }
 
-    PTL.editor.settings.targetLang = PTL.editor.normalizeCode($(".translate-translation textarea").attr("lang"));
+    PTL.editor.settings.targetLang = PTL.editor.normalizeCode(
+      $('.js-translation-area').attr('lang')
+    );
 
     PTL.editor.hlSearch();
 
