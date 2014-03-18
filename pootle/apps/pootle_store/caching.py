@@ -65,9 +65,41 @@ def unit_update_cache(unit):
         if not orig:
             unit.store.total_wordcount += difference
 
-    if unit._target_updated:
+    if orig and unit._target_updated:
         # update target related fields
         unit.target_wordcount = target_wordcount
+
+        # Case 1: Unit was not translated before
+        if orig.state == UNTRANSLATED:
+            if unit.state == UNTRANSLATED:
+                pass
+            elif unit.state == FUZZY:
+                unit.store.fuzzy_wordcount += source_wordcount
+            elif unit.state == TRANSLATED:
+                unit.store.translated_wordcount += source_wordcount
+
+        # Case 2: Unit was fuzzy before
+        elif orig.state == FUZZY:
+            if unit.state == UNTRANSLATED:
+                unit.store.fuzzy_wordcount -= source_wordcount
+            elif unit.state == FUZZY:
+                unit.store.fuzzy_wordcount += difference
+            elif unit.state == TRANSLATED:
+                unit.store.fuzzy_wordcount -= source_wordcount
+                unit.store.translated_wordcount += source_wordcount
+
+        # Case 3: Unit was translated before
+        elif orig.state == TRANSLATED:
+            if unit.state == UNTRANSLATED:
+                unit.store.translated_wordcount -= source_wordcount
+            elif unit.state == FUZZY:
+                unit.store.translated_wordcount -= source_wordcount
+                unit.store.fuzzy_wordcount += source_wordcount
+            elif unit.state == TRANSLATED:
+                unit.store.translated_wordcount += difference
+
+        unit.store.save()
+
         unit.target_length = len(unit.target_f)
         unit.store.flag_for_deletion(CachedMethods.LAST_ACTION,
                                         CachedMethods.PATH_SUMMARY)
