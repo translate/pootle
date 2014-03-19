@@ -52,6 +52,7 @@ register('js_admin', js_admin)
 js_editor = Bundle(
     'js/vendor/jquery/jquery.history.js',
     'js/vendor/jquery/jquery.textarea-expander.js',
+    'js/vendor/jquery/jquery.textcomplete.js',
     'js/vendor/diff_match_patch.js',
     'js/vendor/jquery/jquery.fieldselection.js',
     'js/vendor/jquery/jquery.caret.js',
@@ -90,5 +91,6 @@ register('css_admin', css_admin)
 
 css_editor = Bundle(
     'css/editor.css',
+    'css/jquery.textcomplete.css',
     filters='cssmin', output='css/editor.min.%(version)s.css')
 register('css_editor', css_editor)
