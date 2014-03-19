@@ -38,7 +38,8 @@ from pootle_misc.checks import ENChecker, run_given_filters
 from pootle_misc.util import datetime_min
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
-from pootle_store.models import Store, Unit, QualityCheck, Suggestion
+from pootle_store.models import (Store, Unit, QualityCheck,
+                                 Suggestion, SuggestionStates)
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 
 from . import PootleCommand
@@ -318,7 +319,7 @@ class Command(PootleCommand):
                 del self.cache_values[key]['get_last_action']
 
     def _set_suggestion_stats(self, timeout):
-        queryset = Suggestion.objects.filter(unit__state__gt=OBSOLETE) \
+        queryset = Suggestion.objects.filter(unit__state__gt=OBSOLETE, state=SuggestionStates.PENDING) \
                                      .values('unit__store') \
                                      .annotate(count=Count('id'))
 

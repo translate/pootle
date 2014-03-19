@@ -39,7 +39,7 @@ from translate.lang.data import langcode_re
 
 from pootle.core.cache import make_method_key
 from pootle.core.managers import RelatedManager
-from pootle.core.mixins import TreeItem, CachedMethods
+from pootle.core.mixins import TreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
                                      split_pootle_path)
@@ -336,12 +336,10 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
         '''
         from pootle_statistics.models import Submission
-        from pootle_app.models import Suggestion as AppSuggestion
-        from pootle_store.models import Suggestion as StoreSuggestion
+        from pootle_store.models import Suggestion
         from pootle_store.models import QualityCheck
         Submission.objects.filter(from_suggestion__translation_project__project=self).delete()
-        AppSuggestion.objects.filter(translation_project__project=self).delete()
-        StoreSuggestion.objects.filter(unit__store__translation_project__project=self).delete()
+        Suggestion.objects.filter(unit__store__translation_project__project=self).delete()
         QualityCheck.objects.filter(unit__store__translation_project__project=self).delete()
         gc.collect()
         for tp in self.translationproject_set.iterator():

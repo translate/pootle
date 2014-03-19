@@ -42,7 +42,8 @@ class SubmissionTypes(object):
     SYSTEM = 5  # Batch actions performed offline
     MUTE_CHECK = 6 # Mute QualityCheck
     UNMUTE_CHECK = 7 # Unmute QualityCheck
-
+    SUGG_ADD = 8 # Add new Suggestion
+    SUGG_REJECT = 9 # Reject Suggestion
 
 #: Values for the 'field' field of Submission
 class SubmissionFields(object):
@@ -125,8 +126,9 @@ class Submission(models.Model):
                 unit['checks_url'] = reverse('pootle-staticpages-display',
                                              args=['help/quality-checks'])
 
-        if self.from_suggestion:
-            displayuser = self.from_suggestion.reviewer
+        if (self.suggestion and
+            self.type in (SubmissionTypes.SUGG_ACCEPT, SubmissionTypes.SUGG_REJECT)):
+            displayuser = self.suggestion.reviewer
         else:
             # Sadly we may not have submitter information in all the
             # situations yet
