@@ -672,7 +672,7 @@
       needsReview = checkbox.checked === true;
     }
 
-    for (i=0; i<translations.length && areaChanged === false; i++) {
+    for (i=0; i<translations.length && !areaChanged; i++) {
       area = translations[i];
       areaChanged = area.defaultValue !== area.value;
     }
