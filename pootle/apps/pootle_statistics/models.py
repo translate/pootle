@@ -72,11 +72,6 @@ class Submission(models.Model):
         null=True,
         db_index=True,
     )
-    from_suggestion = models.OneToOneField(
-        'pootle_app.Suggestion',
-        null=True,
-        db_index=True,
-    )
     suggestion = models.ForeignKey(
         'pootle_store.Suggestion',
         blank=True,
