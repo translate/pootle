@@ -54,9 +54,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
-from pootle_store.util import (calc_total_wordcount, calc_translated_wordcount,
-                               calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED,
-                               FUZZY, TRANSLATED)
+from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_tagging.models import ItemWithGoal
 
 from .caching import unit_update_cache
@@ -1708,17 +1706,14 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def get_cachekey(self):
         return self.pootle_path
 
-    def _get_total_wordcount(self):
-        """calculate total wordcount statistics"""
-        return calc_total_wordcount(self.units)
+    def get_total_wordcount(self):
+        return self.total_wordcount
 
-    def _get_translated_wordcount(self):
-        """calculate translated units statistics"""
-        return calc_translated_wordcount(self.units)
+    def get_translated_wordcount(self):
+        return self.translated_wordcount
 
-    def _get_fuzzy_wordcount(self):
-        """calculate untranslated units statistics"""
-        return calc_fuzzy_wordcount(self.units)
+    def get_fuzzy_wordcount(self):
+        return self.fuzzy_wordcount
 
     def _get_checks(self):
         try:

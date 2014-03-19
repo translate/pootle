@@ -71,35 +71,6 @@ def absolute_real_path(p):
         return p
 
 
-def calc_total_wordcount(units):
-    total = sum_column(units,
-                       ['source_wordcount'], count=False)
-
-    return total['source_wordcount'] or 0
-
-
-def calc_untranslated_wordcount(units):
-    untranslated = sum_column(units.filter(state=UNTRANSLATED),
-                              ['source_wordcount'], count=False)
-
-    return untranslated['source_wordcount'] or 0
-
-
-def calc_fuzzy_wordcount(units):
-    fuzzy = sum_column(units.filter(state=FUZZY),
-                       ['source_wordcount'], count=False)
-
-    return fuzzy['source_wordcount'] or 0
-
-
-def calc_translated_wordcount(units):
-    translated = sum_column(units.filter(state=TRANSLATED),
-                            ['source_wordcount'],
-                            count=False)
-
-    return translated['source_wordcount'] or 0
-
-
 def calculate_stats(units):
     """Calculate translation statistics for a given `units` queryset."""
     total = sum_column(units, ['source_wordcount'], count=True)
