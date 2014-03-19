@@ -39,6 +39,8 @@ class SubmissionTypes(object):
     SYSTEM = 5  # Batch actions performed offline
     MUTE_CHECK = 6  # Mute QualityCheck
     UNMUTE_CHECK = 7  # Unmute QualityCheck
+    SUGG_ADD = 8  # Add new Suggestion
+    SUGG_REJECT = 9  # Reject Suggestion
 
 
 class SubmissionFields(object):
@@ -142,8 +144,9 @@ class Submission(models.Model):
                                       'projects/translate-toolkit/en/latest/'
                                       'commands/pofilter_tests.html')
 
-        if self.from_suggestion:
-            displayuser = self.from_suggestion.reviewer
+        if (self.suggestion and
+            self.type in (SubmissionTypes.SUGG_ACCEPT, SubmissionTypes.SUGG_REJECT)):
+            displayuser = self.suggestion.reviewer
         else:
             # Sadly we may not have submitter information in all the
             # situations yet
@@ -176,6 +179,16 @@ class Submission(models.Model):
             ),
             SubmissionTypes.SUGG_ACCEPT: _(
                 'accepted suggestion for '
+                '<i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.SUGG_ADD: _(
+                'added suggestion for '
+                '<i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.SUGG_REJECT: _(
+                'rejected suggestion for '
                 '<i><a href="%(url)s">%(source)s</a></i>',
                 unit
             ),

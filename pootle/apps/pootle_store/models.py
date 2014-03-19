@@ -675,7 +675,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         return changed
 
-    def update(self, unit):
+    def update(self, unit, user=None):
         """Update in-DB translation from the given :param:`unit`.
 
         :rtype: bool
@@ -756,7 +756,7 @@ class Unit(models.Model, base.TranslationUnit):
         if hasattr(unit, 'getalttrans'):
             for suggestion in unit.getalttrans():
                 if suggestion.source == self.source:
-                    self.add_suggestion(suggestion.target, touch=False)
+                    self.add_suggestion(suggestion.target, user=user, touch=False)
 
                 changed = True
 
@@ -822,7 +822,7 @@ class Unit(models.Model, base.TranslationUnit):
                     field__in=[SubmissionFields.TARGET, SubmissionFields.STATE]
                 ).latest()
             if last_submission.type == SubmissionTypes.SUGG_ACCEPT:
-                return getattr(last_submission.from_suggestion, 'reviewer',
+                return getattr(last_submission.suggestion, 'reviewer',
                                None)
 
         return None
@@ -1000,7 +1000,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     ################# Suggestions #################################
     def get_suggestions(self):
-        return self.suggestion_set.select_related('user').all()
+        return self.suggestion_set.pending().select_related('user').all()
 
     def add_suggestion(self, translation, user=None, touch=True):
         if not filter(None, translation):
@@ -1009,106 +1009,105 @@ class Unit(models.Model, base.TranslationUnit):
         if translation == self.target:
             return None
 
-        suggestion = Suggestion(unit=self, user=user)
+        if user is None:
+            user = User.objects.get_system_user().get_profile()
+
+        suggestion = Suggestion(unit=self, user=user, state=SuggestionStates.PENDING)
         suggestion.target = translation
         try:
             suggestion.save()
+            sub = Submission(
+                creation_time=timezone.now(),
+                translation_project=self.store.translation_project,
+                submitter=user,
+                unit=self,
+                type=SubmissionTypes.SUGG_ADD,
+                suggestion=suggestion,
+            )
+            sub.save()
+
             self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
             if touch:
                 self.save()
         except:
             # probably duplicate suggestion
             return None
+
         return suggestion
 
     def accept_suggestion(self, suggestion, translation_project, reviewer):
-        if suggestion is not None:
-            old_state = self.state
-            old_target = self.target
-            self.target = suggestion.target
+        old_state = self.state
+        old_target = self.target
+        self.target = suggestion.target
 
-            if suggestion.user_id is not None:
-                suggestion_user = suggestion.user
-            else:
-                suggestion_user = get_user_model().objects.get_nobody_user().get_profile()
+        if suggestion.user_id is not None:
+            suggestion_user = suggestion.user
+        else:
+            suggestion_user = get_user_model().objects.get_nobody_user().get_profile()
 
-            self.submitted_by = suggestion_user
-            self.submitted_on = timezone.now()
+        self.submitted_by = suggestion_user
+        self.submitted_on = timezone.now()
 
-            # It is important to first delete the suggestion before calling
-            # ``save``, otherwise the quality checks won't be properly updated
-            # when saving the unit.
-            suggestion.delete()
-            self._log_user = reviewer
-            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
-            self.save()
-
-            # FIXME: we need a totally different model for tracking stats, this
-            # is just lame
-            from pootle_app.models import Suggestion as SuggestionStat
-
-            suggstat, created = SuggestionStat.objects.get_or_create(
-                    translation_project=translation_project,
-                    suggester=suggestion_user,
-                    state='pending',
-                    unit=self.id,
-            )
-            suggstat.reviewer = reviewer
-            suggstat.state = 'accepted'
-            suggstat.save()
-
-            create_subs = {}
-            # assume the target changed
-            create_subs[SubmissionFields.TARGET] = [old_target, self.target]
-            # check if the state changed
-            if old_state != self.state:
-                create_subs[SubmissionFields.STATE] = [old_state, self.state]
-
-            for field in create_subs:
-                kwargs = {
-                    'creation_time': self.submitted_on,
-                    'translation_project': translation_project,
-                    'submitter': suggestion_user,
-                    'unit': self,
-                    'field': field,
-                    'type': SubmissionTypes.SUGG_ACCEPT,
-                    'old_value': create_subs[field][0],
-                    'new_value': create_subs[field][1],
-                }
-                if field == SubmissionFields.TARGET:
-                    kwargs['from_suggestion'] = suggstat
-
-                sub = Submission(**kwargs)
-                sub.save()
-
-            if suggestion_user:
-                translation_submitted.send(sender=translation_project,
-                                           unit=self, profile=suggestion_user)
-
-        return True
-
-    def reject_suggestion(self, suggestion, translation_project, reviewer):
-        if suggestion is not None:
-            # FIXME: we need a totally different model for tracking stats, this
-            # is just lame
-            from pootle_app.models import Suggestion as SuggestionStat
-
-            suggstat, created = SuggestionStat.objects.get_or_create(
-                    translation_project=translation_project,
-                    suggester=suggestion.user,
-                    state='pending',
-                    unit=self.id,
-            )
-            suggstat.reviewer = reviewer
-            suggstat.state = 'rejected'
-            suggstat.save()
-
-        suggestion.delete()
-        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
+        self._log_user = reviewer
+        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
+                                     CachedMethods.LAST_ACTION)
         # Update timestamp
         self.save()
 
-        return True
+        suggestion.state = SuggestionStates.ACCEPTED
+        suggestion.reviewer = reviewer
+        suggestion.review_time = self.submitted_on
+        suggestion.save()
+
+        create_subs = {}
+        # assume the target changed
+        create_subs[SubmissionFields.TARGET] = [old_target, self.target]
+        # check if the state changed
+        if old_state != self.state:
+            create_subs[SubmissionFields.STATE] = [old_state, self.state]
+
+        for field in create_subs:
+            kwargs = {
+                'creation_time': self.submitted_on,
+                'translation_project': translation_project,
+                'submitter': suggestion.user,
+                'unit': self,
+                'field': field,
+                'type': SubmissionTypes.SUGG_ACCEPT,
+                'old_value': create_subs[field][0],
+                'new_value': create_subs[field][1],
+            }
+            if field == SubmissionFields.TARGET:
+                kwargs['suggestion'] = suggestion
+
+            sub = Submission(**kwargs)
+            sub.save()
+
+        if suggestion_user:
+            translation_submitted.send(sender=translation_project,
+                                       unit=self, profile=suggestion_user)
+
+    def reject_suggestion(self, suggestion, translation_project, reviewer):
+        suggestion.state = SuggestionStates.REJECTED
+        suggestion.review_time = timezone.now()
+        suggestion.reviewer = reviewer
+        suggestion.save()
+
+        sub = Submission(
+            creation_time=suggestion.review_time,
+            translation_project=translation_project,
+            submitter=reviewer,
+            unit=self,
+            type=SubmissionTypes.SUGG_REJECT,
+            suggestion=suggestion,
+        )
+        sub.save()
+
+        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
+                                     CachedMethods.LAST_ACTION)
+        # Update timestamp
+        self.save()
+
 
     def toggle_qualitycheck(self, check_id, false_positive, user):
         check = self.qualitycheck_set.get(id=check_id)
@@ -1659,7 +1658,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         self.translation_project.is_template_project):
                         fix_monolingual(unit, newunit, monolingual)
 
-                    changed = unit.update(newunit)
+                    changed = unit.update(newunit, user=system)
 
                     # Unit's index within the store might have changed
                     if update_structure and unit.index != newunit.index:
@@ -1867,12 +1866,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         """Largest unit index"""
         return max_column(self.unit_set.all(), 'index', -1)
 
-    def addunit(self, unit, index=None):
+    def addunit(self, unit, index=None, user=None):
         if index is None:
             index = self.max_index() + 1
 
         newunit = self.UnitClass(store=self, index=index)
-        newunit.update(unit)
+        newunit.update(unit, user=user)
 
         if self.id:
             newunit.save()

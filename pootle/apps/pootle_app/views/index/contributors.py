@@ -99,7 +99,7 @@ def view(request):
         tp_to_proj_id[tp['id']] = tp['project_id']
 
     for model, user_key in ((Submission, 'submitter_id'),
-                            (Suggestion, 'suggester_id'),
+                            (Suggestion, 'user_id'),
                             (Suggestion, 'reviewer_id')):
         for item in (model.objects.all()
                      .values('translation_project_id', user_key)

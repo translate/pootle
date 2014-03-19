@@ -31,6 +31,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_language.models import Language
 from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 
@@ -256,8 +257,8 @@ class PootleProfile(models.Model):
 
         :param tp: a :cls:`TranslationProject` object.
         """
-        return self.suggester.filter(translation_project=tp,
-                                     state='pending').count()
+        return self.suggestions.filter(unit__store__translation_project=tp,
+                                       state=SuggestionStates.PENDING).count()
 
     def accepted_suggestion_count(self, tp):
         """Return the number of accepted suggestions for the user in the given
@@ -265,8 +266,8 @@ class PootleProfile(models.Model):
 
         :param tp: a :cls:`TranslationProject` object.
         """
-        return self.suggester.filter(translation_project=tp,
-                                     state='accepted').count()
+        return self.suggestions.filter(unit__store__translation_project=tp,
+                                       state=SuggestionStates.ACCEPTED).count()
 
     def rejected_suggestion_count(self, tp):
         """Return the number of rejected suggestions for the user in the given
@@ -274,8 +275,8 @@ class PootleProfile(models.Model):
 
         :param tp: a :cls:`TranslationProject` object.
         """
-        return self.suggester.filter(translation_project=tp,
-                                     state='rejected').count()
+        return self.suggestions.filter(unit__store__translation_project=tp,
+                                       state=SuggestionStates.REJECTED).count()
 
     def total_submission_count(self, tp):
         """Return the number of submissions the current user has done from the

@@ -36,8 +36,8 @@ def gentopstats_root():
     key = "/:gentopstats"
     result = cache.get(key)
     if result is None:
-        top_sugg   = group_by_sort(User.objects.exclude(pootleprofile__suggester=None),
-                                   'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+        top_sugg   = group_by_sort(User.objects.exclude(pootleprofile__suggestions=None),
+                                   'pootleprofile__suggestions', ['username'])[:settings.TOPSTAT_SIZE]
         top_review = group_by_sort(User.objects.exclude(pootleprofile__reviewer=None),
                                    'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
         top_sub    = group_by_sort(User.objects.exclude(pootleprofile__submission=None),
@@ -61,8 +61,8 @@ def gentopstats_language(language):
     key = iri_to_uri("%s:gentopstats" % language.pootle_path)
     result = cache.get(key)
     if result is None:
-        top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project__language=language),
-                                   'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+        top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggestions__translation_project__language=language),
+                                   'pootleprofile__suggestions', ['username'])[:settings.TOPSTAT_SIZE]
         top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project__language=language),
                                    'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
         top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project__language=language),
@@ -87,8 +87,8 @@ def gentopstats_project(project):
     key = iri_to_uri("%s:gentopstats" % project.pootle_path)
     result = cache.get(key)
     if result is None:
-        top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project__project=project),
-                                   'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+        top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggestions__translation_project__project=project),
+                                   'pootleprofile__suggestions', ['username'])[:settings.TOPSTAT_SIZE]
         top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project__project=project),
                                    'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
         top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project__project=project),
@@ -113,8 +113,8 @@ def gentopstats_translation_project(translation_project):
     key = iri_to_uri("%s:gentopstats" % translation_project.pootle_path)
     result = cache.get(key)
     if result is None:
-        top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggester__translation_project=translation_project),
-                                   'pootleprofile__suggester', ['username'])[:settings.TOPSTAT_SIZE]
+        top_sugg   = group_by_sort(User.objects.filter(pootleprofile__suggestions__translation_project=translation_project),
+                                   'pootleprofile__suggestions', ['username'])[:settings.TOPSTAT_SIZE]
         top_review = group_by_sort(User.objects.filter(pootleprofile__reviewer__translation_project=translation_project),
                                    'pootleprofile__reviewer', ['username'])[:settings.TOPSTAT_SIZE]
         top_sub    = group_by_sort(User.objects.filter(pootleprofile__submission__translation_project=translation_project),

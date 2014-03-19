@@ -23,7 +23,7 @@ import pytest
 
 
 @pytest.mark.django_db
-def test_hash(af_tutorial_po):
+def test_hash(af_tutorial_po, system):
     """Tests that target hash changes when suggestion is modified"""
     unit = af_tutorial_po.getitem(0)
 

@@ -32,7 +32,6 @@ from django.utils.translation import ugettext as _
 from pootle import depcheck
 from pootle.core.decorators import admin_required
 from pootle.core.markup import get_markup_filter
-from pootle_app.models import Suggestion as SuggestionStat
 from pootle_misc.aggregate import sum_column
 from pootle_profile.models import PootleProfile
 from pootle_statistics.models import Submission
@@ -264,8 +263,8 @@ def server_stats():
         result['user_count'] = max(User.objects.filter(is_active=True).count()-2, 0)
         # 'default' and 'nobody' might be counted
         # FIXME: the special users should not be retuned with is_active
-        result['submission_count'] = Submission.objects.count() + SuggestionStat.objects.count()
-        result['pending_count'] = Suggestion.objects.count()
+        result['submission_count'] = Submission.objects.count()
+        result['pending_count'] = Suggestion.objects.pending().count()
         cache.set("server_stats", result, 86400)
     _format_numbers(result)
     return result
@@ -285,9 +284,10 @@ def server_stats_more(request):
         sums = sum_column(unit_query, ('source_wordcount',), count=True)
         result['string_count'] = sums['count']
         result['word_count'] = sums['source_wordcount'] or 0
-        result['user_active_count'] = (PootleProfile.objects.exclude(submission=None) |\
-                                       PootleProfile.objects.exclude(suggestion=None) |\
-                                       PootleProfile.objects.exclude(suggester=None)).order_by().count()
+        result['user_active_count'] = (
+            PootleProfile.objects.exclude(submission=None) |
+            PootleProfile.objects.exclude(suggestions=None)
+        ).order_by().count()
         cache.set("server_stats_more", result, 86400)
     _format_numbers(result)
     stat_strings = {

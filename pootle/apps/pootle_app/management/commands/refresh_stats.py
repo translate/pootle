@@ -29,7 +29,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
 from pootle_store.caching import count_words
-from pootle_store.models import QualityCheck, Suggestion
+from pootle_store.models import QualityCheck, Suggestion, SuggestionStates
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 
 
@@ -55,6 +55,7 @@ class Command(PootleCommand):
         store.suggestion_count = Suggestion.objects.filter(
             unit__store=store,
             unit__state__gt=OBSOLETE,
+            state=SuggestionStates.PENDING,
         ).count()
 
         QualityCheck.objects.filter(unit__store=store).delete()

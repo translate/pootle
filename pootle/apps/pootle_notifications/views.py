@@ -125,8 +125,7 @@ def get_recipients(restrict_to_active_users, directory):
 
     # Take into account 'only active users' flag from the form.
     if restrict_to_active_users:
-        to_list = to_list.exclude(submission=None).exclude(suggestion=None) \
-                                                  .exclude(suggester=None)
+        to_list = to_list.exclude(submission=None).exclude(suggestions=None)
 
     recipients = []
     for person in to_list:
