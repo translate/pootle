@@ -792,7 +792,7 @@ html[dir="rtl"] .suggestion-vote
     float: left;
 }
 
-.suggestion-translation-body
+.suggestion-translation
 {
     unicode-bidi: embed;
 }
