@@ -659,7 +659,8 @@
   },
 
   handleTranslationChange: function () {
-    var $submit = $('.js-submit'),
+    var submit = $('.js-submit')[0],
+        suggest = $('.js-suggest')[0],
         translations = $('.js-translation-area').get(),
         checkbox = $('#id_state')[0],
         stateChanged = checkbox.defaultChecked !== checkbox.checked,
@@ -677,10 +678,13 @@
       areaChanged = area.defaultValue !== area.value;
     }
 
-    var disableSubmit = !(stateChanged || areaChanged) || needsReview;
-    $submit.each(function () {
-      this.disabled = disableSubmit;
-    });
+
+    if (submit !== undefined) {
+      submit.disabled = !(stateChanged || areaChanged) || needsReview;
+    }
+    if (suggest !== undefined) {
+      suggest.disabled = !areaChanged;
+    }
   },
 
   onStateChange: function () {
