@@ -45,7 +45,6 @@ def unit_update_cache(unit):
         unit.store.flag_for_deletion(CachedMethods.TOTAL)
 
     source_wordcount = count_words(unit.source_f.strings)
-    target_wordcount = count_words(unit.target_f.strings)
     difference = source_wordcount - unit.source_wordcount
 
     if not orig:
@@ -66,9 +65,6 @@ def unit_update_cache(unit):
             unit.store.total_wordcount += difference
 
     if orig and unit._target_updated:
-        # update target related fields
-        unit.target_wordcount = target_wordcount
-
         # Case 1: Unit was not translated before
         if orig.state == UNTRANSLATED:
             if unit.state == UNTRANSLATED:
