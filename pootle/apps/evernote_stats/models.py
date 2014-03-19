@@ -80,4 +80,6 @@ def save_submission_stats(sender, **kwargs):
     except:
         pass
 
-translation_submitted.connect(save_submission_stats, sender=None)
+# evernote_stats is disabled
+# TODO remove evernote_stats
+# translation_submitted.connect(save_submission_stats, sender=None)
