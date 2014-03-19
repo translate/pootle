@@ -97,6 +97,16 @@ class QualityCheck(models.Model):
 
 ################# Suggestion ################
 
+class SuggestionManager(RelatedManager):
+    def pending(self):
+        return self.get_query_set().filter(state=SuggestionStates.PENDING)
+
+
+class SuggestionStates(object):
+    PENDING = 'pending'
+    ACCEPTED = 'accepted'
+    REJECTED = 'rejected'
+
 
 class Suggestion(models.Model, base.TranslationUnit):
     """Suggested translation for a :cls:`~pootle_store.models.Unit`, provided
@@ -105,10 +115,44 @@ class Suggestion(models.Model, base.TranslationUnit):
     target_f = MultiStringField()
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit')
-    user = models.ForeignKey('pootle_profile.PootleProfile', null=True)
+    user = models.ForeignKey(
+        'pootle_profile.PootleProfile',
+        null=True,
+        related_name='suggestions',
+        db_index=True,
+    )
+    reviewer = models.ForeignKey(
+        'pootle_profile.PootleProfile',
+        null=True,
+        related_name='reviews',
+        db_index=True,
+    )
     translator_comment_f = models.TextField(null=True, blank=True)
+    translation_project = models.ForeignKey(
+        'pootle_translationproject.TranslationProject',
+        null=True,
+        related_name='suggestions',
+        db_index=True,
+    )
+    state = models.CharField(
+        max_length=16,
+        default=SuggestionStates.PENDING,
+        null=False,
+        choices=(
+            (SuggestionStates.PENDING, _('Pending')),
+            (SuggestionStates.ACCEPTED, _('Accepted')),
+            (SuggestionStates.REJECTED, _('Rejected')),
+        ),
+        db_index=True,
+    )
+    creation_time = models.DateTimeField(
+        db_index=True,
+        null=True,
+        auto_now_add=True,
+    )
+    review_time = models.DateTimeField(null=True, db_index=True)
 
-    objects = RelatedManager()
+    objects = SuggestionManager()
 
     class Meta:
         unique_together = ('unit', 'target_hash')
