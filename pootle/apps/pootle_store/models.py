@@ -219,8 +219,8 @@ class UnitManager(RelatedManager):
 
         units_qs = units_qs.extra(
             where=[
-                '`pootle_store_store`.`pootle_path` LIKE %s',
-                '`pootle_store_store`.`pootle_path` NOT LIKE %s',
+                'pootle_store_store.pootle_path LIKE %s',
+                'pootle_store_store.pootle_path NOT LIKE %s',
             ], params=[units_path, '/templates/%']
         )
 
