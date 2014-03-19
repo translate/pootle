@@ -75,6 +75,12 @@ class Submission(models.Model):
         null=True,
         db_index=True,
     )
+    suggestion = models.ForeignKey(
+        'pootle_store.Suggestion',
+        blank=True,
+        null=True,
+        db_index=True,
+    )
     unit = models.ForeignKey(
         'pootle_store.Unit',
         blank=True,
