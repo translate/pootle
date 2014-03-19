@@ -20,10 +20,9 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from pootle_app.models.suggestion import Suggestion
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_app.models.revision import Revision
 
 
-__all__ = ["Suggestion", "Directory", "PermissionSet", "Revision"]
+__all__ = ["Directory", "PermissionSet", "Revision"]
