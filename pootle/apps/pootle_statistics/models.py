@@ -78,6 +78,8 @@ class Submission(models.Model):
             db_index=True)
     from_suggestion = models.OneToOneField('pootle_app.Suggestion', null=True,
             db_index=True)
+    suggestion = models.ForeignKey('pootle_store.Suggestion', blank=True, null=True,
+            db_index=True)
     unit = models.ForeignKey('pootle_store.Unit', blank=True, null=True,
             db_index=True)
     check = models.ForeignKey('pootle_store.QualityCheck', blank=True, null=True,
