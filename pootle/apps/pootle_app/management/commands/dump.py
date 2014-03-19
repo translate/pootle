@@ -41,6 +41,7 @@ DUMPED = {
     'Unit': ('source', 'target', 'source_wordcount', 'target_wordcount',
              'developer_comment', 'translator_comment', 'locations',
              'isobsolete', 'isfuzzy', 'istranslated'),
+    'Suggestion': ('target_f', 'user_id'),
     'Language': ('code', 'fullname', 'pootle_path'),
     'Project': ('code', 'fullname', 'checkstyle', 'localfiletype',
                 'treestyle', 'source_language', 'ignoredfiles',
@@ -56,15 +57,15 @@ class Command(PootleCommand):
                     help='Dump stats'),
         make_option('--data', action='store_true', dest='data',
                     help='Data all data'),
-        make_option('--stop-level', action='store', dest='verbosity',
-                    default='2'),
+        make_option('--stop-level', action='store', dest='stop_level',
+                    default=-1),
         )
     option_list = PootleCommand.option_list + shared_option_list
 
     def handle_all(self, **options):
         stats = options.get('stats', False)
         data = options.get('data', False)
-        stop_level = options.get('stop_level', None)
+        stop_level = int(options.get('stop_level', -1))
         if stats:
             self.dump_stats(stop_level=stop_level)
         if data:
@@ -73,7 +74,7 @@ class Command(PootleCommand):
     def handle_translation_project(self, tp, **options):
         stats = options.get('stats', False)
         data = options.get('data', False)
-        stop_level = options.get('stop_level', None)
+        stop_level = int(options.get('stop_level', -1))
         if stats:
             res = {}
             self._dump_stats(tp.directory, res, stop_level=stop_level)
@@ -81,23 +82,23 @@ class Command(PootleCommand):
         if data:
             self._dump_item(tp.directory, 0, stop_level=stop_level)
 
-    def dump_stats(self):
+    def dump_stats(self, stop_level):
         root = Directory.objects.root
         projects = Directory.objects.projects
         res = {}
-        self._dump_stats(root, res)
-        # stop on translation project level
-        self._dump_stats(projects, res, stop_level=1)
+        self._dump_stats(root, res, stop_level=stop_level)
+        # stop on translation project level -> stop_level = 2
+        self._dump_stats(projects, res, stop_level=2)
         print json.dumps(res, indent=4, cls=PootleJSONEncoder)
 
 
-    def _dump_stats(self, item, res, stop_level=None):
+    def _dump_stats(self, item, res, stop_level):
         res[item.code] = {}
         item.initialize_children()
 
         if stop_level != 0 and item.children:
             res[item.code]['children'] = {}
-            if stop_level is not None:
+            if stop_level > 0:
                 stop_level = stop_level - 1
             for child in item.children:
                 self._dump_stats(child, res[item.code]['children'],
@@ -109,7 +110,7 @@ class Command(PootleCommand):
         root = Directory.objects.root
         self._dump_item(root, 0, stop_level=stop_level)
 
-    def _dump_item(self, item, level, stop_level=None):
+    def _dump_item(self, item, level, stop_level):
         print self.dumped(item)
         if item.is_dir:
             if item.is_project():
@@ -125,6 +126,8 @@ class Command(PootleCommand):
             # item should be a Store
             for unit in item.units:
                 print self.dumped(unit)
+                for sg in unit.get_suggestions():
+                    print self.dumped(sg)
 
         if stop_level != level:
             item.initialize_children()
