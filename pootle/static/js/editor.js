@@ -521,6 +521,8 @@
 
     PTL.editor.hlSearch();
 
+    PTL.editor.setupAutocomplete();
+
     if (PTL.editor.settings.tmUrl != '') {
       PTL.editor.getTMUnits();
     }
@@ -607,6 +609,35 @@
     $(sel.join(", ")).highlightRegex(hlRegex);
   },
 
+  setupAutocomplete: function () {
+    var searchFunc = function (term, callback) {
+      var $placeables = $("div.original .js-placeable");
+
+      var matching = $.map($placeables, function (placeable) {
+        var text = $(placeable).text();
+        if (term.length !== 0 && text.indexOf(term) === 0) {
+          return text;
+        } else {
+          return null;
+        }
+      });
+
+      callback(matching);
+    };
+
+    var replaceFunc = function (value) {
+      return value;
+    };
+
+    $("textarea.translation").textcomplete([
+      {
+        match: /(\S*)$/,
+        search: searchFunc,
+        replace: replaceFunc,
+        index: 1,
+      }
+    ]);
+  },
 
   /* Copies text into the focused textarea */
   copyText: function (e) {

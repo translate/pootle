@@ -573,6 +573,10 @@ td.translate-full textarea.translation
     min-height: 2.7em; 
 }
 
+.translate-translation .textcomplete-wrapper
+{
+    width: 100%;
+}
 
 /* TM and suggestions */
 
