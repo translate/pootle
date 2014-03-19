@@ -40,7 +40,6 @@ from translate.lang import data
 
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
-from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import check_profile_permission
 from pootle.core.exceptions import Http400
 from pootle_misc.baseurl import redirect
@@ -55,7 +54,7 @@ from .decorators import get_unit_context
 from .fields import to_python
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
-from .models import Unit
+from .models import Unit, SuggestionStates
 from .signals import translation_submitted
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
@@ -72,8 +71,8 @@ ALLOWED_SORTS = {
         'newest': '-mtime',
     },
     'suggestions': {
-        'oldest': 'submission__from_suggestion__creation_time',
-        'newest': '-submission__from_suggestion__creation_time',
+        'oldest': 'submission__suggestion__creation_time',
+        'newest': '-submission__suggestion__creation_time',
     },
     'submissions': {
         'oldest': 'submission__creation_time',
@@ -229,35 +228,29 @@ def get_step_query(request, units_queryset):
                     Q(state=UNTRANSLATED) | Q(state=FUZZY),
                 )
             elif unit_filter == 'suggestions':
-                #FIXME: is None the most efficient query
-                match_queryset = units_queryset.exclude(suggestion=None)
+                match_queryset = units_queryset.filter(
+                        suggestion__state=SuggestionStates.PENDING
+                    ).distinct()
             elif unit_filter in ('my-suggestions', 'user-suggestions'):
                 match_queryset = units_queryset.filter(
+                        suggestion__state=SuggestionStates.PENDING,
                         suggestion__user=profile,
                     ).distinct()
                 sort_on = 'suggestions'
             elif unit_filter == 'user-suggestions-accepted':
-                # FIXME: Oh, this is pretty lame, we need a completely
-                # different way to model suggestions
-                unit_ids = SuggestionStat.objects.filter(
-                        suggester=profile,
-                        state='accepted',
-                    ).values_list('unit', flat=True)
                 match_queryset = units_queryset.filter(
-                        id__in=unit_ids,
+                        suggestion__state=SuggestionStates.ACCEPTED,
+                        suggestion__user=profile,
                     ).distinct()
             elif unit_filter == 'user-suggestions-rejected':
-                # FIXME: Oh, this is as lame as above
-                unit_ids = SuggestionStat.objects.filter(
-                        suggester=profile,
-                        state='rejected',
-                    ).values_list('unit', flat=True)
                 match_queryset = units_queryset.filter(
-                        id__in=unit_ids,
+                        suggestion__state=SuggestionStates.REJECTED,
+                        suggestion__user=profile,
                     ).distinct()
             elif unit_filter in ('my-submissions', 'user-submissions'):
                 match_queryset = units_queryset.filter(
                         submission__submitter=profile,
+                        submission__type=SubmissionTypes.NORMAL,
                     ).distinct()
                 sort_on = 'submissions'
             elif (unit_filter in ('my-submissions-overwritten',
@@ -271,7 +264,7 @@ def get_step_query(request, units_queryset):
                 if checks:
                     match_queryset = units_queryset.filter(
                         qualitycheck__false_positive=False,
-                        qualitycheck__name__in=checks
+                        qualitycheck__name__in=checks,
                     ).distinct()
 
             sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param, None)
@@ -867,13 +860,9 @@ def suggest(request, unit):
             #HACKISH: django 1.2 stupidly modifies instance on
             # model form validation, reload unit from db
             unit = Unit.objects.get(id=unit.id)
-            sugg = unit.add_suggestion(form.cleaned_data['target_f'],
-                                       request.profile)
-            if sugg:
-                SuggestionStat.objects.get_or_create(
-                    translation_project=translation_project,
-                    suggester=request.profile, state='pending', unit=unit.id
-                )
+            unit.add_suggestion(form.cleaned_data['target_f'],
+                                user=request.profile)
+
         rcode = 200
     else:
         # Form failed

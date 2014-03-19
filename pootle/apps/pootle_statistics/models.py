@@ -42,6 +42,8 @@ class SubmissionTypes(object):
     SYSTEM = 5  # Batch actions performed offline
     MUTE_CHECK = 6 # Mute QualityCheck
     UNMUTE_CHECK = 7 # Unmute QualityCheck
+    SUGG_ADD = 8 # Add new Suggestion
+    SUGG_REJECT = 9 # Reject Suggestion
 
 
 #: Values for the 'field' field of Submission
@@ -78,8 +80,8 @@ class Submission(models.Model):
             db_index=True)
     from_suggestion = models.OneToOneField('pootle_app.Suggestion', null=True,
             db_index=True)
-    suggestion = models.ForeignKey('pootle_store.Suggestion', blank=True, null=True,
-            db_index=True)
+    suggestion = models.ForeignKey('pootle_store.Suggestion', blank=True,
+            null=True, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit', blank=True, null=True,
             db_index=True)
     check = models.ForeignKey('pootle_store.QualityCheck', blank=True, null=True,
@@ -125,8 +127,9 @@ class Submission(models.Model):
                 unit['checks_url'] = reverse('pootle-staticpages-display',
                                              args=['help/quality-checks'])
 
-        if self.from_suggestion:
-            displayuser = self.from_suggestion.reviewer
+        if (self.suggestion and
+            self.type in (SubmissionTypes.SUGG_ACCEPT, SubmissionTypes.SUGG_REJECT)):
+            displayuser = self.suggestion.reviewer
         else:
             # Sadly we may not have submitter information in all the
             # situations yet
@@ -158,6 +161,16 @@ class Submission(models.Model):
             ),
             SubmissionTypes.SUGG_ACCEPT: _(
                 'accepted suggestion for '
+                '<i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.SUGG_ADD: _(
+                'added suggestion for '
+                '<i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.SUGG_REJECT: _(
+                'rejected suggestion for '
                 '<i><a href="%(url)s">%(source)s</a></i>',
                 unit
             ),
