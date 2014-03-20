@@ -198,11 +198,7 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
             messages.success(request, _("File has been deleted."))
     except Exception:
         logging.exception(u"Error while trying to delete %s", current_path)
-        if directory:
-            messages.error(request, _("Error while trying to delete "
-                                      "directory."))
-        else:
-            messages.error(request, _("Error while trying to delete file."))
+        messages.error(request, _("Error while trying to delete path."))
 
     language = translation_project.language.code
     project = translation_project.project.code
