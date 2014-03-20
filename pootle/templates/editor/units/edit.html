@@ -245,7 +245,8 @@
         <div id="suggestions">
           <div class="extra-item-title">{% trans 'User suggestions' %}</div>
           {% for sugg, score in suggestions %}
-          <div id="suggestion-{{ sugg.id }}" class="extra-item-block"
+          <div id="suggestion-{{ sugg.id }}"
+            class="js-user-suggestion extra-item-block"
             data-translation-aid="{{ sugg.target }}">
             {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
             <div class="extra-item-content">
