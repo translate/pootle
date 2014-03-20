@@ -34,22 +34,40 @@ def count_words(strings):
 
 
 def unit_update_cache(unit):
-    if not unit.id:
+    """
+    Triggered on unit.save() before anything is saved
+    """
+
+    if unit.id:
+        orig = unit.__class__.objects.get(id=unit.id)
+    else:
+        orig = None
         unit.store.flag_for_deletion(CachedMethods.TOTAL)
+
+    source_wordcount = count_words(unit.source_f.strings)
+    target_wordcount = count_words(unit.target_f.strings)
+
+    if not orig:
+        # New instance. Calculate everything.
+        unit.store.total_wordcount += source_wordcount
+        if unit.state == TRANSLATED:
+            unit.store.translated_wordcount += source_wordcount
+        elif unit.state == FUZZY:
+            unit.store.fuzzy_wordcount += source_wordcount
 
     if unit._source_updated:
         # update source related fields
         unit.source_hash = md5(unit.source_f.encode("utf-8")).hexdigest()
-        _new_wordcount = count_words(unit.source_f.strings)
-        difference = _new_wordcount - unit.source_wordcount
-        unit.source_wordcount = _new_wordcount
+        difference = source_wordcount - unit.source_wordcount
+        unit.store.total_wordcount += difference
+        unit.source_wordcount = source_wordcount
         unit.source_length = len(unit.source_f)
         if not orig:
             unit.store.total_wordcount += difference
 
     if unit._target_updated:
         # update target related fields
-        unit.target_wordcount = count_words(unit.target_f.strings)
+        unit.target_wordcount = target_wordcount
         unit.target_length = len(unit.target_f)
         unit.store.flag_for_deletion(CachedMethods.LAST_ACTION,
                                         CachedMethods.PATH_SUMMARY)
