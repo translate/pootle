@@ -118,3 +118,17 @@ def upgrade_to_25202():
     from pootle.core.initdb import create_system_user
 
     create_system_user()
+
+
+def upgrade_to_25203():
+    """Set `Submission` model's type to the new `SubmissionTypes.SYSTEM` for
+    submissions performed by the `system` user.
+    """
+    from pootle_statistics.models import Submission, SubmissionTypes
+
+    Submission.objects.filter(
+        type=None,
+        submitter__user__username='system',
+    ).update(
+        type=SubmissionTypes.SYSTEM,
+    )

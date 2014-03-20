@@ -952,9 +952,9 @@
 
 
   /* Builds a single row */
-  buildRow: function (unit, cls) {
+  buildRow: function (unit) {
     return [
-      '<tr id="row', unit.id, '" class="view-row ', cls ,'">',
+      '<tr id="row', unit.id, '" class="view-row">',
         this.tmpl.vUnit({unit: unit.toJSON()}),
       '</tr>'
     ].join('');
@@ -965,8 +965,6 @@
     var unitGroups = this.getUnitGroups(),
         groupSize = _.size(unitGroups),
         currentUnit = this.units.getCurrent(),
-        cls = "even",
-        even = true,
         rows = [],
         i, unit;
 
@@ -986,11 +984,8 @@
         if (unit.id === currentUnit.id) {
           rows.push(this.getEditUnit());
         } else {
-          rows.push(this.buildRow(unit, cls));
+          rows.push(this.buildRow(unit));
         }
-
-        cls = even ? "odd" : "even";
-        even = !even;
       }
     }, this);
 
@@ -1002,8 +997,6 @@
   buildCtxRows: function (units, extraCls) {
     var i, unit,
         currentUnit = this.units.getCurrent(),
-        cls = "even",
-        even = true,
         rows = '';
 
     for (i=0; i<units.length; i++) {
@@ -1011,13 +1004,9 @@
       unit = units[i];
       unit = $.extend({}, currentUnit.toJSON(), unit);
 
-      rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls +
-              ' ' + cls + '">';
+      rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls + '">';
       rows += this.tmpl.vUnit({unit: unit});
       rows += '</tr>';
-
-      cls = even ? "odd" : "even";
-      even = !even;
     }
 
     return rows;
@@ -1725,8 +1714,10 @@
     }
 
     var uid = PTL.editor.units.getCurrent().id,
-        node = $("#extras-container"),
+        node = $(".translate-container"),
         timelineUrl = l(['/xhr/units/', uid, '/timeline/'].join(''));
+
+    node.spin();
 
     // Always abort previous requests so we only get results for the
     // current unit
@@ -1755,9 +1746,6 @@
           $("#js-show-timeline").hide();
           $("#js-hide-timeline").show();
         }
-      },
-      beforeSend: function () {
-        node.spin();
       },
       complete: function () {
         node.spin(false);

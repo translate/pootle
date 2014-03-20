@@ -633,9 +633,14 @@ def timeline(request, unit):
     from pootle_store.fields import to_python
 
     for key, values in groupby(timeline, key=lambda x: x.creation_time):
+        # Under Windows, the "nl_langinfo" method is not available
+        try:
+            time_str = key.strftime(locale.nl_langinfo(locale.D_T_FMT))
+        except NameError:
+            time_str = key
         entry_group = {
             'datetime': key,
-            'datetime_str': key.strftime(locale.nl_langinfo(locale.D_T_FMT)),
+            'datetime_str': time_str,
             'entries': [],
         }
 

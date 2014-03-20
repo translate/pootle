@@ -34,6 +34,7 @@ class SubmissionTypes(object):
     REVERT = 2  # Revert action on the web
     SUGG_ACCEPT = 3  # Accepting a suggestion
     UPLOAD = 4  # Uploading an offline file
+    SYSTEM = 5  # Batch actions performed offline
 
 
 class SubmissionFields(object):
