@@ -29,6 +29,7 @@ from django import template
 from django.core.exceptions import ObjectDoesNotExist
 from django.template.defaultfilters import stringfilter
 from django.template.loaders.filesystem import Loader
+from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
@@ -95,7 +96,7 @@ def highlight_placeables(text):
                                                    content)
         else:
             # It is not a placeable, so just concatenate to output string.
-            output += unicode(item)
+            output += escape(item)
 
     return mark_safe(output)
 
