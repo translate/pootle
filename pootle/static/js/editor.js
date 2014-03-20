@@ -1310,8 +1310,7 @@
     var el = e.target,
         uId = PTL.editor.units.getCurrent().id,
         submitUrl = l(['/xhr/units/', uId].join('')),
-        $form = $("#translate"),
-        reqData = $form.serializeObject(),
+        reqData = $('#translate').serializeObject(),
         captchaCallbacks = {
           sfn: 'PTL.editor.processSubmission',
           efn: 'PTL.editor.error'
@@ -1378,8 +1377,7 @@
 
     var uId = PTL.editor.units.getCurrent().id,
         suggestUrl = l(['/xhr/units/', uId, '/suggestions/'].join('')),
-        $form = $("#translate"),
-        reqData = $form.serializeObject(),
+        reqData = $('#translate').serializeObject(),
         captchaCallbacks = {
           sfn: 'PTL.editor.processSuggestion',
           efn: 'PTL.editor.error'
