@@ -1945,7 +1945,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$("#suggestions div[id^=suggestion]").length) {
+          if (!$('.js-user-suggestion').length) {
             PTL.editor.gotoNext();
           }
         });
@@ -1988,7 +1988,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$("#suggestions div[id^=suggestion]").length) {
+          if (!$('.js-user-suggestion').length) {
             PTL.editor.gotoNext();
           }
         });
