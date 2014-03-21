@@ -33,6 +33,22 @@ def count_words(strings):
     return sum(wordcount(string) for string in strings)
 
 
+def unit_delete_cache(unit):
+    """
+    Triggered on unit.delete()
+    Decrement the cache columns by the appropriate amount
+    """
+
+    wordcount = count_words(unit.source_f.strings)
+
+    unit.store.total_wordcount -= wordcount
+
+    if unit.state == FUZZY:
+        unit.store.fuzzy_wordcount -= wordcount
+    elif unit.state == TRANSLATED:
+        unit.store.translated_wordcount -= wordcount
+
+
 def unit_update_cache(unit):
     """
     Triggered on unit.save() before anything is saved

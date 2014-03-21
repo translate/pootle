@@ -57,7 +57,7 @@ from pootle_store.filetypes import factory_classes, is_monolingual
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_tagging.models import ItemWithGoal
 
-from .caching import unit_update_cache
+from .caching import unit_delete_cache, unit_update_cache
 from .signals import translation_submitted
 
 
@@ -414,29 +414,8 @@ class Unit(models.Model, base.TranslationUnit):
         self._target_updated = False
         self._encoding = 'UTF-8'
 
-    def flag_store_before_going_away(self):
-        self.store.flag_for_deletion(CachedMethods.TOTAL,
-                                     CachedMethods.LAST_UPDATED)
-
-        if self.state == FUZZY:
-            self.store.flag_for_deletion(CachedMethods.FUZZY)
-        elif self.state == TRANSLATED:
-            self.store.flag_for_deletion(CachedMethods.TRANSLATED)
-
-        if self.suggestion_set.count() > 0:
-            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
-
-        if self.get_qualitychecks():
-            self.store.flag_for_deletion(CachedMethods.CHECKS)
-
-        # Check if unit currently being deleted is the one referenced in
-        # last_action
-        la = get_cached_value(self.store, 'get_last_action')
-        if not la or not 'id' in la or la['id'] == self.id:
-            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
-
     def delete(self, *args, **kwargs):
-        self.flag_store_before_going_away()
+        unit_delete_cache(self)
 
         super(Unit, self).delete(*args, **kwargs)
 
@@ -808,8 +787,8 @@ class Unit(models.Model, base.TranslationUnit):
 
     def makeobsolete(self):
         if self.state > OBSOLETE:
-            # when Unit becomes obsolete the cache flags should be updated
-            self.flag_store_before_going_away()
+            # when Unit becomes obsolete the cache should be updated
+            unit_delete_cache(self)
 
             self.state = OBSOLETE
 
@@ -1169,13 +1148,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 unit.save()
         if self.state >= PARSED:
             self.update_cache()
-
-    def delete(self, *args, **kwargs):
-        all_cache_methods = CachedMethods.get_all()
-        self.flag_for_deletion(*all_cache_methods)
-        self.update_cache()
-
-        super(Store, self).delete(*args, **kwargs)
 
     def get_absolute_url(self):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
