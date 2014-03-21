@@ -1459,7 +1459,15 @@ div.settings-container
 
 .settings-container h2
 {
-    margin: 1em 0 0.5em;
+    margin: 0 0 0.5em;
+}
+
+.settings-container h2,
+.module .hd h2,
+.module-primary .hd h2
+{
+    font-family: "Open Sans Condensed", "Open Sans", sans-serif;
+    font-size: 2.2em;
 }
 
 .settings-container p
