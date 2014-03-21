@@ -1018,7 +1018,8 @@ class Unit(models.Model, base.TranslationUnit):
             )
             sub.save()
 
-            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
+                                         CachedMethods.LAST_ACTION)
             if touch:
                 self.save()
         except:
