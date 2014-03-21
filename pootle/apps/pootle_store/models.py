@@ -1725,6 +1725,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def get_fuzzy_wordcount(self):
         return self.fuzzy_wordcount
 
+    def get_suggestion_count(self):
+        return self.suggestion_count
+
     def _get_checks(self):
         try:
             self.require_qualitychecks()
@@ -1764,11 +1767,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             'mtime': int(time.mktime(sub.creation_time.timetuple())),
             'snippet': sub.get_submission_message()
         }
-
-    def _get_suggestion_count(self):
-        """Check if any unit in the store has suggestions"""
-        return Suggestion.objects.filter(unit__store=self,
-                                         unit__state__gt=OBSOLETE).count()
 
     def _get_path_summary(self):
         from pootle_misc.stats import get_path_summary
