@@ -152,6 +152,16 @@ class Suggestion(models.Model, base.TranslationUnit):
             string = self.target_f
         self.target_hash = md5(string.encode("utf-8")).hexdigest()
 
+    def save(self, *args, **kwargs):
+        self.unit.store.suggestion_count += 1
+        self.unit.store.save()
+        super(Suggestion, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.unit.store.suggestion_count -= 1
+        self.unit.store.save()
+        super(Suggestion, self).delete(*args, **kwargs)
+
 
 ################################ Signal handlers ##############################
 
