@@ -24,7 +24,6 @@ Caching functionality for Unit model
 from hashlib import md5
 
 from translate.storage.statsdb import wordcount
-from pootle.core.mixins import CachedMethods
 
 from .util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 
@@ -58,7 +57,6 @@ def unit_update_cache(unit):
         orig = unit.__class__.objects.get(id=unit.id)
     else:
         orig = None
-        unit.store.flag_for_deletion(CachedMethods.TOTAL)
 
     source_wordcount = count_words(unit.source_f.strings)
     difference = source_wordcount - unit.source_wordcount
@@ -113,13 +111,9 @@ def unit_update_cache(unit):
         unit.store.save()
 
         unit.target_length = len(unit.target_f)
-        unit.store.flag_for_deletion(CachedMethods.LAST_ACTION,
-                                        CachedMethods.PATH_SUMMARY)
         if filter(None, unit.target_f.strings):
             if unit.state == UNTRANSLATED:
                 unit.state = TRANSLATED
-                unit.store.flag_for_deletion(CachedMethods.TRANSLATED)
         # if it was TRANSLATED then set to UNTRANSLATED
         elif unit.state > FUZZY:
             unit.state = UNTRANSLATED
-            unit.store.flag_for_deletion(CachedMethods.TRANSLATED)
