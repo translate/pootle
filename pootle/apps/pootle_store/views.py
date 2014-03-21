@@ -1063,6 +1063,7 @@ def accept_suggestion(request, unit, suggid):
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
+
 @ajax_required
 def clear_vote(request, voteid):
     json = {}
