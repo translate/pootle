@@ -121,6 +121,12 @@ class TranslationProject(models.Model, TreeItem):
         help_text=_("A comma-separated list of goals."),
     )
 
+    # Cached Unit values
+    total_wordcount = models.PositiveIntegerField(default=0, null=True)
+    translated_wordcount = models.PositiveIntegerField(default=0, null=True)
+    fuzzy_wordcount = models.PositiveIntegerField(default=0, null=True)
+    suggestion_count = models.PositiveIntegerField(default=0, null=True)
+
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
                                          settings.PARSE_POOL_CULL_FREQUENCY)
     index_directory = ".translation_index"
