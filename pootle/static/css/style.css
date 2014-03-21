@@ -2081,6 +2081,7 @@ html[dir="rtl"] .overview-description-toggle
 #header-tabs
 {
     margin-top: -1px;
+    border-bottom: 1px solid #D9D9D9;
 }
 
 #header-meta
