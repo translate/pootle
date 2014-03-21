@@ -1261,10 +1261,30 @@
         uId = PTL.editor.units.getCurrent().id,
         submitUrl = l(['/xhr/units/', uId].join('')),
         reqData = $('#translate').serializeObject(),
+        newTranslation = $('.js-translation-area')[0].value,
+        suggestions = $('.js-user-suggestion').map(function () {
+            return {
+              text: $(this).data('translation-aid'),
+              id: this.id
+            };
+          }).get(),
         captchaCallbacks = {
           sfn: 'PTL.editor.processSubmission',
           efn: 'PTL.editor.error'
         };
+
+    // Check if the string being submitted is already in the set of
+    // suggestions
+    // FIXME: this is LAME, I wanna die: we need to use proper models!!
+    var suggestionIds = _.pluck(suggestions, 'id'),
+        suggestionTexts = _.pluck(suggestions, 'text'),
+        suggestionIndex = suggestionTexts.indexOf(newTranslation);
+
+    if (suggestionIndex !== -1) {
+      $(['#', suggestionIds[suggestionIndex]].join(''))
+        .find('.js-suggestion-accept').trigger('click', [true]);
+      return;
+    }
 
     // If similarities were in the process of being calculated by the time
     // the submit button was clicked, clear the timer and calculate them
@@ -1952,13 +1972,14 @@
 
 
   /* Accepts a suggestion */
-  acceptSuggestion: function (e) {
+  acceptSuggestion: function (e, skipToNext) {
     e.stopPropagation(); //we don't want to trigger a click on the text below
     var suggId = $(this).data("sugg-id"),
         element = $("#suggestion-" + suggId),
         unit = PTL.editor.units.getCurrent(),
         url = l(['/xhr/units/', unit.id,
                  '/suggestions/', suggId, '/accept/'].join('')),
+        skipToNext = skipToNext || false,
         translations;
 
     $.post(url, {'accept': 1},
@@ -1986,7 +2007,7 @@
           $(this).remove();
 
           // Go to the next unit if there are no more suggestions left
-          if (!$('.js-user-suggestion').length) {
+          if (skipToNext || !$('.js-user-suggestion').length) {
             PTL.editor.gotoNext();
           }
         });
