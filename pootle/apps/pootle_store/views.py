@@ -789,6 +789,8 @@ def submit(request, unit):
                         type=SubmissionTypes.NORMAL,
                         old_value=old_value,
                         new_value=new_value,
+                        similarity=form.cleaned_data['similarity'],
+                        mt_similarity=form.cleaned_data['mt_similarity'],
                 )
                 sub.save()
                 #TODO:
@@ -860,8 +862,12 @@ def suggest(request, unit):
             #HACKISH: django 1.2 stupidly modifies instance on
             # model form validation, reload unit from db
             unit = Unit.objects.get(id=unit.id)
-            unit.add_suggestion(form.cleaned_data['target_f'],
-                                user=request.profile)
+            unit.add_suggestion(
+                form.cleaned_data['target_f'],
+                user=request.profile,
+                similarity=form.cleaned_data['similarity'],
+                mt_similarity=form.cleaned_data['mt_similarity'],
+            )
 
         rcode = 200
     else:

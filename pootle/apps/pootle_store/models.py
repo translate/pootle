@@ -992,7 +992,8 @@ class Unit(models.Model, base.TranslationUnit):
     def get_suggestions(self):
         return self.suggestion_set.pending().select_related('user').all()
 
-    def add_suggestion(self, translation, user=None, touch=True):
+    def add_suggestion(self, translation, user=None, touch=True,
+                       similarity=None, mt_similarity=None):
         if not filter(None, translation):
             return None
 
@@ -1015,6 +1016,8 @@ class Unit(models.Model, base.TranslationUnit):
                 store=self.store,
                 type=SubmissionTypes.SUGG_ADD,
                 suggestion=suggestion,
+                similarity=similarity,
+                mt_similarity=mt_similarity,
             )
             sub.save()
 
