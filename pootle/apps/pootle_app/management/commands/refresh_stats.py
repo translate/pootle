@@ -26,6 +26,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_store.caching import count_words
+from pootle_store.models import Suggestion
 from pootle_app.management.commands import PootleCommand
 
 
@@ -37,6 +38,9 @@ class Command(PootleCommand):
         store.total_wordcount = 0
         store.translated_wordcount = 0
         store.fuzzy_wordcount = 0
+
+        suggestions = Suggestion.objects.filter(unit__store=store, unit__state__gt=OBSOLETE)
+        store.suggestion_count = suggestions.count()
 
         for unit in store.units.all():
             wordcount = count_words(unit.source_f.strings)
