@@ -1002,7 +1002,8 @@ class Unit(models.Model, base.TranslationUnit):
         if user is None:
             user = User.objects.get_system_user().get_profile()
 
-        suggestion = Suggestion(unit=self, user=user, state=SuggestionStates.PENDING)
+        suggestion = Suggestion(unit=self, user=user,
+                                state=SuggestionStates.PENDING)
         suggestion.target = translation
         try:
             suggestion.save()
