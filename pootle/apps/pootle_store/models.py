@@ -195,13 +195,6 @@ def fix_monolingual(oldunit, newunit, monolingual=None):
         newunit.source = oldunit.source
 
 
-def stringcount(string):
-    try:
-        return len(string.strings)
-    except AttributeError:
-        return 1
-
-
 class UnitManager(RelatedManager):
     def get_for_path(self, pootle_path, profile, permission_code='view'):
         """Returns units that fall below the `pootle_path` umbrella.
@@ -573,6 +566,12 @@ class Unit(models.Model, base.TranslationUnit):
             translator/developer comments, locations, context, status...).
         """
         changed = False
+
+        def stringcount(string):
+            try:
+                return len(string.strings)
+            except AttributeError:
+                return 1
 
         if (self.source != unit.source or
             len(self.source.strings) != stringcount(unit.source) or
