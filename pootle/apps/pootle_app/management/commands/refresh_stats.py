@@ -33,6 +33,11 @@ from pootle_app.management.commands import PootleCommand
 class Command(PootleCommand):
     help = "Allow stats to be refreshed manually."
 
+    def handle_noargs(self, *args, **kwargs):
+        self._updated_tps = set()
+        super(Command, self).handle_noargs(*args, **kwargs)
+        self.update_translation_projects(self._updated_tps)
+
     def handle_store(self, store, **options):
         print("Processing %r" % (store))
         store.total_wordcount = 0
@@ -51,3 +56,16 @@ class Command(PootleCommand):
                 store.fuzzy_wordcount += wordcount
 
         store.save()
+        self._updated_tps.add(store.translation_project)
+
+    def update_translation_projects(self, tps):
+        def update(tp, col):
+            setattr(tp, col, sum(getattr(store, col) for store in tp.stores.iterator()))
+
+        print("Processing translation projects... (almost done!)")
+        for tp in tps:
+            update(tp, "total_wordcount")
+            update(tp, "translated_wordcount")
+            update(tp, "fuzzy_wordcount")
+            update(tp, "suggestion_count")
+            tp.save()
