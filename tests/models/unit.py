@@ -164,3 +164,33 @@ def test_update_comment(af_tutorial_po):
     po_file = factory.getobject(af_tutorial_po.file.path)
     assert db_unit.getnotes(origin='translator') == \
             po_file.units[db_unit.index].getnotes(origin='translator')
+
+
+@pytest.mark.django_db
+def test_add_suggestion(af_tutorial_po, system):
+    """Tests adding new suggestions to units."""
+    untranslated_unit = af_tutorial_po.getitem(0)
+    translated_unit = af_tutorial_po.getitem(1)
+    suggestion_text = 'foo bar baz'
+
+    # Empty suggestion is not recorded
+    sugg, added = untranslated_unit.add_suggestion('')
+    assert sugg is None
+    assert added == False
+
+    # Existing translation can't be added as a suggestion
+    sugg, added = translated_unit.add_suggestion(translated_unit.target)
+    assert sugg is None
+    assert added == False
+
+    # Add new suggestion
+    sugg, added = untranslated_unit.add_suggestion(suggestion_text)
+    assert sugg is not None
+    assert added == True
+    assert len(untranslated_unit.get_suggestions()) == 1
+
+    # Already-suggested text can't be suggested again
+    sugg, added = untranslated_unit.add_suggestion(suggestion_text)
+    assert sugg is not None
+    assert added == False
+    assert len(untranslated_unit.get_suggestions()) == 1

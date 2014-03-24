@@ -16,8 +16,12 @@ Release .next
 - The multiple Suggestion models have been merged into a single model.
   (`#163`_)
 
+- The same string can't be suggested more than once at the same time,
+  avoiding duplicated suggestions pending review. (`#159`_)
+
 .. _#151: https://github.com/evernote/pootle/issues/151
 .. _#155: https://github.com/evernote/pootle/issues/155
+.. _#159: https://github.com/evernote/pootle/issues/159
 .. _#163: https://github.com/evernote/pootle/issues/163
 
 - `Commit comparison wrt previous release

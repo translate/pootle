@@ -662,10 +662,14 @@
     var submit = $('.js-submit')[0],
         suggest = $('.js-suggest')[0],
         translations = $('.js-translation-area').get(),
+        suggestions = $('.js-user-suggestion').map(function () {
+            return $(this).data('translation-aid');
+          }).get(),
         checkbox = $('#id_state')[0],
         stateChanged = checkbox.defaultChecked !== checkbox.checked,
         areaChanged = false,
         needsReview = false,
+        suggestionExists = false,
         area, i;
 
     // Non-admin users are required to clear the fuzzy checkbox
@@ -678,12 +682,18 @@
       areaChanged = area.defaultValue !== area.value;
     }
 
+    if (suggestions.length) {
+      for (i=0; i<translations.length && !suggestionExists; i++) {
+        area = translations[i];
+        suggestionExists = suggestions.indexOf(area.value) !== -1;
+      }
+    }
 
     if (submit !== undefined) {
       submit.disabled = !(stateChanged || areaChanged) || needsReview;
     }
     if (suggest !== undefined) {
-      suggest.disabled = !areaChanged;
+      suggest.disabled = !areaChanged || suggestionExists;
     }
   },
 

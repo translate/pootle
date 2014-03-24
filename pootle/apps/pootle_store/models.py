@@ -994,20 +994,42 @@ class Unit(models.Model, base.TranslationUnit):
 
     def add_suggestion(self, translation, user=None, touch=True,
                        similarity=None, mt_similarity=None):
+        """Adds a new suggestion to the unit.
+
+        :param translation: suggested translation text
+        :param user: user who is making the suggestion. If it's ``None``,
+            the ``system`` user will be used.
+        :param touch: whether to update the unit's timestamp after adding
+            the suggestion or not.
+        :param similarity: human similarity for the new suggestion.
+        :param mt_similarity: MT similarity for the new suggestion.
+
+        :return: a tuple ``(suggestion, created)`` where ``created`` is a
+            boolean indicating if the suggestion was successfully added.
+            If the suggestion already exists it's returned as well.
+        """
         if not filter(None, translation):
-            return None
+            return (None, False)
 
         if translation == self.target:
-            return None
+            return (None, False)
 
         if user is None:
             user = User.objects.get_system_user().get_profile()
 
-        suggestion = Suggestion(unit=self, user=user,
-                                state=SuggestionStates.PENDING)
-        suggestion.target = translation
         try:
+            suggestion = Suggestion.objects.pending().get(
+                unit=self,
+                user=user,
+                target_f=translation,
+            )
+            return (suggestion, False)
+        except Suggestion.DoesNotExist:
+            suggestion = Suggestion(unit=self, user=user,
+                                    state=SuggestionStates.PENDING)
+            suggestion.target = translation
             suggestion.save()
+
             sub = Submission(
                 creation_time=timezone.now(),
                 translation_project=self.store.translation_project,
@@ -1025,11 +1047,8 @@ class Unit(models.Model, base.TranslationUnit):
                                          CachedMethods.LAST_ACTION)
             if touch:
                 self.save()
-        except:
-            # probably duplicate suggestion
-            return None
 
-        return suggestion
+        return (suggestion, True)
 
     def accept_suggestion(self, suggestion, translation_project, reviewer):
         old_state = self.state
