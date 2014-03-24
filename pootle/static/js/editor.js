@@ -1362,7 +1362,8 @@
           efn: 'PTL.editor.error'
         };
 
-    $.extend(reqData, PTL.editor.getReqData(), captchaCallbacks);
+    $.extend(reqData, PTL.editor.getReqData(), PTL.editor.getSimilarityData(),
+             captchaCallbacks);
 
     $.ajax({
       url: suggestUrl,
