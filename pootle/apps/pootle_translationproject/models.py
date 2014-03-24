@@ -336,6 +336,18 @@ class TranslationProject(models.Model, TreeItem):
     def get_children(self):
         return self.directory.get_children()
 
+    def get_total_wordcount(self):
+        return self.total_wordcount
+
+    def get_translated_wordcount(self):
+        return self.translated_wordcount
+
+    def get_fuzzy_wordcount(self):
+        return self.fuzzy_wordcount
+
+    def get_suggestion_count(self):
+        return self.suggestion_count
+
     def get_cachekey(self):
         return self.directory.pootle_path
 
