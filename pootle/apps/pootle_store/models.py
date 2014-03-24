@@ -396,7 +396,7 @@ class Unit(models.Model, base.TranslationUnit):
         elif self.state == TRANSLATED:
             self.store.flag_for_deletion(CachedMethods.TRANSLATED)
 
-        if self.suggestion_set.count() > 0:
+        if self.suggestion_set.pending().count() > 0:
             self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
 
         if self.get_qualitychecks().filter(false_positive=False):
