@@ -11,9 +11,14 @@ Release .next
 -------------
 
 - Translation similarities are calculated in the client and sent to the
-  server to calculate the user's score. (`#155`_)
+  server to calculate the user's score. (`#151`_, `#155`_)
 
+- The multiple Suggestion models have been merged into a single model.
+  (`#163`_)
+
+.. _#151: https://github.com/evernote/pootle/issues/151
 .. _#155: https://github.com/evernote/pootle/issues/155
+.. _#163: https://github.com/evernote/pootle/issues/163
 
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
