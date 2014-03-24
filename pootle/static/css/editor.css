@@ -1342,6 +1342,17 @@ a.editor-specialchar:hover
     color: #840;
 }
 
+.highlight-escape,
+.placeable
+{
+    /* Switch the next two lines to “unicode-bidi: isolate” once it is widely
+     * supported and let the browser determine the direction, instead of
+     * assuming that all placeables are left-to-right string.
+     */
+    direction: ltr;
+    unicode-bidi: embed;
+}
+
 .placeable:hover,
 .highlight-escape:hover,
 #js-selected-placeable
