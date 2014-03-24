@@ -304,7 +304,7 @@ def unit_form_factory(language, snplurals=None, request=None):
         def clean_similarity(self):
             value = self.cleaned_data['similarity']
 
-            if 0 <= value <= 1:
+            if 0 <= value <= 1 or value is None:
                 return value
 
             raise forms.ValidationError(
@@ -314,7 +314,7 @@ def unit_form_factory(language, snplurals=None, request=None):
         def clean_mt_similarity(self):
             value = self.cleaned_data['mt_similarity']
 
-            if 0 <= value <= 1:
+            if 0 <= value <= 1 or value is None:
                 return value
 
             raise forms.ValidationError(

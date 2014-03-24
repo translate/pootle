@@ -64,3 +64,51 @@ def test_submit_fuzzy(rf, admin, default, default_ps,
     user_form = _create_unit_form(request, language, unit)
     assert not user_form.is_valid()
     assert 'state' in user_form.errors
+
+
+def test_submit_similarity(rf, default, default_ps, afrikaans, af_tutorial_po):
+    """Tests that similarities are within a particular range."""
+    language = afrikaans
+    unit = af_tutorial_po.getitem(0)
+    directory = unit.store.parent
+    post_dict = {
+        'id': unit.id,
+        'index': unit.index,
+        'source_f_0': unit.source_f,
+        'target_f_0': unit.target_f,
+    }
+
+    # Similarity should be optional
+    request = _create_post_request(rf, directory, data=post_dict, user=default)
+    form = _create_unit_form(request, language, unit)
+    assert form.is_valid()
+
+    # Similarities, if passed, should be in the [0..1] range
+    post_dict.update({
+        'similarity': 9999,
+        'mt_similarity': 'foo bar',
+    })
+    request = _create_post_request(rf, directory, data=post_dict, user=default)
+    form = _create_unit_form(request, language, unit)
+    assert not form.is_valid()
+
+    post_dict.update({
+        'similarity': 1,
+    })
+    request = _create_post_request(rf, directory, data=post_dict, user=default)
+    form = _create_unit_form(request, language, unit)
+    assert not form.is_valid()
+
+    post_dict.update({
+        'mt_similarity': 2,
+    })
+    request = _create_post_request(rf, directory, data=post_dict, user=default)
+    form = _create_unit_form(request, language, unit)
+    assert not form.is_valid()
+
+    post_dict.update({
+        'mt_similarity': 0.69,
+    })
+    request = _create_post_request(rf, directory, data=post_dict, user=default)
+    form = _create_unit_form(request, language, unit)
+    assert form.is_valid()
