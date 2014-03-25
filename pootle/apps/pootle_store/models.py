@@ -144,13 +144,10 @@ class Suggestion(models.Model, base.TranslationUnit):
     state = models.CharField(max_length=16, default=SuggestionStates.PENDING,
                              null=False, choices=state_choices, db_index=True)
 
-    creation_time = models.DateTimeField(db_index=True, null=True, auto_now_add=True)
+    creation_time = models.DateTimeField(db_index=True, null=True)
     review_time = models.DateTimeField(null=True, db_index=True)
 
     objects = SuggestionManager()
-
-    class Meta:
-        unique_together = ('unit', 'target_hash')
 
     def natural_key(self):
         return (self.target_hash, self.unit.unitid_hash,
@@ -1025,13 +1022,17 @@ class Unit(models.Model, base.TranslationUnit):
             )
             return (suggestion, False)
         except Suggestion.DoesNotExist:
-            suggestion = Suggestion(unit=self, user=user,
-                                    state=SuggestionStates.PENDING)
+            suggestion = Suggestion(
+                unit=self,
+                user=user,
+                state=SuggestionStates.PENDING,
+                creation_time=timezone.now(),
+            )
             suggestion.target = translation
             suggestion.save()
 
             sub = Submission(
-                creation_time=timezone.now(),
+                creation_time=suggestion.creation_time,
                 translation_project=self.store.translation_project,
                 submitter=user,
                 unit=self,

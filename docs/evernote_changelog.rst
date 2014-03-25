@@ -17,12 +17,13 @@ Release .next
   (`#163`_)
 
 - The same string can't be suggested more than once at the same time,
-  avoiding duplicated suggestions pending review. (`#159`_)
+  avoiding duplicated suggestions pending review. (`#159`_, `#168`_)
 
 .. _#151: https://github.com/evernote/pootle/issues/151
 .. _#155: https://github.com/evernote/pootle/issues/155
 .. _#159: https://github.com/evernote/pootle/issues/159
 .. _#163: https://github.com/evernote/pootle/issues/163
+.. _#168: https://github.com/evernote/pootle/issues/168
 
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_

@@ -194,3 +194,13 @@ def test_add_suggestion(af_tutorial_po, system):
     assert sugg is not None
     assert added == False
     assert len(untranslated_unit.get_suggestions()) == 1
+
+    # Removing a suggestion should allow suggesting the same text again
+    tp = untranslated_unit.store.translation_project
+    untranslated_unit.reject_suggestion(sugg, tp, system.get_profile())
+    assert len(untranslated_unit.get_suggestions()) == 0
+
+    sugg, added = untranslated_unit.add_suggestion(suggestion_text)
+    assert sugg is not None
+    assert added == True
+    assert len(untranslated_unit.get_suggestions()) == 1
