@@ -110,6 +110,7 @@ def unit_update_cache(unit):
 
         unit.store.save()
 
+    if unit._target_updated:
         unit.target_length = len(unit.target_f)
         if filter(None, unit.target_f.strings):
             if unit.state == UNTRANSLATED:
