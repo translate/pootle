@@ -395,6 +395,12 @@ html[dir="rtl"] #nav-access
 #navbar
 {
     background: #222;
+    line-height: 50px;
+}
+
+#navbar > *
+{
+    vertical-align: middle;
 }
 
 #navbar a
@@ -416,7 +422,6 @@ html[dir="rtl"] #nav-access
     padding: 0;
     display: inline-block;
     font-size: 18px;
-    line-height: 50px;
     padding: 0 16px;
 }
 
@@ -445,7 +450,6 @@ html[dir="rtl"] #nav-access
 {
     display: inline-block;
     font-size: 13px;
-    line-height: 50px;
     float: right;
 }
 
@@ -488,7 +492,6 @@ html[dir="rtl"] .parent-site .divider
 {
     font-size: 12px;
     font-weight: bold;
-    line-height: 50px;
     float: right;
     margin-left: 20px;
     margin-right: 20px;
@@ -525,7 +528,6 @@ html[dir="rtl"] #zoom
 
 #nav-main
 {
-    line-height: 50px;
     float: right;
 }
 
@@ -544,24 +546,16 @@ html[dir="rtl"] #nav-main li
     float: right;
 }
 
-#nav-main li a
-{
-    display: block;
-    font-size: 12px;
-    padding: 12px;
-    color: rgba(255, 255, 255, 0.9);
-}
-
 #nav-main li a,
 #nav-main li a:hover,
 #nav-main li a:active
 {
-    line-height: 2em;
+    color: rgba(255, 255, 255, 0.9);
     display: inline-block;
     margin-left: 0.5em;
     text-decoration: none;
     border-radius: 3px;
-    padding: 0.5em 1em;
+    padding: 0 1em;
     font-size: 1.1em;
 }
 
@@ -590,7 +584,8 @@ html[dir="rtl"] #nav-main li
     display: inline-block;
     width: 24px;
     height: 24px;
-    margin: -4px 8px -8px 0;
+    margin: 0 8px;
+    vertical-align: middle;
     border: 2px solid white;
     border-radius: 3px;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);

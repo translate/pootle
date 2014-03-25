@@ -148,45 +148,43 @@
       </div>
 
       <div id="navbar">
-        <div id="navbar-inner">
-          {% block navbar %}
-          <div id="nav-access">
-            <a href="#nav-main">{% trans 'skip to navigation' %}</a>
-          </div>
-          <h1 class="brand"><a href="/"><img class="logo" src="{{ "images/logo.png"|s }}" /> EVERNOTE <span class="site-title">{{ settings.TITLE }}</span></a></h1>
-          <div class="parent-site">
-            <div class="divider">&nbsp;</div>
-            <a href="//evernote.com">evernote.com</a>
-          </div>
-          <div id="zoom">
-            <a id="js-zoom-out" href="#"
-               title="{% trans "Zoom out (Ctrl+Shift+-)" %}">&ndash;</a>
-            <a id="js-zoom-reset" href="#"
-               title="{% trans "Reset zoom (Ctrl+Shift+0)" %}">T</a>
-            <a id="js-zoom-in" href="#"
-               title="{% trans "Zoom in (Ctrl+Shift++)" %}">+</a>
-          </div>
-          <ul id="nav-main">
-            <li><a href="{% staticpage_url 'getting-started' %}">{% trans "Getting Started" %}</a></li>
-            <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
-            {% if user.is_authenticated %}
-            <li id="user">
-              <a href="{{ user.get_profile.get_absolute_url }}">
-              <img src="{{ user.get_profile|gravatar:20 }}" />{{ user.username }}</a>
-            </li>
-            {% endif %}
-            {% if user.is_superuser %}
-            <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans "Admin" %}</a></li>
-            {% endif %}
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'pootle-profile-logout' %}">{% trans "Sign Out" %}</a></li>
-            {% else %}
-            <li><a id="js-login" href="{% url 'pootle-profile-login' %}{{ request|get_next }}"><span class="btn btn-success">{% trans "Sign In" %}</span></a></li>
-            {% endif %}
-          </ul>
-          {% block navbar_extra %}{% endblock %}
-          {% endblock %}
+        {% block navbar %}
+        <div id="nav-access">
+          <a href="#nav-main">{% trans 'skip to navigation' %}</a>
         </div>
+        <h1 class="brand"><a href="/"><img class="logo" src="{{ "images/logo.png"|s }}" /> EVERNOTE <span class="site-title">{{ settings.TITLE }}</span></a></h1>
+        <div class="parent-site">
+          <div class="divider">&nbsp;</div>
+          <a href="//evernote.com">evernote.com</a>
+        </div>
+        <div id="zoom">
+          <a id="js-zoom-out" href="#"
+             title="{% trans "Zoom out (Ctrl+Shift+-)" %}">&ndash;</a>
+          <a id="js-zoom-reset" href="#"
+             title="{% trans "Reset zoom (Ctrl+Shift+0)" %}">T</a>
+          <a id="js-zoom-in" href="#"
+             title="{% trans "Zoom in (Ctrl+Shift++)" %}">+</a>
+        </div>
+        <ul id="nav-main">
+          <li><a href="{% staticpage_url 'getting-started' %}">{% trans "Getting Started" %}</a></li>
+          <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
+          {% if user.is_authenticated %}
+          <li id="user">
+            <a href="{{ user.get_profile.get_absolute_url }}">
+            <img src="{{ user.get_profile|gravatar:20 }}" />{{ user.username }}</a>
+          </li>
+          {% endif %}
+          {% if user.is_superuser %}
+          <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans "Admin" %}</a></li>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'pootle-profile-logout' %}">{% trans "Sign Out" %}</a></li>
+          {% else %}
+          <li><a id="js-login" href="{% url 'pootle-profile-login' %}{{ request|get_next }}"><span class="btn btn-success">{% trans "Sign In" %}</span></a></li>
+          {% endif %}
+        </ul>
+        {% block navbar_extra %}{% endblock %}
+        {% endblock %}
       </div>
 
     {% block header_block %}
