@@ -1070,8 +1070,6 @@ class Unit(models.Model, base.TranslationUnit):
         # Update timestamp
         self.save()
 
-        self.save()
-
         suggestion.state = SuggestionStates.ACCEPTED
         suggestion.reviewer = reviewer
         suggestion.review_time = self.submitted_on
