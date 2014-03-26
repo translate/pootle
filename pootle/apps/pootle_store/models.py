@@ -1456,8 +1456,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         """make sure quality checks are run"""
         if self.state < CHECKED:
             self.update_qualitychecks()
-            # new qualitychecks, let's flush cache
-            deletefromcache(self, ["getcompletestats"])
 
     @commit_on_success
     def update_qualitychecks(self):
