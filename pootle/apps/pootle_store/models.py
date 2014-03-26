@@ -324,6 +324,7 @@ class Unit(models.Model, base.TranslationUnit):
     mtime = models.DateTimeField(auto_now=True, auto_now_add=True,
                                  db_index=True, editable=False)
 
+    # unit translator
     submitted_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
             db_index=True, related_name='submitted')
     submitted_on = models.DateTimeField(auto_now_add=True, db_index=True,
@@ -1150,10 +1151,11 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             self._save_action = UNMUTE_QUALITYCHECK
 
-        # create submission
-        self.submitted_on = timezone.now()
-        self.submitted_by = user
+        # update timestamp
+        # log user action
         self.save()
+
+        # create submission
         if false_positive:
             sub_type = SubmissionTypes.MUTE_CHECK
         else:
