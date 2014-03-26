@@ -113,9 +113,9 @@ def unit_updated(sender, instance, raw=False, **kwargs):
             return
 
         store = instance.store
-        total = store.get_total_wordcount()
-        translated = store.get_translated_wordcount()
-        fuzzy = store.get_fuzzy_wordcount()
+        total = store.total_wordcount
+        translated = store.translated_wordcount
+        fuzzy = store.fuzzy_wordcount
 
         if total - translated == 1:
             # By the end of this we will be 100%.
@@ -126,9 +126,9 @@ def unit_updated(sender, instance, raw=False, **kwargs):
             }
             message = ('<a href="%(url)s">%(store)s</a> fully translated</a>'
                        '<br />' % args)
-            tp_total = tp.get_total_wordcount()
-            tp_translated = tp.get_translated_wordcount() + 1
-            tp_fuzzy = tp.get_fuzzy_wordcount() - 1 if dbcopy.isfuzzy() else 0
+            tp_total = tp.total_wordcount
+            tp_translated = tp.translated_wordcount + 1
+            tp_fuzzy = tp.fuzzy_wordcount - 1 if dbcopy.isfuzzy() else 0
 
             message += stats_message_raw("Project now at", tp_total,
                                          tp_translated, tp_fuzzy)
