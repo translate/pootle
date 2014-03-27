@@ -54,12 +54,10 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 from pootle_store.fields import (TranslationStoreField, MultiStringField,
                                  PLURAL_PLACEHOLDER, SEPARATOR)
 from pootle_store.filetypes import factory_classes, is_monolingual
-from pootle_store.util import (calc_total_wordcount, calc_translated_wordcount,
-                               calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED,
-                               FUZZY, TRANSLATED)
+from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from pootle_tagging.models import ItemWithGoal
 
-from .caching import unit_update_cache
+from .caching import unit_delete_cache, unit_update_cache
 from .signals import translation_submitted
 
 
@@ -154,6 +152,16 @@ class Suggestion(models.Model, base.TranslationUnit):
             string = self.target_f
         self.target_hash = md5(string.encode("utf-8")).hexdigest()
 
+    def save(self, *args, **kwargs):
+        self.unit.store.suggestion_count += 1
+        self.unit.store.save()
+        super(Suggestion, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.unit.store.suggestion_count -= 1
+        self.unit.store.save()
+        super(Suggestion, self).delete(*args, **kwargs)
+
 
 ################################ Signal handlers ##############################
 
@@ -185,13 +193,6 @@ def fix_monolingual(oldunit, newunit, monolingual=None):
     if monolingual and newunit.source != oldunit.source:
         newunit.target = newunit.source
         newunit.source = oldunit.source
-
-
-def stringcount(string):
-    try:
-        return len(string.strings)
-    except AttributeError:
-        return 1
 
 
 class UnitManager(RelatedManager):
@@ -406,29 +407,8 @@ class Unit(models.Model, base.TranslationUnit):
         self._target_updated = False
         self._encoding = 'UTF-8'
 
-    def flag_store_before_going_away(self):
-        self.store.flag_for_deletion(CachedMethods.TOTAL,
-                                     CachedMethods.LAST_UPDATED)
-
-        if self.state == FUZZY:
-            self.store.flag_for_deletion(CachedMethods.FUZZY)
-        elif self.state == TRANSLATED:
-            self.store.flag_for_deletion(CachedMethods.TRANSLATED)
-
-        if self.suggestion_set.count() > 0:
-            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
-
-        if self.get_qualitychecks():
-            self.store.flag_for_deletion(CachedMethods.CHECKS)
-
-        # Check if unit currently being deleted is the one referenced in
-        # last_action
-        la = get_cached_value(self.store, 'get_last_action')
-        if not la or not 'id' in la or la['id'] == self.id:
-            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
-
     def delete(self, *args, **kwargs):
-        self.flag_store_before_going_away()
+        unit_delete_cache(self)
 
         super(Unit, self).delete(*args, **kwargs)
 
@@ -586,6 +566,12 @@ class Unit(models.Model, base.TranslationUnit):
             translator/developer comments, locations, context, status...).
         """
         changed = False
+
+        def stringcount(string):
+            try:
+                return len(string.strings)
+            except AttributeError:
+                return 1
 
         if (self.source != unit.source or
             len(self.source.strings) != stringcount(unit.source) or
@@ -800,8 +786,8 @@ class Unit(models.Model, base.TranslationUnit):
 
     def makeobsolete(self):
         if self.state > OBSOLETE:
-            # when Unit becomes obsolete the cache flags should be updated
-            self.flag_store_before_going_away()
+            # when Unit becomes obsolete the cache should be updated
+            unit_delete_cache(self)
 
             self.state = OBSOLETE
 
@@ -1042,6 +1028,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             through=ItemWithGoal,
                             help_text=_("A comma-separated list of goals."))
 
+    # Cached Unit values
+    total_wordcount = models.PositiveIntegerField(default=0, null=True)
+    translated_wordcount = models.PositiveIntegerField(default=0, null=True)
+    fuzzy_wordcount = models.PositiveIntegerField(default=0, null=True)
+    suggestion_count = models.PositiveIntegerField(default=0, null=True)
+
     UnitClass = Unit
     Name = "Model Store"
     is_dir = False
@@ -1155,13 +1147,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 unit.save()
         if self.state >= PARSED:
             self.update_cache()
-
-    def delete(self, *args, **kwargs):
-        all_cache_methods = CachedMethods.get_all()
-        self.flag_for_deletion(*all_cache_methods)
-        self.update_cache()
-
-        super(Store, self).delete(*args, **kwargs)
 
     def get_absolute_url(self):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
@@ -1471,8 +1456,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         """make sure quality checks are run"""
         if self.state < CHECKED:
             self.update_qualitychecks()
-            # new qualitychecks, let's flush cache
-            deletefromcache(self, ["getcompletestats"])
 
     @commit_on_success
     def update_qualitychecks(self):
@@ -1702,17 +1685,17 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def get_cachekey(self):
         return self.pootle_path
 
-    def _get_total_wordcount(self):
-        """calculate total wordcount statistics"""
-        return calc_total_wordcount(self.units)
+    def get_total_wordcount(self):
+        return self.total_wordcount
 
-    def _get_translated_wordcount(self):
-        """calculate translated units statistics"""
-        return calc_translated_wordcount(self.units)
+    def get_translated_wordcount(self):
+        return self.translated_wordcount
 
-    def _get_fuzzy_wordcount(self):
-        """calculate untranslated units statistics"""
-        return calc_fuzzy_wordcount(self.units)
+    def get_fuzzy_wordcount(self):
+        return self.fuzzy_wordcount
+
+    def get_suggestion_count(self):
+        return self.suggestion_count
 
     def _get_checks(self):
         try:
@@ -1753,11 +1736,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             'mtime': int(time.mktime(sub.creation_time.timetuple())),
             'snippet': sub.get_submission_message()
         }
-
-    def _get_suggestion_count(self):
-        """Check if any unit in the store has suggestions"""
-        return Suggestion.objects.filter(unit__store=self,
-                                         unit__state__gt=OBSOLETE).count()
 
     def _get_path_summary(self):
         from pootle_misc.stats import get_path_summary

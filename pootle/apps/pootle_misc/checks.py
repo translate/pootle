@@ -126,7 +126,7 @@ def get_qualitychecks_by_category(category):
 def get_quality_check_failures(path_obj):
     """Returns a list of the failed checks sorted by their importance.
 
-    :param path_obj: An object which has the ``getcompletestats`` method.
+    :param path_obj: A TreeItem instance.
     """
     checks = []
 
