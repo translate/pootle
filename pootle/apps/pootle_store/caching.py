@@ -50,6 +50,7 @@ def unit_delete_cache(unit):
 
 def unit_update_cache(unit):
     """
+    Update the Store (and related) cache columns when a Unit is modified
     Triggered on unit.save() before anything is saved
     """
 
@@ -110,6 +111,7 @@ def unit_update_cache(unit):
 
         unit.store.save()
 
+    # Update the unit state
     if unit._target_updated:
         unit.target_length = len(unit.target_f)
         if filter(None, unit.target_f.strings):
