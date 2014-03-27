@@ -32,6 +32,12 @@ from pootle_misc.checks import check_names
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
+EDIT_COEF = 5/7
+REVIEW_COEF = 2/7
+SUGG_COEF = 0.2
+ANALYZE_COEF = 0.1
+
+
 #: These are the values for the 'type' field of Submission
 class SubmissionTypes(object):
     # None/0 = no information
@@ -236,3 +242,182 @@ class Submission(models.Model):
             '  </time>'
             '</div>'
             % action_bundle)
+
+    def save(self, *args, **kwargs):
+        super(Submission, self).save(*args, **kwargs)
+
+        ScoreLog.record_submission(submission=self)
+
+
+class TranslationActionCodes(object):
+    NEW = 0  # 'TA' unit translated
+    EDITED = 1  # 'TE' unit edited after someone else
+    EDITED_OWN = 2  # 'TX' unit edited after themselves
+    DELETED = 3  # 'TD' translation deleted by admin
+    REVIEWED = 4  # 'R' translation reviewed
+    MARKED_FUZZY = 5  # 'TF' translation’s fuzzy flag is set by admin
+    EDIT_PENALTY = 6  # 'XE' translation penalty [when translation deleted]
+    REVIEW_PENALTY = 7  # 'XR' translation penalty [when review canceled]
+    SUGG_ADDED = 8  # 'S' suggestion added
+    SUGG_ACCEPTED = 9  # 'SA' suggestion accepted (counted towards the suggestion author)
+    SUGG_REJECTED = 10  # 'SR' suggestion rejected (counted towards the suggestion author)
+    SUGG_REVIEWED_ACCEPTED = 11  # 'RA' suggestion accepted (counted towards the reviewer)
+    SUGG_REVIEWED_REJECTED = 12  # 'RR' suggestion rejected (counted towards the reviewer)
+
+    NAMES_MAP = {
+        NEW: 'TA',
+        EDITED: 'TE',
+        EDITED_OWN: 'TX',
+        DELETED: 'TD',
+        REVIEWED: 'R',
+        EDIT_PENALTY: 'XE',
+        REVIEW_PENALTY: 'XR',
+        MARKED_FUZZY: 'TF',
+        SUGG_ADDED: 'S',
+        SUGG_ACCEPTED: 'SA',
+        SUGG_REJECTED: 'SR',
+        SUGG_REVIEWED_ACCEPTED: 'RA',
+        SUGG_REVIEWED_REJECTED: 'RR',
+    }
+
+
+class ScoreLog(models.Model):
+    creation_time = models.DateTimeField(db_index=True, null=False)
+    user = models.ForeignKey('pootle_profile.PootleProfile', null=False)
+    # current user’s rate
+    rate = models.FloatField(null=False, default=0)
+    # number of words in the original source string
+    wordcount = models.PositiveIntegerField(null=False)
+    # the reported similarity ratio
+    similarity = models.FloatField(null=False)
+    # the final calculated score delta for the action
+    score_delta = models.FloatField(null=False)
+    action_code = models.IntegerField(null=False)
+    submission = models.ForeignKey(Submission, null=False)
+
+    @classmethod
+    def record_submission(cls, submission):
+        """Records a new log entry for ``submission``."""
+
+        # Changing from untranslated state won't record a score change
+        if (submission.field == SubmissionFields.STATE and
+            int(submission.old_value) == UNTRANSLATED):
+            return
+
+        if (not submission.similarity is None or
+            not submission.mt_similarity is None):
+            similarity = max(submission.similarity, submission.mt_similarity)
+        else:
+            similarity = 0
+
+        score_dict = {
+            'creation_time': submission.creation_time,
+            'wordcount': submission.unit.source_wordcount,
+            'similarity': similarity,
+            'submission': submission,
+        }
+
+        translator = submission.unit.submitted_by
+        if submission.unit.reviewed_by:
+            reviewer = submission.unit.reviewed_by
+        else:
+            reviewer = translator
+
+        translator_score = score_dict.copy()
+        translator_score['user'] = translator
+        reviewer_score = score_dict.copy()
+        reviewer_score['user'] = reviewer
+        submitter_score = score_dict.copy()
+        submitter_score['user'] = submission.submitter
+
+        if submission.field == SubmissionFields.TARGET:
+            if submission.old_value == '' and submission.new_value != '':
+                submitter_score['action_code'] = TranslationActionCodes.NEW
+            else:
+                if submission.new_value == '':
+                    submitter_score['action_code'] = \
+                        TranslationActionCodes.DELETED
+
+                    translator_score['action_code'] = \
+                        TranslationActionCodes.EDIT_PENALTY
+
+                    reviewer_score['action_code'] = \
+                        TranslationActionCodes.REVIEW_PENALTY
+                else:
+                    if submission.submitter.id == reviewer.id:
+                        submitter_score['action_code'] = \
+                            TranslationActionCodes.EDITED_OWN
+                    else:
+                        submitter_score['action_code'] = \
+                            TranslationActionCodes.EDITED
+
+                        reviewer_score['action_code'] = \
+                            TranslationActionCodes.REVIEW_PENALTY
+
+        elif submission.field == SubmissionFields.STATE:
+            if (int(submission.old_value) == FUZZY and
+                int(submission.new_value) == TRANSLATED):
+                submitter_score['action_code'] = TranslationActionCodes.REVIEWED
+
+            elif (int(submission.old_value) == TRANSLATED and
+                  int(submission.new_value) == FUZZY):
+                submitter_score['action_code'] = \
+                    TranslationActionCodes.MARKED_FUZZY
+                reviewer_score['action_code'] = \
+                    TranslationActionCodes.REVIEW_PENALTY
+
+        elif submission.type == SubmissionTypes.SUGG_ADD:
+            submitter_score['action_code'] = TranslationActionCodes.SUGG_ADDED
+
+        elif submission.type == SubmissionTypes.SUGG_ACCEPT:
+            submitter_score['action_code'] = \
+                TranslationActionCodes.SUGG_REVIEWED_ACCEPTED
+
+            translator_score['action_code'] = TranslationActionCodes.SUGG_ACCEPTED
+            translator_score['user'] = submission.suggestion.user
+
+        elif submission.type == SubmissionTypes.SUGG_REJECT:
+            submitter_score['action_code'] = \
+                TranslationActionCodes.SUGG_REVIEWED_REJECTED
+
+            translator_score['action_code'] = TranslationActionCodes.SUGG_REJECTED
+            translator_score['user'] = submission.suggestion.user
+
+        for score in [submitter_score, translator_score, reviewer_score]:
+            if hasattr(score, 'action_code'):
+               ScoreLog.objects.create(**score)
+
+    def save(self, *args, **kwargs):
+        # copy current user rate
+        self.rate = self.user.rate
+
+        self.score_delta = self.get_delta()
+
+        super(ScoreLog, self).save(*args, **kwargs)
+
+    def get_delta(self):
+        ns = self.wordcount
+        s = self.similarity
+        rawTranslationCost = ns * EDIT_COEF * (1 - s)
+        reviewCost = ns * REVIEW_COEF
+        analyzeCost = ns * ANALYZE_COEF
+
+        res = {
+            TranslationActionCodes.NEW: rawTranslationCost + reviewCost,
+            TranslationActionCodes.EDITED: rawTranslationCost + reviewCost,
+            TranslationActionCodes.EDITED_OWN: rawTranslationCost,
+            TranslationActionCodes.REVIEWED: reviewCost,
+            TranslationActionCodes.EDIT_PENALTY: (-1) * rawTranslationCost,
+            TranslationActionCodes.MARKED_FUZZY: 0,
+            TranslationActionCodes.DELETED: 0,
+            TranslationActionCodes.REVIEW_PENALTY: (-1) * reviewCost,
+            TranslationActionCodes.SUGG_ADDED: rawTranslationCost * SUGG_COEF,
+            TranslationActionCodes.SUGG_ACCEPTED: rawTranslationCost * (1 - SUGG_COEF),
+            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: reviewCost,
+            TranslationActionCodes.SUGG_REJECTED: (-1) *
+                                                  (rawTranslationCost * SUGG_COEF +
+                                                   analyzeCost),
+            TranslationActionCodes.SUGG_REVIEWED_REJECTED: analyzeCost,
+        }.get(self.action_code, 0)
+
+        return res

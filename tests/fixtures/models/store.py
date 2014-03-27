@@ -76,7 +76,7 @@ def po_directory(request):
 
 
 @pytest.fixture
-def af_tutorial_po(settings, afrikaans_tutorial, revision):
+def af_tutorial_po(settings, afrikaans_tutorial, revision, system):
     """Require the /af/tutorial/tutorial.po store."""
     po_directory = settings.PODIRECTORY
     return _require_store(afrikaans_tutorial, po_directory, 'tutorial.po')

@@ -23,6 +23,9 @@ import pytest
 
 from translate.storage import factory
 
+from django.contrib.auth.models import User
+from django.utils import timezone
+
 
 def _update_translation(store, item, new_values):
     unit = store.getitem(item)
@@ -36,6 +39,8 @@ def _update_translation(store, item, new_values):
     if 'translator_comment' in new_values:
         unit.translator_comment = new_values['translator_comment']
 
+    unit.submitted_on = timezone.now()
+    unit.submitted_by = User.objects.get_system_user().get_profile()
     unit.save()
     store.sync()
 
