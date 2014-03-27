@@ -121,13 +121,15 @@ refresh_stats
 
 This command will go through all existing projects making sure calculated data
 is up to date. Running ``refresh_stats`` immediately after an install, upgrade
-or after adding a large number of files will make Pootle feel faster as it will
-require less on-demand calculation of expensive statistics.
+or after adding a large number of files will ensure statistics, such as word
+and suggestion counts, are up to date. On large installations, refresh_stats
+can take several tens of minutes to fully run through all projects.
 
 ``refresh_stats`` will flush existing caches and update the statistics cache.
 
 When the ``--calculate-checks`` option is set, quality checks will be
-recalculated for all existing units in the database.
+recalculated for all existing units in the database. This is a very expensive
+operation.
 
 
 .. _commands#sync_stores:
@@ -587,7 +589,7 @@ collectstatic
 ^^^^^^^^^^^^^
 
 Running the Django admin :djadmin:`django:collectstatic` command finds
-and extracts static content such as images, CSS and JavaScript files used by 
+and extracts static content such as images, CSS and JavaScript files used by
 the Pootle server, so that they can be served separately from a static
 webserver.  Typically, this is run with the :option:`--clear`
 :option:`--noinput` options, to flush any existing static data and use default
