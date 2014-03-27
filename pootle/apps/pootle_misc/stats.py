@@ -46,8 +46,12 @@ def get_translate_actions(path_obj):
                     u'<br /><a class="continue-translation" href="%(url)s">' % {
                             'url': goal_url,
                         },
-                    ungettext(u'Next most important goal: <span class="counter">%(num)d word left</span>',
-                              u'Next most important goal: <span class="counter">%(num)d words left</span>',
+                    ungettext(u'<span class="caption">Next most important '
+                              u'goal:</span> <span class="counter">%(num)d '
+                              u'word left</span>',
+                              u'<span class="caption">Next most important '
+                              u'goal:</span> <span class="counter">%(num)d '
+                              u'words left</span>',
                               goal_words,
                               {'num': goal_words, }),
                 ])
