@@ -45,3 +45,10 @@ def _require_project(code, name, source_language, **kwargs):
 def tutorial(projects, english):
     """Require `tutorial` test project."""
     return _require_project('tutorial', 'Tutorial', english)
+
+
+@pytest.fixture
+def tutorial_disabled(projects, english):
+    """Require `tutorial-disabled` test project in a disabled state."""
+    return _require_project('tutorial-disabled', 'Tutorial', english,
+                            disabled=True)
