@@ -173,7 +173,7 @@
               <time class="js-relative-date"
                 title="{{ unit.submitted_on|dateformat }}"
                 datetime="{{ unit.submitted_on.isoformat }}">&nbsp;</time>
-              {% with reviewer=unit.get_reviewer %}
+              {% with reviewer=unit.reviewed_by %}
               {% if reviewer %}
               <br>
               <span>({% blocktrans with profile_url=reviewer.get_absolute_url%}reviewed by <a href="{{ profile_url }}">{{ reviewer }}</a>{% endblocktrans %})</span>

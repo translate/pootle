@@ -209,7 +209,8 @@ def unit_form_factory(language, snplurals=None, request=None):
         class Meta:
             model = Unit
             exclude = ['store', 'developer_comment', 'translator_comment',
-                       'submitted_by', 'commented_by']
+                       'submitted_by', 'submitted_on', 'commented_by',
+                       'commented_on', 'reviewed_by', 'reviewed_on']
 
         id = forms.IntegerField(required=False)
         source_f = MultiStringFormField(nplurals=snplurals or 1,

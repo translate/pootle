@@ -327,13 +327,17 @@ class Unit(models.Model, base.TranslationUnit):
     # unit translator
     submitted_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
             db_index=True, related_name='submitted')
-    submitted_on = models.DateTimeField(auto_now_add=True, db_index=True,
-            null=True)
+    submitted_on = models.DateTimeField(db_index=True, null=True)
 
     commented_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
             db_index=True, related_name='commented')
-    commented_on = models.DateTimeField(auto_now_add=True, db_index=True,
-            null=True)
+    commented_on = models.DateTimeField(db_index=True, null=True)
+
+    # reviewer: who has accepted suggestion or removed FUZZY
+    # None if translation has been submitted by approved translator
+    reviewed_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
+            db_index=True, related_name='reviewed')
+    reviewed_on = models.DateTimeField(db_index=True, null=True)
 
     objects = UnitManager()
 
@@ -423,7 +427,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     def save(self, *args, **kwargs):
         if not hasattr(self, '_log_user'):
-            self._log_user = 'system'
+            self._log_user = User.objects.get_system_user().get_profile()
 
         if not self.id:
             self._save_action = UNIT_ADDED
@@ -473,6 +477,19 @@ class Unit(models.Model, base.TranslationUnit):
                 translation=self.target_f,
                 path=self.store.pootle_path
             )
+
+        if (self._state_updated and self.state == TRANSLATED and
+            self._save_action == TRANSLATION_CHANGED and
+            not self._target_updated):
+            # set reviewer data if FUZZY has been removed only and
+            # translation hasn't been updated
+            self.reviewed_on = timezone.now()
+            self.reviewed_by = self._log_user
+        elif self._target_updated or self.state == FUZZY:
+            # clear reviewer data if translation has been changed or
+            # FUZZY has been set
+            self.reviewed_on = None
+            self.reviewed_by = None
 
         super(Unit, self).save(*args, **kwargs)
 
@@ -775,29 +792,6 @@ class Unit(models.Model, base.TranslationUnit):
     def get_active_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
 
-    # FIXME: This is a hackish implementation needed due to the underlying
-    # lame model definitions
-    def get_reviewer(self):
-        """Retrieve reviewer information for the current unit.
-
-        :return: In case the current unit's status is an effect of accepting a
-            suggestion, the reviewer profile is returned.
-            Otherwise, returns ``None``, indicating that the current unit's
-            status is an effect of any other actions.
-        """
-        if self.submission_set.count():
-            # Find the latest submission changing either the target or the
-            # unit's state and return the reviewer attached to it in case the
-            # submission type was accepting a suggestion
-            last_submission = self.submission_set.filter(
-                    field__in=[SubmissionFields.TARGET, SubmissionFields.STATE]
-                ).latest()
-            if last_submission.type == SubmissionTypes.SUGG_ACCEPT:
-                return getattr(last_submission.suggestion, 'reviewer',
-                               None)
-
-        return None
-
 ##################### TranslationUnit ############################
 
     def getnotes(self, origin=None):
@@ -1064,6 +1058,8 @@ class Unit(models.Model, base.TranslationUnit):
 
         self.submitted_by = suggestion_user
         self.submitted_on = timezone.now()
+        self.reviewed_by = reviewer
+        self.reviewed_on = self.submitted_on
 
         self._log_user = reviewer
         self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
