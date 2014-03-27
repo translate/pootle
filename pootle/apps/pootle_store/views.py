@@ -832,6 +832,7 @@ def submit(request, unit):
                 json['checks'] = template.render(context)
 
         rcode = 200
+        json['user_score'] = request.profile.public_score
     else:
         # Form failed
         #FIXME: we should display validation errors here
@@ -876,12 +877,15 @@ def suggest(request, unit):
                 mt_similarity=form.cleaned_data['mt_similarity'],
             )
 
+            json['user_score'] = request.profile.public_score
+
         rcode = 200
     else:
         # Form failed
         #FIXME: we should display validation errors here
         rcode = 400
         json["msg"] = _("Failed to process suggestion.")
+
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
@@ -902,6 +906,8 @@ def reject_suggestion(request, unit, suggid):
 
         unit.reject_suggestion(sugg, request.translation_project,
                                request.profile)
+
+        json['user_score'] = request.profile.public_score
 
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
@@ -924,6 +930,7 @@ def accept_suggestion(request, unit, suggid):
         unit.accept_suggestion(suggestion, request.translation_project,
                                request.profile)
 
+        json['user_score'] = request.profile.public_score
         json['newtargets'] = [highlight_whitespace(target)
                               for target in unit.target.strings]
         json['newdiffs'] = {}

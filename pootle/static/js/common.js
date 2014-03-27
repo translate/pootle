@@ -177,3 +177,7 @@
 $(function () {
   PTL.common.init();
 });
+
+$(window).load(function () {
+  $('body').removeClass('preload');
+});

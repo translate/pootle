@@ -2535,3 +2535,12 @@ span.email .i
 {
     display: none;
 }
+
+
+/*
+ * HACK: disable transitions until the page has been loaded
+ */
+.preload *
+{
+    transition: none !important;
+}

@@ -102,6 +102,8 @@
     PTL.contact.init({url: "{% url 'pootle-contact' %}"});
 
     $(function() {
+      PTL.score.init({{ request.user.get_profile.public_score }});
+
       $(document).tipsy({
         gravity: $.fn.tipsy.autoBounds2(150, 'n'),
         html: true,
@@ -129,7 +131,7 @@
     {% block extra_head %}{% endblock %}
   </head>
 
-  <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
+  <body id="{% block body_id %}{% endblock %}" class="preload {% block body_class %}{% endblock %}">
     {% block body %}
     <div id="wrapper">
       <noscript>
@@ -171,7 +173,10 @@
           {% if user.is_authenticated %}
           <li id="user">
             <a href="{{ user.get_profile.get_absolute_url }}">
-            <img src="{{ user.get_profile|gravatar:20 }}" />{{ user.username }}</a>
+            <img src="{{ user.get_profile|gravatar:20 }}" />
+            <span>{{ user.username }}</span>
+            <span class="odometer js-score">{{ user.get_profile.public_score }}</span>
+            </a>
           </li>
           {% endif %}
           {% if user.is_superuser %}

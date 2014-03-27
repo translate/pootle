@@ -89,6 +89,14 @@ Directory contents
 
       https://github.com/julen/levenshtein.js
 
+    - odometer.js :
+      Smooth transitions between numbers.
+
+      Using version 0.4.6, with customizations from
+      julen/odometer@added-event.
+
+      https://github.com/HubSpot/odometer
+
     - shortcut.js :
       Small library to ease adding keyboard shortcuts.
 

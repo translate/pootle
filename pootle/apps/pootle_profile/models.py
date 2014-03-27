@@ -130,6 +130,10 @@ class PootleProfile(models.Model):
         return ('%s %s' % (self.user.first_name,
                            self.user.last_name)).strip()
 
+    @property
+    def public_score(self):
+        return int(round(self.score * 1000))
+
     def gravatar_url(self, size=80):
         if not self.get_email_hash:
             return ''

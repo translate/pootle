@@ -1340,6 +1340,10 @@
 
     $('.translate-container').toggleClass('error', !!data.checks);
 
+    if (data.user_score) {
+      PTL.score.set(data.user_score);
+    }
+
     if (data.checks) {
       var $checks = $('.js-unit-checks'),
           focusedArea = $('.focusthis')[0];
@@ -1391,7 +1395,11 @@
     });
   },
 
-  processSuggestion: function () {
+  processSuggestion: function (data) {
+    if (data.user_score) {
+      PTL.score.set(data.user_score);
+    }
+
     PTL.editor.gotoNext();
   },
 
@@ -1976,6 +1984,10 @@
 
     $.post(url, {'reject': 1},
       function (data) {
+        if (data.user_score) {
+          PTL.score.set(data.user_score);
+        }
+
         element.fadeOut(200, function () {
           $(this).remove();
 
@@ -2019,6 +2031,10 @@
         }).get();
         unit.setTranslation(translations);
         unit.set('isfuzzy', false);
+
+        if (data.user_score) {
+          PTL.score.set(data.user_score);
+        }
 
         element.fadeOut(200, function () {
           $(this).remove();

@@ -10,8 +10,13 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- User score is displayed in the header and dynamically updated when
+  translation actions are made. (`#156`_)
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+
+.. _#156: https://github.com/evernote/pootle/issues/156
 
 
 Release `2014-04-03`_
