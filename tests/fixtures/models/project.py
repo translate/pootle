@@ -21,9 +21,8 @@
 import pytest
 
 
-def _require_project(code, name, source_language):
+def _require_project(code, name, source_language, **kwargs):
     """Helper to get/create a new project."""
-    # XXX: should accept more params, but is enough for now
     from pootle_project.models import Project
 
     criteria = {
@@ -34,6 +33,8 @@ def _require_project(code, name, source_language):
         'localfiletype': 'po',
         'treestyle': 'auto',
     }
+    criteria.update(kwargs)
+
     new_project = Project(**criteria)
     new_project.save()
 
