@@ -20,6 +20,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
+from optparse import make_option
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
@@ -32,6 +33,12 @@ from pootle_app.management.commands import PootleCommand
 
 class Command(PootleCommand):
     help = "Allow stats to be refreshed manually."
+
+    shared_option_list = (
+        make_option("--calculate-checks", dest="calculate_checks",
+                    action="store_true", help="Recalculate all quality checks"),
+    )
+    option_list = PootleCommand.option_list + shared_option_list
 
     def handle_noargs(self, *args, **kwargs):
         self._updated_tps = set()
@@ -57,7 +64,9 @@ class Command(PootleCommand):
             elif unit.state == FUZZY:
                 store.fuzzy_wordcount += wordcount
 
-        store.update_qualitychecks()
+        if options["calculate_checks"]:
+            store.update_qualitychecks()
+
         store.save()
         self._updated_tps.add(store.translation_project)
 
