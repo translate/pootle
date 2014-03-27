@@ -390,10 +390,12 @@ class ScoreLog(models.Model):
     def save(self, *args, **kwargs):
         # copy current user rate
         self.rate = self.user.rate
-
         self.score_delta = self.get_delta()
 
         super(ScoreLog, self).save(*args, **kwargs)
+
+        self.user.score += self.score_delta
+        self.user.save()
 
     def get_delta(self):
         ns = self.wordcount
