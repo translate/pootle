@@ -428,11 +428,6 @@ def overview(request, translation_project, dir_path, filename=None,
 
     # Build URL for getting more summary information for the current path
     url_path_summary_more = reverse('pootle-xhr-summary-more')
-    total_words = request.resource_obj.get_total_wordcount()
-
-    translated_words = request.resource_obj.get_translated_wordcount()
-    max_words = max(total_words, 1)
-    translated_percentage = int(100.0 * translated_words / max_words)
 
     ctx.update({
         'resource_obj': request.resource_obj,
@@ -447,13 +442,6 @@ def overview(request, translation_project, dir_path, filename=None,
         'action_output': action_output,
         'can_edit': can_edit,
         'url_path_summary_more': url_path_summary_more,
-        'summary': ungettext('%(num)d word, %(percentage)d%% translated',
-                '%(num)d words, %(percentage)d%% translated',
-                total_words,
-                {
-                    'num': total_words,
-                    'percentage': translated_percentage
-                }),
     })
 
     tp_pootle_path = translation_project.pootle_path
@@ -471,7 +459,6 @@ def overview(request, translation_project, dir_path, filename=None,
             ctx.update({
                 'table': {
                     'id': 'tp-goals',
-                    'proportional': False,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
                     'parent': get_parent(request.directory),
@@ -487,7 +474,6 @@ def overview(request, translation_project, dir_path, filename=None,
             ctx.update({
                 'table': {
                     'id': 'tp-goals',
-                    'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
                     'parent': get_goal_parent(request.directory, goal),
@@ -504,7 +490,6 @@ def overview(request, translation_project, dir_path, filename=None,
             ctx.update({
                 'table': {
                     'id': 'tp-files',
-                    'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
                     'parent': get_parent(request.directory),

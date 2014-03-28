@@ -20,8 +20,6 @@
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_statistics.models import Submission
-
 
 HEADING_CHOICES = [
     {
@@ -102,18 +100,11 @@ def make_generic_item(path_obj):
         'code': path_obj.code
     }
 
-def get_last_action(resource_obj):
-    try:
-        return Submission.get_latest_for_dir(resource_obj)
-    except Submission.DoesNotExist:
-        return ''
-
 def make_directory_item(directory):
     item = make_generic_item(directory)
     item.update({
         'icon': 'folder',
         'isdir': True,
-        'lastactivity': get_last_action(directory),
     })
     return item
 
@@ -123,7 +114,6 @@ def make_store_item(store):
     item.update({
         'icon': 'file',
         'isfile': True,
-        'lastactivity': get_last_action(store),
     })
     return item
 

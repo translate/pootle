@@ -84,7 +84,7 @@
       {% endif %}
 
       {% if 'activity' in table.fields %}
-      <td class="last-activity">{{ item.lastactivity }}</td>
+      <td id="last-activity-{{ item.code }}" class="last-activity"></td>
       {% endif %}
 
       {% if 'tags' in table.fields %}
