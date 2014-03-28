@@ -4,6 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body_id %}tpoverview{% endblock %}
+{% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
 
 {% block breadcrumbs %}
   {{ block.super }}
