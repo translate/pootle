@@ -652,8 +652,11 @@ class TranslationProject(models.Model):
             msg = [
                 _(u'Updated project <em>%(project)s</em> from version control',
                   {'project': self.fullname}),
+                # Translators: the file in the pootle server before the update
                 stats_message(_(u"Working copy"), old_stats),
+                # Translators: the last on version control
                 stats_message(_(u"Remote copy"), remote_stats),
+                # Translators: the updated one which is remote + local changes
                 stats_message(_(u"Merged copy"), new_stats)
             ]
             msg = u"<br/>".join([force_unicode(m) for m in msg])
