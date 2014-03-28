@@ -1943,6 +1943,7 @@ html[dir="rtl"] .overview-description-toggle
 .breadcrumb li
 {
     display: inline-block;
+    float: left;
     margin-left: 0.3em;
 }
 
