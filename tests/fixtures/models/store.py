@@ -26,15 +26,16 @@ import pytest
 
 
 def _require_store(tp, po_dir, name):
-    """Helper to get/create a new user."""
+    """Helper to get/create a new store."""
     from pootle_store.models import Store
 
     file_path = os.path.join(po_dir, tp.real_path, name)
     parent_dir = tp.directory
+    pootle_path = tp.pootle_path + name
 
     try:
         store = Store.objects.get(
-            name=name,
+            pootle_path=pootle_path,
             translation_project=tp,
         )
     except Store.DoesNotExist:
