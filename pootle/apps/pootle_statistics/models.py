@@ -27,6 +27,7 @@ from django.template.defaultfilters import escape, truncatechars
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.log import log, SCORE_CHANGED
 from pootle.core.managers import RelatedManager
 from pootle_misc.checks import check_names
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
@@ -396,6 +397,25 @@ class ScoreLog(models.Model):
 
         self.user.score += self.score_delta
         self.user.save()
+        self.log()
+
+    def log(self):
+        d = {
+            'user': self.user,
+            'score_delta': self.score_delta,
+            'unit': self.submission.unit.id,
+            'wordcount': self.wordcount,
+            'similarity': self.similarity,
+            'total': self.user.score,
+            'action': SCORE_CHANGED,
+            'code': TranslationActionCodes.NAMES_MAP[self.action_code],
+        }
+
+        message = "%(user)s\t%(action)s\t%(score_delta)s\t%(code)s\t" \
+                  "#%(unit)s\tNS=%(wordcount)s\tS=%(similarity)s\t" \
+                  "(total: %(total)s)" % d
+
+        log(message)
 
     def get_delta(self):
         ns = self.wordcount
