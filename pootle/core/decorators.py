@@ -198,6 +198,13 @@ def set_project_resource(request, path_obj, dir_path, filename):
     resource_path = dir_path
     pootle_path = ctx_path + dir_path
 
+    # List of disabled TP paths
+    disabled_tps = TranslationProject.objects.disabled().filter(
+        project__code=path_obj.code,
+    ).values_list('pootle_path', flat=True)
+    list(disabled_tps).append('/templates/')
+    disabled_tps_regex = '^%s' % u'|'.join(disabled_tps)
+
     if filename:
         query_pootle_path = query_pootle_path + filename
         pootle_path = pootle_path + filename
@@ -206,15 +213,15 @@ def set_project_resource(request, path_obj, dir_path, filename):
         resources = Store.objects.extra(
             where=[
                 'pootle_store_store.pootle_path LIKE %s',
-                'pootle_store_store.pootle_path NOT LIKE %s',
-            ], params=[query_pootle_path, '/templates/%']
+                'pootle_store_store.pootle_path NOT REGEXP %s',
+            ], params=[query_pootle_path, disabled_tps_regex]
         ).select_related('translation_project__language')
     else:
         resources = Directory.objects.extra(
             where=[
                 'pootle_app_directory.pootle_path LIKE %s',
-                'pootle_app_directory.pootle_path NOT LIKE %s',
-            ], params=[query_pootle_path, '/templates/%']
+                'pootle_app_directory.pootle_path NOT REGEXP %s',
+            ], params=[query_pootle_path, disabled_tps_regex]
         ).select_related('parent')
 
     if not resources.exists():
@@ -264,7 +271,7 @@ def get_resource(func):
 
             raise Http404
 
-        return func(request, path_obj, dir_path=dir_path, filename=filename)
+        return func(request, path_obj, dir_path, filename)
 
     return wrapped
 

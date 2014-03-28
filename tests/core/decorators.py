@@ -22,9 +22,11 @@ import pytest
 
 from django.http import Http404
 
-from pootle.core.decorators import get_path_obj
+from pootle.core.decorators import get_path_obj, get_resource
+from pootle_app.models import Directory
 from pootle_language.models import Language
-from pootle_project.models import Project
+from pootle_project.models import Project, ProjectResource
+from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
 
@@ -81,3 +83,84 @@ def test_get_path_obj(rf, default, afrikaans_tutorial,
     with pytest.raises(Http404):
         func(request, language_code=arabic_tutorial_disabled.language.code,
              project_code=arabic_tutorial_disabled.project.code)
+
+
+def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
+    """Tests that the correct resources are set for the given TP contexts."""
+    store_name = 'tutorial.po'
+    subdir_name = 'subdir/'
+
+    subdir_name_fake = 'fake_subdir/'
+    store_name_fake = 'fake_store.po'
+
+    request = rf.get('/')
+    request.user = default
+
+    # Fake decorated function
+    func = get_resource(lambda x, y, s, t: (x, y, s, t))
+
+    # TP, no resource
+    func(request, afrikaans_tutorial, '', '')
+    assert isinstance(request.resource_obj, TranslationProject)
+
+    # TP, file resource
+    func(request, afrikaans_tutorial, '', store_name)
+    assert isinstance(request.resource_obj, Store)
+
+    # TP, directory resource
+    func(request, afrikaans_tutorial, subdir_name, '')
+    assert isinstance(request.resource_obj, Directory)
+
+    # TP, missing file/dir resource, redirects to parent resource
+    response = func(request, afrikaans_tutorial, '', store_name_fake)
+    assert response.status_code == 302
+    assert afrikaans_tutorial.pootle_path in response.get('location')
+
+    response = func(request, afrikaans_tutorial, subdir_name, store_name_fake)
+    assert response.status_code == 302
+    assert (''.join([afrikaans_tutorial.pootle_path, subdir_name]) in
+            response.get('location'))
+
+    response = func(request, afrikaans_tutorial, subdir_name_fake, '')
+    assert response.status_code == 302
+    assert afrikaans_tutorial.pootle_path in response.get('location')
+
+
+def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
+                              arabic_tutorial_disabled):
+    """Tests that the correct resources are set for the given Project
+    contexts.
+    """
+    store_name = 'tutorial.po'
+    subdir_name = 'subdir/'
+
+    subdir_name_fake = 'fake_subdir/'
+    store_name_fake = 'fake_store.po'
+
+    request = rf.get('/')
+    request.user = default
+
+    # Fake decorated function
+    func = get_resource(lambda x, y, s, t: (x, y, s, t))
+
+    # Project, no resource
+    func(request, tutorial, '', '')
+    assert isinstance(request.resource_obj, Project)
+
+    # Project, cross-language file resource
+    func(request, tutorial, '', store_name)
+    assert isinstance(request.resource_obj, ProjectResource)
+
+    # Two languages have this file, but the Arabic project is disabled!
+    # Should only contain a single file resource
+    assert len(request.resource_obj.resources) == 1
+    assert isinstance(request.resource_obj.resources[0], Store)
+
+    # Project, cross-language directory resource
+    func(request, tutorial, subdir_name, '')
+    assert isinstance(request.resource_obj, ProjectResource)
+
+    # Two languages have this dir, but the Arabic project is disabled!
+    # Should only contain a single dir resource
+    assert len(request.resource_obj.resources) == 1
+    assert isinstance(request.resource_obj.resources[0], Directory)
