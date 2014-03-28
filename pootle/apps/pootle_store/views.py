@@ -732,7 +732,7 @@ def permalink_redirect(request, unit):
 @get_path_obj
 @permission_required('view')
 @get_resource
-def get_qualitycheck_stats(request, path_obj, **kwargs):
+def get_qualitycheck_stats(request, *args, **kwargs):
     qc_stats = request.resource_obj.get_checks()
 
     return HttpResponse(jsonify(qc_stats['checks']), mimetype="application/json")
@@ -742,7 +742,7 @@ def get_qualitycheck_stats(request, path_obj, **kwargs):
 @get_path_obj
 @permission_required('view')
 @get_resource
-def get_overview_stats(request, path_obj, **kwargs):
+def get_overview_stats(request, *args, **kwargs):
     stats = request.resource_obj.get_stats()
 
     return HttpResponse(jsonify(stats), mimetype="application/json")
