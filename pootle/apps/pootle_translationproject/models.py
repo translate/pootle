@@ -29,6 +29,7 @@ from translate.storage.base import ParseError
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
+from django.db.models import Q
 from django.db.models.signals import post_save
 
 from pootle.core.managers import RelatedManager
@@ -103,6 +104,9 @@ class TranslationProjectManager(RelatedManager):
 
     def enabled(self):
         return self.filter(disabled=False, project__disabled=False)
+
+    def disabled(self):
+        return self.filter(Q(disabled=True) | Q(project__disabled=True))
 
 
 class TranslationProject(models.Model, TreeItem):
