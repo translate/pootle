@@ -29,6 +29,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
@@ -88,6 +89,9 @@ class TranslationProjectNonDBState(object):
         self._indexing_enabled = True
         self._index_initialized = False
         self.indexer = None
+
+    def disabled(self):
+        return self.filter(Q(disabled=True) | Q(project__disabled=True))
 
 
 class TranslationProject(models.Model, TreeItem):
