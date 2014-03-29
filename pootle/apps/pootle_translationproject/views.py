@@ -32,12 +32,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
 from django.utils.encoding import iri_to_uri
-from django.utils.translation import ugettext as _, ungettext
+from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
-
-from translate.filters.decorators import Category
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
