@@ -91,11 +91,10 @@ $(function() {
       pootlePath: "{{ resource_obj.pootle_path }}",
   });
   PTL.stats.load(function () {
+    PTL.common.updateRelativeDates();
+    setInterval(PTL.common.updateRelativeDates, 6e4);
     $("body").spin(false);
   });
-
-  PTL.common.updateRelativeDates();
-  setInterval(PTL.common.updateRelativeDates, 6e4);
 
 {% if upload_form %}
   $("select#id_upload_to_dir").parent().hide();
