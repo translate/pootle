@@ -576,6 +576,7 @@ td.translate-full textarea.translation
 .translate-translation .textcomplete-wrapper
 {
     width: 100%;
+    display: block !important;
 }
 
 /* TM and suggestions */
