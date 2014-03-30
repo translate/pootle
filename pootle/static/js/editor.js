@@ -577,9 +577,12 @@
       var $placeables = $("div.original .js-placeable");
 
       var matching = $.map($placeables, function (placeable) {
-        var text = $(placeable).text();
+        var text = $(placeable).text(),
+            html = $(placeable).html();
         if (term.length !== 0 && text.indexOf(term) === 0) {
-          return text;
+          // We return html not text here as the return value will used to
+          // populate the drop down menu unescaped.
+          return html;
         } else {
           return null;
         }
@@ -589,7 +592,10 @@
     };
 
     var replaceFunc = function (value) {
-      return value;
+      // Unescape the HTML text we returned above for insertion into the
+      // textarea.
+      var text = $('<div/>').html(value).text();
+      return text;
     };
 
     $("textarea.translation").textcomplete([
