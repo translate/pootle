@@ -33,8 +33,8 @@ from pootle_misc.checks import check_names
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
-EDIT_COEF = 5/7
-REVIEW_COEF = 2/7
+EDIT_COEF = 5.0/7
+REVIEW_COEF = 2.0/7
 SUGG_COEF = 0.2
 ANALYZE_COEF = 0.1
 
@@ -385,7 +385,7 @@ class ScoreLog(models.Model):
             translator_score['user'] = submission.suggestion.user
 
         for score in [submitter_score, translator_score, reviewer_score]:
-            if hasattr(score, 'action_code') and score['user'] is not None:
+            if 'action_code' in score and score['user'] is not None:
                ScoreLog.objects.create(**score)
 
     def save(self, *args, **kwargs):
