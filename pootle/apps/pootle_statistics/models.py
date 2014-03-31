@@ -331,7 +331,9 @@ class ScoreLog(models.Model):
         submitter_score = score_dict.copy()
         submitter_score['user'] = submission.submitter
 
-        if submission.field == SubmissionFields.TARGET:
+        edit_types = [SubmissionTypes.NORMAL, SubmissionTypes.SYSTEM]
+        if (submission.field == SubmissionFields.TARGET and
+            submission.type in edit_types):
             if submission.old_value == '' and submission.new_value != '':
                 submitter_score['action_code'] = TranslationActionCodes.NEW
             else:
@@ -345,7 +347,8 @@ class ScoreLog(models.Model):
                     reviewer_score['action_code'] = \
                         TranslationActionCodes.REVIEW_PENALTY
                 else:
-                    if submission.submitter.id == reviewer.id:
+                    if (reviewer is not None and
+                        submission.submitter.id == reviewer.id):
                         submitter_score['action_code'] = \
                             TranslationActionCodes.EDITED_OWN
                     else:
@@ -376,6 +379,7 @@ class ScoreLog(models.Model):
 
             translator_score['action_code'] = TranslationActionCodes.SUGG_ACCEPTED
             translator_score['user'] = submission.suggestion.user
+            reviewer_score['action_code'] = TranslationActionCodes.REVIEW_PENALTY
 
         elif submission.type == SubmissionTypes.SUGG_REJECT:
             submitter_score['action_code'] = \
