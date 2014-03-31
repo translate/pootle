@@ -385,7 +385,7 @@ class ScoreLog(models.Model):
             translator_score['user'] = submission.suggestion.user
 
         for score in [submitter_score, translator_score, reviewer_score]:
-            if hasattr(score, 'action_code'):
+            if hasattr(score, 'action_code') and score['user'] is not None:
                ScoreLog.objects.create(**score)
 
     def save(self, *args, **kwargs):
