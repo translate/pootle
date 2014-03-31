@@ -769,10 +769,6 @@ def submit(request, unit):
     # Store current time so that it is the same for all submissions
     current_time = timezone.now()
 
-    # Update current unit instance's attributes
-    unit.submitted_by = request.profile
-    unit.submitted_on = current_time
-
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit, request=request)
 
@@ -800,7 +796,12 @@ def submit(request, unit):
                 #last_action = form.instance.store._get_last_action(sub)
                 #form.instance.store.set_last_action(last_action)
 
+            # Update current unit instance's attributes
+            # important to set these attributes after saving Submission
+            form.instance.submitted_by = request.profile
+            form.instance.submitted_on = current_time
             form.instance._log_user = request.profile
+
             form.save()
             translation_submitted.send(
                     sender=translation_project,

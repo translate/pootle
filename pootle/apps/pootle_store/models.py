@@ -653,6 +653,9 @@ class Unit(models.Model, base.TranslationUnit):
         """
         changed = False
 
+        if user is not None:
+            user = User.objects.get_system_user().get_profile()
+
         if (self.source != unit.source or
             len(self.source.strings) != stringcount(unit.source) or
             self.hasplural() != unit.hasplural()):
@@ -673,6 +676,8 @@ class Unit(models.Model, base.TranslationUnit):
                 #FIXME: we need to do this cause we discard nplurals
                 # for empty plurals
                 changed = True
+                self.submitted_by = user
+                self.submitted_on = timezone.now()
 
         notes = unit.getnotes(origin="developer")
 
@@ -1056,17 +1061,6 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             suggestion_user = User.objects.get_nobody_user().get_profile()
 
-        self.submitted_by = suggestion_user
-        self.submitted_on = timezone.now()
-        self.reviewed_by = reviewer
-        self.reviewed_on = self.submitted_on
-
-        self._log_user = reviewer
-        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
-                                     CachedMethods.LAST_ACTION)
-        # Update timestamp
-        self.save()
-
         suggestion.state = SuggestionStates.ACCEPTED
         suggestion.reviewer = reviewer
         suggestion.review_time = self.submitted_on
@@ -1102,6 +1096,20 @@ class Unit(models.Model, base.TranslationUnit):
             # after saving
             #if field == SubmissionFields.TARGET:
             #   self.store.set_last_action(self.store._get_last_action(sub))
+
+        # Update current unit instance's attributes
+        # important to set these attributes after saving Submission
+        # because we need to access the unit's state before it was saved
+        self.submitted_by = suggestion_user
+        self.submitted_on = timezone.now()
+        self.reviewed_by = reviewer
+        self.reviewed_on = self.submitted_on
+        self._log_user = reviewer
+
+        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
+                                     CachedMethods.LAST_ACTION)
+        # Update timestamp
+        self.save()
 
         if suggestion_user:
             translation_submitted.send(sender=translation_project,
@@ -1147,10 +1155,6 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             self._save_action = UNMUTE_QUALITYCHECK
 
-        # update timestamp
-        # log user action
-        self.save()
-
         # create submission
         if false_positive:
             sub_type = SubmissionTypes.MUTE_CHECK
@@ -1167,6 +1171,10 @@ class Unit(models.Model, base.TranslationUnit):
             check=check
         )
         sub.save()
+
+        # update timestamp
+        # log user action
+        self.save()
 
     def get_terminology(self):
         """get terminology suggestions"""
@@ -1607,20 +1615,15 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         create_subs[SubmissionFields.TARGET] = \
                             [old_target_f, unit.target_f]
 
-                    # Set unit fields if submission should be created
-                    if create_subs:
-                        unit.submitted_by = system
-                        unit.submitted_on = timezone.now()
-                    unit.save()
-                    # check unit state after saving
-                    if old_unit_state != unit.state:
-                        create_subs[SubmissionFields.STATE] = [old_unit_state,
-                                                               unit.state]
+                    if unit._state_updated:
+                        create_subs[SubmissionFields.STATE] = \
+                            [old_unit_state, unit.state]
 
+                    current_time = timezone.now()
                     # Create Submission after unit saved
                     for field in create_subs:
                         sub = Submission(
-                            creation_time=unit.submitted_on,
+                            creation_time=current_time,
                             translation_project=self.translation_project,
                             submitter=system,
                             unit=unit,
@@ -1633,6 +1636,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         # FIXME: we can store these objects in a list and
                         # `bulk_create()` them in a single go
                         sub.save()
+
+                    # Set unit fields if target was updated
+                    if SubmissionFields.TARGET in create_subs:
+                        unit.submitted_by = system
+                        unit.submitted_on = current_time
+                    unit.save()
 
             self.file_mtime = disk_mtime
 
