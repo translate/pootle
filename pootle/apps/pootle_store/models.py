@@ -1075,7 +1075,7 @@ class Unit(models.Model, base.TranslationUnit):
             kwargs = {
                 'creation_time': self.submitted_on,
                 'translation_project': translation_project,
-                'submitter': suggestion.user,
+                'submitter': reviewer,
                 'unit': self,
                 'field': field,
                 'type': SubmissionTypes.SUGG_ACCEPT,
