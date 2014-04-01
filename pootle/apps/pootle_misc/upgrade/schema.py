@@ -30,22 +30,19 @@ import logging
 
 from django.core.management import call_command
 
-from pootle_language.models import Language
-from pootle_project.models import Project
-from pootle_store.models import Store
-
-from . import save_legacy_pootle_version
-
 
 def update_tables_22000():
     logging.info("Updating existing database tables")
 
     from south.db import db
 
-    from pootle_store.models import Suggestion
-    from pootle_translationproject.models import TranslationProject
+    from pootle_language.models import Language
+    from pootle_project.models import Project
     from pootle_statistics.models import Submission
-    from pootle_store.models import QualityCheck, Unit
+    from pootle_store.models import QualityCheck, Store, Suggestion, Unit
+    from pootle_translationproject.models import TranslationProject
+
+    from . import save_legacy_pootle_version
 
     # For the sake of South bug 313, we set the default for these fields here:
     # See http://south.aeracode.org/ticket/313
