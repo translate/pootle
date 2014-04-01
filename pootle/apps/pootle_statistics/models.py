@@ -429,7 +429,7 @@ class ScoreLog(models.Model):
         reviewCost = ns * REVIEW_COEF
         analyzeCost = ns * ANALYZE_COEF
 
-        res = {
+        return {
             TranslationActionCodes.NEW: rawTranslationCost + reviewCost,
             TranslationActionCodes.EDITED: rawTranslationCost + reviewCost,
             TranslationActionCodes.EDITED_OWN: rawTranslationCost,
@@ -446,5 +446,3 @@ class ScoreLog(models.Model):
                                                    analyzeCost),
             TranslationActionCodes.SUGG_REVIEWED_REJECTED: analyzeCost,
         }.get(self.action_code, 0)
-
-        return res
