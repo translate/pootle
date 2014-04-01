@@ -51,3 +51,13 @@ def load_site_config():
         siteconfig.add_defaults(defaults)
 
     return siteconfig
+
+
+def get_site_title():
+    siteconfig = load_site_config()
+    return siteconfig.get('TITLE')
+
+
+def get_site_description():
+    siteconfig = load_site_config()
+    return siteconfig.get('DESCRIPTION')
