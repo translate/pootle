@@ -1061,9 +1061,10 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             suggestion_user = User.objects.get_nobody_user().get_profile()
 
+        current_time = timezone.now()
         suggestion.state = SuggestionStates.ACCEPTED
         suggestion.reviewer = reviewer
-        suggestion.review_time = self.submitted_on
+        suggestion.review_time = current_time
         suggestion.save()
 
         create_subs = {}
@@ -1075,7 +1076,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         for field in create_subs:
             kwargs = {
-                'creation_time': self.submitted_on,
+                'creation_time': current_time,
                 'translation_project': translation_project,
                 'submitter': reviewer,
                 'unit': self,
@@ -1101,7 +1102,7 @@ class Unit(models.Model, base.TranslationUnit):
         # important to set these attributes after saving Submission
         # because we need to access the unit's state before it was saved
         self.submitted_by = suggestion_user
-        self.submitted_on = timezone.now()
+        self.submitted_on = current_time
         self.reviewed_by = reviewer
         self.reviewed_on = self.submitted_on
         self._log_user = reviewer
