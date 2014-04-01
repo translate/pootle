@@ -79,6 +79,8 @@ def update_tables_21000():
 def update_tables_22000():
     logging.info("Updating existing database tables")
 
+    from django.db import models
+
     from south.db import db
 
     from pootle_store.models import Suggestion
@@ -98,27 +100,24 @@ def update_tables_22000():
     field.default = u''
     db.add_column(table_name, field.name, field)
 
-    field = Language._meta.get_field('description_html')
-    field.default = u''
-    db.add_column(table_name, field.name, field)
+    field = models.TextField(default=u'', editable=False, blank=True)
+    db.add_column(table_name, 'description_html', field)
 
     table_name = TranslationProject._meta.db_table
     field = TranslationProject._meta.get_field('description')
     field.default = u''
     db.add_column(table_name, field.name, field)
 
-    field = TranslationProject._meta.get_field('description_html')
-    field.default = u''
-    db.add_column(table_name, field.name, field)
+    field = models.TextField(default=u'', editable=False, blank=True)
+    db.add_column(table_name, 'description_html', field)
 
     table_name = Project._meta.db_table
     field = Project._meta.get_field('report_target')
     field.default = u''
     db.add_column(table_name, field.name, field)
 
-    field = Project._meta.get_field('description_html')
-    field.default = u''
-    db.add_column(table_name, field.name, field)
+    field = models.TextField(default=u'', editable=False, blank=True)
+    db.add_column(table_name, 'description_html', field)
 
     table_name = QualityCheck._meta.db_table
     field = QualityCheck._meta.get_field('category')
