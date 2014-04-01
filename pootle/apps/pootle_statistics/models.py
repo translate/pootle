@@ -422,6 +422,7 @@ class ScoreLog(models.Model):
         log(message)
 
     def get_delta(self):
+        """Returns the score change performed by the current action."""
         ns = self.wordcount
         s = self.similarity
         rawTranslationCost = ns * EDIT_COEF * (1 - s)
