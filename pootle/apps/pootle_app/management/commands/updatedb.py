@@ -26,13 +26,13 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management.base import NoArgsCommand
 
 from pootle_app.management.commands.upgrade import DEFAULT_POOTLE_BUILDVERSION
-from pootle_misc import siteconfig
+from pootle_misc.siteconfig import load_site_config
 
 
 class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
-        config = siteconfig.load_site_config()
+        config = load_site_config()
         db_buildversion = config.get('BUILDVERSION', None)
 
         if db_buildversion and db_buildversion < DEFAULT_POOTLE_BUILDVERSION:

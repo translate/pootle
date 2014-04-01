@@ -29,7 +29,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management.base import BaseCommand
 
 from pootle.__version__ import build as code_ptl_buildversion
-from pootle_misc import siteconfig
+from pootle_misc.siteconfig import load_site_config
 
 
 #: Build version referring to Pootle version 2.5.
@@ -55,7 +55,7 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **options):
-        config = siteconfig.load_site_config()
+        config = load_site_config()
         db_ptl_buildversion = config.get('POOTLE_BUILDVERSION',
                                          DEFAULT_POOTLE_BUILDVERSION)
         db_tt_buildversion = int(config.get('TT_BUILDVERSION',
