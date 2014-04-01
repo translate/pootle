@@ -41,9 +41,6 @@ class GeneralSettingsForm(SiteSettingsForm):
         widget=forms.Textarea,
     )
 
-    class Meta:
-        title = "General Settings"
-
     def save(self):
         super(GeneralSettingsForm, self).save()
         load_site_config()
