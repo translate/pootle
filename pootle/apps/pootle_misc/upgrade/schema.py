@@ -37,45 +37,6 @@ from pootle_store.models import Store
 from . import save_legacy_pootle_version
 
 
-def update_tables_21000():
-    logging.info("Updating existing database tables")
-
-    from south.db import db
-
-    table_name = Store._meta.db_table
-    field = Store._meta.get_field('state')
-    db.add_column(table_name, field.name, field)
-    db.create_index(table_name, (field.name,))
-
-    field = Store._meta.get_field('translation_project')
-    field.null = True
-    db.add_column(table_name, field.name, field)
-    db.create_index(table_name, (field.name + '_id',))
-
-    table_name = Project._meta.db_table
-    field = Project._meta.get_field('directory')
-    field.null = True
-    db.add_column(table_name, field.name, field)
-
-    field = Project._meta.get_field('source_language')
-    try:
-        en = Language.objects.get(code='en')
-    except Language.DoesNotExist:
-        from pootle_app.models import Directory
-
-        # We can't allow translation project detection to kick in yet so let's
-        # create en manually
-        en = Language(code='en', fullname='English', nplurals=2,
-                      pluralequation="(n != 1)")
-        en.directory = Directory.objects.root.get_or_make_subdir(en.code)
-        en.save_base(raw=True)
-    field.default = en.id
-    db.add_column(table_name, field.name, field)
-    db.create_index(table_name, (field.name + '_id',))
-
-    save_legacy_pootle_version(21000)
-
-
 def update_tables_22000():
     logging.info("Updating existing database tables")
 
@@ -147,14 +108,6 @@ def update_tables_22000():
 
 def staggered_update(db_buildversion):
     """Updates Pootle's database schema in steps."""
-
-    if db_buildversion < 21000:
-        try:
-            update_tables_21000()
-        except Exception as e:
-            logging.warning(u"Something broke while upgrading database "
-                            u"tables:\n%s", e)
-            #TODO: should we continue?
 
     # Build missing tables
     try:
