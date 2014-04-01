@@ -9,6 +9,8 @@ from south.v2 import DataMigration
 
 from pootle.core.log import log
 
+from pootle_statistics.models import SubmissionTypes, SubmissionFields
+
 _debug = True
 
 class Migration(DataMigration):
@@ -31,7 +33,11 @@ class Migration(DataMigration):
             'DEL_REJECTED_PAS': 0,
             'NO_UNIT_FOR_PAS': 0,
             'DUPLICATED_SUG': 0,
+            'SUG_CREATED_FROM_SUB_WITHOUT_PAS': 0,
+            'SUG_CREATION_ERROR': 0,
         }
+
+        system = orm['pootle_profile.PootleProfile'].objects.get(user__username='system')
 
         # units with suggestions
         units = orm['pootle_store.Unit'].objects.filter(suggestion__isnull=False).distinct()
@@ -69,6 +75,10 @@ class Migration(DataMigration):
                     else:
                         stats['NO_PAS_FOR_PSS'] += 1
 
+                    app_suggestion_ids = map(lambda x: x.id, app_pending_suggestions)
+                    orm['pootle_statistics.Submission'].objects \
+                        .filter(from_suggestion__id__in=app_suggestion_ids) \
+                        .update(from_suggestion=None)
                     app_pending_suggestions.delete()
 
                 else:
@@ -102,6 +112,7 @@ class Migration(DataMigration):
                         try:
                             sugg = orm['pootle_store.Suggestion'].objects.create(**sugg)
                             sub.suggestion = sugg
+                            sub.from_suggestion = None
                             sub.save()
 
                             log("suggestion created from pas %d and sub %d" % (pas.id, sub.id))
@@ -129,6 +140,31 @@ class Migration(DataMigration):
                 stats['NO_UNIT_FOR_PAS'] += 1
 
             pas.delete()
+
+        for sub in orm['pootle_statistics.Submission'].objects \
+                .filter(type=SubmissionTypes.SUGG_ACCEPT,
+                        suggestion=None,
+                        field=SubmissionFields.TARGET):
+
+            sugg = {
+                'target_f': sub.new_value,
+                'target_hash': md5(sub.new_value.encode("utf-8")).hexdigest(),
+                'unit': sub.unit,
+                'user': sub.submitter,
+                'reviewer': system,
+                'review_time': sub.creation_time,
+                'state': 'accepted',
+                'creation_time': None,
+            }
+
+            try:
+                sugg = orm['pootle_store.Suggestion'].objects.create(**sugg)
+                sub.suggestion = sugg
+                sub.save()
+                stats['SUG_CREATED_FROM_SUB_WITHOUT_PAS'] += 1
+
+            except:
+                stats['SUG_CREATION_ERROR'] += 1
 
         log("%s" % stats)
 
