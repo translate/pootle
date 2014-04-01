@@ -9,6 +9,7 @@ from pootle_statistics.models import SubmissionTypes, SubmissionFields
 class Migration(DataMigration):
     depends_on = (
         ("pootle_statistics", "0009_auto__add_scorelog"),
+        ("pootle_profile", "0004_auto__add_field_pootleprofile_rate__add_field_pootleprofile_score"),
     )
 
     def forwards(self, orm):
@@ -30,9 +31,12 @@ class Migration(DataMigration):
                 (cur_id != s.unit_id or s.type in skip_types or
                  s.field == SubmissionFields.COMMENT)):
                 cur_id = s.unit_id
-                if s.type == SubmissionTypes.SUGG_ACCEPT:
+                if (s.type == SubmissionTypes.SUGG_ACCEPT and
+                    s.field == SubmissionFields.TARGET):
+                    s.submitter = s.suggestion.reviewer
                     s.unit.reviewed_by = s.submitter
                     s.unit.reviewed_on = s.creation_time
+                    s.save()
                     s.unit.save()
                     processed_id = cur_id
                 elif s.field == SubmissionFields.TARGET:
