@@ -432,7 +432,7 @@ class Unit(models.Model, base.TranslationUnit):
                     unit=self.id,
                     translation=self.target_f
                 )
-        
+
         super(Unit, self).save(*args, **kwargs)
 
         if hasattr(self, '_save_action') and self._save_action == UNIT_CREATED:
