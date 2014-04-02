@@ -37,13 +37,6 @@
         return false;
       });
 
-      $(document).on("change", "#reports-viewmode select", function (e) {
-        PTL.reports.setViewMode($(this).val());
-        PTL.reports.update();
-
-        return false;
-      });
-
       $(document).on("keypress", "#reports-user", function (e) {
         if (e.which === 13) {
           PTL.reports.user = $('#reports-user').val();
@@ -57,43 +50,46 @@
 
       PTL.reports.currentRowIsEven = false;
 
-      setTimeout(function () {
-        $.history.init(function (hash) {
-          var params = PTL.utils.getParsedHash(hash);
+      $.history.init(function (hash) {
+        var params = PTL.utils.getParsedHash(hash);
 
-          // Walk through known report criterias and apply them to the
-          // reports object
-          if ('start' in params && 'end' in params) {
-            PTL.reports.date_range = [
-              moment(params.start),
-              moment(params.end)
-            ];
-          } else {
-            PTL.reports.date_range = [
-              moment().date(1),
-              moment()
-            ];
-          }
+        // Walk through known report criterias and apply them to the
+        // reports object
+        if ('start' in params && 'end' in params) {
+          PTL.reports.date_range = [
+            moment(params.start),
+            moment(params.end)
+          ];
+        } else {
+          PTL.reports.date_range = [
+            moment().date(1),
+            moment()
+          ];
+        }
 
-          if ('mode' in params) {
-            PTL.reports.setViewMode(params.mode);
-            delete params.mode;
-          } else {
-            PTL.reports.setViewMode('new');
-          }
+        if ('mode' in params) {
+          PTL.reports.setViewMode(params.mode);
+        } else {
+          PTL.reports.setViewMode('new');
+        }
 
-          if ('user' in params) {
-            PTL.reports.user = params.user;
-          }
-          $('#reports-user').val(PTL.reports.user);
+        if ('user' in params) {
+          PTL.reports.user = params.user;
+        }
+        $('#reports-user').val(PTL.reports.user);
 
-          if (!PTL.reports.compareParams(params)) {
-            PTL.reports.buildResults();
-          }
-          PTL.reports.loadedHashParams = params;
-        }, {'unescape': true});
+        if (!PTL.reports.compareParams(params)) {
+          PTL.reports.buildResults();
+        }
 
-      }, 1); // not sure why we had a 1000ms timeout here
+        PTL.reports.loadedHashParams = params;
+      }, {'unescape': true});
+
+      $(document).on("change", "#reports-viewmode select", function (e) {
+        PTL.reports.setViewMode($(this).val());
+        PTL.reports.update();
+        return false;
+      });
 
     },
 
@@ -154,6 +150,7 @@
         success: function (data) {
           $('#reports-results').empty();
           $('#reports-results').html(PTL.reports.tmpl.results(data));
+          PTL.reports.setViewMode(PTL.reports.mode);
         },
         error: function (xhr, s) {
           alert('Error status: ' + xhr.status);
