@@ -67,11 +67,7 @@
           ];
         }
 
-        if ('mode' in params) {
-          PTL.reports.setViewMode(params.mode);
-        } else {
-          PTL.reports.setViewMode('new');
-        }
+        PTL.reports.setViewMode(params.mode || 'new');
 
         if ('user' in params) {
           PTL.reports.user = params.user;
