@@ -27,6 +27,33 @@ from ..factories import SubmissionFactory
 
 
 @pytest.mark.django_db
+def test_max_similarity():
+    """Tests that the maximum similarity is properly returned."""
+    submission = SubmissionFactory.build(
+        similarity=0,
+        mt_similarity=0,
+    )
+    assert submission.max_similarity == 0
+
+    submission = SubmissionFactory.build(
+        similarity=0.5,
+        mt_similarity=0.6,
+    )
+    assert submission.max_similarity == 0.6
+
+    submission = SubmissionFactory.build(
+        similarity=0.5,
+        mt_similarity=None,
+    )
+    assert submission.max_similarity == 0.5
+
+    submission = SubmissionFactory.build(
+        similarity=None,
+        mt_similarity=None,
+    )
+    assert submission.max_similarity == 0
+
+@pytest.mark.django_db
 def test_needs_scorelog():
     """Tests if the submission needs to be logged or not."""
     # Changing the STATE from UNTRANSLATED won't record any logs

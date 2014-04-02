@@ -30,6 +30,7 @@ from django.utils.translation import ugettext_lazy as _
 from pootle.core.log import log, SCORE_CHANGED
 from pootle.core.managers import RelatedManager
 from pootle_misc.checks import check_names
+from pootle_misc.util import cached_property
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
@@ -114,6 +115,15 @@ class Submission(models.Model):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
 
+    @cached_property
+    def max_similarity(self):
+        """Returns current submission's maximum similarity."""
+        if (self.similarity is not None or
+            self.mt_similarity is not None):
+            return max(self.similarity, self.mt_similarity)
+
+        return 0
+
     def needs_scorelog(self):
         """Returns ``True`` if the submission needs to log its score."""
         # Changing from untranslated state won't record a score change
@@ -122,6 +132,7 @@ class Submission(models.Model):
             return False
 
         return True
+
 
     def as_html(self):
         return self.get_submission_message()
@@ -309,16 +320,10 @@ class ScoreLog(models.Model):
     @classmethod
     def record_submission(cls, submission):
         """Records a new log entry for ``submission``."""
-        if (submission.similarity is not None or
-            submission.mt_similarity is not None):
-            similarity = max(submission.similarity, submission.mt_similarity)
-        else:
-            similarity = 0
-
         score_dict = {
             'creation_time': submission.creation_time,
             'wordcount': submission.unit.source_wordcount,
-            'similarity': similarity,
+            'similarity': submission.max_similarity,
             'submission': submission,
         }
 
