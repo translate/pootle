@@ -600,7 +600,9 @@
     $checkbox.prop('checked', true);
 
     if (!this.settings.isAdmin) {
-      $('.js-fuzzy-block').show();
+      if (!PTL.editor.isSuggestMode()) {
+        $('.js-fuzzy-block').show();
+      }
       $checkbox[0].defaultChecked = true;
     }
 
@@ -1371,6 +1373,10 @@
           sfn: 'PTL.editor.processSuggestion',
           efn: 'PTL.editor.error'
         };
+
+    // in suggest mode, do not send the fuzzy state flag
+    // even if it is set in the form internally
+    delete reqData['state'];
 
     $.extend(reqData, PTL.editor.getReqData(), PTL.editor.getSimilarityData(),
              captchaCallbacks);
