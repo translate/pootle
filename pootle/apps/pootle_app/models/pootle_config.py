@@ -17,7 +17,37 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.db import models
+from django.db import models, DatabaseError
+
+
+def get_pootle_build(default=0):
+    """Get the Pootle build version for the current deployment, if any."""
+    try:
+        build = PootleConfig.objects.get_current().ptl_build
+    except Exception:
+        build = 0
+
+    if not build:
+        try:
+            from pootle_misc.siteconfig import get_build
+
+            build = get_build('POOTLE_BUILDVERSION')
+
+            if not build:
+                # Old Pootle versions used BUILDVERSION instead.
+                build = get_build('BUILDVERSION')
+        except DatabaseError:
+            # Assume that the DatabaseError is because we have a blank
+            # database from a new install.
+            # TODO: is there a better way to do this?
+            build = 0
+
+    # We have some code that depends on the build version being not less than a
+    # specific value.
+    if default and build < default:
+        build = default
+
+    return build
 
 
 class PootleConfigManager(models.Manager):

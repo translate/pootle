@@ -26,13 +26,13 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management.base import NoArgsCommand
 
 from pootle_app.management.commands.upgrade import DEFAULT_POOTLE_BUILDVERSION
-from pootle_misc.siteconfig import get_build
+from pootle_app.models.pootle_config import get_pootle_build
 
 
 class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
-        db_buildversion = get_build('BUILDVERSION')
+        db_buildversion = get_pootle_build()
 
         if db_buildversion and db_buildversion < DEFAULT_POOTLE_BUILDVERSION:
             from pootle_misc.upgrade.schema import staggered_update
@@ -42,6 +42,9 @@ class Command(NoArgsCommand):
                          DEFAULT_POOTLE_BUILDVERSION)
             staggered_update(db_buildversion)
             logging.info('Database upgrade done.')
+        elif db_buildversion and db_buildversion > DEFAULT_POOTLE_BUILDVERSION:
+            logging.info('Your installation is newer than Pootle 2.5.\n'
+                         'You do not need to run this.')
         elif db_buildversion:
             logging.info('No database upgrades required.')
 
@@ -49,12 +52,6 @@ class Command(NoArgsCommand):
             new_buildversion = max(db_buildversion,
                                    DEFAULT_POOTLE_BUILDVERSION)
             logging.info('Current schema version: %d', new_buildversion)
-        else:
-            # Oh, the admin tried to run updatedb but there is no BUILDVERSION
-            # recorded in its Pootle installation. That means it's not a legacy
-            # installation.
-            logging.info('Your installation is newer than Pootle 2.5.\n'
-                         'You do not need to run this.')
 
         logging.info('THIS UPGRADE SCRIPT HAS BEEN DEPRECATED!')
         logging.info('If you are trying to upgrade Pootle from version 2.5\n'

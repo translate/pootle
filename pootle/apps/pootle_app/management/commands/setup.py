@@ -27,36 +27,20 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.core.management import call_command
 from django.core.management.base import CommandError, NoArgsCommand
-from django.db.utils import DatabaseError
 
 from pootle.__version__ import build as NEW_POOTLE_BUILD
-from pootle_misc.siteconfig import get_build
+from pootle_app.models.pootle_config import get_pootle_build
 
 
 class Command(NoArgsCommand):
     help = 'Runs the install/upgrade machinery.'
-
-    def get_current_buildversion(self):
-        """Retrieve the build version for the current deployment, if any."""
-        try:
-            current_buildversion = get_build('POOTLE_BUILDVERSION')
-
-            if not current_buildversion:
-                # Old Pootle versions used BUILDVERSION instead.
-                current_buildversion = get_build('BUILDVERSION')
-        except DatabaseError:
-            # Assume that the DatabaseError is because we have a blank database
-            # from a new install, is there a better way to do this?
-            current_buildversion = 0
-
-        return current_buildversion
 
     def handle_noargs(self, **options):
         """Run the install or upgrade machinery.
 
         If there is an up-to-date Pootle setup then no action is performed.
         """
-        current_buildversion = self.get_current_buildversion()
+        current_buildversion = get_pootle_build()
 
         if not current_buildversion:
             logging.info('Setting up a new Pootle installation.')
