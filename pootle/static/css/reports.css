@@ -67,6 +67,14 @@ tr.total td.total {
     background-color: #aad6e5;
 }
 
+tr:hover {
+    background-color: #abfbfd !important;
+}
+
+tr:hover td.total {
+    background-color: #9ef5fa !important;
+}
+
 tr.after_break {
     border-top: 1px dashed #c0e4f0;
 }

@@ -16,16 +16,29 @@
     <thead>
     <tr>
       <th>Dates</th>
-      <% _.each(all_projects, function (project, i) { %>
-      <th class="project"><%= project %></th>
-      <% }); %>
       <th class="project">Total</th>
+      <% _.each(all_projects, function (project, i) { %>
+        <th class="project"><%= project %></th>
+      <% }); %>
     </tr>
     </thead>
     <%= PTL.reports.resetRowStyle()  %>
     <% _.each(lang_data.dates, function (date) { %>
       <tr class="item <%= PTL.reports.cycleEvenOdd() %><% if (date.after_break) { %> date.after_break<% } %>">
         <td><%= PTL.reports.formatDate(date.date) %></td>
+        <td class="total number">
+          <% if (date.total.new.n1) { %>
+            <span class="new" title="Translated words (precise): <%= date.total.new.n1 %>
+              Translated words (Pootle): <%= date.total.new.pootle_n1 %>">
+                <%= date.total.new.n1 %>
+            </span>
+          <% } %>
+          <% if (date.total.edit.pootle_n1) { %>
+            <span class="edit">
+              <%= date.total.edit.pootle_n1 %>
+            </span>
+          <% } %>
+        </td>
         <% _.each(all_projects, function (project, code) { %>
           <td class="number">
           <% if (date.projects[code]) { %>
@@ -45,24 +58,24 @@
           <% } %>
           </td>
         <% }); %>
-        <td class="total number">
-          <% if (date.total.new.n1) { %>
-            <span class="new" title="Translated words (precise): <%= date.total.new.n1 %>
-              Translated words (Pootle): <%= date.total.new.pootle_n1 %>">
-                <%= date.total.new.n1 %>
-            </span>
-          <% } %>
-          <% if (date.total.edit.pootle_n1) { %>
-            <span class="edit">
-              <%= date.total.edit.pootle_n1 %>
-            </span>
-          <% } %>
-        </td>
       </tr>
     <% });%>
 
     <tr class="total">
       <td>Total</td>
+      <td class="total number">
+        <% if (lang_data.total.new.n1) { %>
+          <span class="new" title="Translated words (precise): <%= lang_data.total.new.n1 %>
+            Translated words (Pootle): <%= lang_data.total.new.pootle_n1 %>">
+            <%= lang_data.total.new.n1 %>
+          </span>
+        <% } %>
+        <% if (lang_data.total.edit.pootle_n1) { %>
+          <span class="edit">
+            <%= lang_data.total.edit.pootle_n1 %>
+          </span>
+        <% } %>
+      </td>
       <% _.each(all_projects, function (project, code) { %>
         <td class="number">
         <% if (lang_data.sums[code]) { %>
@@ -80,19 +93,6 @@
         <% } %>
         </td>
       <% }); %>
-      <td class="total number">
-        <% if (lang_data.total.new.n1) { %>
-          <span class="new" title="Translated words (precise): <%= lang_data.total.new.n1 %>
-            Translated words (Pootle): <%= lang_data.total.new.pootle_n1 %>">
-            <%= lang_data.total.new.n1 %>
-          </span>
-        <% } %>
-        <% if (lang_data.total.edit.pootle_n1) { %>
-          <span class="edit">
-            <%= lang_data.total.edit.pootle_n1 %>
-          </span>
-        <% } %>
-      </td>
     </tr>
 
   </table>
