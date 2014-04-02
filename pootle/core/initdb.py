@@ -66,10 +66,7 @@ def initdb():
 
     create_local_tm()
 
-    config = load_site_config()
-    config.set('POOTLE_BUILDVERSION', CODE_PTL_BUILD_VERSION)
-    config.set('TT_BUILDVERSION', CODE_TTK_BUILD_VERSION)
-    config.save()
+    save_build_versions()
 
 
 def create_essential_users():
@@ -386,3 +383,14 @@ def create_local_tm():
             tmunit.save()
 
         logging.info('Successfully created local TM from existing translations')
+
+
+def save_build_versions():
+    """Save the Pootle and Translate Toolkit build versions on the database.
+
+    The build versions are used to upgrade only what has to be upgraded.
+    """
+    config = load_site_config()
+    config.set('POOTLE_BUILDVERSION', CODE_PTL_BUILD_VERSION)
+    config.set('TT_BUILDVERSION', CODE_TTK_BUILD_VERSION)
+    config.save()
