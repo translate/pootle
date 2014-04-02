@@ -415,20 +415,38 @@ class ScoreLog(models.Model):
     def log(self):
         d = {
             'user': self.user,
+            'action': SCORE_CHANGED,
             'score_delta': self.score_delta,
+            'code': TranslationActionCodes.NAMES_MAP[self.action_code],
             'unit': self.submission.unit.id,
             'wordcount': self.wordcount,
             'similarity': self.similarity,
             'total': self.user.score,
-            'action': SCORE_CHANGED,
-            'code': TranslationActionCodes.NAMES_MAP[self.action_code],
         }
 
-        message = "%(user)s\t%(action)s\t%(score_delta)s\t%(code)s\t" \
-                  "#%(unit)s\tNS=%(wordcount)s\tS=%(similarity)s\t" \
-                  "(total: %(total)s)" % d
+        params = ['%(user)s', '%(action)s', '%(score_delta)s',
+                  '%(code)s', '#%(unit)s']
 
-        log(message)
+        zero_types = [
+            TranslationActionCodes.MARKED_FUZZY,
+            TranslationActionCodes.DELETED,
+        ]
+        no_similarity_types = [
+            TranslationActionCodes.SUGG_REVIEWED_REJECTED,
+            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED,
+            TranslationActionCodes.REVIEW_PENALTY,
+            TranslationActionCodes.REVIEWED,
+        ]
+
+        if self.action_code not in zero_types:
+            params.append('NS=%(wordcount)s')
+
+            if self.action_code not in no_similarity_types:
+                  params.append('S=%(similarity)s')
+
+        params.append('(total: %(total)s)')
+
+        log("\t".join(params) % d)
 
     def get_delta(self):
         """Returns the score change performed by the current action."""
