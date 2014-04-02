@@ -29,8 +29,8 @@ from django.core.management import call_command
 from django.core.management.base import CommandError, NoArgsCommand
 from django.db.utils import DatabaseError
 
-from pootle_misc.siteconfig import load_site_config
 from pootle.__version__ import build as NEW_POOTLE_BUILD
+from pootle_misc.siteconfig import load_site_config
 
 
 class Command(NoArgsCommand):
