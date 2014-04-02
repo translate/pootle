@@ -682,13 +682,6 @@ class Unit(models.Model, base.TranslationUnit):
                 #FIXME: we need to do this cause we discard nplurals
                 # for empty plurals
                 changed = True
-                self.submitted_by = user
-                self.submitted_on = timezone.now()
-
-            # elif target is empty then submitted_xx should be set to None
-            # will check by state in unit.save()
-            self.reviewed_on = None
-            self.reviewed_by = None
 
         notes = unit.getnotes(origin="developer")
 
@@ -1562,10 +1555,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         unit.delete()
                         changes['deleted'] += 1
 
+            system = User.objects.get_system_user().get_profile()
+
             # Add new units to the store
             new_units = (store.findid(uid) for uid in new_ids - old_ids)
             for unit in new_units:
-                newunit = self.addunit(unit, unit.index)
+                newunit = self.addunit(unit, unit.index, user=system)
                 changes['added'] += 1
 
                 # Fuzzy match non-empty target strings
@@ -1595,7 +1590,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 common_dbids -= modified_units
 
             common_dbids = list(common_dbids)
-            system = User.objects.get_system_user().get_profile()
             for unit in self.findid_bulk(common_dbids):
                 # Use the same (parent) object since units will accumulate
                 # the list of cache attributes to clear in the parent Store
@@ -1653,6 +1647,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     if SubmissionFields.TARGET in create_subs:
                         unit.submitted_by = system
                         unit.submitted_on = current_time
+                        self.reviewed_on = None
+                        self.reviewed_by = None
+
                     unit.save()
 
             self.file_mtime = disk_mtime
@@ -1854,6 +1851,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         newunit = self.UnitClass(store=self, index=index)
         newunit.update(unit, user=user)
+        if newunit._target_updated:
+            newunit.submitted_by = user
+            newunit.submitted_on = timezone.now()
 
         if self.id:
             newunit.save()
