@@ -1,4 +1,5 @@
 -r deploy.txt
 
+factory_boy
 pytest
 pytest-django
