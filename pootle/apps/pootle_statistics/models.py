@@ -114,6 +114,15 @@ class Submission(models.Model):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
 
+    def needs_scorelog(self):
+        """Returns ``True`` if the submission needs to log its score."""
+        # Changing from untranslated state won't record a score change
+        if (self.field == SubmissionFields.STATE and
+            int(self.old_value) == UNTRANSLATED):
+            return False
+
+        return True
+
     def as_html(self):
         return self.get_submission_message()
 
@@ -247,7 +256,8 @@ class Submission(models.Model):
     def save(self, *args, **kwargs):
         super(Submission, self).save(*args, **kwargs)
 
-        ScoreLog.record_submission(submission=self)
+        if self.needs_scorelog():
+            ScoreLog.record_submission(submission=self)
 
 
 class TranslationActionCodes(object):
@@ -299,12 +309,6 @@ class ScoreLog(models.Model):
     @classmethod
     def record_submission(cls, submission):
         """Records a new log entry for ``submission``."""
-
-        # Changing from untranslated state won't record a score change
-        if (submission.field == SubmissionFields.STATE and
-            int(submission.old_value) == UNTRANSLATED):
-            return
-
         if (not submission.similarity is None or
             not submission.mt_similarity is None):
             similarity = max(submission.similarity, submission.mt_similarity)
