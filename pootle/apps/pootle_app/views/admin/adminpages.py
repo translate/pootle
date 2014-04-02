@@ -25,17 +25,20 @@ from django.template import RequestContext
 
 from pootle.core.decorators import admin_required
 from pootle_app.forms import GeneralSettingsForm
+from pootle_app.models.pootle_site import PootleSite
 
 
 @admin_required
 def view(request):
+    site = PootleSite.objects.get_current()
+
     if request.POST:
-        setting_form = GeneralSettingsForm(data=request.POST)
+        setting_form = GeneralSettingsForm(data=request.POST, instance=site)
 
         if setting_form.is_valid():
             setting_form.save()
     else:
-        setting_form = GeneralSettingsForm()
+        setting_form = GeneralSettingsForm(instance=site)
 
     ctx = {
         'form': setting_form,

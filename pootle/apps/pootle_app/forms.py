@@ -20,38 +20,10 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_misc.siteconfig import load_site_config
+from pootle_app.models.pootle_site import PootleSite
 
 
-class GeneralSettingsForm(forms.Form):
-    TITLE = forms.CharField(
-        label=_("Title"),
-        help_text=_("The name for this Pootle server"),
-        max_length=50,
-        required=True,
-    )
-    DESCRIPTION = forms.CharField(
-        label=_("Description"),
-        help_text=_("The description and instructions shown on the front page "
-                    "and about page. Be sure to use valid HTML."),
-        max_length=8192,
-        required=True,
-        widget=forms.Textarea,
-    )
+class GeneralSettingsForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        forms.Form.__init__(self, *args, **kwargs)
-        self.siteconfig = load_site_config()
-
-        for field in self.fields:
-            value = self.siteconfig.get(field, None)
-
-            if value is not None:
-                self.fields[field].initial = value
-
-    def save(self):
-        if not self.errors:
-            for field, value in self.cleaned_data.iteritems():
-                self.siteconfig.set(field, value)
-
-            self.siteconfig.save()
+    class Meta:
+        model = PootleSite

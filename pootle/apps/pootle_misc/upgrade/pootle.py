@@ -136,8 +136,10 @@ def upgrade_to_25203():
 
 def upgrade_to_25204():
     """Copy configuration stored using djblets to new models."""
+    from pootle.core.initdb import create_default_pootle_site
     from pootle_app.models import PootleConfig
-    from pootle_misc.siteconfig import get_build
+    from pootle_misc.siteconfig import (get_build, get_site_description,
+                                        get_site_title)
 
     # Copy the Pootle configuration.
     pootle_config = PootleConfig(
@@ -145,3 +147,9 @@ def upgrade_to_25204():
         ttk_build=get_build('TT_BUILDVERSION'),
     )
     pootle_config.save()
+
+    # Copy the Pootle site data.
+    create_default_pootle_site(
+        get_site_title(),
+        get_site_description()
+    )

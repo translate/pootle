@@ -23,8 +23,10 @@ import logging
 from translate.__version__ import build as CODE_TTK_BUILD_VERSION
 from translate.lang import data, factory
 
+from django.conf import settings
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.sites.models import Site
 from django.core.management import call_command
 from django.db import transaction
 from django.db.models.signals import post_syncdb, pre_delete, post_delete
@@ -33,6 +35,7 @@ from django.utils.translation import ugettext_noop as _
 from pootle.__version__ import build as CODE_PTL_BUILD_VERSION
 from pootle_app.models import Directory, PootleConfig
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
+from pootle_app.models import PootleSite
 from pootle_language.models import Language
 from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
@@ -63,6 +66,8 @@ def initdb():
     create_default_projects()
     create_default_languages()
     create_default_admin()
+
+    create_default_pootle_site(settings.TITLE, settings.DESCRIPTION)
 
     create_local_tm()
 
@@ -362,6 +367,25 @@ def create_default_admin():
     admin = User(**criteria)
     admin.set_password("admin")
     admin.save()
+
+
+def create_default_pootle_site(site_title, site_description):
+    """Create a PootleSite object to store the site title and description."""
+    # Get or create a Site object.
+    site, created = Site.objects.get_or_create(pk=settings.SITE_ID)
+    if created:
+        # FIXME: If possible try to retrieve the domain and name from settings.
+        site.domain = u"example.com"
+        site.name = u"example.com"
+        site.save()
+
+    # Create the PootleSite object.
+    pootle_site = PootleSite(
+        site=site,
+        title=site_title,
+        description=site_description,
+    )
+    pootle_site.save()
 
 
 def create_local_tm():
