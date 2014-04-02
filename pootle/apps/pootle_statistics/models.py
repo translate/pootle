@@ -309,8 +309,8 @@ class ScoreLog(models.Model):
     @classmethod
     def record_submission(cls, submission):
         """Records a new log entry for ``submission``."""
-        if (not submission.similarity is None or
-            not submission.mt_similarity is None):
+        if (submission.similarity is not None or
+            submission.mt_similarity is not None):
             similarity = max(submission.similarity, submission.mt_similarity)
         else:
             similarity = 0
