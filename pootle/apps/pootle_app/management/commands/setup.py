@@ -30,7 +30,7 @@ from django.core.management.base import CommandError, NoArgsCommand
 from django.db.utils import DatabaseError
 
 from pootle.__version__ import build as NEW_POOTLE_BUILD
-from pootle_misc.siteconfig import load_site_config
+from pootle_misc.siteconfig import get_build
 
 
 class Command(NoArgsCommand):
@@ -39,12 +39,11 @@ class Command(NoArgsCommand):
     def get_current_buildversion(self):
         """Retrieve the build version for the current deployment, if any."""
         try:
-            config = load_site_config()
-            current_buildversion = config.get('POOTLE_BUILDVERSION', 0)
+            current_buildversion = get_build('POOTLE_BUILDVERSION')
 
             if not current_buildversion:
                 # Old Pootle versions used BUILDVERSION instead.
-                current_buildversion = config.get('BUILDVERSION', 0)
+                current_buildversion = get_build('BUILDVERSION')
         except DatabaseError:
             # Assume that the DatabaseError is because we have a blank database
             # from a new install, is there a better way to do this?

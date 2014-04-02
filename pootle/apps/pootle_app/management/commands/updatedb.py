@@ -26,14 +26,13 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management.base import NoArgsCommand
 
 from pootle_app.management.commands.upgrade import DEFAULT_POOTLE_BUILDVERSION
-from pootle_misc.siteconfig import load_site_config
+from pootle_misc.siteconfig import get_build
 
 
 class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
-        config = load_site_config()
-        db_buildversion = config.get('BUILDVERSION', 0)
+        db_buildversion = get_build('BUILDVERSION')
 
         if db_buildversion and db_buildversion < DEFAULT_POOTLE_BUILDVERSION:
             from pootle_misc.upgrade.schema import staggered_update
