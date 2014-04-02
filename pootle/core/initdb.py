@@ -20,7 +20,7 @@
 
 import logging
 
-from translate.__version__ import build as code_tt_buildversion
+from translate.__version__ import build as CODE_TTK_BUILD_VERSION
 
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
@@ -29,7 +29,7 @@ from django.db import transaction
 from django.db.models.signals import post_syncdb, pre_delete, post_delete
 from django.utils.translation import ugettext_noop as _
 
-from pootle.__version__ import build as code_buildversion
+from pootle.__version__ import build as CODE_PTL_BUILD_VERSION
 from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
@@ -68,9 +68,9 @@ def initdb():
 
     config = load_site_config()
     if not config.get('POOTLE_BUILDVERSION', None):
-        config.set('POOTLE_BUILDVERSION', code_buildversion)
+        config.set('POOTLE_BUILDVERSION', CODE_PTL_BUILD_VERSION)
     if not config.get('TT_BUILDVERSION', None):
-        config.set('TT_BUILDVERSION', code_tt_buildversion)
+        config.set('TT_BUILDVERSION', CODE_TTK_BUILD_VERSION)
     config.save()
 
 
