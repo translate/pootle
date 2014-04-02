@@ -485,11 +485,17 @@ class Unit(models.Model, base.TranslationUnit):
             # translation hasn't been updated
             self.reviewed_on = timezone.now()
             self.reviewed_by = self._log_user
-        elif self._target_updated or self.state == FUZZY:
-            # clear reviewer data if translation has been changed or
-            # FUZZY has been set
+        elif self.state == FUZZY:
+            # clear reviewer data if unit has been marked as FUZZY
             self.reviewed_on = None
             self.reviewed_by = None
+        elif self.state == UNTRANSLATED:
+            # clear reviewer and translator data if translation
+            # has been deleted
+            self.reviewed_on = None
+            self.reviewed_by = None
+            self.submitted_by = None
+            self.submitted_on = None
 
         super(Unit, self).save(*args, **kwargs)
 
@@ -678,6 +684,11 @@ class Unit(models.Model, base.TranslationUnit):
                 changed = True
                 self.submitted_by = user
                 self.submitted_on = timezone.now()
+
+            # elif target is empty then submitted_xx should be set to None
+            # will check by state in unit.save()
+            self.reviewed_on = None
+            self.reviewed_by = None
 
         notes = unit.getnotes(origin="developer")
 

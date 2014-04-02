@@ -798,8 +798,13 @@ def submit(request, unit):
 
             # Update current unit instance's attributes
             # important to set these attributes after saving Submission
-            form.instance.submitted_by = request.profile
-            form.instance.submitted_on = current_time
+            # because we need to access the unit's state before it was saved
+            if SubmissionFields.TARGET in form.updated_fields:
+                form.instance.submitted_by = request.profile
+                form.instance.submitted_on = current_time
+                form.instance.reviewed_by = None
+                form.instance.reviewed_on = None
+
             form.instance._log_user = request.profile
 
             form.save()
