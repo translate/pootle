@@ -210,7 +210,7 @@ def upgrade(product, old_buildversion, new_buildversion):
     save_version_function = {
         'pootle': save_pootle_version,
         'ttk': save_toolkit_version,
-    }
+    }.get(product)
 
     product_module = '.'.join((__name__, product))
     import_module(''.join(('.', product)), __name__)
@@ -224,6 +224,6 @@ def upgrade(product, old_buildversion, new_buildversion):
 
     for upgrade_function, upgrade_buildversion in upgrade_functions:
         upgrade_function()
-        save_version_function[product](upgrade_buildversion)
+        save_version_function(upgrade_buildversion)
 
-    save_version_function[product](new_buildversion)
+    save_version_function(new_buildversion)
