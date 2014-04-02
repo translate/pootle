@@ -246,7 +246,11 @@ class PootleProfile(models.Model):
         # of needed queries for these kind of data retrievals
         contributions = []
         username = self.user.username
-        edit_types = [SubmissionTypes.NORMAL, SubmissionTypes.SUGG_ADD, SubmissionTypes.SYSTEM]
+        edit_types = [
+            SubmissionTypes.NORMAL,
+            SubmissionTypes.SUGG_ADD,
+            SubmissionTypes.SYSTEM,
+        ]
         languages = Language.objects.filter(
                 translationproject__submission__submitter=self,
                 translationproject__submission__type__in=edit_types,
