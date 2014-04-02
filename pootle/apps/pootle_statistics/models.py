@@ -429,20 +429,58 @@ class ScoreLog(models.Model):
         reviewCost = ns * REVIEW_COEF
         analyzeCost = ns * ANALYZE_COEF
 
+        def get_sugg_rejected():
+            try:
+                s = self.submission.suggestion.submission_set \
+                        .get(type=SubmissionTypes.SUGG_ADD) \
+                        .similarity
+                self.similarity = s
+                rawTranslationCost = ns * EDIT_COEF * (1 - s)
+            except:
+                rawTranslationCost = 0
+
+            return (-1) * (rawTranslationCost * SUGG_COEF + analyzeCost)
+
+        def get_edit_penalty():
+            try:
+                s = Submission.objects.get(
+                    unit__id=self.submission.unit_id,
+                    submitter__id=self.submission.unit.submitted_by_id,
+                    creation_time=self.submission.unit.submitted_on,
+                    field=SubmissionFields.TARGET,
+                    type=SubmissionTypes.NORMAL
+                )
+                self.similarity = s
+                rawTranslationCost = ns * EDIT_COEF * (1 - s)
+            except:
+                rawTranslationCost = 0
+
+            return (-1) * rawTranslationCost
+
+        def get_sugg_accepted():
+            try:
+                s = self.submission.suggestion.submission_set \
+                        .get(type=SubmissionTypes.SUGG_ADD) \
+                        .similarity
+                self.similarity = s
+                rawTranslationCost = ns * EDIT_COEF * (1 - s)
+            except:
+                rawTranslationCost = 0
+
+            return rawTranslationCost * (1 - SUGG_COEF)
+
         return {
-            TranslationActionCodes.NEW: rawTranslationCost + reviewCost,
-            TranslationActionCodes.EDITED: rawTranslationCost + reviewCost,
-            TranslationActionCodes.EDITED_OWN: rawTranslationCost,
-            TranslationActionCodes.REVIEWED: reviewCost,
-            TranslationActionCodes.EDIT_PENALTY: (-1) * rawTranslationCost,
-            TranslationActionCodes.MARKED_FUZZY: 0,
-            TranslationActionCodes.DELETED: 0,
-            TranslationActionCodes.REVIEW_PENALTY: (-1) * reviewCost,
-            TranslationActionCodes.SUGG_ADDED: rawTranslationCost * SUGG_COEF,
-            TranslationActionCodes.SUGG_ACCEPTED: rawTranslationCost * (1 - SUGG_COEF),
-            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: reviewCost,
-            TranslationActionCodes.SUGG_REJECTED: (-1) *
-                                                  (rawTranslationCost * SUGG_COEF +
-                                                   analyzeCost),
-            TranslationActionCodes.SUGG_REVIEWED_REJECTED: analyzeCost,
-        }.get(self.action_code, 0)
+            TranslationActionCodes.NEW: lambda: rawTranslationCost + reviewCost,
+            TranslationActionCodes.EDITED: lambda: rawTranslationCost + reviewCost,
+            TranslationActionCodes.EDITED_OWN: lambda: rawTranslationCost,
+            TranslationActionCodes.REVIEWED: lambda: reviewCost,
+            TranslationActionCodes.EDIT_PENALTY: get_edit_penalty,
+            TranslationActionCodes.MARKED_FUZZY: lambda: 0,
+            TranslationActionCodes.DELETED: lambda: 0,
+            TranslationActionCodes.REVIEW_PENALTY: lambda: (-1) * reviewCost,
+            TranslationActionCodes.SUGG_ADDED: lambda: rawTranslationCost * SUGG_COEF,
+            TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
+            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: lambda: reviewCost,
+            TranslationActionCodes.SUGG_REJECTED: get_sugg_rejected,
+            TranslationActionCodes.SUGG_REVIEWED_REJECTED: lambda: analyzeCost,
+        }.get(self.action_code, 0)()
