@@ -50,6 +50,32 @@ def get_pootle_build(default=0):
     return build
 
 
+def get_toolkit_build(default=0):
+    """Get the Toolkit build version for the current deployment, if any."""
+    try:
+        build = PootleConfig.objects.get_current().ttk_build
+    except Exception:
+        build = 0
+
+    if not build:
+        try:
+            from pootle_misc.siteconfig import get_build
+
+            build = get_build('TT_BUILDVERSION')
+        except DatabaseError:
+            # Assume that the DatabaseError is because we have a blank
+            # database from a new install.
+            # TODO: is there a better way to do this?
+            build = 0
+
+    # We have some code that depends on the build version being not less than a
+    # specific value.
+    if default and build < default:
+        build = default
+
+    return build
+
+
 class PootleConfigManager(models.Manager):
 
     def get_current(self):
