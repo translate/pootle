@@ -139,6 +139,17 @@ When the ``--calculate-wordcount`` option is set, source_wordcount will be
 recalculated for all existing units in the database.
 
 
+.. _commands#refresh_scores:
+
+refresh_scores
+^^^^^^^^^^^^^
+
+This command will go through all users and recalculate user's score.
+
+When the ``--reset`` option is set, all score log data is removed and
+`zero` score is set for all users.
+
+
 .. _commands#sync_stores:
 
 sync_stores
