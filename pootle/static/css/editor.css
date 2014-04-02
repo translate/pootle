@@ -1261,7 +1261,7 @@ a.editor-specialchar,
     z-index: 100;
     box-shadow: 0 0 3px #6daa00;
     border: 1px solid transparent;
-    transition: all 0.25s linear 0s;
+    transition: all 0.1s linear 0s;
 }
 
 .exact-match

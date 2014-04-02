@@ -718,7 +718,7 @@
     this.similarityTimer = setTimeout(function () {
       that.checkSimilarTranslations();
       that.similarityTimer = null;  // So we know the code was run
-    }, 500);
+    }, 200);
   },
 
 
