@@ -67,10 +67,8 @@ def initdb():
     create_local_tm()
 
     config = load_site_config()
-    if not config.get('POOTLE_BUILDVERSION', None):
-        config.set('POOTLE_BUILDVERSION', CODE_PTL_BUILD_VERSION)
-    if not config.get('TT_BUILDVERSION', None):
-        config.set('TT_BUILDVERSION', CODE_TTK_BUILD_VERSION)
+    config.set('POOTLE_BUILDVERSION', CODE_PTL_BUILD_VERSION)
+    config.set('TT_BUILDVERSION', CODE_TTK_BUILD_VERSION)
     config.save()
 
 
