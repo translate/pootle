@@ -30,7 +30,7 @@ def save_version(product, build):
     :param build: the build version number.
     :param prefix: prefix for the 'BUILDVERSION' key.
     """
-    from pootle_misc.siteconfig import load_site_config
+    from pootle_misc.siteconfig import save_build
 
     prefix = {
         'pootle': 'POOTLE_',
@@ -38,9 +38,7 @@ def save_version(product, build):
     }.get(product, '')
 
     key = prefix + 'BUILDVERSION'
-    config = load_site_config()
-    config.set(key, build)
-    config.save()
+    save_build(key, build)
 
     if product == 'pootle':
         logging.info("Database now at Pootle build %s" % build)

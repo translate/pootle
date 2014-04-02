@@ -34,7 +34,7 @@ from pootle.__version__ import build as CODE_PTL_BUILD_VERSION
 from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
-from pootle_misc.siteconfig import load_site_config
+from pootle_misc.siteconfig import save_build
 from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
 from pootle_store.models import TMUnit, Unit
@@ -386,7 +386,5 @@ def save_build_versions():
 
     The build versions are used to upgrade only what has to be upgraded.
     """
-    config = load_site_config()
-    config.set('POOTLE_BUILDVERSION', CODE_PTL_BUILD_VERSION)
-    config.set('TT_BUILDVERSION', CODE_TTK_BUILD_VERSION)
-    config.save()
+    save_build('POOTLE_BUILDVERSION', CODE_PTL_BUILD_VERSION)
+    save_build('TT_BUILDVERSION', CODE_TTK_BUILD_VERSION)

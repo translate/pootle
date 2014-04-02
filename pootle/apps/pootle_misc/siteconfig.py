@@ -61,3 +61,10 @@ def get_site_title():
 def get_site_description():
     siteconfig = load_site_config()
     return siteconfig.get('DESCRIPTION')
+
+
+def save_build(key, build):
+    """Save a buildversion using djblets."""
+    config = load_site_config()
+    config.set(key, build)
+    config.save()
