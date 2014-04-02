@@ -40,15 +40,15 @@ class Command(NoArgsCommand):
         """Retrieve the build version for the current deployment, if any."""
         try:
             config = load_site_config()
-            current_buildversion = config.get('POOTLE_BUILDVERSION', None)
+            current_buildversion = config.get('POOTLE_BUILDVERSION', 0)
 
-            if current_buildversion is None:
+            if not current_buildversion:
                 # Old Pootle versions used BUILDVERSION instead.
-                current_buildversion = config.get('BUILDVERSION', None)
+                current_buildversion = config.get('BUILDVERSION', 0)
         except DatabaseError:
             # Assume that the DatabaseError is because we have a blank database
             # from a new install, is there a better way to do this?
-            current_buildversion = None
+            current_buildversion = 0
 
         return current_buildversion
 
@@ -59,7 +59,7 @@ class Command(NoArgsCommand):
         """
         current_buildversion = self.get_current_buildversion()
 
-        if current_buildversion is None:
+        if not current_buildversion:
             logging.info('Setting up a new Pootle installation.')
 
             call_command('syncdb', interactive=False)

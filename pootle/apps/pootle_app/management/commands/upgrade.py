@@ -69,13 +69,13 @@ class Command(BaseCommand):
                 logging.info('Detected new Pootle version: %d.',
                              code_ptl_buildversion)
             else:
-                db_ptl_buildversion = None
+                db_ptl_buildversion = 0
 
             if tt_changed:
                 logging.info('Detected new Translate Toolkit version: %d.',
                              code_tt_buildversion)
             else:
-                db_tt_buildversion = None
+                db_tt_buildversion = 0
 
             logging.info('Running the upgrade machinery...')
 

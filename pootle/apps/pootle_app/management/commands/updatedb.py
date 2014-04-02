@@ -33,7 +33,7 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         config = load_site_config()
-        db_buildversion = config.get('BUILDVERSION', None)
+        db_buildversion = config.get('BUILDVERSION', 0)
 
         if db_buildversion and db_buildversion < DEFAULT_POOTLE_BUILDVERSION:
             from pootle_misc.upgrade.schema import staggered_update
