@@ -461,7 +461,7 @@ class ScoreLog(models.Model):
                 s = self.submission.suggestion.submission_set \
                         .get(type=SubmissionTypes.SUGG_ADD) \
                         .similarity
-                self.similarity = s
+                self.similarity = 0 if s is None else s
                 rawTranslationCost = ns * EDIT_COEF * (1 - s)
             except:
                 rawTranslationCost = 0
@@ -476,8 +476,8 @@ class ScoreLog(models.Model):
                     creation_time=self.submission.unit.submitted_on,
                     field=SubmissionFields.TARGET,
                     type=SubmissionTypes.NORMAL
-                )
-                self.similarity = s
+                ).similarity
+                self.similarity = 0 if s is None else s
                 rawTranslationCost = ns * EDIT_COEF * (1 - s)
             except:
                 rawTranslationCost = 0
@@ -489,7 +489,7 @@ class ScoreLog(models.Model):
                 s = self.submission.suggestion.submission_set \
                         .get(type=SubmissionTypes.SUGG_ADD) \
                         .similarity
-                self.similarity = s
+                self.similarity = 0 if s is None else s
                 rawTranslationCost = ns * EDIT_COEF * (1 - s)
             except:
                 rawTranslationCost = 0
