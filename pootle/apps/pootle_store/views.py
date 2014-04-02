@@ -889,10 +889,11 @@ def suggest(request, unit):
 @ajax_required
 @get_unit_context('review')
 def reject_suggestion(request, unit, suggid):
-    json = {}
+    json = {
+        'udbid': unit.id,
+        'sugid': suggid,
+    }
 
-    json["udbid"] = unit.id
-    json["sugid"] = suggid
     if request.POST.get('reject'):
         try:
             sugg = unit.suggestion_set.get(id=suggid)
