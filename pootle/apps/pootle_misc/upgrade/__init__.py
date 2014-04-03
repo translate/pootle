@@ -24,7 +24,7 @@ from __future__ import absolute_import
 import logging
 
 
-def save_version(build, prefix=''):
+def save_version(product, build):
     """Store a product's build version.
 
     :param build: the build version number.
@@ -32,27 +32,25 @@ def save_version(build, prefix=''):
     """
     from pootle_misc.siteconfig import load_site_config
 
+    prefix = {
+        'pootle': 'POOTLE_',
+        'ttk': 'TT_',
+    }.get(product, '')
+
     key = prefix + 'BUILDVERSION'
     config = load_site_config()
     config.set(key, build)
     config.save()
 
-
-def save_toolkit_version(build):
-    """Update TT_BUILDVERSION."""
-    save_version(build, prefix='TT_')
-    logging.info("Database now at Toolkit build %s" % build)
-
-
-def save_pootle_version(build):
-    """Update POOTLE_BUILDVERSION."""
-    save_version(build, prefix='POOTLE_')
-    logging.info("Database now at Pootle build %s" % build)
+    if product == 'pootle':
+        logging.info("Database now at Pootle build %s" % build)
+    elif product == 'ttk':
+        logging.info("Database now at Toolkit build %s" % build)
 
 
 def save_legacy_pootle_version(build):
     """Update Pootle's BUILDVERSION (legacy version)."""
-    save_version(build)
+    save_version('', build)
     logging.info("Database now at Pootle build %d" % build)
 
 
@@ -191,11 +189,6 @@ def upgrade(product, old_buildversion, new_buildversion):
     import sys
     from django.utils.importlib import import_module
 
-    save_version_function = {
-        'pootle': save_pootle_version,
-        'ttk': save_toolkit_version,
-    }.get(product)
-
     product_module = '.'.join((__name__, product))
     import_module(''.join(('.', product)), __name__)
 
@@ -208,6 +201,6 @@ def upgrade(product, old_buildversion, new_buildversion):
 
     for upgrade_function, upgrade_buildversion in upgrade_functions:
         upgrade_function()
-        save_version_function(upgrade_buildversion)
+        save_version(product, upgrade_buildversion)
 
-    save_version_function(new_buildversion)
+    save_version(product, new_buildversion)
