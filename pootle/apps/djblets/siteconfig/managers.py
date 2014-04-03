@@ -52,17 +52,3 @@ class SiteConfigurationManager(models.Manager):
     def clear_cache(self):
         global _SITECONFIG_CACHE
         _SITECONFIG_CACHE = {}
-
-    def check_expired(self):
-        """
-        Checks each cached SiteConfiguration to find out if its settings
-        have expired. This should be called on each request to ensure that
-        the copy of the settings is up-to-date in case another web server
-        worker process modifies the settings in the database.
-        """
-        global _SITECONFIG_CACHE
-
-        for key, siteconfig in _SITECONFIG_CACHE.copy().iteritems():
-            if siteconfig.is_expired():
-                # This is stale. Get rid of it so we can load it next time.
-                del _SITECONFIG_CACHE[key]

@@ -82,15 +82,6 @@ class SiteConfiguration(models.Model):
 
         return _DEFAULTS[self.id]
 
-    def is_expired(self):
-        """
-        Returns whether or not this SiteConfiguration is expired and needs
-        to be reloaded.
-        """
-        last_updated = cache.get(self.__get_sync_cache_key())
-        return (isinstance(last_updated, datetime) and
-                last_updated > self._last_sync_time)
-
     def save(self, **kwargs):
         now = datetime.now()
         self._last_sync_time = now
