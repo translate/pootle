@@ -30,10 +30,9 @@ def save_version(build, prefix=''):
     :param build: the build version number.
     :param prefix: prefix for the 'BUILDVERSION' key.
     """
-    key = prefix + 'BUILDVERSION'
-
     from .. import siteconfig
 
+    key = prefix + 'BUILDVERSION'
     config = siteconfig.load_site_config()
     config.set(key, build)
     config.save()
