@@ -20,7 +20,9 @@ Added Features
 - Commands and store action logging.
 
 - New management commands: ``revision``, ``changed_languages``,
-  ``test_checks``.
+  ``test_checks``, ``refresh_scores``.
+
+- User scores and rating based on submission similarities.
 
 - Timeline tracks all changes done to units.
 
@@ -34,7 +36,7 @@ Added Features
 
 - Screenshot prefix URL to allow integrating screenshots for units.
 
-- Projects can be temporarily disabled.
+- Projects and Translation Projects can be disabled.
 
 - Evernote-specific apps: reports and stats.
 

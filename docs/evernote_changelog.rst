@@ -10,8 +10,17 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+
+
+Release `2014-04-03`_
+---------------------
+
 - Translation similarities are calculated in the client and sent to the
-  server to calculate the user's score. (`#151`_, `#155`_)
+  server to calculate the user's score. The score changes are logged over
+  time. Along with this, the best matches are highlighted in the editor.
+  (`#151`_, `#152`_, `#155`_, `#158`_)
 
 - The multiple Suggestion models have been merged into a single model.
   (`#163`_)
@@ -19,14 +28,17 @@ Release .next
 - The same string can't be suggested more than once at the same time,
   avoiding duplicated suggestions pending review. (`#159`_, `#168`_)
 
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-2014-03-13...release-2014-04-03>`_
+
+.. _2014-04-03: https://github.com/evernote/pootle/releases/tag/release-2014-04-03
 .. _#151: https://github.com/evernote/pootle/issues/151
+.. _#152: https://github.com/evernote/pootle/issues/152
 .. _#155: https://github.com/evernote/pootle/issues/155
+.. _#158: https://github.com/evernote/pootle/issues/158
 .. _#159: https://github.com/evernote/pootle/issues/159
 .. _#163: https://github.com/evernote/pootle/issues/163
 .. _#168: https://github.com/evernote/pootle/issues/168
-
-- `Commit comparison wrt previous release
-  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 
 Release `2014-03-13`_
@@ -39,11 +51,11 @@ Release `2014-03-13`_
   the unit was already fuzzy, or some other action turned it fuzzy, such
   as using MT), they are always forced to clear the flag. (`#157`_)
 
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-2014-03-05...release-2014-03-13>`_
+
 .. _2014-03-13: https://github.com/evernote/pootle/releases/tag/release-2014-03-13
 .. _#157: https://github.com/evernote/pootle/issues/157
-
-- `Commit comparison wrt previous release
-  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 
 Release `2014-03-05`_
