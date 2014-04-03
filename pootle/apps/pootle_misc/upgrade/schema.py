@@ -100,8 +100,7 @@ def update_tables_22000():
     field = Store._meta.get_field('sync_time')
     db.add_column(table_name, field.name, field)
 
-    save_version('', 22000)
-    logging.info("Database now at Pootle build 22000")
+    save_version('pootle', '22000')
 
 
 def staggered_update(db_buildversion):
