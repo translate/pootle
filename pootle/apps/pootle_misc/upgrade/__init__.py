@@ -42,33 +42,21 @@ def save_version(build, prefix=''):
     config.save()
 
 
-def save_toolkit_version(build=None):
+def save_toolkit_version(build):
     """Update TT_BUILDVERSION."""
-    if not build:
-        from translate.__version__ import build
-
     save_version(build, prefix='tt')
-
     logging.info("Database now at Toolkit build %d" % int(build))
 
 
-def save_pootle_version(build=None):
+def save_pootle_version(build):
     """Update POOTLE_BUILDVERSION."""
-    if not build:
-        from pootle.__version__ import build
-
     save_version(build, prefix='pootle')
-
     logging.info("Database now at Pootle build %d" % int(build))
 
 
-def save_legacy_pootle_version(build=None):
+def save_legacy_pootle_version(build):
     """Update Pootle's BUILDVERSION (legacy version)."""
-    if not build:
-        from pootle.__version__ import build
-
     save_version(build)
-
     logging.info("Database now at Pootle build %d" % build)
 
 
