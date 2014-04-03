@@ -53,16 +53,6 @@ def load_site_config():
     return siteconfig
 
 
-def get_site_title():
-    siteconfig = load_site_config()
-    return siteconfig.get('TITLE')
-
-
-def get_site_description():
-    siteconfig = load_site_config()
-    return siteconfig.get('DESCRIPTION')
-
-
 def get_build(build_name, default_value=0):
     """Retrieve a buildversion stored using djblets.
 

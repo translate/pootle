@@ -24,6 +24,32 @@ from django.utils.translation import ugettext_lazy as _
 from pootle.core.markup import get_markup_filter_name, MarkupField
 
 
+def get_site_title():
+    pootle_site = PootleSite.objects.get_current()
+    return pootle_site.title
+
+
+def get_site_description():
+    pootle_site = PootleSite.objects.get_current()
+    return pootle_site.description
+
+
+def get_legacy_site_title():
+    """Retrieve the site title from the database as stored by djblets."""
+    from pootle_misc.siteconfig import load_site_config
+
+    siteconfig = load_site_config()
+    return siteconfig.get('TITLE')
+
+
+def get_legacy_site_description():
+    """Retrieve the site description from the database as stored by djblets."""
+    from pootle_misc.siteconfig import load_site_config
+
+    siteconfig = load_site_config()
+    return siteconfig.get('DESCRIPTION')
+
+
 class PootleSiteManager(models.Manager):
 
     def get_current(self):

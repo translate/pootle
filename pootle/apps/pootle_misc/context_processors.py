@@ -21,8 +21,8 @@
 from django.conf import settings
 
 from pootle.__version__ import sver
+from pootle_app.models.pootle_site import get_site_description, get_site_title
 from pootle_language.models import Language
-from pootle_misc.siteconfig import get_site_description, get_site_title
 from pootle_project.models import Project
 from staticpages.models import LegalPage
 

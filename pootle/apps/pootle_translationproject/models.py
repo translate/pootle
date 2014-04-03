@@ -40,9 +40,9 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
+from pootle_app.models.pootle_site import get_site_title
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
-from pootle_misc.siteconfig import get_site_title
 from pootle_misc.stats import stats_message_raw
 from pootle_misc.util import cached_property
 from pootle_project.models import Project
