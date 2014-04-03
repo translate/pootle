@@ -42,13 +42,13 @@ def save_version(build, prefix=''):
 def save_toolkit_version(build):
     """Update TT_BUILDVERSION."""
     save_version(build, prefix='TT_')
-    logging.info("Database now at Toolkit build %d" % int(build))
+    logging.info("Database now at Toolkit build %s" % build)
 
 
 def save_pootle_version(build):
     """Update POOTLE_BUILDVERSION."""
     save_version(build, prefix='POOTLE_')
-    logging.info("Database now at Pootle build %d" % int(build))
+    logging.info("Database now at Pootle build %s" % build)
 
 
 def save_legacy_pootle_version(build):
