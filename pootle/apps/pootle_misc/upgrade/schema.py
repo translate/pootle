@@ -42,7 +42,7 @@ def update_tables_22000():
     from pootle_store.models import QualityCheck, Store, Suggestion, Unit
     from pootle_translationproject.models import TranslationProject
 
-    from . import save_legacy_pootle_version
+    from . import save_version
 
     # For the sake of South bug 313, we set the default for these fields here:
     # See http://south.aeracode.org/ticket/313
@@ -100,7 +100,8 @@ def update_tables_22000():
     field = Store._meta.get_field('sync_time')
     db.add_column(table_name, field.name, field)
 
-    save_legacy_pootle_version(22000)
+    save_version('', 22000)
+    logging.info("Database now at Pootle build 22000")
 
 
 def staggered_update(db_buildversion):

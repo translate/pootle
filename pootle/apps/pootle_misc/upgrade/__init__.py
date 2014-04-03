@@ -48,12 +48,6 @@ def save_version(product, build):
         logging.info("Database now at Toolkit build %s" % build)
 
 
-def save_legacy_pootle_version(build):
-    """Update Pootle's BUILDVERSION (legacy version)."""
-    save_version('', build)
-    logging.info("Database now at Pootle build %d" % build)
-
-
 def calculate_stats():
     """Calculate full translation statistics.
 
