@@ -202,7 +202,8 @@ def set_project_resource(request, path_obj, dir_path, filename):
     disabled_tps = TranslationProject.objects.disabled().filter(
         project__code=path_obj.code,
     ).values_list('pootle_path', flat=True)
-    list(disabled_tps).append('/templates/')
+    disabled_tps = list(disabled_tps)
+    disabled_tps.append('/templates/')
     disabled_tps_regex = '^%s' % u'|'.join(disabled_tps)
 
     if filename:
