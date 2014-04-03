@@ -1,6 +1,4 @@
 #
-# djblets/siteconfig/managers.py
-#
 # Copyright (c) 2008  Christian Hammond
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -21,7 +19,6 @@
 # CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#
 
 from django.contrib.sites.models import Site
 from django.db import models

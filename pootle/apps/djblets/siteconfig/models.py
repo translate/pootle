@@ -1,6 +1,4 @@
 #
-# djblets/siteconfig/models.py
-#
 # Copyright (c) 2008  Christian Hammond
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -21,7 +19,6 @@
 # CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#
 
 from datetime import datetime
 
@@ -65,13 +62,6 @@ class SiteConfiguration(models.Model):
 
         return self.settings.get(key, default)
 
-    def set(self, key, value):
-        """
-        Sets a setting. The key should be a string, but the value can be
-        any native Python object.
-        """
-        self.settings[key] = value
-
     def add_defaults(self, defaults_dict):
         """
         Adds a dictionary of defaults to this SiteConfiguration. These
@@ -82,12 +72,6 @@ class SiteConfiguration(models.Model):
             _DEFAULTS[self.id] = {}
 
         _DEFAULTS[self.id].update(defaults_dict)
-
-    def add_default(self, key, default_value):
-        """
-        Adds a single default setting.
-        """
-        self.add_defaults({key: default_value})
 
     def get_defaults(self):
         """
