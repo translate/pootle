@@ -81,7 +81,7 @@
     });
 
     /* Write TM results, special chars... into the currently focused element */
-    $(document).on('click', '.js-editor-copytext', this.copyText);
+    $(document).on('click', '.js-editor-copytext', this.copyText.bind(this));
 
     /* Copy original translation */
     $(document).on('click', '.js-copyoriginal', function () {
@@ -612,15 +612,16 @@
 
   /* Copies text into the focused textarea */
   copyText: function (e) {
-    var selector, text, element, start,
-        action = $(this).data('action');
+    var $el = $(e.currentTarget),
+        action = $el.data('action'),
+        selector, text, element, start;
 
     // Determine which text we need
-    selector = $(".tm-translation", this).ifExists() ||
-               $(".suggestion-translation", this).ifExists() || $(this);
+    selector = $el.find('.tm-translation').ifExists() ||
+               $el.find('.suggestion-translation').ifExists() || $el;
     text = selector.data('entity') || selector.text();
 
-    element = $(PTL.editor.focused);
+    element = $(this.focused);
 
     if (action === "overwrite") {
       element.val(text).trigger('input');
