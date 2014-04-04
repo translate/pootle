@@ -22,8 +22,27 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ungettext
 
 
-def get_path_summary(path_obj):
-    """Return a list of sentences to be displayed for each ``path_obj``."""
+def get_translation_states(path_obj):
+    states = []
+
+    def make_dict(state, title, filter_url=True):
+        filter_name = filter_url and state or None
+        return {
+            'state': state,
+            'title': title,
+            'url': path_obj.get_translate_url(state=filter_name)
+        }
+
+    states.append(make_dict('total', _("Total"), False))
+    states.append(make_dict('translated', _("Translated")))
+    states.append(make_dict('fuzzy', _("Fuzzy")))
+    states.append(make_dict('untranslated', _("Untranslated")))
+
+    return states
+
+
+def get_translate_actions(path_obj):
+    """Return a list of translation action links to be displayed for each ``path_obj``."""
     goals_summary = []
 
     # Build URL for getting more summary information for the current path.
@@ -43,11 +62,15 @@ def get_path_summary(path_obj):
                                                        state='incomplete')
             if goal_words > 0:
                 goals_summary.extend([
-                    u'<br /><a class="path-incomplete" href="%(url)s">' % {
+                    u'<br /><a class="continue-translation" href="%(url)s">' % {
                             'url': goal_url,
                         },
-                    ungettext(u'Next most important goal (%(num)d word left)',
-                              u'Next most important goal (%(num)d words left)',
+                    ungettext(u'<span class="caption">Next most important '
+                              u'goal:</span> <span class="counter">%(num)d '
+                              u'word left</span>',
+                              u'<span class="caption">Next most important '
+                              u'goal:</span> <span class="counter">%(num)d '
+                              u'words left</span>',
                               goal_words,
                               {'num': goal_words, }),
                 ])
@@ -57,7 +80,9 @@ def get_path_summary(path_obj):
             'summary_more_url': url_path_summary_more,
             'translate_url': path_obj.get_translate_url(state='all'),
             'incomplete_url': path_obj.get_translate_url(state='incomplete'),
-            'suggestions_url': path_obj.get_translate_url(state='suggestions')}
+            'suggestions_url': path_obj.get_translate_url(state='suggestions'),
+            'critical_url': path_obj.get_critical_url(),
+    }
 
 
 def stats_message_raw(version, total, translated, fuzzy):

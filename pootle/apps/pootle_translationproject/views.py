@@ -37,8 +37,6 @@ from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
-from translate.filters.decorators import Category
-
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context,
@@ -52,12 +50,13 @@ from pootle_app.models import Directory
 from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_app.views.top_stats import gentopstats_translation_project
 from pootle_misc.baseurl import redirect
 from pootle_misc.browser import (get_children, get_goal_children,
                                  get_table_headings, get_parent,
                                  get_goal_parent, make_goal_item)
-from pootle_misc.checks import get_quality_check_failures
+from pootle_misc.checks import (get_qualitycheck_schema,
+                                get_quality_check_failures)
+from pootle_misc.stats import get_translation_states
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
@@ -313,7 +312,7 @@ def overview(request, translation_project, dir_path, filename=None,
         ctx = {
             'tp_tags': translation_project.tag_like_objects,
         }
-        template_name = "translation_projects/overview.html"
+        template_name = "browser/overview.html"
 
     if (check_permission('translate', request) or
         check_permission('suggest', request) or
@@ -328,11 +327,11 @@ def overview(request, translation_project, dir_path, filename=None,
     project = translation_project.project
     language = translation_project.language
 
-    path_obj = request.store or request.directory
+    resource_obj = request.store or request.directory
 
     #TODO enable again some actions when drilling down a goal.
     if goal is None:
-        actions = action_groups(request, path_obj)
+        actions = action_groups(request, resource_obj)
     else:
         actions = []
 
@@ -365,11 +364,12 @@ def overview(request, translation_project, dir_path, filename=None,
                         store_f = request.store.file.name[len(tp_dir_slash):]
                         store_fn = store_f.replace('/', os.sep)
 
-                # Clear possibly stale output/error (even from other path_obj).
+                # Clear possibly stale output/error (even from other
+                # resource_obj).
                 action.set_output('')
                 action.set_error('')
                 try:
-                    action.run(path=path_obj, root=po_dir, tpdir=tp_dir,
+                    action.run(path=resource_obj, root=po_dir, tpdir=tp_dir,
                                project=project.code, language=language.code,
                                store=store_fn,
                                style=translation_project.file_style,
@@ -388,7 +388,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
                 action_output = action.output
                 if getattr(action, 'get_download', None):
-                    export_path = action.get_download(path_obj)
+                    export_path = action.get_download(resource_obj)
                     if export_path:
                         import mimetypes
                         abs_path = absolute_real_path(export_path)
@@ -426,53 +426,59 @@ def overview(request, translation_project, dir_path, filename=None,
     else:
         description = goal.description
 
+    # Build URL for getting more information for the current path
+    url_path_summary_more = reverse('pootle-xhr-summary-more')
+
     ctx.update({
         'resource_obj': request.resource_obj,
         'translation_project': translation_project,
         'description': description,
         'project': project,
         'language': language,
-        'path_obj': path_obj,
+        'resource_obj': resource_obj,
         'resource_path': request.resource_path,
-        'topstats': gentopstats_translation_project(translation_project),
         'feed_path': request.directory.pootle_path[1:],
         'action_groups': actions,
         'action_output': action_output,
         'can_edit': can_edit,
+        'url_path_summary_more': url_path_summary_more,
+        'translation_states': get_translation_states(resource_obj),
+        'check_categories': get_qualitycheck_schema(resource_obj),
+
+        'browser_extends': 'translation_projects/base.html',
+        'browser_body_id': 'tpoverview',
     })
 
     tp_pootle_path = translation_project.pootle_path
 
     if request.store is None:
-        path_obj_goals = Goal.get_goals_for_path(path_obj.pootle_path)
-        path_obj_has_goals = len(path_obj_goals) > 0
+        resource_obj_goals = Goal.get_goals_for_path(resource_obj.pootle_path)
+        resource_obj_has_goals = len(resource_obj_goals) > 0
 
-        if in_goal_overview and path_obj_has_goals:
+        if in_goal_overview and resource_obj_has_goals:
             # Then show the goals tab.
             table_fields = ['name', 'progress', 'priority', 'total',
                             'need-translation', 'suggestions']
-            items = [make_goal_item(path_obj_goal, path_obj.pootle_path)
-                     for path_obj_goal in path_obj_goals]
+            items = [make_goal_item(resource_obj_goal, resource_obj.pootle_path)
+                     for resource_obj_goal in resource_obj_goals]
             ctx.update({
                 'table': {
                     'id': 'tp-goals',
-                    'proportional': False,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
                     'parent': get_parent(request.directory),
                     'items': items,
                 },
-                'path_obj_has_goals': True,
+                'resource_obj_has_goals': True,
             })
-        elif goal in path_obj_goals:
+        elif goal in resource_obj_goals:
             # Then show the drill down view for the specified goal.
             table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions']
+                            'suggestions', 'critical', 'activity']
 
             ctx.update({
                 'table': {
                     'id': 'tp-goals',
-                    'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
                     'parent': get_goal_parent(request.directory, goal),
@@ -480,22 +486,21 @@ def overview(request, translation_project, dir_path, filename=None,
                 },
                 'goal': goal,
                 'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
-                'path_obj_has_goals': True,
+                'resource_obj_has_goals': True,
             })
         else:
             # Then show the files tab.
             table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions']
+                            'suggestions', 'critical', 'activity']
             ctx.update({
                 'table': {
                     'id': 'tp-files',
-                    'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
                     'parent': get_parent(request.directory),
                     'items': get_children(request.directory),
                 },
-                'path_obj_has_goals': path_obj_has_goals,
+                'resource_obj_has_goals': resource_obj_has_goals,
             })
     elif goal is not None:
         ctx.update({
@@ -513,7 +518,7 @@ def overview(request, translation_project, dir_path, filename=None,
                                          kwargs=url_kwargs)
         else:
             add_tag_action_url = reverse('pootle-xhr-tag-store',
-                                         args=[path_obj.pk])
+                                         args=[resource_obj.pk])
 
         if goal is None:
             edit_form = DescriptionForm(instance=translation_project)
@@ -617,6 +622,22 @@ def ajax_add_tag_to_tp(request, translation_project):
                                       RequestContext(request))
 
 
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource_context
+def qualitycheck_stats(request, translation_project, dir_path, filename=None):
+    directory = request.directory
+    store = request.store
+    resource_obj = store or directory
+
+    qc_stats = {}
+    if resource_obj:
+        qc_stats = resource_obj.get_checks()
+
+    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
+
+
 @get_path_obj
 @permission_required('view')
 @get_resource_context
@@ -657,7 +678,7 @@ def export_view(request, translation_project, dir_path, filename=None):
         'goal': request.GET.get('goal', ''),
     })
 
-    return render_to_response('translation_projects/export_view.html', ctx,
+    return render_to_response('editor/export_view.html', ctx,
                               context_instance=RequestContext(request))
 
 

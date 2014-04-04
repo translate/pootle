@@ -56,7 +56,6 @@ a,
 a:link
 {
     text-decoration: none;
-    background-color: inherit;
     color: #0489b7;
     cursor: pointer;
 }
@@ -67,11 +66,6 @@ a:visited
 }
 
 a:hover
-{
-    text-decoration: underline;
-}
-
-a:active
 {
     text-decoration: underline;
 }
@@ -282,14 +276,6 @@ pre, code, kbd, samp, tt
     width: 16px;
     height: 16px;
     vertical-align: text-top;
-}
-
-[class^="bar-"],
-[class*=" bar-"]
-{
-    display: inline-block;
-    position: absolute;
-    vertical-align: middle;
 }
 
 ul.icons
@@ -585,8 +571,8 @@ html[dir="rtl"] #nav-main li
 
 #footer .nav li:after
 {
-    content:  "|";
-    margin: 0 25px;
+    content:  " | ";
+    margin: 0 1em;
 }
 
 #footer .nav li:last-child:after
@@ -595,6 +581,33 @@ html[dir="rtl"] #nav-main li
     margin: 0;
 }
 
+/*
+ * Make footer stick to bottom
+ * Based on http://ryanfait.com/sticky-footer/
+ */
+
+html, body
+{
+    height: 100%; 
+}
+
+#wrapper
+{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%; 
+    margin-bottom: -62px; /* #footer margin-top (20px) + #footer height (42px) */
+}
+
+#footer
+{
+    margin-top: 20px;
+    height: 42px;
+    overflow: hidden;
+            box-sizing: border-box;
+       -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
 
 /*
  * POPUPS
@@ -755,7 +768,7 @@ button.close
 #body
 {
     margin: 0;
-    padding: 5px 0px;
+    padding: 1px 0 4em;
 }
 
 #body:after
@@ -796,7 +809,8 @@ html[dir="rtl"] td.username
 tr.even,
 td.even,
 li.even,
-tr.view-row:nth-child(odd)
+tr.view-row:nth-child(odd),
+tr.item:nth-child(odd)
 {
     background: #f8f8f8;
 }
@@ -844,16 +858,19 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
-.last-action
+#main-overview .last-action .action-text
 {
-    margin: 1em 0 1em 0;
-    padding: 0.5em;
-    background-color: #f8f8f8;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+    display: none;
 }
+
+/* When browser size is 1440px or less, show the smaller version of the last action message */
+@media screen and (max-width: 1440px)
+{
+    .last-action .action-text
+    {
+        display: none;
+    }
+}    
 
 html[dir="rtl"] .last-action
 {
@@ -875,16 +892,8 @@ html[dir="rtl"] .last-action
 
 .hd h3
 {
-    border-top: 1px solid #eee;
-    margin: 1em 0 0 0;
-}
-
-.hd h3 span
-{
-    position: relative;
-    top: -10px;
-    padding-right: 5px;
-    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    margin: 1em 0 0;
 }
 
 html[dir="rtl"] .hd h3 span
@@ -915,7 +924,9 @@ html[dir="rtl"] .hd h3 span
 
 .bd h4
 {
-    font-size: 100%;
+    margin-top: 0.5em;
+    font-size: 110%;
+    font-weight: bold;    
 }
 
 /* USER PROFILES */
@@ -1432,7 +1443,16 @@ div.settings-container
 
 .settings-container h2
 {
-    margin: 1em 0 0.5em;
+    margin: 0 0 0.5em;
+}
+
+.settings-container h2,
+.module .hd h2,
+.module-primary .hd h2,
+.hd h2
+{
+    font-family: "Open Sans Condensed", "Open Sans", sans-serif;
+    font-size: 2.2em;
 }
 
 .settings-container p
@@ -1521,7 +1541,7 @@ div#settings
     background-color: #e08566 !important;
 }
 
-.delete-selected.even
+.delete-selected:nth-child(even)
 {
     background-color: #d67f62 !important;
 }
@@ -1545,25 +1565,6 @@ div#settings
 /*
  * SUMMARIES
  */
-
-#summary-legend
-{
-    color: #888;
-    font-size: 85%;
-    font-style: italic;
-}
-
-#summary-legend li
-{
-    line-height: 16px;
-}
-
-#summary-legend [class^="bar-"],
-#summary-legend [class*=" bar-"]
-{
-    position: relative;
-    width: 32px;
-}
 
 div.newsitem-sep
 {
@@ -1613,6 +1614,22 @@ table.topcontributors td
     padding: 5px 10px;
 }
 
+tr.item.empty
+{
+    opacity: 0.65;
+}
+
+table.stats td.language,
+table.stats td.project
+{
+    white-space: nowrap;
+}
+
+td.stats-name
+{
+    white-space: nowrap;    
+}
+
 td.stats-number
 {
     padding-right: 26px !important; /* magic number to put padding between right and left aligned column, and to right-align heading with number */
@@ -1625,13 +1642,15 @@ td.stats-percentage
 
 table.stats .number,
 th.stats-number,
-td.stats-number
+td.stats-number,
+td.stats-percentage
 {
     text-align: right;
 }
 
 td.stats-number.need-translation a,
-td.stats-number.suggestions a
+td.stats-number.suggestions a,
+td.stats-number.critical a
 {
     display: inline-block;
     background: #0489b7;
@@ -1649,9 +1668,24 @@ td.stats-number.suggestions a
     background: #bbaa66;
 }
 
+td.stats-number.critical a
+{
+    background: #c30;
+}
+
 td.stats-name .user-nobody
 {
     font-style: italic;
+}
+
+td.stats-name.folder
+{
+    font-weight: bold;
+}
+
+td.last-activity
+{
+    width: 100%;
 }
 
 html[dir="rtl"] td.language,
@@ -1683,23 +1717,32 @@ html[dir="rtl"] td.stats-name,
     width: 100%;
 }
 
+.checks a {
+    color: #c00;
+}
+
+.checks h4 {
+    padding: 1em 0 0.5em;
+    font-weight: normal;
+}
+
 .check
 {
-    width: 50%;
     float: left;
 }
 
 .check-name
 {
-    width: 50%;
+    width: 10em;
     display: inline-block;
 }
 
 .check-count
 {
     text-align: right;
-    width: 5%;
-    padding-right: 5%;
+    width: 3em;
+    padding-right: 6em;
+    display: inline-block;
 }
 
 html[dir="rtl"] .check-count
@@ -1710,8 +1753,6 @@ html[dir="rtl"] .check-count
 
 #check-100 a
 {
-    background-color: inherit;
-    color: #c30;
     font-weight: bold;
 }
 
@@ -1725,18 +1766,6 @@ div.small
 {
     font-size: 0.9em;
 }
-
-#path-summary ul
-{
-    line-height: 1.8em;
-}
-
-.path-incomplete
-{
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
 
 /* PROGRESSBAR */
 
@@ -2046,20 +2075,185 @@ html[dir="rtl"] .overview-description-toggle
 
 .header
 {
-    background-color: #f8f8f8;
     padding: 0 1.5em;
     border-bottom: 1px solid #d9d9d9;
 }
 
 #header-tabs
 {
-    margin-top: -1px;
+    border-bottom: 1px solid #D9D9D9;
 }
 
 #header-meta
 {
     min-height: 50px;
     line-height: 2.7;
+}
+
+/*
+ * HEADER STATS
+ */
+
+#top-stats
+{
+    padding-bottom: 1.5em;
+}
+
+#top-stats .label
+{
+    margin-top: -1.1em;
+    width: 8em;
+    padding-bottom: 0.5em;
+}
+
+#top-stats a
+{
+    position: relative;
+}
+
+.icon-collapse-stats,
+.icon-expand-stats
+{
+    display: inline-block;
+    position: absolute;
+    top: -4px;
+    left: -11px;
+    z-index: 1;
+}
+
+#progressbar
+{
+    margin-left: 10px;
+    position: relative;
+}
+
+#progressbar table.graph
+{
+    width: 100%;
+    position: absolute;
+}
+
+.path-summary-more
+{
+    padding: 0 2em;
+    display: none;
+    border: 1px solid #d9d9d9;    
+    background: #f4f4f4;
+
+    -webkit-border-radius: 0 0 5px 5px;
+       -moz-border-radius: 0 0 5px 5px;
+            border-radius: 0 0 5px 5px;
+}
+
+.path-summary-more table
+{
+    width: 40em;
+}
+
+.path-summary-more td.stats-number
+{
+    padding-right: 3em !important;
+}
+
+/*
+ * HEADER ACTIONS
+ */
+
+#actions
+{
+    padding-bottom: 1em;
+}
+
+#translate-actions
+{
+    display: inline-block;
+    position: relative;
+    top: 4px;
+}
+
+#translate-actions a
+{
+    text-decoration: none;
+    color: #000;
+}
+
+#translate-actions ul
+{
+    display: inline-block;
+    list-style-type: none;
+}
+
+#translate-actions li
+{
+    display: inline-block;
+    margin-left: 2em;
+    margin-right: -0.5em;
+    font-weight: bold;
+}
+
+body.js-not-loaded #translate-actions li {
+    display: none;
+}
+
+#translate-actions .counter
+{
+    padding: 0.1em 0.9em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    background: #000;
+    color: #fff;
+    font-weight: normal;
+}
+
+#translate-actions a:hover
+{
+    color: #000;
+}
+
+#translate-actions a:hover .counter
+{
+    background: #000 !important;
+}
+
+#translate-actions .translation-complete
+{
+    color: #090;
+}
+
+#translate-actions .translation-complete .counter
+{
+    background-color: #090;
+}
+
+#translate-actions .continue-translation
+{
+    color: #0489b7;
+}
+
+#translate-actions .continue-translation .counter
+{
+    background-color: #0489b7;
+}
+
+#translate-actions .review-suggestions
+{
+    color: #ba6;
+}
+
+#translate-actions .review-suggestions .counter
+{
+    background-color: #ba6;
+}
+
+#translate-actions .fix-errors
+{
+    color: #c30;
+}
+
+#translate-actions .fix-errors .counter
+{
+    background-color: #c30;
 }
 
 /* Breadcrumbs */
@@ -2069,11 +2263,13 @@ html[dir="rtl"] .overview-description-toggle
     font-size: 18px;
     font-weight: normal;
     visibility: hidden;
+    margin-left: -5px;
 }
 
 .breadcrumb li
 {
     float: left;
+    display: inline;
 }
 
 html[dir="rtl"] .breadcrumb li
@@ -2083,15 +2279,26 @@ html[dir="rtl"] .breadcrumb li
 
 .breadcrumb li:before
 {
-    content: "/";
+    content: "/ ";
+    font-weight: normal;
     color: #999;
-    margin: 0 10px;
 }
 
 .breadcrumb li:first-child:before
 {
     content: normal;
-    margin: 0;
+}
+
+.breadcrumb li.file-path
+{
+    font-weight: normal;
+    font-size: 90%;
+    color: #999;
+}
+
+.breadcrumb li.file-path span
+{
+    color: #000;
 }
 
 /* Tabs */
@@ -2196,11 +2403,17 @@ body #file-tabs a.selected-tab
 
 #search
 {
-    float: right;
-    margin: 6px 0;
+    display: inline-block;
 }
 
-html[dir="rtl"] #search
+#main-overview #search
+{
+    float: right;
+    margin: 4px 0 0;
+    margin-top: -32px;
+}
+
+#main-overview[dir="rtl"] #search
 {
     float: left;
 }
@@ -2253,14 +2466,14 @@ html[dir="rtl"] #search
     padding: 0px 4px;
     width: 145px;
     background-color: #fff;
-    color: #d9d9d9;
+    color: #666;
     font-size: 12px;
     outline: 0;
 }
 
 #search-form input[type="text"]:focus
 {
-    color: #130f30;
+    color: #000;
 }
 
 .btn-search

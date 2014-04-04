@@ -1,0 +1,124 @@
+{% extends browser_extends %}
+
+{% load url from future %}
+{% load assets cache cleanhtml i18n locale search translation_project_tags goal_tags common_tags profile_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block body_id %}{{ browser_body_id }}{% endblock %}
+{% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% cache settings.CACHE_TIMEOUT path_trail resource_obj.id %}
+    <li class="file-path"><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
+  {% endcache %}
+{% endblock %}
+
+{% block header_content %}
+  <a id="js-path-summary" data-target="js-path-summary-more" href="{{ url_path_summary_more }}">
+    <div id="progressbar">
+      <i id="js-expand-icon" class="icon-expand-stats"
+         title="{% trans 'Expand details' %}"></i>
+      {% include "browser/_progressbar.html" %}
+    </div>
+  </a>
+
+  <div class="path-summary-more" id="js-path-summary-more" data-loaded="false" data-collapsed="true">
+    <div class="hd">
+      <h3><span>{% trans "Translation Statistics" %}</span></h3>
+    </div>
+    <div class="bd">
+      <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+        <tbody>
+          {% for item in translation_states %}
+          <tr id="stats-{{ item.state }}">
+            <td id="stats-name">{{ item.title }}</td>
+            <td class="stats-number"><a href="{{ item.url }}"></a></td>
+            <td class="stats-percentage"><span></span>%</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="hd">
+      <h3><span>{% trans "Failing Checks" %}</span></h3>
+    </div>
+    <div class="bd">
+    {% for item in check_categories %}
+      <div id="check-{{ item.code }}" class="checks js-checks">
+        <h4 class="clear">{{ item.title }}</h4>
+        {% for check in item.checks %}
+        <div class="check js-check" data-code="{{ check.code }}">
+          <div class="check-name"><a href="{{ check.url }}">{{ check.title }}</a></div>
+          <div class="check-count"><a href="{{ check.url }}">0</a></div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <div class="clear"></div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block actions %}
+  {% render_search %}
+
+  <div id="translate-actions">
+    <ul id="js-translate-actions-list"></ul>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+{% if table %}
+<div class="hd">
+  <h2>{% trans "Files and Subfolders" %}</h2>
+</div>
+
+<div class="bd">
+  <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
+    {% display_table table %}
+  </div>
+</div>
+{% endif %}
+
+{% endblock content %}
+
+{% block scripts_extra %}
+{{ block.super }}
+<script type="text/javascript">
+$(function () {
+  $("body").spin();
+  PTL.search.init();
+  PTL.stats.init({
+      pootlePath: "{{ resource_obj.pootle_path }}",
+  });
+  PTL.stats.load(function () {
+    PTL.common.updateRelativeDates();
+    setInterval(PTL.common.updateRelativeDates, 6e4);
+    $("body").spin(false);
+  });
+
+  $("td.stats-name").filter(":not([dir])").bidi();
+
+{% if upload_form %}
+  $("select#id_upload_to_dir").parent().hide();
+  $("input#id_file").change(function() {
+    if (/\.zip$/.test($(this).val())) {
+      $("select#id_upload_to").parent().hide();
+      $("select#id_upload_to_dir").parent().show();
+    } else {
+      $("select#id_upload_to_dir").parent().hide();
+      $("select#id_upload_to").parent().show();
+    }
+  });
+{% endif %}
+});
+</script>
+{% if user.is_superuser or request.permissions.administrate %}
+{% assets "js_admin" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+{% endif %}
+{% endblock %}

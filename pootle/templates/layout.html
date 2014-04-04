@@ -2,7 +2,7 @@
 {% load i18n assets baseurl cache staticpages locale profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}{% endblock %}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -168,7 +168,7 @@
             {% if settings.CAN_REGISTER %}
             <li><a href="{% url 'account_signup' %}">{% trans "Register" %}</a></li>
             {% endif %}
-            <li><a href="{% url 'account_login' %}{{ request|get_next }}">{% trans "Log In" %}</a></li>
+            <li><a id="js-login" href="{% url 'account_login' %}{{ request|get_next }}">{% trans "Log In" %}</a></li>
             {% endif %}
             <li>
               <select id="js-language-picker" default="{{ LANGUAGE_CODE }}"></select>
@@ -186,11 +186,21 @@
 
         {% block breadcrumbs_block %}
         <ul class="breadcrumb js-breadcrumb">
-        {% block breadcrumbs %}{% endblock %}
+          {% block breadcrumbs %}{% endblock %}
         </ul>
         {% endblock %}
       </div>
       {% endblock %}
+
+      <div id="top-stats" class="header">
+        {% block header_content %}
+        {% endblock %}
+      </div>
+
+      <div id="actions" class="header">
+        {% block actions %}
+        {% endblock %}
+      </div>
 
       {% block header_tabs_block %}
       <div id="header-tabs" class="header">
@@ -211,28 +221,28 @@
         {% block extra_content %}{% endblock %}
       </div>
 
-      {% block footer %}
-      <div id="footer">
-        <ul class="nav">
-          <li><a href="http://docs.translatehouse.org/projects/pootle/">{% trans "Help" %}</a></li>
-          {% if settings.CAN_CONTACT %}
-          <li>
-            <a class="js-popup-ajax"
-               href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a>
-          </li>
-          {% endif %}
-          <li><a href="{% url 'pootle_app.views.index.about.view' %}">{% trans "About this Pootle Server" %}</a></li>
-          <li><a href="{% url 'pootle_app.views.index.contributors.view' %}">{% trans "Contributors" %}</a></li>
-          {% cache settings.CACHE_TIMEOUT legalpages LANGUAGE_CODE %}
-          {% get_legalpages as legalpages %}
-          {% for lp in legalpages %}
-          <li><a href="{{ lp.get_absolute_url }}">{{ lp.localized_title }}</a></li>
-          {% endfor %}
-          {% endcache %}
-        </ul>
-      </div>
-      {% endblock footer %}
     </div>
+    {% block footer %}
+    <div id="footer">
+      <ul class="nav">
+        <li><a href="http://docs.translatehouse.org/projects/pootle/">{% trans "Help" %}</a></li>
+        {% if settings.CAN_CONTACT %}
+        <li>
+          <a class="js-popup-ajax"
+             href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a>
+        </li>
+        {% endif %}
+        <li><a href="{% url 'pootle-about' %}">{% trans "About this Pootle Server" %}</a></li>
+        <li><a href="{% url 'pootle-about-contributors' %}">{% trans "Contributors" %}</a></li>
+        {% cache settings.CACHE_TIMEOUT legalpages LANGUAGE_CODE %}
+        {% get_legalpages as legalpages %}
+        {% for lp in legalpages %}
+        <li><a href="{{ lp.get_absolute_url }}">{{ lp.localized_title }}</a></li>
+        {% endfor %}
+        {% endcache %}
+      </ul>
+    </div>
+    {% endblock footer %}
     {% block scripts %}
     {% block scripts_extra %}{% endblock %}
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>

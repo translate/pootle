@@ -235,9 +235,11 @@ class TreeItem(object):
 
     def get_critical(self):
         check_stats = self.get_checks()
-
-        return sum(map(lambda x: check_stats[x] if x in check_stats else 0,
-                       get_qualitychecks_by_category(Category.CRITICAL)))
+        try:
+            critical_stats = check_stats[Category.CRITICAL]
+            return sum([critical_stats[x] for x in critical_stats.keys()])
+        except KeyError:
+            return 0
 
     def get_critical1(self):
         """Alter implementaion (pick up every check separately)"""

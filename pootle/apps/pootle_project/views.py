@@ -29,10 +29,10 @@ from django.views.decorators.http import require_POST
 from taggit.models import Tag
 
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.helpers import get_translation_context
+from pootle.core.helpers import (get_export_view_context,
+                                 get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
-from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
 from pootle_misc.browser import get_table_headings
 from pootle_misc.util import ajax_required, jsonify
 from pootle_project.forms import (TranslationProjectFormSet,
@@ -174,6 +174,7 @@ def overview(request, project):
         href = tp.get_absolute_url()
         href_all = tp.get_translate_url()
         href_todo = tp.get_translate_url(state="incomplete")
+        href_sugg = tp.get_translate_url(state='suggestions')
 
         info = {
             'project': tp.project.code,
@@ -181,6 +182,8 @@ def overview(request, project):
             'href': href,
             'href_all': href_all,
             'href_todo': href_todo,
+            'href_sugg': href_sugg,
+            'icon': 'language',
             'title': tr_lang(tp.language.fullname),
             'lastactivity': get_last_action(tp),
             'tags': tp.tag_like_objects,
@@ -199,7 +202,8 @@ def overview(request, project):
     summary = ungettext("%(langs)d language", "%(langs)d languages", langs,
                         {"langs": langs})
 
-    fields = ["name", "progress", "total", "need-translation", "activity", "tags"]
+    table_fields = ["name", "progress", "total", "need-translation",
+                    "suggestions", "activity", "tags"]
 
     ctx = {
         'resource_obj': request.resource_obj,
@@ -209,13 +213,12 @@ def overview(request, project):
             'description': project.description,
             'summary': summary,
         },
-        'topstats': gentopstats_project(project),
         'can_edit': check_permission("administrate", request),
         'table': {
             'id': 'project',
             'proportional': False,
-            'fields': fields,
-            'headings': get_table_headings(fields),
+            'fields': table_fields,
+            'headings': get_table_headings(table_fields),
             'items': items,
         },
     }
@@ -297,6 +300,30 @@ def translate(request, project):
 
 
 @get_path_obj
+@permission_required('view')
+def export_view(request, project):
+    request.pootle_path = project.pootle_path
+    # TODO: support arbitrary resources
+    request.ctx_path = project.pootle_path
+    request.resource_path = ''
+
+    request.store = None
+    request.directory = project.directory
+
+    language = None
+
+    ctx = get_export_view_context(request)
+    ctx.update({
+        'source_language': 'en',
+        'language': language,
+        'project': project,
+    })
+
+    return render_to_response('editor/export_view.html', ctx,
+                              context_instance=RequestContext(request))
+
+
+@get_path_obj
 @permission_required('administrate')
 def project_admin(request, project):
     """Adding and deleting project languages."""
@@ -355,7 +382,6 @@ def projects_index(request, root):
             'headings': get_table_headings(fields),
             'items': getprojects(request),
         },
-        'topstats': gentopstats_root(),
     }
 
     return render(request, "projects/list.html", ctx)

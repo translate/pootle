@@ -15,7 +15,6 @@
   </div>
   <div class="bd">
     {% display_table languages_table %}
-    {% include "core/_summary_legend.html" %}
   </div>
 </div>
 
@@ -28,10 +27,6 @@
   </div>
 </div>
 {% endblock content %}
-
-{% block postcontent %}
-{% include "core/_top_contributors.html" %}
-{% endblock postcontent %}
 
 {% block scripts_extra %}
 <script type="text/javascript">

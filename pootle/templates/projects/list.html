@@ -10,21 +10,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="module first" lang="{{ LANGUAGE_CODE }}">
-  <div class="hd">
+
+<div class="hd">
     <h2>{% trans "Projects" %}</h2>
-  </div>
-  <div class="bd">
-    {% display_table table %}
-  </div>
-
-  {% include "core/_summary_legend.html" %}
 </div>
-{% endblock content %}
+<div class="bd">
+    {% display_table table %}
+</div>
 
-{% block postcontent %}
-{% include "core/_top_contributors.html" %}
-{% endblock postcontent %}
+{% endblock content %}
 
 {% block scripts_extra %}
 <script type="text/javascript">

@@ -25,11 +25,11 @@ from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _, ungettext
 
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.helpers import get_translation_context
+from pootle.core.helpers import (get_export_view_context,
+                                 get_translation_context)
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_app.views.top_stats import gentopstats_language
 from pootle_misc.browser import get_table_headings
 from pootle_misc.util import jsonify, ajax_required
 from pootle_statistics.models import Submission
@@ -48,12 +48,15 @@ def make_project_item(translation_project):
     href = translation_project.get_absolute_url()
     href_all = translation_project.get_translate_url()
     href_todo = translation_project.get_translate_url(state='incomplete')
+    href_sugg = translation_project.get_translate_url(state='suggestions')
 
     info = {
         'code': translation_project.code,
         'href': href,
         'href_all': href_all,
         'href_todo': href_todo,
+        'href_sugg': href_sugg,
+        'icon': 'project',
         'title': project.fullname,
         'description': project.description,
         'lastactivity': get_last_action(translation_project),
@@ -74,9 +77,8 @@ def overview(request, language):
     tp_count = len(user_tps)
     items = (make_project_item(tp) for tp in user_tps)
 
-    topstats = gentopstats_language(language)
-
-    table_fields = ['name', 'progress', 'total', 'need-translation', 'activity']
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'suggestions', 'activity']
     table = {
         'id': 'language',
         'proportional': False,
@@ -96,7 +98,6 @@ def overview(request, language):
                                tp_count, {"projects": tp_count}),
         },
         'feed_path': '%s/' % language.code,
-        'topstats': topstats,
         'can_edit': can_edit,
         'table': table,
     }
@@ -171,6 +172,30 @@ def translate(request, language):
     })
 
     return render_to_response('editor/main.html', context,
+                              context_instance=RequestContext(request))
+
+
+@get_path_obj
+@permission_required('view')
+def export_view(request, language):
+    """Displays a list of units with filters applied."""
+    request.pootle_path = language.pootle_path
+    request.ctx_path = language.pootle_path
+    request.resource_path = ''
+
+    request.store = None
+    request.directory = language.directory
+
+    project = None
+
+    ctx = get_export_view_context(request)
+    ctx.update({
+        'source_language': 'en',
+        'language': language,
+        'project': project,
+    })
+
+    return render_to_response('editor/export_view.html', ctx,
                               context_instance=RequestContext(request))
 
 

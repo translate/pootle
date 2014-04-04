@@ -36,6 +36,10 @@ urlpatterns = patterns('pootle_project.views',
         'translate',
         name='pootle-project-translate'),
 
+    url(r'^(?P<project_code>[^/]*)/export-view/$',
+        'export_view',
+        name='pootle-project-export-view'),
+
     # XHR views
     url(r'^(?P<project_code>[^/]*)/ajax-add-tag-to-tp/$',
         'ajax_add_tag_to_tp_in_project',

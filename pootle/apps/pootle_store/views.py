@@ -953,7 +953,7 @@ def submit(request, unit):
                         new_value=new_value,
                 )
                 sub.save()
-
+            form.instance._log_user = request.profile
             form.save()
             translation_submitted.send(
                     sender=translation_project,
@@ -1025,11 +1025,6 @@ def reject_suggestion(request, unit, suggid):
         except ObjectDoesNotExist:
             raise Http404
 
-        if (not request.user.is_authenticated() or sugg and
-            sugg.user != request.profile):
-            raise PermissionDenied(_("You do not have rights to access "
-                                     "review mode."))
-
         unit.reject_suggestion(sugg, request.translation_project,
                                request.profile)
 
@@ -1067,6 +1062,7 @@ def accept_suggestion(request, unit, suggid):
 
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
+
 
 @ajax_required
 def clear_vote(request, voteid):

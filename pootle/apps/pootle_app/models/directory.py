@@ -23,7 +23,6 @@ from django.db import models
 
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.util import cached_property
 
@@ -135,6 +134,12 @@ class Directory(models.Model, TreeItem):
 
         super(Directory, self).save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        for store in self.stores.iterator():
+            store.delete()
+
+        super(Directory, self).delete(*args, **kwargs)
+
     def get_absolute_url(self):
         return l(self.pootle_path)
 
@@ -215,8 +220,8 @@ class Directory(models.Model, TreeItem):
         return self.pootle_path
 
     def _get_path_summary(self):
-        from pootle_misc.stats import get_path_summary
-        return get_path_summary(self)
+        from pootle_misc.stats import get_translate_actions
+        return get_translate_actions(self)
 
     ### /TreeItem
 

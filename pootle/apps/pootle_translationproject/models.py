@@ -41,10 +41,10 @@ from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
+from pootle_misc.checks import excluded_filters
 from pootle_misc.siteconfig import load_site_config
 from pootle_misc.stats import stats_message_raw
 from pootle_misc.util import cached_property
-from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_store.models import (Store, Unit, PARSED)
@@ -355,8 +355,8 @@ class TranslationProject(models.Model, TreeItem):
         return [self.language, self.project]
 
     def _get_path_summary(self):
-        from pootle_misc.stats import get_path_summary
-        return get_path_summary(self.directory)
+        from pootle_misc.stats import get_translate_actions
+        return get_translate_actions(self.directory)
 
     ### /TreeItem
 

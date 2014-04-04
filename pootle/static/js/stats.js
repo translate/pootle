@@ -80,35 +80,56 @@
       );
 
       if (incomplete > 0) {
-        var fmt = ngettext('Continue translation (%s word left)',
-                           'Continue translation (%s words left)', incomplete);
+        var fmt = ngettext('<span class="caption">Continue translation:</span> <span class="counter">%s word left</span>',
+                           '<span class="caption">Continue translation:</span> <span class="counter">%s words left</span>',
+                           incomplete);
         var $incomplete = $("<a />", {
-          'class': 'path-incomplete',
+          'class': 'continue-translation',
           'href': data.pathsummary.incomplete_url,
-          'text': interpolate(fmt, [incomplete]),
         });
 
-        $pathSummary.append($('<li/>').append($incomplete));
-      } else {
-        var $incomplete = $("<a />", {
-          'class': 'path-incomplete',
-          'href': data.pathsummary.translate_url,
-          'text': gettext('Translation is complete'),
-        });
+        $incomplete.html(interpolate(fmt, [incomplete]));
 
         $pathSummary.append($('<li/>').append($incomplete));
       }
 
       if (data.suggestions > 0) {
-        var fmt = ngettext('Review suggestion (%s left)',
-                           'Review suggestions (%s left)', data.suggestions);
+        var fmt = ngettext('<span class="caption">Review suggestion:</span> <span class="counter">%s left</span>',
+                           '<span class="caption">Review suggestions:</span> <span class="counter">%s left</span>',
+                           data.suggestions);
         var $suggestions = $("<a />", {
-          'class': 'path-incomplete',
+          'class': 'review-suggestions',
           'href': data.pathsummary.suggestions_url,
-          'text': interpolate(fmt, [data.suggestions]),
         });
 
+        $suggestions.html(interpolate(fmt, [data.suggestions]));
+
         $pathSummary.append($('<li/>').append($suggestions));
+      }
+
+      if (data.critical > 0) {
+        var fmt = ngettext('<span class="caption">Fix critical error:</span> <span class="counter">%s left</span>',
+                           '<span class="caption">Fix critical errors:</span> <span class="counter">%s left</span>',
+                           data.critical);
+        var $critical = $("<a />", {
+          'class': 'fix-errors',
+          'href': data.pathsummary.critical_url,
+        });
+
+        $critical.html(interpolate(fmt, [data.suggestions]));
+
+        $pathSummary.append($('<li/>').append($critical));
+      }
+
+      if (incomplete === 0) {
+        var $incomplete = $("<a />", {
+          'class': 'translation-complete',
+          'href': data.pathsummary.translate_url,
+        });
+
+        $incomplete.html(gettext('<span class="caption">Translation complete:</span> <span class="counter">view all</span>'));
+
+        $pathSummary.append($('<li/>').append($incomplete));
       }
     },
 
@@ -126,7 +147,7 @@
     },
 
     updateAction: function ($action, count) {
-      $action.toggle(count > 0);
+      $action.css('display', count > 0 ? 'inline-block' : 'none');
       $action.find('.counter').text(count);
     },
 
@@ -157,7 +178,7 @@
               now = parseInt(Date.now() / 1000, 10);
           PTL.stats.updateProgressbar($('#progressbar'), data);
           PTL.stats.updateSummary($('#summary'), data);
-          PTL.stats.updatePathSummary($('#path-summary-head'), data);
+          PTL.stats.updatePathSummary($('#js-translate-actions-list'), data);
 
           PTL.stats.updateAction($('#action-view-all'), data.total);
           PTL.stats.updateAction($('#action-continue'),
@@ -244,15 +265,16 @@
     toggleChecks: function (e) {
       e.preventDefault();
       var node = $("#" + $(this).data('target')),
-          $textNode = $(this),
+          $iconNode = $(this).find("#js-expand-icon"),
           data = node.data();
 
       function hideShow() {
-        node.slideToggle('slow', 'easeOutQuad', function () {
-          node.data('collapsed', !data.collapsed);
-          var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
-          $textNode.text(newText);
-        });
+        node.data('collapsed', !data.collapsed);
+        var newClass = data.collapsed ? 'icon-expand-stats' : 'icon-collapse-stats';
+        var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
+        $iconNode.attr('class', newClass);
+        $iconNode.attr('title', newText);
+        node.slideToggle('slow', 'easeOutQuad');
       }
 
       if (data.loaded) {

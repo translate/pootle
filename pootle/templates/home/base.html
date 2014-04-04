@@ -1,13 +1,5 @@
-{% extends "layout.html"  %}
-
-{% load i18n %}
-
-{% block title %}{% trans "Main" %} | {{ block.super }}{% endblock %}
+{% extends "layout.html" %}
 
 {% block breadcrumbs %}
 {{ block.super }}{% include 'core/_breadcrumbs.html' %}
-{% endblock %}
-
-{% block tabs %}
-{% include "_main_tabs.html" %}
 {% endblock %}
