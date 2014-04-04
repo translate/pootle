@@ -24,6 +24,24 @@ from __future__ import absolute_import
 import logging
 
 
+def ensure_pootle_config():
+    """Ensure that the PootleConfig object exists, so the code can use it."""
+    from pootle_app.models import PootleConfig
+
+    try:
+        PootleConfig.objects.get_current()
+    except Exception:
+        from pootle_app.models.pootle_config import (get_pootle_build,
+                                                     get_toolkit_build)
+
+        # Copy the Pootle and Translate Toolkit build versions.
+        pootle_config = PootleConfig(
+            ptl_build=get_pootle_build(),
+            ttk_build=get_toolkit_build(),
+        )
+        pootle_config.save()
+
+
 def save_build_version(product, build_version):
     """Update build version number for specified product."""
     from pootle_app.models import PootleConfig
@@ -41,28 +59,6 @@ def save_build_version(product, build_version):
         logging.info("Database now at Pootle build %d" % build_version)
     elif product == 'ttk':
         logging.info("Database now at Toolkit build %d" % build_version)
-
-
-def save_version(product, build):
-    """Store a product's build version.
-
-    :param build: the build version number.
-    :param prefix: prefix for the 'BUILDVERSION' key.
-    """
-    from pootle_misc.siteconfig import save_build
-
-    prefix = {
-        'pootle': 'POOTLE_',
-        'ttk': 'TT_',
-    }.get(product, '')
-
-    key = prefix + 'BUILDVERSION'
-    save_build(key, build)
-
-    if product == 'pootle':
-        logging.info("Database now at Pootle build %s" % build)
-    elif product == 'ttk':
-        logging.info("Database now at Toolkit build %s" % build)
 
 
 def calculate_stats():
@@ -200,6 +196,11 @@ def upgrade(product, old_buildversion, new_buildversion):
     import sys
     from django.utils.importlib import import_module
 
+    # Before upgrading anything try to migrate the buildversions to the new
+    # PootleConfig model, so all the code uses the same way to retrieve and
+    # save the build versions.
+    ensure_pootle_config()
+
     product_module = '.'.join((__name__, product))
     import_module(''.join(('.', product)), __name__)
 
@@ -212,8 +213,6 @@ def upgrade(product, old_buildversion, new_buildversion):
 
     for upgrade_function, upgrade_buildversion in upgrade_functions:
         upgrade_function()
-        # Keep using the legacy save_version function because we cannot be sure
-        # if the PootleConfig object already exists.
-        save_version(product, upgrade_buildversion)
+        save_build_version(product, int(upgrade_buildversion))
 
     save_build_version(product, new_buildversion)

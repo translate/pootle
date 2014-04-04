@@ -61,10 +61,3 @@ def get_build(build_name, default_value=0):
     BUILDVERSION.
     """
     return int(load_site_config().get(build_name, default_value))
-
-
-def save_build(key, build):
-    """Save a buildversion using djblets."""
-    config = load_site_config()
-    config.set(key, build)
-    config.save()
