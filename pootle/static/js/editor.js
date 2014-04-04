@@ -616,15 +616,9 @@
   copyText: function (e) {
     var $el = $(e.currentTarget),
         action = $el.data('action'),
-        $target,
-        text, start;
-
-    // Determine which text we need
-    $el = $el.find('.tm-translation').ifExists() ||
-          $el.find('.suggestion-translation').ifExists() || $el;
-    text = $el.data('entity') || $el.text();
-
-    $target = $(this.focused);
+        text = $el.data('string') || $el.data('translation-aid'),
+        $target = $(this.focused),
+        start;
 
     if (action === "overwrite") {
       $target.val(text).trigger('input');

@@ -52,7 +52,8 @@
       <div id="tm" class="sidebar" dir="{% locale_dir %}">
         <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</div>
         {% for term in terms %}
-        <div class="tm-unit js-editor-copytext" title="{% trans 'Insert the translated term into the editor' %}">
+        <div class="tm-unit js-editor-copytext" data-string="{{ term.target }}"
+          title="{% trans 'Insert the translated term into the editor' %}">
           <span class="tm-original" dir="{{ source_language.direction }}" lang="{{ source_language.code }}">{{ term.source }}</span>
           <span class="tm-translation" dir="{{ language.direction }}" lang="{{ language.code }}">{{ term.target }}</span>
         </div>
@@ -177,35 +178,36 @@
                 {% if language.direction == "rtl" %}
                 <a class="editor-specialchar js-editor-copytext"
                   title="{% trans 'Insert RLM (Right-To-Left Mark) into the editor' %}"
-                  data-entity="&#8207;">RLM</a>
+                  data-string="&#8207;">RLM</a>
                 <a class="editor-specialchar js-editor-copytext"
                   title="{% trans 'Insert LRM (Left-To-Right Mark) into the editor' %}"
-                  data-entity="&#8206;">LRM</a>
+                  data-string="&#8206;">LRM</a>
                 <a class="editor-specialchar js-editor-copytext"
                   title="{% trans 'Insert RLE (Right-To-Left Embedding) into the editor' %}"
-                  data-entity="&#8235;">RLE</a>
+                  data-string="&#8235;">RLE</a>
                 <a class="editor-specialchar js-editor-copytext"
                   title="{% trans 'Insert LRE (Left-To-Right Embedding) into the editor' %}"
-                  data-entity="&#8234;">LRE</a>
+                  data-string="&#8234;">LRE</a>
                 <a class="editor-specialchar js-editor-copytext"
                   title="{% trans 'Insert RLO (Right-To-Left Override) into the editor' %}"
-                  data-entity="&#8238;">RLO</a>
+                  data-string="&#8238;">RLO</a>
                 <a class="editor-specialchar js-editor-copytext"
                   title="{% trans 'Insert LRO (Left-To-Right Override) into the editor' %}"
-                  data-entity="&#8237;">LRO</a>
+                  data-string="&#8237;">LRO</a>
                 <a class="editor-specialchar js-editor-copytext"
                   title="{% trans 'Insert PDF (Pop Directional Format ) into the editor' %}"
-                  data-entity="&#8236;">PDF</a>
+                  data-string="&#8236;">PDF</a>
                 <a class="editor-specialchar js-editor-copytext"
                   title="{% trans 'Insert ZWJ (Zero Width Joiner) into the editor' %}"
-                  data-entity="&#8205;">ZWJ</a>
+                  data-string="&#8205;">ZWJ</a>
                 <a class="editor-specialchar js-editor-copytext"
                   title="{% trans 'Insert ZWNJ (Zero Width Non Joiner) into the editor' %}"
-                  data-entity="&#8204;">ZWNJ</a>
+                  data-string="&#8204;">ZWNJ</a>
                 {% endif %}
                 {% for specialchar in language.specialchars %}
                 {% if not specialchar.isspace %}
                 <a class="editor-specialchar js-editor-copytext"
+                   data-string="{{ specialchar }}"
                    title="{% trans 'Insert this symbol into the editor' %}">{{ specialchar }}</a>
                 {% else %}
                 <span class="extraspace"> </span>
@@ -246,8 +248,8 @@
           <div class="extra-item-title">{% trans 'User suggestions' %}</div>
           {% for sugg, score in suggestions %}
           <div id="suggestion-{{ sugg.id }}"
-            class="js-user-suggestion extra-item-block"
-            data-translation-aid="{{ sugg.target }}">
+            class="js-user-suggestion js-editor-copytext extra-item-block"
+            data-action="overwrite" data-translation-aid="{{ sugg.target }}">
             {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
             <div class="extra-item-content">
               {% if sugg.user %}
@@ -257,7 +259,7 @@
                   title="{{ sugg.user }}" /></a>
               </div>
               {% endif %}
-              <div class="extra-item js-editor-copytext" data-action="overwrite">
+              <div class="extra-item">
                 {% if canreview %}
                 <a accesskey="a" class="suggestion-action js-suggestion-accept"
                   data-sugg-id="{{ sugg.id }}">
