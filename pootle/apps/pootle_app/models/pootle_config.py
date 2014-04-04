@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2014 Zuza Software Foundation
+# Copyright 2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -17,10 +17,25 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from pootle_app.models.suggestion import Suggestion
-from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import PermissionSet
-from pootle_app.models.pootle_config import PootleConfig
+from django.db import models
 
 
-__all__ = ["Suggestion", "Directory", "PermissionSet", "PootleConfig"]
+class PootleConfigManager(models.Manager):
+
+    def get_current(self):
+        """Return the object holding the Pootle configuration."""
+        return PootleConfig.objects.all()[0]
+
+
+class PootleConfig(models.Model):
+    """Model to store Pootle configuration on the database.
+
+    The configuration includes some data for install/upgrade mechanisms.
+    """
+    ptl_build = models.PositiveIntegerField(default=0)
+    ttk_build = models.PositiveIntegerField(default=0)
+
+    objects = PootleConfigManager()
+
+    class Meta:
+        app_label = "pootle_app"

@@ -24,6 +24,25 @@ from __future__ import absolute_import
 import logging
 
 
+def save_build_version(product, build_version):
+    """Update build version number for specified product."""
+    from pootle_app.models import PootleConfig
+
+    pootle_config = PootleConfig.objects.get_current()
+
+    if product == 'pootle':
+        pootle_config.ptl_build = build_version
+    elif product == 'ttk':
+        pootle_config.ttk_build = build_version
+
+    pootle_config.save()
+
+    if product == 'pootle':
+        logging.info("Database now at Pootle build %d" % build_version)
+    elif product == 'ttk':
+        logging.info("Database now at Toolkit build %d" % build_version)
+
+
 def save_version(product, build):
     """Store a product's build version.
 
@@ -193,6 +212,8 @@ def upgrade(product, old_buildversion, new_buildversion):
 
     for upgrade_function, upgrade_buildversion in upgrade_functions:
         upgrade_function()
+        # Keep using the legacy save_version function because we cannot be sure
+        # if the PootleConfig object already exists.
         save_version(product, upgrade_buildversion)
 
-    save_version(product, new_buildversion)
+    save_build_version(product, new_buildversion)

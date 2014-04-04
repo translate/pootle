@@ -31,10 +31,9 @@ from django.db.models.signals import post_syncdb, pre_delete, post_delete
 from django.utils.translation import ugettext_noop as _
 
 from pootle.__version__ import build as CODE_PTL_BUILD_VERSION
-from pootle_app.models import Directory
+from pootle_app.models import Directory, PootleConfig
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
-from pootle_misc.siteconfig import save_build
 from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
 from pootle_store.models import TMUnit, Unit
@@ -386,5 +385,8 @@ def save_build_versions():
 
     The build versions are used to upgrade only what has to be upgraded.
     """
-    save_build('POOTLE_BUILDVERSION', CODE_PTL_BUILD_VERSION)
-    save_build('TT_BUILDVERSION', CODE_TTK_BUILD_VERSION)
+    pootle_config = PootleConfig(
+        ptl_build=CODE_PTL_BUILD_VERSION,
+        ttk_build=CODE_TTK_BUILD_VERSION
+    )
+    pootle_config.save()

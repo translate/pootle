@@ -132,3 +132,16 @@ def upgrade_to_25203():
     ).update(
         type=SubmissionTypes.SYSTEM,
     )
+
+
+def upgrade_to_25204():
+    """Copy configuration stored using djblets to new models."""
+    from pootle_app.models import PootleConfig
+    from pootle_misc.siteconfig import get_build
+
+    # Copy the Pootle configuration.
+    pootle_config = PootleConfig(
+        ptl_build=get_build('POOTLE_BUILDVERSION'),
+        ttk_build=get_build('TT_BUILDVERSION'),
+    )
+    pootle_config.save()
