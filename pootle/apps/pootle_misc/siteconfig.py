@@ -51,13 +51,3 @@ def load_site_config():
         siteconfig.add_defaults(defaults)
 
     return siteconfig
-
-
-def get_build(build_name, default_value=0):
-    """Retrieve a buildversion stored using djblets.
-
-    This allows to retrieve build versions stored using the newer keys
-    POOTLE_BUILDVERSION or TT_BUILDVERSION, but also the legacy ones like
-    BUILDVERSION.
-    """
-    return int(load_site_config().get(build_name, default_value))

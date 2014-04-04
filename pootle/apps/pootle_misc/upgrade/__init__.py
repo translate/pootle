@@ -31,13 +31,13 @@ def ensure_pootle_config():
     try:
         PootleConfig.objects.get_current()
     except Exception:
-        from pootle_app.models.pootle_config import (get_pootle_build,
-                                                     get_toolkit_build)
+        from pootle_app.models.pootle_config import (get_legacy_ptl_build,
+                                                     get_legacy_ttk_build)
 
         # Copy the Pootle and Translate Toolkit build versions.
         pootle_config = PootleConfig(
-            ptl_build=get_pootle_build(),
-            ttk_build=get_toolkit_build(),
+            ptl_build=get_legacy_ptl_build(),
+            ttk_build=get_legacy_ttk_build(),
         )
         pootle_config.save()
 

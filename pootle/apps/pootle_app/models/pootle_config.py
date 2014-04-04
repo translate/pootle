@@ -28,19 +28,7 @@ def get_pootle_build(default=0):
         build = 0
 
     if not build:
-        try:
-            from pootle_misc.siteconfig import get_build
-
-            build = get_build('POOTLE_BUILDVERSION')
-
-            if not build:
-                # Old Pootle versions used BUILDVERSION instead.
-                build = get_build('BUILDVERSION')
-        except DatabaseError:
-            # Assume that the DatabaseError is because we have a blank
-            # database from a new install.
-            # TODO: is there a better way to do this?
-            build = 0
+        build = get_legacy_ptl_build()
 
     # We have some code that depends on the build version being not less than a
     # specific value.
@@ -58,20 +46,45 @@ def get_toolkit_build(default=0):
         build = 0
 
     if not build:
-        try:
-            from pootle_misc.siteconfig import get_build
-
-            build = get_build('TT_BUILDVERSION')
-        except DatabaseError:
-            # Assume that the DatabaseError is because we have a blank
-            # database from a new install.
-            # TODO: is there a better way to do this?
-            build = 0
+        build = get_legacy_ttk_build()
 
     # We have some code that depends on the build version being not less than a
     # specific value.
     if default and build < default:
         build = default
+
+    return build
+
+
+def get_legacy_ptl_build():
+    """Retrieve a Pootle build version stored using djblets.
+
+    This allows to retrieve build versions stored using the old
+    POOTLE_BUILDVERSION or the even older BUILDVERSION.
+    """
+    from pootle_misc.siteconfig import load_site_config
+
+    try:
+        config = load_site_config()
+        build = config.get('POOTLE_BUILDVERSION', 0)
+
+        if not build:
+            # Ancient Pootle versions used BUILDVERSION instead.
+            build = config.get('BUILDVERSION', 0)
+    except DatabaseError:
+        build = 0
+
+    return int(build)
+
+
+def get_legacy_ttk_build():
+    """Retrieve a Toolkit build version stored using djblets."""
+    from pootle_misc.siteconfig import load_site_config
+
+    try:
+        build = int(load_site_config().get('TT_BUILDVERSION', 0))
+    except DatabaseError:
+        build = 0
 
     return build
 
