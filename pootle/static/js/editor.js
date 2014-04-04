@@ -614,24 +614,25 @@
   copyText: function (e) {
     var $el = $(e.currentTarget),
         action = $el.data('action'),
-        selector, text, element, start;
+        $target,
+        text, start;
 
     // Determine which text we need
-    selector = $el.find('.tm-translation').ifExists() ||
-               $el.find('.suggestion-translation').ifExists() || $el;
-    text = selector.data('entity') || selector.text();
+    $el = $el.find('.tm-translation').ifExists() ||
+          $el.find('.suggestion-translation').ifExists() || $el;
+    text = $el.data('entity') || $el.text();
 
-    element = $(this.focused);
+    $target = $(this.focused);
 
     if (action === "overwrite") {
-      element.val(text).trigger('input');
+      $target.val(text).trigger('input');
       start = text.length;
     } else {
-      start = element.caret().start + text.length;
-      element.val(element.caret().replace(text)).trigger('input');
+      start = $target.caret().start + text.length;
+      $target.val($target.caret().replace(text)).trigger('input');
     }
 
-    element.caret(start, start);
+    $target.caret(start, start);
   },
 
 
