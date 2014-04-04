@@ -21,6 +21,7 @@
 import logging
 
 from translate.__version__ import build as CODE_TTK_BUILD_VERSION
+from translate.lang import data, factory
 
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
@@ -287,8 +288,6 @@ def create_default_projects():
     You might want to add your projects here, although you can also add things
     through the web interface later.
     """
-    from pootle_project.models import Project
-
     en = require_english()
 
     #criteria = {
@@ -327,9 +326,6 @@ def create_default_projects():
 
 def create_default_languages():
     """Create the default languages."""
-    from translate.lang import data, factory
-
-    from pootle_language.models import Language
 
     # Import languages from toolkit.
     for code in data.languages.keys():
