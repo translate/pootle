@@ -19,7 +19,7 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls import include, patterns, url
-from django.views.generic.simple import direct_to_template
+from django.views.generic import TemplateView
 
 
 urlpatterns = patterns('',
@@ -27,7 +27,6 @@ urlpatterns = patterns('',
         include('pootle_app.views.admin.urls')),
     url(r'',
         include('pootle_app.views.index.urls')),
-    url('^welcome/$', direct_to_template, {
-        'template': 'welcome.html'
-    })
+    url('^welcome/$',
+        TemplateView.as_view(template_name='welcome.html')),
 )
