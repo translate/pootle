@@ -19,6 +19,7 @@
 
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.encoding import iri_to_uri
@@ -49,7 +50,7 @@ def edit_personal_info(request):
 
         if user_form.is_valid():
             user_form.save()
-            response = redirect('/accounts/'+request.user.username)
+            response = redirect(reverse("profiles_profile_detail", kwargs={"username": request.user.username}))
     else:
         user_form = UserForm(instance=request.user)
 
@@ -65,8 +66,7 @@ def redirect_after_login(request):
     redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, None)
 
     if not is_safe_url(url=redirect_to, host=request.get_host()):
-        redirect_to = iri_to_uri('/accounts/%s/' % \
-                                 urlquote(request.user.username))
+        redirect_to = iri_to_uri(reverse("profiles_profile_detail", kwargs={"username": request.user.username}))
 
     return redirect(redirect_to)
 

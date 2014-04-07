@@ -3,9 +3,9 @@
 
 {% block content %}
 
-<div> 
+<div>
     <p>{% trans "Profiles list" %}</p>
-    
+
     <table border="0" cellpadding="5" cellspace="5" width="100%">
         <tr>
             <th>{% trans "Username" %}</th>
@@ -13,9 +13,9 @@
             <th>{% trans "Last name" %}</th>
         </tr>
         <tr><td colspan="4"><hr width="75%" align="left"></td></tr>
-        {% for profile in object_list %}  
+        {% for profile in object_list %}
         <tr>
-            <td><a href="{% filter l %}/accounts/{{ profile.user.username }}/{% endfilter %}">
+            <td><a href="{% filter l %}{% url 'profiles_profile_detail' username=profile.user.username %}{% endfilter %}">
                     {{ profile.user.username|obfuscate }}
             </a></td>
             <td>{{ profile.user.first_name }}</td>
