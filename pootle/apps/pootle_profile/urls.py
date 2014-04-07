@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -38,16 +39,21 @@ urlpatterns = patterns('pootle_profile.views',
 
 urlpatterns += patterns('django.contrib.auth.views',
     url(r'^password/change/$',
-        'password_change'),
+        'password_change',
+        name='pootle-password-change'),
     url(r'^password/change/done/$',
-        'password_change_done'),
+        'password_change_done',
+        name='password_change_done'),
     url(r'^password/reset/$',
         'password_reset',
         name='pootle-password-reset'),
     url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
-        'password_reset_confirm'),
+        'password_reset_confirm',
+        name='pootle-password-reset-confirm'),
     url(r'^password/reset/complete/$',
-        'password_reset_complete'),
+        'password_reset_complete',
+        name='password_reset_complete'),
     url(r'^password/reset/done/$',
-        'password_reset_done'),
+        'password_reset_done',
+        name='password_reset_done'),
 )
