@@ -25,13 +25,19 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 
 
 def get_site_title():
-    pootle_site = PootleSite.objects.get_current()
-    return pootle_site.title
+    try:
+        pootle_site = PootleSite.objects.get_current()
+        return pootle_site.title
+    except Exception:
+        return PootleSite._meta.get_field('title').default
 
 
 def get_site_description():
-    pootle_site = PootleSite.objects.get_current()
-    return pootle_site.description
+    try:
+        pootle_site = PootleSite.objects.get_current()
+        return pootle_site.description
+    except Exception:
+        return PootleSite._meta.get_field('description').default
 
 
 def get_legacy_site_title():
