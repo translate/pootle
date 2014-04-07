@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -51,8 +51,8 @@ class LiveLanguageManager(models.Manager):
 
     Note that this doesn't inherit from :cls:`RelatedManager`.
     """
-    def get_query_set(self):
-        return super(LiveLanguageManager, self).get_query_set().filter(
+    def get_queryset(self):
+        return super(LiveLanguageManager, self).get_queryset().filter(
                 ~models.Q(code='templates'),
                 translationproject__isnull=False,
                 project__isnull=True,

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -30,10 +30,10 @@ from pootle_misc.util import cached_property
 
 class DirectoryManager(models.Manager):
 
-    def get_query_set(self):
+    def get_queryset(self):
         # ForeignKey fields with null=True are not selected by
         # select_related unless explicitly specified
-        return super(DirectoryManager, self).get_query_set() \
+        return super(DirectoryManager, self).get_queryset() \
                                             .select_related('parent')
 
     @cached_property

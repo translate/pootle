@@ -118,7 +118,7 @@ class SuggestionManager(RelatedManager):
                  unit__store__pootle_path=pootle_path)
 
     def pending(self):
-        return self.get_query_set().filter(state=SuggestionStates.PENDING)
+        return self.get_queryset().filter(state=SuggestionStates.PENDING)
 
 
 class SuggestionStates(object):
@@ -238,7 +238,7 @@ class UnitManager(RelatedManager):
         """
         lang, proj, dir_path, filename = split_pootle_path(pootle_path)
 
-        units_qs = super(UnitManager, self).get_query_set().filter(
+        units_qs = super(UnitManager, self).get_queryset().filter(
             state__gt=OBSOLETE,
             store__translation_project__project__disabled=False,
             store__translation_project__disabled=False,

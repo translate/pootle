@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -44,22 +45,22 @@ class PootleUserManager(UserManager):
     users should use the methods get_default_user and get_nobody_user.
     """
     def get_default_user(self):
-        return super(PootleUserManager, self).get_query_set() \
+        return super(PootleUserManager, self).get_queryset() \
                                              .select_related(depth=1) \
                                              .get(username='default')
 
     def get_nobody_user(self):
-        return super(PootleUserManager, self).get_query_set() \
+        return super(PootleUserManager, self).get_queryset() \
                                              .select_related(depth=1) \
                                              .get(username='nobody')
 
     def get_system_user(self):
-        return super(PootleUserManager, self).get_query_set() \
+        return super(PootleUserManager, self).get_queryset() \
                                              .select_related(depth=1) \
                                              .get(username='system')
 
     def hide_defaults(self):
-        return super(PootleUserManager, self).get_query_set().exclude(
+        return super(PootleUserManager, self).get_queryset().exclude(
                 username__in=('nobody', 'default')
             )
 
@@ -70,8 +71,8 @@ User.objects.__class__ = PootleUserManager
 
 
 class PootleProfileManager(models.Manager):
-    def get_query_set(self):
-        return super(PootleProfileManager, self).get_query_set() \
+    def get_queryset(self):
+        return super(PootleProfileManager, self).get_queryset() \
                                                 .select_related('alt_src_langs')
 
     def get_by_natural_key(self, username):

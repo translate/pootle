@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -22,9 +22,9 @@ from django.db import models
 
 
 class EvernoteAccountManager(models.Manager):
-    def get_query_set(self):
+    def get_queryset(self):
         return super(EvernoteAccountManager, self) \
-            .get_query_set() \
+            .get_queryset() \
             .select_related(depth=1)
 
 

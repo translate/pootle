@@ -41,7 +41,7 @@ class RevisionManager(models.Manager):
     def last(self):
         """Returns the latest revision number."""
         try:
-            return self.get_query_set().values_list('counter')[0][0]
+            return self.get_queryset().values_list('counter')[0][0]
         except IndexError:
             return 0
 
