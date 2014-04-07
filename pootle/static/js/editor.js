@@ -1288,7 +1288,7 @@
         suggestionTexts = _.pluck(suggestions, 'text'),
         suggestionIndex = suggestionTexts.indexOf(newTranslation);
 
-    if (suggestionIndex !== -1) {
+    if (suggestionIndex !== -1 && !PTL.editor.isFuzzy()) {
       $(['#', suggestionIds[suggestionIndex]].join(''))
         .find('.js-suggestion-accept').trigger('click', [true]);
       return;
