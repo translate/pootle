@@ -43,8 +43,8 @@ class LiveLanguageManager(models.Manager):
     language that have any project with translatable files and is not a
     source language.
     """
-    def get_query_set(self):
-        return super(LiveLanguageManager, self).get_query_set().filter(
+    def get_queryset(self):
+        return super(LiveLanguageManager, self).get_queryset().filter(
                 ~models.Q(code='templates'),
                 translationproject__isnull=False,
                 project__isnull=True,

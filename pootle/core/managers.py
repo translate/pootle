@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008, 2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -25,6 +26,6 @@ class RelatedManager(models.Manager):
 
     This saves us lots of database queries later.
     """
-    def get_query_set(self):
-        return super(RelatedManager, self).get_query_set() \
+    def get_queryset(self):
+        return super(RelatedManager, self).get_queryset() \
                                           .select_related(depth=1)
