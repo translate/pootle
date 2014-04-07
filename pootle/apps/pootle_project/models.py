@@ -31,6 +31,7 @@ from django.core.urlresolvers import reverse
 from django.db import connection, models
 from django.db.models import Q
 from django.db.models.signals import post_delete, post_save
+from django.dispatch import receiver
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext_lazy as _
 
@@ -498,6 +499,7 @@ class ProjectSet(VirtualResource, ProjectURLMixin):
     ### /TreeItem
 
 
+@receiver([post_delete, post_save])
 def invalidate_resources_cache(sender, instance, **kwargs):
     if instance.__class__.__name__ not in ['Directory', 'Store']:
         return
@@ -510,7 +512,3 @@ def invalidate_resources_cache(sender, instance, **kwargs):
     lang, proj, dir, fn = split_pootle_path(instance.pootle_path)
     if proj is not None:
         cache.delete(make_method_key(Project, 'resources', proj))
-
-# FIXME: Django 1.5+: use the `@receiver` decorator
-post_delete.connect(invalidate_resources_cache)
-post_save.connect(invalidate_resources_cache)
