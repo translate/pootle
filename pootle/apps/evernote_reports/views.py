@@ -31,7 +31,7 @@ from django.utils import timezone
 
 from pootle.core.decorators import admin_required
 from pootle_misc.util import ajax_required, jsonify
-from pootle_statistics.models import Submission, SubmissionFields
+from pootle_statistics.models import Submission, SubmissionFields, ScoreLog
 
 
 # Django field query aliases
@@ -39,16 +39,13 @@ LANG_CODE = 'translation_project__language__code'
 LANG_NAME = 'translation_project__language__fullname'
 PRJ_CODE = 'translation_project__project__code'
 PRJ_NAME = 'translation_project__project__fullname'
-INITIAL = 'submissionstats__initial_translation'
+INITIAL = 'old_value'
 POOTLE_WORDCOUNT = 'unit__source_wordcount'
-SOURCE_WORDCOUNT = 'submissionstats__source_wordcount'
-ADDED_WORDS = 'submissionstats__words_added'
-REMOVED_WORDS = 'submissionstats__words_removed'
 
 # field aliases
 DATE = 'creation_time_date'
 
-STAT_FIELDS = ['n1', 'pootle_n1', 'added', 'removed']
+STAT_FIELDS = ['n1']
 INITIAL_STATES = ['new', 'edit']
 
 
@@ -133,10 +130,7 @@ def user_date_prj_activity(request):
                 DATE: "DATE(`pootle_app_submission`.`creation_time`)",
             }).values(LANG_CODE, LANG_NAME, PRJ_CODE, PRJ_NAME, DATE, INITIAL) \
              .annotate(
-                pootle_n1=Sum(POOTLE_WORDCOUNT),
-                n1=Sum(SOURCE_WORDCOUNT),
-                added=Sum(ADDED_WORDS),
-                removed=Sum(REMOVED_WORDS)
+                n1=Sum(POOTLE_WORDCOUNT),
             ).order_by(LANG_CODE, DATE)
 
         projects = {}
@@ -188,7 +182,7 @@ def user_date_prj_activity(request):
                 lang_data['dates'].append(res_date)
 
             if res_date is not None:
-                if r[INITIAL]:
+                if r[INITIAL] == '':
                     states = INITIAL_STATES
                 else:
                     states = INITIAL_STATES[::-1]
@@ -221,9 +215,45 @@ def user_date_prj_activity(request):
         json['results'] = res
 
     json['meta'] = {'user': u'%s' % user, 'start': start_date, 'end': end_date}
+    if user != '':
+        json['scores'] = get_paid_words(user, start, end)
     response = jsonify(json)
 
     return HttpResponse(response, mimetype="application/json")
+
+
+def get_paid_words(user, start, end):
+    rate = review_rate = row = None
+    result = []
+
+    scores = ScoreLog.objects \
+        .filter(user=user.get_profile(),
+                creation_time__gte=start,
+                creation_time__lte=end) \
+        .order_by('creation_time')
+
+    for score in scores:
+        if score.rate != rate or score.review_rate != review_rate:
+            rate = score.rate
+            review_rate = score.review_rate
+            row = {
+                'translated': 0,
+                'reviewed': 0,
+                'score_delta': 0,
+                'rate': rate,
+                'review_rate': review_rate,
+                'start': score.creation_time.strftime('%Y-%m-%d'),
+                'end': score.creation_time.strftime('%Y-%m-%d'),
+            }
+            result.append(row)
+
+        traslatedWords, reviewedWords = score.get_paid_words()
+        row['translated'] += traslatedWords
+        row['reviewed'] += reviewedWords
+        row['score_delta'] += score.score_delta
+        row['end'] = score.creation_time.strftime('%Y-%m-%d')
+
+    return result
 
 
 def users(request):

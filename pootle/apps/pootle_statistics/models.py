@@ -335,12 +335,15 @@ class ScoreLog(models.Model):
         else:
             reviewer = translator
 
-        translator_score = score_dict.copy()
-        translator_score['user'] = translator
-        reviewer_score = score_dict.copy()
-        reviewer_score['user'] = reviewer
+        previous_translator_score = score_dict.copy()
+        previous_translator_score['user'] = translator
+        previous_reviewer_score = score_dict.copy()
+        previous_reviewer_score['user'] = reviewer
         submitter_score = score_dict.copy()
         submitter_score['user'] = submission.submitter
+        suggester_score = score_dict.copy()
+        if submission.suggestion is not None:
+            suggester_score['user'] = submission.suggestion.user
 
         edit_types = [SubmissionTypes.NORMAL, SubmissionTypes.SYSTEM]
         if (submission.field == SubmissionFields.TARGET and
@@ -352,10 +355,10 @@ class ScoreLog(models.Model):
                     submitter_score['action_code'] = \
                         TranslationActionCodes.DELETED
 
-                    translator_score['action_code'] = \
+                    previous_translator_score['action_code'] = \
                         TranslationActionCodes.EDIT_PENALTY
 
-                    reviewer_score['action_code'] = \
+                    previous_reviewer_score['action_code'] = \
                         TranslationActionCodes.REVIEW_PENALTY
                 else:
                     if (reviewer is not None and
@@ -366,19 +369,20 @@ class ScoreLog(models.Model):
                         submitter_score['action_code'] = \
                             TranslationActionCodes.EDITED
 
-                        reviewer_score['action_code'] = \
+                        previous_reviewer_score['action_code'] = \
                             TranslationActionCodes.REVIEW_PENALTY
 
         elif submission.field == SubmissionFields.STATE:
             if (int(submission.old_value) == FUZZY and
-                int(submission.new_value) == TRANSLATED):
+                int(submission.new_value) == TRANSLATED and
+                not submission.unit._target_updated):
                 submitter_score['action_code'] = TranslationActionCodes.REVIEWED
 
             elif (int(submission.old_value) == TRANSLATED and
                   int(submission.new_value) == FUZZY):
                 submitter_score['action_code'] = \
                     TranslationActionCodes.MARKED_FUZZY
-                reviewer_score['action_code'] = \
+                previous_reviewer_score['action_code'] = \
                     TranslationActionCodes.REVIEW_PENALTY
 
         elif submission.type == SubmissionTypes.SUGG_ADD:
@@ -387,19 +391,18 @@ class ScoreLog(models.Model):
         elif submission.type == SubmissionTypes.SUGG_ACCEPT:
             submitter_score['action_code'] = \
                 TranslationActionCodes.SUGG_REVIEWED_ACCEPTED
-
-            translator_score['action_code'] = TranslationActionCodes.SUGG_ACCEPTED
-            translator_score['user'] = submission.suggestion.user
-            reviewer_score['action_code'] = TranslationActionCodes.REVIEW_PENALTY
+            suggester_score['action_code'] = \
+                TranslationActionCodes.SUGG_ACCEPTED
+            previous_reviewer_score['action_code'] = \
+                TranslationActionCodes.REVIEW_PENALTY
 
         elif submission.type == SubmissionTypes.SUGG_REJECT:
             submitter_score['action_code'] = \
                 TranslationActionCodes.SUGG_REVIEWED_REJECTED
+            suggester_score['action_code'] = TranslationActionCodes.SUGG_REJECTED
 
-            translator_score['action_code'] = TranslationActionCodes.SUGG_REJECTED
-            translator_score['user'] = submission.suggestion.user
-
-        for score in [submitter_score, translator_score, reviewer_score]:
+        for score in [submitter_score, previous_translator_score,
+                      previous_reviewer_score, suggester_score]:
             if 'action_code' in score and score['user'] is not None:
                ScoreLog.objects.create(**score)
 
@@ -514,3 +517,38 @@ class ScoreLog(models.Model):
             TranslationActionCodes.SUGG_REJECTED: get_sugg_rejected,
             TranslationActionCodes.SUGG_REVIEWED_REJECTED: lambda: analyzeCost,
         }.get(self.action_code, 0)()
+
+    def get_paid_words(self):
+        """Returns the translated and reviewed words in the current action."""
+        ns = self.wordcount
+        s = self.similarity
+        translatedWords = ns * (1 - s)
+        reviewedWords = ns
+
+        def get_sugg_reviewed_accepted():
+            suggester = self.submission.suggestion.user.pk
+            reviewer = self.submission.submitter.pk
+            if suggester == reviewer:
+                if self.submission.old_value == '':
+                    return translatedWords, 0
+            else:
+                return 0, reviewedWords
+
+            return 0, 0
+
+        def get_sugg_accepted():
+            suggester = self.submission.suggestion.user.pk
+            reviewer = self.submission.submitter.pk
+            if suggester != reviewer:
+                if self.submission.old_value == '':
+                    return translatedWords, 0
+
+            return 0, 0
+
+        return {
+            TranslationActionCodes.NEW: lambda: (translatedWords, 0),
+            TranslationActionCodes.EDITED: lambda: (0, reviewedWords),
+            TranslationActionCodes.REVIEWED: lambda: (0, reviewedWords),
+            TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
+            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: get_sugg_reviewed_accepted,
+        }.get(self.action_code, lambda:(0, 0))()

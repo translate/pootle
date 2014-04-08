@@ -1,6 +1,6 @@
 <% if (meta.user !== "") { %>
   <h2>Report for <%= meta.user %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
-  <% if (total.new.n1 || total.edit.pootle_n1) { %>
+  <% if (total.new.n1 || total.edit.n1) { %>
     <div id="reports-viewmode">
       <select>
         <option value="new">New translations</option>
@@ -10,7 +10,7 @@
   <% } %>
 <% if ((typeof all_projects !== "undefined") && (_.size(all_projects) > 0)) { %>
 <% _.each(results, function(lang_data, lang) { %>
-<div class="reports-lang<% if (!lang_data.total.new.n1) { %> new-empty<% } %><% if (!lang_data.total.edit.pootle_n1) { %> edit-empty<% } %>">
+<div class="reports-lang<% if (!lang_data.total.new.n1) { %> new-empty<% } %><% if (!lang_data.total.edit.n1) { %> edit-empty<% } %>">
   <h3><a href="<%= l('/' + lang) %>"><%= lang_data.name %></a></h3>
   <table class="stats">
     <thead>
@@ -28,14 +28,13 @@
         <td><%= PTL.reports.formatDate(date.date) %></td>
         <td class="total number">
           <% if (date.total.new.n1) { %>
-            <span class="new" title="Translated words (precise): <%= date.total.new.n1 %>
-              Translated words (Pootle): <%= date.total.new.pootle_n1 %>">
+            <span class="new">
                 <%= date.total.new.n1 %>
             </span>
           <% } %>
-          <% if (date.total.edit.pootle_n1) { %>
+          <% if (date.total.edit.n1) { %>
             <span class="edit">
-              <%= date.total.edit.pootle_n1 %>
+              <%= date.total.edit.n1 %>
             </span>
           <% } %>
         </td>
@@ -43,18 +42,17 @@
           <td class="number">
           <% if (date.projects[code]) { %>
             <% if (date.projects[code].new) { %>
-            <span class="new" title="Translated words (precise): <%= date.projects[code].new.n1 %>
-              Translated words (Pootle): <%= date.projects[code].new.pootle_n1 %>">
+            <span class="new">
                 <%= date.projects[code].new.n1 %>
               </span>
             <% } %>
             <% if (date.projects[code].edit) { %>
-              <span class="edit" title="">
-                <%= date.projects[code].edit.pootle_n1 %>
+              <span class="edit">
+                <%= date.projects[code].edit.n1 %>
               </span>
             <% } %>
           <% } else { %>
-            <span title="">&nbsp;</span>
+            <span>&nbsp;</span>
           <% } %>
           </td>
         <% }); %>
@@ -65,14 +63,13 @@
       <td>Total</td>
       <td class="total number">
         <% if (lang_data.total.new.n1) { %>
-          <span class="new" title="Translated words (precise): <%= lang_data.total.new.n1 %>
-            Translated words (Pootle): <%= lang_data.total.new.pootle_n1 %>">
+          <span class="new">
             <%= lang_data.total.new.n1 %>
           </span>
         <% } %>
-        <% if (lang_data.total.edit.pootle_n1) { %>
+        <% if (lang_data.total.edit.n1) { %>
           <span class="edit">
-            <%= lang_data.total.edit.pootle_n1 %>
+            <%= lang_data.total.edit.n1 %>
           </span>
         <% } %>
       </td>
@@ -80,14 +77,13 @@
         <td class="number">
         <% if (lang_data.sums[code]) { %>
           <% if (lang_data.sums[code].new.n1) { %>
-            <span class="new" title="Translated words (precise): <%= lang_data.sums[code].new.n1 %>
-              Translated words (Pootle): <%= lang_data.sums[code].new.pootle_n1 %>">
+            <span class="new">
               <%= lang_data.sums[code].new.n1 %>
             </span>
           <% } %>
-          <% if (lang_data.sums[code].edit.pootle_n1) { %>
+          <% if (lang_data.sums[code].edit.n1) { %>
             <span class="edit">
-              <%= lang_data.sums[code].edit.pootle_n1 %>
+              <%= lang_data.sums[code].edit.n1 %>
             </span>
           <% } %>
         <% } %>
@@ -98,6 +94,45 @@
   </table>
 </div>
 <% }); %>
+<h2>Score-based report for <%= meta.user %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
+  <table class="stats">
+    <thead>
+    <tr>
+      <th>Period</th>
+      <th class="project">Translated</th>
+      <th class="project">x Rate</th>
+      <th class="project">Reviewed</th>
+      <th class="project">x Rate</th>
+      <th class="project">Subtotal (Words)</th>
+      <th class="project">Score Delta</th>
+      <th class="project">Subtotal (Score)</th>
+    </tr>
+    </thead>
+    <%= PTL.reports.resetRowStyle()  %>
+    <% var totalWords = totalScore = 0; %>
+    <% _.each(scores, function (row) { %>
+      <% var subTotalWords = row.reviewed * row.review_rate + Math.round(row.translated) * row.rate %>
+      <% var subTotalScore = row.score_delta * row.rate %>
+      <% totalWords += subTotalWords %>
+      <% totalScore += subTotalScore %>
+      <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
+        <td><%= PTL.reports.dateRangeString(row.start, row.end, false) %></td>
+        <td><%= Math.round(row.translated) %></td>
+        <td><%= row.rate %></td>
+        <td><%= row.reviewed %></td>
+        <td><%= row.review_rate %></td>
+        <td><%= subTotalWords.toFixed(2) %></td>
+        <td><%= row.score_delta.toFixed(2) %></td>
+        <td><%= subTotalScore.toFixed(2) %></td>
+      </tr>
+    <% }); %>
+      <tr class="total">
+          <td>Total (EUR)</td>
+          <td colspan="4"></td>
+          <td><%= totalWords %></td>
+          <td></td>
+          <td><%= totalScore.toFixed(2) %></td>
+      </tr>
 <% } else { %>
   <p class="noresults">No activity recorded during this period.</p>
 <% } %>

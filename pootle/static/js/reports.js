@@ -154,28 +154,39 @@
       });
     },
 
-    dateRangeString: function (d1, d2) {
+    dateRangeString: function (d1, d2, showYear) {
       var res = '',
           m1 = moment(d1),
           m2 = moment(d2);
 
+      if (typeof(showYear) === 'undefined') {
+          showYear = true;
+      }
+
       if (m1.year() == m2.year()) {
         if (m1.month() == m2.month()) {
           if (m1.date() == m2.date()) {
-            return m1.format('MMMM D, YYYY');
+            return m1.format(showYear ? 'MMMM D, YYYY' : 'MMMM D');
           } else {
             return [
-              m1.format('MMMM D'), ' &mdash; ', m2.date(), m2.format(', YYYY')
+              m1.format('MMMM D'),
+              ' &mdash; ',
+              m2.date(),
+              showYear ? m2.format(', YYYY') : ''
             ].join('');
           }
         } else {
           return [
-            m1.format('MMMM D'), ' &mdash; ', m2.format('MMMM D, YYYY')
+            m1.format('MMMM D'),
+            ' &mdash; ',
+            m2.format(showYear ? 'MMMM D, YYYY' : 'MMMM D')
           ].join('');
         }
       } else {
         return [
-          m1.format('MMMM D, YYYY'), ' &mdash; ', m2.format('MMMM D, YYYY')
+          m1.format('MMMM D, YYYY'),
+          ' &mdash; ',
+          m2.format('MMMM D, YYYY')
         ].join('');
       }
     },

@@ -19,7 +19,7 @@
 /*#reports-results .reports-lang th.project {
     text-align: right;
 }*/
-#reports-results .reports-lang th {
+#reports-results th {
     color: #999;
     text-align: left;
     font-size: 85%;
