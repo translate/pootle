@@ -27,6 +27,7 @@ from pyDes import triple_des, ECB
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.encoding import iri_to_uri
@@ -60,8 +61,8 @@ def get_cookie_dict(request):
 
 def redirect_after_login(request, redirect_to):
     if not is_safe_url(url=redirect_to, host=request.get_host()):
-        redirect_to = iri_to_uri('/accounts/%s/' % \
-                                 urlquote(request.user.username))
+        redirect_to = reverse('profiles_profile_detail',
+                              args=[request.user.username])
 
     return redirect(redirect_to)
 

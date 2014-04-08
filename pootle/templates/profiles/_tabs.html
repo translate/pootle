@@ -1,10 +1,10 @@
-{% load i18n baseurl %}
+{% load i18n %}
 <ul id="tabs">
   {% if user == profile.user or not profile.user %}
-  <li><a href='{% filter l %}/accounts/{{ user.username }} {% endfilter %}' class="dashboard">{% trans "Dashboard" %}</a></li>
-  <li><a href='{{ "/accounts/edit/"|l }}' class="settings">{% trans "Settings" %}</a></li>
-  <li><a href='{{ "/accounts/personal/edit/"|l }}' class="profile">{% trans "Profile" %}</a></li>
-  <li><a href='{{ "/accounts/password/change/"|l }}' class="password">{% trans "Password" %}</a></li>
-  <li><a href='{{ "/accounts/evernote/link/"|l }}' class="evernote_account_link">{% trans "Link with Evernote" %}</a></li>
+  <li><a href="{% url 'profiles_profile_detail' user.username %}" class="dashboard">{% trans "Dashboard" %}</a></li>
+  <li><a href="{% url 'pootle-profile-edit' %}" class="settings">{% trans "Settings" %}</a></li>
+  <li><a href="{% url 'pootle-profile-personal-edit' %}" class="profile">{% trans "Profile" %}</a></li>
+  <li><a href="{% url 'pootle-password-change' %}" class="password">{% trans "Password" %}</a></li>
+  <li><a href="{% url 'evernote_account_link' %}" class="evernote_account_link">{% trans "Link with Evernote" %}</a></li>
   {% endif %}
 </ul>

@@ -23,7 +23,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.encoding import iri_to_uri
-from django.utils.http import is_safe_url, urlquote
+from django.utils.http import is_safe_url
 
 from profiles.views import edit_profile
 
