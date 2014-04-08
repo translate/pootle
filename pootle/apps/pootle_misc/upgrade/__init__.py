@@ -30,6 +30,7 @@ def ensure_pootle_config():
 
     try:
         PootleConfig.objects.get_current()
+        logging.info("No need to migrate old build versions.")
     except Exception:
         from pootle_app.models.pootle_config import (get_legacy_ptl_build,
                                                      get_legacy_ttk_build)
@@ -40,6 +41,8 @@ def ensure_pootle_config():
             ttk_build=get_legacy_ttk_build(),
         )
         pootle_config.save()
+        logging.info("Succesfully migrated old build versions to new "
+                     "PootleConfig.")
 
 
 def save_build_version(product, build_version):
