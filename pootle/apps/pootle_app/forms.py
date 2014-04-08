@@ -20,27 +20,10 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from djblets.siteconfig.forms import SiteSettingsForm
-
-from pootle_misc.siteconfig import load_site_config
+from pootle_app.models.pootle_site import PootleSite
 
 
-class GeneralSettingsForm(SiteSettingsForm):
-    TITLE = forms.CharField(
-        label=_("Title"),
-        help_text=_("The name for this Pootle server"),
-        max_length=50,
-        required=True,
-    )
-    DESCRIPTION = forms.CharField(
-        label=_("Description"),
-        help_text=_("The description and instructions shown on the front page "
-                    "and about page. Be sure to use valid HTML."),
-        max_length=8192,
-        required=True,
-        widget=forms.Textarea,
-    )
+class GeneralSettingsForm(forms.ModelForm):
 
-    def save(self):
-        super(GeneralSettingsForm, self).save()
-        load_site_config()
+    class Meta:
+        model = PootleSite

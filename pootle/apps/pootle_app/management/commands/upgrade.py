@@ -29,7 +29,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management.base import BaseCommand
 
 from pootle.__version__ import build as code_ptl_buildversion
-from pootle_misc.siteconfig import load_site_config
+from pootle_app.models.pootle_config import get_pootle_build, get_toolkit_build
 
 
 #: Build version referring to Pootle version 2.5.
@@ -55,11 +55,9 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **options):
-        config = load_site_config()
-        db_ptl_buildversion = config.get('POOTLE_BUILDVERSION',
-                                         DEFAULT_POOTLE_BUILDVERSION)
-        db_tt_buildversion = int(config.get('TT_BUILDVERSION',
-                                            DEFAULT_TT_BUILDVERSION))
+        db_ptl_buildversion = get_pootle_build(DEFAULT_POOTLE_BUILDVERSION)
+        db_tt_buildversion = get_toolkit_build(DEFAULT_TT_BUILDVERSION)
+
         ptl_changed = db_ptl_buildversion < code_ptl_buildversion
         tt_changed = db_tt_buildversion < code_tt_buildversion
 
@@ -69,13 +67,13 @@ class Command(BaseCommand):
                 logging.info('Detected new Pootle version: %d.',
                              code_ptl_buildversion)
             else:
-                db_ptl_buildversion = None
+                db_ptl_buildversion = 0
 
             if tt_changed:
                 logging.info('Detected new Translate Toolkit version: %d.',
                              code_tt_buildversion)
             else:
-                db_tt_buildversion = None
+                db_tt_buildversion = 0
 
             logging.info('Running the upgrade machinery...')
 

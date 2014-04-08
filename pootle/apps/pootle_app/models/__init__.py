@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008, 2013 Zuza Software Foundation
+# Copyright 2008-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,6 +20,9 @@
 from pootle_app.models.suggestion import Suggestion
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
+from pootle_app.models.pootle_config import PootleConfig
+from pootle_app.models.pootle_site import PootleSite
 
 
-__all__ = ["Suggestion", "Directory", "PermissionSet"]
+__all__ = ["Suggestion", "Directory", "PermissionSet", "PootleConfig",
+           "PootleSite"]

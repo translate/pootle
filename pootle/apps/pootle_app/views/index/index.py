@@ -31,9 +31,9 @@ from pootle.core.decorators import get_path_obj
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission)
+from pootle_app.models.pootle_site import get_site_description
 from pootle_language.models import Language
 from pootle_misc.browser import get_table_headings
-from pootle_misc.siteconfig import load_site_config
 from pootle_profile.models import get_profile
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
@@ -107,9 +107,8 @@ def view(request, root_dir):
         'items': projects,
     }
 
-    siteconfig = load_site_config()
     ctx = {
-        'description': _(siteconfig.get('DESCRIPTION')),
+        'description': _(get_site_description()),
         'keywords': [
             'Pootle',
             'translate',

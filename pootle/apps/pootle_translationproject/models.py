@@ -40,9 +40,9 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
+from pootle_app.models.pootle_site import get_site_title
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
-from pootle_misc.siteconfig import load_site_config
 from pootle_misc.stats import stats_message_raw
 from pootle_misc.util import cached_property
 from pootle_project.models import Project
@@ -412,9 +412,9 @@ class TranslationProject(models.Model, TreeItem):
 
         if new_files and versioncontrol.hasversioning(project_path):
             from pootle.scripts import hooks
-            siteconfig = load_site_config()
+
             message = ("New files added from %s based on templates" %
-                       siteconfig.get('TITLE'))
+                       get_site_title())
 
             filestocommit = []
             for new_file in new_files:
@@ -667,9 +667,8 @@ class TranslationProject(models.Model, TreeItem):
         fuzzy = directory.get_fuzzy_wordcount()
         author = user.username
 
-        siteconfig = load_site_config()
         message = stats_message_raw("Commit from %s by user %s." %
-                                    (siteconfig.get('TITLE'), author),
+                                    (get_site_title(), author),
                                     total, translated, fuzzy)
 
         # Try to append email as well, since some VCS does not allow omitting
@@ -746,9 +745,8 @@ class TranslationProject(models.Model, TreeItem):
         fuzzy = store.get_fuzzy_wordcount()
         author = user.username
 
-        siteconfig = load_site_config()
         message = stats_message_raw("Commit from %s by user %s." % \
-                (siteconfig.get('TITLE'), author), total, translated, fuzzy)
+                (get_site_title(), author), total, translated, fuzzy)
 
         # Try to append email as well, since some VCS does not allow omitting
         # it (ie. Git).

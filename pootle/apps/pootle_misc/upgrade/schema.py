@@ -30,6 +30,8 @@ import logging
 
 from django.core.management import call_command
 
+from . import ensure_pootle_config
+
 
 def update_tables_22000():
     logging.info("Updating existing database tables")
@@ -42,7 +44,7 @@ def update_tables_22000():
     from pootle_store.models import QualityCheck, Store, Suggestion, Unit
     from pootle_translationproject.models import TranslationProject
 
-    from . import save_version
+    from . import save_build_version
 
     # For the sake of South bug 313, we set the default for these fields here:
     # See http://south.aeracode.org/ticket/313
@@ -100,12 +102,16 @@ def update_tables_22000():
     field = Store._meta.get_field('sync_time')
     db.add_column(table_name, field.name, field)
 
-    save_version('', 22000)
-    logging.info("Database now at Pootle build 22000")
+    save_build_version('pootle', 22000)
 
 
 def staggered_update(db_buildversion):
     """Updates Pootle's database schema in steps."""
+
+    # Before upgrading anything try to migrate the buildversions to the new
+    # PootleConfig model, so all the code uses the same way to retrieve and
+    # save the build versions.
+    ensure_pootle_config()
 
     # Build missing tables
     try:
