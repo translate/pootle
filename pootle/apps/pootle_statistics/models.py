@@ -306,8 +306,10 @@ class TranslationActionCodes(object):
 class ScoreLog(models.Model):
     creation_time = models.DateTimeField(db_index=True, null=False)
     user = models.ForeignKey('pootle_profile.PootleProfile', null=False)
-    # current user’s rate
+    # current user’s new translation rate
     rate = models.FloatField(null=False, default=0)
+    # current user’s review rate
+    review_rate = models.FloatField(null=False, default=0)
     # number of words in the original source string
     wordcount = models.PositiveIntegerField(null=False)
     # the reported similarity ratio
@@ -404,7 +406,8 @@ class ScoreLog(models.Model):
     def save(self, *args, **kwargs):
         # copy current user rate
         self.rate = self.user.rate
-        self.score_delta = self.get_delta()
+        self.review_rate = self.user.review_rate
+        self.score_delta = self.get_score_delta()
 
         super(ScoreLog, self).save(*args, **kwargs)
 
@@ -448,7 +451,7 @@ class ScoreLog(models.Model):
 
         log("\t".join(params) % d)
 
-    def get_delta(self):
+    def get_score_delta(self):
         """Returns the score change performed by the current action."""
         ns = self.wordcount
         s = self.similarity

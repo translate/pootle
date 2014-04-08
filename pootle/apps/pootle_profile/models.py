@@ -100,6 +100,7 @@ class PootleProfile(models.Model):
             verbose_name=_("Alternative Source Languages"))
 
     rate = models.FloatField(null=False, default=0)
+    review_rate = models.FloatField(null=False, default=0)
     score = models.FloatField(null=False, default=0)
 
     def natural_key(self):
