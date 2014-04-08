@@ -31,9 +31,8 @@ from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
-from django.db import models, IntegrityError
+from django.db import models, transaction, IntegrityError
 from django.db.models.signals import post_delete
-from django.db.transaction import commit_on_success
 from django.template.defaultfilters import escape, truncatechars
 from django.utils import dateformat, timezone
 from django.utils.encoding import iri_to_uri
@@ -1421,7 +1420,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         return False
 
-    @commit_on_success
+    @transaction.atomic
     def parse(self, store=None):
         self.clean_stale_lock()
 
@@ -1482,7 +1481,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         return disk_mtime
 
-    @commit_on_success
+    @transaction.atomic
     def update(self, overwrite=False, store=None, fuzzy=False,
                only_newer=False):
         """Update DB with units from file.
