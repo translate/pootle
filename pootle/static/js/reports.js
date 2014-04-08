@@ -159,9 +159,7 @@
           m1 = moment(d1),
           m2 = moment(d2);
 
-      if (typeof(showYear) === 'undefined') {
-          showYear = true;
-      }
+      showYear = showYear || true;
 
       if (m1.year() == m2.year()) {
         if (m1.month() == m2.month()) {
