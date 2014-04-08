@@ -19,7 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.urlresolvers import reverse
-from django.utils.translation import ungettext
+from django.utils.translation import ungettext, gettext as _
 
 
 def get_translation_states(path_obj):
