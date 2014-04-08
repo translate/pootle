@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -24,29 +24,9 @@ import re
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from djblets.siteconfig.forms import SiteSettingsForm
-
-from pootle_misc.siteconfig import load_site_config
-
 
 LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$",
                          re.IGNORECASE)
-
-
-class GeneralSettingsForm(SiteSettingsForm):
-    TITLE = forms.CharField(
-        label=_("Title"),
-        help_text=_("The name for this Pootle server"),
-        max_length=50,
-        required=True,
-    )
-
-    class Meta:
-        title = "General Settings"
-
-    def save(self):
-        super(GeneralSettingsForm, self).save()
-        load_site_config()
 
 
 class MyLanguageAdminForm(forms.ModelForm):

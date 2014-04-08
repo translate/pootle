@@ -87,6 +87,8 @@ Removed Features
 
 - Hooks.
 
+- Management commands: updatedb, upgrade, setup
+
 
 Unmerged Features
 ^^^^^^^^^^^^^^^^^

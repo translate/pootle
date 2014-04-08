@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -44,9 +44,6 @@ urlpatterns = patterns('pootle_app.views.admin',
     url(r'^/permissions/$',
         'adminroot.view',
         name='pootle-admin-permissions'),
-    url(r'^/general/$',
-        'adminpages.view',
-        name='pootle-admin-general'),
 
     # XHR
     url(r'^/more-stats/?$',
