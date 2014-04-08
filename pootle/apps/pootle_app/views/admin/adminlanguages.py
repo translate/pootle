@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2010,2012 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -37,4 +37,4 @@ def view(request):
 
     return util.edit(request, 'admin/languages.html', Language,
                      link=generate_link, form=MyLanguageAdminForm,
-                     exclude='description', can_delete=True)
+                     can_delete=True)

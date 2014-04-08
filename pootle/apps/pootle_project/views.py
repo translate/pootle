@@ -138,6 +138,7 @@ def project_admin(request, current_project):
         class Meta:
             prefix = "existing_language"
             model = TranslationProject
+            fields = ('language', 'project', 'disabled',)
 
     queryset = TranslationProject.objects.filter(project=current_project) \
                                          .order_by('pootle_path')

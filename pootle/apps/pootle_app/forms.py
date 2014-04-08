@@ -31,6 +31,11 @@ LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$",
 
 class MyLanguageAdminForm(forms.ModelForm):
 
+    class Meta:
+        fields = (
+            'code', 'fullname', 'specialchars', 'nplurals', 'pluralequation',
+        )
+
     def __init__(self, *args, **kwargs):
         super(MyLanguageAdminForm, self).__init__(*args, **kwargs)
         self.fields['nplurals'].widget.attrs['class'] = \

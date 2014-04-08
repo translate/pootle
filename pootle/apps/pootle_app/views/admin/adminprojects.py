@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -44,6 +44,10 @@ def view(request):
     class ProjectForm(forms.ModelForm):
         class Meta:
             model = Project
+            fields = (
+                'code', 'fullname', 'checkstyle', 'localfiletype', 'treestyle',
+                'source_language', 'screenshot_search_prefix', 'disabled',
+            )
 
         source_language = forms.ModelChoiceField(label=_('Source Language'),
                 initial=default_lang.pk, queryset=queryset)
@@ -103,6 +107,5 @@ def view(request):
             Project,
             link=generate_link,
             form=ProjectForm,
-            exclude=('ignoredfiles'),
             can_delete=True,
     )
