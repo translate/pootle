@@ -36,4 +36,4 @@ class Command(NoArgsCommandMixin):
         """List all projects on the server."""
 
         for project in Project.objects.all():
-                print project.code
+            self.stdout.write(project.code)

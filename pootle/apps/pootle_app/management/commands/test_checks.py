@@ -99,7 +99,6 @@ class Command(NoArgsCommand):
                 error_checks.append(check)
 
         if error_checks:
-            print "Failing checks: " + ", ".join(error_checks)
+            self.stdout.write('Failing checks: %s' % ', '.join(error_checks))
         else:
-            print "No errors found."
-
+            self.stdout.write('No errors found.')

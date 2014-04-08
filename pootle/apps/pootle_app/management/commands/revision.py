@@ -31,4 +31,4 @@ class Command(NoArgsCommand):
     help = "Print the number of the current revision."
 
     def handle_noargs(self, **options):
-        print Revision.objects.last()
+        self.stdout.write('%s' % Revision.objects.last())

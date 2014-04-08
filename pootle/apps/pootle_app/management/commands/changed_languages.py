@@ -53,14 +53,16 @@ class Command(NoArgsCommand):
                     Max('last_sync_revision')
                 )['last_sync_revision__max'] or -1
 
-        print >> sys.stderr, "Will show languages changed between revisions", \
-                             after_revision, "(exclusive) and", \
-                             last_known_revision, "(inclusive)"
+        self.stderr.write(
+            'Will show languages changed between revisions %s (exclusive) '
+            'and %s (inclusive)' %
+            (after_revision, last_known_revision)
+        )
 
         # if the requested revision is the same or is greater than
         # the last known one, return nothing
         if after_revision >= last_known_revision:
-            print >> sys.stderr, "(no known changes)"
+            self.stderr.write('(no known changes)')
             return
 
         q = Unit.objects.filter(

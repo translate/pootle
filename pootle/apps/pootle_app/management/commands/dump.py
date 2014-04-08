@@ -78,7 +78,9 @@ class Command(PootleCommand):
         if stats:
             res = {}
             self._dump_stats(tp.directory, res, stop_level=stop_level)
-            print json.dumps(res, indent=4, cls=PootleJSONEncoder)
+
+            stats_dump = json.dumps(res, indent=4, cls=PootleJSONEncoder)
+            self.stdout.write(stats_dump)
         if data:
             self._dump_item(tp.directory, 0, stop_level=stop_level)
 
@@ -89,7 +91,9 @@ class Command(PootleCommand):
         self._dump_stats(root, res, stop_level=stop_level)
         # stop on translation project level -> stop_level = 2
         self._dump_stats(projects, res, stop_level=2)
-        print json.dumps(res, indent=4, cls=PootleJSONEncoder)
+
+        stats_dump = json.dumps(res, indent=4, cls=PootleJSONEncoder)
+        self.stdout.write(stats_dump)
 
 
     def _dump_stats(self, item, res, stop_level):
@@ -111,23 +115,23 @@ class Command(PootleCommand):
         self._dump_item(root, 0, stop_level=stop_level)
 
     def _dump_item(self, item, level, stop_level):
-        print self.dumped(item)
+        self.stdout.write(self.dumped(item))
         if item.is_dir:
             if item.is_project():
-                print self.dumped(item.project)
+                self.stdout.write(self.dumped(item.project))
             elif item.is_language():
-                print self.dumped(item.language)
+                self.stdout.write(self.dumped(item.language))
             elif item.is_translationproject():
                 try:
-                    print self.dumped(item.translationproject)
+                    self.stdout.write(self.dumped(item.translationproject))
                 except:
                     pass
         else:
             # item should be a Store
             for unit in item.units:
-                print self.dumped(unit)
+                self.stdout.write(self.dumped(unit))
                 for sg in unit.get_suggestions():
-                    print self.dumped(sg)
+                    self.stdout.write(self.dumped(sg))
 
         if stop_level != level:
             item.initialize_children()
