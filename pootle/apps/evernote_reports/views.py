@@ -21,11 +21,13 @@
 
 from datetime import datetime
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils import timezone
 
 from pootle.core.decorators import admin_required
 from pootle_misc.util import ajax_required, jsonify
@@ -64,19 +66,7 @@ def evernote_reports(request, context={}):
                               context_instance=RequestContext(request))
 
 
-@ajax_required
-@admin_required
-def user_date_prj_activity(request):
-    user = request.GET.get('user', None)
-
-    try:
-        user = User.objects.get(username=user)
-    except:
-        user = ''
-
-    start_date = request.GET.get('start', None)
-    end_date = request.GET.get('end', None)
-
+def get_date_interval(start_date, end_date):
     if start_date:
         start = datetime.strptime(start_date, '%Y-%m-%d')
     else:
@@ -87,8 +77,29 @@ def user_date_prj_activity(request):
     else:
         end = datetime.now()
 
+    if settings.USE_TZ:
+        tz = timezone.get_default_timezone()
+        start = timezone.make_aware(start, tz)
+        end = timezone.make_aware(end, tz)
+
     start = start.replace(hour=0, minute=0, second=0)
     end = end.replace(hour=23, minute=59, second=59)
+
+    return [start, end]
+
+@ajax_required
+@admin_required
+def user_date_prj_activity(request):
+    user = request.GET.get('user', None)
+    start_date = request.GET.get('start', None)
+    end_date = request.GET.get('end', None)
+
+    try:
+        user = User.objects.get(username=user)
+    except:
+        user = ''
+
+    [start, end] = get_date_interval(start_date, end_date)
 
     def get_item_stats(r={}):
         res = {}
