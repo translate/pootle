@@ -247,9 +247,9 @@ def get_paid_words(user, start, end):
             }
             result.append(row)
 
-        traslatedWords, reviewedWords = score.get_paid_words()
-        row['translated'] += traslatedWords
-        row['reviewed'] += reviewedWords
+        translated_words, reviewed_words = score.get_paid_words()
+        row['translated'] += translated_words
+        row['reviewed'] += reviewed_words
         row['score_delta'] += score.score_delta
         row['end'] = score.creation_time.strftime('%Y-%m-%d')
 
