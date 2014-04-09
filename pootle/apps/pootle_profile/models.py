@@ -46,17 +46,17 @@ class PootleUserManager(UserManager):
     """
     def get_default_user(self):
         return super(PootleUserManager, self).get_queryset() \
-                                             .select_related(depth=1) \
+                                             .select_related('profile') \
                                              .get(username='default')
 
     def get_nobody_user(self):
         return super(PootleUserManager, self).get_queryset() \
-                                             .select_related(depth=1) \
+                                             .select_related('profile') \
                                              .get(username='nobody')
 
     def get_system_user(self):
         return super(PootleUserManager, self).get_queryset() \
-                                             .select_related(depth=1) \
+                                             .select_related('profile') \
                                              .get(username='system')
 
     def hide_defaults(self):

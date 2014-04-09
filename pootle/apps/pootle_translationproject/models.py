@@ -32,7 +32,6 @@ from django.db import models, IntegrityError
 from django.db.models import Q
 from django.db.models.signals import post_save
 
-from pootle.core.managers import RelatedManager
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
@@ -83,9 +82,18 @@ def scan_translation_projects():
             create_translation_project(language, project)
 
 
-class TranslationProjectManager(RelatedManager):
+class TranslationProjectManager(models.Manager):
     # disabled objects are hidden for related objects too
     use_for_related_fields = True
+
+    def get_queryset(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return (
+            super(TranslationProjectManager, self).get_queryset()
+                                                  .select_related(
+                'language', 'project', 'directory',
+            )
+        )
 
     def get_by_natural_key(self, pootle_path):
         #FIXME: should we use Language and Project codes instead?

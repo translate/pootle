@@ -50,7 +50,6 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              STORE_ADDED, STORE_DELETED,
                              MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
                              action_log, store_log, log)
-from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
@@ -86,6 +85,17 @@ CHECKED = 2
 
 ############### Quality Check #############
 
+class QualityCheckManager(models.Manager):
+
+    def get_queryset(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return (
+            super(QualityCheckManager, self).get_queryset().select_related(
+                'unit',
+            )
+        )
+
+
 class QualityCheck(models.Model):
     """Database cache of results of qualitychecks on unit."""
     name = models.CharField(max_length=64, db_index=True)
@@ -94,7 +104,7 @@ class QualityCheck(models.Model):
     message = models.TextField()
     false_positive = models.BooleanField(default=False, db_index=True)
 
-    objects = RelatedManager()
+    objects = QualityCheckManager()
 
     def __unicode__(self):
         return self.name
@@ -111,7 +121,16 @@ class QualityCheck(models.Model):
 
 ################# Suggestion ################
 
-class SuggestionManager(RelatedManager):
+class SuggestionManager(models.Manager):
+
+    def get_queryset(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return (
+            super(SuggestionManager, self).get_queryset().select_related(
+                'unit', 'user', 'reviewer',
+            )
+        )
+
     def get_by_natural_key(self, target_hash, unitid_hash, pootle_path):
         return self.get(target_hash=target_hash, unit__unitid_hash=unitid_hash,
                  unit__store__pootle_path=pootle_path)
@@ -222,7 +241,15 @@ def stringcount(string):
         return 1
 
 
-class UnitManager(RelatedManager):
+class UnitManager(models.Manager):
+
+    def get_queryset(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return (
+            super(UnitManager, self).get_queryset().select_related(
+                'store', 'submitted_by', 'commented_by', 'reviewed_by',
+            )
+        )
 
     def get_by_natural_key(self, unitid_hash, pootle_path):
         return self.get(unitid_hash=unitid_hash,
@@ -1229,7 +1256,16 @@ GET_FILE_MTIME = "get_file_mtime"
 fs = FileSystemStorage(location=settings.PODIRECTORY)
 
 
-class StoreManager(RelatedManager):
+class StoreManager(models.Manager):
+
+    def get_queryset(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return (
+            super(StoreManager, self).get_queryset().select_related(
+                'parent', 'translation_project',
+            )
+        )
+
     def get_by_natural_key(self, pootle_path):
         return self.get(pootle_path=pootle_path)
 

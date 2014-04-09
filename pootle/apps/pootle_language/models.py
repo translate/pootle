@@ -25,7 +25,6 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.managers import RelatedManager
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
@@ -36,7 +35,15 @@ from pootle_misc.baseurl import l
 CACHE_KEY = 'pootle-languages'
 
 
-class LanguageManager(RelatedManager):
+class LanguageManager(models.Manager):
+
+    def get_queryset(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return (
+            super(LanguageManager, self).get_queryset().select_related(
+                'directory',
+            )
+        )
 
     def get_by_natural_key(self, code):
         return self.get(code=code)
@@ -48,8 +55,6 @@ class LiveLanguageManager(models.Manager):
     A live language is any language other than the special `Templates`
     language that have any project with translatable files and is not a
     source language.
-
-    Note that this doesn't inherit from :cls:`RelatedManager`.
     """
     def get_queryset(self):
         return super(LiveLanguageManager, self).get_queryset().filter(

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -25,8 +26,6 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
-
-from pootle.core.managers import RelatedManager
 
 
 def get_permission_contenttype():
@@ -151,7 +150,15 @@ def check_permission(permission_codename, request):
             permission_codename in request.permissions)
 
 
-class PermissionSetManager(RelatedManager):
+class PermissionSetManager(models.Manager):
+
+    def get_queryset(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return (
+            super(PermissionSetManager, self).get_queryset().select_related(
+                'profile', 'directory',
+            )
+        )
 
     def get_by_natural_key(self, username, pootle_path):
         return self.get(profile__user__username=username,
@@ -159,6 +166,7 @@ class PermissionSetManager(RelatedManager):
 
 
 class PermissionSet(models.Model):
+
     objects = PermissionSetManager()
 
     class Meta:

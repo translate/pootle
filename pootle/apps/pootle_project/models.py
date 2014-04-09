@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -39,7 +39,6 @@ from translate.filters import checks
 from translate.lang.data import langcode_re
 
 from pootle.core.cache import make_method_key
-from pootle.core.managers import RelatedManager
 from pootle.core.mixins import TreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
@@ -58,7 +57,15 @@ CACHE_KEY = 'pootle-projects'
 RESERVED_PROJECT_CODES = ('admin', 'translate', 'settings')
 
 
-class ProjectManager(RelatedManager):
+class ProjectManager(models.Manager):
+
+    def get_queryset(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return (
+            super(ProjectManager, self).get_queryset().select_related(
+                'source_language', 'directory',
+            )
+        )
 
     def get_by_natural_key(self, code):
         return self.get(code=code)

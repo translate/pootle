@@ -25,7 +25,7 @@ class EvernoteAccountManager(models.Manager):
     def get_queryset(self):
         return super(EvernoteAccountManager, self) \
             .get_queryset() \
-            .select_related(depth=1)
+            .select_related('user')
 
 
 class EvernoteAccount(models.Model):

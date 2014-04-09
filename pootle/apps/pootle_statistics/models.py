@@ -28,7 +28,6 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.log import log, SCORE_CHANGED
-from pootle.core.managers import RelatedManager
 from pootle_misc.checks import check_names
 from pootle_misc.util import cached_property
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
@@ -71,13 +70,25 @@ class SubmissionFields(object):
     }
 
 
+class SubmissionManager(models.Manager):
+
+    def get_queryset(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return (
+            super(SubmissionManager, self).get_queryset().select_related(
+                'translation_project', 'suggestion', 'submitter', 'unit',
+                'check', 'store',
+            )
+        )
+
+
 class Submission(models.Model):
     class Meta:
         ordering = ["creation_time"]
         get_latest_by = "creation_time"
         db_table = 'pootle_app_submission'
 
-    objects = RelatedManager()
+    objects = SubmissionManager()
     simple_objects = models.Manager()
 
     creation_time = models.DateTimeField(db_index=True)
