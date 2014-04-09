@@ -1,7 +1,7 @@
 {% extends browser_extends %}
 
 {% load url from future %}
-{% load assets cache cleanhtml i18n locale search translation_project_tags goal_tags common_tags profile_tags %}
+{% load assets cleanhtml i18n locale search translation_project_tags goal_tags common_tags profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body_id %}{{ browser_body_id }}{% endblock %}
@@ -9,9 +9,7 @@
 
 {% block breadcrumbs %}
   {{ block.super }}
-  {% cache settings.CACHE_TIMEOUT path_trail resource_obj.id %}
-    <li class="file-path"><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
-  {% endcache %}
+  <li class="file-path"><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
 {% endblock %}
 
 {% block header_content %}
