@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -38,7 +39,7 @@ def test_translate():
         return None, None
 
 
-django_required_ver = (1, 4, 10)
+django_required_ver = (1, 6, 4)
 def test_django():
     from django import VERSION, get_version
     if VERSION >= django_required_ver:
