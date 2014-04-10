@@ -22,8 +22,8 @@ import pytest
 
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_profile.models import get_profile
-from pootle_store.util import FUZZY
-from pootle_store.forms import unit_form_factory
+from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
+from pootle_store.forms import unit_form_factory, UnitStateField
 
 
 def _create_post_request(rf, directory, user, url='/', data={}):
@@ -64,3 +64,15 @@ def test_submit_fuzzy(rf, admin, default, default_ps,
     user_form = _create_unit_form(request, language, unit)
     assert not user_form.is_valid()
     assert 'state' in user_form.errors
+
+
+def test_unit_state():
+    """Tests how checkbox states (as strings) map to booleans."""
+    field = UnitStateField(required=False)
+    assert field.clean(str(FUZZY))
+    assert field.clean(str(TRANSLATED))
+    assert field.clean(str(UNTRANSLATED))
+    assert field.clean(True)
+    assert not field.clean('True')  # Unknown state value evaluates to False
+    assert not field.clean(False)
+    assert not field.clean('False')
