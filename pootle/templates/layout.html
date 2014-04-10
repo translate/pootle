@@ -1,5 +1,5 @@
 {% load url from future %}
-{% load i18n assets baseurl cache staticpages locale profile_tags %}
+{% load i18n assets baseurl staticpages locale profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}{% endblock %}">
@@ -234,12 +234,10 @@
         {% endif %}
         <li><a href="{% url 'pootle-about' %}">{% trans "About this Pootle Server" %}</a></li>
         <li><a href="{% url 'pootle-about-contributors' %}">{% trans "Contributors" %}</a></li>
-        {% cache settings.CACHE_TIMEOUT legalpages LANGUAGE_CODE %}
         {% get_legalpages as legalpages %}
         {% for lp in legalpages %}
         <li><a href="{{ lp.get_absolute_url }}">{{ lp.localized_title }}</a></li>
         {% endfor %}
-        {% endcache %}
       </ul>
     </div>
     {% endblock footer %}

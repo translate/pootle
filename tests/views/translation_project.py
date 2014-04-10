@@ -35,13 +35,13 @@ def test_upload_new_file(admin_client):
         'file': pocontent,
         'overwrite': 'merge',
         'do_upload': 'upload',
-        }
+    }
     response = admin_client.post("/ar/tutorial/", post_dict)
 
-    self.assertContains(response, 'href="/ar/tutorial/test_new_upload.po')
+    assert 'href="/ar/tutorial/test_new_upload.po' in response
     store = Store.objects.get(pootle_path="/ar/tutorial/test_new_upload.po")
-    self.assertTrue(os.path.isfile(store.file.path))
-    self.assertEqual(store.file.read(), pocontent.getvalue())
+    assert os.path.isfile(store.file.path)
+    assert store.file.read() == pocontent.getvalue()
 
 
 @pytest.mark.xfail
@@ -54,7 +54,7 @@ def test_upload_overwrite(admin_client):
         'file': pocontent,
         'overwrite': 'overwrite',
         'do_upload': 'upload',
-        }
+    }
     admin_client.post("/af/tutorial/", post_dict)
 
     # Now we only test with 'in' since the header is added
@@ -81,19 +81,19 @@ def test_upload_new_archive(admin_client):
         'file': archivefile,
         'overwrite': 'merge',
         'do_upload': 'upload',
-        }
+    }
     response = admin_client.post("/ar/tutorial/", post_dict)
 
-    self.assertContains(response, 'href="/ar/tutorial/test_archive_1.po')
-    self.assertContains(response, 'href="/ar/tutorial/test_archive_2.po')
+    assert 'href="/ar/tutorial/test_archive_1.po' in response
+    assert 'href="/ar/tutorial/test_archive_2.po' in response
 
     store = Store.objects.get(pootle_path="/ar/tutorial/test_archive_1.po")
-    self.assertTrue(os.path.isfile(store.file.path))
-    self.assertEqual(store.file.read(), po_content_1)
+    assert os.path.isfile(store.file.path)
+    assert store.file.read() == po_content_1
 
     store = Store.objects.get(pootle_path="/ar/tutorial/test_archive_2.po")
-    self.assertTrue(os.path.isfile(store.file.path))
-    self.assertEqual(store.file.read(), po_content_2)
+    assert os.path.isfile(store.file.path)
+    assert store.file.read() == po_content_2
 
 
 @pytest.mark.xfail
@@ -117,7 +117,6 @@ msgstr "resto"
     admin_client.post("/af/tutorial/", post_dict)
     pootle_path = "/af/tutorial/pootle.po"
     admin_client.get(pootle_path + "/translate")
-    time.sleep(1)
     pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "blo3"\n\n#: fish.c\nmsgid "fish"\nmsgstr "stink"\n')
     pocontent.name = "pootle.po"
 
@@ -125,7 +124,7 @@ msgstr "resto"
         'file': pocontent,
         'overwrite': 'merge',
         'do_upload': 'upload',
-        }
+    }
     admin_client.post("/af/tutorial/", post_dict)
 
     # NOTE: this is what we do currently: any altered strings become suggestions.
@@ -133,9 +132,9 @@ msgstr "resto"
     mergedcontent = '#: fish.c\nmsgid "fish"\nmsgstr "stink"\n'
     admin_client.get(pootle_path + "/download")
     store = Store.objects.get(pootle_path=pootle_path)
-    self.assertTrue(store.file.read().find(mergedcontent) >= 0)
+    assert store.file.read().find(mergedcontent) >= 0
     suggestions = [str(sug) for sug in store.findunit('test').get_suggestions()]
-    self.assertTrue("blo3" in suggestions)
+    assert "blo3" in suggestions
 
 
 @pytest.mark.xfail
@@ -145,13 +144,13 @@ def test_upload_new_xliff_file(admin_client):
     <xliff xmlns="urn:oasis:names:tc:xliff:document:1.1" version="1.1">
     <file original="" source-language="en-US" datatype="po">
     <body>
-      <trans-unit id="1" xml:space="preserve">
+    <trans-unit id="1" xml:space="preserve">
         <source>test</source>
         <target state="needs-review-translation">rest</target>
         <context-group name="po-reference" purpose="location">
-          <context context-type="sourcefile">test.c</context>
+        <context context-type="sourcefile">test.c</context>
         </context-group>
-      </trans-unit>
+    </trans-unit>
     </body>
     </file>
     </xliff>
@@ -162,10 +161,10 @@ def test_upload_new_xliff_file(admin_client):
         'file': xliffcontent,
         'overwrite': 'overwrite',
         'do_upload': 'upload',
-        }
+    }
 
     response = admin_client.post("/ar/tutorial/", post_dict)
-    self.assertContains(response, ' href="/ar/tutorial/test_new_xliff_upload.po')
+    assert ' href="/ar/tutorial/test_new_xliff_upload.po' in response
 
 
 @pytest.mark.xfail
@@ -177,7 +176,7 @@ def test_upload_xliff_over_file(admin_client):
         'file': pocontent,
         'overwrite': 'overwrite',
         'do_upload': 'upload',
-        }
+    }
     admin_client.post("/ar/tutorial/", post_dict)
 
     xlfcontent = wStringIO.StringIO('''<?xml version="1.0" encoding="utf-8"?>
@@ -207,22 +206,22 @@ def test_upload_xliff_over_file(admin_client):
         'file': xlfcontent,
         'overwrite': 'merge',
         'do_upload': 'upload',
-        }
+    }
     admin_client.post("/ar/tutorial/", post_dict)
 
     # NOTE: this is what we do currently: any altered strings become suggestions.
     # It may be a good idea to change this
     mergedcontent = '#: test.c\nmsgid "test"\nmsgstr "rest"\n\n#: frog.c\nmsgid "tadpole"\nmsgstr "fish"\n'
     store = Store.objects.get(pootle_path="/ar/tutorial/test_upload_xliff.po")
-    self.assertTrue(os.path.isfile(store.file.path))
-    self.assertTrue(store.file.read().find(mergedcontent) >= 0)
+    assert os.path.isfile(store.file.path)
+    assert store.file.read().find(mergedcontent) >= 0
 
     suggestions = [str(sug) for sug in store.findunit('test').get_suggestions()]
-    self.assertTrue('rested' in suggestions)
+    assert "rested" in suggestions
 
 
 @pytest.mark.xfail
-def test_upload_suggestions(client):
+def test_upload_suggestions(admin_client):
     """Tests that we can upload when we only have suggest rights."""
     pocontent = wStringIO.StringIO('#: test.c\nmsgid "test"\nmsgstr "samaka"\n')
     pocontent.name = "pootle.po"
@@ -231,8 +230,8 @@ def test_upload_suggestions(client):
         'file': pocontent,
         'overwrite': 'merge',
         'do_upload': 'upload',
-        }
-    client.post("/af/tutorial/", post_dict)
+    }
+    admin_client.post("/af/tutorial/", post_dict)
 
     # Check that the orignal file didn't take the new suggestion.
     # We test with 'in' since the header is added
