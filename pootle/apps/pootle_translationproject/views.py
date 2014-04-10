@@ -425,6 +425,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
     ctx.update(get_overview_context(request))
     ctx.update({
+        'resource_obj': request.store or request.directory,  # Dirty hack.
         'translation_project': translation_project,
         'description': description,
         'project': project,
