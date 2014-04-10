@@ -155,11 +155,17 @@ class UnitStateField(forms.BooleanField):
     def to_python(self, value):
         """Returns a Python boolean object.
 
+        It is necessary to customize the behavior because the default
+        ``BooleanField`` treats the string '0' as ``False``, but if the
+        unit is in ``UNTRANSLATED`` state (which would report '0' as a
+        value), we need the marked checkbox to be evaluated as ``True``.
+
         :return: ``False`` for any unknown :cls:`~pootle_store.models.Unit`
             states and for the 'False' string.
         """
-        if (value in ('False',) or
-            value not in (str(s) for s in (UNTRANSLATED, FUZZY, TRANSLATED))):
+        truthy_values = (str(s) for s in (UNTRANSLATED, FUZZY, TRANSLATED))
+        if (isinstance(value, basestring) and
+            (value.lower() == 'false' or value not in truthy_values)):
             value = False
         else:
             value = bool(value)
