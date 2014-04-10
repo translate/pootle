@@ -50,33 +50,11 @@
 
     updatePathSummary: function ($pathSummary, data) {
       var incomplete = data.total - data.translated,
-          translated = PTL.stats.nicePercentage(data.translated, data.total),
-          summary;
-
-      if (data.pathsummary.is_dir) {
-        var fmt = ngettext('This folder has %s word, %s% of which is translated.',
-                           'This folder has %s words, %s% of which are translated.',
-                           data.total);
-        summary = interpolate(fmt, [data.total, translated]);
-      } else {
-        var fmt = ngettext('This file has %s word, %s% of which is translated.',
-                           'This file has %s words, %s% of which are translated.',
-                           data.total);
-        summary = interpolate(fmt, [data.total, translated]);
-      }
-
-      var $pathSummaryMore = $("<a />", {
-        'id': 'js-path-summary',
-        'href': data.pathsummary.summary_more_url,
-        'text': gettext('Expand details'),
-        'data-target': 'js-path-summary-more',
-      });
+          translated = PTL.stats.nicePercentage(data.translated, data.total);
 
       $pathSummary.append(
-        $('<li/>').append(summary)
-                  .append(' ')
-                  .append($pathSummaryMore)
-                  .append(data.pathsummary.goals_summary)
+        // TODO move the goals summary creation from the Python code to here.
+        $('<li/>').append(data.pathsummary.goals_summary)
       );
 
       if (incomplete > 0) {
