@@ -30,6 +30,16 @@
  * BASIC ELEMENT STYLING
  */
 
+html, body, #header-meta, #footer, #about, .header
+{
+    background-color: #eee;
+}
+
+#body, html#tp
+{
+    background: white;
+}
+
 html
 {
     color: #130f30;
@@ -291,6 +301,19 @@ html[dir="rtl"] ul.icons
     margin-left: auto;
 }
 
+.icon-external-link
+{
+    margin-top: 3px;
+    margin-left: 0.3em;
+}
+
+.icon-asc,
+.icon-desc,
+.icon-ascdesc
+{
+    vertical-align: middle;
+}
+
 /* Hack to avoid ugly underlines in the space between icons and text */
 
 td.stats-name a:hover,
@@ -315,7 +338,6 @@ td.stats-name a:hover > i + span,
 #wrapper
 {
     width: 100%;
-    margin-top: 41px; /* navbar height + border */
 }
 
 #nav-access
@@ -349,16 +371,6 @@ html[dir="rtl"] #nav-access
 /*
  * NAVBAR
  */
-
-#navbar
-{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    margin-bottom: 0;
-    overflow: visible;
-}
 
 #navbar a
 {
@@ -402,6 +414,8 @@ html[dir="rtl"] .logo
     -webkit-box-shadow: 0 1px 4px #d9d9d9;
        -moz-box-shadow: 0 1px 4px #d9d9d9;
             box-shadow: 0 1px 4px #d9d9d9;
+
+    margin-bottom: -1px;
 }
 
 /* Zoom controls */
@@ -413,6 +427,7 @@ html[dir="rtl"] .logo
     line-height: 40px;
     float: right;
     margin-left: 20px;
+    margin-right: 20px;
 
     opacity: 0.4;
 }
@@ -471,6 +486,20 @@ html[dir="rtl"] #nav-main li
     padding: 12px;
 }
 
+#nav-main li a,
+#nav-main li a:hover,
+#nav-main li a:active
+{
+    line-height: 2em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    margin-left: 1.5em;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 0.2em 0.4em;
+    font-size: 1.2em;
+}
+
 #nav-main a.admin
 {
     font-weight: bold;
@@ -483,8 +512,13 @@ html[dir="rtl"] #nav-main li
 
 #user img
 {
-    float: left;
-    margin: -2px 5px 0;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: -4px 8px -8px 0;
+    border: 2px solid white;
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Language picker */
@@ -551,12 +585,12 @@ html[dir="rtl"] #nav-main li
 {
     background-color: #f8f8f8;
     color: #d9d9d9;
-    border-top: 1px solid #d9d9d9;
+    border-top: 1px dashed #D9D9D9;
     clear: both;
     font-size: 12px;
     text-align: center;
-    margin-top: 3em;
-    padding: 35px 0;
+    margin-top: 0;
+    padding: 1em 0;
 }
 
 #footer a
@@ -628,6 +662,7 @@ html, body
     width: 920px !important;
 }
 
+/* for forms displayed in lightbox mode (via magnificPopup plugin), use different shadow */
 .mfp-content .form
 {
     -webkit-box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
@@ -812,7 +847,7 @@ li.even,
 tr.view-row:nth-child(odd),
 tr.item:nth-child(odd)
 {
-    background: #f8f8f8;
+    background: #f5fbfd;
 }
 
 /* MODULES */
@@ -1147,8 +1182,7 @@ input[type="submit"][disabled]:hover
 
     border: 1px solid #d9d9d9;
 
-    cursor: default;
-    opacity: 0.5;
+    opacity: 0.65;
 }
 
 input.delete[type="submit"]
@@ -1323,10 +1357,16 @@ ul.errorlist
  * DOCUMENTATION, LEGAL, CONTRIBUTORS
  */
 
+.documentation
+{
+    background: #fff;
+}
+
 #staticpage,
 #about
 {
     margin: 2em;
+    font-size: 120%;
 }
 
 #about .document h1
@@ -1393,6 +1433,28 @@ ul.errorlist
     margin: 0.2em 0;
 }
 
+#staticpage h1
+{
+    color: rgba(25, 15, 0, 0.6);
+    font-size: 3em;
+    line-height: 85%;
+    margin: 1em 0 0.5em;
+    font-weight: bold;
+}
+
+#staticpage h2
+{
+    color: rgba(25, 15, 0, 0.5);
+    font-size: 2em;
+    margin: 0.5em 0;
+    font-weight: bold;
+}
+
+#staticpage p
+{
+    margin: 0.5em 0;
+}
+
 #contributors ul,
 #contributors ul li
 {
@@ -1451,7 +1513,6 @@ div.settings-container
 .module-primary .hd h2,
 .hd h2
 {
-    font-family: "Open Sans Condensed", "Open Sans", sans-serif;
     font-size: 2.2em;
 }
 
@@ -1717,11 +1778,13 @@ html[dir="rtl"] td.stats-name,
     width: 100%;
 }
 
-.checks a {
+.checks a
+{
     color: #c00;
 }
 
-.checks h4 {
+.checks h4
+{
     padding: 1em 0 0.5em;
     font-weight: normal;
 }
@@ -2043,10 +2106,8 @@ html[dir="rtl"] #overview-actions-translate-offline li.odd
 .overview-description-toggle
 {
     display: block;
-    float: right;
-    position: relative;
+    margin-top: 0.5em;
     text-align: right;
-    top: 1.5em;
 }
 
 html[dir="rtl"] .overview-description-toggle
@@ -2063,11 +2124,22 @@ html[dir="rtl"] .overview-description-toggle
 
 /* Inline editing */
 
+.markup-body
+{
+    line-height: 1.35;
+}
+
 .markup-body:hover .js-edit-details
 {
     visibility: visible;
 }
 
+.js-edit-details
+{
+    background: #fe0;
+    padding: 0.1em 0.5em;
+    border: 1px dotted #0489b7;
+}
 
 /*
  * HEADER
@@ -2076,7 +2148,6 @@ html[dir="rtl"] .overview-description-toggle
 .header
 {
     padding: 0 1.5em;
-    border-bottom: 1px solid #d9d9d9;
 }
 
 #header-tabs
@@ -2086,8 +2157,9 @@ html[dir="rtl"] .overview-description-toggle
 
 #header-meta
 {
-    min-height: 50px;
-    line-height: 2.7;
+    min-height: 60px;
+    line-height: 2;
+    border-bottom: none;
 }
 
 /*
@@ -2117,20 +2189,18 @@ html[dir="rtl"] .overview-description-toggle
     display: inline-block;
     position: absolute;
     top: -4px;
-    left: -11px;
+    left: -1px;
     z-index: 1;
 }
 
 #progressbar
 {
     margin-left: 10px;
-    position: relative;
 }
 
 #progressbar table.graph
 {
     width: 100%;
-    position: absolute;
 }
 
 .path-summary-more
@@ -2187,17 +2257,18 @@ html[dir="rtl"] .overview-description-toggle
 {
     display: inline-block;
     margin-left: 2em;
-    margin-right: -0.5em;
     font-weight: bold;
 }
 
-body.js-not-loaded #translate-actions li {
+body.js-not-loaded #translate-actions li
+{
     display: none;
 }
 
 #translate-actions .counter
 {
     padding: 0.1em 0.9em;
+    margin-right: -0.5em;
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
@@ -2260,7 +2331,7 @@ body.js-not-loaded #translate-actions li {
 
 .breadcrumb
 {
-    font-size: 18px;
+    font-size: 1.5em;
     font-weight: normal;
     visibility: hidden;
     margin-left: -5px;
@@ -2497,6 +2568,11 @@ body #file-tabs a.selected-tab
 .btn-search:hover
 {
     background: transparent;
+}
+
+.btn-search-fields
+{
+    margin: 0;
 }
 
 .search-container
