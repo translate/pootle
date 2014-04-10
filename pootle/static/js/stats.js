@@ -258,7 +258,7 @@
       if (data.loaded) {
         hideShow();
       } else {
-        var url = $(this).attr('href'),
+        var url = l('/xhr/stats/checks/'),
             reqData = {
               path: PTL.stats.pootlePath
             };
@@ -266,7 +266,26 @@
           url: url,
           data: reqData,
           success: function (data) {
-            node.html(data).hide();
+            node.hide();
+            node.find('.js-checks').each(function (e) {
+              var empty = true,
+                  $cat = $(this);
+
+              $cat.find('.js-check').each(function (e) {
+                var $check = $(this),
+                    code = $(this).data('code');
+                if (code in data) {
+                  empty = false;
+                  $check.show();
+                  $check.find('.check-count a').html(data[code]);
+                } else {
+                  $check.hide();
+                }
+              });
+
+              $cat.toggle(!empty);
+            });
+
             node.data('loaded', true);
             hideShow();
           },

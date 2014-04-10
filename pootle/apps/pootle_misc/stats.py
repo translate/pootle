@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.core.urlresolvers import reverse
 from django.utils.translation import ungettext, gettext as _
 
 
@@ -44,9 +43,6 @@ def get_translation_states(path_obj):
 def get_translate_actions(path_obj):
     """Return a list of translation action links to be displayed for each ``path_obj``."""
     goals_summary = []
-
-    # Build URL for getting more summary information for the current path.
-    url_path_summary_more = reverse('pootle-xhr-summary-more')
 
     if path_obj.is_dir:
         # Putting the next import at the top of the file causes circular
@@ -77,7 +73,6 @@ def get_translate_actions(path_obj):
 
     return {'is_dir': path_obj.is_dir,
             'goals_summary': u''.join(goals_summary),
-            'summary_more_url': url_path_summary_more,
             'translate_url': path_obj.get_translate_url(state='all'),
             'incomplete_url': path_obj.get_translate_url(state='incomplete'),
             'suggestions_url': path_obj.get_translate_url(state='suggestions'),
