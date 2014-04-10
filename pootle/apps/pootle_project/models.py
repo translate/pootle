@@ -140,7 +140,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
 
-    disabled = models.BooleanField(verbose_name=_('Disabled'))
+    disabled = models.BooleanField(verbose_name=_('Disabled'), default=False)
 
     objects = ProjectManager()
 

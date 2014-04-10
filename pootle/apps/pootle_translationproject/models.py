@@ -119,7 +119,7 @@ class TranslationProject(models.Model, TreeItem):
             db_index=True, editable=False)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
-    disabled = models.BooleanField()
+    disabled = models.BooleanField(default=False)
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
             settings.PARSE_POOL_CULL_FREQUENCY)
