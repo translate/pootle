@@ -170,12 +170,7 @@ class UnitStateField(forms.BooleanField):
         else:
             value = bool(value)
 
-        value = super(forms.BooleanField, self).to_python(value)
-
-        if not value and self.required:
-            raise forms.ValidationError(self.error_messages['required'])
-
-        return value
+        return super(forms.BooleanField, self).to_python(value)
 
 
 def unit_form_factory(language, snplurals=None, request=None):
