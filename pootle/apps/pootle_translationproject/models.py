@@ -54,11 +54,34 @@ from pootle_store.util import (absolute_real_path, relative_real_path,
 from pootle_tagging.models import ItemWithGoal
 
 
+class TranslationProjectNonDBState(object):
+
+    def __init__(self, parent):
+        self.parent = parent
+
+        # Terminology matcher
+        self.termmatcher = None
+        self.termmatchermtime = None
+
+        self._indexing_enabled = True
+        self._index_initialized = False
+        self.indexer = None
+
+def create_or_enable_translation_project(language, project):
+    tp = create_translation_project(language, project)
+    if tp is not None:
+        if tp.disabled:
+            tp.disabled = False
+            tp.save()
+            logging.info(u"Enabled %s", tp)
+        else:
+            logging.info(u"Created %s", tp)
+
 def create_translation_project(language, project):
     from pootle_app import project_tree
     if project_tree.translation_project_should_exist(language, project):
         try:
-            translation_project, created = TranslationProject.objects \
+            translation_project, created = TranslationProject.objects.all() \
                     .get_or_create(language=language, project=project)
             return translation_project
         except OSError:
@@ -77,22 +100,15 @@ class VersionControlError(Exception):
     pass
 
 
-class TranslationProjectNonDBState(object):
+class TranslationProjectManager(RelatedManager):
+    # disabled objects are hidden for related objects too
+    use_for_related_fields = True
 
-    def __init__(self, parent):
-        self.parent = parent
-
-        # Terminology matcher
-        self.termmatcher = None
-        self.termmatchermtime = None
-
-        self._indexing_enabled = True
-        self._index_initialized = False
-        self.indexer = None
+    def enabled(self):
+        return self.filter(disabled=False)
 
     def disabled(self):
         return self.filter(Q(disabled=True) | Q(project__disabled=True))
-
 
 class TranslationProject(models.Model, TreeItem):
     description = MarkupField(
@@ -105,13 +121,9 @@ class TranslationProject(models.Model, TreeItem):
     project = models.ForeignKey(Project, db_index=True)
     real_path = models.FilePathField(editable=False)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
-    pootle_path = models.CharField(
-        max_length=255,
-        null=False,
-        unique=True,
-        db_index=True,
-        editable=False,
-    )
+    pootle_path = models.CharField(max_length=255, null=False, unique=True,
+            db_index=True, editable=False)
+    disabled = models.BooleanField(default=False)
 
     tags = TaggableManager(
         blank=True,
@@ -133,9 +145,10 @@ class TranslationProject(models.Model, TreeItem):
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
                                          settings.PARSE_POOL_CULL_FREQUENCY)
+
     index_directory = ".translation_index"
 
-    objects = RelatedManager()
+    objects = TranslationProjectManager()
 
     class Meta:
         unique_together = ('language', 'project')
@@ -250,12 +263,13 @@ class TranslationProject(models.Model, TreeItem):
         created = self.id is None
         project_dir = self.project.get_real_path()
 
-        from pootle_app.project_tree import get_translation_project_dir
-        self.abs_real_path = get_translation_project_dir(self.language,
-                project_dir, self.file_style, make_dirs=True)
-        self.directory = self.language.directory \
-                                      .get_or_make_subdir(self.project.code)
-        self.pootle_path = self.directory.pootle_path
+        if not self.disabled:
+            from pootle_app.project_tree import get_translation_project_dir
+            self.abs_real_path = get_translation_project_dir(self.language,
+                    project_dir, self.file_style, make_dirs=True)
+            self.directory = self.language.directory \
+                                        .get_or_make_subdir(self.project.code)
+            self.pootle_path = self.directory.pootle_path
 
         super(TranslationProject, self).save(*args, **kwargs)
 
