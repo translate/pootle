@@ -503,7 +503,7 @@
   copyText: function (e) {
     var $el = $(e.currentTarget),
         action = $el.data('action'),
-        text = $el.data('string') || $el.data('translation-aid'),
+        text = $el.data('string') || $el.data('translation-aid') || $el.text(),
         $target = $(this.focused),
         start;
 
