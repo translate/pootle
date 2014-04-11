@@ -1438,7 +1438,7 @@
   getCheckOptions: function () {
     var checksUrl = l('/xhr/stats/checks/'),
         reqData = {
-          path: this.pootlePath
+          path: this.settings.pootlePath
         },
         opts;
 
