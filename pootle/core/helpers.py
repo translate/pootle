@@ -25,6 +25,7 @@ from django.utils.translation import ugettext as _
 from pootle_app.models.permissions import check_permission
 from pootle_misc.checks import check_names, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
+from pootle_misc.stats import get_translation_states
 from pootle_store.models import Unit
 from pootle_store.views import get_step_query
 
@@ -117,4 +118,21 @@ def get_export_view_context(request):
 
         'filter_name': filter_name,
         'filter_extra': filter_extra
+    }
+
+
+def get_overview_context(request):
+    """Return a common context for overview browser pages.
+
+    :param request: a :cls:`django.http.HttpRequest` object.
+    """
+    resource_obj = request.ctx_obj
+
+    return {
+        'resource_obj': resource_obj,
+        'resource_path': (request.resource_path
+                          if hasattr(request, 'resource_path') else ''),
+
+        'translation_states': get_translation_states(resource_obj),
+        'check_categories': get_qualitycheck_schema(resource_obj),
     }

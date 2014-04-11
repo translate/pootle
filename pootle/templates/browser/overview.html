@@ -9,11 +9,13 @@
 
 {% block breadcrumbs %}
   {{ block.super }}
-  <li class="file-path"><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
+  {% if resource_path %}
+    <li class="file-path"><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
+  {% endif %}
 {% endblock %}
 
 {% block header_content %}
-  <a id="js-path-summary" data-target="js-path-summary-more" href="{{ url_path_summary_more }}">
+  <a id="js-path-summary" data-target="js-path-summary-more" href="#">
     <div id="progressbar">
       <i id="js-expand-icon" class="icon-expand-stats"
          title="{% trans 'Expand details' %}"></i>

@@ -57,9 +57,6 @@ urlpatterns = patterns('pootle_translationproject.views',
         name='pootle-vcs-update'),
 
     # XHR views
-    url(r'^xhr/summary-more/?$',
-        'path_summary_more',
-        name='pootle-xhr-summary-more'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-add-tag/$',
         'ajax_add_tag_to_tp',
         name='pootle-xhr-tag-tp'),

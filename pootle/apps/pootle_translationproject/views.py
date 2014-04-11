@@ -39,7 +39,7 @@ from taggit.models import Tag
 
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
-from pootle.core.helpers import (get_export_view_context,
+from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle.scripts.actions import (EXTDIR, StoreAction,
@@ -54,9 +54,6 @@ from pootle_misc.baseurl import redirect
 from pootle_misc.browser import (get_children, get_goal_children,
                                  get_table_headings, get_parent,
                                  get_goal_parent, make_goal_item)
-from pootle_misc.checks import (get_qualitycheck_schema,
-                                get_quality_check_failures)
-from pootle_misc.stats import get_translation_states
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
@@ -426,24 +423,17 @@ def overview(request, translation_project, dir_path, filename=None,
     else:
         description = goal.description
 
-    # Build URL for getting more information for the current path
-    url_path_summary_more = reverse('pootle-xhr-summary-more')
-
+    ctx.update(get_overview_context(request))
     ctx.update({
-        'resource_obj': request.resource_obj,
+        'resource_obj': request.store or request.directory,  # Dirty hack.
         'translation_project': translation_project,
         'description': description,
         'project': project,
         'language': language,
-        'resource_obj': resource_obj,
-        'resource_path': request.resource_path,
         'feed_path': request.directory.pootle_path[1:],
         'action_groups': actions,
         'action_output': action_output,
         'can_edit': can_edit,
-        'url_path_summary_more': url_path_summary_more,
-        'translation_states': get_translation_states(resource_obj),
-        'check_categories': get_qualitycheck_schema(resource_obj),
 
         'browser_extends': 'translation_projects/base.html',
         'browser_body_id': 'tpoverview',
@@ -680,19 +670,6 @@ def export_view(request, translation_project, dir_path, filename=None):
 
     return render_to_response('editor/export_view.html', ctx,
                               context_instance=RequestContext(request))
-
-
-@ajax_required
-@get_path_obj
-@permission_required('view')
-def path_summary_more(request, *args, **kwargs):
-    """Returns an HTML snippet with more detailed summary information
-       for the current path."""
-    context = {
-        'check_failures': get_quality_check_failures(request.resource_obj),
-    }
-    return render_to_response('translation_projects/xhr_path_summary_more.html',
-                              context, RequestContext(request))
 
 
 @require_POST

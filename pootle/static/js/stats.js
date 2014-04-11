@@ -50,33 +50,11 @@
 
     updatePathSummary: function ($pathSummary, data) {
       var incomplete = data.total - data.translated,
-          translated = PTL.stats.nicePercentage(data.translated, data.total),
-          summary;
-
-      if (data.pathsummary.is_dir) {
-        var fmt = ngettext('This folder has %s word, %s% of which is translated.',
-                           'This folder has %s words, %s% of which are translated.',
-                           data.total);
-        summary = interpolate(fmt, [data.total, translated]);
-      } else {
-        var fmt = ngettext('This file has %s word, %s% of which is translated.',
-                           'This file has %s words, %s% of which are translated.',
-                           data.total);
-        summary = interpolate(fmt, [data.total, translated]);
-      }
-
-      var $pathSummaryMore = $("<a />", {
-        'id': 'js-path-summary',
-        'href': data.pathsummary.summary_more_url,
-        'text': gettext('Expand details'),
-        'data-target': 'js-path-summary-more',
-      });
+          translated = PTL.stats.nicePercentage(data.translated, data.total);
 
       $pathSummary.append(
-        $('<li/>').append(summary)
-                  .append(' ')
-                  .append($pathSummaryMore)
-                  .append(data.pathsummary.goals_summary)
+        // TODO move the goals summary creation from the Python code to here.
+        $('<li/>').append(data.pathsummary.goals_summary)
       );
 
       if (incomplete > 0) {
@@ -280,7 +258,7 @@
       if (data.loaded) {
         hideShow();
       } else {
-        var url = $(this).attr('href'),
+        var url = l('/xhr/stats/checks/'),
             reqData = {
               path: PTL.stats.pootlePath
             };
@@ -288,7 +266,26 @@
           url: url,
           data: reqData,
           success: function (data) {
-            node.html(data).hide();
+            node.hide();
+            node.find('.js-checks').each(function (e) {
+              var empty = true,
+                  $cat = $(this);
+
+              $cat.find('.js-check').each(function (e) {
+                var $check = $(this),
+                    code = $(this).data('code');
+                if (code in data) {
+                  empty = false;
+                  $check.show();
+                  $check.find('.check-count a').html(data[code]);
+                } else {
+                  $check.hide();
+                }
+              });
+
+              $cat.toggle(!empty);
+            });
+
             node.data('loaded', true);
             hideShow();
           },
