@@ -24,7 +24,7 @@ import logging
 import os
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
@@ -303,6 +303,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
         if create:
+            User = get_user_model()
             users_list = User.objects.values_list('username', flat=True)
             cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                                   users_list))
@@ -354,6 +355,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
+        User = get_user_model()
         users_list = User.objects.values_list('username', flat=True)
         cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                               users_list))

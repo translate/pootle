@@ -22,7 +22,7 @@
 import logging
 from itertools import groupby
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Max, Q
@@ -206,6 +206,7 @@ def get_step_query(request, units_queryset):
 
         profile = request.profile
         if username is not None:
+            User = get_user_model()
             try:
                 user = User.objects.get(username=username)
                 profile = user.get_profile()
@@ -496,6 +497,7 @@ def timeline(request, unit):
     timeline = timeline.select_related("submitter__user",
                                        "translation_project__language")
 
+    User = get_user_model()
     entries_group = []
     context = {
         'system': User.objects.get_system_user().get_profile()

@@ -20,7 +20,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import escape, truncatechars
@@ -178,6 +178,7 @@ class Submission(models.Model):
             if self.submitter:
                 displayuser = self.submitter
             else:
+                User = get_user_model()
                 displayuser = User.objects.get_nobody_user().get_profile()
 
         displayname = displayuser.fullname

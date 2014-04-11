@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -22,7 +22,7 @@
 from datetime import datetime
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -51,6 +51,7 @@ INITIAL_STATES = ['new', 'edit']
 
 @admin_required
 def evernote_reports(request, context={}):
+    User = get_user_model()
     cxt = context
     cxt.update({
         'users': map(
@@ -92,6 +93,7 @@ def user_date_prj_activity(request):
     end_date = request.GET.get('end', None)
 
     try:
+        User = get_user_model()
         user = User.objects.get(username=user)
     except:
         user = ''
@@ -257,6 +259,7 @@ def get_paid_words(user, start, end):
 
 
 def users(request):
+    User = get_user_model()
     json = list(
         User.objects.hide_defaults()
                     .select_related('evernote_account')

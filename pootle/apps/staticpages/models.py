@@ -22,7 +22,7 @@
 from django.db import models
 from django.db.models import Q
 from django.db.models.aggregates import Max
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.utils.timezone import now
@@ -143,7 +143,7 @@ class StaticPage(AbstractPage):
 class Agreement(models.Model):
     """Tracks who agreed a specific legal document and when."""
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     document = models.ForeignKey(LegalPage)
     agreed_on = models.DateTimeField(
         default=now,

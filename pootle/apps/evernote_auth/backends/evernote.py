@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,7 +20,7 @@
 
 import itertools
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 class EvernoteBackend(object):
@@ -45,6 +45,7 @@ class EvernoteBackend(object):
         if 'evernote_account' not in kwargs:
             return None
 
+        User = get_user_model()
         ea = kwargs.get('evernote_account')
 
         if ea.user_id is None:
@@ -67,6 +68,7 @@ class EvernoteBackend(object):
         return user
 
     def get_user(self, user_id):
+        User = get_user_model()
         try:
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:

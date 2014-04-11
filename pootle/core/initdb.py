@@ -20,7 +20,8 @@
 
 from translate.__version__ import build as code_tt_buildversion
 
-from django.contrib.auth.models import User, Permission
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.management import call_command
 from django.db import transaction
@@ -71,6 +72,8 @@ def create_essential_users():
 
     These users are required for Pootle's permission system.
     """
+    User = get_user_model()
+
     # The nobody user is used to represent an anonymous user in cases where
     # we need to associate model information with such a user. An example is
     # in the permission system: we need a way to store rights for anonymous
@@ -327,6 +330,8 @@ def create_default_admin():
     install is not accessible with the default credentials. The users 'noboby'
     and 'default' should be left as is.
     """
+    User = get_user_model()
+
     criteria = {
         'username': u"admin",
         'first_name': u"Administrator",

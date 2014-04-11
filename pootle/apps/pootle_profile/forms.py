@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,10 +22,13 @@
 from django import forms
 from django.contrib import auth
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
 from .models import PootleProfile
+
+
+User = get_user_model()
 
 
 def language_list(request):

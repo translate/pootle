@@ -26,7 +26,7 @@ import os
 from hashlib import md5
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
@@ -425,6 +425,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     def save(self, *args, **kwargs):
         if not hasattr(self, '_log_user'):
+            User = get_user_model()
             self._log_user = User.objects.get_system_user().get_profile()
 
         if not self.id:
@@ -658,6 +659,7 @@ class Unit(models.Model, base.TranslationUnit):
         changed = False
 
         if user is not None:
+            User = get_user_model()
             user = User.objects.get_system_user().get_profile()
 
         if (self.source != unit.source or
@@ -1033,6 +1035,7 @@ class Unit(models.Model, base.TranslationUnit):
             return (None, False)
 
         if user is None:
+            User = get_user_model()
             user = User.objects.get_system_user().get_profile()
 
         try:
@@ -1080,6 +1083,7 @@ class Unit(models.Model, base.TranslationUnit):
         if suggestion.user_id is not None:
             suggestion_user = suggestion.user
         else:
+            User = get_user_model()
             suggestion_user = User.objects.get_nobody_user().get_profile()
 
         current_time = timezone.now()
@@ -1573,6 +1577,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         unit.delete()
                         changes['deleted'] += 1
 
+            User = get_user_model()
             system = User.objects.get_system_user().get_profile()
 
             # Add new units to the store

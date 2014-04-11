@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.conf import settings
 from django.db import models
 
 
@@ -33,7 +34,8 @@ class EvernoteAccount(models.Model):
     name = models.CharField(max_length=255, db_index=True)
     email = models.EmailField()
 
-    user = models.OneToOneField('auth.User', related_name='evernote_account',
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                related_name='evernote_account',
                                 unique=True)
     user_autocreated = models.BooleanField()
 

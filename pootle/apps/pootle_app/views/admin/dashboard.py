@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -25,7 +25,7 @@ import locale
 import os
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -232,6 +232,7 @@ def _format_numbers(dict):
 
 
 def server_stats():
+    User = get_user_model()
     result = cache.get("server_stats")
     if result is None:
         result = {}

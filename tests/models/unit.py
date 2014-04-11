@@ -23,8 +23,11 @@ import pytest
 
 from translate.storage import factory
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.utils import timezone
+
+
+User = get_user_model()
 
 
 def _update_translation(store, item, new_values):

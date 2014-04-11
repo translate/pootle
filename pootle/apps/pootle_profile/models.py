@@ -22,7 +22,9 @@
 
 from hashlib import md5
 
-from django.contrib.auth.models import User, UserManager, AnonymousUser
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import UserManager, AnonymousUser
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
@@ -36,6 +38,9 @@ from pootle_misc.util import cached_property
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
+
+
+User = get_user_model()
 
 
 class PootleUserManager(UserManager):
@@ -83,7 +88,8 @@ class PootleProfile(models.Model):
         db_table = 'pootle_app_pootleprofile'
 
     # This is the only required field
-    user = models.OneToOneField(User, unique=True, db_index=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                unique=True, db_index=True)
 
     unit_rows = models.SmallIntegerField(default=9,
             verbose_name=_("Number of Rows"))

@@ -21,7 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.forms.models import BaseModelFormSet
 from django.utils.translation import ugettext as _
 
@@ -33,6 +33,7 @@ from pootle_app.views.admin import util
 def view(request):
     fields = ('username', 'first_name', 'last_name', 'email', 'is_active',
               'is_superuser')
+    User = get_user_model()
     queryset = User.objects.hide_defaults().order_by('username')
     return util.edit(request, 'admin/users.html', User, fields=fields,
                      formset=BaseUserFormSet, queryset=queryset,

@@ -3,8 +3,8 @@ Views for creating, editing and viewing site-specific user profiles.
 
 """
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.http import Http404
@@ -265,7 +265,7 @@ def profile_detail(request, username, public_profile_field=None,
     :template:`profiles/profile_detail.html`.
     
     """
-    user = get_object_or_404(User, username=username)
+    user = get_object_or_404(get_user_model(), username=username)
     try:
         profile_obj = user.get_profile()
     except ObjectDoesNotExist:
