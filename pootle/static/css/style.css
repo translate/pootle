@@ -2864,6 +2864,7 @@ h2:lang(zh) a
  * Size overrides for different zoom levels
  */
 
+body.zoom-out-2 #about,
 body.zoom-out-2 #content table.sortable,
 body.zoom-out-2 table.translate-table,
 body.zoom-out-2 table.stats
@@ -2871,6 +2872,7 @@ body.zoom-out-2 table.stats
     font-size: 90%;
 }
 
+body.zoom-out-1 #about,
 body.zoom-out-1 #content table.sortable,
 body.zoom-out-1 table.translate-table,
 body.zoom-out-1 table.stats
@@ -2878,6 +2880,7 @@ body.zoom-out-1 table.stats
     font-size: 95%;
 }
 
+body.zoom-in-1 #about,
 body.zoom-in-1 #content table.sortable,
 body.zoom-in-1 table.translate-table,
 body.zoom-in-1 table.stats
@@ -2885,6 +2888,7 @@ body.zoom-in-1 table.stats
     font-size: 115%;
 }
 
+body.zoom-in-2 #about,
 body.zoom-in-2 #content table.sortable,
 body.zoom-in-2 table.translate-table,
 body.zoom-in-2 table.stats
