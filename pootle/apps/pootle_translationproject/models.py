@@ -110,7 +110,6 @@ class TranslationProjectManager(RelatedManager):
     def disabled(self):
         return self.filter(Q(disabled=True) | Q(project__disabled=True))
 
-
 class TranslationProject(models.Model, TreeItem):
     description = MarkupField(
         blank=True,
