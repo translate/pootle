@@ -2,7 +2,7 @@
 
   window.PTL = window.PTL || {};
 
-  var el = {
+  var sel = {
     wrapper: '#js-contact',
     form: '#js-contact form',
     formSent: '#js-sent'
