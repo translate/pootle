@@ -156,11 +156,17 @@ class UnitStateField(forms.BooleanField):
     def to_python(self, value):
         """Returns a Python boolean object.
 
+        It is necessary to customize the behavior because the default
+        ``BooleanField`` treats the string '0' as ``False``, but if the
+        unit is in ``UNTRANSLATED`` state (which would report '0' as a
+        value), we need the marked checkbox to be evaluated as ``True``.
+
         :return: ``False`` for any unknown :cls:`~pootle_store.models.Unit`
             states and for the 'False' string.
         """
-        if (value in ('False',) or
-            value not in (str(s) for s in (UNTRANSLATED, FUZZY, TRANSLATED))):
+        truthy_values = (str(s) for s in (UNTRANSLATED, FUZZY, TRANSLATED))
+        if (isinstance(value, basestring) and
+            (value.lower() == 'false' or value not in truthy_values)):
             value = False
         else:
             value = bool(value)
@@ -232,8 +238,9 @@ def unit_form_factory(language, snplurals=None, request=None):
             ),
         )
 
-        def __init__(self, *args, **argv):
-            super(UnitForm, self).__init__(*args, **argv)
+        def __init__(self, *args, **kwargs):
+            self.request = kwargs.pop('request', None)
+            super(UnitForm, self).__init__(*args, **kwargs)
             self.updated_fields = []
 
         def clean_source_f(self):
@@ -265,6 +272,11 @@ def unit_form_factory(language, snplurals=None, request=None):
             old_state = self.instance.state  # Integer
             is_fuzzy = self.cleaned_data['state']  # Boolean
             new_target = self.cleaned_data['target_f']
+
+            if (self.request is not None and
+                not check_permission('administrate', self.request) and
+                is_fuzzy == True):
+                raise forms.ValidationError(_('Fuzzy flag must be cleared'))
 
             if new_target:
                 if old_state == UNTRANSLATED:
