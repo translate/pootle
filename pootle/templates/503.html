@@ -1,12 +1,12 @@
-{% load i18n %}
+{% load i18n baseurl %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
   <head>
     <meta charset="utf-8">
     <title>{% trans "Maintenance" %} | {{ settings.TITLE }}</title>
-    <link rel="stylesheet" type="text/css" href="/media/css/fonts.css" />
-    <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
-    <link rel="icon" sizes="48x48" href="/media/img/icon_48x48.png" />
+    <link rel="stylesheet" type="text/css" href="{{ 'css/style.css'|s }}" />
+    <link rel="icon" sizes="32x32" href="{{ 'images/app-32x32.png'|s }}" />
+    <link rel="icon" sizes="64x64" href="{{ 'images/app-64x64.png'|s }}" />
   </head>
   <body>
     <div style="margin: 5em;">

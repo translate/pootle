@@ -50,6 +50,8 @@ for more details.
 - The ``update_translation_projects`` management command no longer removes
   projects when using the ``--cleanup`` option. This was an undocumented
   behavior.
+- Added support to disable the Pootle server for maintenance using
+  ``django-maintenancemode``.
 
 
 Removal of legacy features
