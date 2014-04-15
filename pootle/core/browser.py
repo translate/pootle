@@ -130,6 +130,33 @@ def get_parent(directory):
         return None
 
 
+def make_project_item(translation_project):
+    item = make_generic_item(translation_project)
+    item.update({
+        'icon': 'project',
+        'title': translation_project.project.name,
+    })
+    return item
+
+
+def make_language_item(translation_project):
+    item = make_generic_item(translation_project)
+    item.update({
+        'icon': 'language',
+        'title': translation_project.language.name,
+    })
+    return item
+
+
+def make_project_list_item(project):
+    item = make_generic_item(project)
+    item.update({
+        'icon': 'project',
+        'title': project.fullname,
+    })
+    return item
+
+
 def get_children(directory):
     """Return a list of children directories and stores for this ``directory``,
     and also the parent directory.

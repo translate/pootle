@@ -147,3 +147,38 @@ def upgrade_to_25204():
         get_legacy_site_title(),
         get_legacy_site_description()
     )
+
+
+def upgrade_to_25205():
+    """Synchronize latest submission data with the denormalized submission
+    fields available in the :cls:`pootle_store.models.Unit` model.
+    """
+    from pootle_statistics.models import SubmissionFields
+    from pootle_store.models import Unit
+
+    logging.info('About to synchronize latest submission data.')
+
+    rows = Unit.objects.filter(
+        submission__field__in=[
+            SubmissionFields.SOURCE,
+            SubmissionFields.STATE,
+            SubmissionFields.TARGET,
+        ],
+    ).select_related('submission__creation_time',
+                     'submission__submitter') \
+     .order_by('id', '-submission__creation_time') \
+     .values('id', 'submission__creation_time', 'submission__submitter')
+
+    saved_id = None
+    for row in rows:
+        unit_id = row['id']
+        if saved_id is None or saved_id != unit_id:
+            last_submitter = row['submission__submitter']
+            last_submission_time = row['submission__creation_time']
+            Unit.objects.filter(id=unit_id).update(
+                submitted_by=last_submitter,
+                submitted_on=last_submission_time,
+            )
+            saved_id = unit_id
+
+    logging.info('Succesfully synchronized latest submission data.')

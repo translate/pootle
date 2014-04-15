@@ -179,8 +179,7 @@ Directory contents
         Lightbox overlay popups to display all sorts of content: images,
         HTML, AJAX data, ...
 
-        Using patched version from julen/Magnific-Popup to support modal
-        dialogs.
+        Using v0.9.8.
 
         http://dimsemenov.com/plugins/magnific-popup/
 

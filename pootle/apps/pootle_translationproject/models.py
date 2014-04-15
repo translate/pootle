@@ -167,6 +167,11 @@ class TranslationProject(models.Model, TreeItem):
                           self.goals.all().order_by("name")))
 
     @property
+    def name(self):
+        # TODO: See if `self.fullname` can be removed
+        return self.fullname
+
+    @property
     def fullname(self):
         return "%s [%s]" % (self.project.fullname, self.language.name)
 
@@ -248,11 +253,13 @@ class TranslationProject(models.Model, TreeItem):
                 (self.non_db_state._index_initialized or
                  self.indexer is not None))
 
-    ############################ Methods ######################################
+    ############################ Cached properties ############################
 
     @cached_property
-    def name(self):
-        return self.project.fullname
+    def code(self):
+        return u'-'.join([self.language.code, self.project.code])
+
+    ############################ Methods ######################################
 
     def __unicode__(self):
         return self.pootle_path
@@ -347,10 +354,6 @@ class TranslationProject(models.Model, TreeItem):
         return errors
 
     ### TreeItem
-
-    @cached_property
-    def code(self):
-        return u'-'.join([self.language.code, self.project.code])
 
     def get_children(self):
         return self.directory.get_children()

@@ -47,8 +47,7 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import (group_by_count, group_by_count_extra,
                                    max_column)
 from pootle_misc.checks import check_names
-from pootle_misc.util import (cached_property, datetime_min, deletefromcache,
-                              get_cached_value)
+from pootle_misc.util import cached_property, datetime_min
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_tagging.models import ItemWithGoal
@@ -961,9 +960,8 @@ class Unit(models.Model, base.TranslationUnit):
 
             # For now assume the target changed
             # TODO: check all fields for changes
-            creation_time = timezone.now()
             sub = Submission(
-                    creation_time=creation_time,
+                    creation_time=self.submitted_on,
                     translation_project=translation_project,
                     submitter=suggestion_user,
                     from_suggestion=suggstat,
@@ -1022,10 +1020,9 @@ class Unit(models.Model, base.TranslationUnit):
             result = []
         return result
 
-
 ###################### Store ###########################
 
-# custom storage otherwise djago assumes all files are uploads headed to
+# custom storage otherwise django assumes all files are uploads headed to
 # media dir
 fs = FileSystemStorage(location=settings.PODIRECTORY)
 
@@ -1077,6 +1074,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         unique_together = ('parent', 'name')
 
     ############################ Properties ###################################
+
+    @property
+    def code(self):
+        return self.name.replace('.', '-')
 
     @property
     def tag_like_objects(self):
@@ -1152,10 +1153,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             except Exception as e:
                 logging.debug("failed to parse mtime: %s", e)
         return mtime
-
-    @property
-    def code(self):
-        return self.name.replace('.', '-')
 
     def __init__(self, *args, **kwargs):
         super(Store, self).__init__(*args, **kwargs)
@@ -1471,10 +1468,15 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
                     if changed:
                         create_submission = unit._target_updated
+                        # Set unit fields if submission should be created
+                        if create_submission:
+                            unit.submitted_by = system
+                            unit.submitted_on = timezone.now()
                         unit.save()
+                        # Create Submission after unit saved
                         if create_submission:
                             sub = Submission(
-                                creation_time=timezone.now(),
+                                creation_time=unit.submitted_on,
                                 translation_project=self.translation_project,
                                 submitter=system,
                                 unit=unit,

@@ -15,7 +15,7 @@
     {% for proj in ALL_PROJECTS %}
     <option value="{{ proj.code }}"
       {% if proj.code == project.code %} selected="selected"{% endif %}>
-      {{ proj.fullname }}
+      {{ proj.name }}
     </option>
     {% endfor %}
   </select>

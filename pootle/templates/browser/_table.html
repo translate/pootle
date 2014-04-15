@@ -23,24 +23,11 @@
   <tbody class="stats">
     {% for item in table.items %}
 
-    <tr class="item {% if 'total' in table.fields %}{% if item.total_words == 0 %} empty{% endif %}{% endif %}">
+    <tr class="item">
 
       {% if 'name' in table.fields %}
       <td class="stats-name {{ item.icon }}"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
         <a href="{{ item.href }}"><i class="icon-{{ item.icon }}"></i> <span>{{ item.title }}</span></a>
-      </td>
-      {% endif %}
-
-      {% if 'language' in table.fields %}
-      <td class="language">
-        <a href="{% url 'pootle-language-overview' item.code %}"><i class="icon-{{ item.icon }}"></i> <span>{{ item.name }}</span></a>
-      </td>
-      {% endif %}
-
-      {% if 'project' in table.fields %}
-      <td class="project">
-        <a href="{% url 'pootle-project-overview' item.code %}"
-          title="{{ item.description }}"><i class="icon-{{ item.icon }}"></i> <span>{{ item.name }}</span></a>
       </td>
       {% endif %}
 

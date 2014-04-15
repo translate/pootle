@@ -27,7 +27,6 @@ from pootle_app.models import Directory
 from pootle_misc.stats import stats_message_raw
 from pootle_notifications.models import Notice
 from pootle_profile.models import get_profile
-from pootle_store.models import Unit
 
 
 ##### Model Events #####
@@ -78,61 +77,6 @@ def new_user(sender, instance, created=False, raw=False, **kwargs):
         new_object(created, message, parent=Directory.objects.root)
     except:
         pass
-
-
-def new_translationproject(sender, instance, created=False, raw=False,
-                           **kwargs):
-    if raw:
-        return
-
-    args = {
-        'tp_url': instance.get_absolute_url(),
-        'project_url': instance.project.get_absolute_url(),
-        'project': instance.project.fullname,
-        'language_url': instance.language.get_absolute_url(),
-        'language': instance.language.fullname,
-    }
-
-    message = ('New project <a href="%(tp_url)s">%(project)s</a> added to '
-               'language <a href="%(language_url)s">%(language)s</a>.' % args)
-    new_object(created, message, instance.language.directory)
-
-    message = ('New language <a href="%(tp_url)s">%(language)s</a> added to '
-               'project <a href="%(project_url)s">%(project)s</a>.' % args)
-    new_object(created, message, instance.project.directory)
-
-
-def unit_updated(sender, instance, raw=False, **kwargs):
-    if raw:
-        return
-
-    if instance.id is not None and instance.istranslated():
-        dbcopy = Unit.objects.get(id=instance.id)
-        if dbcopy.istranslated():
-            # Unit state didn't change, let's quit.
-            return
-
-        store = instance.store
-        total = store.total_wordcount
-        translated = store.translated_wordcount
-        fuzzy = store.fuzzy_wordcount
-
-        if total - translated == 1:
-            # By the end of this we will be 100%.
-            tp = store.translation_project
-            args = {
-                'url': store.get_absolute_url(),
-                'store': store.name,
-            }
-            message = ('<a href="%(url)s">%(store)s</a> fully translated</a>'
-                       '<br />' % args)
-            tp_total = tp.total_wordcount
-            tp_translated = tp.translated_wordcount + 1
-            tp_fuzzy = tp.fuzzy_wordcount - 1 if dbcopy.isfuzzy() else 0
-
-            message += stats_message_raw("Project now at", tp_total,
-                                         tp_translated, tp_fuzzy)
-            new_object(True, message, tp.directory)
 
 
 ##### TranslationProject Events #####

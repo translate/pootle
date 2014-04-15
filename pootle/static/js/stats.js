@@ -150,7 +150,6 @@
         url: url,
         data: reqData,
         dataType: 'json',
-        async: true,
         success: function (data) {
           var $table = $('#content table.stats'),
               now = parseInt(Date.now() / 1000, 10);
@@ -267,24 +266,28 @@
           data: reqData,
           success: function (data) {
             node.hide();
-            node.find('.js-checks').each(function (e) {
-              var empty = true,
-                  $cat = $(this);
+            if (Object.keys(data).length) {
+              node.find('.js-checks').each(function (e) {
+                var empty = true,
+                    $cat = $(this);
 
-              $cat.find('.js-check').each(function (e) {
-                var $check = $(this),
-                    code = $(this).data('code');
-                if (code in data) {
-                  empty = false;
-                  $check.show();
-                  $check.find('.check-count a').html(data[code]);
-                } else {
-                  $check.hide();
-                }
+                $cat.find('.js-check').each(function (e) {
+                  var $check = $(this),
+                      code = $(this).data('code');
+                  if (code in data) {
+                    empty = false;
+                    $check.show();
+                    $check.find('.check-count a').html(data[code]);
+                  } else {
+                    $check.hide();
+                  }
+                });
+
+                $cat.toggle(!empty);
               });
 
-              $cat.toggle(!empty);
-            });
+              $('#js-stats-checks').show();
+            }
 
             node.data('loaded', true);
             hideShow();

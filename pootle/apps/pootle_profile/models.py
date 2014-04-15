@@ -244,8 +244,7 @@ class PootleProfile(models.Model):
         return username
 
     def get_absolute_url(self):
-        return reverse('profiles_profile_detail',
-                       kwargs={'username': self.user.username})
+        return reverse('profiles_profile_detail', args=[self.user.username])
 
     def gravatar_url(self, size=80):
         if not self.get_email_hash:

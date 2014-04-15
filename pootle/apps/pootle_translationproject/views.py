@@ -37,6 +37,9 @@ from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
+from pootle.core.browser import (get_children, get_goal_children,
+                                 get_goal_parent, get_parent,
+                                 get_table_headings, make_goal_item)
 from pootle.core.decorators import (get_path_obj, get_resource_context,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context, get_overview_context,
@@ -51,9 +54,6 @@ from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_misc.baseurl import redirect
-from pootle_misc.browser import (get_children, get_goal_children,
-                                 get_table_headings, get_parent,
-                                 get_goal_parent, make_goal_item)
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
@@ -634,9 +634,6 @@ def qualitycheck_stats(request, translation_project, dir_path, filename=None):
 def translate(request, translation_project, dir_path, filename):
     language = translation_project.language
     project = translation_project.project
-    directory = request.directory
-    store = request.store
-    resource_obj = store or directory
 
     is_terminology = (project.is_terminology or request.store and
                                                 request.store.is_terminology)

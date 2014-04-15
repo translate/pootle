@@ -68,8 +68,8 @@
           type: 'ajax'
         },
         callbacks: {
-          parseAjax: function (jqXHR) {
-            jqXHR.responseText = jQuery.parseJSON(jqXHR.responseText).form;
+          parseAjax: function (mfpResponse) {
+            mfpResponse.data = mfpResponse.data.form;
           }
         },
         modal: true
@@ -95,6 +95,8 @@
       PTL.common.submitAgreementForm();
     });
     {% endif %}
+
+    PTL.contact.init({url: "{% url 'pootle-contact' %}"});
 
     $(function() {
       $("[title], [original-title]").tipsy({
@@ -125,6 +127,12 @@
   <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
     {% block body %}
     <div id="wrapper">
+      <noscript>
+        <div id="noscript" class="alert alert-danger affix">
+          <h1>{% trans "Pootle requires JavaScript" %}</h1>
+          <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>
+        </div>
+      </noscript>
       {% if messages %}
       <div id="alerts" class="affix">
         {% for message in messages %}
@@ -142,7 +150,9 @@
           <div id="nav-access">
             <a href="#nav-main">{% trans 'skip to navigation' %}</a>
           </div>
-          <a href="{% url 'pootle-home' %}" class="brand"><i class="logo"></i>{{ settings.TITLE }}</a>
+          <h1 class="brand">
+            <a href="{% url 'pootle-home' %}"><i class="logo"></i>{{ settings.TITLE }}</a>
+          </h1>
 
           <div id="zoom">
             <a id="zoom-out" title="{% trans "Zoom out (Ctrl+Shift+-)" %}"
@@ -153,6 +163,9 @@
               href="javascript:PTL.zoom.zoom(1)">+</a>
           </div>
           <ul id="nav-main">
+            {% if settings.CAN_CONTACT %}
+            <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
+            {% endif %}
             {% if user.is_authenticated %}
             <li id="user">
               <a href="{{ user.get_profile.get_absolute_url }}">
@@ -192,15 +205,8 @@
       </div>
       {% endblock %}
 
-      <div id="top-stats" class="header">
-        {% block header_content %}
-        {% endblock %}
-      </div>
-
-      <div id="actions" class="header">
-        {% block actions %}
-        {% endblock %}
-      </div>
+      {% block header_content_block %}{% endblock %}
+      {% block actions_block %}{% endblock %}
 
       {% block header_tabs_block %}
       <div id="header-tabs" class="header">
@@ -226,12 +232,6 @@
     <div id="footer">
       <ul class="nav">
         <li><a href="http://docs.translatehouse.org/projects/pootle/">{% trans "Help" %}</a></li>
-        {% if settings.CAN_CONTACT %}
-        <li>
-          <a class="js-popup-ajax"
-             href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a>
-        </li>
-        {% endif %}
         <li><a href="{% url 'pootle-about' %}">{% trans "About this Pootle Server" %}</a></li>
         <li><a href="{% url 'pootle-about-contributors' %}">{% trans "Contributors" %}</a></li>
         {% get_legalpages as legalpages %}

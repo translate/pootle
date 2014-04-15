@@ -6,7 +6,7 @@
   {% comment %}Translators: A view showing the export of strings in a flat form.
   See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete {% endcomment %}
   <title>{% trans "Export View" %} | 
-    {% if project %}{{ project.fullname }}{% else %}{% trans "All Projects" %}{% endif %} | 
+    {% if project %}{{ project.name }}{% else %}{% trans "All Projects" %}{% endif %} | 
     {% if language %}{{ language.name }}{% else %}{% trans "All Languages" %}{% endif %} | 
     {{ settings.TITLE }}</title>
   <style type="text/css">
@@ -97,7 +97,7 @@
 <body>
   <table dir="{% locale_dir %}">
     <caption>
-      {% if project %}{{ project.fullname }}{% else %}{% trans "All Projects" %}{% endif %} / 
+      {% if project %}{{ project.name }}{% else %}{% trans "All Projects" %}{% endif %} / 
       {% if language %}{{ language.name }}{% else %}{% trans "All Languages" %}{% endif %} / 
       {% if filter_name %}{{ filter_name }}{% endif %}
       {% if filter_extra %}<span>({{ filter_extra|join:', ' }})</span>{% endif %}

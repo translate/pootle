@@ -127,7 +127,7 @@ def get_overview_context(request):
 
     :param request: a :cls:`django.http.HttpRequest` object.
     """
-    resource_obj = request.ctx_obj
+    resource_obj = request.resource_obj
 
     return {
         'resource_obj': resource_obj,

@@ -27,10 +27,21 @@
  */
 
 /*
+ * TEMPORARILY HIDE CRITICAL ERRORS
+ */
+#action-fix-critical,
+td.stats-number.critical,
+#js-stats-checks,
+th#js-stats-critical
+{
+    display: none !important;
+}
+
+/*
  * BASIC ELEMENT STYLING
  */
 
-html, body, #header-meta, #footer, #about, .header
+#header-meta, #footer, .header
 {
     background-color: #eee;
 }
@@ -55,7 +66,7 @@ body
     color: #130f30;
     width: 100%;
 
-    font-family: Segoe UI, Ubuntu, sans-serif;
+    font-family: sans-serif;
     font-size: 0.8125em;
     font-style: normal;
     font-variant: normal;
@@ -128,6 +139,13 @@ h1, h2, h3, h4, h5, h6
     font-weight: normal;
     font-size: 100%;
     color: #999;
+}
+
+h1, h2, h3
+{
+    font-family: webfont_bold, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 h1
@@ -372,24 +390,32 @@ html[dir="rtl"] #nav-access
  * NAVBAR
  */
 
+#navbar
+{
+    background: #0489b7;
+}
+
 #navbar a
 {
     color: #c1e1ee;
-    text-shadow: 0 1px 0 #130f30;
     text-decoration: none;
 }
 
-#navbar a.brand,
 #navbar a:active,
 #navbar a:hover
 {
     color: #f8f8f8;
 }
 
-.brand
+#navbar h1
 {
-    font-size: 1.5em;
-    line-height: 2em;
+    font-family: webfont_bold, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 50px;
+    padding: 0 16px;
 }
 
 .logo
@@ -404,18 +430,9 @@ html[dir="rtl"] .logo
     float: right;
 }
 
-/* Navbar container */
-
-#navbar-inner
+#navbar h1 a
 {
-    background-color: #0489B7;
-    border-bottom: 1px solid #d9d9d9;
-    min-height: 40px;
-    -webkit-box-shadow: 0 1px 4px #d9d9d9;
-       -moz-box-shadow: 0 1px 4px #d9d9d9;
-            box-shadow: 0 1px 4px #d9d9d9;
-
-    margin-bottom: -1px;
+    color: #fff;
 }
 
 /* Zoom controls */
@@ -424,7 +441,7 @@ html[dir="rtl"] .logo
 {
     font-size: 12px;
     font-weight: bold;
-    line-height: 40px;
+    line-height: 50px;
     float: right;
     margin-left: 20px;
     margin-right: 20px;
@@ -461,6 +478,7 @@ html[dir="rtl"] #zoom
 
 #nav-main
 {
+    line-height: 50px;
     float: right;
 }
 
@@ -491,13 +509,12 @@ html[dir="rtl"] #nav-main li
 #nav-main li a:active
 {
     line-height: 2em;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     display: inline-block;
-    margin-left: 1.5em;
+    margin-left: 0.5em;
     text-decoration: none;
     border-radius: 3px;
-    padding: 0.2em 0.4em;
-    font-size: 1.2em;
+    padding: 0.5em 1em;
+    font-size: 1.1em;
 }
 
 #nav-main a.admin
@@ -659,7 +676,9 @@ html, body
 .popup-ajax .mfp-content
 {
     background-color: #fff;
-    width: 920px !important;
+    width: auto !important;
+    max-width: 920px !important;
+    display: inline-block;
 }
 
 /* for forms displayed in lightbox mode (via magnificPopup plugin), use different shadow */
@@ -677,12 +696,13 @@ html, body
 
 /* Alerts from Bootstrap */
 
-#alerts
+#alerts,
+#noscript
 {
     top: 41px; /* navbar height + border */
-    width: 400px;
+    width: 480px;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -240px;
     z-index: 101;
 }
 
@@ -1332,6 +1352,7 @@ ul.errorlist
 .form .captcha label
 {
     font-size: 120%;
+    margin-right: 0.6em;
 }
 
 .form .captcha input[type="text"]
@@ -1354,19 +1375,15 @@ ul.errorlist
 
 
 /*
- * DOCUMENTATION, LEGAL, CONTRIBUTORS
+ * STATIC PAGES, ABOUT, CONTRIBUTORS
  */
-
-.documentation
-{
-    background: #fff;
-}
 
 #staticpage,
 #about
 {
-    margin: 2em;
+    margin: 2em auto;
     font-size: 120%;
+    max-width: 960px;
 }
 
 #about .document h1
@@ -1435,19 +1452,22 @@ ul.errorlist
 
 #staticpage h1
 {
-    color: rgba(25, 15, 0, 0.6);
-    font-size: 3em;
+    font-size: 2.2em;
     line-height: 85%;
     margin: 1em 0 0.5em;
-    font-weight: bold;
+    margin-bottom: 1em;
 }
 
 #staticpage h2
 {
     color: rgba(25, 15, 0, 0.5);
-    font-size: 2em;
-    margin: 0.5em 0;
-    font-weight: bold;
+    font-size: 1.8em;
+    margin: 1em 0 0.5em;
+}
+
+#staticpage h3
+{
+    margin: 1em 0 0.5em;
 }
 
 #staticpage p
@@ -1513,6 +1533,7 @@ div.settings-container
 .module-primary .hd h2,
 .hd h2
 {
+    font-family: webfont_light, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
     font-size: 2.2em;
 }
 
@@ -1650,31 +1671,6 @@ div.latestnews li
     margin-top: 1em;
 }
 
-div.topcontributors
-{
-    margin-top: 0;
-    padding-top: 3em;
-    margin-bottom: 2em;
-}
-
-table.topcontributors
-{
-    width: 100%;
-}
-
-table.topcontributors th
-{
-    color: #999;
-    font-size: 85%;
-    padding: 0 10px 7px 10px;
-}
-
-table.topcontributors td
-{
-    font-size: inherit;
-    padding: 5px 10px;
-}
-
 tr.item.empty
 {
     opacity: 0.65;
@@ -1688,7 +1684,8 @@ table.stats td.project
 
 td.stats-name
 {
-    white-space: nowrap;    
+    white-space: nowrap;
+    line-height: 20px;
 }
 
 td.stats-number
@@ -2157,7 +2154,6 @@ html[dir="rtl"] .overview-description-toggle
 
 #header-meta
 {
-    min-height: 60px;
     line-height: 2;
     border-bottom: none;
 }
@@ -2168,7 +2164,8 @@ html[dir="rtl"] .overview-description-toggle
 
 #top-stats
 {
-    padding-bottom: 1.5em;
+    padding-bottom: 2em;
+    padding-top: 0.2em;
 }
 
 #top-stats .label
@@ -2270,8 +2267,8 @@ body.js-not-loaded #translate-actions li
     padding: 0.1em 0.9em;
     margin-right: -0.5em;
     -webkit-border-radius: 1em;
-    -moz-border-radius: 1em;
-    border-radius: 1em;
+       -moz-border-radius: 1em;
+            border-radius: 1em;
     background: #000;
     color: #fff;
     font-weight: normal;
@@ -2333,8 +2330,11 @@ body.js-not-loaded #translate-actions li
 {
     font-size: 1.5em;
     font-weight: normal;
+    font-family: webfont_light, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
     visibility: hidden;
     margin-left: -5px;
+    padding-top: 5px;
+    min-height: 2.05em;
 }
 
 .breadcrumb li
@@ -2350,7 +2350,7 @@ html[dir="rtl"] .breadcrumb li
 
 .breadcrumb li:before
 {
-    content: "/ ";
+    content: " / ";
     font-weight: normal;
     color: #999;
 }
@@ -2878,7 +2878,7 @@ h2:lang(zh) a
  * Size overrides for different zoom levels
  */
 
-body.zoom-out-2 #content .documentation,
+body.zoom-out-2 #about,
 body.zoom-out-2 #content table.sortable,
 body.zoom-out-2 table.translate-table,
 body.zoom-out-2 table.stats
@@ -2886,7 +2886,7 @@ body.zoom-out-2 table.stats
     font-size: 90%;
 }
 
-body.zoom-out-1 #content .documentation,
+body.zoom-out-1 #about,
 body.zoom-out-1 #content table.sortable,
 body.zoom-out-1 table.translate-table,
 body.zoom-out-1 table.stats
@@ -2894,7 +2894,7 @@ body.zoom-out-1 table.stats
     font-size: 95%;
 }
 
-body.zoom-in-1 #content .documentation,
+body.zoom-in-1 #about,
 body.zoom-in-1 #content table.sortable,
 body.zoom-in-1 table.translate-table,
 body.zoom-in-1 table.stats
@@ -2902,7 +2902,7 @@ body.zoom-in-1 table.stats
     font-size: 115%;
 }
 
-body.zoom-in-2 #content .documentation,
+body.zoom-in-2 #about,
 body.zoom-in-2 #content table.sortable,
 body.zoom-in-2 table.translate-table,
 body.zoom-in-2 table.stats

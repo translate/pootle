@@ -277,7 +277,7 @@ tr.edit-row.with-ctx
 .delimiter-row .hd h2
 {
     margin: 1em 25px 0.5em;
-    font-size: 1.7em;
+    font-size: 1.5em;
     border-bottom: 1px solid #ccc;
 }
 
@@ -304,16 +304,12 @@ tr.edit-ctx td
 tr.edit-ctx a
 {
      text-decoration: none;
-
-     filter:alpha(opacity=50);
      opacity: 0.5;
 }
 
 tr.edit-ctx a:hover
 {
      text-decoration: none;
-
-     filter:alpha(opacity=100);
      opacity: 1;
 }
 
@@ -801,8 +797,6 @@ html[dir="rtl"] #extras-bar a
 .suggestion-action img
 {
     top: 50%;
-
-    filter:alpha(opacity=10);
     opacity: 0.1;
 }
 
@@ -826,14 +820,12 @@ html[dir="rtl"] .suggestion-vote
 .extra-item-block:hover .suggestion-action img,
 .extra-item-block:hover .suggestion-vote img
 {
-    filter:alpha(opacity=50);
     opacity: 0.5;
 }
 
 .extra-item-block .suggestion-action img:hover,
 .extra-item-block .suggestion-vote:hover img
 {
-    filter:alpha(opacity=100);
     opacity: 1;
 }
 
@@ -848,8 +840,6 @@ html[dir="rtl"] .suggestion-vote
 .suggestion-vote img
 {
     top: 50%;
-
-    filter:alpha(opacity=30);
     opacity: 0.3;
 }
 
@@ -882,7 +872,6 @@ html[dir="rtl"] .suggestion-vote
 
 #target-item-gravatar a
 {
-    filter:alpha(opacity=100);
     opacity: 1;
 }
 
@@ -1020,6 +1009,9 @@ div.check a
 #translate-checks-block .sidetitle
 {
     color: #900;
+    float: left;
+    display: inline-block;
+    margin: 0.2em 0.2em 0 0;
 }
 
 li.check
@@ -1029,6 +1021,9 @@ li.check
     margin: 0 0.5em 0.5em 0;
     padding: 0.1em 0.5em;
 
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
 }
 
 li.check:hover
@@ -1254,14 +1249,11 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar a
 {
     text-decoration: none;
     white-space: nowrap;
-
-    filter:alpha(opacity=50);
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .translate-container a:hover
 {
-    filter:alpha(opacity=100);
     opacity: 1;
 }
 
@@ -1269,8 +1261,6 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar a
 .developer-comments a
 {
     text-decoration: none;
-
-    filter:alpha(opacity=100);
     opacity: 1;
 }
 
