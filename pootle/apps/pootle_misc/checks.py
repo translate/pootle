@@ -113,7 +113,7 @@ fmt = u"\{\d+(?:,(?:number|date|time|choice))\}"
 fmt_esc = u"\\\{\d+\\\}"
 java_format_regex = re.compile(u"(%s|%s)" % (fmt, fmt_esc))
 
-fmt = u"\$\{[\w\.\:]+\}"
+fmt = u"\$\{[a-zA-Z_\d\.\:]+\}"
 template_format_regex = re.compile(u"(%s)" % fmt, re.U)
 
 fmt = u"%\d+\$[a-z]+"
@@ -166,8 +166,8 @@ unescaped_ampersands_regex = re.compile(u"(%s)" % fmt, re.U)
 
 img_banner_regex = re.compile(u'^\<img src="\/images\/account\/bnr_', re.U)
 
-fmt1 = u"\b(?!alt|placeholder|title)\w+\s*=\s*'(?:.*?)'"
-fmt2 = u'\b(?!alt|placeholder|title)\w+\s*=\s*"(?:.*?)"'
+fmt1 = u"\b(?!alt|placeholder|title)[a-zA-Z_\d]+\s*=\s*'(?:.*?)'"
+fmt2 = u'\b(?!alt|placeholder|title)[a-zA-Z_\d]+\s*=\s*"(?:.*?)"'
 changed_attributes_regex = re.compile(u"(%s|%s)" % (fmt2, fmt1), re.U)
 
 fmt = u"%[\d]*(?:.\d+)*(?:h|l|I|I32|I64)*[cdiouxefgns]"
@@ -186,9 +186,9 @@ fmt = u'^<(Sync Required|None|no attributes|no tags|' + \
     u'no saved|searches|notebook|not available)>$'
 no_tags_regex = re.compile(fmt, re.U)
 
-fmt = u"<\/?[\w]+.*?>"
+fmt = u"<\/?[a-zA-Z_]+.*?>"
 tags_differ_regex_0 = re.compile(u"(%s)" % fmt, re.U)
-tags_differ_regex_1 = re.compile(u"<(\/?[\w]+).*?>", re.U)
+tags_differ_regex_1 = re.compile(u"<(\/?[a-zA-Z_]+).*?>", re.U)
 
 accelerators_regex_0 = re.compile(u"&(\w+);", re.U)
 fmt = u"[&_\^]"
@@ -207,7 +207,7 @@ broken_entities_regex_3 = re.compile(u"&\d+;", re.U)
 broken_entities_regex_4 = re.compile(u"&x[0-9a-fA-F]+;", re.U)
 broken_entities_regex_5 = re.compile(u"&#([^x\d])([0-9a-fA-F]+);")
 broken_entities_regex_6 = re.compile(u"&#(\d+);")
-broken_entities_regex_7 = re.compile(u"&#x(\w+);", re.U)
+broken_entities_regex_7 = re.compile(u"&#x([a-zA-Z_]+);", re.U)
 
 fmt = u"[$%_@]"
 potential_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
