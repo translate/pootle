@@ -1,7 +1,6 @@
 Django>=1.6.4,<1.7
 
 # Django apps
-django-voting==0.1
 South>=0.8.4
 django-assets>=0.8
 django-contact-form==1.0

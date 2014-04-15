@@ -23,7 +23,7 @@ import logging
 from itertools import groupby
 
 from django.contrib.auth import get_user_model
-from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Max, Q
 from django.http import HttpResponse, Http404
@@ -59,7 +59,7 @@ from .signals import translation_submitted
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
-                   find_altsrcs, get_sugg_list)
+                   find_altsrcs)
 
 
 #: Mapping of allowed sorting criteria.
@@ -675,7 +675,6 @@ def get_edit_unit(request, unit):
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
 
-    suggestions = get_sugg_list(unit)
     template_vars = {
         'unit': unit,
         'form': form,
@@ -695,7 +694,6 @@ def get_edit_unit(request, unit):
                                              directory),
         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
                                 project=project),
-        'suggestions': suggestions,
     }
 
     if translation_project.project.is_terminology or store.is_terminology:
@@ -941,42 +939,6 @@ def accept_suggestion(request, unit, suggid):
                     [highlight_diffs(unit.target.strings[i], target)
                      for i, target in enumerate(sugg.target.strings)]
 
-    response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
-
-@ajax_required
-def clear_vote(request, voteid):
-    json = {}
-    json["voteid"] = voteid
-    if request.POST.get('clear'):
-        try:
-            from voting.models import Vote
-            vote = Vote.objects.get(pk=voteid)
-            if vote.user != request.user:
-                # No i18n, will not go to UI
-                raise PermissionDenied("Users can only remove their own votes")
-            vote.delete()
-        except ObjectDoesNotExist:
-            raise Http404
-    response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
-
-
-@ajax_required
-@get_unit_context('')
-def vote_up(request, unit, suggid):
-    json = {}
-    json["suggid"] = suggid
-    if request.POST.get('up'):
-        try:
-            suggestion = unit.suggestion_set.get(id=suggid)
-            from voting.models import Vote
-            # Why can't it just return the vote object?
-            Vote.objects.record_vote(suggestion, request.user, +1)
-            json["voteid"] = Vote.objects.get_for_user(suggestion,
-                                                       request.user).id
-        except ObjectDoesNotExist:
-            raise Http404(_("The suggestion or vote is not valid any more."))
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 

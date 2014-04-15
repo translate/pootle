@@ -252,10 +252,11 @@
           {% include "editor/units/xhr_comment.html" %}
         </div>
         {% endif %}
+        {% with unit.get_suggestions as suggestions %}
         {% if suggestions %}
         <div id="suggestions">
           <div class="extra-item-title">{% trans 'User suggestions' %}</div>
-          {% for sugg, score in suggestions %}
+          {% for sugg in suggestions %}
           <div id="suggestion-{{ sugg.id }}"
             class="js-user-suggestion js-editor-copytext extra-item-block"
             data-action="overwrite" data-translation-aid="{{ sugg.target }}">
@@ -269,7 +270,6 @@
               </div>
               {% endif %}
               <div class="extra-item">
-                {% block votes %}{% endblock %}
                 {% if canreview %}
                 <a accesskey="a" class="suggestion-action js-suggestion-accept"
                   data-sugg-id="{{ sugg.id }}">
@@ -302,6 +302,7 @@
           {% endfor %}
         </div>
         {% endif %}
+        {% endwith %}
       </div>
     </div>
   </div>

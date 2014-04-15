@@ -117,30 +117,6 @@ def find_altsrcs(unit, alt_src_langs, store=None, project=None):
     return altsrcs
 
 
-def get_sugg_list(unit):
-    """Get suggested translations and rated scores for the given unit.
-
-    :return: List of tuples containing the suggestion and the score for
-             it in case it's a terminology project. Otherwise the score
-             part is filled with False values.
-    """
-    sugg_list = []
-    scores = {}
-    suggestions = unit.get_suggestions()
-
-    # Avoid the votes query if we're not editing terminology
-    if (suggestions and (unit.store.is_terminology or
-        unit.store.translation_project.project.is_terminology)):
-        from voting.models import Vote
-        scores = Vote.objects.get_scores_in_bulk(suggestions)
-
-    for sugg in suggestions:
-        score = scores.get(sugg.id, False)
-        sugg_list.append((sugg, score))
-
-    return sugg_list
-
-
 def get_change_str(changes):
     """Returns a formatted string for the non-zero items of a `changes`
     dictionary.

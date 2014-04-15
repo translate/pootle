@@ -126,8 +126,6 @@
     $(document).on('click', '#js-nav-next', this.gotoNext.bind(this));
     $(document).on('click', '.js-suggestion-reject', this.rejectSuggestion);
     $(document).on('click', '.js-suggestion-accept', this.acceptSuggestion);
-    $(document).on('click', '.js-vote-clear', this.clearVote);
-    $(document).on('click', '.js-vote-up', this.voteUp);
     $(document).on('click', '#js-show-timeline', this.showTimeline);
     $(document).on('click', '#js-hide-timeline', this.hideTimeline);
     $(document).on('click', '.js-toggle-check', this.toggleCheck);
@@ -2037,58 +2035,6 @@
           }
         });
       }, "json");
-  },
-
-  /* Clears the vote for a specific suggestion */
-  clearVote: function (e) {
-    e.stopPropagation(); //we don't want to trigger a click on the text below
-    var element = $(this),
-        voteId = element.data("vote-id"),
-        url = l(['/xhr/votes/', voteId, '/clear/'].join(''));
-
-    element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
-    $.ajax({
-      url: url,
-      type: 'POST',
-      data: {'clear': 1},
-      dataType: 'json',
-      success: function (data) {
-        element.hide();
-        element.siblings(".js-vote-up").fadeTo(200, 1);
-      },
-      error: function (xhr, s) {
-        PTL.editor.error(xhr, s);
-        //Let's wait a while before showing the voting widget again
-        element.delay(3000).fadeTo(2000, 1);
-      }
-    });
-  },
-
-  /* Votes for a specific suggestion */
-  voteUp: function (e) {
-    e.stopPropagation();
-    var element = $(this),
-        suggId = element.siblings("[data-sugg-id]").data("sugg-id"),
-        url = l(['/xhr/units/', PTL.editor.units.getCurrent().id,
-                 '/suggestions/', suggId, '/votes/'].join(''));
-
-    element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
-    $.ajax({
-      url: url,
-      type: 'POST',
-      data: {'up': 1},
-      dataType: 'json',
-      success: function (data) {
-        element.siblings("[data-vote-id]").data("vote-id", data.voteid);
-        element.hide();
-        element.siblings(".js-vote-clear").fadeTo(200, 1);
-      },
-      error: function (xhr, s) {
-        PTL.editor.error(xhr, s);
-        //Let's wait a while before showing the voting widget again
-        element.delay(3000).fadeTo(2000, 1);
-      }
-    });
   },
 
   /* Mutes or unmutes a quality check marking it as false positive or not */

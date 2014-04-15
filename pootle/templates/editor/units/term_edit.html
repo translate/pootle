@@ -1,39 +1,8 @@
 {% extends "editor/units/edit.html" %}
-{% load i18n baseurl store_tags voting_tags cleanhtml cache locale %}
+{% load i18n baseurl store_tags cleanhtml cache locale %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview report_target altsrcs profile.id LANGUAGE_CODE %}
-{% votes_by_user user on suggestions as vote_dict %}
-
-{% block votes %}
-{% if user.is_authenticated %}
-  {% dict_entry_for_item sugg from vote_dict as vote %}
-  <a class="js-vote-clear suggestion-vote{% if vote.object != sugg %} hide{% endif %}"
-    data-vote-id="{{ vote.id }}">
-  <span class="num-votes">
-  {% if vote.object != sugg %}
-    {% if score %}{{ score.score|add:"1" }}{% else %}1{% endif %}
-  {% else %}
-    {# Switch to elif when deprecating Django 1.3 support #}
-    {% if score %}{{ score.score }}{% endif %}
-  {% endif %}
-  </span>
-  <i class="icon-vote-active" title="{% trans 'Your current vote. Click to remove this vote.' %}" dir="{% locale_dir %}"></i>
-  </a>
-  <a class="js-vote-up suggestion-vote{% if vote.object == sugg %} hide{% endif%}"
-    data-vote-id="{{ vote.id }}">
-    <span class="num-votes">
-    {% if vote.object == sugg %}
-      {{ score.score|add:"-1" }}
-    {% else %}
-      {# Switch to elif when deprecating Django 1.3 support #}
-      {% if score %}{{ score.score }}{% endif %}
-    {% endif %}
-    </span>
-    <i class="icon-vote-inactive" title="{% trans 'Vote for this suggestion' %}" dir="{% locale_dir %}"></i>
-  </a>
-{% endif %}
-{% endblock %}
 
 {% block suggestion_comment %}
 {% if sugg.translator_comment %}

@@ -1,4 +1,4 @@
-/* glue: 0.3 hash: 00b88feae9 */
+/* glue: 0.9.4 hash: 5f7aac978e */
 .icon-desc,
 .icon-ascdesc,
 .icon-asc,
@@ -6,8 +6,6 @@
 .icon-collapse-stats,
 .icon-web-translate,
 .icon-warning,
-.icon-vote-inactive,
-.icon-vote-active,
 .icon-tick,
 .icon-search,
 .icon-reject,
@@ -28,34 +26,211 @@
 .icon-apertium,
 .icon-accept,
 .icon-back,
-.icon-external-link{background-image:url('../images/sprite.png');background-repeat:no-repeat}
-.icon-desc{background-position:0px 0px;width:21px;height:4px;}
-.icon-ascdesc{background-position:0px -4px;width:21px;height:9px;}
-.icon-asc{background-position:0px -13px;width:21px;height:4px;}
-.icon-expand-stats{background-position:-21px 0px;width:17px;height:17px;}
-.icon-collapse-stats{background-position:0px -17px;width:17px;height:17px;}
-.icon-web-translate{background-position:-17px -17px;width:16px;height:16px;}
-.icon-warning{background-position:-38px 0px;width:16px;height:16px;}
-.icon-vote-inactive{background-position:-38px -16px;width:16px;height:16px;}
-.icon-vote-active{background-position:0px -34px;width:16px;height:16px;}
-.icon-tick{background-position:-16px -34px;width:16px;height:16px;}
-.icon-search{background-position:-32px -34px;width:16px;height:16px;}
-.icon-reject{background-position:-54px 0px;width:16px;height:16px;}
-.icon-project{background-position:-54px -16px;width:16px;height:16px;}
-.icon-language{background-position:-54px -32px;width:16px;height:16px;}
-.icon-information{background-position:0px -50px;width:16px;height:16px;}
-.icon-google-translate{background-position:-16px -50px;width:16px;height:16px;}
-.icon-folder{background-position:-32px -50px;width:16px;height:16px;}
-.icon-folder-parent{background-position:-48px -50px;width:16px;height:16px;}
-.icon-file{background-position:-70px 0px;width:16px;height:16px;}
-.icon-copy{background-position:-70px -16px;width:16px;height:16px;}
-.icon-comment-user{background-position:-70px -32px;width:16px;height:16px;}
-.icon-comment-add{background-position:-70px -48px;width:16px;height:16px;}
-.icon-block{background-position:0px -66px;width:16px;height:16px;}
-.icon-block-muted{background-position:-16px -66px;width:16px;height:16px;}
-.icon-arrow-up{background-position:-32px -66px;width:9px;height:16px;}
-.icon-arrow-down{background-position:-41px -66px;width:9px;height:16px;}
-.icon-apertium{background-position:-50px -66px;width:16px;height:16px;}
-.icon-accept{background-position:-66px -66px;width:16px;height:16px;}
-.icon-back{background-position:-86px 0px;width:14px;height:13px;}
-.icon-external-link{background-position:-86px -13px;width:12px;height:12px;}
+.icon-external-link {
+            background-image: url('../images/sprite.png');
+            background-repeat: no-repeat;
+        }
+
+        .icon-desc {
+            background-position: 0 0;
+            width: 21px;
+            height: 4px;
+        }
+
+        .icon-ascdesc {
+            background-position: 0 -4px;
+            width: 21px;
+            height: 9px;
+        }
+
+        .icon-asc {
+            background-position: 0 -13px;
+            width: 21px;
+            height: 4px;
+        }
+
+        .icon-expand-stats {
+            background-position: -21px 0;
+            width: 17px;
+            height: 17px;
+        }
+
+        .icon-collapse-stats {
+            background-position: 0 -17px;
+            width: 17px;
+            height: 17px;
+        }
+
+        .icon-web-translate {
+            background-position: -17px -17px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-warning {
+            background-position: -38px 0;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-tick {
+            background-position: -38px -16px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-search {
+            background-position: 0 -34px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-reject {
+            background-position: -16px -34px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-project {
+            background-position: -32px -34px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-language {
+            background-position: -54px 0;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-information {
+            background-position: -54px -16px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-google-translate {
+            background-position: -54px -32px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-folder {
+            background-position: 0 -50px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-folder-parent {
+            background-position: -16px -50px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-file {
+            background-position: -32px -50px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-copy {
+            background-position: -48px -50px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-comment-user {
+            background-position: -70px 0;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-comment-add {
+            background-position: -70px -16px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-block {
+            background-position: -70px -32px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-block-muted {
+            background-position: -70px -48px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-arrow-up {
+            background-position: 0 -66px;
+            width: 9px;
+            height: 16px;
+        }
+
+        .icon-arrow-down {
+            background-position: -9px -66px;
+            width: 9px;
+            height: 16px;
+        }
+
+        .icon-apertium {
+            background-position: -18px -66px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-accept {
+            background-position: -34px -66px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-back {
+            background-position: -50px -66px;
+            width: 14px;
+            height: 13px;
+        }
+
+        .icon-external-link {
+            background-position: -64px -66px;
+            width: 12px;
+            height: 12px;
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio: 1.0), screen and (min--moz-device-pixel-ratio: 1.0), screen and (-o-min-device-pixel-ratio: 100/100), screen and (min-device-pixel-ratio: 1.0), screen and (min-resolution: 1.0dppx) {
+            .icon-desc,
+    .icon-ascdesc,
+    .icon-asc,
+    .icon-expand-stats,
+    .icon-collapse-stats,
+    .icon-web-translate,
+    .icon-warning,
+    .icon-tick,
+    .icon-search,
+    .icon-reject,
+    .icon-project,
+    .icon-language,
+    .icon-information,
+    .icon-google-translate,
+    .icon-folder,
+    .icon-folder-parent,
+    .icon-file,
+    .icon-copy,
+    .icon-comment-user,
+    .icon-comment-add,
+    .icon-block,
+    .icon-block-muted,
+    .icon-arrow-up,
+    .icon-arrow-down,
+    .icon-apertium,
+    .icon-accept,
+    .icon-back,
+    .icon-external-link {
+                background-image: url('../images/sprite.png');
+                -webkit-background-size: 86px 82px;
+                -moz-background-size: 86px 82px;
+                background-size: 86px 82px;
+            }
+        }
