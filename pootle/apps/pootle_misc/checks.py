@@ -134,10 +134,10 @@ dollar_sign_closure_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 fmt = u"\%\%[a-zA-Z_\d]+?\%\%"
 percent_sign_closure_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
-fmt = u"\%[\w\d]+?(?![\$\%])"
+fmt = u"\%[a-zA-Z_]+?(?![\$\%])"
 percent_sign_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
-fmt = u"[A-Z_][A-Z0-9]*_[A-Z0-9_]*"
+fmt = u"[A-Z_][A-Z0-9]*_[A-Z0-9_]*(?![a-z])"
 uppercase_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
 fmt3 = u"\{{3}\S+?\}{3}"
