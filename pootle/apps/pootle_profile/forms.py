@@ -21,7 +21,6 @@
 
 from django import forms
 from django.contrib import auth
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 

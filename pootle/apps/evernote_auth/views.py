@@ -27,6 +27,7 @@ from pyDes import triple_des, ECB
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -34,7 +35,6 @@ from django.utils.encoding import iri_to_uri
 from django.utils.http import is_safe_url, urlquote, urlencode
 
 from pootle_misc.baseurl import redirect
-from pootle_profile.forms import lang_auth_form_factory
 
 from .models import EvernoteAccount
 
@@ -150,7 +150,7 @@ def evernote_login_link(request):
         return redirect_after_login(request, redirect_to)
     else:
         if request.POST:
-            form = lang_auth_form_factory(request, data=request.POST)
+            form = AuthenticationForm(request, data=request.POST)
 
             # Do login here
             if form.is_valid():
@@ -176,7 +176,7 @@ def evernote_login_link(request):
 
                 return redirect_after_login(request, redirect_to)
         else:
-            form = lang_auth_form_factory(request)
+            form = AuthenticationForm(request)
 
         context = {
             'form': form,

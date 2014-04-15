@@ -19,6 +19,7 @@
 
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -29,8 +30,7 @@ from profiles.views import edit_profile
 
 from pootle_misc.baseurl import redirect
 
-from .forms import (UserForm, lang_auth_form_factory,
-                    pootle_profile_form_factory)
+from .forms import UserForm, pootle_profile_form_factory
 
 
 def profile_edit(request):
@@ -79,7 +79,7 @@ def login(request):
         return redirect_after_login(request)
     else:
         if request.POST:
-            form = lang_auth_form_factory(request, data=request.POST)
+            form = AuthenticationForm(request, data=request.POST)
             next = request.POST.get(auth.REDIRECT_FIELD_NAME, '')
 
             # Do login here.
@@ -91,7 +91,7 @@ def login(request):
 
                 return redirect_after_login(request)
         else:
-            form = lang_auth_form_factory(request)
+            form = AuthenticationForm(request)
             next = request.GET.get(auth.REDIRECT_FIELD_NAME, '')
 
         context = {
