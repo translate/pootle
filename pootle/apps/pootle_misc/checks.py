@@ -220,29 +220,40 @@ class ENChecker(checks.TranslationChecker):
 
     @critical
     def template_format(self, str1, str2):
-        return _generic_check(str1, str2, template_format_regex, u"template_format")
+        return _generic_check(str1, str2, template_format_regex,
+                              u"template_format")
 
     @critical
     def android_format(self, str1, str2):
         fmt = u"%\d+\$[a-z]+"
         regex = re.compile(u"(%s)" % fmt, re.U)
-        return _generic_check(str1, str2, android_format_regex, u"android_format")
+        return _generic_check(str1, str2, android_format_regex,
+                              u"android_format")
 
     @critical
     def objective_c_format(self, str1, str2):
-        return _generic_check(str1, str2, objective_c_format_regex, u"objective_c_format")
+        return _generic_check(str1, str2, objective_c_format_regex,
+                              u"objective_c_format")
 
     @critical
     def javaencoded_unicode(self, str1, str2):
-        return _generic_check(str1, str2, javaencoded_unicode_regex, u"javaencoded_unicode")
+        return _generic_check(str1, str2, javaencoded_unicode_regex,
+                              u"javaencoded_unicode")
 
     @critical
     def dollar_sign_placeholders(self, str1, str2):
-        return _generic_check(str1, str2, dollar_sign_placeholders_regex, u"dollar_sign_placeholders")
+        return _generic_check(str1, str2, dollar_sign_placeholders_regex,
+                              u"dollar_sign_placeholders")
+
+    @critical
+    def dollar_sign_closure_placeholders(self, str1, str2):
+        return _generic_check(str1, str2, dollar_sign_closure_placeholders_regex,
+                              u"dollar_sign_closure_placeholders")
 
     @critical
     def percent_sign_placeholders(self, str1, str2):
-        return _generic_check(str1, str2, percent_sign_placeholders_regex, u"percent_sign_placeholders")
+        return _generic_check(str1, str2, percent_sign_placeholders_regex,
+                              u"percent_sign_placeholders")
 
     @critical
     def percent_sign_closure_placeholders(self, str1, str2):
@@ -251,11 +262,13 @@ class ENChecker(checks.TranslationChecker):
 
     @critical
     def uppercase_placeholders(self, str1, str2):
-        return _generic_check(str1, str2, uppercase_placeholders_regex, u"uppercase_placeholders")
+        return _generic_check(str1, str2, uppercase_placeholders_regex,
+                              u"uppercase_placeholders")
 
     @critical
     def mustache_placeholders(self, str1, str2):
-        return _generic_check(str1, str2, mustache_placeholders_regex, u"mustache_placeholders")
+        return _generic_check(str1, str2, mustache_placeholders_regex,
+                              u"mustache_placeholders")
 
     @critical
     def mustache_placeholder_pairs(self, str1, str2):

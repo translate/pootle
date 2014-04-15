@@ -741,7 +741,7 @@ class Unit(models.Model, base.TranslationUnit):
     def update_wordcount(self, auto_translate=False):
         """Updates the source wordcount for a unit.
 
-        :param auto_translate: when set to `True`, it will coopy the
+        :param auto_translate: when set to `True`, it will copy the
             source string into the target field.
         """
         self.source_wordcount = count_words(self.source_f.strings)
