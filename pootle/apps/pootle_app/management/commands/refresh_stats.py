@@ -126,7 +126,7 @@ class Command(PootleCommand):
                     if check_names:
                         self.update_qualitychecks(unit, check_names)
                     else:
-                        unit.update_qualitychecks(created=True)
+                        unit.update_qualitychecks(delete_existing=False)
                 if i % 20 == 0:
                     logging.info("%d units processed" % unit_count)
 

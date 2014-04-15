@@ -759,11 +759,17 @@ class Unit(models.Model, base.TranslationUnit):
                 self.state = FUZZY
                 self._auto_translated = True
 
-    def update_qualitychecks(self, created=False, keep_false_positives=False):
-        """Run quality checks and store result in the database."""
+    def update_qualitychecks(self, delete_existing=True,
+                             keep_false_positives=False):
+        """Run quality checks and store result in the database.
+
+        :param delete_existing: when set to `False`, it won't delete any existing
+            checks, do this when unit has just been created or you are
+            sure that it has no checks.
+        """
         existing = []
 
-        if not created:
+        if delete_existing:
             checks = self.qualitycheck_set.all()
             if keep_false_positives:
                 existing = set(checks.filter(false_positive=True) \
