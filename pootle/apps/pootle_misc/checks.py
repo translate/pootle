@@ -95,6 +95,7 @@ check_names = {
     'percent_sign_placeholders': _(u"Percent sign placeholders"),
     'percent_sign_closure_placeholders': _(u"Percent sign closure placeholders"),
     'dollar_sign_placeholders': _(u"$ placeholders"),
+    'dollar_sign_closure_placeholders': _(u"$ closure placeholders"),
     'javaencoded_unicode': _(u"Java-encoded unicode"),
     'objective_c_format': _(u"Objective-C format"),
     'android_format': _(u"Android format"),
@@ -124,10 +125,13 @@ objective_c_format_regex = re.compile(u"(%s)" % fmt, re.U)
 fmt = u"\\\\u[a-fA-F0-9]{4}"
 javaencoded_unicode_regex = re.compile(u"(%s)" % fmt, re.U)
 
-fmt = u"\$[\w\d]+?\$"
+fmt = u"\$[a-zA-Z_\d]+?(?![\$\%])"
 dollar_sign_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
-fmt = u"\%[\w\d]+?\%"
+fmt = u"\$[a-zA-Z_\d]+?\$"
+dollar_sign_closure_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"\%\%[a-zA-Z_\d]+?\%\%"
 percent_sign_closure_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
 fmt = u"\%[\w\d]+?(?![\$\%])"
