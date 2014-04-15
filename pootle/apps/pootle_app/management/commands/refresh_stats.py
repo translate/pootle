@@ -145,45 +145,39 @@ class Command(PootleCommand):
                     logging.info("%d units processed" % unit_count)
 
         logging.info('Setting quality check stats values for all stores...')
-        self._set_qualitycheck_stats(timeout)
+        self._set_qualitycheck_stats(unit_fk_filter, timeout)
 
         if not check_names:
             logging.info('Setting last action values for all stores...')
-            self._set_last_action_stats(timeout)
+            self._set_last_action_stats(store_fk_filter, timeout)
             logging.info('Setting last updated values for all stores...')
-            self._set_last_updated_stats(timeout)
+            self._set_last_updated_stats(store_fk_filter, timeout)
             logging.info('Setting mtime values for all stores...')
-            self._set_mtime_stats(timeout)
+            self._set_mtime_stats(store_fk_filter, timeout)
             logging.info('Setting wordcount stats values for all stores...')
-            self._set_wordcount_stats(timeout)
+            self._set_wordcount_stats(store_fk_filter, timeout)
             logging.info('Setting suggestion count values for all stores...')
-            self._set_suggestion_stats(timeout)
+            self._set_suggestion_stats(unit_fk_filter, timeout)
 
 
         logging.info('Setting empty values for other cache entries...')
         self._set_empty_values(timeout)
 
-        logging.info('Refreshing directories stats...')
-
-        lang_query = Language.objects.all()
-        prj_query = Project.objects.all()
-
-        for lang in lang_query.iterator():
-            # Calculate stats for all directories and translation projects
-            lang.refresh_stats()
-
-        for prj in prj_query.iterator():
-            prj.refresh_stats(False)
-
-    def update_qualitychecks(self, unit, checks):
+    def update_qualitychecks(self, unit, checks, keep_false_positives=True):
         # no checks if unit is untranslated
         if not unit.target:
             return
 
+        existing = []
+        if keep_false_positives:
+            existing = set(unit.qualitycheck_set
+                               .filter(false_positive=True, name__in=checks)
+                               .values_list('name', flat=True))
+
         qc_failures = run_given_filters(self.checker, unit, check_names=checks)
 
         for name in qc_failures.iterkeys():
-            if name == 'fuzzy':
+            if name == 'fuzzy' or name in existing:
                 # keep false-positive checks
                 continue
 
