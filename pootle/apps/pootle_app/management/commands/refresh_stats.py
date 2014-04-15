@@ -34,7 +34,7 @@ from django.utils import dateformat
 from django.utils.encoding import force_unicode, iri_to_uri
 
 from pootle_language.models import Language
-from pootle_misc.checks import ENChecker, run_given_filters
+from pootle_misc.checks import ENChecker, run_given_filters, get_qualitychecks
 from pootle_misc.util import datetime_min
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
@@ -73,37 +73,86 @@ class Command(PootleCommand):
         super(Command, self).handle_noargs(**options)
 
     def handle_all_stores(self, translation_project, **options):
-        # TODO use the faster method
-        translation_project.clear_all_cache(parents=False)
-        translation_project.get_stats()
-        translation_project.get_mtime()
+        store_fk_filter = {
+            'store__translation_project': translation_project,
+        }
+        unit_fk_filter = {
+            'unit__store__translation_project': translation_project,
+        }
+        store_filter = {
+            'translation_project': translation_project,
+        }
+
+        self.process(store_fk_filter=store_fk_filter,
+                     unit_fk_filter=unit_fk_filter,
+                     store_filter=store_filter,
+                      **options)
+
+        translation_project.refresh_stats(include_children=True)
+
 
     def handle_store(self, store, **options):
-        # TODO use the faster method
-        store.clear_all_cache(parents=False)
-        store.get_stats()
-        store.get_mtime()
+        store_fk_filter = {
+            'store': store,
+        }
+        unit_fk_filter = {
+            'unit__store': store,
+        }
+        store_filter = {
+            'pk': store.pk,
+        }
+
+        self.process(store_fk_filter=store_fk_filter,
+                     unit_fk_filter=unit_fk_filter,
+                     store_filter=store_filter,
+                      **options)
+
+        store.clear_all_cache()
 
     def handle_language(self, lang, **options):
-        # TODO use the faster method
+        # all children stats should be refreshed
+        # language level needs to be updated only
         lang.clear_all_cache(children=False)
         lang.get_stats()
         lang.get_mtime()
 
     def handle_project(self, prj, **options):
-        # TODO use the faster method
+        # all children stats should be refreshed
+        # project level needs to be updated only
         prj.clear_all_cache(children=False)
         prj.get_stats()
         prj.get_mtime()
 
     def handle_all(self, **options):
+        self.process(**options)
+        logging.info('Refreshing directories stats...')
+
+        lang_query = Language.objects.all()
+        prj_query = Project.objects.all()
+
+        for lang in lang_query.iterator():
+            # Calculate stats for all directories and translation projects
+            lang.refresh_stats(include_children=True)
+
+        for prj in prj_query.iterator():
+            prj.refresh_stats(include_children=False)
+
+    def process(self, **options):
         timeout = settings.OBJECT_CACHE_TIMEOUT
         calculate_checks = options.get('calculate_checks', False)
         calculate_wordcount = options.get('calculate_wordcount', False)
         check_names = options.get('check_names', [])
+        store_filter = options.get('store_filter', {})
+        unit_fk_filter = options.get('unit_fk_filter', {})
+        store_fk_filter = options.get('store_fk_filter', {})
 
         logging.info('Initializing stores...')
-        self._init_stores()
+
+        stores = Store.objects.all()
+        if store_filter:
+            stores = stores.filter(**store_filter)
+
+        self._init_stores(stores)
         # if check_names is non-empty then stats for only these checks
         # will be updated
         if not check_names:
@@ -112,14 +161,25 @@ class Command(PootleCommand):
 
         if calculate_checks:
             logging.info('Calculating quality checks for all units...')
-            checks_query = QualityCheck.objects.all()
+
+            checks_query = QualityCheck.objects.filter(false_positive=False)
+            if unit_fk_filter:
+                checks_query = checks_query.filter(**unit_fk_filter)
+
             if check_names:
                 checks_query = checks_query.filter(name__in=check_names)
+            else:
+                all_check_names = get_qualitychecks()
+                stale_checks = \
+                    QualityCheck.objects.exclude(name__in=all_check_names.keys())
+                stale_checks.delete()
+
             checks_query.delete()
 
             self.checker = ENChecker()
             unit_count = 0
-            for i, store in enumerate(Store.objects.iterator(), start=1):
+
+            for i, store in enumerate(stores.iterator(), start=1):
                 logging.info("update_qualitychecks for %s" % store.pootle_path)
                 for unit in store.units.iterator():
                     unit_count += 1
@@ -130,11 +190,10 @@ class Command(PootleCommand):
                 if i % 20 == 0:
                     logging.info("%d units processed" % unit_count)
 
-
         if calculate_wordcount:
             logging.info('Calculating wordcount for all units...')
             unit_count = 0
-            for i, store in enumerate(Store.objects.iterator(), start=1):
+            for i, store in enumerate(stores.iterator(), start=1):
                 logging.info("calculate wordcount for %s" % store.pootle_path)
                 for unit in store.unit_set.iterator():
                     unit_count += 1
@@ -187,18 +246,20 @@ class Command(PootleCommand):
             unit.qualitycheck_set.create(name=name, message=message,
                                          category=category)
 
-
     def _set_qualitycheck_stats_cache(self, stats, key, timeout):
         if key:
             logging.info('Set get_checks for %s' % key)
             cache.set(iri_to_uri(key + ':get_checks'), stats, timeout)
             del self.cache_values[key]['get_checks']
 
-    def _set_qualitycheck_stats(self, timeout):
-        queryset = QualityCheck.objects.filter(unit__state__gt=UNTRANSLATED,
-                                               false_positive=False) \
-                                       .values('unit', 'unit__store', 'name') \
-                                       .order_by('unit__store', 'unit')
+    def _set_qualitycheck_stats(self, check_filter, timeout):
+        checks = QualityCheck.objects.filter(unit__state__gt=UNTRANSLATED,
+                                               false_positive=False)
+        if check_filter:
+            checks = checks.filter(**check_filter)
+
+        queryset = checks.values('unit', 'unit__store', 'name') \
+                         .order_by('unit__store', 'unit')
 
         saved_store = None
         saved_unit = None
@@ -237,11 +298,14 @@ class Command(PootleCommand):
             del self.cache_values[key]['get_fuzzy_wordcount']
             del self.cache_values[key]['get_translated_wordcount']
 
-    def _set_wordcount_stats(self, timeout):
-        res = Unit.objects.filter(state__gt=OBSOLETE) \
-                          .values('store', 'state') \
-                          .annotate(wordcount=Sum('source_wordcount')) \
-                          .order_by('store', 'state')
+    def _set_wordcount_stats(self, unit_filter, timeout):
+        units = Unit.objects.filter(state__gt=OBSOLETE)
+        if unit_filter:
+            units = units.filter(**unit_filter)
+
+        res = units.values('store', 'state') \
+                   .annotate(wordcount=Sum('source_wordcount')) \
+                   .order_by('store', 'state')
 
         saved_id = None
         saved_key = None
@@ -266,9 +330,10 @@ class Command(PootleCommand):
         if saved_id:
             self._set_wordcount_stats_cache(stats, key, timeout)
 
-    def _init_stores(self):
+    def _init_stores(self, stores):
         self.cache_values = {}
-        for store in Store.objects.all():
+
+        for store in stores.iterator():
             self.cache_values[store.get_cachekey()] = {}
 
     def _init_stats(self):
@@ -295,9 +360,13 @@ class Command(PootleCommand):
             for func in value.keys():
                 cache.set(iri_to_uri(key + ':' + func), value[func], timeout)
 
-    def _set_last_action_stats(self, timeout):
-        ss = Submission.simple_objects.values('store__pootle_path') \
-                                      .annotate(max_id=Max('id'))
+    def _set_last_action_stats(self, submission_filter, timeout):
+        submissions = Submission.simple_objects
+        if submission_filter:
+            submissions = submissions.filter(**submission_filter)
+
+        ss = submissions.values('store__pootle_path') \
+                        .annotate(max_id=Max('id'))
         for s_id in ss.iterator():
             sub = Submission.objects.select_related('store') \
                                     .get(id=s_id['max_id'])
@@ -312,11 +381,16 @@ class Command(PootleCommand):
                 cache.set(iri_to_uri(key + ':get_last_action'), res, timeout)
                 del self.cache_values[key]['get_last_action']
 
-    def _set_suggestion_stats(self, timeout):
-        queryset = Suggestion.objects.filter(
+    def _set_suggestion_stats(self, suggestion_filter, timeout):
+        suggestions = Suggestion.objects.filter(
             unit__state__gt=OBSOLETE,
             state=SuggestionStates.PENDING,
-        ).values('unit__store').annotate(count=Count('id'))
+        )
+        if suggestion_filter:
+            suggestions = suggestions.filter(**suggestion_filter)
+
+        queryset = suggestions \
+            .values('unit__store').annotate(count=Count('id'))
 
         for item in queryset.iterator():
             key = Store.objects.get(id=item['unit__store']).get_cachekey()
@@ -325,8 +399,12 @@ class Command(PootleCommand):
                       item['count'], timeout)
             del self.cache_values[key]['get_suggestion_count']
 
-    def _set_mtime_stats(self, timeout):
-        queryset = Unit.objects.values('store').annotate(
+    def _set_mtime_stats(self, unit_filter, timeout):
+        units = Unit.objects.all()
+        if unit_filter:
+            units = units.filter(**unit_filter)
+
+        queryset = units.values('store').annotate(
             max_mtime=Max('mtime')
         )
 
@@ -337,8 +415,12 @@ class Command(PootleCommand):
                       item['max_mtime'], timeout)
             del self.cache_values[key]['get_mtime']
 
-    def _set_last_updated_stats(self, timeout):
-        queryset = Unit.objects.values('store').annotate(
+    def _set_last_updated_stats(self, unit_filter, timeout):
+        units = Unit.objects.all()
+        if unit_filter:
+            units = units.filter(**unit_filter)
+
+        queryset = units.values('store').annotate(
             max_creation_time=Max('creation_time')
         )
 
