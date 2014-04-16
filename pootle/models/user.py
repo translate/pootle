@@ -84,7 +84,7 @@ class User(AbstractBaseUser):
 
     def get_full_name(self):
         """Returns the user's full name."""
-        return self.full_name
+        return self.full_name.strip()
 
     def get_short_name(self):
         """Returns the short name for the user."""

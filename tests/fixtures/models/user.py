@@ -29,10 +29,9 @@ def _require_user(username, fullname, password=None,
 
     criteria = {
         'username': username,
-        'first_name': fullname,
+        'full_name': fullname,
         'is_active': True,
         'is_superuser': is_superuser,
-        'is_staff': is_staff,
     }
     user, created = User.objects.get_or_create(**criteria)
     if created:

@@ -31,8 +31,7 @@ from pootle_app.views.admin import util
 
 @admin_required
 def view(request):
-    fields = ('username', 'first_name', 'last_name', 'email', 'is_active',
-              'is_superuser')
+    fields = ('username', 'full_name', 'email', 'is_active', 'is_superuser')
     User = get_user_model()
     queryset = User.objects.hide_defaults().order_by('username')
     return util.edit(request, 'admin/users.html', User, fields=fields,
@@ -67,11 +66,6 @@ class BaseUserFormSet(BaseModelFormSet):
         # set encrypted password
         if password != '':
             instance.set_password(password)
-            changed = True
-        # no point in seperating admin rights from access to
-        # django_admin, make sure the two bits are in synch
-        if instance.is_staff != instance.is_superuser:
-            instance.is_staff = instance.is_superuser
             changed = True
 
         if commit and changed:
