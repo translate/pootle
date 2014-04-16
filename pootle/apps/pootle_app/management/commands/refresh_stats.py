@@ -168,13 +168,11 @@ class Command(PootleCommand):
 
             if check_names:
                 checks_query = checks_query.filter(name__in=check_names)
-            else:
-                all_check_names = get_qualitychecks()
-                stale_checks = \
-                    QualityCheck.objects.exclude(name__in=all_check_names.keys())
-                stale_checks.delete()
 
+            # delete not false-positive checks
+            # they should be recalculated
             checks_query.delete()
+            QualityCheck.delete_unknown_checks()
 
             self.checker = ENChecker()
             unit_count = 0

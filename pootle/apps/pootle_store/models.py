@@ -104,6 +104,11 @@ class QualityCheck(models.Model):
     def display_name(self):
         return check_names.get(self.name, self.name)
 
+    @classmethod
+    def delete_unknown_checks(cls):
+        unknown_checks = QualityCheck.objects \
+            .exclude(name__in=check_names.keys())
+        unknown_checks.delete()
 
 ################# Suggestion ################
 
