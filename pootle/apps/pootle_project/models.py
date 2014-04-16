@@ -282,27 +282,6 @@ class Project(models.Model, TreeItem):
             tp.delete()
             gc.collect()
 
-        # Here is a different version that first deletes all the related
-        # objects, starting from the leaves. This will have to be maintained
-        # doesn't seem to provide a real advantage in terms of performance.
-        # Doing this finer grained garbage collection keeps memory usage even
-        # lower but can take a bit longer.
-
-        '''
-        from pootle_statistics.models import Submission
-        from pootle_app.models import Suggestion as AppSuggestion
-        from pootle_store.models import Suggestion as StoreSuggestion
-        from pootle_store.models import QualityCheck
-        Submission.objects.filter(from_suggestion__translation_project__project=self).delete()
-        AppSuggestion.objects.filter(translation_project__project=self).delete()
-        StoreSuggestion.objects.filter(unit__store__translation_project__project=self).delete()
-        QualityCheck.objects.filter(unit__store__translation_project__project=self).delete()
-        gc.collect()
-        for tp in self.translationproject_set.iterator():
-            Unit.objects.filter(store__translation_project=tp).delete()
-            gc.collect()
-        '''
-
         super(Project, self).delete(*args, **kwargs)
 
         directory.delete()
