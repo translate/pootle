@@ -9,7 +9,6 @@ requirements in a virtual environment.
 Before proceeding, consider installing these first:
 
 - At least Python 2.6
-- At least Django 1.5.5 (Won't work yet with Django 1.6 or newer)
 - `python-pip <http://www.pip-installer.org/>`_
 
 If you only want to have a sneak peek of Pootle, the default configuration and
