@@ -28,7 +28,7 @@ from hashlib import md5
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist, ImproperlyConfigured
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
@@ -38,7 +38,6 @@ from django.template.defaultfilters import escape, truncatechars
 from django.utils import dateformat, timezone
 from django.utils.encoding import iri_to_uri
 from django.utils.http import urlquote
-from django.utils.importlib import import_module
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
@@ -57,8 +56,9 @@ from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
-from pootle_misc.checks import check_names
-from pootle_misc.util import cached_property, datetime_min, get_cached_value
+from pootle_misc.checks import check_names, run_given_filters, get_checker
+from pootle_misc.util import (cached_property, datetime_min,
+                              get_cached_value, import_func)
 from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
 
@@ -204,22 +204,6 @@ post_delete.connect(delete_votes, sender=Suggestion)
 
 
 ############### Unit ####################
-def import_func(path):
-    i = path.rfind('.')
-    module, attr = path[:i], path[i+1:]
-    try:
-        mod = import_module(module)
-    except ImportError, e:
-        raise ImproperlyConfigured('Error importing module %s: "%s"'
-                                   % (module, e))
-    try:
-        func = getattr(mod, attr)
-    except AttributeError:
-        raise ImproperlyConfigured(
-            'Module "%s" does not define a "%s" callable function'
-            % (module, attr))
-
-    return func
 
 f_path = getattr(settings, 'WORDCOUNT_FUNC', 'translate.storage.statsdb.wordcount')
 wordcount_f = import_func(f_path)
@@ -765,7 +749,8 @@ class Unit(models.Model, base.TranslationUnit):
                 self._auto_translated = True
 
     def update_qualitychecks(self, delete_existing=True,
-                             keep_false_positives=False):
+                             keep_false_positives=False,
+                             check_names=None):
         """Run quality checks and store result in the database.
 
         :param delete_existing: when set to `False`, it won't delete any existing
@@ -776,6 +761,9 @@ class Unit(models.Model, base.TranslationUnit):
 
         if delete_existing:
             checks = self.qualitycheck_set.all()
+            if check_names:
+                checks = checks.filter(name__in=check_names)
+
             if keep_false_positives:
                 existing = set(checks.filter(false_positive=True) \
                                      .values_list('name', flat=True))
@@ -790,8 +778,11 @@ class Unit(models.Model, base.TranslationUnit):
         if not self.target:
             return
 
-        qc_failures = self.store.translation_project.checker \
-                                .run_filters(self, categorised=True)
+        checker = get_checker(self)
+        if check_names is None:
+            qc_failures = checker.run_filters(self, categorised=True)
+        else:
+            qc_failures = run_given_filters(checker, self, check_names)
 
         for name in qc_failures.iterkeys():
             if name == 'fuzzy' or name in existing:

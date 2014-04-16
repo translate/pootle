@@ -34,7 +34,6 @@ from django.utils import dateformat
 from django.utils.encoding import force_unicode, iri_to_uri
 
 from pootle_language.models import Language
-from pootle_misc.checks import ENChecker, run_given_filters, get_qualitychecks
 from pootle_misc.util import datetime_min
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
@@ -174,17 +173,14 @@ class Command(PootleCommand):
             checks_query.delete()
             QualityCheck.delete_unknown_checks()
 
-            self.checker = ENChecker()
             unit_count = 0
-
             for i, store in enumerate(stores.iterator(), start=1):
                 logging.info("update_qualitychecks for %s" % store.pootle_path)
                 for unit in store.units.iterator():
                     unit_count += 1
-                    if check_names:
-                        self.update_qualitychecks(unit, check_names)
-                    else:
-                        unit.update_qualitychecks(delete_existing=False)
+                    unit.update_qualitychecks(keep_false_positives=True,
+                                              check_names=check_names)
+
                 if i % 20 == 0:
                     logging.info("%d units processed" % unit_count)
 
@@ -219,30 +215,6 @@ class Command(PootleCommand):
 
         logging.info('Setting empty values for other cache entries...')
         self._set_empty_values(timeout)
-
-    def update_qualitychecks(self, unit, checks, keep_false_positives=True):
-        # no checks if unit is untranslated
-        if not unit.target:
-            return
-
-        existing = []
-        if keep_false_positives:
-            existing = set(unit.qualitycheck_set
-                               .filter(false_positive=True, name__in=checks)
-                               .values_list('name', flat=True))
-
-        qc_failures = run_given_filters(self.checker, unit, check_names=checks)
-
-        for name in qc_failures.iterkeys():
-            if name == 'fuzzy' or name in existing:
-                # keep false-positive checks
-                continue
-
-            message = qc_failures[name]['message']
-            category = qc_failures[name]['category']
-
-            unit.qualitycheck_set.create(name=name, message=message,
-                                         category=category)
 
     def _set_qualitycheck_stats_cache(self, stats, key, timeout):
         if key:

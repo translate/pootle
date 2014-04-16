@@ -26,10 +26,12 @@ from functools import wraps
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponseBadRequest
 from django.utils import timezone
 from django.utils.encoding import force_unicode, iri_to_uri
 from django.utils.functional import Promise
+from django.utils.importlib import import_module
 
 # Timezone aware minimum for datetime (if appropriate) (bug 2567)
 from datetime import datetime
@@ -38,6 +40,24 @@ if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
 
 from pootle.core.markup import Markup
+
+
+def import_func(path):
+    i = path.rfind('.')
+    module, attr = path[:i], path[i+1:]
+    try:
+        mod = import_module(module)
+    except ImportError, e:
+        raise ImproperlyConfigured('Error importing module %s: "%s"'
+                                   % (module, e))
+    try:
+        func = getattr(mod, attr)
+    except AttributeError:
+        raise ImproperlyConfigured(
+            'Module "%s" does not define a "%s" callable function'
+            % (module, attr))
+
+    return func
 
 
 def getfromcachebyname(function, timeout=settings.OBJECT_CACHE_TIMEOUT):

@@ -26,8 +26,10 @@ from translate.filters.decorators import Category, critical
 from translate.filters import checks
 from translate.lang import data
 
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
+from pootle_misc.util import import_func
 
 category_names = {
     Category.CRITICAL: _("Critical"),
@@ -211,6 +213,15 @@ broken_entities_regex_7 = re.compile(u"&#x([a-zA-Z_]+);", re.U)
 
 fmt = u"[$%_@]"
 potential_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
+
+
+def get_checker(unit):
+    checker_class = getattr(settings, 'QUALITY_CHECKER', '')
+    if checker_class:
+        return import_func(checker_class)()
+    else:
+        return unit.store.translation_project.checker
+
 
 class ENChecker(checks.TranslationChecker):
 
