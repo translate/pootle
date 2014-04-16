@@ -1462,17 +1462,10 @@ td.keyboard-shortcut
 kbd
 {
     border: 1px solid #aaa;
-    -webkit-border-radius: 2px;
-       -moz-border-radius: 2px;
-            border-radius: 2px;
-    -webkit-box-shadow: 1px 2px 2px #ddd;
-       -moz-box-shadow: 1px 2px 2px #ddd;
-            box-shadow: 1px 2px 2px #ddd;
+    border-radius: 2px;
+    box-shadow: 1px 2px 2px #ddd;
     background-color: #f9f9f9;
-    background-image: -webkit-linear-gradient(top, #eee, #f9f9f9, #eee);
-       background-image: -moz-linear-gradient(top, #eee, #f9f9f9, #eee);
-         background-image: -o-linear-gradient(top, #eee, #f9f9f9, #eee);
-            background-image: linear-gradient(top, #eee, #f9f9f9, #eee);
+    background-image: linear-gradient(top, #eee, #f9f9f9, #eee);
     padding: 1px 3px;
     font-family: inherit;
 }
