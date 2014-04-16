@@ -52,6 +52,8 @@ for more details.
   behavior.
 - Added support to disable the Pootle server for maintenance using
   ``django-maintenancemode``.
+- Dropped support for old web browsers. Despite that Pootle might work on such
+  browsers. More on :ref:`Supported Browsers <browsers>`.
 
 
 Removal of legacy features
