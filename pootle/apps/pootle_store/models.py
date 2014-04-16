@@ -786,7 +786,8 @@ class Unit(models.Model, base.TranslationUnit):
 
         for name in qc_failures.iterkeys():
             if name == 'fuzzy' or name in existing:
-                # keep false-positive checks
+                # keep false-positive checks if check is active
+                existing.remove(name)
                 continue
 
             message = qc_failures[name]['message']
@@ -796,6 +797,11 @@ class Unit(models.Model, base.TranslationUnit):
                                          category=category)
 
             self.store.flag_for_deletion(CachedMethods.CHECKS)
+
+        # delete inactive checks
+        if existing:
+            QualityCheck.objects.filter(name__in=existing, unit=self).delete()
+
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.all()
