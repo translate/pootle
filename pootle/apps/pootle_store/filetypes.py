@@ -86,8 +86,15 @@ def get_supported_formats():
                         'monolingual'))
     try:
         from translate.storage.properties import javautf8file
-        formats.append(('properties', _('Java Properties (UTF-8)'),
+        formats.append(('propertiesutf8', _('Java Properties (UTF-8)'),
                         javautf8file, 'monolingual'))
+    except ImportError:
+        pass
+
+    try:
+        from translate.storage.properties import gwtfile
+        formats.append(('propertiesgwt', _('Gwt Properties'),
+                        gwtfile, 'monolingual'))
     except ImportError:
         pass
 
