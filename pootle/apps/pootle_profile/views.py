@@ -35,7 +35,7 @@ from .forms import UserForm, pootle_profile_form_factory
 
 def profile_edit(request):
     # FIXME: better to whitelist fields rather than blacklisting them.
-    excluded = ('user', 'ui_lang')
+    excluded = ('user', )
 
     return edit_profile(request,
                         form_class=pootle_profile_form_factory(excluded),

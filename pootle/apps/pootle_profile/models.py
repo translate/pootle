@@ -81,12 +81,6 @@ class PootleProfile(models.Model):
         verbose_name=_("Number of Rows"),
     )
     input_height = models.SmallIntegerField(default=5, editable=False)
-    ui_lang = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name=_('Interface Language'),
-    )
     alt_src_langs = models.ManyToManyField(
         'pootle_language.Language',
         blank=True,
