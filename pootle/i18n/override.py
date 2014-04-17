@@ -94,20 +94,6 @@ def get_lang_from_cookie(request, supported):
         return None
 
 
-def get_lang_from_prefs(request, supported):
-    """If the current user is logged in, get her profile model object
-    and check whether she has set her preferred interface language.
-    """
-    # If the user is logged in
-    if request.user.is_authenticated():
-        profile = request.user.get_profile()
-        # and if the user's ui lang is set, and the ui lang exists
-        if profile.ui_lang and profile.ui_lang in supported:
-            return profile.ui_lang
-
-    return None
-
-
 def get_lang_from_http_header(request, supported):
     """If the user's browser sends a list of preferred languages in the
     HTTP_ACCEPT_LANGUAGE header, parse it into a list. Then walk through
@@ -144,7 +130,6 @@ def get_language_from_request(request, check_path=False):
     supported = dict(supported_langs())
     for lang_getter in (get_lang_from_session,
                         get_lang_from_cookie,
-                        get_lang_from_prefs,
                         get_lang_from_http_header):
         lang = lang_getter(request, supported)
         if lang is not None:
