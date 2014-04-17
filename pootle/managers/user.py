@@ -60,3 +60,24 @@ class UserManager(BaseUserManager):
     def create_superuser(self, username, email, password, **extra_fields):
         return self._create_user(username, email, password, True,
                                  **extra_fields)
+
+    def get_queryset(self):
+        # TODO: review if we really want to retrieve alternative source
+        # languages by default all the time
+        return super(UserManager, self).get_queryset().select_related(
+            'alt_src_langs',
+        )
+
+    def get_default_user(self):
+        return super(UserManager, self).get_queryset().get(username='default')
+
+    def get_nobody_user(self):
+        return super(UserManager, self).get_queryset().get(username='nobody')
+
+    def get_system_user(self):
+        return super(UserManager, self).get_queryset().get(username='system')
+
+    def hide_defaults(self):
+        return super(UserManager, self).get_queryset().exclude(
+            username__in=('nobody', 'default', 'system')
+        )
