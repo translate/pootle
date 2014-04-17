@@ -187,6 +187,7 @@ class TranslationStoreFieldFile(FieldFile):
                 from pootle_store.filetypes import factory_classes
 
                 store_obj = factory.getobject(self.path,
+                                              localfiletype=self.instance.translation_project.project.localfiletype,
                                               ignore=self.field.ignore,
                                               classes=factory_classes)
                 self._store_tuple = StoreTuple(store_obj, mod_info,
