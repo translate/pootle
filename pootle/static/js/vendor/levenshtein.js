@@ -32,10 +32,17 @@
   /*
    * Prepare input for further processing.
    *
+   * As a start, ensure the input is a string.
    * Depending on the desired comparison type, a segmentation function
    * will be applied or not.
    */
   var prepareInput = function (input, compare) {
+    if (input === null || input === undefined) {
+      input = '';
+    } else if (typeof input !== 'string' || !input instanceof String) {
+      input = (input).toString();
+    }
+
     return (compare === 'words') ? segmentWords(input) : input;
   };
 
