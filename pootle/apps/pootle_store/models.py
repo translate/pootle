@@ -1116,6 +1116,9 @@ class Store(models.Model, base.TranslationStore):
 
         if store is None:
             store = self.file.store
+            store.settargetlanguage(self.translation_project.language.code)
+            store.setsourcelanguage(self.translation_project.project.source_language.code)
+
 
         if self.state < PARSED:
             logging.debug(u"Parsing %s", self.pootle_path)
@@ -1202,6 +1205,9 @@ class Store(models.Model, base.TranslationStore):
 
         if store is None:
             store = self.file.store
+            store.settargetlanguage(self.translation_project.language.code)
+            store.setsourcelanguage(self.translation_project.project.source_language.code)
+
 
         # Lock store
         logging.debug(u"Updating %s", self.pootle_path)
@@ -1368,6 +1374,8 @@ class Store(models.Model, base.TranslationStore):
         logging.debug(u"Syncing %s", self.pootle_path)
         self.require_dbid_index(update=True)
         disk_store = self.file.store
+        disk_store.settargetlanguage(self.translation_project.language.code)
+        disk_store.setsourcelanguage(self.translation_project.project.source_language.code)
         old_ids = set(disk_store.getids())
         new_ids = set(self.dbid_index.keys())
 
@@ -1456,6 +1464,7 @@ class Store(models.Model, base.TranslationStore):
         output = fileclass()
         try:
             output.settargetlanguage(self.translation_project.language.code)
+            output.setsourcelanguage(self.translation_project.project.source_language.code)
         except ObjectDoesNotExist:
             pass
         #FIXME: we should add some headers

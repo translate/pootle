@@ -378,10 +378,10 @@ def convert_template(translation_project, template_store, target_pootle_path,
         template_file = template_store.file.store
     else:
         template_file = template_store
-
+    template_file.settargetlanguage(translation_project.language.code)
+    template_file.setsourcelanguage(translation_project.project.source_language.code)
     try:
         store = Store.objects.get(pootle_path=target_pootle_path)
-
         if monolingual and store.state < PARSED:
             #HACKISH: exploiting update from templates to parse monolingual files
             store.update(store=template_file)
@@ -406,6 +406,7 @@ def convert_template(translation_project, template_store, target_pootle_path,
             store.update(update_structure=True, update_translation=True,
                          store=output_file, fuzzy=True)
         output_file.settargetlanguage(translation_project.language.code)
+        output_file.setsourcelanguage(translation_project.project.source_language.code)
         output_file.savefile(target_path)
     elif store:
         store.mergefile(output_file, None, allownewstrings=True,
