@@ -25,10 +25,14 @@ If you want to reverse proxy through Apache, you will need to have `mod_proxy
 <https://httpd.apache.org/docs/current/mod/mod_proxy.html>`_ installed for
 forwarding requests and configure it accordingly.
 
+You also need to add the front/outside hostname (the hostname of the proxying
+Apache server) to the ALLOWED_HOSTS in ~/.pootle/pootle.conf file
+
 .. code-block:: apache
 
     ProxyPass / http://localhost:8000/
     ProxyPassReverse / http://localhost:8000/
+    ProxyPreserveHost On
 
 
 .. _apache#mod_wsgi:
