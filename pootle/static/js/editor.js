@@ -484,6 +484,8 @@
 
     PTL.editor.hlSearch();
 
+    PTL.editor.setupAutocomplete();
+
     if (PTL.editor.settings.tmUrl != '') {
       PTL.editor.getTMUnits();
     }
@@ -570,6 +572,41 @@
     $(sel.join(", ")).highlightRegex(hlRegex);
   },
 
+  setupAutocomplete: function () {
+    var searchFunc = function (term, callback) {
+      var $placeables = $("div.original .js-placeable");
+
+      var matching = $.map($placeables, function (placeable) {
+        var text = $(placeable).text(),
+            html = $(placeable).html();
+        if (term.length !== 0 && text.indexOf(term) === 0) {
+          // We return html not text here as the return value will used to
+          // populate the drop down menu unescaped.
+          return html;
+        } else {
+          return null;
+        }
+      });
+
+      callback(matching);
+    };
+
+    var replaceFunc = function (value) {
+      // Unescape the HTML text we returned above for insertion into the
+      // textarea.
+      var text = $('<div/>').html(value).text();
+      return text;
+    };
+
+    $("textarea.translation").textcomplete([
+      {
+        match: /(\S*)$/,
+        search: searchFunc,
+        replace: replaceFunc,
+        index: 1,
+      }
+    ]);
+  },
 
   /* Copies text into the focused textarea */
   copyText: function (e) {

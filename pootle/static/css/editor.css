@@ -660,6 +660,11 @@ td.translate-full textarea.translation
     min-height: 2.7em; 
 }
 
+.translate-translation .textcomplete-wrapper
+{
+    width: 100%;
+    display: block !important;
+}
 
 /* TM and suggestions */
 
@@ -1336,6 +1341,17 @@ a.editor-specialchar:hover
 .placeable
 {
     color: #840;
+}
+
+.highlight-escape,
+.placeable
+{
+    /* Switch the next two lines to “unicode-bidi: isolate” once it is widely
+     * supported and let the browser determine the direction, instead of
+     * assuming that all placeables are left-to-right string.
+     */
+    direction: ltr;
+    unicode-bidi: embed;
 }
 
 .placeable:hover,
