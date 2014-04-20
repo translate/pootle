@@ -64,58 +64,6 @@ def save_build_version(product, build_version):
         logging.info("Database now at Toolkit build %d" % build_version)
 
 
-def calculate_stats():
-    """Calculate full translation statistics.
-
-    First time to visit the front page all stats for projects and
-    languages will be calculated which can take forever. Since users don't
-    like webpages that take forever let's precalculate the stats here.
-    """
-    from pootle_language.models import Language
-    from pootle_project.models import Project
-
-    logging.info('Calculating translation statistics, this will take '
-                 'a few minutes')
-
-    for language in Language.objects.iterator():
-        logging.info(u'Language %s is %d%% complete', language.name,
-                     language.translated_percentage())
-
-    for project in Project.objects.iterator():
-        logging.info(u'Project %s is %d%% complete', project.fullname,
-                     project.translated_percentage())
-
-    logging.info(u"Done calculating statistics")
-
-
-def flush_quality_checks():
-    """Revert stores to unchecked state.
-
-    If a store has false positives marked, quality checks will be updated
-    keeping false postivies intact.
-    """
-    from pootle_store.models import Store, QualityCheck, CHECKED, PARSED
-
-    logging.info('Fixing quality checks. This will take a while')
-
-    for store in Store.objects.filter(state=CHECKED).iterator():
-        store_checks = QualityCheck.objects.filter(unit__store=store)
-        false_positives = store_checks.filter(false_positive=True).count()
-
-        if false_positives:
-            logging.debug("%s has false positives, updating quality checks",
-                          store.pootle_path)
-
-            for unit in store.units.iterator():
-                unit.update_qualitychecks(keep_false_positives=True)
-        else:
-            logging.debug("%s has no false positives, deleting checks",
-                          store.pootle_path)
-            store_checks.delete()
-            store.state = PARSED
-            store.save()
-
-
 def buildversion_for_fn(fn):
     """Return the build version string for the `fn` function name."""
     return fn.rsplit('_', 1)[-1]
