@@ -71,20 +71,6 @@ def buildversion_for(func):
     return int(build_string)
 
 
-def filter_upgrade_functions(function_buildversion, old_buildversion, new_buildversion):
-    """Determine if a upgrade function should be run or not.
-
-    :param fn: Function name candidate to be run.
-    :param old_buildversion: Old build version to use as a threshold.
-    :param new_buildversion: New build version to use as a threshold.
-    """
-    try:
-        return (function_buildversion > old_buildversion and
-                function_buildversion <= new_buildversion)
-    except ValueError:
-        return False
-
-
 def is_upgrade_function(mod, func):
     """Return True if `func` is a upgrade function in `mod`."""
     import inspect
@@ -108,11 +94,8 @@ def get_upgrade_functions(mod, old_buildversion, new_buildversion):
                  if is_upgrade_function(mod, func)]
 
     # Filter the ones that need to be executed for the given build versions.
-    funcs_to_run = filter(
-        lambda x: filter_upgrade_functions(x[1], old_buildversion,
-                                           new_buildversion),
-        functions,
-    )
+    funcs_to_run = [x for x in functions
+                    if x[1] > old_buildversion and x[1] <= new_buildversion]
 
     return sorted(funcs_to_run, cmp=lambda x, y: cmp(x[1], y[1]))
 
