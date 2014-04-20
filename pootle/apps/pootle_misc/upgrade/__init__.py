@@ -130,8 +130,8 @@ def filter_upgrade_functions(fn, old_buildversion, new_buildversion):
     """
     try:
         function_buildversion = int(buildversion_for_fn(fn))
-        return (function_buildversion > int(old_buildversion) and
-                function_buildversion <= int(new_buildversion))
+        return (function_buildversion > old_buildversion and
+                function_buildversion <= new_buildversion)
     except ValueError:
         return False
 
