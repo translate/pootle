@@ -71,7 +71,7 @@ def buildversion_for(func):
     return int(build_string)
 
 
-def filter_upgrade_functions(fn, old_buildversion, new_buildversion):
+def filter_upgrade_functions(function_buildversion, old_buildversion, new_buildversion):
     """Determine if a upgrade function should be run or not.
 
     :param fn: Function name candidate to be run.
@@ -79,7 +79,6 @@ def filter_upgrade_functions(fn, old_buildversion, new_buildversion):
     :param new_buildversion: New build version to use as a threshold.
     """
     try:
-        function_buildversion = int(buildversion_for_fn(fn))
         return (function_buildversion > old_buildversion and
                 function_buildversion <= new_buildversion)
     except ValueError:
