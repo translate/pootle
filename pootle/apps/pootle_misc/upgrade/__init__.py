@@ -115,26 +115,6 @@ def get_upgrade_functions(mod, old_buildversion, new_buildversion):
     return sorted(filtered_functions, cmp=lambda x, y: cmp(x[1], y[1]))
 
 
-def run_upgrade(old_ptl_buildversion=None, new_ptl_buildversion=None,
-                old_tt_buildversion=None, new_tt_buildversion=None):
-    """Perform version-specific actions for Pootle and Translate Toolkit.
-
-    :param old_ptl_buildversion: Pootle's old build version as stored in
-        the DB.
-    :param new_ptl_buildversion: Pootle's new build version as stored in
-        the source code.
-    :param old_tt_buildversion: Toolkit's old build version as stored in
-        the DB.
-    :param new_tt_buildversion: Toolkit's new build version as stored in
-        the source code.
-    """
-    if old_ptl_buildversion and new_ptl_buildversion:
-        upgrade('pootle', old_ptl_buildversion, new_ptl_buildversion)
-
-    if old_tt_buildversion and new_tt_buildversion:
-        upgrade('ttk', old_tt_buildversion, new_tt_buildversion)
-
-
 def upgrade(product, old_buildversion, new_buildversion):
     """Upgrade to the latest build version and executes any needed actions.
 
