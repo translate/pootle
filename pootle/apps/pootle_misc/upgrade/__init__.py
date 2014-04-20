@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Zuza Software Foundation
+# Copyright 2013, 2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -101,18 +101,19 @@ def get_upgrade_functions(mod, old_buildversion, new_buildversion):
     :param old_buildversion: Old build version to use as a threshold.
     :param new_buildversion: New build version to use as a threshold.
     """
-    # Gather module's functions and their build versions and filter those
-    # that need to be executed for the given build version.
-    functions = [(f, buildversion_for_fn(f.__name__))
-                    for f in mod.__dict__.itervalues()
-                    if is_upgrade_function(mod, f)]
-    filtered_functions = filter(
+    # Gather module's upgrade functions and their build versions.
+    functions = [(func, buildversion_for_fn(func.__name__))
+                 for func in mod.__dict__.itervalues()
+                 if is_upgrade_function(mod, func)]
+
+    # Filter the ones that need to be executed for the given build versions.
+    funcs_to_run = filter(
         lambda x: filter_upgrade_functions(x[1], old_buildversion,
                                            new_buildversion),
         functions,
     )
 
-    return sorted(filtered_functions, cmp=lambda x, y: cmp(x[1], y[1]))
+    return sorted(funcs_to_run, cmp=lambda x, y: cmp(x[1], y[1]))
 
 
 def upgrade(product, old_buildversion, new_buildversion):

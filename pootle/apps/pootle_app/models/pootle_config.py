@@ -82,7 +82,8 @@ def get_legacy_ttk_build():
     from pootle_misc.siteconfig import load_site_config
 
     try:
-        build = int(load_site_config().get('TT_BUILDVERSION', 0))
+        config = load_site_config()
+        build = int(config.get('TT_BUILDVERSION', 0))
     except DatabaseError:
         build = 0
 
