@@ -86,8 +86,8 @@ class Command(BaseCommand):
                 calculate_stats()
 
             if options['flush_qc']:
-                from pootle_misc.upgrade import flush_checks
-                flush_checks()
+                from pootle_misc.upgrade import flush_quality_checks
+                flush_quality_checks()
 
             logging.info('Done.')
         else:
