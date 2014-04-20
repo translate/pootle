@@ -65,8 +65,9 @@ def save_build_version(product, build_version):
 
 
 def buildversion_for_fn(fn):
-    """Return the build version string for the `fn` function name."""
-    return fn.rsplit('_', 1)[-1]
+    """Return the build version for the `fn` function name."""
+    build_string = fn.rsplit('_', 1)[-1]
+    return int(build_string)
 
 
 def filter_upgrade_functions(fn, old_buildversion, new_buildversion):
@@ -145,6 +146,6 @@ def upgrade(product, old_buildversion, new_buildversion):
 
     for upgrade_function, upgrade_buildversion in upgrade_functions:
         upgrade_function()
-        save_build_version(product, int(upgrade_buildversion))
+        save_build_version(product, upgrade_buildversion)
 
     save_build_version(product, new_buildversion)
