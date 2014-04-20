@@ -64,8 +64,9 @@ def save_build_version(product, build_version):
         logging.info("Database now at Toolkit build %d" % build_version)
 
 
-def buildversion_for_fn(fn):
-    """Return the build version for the `fn` function name."""
+def buildversion_for(func):
+    """Return the build version for the given upgrade function."""
+    fn = func.__name__
     build_string = fn.rsplit('_', 1)[-1]
     return int(build_string)
 
@@ -103,7 +104,7 @@ def get_upgrade_functions(mod, old_buildversion, new_buildversion):
     :param new_buildversion: New build version to use as a threshold.
     """
     # Gather module's upgrade functions and their build versions.
-    functions = [(func, buildversion_for_fn(func.__name__))
+    functions = [(func, buildversion_for(func))
                  for func in mod.__dict__.itervalues()
                  if is_upgrade_function(mod, func)]
 
