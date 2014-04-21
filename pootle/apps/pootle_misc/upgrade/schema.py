@@ -30,8 +30,6 @@ import logging
 
 from django.core.management import call_command
 
-from . import ensure_pootle_config
-
 
 def update_tables_22000():
     logging.info("Updating existing database tables")
@@ -107,11 +105,6 @@ def update_tables_22000():
 
 def staggered_update(db_buildversion):
     """Updates Pootle's database schema in steps."""
-
-    # Before upgrading anything try to migrate the buildversions to the new
-    # PootleConfig model, so all the code uses the same way to retrieve and
-    # save the build versions.
-    ensure_pootle_config()
 
     # Build missing tables
     try:
