@@ -62,6 +62,13 @@ class SiteConfiguration(models.Model):
 
         return self.settings.get(key, default)
 
+    def set(self, key, value):
+        """
+        Sets a setting. The key should be a string, but the value can be
+        any native Python object.
+        """
+        self.settings[key] = value
+
     def add_defaults(self, defaults_dict):
         """
         Adds a dictionary of defaults to this SiteConfiguration. These
