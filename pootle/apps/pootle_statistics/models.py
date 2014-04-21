@@ -37,8 +37,8 @@ class SubmissionTypes(object):
     SUGG_ACCEPT = 3  # Accepting a suggestion
     UPLOAD = 4  # Uploading an offline file
     SYSTEM = 5  # Batch actions performed offline
-    MUTE_CHECK = 6 # Mute QualityCheck
-    UNMUTE_CHECK = 7 # Unmute QualityCheck
+    MUTE_CHECK = 6  # Mute QualityCheck
+    UNMUTE_CHECK = 7  # Unmute QualityCheck
 
 
 class SubmissionFields(object):
