@@ -15,6 +15,7 @@ other way, make sure to read through this part.
    hacking
    customization
    testing
+   initial_data_and_upgrade
    release
    glossary
    styleguide
