@@ -32,7 +32,7 @@ def get_pootle_build(default=0):
 
     # We have some code that depends on the build version being not less than a
     # specific value.
-    if default and build < default:
+    if build < default:
         build = default
 
     return build
@@ -50,7 +50,7 @@ def get_toolkit_build(default=0):
 
     # We have some code that depends on the build version being not less than a
     # specific value.
-    if default and build < default:
+    if build < default:
         build = default
 
     return build
