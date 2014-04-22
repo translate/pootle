@@ -59,8 +59,8 @@ class PootleCommand(NoArgsCommand):
                               self.name, tp, e)
                 return
 
-        if not process_stores:
-            return
+            if not process_stores:
+                return
 
         if not pootle_path and hasattr(self, "handle_all_stores"):
             logging.info(u"Running %s over %s's files", self.name, tp)
