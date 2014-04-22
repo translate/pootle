@@ -131,11 +131,8 @@ class Command(BaseCommand):
 
             from pootle_misc.upgrade import upgrade
 
-            if db_ptl_buildversion and code_ptl_buildversion:
-                upgrade('pootle', db_ptl_buildversion, code_ptl_buildversion)
-
-            if db_tt_buildversion and code_tt_buildversion:
-                upgrade('ttk', db_tt_buildversion, code_tt_buildversion)
+            upgrade('pootle', db_ptl_buildversion, code_ptl_buildversion)
+            upgrade('ttk', db_tt_buildversion, code_tt_buildversion)
 
             if options['calculate_stats']:
                 calculate_stats()
