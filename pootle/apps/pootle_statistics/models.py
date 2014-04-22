@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import escape, truncatechars
 from django.utils.safestring import mark_safe
@@ -127,10 +128,16 @@ class Submission(models.Model):
         message describing the action performed, and when it was performed.
         """
 
+        # Sadly we may not have submitter information in all the situations yet
+        if self.submitter:
+            submitter = self.submitter
+        else:
+            submitter = User.objects.get_nobody_user().get_profile()
+
         action_bundle = {
-            "profile_url": self.submitter.get_absolute_url(),
-            "gravatar_url": self.submitter.gravatar_url(20),
-            "username": self.submitter.user.username,
+            "profile_url": submitter.get_absolute_url(),
+            "gravatar_url": submitter.gravatar_url(20),
+            "username": submitter.user.username,
         }
 
         unit = {
