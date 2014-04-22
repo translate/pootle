@@ -21,14 +21,14 @@ import logging
 import os
 from optparse import make_option
 
-from translate.__version__ import build as code_tt_buildversion
+from translate.__version__ import build as CODE_TTK_BUILDVERSION
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.core.management.base import BaseCommand
 
-from pootle.__version__ import build as code_ptl_buildversion
+from pootle.__version__ import build as CODE_PTL_BUILDVERSION
 from pootle_app.models.pootle_config import get_pootle_build, get_toolkit_build
 
 
@@ -110,20 +110,20 @@ class Command(BaseCommand):
         db_ptl_buildversion = get_pootle_build(DEFAULT_POOTLE_BUILDVERSION)
         db_tt_buildversion = get_toolkit_build(DEFAULT_TT_BUILDVERSION)
 
-        ptl_changed = db_ptl_buildversion < code_ptl_buildversion
-        tt_changed = db_tt_buildversion < code_tt_buildversion
+        ptl_changed = db_ptl_buildversion < CODE_PTL_BUILDVERSION
+        tt_changed = db_tt_buildversion < CODE_TTK_BUILDVERSION
 
         if ptl_changed or tt_changed:
 
             if ptl_changed:
                 logging.info('Detected new Pootle version: %d.',
-                             code_ptl_buildversion)
+                             CODE_PTL_BUILDVERSION)
             else:
                 db_ptl_buildversion = 0
 
             if tt_changed:
                 logging.info('Detected new Translate Toolkit version: %d.',
-                             code_tt_buildversion)
+                             CODE_TTK_BUILDVERSION)
             else:
                 db_tt_buildversion = 0
 
@@ -131,8 +131,8 @@ class Command(BaseCommand):
 
             from pootle_misc.upgrade import upgrade
 
-            upgrade('pootle', db_ptl_buildversion, code_ptl_buildversion)
-            upgrade('ttk', db_tt_buildversion, code_tt_buildversion)
+            upgrade('pootle', db_ptl_buildversion, CODE_PTL_BUILDVERSION)
+            upgrade('ttk', db_tt_buildversion, CODE_TTK_BUILDVERSION)
 
             if options['calculate_stats']:
                 calculate_stats()
@@ -146,5 +146,5 @@ class Command(BaseCommand):
                     'You are already up to date! Current build versions:\n'
                     '- Pootle: %s\n'
                     '- Translate Toolkit: %s',
-                code_ptl_buildversion, code_tt_buildversion,
+                CODE_PTL_BUILDVERSION, CODE_TTK_BUILDVERSION,
             )
