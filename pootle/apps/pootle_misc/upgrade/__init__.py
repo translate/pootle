@@ -184,7 +184,7 @@ def run_upgrade(old_ptl_buildversion=None, new_ptl_buildversion=None,
         upgrade('pootle', old_ptl_buildversion, new_ptl_buildversion)
 
     if old_tt_buildversion and new_tt_buildversion:
-        upgrade('ttk', old_ptl_buildversion, new_ptl_buildversion)
+        upgrade('ttk', old_tt_buildversion, new_tt_buildversion)
 
 
 def upgrade(product, old_buildversion, new_buildversion):
