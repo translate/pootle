@@ -161,26 +161,19 @@ def overview(request, project):
     """Page listing all languages added to project."""
     from locale import strcoll
 
-    translation_projects = project.translationproject_set.all()
-
     items = [make_language_item(translation_project)
-             for translation_project in translation_projects.iterator()]
+             for translation_project in project.get_children().iterator()]
     items.sort(lambda x, y: strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'suggestions', 'critical', 'activity']
+                    'suggestions', 'critical', 'last-updated', 'activity']
 
     ctx = get_overview_context(request)
     ctx.update({
-        'project': {
-            'code': project.code,
-            'name': project.fullname,
-            'description': project.description,
-        },
+        'project': project,
         'can_edit': check_permission("administrate", request),
         'table': {
             'id': 'project',
-            'proportional': False,
             'fields': table_fields,
             'headings': get_table_headings(table_fields),
             'items': items,

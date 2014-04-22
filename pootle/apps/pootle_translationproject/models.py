@@ -1084,31 +1084,6 @@ class TranslationProject(models.Model, TreeItem):
 
         return self.non_db_state.termmatcher
 
-    ###########################################################################
-
-    #FIXME: we should cache results to ease live translation
-    def translate_message(self, singular, plural=None, n=1):
-        for store in self.stores.iterator():
-            unit = store.findunit(singular)
-            if unit is not None and unit.istranslated():
-                if unit.hasplural() and n != 1:
-                    pluralequation = self.language.pluralequation
-
-                    if pluralequation:
-                        pluralfn = gettext.c2py(pluralequation)
-                        target =  unit.target.strings[pluralfn(n)]
-
-                        if target is not None:
-                            return target
-                else:
-                    return unit.target
-
-        # No translation found
-        if n != 1 and plural is not None:
-            return plural
-        else:
-            return singular
-
 
 ###############################################################################
 # Signal handlers                                                             #

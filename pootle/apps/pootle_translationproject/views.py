@@ -21,6 +21,7 @@
 import logging
 import os
 import StringIO
+from urllib import quote, unquote
 
 from django import forms
 from django.conf import settings
@@ -31,6 +32,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
+from django.utils import dateformat, simplejson
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
@@ -40,7 +42,7 @@ from taggit.models import Tag
 from pootle.core.browser import (get_children, get_goal_children,
                                  get_goal_parent, get_parent,
                                  get_table_headings, make_goal_item)
-from pootle.core.decorators import (get_path_obj, get_resource_context,
+from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
@@ -64,9 +66,13 @@ from pootle_store.filetypes import factory_classes
 from pootle_tagging.decorators import get_goal
 from pootle_tagging.forms import GoalForm, TagForm
 from pootle_tagging.models import Goal
+from staticpages.models import StaticPage
 
 from .actions import action_groups
 from .forms import DescriptionForm, upload_form_factory
+
+
+ANN_COOKIE_NAME = 'project-announcements'
 
 
 @get_path_obj
@@ -295,7 +301,7 @@ def goals_overview(*args, **kwargs):
 
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 @get_goal
 def overview(request, translation_project, dir_path, filename=None,
              goal=None, in_goal_overview=False):
@@ -423,6 +429,36 @@ def overview(request, translation_project, dir_path, filename=None,
     else:
         description = goal.description
 
+    # TODO: cleanup and refactor, retrieve from cache
+    try:
+        ann_virtual_path = 'announcements/' + project.code
+        announcement = StaticPage.objects.live(request.user).get(
+            virtual_path=ann_virtual_path,
+        )
+    except StaticPage.DoesNotExist:
+        announcement = None
+
+    display_announcement = True
+    stored_mtime = None
+    new_mtime = None
+    cookie_data = {}
+
+    if ANN_COOKIE_NAME in request.COOKIES:
+        json_str = unquote(request.COOKIES[ANN_COOKIE_NAME])
+        cookie_data = simplejson.loads(json_str)
+
+        if 'isOpen' in cookie_data:
+            display_announcement = cookie_data['isOpen']
+
+        if project.code in cookie_data:
+            stored_mtime = cookie_data[project.code]
+
+    if announcement is not None:
+        ann_mtime = dateformat.format(announcement.modified_on, 'U')
+        if ann_mtime != stored_mtime:
+            display_announcement = True
+            new_mtime = ann_mtime
+
     ctx.update(get_overview_context(request))
     ctx.update({
         'resource_obj': request.store or request.directory,  # Dirty hack.
@@ -437,6 +473,9 @@ def overview(request, translation_project, dir_path, filename=None,
 
         'browser_extends': 'translation_projects/base.html',
         'browser_body_id': 'tpoverview',
+
+        'announcement': announcement,
+        'announcement_displayed': display_announcement,
     })
 
     tp_pootle_path = translation_project.pootle_path
@@ -464,7 +503,8 @@ def overview(request, translation_project, dir_path, filename=None,
         elif goal in resource_obj_goals:
             # Then show the drill down view for the specified goal.
             table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions', 'critical', 'activity']
+                            'suggestions', 'critical', 'last-updated',
+                            'activity']
 
             ctx.update({
                 'table': {
@@ -481,7 +521,8 @@ def overview(request, translation_project, dir_path, filename=None,
         else:
             # Then show the files tab.
             table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions', 'critical', 'activity']
+                            'suggestions', 'critical', 'last-updated',
+                            'activity']
             ctx.update({
                 'table': {
                     'id': 'tp-files',
@@ -526,8 +567,15 @@ def overview(request, translation_project, dir_path, filename=None,
             'add_tag_action_url': add_tag_action_url,
         })
 
-    return render_to_response(template_name, ctx,
-                              context_instance=RequestContext(request))
+    response = render_to_response(template_name, ctx,
+                                  context_instance=RequestContext(request))
+
+    if new_mtime is not None:
+        cookie_data[project.code] = new_mtime
+        cookie_data = quote(simplejson.dumps(cookie_data))
+        response.set_cookie(ANN_COOKIE_NAME, cookie_data)
+
+    return response
 
 
 @require_POST
@@ -615,7 +663,7 @@ def ajax_add_tag_to_tp(request, translation_project):
 @ajax_required
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def qualitycheck_stats(request, translation_project, dir_path, filename=None):
     directory = request.directory
     store = request.store
@@ -630,7 +678,7 @@ def qualitycheck_stats(request, translation_project, dir_path, filename=None):
 
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def translate(request, translation_project, dir_path, filename):
     language = translation_project.language
     project = translation_project.project
@@ -654,7 +702,7 @@ def translate(request, translation_project, dir_path, filename):
 
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def export_view(request, translation_project, dir_path, filename=None):
     """Displays a list of units with filters applied."""
     ctx = get_export_view_context(request)

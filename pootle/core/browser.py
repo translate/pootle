@@ -73,6 +73,11 @@ HEADING_CHOICES = [
         'display_name': _("Critical"),
     },
     {
+        'id': 'last-updated',
+        'class': 'stats sorttable_numeric when-loaded',
+        'display_name': _("Last updated"),
+    },
+    {
         'id': 'activity',
         'class': 'stats sorttable_numeric when-loaded',
         'display_name': _("Last Activity"),
@@ -158,8 +163,7 @@ def make_project_list_item(project):
 
 
 def get_children(directory):
-    """Return a list of children directories and stores for this ``directory``,
-    and also the parent directory.
+    """Return a list of children directories and stores for this ``directory``.
 
     The elements of the list are dictionaries which keys are populated after in
     the templates.

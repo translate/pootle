@@ -6,6 +6,7 @@ Django>=1.5.6,<1.6
 django-allauth==0.15.0
 django-assets>=0.8
 django-contact-form==1.0
+django-maintenancemode
 django-taggit>=0.10,<0.11.2
 django-voting==0.1
 South>=0.7.6

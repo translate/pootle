@@ -7,13 +7,6 @@
 {% block body_id %}{{ browser_body_id }}{% endblock %}
 {% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
 
-{% block breadcrumbs %}
-  {{ block.super }}
-  {% if resource_path %}
-    <li class="file-path"><a href="{% url 'pootle-tp-overview' language.code project.code '' %}">&lt; {% trans "root folder" %} &gt;</a> / {{ resource_obj|trail:"/" }}</li>
-  {% endif %}
-{% endblock %}
-
 {% block header_content_block %}
 <div id="top-stats" class="header">
   {% block header_content %}
@@ -42,7 +35,21 @@
         </tbody>
       </table>
     </div>
-    <div id="js-stats-checks" class="hide">
+    <div class="bd">
+      <table class="last">
+        <tbody>
+          <tr id="js-last-updated">
+            <td>{% trans "Last updated" %}</td>
+            <td class="last-updated"></td>
+          </tr>
+          <tr id="js-last-action">
+            <td>{% trans "Last action" %}</td>
+            <td class="last-action"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="js-stats-checks" class="hide stats-checks">
       <div class="hd">
         <h3><span>{% trans "Failing Checks" %}</span></h3>
       </div>
@@ -78,8 +85,17 @@
 </div>
 {% endblock %}
 
-{% block content %}
+{% block pre_content %}
+{% if announcement %}
+<div id="sidebar"
+  class="js-sidebar{% if announcement_displayed %} sidebar-open{% endif %}">
+{% include "staticpages/_body.html" with page=announcement %}
+  <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
+</div>
+{% endif %}
+{% endblock %}
 
+{% block content %}
 {% if table %}
 <div class="hd">
   <h2>{% trans "Files and Subfolders" %}</h2>
@@ -91,7 +107,6 @@
   </div>
 </div>
 {% endif %}
-
 {% endblock content %}
 
 {% block scripts_extra %}
@@ -109,6 +124,10 @@ $(function () {
     $("body").spin(false);
   });
 
+  {% if announcement %}
+  PTL.common.fixSidebarHeight();
+  $(window).on('resize', PTL.common.fixSidebarHeight);
+  {% endif %}
   $("td.stats-name").filter(":not([dir])").bidi();
 
 {% if upload_form %}

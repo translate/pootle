@@ -37,7 +37,7 @@ from translate.lang.data import langcode_re
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem, CachedMethods
-from pootle.core.url_helpers import get_editor_filter
+from pootle.core.url_helpers import get_editor_filter, get_path_sortkey
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_misc.util import cached_property
@@ -181,6 +181,39 @@ class Project(models.Model, TreeItem):
         # built-in invalidation -- did I hear django-cache-machine?
         return Language.objects.filter(Q(translationproject__project=self),
                                        ~Q(code='templates'))
+
+    @cached_property
+    def resources(self):
+        """Returns a list of :cls:`~pootle_app.models.Directory` and
+        :cls:`~pootle_store.models.Store` objects available for this
+        :cls:`~pootle_project.models.Project` across all languages.
+        """
+        from pootle_store.models import Store
+
+        resources_path = ''.join(['/%/', self.code, '/%'])
+
+        store_objs = Store.objects.extra(
+            where=[
+                '`pootle_store_store`.`pootle_path` LIKE %s',
+                '`pootle_store_store`.`pootle_path` NOT LIKE %s',
+            ], params=[resources_path, '/templates/%']
+        ).select_related('parent').distinct()
+
+        # Populate with stores and their parent directories, avoiding any
+        # duplicates
+        resources = []
+        for store in store_objs.iterator():
+            directory = store.parent
+            if (not directory.is_translationproject() and
+                all(directory.path != r.path for r in resources)):
+                resources.append(directory)
+
+            if all(store.path != r.path for r in resources):
+                resources.append(store)
+
+        resources.sort(key=get_path_sortkey)
+
+        return resources
 
     ############################ Methods ######################################
 

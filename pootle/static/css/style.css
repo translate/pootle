@@ -27,12 +27,9 @@
  */
 
 /*
- * TEMPORARILY HIDE CRITICAL ERRORS
- */
-#action-fix-critical,
-td.stats-number.critical,
-#js-stats-checks,
-th#js-stats-critical
+ * TEMPORARILY FAILING CHECKS
+*/
+.stats-checks
 {
     display: none !important;
 }
@@ -49,6 +46,12 @@ th#js-stats-critical
 #body, html#tp
 {
     background: white;
+}
+
+html,
+body
+{
+    height: 100%;
 }
 
 html
@@ -356,6 +359,10 @@ td.stats-name a:hover > i + span,
 #wrapper
 {
     width: 100%;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -62px; /* footer margin-top + height */
 }
 
 #nav-access
@@ -374,15 +381,9 @@ html[dir="rtl"] #nav-access
     right: -1000px;
 }
 
-#content,
-#postcontent
-{
-    margin: 0 1em;
-}
-
 #content
 {
-    clear: both;
+    margin: 0 1em;
 }
 
 
@@ -606,8 +607,15 @@ html[dir="rtl"] #nav-main li
     clear: both;
     font-size: 12px;
     text-align: center;
-    margin-top: 0;
-    padding: 1em 0;
+    position: absolute;
+    width: 100%;
+
+    margin-top: 20px;
+    height: 42px;
+    line-height: 41px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 #footer a
@@ -632,33 +640,88 @@ html[dir="rtl"] #nav-main li
     margin: 0;
 }
 
+
+
 /*
- * Make footer stick to bottom
- * Based on http://ryanfait.com/sticky-footer/
+ * PAGE SIDEBAR
  */
 
-html, body
+#sidebar
 {
-    height: 100%; 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 0;
+
+    background-color: #fff;
+
+    box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease 0s;
 }
 
-#wrapper
+#sidebar.sidebar-open
 {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%; 
-    margin-bottom: -62px; /* #footer margin-top (20px) + #footer height (42px) */
+    width: 30%;
 }
 
-#footer
+html[dir="rtl"] #sidebar
 {
-    margin-top: 20px;
-    height: 42px;
-    overflow: hidden;
-            box-sizing: border-box;
-       -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    right: auto;
+    left: 0;
+
+    box-shadow: 1px 0px 2px rgba(0, 0, 0, 0.2);
 }
+
+#sidebar #staticpage
+{
+    display: none;
+}
+
+#sidebar.sidebar-open #staticpage
+{
+    display: block;
+    margin: 0;
+}
+
+.sidebar-open #sidebar-toggle:after
+{
+    content: '»';
+}
+
+#sidebar-toggle:after
+{
+    content: '«';
+}
+
+#sidebar-toggle
+{
+    position: absolute;
+    top: 1.5em;
+    left: -1em;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+
+    background-color: #fff;
+    color: #d9d9d9;
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+
+    box-shadow: -2px 0px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 2px 0 0 2px;
+}
+
+html[dir="rtl"] #sidebar-toggle
+{
+    left: auto;
+    right: -1em;
+
+    box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 0 2px 2px 0;
+}
+
 
 /*
  * POPUPS
@@ -684,9 +747,7 @@ html, body
 /* for forms displayed in lightbox mode (via magnificPopup plugin), use different shadow */
 .mfp-content .form
 {
-    -webkit-box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
-       -moz-box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
-            box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
 }
 
 /*
@@ -714,9 +775,7 @@ html, body
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     background-color: #fcf8e3;
     border: 1px solid #fbeed5;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
+    border-radius: 4px;
 }
 
 .alert h4
@@ -804,10 +863,7 @@ button.close
 .fade
 {
   opacity: 0;
-  -webkit-transition: opacity 0.15s linear;
-     -moz-transition: opacity 0.15s linear;
-       -o-transition: opacity 0.15s linear;
-          transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
 }
 
 .fade.in
@@ -823,17 +879,11 @@ button.close
 #body
 {
     margin: 0;
-    padding: 1px 0 4em;
-}
-
-#body:after
-{
-    content: ".";
-    display: block;
-    height: 0;
-    width: 0;
-    clear: both;
-    visibility: hidden;
+    padding: 0 0 4em;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* height calculated via js */
 }
 
 /* TABLES */
@@ -913,10 +963,12 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
-#main-overview .last-action .action-text
+#main-overview .last-action .action-text,
+table.stats .last-updated .action-text
 {
     display: none;
 }
+
 
 /* When browser size is 1440px or less, show the smaller version of the last action message */
 @media screen and (max-width: 1440px)
@@ -925,7 +977,11 @@ html[dir="rtl"] .hd h2
     {
         display: none;
     }
-}    
+    table.last .last-updated .action-text
+    {
+        display: none;
+    }
+}
 
 html[dir="rtl"] .last-action
 {
@@ -1066,67 +1122,6 @@ div#update p
 
 
 /*
- * BUTTONS
- */
-
-.btn,
-a.btn,
-input[type="submit"]
-{
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-    display: inline-block;
-    padding: 4px 10px;
-    text-align: center;
-
-    min-height: 16px;
-    min-width: 110px;
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 2px #000;
-       -moz-box-shadow: 0px 0px 2px #000;
-            box-shadow: 0px 0px 2px #000;
-
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
-    background: -webkit-linear-gradient(top,  #fff,  #ccc);
-    background:    -moz-linear-gradient(top,  #fff,  #ccc);
-    background:     -ms-linear-gradient(top,  #fff,  #ccc);
-    background:      -o-linear-gradient(top,  #fff,  #ccc);
-    background:         linear-gradient(top,  #fff,  #ccc);
-
-    color: #130f30;
-}
-
-.btn:hover,
-input[type="submit"]:hover
-{
-    text-decoration: none;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-    background: -webkit-linear-gradient(top,  #fff,  #ddd);
-    background:    -moz-linear-gradient(top,  #fff,  #ddd);
-    background:     -ms-linear-gradient(top,  #fff,  #ddd);
-    background:      -o-linear-gradient(top,  #fff,  #ddd);
-    background:         linear-gradient(top,  #fff,  #ddd);
-}
-
-.btn:active,
-input[type="submit"]:active
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#ffffff');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff));
-    background: -webkit-linear-gradient(top,  #ccc,  #fff);
-    background:    -moz-linear-gradient(top,  #ccc,  #fff);
-    background:     -ms-linear-gradient(top,  #ccc,  #fff);
-    background:      -o-linear-gradient(top,  #ccc,  #fff);
-    background:         linear-gradient(top,  #ccc,  #fff);
-}
-
-
-/*
  * FORMS
  */
 
@@ -1136,20 +1131,9 @@ input[type="submit"]:active
     margin: 2em auto;
     padding: 1em;
     text-align: left;
-    -webkit-border-radius: 10px;
-       -moz-border-radius: 10px;
-            border-radius: 10px;
-    -webkit-box-shadow: 0px 2px 5px #777;
-       -moz-box-shadow: 0px 2px 5px #777;
-            box-shadow: 0px 2px 5px #777;
-
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
-    background: -webkit-gradient(linear, left top, left bottom, from(#e5f3f8), to(#cde7f1));
-    background: -webkit-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:    -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:     -ms-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:      -o-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:         linear-gradient(top,  #e5f3f8,  #cde7f1);
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px #777;
+    background: linear-gradient(top,  #e5f3f8,  #cde7f1);
 }
 
 html[dir="rtl"] .form
@@ -1189,43 +1173,6 @@ html[dir="rtl"] .form .buttons
     text-align: left;
 }
 
-.disabled,
-input[type="submit"][disabled],
-input[type="submit"][disabled]:hover
-{
-    -webkit-box-shadow: none;
-       -moz-box-shadow: none;
-            box-shadow: none;
-
-    background-image: none;
-    background-color: #eee;
-
-    border: 1px solid #d9d9d9;
-
-    opacity: 0.65;
-}
-
-input.delete[type="submit"]
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeee', endColorstr='#ffcccc');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fee), to(#fcc));
-    background: -webkit-linear-gradient(top,  #fee,  #fcc);
-    background:    -moz-linear-gradient(top,  #fee,  #fcc);
-    background:     -ms-linear-gradient(top,  #fee,  #fcc);
-    background:      -o-linear-gradient(top,  #fee,  #fcc);
-    background:         linear-gradient(top,  #fee,  #fcc);
-}
-
-body.zoom-out-1 input[type="submit"]
-{
-    min-width: 100px;
-}
-
-body.zoom-out-2 input[type="submit"]
-{
-    min-width: 90px;
-}
-
 .formlink
 {
     margin: 0 auto 1em;
@@ -1249,35 +1196,17 @@ html[dir="rtl"] .form-horizontal.form-actions input
 
 .form.message
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5f3f8', endColorstr='#cde7f1');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffd), to(#ffa));
-    background: -webkit-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:    -moz-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:     -ms-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:      -o-linear-gradient(top,  #e5f3f8,  #cde7f1);
-    background:         linear-gradient(top,  #e5f3f8,  #cde7f1);
+    background: linear-gradient(to bottom,  #e5f3f8,  #cde7f1);
 }
 
 .form.success
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeffdd', endColorstr='#ccff99');
-    background: -webkit-gradient(linear, left top, left bottom, from(#efd), to(#cf9));
-    background: -webkit-linear-gradient(top,  #efd,  #cf9);
-    background:    -moz-linear-gradient(top,  #efd,  #cf9);
-    background:     -ms-linear-gradient(top,  #efd,  #cf9);
-    background:      -o-linear-gradient(top,  #efd,  #cf9);
-    background:         linear-gradient(top,  #efd,  #cf9);
+    background: linear-gradient(to bottom,  #efd,  #cf9);
 }
 
 .form.error
 {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeee', endColorstr='#ffcccc');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fee), to(#fcc));
-    background: -webkit-linear-gradient(top,  #fee,  #fcc);
-    background:    -moz-linear-gradient(top,  #fee,  #fcc);
-    background:     -ms-linear-gradient(top,  #fee,  #fcc);
-    background:      -o-linear-gradient(top,  #fee,  #fcc);
-    background:         linear-gradient(top,  #fee,  #fcc);
+    background: linear-gradient(to bottom,  #fee,  #fcc);
 }
 
 .form p.info
@@ -1701,7 +1630,8 @@ td.stats-percentage
 table.stats .number,
 th.stats-number,
 td.stats-number,
-td.stats-percentage
+td.stats-percentage,
+table.stats td.last-updated
 {
     text-align: right;
 }
@@ -1716,9 +1646,7 @@ td.stats-number.critical a
     padding: 0 0.5em;
     margin-right: -0.5em;
 
-    -webkit-border-radius: 1em;
-       -moz-border-radius: 1em;
-            border-radius: 1em;
+    border-radius: 1em;
 }
 
 td.stats-number.suggestions a
@@ -2000,33 +1928,25 @@ ul.pager li span.current-link
 html[dir="ltr"] ul.pager li:first-child > *
 {
     padding-left: 1em;
-    -webkit-border-radius: 1em 0 0 1em;
-       -moz-border-radius: 1em 0 0 1em;
-            border-radius: 1em 0 0 1em;
+    border-radius: 1em 0 0 1em;
 }
 
 html[dir="ltr"] ul.pager li:last-child > *
 {
     padding-right: 1em;
-    -webkit-border-radius: 0 1em 1em 0;
-       -moz-border-radius: 0 1em 1em 0;
-            border-radius: 0 1em 1em 0;
+    border-radius: 0 1em 1em 0;
 }
 
 html[dir="rtl"] ul.pager li:first-child > *
 {
     padding-right: 1em;
-    -webkit-border-radius: 0 1em 1em 0;
-       -moz-border-radius: 0 1em 1em 0;
-            border-radius: 0 1em 1em 0;
+    border-radius: 0 1em 1em 0;
 }
 
 html[dir="rtl"] ul.pager li:last-child > *
 {
     padding-left: 1em;
-    -webkit-border-radius: 1em 0 0 1em;
-       -moz-border-radius: 1em 0 0 1em;
-            border-radius: 1em 0 0 1em;
+    border-radius: 1em 0 0 1em;
 }
 
 
@@ -2204,17 +2124,20 @@ html[dir="rtl"] .overview-description-toggle
 {
     padding: 0 2em;
     display: none;
-    border: 1px solid #d9d9d9;    
+    border: 1px solid #d9d9d9;
     background: #f4f4f4;
 
-    -webkit-border-radius: 0 0 5px 5px;
-       -moz-border-radius: 0 0 5px 5px;
-            border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
 }
 
-.path-summary-more table
+.path-summary-more table.stats
 {
     width: 40em;
+}
+
+.path-summary-more table.last
+{
+    width: 90em;
 }
 
 .path-summary-more td.stats-number
@@ -2266,9 +2189,7 @@ body.js-not-loaded #translate-actions li
 {
     padding: 0.1em 0.9em;
     margin-right: -0.5em;
-    -webkit-border-radius: 1em;
-       -moz-border-radius: 1em;
-            border-radius: 1em;
+    border-radius: 1em;
     background: #000;
     color: #fff;
     font-weight: normal;
@@ -2358,18 +2279,6 @@ html[dir="rtl"] .breadcrumb li
 .breadcrumb li:first-child:before
 {
     content: normal;
-}
-
-.breadcrumb li.file-path
-{
-    font-weight: normal;
-    font-size: 90%;
-    color: #999;
-}
-
-.breadcrumb li.file-path span
-{
-    color: #000;
 }
 
 /* Tabs */
@@ -2494,9 +2403,7 @@ body #file-tabs a.selected-tab
     position: relative;
     padding: 2px;
 
-    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
-       -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
 }
 
 #search-form,
@@ -2504,17 +2411,13 @@ body #file-tabs a.selected-tab
 {
     background-color: #fff;
     border: 1px solid #d9d9d9;
-    -webkit-border-radius: 3px;
-       -moz-border-radius: 3px;
-            border-radius: 3px;
+    border-radius: 3px;
 }
 
 #search-form.focused,
 .search-container
 {
-    -webkit-box-shadow: 0 0 2px #d9d9d9;
-       -moz-box-shadow: 0 0 2px #d9d9d9;
-            box-shadow: 0 0 2px #d9d9d9;
+    box-shadow: 0 0 2px #d9d9d9;
 }
 
 .search-wrapper
@@ -2524,7 +2427,7 @@ body #file-tabs a.selected-tab
 }
 
 .search-wrapper input[type="text"],
-.search-wrapper .btn
+.search-wrapper .btn-search
 {
     vertical-align: middle;
 }
@@ -2555,13 +2458,9 @@ body #file-tabs a.selected-tab
     min-height: inherit;
     border: 0 none;
 
-    -webkit-box-shadow: none;
-       -moz-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
 
-    -webkit-border-radius: 0;
-       -moz-border-radius: 0;
-            border-radius: 0;
+    border-radius: 0;
 }
 
 .btn-search,
@@ -2971,12 +2870,8 @@ html[dir="rtl"] .tag-list .tag
     font-size: x-small;
     color: #666;
     text-decoration: none;
-    -webkit-border-bottom-right-radius: 4px;
-       -moz-border-radius-bottomright: 4px;
-            border-bottom-right-radius: 4px;
-    -webkit-border-top-right-radius: 4px;
-       -moz-border-radius-topright: 4px;
-            border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
     opacity: 0.5;
 }
 

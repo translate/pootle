@@ -18,9 +18,6 @@
     {% assets "css_common" %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
     {% endassets %}
-    <!--[if IE]>
-    <link rel="stylesheet" type="text/css" href="{{ "css/ie.css"|s }}" />
-    <![endif]-->
     {% endblock css %}
     {% block favicon %}
     <link rel="shortcut icon" href="{{ "favicon.ico"|s }}" />
@@ -99,13 +96,14 @@
     PTL.contact.init({url: "{% url 'pootle-contact' %}"});
 
     $(function() {
-      $("[title], [original-title]").tipsy({
-        gravity: $.fn.tipsy.autoBounds(150, 'n'),
+      $(document).tipsy({
+        gravity: $.fn.tipsy.autoBounds2(150, 'n'),
         html: true,
         fade: true,
         delayIn: 750,
         opacity: 1,
-        live: true});
+        live: '[title], [original-title]'
+      });
       $.ajaxSetup({ traditional: true });
       $.ajaxPrefilter(function (options, originalOptions) {
         if (options.type === 'post' || options.type === 'POST') {
@@ -155,12 +153,12 @@
           </h1>
 
           <div id="zoom">
-            <a id="zoom-out" title="{% trans "Zoom out (Ctrl+Shift+-)" %}"
-              href="javascript:PTL.zoom.zoom(-1)">&ndash;</a>
-            <a id="zoom-reset" title="{% trans "Reset zoom (Ctrl+Shift+0)" %}"
-              href="javascript:PTL.zoom.zoom(0)">T</a>
-            <a id="zoom-in" title="{% trans "Zoom in (Ctrl+Shift++)" %}"
-              href="javascript:PTL.zoom.zoom(1)">+</a>
+            <a id="js-zoom-out" href="#"
+               title="{% trans "Zoom out (Ctrl+Shift+-)" %}">&ndash;</a>
+            <a id="js-zoom-reset" href="#"
+               title="{% trans "Reset zoom (Ctrl+Shift+0)" %}">T</a>
+            <a id="js-zoom-in" href="#"
+               title="{% trans "Zoom in (Ctrl+Shift++)" %}">+</a>
           </div>
           <ul id="nav-main">
             {% if settings.CAN_CONTACT %}
@@ -216,16 +214,13 @@
       {% endblock %}
     {% endblock %}
 
-      <div id="body">
-        <div id="content">
-          {% block content %}{% endblock %}
-        </div>
-
-        <div id="postcontent">
-          {% block postcontent %}{% endblock %}
-        </div>
-        {% block extra_content %}{% endblock %}
+    <div id="body">
+      {% block pre_content %}{% endblock %}
+      <div id="content">
+        {% block content %}{% endblock %}
       </div>
+      {% block post_content %}{% endblock %}
+    </div>
 
     </div>
     {% block footer %}

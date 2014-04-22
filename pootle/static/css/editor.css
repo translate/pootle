@@ -25,9 +25,7 @@ textarea#view_unit
     left: 0;
     bottom: 0;
     z-index: 100;
-    -webkit-box-shadow: 0px 0px 20px #d9d9d9;
-       -moz-box-shadow: 0px 0px 20px #d9d9d9;
-            box-shadow: 0px 0px 20px #d9d9d9;
+    box-shadow: 0px 0px 20px #d9d9d9;
 }
 
 html[dir="rtl"] #toolbar
@@ -227,9 +225,7 @@ Unicode ranges is supported, and that they all look the same */
 
 .toolbar-message > div
 {
-    -webkit-border-radius: 5px 5px 0 0;
-       -moz-border-radius: 5px 5px 0 0;
-            border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
     border: 1px solid #d9d9d9;
     border-bottom: 0px;
     background-color: #f8f8f8;
@@ -440,6 +436,18 @@ div.translate-container
     clear: both;
 }
 
+/* in translation editor, make hanging spaces more prominent */
+div.translate-container .translation-space
+{
+    background-color: yellow;
+    border: 1px solid red;
+}
+
+div.translate-container.error
+{
+    background-color: #fdd;
+}
+
 div.unit-path
 {
     background-color: #0489b7;
@@ -524,9 +532,7 @@ div.language-name
     border-left: 1px dotted #d9d9d9;
     border-right: 1px dotted #d9d9d9;
     border-bottom: 1px solid #f1f7f8;
-    -webkit-border-radius: 5px 5px 0 0;
-       -moz-border-radius: 5px 5px 0 0;
-            border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
 
     padding: 1px 5px 0px;
     display: inline-block;
@@ -1008,27 +1014,36 @@ div.check a
 
 #translate-checks-block
 {
-    margin: 0 1em;
+    position: absolute;
+    left: 100%;
+    margin: 14px 10px 0 20px;
+    width: 46%;
 }
 
 #translate-checks-block .sidetitle
 {
-    color: #900;
+    color: rgba(0, 0, 0, 0.75);
     float: left;
     display: inline-block;
-    margin: 0.2em 0.2em 0 0;
+    margin: 0.1em 1em 0 0;
 }
 
 li.check
 {
     display: inline-block;
-    border: 1px dotted #900;
-    margin: 0 0.5em 0.5em 0;
+    margin: 0 1em 0.5em -0.5em;
     padding: 0.1em 0.5em;
+    border-radius: 4px;
+}
 
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
+#translate-checks-block.blink li.check
+{
+    background-color: #900;
+}
+
+#translate-checks-block.blink .checks a
+{
+    color: #fff;
 }
 
 li.check:hover
@@ -1041,10 +1056,30 @@ li.check > a
     cursor: help;
 }
 
+li.check.false-positive > a
+{
+    color: rgba(0, 0, 0, 0.5);
+}
+
 #translate-checks-block i
 {
     cursor: pointer;
     vertical-align: middle;
+}
+
+.check .unmute-check
+{
+    display: none;
+}
+
+.check.false-positive .mute-check
+{
+    display: none;
+}
+
+.check.false-positive .unmute-check
+{
+    display: inline-block;
 }
 
 /* CONTROLS */
@@ -1062,93 +1097,9 @@ li.check > a
     right: 102%;
 }
 
-.translate-buttons-block input[type="submit"]
+.translate-buttons-block .btn
 {
     margin-bottom: 0.5em;
-}
-
-.unit-submit:disabled,
-.unit-submit:disabled:active,
-.unit-submit:disabled:hover
-{
-    border: 0 !important;
-    box-shadow: 0px 0px 2px #000 !important;
-}
-
-.submit.unit-submit:disabled
-{
-    background: linear-gradient(to bottom, #ffe, #ae7) !important;
-}
-
-.suggest.unit-submit:disabled
-{
-    background: linear-gradient(to bottom, #ffe, #ed8) !important;
-}
-
-.buttons input[type="submit"].submit
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#aaee77');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffe), to(#ae7));
-    background: -webkit-linear-gradient(top,  #ffe,  #ae7);
-    background:    -moz-linear-gradient(top,  #ffe,  #ae7);
-    background:     -ms-linear-gradient(top,  #ffe,  #ae7);
-    background:      -o-linear-gradient(top,  #ffe,  #ae7);
-    background:         linear-gradient(top,  #ffe,  #ae7);
-}
-
-.translate-buttons-block input.submit:hover
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#bbff88');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#bf8));
-    background: -webkit-linear-gradient(top,  #fff,  #bf8);
-    background:    -moz-linear-gradient(top,  #fff,  #bf8);
-    background:     -ms-linear-gradient(top,  #fff,  #bf8);
-    background:      -o-linear-gradient(top,  #fff,  #bf8);
-    background:         linear-gradient(top,  #fff,  #bf8);
-}
-
-.translate-buttons-block input.submit:active
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaee77', endColorstr='#ffffee');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ae7), to(#ffe));
-    background: -webkit-linear-gradient(top,  #ae7,  #ffe);
-    background:    -moz-linear-gradient(top,  #ae7,  #ffe);
-    background:     -ms-linear-gradient(top,  #ae7,  #ffe);
-    background:      -o-linear-gradient(top,  #ae7,  #ffe);
-    background:         linear-gradient(top,  #ae7,  #ffe);
-}
-
-.buttons input[type="submit"].suggest
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffee', endColorstr='#eedd88');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffe), to(#ed8));
-    background: -webkit-linear-gradient(top,  #ffe,  #ed8);
-    background:    -moz-linear-gradient(top,  #ffe,  #ed8);
-    background:     -ms-linear-gradient(top,  #ffe,  #ed8);
-    background:      -o-linear-gradient(top,  #ffe,  #ed8);
-    background:         linear-gradient(top,  #ffe,  #ed8);
-}
-
-.translate-buttons-block input.suggest:hover
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffee99');
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fe9));
-    background: -webkit-linear-gradient(top,  #fff,  #fe9);
-    background:    -moz-linear-gradient(top,  #fff,  #fe9);
-    background:     -ms-linear-gradient(top,  #fff,  #fe9);
-    background:      -o-linear-gradient(top,  #fff,  #fe9);
-    background:         linear-gradient(top,  #fff,  #fe9);
-}
-
-.translate-buttons-block input.suggest:active
-{
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eedd88', endColorstr='#ffffee');
-    background: -webkit-gradient(linear, left top, left bottom, from(#ed8), to(#ffe));
-    background: -webkit-linear-gradient(top,  #ed8,  #ffe);
-    background:    -moz-linear-gradient(top,  #ed8,  #ffe);
-    background:     -ms-linear-gradient(top,  #ed8,  #ffe);
-    background:      -o-linear-gradient(top,  #ed8,  #ffe);
-    background:         linear-gradient(top,  #ed8,  #ffe);
 }
 
 .translate-buttons-block input.suggest
@@ -1420,6 +1371,12 @@ textarea.translation
     font-size: 115%;
 }
 
+textarea.translation:disabled
+{
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 /* TERMINOLOGY MANAGEMENT */
 
 td.translate-delete-terminology input
@@ -1506,17 +1463,10 @@ td.keyboard-shortcut
 kbd
 {
     border: 1px solid #aaa;
-    -webkit-border-radius: 2px;
-       -moz-border-radius: 2px;
-            border-radius: 2px;
-    -webkit-box-shadow: 1px 2px 2px #ddd;
-       -moz-box-shadow: 1px 2px 2px #ddd;
-            box-shadow: 1px 2px 2px #ddd;
+    border-radius: 2px;
+    box-shadow: 1px 2px 2px #ddd;
     background-color: #f9f9f9;
-    background-image: -webkit-linear-gradient(top, #eee, #f9f9f9, #eee);
-       background-image: -moz-linear-gradient(top, #eee, #f9f9f9, #eee);
-         background-image: -o-linear-gradient(top, #eee, #f9f9f9, #eee);
-            background-image: linear-gradient(top, #eee, #f9f9f9, #eee);
+    background-image: linear-gradient(top, #eee, #f9f9f9, #eee);
     padding: 1px 3px;
     font-family: inherit;
 }

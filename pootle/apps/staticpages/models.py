@@ -132,7 +132,10 @@ class StaticPage(AbstractPage):
     display_name = _('Regular Page')
 
     def get_edit_url(self):
-        return reverse('pootle-staticpages-edit', args=['static', self.pk])
+        page_type = 'static'
+        if self.virtual_path.startswith('announcements/'):
+            page_type = 'announcements'
+        return reverse('pootle-staticpages-edit', args=[page_type, self.pk])
 
 
 class Agreement(models.Model):

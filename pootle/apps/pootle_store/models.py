@@ -21,7 +21,6 @@ import datetime
 import logging
 import os
 import re
-import time
 from hashlib import md5
 from itertools import chain
 
@@ -36,7 +35,9 @@ from django.core.urlresolvers import reverse
 from django.db import models, DatabaseError, IntegrityError
 from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
-from django.utils import timezone, tzinfo
+from django.template.defaultfilters import escape, truncatechars
+from django.utils import dateformat, timezone, tzinfo
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
@@ -44,8 +45,7 @@ from taggit.managers import TaggableManager
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_misc.aggregate import (group_by_count, group_by_count_extra,
-                                   max_column)
+from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names
 from pootle_misc.util import cached_property, datetime_min
 from pootle_statistics.models import (Submission, SubmissionFields,
@@ -57,8 +57,9 @@ from .fields import (MultiStringField, TranslationStoreField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes, is_monolingual
 from .signals import translation_submitted
-from .util import (action_log, FUZZY, OBSOLETE, TRANSLATED, UNIT_CREATED,
-                   UNIT_REMOVED, UNTRANSLATED)
+from .util import (action_log, FUZZY, MUTE_QUALITYCHECK, OBSOLETE, TRANSLATED,
+                   UNIT_CREATED, UNIT_REMOVED, UNMUTE_QUALITYCHECK,
+                   UNTRANSLATED)
 
 
 #
@@ -681,8 +682,11 @@ class Unit(models.Model, base.TranslationUnit):
                 existing = set(checks.filter(false_positive=True) \
                                      .values_list('name', flat=True))
                 checks = checks.filter(false_positive=False)
-            # all checks should be recalculated
-            checks.delete()
+
+            if checks.count() > 0:
+                self.store.flag_for_deletion(CachedMethods.CHECKS)
+                # all checks should be recalculated
+                checks.delete()
 
         # no checks if unit is untranslated
         if not self.target:
@@ -704,8 +708,10 @@ class Unit(models.Model, base.TranslationUnit):
 
             self.store.flag_for_deletion(CachedMethods.CHECKS)
 
-
     def get_qualitychecks(self):
+        return self.qualitycheck_set.all()
+
+    def get_active_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
 
     # FIXME: This is a hackish implementation needed due to the underlying
@@ -928,10 +934,15 @@ class Unit(models.Model, base.TranslationUnit):
 
     def accept_suggestion(self, suggestion, translation_project, reviewer):
         if suggestion is not None:
+            old_state = self.state
             old_target = self.target
             self.target = suggestion.target
 
-            suggestion_user = suggestion.user
+            if suggestion.user_id is not None:
+                suggestion_user = suggestion.user
+            else:
+                suggestion_user = User.objects.get_nobody_user().get_profile()
+
             self.submitted_by = suggestion_user
             self.submitted_on = timezone.now()
 
@@ -958,20 +969,29 @@ class Unit(models.Model, base.TranslationUnit):
             suggstat.state = 'accepted'
             suggstat.save()
 
-            # For now assume the target changed
-            # TODO: check all fields for changes
-            sub = Submission(
-                    creation_time=self.submitted_on,
-                    translation_project=translation_project,
-                    submitter=suggestion_user,
-                    from_suggestion=suggstat,
-                    unit=self,
-                    field=SubmissionFields.TARGET,
-                    type=SubmissionTypes.SUGG_ACCEPT,
-                    old_value=old_target,
-                    new_value=self.target,
-            )
-            sub.save()
+            create_subs = {}
+            # assume the target changed
+            create_subs[SubmissionFields.TARGET] = [old_target, self.target]
+            # check if the state changed
+            if old_state != self.state:
+                create_subs[SubmissionFields.STATE] = [old_state, self.state]
+
+            for field in create_subs:
+                kwargs = {
+                    'creation_time': self.submitted_on,
+                    'translation_project': translation_project,
+                    'submitter': suggestion_user,
+                    'unit': self,
+                    'field': field,
+                    'type': SubmissionTypes.SUGG_ACCEPT,
+                    'old_value': create_subs[field][0],
+                    'new_value': create_subs[field][1],
+                }
+                if field == SubmissionFields.TARGET:
+                    kwargs['from_suggestion'] = suggstat
+
+                sub = Submission(**kwargs)
+                sub.save()
 
             if suggestion_user:
                 translation_submitted.send(sender=translation_project,
@@ -1002,14 +1022,40 @@ class Unit(models.Model, base.TranslationUnit):
 
         return True
 
-    def reject_qualitycheck(self, check_id):
+    def toggle_qualitycheck(self, check_id, false_positive, user):
         check = self.qualitycheck_set.get(id=check_id)
-        check.false_positive = True
-        check.save()
-        # update timestamp
 
-        self.store.flag_for_deletion(CachedMethods.CHECKS)
+        if check.false_positive == false_positive:
+            return
+
+        check.false_positive = false_positive
+        check.save()
+
+        self.store.flag_for_deletion(CachedMethods.CHECKS,
+                                     CachedMethods.LAST_ACTION)
+        self._log_user = user
+        if false_positive:
+            self._save_action = MUTE_QUALITYCHECK
+        else:
+            self._save_action = UNMUTE_QUALITYCHECK
+
+        # create submission
+        self.submitted_on = timezone.now()
+        self.submitted_by = user
         self.save()
+        if false_positive:
+            sub_type = SubmissionTypes.MUTE_CHECK
+        else:
+            sub_type = SubmissionTypes.UNMUTE_CHECK
+
+        sub = Submission(creation_time=self.submitted_on,
+            translation_project=self.store.translation_project,
+            submitter=user,
+            unit=self,
+            type=sub_type,
+            check=check
+        )
+        sub.save()
 
     def get_terminology(self):
         """get terminology suggestions"""
@@ -1019,6 +1065,29 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             result = []
         return result
+
+    def get_last_updated_message(self):
+        unit = {
+            'source': escape(truncatechars(self, 50)),
+            'url': self.get_translate_url(),
+        }
+
+        action_bundle = {
+            'action': _(
+                '<i><a href="%(url)s">%(source)s</a></i>&nbsp;'
+                'added',
+                unit
+            ),
+            "date": self.creation_time,
+            "isoformat_date": self.creation_time.isoformat(),
+        }
+        return mark_safe(
+            '<time class="extra-item-meta js-relative-date"'
+            '    title="%(date)s" datetime="%(isoformat_date)s">&nbsp;'
+            '</time>&nbsp;'
+            u'<span class="action-text">%(action)s</span>'
+            % action_bundle)
+
 
 ###################### Store ###########################
 
@@ -1447,6 +1516,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     unit.store = self
                     newunit = store.findid(unit.getid())
                     old_target_f = unit.target_f
+                    old_unit_state = unit.state
 
                     if (monolingual and not
                         self.translation_project.is_template_project):
@@ -1467,23 +1537,33 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                             self._remove_obsolete(match_unit.source)
 
                     if changed:
-                        create_submission = unit._target_updated
+                        create_subs = {}
+
+                        if unit._target_updated:
+                            create_subs[SubmissionFields.TARGET] = \
+                                [old_target_f, unit.target_f]
+
                         # Set unit fields if submission should be created
-                        if create_submission:
+                        if create_subs:
                             unit.submitted_by = system
                             unit.submitted_on = timezone.now()
                         unit.save()
+                        # check unit state after saving
+                        if old_unit_state != unit.state:
+                            create_subs[SubmissionFields.STATE] = [old_unit_state,
+                                                                   unit.state]
+
                         # Create Submission after unit saved
-                        if create_submission:
+                        for field in create_subs:
                             sub = Submission(
                                 creation_time=unit.submitted_on,
                                 translation_project=self.translation_project,
                                 submitter=system,
                                 unit=unit,
-                                field=SubmissionFields.TARGET,
+                                field=field,
                                 type=SubmissionTypes.SYSTEM,
-                                old_value=old_target_f,
-                                new_value=unit.target_f
+                                old_value=create_subs[field][0],
+                                new_value=create_subs[field][1]
                             )
                             sub.save()
         finally:
@@ -1747,14 +1827,46 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                                                    unit__state__gt=UNTRANSLATED,
                                                    false_positive=False)
 
-            return group_by_count_extra(queryset, 'name', 'category')
-        except Exception, e:
+            queryset = queryset.values('unit', 'name').order_by('unit')
+
+            saved_unit = None
+            result = {'unit_count': 0, 'checks': {}}
+            for item in queryset:
+                if item['unit'] != saved_unit or saved_unit is None:
+                    saved_unit = item['unit']
+                    # assumed all checks are critical and should be counted
+                    result['unit_count'] += 1
+                if item['name'] in result['checks']:
+                    result['checks'][item['name']] += 1
+                else:
+                    result['checks'][item['name']] = 1
+
+            return result
+        except Exception as e:
             logging.info(u"Error getting quality checks for %s\n%s",
                          self.name, e)
             return {}
 
     def _get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
+
+    def _get_last_updated(self):
+        try:
+            max_unit = self.unit_set.all().order_by('-creation_time')[0]
+        except IndexError as e:
+            max_unit = None
+
+        # creation_time field has been added recently, so it can have NULL value
+        if max_unit is not None:
+            max_time = max_unit.creation_time
+            if max_time:
+                return {
+                    'id': max_unit.id,
+                    'creation_time': int(dateformat.format(max_time, 'U')),
+                    'snippet': max_unit.get_last_updated_message()
+                }
+
+        return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
     def _get_last_action(self, submission=None):
         if submission is None:
@@ -1776,7 +1888,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         return {
             'id': sub.unit.id,
-            'mtime': int(time.mktime(sub.creation_time.timetuple())),
+            'mtime': int(dateformat.format(sub.creation_time, 'U')),
             'snippet': sub.get_submission_message()
         }
 
@@ -1939,7 +2051,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     'PO_Revision_Date': po_revision_date,
                     'X_Generator': x_generator,
                     'X_POOTLE_MTIME': ('%s.%06d' %
-                                       (int(time.mktime(mtime.timetuple())),
+                                       (int(dateformat.format(mtime, 'U')),
                                         mtime.microsecond)),
                     }
             if profile is not None and profile.user.is_authenticated():

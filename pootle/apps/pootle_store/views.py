@@ -22,6 +22,7 @@ import logging
 import os
 from itertools import groupby
 
+from translate.filters.decorators import Category
 from translate.lang import data
 from translate.search.lshtein import LevenshteinComparer
 
@@ -43,7 +44,7 @@ from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
-from pootle.core.decorators import (get_path_obj, get_resource_context,
+from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
 from pootle.core.url_helpers import split_pootle_path
@@ -63,6 +64,7 @@ from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
 
 from .decorators import get_store_context, get_unit_context
+from .fields import to_python
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
 from .models import Store, TMUnit, Unit
@@ -626,21 +628,19 @@ def timeline(request, unit):
     timeline = timeline.select_related("submitter__user",
                                        "translation_project__language")
 
-    context = {}
     entries_group = []
+    context = {
+        'system': User.objects.get_system_user().get_profile()
+    }
 
-    import locale
-    from pootle_store.fields import to_python
+    if unit.creation_time:
+        context['created'] = {
+            'datetime': unit.creation_time,
+        }
 
     for key, values in groupby(timeline, key=lambda x: x.creation_time):
-        # Under Windows, the "nl_langinfo" method is not available
-        try:
-            time_str = key.strftime(locale.nl_langinfo(locale.D_T_FMT))
-        except NameError:
-            time_str = key
         entry_group = {
             'datetime': key,
-            'datetime_str': time_str,
             'entries': [],
         }
 
@@ -695,17 +695,17 @@ def timeline(request, unit):
 @ajax_required
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def get_qualitycheck_stats(request, path_obj, **kwargs):
     qc_stats = request.resource_obj.get_checks()
 
-    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
+    return HttpResponse(jsonify(qc_stats['checks']), mimetype="application/json")
 
 
 @ajax_required
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def get_overview_stats(request, path_obj, **kwargs):
     stats = request.resource_obj.get_stats()
 
@@ -963,12 +963,29 @@ def submit(request, unit):
                     profile=request.profile,
             )
 
+            has_critical_checks = unit.qualitycheck_set.filter(
+                category=Category.CRITICAL
+            ).exists()
+
+            if has_critical_checks:
+                can_review = check_profile_permission(request.profile,
+                                                      'review',
+                                                      unit.store.parent)
+                ctx = {
+                    'canreview': can_review,
+                    'unit': unit
+                }
+                template = loader.get_template('editor/units/xhr_checks.html')
+                context = RequestContext(request, ctx)
+                json['checks'] = template.render(context)
+
         rcode = 200
     else:
         # Form failed
         #FIXME: we should display validation errors here
         rcode = 400
         json["msg"] = _("Failed to process submission.")
+
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
@@ -1105,15 +1122,16 @@ def vote_up(request, unit, suggid):
 
 @ajax_required
 @get_unit_context('review')
-def reject_qualitycheck(request, unit, check_id):
+def toggle_qualitycheck(request, unit, check_id):
     json = {}
     json["udbid"] = unit.id
     json["checkid"] = check_id
-    if request.POST.get('reject'):
-        try:
-            unit.reject_qualitycheck(check_id)
-        except ObjectDoesNotExist:
-            raise Http404
+
+    try:
+        unit.toggle_qualitycheck(check_id,
+            bool(request.POST.get('mute')), request.profile)
+    except ObjectDoesNotExist:
+        raise Http404
 
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")

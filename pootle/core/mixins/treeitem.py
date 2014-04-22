@@ -66,7 +66,7 @@ class TreeItem(object):
 
     def get_cachekey(self):
         """This method will be overridden in descendants"""
-        raise NotImplementedError('`get_cache_key()` not implemented')
+        raise NotImplementedError('`get_cachekey()` not implemented')
 
     def _get_total_wordcount(self):
         """This method will be overridden in descendants"""
@@ -86,7 +86,7 @@ class TreeItem(object):
 
     def _get_checks(self):
         """This method will be overridden in descendants"""
-        return {}
+        return {'unit_count': 0, 'checks': {}}
 
     def _get_path_summary(self):
         """This method will be overridden in descendants"""
@@ -99,6 +99,10 @@ class TreeItem(object):
     def _get_mtime(self):
         """This method will be overridden in descendants"""
         return datetime_min
+
+    def _get_last_updated(self):
+        """This method will be overridden in descendants"""
+        return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
     def _get_all_checks(self):
         """This method will be overridden in descendants"""
@@ -167,6 +171,16 @@ class TreeItem(object):
             [item.get_mtime() for item in self.children]
         )
 
+    @getfromcache
+    def get_last_updated(self):
+        """get last updated"""
+        self.initialize_children()
+        return max(
+            [self._get_last_updated()] +
+            [item.get_last_updated() for item in self.children],
+            key=lambda x: x['creation_time'] if 'creation_time' in x else 0
+        )
+
     def _sum(self, name):
         return sum([
             getattr(item, name)() for item in self.children
@@ -183,13 +197,16 @@ class TreeItem(object):
             'suggestions': self.get_suggestion_count(),
             'pathsummary': self.get_path_summary(),
             'lastaction': self.get_last_action(),
-            'critical': self.get_critical()
+            'critical': self.get_error_unit_count(),
+            'lastupdated': self.get_last_updated(),
         }
 
         if include_children:
             result['children'] = {}
             for item in self.children:
-                result['children'][item.code] = item.get_stats(False)
+                code = (self._get_code(item) if hasattr(self, '_get_code')
+                                             else item.code)
+                result['children'][code] = item.get_stats(False)
 
         return result
 
@@ -211,16 +228,16 @@ class TreeItem(object):
         self.get_last_action()
         self.get_checks()
         self.get_mtime()
+        self.get_last_updated()
 
     @getfromcache
     def get_checks(self):
         result = self._get_checks()
         self.initialize_children()
         for item in self.children:
-            item_checks = item.get_checks()
-            for cat in set(item_checks) | set(result):
-                result[cat] = dictsum(result.get(cat, {}),
-                                      item_checks.get(cat, {}))
+            item_res = item.get_checks()
+            result['checks'] = dictsum(result['checks'], item_res['checks'])
+            result['unit_count'] += item_res['unit_count']
 
         return result
 
@@ -240,6 +257,11 @@ class TreeItem(object):
             return sum([critical_stats[x] for x in critical_stats.keys()])
         except KeyError:
             return 0
+
+    def get_error_unit_count(self):
+        check_stats = self.get_checks()
+
+        return check_stats['unit_count']
 
     def get_critical1(self):
         """Alter implementaion (pick up every check separately)"""

@@ -1,0 +1,17 @@
+{% load i18n baseurl %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8">
+    <title>{% trans "Maintenance" %} | {{ settings.TITLE }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ 'css/style.css'|s }}" />
+    <link rel="icon" sizes="32x32" href="{{ 'images/app-32x32.png'|s }}" />
+    <link rel="icon" sizes="64x64" href="{{ 'images/app-64x64.png'|s }}" />
+  </head>
+  <body>
+    <div style="margin: 5em;">
+      <h1>{% trans "We're doing some maintenance" %}</h1>
+      <p>{% trans "Please check back in a few minutes." %}</p>
+    </div>
+  </body>
+</html>

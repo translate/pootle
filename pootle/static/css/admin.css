@@ -57,10 +57,7 @@ textarea#id_DESCRIPTION
     font-size: 85%;
     background-color: #0489b7;
     color: #fff;
-
-    -webkit-border-radius: 1em;
-       -moz-border-radius: 1em;
-            border-radius: 1em;
+    border-radius: 1em;
 }
 
 .control-group
@@ -91,23 +88,6 @@ html[dir="rtl"] .controls
 {
     margin-left: auto;
     margin-right: 180px;
-}
-
-.control-group .controls .radio-pre,
-.control-group .controls .help-pre
-{
-    position: absolute;
-}
-
-.control-group .controls .help-pre
-{
-    left: -4em;
-}
-
-html[dir="rtl"] .control-group .controls .help-pre
-{
-    left: auto;
-    right: -4em;
 }
 
 .control-group .controls .radio-pre

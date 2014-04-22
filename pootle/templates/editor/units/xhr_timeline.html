@@ -1,4 +1,4 @@
-{% load i18n profile_tags store_tags %}
+{% load i18n locale profile_tags store_tags %}
 <div id="timeline-results">
   <div class="extra-item-title">{% trans 'Timeline' %}</div>
   {% for entry_group in entries_group %}
@@ -18,14 +18,29 @@
           {% endfor %}
         </div>
       </div>
-      <time class="extra-item-meta js-relative-date" title="{{ entry_group.datetime_str}}"
+      <time class="extra-item-meta js-relative-date"
+        title="{{ entry_group.datetime|dateformat }}"
         datetime="{{ entry_group.datetime.isoformat }}">&nbsp;</time>
     </div>
   </div>
-  {% empty %}
-  <div class="extra-item-content">
-    {% trans "No results." %}
-  </div>
   {% endfor %}
+  <div class="extra-item-block">
+    <div class="extra-item-content">
+      <div class="extra-item-gravatar">
+        <a href="{{ system.get_absolute_url }}"><img src="{{ system|gravatar:24 }}" alt="{{ system.user.username }}" width="24" height="24" title="{{ system }}" /></a>
+      </div>
+      <div class="extra-item">
+        <div class="timeline-field-3">
+          <span class="sidetitle">{% trans "State" %}:</span>
+          <span class="timeline-field-body" lang="{{ language.code }}">{% trans "String created" %}</span>
+        </div>
+      </div>
+    </div>
+    {% if created %}
+    <time class="extra-item-meta js-relative-date"
+      title="{{ created.datetime|dateformat }}"
+      datetime="{{ created.datetime.isoformat }}">&nbsp;</time>
+    {% endif %}
+  </div>
   </div>
 </div>

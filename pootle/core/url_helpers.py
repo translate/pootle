@@ -39,8 +39,9 @@ def split_pootle_path(pootle_path):
         if slash_count == 2:
             language_code = parts[0]
         # /projects/<project_code>/
-        elif slash_count == 3 and pootle_path.startswith('/projects/'):
+        elif pootle_path.startswith('/projects/'):
             project_code = parts[1]
+            ctx = parts[2]
         # /<lang_code>/<project_code>/*
         elif slash_count != 1:
             language_code = parts[0]
@@ -52,6 +53,15 @@ def split_pootle_path(pootle_path):
         dir_path = u'/'.join([dir_path, ''])  # Add trailing slash
 
     return (language_code, project_code, dir_path, filename)
+
+
+def get_path_sortkey(path_obj):
+    """Returns the sortkey to use in a path-like `path_obj` object."""
+    if path_obj.is_dir:
+        return path_obj.path
+
+    (head, tail) = os.path.split(path_obj.path)
+    return u'~'.join([head, path_obj.path.replace(u'.', u'_')])
 
 
 def get_editor_filter(state=None, check=None, user=None, goal=None):

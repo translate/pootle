@@ -14,6 +14,7 @@ other way, make sure to read through this part.
    roadmap
    hacking
    customization
+   browsers
    testing
    initial_data_and_upgrade
    release

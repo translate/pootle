@@ -1,4 +1,4 @@
-/* glue: 0.3 hash: 8de2d1bf13 */
+/* glue: 0.3 hash: 0ef5dbd30b */
 .logo,
 .icon-keyboard,
 .icon-desc,
@@ -31,6 +31,7 @@
 .icon-comment-user,
 .icon-comment-add,
 .icon-block,
+.icon-block-muted,
 .icon-apertium,
 .icon-accept,
 .icon-vcs-update,
@@ -73,13 +74,14 @@
 .icon-comment-user{background-position:-48px -83px;width:16px;height:16px;}
 .icon-comment-add{background-position:-64px -83px;width:16px;height:16px;}
 .icon-block{background-position:-80px -83px;width:16px;height:16px;}
-.icon-apertium{background-position:-105px 0px;width:16px;height:16px;}
-.icon-accept{background-position:-105px -16px;width:16px;height:16px;}
-.icon-vcs-update{background-position:-105px -32px;width:14px;height:14px;}
-.icon-vcs-commit{background-position:-105px -46px;width:14px;height:14px;}
-.icon-upload{background-position:-105px -60px;width:14px;height:14px;}
-.icon-update-templates{background-position:-105px -74px;width:14px;height:14px;}
-.icon-rescan-files{background-position:0px -99px;width:14px;height:14px;}
-.icon-download{background-position:-14px -99px;width:14px;height:14px;}
-.icon-delete-path{background-position:-28px -99px;width:14px;height:14px;}
-.icon-external-link{background-position:-42px -99px;width:12px;height:12px;}
+.icon-block-muted{background-position:-105px 0px;width:16px;height:16px;}
+.icon-apertium{background-position:-105px -16px;width:16px;height:16px;}
+.icon-accept{background-position:-105px -32px;width:16px;height:16px;}
+.icon-vcs-update{background-position:-105px -48px;width:14px;height:14px;}
+.icon-vcs-commit{background-position:-105px -62px;width:14px;height:14px;}
+.icon-upload{background-position:-105px -76px;width:14px;height:14px;}
+.icon-update-templates{background-position:0px -99px;width:14px;height:14px;}
+.icon-rescan-files{background-position:-14px -99px;width:14px;height:14px;}
+.icon-download{background-position:-28px -99px;width:14px;height:14px;}
+.icon-delete-path{background-position:-42px -99px;width:14px;height:14px;}
+.icon-external-link{background-position:-56px -99px;width:12px;height:12px;}

@@ -10,8 +10,8 @@
       $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
     },
 
-    nicePercentage: function (part, total) {
-      var percentage = total ? part / total * 100 : 0;
+    nicePercentage: function (part, total, noTotalDefault) {
+      var percentage = total ? part / total * 100 : noTotalDefault;
       if (99 < percentage && percentage < 100) {
         return 99;
       }
@@ -27,8 +27,8 @@
         return;
       }
 
-      var translated = PTL.stats.nicePercentage(item.translated, item.total),
-          fuzzy = PTL.stats.nicePercentage(item.fuzzy, item.total),
+      var translated = PTL.stats.nicePercentage(item.translated, item.total, 100),
+          fuzzy = PTL.stats.nicePercentage(item.fuzzy, item.total, 0),
           untranslated = 100 - translated - fuzzy,
           $legend = $('<span>').html($td.find('script').text());
 
@@ -116,10 +116,10 @@
       $summary.append(interpolate(gettext(', %s% translated'), [percent]));
     },
 
-    updateTranslationStats: function ($tr, total, value) {
+    updateTranslationStats: function ($tr, total, value, noTotalDefault) {
       $tr.find('.stats-number a').html(value);
       $tr.find('.stats-percentage span').html(
-        PTL.stats.nicePercentage(value, total)
+        PTL.stats.nicePercentage(value, total, noTotalDefault)
       );
       $tr.find('.stats-percentage').show();
     },
@@ -138,6 +138,21 @@
         $td.find('a').html('');
         $td.addClass('zero');
         $td.removeClass('non-zero');
+      }
+    },
+
+    updateLastUpdates: function (stats) {
+      if (stats.lastupdated) {
+        $('#js-last-updated').toggle(stats.lastupdated.snippet !== '');
+        if (stats.lastupdated.snippet) {
+          $('#js-last-updated .last-updated').html(stats.lastupdated.snippet);
+        }
+      }
+      if (stats.lastaction) {
+        $('#js-last-action').toggle(stats.lastaction.snippet !== '');
+        if (stats.lastaction.snippet) {
+          $('#js-last-action .last-action').html(stats.lastaction.snippet);
+        }
       }
     },
 
@@ -166,14 +181,15 @@
           $('body').removeClass('js-not-loaded');
 
           PTL.stats.updateTranslationStats($('#stats-total'),
-                                           data.total, data.total);
+                                           data.total, data.total, 100);
           PTL.stats.updateTranslationStats($('#stats-translated'),
-                                           data.total, data.translated);
+                                           data.total, data.translated, 100);
           PTL.stats.updateTranslationStats($('#stats-fuzzy'),
-                                           data.total, data.fuzzy);
+                                           data.total, data.fuzzy, 0);
           var untranslated = data.total - data.translated - data.fuzzy;
           PTL.stats.updateTranslationStats($('#stats-untranslated'),
-                                           data.total, untranslated);
+                                           data.total, untranslated, 0);
+          PTL.stats.updateLastUpdates(data);
 
           if ($table.length) {
             for (var name in data.children) {
@@ -201,6 +217,11 @@
 
               $td = $table.find('#critical-' + code);
               PTL.stats.updateItemStats($td, item.critical);
+
+              $td = $table.find('#last-updated-' + code);
+              $td.html(item.lastupdated.snippet);
+              $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
+
             }
 
             // Sort columns based on previously-made selections

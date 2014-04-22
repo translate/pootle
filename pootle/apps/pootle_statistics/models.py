@@ -18,12 +18,14 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import escape, truncatechars
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.managers import RelatedManager
+from pootle_misc.checks import check_names
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
@@ -35,6 +37,8 @@ class SubmissionTypes(object):
     SUGG_ACCEPT = 3  # Accepting a suggestion
     UPLOAD = 4  # Uploading an offline file
     SYSTEM = 5  # Batch actions performed offline
+    MUTE_CHECK = 6  # Mute QualityCheck
+    UNMUTE_CHECK = 7  # Unmute QualityCheck
 
 
 class SubmissionFields(object):
@@ -71,6 +75,12 @@ class Submission(models.Model):
     )
     unit = models.ForeignKey(
         'pootle_store.Unit',
+        blank=True,
+        null=True,
+        db_index=True,
+    )
+    check = models.ForeignKey(
+        'pootle_store.QualityCheck',
         blank=True,
         null=True,
         db_index=True,
@@ -133,19 +143,33 @@ class Submission(models.Model):
                 'url': self.unit.get_translate_url(),
             }
 
-        # Sadly we may not have submitter information in all the situations yet
-        if self.submitter:
-            displayname = self.submitter.fullname
-            if not displayname:
-                displayname = self.submitter.user.username
+            if self.check is not None:
+                unit['check_name'] = self.check.name
+                unit['check_display_name'] = check_names[self.check.name]
+                unit['checks_url'] = ('http://docs.translatehouse.org/'
+                                      'projects/translate-toolkit/en/latest/'
+                                      'commands/pofilter_tests.html')
+
+        if self.from_suggestion:
+            displayuser = self.from_suggestion.reviewer
         else:
-            displayname = _("anonymous user")
+            # Sadly we may not have submitter information in all the
+            # situations yet
+            # TODO check if it is true
+            if self.submitter:
+                displayuser = self.submitter
+            else:
+                displayuser = User.objects.get_nobody_user().get_profile()
+
+        displayname = displayuser.fullname
+        if not displayname:
+            displayname = displayuser.user.username
 
         action_bundle = {
-            "profile_url": self.submitter.get_absolute_url(),
-            "gravatar_url": self.submitter.gravatar_url(20),
+            "profile_url": displayuser.get_absolute_url(),
+            "gravatar_url": displayuser.gravatar_url(20),
             "displayname": displayname,
-            "username": self.submitter.user.username,
+            "username": displayuser.user.username,
             "date": self.creation_time,
             "isoformat_date": self.creation_time.isoformat(),
             "action": "",
@@ -164,6 +188,18 @@ class Submission(models.Model):
             ),
             SubmissionTypes.UPLOAD: _(
                 'uploaded a file'
+            ),
+            SubmissionTypes.MUTE_CHECK: _(
+                'muted '
+                '<a href="%(checks_url)s#%(check_name)s">%(check_display_name)s</a>'
+                ' check for <i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.UNMUTE_CHECK: _(
+                'unmuted '
+                '<a href="%(checks_url)s#%(check_name)s">%(check_display_name)s</a>'
+                ' check for <i><a href="%(url)s">%(source)s</a></i>',
+                unit
             ),
         }.get(self.type, '')
 

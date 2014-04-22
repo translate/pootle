@@ -33,6 +33,7 @@ js_common = Bundle(
     'js/vendor/jquery/jquery.select2.js',
     'js/vendor/bootstrap/bootstrap-alert.js',
     'js/vendor/bootstrap/bootstrap-transition.js',
+    'js/browser.js',
     'js/captcha.js',
     'js/common.js',
     'js/languages.js',
@@ -63,7 +64,6 @@ js_editor = Bundle(
     'js/vendor/jquery/jquery.highlightRegex.js',
     'js/vendor/jquery/jquery.jsonp.js',
     'js/vendor/iso8601.js',
-    'js/vendor/json2.js',
     'js/vendor/underscore.js',
     'js/vendor/backbone.js',
     'js/vendor/backbone-relational.js',
@@ -76,6 +76,7 @@ register('js_editor', js_editor)
 
 css_common = Bundle(
     'css/style.css',
+    'css/buttons.css',
     'css/contact.css',
     'css/magnific-popup.css',
     'css/tipsy.css',

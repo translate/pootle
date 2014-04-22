@@ -118,7 +118,7 @@
     $(document).on('click', '.js-vote-up', this.voteUp);
     $(document).on('click', '#js-show-timeline', this.showTimeline);
     $(document).on('click', '#js-hide-timeline', this.hideTimeline);
-    $(document).on('click', '#translate-checks-block .js-reject-check', this.rejectCheck);
+    $(document).on('click', '.js-toggle-check', this.toggleCheck);
 
     /* Filtering */
     $("#filter-checks").hide();
@@ -178,7 +178,7 @@
                        'First page: Ctrl+Shift+Home'].join('<br/>'))
       );
     }
-    
+
     shortcut.add('ctrl+shift+n', function () {
       $('#item-number').focus().select();
     });
@@ -725,13 +725,13 @@
    */
 
   /* Sets the current unit's styling as fuzzy */
-  doFuzzyArea: function () {
+  doFuzzyStyle: function () {
     $("tr.edit-row").addClass("fuzzy-unit");
   },
 
 
   /* Unsets the current unit's styling as fuzzy */
-  undoFuzzyArea: function () {
+  undoFuzzyStyle: function () {
     $("tr.edit-row").removeClass("fuzzy-unit");
   },
 
@@ -762,7 +762,7 @@
   goFuzzy: function () {
     if (!this.isFuzzy()) {
       this.keepState = true;
-      this.doFuzzyArea();
+      this.doFuzzyStyle();
       this.doFuzzyBox();
     }
   },
@@ -772,7 +772,7 @@
   ungoFuzzy: function () {
     if (this.isFuzzy()) {
       this.keepState = true;
-      this.undoFuzzyArea();
+      this.undoFuzzyStyle();
       this.undoFuzzyBox();
     }
   },
@@ -783,11 +783,11 @@
     return $('input.fuzzycheck').prop('checked');
   },
 
-  toggleFuzzy: function () {
+  toggleFuzzyStyle: function () {
     if (this.isFuzzy()) {
-      this.doFuzzyArea();
+      this.doFuzzyStyle();
     } else {
-      this.undoFuzzyArea();
+      this.undoFuzzyStyle();
     }
   },
 
@@ -828,7 +828,7 @@
   onStateChange: function () {
     this.handleTranslationChange();
 
-    this.toggleFuzzy();
+    this.toggleFuzzyStyle();
   },
 
   onTextareaChange: function (e) {
@@ -837,7 +837,7 @@
     var el = e.target,
         hasChanged = el.defaultValue !== el.value;
 
-    if (hasChanged && ! this.keepState) {
+    if (hasChanged && !this.keepState) {
       this.ungoFuzzy();
     }
   },
@@ -902,6 +902,7 @@
   /* Displays an informative message */
   displayMsg: function (msg) {
     this.hideActivity();
+    PTL.common.fixSidebarHeight();
     $("#js-editor-msg").show().find("span").html(msg).fadeIn(300);
   },
 
@@ -1112,10 +1113,6 @@
         oldRows = $("tr", where);
 
     oldRows.remove();
-
-    // This fixes the issue with tipsy popups staying on the screen
-    // if their owner elements have been removed
-    $('.tipsy').remove(); // kill all open tipsy popups
 
     if (newTbody !== false) {
       where.append(newTbody);
@@ -1350,9 +1347,29 @@
     unit.setTranslation(translations);
     unit.set('isfuzzy', PTL.editor.isFuzzy());
 
-    PTL.editor.gotoNext();
-  },
+    $('.translate-container').toggleClass('error', !!data.checks);
 
+    if (data.checks) {
+      var $checks = $('.js-unit-checks'),
+          focusedArea = $('.focusthis')[0];
+
+      $checks.html(data.checks).show();
+
+      var blinkClass = function (elem, className, n, delay) {
+          elem.toggleClass(className);
+          if (n > 1) {
+            setTimeout(function() {
+                        blinkClass(elem, className, n-1, delay);
+                      }, delay);
+          }
+      };
+
+      blinkClass($checks, 'blink', 4, 200);
+      focusedArea.focus();
+    } else {
+      PTL.editor.gotoNext();
+    }
+  },
 
   /* Pushes translation suggestions and moves to the next unit */
   suggest: function (e) {
@@ -1573,10 +1590,14 @@
     var defaults = {hasData: false, replace: false};
     opts = $.extend({}, defaults, opts);
 
-    editCtxRowBefore = PTL.editor.tmpl.editCtx({hasData: opts.hasData,
-                                                extraCls: 'before'});
-    editCtxRowAfter = PTL.editor.tmpl.editCtx({hasData: opts.hasData,
-                                               extraCls: 'after'});
+    var editCtxRowBefore = PTL.editor.tmpl.editCtx({
+      hasData: opts.hasData,
+      extraCls: 'before'
+    });
+    var editCtxRowAfter = PTL.editor.tmpl.editCtx({
+      hasData: opts.hasData,
+      extraCls: 'after'
+    });
 
     if (opts.replace) {
       $("tr.edit-ctx.before").replaceWith(editCtxRowBefore);
@@ -2058,25 +2079,30 @@
     });
   },
 
-  /* Rejects a quality check marking it as false positive */
-  rejectCheck: function () {
-    var element = $(this).parent(),
+  /* Mutes or unmutes a quality check marking it as false positive or not */
+  toggleCheck: function () {
+    var check = $(this).parent(),
         checkId = $(this).data("check-id"),
         uid = $('.translate-container #id_id').val(),
-        url = l(['/xhr/units/', uid, '/checks/', checkId, '/reject/'].join(''));
+        url = l(['/xhr/units/', uid, '/checks/', checkId, '/toggle/'].join('')),
+        falsePositive = !check.hasClass('false-positive'), // toggled value
+        post = {},
+        error;
 
-    $.post(url, {'reject': 1},
+    if (falsePositive) {
+      post.mute = 1;
+    }
+
+    $.post(url, post,
       function (data) {
-        if (element.siblings().size() == 0) {
-          element = $('#translate-checks-block');
-        }
-        element.fadeOut(200, function () {
-          $(this).remove();
-          $('.tipsy').remove();
-        });
+        check.toggleClass('false-positive', falsePositive);
+
+        error = $('#translate-checks-block .check')
+                  .not('.false-positive').size() > 0;
+
+        $('.translate-container').toggleClass('error', error);
       }, "json");
   },
-
 
   /*
    * Machine Translation

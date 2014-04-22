@@ -2,6 +2,27 @@
 
   window.PTL = window.PTL || {};
 
+  var sel = {
+    out: '#js-zoom-out',
+    reset: '#js-zoom-reset',
+    in: '#js-zoom-in'
+  };
+
+  var zoomOut = function (e) {
+    e.preventDefault();
+    PTL.zoom.zoom(-1);
+  };
+
+  var zoomReset = function (e) {
+    e.preventDefault();
+    PTL.zoom.zoom(0);
+  };
+
+  var zoomIn = function (e) {
+    e.preventDefault();
+    PTL.zoom.zoom(1);
+  };
+
   PTL.zoom = {
     // Variable that stores current zoom level
     pageZoom: 0,
@@ -12,17 +33,9 @@
 
       $(document.body).addClass(this.zoomClassName());
 
-      shortcut.add('ctrl+shift+-', function () {
-        PTL.zoom.zoom(-1);
-      });
-
-      shortcut.add('ctrl+shift+0', function () {
-        PTL.zoom.zoom(0);
-      });
-
-      shortcut.add('ctrl+shift++', function () {
-        PTL.zoom.zoom(1);
-      });
+      shortcut.add('ctrl+shift+-', zoomOut);
+      shortcut.add('ctrl+shift+0', zoomReset);
+      shortcut.add('ctrl+shift++', zoomIn);
     },
 
     // converts pageZoom value to an appropriate class name string
@@ -66,4 +79,12 @@
 
   };
 
+  $(document).on('click', sel.out, zoomOut);
+  $(document).on('click', sel.reset, zoomReset);
+  $(document).on('click', sel.in, zoomIn);
+
 }(jQuery));
+
+$(function () {
+  PTL.zoom.init();
+});
