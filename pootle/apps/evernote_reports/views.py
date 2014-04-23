@@ -124,7 +124,7 @@ def user_date_prj_activity(request):
 
     if user:
         rr = Submission.objects.filter(
-                submitter=user.pootleprofile,
+                submitter=user,
                 creation_time__gte=start,
                 creation_time__lte=end,
                 field=SubmissionFields.TARGET

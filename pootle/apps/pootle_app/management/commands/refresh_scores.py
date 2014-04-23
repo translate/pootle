@@ -24,8 +24,9 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from optparse import make_option
 
+from django.contrib.auth import get_user_model
 from django.core.management.base import NoArgsCommand
-from pootle_profile.models import PootleProfile
+
 from pootle_statistics.models import ScoreLog
 
 
@@ -43,5 +44,6 @@ class Command(NoArgsCommand):
         reset = options.get('reset', False)
 
         if reset:
-            PootleProfile.objects.all().update(score=0)
+            User = get_user_model()
+            User.objects.all().update(score=0)
             ScoreLog.objects.all().delete()

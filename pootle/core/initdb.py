@@ -33,7 +33,6 @@ from pootle.__version__ import build as code_buildversion
 from pootle_app.models import Directory, Revision
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
-from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
 
 
@@ -168,8 +167,10 @@ def create_pootle_permission_sets():
     'nobody' is the anonymous (non-logged in) user, and 'default' is the logged
     in user.
     """
-    nobody = PootleProfile.objects.get(user__username='nobody')
-    default = PootleProfile.objects.get(user__username='default')
+    User = get_user_model()
+
+    nobody = User.objects.get(username='nobody')
+    default = User.objects.get(username='default')
 
     view = get_pootle_permission('view')
     suggest = get_pootle_permission('suggest')

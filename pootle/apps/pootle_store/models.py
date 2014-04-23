@@ -147,9 +147,9 @@ class Suggestion(models.Model, base.TranslationUnit):
     target_f = MultiStringField()
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit')
-    user = models.ForeignKey('pootle_profile.PootleProfile', null=True,
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
                              related_name='suggestions', db_index=True)
-    reviewer = models.ForeignKey('pootle_profile.PootleProfile', null=True,
+    reviewer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
                                  related_name='reviews', db_index=True)
 
     translator_comment_f = models.TextField(null=True, blank=True)
@@ -311,17 +311,17 @@ class Unit(models.Model, base.TranslationUnit):
                                  db_index=True, editable=False)
 
     # unit translator
-    submitted_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
+    submitted_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
             db_index=True, related_name='submitted')
     submitted_on = models.DateTimeField(db_index=True, null=True)
 
-    commented_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
+    commented_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
             db_index=True, related_name='commented')
     commented_on = models.DateTimeField(db_index=True, null=True)
 
     # reviewer: who has accepted suggestion or removed FUZZY
     # None if translation has been submitted by approved translator
-    reviewed_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
+    reviewed_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
             db_index=True, related_name='reviewed')
     reviewed_on = models.DateTimeField(db_index=True, null=True)
 

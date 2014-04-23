@@ -20,6 +20,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -95,7 +96,7 @@ class Submission(models.Model):
     translation_project = models.ForeignKey(
             'pootle_translationproject.TranslationProject', db_index=True
     )
-    submitter = models.ForeignKey('pootle_profile.PootleProfile', null=True,
+    submitter = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
             db_index=True)
     suggestion = models.ForeignKey('pootle_store.Suggestion', blank=True,
             null=True, db_index=True)
@@ -317,7 +318,7 @@ class TranslationActionCodes(object):
 
 class ScoreLog(models.Model):
     creation_time = models.DateTimeField(db_index=True, null=False)
-    user = models.ForeignKey('pootle_profile.PootleProfile', null=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False)
     # current user’s new translation rate
     rate = models.FloatField(null=False, default=0)
     # current user’s review rate

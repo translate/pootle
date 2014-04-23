@@ -36,7 +36,6 @@ from pootle import depcheck
 from pootle.core.decorators import admin_required
 from pootle.core.markup import get_markup_filter
 from pootle_misc.aggregate import sum_column
-from pootle_profile.models import PootleProfile
 from pootle_statistics.models import Submission
 from pootle_store.models import Unit, Suggestion
 from pootle_store.util import TRANSLATED
@@ -250,6 +249,8 @@ def server_stats():
 def server_stats_more(request):
     result = cache.get("server_stats_more")
     if result is None:
+        User = get_user_model()
+
         result = {}
         unit_query = Unit.objects.filter(state__gte=TRANSLATED).exclude(
             store__translation_project__project__code__in=('pootle', 'tutorial', 'terminology')).exclude(
@@ -261,8 +262,8 @@ def server_stats_more(request):
         result['string_count'] = sums['count']
         result['word_count'] = sums['source_wordcount'] or 0
         result['user_active_count'] = (
-            PootleProfile.objects.exclude(submission=None) |
-            PootleProfile.objects.exclude(suggestions=None)
+            User.objects.exclude(submission=None) |
+            User.objects.exclude(suggestions=None)
         ).order_by().count()
         cache.set("server_stats_more", result, 86400)
     _format_numbers(result)

@@ -169,7 +169,8 @@ class PermissionSet(models.Model):
         unique_together = ('profile', 'directory')
         app_label = "pootle_app"
 
-    profile = models.ForeignKey('pootle_profile.PootleProfile', db_index=True)
+    # FIXME: rename to `user` for clearer semantics
+    profile = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
     directory = models.ForeignKey('pootle_app.Directory', db_index=True,
                                   related_name='permission_sets')
     positive_permissions = models.ManyToManyField(Permission, db_index=True,

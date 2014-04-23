@@ -28,7 +28,6 @@ from django.contrib.auth.models import UserManager, AnonymousUser
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
-from django.db.models.signals import post_save
 from django.utils.html import simple_email_re as email_re
 from django.utils.translation import ugettext_lazy as _
 
@@ -68,11 +67,6 @@ class PootleUserManager(UserManager):
         return super(PootleUserManager, self).get_queryset().exclude(
                 username__in=('nobody', 'default')
             )
-
-
-# Since PootleUserManager has no state, we can just replace the User manager's
-# class with PootleUserManager to get the desired functionality.
-User.objects.__class__ = PootleUserManager
 
 
 class PootleProfileManager(models.Manager):
@@ -315,20 +309,6 @@ class PootleProfile(models.Model):
             contributions.append((language, tp_user_stats))
 
         return contributions
-
-
-def create_pootle_profile(sender, instance, **kwargs):
-    """A post-save hook for the User model which ensures that it gets an
-    associated PootleProfile.
-    """
-    try:
-        profile = instance.get_profile()
-    except PootleProfile.DoesNotExist:
-        profile = PootleProfile(user=instance)
-        profile.save()
-
-
-post_save.connect(create_pootle_profile, sender=User)
 
 
 def get_profile(user):

@@ -21,6 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django import forms
+from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
 
 from pootle_app.models import Directory
@@ -28,8 +29,10 @@ from pootle_app.models.permissions import (get_permission_contenttype,
                                            PermissionSet)
 from pootle_app.views.admin import util
 from pootle_misc.forms import GroupedModelChoiceField
-from pootle_profile.models import PootleProfile
 from pootle_statistics.models import Submission
+
+
+User = get_user_model()
 
 
 class PermissionFormField(forms.ModelMultipleChoiceField):
@@ -54,7 +57,7 @@ def admin_permissions(request, current_directory, template, context):
         codename__in=excluded_permissions,
     )
 
-    base_queryset = PootleProfile.objects.filter(user__is_active=1).exclude(
+    base_queryset = User.objects.filter(is_active=1).exclude(
             id__in=current_directory.permission_sets \
                                     .values_list('profile_id', flat=True),
     )
@@ -114,7 +117,7 @@ def admin_permissions(request, current_directory, template, context):
         profile = GroupedModelChoiceField(
                 label=_('Username'),
                 querysets=querysets,
-                queryset=PootleProfile.objects.all(),
+                queryset=User.objects.all(),
                 required=True,
                 widget=forms.Select(attrs={
                     'class': 'js-select2 select2-username',
