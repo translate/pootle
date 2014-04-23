@@ -35,8 +35,7 @@ class EvernoteAccount(models.Model):
     email = models.EmailField()
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                related_name='evernote_account',
-                                unique=True)
+                                related_name='evernote_account')
     user_autocreated = models.BooleanField()
 
     objects = EvernoteAccountManager()
