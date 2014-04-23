@@ -62,7 +62,7 @@ def admin_permissions(request, current_directory, template, context):
                                     .values_list('profile_id', flat=True),
     )
     querysets = [(None, base_queryset.filter(
-        user__username__in=('nobody', 'default')
+        username__in=('nobody', 'default')
     ))]
 
     if project is not None:
@@ -82,7 +82,7 @@ def admin_permissions(request, current_directory, template, context):
             group_label,
             base_queryset.filter(submission__in=contributions)
                          .distinct()
-                         .order_by('user__username'),
+                         .order_by('username'),
         ))
 
     if language is not None:
@@ -93,13 +93,13 @@ def admin_permissions(request, current_directory, template, context):
             _('Language Contributors'),
             base_queryset.filter(submission__in=contributions)
                          .distinct()
-                         .order_by('user__username'),
+                         .order_by('username'),
         ))
 
     querysets.append((
         _('All Users'),
-        base_queryset.exclude(user__username__in=('nobody', 'default'))
-                     .order_by('user__username'),
+        base_queryset.exclude(username__in=('nobody', 'default'))
+                     .order_by('username'),
     ))
 
 

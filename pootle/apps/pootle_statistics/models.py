@@ -182,15 +182,13 @@ class Submission(models.Model):
                 User = get_user_model()
                 displayuser = User.objects.get_nobody_user()
 
-        displayname = displayuser.fullname
-        if not displayname:
-            displayname = displayuser.user.username
+        displayname = displayuser.display_name
 
         action_bundle = {
             "profile_url": displayuser.get_absolute_url(),
             "gravatar_url": displayuser.gravatar_url(20),
             "displayname": displayname,
-            "username": displayuser.user.username,
+            "username": displayuser.username,
             "date": self.creation_time,
             "isoformat_date": self.creation_time.isoformat(),
             "action": "",

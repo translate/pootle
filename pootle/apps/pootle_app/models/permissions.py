@@ -65,7 +65,7 @@ def get_permissions_by_username(username, directory):
         try:
             permissionset = PermissionSet.objects.filter(
                 directory__in=directory.trail(only_dirs=False),
-                profile__user__username=username) \
+                profile__username=username) \
                         .order_by('-directory__pootle_path')[0]
         except IndexError:
             permissionset = None
@@ -79,7 +79,7 @@ def get_permissions_by_username(username, directory):
                     project_path = '/projects/%s/' % path_parts[1]
                     permissionset = PermissionSet.objects \
                             .get(directory__pootle_path=project_path,
-                                 profile__user__username=username)
+                                 profile__username=username)
                 except PermissionSet.DoesNotExist:
                     pass
 
@@ -94,8 +94,8 @@ def get_permissions_by_username(username, directory):
 
 
 def get_matching_permissions(profile, directory, check_default=True):
-    if profile.user.is_authenticated():
-        permissions = get_permissions_by_username(profile.user.username,
+    if profile.is_authenticated():
+        permissions = get_permissions_by_username(profile.username,
                                                   directory)
         if permissions is not None:
             return permissions
@@ -116,7 +116,7 @@ def check_profile_permission(profile, permission_codename, directory,
                              check_default=True):
     """Checks if the current user has the permission the perform
     ``permission_codename``."""
-    if profile.user.is_superuser:
+    if profile.is_superuser:
         return True
 
     permissions = get_matching_permissions(profile, directory, check_default)
@@ -181,7 +181,7 @@ class PermissionSet(models.Model):
             related_name='permission_sets_negative')
 
     def __unicode__(self):
-        return "%s : %s" % (self.profile.user.username,
+        return "%s : %s" % (self.profile.username,
                             self.directory.pootle_path)
 
     def to_dict(self):
@@ -192,7 +192,7 @@ class PermissionSet(models.Model):
         super(PermissionSet, self).save(*args, **kwargs)
         # FIXME: can we use `post_save` signals or invalidate caches in
         # model managers, please?
-        username = self.profile.user.username
+        username = self.profile.username
         keys = [
             iri_to_uri('Permissions:%s' % username),
             iri_to_uri('projects:accessible:%s' % username),
@@ -203,7 +203,7 @@ class PermissionSet(models.Model):
         super(PermissionSet, self).delete(*args, **kwargs)
         # FIXME: can we use `post_delete` signals or invalidate caches in
         # model managers, please?
-        username = self.profile.user.username
+        username = self.profile.username
         keys = [
             iri_to_uri('Permissions:%s' % username),
             iri_to_uri('projects:accessible:%s' % username),

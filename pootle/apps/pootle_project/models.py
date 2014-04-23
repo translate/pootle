@@ -169,7 +169,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
             lookup_args = {
                 'directory__permission_sets__positive_permissions__codename':
                     'view',
-                'directory__permission_sets__profile__user__username':
+                'directory__permission_sets__profile__username':
                     username,
             }
             user_projects = self.objects.cached().filter(**lookup_args) \
@@ -179,7 +179,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
             if not user_projects.count():
                 root_permissions = PermissionSet.objects.filter(
                     directory__pootle_path='/',
-                    profile__user__username=username,
+                    profile__username=username,
                     positive_permissions__codename='view',
                 )
                 if root_permissions.count():

@@ -267,9 +267,9 @@ class UnitManager(models.Manager):
         )
 
         # Non-superusers are limited to the projects they have access to
-        if not profile.user.is_superuser:
+        if not profile.is_superuser:
             from pootle_project.models import Project
-            user_projects = Project.accessible_by_user(profile.user)
+            user_projects = Project.accessible_by_user(profile)
             units_qs = units_qs.filter(
                 store__translation_project__project__code__in=user_projects,
             )
@@ -2047,13 +2047,13 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 try:
                     submit = self.translation_project.submission_set \
                                  .filter(creation_time=mtime).latest()
-                    if submit.submitter.user.username != 'nobody':
+                    if submit.submitter.username != 'nobody':
                         profile = submit.submitter
                 except ObjectDoesNotExist:
                     try:
                         lastsubmit = self.translation_project.submission_set \
                                                              .latest()
-                        if lastsubmit.submitter.user.username != 'nobody':
+                        if lastsubmit.submitter.username != 'nobody':
                             profile = lastsubmit.submitter
                         mtime = min(lastsubmit.creation_time, mtime)
                     except ObjectDoesNotExist:
@@ -2070,10 +2070,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                                        (int(dateformat.format(mtime, 'U')),
                                         mtime.microsecond)),
                     }
-            if profile and profile.user.is_authenticated():
+            if profile and profile.is_authenticated():
                 headerupdates['Last_Translator'] = '%s <%s>' % \
-                        (profile.user.first_name or profile.user.username,
-                         profile.user.email)
+                        (profile.display_name, profile.email)
             else:
                 #FIXME: maybe insert settings.TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'
