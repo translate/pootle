@@ -20,17 +20,20 @@
 
 import pytest
 
+from django.contrib.auth import get_user_model
+
 from pootle_app.models.permissions import get_matching_permissions
-from pootle_profile.models import get_profile
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 from pootle_store.forms import unit_form_factory, UnitStateField
 
 
 def _create_post_request(rf, directory, user, url='/', data={}):
     """Convenience function to create and setup fake POST requests."""
+    User = get_user_model()
+
     request = rf.post(url, data=data)
     request.user = user
-    request.profile = get_profile(user)
+    request.profile = User.get(user)
     request.permissions = get_matching_permissions(request.profile,
                                                    directory)
     return request

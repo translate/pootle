@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,13 +21,13 @@
 
 from functools import wraps
 
+from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
-from pootle_profile.models import get_profile
 
 from .models import Unit
 
@@ -56,7 +56,8 @@ def _check_permissions(request, directory, permission_code):
     """Checks if the current user has enough permissions defined by
     `permission_code` in the current`directory`.
     """
-    request.profile = get_profile(request.user)
+    User = get_user_model()
+    request.profile = User.get(request.user)
     request.permissions = get_matching_permissions(request.profile,
                                                    directory)
 

@@ -309,19 +309,3 @@ class PootleProfile(models.Model):
             contributions.append((language, tp_user_stats))
 
         return contributions
-
-
-def get_profile(user):
-    """Return the PootleProfile associated with a user.
-
-    This function is only necessary if 'user' could be an anonymous
-    user.  If you know for certain that a user is logged in, then use
-    the .get_profile() method on a user instead.
-    """
-    if user.is_authenticated():
-        # Return the PootleProfile associated with authenticated users
-        return user.get_profile()
-    else:
-        # Anonymous users get the PootleProfile associated with the 'nobody'
-        # user
-        return User.objects.get(username='nobody').get_profile()

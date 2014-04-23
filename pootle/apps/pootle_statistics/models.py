@@ -180,7 +180,7 @@ class Submission(models.Model):
                 displayuser = self.submitter
             else:
                 User = get_user_model()
-                displayuser = User.objects.get_nobody_user().get_profile()
+                displayuser = User.objects.get_nobody_user()
 
         displayname = displayuser.fullname
         if not displayname:

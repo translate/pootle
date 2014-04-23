@@ -101,7 +101,7 @@
     PTL.contact.init({url: "{% url 'pootle-contact' %}"});
 
     $(function() {
-      PTL.score.init({{ request.user.get_profile.public_score }});
+      PTL.score.init({{ request.user.public_score }});
 
       $(document).tipsy({
         gravity: $.fn.tipsy.autoBounds2(150, 'n'),
@@ -171,10 +171,10 @@
           <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
           {% if user.is_authenticated %}
           <li id="user">
-            <a href="{{ user.get_profile.get_absolute_url }}">
-            <img src="{{ user.get_profile|gravatar:20 }}" />
+            <a href="{{ user.get_absolute_url }}">
+            <img src="{{ user|gravatar:20 }}" />
             <span>{{ user.username }}</span>
-            <span class="odometer js-score">{{ user.get_profile.public_score }}</span>
+            <span class="odometer js-score">{{ user.public_score }}</span>
             </a>
           </li>
           {% endif %}

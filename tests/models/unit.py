@@ -43,7 +43,7 @@ def _update_translation(store, item, new_values):
         unit.translator_comment = new_values['translator_comment']
 
     unit.submitted_on = timezone.now()
-    unit.submitted_by = User.objects.get_system_user().get_profile()
+    unit.submitted_by = User.objects.get_system_user()
     unit.save()
     store.sync()
 
@@ -205,7 +205,7 @@ def test_add_suggestion(af_tutorial_po, system):
 
     # Removing a suggestion should allow suggesting the same text again
     tp = untranslated_unit.store.translation_project
-    untranslated_unit.reject_suggestion(sugg, tp, system.get_profile())
+    untranslated_unit.reject_suggestion(sugg, tp, system)
     assert len(untranslated_unit.get_suggestions()) == 0
 
     sugg, added = untranslated_unit.add_suggestion(suggestion_text)

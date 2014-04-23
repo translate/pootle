@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -68,8 +68,8 @@ def new_user(sender, instance, created=False, raw=False, **kwargs):
 
     try:
         args = {
-            'url': instance.get_profile().get_absolute_url(),
-            'user': instance.get_profile(),
+            'url': instance.get_absolute_url(),
+            'user': instance,
         }
         message = 'New user <a href="%(url)s">%(user)s</a> registered.' % args
         new_object(created, message, parent=Directory.objects.root)

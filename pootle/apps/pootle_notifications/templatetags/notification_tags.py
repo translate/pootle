@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,10 +20,10 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
+from django.contrib.auth import get_user_model
 
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_profile_permission
-from pootle_profile.models import get_profile
 from pootle_notifications.models import Notice
 
 register = template.Library()
@@ -34,7 +34,8 @@ def render_latest_news(context, path, num):
     try:
         directory = Directory.objects.get(pootle_path='/%s' % path)
         user = context['user']
-        can_view = check_profile_permission(get_profile(user), "view", directory)
+        User = get_user_model()
+        can_view = check_profile_permission(User.get(user), "view", directory)
         if not can_view:
             directory = None
     except Directory.DoesNotExist:

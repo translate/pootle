@@ -229,7 +229,7 @@ def get_paid_words(user, start, end):
     result = []
 
     scores = ScoreLog.objects \
-        .filter(user=user.get_profile(),
+        .filter(user=user,
                 creation_time__gte=start,
                 creation_time__lte=end) \
         .order_by('creation_time')

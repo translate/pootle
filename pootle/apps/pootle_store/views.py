@@ -46,7 +46,6 @@ from pootle_misc.baseurl import redirect
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, jsonify, to_int
-from pootle_profile.models import get_profile
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
@@ -208,8 +207,7 @@ def get_step_query(request, units_queryset):
         if username is not None:
             User = get_user_model()
             try:
-                user = User.objects.get(username=username)
-                profile = user.get_profile()
+                profile = User.objects.get(username=username)
             except User.DoesNotExist:
                 pass
 
@@ -398,7 +396,8 @@ def get_units(request):
     if pootle_path is None:
         raise Http400(_('Arguments missing.'))
 
-    request.profile = get_profile(request.user)
+    User = get_user_model()
+    request.profile = User.get(request.user)
     limit = request.profile.get_unit_rows()
 
     units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
@@ -500,7 +499,7 @@ def timeline(request, unit):
     User = get_user_model()
     entries_group = []
     context = {
-        'system': User.objects.get_system_user().get_profile()
+        'system': User.objects.get_system_user()
     }
 
     if unit.creation_time:

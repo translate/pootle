@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -48,7 +48,7 @@ class EvernoteContactFormView(AjaxResponseMixin, ContactFormView):
         user = self.request.user
         if user.is_authenticated():
             initial.update({
-                'name': user.get_profile().fullname,
+                'name': user.full_name,
                 'email': user.email,
             })
 

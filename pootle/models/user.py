@@ -110,6 +110,22 @@ class User(AbstractBaseUser):
         except UnicodeEncodeError:
             return None
 
+    @classmethod
+    def get(cls, user):
+        """Return the expected user instance.
+
+        This function is only necessary if `user` could be anonymous,
+        because we want to work with the instance of the special `nobody`
+        user instead of Django's own `AnonymousUser`.
+
+        If you know for certain that a user is logged in, then use it
+        straight away.
+        """
+        if user.is_authenticated():
+            return user
+
+        return cls.objects.get_nobody_user()
+
     def __unicode__(self):
         return self.username
 
@@ -128,15 +144,6 @@ class User(AbstractBaseUser):
     def email_user(self, subject, message, from_email=None):
         """Sends an email to this user."""
         send_mail(subject, message, from_email, [self.email])
-
-    def get_profile(self):
-        """Compatibility method for old code.
-
-        This should be removed once the calls to `get_profile()` have been
-        adapted.
-        """
-        from pootle_profile.models import PootleProfile
-        return PootleProfile.objects.get(user=self)
 
     def gravatar_url(self, size=80):
         if not self.email_hash:

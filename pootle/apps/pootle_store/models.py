@@ -410,7 +410,7 @@ class Unit(models.Model, base.TranslationUnit):
     def save(self, *args, **kwargs):
         if not hasattr(self, '_log_user'):
             User = get_user_model()
-            self._log_user = User.objects.get_system_user().get_profile()
+            self._log_user = User.objects.get_system_user()
 
         if not self.id:
             self._save_action = UNIT_ADDED
@@ -644,7 +644,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         if user is not None:
             User = get_user_model()
-            user = User.objects.get_system_user().get_profile()
+            user = User.objects.get_system_user()
 
         if (self.source != unit.source or
             len(self.source.strings) != stringcount(unit.source) or
@@ -1020,7 +1020,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         if user is None:
             User = get_user_model()
-            user = User.objects.get_system_user().get_profile()
+            user = User.objects.get_system_user()
 
         try:
             suggestion = Suggestion.objects.pending().get(
@@ -1068,7 +1068,7 @@ class Unit(models.Model, base.TranslationUnit):
             suggestion_user = suggestion.user
         else:
             User = get_user_model()
-            suggestion_user = User.objects.get_nobody_user().get_profile()
+            suggestion_user = User.objects.get_nobody_user()
 
         current_time = timezone.now()
         suggestion.state = SuggestionStates.ACCEPTED
@@ -1562,7 +1562,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         changes['deleted'] += 1
 
             User = get_user_model()
-            system = User.objects.get_system_user().get_profile()
+            system = User.objects.get_system_user()
 
             # Add new units to the store
             new_units = (store.findid(uid) for uid in new_ids - old_ids)
