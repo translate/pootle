@@ -182,3 +182,18 @@ def upgrade_to_25205():
             saved_id = unit_id
 
     logging.info('Succesfully synchronized latest submission data.')
+
+
+def upgrade_to_25206():
+    """Set a correct build version for Translate Toolkit.
+
+    Since Pootle 2.5.1 the upgrade for Translate Toolkit was using the Pootle
+    build version. This fix is meant to save a working build version so
+    future upgrades for Translate Toolkit are run.
+
+    Note that this is Translate Toolkit fix is being run as an upgrade for
+    Pootle because the Pootle upgrades are being run before the Translate
+    Toolkit ones.
+    """
+    from . import save_build_version
+    save_build_version('ttk', 12008)
