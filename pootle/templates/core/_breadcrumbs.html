@@ -22,9 +22,7 @@
 </li>
 {% if project %}
 <li>
-  <select id="js-select-resource"
-          data-initial-code="{{ resource_path }}"
-    style="visibility: hidden;">
+  <select id="js-select-resource" data-initial-code="{{ resource_path }}">
     <option value=""></option>
     {% for res in project.resources %}
     <option value="{{ res.path }}"

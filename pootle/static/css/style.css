@@ -1133,7 +1133,7 @@ div#update p
     text-align: left;
     border-radius: 10px;
     box-shadow: 0px 2px 5px #777;
-    background: linear-gradient(top,  #e5f3f8,  #cde7f1);
+    background: linear-gradient(to bottom, #e5f3f8, #cde7f1);
 }
 
 html[dir="rtl"] .form
