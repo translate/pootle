@@ -226,11 +226,11 @@ class UnitManager(models.Manager):
             )
         )
 
-    def get_for_path(self, pootle_path, profile, permission_code='view'):
+    def get_for_path(self, pootle_path, user, permission_code='view'):
         """Returns units that fall below the `pootle_path` umbrella.
 
         :param pootle_path: An internal pootle path.
-        :param profile: The user profile who is accessing the units.
+        :param user: The user who is accessing the units.
         :param permission_code: The permission code to check units for.
         """
         lang, proj, dir_path, filename = split_pootle_path(pootle_path)
@@ -267,9 +267,9 @@ class UnitManager(models.Manager):
         )
 
         # Non-superusers are limited to the projects they have access to
-        if not profile.is_superuser:
+        if not user.is_superuser:
             from pootle_project.models import Project
-            user_projects = Project.accessible_by_user(profile)
+            user_projects = Project.accessible_by_user(user)
             units_qs = units_qs.filter(
                 store__translation_project__project__code__in=user_projects,
             )
@@ -1673,7 +1673,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
 
     def sync(self, update_structure=False, conservative=True,
-             profile=None, skip_missing=False, only_newer=True):
+             user=None, skip_missing=False, only_newer=True):
         """Sync file with translations from DB."""
         if skip_missing and not self.file.exists():
             return
@@ -1702,7 +1702,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 (self.pootle_path, last_revision))
 
             self.file = store_path
-            self.update_store_header(profile=profile)
+            self.update_store_header(user=user)
             self.file.savestore()
             self.file_mtime = self.get_file_mtime()
             self.sync_time = timezone.now()
@@ -1784,7 +1784,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         #TODO conservative -> not overwrite
         if file_changed or not conservative:
-            self.update_store_header(profile=profile)
+            self.update_store_header(user=user)
             self.file.savestore()
             self.file_mtime = self.get_file_mtime()
             self.sync_time = timezone.now()
@@ -2031,7 +2031,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         return self.units[item]
 
 
-    def update_store_header(self, profile=None):
+    def update_store_header(self, user=None):
         language = self.translation_project.language
         source_language = self.translation_project.project.source_language
         disk_store = self.file.store
@@ -2043,18 +2043,18 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             mtime = self.get_mtime()
             if mtime == datetime_min:
                 mtime = timezone.now()
-            if profile is None:
+            if user is None:
                 try:
                     submit = self.translation_project.submission_set \
                                  .filter(creation_time=mtime).latest()
                     if submit.submitter.username != 'nobody':
-                        profile = submit.submitter
+                        user = submit.submitter
                 except ObjectDoesNotExist:
                     try:
                         lastsubmit = self.translation_project.submission_set \
                                                              .latest()
                         if lastsubmit.submitter.username != 'nobody':
-                            profile = lastsubmit.submitter
+                            user = lastsubmit.submitter
                         mtime = min(lastsubmit.creation_time, mtime)
                     except ObjectDoesNotExist:
                         pass
@@ -2070,9 +2070,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                                        (int(dateformat.format(mtime, 'U')),
                                         mtime.microsecond)),
                     }
-            if profile and profile.is_authenticated():
+            if user and user.is_authenticated():
                 headerupdates['Last_Translator'] = '%s <%s>' % \
-                        (profile.display_name, profile.email)
+                        (user.display_name, user.email)
             else:
                 #FIXME: maybe insert settings.TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'

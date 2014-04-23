@@ -40,7 +40,7 @@ from translate.lang import data
 
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
-from pootle_app.models.permissions import check_profile_permission
+from pootle_app.models.permissions import check_user_permission
 from pootle.core.exceptions import Http400
 from pootle_misc.baseurl import redirect
 from pootle_misc.checks import check_names
@@ -85,16 +85,16 @@ ALLOWED_SORTS = {
 SIMPLY_SORTED = ['units']
 
 
-def get_alt_src_langs(request, profile, translation_project):
+def get_alt_src_langs(request, user, translation_project):
     language = translation_project.language
     project = translation_project.project
     source_language = project.source_language
 
-    langs = profile.alt_src_langs.exclude(
+    langs = user.alt_src_langs.exclude(
             id__in=(language.id, source_language.id)
         ).filter(translationproject__project=project)
 
-    if not profile.alt_src_langs.count():
+    if not user.alt_src_langs.count():
         from pootle_language.models import Language
         accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
 
@@ -203,11 +203,11 @@ def get_step_query(request, units_queryset):
         sort_by_param = request.GET.get('sort', None)
         sort_on = 'units'
 
-        profile = request.profile
+        user = request.profile
         if username is not None:
             User = get_user_model()
             try:
-                profile = User.objects.get(username=username)
+                user = User.objects.get(username=username)
             except User.DoesNotExist:
                 pass
 
@@ -233,30 +233,30 @@ def get_step_query(request, units_queryset):
             elif unit_filter in ('my-suggestions', 'user-suggestions'):
                 match_queryset = units_queryset.filter(
                         suggestion__state=SuggestionStates.PENDING,
-                        suggestion__user=profile,
+                        suggestion__user=user,
                     ).distinct()
                 sort_on = 'suggestions'
             elif unit_filter == 'user-suggestions-accepted':
                 match_queryset = units_queryset.filter(
                         suggestion__state=SuggestionStates.ACCEPTED,
-                        suggestion__user=profile,
+                        suggestion__user=user,
                     ).distinct()
             elif unit_filter == 'user-suggestions-rejected':
                 match_queryset = units_queryset.filter(
                         suggestion__state=SuggestionStates.REJECTED,
-                        suggestion__user=profile,
+                        suggestion__user=user,
                     ).distinct()
             elif unit_filter in ('my-submissions', 'user-submissions'):
                 match_queryset = units_queryset.filter(
-                        submission__submitter=profile,
+                        submission__submitter=user,
                         submission__type=SubmissionTypes.NORMAL,
                     ).distinct()
                 sort_on = 'submissions'
             elif (unit_filter in ('my-submissions-overwritten',
                                   'user-submissions-overwritten')):
                 match_queryset = units_queryset.filter(
-                        submission__submitter=profile,
-                    ).exclude(submitted_by=profile).distinct()
+                        submission__submitter=user,
+                    ).exclude(submitted_by=user).distinct()
             elif unit_filter == 'checks' and 'checks' in request.GET:
                 checks = request.GET['checks'].split(',')
 
@@ -670,8 +670,8 @@ def get_edit_unit(request, unit):
 
     store = unit.store
     directory = store.parent
-    profile = request.profile
-    alt_src_langs = get_alt_src_langs(request, profile, translation_project)
+    user = request.profile
+    alt_src_langs = get_alt_src_langs(request, user, translation_project)
     project = translation_project.project
 
     template_vars = {
@@ -680,17 +680,15 @@ def get_edit_unit(request, unit):
         'comment_form': comment_form,
         'store': store,
         'directory': directory,
-        'profile': profile,
+        'profile': user,
         'user': request.user,
         'project': project,
         'language': language,
         'source_language': translation_project.project.source_language,
-        'cantranslate': check_profile_permission(profile, "translate",
-                                                 directory),
-        'cansuggest': check_profile_permission(profile, "suggest", directory),
-        'canreview': check_profile_permission(profile, "review", directory),
-        'is_admin': check_profile_permission(profile, 'administrate',
-                                             directory),
+        'cantranslate': check_user_permission(user, "translate", directory),
+        'cansuggest': check_user_permission(user, "suggest", directory),
+        'canreview': check_user_permission(user, "review", directory),
+        'is_admin': check_user_permission(user, 'administrate', directory),
         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
                                 project=project),
     }
@@ -819,9 +817,8 @@ def submit(request, unit):
             ).exists()
 
             if has_critical_checks:
-                can_review = check_profile_permission(request.profile,
-                                                      'review',
-                                                      unit.store.parent)
+                can_review = check_user_permission(request.profile, 'review',
+                                                   unit.store.parent)
                 ctx = {
                     'canreview': can_review,
                     'unit': unit
