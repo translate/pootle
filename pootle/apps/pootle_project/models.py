@@ -194,8 +194,8 @@ class Project(models.Model, TreeItem):
 
         store_objs = Store.objects.extra(
             where=[
-                '`pootle_store_store`.`pootle_path` LIKE %s',
-                '`pootle_store_store`.`pootle_path` NOT LIKE %s',
+                'pootle_store_store.pootle_path LIKE %s',
+                'pootle_store_store.pootle_path NOT LIKE %s',
             ], params=[resources_path, '/templates/%']
         ).select_related('parent').distinct()
 
