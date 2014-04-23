@@ -114,26 +114,25 @@ class Command(BaseCommand):
         tt_changed = db_tt_buildversion < CODE_TTK_BUILDVERSION
 
         if ptl_changed or tt_changed:
+            from pootle_misc.upgrade import upgrade
 
             if ptl_changed:
                 logging.info('Detected new Pootle version: %d.',
                              CODE_PTL_BUILDVERSION)
-            else:
-                db_ptl_buildversion = 0
 
             if tt_changed:
                 logging.info('Detected new Translate Toolkit version: %d.',
                              CODE_TTK_BUILDVERSION)
-            else:
-                db_tt_buildversion = 0
 
             logging.info('Running the upgrade machinery...')
 
-            from pootle_misc.upgrade import upgrade
+            if ptl_changed:
+                upgrade('pootle', db_ptl_buildversion, CODE_PTL_BUILDVERSION)
 
-            upgrade('pootle', db_ptl_buildversion, CODE_PTL_BUILDVERSION)
-            upgrade('ttk', db_tt_buildversion, CODE_TTK_BUILDVERSION)
+            if tt_changed:
+                upgrade('ttk', db_tt_buildversion, CODE_TTK_BUILDVERSION)
 
+            # Perform the option related actions.
             if options['calculate_stats']:
                 calculate_stats()
 
