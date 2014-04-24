@@ -28,7 +28,7 @@ Imports
 ~~~~~~~
 
 Like in `Python import conventions
-<http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
+<http://docs.translatehouse.org/projects/translate-toolkit/en/latest/developers/styleguide.html#styleguide-imports>`_
 in Translate styleguide, but imports should be grouped in the following order:
 
 1) __future__ library imports
