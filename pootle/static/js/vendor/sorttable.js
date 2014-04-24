@@ -440,7 +440,11 @@ sorttable = {
    * Retrieves the sorting order for `theadId` column in `cookieId`
    */
   getSortCookie: function (cookieId) {
-    return JSON.parse($.cookie(cookieId));
+    try {
+      return JSON.parse($.cookie(cookieId));
+    } catch(e) {
+      return {};
+    }
   },
 
 }
