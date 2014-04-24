@@ -19,7 +19,6 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import auth
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
@@ -31,8 +30,6 @@ from django.views.generic import TemplateView, UpdateView
 
 from pootle.core.views import LoginRequiredMixin
 from pootle_misc.baseurl import redirect
-
-from .forms import UserForm
 
 
 User = auth.get_user_model()
@@ -68,25 +65,13 @@ class UserSettingsView(LoginRequiredMixin, UpdateView):
         return form
 
 
-@login_required
-def edit_personal_info(request):
-    if request.POST:
-        post = request.POST.copy()
-        user_form = UserForm(post, instance=request.user)
+class UserProfileView(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = ('full_name', 'email')
+    template_name = 'profiles/settings/personal.html'
 
-        if user_form.is_valid():
-            user_form.save()
-            response = redirect(reverse('profiles_profile_detail',
-                                args=[request.user.username]))
-    else:
-        user_form = UserForm(instance=request.user)
-
-    template_vars = {
-        'form': user_form,
-    }
-
-    return render_to_response('profiles/settings/personal.html', template_vars,
-                              context_instance=RequestContext(request))
+    def get_object(self, queryset=None):
+        return self.request.user
 
 
 def redirect_after_login(request):
