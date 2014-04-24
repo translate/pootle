@@ -184,7 +184,7 @@ def fix_monolingual(oldunit, newunit, monolingual=None):
     if monolingual is None:
         monolingual = is_monolingual(type(newunit._store))
 
-    if monolingual and newunit.source != oldunit.source:
+    if monolingual and newunit.source != oldunit.source and not newunit.target:
         newunit.target = newunit.source
         newunit.source = oldunit.source
 
