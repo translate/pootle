@@ -242,6 +242,32 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
                 WHERE pootle_path LIKE %s
             ) AS t;
             '''
+        elif connection.vendor == 'sqlite':
+            # Due to the limitations of SQLite there is no way to do this just
+            # using raw SQL.
+            from pootle_store.models import Store
+
+            store_objs = Store.objects.extra(
+                where=[
+                    'pootle_store_store.pootle_path LIKE %s',
+                    'pootle_store_store.pootle_path NOT LIKE %s',
+                ], params=[resources_path, '/templates/%']
+            ).select_related('parent').distinct()
+
+            # Populate with stores and their parent directories, avoiding any
+            # duplicates
+            resources = []
+            for store in store_objs.iterator():
+                directory = store.parent
+                if (not directory.is_translationproject() and
+                    all(directory.path != path for path in resources)):
+                    resources.append(directory.path)
+
+                if all(store.path != path for path in resources):
+                    resources.append(store.path)
+
+            resources.sort(key=get_path_sortkey)
+            return resources
 
         cursor = connection.cursor()
         cursor.execute(sql_query, [resources_path, resources_path])
