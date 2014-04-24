@@ -478,7 +478,11 @@ sorttable = {
    * Retrieves the sorting order for ``tableId`` table's ``theadId`` column
    */
   getSortCookie: function (tableId) {
-    return JSON.parse($.cookie(tableId));
+    try {
+      return JSON.parse($.cookie(tableId));
+    } catch(e) {
+      return {};
+    }
   },
 
 }
