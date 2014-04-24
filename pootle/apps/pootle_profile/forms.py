@@ -24,8 +24,6 @@ from django.contrib import auth
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
-from .models import PootleProfile
-
 
 User = get_user_model()
 
@@ -35,25 +33,3 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('full_name', 'email')
-
-
-def pootle_profile_form_factory(exclude_fields):
-
-    class PootleProfileForm(forms.ModelForm):
-
-        class Meta:
-            model = PootleProfile
-
-        def __init__(self, *args, **kwargs):
-            self.exclude_fields = exclude_fields
-            super(PootleProfileForm, self).__init__(*args, **kwargs)
-
-            # Delete the fields the user can't edit
-            for field in self.exclude_fields:
-                del self.fields[field]
-            self.fields['alt_src_langs'].widget.attrs['class'] = \
-                "js-select2 select2-multiple"
-            self.fields['alt_src_langs'].widget.attrs['data-placeholder'] = \
-                _('Select one or more languages')
-
-    return PootleProfileForm

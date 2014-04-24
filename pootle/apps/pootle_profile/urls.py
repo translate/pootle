@@ -21,23 +21,27 @@
 
 from django.conf.urls import include, patterns, url
 
+from .views import UserDetailView, UserSettingsView
 
-urlpatterns = patterns('pootle_profile.views',
+
+account_patterns = patterns('pootle_profile.views',
     url(r'^login/?$',
         'login',
         name='pootle-profile-login'),
     url(r'^logout/?$',
         'logout',
         name='pootle-profile-logout'),
-    url(r'^edit/?$',
-        'profile_edit',
+
+    url(r'^settings/$',
+        UserSettingsView.as_view(),
         name='pootle-profile-edit'),
-    url(r'^personal/edit/?$',
+    url(r'^profile/$',
         'edit_personal_info',
         name='pootle-profile-personal-edit'),
 )
 
-urlpatterns += patterns('django.contrib.auth.views',
+
+auth_patterns = patterns('django.contrib.auth.views',
     url(r'^password/change/$',
         'password_change',
         name='pootle-password-change'),
@@ -56,4 +60,18 @@ urlpatterns += patterns('django.contrib.auth.views',
     url(r'^password/reset/done/$',
         'password_reset_done',
         name='password_reset_done'),
+)
+
+
+profile_patterns = patterns('pootle_profile.views',
+    url(r'^(?P<username>[^/]+)/$',
+        UserDetailView.as_view(),
+        name='profiles_profile_detail'),
+)
+
+
+urlpatterns = patterns('',
+    url(r'^accounts/', include(account_patterns)),
+    url(r'^accounts/', include(auth_patterns)),
+    url(r'^profiles/', include(profile_patterns)),
 )

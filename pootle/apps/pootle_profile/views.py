@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -25,21 +26,46 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.encoding import iri_to_uri
 from django.utils.http import is_safe_url
+from django.utils.translation import ugettext_lazy as _
+from django.views.generic import TemplateView, UpdateView
 
-from profiles.views import edit_profile
-
+from pootle.core.views import LoginRequiredMixin
 from pootle_misc.baseurl import redirect
 
-from .forms import UserForm, pootle_profile_form_factory
+from .forms import UserForm
 
 
-def profile_edit(request):
-    # FIXME: better to whitelist fields rather than blacklisting them
-    excluded = ('user', 'rate', 'review_rate', 'score', 'ui_lang', )
+User = auth.get_user_model()
 
-    return edit_profile(request,
-                        form_class=pootle_profile_form_factory(excluded),
-                        template_name='profiles/settings/profile.html')
+
+class UserDetailView(TemplateView):
+    template_name = 'profiles/profile_detail.html'
+
+    def get_context_data(self, **kwargs):
+        user = User.objects.get(username=kwargs['username'])
+
+        return {
+            'profile': user,
+        }
+
+
+class UserSettingsView(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = ('unit_rows', 'alt_src_langs')
+    template_name = 'profiles/settings/profile.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_form(self, *args, **kwargs):
+        form = super(UserSettingsView, self).get_form(*args, **kwargs)
+
+        form.fields['alt_src_langs'].widget.attrs['class'] = \
+            'js-select2 select2-multiple'
+        form.fields['alt_src_langs'].widget.attrs['data-placeholder'] = \
+            _('Select one or more languages')
+
+        return form
 
 
 @login_required

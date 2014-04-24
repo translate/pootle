@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -28,8 +28,7 @@ urlpatterns = patterns('',
 
     # External apps
     url(r'^contact/', include('evernote_contact.urls')),
-    url(r'^accounts/', include('pootle_profile.urls')),
-    url(r'^profiles/', include('profiles.urls')),
+    url(r'', include('pootle_profile.urls')),
 
     # URLs added by Evernote
     url(r'', include('evernote_auth.urls')),
