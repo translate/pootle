@@ -73,7 +73,7 @@ class ProjectURLMixin(object):
     """
 
     def get_absolute_url(self):
-        return reverse('pootle-project-overview', args=[self.code])
+        return reverse('pootle-project-overview', args=[self.code, ''])
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
