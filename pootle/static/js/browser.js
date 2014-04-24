@@ -13,6 +13,7 @@
   var actionMap = {
     'overview': '',
     'translate': 'translate',
+    'news': 'notices',
     'admin-permissions': 'admin/permissions',
     'admin-languages': 'admin/languages',
     'admin-terminology': 'terminology',

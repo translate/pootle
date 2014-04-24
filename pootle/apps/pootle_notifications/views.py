@@ -72,6 +72,8 @@ def view(request, path_obj):
         }
 
     ctx = {
+        'page': 'news',
+
         'notification_url': reverse('pootle-notifications-feed',
                                     args=[path_obj.pootle_path[:1]]),
         'directory': directory,

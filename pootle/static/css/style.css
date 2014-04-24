@@ -2416,8 +2416,6 @@ body#adminlanguages #tabs a.adminlanguages,
 body#adminprojects #tabs a.adminprojects,
 body#adminpermissions #tabs a.adminpermissions,
 body#adminstaticpages #tabs a.adminstaticpages,
-body#languagenews #tabs a.languagenews,
-body#tpnews #tabs a.tpnews,
 body #file-tabs a.selected-tab
 {
     background-color: #fff;

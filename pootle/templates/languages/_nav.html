@@ -12,6 +12,13 @@
 </option>
 {% if user.is_superuser or request.permissions.administrate %}
 <option disabled></option>
+{% endif %}
+<option
+  value="news"{% if user.is_superuser or request.permissions.administrate %} class="admin"{%endif%}
+  data-href="{% url 'pootle-notifications-language-notices' language.code %}">
+  {% trans "News" %}
+</option>
+{% if user.is_superuser or request.permissions.administrate %}
 <option
   value="admin-permissions" class="admin"
   data-href="{% url 'pootle-language-admin-permissions' language.code %}">
