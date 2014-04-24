@@ -50,7 +50,7 @@ class SubmissionFields(object):
     COMMENT = 4  # pootle_store.models.Unit.translator_comment
 
     NAMES_MAP = {
-        NONE: _(""),
+        NONE: "",
         SOURCE: _("Source"),
         TARGET: _("Target"),
         STATE: _("State"),
