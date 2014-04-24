@@ -37,12 +37,10 @@ the future we have to take a different approach for this.
 {% block tabs %}
   {% if directory.is_language %}
     {% include "languages/_tabs.html" %}
+  {% elif directory.is_project %}
+    {% include "projects/_tabs.html" %}
   {% else %}
-    {% if directory.is_project %}
-      {% include "projects/_tabs.html" %}
-    {% else %}
-      {% include "translation_projects/_tabs.html" %}
-    {% endif %}
+    {% include "translation_projects/_tabs.html" %}
   {% endif %}
 {% endblock %}
 
@@ -66,7 +64,7 @@ the future we have to take a different approach for this.
           {% csrf_token %}
           {{ form.as_p }}
           <p class="buttons">
-            <input type="submit" class="btn" value="{% trans "Publish" %}" />
+            <input type="submit" class="btn" value="{% trans 'Publish' %}" />
           </p>
         </form>
       </div>
