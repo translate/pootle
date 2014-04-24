@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -63,7 +63,7 @@ class SubmissionFields(object):
     COMMENT = 4  # pootle_store.models.Unit.translator_comment
 
     NAMES_MAP = {
-        NONE: _(""),
+        NONE: "",
         SOURCE: _("Source"),
         TARGET: _("Target"),
         STATE: _("State"),
