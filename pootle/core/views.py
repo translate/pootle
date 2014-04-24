@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,6 +20,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
@@ -38,6 +39,13 @@ class SuperuserRequiredMixin(object):
 
         return super(SuperuserRequiredMixin, self) \
                 .dispatch(request, *args, **kwargs)
+
+
+class LoginRequiredMixin(object):
+    """Require a logged-in user."""
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
 
 class AjaxResponseMixin(object):
