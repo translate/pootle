@@ -21,6 +21,7 @@
 import re
 
 from translate.misc.multistring import multistring
+from translate.lang import factory
 
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
@@ -127,6 +128,10 @@ except ImportError:
 @register.filter('pluralize_source')
 def pluralize_source(unit):
     if unit.hasplural():
+        try:
+            language = factory.getlanguage(unit.store.translation_project.language.code)
+        except Exception:
+            pass
         count = len(unit.source.strings)
         if count == 1:
             return [(0, unit.source.strings[0], "%s+%s" % (_('Singular'),
@@ -137,7 +142,17 @@ def pluralize_source(unit):
         else:
             forms = []
             for i, source in enumerate(unit.source.strings):
-                forms.append((i, source, _('Plural Form %d', i)))
+                if language:
+                    try:
+                        formName = language.cldr_mapping[i]
+                    except IndexError:
+                        formName = None
+                else:
+                    formName = None
+                if formName:
+                    forms.append((i, source, _('Plural Form %s', formName)))
+                else:
+                    forms.append((i, source, _('Plural Form %d', i)))
             return forms
     else:
         return [(0, unit.source, None)]
@@ -149,19 +164,40 @@ def pluralize_target(unit, nplurals=None):
         if nplurals is None:
             try:
                 nplurals = unit.store.translation_project.language.nplurals
-            except ObjectDoesNotExist:
+                language = factory.getlanguage(unit.store.translation_project.language.code)
+            except Exception:
                 pass
         forms = []
         if nplurals is None:
             for i, target in enumerate(unit.target.strings):
-                forms.append((i, target, _('Plural Form %d', i)))
+                if language:
+                    try:
+                        formName = language.cldr_mapping[i]
+                    except IndexError:
+                        formName = None
+                else:
+                    formName = None
+                if formName:
+                    forms.append((i, target, _('Plural Form %s', formName)))
+                else:
+                    forms.append((i, target, _('Plural Form %d', i)))
         else:
             for i in range(nplurals):
                 try:
                     target = unit.target.strings[i]
                 except IndexError:
                     target = ''
-                forms.append((i, target, _('Plural Form %d', i)))
+                if language:
+                    try:
+                        formName = language.cldr_mapping[i]
+                    except IndexError:
+                        formName = None
+                else:
+                    formName = None
+                if formName:
+                    forms.append((i, target, _('Plural Form %s', formName)))
+                else:
+                    forms.append((i, target, _('Plural Form %d', i)))
         return forms
     else:
         return [(0, unit.target, None)]
@@ -171,15 +207,43 @@ def pluralize_target(unit, nplurals=None):
 def pluralize_diff_sugg(sugg):
     unit = sugg.unit
     if unit.hasplural():
+        try:
+            language = factory.getlanguage(unit.store.translation_project.language.code)
+        except Exception:
+            pass
         forms = []
         for i, target in enumerate(sugg.target.strings):
             if i < len(unit.target.strings):
-                forms.append((i, target, call_highlight(unit.target.strings[i],
-                                                        target),
-                              _('Plural Form %d', i)))
+                if language:
+                    try:
+                        formName = language.cldr_mapping[i]
+                    except IndexError:
+                        formName = None
+                else:
+                    formName = None
+                if formName:
+                    forms.append((i, target, call_highlight(unit.target.strings[i],
+                                                            target),
+                                  _('Plural Form %s', formName)))
+                else:
+                    forms.append((i, target, call_highlight(unit.target.strings[i],
+                                                            target),
+                                  _('Plural Form %d', i)))
             else:
-                forms.append((i, target, call_highlight('', target),
-                              _('Plural Form %d', i)))
+                if language:
+                    try:
+                        formName = language.cldr_mapping[i]
+                    except IndexError:
+                        formName = None
+                else:
+                    formName = None
+                if formName:
+                    forms.append((i, target, call_highlight('', target),
+                                  _('Plural Form %s', formName)))
+                else:
+                    forms.append((i, target, call_highlight('', target),
+                                  _('Plural Form %d', i)))
+
         return forms
     else:
         return [(0, sugg.target, call_highlight(unit.target, sugg.target),

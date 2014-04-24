@@ -26,6 +26,7 @@ from django.utils import timezone
 from django.utils.translation import get_language, ugettext as _
 
 from translate.misc.multistring import multistring
+from translate.lang import factory
 
 from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import (Submission, SubmissionFields,
@@ -85,14 +86,29 @@ class MultiStringWidget(forms.MultiWidget):
         super(MultiStringWidget, self).__init__(widgets, attrs)
 
     def format_output(self, rendered_widgets):
+        try:
+            language = factory.getlanguage(self.attrs['lang'])
+        except Exception:
+            pass
         from django.utils.safestring import mark_safe
         if len(rendered_widgets) == 1:
             return mark_safe(rendered_widgets[0])
 
         output = ''
         for i, widget in enumerate(rendered_widgets):
-            output += '<div lang="%s" title="%s">' % \
-                (get_language(), _('Plural Form %d', i))
+            if language:
+                try:
+                    formName = language.cldr_mapping[i]
+                except IndexError:
+                    formName = None
+            else:
+                formName = None
+            if formName:
+                output += '<div lang="%s" title="%s">' % \
+                    (get_language(), _('Plural Form %s', formName))
+            else:
+                output += '<div lang="%s" title="%s">' % \
+                    (get_language(), _('Plural Form %d', i))
             output += widget
             output += '</div>'
 
