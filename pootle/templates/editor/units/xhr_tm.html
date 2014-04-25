@@ -2,7 +2,7 @@
   <div class="extra-item-title"><%= name %></div>
   <% _.each(suggs, function (sugg, i) { %>
   <div id="tm<%= i %>" class="extra-item-block js-editor-copytext"
-    data-action="overwrite" data-translation-aid="<%= sugg.target %>">
+    data-action="overwrite" data-translation-aid="<%- sugg.target %>">
     <div class="extra-item-content">
       <div class="extra-item">
         <div class="suggestion-original" lang="<%= store.source_lang %>"
