@@ -3,8 +3,7 @@
 Supported Browsers
 ==================
 
-This fork of Pootle targets the **latest stable** versions of major modern
-web browsers.
+Pootle targets the **latest stable** versions of major modern web browsers.
 
 Pootle should not only work correctly, but it should also look great in
 *Firefox, Chrome and Safari*.
