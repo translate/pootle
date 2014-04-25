@@ -1947,13 +1947,13 @@
 
     this.tmReq = $.jsonp({
       url: tmUrl,
-      callback: '_jsonp' + PTL.editor.units.getCurrent().id,
+      callback: '_jsonp' + unit.id,
       dataType: 'jsonp',
       cache: true,
       success: function (data) {
         var uid = this.callback.slice(6);
 
-        if (uid == PTL.editor.units.getCurrent().id && data.length) {
+        if (uid == unit.id && data.length) {
           var filtered = PTL.editor.filterTMResults(data),
               name = gettext("Similar translations"),
               tm = PTL.editor.tmpl.tm({store: store.toJSON(),
