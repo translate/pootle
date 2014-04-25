@@ -1883,13 +1883,12 @@
    */
 
   /* Filters TM results and does some processing */
-  filterTMResults: function (results) {
+  filterTMResults: function (results, sourceText) {
     // FIXME: this just retrieves the first three results
     // we could limit based on a threshold too.
-    var source = $("[id^=id_source_f_]").first().val(),
-        filtered = [];
+    var filtered = [];
 
-    if (results.length > 0 && results[0].source === source) {
+    if (results.length > 0 && results[0].source === sourceText) {
       var $element = $(PTL.editor.focused);
       // set only if the textarea is empty
       if ($element.val() === '') {
@@ -1949,7 +1948,8 @@
         var uid = this.callback.slice(6);
 
         if (uid == unit.id && data.length) {
-          var filtered = PTL.editor.filterTMResults(data),
+          var sourceText = unit.get('source')[0],
+              filtered = PTL.editor.filterTMResults(data, sourceText),
               name = gettext("Similar translations"),
               tm = PTL.editor.tmpl.tm({store: store.toJSON(),
                                        unit: unit.toJSON(),
