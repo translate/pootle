@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -43,6 +43,4 @@ urlpatterns = patterns('evernote_auth.views',
         'evernote_account_link'),
     (r'^accounts/evernote/link/disconnect/?$', 'evernote_account_disconnect',
         {}, 'evernote_account_disconnect'),
-
-    (r'^accounts/register/?$', 'evernote_login')
 )
