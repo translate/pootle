@@ -31,7 +31,7 @@ urlpatterns = patterns('',
     url(r'', include('pootle_profile.urls')),
 
     # URLs added by Evernote
-    url(r'', include('evernote_auth.urls')),
+    url(r'^accounts/evernote/', include('evernote_auth.urls')),
     url(r'^admin/reports/', include('evernote_reports.urls')),
 
     # Pootle URLs
