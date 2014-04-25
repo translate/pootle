@@ -89,10 +89,6 @@
 
 {% block content %}
 {% if table %}
-<div class="hd">
-  <h2>{% trans "Files and Subfolders" %}</h2>
-</div>
-
 <div class="bd">
   <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
     {% display_table table %}
