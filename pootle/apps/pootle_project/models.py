@@ -209,20 +209,40 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         """
         resources_path = ''.join(['/%/', self.code, '/%'])
 
-        sql_query = '''
-        SELECT DISTINCT
-            REPLACE(pootle_path,
-                    CONCAT(SUBSTRING_INDEX(pootle_path, '/', 3), '/'),
-                    '')
-        FROM (
-            SELECT pootle_path
-            FROM pootle_store_store
-            WHERE pootle_path LIKE %s
-          UNION
-            SELECT pootle_path FROM pootle_app_directory
-            WHERE pootle_path LIKE %s
-        ) AS t;
-        '''
+        if connection.vendor == 'mysql':
+            sql_query = '''
+            SELECT DISTINCT
+                REPLACE(pootle_path,
+                        CONCAT(SUBSTRING_INDEX(pootle_path, '/', 3), '/'),
+                        '')
+            FROM (
+                SELECT pootle_path
+                FROM pootle_store_store
+                WHERE pootle_path LIKE %s
+              UNION
+                SELECT pootle_path FROM pootle_app_directory
+                WHERE pootle_path LIKE %s
+            ) AS t;
+            '''
+        elif connection.vendor == 'postgresql':
+            sql_query = '''
+            SELECT DISTINCT
+                REPLACE(pootle_path,
+                        ARRAY_TO_STRING((
+                                         STRING_TO_ARRAY(pootle_path,'/')
+                                        )[1:3], '/')
+                        || '/',
+                        '')
+            FROM (
+                SELECT pootle_path
+                FROM pootle_store_store
+                WHERE pootle_path LIKE %s
+              UNION
+                SELECT pootle_path FROM pootle_app_directory
+                WHERE pootle_path LIKE %s
+            ) AS t;
+            '''
+
         cursor = connection.cursor()
         cursor.execute(sql_query, [resources_path, resources_path])
 
