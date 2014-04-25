@@ -6,9 +6,9 @@
     <div class="extra-item-content">
       <div class="extra-item">
         <div class="suggestion-original" lang="<%= store.source_lang %>"
-          dir="<%= store.source_dir %>"><%= sugg.source %></div>
+          dir="<%= store.source_dir %>"><%= PTL.editor.doDiff(unit.source[0], sugg.source) %></div>
         <div class="suggestion-translation" lang="<%= store.target_lang %>"
-          dir="<%= store.target_dir %>"><%= sugg.target %></div>
+          dir="<%= store.target_dir %>"><%= PTL.utils.fancyHl(sugg.target) %></div>
         <div class="tm-context">Translated by <%= sugg.fullname %> in &ldquo;<span title="<%= sugg.path %>"><%= sugg.project %></span>&rdquo; project</div>
       </div>
     </div>

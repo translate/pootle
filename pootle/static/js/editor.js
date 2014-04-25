@@ -1882,7 +1882,7 @@
    * User and TM suggestions
    */
 
-  /* Filters TM results and does some processing (add diffs, extra texts...) */
+  /* Filters TM results and does some processing */
   filterTMResults: function (results) {
     // FIXME: this just retrieves the first three results
     // we could limit based on a threshold too.
@@ -1901,9 +1901,6 @@
     }
 
     for (var i=0; i<results.length && i<3; i++) {
-      results[i].source = this.doDiff(source, results[i].source);
-      results[i].target = PTL.utils.fancyHl(results[i].target);
-
       if (results[i].username === 'nobody') {
         results[i].fullname = gettext('some anonymous user');
       } else if (!results[i].fullname) {
@@ -1955,6 +1952,7 @@
           var filtered = PTL.editor.filterTMResults(data),
               name = gettext("Similar translations"),
               tm = PTL.editor.tmpl.tm({store: store.toJSON(),
+                                       unit: unit.toJSON(),
                                        suggs: filtered,
                                        name: name});
 
