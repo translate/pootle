@@ -111,7 +111,7 @@ a.btn:link
 .btn-disabled:focus
 {
     cursor: default;
-    pointer-events: none;   # Not standard yet
+    pointer-events: none;   /* Not standard yet */
 
     color: rgba(255, 255, 255, 0.75);
     opacity: 0.5;
