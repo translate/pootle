@@ -80,7 +80,8 @@ def unit_update_cache(unit):
         if not orig:
             unit.store.total_wordcount += difference
 
-    if orig and unit._target_updated:
+    # Only update the stats if either the target was updated, or the state changed
+    if orig and (unit._target_updated or orig.state != unit.state):
         # Case 1: Unit was not translated before
         if orig.state == UNTRANSLATED:
             if unit.state == UNTRANSLATED:
