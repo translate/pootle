@@ -21,7 +21,13 @@ Enabling the Pootle API
 =======================
 
 Pootle API is disabled by default. To enable it just install
-``django-tastypie`` and put the following line on your custom settings:
+``django-tastypie`` 
+
+.. code-block::
+
+  pip install django-tastypie==0.9.16
+
+and put the following line on your custom settings:
 
 .. code-block:: python
 
