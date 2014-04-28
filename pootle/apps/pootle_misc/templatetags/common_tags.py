@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2104 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -48,3 +48,16 @@ def endswith(value, arg):
 @register.filter
 def count(value, arg):
     return value.count(arg)
+
+
+@register.filter
+def label_tag(field, suffix=None):
+    """Returns the `label_tag` for a field.
+
+    Optionally allows overriding the default `label_suffix` for the form
+    this field belongs to.
+    """
+    if not hasattr(field, 'label_tag'):
+        return ''
+
+    return field.label_tag(label_suffix=suffix)

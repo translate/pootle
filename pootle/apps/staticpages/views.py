@@ -68,6 +68,11 @@ class PageModelMixin(object):
         })
         return ctx
 
+    def get_form_kwargs(self):
+        kwargs = super(PageModelMixin, self).get_form_kwargs()
+        kwargs.update({'label_suffix': ''})
+        return kwargs
+
     def get_form(self, form_class):
         form = super(PageModelMixin, self).get_form(form_class)
 

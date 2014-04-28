@@ -1,4 +1,4 @@
-{% load i18n baseurl store_tags cleanhtml cache profile_tags locale %}
+{% load i18n baseurl common_tags store_tags cleanhtml cache profile_tags locale %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs profile.id LANGUAGE_CODE unit.get_terminology %}
@@ -155,7 +155,7 @@
             <div class="translate-fuzzy-block js-fuzzy-block{% if not is_admin and not unit.isfuzzy %} hide{% endif %}"
               lang="{{ LANGUAGE_CODE }}"
               title="{% trans 'Mark this string as needing further work (Ctrl+Space)' %}">
-              {{ form.state }} {{ form.state.label_tag }}
+              {{ form.state }} {{ form.state|label_tag:'' }}
             </div>
           </div>
           <!-- Translation -->

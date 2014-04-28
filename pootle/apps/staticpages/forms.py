@@ -39,6 +39,7 @@ def agreement_form_factory(pages, user, anchor_class=''):
     class AgreementForm(forms.Form):
 
         def __init__(self, *args, **kwargs):
+            kwargs.setdefault('label_suffix', '')
             super(AgreementForm, self).__init__(*args, **kwargs)
 
             self._pages = pages

@@ -46,13 +46,21 @@ class UserDetailView(TemplateView):
         }
 
 
-class UserSettingsView(LoginRequiredMixin, UpdateView):
+class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
-    fields = ('unit_rows', 'alt_src_langs')
-    template_name = 'profiles/settings/profile.html'
 
     def get_object(self, queryset=None):
         return self.request.user
+
+    def get_form_kwargs(self):
+        kwargs = super(UserUpdateView, self).get_form_kwargs()
+        kwargs.update({'label_suffix': ''})
+        return kwargs
+
+
+class UserSettingsView(UserUpdateView):
+    fields = ('unit_rows', 'alt_src_langs')
+    template_name = 'profiles/settings/profile.html'
 
     def get_form(self, *args, **kwargs):
         form = super(UserSettingsView, self).get_form(*args, **kwargs)
@@ -65,13 +73,9 @@ class UserSettingsView(LoginRequiredMixin, UpdateView):
         return form
 
 
-class UserProfileView(LoginRequiredMixin, UpdateView):
-    model = User
+class UserProfileView(UserUpdateView):
     fields = ('full_name', 'email')
     template_name = 'profiles/settings/personal.html'
-
-    def get_object(self, queryset=None):
-        return self.request.user
 
 
 def redirect_after_login(request):
