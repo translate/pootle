@@ -28,17 +28,15 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Agreement
 
 
-def agreement_form_factory(pages, user, base_class=forms.Form,
-                           anchor_class=''):
+def agreement_form_factory(pages, user, anchor_class=''):
     """Factory that builds an agreement form.
 
     :param pages: Legal pages that need to be accepted by users.
     :param user: User bound to the agreement form.
-    :param base_class: Base class for this form to inherit from.
     :param anchor_class: Extra class(es) added to page links.
     :return: An `AgreementForm` class with `pages` as required checkboxes.
     """
-    class AgreementForm(base_class):
+    class AgreementForm(forms.Form):
 
         def __init__(self, *args, **kwargs):
             super(AgreementForm, self).__init__(*args, **kwargs)
