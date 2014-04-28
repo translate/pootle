@@ -17,19 +17,14 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.encoding import iri_to_uri
-from django.utils.http import is_safe_url, urlquote
 
 from profiles.views import edit_profile
 
 from pootle_misc.baseurl import redirect
-from staticpages.forms import agreement_form_factory
-from staticpages.models import Agreement, LegalPage
 
 from .forms import UserForm, pootle_profile_form_factory
 
