@@ -277,6 +277,8 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
                     resources.append(store.path)
 
             resources.sort(key=get_path_sortkey)
+
+            cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
             return resources
 
         cursor = connection.cursor()
