@@ -29,8 +29,9 @@ from django.views.decorators.http import require_POST
 from taggit.models import Tag
 
 from pootle.core.browser import (get_table_headings, make_language_item,
-                                 make_project_list_item)
-from pootle.core.decorators import get_path_obj, permission_required
+                                 make_project_list_item, make_xlanguage_item)
+from pootle.core.decorators import (get_path_obj, get_resource,
+                                    permission_required)
 from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
@@ -157,12 +158,14 @@ def ajax_add_tag_to_tp_in_project(request, project):
 
 @get_path_obj
 @permission_required('view')
-def overview(request, project):
-    """Page listing all languages added to project."""
+@get_resource
+def overview(request, project, dir_path, filename):
+    """Languages overview for a given project."""
     from locale import strcoll
 
-    items = [make_language_item(translation_project)
-             for translation_project in project.get_children().iterator()]
+    item_func = (make_xlanguage_item if dir_path or filename
+                                     else make_language_item)
+    items = [item_func(item) for item in request.resource_obj.get_children()]
     items.sort(lambda x, y: strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
@@ -180,7 +183,6 @@ def overview(request, project):
         },
 
         'browser_extends': 'projects/base.html',
-        'browser_body_id': 'projectoverview',
     })
 
     if ctx['can_edit']:
@@ -239,21 +241,14 @@ def project_settings_edit(request, project):
 
 @get_path_obj
 @permission_required('view')
-def translate(request, project):
-    request.pootle_path = project.pootle_path
-    # TODO: support arbitrary resources
-    request.ctx_path = project.pootle_path
-    request.resource_path = ''
-    request.store = None
-    request.directory = project.directory
-
+@get_resource
+def translate(request, project, dir_path, filename):
     ctx = get_translation_context(request)
     ctx.update({
         'language': None,
         'project': project,
 
         'editor_extends': 'projects/base.html',
-        'editor_body_id': 'projecttranslate',
     })
 
     return render(request, "editor/main.html", ctx)
@@ -261,15 +256,8 @@ def translate(request, project):
 
 @get_path_obj
 @permission_required('view')
-def export_view(request, project):
-    request.pootle_path = project.pootle_path
-    # TODO: support arbitrary resources
-    request.ctx_path = project.pootle_path
-    request.resource_path = ''
-
-    request.store = None
-    request.directory = project.directory
-
+@get_resource
+def export_view(request, project, dir_path, filename):
     language = None
 
     ctx = get_export_view_context(request)
@@ -297,7 +285,9 @@ def project_admin(request, project):
     queryset = TranslationProject.objects.filter(project=project)
     queryset = queryset.order_by('pootle_path')
 
-    model_args = {
+    ctx = {
+        'page': 'admin-languages',
+
         'project': {
             'code': project.code,
             'name': project.fullname,
@@ -305,7 +295,7 @@ def project_admin(request, project):
     }
 
     return admin_edit(request, 'projects/admin/languages.html',
-                      TranslationProject, model_args, generate_link,
+                      TranslationProject, ctx, generate_link,
                       linkfield="language", queryset=queryset,
                       can_delete=True, form=tp_form_factory(project),
                       formset=TranslationProjectFormSet,
@@ -318,31 +308,68 @@ def project_admin_permissions(request, project):
     from pootle_app.views.admin.permissions import admin_permissions
 
     ctx = {
-        "project": project,
-        "directory": project.directory,
-        "feed_path": project.pootle_path[1:],
+        'page': 'admin-permissions',
+
+        'project': project,
+        'directory': project.directory,
+        'feed_path': project.pootle_path[1:],
     }
     return admin_permissions(request, project.directory,
-                             "projects/admin/permissions.html", ctx)
+                             'projects/admin/permissions.html', ctx)
 
 
 @get_path_obj
 @permission_required('view')
-def projects_index(request, root):
+def projects_overview(request, project_set):
     """Page listing all projects."""
-    user_accessible_projects = Project.accessible_by_user(request.user)
-    user_projects = Project.objects.filter(code__in=user_accessible_projects)
-    items = [make_project_list_item(project) for project in user_projects]
+    items = [make_project_list_item(project)
+             for project in project_set.get_children()]
 
-    table_fields = ['name']
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'suggestions', 'critical', 'last-updated', 'activity']
 
-    ctx = {
+    ctx = get_overview_context(request)
+    ctx.update({
         'table': {
             'id': 'projects',
             'fields': table_fields,
             'headings': get_table_headings(table_fields),
             'items': items,
         },
-    }
 
-    return render(request, "projects/list.html", ctx)
+        'browser_extends': 'projects/all/base.html',
+    })
+
+    response = render(request, 'browser/overview.html', ctx)
+    response.set_cookie('pootle-language', 'projects')
+
+    return response
+
+
+@get_path_obj
+@permission_required('view')
+def projects_translate(request, project_set):
+    ctx = get_translation_context(request)
+    ctx.update({
+        'language': None,
+        'project': None,
+
+        'editor_extends': 'projects/all/base.html',
+    })
+
+    return render_to_response('editor/main.html', ctx,
+                              context_instance=RequestContext(request))
+
+
+@get_path_obj
+@permission_required('view')
+def projects_export_view(request, project_set):
+    ctx = get_export_view_context(request)
+    ctx.update({
+        'source_language': 'en',
+        'language': None,
+        'project': None,
+    })
+
+    return render_to_response('editor/export_view.html', ctx,
+                              context_instance=RequestContext(request))

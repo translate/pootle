@@ -4,24 +4,46 @@
 
   var sel = {
     breadcrumbs: '.js-breadcrumb',
+    navigation: '#js-select-navigation',
     language: '#js-select-language',
     project: '#js-select-project',
     resource: '#js-select-resource'
   };
 
-  var makeNavDropdown = function (selector, placeholder) {
-   return PTL.utils.makeSelectableInput(selector,
-      {
+  var actionMap = {
+    'overview': '',
+    'translate': 'translate',
+    'news': 'notices',
+    'admin-permissions': 'admin/permissions',
+    'admin-languages': 'admin/languages',
+    'admin-terminology': 'terminology',
+  };
+
+  var makeNavDropdown = function (selector, opts) {
+    var defaults = {
         allowClear: true,
         dropdownAutoWidth: true,
         dropdownCssClass: 'breadcrumb-dropdown',
-        placeholder: placeholder,
         width: 'off'
       },
+      opts = $.extend({}, defaults, opts);
+
+    return PTL.utils.makeSelectableInput(selector, opts,
       function (e) {
+        var $opt = $(e.target).find('option:selected'),
+            href = $opt.data('href');
+
+        if (href) {
+          window.location.href = href;
+          return false;
+        }
+
         var langCode = $(sel.language).val(),
-            projectCode = $(sel.project).val();
-            resource = $(sel.resource).val() || '';
+            projectCode = $(sel.project).val(),
+            $resource = $(sel.resource),
+            resource = $resource.length ? $resource.val()
+                                                   .replace('ctx-', '')
+                                        : '';
         PTL.browser.navigateTo(langCode, projectCode, resource);
       }
     );
@@ -29,22 +51,58 @@
 
   var fixDropdowns = function (e) {
     // We can't use `e.persisted` here. See bug 2949 for reference
-    var selectors = [sel.language, sel.project, sel.resource];
+    var selectors = [sel.navigation, sel.language, sel.project, sel.resource];
     for (var i=0; i<selectors.length; i++) {
       var $el = $(selectors[i]),
           initial = $el.data('initial-code');
       $el.select2('val', initial);
     }
+    $(sel.breadcrumbs).css('visibility', 'visible');
   };
+
+  var formatResource = function (path, container, query) {
+    var $el = $(path.element);
+
+    if ($el.prop('disabled')) {
+      return '';
+    }
+
+    var t = '/' + path.text.trim();
+
+    if (query.term !== '') {
+      var escaped_term = query.term.replace(
+            /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,
+            '\\$&'
+          ),
+          regex = new RegExp(escaped_term, 'gi');
+      t = t.replace(regex, '<span class="select2-match">$&</span>');
+    }
+
+    return [
+      '<span class="', $el.data('icon'), '">',
+        '<i class="icon-', $el.data('icon'), '"></i>',
+        '<span class="text">', t, '</span>',
+      '</span>'
+    ].join('');
+  };
+
 
   PTL.browser = {
 
     init: function () {
-      makeNavDropdown(sel.language, gettext("All Languages"));
-      makeNavDropdown(sel.project, gettext("All Projects"));
-      makeNavDropdown(sel.resource, gettext("All Resources"));
-
-      $(sel.breadcrumbs).css('visibility', 'visible');
+      makeNavDropdown(sel.navigation, {
+        minimumResultsForSearch: -1
+      });
+      makeNavDropdown(sel.language, {
+        placeholder: gettext("All Languages")
+      });
+      makeNavDropdown(sel.project, {
+        placeholder: gettext("All Projects")
+      });
+      makeNavDropdown(sel.resource, {
+        placeholder: gettext("Entire Project"),
+        formatResult: formatResource
+      });
     },
 
     /* Navigates to `languageCode`, `projectCode`, `resource` while
@@ -52,9 +110,9 @@
     navigateTo: function (languageCode, projectCode, resource) {
       var curProject = $(sel.project).data('initial-code'),
           curLanguage = $(sel.language).data('initial-code'),
-          curResource = $(sel.resource).data('initial-code'),
-          curUrl = window.location.toString(),
-          newUrl = curUrl,
+          $resource = $(sel.resource),
+          curResource = $resource.length ? $resource.data('initial-code')
+                                                    .replace('ctx-', '') : '',
           langChanged = languageCode !== curLanguage,
           projChanged = projectCode !== curProject,
           resChanged = resource !== curResource,
@@ -64,39 +122,37 @@
         return;
       }
 
-      if (languageCode === '' && projectCode === '') {
-        newUrl = l('/projects/');
-      } else if (languageCode === '' && projectCode !== '') {
-        newUrl = l(['', 'projects', projectCode, resource].join('/'));
-      } else if (languageCode !== '' && projectCode === '') {
-        newUrl = l(['', languageCode].join('/'));
-      } else if (languageCode !== '' && projectCode !== '') {
-        if (projChanged) {
-          newUrl = l(['', languageCode, projectCode].join('/'));
-        } else if (langChanged) {
-          if (curLanguage === '') {
-            newUrl = curUrl.replace('projects/' + curProject,
-                                    languageCode + '/' + curProject);
-          } else {
-            newUrl = curUrl.replace(curLanguage + '/' + curProject,
-                                    languageCode + '/' + curProject)
-                           .replace(/(\#|&)unit=\d+/, '');
-          }
-        } else if (resChanged) {
-          if (curResource) {
-            newUrl = curUrl.replace(curResource, resource);
-          } else {
-            var pattern = [
-              '(', curLanguage, '/', curProject, '/', '([^/]+/)?)', curResource
-            ].join(''),
-                regex = new RegExp(pattern);
+      if (!languageCode) {
+        languageCode = 'projects';
+      }
+      if (projectCode === '' || projChanged) {
+        resource = '';
+      }
 
-            newUrl = newUrl.replace(regex, ['$1', resource].join(''));
-          }
-          newUrl = newUrl.replace(/(\#|&)unit=\d+/, '');
-        }
-        var changed = projChanged ? 'project' : 'language';
-        $.cookie('user-choice', changed, {path: '/'});
+      var action = actionMap[$(sel.navigation).val()],
+          parts = ['', languageCode, projectCode, action, resource],
+          urlParts = parts.filter(function (p, i) {
+            return i === 0 || p !== '';
+          });
+
+      if (!resource) {
+        urlParts.push('');
+      }
+
+      newUrl = l(urlParts.join('/'));
+
+      if (PTL.hasOwnProperty('editor')) {
+        var hash = window.location.hash.replace(/(\#|&)unit=\d+/, '');
+        newUrl = [newUrl, hash].join('');
+      }
+
+      var changed = projChanged ? 'project' :
+                    langChanged ? 'language' : 'resource';
+      $.cookie('user-choice', changed, {path: '/'});
+
+      // Remember the latest language the user switched to
+      if (langChanged) {
+        $.cookie('pootle-language', languageCode, {path: '/'});
       }
 
       window.location.href = newUrl;

@@ -10,14 +10,14 @@
 
 {% block body_class %}translate{% endblock %}
 
-{% block body_id %}{{ editor_body_id }}{% endblock %}
-
 {% block breadcrumbs_block %}
 {{ block.super }}
 {% include 'editor/_keyboard_shortcuts_help.html' %}
 {% endblock %}
 
-{% block search %}{% endblock %}
+{% block actions %}
+{% include 'editor/_actions.html' %}
+{% endblock %}
 
 {% block content %}
 {% include 'editor/_editor.html' %}

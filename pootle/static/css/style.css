@@ -760,7 +760,7 @@ html[dir="rtl"] #sidebar-toggle
 #alerts,
 #noscript
 {
-    top: 41px; /* navbar height + border */
+    top: 31px; /* navbar height + border */
     width: 480px;
     left: 50%;
     margin-left: -240px;
@@ -963,7 +963,6 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
-#main-overview .last-action .action-text,
 table.stats .last-updated .action-text
 {
     display: none;
@@ -1774,15 +1773,6 @@ table.graph
     }
 }
 
-/* When browser size is 1600px or less, show the smaller version of the progressbar on the main page */
-@media screen and (max-width: 1600px)
-{
-    #main-overview table.graph
-    {
-        width: 100px;
-    }
-}
-
 table.graph td
 {
     padding: 0 !important;
@@ -2215,12 +2205,20 @@ body.js-not-loaded #translate-actions li
     background-color: #090;
 }
 
-#translate-actions .continue-translation
+#translate-actions .continue-translation,
+#translate-actions .back-to-browser
 {
     color: #0489b7;
 }
 
-#translate-actions .continue-translation .counter
+#translate-actions .back-to-browser
+{
+    padding: 0.1em 0.4em;
+    vertical-align: middle;
+}
+
+#translate-actions .continue-translation .counter,
+#translate-actions .back-to-browser .counter
 {
     background-color: #0489b7;
 }
@@ -2243,6 +2241,13 @@ body.js-not-loaded #translate-actions li
 #translate-actions .fix-errors .counter
 {
     background-color: #c30;
+}
+
+/* Translate action icon adjustments */
+
+.icon-back
+{
+    margin-top: 1px;
 }
 
 /* Breadcrumbs */
@@ -2279,6 +2284,73 @@ html[dir="rtl"] .breadcrumb li
 .breadcrumb li:first-child:before
 {
     content: normal;
+}
+
+.breadcrumb li.navigation + li::before
+{
+    content: ":";
+}
+
+/* select2 dropdown widgets in breadcrumbs */
+
+.breadcrumb .navigation .select2-choice
+{
+    color: #0489b7;
+}
+
+/* HACK: display background as a thin line */
+.breadcrumb-dropdown .select2-result-unselectable
+{
+    height: 1px;
+    margin: 0.5em;
+}
+
+.breadcrumb-dropdown .select2-result-unselectable .select2-result-label
+{
+    cursor: default;
+}
+/* END HACK */
+
+.select2-results .folder
+{
+    font-weight: bold;
+}
+
+.select2-result-label .text
+{
+    margin-left: 0.3em;
+}
+
+.select2-result-label
+{
+    white-space: nowrap;
+}
+
+.select2-result-label .file
+{
+    margin-left: 1.5em;
+}
+
+.select2-resource-root .file
+{
+    margin-left: auto;
+}
+
+.select2-match
+{
+    color: #000;
+    background-color: rgba(255, 255, 0, 0.5);
+}
+
+.select2-results .select2-result.admin
+{
+    color: #c30;
+}
+
+.select2-results .select2-highlighted.admin
+{
+    background-color: #c30;
+    color: #fff;
 }
 
 /* Tabs */
@@ -2349,21 +2421,6 @@ body#adminlanguages #tabs a.adminlanguages,
 body#adminprojects #tabs a.adminprojects,
 body#adminpermissions #tabs a.adminpermissions,
 body#adminstaticpages #tabs a.adminstaticpages,
-body#main-overview #tabs a.main-overview,
-body#main-translate #tabs a.main-translate,
-body#projectoverview #tabs a.projectoverview,
-body#projecttranslate #tabs a.projecttranslate,
-body#projectadmin #tabs a.projectadmin,
-body#projectperm #tabs a.projectperm,
-body#languageoverview #tabs a.languageoverview,
-body#languagenews #tabs a.languagenews,
-body#languagetranslate #tabs a.languagetranslate,
-body#languageadmin #tabs a.languageadmin,
-body#tpoverview #tabs a.tpoverview,
-body#tpnews #tabs a.tpnews,
-body#tptranslate #tabs a.tptranslate,
-body#tpterminology #tabs a.tpterminology,
-body#tpadminpermissions #tabs a.tpadminpermissions,
 body #file-tabs a.selected-tab
 {
     background-color: #fff;
@@ -2384,18 +2441,6 @@ body #file-tabs a.selected-tab
 #search
 {
     display: inline-block;
-}
-
-#main-overview #search
-{
-    float: right;
-    margin: 4px 0 0;
-    margin-top: -32px;
-}
-
-#main-overview[dir="rtl"] #search
-{
-    float: left;
 }
 
 #search-form

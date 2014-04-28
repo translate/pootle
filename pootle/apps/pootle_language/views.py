@@ -66,7 +66,6 @@ def overview(request, language):
         'table': table,
 
         'browser_extends': 'languages/base.html',
-        'browser_body_id': 'languageoverview',
     })
 
     if can_edit:
@@ -77,8 +76,11 @@ def overview(request, language):
                                    args=[language.code]),
         })
 
-    return render_to_response("browser/overview.html", ctx,
-                              context_instance=RequestContext(request))
+    response = render_to_response('browser/overview.html', ctx,
+                                  context_instance=RequestContext(request))
+    response.set_cookie('pootle-language', language.code)
+
+    return response
 
 
 @ajax_required
@@ -135,7 +137,6 @@ def translate(request, language):
         'project': project,
 
         'editor_extends': 'languages/base.html',
-        'editor_body_id': 'languagetranslate',
     })
 
     return render_to_response('editor/main.html', context,
@@ -169,10 +170,12 @@ def export_view(request, language):
 @get_path_obj
 @permission_required('administrate')
 def language_admin(request, language):
-    template_vars = {
-        "language": language,
-        "directory": language.directory,
-        "feed_path": '%s/' % language.code,
+    ctx = {
+        'page': 'admin-permissions',
+
+        'language': language,
+        'directory': language.directory,
+        'feed_path': '%s/' % language.code,
     }
     return admin_permissions(request, language.directory,
-                             'languages/admin/permissions.html', template_vars)
+                             'languages/admin/permissions.html', ctx)

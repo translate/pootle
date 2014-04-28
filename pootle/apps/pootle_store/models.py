@@ -214,10 +214,19 @@ class UnitManager(RelatedManager):
 
         # /projects/<project_code>/translate/*
         if lang is None and proj is not None:
-            units_path = ''.join(['/%/', proj, '/%'])
+            if dir_path and filename:
+                units_path = ''.join(['/%/', proj, '/', dir_path, filename])
+            elif dir_path:
+                units_path = ''.join(['/%/', proj, '/', dir_path, '%'])
+            elif filename:
+                units_path = ''.join(['/%/', proj, '/', filename])
+            else:
+                units_path = ''.join(['/%/', proj, '/%'])
+        # /projects/translate/*
+        elif lang is None and proj is None:
+            units_path = '/%'
         # /<lang_code>/<project_code>/translate/*
         # /<lang_code>/translate/*
-        # /translate/*
         else:
             units_path = ''.join([pootle_path, '%'])
 
@@ -1051,6 +1060,7 @@ class Unit(models.Model, base.TranslationUnit):
         sub = Submission(creation_time=self.submitted_on,
             translation_project=self.store.translation_project,
             submitter=user,
+            field=SubmissionFields.NONE,
             unit=self,
             type=sub_type,
             check=check

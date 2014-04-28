@@ -33,44 +33,6 @@ html[dir="rtl"] #toolbar
     text-align: right;
 }
 
-/* Toolbar search */
-
-#toolbar #search
-{
-    position: relative;
-    float: left;
-    margin: 0;
-}
-
-html[dir="rtl"] #toolbar #search
-{
-    float: right;
-}
-
-#toolbar .search-container
-{
-    top: auto;
-    bottom: 30px;
-}
-
-#toolbar .search-container:after,
-#toolbar .search-container:before
-{
-    top: 100%;
-}
-
-#toolbar .search-container:after
-{
-    border-top-color: #fff;
-    border-bottom-color: transparent;
-}
-
-#toolbar .search-container:before
-{
-    border-top-color: #d9d9d9;
-    border-bottom-color: transparent;
-}
-
 
 /* Zoom levels */
 
@@ -142,25 +104,6 @@ body.zoom-out-2 .toolbar > div
 {
     display: inline-block;
     min-width: 1em;
-}
-
-
-#prevnext input[type="submit"]
-{
-    min-width: 80px;
-    padding: 4px 10px;
-}
-
-body.zoom-out-1 #prevnext input[type="submit"]
-{
-    min-width: 90px;
-    padding: 3px 8px;
-}
-
-body.zoom-out-2 #prevnext input[type="submit"]
-{
-    min-width: 85px;
-    padding: 2px 8px;
 }
 
 
@@ -963,7 +906,8 @@ html[dir="rtl"] .timeline-extra
     right: 100%;
 }
 
-.timeline-field-3
+.timeline-field-3,
+.timeline-field-0
 {
     font-size: 85%;
 }
@@ -1100,6 +1044,7 @@ li.check.false-positive > a
 .translate-buttons-block .btn
 {
     margin-bottom: 0.5em;
+    min-width: 110px;
 }
 
 .translate-buttons-block input.suggest

@@ -26,18 +26,22 @@ from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
-from django.db import models
+from django.db import connection, models
 from django.db.models import Q
+from django.db.models.signals import post_delete, post_save
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
+from pootle.core.cache import make_method_key
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem, CachedMethods
-from pootle.core.url_helpers import get_editor_filter, get_path_sortkey
+from pootle.core.models import VirtualResource
+from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
+                                     split_pootle_path)
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_misc.util import cached_property
@@ -63,7 +67,32 @@ class ProjectManager(RelatedManager):
         return projects
 
 
-class Project(models.Model, TreeItem):
+class ProjectURLMixin(object):
+    """Mixin class providing URL methods to be shared across
+    project-related classes.
+    """
+
+    def get_absolute_url(self):
+        return reverse('pootle-project-overview', args=[self.code, ''])
+
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+
+        if proj is not None:
+            pattern_name = 'pootle-project-translate'
+            pattern_args = [proj, dir, fn]
+        else:
+            pattern_name = 'pootle-projects-translate'
+            pattern_args = []
+
+        return u''.join([
+            reverse(pattern_name, args=pattern_args),
+            get_editor_filter(**kwargs),
+        ])
+
+
+
+class Project(models.Model, TreeItem, ProjectURLMixin):
 
     code = models.CharField(
         max_length=255,
@@ -185,33 +214,91 @@ class Project(models.Model, TreeItem):
     @cached_property
     def resources(self):
         """Returns a list of :cls:`~pootle_app.models.Directory` and
-        :cls:`~pootle_store.models.Store` objects available for this
-        :cls:`~pootle_project.models.Project` across all languages.
+        :cls:`~pootle_store.models.Store` resource paths available for
+        this :cls:`~pootle_project.models.Project` across all languages.
         """
-        from pootle_store.models import Store
+        cache_key = make_method_key(self, 'resources', self.code)
+
+        resources = cache.get(cache_key, None)
+        if resources is not None:
+            return resources
+
+        logging.debug(u'Cache miss for %s', cache_key)
 
         resources_path = ''.join(['/%/', self.code, '/%'])
 
-        store_objs = Store.objects.extra(
-            where=[
-                'pootle_store_store.pootle_path LIKE %s',
-                'pootle_store_store.pootle_path NOT LIKE %s',
-            ], params=[resources_path, '/templates/%']
-        ).select_related('parent').distinct()
+        if connection.vendor == 'mysql':
+            sql_query = '''
+            SELECT DISTINCT
+                REPLACE(pootle_path,
+                        CONCAT(SUBSTRING_INDEX(pootle_path, '/', 3), '/'),
+                        '')
+            FROM (
+                SELECT pootle_path
+                FROM pootle_store_store
+                WHERE pootle_path LIKE %s
+              UNION
+                SELECT pootle_path FROM pootle_app_directory
+                WHERE pootle_path LIKE %s
+            ) AS t;
+            '''
+        elif connection.vendor == 'postgresql':
+            sql_query = '''
+            SELECT DISTINCT
+                REPLACE(pootle_path,
+                        ARRAY_TO_STRING((
+                                         STRING_TO_ARRAY(pootle_path,'/')
+                                        )[1:3], '/')
+                        || '/',
+                        '')
+            FROM (
+                SELECT pootle_path
+                FROM pootle_store_store
+                WHERE pootle_path LIKE %s
+              UNION
+                SELECT pootle_path FROM pootle_app_directory
+                WHERE pootle_path LIKE %s
+            ) AS t;
+            '''
+        elif connection.vendor == 'sqlite':
+            # Due to the limitations of SQLite there is no way to do this just
+            # using raw SQL.
+            from pootle_store.models import Store
 
-        # Populate with stores and their parent directories, avoiding any
-        # duplicates
-        resources = []
-        for store in store_objs.iterator():
-            directory = store.parent
-            if (not directory.is_translationproject() and
-                all(directory.path != r.path for r in resources)):
-                resources.append(directory)
+            store_objs = Store.objects.extra(
+                where=[
+                    'pootle_store_store.pootle_path LIKE %s',
+                    'pootle_store_store.pootle_path NOT LIKE %s',
+                ], params=[resources_path, '/templates/%']
+            ).select_related('parent').distinct()
 
-            if all(store.path != r.path for r in resources):
-                resources.append(store)
+            # Populate with stores and their parent directories, avoiding any
+            # duplicates
+            resources = []
+            for store in store_objs.iterator():
+                directory = store.parent
+                if (not directory.is_translationproject() and
+                    all(directory.path != path for path in resources)):
+                    resources.append(directory.path)
 
+                if all(store.path != path for path in resources):
+                    resources.append(store.path)
+
+            resources.sort(key=get_path_sortkey)
+
+            cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
+            return resources
+
+        cursor = connection.cursor()
+        cursor.execute(sql_query, [resources_path, resources_path])
+
+        results = cursor.fetchall()
+
+        # Flatten tuple and sort in a list
+        resources = list(reduce(lambda x,y: x+y, results))
         resources.sort(key=get_path_sortkey)
+
+        cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
 
         return resources
 
@@ -324,15 +411,6 @@ class Project(models.Model, TreeItem):
         users_list = User.objects.values_list('username', flat=True)
         cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                               users_list))
-
-    def get_absolute_url(self):
-        return reverse('pootle-project-overview', args=[self.code])
-
-    def get_translate_url(self, **kwargs):
-        return u''.join([
-            reverse('pootle-project-translate', args=[self.code]),
-            get_editor_filter(**kwargs),
-        ])
 
     def clean(self):
         if self.code in RESERVED_PROJECT_CODES:
@@ -454,3 +532,45 @@ class Project(models.Model, TreeItem):
                            .get(language=self.source_language_id)
             except ObjectDoesNotExist:
                 pass
+
+
+class ProjectResource(VirtualResource, ProjectURLMixin):
+
+    ### TreeItem
+
+    def _get_code(self, resource):
+        return resource.translation_project.language.code
+
+    ### /TreeItem
+
+
+class ProjectSet(VirtualResource, ProjectURLMixin):
+
+    ### TreeItem
+
+    def _get_code(self, project):
+        return project.code
+
+    ### /TreeItem
+
+
+###############################################################################
+# Signal handlers                                                             #
+###############################################################################
+
+def invalidate_resources_cache(sender, instance, **kwargs):
+    if instance.__class__.__name__ not in ['Directory', 'Store']:
+        return
+
+    # Don't invalidate if the save didn't create new objects
+    if (('created' in kwargs and 'raw' in kwargs) and
+        (not kwargs['created'] or kwargs['raw'])):
+        return
+
+    lang, proj, dir, fn = split_pootle_path(instance.pootle_path)
+    if proj is not None:
+        cache.delete(make_method_key(Project, 'resources', proj))
+
+# FIXME: Django 1.5+: use the `@receiver` decorator
+post_delete.connect(invalidate_resources_cache)
+post_save.connect(invalidate_resources_cache)

@@ -1,11 +1,16 @@
+{% load common_tags %}
+{% if nav %}
+<li class="navigation">
+  <select id="js-select-navigation" data-initial-code="{{ page }}">
+    {% include nav %}
+  </select>
+</li>
+{% endif %}
 <li>
   <select id="js-select-language" data-initial-code="{{ language.code }}">
     <option value=""></option>
     {% for lang in ALL_LANGUAGES %}
-    <option value="{{ lang.code }}"
-      {% if lang.code == language.code %} selected="selected"{% endif%}>
-      {{ lang.name }}
-    </option>
+    <option value="{{ lang.code }}">{{ lang.name }}</option>
     {% endfor %}
   </select>
 </li>
@@ -13,23 +18,34 @@
   <select id="js-select-project" data-initial-code="{{ project.code }}">
     <option value=""></option>
     {% for proj in ALL_PROJECTS %}
-    <option value="{{ proj.code }}"
-      {% if proj.code == project.code %} selected="selected"{% endif %}>
-      {{ proj.name }}
-    </option>
+    <option value="{{ proj.code }}">{{ proj.name }}</option>
     {% endfor %}
   </select>
 </li>
 {% if project %}
+{% if page == 'overview' or page == 'translate' %}
 <li>
-  <select id="js-select-resource" data-initial-code="{{ resource_path }}">
+  <select id="js-select-resource"
+    data-initial-code="{% if resource_path_parts %}ctx-{% endif %}{{ resource_path }}">
     <option value=""></option>
+    {% if resource_path_parts %}
+    {% for res in resource_path_parts %}
+    <option value="ctx-{{ res }}"
+      {% if res|count:'/' == 0 %}class="select2-resource-root"{% endif %}
+      data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}">
+      {{ res }}
+    </option>
+    {% endfor %}
+    <option disabled></option>{# Hack that works as a separator #}
+    {% endif %}
     {% for res in project.resources %}
-    <option value="{{ res.path }}"
-      {% if res.path == resource_path %} selected="selected"{% endif %}>
-      {{ res.path }}
+    <option value="{{ res }}"
+      {% if res|count:'/' == 0 %}class="select2-resource-root"{% endif %}
+      data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}">
+      {{ res }}
     </option>
     {% endfor %}
   </select>
 </li>
+{% endif %}
 {% endif %}

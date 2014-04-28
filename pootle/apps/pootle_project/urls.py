@@ -22,23 +22,45 @@ from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns('pootle_project.views',
-    # Listing of all projects
+    # All projects
     url(r'^$',
-        'projects_index',
-        name='pootle-project-list'),
+        'projects_overview',
+        name='pootle-projects-overview'),
+
+    url(r'^translate/$',
+        'projects_translate',
+        name='pootle-projects-translate'),
+
+    url(r'^export-view/$',
+        'projects_export_view',
+        name='pootle-projects-export-view'),
+
+    # Admin
+    url(r'^(?P<project_code>[^/]*)/admin/settings/$',
+        'project_settings_edit',
+        name='pootle-project-admin-settings'),
+    url(r'^(?P<project_code>[^/]*)/admin/languages/$',
+        'project_admin',
+        name='pootle-project-admin-languages'),
+    url(r'^(?P<project_code>[^/]*)/admin/permissions/$',
+        'project_admin_permissions',
+        name='pootle-project-admin-permissions'),
 
     # Specific project
-    url(r'^(?P<project_code>[^/]*)/$',
-        'overview',
-        name='pootle-project-overview'),
-
-    url(r'^(?P<project_code>[^/]*)/translate/$',
+    url(r'^(?P<project_code>[^/]*)/translate/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'translate',
         name='pootle-project-translate'),
 
-    url(r'^(?P<project_code>[^/]*)/export-view/$',
+    url(r'^(?P<project_code>[^/]*)/export-view/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'export_view',
         name='pootle-project-export-view'),
+
+    url(r'^(?P<project_code>[^/]*)/'
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
+        'overview',
+        name='pootle-project-overview'),
 
     # XHR views
     url(r'^(?P<project_code>[^/]*)/ajax-add-tag-to-tp/$',
@@ -51,15 +73,4 @@ urlpatterns = patterns('pootle_project.views',
     url(r'^ajax/tags/list/(?P<project_code>.*\.*)?$',
         'ajax_list_tags',
         name='pootle-xhr-list-project-tags'),
-
-    # Admin
-    url(r'^(?P<project_code>[^/]*)/admin/settings/$',
-        'project_settings_edit',
-        name='pootle-project-admin-settings'),
-    url(r'^(?P<project_code>[^/]*)/admin/languages/$',
-        'project_admin',
-        name='pootle-project-admin-languages'),
-    url(r'^(?P<project_code>[^/]*)/admin/permissions/$',
-        'project_admin_permissions',
-        name='pootle-project-admin-permissions'),
 )

@@ -31,7 +31,8 @@ from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
 from pootle_language.models import Language
 from pootle_profile.models import get_profile
-from pootle_project.models import Project
+from pootle_project.models import Project, ProjectResource
+from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
@@ -78,7 +79,7 @@ def get_path_obj(func):
                         'language': reverse('pootle-language-overview',
                                             args=[language_code]),
                         'project': reverse('pootle-project-overview',
-                                           args=[project_code]),
+                                           args=[project_code, '', '']),
                     }
                     response = redirect(url[user_choice])
                     response.delete_cookie('user-choice')
@@ -91,15 +92,20 @@ def get_path_obj(func):
         elif project_code:
             path_obj = get_object_or_404(Project, code=project_code,
                                          disabled=False)
-        else:  # No arguments: treat it like the root directory.
-            path_obj = Directory.objects.root
+        else:  # No arguments: all user-accessible projects
+            user_projects = Project.accessible_by_user(request.user)
+            user_projects = Project.objects.filter(code__in=user_projects)
+            path_obj = ProjectSet(user_projects, '/projects/')
 
             # HACKISH: inject directory so that permissions can be
             # queried
-            setattr(path_obj, 'directory', path_obj)
+            directory = Directory.objects.get(pootle_path='/projects/')
+            setattr(path_obj, 'directory', directory)
 
         request.ctx_obj = path_obj
+        request.ctx_path = path_obj.pootle_path
         request.resource_obj = path_obj
+        request.pootle_path = path_obj.pootle_path
 
         return func(request, path_obj, *args, **kwargs)
 
@@ -115,7 +121,8 @@ def set_resource(request, path_obj, dir_path, filename):
     :param dir_path: Path relative to the root of `path_obj`.
     :param filename: Optional filename.
     """
-    ctx_path = path_obj.directory.pootle_path
+    obj_directory = getattr(path_obj, 'directory', path_obj)
+    ctx_path = obj_directory.pootle_path
     resource_path = dir_path
     pootle_path = ctx_path + dir_path
 
@@ -140,7 +147,7 @@ def set_resource(request, path_obj, dir_path, filename):
             directory = get_object_or_404(Directory,
                                           pootle_path=pootle_path)
         else:
-            directory = path_obj.directory
+            directory = obj_directory
 
     request.store = store
     request.directory = directory
@@ -152,13 +159,84 @@ def set_resource(request, path_obj, dir_path, filename):
     request.ctx_path = ctx_path
 
 
+def set_project_resource(request, path_obj, dir_path, filename):
+    """Loads :cls:`pootle_app.models.Directory` and
+    :cls:`pootle_store.models.Store` models and populates the
+    request object.
+
+    This is the same as `set_resource` but operates at the project level
+    across all languages.
+
+    :param path_obj: A :cls:`pootle_project.models.Project` object.
+    :param dir_path: Path relative to the root of `path_obj`.
+    :param filename: Optional filename.
+    """
+    query_ctx_path = ''.join(['/%/', path_obj.code, '/'])
+    query_pootle_path = query_ctx_path + dir_path
+
+    obj_directory = getattr(path_obj, 'directory', path_obj)
+    ctx_path = obj_directory.pootle_path
+    resource_path = dir_path
+    pootle_path = ctx_path + dir_path
+
+    if filename:
+        query_pootle_path = query_pootle_path + filename
+        pootle_path = pootle_path + filename
+        resource_path = resource_path + filename
+
+        resources = Store.objects.extra(
+            where=[
+                '`pootle_store_store`.`pootle_path` LIKE %s',
+                '`pootle_store_store`.`pootle_path` NOT LIKE %s',
+            ], params=[query_pootle_path, '/templates/%']
+        ).select_related('translation_project__language')
+    else:
+        resources = Directory.objects.extra(
+            where=[
+                '`pootle_app_directory`.`pootle_path` LIKE %s',
+                '`pootle_app_directory`.`pootle_path` NOT LIKE %s',
+            ], params=[query_pootle_path, '/templates/%']
+        ).select_related('parent')
+
+    if not resources.exists():
+        raise Http404
+
+    request.store = None
+    request.directory = None
+    request.pootle_path = pootle_path
+
+    request.resource_obj = ProjectResource(resources, pootle_path)
+    request.resource_path = resource_path
+    request.ctx_obj = path_obj or request.resource_obj
+    request.ctx_path = ctx_path
+
+
 def get_resource(func):
     @wraps(func)
     def wrapped(request, path_obj, dir_path, *args, **kwargs):
         """Get resources associated to the current context."""
         filename = kwargs.pop('filename', '')
 
-        set_resource(request, path_obj, dir_path, filename)
+        try:
+            directory = getattr(path_obj, 'directory', path_obj)
+            if directory.is_project() and (dir_path or filename):
+                set_project_resource(request, path_obj, dir_path, filename)
+            else:
+                set_resource(request, path_obj, dir_path, filename)
+        except Http404:
+            if not request.is_ajax():
+                user_choice = request.COOKIES.get('user-choice', None)
+                if user_choice and user_choice in ('language', 'resource',):
+                    project = (path_obj if isinstance(path_obj, Project)
+                                        else path_obj.project)
+                    url = reverse('pootle-project-overview',
+                                  args=[project.code, dir_path, filename])
+                    response = redirect(url)
+                    response.delete_cookie('user-choice')
+
+                    return response
+
+            raise Http404
 
         return func(request, path_obj, dir_path=dir_path, filename=filename, *args, **kwargs)
 
@@ -175,8 +253,7 @@ def permission_required(permission_code):
         @wraps(func)
         def _wrapped(request, *args, **kwargs):
             path_obj = args[0]
-            directory = (path_obj if isinstance(path_obj, Directory)
-                                  else path_obj.directory)
+            directory = getattr(path_obj, 'directory', path_obj)
 
             # HACKISH: some old code relies on  `request.translation_project`,
             # `request.language` etc. being set, so we need to set that too.

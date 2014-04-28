@@ -43,12 +43,14 @@ class SubmissionTypes(object):
 
 class SubmissionFields(object):
     """Values for the 'field' field of Submission."""
+    NONE = 0  # non-field submission
     SOURCE = 1  # pootle_store.models.Unit.source
     TARGET = 2  # pootle_store.models.Unit.target
     STATE = 3  # pootle_store.models.Unit.state
     COMMENT = 4  # pootle_store.models.Unit.translator_comment
 
     NAMES_MAP = {
+        NONE: "",
         SOURCE: _("Source"),
         TARGET: _("Target"),
         STATE: _("State"),
@@ -109,22 +111,6 @@ class Submission(models.Model):
     def __unicode__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
-
-    @classmethod
-    def get_latest_for_dir(cls, directory):
-        """Return the latest submission, if any, for the given directory.
-
-        The submission is returned as an action bundle. An empty string is
-        returned if no submission exists for the given directory.
-        """
-        try:
-            criteria = {
-                'unit__store__pootle_path__startswith': directory.pootle_path,
-            }
-            sub = Submission.objects.filter(**criteria).latest()
-        except Submission.DoesNotExist:
-            return ''
-        return sub.get_submission_message()
 
     def as_html(self):
         return self.get_submission_message()

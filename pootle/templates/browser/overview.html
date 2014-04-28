@@ -1,10 +1,10 @@
 {% extends browser_extends %}
 
 {% load url from future %}
-{% load assets cleanhtml i18n locale search translation_project_tags goal_tags common_tags profile_tags %}
+{% load assets cleanhtml i18n locale translation_project_tags goal_tags common_tags profile_tags %}
+
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block body_id %}{{ browser_body_id }}{% endblock %}
 {% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
 
 {% block header_content_block %}
@@ -73,16 +73,8 @@
 </div>
 {% endblock %}
 
-{% block actions_block %}
-<div id="actions" class="header">
-  {% block actions %}
-  {% render_search %}
-
-  <div id="translate-actions">
-    <ul id="js-translate-actions-list"></ul>
-  </div>
-  {% endblock %}
-</div>
+{% block actions %}
+<ul id="js-translate-actions-list"></ul>
 {% endblock %}
 
 {% block pre_content %}
@@ -97,15 +89,22 @@
 
 {% block content %}
 {% if table %}
-<div class="hd">
-  <h2>{% trans "Files and Subfolders" %}</h2>
-</div>
-
 <div class="bd">
   <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
     {% display_table table %}
   </div>
 </div>
+{% endif %}
+
+{% if 'finished' in request.GET %}
+<div id="alerts" class="affix js-units-finished">
+  <div class="alert alert-block alert-info fade in" lang="{{ LANGUAGE_CODE }}">
+    {% trans "You have gone through all units, please review all statistics." %}
+  </div>
+</div>
+<script type="text/javascript">
+  $('.js-units-finished').delay(4000).fadeOut(3500);
+</script>
 {% endif %}
 {% endblock content %}
 
@@ -116,7 +115,7 @@ $(function () {
   $("body").spin();
   PTL.search.init();
   PTL.stats.init({
-      pootlePath: "{{ resource_obj.pootle_path }}",
+      pootlePath: "{{ pootle_path }}",
   });
   PTL.stats.load(function () {
     PTL.common.updateRelativeDates();

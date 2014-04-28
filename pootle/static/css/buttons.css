@@ -11,7 +11,7 @@
     display: inline-block;
 
     background-image: none;
-    box-shadow: 0 -0.2em 0 rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset;
 
     text-align: center;
     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
@@ -19,171 +19,106 @@
 
     transition: all 0.25s linear 0s;
 
-    /* btn-default colors */
-    color: #fff !important;
-    background-color: #bdc3c7;
-
     /* btn-normal size */
     font-size: inherit;
-    min-width: 110px;
-    padding: 0 1em;
-
-    height: 2.3em;
+    padding: 0.5em 1em;
 }
 
-.btn:active,
-.btn:hover,
-.btn:focus
+.btn,
+a.btn,
+a.btn:link
 {
-    text-decoration: none;
-    background-color: #cacfd2;
     color: #fff;
+    text-decoration: none;
 }
-
 
 /* Sizes */
 
 .btn-xl
 {
     font-size: 1.6em;
-    min-width: 250px;
-
-    height: 3em;
-    padding: 0 2em;
+    padding: 1em 2em;
 }
 
 .btn-lg
 {
     font-size: 1.4em;
-    min-width: 150px;
 }
 
 .btn-sm
 {
     font-size: 0.9em;
-    min-width: 80px;
 }
 
 .btn-xs
 {
     font-size: 0.8em;
-    min-width: 40px;
     borde-radius: 3px;
 }
 
 
 /* Button types */
 
-.btn.btn-primary,
-.btn.btn-primary:disabled,
-.btn.btn-primary:disabled:hover,
-.btn.btn-primary:disabled:focus,
-.btn.btn-primary:disabled:active,
-.btn.btn-primary.btn-disabled,
-.btn.btn-primary.btn-disabled:hover,
-.btn.btn-primary.btn-disabled:focus,
-.btn.btn-primary.btn-disabled:active
+.btn
+{
+    background-color: #91a9b9;
+}
+
+.btn.btn-primary
 {
     background-color: #4dbdcb;
 }
 
-.btn.btn-primary:hover,
-.btn.btn-primary:focus
-{
-    background-color: #74ccd8;
-}
-
-.btn.btn-success,
-.btn.btn-success:disabled,
-.btn.btn-success:disabled:hover,
-.btn.btn-success:disabled:focus,
-.btn.btn-success:disabled:active,
-.btn.btn-success.btn-disabled,
-.btn.btn-success.btn-disabled:hover,
-.btn.btn-success.btn-disabled:focus,
-.btn.btn-success.btn-disabled:active
+.btn.btn-success
 {
     background-color: #5fb336;
 }
 
-.btn.btn-success:hover,
-.btn.btn-success:focus
-{
-    background-color: #69bb2f;
-}
-
-.btn.btn-info,
-.btn.btn-info:disabled,
-.btn.btn-info:disabled:hover,
-.btn.btn-info:disabled:focus,
-.btn.btn-info:disabled:active,
-.btn.btn-info.btn-disabled,
-.btn.btn-info.btn-disabled:hover,
-.btn.btn-info.btn-disabled:focus,
-.btn.btn-info.btn-disabled:active
+.btn.btn-info
 {
     background-color: #3498db;
 }
 
-.btn.btn-info:hover,
-.btn.btn-info:focus
-{
-    background-color: #5dade2;
-}
-
-.btn.btn-warning,
-.btn.btn-warning:disabled,
-.btn.btn-warning:disabled:hover,
-.btn.btn-warning:disabled:focus,
-.btn.btn-warning:disabled:active,
-.btn.btn-warning.btn-disabled,
-.btn.btn-warning.btn-disabled:hover,
-.btn.btn-warning.btn-disabled:focus,
-.btn.btn-warning.btn-disabled:active
+.btn.btn-warning
 {
     background-color: #f1c40f;
 }
 
-.btn.btn-warning:hover,
-.btn.btn-warning:focus
-{
-    background-color: #f5d313;
-}
-
-.btn.btn-danger,
-.btn.btn-danger:disabled,
-.btn.btn-danger:disabled:hover,
-.btn.btn-danger:disabled:focus,
-.btn.btn-danger:disabled:active,
-.btn.btn-danger.btn-disabled,
-.btn.btn-danger.btn-disabled:hover,
-.btn.btn-danger.btn-disabled:focus,
-.btn.btn-danger.btn-disabled:active
+.btn.btn-danger
 {
     background-color: #d2322d;
 }
 
-.btn.btn-danger:hover,
-.btn.btn-danger:focus
+.btn:hover,
+.btn:focus
 {
-    background-color: #ec7063;
+    /* Webkit */
+    -webkit-filter: brightness(120%);
+
+    /* Firefox: saturation more than 100% doesn't work; increase brightness instead */
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'saturate\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'1.2\'/><feFuncG type=\'linear\' slope=\'1.2\'/><feFuncB type=\'linear\' slope=\'1.2\'/></feComponentTransfer></filter></svg>#saturate");
 }
 
 .btn:disabled,
-.btn:disabled:hover,
-.btn:disabled:focus,
-.btn:disabled:active,
 .btn-disabled,
+.btn:disabled:active,
+.btn-disabled:active,
+.btn:disabled:hover,
 .btn-disabled:hover,
-.btn-disabled:focus,
-.btn-disabled:active
+.btn:disabled:focus,
+.btn-disabled:focus
 {
-    box-shadow: none;
     cursor: default;
+    pointer-events: none;   /* Not standard yet */
 
-    background-color: #bdc3c7;
     color: rgba(255, 255, 255, 0.75);
-    opacity: 0.65;
+    opacity: 0.5;
+
+    /* Webkit */
+    -webkit-filter: grayscale(50%);
+
+    /* Firefox */
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.5\'/></filter></svg>#grayscale");
 }
 
 /* Zoom */

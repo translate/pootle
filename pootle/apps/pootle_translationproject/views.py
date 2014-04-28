@@ -21,6 +21,7 @@
 import logging
 import os
 import StringIO
+import json
 from urllib import quote, unquote
 
 from django import forms
@@ -32,7 +33,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import loader, RequestContext
-from django.utils import dateformat, simplejson
+from django.utils import dateformat
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
@@ -79,6 +80,8 @@ ANN_COOKIE_NAME = 'project-announcements'
 @permission_required('administrate')
 def admin_permissions(request, translation_project):
     ctx = {
+        'page': 'admin-permissions',
+
         'translation_project': translation_project,
         'project': translation_project.project,
         'language': translation_project.language,
@@ -86,7 +89,7 @@ def admin_permissions(request, translation_project):
         'feed_path': translation_project.pootle_path[1:],
     }
     return admin_perms(request, translation_project.directory,
-                       "translation_projects/admin/permissions.html", ctx)
+                       'translation_projects/admin/permissions.html', ctx)
 
 
 @get_path_obj
@@ -445,7 +448,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
     if ANN_COOKIE_NAME in request.COOKIES:
         json_str = unquote(request.COOKIES[ANN_COOKIE_NAME])
-        cookie_data = simplejson.loads(json_str)
+        cookie_data = json.loads(json_str)
 
         if 'isOpen' in cookie_data:
             display_announcement = cookie_data['isOpen']
@@ -472,7 +475,6 @@ def overview(request, translation_project, dir_path, filename=None,
         'can_edit': can_edit,
 
         'browser_extends': 'translation_projects/base.html',
-        'browser_body_id': 'tpoverview',
 
         'announcement': announcement,
         'announcement_displayed': display_announcement,
@@ -572,7 +574,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
     if new_mtime is not None:
         cookie_data[project.code] = new_mtime
-        cookie_data = quote(simplejson.dumps(cookie_data))
+        cookie_data = quote(json.dumps(cookie_data))
         response.set_cookie(ANN_COOKIE_NAME, cookie_data)
 
     return response
@@ -693,7 +695,6 @@ def translate(request, translation_project, dir_path, filename):
         'translation_project': translation_project,
 
         'editor_extends': 'translation_projects/base.html',
-        'editor_body_id': 'tptranslate',
     })
 
     return render_to_response('editor/main.html', context,

@@ -83,6 +83,8 @@ def extract(request, translation_project):
     project.
     """
     ctx = {
+        'page': 'admin-terminology',
+
         'translation_project': translation_project,
         'language': translation_project.language,
         'project': translation_project.project,
@@ -209,6 +211,8 @@ def manage_store(request, ctx, language, term_store):
 @permission_required('administrate')
 def manage(request, translation_project, path=None):
     ctx = {
+        'page': 'admin-terminology',
+
         'translation_project': translation_project,
         'language': translation_project.language,
         'project': translation_project.project,

@@ -1,0 +1,32 @@
+{% load i18n %}
+{% load url from future %}
+<option
+  value="overview"
+  data-href="{% url 'pootle-tp-overview' language.code project.code resource_path %}">
+  {% trans "Overview" %}
+</option>
+<option
+  value="translate"
+  data-href="{% url 'pootle-tp-translate' language.code project.code resource_path %}">
+  {% trans "Translate" %}
+</option>
+{% if user.is_superuser or request.permissions.administrate %}
+<option disabled></option>
+{% endif %}
+<option
+  value="news"{% if user.is_superuser or request.permissions.administrate %} class="admin"{%endif%}
+  data-href="{% url 'pootle-notifications-tp-notices' language.code project.code %}">
+  {% trans "News" %}
+</option>
+{% if user.is_superuser or request.permissions.administrate %}
+<option
+  value="admin-terminology" class="admin"
+  data-href="{% url 'pootle-terminology-manage' language.code project.code %}">
+  {% trans "Terminology" %}
+</option>
+<option
+  value="admin-permissions" class="admin"
+  data-href="{% url 'pootle-tp-admin-permissions' language.code project.code %}">
+  {% trans "Permissions" %}
+</option>
+{% endif %}
