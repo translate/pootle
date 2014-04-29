@@ -1835,6 +1835,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.require_qualitychecks()
             queryset = QualityCheck.objects.filter(unit__store=self,
                                                    unit__state__gt=UNTRANSLATED,
+                                                   category=Category.CRITICAL,
                                                    false_positive=False)
 
             queryset = queryset.values('unit', 'name').order_by('unit')
