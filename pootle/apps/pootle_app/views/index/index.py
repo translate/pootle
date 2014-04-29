@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2104 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -19,8 +19,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
 from pootle.i18n.override import get_lang_from_http_header
 from pootle_language.models import Language
@@ -30,6 +32,12 @@ COOKIE_NAME = 'pootle-language'
 
 
 def view(request):
+    if not request.user.is_authenticated():
+        ctx = {
+            'next': request.GET.get(REDIRECT_FIELD_NAME, ''),
+        }
+        return render(request, 'welcome.html', ctx)
+
     lang = request.COOKIES.get(COOKIE_NAME, None)
 
     if lang is None:

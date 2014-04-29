@@ -33,6 +33,8 @@ Added Features
 
 - Evernote-specific apps: reports and stats.
 
+- Landing page for anonymous users.
+
 
 Changed Features
 ^^^^^^^^^^^^^^^^

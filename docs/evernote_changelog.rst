@@ -18,6 +18,8 @@ Release .next
   remove the dependency on deprecated third party apps that were bundled
   in the code. (`#173`_)
 
+- Added landing page for anonymous users. (`#184`_)
+
 - User score is displayed in the header and dynamically updated when
   translation actions are made. (`#156`_)
 
@@ -26,6 +28,7 @@ Release .next
 
 .. _#170: https://github.com/evernote/pootle/issues/170
 .. _#173: https://github.com/evernote/pootle/issues/173
+.. _#184: https://github.com/evernote/pootle/issues/184
 .. _#156: https://github.com/evernote/pootle/issues/156
 
 
