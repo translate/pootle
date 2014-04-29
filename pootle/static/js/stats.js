@@ -52,10 +52,19 @@
       var incomplete = data.total - data.translated,
           translated = PTL.stats.nicePercentage(data.translated, data.total);
 
-      $pathSummary.append(
-        // TODO move the goals summary creation from the Python code to here.
-        $('<li/>').append(data.pathsummary.goals_summary)
-      );
+      if (data.pathsummary.nextGoal > 0) {
+        var fmt = ngettext('<span class="caption">Next most important goal:</span> <span class="counter">%s word left</span>',
+                           '<span class="caption">Next most important goal:</span> <span class="counter">%s words left</span>',
+                           data.pathsummary.nextGoal);
+        var $nextGoal = $("<a />", {
+          'class': 'continue-translation',
+          'href': data.pathsummary.nextGoalUrl,
+        });
+
+        $nextGoal.html(interpolate(fmt, [data.pathsummary.nextGoal]));
+
+        $pathSummary.append($('<li/>').append($nextGoal));
+      }
 
       if (incomplete > 0) {
         var fmt = ngettext('<span class="caption">Continue translation:</span> <span class="counter">%s word left</span>',
