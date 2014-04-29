@@ -1958,7 +1958,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             queryset = queryset.values('unit', 'name').order_by('unit')
 
             saved_unit = None
-            result = {'unit_count': 0, 'checks': {}}
+            result = {
+                'unit_count': 0,
+                'checks': {},
+            }
             for item in queryset:
                 if item['unit'] != saved_unit or saved_unit is None:
                     saved_unit = item['unit']
