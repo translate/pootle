@@ -162,13 +162,9 @@ def get_quality_check_failures(path_obj):
                     check = {
                         'name': checkname,
                         'display_name': check_display,
-                        'count': checkcount
+                        'count': checkcount,
+                        'url': path_obj.get_translate_url(check=checkname),
                     }
-
-                    check['url'] = path_obj.get_translate_url(
-                            check=checkname,
-                        )
-
                     group['checks'].append(check)
 
             if cat_total:
