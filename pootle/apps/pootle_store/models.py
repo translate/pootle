@@ -156,11 +156,15 @@ class Suggestion(models.Model, base.TranslationUnit):
     def save(self, *args, **kwargs):
         self.unit.store.suggestion_count += 1
         self.unit.store.save()
+        self.unit.store.translation_project.suggestion_count += 1
+        self.unit.store.translation_project.save()
         super(Suggestion, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         self.unit.store.suggestion_count -= 1
         self.unit.store.save()
+        self.unit.store.translation_project.suggestion_count -= 1
+        self.unit.store.translation_project.save()
         super(Suggestion, self).delete(*args, **kwargs)
 
 
