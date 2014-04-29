@@ -39,16 +39,6 @@
       </tbody>
     </table>
   </div>
-
-  <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
-  <div class="bd latestnews">
-    {% render_latest_news '' 10 %}
-    <p class="subscribe">
-      <a href="{% url 'pootle-notifications-feed' '' %}">
-        <i class="icon-feed"></i> {% trans 'Subscribe to the RSS feed.' %}
-      </a>
-    </p>
-  </div>
 </div>
 
 <div id="support" class="module" lang="{{ LANGUAGE_CODE }}">
@@ -96,4 +86,14 @@
   </div>
 </div>
 {% include "admin/_rss_widget.html" %}
+
+<div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
+<div class="bd latestnews">
+  {% render_latest_news '' 10 %}
+  <p class="subscribe">
+    <a href="{% url 'pootle-notifications-feed' '' %}">
+      <i class="icon-feed"></i> {% trans 'Subscribe to the RSS feed.' %}
+    </a>
+  </p>
+</div>
 {% endblock %}
