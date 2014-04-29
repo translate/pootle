@@ -29,12 +29,18 @@ def _update_translation(store, item, new_values):
 
     if 'target' in new_values:
         unit.target = new_values['target']
+        if "fuzzy" not in new_values:
+            unit.state = 200
 
     if 'fuzzy' in new_values:
         unit.markfuzzy(new_values['fuzzy'])
 
     if 'translator_comment' in new_values:
         unit.translator_comment = new_values['translator_comment']
+
+    if new_values.get("refresh_stats"):
+        unit._target_updated = True
+        # Will be updated on save()
 
     unit.save()
     store.sync()
@@ -169,3 +175,14 @@ def test_update_comment(af_tutorial_po):
     po_file = factory.getobject(af_tutorial_po.file.path)
     assert db_unit.getnotes(origin='translator') == \
             po_file.units[db_unit.index].getnotes(origin='translator')
+
+
+@pytest.mark.django_db
+def test_stats_counting(af_tutorial_po):
+    unit = _update_translation(af_tutorial_po, 0, {"refresh_stats": True})
+    initial_translated = af_tutorial_po.translated_wordcount
+    initial_wordcount = af_tutorial_po.total_wordcount
+    assert initial_translated == 0
+    db_unit = _update_translation(af_tutorial_po, 0, {'target': u'samaka'})
+    assert af_tutorial_po.translated_wordcount == initial_translated + 1
+    assert af_tutorial_po.total_wordcount == initial_wordcount
