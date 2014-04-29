@@ -2183,6 +2183,7 @@ body.js-not-loaded #translate-actions li
     background: #000;
     color: #fff;
     font-weight: normal;
+    display: inline-block;
 }
 
 #translate-actions a:hover
