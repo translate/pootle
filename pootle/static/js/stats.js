@@ -94,7 +94,7 @@
           'href': data.pathsummary.critical_url,
         });
 
-        $critical.html(interpolate(fmt, [data.suggestions]));
+        $critical.html(interpolate(fmt, [data.critical]));
 
         $pathSummary.append($('<li/>').append($critical));
       }
