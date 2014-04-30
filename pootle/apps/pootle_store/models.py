@@ -810,8 +810,7 @@ class Unit(models.Model, base.TranslationUnit):
             # also changes
             self.store.flag_for_deletion(CachedMethods.FUZZY,
                                          CachedMethods.TRANSLATED,
-                                         CachedMethods.LAST_ACTION,
-                                         CachedMethods.PATH_SUMMARY)
+                                         CachedMethods.LAST_ACTION)
 
         if value:
             self.state = FUZZY
@@ -936,8 +935,7 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.target = translation
         try:
             suggestion.save()
-            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
-                                         CachedMethods.PATH_SUMMARY)
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
             if touch:
                 self.save()
         except:
@@ -964,8 +962,7 @@ class Unit(models.Model, base.TranslationUnit):
             # when saving the unit.
             suggestion.delete()
             self._log_user = reviewer
-            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
-                                         CachedMethods.PATH_SUMMARY)
+            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
             self.save()
 
             # FIXME: we need a totally different model for tracking stats, this
@@ -1909,10 +1906,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             'mtime': int(dateformat.format(sub.creation_time, 'U')),
             'snippet': sub.get_submission_message()
         }
-
-    def _get_path_summary(self):
-        from pootle_misc.stats import get_translate_actions
-        return get_translate_actions(self)
 
     ### /TreeItem
 

@@ -40,34 +40,6 @@ def get_translation_states(path_obj):
     return states
 
 
-def get_translate_actions(path_obj):
-    """Return a list of translation action links to be displayed for each ``path_obj``."""
-    goal_url = ''
-    goal_words = 0
-
-    if path_obj.is_dir:
-        # Putting the next import at the top of the file causes circular
-        # import issues.
-        from pootle_tagging.models import Goal
-
-        goal = Goal.get_most_important_incomplete_for_path(path_obj)
-
-        if goal is not None:
-            goal_words = goal.get_incomplete_words_in_path(path_obj)
-            goal_url = goal.get_translate_url_for_path(path_obj.pootle_path,
-                                                       state='incomplete')
-
-    return {
-        'is_dir': path_obj.is_dir,
-        'nextGoal': goal_words,
-        'nextGoalUrl': goal_url,
-        'translate_url': path_obj.get_translate_url(state='all'),
-        'incomplete_url': path_obj.get_translate_url(state='incomplete'),
-        'suggestions_url': path_obj.get_translate_url(state='suggestions'),
-        'critical_url': path_obj.get_critical_url(),
-    }
-
-
 def stats_message_raw(version, total, translated, fuzzy):
     """Build a message of statistics used in VCS actions."""
     return "%s: %d of %d strings translated (%d need review)." % \

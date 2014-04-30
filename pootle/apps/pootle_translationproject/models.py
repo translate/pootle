@@ -401,10 +401,6 @@ class TranslationProject(models.Model, TreeItem):
     def get_parents(self):
         return [self.language, self.project]
 
-    def _get_path_summary(self):
-        from pootle_misc.stats import get_translate_actions
-        return get_translate_actions(self.directory)
-
     ### /TreeItem
 
     def update_against_templates(self, pootle_path=None):

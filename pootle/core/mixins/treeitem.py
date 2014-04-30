@@ -38,7 +38,6 @@ class CachedMethods(object):
     TOTAL = 'get_total_wordcount'
     TRANSLATED = 'get_translated_wordcount'
     FUZZY = 'get_fuzzy_wordcount'
-    PATH_SUMMARY = 'get_path_summary'
     LAST_ACTION = 'get_last_action'
     SUGGESTIONS = 'get_suggestion_count'
     MTIME = 'get_mtime'
@@ -91,10 +90,6 @@ class TreeItem(object):
     def _get_checks(self):
         """This method will be overridden in descendants"""
         return {'unit_count': 0, 'checks': {}}
-
-    def _get_path_summary(self):
-        """This method will be overridden in descendants"""
-        return {}
 
     def _get_last_action(self):
         """This method will be overridden in descendants"""
@@ -154,12 +149,6 @@ class TreeItem(object):
         return self._get_next_goal_count()
 
     @getfromcache
-    def get_path_summary(self):
-        """get path summary HTML snippet"""
-
-        return self._get_path_summary()
-
-    @getfromcache
     def get_last_action(self):
         """get last action HTML snippet"""
         self.initialize_children()
@@ -204,7 +193,6 @@ class TreeItem(object):
             'fuzzy': self.get_fuzzy_wordcount(),
             'suggestions': self.get_suggestion_count(),
             'nextGoal': self.get_next_goal_count(),
-            'pathsummary': self.get_path_summary(),
             'lastaction': self.get_last_action(),
             'critical': self.get_error_unit_count(),
             'lastupdated': self.get_last_updated(),
@@ -233,7 +221,6 @@ class TreeItem(object):
         self.get_translated_wordcount()
         self.get_fuzzy_wordcount()
         self.get_suggestion_count()
-        self.get_path_summary()
         self.get_last_action()
         self.get_checks()
         self.get_mtime()

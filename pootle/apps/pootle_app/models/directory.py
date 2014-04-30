@@ -247,10 +247,6 @@ class Directory(models.Model, TreeItem):
     def get_cachekey(self):
         return self.pootle_path
 
-    def _get_path_summary(self):
-        from pootle_misc.stats import get_translate_actions
-        return get_translate_actions(self)
-
     ### /TreeItem
 
     def trail(self, only_dirs=True):

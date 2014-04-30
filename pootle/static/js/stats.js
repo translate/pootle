@@ -48,78 +48,6 @@
       setTdWidth($td.find('td.untranslated'), untranslated);
     },
 
-    updatePathSummary: function ($pathSummary, data) {
-      var incomplete = data.total - data.translated,
-          translated = PTL.stats.nicePercentage(data.translated, data.total);
-
-      if (data.pathsummary.nextGoal > 0) {
-        var fmt = ngettext('<span class="caption">Next most important goal:</span> <span class="counter">%s word left</span>',
-                           '<span class="caption">Next most important goal:</span> <span class="counter">%s words left</span>',
-                           data.pathsummary.nextGoal);
-        var $nextGoal = $("<a />", {
-          'class': 'continue-translation',
-          'href': data.pathsummary.nextGoalUrl,
-        });
-
-        $nextGoal.html(interpolate(fmt, [data.pathsummary.nextGoal]));
-
-        $pathSummary.append($('<li/>').append($nextGoal));
-      }
-
-      if (incomplete > 0) {
-        var fmt = ngettext('<span class="caption">Continue translation:</span> <span class="counter">%s word left</span>',
-                           '<span class="caption">Continue translation:</span> <span class="counter">%s words left</span>',
-                           incomplete);
-        var $incomplete = $("<a />", {
-          'class': 'continue-translation',
-          'href': data.pathsummary.incomplete_url,
-        });
-
-        $incomplete.html(interpolate(fmt, [incomplete]));
-
-        $pathSummary.append($('<li/>').append($incomplete));
-      }
-
-      if (data.suggestions > 0) {
-        var fmt = ngettext('<span class="caption">Review suggestion:</span> <span class="counter">%s left</span>',
-                           '<span class="caption">Review suggestions:</span> <span class="counter">%s left</span>',
-                           data.suggestions);
-        var $suggestions = $("<a />", {
-          'class': 'review-suggestions',
-          'href': data.pathsummary.suggestions_url,
-        });
-
-        $suggestions.html(interpolate(fmt, [data.suggestions]));
-
-        $pathSummary.append($('<li/>').append($suggestions));
-      }
-
-      if (data.critical > 0) {
-        var fmt = ngettext('<span class="caption">Fix critical error:</span> <span class="counter">%s left</span>',
-                           '<span class="caption">Fix critical errors:</span> <span class="counter">%s left</span>',
-                           data.critical);
-        var $critical = $("<a />", {
-          'class': 'fix-errors',
-          'href': data.pathsummary.critical_url,
-        });
-
-        $critical.html(interpolate(fmt, [data.critical]));
-
-        $pathSummary.append($('<li/>').append($critical));
-      }
-
-      if (incomplete === 0) {
-        var $incomplete = $("<a />", {
-          'class': 'translation-complete',
-          'href': data.pathsummary.translate_url,
-        });
-
-        $incomplete.html(gettext('<span class="caption">Translation complete:</span> <span class="counter">view all</span>'));
-
-        $pathSummary.append($('<li/>').append($incomplete));
-      }
-    },
-
     updateSummary: function ($summary, data) {
       var percent = PTL.stats.nicePercentage(data.translated, data.total);
       $summary.append(interpolate(gettext(', %s% translated'), [percent]));
@@ -179,7 +107,6 @@
               now = parseInt(Date.now() / 1000, 10);
           PTL.stats.updateProgressbar($('#progressbar'), data);
           PTL.stats.updateSummary($('#summary'), data);
-          PTL.stats.updatePathSummary($('#js-translate-actions-list'), data);
 
           PTL.stats.updateAction($('#js-action-view-all'), data.total);
           PTL.stats.updateAction($('#js-action-continue'),
