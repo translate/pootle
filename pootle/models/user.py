@@ -43,6 +43,11 @@ from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 
+def _humanize_score(score):
+    """Returns a human-readable score for public display."""
+    return int(round(score * 1000))
+
+
 class User(AbstractBaseUser):
     """The Pootle User.
 
@@ -101,7 +106,7 @@ class User(AbstractBaseUser):
 
     @property
     def public_score(self):
-        return int(round(self.score * 1000))
+        return _humanize_score(self.score)
 
     @cached_property
     def email_hash(self):
