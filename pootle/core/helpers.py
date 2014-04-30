@@ -138,6 +138,11 @@ def get_overview_context(request):
     resource_obj = request.resource_obj
     resource_path = getattr(request, 'resource_path', '')
 
+    url_action_continue = resource_obj.get_translate_url(state='incomplete')
+    url_action_fixcritical = resource_obj.get_critical_url()
+    url_action_review = resource_obj.get_translate_url(state='suggestions')
+    url_action_view_all = resource_obj.get_translate_url(state='all')
+
     return {
         'page': 'overview',
 
@@ -148,4 +153,9 @@ def get_overview_context(request):
 
         'translation_states': get_translation_states(resource_obj),
         'check_categories': get_qualitycheck_schema(resource_obj),
+
+        'url_action_continue': url_action_continue,
+        'url_action_fixcritical': url_action_fixcritical,
+        'url_action_review': url_action_review,
+        'url_action_view_all': url_action_view_all,
     }
