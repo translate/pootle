@@ -58,16 +58,30 @@
     width: 960px;
 }
 
-#welcome-page .left-column,
-#welcome-page .right-column
+#welcome-page .column
 {
     width: 480px;
+}
+
+#welcome-page .column.center
+{
+    margin: 0 auto;
+}
+
+#welcome-page .column.left,
+#welcome-page .column.right
+{
     float: left;
 }
 
-#welcome-page .right-column
+#welcome-page .column.right
 {
     float: right;
+}
+
+.column.center h1
+{
+    text-align: center;
 }
 
 #welcome-page .section h1

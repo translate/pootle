@@ -8,16 +8,16 @@
 {% block header_block %}{% endblock %}
 
 {% block content %}
-
 <div class="top">
-  <h1>Make Evernote<br/>Speak Your Language</h1>
-  <h2>Join our translation community</h2>
+  <h1>{% trans 'Make Evernote' %}<br/>{% trans 'Speak Your Language' %}</h1>
+  <h2>{% trans 'Join our translation community' %}</h2>
 
   <div id="evernote-login">
     <form method="post" action="{% url 'evernote_login' %}">
-    {% csrf_token %}
-    <input type="submit" class="btn btn-xl btn-success" value="{% trans "Sign In with Evernote" %}"></input>
-    <input type="hidden" name="next" value="{{ next }}" />
+      {% csrf_token %}
+      <input type="submit" class="btn btn-xl btn-success"
+        value="{% trans 'Sign In with Evernote' %}"></input>
+      <input type="hidden" name="next" value="{{ next }}" />
     </form>
   </div>
 </div>
@@ -25,54 +25,16 @@
 <div class="columns">
   <div class="columns-inner">
 
-    <!-- left column -->
-    <div class="left-column">
+    <!-- centered column -->
+    <div class="column center">
 
       <div class="section">
-        <h1>Found a typo?<br/>Have a better translation?</h1>
-        <p>Search for the string you would like to change or to report a problem with.</p>
-
-        <div id="search">
-          <form action="x" method="get" id="search-form">
-            <label class="js-input-hint hide" for="id_search">{% trans "Search" %}</label>
-            <input type="text" placeholder="{% trans "Enter text to search for..." %}" />
-            <a class="btn">{% trans "Search" %}</a>
-            <!--
-            <button class="btn-search">
-              <i class="icon-search"></i>
-            </button>
-            -->
-          </form>
-        </div>
-      </div>
-
-      <div class="section">
-        <h1>Vote for [Your Language]</h1>
-        <p>Evernote in [Your Language] — how about that?<br/>Cast your vote, and we’ll notify you when you can start contributing.</p>
-
-        <div id="vote-lang">
-          <form action="x" method="get" id="vote-lang-form">
-            <label class="js-input-hint hide" for="id_vote-lang">{% trans "Vote" %}</label>
-            <input type="text" placeholder="{% trans "Enter your email address" %}" />
-            <a class="btn">{% trans "Vote" %}</a>
-          </form>
-        </div>
+        <h1>{% trans 'Top Contributors This Month' %}</h1>
       </div>
 
     </div>
-    <!-- / left column -->
+    <!-- / centered column -->
 
-    <!-- right column -->
-    <div class="right-column">
-
-      <div class="section">
-        <h1>Top Contributors This Month</h1>
-        <p>Search for the string you would like to change, and provide your alternative and comments.</p>
-      </div>
-
-    </div>
-    <!-- / right column -->
   </div>
 </div>
-
 {% endblock content %}
