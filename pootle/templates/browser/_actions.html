@@ -1,5 +1,11 @@
 {% load i18n %}
 <ul>
+  <li id="js-action-next-goal">
+    <a class="continue-translation" href="{{ url_action_next_goal }}">
+      <span class="caption">{% trans 'Next goal' %}</span>
+      <span class="counter">0</span>
+    </a>
+  </li>
   <li id="js-action-continue">
     <a class="continue-translation" href="{{ url_action_continue }}">
       <span class="caption">{% trans 'Continue translation' %}</span>

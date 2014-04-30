@@ -370,6 +370,31 @@ class TranslationProject(models.Model, TreeItem):
     def get_suggestion_count(self):
         return self.suggestion_count
 
+    def _get_next_goal_count(self):
+        # Putting the next import at the top of the file causes circular
+        # import issues.
+        from pootle_tagging.models import Goal
+
+        goal = Goal.get_most_important_incomplete_for_path(self.directory)
+
+        if goal is not None:
+            return goal.get_incomplete_words_in_path(self.directory)
+
+        return 0
+
+    def get_next_goal_url(self):
+        # Putting the next import at the top of the file causes circular
+        # import issues.
+        from pootle_tagging.models import Goal
+
+        goal = Goal.get_most_important_incomplete_for_path(self.directory)
+
+        if goal is not None:
+            return goal.get_translate_url_for_path(self.directory.pootle_path,
+                                                   state='incomplete')
+
+        return ''
+
     def get_cachekey(self):
         return self.directory.pootle_path
 

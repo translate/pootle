@@ -84,6 +84,10 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return 0
 
+    def _get_next_goal_count(self):
+        """This method will be overridden in descendants"""
+        return 0
+
     def _get_checks(self):
         """This method will be overridden in descendants"""
         return {'unit_count': 0, 'checks': {}}
@@ -145,6 +149,10 @@ class TreeItem(object):
         return (self._get_suggestion_count() +
                 self._sum('get_suggestion_count'))
 
+    def get_next_goal_count(self):
+        """Calculate next goal untranslated statistics."""
+        return self._get_next_goal_count()
+
     @getfromcache
     def get_path_summary(self):
         """get path summary HTML snippet"""
@@ -195,6 +203,7 @@ class TreeItem(object):
             'translated': self.get_translated_wordcount(),
             'fuzzy': self.get_fuzzy_wordcount(),
             'suggestions': self.get_suggestion_count(),
+            'nextGoal': self.get_next_goal_count(),
             'pathsummary': self.get_path_summary(),
             'lastaction': self.get_last_action(),
             'critical': self.get_error_unit_count(),
@@ -284,6 +293,9 @@ class TreeItem(object):
     def get_critical_url(self):
         critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
         return self.get_translate_url(check=critical)
+
+    def get_next_goal_url(self):
+        return ''
 
     def _delete_from_cache(self, keys):
         itemkey = self.get_cachekey()

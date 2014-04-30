@@ -216,6 +216,34 @@ class Directory(models.Model, TreeItem):
         else:
             return []
 
+    def _get_next_goal_count(self):
+        # Trigger only if it is a regular directory inside a TP.
+        if self.pootle_path.count('/') > 3:
+            # Putting the next import at the top of the file causes circular
+            # import issues.
+            from pootle_tagging.models import Goal
+
+            goal = Goal.get_most_important_incomplete_for_path(self)
+
+            if goal is not None:
+                return goal.get_incomplete_words_in_path(self)
+
+        return 0
+
+    def get_next_goal_url(self):
+        # Trigger only if it is a regular directory inside a TP.
+        if self.pootle_path.count('/') > 3:
+            # Putting the next import at the top of the file causes circular
+            # import issues.
+            from pootle_tagging.models import Goal
+
+            goal = Goal.get_most_important_incomplete_for_path(self)
+
+            if goal is not None:
+                return goal.get_translate_url_for_path(self.pootle_path,
+                                                       state='incomplete')
+        return ''
+
     def get_cachekey(self):
         return self.pootle_path
 

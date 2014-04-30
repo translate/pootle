@@ -186,6 +186,7 @@
                                  data.total - data.translated);
           PTL.stats.updateAction($('#js-action-fix-critical'), data.critical);
           PTL.stats.updateAction($('#js-action-review'), data.suggestions);
+          PTL.stats.updateAction($('#js-action-next-goal'), data.nextGoal);
 
           $('body').removeClass('js-not-loaded');
 
