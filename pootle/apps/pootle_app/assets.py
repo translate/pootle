@@ -86,6 +86,7 @@ css_common = Bundle(
     'css/sprite.css',
     'css/select2.css',
     'css/select2-pootle.css',
+    'css/scores.css',
     'css/welcome.css',
     filters='cssmin', output='css/common.min.%(version)s.css')
 register('css_common', css_common)

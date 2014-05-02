@@ -35,6 +35,8 @@ Added Features
 
 - Landing page for anonymous users.
 
+- Ability to list top scorers over a period of time.
+
 
 Changed Features
 ^^^^^^^^^^^^^^^^

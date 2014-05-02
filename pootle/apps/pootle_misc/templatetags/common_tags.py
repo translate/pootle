@@ -20,6 +20,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
+from django.contrib.auth import get_user_model
 from django.template.defaultfilters import stringfilter
 
 
@@ -61,3 +62,16 @@ def label_tag(field, suffix=None):
         return ''
 
     return field.label_tag(label_suffix=suffix)
+
+
+@register.inclusion_tag('core/_top_scorers.html')
+def top_scorers(*args, **kwargs):
+    User = get_user_model()
+    allowed_kwargs = ('days', 'language', 'project', 'limit')
+    lookup_kwargs = dict(
+        (k, v) for (k, v) in kwargs.iteritems() if k in allowed_kwargs
+    )
+
+    return {
+        'top_scorers': User.top_scorers(**lookup_kwargs),
+    }

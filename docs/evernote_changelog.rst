@@ -20,6 +20,9 @@ Release .next
 
 - Added landing page for anonymous users. (`#184`_)
 
+- The welcome page displays the top scorers over the last 30 days.
+  (`#185`_)
+
 - User score is displayed in the header and dynamically updated when
   translation actions are made. (`#156`_)
 
@@ -29,6 +32,7 @@ Release .next
 .. _#170: https://github.com/evernote/pootle/issues/170
 .. _#173: https://github.com/evernote/pootle/issues/173
 .. _#184: https://github.com/evernote/pootle/issues/184
+.. _#185: https://github.com/evernote/pootle/issues/185
 .. _#156: https://github.com/evernote/pootle/issues/156
 
 

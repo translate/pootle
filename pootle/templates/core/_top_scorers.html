@@ -1,0 +1,32 @@
+{% load i18n humanize profile_tags %}
+{% if top_scorers %}
+<table id="top-scorers">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th class="number">{% trans 'score' %}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in top_scorers %}
+    <tr>
+      <td class="number">{% blocktrans with position=forloop.counter %}#{{ position }}{% endblocktrans %}</td>
+      <td class="user">
+        <div class="gravatar">
+          <a href="{{ user.get_absolute_url }}"><img src="{{ user|gravatar:30 }}" /></a>
+        </div>
+        <ul class="properties">
+          <li class="name"><a href="{{ user.get_absolute_url }}">{{ user.display_name }}</a></li>
+        </ul>
+      </td>
+      <td class="number">{{ user.public_total_score|intcomma }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div id="top-scorers" class="no-results">
+  {% trans 'No user contributions yet.' %}
+</div>
+{% endif %}

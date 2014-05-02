@@ -58,9 +58,32 @@
     width: 960px;
 }
 
+@media
+only screen and (max-width: 960px)
+{
+    #welcome-page .columns-inner
+    {
+        width: auto;
+    }
+}
+
 #welcome-page .column
 {
     width: 480px;
+}
+
+@media
+only screen and (max-width: 480px)
+{
+    #welcome-page .column
+    {
+        width: 280px;
+    }
+
+    .gravatar
+    {
+        display: none;
+    }
 }
 
 #welcome-page .column.center

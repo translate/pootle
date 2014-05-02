@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% load i18n %}
+{% load common_tags i18n %}
 
 {% block title %}{% trans "Welcome" %} | {{ block.super }}{% endblock %}
 
@@ -30,6 +30,7 @@
 
       <div class="section">
         <h1>{% trans 'Top Contributors This Month' %}</h1>
+        {% top_scorers %}
       </div>
 
     </div>

@@ -1,0 +1,64 @@
+#top-scorers
+{
+    width: 100%;
+    font-size: 1.5em;
+}
+
+#top-scorers.no-results
+{
+    text-align: center;
+    line-height: 3em;
+}
+
+#top-scorers th
+{
+    font-size: 0.8em;
+    color: #ccc;
+}
+
+td.user
+{
+    padding: 10px;
+}
+
+.number
+{
+    font-family: 'webfont_bold', sans-serif;
+    text-align: right;
+}
+
+.user .gravatar,
+.user .properties
+{
+    float: left;
+}
+
+.user .properties
+{
+    margin: 5px 10px 0;
+}
+
+.user .name
+{
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+.properties li
+{
+    font-size: 0.7em;
+    line-height: 1.5;
+}
+
+.properties a
+{
+    color: #5fb336;
+}
+
+.properties a:active,
+.properties a:hover,
+.properties a:focus
+{
+    opacity: 0.8;
+    text-decoration: none;
+}

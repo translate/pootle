@@ -23,18 +23,21 @@
 __all__ = ('User', )
 
 
+import datetime
 import re
 from hashlib import md5
 
 from django.contrib.auth.models import AbstractBaseUser
+from django.core.cache import cache
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
-from django.db.models import Q
+from django.db.models import Sum, Q
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.cache import make_method_key
 from pootle.managers import UserManager
 from pootle_language.models import Language
 from pootle_misc.util import cached_property
@@ -108,6 +111,15 @@ class User(AbstractBaseUser):
     def public_score(self):
         return _humanize_score(self.score)
 
+    @property
+    def public_total_score(self):
+        """Total score for a specific period.
+
+        Since `total_score` is not an attribute of the `User` model, this
+        should be used with user objects retrieved via `User.top_scorers()`.
+        """
+        return _humanize_score(getattr(self, 'total_score', self.score))
+
     @cached_property
     def email_hash(self):
         try:
@@ -130,6 +142,55 @@ class User(AbstractBaseUser):
             return user
 
         return cls.objects.get_nobody_user()
+
+    @classmethod
+    def top_scorers(cls, days=30, language=None, project=None, limit=5):
+        """Returns users with the top scores.
+
+        :param days: period of days to account for scores.
+        :param language: limit results to the given language code.
+        :param project: limit results to the given project code.
+        :param limit: limit results to this number of users.
+        """
+        cache_kwargs = {
+            'days': days,
+            'language': language,
+            'project': project,
+            'limit': limit,
+        }
+        cache_key = make_method_key(cls, 'top_scorers', cache_kwargs)
+
+        top_scorers = cache.get(cache_key, None)
+        if top_scorers is not None:
+            return top_scorers
+
+        now = datetime.datetime.now()
+        past = now + datetime.timedelta(-days)
+
+        lookup_kwargs = {
+            'scorelog__creation_time__range': [past, now],
+        }
+
+        if language is not None:
+            lookup_kwargs.update({
+                'scorelog__submission__translation_project__language__code':
+                    language,
+            })
+
+        if project is not None:
+            lookup_kwargs.update({
+                'scorelog__submission__translation_project__project__code':
+                    project,
+            })
+
+        top_scorers = cls.objects.hide_defaults().filter(
+            **lookup_kwargs
+        ).annotate(
+            total_score=Sum('scorelog__score_delta'),
+        ).filter(total_score__gt=0.0).order_by('-total_score')[:limit]
+
+        cache.set(cache_key, top_scorers, 60)
+        return top_scorers
 
     def __unicode__(self):
         return self.username
