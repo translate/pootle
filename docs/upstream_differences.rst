@@ -24,15 +24,8 @@ Added Features
 
 - User scores and rating based on submission similarities.
 
-- Timeline tracks all changes done to units.
-
 - Whole new set of quality checks (plus the related ``test_checks``
   management command).
-
-- Project-specific announcements in a sidebar.
-
-- Maintenance mode middleware. It can be enabled in the settings before
-  performing any app upgrades.
 
 - Screenshot prefix URL to allow integrating screenshots for units.
 
@@ -117,12 +110,6 @@ incorporated.
 Editor Differences
 ------------------
 
-- If the currently-submitted unit has pending checks, the editor won't
-  advance to the next unit and it will be updated displaying the
-  unresolved checks.
-
-- Quality checks can be individually muted/unmuted.
-
 - Non-admin users can't submit units in fuzzy state.
 
 - When going through all units in the translation editor, users will be
@@ -150,16 +137,6 @@ Layout Differences
 - Critical errors are prominently displayed.
 
 - No *Top Contributors* tables.
-
-- No home page. Users are redirected to their preferred language pages
-  instead, falling back to the project listings page.
-
-- Single-column and wide browsing table.
-
-- `Modern browser support <browsers>`_. This includes latest stable
-  versions of major browsers, and therefore some JavaScript libraries
-  that don't rely on old browsers can be used (namely jQuery 2.x). Some
-  CSS prefixes have been removed too.
 
 
 Other Notable Differences
@@ -199,3 +176,26 @@ Pootle-as-a-product has different business needs.
 - URLs have been unified and all follow the same scheme. URLs ending in
   *.html* have been removed altogether. ``reverse()`` and ``{% url %}``
   are used almost everywhere.
+
+- No home page. Users are redirected to their preferred language pages
+  instead, falling back to the project listings page.
+
+- Timeline tracks all changes done to units.
+
+- If the currently-submitted unit has pending checks, the editor won't
+  advance to the next unit and it will be updated displaying the
+  unresolved checks.
+
+- Project-specific announcements in a sidebar.
+
+- Maintenance mode middleware. It can be enabled in the settings before
+  performing any app upgrades.
+
+- Quality checks can be individually muted/unmuted.
+
+- Single-column and wide browsing table.
+
+- `Modern browser support <browsers>`_. This includes latest stable
+  versions of major browsers, and therefore some JavaScript libraries
+  that don't rely on old browsers can be used (namely jQuery 2.x). Some
+  CSS prefixes have been removed too.
