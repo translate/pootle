@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -29,4 +29,12 @@ def make_method_key(model, method, key):
     prefix = 'method-cache'
     name = (model.__name__ if hasattr(model, '__name__')
                            else model.__class__.__name__)
+    key = key if not isinstance(key, dict) else make_key(key)
     return u':'.join([prefix, name, method, key])
+
+
+def make_key(*args, **kwargs):
+    """Creates a cache key with key-value pairs from a dict."""
+    return ':'.join([
+        '%s=%s' % (k, v) for k, v in sorted(kwargs.iteritems())
+    ])
