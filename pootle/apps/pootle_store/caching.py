@@ -80,8 +80,7 @@ def unit_update_cache(unit):
         if not orig:
             unit.store.total_wordcount += difference
 
-    # Only update the stats if either the target was updated, or the state changed
-    if orig and (unit._target_updated or orig.state != unit.state):
+    if orig:
         # Case 1: Unit was not translated before
         if orig.state == UNTRANSLATED:
             if unit.state == UNTRANSLATED:
@@ -116,9 +115,16 @@ def unit_update_cache(unit):
     # Update the unit state
     if unit._target_updated:
         unit.target_length = len(unit.target_f)
+        # Triggered when suggestions are accepted...
+        # what exactly is happening here?
         if filter(None, unit.target_f.strings):
             if unit.state == UNTRANSLATED:
                 unit.state = TRANSLATED
+                # TODO do this in the previous block. Properly.
+                unit.store.translated_wordcount += source_wordcount
+                unit.store.save()
+                unit.store.translation_project.translated_wordcount += source_wordcount
+                unit.store.translation_project.save()
                 if not hasattr(unit, '_save_action'):
                     unit._save_action = TRANSLATION_ADDED
             else:

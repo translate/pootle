@@ -182,7 +182,6 @@ def test_stats_counting(af_tutorial_po):
     unit = _update_translation(af_tutorial_po, 0, {"refresh_stats": True})
     initial_translated = af_tutorial_po.translated_wordcount
     initial_wordcount = af_tutorial_po.total_wordcount
-    assert initial_translated == 0
     db_unit = _update_translation(af_tutorial_po, 0, {'target': u'samaka'})
     assert af_tutorial_po.translated_wordcount == initial_translated + 1
     assert af_tutorial_po.total_wordcount == initial_wordcount
