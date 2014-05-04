@@ -37,4 +37,8 @@ def test_hash(af_tutorial_po):
     assert first_hash != second_hash
 
     suggestion.target = "gras++"
+    suggestion.user_id = 1
     assert first_hash != second_hash != suggestion.target_hash
+
+    unit.accept_suggestion(suggestion, unit.store.translation_project, None)
+    assert unit.store.suggestion_count == 0
