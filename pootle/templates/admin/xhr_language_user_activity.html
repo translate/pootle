@@ -9,6 +9,7 @@
     </div>
   <% } %>
 <% if ((typeof all_projects !== "undefined") && (_.size(all_projects) > 0)) { %>
+<% var total_new = total_edit = 0; %>
 <% _.each(results, function(lang_data, lang) { %>
 <div class="reports-lang<% if (!lang_data.total.new.n1) { %> new-empty<% } %><% if (!lang_data.total.edit.n1) { %> edit-empty<% } %>">
   <h3><a href="<%= l('/' + lang) %>"><%= lang_data.name %></a></h3>
@@ -59,6 +60,9 @@
       </tr>
     <% });%>
 
+    <% total_edit += lang_data.total.edit.n1; %>
+    <% total_new += lang_data.total.new.n1; %>
+
     <tr class="total">
       <td>Total</td>
       <td class="total number">
@@ -94,6 +98,28 @@
   </table>
 </div>
 <% }); %>
+<% var last_new_rate = scores[scores.length - 1].rate; %>
+<% var last_edit_rate = scores[scores.length - 1].review_rate; %>
+<table class="stats">
+  <thead>
+  <tr>
+    <th>Period</th>
+    <th class="project">New translated</th>
+    <th class="project">x Rate</th>
+    <th class="project">Edits</th>
+    <th class="project">x Rate</th>
+    <th class="project">Subtotal (Words)</th>
+  </tr>
+  </thead>
+  <tr class="total">
+    <td><%= PTL.reports.dateRangeString(meta.start, meta.end, false) %></td>
+    <td class="project"><%= total_new %></td>
+    <td class="project"><%= last_new_rate %></td>
+    <td class="project"><%= total_edit %></td>
+    <td class="project"><%= last_edit_rate %></td>
+    <td class="project"><%= (total_new * last_new_rate + total_edit * last_edit_rate).toFixed(2) %></td>
+  </tr>
+</table>
 <h2>Score-based report for <%= meta.user %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
   <table class="stats">
     <thead>
@@ -129,7 +155,7 @@
       <tr class="total">
           <td>Total (EUR)</td>
           <td colspan="4"></td>
-          <td><%= totalWords %></td>
+          <td><%= totalWords.toFixed(2) %></td>
           <td></td>
           <td><%= totalScore.toFixed(2) %></td>
       </tr>
