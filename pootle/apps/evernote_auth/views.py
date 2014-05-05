@@ -46,10 +46,11 @@ def get_cookie_dict(request):
         data = base64.b64decode(cookie)
 
         des3 = triple_des(getattr(settings, 'SSO_SECRET_KEY', ''), ECB)
-        match = re.match(
-            r'i=(?P<id>[0-9]+),u=(?P<name>[^,]+),e=(?P<email>[^,]+),x=(?P<expired>[0-9]+)',
-            des3.decrypt(data)
-        )
+        match = re.match(r'i=(?P<id>[0-9]+),'
+                         r'u=(?P<name>[^,]+),'
+                         r'e=(?P<email>[^,]+),'
+                         r'x=(?P<expired>[0-9]+)',
+                         des3.decrypt(data))
 
         if match:
             d = match.groupdict()
