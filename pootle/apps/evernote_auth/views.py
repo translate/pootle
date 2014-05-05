@@ -53,9 +53,9 @@ def get_cookie_dict(request):
                          des3.decrypt(data))
 
         if match:
-            d = match.groupdict()
-            if time.time() < d['expired']:
-                return d
+            data = match.groupdict()
+            if time.time() < data['expired']:
+                return data
 
     return None
 
@@ -70,9 +70,9 @@ def redirect_after_login(request, redirect_to):
 def sso_return_view(request, redirect_to='', create=0):
     redirect_to = '/%s' % redirect_to.lstrip('/')
 
-    d = get_cookie_dict(request)
-    if d:
-        ea = EvernoteAccount.objects.filter(**{'evernote_id': d['id']})
+    data = get_cookie_dict(request)
+    if data:
+        ea = EvernoteAccount.objects.filter(**{'evernote_id': data['id']})
 
         if len(ea) == 0:
             if not create:
@@ -80,9 +80,9 @@ def sso_return_view(request, redirect_to='', create=0):
                         urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}))
 
             ea = EvernoteAccount(
-                evernote_id = d['id'],
-                email=d['email'],
-                name=d['name']
+                evernote_id=data['id'],
+                email=data['email'],
+                name=data['name']
             )
 
             if request.user.is_authenticated():
@@ -159,17 +159,17 @@ def evernote_login_link(request):
                 language = request.POST.get('language')
                 request.session['django_language'] = language
 
-                d = get_cookie_dict(request)
-                if not d:
+                data = get_cookie_dict(request)
+                if not data:
                     return evernote_login(request, 1)
 
                 # FIXME: shouldn't `get_or_create()` be enough?
-                ea = EvernoteAccount.objects.filter(**{'evernote_id': d['id']})
+                ea = EvernoteAccount.objects.filter(**{'evernote_id': data['id']})
                 if len(ea) == 0:
                     ea = EvernoteAccount(
-                        evernote_id = d['id'],
-                        email=d['email'],
-                        name=d['name']
+                        evernote_id=data['id'],
+                        email=data['email'],
+                        name=data['name']
                     )
                     ea.user = request.user
                     ea.save()
