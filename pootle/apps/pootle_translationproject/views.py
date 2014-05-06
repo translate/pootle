@@ -462,6 +462,8 @@ def overview(request, translation_project, dir_path, filename=None,
             display_announcement = True
             new_mtime = ann_mtime
 
+    tp_goals = translation_project.all_goals
+
     ctx.update(get_overview_context(request))
     ctx.update({
         'resource_obj': request.store or request.directory,  # Dirty hack.
@@ -469,6 +471,8 @@ def overview(request, translation_project, dir_path, filename=None,
         'description': description,
         'project': project,
         'language': language,
+        'tp_goals': tp_goals,
+        'goal': goal,
         'feed_path': request.directory.pootle_path[1:],
         'action_groups': actions,
         'action_output': action_output,
