@@ -190,22 +190,6 @@ def get_children(directory):
 
 ################################ Goal specific ################################
 
-def make_goal_item(goal, pootle_path):
-    """Create the item row for a goal."""
-    return {
-        'href': goal.get_drill_down_url_for_path(pootle_path),
-        'href_all': goal.get_translate_url_for_path(pootle_path),
-        'href_todo': goal.get_translate_url_for_path(pootle_path,
-                                                     state='incomplete'),
-        'href_sugg': goal.get_translate_url_for_path(pootle_path,
-                                                     state='suggestions'),
-        'isdir': True,
-        'priority': goal.priority,
-        'title': goal.goal_name,
-        'code': goal.slug,
-    }
-
-
 def make_goal_dir_item(directory, goal):
     """Template variables for each row in the table."""
     return {
@@ -243,24 +227,15 @@ def get_goal_parent(directory, goal):
     """
     parent_dir = directory.parent
 
-    if parent_dir.is_language() or parent_dir.is_project():
-        url_kwargs = {
-            'language_code': directory.translation_project.language.code,
-            'project_code': directory.translation_project.project.code,
-            'dir_path': directory.path,
-        }
-        return {
-            'icon': 'folder-parent',
-            'title': _("Back to goals list"),
-            'href': reverse('pootle-tp-goals', kwargs=url_kwargs),
-        }
-    else:
+    if not (parent_dir.is_language() or parent_dir.is_project()):
         parent_path = directory.parent.pootle_path
         return {
             'icon': 'folder-parent',
             'title': _("Back to parent folder"),
             'href': goal.get_drill_down_url_for_path(parent_path),
         }
+    else:
+        return None
 
 
 def get_goal_children(directory, goal):

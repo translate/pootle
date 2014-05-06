@@ -42,7 +42,7 @@ from taggit.models import Tag
 
 from pootle.core.browser import (get_children, get_goal_children,
                                  get_goal_parent, get_parent,
-                                 get_table_headings, make_goal_item)
+                                 get_table_headings)
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context, get_overview_context,
@@ -297,17 +297,11 @@ def _handle_upload_form(request, translation_project):
     return upload_form_class()
 
 
-def goals_overview(*args, **kwargs):
-    kwargs['in_goal_overview'] = True
-    return overview(*args, **kwargs)
-
-
 @get_path_obj
 @permission_required('view')
 @get_resource
 @get_goal
-def overview(request, translation_project, dir_path, filename=None,
-             goal=None, in_goal_overview=False):
+def overview(request, translation_project, dir_path, filename=None, goal=None):
 
     if filename:
         ctx = {
@@ -487,31 +481,11 @@ def overview(request, translation_project, dir_path, filename=None,
     tp_pootle_path = translation_project.pootle_path
 
     if request.store is None:
-        resource_obj_goals = Goal.get_goals_for_path(resource_obj.pootle_path)
-        resource_obj_has_goals = len(resource_obj_goals) > 0
+        table_fields = ['name', 'progress', 'total', 'need-translation',
+                        'suggestions', 'critical', 'last-updated', 'activity']
 
-        if in_goal_overview and resource_obj_has_goals:
-            # Then show the goals tab.
-            table_fields = ['name', 'progress', 'priority', 'total',
-                            'need-translation', 'suggestions']
-            items = [make_goal_item(resource_obj_goal, resource_obj.pootle_path)
-                     for resource_obj_goal in resource_obj_goals]
-            ctx.update({
-                'table': {
-                    'id': 'tp-goals',
-                    'fields': table_fields,
-                    'headings': get_table_headings(table_fields),
-                    'parent': get_parent(request.directory),
-                    'items': items,
-                },
-                'resource_obj_has_goals': True,
-            })
-        elif goal in resource_obj_goals:
+        if goal is not None:
             # Then show the drill down view for the specified goal.
-            table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions', 'critical', 'last-updated',
-                            'activity']
-
             ctx.update({
                 'table': {
                     'id': 'tp-goals',
@@ -520,15 +494,9 @@ def overview(request, translation_project, dir_path, filename=None,
                     'parent': get_goal_parent(request.directory, goal),
                     'items': get_goal_children(request.directory, goal),
                 },
-                'goal': goal,
-                'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
-                'resource_obj_has_goals': True,
             })
         else:
             # Then show the files tab.
-            table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions', 'critical', 'last-updated',
-                            'activity']
             ctx.update({
                 'table': {
                     'id': 'tp-files',
@@ -537,13 +505,7 @@ def overview(request, translation_project, dir_path, filename=None,
                     'parent': get_parent(request.directory),
                     'items': get_children(request.directory),
                 },
-                'resource_obj_has_goals': resource_obj_has_goals,
             })
-    elif goal is not None:
-        ctx.update({
-            'goal': goal,
-            'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
-        })
 
     if can_edit:
         if request.store is None:
