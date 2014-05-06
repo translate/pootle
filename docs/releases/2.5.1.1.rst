@@ -20,7 +20,7 @@ For a full list of changes, please check the `git log
 <https://github.com/translate/pootle/compare/2.5.1...2.5.1.1>`_.
 
 - Top stats are now cached for a much longer time and are
-  :settings:`configurable <POOTLE_TOP_STATS_CACHE_TIMEOUT>`.
+  :setting:`configurable <POOTLE_TOP_STATS_CACHE_TIMEOUT>`.
 - Updated Google Translate support to work with the updated Google Translate API
 - Fixed potential failures with zip exports
 - Fixed several requirements issues with newer versions of Python and some libraries
