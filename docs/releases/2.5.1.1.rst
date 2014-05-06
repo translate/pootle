@@ -17,7 +17,7 @@ Bugfixes
 ========
 
 For a full list of changes, please check the `git log
-<https://github.com/translate/pootle/compare/stable%2F2.5.1...2.5.1.1>`_.
+<https://github.com/translate/pootle/compare/2.5.1...2.5.1.1>`_.
 
 - Top stats are now cached for a much longer time and configurable in the :settings:`settings`
 - Updated Google Translate support to work with the updated Google Translate API
