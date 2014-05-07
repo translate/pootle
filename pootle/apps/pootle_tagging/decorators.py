@@ -22,7 +22,9 @@ from functools import wraps
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 from django.http import Http404
+from django.shortcuts import redirect
 from django.utils.encoding import iri_to_uri
 
 
@@ -41,6 +43,15 @@ def get_goal(func):
             except Goal.DoesNotExist:
                 pass
             else:
+                if not goal.get_stores_for_path(request.pootle_path):
+                    # If the resource object doesn't belong to the goal, then
+                    # redirect to the translation project root for the goal.
+                    language = request.ctx_obj.language.code
+                    project = request.ctx_obj.project.code
+                    url = reverse('pootle-tp-goal-drill-down',
+                                  args=[language, project, goal.slug, '', ''])
+                    return redirect(url)
+
                 kwargs['goal'] = goal
 
         return func(request, *args, **kwargs)
