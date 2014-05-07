@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -33,6 +33,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.encoding import iri_to_uri
 from django.utils.http import is_safe_url, urlquote, urlencode
+from django.views.decorators.cache import never_cache
 
 from pootle_misc.baseurl import redirect
 
@@ -188,6 +189,7 @@ def evernote_login_link(request):
 
 
 @login_required
+@never_cache
 def evernote_account_info(request, context={}):
     return render_to_response('profiles/settings/evernote_account.html',
                               context, context_instance=RequestContext(request))
