@@ -36,7 +36,7 @@ class EvernoteAccount(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 related_name='evernote_account')
-    user_autocreated = models.BooleanField()
+    user_autocreated = models.BooleanField(default=False)
 
     objects = EvernoteAccountManager()
 
