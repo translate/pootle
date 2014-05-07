@@ -102,9 +102,8 @@ def sso_return_view(request, redirect_to='', create=0):
 
         return redirect_after_login(request)
 
-    else:
-        return redirect('/accounts/evernote/login/?%s' %
-                        urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}))
+    return redirect('/accounts/evernote/login/?%s' %
+                    urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}))
 
 
 def evernote_login(request, create=0):
@@ -117,21 +116,21 @@ def evernote_login(request, create=0):
     if not request.user.is_authenticated():
         if create:
             return sso_return_view(request, redirect_to, create)
-        else:
-            return redirect(
-                getattr(settings, 'EVERNOTE_LOGIN_URL', '') +
-                '%s/%saccounts/evernote/return/%s' %
-                (server_alias, script_name, redirect_to.lstrip('/'))
-            )
-    else:
-        if not hasattr(request.user, 'evernote_account'):
-            return redirect(
-                getattr(settings, 'EVERNOTE_LOGIN_URL', '') +
-                '%s/%saccounts/evernote/create/return/%s' %
-                (server_alias, script_name, redirect_to.lstrip('/'))
-            )
-        else:
-            return redirect_after_login(request)
+
+        return redirect(
+            getattr(settings, 'EVERNOTE_LOGIN_URL', '') +
+            '%s/%saccounts/evernote/return/%s' %
+            (server_alias, script_name, redirect_to.lstrip('/'))
+        )
+
+    if not hasattr(request.user, 'evernote_account'):
+        return redirect(
+            getattr(settings, 'EVERNOTE_LOGIN_URL', '') +
+            '%s/%saccounts/evernote/create/return/%s' %
+            (server_alias, script_name, redirect_to.lstrip('/'))
+        )
+
+    return redirect_after_login(request)
 
 
 def evernote_login_link(request):
