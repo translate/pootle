@@ -31,11 +31,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils.encoding import iri_to_uri
-from django.utils.http import is_safe_url, urlquote, urlencode
+from django.utils.http import urlencode
 from django.views.decorators.cache import never_cache
 
 from pootle_misc.baseurl import redirect
+from pootle_profile.views import redirect_after_login
 
 from .models import EvernoteAccount
 
@@ -59,13 +59,6 @@ def get_cookie_dict(request):
                 return data
 
     return None
-
-
-def redirect_after_login(request, redirect_to):
-    if not is_safe_url(url=redirect_to, host=request.get_host()):
-        redirect_to = reverse('pootle-profile', args=[request.user.username])
-
-    return redirect(redirect_to)
 
 
 def sso_return_view(request, redirect_to='', create=0):
@@ -107,7 +100,7 @@ def sso_return_view(request, redirect_to='', create=0):
                 user = auth.authenticate(**{'evernote_account': ea})
                 auth.login(request, user)
 
-        return redirect_after_login(request, redirect_to)
+        return redirect_after_login(request)
 
     else:
         return redirect('/accounts/evernote/login/?%s' %
@@ -138,15 +131,13 @@ def evernote_login(request, create=0):
                 (server_alias, script_name, redirect_to.lstrip('/'))
             )
         else:
-            return redirect_after_login(request, redirect_to)
+            return redirect_after_login(request)
 
 
 def evernote_login_link(request):
     """Logs the user in."""
-    redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, '')
-
     if request.user.is_authenticated():
-        return redirect_after_login(request, redirect_to)
+        return redirect_after_login(request)
     else:
         if request.POST:
             form = AuthenticationForm(request, data=request.POST)
@@ -170,7 +161,7 @@ def evernote_login_link(request):
                     ea.user = request.user
                     ea.save()
 
-                return redirect_after_login(request, redirect_to)
+                return redirect_after_login(request)
         else:
             form = AuthenticationForm(request)
 

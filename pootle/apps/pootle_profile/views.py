@@ -84,8 +84,9 @@ class UserProfileView(UserUpdateView):
     template_name = 'profiles/settings/personal.html'
 
 
-def redirect_after_login(request):
-    redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, None)
+def redirect_after_login(request, redirect_to=None):
+    if redirect_to is None:
+        redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, '')
 
     if not is_safe_url(url=redirect_to, host=request.get_host()):
         redirect_to = iri_to_uri(reverse('pootle-profile',
