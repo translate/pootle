@@ -116,8 +116,6 @@ def sso_return_view(request, redirect_to='', create=0):
 
 def evernote_login(request, create=0):
     redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, '')
-    language = request.REQUEST.get('language')
-    request.session['django_language'] = language
 
     script_name = (settings.SCRIPT_NAME and "%s/" %
                    settings.SCRIPT_NAME.rstrip('/').lstrip('/') or '')
@@ -156,9 +154,6 @@ def evernote_login_link(request):
             # Do login here
             if form.is_valid():
                 auth.login(request, form.get_user())
-
-                language = request.POST.get('language')
-                request.session['django_language'] = language
 
                 data = get_cookie_dict(request)
                 if not data:

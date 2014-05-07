@@ -106,10 +106,6 @@ def login(request):
             # Do login here.
             if form.is_valid():
                 auth.login(request, form.get_user())
-
-                language = request.POST.get('language')
-                request.session['django_language'] = language
-
                 return redirect_after_login(request)
         else:
             form = AuthenticationForm(request)
