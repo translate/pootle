@@ -191,7 +191,6 @@ def get_children(directory):
 ################################ Goal specific ################################
 
 def make_goal_dir_item(directory, goal):
-    """Template variables for each row in the table."""
     return {
         'href': goal.get_drill_down_url_for_path(directory.pootle_path),
         'href_all': goal.get_translate_url_for_path(directory.pootle_path),
@@ -199,10 +198,10 @@ def make_goal_dir_item(directory, goal):
                                                      state='incomplete'),
         'href_sugg': goal.get_translate_url_for_path(directory.pootle_path,
                                                      state='suggestions'),
+        'href_critical': goal.get_critical_url_for_path(directory.pootle_path),
         'title': directory.name,
+        'code': directory.code,
         'icon': 'folder',
-        'isdir': True,
-        'code': goal.slug,
     }
 
 
@@ -210,11 +209,6 @@ def make_goal_store_item(store, goal):
     item = make_store_item(store)
     item.update({
         'href': goal.get_drill_down_url_for_path(store.pootle_path),
-        'href_all': goal.get_translate_url_for_path(store.pootle_path),
-        'href_todo': goal.get_translate_url_for_path(store.pootle_path,
-                                                     state='incomplete'),
-        'href_sugg': goal.get_translate_url_for_path(store.pootle_path,
-                                                     state='suggestions'),
     })
     return item
 

@@ -36,6 +36,7 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.signals import (post_file_upload, post_template_update,
                                        post_vc_update)
 from pootle_misc.checks import category_names, check_names
+from pootle_misc.checks import get_qualitychecks_by_category
 from pootle_store.signals import translation_submitted
 from pootle_store.util import OBSOLETE, suggestions_sum
 
@@ -328,6 +329,15 @@ class Goal(TagBase):
             reverse('pootle-tp-translate', args=[lang, proj, dir_path, fn]),
             get_editor_filter(goal=self.slug, **kwargs),
         ])
+
+    def get_critical_url_for_path(self, pootle_path, **kwargs):
+        """Return this goal's translate URL for critical checks failures in the
+        given path.
+
+        :param pootle_path: A string with a valid pootle path.
+        """
+        critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
+        return self.get_translate_url_for_path(pootle_path, check=critical)
 
     def get_drill_down_url_for_path(self, pootle_path):
         """Return this goal's drill down URL for the given path.
