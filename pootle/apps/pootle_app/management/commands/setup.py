@@ -50,19 +50,16 @@ class Command(NoArgsCommand):
             call_command('initdb')
 
             logging.info('Successfully deployed new Pootle.')
+        elif current_buildversion < 21010:
+            # Trying to upgrade a deployment older than Pootle 2.1.1 for which
+            # we can't provide a direct upgrade.
+            raise CommandError('This Pootle installation is too old. Please '
+                               'upgrade first to 2.1.6 before upgrading to '
+                               'this version.')
         elif current_buildversion < NEW_POOTLE_BUILD:
             logging.info('Upgrading existing Pootle installation.')
 
-            if current_buildversion < 21010:
-                # We are trying to upgrade a very old installation (older than
-                # Pootle 2.1.1) and we can't provide a direct upgrade.
-                raise CommandError('This Pootle installation is too old. '
-                                   'Please upgrade first to 2.1.6 before '
-                                   'upgrading to this version.')
-
-            from .upgrade import DEFAULT_POOTLE_BUILDVERSION
-
-            if current_buildversion < DEFAULT_POOTLE_BUILDVERSION:
+            if current_buildversion < 22000:
                 # Run only if Pootle is < 2.5.0.
                 call_command('updatedb')
 
@@ -77,8 +74,8 @@ class Command(NoArgsCommand):
                             "pootle_project", "pootle_statistics",
                             "pootle_store", "pootle_translationproject")
 
-                if current_buildversion >= DEFAULT_POOTLE_BUILDVERSION:
-                    # Fake migration only if Pootle is 2.5.0.
+                if current_buildversion >= 22000:
+                    # Fake the migration only if Pootle is 2.5.0.
                     OLD_APPS += ("staticpages", )
 
                 for app in OLD_APPS:
