@@ -95,7 +95,7 @@ def redirect_after_login(request, redirect_to=None):
     return redirect(redirect_to)
 
 
-def login(request):
+def login(request, template_name='login.html'):
     """Log the user in."""
     if request.user.is_authenticated():
         return redirect_after_login(request)
@@ -117,7 +117,7 @@ def login(request):
             'next': next,
         }
 
-        return render_to_response("login.html", context,
+        return render_to_response(template_name, context,
                                   context_instance=RequestContext(request))
 
 
