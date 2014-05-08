@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,6 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import os
+import re
 import urlparse
 
 from django.core.urlresolvers import reverse
@@ -135,3 +136,14 @@ def get_previous_url(request):
             return referer_url
 
     return reverse('pootle-home')
+
+
+def urljoin(base, *url_parts):
+    """Joins URL parts with a `base` and removes any duplicated slashes in
+    `url_parts`.
+    """
+    new_url = urlparse.urljoin(base, '/'.join(url_parts))
+    new_url = list(urlparse.urlparse(new_url))
+    new_url[2] = re.sub('/{2,}', '/', new_url[2])
+
+    return urlparse.urlunparse(new_url)
