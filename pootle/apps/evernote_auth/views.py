@@ -141,7 +141,7 @@ def create_evernote_account(sender, request, user, **kwargs):
         return
 
     data = get_cookie_dict(request)
-    if not data:
+    if data is None:
         return evernote_login(request, 1)
 
     account = EvernoteAccount.objects.get_or_create(
