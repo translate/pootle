@@ -186,15 +186,15 @@ def set_project_resource(request, path_obj, dir_path, filename):
 
         resources = Store.objects.extra(
             where=[
-                '`pootle_store_store`.`pootle_path` LIKE %s',
-                '`pootle_store_store`.`pootle_path` NOT LIKE %s',
+                'pootle_store_store.pootle_path LIKE %s',
+                'pootle_store_store.pootle_path NOT LIKE %s',
             ], params=[query_pootle_path, '/templates/%']
         ).select_related('translation_project__language')
     else:
         resources = Directory.objects.extra(
             where=[
-                '`pootle_app_directory`.`pootle_path` LIKE %s',
-                '`pootle_app_directory`.`pootle_path` NOT LIKE %s',
+                'pootle_app_directory.pootle_path LIKE %s',
+                'pootle_app_directory.pootle_path NOT LIKE %s',
             ], params=[query_pootle_path, '/templates/%']
         ).select_related('parent')
 
