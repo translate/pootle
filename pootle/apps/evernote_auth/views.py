@@ -27,15 +27,15 @@ from pyDes import triple_des, ECB
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse
+from django.dispatch import receiver
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.http import urlencode
 from django.views.decorators.cache import never_cache
 
 from pootle_misc.baseurl import redirect
-from pootle_profile.views import redirect_after_login
+from pootle_profile.views import login, redirect_after_login
 
 from .models import EvernoteAccount
 
@@ -134,43 +134,29 @@ def evernote_login(request, create=0):
 
 
 def evernote_login_link(request):
-    """Logs the user in."""
-    if request.user.is_authenticated():
-        return redirect_after_login(request)
-    else:
-        if request.POST:
-            form = AuthenticationForm(request, data=request.POST)
+    """Logs the user in and links the account with Evernote."""
+    return login(request, template_name='auth/link_with_evernote.html')
 
-            # Do login here
-            if form.is_valid():
-                auth.login(request, form.get_user())
 
-                data = get_cookie_dict(request)
-                if not data:
-                    return evernote_login(request, 1)
+@receiver(auth.user_logged_in)
+def create_evernote_account(sender, request, user, **kwargs):
+    if not user.backend.endswith('EvernoteBackend'):
+        return
 
-                # FIXME: shouldn't `get_or_create()` be enough?
-                ea = EvernoteAccount.objects.filter(**{'evernote_id': data['id']})
-                if len(ea) == 0:
-                    ea = EvernoteAccount(
-                        evernote_id=data['id'],
-                        email=data['email'],
-                        name=data['name']
-                    )
-                    ea.user = request.user
-                    ea.save()
+    data = get_cookie_dict(request)
+    if not data:
+        return evernote_login(request, 1)
 
-                return redirect_after_login(request)
-        else:
-            form = AuthenticationForm(request)
-
-        context = {
-            'form': form,
-            'next': request.REQUEST.get(auth.REDIRECT_FIELD_NAME, ''),
-        }
-
-        return render_to_response("auth/link_with_evernote.html", context,
-                                  context_instance=RequestContext(request))
+    # FIXME: shouldn't `get_or_create()` be enough?
+    ea = EvernoteAccount.objects.filter(**{'evernote_id': data['id']})
+    if len(ea) == 0:
+        ea = EvernoteAccount(
+            evernote_id=data['id'],
+            email=data['email'],
+            name=data['name']
+        )
+        ea.user = request.user
+        ea.save()
 
 
 @login_required
