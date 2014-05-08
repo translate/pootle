@@ -156,7 +156,15 @@ running the following commands:
   $ pootle migrate pootle_statistics --fake 0001
   $ pootle migrate pootle_store --fake 0001
   $ pootle migrate pootle_translationproject --fake 0001
-  $ pootle migrate staticpages --fake 0001
+
+
+.. note::
+
+  If you are upgrading from Pootle 2.5.0 you also have to run:
+
+  .. code-block:: bash
+
+    $ pootle migrate staticpages --fake 0001
 
 
 The next step will perform any pending schema migrations. You can read more
