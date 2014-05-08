@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2008-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -543,12 +543,8 @@ def overview(request, translation_project, dir_path, filename=None,
 
     if can_edit:
         if request.store is None:
-            url_kwargs = {
-                'language_code': language.code,
-                'project_code': project.code,
-            }
             add_tag_action_url = reverse('pootle-xhr-tag-tp',
-                                         kwargs=url_kwargs)
+                                         args=[language.code, project.code])
         else:
             add_tag_action_url = reverse('pootle-xhr-tag-store',
                                          args=[resource_obj.pk])
