@@ -72,9 +72,18 @@ def sso_return_view(request, redirect_to='', create=0):
         ])
         return redirect(redirect_url)
 
-    ea = EvernoteAccount.objects.filter(**{'evernote_id': data['id']})
+    try:
+        ea = EvernoteAccount.objects.get(evernote_id=data['id'])
 
-    if len(ea) == 0:
+        if request.user.is_authenticated():
+            if request.user.id != ea.user.id:
+                # it's not possible to link account with another user_id
+                # TODO show error message
+                return redirect(redirect_to)
+        else:
+            user = auth.authenticate(**{'evernote_account': ea})
+            auth.login(request, user)
+    except EvernoteAccount.DoesNotExist:
         if not create:
             redirect_url = '?'.join([
                 reverse('evernote_login_link'),
@@ -96,18 +105,6 @@ def sso_return_view(request, redirect_to='', create=0):
             auth.login(request, user)
 
         ea.save()
-
-    else:
-        ea = ea[0]
-
-        if request.user.is_authenticated():
-            if request.user.id != ea.user.id:
-                # it's not possible to link account with another user_id
-                # TODO show error message
-                return redirect(redirect_to)
-        else:
-            user = auth.authenticate(**{'evernote_account': ea})
-            auth.login(request, user)
 
     return redirect_after_login(request)
 
