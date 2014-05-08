@@ -144,16 +144,14 @@ def create_evernote_account(sender, request, user, **kwargs):
     if not data:
         return evernote_login(request, 1)
 
-    # FIXME: shouldn't `get_or_create()` be enough?
-    ea = EvernoteAccount.objects.filter(**{'evernote_id': data['id']})
-    if len(ea) == 0:
-        ea = EvernoteAccount(
-            evernote_id=data['id'],
-            email=data['email'],
-            name=data['name']
-        )
-        ea.user = request.user
-        ea.save()
+    account = EvernoteAccount.objects.get_or_create(
+        evernote_id=data['id'],
+        email=data['email'],
+        name=data['name'],
+        defaults={
+            'user': request.user,
+        },
+    )
 
 
 @login_required
