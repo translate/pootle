@@ -34,6 +34,7 @@ from django.template import RequestContext
 from django.utils.http import urlencode
 from django.views.decorators.cache import never_cache
 
+from pootle.core.url_helpers import urljoin
 from pootle_misc.baseurl import redirect
 from pootle_profile.views import login, redirect_after_login
 
@@ -62,7 +63,7 @@ def get_cookie_dict(request):
 
 
 def sso_return_view(request, redirect_to='', create=0):
-    redirect_to = '/%s' % redirect_to.lstrip('/')
+    redirect_to = urljoin('', '', redirect_to)
 
     data = get_cookie_dict(request)
     if data:

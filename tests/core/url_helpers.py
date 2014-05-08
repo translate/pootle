@@ -33,3 +33,4 @@ def test_urljoin():
     assert urljoin(base, 'foo//////') == base + 'foo/'
     assert urljoin(base, 'foo', 'bar/baz', 'blah') == base + 'foo/bar/baz/blah'
     assert urljoin(base, 'foo/', 'bar', 'baz/') == base + 'foo/bar/baz/'
+    assert urljoin('', '', '/////foo') == '/foo'
