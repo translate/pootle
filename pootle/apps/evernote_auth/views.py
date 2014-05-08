@@ -41,12 +41,12 @@ from .models import EvernoteAccount
 
 
 def get_cookie_dict(request):
-    cookie = request.COOKIES.get(getattr(settings, 'SSO_COOKIE', ''))
+    cookie = request.COOKIES.get(settings.EN_SSO_COOKIE, None)
 
-    if cookie:
+    if cookie is not None:
         data = base64.b64decode(cookie)
 
-        des3 = triple_des(getattr(settings, 'SSO_SECRET_KEY', ''), ECB)
+        des3 = triple_des(settings.EN_SSO_SECRET_KEY, ECB)
         match = re.match(r'i=(?P<id>[0-9]+),'
                          r'u=(?P<name>[^,]+),'
                          r'e=(?P<email>[^,]+),'
@@ -111,21 +111,21 @@ def evernote_login(request, create=0):
 
     script_name = (settings.SCRIPT_NAME and "%s/" %
                    settings.SCRIPT_NAME.rstrip('/').lstrip('/') or '')
-    server_alias = getattr(settings, 'EVERNOTE_LOGIN_REDIRECT_SERVER_ALIAS' ,'')
+    server_alias = settings.EN_SSO_SERVER_ALIAS
 
     if not request.user.is_authenticated():
         if create:
             return sso_return_view(request, redirect_to, create)
 
         return redirect(
-            getattr(settings, 'EVERNOTE_LOGIN_URL', '') +
+            settings.EN_SSO_BASE + settings.EN_SSO_PATH +
             '%s/%saccounts/evernote/return/%s' %
             (server_alias, script_name, redirect_to.lstrip('/'))
         )
 
     if not hasattr(request.user, 'evernote_account'):
         return redirect(
-            getattr(settings, 'EVERNOTE_LOGIN_URL', '') +
+            settings.EN_SSO_BASE + settings.EN_SSO_PATH +
             '%s/%saccounts/evernote/create/return/%s' %
             (server_alias, script_name, redirect_to.lstrip('/'))
         )
