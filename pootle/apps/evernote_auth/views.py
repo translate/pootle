@@ -29,13 +29,12 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.dispatch import receiver
-from django.shortcuts import render_to_response
+from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 from django.utils.http import urlencode
 from django.views.decorators.cache import never_cache
 
 from pootle.core.url_helpers import urljoin
-from pootle_misc.baseurl import redirect
 from pootle_profile.views import login, redirect_after_login
 
 from .models import EvernoteAccount
@@ -71,8 +70,11 @@ def sso_return_view(request, redirect_to='', create=0):
 
         if len(ea) == 0:
             if not create:
-                return redirect('/accounts/evernote/login/link?%s' %
-                        urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}))
+                redirect_url = '?'.join([
+                    reverse('evernote_login_link'),
+                    urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
+                ])
+                return redirect(redirect_url)
 
             ea = EvernoteAccount(
                 evernote_id=data['id'],
@@ -103,8 +105,11 @@ def sso_return_view(request, redirect_to='', create=0):
 
         return redirect_after_login(request)
 
-    return redirect('/accounts/evernote/login/?%s' %
-                    urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}))
+    redirect_url = '?'.join([
+        reverse('evernote_login'),
+        urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
+    ])
+    return redirect(redirect_url)
 
 
 def evernote_login(request, create=0):
@@ -174,4 +179,4 @@ def evernote_account_disconnect(request):
         if not ea.user_autocreated:
             ea.delete()
 
-    return redirect('/accounts/evernote/link/')
+    return redirect('evernote_account_link')

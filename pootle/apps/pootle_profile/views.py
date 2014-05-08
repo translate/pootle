@@ -21,7 +21,7 @@
 from django.contrib import auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response
+from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.utils.encoding import iri_to_uri
@@ -31,7 +31,6 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView, UpdateView
 
 from pootle.core.views import LoginRequiredMixin
-from pootle_misc.baseurl import redirect
 
 
 User = auth.get_user_model()
@@ -124,4 +123,4 @@ def login(request, template_name='login.html'):
 def logout(request):
     from django.contrib.auth import logout
     logout(request)
-    return redirect('/')
+    return redirect('pootle-home')
