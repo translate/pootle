@@ -115,26 +115,20 @@ def sso_return_view(request, redirect_to='', create=0):
 def evernote_login(request, create=0):
     redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, '')
 
-    script_name = (settings.SCRIPT_NAME and "%s/" %
-                   settings.SCRIPT_NAME.rstrip('/').lstrip('/') or '')
-    server_alias = settings.EN_SSO_SERVER_ALIAS
-
     if not request.user.is_authenticated():
         if create:
             return sso_return_view(request, redirect_to, create)
 
-        return redirect(
-            settings.EN_SSO_BASE + settings.EN_SSO_PATH +
-            '%s/%saccounts/evernote/return/%s' %
-            (server_alias, script_name, redirect_to.lstrip('/'))
-        )
+        return_path = reverse('evernote_return', args=[redirect_to])
+        sso_url = urljoin(settings.EN_SSO_BASE, settings.EN_SSO_PATH,
+                          settings.EN_SSO_SERVER_ALIAS, return_path)
+        return redirect(sso_url)
 
     if not hasattr(request.user, 'evernote_account'):
-        return redirect(
-            settings.EN_SSO_BASE + settings.EN_SSO_PATH +
-            '%s/%saccounts/evernote/create/return/%s' %
-            (server_alias, script_name, redirect_to.lstrip('/'))
-        )
+        return_path = reverse('evernote_create_return', args=[redirect_to])
+        sso_url = urljoin(settings.EN_SSO_BASE, settings.EN_SSO_PATH,
+                          settings.EN_SSO_SERVER_ALIAS, return_path)
+        return redirect(sso_url)
 
     return redirect_after_login(request)
 
