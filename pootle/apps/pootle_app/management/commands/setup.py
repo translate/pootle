@@ -75,8 +75,12 @@ class Command(NoArgsCommand):
                 OLD_APPS = ("pootle_app", "pootle_language",
                             "pootle_notifications", "pootle_profile",
                             "pootle_project", "pootle_statistics",
-                            "pootle_store", "pootle_translationproject",
-                            "staticpages")
+                            "pootle_store", "pootle_translationproject")
+
+                if current_buildversion >= DEFAULT_POOTLE_BUILDVERSION:
+                    # Fake migration only if Pootle is 2.5.0.
+                    OLD_APPS += ("staticpages", )
+
                 for app in OLD_APPS:
                     call_command("migrate", app, "0001", fake=True)
 
