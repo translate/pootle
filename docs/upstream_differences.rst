@@ -110,11 +110,6 @@ incorporated.
 Editor Differences
 ------------------
 
-- Non-admin users can't submit units in fuzzy state.
-
-- When going through all units in the translation editor, users will be
-  automatically redirected back to overview.
-
 - Filters allow sorting units according to their last action date.
 
 - TM diffs show what has been removed and what's being added.
@@ -128,13 +123,6 @@ Layout Differences
 ------------------
 
 - Highly customized layout and look & feel.
-
-- Redesigned navigation scheme, including fast, easy and practical
-  navigation via breadcrumb drop-downs.
-
-- Tabs have been replaced in favor of drop-down menus.
-
-- Critical errors are prominently displayed.
 
 - No *Top Contributors* tables.
 
@@ -153,6 +141,9 @@ Some of the work done in our fork has been merged back to upstream. Some
 of these might contain small differences, mostly because
 Pootle-as-a-product has different business needs.
 
+Added Features
+^^^^^^^^^^^^^^
+
 - Report target field has been removed. This functionality has been
   integrated into a new contact form.
 
@@ -160,42 +151,67 @@ Pootle-as-a-product has different business needs.
 
 - Captcha implementation details have been refined.
 
-- All templates are gathered in a single location (*pootle/templates*),
-  and have been reorganized and sorted.
-
-- The *Submit*/*Suggest* button is not enabled until a change over the
-  initial state of the unit is detected.
-
 - General *system* user which is the author of the batch actions performed
   via management commands.
 
-- Removed Live Translation.
-
-- Removed support for autosync.
-
-- URLs have been unified and all follow the same scheme. URLs ending in
-  *.html* have been removed altogether. ``reverse()`` and ``{% url %}``
-  are used almost everywhere.
-
-- No home page. Users are redirected to their preferred language pages
-  instead, falling back to the project listings page.
-
 - Timeline tracks all changes done to units.
-
-- If the currently-submitted unit has pending checks, the editor won't
-  advance to the next unit and it will be updated displaying the
-  unresolved checks.
 
 - Project-specific announcements in a sidebar.
 
 - Maintenance mode middleware. It can be enabled in the settings before
   performing any app upgrades.
 
+Removed Features
+^^^^^^^^^^^^^^^^
+
+- Removed Live Translation.
+
+- Removed support for autosync.
+
+Editor Differences
+^^^^^^^^^^^^^^^^^^
+
+- Non-admin users can't submit units in fuzzy state.
+
+- If the currently-submitted unit has pending checks, the editor won't
+  advance to the next unit and it will be updated displaying the
+  unresolved checks.
+
 - Quality checks can be individually muted/unmuted.
 
+- The *Submit*/*Suggest* button is not enabled until a change over the
+  initial state of the unit is detected.
+
+- When going through all units in the translation editor, users will be
+  automatically redirected back to overview.
+
+
+Layout Differences
+^^^^^^^^^^^^^^^^^^
+
+- Redesigned navigation scheme, including fast, easy and practical
+  navigation via breadcrumb drop-downs.
+
+- Tabs have been replaced in favor of drop-down menus.
+
+- Critical errors are prominently displayed.
+
+- No home page. Users are redirected to their preferred language pages
+  instead, falling back to the project listings page.
+
 - Single-column and wide browsing table.
+
+- All templates are gathered in a single location (*pootle/templates*),
+  and have been reorganized and sorted.
 
 - `Modern browser support <browsers>`_. This includes latest stable
   versions of major browsers, and therefore some JavaScript libraries
   that don't rely on old browsers can be used (namely jQuery 2.x). Some
   CSS prefixes have been removed too.
+
+Other Notable Differences
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- URLs have been unified and all follow the same scheme. URLs ending in
+  *.html* have been removed altogether. ``reverse()`` and ``{% url %}``
+  are used almost everywhere.
