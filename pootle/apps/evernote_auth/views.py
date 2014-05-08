@@ -65,51 +65,51 @@ def sso_return_view(request, redirect_to='', create=0):
     redirect_to = urljoin('', '', redirect_to)
 
     data = get_cookie_dict(request)
-    if data:
-        ea = EvernoteAccount.objects.filter(**{'evernote_id': data['id']})
+    if data is None:
+        redirect_url = '?'.join([
+            reverse('evernote_login'),
+            urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
+        ])
+        return redirect(redirect_url)
 
-        if len(ea) == 0:
-            if not create:
-                redirect_url = '?'.join([
-                    reverse('evernote_login_link'),
-                    urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
-                ])
-                return redirect(redirect_url)
+    ea = EvernoteAccount.objects.filter(**{'evernote_id': data['id']})
 
-            ea = EvernoteAccount(
-                evernote_id=data['id'],
-                email=data['email'],
-                name=data['name']
-            )
+    if len(ea) == 0:
+        if not create:
+            redirect_url = '?'.join([
+                reverse('evernote_login_link'),
+                urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
+            ])
+            return redirect(redirect_url)
 
-            if request.user.is_authenticated():
-                ea.user = request.user
-            else:
-                # create new Pootle user
-                user = auth.authenticate(**{'evernote_account': ea})
-                auth.login(request, user)
+        ea = EvernoteAccount(
+            evernote_id=data['id'],
+            email=data['email'],
+            name=data['name'],
+        )
 
-            ea.save()
-
+        if request.user.is_authenticated():
+            ea.user = request.user
         else:
-            ea = ea[0]
+            # create new Pootle user
+            user = auth.authenticate(**{'evernote_account': ea})
+            auth.login(request, user)
 
-            if request.user.is_authenticated():
-                if request.user.id != ea.user.id:
-                    # it's not possible to link account with another user_id
-                    # TODO show error message
-                    return redirect(redirect_to)
-            else:
-                user = auth.authenticate(**{'evernote_account': ea})
-                auth.login(request, user)
+        ea.save()
 
-        return redirect_after_login(request)
+    else:
+        ea = ea[0]
 
-    redirect_url = '?'.join([
-        reverse('evernote_login'),
-        urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
-    ])
-    return redirect(redirect_url)
+        if request.user.is_authenticated():
+            if request.user.id != ea.user.id:
+                # it's not possible to link account with another user_id
+                # TODO show error message
+                return redirect(redirect_to)
+        else:
+            user = auth.authenticate(**{'evernote_account': ea})
+            auth.login(request, user)
+
+    return redirect_after_login(request)
 
 
 def evernote_login(request, create=0):
