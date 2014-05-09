@@ -39,12 +39,12 @@ class EvernoteBackend(object):
         User = get_user_model()
 
         if account.user_id is None:
-            if User.objects.filter(username=account.name).count() == 0:
+            if not User.objects.filter(username=account.name).exists():
                 username = account.name
             else:
                 username = "%s@evernote" % account.name
                 count = itertools.count(1)
-                while User.objects.filter(username=username).count() > 0:
+                while User.objects.filter(username=username).exists():
                     username = "%s@evernote_%s" % (account.name, count.next())
 
             user = User(username=username, email=account.email)
