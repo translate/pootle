@@ -83,6 +83,14 @@
         $.cookie(cookieName, JSON.stringify(cookieData), {path: '/'});
       });
 
+      /* Page sidebar tab display */
+      $(document).on('click', '.js-sidebar-tab-display', function () {
+        $('.js-sidebar-pane').hide();
+        $('.js-sidebar-tab-display').removeClass('active-sidebar-tab');
+        $('#' + $(this).attr('data-target')).show();
+        $(this).addClass('active-sidebar-tab');
+      });
+
       /* Popups */
       $(document).magnificPopup({
         type: 'ajax',
@@ -451,13 +459,40 @@
       });
     },
 
+    fixSidebarTabs: function () {
+      var sidebarTabsCount = $('.js-sidebar-tab-display').length;
+
+      if (sidebarTabsCount === 1) {
+        $('#sidebar-tabs').hide();
+      } else if (sidebarTabsCount > 1) {
+        $('.js-sidebar-pane').hide();
+        if (!$('.active-sidebar-tab').length) {
+          $('.js-sidebar-tab-display:first').addClass('active-sidebar-tab');
+        }
+        $('.active-sidebar-tab').trigger('click');
+      }
+    },
+
     fixSidebarHeight: function () {
+      var $announceSidebar = $('#js-announcement-sidebar-pane'),
+          $actionsSidebar = $('#js-actions-sidebar-pane'),
+          annHeight = $announceSidebar.length ? $announceSidebar.height() : 0,
+          actsHeight = $actionsSidebar.length ? $actionsSidebar.height() : 0,
+          maxSidebarPanesHeight = Math.max(annHeight, actsHeight);
+
+      if (!maxSidebarPanesHeight) {
+        // If there is no sidebar.
+        return;
+      }
+
       var $body = $('#body'),
+          $sidebarTabs = $('#sidebar-tabs'),
           bodyHeight = $body.height(),
           bodyPadding = parseInt($body.css('padding-bottom'), 10),
           contentAreaHeight = $('#wrapper').height() - $body.offset().top -
                               bodyPadding,
-          sidebarHeight = $('#sidebar #staticpage').height() +
+          sidebarTabsHeight = $sidebarTabs.length ? $sidebarTabs.height() : 0,
+          sidebarHeight = sidebarTabsHeight + maxSidebarPanesHeight +
                           $('#footer').height() + bodyPadding,
           newHeight = Math.max(contentAreaHeight, sidebarHeight);
 

@@ -78,10 +78,35 @@
 {% endblock %}
 
 {% block pre_content %}
-{% if announcement %}
+{% if announcement or action_groups %}
 <div id="sidebar"
   class="js-sidebar{% if announcement_displayed %} sidebar-open{% endif %}">
-  {% include "staticpages/_body.html" with page=announcement %}
+  <div id="sidebar-tabs">
+    <ul id="tabs">
+      {% if announcement %}
+      <li>
+        <a class="js-sidebar-tab-display"
+          data-target="js-announcement-sidebar-pane">{% trans 'Announcement' %}</a>
+      </li>
+      {% endif %}
+      {% if action_groups %}
+      <li>
+        <a class="js-sidebar-tab-display"
+          data-target="js-actions-sidebar-pane">{% trans 'Actions' %}</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% if announcement %}
+  <div id="js-announcement-sidebar-pane" class="js-sidebar-pane">
+    {% include "staticpages/_body.html" with page=announcement %}
+  </div>
+  {% endif %}
+  {% if action_groups %}
+  <div id="js-actions-sidebar-pane" class="js-sidebar-pane">
+    {% include 'translation_projects/_actions_sidebar.html' %}
+  </div>
+  {% endif %}
   <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
 </div>
 {% endif %}
@@ -123,10 +148,10 @@ $(function () {
     $("body").spin(false);
   });
 
-  {% if announcement %}
+  PTL.common.fixSidebarTabs();
   PTL.common.fixSidebarHeight();
   $(window).on('resize', PTL.common.fixSidebarHeight);
-  {% endif %}
+
   $("td.stats-name").filter(":not([dir])").bidi();
 
 {% if upload_form %}
