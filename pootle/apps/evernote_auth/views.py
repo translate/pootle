@@ -81,7 +81,7 @@ def sso_return_view(request, redirect_to='', create=0):
                 # TODO show error message
                 return redirect(redirect_to)
         else:
-            user = auth.authenticate(**{'evernote_account': ea})
+            user = auth.authenticate(account=ea)
             auth.login(request, user)
     except EvernoteAccount.DoesNotExist:
         if not create:
@@ -101,7 +101,7 @@ def sso_return_view(request, redirect_to='', create=0):
             ea.user = request.user
         else:
             # create new Pootle user
-            user = auth.authenticate(**{'evernote_account': ea})
+            user = auth.authenticate(account=ea)
             auth.login(request, user)
 
         ea.save()

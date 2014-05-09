@@ -31,39 +31,29 @@ class EvernoteBackend(object):
     in settings.py.
     """
 
-    def authenticate(self, *args, **kwargs):
-        """Authenticate user using social credentials.
-
-        Authentication is made if this is the correct backend, backend
-        verification is made by kwargs inspection for current backend
-        name presence.
-        """
-        # Validate backend and arguments. Require that the Social Auth
-        # response be passed in as a keyword argument, to make sure we
-        # don't match the username/password calling conventions of
-        # authenticate.
-        if 'evernote_account' not in kwargs:
+    def authenticate(self, account=None):
+        """Authenticate user using Evernote account credentials."""
+        if account is None:
             return None
 
         User = get_user_model()
-        ea = kwargs.get('evernote_account')
 
-        if ea.user_id is None:
-            if User.objects.filter(username=ea.name).count() == 0:
-                username = ea.name
+        if account.user_id is None:
+            if User.objects.filter(username=account.name).count() == 0:
+                username = account.name
             else:
-                username = "%s@evernote" % ea.name
+                username = "%s@evernote" % account.name
                 count = itertools.count(1)
                 while User.objects.filter(username=username).count() > 0:
-                    username = "%s@evernote_%s" % (ea.name, count.next())
+                    username = "%s@evernote_%s" % (account.name, count.next())
 
-            user = User(username=username, email=ea.email)
+            user = User(username=username, email=account.email)
             user.set_password(User.objects.make_random_password())
             user.save()
-            ea.user_autocreated=True
-            ea.user = user
+            account.user_autocreated = True
+            account.user = user
         else:
-            user = ea.user
+            user = account.user
 
         return user
 
