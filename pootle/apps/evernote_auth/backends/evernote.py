@@ -36,9 +36,9 @@ class EvernoteBackend(object):
         if account is None:
             return None
 
-        User = get_user_model()
-
         if account.user_id is None:
+            User = get_user_model()
+
             if not User.objects.filter(username=account.name).exists():
                 username = account.name
             else:
