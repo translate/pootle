@@ -29,8 +29,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.dispatch import receiver
-from django.shortcuts import redirect, render_to_response
-from django.template import RequestContext
+from django.shortcuts import redirect, render
 from django.utils.http import urlencode
 from django.views.decorators.cache import never_cache
 
@@ -156,9 +155,8 @@ def create_evernote_account(sender, request, user, **kwargs):
 
 @login_required
 @never_cache
-def account_info(request, context={}):
-    return render_to_response('profiles/settings/evernote_account.html',
-                              context, context_instance=RequestContext(request))
+def account_info(request):
+    return render(request, 'profiles/settings/evernote_account.html')
 
 
 @login_required
