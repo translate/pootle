@@ -98,26 +98,26 @@ def login(request, template_name='login.html'):
     """Log the user in."""
     if request.user.is_authenticated():
         return redirect_after_login(request)
+
+    if request.POST:
+        form = AuthenticationForm(request, data=request.POST)
+        next = request.POST.get(auth.REDIRECT_FIELD_NAME, '')
+
+        # Do login here.
+        if form.is_valid():
+            auth.login(request, form.get_user())
+            return redirect_after_login(request)
     else:
-        if request.POST:
-            form = AuthenticationForm(request, data=request.POST)
-            next = request.POST.get(auth.REDIRECT_FIELD_NAME, '')
+        form = AuthenticationForm(request)
+        next = request.GET.get(auth.REDIRECT_FIELD_NAME, '')
 
-            # Do login here.
-            if form.is_valid():
-                auth.login(request, form.get_user())
-                return redirect_after_login(request)
-        else:
-            form = AuthenticationForm(request)
-            next = request.GET.get(auth.REDIRECT_FIELD_NAME, '')
+    ctx = {
+        'form': form,
+        'next': next,
+    }
 
-        context = {
-            'form': form,
-            'next': next,
-        }
-
-        return render_to_response(template_name, context,
-                                  context_instance=RequestContext(request))
+    return render_to_response(template_name, ctx,
+                              context_instance=RequestContext(request))
 
 
 def logout(request):
