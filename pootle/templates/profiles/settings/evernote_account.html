@@ -37,7 +37,7 @@
     {% csrf_token %}
     <p class="buttons">
       <input type="submit" class="btn" value="Link with Evernote" />
-      <input type="hidden" name="next" value="{{ request.path_info }}" />
+      <input type="hidden" name="next" value="{{ request.path }}" />
     </p>
   </form>
 {% endif %}
