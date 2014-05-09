@@ -130,7 +130,7 @@ def evernote_login(request, create=0):
     return redirect_after_login(request)
 
 
-def evernote_login_link(request):
+def link(request):
     """Logs the user in and links the account with Evernote."""
     return login(request, template_name='auth/link_with_evernote.html')
 
@@ -156,13 +156,14 @@ def create_evernote_account(sender, request, user, **kwargs):
 
 @login_required
 @never_cache
-def evernote_account_info(request, context={}):
+def account_info(request, context={}):
     return render_to_response('profiles/settings/evernote_account.html',
                               context, context_instance=RequestContext(request))
 
 
 @login_required
-def evernote_account_disconnect(request):
+def unlink(request):
+    """Removes current user's link with its Evernote account."""
     if hasattr(request.user, 'evernote_account'):
         ea = request.user.evernote_account
         if not ea.user_autocreated:

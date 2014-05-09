@@ -23,7 +23,7 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('evernote_auth.views',
     url(r'^login/link/?$',
-        'evernote_login_link',
+        'link',
         name='evernote_login_link'),
 
     url(r'^login/?$',
@@ -44,9 +44,9 @@ urlpatterns = patterns('evernote_auth.views',
         name='evernote_create_return'),
 
     url(r'^link/?$',
-        'evernote_account_info',
+        'account_info',
         name='evernote_account_link'),
     url(r'^link/disconnect/?$',
-        'evernote_account_disconnect',
+        'unlink',
         name='evernote_account_disconnect'),
 )
