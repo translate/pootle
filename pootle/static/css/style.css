@@ -2358,32 +2358,22 @@ html[dir="rtl"] .breadcrumb li
 
 /* Tabs */
 
-#tabs,
-#file-tabs
+#tabs
 {
     height: 34px;
 }
 
-
-#file-tabs
-{
-    border-bottom: 1px solid #d9d9d9;
-}
-
-#tabs li,
-#file-tabs li
+#tabs li
 {
     float: left;
 }
 
-html[dir="rtl"] #tabs li,
-html[dir="rtl"] #file-tabs li
+html[dir="rtl"] #tabs li
 {
     float: right;
 }
 
-#tabs a,
-#file-tabs a
+#tabs a
 {
     background-color: inherit;
     border: 1px solid transparent;
@@ -2396,8 +2386,7 @@ html[dir="rtl"] #file-tabs li
     text-decoration: none;
 }
 
-#tabs a:hover,
-#file-tabs a:hover
+#tabs a:hover
 {
     /* TODO: merge with active tabs */
     background-color: #fff !important;
@@ -2423,8 +2412,7 @@ body#adminusers #tabs a.adminusers,
 body#adminlanguages #tabs a.adminlanguages,
 body#adminprojects #tabs a.adminprojects,
 body#adminpermissions #tabs a.adminpermissions,
-body#adminstaticpages #tabs a.adminstaticpages,
-body #file-tabs a.selected-tab
+body#adminstaticpages #tabs a.adminstaticpages
 {
     background-color: #fff;
     border-color: #d9d9d9 #d9d9d9 #fff;
