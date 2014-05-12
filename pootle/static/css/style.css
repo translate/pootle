@@ -2010,18 +2010,6 @@ html[dir="rtl"] #overview-actions-translate-offline li.odd
     color: #cc3366;
 }
 
-.overview-description-toggle
-{
-    display: block;
-    margin-top: 0.5em;
-    text-align: right;
-}
-
-html[dir="rtl"] .overview-description-toggle
-{
-    text-align: left;
-}
-
 #overview-description-tp,
 #overview-description-project,
 #overview-description-language
