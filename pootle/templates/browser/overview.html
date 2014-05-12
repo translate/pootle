@@ -78,9 +78,9 @@
 {% endblock %}
 
 {% block pre_content %}
-{% if announcement or action_groups %}
+{% if announcement or action_groups or goal %}
 <div id="sidebar"
-  class="js-sidebar{% if announcement_displayed %} sidebar-open{% endif %}">
+  class="js-sidebar{% if announcement_displayed or goal %} sidebar-open{% endif %}">
   <div id="sidebar-tabs">
     <ul id="tabs">
       {% if announcement %}
@@ -95,6 +95,12 @@
           data-target="js-actions-sidebar-pane">{% trans 'Actions' %}</a>
       </li>
       {% endif %}
+      {% if goal %}
+      <li>
+        <a class="js-sidebar-tab-display active-sidebar-tab"
+          data-target="js-goal-sidebar-pane">{% trans 'Goal' %}</a>
+      </li>
+      {% endif %}
     </ul>
   </div>
   {% if announcement %}
@@ -105,6 +111,11 @@
   {% if action_groups %}
   <div id="js-actions-sidebar-pane" class="js-sidebar-pane">
     {% include 'translation_projects/_actions_sidebar.html' %}
+  </div>
+  {% endif %}
+  {% if goal %}
+  <div id="js-goal-sidebar-pane" class="js-sidebar-pane">
+    {% include 'translation_projects/_goal_sidebar.html' %}
   </div>
   {% endif %}
   <a id="sidebar-toggle" class="js-sidebar-toggle"></a>

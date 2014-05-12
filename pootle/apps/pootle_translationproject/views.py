@@ -421,11 +421,6 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
                                                args=rev_args)
                     return HttpResponseRedirect(overview_url)
 
-    if goal is None:
-        description = translation_project.description
-    else:
-        description = goal.description
-
     # TODO: cleanup and refactor, retrieve from cache
     try:
         ann_virtual_path = 'announcements/' + project.code
@@ -462,7 +457,7 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
     ctx.update({
         'resource_obj': request.store or request.directory,  # Dirty hack.
         'translation_project': translation_project,
-        'description': description,
+        'description': translation_project.description,
         'project': project,
         'language': language,
         'tp_goals': tp_goals,
