@@ -60,7 +60,7 @@ def get_cookie_dict(request):
     return None
 
 
-def sso_return_view(request, redirect_to='', create=0):
+def sso_return_view(request, redirect_to='', create=False):
     redirect_to = urljoin('', '', redirect_to)
 
     data = get_cookie_dict(request)
@@ -108,7 +108,7 @@ def sso_return_view(request, redirect_to='', create=0):
     return redirect_after_login(request)
 
 
-def evernote_login(request, create=0):
+def evernote_login(request, create=False):
     redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, '')
 
     if not request.user.is_authenticated():
@@ -141,7 +141,7 @@ def create_evernote_account(sender, request, user, **kwargs):
 
     data = get_cookie_dict(request)
     if data is None:
-        return evernote_login(request, 1)
+        return evernote_login(request, create=True)
 
     account = EvernoteAccount.objects.get_or_create(
         evernote_id=data['id'],

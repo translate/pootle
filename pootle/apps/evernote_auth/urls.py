@@ -31,7 +31,7 @@ urlpatterns = patterns('evernote_auth.views',
         name='evernote_login'),
     url(r'^create/login/?$',
         'evernote_login',
-        kwargs={'create': '/create'},
+        kwargs={'create': True},
         name='evernote_create_login'),
 
     url(r'^return/(?P<redirect_to>.*)?/?$',
@@ -40,7 +40,7 @@ urlpatterns = patterns('evernote_auth.views',
 
     url(r'^create/return/(?P<redirect_to>.*)?/?$',
         'sso_return_view',
-        kwargs={'create': 1},
+        kwargs={'create': True},
         name='evernote_create_return'),
 
     url(r'^link/?$',
