@@ -27,3 +27,7 @@ class SubmissionFactory(factory.django.DjangoModelFactory):
     FACTORY_FOR = 'pootle_statistics.Submission'
 
     creation_time = timezone.now()
+
+
+class EvernoteAccountFactory(factory.django.DjangoModelFactory):
+    FACTORY_FOR = 'evernote_auth.EvernoteAccount'

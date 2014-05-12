@@ -33,11 +33,12 @@
   </form>
   {% endif %}
 {% else %}
-  <form method="get" action="{% url 'evernote_create_login' %}">
+  <form method="get" action="{% url 'evernote_login' %}">
     {% csrf_token %}
     <p class="buttons">
       <input type="submit" class="btn" value="Link with Evernote" />
       <input type="hidden" name="next" value="{{ request.path }}" />
+      <input type="hidden" name="create" value="" />
     </p>
   </form>
 {% endif %}

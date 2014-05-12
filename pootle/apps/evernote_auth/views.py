@@ -18,115 +18,70 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import base64
-import re
-import time
-
-from pyDes import triple_des, ECB
-
 from django.conf import settings
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import Resolver404, resolve, reverse
 from django.dispatch import receiver
 from django.shortcuts import redirect, render
-from django.utils.http import urlencode
+from django.utils.http import urlquote, urlencode
+from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 
 from pootle.core.url_helpers import urljoin
 from pootle_profile.views import login, redirect_after_login
 
-from .models import EvernoteAccount
+from .backends.evernote import EvernoteBackend
 
 
-def get_cookie_dict(request):
-    cookie = request.COOKIES.get(settings.EN_SSO_COOKIE, None)
-
-    if cookie is not None:
-        data = base64.b64decode(cookie)
-
-        des3 = triple_des(settings.EN_SSO_SECRET_KEY, ECB)
-        match = re.match(r'i=(?P<id>[0-9]+),'
-                         r'u=(?P<name>[^,]+),'
-                         r'e=(?P<email>[^,]+),'
-                         r'x=(?P<expired>[0-9]+)',
-                         des3.decrypt(data))
-
-        if match:
-            data = match.groupdict()
-            if time.time() < data['expired']:
-                return data
-
-    return None
-
-
-def sso_return_view(request, redirect_to='', create=False):
+def sso_return_view(request, redirect_to):
     redirect_to = urljoin('', '', redirect_to)
+    create_account = 'create' in request.GET
+    user = None
 
-    data = get_cookie_dict(request)
-    if data is None:
+    try:
+        user = auth.authenticate(request=request,
+                                 create_account=create_account)
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect_after_login(request, redirect_to)
+    except EvernoteBackend.CookieExpired:
         redirect_url = '?'.join([
             reverse('evernote_login'),
             urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
         ])
         return redirect(redirect_url)
+    except EvernoteBackend.AlreadyLinked:
+        messages.error(request,
+                       _("Cannot link: your Evernote account is already "
+                         "linked with another Pootle account."))
+        return redirect(redirect_to)
 
-    try:
-        ea = EvernoteAccount.objects.get(evernote_id=data['id'])
-
-        if request.user.is_authenticated():
-            if request.user.id != ea.user.id:
-                # it's not possible to link account with another user_id
-                # TODO show error message
-                return redirect(redirect_to)
-        else:
-            user = auth.authenticate(account=ea)
-            auth.login(request, user)
-    except EvernoteAccount.DoesNotExist:
-        if not create:
-            redirect_url = '?'.join([
-                reverse('evernote_login_link'),
-                urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
-            ])
-            return redirect(redirect_url)
-
-        ea = EvernoteAccount(
-            evernote_id=data['id'],
-            email=data['email'],
-            name=data['name'],
-        )
-
-        if request.user.is_authenticated():
-            ea.user = request.user
-        else:
-            # create new Pootle user
-            user = auth.authenticate(account=ea)
-            auth.login(request, user)
-
-        ea.save()
-
-    return redirect_after_login(request)
+    # No user-account exists, offer to link it
+    redirect_url = '?'.join([
+        reverse('evernote_account_link'),
+        urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
+    ])
+    return redirect(redirect_url)
 
 
-def evernote_login(request, create=False):
-    redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, '')
+def evernote_login(request):
+    redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME,
+                                      reverse('pootle-home'))
 
-    if not request.user.is_authenticated():
-        if create:
-            return sso_return_view(request, redirect_to, create)
+    if (request.user.is_authenticated() and
+        hasattr(request.user, 'evernote_account')):
+        return redirect_after_login(request)
 
-        return_path = reverse('evernote_return', args=[redirect_to])
-        sso_url = urljoin(settings.EN_SSO_BASE, settings.EN_SSO_PATH,
-                          settings.EN_SSO_SERVER_ALIAS, return_path)
-        return redirect(sso_url)
+    return_path = reverse('evernote_return', args=[redirect_to])
+    if 'create' in request.GET:
+        return_path = '{0}?create'.format(return_path)
 
-    if not hasattr(request.user, 'evernote_account'):
-        return_path = reverse('evernote_create_return', args=[redirect_to])
-        sso_url = urljoin(settings.EN_SSO_BASE, settings.EN_SSO_PATH,
-                          settings.EN_SSO_SERVER_ALIAS, return_path)
-        return redirect(sso_url)
+    sso_url = urljoin(settings.EN_SSO_BASE, settings.EN_SSO_PATH,
+                      settings.EN_SSO_SERVER_ALIAS, urlquote(return_path))
 
-    return redirect_after_login(request)
+    return redirect(sso_url)
 
 
 def link(request):
@@ -136,21 +91,21 @@ def link(request):
 
 @receiver(auth.user_logged_in)
 def create_evernote_account(sender, request, user, **kwargs):
-    if not user.backend.endswith('EvernoteBackend'):
-        return
+    """Triggers a new `EvernoteAccount` creation once the user has
+    logged-in to link its account with Evernote.
 
-    data = get_cookie_dict(request)
-    if data is None:
-        return evernote_login(request, create=True)
+    The only situations where an account creation must be requested are:
+        - when the Evernote auth backend has been used
+        - when the user requested to link its user-account with Evernote
+    """
+    try:
+        match = resolve(request.path_info)
+        requested_to_link = match.url_name == 'en-auth-account-link'
+    except Resolver404:
+        requested_to_link = False
 
-    account = EvernoteAccount.objects.get_or_create(
-        evernote_id=data['id'],
-        email=data['email'],
-        name=data['name'],
-        defaults={
-            'user': request.user,
-        },
-    )
+    if user.backend.endswith('EvernoteBackend') or requested_to_link:
+        auth.authenticate(request=request, create_account=True)
 
 
 @login_required

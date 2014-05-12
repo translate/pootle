@@ -17,7 +17,7 @@
 
   <p class="buttons">
     <a class="btn btn-primary js-en-auth-link">{% trans 'Link' %}</a>
-    <a class="btn" href="{% url 'evernote_create_login' %}{{ request|get_next }}">{% trans "Skip this step" %}</a>
+    <a class="btn" href="{% url 'evernote_return' next %}?create">{% trans "Skip this step" %}</a>
   </p>
 </div>
 
