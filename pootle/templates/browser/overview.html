@@ -80,7 +80,7 @@
 {% block pre_content %}
 {% if announcement or action_groups or description or project.description or language.description or can_edit or goal %}
 <div id="sidebar"
-  class="js-sidebar{% if announcement_displayed or goal %} sidebar-open{% endif %}">
+  class="js-sidebar{% if announcement_displayed or action_output or goal %} sidebar-open{% endif %}">
   <div id="sidebar-tabs">
     <ul id="tabs">
       {% if announcement %}
@@ -91,7 +91,7 @@
       {% endif %}
       {% if action_groups %}
       <li>
-        <a class="js-sidebar-tab-display"
+        <a class="js-sidebar-tab-display{% if action_output %} active-sidebar-tab{% endif %}"
           data-target="js-actions-sidebar-pane">{% trans 'Actions' %}</a>
       </li>
       {% endif %}
