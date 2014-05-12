@@ -2019,9 +2019,7 @@ html[dir="rtl"] #overview-actions-translate-offline li.odd
     color: #cc3366;
 }
 
-#overview-description-tp,
-#overview-description-project,
-#overview-description-language
+#overview-description
 {
     margin: 1em 0;
 }

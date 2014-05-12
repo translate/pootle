@@ -476,11 +476,14 @@
     fixSidebarHeight: function () {
       var $announceSidebar = $('#js-announcement-sidebar-pane'),
           $actionsSidebar = $('#js-actions-sidebar-pane'),
+          $instructSidebar = $('#js-instructions-sidebar-pane'),
           $goalSidebar = $('#js-goal-sidebar-pane'),
           annHeight = $announceSidebar.length ? $announceSidebar.height() : 0,
           actsHeight = $actionsSidebar.length ? $actionsSidebar.height() : 0,
+          instHeight = $instructSidebar.length ? $instructSidebar.height() : 0,
           goalHeight = $goalSidebar.length ? $goalSidebar.height() : 0,
-          maxSidebarPanesHeight = Math.max(annHeight, actsHeight, goalHeight);
+          maxSidebarPanesHeight = Math.max(annHeight, actsHeight, instHeight,
+                                           goalHeight);
 
       if (!maxSidebarPanesHeight) {
         // If there is no sidebar.

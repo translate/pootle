@@ -61,24 +61,34 @@ $(function () {
 
   if ($('.js-edit-details').length) {
     var $metaDesc = $('.js-ctx-meta-desc'),
-        $editMetaDesc = $('.js-edit-ctx-meta-desc'),
-        editMetaSelector = '#js-admin-edit-meta';
+        $editMetaDesc = $('.js-edit-ctx-meta-desc');
 
-    $metaDesc.on('click', '.js-edit-details', function (e) {
+    $('.js-ctx-meta-desc').on('click', '.js-edit-details', function (e) {
       e.preventDefault();
+      $metaDesc = $(this).closest('.js-ctx-meta-desc');
       $metaDesc.hide();
+      $editMetaDesc = $metaDesc.parent().children('.js-edit-ctx-meta-desc');
       $editMetaDesc.show();
       $editMetaDesc.find('#id_description').focus();
+      PTL.common.fixSidebarHeight();
     });
 
-    $editMetaDesc.on('click', '.js-edit-details-cancel', function (e) {
+    $('.js-edit-ctx-meta-desc').on('click', '.js-edit-details-cancel', function (e) {
       e.preventDefault();
+      var $metaDesc = $(this).closest('.js-container-ctx-meta-desc')
+                             .children('.js-ctx-meta-desc'),
+          $editMetaDesc = $metaDesc.parent().children('.js-edit-ctx-meta-desc');
       $metaDesc.show();
       $editMetaDesc.hide();
+      PTL.common.fixSidebarHeight();
     });
 
-    $editMetaDesc.on('submit', editMetaSelector, function (e) {
+    $('.js-edit-ctx-meta-desc').on('submit', '.js-admin-edit-meta', function (e) {
       e.preventDefault();
+      var $metaDesc = $(this).closest('.js-container-ctx-meta-desc')
+                             .children('.js-ctx-meta-desc'),
+          $editMetaDesc = $metaDesc.parent().children('.js-edit-ctx-meta-desc'),
+          $editMeta = $(this);
 
       $editMetaDesc.spin();
       $editMetaDesc.css({opacity: .5});
@@ -105,7 +115,7 @@ $(function () {
 
           if (xhr.status === 400) {
             var form = $.parseJSON(xhr.responseText).form;
-            $(editMetaSelector).parent().html(form);
+            $editMeta.parent().html(form);
           }
         },
       });

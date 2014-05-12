@@ -18,7 +18,7 @@
     </div>
     {% if can_edit %}
     <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-      {% include 'admin/_settings_form.html' %}
+      {% include 'admin/_settings_form.html' with form=goal_form form_action=goal_form_action %}
     </div>
     {% endif %}
   </div>

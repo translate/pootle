@@ -510,21 +510,20 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
             add_tag_action_url = reverse('pootle-xhr-tag-store',
                                          args=[resource_obj.pk])
 
-        if goal is None:
-            edit_form = DescriptionForm(instance=translation_project)
-            edit_form_action = reverse('pootle-tp-admin-settings',
-                                       args=[language.code, project.code])
-        else:
-            edit_form = GoalForm(instance=goal)
-            edit_form_action = reverse('pootle-xhr-edit-goal',
-                                       args=[goal.slug])
-
         ctx.update({
-            'form': edit_form,
-            'form_action': edit_form_action,
+            'form': DescriptionForm(instance=translation_project),
+            'form_action': reverse('pootle-tp-admin-settings',
+                                   args=[language.code, project.code]),
             'add_tag_form': TagForm(),
             'add_tag_action_url': add_tag_action_url,
         })
+
+        if goal is not None:
+            ctx.update({
+                'goal_form': GoalForm(instance=goal),
+                'goal_form_action': reverse('pootle-xhr-edit-goal',
+                                            args=[goal.slug]),
+            })
 
     response = render_to_response(template_name, ctx,
                                   context_instance=RequestContext(request))

@@ -1,5 +1,5 @@
 {% load i18n %}
-<form id="js-admin-edit-meta" action="{{ form_action }}" method="POST">
+<form class="js-admin-edit-meta" action="{{ form_action }}" method="POST">
   {% csrf_token %}
   {{ form.non_field_errors }}
   {% for field in form %}

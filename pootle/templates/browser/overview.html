@@ -78,7 +78,7 @@
 {% endblock %}
 
 {% block pre_content %}
-{% if announcement or action_groups or goal %}
+{% if announcement or action_groups or description or project.description or language.description or can_edit or goal %}
 <div id="sidebar"
   class="js-sidebar{% if announcement_displayed or goal %} sidebar-open{% endif %}">
   <div id="sidebar-tabs">
@@ -93,6 +93,12 @@
       <li>
         <a class="js-sidebar-tab-display"
           data-target="js-actions-sidebar-pane">{% trans 'Actions' %}</a>
+      </li>
+      {% endif %}
+      {% if description or project.description or language.description or can_edit %}
+      <li>
+        <a class="js-sidebar-tab-display"
+          data-target="js-instructions-sidebar-pane">{% trans 'Instructions' %}</a>
       </li>
       {% endif %}
       {% if goal %}
@@ -111,6 +117,11 @@
   {% if action_groups %}
   <div id="js-actions-sidebar-pane" class="js-sidebar-pane">
     {% include 'translation_projects/_actions_sidebar.html' %}
+  </div>
+  {% endif %}
+  {% if description or project.description or language.description or can_edit %}
+  <div id="js-instructions-sidebar-pane" class="js-sidebar-pane">
+    {% include 'translation_projects/_instructions_sidebar.html' %}
   </div>
   {% endif %}
   {% if goal %}
