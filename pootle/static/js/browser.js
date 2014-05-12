@@ -133,6 +133,10 @@
         return;
       }
 
+      if (!languageCode || !projectCode) {
+        goalSlug = '';
+      }
+
       if (!languageCode) {
         languageCode = 'projects';
       }
