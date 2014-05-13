@@ -229,14 +229,6 @@ class TreeItem(object):
 
         return result
 
-    def get_critical(self):
-        check_stats = self.get_checks()
-        try:
-            critical_stats = check_stats[Category.CRITICAL]
-            return sum([critical_stats[x] for x in critical_stats.keys()])
-        except KeyError:
-            return 0
-
     def get_error_unit_count(self):
         check_stats = self.get_checks()
 
