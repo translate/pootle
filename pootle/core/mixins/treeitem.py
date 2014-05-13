@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
+# Copyright 2014 Zuza Software Foundation
 # Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -64,6 +65,7 @@ class CachedMethods(object):
     def get_all(self):
         return [getattr(self, x) for x in
                 filter(lambda x: x[:2] != '__' and x != 'get_all', dir(self))]
+
 
 class TreeItem(object):
     def __init__(self, *args, **kwargs):
