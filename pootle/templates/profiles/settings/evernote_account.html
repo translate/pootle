@@ -25,7 +25,7 @@
     <p>This Pootle account can't be unlinked from Evernote.</p>
   </div>
   {% else %}
-  <form method="post" action="{% url 'evernote_account_disconnect' %}">
+  <form method="post" action="{% url 'en-auth-account-unlink' %}">
   {% csrf_token %}
     <p class="buttons">
       <input type="submit" class="btn" value="Unlink from Evernote" />
@@ -33,7 +33,7 @@
   </form>
   {% endif %}
 {% else %}
-  <form method="get" action="{% url 'evernote_login' %}">
+  <form method="get" action="{% url 'en-auth-sso-login' %}">
     {% csrf_token %}
     <p class="buttons">
       <input type="submit" class="btn" value="Link with Evernote" />

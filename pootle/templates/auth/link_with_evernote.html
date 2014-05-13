@@ -17,14 +17,14 @@
 
   <p class="buttons">
     <a class="btn btn-primary js-en-auth-link">{% trans 'Link' %}</a>
-    <a class="btn" href="{% url 'evernote_return' next %}?create">{% trans "Skip this step" %}</a>
+    <a class="btn" href="{% url 'en-auth-sso-callback' next %}?create">{% trans "Skip this step" %}</a>
   </p>
 </div>
 
 <div class="login{% if not form.errors %} hide{% endif %}">
   <div id="login" class="form" dir="{% locale_dir %}">
   <h2>{% trans "Provide your existing account credentials" %}</h2>
-  <form method="post" action="{% url 'evernote_login_link' %}" name="loginform" id="loginform">
+  <form method="post" action="{% url 'en-auth-account-link' %}" name="loginform" id="loginform">
     {% csrf_token %}
     {% if form.errors %}
     <div class="error">

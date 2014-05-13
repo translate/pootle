@@ -22,22 +22,21 @@ from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns('evernote_auth.views',
-    url(r'^login/link/?$',
+    url(r'^$',
+        'account_info',
+        name='en-auth-account-info'),
+
+    url(r'^link/?$',
         'link',
-        name='evernote_login_link'),
+        name='en-auth-account-link'),
+    url(r'^unlink/?$',
+        'unlink',
+        name='en-auth-account-unlink'),
 
     url(r'^login/?$',
         'evernote_login',
-        name='evernote_login'),
-
+        name='en-auth-sso-login'),
     url(r'^return/(?P<redirect_to>.*)?/?$',
         'sso_return_view',
-        name='evernote_return'),
-
-    url(r'^link/?$',
-        'account_info',
-        name='evernote_account_link'),
-    url(r'^link/disconnect/?$',
-        'unlink',
-        name='evernote_account_disconnect'),
+        name='en-auth-sso-callback'),
 )

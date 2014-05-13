@@ -34,7 +34,7 @@ URL_RE = re.compile('http://|https://', re.I)
 
 CAPTCHA_EXEMPT_URLPATTERNS = (
     'pootle-profile-login',
-    'evernote_login', 'evernote_login_link', 'evernote_create_login',
+    'en-auth-sso-login', 'en-auth-account-link',
     'pootle-contact',
 )
 

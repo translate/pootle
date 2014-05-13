@@ -48,7 +48,7 @@ def sso_return_view(request, redirect_to):
             return redirect_after_login(request, redirect_to)
     except EvernoteBackend.CookieExpired:
         redirect_url = '?'.join([
-            reverse('evernote_login'),
+            reverse('en-auth-sso-login'),
             urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
         ])
         return redirect(redirect_url)
@@ -60,7 +60,7 @@ def sso_return_view(request, redirect_to):
 
     # No user-account exists, offer to link it
     redirect_url = '?'.join([
-        reverse('evernote_account_link'),
+        reverse('en-auth-account-link'),
         urlencode({auth.REDIRECT_FIELD_NAME: redirect_to}),
     ])
     return redirect(redirect_url)
@@ -74,7 +74,7 @@ def evernote_login(request):
         hasattr(request.user, 'evernote_account')):
         return redirect_after_login(request)
 
-    return_path = reverse('evernote_return', args=[redirect_to])
+    return_path = reverse('en-auth-sso-callback', args=[redirect_to])
     if 'create' in request.GET:
         return_path = '{0}?create'.format(return_path)
 
@@ -122,4 +122,4 @@ def unlink(request):
         if not ea.user_autocreated:
             ea.delete()
 
-    return redirect('evernote_account_link')
+    return redirect('en-auth-account-info')
