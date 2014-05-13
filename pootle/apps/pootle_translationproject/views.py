@@ -749,6 +749,7 @@ def edit_settings(request, translation_project):
 @get_path_obj
 @permission_required('archive')
 def export_zip(request, translation_project, file_path):
+    from django.utils.timezone import utc
     translation_project.sync()
     pootle_path = translation_project.pootle_path + (file_path or '')
 
@@ -769,15 +770,19 @@ def export_zip(request, translation_project, file_path):
     key = iri_to_uri("%s:export_zip" % pootle_path)
     last_export = cache.get(key)
 
-    if (not (last_export and last_export == translation_project.get_mtime() and
-        os.path.isfile(abs_export_path))):
+    tp_time = translation_project.get_mtime().replace(tzinfo=utc)
+    up_to_date = False
+    if last_export:
+        # Make both datetimes tz-aware to avoid a crash here
+        last_export = last_export.replace(tzinfo=utc)
+        up_to_date = last_export == tp_time
 
+    if (not (up_to_date and os.path.isfile(abs_export_path))):
         ensure_target_dir_exists(abs_export_path)
         stores = Store.objects.filter(pootle_path__startswith=pootle_path) \
                               .exclude(file='')
         translation_project.get_archive(stores, abs_export_path)
-        cache.set(key, translation_project.get_mtime(),
-                  settings.OBJECT_CACHE_TIMEOUT)
+        cache.set(key, tp_time, settings.OBJECT_CACHE_TIMEOUT)
 
     return redirect('/export/' + export_path)
 
