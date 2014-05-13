@@ -245,12 +245,6 @@ class TreeItem(object):
 
         return result
 
-    def get_critical(self):
-        check_stats = self.get_checks()
-
-        return sum(map(lambda x: check_stats[x] if x in check_stats else 0,
-                       get_qualitychecks_by_category(Category.CRITICAL)))
-
     def get_error_unit_count(self):
         check_stats = self.get_checks()
 
