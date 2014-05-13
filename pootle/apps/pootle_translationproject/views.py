@@ -658,22 +658,6 @@ def ajax_add_tag_to_tp(request, translation_project):
                                       RequestContext(request))
 
 
-@ajax_required
-@get_path_obj
-@permission_required('view')
-@get_resource
-def qualitycheck_stats(request, translation_project, dir_path, filename=None):
-    directory = request.directory
-    store = request.store
-    resource_obj = store or directory
-
-    qc_stats = {}
-    if resource_obj:
-        qc_stats = resource_obj.get_checks()
-
-    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
-
-
 @get_path_obj
 @permission_required('view')
 @get_resource
