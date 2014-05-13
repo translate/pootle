@@ -1,0 +1,49 @@
+{% load i18n %}
+<div dir="ltr">
+  <div class="hd">
+    <h2>{% trans 'Actions' %}</h2>
+  </div>
+  <div id="overview-actions" class="bd">
+    {% for action_group in action_groups %}
+    <div id="overview-actions-{{ action_group.group }}"
+         class="overview-actions-container{% if forloop.first %} first{% endif %}">
+      <div class="overview-actions-group">{{ action_group.group_display }}</div>
+      <div class="overview-actions-content">
+        <ul>
+        {% for action in action_group.actions %}
+        <li class="{% cycle 'odd' 'even' %}">
+          <a href="{{ action.href }}" title="{{ action.tooltip }}"
+          {% if action.class %} class="{{ action.class }}"{% endif %}>
+          <i class="{{ action.icon }}"></i> <span>{{ action.text }}</span></a>
+        </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+    {% if action_output %}
+    <div id="overview-actions-output" class="bd">
+      <p>{{ action_output }}</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% if upload_form %}
+<div id="upload" class="form popup-inline mfp-hide" lang="{{ LANGUAGE_CODE }}">
+  <h2>{% trans 'Upload File' %}</h2>
+  <form action="" method="post" class="upload" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in upload_form %}
+    <p{% if field.help_text %} title="{{ field.help_text }}"{% endif %}>
+      {{ field.label_tag }} {{ field }}
+      {{ field.errors }}
+    </p>
+    {% endfor %}
+    <p class="buttons">
+      <input type="submit" value="{% trans 'Upload' %}" />
+    </p>
+  </form>
+</div>
+{% endif %}

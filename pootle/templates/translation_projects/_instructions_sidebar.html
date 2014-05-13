@@ -1,0 +1,46 @@
+{% load i18n %}
+<div dir="ltr">
+  <div class="hd">
+    <h2>{% trans 'Instructions' %}</h2>
+  </div>
+  <div class="bd">
+    <div id="overview-description"
+      class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
+      {% if description %}
+      {{ description }}
+      {% else %}
+      <p class="placeholder muted">{% trans 'No instructions set.' %}</p>
+      {% endif %}
+      {% if can_edit %}
+      <a class="js-edit-details invisible">{% trans 'Edit' %}</a>
+      {% endif %}
+    </div>
+    {% if can_edit %}
+    <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
+      {% include 'admin/_settings_form.html' %}
+    </div>
+    {% endif %}
+  </div>
+
+  {% if project.description %}
+  <div class="hd">
+    <h2>{% trans 'Project instructions' %}</h2>
+  </div>
+  <div class="bd">
+    <div id="overview-description-project" class="markup-body">
+      {{ project.description }}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if language.description %}
+  <div class="hd">
+    <h2>{% trans 'Language instructions' %}</h2>
+  </div>
+  <div class="bd">
+    <div id="overview-description-language" class="markup-body">
+      {{ language.description }}
+    </div>
+  </div>
+  {% endif %}
+</div>

@@ -259,6 +259,14 @@ class TranslationProject(models.Model, TreeItem):
     def code(self):
         return u'-'.join([self.language.code, self.project.code])
 
+    @cached_property
+    def all_goals(self):
+        # Putting the next import at the top of the file causes circular
+        # import issues.
+        from pootle_tagging.models import Goal
+
+        return Goal.get_goals_for_path(self.pootle_path)
+
     ############################ Methods ######################################
 
     def __unicode__(self):

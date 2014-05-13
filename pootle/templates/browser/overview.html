@@ -78,10 +78,57 @@
 {% endblock %}
 
 {% block pre_content %}
-{% if announcement %}
+{% if announcement or action_groups or description or project.description or language.description or can_edit or goal %}
 <div id="sidebar"
-  class="js-sidebar{% if announcement_displayed %} sidebar-open{% endif %}">
-  {% include "staticpages/_body.html" with page=announcement %}
+  class="js-sidebar{% if announcement_displayed or action_output or goal %} sidebar-open{% endif %}">
+  <div id="sidebar-tabs">
+    <ul id="tabs">
+      {% if announcement %}
+      <li>
+        <a class="js-sidebar-tab-display"
+          data-target="js-announcement-sidebar-pane">{% trans 'Announcement' %}</a>
+      </li>
+      {% endif %}
+      {% if action_groups %}
+      <li>
+        <a class="js-sidebar-tab-display{% if action_output %} active-sidebar-tab{% endif %}"
+          data-target="js-actions-sidebar-pane">{% trans 'Actions' %}</a>
+      </li>
+      {% endif %}
+      {% if description or project.description or language.description or can_edit %}
+      <li>
+        <a class="js-sidebar-tab-display"
+          data-target="js-instructions-sidebar-pane">{% trans 'Instructions' %}</a>
+      </li>
+      {% endif %}
+      {% if goal %}
+      <li>
+        <a class="js-sidebar-tab-display active-sidebar-tab"
+          data-target="js-goal-sidebar-pane">{% trans 'Goal' %}</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% if announcement %}
+  <div id="js-announcement-sidebar-pane" class="js-sidebar-pane">
+    {% include "staticpages/_body.html" with page=announcement %}
+  </div>
+  {% endif %}
+  {% if action_groups %}
+  <div id="js-actions-sidebar-pane" class="js-sidebar-pane">
+    {% include 'translation_projects/_actions_sidebar.html' %}
+  </div>
+  {% endif %}
+  {% if description or project.description or language.description or can_edit %}
+  <div id="js-instructions-sidebar-pane" class="js-sidebar-pane">
+    {% include 'translation_projects/_instructions_sidebar.html' %}
+  </div>
+  {% endif %}
+  {% if goal %}
+  <div id="js-goal-sidebar-pane" class="js-sidebar-pane">
+    {% include 'translation_projects/_goal_sidebar.html' %}
+  </div>
+  {% endif %}
   <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
 </div>
 {% endif %}
@@ -123,10 +170,10 @@ $(function () {
     $("body").spin(false);
   });
 
-  {% if announcement %}
+  PTL.common.fixSidebarTabs();
   PTL.common.fixSidebarHeight();
   $(window).on('resize', PTL.common.fixSidebarHeight);
-  {% endif %}
+
   $("td.stats-name").filter(":not([dir])").bidi();
 
 {% if upload_form %}

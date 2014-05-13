@@ -77,12 +77,75 @@ class Command(BaseCommand):
                                "%s" % e.strerror)
 
         line_number = 0
-        goals_dict = {}
-        template_language = template_tp.language.code
+        goals_section_start = 0
+        files_section_start = 0
 
         for line in inputlines:
             line_number += 1
-            line.strip()
+
+            if line.startswith("[goals]"):
+                goals_section_start = line_number
+            elif line.startswith("[files]"):
+                files_section_start = line_number
+                break
+
+        if not goals_section_start and not files_section_start:
+            raise CommandError("Wrong syntax: Required section is missing.")
+
+        line_number = 0
+        reading_goal_description = False
+        goals_dict = {}
+        current_goal = None
+
+        # Parse the goals section.
+        for line in inputlines[goals_section_start:files_section_start-1]:
+            line = line.rstrip("\n")
+
+            if reading_goal_description:
+                if line.endswith("\\"):
+                    current_goal['description'] += line.rstrip("\\") + "\n"
+                else:
+                    reading_goal_description = False
+                    current_goal['description'] += line
+                    goals_dict[current_goal['name']] = current_goal
+                    current_goal = None
+            else:
+                if line.endswith("\\"):
+                    reading_goal_description = True
+                    line = line.rstrip("\\") + "\n"
+
+                try:
+                    goal_name, priority, description = line.split("\t")
+                except ValueError:
+                    raise CommandError("Wrong syntax at line %d." %
+                                       line_number)
+                goal_name = goal_name.lower()
+
+                if not goal_name.startswith("goal:"):
+                    goal_name = "goal:" + goal_name
+
+                current_goal = {
+                    'name': goal_name,
+                    'description': description,
+                    'files': [],
+                }
+
+                try:
+                    current_goal['priority'] = int(priority)
+                except Exception:
+                    pass
+
+                if not reading_goal_description:
+                    goals_dict[current_goal['name']] = current_goal
+                    current_goal = None
+
+        # Parse the files section.
+        line_number = files_section_start
+        template_language = template_tp.language.code
+
+        for line in inputlines[files_section_start:]:
+            line_number += 1
+            line = line.strip()
 
             try:
                 goal_name, filename = line.split("\t")
@@ -98,9 +161,10 @@ class Command(BaseCommand):
                 goal_name = "goal:" + goal_name
 
             try:
-                goals_dict[goal_name].append(filename)
+                goals_dict[goal_name]['files'].append(filename)
             except KeyError:
-                goals_dict[goal_name] = [filename]
+                raise CommandError("Goal at line %d is not in [goals]." %
+                                   line_number)
 
         logging.info("\nParsed %d lines from '%s'\n", line_number,
                      goals_filename)
@@ -131,7 +195,8 @@ class Command(BaseCommand):
         applied_goals = set()
 
         # Now apply the goal to each of the stores.
-        for goal_name in goals_dict.keys():
+        for goal_item in goals_dict.values():
+            goal_name = goal_item['name']
             try:
                 # Retrieve the goal if it already exists.
                 goal = Goal.objects.get(name=goal_name)
@@ -139,6 +204,24 @@ class Command(BaseCommand):
                 # Unapply the goal from all the stores in the 'templates'
                 # translation project to which the goal is currently applied.
                 goal.items_with_goal.filter(**stores_criteria).delete()
+
+                changed = False
+                if (goal_item['description']
+                    and goal_item['description'] != goal.description):
+                    goal.description = goal_item['description']
+                    changed = True
+                    logging.info("Description for goal '%s' will be changed.",
+                                 goal_name)
+
+                if ('priority' in goal_item
+                    and goal.priority != goal_item['priority']):
+                    goal.priority = goal_item['priority']
+                    changed = True
+                    logging.info("Priority for goal '%s' will be changed to "
+                                 "%d.", goal_name, goal.priority)
+
+                if changed:
+                    goal.save()
             except Goal.DoesNotExist:
                 # If the goal doesn't exist yet then create it.
                 criteria = {
@@ -149,16 +232,13 @@ class Command(BaseCommand):
                     'project_goal': True,
                 }
 
-                try:
-                    # Get the goal priority from the end of the goal name.
-                    criteria['priority'] = int(goal_name[-1])
-                except ValueError:
-                    pass
+                if 'priority' in goal_item:
+                    criteria['priority'] = goal_item['priority']
 
                 goal = Goal(**criteria)
                 goal.save()
 
-            for filename in goals_dict[goal_name]:
+            for filename in goal_item['files']:
                 try:
                     store = template_tp.stores.get(file=filename)
                     store.goals.add(goal)
