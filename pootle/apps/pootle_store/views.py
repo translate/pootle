@@ -709,9 +709,9 @@ def timeline(request, unit):
 @permission_required('view')
 @get_resource
 def get_qualitycheck_stats(request, path_obj, **kwargs):
-    qc_stats = request.resource_obj.get_checks()
-
-    return HttpResponse(jsonify(qc_stats['checks']), mimetype="application/json")
+    failing_checks = request.resource_obj.get_checks()['checks']
+    response = jsonify(failing_checks)
+    return HttpResponse(response, mimetype="application/json")
 
 
 @ajax_required
@@ -720,8 +720,8 @@ def get_qualitycheck_stats(request, path_obj, **kwargs):
 @get_resource
 def get_overview_stats(request, path_obj, **kwargs):
     stats = request.resource_obj.get_stats()
-
-    return HttpResponse(jsonify(stats), mimetype="application/json")
+    response = jsonify(stats)
+    return HttpResponse(response, mimetype="application/json")
 
 
 @require_POST

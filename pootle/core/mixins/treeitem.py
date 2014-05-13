@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,6 +47,7 @@ class CachedMethods(object):
     def get_all(self):
         return [getattr(self, x) for x in
                 filter(lambda x: x[:2] != '__' and x != 'get_all', dir(self))]
+
 
 class TreeItem(object):
     def __init__(self, *args, **kwargs):
@@ -229,12 +230,10 @@ class TreeItem(object):
         return result
 
     def get_error_unit_count(self):
-        # TODO rewrite this to be completely dettached from get_checks and
-        # return only critical checks failures count (we are currently
-        # returning number of units with critical checks failures). This
-        # implies removing the only_critical parameters for get_checks() and
-        # _get_checks() methods, and also apply again @getfromcache to
-        # get_checks().
+        # TODO Rewrite this to be completely detached from get_checks and only
+        # return a count. This implies removing the only_critical parameters
+        # for get_checks() and _get_checks() methods, and also apply again
+        # @getfromcache to get_checks().
         check_stats = self.get_checks(only_critical=True)
 
         return check_stats['unit_count']
