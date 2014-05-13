@@ -32,7 +32,7 @@ from django.utils.encoding import iri_to_uri
 from pootle.core.log import log
 from pootle_misc.util import (getfromcache, getfromcachebyname, dictsum,
                               get_cached_value, set_cached_value, datetime_min)
-from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks
+from pootle_misc.checks import get_qualitychecks_by_category
 
 
 def statslog(function):
@@ -115,14 +115,6 @@ class TreeItem(object):
     def _get_last_updated(self):
         """This method will be overridden in descendants"""
         return {'id': 0, 'creation_time': 0, 'snippet': ''}
-
-    def _get_all_checks(self):
-        """This method will be overridden in descendants"""
-        return {}
-
-    def _get_check_by_name(self, name):
-        """This method will be overridden in descendants"""
-        return 0
 
     def initialize_children(self):
         if not self.initialized:
@@ -253,15 +245,6 @@ class TreeItem(object):
 
         return result
 
-    def get_all_checks(self):
-        result = {}
-
-        self.initialize_children()
-        for check in list(get_qualitychecks):
-            result[check] = self.get_checks_by_name(check)
-
-        return result
-
     def get_critical(self):
         check_stats = self.get_checks()
 
@@ -272,24 +255,6 @@ class TreeItem(object):
         check_stats = self.get_checks()
 
         return check_stats['unit_count']
-
-    def get_critical1(self):
-        """Alter implementaion (pick up every check separately)"""
-        result = 0
-
-        for check in get_qualitychecks_by_category(Category.CRITICAL):
-            result += self.get_checks_by_name(check)
-
-        return result
-
-    @getfromcachebyname
-    def get_checks_by_name(self, name):
-        result = self._get_check_by_name(name)
-        self.initialize_children()
-        for item in self.children:
-            result += item.get_checks_by_name(name)
-
-        return result
 
     def get_critical_url(self):
         critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
