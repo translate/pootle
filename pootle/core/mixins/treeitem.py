@@ -87,7 +87,7 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return 0
 
-    def _get_checks(self):
+    def _get_checks(self, only_critical):
         """This method will be overridden in descendants"""
         return {'unit_count': 0, 'checks': {}}
 
@@ -218,19 +218,24 @@ class TreeItem(object):
         self.get_mtime()
         self.get_last_updated()
 
-    @getfromcache
-    def get_checks(self):
-        result = self._get_checks()
+    def get_checks(self, only_critical=False):
+        result = self._get_checks(only_critical=only_critical)
         self.initialize_children()
         for item in self.children:
-            item_res = item.get_checks()
+            item_res = item.get_checks(only_critical=only_critical)
             result['checks'] = dictsum(result['checks'], item_res['checks'])
             result['unit_count'] += item_res['unit_count']
 
         return result
 
     def get_error_unit_count(self):
-        check_stats = self.get_checks()
+        # TODO rewrite this to be completely dettached from get_checks and
+        # return only critical checks failures count (we are currently
+        # returning number of units with critical checks failures). This
+        # implies removing the only_critical parameters for get_checks() and
+        # _get_checks() methods, and also apply again @getfromcache to
+        # get_checks().
+        check_stats = self.get_checks(only_critical=True)
 
         return check_stats['unit_count']
 

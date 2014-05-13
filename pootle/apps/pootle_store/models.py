@@ -1831,13 +1831,15 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def get_suggestion_count(self):
         return self.suggestion_count
 
-    def _get_checks(self):
+    def _get_checks(self, only_critical=False):
         try:
             self.require_qualitychecks()
             queryset = QualityCheck.objects.filter(unit__store=self,
                                                    unit__state__gt=UNTRANSLATED,
-                                                   category=Category.CRITICAL,
                                                    false_positive=False)
+
+            if only_critical:
+                queryset = queryset.filter(category=Category.CRITICAL)
 
             queryset = queryset.values('unit', 'name').order_by('unit')
 
