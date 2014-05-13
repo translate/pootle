@@ -85,7 +85,7 @@ def evernote_login(request):
 
 
 def link(request):
-    """Logs the user in and links the account with Evernote."""
+    """Logs the Pootle user in and links the account with Evernote."""
     return login(request, template_name='auth/link_with_evernote.html')
 
 
