@@ -34,7 +34,13 @@ from pootle_profile.views import login, redirect_after_login
 from .backends.evernote import EvernoteBackend
 
 
-def sso_return_view(request, redirect_to):
+def sso_callback(request, redirect_to):
+    """Callback function run after a user has successfully signed on with
+    Evernote.
+
+    This runs the authentication mechanisms and creates any necessary
+    accounts.
+    """
     redirect_to = urljoin('', '', redirect_to)
     create_account = 'create' in request.GET
     user = None
@@ -66,7 +72,8 @@ def sso_return_view(request, redirect_to):
     return redirect(redirect_url)
 
 
-def evernote_login(request):
+def sso_login(request):
+    """Redirects users to the Evernote SSO page."""
     redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME,
                                       reverse('pootle-home'))
 

@@ -34,9 +34,9 @@ urlpatterns = patterns('evernote_auth.views',
         name='en-auth-account-unlink'),
 
     url(r'^login/?$',
-        'evernote_login',
+        'sso_login',
         name='en-auth-sso-login'),
     url(r'^return/(?P<redirect_to>.*)?/?$',
-        'sso_return_view',
+        'sso_callback',
         name='en-auth-sso-callback'),
 )
