@@ -66,7 +66,7 @@ auth_patterns = patterns('django.contrib.auth.views',
 profile_patterns = patterns('pootle_profile.views',
     url(r'^(?P<username>[^/]+)/$',
         UserDetailView.as_view(),
-        name='profiles_profile_detail'),
+        name='pootle-profile'),
 )
 
 

@@ -196,8 +196,7 @@ class User(AbstractBaseUser):
         return self.username
 
     def get_absolute_url(self):
-        # FIXME: adapt once we get rid of the profiles app
-        return reverse('profiles_profile_detail', args=[self.username])
+        return reverse('pootle-profile', args=[self.username])
 
     def get_full_name(self):
         """Returns the user's full name."""
