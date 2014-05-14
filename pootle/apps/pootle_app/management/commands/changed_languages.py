@@ -46,7 +46,7 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         last_known_revision = Revision.objects.last()
 
-        if options['after_revision'] != None:
+        if options['after_revision'] is not None:
             after_revision = int(options['after_revision'])
         else:
             after_revision = Store.objects.all().aggregate(
