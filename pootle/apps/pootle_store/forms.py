@@ -30,13 +30,11 @@ from translate.misc.multistring import multistring
 
 from pootle.core.mixins import CachedMethods
 from pootle_app.models.permissions import check_permission
-from pootle_statistics.models import (Submission, SubmissionFields,
-                                      SubmissionTypes)
+from pootle_misc.log import TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED
+from pootle_statistics.models import Submission, SubmissionFields, SubmissionTypes
 from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
 from pootle_store.models import Unit
-from pootle_store.util import (FUZZY, TRANSLATED, TRANSLATION_ADDED,
-                               TRANSLATION_DELETED, TRANSLATION_EDITED,
-                               UNTRANSLATED)
+from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
 ############## text cleanup and highlighting #########################
@@ -284,7 +282,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                     self.instance.store \
                                  .flag_for_deletion(CachedMethods.TRANSLATED)
                 else:
-                    self.instance._save_action = TRANSLATION_EDITED
+                    self.instance._save_action = TRANSLATION_CHANGED
 
                 if is_fuzzy:
                     new_state = FUZZY

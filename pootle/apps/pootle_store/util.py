@@ -20,7 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import copy
-import logging
 import os
 
 from django.conf import settings
@@ -28,17 +27,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_misc.aggregate import sum_column
 
-
-# Log actions
-TRANSLATION_ADDED = 'A'
-TRANSLATION_EDITED = 'E'
-TRANSLATION_DELETED = 'D'
-
-UNIT_CREATED = 'C'
-UNIT_REMOVED = 'R'
-
-MUTE_QUALITYCHECK = 'QM'
-UNMUTE_QUALITYCHECK = 'QU'
 
 # Unit States
 #: Unit is no longer part of the store
@@ -134,19 +122,3 @@ def get_sugg_list(unit):
         sugg_list.append((sugg, score))
 
     return sugg_list
-
-
-def action_log(*args, **kwargs):
-    logger = logging.getLogger('action')
-    d = {}
-    for p in ['user', 'lang', 'action', 'unit']:
-        d[p] = kwargs.pop(p, '')
-
-    tr = kwargs.pop('translation', '')
-    tr = tr.replace("\\", "\\\\")
-    tr = tr.replace("\n", "\\\n")
-    d['translation'] = tr
-
-    message = "%(user)s\t%(action)s\t%(lang)s\t%(unit)s\t%(translation)s" % d
-
-    logger.info(message)

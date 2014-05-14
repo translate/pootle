@@ -18,6 +18,7 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 import os
+import sys
 
 from django.core.management import execute_from_command_line
 
@@ -26,4 +27,6 @@ from pootle import syspath_override
 
 if __name__ == "__main__":
     os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+    from pootle_misc.log import cmd_log
+    cmd_log(*sys.argv)
     execute_from_command_line()

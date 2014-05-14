@@ -46,6 +46,7 @@ from taggit.managers import TaggableManager
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle_misc import log
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names
 from pootle_misc.util import datetime_min
@@ -58,9 +59,7 @@ from .fields import (MultiStringField, TranslationStoreField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes, is_monolingual
 from .signals import translation_submitted
-from .util import (action_log, FUZZY, MUTE_QUALITYCHECK, OBSOLETE, TRANSLATED,
-                   UNIT_CREATED, UNIT_REMOVED, UNMUTE_QUALITYCHECK,
-                   UNTRANSLATED)
+from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 
 #
@@ -426,7 +425,7 @@ class Unit(models.Model, base.TranslationUnit):
         self._encoding = 'UTF-8'
 
     def delete(self, *args, **kwargs):
-        action_log(user='system', action=UNIT_REMOVED,
+        log.action_log(user='system', action=log.UNIT_DELETED,
             lang=self.store.translation_project.language.code,
             unit=self.id,
             translation='')
@@ -438,22 +437,21 @@ class Unit(models.Model, base.TranslationUnit):
         if not hasattr(self, '_log_user'):
             self._log_user = 'system'
         if not self.id:
-            self._save_action = UNIT_CREATED
+            self._save_action = log.UNIT_ADDED
 
         unit_update_cache(self)
 
         if self.id:
             if hasattr(self, '_save_action'):
-                action_log(user=self._log_user, action=self._save_action,
+                log.action_log(user=self._log_user, action=self._save_action,
                     lang=self.store.translation_project.language.code,
-                    unit=self.id,
-                    translation=self.target_f
+                    unit=self.id, translation=self.target_f
                 )
 
         super(Unit, self).save(*args, **kwargs)
 
-        if hasattr(self, '_save_action') and self._save_action == UNIT_CREATED:
-            action_log(user=self._log_user, action=self._save_action,
+        if hasattr(self, '_save_action') and self._save_action == log.UNIT_ADDED:
+            log.action_log(user=self._log_user, action=self._save_action,
                 lang=self.store.translation_project.language.code,
                 unit=self.id,
                 translation=self.target_f
@@ -1047,9 +1045,9 @@ class Unit(models.Model, base.TranslationUnit):
                                      CachedMethods.LAST_ACTION)
         self._log_user = user
         if false_positive:
-            self._save_action = MUTE_QUALITYCHECK
+            self._save_action = log.MUTE_QUALITYCHECK
         else:
-            self._save_action = UNMUTE_QUALITYCHECK
+            self._save_action = log.UNMUTE_QUALITYCHECK
 
         # create submission
         self.submitted_on = timezone.now()
@@ -1250,6 +1248,11 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def save(self, *args, **kwargs):
         self.pootle_path = self.parent.pootle_path + self.name
         super(Store, self).save(*args, **kwargs)
+        if not self.id:
+            # new unit
+            log.store_log(user="system", action=STORE_ADDED,
+                          path=self.pootle_path, store=self.id)
+
         if hasattr(self, '_units'):
             index = self.max_index() + 1
             for i, unit in enumerate(self._units):
@@ -1260,11 +1263,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.update_cache()
 
     def delete(self, *args, **kwargs):
+        log.store_log(user="system", action=log.STORE_DELETED,
+                      path=self.pootle_path, store=self.id)
         for unit in self.unit_set.iterator():
-            action_log(user='system', action=UNIT_REMOVED,
+            log.action_log(user="system", action=log.UNIT_DELETED,
                 lang=self.translation_project.language.code,
-                unit=unit.id,
-                Translation='')
+                unit=unit.id, Translation="")
 
         super(Store, self).delete(*args, **kwargs)
 

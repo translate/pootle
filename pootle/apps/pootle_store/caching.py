@@ -25,8 +25,8 @@ from hashlib import md5
 
 from translate.storage.statsdb import wordcount
 
-from .util import (FUZZY, OBSOLETE, TRANSLATED, TRANSLATION_ADDED,
-                   TRANSLATION_DELETED, TRANSLATION_EDITED, UNTRANSLATED)
+from pootle_misc import log
+from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 
 def count_words(strings):
@@ -126,12 +126,12 @@ def unit_update_cache(unit):
                 unit.store.translation_project.translated_wordcount += source_wordcount
                 unit.store.translation_project.save()
                 if not hasattr(unit, '_save_action'):
-                    unit._save_action = TRANSLATION_ADDED
+                    unit._save_action = log.TRANSLATION_ADDED
             else:
                 if not hasattr(unit, '_save_action'):
-                    unit._save_action = TRANSLATION_EDITED
+                    unit._save_action = log.TRANSLATION_CHANGED
         else:
-            unit._save_action = TRANSLATION_DELETED
+            unit._save_action = log.TRANSLATION_DELETED
             # if it was TRANSLATED then set to UNTRANSLATED
             if unit.state > FUZZY:
                 unit.state = UNTRANSLATED
