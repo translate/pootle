@@ -37,6 +37,8 @@ Added Features
 Changed Features
 ^^^^^^^^^^^^^^^^
 
+- Custom user model.
+
 - Richer and more responsive statistics. *Last Updated* dates for stores
   and projects are tracked, for instance. These statistics are also
   available for the *All Projects* view.

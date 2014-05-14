@@ -10,12 +10,22 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- Minimum required Django version is 1.6 now. Lots of small fixes were
+  done in order to migrate to the new version. (`#170`_)
+
+- Switched to a custom user model. This merges the data and functionality
+  available in `auth.User` and `PootleProfile` before, and has allowed to
+  remove the dependency on deprecated third party apps that were bundled
+  in the code. (`#173`_)
+
 - User score is displayed in the header and dynamically updated when
   translation actions are made. (`#156`_)
 
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
+.. _#170: https://github.com/evernote/pootle/issues/170
+.. _#173: https://github.com/evernote/pootle/issues/173
 .. _#156: https://github.com/evernote/pootle/issues/156
 
 
