@@ -20,8 +20,7 @@
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Suggestion
@@ -140,5 +139,4 @@ def view(request):
         'contributors': contributors,
     }
 
-    return render_to_response('about/contributors.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, 'about/contributors.html', ctx)

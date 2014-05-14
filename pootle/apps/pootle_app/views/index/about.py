@@ -18,12 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import absolute_import
-
 from translate.__version__ import sver as toolkit_version
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 from pootle.__version__ import sver as pootle_version
 
@@ -44,5 +41,4 @@ def view(request):
         'pootle_version': pootle_version,
         'toolkit_version': toolkit_version,
     }
-    return render_to_response('about/about.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, 'about/about.html', ctx)

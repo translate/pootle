@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009, 2013 Zuza Software Foundation
+# Copyright 2009, 2013, 2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,7 +18,6 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from pootle_app.models.pootle_site import PootleSite
 
