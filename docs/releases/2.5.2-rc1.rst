@@ -21,14 +21,15 @@ These are by no means exhaustive, check the `git log
 <https://github.com/translate/pootle/compare/stable%2F2.5.1...master>`_
 for more details.
 
-- Direct upgrade is now only possible from 2.1.1 and later.
-- Fixed failing direct upgrade from 2.1.6 and older that required to perform an
-  intermediate upgrade step to 2.5.0.
+- Upgrade:
+
+  - Direct upgrade is now only possible from 2.1.1 and later.
+  - Fixed failing direct upgrade from 2.1.6 and older that required to perform an
+    intermediate upgrade step to 2.5.0.
+
 - The registration and authentication layer is now handled by django-allauth.
   This gives Pootle implicit support for OpenID, OAuth, OAuth2 and Persona
   sign-in support.
-- Placeables are used to highlight parts of the source text and easily insert
-  them into the translation.
 - Local Translation Memory (TM) augments the already available `amaGama
   <http://amagama.translatehouse.org>`_ TM by delivering TM results from the
   projects hosted on the Pootle server.  Images stored in
@@ -58,6 +59,19 @@ for more details.
   browsers. More on :ref:`Supported Browsers <browsers>`.
 - Changed the format of the files accepted by the ``add_project_goals``
   management command.
+- Big revamp of UI:
+
+  - We now have a wide stats table that shows the same data in the different
+    levels. This affects several features which are now relocated in a sidebar:
+    actions, instructions or current goal.
+  - New navigation scheme using dropdowns.
+
+- Editor changes:
+
+  - Added keyboard shortcuts help.
+  - Several minor improvements.
+  - Placeables are used to highlight parts of the source text and easily insert
+    them into the translation.
 
 
 Removal of legacy features
