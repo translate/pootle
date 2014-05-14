@@ -27,6 +27,6 @@ from pootle import syspath_override
 
 if __name__ == "__main__":
     os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-    from pootle_misc.log import cmd_log
+    from pootle.core.log import cmd_log
     cmd_log(*sys.argv)
     execute_from_command_line()

@@ -25,7 +25,7 @@ from hashlib import md5
 
 from translate.storage.statsdb import wordcount
 
-from pootle_misc import log
+from pootle.core import log
 from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 

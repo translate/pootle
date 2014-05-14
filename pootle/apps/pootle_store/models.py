@@ -43,10 +43,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
 
+from pootle.core import log
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_misc import log
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names
 from pootle_misc.util import datetime_min
