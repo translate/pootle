@@ -18,18 +18,13 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from translate.__version__ import build as code_tt_buildversion
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.management import call_command
-from django.db import transaction
-from django.db.models.signals import post_syncdb, pre_delete, post_delete
 from django.utils.translation import ugettext_noop as _
 
-import pootle_app.models
-from pootle.__version__ import build as code_buildversion
 from pootle_app.models import Directory, Revision
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
