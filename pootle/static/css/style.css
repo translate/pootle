@@ -339,15 +339,13 @@ html[dir="rtl"] ul.icons
 /* Hack to avoid ugly underlines in the space between icons and text */
 
 td.stats-name a:hover,
-.last-action > a:hover,
-.overview-actions-content a:hover
+.last-action > a:hover
 {
     text-decoration: none;
 }
 
 td.stats-name a:hover > i + span,
-.last-action > a:hover > img + span,
-.overview-actions-content a:hover > i + span
+.last-action > a:hover > img + span
 {
     text-decoration: underline;
 }
@@ -1777,44 +1775,6 @@ html[dir="rtl"] ul.pager li:last-child > *
     border-radius: 1em 0 0 1em;
 }
 
-
-.overview-description-toggle
-{
-    display: block;
-    margin-top: 0.5em;
-    text-align: right;
-}
-
-html[dir="rtl"] .overview-description-toggle
-{
-    text-align: left;
-}
-
-#overview-description-tp,
-#overview-description-project,
-#overview-description-language
-{
-    margin: 1em 0;
-}
-
-/* Inline editing */
-
-.markup-body
-{
-    line-height: 1.35;
-}
-
-.markup-body:hover .js-edit-details
-{
-    visibility: visible;
-}
-
-.js-edit-details
-{
-    background: #fe0;
-    padding: 0.1em 0.5em;
-    border: 1px dotted #0489b7;
-}
 
 /*
  * HEADER
