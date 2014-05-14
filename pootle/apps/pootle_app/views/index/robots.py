@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009 Zuza Software Foundation
+# Copyright 2009, 2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,6 +20,7 @@
 
 from django.http import HttpResponse
 from pootle_language.models import Language
+
 
 def view(request):
     """generates the robots.txt file"""
