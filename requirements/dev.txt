@@ -3,3 +3,4 @@
 django-extensions
 glue>=0.2.8.1
 django-debut-toolbar>=1.2
+ipython
