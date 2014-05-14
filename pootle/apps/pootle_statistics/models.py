@@ -21,6 +21,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import escape, truncatechars
+from django.utils.functional import cached_property
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 

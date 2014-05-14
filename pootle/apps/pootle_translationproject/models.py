@@ -32,6 +32,7 @@ from django.db import models, IntegrityError
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.utils.encoding import force_unicode
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
@@ -45,7 +46,6 @@ from pootle_app.models.pootle_site import get_site_title
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
 from pootle_misc.stats import stats_message_raw
-from pootle_misc.util import cached_property
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_store.models import (Store, Unit, PARSED)

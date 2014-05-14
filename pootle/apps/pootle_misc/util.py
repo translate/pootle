@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2004-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -140,25 +140,6 @@ def ajax_required(f):
         return f(request, *args, **kwargs)
 
     return wrapper
-
-
-# TODO: replace with `django.utils.functional.cached_property` when we're
-# in Django 1.5+
-def cached_property(f):
-    """A property which value is computed only once and then stored with
-    the instance for quick repeated retrieval.
-    """
-    def _closure(self):
-        cache_key = '_cache__%s' % f.__name__
-        value = getattr(self, cache_key, None)
-
-        if value is None:
-            value = f(self)
-            setattr(self, cache_key, value)
-
-        return value
-
-    return property(_closure)
 
 
 def to_int(value):

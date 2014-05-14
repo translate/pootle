@@ -37,6 +37,7 @@ from django.db.models.signals import post_delete
 from django.db.transaction import commit_on_success
 from django.template.defaultfilters import escape, truncatechars
 from django.utils import dateformat, timezone, tzinfo
+from django.utils.functional import cached_property
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
@@ -47,7 +48,7 @@ from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names
-from pootle_misc.util import cached_property, datetime_min
+from pootle_misc.util import datetime_min
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_tagging.models import ItemWithGoal
