@@ -25,12 +25,12 @@ from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import escape, truncatechars
+from django.utils.functional import cached_property
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.log import log, SCORE_CHANGED
 from pootle_misc.checks import check_names
-from pootle_misc.util import cached_property
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 

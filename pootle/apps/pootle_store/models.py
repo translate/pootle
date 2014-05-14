@@ -35,6 +35,7 @@ from django.db import models, transaction, IntegrityError
 from django.template.defaultfilters import escape, truncatechars
 from django.utils import dateformat, timezone
 from django.utils.encoding import iri_to_uri
+from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -54,8 +55,7 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.baseurl import l
 from pootle_misc.checks import check_names, run_given_filters, get_checker
-from pootle_misc.util import (cached_property, datetime_min,
-                              get_cached_value, import_func)
+from pootle_misc.util import datetime_min, get_cached_value, import_func
 from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
 

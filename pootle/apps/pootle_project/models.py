@@ -33,6 +33,7 @@ from django.db.models import Q
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.utils.encoding import iri_to_uri
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks
@@ -46,7 +47,6 @@ from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_misc.baseurl import l
-from pootle_misc.util import cached_property
 from pootle_store.filetypes import filetype_choices, factory_classes
 from pootle_store.util import absolute_real_path
 
