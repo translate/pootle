@@ -833,6 +833,7 @@ class Unit(models.Model, base.TranslationUnit):
         if self.state > OBSOLETE:
             # when Unit becomes obsolete the cache should be updated
             unit_delete_cache(self)
+            self._save_action = log.UNIT_OBSOLETE
 
             self.state = OBSOLETE
 
