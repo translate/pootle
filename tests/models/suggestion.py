@@ -26,7 +26,11 @@ import pytest
 def test_hash(af_tutorial_po):
     """Tests that target hash changes when suggestion is modified"""
     unit = af_tutorial_po.getitem(0)
+
+    orig_wordcount = unit.store.translated_wordcount
+    assert unit.store.suggestion_count == 0
     suggestion = unit.add_suggestion("gras")
+    assert unit.store.suggestion_count == 1
 
     first_hash = suggestion.target_hash
     suggestion.translator_comment = "my nice comment"
@@ -34,4 +38,9 @@ def test_hash(af_tutorial_po):
     assert first_hash != second_hash
 
     suggestion.target = "gras++"
+    suggestion.user_id = 1
     assert first_hash != second_hash != suggestion.target_hash
+
+    unit.accept_suggestion(suggestion, unit.store.translation_project, None)
+    assert unit.store.suggestion_count == 0
+    assert unit.store.translated_wordcount == orig_wordcount + unit.source_wordcount
