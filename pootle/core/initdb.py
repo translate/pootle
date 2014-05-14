@@ -29,7 +29,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.core.management import call_command
 from django.db import transaction
-from django.db.models.signals import post_syncdb, pre_delete, post_delete
 from django.utils.translation import ugettext_noop as _
 
 from pootle.__version__ import build as CODE_PTL_BUILD_VERSION
