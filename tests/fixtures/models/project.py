@@ -35,9 +35,7 @@ def _require_project(code, name, source_language, **kwargs):
     }
     criteria.update(kwargs)
 
-    new_project = Project(**criteria)
-    new_project.save()
-
+    new_project, created = Project.objects.get_or_create(**criteria)
     return new_project
 
 
