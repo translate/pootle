@@ -81,6 +81,15 @@ Backend and caching settings.
   Time in seconds the Pootle's top statistics cache will last.
 
 
+.. setting:: POOTLE_LOG_DIRECTORY
+
+``POOTLE_LOG_DIRECTORY``
+  Default: ``/var/log/pootle/``
+
+  The directory where Pootle writes event logs to. These are high-level
+  logs of events on store/unit changes and manage.py commands executed
+
+
 30-site.conf
 ^^^^^^^^^^^^
 
