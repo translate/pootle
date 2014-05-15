@@ -36,7 +36,7 @@ urlpatterns = patterns('evernote_auth.views',
     url(r'^login/?$',
         'sso_login',
         name='en-auth-sso-login'),
-    url(r'^return/(?P<redirect_to>.*)?/?$',
+    url(r'^return/(?P<redirect_to>.*)/?$',
         'sso_callback',
         name='en-auth-sso-callback'),
 )
