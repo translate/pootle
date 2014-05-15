@@ -48,7 +48,7 @@ from pootle_translationproject.models import TranslationProject
 
 def _humanize_score(score):
     """Returns a human-readable score for public display."""
-    return int(round(score * 1000))
+    return int(round(score))
 
 
 class User(AbstractBaseUser):
