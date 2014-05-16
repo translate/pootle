@@ -428,45 +428,6 @@ html[dir="rtl"] .logo
     color: #fff;
 }
 
-/* Zoom controls */
-
-#zoom
-{
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 50px;
-    float: right;
-    margin-left: 20px;
-    margin-right: 20px;
-
-    opacity: 0.4;
-}
-
-html[dir="rtl"] #zoom
-{
-    float: left;
-    margin-left: 0;
-    margin-right: 20px;
-}
-
-#zoom a
-{
-    padding: 0 2px;
-    border: 1px dotted transparent;
-}
-
-#zoom:hover
-{
-    opacity: 1;
-}
-
-#zoom a:hover
-{
-    border: 1px dotted #130f30;
-    text-decoration: none;
-}
-
-
 /* Main navigation items */
 
 #nav-main
@@ -2721,43 +2682,6 @@ h2:lang(ko) a,
 h2:lang(zh) a
 {
     font-size: 100%;
-}
-
-
-/*
- * Size overrides for different zoom levels
- */
-
-body.zoom-out-2 #about,
-body.zoom-out-2 #content table.sortable,
-body.zoom-out-2 table.translate-table,
-body.zoom-out-2 table.stats
-{
-    font-size: 90%;
-}
-
-body.zoom-out-1 #about,
-body.zoom-out-1 #content table.sortable,
-body.zoom-out-1 table.translate-table,
-body.zoom-out-1 table.stats
-{
-    font-size: 95%;
-}
-
-body.zoom-in-1 #about,
-body.zoom-in-1 #content table.sortable,
-body.zoom-in-1 table.translate-table,
-body.zoom-in-1 table.stats
-{
-    font-size: 115%;
-}
-
-body.zoom-in-2 #about,
-body.zoom-in-2 #content table.sortable,
-body.zoom-in-2 table.translate-table,
-body.zoom-in-2 table.stats
-{
-    font-size: 130%;
 }
 
 

@@ -33,45 +33,10 @@ html[dir="rtl"] #toolbar
     text-align: right;
 }
 
-
-/* Zoom levels */
-
-body.zoom-out-1 #toolbar
-{
-    font-size: 95%;
-    height: 42px;
-}
-
-body.zoom-out-1 .toolbar-message
-{
-    bottom: 43px;
-}
-
-body.zoom-out-2 #toolbar
-{
-    font-size: 90%;
-    height: 36px;
-}
-
-body.zoom-out-2 .toolbar-message
-{
-    bottom: 37px;
-}
-
 .toolbar > div
 {
     display: inline-block;
     padding: 10px;
-}
-
-body.zoom-out-1 .toolbar > div
-{
-    padding: 8px;
-}
-
-body.zoom-out-2 .toolbar > div
-{
-    padding: 6px;
 }
 
 /* Navigation buttons */
@@ -306,43 +271,13 @@ tr.view-row:hover
 div.sources
 {
     margin-top: 2em;
-    margin-bottom: -0.5em; /* depends on zoom level */
+    margin-bottom: -0.5em;
 }
 
-
-body.zoom-out-1 div.sources
-{
-    margin-bottom: -0.7em;
-}
-
-body.zoom-out-2 div.sources
-{
-    margin-bottom: -1em;
-}
 
 div.sources .translation-text
 {
     padding: 0.1em 0;
-}
-
-body.zoom-out-1 div.sources .translation-text
-{
-    padding-top: 0.4em;
-}
-
-body.zoom-out-1 div.sources .alternative .translation-text
-{
-    font-size: 98%;
-}
-
-body.zoom-out-2 div.sources .translation-text
-{
-    padding-top: 0.2em;
-}
-
-body.zoom-out-2 div.sources .alternative .translation-text
-{
-    font-size: 95%;
 }
 
 .translation-text-headers
@@ -625,16 +560,6 @@ td.translate-full textarea.translation
 html[dir="rtl"] .sidebar
 {
     padding: 0 20px 1em 30px;
-}
-
-body.zoom-out-1 .sidebar
-{
-    padding-bottom: 0.7em;
-}
-
-body.zoom-out-2 .sidebar
-{
-    padding-bottom: 0.5em;
 }
 
 .sidetitle,

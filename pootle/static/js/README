@@ -41,9 +41,6 @@ Directory contents
   - utils.js :
     Common utilities.
 
-  - zoom.js :
-    Functions that control the page zoom.
-
   + lookup/
 
     - wikipedia.js :
