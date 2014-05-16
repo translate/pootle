@@ -1913,7 +1913,14 @@ html[dir="rtl"] ul.pager li:last-child > *
     display: none;
 }
 
-.breadcrumb li:first-child:before
+.breadcrumb li::before
+{
+    content: " / ";
+}
+
+.breadcrumb li:first-child:before,
+.translate .breadcrumb li::before,
+.browser .breadcrumb li::before
 {
     margin-left: 0;
     content: normal;
