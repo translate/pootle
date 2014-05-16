@@ -1,4 +1,4 @@
-{% load i18n assets baseurl locale profile_tags staticpages %}
+{% load i18n assets baseurl locale profile_tags staticpages humanize %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}{% endblock %}">
@@ -176,7 +176,7 @@
             <a href="{{ user.get_absolute_url }}">
             <img src="{{ user|gravatar:20 }}" />
             <span>{{ user.username }}</span>
-            <span class="odometer js-score">{{ user.public_score }}</span>
+            <span class="odometer js-score">{{ user.public_score|intcomma }}</span>
             </a>
           </li>
           {% endif %}

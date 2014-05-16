@@ -11,8 +11,6 @@
 .odometer.odometer-theme-default .odometer-digit
 {
     display: inline-block;
-    vertical-align: middle;
-    *vertical-align: auto;
     position: relative;
 }
 
@@ -20,8 +18,6 @@
 .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer
 {
     display: inline-block;
-    vertical-align: middle;
-    *vertical-align: auto;
     visibility: hidden;
 }
 
@@ -130,7 +126,6 @@
     white-space: nowrap;
     overflow: hidden;
     margin: 0 0.25em;
-    line-height: 1;
 
     transition: 2s width ease;
 }

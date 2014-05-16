@@ -36,6 +36,7 @@ PTL.score = PTL.score || {};
 
     initialize: function () {
       this.oldWidth = -1;
+      this.updateWidth();
       this.listenTo(this.model, 'change:value', this.render);
     },
 
