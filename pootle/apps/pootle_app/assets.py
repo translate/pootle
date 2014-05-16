@@ -46,7 +46,6 @@ js_common = Bundle(
     'js/score.js',
     'js/stats.js',
     'js/utils.js',
-    'js/zoom.js',
     'js/vendor/sorttable.js',
     'js/vendor/spin.js',
     'js/vendor/shortcut.js',  # Leave shortcut.js as the last one

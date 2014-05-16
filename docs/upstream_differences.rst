@@ -95,6 +95,8 @@ Removed Features
 
 - Management commands: updatedb, upgrade, setup
 
+- Page zoom.
+
 
 Unmerged Features
 ^^^^^^^^^^^^^^^^^
