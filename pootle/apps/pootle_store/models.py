@@ -1212,7 +1212,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         `/af/project/dir1/dir2/file.po`, `store.path` will return
         `dir1/dir2/file.po`.
         """
-        return u'/'.join(self.pootle_path.split(u'/')[3:])
+        return self.pootle_path.split(u'/', 2)[-1]
 
     ############################ Methods ######################################
 
