@@ -112,7 +112,7 @@ def find_altsrcs(unit, alt_src_langs, store=None, project=None):
                                 'store__translation_project__language')
 
     if project.get_treestyle() == 'nongnu':
-        altsrcs = altsrcs.filter(store__name=store.name)
+        altsrcs = filter(lambda x: x.store.path == store.path, altsrcs)
 
     return altsrcs
 
