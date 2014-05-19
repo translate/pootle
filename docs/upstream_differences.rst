@@ -31,7 +31,7 @@ Added Features
 
 - Projects and Translation Projects can be disabled.
 
-- Evernote-specific apps: reports and stats.
+- Evernote-specific apps: reports.
 
 - Landing page for anonymous users.
 
