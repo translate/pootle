@@ -16,48 +16,48 @@
     color: #ccc;
 }
 
-td.user
+#top-scorers td.user
 {
     padding: 10px;
 }
 
-.number
+#top-scorers .number
 {
     font-family: 'webfont_bold', sans-serif;
     text-align: right;
 }
 
-.user .gravatar,
-.user .properties
+#top-scorers .user .gravatar,
+#top-scorers .user .properties
 {
     float: left;
 }
 
-.user .properties
+#top-scorers .user .properties
 {
     margin: 5px 10px 0;
 }
 
-.user .name
+#top-scorers .user .name
 {
     font-size: 1.2em;
     line-height: 1;
 }
 
-.properties li
+#top-scorers .properties li
 {
     font-size: 0.7em;
     line-height: 1.5;
 }
 
-.properties a
+#top-scorers .properties a
 {
     color: #5fb336;
 }
 
-.properties a:active,
-.properties a:hover,
-.properties a:focus
+#top-scorers .properties a:active,
+#top-scorers .properties a:hover,
+#top-scorers .properties a:focus
 {
     opacity: 0.8;
     text-decoration: none;
