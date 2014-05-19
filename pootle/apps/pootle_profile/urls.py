@@ -73,5 +73,5 @@ profile_patterns = patterns('pootle_profile.views',
 urlpatterns = patterns('',
     url(r'^accounts/', include(account_patterns)),
     url(r'^accounts/', include(auth_patterns)),
-    url(r'^profiles/', include(profile_patterns)),
+    url(r'^user/', include(profile_patterns)),
 )
