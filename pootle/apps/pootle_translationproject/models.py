@@ -159,6 +159,11 @@ class TranslationProject(models.Model, TreeItem):
         null=True,
         editable=False,
     )
+    failing_critical_count = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        editable=False,
+    )
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
                                          settings.PARSE_POOL_CULL_FREQUENCY)
