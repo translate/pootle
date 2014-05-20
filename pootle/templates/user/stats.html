@@ -1,0 +1,46 @@
+{% extends 'user/base.html'  %}
+{% load i18n %}
+
+{% block title %}{% trans 'Detailed Statistics' %} } | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}{{ block.super }}<li>{% trans 'Detailed Statistics' %}</li>{% endblock %}
+
+{% block header_tabs_block %}{% endblock %}
+
+{% block content %}
+<div id="user-stats" class="bd" lang="{{ LANGUAGE_CODE }}">
+  {% with contributions=profile.contributions %}
+  {% for language, tp_user_stats in contributions %}
+  <h3><a href="{{ language.get_absolute_url }}">{{ language.fullname }}</a></h3>
+  <table id="user-stats-{{ language.code }}" class="stats">
+    <thead>
+      <tr>
+        <th>{% trans 'Project' %}</th>
+        <th class="number">{% trans 'Suggestions Pending' %}</th>
+        <th class="number">{% trans 'Accepted' %}</th>
+        <th class="number">{% trans 'Rejected' %}</th>
+        <th class="number">{% trans 'Submissions' %}</th>
+        <th class="number">{% trans 'Overwritten' %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for tp, stats in tp_user_stats %}
+      <tr class="item {% cycle 'even' 'odd' %}">
+        <td><a href="{{ tp.get_absolute_url }}">{{ tp.project }}</a></td>
+        {% for stat_item in stats %}
+        {% if stat_item.count != 0 %}
+        <td class="number"><a href="{{ stat_item.url }}">{{ stat_item.count }}</a></td>
+        {% else %}
+        <td></td>
+        {% endif %}
+        {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% empty %}
+  <h3>{% trans "This user doesn't have any contributions yet." %}</h3>
+  {% endfor %}
+  {% endwith %}
+</div>
+{% endblock %}

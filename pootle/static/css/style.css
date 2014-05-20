@@ -997,76 +997,6 @@ html[dir="rtl"] .hd h3 span
     font-weight: bold;
 }
 
-/* USER PROFILES */
-
-#user-profile
-{
-    float: none;
-    width: 100%;
-}
-
-#user-contributions-wrapper
-{
-    margin-right: 220px;
-}
-
-html[dir="rtl"] #user-contributions-wrapper
-{
-    margin-right: auto;
-    margin-left: 220px;
-}
-
-#user-contributions
-{
-    float: left;
-    width: 100%;
-}
-
-html[dir="rtl"] #user-contributions
-{
-    float: right;
-}
-
-#user-contributions table
-{
-    margin-top: 0.5em;
-    margin-bottom: 1.5em;
-}
-
-#user-contributions table td
-{
-    padding: 5px;
-    width: 16.6%;
-}
-
-#user-meta-wrapper
-{
-    float: right;
-    width: 200px;
-}
-
-html[dir="rtl"] #user-meta-wrapper
-{
-    float: left;
-}
-
-#user-meta
-{
-    margin: 0 20px;
-}
-
-#user-meta img
-{
-    border: 1px solid #eee;
-    padding: 5px;
-}
-
-#user-meta .user-name
-{
-    font-size: 140%;
-    line-height: 2;
-}
-
 
 /*
  * FORMS
@@ -2008,7 +1938,6 @@ html[dir="rtl"] #tabs li
     color: #c30 !important;
 }
 
-body#dashboard #tabs a.dashboard,
 body#settings #tabs a.settings,
 body#profile #tabs a.profile,
 body#password #tabs a.password,

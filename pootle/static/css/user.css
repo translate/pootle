@@ -1,0 +1,34 @@
+/* USER PROFILES */
+
+#user-profile
+{
+    width: 100%;
+}
+
+#user-meta img
+{
+    border: 1px solid #eee;
+    padding: 5px;
+}
+
+#user-meta .user-name
+{
+    font-size: 140%;
+    line-height: 2;
+}
+
+
+/* Detailed stats */
+
+#user-stats table
+{
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+    width: 100%;
+}
+
+#user-stats table td
+{
+    padding: 5px;
+    width: 16.6%;
+}

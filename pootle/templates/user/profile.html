@@ -1,0 +1,18 @@
+{% extends 'user/base.html'  %}
+{% load i18n profile_tags %}
+
+{% block breadcrumbs %}
+<li>{% trans "Users" %}</li><li>{{ profile.username }}</li>
+{% endblock %}
+
+{% block content %}
+<div id="user-profile" class="bd" lang="{{ LANGUAGE_CODE }}">
+  <div id="user-meta">
+    <img src="{{ profile|gravatar:150 }}" width="150" height="150"{% if user == profile %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endif %} />
+    <div class="user-name">{{ profile.display_name }}</div>
+    {% if user == profile %}
+    <div><a href="{% url 'pootle-profile-edit' %}">{% trans 'Edit profile' %}</a></div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

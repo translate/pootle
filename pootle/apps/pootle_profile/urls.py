@@ -21,7 +21,8 @@
 
 from django.conf.urls import include, patterns, url
 
-from .views import UserDetailView, UserSettingsView, UserProfileView
+from .views import (UserDetailView, UserSettingsView,
+                    UserProfileView, UserStatsView)
 
 
 account_patterns = patterns('pootle_profile.views',
@@ -67,6 +68,10 @@ profile_patterns = patterns('pootle_profile.views',
     url(r'^(?P<username>[^/]+)/$',
         UserDetailView.as_view(),
         name='pootle-profile'),
+
+    url(r'^(?P<username>[^/]+)/stats/$',
+        UserStatsView.as_view(),
+        name='pootle-user-stats'),
 )
 
 
