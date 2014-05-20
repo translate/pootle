@@ -187,7 +187,7 @@ class TreeItem(object):
             'suggestions': self.get_suggestion_count(),
             'nextGoal': self.get_next_goal_count(),
             'lastaction': self.get_last_action(),
-            'critical': self.get_error_unit_count(),
+            'critical': self.get_critical_error_unit_count(),
             'lastupdated': self.get_last_updated(),
         }
 
@@ -229,7 +229,7 @@ class TreeItem(object):
 
         return result
 
-    def get_error_unit_count(self):
+    def get_critical_error_unit_count(self):
         # TODO Rewrite this to be completely detached from get_checks and only
         # return a count. This implies removing the only_critical parameters
         # for get_checks() and _get_checks() methods, and also apply again
