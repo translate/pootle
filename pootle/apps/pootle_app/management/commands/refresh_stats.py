@@ -22,6 +22,8 @@
 import os
 from optparse import make_option
 
+from translate.filters.decorators import Category
+
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
@@ -67,6 +69,13 @@ class Command(PootleCommand):
         if options["calculate_checks"]:
             store.update_qualitychecks()
 
+            store.failing_critical_count = QualityCheck.objects.filter(
+                unit__store=store,
+                unit__state__gt=UNTRANSLATED,
+                category=Category.CRITICAL,
+                false_positive=False,
+            ).values('unit').distinct().count()
+
         store.save()
         self._updated_tps.add(store.translation_project)
 
@@ -80,4 +89,5 @@ class Command(PootleCommand):
             update(tp, "translated_wordcount")
             update(tp, "fuzzy_wordcount")
             update(tp, "suggestion_count")
+            update(tp, "failing_critical_count")
             tp.save()
