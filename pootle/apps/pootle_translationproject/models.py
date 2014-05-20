@@ -399,6 +399,9 @@ class TranslationProject(models.Model, TreeItem):
     def get_suggestion_count(self):
         return self.suggestion_count
 
+    def get_critical_error_unit_count(self):
+        return self.failing_critical_count
+
     def _get_next_goal_count(self):
         # Putting the next import at the top of the file causes circular
         # import issues.

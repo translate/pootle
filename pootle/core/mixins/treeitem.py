@@ -84,11 +84,15 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return 0
 
+    def _get_critical_error_unit_count(self):
+        """This method will be overridden in descendants"""
+        return 0
+
     def _get_next_goal_count(self):
         """This method will be overridden in descendants"""
         return 0
 
-    def _get_checks(self, only_critical):
+    def _get_checks(self):
         """This method will be overridden in descendants"""
         return {'unit_count': 0, 'checks': {}}
 
@@ -136,6 +140,13 @@ class TreeItem(object):
         self.initialize_children()
         return (self._get_suggestion_count() +
                 self._sum('get_suggestion_count'))
+
+    @getfromcache
+    def get_critical_error_unit_count(self):
+        """Calculate number of units with critical errors."""
+        self.initialize_children()
+        return (self._get_critical_error_unit_count() +
+                self._sum('get_critical_error_unit_count'))
 
     def get_next_goal_count(self):
         """Calculate next goal untranslated statistics."""
@@ -219,24 +230,16 @@ class TreeItem(object):
         self.get_mtime()
         self.get_last_updated()
 
-    def get_checks(self, only_critical=False):
-        result = self._get_checks(only_critical=only_critical)
+    @getfromcache
+    def get_checks(self):
+        result = self._get_checks()
         self.initialize_children()
         for item in self.children:
-            item_res = item.get_checks(only_critical=only_critical)
+            item_res = item.get_checks()
             result['checks'] = dictsum(result['checks'], item_res['checks'])
             result['unit_count'] += item_res['unit_count']
 
         return result
-
-    def get_critical_error_unit_count(self):
-        # TODO Rewrite this to be completely detached from get_checks and only
-        # return a count. This implies removing the only_critical parameters
-        # for get_checks() and _get_checks() methods, and also apply again
-        # @getfromcache to get_checks().
-        check_stats = self.get_checks(only_critical=True)
-
-        return check_stats['unit_count']
 
     def get_critical_url(self):
         critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
