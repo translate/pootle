@@ -872,23 +872,6 @@ button.close
     width: 100%;
 }
 
-td.language,
-td.code,
-td.profile,
-td.username
-{
-    padding-left: 5px;
-}
-
-html[dir="rtl"] td.language,
-html[dir="rtl"] td.code,
-html[dir="rtl"] td.profile,
-html[dir="rtl"] td.username
-{
-    padding-left: 0;
-    padding-right: 5px;
-}
-
 /* table row colors, see 'Table Row Colors.psd' */
 
 tr.view-row:nth-child(odd),
