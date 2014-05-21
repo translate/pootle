@@ -516,9 +516,6 @@ class Unit(models.Model, base.TranslationUnit):
                 tmunit = TMUnit().create(self)
                 tmunit.save()
 
-        if self._source_updated or self._target_updated:
-            self.update_qualitychecks()
-
         # done processing source/target update remove flag
         self._source_updated = False
         self._target_updated = False
