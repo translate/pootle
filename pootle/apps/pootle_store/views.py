@@ -585,7 +585,7 @@ def get_units(request):
     if uid_list:
         response['uIds'] = uid_list
 
-    return HttpResponse(jsonify(response), mimetype="application/json")
+    return HttpResponse(jsonify(response), content_type="application/json")
 
 
 def _is_filtered(request):
@@ -611,7 +611,7 @@ def get_more_context(request, unit):
     json["ctx"] = _filter_ctx_units(store.units, unit, qty, gap)
     rcode = 200
     response = jsonify(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 @never_cache
@@ -690,7 +690,7 @@ def timeline(request, unit):
         json['timeline'] = t.render(c).replace('\n', '')
 
         response = jsonify(json)
-        return HttpResponse(response, mimetype="application/json")
+        return HttpResponse(response, content_type="application/json")
     else:
         return render(request, "editor/units/timeline.html", context)
 
@@ -702,7 +702,7 @@ def timeline(request, unit):
 def get_qualitycheck_stats(request, *args, **kwargs):
     failing_checks = request.resource_obj.get_checks()['checks']
     response = jsonify(failing_checks)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 @ajax_required
@@ -718,7 +718,7 @@ def get_overview_stats(request, *args, **kwargs):
             goal = None
     stats = request.resource_obj.get_stats(goal=goal)
     response = jsonify(stats)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 @require_POST
@@ -756,7 +756,7 @@ def comment(request, unit):
 
     response = jsonify(json)
 
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 @never_cache
@@ -834,7 +834,7 @@ def get_edit_unit(request, unit):
             json['ctx'] = _filter_ctx_units(store.units, unit, ctx_qty)
 
     response = jsonify(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 def _get_project_icon(project):
@@ -914,7 +914,7 @@ def get_tm_results(request, unit):
 
             results.append(result)
 
-    return HttpResponse(jsonify(results), mimetype="application/json")
+    return HttpResponse(jsonify(results), content_type="application/json")
 
 
 @require_POST
@@ -991,7 +991,7 @@ def submit(request, unit):
         json["msg"] = _("Failed to process submission.")
 
     response = jsonify(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 @require_POST
@@ -1032,7 +1032,7 @@ def suggest(request, unit):
         rcode = 400
         json["msg"] = _("Failed to process suggestion.")
     response = jsonify(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 @ajax_required
@@ -1052,7 +1052,7 @@ def reject_suggestion(request, unit, suggid):
         'sugid': suggid,
     }
     response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 @ajax_required
@@ -1080,7 +1080,7 @@ def accept_suggestion(request, unit, suggid):
                      for i, target in enumerate(sugg.target.strings)]
 
     response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 @ajax_required
@@ -1097,7 +1097,7 @@ def toggle_qualitycheck(request, unit, check_id):
         raise Http404
 
     response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 @require_POST

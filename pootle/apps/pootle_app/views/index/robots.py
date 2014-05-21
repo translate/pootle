@@ -28,4 +28,4 @@ def view(request):
     content = "User-agent: *\n"
     for langcode in langcodes + ["accounts"]:
         content += "Disallow: /%s/\n" % langcode
-    return HttpResponse(content, mimetype="text/plain")
+    return HttpResponse(content, content_type="text/plain")

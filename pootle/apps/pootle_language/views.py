@@ -117,7 +117,7 @@ def language_settings_edit(request, language):
     response['form'] = t.render(c)
 
     return HttpResponse(jsonify(response), status=rcode,
-                        mimetype="application/json")
+                        content_type="application/json")
 
 
 @get_path_obj
