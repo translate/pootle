@@ -26,7 +26,6 @@ from django.dispatch import receiver
 from django.shortcuts import redirect, render
 from django.utils.http import urlquote, urlencode
 from django.utils.translation import ugettext as _
-from django.views.decorators.cache import never_cache
 
 from pootle.core.url_helpers import urljoin
 from pootle_profile.views import login, redirect_after_login
@@ -116,7 +115,6 @@ def create_evernote_account(sender, request, user, **kwargs):
 
 
 @login_required
-@never_cache
 def account_info(request):
     return render(request, 'profiles/settings/evernote_account.html')
 

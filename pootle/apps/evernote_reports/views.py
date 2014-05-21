@@ -29,7 +29,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-from django.views.decorators.cache import never_cache
 
 from pootle.core.decorators import admin_required
 from pootle_misc.util import ajax_required, jsonify
@@ -130,7 +129,6 @@ def update_user_rates(request):
                                   content_type="application/json")
 
 
-@never_cache
 @ajax_required
 @admin_required
 def user_date_prj_activity(request):

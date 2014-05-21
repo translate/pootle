@@ -27,7 +27,6 @@ from django.utils.decorators import method_decorator
 from django.utils.encoding import iri_to_uri
 from django.utils.http import is_safe_url
 from django.utils.translation import ugettext_lazy as _
-from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView, UpdateView
 
 from pootle.core.views import LoginRequiredMixin
@@ -49,10 +48,6 @@ class UserDetailView(TemplateView):
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
-
-    @method_decorator(never_cache)
-    def dispatch(self, *args, **kwargs):
-        return super(UserUpdateView, self).dispatch(*args, **kwargs)
 
     def get_object(self, queryset=None):
         return self.request.user
