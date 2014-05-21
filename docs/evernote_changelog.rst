@@ -10,6 +10,13 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+
+
+Release `2014-05-20`_
+---------------------
+
 - Minimum required Django version is 1.6 now. Lots of small fixes were
   done in order to migrate to the new version. (`#170`_)
 
@@ -27,8 +34,9 @@ Release .next
   translation actions are made. (`#156`_)
 
 - `Commit comparison wrt previous release
-  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+  <https://github.com/evernote/pootle/compare/release-2014-04-03...release-2014-05-20>`_
 
+.. _2014-05-20: https://github.com/evernote/pootle/releases/tag/release-2014-05-20
 .. _#170: https://github.com/evernote/pootle/issues/170
 .. _#173: https://github.com/evernote/pootle/issues/173
 .. _#184: https://github.com/evernote/pootle/issues/184
