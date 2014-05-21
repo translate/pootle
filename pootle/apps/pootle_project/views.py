@@ -237,7 +237,7 @@ def project_settings_edit(request, project):
     response['form'] = template.render(RequestContext(request, ctx))
 
     return HttpResponse(jsonify(response), status=status,
-                        mimetype="application/json")
+                        content_type="application/json")
 
 
 @get_path_obj

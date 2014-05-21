@@ -390,11 +390,11 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
                         import mimetypes
                         abs_path = absolute_real_path(export_path)
                         filename = os.path.basename(export_path)
-                        mimetype, encoding = mimetypes.guess_type(filename)
-                        mimetype = mimetype or 'application/octet-stream'
+                        content_type, encoding = mimetypes.guess_type(filename)
+                        content_type = content_type or 'application/octet-stream'
                         with open(abs_path, 'rb') as f:
                             response = HttpResponse(f.read(),
-                                                    mimetype=mimetype)
+                                                    content_type=content_type)
                         response['Content-Disposition'] = (
                                 'attachment; filename="%s"' % filename)
                         return response

@@ -61,4 +61,4 @@ def ajax_edit_goal(request, goal, path_obj):
     response['form'] = t.render(c)
 
     return HttpResponse(jsonify(response), status=rcode,
-                        mimetype="application/json")
+                        content_type="application/json")
