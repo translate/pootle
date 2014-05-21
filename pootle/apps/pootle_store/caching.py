@@ -50,6 +50,9 @@ def unit_delete_cache(unit):
         unit.store.translated_wordcount -= wordcount
         unit.store.translation_project.translated_wordcount -= wordcount
 
+    unit.store.save()
+    unit.store.translation_project.save()
+
 
 def unit_update_cache(unit):
     """
