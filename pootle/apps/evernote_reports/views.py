@@ -24,14 +24,18 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.cache import never_cache
 
 from pootle.core.decorators import admin_required
 from pootle_misc.util import ajax_required, jsonify
 from pootle_statistics.models import Submission, SubmissionFields, ScoreLog
+
+from .forms import UserRatesForm
 
 
 # Django field query aliases
@@ -57,7 +61,8 @@ def evernote_reports(request, context={}):
         'users': map(
             lambda x: {'code': x.username, 'name': u'%s' % x },
             User.objects.hide_defaults()
-        )
+        ),
+        'user_rates_form': UserRatesForm(),
     })
 
     return render_to_response('admin/reports.html', cxt,
@@ -85,6 +90,47 @@ def get_date_interval(start_date, end_date):
 
     return [start, end]
 
+
+@ajax_required
+@admin_required
+def update_user_rates(request):
+    form = UserRatesForm(request.POST)
+
+    if form.is_valid():
+        try:
+            User = get_user_model()
+            user = User.objects.get(username=form.cleaned_data['username'])
+        except User.ObjectDoesNotExist:
+            error_text = _("User %s not found" % form.cleaned_data['username'])
+
+            return HttpResponseNotFound(jsonify({'msg': error_text}),
+                                        content_type="application/json")
+
+        user.currency = form.cleaned_data['currency']
+        user.rate = form.cleaned_data['rate']
+        user.review_rate = form.cleaned_data['review_rate']
+
+        scorelog_filter = {'user': user}
+        if form.cleaned_data['effective_from'] is not None:
+            effective_from = form.cleaned_data['effective_from']
+            scorelog_filter.update({
+                'creation_time__gte': effective_from
+            })
+        scorelog_query = ScoreLog.objects.filter(**scorelog_filter)
+        updated_count = scorelog_query.count()
+
+        scorelog_query.update(rate=user.rate, review_rate=user.review_rate)
+        user.save()
+
+        return HttpResponse(jsonify({'updated_count': updated_count}),
+                            content_type="application/json")
+
+
+    return HttpResponseBadRequest(jsonify({'html': form.errors}),
+                                  content_type="application/json")
+
+
+@never_cache
 @ajax_required
 @admin_required
 def user_date_prj_activity(request):
@@ -216,7 +262,14 @@ def user_date_prj_activity(request):
         json['all_projects'] = projects
         json['results'] = res
 
-    json['meta'] = {'user': u'%s' % user, 'start': start_date, 'end': end_date}
+    user_dict = {
+        'username': user.username,
+        'currency': user.currency,
+        'rate': user.rate,
+        'review_rate': user.review_rate,
+    } if user != '' else user
+
+    json['meta'] = {'user': user_dict, 'start': start_date, 'end': end_date}
     if user != '':
         json['scores'] = get_paid_words(user, start, end)
     response = jsonify(json)

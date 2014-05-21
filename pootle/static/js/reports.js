@@ -8,15 +8,15 @@
 
       /* Compile templates */
       this.tmpl = {
-        results: _.template($("#language_user_activity").html())
+        results: _.template($('#language_user_activity').html())
       };
 
-      $(document).on("click", "#reports-show", function (e) {
+      $(document).on('click', '#reports-show', function (e) {
         PTL.reports.user = $('#reports-user').val();
         PTL.reports.update();
       });
 
-      $(document).on("click", "#current-month", function (e) {
+      $(document).on('click', '#current-month', function (e) {
         PTL.reports.date_range = [
           moment().date(1),
           moment()
@@ -26,7 +26,7 @@
         return false;
       });
 
-      $(document).on("click", "#previous-month", function (e) {
+      $(document).on('click', '#previous-month', function (e) {
         PTL.reports.date_range = [
           moment().subtract({M:1}).date(1),
           moment().date(1).subtract('days', 1)
@@ -37,16 +37,19 @@
         return false;
       });
 
-      $(document).on("keypress", "#reports-user", function (e) {
+      $(document).on('keypress', '#reports-user', function (e) {
         if (e.which === 13) {
           PTL.reports.user = $('#reports-user').val();
 
           PTL.reports.update();
         }
       });
+      $(document).on('click', '#user-rates-form input.submit', this.updateRates);
+      $(document).on('change', '#id_currency', this.refreshCurrency);
 
       this.date_range = [moment().date(1), moment()]
       this.user = null;
+      $('#user-rates-form').hide();
 
       PTL.reports.currentRowIsEven = false;
 
@@ -81,7 +84,7 @@
         PTL.reports.loadedHashParams = params;
       }, {'unescape': true});
 
-      $(document).on("change", "#reports-viewmode select", function (e) {
+      $(document).on('change', '#reports-viewmode select', function (e) {
         PTL.reports.setViewMode($(this).val());
         PTL.reports.update();
         return false;
@@ -89,10 +92,36 @@
 
     },
 
+    updateRates: function () {
+      var reqData = $('#user-rates-form').serializeObject(),
+          submitUrl = l('/admin/reports/update_user_rates');
+
+      $.ajax({
+        url: submitUrl,
+        type: 'POST',
+        data: reqData,
+        dataType: 'json',
+        success: function (data) {
+          if (data.updated_count > 0) {
+            PTL.reports.buildResults();
+          }
+        },
+        error: function (xhr, s) {
+          alert('Error status: ' + xhr.status);
+        }
+      });
+      return false;
+    },
+
+    refreshCurrency: function (e) {
+      var currency = $(this).val();
+      $('#user-rates-form .currency').text(currency);
+    },
+
     setViewMode: function (mode) {
       PTL.reports.mode = mode;
-      $("#reports-viewmode select").val(mode);
-      $("#reports-results").attr("class", mode);
+      $('#reports-viewmode select').val(mode);
+      $('#reports-results').attr('class', mode);
     },
 
     validate: function () {
@@ -107,8 +136,8 @@
       if (PTL.reports.validate()) {
         var newHash = [
           'user=', PTL.reports.user,
-          '&start=', PTL.reports.date_range[0].format("YYYY-MM-DD"),
-          '&end=', PTL.reports.date_range[1].format("YYYY-MM-DD"),
+          '&start=', PTL.reports.date_range[0].format('YYYY-MM-DD'),
+          '&end=', PTL.reports.date_range[1].format('YYYY-MM-DD'),
           '&mode=', PTL.reports.mode
         ].join('');
         $.history.load(newHash);
@@ -133,8 +162,8 @@
 
     buildResults: function () {
       var reqData = {
-        start: PTL.reports.date_range[0].format("YYYY-MM-DD"),
-        end: PTL.reports.date_range[1].format("YYYY-MM-DD"),
+        start: PTL.reports.date_range[0].format('YYYY-MM-DD'),
+        end: PTL.reports.date_range[1].format('YYYY-MM-DD'),
         user: PTL.reports.user
       };
 
@@ -147,9 +176,22 @@
           $('#reports-results').empty();
           $('#reports-results').html(PTL.reports.tmpl.results(data));
           PTL.reports.setViewMode(PTL.reports.mode);
+          if (data.meta.user) {
+            var user = data.meta.user;
+
+            $('#id_username').val(user.username);
+            $('#id_rate').val(user.rate);
+            $('#id_review_rate').val(user.review_rate);
+            $('#id_currency').val(user.currency);
+            if (user.currency) {
+              $('#user-rates-form .currency').text(user.currency);
+            }
+
+            $('#user-rates-form').show();
+          }
         },
         error: function (xhr, s) {
-          alert('Error status: ' + xhr.status);
+          alert('Error status: ' + $.parseJSON(xhr.responseText));
         }
       });
     },

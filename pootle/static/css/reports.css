@@ -117,3 +117,24 @@ tr.after_break {
 #reports-results.edit .edit-empty {
     display: none;
 }
+
+#user-rates-form {
+    width: 400px;
+}
+#user-rates-form .help {
+    font-size: 75%;
+    color: #999;
+}
+#user-rates-form .field-wrapper {
+    float: left;
+}
+#user-rates-form .currency {
+    float: left;
+    padding: 5px;
+}
+#user-rates-form .error {
+    background-color: #c55;
+}
+#user-rates-form input {
+    width: 100px;
+}

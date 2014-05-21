@@ -31,22 +31,55 @@
 
 {% block section_body %}
 <div id="reports-container">
-    <div id="reports-form">
-        <input id="reports-user" type="text" placeholder="User"></input>
-        <button id="reports-show" class="btn btn-xs btn-primary">{% trans 'Show' %}</button>
+  <div id="reports-form">
+    <input id="reports-user" type="text" placeholder="User"></input>
+    <button id="reports-show" class="btn btn-xs btn-primary">{% trans 'Show' %}</button>
+  </div>
+  <div id="reports-params">
+    <div class="dates">
+      <ul>
+        <li>
+          <a id="previous-month" href="#">Previous month</a>
+        </li>
+        <li>
+          <a id="current-month" href="#">Current month</a>
+        </li>
+      <ul>
     </div>
-    <div id="reports-params">
-        <div class="dates">
-            <ul>
-                <li>
-                    <a id="previous-month" href="#">Previous month</a>
-                </li>
-                <li>
-                    <a id="current-month" href="#">Current month</a>
-                </li>
-            <ul>
-        </div>
-    </div>
-    <div id="reports-results"></div>
+  </div>
+  <div id="reports-results"></div>
+  <div>
+    <form id="user-rates-form" method="post" action="">
+      {% csrf_token %}
+      <table>
+      {% for field in user_rates_form %}
+        {% if not field.is_hidden %}
+        <tr>
+        <td>
+          {{ field.label_tag }}
+        </td>
+        <td>
+          {% if field.help_text %}
+            <div class="help">{{ field.help_text }}</div>
+          {% endif %}
+          <div class="field-wrapper">
+          {{ field }}
+          </div>
+          {% if field.name == 'rate' or field.name == 'review_rate' %}
+            <div class="currency"></div>
+          {% endif %}
+        </td>
+        </tr>
+        {% else %}
+          {{ field }}
+        {% endif %}
+      {% endfor %}
+        <tr>
+          <td></td>
+          <td><input type="submit" class="submit btn" value="{% trans 'Save' %}"/></td>
+        </tr>
+      </table>
+    </form>
+  </div>
 </div>
 {% endblock %}

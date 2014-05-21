@@ -1,5 +1,5 @@
 <% if (meta.user !== "") { %>
-  <h2>Report for <%= meta.user %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
+  <h2>Report for <%= meta.user.username %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
   <% if (total.new.n1 || total.edit.n1) { %>
     <div id="reports-viewmode">
       <select>
@@ -120,7 +120,7 @@
     <td class="project"><%= (total_new * last_new_rate + total_edit * last_edit_rate).toFixed(2) %></td>
   </tr>
 </table>
-<h2>Score-based report for <%= meta.user %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
+<h2>Score-based report for <%= meta.user.username %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
   <table class="stats">
     <thead>
     <tr>
@@ -153,7 +153,7 @@
       </tr>
     <% }); %>
       <tr class="total">
-          <td>Total (EUR)</td>
+          <td>Total (<%= meta.user.currency %>)</td>
           <td colspan="4"></td>
           <td><%= totalWords.toFixed(2) %></td>
           <td></td>

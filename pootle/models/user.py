@@ -21,7 +21,7 @@
 
 
 __all__ = ('User', )
-
+CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'))
 
 import datetime
 import re
@@ -92,6 +92,8 @@ class User(AbstractBaseUser):
     rate = models.FloatField(null=False, default=0)
     review_rate = models.FloatField(null=False, default=0)
     score = models.FloatField(null=False, default=0)
+    currency = models.CharField(max_length=3, null=True, blank=True,
+                                choices=CURRENCIES)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']

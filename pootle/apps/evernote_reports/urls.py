@@ -31,4 +31,7 @@ urlpatterns = patterns('evernote_reports.views',
     url(r'^users/?$',
         'users',
         name='evernote-reports-users'),
+     url(r'^update_user_rates/?$',
+         'update_user_rates',
+         name='evernote-update-user-rates'),
 )
