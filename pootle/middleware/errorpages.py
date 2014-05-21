@@ -51,7 +51,7 @@ class ErrorPagesMiddleware(object):
         }
         response = jsonify(error_body)
         return HttpResponse(response, status=rcode,
-                            mimetype="application/json")
+                            content_type="application/json")
 
     def process_exception(self, request, exception):
         msg = force_unicode(exception)

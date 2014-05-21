@@ -229,4 +229,4 @@ def legal_agreement(request):
         response['form'] = template.render(RequestContext(request, ctx))
 
     return HttpResponse(jsonify(response), status=rcode,
-                        mimetype='application/json')
+                        content_type='application/json')

@@ -221,7 +221,7 @@ def user_date_prj_activity(request):
         json['scores'] = get_paid_words(user, start, end)
     response = jsonify(json)
 
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 def get_paid_words(user, start, end):
@@ -267,4 +267,4 @@ def users(request):
     )
     response = jsonify(json)
 
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")

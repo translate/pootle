@@ -279,7 +279,7 @@ def server_stats_more(request):
     for k in result.keys():
         response.append((stat_strings[k], result[k]))
     response = json.dumps(response)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 @admin_required

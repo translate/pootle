@@ -451,7 +451,7 @@ def get_units(request):
     if uid_list:
         response['uIds'] = uid_list
 
-    return HttpResponse(jsonify(response), mimetype="application/json")
+    return HttpResponse(jsonify(response), content_type="application/json")
 
 
 def _is_filtered(request):
@@ -477,7 +477,7 @@ def get_more_context(request, unit):
     json["ctx"] = _filter_ctx_units(store.units, unit, qty, gap)
     rcode = 200
     response = jsonify(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 @never_cache
@@ -566,7 +566,7 @@ def timeline(request, unit):
         json['timeline'] = t.render(c).replace('\n', '')
 
         response = jsonify(json)
-        return HttpResponse(response, mimetype="application/json")
+        return HttpResponse(response, content_type="application/json")
     else:
         return render_to_response('editor/units/timeline.html', context,
                                   context_instance=RequestContext(request))
@@ -604,7 +604,7 @@ def delete_comment(request, unit):
 
     response = jsonify(json)
 
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 def save_comment(request, unit):
@@ -639,7 +639,7 @@ def save_comment(request, unit):
 
     response = jsonify(json)
 
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 @never_cache
@@ -717,7 +717,7 @@ def get_edit_unit(request, unit):
             json['ctx'] = _filter_ctx_units(store.units, unit, ctx_qty)
 
     response = jsonify(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 @get_unit_context('view')
@@ -732,7 +732,7 @@ def permalink_redirect(request, unit):
 def get_qualitycheck_stats(request, *args, **kwargs):
     qc_stats = request.resource_obj.get_checks()
 
-    return HttpResponse(jsonify(qc_stats['checks']), mimetype="application/json")
+    return HttpResponse(jsonify(qc_stats['checks']), content_type="application/json")
 
 
 @ajax_required
@@ -742,7 +742,7 @@ def get_qualitycheck_stats(request, *args, **kwargs):
 def get_overview_stats(request, *args, **kwargs):
     stats = request.resource_obj.get_stats()
 
-    return HttpResponse(jsonify(stats), mimetype="application/json")
+    return HttpResponse(jsonify(stats), content_type="application/json")
 
 
 @ajax_required
@@ -836,7 +836,7 @@ def submit(request, unit):
         json["msg"] = _("Failed to process submission.")
 
     response = jsonify(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 @ajax_required
@@ -883,7 +883,7 @@ def suggest(request, unit):
         json["msg"] = _("Failed to process suggestion.")
 
     response = jsonify(json)
-    return HttpResponse(response, status=rcode, mimetype="application/json")
+    return HttpResponse(response, status=rcode, content_type="application/json")
 
 
 @ajax_required
@@ -906,7 +906,7 @@ def reject_suggestion(request, unit, suggid):
         json['user_score'] = request.profile.public_score
 
     response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 @ajax_required
@@ -936,7 +936,7 @@ def accept_suggestion(request, unit, suggid):
                      for i, target in enumerate(sugg.target.strings)]
 
     response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 @ajax_required
@@ -953,4 +953,4 @@ def toggle_qualitycheck(request, unit, check_id):
         raise Http404
 
     response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
