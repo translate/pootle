@@ -50,6 +50,10 @@ def unit_delete_cache(unit):
         unit.store.translated_wordcount -= wordcount
         unit.store.translation_project.translated_wordcount -= wordcount
 
+    if unit.has_critical_failures:
+        unit.store.failing_critical_count -= 1
+        unit.store.translation_project.failing_critical_count -= 1
+
     unit.store.save()
     unit.store.translation_project.save()
 

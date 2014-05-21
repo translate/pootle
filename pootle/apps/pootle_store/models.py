@@ -451,6 +451,14 @@ class Unit(models.Model, base.TranslationUnit):
         self.target_f = value
         self._target_updated = True
 
+    @property
+    def has_critical_failures(self):
+        return QualityCheck.objects.filter(
+            unit=self,
+            category=Category.CRITICAL,
+            false_positive=False,
+        ).exists()
+
     ############################ Methods ######################################
 
     def __unicode__(self):
