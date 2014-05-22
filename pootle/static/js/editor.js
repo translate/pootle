@@ -564,7 +564,7 @@
       } else if (op === DIFF_DELETE) {
         html[i] = ['<span class="diff-delete">', text, '</span>'].join('');
       } else if (op === DIFF_EQUAL) {
-        html[i] = ['<span>', text, '</span>'].join('');
+        html[i] = text;
       }
     }
 

@@ -737,6 +737,12 @@ html[dir="rtl"] .suggestion-action
     float: left;
 }
 
+#tm-results .suggestion-original,
+#tm-results .suggestion-translation
+{
+    word-break: break-word;
+}
+
 .suggestion-translation
 {
     unicode-bidi: embed;
