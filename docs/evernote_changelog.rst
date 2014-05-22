@@ -14,6 +14,17 @@ Release .next
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 
+Release `2014-05-22`_
+---------------------
+
+- Bugfix release (data integrity and caching issues, broken password reset).
+
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-2014-05-20...release-2014-05-22>`_
+
+.. _2014-05-22: https://github.com/evernote/pootle/releases/tag/release-2014-05-22
+
+
 Release `2014-05-20`_
 ---------------------
 
