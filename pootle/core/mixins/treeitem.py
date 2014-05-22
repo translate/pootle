@@ -113,35 +113,30 @@ class TreeItem(object):
             self.children = self.get_children()
             self.initialized = True
 
-    @getfromcache
     def get_total_wordcount(self):
         """calculate total wordcount statistics"""
         self.initialize_children()
         return (self._get_total_wordcount() +
                 self._sum('get_total_wordcount'))
 
-    @getfromcache
     def get_translated_wordcount(self):
         """calculate translated units statistics"""
         self.initialize_children()
         return (self._get_translated_wordcount() +
                 self._sum('get_translated_wordcount'))
 
-    @getfromcache
     def get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
         self.initialize_children()
         return (self._get_fuzzy_wordcount() +
                 self._sum('get_fuzzy_wordcount'))
 
-    @getfromcache
     def get_suggestion_count(self):
         """check if any child store has suggestions"""
         self.initialize_children()
         return (self._get_suggestion_count() +
                 self._sum('get_suggestion_count'))
 
-    @getfromcache
     def get_critical_error_unit_count(self):
         """Calculate number of units with critical errors."""
         self.initialize_children()
