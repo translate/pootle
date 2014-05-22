@@ -21,7 +21,6 @@
 
 
 __all__ = ('User', )
-CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'))
 
 import datetime
 import re
@@ -44,6 +43,9 @@ from pootle_language.models import Language
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
+
+
+CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'))
 
 
 def _humanize_score(score):
