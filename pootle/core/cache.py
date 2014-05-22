@@ -29,7 +29,7 @@ def make_method_key(model, method, key):
     prefix = 'method-cache'
     name = (model.__name__ if hasattr(model, '__name__')
                            else model.__class__.__name__)
-    key = key if not isinstance(key, dict) else make_key(key)
+    key = key if not isinstance(key, dict) else make_key(**key)
     return u':'.join([prefix, name, method, key])
 
 
