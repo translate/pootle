@@ -46,7 +46,7 @@ class Command(ModifiedSinceMixin, NoArgsCommandMixin):
                                          .values('project__code')
 
             for project in projects:
-                print project['project__code']
+                self.stdout.write(project["project__code"])
         else:
             for project in Project.objects.all():
-                print project.code
+                self.stdout.write(project.code)

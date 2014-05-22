@@ -46,7 +46,7 @@ class Command(PootleCommand):
         self.update_translation_projects(self._updated_tps)
 
     def handle_store(self, store, **options):
-        print("Processing %r" % (store))
+        self.stdout.write("Processing %r" % (store))
         store.total_wordcount = 0
         store.translated_wordcount = 0
         store.fuzzy_wordcount = 0
@@ -74,7 +74,7 @@ class Command(PootleCommand):
         def update(tp, col):
             setattr(tp, col, sum(getattr(store, col) for store in tp.stores.iterator()))
 
-        print("Processing translation projects... (almost done!)")
+        self.stdout.write("Processing translation projects... (almost done!)")
         for tp in tps:
             update(tp, "total_wordcount")
             update(tp, "translated_wordcount")

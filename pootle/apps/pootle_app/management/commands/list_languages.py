@@ -55,4 +55,4 @@ class Command(ModifiedSinceMixin, NoArgsCommandMixin):
             tps = tps.filter(project__code__in=projects)
 
         for lang in tps.values_list('language__code', flat=True):
-            print lang
+            self.stdout.write(lang)
