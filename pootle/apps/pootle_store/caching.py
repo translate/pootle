@@ -38,7 +38,6 @@ def unit_delete_cache(unit):
     Triggered on unit.delete()
     Decrement the cache columns by the appropriate amount
     """
-
     wordcount = count_words(unit.source_f.strings)
 
     unit.store.total_wordcount -= wordcount
@@ -54,7 +53,6 @@ def unit_update_cache(unit):
     Update the Store (and related) cache columns when a Unit is modified
     Triggered on unit.save() before anything is saved
     """
-
     if unit.id:
         orig = unit.__class__.objects.get(id=unit.id)
     else:

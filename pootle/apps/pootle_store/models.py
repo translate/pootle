@@ -108,7 +108,6 @@ class Suggestion(models.Model, base.TranslationUnit):
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit')
     user = models.ForeignKey('pootle_profile.PootleProfile', null=True)
-
     translator_comment_f = models.TextField(null=True, blank=True)
 
     objects = RelatedManager()
@@ -257,25 +256,39 @@ class TMUnit(models.Model, base.TranslationUnit):
     """A model representing a translation memory unit."""
 
     project = models.ForeignKey('pootle_project.Project', db_index=True)
-
-    source_lang = models.ForeignKey('pootle_language.Language', db_index=True,
-            related_name='tmunit_source_lang')
-    target_lang = models.ForeignKey('pootle_language.Language', db_index=True,
-            related_name='tmunit_target_lang')
-
+    source_lang = models.ForeignKey(
+        'pootle_language.Language',
+        db_index=True,
+        related_name='tmunit_source_lang',
+    )
+    target_lang = models.ForeignKey(
+        'pootle_language.Language',
+        db_index=True,
+        related_name='tmunit_target_lang',
+    )
     source_f = MultiStringField(null=True)
-    source_length = models.SmallIntegerField(db_index=True, default=0,
-            editable=False)
-
+    source_length = models.SmallIntegerField(
+        db_index=True,
+        default=0,
+        editable=False,
+    )
     target_f = MultiStringField(null=True)
-    target_length = models.SmallIntegerField(db_index=True, default=0,
-            editable=False)
-
-    submitted_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
-            db_index=True, related_name='tmunit_submitted_by')
-    submitted_on = models.DateTimeField(auto_now_add=True, db_index=True,
-            null=True)
-
+    target_length = models.SmallIntegerField(
+        db_index=True,
+        default=0,
+        editable=False,
+    )
+    submitted_by = models.ForeignKey(
+        'pootle_profile.PootleProfile',
+        null=True,
+        db_index=True,
+        related_name='tmunit_submitted_by',
+    )
+    submitted_on = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        null=True,
+    )
     unit = models.ForeignKey('pootle_store.Unit', db_index=True)
 
     ############################ Properties ###################################
@@ -341,43 +354,75 @@ class Unit(models.Model, base.TranslationUnit):
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
     unitid = models.TextField(editable=False)
-    unitid_hash = models.CharField(max_length=32, db_index=True,
-            editable=False)
-
+    unitid_hash = models.CharField(
+        max_length=32,
+        db_index=True,
+        editable=False,
+    )
     source_f = MultiStringField(null=True)
-    source_hash = models.CharField(max_length=32, db_index=True,
-            editable=False)
+    source_hash = models.CharField(
+        max_length=32,
+        db_index=True,
+        editable=False,
+    )
     source_wordcount = models.SmallIntegerField(default=0, editable=False)
-    source_length = models.SmallIntegerField(db_index=True, default=0,
-            editable=False)
-
+    source_length = models.SmallIntegerField(
+        db_index=True,
+        default=0,
+        editable=False,
+    )
     target_f = MultiStringField(null=True, blank=True)
     target_wordcount = models.SmallIntegerField(default=0, editable=False)
-    target_length = models.SmallIntegerField(db_index=True, default=0,
-            editable=False)
-
+    target_length = models.SmallIntegerField(
+        db_index=True,
+        default=0,
+        editable=False,
+    )
     developer_comment = models.TextField(null=True, blank=True)
     translator_comment = models.TextField(null=True, blank=True)
     locations = models.TextField(null=True, editable=False)
     context = models.TextField(null=True, editable=False)
-
-    state = models.IntegerField(null=False, default=UNTRANSLATED, db_index=True)
+    state = models.IntegerField(
+        null=False,
+        default=UNTRANSLATED,
+        db_index=True,
+    )
 
     # Metadata
-    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
-                                         editable=False, null=True)
-    mtime = models.DateTimeField(auto_now=True, auto_now_add=True,
-                                 db_index=True, editable=False)
-
-    submitted_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
-            db_index=True, related_name='submitted')
-    submitted_on = models.DateTimeField(auto_now_add=True, db_index=True,
-            null=True)
-
-    commented_by = models.ForeignKey('pootle_profile.PootleProfile', null=True,
-            db_index=True, related_name='commented')
-    commented_on = models.DateTimeField(auto_now_add=True, db_index=True,
-            null=True)
+    creation_time = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        editable=False,
+        null=True,
+    )
+    mtime = models.DateTimeField(
+        auto_now=True,
+        auto_now_add=True,
+        db_index=True,
+        editable=False,
+    )
+    submitted_by = models.ForeignKey(
+        'pootle_profile.PootleProfile',
+        null=True,
+        db_index=True,
+        related_name='submitted',
+    )
+    submitted_on = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        null=True,
+    )
+    commented_by = models.ForeignKey(
+        'pootle_profile.PootleProfile',
+        null=True,
+        db_index=True,
+        related_name='commented',
+    )
+    commented_on = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        null=True,
+    )
 
     objects = UnitManager()
 
