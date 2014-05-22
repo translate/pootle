@@ -40,7 +40,7 @@ from translate.lang.data import langcode_re
 from pootle.core.cache import make_method_key
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
-from pootle.core.mixins import TreeItem, CachedMethods
+from pootle.core.mixins import TreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
                                      split_pootle_path)
