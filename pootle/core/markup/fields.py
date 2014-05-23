@@ -19,15 +19,12 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from __future__ import absolute_import
-
 import logging
 
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.utils.safestring import mark_safe
-
 from south.modelsinspector import add_introspection_rules
 
 from .filters import apply_markup_filter
