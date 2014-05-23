@@ -433,7 +433,7 @@ html[dir="rtl"] #nav-access
     width: 32px;
     height: 32px;
     margin-top: -4px;
-    vertical-align: middle;    
+    vertical-align: middle;
 }
 
 #navbar h1 a
@@ -468,7 +468,7 @@ html[dir="rtl"] .parent-site
     box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
     height: 100%;
     margin-right: -2px;
-    width: 1px;    
+    width: 1px;
 }
 
 html[dir="rtl"] .parent-site .divider
@@ -481,7 +481,7 @@ html[dir="rtl"] .parent-site .divider
 {
     color: #fff;
     display: inline-block;
-    padding: 0 20px;    
+    padding: 0 20px;
 }
 
 #navbar .parent-site a:hover
@@ -1011,7 +1011,7 @@ html[dir="rtl"] .hd h3 span
 {
     margin-top: 0.5em;
     font-size: 110%;
-    font-weight: bold;    
+    font-weight: bold;
 }
 
 /* USER PROFILES */
