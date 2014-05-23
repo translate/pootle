@@ -22,7 +22,7 @@
 import json
 from urllib import quote, unquote
 
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.utils import dateformat
 
 from pootle.core.browser import get_children, get_table_headings, get_parent
