@@ -159,7 +159,8 @@ class User(AbstractBaseUser):
         :param days: period of days to account for scores.
         :param language: limit results to the given language code.
         :param project: limit results to the given project code.
-        :param limit: limit results to this number of users.
+        :param limit: limit results to this number of users. Values other
+            that positive numbers will return the entire result set.
         """
         cache_kwargs = {
             'days': days,
@@ -196,7 +197,10 @@ class User(AbstractBaseUser):
             **lookup_kwargs
         ).annotate(
             total_score=Sum('scorelog__score_delta'),
-        ).filter(total_score__gt=0.0).order_by('-total_score')[:limit]
+        ).filter(total_score__gt=0.0).order_by('-total_score')
+
+        if isinstance(limit, (int, long)) and limit > 0:
+            top_scorers = top_scorers[:limit]
 
         cache.set(cache_key, top_scorers, 60)
         return top_scorers
