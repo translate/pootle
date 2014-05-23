@@ -919,13 +919,15 @@ table.stats .last-updated .action-text
 }
 
 
-/* When browser size is 1440px or less, show the smaller version of the last action message */
+/* When browser size is 1440px or less, show the smaller version of the
+ * last action message */
 @media screen and (max-width: 1440px)
 {
-    .last-action .action-text
+    table .last-action .action-text
     {
         display: none;
     }
+
     table.last .last-updated .action-text
     {
         display: none;
