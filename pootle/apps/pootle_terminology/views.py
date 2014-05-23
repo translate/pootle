@@ -22,13 +22,12 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import transaction
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.views.admin import util
-from pootle_misc.baseurl import redirect
 from pootle_store.models import Store, Unit, PARSED, LOCKED
 
 

@@ -27,7 +27,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Max, Q
 from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -42,7 +42,6 @@ from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle_app.models.permissions import check_user_permission
 from pootle.core.exceptions import Http400
-from pootle_misc.baseurl import redirect
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, jsonify, to_int
