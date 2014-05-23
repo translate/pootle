@@ -18,8 +18,6 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import absolute_import
-
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy

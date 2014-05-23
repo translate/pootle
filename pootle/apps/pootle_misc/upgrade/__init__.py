@@ -19,8 +19,6 @@
 
 """Pootle upgrade code."""
 
-from __future__ import absolute_import
-
 import logging
 
 

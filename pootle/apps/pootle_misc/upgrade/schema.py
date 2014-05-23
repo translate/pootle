@@ -24,8 +24,6 @@ This is legacy code that only performs upgrades up to version 2.5. Any
 future schema migrations are handled entirely by South.
 """
 
-from __future__ import absolute_import
-
 import logging
 
 from django.core.management import call_command
