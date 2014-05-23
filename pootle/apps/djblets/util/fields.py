@@ -21,12 +21,12 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import json
 import logging
 
 from django.conf import settings
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
-from django.utils import simplejson
 
 
 class JSONField(models.TextField):
@@ -84,7 +84,7 @@ class JSONField(models.TextField):
 
     def loads(self, val):
         try:
-            val = simplejson.loads(val, encoding=settings.DEFAULT_CHARSET)
+            val = json.loads(val, encoding=settings.DEFAULT_CHARSET)
 
             # XXX We need to investigate why this is happening once we have
             #     a solid repro case.
@@ -92,7 +92,7 @@ class JSONField(models.TextField):
                 logging.warning("JSONField decode error. Expected dictionary, "
                                 "got string for input '%s'" % val)
                 # For whatever reason, we may have gotten back
-                val = simplejson.loads(val, encoding=settings.DEFAULT_CHARSET)
+                val = json.loads(val, encoding=settings.DEFAULT_CHARSET)
         except ValueError:
             # There's probably embedded unicode markers (like u'foo') in the
             # string. We have to eval it.
