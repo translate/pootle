@@ -28,7 +28,7 @@
 a.btn,
 a.btn:link
 {
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
 }
 
