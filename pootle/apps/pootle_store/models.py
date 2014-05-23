@@ -1092,13 +1092,29 @@ class Unit(models.Model, base.TranslationUnit):
         check.false_positive = false_positive
         check.save()
 
+        has_other_critical_failures = QualityCheck.objects.filter(
+            unit=self,
+            category=Category.CRITICAL,
+            false_positive=False,
+        ).exclude(id=check_id).exists()
+
         self.store.flag_for_deletion(CachedMethods.CHECKS,
                                      CachedMethods.LAST_ACTION)
         self._log_user = user
         if false_positive:
             self._save_action = log.MUTE_QUALITYCHECK
+            if not has_other_critical_failures:
+                self.store.failing_critical_count -= 1
+                self.store.translation_project.failing_critical_count -= 1
+                self.store.save()
+                self.store.translation_project.save()
         else:
             self._save_action = log.UNMUTE_QUALITYCHECK
+            if not has_other_critical_failures:
+                self.store.failing_critical_count += 1
+                self.store.translation_project.failing_critical_count += 1
+                self.store.save()
+                self.store.translation_project.save()
 
         # create submission
         self.submitted_on = timezone.now()
