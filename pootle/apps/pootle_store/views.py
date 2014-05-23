@@ -33,7 +33,7 @@ from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponse, Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -52,7 +52,6 @@ from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (check_permission,
                                            check_profile_permission)
 from pootle_language.models import Language
-from pootle_misc.baseurl import redirect
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, jsonify, to_int

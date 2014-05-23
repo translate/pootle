@@ -22,14 +22,13 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
 from pootle.core.views import SuperuserRequiredMixin
-from pootle_misc.baseurl import redirect
 from pootle_misc.util import ajax_required, jsonify
 
 from .forms import agreement_form_factory

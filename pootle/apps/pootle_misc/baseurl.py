@@ -20,11 +20,8 @@
 
 """Utility functions to help deploy Pootle under different url prefixes."""
 
-import os
-
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.http import HttpResponseRedirect
 from django.utils.http import urlencode
 
 
@@ -39,17 +36,6 @@ def l(path):
 def s(path):
     """Filter URLs adding STATIC_URL prefix."""
     return settings.STATIC_URL + path
-
-
-def redirect(url, **kwargs):
-    if os.name == 'nt':
-        # A catch-all to fix any issues on Windows
-        url = url.replace("\\", "/")
-
-    if len(kwargs) > 0:
-        url += '?%s' % urlencode(kwargs)
-
-    return HttpResponseRedirect(url)
 
 
 def get_next(request):

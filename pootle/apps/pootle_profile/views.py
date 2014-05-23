@@ -19,10 +19,8 @@
 
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from profiles.views import edit_profile
-
-from pootle_misc.baseurl import redirect
 
 from .forms import UserForm, pootle_profile_form_factory
 
