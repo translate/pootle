@@ -155,6 +155,8 @@ def process_modelformset(request, model_class, queryset, **kwargs):
     if queryset is None:
         queryset = model_class.objects.all()
 
+    objects = paginate(request, queryset)
+
     # If the request is a POST, we want to possibly update our data
     if request.method == 'POST' and request.POST:
         # Create a formset from all the 'model_class' instances whose values
@@ -166,15 +168,11 @@ def process_modelformset(request, model_class, queryset, **kwargs):
         if formset.is_valid():
             # If all is well, Django can save all our data for us
             formset.save()
-        else:
-            # Otherwise, complain to the user that something went wrong
-            return formset, _("There are errors in the form. Please review "
-                              "the problems below."), objects
+            return formset, None, objects
 
-        # Hack to force reevaluation of same query
-        queryset = queryset.filter()
-
-    objects = paginate(request, queryset)
+        # Otherwise, complain to the user that something went wrong
+        return formset, _("There are errors in the form. Please review "
+                          "the problems below."), objects
 
     return formset_class(queryset=objects.object_list), None, objects
 
