@@ -19,8 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 from pootle.core.browser import (make_project_item,
                                  get_table_headings)
@@ -61,8 +60,7 @@ def overview(request, language):
         'browser_extends': 'languages/base.html',
     })
 
-    response = render_to_response('browser/overview.html', ctx,
-                                  context_instance=RequestContext(request))
+    response = render(request, 'browser/overview.html', ctx)
     response.set_cookie('pootle-language', language.code)
 
     return response
@@ -87,8 +85,7 @@ def translate(request, language):
         'editor_extends': 'languages/base.html',
     })
 
-    return render_to_response('editor/main.html', context,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/main.html", context)
 
 
 @get_path_obj
@@ -111,8 +108,7 @@ def export_view(request, language):
         'project': project,
     })
 
-    return render_to_response('editor/export_view.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/export_view.html", ctx)
 
 
 @get_path_obj

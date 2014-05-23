@@ -27,7 +27,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Max, Q
 from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -568,8 +568,7 @@ def timeline(request, unit):
         response = jsonify(json)
         return HttpResponse(response, content_type="application/json")
     else:
-        return render_to_response('editor/units/timeline.html', context,
-                                  context_instance=RequestContext(request))
+        return render(request, "editor/units/timeline.html", context)
 
 
 @ajax_required

@@ -22,9 +22,7 @@ from django.contrib import auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.shortcuts import redirect, render_to_response
-from django.template import RequestContext
-from django.utils.decorators import method_decorator
+from django.shortcuts import redirect, render
 from django.utils.encoding import iri_to_uri
 from django.utils.http import is_safe_url
 from django.utils.translation import ugettext_lazy as _
@@ -135,8 +133,7 @@ def login(request, template_name='login.html'):
         'next': next,
     }
 
-    return render_to_response(template_name, ctx,
-                              context_instance=RequestContext(request))
+    return render(request, template_name, ctx)
 
 
 def logout(request):

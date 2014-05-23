@@ -21,8 +21,7 @@
 
 from django.forms.models import modelformset_factory
 from django.forms.util import ErrorList
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
@@ -196,5 +195,4 @@ def edit(request, template, model_class, ctx={},
         'error_msg': msg,
     })
 
-    return render_to_response(template, ctx,
-                              context_instance=RequestContext(request))
+    return render(request, template, ctx)

@@ -26,8 +26,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.utils.translation import ugettext as _
 
 from pootle import depcheck
@@ -295,5 +294,4 @@ def view(request):
         'optional': optional_depcheck(),
         'optimal': optimal_depcheck(),
     }
-    return render_to_response("admin/dashboard.html", ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "admin/dashboard.html", ctx)

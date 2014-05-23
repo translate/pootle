@@ -23,7 +23,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
@@ -194,7 +194,7 @@ def display_page(request, virtual_path):
     ctx = {
         'page': page,
     }
-    return render_to_response(template_name, ctx, RequestContext(request))
+    return render(request, template_name, ctx)
 
 
 @ajax_required

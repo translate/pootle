@@ -23,7 +23,6 @@ import locale
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.template import RequestContext
 
 from pootle.core.browser import (make_language_item,
                                  make_xlanguage_item,

@@ -22,8 +22,7 @@
 import json
 from urllib import quote, unquote
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.utils import dateformat
 
 from pootle.core.browser import get_children, get_table_headings, get_parent
@@ -123,8 +122,7 @@ def overview(request, translation_project, dir_path, filename=None):
             }
         })
 
-    response = render_to_response("browser/overview.html", ctx,
-                                  context_instance=RequestContext(request))
+    response = render(request, 'browser/overview.html', ctx)
 
     if new_mtime is not None:
         cookie_data[project.code] = new_mtime
@@ -153,8 +151,7 @@ def translate(request, translation_project, dir_path, filename):
         'editor_extends': 'translation_projects/base.html',
     })
 
-    return render_to_response('editor/main.html', context,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/main.html", context)
 
 
 @get_path_obj
@@ -169,5 +166,4 @@ def export_view(request, translation_project, dir_path, filename=None):
         'project': translation_project.project,
     })
 
-    return render_to_response('editor/export_view.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, 'editor/export_view.html', ctx)
