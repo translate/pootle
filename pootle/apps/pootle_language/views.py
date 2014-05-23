@@ -20,7 +20,7 @@
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
 
@@ -76,8 +76,7 @@ def overview(request, language):
                                    args=[language.code]),
         })
 
-    response = render_to_response('browser/overview.html', ctx,
-                                  context_instance=RequestContext(request))
+    response = render(request, "browser/overview.html", ctx)
     response.set_cookie('pootle-language', language.code)
 
     return response
@@ -139,8 +138,7 @@ def translate(request, language):
         'editor_extends': 'languages/base.html',
     })
 
-    return render_to_response('editor/main.html', context,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/main.html", context)
 
 
 @get_path_obj
@@ -163,8 +161,7 @@ def export_view(request, language):
         'project': project,
     })
 
-    return render_to_response('editor/export_view.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/export_view.html", ctx)
 
 
 @get_path_obj

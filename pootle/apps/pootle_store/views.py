@@ -33,7 +33,7 @@ from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponse, Http404
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -700,8 +700,7 @@ def timeline(request, unit):
         response = jsonify(json)
         return HttpResponse(response, mimetype="application/json")
     else:
-        return render_to_response('editor/units/timeline.html', context,
-                                  context_instance=RequestContext(request))
+        return render(request, "editor/units/timeline.html", context)
 
 
 @ajax_required
@@ -1177,8 +1176,7 @@ def _add_tag(request, store, tag_like_object):
         'path_obj': store,
         'can_edit': check_permission('administrate', request),
     }
-    response = render_to_response('stores/xhr_tags_list.html', context,
-                                  RequestContext(request))
+    response = render(request, "stores/xhr_tags_list.html", context)
     response.status_code = 201
     return response
 
@@ -1229,5 +1227,4 @@ def ajax_add_tag_to_store(request, store_pk):
                 'add_tag_action_url': reverse('pootle-xhr-tag-store',
                                               args=[store.pk])
             }
-            return render_to_response('core/xhr_add_tag_form.html', context,
-                                      RequestContext(request))
+            return render(request, "core/xhr_add_tag_form.html", context)

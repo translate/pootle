@@ -23,8 +23,7 @@ import re
 from django.conf import settings
 from django.core.urlresolvers import resolve
 from django.http import Http404
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 from pootle.core.forms import MathCaptchaForm
 
@@ -105,7 +104,6 @@ class CaptchaMiddleware:
                                    'efn' in request.POST)):
             template_name = 'core/xhr_captcha.html'
 
-        response = render_to_response(template_name, ctx,
-                                      context_instance=RequestContext(request))
+        response = render(request, template_name, ctx)
         response.status_code = 402  # (Ab)using 402 for captcha purposes.
         return response

@@ -21,8 +21,7 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db.transaction import commit_on_success
-from django.shortcuts import get_object_or_404, render_to_response
-from django.template import RequestContext
+from django.shortcuts import get_object_or_404, render
 from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import get_path_obj, permission_required
@@ -147,9 +146,7 @@ def extract(request, translation_project):
         path_args = split_pootle_path(translation_project.pootle_path)[:2]
         return redirect(reverse('pootle-terminology-manage', args=path_args))
 
-    template_name = 'translation_projects/terminology/extract.html'
-    return render_to_response(template_name, ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "translation_projects/terminology/extract.html", ctx)
 
 
 def manage_store(request, ctx, language, term_store):
@@ -240,9 +237,7 @@ def manage(request, translation_project, path=None):
                 store.nice_name = store.pootle_path[path_length:]
 
             ctx['stores'] = stores
-            template_name = 'translation_projects/terminology/stores.html'
-            return render_to_response(template_name, ctx,
-                                      context_instance=RequestContext(request))
+            return render(request, "translation_projects/terminology/stores.html", ctx)
 
     try:
         terminology_filename = get_terminology_filename(translation_project)
@@ -251,6 +246,4 @@ def manage(request, translation_project, path=None):
         )
         return manage_store(request, ctx, ctx['language'], term_store)
     except Store.DoesNotExist:
-        template_name = 'translation_projects/terminology/manage.html'
-        return render_to_response(template_name, ctx,
-                                  context_instance=RequestContext(request))
+        return render(request, "translation_projects/terminology/manage.html", ctx)

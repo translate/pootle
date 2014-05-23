@@ -21,7 +21,7 @@
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
@@ -87,8 +87,7 @@ def view(request, path_obj):
     if check_permission('administrate', request):
         ctx['form'] = handle_form(request, directory, proj, lang, ctx)
 
-    return render_to_response('notifications/notices.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "notifications/notices.html", ctx)
 
 
 def directory_to_title(directory):
@@ -233,5 +232,4 @@ def view_notice_item(request, path, notice_id):
         "title": _("View News Item"),
         "notice_message": notice.message,
     }
-    return render_to_response('notifications/view_notice.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "notifications/view_notice.html", ctx)

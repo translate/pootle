@@ -18,8 +18,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 from pootle.core.decorators import admin_required
 from pootle_app.forms import GeneralSettingsForm
@@ -41,5 +40,4 @@ def view(request):
     ctx = {
         'form': setting_form,
     }
-    return render_to_response('admin/settings.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "admin/settings.html", ctx)

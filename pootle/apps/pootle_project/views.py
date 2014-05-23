@@ -21,7 +21,7 @@
 from django import forms
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
@@ -267,8 +267,7 @@ def export_view(request, project, dir_path, filename):
         'project': project,
     })
 
-    return render_to_response('editor/export_view.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/export_view.html", ctx)
 
 
 @get_path_obj
@@ -357,8 +356,7 @@ def projects_translate(request, project_set):
         'editor_extends': 'projects/all/base.html',
     })
 
-    return render_to_response('editor/main.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/main.html", ctx)
 
 
 @get_path_obj
@@ -371,5 +369,4 @@ def projects_export_view(request, project_set):
         'project': None,
     })
 
-    return render_to_response('editor/export_view.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/export_view.html", ctx)

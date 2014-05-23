@@ -19,9 +19,7 @@
 
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-
+from django.shortcuts import render
 from profiles.views import edit_profile
 
 from pootle_misc.baseurl import redirect
@@ -55,5 +53,4 @@ def edit_personal_info(request):
     ctx = {
         'form': user_form,
     }
-    return render_to_response('profiles/settings/personal.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "profiles/settings/personal.html", ctx)

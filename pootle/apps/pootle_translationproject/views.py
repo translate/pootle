@@ -31,7 +31,7 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.template import loader, RequestContext
 from django.utils import dateformat
 from django.utils.encoding import iri_to_uri
@@ -525,8 +525,7 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
                                             args=[goal.slug]),
             })
 
-    response = render_to_response(template_name, ctx,
-                                  context_instance=RequestContext(request))
+    response = render(request, template_name, ctx)
 
     if new_mtime is not None:
         cookie_data[project.code] = new_mtime
@@ -561,8 +560,7 @@ def _add_tag(request, translation_project, tag_like_object):
         'project': translation_project.project,
         'can_edit': check_permission('administrate', request),
     }
-    response = render_to_response('translation_projects/xhr_tags_list.html',
-                                  context, RequestContext(request))
+    response = render(request, "translation_projects/xhr_tags_list.html", context)
     response.status_code = 201
     return response
 
@@ -614,8 +612,7 @@ def ajax_add_tag_to_tp(request, translation_project):
                 'add_tag_action_url': reverse('pootle-xhr-tag-tp',
                                               kwargs=url_kwargs)
             }
-            return render_to_response('core/xhr_add_tag_form.html', context,
-                                      RequestContext(request))
+            return render(request, "core/xhr_add_tag_form.html", context)
 
 
 @get_path_obj
@@ -637,8 +634,7 @@ def translate(request, translation_project, dir_path, filename):
         'editor_extends': 'translation_projects/base.html',
     })
 
-    return render_to_response('editor/main.html', context,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/main.html", context)
 
 
 @get_path_obj
@@ -654,8 +650,7 @@ def export_view(request, translation_project, dir_path, filename=None):
         'goal': request.GET.get('goal', ''),
     })
 
-    return render_to_response('editor/export_view.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/export_view.html", ctx)
 
 
 @require_POST
