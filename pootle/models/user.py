@@ -96,6 +96,11 @@ class User(AbstractBaseUser):
     score = models.FloatField(null=False, default=0)
     currency = models.CharField(max_length=3, null=True, blank=True,
                                 choices=CURRENCIES)
+    is_employee = models.BooleanField(default=False)
+    twitter = models.CharField(max_length=15, null=True, blank=True)
+    website = models.URLField(null=True, blank=True)
+    linkedin = models.URLField(null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
