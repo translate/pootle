@@ -20,7 +20,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 
 from pootle.i18n.override import get_lang_from_http_header
 from pootle_language.models import Language
@@ -46,4 +46,4 @@ def view(request):
     qs = '?%s' % args if args else ''
     redirect_url = '%s%s' % (url, qs)
 
-    return HttpResponseRedirect(redirect_url)
+    return redirect(redirect_url)

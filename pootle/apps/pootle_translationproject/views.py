@@ -30,7 +30,7 @@ from django.contrib import messages
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader, RequestContext
 from django.utils import dateformat
@@ -112,7 +112,7 @@ def rescan_files(request, translation_project):
     project = translation_project.project.code
     overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
-    return HttpResponseRedirect(overview_url)
+    return redirect(overview_url)
 
 
 @get_path_obj
@@ -132,7 +132,7 @@ def update_against_templates(request, translation_project):
     project = translation_project.project.code
     overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
-    return HttpResponseRedirect(overview_url)
+    return redirect(overview_url)
 
 
 @get_path_obj
@@ -206,7 +206,7 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
     project = translation_project.project.code
     overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
-    return HttpResponseRedirect(overview_url)
+    return redirect(overview_url)
 
 
 @get_path_obj
@@ -418,7 +418,7 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
                                     store_f]
                         overview_url = reverse('pootle-tp-overview',
                                                args=rev_args)
-                    return HttpResponseRedirect(overview_url)
+                    return redirect(overview_url)
 
     # TODO: cleanup and refactor, retrieve from cache
     try:
