@@ -27,14 +27,10 @@ from urllib import quote, unquote
 from django import forms
 from django.conf import settings
 from django.contrib import messages
-from django.core.cache import cache
-from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader, RequestContext
-from django.utils import dateformat
-from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 
@@ -47,11 +43,7 @@ from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
-from pootle.core.url_helpers import split_pootle_path
-from pootle.scripts.actions import (EXTDIR, StoreAction,
-                                    TranslationProjectAction)
 from pootle_app.models.permissions import check_permission
-from pootle_app.models.signals import post_file_upload
 from pootle_app.models import Directory
 from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
@@ -62,13 +54,10 @@ from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                add_trailing_slash)
-from pootle_store.filetypes import factory_classes
 from pootle_tagging.decorators import get_goal
 from pootle_tagging.forms import GoalForm, TagForm
 from pootle_tagging.models import Goal
-from staticpages.models import StaticPage
 
-from .actions import action_groups
 from .forms import DescriptionForm, upload_form_factory
 
 
@@ -243,6 +232,8 @@ def vcs_update(request, translation_project, dir_path, filename):
 
 def _handle_upload_form(request, translation_project):
     """Process the upload form in TP overview."""
+    from pootle_app.models.signals import post_file_upload
+
     upload_form_class = upload_form_factory(request)
 
     if request.method == 'POST' and 'file' in request.FILES:
@@ -301,6 +292,10 @@ def _handle_upload_form(request, translation_project):
 @get_resource
 @get_goal
 def overview(request, translation_project, dir_path, filename=None, goal=None):
+    from django.utils import dateformat
+    from staticpages.models import StaticPage
+    from pootle.scripts.actions import EXTDIR, StoreAction, TranslationProjectAction
+    from .actions import action_groups
 
     if filename:
         ctx = {
@@ -657,6 +652,8 @@ def export_view(request, translation_project, dir_path, filename=None):
 @get_path_obj
 @permission_required('administrate')
 def edit_settings(request, translation_project):
+    from pootle.core.url_helpers import split_pootle_path
+
     form = DescriptionForm(request.POST, instance=translation_project)
     response = {}
     rcode = 400
@@ -687,7 +684,10 @@ def edit_settings(request, translation_project):
 @get_path_obj
 @permission_required('archive')
 def export_zip(request, translation_project, file_path):
+    from django.core.cache import cache
+    from django.utils.encoding import iri_to_uri
     from django.utils.timezone import utc
+
     translation_project.sync()
     pootle_path = translation_project.pootle_path + (file_path or '')
 
@@ -904,6 +904,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
                 pass
     else:
         from translate.storage import factory
+        from pootle_store.filetypes import factory_classes
         newstore = factory.getobject(django_file, classes=factory_classes)
         if not newstore.units:
             return
@@ -927,6 +928,10 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
 
 
 def upload_file(request, directory, django_file, overwrite, store=None):
+    from django.core.exceptions import PermissionDenied
+    from translate.storage import factory
+    from pootle_store.filetypes import factory_classes
+
     translation_project = request.translation_project
     tp_pootle_path_length = len(translation_project.pootle_path)
     relative_root_dir = directory.pootle_path[tp_pootle_path_length:]
@@ -1000,7 +1005,6 @@ def upload_file(request, directory, django_file, overwrite, store=None):
         return
 
     django_file.seek(0)
-    from translate.storage import factory
     newstore = factory.getobject(django_file, classes=factory_classes)
 
     #FIXME: are we sure this is what we want to do? shouldn't we
