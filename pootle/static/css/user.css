@@ -1,9 +1,32 @@
 /* USER PROFILES */
 
+#profile-page #content
+{
+    background: url(../images/translation-toons.jpg) 50% 0px no-repeat;
+    min-height: 500px;
+    margin: 0;
+}
+
 #user-profile
 {
-    width: 100%;
+    text-align: center;
+    padding-top: 140px;
 }
+
+#user-profile a
+{
+    color: #5fb336;
+}
+
+#user-profile a:active,
+#user-profile a:hover,
+#user-profile a:focus
+{
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+/* Meta */
 
 #user-meta img
 {
@@ -13,8 +36,97 @@
 
 #user-meta .user-name
 {
-    font-size: 140%;
+    font-size: 3em;
+}
+
+/* Stats */
+
+#user-stats .user-score-title
+{
+    font-family: 'webfont_light_italic', sans-serif;
+    font-size: 1.8em;
+    font-weight: normal;
+    color: #1a1a1a;
+    margin-top: 0.5em;
+}
+
+#user-stats .user-score
+{
+    font-size: 3em;
+    margin-bottom: 1em;
+}
+
+#user-stats .user-score,
+#user-stats .user-position
+{
+    color: #5A8295;
+}
+
+#user-stats .user-position
+{
+    display: inline-block;
+    background-color: #eee;
+    font-size: 1.6em;
+    border-radius: 1.5em;
+    padding: 0.5em 1em;
+    margin-bottom: 2em;
+}
+
+#user-stats .user-last-activity
+{
+    margin-bottom: 3em;
+}
+
+#user-stats .user-last-activity .label
+{
+    color: #ccc;
+}
+
+#user-stats .last-action
+{
+    display: inline;
+    font-size: 1.1em;
+}
+
+#user-stats .last-action img
+{
+    vertical-align: middle;
+}
+
+
+/* Personal details */
+
+#user-details
+{
+    background-color: #f5fbfd;
+    padding: 2em;
+    font-size: 1.5em;
+}
+
+#user-details .user-contact i
+{
+    vertical-align: middle;
+    margin-right: 0.5em;
+}
+
+#user-details .user-contact li
+{
+    display: inline-block;
+    width: 250px;
+}
+
+.user-contact + .user-bio
+{
+    margin-top: 1em !important;
+}
+
+#user-details .user-bio
+{
+    font-family: "webfont_light_italic", sans-serif;
+    font-weight: normal;
     line-height: 2;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 

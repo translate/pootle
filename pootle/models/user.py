@@ -129,6 +129,15 @@ class User(AbstractBaseUser):
         """
         return _humanize_score(getattr(self, 'total_score', self.score))
 
+    @property
+    def has_contact_details(self):
+        """Returns ``True`` if any contact details have been set."""
+        return bool(self.website or self.twitter or self.linkedin)
+
+    @property
+    def twitter_url(self):
+        return 'https://twitter.com/{0}'.format(self.twitter)
+
     @cached_property
     def email_hash(self):
         try:
@@ -394,3 +403,50 @@ class User(AbstractBaseUser):
             contributions.append((language, tp_user_stats))
 
         return contributions
+
+    def top_language(self, days=30):
+        """Returns the top language the user has contributed to and its
+        position.
+
+        "Top language" is defined as the language with the highest
+        aggregate score delta within the last `days` days.
+
+        :param days: period of days to account for scores.
+        :return: Tuple of `(position, Language)`. If there's no delta in
+            the score for the given period for any of the languages,
+            `(-1, None)` is returned.
+        """
+        position = -1
+
+        now = datetime.datetime.now()
+        past = now + datetime.timedelta(-days)
+
+        sum_field = 'translationproject__submission__scorelog__score_delta'
+        lookup_kwargs = {
+            'translationproject__submission__scorelog__user': self,
+            'translationproject__submission__scorelog__creation_time__range':
+                [past, now]
+        }
+
+        try:
+            language = Language.objects.filter(**lookup_kwargs) \
+                                       .annotate(score=Sum(sum_field)) \
+                                       .order_by('-score')[0]
+        except IndexError:
+            language = None
+
+        if language is not None:
+            language_scorers = self.top_scorers(language=language.code,
+                                                days=days, limit=None)
+            for index, user in enumerate(language_scorers, start=1):
+                if user == self:
+                    position = index
+                    break
+
+        return (position, language)
+
+    def last_event(self):
+        """Returns the latest submission linked with this user. If there's
+        no activity, `None` is returned instead.
+        """
+        return Submission.objects.filter(submitter=self).latest()
