@@ -31,19 +31,6 @@ from ..utils import formset_dict
 PROJECTS_ADMIN_URL = reverse_lazy('pootle-admin-projects')
 
 
-def test_project_list(admin_client, tutorial):
-    """Tests that the admin project list contains the DB projects."""
-    response = admin_client.get(PROJECTS_ADMIN_URL)
-
-    project_admin_url = reverse('pootle-project-admin-languages',
-                                args=[tutorial.code])
-    project_admin_link = ''.join([
-        '<a href="', project_admin_url, '">tutorial</a>'
-    ])
-
-    assert project_admin_link in response.content
-
-
 def test_add_project(admin_client, english, tutorial):
     """Tests that we can add a project successfully."""
     new_project_code = 'test-project'
@@ -74,6 +61,19 @@ def test_add_project(admin_client, english, tutorial):
     assert test_project.checkstyle == add_dict['checkstyle']
     assert test_project.localfiletype == add_dict['localfiletype']
     assert test_project.treestyle == add_dict['treestyle']
+
+
+def test_project_list(admin_client, tutorial):
+    """Tests that the admin project list contains the DB projects."""
+    response = admin_client.get(PROJECTS_ADMIN_URL)
+
+    project_admin_url = reverse('pootle-project-admin-languages',
+                                args=[tutorial.code])
+    project_admin_link = ''.join([
+        '<a href="', project_admin_url, '">tutorial</a>'
+    ])
+
+    assert project_admin_link in response.content
 
 
 @pytest.mark.django_db
