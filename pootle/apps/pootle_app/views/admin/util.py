@@ -160,7 +160,6 @@ def process_modelformset(request, model_class, queryset, **kwargs):
     if request.method == 'POST' and request.POST:
         # Create a formset from all the 'model_class' instances whose values
         # will be updated using the contents of request.POST
-        objects = paginate(request, queryset)
         formset = formset_class(request.POST, queryset=objects.object_list)
 
         # Validate all the forms in the formset
