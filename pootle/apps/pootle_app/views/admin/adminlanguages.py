@@ -21,7 +21,7 @@
 from django.core.urlresolvers import reverse
 
 from pootle.core.decorators import admin_required
-from pootle_app.admin import MyLanguageAdminForm
+from pootle_app.forms import LanguageAdminForm
 from pootle_app.views.admin import util
 from pootle_language.models import Language
 
@@ -35,5 +35,5 @@ def view(request):
         return '<a href="%s">%s</a>' % (url, language)
 
     return util.edit(request, 'admin/languages.html', Language,
-                     link=generate_link, form=MyLanguageAdminForm,
+                     link=generate_link, form=LanguageAdminForm,
                      exclude='description', can_delete=True)
