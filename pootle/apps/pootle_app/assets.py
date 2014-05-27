@@ -78,6 +78,7 @@ css_common = Bundle(
     'css/buttons.css',
     'css/contact.css',
     'css/magnific-popup.css',
+    'css/navbar.css',
     'css/tipsy.css',
     'css/markup.css',
     'css/sprite.css',
