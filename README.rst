@@ -1,5 +1,7 @@
 Pootle
 ======
+.. image:: https://api.travis-ci.org/translate/pootle.png
+    :target: https://travis-ci.org/translate/pootle
 
 `Pootle <http://pootle.translatehouse.org/>`_ is an online translation and
 localization tool.  It works to lower the barrier of entry, providing tools to
