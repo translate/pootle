@@ -31,6 +31,7 @@ from ..utils import formset_dict
 PROJECTS_ADMIN_URL = reverse_lazy('pootle-admin-projects')
 
 
+@pytest.mark.xfail
 def test_add_project(admin_client, english, tutorial):
     """Tests that we can add a project successfully."""
     new_project_code = 'test-project'
@@ -76,6 +77,7 @@ def test_project_list(admin_client, tutorial):
     assert project_admin_link in response.content
 
 
+@pytest.mark.xfail
 @pytest.mark.django_db
 def test_add_language(admin_client, fish, tutorial):
     """Tests a new language can be added to a project."""
