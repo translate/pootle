@@ -48,7 +48,6 @@ def _update_translation(store, item, new_values):
     return store.getitem(item)
 
 
-@pytest.mark.django_db
 def test_getorig(af_tutorial_po):
     """Tests that the in-DB Store and on-disk Store match by checking that
     units match in order.
@@ -58,7 +57,6 @@ def test_getorig(af_tutorial_po):
         assert db_unit.getid() == store_unit.getid()
 
 
-@pytest.mark.django_db
 def test_convert(af_tutorial_po):
     """Tests that in-DB and on-disk units match after format conversion."""
     for db_unit in af_tutorial_po.units.iterator():
