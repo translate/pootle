@@ -4,9 +4,7 @@
   <div class="extra-item-content">
     {% if unit.commented_by %}
     <div class="extra-item-gravatar">
-      <a href="{{ unit.commented_by.get_absolute_url }}"><img src="{{ unit.commented_by|gravatar:24 }}"
-        alt="{{ unit.commented_by.username }}" width="24" height="24"
-        title="{{ unit.commented_by.user }}" /></a>
+      {% include 'core/_avatar.html' with user=unit.commented_by %}
     </div>
     {% endif %}
     <div class="extra-item">

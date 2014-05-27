@@ -1,4 +1,4 @@
-{% load i18n locale profile_tags store_tags %}
+{% load i18n locale store_tags %}
 <div id="timeline-results">
   <div class="extra-item-title">{% trans 'Timeline' %}</div>
   {% for entry_group in entries_group %}
@@ -6,7 +6,7 @@
     <div class="extra-item-content">
       {% if entry_group.submitter %}
       <div class="extra-item-gravatar">
-        <a href="{{ entry_group.submitter.get_absolute_url }}"><img src="{{ entry_group.submitter|gravatar:24 }}" alt="{{ entry_group.submitter.username }}" width="24" height="24" title="{{ entry_group.submitter }}" /></a>
+        {% include 'core/_avatar.html' with user=entry_group.submitter %}
       </div>
       {% endif %}
       <div class="extra-item">
@@ -43,7 +43,7 @@
   <div class="extra-item-block">
     <div class="extra-item-content">
       <div class="extra-item-gravatar">
-        <a href="{{ system.get_absolute_url }}"><img src="{{ system|gravatar:24 }}" alt="{{ system.username }}" width="24" height="24" title="{{ system }}" /></a>
+        {% include 'core/_avatar.html' with user=system %}
       </div>
       <div class="extra-item">
         <div class="timeline-field-3">

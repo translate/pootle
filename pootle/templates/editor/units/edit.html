@@ -1,4 +1,4 @@
-{% load i18n baseurl common_tags store_tags cleanhtml cache profile_tags locale %}
+{% load i18n baseurl common_tags store_tags cleanhtml cache locale %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs profile.id LANGUAGE_CODE unit.get_terminology %}
@@ -162,7 +162,7 @@
           <div id="orig{{ unit.index }}" class="translate-translation" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             {% if unit.submitted_by %}
             <div id="target-item-gravatar">
-              <a href="{{ unit.submitted_by.get_absolute_url }}"><img src="{{ unit.submitted_by|gravatar:24 }}" alt="{{ unit.submitted_by.username }}" width="24" height="24" title="{{ unit.submitted_by.user }}" /></a>
+              {% include 'core/_avatar.html' with user=unit.submitted_by %}
             </div>
             {% endif %}
 
@@ -264,9 +264,7 @@
             <div class="extra-item-content">
               {% if sugg.user %}
               <div class="extra-item-gravatar">
-                <a href="{{ sugg.user.get_absolute_url }}"><img src="{{ sugg.user|gravatar:24 }}"
-                  alt="{{ sugg.user.username }}" width="24" height="24"
-                  title="{{ sugg.user }}" /></a>
+                {% include 'core/_avatar.html' with user=sugg.user %}
               </div>
               {% endif %}
               <div class="extra-item">
