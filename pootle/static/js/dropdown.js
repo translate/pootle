@@ -80,19 +80,11 @@ PTL.dropdown = PTL.dropdown || {};
     },
 
     show: function () {
-      if (this.isVisible()) {
-        return false;
-      }
-
-      this.$el.addClass(sel.open);
+      !this.isVisible() && this.$el.addClass(sel.open);
     },
 
     hide: function () {
-      if (!this.isVisible()) {
-        return false;
-      }
-
-      this.$el.removeClass(sel.open);
+      this.isVisible() && this.$el.removeClass(sel.open);
     },
 
     toggle: function (e) {
