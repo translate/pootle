@@ -25,6 +25,7 @@
 }
 
 #navbar a:active,
+#navbar a:focus,
 #navbar a:hover
 {
     color: #f8f8f8;
@@ -126,7 +127,8 @@ html[dir="rtl"] #nav-main li
 
 #nav-main li a,
 #nav-main li a:hover,
-#nav-main li a:active
+#nav-main li a:active,
+#nav-main li a:focus
 {
     color: rgba(255, 255, 255, 0.9);
     display: inline-block;
@@ -143,7 +145,8 @@ html[dir="rtl"] #nav-main li
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-#nav-main li a:active
+#nav-main li a:active,
+#nav-main li a:focus
 {
     background-color: rgba(0, 0, 0, 1);
 }
