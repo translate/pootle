@@ -1960,10 +1960,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
     def _get_last_action(self):
-        last_units = Unit.objects.filter(store=self).order_by('-submitted_on')
+        units = Unit.objects.filter(store=self).order_by('-submitted_on')[:1]
 
         try:
-            sub = Submission.simple_objects.filter(unit=last_units[0]) \
+            sub = Submission.simple_objects.filter(unit=units[0]) \
                                            .order_by('-creation_time')[0]
         except IndexError:
             return {
