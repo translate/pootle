@@ -73,20 +73,16 @@ DATABASES = {
 
 # By default we use Django's database cache which is only suitable
 # for small deployments.
+#
 # If you are going to deploy a real server memcached is preferred. For more
 # information, check
 # http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'pootlecache',
-        'TIMEOUT': 60,
-        'OPTIONS': {
-            'MAX_ENTRIES': 65536,
-            'CULL_FREQUENCY': 16,
-        }
-    }
-}
+#CACHES = {
+#    'default': {
+#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#        'LOCATION': '127.0.0.1:11211',
+#    }
+#}
 
 
 LOGGING = {
