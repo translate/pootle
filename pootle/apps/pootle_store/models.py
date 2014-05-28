@@ -2091,11 +2091,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.state = old_state
             self.save()
 
-    def refresh_stats(self, include_children=True):
-        """This TreeItem method is used on directories, translation projects,
-        languages and projects. For stores do nothing"""
-        return
-
     def update_store_header(self, profile=None):
         language = self.translation_project.language
         source_language = self.translation_project.project.source_language

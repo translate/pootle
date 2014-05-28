@@ -206,25 +206,6 @@ class TreeItem(object):
 
         return result
 
-    def refresh_stats(self, include_children=True):
-        """refresh stats for self and for children"""
-        self.initialize_children()
-
-        if include_children:
-            for item in self.children:
-                item.refresh_stats()
-
-        self.flush_cache(False)
-
-        self.get_total_wordcount()
-        self.get_translated_wordcount()
-        self.get_fuzzy_wordcount()
-        self.get_suggestion_count()
-        self.get_last_action()
-        self.get_checks()
-        self.get_mtime()
-        self.get_last_updated()
-
     @getfromcache
     def get_checks(self):
         result = self._get_checks()
