@@ -74,7 +74,7 @@ DATABASES = {
 
 # Cache Backend settings
 
-# By default we use Django's database cache which is only suitable
+# By default we use Django's local-memory cache which is only suitable
 # for small deployments.
 #
 # If you are going to deploy a real server memcached is preferred. For more

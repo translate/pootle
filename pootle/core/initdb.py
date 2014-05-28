@@ -36,14 +36,6 @@ def initdb():
 
     This creates the default database to get a working Pootle installation.
     """
-
-    try:
-        #FIXME: Should be called only if using cache on DB.
-        # Create default cache table.
-        call_command('createcachetable', 'pootlecache')
-    except:
-        pass
-
     create_revision()
     create_essential_users()
     create_root_directories()
