@@ -1959,23 +1959,23 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
-    def _get_last_action(self, submission=None):
-        if submission is None:
+    def _get_last_action(self):
+        try:
+            max_unit = Unit.objects.filter(store=self) \
+                .aggregate(max_time=models.Max('submitted_on'))
+            max_time = max_unit['max_time']
+            units = Unit.objects.filter(store=self, submitted_on=max_time)
             try:
-                max_unit = Unit.objects.filter(store=self) \
-                    .aggregate(max_time=models.Max('submitted_on'))
-                max_time = max_unit['max_time']
-                units = Unit.objects.filter(store=self, submitted_on=max_time)
-                try:
-                    sub = Submission.simple_objects \
-                                    .filter(unit=units[0]) \
-                                    .order_by('-creation_time')[0]
-                except IndexError:
-                    raise Submission.DoesNotExist
-            except Submission.DoesNotExist:
-                return {'id': 0, 'mtime': 0, 'snippet': ''}
-        else:
-            sub = submission
+                sub = Submission.simple_objects.filter(unit=units[0]) \
+                                               .order_by('-creation_time')[0]
+            except IndexError:
+                raise Submission.DoesNotExist
+        except Submission.DoesNotExist:
+            return {
+                'id': 0,
+                'mtime': 0,
+                'snippet': '',
+            }
 
         return {
             'id': sub.unit.id,
