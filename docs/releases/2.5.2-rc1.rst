@@ -27,6 +27,8 @@ for more details.
   - Fixed failing direct upgrade from 2.1.6 and older that required to perform an
     intermediate upgrade step to 2.5.0.
 
+- The default caching in database has been replaced by local-memory caching.
+  Using memcached is still highly recommended.
 - The registration and authentication layer is now handled by django-allauth.
   This gives Pootle implicit support for OpenID, OAuth, OAuth2 and Persona
   sign-in support.
