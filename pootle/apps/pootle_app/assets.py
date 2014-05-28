@@ -40,6 +40,7 @@ js_common = Bundle(
     'js/captcha.js',
     'js/common.js',
     'js/contact.js',
+    'js/dropdown.js',
     'js/login.js',
     'js/msg.js',
     'js/search.js',

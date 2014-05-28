@@ -27,6 +27,9 @@ Directory contents
   - contact.js :
     Contact form code.
 
+  - dropdown.js :
+    Generic drop-down functionality.
+
   - editor.js :
     Code that sets up the editor and handles all the actions involved there.
     This includes unit navigation, submission, suggestions' handling, copying

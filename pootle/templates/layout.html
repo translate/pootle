@@ -103,6 +103,7 @@
     $(function() {
       {% if user.is_authenticated %}
       PTL.score.init({{ request.user.public_score }});
+      PTL.dropdown.init('.js-navbar-dropdown');
       {% endif %}
 
       $(document).tipsy({
@@ -164,19 +165,24 @@
           <li><a href="{% staticpage_url 'getting-started' %}">{% trans "Getting Started" %}</a></li>
           <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
           {% if user.is_authenticated %}
-          <li id="user">
-            <a href="{{ user.get_absolute_url }}">
-            <img src="{{ user|gravatar:20 }}" />
-            <span>{{ user.username }}</span>
-            <span class="odometer js-score">{{ user.public_score|intcomma }}</span>
+          <li id="user" class="js-navbar-dropdown">
+            <a href="{{ user.get_absolute_url }}" data-action="toggle">
+              <img src="{{ user|gravatar:20 }}" />
+              <span>{{ user.username }}</span>
+              <span class="odometer js-score">{{ user.public_score|intcomma }}</span>
             </a>
+
+            <ul class="dropdown-menu">
+              <li><a href="{{ user.get_absolute_url }}">{% trans 'Public Profile' %}</a></li>
+              <li><a href="{% url 'pootle-profile-edit' %}">{% trans 'Settings' %}</a></li>
+              <li><a href="{% url 'pootle-user-stats' user.username %}">{% trans 'Detailed Statistics' %}</a></li>
+              {% if user.is_superuser %}
+              <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans 'Admin' %}</a></li>
+              {% endif %}
+              <li class="menu-divider"></li>
+              <li><a href="{% url 'pootle-profile-logout' %}">{% trans 'Sign Out' %}</a></li>
+            </ul>
           </li>
-          {% endif %}
-          {% if user.is_superuser %}
-          <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans "Admin" %}</a></li>
-          {% endif %}
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'pootle-profile-logout' %}">{% trans "Sign Out" %}</a></li>
           {% else %}
           <li><a id="js-login" href="{% url 'pootle-profile-login' %}{{ request|get_next }}"><span class="btn btn-success">{% trans "Sign In" %}</span></a></li>
           {% endif %}
