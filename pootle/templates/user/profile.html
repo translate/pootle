@@ -61,7 +61,7 @@
       {% if not profile.has_contact_details or not profile.bio %}
         <div class="user-bio placeholder">{% trans 'Show others who you are, tell about yourself<br/>and make your public profile look gorgeous!' %}</div>
       {% endif %}
-      <div class="edit-profile-btn"><a href="{% url 'pootle-profile-edit' %}" class="btn btn-primary">{% trans 'Edit My Public Profile' %}</a></div>
+      <div class="edit-profile-btn"><a href="{% url 'pootle-profile-personal-edit' %}" class="btn btn-primary">{% trans 'Edit My Public Profile' %}</a></div>
     {% endif %}
   </div>
   {% endif %}
