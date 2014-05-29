@@ -14,12 +14,10 @@ the future we have to take a different approach for this.
   {% trans "News" %} |
   {% if directory.is_language %}
     {{ directory.language.name }}
+  {% elif directory.is_project %}
+    {{ directory.project.fullname }} | {% trans "Projects" %}
   {% else %}
-    {% if directory.is_project %}
-      {{ directory.project.fullname }} | {% trans "Projects" %}
-    {% else %}
-      {{ directory.translation_project.project.fullname }} | {{ directory.translation_project.language.fullname }}
-    {% endif %}
+    {{ directory.translation_project.project.fullname }} | {{ directory.translation_project.language.fullname }}
   {% endif %}
   | {{ block.super }}
 {% endblock %}
