@@ -9,7 +9,9 @@
 
 {% block body_id %}profile{% endblock %}
 
-{% block section_description %}{% trans "Here you can change your personal details. This information will be used in the header of the translation files." %}{% endblock %}
+{% block section_description %}
+	{% trans "Here you can change your personal details. After clicking the 'Save' button you will be redirected to your public profile page to see your changes in action." %}
+{% endblock %}
 
 {% block section_body %}
 <form method="post" action="">
