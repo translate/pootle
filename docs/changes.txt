@@ -1,0 +1,1 @@
+apps/pootle_app/views/admin: exclude=('description'),can_delete=True,)
