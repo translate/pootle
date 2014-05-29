@@ -101,8 +101,13 @@
 #user-details
 {
     background-color: #f5fbfd;
-    padding: 2em;
+    padding: 1em 2em;
     font-size: 1.5em;
+}
+
+#user-details .user-contact
+{
+    margin: 1em 0;
 }
 
 #user-details .user-contact i
@@ -140,7 +145,7 @@
 
 #user-details .edit-profile-btn
 {
-    margin-top: 2em;
+    margin: 2em 0 1em 0;
 }
 
 
