@@ -98,7 +98,7 @@ class UserSettingsView(UserUpdateView):
 
 
 class UserProfileView(UserUpdateView):
-    fields = ('full_name', 'email')
+    fields = ('full_name', 'email', 'twitter', 'linkedin', 'website', 'bio')
     template_name = 'profiles/settings/personal.html'
 
 
