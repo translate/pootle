@@ -492,7 +492,8 @@ class Unit(models.Model, base.TranslationUnit):
         if not self.id:
             self._save_action = log.UNIT_ADDED
 
-        unit_update_cache(self)
+        if kwargs.get("update_cache", True):
+            unit_update_cache(self)
 
         if self.id:
             if hasattr(self, '_save_action'):
@@ -1472,7 +1473,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
     @commit_on_success
     def update(self, update_structure=False, update_translation=False,
-               store=None, fuzzy=False, only_newer=False, modified_since=0):
+               store=None, fuzzy=False, only_newer=False, modified_since=0,
+               update_cache=True):
         """Update DB with units from file.
 
         :param update_structure: Whether to update store's structure by marking
@@ -1486,6 +1488,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             disk after the last sync.
         :param modified_since: Don't update translations that have been
             modified since the given change ID.
+        :param update_cache: If False, do not update the statistics cache. Set
+            this to False if doing a mass update.
         """
         self.clean_stale_lock()
 
@@ -1549,7 +1553,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     unit.store = self
                     if unit.istranslated():
                         unit.makeobsolete()
-                        unit.save()
+                        unit.save(update_cache=update_cache)
                     else:
                         unit.delete()
 
@@ -1562,7 +1566,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     if fuzzy and not filter(None, newunit.target.strings):
                         match_unit = newunit.fuzzy_translate(matcher)
                         if match_unit:
-                            newunit.save()
+                            newunit.save(update_cache=update_cache)
                             self._remove_obsolete(match_unit.source)
 
             if update_translation or modified_since:
@@ -1632,7 +1636,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         if create_subs:
                             unit.submitted_by = system
                             unit.submitted_on = timezone.now()
-                        unit.save()
+                        unit.save(update_cache=update_cache)
                         # check unit state after saving
                         if old_unit_state != unit.state:
                             create_subs[SubmissionFields.STATE] = [old_unit_state,
