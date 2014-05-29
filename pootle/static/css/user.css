@@ -126,9 +126,19 @@
 {
     font-family: "webfont_light_italic", sans-serif;
     font-weight: normal;
-    line-height: 2;
+    line-height: 1.6;
     max-width: 750px;
-    margin: 0 auto;
+    margin: 1em auto;
+}
+
+#user-details .user-bio.placeholder
+{
+    color: #4dbdcb;
+}
+
+#user-details .edit-profile-btn
+{
+    margin-top: 2em;
 }
 
 

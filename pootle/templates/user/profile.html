@@ -13,9 +13,6 @@
     <img src="{{ profile|gravatar:150 }}" width="150" height="150"
     {% if user == profile %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endif %} />
     <h1 class="user-name">{{ profile.display_name }}</h1>
-    {% if user == profile %}
-    <div><a href="{% url 'pootle-profile-edit' %}" class="btn btn-primary">{% trans 'Edit Profile' %}</a></div>
-    {% endif %}
   </div>
 
   <div id="user-stats">
@@ -42,7 +39,7 @@
     {% endwith %}
   </div>
 
-  {% if profile.bio or profile.has_contact_details %}
+  {% if profile.bio or profile.has_contact_details or user == profile %}
   <div id="user-details">
     {% if profile.has_contact_details %}
     <ul class="user-contact">
@@ -58,7 +55,13 @@
     </ul>
     {% endif %}
     {% if profile.bio %}
-    <div class="user-bio">{{ profile.bio }}</div>
+    <div class="user-bio">&ldquo;{{ profile.bio }}&rdquo;</div>
+    {% endif %}
+    {% if user == profile %}
+      {% if not profile.has_contact_details or not profile.bio %}
+        <div class="user-bio placeholder">{% trans 'Show others who you are, tell about yourself<br/>and make your public profile look gorgeous!' %}</div>
+      {% endif %}
+      <div class="edit-profile-btn"><a href="{% url 'pootle-profile-edit' %}" class="btn btn-primary">{% trans 'Edit My Public Profile' %}</a></div>
     {% endif %}
   </div>
   {% endif %}
