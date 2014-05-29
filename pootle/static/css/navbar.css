@@ -156,7 +156,8 @@ html[dir="rtl"] #nav-main > li
     background-color: rgba(0, 0, 0, 1);
 }
 
-#nav-main a.admin
+#nav-main a.admin,
+#nav-main a.admin:hover
 {
     color: #f33;
 }
