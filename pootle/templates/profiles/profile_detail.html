@@ -48,7 +48,7 @@
             </thead>
             <tbody>
             {% for tp, stats in tp_user_stats %}
-              <tr class="item {% cycle 'even' 'odd' %}">
+              <tr class="item">
                 <td><a href="{{ tp.get_absolute_url }}">{{ tp.project }}</a></td>
                 {% for stat_item in stats %}
                 {% if stat_item.count != 0 %}

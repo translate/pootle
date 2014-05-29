@@ -39,7 +39,7 @@
       </tr>
       </thead>
       {% for form in formset.forms %}
-      <tr class="{% cycle 'even' 'odd' %}">
+      <tr class="item">
         {% render_term_edit form %}
         <td class="DELETE">{% for hidden_field in form.hidden_fields %}{{ hidden_field }}{% endfor %}
           {{ form.DELETE }}

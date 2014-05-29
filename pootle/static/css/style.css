@@ -920,9 +920,6 @@ html[dir="rtl"] td.username
     padding-right: 5px;
 }
 
-tr.even,
-td.even,
-li.even,
 tr.view-row:nth-child(odd),
 tr.item:nth-child(odd)
 {

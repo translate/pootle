@@ -11,7 +11,7 @@
       <div class="overview-actions-content">
         <ul>
         {% for action in action_group.actions %}
-        <li class="{% cycle 'odd' 'even' %}">
+        <li>
           <a href="{{ action.href }}" title="{{ action.tooltip }}"
           {% if action.class %} class="{{ action.class }}"{% endif %}>
           <i class="{{ action.icon }}"></i> <span>{{ action.text }}</span></a>
