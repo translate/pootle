@@ -498,23 +498,15 @@ html[dir="rtl"] #nav-main li
     float: right;
 }
 
-#nav-main li a
-{
-    display: block;
-    font-size: 12px;
-    padding: 12px;
-}
-
 #nav-main li a,
 #nav-main li a:hover,
 #nav-main li a:active
 {
-    line-height: 2em;
     display: inline-block;
     margin-left: 0.5em;
     text-decoration: none;
     border-radius: 3px;
-    padding: 0.5em 1em;
+    padding: 0 1em;
     font-size: 1.1em;
 }
 
@@ -681,7 +673,6 @@ html[dir="rtl"] #sidebar
 #sidebar.sidebar-open #staticpage
 {
     display: block;
-    margin: 0;
 }
 
 .sidebar-open #sidebar-toggle:after
@@ -891,7 +882,7 @@ button.close
     padding: 0 0 4em;
     position: relative;
     width: 100%;
-    overflow: hidden;
+    display: inline-block;
     /* height calculated via js */
 }
 
@@ -1312,8 +1303,8 @@ ul.errorlist
  * STATIC PAGES, ABOUT, CONTRIBUTORS
  */
 
-#staticpage,
-#about
+#about,
+#staticpage
 {
     margin: 2em auto;
     padding: 0 2em;
@@ -2044,7 +2035,7 @@ html[dir="rtl"] #overview-actions-translate-offline li.odd
 #progressbar table.graph
 {
     width: 100%;
-    position: relative;
+    position: absolute;
 }
 
 .path-summary-more
