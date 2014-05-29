@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -32,21 +32,18 @@ def _agreement_context(request):
     request_path = request.META['PATH_INFO']
     nocheck = filter(lambda x: request_path.startswith(x),
                      settings.LEGALPAGE_NOCHECK_PREFIXES)
-    display_agreement = False
 
     if (request.user.is_authenticated() and not nocheck and
         LegalPage.objects.pending_user_agreement(request.user).exists()):
-        display_agreement = True
+        return True
 
-    return {
-        'display_agreement': display_agreement,
-    }
+    return False
 
 
 def pootle_context(request):
     """Exposes settings to templates."""
     #FIXME: maybe we should expose relevant settings only?
-    context = {
+    return {
         'settings': {
             'TITLE': get_site_title(),
             'DESCRIPTION':  get_site_description(),
@@ -58,13 +55,7 @@ def pootle_context(request):
             'DEBUG': settings.DEBUG,
         },
         'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
-    }
-
-    context.update({
         'ALL_LANGUAGES': Language.live.cached(),
         'ALL_PROJECTS': Project.objects.cached(),
-    })
-
-    context.update(_agreement_context(request))
-
-    return context
+        'display_agreement': _agreement_context(request),
+    }
