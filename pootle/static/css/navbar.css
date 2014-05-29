@@ -22,6 +22,7 @@
 {
     color: #c1e1ee;
     text-decoration: none;
+    outline: none;
 }
 
 #navbar a:active,
