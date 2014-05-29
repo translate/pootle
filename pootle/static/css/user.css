@@ -107,12 +107,14 @@
 {
     vertical-align: middle;
     margin-right: 0.5em;
+    position: relative;
+    top: -2px;    
 }
 
 #user-details .user-contact li
 {
     display: inline-block;
-    width: 250px;
+    margin: 0 2em;
 }
 
 .user-contact + .user-bio
