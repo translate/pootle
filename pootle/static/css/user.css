@@ -75,17 +75,19 @@
 #user-stats .user-last-activity
 {
     margin-bottom: 3em;
+    font-size: 1.1em;
 }
 
 #user-stats .user-last-activity .label
 {
-    color: #ccc;
+    color: #999;
+    display: inline;
+    margin-right: 0.5em;
 }
 
 #user-stats .last-action
 {
     display: inline;
-    font-size: 1.1em;
 }
 
 #user-stats .last-action img
