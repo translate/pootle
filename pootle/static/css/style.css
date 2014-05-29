@@ -1842,6 +1842,7 @@ table tfoot,
 table.sortable th
 {
     cursor: pointer;
+    white-space: nowrap;
 }
 
 table.sortable th i
