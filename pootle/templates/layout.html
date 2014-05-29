@@ -168,7 +168,7 @@
           <li id="user" class="js-navbar-dropdown">
             <a href="{{ user.get_absolute_url }}" data-action="toggle">
               <img src="{{ user|gravatar:20 }}" />
-              <span>{{ user.username }}</span>
+              <span>{{ user.display_name }}</span>
               <span class="odometer js-score">{{ user.public_score|intcomma }}</span>
             </a>
 
