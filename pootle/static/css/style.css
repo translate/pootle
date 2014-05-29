@@ -1323,68 +1323,9 @@ ul.errorlist
     max-width: 960px;
 }
 
-#about .document h1
-{
-    margin-top: .5em;
-    margin-bottom: .25em;
-}
-
-#about h2,
-#about h3
-{
-    border-bottom: 1px solid #eee;
-}
-
-#about h3
-{
-    margin-top: 1.5em;
-}
-
 #about p
 {
     margin: 1em 0;
-}
-
-#about ol,
-#about ul
-{
-    margin: 1em 1.5em;
-}
-
-#about ul li
-{
-    list-style-type: square;
-}
-
-#about ol li
-{
-    list-style-type: inherit;
-}
-
-#about dfn
-{
-    border-bottom: 1px dotted #130f30;
-}
-
-#about .sidenote
-{
-    width: 10em;
-    font-size: 95%;
-    background-color: #ffe;
-    padding: 0 1em;
-    border: 1px dashed #cc9;
-    margin-top: 4em;
-    color: #777;
-}
-
-#about .sidenote p
-{
-    line-height: 130%;
-}
-
-#about .sidenote li
-{
-    margin: 0.2em 0;
 }
 
 #staticpage h1
