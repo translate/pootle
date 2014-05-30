@@ -24,14 +24,26 @@
 {% if not profile.is_meta %}
   <div id="user-stats">
     <h2 class="user-score-title">{% trans 'Score:' %}</h2>
-    <h3 class="user-score">{{ profile.public_score|intcomma }}</h3>
+    <h3 class="user-score">
+      {% if user == profile and profile.public_score > 0 %}
+        <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.TITLE score=profile.public_score|intcomma %}My current score at {{ server_title }} is {{ score }} {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">{{ profile.public_score|intcomma }}</a>
+      {% else %}
+        {{ profile.public_score|intcomma }}
+      {% endif %}
+    </h3>
 
     <h3 class="user-position">
     {% with pos=profile.top_language.0 lang=profile.top_language.1 %}
     {% if pos == -1 %}
       {% trans 'No contributions in the last month' %}
     {% else %}
-      {% blocktrans with lang_name=lang.fullname url=lang.get_absolute_url %}#{{ pos }} contributor in <a href="{{ url }}">{{ lang_name }}</a> for this month{% endblocktrans %}
+      {% if user == profile %}
+        <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.TITLE lang_name=lang.fullname url=lang.get_absolute_url %}I am #{{ pos }} contributor in {{ lang_name }} for this month at {{ server_title }}! {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">
+          {% blocktrans with lang_name=lang.fullname %}#{{ pos }} contributor in {{ lang_name }} for this month{% endblocktrans %}
+        </a>
+      {% else %}
+        {% blocktrans with lang_name=lang.fullname url=lang.get_absolute_url %}#{{ pos }} contributor in <a href="{{ url }}">{{ lang_name }}</a> for this month{% endblocktrans %}
+      {% endif %}
     {% endif %}
     {% endwith %}
     </h3>
