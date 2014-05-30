@@ -22,7 +22,7 @@
     <h3 class="user-position">
     {% with pos=profile.top_language.0 lang=profile.top_language.1 %}
     {% if pos == -1 %}
-      {% trans 'No contributions in the last month!' %}
+      {% trans 'No contributions in the last month' %}
     {% else %}
       {% blocktrans with lang_name=lang.fullname url=lang.get_absolute_url %}#{{ pos }} contributor in <a href="{{ url }}">{{ lang_name }}</a> for this month{% endblocktrans %}
     {% endif %}
