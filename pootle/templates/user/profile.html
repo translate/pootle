@@ -12,9 +12,16 @@
   <div id="user-meta">
     <img src="{{ profile|gravatar:150 }}" width="150" height="150"
     {% if user == profile %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endif %} />
-    <h1 class="user-name">{{ profile.display_name }}</h1>
+    <h1 class="user-name">
+      {% if profile.is_anonymous %}
+        {% trans 'Anonymous User' %}
+      {% else %}
+        {{ profile.display_name }}
+      {% endif %}
+    </h1>
   </div>
 
+{% if not profile.is_meta %}
   <div id="user-stats">
     <h2 class="user-score-title">{% trans 'Score:' %}</h2>
     <h3 class="user-score">{{ profile.public_score|intcomma }}</h3>
@@ -65,6 +72,20 @@
     {% endif %}
   </div>
   {% endif %}
+{% else %}
+  <div id="user-details" class="meta-user">
+    <div class="user-bio placeholder">
+    {% if profile.is_anonymous %}
+      {% trans 'Some translations are provided by anonymous volunteers. These are registered under this special meta-account.' %}
+    {% elif profile.is_system %}
+      {% trans 'Some translations are imported from external files. These are registered under this special meta-account.' %}
+    {% else %}
+      {{ profile.bio }}
+    {% endif%}
+    </div>
+  </div>
+{% endif %}
+
 </div>
 {% endblock %}
 

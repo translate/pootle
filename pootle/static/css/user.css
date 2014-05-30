@@ -105,6 +105,11 @@
     font-size: 1.5em;
 }
 
+#user-details.meta-user
+{
+    margin-top: 2em;
+}
+
 #user-details .user-contact
 {
     margin: 1em 0;
@@ -115,7 +120,7 @@
     vertical-align: middle;
     margin-right: 0.5em;
     position: relative;
-    top: -2px;    
+    top: -2px;
 }
 
 #user-details .user-contact li
