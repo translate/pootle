@@ -181,7 +181,8 @@ Directory contents
         Lightbox overlay popups to display all sorts of content: images,
         HTML, AJAX data, ...
 
-        Using v0.9.8.
+        Using v0.9.9 built with their 'Build Tool' with the following features:
+        Inline, Image, Ajax, Iframe, Gallery, High-DPI.
 
         http://dimsemenov.com/plugins/magnific-popup/
 
