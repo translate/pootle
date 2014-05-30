@@ -220,6 +220,18 @@ class User(AbstractBaseUser):
     def get_absolute_url(self):
         return reverse('pootle-profile', args=[self.username])
 
+    def is_anonymous(self):
+        """Returns `True` if this is an anonymous user.
+
+        Since we treat the `nobody` user as special anonymous-like user,
+        we can't rely on `auth.User` model's `is_authenticated()` method.
+        """
+        return True if self.username == 'nobody' else False
+
+    def is_system(self):
+        """Returns `True` if this is the special `system` user."""
+        return True if self.username == 'system' else False
+
     def get_full_name(self):
         """Returns the user's full name."""
         return self.full_name.strip()
