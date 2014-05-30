@@ -1233,8 +1233,6 @@ class Unit(models.Model, base.TranslationUnit):
 
 ###################### Store ###########################
 
-GET_FILE_MTIME = "get_file_mtime"
-
 # custom storage otherwise django assumes all files are uploads headed to
 # media dir
 fs = FileSystemStorage(location=settings.PODIRECTORY)
@@ -1270,7 +1268,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             db_index=True, verbose_name=_("Path"))
     name = models.CharField(max_length=128, null=False, editable=False)
 
-    sync_time = models.DateTimeField(default=datetime_min)
+    file_mtime = models.DateTimeField(default=datetime_min)
     state = models.IntegerField(null=False, default=NEW, editable=False,
             db_index=True)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
@@ -1323,17 +1321,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         pass
 
     ############################ Methods ######################################
-
-    @property
-    def file_mtime(self):
-        key = iri_to_uri(self.get_cachekey() + ":%s" % GET_FILE_MTIME)
-        return cache.get(key)
-
-    @file_mtime.setter
-    def file_mtime(self, value):
-        timeout = settings.OBJECT_CACHE_TIMEOUT
-        key = iri_to_uri(self.get_cachekey() + ":%s" % GET_FILE_MTIME)
-        cache.set(key, value, timeout)
 
     @cached_property
     def path(self):
@@ -1501,7 +1488,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 raise
 
             self.state = PARSED
-            self.sync_time = self.get_mtime()
             self.save()
             return
 
@@ -1747,7 +1733,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.update_store_header(user=user)
             self.file.savestore()
             self.file_mtime = self.get_file_mtime()
-            self.sync_time = timezone.now()
             self.last_sync_revision = last_revision
 
             self.save()
@@ -1829,7 +1814,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.update_store_header(user=user)
             self.file.savestore()
             self.file_mtime = self.get_file_mtime()
-            self.sync_time = timezone.now()
 
             log(u"[sync] File saved; %s units in %s [revision: %d]" %
                 (get_change_str(changes), self.pootle_path, last_revision))
