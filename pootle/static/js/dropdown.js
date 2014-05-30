@@ -35,6 +35,8 @@ PTL.dropdown = PTL.dropdown || {};
       this.$toggle = this.$(sel.data.toggle);
       this.$target = this.$(sel.target);
 
+      this.$target.css('width', this.$el.width());
+
       $(document).on('click.PTL.dropdown', this.hide.bind(this));
     },
 
