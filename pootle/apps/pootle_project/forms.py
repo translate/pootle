@@ -26,13 +26,6 @@ from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 
 
-class DescriptionForm(forms.ModelForm):
-
-    class Meta:
-        model = Project
-        fields = ("fullname", "description")
-
-
 def tp_form_factory(current_project):
 
     class TranslationProjectForm(forms.ModelForm):
