@@ -161,16 +161,6 @@ class Command(PootleCommand):
         if calculate_checks:
             logging.info('Calculating quality checks for all units...')
 
-            checks_query = QualityCheck.objects.filter(false_positive=False)
-            if unit_fk_filter:
-                checks_query = checks_query.filter(**unit_fk_filter)
-
-            if check_names:
-                checks_query = checks_query.filter(name__in=check_names)
-
-            # delete not false-positive checks
-            # they should be recalculated
-            checks_query.delete()
             QualityCheck.delete_unknown_checks()
 
             unit_count = 0
