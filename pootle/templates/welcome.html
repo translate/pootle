@@ -28,10 +28,12 @@
     <!-- centered column -->
     <div class="column center">
 
+      {% if top_scorers %}
       <div class="section">
         <h1>{% trans 'Top Contributors This Month' %}</h1>
         {% top_scorers %}
       </div>
+      {% endif %}
 
     </div>
     <!-- / centered column -->
