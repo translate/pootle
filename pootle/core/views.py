@@ -22,7 +22,7 @@
 
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 
@@ -46,6 +46,17 @@ class LoginRequiredMixin(object):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
+
+
+class NoDefaultUserMixin(object):
+    """Removes the `default` special user from views."""
+    def dispatch(self, request, *args, **kwargs):
+        username = kwargs.get('username', None)
+        if username is not None and username == 'default':
+            raise Http404
+
+        return super(NoDefaultUserMixin, self) \
+            .dispatch(request, *args, **kwargs)
 
 
 class AjaxResponseMixin(object):

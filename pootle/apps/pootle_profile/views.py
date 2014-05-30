@@ -30,13 +30,13 @@ from django.utils.http import is_safe_url
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import TemplateView, UpdateView
 
-from pootle.core.views import LoginRequiredMixin
+from pootle.core.views import LoginRequiredMixin, NoDefaultUserMixin
 
 
 User = auth.get_user_model()
 
 
-class UserStatsView(TemplateView):
+class UserStatsView(NoDefaultUserMixin, TemplateView):
     template_name = 'user/stats.html'
 
     def dispatch(self, *args, **kwargs):
@@ -59,7 +59,7 @@ class UserStatsView(TemplateView):
         }
 
 
-class UserDetailView(TemplateView):
+class UserDetailView(NoDefaultUserMixin, TemplateView):
     template_name = 'user/profile.html'
 
     def get_context_data(self, **kwargs):
