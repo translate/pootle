@@ -45,6 +45,8 @@ from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 
+SPECIAL_USERS = ('nobody', 'system')
+
 CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'))
 
 
@@ -137,6 +139,11 @@ class User(AbstractBaseUser):
     @property
     def twitter_url(self):
         return 'https://twitter.com/{0}'.format(self.twitter)
+
+    @cached_property
+    def is_meta(self):
+        """Returns `True` if this is a special fake user."""
+        return self.username in SPECIAL_USERS
 
     @cached_property
     def email_hash(self):
