@@ -1633,11 +1633,6 @@ html[dir="rtl"] td.stats-name,
     width: 100%;
 }
 
-.checks a
-{
-    color: #c00;
-}
-
 .checks h4
 {
     padding: 1em 0 0.5em;
@@ -1672,6 +1667,7 @@ html[dir="rtl"] .check-count
 #check-100 a
 {
     font-weight: bold;
+    color: #c00;
 }
 
 
