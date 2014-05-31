@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2009 Zuza Software Foundation
+# Copyright 2008-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -23,6 +23,10 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
 
+register = template.Library()
+
+
+@register.filter
 def render_pager(pager):
     """Render a pager block with next and previous links"""
     if not pager.has_other_pages():
@@ -54,6 +58,3 @@ def render_pager(pager):
 
     result += '</ul>'
     return mark_safe(result)
-
-register = template.Library()
-register.filter('render_pager', render_pager)
