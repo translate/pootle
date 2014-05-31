@@ -61,12 +61,14 @@ for more details.
   browsers. More on :ref:`Supported Browsers <browsers>`.
 - Changed the format of the files accepted by the ``add_project_goals``
   management command.
+- Added improved logging of actions inside Pootle.
 - Big revamp of UI:
 
   - We now have a wide stats table that shows the same data in the different
     levels. This affects several features which are now relocated in a sidebar:
     actions, instructions or current goal.
   - New navigation scheme using dropdowns.
+  - Removed zoom feature. Now users should rely on their browsers.
 
 - Editor changes:
 
