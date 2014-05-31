@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Zuza Software Foundation
+# Copyright 2013-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -20,7 +20,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
-from django.template.defaultfilters import stringfilter
 
 
 register = template.Library()
