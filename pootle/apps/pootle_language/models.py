@@ -170,8 +170,3 @@ class Language(models.Model, TreeItem):
         return self.directory.pootle_path
 
     ### /TreeItem
-
-    def translated_percentage(self):
-        total = max(self.get_total_wordcount(), 1)
-        translated = self.get_translated_wordcount()
-        return int(100.0 * translated / total)

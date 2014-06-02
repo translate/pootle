@@ -381,12 +381,6 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
     ### /TreeItem
 
-    def translated_percentage(self):
-        total = self.get_total_wordcount()
-        translated = self.get_translated_wordcount()
-        max_words = max(total, 1)
-        return int(100.0 * translated / max_words)
-
     def get_real_path(self):
         return absolute_real_path(self.code)
 
