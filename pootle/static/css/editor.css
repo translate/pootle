@@ -636,6 +636,7 @@ html[dir="rtl"] .unit-meta
 .extra-item-meta
 {
     float: right;
+    margin-bottom: 0.5em;
 }
 
 html[dir="rtl"] .extra-item-meta
