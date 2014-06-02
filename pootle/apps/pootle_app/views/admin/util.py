@@ -154,23 +154,23 @@ def process_modelformset(request, model_class, queryset, **kwargs):
     if queryset is None:
         queryset = model_class.objects.all()
 
-    objects = paginate(request, queryset)
-
     # If the request is a POST, we want to possibly update our data
     if request.method == 'POST' and request.POST:
         # Create a formset from all the 'model_class' instances whose values
         # will be updated using the contents of request.POST
+        objects = paginate(request, queryset)
         formset = formset_class(request.POST, queryset=objects.object_list)
 
         # Validate all the forms in the formset
         if formset.is_valid():
             # If all is well, Django can save all our data for us
             formset.save()
-            return formset, None, objects
+        else:
+            # Otherwise, complain to the user that something went wrong
+            return formset, _("There are errors in the form. Please review "
+                              "the problems below."), objects
 
-        # Otherwise, complain to the user that something went wrong
-        return formset, _("There are errors in the form. Please review "
-                          "the problems below."), objects
+    objects = paginate(request, queryset)
 
     return formset_class(queryset=objects.object_list), None, objects
 
