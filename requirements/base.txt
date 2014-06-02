@@ -2,7 +2,7 @@ Django>=1.6.4,<1.7
 
 # Django apps
 South>=0.8.4
-django-assets>=0.8
+-e git://github.com/miracle2k/django-assets.git#egg=django-assets
 django-contact-form==1.0
 django-maintenancemode
 
