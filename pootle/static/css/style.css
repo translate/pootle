@@ -27,14 +27,6 @@
  */
 
 /*
- * TEMPORARILY FAILING CHECKS
-*/
-.stats-checks
-{
-    display: none !important;
-}
-
-/*
  * BASIC ELEMENT STYLING
  */
 
@@ -1253,8 +1245,9 @@ html[dir="rtl"] td.stats-name,
 
 .check-name
 {
-    width: 10em;
+    width: 12em;
     display: inline-block;
+    height: 4em;
 }
 
 .check-count
@@ -1263,6 +1256,7 @@ html[dir="rtl"] td.stats-name,
     width: 3em;
     padding-right: 6em;
     display: inline-block;
+    vertical-align: top;
  }
 
 html[dir="rtl"] .check-count
@@ -1270,12 +1264,6 @@ html[dir="rtl"] .check-count
     padding-right: 0;
     padding-left: 5%;
 }
-
-#check-100 a
-{
-    font-weight: bold;
-}
-
 
 div.small
 {
