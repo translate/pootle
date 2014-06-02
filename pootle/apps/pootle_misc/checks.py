@@ -236,8 +236,6 @@ class ENChecker(checks.TranslationChecker):
 
     @critical
     def android_format(self, str1, str2):
-        fmt = u"%\d+\$[a-z]+"
-        regex = re.compile(u"(%s)" % fmt, re.U)
         return _generic_check(str1, str2, android_format_regex,
                               u"android_format")
 
