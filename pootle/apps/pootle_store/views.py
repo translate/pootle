@@ -547,12 +547,6 @@ def timeline(request, unit):
     # Let's reverse the chronological order
     entries_group.reverse()
 
-    # May be better to show all translations?
-    # Remove first timeline item if it's solely a change to the target
-    #if (entries_group and len(entries_group[0]['entries']) == 1 and
-    #    entries_group[0]['entries'][0]['field'] == SubmissionFields.TARGET):
-    #    del entries_group[0]
-
     context['entries_group'] = entries_group
 
     if request.is_ajax():
@@ -784,12 +778,6 @@ def submit(request, unit):
                         mt_similarity=form.cleaned_data['mt_similarity'],
                 )
                 sub.save()
-                #TODO:
-                # uncomment if we need to calculate last_action directly
-                # after saving
-                #if field == ... ?
-                #last_action = form.instance.store._get_last_action(sub)
-                #form.instance.store.set_last_action(last_action)
 
             # Update current unit instance's attributes
             # important to set these attributes after saving Submission
