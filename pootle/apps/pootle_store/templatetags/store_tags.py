@@ -197,14 +197,6 @@ def pluralize_diff_sugg(sugg):
         return [(0, sugg.target, call_highlight(unit.target, sugg.target), None)]
 
 
-IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))")
-
-@register.filter
-def image_urls(text):
-    """Returns a list of image URLs extracted from `text`."""
-    return map(lambda x: x[0], IMAGE_URL_RE.findall(text))
-
-
 def do_include_raw(parser, token):
     """
     Performs a template include without parsing the context, just dumps

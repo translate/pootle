@@ -220,6 +220,8 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
         return user_projects
 
+    ############################ Properties ###################################
+
     @property
     def name(self):
         return self.fullname
@@ -286,17 +288,6 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
 
         return resources
-
-    ############################ Properties ###################################
-
-    @property
-    def pootle_path(self):
-        return "/projects/" + self.code + "/"
-
-    @property
-    def is_terminology(self):
-        """Returns ``True`` if this project is a terminology project."""
-        return self.checkstyle == 'terminology'
 
     ############################ Methods ######################################
 
