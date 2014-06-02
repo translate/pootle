@@ -679,12 +679,6 @@ def timeline(request, unit):
     # Let's reverse the chronological order
     entries_group.reverse()
 
-    # May be better to show all translations?
-    # Remove first timeline item if it's solely a change to the target
-    #if (entries_group and len(entries_group[0]['entries']) == 1 and
-    #    entries_group[0]['entries'][0]['field'] == SubmissionFields.TARGET):
-    #    del entries_group[0]
-
     context['entries_group'] = entries_group
 
     if request.is_ajax():
