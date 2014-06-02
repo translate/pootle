@@ -31,8 +31,8 @@ from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
 from pootle.core.log import log
-from pootle_misc.util import (getfromcache, getfromcachebyname, dictsum,
-                              get_cached_value, set_cached_value, datetime_min)
+from pootle_misc.util import (getfromcache, dictsum, get_cached_value,
+                              set_cached_value, datetime_min)
 from pootle_misc.checks import get_qualitychecks_by_category
 
 

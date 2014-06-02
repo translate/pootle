@@ -23,7 +23,6 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 import logging
-import sys
 
 from optparse import make_option
 

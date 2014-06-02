@@ -28,8 +28,7 @@ from django.conf import settings
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_store.models import Store
-from pootle_store.util import (absolute_real_path, add_trailing_slash,
-                               relative_real_path)
+from pootle_store.util import absolute_real_path, relative_real_path
 
 
 #: Case insensitive match for language codes

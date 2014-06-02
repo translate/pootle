@@ -31,8 +31,6 @@ from django.template.defaultfilters import stringfilter
 from django.utils.html import escape, simple_email_re as email_re
 from django.utils.safestring import mark_safe
 
-from translate.storage.placeables import general
-
 
 register = template.Library()
 
