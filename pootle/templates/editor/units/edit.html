@@ -293,10 +293,14 @@
                   lang="{{ language.code }}" {% if title %} title="{{ title }}"{% endif %}
                   >{{ diff }}</div>
               </div>
+              {% block suggestion_comment %}{% endblock %}
+              {% if sugg.creation_time %}
               <time class="extra-item-meta js-relative-date"
                 title="{{ sugg.creation_time|dateformat }}"
                 datetime="{{ sugg.creation_time.isoformat }}">&nbsp;</time>
-              {% block suggestion_comment %}{% endblock %}
+              {% else %}
+              <time class="extra-item-meta">{% trans 'A long time ago' %}</time>
+              {% endif%}
             </div>
             {% endfor %}
           </div>
