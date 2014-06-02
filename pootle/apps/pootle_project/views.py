@@ -22,7 +22,7 @@
 import locale
 
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 
 from pootle.core.browser import (make_language_item,
@@ -68,8 +68,7 @@ def overview(request, project, dir_path, filename):
         'browser_extends': 'projects/base.html',
     })
 
-    return render_to_response('browser/overview.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, 'browser/overview.html', ctx)
 
 
 @get_path_obj
@@ -86,8 +85,7 @@ def translate(request, project, dir_path, filename):
         'editor_extends': 'projects/base.html',
     })
 
-    return render_to_response('editor/main.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, 'editor/main.html', ctx)
 
 
 @get_path_obj
@@ -103,8 +101,7 @@ def export_view(request, project, dir_path, filename):
         'project': project,
     })
 
-    return render_to_response('editor/export_view.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, 'editor/export_view.html', ctx)
 
 
 @get_path_obj
@@ -174,8 +171,7 @@ def projects_overview(request, project_set):
         'browser_extends': 'projects/all/base.html',
     })
 
-    response = render_to_response('browser/overview.html', ctx,
-                                  RequestContext(request))
+    response = render(request, 'browser/overview.html', ctx)
     response.set_cookie('pootle-language', 'projects')
 
     return response
@@ -192,8 +188,7 @@ def projects_translate(request, project_set):
         'editor_extends': 'projects/all/base.html',
     })
 
-    return render_to_response('editor/main.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, 'editor/main.html', ctx)
 
 
 @get_path_obj
@@ -206,5 +201,4 @@ def projects_export_view(request, project_set):
         'project': None,
     })
 
-    return render_to_response('editor/export_view.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, 'editor/export_view.html', ctx)
