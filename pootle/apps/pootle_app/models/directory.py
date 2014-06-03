@@ -224,7 +224,6 @@ class Directory(models.Model, TreeItem):
         return (self.pootle_path.count('/') == 2 and
                 not self.pootle_path.startswith('/projects/'))
 
-
     def is_project(self):
         return (self.pootle_path.startswith('/projects/') and
                 self.pootle_path.count('/') == 3)
@@ -255,4 +254,3 @@ class Directory(models.Model, TreeItem):
             item.delete()
 
         super(Directory, self).delete(*args, **kwargs)
-
