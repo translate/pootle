@@ -17,8 +17,6 @@ Feature Differences
 Added Features
 ^^^^^^^^^^^^^^
 
-- Commands and store action logging.
-
 - New management commands: ``revision``, ``changed_languages``,
   ``test_checks``, ``refresh_scores``.
 
@@ -28,8 +26,6 @@ Added Features
   management command).
 
 - Screenshot prefix URL to allow integrating screenshots for units.
-
-- Projects and Translation Projects can be disabled.
 
 - Evernote-specific apps: reports.
 
@@ -95,8 +91,6 @@ Removed Features
 
 - Management commands: updatedb, upgrade, setup
 
-- Page zoom.
-
 
 Unmerged Features
 ^^^^^^^^^^^^^^^^^
@@ -140,6 +134,9 @@ Layout Differences
 Other Notable Differences
 -------------------------
 
+- Different way of handling and caching stats. Different implementation
+  for `refresh_stats`.
+
 - Hard dependency differences. Check the *requirements/* directory for
   details.
 
@@ -171,12 +168,18 @@ Added Features
 - Maintenance mode middleware. It can be enabled in the settings before
   performing any app upgrades.
 
+- Commands and store action logging.
+
+- Projects and Translation Projects can be disabled.
+
 Removed Features
 ^^^^^^^^^^^^^^^^
 
 - Removed Live Translation.
 
 - Removed support for autosync.
+
+- Page zoom.
 
 Editor Differences
 ^^^^^^^^^^^^^^^^^^
