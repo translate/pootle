@@ -1,0 +1,144 @@
+{% load assets cleanhtml i18n locale store_tags %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+<head>
+  <meta charset="utf-8">
+  <title>{% trans "Report for " %}{{ user }}({{start_date}} - {{end_date}}) | {{ settings.TITLE }}</title>
+  <style type="text/css">
+    html {
+      font-family: sans-serif;
+      font-size: 15px;
+      background-color: #fff;
+      color: #130f30;
+    }
+
+    table,
+    caption,
+    th,
+    td {
+      margin: 0px;
+    }
+    table {
+      border: 1px solid #e9e9e9;
+      border-collapse: collapse;
+      border-spacing: 0px;
+
+      padding: 0px;
+
+      width: 100%;
+    }
+    caption, th, td {
+      border: 1px solid #d9d9d9;
+      padding: 0.5em;
+    }
+    caption, th {
+      line-height: 1;
+    }
+    caption {
+      background-color: #eee;
+      border-style: solid solid none;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    caption span {
+      font-size: 0.7em;
+      font-weight: 300;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #f8f8f8;
+      font-weight: 300;
+      text-align: center;
+    }
+    tbody {
+      line-height: 1.6;
+    }
+    td {
+      vertical-align: top;
+    }
+    tr.empty {
+      text-align: center;
+    }
+    .number {
+      text-align: right;
+    }
+    .unit a {
+      text-decoration:none
+    }
+    .total {
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+  <table dir="{% locale_dir %}">
+    <caption>{% trans "Report for " %}{{ user }}({{start_date}} - {{end_date}})</caption>
+    <thead>
+      <tr>
+        <th id="datetime">{% trans "Datetime" %}</th>
+        <th id="action">{% trans "Action" %}</th>
+        <th id="unit">{% trans "Unit" %}</th>
+        <th id="source-words">{% trans "Source words" %}</th>
+        <th id="similarity">{% trans "Similarity" %}</th>
+        <th id="words">{% trans "Words" %}</th>
+        <th id="rate">{% trans "Rate" %}</th>
+        <th id="subtotal">{% trans "Subtotal" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for score in scores %}
+      {% if score.action %}
+      <tr>
+        <td>{{ score.creation_time }}</td>
+        <td>{% if score.action == 2 %}{% trans "Reviewed" %}{% elif score.action == 1 %}{% trans "Translated" %}{% endif %}</td>
+        <td class="unit">
+          <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
+        </td>
+        <td class="number">{{ score.wordcount }}</td>
+        <td class="number">{{ score.similarity|floatformat }}%</td>
+        <td class="number">{{ score.words|floatformat:2 }}</td>
+        <td class="number">{% if score.action == 2 %}{{ score.review_rate }}{% elif score.action = 1%}{{ score.rate }}{% endif %}</td>
+        <td class="number">{{ score.subtotal|floatformat:2 }}</td>
+      </tr>
+      {% endif %}
+    {% empty %}
+      <tr class="empty">
+        <td colspan="8">{% trans "No strings." %}</td>
+      </tr>
+    {% endfor %}
+    {% if scores %}
+    <tr class="separator">
+        <th colspan="8"></th>
+    </tr>
+    {% for rate, item in totals.translated.items %}
+      <tr>
+        <td></td>
+        <td>{% trans "Translated" %}</td>
+        <td colspan="3"></td>
+        <td class="number">{{ item.words|floatformat:2 }}</td>
+        <td class="number">{{ rate }}</td>
+        <td class="number">{{ item.subtotal|floatformat:2 }}</td>
+      </tr>
+    {% endfor %}
+    {% for rate, item in totals.reviewed.items %}
+      <tr>
+        <td></td>
+        <td>{% trans "Reviewed" %}</td>
+        <td colspan="3"></td>
+        <td class="number">{{ item.words|floatformat:2 }}</td>
+        <td class="number">{{ rate }}</td>
+        <td class="number">{{ item.subtotal|floatformat:2 }}</td>
+      </tr>
+    {% endfor %}
+      <tr class="total">
+        <td></td>
+        <td>{% trans "Total" %}</td>
+        <td colspan="5"></td>
+        <td class="number">{{ totals.all|floatformat:2 }}</td>
+      </tr>
+    {% endif %}
+    </tbody>
+  </table>
+</body>
+</html>

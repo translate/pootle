@@ -67,6 +67,75 @@ def evernote_reports(request, context={}):
     return render_to_response('admin/reports.html', cxt,
                               context_instance=RequestContext(request))
 
+@admin_required
+def evernote_reports_detailed(request):
+    user = request.GET.get('user', None)
+    start_date = request.GET.get('start', None)
+    end_date = request.GET.get('end', None)
+
+    try:
+        User = get_user_model()
+        user = User.objects.get(username=user)
+    except:
+        user = ''
+
+    [start, end] = get_date_interval(start_date, end_date)
+
+    scores = []
+    totals = {'translated': {}, 'reviewed': {}, 'total': 0}
+
+    if user and start and end:
+        scores = ScoreLog.objects \
+            .select_related('submission__unit') \
+            .filter(user=user,
+                    creation_time__gte=start,
+                    creation_time__lte=end) \
+            .order_by('creation_time')
+
+        scores = list(scores)
+
+        for score in scores:
+            translated, reviewed = score.get_paid_words()
+            if translated:
+                score.action = 1
+                score.subtotal = score.rate * translated
+                score.words = score.wordcount * (1 - score.similarity)
+            elif reviewed:
+                score.action = 2
+                score.subtotal = score.review_rate * reviewed
+                score.words = score.wordcount
+            score.similarity = score.similarity * 100
+
+            if score.rate in totals['translated']:
+                totals['translated'][score.rate]['words'] += translated
+            else:
+                totals['translated'][score.rate] = {'words': translated}
+
+            if score.review_rate in totals['reviewed']:
+                totals['reviewed'][score.review_rate]['words'] += reviewed
+            else:
+                totals['reviewed'][score.review_rate] = {'words': reviewed}
+
+        totals['all'] = 0
+
+        for rate, words in totals['translated'].items():
+            totals['translated'][rate]['subtotal'] = rate * totals['translated'][rate]['words']
+            totals['all'] += totals['translated'][rate]['subtotal']
+
+        for rate, words in totals['reviewed'].items():
+            totals['reviewed'][rate]['subtotal'] = rate * totals['reviewed'][rate]['words']
+            totals['all'] += totals['reviewed'][rate]['subtotal']
+
+    cxt = {
+        'scores': scores,
+        'user': user,
+        'start_date': start_date,
+        'end_date': end_date,
+        'totals': totals,
+    }
+
+    return render_to_response('admin/detailed_reports.html', cxt,
+                              context_instance=RequestContext(request))
 
 def get_date_interval(start_date, end_date):
     if start_date:
