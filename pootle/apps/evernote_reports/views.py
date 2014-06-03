@@ -132,6 +132,7 @@ def evernote_reports_detailed(request):
         'start_date': start_date,
         'end_date': end_date,
         'totals': totals,
+        'utc_offset': start.strftime("%z"),
     }
 
     return render_to_response('admin/detailed_reports.html', cxt,

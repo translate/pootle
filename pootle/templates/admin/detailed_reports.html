@@ -87,7 +87,7 @@
 </head>
 <body>
   <table>
-    <caption>{% blocktrans %}Report for {{ user }} ({{ start_date }} &ndash; {{ end_date }}){% endblocktrans %}</caption>
+    <caption>{% blocktrans %}Report for {{ user }} {{ start_date }} &ndash; {{ end_date }} (Local server time (GMT{{ utc_offset }}).{% endblocktrans %}</caption>
     <thead>
       <tr>
         <th id="datetime">{% trans "Local server time" %}</th>
@@ -112,8 +112,8 @@
         <td class="number">{{ score.wordcount }}</td>
         <td class="number">{% if score.action == 2 %}&mdash;{% elif score.action == 1 %}{{ score.similarity|floatformat }}%{% endif %}</td>
         <td class="number">{{ score.words|floatformat:2 }}</td>
-        <td class="number">{% if score.action == 2 %}{{ score.review_rate }}{% elif score.action = 1%}{{ score.rate }}{% endif %}</td>
-        <td class="number">{{ score.subtotal|floatformat:2 }}</td>
+        <td class="number">{% if score.action == 2 %}{{ score.review_rate }}{% elif score.action = 1%}{{ score.rate }}{% endif %} {{ user.currency }}</td>
+        <td class="number">{{ score.subtotal|floatformat:2 }} {{ user.currency }}</td>
       </tr>
       {% endif %}
     {% empty %}
@@ -130,8 +130,8 @@
         <td>&nbsp;</td>
         <td colspan="4">{% trans "Translated (subtotal)" %}</td>
         <td class="number">{% if item.words > 0 %}{{ item.words|floatformat:2 }}{% else %}&mdash;{% endif %}</td>
-        <td class="number">{{ rate }}</td>
-        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }}{% else %}&mdash;{% endif %}</td>
+        <td class="number">{{ rate }} {{ user.currency }}</td>
+        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }} {{ user.currency }}{% else %}&mdash;{% endif %}</td>
       </tr>
     {% endfor %}
     {% for rate, item in totals.reviewed.items %}
@@ -139,14 +139,14 @@
         <td>&nbsp;</td>
         <td colspan="4">{% trans "Reviewed (subtotal)" %}</td>
         <td class="number">{% if item.words > 0 %}{{ item.words|floatformat:2 }}{% else %}&mdash;{% endif %}</td>
-        <td class="number">{{ rate }}</td>
-        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }}{% else %}&mdash;{% endif %}</td>
+        <td class="number">{{ rate }} {{ user.currency }}</td>
+        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }} {{ user.currency }}{% else %}&mdash;{% endif %}</td>
       </tr>
     {% endfor %}
       <tr class="total">
         <td>&nbsp;</td>
         <td colspan="6">{% trans "Total" %}</td>
-        <td class="number">{{ totals.all|floatformat:2 }}</td>
+        <td class="number">{{ totals.all|floatformat:2 }} {{ user.currency }}</td>
       </tr>
     {% endif %}
     </tbody>
