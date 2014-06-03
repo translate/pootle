@@ -119,20 +119,25 @@ def evernote_reports_detailed(request):
         totals['all'] = 0
 
         for rate, words in totals['translated'].items():
+            totals['translated'][rate]['words'] = int(totals['translated'][rate]['words'] + 0.5)
             totals['translated'][rate]['subtotal'] = rate * totals['translated'][rate]['words']
             totals['all'] += totals['translated'][rate]['subtotal']
 
         for rate, words in totals['reviewed'].items():
+            totals['reviewed'][rate]['words'] = int(totals['reviewed'][rate]['words'] + 0.5)
             totals['reviewed'][rate]['subtotal'] = rate * totals['reviewed'][rate]['words']
             totals['all'] += totals['reviewed'][rate]['subtotal']
+
+        totals['all'] = totals['all']
 
     cxt = {
         'scores': scores,
         'user': user,
-        'start_date': start_date,
-        'end_date': end_date,
+        'start': start,
+        'end': end,
         'totals': totals,
         'utc_offset': start.strftime("%z"),
+        'http_host': request.META['HTTP_HOST'],
     }
 
     return render_to_response('admin/detailed_reports.html', cxt,
