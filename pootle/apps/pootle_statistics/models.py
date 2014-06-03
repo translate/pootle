@@ -38,7 +38,7 @@ EDIT_COEF = 5.0/7
 REVIEW_COEF = 2.0/7
 SUGG_COEF = 0.2
 ANALYZE_COEF = 0.1
-
+SIMILARITY_THRESHOLD = 0.5
 
 #: These are the values for the 'type' field of Submission
 class SubmissionTypes(object):
@@ -529,10 +529,13 @@ class ScoreLog(models.Model):
             TranslationActionCodes.SUGG_REVIEWED_REJECTED: lambda: analyzeCost,
         }.get(self.action_code, 0)()
 
+    def get_similarity(self):
+        return self.similarity if self.similarity >= SIMILARITY_THRESHOLD else 0
+
     def get_paid_words(self):
         """Returns the translated and reviewed words in the current action."""
         ns = self.wordcount
-        s = self.similarity
+        s = self.get_similarity()
         translated_words = ns * (1 - s)
         reviewed_words = ns
 

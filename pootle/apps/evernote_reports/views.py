@@ -99,12 +99,12 @@ def evernote_reports_detailed(request):
             if translated:
                 score.action = 1
                 score.subtotal = score.rate * translated
-                score.words = score.wordcount * (1 - score.similarity)
+                score.words = score.wordcount * (1 - score.get_similarity())
             elif reviewed:
                 score.action = 2
                 score.subtotal = score.review_rate * reviewed
                 score.words = score.wordcount
-            score.similarity = score.similarity * 100
+            score.similarity = score.get_similarity() * 100
 
             if score.rate in totals['translated']:
                 totals['translated'][score.rate]['words'] += translated
