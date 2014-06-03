@@ -76,7 +76,7 @@
     <caption>{% trans "Report for " %}{{ user }}({{start_date}} - {{end_date}})</caption>
     <thead>
       <tr>
-        <th id="datetime">{% trans "Datetime" %}</th>
+        <th id="datetime">{% trans "Local server time" %}</th>
         <th id="action">{% trans "Action" %}</th>
         <th id="unit">{% trans "Unit" %}</th>
         <th id="source-words">{% trans "Source words" %}</th>
@@ -96,7 +96,7 @@
           <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
         </td>
         <td class="number">{{ score.wordcount }}</td>
-        <td class="number">{{ score.similarity|floatformat }}%</td>
+        <td class="number">{% if score.action == 2 %}&mdash;{% elif score.action == 1 %}{{ score.similarity|floatformat }}%{% endif %}</td>
         <td class="number">{{ score.words|floatformat:2 }}</td>
         <td class="number">{% if score.action == 2 %}{{ score.review_rate }}{% elif score.action = 1%}{{ score.rate }}{% endif %}</td>
         <td class="number">{{ score.subtotal|floatformat:2 }}</td>
@@ -113,28 +113,25 @@
     </tr>
     {% for rate, item in totals.translated.items %}
       <tr>
-        <td></td>
-        <td>{% trans "Translated" %}</td>
-        <td colspan="3"></td>
-        <td class="number">{{ item.words|floatformat:2 }}</td>
+        <td>&nbsp;</td>
+        <td colspan="4">{% trans "Translated (subtotal)" %}</td>
+        <td class="number">{% if item.words > 0 %}{{ item.words|floatformat:2 }}{% else %}&mdash;{% endif %}</td>
         <td class="number">{{ rate }}</td>
-        <td class="number">{{ item.subtotal|floatformat:2 }}</td>
+        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }}{% else %}&mdash;{% endif %}</td>
       </tr>
     {% endfor %}
     {% for rate, item in totals.reviewed.items %}
       <tr>
-        <td></td>
-        <td>{% trans "Reviewed" %}</td>
-        <td colspan="3"></td>
-        <td class="number">{{ item.words|floatformat:2 }}</td>
+        <td>&nbsp;</td>
+        <td colspan="4">{% trans "Reviewed (subtotal)" %}</td>
+        <td class="number">{% if item.words > 0 %}{{ item.words|floatformat:2 }}{% else %}&mdash;{% endif %}</td>
         <td class="number">{{ rate }}</td>
-        <td class="number">{{ item.subtotal|floatformat:2 }}</td>
+        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }}{% else %}&mdash;{% endif %}</td>
       </tr>
     {% endfor %}
       <tr class="total">
-        <td></td>
-        <td>{% trans "Total" %}</td>
-        <td colspan="5"></td>
+        <td>&nbsp;</td>
+        <td colspan="6">{% trans "Total" %}</td>
         <td class="number">{{ totals.all|floatformat:2 }}</td>
       </tr>
     {% endif %}
