@@ -159,6 +159,9 @@
           <td></td>
           <td><%= totalScore.toFixed(2) %></td>
       </tr>
+    </table>
+    <% var detailed_href = l('/admin/reports/detailed?') + 'user=' + meta.user.username + '&start_date=' + meta.start + '&end_date=' + meta.end; %>
+    <a href="<%= detailed_href %>" target="_blank">Detailed report</a>
 <% } else { %>
   <p class="noresults">No activity recorded during this period.</p>
 <% } %>
