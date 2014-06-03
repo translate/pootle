@@ -14,32 +14,33 @@
       color: #130f30;
     }
 
-    table,
-    caption,
-    th,
-    td
+    table, caption, th, td
     {
-      margin: 0px;
+      margin: 0;
     }
+
     table
     {
       border: 1px solid #e9e9e9;
       border-collapse: collapse;
-      border-spacing: 0px;
+      border-spacing: 0;
 
-      padding: 0px;
+      padding: 0;
 
       width: 100%;
     }
+
     caption, th, td
     {
       border: 1px solid #d9d9d9;
       padding: 0.5em;
     }
+
     caption, th
     {
-      line-height: 1;
+      line-height: 1em;
     }
+
     caption
     {
       background-color: #eee;
@@ -47,51 +48,59 @@
       font-size: 1.2em;
       font-weight: bold;
     }
+
     caption span
     {
       font-size: 0.7em;
       font-weight: 300;
       vertical-align: middle;
     }
+
     th
     {
       background-color: #f8f8f8;
       font-weight: 300;
       text-align: center;
     }
+
     tbody
     {
       line-height: 1.6;
     }
+
     td
     {
       vertical-align: top;
     }
-    tr.empty
+
+    tr.empty td
     {
       text-align: center;
+      font-style: italic;
     }
+    
     .number
     {
       text-align: right;
     }
+    
     .unit a
     {
-      text-decoration:none
+      text-decoration: none
     }
+    
     .total
     {
       font-weight: bold;
     }
-
   </style>
 </head>
 <body>
   <table>
-    <caption>{% blocktrans %}Report for {{ user }}{% endblocktrans %} ({{ start|date:"j M, Y" }} &ndash; {{ end|date:"j M, Y" }}). {% blocktrans %}Local server time GMT{{ utc_offset }}.{% endblocktrans %}</caption>
+    <caption>{% blocktrans %}Report for {{ user }}{% endblocktrans %} {{ start|date:"j M, Y" }}&ndash;{{ end|date:"j M, Y" }}</caption>
     <thead>
       <tr>
-        <th id="datetime">{% trans "Local server time" %}</th>
+        <th id="datetime">{% trans "Local server time" %} (GMT{{ utc_offset }})</th>
         <th id="action">{% trans "Action" %}</th>
         <th id="unit">{% trans "Unit" %}</th>
         <th id="source-words">{% trans "Source words" %}</th>
@@ -119,7 +128,7 @@
       {% endif %}
     {% empty %}
       <tr class="empty">
-        <td colspan="8">{% trans "No strings." %}</td>
+        <td colspan="8">{% trans "No activity recorded in a given period" %}</td>
       </tr>
     {% endfor %}
     {% if scores %}
