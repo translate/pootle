@@ -381,6 +381,10 @@ def get_paid_words(user, start, end):
         row['score_delta'] += score.score_delta
         row['end'] = score.creation_time.strftime('%Y-%m-%d')
 
+    if result:
+        result[0]['start'] = start.strftime('%Y-%m-%d')
+        result[-1]['end'] = end.strftime('%Y-%m-%d')
+
     return result
 
 
