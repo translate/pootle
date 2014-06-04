@@ -182,11 +182,11 @@
             $('#id_username').val(user.username);
             $('#id_rate').val(user.rate);
             $('#id_review_rate').val(user.review_rate);
-            $('#id_currency').val(user.currency);
-            if (user.currency) {
-              $('#user-rates-form .currency').text(user.currency);
-            }
 
+            if (user.currency) {
+              $('#id_currency').val(user.currency);
+            }
+            $('#user-rates-form .currency').text($('#id_currency').val())
             $('#user-rates-form').show();
           }
         },

@@ -26,7 +26,7 @@ from pootle.models.user import CURRENCIES
 
 class UserRatesForm(forms.Form):
     username = forms.CharField(widget=forms.HiddenInput())
-    currency = forms.ChoiceField(choices=CURRENCIES)
+    currency = forms.ChoiceField(choices=CURRENCIES, initial=CURRENCIES[0])
     rate = forms.FloatField(
         label=_("Translation Rate"),
         widget=forms.TextInput(attrs={'step': '0.01', 'type': 'number'}),
