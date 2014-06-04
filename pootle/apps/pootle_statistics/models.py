@@ -31,6 +31,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.log import log, SCORE_CHANGED
 from pootle_misc.checks import check_names
+from pootle_store.fields import to_python
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
@@ -240,25 +241,51 @@ class Submission(models.Model):
 
         if not action_bundle["action"]:
             try:
-                # If the action is unset, maybe the action is one of the
-                # following ones.
-                action_bundle["action"] = {
-                    TRANSLATED: _(
-                        'translated '
+                if self.field == SubmissionFields.TARGET:
+                    if self.new_value != '':
+                        # Note that we analyze current unit state:
+                        # if this submission is not last unit state
+                        # can be changed
+                        action_bundle["action"] = {
+                            TRANSLATED: _(
+                                'translated ' if self.old_value == '' else 'edited '
+                                '<i><a href="%(url)s">%(source)s</a></i>',
+                                unit
+                            ),
+                            FUZZY: _(
+                                'pre-translated ' if self.old_value == '' else 'edited '
+                                '<i><a href="%(url)s">%(source)s</a></i>',
+                                unit
+                            ),
+                        }.get(self.unit.state, '')
+
+                    else:
+                        action_bundle["action"] = _(
+                            'removed translation for '
+                            '<i><a href="%(url)s">%(source)s</a></i>',
+                            unit
+                        )
+
+                elif self.field == SubmissionFields.STATE:
+                    action_bundle["action"] = {
+                        TRANSLATED: _(
+                            'reviewed '
+                            '<i><a href="%(url)s">%(source)s</a></i>',
+                            unit
+                        ),
+                        FUZZY: _(
+                            'marked as fuzzy '
+                            '<i><a href="%(url)s">%(source)s</a></i>',
+                            unit
+                        ),
+                    }.get(int(to_python(self.new_value)), '')
+                else:
+                    action_bundle["action"] = _(
+                        'unknown action '
                         '<i><a href="%(url)s">%(source)s</a></i>',
                         unit
-                    ),
-                    FUZZY: _(
-                        'pre-translated '
-                        '<i><a href="%(url)s">%(source)s</a></i>',
-                        unit
-                    ),
-                    UNTRANSLATED: _(
-                        'removed translation for '
-                        '<i><a href="%(url)s">%(source)s</a></i>',
-                        unit
-                    ),
-                }.get(self.unit.state, '')
+                    )
+
             except AttributeError:
                 return ''
 
