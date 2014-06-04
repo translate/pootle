@@ -193,6 +193,15 @@ Configuration settings for applications used by Pootle.
   for the Pootle instance. Don't change this unless you know what you're
   doing.
 
+.. setting:: POOTLE_META_USERS
+
+``POOTLE_META_USERS``
+  Default: ``()``
+
+  .. versionadded:: 2.5.1
+
+  List of special 'API users'.
+
 
 .. setting:: MIN_AUTOTERMS
 

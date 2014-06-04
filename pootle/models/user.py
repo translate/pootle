@@ -26,6 +26,7 @@ import datetime
 import re
 from hashlib import md5
 
+from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser
 from django.core.cache import cache
 from django.core.mail import send_mail
@@ -143,7 +144,11 @@ class User(AbstractBaseUser):
     @cached_property
     def is_meta(self):
         """Returns `True` if this is a special fake user."""
-        return self.username in SPECIAL_USERS
+        meta_users = SPECIAL_USERS
+        if settings.POOTLE_META_USERS:
+            meta_users += settings.POOTLE_META_USERS
+
+        return self.username in meta_users
 
     @cached_property
     def email_hash(self):
