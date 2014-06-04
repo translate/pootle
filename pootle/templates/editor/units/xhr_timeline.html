@@ -26,37 +26,26 @@
             {% elif entry.field != 3 and entry.field != 0 %}
               <span class="timeline-field-body" lang="{{ language.code }}">{{ entry.new_value }}</span>
             {% elif entry.field == 0 %}
-              {{ entry.action }} <a href="{{ entry.checks_url }}#{{ entry.check_name }}">{{ entry.check_display_name}}</a> {% trans "check" %}
+              {% if entry.check_name %}
+                {{ entry.action }} <a href="{{ entry.checks_url }}#{{ entry.check_name }}">{{ entry.check_display_name}}</a> {% trans "check" %}
+              {% endif %}
             {% else %}
               {{ entry.old_value }} <span class="timeline-arrow"></span> {{ entry.new_value }}
             {% endif %}
           </div>
           {% endfor %}
+          {% if entry_group.created %}
+            <div class="timeline-field-3">Unit created</div>
+          {% endif %}
         </div>
       </div>
+      {% if entry_group.datetime %}
       <time class="extra-item-meta js-relative-date"
         title="{{ entry_group.datetime|dateformat }}"
         datetime="{{ entry_group.datetime.isoformat }}">&nbsp;</time>
+      {% endif %}
     </div>
   </div>
   {% endfor %}
-  <div class="extra-item-block">
-    <div class="extra-item-content">
-      <div class="extra-item-gravatar">
-        {% include 'core/_avatar.html' with user=system %}
-      </div>
-      <div class="extra-item">
-        <div class="timeline-field-3">
-          <span class="sidetitle">{% trans "State" %}:</span>
-          <span class="timeline-field-body" lang="{{ language.code }}">{% trans "Unit created" %}</span>
-        </div>
-      </div>
-    </div>
-    {% if created %}
-    <time class="extra-item-meta js-relative-date"
-      title="{{ created.datetime|dateformat }}"
-      datetime="{{ created.datetime.isoformat }}">&nbsp;</time>
-    {% endif %}
-  </div>
   </div>
 </div>

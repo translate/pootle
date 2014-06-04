@@ -506,6 +506,8 @@ class Unit(models.Model, base.TranslationUnit):
                 path=self.store.pootle_path
             )
 
+            self.add_initial_submission()
+
         if self._source_updated or self._target_updated:
             self.update_qualitychecks()
 
@@ -549,6 +551,19 @@ class Unit(models.Model, base.TranslationUnit):
         from pootle_project.models import Project
         user_projects = Project.accessible_by_user(user)
         return self.store.translation_project.project.code in user_projects
+
+    def add_initial_submission(self):
+        if self.istranslated() or self.isfuzzy():
+            Submission.objects.create(
+                creation_time=self.creation_time,
+                translation_project=self.store.translation_project,
+                submitter=self._log_user,
+                unit=self,
+                store=self.store,
+                type=SubmissionTypes.UNIT_CREATE,
+                field=SubmissionFields.TARGET,
+                new_value=self.target,
+            )
 
     def convert(self, unitclass):
         """Convert to a unit of type :param:`unitclass` retaining as much
@@ -2003,7 +2018,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def _get_last_action(self, submission=None):
         if submission is None:
             try:
-                sub = Submission.simple_objects.filter(store=self).latest()
+                sub = Submission.simple_objects.filter(store=self) \
+                                .exclude(type=SubmissionTypes.UNIT_CREATE).latest()
             except Submission.DoesNotExist:
                 return {'id': 0, 'mtime': 0, 'snippet': ''}
         else:

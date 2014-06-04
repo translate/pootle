@@ -52,7 +52,7 @@ class SubmissionTypes(object):
     UNMUTE_CHECK = 7 # Unmute QualityCheck
     SUGG_ADD = 8 # Add new Suggestion
     SUGG_REJECT = 9 # Reject Suggestion
-
+    UNIT_CREATE = 10 # Create a Unit with translation
 
 #: Values for the 'field' field of Submission
 class SubmissionFields(object):

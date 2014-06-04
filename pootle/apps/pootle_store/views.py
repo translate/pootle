@@ -497,14 +497,7 @@ def timeline(request, unit):
 
     User = get_user_model()
     entries_group = []
-    context = {
-        'system': User.objects.get_system_user()
-    }
-
-    if unit.creation_time:
-        context['created'] = {
-            'datetime': unit.creation_time,
-        }
+    context = {}
 
     for key, values in groupby(timeline, key=lambda x: x.creation_time):
         entry_group = {
@@ -543,6 +536,18 @@ def timeline(request, unit):
             entry_group['entries'].append(entry)
 
         entries_group.append(entry_group)
+
+    if len(entries_group) > 0 and entries_group[0]['datetime'] == unit.creation_time:
+        entries_group[0]['created'] = True
+    else:
+        created = {
+            'created': True,
+            'submitter': User.objects.get_system_user()
+        }
+
+        if unit.creation_time:
+            created['datetime'] = unit.creation_time
+        entries_group[:0] = [created]
 
     # Let's reverse the chronological order
     entries_group.reverse()
