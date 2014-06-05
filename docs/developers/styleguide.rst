@@ -54,7 +54,7 @@ Translate styleguide for other conventions that the imports must follow.
     from lxml.html import fromstring
     from translate.storage import versioncontrol
 
-    from django.contrib.auth.models import User
+    from django.contrib.sites.models import Site
     from django.db import models
     from django.db.models import Q
     from django.db.models.signals import post_save
