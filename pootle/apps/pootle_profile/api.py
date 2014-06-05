@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
@@ -25,6 +25,9 @@ from tastypie.exceptions import Unauthorized
 
 from pootle.core.api import StatisticsModelResource
 from pootle_profile.models import PootleProfile
+
+
+User = get_user_model()
 
 
 class UserObjectsOnlyAuthorization(DjangoAuthorization):

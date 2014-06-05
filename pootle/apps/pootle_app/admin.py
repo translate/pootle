@@ -22,7 +22,7 @@ import re
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
 from pootle_profile.models import PootleProfile
@@ -59,6 +59,8 @@ admin.site.register(Project, ProjectAdmin)
 
 
 ### User / PootleProfile
+
+User = get_user_model()
 
 admin.site.unregister(User)
 

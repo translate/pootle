@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from django.db.models.signals import post_save
 
 from pootle_app.models.signals import (post_file_upload, post_template_update,
@@ -26,6 +26,9 @@ from pootle_language.models import Language
 from pootle_project.models import Project
 
 from . import signals
+
+
+User = get_user_model()
 
 
 post_save.connect(signals.new_language, sender=Language)

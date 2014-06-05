@@ -27,7 +27,7 @@ from translate.lang import data
 from translate.search.lshtein import LevenshteinComparer
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.urlresolvers import reverse
@@ -73,6 +73,9 @@ from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
                    absolute_real_path, find_altsrcs, get_sugg_list)
+
+
+User = get_user_model()
 
 
 @get_store_context('view')

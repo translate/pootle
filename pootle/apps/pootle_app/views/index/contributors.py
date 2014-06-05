@@ -19,7 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from django.shortcuts import render
 
 from pootle.i18n.gettext import tr_lang
@@ -28,6 +28,9 @@ from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_translationproject.models import TranslationProject
+
+
+User = get_user_model()
 
 
 def view(request):

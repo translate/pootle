@@ -24,7 +24,7 @@ from translate.__version__ import build as CODE_TTK_BUILD_VERSION
 from translate.lang import data, factory
 
 from django.conf import settings
-from django.contrib.auth.models import User, Permission
+from django.contrib.auth.models import get_user_model, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.core.management import call_command
@@ -40,6 +40,9 @@ from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
 from pootle_store.models import TMUnit, Unit
 from pootle_store.util import TRANSLATED
+
+
+User = get_user_model()
 
 
 def initdb():

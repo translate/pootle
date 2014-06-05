@@ -22,7 +22,7 @@ import logging
 import os
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
@@ -50,6 +50,8 @@ from pootle_store.filetypes import (factory_classes, filetype_choices,
                                     is_monolingual)
 from pootle_store.util import absolute_real_path
 
+
+User = get_user_model()
 
 # FIXME: Generate key dynamically
 CACHE_KEY = 'pootle-projects'

@@ -23,7 +23,7 @@ import locale
 import os
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -38,6 +38,9 @@ from pootle_profile.models import PootleProfile
 from pootle_statistics.models import Submission
 from pootle_store.models import Unit, Suggestion
 from pootle_store.util import TRANSLATED
+
+
+User = get_user_model()
 
 
 def required_depcheck():

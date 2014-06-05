@@ -21,12 +21,15 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from django.forms.models import BaseModelFormSet
 from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import admin_required
 from pootle_app.views.admin import util
+
+
+User = get_user_model()
 
 
 @admin_required

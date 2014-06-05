@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from django.db import models
 from django.template.defaultfilters import escape, truncatechars
 from django.utils.safestring import mark_safe
@@ -27,6 +27,9 @@ from django.utils.translation import ugettext_lazy as _
 from pootle.core.managers import RelatedManager
 from pootle_misc.checks import check_names
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
+
+
+User = get_user_model()
 
 
 class SubmissionTypes(object):

@@ -20,7 +20,7 @@
 from django.db import models
 from django.db.models import Q
 from django.db.models.aggregates import Max
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.utils.timezone import now
@@ -30,6 +30,9 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import DirtyFieldsMixin
 
 from .managers import PageManager
+
+
+User = get_user_model()
 
 
 class AbstractPage(DirtyFieldsMixin, models.Model):
