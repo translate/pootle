@@ -26,8 +26,11 @@ from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 from pootle_store.forms import unit_form_factory, UnitStateField
 
 
-def _create_post_request(rf, directory, user, url='/', data={}):
+def _create_post_request(rf, directory, user, url='/', data=None):
     """Convenience function to create and setup fake POST requests."""
+    if data is None:
+        data = {}
+
     request = rf.post(url, data=data)
     request.user = user
     request.profile = get_profile(user)
