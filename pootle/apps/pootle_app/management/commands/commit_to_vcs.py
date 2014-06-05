@@ -35,7 +35,8 @@ class Command(PootleCommand):
         )
 
     def handle_noargs(self, **options):
-        from django.contrib.auth.models import User
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
         try:
             self.user = User.objects.get(username=options['user'])
         except User.DoesNotExist:

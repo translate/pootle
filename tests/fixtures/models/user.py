@@ -24,7 +24,9 @@ import pytest
 def _require_user(username, fullname, password=None,
                   is_superuser=False, is_staff=False):
     """Helper to get/create a new user."""
-    from django.contrib.auth.models import User
+    from django.contrib.auth import get_user_model
+
+    User = get_user_model()
     criteria = {
         'username': username,
         'first_name': fullname,

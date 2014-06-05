@@ -28,7 +28,7 @@ from translate.filters.decorators import Category
 from translate.storage import base
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
@@ -64,7 +64,6 @@ from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 #
 # Store States
-#
 
 # Store being modified
 LOCKED = -1
@@ -75,6 +74,7 @@ PARSED = 1
 # Quality checks run
 CHECKED = 2
 
+User = get_user_model()
 
 
 ############### Quality Check #############

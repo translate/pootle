@@ -17,12 +17,15 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
 from pootle_misc.aggregate import group_by_sort
+
+
+User = get_user_model()
 
 
 def gentopstats_root():
