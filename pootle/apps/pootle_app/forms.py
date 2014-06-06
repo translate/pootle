@@ -20,6 +20,7 @@
 import re
 
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 from pootle_app.models.pootle_site import PootleSite
 from pootle_language.models import Language

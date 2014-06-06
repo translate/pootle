@@ -20,6 +20,7 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.template import loader, RequestContext
+from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 
 from pootle.core.decorators import get_path_obj, permission_required
