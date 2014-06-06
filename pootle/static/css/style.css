@@ -1129,8 +1129,7 @@ tr.item.empty
     opacity: 0.65;
 }
 
-table.stats td.language,
-table.stats td.project
+table.stats td
 {
     white-space: nowrap;
 }
