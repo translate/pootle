@@ -29,9 +29,6 @@ from pootle_misc.checks import check_names
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
-User = get_user_model()
-
-
 class SubmissionTypes(object):
     """Values for the 'type' field of Submission."""
     # None/0 = no information
@@ -148,6 +145,7 @@ class Submission(models.Model):
             if self.submitter:
                 displayuser = self.submitter
             else:
+                User = get_user_model()
                 displayuser = User.objects.get_nobody_user().get_profile()
 
         displayname = displayuser.fullname

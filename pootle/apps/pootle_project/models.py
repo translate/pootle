@@ -50,8 +50,6 @@ from pootle_store.filetypes import (factory_classes, filetype_choices,
 from pootle_store.util import absolute_real_path
 
 
-User = get_user_model()
-
 # FIXME: Generate key dynamically
 CACHE_KEY = 'pootle-projects'
 
@@ -385,6 +383,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
+        User = get_user_model()
         users_list = User.objects.values_list('username', flat=True)
         cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                               users_list))
@@ -410,6 +409,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
+        User = get_user_model()
         users_list = User.objects.values_list('username', flat=True)
         cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                               users_list))

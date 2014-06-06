@@ -74,8 +74,6 @@ PARSED = 1
 # Quality checks run
 CHECKED = 2
 
-User = get_user_model()
-
 
 ############### Quality Check #############
 
@@ -1003,7 +1001,7 @@ class Unit(models.Model, base.TranslationUnit):
             if suggestion.user_id is not None:
                 suggestion_user = suggestion.user
             else:
-                suggestion_user = User.objects.get_nobody_user().get_profile()
+                suggestion_user = get_user_model().objects.get_nobody_user().get_profile()
 
             self.submitted_by = suggestion_user
             self.submitted_on = timezone.now()
@@ -1593,7 +1591,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     common_dbids -= modified_units
 
                 common_dbids = list(common_dbids)
-                system = User.objects.get_system_user().get_profile()
+                system = get_user_model().objects.get_system_user().get_profile()
                 for unit in self.findid_bulk(common_dbids):
                     # Use the same (parent) object since units will accumulate
                     # the list of cache attributes to clear in the parent Store

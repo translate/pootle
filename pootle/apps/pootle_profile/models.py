@@ -20,8 +20,7 @@
 
 from hashlib import md5
 
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import UserManager, AnonymousUser
+from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
@@ -33,9 +32,6 @@ from django.utils.translation import ugettext_lazy as _
 from pootle_language.models import Language
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_translationproject.models import TranslationProject
-
-
-User = get_user_model()
 
 
 class PootleUserManager(UserManager):
