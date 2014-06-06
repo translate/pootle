@@ -47,6 +47,10 @@
       </td>
       {% endif %}
 
+      {% if 'last-updated' in table.fields %}
+      <td id="last-updated-{{ item.code }}" class="stats last-updated"></td>
+      {% endif %}
+
       {% if 'need-translation' in table.fields %}
       <td id="need-translation-{{ item.code }}" class="stats-number need-translation js-need-translation">
         <a class="non-zero" href="{{ item.href_todo }}"></a>
@@ -66,10 +70,6 @@
         <a class="non-zero" href="{{ item.href_critical }}"></a>
         <span class="zero muted">0</span>
       </td>
-      {% endif %}
-
-      {% if 'last-updated' in table.fields %}
-      <td id="last-updated-{{ item.code }}" class="last-updated"></td>
       {% endif %}
 
       {% if 'activity' in table.fields %}

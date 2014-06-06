@@ -52,6 +52,11 @@ HEADING_CHOICES = [
         'display_name': _("Total"),
     },
     {
+        'id': 'last-updated',
+        'class': 'stats sorttable_numeric when-loaded',
+        'display_name': _("Last updated"),
+    },
+    {
         'id': 'need-translation',
         'class': 'stats-number sorttable_numeric when-loaded',
         'display_name': _("Need Translation"),
@@ -66,11 +71,6 @@ HEADING_CHOICES = [
         'id': 'critical',
         'class': 'stats-number sorttable_numeric when-loaded',
         'display_name': _("Critical"),
-    },
-    {
-        'id': 'last-updated',
-        'class': 'stats sorttable_numeric when-loaded',
-        'display_name': _("Last updated"),
     },
     {
         'id': 'activity',
