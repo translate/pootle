@@ -18,4 +18,12 @@
 # You should have received a copy of the GNU General Public License along
 # with Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from .users import UserAdminView
+__all__ = ('UserAdminView',)
+
+from django.views.generic import TemplateView
+
+from pootle.core.views import SuperuserRequiredMixin
+
+
+class UserAdminView(SuperuserRequiredMixin, TemplateView):
+    template_name = 'admin/users.html'

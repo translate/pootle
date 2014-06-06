@@ -22,6 +22,8 @@ from django.conf.urls import include, patterns, url
 
 import staticpages.urls
 
+from . import UserAdminView
+
 
 urlpatterns = patterns('pootle_app.views.admin',
     url(r'^/?$',
@@ -32,7 +34,7 @@ urlpatterns = patterns('pootle_app.views.admin',
         include(staticpages.urls.admin_patterns)),
 
     url(r'^/users/$',
-        'adminusers.view',
+        UserAdminView.as_view(),
         name='pootle-admin-users'),
     url(r'^/languages/$',
         'adminlanguages.view',

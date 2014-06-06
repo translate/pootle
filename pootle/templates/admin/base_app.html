@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="admin-page" class="js-admin-app settings-container"></div>
+{% endblock %}
+
+{% block scripts_extra %}
+{{ block.super }}
+{% block app_init %}{% endblock %}
+{% endblock %}

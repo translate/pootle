@@ -172,3 +172,24 @@ html[dir="rtl"] td.pootle_path
     margin-left: .25em;
     margin-right: .25em;
 }
+
+
+/* Revamped admin */
+
+.admin-content h2
+{
+    display: inline-block;
+    width: 100%;
+}
+
+.admin-content h2 + .btn
+{
+    position: absolute;
+    right: 2em;
+}
+
+html[dir="rtl"] .admin-content h2 + .btn
+{
+    right: auto;
+    left: 2em;
+}
