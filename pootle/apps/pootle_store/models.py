@@ -1318,7 +1318,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         super(Store, self).save(*args, **kwargs)
         if not self.id:
             # new unit
-            log.store_log(user="system", action=STORE_ADDED,
+            log.store_log(user="system", action=log.STORE_ADDED,
                           path=self.pootle_path, store=self.id)
 
         if hasattr(self, '_units'):
