@@ -78,7 +78,7 @@ html[dir="rtl"] .parent-site
 .parent-site .divider
 {
     display: inline-block;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
     height: 100%;
     margin-right: -2px;
