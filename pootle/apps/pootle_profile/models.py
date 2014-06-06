@@ -36,38 +36,6 @@ from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 
-class PootleUserManager(UserManager):
-    """A manager class which is meant to replace the manager class for the User
-    model. This manager hides the 'nobody' and 'default' users for normal
-    queries, since they are special users. Code that needs access to these
-    users should use the methods get_default_user and get_nobody_user.
-    """
-    def get_default_user(self):
-        return super(PootleUserManager, self).get_query_set() \
-                                             .select_related(depth=1) \
-                                             .get(username='default')
-
-    def get_nobody_user(self):
-        return super(PootleUserManager, self).get_query_set() \
-                                             .select_related(depth=1) \
-                                             .get(username='nobody')
-
-    def get_system_user(self):
-        return super(PootleUserManager, self).get_query_set() \
-                                             .select_related(depth=1) \
-                                             .get(username='system')
-
-    def hide_defaults(self):
-        return super(PootleUserManager, self).get_query_set().exclude(
-                username__in=('nobody', 'default')
-            )
-
-
-# Since PootleUserManager has no state, we can just replace the User manager's
-# class with PootleUserManager to get the desired functionality.
-User.objects.__class__ = PootleUserManager
-
-
 class PootleProfileManager(models.Manager):
     def get_query_set(self):
         return super(PootleProfileManager, self).get_query_set() \
