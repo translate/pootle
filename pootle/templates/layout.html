@@ -157,10 +157,6 @@
           <a href="#nav-main">{% trans 'skip to navigation' %}</a>
         </div>
         <h1 class="brand"><a href="{% url 'pootle-home' %}"><img class="logo" src="{{ "images/logo.png"|s }}" /> <span class="site-title">{{ settings.TITLE }}</span></a></h1>
-        <div class="parent-site">
-          <div class="divider">&nbsp;</div>
-          <a href="//evernote.com">evernote.com</a>
-        </div>
         <ul id="nav-main">
           <li><a href="{% staticpage_url 'getting-started' %}">{% trans "Getting Started" %}</a></li>
           <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
@@ -186,6 +182,8 @@
           {% else %}
           <li><a id="js-login" href="{% url 'pootle-profile-login' %}{{ request|get_next }}"><span class="btn btn-success">{% trans "Sign In" %}</span></a></li>
           {% endif %}
+          <li class="menu-divider">&nbsp;</li>
+          <li class="parent-site"><a href="//evernote.com">evernote.com</a></li>
         </ul>
         {% block navbar_extra %}{% endblock %}
         {% endblock %}
