@@ -230,6 +230,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                 check_test=lambda x: x == FUZZY,
             ),
         )
+        similarity = forms.FloatField(required=False)
         mt_similarity = forms.FloatField(required=False)
 
         def __init__(self, *args, **kwargs):
