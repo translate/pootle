@@ -353,7 +353,7 @@ def unit_comment_form_factory(language):
                 sub = Submission(
                     creation_time=creation_time,
                     translation_project=translation_project,
-                    submitter=self.request.profile,
+                    submitter=self.request.user,
                     unit=self.instance,
                     field=SubmissionFields.COMMENT,
                     type=SubmissionTypes.NORMAL,

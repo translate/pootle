@@ -400,12 +400,12 @@ def get_step_query(request, units_queryset):
                     ).distinct()
             elif unit_filter in ('my-submissions', 'user-submissions'):
                 match_queryset = units_queryset.filter(
-                        submission__submitter=profile,
+                        submission__submitter=user,
                     ).distinct()
             elif (unit_filter in ('my-submissions-overwritten',
                                   'user-submissions-overwritten')):
                 match_queryset = units_queryset.filter(
-                        submission__submitter=profile,
+                        submission__submitter=user,
                     ).exclude(submitted_by=profile).distinct()
             elif unit_filter == 'checks' and 'checks' in request.GET:
                 checks = request.GET['checks'].split(',')
@@ -893,8 +893,9 @@ def get_tm_results(request, unit):
             }
 
             if profile is not None:
+                user = profile.user
                 submissions = Submission.objects.filter(
-                                submitter=profile,
+                                submitter=user,
                                 type=SubmissionTypes.NORMAL,
                                 ).distinct().count()
                 suggestions = SuggestionStat.objects.filter(
@@ -902,14 +903,14 @@ def get_tm_results(request, unit):
                                 ).distinct().count()
                 translations = submissions - suggestions  # XXX: is this correct?
                 title = _("By %s on %s<br/><br/>%s translations<br/>%s suggestions" % (
-                            profile.user.get_full_name(),
+                            user.get_full_name(),
                             tmunit.submitted_on,
                             translations, suggestions))
 
                 result['translator'] = {
-                    'username': unicode(profile.user),
+                    'username': unicode(user),
                     'title': title,
-                    'absolute_url': profile.get_absolute_url(),
+                    'absolute_url': user.get_absolute_url(),
                     'gravatar': profile.gravatar_url(24),
                 }
 

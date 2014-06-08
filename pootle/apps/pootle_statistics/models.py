@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import escape, truncatechars
@@ -66,7 +67,7 @@ class Submission(models.Model):
         db_index=True,
     )
     submitter = models.ForeignKey(
-        'pootle_profile.PootleProfile',
+        settings.AUTH_USER_MODEL,
         null=True,
         db_index=True,
     )
@@ -137,7 +138,7 @@ class Submission(models.Model):
                                       'commands/pofilter_tests.html')
 
         if self.from_suggestion:
-            displayuser = self.from_suggestion.reviewer
+            displayuser = self.from_suggestion.reviewer.user
         else:
             # Sadly we may not have submitter information in all the
             # situations yet
@@ -146,17 +147,13 @@ class Submission(models.Model):
                 displayuser = self.submitter
             else:
                 User = get_user_model()
-                displayuser = User.objects.get_nobody_user().get_profile()
-
-        displayname = displayuser.fullname
-        if not displayname:
-            displayname = displayuser.user.username
+                displayuser = User.objects.get_nobody_user()
 
         action_bundle = {
             "profile_url": displayuser.get_absolute_url(),
             "gravatar_url": displayuser.gravatar_url(20),
-            "displayname": displayname,
-            "username": displayuser.user.username,
+            "displayname": displayuser.display_name,
+            "username": displayuser.username,
             "date": self.creation_time,
             "isoformat_date": self.creation_time.isoformat(),
             "action": "",
