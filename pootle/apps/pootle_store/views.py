@@ -346,15 +346,14 @@ def get_step_query(request, units_queryset):
     """Narrows down unit query to units matching conditions in GET."""
     if 'filter' in request.GET:
         unit_filter = request.GET['filter']
-        username = request.GET.get('user', None)
 
-        profile = request.profile
-        if username is not None:
+        user = request.user
+        if request.GET.get("user"):
             try:
-                user = User.objects.get(username=username)
-                profile = user.get_profile()
+                user = User.objects.get(username=request.GET["user"])
             except User.DoesNotExist:
                 pass
+        profile = user.get_profile()
 
         if unit_filter:
             match_queryset = units_queryset.none()
