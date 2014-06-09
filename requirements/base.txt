@@ -8,7 +8,6 @@ django-assets>=0.8
 django-contact-form==1.0
 django-maintenancemode
 django-taggit>=0.10,<0.11.2
-django-voting==0.1
 South>=0.7.6
 
 # Required by webassets, isn't shipped in Python < 2.7

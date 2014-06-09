@@ -166,21 +166,6 @@ class Suggestion(models.Model, base.TranslationUnit):
         super(Suggestion, self).delete(*args, **kwargs)
 
 
-################################ Signal handlers ##############################
-
-def delete_votes(sender, instance, **kwargs):
-    # Since votes are linked by ContentType and not foreign keys, referential
-    # integrity is not kept, and we have to ensure we remove any votes manually
-    # when a suggestion is removed
-    from voting.models import Vote
-    from django.contrib.contenttypes.models import ContentType
-    ctype = ContentType.objects.get_for_model(instance)
-    Vote.objects.filter(content_type=ctype,
-                        object_id=instance._get_pk_val()).delete()
-
-post_delete.connect(delete_votes, sender=Suggestion)
-
-
 ############### Unit ####################
 
 def fix_monolingual(oldunit, newunit, monolingual=None):

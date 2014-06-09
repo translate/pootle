@@ -108,12 +108,6 @@ def get_sugg_list(unit):
     scores = {}
     suggestions = unit.get_suggestions()
 
-    # Avoid the votes query if we're not editing terminology
-    if (suggestions and (unit.store.is_terminology or
-        unit.store.translation_project.project.is_terminology)):
-        from voting.models import Vote
-        scores = Vote.objects.get_scores_in_bulk(suggestions)
-
     for sugg in suggestions:
         score = scores.get(sugg.id, False)
         sugg_list.append((sugg, score))

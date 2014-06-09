@@ -541,7 +541,7 @@ td.translate-full textarea.translation
     width: 100%;
     margin: 0 auto 0.5em;
     padding: 0;
-    min-height: 2.7em; 
+    min-height: 2.7em;
 }
 
 .translate-translation .textcomplete-wrapper
@@ -679,14 +679,12 @@ html[dir="rtl"] #extras-bar a
     opacity: 0.1;
 }
 
-a.suggestion-action,
-a.suggestion-vote
+a.suggestion-action
 {
     float: right;
 }
 
-html[dir="rtl"] .suggestion-action,
-html[dir="rtl"] .suggestion-vote
+html[dir="rtl"] .suggestion-action
 {
     float: left;
 }
@@ -696,30 +694,14 @@ html[dir="rtl"] .suggestion-vote
     unicode-bidi: embed;
 }
 
-.extra-item-block:hover .suggestion-action img,
-.extra-item-block:hover .suggestion-vote img
+.extra-item-block:hover .suggestion-action img
 {
     opacity: 0.5;
 }
 
-.extra-item-block .suggestion-action img:hover,
-.extra-item-block .suggestion-vote:hover img
+.extra-item-block .suggestion-action img:hover
 {
     opacity: 1;
-}
-
-.num-votes
-{
-    position: absolute;
-    top: 8px;
-    right: 0.9em;
-    text-shadow: 0 0 8px #777;
-}
-
-.suggestion-vote img
-{
-    top: 50%;
-    opacity: 0.3;
 }
 
 .extra-item
