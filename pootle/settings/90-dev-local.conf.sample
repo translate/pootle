@@ -17,6 +17,8 @@ need to change the extension of this file from ``.conf.sample`` to ``.conf``.
 # Site title
 TITLE = 'Development Server'
 
+POOTLE_INSTANCE_ID = 'development'
+
 # General Django debugging settings
 
 # Enable Django debug mode

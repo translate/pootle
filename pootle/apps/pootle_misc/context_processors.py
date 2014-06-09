@@ -45,7 +45,7 @@ def pootle_context(request):
     return {
         'settings': {
             'TITLE': settings.TITLE,
-            'INSTANCE_ID': settings.INSTANCE_ID,
+            'POOTLE_INSTANCE_ID': settings.POOTLE_INSTANCE_ID,
             'CAN_CONTACT': settings.CAN_CONTACT and settings.CONTACT_EMAIL,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
             'POOTLE_VERSION': sver,

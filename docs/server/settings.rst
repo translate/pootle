@@ -53,6 +53,15 @@ This file contains base configuration settings.
   The name of the Pootle server.
 
 
+.. setting:: POOTLE_INSTANCE_ID
+
+``POOTLE_INSTANCE_ID``
+  Instance ID. This is to differentiate multiple instances
+  of the same app (e.g. development, staging and production).
+  By default this value is exposed as a global <html> class name
+  to allow overriding CSS rules based on the instance type.
+
+
 20-backends.conf
 ^^^^^^^^^^^^^^^^
 
