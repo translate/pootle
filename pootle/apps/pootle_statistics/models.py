@@ -247,19 +247,32 @@ class Submission(models.Model):
                         # Note that we analyze current unit state:
                         # if this submission is not last unit state
                         # can be changed
-                        action_bundle["action"] = {
-                            TRANSLATED: _(
-                                'translated ' if self.old_value == '' else 'edited '
-                                '<i><a href="%(url)s">%(source)s</a></i>',
-                                unit
-                            ),
-                            FUZZY: _(
-                                'pre-translated ' if self.old_value == '' else 'edited '
-                                '<i><a href="%(url)s">%(source)s</a></i>',
-                                unit
-                            ),
-                        }.get(self.unit.state, '')
-
+                        if self.unit.state == TRANSLATED:
+                            if self.old_value == '':
+                                action_bundle["action"] = _(
+                                    'translated '
+                                    '<i><a href="%(url)s">%(source)s</a></i>',
+                                    unit
+                                )
+                            else:
+                                action_bundle["action"] = _(
+                                    'edited '
+                                    '<i><a href="%(url)s">%(source)s</a></i>',
+                                    unit
+                                )
+                        elif self.unit.state == FUZZY:
+                            if self.old_value == '':
+                                action_bundle["action"] = _(
+                                    'pre-translated '
+                                    '<i><a href="%(url)s">%(source)s</a></i>',
+                                    unit
+                                )
+                            else:
+                                action_bundle["action"] = _(
+                                    'edited '
+                                    '<i><a href="%(url)s">%(source)s</a></i>',
+                                    unit
+                                )
                     else:
                         action_bundle["action"] = _(
                             'removed translation for '
@@ -268,6 +281,9 @@ class Submission(models.Model):
                         )
 
                 elif self.field == SubmissionFields.STATE:
+                    # Note that a submission where field is STATE
+                    # should be created before a submission where
+                    # field is TARGET
                     action_bundle["action"] = {
                         TRANSLATED: _(
                             'reviewed '

@@ -325,12 +325,21 @@ class Command(PootleCommand):
         if submission_filter:
             submissions = submissions.filter(**submission_filter)
 
-        ss = submissions.values('store__pootle_path') \
+        ss = submissions.values('store_id') \
                         .annotate(max_id=Max('id'))
         for s_id in ss.iterator():
             sub = Submission.objects.select_related('store') \
                                     .get(id=s_id['max_id'])
+
             if sub.unit:
+                sub_filter = {
+                    'unit': sub.unit,
+                    'creation_time': sub.creation_time,
+                    'submitter': sub.submitter
+                }
+                sub = Submission.objects.select_related('store') \
+                                        .filter(**sub_filter) \
+                                        .order_by('field')[:1][0]
                 key = sub.store.get_cachekey()
                 logging.info('Set last action stats for %s' % key)
                 res = {
