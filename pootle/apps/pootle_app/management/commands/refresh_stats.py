@@ -69,6 +69,7 @@ class Command(PootleCommand):
                 store.fuzzy_wordcount += wordcount
 
         if options["calculate_checks"]:
+            self.stdout.write("Calculating checks for %r" % (store))
             store.update_qualitychecks()
 
             store.failing_critical_count = QualityCheck.objects.filter(
@@ -85,11 +86,15 @@ class Command(PootleCommand):
         def update(tp, col):
             setattr(tp, col, sum(getattr(store, col) for store in tp.stores.iterator()))
 
-        self.stdout.write("Processing translation projects... (almost done!)")
+        self.stdout.write("\nProcessing translation projects...")
+
         for tp in tps:
+            self.stdout.write("Processing %r" % (tp))
             update(tp, "total_wordcount")
             update(tp, "translated_wordcount")
             update(tp, "fuzzy_wordcount")
             update(tp, "suggestion_count")
             update(tp, "failing_critical_count")
             tp.save()
+
+        self.stdout.write("\nSuccessfully updated translation counts.")
