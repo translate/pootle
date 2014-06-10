@@ -19,7 +19,7 @@ diff-match-patch>=20121119
 lxml>=2.1.4
 
 # For providing API
-#django-tastypie
+#django-tastypie>=0.11.1
 
 # Translate Toolkit
 #translate-toolkit>=1.11.0
