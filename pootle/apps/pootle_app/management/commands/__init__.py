@@ -47,6 +47,12 @@ class PootleCommand(NoArgsCommand):
         )
     option_list = NoArgsCommand.option_list + shared_option_list
 
+    def __init__(self, *args, **kwargs):
+        self.languages = []
+        self.projects = []
+        self.path = ''
+        super(PootleCommand, self).__init__(*args, **kwargs)
+
     def do_translation_project(self, tp, pootle_path, **options):
         process_stores = True
 
@@ -106,84 +112,47 @@ class PootleCommand(NoArgsCommand):
         TranslationProject._non_db_state_cache.maxsize = 2
         TranslationProject._non_db_state_cache.cullsize = 2
 
+        directory = options.get('directory', '')
+        if directory:
+            path_parts = directory.split('/')
+            if path_parts and path_parts[0]:
+                self.projects = [path_parts[0]]
+                if len(path_parts) > 1 and path_parts[1]:
+                    if Language.objects.filter(code=path_parts[1]).count():
+                        self.languages = [path_parts[1]]
+                        if len(path_parts) > 2:
+                            self.path = '/'.join(path_parts[2:])
+                    else:
+                        self.path = '/'.join(path_parts[1:])
+        else:
+            self.projects = options.get('projects', [])
+            self.languages = options.get('languages', [])
+            self.path = options.get('path', '')
+
         # info start
         start = datetime.datetime.now()
         logging.info('Start running of %s', self.name)
 
-        directory = options.get('directory', '')
-        if directory:
-            languages = []
-            projects = []
-            path = ''
-            path_parts = directory.split('/')
-            if path_parts and path_parts[0]:
-                projects = [path_parts[0]]
-                if len(path_parts) > 1 and path_parts[1]:
-                    if Language.objects.filter(code=path_parts[1]).count():
-                        languages = [path_parts[1]]
-                        if len(path_parts) > 2:
-                            path = '/'.join(path_parts[2:])
-                    else:
-                        path = '/'.join(path_parts[1:])
-        else:
-            projects = options.get('projects', [])
-            languages = options.get('languages', [])
-            path = options.get('path', '')
-
-        if not projects and not languages and hasattr(self, "handle_all"):
-            logging.info(u"Running %s (noargs)", self.name)
-            try:
-                self.handle_all(**options)
-            except Exception as e:
-                logging.error(u"Failed to run %s:\n%s", self.name, e)
-        else:
-            project_query = Project.objects.all()
-            if projects:
-                project_query = project_query.filter(code__in=projects)
-
-            for project in project_query.iterator():
-                template_tp = project.get_template_translationproject()
-                tp_query = project.translationproject_set \
-                                  .order_by('language__code')
-
-                if languages:
-                    if (template_tp and
-                        template_tp.language.code not in languages):
-                        template_tp = None
-                    tp_query = tp_query.filter(language__code__in=languages)
-
-                # update the template translation project first
-                if template_tp:
-                    self.do_translation_project(template_tp, path, **options)
-
-                for tp in tp_query.iterator():
-                    if tp == template_tp:
-                        continue
-                    self.do_translation_project(tp, path, **options)
-
-                if not languages and hasattr(self, "handle_project"):
-                    logging.info(u"Running %s over %s", self.name, project)
-                    try:
-                        self.handle_project(project, **options)
-                    except Exception as e:
-                        logging.error(u"Failed to run %s over %s:\n%s",
-                                      self.name, project, e)
-
-            if not projects and hasattr(self, "handle_language"):
-                lang_query = Language.objects.all()
-                if languages:
-                    lang_query = lang_query.filter(code__in=languages)
-                for lang in lang_query.iterator():
-                    logging.info(u"Running %s over %s", self.name, lang)
-                    try:
-                        self.handle_language(lang, **options)
-                    except Exception as e:
-                        logging.error(u"Failed to run %s over %s:\n%s",
-                                      self.name, lang, e)
+        self.handle_all(**options)
 
         # info finish
         end = datetime.datetime.now()
         logging.info('All done for %s in %s', self.name, end - start)
+
+    def handle_all(self, **options):
+        project_query = Project.objects.all()
+        if self.projects:
+            project_query = project_query.filter(code__in=self.projects)
+
+        for project in project_query.iterator():
+            tp_query = project.translationproject_set \
+                              .order_by('language__code')
+
+            if self.languages:
+                tp_query = tp_query.filter(language__code__in=self.languages)
+
+            for tp in tp_query.iterator():
+                self.do_translation_project(tp, self.path, **options)
 
 
 class NoArgsCommandMixin(NoArgsCommand):

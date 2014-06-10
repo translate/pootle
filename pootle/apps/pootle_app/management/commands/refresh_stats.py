@@ -108,33 +108,28 @@ class Command(PootleCommand):
 
         store.clear_all_cache()
 
-    def handle_language(self, lang, **options):
-        # all children stats should be refreshed
-        # language level needs to be updated only
-        lang.clear_all_cache(children=False)
-        lang.get_stats()
-        lang.get_mtime()
-
-    def handle_project(self, prj, **options):
-        # all children stats should be refreshed
-        # project level needs to be updated only
-        prj.clear_all_cache(children=False)
-        prj.get_stats()
-        prj.get_mtime()
-
     def handle_all(self, **options):
-        self.process(**options)
-        logging.info('Refreshing directories stats...')
+        if not self.projects and not self.languages:
+            logging.info(u"Running %s (noargs)", self.name)
 
-        lang_query = Language.objects.all()
-        prj_query = Project.objects.all()
+            try:
+                self.process(**options)
+                logging.info('Refreshing directories stats...')
 
-        for lang in lang_query.iterator():
-            # Calculate stats for all directories and translation projects
-            lang.refresh_stats(include_children=True)
+                lang_query = Language.objects.all()
+                prj_query = Project.objects.all()
 
-        for prj in prj_query.iterator():
-            prj.refresh_stats(include_children=False)
+                for lang in lang_query.iterator():
+                    # Calculate stats for all directories and translation projects
+                    lang.refresh_stats(include_children=True)
+
+                for prj in prj_query.iterator():
+                    prj.refresh_stats(include_children=False)
+
+            except Exception as e:
+                logging.error(u"Failed to run %s:\n%s", self.name, e)
+        else:
+            super(Command, self).handle_all(**options)
 
     def process(self, **options):
         timeout = settings.OBJECT_CACHE_TIMEOUT

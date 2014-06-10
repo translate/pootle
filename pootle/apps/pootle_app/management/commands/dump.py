@@ -63,13 +63,16 @@ class Command(PootleCommand):
     option_list = PootleCommand.option_list + shared_option_list
 
     def handle_all(self, **options):
-        stats = options.get('stats', False)
-        data = options.get('data', False)
-        stop_level = int(options.get('stop_level', -1))
-        if stats:
-            self.dump_stats(stop_level=stop_level)
-        if data:
-            self.dump_all(stop_level=stop_level)
+        if not self.projects and not self.languages:
+            stats = options.get('stats', False)
+            data = options.get('data', False)
+            stop_level = int(options.get('stop_level', -1))
+            if stats:
+                self.dump_stats(stop_level=stop_level)
+            if data:
+                self.dump_all(stop_level=stop_level)
+        else:
+            super(Command, self).handle_all(**options)
 
     def handle_translation_project(self, tp, **options):
         stats = options.get('stats', False)
