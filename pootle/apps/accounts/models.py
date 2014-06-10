@@ -27,10 +27,14 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
+from pootle_app.models import Directory
+from pootle_autonotices.signals import new_object
 from .managers import UserManager
 
 
@@ -121,3 +125,16 @@ class User(AbstractBaseUser):
         """
         from pootle_profile.models import PootleProfile
         return PootleProfile.objects.get(user=self)
+
+
+@receiver(post_save, sender=User)
+def new_user(sender, instance, created=False, raw=False, **kwargs):
+    if raw:
+        return
+
+    args = {
+        "url": instance.get_absolute_url(),
+        "user": instance,
+    }
+    message = 'New user <a href="%(url)s">%(user)s</a> registered.' % args
+    new_object(created, message, parent=Directory.objects.root)
