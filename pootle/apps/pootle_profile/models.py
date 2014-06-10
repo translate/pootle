@@ -20,6 +20,7 @@
 
 from hashlib import md5
 
+from django.conf import settings
 from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -76,7 +77,7 @@ class PootleProfileManager(models.Manager):
 class PootleProfile(models.Model):
 
     # This is the only required field.
-    user = models.OneToOneField(User, unique=True, db_index=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, unique=True, db_index=True)
     unit_rows = models.SmallIntegerField(
         default=9,
         verbose_name=_("Number of Rows"),
