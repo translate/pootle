@@ -31,7 +31,7 @@ for more details.
   Using memcached is still highly recommended.
 - The registration and authentication layer is now handled by django-allauth.
   This gives Pootle implicit support for OpenID, OAuth, OAuth2 and Persona
-  sign-in support.
+  sign-in protocols.
 - Local Translation Memory (TM) augments the already available `amaGama
   <http://amagama.translatehouse.org>`_ TM by delivering TM results from the
   projects hosted on the Pootle server.  Images stored in
