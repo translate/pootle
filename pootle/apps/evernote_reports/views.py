@@ -53,16 +53,16 @@ INITIAL_STATES = ['new', 'edit']
 
 
 @admin_required
-def evernote_reports(request, context={}):
+def evernote_reports(request):
     User = get_user_model()
-    ctx = context
-    ctx.update({
+
+    ctx = {
         'users': map(
             lambda x: {'code': x.username, 'name': u'%s' % x },
             User.objects.hide_defaults()
         ),
         'user_rates_form': UserRatesForm(),
-    })
+    }
 
     return render_to_response('admin/reports.html', ctx,
                               context_instance=RequestContext(request))
