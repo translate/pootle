@@ -21,11 +21,8 @@ import re
 
 from django import forms
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
 
 
@@ -56,18 +53,3 @@ class ProjectAdmin(admin.ModelAdmin):
     form = MyProjectAdminForm
 
 admin.site.register(Project, ProjectAdmin)
-
-
-### User / PootleProfile
-
-User = get_user_model()
-
-admin.site.unregister(User)
-
-class PootleProfileInline(admin.StackedInline):
-    model = PootleProfile
-
-class MyUserAdmin(UserAdmin):
-    inlines = [PootleProfileInline]
-
-admin.site.register(User, MyUserAdmin)
