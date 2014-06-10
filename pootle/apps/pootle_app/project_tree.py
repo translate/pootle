@@ -19,6 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import errno
 import logging
 import os
 import re
@@ -363,3 +364,16 @@ def get_translated_name(translation_project, store):
 
     return ('/'.join(pootle_path_parts),
             absolute_real_path(os.sep.join(path_parts)))
+
+
+def does_not_exist(path):
+    if os.path.exists(path):
+        return False
+
+    try:
+        os.stat(path)
+        # what the hell?
+    except OSError as e:
+        if e.errno == errno.ENOENT:
+            # explicit no such file or directory
+            return True

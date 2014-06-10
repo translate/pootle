@@ -23,25 +23,13 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from optparse import make_option
 import logging
-import errno
 
 from pootle_app.management.commands import PootleCommand
-
+from pootle_app.project_tree import does_not_exist
 from pootle_translationproject.models import create_or_enable_translation_project
 from pootle_language.models import Language
 from pootle_project.models import Project
 
-def does_not_exist(path):
-    if os.path.exists(path):
-        return False
-
-    try:
-        os.stat(path)
-        # what the hell?
-    except OSError as e:
-        if e.errno == errno.ENOENT:
-            # explicit no such file or directory
-            return True
 
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
