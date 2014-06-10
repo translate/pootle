@@ -40,38 +40,34 @@ class Command(PootleCommand):
     help = "Detects new translation projects in the file system and " \
            "adds them to database."
 
-    def handle_project(self, project, **options):
+    def handle_translation_project(self, translation_project, **options):
         clean = options.get('clean', False)
-        if clean and does_not_exist(project.get_real_path()):
-            logging.info(u"Disabling %s", project)
-            project.disabled = True
-            project.save()
-            project.clear_all_cache(parents=True, children=False)
-            return
+        if not translation_project.disabled and clean:
+            translation_project.disable_if_missing()
 
     def handle_all(self, **options):
         project_query = Project.objects.all()
 
-        lang_query = Language.objects.exclude(
-                id__in=project.translationproject_set.enabled() \
-                              .values_list('language', flat=True)
-            )
-        for language in lang_query.iterator():
-            create_or_enable_translation_project(language, project)
+        if self.projects:
+            project_query = project_query.filter(code__in=self.projects)
 
-    def handle_language(self, language, **options):
-        project_query = Project.objects.exclude(
-                id__in=language.translationproject_set.enabled() \
-                               .values_list('project', flat=True)
-            )
         for project in project_query.iterator():
-            create_or_enable_translation_project(language, project)
+            if does_not_exist(project.get_real_path()):
+                logging.info(u"Disabling %s", project)
+                project.disabled = True
+                project.save()
+                project.clear_all_cache(parents=True, children=False)
+            else:
+                lang_query = Language.objects.exclude(
+                        id__in=project.translationproject_set.enabled() \
+                                      .values_list('language', flat=True)
+                    )
+                if self.languages:
+                    lang_query = lang_query.filter(code__in=self.languages)
 
-    def handle_translation_project(self, translation_project, **options):
-        clean = options.get('clean', False)
-        if not translation_project.disabled and \
-                clean and does_not_exist(translation_project.abs_real_path):
-            logging.info(u"Disabling %s", translation_project)
-            translation_project.disabled = True
-            translation_project.save()
-            translation_project.clear_all_cache(parents=True, children=False)
+                for language in lang_query.iterator():
+                    logging.info(u"Check for %s/%s", project, language)
+
+                    create_or_enable_translation_project(language, project)
+
+        super(Command, self).handle_all(**options)
