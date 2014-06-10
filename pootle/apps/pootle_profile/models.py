@@ -33,12 +33,6 @@ from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 
-class PootleProfileManager(models.Manager):
-    def get_query_set(self):
-        return super(PootleProfileManager, self).get_query_set() \
-                                                .select_related('alt_src_langs')
-
-
 class PootleProfile(models.Model):
 
     # This is the only required field.
@@ -56,8 +50,6 @@ class PootleProfile(models.Model):
         related_name="user_alt_src_langs",
         verbose_name=_("Alternative Source Languages"),
     )
-
-    objects = PootleProfileManager()
 
     class Meta:
         db_table = 'pootle_app_pootleprofile'
