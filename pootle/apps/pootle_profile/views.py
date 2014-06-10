@@ -21,8 +21,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from profiles.views import edit_profile
+from accounts.forms import UserForm
 
-from .forms import UserForm, pootle_profile_form_factory
+from .forms import pootle_profile_form_factory
 
 
 def profile_edit(request):

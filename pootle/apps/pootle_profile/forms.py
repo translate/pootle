@@ -18,22 +18,9 @@
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django import forms
-from django.contrib import auth
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
 from .models import PootleProfile
-
-
-User = get_user_model()
-
-
-class UserForm(forms.ModelForm):
-
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'email')
 
 
 def pootle_profile_form_factory(exclude_fields):
