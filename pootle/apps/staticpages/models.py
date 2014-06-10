@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.conf import settings
 from django.db import models
 from django.db.models import Q
 from django.db.models.aggregates import Max
@@ -30,9 +31,6 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import DirtyFieldsMixin
 
 from .managers import PageManager
-
-
-User = get_user_model()
 
 
 class AbstractPage(DirtyFieldsMixin, models.Model):
@@ -144,7 +142,7 @@ class StaticPage(AbstractPage):
 class Agreement(models.Model):
     """Tracks who agreed a specific legal document and when."""
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     document = models.ForeignKey(LegalPage)
     agreed_on = models.DateTimeField(
         default=now,
