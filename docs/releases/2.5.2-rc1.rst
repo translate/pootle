@@ -78,8 +78,8 @@ for more details.
     them into the translation.
 
 
-Removal of legacy features
-==========================
+Removed features
+================
 
 We have dropped some legacy features we kept around for allowing a swift
 upgrade in the past.
@@ -96,6 +96,10 @@ These are the features we got rid of:
 - Live translation: Rarely enabled, and it was discouraged to use it.
 - Autosync: It was recommended to never use it. The files can now be synced
   instead using the appropriate management commands.
+
+The voting feature for terminology suggestions has also been removed, due to
+its low popularity and high maintenance cost. In order to save existing voting
+data, make a backup of the ``voting_vote`` table before upgrading.
 
 
 ...and lots of refactoring, upgrades of upstream code, cleanups to remove
