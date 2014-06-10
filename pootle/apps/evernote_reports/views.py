@@ -394,7 +394,7 @@ def users(request):
     json = list(
         User.objects.hide_defaults()
                     .select_related('evernote_account')
-                    .values('id', 'username', 'first_name', 'last_name')
+                    .values('id', 'username', 'full_name')
     )
     response = jsonify(json)
 
