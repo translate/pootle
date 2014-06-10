@@ -2,7 +2,7 @@
 Welcome to the new Pootle 2.5.2-rc1
 ===================================
 
-.. note:: Not released yet. *Planned release date late April 2014*.
+.. note:: Not released yet. *Planned release date late June 2014*.
 
 For those who can't wait you might be interested to know what we've got planned
 on our :ref:`roadmap <roadmap>`.
