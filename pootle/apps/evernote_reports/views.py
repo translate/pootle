@@ -55,8 +55,8 @@ INITIAL_STATES = ['new', 'edit']
 @admin_required
 def evernote_reports(request, context={}):
     User = get_user_model()
-    cxt = context
-    cxt.update({
+    ctx = context
+    ctx.update({
         'users': map(
             lambda x: {'code': x.username, 'name': u'%s' % x },
             User.objects.hide_defaults()
@@ -64,7 +64,7 @@ def evernote_reports(request, context={}):
         'user_rates_form': UserRatesForm(),
     })
 
-    return render_to_response('admin/reports.html', cxt,
+    return render_to_response('admin/reports.html', ctx,
                               context_instance=RequestContext(request))
 
 @admin_required
@@ -130,7 +130,7 @@ def evernote_reports_detailed(request):
 
         totals['all'] = totals['all']
 
-    cxt = {
+    ctx = {
         'scores': scores,
         'user': user,
         'start': start,
@@ -140,7 +140,7 @@ def evernote_reports_detailed(request):
         'http_host': request.META['HTTP_HOST'],
     }
 
-    return render_to_response('admin/detailed_reports.html', cxt,
+    return render_to_response('admin/detailed_reports.html', ctx,
                               context_instance=RequestContext(request))
 
 
