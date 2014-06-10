@@ -32,6 +32,7 @@ from django.db.models import Q
 from django.db.models.signals import post_save
 from django.utils.functional import cached_property
 
+from pootle_app.project_tree import does_not_exist
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
@@ -308,6 +309,23 @@ class TranslationProject(models.Model, TreeItem):
         return [self.language, self.project]
 
     ### /TreeItem
+
+    def disable_if_missing(self):
+        """Disable the current translation project
+        if its directory doesn't exist.
+
+        :return: True if the current translation_project (i.e. self)
+        has been disabled.
+        """
+        if not self.disabled and does_not_exist(self.abs_real_path):
+            logging.info(u"Disabling %s", self)
+            self.disabled = True
+            self.save()
+            self.clear_all_cache(parents=True, children=False)
+
+            return True
+
+        return False
 
     def scan_files(self):
         """Scans the file system and returns a list of translation files.

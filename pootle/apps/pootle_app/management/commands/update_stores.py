@@ -46,7 +46,8 @@ class Command(PootleCommand):
         """
         :return: flag if child stores should be updated
         """
-        if not translation_project.disabled:
+        if (not translation_project.disabled and
+            not translation_project.disable_if_missing()):
             logging.info(u"Scanning for new files in %s", translation_project)
             translation_project.scan_files()
             return True

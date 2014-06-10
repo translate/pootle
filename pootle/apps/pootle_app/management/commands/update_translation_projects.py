@@ -49,6 +49,9 @@ class Command(PootleCommand):
             project.clear_all_cache(parents=True, children=False)
             return
 
+    def handle_all(self, **options):
+        project_query = Project.objects.all()
+
         lang_query = Language.objects.exclude(
                 id__in=project.translationproject_set.enabled() \
                               .values_list('language', flat=True)
