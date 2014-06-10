@@ -2019,7 +2019,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         if submission is None:
             try:
                 sub = Submission.simple_objects.filter(store=self) \
-                                .exclude(type=SubmissionTypes.UNIT_CREATE).latest()
+                                .exclude(type=SubmissionTypes.UNIT_CREATE) \
+                                .latest()
             except Submission.DoesNotExist:
                 return {'id': 0, 'mtime': 0, 'snippet': ''}
         else:

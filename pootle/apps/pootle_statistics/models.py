@@ -55,6 +55,7 @@ class SubmissionTypes(object):
     SUGG_REJECT = 9 # Reject Suggestion
     UNIT_CREATE = 10 # Create a Unit with translation
 
+
 #: Values for the 'field' field of Submission
 class SubmissionFields(object):
     NONE = 0  # non-field submission

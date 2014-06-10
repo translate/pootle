@@ -143,6 +143,7 @@ def evernote_reports_detailed(request):
     return render_to_response('admin/detailed_reports.html', cxt,
                               context_instance=RequestContext(request))
 
+
 def get_date_interval(start_date, end_date):
     if start_date:
         start = datetime.strptime(start_date, '%Y-%m-%d')

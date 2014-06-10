@@ -537,12 +537,13 @@ def timeline(request, unit):
 
         entries_group.append(entry_group)
 
-    if len(entries_group) > 0 and entries_group[0]['datetime'] == unit.creation_time:
+    if (len(entries_group) > 0 and
+        entries_group[0]['datetime'] == unit.creation_time):
         entries_group[0]['created'] = True
     else:
         created = {
             'created': True,
-            'submitter': User.objects.get_system_user()
+            'submitter': User.objects.get_system_user(),
         }
 
         if unit.creation_time:
