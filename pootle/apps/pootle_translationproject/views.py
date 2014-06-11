@@ -232,7 +232,7 @@ def vcs_update(request, translation_project, dir_path, filename):
 
 def _handle_upload_form(request, translation_project):
     """Process the upload form in TP overview."""
-    from pootle_app.models.signals import post_file_upload
+    from pootle_app.signals import post_file_upload
 
     upload_form_class = upload_form_factory(request)
 
