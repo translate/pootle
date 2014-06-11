@@ -144,8 +144,7 @@ class UserResource(StatisticsModelResource):
         fields = [
             'date_joined',
             'email',
-            'first_name',
-            'last_name',
+            'full_name',
             'username',
         ]
         list_allowed_methods = ['post', 'get']

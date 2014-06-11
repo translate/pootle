@@ -2193,7 +2193,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     }
             if profile is not None and profile.user.is_authenticated():
                 headerupdates['Last_Translator'] = '%s <%s>' % \
-                        (profile.user.first_name or profile.user.username,
+                        (profile.user.full_name or profile.user.username,
                          profile.user.email)
             else:
                 #FIXME: maybe insert settings.TITLE or domain here?

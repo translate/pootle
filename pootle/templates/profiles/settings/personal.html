@@ -1,6 +1,6 @@
 {% extends "profiles/settings/base.html"  %}
 {% load i18n %}
- 
+
 {% block title %}{% trans "Profile" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
@@ -15,14 +15,9 @@
 <form method="post" action="">
 {% csrf_token %}
     <p>
-        <label for="id_first_name">{% trans 'First Name' %}</label>
-        {{ form.first_name }}
-        {{ form.first_name.errors }}
-    </p>
-    <p>
-        <label for="id_last_name">{% trans 'Last Name' %}</label>
-        {{ form.last_name }}
-        {{ form.last_name.errors }}
+        <label for="id_full_name">{% trans "Name" %}</label>
+        {{ form.full_name }}
+        {{ form.full_name.errors }}
     </p>
     <p>
         <label for="id_email">{% trans 'Email address' %}</label>

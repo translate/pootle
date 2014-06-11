@@ -34,8 +34,7 @@ User = get_user_model()
 
 @admin_required
 def view(request):
-    fields = ('username', 'first_name', 'last_name', 'email', 'is_active',
-              'is_superuser')
+    fields = ("username", "full_name", "email", "is_active", "is_superuser")
     queryset = User.objects.hide_defaults().order_by('username')
     return util.edit(request, 'admin/users.html', User, fields=fields,
                      formset=BaseUserFormSet, queryset=queryset,

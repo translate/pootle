@@ -152,7 +152,7 @@ class Submission(models.Model):
                 User = get_user_model()
                 displayuser = User.objects.get_nobody_user().get_profile()
 
-        displayname = displayuser.fullname
+        displayname = displayuser.user.full_name
         if not displayname:
             displayname = displayuser.user.username
 

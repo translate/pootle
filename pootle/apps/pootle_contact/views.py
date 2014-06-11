@@ -57,7 +57,7 @@ class PootleContactFormView(AjaxResponseMixin, ContactFormView):
         user = self.request.user
         if user.is_authenticated():
             initial.update({
-                'name': user.get_profile().fullname,
+                'name': user.full_name,
                 'email': user.email,
             })
 
