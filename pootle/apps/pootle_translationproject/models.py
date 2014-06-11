@@ -521,7 +521,7 @@ class TranslationProject(models.Model, TreeItem):
                     pass
 
         if pootle_path is None:
-            from pootle_app.models.signals import post_template_update
+            from pootle_app.signals import post_template_update
             post_template_update.send(sender=self)
 
     def scan_files(self, vcs_sync=True):
@@ -701,7 +701,7 @@ class TranslationProject(models.Model, TreeItem):
                   {'project': self.fullname})
             messages.info(request, msg)
 
-        from pootle_app.models.signals import post_vc_update
+        from pootle_app.signals import post_vc_update
         post_vc_update.send(sender=self)
 
     def update_file(self, request, store):
@@ -715,7 +715,7 @@ class TranslationProject(models.Model, TreeItem):
                     {'filename': store.file.name})
             messages.info(request, msg)
 
-            from pootle_app.models.signals import post_vc_update
+            from pootle_app.signals import post_vc_update
             post_vc_update.send(sender=self)
         except VersionControlError as e:
             # FIXME: This belongs to views
@@ -801,7 +801,7 @@ class TranslationProject(models.Model, TreeItem):
                 # impossible
                 pass
 
-        from pootle_app.models.signals import post_vc_commit
+        from pootle_app.signals import post_vc_commit
         post_vc_commit.send(sender=self, path_obj=directory,
                             user=user, success=success)
 
@@ -873,7 +873,7 @@ class TranslationProject(models.Model, TreeItem):
             # impossible
             pass
 
-        from pootle_app.models.signals import post_vc_commit
+        from pootle_app.signals import post_vc_commit
         post_vc_commit.send(sender=self, path_obj=store,
                             user=user, success=success)
 

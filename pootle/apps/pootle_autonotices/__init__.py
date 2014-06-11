@@ -20,8 +20,8 @@
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 
-from pootle_app.models.signals import (post_file_upload, post_template_update,
-                                       post_vc_commit, post_vc_update)
+from pootle_app.signals import (post_file_upload, post_template_update,
+                                post_vc_commit, post_vc_update)
 from pootle_language.models import Language
 from pootle_project.models import Project
 

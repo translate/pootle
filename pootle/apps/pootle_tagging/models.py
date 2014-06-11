@@ -33,8 +33,8 @@ from taggit.models import TagBase, GenericTaggedItemBase
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_app.models.signals import (post_file_upload, post_template_update,
-                                       post_vc_update)
+from pootle_app.signals import (post_file_upload, post_template_update,
+                                post_vc_update)
 from pootle_misc.checks import category_names, check_names
 from pootle_misc.checks import get_qualitychecks_by_category
 from pootle_store.signals import translation_submitted
