@@ -116,9 +116,9 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
                     get_markup_filter_name()),
     )
 
-    checker_choices = [('standard', 'standard')]
     checkers = list(checks.projectcheckers.keys())
     checkers.sort()
+    checker_choices = [('standard', 'standard')]
     checker_choices.extend([(checker, checker) for checker in checkers])
     checkstyle = models.CharField(
         max_length=50,
@@ -169,7 +169,6 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         help_text=_('An email address where issues with the source text can '
                     'be reported.'),
     )
-
     disabled = models.BooleanField(verbose_name=_('Disabled'), default=False)
 
     objects = ProjectManager()

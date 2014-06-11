@@ -56,7 +56,9 @@ def highlight_whitespace(text):
 
     return FORM_RE.sub(replace, text)
 
+
 FORM_UNRE = re.compile('\r|\n|\t|\\\\r|\\\\n|\\\\t|\\\\\\\\')
+
 def unhighlight_whitespace(text):
     """Replace visible whitespace with proper whitespace."""
 
@@ -73,6 +75,7 @@ def unhighlight_whitespace(text):
         return submap[match.group()]
 
     return FORM_UNRE.sub(replace, text)
+
 
 class MultiStringWidget(forms.MultiWidget):
     """Custom Widget for editing multistrings, expands number of text
@@ -112,6 +115,7 @@ class MultiStringWidget(forms.MultiWidget):
             return [highlight_whitespace(value)]
         else:
             raise ValueError
+
 
 class HiddenMultiStringWidget(MultiStringWidget):
     """Uses hidden input instead of textareas."""
@@ -311,7 +315,6 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             return new_state
 
-
     return UnitForm
 
 
@@ -360,6 +363,5 @@ def unit_comment_form_factory(language):
                 sub.save()
 
             super(UnitCommentForm, self).save()
-
 
     return UnitCommentForm

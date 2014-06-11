@@ -47,7 +47,7 @@ from pootle_misc.checks import excluded_filters
 from pootle_misc.stats import stats_message_raw
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
-from pootle_store.models import (Store, Unit, PARSED)
+from pootle_store.models import Store, Unit, PARSED
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                OBSOLETE)
 from pootle_tagging.models import ItemWithGoal
@@ -66,6 +66,7 @@ class TranslationProjectNonDBState(object):
         self._index_initialized = False
         self.indexer = None
 
+
 def create_or_enable_translation_project(language, project):
     tp = create_translation_project(language, project)
     if tp is not None:
@@ -76,6 +77,7 @@ def create_or_enable_translation_project(language, project):
         else:
             logging.info(u"Created %s", tp)
 
+
 def create_translation_project(language, project):
     from pootle_app import project_tree
     if project_tree.translation_project_should_exist(language, project):
@@ -83,9 +85,7 @@ def create_translation_project(language, project):
             translation_project, created = TranslationProject.objects.all() \
                     .get_or_create(language=language, project=project)
             return translation_project
-        except OSError:
-            return None
-        except IndexError:
+        except (OSError, IndexError):
             return None
 
 
@@ -121,8 +121,13 @@ class TranslationProject(models.Model, TreeItem):
     project = models.ForeignKey(Project, db_index=True)
     real_path = models.FilePathField(editable=False)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
-    pootle_path = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, editable=False)
+    pootle_path = models.CharField(
+        max_length=255,
+        null=False,
+        unique=True,
+        db_index=True,
+        editable=False,
+    )
     disabled = models.BooleanField(default=False)
 
     tags = TaggableManager(
@@ -401,7 +406,7 @@ class TranslationProject(models.Model, TreeItem):
     def get_critical_error_unit_count(self):
         return self.failing_critical_count
 
-    def _get_next_goal_count(self):
+    def get_next_goal_count(self):
         # Putting the next import at the top of the file causes circular
         # import issues.
         from pootle_tagging.models import Goal

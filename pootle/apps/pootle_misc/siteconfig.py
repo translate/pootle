@@ -32,7 +32,6 @@ def load_site_config():
     try:
         siteconfig = SiteConfiguration.objects.get_current()
     except SiteConfiguration.DoesNotExist:
-        # Either warn or just create the thing. Depends on your app.
         siteconfig = SiteConfiguration(site=Site.objects.get_current(),
                                        version="1.0")
         siteconfig.save()
