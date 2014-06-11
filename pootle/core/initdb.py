@@ -49,8 +49,8 @@ def initdb():
 
     This creates the default database to get a working Pootle installation.
     """
-    create_essential_users()
     create_root_directories()
+    create_essential_users()
     create_template_languages()
     create_terminology_project()
     create_pootle_permissions()
