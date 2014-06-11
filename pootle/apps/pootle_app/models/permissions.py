@@ -62,8 +62,7 @@ def get_permissions_by_username(username, directory):
         try:
             permissionset = PermissionSet.objects.filter(
                 directory__in=directory.trail(only_dirs=False),
-                profile__user__username=username) \
-                        .order_by('-directory__pootle_path')[0]
+                user__username=username).order_by("-directory__pootle_path")[0]
         except IndexError:
             permissionset = None
 
@@ -76,7 +75,7 @@ def get_permissions_by_username(username, directory):
                     project_path = '/projects/%s/' % path_parts[1]
                     permissionset = PermissionSet.objects \
                             .get(directory__pootle_path=project_path,
-                                 profile__user__username=username)
+                                 user__username=username)
                 except PermissionSet.DoesNotExist:
                     pass
 
@@ -149,7 +148,7 @@ def check_permission(permission_codename, request):
 
 class PermissionSet(models.Model):
 
-    profile = models.ForeignKey('pootle_profile.PootleProfile', db_index=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
     directory = models.ForeignKey(
         'pootle_app.Directory',
         db_index=True,
@@ -171,12 +170,11 @@ class PermissionSet(models.Model):
     objects = RelatedManager()
 
     class Meta:
-        unique_together = ('profile', 'directory')
+        unique_together = ("user", "directory")
         app_label = "pootle_app"
 
     def __unicode__(self):
-        return "%s : %s" % (self.profile.user.username,
-                            self.directory.pootle_path)
+        return "%s : %s" % (self.user.username, self.directory.pootle_path)
 
     def to_dict(self):
         permissions_iterator = self.positive_permissions.iterator()
@@ -186,7 +184,7 @@ class PermissionSet(models.Model):
         super(PermissionSet, self).save(*args, **kwargs)
         # FIXME: can we use `post_save` signals or invalidate caches in
         # model managers, please?
-        username = self.profile.user.username
+        username = self.user.username
         keys = [
             iri_to_uri('Permissions:%s' % username),
             iri_to_uri('projects:accessible:%s' % username),
@@ -197,7 +195,7 @@ class PermissionSet(models.Model):
         super(PermissionSet, self).delete(*args, **kwargs)
         # FIXME: can we use `post_delete` signals or invalidate caches in
         # model managers, please?
-        username = self.profile.user.username
+        username = self.user.username
         keys = [
             iri_to_uri('Permissions:%s' % username),
             iri_to_uri('projects:accessible:%s' % username),

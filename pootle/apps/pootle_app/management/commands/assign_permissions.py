@@ -25,12 +25,12 @@ from optparse import make_option
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.core.management.base import BaseCommand, CommandError
 
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
-from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 
@@ -101,11 +101,11 @@ class Command(BaseCommand):
                                    language_code)
 
         # Get the profile for the specified username. This checks if it exists.
+        User = get_user_model()
         try:
-            profile = PootleProfile.objects.get(user__username=username)
-        except PootleProfile.DoesNotExist:
-            raise CommandError("Profile for user '%s' does not exist." %
-                               username)
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            raise CommandError("User '%s' does not exist." % username)
 
         # Get all the specified permissions. This checks if they exist.
         permission_list = permissions.split(",")
@@ -120,7 +120,7 @@ class Command(BaseCommand):
 
         # Assign the permissions to the user.
         params = {
-            'profile': profile,
+            'user': user,
             'directory': perms_for.directory,
         }
         permission_set, created = PermissionSet.objects.get_or_create(**params)

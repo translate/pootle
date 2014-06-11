@@ -192,8 +192,8 @@ def create_pootle_permission_sets():
     'nobody' is the anonymous (non-logged in) user, and 'default' is the logged
     in user.
     """
-    nobody = PootleProfile.objects.get(user__username='nobody')
-    default = PootleProfile.objects.get(user__username='default')
+    nobody = User.objects.get(username="nobody")
+    default = User.objects.get(username="default")
 
     view = get_pootle_permission('view')
     suggest = get_pootle_permission('suggest')
@@ -202,7 +202,7 @@ def create_pootle_permission_sets():
 
     # Default permissions for tree root.
     criteria = {
-        'profile': nobody,
+        'user': nobody,
         'directory': Directory.objects.root,
     }
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
@@ -210,7 +210,7 @@ def create_pootle_permission_sets():
         permission_set.positive_permissions = [view, suggest]
         permission_set.save()
 
-    criteria['profile'] = default
+    criteria["user"] = default
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
     if created:
         permission_set.positive_permissions = [view, suggest, translate,
@@ -220,7 +220,7 @@ def create_pootle_permission_sets():
     # Default permissions for templates language.
     # Override with no permissions for templates language.
     criteria = {
-        'profile': nobody,
+        'user': nobody,
         'directory': Directory.objects.get(pootle_path="/templates/"),
     }
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
@@ -228,7 +228,7 @@ def create_pootle_permission_sets():
         permission_set.positive_permissions = []
         permission_set.save()
 
-    criteria['profile'] = default
+    criteria["user"] = default
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
     if created:
         permission_set.positive_permissions = []

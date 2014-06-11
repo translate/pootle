@@ -74,13 +74,13 @@ def upgrade_to_25200():
 
 def upgrade_to_25201():
     """New semantics for the `view` permission."""
+    from django.contrib.auth import get_user_model
     from django.contrib.auth.models import Permission
     from django.contrib.contenttypes.models import ContentType
     from django.utils.translation import ugettext_noop as _
 
     from pootle_app.models import Directory
     from pootle_app.models.permissions import PermissionSet
-    from pootle_profile.models import PootleProfile
 
     # Remove old `view` permission
     Permission.objects.filter(codename='view').delete()
@@ -98,18 +98,19 @@ def upgrade_to_25201():
 
     # Attach `view` permission to the root directory for anonymous and
     # default users
-    nobody = PootleProfile.objects.get(user__username='nobody')
-    default = PootleProfile.objects.get(user__username='default')
+    User = get_user_model()
+    nobody = User.objects.get(username='nobody')
+    default = User.objects.get(username='default')
 
     root = Directory.objects.root
     permission_set = PermissionSet.objects.get(
-        profile=nobody,
+        user=nobody,
         directory=root,
     )
     permission_set.positive_permissions.add(view)
 
     permission_set = PermissionSet.objects.get(
-        profile=default,
+        user=default,
         directory=root,
     )
     permission_set.positive_permissions.add(view)
