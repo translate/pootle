@@ -27,10 +27,10 @@ from translate.filters.decorators import Category
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
+from pootle_app.management.commands import PootleCommand
 from pootle_store.caching import count_words
 from pootle_store.models import QualityCheck, Suggestion
-from pootle_app.management.commands import PootleCommand
+from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 
 
 class Command(PootleCommand):
@@ -52,9 +52,10 @@ class Command(PootleCommand):
         store.total_wordcount = 0
         store.translated_wordcount = 0
         store.fuzzy_wordcount = 0
-
-        suggestions = Suggestion.objects.filter(unit__store=store, unit__state__gt=OBSOLETE)
-        store.suggestion_count = suggestions.count()
+        store.suggestion_count = Suggestion.objects.filter(
+            unit__store=store,
+            unit__state__gt=OBSOLETE,
+        ).count()
 
         QualityCheck.objects.filter(unit__store=store).delete()
 

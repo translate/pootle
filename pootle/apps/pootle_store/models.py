@@ -1108,7 +1108,8 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             sub_type = SubmissionTypes.UNMUTE_CHECK
 
-        sub = Submission(creation_time=self.submitted_on,
+        sub = Submission(
+            creation_time=self.submitted_on,
             translation_project=self.store.translation_project,
             submitter=user,
             field=SubmissionFields.NONE,
@@ -1163,29 +1164,53 @@ suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
 class Store(models.Model, TreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
 
-    file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs,
-            db_index=True, null=False, editable=False)
-
-    parent = models.ForeignKey('pootle_app.Directory',
-            related_name='child_stores', db_index=True, editable=False)
-
-    translation_project_fk = 'pootle_translationproject.TranslationProject'
-    translation_project = models.ForeignKey(translation_project_fk,
-            related_name='stores', db_index=True, editable=False)
-
-    pootle_path = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, verbose_name=_("Path"))
+    file = TranslationStoreField(
+        upload_to="fish",
+        max_length=255,
+        storage=fs,
+        db_index=True,
+        null=False,
+        editable=False,
+    )
+    parent = models.ForeignKey(
+        'pootle_app.Directory',
+        related_name='child_stores',
+        db_index=True,
+        editable=False,
+    )
+    translation_project = models.ForeignKey(
+        'pootle_translationproject.TranslationProject',
+        related_name='stores',
+        db_index=True,
+        editable=False,
+    )
+    pootle_path = models.CharField(
+        max_length=255,
+        null=False,
+        unique=True,
+        db_index=True,
+        verbose_name=_("Path"),
+    )
     name = models.CharField(max_length=128, null=False, editable=False)
-
     sync_time = models.DateTimeField(default=datetime_min)
-    state = models.IntegerField(null=False, default=NEW, editable=False,
-            db_index=True)
+    state = models.IntegerField(
+        null=False,
+        default=NEW,
+        editable=False,
+        db_index=True,
+    )
 
-    tags = TaggableManager(blank=True, verbose_name=_("Tags"),
-                           help_text=_("A comma-separated list of tags."))
-    goals = TaggableManager(blank=True, verbose_name=_("Goals"),
-                            through=ItemWithGoal,
-                            help_text=_("A comma-separated list of goals."))
+    tags = TaggableManager(
+        blank=True,
+        verbose_name=_("Tags"),
+        help_text=_("A comma-separated list of tags."),
+    )
+    goals = TaggableManager(
+        blank=True,
+        verbose_name=_("Goals"),
+        through=ItemWithGoal,
+        help_text=_("A comma-separated list of goals."),
+    )
 
     # Cached Unit values
     total_wordcount = models.PositiveIntegerField(default=0, null=True)
@@ -1927,23 +1952,27 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def _get_last_updated(self):
         try:
             max_unit = self.unit_set.all().order_by('-creation_time')[0]
-        except IndexError as e:
-            max_unit = None
-
-        # creation_time field has been added recently, so it can have NULL value
-        if max_unit is not None:
             max_time = max_unit.creation_time
-            if max_time:
-                return {
-                    'id': max_unit.id,
-                    'creation_time': int(dateformat.format(max_time, 'U')),
-                    'snippet': max_unit.get_last_updated_message()
-                }
+        except IndexError:
+            max_time = None
 
-        return {'id': 0, 'creation_time': 0, 'snippet': ''}
+        # creation_time field has been added recently, so it can have NULL
+        # value.
+        if max_time is not None:
+            return {
+                'id': max_unit.id,
+                'creation_time': int(dateformat.format(max_time, 'U')),
+                'snippet': max_unit.get_last_updated_message()
+            }
+
+        return {
+            'id': 0,
+            'creation_time': 0,
+            'snippet': '',
+        }
 
     def _get_last_action(self):
-        units = Unit.objects.filter(store=self).order_by('-submitted_on')[:1]
+        units = self.unit_set.all().order_by('-submitted_on')[:1]
 
         try:
             sub = Submission.simple_objects.filter(unit=units[0]) \

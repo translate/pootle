@@ -191,10 +191,10 @@ class TreeItem(object):
             'translated': self.get_translated_wordcount(),
             'fuzzy': self.get_fuzzy_wordcount(),
             'suggestions': self.get_suggestion_count(),
-            'nextGoal': self.get_next_goal_count(),
-            'lastaction': self.get_last_action(),
             'critical': self.get_critical_error_unit_count(),
+            'nextGoal': self.get_next_goal_count(),
             'lastupdated': self.get_last_updated(),
+            'lastaction': self.get_last_action(),
         }
 
         if include_children:
