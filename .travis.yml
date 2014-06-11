@@ -32,7 +32,6 @@ script:
   - sleep 20
   - kill -2 $TESTPID
   - make pep8
-  - py.test
 after_success:
   - coverage combine
   - coveralls
