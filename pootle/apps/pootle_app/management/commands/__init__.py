@@ -47,6 +47,13 @@ class PootleCommand(NoArgsCommand):
     option_list = NoArgsCommand.option_list + shared_option_list
 
     def do_translation_project(self, tp, pootle_path, **options):
+        # When refreshing stats for a huge set of stores we might end with a
+        # a lot of unused objects in memory. This can delay the processing.
+        # If we do a store at a time and force garbage collection, things stay
+        # much more managable.
+        import gc
+        gc.collect()
+
         if hasattr(self, "handle_translation_project"):
             logging.info(u"Running %s over %s", self.name, tp)
             try:
