@@ -33,6 +33,7 @@ script:
   - TESTPID=$!
   - sleep 20
   - kill -2 $TESTPID
+  - tests/version-migration/migrate.sh
   - make pep8
 after_success:
   - coverage combine
