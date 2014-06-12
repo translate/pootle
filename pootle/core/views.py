@@ -89,7 +89,10 @@ class NoDefaultUserMixin(object):
 
 
 class AjaxResponseMixin(object):
-    """Mixin to add AJAX support to a form."""
+    """Mixin to add AJAX support to a form.
+
+    This needs to be used with a `FormView`.
+    """
     @method_decorator(ajax_required)
     def dispatch(self, *args, **kwargs):
         return super(AjaxResponseMixin, self).dispatch(*args, **kwargs)
