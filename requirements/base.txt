@@ -1,6 +1,6 @@
 # Make sure you update docs/server/installation.rst and, if needed, the release
 # notes in docs/releases/$next when bumping Django versions and dependencies
-Django>=1.5.6,<1.6
+Django>=1.5.8,<1.7
 
 # Django apps
 django-allauth==0.16.1
