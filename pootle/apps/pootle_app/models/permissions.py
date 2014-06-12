@@ -107,17 +107,14 @@ def get_matching_permissions(user, directory, check_default=True):
     return permissions
 
 
-def check_profile_permission(profile, permission_codename, directory,
-                             check_default=True):
-    """Check if the current user has the permission the perform
-    ``permission_codename``."""
-    if profile.user.is_superuser:
+def check_user_permission(user, permission, directory, check_default=True):
+    """Check if the current user has the permission to perform ``permission``."""
+    if user.is_superuser:
         return True
 
-    permissions = get_matching_permissions(profile.user, directory, check_default)
+    permissions = get_matching_permissions(user, directory, check_default)
 
-    return ("administrate" in permissions or
-            permission_codename in permissions)
+    return ("administrate" in permissions or permission in permissions)
 
 
 def check_permission(permission_codename, request):

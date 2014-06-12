@@ -30,7 +30,7 @@ from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (get_matching_permissions,
                                            check_permission,
-                                           check_profile_permission)
+                                           check_user_permission)
 from pootle_misc.mail import send_mail
 from pootle_notifications.forms import form_factory
 from pootle_notifications.models import Notice
@@ -113,8 +113,7 @@ def directory_to_title(directory):
 
 
 def create_notice(creator, message, directory):
-    profile = get_profile(creator)
-    if not check_profile_permission(profile, 'administrate', directory):
+    if not check_user_permission(creator, "administrate", directory):
         raise PermissionDenied
     new_notice = Notice(directory=directory, message=message)
     new_notice.save()
@@ -132,8 +131,7 @@ def get_recipients(restrict_to_active_users, directory):
     recipients = []
     for person in to_list:
         # Check if the User profile has permissions in the directory.
-        if not check_profile_permission(person, 'view', directory,
-                                        check_default=False):
+        if not check_user_permission(person.user, "view", directory, check_default=False):
             continue
 
         if person.user.email:

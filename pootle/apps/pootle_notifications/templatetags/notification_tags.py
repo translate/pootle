@@ -22,8 +22,7 @@
 from django import template
 
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import check_profile_permission
-from pootle_profile.models import get_profile
+from pootle_app.models.permissions import check_user_permission
 from pootle_notifications.models import Notice
 
 register = template.Library()
@@ -34,7 +33,7 @@ def render_latest_news(context, path, num):
     try:
         directory = Directory.objects.get(pootle_path='/%s' % path)
         user = context['user']
-        can_view = check_profile_permission(get_profile(user), "view", directory)
+        can_view = check_user_permission(user, "view", directory)
         if not can_view:
             directory = None
     except Directory.DoesNotExist:

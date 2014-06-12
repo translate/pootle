@@ -50,7 +50,7 @@ from pootle.core.exceptions import Http400
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (check_permission,
-                                           check_profile_permission)
+                                           check_user_permission)
 from pootle_language.models import Language
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
@@ -785,7 +785,7 @@ def get_edit_unit(request, unit):
 
     store = unit.store
     directory = store.parent
-    profile = request.profile
+    user = request.user
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
 
@@ -796,17 +796,15 @@ def get_edit_unit(request, unit):
         'comment_form': comment_form,
         'store': store,
         'directory': directory,
-        'profile': profile,
-        'user': request.user,
+        'profile': request.profile,
+        'user': user,
         'project': project,
         'language': language,
         'source_language': translation_project.project.source_language,
-        'cantranslate': check_profile_permission(profile, "translate",
-                                                 directory),
-        'cansuggest': check_profile_permission(profile, "suggest", directory),
-        'canreview': check_profile_permission(profile, "review", directory),
-        'is_admin': check_profile_permission(profile, 'administrate',
-                                             directory),
+        'cantranslate': check_user_permission(user, "translate", directory),
+        'cansuggest': check_user_permission(user, "suggest", directory),
+        'canreview': check_user_permission(user, "review", directory),
+        'is_admin': check_user_permission(user, "administrate", directory),
         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
                                 project=project),
         'suggestions': suggestions,
@@ -932,6 +930,7 @@ def submit(request, unit):
 
     translation_project = request.translation_project
     language = translation_project.language
+    user = request.user
 
     if unit.hasplural():
         snplurals = len(unit.source.strings)
@@ -975,9 +974,7 @@ def submit(request, unit):
             ).exists()
 
             if has_critical_checks:
-                can_review = check_profile_permission(request.profile,
-                                                      'review',
-                                                      unit.store.parent)
+                can_review = check_user_permission(user, "review", unit.store.parent)
                 ctx = {
                     'canreview': can_review,
                     'unit': unit
