@@ -262,8 +262,7 @@ def permission_required(permission_code):
             setattr(request, attr_name, path_obj)
 
             request.profile = get_profile(request.user)
-            request.permissions = get_matching_permissions(request.profile,
-                                                           directory)
+            request.permissions = get_matching_permissions(request.user, directory)
 
             if not permission_code:
                 return func(request, *args, **kwargs)

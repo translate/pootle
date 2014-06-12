@@ -27,7 +27,6 @@ from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
 from pootle_notifications.models import Notice
 from pootle_notifications.views import directory_to_title
-from pootle_profile.models import get_profile
 
 
 class NoticeFeed(Feed):
@@ -38,9 +37,7 @@ class NoticeFeed(Feed):
         pootle_path = '/%s' % path
         directory = get_object_or_404(Directory, pootle_path=pootle_path)
 
-        request.permissions = get_matching_permissions(
-                get_profile(request.user), directory
-        )
+        request.permissions = get_matching_permissions(request.user, directory)
         if not check_permission('view', request):
             raise PermissionDenied
 

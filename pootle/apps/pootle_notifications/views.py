@@ -59,8 +59,7 @@ def view(request, path_obj):
 
     # Set permissions on request in order to allow check them later using
     # different functions.
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   directory)
+    request.permissions = get_matching_permissions(request.user, directory)
 
     if request.GET.get('all', False):
         criteria = {

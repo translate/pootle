@@ -34,8 +34,7 @@ def _create_post_request(rf, directory, user, url='/', data=None):
     request = rf.post(url, data=data)
     request.user = user
     request.profile = get_profile(user)
-    request.permissions = get_matching_permissions(request.profile,
-                                                   directory)
+    request.permissions = get_matching_permissions(request.user, directory)
     return request
 
 

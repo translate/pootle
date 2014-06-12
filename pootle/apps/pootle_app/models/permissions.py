@@ -89,10 +89,9 @@ def get_permissions_by_username(username, directory):
     return permissions_cache[pootle_path]
 
 
-def get_matching_permissions(profile, directory, check_default=True):
-    if profile.user.is_authenticated():
-        permissions = get_permissions_by_username(profile.user.username,
-                                                  directory)
+def get_matching_permissions(user, directory, check_default=True):
+    if user.is_authenticated():
+        permissions = get_permissions_by_username(user.username, directory)
         if permissions is not None:
             return permissions
 
@@ -115,7 +114,7 @@ def check_profile_permission(profile, permission_codename, directory,
     if profile.user.is_superuser:
         return True
 
-    permissions = get_matching_permissions(profile, directory, check_default)
+    permissions = get_matching_permissions(profile.user, directory, check_default)
 
     return ("administrate" in permissions or
             permission_codename in permissions)

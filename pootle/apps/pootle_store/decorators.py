@@ -59,8 +59,7 @@ def _check_permissions(request, directory, permission_code):
     `permission_code` in the current`directory`.
     """
     request.profile = get_profile(request.user)
-    request.permissions = get_matching_permissions(request.profile,
-                                                   directory)
+    request.permissions = get_matching_permissions(request.user, directory)
 
     if not permission_code:
         return
