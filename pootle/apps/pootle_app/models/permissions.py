@@ -117,16 +117,14 @@ def check_user_permission(user, permission, directory, check_default=True):
     return ("administrate" in permissions or permission in permissions)
 
 
-def check_permission(permission_codename, request):
-    """Check if the current user has `permission_codename`
-    permissions.
-    """
+def check_permission(codename, request):
+    """Check if the current user has `codename` permissions."""
     if request.user.is_superuser:
         return True
 
     # `view` permissions are project-centric, and we must treat them
     # differently
-    if permission_codename == 'view':
+    if codename == "view":
         path_obj = None
         if hasattr(request, 'translation_project'):
             path_obj = request.translation_project
@@ -138,8 +136,9 @@ def check_permission(permission_codename, request):
 
         return path_obj.is_accessible_by(request.user)
 
-    return ("administrate" in request.permissions or
-            permission_codename in request.permissions)
+    permissions = request.permissions
+
+    return ("administrate" in permissions or codename in permissions)
 
 
 class PermissionSet(models.Model):
