@@ -13,6 +13,10 @@ Changes in Requirements
 - `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
   1.12.0-rc1
 - Python >= 2.6
+- Raven 5.0.0 or higher is now recommended for Sentry support on production
+  setups. While older versions should still work, they may encounter problems
+  in newer versions of Django or Python.
+
 
 Major Changes
 =============

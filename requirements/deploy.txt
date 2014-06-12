@@ -10,4 +10,4 @@ python-Levenshtein>=0.11.2
 python-memcached>=1.53
 
 # Logging
-raven>=1.7.5
+raven>=5.0.0
