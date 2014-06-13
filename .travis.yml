@@ -12,10 +12,10 @@ env:
     - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=postgres
     - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=mysql
 before_install:
-  - sudo apt-get install bc
+  - travis_retry sudo apt-get install -qq bc
 install:
-  - pip install -r requirements/travis.txt --timeout=240
-  - pip install "Django>=$DJANGO_VERSION,<"$(echo $(echo $DJANGO_VERSION | cut -d"." -f1,2) + 0.1 | bc) --timeout=240
+  - travis_retry pip install -r requirements/travis.txt --timeout=240
+  - travis_retry pip install "Django>=$DJANGO_VERSION,<"$(echo $(echo $DJANGO_VERSION | cut -d"." -f1,2) + 0.1 | bc) --timeout=240
   - pip freeze  # Print all installed versions for reference.
 before_script:
   - if [[ $DATABASE_BACKEND == 'postgres' ]]; then psql -c 'create database pootle;' -U postgres; fi
