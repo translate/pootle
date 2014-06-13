@@ -2009,45 +2009,26 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def _get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
 
-    def _get_last_updated(self):
-        try:
-            max_unit = self.unit_set.all().order_by('-creation_time')[0]
-            max_time = max_unit.creation_time
-        except IndexError:
-            max_time = None
+    def get_last_updated(self):
+        if self.last_unit is None:
+            return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
-        # creation_time field has been added recently, so it can have NULL
-        # value.
-        if max_time is not None:
-            return {
-                'id': max_unit.id,
-                'creation_time': int(dateformat.format(max_time, 'U')),
-                'snippet': max_unit.get_last_updated_message()
-            }
-
+        creation_time = dateformat.format(self.last_unit.creation_time, 'U')
         return {
-            'id': 0,
-            'creation_time': 0,
-            'snippet': '',
+            'id': self.last_unit.id,
+            'creation_time': int(creation_time),
+            'snippet': self.last_unit.get_last_updated_message()
         }
 
-    def _get_last_action(self):
-        units = self.unit_set.all().order_by('-submitted_on')[:1]
+    def get_last_action(self):
+        if self.last_submission is None:
+            return {'id': 0, 'mtime': 0, 'snippet': ''}
 
-        try:
-            sub = Submission.simple_objects.filter(unit=units[0]) \
-                                           .order_by('-creation_time')[0]
-        except IndexError:
-            return {
-                'id': 0,
-                'mtime': 0,
-                'snippet': '',
-            }
-
+        mtime = dateformat.format(self.last_submission.creation_time, 'U')
         return {
-            'id': sub.unit.id,
-            'mtime': int(dateformat.format(sub.creation_time, 'U')),
-            'snippet': sub.get_submission_message()
+            'id': self.last_submission.unit.id,
+            'mtime': int(mtime),
+            'snippet': self.last_submission.get_submission_message()
         }
 
     ### /TreeItem

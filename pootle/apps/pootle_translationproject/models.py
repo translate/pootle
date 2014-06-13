@@ -30,6 +30,7 @@ from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models import Q
 from django.db.models.signals import post_save
+from django.utils import dateformat
 from django.utils.encoding import force_unicode
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
@@ -423,6 +424,28 @@ class TranslationProject(models.Model, TreeItem):
             return goal.get_incomplete_words_in_path(self.directory)
 
         return 0
+
+    def get_last_updated(self):
+        if self.last_unit is None:
+            return {'id': 0, 'creation_time': 0, 'snippet': ''}
+
+        creation_time = dateformat.format(self.last_unit.creation_time, 'U')
+        return {
+            'id': self.last_unit.id,
+            'creation_time': int(creation_time),
+            'snippet': self.last_unit.get_last_updated_message()
+        }
+
+    def get_last_action(self):
+        if self.last_submission is None:
+            return {'id': 0, 'mtime': 0, 'snippet': ''}
+
+        mtime = dateformat.format(self.last_submission.creation_time, 'U')
+        return {
+            'id': self.last_submission.unit.id,
+            'mtime': int(mtime),
+            'snippet': self.last_submission.get_submission_message()
+        }
 
     def get_next_goal_url(self):
         # Putting the next import at the top of the file causes circular
