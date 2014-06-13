@@ -1266,6 +1266,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     fuzzy_wordcount = models.PositiveIntegerField(default=0, null=True)
     suggestion_count = models.PositiveIntegerField(default=0, null=True)
     failing_critical_count = models.PositiveIntegerField(default=0, null=True)
+    last_submission = models.OneToOneField(Submission, null=True)
+    last_unit = models.OneToOneField(Unit, related_name='last_unit', null=True)
 
     UnitClass = Unit
     Name = "Model Store"

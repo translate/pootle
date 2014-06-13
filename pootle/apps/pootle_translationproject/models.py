@@ -46,6 +46,7 @@ from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
 from pootle_misc.stats import stats_message_raw
 from pootle_project.models import Project
+from pootle_statistics.models import Submission
 from pootle_store.models import Store, Unit, PARSED
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                OBSOLETE)
@@ -167,6 +168,12 @@ class TranslationProject(models.Model, TreeItem):
         null=True,
         editable=False,
     )
+    last_submission = models.OneToOneField(
+        Submission,
+        null=True,
+        editable=False,
+    )
+    last_unit = models.OneToOneField(Unit, null=True, editable=False)
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
                                          settings.PARSE_POOL_CULL_FREQUENCY)
