@@ -355,7 +355,6 @@ def create_default_admin():
         'first_name': u"Administrator",
         'is_active': True,
         'is_superuser': True,
-        'is_staff': True,
     }
     admin = User(**criteria)
     admin.set_password("admin")

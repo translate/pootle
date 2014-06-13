@@ -70,11 +70,6 @@ class BaseUserFormSet(BaseModelFormSet):
         if password != '':
             instance.set_password(password)
             changed = True
-        # no point in seperating admin rights from access to
-        # django_admin, make sure the two bits are in synch
-        if instance.is_staff != instance.is_superuser:
-            instance.is_staff = instance.is_superuser
-            changed = True
 
         if commit and changed:
             instance.save()
