@@ -514,9 +514,11 @@ class Unit(models.Model, base.TranslationUnit):
         super(Unit, self).delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
+        created = self.id is None
+
         if not hasattr(self, '_log_user'):
             self._log_user = 'system'
-        if not self.id:
+        if created:
             self._save_action = log.UNIT_ADDED
 
         unit_update_cache(self)
@@ -529,6 +531,14 @@ class Unit(models.Model, base.TranslationUnit):
                 )
 
         super(Unit, self).save(*args, **kwargs)
+
+        if created:
+            # This is caching that can't be done before saving the Unit to
+            # allow these other objects to refer to it.
+            self.store.last_unit = self
+            self.store.translation_project.last_unit = self
+            self.store.last_unit.save()
+            self.store.translation_project.last_unit.save()
 
         if hasattr(self, '_save_action') and self._save_action == log.UNIT_ADDED:
             log.action_log(user=self._log_user, action=self._save_action,
