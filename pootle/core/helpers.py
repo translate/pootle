@@ -117,8 +117,7 @@ def get_export_view_context(request):
     """
     filter_name, filter_extra = get_filter_name(request.GET)
 
-    units_qs = Unit.objects.get_for_path(request.pootle_path,
-                                         request.profile)
+    units_qs = Unit.objects.get_for_path(request.pootle_path, request.user)
     units = get_step_query(request, units_qs)
     unit_groups = [(path, list(units)) for path, units in
                    groupby(units, lambda x: x.store.pootle_path)]

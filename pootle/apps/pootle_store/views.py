@@ -548,7 +548,7 @@ def get_units(request):
     request.profile = get_profile(request.user)
     limit = request.profile.get_unit_rows()
 
-    units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
+    units_qs = Unit.objects.get_for_path(pootle_path, request.user)
     step_queryset = get_step_query(request, units_qs)
 
     is_initial_request = request.GET.get('initial', False)
