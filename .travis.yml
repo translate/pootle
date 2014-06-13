@@ -11,6 +11,8 @@ env:
     - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=sqlite
     - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=postgres
     - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=mysql
+cache:
+  - apt
 before_install:
   - travis_retry sudo apt-get install -qq bc
 install:
