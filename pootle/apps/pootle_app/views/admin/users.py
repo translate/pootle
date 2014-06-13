@@ -18,12 +18,21 @@
 # You should have received a copy of the GNU General Public License along
 # with Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-__all__ = ('UserAdminView',)
+__all__ = ('UserAdminView', 'UserAPIView')
 
+from django.contrib.auth import get_user_model
 from django.views.generic import TemplateView
 
-from pootle.core.views import SuperuserRequiredMixin
+from pootle.core.views import APIView, SuperuserRequiredMixin
 
 
 class UserAdminView(SuperuserRequiredMixin, TemplateView):
     template_name = 'admin/users.html'
+
+
+class UserAPIView(SuperuserRequiredMixin, APIView):
+    model = get_user_model()
+    base_queryset = get_user_model().objects.order_by('-id')
+    fields = ('id', 'username', 'is_active', 'password', 'full_name', 'email',
+              'is_superuser', 'twitter', 'linkedin', 'website', 'bio')
+    page_size = 10

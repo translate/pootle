@@ -22,7 +22,7 @@ from django.conf.urls import include, patterns, url
 
 import staticpages.urls
 
-from . import UserAdminView
+from . import UserAdminView, UserAPIView
 
 
 urlpatterns = patterns('pootle_app.views.admin',
@@ -50,4 +50,14 @@ urlpatterns = patterns('pootle_app.views.admin',
     url(r'^/more-stats/?$',
         'dashboard.server_stats_more',
         name='pootle-admin-more-stats'),
+)
+
+
+api_patterns = patterns('',
+    url(r'^users/?$',
+        UserAPIView.as_view(),
+        name='pootle-xhr-admin-users'),
+    url(r'^users/(?P<id>[0-9]+)/?$',
+        UserAPIView.as_view(),
+        name='pootle-xhr-admin-user'),
 )

@@ -18,4 +18,4 @@
 # You should have received a copy of the GNU General Public License along
 # with Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from .users import UserAdminView
+from .users import *
