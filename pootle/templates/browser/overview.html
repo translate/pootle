@@ -117,7 +117,7 @@ $(function () {
 
   {% if 'finished' in request.GET %}
   PTL.msg.show({
-    text: '{% trans "You have gone through all units, please review all statistics." %}',
+    text: '{% trans "Congratulations! You have completed this task!" %}',
     language: '{{ LANGUAGE_CODE }}'
   });
   {% endif %}
