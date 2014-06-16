@@ -1,5 +1,9 @@
-# Make sure you update docs/server/installation.rst and, if needed, the release
-# notes in docs/releases/$next when bumping Django versions and dependencies
+# Make sure you update as well these places:
+# - pootle/depcheck.py
+# - .travis.yml configuration file
+# - docs/server/installation.rst 
+# - release notes in docs/releases/$next
+# when bumping Django versions and dependencies.
 Django>=1.5.8,<1.7
 
 # Django apps
