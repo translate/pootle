@@ -28,8 +28,10 @@ from translate.filters.decorators import Category
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
+from pootle_statistics.models import Submission
 from pootle_store.caching import count_words
-from pootle_store.models import QualityCheck, Suggestion, SuggestionStates
+from pootle_store.models import (QualityCheck, Suggestion, SuggestionStates,
+                                 Unit)
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 
 
@@ -68,6 +70,23 @@ class Command(PootleCommand):
             elif unit.state == FUZZY:
                 store.fuzzy_wordcount += wordcount
 
+        try:
+            last_unit = store.unit_set.latest('creation_time')
+            # creation_time field has been added recently, so it can have NULL
+            # value.
+            if last_unit.creation_time is not None:
+                store.last_unit = last_unit
+        except Unit.DoesNotExist:
+            pass
+
+        units = store.unit_set.all().order_by('-submitted_on')[:1]
+        try:
+            store.last_submission = Submission.simple_objects.filter(
+                unit=units[0]
+            ).order_by('-creation_time')[0]
+        except IndexError:
+            pass
+
         if options["calculate_checks"]:
             self.stdout.write("Calculating checks for %r" % (store))
             store.update_qualitychecks()
@@ -95,6 +114,13 @@ class Command(PootleCommand):
             update(tp, "fuzzy_wordcount")
             update(tp, "suggestion_count")
             update(tp, "failing_critical_count")
+
+            last_unit_store = tp.stores.latest('last_unit__creation_time')
+            tp.last_unit = last_unit_store.last_unit
+
+            last_sub_store = tp.stores.latest('last_submission__creation_time')
+            tp.last_submission = last_sub_store.last_submission
+
             tp.save()
 
         self.stdout.write("\nSuccessfully updated translation counts.")
