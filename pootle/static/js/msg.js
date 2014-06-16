@@ -17,7 +17,7 @@ PTL.msg = PTL.msg || {};
   });
 
   var MessageView = Backbone.View.extend({
-    className: 'alert alert-block fade in',
+    className: 'alert alert-block',
 
     template: _.template('<%= text %>'),
 
