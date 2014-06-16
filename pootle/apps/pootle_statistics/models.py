@@ -116,6 +116,17 @@ class Submission(models.Model):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
 
+    def save(self, *args, **kwargs):
+        super(Submission, self).save(*args, **kwargs)
+
+        if self.translation_project is not None:
+            self.translation_project.last_submission = self
+            self.translation_project.save()
+
+        if self.unit is not None:
+            self.unit.store.last_submission = self
+            self.unit.store.save()
+
     def as_html(self):
         return self.get_submission_message()
 
