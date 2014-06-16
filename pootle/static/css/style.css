@@ -526,20 +526,22 @@ html[dir="rtl"] #sidebar-toggle
 #alerts,
 #noscript
 {
-    top: 31px; /* navbar height + border */
-    width: 480px;
+    top: 45%;
     left: 50%;
+    width: 480px;
     margin-left: -240px;
     z-index: 101;
 }
 
 .alert
 {
-    padding: 8px 35px 8px 14px;
-    margin-bottom: 1em;
-    color: #865f1b;
-    background-color: #eee8ca;
-    border-radius: 4px;
+    padding: 1em;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 0.5em;
+    font-size: 130%;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .alert h4
@@ -550,71 +552,42 @@ html[dir="rtl"] #sidebar-toggle
 .alert .close
 {
     position: relative;
-    top: -5px;
-    right: -21px;
-    line-height: 20px;
+    top: -0.8em;
+    right: -0.6em;
+}
+
+.alert-info
+{
+    background-color: rgba(0, 50, 90, 0.8);
 }
 
 .alert-success
 {
-    color: #468847;
-    background-color: #dff0d8;
+    background-color: rgba(0, 102, 0, 0.8);
 }
 
 .alert-danger,
 .alert-error
 {
-    color: #b94a48;
-    background-color: #f2dede;
+    background-color: rgba(102, 0, 0, 0.8);
 }
 
 .alert-error a
 {
-    color: #f00;
-}
-
-.alert-info
-{
-    color: #3a87ad;
-    background-color: #d9edf7;
-}
-
-.alert-block
-{
-    padding-top: 14px;
-    padding-bottom: 14px;
-}
-
-.alert-block > p,
-.alert-block > ul
-{
-    margin-bottom: 0;
-}
-
-.alert-block p + p
-{
-    margin-top: 5px;
+    color: #f99;
 }
 
 .close
 {
     float: right;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 20px;
-    color: #000000;
-    text-shadow: 0 1px 0 #ffffff;
-
-    opacity: 0.2;
+    font-size: 100%;
+    color: #fff;
+    opacity: 0.5;
 }
 
 .close:hover
 {
-    color: #000000;
-    text-decoration: none;
-    cursor: pointer;
-
-    opacity: 0.4;
+    opacity: 0.8;
 }
 
 button.close
