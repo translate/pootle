@@ -786,6 +786,7 @@ def get_edit_unit(request, unit):
     store = unit.store
     directory = store.parent
     user = request.user
+    profile = request.profile
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
 
@@ -796,7 +797,7 @@ def get_edit_unit(request, unit):
         'comment_form': comment_form,
         'store': store,
         'directory': directory,
-        'profile': request.profile,
+        'profile': profile,
         'user': user,
         'project': project,
         'language': language,
