@@ -28,26 +28,15 @@ from django.utils.http import is_safe_url
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import TemplateView, UpdateView
 
-from pootle.core.views import LoginRequiredMixin, NoDefaultUserMixin
+from pootle.core.views import (LoginRequiredMixin, NoDefaultUserMixin,
+                               TestUserFieldMixin)
 
 
 User = auth.get_user_model()
 
 
-class UserStatsView(NoDefaultUserMixin, TemplateView):
+class UserStatsView(NoDefaultUserMixin, TestUserFieldMixin, TemplateView):
     template_name = 'user/stats.html'
-
-    def dispatch(self, *args, **kwargs):
-        username = kwargs['username']
-        user = self.request.user
-        can_access = (user.is_superuser or
-                      (user.is_authenticated() and user.username == username))
-
-        if not can_access:
-            msg = _('You cannot access this page.')
-            raise PermissionDenied(msg)
-
-        return super(UserStatsView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         user = User.objects.get(username=kwargs['username'])

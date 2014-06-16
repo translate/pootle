@@ -54,6 +54,29 @@ class LoginRequiredMixin(object):
         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
 
+class TestUserFieldMixin(LoginRequiredMixin):
+    """Require a field from the URL pattern to match a field of the
+    current user.
+
+    The URL pattern field used for comparing against the current user
+    can be customized by setting the `username_field` attribute.
+
+    Note that there's free way for admins.
+    """
+    test_user_field = 'username'
+
+    def dispatch(self, *args, **kwargs):
+        user = self.request.user
+        url_field_value = kwargs[self.test_user_field]
+        field_value = getattr(user, self.test_user_field, '')
+        can_access = user.is_superuser or field_value == url_field_value
+
+        if not can_access:
+            raise PermissionDenied(_('You cannot access this page.'))
+
+        return super(TestUserFieldMixin, self).dispatch(*args, **kwargs)
+
+
 class NoDefaultUserMixin(object):
     """Removes the `default` special user from views."""
     def dispatch(self, request, *args, **kwargs):
