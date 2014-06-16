@@ -505,6 +505,7 @@ html[dir="rtl"] #sidebar-toggle
 .popup-ajax .mfp-content
 {
     background-color: #fff;
+    border-radius: 0.5em;
     width: auto !important;
     max-width: 920px !important;
     display: inline-block;
