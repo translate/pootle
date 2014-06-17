@@ -35,6 +35,11 @@ MUTE_QUALITYCHECK = "QM"
 UNMUTE_QUALITYCHECK = "QU"
 
 
+def log(message):
+    logger = logging.getLogger('action')
+    logger.info(message)
+
+
 def action_log(*args, **kwargs):
     logger = logging.getLogger('action')
     d = {}
