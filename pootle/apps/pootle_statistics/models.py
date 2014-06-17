@@ -157,7 +157,7 @@ class Submission(models.Model):
             displayname = displayuser.user.username
 
         action_bundle = {
-            "profile_url": displayuser.get_absolute_url(),
+            "url": displayuser.get_absolute_url(),
             "gravatar_url": displayuser.gravatar_url(20),
             "displayname": displayname,
             "username": displayuser.user.username,
@@ -236,7 +236,7 @@ class Submission(models.Model):
 
         return mark_safe(
             u'<div class="last-action">'
-            '  <a href="%(profile_url)s">'
+            '  <a href="%(url)s">'
             '    <img src="%(gravatar_url)s" />'
             '    <span title="%(username)s">%(displayname)s</span>'
             '  </a>'

@@ -168,7 +168,7 @@
               {% with reviewer=unit.get_reviewer %}
               {% if reviewer %}
               <br>
-              <span>({% blocktrans with profile_url=reviewer.get_absolute_url%}reviewed by <a href="{{ profile_url }}">{{ reviewer }}</a>{% endblocktrans %})</span>
+              <span>({% blocktrans with url=reviewer.get_absolute_url%}reviewed by <a href="{{ url }}">{{ reviewer }}</a>{% endblocktrans %})</span>
               {% endif %}
               {% endwith %}
             </div>

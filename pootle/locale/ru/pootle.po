@@ -1795,8 +1795,8 @@ msgstr "Пометить эту строку как требующую вним�
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr "подтверждено <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
+msgstr "подтверждено <a href=\"%(url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
