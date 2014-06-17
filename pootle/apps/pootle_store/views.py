@@ -152,10 +152,11 @@ def download(request, store):
 
 ####################### Translate Page ##############################
 
-def get_alt_src_langs(request, profile, translation_project):
+def get_alt_src_langs(request, user, translation_project):
     language = translation_project.language
     project = translation_project.project
     source_language = project.source_language
+    profile = user.get_profile()
 
     langs = profile.alt_src_langs.exclude(
             id__in=(language.id, source_language.id)
@@ -777,8 +778,8 @@ def get_edit_unit(request, unit):
     store = unit.store
     directory = store.parent
     user = request.user
-    profile = request.profile
-    alt_src_langs = get_alt_src_langs(request, profile, translation_project)
+    profile = user.get_profile()
+    alt_src_langs = get_alt_src_langs(request, user, translation_project)
     project = translation_project.project
 
     suggestions = get_sugg_list(unit)
