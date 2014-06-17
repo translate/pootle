@@ -36,7 +36,6 @@ from pootle.__version__ import build as CODE_PTL_BUILD_VERSION
 from pootle_app.models import Directory, PootleConfig, PootleSite
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
-from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
 from pootle_store.models import TMUnit, Unit
 from pootle_store.util import TRANSLATED
