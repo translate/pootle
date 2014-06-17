@@ -625,7 +625,7 @@ def timeline(request, unit):
 
     entries_group = []
     context = {
-        'system': User.objects.get_system_user().get_profile()
+        "system": User.objects.get_system_user()
     }
 
     if unit.creation_time:

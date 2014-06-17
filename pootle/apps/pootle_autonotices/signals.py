@@ -26,7 +26,6 @@ import logging
 from pootle_app.models import Directory
 from pootle_misc.stats import stats_message_raw
 from pootle_notifications.models import Notice
-from pootle_profile.models import get_profile
 
 
 ##### Model Events #####
@@ -92,7 +91,7 @@ def updated_from_version_control(sender, **kwargs):
 def committed_to_version_control(sender, path_obj, user, success, **kwargs):
     args = {
         'user_url': user.get_absolute_url(),
-        'user': get_profile(user),
+        'user': user,
         'path_obj_url': path_obj.get_absolute_url(),
         'path_obj': path_obj.pootle_path,
     }
@@ -119,8 +118,8 @@ def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
         return
 
     args = {
-        'user_url': get_profile(user).get_absolute_url(),
-        'user': get_profile(user),
+        'user_url': user.get_absolute_url(),
+        'user': user,
         'sender_url': sender.get_absolute_url(),
         'sender': sender.fullname,
     }

@@ -157,7 +157,7 @@
             {% endif %}
             {% if user.is_authenticated %}
             <li id="user">
-              <a href="{{ user.get_profile.get_absolute_url }}">
+              <a href="{{ user.get_absolute_url }}">
               <img src="{{ user|gravatar:20 }}" />{{ user.username }}</a>
             </li>
             {% endif %}
