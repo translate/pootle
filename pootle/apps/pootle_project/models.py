@@ -327,7 +327,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
             if not user_projects.count():
                 root_permissions = PermissionSet.objects.filter(
                     directory__pootle_path='/',
-                    profile__user__username=username,
+                    user__username=username,
                     positive_permissions__codename='view',
                 )
                 if root_permissions.count():
