@@ -2,7 +2,10 @@
 from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import SchemaMigration
+from django.conf import settings
 from django.db import connection, models
+
+AUTH_USER_MODEL = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 
 class Migration(SchemaMigration):
@@ -10,7 +13,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding field 'PermissionSet.user'
         db.add_column(u'pootle_app_permissionset', 'user',
-                      self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True),
+                      self.gf('django.db.models.fields.related.ForeignKey')(to=AUTH_USER_MODEL, null=True),
                       keep_default=False)
         # Check if we have old data to import
         columns = connection.introspection.get_table_description(connection.cursor(), "pootle_app_permissionset")
@@ -103,7 +106,7 @@ class Migration(SchemaMigration):
             'negative_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'permission_sets_negative'", 'symmetrical': 'False', 'to': u"orm['auth.Permission']"}),
             'positive_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'db_index': 'True', 'related_name': "'permission_sets_positive'", 'symmetrical': 'False', 'to': u"orm['auth.Permission']"}),
             'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_profile.PootleProfile']"}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']", 'null': 'True'})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['%s']" % (AUTH_USER_MODEL), 'null': 'True'})
         },
         'pootle_app.pootleconfig': {
             'Meta': {'object_name': 'PootleConfig'},
@@ -146,7 +149,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'input_height': ('django.db.models.fields.SmallIntegerField', [], {'default': '5'}),
             'unit_rows': ('django.db.models.fields.SmallIntegerField', [], {'default': '9'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'})
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['%s']" % (AUTH_USER_MODEL), 'unique': 'True'})
         },
         u'pootle_project.project': {
             'Meta': {'ordering': "['code']", 'object_name': 'Project', 'db_table': "'pootle_app_project'"},

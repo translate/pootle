@@ -2,7 +2,10 @@
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
+from django.conf import settings
 from django.db import models
+
+AUTH_USER_MODEL = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 
 class Migration(SchemaMigration):
@@ -117,7 +120,7 @@ class Migration(SchemaMigration):
             'input_height': ('django.db.models.fields.SmallIntegerField', [], {'default': '5'}),
             'ui_lang': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'unit_rows': ('django.db.models.fields.SmallIntegerField', [], {'default': '9'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'})
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['%s']" % (AUTH_USER_MODEL), 'unique': 'True'})
         },
         u'pootle_project.project': {
             'Meta': {'ordering': "['code']", 'object_name': 'Project', 'db_table': "'pootle_app_project'"},
