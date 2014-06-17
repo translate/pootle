@@ -33,9 +33,8 @@ from django.db import transaction
 from django.utils.translation import ugettext_noop as _
 
 from pootle.__version__ import build as CODE_PTL_BUILD_VERSION
-from pootle_app.models import Directory, PootleConfig
+from pootle_app.models import Directory, PootleConfig, PootleSite
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
-from pootle_app.models import PootleSite
 from pootle_language.models import Language
 from pootle_profile.models import PootleProfile
 from pootle_project.models import Project

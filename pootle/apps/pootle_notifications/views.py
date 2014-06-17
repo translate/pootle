@@ -28,9 +28,9 @@ from django.utils.translation import ugettext as _
 from pootle.core.decorators import get_path_obj
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
-from pootle_app.models.permissions import (get_matching_permissions,
-                                           check_permission,
-                                           check_user_permission)
+from pootle_app.models.permissions import (check_permission,
+                                           check_user_permission,
+                                           get_matching_permissions)
 from pootle_misc.mail import send_mail
 from pootle_notifications.forms import form_factory
 from pootle_notifications.models import Notice
