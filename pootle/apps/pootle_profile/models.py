@@ -257,7 +257,7 @@ class PootleProfile(models.Model):
 
         :param tp: a :cls:`TranslationProject` object.
         """
-        return self.suggestions.filter(unit__store__translation_project=tp,
+        return self.suggestions.filter(translation_project=tp,
                                        state=SuggestionStates.PENDING).count()
 
     def accepted_suggestion_count(self, tp):
@@ -266,7 +266,7 @@ class PootleProfile(models.Model):
 
         :param tp: a :cls:`TranslationProject` object.
         """
-        return self.suggestions.filter(unit__store__translation_project=tp,
+        return self.suggestions.filter(translation_project=tp,
                                        state=SuggestionStates.ACCEPTED).count()
 
     def rejected_suggestion_count(self, tp):
@@ -275,7 +275,7 @@ class PootleProfile(models.Model):
 
         :param tp: a :cls:`TranslationProject` object.
         """
-        return self.suggestions.filter(unit__store__translation_project=tp,
+        return self.suggestions.filter(translation_project=tp,
                                        state=SuggestionStates.REJECTED).count()
 
     def total_submission_count(self, tp):
