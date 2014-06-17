@@ -159,14 +159,14 @@ class PootleProfile(models.Model):
         username = self.user.username
 
         languages = Language.objects.filter(
-                translationproject__submission__submitter=self,
+                translationproject__submission__submitter=self.user,
                 translationproject__submission__type=SubmissionTypes.NORMAL,
             ).distinct()
 
         for language in languages:
             translation_projects = TranslationProject.objects.filter(
                     language=language,
-                    submission__submitter=self,
+                    submission__submitter=self.user,
                     submission__type=SubmissionTypes.NORMAL,
                 ).distinct().order_by('project__fullname')
 
@@ -284,7 +284,7 @@ class PootleProfile(models.Model):
         :param tp: a :cls:`TranslationProject` object.
         """
         return Submission.objects.filter(
-            submitter=self,
+            submitter=self.user,
             translation_project=tp,
             type=SubmissionTypes.NORMAL,
         ).count()
@@ -297,7 +297,7 @@ class PootleProfile(models.Model):
         :param tp: a :cls:`TranslationProject` object.
         """
         return Submission.objects.filter(
-            submitter=self,
+            submitter=self.user,
             translation_project=tp,
             type=SubmissionTypes.NORMAL,
         ).exclude(

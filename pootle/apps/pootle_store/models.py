@@ -1024,7 +1024,7 @@ class Unit(models.Model, base.TranslationUnit):
                 kwargs = {
                     'creation_time': self.submitted_on,
                     'translation_project': translation_project,
-                    'submitter': suggestion_user,
+                    'submitter': suggestion_user.user,
                     'unit': self,
                     'field': field,
                     'type': SubmissionTypes.SUGG_ACCEPT,
@@ -1111,7 +1111,7 @@ class Unit(models.Model, base.TranslationUnit):
         sub = Submission(
             creation_time=self.submitted_on,
             translation_project=self.store.translation_project,
-            submitter=user,
+            submitter=user.user,  # XXX this is a profile, not a user
             field=SubmissionFields.NONE,
             unit=self,
             type=sub_type,

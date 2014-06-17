@@ -273,7 +273,7 @@ def _handle_upload_form(request, translation_project):
             s = Submission(
                 creation_time=timezone.now(),
                 translation_project=translation_project,
-                submitter=get_profile(request.user),
+                submitter=request.user,
                 type=SubmissionTypes.UPLOAD,
                 # The other fields are only relevant to unit-based changes.
             )
