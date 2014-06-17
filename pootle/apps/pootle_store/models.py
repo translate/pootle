@@ -116,13 +116,13 @@ class Suggestion(models.Model, base.TranslationUnit):
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit')
     user = models.ForeignKey(
-        'pootle_profile.PootleProfile',
+        settings.AUTH_USER_MODEL,
         null=True,
         related_name='suggestions',
         db_index=True,
     )
     reviewer = models.ForeignKey(
-        'pootle_profile.PootleProfile',
+        settings.AUTH_USER_MODEL,
         null=True,
         related_name='reviews',
         db_index=True,
@@ -306,7 +306,7 @@ class TMUnit(models.Model, base.TranslationUnit):
         editable=False,
     )
     submitted_by = models.ForeignKey(
-        'pootle_profile.PootleProfile',
+        settings.AUTH_USER_MODEL,
         null=True,
         db_index=True,
         related_name='tmunit_submitted_by',
@@ -429,7 +429,7 @@ class Unit(models.Model, base.TranslationUnit):
         editable=False,
     )
     submitted_by = models.ForeignKey(
-        'pootle_profile.PootleProfile',
+        settings.AUTH_USER_MODEL,
         null=True,
         db_index=True,
         related_name='submitted',
@@ -440,7 +440,7 @@ class Unit(models.Model, base.TranslationUnit):
         null=True,
     )
     commented_by = models.ForeignKey(
-        'pootle_profile.PootleProfile',
+        settings.AUTH_USER_MODEL,
         null=True,
         db_index=True,
         related_name='commented',
