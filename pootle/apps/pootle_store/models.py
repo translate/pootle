@@ -1048,7 +1048,7 @@ class Unit(models.Model, base.TranslationUnit):
         if suggestion.user_id is not None:
             suggestion_user = suggestion.user
         else:
-            suggestion_user = get_user_model().objects.get_nobody_user().get_profile()
+            suggestion_user = get_user_model().objects.get_nobody_user()
 
         self.submitted_by = suggestion_user
         self.submitted_on = timezone.now()
@@ -1090,7 +1090,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         if suggestion_user:
             translation_submitted.send(sender=translation_project,
-                                       unit=self, profile=suggestion_user)
+                                       unit=self, user=suggestion_user)
 
     def reject_suggestion(self, suggestion, translation_project, reviewer):
         suggestion.state = SuggestionStates.REJECTED
@@ -1649,7 +1649,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     common_dbids -= modified_units
 
                 common_dbids = list(common_dbids)
-                system = get_user_model().objects.get_system_user().get_profile()
+                system = get_user_model().objects.get_system_user()
                 for unit in self.findid_bulk(common_dbids):
                     # Use the same (parent) object since units will accumulate
                     # the list of cache attributes to clear in the parent Store
@@ -1663,7 +1663,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         self.translation_project.is_template_project):
                         fix_monolingual(unit, newunit, monolingual)
 
-                    changed = unit.update(newunit, user=system.user)
+                    changed = unit.update(newunit, user=system)
 
                     # Unit's index within the store might have changed
                     if update_structure and unit.index != newunit.index:

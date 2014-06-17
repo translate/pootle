@@ -2,7 +2,7 @@
 {% load i18n store_tags cleanhtml cache profile_tags locale %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
-{% cache 0 unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs profile.id LANGUAGE_CODE unit.get_terminology %}
+{% cache 0 unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs user.id LANGUAGE_CODE unit.get_terminology %}
 <td colspan="2" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
   <div class="translate-container{% if unit.get_active_qualitychecks.count %} error{% endif %}">
     <div class="unit-path">
@@ -269,7 +269,7 @@
                     title="{% trans 'Reject suggestion' %}"></i>
                 </a>
                 {% else %}
-                {% if user.is_authenticated and profile == sugg.user %}
+                {% if user.is_authenticated and user == sugg.user %}
                 <a accesskey="r" class="suggestion-action js-suggestion-reject"
                   data-sugg-id="{{ sugg.id }}">
                   <i class="icon-reject" dir="{% locale_dir %}"

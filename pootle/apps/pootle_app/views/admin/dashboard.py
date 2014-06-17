@@ -33,7 +33,6 @@ from pootle import depcheck
 from pootle.core.decorators import admin_required
 from pootle.core.markup import get_markup_filter
 from pootle_misc.aggregate import sum_column
-from pootle_profile.models import PootleProfile
 from pootle_statistics.models import Submission
 from pootle_store.models import Suggestion, Unit
 from pootle_store.util import TRANSLATED
@@ -285,8 +284,8 @@ def server_stats_more(request):
         result['string_count'] = sums['count']
         result['word_count'] = sums['source_wordcount'] or 0
         result['user_active_count'] = (
-            PootleProfile.objects.exclude(submission=None) |
-            PootleProfile.objects.exclude(suggestions=None)
+            User.objects.exclude(submission=None) |
+            User.objects.exclude(suggestions=None)
         ).order_by().count()
         cache.set("server_stats_more", result, 86400)
     _format_numbers(result)

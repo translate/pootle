@@ -22,4 +22,4 @@ from django.dispatch import Signal
 
 post_unit_update = Signal(providing_args=["oldstats", "newstats"])
 translation_file_updated = Signal(providing_args=["path"])
-translation_submitted = Signal(providing_args=["unit", "profile"])
+translation_submitted = Signal(providing_args=["unit", "user"])

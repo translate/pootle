@@ -2,11 +2,11 @@
 {% load i18n store_tags cleanhtml cache locale %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% cache 0 unit_edit unit.id unit.mtime cantranslate cansuggest canreview report_target altsrcs profile.id LANGUAGE_CODE %}
+{% cache 0 unit_edit unit.id unit.mtime cantranslate cansuggest canreview report_target altsrcs user.id LANGUAGE_CODE %}
 
 {% block suggestion_comment %}
 {% if sugg.translator_comment %}
 <div class="suggestion-comment-block" lang="{{ language.code }}" dir="{{ language.direction }}">{% trans "Comment: " %}<span class="suggestion-comment">{{ sugg.translator_comment }}</span></div>
 {% endif %}
-{% endblock%}
+{% endblock %}
 {% endcache %}

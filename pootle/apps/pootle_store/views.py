@@ -777,7 +777,6 @@ def get_edit_unit(request, unit):
     store = unit.store
     directory = store.parent
     user = request.user
-    profile = user.get_profile()
     alt_src_langs = get_alt_src_langs(request, user, translation_project)
     project = translation_project.project
 
@@ -788,8 +787,6 @@ def get_edit_unit(request, unit):
         'comment_form': comment_form,
         'store': store,
         'directory': directory,
-        'profile': profile,
-        'user': user,
         'project': project,
         'language': language,
         'source_language': translation_project.project.source_language,
@@ -870,7 +867,7 @@ def get_tm_results(request, unit):
                                       min_similarity)
         if quality >= min_similarity:
             project = tmunit.project
-            profile = tmunit.submitted_by
+            user = tmunit.submitted_by
             result = {
                 'source': tmunit.source,
                 'target': tmunit.target,
@@ -883,25 +880,25 @@ def get_tm_results(request, unit):
                 }
             }
 
-            if profile is not None:
+            if user is not None:
                 submissions = Submission.objects.filter(
-                                submitter=profile,
+                                submitter=user,
                                 type=SubmissionTypes.NORMAL,
                                 ).distinct().count()
                 suggestions = Suggestion.objects.filter(
-                                user=profile
+                                user=user
                                 ).distinct().count()
                 translations = submissions - suggestions  # XXX: is this correct?
                 title = _("By %s on %s<br/><br/>%s translations<br/>%s suggestions" % (
-                            profile.user.get_full_name(),
+                            user.full_name,
                             tmunit.submitted_on,
                             translations, suggestions))
 
                 result['translator'] = {
-                    'username': unicode(profile.user),
+                    'username': user.username,
                     'title': title,
-                    'absolute_url': profile.get_absolute_url(),
-                    'gravatar': profile.gravatar_url(24),
+                    'absolute_url': user.get_absolute_url(),
+                    'gravatar': user.gravatar_url(24),
                 }
 
             results.append(result)
@@ -933,7 +930,7 @@ def submit(request, unit):
     current_time = timezone.now()
 
     # Update current unit instance's attributes
-    unit.submitted_by = request.profile
+    unit.submitted_by = request.user
     unit.submitted_on = current_time
 
     form_class = unit_form_factory(language, snplurals, request)
@@ -945,7 +942,7 @@ def submit(request, unit):
                 sub = Submission(
                         creation_time=current_time,
                         translation_project=translation_project,
-                        submitter=request.profile,
+                        submitter=request.user,
                         unit=unit,
                         field=field,
                         type=SubmissionTypes.NORMAL,
@@ -958,7 +955,7 @@ def submit(request, unit):
             translation_submitted.send(
                     sender=translation_project,
                     unit=form.instance,
-                    profile=request.profile,
+                    user=request.user,
             )
 
             has_critical_checks = unit.qualitycheck_set.filter(
