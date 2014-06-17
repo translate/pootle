@@ -1010,7 +1010,9 @@ class Unit(models.Model, base.TranslationUnit):
             return None
 
         if user is None:
-            user = User.objects.get_system_user().get_profile()
+            user = User.objects.get_system_user()
+
+        user = user.get_profile() # FIXME
 
         suggestion = Suggestion(
             unit=self,
@@ -1663,7 +1665,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         self.translation_project.is_template_project):
                         fix_monolingual(unit, newunit, monolingual)
 
-                    changed = unit.update(newunit, user=system)
+                    changed = unit.update(newunit, user=system.user)
 
                     # Unit's index within the store might have changed
                     if update_structure and unit.index != newunit.index:
@@ -1732,7 +1734,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.save()
 
     def sync(self, update_structure=False, update_translation=False,
-             conservative=True, create=False, profile=None, skip_missing=False,
+             conservative=True, create=False, user=None, skip_missing=False,
              modified_since=0):
         """Sync file with translations from DB."""
         if skip_missing and not self.file.exists():
@@ -1755,7 +1757,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 store.savefile(store_path)
 
                 self.file = store_path
-                self.update_store_header(profile=profile)
+                self.update_store_header(user)
                 self.file.savestore()
                 self.sync_time = self.get_mtime()
 
@@ -1835,7 +1837,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         file_changed = True
 
         if file_changed:
-            self.update_store_header(profile=profile)
+            self.update_store_header(user)
             self.file.savestore()
 
         self.sync_time = timezone.now()
@@ -2047,13 +2049,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         return self.units[item]
 
     @commit_on_success
-    def mergefile(self, newfile, profile, allownewstrings, suggestions,
+    def mergefile(self, newfile, user, allownewstrings, suggestions,
                   notranslate, obsoletemissing):
         """Merges :param:`newfile` with the current store.
 
         :param newfile: The file that will be merged into the current store.
-        :param profile: A :cls:`~pootle_profile.models.PootleProfile` user
-            profile.
+        :param user: A :cls:`~accounts.models.User` User instance.
         :param allownewstrings: Whether to add or not units from
             :param:`newfile` not present in the current store.
         :param suggestions: Try to add conflicting units as suggestions in case
@@ -2131,7 +2132,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     if (notranslate or suggestions and
                         oldunit.istranslated() and
                         (not mtime or mtime < oldunit.mtime)):
-                        oldunit.add_suggestion(newunit.target, profile)
+                        oldunit.add_suggestion(newunit.target, user)
                     else:
                         changed = oldunit.merge(newunit, overwrite=True)
                         if changed:
@@ -2139,26 +2140,28 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
             if allownewstrings or obsoletemissing:
                 self.sync(update_structure=True, update_translation=True,
-                          conservative=False, create=False, profile=profile)
+                          conservative=False, create=False, user=user)
 
         finally:
             # Unlock store
             self.state = old_state
             self.save()
 
-    def update_store_header(self, profile=None):
+    def update_store_header(self, user=None):
         language = self.translation_project.language
         source_language = self.translation_project.project.source_language
         disk_store = self.file.store
         disk_store.settargetlanguage(language.code)
         disk_store.setsourcelanguage(source_language.code)
 
+        user = user.get_profile()  # FIXME
+
         from translate.storage import poheader
         if isinstance(disk_store, poheader.poheader):
             mtime = self.get_mtime()
             if mtime is None:
                 mtime = timezone.now()
-            if profile is None:
+            if user is None:
                 try:
                     submission = self.translation_project.submission_set \
                                      .filter(creation_time=mtime).latest()
@@ -2166,7 +2169,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
                     if submitter is not None:
                         if submitter.user.username != 'nobody':
-                            profile = submitter
+                            user = submitter
                 except ObjectDoesNotExist:
                     try:
                         submission = self.translation_project.submission_set \
@@ -2176,7 +2179,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
                         if submitter is not None:
                             if submitter.user.username != 'nobody':
-                                profile = submitter
+                                user = submitter
                     except ObjectDoesNotExist:
                         pass
 
@@ -2191,10 +2194,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                                        (int(dateformat.format(mtime, 'U')),
                                         mtime.microsecond)),
                     }
-            if profile is not None and profile.user.is_authenticated():
+            if user is not None and user.is_authenticated():
                 headerupdates['Last_Translator'] = '%s <%s>' % \
-                        (profile.user.full_name or profile.user.username,
-                         profile.user.email)
+                        (user.full_name or user.username, user.email)
             else:
                 #FIXME: maybe insert settings.TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'

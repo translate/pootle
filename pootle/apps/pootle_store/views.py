@@ -1015,7 +1015,7 @@ def suggest(request, unit):
             # model form validation, reload unit from db
             unit = Unit.objects.get(id=unit.id)
             unit.add_suggestion(form.cleaned_data['target_f'],
-                                user=request.profile)
+                                user=request.user)
 
         rcode = 200
     else:

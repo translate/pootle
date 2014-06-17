@@ -1014,7 +1014,7 @@ def upload_file(request, directory, django_file, overwrite, store=None):
     notranslate = overwrite == 'suggest'
     allownewstrings = overwrite == 'overwrite' and store.file == ''
 
-    store.mergefile(newstore, get_profile(request.user),
-                    suggestions=suggestions, notranslate=notranslate,
+    store.mergefile(newstore, request.user, suggestions=suggestions,
+                    notranslate=notranslate,
                     allownewstrings=allownewstrings,
                     obsoletemissing=allownewstrings)
