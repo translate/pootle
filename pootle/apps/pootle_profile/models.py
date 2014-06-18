@@ -154,6 +154,11 @@ class PootleProfile(models.Model):
               ]),
             ]
         """
+
+        def suggestion_count(tp, state):
+            "Return a filtered count of the user's suggestions (internal)"
+            return self.user.suggestions.filter(translation_project=tp, state=state).count()
+
         # TODO: optimize — we need a schema that helps reduce the number
         # of needed queries for these kind of data retrievals.
         contributions = []
@@ -177,13 +182,13 @@ class PootleProfile(models.Model):
                 tp_stats = [
                     {
                         'id': 'suggestions-pending',
-                        'count': self.pending_suggestion_count(tp),
+                        'count': suggestion_count(tp, SuggestionStates.PENDING),
                         'url': tp.get_translate_url(state='user-suggestions',
                                                     user=username),
                     },
                     {
                         'id': 'suggestions-accepted',
-                        'count': self.accepted_suggestion_count(tp),
+                        'count': suggestion_count(tp, SuggestionStates.ACCEPTED),
                         'url': tp.get_translate_url(
                             state='user-suggestions-accepted',
                             user=username,
@@ -191,7 +196,7 @@ class PootleProfile(models.Model):
                     },
                     {
                         'id': 'suggestions-rejected',
-                        'count': self.rejected_suggestion_count(tp),
+                        'count': suggestion_count(tp, SuggestionStates.REJECTED),
                         'url': tp.get_translate_url(
                             state='user-suggestions-rejected',
                             user=username,
@@ -250,33 +255,6 @@ class PootleProfile(models.Model):
 
     def get_unit_rows(self):
         return min(max(self.unit_rows, 5), 49)
-
-    def pending_suggestion_count(self, tp):
-        """Return the number of pending suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggestions.filter(translation_project=tp,
-                                       state=SuggestionStates.PENDING).count()
-
-    def accepted_suggestion_count(self, tp):
-        """Return the number of accepted suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggestions.filter(translation_project=tp,
-                                       state=SuggestionStates.ACCEPTED).count()
-
-    def rejected_suggestion_count(self, tp):
-        """Return the number of rejected suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggestions.filter(translation_project=tp,
-                                       state=SuggestionStates.REJECTED).count()
 
     def total_submission_count(self, tp):
         """Return the number of submissions the current user has done from the
