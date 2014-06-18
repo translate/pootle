@@ -54,7 +54,6 @@ from pootle_language.models import Language
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, jsonify, to_int
-from pootle_profile.models import get_profile
 from pootle_project.models import Project
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
@@ -537,8 +536,6 @@ def get_units(request):
     if pootle_path is None:
         raise Http400(_('Arguments missing.'))
 
-    request.profile = get_profile(request.user)
-
     units_qs = Unit.objects.get_for_path(pootle_path, request.user)
     step_queryset = get_step_query(request, units_qs)
 
@@ -950,7 +947,7 @@ def submit(request, unit):
                         new_value=new_value,
                 )
                 sub.save()
-            form.instance._log_user = request.profile
+            form.instance._log_user = request.user
             form.save()
             translation_submitted.send(
                     sender=translation_project,

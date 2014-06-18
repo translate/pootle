@@ -29,7 +29,6 @@ from django.utils.translation import ugettext as _
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
 from pootle_misc.util import jsonify
-from pootle_profile.models import get_profile
 
 from .models import Unit, Store
 
@@ -58,7 +57,6 @@ def _check_permissions(request, directory, permission_code):
     """Checks if the current user has enough permissions defined by
     `permission_code` in the current`directory`.
     """
-    request.profile = get_profile(request.user)
     request.permissions = get_matching_permissions(request.user, directory)
 
     if not permission_code:

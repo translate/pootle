@@ -21,7 +21,6 @@
 import pytest
 
 from pootle_app.models.permissions import get_matching_permissions
-from pootle_profile.models import get_profile
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 from pootle_store.forms import unit_form_factory, UnitStateField
 
@@ -33,7 +32,6 @@ def _create_post_request(rf, directory, user, url='/', data=None):
 
     request = rf.post(url, data=data)
     request.user = user
-    request.profile = get_profile(user)
     request.permissions = get_matching_permissions(request.user, directory)
     return request
 
