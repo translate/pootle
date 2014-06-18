@@ -68,6 +68,12 @@ class User(AbstractBaseUser):
 
     objects = UserManager()
 
+    @property
+    def display_name(self):
+        """Human-readable display name."""
+        return (self.get_full_name() if self.get_full_name()
+                                     else self.get_short_name())
+
     def __unicode__(self):
         return self.username
 
