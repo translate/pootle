@@ -3,6 +3,7 @@ import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
+from django.contrib.contenttypes.models import ContentType
 
 
 class Migration(SchemaMigration):
@@ -13,6 +14,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Deleting model 'Suggestion'
         db.delete_table('pootle_app_suggestion')
+        ContentType.objects.filter(app_label='pootle_app', model='suggestion').delete()
 
 
     def backwards(self, orm):
@@ -28,6 +30,8 @@ class Migration(SchemaMigration):
             ('unit', self.gf('django.db.models.fields.IntegerField')(db_index=True)),
         ))
         db.send_create_signal('pootle_app', ['Suggestion'])
+        ct = ContentType(app_label='pootle_app', model='suggestion', name='suggestion')
+        ct.save()
 
 
     models = {
