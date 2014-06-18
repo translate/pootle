@@ -490,34 +490,6 @@ html[dir="rtl"] #sidebar-toggle
 
 
 /*
- * POPUPS
- */
-
-.popup-inline
-{
-    background-color: #fff;
-    padding: 20px 30px;
-    max-width: 650px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.popup-ajax .mfp-content
-{
-    background-color: #fff;
-    border-radius: 0.5em;
-    width: auto !important;
-    max-width: 920px !important;
-    display: inline-block;
-}
-
-/* for forms displayed in lightbox mode (via magnificPopup plugin), use different shadow */
-.mfp-content .form
-{
-    box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
-}
-
-/*
  * MESSAGES
  */
 

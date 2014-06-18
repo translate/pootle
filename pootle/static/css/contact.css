@@ -2,48 +2,6 @@
  * CONTACT PAGE
  */
 
-#contact
-{
-    line-height: 150%!important;
-    margin: 2em 3em;
-
-    font-size: 1.2em;
-}
-
-#contact h1
-{
-    margin-bottom: 1em;
-}
-
-#contact p
-{
-    margin: 1em 0;
-}
-
-#contact input,
-#contact textarea
-{
-    font-family: "Segoe UI", "Ubuntu", sans-serif;
-}
-
-#contact textarea
-{
-    font-size: 1em;
-    padding-left: 0.2em;
-    padding-right: 0.2em;
-}
-
-#contact .buttons input
-{
-    margin: 0.3em 0px 0px;
-}
-
-#contact label
-{
-    display: block;
-    color: rgba(0, 0, 0, 0.6);
-}
-
 #contact label[for="id_captcha_answer"]
 {
     display: inline;

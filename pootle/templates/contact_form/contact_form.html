@@ -1,6 +1,6 @@
 {% load i18n locale %}
 {% get_current_language as LANGUAGE_CODE %}
-<div id="contact" dir="{% locale_dir %}">
+<div id="contact" class="popup-form" dir="{% locale_dir %}">
   <div id="js-contact">
     <h1>{% trans "Contact Us" %}</h1>
     <p class="callout"><strong>{% blocktrans with contact_url='http://evernote.com/contact/support/' %}
