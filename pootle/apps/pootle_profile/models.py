@@ -196,22 +196,6 @@ class PootleProfile(models.Model):
         return self.user.gravatar_url(size)
 
 
-def get_profile(user):
-    """Return the PootleProfile associated with a user.
-
-    This function is only necessary if 'user' could be an anonymous
-    user.  If you know for certain that a user is logged in, then use
-    the .get_profile() method on a user instead.
-    """
-    if user.is_authenticated():
-        # Return the PootleProfile associated with authenticated users
-        return user.get_profile()
-    else:
-        # Anonymous users get the PootleProfile associated with the 'nobody'
-        # user
-        return User.objects.get(username='nobody').get_profile()
-
-
 ################################ Signal handlers ##############################
 
 def create_pootle_profile(sender, instance, **kwargs):
