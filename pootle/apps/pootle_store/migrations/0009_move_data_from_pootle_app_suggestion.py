@@ -38,7 +38,7 @@ class Migration(DataMigration):
         # units with suggestions
         units = orm['pootle_store.Unit'].objects.filter(suggestion__isnull=False).distinct()
         for unit in units:
-            store_suggestions = unit.suggestion_set.all().order_by('user')
+            store_suggestions = unit.suggestion_set.filter(user__isnull=False).order_by('user')
             for user_id, ss in groupby(store_suggestions, lambda x: x.user.id):
                 ss = list(ss)
                 app_pending_suggestions = orm['pootle_app.Suggestion'].objects \
