@@ -355,6 +355,20 @@ def initdb():
                 run('python manage.py initdb')
 
 
+def migrate_app(appname=None):
+    """Run `migrate` to bring the DB up to date for the specified app."""
+    require('environment', provided_by=[production, staging])
+
+    print("\n\nRunning `migrate` command for app '%s'..." % appname)
+
+    if appname is not None:
+        with cd('%(project_repo_path)s' % env):
+            with prefix('source %(env_path)s/bin/activate' % env):
+                run('python manage.py migrate --noinput %s' % appname)
+    else:
+        abort('\nERROR: An app name must be provided. Aborting.')
+
+
 def migratedb():
     """Run `migrate` to bring the DB up to date with the latest schema."""
     require('environment', provided_by=[production, staging])
@@ -417,6 +431,29 @@ def upgrade():
         with cd('%(project_repo_path)s' % env):
             with prefix('source %(env_path)s/bin/activate' % env):
                 run('python manage.py upgrade')
+
+
+def send_file(upfile=None):
+    require('environment', provided_by=[staging])
+
+    print('\n\nSending file...')
+
+    if upfile is not None:
+        if isfile(upfile):
+            remote_filename = '%s/%s' % (env['project_path'], upfile)
+
+            if (not exists(remote_filename) or
+                confirm('\n%s already exists. Do you want to overwrite it?'
+                        % remote_filename, default=False)):
+
+                with settings(hide('stderr')):
+                    put(upfile, remote_filename)
+            else:
+                abort('\nAborting.')
+        else:
+            abort('\nERROR: The file "%s" does not exist. Aborting.' % upfile)
+    else:
+        abort('\nERROR: A (local) file must be provided. Aborting.')
 
 
 def load_db(dumpfile=None):
@@ -561,6 +598,8 @@ def enable_site():
     with settings(hide('stdout', 'stderr')):
         _switch_site(True)
 
+    print('Successfully enabled site:\n\n\thttp://%(project_url)s\n' % env)
+
 
 def disable_site():
     """Disable the site."""
@@ -568,6 +607,8 @@ def disable_site():
 
     with settings(hide('stdout', 'stderr')):
         _switch_site(False)
+
+    print('Successfully disabled site:\n\n\thttp://%(project_url)s\n' % env)
 
 
 def _switch_site(enable):
