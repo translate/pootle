@@ -304,7 +304,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
     def save(self, *args, **kwargs):
         # Create file system directory if needed
         project_path = self.get_real_path()
-        if not os.path.exists(project_path):
+        if not os.path.exists(project_path) and not self.disabled:
             os.makedirs(project_path)
 
         from pootle_app.models.directory import Directory
