@@ -65,7 +65,7 @@ class User(AbstractBaseUser):
     Note that the ``password`` and ``last_login`` fields are inherited
     from ``AbstractBaseUser``.
     """
-    username = models.CharField(_('username'), max_length=30, unique=True,
+    username = models.CharField(_('Username'), max_length=30, unique=True,
         help_text=_('Required. 30 characters or fewer. Letters, numbers and '
                     '@/./+/-/_ characters'),
         validators=[
@@ -74,13 +74,13 @@ class User(AbstractBaseUser):
                            'invalid')
         ],
     )
-    email = models.EmailField(_('email address'), max_length=255)
-    full_name = models.CharField(_('Full name'), max_length=255, blank=True)
+    email = models.EmailField(_('Email Address'), max_length=255)
+    full_name = models.CharField(_('Full Name'), max_length=255, blank=True)
 
-    is_active = models.BooleanField(_('active'), default=True,
+    is_active = models.BooleanField(_('Active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
-    is_superuser = models.BooleanField(_('superuser status'), default=False,
+    is_superuser = models.BooleanField(_('Superuser Status'), default=False,
         help_text=_('Designates that this user has all permissions without '
                     'explicitly assigning them.'))
 
