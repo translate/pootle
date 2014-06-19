@@ -43,10 +43,6 @@ class PootleProfile(models.Model):
     ############################ Properties ###################################
 
     @property
-    def fullname(self):
-        return self.user.full_name
-
-    @property
     def contributions(self):
         """Get user contributions grouped by language and project.
 
