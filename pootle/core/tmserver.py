@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,7 +19,6 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-
 from elasticsearch import Elasticsearch as ES
 
 from django.conf import settings
@@ -29,7 +27,7 @@ from django.conf import settings
 def get_tmserver_params():
     params = getattr(settings, 'POOTLE_TM_SERVER', None)
 
-    if params:
+    if params is not None:
         return params['default']
 
     return None
@@ -39,12 +37,12 @@ es_params = get_tmserver_params()
 # TODO support ENGINE param
 # Elasticsearch is the only supported engine now
 es = None
-if es_params:
+if es_params is not None:
     es = ES([{'host': es_params['HOST'], 'port': es_params['PORT']}, ])
 
 
 def update_tmserver(language, obj):
-    if es:
+    if es is not None:
         es.index(index=es_params['INDEX_NAME'],
                  doc_type=language,
                  body=obj,

@@ -44,7 +44,6 @@ from translate.filters.decorators import Category
 from translate.storage import base
 
 from pootle_app.models import Revision
-from pootle.core.tmserver import update_tmserver
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -52,6 +51,7 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
                              action_log, store_log, log)
 from pootle.core.mixins import CachedMethods, TreeItem
+from pootle.core.tmserver import update_tmserver
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names, run_given_filters, get_checker
@@ -777,7 +777,8 @@ class Unit(models.Model, base.TranslationUnit):
     def update_tmserver(self):
         obj = {
             'id': self.id,
-            'revision':  self.revision, # this must be an integer for statistical queries to work
+            # 'revision' must be an integer for statistical queries to work
+            'revision': self.revision,
             'project': self.store.translation_project.project.fullname,
             'path': self.store.pootle_path,
             'source': self.source,
