@@ -20,20 +20,12 @@
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
-from profiles.views import edit_profile
 from accounts.forms import UserForm
+from accounts.views import UserSettingsView
 
-from .forms import pootle_profile_form_factory
 
-
-def profile_edit(request):
-    # FIXME: better to whitelist fields rather than blacklisting them.
-    excluded = ('user', )
-
-    return edit_profile(request,
-                        form_class=pootle_profile_form_factory(excluded),
-                        template_name='profiles/settings/profile.html')
-
+# FIXME Move this to accounts
+profile_edit = UserSettingsView.as_view()
 
 @login_required
 def edit_personal_info(request):
