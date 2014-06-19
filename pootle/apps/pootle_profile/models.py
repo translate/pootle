@@ -195,9 +195,6 @@ class PootleProfile(models.Model):
     def gravatar_url(self, size=80):
         return self.user.gravatar_url(size)
 
-    def get_unit_rows(self):
-        return min(max(self.unit_rows, 5), 49)
-
 
 def get_profile(user):
     """Return the PootleProfile associated with a user.

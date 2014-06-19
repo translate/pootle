@@ -25,7 +25,7 @@ $(function() {
     pootlePath: '{{ pootle_path }}',
     ctxPath: '{{ ctx_path }}',
     resourcePath: '{{ resource_path }}',
-    chunkSize: {{ request.profile.get_unit_rows }},
+    chunkSize: {{ request.user.unit_rows }},
     isAdmin: {{ is_admin|yesno:"true,false" }}
   };
   {% if cansuggest or cantranslate %}

@@ -89,6 +89,11 @@ class User(AbstractBaseUser):
         except UnicodeEncodeError:
             return None
 
+    @property
+    def unit_rows(self):
+        # FIXME bring data from PootleProfile
+        return min(max(self.get_profile().unit_rows, 5), 49)
+
     def gravatar_url(self, size=80):
         if not self.email_hash:
             return ""

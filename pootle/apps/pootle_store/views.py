@@ -538,13 +538,12 @@ def get_units(request):
         raise Http400(_('Arguments missing.'))
 
     request.profile = get_profile(request.user)
-    limit = request.profile.get_unit_rows()
 
     units_qs = Unit.objects.get_for_path(pootle_path, request.user)
     step_queryset = get_step_query(request, units_qs)
 
     is_initial_request = request.GET.get('initial', False)
-    chunk_size = request.GET.get('count', limit)
+    chunk_size = request.GET.get("count", request.user.unit_rows)
     uids_param = filter(None, request.GET.get('uids', '').split(u','))
     uids = filter(None, map(to_int, uids_param))
 
