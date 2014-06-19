@@ -77,10 +77,28 @@ def create_translation_project(language, project):
             return None
 
 
-def scan_translation_projects():
-    for language in Language.objects.iterator():
-        for project in Project.objects.iterator():
-            create_translation_project(language, project)
+def scan_translation_projects(languages=None, projects=None):
+    project_query = Project.objects.enabled()
+
+    if projects:
+        project_query = project_query.filter(code__in=projects)
+
+    for project in project_query.iterator():
+        if does_not_exist(project.get_real_path()):
+            logging.info(u"Disabling %s", project)
+            project.disabled = True
+            project.save()
+            project.clear_all_cache(parents=True, children=False)
+        else:
+            lang_query = Language.objects.exclude(
+                    id__in=project.translationproject_set.enabled() \
+                                  .values_list('language', flat=True)
+                )
+            if languages:
+                lang_query = lang_query.filter(code__in=languages)
+
+            for language in lang_query.iterator():
+                create_or_enable_translation_project(language, project)
 
 
 class TranslationProjectManager(models.Manager):

@@ -27,10 +27,7 @@ import logging
 from optparse import make_option
 
 from pootle_app.management.commands import PootleCommand
-from pootle_app.project_tree import does_not_exist
-from pootle_language.models import Language
-from pootle_project.models import Project
-from pootle_translationproject.models import create_or_enable_translation_project
+from pootle_translationproject.models import scan_translation_projects
 
 
 class Command(PootleCommand):
@@ -65,28 +62,7 @@ class Command(PootleCommand):
         store.update(overwrite=overwrite, only_newer=not force)
 
     def handle_all(self, **options):
-        project_query = Project.objects.all()
-
-        if self.projects:
-            project_query = project_query.filter(code__in=self.projects)
-
-        for project in project_query.iterator():
-            if does_not_exist(project.get_real_path()):
-                logging.info(u"Disabling %s", project)
-                project.disabled = True
-                project.save()
-                project.clear_all_cache(parents=True, children=False)
-            else:
-                lang_query = Language.objects.exclude(
-                        id__in=project.translationproject_set.enabled() \
-                                      .values_list('language', flat=True)
-                    )
-                if self.languages:
-                    lang_query = lang_query.filter(code__in=self.languages)
-
-                for language in lang_query.iterator():
-                    logging.info(u"Check for %s/%s", project, language)
-
-                    create_or_enable_translation_project(language, project)
+        scan_translation_projects(languages=self.languages,
+                                  projects=self.projects)
 
         super(Command, self).handle_all(**options)
