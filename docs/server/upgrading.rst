@@ -157,7 +157,6 @@ running the following commands:
   $ pootle migrate pootle_app --fake 0001
   $ pootle migrate pootle_language --fake 0001
   $ pootle migrate pootle_notifications --fake 0001
-  $ pootle migrate pootle_profile --fake 0001
   $ pootle migrate pootle_project --fake 0001
   $ pootle migrate pootle_statistics --fake 0001
   $ pootle migrate pootle_store --fake 0001
@@ -197,7 +196,7 @@ available flags.
 Custom Changes
 --------------
 
-If you made any changes to Pootle code, templates or styling, you will want to 
+If you made any changes to Pootle code, templates or styling, you will want to
 ensure that your upgraded Pootle contains those changes.  How hard that is will
 depend entirely on the details of these changes.
 

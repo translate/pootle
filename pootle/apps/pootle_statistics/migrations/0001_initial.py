@@ -95,17 +95,6 @@ class Migration(SchemaMigration):
             'pluralequation': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
             'specialchars': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'})
         },
-        'pootle_profile.pootleprofile': {
-            'Meta': {'object_name': 'PootleProfile', 'db_table': "'pootle_app_pootleprofile'"},
-            'alt_src_langs': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'user_alt_src_langs'", 'blank': 'True', 'db_index': 'True', 'to': "orm['pootle_language.Language']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'input_height': ('django.db.models.fields.SmallIntegerField', [], {'default': '5'}),
-            'languages': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'user_languages'", 'blank': 'True', 'db_index': 'True', 'to': "orm['pootle_language.Language']"}),
-            'projects': ('django.db.models.fields.related.ManyToManyField', [], {'db_index': 'True', 'to': "orm['pootle_project.Project']", 'symmetrical': 'False', 'blank': 'True'}),
-            'ui_lang': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            'unit_rows': ('django.db.models.fields.SmallIntegerField', [], {'default': '9'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['%s']" % (AUTH_USER_MODEL), 'unique': 'True'})
-        },
         'pootle_project.project': {
             'Meta': {'ordering': "['code']", 'object_name': 'Project', 'db_table': "'pootle_app_project'"},
             'checkstyle': ('django.db.models.fields.CharField', [], {'default': "'standard'", 'max_length': '50'}),
