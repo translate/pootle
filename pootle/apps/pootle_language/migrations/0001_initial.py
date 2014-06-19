@@ -6,6 +6,9 @@ from django.db import models
 
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("pootle_app", "0001_initial"),
+    )
 
     depends_on = (
         ("pootle_app" , "0001_initial"),

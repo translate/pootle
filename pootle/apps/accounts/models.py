@@ -27,6 +27,7 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
@@ -68,6 +69,19 @@ class User(AbstractBaseUser):
 
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 
+    # Profile fields
+    _unit_rows = models.SmallIntegerField(_("Number of Rows"), default=9,
+        db_column="unit_rows")
+
+    alt_src_langs = models.ManyToManyField(
+        "pootle_language.Language",
+        blank=True,
+        db_index=True,
+        limit_choices_to=~Q(code="templates"),
+        related_name="user_alt_src_langs",
+        verbose_name=_("Alternative Source Languages"),
+    )
+
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email"]
 
@@ -95,8 +109,9 @@ class User(AbstractBaseUser):
 
     @property
     def unit_rows(self):
-        # FIXME bring data from PootleProfile
-        return min(max(self.get_profile().unit_rows, 5), 49)
+        # NOTE: This could be done using MinValueValidator and MaxValueValidator
+        # But that is more complicated than really necessary
+        return min(max(self._unit_rows, 5), 49)
 
     def gravatar_url(self, size=80):
         if not self.email_hash:

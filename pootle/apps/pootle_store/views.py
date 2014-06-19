@@ -155,13 +155,12 @@ def get_alt_src_langs(request, user, translation_project):
     language = translation_project.language
     project = translation_project.project
     source_language = project.source_language
-    profile = user.get_profile()
 
-    langs = profile.alt_src_langs.exclude(
+    langs = user.alt_src_langs.exclude(
             id__in=(language.id, source_language.id)
         ).filter(translationproject__project=project)
 
-    if not profile.alt_src_langs.count():
+    if not user.alt_src_langs.count():
         from pootle_language.models import Language
         accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
 

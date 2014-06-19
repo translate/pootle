@@ -22,7 +22,6 @@ from django.conf import settings
 from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import Q
 from django.db.models.signals import post_save
 from django.utils.html import simple_email_re as email_re
 from django.utils.translation import ugettext_lazy as _
@@ -37,19 +36,6 @@ class PootleProfile(models.Model):
 
     # This is the only required field.
     user = models.OneToOneField(settings.AUTH_USER_MODEL, unique=True, db_index=True)
-    unit_rows = models.SmallIntegerField(
-        default=9,
-        verbose_name=_("Number of Rows"),
-    )
-    input_height = models.SmallIntegerField(default=5, editable=False)
-    alt_src_langs = models.ManyToManyField(
-        'pootle_language.Language',
-        blank=True,
-        db_index=True,
-        limit_choices_to=~Q(code='templates'),
-        related_name="user_alt_src_langs",
-        verbose_name=_("Alternative Source Languages"),
-    )
 
     class Meta:
         db_table = 'pootle_app_pootleprofile'
