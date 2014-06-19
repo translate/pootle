@@ -14,7 +14,7 @@ class Migration(SchemaMigration):
         # Adding model 'PootleProfile'
         db.create_table('pootle_app_pootleprofile', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=AUTH_USER_MODEL, unique=True)),
+            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm[AUTH_USER_MODEL], unique=True)),
             ('unit_rows', self.gf('django.db.models.fields.SmallIntegerField')(default=9)),
             ('input_height', self.gf('django.db.models.fields.SmallIntegerField')(default=5)),
             ('ui_lang', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),

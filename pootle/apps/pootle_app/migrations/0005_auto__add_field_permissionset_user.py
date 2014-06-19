@@ -13,7 +13,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding field 'PermissionSet.user'
         db.add_column(u'pootle_app_permissionset', 'user',
-                      self.gf('django.db.models.fields.related.ForeignKey')(to=AUTH_USER_MODEL, null=True),
+                      self.gf('django.db.models.fields.related.ForeignKey')(to=orm[AUTH_USER_MODEL], null=True),
                       keep_default=False)
         # Check if we have old data to import
         columns = connection.introspection.get_table_description(connection.cursor(), "pootle_app_permissionset")
