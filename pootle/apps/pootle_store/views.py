@@ -491,7 +491,7 @@ def timeline(request, unit):
     ]).exclude(
         field=SubmissionFields.COMMENT,
         creation_time=unit.commented_on
-    )
+    ).order_by("id")
     timeline = timeline.select_related("submitter__user",
                                        "translation_project__language")
 
@@ -499,13 +499,20 @@ def timeline(request, unit):
     entries_group = []
     context = {}
 
-    for key, values in groupby(timeline, key=lambda x: x.creation_time):
+    # Group by submitter id and creation_time because
+    # different submissions can have same creation time
+    for key, values in \
+        groupby(timeline,
+                key=lambda x: "%d\001%s" % (x.submitter.id, x.creation_time)):
+
         entry_group = {
-            'datetime': key,
             'entries': [],
         }
 
         for item in values:
+            # Only add creation_time information for the whole entry group once
+            entry_group['datetime'] = item.creation_time
+
             # Only add submitter information for the whole entry group once
             entry_group.setdefault('submitter', item.submitter)
 
