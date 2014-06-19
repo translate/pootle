@@ -106,17 +106,6 @@ class PootleProfile(models.Model):
                            self.user.last_name)).strip()
 
     @property
-    def isopen(self):
-        return True
-
-    @property
-    def pootle_user(self):
-        if self.user_id is not None:
-            return self.user
-        else:
-            return AnonymousUser()
-
-    @property
     def contributions(self):
         """Get user contributions grouped by language and project.
 
