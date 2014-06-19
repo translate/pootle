@@ -36,6 +36,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_app.models import Directory
 from pootle_autonotices.signals import new_object
+from pootle_language.models import Language
+from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_store.models import SuggestionStates
+from pootle_translationproject.models import TranslationProject
 from .managers import UserManager
 
 
@@ -106,6 +110,123 @@ class User(AbstractBaseUser):
             return md5(self.email).hexdigest()
         except UnicodeEncodeError:
             return None
+
+    @property
+    def contributions(self):
+        """Get user contributions grouped by language and project.
+
+        :return: List of tuples containing the following information::
+
+            [
+              ('Language 1', [
+                  ('Project 1', [
+                      {
+                        'id': 'foo-bar',
+                        'count': 0,
+                        'url': 'foo/bar',
+                      },
+                      {
+                        'id': 'bar-foo',
+                        'count': 3,
+                        'url': 'baz/blah',
+                      },
+                      {
+                        'id': 'baz-blah',
+                        'count': 5,
+                        'url': 'bar/baz',
+                      },
+                  ]),
+                  ('Project 2', [
+                      ...
+                  ]),
+              ]),
+              ('LanguageN', [
+                  ('Project N', [
+                      ...
+                  ]),
+                  ('Project N+1', [
+                      ...
+                  ]),
+              ]),
+            ]
+        """
+
+        def suggestion_count(tp, state):
+            "Return a filtered count of the user's suggestions (internal)"
+            return self.suggestions.filter(translation_project=tp, state=state).count()
+
+        contributions = []
+        username = self.username
+
+        languages = Language.objects.filter(
+            translationproject__submission__submitter=self,
+            translationproject__submission__type=SubmissionTypes.NORMAL,
+        ).distinct()
+
+        for language in languages:
+            translation_projects = TranslationProject.objects.filter(
+                    language=language,
+                    submission__submitter=self,
+                    submission__type=SubmissionTypes.NORMAL,
+                ).distinct().order_by('project__fullname')
+
+            tp_user_stats = []
+            # Retrieve tp-specific stats for this user.
+            for tp in translation_projects:
+                # Submissions from the user done from the editor
+                total_subs = Submission.objects.filter(
+                    submitter=self,
+                    translation_project=tp,
+                    type=SubmissionTypes.NORMAL,
+                )
+                # Submissions from the user done from the editor that have been
+                # overwritten by other users
+                overwritten_subs = total_subs.exclude(unit__submitted_by=self)
+
+                tp_stats = [
+                    {
+                        'id': 'suggestions-pending',
+                        'count': suggestion_count(tp, SuggestionStates.PENDING),
+                        'url': tp.get_translate_url(state='user-suggestions',
+                                                    user=username),
+                    },
+                    {
+                        'id': 'suggestions-accepted',
+                        'count': suggestion_count(tp, SuggestionStates.ACCEPTED),
+                        'url': tp.get_translate_url(
+                            state='user-suggestions-accepted',
+                            user=username,
+                        ),
+                    },
+                    {
+                        'id': 'suggestions-rejected',
+                        'count': suggestion_count(tp, SuggestionStates.REJECTED),
+                        'url': tp.get_translate_url(
+                            state='user-suggestions-rejected',
+                            user=username,
+                        ),
+                    },
+                    {
+                        'id': 'submissions-total',
+                        'count': total_subs.count(),
+                        'url': tp.get_translate_url(state='user-submissions',
+                                                    user=username),
+                    },
+                    {
+                        'id': 'submissions-overwritten',
+                        'count': overwritten_subs.count(),
+                        'url': tp.get_translate_url(
+                            state='user-submissions-overwritten',
+                            user=username,
+                        ),
+                    },
+                ]
+
+                tp_user_stats.append((tp, tp_stats))
+
+            contributions.append((language, tp_user_stats))
+
+        return contributions
 
     @property
     def unit_rows(self):

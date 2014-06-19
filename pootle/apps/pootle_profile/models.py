@@ -26,11 +26,6 @@ from django.db.models.signals import post_save
 from django.utils.html import simple_email_re as email_re
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_language.models import Language
-from pootle_statistics.models import Submission, SubmissionTypes
-from pootle_store.models import SuggestionStates
-from pootle_translationproject.models import TranslationProject
-
 
 class PootleProfile(models.Model):
 
@@ -41,125 +36,6 @@ class PootleProfile(models.Model):
         db_table = 'pootle_app_pootleprofile'
 
     ############################ Properties ###################################
-
-    @property
-    def contributions(self):
-        """Get user contributions grouped by language and project.
-
-        :return: List of tuples containing the following information::
-
-            [
-              ('Language 1', [
-                  ('Project 1', [
-                      {
-                        'id': 'foo-bar',
-                        'count': 0,
-                        'url': 'foo/bar',
-                      },
-                      {
-                        'id': 'bar-foo',
-                        'count': 3,
-                        'url': 'baz/blah',
-                      },
-                      {
-                        'id': 'baz-blah',
-                        'count': 5,
-                        'url': 'bar/baz',
-                      },
-                  ]),
-                  ('Project 2', [
-                      ...
-                  ]),
-              ]),
-              ('LanguageN', [
-                  ('Project N', [
-                      ...
-                  ]),
-                  ('Project N+1', [
-                      ...
-                  ]),
-              ]),
-            ]
-        """
-
-        def suggestion_count(tp, state):
-            "Return a filtered count of the user's suggestions (internal)"
-            return self.user.suggestions.filter(translation_project=tp, state=state).count()
-
-        # TODO: optimize — we need a schema that helps reduce the number
-        # of needed queries for these kind of data retrievals.
-        contributions = []
-        username = self.user.username
-
-        languages = Language.objects.filter(
-                translationproject__submission__submitter=self.user,
-                translationproject__submission__type=SubmissionTypes.NORMAL,
-            ).distinct()
-
-        for language in languages:
-            translation_projects = TranslationProject.objects.filter(
-                    language=language,
-                    submission__submitter=self.user,
-                    submission__type=SubmissionTypes.NORMAL,
-                ).distinct().order_by('project__fullname')
-
-            tp_user_stats = []
-            # Retrieve tp-specific stats for this user.
-            for tp in translation_projects:
-                # Submissions from the user done from the editor
-                total_subs = Submission.objects.filter(
-                    submitter=self.user,
-                    translation_project=tp,
-                    type=SubmissionTypes.NORMAL,
-                )
-                # Submissions from the user done from the editor that have been
-                # overwritten by other users
-                overwritten_subs = total_subs.exclude(unit__submitted_by=self)
-
-                tp_stats = [
-                    {
-                        'id': 'suggestions-pending',
-                        'count': suggestion_count(tp, SuggestionStates.PENDING),
-                        'url': tp.get_translate_url(state='user-suggestions',
-                                                    user=username),
-                    },
-                    {
-                        'id': 'suggestions-accepted',
-                        'count': suggestion_count(tp, SuggestionStates.ACCEPTED),
-                        'url': tp.get_translate_url(
-                            state='user-suggestions-accepted',
-                            user=username,
-                        ),
-                    },
-                    {
-                        'id': 'suggestions-rejected',
-                        'count': suggestion_count(tp, SuggestionStates.REJECTED),
-                        'url': tp.get_translate_url(
-                            state='user-suggestions-rejected',
-                            user=username,
-                        ),
-                    },
-                    {
-                        'id': 'submissions-total',
-                        'count': total_subs.count(),
-                        'url': tp.get_translate_url(state='user-submissions',
-                                                    user=username),
-                    },
-                    {
-                        'id': 'submissions-overwritten',
-                        'count': overwritten_subs.count(),
-                        'url': tp.get_translate_url(
-                            state='user-submissions-overwritten',
-                            user=username,
-                        ),
-                    },
-                ]
-
-                tp_user_stats.append((tp, tp_stats))
-
-            contributions.append((language, tp_user_stats))
-
-        return contributions
 
     ############################ Methods ######################################
 

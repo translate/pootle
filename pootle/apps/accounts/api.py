@@ -24,7 +24,6 @@ from tastypie.authorization import DjangoAuthorization
 from tastypie.exceptions import Unauthorized
 
 from pootle.core.api import StatisticsModelResource
-from pootle_profile.models import PootleProfile
 
 
 User = get_user_model()
@@ -179,7 +178,7 @@ class UserResource(StatisticsModelResource):
 
     def retrieve_statistics(self, bundle):
         """Retrieve the statistics for the current resource object."""
-        up = PootleProfile.objects.get(user=bundle.obj)
+        up = User.objects.get(user=bundle.obj)
         return up.contributions
 
     def dehydrate(self, bundle):
