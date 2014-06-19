@@ -26,10 +26,10 @@ script:
   - python -m compileall -q -f .
   - make docs
   - make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
-  - coverage run --parallel-mode manage.py syncdb --noinput
-  - coverage run --parallel-mode manage.py migrate
-  - coverage run --parallel-mode manage.py initdb
-  - coverage run --parallel-mode ./manage.py runserver &
+  - coverage run --parallel-mode manage.py syncdb --noinput --traceback
+  - coverage run --parallel-mode manage.py migrate --traceback
+  - coverage run --parallel-mode manage.py initdb --traceback
+  - coverage run --parallel-mode ./manage.py runserver --traceback &
   - TESTPID=$!
   - sleep 20
   - kill -2 $TESTPID
