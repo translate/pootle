@@ -169,6 +169,16 @@ class PootleProfile(models.Model):
             tp_user_stats = []
             # Retrieve tp-specific stats for this user.
             for tp in translation_projects:
+                # Submissions from the user done from the editor
+                total_subs = Submission.objects.filter(
+                    submitter=self,
+                    translation_project=tp,
+                    type=SubmissionTypes.NORMAL,
+                )
+                # Submissions from the user done from the editor that have been
+                # overwritten by other users
+                overwritten_subs = total_subs.exclude(unit__submitted_by=self)
+
                 tp_stats = [
                     {
                         'id': 'suggestions-pending',
@@ -194,13 +204,13 @@ class PootleProfile(models.Model):
                     },
                     {
                         'id': 'submissions-total',
-                        'count': self.total_submission_count(tp),
+                        'count': total_subs.count(),
                         'url': tp.get_translate_url(state='user-submissions',
                                                     user=username),
                     },
                     {
                         'id': 'submissions-overwritten',
-                        'count': self.overwritten_submission_count(tp),
+                        'count': overwritten_subs.count(),
                         'url': tp.get_translate_url(
                             state='user-submissions-overwritten',
                             user=username,
@@ -245,33 +255,6 @@ class PootleProfile(models.Model):
 
     def get_unit_rows(self):
         return min(max(self.unit_rows, 5), 49)
-
-    def total_submission_count(self, tp):
-        """Return the number of submissions the current user has done from the
-        editor in the given translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return Submission.objects.filter(
-            submitter=self,
-            translation_project=tp,
-            type=SubmissionTypes.NORMAL,
-        ).count()
-
-    def overwritten_submission_count(self, tp):
-        """Return the number of submissions the current user has done from the
-        editor and have been overwritten by other users in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return Submission.objects.filter(
-            submitter=self,
-            translation_project=tp,
-            type=SubmissionTypes.NORMAL,
-        ).exclude(
-            unit__submitted_by=self,
-        ).count()
 
 
 def get_profile(user):
