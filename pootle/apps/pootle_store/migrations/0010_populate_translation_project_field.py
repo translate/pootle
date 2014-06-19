@@ -30,7 +30,7 @@ class Migration(DataMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
-        u'auth.user': {
+        u'accounts.user': {
             'Meta': {'object_name': 'User'},
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),

@@ -48,7 +48,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
-        u'auth.user': {
+        u'accounts.user': {
             'Meta': {'object_name': 'User'},
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
@@ -84,8 +84,8 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'negative_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'permission_sets_negative'", 'symmetrical': 'False', 'to': u"orm['auth.Permission']"}),
             'positive_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'db_index': 'True', 'related_name': "'permission_sets_positive'", 'symmetrical': 'False', 'to': u"orm['auth.Permission']"}),
-            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_profile.PootleProfile']"}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']", 'null': 'True'})
+            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['accounts.User']"}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['accounts.User']", 'null': 'True'})
         },
         'pootle_app.pootleconfig': {
             'Meta': {'object_name': 'PootleConfig'},
