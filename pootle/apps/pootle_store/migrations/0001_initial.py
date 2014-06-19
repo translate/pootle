@@ -9,6 +9,9 @@ AUTH_USER_MODEL = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("pootle_app", "0001_initial"),
+    )
 
     def forwards(self, orm):
         # Adding model 'QualityCheck'
