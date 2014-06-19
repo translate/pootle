@@ -354,7 +354,6 @@ def get_step_query(request, units_queryset):
                 user = User.objects.get(username=request.GET["user"])
             except User.DoesNotExist:
                 pass
-        profile = user.get_profile()
 
         if unit_filter:
             match_queryset = units_queryset.none()
@@ -378,28 +377,28 @@ def get_step_query(request, units_queryset):
             elif unit_filter in ('my-suggestions', 'user-suggestions'):
                 match_queryset = units_queryset.filter(
                         suggestion__state=SuggestionStates.PENDING,
-                        suggestion__user=profile,
+                        suggestion__user=user,
                     ).distinct()
             elif unit_filter == 'user-suggestions-accepted':
                 match_queryset = units_queryset.filter(
                         suggestion__state=SuggestionStates.ACCEPTED,
-                        suggestion__user=profile,
+                        suggestion__user=user,
                     ).distinct()
             elif unit_filter == 'user-suggestions-rejected':
                 match_queryset = units_queryset.filter(
                         suggestion__state=SuggestionStates.REJECTED,
-                        suggestion__user=profile,
+                        suggestion__user=user,
                     ).distinct()
             elif unit_filter in ('my-submissions', 'user-submissions'):
                 match_queryset = units_queryset.filter(
-                        submission__submitter=profile,
+                        submission__submitter=user,
                         submission__type=SubmissionTypes.NORMAL,
                     ).distinct()
             elif (unit_filter in ('my-submissions-overwritten',
                                   'user-submissions-overwritten')):
                 match_queryset = units_queryset.filter(
-                        submission__submitter=profile,
-                    ).exclude(submitted_by=profile).distinct()
+                        submission__submitter=user,
+                    ).exclude(submitted_by=user).distinct()
             elif unit_filter == 'checks' and 'checks' in request.GET:
                 checks = request.GET['checks'].split(',')
 
@@ -721,7 +720,7 @@ def comment(request, unit):
              An error message is returned otherwise.
     """
     # Update current unit instance's attributes
-    unit.commented_by = request.profile
+    unit.commented_by = request.user
     unit.commented_on = timezone.now()
 
     language = request.translation_project.language
@@ -1038,7 +1037,7 @@ def reject_suggestion(request, unit, suggid):
             raise Http404
 
         unit.reject_suggestion(sugg, request.translation_project,
-                               request.profile)
+                               request.user)
 
     json = {
         'udbid': unit.id,
@@ -1062,7 +1061,7 @@ def accept_suggestion(request, unit, suggid):
             raise Http404
 
         unit.accept_suggestion(suggestion, request.translation_project,
-                               request.profile)
+                               request.user)
 
         json['newtargets'] = [highlight_whitespace(target)
                               for target in unit.target.strings]
@@ -1085,7 +1084,7 @@ def toggle_qualitycheck(request, unit, check_id):
 
     try:
         unit.toggle_qualitycheck(check_id,
-            bool(request.POST.get('mute')), request.profile)
+            bool(request.POST.get("mute")), request.user)
     except ObjectDoesNotExist:
         raise Http404
 

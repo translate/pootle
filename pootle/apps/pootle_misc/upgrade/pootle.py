@@ -128,12 +128,8 @@ def upgrade_to_25203():
     """
     from pootle_statistics.models import Submission, SubmissionTypes
 
-    Submission.objects.filter(
-        type=None,
-        submitter__user__username='system',
-    ).update(
-        type=SubmissionTypes.SYSTEM,
-    )
+    Submission.objects.filter(type=None, submitter__username="system") \
+                      .update(type=SubmissionTypes.SYSTEM)
 
 
 def upgrade_to_25204():

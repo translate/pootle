@@ -49,7 +49,6 @@ from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_misc.util import jsonify, ajax_required
-from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
 from pootle_store.util import (absolute_real_path, relative_real_path,
@@ -273,7 +272,7 @@ def _handle_upload_form(request, translation_project):
             s = Submission(
                 creation_time=timezone.now(),
                 translation_project=translation_project,
-                submitter=get_profile(request.user),
+                submitter=request.user,
                 type=SubmissionTypes.UPLOAD,
                 # The other fields are only relevant to unit-based changes.
             )

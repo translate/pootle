@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import Http404
@@ -34,7 +35,6 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_misc.mail import send_mail
 from pootle_notifications.forms import form_factory
 from pootle_notifications.models import Notice
-from pootle_profile.models import get_profile, PootleProfile
 from pootle_translationproject.models import TranslationProject
 
 
@@ -121,20 +121,21 @@ def create_notice(creator, message, directory):
 
 
 def get_recipients(restrict_to_active_users, directory):
-    to_list = PootleProfile.objects.all()
+    User = get_user_model()
+    to_list = User.objects.all()
 
     # Take into account 'only active users' flag from the form.
     if restrict_to_active_users:
         to_list = to_list.exclude(submission=None).exclude(suggestions=None)
 
     recipients = []
-    for person in to_list:
-        # Check if the User profile has permissions in the directory.
-        if not check_user_permission(person.user, "view", directory, check_default=False):
+    for user in to_list:
+        # Check if the User has permissions in the directory.
+        if not check_user_permission(user, "view", directory, check_default=False):
             continue
 
-        if person.user.email:
-            recipients.append(person.user.email)
+        if user.email:
+            recipients.append(user.email)
 
     return recipients
 

@@ -1012,8 +1012,6 @@ class Unit(models.Model, base.TranslationUnit):
         if user is None:
             user = User.objects.get_system_user()
 
-        user = user.get_profile() # FIXME
-
         suggestion = Suggestion(
             unit=self,
             user=user,
@@ -2154,8 +2152,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         disk_store.settargetlanguage(language.code)
         disk_store.setsourcelanguage(source_language.code)
 
-        user = user.get_profile()  # FIXME
-
         from translate.storage import poheader
         if isinstance(disk_store, poheader.poheader):
             mtime = self.get_mtime()
@@ -2168,7 +2164,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     submitter = submission.submitter
 
                     if submitter is not None:
-                        if submitter.user.username != 'nobody':
+                        if submitter.username != "nobody":
                             user = submitter
                 except ObjectDoesNotExist:
                     try:
@@ -2178,7 +2174,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         submitter = submission.submitter
 
                         if submitter is not None:
-                            if submitter.user.username != 'nobody':
+                            if submitter.username != "nobody":
                                 user = submitter
                     except ObjectDoesNotExist:
                         pass
