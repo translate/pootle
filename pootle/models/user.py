@@ -74,7 +74,10 @@ class User(AbstractBaseUser):
                            'invalid')
         ],
     )
-    email = models.EmailField(_('Email Address'), max_length=255)
+    email_help = _('To set or change your avatar for this email address, '
+                   'please go to gravatar.com.')
+    email = models.EmailField(_('Email Address'), max_length=255,
+                              help_text=email_help)
     full_name = models.CharField(_('Full Name'), max_length=255, blank=True)
 
     is_active = models.BooleanField(_('Active'), default=True,
