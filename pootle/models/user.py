@@ -94,16 +94,17 @@ class User(AbstractBaseUser):
             verbose_name=_("Alternative Source Languages"))
 
     # Score-related fields
-    rate = models.FloatField(null=False, default=0)
-    review_rate = models.FloatField(null=False, default=0)
-    score = models.FloatField(null=False, default=0)
-    currency = models.CharField(max_length=3, null=True, blank=True,
-                                choices=CURRENCIES)
-    is_employee = models.BooleanField(default=False)
-    twitter = models.CharField(max_length=15, null=True, blank=True)
-    website = models.URLField(null=True, blank=True)
-    linkedin = models.URLField(null=True, blank=True)
-    bio = models.TextField(null=True, blank=True)
+    rate = models.FloatField(_('Rate'), null=False, default=0)
+    review_rate = models.FloatField(_('Review Rate'), null=False, default=0)
+    score = models.FloatField(_('Score'), null=False, default=0)
+    currency = models.CharField(_('Currency'), max_length=3, null=True,
+                                blank=True, choices=CURRENCIES)
+    is_employee = models.BooleanField(_('Is employee?'), default=False)
+    twitter = models.CharField(_('Twitter'), max_length=15, null=True,
+                               blank=True)
+    website = models.URLField(_('Website'), null=True, blank=True)
+    linkedin = models.URLField(_('LinkedIn'), null=True, blank=True)
+    bio = models.TextField(_('Short Bio'), null=True, blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
