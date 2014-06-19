@@ -185,6 +185,16 @@ CAN_CONTACT = True
 # Translation
 #
 
+# Translation memory service
+POOTLE_TM_SERVER = {
+    'default': {
+        # TODO 'ENGINE': '',
+        'HOST': 'localhost',
+        'PORT': 9200,
+        'INDEX_NAME': 'translations',
+    }
+}
+
 # The directory where the translation files are kept
 PODIRECTORY = working_path('po')
 

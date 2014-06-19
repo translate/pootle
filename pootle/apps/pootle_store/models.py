@@ -44,6 +44,7 @@ from translate.filters.decorators import Category
 from translate.storage import base
 
 from pootle_app.models import Revision
+from pootle.core.tmserver import update_tmserver
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -510,6 +511,8 @@ class Unit(models.Model, base.TranslationUnit):
 
         if self._source_updated or self._target_updated:
             self.update_qualitychecks()
+            if self.istranslated():
+                self.update_tmserver()
 
         # done processing source/target update remove flag
         self._source_updated = False
@@ -770,6 +773,28 @@ class Unit(models.Model, base.TranslationUnit):
                 self.target = self.source
                 self.state = FUZZY
                 self._auto_translated = True
+
+    def update_tmserver(self):
+        obj = {
+            'id': self.id,
+            'revision':  self.revision, # this must be an integer for statistical queries to work
+            'project': self.store.translation_project.project.fullname,
+            'path': self.store.pootle_path,
+            'source': self.source,
+            'target': self.target,
+            'username': '',
+            'fullname': '',
+            'email_md5': '',
+        }
+
+        if self.submitted_by:
+            obj.update({
+                'username': self.submitted_by.username,
+                'fullname': self.submitted_by.full_name,
+                'email_md5': md5(self.submitted_by.email).hexdigest(),
+            })
+
+        update_tmserver(self.store.translation_project.language.code, obj)
 
     def update_qualitychecks(self, delete_existing=True,
                              keep_false_positives=False,
