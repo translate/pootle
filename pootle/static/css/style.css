@@ -849,9 +849,9 @@ html[dir="rtl"] .form-horizontal.form-actions input
 }
 
 p.help,
-span.help_text
+span.helptext
 {
-    font-size: 85%;
+    font-size: 0.8em;
     font-style: italic;
 }
 
