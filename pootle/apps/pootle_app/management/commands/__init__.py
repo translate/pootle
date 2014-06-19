@@ -140,7 +140,7 @@ class PootleCommand(NoArgsCommand):
         logging.info('All done for %s in %s', self.name, end - start)
 
     def handle_all(self, **options):
-        project_query = Project.objects.all()
+        project_query = Project.objects.enabled()
         if self.projects:
             project_query = project_query.filter(code__in=self.projects)
 

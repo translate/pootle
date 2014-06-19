@@ -117,7 +117,7 @@ class Command(PootleCommand):
                 logging.info('Refreshing directories stats...')
 
                 lang_query = Language.objects.all()
-                prj_query = Project.objects.all()
+                prj_query = Project.objects.enabled()
 
                 for lang in lang_query.iterator():
                     # Calculate stats for all directories and translation projects
