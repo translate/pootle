@@ -234,7 +234,7 @@ class User(AbstractBaseUser):
         return self.username
 
     def get_absolute_url(self):
-        return reverse('pootle-profile', args=[self.username])
+        return reverse('pootle-user-profile', args=[self.username])
 
     def is_anonymous(self):
         """Returns `True` if this is an anonymous user.

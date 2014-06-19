@@ -99,7 +99,7 @@ def redirect_after_login(request, redirect_to=None):
         redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, '')
 
     if not is_safe_url(url=redirect_to, host=request.get_host()):
-        redirect_to = iri_to_uri(reverse('pootle-profile',
+        redirect_to = iri_to_uri(reverse('pootle-user-profile',
                                  args=[request.user.username]))
 
     return redirect(redirect_to)
