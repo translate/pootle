@@ -44,6 +44,9 @@ Directory contents
   - search.js :
     Search functionality, shared across pages.
 
+  - user.js :
+    User profile editing.
+
   - utils.js :
     Common utilities.
 

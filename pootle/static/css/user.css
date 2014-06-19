@@ -168,3 +168,91 @@
     padding: 5px;
     width: 16.6%;
 }
+
+
+/* User profile editing form */
+
+#user-edit
+{
+    width: 500px;
+}
+
+#user-edit label
+{
+    width: 30%;
+}
+
+#user-edit .fields label,
+#user-edit .fields input,
+#user-edit .fields textarea,
+#user-edit .fields .helptext
+{
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+#user-edit .fields input,
+#user-edit .fields textarea
+{
+    width: 70%;
+    padding: 0.3em;
+    line-height: 1.2;
+}
+
+#user-edit #id_twitter
+{
+    width: 35%;
+}
+
+#user-edit #id_bio
+{
+    height: 5em;
+}
+
+#user-edit .helptext,
+#user-edit .errorlist,
+#user-edit .buttons
+{
+    margin-left: 30%;
+}
+
+html[dir="rtl"] #user-edit .helptext,
+html[dir="rtl"] #user-edit .errorlist,
+html[dir="rtl"] #user-edit .buttons
+{
+    margin-left: auto;
+    margin-right: 30%;
+}
+
+#user-edit .helptext
+{
+    margin-top: 0.3em;
+}
+
+#user-edit .buttons
+{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#user-edit .gravatar
+{
+    position: absolute;
+    left: 28%;
+}
+
+html[dir="rtl"] #user-edit .gravatar
+{
+    position: absolute;
+    left: auto;
+    right: 28%;
+}
+
+#user-edit .divider
+{
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    clear: both;
+}

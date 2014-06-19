@@ -46,6 +46,7 @@ js_common = Bundle(
     'js/search.js',
     'js/score.js',
     'js/stats.js',
+    'js/user.js',
     'js/utils.js',
     'js/vendor/sorttable.js',
     'js/vendor/spin.js',

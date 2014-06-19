@@ -28,11 +28,21 @@ from django.utils.http import is_safe_url
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import TemplateView, UpdateView
 
-from pootle.core.views import (LoginRequiredMixin, NoDefaultUserMixin,
-                               TestUserFieldMixin)
+from pootle.core.views import (APIView, LoginRequiredMixin,
+                               NoDefaultUserMixin, TestUserFieldMixin)
+
+from .forms import EditUserForm
 
 
 User = auth.get_user_model()
+
+
+class UserAPIView(TestUserFieldMixin, APIView):
+    model = User
+    restrict_to_methods = ('GET', 'PUT')
+    test_user_field = 'id'
+    edit_form_class = EditUserForm
+    edit_form_template = 'user/edit.html'
 
 
 class UserStatsView(NoDefaultUserMixin, TestUserFieldMixin, TemplateView):
@@ -82,11 +92,6 @@ class UserSettingsView(UserUpdateView):
             _('Select one or more languages')
 
         return form
-
-
-class UserProfileView(UserUpdateView):
-    fields = ('full_name', 'email', 'twitter', 'linkedin', 'website', 'bio')
-    template_name = 'profiles/settings/personal.html'
 
 
 def redirect_after_login(request, redirect_to=None):

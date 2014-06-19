@@ -80,7 +80,10 @@
       {% if not profile.has_contact_details or not profile.bio %}
         <div class="user-bio placeholder">{% trans 'Show others who you are, tell about yourself<br/>and make your public profile look gorgeous!' %}</div>
       {% endif %}
-      <div class="edit-profile-btn"><a href="{% url 'pootle-profile-personal-edit' %}" class="btn btn-primary">{% trans 'Edit My Public Profile' %}</a></div>
+      <div class="edit-profile-btn">
+        <a href="{% url 'pootle-user-profile-edit' profile.username %}"
+           data-bb="true" class="btn btn-primary">{% trans 'Edit My Public Profile' %}</a>
+      </div>
     {% endif %}
   </div>
   {% endif %}
@@ -107,6 +110,19 @@
 $(function() {
   PTL.common.updateRelativeDates();
   setInterval(PTL.common.updateRelativeDates, 6e4);
+
+  {% if user == profile %}
+  PTL.user.router = new PTL.user.UserRouter({{ profile.id }});
+
+  $(document).on('click', 'a[data-bb]', function (e) {
+    e.preventDefault();
+    var appRoot = Backbone.history.options.root,
+        href = this.getAttribute('href').slice(appRoot.length);
+    PTL.user.router.navigate(href, true);
+  });
+
+  Backbone.history.start({pushState: true, root: '{{ user.get_absolute_url }}'});
+  {% endif %}
 });
 </script>
 {% endblock %}

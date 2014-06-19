@@ -21,8 +21,8 @@
 
 from django.conf.urls import include, patterns, url
 
-from .views import (UserDetailView, UserSettingsView,
-                    UserProfileView, UserStatsView)
+from .views import (UserAPIView, UserDetailView,
+                    UserSettingsView, UserStatsView)
 
 
 account_patterns = patterns('pootle_profile.views',
@@ -36,9 +36,6 @@ account_patterns = patterns('pootle_profile.views',
     url(r'^settings/$',
         UserSettingsView.as_view(),
         name='pootle-profile-edit'),
-    url(r'^profile/$',
-        UserProfileView.as_view(),
-        name='pootle-profile-personal-edit'),
 )
 
 
@@ -68,6 +65,9 @@ profile_patterns = patterns('pootle_profile.views',
     url(r'^(?P<username>[^/]+)/$',
         UserDetailView.as_view(),
         name='pootle-profile'),
+    url(r'^(?P<username>[^/]+)/edit/?$',
+        UserDetailView.as_view(),
+        name='pootle-user-profile-edit'),
 
     url(r'^(?P<username>[^/]+)/stats/$',
         UserStatsView.as_view(),
@@ -75,8 +75,16 @@ profile_patterns = patterns('pootle_profile.views',
 )
 
 
+api_patterns = patterns('',
+    url(r'^users/(?P<id>[0-9]+)/?$',
+        UserAPIView.as_view(),
+        name='pootle-xhr-user'),
+)
+
+
 urlpatterns = patterns('',
     url(r'^accounts/', include(account_patterns)),
     url(r'^accounts/', include(auth_patterns)),
     url(r'^user/', include(profile_patterns)),
+    url(r'^xhr/', include(api_patterns)),
 )

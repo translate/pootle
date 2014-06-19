@@ -1,0 +1,30 @@
+{% spaceless %}
+{% load i18n locale profile_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+<div id="user-edit" class="popup-form" dir="{% locale_dir %}">
+  <h1>{% trans "My Public Profile" %}</h1>
+  <form method="post" action="" class="js-user-edit-form">
+    <div class="fields">
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}
+        {% if field.name == 'email' %}
+        <img class="gravatar" src="{{ user|gravatar:25 }}" />
+        {% endif %}
+        {{ field }}
+        {% if field.help_text %}
+        <span class="helptext">{{ field.help_text|urlize }}</span>
+        {% endif %}
+      </p>
+      {% if forloop.counter == 2 %}
+      <p class="divider"></p>
+      {% endif %}
+    {% endfor %}
+    </div>
+    <p class="buttons">
+      <input type="submit" name="send" class="btn btn-primary"
+             value="{% trans 'Save' %}" />
+    </p>
+  </form>
+</div>
+{% endspaceless %}
