@@ -56,6 +56,7 @@ PTL.models = PTL.models || {};
           type: 'inline'
         },
         mainClass: 'popup-ajax',
+        closeOnBgClick: false,
         callbacks: {
           close: function () {
             that.model.trigger('user:edited');
