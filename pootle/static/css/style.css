@@ -1004,6 +1004,11 @@ div.settings-container
     display: block;
 }
 
+#login input
+{
+    box-sizing: border-box;
+}
+
 .settings-container table
 {
     width: 100%;
