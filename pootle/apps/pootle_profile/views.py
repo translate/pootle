@@ -26,7 +26,7 @@ from django.shortcuts import redirect, render
 from django.utils.encoding import iri_to_uri
 from django.utils.http import is_safe_url
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import DetailView, UpdateView
 
 from pootle.core.views import (APIView, LoginRequiredMixin,
                                NoDefaultUserMixin, TestUserFieldMixin)
@@ -45,26 +45,18 @@ class UserAPIView(TestUserFieldMixin, APIView):
     edit_form_template = 'user/edit.html'
 
 
-class UserStatsView(NoDefaultUserMixin, TestUserFieldMixin, TemplateView):
+class UserStatsView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
+    model = User
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
     template_name = 'user/stats.html'
 
-    def get_context_data(self, **kwargs):
-        user = User.objects.get(username=kwargs['username'])
 
-        return {
-            'profile': user,
-        }
-
-
-class UserDetailView(NoDefaultUserMixin, TemplateView):
+class UserDetailView(NoDefaultUserMixin, DetailView):
+    model = User
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
     template_name = 'user/profile.html'
-
-    def get_context_data(self, **kwargs):
-        user = User.objects.get(username=kwargs['username'])
-
-        return {
-            'profile': user,
-        }
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):

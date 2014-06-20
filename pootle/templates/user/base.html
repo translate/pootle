@@ -1,8 +1,8 @@
 {% extends 'layout.html' %}
 {% load i18n %}
 
-{% block title %}{{ profile.username }} | {% trans 'Users' %} | {{ block.super }}{% endblock %}
+{% block title %}{{ object.username }} | {% trans 'Users' %} | {{ block.super }}{% endblock %}
 
-{% block breadcrumbs %}<li>{% trans 'Users' %}</li><li>{{ profile.username }}</li>{% endblock %}
+{% block breadcrumbs %}<li>{% trans 'Users' %}</li><li>{{ object.username }}</li>{% endblock %}
 
 {% block header_tabs_block %}{% endblock %}

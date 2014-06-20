@@ -9,7 +9,7 @@
 
 {% block content %}
 <div id="user-stats" class="bd" lang="{{ LANGUAGE_CODE }}">
-  {% with contributions=profile.contributions %}
+  {% with contributions=object.contributions %}
   {% for language, tp_user_stats in contributions %}
   <h3><a href="{{ language.get_absolute_url }}">{{ language.fullname }}</a></h3>
   <table id="user-stats-{{ language.code }}" class="stats">
