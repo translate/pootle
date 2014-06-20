@@ -25,12 +25,12 @@ class Migration(SchemaMigration):
 
         # Adding field 'Suggestion.suggester'
         db.add_column('pootle_app_suggestion', 'suggester',
-                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='suggester', null=True, to=orm['pootle_profile.PootleProfile']),
+                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='suggester', null=True, to=orm['accounts.User']),
                       keep_default=False)
 
         # Adding field 'Suggestion.reviewer'
         db.add_column('pootle_app_suggestion', 'reviewer',
-                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='reviewer', null=True, to=orm['pootle_profile.PootleProfile']),
+                      self.gf('django.db.models.fields.related.ForeignKey')(related_name='reviewer', null=True, to=orm['accounts.User']),
                       keep_default=False)
 
 
@@ -91,16 +91,16 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'negative_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'permission_sets_negative'", 'symmetrical': 'False', 'to': "orm['auth.Permission']"}),
             'positive_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'db_index': 'True', 'related_name': "'permission_sets_positive'", 'symmetrical': 'False', 'to': "orm['auth.Permission']"}),
-            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pootle_profile.PootleProfile']"})
+            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['accounts.User']"})
         },
         'pootle_app.suggestion': {
             'Meta': {'object_name': 'Suggestion'},
             'creation_time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'db_index': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'review_time': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_index': 'True'}),
-            'reviewer': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'reviewer'", 'null': 'True', 'to': "orm['pootle_profile.PootleProfile']"}),
+            'reviewer': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'reviewer'", 'null': 'True', 'to': "orm['accounts.User']"}),
             'state': ('django.db.models.fields.CharField', [], {'default': "'pending'", 'max_length': '16', 'db_index': 'True'}),
-            'suggester': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'suggester'", 'null': 'True', 'to': "orm['pootle_profile.PootleProfile']"}),
+            'suggester': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'suggester'", 'null': 'True', 'to': "orm['accounts.User']"}),
             'translation_project': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pootle_translationproject.TranslationProject']"}),
             'unit': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'})
         },

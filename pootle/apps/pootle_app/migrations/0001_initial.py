@@ -117,7 +117,7 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'negative_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'permission_sets_negative'", 'symmetrical': 'False', 'to': "orm['auth.Permission']"}),
             'positive_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'db_index': 'True', 'related_name': "'permission_sets_positive'", 'symmetrical': 'False', 'to': "orm['auth.Permission']"}),
-            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pootle_profile.PootleProfile']"})
+            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['accounts.User']"})
         },
         'pootle_app.suggestion': {
             'Meta': {'object_name': 'Suggestion'},

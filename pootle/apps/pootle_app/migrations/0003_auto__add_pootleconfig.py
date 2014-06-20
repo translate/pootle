@@ -71,7 +71,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'negative_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'permission_sets_negative'", 'symmetrical': 'False', 'to': u"orm['auth.Permission']"}),
             'positive_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'db_index': 'True', 'related_name': "'permission_sets_positive'", 'symmetrical': 'False', 'to': u"orm['auth.Permission']"}),
-            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_profile.PootleProfile']"})
+            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['accounts.User']"})
         },
         'pootle_app.pootleconfig': {
             'Meta': {'object_name': 'PootleConfig'},
@@ -84,9 +84,9 @@ class Migration(SchemaMigration):
             'creation_time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'db_index': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'review_time': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_index': 'True'}),
-            'reviewer': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'reviewer'", 'null': 'True', 'to': u"orm['pootle_profile.PootleProfile']"}),
+            'reviewer': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'reviewer'", 'null': 'True', 'to': u"orm['accounts.User']"}),
             'state': ('django.db.models.fields.CharField', [], {'default': "'pending'", 'max_length': '16', 'db_index': 'True'}),
-            'suggester': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'suggester'", 'null': 'True', 'to': u"orm['pootle_profile.PootleProfile']"}),
+            'suggester': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'suggester'", 'null': 'True', 'to': u"orm['accounts.User']"}),
             'translation_project': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_translationproject.TranslationProject']"}),
             'unit': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'})
         },

@@ -22,9 +22,9 @@ class Migration(SchemaMigration):
         db.create_table('pootle_app_suggestion', (
             ('translation_project', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pootle_translationproject.TranslationProject'])),
             ('state', self.gf('django.db.models.fields.CharField')(default='pending', max_length=16, db_index=True)),
-            ('suggester', self.gf('django.db.models.fields.related.ForeignKey')(related_name='suggester', null=True, to=orm['pootle_profile.PootleProfile'])),
+            ('suggester', self.gf('django.db.models.fields.related.ForeignKey')(related_name='suggester', null=True, to=orm['accounts.User'])),
             ('review_time', self.gf('django.db.models.fields.DateTimeField')(null=True, db_index=True)),
-            ('reviewer', self.gf('django.db.models.fields.related.ForeignKey')(related_name='reviewer', null=True, to=orm['pootle_profile.PootleProfile'])),
+            ('reviewer', self.gf('django.db.models.fields.related.ForeignKey')(related_name='reviewer', null=True, to=orm['accounts.User'])),
             ('creation_time', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True, db_index=True)),
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('unit', self.gf('django.db.models.fields.IntegerField')(db_index=True)),
