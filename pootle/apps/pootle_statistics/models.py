@@ -197,43 +197,41 @@ class Submission(models.Model):
             "action": "",
         }
 
-        action_bundle["action"] = {
+        source = {
+            'source_string': '<i><a href="%(url)s">%(source)s</a></i>' % unit,
+            'check_name': '<a href="%(checks_url)s#%(check_name)s">'
+                          '%(check_display_name)s</a>' % unit,
+        }
+
+        msg = {
             SubmissionTypes.REVERT: _(
-                'reverted translation for '
-                '<i><a href="%(url)s">%(source)s</a></i>',
-                unit
+                'reverted translation for %(source_string)s',
+                source
             ),
             SubmissionTypes.SUGG_ACCEPT: _(
-                'accepted suggestion for '
-                '<i><a href="%(url)s">%(source)s</a></i>',
-                unit
+                'accepted suggestion for %(source_string)s',
+                source
             ),
             SubmissionTypes.SUGG_ADD: _(
-                'added suggestion for '
-                '<i><a href="%(url)s">%(source)s</a></i>',
-                unit
+                'added suggestion for %(source_string)s',
+                source
             ),
             SubmissionTypes.SUGG_REJECT: _(
-                'rejected suggestion for '
-                '<i><a href="%(url)s">%(source)s</a></i>',
-                unit
+                'rejected suggestion for %(source_string)s',
+                source
             ),
             SubmissionTypes.UPLOAD: _(
                 'uploaded a file'
             ),
             SubmissionTypes.MUTE_CHECK: _(
-                'muted '
-                '<a href="%(checks_url)s#%(check_name)s">%(check_display_name)s</a>'
-                ' check for <i><a href="%(url)s">%(source)s</a></i>',
-                unit
+                'muted %(check_name)s for %(source_string)s',
+                source
             ),
             SubmissionTypes.UNMUTE_CHECK: _(
-                'unmuted '
-                '<a href="%(checks_url)s#%(check_name)s">%(check_display_name)s</a>'
-                ' check for <i><a href="%(url)s">%(source)s</a></i>',
-                unit
+                'unmmuted %(check_name)s for %(source_string)s',
+                source
             ),
-        }.get(self.type, '')
+        }.get(self.type, None)
 
         #TODO Look how to detect submissions for "sent suggestion", "rejected
         # suggestion"...
@@ -241,7 +239,7 @@ class Submission(models.Model):
         #TODO Fix bug 3011 and replace the following code with the appropiate
         # one in the dictionary above.
 
-        if not action_bundle["action"]:
+        if msg is None:
             try:
                 if self.field == SubmissionFields.TARGET:
                     if self.new_value != '':
@@ -250,62 +248,32 @@ class Submission(models.Model):
                         # can be changed
                         if self.unit.state == TRANSLATED:
                             if self.old_value == '':
-                                action_bundle["action"] = _(
-                                    'translated '
-                                    '<i><a href="%(url)s">%(source)s</a></i>',
-                                    unit
-                                )
+                                msg = _('translated %(source_string)s', source)
                             else:
-                                action_bundle["action"] = _(
-                                    'edited '
-                                    '<i><a href="%(url)s">%(source)s</a></i>',
-                                    unit
-                                )
+                                msg = _('edited %(source_string)s', source)
                         elif self.unit.state == FUZZY:
                             if self.old_value == '':
-                                action_bundle["action"] = _(
-                                    'pre-translated '
-                                    '<i><a href="%(url)s">%(source)s</a></i>',
-                                    unit
-                                )
+                                msg = _('pre-translated %(source_string)s',
+                                        source)
                             else:
-                                action_bundle["action"] = _(
-                                    'edited '
-                                    '<i><a href="%(url)s">%(source)s</a></i>',
-                                    unit
-                                )
+                                msg = _('edited %(source_string)s', source)
                     else:
-                        action_bundle["action"] = _(
-                            'removed translation for '
-                            '<i><a href="%(url)s">%(source)s</a></i>',
-                            unit
-                        )
-
+                        msg = _('removed translation for %(source_string)s',
+                                source)
                 elif self.field == SubmissionFields.STATE:
                     # Note that a submission where field is STATE
                     # should be created before a submission where
                     # field is TARGET
-                    action_bundle["action"] = {
-                        TRANSLATED: _(
-                            'reviewed '
-                            '<i><a href="%(url)s">%(source)s</a></i>',
-                            unit
-                        ),
-                        FUZZY: _(
-                            'marked as fuzzy '
-                            '<i><a href="%(url)s">%(source)s</a></i>',
-                            unit
-                        ),
+                    msg = {
+                        TRANSLATED: _('reviewed %(source_string)s', source),
+                        FUZZY: _('marked as fuzzy %(source_string)s', source)
                     }.get(int(to_python(self.new_value)), '')
                 else:
-                    action_bundle["action"] = _(
-                        'unknown action '
-                        '<i><a href="%(url)s">%(source)s</a></i>',
-                        unit
-                    )
-
+                    msg = _('unknown action %(source_string)s', source)
             except AttributeError:
                 return ''
+
+        action_bundle['action'] = msg
 
         return mark_safe(
             u'<div class="last-action">'
