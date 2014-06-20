@@ -999,10 +999,7 @@ div.settings-container
 .settings-container select,
 .settings-container textarea,
 #login input[type="text"],
-#login input[type="password"],
-#login select,
-#register input[type="text"],
-#register input[type="password"]
+#login input[type="password"]
 {
     display: block;
 }
