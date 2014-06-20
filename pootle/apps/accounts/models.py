@@ -253,15 +253,6 @@ class User(AbstractBaseUser):
         """Sends an email to this user."""
         send_mail(subject, message, from_email, [self.email])
 
-    def get_profile(self):
-        """Compatibility method for old code.
-
-        This should be removed once the calls to `get_profile()` have been
-        adapted.
-        """
-        from pootle_profile.models import PootleProfile
-        return PootleProfile.objects.get(user=self)
-
 
 @receiver(post_save, sender=User)
 def new_user(sender, instance, created=False, raw=False, **kwargs):
