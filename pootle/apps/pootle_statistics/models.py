@@ -41,6 +41,7 @@ SUGG_COEF = 0.2
 ANALYZE_COEF = 0.1
 SIMILARITY_THRESHOLD = 0.5
 
+
 #: These are the values for the 'type' field of Submission
 class SubmissionTypes(object):
     # None/0 = no information
