@@ -382,10 +382,7 @@ div.unit-path
     width: 100%;
     padding: 5px 20px;
     color: rgba(255, 255, 255, 0.4);
-
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 div.unit-path li

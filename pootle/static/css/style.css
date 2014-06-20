@@ -380,9 +380,7 @@ td.stats-name a:hover > i + span,
     margin-top: 20px;
     height: 42px;
     line-height: 41px;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #footer a

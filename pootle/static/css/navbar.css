@@ -141,9 +141,7 @@ html[dir="rtl"] #nav-main > li
     padding: 0 1.5em;
     font-size: 1.1em;
 
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
 }
 
