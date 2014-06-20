@@ -1992,7 +1992,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         except Exception as e:
             logging.info(u"Error getting quality checks for %s\n%s",
                          self.name, e)
-            return {}
+            return {'unit_count': 0, 'checks': {}}
 
     def _get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
