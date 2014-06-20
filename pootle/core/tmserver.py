@@ -19,7 +19,10 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-from elasticsearch import Elasticsearch as ES
+try:
+    from elasticsearch import Elasticsearch as ES
+except:
+    ES = None
 
 from django.conf import settings
 
@@ -37,7 +40,7 @@ es_params = get_tmserver_params()
 # TODO support ENGINE param
 # Elasticsearch is the only supported engine now
 es = None
-if es_params is not None:
+if ( es_params is not None and ES is not None ):
     es = ES([{'host': es_params['HOST'], 'port': es_params['PORT']}, ])
 
 
