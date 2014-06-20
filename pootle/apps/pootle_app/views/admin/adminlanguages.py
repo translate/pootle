@@ -36,4 +36,4 @@ def view(request):
 
     return util.edit(request, 'admin/languages.html', Language,
                      link=generate_link, form=LanguageAdminForm,
-                     exclude='description', can_delete=True)
+                     exclude=('description', ), can_delete=True)
