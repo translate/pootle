@@ -121,30 +121,3 @@ only screen and (max-width: 480px)
 {
     width: 4em;
 }
-
-#welcome-page #vote-lang
-{
-    background-color: #fff;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
-    display: inline-block;
-}
-
-#welcome-page #search-form,
-#welcome-page #vote-lang-form
-{
-    padding: 1px;
-}
-
-#welcome-page input[type="text"]
-{
-    border: 0 none;
-    height: 26px;
-    line-height: 26px;
-    padding: 0px 4px;
-    width: 300px;
-    background-color: #fff;
-    color: #666;
-    font-size: 18px;
-    outline: 0;
-}
