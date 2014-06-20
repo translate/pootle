@@ -17,7 +17,7 @@ class Migration(SchemaMigration):
                       keep_default=False)
         # Check if we have old data to import
         columns = connection.introspection.get_table_description(connection.cursor(), "pootle_app_permissionset")
-        if "profile_id" in [f[0] for f in columns]:
+        if "profile_id" in [f[0] for f in columns] and "pootle_app_pootleprofile" in connection.introspection.table_names():
             print("Migrating PermissionSet Profile data to User. This may take a while.")
             db.execute("""UPDATE pootle_app_permissionset SET user_id =
                           (select pootle_app_pootleprofile.user_id FROM pootle_app_pootleprofile
