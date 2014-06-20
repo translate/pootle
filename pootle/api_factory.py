@@ -20,7 +20,7 @@
 from tastypie.api import Api
 
 from pootle_language.api import LanguageResource
-from pootle_profile.api import UserResource
+from accounts.api import UserResource
 from pootle_project.api import ProjectResource
 from pootle_store.api import StoreResource, SuggestionResource, UnitResource
 from pootle_translationproject.api import TranslationProjectResource
