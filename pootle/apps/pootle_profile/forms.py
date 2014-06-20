@@ -27,7 +27,7 @@ from django.utils.translation import ugettext_lazy as _
 class EditUserForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
-        fields = ('full_name', 'email', 'twitter', 'linkedin', 'website', 'bio')
+        fields = ('full_name', 'twitter', 'linkedin', 'website', 'bio')
 
     def __init__(self, *args, **kwargs):
         kwargs.update({'label_suffix': ''})

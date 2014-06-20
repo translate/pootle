@@ -249,6 +249,11 @@ html[dir="rtl"] #user-edit .gravatar
     right: 28%;
 }
 
+#user-edit .user-email
+{
+    margin: 0.3em;
+}
+
 #user-edit .divider
 {
     height: 1px;

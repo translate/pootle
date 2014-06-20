@@ -8,15 +8,18 @@
     {% for field in form %}
       <p>
         {{ field.label_tag }}
-        {% if field.name == 'email' %}
-        <img class="gravatar" src="{{ user|gravatar:25 }}" />
-        {% endif %}
         {{ field }}
         {% if field.help_text %}
         <span class="helptext">{{ field.help_text|urlize }}</span>
         {% endif %}
       </p>
-      {% if forloop.counter == 2 %}
+      {% if forloop.counter == 1 %}
+      <p>
+        <label>{% trans 'Email Address' %}</label>
+        <img class="gravatar" src="{{ user|gravatar:25 }}" />
+        <span class="user-email">{{ user.email }}</span>
+        <span class="helptext">{% filter urlize %}{% trans 'To set or change your avatar for this email address, please go to gravatar.com.' %}{% endfilter %}</span>
+      </p>
       <p class="divider"></p>
       {% endif %}
     {% endfor %}
