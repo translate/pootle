@@ -34,18 +34,8 @@ class Migration(SchemaMigration):
                       self.gf('django.db.models.fields.related.ForeignKey')(related_name='reviewer', null=True, to=orm['pootle_profile.PootleProfile']),
                       keep_default=False)
 
-        db.add_column('pootle_app_permissionset', 'profile',
-                      self.gf('django.db.models.fields.related.ForeignKey')(null=True, to=orm['pootle_profile.PootleProfile']),
-                      keep_default=False)
-
-        # Adding unique constraint on 'PermissionSet', fields ['profile', 'directory']
-        db.create_unique('pootle_app_permissionset', ['profile_id', 'directory_id'])
-
 
     def backwards(self, orm):
-        # Removing unique constraint on 'PermissionSet', fields ['profile', 'directory']
-        db.delete_unique('pootle_app_permissionset', ['profile_id', 'directory_id'])
-
         # Deleting field 'Suggestion.translation_project'
         db.delete_column('pootle_app_suggestion', 'translation_project')
 
