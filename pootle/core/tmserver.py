@@ -40,7 +40,7 @@ es_params = get_tmserver_params()
 # TODO support ENGINE param
 # Elasticsearch is the only supported engine now
 es = None
-if ( es_params is not None and ES is not None ):
+if es_params is not None and ES is not None:
     es = ES([{'host': es_params['HOST'], 'port': es_params['PORT']}, ])
 
 
