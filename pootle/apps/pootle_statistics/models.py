@@ -158,7 +158,7 @@ class Submission(models.Model):
         The message includes the user (with link to profile and gravatar), a
         message describing the action performed, and when it was performed.
         """
-        unit = None
+        unit = {}
         source = {}
 
         if self.unit is not None:
