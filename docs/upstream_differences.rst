@@ -33,6 +33,8 @@ Added Features
 
 - Ability to list top scorers over a period of time.
 
+- ElasticSearch-based local TM.
+
 
 Changed Features
 ^^^^^^^^^^^^^^^^
@@ -89,7 +91,7 @@ Removed Features
 
 - Hooks.
 
-- Management commands: updatedb, upgrade, setup
+- Management commands: update_translation_projects, updatedb, upgrade, setup
 
 
 Unmerged Features
@@ -129,6 +131,10 @@ Layout Differences
 - Highly customized layout and look & feel.
 
 - No *Top Contributors* tables.
+
+- User-actionable items are in a navbar drop-down.
+
+- User-friendly public profile editing.
 
 
 Other Notable Differences
