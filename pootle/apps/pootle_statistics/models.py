@@ -158,12 +158,17 @@ class Submission(models.Model):
         The message includes the user (with link to profile and gravatar), a
         message describing the action performed, and when it was performed.
         """
-
         unit = None
+        source = {}
+
         if self.unit is not None:
             unit = {
                 'source': escape(truncatechars(self.unit, 50)),
                 'url': self.unit.get_translate_url(),
+            }
+            source = {
+                'source_string': '<i><a href="%(url)s">%(source)s</a></i>' %
+                    unit,
             }
 
             if self.check is not None:
@@ -171,6 +176,10 @@ class Submission(models.Model):
                 unit['check_display_name'] = check_names[self.check.name]
                 unit['checks_url'] = reverse('pootle-staticpages-display',
                                              args=['help/quality-checks'])
+                source.update({
+                    'check_name': '<a href="%(checks_url)s#%(check_name)s">'
+                                  '%(check_display_name)s</a>' % unit,
+                })
 
         if (self.suggestion and
             self.type in (SubmissionTypes.SUGG_ACCEPT, SubmissionTypes.SUGG_REJECT)):
@@ -195,12 +204,6 @@ class Submission(models.Model):
             "date": self.creation_time,
             "isoformat_date": self.creation_time.isoformat(),
             "action": "",
-        }
-
-        source = {
-            'source_string': '<i><a href="%(url)s">%(source)s</a></i>' % unit,
-            'check_name': '<a href="%(checks_url)s#%(check_name)s">'
-                          '%(check_display_name)s</a>' % unit,
         }
 
         msg = {
