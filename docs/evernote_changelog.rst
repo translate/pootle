@@ -10,8 +10,33 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- Revamped user profile pages. These now display user's latest activity
+  and its personal properties. (`#210`_)
+
+- User actionable items in the navbar have been moved to a drop-down.
+  (`#214`_)
+
+- Integrated ElasticSearch-based local TM server into Pootle. Unit
+  submissions update the index instantly. (`#242`_)
+
+- Different last activity messages for new translations and edits.
+  (`#223`_)
+
+- ``update_stores``: if a directory doesn't exist while running the
+  command, the project or translation project will be disabled. (`#221`_)
+
+- The ``update_translation_projects`` command has been removed — it's
+  functionality has been merged into ``update_stores``. (`#241`_)
+
 - `Commit comparison wrt previous release
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+
+.. _#210: https://github.com/evernote/pootle/issues/210
+.. _#214: https://github.com/evernote/pootle/issues/214
+.. _#221: https://github.com/evernote/pootle/issues/221
+.. _#223: https://github.com/evernote/pootle/issues/223
+.. _#241: https://github.com/evernote/pootle/issues/241
+.. _#242: https://github.com/evernote/pootle/issues/242
 
 
 Release `2014-05-22`_
