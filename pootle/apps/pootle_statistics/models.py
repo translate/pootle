@@ -172,10 +172,12 @@ class Submission(models.Model):
             }
 
             if self.check is not None:
-                unit['check_name'] = self.check.name
-                unit['check_display_name'] = check_names[self.check.name]
-                unit['checks_url'] = reverse('pootle-staticpages-display',
-                                             args=['help/quality-checks'])
+                unit.update({
+                    'check_name': self.check.name,
+                    'check_display_name': check_names[self.check.name],
+                    'checks_url': reverse('pootle-staticpages-display',
+                                          args=['help/quality-checks']),
+                })
                 source.update({
                     'check_name': '<a href="%(checks_url)s#%(check_name)s">'
                                   '%(check_display_name)s</a>' % unit,
