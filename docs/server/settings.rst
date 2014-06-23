@@ -216,8 +216,6 @@ Configuration settings for applications used by Pootle.
 ``POOTLE_META_USERS``
   Default: ``()``
 
-  .. versionadded:: 2.5.1
-
   List of special 'API users'.
 
 
