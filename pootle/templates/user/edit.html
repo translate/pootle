@@ -15,10 +15,9 @@
       </p>
       {% if forloop.counter == 1 %}
       <p>
-        <label>{% trans 'Email Address' %}</label>
-        <img class="gravatar" src="{{ user|gravatar:25 }}" />
-        <span class="user-email">{{ user.email }}</span>
-        <span class="helptext">{% filter urlize %}{% trans 'To set or change your avatar for this email address, please go to gravatar.com.' %}{% endfilter %}</span>
+        <label>{% trans 'Avatar' %}</label>
+        <img class="gravatar" src="{{ user|gravatar:48 }}" />
+        <span class="helptext">{% filter urlize %}{% blocktrans with email=user.email %}To set or change your avatar for your email address ({{ email }}), please go to gravatar.com.{% endblocktrans %}{% endfilter %}</span>
       </p>
       <p class="divider"></p>
       {% endif %}

@@ -225,33 +225,24 @@ html[dir="rtl"] #user-edit .buttons
     margin-right: 30%;
 }
 
-#user-edit .helptext
-{
-    margin-top: 0.3em;
-}
-
 #user-edit .buttons
 {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-#user-edit .gravatar
+#user-edit .helptext
 {
     position: absolute;
-    left: 28%;
+    margin-top: -0.2em;
+    left: 80px;
+    width: 40%;
 }
 
-html[dir="rtl"] #user-edit .gravatar
+html[dir="rtl"] #user-edit .helptext
 {
-    position: absolute;
     left: auto;
-    right: 28%;
-}
-
-#user-edit .user-email
-{
-    margin: 0.3em;
+    right: 80px;
 }
 
 #user-edit .divider
