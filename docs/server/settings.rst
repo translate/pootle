@@ -53,6 +53,15 @@ This file contains base configuration settings.
   The name of the Pootle server.
 
 
+.. setting:: POOTLE_BRAND_NAME
+
+``POOTLE_BRAND_NAME``
+  Default: ``Pootle``
+
+  Server company/project's brand name. This will be used to generate the
+  long version of the server name.
+
+
 .. setting:: POOTLE_INSTANCE_ID
 
 ``POOTLE_INSTANCE_ID``
