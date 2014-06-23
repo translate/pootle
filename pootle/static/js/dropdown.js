@@ -94,7 +94,12 @@ PTL.dropdown = PTL.dropdown || {};
       e.stopPropagation();
 
       this.$el.toggleClass(sel.open);
-      this.$toggle.focus();
+
+      if (this.isVisible()) {
+        this.$toggle.focus();
+      } else {
+        this.$toggle.blur();
+      }
     }
 
   });
