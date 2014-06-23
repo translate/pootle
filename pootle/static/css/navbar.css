@@ -224,3 +224,88 @@ html[dir="rtl"] #nav-access
 {
     right: -1000px;
 }
+
+
+/* Responsive styles */
+
+@media screen and (min-width: 900px) {
+    #nav-main
+    {
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .brand-name
+    {
+        display: none;
+    }
+
+    #navbar:after
+    {
+        clear: both;
+    }
+
+    #nav-main
+    {
+        float: none;
+        display: none;
+        background-color: #222;
+        transition: all 0.3s ease 0s;
+    }
+
+    #nav-main li
+    {
+        display: block;
+        width: 100%;
+    }
+
+    #nav-main li a
+    {
+        background-color: #222;
+    }
+
+    #nav-main > .menu-divider
+    {
+        height: 1px;
+        width: 100%;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    #nav-main .dropdown-menu
+    {
+        width: 100% !important;
+        position: relative;
+
+        border-radius: 0;
+        border: 0 none;
+        box-shadow: none;
+    }
+
+    #nav-main .odometer
+    {
+        width: auto !important;
+    }
+
+    #menu-toggle
+    {
+        display: block;
+        float: right;
+        padding: 0 16px;
+    }
+
+    html[dir="rtl"] #menu-toggle
+    {
+        float: left;
+    }
+
+    #menu-toggle::after
+    {
+        content: "";
+        display: inline-block;
+        background: url('../images/menu_white.png');
+        width: 23px;
+        height: 15px;
+        vertical-align: middle;
+    }
+}
