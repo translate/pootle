@@ -52,6 +52,11 @@
     vertical-align: middle;
 }
 
+html[dir="rtl"] #navbar h1.brand
+{
+    float: right;
+}
+
 #navbar h1 a
 {
     color: #fff;
