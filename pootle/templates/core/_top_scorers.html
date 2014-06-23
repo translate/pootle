@@ -25,4 +25,8 @@
   {% endfor %}
   </tbody>
 </table>
+{% else %}
+<div id="top-scorers" class="no-results">
+  {% trans 'No user contributions yet.' %}
+</div>
 {% endif %}
