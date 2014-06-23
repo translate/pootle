@@ -224,7 +224,7 @@ class User(AbstractBaseUser):
         if isinstance(limit, (int, long)) and limit > 0:
             top_scorers = top_scorers[:limit]
 
-        cache.set(cache_key, top_scorers, 60)
+        cache.set(cache_key, list(top_scorers), 60)
         return top_scorers
 
     def __unicode__(self):
