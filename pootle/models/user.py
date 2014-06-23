@@ -219,7 +219,7 @@ class User(AbstractBaseUser):
             **lookup_kwargs
         ).annotate(
             total_score=Sum('scorelog__score_delta'),
-        ).filter(total_score__gt=0.0).order_by('-total_score')
+        ).order_by('-total_score')
 
         if isinstance(limit, (int, long)) and limit > 0:
             top_scorers = top_scorers[:limit]
