@@ -27,7 +27,8 @@ PTL.score = PTL.score || {};
     },
 
     updateWidth: function (e) {
-      var newWidth = this.$el.find('.odometer-inside').width();
+      var elWidth = this.$el.find('.odometer-inside').width(),
+          newWidth = elWidth === 0 ? 'auto' : elWidth;
       if (this.oldWidth !== newWidth) {
         this.$el.css('width', newWidth);
         this.oldWidth = newWidth;

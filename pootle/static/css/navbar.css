@@ -287,11 +287,6 @@ html[dir="rtl"] #nav-access
         box-shadow: none;
     }
 
-    #nav-main .odometer
-    {
-        width: auto !important;
-    }
-
     #menu-toggle
     {
         display: block;
