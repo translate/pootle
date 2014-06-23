@@ -182,7 +182,7 @@ class User(AbstractBaseUser):
         :param language: limit results to the given language code.
         :param project: limit results to the given project code.
         :param limit: limit results to this number of users. Values other
-            that positive numbers will return the entire result set.
+            than positive numbers will return the entire result set.
         """
         cache_kwargs = {
             'days': days,
