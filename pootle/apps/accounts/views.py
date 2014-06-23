@@ -61,3 +61,8 @@ class UserSettingsView(UserUpdateView):
             _("Select one or more languages")
 
         return form
+
+
+class UserProfileView(UserUpdateView):
+    fields = ("full_name", "email")
+    template_name = "profiles/settings/personal.html"

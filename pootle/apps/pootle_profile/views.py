@@ -17,31 +17,9 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
-from django.shortcuts import redirect, render
-from accounts.forms import UserForm
-from accounts.views import UserSettingsView
+from accounts.views import UserSettingsView, UserUpdateView
 
 
 # FIXME Move this to accounts
+edit_personal_info = UserUpdateView.as_view()
 profile_edit = UserSettingsView.as_view()
-
-@login_required
-def edit_personal_info(request):
-    if request.POST:
-        post = request.POST.copy()
-        user_form = UserForm(post, instance=request.user)
-
-        if user_form.is_valid():
-            user_form.save()
-            redirect_url = reverse('profiles_profile_detail',
-                                   kwargs={'username': request.user.username})
-            response = redirect(redirect_url)
-    else:
-        user_form = UserForm(instance=request.user)
-
-    ctx = {
-        'form': user_form,
-    }
-    return render(request, "profiles/settings/personal.html", ctx)
