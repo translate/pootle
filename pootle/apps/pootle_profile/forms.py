@@ -34,6 +34,9 @@ class EditUserForm(forms.ModelForm):
 
         super(EditUserForm, self).__init__(*args, **kwargs)
 
+        full_name_ph = _('Your full name')
+        self.fields['full_name'].widget.attrs['placeholder'] = full_name_ph
+
         twitter_ph = _('Your Twitter username')
         self.fields['twitter'].widget.attrs['placeholder'] = twitter_ph
 
