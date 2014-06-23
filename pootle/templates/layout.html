@@ -10,6 +10,7 @@
     {% block meta %}
     <meta name="description" content="{{ settings.DESCRIPTION|striptags }}" />
     <meta name="keywords" content="{{ keywords|join:", " }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="application-name" content="{{ settings.TITLE }}" />
     <link rel="icon" href="{{ "images/app-32x32.png"|s }}" sizes="32x32" />
     <link rel="icon" href="{{ "images/app-64x64.png"|s }}" sizes="64x64" />
@@ -151,6 +152,7 @@
           <h1 class="brand">
             <a href="{% url 'pootle-home' %}"><i class="logo"></i>{{ settings.TITLE }}</a>
           </h1>
+          <a href="#nav-main" id="menu-toggle" class="js-toggle">&nbsp;</a>
           <ul id="nav-main">
             {% if settings.CAN_CONTACT %}
             <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
