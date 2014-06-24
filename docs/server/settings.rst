@@ -358,6 +358,8 @@ Translation environment configuration settings.
   This URL must point to the public API URL which returns JSON. Don't forget
   the trailing slash.
 
+  Setting it to blank string disables retrieving translation memory results.
+
 
 .. setting:: EXPORTED_DIRECTORY_MODE
 
