@@ -492,16 +492,20 @@ class ScoreLog(models.Model):
         analyzeCost = ns * ANALYZE_COEF
 
         def get_sugg_rejected():
+            result = 0
             try:
                 s = self.submission.suggestion.submission_set \
                         .get(type=SubmissionTypes.SUGG_ADD) \
                         .similarity
-                self.similarity = 0 if s is None else s
+                if s is None:
+                    s = 0
+                self.similarity = s
                 rawTranslationCost = ns * EDIT_COEF * (1 - s)
-            except:
-                rawTranslationCost = 0
+                result = (-1) * (rawTranslationCost * SUGG_COEF + analyzeCost)
+            except Submission.DoesNotExist:
+                pass
 
-            return (-1) * (rawTranslationCost * SUGG_COEF + analyzeCost)
+            return result
 
         def get_edit_penalty():
             try:
@@ -512,9 +516,11 @@ class ScoreLog(models.Model):
                     field=SubmissionFields.TARGET,
                     type=SubmissionTypes.NORMAL
                 ).similarity
-                self.similarity = 0 if s is None else s
+                if s is None:
+                    s = 0
+                self.similarity = s
                 rawTranslationCost = ns * EDIT_COEF * (1 - s)
-            except:
+            except Submission.DoesNotExist:
                 rawTranslationCost = 0
 
             return (-1) * rawTranslationCost
@@ -524,9 +530,11 @@ class ScoreLog(models.Model):
                 s = self.submission.suggestion.submission_set \
                         .get(type=SubmissionTypes.SUGG_ADD) \
                         .similarity
-                self.similarity = 0 if s is None else s
+                if s is None:
+                    s = 0
+                self.similarity = 0
                 rawTranslationCost = ns * EDIT_COEF * (1 - s)
-            except:
+            except Submission.DoesNotExist:
                 rawTranslationCost = 0
 
             return rawTranslationCost * (1 - SUGG_COEF)
