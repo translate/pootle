@@ -10,6 +10,24 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+
+
+Release `2014-06-24`_
+---------------------
+
+- Bugfix release (scores/ranks were not being properly displayed).
+
+- `Commit comparison wrt previous release
+  <https://github.com/evernote/pootle/compare/release-2014-06-23...release-2014-06-24>`_
+
+.. _2014-06-24: https://github.com/evernote/pootle/releases/tag/release-2014-06-24
+
+
+Release `2014-06-23`_
+---------------------
+
 - Revamped user profile pages. These now display user's latest activity
   and its personal properties. (`#210`_)
 
@@ -29,8 +47,9 @@ Release .next
   functionality has been merged into ``update_stores``. (`#241`_)
 
 - `Commit comparison wrt previous release
-  <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
+  <https://github.com/evernote/pootle/compare/release-2014-05-22...release-2014-06-23>`_
 
+.. _2014-06-23: https://github.com/evernote/pootle/releases/tag/release-2014-06-23
 .. _#210: https://github.com/evernote/pootle/issues/210
 .. _#214: https://github.com/evernote/pootle/issues/214
 .. _#221: https://github.com/evernote/pootle/issues/221
