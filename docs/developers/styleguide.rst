@@ -60,7 +60,6 @@ conventions that the imports must follow.
     from django.db.models import Q
     from django.db.models.signals import post_save
 
-    from profiles.views import edit_profile
     from tastypie import fields
 
     from pootle.core.decorators import permission_required
