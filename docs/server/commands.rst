@@ -197,6 +197,12 @@ overwrite any existing translation in the database, without this
 option only updating new translations, removing obsolete strings and discovering
 new files and strings will be done.
 
+.. release::2014-06-23
+``update_stores`` scans project directories looking for files matching languages not
+added to the project then adds them. It basically repeats the discovery process
+done by Pootle when you create a new project. Languages added to projects that
+have no matching files on the filesystem will be disabled.
+
 .. versionchanged:: 2.5.1
 
 Note that ``update_stores`` doesn't keep obsolete units around anymore, they are
@@ -211,19 +217,6 @@ update, specify ``--force``.
 
 .. warning:: If files on the file system are corrupt, translations might be
    deleted from the database. Handle with care!
-
-
-.. _commands#update_translation_projects:
-
-update_translation_projects
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This command scans project directories looking for files matching languages not
-added to the project then adds them. It basically repeats the discovery process
-done by Pootle when you create a new project.
-
-Using the ``--cleanup`` command line option, languages added to projects that
-have no matching files on the filesystem will be disabled.
 
 
 .. _commands#list_languages:
