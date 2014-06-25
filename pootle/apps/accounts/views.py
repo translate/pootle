@@ -62,7 +62,11 @@ class UserSettingsView(UserUpdateView):
 
         return form
 
+edit_profile = UserSettingsView.as_view()
+
 
 class UserProfileView(UserUpdateView):
     fields = ("full_name", "email")
     template_name = "profiles/settings/personal.html"
+
+edit_personal_info = UserUpdateView.as_view()

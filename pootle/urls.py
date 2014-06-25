@@ -42,7 +42,7 @@ urlpatterns = patterns('',
     # External apps.
     url(r'^contact/', include('pootle_contact.urls')),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^profiles/', include('pootle_profile.urls')),
+    url(r'^profiles/', include('accounts.urls')),
     url(r'^profiles/', include('profiles.urls')),
 )
 

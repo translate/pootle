@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2008-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,15 +18,10 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.conf import settings
-from django.conf.urls import include, patterns, url
+from django.conf.urls import patterns, url
 
 
-urlpatterns = patterns('pootle_profile.views',
-    url(r'^edit/$',
-        'profile_edit',
-        name='pootle-profile-edit'),
-    url(r'^personal/edit/$',
-        'edit_personal_info',
-        name='pootle-profile-personal-edit'),
+urlpatterns = patterns("accounts.views",
+    url(r"^edit/$", "edit_profile", name="pootle-profile-edit"),
+    url(r"^personal/edit/$", "edit_personal_info", name="accounts-personal-edit"),
 )
