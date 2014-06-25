@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import re
+from hashlib import md5
 
 from django.contrib.auth.models import AbstractBaseUser
 from django.core.mail import send_mail
@@ -80,6 +81,20 @@ class User(AbstractBaseUser):
     def get_absolute_url(self):
         # FIXME: adapt once we get rid of the profiles app
         return reverse("profiles_profile_detail", args=[self.username])
+
+    @cached_property
+    def email_hash(self):
+        try:
+            return md5(self.email).hexdigest()
+        except UnicodeEncodeError:
+            return None
+
+    def gravatar_url(self, size=80):
+        if not self.email_hash:
+            return ""
+
+        api_url = "https://secure.gravatar.com/avatar/%(hash)s?s=%(size)d&d=mm"
+        return api_url % {"hash": self.email_hash, "size": size}
 
     def get_full_name(self):
         """Returns the user's full name."""

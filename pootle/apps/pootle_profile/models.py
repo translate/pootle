@@ -18,15 +18,12 @@
 # You should have received a copy of the GNU General Public License along with
 # this program; if not, see <http://www.gnu.org/licenses/>.
 
-from hashlib import md5
-
 from django.conf import settings
 from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
-from django.utils.functional import cached_property
 from django.utils.html import simple_email_re as email_re
 from django.utils.translation import ugettext_lazy as _
 
@@ -190,15 +187,6 @@ class PootleProfile(models.Model):
 
         return contributions
 
-    ############################ Cached properties ############################
-
-    @cached_property
-    def get_email_hash(self):
-        try:
-            return md5(self.user.email).hexdigest()
-        except UnicodeEncodeError:
-            return None
-
     ############################ Methods ######################################
 
     def __unicode__(self):
@@ -213,11 +201,7 @@ class PootleProfile(models.Model):
         return reverse('profiles_profile_detail', args=[self.user.username])
 
     def gravatar_url(self, size=80):
-        if not self.get_email_hash:
-            return ''
-
-        return 'https://secure.gravatar.com/avatar/%s?s=%d&d=mm' % \
-            (self.get_email_hash, size)
+        return self.user.gravatar_url(size)
 
     def get_unit_rows(self):
         return min(max(self.unit_rows, 5), 49)

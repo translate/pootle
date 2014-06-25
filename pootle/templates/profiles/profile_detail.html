@@ -25,7 +25,7 @@
   <div class="bd">
     <div id="user-meta-wrapper">
       <div id="user-meta">
-        <img src="{{ profile|gravatar:150 }}" width="150" height="150"{% if user == profile.user %} title="{% trans 'You can set or change your avatar image at www.gravatar.com' %}"{% endif %} />
+        <img src="{{ profile.user|gravatar:150 }}" width="150" height="150"{% if user == profile.user %} title="{% trans 'You can set or change your avatar image at www.gravatar.com' %}"{% endif %} />
         <div class="user-name">{{ profile.user.username }}</div>
         {% if user.is_superuser or request.permissions.administrate %}
         <div>
