@@ -68,9 +68,9 @@ class Command(NoArgsCommand):
                 # 2.5.1), so it is necessary to fake the first migration for
                 # some apps.
                 OLD_APPS = ("pootle_app", "pootle_language",
-                            "pootle_notifications", "pootle_profile",
-                            "pootle_project", "pootle_statistics",
-                            "pootle_store", "pootle_translationproject")
+                            "pootle_notifications", "pootle_project",
+                            "pootle_statistics", "pootle_store",
+                            "pootle_translationproject")
 
                 if current_buildversion >= 22000:
                     # Fake the migration only if Pootle is 2.5.0.

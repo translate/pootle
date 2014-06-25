@@ -43,7 +43,6 @@ urlpatterns = patterns('',
     url(r'^contact/', include('pootle_contact.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^profiles/', include('accounts.urls')),
-    url(r'^profiles/', include('profiles.urls')),
 )
 
 if settings.POOTLE_ENABLE_API:
