@@ -1543,6 +1543,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def get_file_mtime(self):
         disk_mtime = datetime.datetime \
                      .fromtimestamp(self.file.getpomtime()[0])
+        # set microsecond to 0 for comparing with a time value without microseconds
+        disk_mtime = disk_mtime.replace(microsecond=0)
         if settings.USE_TZ:
             tz = timezone.get_default_timezone()
             disk_mtime = timezone.make_aware(disk_mtime, tz)
