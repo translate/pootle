@@ -197,7 +197,6 @@ overwrite any existing translation in the database, without this
 option only updating new translations, removing obsolete strings and discovering
 new files and strings will be done.
 
-.. release::2014-06-23
 ``update_stores`` scans project directories looking for files matching languages not
 added to the project then adds them. It basically repeats the discovery process
 done by Pootle when you create a new project. Languages added to projects that
