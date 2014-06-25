@@ -1228,7 +1228,14 @@
       async: false,
       dataType: 'json',
       success: function (data) {
-        widget = data['editor'];
+        if (data['tm_suggestions'] !== null) {
+          widget = $(data['editor']);
+          widget.find('#extras-container')
+            .append(PTL.editor.getTMUnitsContent(data['tm_suggestions']));
+          widget = widget[0].outerHTML;
+        } else {
+          widget = data['editor'];
+        }
 
         PTL.editor.updateNav();
 
@@ -1912,6 +1919,21 @@
     return filtered;
   },
 
+  /* TM suggestions */
+  getTMUnitsContent: function (data) {
+    var unit = this.units.getCurrent(),
+        store = unit.get('store'),
+        src = store.get('source_lang'),
+        tgt = store.get('target_lang'),
+        sourceText = unit.get('source')[0],
+        filtered = PTL.editor.filterTMResults(data, sourceText),
+        name = gettext("Similar translations");
+
+    return PTL.editor.tmpl.tm({store: store.toJSON(),
+                               unit: unit.toJSON(),
+                               suggs: filtered,
+                               name: name});
+  },
 
   /* Gets TM suggestions from amaGama */
   getTMUnits: function () {

@@ -704,6 +704,7 @@ def get_edit_unit(request, unit):
         t = loader.get_template('editor/units/edit.html')
     c = RequestContext(request, template_vars)
     json['editor'] = t.render(c)
+    json['tm_suggestions'] = unit.get_tm_suggestions()
 
     rcode = 200
 

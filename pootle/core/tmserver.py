@@ -27,7 +27,7 @@ except:
 from django.conf import settings
 
 
-def get_tmserver_params():
+def get_params():
     params = getattr(settings, 'POOTLE_TM_SERVER', None)
 
     if params is not None:
@@ -36,7 +36,7 @@ def get_tmserver_params():
     return None
 
 
-es_params = get_tmserver_params()
+es_params = get_params()
 # TODO support ENGINE param
 # Elasticsearch is the only supported engine now
 es = None
@@ -44,9 +44,34 @@ if es_params is not None and ES is not None:
     es = ES([{'host': es_params['HOST'], 'port': es_params['PORT']}, ])
 
 
-def update_tmserver(language, obj):
+def update(language, obj):
     if es is not None:
         es.index(index=es_params['INDEX_NAME'],
                  doc_type=language,
                  body=obj,
                  id=obj['id'])
+
+def search(language, source):
+    if es is not None:
+        res = []
+        es_res = es.search(index=es_params['INDEX_NAME'],
+                        doc_type=language,
+                        body={"query": {"match": {'source': source}}})
+
+        max_score = es_res['hits']['max_score']
+        for hit in es_res['hits']['hits']:
+            res.append({
+                'unit_id': ['_id'],
+                'quality': 100 * hit['_score'] / max_score,
+                'source': hit['_source']['source'],
+                'target': hit['_source']['target'],
+                'project': hit['_source']['project'],
+                'path': hit['_source']['path'],
+                'username': hit['_source']['username'],
+                'fullname': hit['_source']['fullname'],
+                'email_md5': hit['_source']['email_md5'],
+            })
+
+        return res
+
+    return None

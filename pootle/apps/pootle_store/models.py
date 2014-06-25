@@ -51,7 +51,7 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
                              action_log, store_log, log)
 from pootle.core.mixins import CachedMethods, TreeItem
-from pootle.core.tmserver import update_tmserver
+from pootle.core.tmserver import update as update_tmserver, search as get_tmsuggestions
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names, run_given_filters, get_checker
@@ -774,29 +774,6 @@ class Unit(models.Model, base.TranslationUnit):
                 self.state = FUZZY
                 self._auto_translated = True
 
-    def update_tmserver(self):
-        obj = {
-            'id': self.id,
-            # 'revision' must be an integer for statistical queries to work
-            'revision': self.revision,
-            'project': self.store.translation_project.project.fullname,
-            'path': self.store.pootle_path,
-            'source': self.source,
-            'target': self.target,
-            'username': '',
-            'fullname': '',
-            'email_md5': '',
-        }
-
-        if self.submitted_by:
-            obj.update({
-                'username': self.submitted_by.username,
-                'fullname': self.submitted_by.full_name,
-                'email_md5': md5(self.submitted_by.email).hexdigest(),
-            })
-
-        update_tmserver(self.store.translation_project.language.code, obj)
-
     def update_qualitychecks(self, delete_existing=True,
                              keep_false_positives=False,
                              check_names=None):
@@ -857,6 +834,35 @@ class Unit(models.Model, base.TranslationUnit):
 
     def get_active_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
+
+##################### TranslationUnit ############################
+
+    def update_tmserver(self):
+        obj = {
+            'id': self.id,
+            # 'revision' must be an integer for statistical queries to work
+            'revision': self.revision,
+            'project': self.store.translation_project.project.fullname,
+            'path': self.store.pootle_path,
+            'source': self.source,
+            'target': self.target,
+            'username': '',
+            'fullname': '',
+            'email_md5': '',
+        }
+
+        if self.submitted_by:
+            obj.update({
+                'username': self.submitted_by.username,
+                'fullname': self.submitted_by.full_name,
+                'email_md5': md5(self.submitted_by.email).hexdigest(),
+            })
+
+        update_tmserver(self.store.translation_project.language.code, obj)
+
+    def get_tm_suggestions(self):
+        return get_tmsuggestions(self.store.translation_project.language.code,
+                                 self.source)
 
 ##################### TranslationUnit ############################
 
