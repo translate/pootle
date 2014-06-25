@@ -100,7 +100,7 @@ class Command(BaseCommand):
                 raise CommandError("Language '%s' does not exist." %
                                    language_code)
 
-        # Get the profile for the specified username. This checks if it exists.
+        # Get the User for the specified username. This checks if it exists.
         User = get_user_model()
         try:
             user = User.objects.get(username=username)
