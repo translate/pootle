@@ -27,15 +27,15 @@ class Migration(SchemaMigration):
             # Removing unique constraint on 'PermissionSet', fields ['profile', 'directory']
             db.delete_unique(u'pootle_app_permissionset', ['profile_id', 'directory_id'])
 
+            # Deleting field 'PermissionSet.profile'
+            db.delete_column(u'pootle_app_permissionset', 'profile_id')
+
         # Set the new user_id column to NOT NULL. Doesn't work in sqlite.
         if db.backend_name == "postgresql":
             db.execute("ALTER TABLE pootle_app_permissionset ALTER COLUMN user_id SET NOT NULL")
         elif db.backend_name == "mysql":
             # disgusting...
             db.execute("ALTER TABLE pootle_app_permissionset MODIFY user_id INTEGER NOT NULL")
-
-        # Deleting field 'PermissionSet.profile'
-        db.delete_column(u'pootle_app_permissionset', 'profile_id')
 
         # Adding unique constraint on 'PermissionSet', fields ['user', 'directory']
         db.create_unique(u'pootle_app_permissionset', ['user_id', 'directory_id'])
