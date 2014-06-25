@@ -59,7 +59,6 @@ Translate styleguide for other conventions that the imports must follow.
     from django.db.models import Q
     from django.db.models.signals import post_save
 
-    from profiles.views import edit_profile
     from tastypie.models import ApiKey
 
     from pootle_language.models import Language
