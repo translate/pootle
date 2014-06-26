@@ -63,7 +63,7 @@ def admin_permissions(request, current_directory, template, context):
 
     base_queryset = PootleProfile.objects.filter(user__is_active=1).exclude(
             id__in=current_directory.permission_sets \
-                                    .values_list('profile_id', flat=True),
+                                    .values_list('user', flat=True),
     )
     querysets = [(None, base_queryset.filter(
         user__username__in=('nobody', 'default')
