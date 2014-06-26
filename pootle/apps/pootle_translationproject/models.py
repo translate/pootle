@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-import gettext
 import logging
 import os
 from itertools import chain
@@ -29,8 +28,10 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.utils.encoding import force_unicode
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
@@ -40,40 +41,15 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
+from pootle_app.models.pootle_site import get_site_title
 from pootle_language.models import Language
-from pootle_misc.siteconfig import load_site_config
-from pootle_misc.stats import stats_message_raw
-from pootle_misc.util import cached_property
 from pootle_misc.checks import excluded_filters
+from pootle_misc.stats import stats_message_raw
 from pootle_project.models import Project
-from pootle_statistics.models import Submission
-from pootle_store.models import (Store, Unit, PARSED)
+from pootle_store.models import Store, Unit, PARSED
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                OBSOLETE)
 from pootle_tagging.models import ItemWithGoal
-
-
-def create_translation_project(language, project):
-    from pootle_app import project_tree
-    if project_tree.translation_project_should_exist(language, project):
-        try:
-            translation_project, created = TranslationProject.objects \
-                    .get_or_create(language=language, project=project)
-            return translation_project
-        except OSError:
-            return None
-        except IndexError:
-            return None
-
-
-def scan_translation_projects():
-    for language in Language.objects.iterator():
-        for project in Project.objects.iterator():
-            create_translation_project(language, project)
-
-
-class VersionControlError(Exception):
-    pass
 
 
 class TranslationProjectNonDBState(object):
@@ -90,10 +66,47 @@ class TranslationProjectNonDBState(object):
         self.indexer = None
 
 
+def create_or_enable_translation_project(language, project):
+    tp = create_translation_project(language, project)
+    if tp is not None:
+        if tp.disabled:
+            tp.disabled = False
+            tp.save()
+            logging.info(u"Enabled %s", tp)
+        else:
+            logging.info(u"Created %s", tp)
+
+
+def create_translation_project(language, project):
+    from pootle_app import project_tree
+    if project_tree.translation_project_should_exist(language, project):
+        try:
+            translation_project, created = TranslationProject.objects.all() \
+                    .get_or_create(language=language, project=project)
+            return translation_project
+        except (OSError, IndexError):
+            return None
+
+
+def scan_translation_projects():
+    for language in Language.objects.iterator():
+        for project in Project.objects.iterator():
+            create_translation_project(language, project)
+
+
+class VersionControlError(Exception):
+    pass
+
+
 class TranslationProjectManager(RelatedManager):
-    def get_by_natural_key(self, pootle_path):
-        #FIXME: should we use Language and Project codes instead?
-        return self.get(pootle_path=pootle_path)
+    # disabled objects are hidden for related objects too
+    use_for_related_fields = True
+
+    def enabled(self):
+        return self.filter(disabled=False)
+
+    def disabled(self):
+        return self.filter(Q(disabled=True) | Q(project__disabled=True))
 
 
 class TranslationProject(models.Model, TreeItem):
@@ -114,6 +127,7 @@ class TranslationProject(models.Model, TreeItem):
         db_index=True,
         editable=False,
     )
+    disabled = models.BooleanField(default=False)
 
     tags = TaggableManager(
         blank=True,
@@ -127,8 +141,36 @@ class TranslationProject(models.Model, TreeItem):
         help_text=_("A comma-separated list of goals."),
     )
 
+    # Cached Unit values
+    total_wordcount = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        editable=False,
+    )
+    translated_wordcount = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        editable=False,
+    )
+    fuzzy_wordcount = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        editable=False,
+    )
+    suggestion_count = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        editable=False,
+    )
+    failing_critical_count = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        editable=False,
+    )
+
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
                                          settings.PARSE_POOL_CULL_FREQUENCY)
+
     index_directory = ".translation_index"
 
     objects = TranslationProjectManager()
@@ -136,11 +178,6 @@ class TranslationProject(models.Model, TreeItem):
     class Meta:
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
-
-    def natural_key(self):
-        return (self.pootle_path,)
-    natural_key.dependencies = ['pootle_app.Directory',
-            'pootle_language.Language', 'pootle_project.Project']
 
     ############################ Properties ###################################
 
@@ -152,6 +189,11 @@ class TranslationProject(models.Model, TreeItem):
         """
         return list(chain(self.tags.all().order_by("name"),
                           self.goals.all().order_by("name")))
+
+    @property
+    def name(self):
+        # TODO: See if `self.fullname` can be removed
+        return self.fullname
 
     @property
     def fullname(self):
@@ -235,11 +277,21 @@ class TranslationProject(models.Model, TreeItem):
                 (self.non_db_state._index_initialized or
                  self.indexer is not None))
 
-    ############################ Methods ######################################
+    ############################ Cached properties ############################
 
     @cached_property
-    def name(self):
-        return self.project.fullname
+    def code(self):
+        return u'-'.join([self.language.code, self.project.code])
+
+    @cached_property
+    def all_goals(self):
+        # Putting the next import at the top of the file causes circular
+        # import issues.
+        from pootle_tagging.models import Goal
+
+        return Goal.get_goals_for_path(self.pootle_path)
+
+    ############################ Methods ######################################
 
     def __unicode__(self):
         return self.pootle_path
@@ -251,12 +303,13 @@ class TranslationProject(models.Model, TreeItem):
         created = self.id is None
         project_dir = self.project.get_real_path()
 
-        from pootle_app.project_tree import get_translation_project_dir
-        self.abs_real_path = get_translation_project_dir(self.language,
-                project_dir, self.file_style, make_dirs=True)
-        self.directory = self.language.directory \
-                                      .get_or_make_subdir(self.project.code)
-        self.pootle_path = self.directory.pootle_path
+        if not self.disabled:
+            from pootle_app.project_tree import get_translation_project_dir
+            self.abs_real_path = get_translation_project_dir(self.language,
+                    project_dir, self.file_style, make_dirs=True)
+            self.directory = self.language.directory \
+                                        .get_or_make_subdir(self.project.code)
+            self.pootle_path = self.directory.pootle_path
 
         super(TranslationProject, self).save(*args, **kwargs)
 
@@ -311,14 +364,6 @@ class TranslationProject(models.Model, TreeItem):
                        skip_missing=skip_missing,
                        modified_since=modified_since)
 
-    def get_latest_submission(self):
-        """Get the latest submission done in the Translation project."""
-        try:
-            sub = Submission.objects.filter(translation_project=self).latest()
-        except Submission.DoesNotExist:
-            return ''
-        return sub.get_submission_message()
-
     def get_mtime(self):
         return self.directory.get_mtime()
 
@@ -342,12 +387,48 @@ class TranslationProject(models.Model, TreeItem):
 
     ### TreeItem
 
-    @cached_property
-    def code(self):
-        return u'-'.join([self.language.code, self.project.code])
-
     def get_children(self):
         return self.directory.get_children()
+
+    def get_total_wordcount(self):
+        return self.total_wordcount
+
+    def get_translated_wordcount(self):
+        return self.translated_wordcount
+
+    def get_fuzzy_wordcount(self):
+        return self.fuzzy_wordcount
+
+    def get_suggestion_count(self):
+        return self.suggestion_count
+
+    def get_critical_error_unit_count(self):
+        return self.failing_critical_count
+
+    def get_next_goal_count(self):
+        # Putting the next import at the top of the file causes circular
+        # import issues.
+        from pootle_tagging.models import Goal
+
+        goal = Goal.get_most_important_incomplete_for_path(self.directory)
+
+        if goal is not None:
+            return goal.get_incomplete_words_in_path(self.directory)
+
+        return 0
+
+    def get_next_goal_url(self):
+        # Putting the next import at the top of the file causes circular
+        # import issues.
+        from pootle_tagging.models import Goal
+
+        goal = Goal.get_most_important_incomplete_for_path(self.directory)
+
+        if goal is not None:
+            return goal.get_translate_url_for_path(self.directory.pootle_path,
+                                                   state='incomplete')
+
+        return ''
 
     def get_cachekey(self):
         return self.directory.pootle_path
@@ -409,9 +490,9 @@ class TranslationProject(models.Model, TreeItem):
 
         if new_files and versioncontrol.hasversioning(project_path):
             from pootle.scripts import hooks
-            siteconfig = load_site_config()
+
             message = ("New files added from %s based on templates" %
-                       siteconfig.get('TITLE'))
+                       get_site_title())
 
             filestocommit = []
             for new_file in new_files:
@@ -444,7 +525,7 @@ class TranslationProject(models.Model, TreeItem):
                     pass
 
         if pootle_path is None:
-            from pootle_app.models.signals import post_template_update
+            from pootle_app.signals import post_template_update
             post_template_update.send(sender=self)
 
     def scan_files(self, vcs_sync=True):
@@ -624,7 +705,7 @@ class TranslationProject(models.Model, TreeItem):
                   {'project': self.fullname})
             messages.info(request, msg)
 
-        from pootle_app.models.signals import post_vc_update
+        from pootle_app.signals import post_vc_update
         post_vc_update.send(sender=self)
 
     def update_file(self, request, store):
@@ -638,7 +719,7 @@ class TranslationProject(models.Model, TreeItem):
                     {'filename': store.file.name})
             messages.info(request, msg)
 
-            from pootle_app.models.signals import post_vc_update
+            from pootle_app.signals import post_vc_update
             post_vc_update.send(sender=self)
         except VersionControlError as e:
             # FIXME: This belongs to views
@@ -664,9 +745,8 @@ class TranslationProject(models.Model, TreeItem):
         fuzzy = directory.get_fuzzy_wordcount()
         author = user.username
 
-        siteconfig = load_site_config()
         message = stats_message_raw("Commit from %s by user %s." %
-                                    (siteconfig.get('TITLE'), author),
+                                    (get_site_title(), author),
                                     total, translated, fuzzy)
 
         # Try to append email as well, since some VCS does not allow omitting
@@ -725,7 +805,7 @@ class TranslationProject(models.Model, TreeItem):
                 # impossible
                 pass
 
-        from pootle_app.models.signals import post_vc_commit
+        from pootle_app.signals import post_vc_commit
         post_vc_commit.send(sender=self, path_obj=directory,
                             user=user, success=success)
 
@@ -743,9 +823,8 @@ class TranslationProject(models.Model, TreeItem):
         fuzzy = store.get_fuzzy_wordcount()
         author = user.username
 
-        siteconfig = load_site_config()
         message = stats_message_raw("Commit from %s by user %s." % \
-                (siteconfig.get('TITLE'), author), total, translated, fuzzy)
+                (get_site_title(), author), total, translated, fuzzy)
 
         # Try to append email as well, since some VCS does not allow omitting
         # it (ie. Git).
@@ -798,7 +877,7 @@ class TranslationProject(models.Model, TreeItem):
             # impossible
             pass
 
-        from pootle_app.models.signals import post_vc_commit
+        from pootle_app.signals import post_vc_commit
         post_vc_commit.send(sender=self, path_obj=store,
                             user=user, success=success)
 
@@ -1060,31 +1139,6 @@ class TranslationProject(models.Model, TreeItem):
             self.non_db_state.termmatchermtime = mtime
 
         return self.non_db_state.termmatcher
-
-    ###########################################################################
-
-    #FIXME: we should cache results to ease live translation
-    def translate_message(self, singular, plural=None, n=1):
-        for store in self.stores.iterator():
-            unit = store.findunit(singular)
-            if unit is not None and unit.istranslated():
-                if unit.hasplural() and n != 1:
-                    pluralequation = self.language.pluralequation
-
-                    if pluralequation:
-                        pluralfn = gettext.c2py(pluralequation)
-                        target =  unit.target.strings[pluralfn(n)]
-
-                        if target is not None:
-                            return target
-                else:
-                    return unit.target
-
-        # No translation found
-        if n != 1 and plural is not None:
-            return plural
-        else:
-            return singular
 
 
 ###############################################################################

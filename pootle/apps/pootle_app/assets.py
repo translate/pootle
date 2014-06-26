@@ -33,6 +33,7 @@ js_common = Bundle(
     'js/vendor/jquery/jquery.select2.js',
     'js/vendor/bootstrap/bootstrap-alert.js',
     'js/vendor/bootstrap/bootstrap-transition.js',
+    'js/browser.js',
     'js/captcha.js',
     'js/common.js',
     'js/languages.js',
@@ -40,7 +41,6 @@ js_common = Bundle(
     'js/search.js',
     'js/stats.js',
     'js/utils.js',
-    'js/zoom.js',
     'js/vendor/sorttable.js',
     'js/vendor/spin.js',
     'js/vendor/shortcut.js',  # Leave shortcut.js as the last one.
@@ -57,12 +57,12 @@ register('js_admin', js_admin)
 js_editor = Bundle(
     'js/vendor/jquery/jquery.history.js',
     'js/vendor/jquery/jquery.textarea-expander.js',
+    'js/vendor/jquery/jquery.textcomplete.js',
     'js/vendor/diff_match_patch.js',
     'js/vendor/jquery/jquery.caret.js',
     'js/vendor/jquery/jquery.highlightRegex.js',
     'js/vendor/jquery/jquery.jsonp.js',
     'js/vendor/iso8601.js',
-    'js/vendor/json2.js',
     'js/vendor/underscore.js',
     'js/vendor/backbone.js',
     'js/vendor/backbone-relational.js',
@@ -75,6 +75,7 @@ register('js_editor', js_editor)
 
 css_common = Bundle(
     'css/style.css',
+    'css/buttons.css',
     'css/contact.css',
     'css/magnific-popup.css',
     'css/tipsy.css',
@@ -95,5 +96,6 @@ register('css_admin', css_admin)
 
 css_editor = Bundle(
     'css/editor.css',
+    'css/jquery.textcomplete.css',
     filters='cssmin', output='css/editor.min.%(version)s.css')
 register('css_editor', css_editor)

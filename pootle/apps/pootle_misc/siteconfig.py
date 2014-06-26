@@ -24,7 +24,6 @@ NOTE: Import this file in your urls.py or some place before any code relying on
 
 from django.contrib.sites.models import Site
 
-from djblets.siteconfig.django_settings import generate_defaults
 from djblets.siteconfig.models import SiteConfiguration
 
 
@@ -33,7 +32,6 @@ def load_site_config():
     try:
         siteconfig = SiteConfiguration.objects.get_current()
     except SiteConfiguration.DoesNotExist:
-        # Either warn or just create the thing. Depends on your app.
         siteconfig = SiteConfiguration(site=Site.objects.get_current(),
                                        version="1.0")
         siteconfig.save()
@@ -41,11 +39,14 @@ def load_site_config():
     # If TITLE and DESCRIPTION are not on the database then pick the defaults
     # from the settings and save them in the database.
     if not siteconfig.get_defaults():
-        SETTINGS_MAP = {
-            # siteconfig key    settings.py key
-            'DESCRIPTION': 'DESCRIPTION',
-            'TITLE': 'TITLE',
-        }
-        siteconfig.add_defaults(generate_defaults(SETTINGS_MAP))
+        from django.conf import settings
+
+        defaults = {}
+
+        for setting_name in ('DESCRIPTION', 'TITLE'):
+            if hasattr(settings, setting_name):
+                defaults[setting_name] = getattr(settings, setting_name)
+
+        siteconfig.add_defaults(defaults)
 
     return siteconfig

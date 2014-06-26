@@ -1,0 +1,15 @@
+{% load i18n %}
+<script type="text/template">
+  <div class="legend">
+    <span class="legend translated"></span>{% blocktrans %}<span class="value translated">0</span>% translated{% endblocktrans %}<br />
+    <span class="legend fuzzy"></span>{% blocktrans %}<span class="value fuzzy">0</span>% needs work{% endblocktrans %}<br />
+    <span class="legend untranslated"></span>{% blocktrans %}<span class="value untranslated">0</span>% untranslated{% endblocktrans %}
+  </div>
+</script>
+<table class="graph">
+  <tr>
+    <td class="translated" style="display: none"><span></span></td>
+    <td class="fuzzy" style="display: none"><span></span></td>
+    <td class="untranslated"><span></span></td>
+  </tr>
+</table>

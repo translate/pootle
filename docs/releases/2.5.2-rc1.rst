@@ -2,17 +2,21 @@
 Welcome to the new Pootle 2.5.2-rc1
 ===================================
 
-.. note:: Not released yet. *Planned release date late April 2014*.
+.. note:: Not released yet. *Planned release date late June 2014*.
 
 For those who can't wait you might be interested to know what we've got planned
 on our :ref:`roadmap <roadmap>`.
 
 Changes in Requirements
 =======================
-- Django >= 1.5.5 < 1.6
+- Django >= 1.5.8 < 1.7
 - `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
   1.12.0-rc1
 - Python >= 2.6
+- Raven 5.0.0 or higher is now recommended for Sentry support on production
+  setups. While older versions should still work, they may encounter problems
+  in newer versions of Django or Python.
+
 
 Major Changes
 =============
@@ -21,8 +25,17 @@ These are by no means exhaustive, check the `git log
 <https://github.com/translate/pootle/compare/stable%2F2.5.1...master>`_
 for more details.
 
-- Placeables are used to highlight parts of the source text and easily insert
-  them into the translation.
+- Upgrade:
+
+  - Direct upgrade is now only possible from 2.1.1 and later.
+  - Fixed failing direct upgrade from 2.1.6 and older that required to perform an
+    intermediate upgrade step to 2.5.0.
+
+- The default caching in database has been replaced by local-memory caching.
+  Using memcached is still highly recommended.
+- The registration and authentication layer is now handled by django-allauth.
+  This gives Pootle implicit support for OpenID, OAuth, OAuth2 and Persona
+  sign-in protocols.
 - Local Translation Memory (TM) augments the already available `amaGama
   <http://amagama.translatehouse.org>`_ TM by delivering TM results from the
   projects hosted on the Pootle server.  Images stored in
@@ -39,6 +52,58 @@ for more details.
   reports are sent to :setting:`POOTLE_REPORT_STRING_ERRORS_EMAIL`.
 - Some changes in the API.
 - New management command to assign permissions to a user.
+- Using dumpdata and loaddata to move between databases is no longer supported.
+  If you need to move, please use proper SQL scripts instead.
+- Added a new ``system`` user to attribute to changes done by the management
+  commands.
+- The ``update_translation_projects`` management command no longer removes
+  projects when using the ``--cleanup`` option. This was an undocumented
+  behavior.
+- Added support to disable the Pootle server for maintenance using
+  ``django-maintenancemode``.
+- Dropped support for old web browsers. Despite that Pootle might work on such
+  browsers. More on :ref:`Supported Browsers <browsers>`.
+- Changed the format of the files accepted by the ``add_project_goals``
+  management command.
+- Added improved logging of actions inside Pootle.
+- Big revamp of UI:
+
+  - We now have a wide stats table that shows the same data in the different
+    levels. This affects several features which are now relocated in a sidebar:
+    actions, instructions or current goal.
+  - New navigation scheme using dropdowns.
+  - Removed zoom feature. Now users should rely on their browsers.
+
+- Editor changes:
+
+  - Added keyboard shortcuts help.
+  - Several minor improvements.
+  - Placeables are used to highlight parts of the source text and easily insert
+    them into the translation.
+
+
+Removed features
+================
+
+We have dropped some legacy features we kept around for allowing a swift
+upgrade in the past.
+
+The removal of some of these feature required extensive changes on the
+upgrading code, which resulted in that upgrading directly from ancient versions
+is no longer possible. In case you are trying to upgrade from Pootle 2.1.0 or
+older you must first upgrade to 2.1.6 before upgrading to this version.
+
+These are the features we got rid of:
+
+- .pending and .tm files support: Not necessary since the updatetm tool was
+  removed in Pootle 2.5.0.
+- Live translation: Rarely enabled, and it was discouraged to use it.
+- Autosync: It was recommended to never use it. The files can now be synced
+  instead using the appropriate management commands.
+
+The voting feature for terminology suggestions has also been removed, due to
+its low popularity and high maintenance cost. In order to save existing voting
+data, make a backup of the ``voting_vote`` table before upgrading.
 
 
 ...and lots of refactoring, upgrades of upstream code, cleanups to remove

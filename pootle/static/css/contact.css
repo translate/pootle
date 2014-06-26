@@ -5,28 +5,14 @@
 #contact
 {
     line-height: 150%!important;
-    margin-left: 9em;
+    margin: 2em 3em;
 
-    font-family: "Open Sans", sans-serif;
     font-size: 1.2em;
-}
-
-html[dir="rtl"] #contact
-{
-    margin-left: auto;
-    margin-right: 9em;
 }
 
 #contact h1
 {
-    color: rgba(25, 15, 0, 0.6);
-    font-size: 3em;
-    line-height: 85%;
-    margin: 0.5em 0;
-
-    font-family: "Open Sans Condensed", "Open Sans", sans-serif;
-    font-weight: bold;
-    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
+    margin-bottom: 1em;
 }
 
 #contact p
@@ -38,6 +24,10 @@ html[dir="rtl"] #contact
 #contact textarea
 {
     font-family: "Segoe UI", "Ubuntu", sans-serif;
+}
+
+#contact textarea
+{
     font-size: 1em;
     padding-left: 0.2em;
     padding-right: 0.2em;
@@ -45,13 +35,18 @@ html[dir="rtl"] #contact
 
 #contact .buttons input
 {
-    padding: 0.3em 1.5em;
     margin: 0.3em 0px 0px;
 }
 
 #contact label
 {
     display: block;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#contact label[for="id_captcha_answer"]
+{
+    display: inline;
 }
 
 #contact #id_name,

@@ -36,8 +36,4 @@ urlpatterns = patterns('pootle_app.views.index',
     url(r'^about/contributors/$',
         'contributors.view',
         name='pootle-about-contributors'),
-
-    url(r'^translate/$',
-        'translate.view',
-        name='pootle-translate'),
 )

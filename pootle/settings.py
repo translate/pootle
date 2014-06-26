@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -19,7 +20,6 @@
 
 import glob
 import os
-
 
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
 

@@ -22,48 +22,11 @@ import re
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_language.models import Language
 from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
-
-
-### Language
-LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$",
-                         re.IGNORECASE)
-
-
-class MyLanguageAdminForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super(MyLanguageAdminForm, self).__init__(*args, **kwargs)
-        self.fields['nplurals'].widget.attrs['class'] = \
-            "js-select2 select2-nplurals"
-
-    def clean_code(self):
-        if (not self.cleaned_data['code'] == 'templates' and
-                not LANGCODE_RE.match(self.cleaned_data['code'])):
-            raise forms.ValidationError(_('Language code does not follow the '
-                                          'ISO convention'))
-        return self.cleaned_data["code"]
-
-
-class LanguageAdmin(admin.ModelAdmin):
-    list_display = ('code', 'fullname')
-    list_display_links = ('code', 'fullname')
-    fieldsets = (
-        (None, {
-            'fields': ('code', 'fullname', 'specialchars'),
-        }),
-        ('Plural information', {
-            'fields': ('nplurals', 'pluralequation'),
-        }),
-    )
-    form = MyLanguageAdminForm
-
-admin.site.register(Language, LanguageAdmin)
 
 
 ### Project
@@ -96,6 +59,8 @@ admin.site.register(Project, ProjectAdmin)
 
 
 ### User / PootleProfile
+
+User = get_user_model()
 
 admin.site.unregister(User)
 

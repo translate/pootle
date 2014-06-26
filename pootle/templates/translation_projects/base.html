@@ -1,21 +1,15 @@
-{% extends "layout.html"  %}
+{% extends "browser/base.html" %}
 
 {% load url from future %}
-{% load i18n cache common_tags %}
+
+{% block html_id %}tp{% endblock %}
 
 {% block title %}{{ translation_project.project }} | {{ language.name }} | {{ block.super }}{% endblock %}
-
-{% block breadcrumbs %}
-{{ block.super }}{% include 'core/_breadcrumbs.html' %}
-{% endblock %}
 
 {% block extra_head %}
 <link rel="alternate" type="application/rss+xml" href="{% url 'pootle-notifications-feed' feed_path %}" />
 {% endblock %}
 
-{% block tabs %}
-{% include "translation_projects/_tabs.html" %}
-{% endblock %}
-
-{% block scripts_extra %}
+{% block breadcrumbs %}
+{% include 'core/_breadcrumbs.html' with nav='translation_projects/_nav.html' %}
 {% endblock %}

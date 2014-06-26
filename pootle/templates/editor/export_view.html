@@ -1,0 +1,152 @@
+{% load assets cleanhtml i18n locale store_tags %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+<head>
+  <meta charset="utf-8">
+  {% comment %}Translators: A view showing the export of strings in a flat form.
+  See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete {% endcomment %}
+  <title>{% trans "Export View" %} | 
+    {% if project %}{{ project.name }}{% else %}{% trans "All Projects" %}{% endif %} | 
+    {% if language %}{{ language.name }}{% else %}{% trans "All Languages" %}{% endif %} | 
+    {{ settings.TITLE }}</title>
+  <style type="text/css">
+    html {
+      font-family: sans-serif;
+      font-size: 15px;
+      background-color: #fff;
+      color: #130f30;
+    }
+
+    table,
+    caption,
+    th,
+    td {
+      margin: 0px;
+    }
+    table {
+      border: 1px solid #e9e9e9;
+      border-collapse: collapse;
+      border-spacing: 0px;
+
+      padding: 0px;
+
+      width: 100%;
+    }
+    caption, th, td {
+      border: 1px solid #d9d9d9;
+      padding: 0.5em;
+    }
+    caption, th {
+      line-height: 1;
+    }
+    caption {
+      background-color: #eee;
+      border-style: solid solid none;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    caption span {
+      font-size: 0.7em;
+      font-weight: 300;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #f8f8f8;
+      font-weight: 300;
+      text-align: center;
+    }
+    th#source,
+    th#translation {
+      width: 50%;
+    }
+    tbody {
+      line-height: 1.6;
+    }
+    td {
+      vertical-align: top;
+    }
+    tr.empty {
+      text-align: center;
+    }
+    tr.separator {
+      font-style: italic;
+    }
+
+    .unit-number {
+      float: right;
+      font-size: 0.7em;
+      line-height: 1;
+    }
+    html[dir="rtl"] .unit-number {
+      float: left;
+    }
+    .unit-context {
+      font-size: 0.9em;
+      font-style: italic;
+      color: #666;
+    }
+
+    .highlight-escape {
+      color: #8e44ad;
+    }
+    .highlight-html {
+      color: #840;
+    }
+  </style>
+</head>
+<body>
+  <table dir="{% locale_dir %}">
+    <caption>
+      {% if project %}{{ project.name }}{% else %}{% trans "All Projects" %}{% endif %} / 
+      {% if language %}{{ language.name }}{% else %}{% trans "All Languages" %}{% endif %} / 
+      {% if filter_name %}{{ filter_name }}{% endif %}
+      {% if filter_extra %}<span>({{ filter_extra|join:', ' }})</span>{% endif %}
+      {% if goal %} / {% trans "Goal" %} <span>({{ goal }})</span>{% endif %}
+    </caption>
+    <thead>
+      <tr lang="{{ LANGUAGE_CODE }}">
+        <th id="source">{% trans "Source" %}</th>
+        <th id="translation">{% trans "Translation" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for path, units in unit_groups %}
+      <tr class="separator">
+        <th colspan="2">{{ path }}</th>
+      </tr>
+    {% for unit in units %}
+      <tr{% if unit.isfuzzy %} class="unit-fuzzy"{% endif %}>
+        <td>
+        {% for i, source, title in unit|pluralize_source %}
+          <div lang="{{ source_language.code }}"
+            dir="{{ source_language.direction }}">
+            {{ source|highlight_placeables }}
+          </div>
+        {% endfor %}
+        {% if unit.getcontext %}
+        <div class="unit-context">
+          {{ unit.getcontext }}
+        </div>
+        {% endif %}
+        </td>
+        <td>
+        {% for i, target, title in unit|pluralize_target %}
+          <div dir="{{ language.direction }}" lang="{{ language.code }}">
+            {{ target|highlight_placeables }}
+          </div>
+        {% endfor %}
+        <div class="unit-number">
+          <a href="{{ unit.get_translate_url }}">#{{ unit.id }}</a>
+        </div>
+        </td>
+      </tr>
+    {% endfor %}
+    {% empty %}
+      <tr class="empty">
+        <td colspan="2">{% trans "No strings." %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

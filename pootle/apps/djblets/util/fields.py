@@ -1,6 +1,4 @@
 #
-# fields.py -- Model fields.
-#
 # Copyright (c) 2007-2008  Christian Hammond
 # Copyright (c) 2007-2008  David Trowbridge
 #
@@ -23,114 +21,12 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import base64
+import json
 import logging
-from datetime import datetime
 
 from django.conf import settings
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
-from django.utils import simplejson
-from django.utils.encoding import smart_unicode
-
-
-class Base64DecodedValue(str):
-    """
-    A subclass of string that can be identified by Base64Field, in order
-    to prevent double-encoding or double-decoding.
-    """
-    pass
-
-
-class Base64FieldCreator(object):
-    def __init__(self, field):
-        self.field = field
-
-    def __set__(self, obj, value):
-        pk_val = obj._get_pk_val(obj.__class__._meta)
-        pk_set = pk_val is not None and smart_unicode(pk_val) != u''
-
-        if (isinstance(value, Base64DecodedValue) or not pk_set):
-            obj.__dict__[self.field.name] = base64.encodestring(value)
-        else:
-            obj.__dict__[self.field.name] = value
-
-        setattr(obj, "%s_initted" % self.field.name, True)
-
-    def __get__(self, obj, type=None):
-        if obj is None:
-            raise AttributeError('Can only be accessed via an instance.')
-
-        value = obj.__dict__[self.field.name]
-
-        if value is None:
-            return None
-        else:
-            return Base64DecodedValue(base64.decodestring(value))
-
-
-class Base64Field(models.TextField):
-    """
-    A subclass of TextField that encodes its data as base64 in the database.
-    This is useful if you're dealing with unknown encodings and must guarantee
-    that no modifications to the text occurs and that you can read/write
-    the data in any database with any encoding.
-    """
-    serialize_to_string = True
-
-    def contribute_to_class(self, cls, name):
-        super(Base64Field, self).contribute_to_class(cls, name)
-        setattr(cls, self.name, Base64FieldCreator(self))
-
-    def get_db_prep_value(self, value, connection=None, prepared=False):
-        if isinstance(value, Base64DecodedValue):
-            value = base64.encodestring(value)
-
-        return value
-
-    def save_form_data(self, instance, data):
-        setattr(instance, self.name, Base64DecodedValue(data))
-
-    def to_python(self, value):
-        if isinstance(value, Base64DecodedValue):
-            return value
-        else:
-            return Base64DecodedValue(base64.decodestring(value))
-
-    def value_to_string(self, obj):
-        value = self._get_val_from_obj(obj)
-
-        if isinstance(value, Base64DecodedValue):
-            return base64.encodestring(value)
-        else:
-            return value
-
-
-class ModificationTimestampField(models.DateTimeField):
-    """
-    A subclass of DateTimeField that only auto-updates the timestamp when
-    updating an existing object or when the value of the field is None. This
-    specialized field is equivalent to DateTimeField's auto_now=True, except
-    it allows for custom timestamp values (needed for
-    serialization/deserialization).
-    """
-    def __init__(self, verbose_name=None, name=None, **kwargs):
-        kwargs.update({
-            'editable': False,
-            'blank': True,
-        })
-        models.DateTimeField.__init__(self, verbose_name, name, **kwargs)
-
-    def pre_save(self, model, add):
-        if not add or getattr(model, self.attname) is None:
-            value = datetime.now()
-            setattr(model, self.attname, value)
-            return value
-
-        return super(ModificationTimestampField, self).pre_save(model, add)
-
-    def get_internal_type(self):
-        return "DateTimeField"
 
 
 class JSONField(models.TextField):
@@ -188,7 +84,7 @@ class JSONField(models.TextField):
 
     def loads(self, val):
         try:
-            val = simplejson.loads(val, encoding=settings.DEFAULT_CHARSET)
+            val = json.loads(val, encoding=settings.DEFAULT_CHARSET)
 
             # XXX We need to investigate why this is happening once we have
             #     a solid repro case.
@@ -196,7 +92,7 @@ class JSONField(models.TextField):
                 logging.warning("JSONField decode error. Expected dictionary, "
                                 "got string for input '%s'" % val)
                 # For whatever reason, we may have gotten back
-                val = simplejson.loads(val, encoding=settings.DEFAULT_CHARSET)
+                val = json.loads(val, encoding=settings.DEFAULT_CHARSET)
         except ValueError:
             # There's probably embedded unicode markers (like u'foo') in the
             # string. We have to eval it.

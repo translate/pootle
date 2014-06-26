@@ -224,7 +224,7 @@ def delete_path_obj(request, path_obj, **kwargs):
     if check_permission('administrate', request):
         tp = path_obj.translation_project
         link = reverse('pootle-tp-delete-path-obj',
-                       args=[tp.language.code, tp.project.code, path_obj.path])
+                       args=[tp.language.code, tp.project.code, request.path])
 
         if path_obj.is_dir:
             text = _("Delete this folder...")

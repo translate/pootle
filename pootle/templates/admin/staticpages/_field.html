@@ -1,10 +1,11 @@
 <div class="control-group">
   {{ field.label_tag }}
   <div class="controls">
-    {{ field }}
+    {% if not help_pre %}{{ field }}{% endif %}
     {% if field.help_text %}
-    <span class="help_text{% if help_pre %} help-pre{% endif %}">{{ field.help_text }}</span>
+    <span class="help_text">{{ field.help_text }}</span>
     {{ field.errors }}
     {% endif %}
+    {% if help_pre %}{{ field }}{% endif %}
   </div>
 </div>

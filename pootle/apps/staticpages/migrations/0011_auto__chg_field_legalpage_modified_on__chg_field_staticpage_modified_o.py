@@ -2,7 +2,10 @@
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
+from django.conf import settings
 from django.db import models
+
+AUTH_USER_MODEL = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 
 class Migration(SchemaMigration):
@@ -65,7 +68,7 @@ class Migration(SchemaMigration):
             'agreed_on': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now': 'True', 'auto_now_add': 'True', 'blank': 'True'}),
             'document': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['staticpages.LegalPage']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['%s']" % (AUTH_USER_MODEL)})
         },
         'staticpages.legalpage': {
             'Meta': {'object_name': 'LegalPage'},

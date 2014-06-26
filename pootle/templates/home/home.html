@@ -1,90 +1,10 @@
 {% extends "home/base.html" %}
-{% load url from future %}
-{% load i18n notification_tags cleanhtml assets common_tags search %}
-{% get_current_language as LANGUAGE_CODE %}
 
-{% block extra_head %}
-<link rel="alternate" type="application/rss+xml" href="{% url 'pootle-notifications-feed' "" %}" />
-{% endblock %}
+{% load assets %}
 
-{% block body_id %}main-overview{% endblock %}
-
-{% block search %}{% render_search %}{% endblock %}
-
-{% block header_meta_block %}{% endblock %}
-
-{% block precontent %}
-{% if description or can_edit %}
-  <div class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
-    {% if description %}
-      {# The surrounding div tag is kept for convenience #}
-      <div>
-      {{ description|clean }}
-      </div>
-    {% else %}
-      <p class="placeholder muted">{% trans "No description set." %}</p>
-    {% endif %}
-    {% if can_edit %}
-      {% include "admin/_settings_edit.html" %}
-    {% endif %}
-  </div>
-{% endif %}
-{% if can_edit %}
-  <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
-    {% include "admin/_settings_form.html" %}
-  </div>
-{% endif %}
-{% endblock precontent %}
-
-{% block content %}
-<div class="module first" lang="{{ LANGUAGE_CODE }}">
-  <div class="hd">
-    <h2>{% trans "Languages" %}</h2>
-  </div>
-  <div class="bd">
-    {% display_table languages_table %}
-    {% include "core/_summary_legend.html" %}
-  </div>
-</div>
-
-<div class="module" lang="{{ LANGUAGE_CODE }}">
-  <div class="hd">
-    <h2>{% trans "Projects" %}</h2>
-  </div>
-  <div class="bd">
-    {% display_table projects_table %}
-  </div>
-</div>
-{% endblock content %}
-
-{% block postcontent %}
-<div class="module latestnews{% if moreprojects %} first{% endif %}" lang="{{ LANGUAGE_CODE }}">
-  <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
-  <div class="bd">
-    {% render_latest_news "" 5 %}
-    <p class="subscribe"><a href="{% url 'pootle-notifications-feed' '' %}"><i class="icon-feed"></i> {% trans "Subscribe to the RSS feed." %}</a></p>
-  </div>
-</div>
-
-{% include "core/_top_contributors.html" %}
-{% endblock postcontent %}
+{% block content %}{% endblock content %}
 
 {% block scripts_extra %}
-<script type="text/javascript">
-$(function() {
-  PTL.search.init();
-  PTL.stats.init({
-      pootlePath: "{{ resource_obj.pootle_path }}",
-  });
-  PTL.stats.load(function () {
-    PTL.common.updateRelativeDates();
-    setInterval(PTL.common.updateRelativeDates, 6e4);
-    $("body").spin(false);
-  });
-
-  $(".markup-body, li.newsitem, .newsitem address, .newsitem blockcode, .newsitem blockquote, .newsitem :header, .newsitem p, .newsitem pre, .newsitem li, .newsitem dt, .newsitem dd, .newsitem ul, .newsitem ol, .newsitem dl, td.language").filter(":not([dir])").bidi();
-});
-</script>
 {% if user.is_superuser or request.permissions.administrate %}
 {% assets "js_admin" %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>

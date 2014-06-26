@@ -9,7 +9,6 @@ requirements in a virtual environment.
 Before proceeding, consider installing these first:
 
 - At least Python 2.6
-- At least Django 1.5.5 (Won't work yet with Django 1.6 or newer)
 - `python-pip <http://www.pip-installer.org/>`_
 
 If you only want to have a sneak peek of Pootle, the default configuration and
@@ -103,6 +102,15 @@ This will fetch and install the minimum set of required dependencies as well.
 
   lxml also require the development packages of libxml2 and libxslt.
 
+.. note::
+   Older versions of pip may try installing pre-release versions of Pootle,
+   e.g. installing 2.5.1-rc1 instead of 2.5.1.  In that case run:
+
+   .. code-block:: bash
+
+      (env) $ pip install Pootle==2.5.1
+
+
 If everything went well, you will now be able to access the ``pootle`` command
 line tool within your environment.
 
@@ -111,7 +119,7 @@ line tool within your environment.
   (env) $ pootle --version
   Pootle 2.5.1
   Translate Toolkit 1.11.0
-  Django 1.5.5
+  Django 1.5.8
 
 
 .. _installation#initializing_the_configuration:

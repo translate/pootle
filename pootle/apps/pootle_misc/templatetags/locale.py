@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -19,6 +20,8 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
+from django.utils import dateformat
+from django.utils.formats import get_format
 from django.utils.translation import trans_real
 
 
@@ -41,3 +44,21 @@ def locale_align():
 def locale_reverse_align():
     """Returns current locale's reverse alignment."""
     return trans_real.get_language_bidi() and "left" or "right"
+
+
+@register.filter(name='dateformat')
+def do_dateformat(value, format='DATETIME_FORMAT'):
+    """Formats a `value` date using `format`.
+
+    :param value: a datetime object.
+    :param format: a format string accepted by
+        :func:`django.utils.formats.get_format` or
+        :func:`django.utils.dateformat.format`. If none is set, the current
+        locale's default format will be used.
+    """
+    try:
+        use_format = get_format(format)
+    except AttributeError:
+        use_format = format
+
+    return dateformat.format(value, use_format)

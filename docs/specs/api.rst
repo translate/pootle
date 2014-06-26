@@ -88,7 +88,7 @@ Abilities required
      levels (TP, project or subsets of those two).
 
    * **A:** Yes, the original idea in ttk-get and ttk-put is to push and pull
-     files.  Also for Solas it would be that ability. 
+     files.  Also for Solas it would be that ability.
 
      I'm not sure what the lowest level should be, I guess unit for live
      interaction e.g. Virtaal translating live against Pootle DB. Or a live
@@ -171,10 +171,6 @@ User related
 
 
 .. note:: Users won't be listed for security reasons.
-
-
-.. warning:: **TODO**: Still need to define if PootleProfile, or User, or a
-   mixture is exposed.
 
 
 Project related
@@ -333,7 +329,7 @@ File (store) related
    * **Q:** Need to define which filters could be used.
 
      Dwayne Bailey said (in previous chat):
-   
+
      * In Pootle we have directories which also help filter which stores we're
        talking about.
      * We also filter and are able to find units matching some criterion.

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012-2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -17,24 +18,25 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import absolute_import
-
-from django.contrib import auth, messages
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import redirect, render
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
 from pootle.core.views import SuperuserRequiredMixin
-from pootle_misc.baseurl import redirect
 from pootle_misc.util import ajax_required, jsonify
 
 from .forms import agreement_form_factory
 from .models import AbstractPage, LegalPage, StaticPage
+
+
+ANN_TYPE = u'announcements'
+ANN_VPATH = ANN_TYPE + u'/'
 
 
 class PageModelMixin(object):
@@ -47,6 +49,7 @@ class PageModelMixin(object):
         self.model = {
             'legal': LegalPage,
             'static': StaticPage,
+            ANN_TYPE: StaticPage,
         }.get(self.page_type)
 
         if self.model is None:
@@ -61,16 +64,41 @@ class PageModelMixin(object):
         })
         return ctx
 
+    def get_form(self, form_class):
+        form = super(PageModelMixin, self).get_form(form_class)
+
+        if self.page_type == ANN_TYPE:
+            form.fields['virtual_path'].help_text = u'/pages/' + ANN_VPATH
+
+        return form
+
+    def form_valid(self, form):
+        if (self.page_type == ANN_TYPE and not
+            form.cleaned_data['virtual_path'].startswith(ANN_VPATH)):
+            orig_vpath = form.cleaned_data['virtual_path']
+            form.instance.virtual_path = ANN_VPATH + orig_vpath
+
+        return super(PageModelMixin, self).form_valid(form)
+
 
 class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
 
     template_name = 'admin/staticpages/page_list.html'
 
     def get_context_data(self, **kwargs):
+        legal_pages = LegalPage.objects.all()
+        static_pages = StaticPage.objects.exclude(
+            virtual_path__startswith=ANN_VPATH,
+        )
+        announcements = StaticPage.objects.filter(
+            virtual_path__startswith=ANN_VPATH,
+        )
+
         ctx = super(AdminTemplateView, self).get_context_data(**kwargs)
         ctx.update({
-            'legalpages': LegalPage.objects.all(),
-            'staticpages': StaticPage.objects.all(),
+            'legalpages': legal_pages,
+            'staticpages': static_pages,
+            ANN_TYPE: announcements,
         })
         return ctx
 
@@ -82,12 +110,28 @@ class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
 
     def get_initial(self):
         initial = super(PageModelMixin, self).get_initial()
-        next_page_number = AbstractPage.max_pk() + 1
-        initial.update({
+
+        initial_args = {
             'title': _('Page Title'),
-            'virtual_path': _('page-%d', next_page_number),
-        })
+        }
+
+        if self.page_type != ANN_TYPE:
+            next_page_number = AbstractPage.max_pk() + 1
+            initial_args['virtual_path'] = _('page-%d', next_page_number)
+
+        initial.update(initial_args)
+
         return initial
+
+    def get_form(self, form_class):
+        form = super(PageCreateView, self).get_form(form_class)
+
+        if self.page_type == ANN_TYPE:
+            del form.fields['url']
+            form.fields['virtual_path'] \
+                .widget.attrs['placeholder'] = u'<project_code>'
+
+        return form
 
 
 class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
@@ -102,6 +146,16 @@ class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
             'page_type': self.page_type,
         })
         return ctx
+
+    def get_form_kwargs(self):
+        kwargs = super(PageUpdateView, self).get_form_kwargs()
+
+        if self.page_type == ANN_TYPE:
+            orig_vpath = self.object.virtual_path
+            self.object.virtual_path = orig_vpath.replace(ANN_VPATH, '')
+            kwargs.update({'instance': self.object})
+
+        return kwargs
 
 
 class PageDeleteView(SuperuserRequiredMixin, PageModelMixin, DeleteView):
@@ -139,7 +193,7 @@ def display_page(request, virtual_path):
     ctx = {
         'page': page,
     }
-    return render_to_response(template_name, ctx, RequestContext(request))
+    return render(request, template_name, ctx)
 
 
 @ajax_required

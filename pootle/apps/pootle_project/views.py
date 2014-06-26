@@ -18,104 +18,30 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-import locale
-
 from django import forms
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import render
 from django.template import loader, RequestContext
-from django.utils.translation import ugettext as _, ungettext
+from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
-from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.helpers import get_translation_context
+from pootle.core.browser import (get_table_headings, make_language_item,
+                                 make_project_list_item, make_xlanguage_item)
+from pootle.core.decorators import (get_path_obj, get_resource,
+                                    permission_required)
+from pootle.core.helpers import (get_export_view_context, get_overview_context,
+                                 get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
-from pootle.i18n.gettext import tr_lang
-from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
-from pootle_app.views.admin import util
-from pootle_app.views.admin.permissions import admin_permissions
-from pootle_app.views.index.index import getprojects
-from pootle_app.views.top_stats import gentopstats_project, gentopstats_root
-from pootle_misc.browser import get_table_headings
 from pootle_misc.util import ajax_required, jsonify
-from pootle_profile.models import get_profile
 from pootle_project.forms import (TranslationProjectFormSet,
                                   TranslationProjectTagForm, tp_form_factory)
 from pootle_project.models import Project
-from pootle_statistics.models import Submission
 from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
-
-
-def get_last_action(translation_project):
-    try:
-        return Submission.objects.filter(
-            translation_project=translation_project).latest().as_html()
-    except Submission.DoesNotExist:
-        return ''
-
-
-def make_language_item(translation_project):
-    href = translation_project.get_absolute_url()
-    href_all = translation_project.get_translate_url()
-    href_todo = translation_project.get_translate_url(state='incomplete')
-
-    info = {
-        'project': translation_project.project.code,
-        'code': translation_project.code,
-        'href': href,
-        'href_all': href_all,
-        'href_todo': href_todo,
-        'title': tr_lang(translation_project.language.fullname),
-        'lastactivity': get_last_action(translation_project),
-        'tags': translation_project.tag_like_objects,
-        'pk': translation_project.pk,
-    }
-
-    return info
-
-
-def get_project_base_template_vars(request, project, can_edit):
-    """Get the base template vars for project overview view."""
-    translation_projects = project.translationproject_set.all()
-
-    items = [make_language_item(translation_project) \
-            for translation_project in translation_projects.iterator()]
-    items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
-
-    languagecount = len(translation_projects)
-
-    summary = ungettext('%(languages)d language',
-                        '%(languages)d languages',
-                        languagecount, {"languages": languagecount})
-
-    table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'activity', 'tags']
-
-    template_vars = {
-        'resource_obj': request.resource_obj,
-        'project': {
-            'code': project.code,
-            'name': project.fullname,
-            'description': project.description,
-            'summary': summary,
-        },
-        'topstats': gentopstats_project(project),
-        'can_edit': can_edit,
-        'table': {
-            'id': 'project',
-            'proportional': False,
-            'fields': table_fields,
-            'headings': get_table_headings(table_fields),
-            'items': items,
-        },
-    }
-
-    return template_vars
 
 
 @ajax_required
@@ -146,13 +72,12 @@ def ajax_remove_tag_from_tp_in_project(request, translation_project, tag_name):
         translation_project.goals.remove(tag_name)
     else:
         translation_project.tags.remove(tag_name)
-    context = {
+    ctx = {
         'tp_tags': translation_project.tags.all().order_by('name'),
         'project': translation_project.project.code,
         'language': translation_project.language.code,
     }
-    response = render_to_response('projects/xhr_tags_list.html',
-                                  context, RequestContext(request))
+    response = render(request, "projects/xhr_tags_list.html", ctx)
     response.status_code = 201
     return response
 
@@ -162,13 +87,12 @@ def _add_tag(request, translation_project, tag_like_object):
         translation_project.tags.add(tag_like_object)
     else:
         translation_project.goals.add(tag_like_object)
-    context = {
+    ctx = {
         'tp_tags': translation_project.tag_like_objects,
         'project': translation_project.project.code,
         'language': translation_project.language.code,
     }
-    response = render_to_response('projects/xhr_tags_list.html',
-                                  context, RequestContext(request))
+    response = render(request, "projects/xhr_tags_list.html", ctx)
     response.status_code = 201
     return response
 
@@ -224,39 +148,56 @@ def ajax_add_tag_to_tp_in_project(request, project):
             url_kwargs = {
                 'project_code': project.code,
             }
-            context = {
+            ctx = {
                 'add_tag_form': add_tag_form,
                 'add_tag_action_url': reverse('pootle-xhr-tag-tp-in-project',
                                               kwargs=url_kwargs)
             }
-            return render_to_response('core/xhr_add_tag_form.html',
-                                      context, RequestContext(request))
-
+            return render(request, "core/xhr_add_tag_form.html", ctx)
 
 
 @get_path_obj
 @permission_required('view')
-def overview(request, project):
-    """Page listing all languages added to project."""
-    can_edit = check_permission('administrate', request)
-    templatevars = get_project_base_template_vars(request, project, can_edit)
+@get_resource
+def overview(request, project, dir_path, filename):
+    """Languages overview for a given project."""
+    from locale import strcoll
 
-    if can_edit:
+    item_func = (make_xlanguage_item if dir_path or filename
+                                     else make_language_item)
+    items = [item_func(item) for item in request.resource_obj.get_children()]
+    items.sort(lambda x, y: strcoll(x['title'], y['title']))
+
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'suggestions', 'critical', 'last-updated', 'activity']
+
+    ctx = get_overview_context(request)
+    ctx.update({
+        'project': project,
+        'can_edit': check_permission("administrate", request),
+        'table': {
+            'id': 'project',
+            'fields': table_fields,
+            'headings': get_table_headings(table_fields),
+            'items': items,
+        },
+
+        'browser_extends': 'projects/base.html',
+    })
+
+    if ctx['can_edit']:
         from pootle_project.forms import DescriptionForm
-        url_kwargs = {
-            'project_code': project.code,
-        }
-        templatevars.update({
+        tag_action_url = reverse('pootle-xhr-tag-tp-in-project',
+                                 kwargs={'project_code': project.code})
+        ctx.update({
             'form': DescriptionForm(instance=project),
             'form_action': reverse('pootle-project-admin-settings',
                                    args=[project.code]),
             'add_tag_form': TranslationProjectTagForm(project=project),
-            'add_tag_action_url': reverse('pootle-xhr-tag-tp-in-project',
-                                          kwargs=url_kwargs),
+            'add_tag_action_url': tag_action_url,
         })
 
-    return render_to_response('projects/overview.html', templatevars,
-                              context_instance=RequestContext(request))
+    return render(request, 'browser/overview.html', ctx)
 
 
 @require_POST
@@ -268,11 +209,11 @@ def project_settings_edit(request, project):
     form = DescriptionForm(request.POST, instance=project)
 
     response = {}
-    rcode = 400
+    status = 400
 
     if form.is_valid():
         form.save()
-        rcode = 200
+        status = 200
 
         if project.description:
             the_html = project.description
@@ -285,103 +226,147 @@ def project_settings_edit(request, project):
 
         response["description"] = the_html
 
-    context = {
+    ctx = {
         "form": form,
         "form_action": reverse('pootle-project-admin-settings',
                                args=[project.code]),
     }
-    t = loader.get_template('admin/_settings_form.html')
-    c = RequestContext(request, context)
-    response['form'] = t.render(c)
 
-    return HttpResponse(jsonify(response), status=rcode,
+    template = loader.get_template('admin/_settings_form.html')
+    response['form'] = template.render(RequestContext(request, ctx))
+
+    return HttpResponse(jsonify(response), status=status,
                         mimetype="application/json")
 
 
 @get_path_obj
 @permission_required('view')
-def translate(request, project):
-    request.pootle_path = project.pootle_path
-    # TODO: support arbitrary resources
-    request.ctx_path = project.pootle_path
-    request.resource_path = ''
-
-    request.store = None
-    request.directory = project.directory
-
-    language = None
-
-    context = get_translation_context(request)
-    context.update({
-        'language': language,
+@get_resource
+def translate(request, project, dir_path, filename):
+    ctx = get_translation_context(request)
+    ctx.update({
+        'language': None,
         'project': project,
 
         'editor_extends': 'projects/base.html',
-        'editor_body_id': 'projecttranslate',
     })
 
-    return render_to_response('editor/main.html', context,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/main.html", ctx)
+
+
+@get_path_obj
+@permission_required('view')
+@get_resource
+def export_view(request, project, dir_path, filename):
+    language = None
+
+    ctx = get_export_view_context(request)
+    ctx.update({
+        'source_language': 'en',
+        'language': language,
+        'project': project,
+    })
+
+    return render(request, "editor/export_view.html", ctx)
 
 
 @get_path_obj
 @permission_required('administrate')
-def project_admin(request, current_project):
+def project_admin(request, project):
     """Adding and deleting project languages."""
-
-    tp_form_class = tp_form_factory(current_project)
-
-    queryset = TranslationProject.objects.filter(project=current_project) \
-                                         .order_by('pootle_path')
-
-    model_args = {
-        'project': {
-            'code': current_project.code,
-            'name': current_project.fullname,
-        }
-    }
+    from pootle_app.views.admin.util import edit as admin_edit
 
     def generate_link(tp):
         path_args = split_pootle_path(tp.pootle_path)[:2]
         perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
         return '<a href="%s">%s</a>' % (perms_url, tp.language)
 
-    return util.edit(request, 'projects/admin/languages.html',
-                     TranslationProject, model_args, generate_link,
-                     linkfield="language", queryset=queryset,
-                     can_delete=True, form=tp_form_class,
-                     formset=TranslationProjectFormSet,
-                     exclude=('description',))
+    queryset = TranslationProject.objects.filter(project=project)
+    queryset = queryset.order_by('pootle_path')
+
+    ctx = {
+        'page': 'admin-languages',
+
+        'project': {
+            'code': project.code,
+            'name': project.fullname,
+        }
+    }
+
+    return admin_edit(request, 'projects/admin/languages.html',
+                      TranslationProject, ctx, generate_link,
+                      linkfield="language", queryset=queryset,
+                      can_delete=True, form=tp_form_factory(project),
+                      formset=TranslationProjectFormSet,
+                      exclude=('description',))
 
 
 @get_path_obj
 @permission_required('administrate')
 def project_admin_permissions(request, project):
-    template_vars = {
-        "project": project,
-        "directory": project.directory,
-        "feed_path": project.pootle_path[1:],
+    from pootle_app.views.admin.permissions import admin_permissions
+
+    ctx = {
+        'page': 'admin-permissions',
+
+        'project': project,
+        'directory': project.directory,
+        'feed_path': project.pootle_path[1:],
     }
     return admin_permissions(request, project.directory,
-                             "projects/admin/permissions.html", template_vars)
+                             'projects/admin/permissions.html', ctx)
 
 
 @get_path_obj
 @permission_required('view')
-def projects_index(request, root):
-    """page listing all projects"""
-    table_fields = ['project', 'progress', 'activity']
+def projects_overview(request, project_set):
+    """Page listing all projects."""
+    items = [make_project_list_item(project)
+             for project in project_set.get_children()]
 
-    templatevars = {
+    table_fields = ['name', 'progress', 'total', 'need-translation',
+                    'suggestions', 'critical', 'last-updated', 'activity']
+
+    ctx = get_overview_context(request)
+    ctx.update({
         'table': {
             'id': 'projects',
-            'proportional': False,
             'fields': table_fields,
             'headings': get_table_headings(table_fields),
-            'items': getprojects(request),
+            'items': items,
         },
-        'topstats': gentopstats_root(),
-    }
 
-    return render_to_response('projects/list.html', templatevars,
-                              RequestContext(request))
+        'browser_extends': 'projects/all/base.html',
+    })
+
+    response = render(request, 'browser/overview.html', ctx)
+    response.set_cookie('pootle-language', 'projects')
+
+    return response
+
+
+@get_path_obj
+@permission_required('view')
+def projects_translate(request, project_set):
+    ctx = get_translation_context(request)
+    ctx.update({
+        'language': None,
+        'project': None,
+
+        'editor_extends': 'projects/all/base.html',
+    })
+
+    return render(request, "editor/main.html", ctx)
+
+
+@get_path_obj
+@permission_required('view')
+def projects_export_view(request, project_set):
+    ctx = get_export_view_context(request)
+    ctx.update({
+        'source_language': 'en',
+        'language': None,
+        'project': None,
+    })
+
+    return render(request, "editor/export_view.html", ctx)

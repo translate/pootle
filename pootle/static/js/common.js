@@ -5,31 +5,59 @@
   PTL.common = {
 
     init: function () {
-      PTL.utils.makeSelectableInput('#js-select-language',
-        {
-          allowClear: true,
-          dropdownAutoWidth: true,
-          dropdownCssClass: 'breadcrumb-dropdown',
-          placeholder: gettext("All Languages"),
-          width: 'off'
-        },
-        function (e) {
-          var langCode = $(this).val(),
-              projectCode = $('#js-select-project').val();
-          PTL.common.navigateTo(langCode, projectCode);
+      setInterval($.fn.tipsy.revalidate, 1000);
+
+      $(".js-select2").select2({
+        width: "resolve"
       });
-      PTL.utils.makeSelectableInput('#js-select-project',
-        {
-          allowClear: true,
-          dropdownAutoWidth: true,
-          dropdownCssClass: 'breadcrumb-dropdown',
-          placeholder: gettext("All Projects"),
-          width: 'off'
-        },
-        function (e) {
-          var projectCode = $(this).val(),
-              langCode = $('#js-select-language').val();
-          PTL.common.navigateTo(langCode, projectCode);
+
+      // Hide the help messages for the Select2 multiple selects.
+      $("select[multiple].js-select2").siblings("span.help_text").hide();
+
+      // Build the language picker.
+      var picker = $("#js-language-picker");
+      for (i in PTL.languages) {
+        var code = PTL.languages[i][0];
+        var lang = PTL.languages[i][1];
+        picker.append($("<option>", {value: code}).text(lang));
+      }
+      var getLocale = function(lang) {
+        var locale = lang.slice(0, lang.indexOf("-"));
+        var country = lang.indexOf("-") != -1 ? lang.slice(lang.indexOf("-"), -1) : null;
+        var generic;
+
+        for (i in PTL.languages) {
+          var code = PTL.languages[i][0];
+          if (lang == code) {
+            return code;
+          } else if (code == locale) {
+            generic = code;
+          }
+        }
+        return generic;
+      }
+      // select2 the picker separately because we want to give it a dynamic
+      // width.
+      picker.select2({dropdownCssClass: 's2js-freefloat-drop'})
+        .select2("val", getLocale(picker.attr("default")))
+        .on("change", function(e) {
+            $.cookie("django_language", e.val, {path: "/"});
+            location.reload();
+        });
+
+      // Append fragment identifiers for login redirects
+      $('#navbar').on('focus click', '#js-login', function (e) {
+        var $anchor = $(this),
+            currentURL = $anchor.attr('href'),
+            cleanURL = currentURL,
+            hashIndex = currentURL.indexOf(encodeURIComponent('#')),
+            newURL;
+
+        if (hashIndex !== -1) {
+          cleanURL = currentURL.slice(0, hashIndex);
+        }
+        newURL = [cleanURL, encodeURIComponent(window.location.hash)].join('');
+        $anchor.attr('href', newURL);
       });
 
       /* Collapsing functionality */
@@ -40,6 +68,27 @@
         if ($("textarea", $(this).next("div.collapsethis")).length) {
           $("textarea", $(this).next("div.collapsethis")).focus();
         }
+      });
+
+      /* Page sidebar */
+      $(document).on('click', '.js-sidebar-toggle', function () {
+        var $sidebar =  $('.js-sidebar'),
+            openClass = 'sidebar-open',
+            cookieName = 'project-announcements',
+            cookieData = JSON.parse($.cookie(cookieName)) || {};
+
+        $sidebar.toggleClass(openClass);
+
+        cookieData.isOpen = $sidebar.hasClass(openClass);
+        $.cookie(cookieName, JSON.stringify(cookieData), {path: '/'});
+      });
+
+      /* Page sidebar tab display */
+      $(document).on('click', '.js-sidebar-tab-display', function () {
+        $('.js-sidebar-pane').hide();
+        $('.js-sidebar-tab-display').removeClass('active-sidebar-tab');
+        $('#' + $(this).attr('data-target')).show();
+        $(this).addClass('active-sidebar-tab');
       });
 
       /* Popups */
@@ -357,47 +406,6 @@
       });
     },
 
-    /* Navigates to `languageCode`, `projectCode` while retaining the
-     * current context when applicable */
-    navigateTo: function (languageCode, projectCode) {
-      var curProject = $('#js-select-project').data('initial-code'),
-          curLanguage = $('#js-select-language').data('initial-code'),
-          curUrl = window.location.toString(),
-          newUrl = curUrl,
-          langChanged = languageCode !== curLanguage,
-          projChanged = projectCode !== curProject,
-          hasChanged = langChanged || projChanged;
-
-      if (!hasChanged) {
-        return;
-      }
-
-      if (languageCode === '' && projectCode === '') {
-        newUrl = l('/');
-      } else if (languageCode === '' && projectCode !== '') {
-        newUrl = l(['', 'projects', projectCode].join('/'));
-      } else if (languageCode !== '' && projectCode === '') {
-        newUrl = l(['', languageCode].join('/'));
-      } else if (languageCode !== '' && projectCode !== '') {
-        if (projChanged) {
-          newUrl = l(['', languageCode, projectCode].join('/'));
-        } else if (langChanged) {
-          if (curLanguage === '') {
-            newUrl = curUrl.replace('projects/' + curProject,
-                                    languageCode + '/' + curProject);
-          } else {
-            newUrl = curUrl.replace(curLanguage + '/' + curProject,
-                                    languageCode + '/' + curProject)
-                           .replace(/(\#|&)unit=\d+/, '');
-          }
-        }
-        var changed = projChanged ? 'project' : 'language';
-        $.cookie('user-choice', changed, {path: '/'});
-      }
-
-      window.location.href = newUrl;
-    },
-
     /* Updates the disabled state of an input button according to the
      * checked status of input checkboxes.
      */
@@ -449,59 +457,59 @@
           }
         }
       });
+    },
+
+    fixSidebarTabs: function () {
+      var sidebarTabsCount = $('.js-sidebar-tab-display').length;
+
+      if (sidebarTabsCount === 1) {
+        $('#sidebar-tabs').hide();
+      } else if (sidebarTabsCount > 1) {
+        $('.js-sidebar-pane').hide();
+        if (!$('.active-sidebar-tab').length) {
+          $('.js-sidebar-tab-display:first').addClass('active-sidebar-tab');
+        }
+        $('.active-sidebar-tab').trigger('click');
+      }
+    },
+
+    fixSidebarHeight: function () {
+      var $announceSidebar = $('#js-announcement-sidebar-pane'),
+          $actionsSidebar = $('#js-actions-sidebar-pane'),
+          $instructSidebar = $('#js-instructions-sidebar-pane'),
+          $goalSidebar = $('#js-goal-sidebar-pane'),
+          annHeight = $announceSidebar.length ? $announceSidebar.height() : 0,
+          actsHeight = $actionsSidebar.length ? $actionsSidebar.height() : 0,
+          instHeight = $instructSidebar.length ? $instructSidebar.height() : 0,
+          goalHeight = $goalSidebar.length ? $goalSidebar.height() : 0,
+          maxSidebarPanesHeight = Math.max(annHeight, actsHeight, instHeight,
+                                           goalHeight);
+
+      if (!maxSidebarPanesHeight) {
+        // If there is no sidebar.
+        return;
+      }
+
+      var $body = $('#body'),
+          $sidebarTabs = $('#sidebar-tabs'),
+          bodyHeight = $body.height(),
+          bodyPadding = parseInt($body.css('padding-bottom'), 10),
+          contentAreaHeight = $('#wrapper').height() - $body.offset().top -
+                              bodyPadding,
+          sidebarTabsHeight = $sidebarTabs.length ? $sidebarTabs.height() : 0,
+          sidebarHeight = sidebarTabsHeight + maxSidebarPanesHeight +
+                          $('#footer').height() + bodyPadding,
+          newHeight = Math.max(contentAreaHeight, sidebarHeight);
+
+      if (bodyHeight < contentAreaHeight) {
+        $body.css('height', newHeight);
+      }
     }
 
   };
 
 }(jQuery));
 
-$(function ($) {
-  PTL.zoom.init();
+$(function () {
   PTL.common.init();
-
-  $(".js-select2").select2({
-    width: "resolve"
-  });
-  // Hide the help messages for the Select2 multiple selects.
-  $("select[multiple].js-select2").siblings("span.help_text").hide();
-
-  // build the language picker
-  var picker = $("#js-language-picker");
-  for (i in PTL.languages) {
-    var code = PTL.languages[i][0];
-    var lang = PTL.languages[i][1];
-    picker.append($("<option>", {value: code}).text(lang));
-  }
-  var getLocale = function(lang) {
-    var locale = lang.slice(0, lang.indexOf("-"));
-    var country = lang.indexOf("-") != -1 ? lang.slice(lang.indexOf("-"), -1) : null;
-    var generic;
-
-    for (i in PTL.languages) {
-      var code = PTL.languages[i][0];
-      if (lang == code) {
-        return code;
-      } else if (code == locale) {
-        generic = code;
-      }
-    }
-    return generic;
-  }
-  // select2 the picker separately because we want to give it a dynamic width
-  picker.select2({dropdownCssClass: 's2js-freefloat-drop'})
-    .select2("val", getLocale(picker.attr("default")))
-    .on("change", function(e) {
-        $.cookie("django_language", e.val, {path: "/"});
-        location.reload();
-    });
 });
-
-// We can't use `e.persisted` here. See bug 2949 for reference
-window.addEventListener('pageshow', function (e) {
-  var selectors = ['#js-select-language', '#js-select-project'];
-  for (var i=0; i<selectors.length; i++) {
-    var $el = $(selectors[i]),
-        initial = $el.data('initial-code');
-    $el.select2('val', initial);
-  }
-}, false);

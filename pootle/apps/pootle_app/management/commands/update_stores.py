@@ -51,8 +51,15 @@ class Command(ModifiedSinceMixin, PootleCommand):
         super(Command, self).handle_noargs(**options)
 
     def handle_translation_project(self, translation_project, **options):
-        logging.info(u"Scanning for new files in %s", translation_project)
-        translation_project.scan_files()
+        """
+        :return: flag if child stores should be updated
+        """
+        if not translation_project.disabled:
+            logging.info(u"Scanning for new files in %s", translation_project)
+            translation_project.scan_files()
+            return True
+        else:
+            return False
 
     def handle_store(self, store, **options):
         keep = options.get('keep', False)

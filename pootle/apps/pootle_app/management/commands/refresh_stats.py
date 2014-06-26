@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009, 2013 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -20,254 +20,76 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
+from optparse import make_option
+
+from translate.filters.decorators import Category
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-
-
-import logging
-import time
-
-from optparse import make_option
-
-from django.conf import settings
-from django.core.cache import cache
-from django.core.urlresolvers import set_script_prefix
-from django.db.models import Count, Max, Sum
-from django.utils.encoding import force_unicode, iri_to_uri
-
-from pootle_language.models import Language
-from pootle_misc.util import datetime_min
-from pootle_project.models import Project
-from pootle_statistics.models import Submission
-from pootle_store.models import Store, Unit, QualityCheck, Suggestion
+from pootle_app.management.commands import PootleCommand
+from pootle_store.caching import count_words
+from pootle_store.models import QualityCheck, Suggestion, SuggestionStates
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
-
-from . import PootleCommand
 
 
 class Command(PootleCommand):
-    help = "Allow stats and text indices to be refreshed manually."
-
-    def handle_translation_project(self, translation_project, **options):
-        # This will force the indexer of a TranslationProject to be
-        # initialized. The indexer will update the text index of the
-        # TranslationProject if it is out of date.
-        translation_project.indexer
+    help = "Allow stats to be refreshed manually."
 
     shared_option_list = (
-        make_option('--calculate-checks', dest='calculate_checks',
-                    action='store_true',
-                    help='To recalculate quality checks for all strings'),
-        )
+        make_option("--calculate-checks", dest="calculate_checks",
+                    action="store_true", help="Recalculate all quality checks"),
+    )
     option_list = PootleCommand.option_list + shared_option_list
 
-    def handle_noargs(self, **options):
-        # The script prefix needs to be set here because the generated
-        # URLs need to be aware of that and they are cached. Ideally
-        # Django should take care of setting this up, but it doesn't yet:
-        # https://code.djangoproject.com/ticket/16734
-        script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
-                            else force_unicode(settings.FORCE_SCRIPT_NAME))
-        set_script_prefix(script_name)
-
-        super(Command, self).handle_noargs(**options)
-
-    def handle_all_stores(self, translation_project, **options):
-        # TODO use the faster method
-        translation_project.flush_cache()
-        translation_project.get_stats()
-        translation_project.get_mtime()
+    def handle_noargs(self, *args, **kwargs):
+        self._updated_tps = set()
+        super(Command, self).handle_noargs(*args, **kwargs)
+        self.update_translation_projects(self._updated_tps)
 
     def handle_store(self, store, **options):
-        # TODO use the faster method
-        store.flush_cache()
-        store.get_stats()
-        store.get_mtime()
+        self.stdout.write("Processing %r" % (store))
+        store.total_wordcount = 0
+        store.translated_wordcount = 0
+        store.fuzzy_wordcount = 0
+        store.suggestion_count = Suggestion.objects.filter(
+            unit__store=store,
+            unit__state__gt=OBSOLETE,
+            state=SuggestionStates.PENDING,
+        ).count()
 
-    def handle_language(self, lang, **options):
-        # TODO use the faster method
-        lang.flush_cache(False)
-        lang.get_stats()
-        lang.get_mtime()
+        QualityCheck.objects.filter(unit__store=store).delete()
 
-    def handle_project(self, prj, **options):
-        # TODO use the faster method
-        prj.flush_cache(False)
-        prj.get_stats()
-        prj.get_mtime()
+        for unit in store.units.all():
+            wordcount = count_words(unit.source_f.strings)
+            store.total_wordcount += wordcount
+            if unit.state == TRANSLATED:
+                store.translated_wordcount += wordcount
+            elif unit.state == FUZZY:
+                store.fuzzy_wordcount += wordcount
 
-    def handle_all(self, **options):
-        timeout = settings.OBJECT_CACHE_TIMEOUT
-        calculate_checks = options.get('calculate_checks', False)
+        if options["calculate_checks"]:
+            store.update_qualitychecks()
 
-        logging.info('Initializing stores...')
-        self._init_stores()
+            store.failing_critical_count = QualityCheck.objects.filter(
+                unit__store=store,
+                unit__state__gt=UNTRANSLATED,
+                category=Category.CRITICAL,
+                false_positive=False,
+            ).values('unit').distinct().count()
 
-        if calculate_checks:
-            logging.info('Calculating quality checks for all units...')
-            QualityCheck.objects.all().delete()
+        store.save()
+        self._updated_tps.add(store.translation_project)
 
-            for store in Store.objects.iterator():
-                logging.info("update_qualitychecks %s" % store.pootle_path)
-                for unit in store.units.iterator():
-                    unit.update_qualitychecks(created=True)
+    def update_translation_projects(self, tps):
+        def update(tp, col):
+            setattr(tp, col, sum(getattr(store, col) for store in tp.stores.iterator()))
 
-        logging.info('Setting quality check stats values for all stores...')
-        self._set_qualitycheck_stats(timeout)
-        logging.info('Setting last action values for all stores...')
-        self._set_last_action_stats(timeout)
-        logging.info('Setting mtime values for all stores...')
-        self._set_mtime_stats(timeout)
-        logging.info('Setting wordcount stats values for all stores...')
-        self._set_wordcount_stats(timeout)
-        logging.info('Setting suggestion count values for all stores...')
-        self._set_suggestion_stats(timeout)
-
-        logging.info('Setting empty values for other cache entries...')
-        self._set_empty_values(timeout)
-
-        logging.info('Refreshing directories stats...')
-
-        lang_query = Language.objects.all()
-        prj_query = Project.objects.all()
-
-        for lang in lang_query.iterator():
-            # Calculate stats for all directories and translation projects
-            lang.refresh_stats()
-
-        for prj in prj_query.iterator():
-            prj.refresh_stats(False)
-
-    def _set_qualitycheck_stats_cache(self, stats, key, timeout):
-        if key:
-            logging.info('Set get_checks for %s' % key)
-            cache.set(key + ':get_checks', stats, timeout)
-            del self.cache_values[key]['get_checks']
-
-    def _set_qualitycheck_stats(self, timeout):
-        queryset = QualityCheck.objects.filter(unit__state__gt=UNTRANSLATED,
-                                               false_positive=False) \
-                                       .values('unit__store', 'name') \
-                                       .annotate(count=Count('name')) \
-                                       .order_by('unit__store')
-
-        saved = None
-        key = None
-        stats = {}
-
-        for item in queryset.iterator():
-            if item['unit__store'] != saved:
-                key = Store.objects.get(id=item['unit__store']).get_cachekey()
-                if saved:
-                    self._set_qualitycheck_stats_cache(stats, key, timeout)
-
-                saved = item['unit__store']
-                stats = {}
-
-            stats[item['name']] = item['count']
-
-        if saved and saved != item['unit__store']:
-            self._set_qualitycheck_stats_cache(stats, key, timeout)
-
-    def _set_wordcount_stats_cache(self, stats, key, timeout):
-        if key:
-            logging.info('Set wordcount stats for %s' % key)
-            cache.set(key + ':get_total_wordcount', stats['total'], timeout)
-            cache.set(key + ':get_fuzzy_wordcount', stats[FUZZY], timeout)
-            cache.set(key + ':get_translated_wordcount', stats[TRANSLATED],
-                      timeout)
-            del self.cache_values[key]['get_total_wordcount']
-            del self.cache_values[key]['get_fuzzy_wordcount']
-            del self.cache_values[key]['get_translated_wordcount']
-
-    def _set_wordcount_stats(self, timeout):
-        res = Unit.objects.filter(state__gt=OBSOLETE) \
-                          .values('store', 'state') \
-                          .annotate(wordcount=Sum('source_wordcount')) \
-                          .order_by('store', 'state')
-
-        saved_id = None
-        saved_key = None
-        stats = None
-        key = None
-
-        for item in res.iterator():
-            if saved_id != item['store']:
-                key = Store.objects.get(id=item['store']).get_cachekey()
-                if saved_key:
-                    self._set_wordcount_stats_cache(stats, saved_key, timeout)
-
-                stats = {'total': 0, FUZZY: 0, TRANSLATED: 0}
-                saved_key = key
-                saved_id = item['store']
-
-            stats['total'] += item['wordcount']
-
-            if item['state'] in [FUZZY, TRANSLATED]:
-                stats[item['state']] = item['wordcount']
-
-        if saved_id:
-            self._set_wordcount_stats_cache(stats, key, timeout)
-
-    def _init_stores(self):
-        self.cache_values = {}
-        for store in Store.objects.all():
-            self.cache_values[store.get_cachekey()] = {
-                'get_last_action': {'id': 0, 'mtime': 0, 'snippet': ''},
-                'get_suggestion_count': 0,
-                'get_checks': {},
-                'get_total_wordcount': 0,
-                'get_translated_wordcount': 0,
-                'get_fuzzy_wordcount': 0,
-                'get_mtime': datetime_min
-            }
-
-    def _set_empty_values(self, timeout):
-        for key, value in self.cache_values.items():
-            for func in value.keys():
-                cache_key = iri_to_uri(key + ':' + func)
-                cache.set(cache_key, value[func], timeout)
-
-    def _set_last_action_stats(self, timeout):
-        ss = Submission.simple_objects.values('unit__store__pootle_path') \
-                                      .annotate(max_id=Max('id'))
-        for s_id in ss.iterator():
-            sub = Submission.objects.select_related('unit__store') \
-                                    .get(id=s_id['max_id'])
-            if sub.unit:
-                store_key = sub.unit.store.get_cachekey()
-                key = iri_to_uri(store_key + ':get_last_action')
-                logging.info('Set last action stats for %s' % key)
-                res = {
-                    'id': sub.unit.id,
-                    'mtime': int(time.mktime(sub.creation_time.timetuple())),
-                    'snippet': sub.get_submission_message()
-                }
-                cache.set(key, res, timeout)
-                del self.cache_values[store_key]['get_last_action']
-
-    def _set_suggestion_stats(self, timeout):
-        """Check if any unit in the store has suggestions"""
-        queryset = Suggestion.objects.filter(unit__state__gt=OBSOLETE) \
-                                     .values('unit__store') \
-                                     .annotate(count=Count('id'))
-
-        for item in queryset.iterator():
-            key = Store.objects.get(id=item['unit__store']).get_cachekey()
-            logging.info('Set suggestion count for %s' % key)
-            cache.set(key + ':get_suggestion_count', item['count'], timeout)
-            del self.cache_values[key]['get_suggestion_count']
-
-    def _set_mtime_stats(self, timeout):
-        """Check if any unit in the store has suggestions"""
-        queryset = Unit.objects.values('store').annotate(
-            max_mtime=Max('mtime')
-        )
-
-        for item in queryset.iterator():
-            key = Store.objects.get(id=item['store']).get_cachekey()
-            logging.info('Set mtime for %s' % key)
-            cache.set(key + ':get_mtime', item['max_mtime'], timeout)
-            del self.cache_values[key]['get_mtime']
+        self.stdout.write("Processing translation projects... (almost done!)")
+        for tp in tps:
+            update(tp, "total_wordcount")
+            update(tp, "translated_wordcount")
+            update(tp, "fuzzy_wordcount")
+            update(tp, "suggestion_count")
+            update(tp, "failing_critical_count")
+            tp.save()

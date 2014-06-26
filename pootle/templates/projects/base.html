@@ -1,13 +1,9 @@
-{% extends "layout.html"  %}
+{% extends "browser/base.html" %}
 
 {% load i18n %}
 
-{% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
+{% block title %}{% if project %}{{ project.name }} | {% endif %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}{% include 'core/_breadcrumbs.html' %}
-{% endblock %}
-
-{% block tabs %}
-{% include "projects/_tabs.html" %}
+{% include 'core/_breadcrumbs.html' with nav='projects/_nav.html' %}
 {% endblock %}

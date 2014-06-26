@@ -30,6 +30,18 @@ SECRET_KEY = '%(default_key)s'
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+# Puts the app into maintenance mode.
+# When `DEBUG` is `False`, this will display a template for every request
+# made to the application.
+#
+# The maintenance pages is not displayed if:
+#   - The user is logged in and is a staff member.
+#   - The user's IP is in `INTERNAL_IPS`.
+MAINTENANCE_MODE = False
+
+# Sequence of URL path regexes to exclude from the maintenance mode.
+MAINTENANCE_IGNORE_URLS = ()
+
 
 #
 # Backends
@@ -59,23 +71,46 @@ DATABASES = {
 
 # Cache Backend settings
 
-# By default we use Django's database cache which is only suitable
+# By default we use Django's local-memory cache which is only suitable
 # for small deployments.
+#
 # If you are going to deploy a real server memcached is preferred. For more
 # information, check
 # http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'pootlecache',
-        'TIMEOUT': 60,
-        'OPTIONS': {
-            'MAX_ENTRIES': 65536,
-            'CULL_FREQUENCY': 16,
-        }
-    }
-}
+#CACHES = {
+#    'default': {
+#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#        'LOCATION': '127.0.0.1:11211',
+#    }
+#}
 
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'action': {
+            'format' : "[%(asctime)s]\t%(message)s",
+            'datefmt' : "%Y-%m-%dT%H:%M:%S"
+        },
+    },
+    'handlers': {
+        # Log to a text file that can be rotated by logrotate
+        'log_action': {
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': os.path.join(POOTLE_LOG_DIRECTORY,
+                                     'pootle-activity.log'),
+            'formatter':'action',
+        },
+    },
+    'loggers': {
+        'action': {
+            'handlers': ['log_action',],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
 
 #
 # Site

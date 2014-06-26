@@ -6,8 +6,7 @@ templates in one (news page for: project, language and translation project). In
 the future we have to take a different approach for this.
 {% endcomment %}
 
-{% load url from future %}
-{% load i18n cleanhtml assets cache common_tags %}
+{% load i18n cleanhtml assets %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -15,35 +14,25 @@ the future we have to take a different approach for this.
   {% trans "News" %} |
   {% if directory.is_language %}
     {{ directory.language.name }}
+  {% elif directory.is_project %}
+    {{ directory.project.fullname }} | {% trans "Projects" %}
   {% else %}
-    {% if directory.is_project %}
-      {{ directory.project.fullname }} | {% trans "Projects" %}
-    {% else %}
-      {{ directory.translation_project.project.fullname }} | {{ directory.translation_project.language.fullname }}
-    {% endif %}
+    {{ directory.translation_project.project.fullname }} | {{ directory.translation_project.language.fullname }}
   {% endif %}
   | {{ block.super }}
-{% endblock %}
-
-{% block breadcrumbs %}
-{{ block.super }}{% include 'core/_breadcrumbs.html' %}
 {% endblock %}
 
 {% block extra_head %}
   <link rel="alternate" type="application/rss+xml" title="{{ title }}" href="{{ notification_url }}" />
 {% endblock %}
 
-{% block body_id %}{% if directory.is_language %}languagenews{% else %}tpnews{% endif %}{% endblock %}
-
-{% block tabs %}
+{% block breadcrumbs %}
   {% if directory.is_language %}
-    {% include "languages/_tabs.html" %}
+    {% include 'core/_breadcrumbs.html' with nav='languages/_nav.html' %}
+  {% elif directory.is_project %}
+    {% include 'core/_breadcrumbs.html' with nav='projects/_nav.html' %}
   {% else %}
-    {% if directory.is_project %}
-      {% include "projects/_tabs.html" %}
-    {% else %}
-      {% include "translation_projects/_tabs.html" %}
-    {% endif %}
+    {% include 'core/_breadcrumbs.html' with nav='translation_projects/_nav.html' %}
   {% endif %}
 {% endblock %}
 
@@ -67,7 +56,7 @@ the future we have to take a different approach for this.
           {% csrf_token %}
           {{ form.as_p }}
           <p class="buttons">
-            <input type="submit" class="news-publish" value="{% trans "Publish" %}" />
+            <input type="submit" class="btn" value="{% trans 'Publish' %}" />
           </p>
         </form>
       </div>

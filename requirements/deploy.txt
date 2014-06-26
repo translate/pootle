@@ -3,11 +3,11 @@
 # Databases
 MySQL-python>=1.2.3
 # Uncomment for PostgreSQL
-# psycopg2>=2.2
+# psycopg2>=2.5.3
 
 # Libraries
-python-Levenshtein>=0.11.1
-python-memcached>=1.40
+python-Levenshtein>=0.11.2
+python-memcached>=1.53
 
 # Logging
-raven>=1.7.5
+raven>=5.0.0

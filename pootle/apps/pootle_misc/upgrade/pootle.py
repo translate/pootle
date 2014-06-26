@@ -21,99 +21,7 @@
 """Pootle version-specific upgrade actions."""
 
 from __future__ import absolute_import
-
 import logging
-
-
-def upgrade_to_20030():
-    """Post-upgrade actions for upgrades to 20030."""
-    from django.contrib.auth.models import Permission
-    from django.contrib.contenttypes.models import ContentType
-
-    logging.info('Fixing permissions table')
-
-    criteria = {
-        'app_label': "pootle_app",
-        'model': "directory",
-    }
-    contenttype, created = ContentType.objects.get_or_create(**criteria)
-
-    for permission in Permission.objects.filter(content_type__name='pootle') \
-                                        .iterator():
-        permission.content_type = contenttype
-        permission.save()
-
-    contenttype.name = 'pootle'
-    contenttype.save()
-
-
-def import_suggestions(store):
-    try:
-        logging.debug(u'Importing suggestions for %s (if any)',
-                      store.real_path)
-        store.import_pending()
-
-        try:
-            count = store.has_suggestions()
-        except:
-            count = store.get_suggestion_count()
-
-        if count:
-            logging.debug(u'Imported suggestions (%d) from %s',
-                          store.real_path, count)
-    except:
-        logging.debug(u'Failed to import suggestions from %s', store.real_path)
-
-
-def parse_store(store):
-    try:
-        logging.debug(u'Importing strings from %s', store.real_path)
-        store.require_units()
-        count = store.get_total_wordcount()
-        logging.debug(u'Imported strings (%d) from %s', store.real_path, count)
-    except:
-        logging.debug(u'Failed to import strings from %s', store.real_path)
-
-
-def upgrade_to_21000():
-    """Post-upgrade actions for upgrades to 21000."""
-    from pootle_app.models import Directory
-    from pootle_project.models import Project
-    from pootle_store.models import Store
-
-    logging.info('Creating project directories')
-
-    Directory.objects.root.get_or_make_subdir('projects')
-
-    for project in Project.objects.iterator():
-        # Saving should force project to update it's directory property.
-        try:
-            project.save()
-        except Exception as e:
-            logging.info(u'Something broke while upgrading %s:\n%s', project,
-                         e)
-
-    logging.info('Associating stores with translation projects')
-
-    for store in Store.objects.iterator():
-        try:
-            store.translation_project = store.parent.translation_project
-            store.save()
-        except Exception as e:
-            logging.info(u'Something broke while upgrading %s:\n%s',
-                         store.pootle_path, e)
-
-    logging.info('Importing translations into the database. This can take a '
-                 'while.')
-
-    for store in Store.objects.iterator():
-        try:
-            parse_store(store)
-            import_suggestions(store)
-        except Exception as e:
-            logging.info(u'Something broke while parsing %s:\n%s', store, e)
-
-    logging.info(u'All translations are now imported')
 
 
 def upgrade_to_21060():
@@ -159,18 +67,20 @@ def upgrade_to_25200():
     """Post-upgrade actions for upgrades to 25200."""
     from pootle.core.initdb import create_local_tm
 
+    logging.info('About to create the local translation memory.')
     create_local_tm()
+    logging.info('Succesfully created the local translation memory.')
 
 
 def upgrade_to_25201():
     """New semantics for the `view` permission."""
+    from django.contrib.auth import get_user_model
     from django.contrib.auth.models import Permission
     from django.contrib.contenttypes.models import ContentType
     from django.utils.translation import ugettext_noop as _
 
     from pootle_app.models import Directory
     from pootle_app.models.permissions import PermissionSet
-    from pootle_profile.models import PootleProfile
 
     # Remove old `view` permission
     Permission.objects.filter(codename='view').delete()
@@ -188,18 +98,102 @@ def upgrade_to_25201():
 
     # Attach `view` permission to the root directory for anonymous and
     # default users
-    nobody = PootleProfile.objects.get(user__username='nobody')
-    default = PootleProfile.objects.get(user__username='default')
+    User = get_user_model()
+    nobody = User.objects.get(username='nobody')
+    default = User.objects.get(username='default')
 
     root = Directory.objects.root
     permission_set = PermissionSet.objects.get(
-        profile=nobody,
+        user=nobody,
         directory=root,
     )
     permission_set.positive_permissions.add(view)
 
     permission_set = PermissionSet.objects.get(
-        profile=default,
+        user=default,
         directory=root,
     )
     permission_set.positive_permissions.add(view)
+
+
+def upgrade_to_25202():
+    from pootle.core.initdb import create_system_user
+
+    create_system_user()
+
+
+def upgrade_to_25203():
+    """Set `Submission` model's type to the new `SubmissionTypes.SYSTEM` for
+    submissions performed by the `system` user.
+    """
+    from pootle_statistics.models import Submission, SubmissionTypes
+
+    Submission.objects.filter(
+        type=None,
+        submitter__user__username='system',
+    ).update(
+        type=SubmissionTypes.SYSTEM,
+    )
+
+
+def upgrade_to_25204():
+    """Copy site title and description stored using djblets to new models."""
+    from pootle.core.initdb import create_default_pootle_site
+    from pootle_app.models.pootle_site import (get_legacy_site_description,
+                                               get_legacy_site_title)
+
+    # Copy the Pootle site data.
+    create_default_pootle_site(
+        get_legacy_site_title(),
+        get_legacy_site_description()
+    )
+
+
+def upgrade_to_25205():
+    """Synchronize latest submission data with the denormalized submission
+    fields available in the :cls:`pootle_store.models.Unit` model.
+    """
+    from pootle_statistics.models import SubmissionFields
+    from pootle_store.models import Unit
+
+    logging.info('About to synchronize latest submission data.')
+
+    rows = Unit.objects.filter(
+        submission__field__in=[
+            SubmissionFields.SOURCE,
+            SubmissionFields.STATE,
+            SubmissionFields.TARGET,
+        ],
+    ).select_related('submission__creation_time',
+                     'submission__submitter') \
+     .order_by('id', '-submission__creation_time') \
+     .values('id', 'submission__creation_time', 'submission__submitter')
+
+    saved_id = None
+    for row in rows:
+        unit_id = row['id']
+        if saved_id is None or saved_id != unit_id:
+            last_submitter = row['submission__submitter']
+            last_submission_time = row['submission__creation_time']
+            Unit.objects.filter(id=unit_id).update(
+                submitted_by=last_submitter,
+                submitted_on=last_submission_time,
+            )
+            saved_id = unit_id
+
+    logging.info('Succesfully synchronized latest submission data.')
+
+
+def upgrade_to_25206():
+    """Set a correct build version for Translate Toolkit.
+
+    Since Pootle 2.5.1 the upgrade for Translate Toolkit was using the Pootle
+    build version. This fix is meant to save a working build version so
+    future upgrades for Translate Toolkit are run.
+
+    Note that this is Translate Toolkit fix is being run as an upgrade for
+    Pootle because the Pootle upgrades are being run before the Translate
+    Toolkit ones.
+    """
+    from . import save_build_version
+    save_build_version('ttk', 12008)

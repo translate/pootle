@@ -81,8 +81,7 @@ class Migration(SchemaMigration):
         },
         'pootle_translationproject.translationproject': {
             'Meta': {'unique_together': "(('language', 'project'),)", 'object_name': 'TranslationProject', 'db_table': "'pootle_app_translationproject'"},
-            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'description_html': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'description': ('pootle.core.markup.fields.MarkupField', [], {'blank': 'True'}),
             'directory': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['pootle_app.Directory']", 'unique': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'language': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['pootle_language.Language']"}),

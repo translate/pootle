@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -21,16 +21,16 @@
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import get_path_obj
 from pootle.i18n.gettext import tr_lang
 from pootle_app.models import Directory
-from pootle_app.models.permissions import (get_matching_permissions,
-                                           check_permission,
-                                           check_profile_permission)
+from pootle_app.models.permissions import (check_permission,
+                                           check_user_permission,
+                                           get_matching_permissions)
 from pootle_misc.mail import send_mail
 from pootle_notifications.forms import form_factory
 from pootle_notifications.models import Notice
@@ -59,8 +59,7 @@ def view(request, path_obj):
 
     # Set permissions on request in order to allow check them later using
     # different functions.
-    request.permissions = get_matching_permissions(get_profile(request.user),
-                                                   directory)
+    request.permissions = get_matching_permissions(request.user, directory)
 
     if request.GET.get('all', False):
         criteria = {
@@ -71,7 +70,9 @@ def view(request, path_obj):
             'directory': directory,
         }
 
-    template_vars = {
+    ctx = {
+        'page': 'news',
+
         'notification_url': reverse('pootle-notifications-feed',
                                     args=[path_obj.pootle_path[:1]]),
         'directory': directory,
@@ -83,11 +84,9 @@ def view(request, path_obj):
     }
 
     if check_permission('administrate', request):
-        template_vars['form'] = handle_form(request, directory, proj, lang,
-                                            template_vars)
+        ctx['form'] = handle_form(request, directory, proj, lang, ctx)
 
-    return render_to_response('notifications/notices.html', template_vars,
-                              context_instance=RequestContext(request))
+    return render(request, "notifications/notices.html", ctx)
 
 
 def directory_to_title(directory):
@@ -114,8 +113,7 @@ def directory_to_title(directory):
 
 
 def create_notice(creator, message, directory):
-    profile = get_profile(creator)
-    if not check_profile_permission(profile, 'administrate', directory):
+    if not check_user_permission(creator, "administrate", directory):
         raise PermissionDenied
     new_notice = Notice(directory=directory, message=message)
     new_notice.save()
@@ -127,14 +125,12 @@ def get_recipients(restrict_to_active_users, directory):
 
     # Take into account 'only active users' flag from the form.
     if restrict_to_active_users:
-        to_list = to_list.exclude(submission=None).exclude(suggestion=None) \
-                                                  .exclude(suggester=None)
+        to_list = to_list.exclude(submission=None).exclude(suggestions=None)
 
     recipients = []
     for person in to_list:
         # Check if the User profile has permissions in the directory.
-        if not check_profile_permission(person, 'view', directory,
-                                        check_default=False):
+        if not check_user_permission(person.user, "view", directory, check_default=False):
             continue
 
         if person.user.email:
@@ -144,7 +140,7 @@ def get_recipients(restrict_to_active_users, directory):
 
 
 def handle_form(request, current_directory, current_project, current_language,
-                template_vars):
+                ctx):
     if request.method != 'POST':
         # Not a POST method. Return a default starting state of the form
         return form_factory(current_directory)()
@@ -158,7 +154,7 @@ def handle_form(request, current_directory, current_project, current_language,
     languages = form.cleaned_data.get('language_selection', [])
     projects = form.cleaned_data.get('project_selection', [])
     publish_dirs = []
-    template_vars['notices_published'] = []
+    ctx['notices_published'] = []
 
     # Figure out which directories, projects, and languages are involved
     if current_language and current_project:
@@ -209,7 +205,7 @@ def handle_form(request, current_directory, current_project, current_language,
     if form.cleaned_data['publish_rss']:
         for d in publish_dirs:
             new_notice = create_notice(request.user, message, d)
-            template_vars['notices_published'].append(new_notice)
+            ctx['notices_published'].append(new_notice)
 
     # E-mail
     if form.cleaned_data['send_email']:
@@ -228,9 +224,8 @@ def handle_form(request, current_directory, current_project, current_language,
 
 def view_notice_item(request, path, notice_id):
     notice = get_object_or_404(Notice, id=notice_id)
-    template_vars = {
+    ctx = {
         "title": _("View News Item"),
         "notice_message": notice.message,
     }
-    return render_to_response('notifications/view_notice.html', template_vars,
-                              context_instance=RequestContext(request))
+    return render(request, "notifications/view_notice.html", ctx)

@@ -122,8 +122,6 @@ some tips for performance tuning on your Pootle installation.
   also give better performance.  You can :doc:`upgrade <upgrading>` to newer
   versions of Pootle easily.
 
-- Ensure :setting:`LIVE_TRANSLATION` is disabled.
-
 - Ensure :setting:`DEBUG` mode is disabled.
 
 - Ensure that the ``zip`` and ``unzip`` commands are installed on your
@@ -150,7 +148,7 @@ some tips for performance tuning on your Pootle installation.
 
 - Ensure gzip compression is enabled on your web server. For Apache,
   `mod_deflate <https://httpd.apache.org/docs/2.4/mod/mod_deflate.html>`_
-  handles this. Also see `nginx wiki <http://wiki.nginx.org/HttpGzipModule>.
+  handles this. Also see `nginx wiki <http://wiki.nginx.org/HttpGzipModule>`_.
 
 
 .. _optimization#apache:

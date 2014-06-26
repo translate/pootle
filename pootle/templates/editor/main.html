@@ -8,21 +8,22 @@
 {% include 'editor/_css.html' %}
 {% endblock %}
 
-{% block body_id %}{{ editor_body_id }}{% endblock %}
+{% block body_class %}translate{% endblock %}
 
 {% block breadcrumbs_block %}
 {{ block.super }}
 {% include 'editor/_keyboard_shortcuts_help.html' %}
 {% endblock %}
 
-{% block search %}
+{% block actions %}
+{% include 'editor/_actions.html' %}
 {% endblock %}
 
 {% block content %}
 {% include 'editor/_editor.html' %}
 {% endblock %}
 
-{% block extra_content %}
+{% block post_content %}
 {% include 'editor/_toolbar.html' %}
 {% endblock %}
 

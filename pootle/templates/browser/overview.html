@@ -1,0 +1,198 @@
+{% extends browser_extends %}
+
+{% load url from future %}
+{% load assets cleanhtml i18n locale translation_project_tags goal_tags common_tags profile_tags %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
+
+{% block header_content_block %}
+<div id="top-stats" class="header">
+  {% block header_content %}
+  <a id="js-path-summary" data-target="js-path-summary-more" href="#">
+    <div id="progressbar">
+      <i id="js-expand-icon" class="icon-expand-stats"
+         title="{% trans 'Expand details' %}"></i>
+      {% include "browser/_progressbar.html" %}
+    </div>
+  </a>
+
+  <div class="path-summary-more" id="js-path-summary-more" data-loaded="false" data-collapsed="true">
+    <div class="hd">
+      <h3><span>{% trans "Translation Statistics" %}</span></h3>
+    </div>
+    <div class="bd">
+      <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+        <tbody>
+          {% for item in translation_states %}
+          <tr id="stats-{{ item.state }}">
+            <td id="stats-name">{{ item.title }}</td>
+            <td class="stats-number"><a href="{{ item.url }}"></a></td>
+            <td class="stats-percentage"><span></span>%</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="bd">
+      <table class="last">
+        <tbody>
+          <tr id="js-last-updated">
+            <td>{% trans "Last updated" %}</td>
+            <td class="last-updated"></td>
+          </tr>
+          <tr id="js-last-action">
+            <td>{% trans "Last action" %}</td>
+            <td class="last-action"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="js-stats-checks" class="hide">
+      <div class="hd">
+        <h3><span>{% trans "Failing Checks" %}</span></h3>
+      </div>
+      <div class="bd">
+      {% for item in check_categories %}
+        <div id="check-{{ item.code }}" class="checks js-checks">
+          <h4 class="clear">{{ item.title }}</h4>
+          {% for check in item.checks %}
+          <div class="check js-check" data-code="{{ check.code }}">
+            <div class="check-name"><a href="{{ check.url }}">{{ check.title }}</a></div>
+            <div class="check-count"><a href="{{ check.url }}">0</a></div>
+          </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+      <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>
+{% endblock %}
+
+{% block actions %}
+{% include 'browser/_actions.html' %}
+{% endblock %}
+
+{% block pre_content %}
+{% if announcement or action_groups or description or project.description or language.description or can_edit or goal %}
+<div id="sidebar"
+  class="js-sidebar{% if announcement_displayed or action_output or goal %} sidebar-open{% endif %}">
+  <div id="sidebar-tabs">
+    <ul id="tabs">
+      {% if announcement %}
+      <li>
+        <a class="js-sidebar-tab-display"
+          data-target="js-announcement-sidebar-pane">{% trans 'Announcement' %}</a>
+      </li>
+      {% endif %}
+      {% if action_groups %}
+      <li>
+        <a class="js-sidebar-tab-display{% if action_output %} active-sidebar-tab{% endif %}"
+          data-target="js-actions-sidebar-pane">{% trans 'Actions' %}</a>
+      </li>
+      {% endif %}
+      {% if description or project.description or language.description or can_edit %}
+      <li>
+        <a class="js-sidebar-tab-display"
+          data-target="js-instructions-sidebar-pane">{% trans 'Instructions' %}</a>
+      </li>
+      {% endif %}
+      {% if goal %}
+      <li>
+        <a class="js-sidebar-tab-display active-sidebar-tab"
+          data-target="js-goal-sidebar-pane">{% trans 'Goal' %}</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% if announcement %}
+  <div id="js-announcement-sidebar-pane" class="js-sidebar-pane">
+    {% include "staticpages/_body.html" with page=announcement %}
+  </div>
+  {% endif %}
+  {% if action_groups %}
+  <div id="js-actions-sidebar-pane" class="js-sidebar-pane">
+    {% include 'translation_projects/_actions_sidebar.html' %}
+  </div>
+  {% endif %}
+  {% if description or project.description or language.description or can_edit %}
+  <div id="js-instructions-sidebar-pane" class="js-sidebar-pane">
+    {% include 'translation_projects/_instructions_sidebar.html' %}
+  </div>
+  {% endif %}
+  {% if goal %}
+  <div id="js-goal-sidebar-pane" class="js-sidebar-pane">
+    {% include 'translation_projects/_goal_sidebar.html' %}
+  </div>
+  {% endif %}
+  <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if table %}
+<div class="bd">
+  <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
+    {% display_table table %}
+  </div>
+</div>
+{% endif %}
+
+{% if 'finished' in request.GET %}
+<div id="alerts" class="affix js-units-finished">
+  <div class="alert alert-block alert-info fade in" lang="{{ LANGUAGE_CODE }}">
+    {% trans "You have gone through all units, please review all statistics." %}
+  </div>
+</div>
+<script type="text/javascript">
+  $('.js-units-finished').delay(4000).fadeOut(3500);
+</script>
+{% endif %}
+{% endblock content %}
+
+{% block scripts_extra %}
+{{ block.super }}
+<script type="text/javascript">
+$(function () {
+  $("body").spin();
+  PTL.search.init();
+  PTL.stats.init({
+      pootlePath: "{{ pootle_path }}",
+  });
+  PTL.stats.load(function () {
+    PTL.common.updateRelativeDates();
+    setInterval(PTL.common.updateRelativeDates, 6e4);
+    $("body").spin(false);
+  });
+
+  PTL.common.fixSidebarTabs();
+  PTL.common.fixSidebarHeight();
+  $(window).on('resize', PTL.common.fixSidebarHeight);
+
+  $("td.stats-name").filter(":not([dir])").bidi();
+
+{% if upload_form %}
+  $("select#id_upload_to_dir").parent().hide();
+  $("input#id_file").change(function() {
+    if (/\.zip$/.test($(this).val())) {
+      $("select#id_upload_to").parent().hide();
+      $("select#id_upload_to_dir").parent().show();
+    } else {
+      $("select#id_upload_to_dir").parent().hide();
+      $("select#id_upload_to").parent().show();
+    }
+  });
+{% endif %}
+});
+</script>
+{% if user.is_superuser or request.permissions.administrate %}
+{% assets "js_admin" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+{% endif %}
+{% endblock %}

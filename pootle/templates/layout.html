@@ -1,16 +1,14 @@
 {% load url from future %}
-{% load i18n assets baseurl cache staticpages locale profile_tags %}
+{% load i18n assets baseurl staticpages locale profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}{% endblock %}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>{% block title %}{{ settings.TITLE }}{% endblock title %}</title>
     {% block meta %}
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
     <meta name="description" content="{{ settings.DESCRIPTION|striptags }}" />
-    <meta name="viewport" content="width=device-width">
     <meta name="keywords" content="{{ keywords|join:", " }}" />
     <meta name="application-name" content="{{ settings.TITLE }}" />
     <link rel="icon" href="{{ "images/app-32x32.png"|s }}" sizes="32x32" />
@@ -20,9 +18,6 @@
     {% assets "css_common" %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
     {% endassets %}
-    <!--[if IE]>
-    <link rel="stylesheet" type="text/css" href="{{ "css/ie.css"|s }}" />
-    <![endif]-->
     {% endblock css %}
     {% block favicon %}
     <link rel="shortcut icon" href="{{ "favicon.ico"|s }}" />
@@ -70,8 +65,8 @@
           type: 'ajax'
         },
         callbacks: {
-          parseAjax: function (jqXHR) {
-            jqXHR.responseText = jQuery.parseJSON(jqXHR.responseText).form;
+          parseAjax: function (mfpResponse) {
+            mfpResponse.data = mfpResponse.data.form;
           }
         },
         modal: true
@@ -98,10 +93,17 @@
     });
     {% endif %}
 
+    PTL.contact.init({url: "{% url 'pootle-contact' %}"});
+
     $(function() {
-      $("[title], [original-title]").tipsy({
-        gravity: $.fn.tipsy.autoBounds(150, 'n'),
-        html: true, fade: true, delayIn: 750, live: true});
+      $(document).tipsy({
+        gravity: $.fn.tipsy.autoBounds2(150, 'n'),
+        html: true,
+        fade: true,
+        delayIn: 750,
+        opacity: 1,
+        live: '[title], [original-title]'
+      });
       $.ajaxSetup({ traditional: true });
       $.ajaxPrefilter(function (options, originalOptions) {
         if (options.type === 'post' || options.type === 'POST') {
@@ -120,9 +122,15 @@
     {% block extra_head %}{% endblock %}
   </head>
 
-  <body id="{% block body_id %}{% endblock %}">
+  <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
     {% block body %}
     <div id="wrapper">
+      <noscript>
+        <div id="noscript" class="alert alert-danger affix">
+          <h1>{% trans "Pootle requires JavaScript" %}</h1>
+          <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>
+        </div>
+      </noscript>
       {% if messages %}
       <div id="alerts" class="affix">
         {% for message in messages %}
@@ -140,17 +148,13 @@
           <div id="nav-access">
             <a href="#nav-main">{% trans 'skip to navigation' %}</a>
           </div>
-          <a href="{% url 'pootle-home' %}" class="brand"><i class="logo"></i>{{ settings.TITLE }}</a>
-
-          <div id="zoom">
-            <a id="zoom-out" title="{% trans "Zoom out (Ctrl+Shift+-)" %}"
-              href="javascript:PTL.zoom.zoom(-1)">&ndash;</a>
-            <a id="zoom-reset" title="{% trans "Reset zoom (Ctrl+Shift+0)" %}"
-              href="javascript:PTL.zoom.zoom(0)">T</a>
-            <a id="zoom-in" title="{% trans "Zoom in (Ctrl+Shift++)" %}"
-              href="javascript:PTL.zoom.zoom(1)">+</a>
-          </div>
+          <h1 class="brand">
+            <a href="{% url 'pootle-home' %}"><i class="logo"></i>{{ settings.TITLE }}</a>
+          </h1>
           <ul id="nav-main">
+            {% if settings.CAN_CONTACT %}
+            <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
+            {% endif %}
             {% if user.is_authenticated %}
             <li id="user">
               <a href="{{ user.get_profile.get_absolute_url }}">
@@ -166,7 +170,7 @@
             {% if settings.CAN_REGISTER %}
             <li><a href="{% url 'account_signup' %}">{% trans "Register" %}</a></li>
             {% endif %}
-            <li><a href="{% url 'account_login' %}{{ request|get_next }}">{% trans "Log In" %}</a></li>
+            <li><a id="js-login" href="{% url 'account_login' %}{{ request|get_next }}">{% trans "Log In" %}</a></li>
             {% endif %}
             <li>
               <select id="js-language-picker" default="{{ LANGUAGE_CODE }}"></select>
@@ -183,58 +187,45 @@
         {% block header_meta %}{% endblock %}
 
         {% block breadcrumbs_block %}
-        <ul class="breadcrumb">
-        {% block breadcrumbs %}{% endblock %}
+        <ul class="breadcrumb js-breadcrumb">
+          {% block breadcrumbs %}{% endblock %}
         </ul>
         {% endblock %}
       </div>
       {% endblock %}
 
+      {% block header_content_block %}{% endblock %}
+      {% block actions_block %}{% endblock %}
+
       {% block header_tabs_block %}
       <div id="header-tabs" class="header">
-        {% block search %}{% endblock %}
         {% block tabs %}{% endblock %}
       </div>
       {% endblock %}
     {% endblock %}
 
-      <div id="body">
-        <div id="precontent">
-          {% block precontent %}{% endblock %}
-        </div>
-
-        <div id="content">
-          {% block content %}{% endblock %}
-        </div>
-
-        <div id="postcontent">
-          {% block postcontent %}{% endblock %}
-        </div>
-        {% block extra_content %}{% endblock %}
+    <div id="body">
+      {% block pre_content %}{% endblock %}
+      <div id="content">
+        {% block content %}{% endblock %}
       </div>
-
-      {% block footer %}
-      <div id="footer">
-        <ul class="nav">
-          <li><a href="http://docs.translatehouse.org/projects/pootle/">{% trans "Help" %}</a></li>
-          {% if settings.CAN_CONTACT %}
-          <li>
-            <a class="js-popup-ajax"
-               href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a>
-          </li>
-          {% endif %}
-          <li><a href="{% url 'pootle_app.views.index.about.view' %}">{% trans "About this Pootle Server" %}</a></li>
-          <li><a href="{% url 'pootle_app.views.index.contributors.view' %}">{% trans "Contributors" %}</a></li>
-          {% cache settings.CACHE_TIMEOUT legalpages LANGUAGE_CODE %}
-          {% get_legalpages as legalpages %}
-          {% for lp in legalpages %}
-          <li><a href="{{ lp.get_absolute_url }}">{{ lp.localized_title }}</a></li>
-          {% endfor %}
-          {% endcache %}
-        </ul>
-      </div>
-      {% endblock footer %}
+      {% block post_content %}{% endblock %}
     </div>
+
+    </div>
+    {% block footer %}
+    <div id="footer">
+      <ul class="nav">
+        <li><a href="http://docs.translatehouse.org/projects/pootle/">{% trans "Help" %}</a></li>
+        <li><a href="{% url 'pootle-about' %}">{% trans "About this Pootle Server" %}</a></li>
+        <li><a href="{% url 'pootle-about-contributors' %}">{% trans "Contributors" %}</a></li>
+        {% get_legalpages as legalpages %}
+        {% for lp in legalpages %}
+        <li><a href="{{ lp.get_absolute_url }}">{{ lp.localized_title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endblock footer %}
     {% block scripts %}
     {% block scripts_extra %}{% endblock %}
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>

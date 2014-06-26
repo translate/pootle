@@ -28,13 +28,14 @@ from django.utils.translation import get_language, ugettext as _
 
 from translate.misc.multistring import multistring
 
+from pootle.core.log import TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED
 from pootle.core.mixins import CachedMethods
 from pootle_app.models.permissions import check_permission
-from pootle_statistics.models import (Submission, SubmissionFields,
-                                      SubmissionTypes)
-from pootle_store.models import Unit
-from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
+from pootle_statistics.models import Submission, SubmissionFields, SubmissionTypes
 from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
+from pootle_store.models import Unit
+from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
+
 
 ############## text cleanup and highlighting #########################
 
@@ -55,7 +56,9 @@ def highlight_whitespace(text):
 
     return FORM_RE.sub(replace, text)
 
+
 FORM_UNRE = re.compile('\r|\n|\t|\\\\r|\\\\n|\\\\t|\\\\\\\\')
+
 def unhighlight_whitespace(text):
     """Replace visible whitespace with proper whitespace."""
 
@@ -72,6 +75,7 @@ def unhighlight_whitespace(text):
         return submap[match.group()]
 
     return FORM_UNRE.sub(replace, text)
+
 
 class MultiStringWidget(forms.MultiWidget):
     """Custom Widget for editing multistrings, expands number of text
@@ -111,6 +115,7 @@ class MultiStringWidget(forms.MultiWidget):
             return [highlight_whitespace(value)]
         else:
             raise ValueError
+
 
 class HiddenMultiStringWidget(MultiStringWidget):
     """Uses hidden input instead of textareas."""
@@ -153,11 +158,17 @@ class UnitStateField(forms.BooleanField):
     def to_python(self, value):
         """Returns a Python boolean object.
 
+        It is necessary to customize the behavior because the default
+        ``BooleanField`` treats the string '0' as ``False``, but if the
+        unit is in ``UNTRANSLATED`` state (which would report '0' as a
+        value), we need the marked checkbox to be evaluated as ``True``.
+
         :return: ``False`` for any unknown :cls:`~pootle_store.models.Unit`
             states and for the 'False' string.
         """
-        if (value in ('False',) or
-            value not in (str(s) for s in (UNTRANSLATED, FUZZY, TRANSLATED))):
+        truthy_values = (str(s) for s in (UNTRANSLATED, FUZZY, TRANSLATED))
+        if (isinstance(value, basestring) and
+            (value.lower() == 'false' or value not in truthy_values)):
             value = False
         else:
             value = bool(value)
@@ -229,8 +240,9 @@ def unit_form_factory(language, snplurals=None, request=None):
             ),
         )
 
-        def __init__(self, *args, **argv):
-            super(UnitForm, self).__init__(*args, **argv)
+        def __init__(self, *args, **kwargs):
+            self.request = kwargs.pop('request', None)
+            super(UnitForm, self).__init__(*args, **kwargs)
             self.updated_fields = []
 
         def clean_source_f(self):
@@ -263,10 +275,18 @@ def unit_form_factory(language, snplurals=None, request=None):
             is_fuzzy = self.cleaned_data['state']  # Boolean
             new_target = self.cleaned_data['target_f']
 
+            if (self.request is not None and
+                not check_permission('administrate', self.request) and
+                is_fuzzy == True):
+                raise forms.ValidationError(_('Fuzzy flag must be cleared'))
+
             if new_target:
                 if old_state == UNTRANSLATED:
+                    self.instance._save_action = TRANSLATION_ADDED
                     self.instance.store \
                                  .flag_for_deletion(CachedMethods.TRANSLATED)
+                else:
+                    self.instance._save_action = TRANSLATION_CHANGED
 
                 if is_fuzzy:
                     new_state = FUZZY
@@ -274,6 +294,10 @@ def unit_form_factory(language, snplurals=None, request=None):
                     new_state = TRANSLATED
             else:
                 new_state = UNTRANSLATED
+                if old_state > FUZZY:
+                    self.instance._save_action = TRANSLATION_DELETED
+                    self.instance.store \
+                                 .flag_for_deletion(CachedMethods.TRANSLATED)
 
             if is_fuzzy != (old_state == FUZZY):
                 # when Unit toggles its FUZZY state the number of translated words
@@ -290,7 +314,6 @@ def unit_form_factory(language, snplurals=None, request=None):
                 self.instance._state_updated = False
 
             return new_state
-
 
     return UnitForm
 
@@ -340,6 +363,5 @@ def unit_comment_form_factory(language):
                 sub.save()
 
             super(UnitCommentForm, self).save()
-
 
     return UnitCommentForm

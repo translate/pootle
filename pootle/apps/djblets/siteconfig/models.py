@@ -1,6 +1,4 @@
 #
-# djblets/siteconfig/models.py
-#
 # Copyright (c) 2008  Christian Hammond
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -21,7 +19,6 @@
 # CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#
 
 from datetime import datetime
 
@@ -83,12 +80,6 @@ class SiteConfiguration(models.Model):
 
         _DEFAULTS[self.id].update(defaults_dict)
 
-    def add_default(self, key, default_value):
-        """
-        Adds a single default setting.
-        """
-        self.add_defaults({key: default_value})
-
     def get_defaults(self):
         """
         Returns all default settings registered with this SiteConfiguration.
@@ -97,15 +88,6 @@ class SiteConfiguration(models.Model):
             _DEFAULTS[self.id] = {}
 
         return _DEFAULTS[self.id]
-
-    def is_expired(self):
-        """
-        Returns whether or not this SiteConfiguration is expired and needs
-        to be reloaded.
-        """
-        last_updated = cache.get(self.__get_sync_cache_key())
-        return (isinstance(last_updated, datetime) and
-                last_updated > self._last_sync_time)
 
     def save(self, **kwargs):
         now = datetime.now()

@@ -32,11 +32,14 @@ Directory contents
     This includes unit navigation, submission, suggestions' handling, copying
     functions, fuzzy/unfuzzy, and several other helper stuff.
 
+  - stats.js :
+    Statistics/overview browser page code.
+
   - search.js :
     Search functionality, shared across pages.
 
-  - zoom.js :
-    Functions that control the page zoom.
+  - utils.js :
+    Common utilities.
 
   + lookup/
 
@@ -79,11 +82,6 @@ Directory contents
       Date.parse with progressive enhancement for ISO 8601.
 
       https://github.com/csnover/js-iso8601
-
-    - json2.min.js :
-      JavaScript library for encoding/decoding data to/from JSON format.
-
-      http://www.json.org/js.html
 
     - shortcut.js :
       Small library to ease adding keyboard shortcuts.
@@ -132,7 +130,7 @@ Directory contents
     + jquery/
 
       - jquery.js :
-        The jQuery library, version 1.8.2.
+        The jQuery library, version 2.0.3.
 
         https://github.com/jquery/jquery
 
@@ -145,6 +143,8 @@ Directory contents
       - jquery.caret.js :
         jQuery plugin to write text on top of the selected text or just after
         the caret position.
+
+        Using patched version to remove `$.browser` calls.
 
         http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin
 
@@ -160,6 +160,8 @@ Directory contents
 
       - jquery.history.js :
         Plugin to handle AJAX history using hashes.
+
+        Using patched version to remove `$.browser` calls.
 
         http://github.com/tkyk/jquery-history-plugin/
 
@@ -179,8 +181,8 @@ Directory contents
         Lightbox overlay popups to display all sorts of content: images,
         HTML, AJAX data, ...
 
-        Using patched version from julen/Magnific-Popup to support modal
-        dialogs.
+        Using v0.9.9 built with their 'Build Tool' with the following features:
+        Inline, Image, Ajax, Iframe, Gallery, High-DPI.
 
         http://dimsemenov.com/plugins/magnific-popup/
 
@@ -203,14 +205,26 @@ Directory contents
       - jquery.textarea-expander.js :
         jQuery plugin used in the translate page textareas.
 
+        Using patched version to remove `$.browser` calls.
+
         http://blogs.sitepointstatic.com/examples/tech/textarea-expander/jquery.textarea-expander.js
+
+      - jquery.textcomplete.js
+        Autocomplete for Textarea.
+
+        Using version 0.1.3.
+
+        Introduces autocompleting power to textareas, like a GitHub comment
+        form has.
+
+        https://github.com/yuku-t/jquery-textcomplete
 
       - jquery.tipsy.js :
         Facebook-style tooltips for jQuery.
 
-        Using revision 9fe119e.
+        Using revision 718b348872 from branch bugfix/remnant-tips @ julen/tipsy fork.
 
-        https://github.com/jaz303/tipsy
+        https://github.com/julen/tipsy
 
       - jquery.utils.js :
         Custom utilities that extend jQuery's capabilities.

@@ -27,6 +27,7 @@ from pootle.core.views import AjaxResponseMixin
 from .forms import PootleContactForm, PootleReportForm
 
 
+SUBJECT_TEMPLATE = 'Unit #%d (%s)'
 BODY_TEMPLATE = '''
 Unit: %s
 
@@ -97,6 +98,10 @@ class PootleReportFormView(PootleContactFormView):
                                 unit.get_translate_url()
                             )
                         initial.update({
+                            'subject': SUBJECT_TEMPLATE % (
+                                unit.id,
+                                unit.store.translation_project.language.code
+                            ),
                             'body': BODY_TEMPLATE % (
                                 unit_absolute_url,
                                 unit.source,

@@ -16,7 +16,7 @@
   </thead>
   <tbody>
   {% for store in stores %}
-  <tr class="item {% cycle 'even' 'odd' %}">
+  <tr class="item">
     <td>
       <a href="{% url 'pootle-terminology-manage-store' store.translation_project.language.code store.translation_project.project.code store.path %}">{{ store.nice_name}}</a>
     </td>

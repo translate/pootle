@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Zuza Software Foundation
+# Copyright 2013-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -20,13 +20,12 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
-from django.template.defaultfilters import stringfilter
 
 
 register = template.Library()
 
 
-@register.inclusion_tag('core/table.html', takes_context=True)
+@register.inclusion_tag('browser/_table.html', takes_context=True)
 def display_table(context, table):
     return {
         'table': table,
@@ -36,7 +35,10 @@ def display_table(context, table):
 
 
 @register.filter
-@stringfilter
-def makeid(value):
-    """Replaces all '.' with '-'."""
-    return value.replace(u'.', u'-')
+def endswith(value, arg):
+    return value.endswith(arg)
+
+
+@register.filter
+def count(value, arg):
+    return value.count(arg)

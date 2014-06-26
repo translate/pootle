@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -22,29 +22,32 @@ import logging
 import os
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
-from django.db import models
+from django.db import connection, models
 from django.db.models import Q
+from django.db.models.signals import post_delete, post_save
+from django.dispatch import receiver
 from django.utils.encoding import iri_to_uri
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
+from pootle.core.cache import make_method_key
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
-from pootle.core.url_helpers import get_editor_filter
+from pootle.core.models import VirtualResource
+from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
+                                     split_pootle_path)
 from pootle_app.models.permissions import PermissionSet
-from pootle_misc.aggregate import max_column
-from pootle_misc.util import getfromcache, cached_property
-from pootle_store.filetypes import (filetype_choices, factory_classes,
+from pootle_store.filetypes import (factory_classes, filetype_choices,
                                     is_monolingual)
-from pootle_store.models import Unit, Suggestion
-from pootle_store.util import absolute_real_path, OBSOLETE
+from pootle_store.util import absolute_real_path
 
 
 # FIXME: Generate key dynamically
@@ -55,9 +58,6 @@ RESERVED_PROJECT_CODES = ('admin', 'translate', 'settings')
 
 class ProjectManager(RelatedManager):
 
-    def get_by_natural_key(self, code):
-        return self.get(code=code)
-
     def cached(self):
         projects = cache.get(CACHE_KEY)
         if not projects:
@@ -67,7 +67,32 @@ class ProjectManager(RelatedManager):
         return projects
 
 
-class Project(models.Model, TreeItem):
+class ProjectURLMixin(object):
+    """Mixin class providing URL methods to be shared across
+    project-related classes.
+    """
+
+    def get_absolute_url(self):
+        return reverse('pootle-project-overview', args=[self.code, ''])
+
+    def get_translate_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+
+        if proj is not None:
+            pattern_name = 'pootle-project-translate'
+            pattern_args = [proj, dir, fn]
+        else:
+            pattern_name = 'pootle-projects-translate'
+            pattern_args = []
+
+        return u''.join([
+            reverse(pattern_name, args=pattern_args),
+            get_editor_filter(**kwargs),
+        ])
+
+
+
+class Project(models.Model, TreeItem, ProjectURLMixin):
 
     code = models.CharField(
         max_length=255,
@@ -91,9 +116,9 @@ class Project(models.Model, TreeItem):
                     get_markup_filter_name()),
     )
 
-    checker_choices = [('standard', 'standard')]
     checkers = list(checks.projectcheckers.keys())
     checkers.sort()
+    checker_choices = [('standard', 'standard')]
     checker_choices.extend([(checker, checker) for checker in checkers])
     checkstyle = models.CharField(
         max_length=50,
@@ -144,6 +169,7 @@ class Project(models.Model, TreeItem):
         help_text=_('An email address where issues with the source text can '
                     'be reported.'),
     )
+    disabled = models.BooleanField(verbose_name=_('Disabled'), default=False)
 
     objects = ProjectManager()
 
@@ -151,11 +177,11 @@ class Project(models.Model, TreeItem):
         ordering = ['code']
         db_table = 'pootle_app_project'
 
-    def natural_key(self):
-        return (self.code,)
-    natural_key.dependencies = ['pootle_app.Directory']
-
     ############################ Properties ###################################
+
+    @property
+    def name(self):
+        return self.fullname
 
     @property
     def pootle_path(self):
@@ -184,6 +210,97 @@ class Project(models.Model, TreeItem):
         return Language.objects.filter(Q(translationproject__project=self),
                                        ~Q(code='templates'))
 
+    @cached_property
+    def resources(self):
+        """Returns a list of :cls:`~pootle_app.models.Directory` and
+        :cls:`~pootle_store.models.Store` resource paths available for
+        this :cls:`~pootle_project.models.Project` across all languages.
+        """
+        cache_key = make_method_key(self, 'resources', self.code)
+
+        resources = cache.get(cache_key, None)
+        if resources is not None:
+            return resources
+
+        logging.debug(u'Cache miss for %s', cache_key)
+
+        resources_path = ''.join(['/%/', self.code, '/%'])
+
+        if connection.vendor == 'mysql':
+            sql_query = '''
+            SELECT DISTINCT
+                REPLACE(pootle_path,
+                        CONCAT(SUBSTRING_INDEX(pootle_path, '/', 3), '/'),
+                        '')
+            FROM (
+                SELECT pootle_path
+                FROM pootle_store_store
+                WHERE pootle_path LIKE %s
+              UNION
+                SELECT pootle_path FROM pootle_app_directory
+                WHERE pootle_path LIKE %s
+            ) AS t;
+            '''
+        elif connection.vendor == 'postgresql':
+            sql_query = '''
+            SELECT DISTINCT
+                REPLACE(pootle_path,
+                        ARRAY_TO_STRING((
+                                         STRING_TO_ARRAY(pootle_path,'/')
+                                        )[1:3], '/')
+                        || '/',
+                        '')
+            FROM (
+                SELECT pootle_path
+                FROM pootle_store_store
+                WHERE pootle_path LIKE %s
+              UNION
+                SELECT pootle_path FROM pootle_app_directory
+                WHERE pootle_path LIKE %s
+            ) AS t;
+            '''
+        elif connection.vendor == 'sqlite':
+            # Due to the limitations of SQLite there is no way to do this just
+            # using raw SQL.
+            from pootle_store.models import Store
+
+            store_objs = Store.objects.extra(
+                where=[
+                    'pootle_store_store.pootle_path LIKE %s',
+                    'pootle_store_store.pootle_path NOT LIKE %s',
+                ], params=[resources_path, '/templates/%']
+            ).select_related('parent').distinct()
+
+            # Populate with stores and their parent directories, avoiding any
+            # duplicates
+            resources = []
+            for store in store_objs.iterator():
+                directory = store.parent
+                if (not directory.is_translationproject() and
+                    all(directory.path != path for path in resources)):
+                    resources.append(directory.path)
+
+                if all(store.path != path for path in resources):
+                    resources.append(store.path)
+
+            resources.sort(key=get_path_sortkey)
+
+            cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
+            return resources
+
+        cursor = connection.cursor()
+        cursor.execute(sql_query, [resources_path, resources_path])
+
+        results = cursor.fetchall()
+
+        # Flatten tuple and sort in a list
+        resources = list(reduce(lambda x,y: x+y, results))
+        resources.sort(key=get_path_sortkey)
+
+        cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
+
+        return resources
+
     ############################ Methods ######################################
 
     @classmethod
@@ -200,10 +317,8 @@ class Project(models.Model, TreeItem):
         if user_projects is None:
             logging.debug(u'Cache miss for %s', key)
             lookup_args = {
-                'directory__permission_sets__positive_permissions__codename':
-                    'view',
-                'directory__permission_sets__profile__user__username':
-                    username,
+                "directory__permission_sets__positive_permissions__codename": "view",
+                "directory__permission_sets__user__username": username,
             }
             user_projects = self.objects.cached().filter(**lookup_args) \
                                                  .values_list('code', flat=True)
@@ -212,7 +327,7 @@ class Project(models.Model, TreeItem):
             if not user_projects.count():
                 root_permissions = PermissionSet.objects.filter(
                     directory__pootle_path='/',
-                    profile__user__username=username,
+                    user__username=username,
                     positive_permissions__codename='view',
                 )
                 if root_permissions.count():
@@ -265,6 +380,7 @@ class Project(models.Model, TreeItem):
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
+        User = get_user_model()
         users_list = User.objects.values_list('username', flat=True)
         cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                               users_list))
@@ -284,45 +400,16 @@ class Project(models.Model, TreeItem):
             tp.delete()
             gc.collect()
 
-        # Here is a different version that first deletes all the related
-        # objects, starting from the leaves. This will have to be maintained
-        # doesn't seem to provide a real advantage in terms of performance.
-        # Doing this finer grained garbage collection keeps memory usage even
-        # lower but can take a bit longer.
-
-        '''
-        from pootle_statistics.models import Submission
-        from pootle_app.models import Suggestion as AppSuggestion
-        from pootle_store.models import Suggestion as StoreSuggestion
-        from pootle_store.models import QualityCheck
-        Submission.objects.filter(from_suggestion__translation_project__project=self).delete()
-        AppSuggestion.objects.filter(translation_project__project=self).delete()
-        StoreSuggestion.objects.filter(unit__store__translation_project__project=self).delete()
-        QualityCheck.objects.filter(unit__store__translation_project__project=self).delete()
-        gc.collect()
-        for tp in self.translationproject_set.iterator():
-            Unit.objects.filter(store__translation_project=tp).delete()
-            gc.collect()
-        '''
-
         super(Project, self).delete(*args, **kwargs)
 
         directory.delete()
 
         # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
+        User = get_user_model()
         users_list = User.objects.values_list('username', flat=True)
         cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                               users_list))
-
-    def get_absolute_url(self):
-        return reverse('pootle-project-overview', args=[self.code])
-
-    def get_translate_url(self, **kwargs):
-        return u''.join([
-            reverse('pootle-project-translate', args=[self.code]),
-            get_editor_filter(**kwargs),
-        ])
 
     def clean(self):
         if self.code in RESERVED_PROJECT_CODES:
@@ -444,3 +531,38 @@ class Project(models.Model, TreeItem):
                            .get(language=self.source_language_id)
             except ObjectDoesNotExist:
                 pass
+
+
+class ProjectResource(VirtualResource, ProjectURLMixin):
+
+    ### TreeItem
+
+    def _get_code(self, resource):
+        return resource.translation_project.language.code
+
+    ### /TreeItem
+
+
+class ProjectSet(VirtualResource, ProjectURLMixin):
+
+    ### TreeItem
+
+    def _get_code(self, project):
+        return project.code
+
+    ### /TreeItem
+
+
+@receiver([post_delete, post_save])
+def invalidate_resources_cache(sender, instance, **kwargs):
+    if instance.__class__.__name__ not in ['Directory', 'Store']:
+        return
+
+    # Don't invalidate if the save didn't create new objects
+    if (('created' in kwargs and 'raw' in kwargs) and
+        (not kwargs['created'] or kwargs['raw'])):
+        return
+
+    lang, proj, dir, fn = split_pootle_path(instance.pootle_path)
+    if proj is not None:
+        cache.delete(make_method_key(Project, 'resources', proj))

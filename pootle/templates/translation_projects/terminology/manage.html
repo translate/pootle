@@ -31,24 +31,27 @@
       {% csrf_token %}
       {{ formset.management_form }}
       <table cellpadding="0" cellspacing="0" class="translate-table" dir="{% locale_dir %}">
-      <thead>
-      <tr lang="{{ LANGUAGE_CODE }}">
-        <th colspan="1" rowspan="1" class="translate-table-title translate-original">{% trans "Term" %}</th>
-        <th colspan="1" rowspan="1" class="translate-table-title translate-translation">{% trans "Translation" %}</th>
-        <th colspan="1" rowspan="1" class="translate-table-title translate-edit">{% trans "Delete" %}</th>
-      </tr>
-      </thead>
-      {% for form in formset.forms %}
-      <tr class="{% cycle 'even' 'odd' %}">
-        {% render_term_edit form %}
-        <td class="DELETE">{% for hidden_field in form.hidden_fields %}{{ hidden_field }}{% endfor %}
-          {{ form.DELETE }}
-        </td>
-      </tr>
-      {% endfor %}
+        <thead>
+          <tr lang="{{ LANGUAGE_CODE }}">
+            <th colspan="1" rowspan="1" class="translate-table-title translate-original">{% trans "Term" %}</th>
+            <th colspan="1" rowspan="1" class="translate-table-title translate-translation">{% trans "Translation" %}</th>
+            <th colspan="1" rowspan="1" class="translate-table-title translate-edit">{% trans "Delete" %}</th>
+          </tr>
+        </thead>
+        {% for form in formset.forms %}
+        <tr class="item">
+          {% render_term_edit form %}
+          <td class="DELETE">
+            {% for hidden_field in form.hidden_fields %}
+              {{ hidden_field }}
+            {% endfor %}
+           {{ form.DELETE }}
+          </td>
+        </tr>
+        {% endfor %}
       </table>
       <p class="buttons">
-        <input type="submit" class="save" name="submit" value="{% trans "Save Changes" %}" />
+        <input type="submit" class="btn" name="submit" value="{% trans 'Save Changes' %}" />
       </p>
     </form>
   </div>
@@ -63,4 +66,4 @@
   <p><a href="{% url 'pootle-terminology-extract' language.code project.code %}">{% trans "Generate Glossary" %}</a></p>
 </div>
 {% endif %}
-{% endblock content %}
+{% endblock %}

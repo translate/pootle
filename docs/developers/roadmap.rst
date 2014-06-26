@@ -17,6 +17,8 @@ Estimated release April 2014
 - Stats speedup -- work on Stats speedups.
 - Concordance searching.
 - amaGama -- automate updating of resources.
+- Social/Persona authentication to make it easier for users to login and
+  contribute.
 - Translation editor improvements:
 
   - `Highlight placeable
@@ -59,8 +61,6 @@ Estimated release October 2014
 
   - Social sharing of projects, strings, etc for community building and
     community input.
-  - Social/Persona authentication to make it easier for users to login and
-    contribute.
   - OpenBadges -- implement badges to reward team members contributions.
 
 - Team review of translations.

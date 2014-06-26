@@ -1,9 +1,9 @@
 {% load i18n %}
 <ul id="tabs">
   {% if user == profile.user or not profile.user %}
-  <li><a href="{% url 'profiles_profile_detail' user.username %}" class="dashboard" title="{% trans 'Overview of your account' %}">{% trans "Dashboard" %}</a></li>
-  <li><a href="{% url 'pootle-profile-edit' %}" class="settings" title="{% trans 'Configure your translation preferences' %}">{% trans "Settings" %}</a></li>
-  <li><a href="{% url 'pootle-profile-personal-edit' %}" class="profile" title="{% trans 'Change your personal information' %}">{% trans "Profile" %}</a></li>
-  <li><a href="{% url 'account_reset_password' %}" class="password" title="{% trans 'Change your password' %}">{% trans "Password" %}</a></li>
+  <li><a href="{% url 'profiles_profile_detail' user.username %}" class="dashboard">{% trans "Dashboard" %}</a></li>
+  <li><a href="{% url 'pootle-profile-edit' %}" class="settings">{% trans "Settings" %}</a></li>
+  <li><a href="{% url 'pootle-profile-personal-edit' %}" class="profile">{% trans "Profile" %}</a></li>
+  <li><a href="{% url 'account_reset_password' %}" class="password">{% trans "Password" %}</a></li>
   {% endif %}
 </ul>

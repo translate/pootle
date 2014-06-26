@@ -1,30 +1,48 @@
 {% extends "layout.html" %}
-{% load i18n locale %}
+
+{% load i18n locale socialaccount %}
 
 {% block title %}{% trans "Login" %} | {{ block.super }}{% endblock %}
+
+{% block extra_head %}
+{% providers_media_js %}
+{% endblock %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Login" %}</li>
 {% endblock %}
 
 {% block content %}
-<div id="login" class="form" dir="{% locale_dir %}">
+<div id="login-wrapper">
+
+{% if socialaccount.providers  %}
+    <div id="login-alternative">
+        <h5>{% trans "Or sign in using:" %}</h5>
+        <ul class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        </ul>
+    </div>
+{% endif %}
+
+<div id="login" class="form">
     <h2>{% trans 'Login to Pootle' %}</h2>
     <form method="post" action="{% url 'account_login' %}" name="loginform">
         {% csrf_token %}
         {{ form.as_p }}
         {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
+
         <p class="buttons">
-            <input type="submit" class="login" value="{% trans 'Login' %}" />
+            <a href="{% url 'account_reset_password' %}" id="forgot-password">{% trans "Lost your Password?" %}</a>
+            <input type="submit" class="btn btn-primary" value="{% trans 'Login' %}"/>
         </p>
+
     </form>
 </div>
 
-<h2 class="formlink">
-  <a href="{% url 'account_reset_password' %}">{% trans "Lost your Password?" %}</a>
-</h2>
+</div>
+
 {% if settings.CAN_REGISTER %}
 <h2 class="formlink">{% trans "Don't have an account yet?" %}
     <a href="{{ signup_url }}" title="{% trans 'Register.' %}">{% trans "Register." %}</a>

@@ -20,24 +20,26 @@
 
 import json
 import locale
+import os
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.utils.translation import ugettext as _
 
 from pootle import depcheck
 from pootle.core.decorators import admin_required
 from pootle.core.markup import get_markup_filter
-from pootle_app.models import Suggestion as SuggestionStat
 from pootle_misc.aggregate import sum_column
 from pootle_profile.models import PootleProfile
 from pootle_statistics.models import Submission
-from pootle_store.models import Unit, Suggestion
+from pootle_store.models import Suggestion, Unit
 from pootle_store.util import TRANSLATED
+
+
+User = get_user_model()
 
 
 def required_depcheck():
@@ -239,20 +241,19 @@ def optimal_depcheck():
                       "developing Pootle. For optimal performance, disable "
                       "debugging mode.")
         })
-    if not depcheck.test_livetranslation():
-        optimal.append({
-            'dependency': 'livetranslation',
-            'text': _("Running in live translation mode. Live translation is "
-                      "useful as a tool to learn about Pootle and "
-                      "localization, but has high impact on performance.")
-        })
 
     return optimal
 
 
 def _format_numbers(dict):
     for k in dict.keys():
-        dict[k] = locale.format("%d", dict[k], grouping=True)
+        formatted_number = locale.format("%d", dict[k], grouping=True)
+        # Under Windows, formatted number must be converted to Unicode
+        if os.name == 'nt':
+            formatted_number = formatted_number.decode(
+                locale.getpreferredencoding()
+            )
+        dict[k] = formatted_number
 
 
 def server_stats():
@@ -262,8 +263,8 @@ def server_stats():
         result['user_count'] = max(User.objects.filter(is_active=True).count()-2, 0)
         # 'default' and 'nobody' might be counted
         # FIXME: the special users should not be retuned with is_active
-        result['submission_count'] = Submission.objects.count() + SuggestionStat.objects.count()
-        result['pending_count'] = Suggestion.objects.count()
+        result['submission_count'] = Submission.objects.count()
+        result['pending_count'] = Suggestion.objects.pending().count()
         cache.set("server_stats", result, 86400)
     _format_numbers(result)
     return result
@@ -283,9 +284,10 @@ def server_stats_more(request):
         sums = sum_column(unit_query, ('source_wordcount',), count=True)
         result['string_count'] = sums['count']
         result['word_count'] = sums['source_wordcount'] or 0
-        result['user_active_count'] = (PootleProfile.objects.exclude(submission=None) |\
-                                       PootleProfile.objects.exclude(suggestion=None) |\
-                                       PootleProfile.objects.exclude(suggester=None)).order_by().count()
+        result['user_active_count'] = (
+            PootleProfile.objects.exclude(submission=None) |
+            PootleProfile.objects.exclude(suggestions=None)
+        ).order_by().count()
         cache.set("server_stats_more", result, 86400)
     _format_numbers(result)
     stat_strings = {
@@ -311,5 +313,4 @@ def view(request):
         'optional': optional_depcheck(),
         'optimal': optimal_depcheck(),
     }
-    return render_to_response("admin/dashboard.html", ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "admin/dashboard.html", ctx)

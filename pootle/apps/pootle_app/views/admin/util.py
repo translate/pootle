@@ -20,8 +20,7 @@
 
 from django.forms.models import modelformset_factory
 from django.forms.util import ErrorList
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
@@ -171,9 +170,6 @@ def process_modelformset(request, model_class, queryset, **kwargs):
             return formset, _("There are errors in the form. Please review "
                               "the problems below."), objects
 
-        # Hack to force reevaluation of same query
-        queryset = queryset.filter()
-
     objects = paginate(request, queryset)
 
     return formset_class(queryset=objects.object_list), None, objects
@@ -190,5 +186,4 @@ def edit(request, template, model_class, ctx={},
         'error_msg': msg,
     })
 
-    return render_to_response(template, ctx,
-                              context_instance=RequestContext(request))
+    return render(request, template, ctx)

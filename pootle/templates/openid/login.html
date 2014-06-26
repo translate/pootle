@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% load i18n locale %}
+
+{% block title %}{% trans "OpenID Login" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "OpenID Login" %}</li>
+{% endblock %}
+
+{% block content %}
+<div id="login-wrapper">
+  <div id="login" class="form">
+    <h2>{% trans 'OpenID Login' %}</h2>
+    <form id="openid_login_form" class="openid_login" method="post" action="{% url 'openid_login' %}">
+      {% csrf_token %}
+      {{form.as_p}}
+      <p class="buttons">
+        <input type="submit" class="btn btn-primary" value="{% trans 'Login' %}"/>
+      </p>
+    </form>
+  </div>
+
+  <div id="login-alternative">
+    <h5><a href="{% url 'account_login' %}">{% trans "Return to password login" %}</a></h5>
+  </div>
+</div>
+{% endblock %}

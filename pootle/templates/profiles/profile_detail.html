@@ -25,8 +25,17 @@
   <div class="bd">
     <div id="user-meta-wrapper">
       <div id="user-meta">
-        <img src="{{ profile|gravatar:150 }}" width="150" height="150"{% if user == profile.user %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endif %} />
+        <img src="{{ profile|gravatar:150 }}" width="150" height="150"{% if user == profile.user %} title="{% trans 'You can set or change your avatar image at www.gravatar.com' %}"{% endif %} />
         <div class="user-name">{{ profile.user.username }}</div>
+        {% if user.is_superuser or request.permissions.administrate %}
+        <div>
+          {% if profile.user.email %}
+          <a href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a>
+          {% else %}
+          {% trans 'No email address.' %}
+          {% endif %}
+        </div>
+        {% endif %}
       </div>
     </div>
     <div id="user-contributions-wrapper">
@@ -48,7 +57,7 @@
             </thead>
             <tbody>
             {% for tp, stats in tp_user_stats %}
-              <tr class="item {% cycle 'even' 'odd' %}">
+              <tr class="item">
                 <td><a href="{{ tp.get_absolute_url }}">{{ tp.project }}</a></td>
                 {% for stat_item in stats %}
                 {% if stat_item.count != 0 %}

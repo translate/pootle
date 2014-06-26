@@ -1,0 +1,137 @@
+/* Standard button */
+
+.btn
+{
+    border: medium none;
+    border-radius: 4px;
+
+    outline: 0;
+    cursor: pointer;
+
+    display: inline-block;
+
+    background-image: none;
+    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset;
+
+    text-align: center;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+
+    transition: all 0.25s linear 0s;
+
+    /* btn-normal size */
+    font-size: inherit;
+    padding: 0.5em 1em;
+}
+
+.btn,
+a.btn,
+a.btn:link
+{
+    color: #fff !important;
+    text-decoration: none;
+}
+
+/* Sizes */
+
+.btn-xl
+{
+    font-size: 1.6em;
+    padding: 1em 2em;
+}
+
+.btn-lg
+{
+    font-size: 1.4em;
+}
+
+.btn-sm
+{
+    font-size: 0.9em;
+}
+
+.btn-xs
+{
+    font-size: 0.8em;
+    borde-radius: 3px;
+}
+
+
+/* Button types */
+
+.btn
+{
+    background-color: #91a9b9;
+}
+
+.btn.btn-primary
+{
+    background-color: #4dbdcb;
+}
+
+.btn.btn-success
+{
+    background-color: #5fb336;
+}
+
+.btn.btn-info
+{
+    background-color: #3498db;
+}
+
+.btn.btn-warning
+{
+    background-color: #f1c40f;
+}
+
+.btn.btn-danger
+{
+    background-color: #d2322d;
+}
+
+.btn:hover,
+.btn:focus
+{
+    /* Webkit */
+    -webkit-filter: brightness(120%);
+
+    /* Firefox: saturation more than 100% doesn't work; increase brightness instead */
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'saturate\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'1.2\'/><feFuncG type=\'linear\' slope=\'1.2\'/><feFuncB type=\'linear\' slope=\'1.2\'/></feComponentTransfer></filter></svg>#saturate");
+}
+
+.btn:disabled,
+.btn-disabled,
+.btn:disabled:active,
+.btn-disabled:active,
+.btn:disabled:hover,
+.btn-disabled:hover,
+.btn:disabled:focus,
+.btn-disabled:focus
+{
+    cursor: default;
+    pointer-events: none;   /* Not standard yet */
+
+    color: rgba(255, 255, 255, 0.75);
+    opacity: 0.5;
+
+    /* Webkit */
+    -webkit-filter: grayscale(50%);
+
+    /* Firefox */
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.5\'/></filter></svg>#grayscale");
+}
+
+/* Zoom */
+
+/* FIXME: whenever we use preprocessors, these should just reference
+ * btn-<size> */
+
+body.zoom-out-1 .btn
+{
+    min-width: 100px;
+}
+
+body.zoom-out-2 .btn
+{
+    min-width: 90px;
+}

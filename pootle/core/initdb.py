@@ -20,25 +20,28 @@
 
 import logging
 
-from translate.__version__ import build as code_tt_buildversion
+from translate.__version__ import build as CODE_TTK_BUILD_VERSION
+from translate.lang import data, factory
 
-from django.contrib.auth.models import User, Permission
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.sites.models import Site
 from django.core.management import call_command
 from django.db import transaction
-from django.db.models.signals import post_syncdb, pre_delete, post_delete
 from django.utils.translation import ugettext_noop as _
 
-import pootle_app.models
-from pootle.__version__ import build as code_buildversion
-from pootle_app.models import Directory
+from pootle.__version__ import build as CODE_PTL_BUILD_VERSION
+from pootle_app.models import Directory, PootleConfig, PootleSite
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
-from pootle_misc import siteconfig
-from pootle_profile.models import PootleProfile
 from pootle_project.models import Project
 from pootle_store.models import TMUnit, Unit
 from pootle_store.util import TRANSLATED
+
+
+User = get_user_model()
 
 
 def initdb():
@@ -46,16 +49,8 @@ def initdb():
 
     This creates the default database to get a working Pootle installation.
     """
-
-    try:
-        #FIXME: Should be called only if using cache on DB.
-        # Create default cache table.
-        call_command('createcachetable', 'pootlecache')
-    except:
-        pass
-
-    create_essential_users()
     create_root_directories()
+    create_essential_users()
     create_template_languages()
     create_terminology_project()
     create_pootle_permissions()
@@ -65,20 +60,21 @@ def initdb():
     create_default_languages()
     create_default_admin()
 
+    create_default_pootle_site(settings.TITLE, settings.DESCRIPTION)
+
     create_local_tm()
 
-    config = siteconfig.load_site_config()
-    if not config.get('POOTLE_BUILDVERSION', None):
-        config.set('POOTLE_BUILDVERSION', code_buildversion)
-    if not config.get('TT_BUILDVERSION', None):
-        config.set('TT_BUILDVERSION', code_tt_buildversion)
-    config.save()
+    save_build_versions()
 
 
 def create_essential_users():
-    """Create the 'default' and 'nobody' User instances.
+    """Create the 'default', 'nobody' and 'system' User instances.
 
-    These users are required for Pootle's permission system.
+    The 'default' and 'nobody' users are required for Pootle's permission
+    system.
+
+    The 'system' user is required for logging the actions performed by the
+    management commands.
     """
     # The nobody user is used to represent an anonymous user in cases where
     # we need to associate model information with such a user. An example is
@@ -110,6 +106,26 @@ def create_essential_users():
     if created:
         default.set_unusable_password()
         default.save()
+
+    # Now create the 'system' user.
+    create_system_user()
+
+
+def create_system_user():
+    """Create the 'system' User instance.
+
+    The 'system' user represents a system, and is used to associate updates
+    done by bulk commands as update_stores.
+    """
+    criteria = {
+        'username': u"system",
+        'first_name': u"system user",
+        'is_active': True,
+    }
+    system, created = User.objects.get_or_create(**criteria)
+    if created:
+        system.set_unusable_password()
+        system.save()
 
 
 def create_pootle_permissions():
@@ -174,8 +190,8 @@ def create_pootle_permission_sets():
     'nobody' is the anonymous (non-logged in) user, and 'default' is the logged
     in user.
     """
-    nobody = PootleProfile.objects.get(user__username='nobody')
-    default = PootleProfile.objects.get(user__username='default')
+    nobody = User.objects.get(username="nobody")
+    default = User.objects.get(username="default")
 
     view = get_pootle_permission('view')
     suggest = get_pootle_permission('suggest')
@@ -184,7 +200,7 @@ def create_pootle_permission_sets():
 
     # Default permissions for tree root.
     criteria = {
-        'profile': nobody,
+        'user': nobody,
         'directory': Directory.objects.root,
     }
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
@@ -192,7 +208,7 @@ def create_pootle_permission_sets():
         permission_set.positive_permissions = [view, suggest]
         permission_set.save()
 
-    criteria['profile'] = default
+    criteria["user"] = default
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
     if created:
         permission_set.positive_permissions = [view, suggest, translate,
@@ -202,7 +218,7 @@ def create_pootle_permission_sets():
     # Default permissions for templates language.
     # Override with no permissions for templates language.
     criteria = {
-        'profile': nobody,
+        'user': nobody,
         'directory': Directory.objects.get(pootle_path="/templates/"),
     }
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
@@ -210,7 +226,7 @@ def create_pootle_permission_sets():
         permission_set.positive_permissions = []
         permission_set.save()
 
-    criteria['profile'] = default
+    criteria["user"] = default
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
     if created:
         permission_set.positive_permissions = []
@@ -269,8 +285,6 @@ def create_default_projects():
     You might want to add your projects here, although you can also add things
     through the web interface later.
     """
-    from pootle_project.models import Project
-
     en = require_english()
 
     #criteria = {
@@ -309,9 +323,6 @@ def create_default_projects():
 
 def create_default_languages():
     """Create the default languages."""
-    from translate.lang import data, factory
-
-    from pootle_language.models import Language
 
     # Import languages from toolkit.
     for code in data.languages.keys():
@@ -344,11 +355,29 @@ def create_default_admin():
         'first_name': u"Administrator",
         'is_active': True,
         'is_superuser': True,
-        'is_staff': True,
     }
     admin = User(**criteria)
     admin.set_password("admin")
     admin.save()
+
+
+def create_default_pootle_site(site_title, site_description):
+    """Create a PootleSite object to store the site title and description."""
+    # Get or create a Site object.
+    site, created = Site.objects.get_or_create(pk=settings.SITE_ID)
+    if created:
+        # FIXME: If possible try to retrieve the domain and name from settings.
+        site.domain = u"example.com"
+        site.name = u"example.com"
+        site.save()
+
+    # Create the PootleSite object.
+    pootle_site = PootleSite(
+        site=site,
+        title=site_title,
+        description=site_description,
+    )
+    pootle_site.save()
 
 
 def create_local_tm():
@@ -364,4 +393,16 @@ def create_local_tm():
             tmunit = TMUnit().create(unit)
             tmunit.save()
 
-        logging.info('Succesfully created local TM from existing translations')
+        logging.info('Successfully created local TM from existing translations')
+
+
+def save_build_versions():
+    """Save the Pootle and Translate Toolkit build versions on the database.
+
+    The build versions are used to upgrade only what has to be upgraded.
+    """
+    pootle_config = PootleConfig(
+        ptl_build=CODE_PTL_BUILD_VERSION,
+        ttk_build=CODE_TTK_BUILD_VERSION
+    )
+    pootle_config.save()

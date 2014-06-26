@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% load i18n locale %}
+
+{% block title %}{% trans "Register" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Register" %}</li>
+{% endblock %}
+
+{% block content %}
+<div id="register" class="form" dir="{% locale_dir %}">
+  <h2>{% trans "Register a New Pootle Account" %}</h2>
+
+  <p>
+  {% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to {{site_name}}.<br/>
+As a final step, please complete the following form:{% endblocktrans %}
+  </p>
+
+  <form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <p class="buttons">
+      <input type="submit" class="btn" value="{% trans 'Register' %}" />
+    </p>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load i18n %}
+<div dir="ltr">
+  <div class="hd">
+    <h2>{{ goal.goal_name }}</h2>
+  </div>
+  <div class="bd js-container-ctx-meta-desc">
+    <div id="overview-description"
+      class="markup-body{% if can_edit %} js-ctx-meta-desc{% endif %}">
+      <p><b>{% trans 'Priority:' %}</b> {{ goal.priority }}</p>
+      {% if goal.description %}
+      {{ goal.description }}
+      {% else %}
+      <p class="placeholder muted">{% trans 'No description.' %}</p>
+      {% endif %}
+      {% if can_edit %}
+      <a class="js-edit-details invisible">{% trans 'Edit' %}</a>
+      {% endif %}
+    </div>
+    {% if can_edit %}
+    <div class="settings-container js-edit-ctx-meta-desc" style="display:none;">
+      {% include 'admin/_settings_form.html' with form=goal_form form_action=goal_form_action %}
+    </div>
+    {% endif %}
+  </div>
+</div>

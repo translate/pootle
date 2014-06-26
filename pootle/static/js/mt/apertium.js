@@ -17,9 +17,7 @@
       _this.url = apiKey == undefined ? _this.url : _this.url + '?key=' + apiKey;
       $.getScript(_this.url, function () {
         /* Init variables */
-        var _this = PTL.editor.mt.apertium,
-            targetLanguage = PTL.editor.settings.targetLanguage;
-        _this.targetLang = PTL.editor.normalizeCode(targetLanguage);
+        var _this = PTL.editor.mt.apertium;
 
         _this.pairs = $.cookie(_this.cookieName);
         if (!_this.pairs) {
@@ -49,9 +47,13 @@
         content.type = "txt";
         apertium.translate(content, langFrom, langTo, function (result) {
           if (result.translation) {
-            resultCallback(result.translation);
+            resultCallback({
+              translation: result.translation
+            });
           } else {
-            resultCallback(false, "Apertium Error: " + result.error.message);
+            resultCallback({
+              msg: "Apertium Error: " + result.error.message
+            });
           }
         });
       });

@@ -17,8 +17,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-"""Overrides and support functions for enabling Live Translation and
-arbitrary locale support."""
+"""Overrides and support functions for arbitrary locale support."""
 
 import locale
 import os
@@ -47,16 +46,8 @@ def find_languages(locale_path):
 
 
 def supported_langs():
-    """Return a list of locales supported adapting to live translation state.
-    """
+    """Return a list of supported locales."""
     from django.conf import settings
-    if settings.LIVE_TRANSLATION:
-        try:
-            from pootle_language.models import Language
-            return [(trans_real.to_language(language.code), language.fullname)
-                    for language in Language.objects.exclude(code='template')]
-        except Exception:
-            pass
     return settings.LANGUAGES
 
 
@@ -100,19 +91,6 @@ def get_lang_from_cookie(request, supported):
         return None
 
 
-def get_lang_from_prefs(request, supported):
-    """If the current user is logged in, get her profile model object
-    and check whether she has set her preferred interface language.
-    """
-    # If the user is logged in.
-    if request.user.is_authenticated():
-        profile = request.user.get_profile()
-        # and if the user's ui lang is set, and the ui lang exists.
-        if profile.ui_lang and profile.ui_lang in supported:
-            return profile.ui_lang
-    return None
-
-
 def get_lang_from_http_header(request, supported):
     """If the user's browser sends a list of preferred languages in the
     HTTP_ACCEPT_LANGUAGE header, parse it into a list. Then walk through
@@ -141,39 +119,19 @@ def get_lang_from_http_header(request, supported):
 
 def get_language_from_request(request, check_path=False):
     """Try to get the user's preferred language by first checking the
-    cookie, then the user's preferences (stored in the PootleProfile
-    model) and finally by checking the HTTP language headers.
+    cookie and then by checking the HTTP language headers.
 
     If all fails, try fall back to default language.
     """
     supported = dict(supported_langs())
     for lang_getter in (get_lang_from_session,
                         get_lang_from_cookie,
-                        get_lang_from_prefs,
                         get_lang_from_http_header):
         lang = lang_getter(request, supported)
         if lang is not None:
             return lang
     from django.conf import settings
     return settings.LANGUAGE_CODE
-
-
-def translation_dummy(language):
-    """Return dummy translation object to please Django's l10n while
-    Live Translation is enabled.
-    """
-    t = trans_real._translations.get(language, None)
-    if t is not None:
-        return t
-
-    dummytrans = trans_real.DjangoTranslation()
-    dummytrans.set_language(language)
-    #FIXME: the need for the _catalog attribute means we are not hijacking
-    # gettext early enough.
-    dummytrans._catalog = {}
-    dummytrans.plural = lambda x: x
-    trans_real._translations[language] = dummytrans
-    return dummytrans
 
 
 def override_gettext(real_translation):
@@ -193,3 +151,18 @@ def get_language_bidi():
     RTL languages.
     """
     return gettext.language_dir(translation.get_language()) == 'rtl'
+
+
+def hijack_translation():
+    """Sabotage Django's fascist linguistical regime."""
+    # Override functions that check if language is known to Django
+    translation.check_for_language = lambda lang_code: True
+    trans_real.check_for_language = lambda lang_code: True
+    translation.get_language_from_request = get_language_from_request
+
+    # Override django's inadequate bidi detection
+    translation.get_language_bidi = get_language_bidi
+
+    # We hijack gettext functions to install the safe variable formatting
+    # override
+    override_gettext(gettext)

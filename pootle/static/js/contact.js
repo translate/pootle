@@ -2,16 +2,65 @@
 
   window.PTL = window.PTL || {};
 
-  PTL.contact = {
-
+  var sel = {
+    data: {
+      target: '[data-action="contact"]',
+      subjectPrefix: 'subject-prefix',
+      subject: 'subject',
+      body: 'body'
+    },
     wrapper: '#js-contact',
     form: '#js-contact form',
     formSent: '#js-sent',
+    subject: '#js-contact #id_subject',
+    body: '#js-contact #id_body'
+  };
+
+  PTL.contact = {
+
+    url: null,
+
+    init: function (options) {
+      options && $.extend(this, options);
+    },
+
+    onClick: function (e) {
+      e.preventDefault();
+
+      var contactUrl = PTL.contact.url;
+      if (contactUrl === null) {
+        return false;
+      }
+
+      var $el = $(e.target),
+          sP = $el.data(sel.data.subjectPrefix),
+          subjectPrefix = sP ? ['[', sP, '] '].join('') : sP,
+          subject = $el.data(sel.data.subject),
+          body = $el.data(sel.data.body);
+
+      $.magnificPopup.open({
+        items: {
+          src: contactUrl,
+          type: 'ajax'
+        },
+        callbacks: {
+          ajaxContentAdded: function () {
+            var newSubject = [];
+            subjectPrefix && newSubject.push(subjectPrefix);
+            subject && newSubject.push(subject);
+
+            newSubject.length && $(sel.subject).val(newSubject.join(''));
+            body && $(sel.body).val(body);
+          }
+        },
+        mainClass: 'popup-ajax'
+      });
+    },
 
     onSubmit: function (e) {
       e.preventDefault();
 
-      var $form = $(PTL.contact.form),
+      var $form = $(sel.form),
           url = $form.attr('action'),
           data = $form.serializeObject(),
           captchaCallbacks = {
@@ -36,8 +85,8 @@
 
     onSuccess: function (xhr) {
       // Display thank you message
-      $(PTL.contact.wrapper).hide();
-      $(PTL.contact.formSent).show();
+      $(sel.wrapper).hide();
+      $(sel.formSent).show();
     },
 
     onError: function (xhr) {
@@ -69,6 +118,7 @@
 
   };
 
-  $(document).on('submit', '#js-contact form', PTL.contact.onSubmit);
+  $(document).on('click', sel.data.target, PTL.contact.onClick);
+  $(document).on('submit', sel.form, PTL.contact.onSubmit);
 
 }(jQuery));

@@ -34,4 +34,4 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         logging.info('Populating the database.')
         initdb()
-        logging.info('Succesfully populated the database.')
+        logging.info('Successfully populated the database.')

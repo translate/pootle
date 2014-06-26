@@ -368,6 +368,32 @@ Examples:
     $ fab production load_db:dumpfile=backup_mysql.sql
 
 
+.. _fabric-commands#migrate-app:
+
+migrate_app
+^^^^^^^^^^^
+
+.. versionadded:: 2.5.2
+
+This command:
+
+- Runs :ref:`migrate <commands#migrate>` to run the migrations for the
+  specified Pootle app
+
+Available arguments:
+
+``appname``
+  The name of the Pootle app for which the migrations should be run for.
+
+  .. note:: This is a required argument.
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab production migrate_app:appname=pootle_store
+
+
 .. _fabric-commands#migratedb:
 
 migratedb
@@ -488,6 +514,31 @@ settings, which are then used for all the subsequent commands (just
 This example is like the previous one, with the addition of the
 :option:`feature` argument that triggers the altering of several settings. That
 altering is necessary for working with feature-staging servers.
+
+
+.. _fabric-commands#send-file:
+
+send_file
+^^^^^^^^^
+
+.. versionadded:: 2.5.2
+
+This command:
+
+- Uploads the specified file to the server
+
+Available arguments:
+
+``upfile``
+  The name of the file to upload.
+
+  .. note:: This is a required argument.
+
+Examples:
+
+.. code-block:: bash
+
+    $ fab production send_file:upfile=translation-files.tar.gz
 
 
 .. _fabric-commands#setup:

@@ -17,10 +17,11 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.conf import settings
 from django.db import models
 from django.db.models import Q
 from django.db.models.aggregates import Max
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.utils.timezone import now
@@ -132,13 +133,16 @@ class StaticPage(AbstractPage):
     display_name = _('Regular Page')
 
     def get_edit_url(self):
-        return reverse('pootle-staticpages-edit', args=['static', self.pk])
+        page_type = 'static'
+        if self.virtual_path.startswith('announcements/'):
+            page_type = 'announcements'
+        return reverse('pootle-staticpages-edit', args=[page_type, self.pk])
 
 
 class Agreement(models.Model):
     """Tracks who agreed a specific legal document and when."""
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     document = models.ForeignKey(LegalPage)
     agreed_on = models.DateTimeField(
         default=now,

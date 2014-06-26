@@ -121,13 +121,15 @@ refresh_stats
 
 This command will go through all existing projects making sure calculated data
 is up to date. Running ``refresh_stats`` immediately after an install, upgrade
-or after adding a large number of files will make Pootle feel faster as it will
-require less on-demand calculation of expensive statistics.
+or after adding a large number of files will ensure statistics, such as word
+and suggestion counts, are up to date. On large installations, refresh_stats
+can take several tens of minutes to fully run through all projects.
 
 ``refresh_stats`` will flush existing caches and update the statistics cache.
 
 When the ``--calculate-checks`` option is set, quality checks will be
-recalculated for all existing units in the database.
+recalculated for all existing units in the database. This is a very expensive
+operation.
 
 
 .. _commands#sync_stores:
@@ -422,15 +424,36 @@ These commands allow you to perform tasks with goals from the command line.
 add_project_goals
 ^^^^^^^^^^^^^^^^^
 
+.. versionchanged:: 2.5.2
+
 This command allows you to create **project goals** for a given project reading
 them from a phaselist file.
 
-Such file has several lines where each line consists on two fields separated by
-a tab. The first field specifies a goal name and the second one is the path of
-a file:
+Such file comprises two sections.
+
+The first section has several lines where each line consists on three fields
+separated by a tab. The first field includes a mandatory name for the goal, the
+second an optional numeric priority for the goal (being 1 the highest
+priority), and a third optional field with the goal description that can span
+several lines. The tabs separating the fields must always be present, even if
+they are not specified.
+
+The second section has several lines where each line consists on two fields
+separated by a tab. The first field specifies a goal name and the second one is
+the path of a file:
 
 .. code-block:: ini
 
+    [goals]
+    user1	1	Most visible strings for the user.
+    user2	2
+    user3	7	
+    other		
+    developer	9	Strings for developer \
+    tools. As you can see this description spans \
+    several lines.
+    install	5	Installation related strings.
+    [files]
     user1	./browser/branding/official/brand.dtd.pot
     other	./browser/chrome/browser/aboutCertError.dtd.pot
     user1	browser/chrome/browser/aboutDialog.dtd.pot
@@ -587,7 +610,7 @@ collectstatic
 ^^^^^^^^^^^^^
 
 Running the Django admin :djadmin:`django:collectstatic` command finds
-and extracts static content such as images, CSS and JavaScript files used by 
+and extracts static content such as images, CSS and JavaScript files used by
 the Pootle server, so that they can be served separately from a static
 webserver.  Typically, this is run with the :option:`--clear`
 :option:`--noinput` options, to flush any existing static data and use default

@@ -29,20 +29,10 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
-from pootle_misc.aggregate import max_column
-from pootle_misc.util import getfromcache
-from pootle_store.models import Unit, Suggestion
-from pootle_store.util import OBSOLETE
 
 
 # FIXME: Generate key dynamically
 CACHE_KEY = 'pootle-languages'
-
-
-class LanguageManager(RelatedManager):
-
-    def get_by_natural_key(self, code):
-        return self.get(code=code)
 
 
 class LiveLanguageManager(models.Manager):
@@ -126,16 +116,12 @@ class Language(models.Model, TreeItem):
         editable=False,
     )
 
-    objects = LanguageManager()
+    objects = RelatedManager()
     live = LiveLanguageManager()
 
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_language'
-
-    def natural_key(self):
-        return (self.code,)
-    natural_key.dependencies = ['pootle_app.Directory']
 
     ############################ Properties ###################################
 
@@ -194,7 +180,7 @@ class Language(models.Model, TreeItem):
     ### TreeItem
 
     def get_children(self):
-        return self.translationproject_set.all()
+        return self.translationproject_set.enabled()
 
     def get_cachekey(self):
         return self.directory.pootle_path

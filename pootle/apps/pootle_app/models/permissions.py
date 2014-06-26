@@ -62,8 +62,7 @@ def get_permissions_by_username(username, directory):
         try:
             permissionset = PermissionSet.objects.filter(
                 directory__in=directory.trail(only_dirs=False),
-                profile__user__username=username) \
-                        .order_by('-directory__pootle_path')[0]
+                user__username=username).order_by("-directory__pootle_path")[0]
         except IndexError:
             permissionset = None
 
@@ -76,7 +75,7 @@ def get_permissions_by_username(username, directory):
                     project_path = '/projects/%s/' % path_parts[1]
                     permissionset = PermissionSet.objects \
                             .get(directory__pootle_path=project_path,
-                                 profile__user__username=username)
+                                 user__username=username)
                 except PermissionSet.DoesNotExist:
                     pass
 
@@ -90,10 +89,9 @@ def get_permissions_by_username(username, directory):
     return permissions_cache[pootle_path]
 
 
-def get_matching_permissions(profile, directory, check_default=True):
-    if profile.user.is_authenticated():
-        permissions = get_permissions_by_username(profile.user.username,
-                                                  directory)
+def get_matching_permissions(user, directory, check_default=True):
+    if user.is_authenticated():
+        permissions = get_permissions_by_username(user.username, directory)
         if permissions is not None:
             return permissions
 
@@ -109,29 +107,24 @@ def get_matching_permissions(profile, directory, check_default=True):
     return permissions
 
 
-def check_profile_permission(profile, permission_codename, directory,
-                             check_default=True):
-    """Check if the current user has the permission the perform
-    ``permission_codename``."""
-    if profile.user.is_superuser:
+def check_user_permission(user, permission, directory, check_default=True):
+    """Check if the current user has the permission to perform ``permission``."""
+    if user.is_superuser:
         return True
 
-    permissions = get_matching_permissions(profile, directory, check_default)
+    permissions = get_matching_permissions(user, directory, check_default)
 
-    return ("administrate" in permissions or
-            permission_codename in permissions)
+    return ("administrate" in permissions or permission in permissions)
 
 
-def check_permission(permission_codename, request):
-    """Check if the current user has `permission_codename`
-    permissions.
-    """
+def check_permission(codename, request):
+    """Check if the current user has `codename` permissions."""
     if request.user.is_superuser:
         return True
 
     # `view` permissions are project-centric, and we must treat them
     # differently
-    if permission_codename == 'view':
+    if codename == "view":
         path_obj = None
         if hasattr(request, 'translation_project'):
             path_obj = request.translation_project
@@ -143,20 +136,14 @@ def check_permission(permission_codename, request):
 
         return path_obj.is_accessible_by(request.user)
 
-    return ("administrate" in request.permissions or
-            permission_codename in request.permissions)
+    permissions = request.permissions
 
-
-class PermissionSetManager(RelatedManager):
-
-    def get_by_natural_key(self, username, pootle_path):
-        return self.get(profile__user__username=username,
-                        directory__pootle_path=pootle_path)
+    return ("administrate" in permissions or codename in permissions)
 
 
 class PermissionSet(models.Model):
 
-    profile = models.ForeignKey('pootle_profile.PootleProfile', db_index=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
     directory = models.ForeignKey(
         'pootle_app.Directory',
         db_index=True,
@@ -175,21 +162,14 @@ class PermissionSet(models.Model):
         related_name='permission_sets_negative',
     )
 
-    objects = PermissionSetManager()
+    objects = RelatedManager()
 
     class Meta:
-        unique_together = ('profile', 'directory')
+        unique_together = ("user", "directory")
         app_label = "pootle_app"
 
-    def natural_key(self):
-        return (self.profile.user.username, self.directory.pootle_path)
-    natural_key.dependencies = [
-        'pootle_app.Directory', 'pootle_profile.PootleProfile'
-    ]
-
     def __unicode__(self):
-        return "%s : %s" % (self.profile.user.username,
-                            self.directory.pootle_path)
+        return "%s : %s" % (self.user.username, self.directory.pootle_path)
 
     def to_dict(self):
         permissions_iterator = self.positive_permissions.iterator()
@@ -199,7 +179,7 @@ class PermissionSet(models.Model):
         super(PermissionSet, self).save(*args, **kwargs)
         # FIXME: can we use `post_save` signals or invalidate caches in
         # model managers, please?
-        username = self.profile.user.username
+        username = self.user.username
         keys = [
             iri_to_uri('Permissions:%s' % username),
             iri_to_uri('projects:accessible:%s' % username),
@@ -210,7 +190,7 @@ class PermissionSet(models.Model):
         super(PermissionSet, self).delete(*args, **kwargs)
         # FIXME: can we use `post_delete` signals or invalidate caches in
         # model managers, please?
-        username = self.profile.user.username
+        username = self.user.username
         keys = [
             iri_to_uri('Permissions:%s' % username),
             iri_to_uri('projects:accessible:%s' % username),

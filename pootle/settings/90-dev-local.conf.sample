@@ -24,6 +24,23 @@ DEBUG = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
 TEMPLATE_DEBUG = DEBUG
 
+# A list of strings representing the host/domain names that this Pootle server
+# can serve. This is a Django's security measure. More details at
+# https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
+# Puts the app into maintenance mode.
+# When `DEBUG` is `False`, this will display a template for every request
+# made to the application.
+#
+# The maintenance pages is not displayed if:
+#   - The user is logged in and is a staff member.
+#   - The user's IP is in `INTERNAL_IPS`.
+MAINTENANCE_MODE = False
+
+# Sequence of URL path regexes to exclude from the maintenance mode.
+MAINTENANCE_IGNORE_URLS = ()
+
 
 #
 # Backends
@@ -61,6 +78,62 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'pootlecache',
     }
+}
+
+
+# Logging
+
+POOTLE_LOG_DIRECTORY = working_path('log/')
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'action': {
+            'format' : "[%(asctime)s]\t%(message)s",
+            'datefmt' : "%Y-%m-%dT%H:%M:%S"
+        },
+    },
+    'handlers': {
+        'null': {
+            'level':'DEBUG',
+            'class':'django.utils.log.NullHandler',
+        },
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        # Log to a text file that can be rotated by logrotate
+        'log_action': {
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': os.path.join(POOTLE_LOG_DIRECTORY,
+                                     'pootle-activity.log'),
+            'formatter':'action',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['null'],  # Quiet by default!
+            'propagate': False,
+            'level':'DEBUG',
+        },
+        'django.request': {
+            'handlers': ['null'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'action': {
+            'handlers': ['log_action',],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
 }
 
 
@@ -122,8 +195,6 @@ MIDDLEWARE_CLASSES += [
 DEBUG_TOOLBAR_CONFIG = {
     # Toolbar options
     'SHOW_COLLAPSED': True,
-    # Panel options
-    'INTERCEPT_REDIRECTS': False,
 }
 
 

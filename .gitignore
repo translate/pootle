@@ -61,8 +61,11 @@ Pootle.egg-info/
 
 # Requirements generation
 .reqs
-requirements-min-versions.txt
+requirements/min-versions.txt
 requirements-pinned.txt
 
 # Coverage
 .coverage.*
+
+# Logs
+log/

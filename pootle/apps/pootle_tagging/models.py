@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Zuza Software Foundation
+# Copyright 2013, 2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -33,9 +33,10 @@ from taggit.models import TagBase, GenericTaggedItemBase
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle_app.models.signals import (post_file_upload, post_template_update,
-                                       post_vc_update)
+from pootle_app.signals import (post_file_upload, post_template_update,
+                                post_vc_update)
 from pootle_misc.checks import category_names, check_names
+from pootle_misc.checks import get_qualitychecks_by_category
 from pootle_store.signals import translation_submitted
 from pootle_store.util import OBSOLETE, suggestions_sum
 
@@ -142,7 +143,10 @@ class Goal(TagBase):
                                                         .get_for_model(Store),
             'items_with_goal__object_id__in': stores_pks,
         }
-        tp = directory.translation_project
+        try:
+            tp = directory.translation_project
+        except:
+            return []
 
         if tp.is_template_project:
             # Return the 'project goals' applied to stores in this path.
@@ -179,7 +183,7 @@ class Goal(TagBase):
             return list(chain(regular_goals, project_goals))
 
     @classmethod
-    def get_trail_for_path(self, pootle_path):
+    def get_trail_for_path(cls, pootle_path):
         """Return a list with the trail for the given path.
 
         If the pootle path does not exist, then an empty list is returned.
@@ -325,6 +329,15 @@ class Goal(TagBase):
             reverse('pootle-tp-translate', args=[lang, proj, dir_path, fn]),
             get_editor_filter(goal=self.slug, **kwargs),
         ])
+
+    def get_critical_url_for_path(self, pootle_path, **kwargs):
+        """Return this goal's translate URL for critical checks failures in the
+        given path.
+
+        :param pootle_path: A string with a valid pootle path.
+        """
+        critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
+        return self.get_translate_url_for_path(pootle_path, check=critical)
 
     def get_drill_down_url_for_path(self, pootle_path):
         """Return this goal's drill down URL for the given path.

@@ -24,67 +24,24 @@ This is legacy code that only performs upgrades up to version 2.5. Any
 future schema migrations are handled entirely by South.
 """
 
-from __future__ import absolute_import
-
 import logging
 
 from django.core.management import call_command
-
-from pootle_language.models import Language
-from pootle_project.models import Project
-from pootle_store.models import Store
-
-from . import save_legacy_pootle_version
-
-
-def update_tables_21000():
-    logging.info("Updating existing database tables")
-
-    from south.db import db
-
-    table_name = Store._meta.db_table
-    field = Store._meta.get_field('state')
-    db.add_column(table_name, field.name, field)
-    db.create_index(table_name, (field.name,))
-
-    field = Store._meta.get_field('translation_project')
-    field.null = True
-    db.add_column(table_name, field.name, field)
-    db.create_index(table_name, (field.name + '_id',))
-
-    table_name = Project._meta.db_table
-    field = Project._meta.get_field('directory')
-    field.null = True
-    db.add_column(table_name, field.name, field)
-
-    field = Project._meta.get_field('source_language')
-    try:
-        en = Language.objects.get(code='en')
-    except Language.DoesNotExist:
-        from pootle_app.models import Directory
-
-        # We can't allow translation project detection to kick in yet so let's
-        # create en manually
-        en = Language(code='en', fullname='English', nplurals=2,
-                      pluralequation="(n != 1)")
-        en.directory = Directory.objects.root.get_or_make_subdir(en.code)
-        en.save_base(raw=True)
-    field.default = en.id
-    db.add_column(table_name, field.name, field)
-    db.create_index(table_name, (field.name + '_id',))
-
-    save_legacy_pootle_version(21000)
 
 
 def update_tables_22000():
     logging.info("Updating existing database tables")
 
+    from django.db import models
+
     from south.db import db
 
-    from pootle_store.models import Suggestion
-    from pootle_translationproject.models import TranslationProject
+    from pootle_language.models import Language
+    from pootle_misc.siteconfig import load_site_config
+    from pootle_project.models import Project
     from pootle_statistics.models import Submission
-    from pootle_store.models import QualityCheck, Unit
+    from pootle_store.models import QualityCheck, Store, Suggestion, Unit
+    from pootle_translationproject.models import TranslationProject
 
     # For the sake of South bug 313, we set the default for these fields here:
     # See http://south.aeracode.org/ticket/313
@@ -98,27 +55,24 @@ def update_tables_22000():
     field.default = u''
     db.add_column(table_name, field.name, field)
 
-    field = Language._meta.get_field('description_html')
-    field.default = u''
-    db.add_column(table_name, field.name, field)
+    field = models.TextField(default=u'', editable=False, blank=True)
+    db.add_column(table_name, 'description_html', field)
 
     table_name = TranslationProject._meta.db_table
     field = TranslationProject._meta.get_field('description')
     field.default = u''
     db.add_column(table_name, field.name, field)
 
-    field = TranslationProject._meta.get_field('description_html')
-    field.default = u''
-    db.add_column(table_name, field.name, field)
+    field = models.TextField(default=u'', editable=False, blank=True)
+    db.add_column(table_name, 'description_html', field)
 
     table_name = Project._meta.db_table
     field = Project._meta.get_field('report_target')
     field.default = u''
     db.add_column(table_name, field.name, field)
 
-    field = Project._meta.get_field('description_html')
-    field.default = u''
-    db.add_column(table_name, field.name, field)
+    field = models.TextField(default=u'', editable=False, blank=True)
+    db.add_column(table_name, 'description_html', field)
 
     table_name = QualityCheck._meta.db_table
     field = QualityCheck._meta.get_field('category')
@@ -142,19 +96,15 @@ def update_tables_22000():
     field = Store._meta.get_field('sync_time')
     db.add_column(table_name, field.name, field)
 
-    save_legacy_pootle_version(22000)
+    # Save the legacy buildversion using djblets.
+    config = load_site_config()
+    config.set('POOTLE_BUILDVERSION', 22000)
+    config.save()
+    logging.info("Database now at Pootle build 22000")
 
 
 def staggered_update(db_buildversion):
     """Updates Pootle's database schema in steps."""
-
-    if db_buildversion < 21000:
-        try:
-            update_tables_21000()
-        except Exception as e:
-            logging.warning(u"Something broke while upgrading database "
-                            u"tables:\n%s", e)
-            #TODO: should we continue?
 
     # Build missing tables
     try:

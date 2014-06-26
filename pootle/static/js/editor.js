@@ -52,7 +52,7 @@
     /* Compile templates */
     this.tmpl = {vUnit: _.template($('#view_unit').html()),
                  tm: _.template($('#tm_suggestions').html()),
-                 editCtx: _.template($('#editCtx').html())}
+                 editCtx: _.template($('#editCtx').html())};
 
     /* Initialize search */
     // TODO: pass the environment option to the init
@@ -111,14 +111,13 @@
     });
     $(document).on('click', 'input.submit', this.submit);
     $(document).on('click', 'input.suggest', this.suggest);
-    $(document).on('click', '#js-nav-prev, #js-nav-next', this.gotoPrevNext);
+    $(document).on('click', '#js-nav-prev', this.gotoPrev.bind(this));
+    $(document).on('click', '#js-nav-next', this.gotoNext.bind(this));
     $(document).on('click', '.js-suggestion-reject', this.rejectSuggestion);
     $(document).on('click', '.js-suggestion-accept', this.acceptSuggestion);
-    $(document).on('click', '.js-vote-clear', this.clearVote);
-    $(document).on('click', '.js-vote-up', this.voteUp);
     $(document).on('click', '#js-show-timeline', this.showTimeline);
     $(document).on('click', '#js-hide-timeline', this.hideTimeline);
-    $(document).on('click', '#translate-checks-block .js-reject-check', this.rejectCheck);
+    $(document).on('click', '.js-toggle-check', this.toggleCheck);
 
     /* Filtering */
     $("#filter-checks").hide();
@@ -160,8 +159,8 @@
     shortcut.add('ctrl+up', this.gotoPrev.bind(this));
     shortcut.add('ctrl+,', this.gotoPrev.bind(this));
 
-    shortcut.add('ctrl+down', this.gotoNext.bind(this));
-    shortcut.add('ctrl+.', this.gotoNext.bind(this));
+    shortcut.add('ctrl+down', this.gotoNext.bind(this, false));
+    shortcut.add('ctrl+.', this.gotoNext.bind(this, false));
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
@@ -178,7 +177,7 @@
                        'First page: Ctrl+Shift+Home'].join('<br/>'))
       );
     }
-    
+
     shortcut.add('ctrl+shift+n', function () {
       $('#item-number').focus().select();
     });
@@ -478,7 +477,13 @@
       firstArea.focus();
     }
 
+    PTL.editor.settings.targetLang = PTL.editor.normalizeCode(
+      $('.js-translation-area').attr('lang')
+    );
+
     PTL.editor.hlSearch();
+
+    PTL.editor.setupAutocomplete();
 
     if (PTL.editor.settings.tmUrl != '') {
       PTL.editor.getTMUnits();
@@ -566,6 +571,41 @@
     $(sel.join(", ")).highlightRegex(hlRegex);
   },
 
+  setupAutocomplete: function () {
+    var searchFunc = function (term, callback) {
+      var $placeables = $("div.original .js-placeable");
+
+      var matching = $.map($placeables, function (placeable) {
+        var text = $(placeable).text(),
+            html = $(placeable).html();
+        if (term.length !== 0 && text.indexOf(term) === 0) {
+          // We return html not text here as the return value will used to
+          // populate the drop down menu unescaped.
+          return html;
+        } else {
+          return null;
+        }
+      });
+
+      callback(matching);
+    };
+
+    var replaceFunc = function (value) {
+      // Unescape the HTML text we returned above for insertion into the
+      // textarea.
+      var text = $('<div/>').html(value).text();
+      return text;
+    };
+
+    $("textarea.translation").textcomplete([
+      {
+        match: /(\S*)$/,
+        search: searchFunc,
+        replace: replaceFunc,
+        index: 1,
+      }
+    ]);
+  },
 
   /* Copies text into the focused textarea */
   copyText: function (e) {
@@ -684,26 +724,36 @@
    */
 
   /* Sets the current unit's styling as fuzzy */
-  doFuzzyArea: function () {
+  doFuzzyStyle: function () {
     $("tr.edit-row").addClass("fuzzy-unit");
   },
 
 
   /* Unsets the current unit's styling as fuzzy */
-  undoFuzzyArea: function () {
+  undoFuzzyStyle: function () {
     $("tr.edit-row").removeClass("fuzzy-unit");
   },
 
 
   /* Checks the current unit's fuzzy checkbox */
   doFuzzyBox: function () {
-    $('input.fuzzycheck').prop('checked', true);
+    var $checkbox = $('input.fuzzycheck');
+    $checkbox.prop('checked', true);
+
+    if (!this.settings.isAdmin) {
+      $('.js-fuzzy-block').show();
+      $checkbox[0].defaultChecked = true;
+    }
+
+    $checkbox.trigger('change');
   },
 
 
   /* Unchecks the current unit's fuzzy checkbox */
   undoFuzzyBox: function () {
-    $('input.fuzzycheck').prop('checked', false);
+    var $checkbox = $('input.fuzzycheck');
+    $checkbox.prop('checked', false);
+    $checkbox.trigger('change');
   },
 
 
@@ -711,7 +761,7 @@
   goFuzzy: function () {
     if (!this.isFuzzy()) {
       this.keepState = true;
-      this.doFuzzyArea();
+      this.doFuzzyStyle();
       this.doFuzzyBox();
     }
   },
@@ -721,7 +771,7 @@
   ungoFuzzy: function () {
     if (this.isFuzzy()) {
       this.keepState = true;
-      this.undoFuzzyArea();
+      this.undoFuzzyStyle();
       this.undoFuzzyBox();
     }
   },
@@ -732,11 +782,11 @@
     return $('input.fuzzycheck').prop('checked');
   },
 
-  toggleFuzzy: function () {
+  toggleFuzzyStyle: function () {
     if (this.isFuzzy()) {
-      this.doFuzzyArea();
+      this.doFuzzyStyle();
     } else {
-      this.undoFuzzyArea();
+      this.undoFuzzyStyle();
     }
   },
 
@@ -755,22 +805,29 @@
         checkbox = $('#id_state')[0],
         stateChanged = checkbox.defaultChecked !== checkbox.checked,
         areaChanged = false,
+        needsReview = false,
         area, i;
 
-    for (i=0; i<translations.length && areaChanged === false; i++) {
+    // Non-admin users are required to clear the fuzzy checkbox
+    if (!this.settings.isAdmin) {
+      needsReview = checkbox.checked === true;
+    }
+
+    for (i=0; i<translations.length && !areaChanged; i++) {
       area = translations[i];
       areaChanged = area.defaultValue !== area.value;
     }
 
+    var disableSubmit = !(stateChanged || areaChanged) || needsReview;
     $submit.each(function () {
-      this.disabled = !(stateChanged || areaChanged);
+      this.disabled = disableSubmit;
     });
   },
 
   onStateChange: function () {
     this.handleTranslationChange();
 
-    this.toggleFuzzy();
+    this.toggleFuzzyStyle();
   },
 
   onTextareaChange: function (e) {
@@ -779,7 +836,7 @@
     var el = e.target,
         hasChanged = el.defaultValue !== el.value;
 
-    if (hasChanged && ! this.keepState) {
+    if (hasChanged && !this.keepState) {
       this.ungoFuzzy();
     }
   },
@@ -818,13 +875,9 @@
   },
 
   updateExportLink: function () {
-    var unit = this.units.getCurrent(),
-        store = unit.get('store'),
-        urlStr = [
-          '', store.get('target_lang'), store.get('project_code'),
-          'export-view', this.resourcePath
-        ].join('/'),
-        urlStr = [urlStr, $.param(this.getReqData())].join('?'),
+    var urlStr = window.location.href.replace('/translate/',
+                                              '/export-view/')
+                                     .replace('#', '?'),
         exportLink = [
           '<a href="', l(urlStr), '">', gettext('Export View'), '</a>'
         ].join('');
@@ -848,6 +901,7 @@
   /* Displays an informative message */
   displayMsg: function (msg) {
     this.hideActivity();
+    PTL.common.fixSidebarHeight();
     $("#js-editor-msg").show().find("span").html(msg).fadeIn(300);
   },
 
@@ -948,9 +1002,9 @@
 
 
   /* Builds a single row */
-  buildRow: function (unit, cls) {
+  buildRow: function (unit) {
     return [
-      '<tr id="row', unit.id, '" class="view-row ', cls ,'">',
+      '<tr id="row', unit.id, '" class="view-row">',
         this.tmpl.vUnit({unit: unit.toJSON()}),
       '</tr>'
     ].join('');
@@ -961,15 +1015,17 @@
     var unitGroups = this.getUnitGroups(),
         groupSize = _.size(unitGroups),
         currentUnit = this.units.getCurrent(),
-        cls = "even",
-        even = true,
         rows = [],
         i, unit;
 
-    _.each(unitGroups, function (unitGroup) {
+    _.each(unitGroups, function (unitGroup, key) {
       // Don't display a delimiter row if all units have the same origin
       if (groupSize !== 1) {
-        rows.push('<tr class="delimiter-row"><td colspan="2"></td></tr>');
+        rows.push([
+          '<tr class="delimiter-row"><td colspan="2">',
+            '<div class="hd"><h2>', key, '</h2></div>',
+          '</td></tr>'
+        ].join(''));
       }
 
       for (i=0; i<unitGroup.length; i++) {
@@ -978,11 +1034,8 @@
         if (unit.id === currentUnit.id) {
           rows.push(this.getEditUnit());
         } else {
-          rows.push(this.buildRow(unit, cls));
+          rows.push(this.buildRow(unit));
         }
-
-        cls = even ? "odd" : "even";
-        even = !even;
       }
     }, this);
 
@@ -994,8 +1047,6 @@
   buildCtxRows: function (units, extraCls) {
     var i, unit,
         currentUnit = this.units.getCurrent(),
-        cls = "even",
-        even = true,
         rows = '';
 
     for (i=0; i<units.length; i++) {
@@ -1003,13 +1054,9 @@
       unit = units[i];
       unit = $.extend({}, currentUnit.toJSON(), unit);
 
-      rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls +
-              ' ' + cls + '">';
+      rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls + '">';
       rows += this.tmpl.vUnit({unit: unit});
       rows += '</tr>';
-
-      cls = even ? "odd" : "even";
-      even = !even;
     }
 
     return rows;
@@ -1065,10 +1112,6 @@
         oldRows = $("tr", where);
 
     oldRows.remove();
-
-    // This fixes the issue with tipsy popups staying on the screen
-    // if their owner elements have been removed
-    $('.tipsy').remove(); // kill all open tipsy popups
 
     if (newTbody !== false) {
       where.append(newTbody);
@@ -1241,6 +1284,7 @@
     });
 
     eClass += currentUnit.get('isfuzzy') ? " fuzzy-unit" : "";
+    eClass += PTL.editor.filter !== 'all' ? " with-ctx" : "";
 
     hasData = ctx.before.length || ctx.after.length;
     editCtxWidgets = this.editCtxUI({hasData: hasData});
@@ -1264,8 +1308,7 @@
     var el = e.target,
         uId = PTL.editor.units.getCurrent().id,
         submitUrl = l(['/xhr/units/', uId].join('')),
-        $form = $("#translate"),
-        reqData = $form.serializeObject(),
+        reqData = $('#translate').serializeObject(),
         captchaCallbacks = {
           sfn: 'PTL.editor.processSubmission',
           efn: 'PTL.editor.error'
@@ -1302,9 +1345,29 @@
     unit.setTranslation(translations);
     unit.set('isfuzzy', PTL.editor.isFuzzy());
 
-    PTL.editor.gotoNext();
-  },
+    $('.translate-container').toggleClass('error', !!data.checks);
 
+    if (data.checks) {
+      var $checks = $('.js-unit-checks'),
+          focusedArea = $('.focusthis')[0];
+
+      $checks.html(data.checks).show();
+
+      var blinkClass = function (elem, className, n, delay) {
+          elem.toggleClass(className);
+          if (n > 1) {
+            setTimeout(function() {
+                        blinkClass(elem, className, n-1, delay);
+                      }, delay);
+          }
+      };
+
+      blinkClass($checks, 'blink', 4, 200);
+      focusedArea.focus();
+    } else {
+      PTL.editor.gotoNext();
+    }
+  },
 
   /* Pushes translation suggestions and moves to the next unit */
   suggest: function (e) {
@@ -1312,8 +1375,7 @@
 
     var uId = PTL.editor.units.getCurrent().id,
         suggestUrl = l(['/xhr/units/', uId, '/suggestions/'].join('')),
-        $form = $("#translate"),
-        reqData = $form.serializeObject(),
+        reqData = $('#translate').serializeObject(),
         captchaCallbacks = {
           sfn: 'PTL.editor.processSuggestion',
           efn: 'PTL.editor.error'
@@ -1338,39 +1400,26 @@
 
   /* Loads the previous unit */
   gotoPrev: function () {
-    // Buttons might be disabled so we need to fake an event
-    this.gotoPrevNext($.Event('click', {target: '#js-nav-prev'}));
+    var newUnit = this.units.prev();
+    if (newUnit) {
+      var newHash = PTL.utils.updateHashPart('unit', newUnit.id);
+      $.history.load(newHash);
+    }
   },
 
   /* Loads the next unit */
-  gotoNext: function () {
-    // Buttons might be disabled so we need to fake an event
-    this.gotoPrevNext($.Event('click', {target: '#js-nav-next'}));
-  },
+  gotoNext: function (isSubmission) {
+    if (isSubmission === undefined) {
+      isSubmission = true;
+    };
 
-
-  /* Loads the editor with the next unit */
-  gotoPrevNext: function (e) {
-    e.preventDefault();
-    var prevNextMap = {'js-nav-prev': 'prev',
-                       'js-nav-next': 'next'},
-        elementId = e.target.id || $(e.target)[0].id,
-        newUnit = PTL.editor.units[prevNextMap[elementId]]();
-
-    // Try loading the prev/next unit
+    var newUnit = this.units.next();
     if (newUnit) {
-      var newHash = PTL.utils.updateHashPart("unit", newUnit.id);
+      var newHash = PTL.utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
-    } else {
-      if (elementId === 'js-nav-prev') {
-        PTL.editor.displayMsg(gettext("You reached the beginning of the list"));
-      } else {
-        PTL.editor.displayMsg([
-          gettext("You reached the end of the list."),
-          '<br /><a href="', l(PTL.editor.settings.pootlePath), '">',
-          gettext('Return to the overview page.'), '</a>'
-        ].join(""));
-      }
+    } else if (isSubmission) {
+      var backLink = $('.js-back-to-browser').attr('href');
+      window.location.href = [backLink, 'finished'].join('?');
     }
   },
 
@@ -1424,21 +1473,19 @@
    */
 
   /* Gets the failing check options for the current query */
-  getCheckOptions: function () {
-    var checksUrl = this.settings.checksUrl,
-        opts;
+  getCheckOptions: function (options) {
+    var checksUrl = l('/xhr/stats/checks/'),
+        reqData = {
+          path: this.settings.pootlePath
+        };
 
     $.ajax({
       url: checksUrl,
-      async: false,
+      data: reqData,
       dataType: 'json',
-      success: function (data) {
-        opts = data;
-      },
+      success: options.success,
       error: PTL.editor.error
     });
-
-    return opts;
   },
 
   /* Loads units based on checks filtering */
@@ -1457,6 +1504,41 @@
     }
   },
 
+  /* Adds the failing checks to the UI */
+  appendChecks: function (checks) {
+    // If there are any failing checks, add them in a dropdown
+    if (Object.keys(checks).length) {
+      $("#filter-checks").show();
+      $("#filter-checks").find('optgroup').each(function (e) {
+        var empty = true,
+            $gr = $(this);
+
+        $gr.find('option').each(function (e) {
+          var $opt = $(this),
+              value = $opt.attr('value');
+
+          if (value in checks) {
+            empty = false;
+            $opt.text($opt.data('title') + '(' + checks[value] + ')');
+          } else {
+            $opt.remove();
+          }
+        });
+
+        if (empty) {
+          $gr.hide();
+        }
+      });
+      $("#filter-checks").show();
+      $("#js-select2-filter-checks").select2({
+        width: "resolve"
+      });
+    } else { // No results
+      PTL.editor.displayMsg(gettext("No results."));
+      $('#filter-status select').select2('val', PTL.editor.filter);
+    }
+  },
+
   /* Loads units based on filtering */
   filterStatus: function () {
     // this function can be executed in different contexts,
@@ -1465,42 +1547,10 @@
         filterBy = $selected.val(),
         isUserFilter = $selected.data('user');
 
-    // Filtering by failing checks
     if (filterBy == "checks") {
-      // Get actual failing checks
-      var checks = PTL.editor.getCheckOptions();
-
-      // If there are any failing checks, add them in a dropdown
-      if (checks !== undefined && Object.keys(checks).length) {
-        $("#filter-checks").show();
-        $("#filter-checks").find('optgroup').each(function (e) {
-          var empty = true,
-              $gr = $(this);
-
-          $gr.find('option').each(function (e) {
-            var $opt = $(this),
-                value = $opt.attr('value');
-
-            if (value in checks) {
-              empty = false;
-              $opt.text($opt.data('title') + '(' + checks[value] + ')');
-            } else {
-              $opt.remove();
-            }
-          });
-
-          if (empty) {
-            $gr.hide();
-          }
-        });
-        $("#filter-checks").show();
-        $("#js-select2-filter-checks").select2({
-          width: "resolve"
-        });
-      } else { // No results
-        PTL.editor.displayMsg(gettext("No results."));
-        $('#filter-status select').select2('val', PTL.editor.filter);
-      }
+      PTL.editor.getCheckOptions({
+        success: PTL.editor.appendChecks
+      });
     } else { // Normal filtering options (untranslated, fuzzy...)
       $("#filter-checks").hide();
       if (!PTL.editor.preventNavigation) {
@@ -1524,10 +1574,14 @@
     var defaults = {hasData: false, replace: false};
     opts = $.extend({}, defaults, opts);
 
-    editCtxRowBefore = PTL.editor.tmpl.editCtx({hasData: opts.hasData,
-                                                extraCls: 'before'});
-    editCtxRowAfter = PTL.editor.tmpl.editCtx({hasData: opts.hasData,
-                                               extraCls: 'after'});
+    var editCtxRowBefore = PTL.editor.tmpl.editCtx({
+      hasData: opts.hasData,
+      extraCls: 'before'
+    });
+    var editCtxRowAfter = PTL.editor.tmpl.editCtx({
+      hasData: opts.hasData,
+      extraCls: 'after'
+    });
 
     if (opts.replace) {
       $("tr.edit-ctx.before").replaceWith(editCtxRowBefore);
@@ -1716,8 +1770,10 @@
     }
 
     var uid = PTL.editor.units.getCurrent().id,
-        node = $("#extras-container"),
+        node = $(".translate-container"),
         timelineUrl = l(['/xhr/units/', uid, '/timeline/'].join(''));
+
+    node.spin();
 
     // Always abort previous requests so we only get results for the
     // current unit
@@ -1746,9 +1802,6 @@
           $("#js-show-timeline").hide();
           $("#js-hide-timeline").show();
         }
-      },
-      beforeSend: function () {
-        node.spin();
       },
       complete: function () {
         node.spin(false);
@@ -1958,77 +2011,30 @@
       }, "json");
   },
 
-  /* Clears the vote for a specific suggestion */
-  clearVote: function (e) {
-    e.stopPropagation(); //we don't want to trigger a click on the text below
-    var element = $(this),
-        voteId = element.data("vote-id"),
-        url = l(['/xhr/votes/', voteId, '/clear/'].join(''));
-
-    element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
-    $.ajax({
-      url: url,
-      type: 'POST',
-      data: {'clear': 1},
-      dataType: 'json',
-      success: function (data) {
-        element.hide();
-        element.siblings(".js-vote-up").fadeTo(200, 1);
-      },
-      error: function (xhr, s) {
-        PTL.editor.error(xhr, s);
-        //Let's wait a while before showing the voting widget again
-        element.delay(3000).fadeTo(2000, 1);
-      }
-    });
-  },
-
-  /* Votes for a specific suggestion */
-  voteUp: function (e) {
-    e.stopPropagation();
-    var element = $(this),
-        suggId = element.siblings("[data-sugg-id]").data("sugg-id"),
-        url = l(['/xhr/units/', PTL.editor.units.getCurrent().id,
-                 '/suggestions/', suggId, '/votes/'].join(''));
-
-    element.fadeTo(200, 0.01); //instead of fadeOut that will cause layout changes
-    $.ajax({
-      url: url,
-      type: 'POST',
-      data: {'up': 1},
-      dataType: 'json',
-      success: function (data) {
-        element.siblings("[data-vote-id]").data("vote-id", data.voteid);
-        element.hide();
-        element.siblings(".js-vote-clear").fadeTo(200, 1);
-      },
-      error: function (xhr, s) {
-        PTL.editor.error(xhr, s);
-        //Let's wait a while before showing the voting widget again
-        element.delay(3000).fadeTo(2000, 1);
-      }
-    });
-  },
-
-  /* Rejects a quality check marking it as false positive */
-  rejectCheck: function () {
-    var element = $(this).parent(),
+  /* Mutes or unmutes a quality check marking it as false positive or not */
+  toggleCheck: function () {
+    var check = $(this).parent(),
         checkId = $(this).data("check-id"),
         uid = $('.translate-container #id_id').val(),
-        url = l(['/xhr/units/', uid, '/checks/', checkId, '/reject/'].join(''));
+        url = l(['/xhr/units/', uid, '/checks/', checkId, '/toggle/'].join('')),
+        falsePositive = !check.hasClass('false-positive'), // toggled value
+        post = {},
+        error;
 
-    $.post(url, {'reject': 1},
+    if (falsePositive) {
+      post.mute = 1;
+    }
+
+    $.post(url, post,
       function (data) {
-        if (element.siblings().size() == 0) {
-          element = $('#translate-checks-block');
-        }
-        element.fadeOut(200, function () {
-          $(this).remove();
-          $('.tipsy').remove();
-        });
+        check.toggleClass('false-positive', falsePositive);
+
+        error = $('#translate-checks-block .check')
+                  .not('.false-positive').size() > 0;
+
+        $('.translate-container').toggleClass('error', error);
       }, "json");
   },
-
 
   /*
    * Machine Translation
@@ -2079,23 +2085,24 @@
    * in the editor toolbar if the language is supported
    */
   addMTButtons: function (provider) {
-    if (this.isSupportedTarget(provider.pairs, provider.targetLang)) {
-      var _this = this;
-      var sources = $(".translate-toolbar");
-      $(sources).each(function () {
-        var source = _this.normalizeCode($(this).parents('.source-language').find('.translation-text').attr("lang"));
+    if (this.isSupportedTarget(provider.pairs, PTL.editor.settings.targetLang)) {
+      var that = this,
+          $sources = $(".translate-toolbar"),
+          ok;
 
-        var ok;
+      $sources.each(function () {
+        var source = that.normalizeCode($(this).parents('.source-language').find('.translation-text').attr("lang"));
+
         if (provider.validatePairs) {
-          ok = _this.isSupportedPair(provider.pairs, source, provider.targetLang);
+          ok = that.isSupportedPair(provider.pairs, source, PTL.editor.settings.targetLang);
         } else {
-          ok = _this.isSupportedSource(provider.pairs, source);
+          ok = that.isSupportedSource(provider.pairs, source);
         }
 
         if (ok) {
-          _this.addMTButton($(this).find('.js-toolbar-buttons'),
+          that.addMTButton($(this).find('.js-toolbar-buttons'),
             provider.buttonClassName,
-            provider.hint + ' (' + source.toUpperCase() + '&rarr;' + provider.targetLang.toUpperCase() + ')');
+            provider.hint + ' (' + source.toUpperCase() + '&rarr;' + PTL.editor.settings.targetLang.toUpperCase() + ')');
         }
       });
     }
@@ -2120,60 +2127,74 @@
   },
 
   translate: function (linkObject, providerCallback) {
-    var areas = $('.js-translation-area');
-    var sources = $(linkObject).parents('.source-language').find('.translation-text');
-    var langFrom = PTL.editor.normalizeCode(sources.eq(0).attr("lang"));
-    var langTo = PTL.editor.normalizeCode(areas.eq(0).attr("lang"));
+    var that = this,
+        $areas = $('.js-translation-area'),
+        $sources = $(linkObject).parents('.source-language').find('.translation-text'),
+        langFrom = PTL.editor.normalizeCode($sources[0].lang),
+        langTo = PTL.editor.normalizeCode($areas[0].lang);
 
-    var htmlPat = /<[\/]?\w+.*?>/g;
+    var htmlPat = /<[\/]?\w+.*?>/g,
     // The printf regex based on http://phpjs.org/functions/sprintf:522
-    var cPrintfPat = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
-    var csharpStrPat = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
-    var percentNumberPat = /%\d+/g;
-    var pos = 0;
+        cPrintfPat = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g,
+        csharpStrPat = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g,
+        percentNumberPat = /%\d+/g,
+        pos = 0;
 
-    var _this = this;
-
-    $(sources).each(function (j) {
-      var sourceText = $(this).text();
-
+    $sources.each(function (j) {
       // Reset collected arguments array and counter
-      _this.argSubs = new Array();
-      _this.argPos = 0;
+      that.argSubs = [];
+      that.argPos = 0;
 
       // Walk through known patterns and replace them with [N] placeholders
+      var sourceText = $(this).text()
+                              .replace(htmlPat,
+                                       that.collectArguments.bind(that))
+                              .replace(cPrintfPat,
+                                       that.collectArguments.bind(that))
+                              .replace(csharpStrPat,
+                                       that.collectArguments.bind(that))
+                              .replace(percentNumberPat,
+                                       that.collectArguments.bind(that));
 
-      sourceText = sourceText.replace(htmlPat, function(s) { return _this.collectArguments(s) });
-      sourceText = sourceText.replace(cPrintfPat, function(s) { return _this.collectArguments(s) });
-      sourceText = sourceText.replace(csharpStrPat, function(s) { return _this.collectArguments(s) });
-      sourceText = sourceText.replace(percentNumberPat, function(s) { return _this.collectArguments(s) });
+      providerCallback(sourceText, langFrom, langTo, function (opts) {
+        var translation = opts.translation,
+            msg = opts.msg,
+            $area = $areas.eq(j),
+            i, value;
 
-      var result = providerCallback(sourceText, langFrom, langTo, function(translation, message) {
-        if (translation === false) {
-          PTL.editor.displayError(message);
+        if (translation === undefined && msg) {
+          PTL.editor.displayError(msg);
           return;
         }
 
         // Fix whitespace which may have been added around [N] blocks
-        for (var i = 0; i < _this.argSubs.length; i++) {
+        for (i=0; i<that.argSubs.length; i++) {
           if (sourceText.match(new RegExp("\\[" + i + "\\][^\\s]"))) {
-            translation = translation.replace(new RegExp("\\[" + i + "\\]\\s+"), "[" + i + "]");
+            translation = translation.replace(
+              new RegExp("\\[" + i + "\\]\\s+"), "[" + i + "]"
+            );
           }
           if (sourceText.match(new RegExp("[^\\s]\\[" + i + "\\]"))) {
-            translation = translation.replace(new RegExp("\\s+\\[" + i + "\\]"), "[" + i + "]");
+            translation = translation.replace(
+              new RegExp("\\s+\\[" + i + "\\]"), "[" + i + "]"
+            );
           }
         }
 
         // Replace temporary [N] placeholders back to their real values
-        for (var i = 0; i < _this.argSubs.length; i++) {
-          var value = _this.argSubs[i].replace(/\&/g, "&amp;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
+        for (i=0; i<that.argSubs.length; i++) {
+          value = that.argSubs[i].replace(/\&/g, '&amp;')
+                                 .replace(/\</g, '&lt;')
+                                 .replace(/\>/g, '&gt;');
           translation = translation.replace("[" + i + "]", value);
         }
 
-        areas.eq(j).val($('<div />').html(translation).text());
-        areas.eq(j).focus();
+        $area.val($('<div />').html(translation).text());
+        $area.trigger('input');
       });
     });
+
+    $areas[0].focus();
 
     PTL.editor.goFuzzy();
     return false;

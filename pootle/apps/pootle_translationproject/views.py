@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2008-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -21,64 +21,55 @@
 import logging
 import os
 import StringIO
-from itertools import groupby
+import json
+from urllib import quote, unquote
 
 from django import forms
 from django.conf import settings
 from django.contrib import messages
-from django.core.cache import cache
-from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render_to_response
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader, RequestContext
-from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
-from translate.filters.decorators import Category
-
-from pootle.core.decorators import (get_path_obj, get_resource_context,
+from pootle.core.browser import (get_children, get_goal_children,
+                                 get_goal_parent, get_parent,
+                                 get_table_headings)
+from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
-from pootle.core.helpers import get_filter_name, get_translation_context
-from pootle.core.url_helpers import split_pootle_path
-from pootle.scripts.actions import (EXTDIR, StoreAction,
-                                    TranslationProjectAction)
-from pootle_app.models.permissions import check_permission
-from pootle_app.models.signals import post_file_upload
+from pootle.core.helpers import (get_export_view_context, get_overview_context,
+                                 get_translation_context)
 from pootle_app.models import Directory
+from pootle_app.models.permissions import check_permission
 from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_app.views.top_stats import gentopstats_translation_project
-from pootle_misc.baseurl import redirect
-from pootle_misc.browser import (get_children, get_goal_children,
-                                 get_table_headings, get_parent,
-                                 make_goal_item)
-from pootle_misc.checks import get_quality_check_failures
-from pootle_misc.stats import get_path_summary
 from pootle_misc.util import jsonify, ajax_required
 from pootle_profile.models import get_profile
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                add_trailing_slash)
-from pootle_store.filetypes import factory_classes
-from pootle_store.views import get_step_query
 from pootle_tagging.decorators import get_goal
 from pootle_tagging.forms import GoalForm, TagForm
 from pootle_tagging.models import Goal
 
-from .actions import action_groups
 from .forms import DescriptionForm, upload_form_factory
+
+
+ANN_COOKIE_NAME = 'project-announcements'
 
 
 @get_path_obj
 @permission_required('administrate')
 def admin_permissions(request, translation_project):
     ctx = {
+        'page': 'admin-permissions',
+
         'translation_project': translation_project,
         'project': translation_project.project,
         'language': translation_project.language,
@@ -86,7 +77,7 @@ def admin_permissions(request, translation_project):
         'feed_path': translation_project.pootle_path[1:],
     }
     return admin_perms(request, translation_project.directory,
-                       "translation_projects/admin/permissions.html", ctx)
+                       'translation_projects/admin/permissions.html', ctx)
 
 
 @get_path_obj
@@ -110,7 +101,7 @@ def rescan_files(request, translation_project):
     project = translation_project.project.code
     overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
-    return HttpResponseRedirect(overview_url)
+    return redirect(overview_url)
 
 
 @get_path_obj
@@ -130,7 +121,7 @@ def update_against_templates(request, translation_project):
     project = translation_project.project.code
     overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
-    return HttpResponseRedirect(overview_url)
+    return redirect(overview_url)
 
 
 @get_path_obj
@@ -198,17 +189,13 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
             messages.success(request, _("File has been deleted."))
     except Exception:
         logging.exception(u"Error while trying to delete %s", current_path)
-        if directory:
-            messages.error(request, _("Error while trying to delete "
-                                      "directory."))
-        else:
-            messages.error(request, _("Error while trying to delete file."))
+        messages.error(request, _("Error while trying to delete path."))
 
     language = translation_project.language.code
     project = translation_project.project.code
     overview_url = reverse('pootle-tp-overview', args=[language, project, ''])
 
-    return HttpResponseRedirect(overview_url)
+    return redirect(overview_url)
 
 
 @get_path_obj
@@ -243,9 +230,11 @@ def vcs_update(request, translation_project, dir_path, filename):
     return redirect(obj.get_absolute_url())
 
 
-def _handle_upload_form(request, current_path, translation_project, directory):
+def _handle_upload_form(request, translation_project):
     """Process the upload form in TP overview."""
-    upload_form_class = upload_form_factory(request, current_path)
+    from pootle_app.signals import post_file_upload
+
+    upload_form_class = upload_form_factory(request)
 
     if request.method == 'POST' and 'file' in request.FILES:
         upload_form = upload_form_class(request.POST, request.FILES)
@@ -267,12 +256,12 @@ def _handle_upload_form(request, current_path, translation_project, directory):
             # relative_root_dir == foo/bar.
             if django_file.name.endswith('.zip'):
                 archive = True
-                target_directory = upload_to_dir or directory
+                target_directory = upload_to_dir or request.directory
                 upload_archive(request, target_directory, django_file,
                                overwrite)
             else:
                 archive = False
-                upload_file(request, directory, django_file, overwrite,
+                upload_file(request, request.directory, django_file, overwrite,
                             store=upload_to)
 
             translation_project.scan_files(vcs_sync=False)
@@ -298,42 +287,33 @@ def _handle_upload_form(request, current_path, translation_project, directory):
     return upload_form_class()
 
 
-def goals_overview(*args, **kwargs):
-    kwargs['in_goal_overview'] = True
-    return overview(*args, **kwargs)
-
-
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 @get_goal
-def overview(request, translation_project, dir_path, filename=None,
-             goal=None, in_goal_overview=False):
-    current_path = translation_project.directory.pootle_path + dir_path
+def overview(request, translation_project, dir_path, filename=None, goal=None):
+    from django.utils import dateformat
+    from staticpages.models import StaticPage
+    from pootle.scripts.actions import EXTDIR, StoreAction, TranslationProjectAction
+    from .actions import action_groups
 
     if filename:
-        current_path = current_path + filename
-        store = get_object_or_404(Store, pootle_path=current_path)
-        directory = store.parent
         ctx = {
-            'store_tags': store.tag_like_objects,
+            'store_tags': request.store.tag_like_objects,
         }
         template_name = "translation_projects/store_overview.html"
     else:
-        store = None
-        directory = get_object_or_404(Directory, pootle_path=current_path)
         ctx = {
             'tp_tags': translation_project.tag_like_objects,
         }
-        template_name = "translation_projects/overview.html"
+        template_name = "browser/overview.html"
 
     if (check_permission('translate', request) or
         check_permission('suggest', request) or
         check_permission('overwrite', request)):
 
         ctx.update({
-            'upload_form': _handle_upload_form(request, current_path,
-                                               translation_project, directory),
+            'upload_form': _handle_upload_form(request, translation_project),
         })
 
     can_edit = check_permission('administrate', request)
@@ -341,14 +321,11 @@ def overview(request, translation_project, dir_path, filename=None,
     project = translation_project.project
     language = translation_project.language
 
-    path_obj = store or directory
-
-    url_args = [language.code, project.code, path_obj.path]
-    path_summary_url = reverse('pootle-xhr-summary', args=url_args)
+    resource_obj = request.store or request.directory
 
     #TODO enable again some actions when drilling down a goal.
     if goal is None:
-        actions = action_groups(request, path_obj)
+        actions = action_groups(request, resource_obj)
     else:
         actions = []
 
@@ -357,7 +334,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
     #TODO enable the following again when drilling down a goal.
     if running and goal is None:
-        if store:
+        if request.store:
             act = StoreAction
         else:
             act = TranslationProjectAction
@@ -368,24 +345,25 @@ def overview(request, translation_project, dir_path, filename=None,
                                       {'action': act, 'extdir': running})
         else:
             if not getattr(action, 'nosync', False):
-                (store or translation_project).sync()
+                (request.store or translation_project).sync()
             if action.is_active(request):
                 vcs_dir = settings.VCS_DIRECTORY
                 po_dir = settings.PODIRECTORY
-                tp_dir = directory.get_real_path()
+                tp_dir = request.directory.get_real_path()
                 store_fn = '*'
-                if store:
+                if request.store:
                     tp_dir_slash = add_trailing_slash(tp_dir)
-                    if store.file.name.startswith(tp_dir_slash):
+                    if request.store.file.name.startswith(tp_dir_slash):
                         # Note: store_f used below in reverse() call.
-                        store_f = store.file.name[len(tp_dir_slash):]
+                        store_f = request.store.file.name[len(tp_dir_slash):]
                         store_fn = store_f.replace('/', os.sep)
 
-                # Clear possibly stale output/error (even from other path_obj).
+                # Clear possibly stale output/error (even from other
+                # resource_obj).
                 action.set_output('')
                 action.set_error('')
                 try:
-                    action.run(path=path_obj, root=po_dir, tpdir=tp_dir,
+                    action.run(path=resource_obj, root=po_dir, tpdir=tp_dir,
                                project=project.code, language=language.code,
                                store=store_fn,
                                style=translation_project.file_style,
@@ -404,7 +382,7 @@ def overview(request, translation_project, dir_path, filename=None,
 
                 action_output = action.output
                 if getattr(action, 'get_download', None):
-                    export_path = action.get_download(path_obj)
+                    export_path = action.get_download(resource_obj)
                     if export_path:
                         import mimetypes
                         abs_path = absolute_real_path(export_path)
@@ -419,7 +397,7 @@ def overview(request, translation_project, dir_path, filename=None,
                         return response
 
                 if not action_output:
-                    if not store:
+                    if not request.store:
                         rev_args = [language.code, project.code, '']
                         overview_url = reverse('pootle-tp-overview',
                                                args=rev_args)
@@ -435,121 +413,120 @@ def overview(request, translation_project, dir_path, filename=None,
                                     store_f]
                         overview_url = reverse('pootle-tp-overview',
                                                args=rev_args)
-                    return HttpResponseRedirect(overview_url)
+                    return redirect(overview_url)
 
-    if goal is None:
-        description = translation_project.description
-    else:
-        description = goal.description
+    # TODO: cleanup and refactor, retrieve from cache
+    try:
+        ann_virtual_path = 'announcements/' + project.code
+        announcement = StaticPage.objects.live(request.user).get(
+            virtual_path=ann_virtual_path,
+        )
+    except StaticPage.DoesNotExist:
+        announcement = None
 
+    display_announcement = True
+    stored_mtime = None
+    new_mtime = None
+    cookie_data = {}
+
+    if ANN_COOKIE_NAME in request.COOKIES:
+        json_str = unquote(request.COOKIES[ANN_COOKIE_NAME])
+        cookie_data = json.loads(json_str)
+
+        if 'isOpen' in cookie_data:
+            display_announcement = cookie_data['isOpen']
+
+        if project.code in cookie_data:
+            stored_mtime = cookie_data[project.code]
+
+    if announcement is not None:
+        ann_mtime = dateformat.format(announcement.modified_on, 'U')
+        if ann_mtime != stored_mtime:
+            display_announcement = True
+            new_mtime = ann_mtime
+
+    tp_goals = translation_project.all_goals
+
+    ctx.update(get_overview_context(request))
     ctx.update({
-        'resource_obj': request.resource_obj,
+        'resource_obj': request.store or request.directory,  # Dirty hack.
         'translation_project': translation_project,
-        'description': description,
+        'description': translation_project.description,
         'project': project,
         'language': language,
-        'path_obj': path_obj,
-        'resource_path': request.resource_path,
-        'path_summary_url': path_summary_url,
-        'topstats': gentopstats_translation_project(translation_project),
-        'feed_path': directory.pootle_path[1:],
+        'tp_goals': tp_goals,
+        'goal': goal,
+        'feed_path': request.directory.pootle_path[1:],
         'action_groups': actions,
         'action_output': action_output,
         'can_edit': can_edit,
+
+        'browser_extends': 'translation_projects/base.html',
+
+        'announcement': announcement,
+        'announcement_displayed': display_announcement,
     })
 
     tp_pootle_path = translation_project.pootle_path
 
-    if store is None:
-        path_obj_goals = Goal.get_goals_for_path(path_obj.pootle_path)
-        path_obj_has_goals = len(path_obj_goals) > 0
+    if request.store is None:
+        table_fields = ['name', 'progress', 'total', 'need-translation',
+                        'suggestions', 'critical', 'last-updated', 'activity']
 
-        if in_goal_overview and path_obj_has_goals:
-            # Then show the goals tab.
-            table_fields = ['name', 'progress', 'priority', 'total',
-                            'need-translation', 'suggestions']
-            items = [make_goal_item(path_obj_goal, path_obj.pootle_path)
-                     for path_obj_goal in path_obj_goals]
-            ctx.update({
-                'table': {
-                    'id': 'tp-goals',
-                    'proportional': False,
-                    'fields': table_fields,
-                    'headings': get_table_headings(table_fields),
-                    'parent': get_parent(directory),
-                    'items': items,
-                },
-                'path_obj_has_goals': True,
-            })
-        elif goal in path_obj_goals:
+        if goal is not None:
             # Then show the drill down view for the specified goal.
-            table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions']
-
             ctx.update({
                 'table': {
                     'id': 'tp-goals',
-                    'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
-                    'parent': get_parent(directory),
-                    'items': get_goal_children(directory, goal),
+                    'parent': get_goal_parent(request.directory, goal),
+                    'items': get_goal_children(request.directory, goal),
                 },
-                'goal': goal,
-                'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
-                'path_obj_has_goals': True,
             })
         else:
             # Then show the files tab.
-            table_fields = ['name', 'progress', 'total', 'need-translation',
-                            'suggestions']
             ctx.update({
                 'table': {
                     'id': 'tp-files',
-                    'proportional': True,
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
-                    'parent': get_parent(directory),
-                    'items': get_children(directory),
+                    'parent': get_parent(request.directory),
+                    'items': get_children(request.directory),
                 },
-                'path_obj_has_goals': path_obj_has_goals,
             })
-    elif goal is not None:
-        ctx.update({
-            'goal': goal,
-            'goal_url': goal.get_drill_down_url_for_path(tp_pootle_path),
-        })
 
     if can_edit:
-        if store is None:
-            url_kwargs = {
-                'language_code': language.code,
-                'project_code': project.code,
-            }
+        if request.store is None:
             add_tag_action_url = reverse('pootle-xhr-tag-tp',
-                                         kwargs=url_kwargs)
+                                         args=[language.code, project.code])
         else:
             add_tag_action_url = reverse('pootle-xhr-tag-store',
-                                         args=[path_obj.pk])
-
-        if goal is None:
-            edit_form = DescriptionForm(instance=translation_project)
-            edit_form_action = reverse('pootle-tp-admin-settings',
-                                       args=[language.code, project.code])
-        else:
-            edit_form = GoalForm(instance=goal)
-            edit_form_action = reverse('pootle-xhr-edit-goal',
-                                       args=[goal.slug])
+                                         args=[resource_obj.pk])
 
         ctx.update({
-            'form': edit_form,
-            'form_action': edit_form_action,
+            'form': DescriptionForm(instance=translation_project),
+            'form_action': reverse('pootle-tp-admin-settings',
+                                   args=[language.code, project.code]),
             'add_tag_form': TagForm(),
             'add_tag_action_url': add_tag_action_url,
         })
 
-    return render_to_response(template_name, ctx,
-                              context_instance=RequestContext(request))
+        if goal is not None:
+            ctx.update({
+                'goal_form': GoalForm(instance=goal),
+                'goal_form_action': reverse('pootle-xhr-edit-goal',
+                                            args=[goal.slug]),
+            })
+
+    response = render(request, template_name, ctx)
+
+    if new_mtime is not None:
+        cookie_data[project.code] = new_mtime
+        cookie_data = quote(json.dumps(cookie_data))
+        response.set_cookie(ANN_COOKIE_NAME, cookie_data)
+
+    return response
 
 
 @require_POST
@@ -577,8 +554,7 @@ def _add_tag(request, translation_project, tag_like_object):
         'project': translation_project.project,
         'can_edit': check_permission('administrate', request),
     }
-    response = render_to_response('translation_projects/xhr_tags_list.html',
-                                  context, RequestContext(request))
+    response = render(request, "translation_projects/xhr_tags_list.html", context)
     response.status_code = 201
     return response
 
@@ -630,19 +606,15 @@ def ajax_add_tag_to_tp(request, translation_project):
                 'add_tag_action_url': reverse('pootle-xhr-tag-tp',
                                               kwargs=url_kwargs)
             }
-            return render_to_response('core/xhr_add_tag_form.html', context,
-                                      RequestContext(request))
+            return render(request, "core/xhr_add_tag_form.html", context)
 
 
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def translate(request, translation_project, dir_path, filename):
     language = translation_project.language
     project = translation_project.project
-    directory = request.directory
-    store = request.store
-    resource_obj = store or directory
 
     is_terminology = (project.is_terminology or request.store and
                                                 request.store.is_terminology)
@@ -654,105 +626,25 @@ def translate(request, translation_project, dir_path, filename):
         'translation_project': translation_project,
 
         'editor_extends': 'translation_projects/base.html',
-        'editor_body_id': 'tptranslate',
     })
 
-    return render_to_response('editor/main.html', context,
-                              context_instance=RequestContext(request))
+    return render(request, "editor/main.html", context)
 
 
 @get_path_obj
 @permission_required('view')
+@get_resource
 def export_view(request, translation_project, dir_path, filename=None):
     """Displays a list of units with filters applied."""
-    current_path = translation_project.directory.pootle_path + dir_path
-
-    if filename:
-        current_path = current_path + filename
-        store = get_object_or_404(Store, pootle_path=current_path)
-        units_qs = store.units
-    else:
-        store = None
-        units_qs = translation_project.units.filter(
-            store__pootle_path__startswith=current_path,
-        )
-
-    filter_name, filter_extra = get_filter_name(request.GET)
-
-    units = get_step_query(request, units_qs)
-    unit_groups = [(path, list(units)) for path, units in
-                   groupby(units, lambda x: x.store.path)]
-
-    ctx = {
+    ctx = get_export_view_context(request)
+    ctx.update({
         'source_language': translation_project.project.source_language,
         'language': translation_project.language,
         'project': translation_project.project,
-        'unit_groups': unit_groups,
-        'filter_name': filter_name,
-        'filter_extra': filter_extra,
         'goal': request.GET.get('goal', ''),
-    }
+    })
 
-    return render_to_response('translation_projects/export_view.html', ctx,
-                              context_instance=RequestContext(request))
-
-
-@ajax_required
-@get_path_obj
-@permission_required('view')
-def path_summary(request, translation_project, dir_path, project_code,
-                      language_code, filename=None):
-    """Returns an HTML snippet with summary information for the current
-    path."""
-    current_path = translation_project.directory.pootle_path + dir_path
-
-    if filename:
-        current_path = current_path + filename
-        store = get_object_or_404(Store, pootle_path=current_path)
-        directory = store.parent
-    else:
-        store = None
-        directory = get_object_or_404(Directory, pootle_path=current_path)
-
-    path_obj = store or directory
-
-    latest_action = ''
-    # If current directory is the TP root directory.
-    if not directory.path:
-        latest_action = translation_project.get_latest_submission()
-    elif store is None:  # If this is not a file.
-        latest_action = Submission.get_latest_for_dir(path_obj)
-
-    context = {
-        'path_summary': get_path_summary(path_obj, latest_action),
-    }
-    return render_to_response('translation_projects/xhr_path_summary.html',
-                              context, RequestContext(request))
-
-
-@ajax_required
-@get_path_obj
-@permission_required('view')
-def path_summary_more(request, translation_project, dir_path, project_code,
-                      language_code, filename=None):
-    """Returns an HTML snippet with more detailed summary information
-       for the current path."""
-    current_path = translation_project.directory.pootle_path + dir_path
-
-    if filename:
-        current_path = current_path + filename
-        store = get_object_or_404(Store, pootle_path=current_path)
-        directory = store.parent
-    else:
-        store = None
-        directory = get_object_or_404(Directory, pootle_path=current_path)
-
-    path_obj = store or directory
-    context = {
-        'check_failures': get_quality_check_failures(path_obj),
-    }
-    return render_to_response('translation_projects/xhr_path_summary_more.html',
-                              context, RequestContext(request))
+    return render(request, "editor/export_view.html", ctx)
 
 
 @require_POST
@@ -760,6 +652,8 @@ def path_summary_more(request, translation_project, dir_path, project_code,
 @get_path_obj
 @permission_required('administrate')
 def edit_settings(request, translation_project):
+    from pootle.core.url_helpers import split_pootle_path
+
     form = DescriptionForm(request.POST, instance=translation_project)
     response = {}
     rcode = 400
@@ -790,6 +684,10 @@ def edit_settings(request, translation_project):
 @get_path_obj
 @permission_required('archive')
 def export_zip(request, translation_project, file_path):
+    from django.core.cache import cache
+    from django.utils.encoding import iri_to_uri
+    from django.utils.timezone import utc
+
     translation_project.sync()
     pootle_path = translation_project.pootle_path + (file_path or '')
 
@@ -810,15 +708,19 @@ def export_zip(request, translation_project, file_path):
     key = iri_to_uri("%s:export_zip" % pootle_path)
     last_export = cache.get(key)
 
-    if (not (last_export and last_export == translation_project.get_mtime() and
-        os.path.isfile(abs_export_path))):
+    tp_time = translation_project.get_mtime().replace(tzinfo=utc)
+    up_to_date = False
+    if last_export:
+        # Make both datetimes tz-aware to avoid a crash here
+        last_export = last_export.replace(tzinfo=utc)
+        up_to_date = last_export == tp_time
 
+    if (not (up_to_date and os.path.isfile(abs_export_path))):
         ensure_target_dir_exists(abs_export_path)
         stores = Store.objects.filter(pootle_path__startswith=pootle_path) \
                               .exclude(file='')
         translation_project.get_archive(stores, abs_export_path)
-        cache.set(key, translation_project.get_mtime(),
-                  settings.OBJECT_CACHE_TIMEOUT)
+        cache.set(key, tp_time, settings.OBJECT_CACHE_TIMEOUT)
 
     return redirect('/export/' + export_path)
 
@@ -1002,6 +904,7 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
                 pass
     else:
         from translate.storage import factory
+        from pootle_store.filetypes import factory_classes
         newstore = factory.getobject(django_file, classes=factory_classes)
         if not newstore.units:
             return
@@ -1025,6 +928,10 @@ def overwrite_file(request, relative_root_dir, django_file, upload_path):
 
 
 def upload_file(request, directory, django_file, overwrite, store=None):
+    from django.core.exceptions import PermissionDenied
+    from translate.storage import factory
+    from pootle_store.filetypes import factory_classes
+
     translation_project = request.translation_project
     tp_pootle_path_length = len(translation_project.pootle_path)
     relative_root_dir = directory.pootle_path[tp_pootle_path_length:]
@@ -1098,7 +1005,6 @@ def upload_file(request, directory, django_file, overwrite, store=None):
         return
 
     django_file.seek(0)
-    from translate.storage import factory
     newstore = factory.getobject(django_file, classes=factory_classes)
 
     #FIXME: are we sure this is what we want to do? shouldn't we

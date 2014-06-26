@@ -17,15 +17,12 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import absolute_import
-
 import logging
 
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.utils.safestring import mark_safe
-
 from south.modelsinspector import add_introspection_rules
 
 from .filters import apply_markup_filter

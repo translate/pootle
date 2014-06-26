@@ -1,11 +1,6 @@
 {% load i18n assets locale %}
 {% get_current_language as LANGUAGE_CODE %}
 <div id="editor">
-    <noscript>
-      <h1>{% trans "Pootle's editor requires JavaScript" %}</h1>
-      <p>{% trans "Please enable JavaScript in your browser preferences and reload the page." %}</p>
-    </noscript>
-
     <div id="js-editor-act" class="hide editor-overlay loader"></div>
     <div id="js-editor-msg" class="hide editor-overlay">
       <div class="alert alert-block alert-info fade in" lang="{{ LANGUAGE_CODE }}">
@@ -20,12 +15,6 @@
     </div>
 
     <table cellpadding="0" cellspacing="0" class="translate-table{% if cansuggest and not cantranslate %} suggest-mode{% endif%}" dir="{% locale_dir %}">
-      <thead>
-        <tr lang="{{ LANGUAGE_CODE }}">
-          <th colspan="1" rowspan="1" class="translate-table-title translate-original"></th>
-          <th colspan="1" rowspan="1" class="translate-table-title translate-translation"></th>
-        </tr>
-      </thead>
       <tbody>
       </tbody>
     </table>

@@ -41,4 +41,5 @@ Performance tuning and managing the server
    optimization
    cache
    indexing
+   maintenance
    commands

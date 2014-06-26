@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
-# This file is part of translate.
+# This file is part of Pootle.
 #
 # translate is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ from django.utils.encoding import iri_to_uri
 
 from pootle_misc.util import (getfromcache, getfromcachebyname, dictsum,
                               get_cached_value, set_cached_value, datetime_min)
-from pootle_misc.checks import get_qualitychecks_by_category, get_qualitychecks
+from pootle_misc.checks import get_qualitychecks_by_category
 
 
 class CachedMethods(object):
@@ -48,6 +48,7 @@ class CachedMethods(object):
         return [getattr(self, x) for x in
                 filter(lambda x: x[:2] != '__' and x != 'get_all', dir(self))]
 
+
 class TreeItem(object):
     def __init__(self, *args, **kwargs):
         self.children = None
@@ -65,7 +66,7 @@ class TreeItem(object):
 
     def get_cachekey(self):
         """This method will be overridden in descendants"""
-        raise NotImplementedError('`get_cache_key()` not implemented')
+        raise NotImplementedError('`get_cachekey()` not implemented')
 
     def _get_total_wordcount(self):
         """This method will be overridden in descendants"""
@@ -83,9 +84,17 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return 0
 
+    def _get_critical_error_unit_count(self):
+        """This method will be overridden in descendants"""
+        return 0
+
+    def _get_next_goal_count(self):
+        """This method will be overridden in descendants"""
+        return 0
+
     def _get_checks(self):
         """This method will be overridden in descendants"""
-        return {}
+        return {'unit_count': 0, 'checks': {}}
 
     def _get_last_action(self):
         """This method will be overridden in descendants"""
@@ -95,46 +104,48 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return datetime_min
 
-    def _get_all_checks(self):
+    def _get_last_updated(self):
         """This method will be overridden in descendants"""
-        return {}
-
-    def _get_check_by_name(self, name):
-        """This method will be overridden in descendants"""
-        return 0
+        return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
     def initialize_children(self):
         if not self.initialized:
             self.children = self.get_children()
             self.initialized = True
 
-    @getfromcache
     def get_total_wordcount(self):
         """calculate total wordcount statistics"""
         self.initialize_children()
         return (self._get_total_wordcount() +
                 self._sum('get_total_wordcount'))
 
-    @getfromcache
     def get_translated_wordcount(self):
         """calculate translated units statistics"""
         self.initialize_children()
         return (self._get_translated_wordcount() +
                 self._sum('get_translated_wordcount'))
 
-    @getfromcache
     def get_fuzzy_wordcount(self):
         """calculate untranslated units statistics"""
         self.initialize_children()
         return (self._get_fuzzy_wordcount() +
                 self._sum('get_fuzzy_wordcount'))
 
-    @getfromcache
     def get_suggestion_count(self):
         """check if any child store has suggestions"""
         self.initialize_children()
         return (self._get_suggestion_count() +
                 self._sum('get_suggestion_count'))
+
+    def get_critical_error_unit_count(self):
+        """Calculate number of units with critical errors."""
+        self.initialize_children()
+        return (self._get_critical_error_unit_count() +
+                self._sum('get_critical_error_unit_count'))
+
+    def get_next_goal_count(self):
+        """Calculate next goal untranslated statistics."""
+        return self._get_next_goal_count()
 
     @getfromcache
     def get_last_action(self):
@@ -156,6 +167,16 @@ class TreeItem(object):
             [item.get_mtime() for item in self.children]
         )
 
+    @getfromcache
+    def get_last_updated(self):
+        """get last updated"""
+        self.initialize_children()
+        return max(
+            [self._get_last_updated()] +
+            [item.get_last_updated() for item in self.children],
+            key=lambda x: x['creation_time'] if 'creation_time' in x else 0
+        )
+
     def _sum(self, name):
         return sum([
             getattr(item, name)() for item in self.children
@@ -170,83 +191,38 @@ class TreeItem(object):
             'translated': self.get_translated_wordcount(),
             'fuzzy': self.get_fuzzy_wordcount(),
             'suggestions': self.get_suggestion_count(),
+            'critical': self.get_critical_error_unit_count(),
+            'nextGoal': self.get_next_goal_count(),
+            'lastupdated': self.get_last_updated(),
             'lastaction': self.get_last_action(),
-            'critical': self.get_critical()
         }
 
         if include_children:
             result['children'] = {}
             for item in self.children:
-                result['children'][item.code] = item.get_stats(False)
+                code = (self._get_code(item) if hasattr(self, '_get_code')
+                                             else item.code)
+                result['children'][code] = item.get_stats(False)
 
         return result
-
-    def refresh_stats(self, include_children=True):
-        """refresh stats for self and for children"""
-        self.initialize_children()
-
-        if include_children:
-            for item in self.children:
-                item.refresh_stats()
-
-        self.flush_cache(False)
-
-        self.get_total_wordcount()
-        self.get_translated_wordcount()
-        self.get_fuzzy_wordcount()
-        self.get_suggestion_count()
-        self.get_last_action()
-        self.get_checks()
-        self.get_mtime()
 
     @getfromcache
     def get_checks(self):
         result = self._get_checks()
         self.initialize_children()
         for item in self.children:
-            item_checks = item.get_checks()
-            for cat in set(item_checks) | set(result):
-                result[cat] = dictsum(result.get(cat, {}),
-                                      item_checks.get(cat, {}))
-
-        return result
-
-    def get_all_checks(self):
-        result = {}
-
-        self.initialize_children()
-        for check in list(get_qualitychecks):
-            result[check] = self.get_checks_by_name(check)
-
-        return result
-
-    def get_critical(self):
-        check_stats = self.get_checks()
-
-        return sum(map(lambda x: check_stats[x] if x in check_stats else 0,
-                       get_qualitychecks_by_category(Category.CRITICAL)))
-
-    def get_critical1(self):
-        """Alter implementaion (pick up every check separately)"""
-        result = 0
-
-        for check in get_qualitychecks_by_category(Category.CRITICAL):
-            result += self.get_checks_by_name(check)
-
-        return result
-
-    @getfromcachebyname
-    def get_checks_by_name(self, name):
-        result = self._get_check_by_name(name)
-        self.initialize_children()
-        for item in self.children:
-            result += item.get_checks_by_name(name)
+            item_res = item.get_checks()
+            result['checks'] = dictsum(result['checks'], item_res['checks'])
+            result['unit_count'] += item_res['unit_count']
 
         return result
 
     def get_critical_url(self):
         critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
         return self.get_translate_url(check=critical)
+
+    def get_next_goal_url(self):
+        return ''
 
     def _delete_from_cache(self, keys):
         itemkey = self.get_cachekey()

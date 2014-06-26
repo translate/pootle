@@ -20,17 +20,19 @@
 
 from hashlib import md5
 
+from django.conf import settings
 from django.contrib.auth.models import User, UserManager, AnonymousUser
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
+from django.utils.functional import cached_property
 from django.utils.html import simple_email_re as email_re
 from django.utils.translation import ugettext_lazy as _
 
 from pootle_language.models import Language
-from pootle_misc.util import cached_property
 from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 
@@ -50,6 +52,11 @@ class PootleUserManager(UserManager):
                                              .select_related(depth=1) \
                                              .get(username='nobody')
 
+    def get_system_user(self):
+        return super(PootleUserManager, self).get_query_set() \
+                                             .select_related(depth=1) \
+                                             .get(username='system')
+
     def hide_defaults(self):
         return super(PootleUserManager, self).get_query_set().exclude(
                 username__in=('nobody', 'default')
@@ -66,25 +73,16 @@ class PootleProfileManager(models.Manager):
         return super(PootleProfileManager, self).get_query_set() \
                                                 .select_related('alt_src_langs')
 
-    def get_by_natural_key(self, username):
-        return self.get(user__username=username)
-
 
 class PootleProfile(models.Model):
 
     # This is the only required field.
-    user = models.OneToOneField(User, unique=True, db_index=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, unique=True, db_index=True)
     unit_rows = models.SmallIntegerField(
         default=9,
         verbose_name=_("Number of Rows"),
     )
     input_height = models.SmallIntegerField(default=5, editable=False)
-    ui_lang = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        verbose_name=_('Interface Language'),
-    )
     alt_src_langs = models.ManyToManyField(
         'pootle_language.Language',
         blank=True,
@@ -99,10 +97,6 @@ class PootleProfile(models.Model):
     class Meta:
         db_table = 'pootle_app_pootleprofile'
 
-    def natural_key(self):
-        return (self.user.username,)
-    natural_key.dependencies = ['auth.User']
-
     ############################ Properties ###################################
 
     @property
@@ -110,17 +104,6 @@ class PootleProfile(models.Model):
         # FIXME: "first name + last name" is just lame
         return ('%s %s' % (self.user.first_name,
                            self.user.last_name)).strip()
-
-    @property
-    def isopen(self):
-        return True
-
-    @property
-    def pootle_user(self):
-        if self.user_id is not None:
-            return self.user
-        else:
-            return AnonymousUser()
 
     @property
     def contributions(self):
@@ -161,6 +144,11 @@ class PootleProfile(models.Model):
               ]),
             ]
         """
+
+        def suggestion_count(tp, state):
+            "Return a filtered count of the user's suggestions (internal)"
+            return self.user.suggestions.filter(translation_project=tp, state=state).count()
+
         # TODO: optimize — we need a schema that helps reduce the number
         # of needed queries for these kind of data retrievals.
         contributions = []
@@ -181,16 +169,26 @@ class PootleProfile(models.Model):
             tp_user_stats = []
             # Retrieve tp-specific stats for this user.
             for tp in translation_projects:
+                # Submissions from the user done from the editor
+                total_subs = Submission.objects.filter(
+                    submitter=self,
+                    translation_project=tp,
+                    type=SubmissionTypes.NORMAL,
+                )
+                # Submissions from the user done from the editor that have been
+                # overwritten by other users
+                overwritten_subs = total_subs.exclude(unit__submitted_by=self)
+
                 tp_stats = [
                     {
                         'id': 'suggestions-pending',
-                        'count': self.pending_suggestion_count(tp),
+                        'count': suggestion_count(tp, SuggestionStates.PENDING),
                         'url': tp.get_translate_url(state='user-suggestions',
                                                     user=username),
                     },
                     {
                         'id': 'suggestions-accepted',
-                        'count': self.accepted_suggestion_count(tp),
+                        'count': suggestion_count(tp, SuggestionStates.ACCEPTED),
                         'url': tp.get_translate_url(
                             state='user-suggestions-accepted',
                             user=username,
@@ -198,7 +196,7 @@ class PootleProfile(models.Model):
                     },
                     {
                         'id': 'suggestions-rejected',
-                        'count': self.rejected_suggestion_count(tp),
+                        'count': suggestion_count(tp, SuggestionStates.REJECTED),
                         'url': tp.get_translate_url(
                             state='user-suggestions-rejected',
                             user=username,
@@ -206,13 +204,13 @@ class PootleProfile(models.Model):
                     },
                     {
                         'id': 'submissions-total',
-                        'count': self.total_submission_count(tp),
+                        'count': total_subs.count(),
                         'url': tp.get_translate_url(state='user-submissions',
                                                     user=username),
                     },
                     {
                         'id': 'submissions-overwritten',
-                        'count': self.overwritten_submission_count(tp),
+                        'count': overwritten_subs.count(),
                         'url': tp.get_translate_url(
                             state='user-submissions-overwritten',
                             user=username,
@@ -246,8 +244,7 @@ class PootleProfile(models.Model):
         return username
 
     def get_absolute_url(self):
-        return reverse('profiles_profile_detail',
-                       kwargs={'username': self.user.username})
+        return reverse('profiles_profile_detail', args=[self.user.username])
 
     def gravatar_url(self, size=80):
         if not self.get_email_hash:
@@ -258,60 +255,6 @@ class PootleProfile(models.Model):
 
     def get_unit_rows(self):
         return min(max(self.unit_rows, 5), 49)
-
-    def pending_suggestion_count(self, tp):
-        """Return the number of pending suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggester.filter(translation_project=tp,
-                                     state='pending').count()
-
-    def accepted_suggestion_count(self, tp):
-        """Return the number of accepted suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggester.filter(translation_project=tp,
-                                     state='accepted').count()
-
-    def rejected_suggestion_count(self, tp):
-        """Return the number of rejected suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggester.filter(translation_project=tp,
-                                     state='rejected').count()
-
-    def total_submission_count(self, tp):
-        """Return the number of submissions the current user has done from the
-        editor in the given translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return Submission.objects.filter(
-            submitter=self,
-            translation_project=tp,
-            type=SubmissionTypes.NORMAL,
-        ).count()
-
-    def overwritten_submission_count(self, tp):
-        """Return the number of submissions the current user has done from the
-        editor and have been overwritten by other users in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return Submission.objects.filter(
-            submitter=self,
-            translation_project=tp,
-            type=SubmissionTypes.NORMAL,
-        ).exclude(
-            unit__submitted_by=self,
-        ).count()
 
 
 def get_profile(user):

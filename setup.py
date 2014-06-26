@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,12 +22,14 @@
 import glob
 import os
 import re
+import sys
 
 from distutils import log
 from distutils.command.build import build as DistutilsBuild
 from distutils.errors import DistutilsOptionError
 
 from setuptools import find_packages, setup
+from setuptools.command.test import test as TestCommand
 
 from pootle.__version__ import sver as pootle_version
 
@@ -39,8 +42,10 @@ def parse_requirements(file_name):
     """
     requirements = []
     for line in open(file_name, 'r').read().split('\n'):
-        if re.match(r'(\s*#)|(\s*$)', line):
+        # Ignore comments, blank lines and included requirements files
+        if re.match(r'(\s*#)|(\s*$)|(-r .*$)', line):
             continue
+
         if re.match(r'\s*-e\s+', line):
             requirements.append(re.sub(r'\s*-e\s+.*#egg=(.*)$', r'\1', line))
         elif re.match(r'\s*-f\s+', line):
@@ -49,6 +54,20 @@ def parse_requirements(file_name):
             requirements.append(line)
 
     return requirements
+
+
+class PyTest(TestCommand):
+
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = ['--tb=short', 'tests/']
+        self.test_suite = True
+
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
 
 
 class PootleBuildMo(DistutilsBuild):
@@ -148,6 +167,7 @@ setup(
     download_url="http://sourceforge.net/projects/translate/files/Pootle/" + pootle_version,
 
     install_requires=parse_requirements('requirements/base.txt'),
+    tests_require=parse_requirements('requirements/tests.txt'),
 
     platforms=["any"],
     classifiers=[
@@ -176,6 +196,7 @@ setup(
         ],
     },
     cmdclass={
-        'build_mo': PootleBuildMo
+        'build_mo': PootleBuildMo,
+        'test': PyTest,
     },
 )

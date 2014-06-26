@@ -46,9 +46,12 @@ We need to give localizers enough time to localize Pootle.  They need time to
 do the actual translation and to feedback on any errors that they might
 encounter.
 
-To make a new template::
+To make a new template:
 
-   make pot
+.. code-block:: bash
+
+    $ make pot
+
 
 And upload the templates to Pootle for translation. Update current translations
 against templates either on Pootle or in code and commits these updated files
@@ -84,13 +87,16 @@ Get a clean checkout and new virtualenv
 ---------------------------------------
 We work from a clean checkout to ensure that everything you are adding to the
 build is what is in VC and doesn't contain any of your uncommitted changes.  It
-also ensure that someone else could replicate your process. ::
+also ensure that someone else could replicate your process.
 
-    git clone git@github.com:translate/pootle.git pootle-release
-    cd pootle-release
-    git submodule update --init
-    mkvirtualenv pootle-release
-    pip install -r requirements/build.txt
+.. code-block:: bash
+
+    $ git clone git@github.com:translate/pootle.git pootle-release
+    $ cd pootle-release
+    $ git submodule update --init
+    $ mkvirtualenv pootle-release
+    $ pip install -r requirements/build.txt
+
 
 Create release notes
 --------------------
@@ -105,13 +111,19 @@ We create our release notes in reStructured Text, since we use that elsewhere
 and since it can be rendered well in some of our key sites.
 
 First we need to create a log of changes in Pootle, which is done generically
-like this::
+like this:
 
-    git log $version-1..HEAD > docs/release/$version.rst
+.. code-block:: bash
 
-Or a more specific example::
+    $ git log $version-1..HEAD > docs/release/$version.rst
 
-    git log 2.5.0..HEAD > docs/releases/2.5.1.rst
+
+Or a more specific example:
+
+.. code-block:: bash
+
+    $ git log 2.5.0..HEAD > docs/releases/2.5.1.rst
+
 
 Edit this new file.  You can use the commits as a guide to build up the release
 notes.  You should remove all log messages before the release.
@@ -132,9 +144,11 @@ Read for grammar and spelling errors.
    #. We speak in familiar terms e.g. "I know you've been waiting for this
       release" instead of formal.
 
-We create a list of contributors using this command::
+We create a list of contributors using this command:
 
-   git log 2.5.0..HEAD --format='%aN, ' | awk '{arr[$0]++} END{for (i in arr){print arr[i], i;}}' | sort -rn | cut -d\  -f2-
+.. code-block:: bash
+
+    $ git log 2.5.0..HEAD --format='%aN, ' | awk '{arr[$0]++} END{for (i in arr){print arr[i], i;}}' | sort -rn | cut -d\  -f2-
 
 
 Adjust the roadmap
@@ -185,7 +199,9 @@ Check copyright dates
 ---------------------
 
 Update any copyright dates in ``docs/conf.py:copright`` and anywhere else that
-needs fixing.::
+needs fixing.
+
+.. code-block:: bash
 
     $ git grep 2013  # Should pick up anything that should be examined
 
@@ -198,15 +214,15 @@ Update the minimum version number for the requirements in:
 - ``pootle/depcheck.py``
 
 
-Update the requirements files::
+Update the requirements files:
 
-    make requirements
+   .. code-block:: bash
+
+       $ make requirements-pinned.txt
+
 
 .. note:: This creates the following files:
 
-       - requirements-min-versions.txt -- the minimum requirements we specified
-         at this time.  Using that to deploy can ensure that you don't use a
-         newer version that breaks Pootle.
        - requirements-pinned.txt - the maximum available version when we
          released.  Chances are we've tested with these and they are good.
          Using this would prevent a person from intalling something newer but
@@ -221,14 +237,18 @@ Update translations
 Update the translations from the `Pootle server
 <http://pootle.locamotion.org/projects/pootle>`_
 
-#. Download all translations::
+#. Download all translations
+
+   .. code-block:: bash
 
        $ make get-translations
 
 #. Update ``pootle/locale/LINGUAS`` to list the languages we would like to
    ship. While we package all PO files, this is an indication of which ones we
    want packagers to use.  The requirement is roughly 80% translated with no
-   obvious variable errors. Languages with a small userbase can be included. ::
+   obvious variable errors. Languages with a small userbase can be included.
+
+   .. code-block:: bash
 
        $ make linguas
 
@@ -245,10 +265,12 @@ Update the translations from the `Pootle server
 Build the package
 -----------------
 Building is the first step to testing that things work.  From your clean
-checkout run::
+checkout run:
 
-    make mo-all # if we are shipping an pre-release
-    make build
+.. code-block:: bash
+
+    $ make mo-all # if we are shipping an pre-release
+    $ make build
 
 
 This will create a tarball in ``dist/`` which you can use for further testing.
@@ -260,21 +282,26 @@ This will create a tarball in ``dist/`` which you can use for further testing.
 Test install and other tests
 ----------------------------
 The easiest way to test is in a virtualenv.  You can install the new toolkit
-using::
+using:
 
-    mkvirtualenv pootle-testing
-    pip install path/to/dist/Pootle-$version.tar.bz2
+.. code-block:: bash
+
+    $ mkvirtualenv pootle-testing
+    $pip install path/to/dist/Pootle-$version.tar.bz2
+
 
 This will allow you test installation of the software.
 
 You can then proceed with other tests such as checking:
 
-#. Quick installation check::
+#. Quick installation check:
 
-      pootle init
-      pootle setup
-      pootle start
-      # browse to localhost:8000
+.. code-block:: bash
+
+    $ pootle init
+    $ pootle setup
+    $ pootle start
+    $ # browse to localhost:8000
 
 #. Documentation is available
 #. Installation documention is correct
@@ -285,19 +312,24 @@ You can then proceed with other tests such as checking:
 #. Meta information about the package is correct. See pypi section of reviewing
    meta data.
 
-To cleanup::
+To cleanup:
 
-    deactivate
-    rmvirtualenv pootle-testing
+.. code-block:: bash
+
+    $ deactivate
+    $ rmvirtualenv pootle-testing
 
 
 Tag the release
 ---------------
 You should only tag once you are happy with your release as there are some
-things that we can't undo. ::
+things that we can't undo.
 
-    git tag -a 2.5.0 -m "Tag version 2.5.0"
-    git push --tags
+.. code-block:: bash
+
+    $ git tag -a 2.5.0 -m "Tag version 2.5.0"
+    $ git push --tags
+
 
 If this is the final release then there should be a stable branch e.g.
 ``stable/2.5.0``, so create one if it does not already exist.
@@ -323,13 +355,18 @@ Review the meta data. This is stored in ``setup.py``, use ``./setup.py --help``
 to se some options to display meta-data. The actual long description is taken
 from ``/README.rst``.
 
-To test before publishing run::
+To test before publishing run:
 
-    make test-publish-pypi
+.. code-block:: bash
 
-Then to actually publish::
+    $ make test-publish-pypi
 
-    make publish-pypi
+
+Then to actually publish:
+
+.. code-block:: bash
+
+    $ make publish-pypi
 
 
 Copy files to sourceforge
@@ -402,9 +439,12 @@ version as apposed to the latest version.
 
 Update Pootle website
 ---------------------
-We use github pages for the website. First we need to checkout the pages::
+We use github pages for the website. First we need to checkout the pages:
 
-    git checkout gh-pages
+.. code-block:: bash
+
+    $ git checkout gh-pages
+
 
 #. In ``_posts/`` add a new release posting.  This is in Markdown format (for
    now), so we need to change the release notes .rst to .md, which mostly means
@@ -446,6 +486,7 @@ Let people know that there is a new version:
 #. Adjust the #pootle channel notice. Use ``/topic`` to change the topic.
 #. Email important users
 #. Tweet about it
+#. Update `Pootle's Wikipedia page <http://en.wikipedia.org/wiki/Pootle>`_
 
 
 Cleanup

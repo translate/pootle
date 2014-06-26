@@ -2,18 +2,16 @@
 {% load i18n store_tags cleanhtml cache profile_tags locale %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
-{% cache settings.CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs profile.id LANGUAGE_CODE %}
-<td colspan="3" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
-  <div class="translate-container">
+{% cache 0 unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs profile.id LANGUAGE_CODE unit.get_terminology %}
+<td colspan="2" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
+  <div class="translate-container{% if unit.get_active_qualitychecks.count %} error{% endif %}">
     <div class="unit-path">
-      <span class="pull-{% locale_align %}">
-        <p class="sidetitle" title="{{ unit.store.path }}">
-          {{ language.name }} / {{ project }} / {{ unit.store.path }}
-        </p>
-      </span>
-      <span class="pull-{% locale_reverse_align %}">
-        <a href="{{ unit.get_translate_url }}">{% blocktrans with id=unit.id %}String {{ id }}{% endblocktrans %}</a>
-      </span>
+      <ul>
+        <li><span class="content-wrapper">{{ language.name }}</span></li>
+        <li><span class="content-wrapper">{{ project }}</span></li>
+        <li><span class="content-wrapper">{{ unit.store.path }}</span></li>
+        <li><span class="content-wrapper"><a href="{{ unit.get_translate_url }}">{% blocktrans with id=unit.id %}String #{{ id }}{% endblocktrans %}</a></span></li>
+      </ul>
     </div>
     <div class="translate-{% locale_align %}">
       {% if unit.getcontext and unit.locations != unit.context %}
@@ -64,26 +62,12 @@
       {% endif %}
       {% endwith %}
     </div>
-    <div class="translate-{% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
-      {% if unit.get_qualitychecks.count %}
-      <!-- Quality Checks -->
-      <div id="translate-checks-block" dir="{% locale_dir %}">
-          <div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Possible issues with the translation' %}">{% trans "Failing checks:" %}</div>
-          <ul class="checks">
-          {% for check in unit.get_qualitychecks.iterator %}
-          <li class="check">
-            <a href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/commands/pofilter_tests.html#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
-            {% if canreview %}
-            <a title="{% trans "Remove quality check" %}" class="js-reject-check"
-              data-check-id="{{ check.id }}"><i class="icon-block"></i></a>
-            {% endif %}
-          </li>
-          {% endfor %}
-          </ul>
-      </div>
-      {% endif %}
-    </div>
     <div class="translate-middle">
+      <!-- Quality Checks -->
+      <div id="translate-checks-block" class="js-unit-checks"
+        dir="{% locale_dir %}">
+      {% include 'editor/units/xhr_checks.html' %}
+      </div>
       <div id="target-item-content">
         <form action="" method="post" name="translate" id="translate">
           {{ form.id.as_hidden }}
@@ -141,13 +125,13 @@
           <div class="buttons translate-buttons-block" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             {% if cantranslate %}
             <input type="submit" name="submit" tabindex="11" accesskey="s"
-              class="submit unit-submit js-submit" disabled
+              class="btn btn-success submit unit-submit js-submit" disabled
               value="{% trans 'Submit' %}"
               title="{% trans 'Submit translation and go to the next string (Ctrl+Enter)' %}" />
             {% endif %}
             {% if cansuggest %}
             <input type="submit" name="suggest" tabindex="11" accesskey="s"
-              class="suggest unit-submit js-submit" disabled
+              class="btn btn-warning suggest unit-submit js-submit" disabled
               value="{% trans 'Suggest' %}"
               title="{% trans 'Suggest translation and go to the next string (Ctrl+Enter)' %}" />
             {% endif %}
@@ -160,7 +144,9 @@
               <div class="submit"><a href="#" title="{% trans 'Switch to suggestion mode (Ctrl+Shift+Space)' %}">&harr; {% trans "Suggest" %}</a></div>
             </div>
             {% endif %}
-            <div class="translate-fuzzy-block" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Mark this string as needing further work (Ctrl+Space)' %}">
+            <div class="translate-fuzzy-block js-fuzzy-block{% if not is_admin and not unit.isfuzzy %} hide{% endif %}"
+              lang="{{ LANGUAGE_CODE }}"
+              title="{% trans 'Mark this string as needing further work (Ctrl+Space)' %}">
               {{ form.state }} {{ form.state.label_tag }}
             </div>
           </div>
@@ -176,12 +162,13 @@
 
             {% if unit.submitted_by and unit.submitted_on %}
             <div class="unit-meta">
-              <time class="js-relative-date" title="{{ unit.submitted_on }}"
+              <time class="js-relative-date"
+                title="{{ unit.submitted_on|dateformat }}"
                 datetime="{{ unit.submitted_on.isoformat }}">&nbsp;</time>
               {% with reviewer=unit.get_reviewer %}
               {% if reviewer %}
               <br>
-              <span>({% blocktrans with profile_url=reviewer.get_absolute_url%}reviewed by <a href="{{ profile_url }}">{{ reviewer }}</a>{% endblocktrans %})</span>
+              <span>({% blocktrans with url=reviewer.get_absolute_url%}reviewed by <a href="{{ url }}">{{ reviewer }}</a>{% endblocktrans %})</span>
               {% endif %}
               {% endwith %}
             </div>
@@ -234,15 +221,14 @@
       </div>
       <div id="extras-bar">
         {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
-        {% if unit.submission_set.count %}
         <a id="js-show-timeline" href="{% url 'pootle-xhr-units-timeline' unit.id %}">{% trans 'Show Timeline' %}</a>
         <a id="js-hide-timeline" class="hide">{% trans 'Hide Timeline' %}</a>
-        {% endif %}
         {% if cantranslate %}
         <div id="editor-comment" class="hide">
           <form id="comment-form" action="{% url 'pootle-xhr-units-comment' unit.id %}" method="post">
             <p>{{ comment_form.translator_comment }}</p>
-            <p><input type="submit" value="{% trans 'Submit' %}" /></p>
+            <p><input type="submit" class="btn btn-xs btn-primary"
+                      value="{% trans 'Submit' %}" /></p>
           </form>
         </div>
         {% endif %}
@@ -271,7 +257,6 @@
               </div>
               {% endif %}
               <div class="extra-item js-editor-copytext" data-action="overwrite">
-                {% block votes %}{% endblock %}
                 {% if canreview %}
                 <a accesskey="a" class="suggestion-action js-suggestion-accept"
                   data-sugg-id="{{ sugg.id }}">

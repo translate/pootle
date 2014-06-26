@@ -22,7 +22,7 @@
 from functools import wraps
 
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponse
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 
@@ -31,7 +31,20 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_misc.util import jsonify
 from pootle_profile.models import get_profile
 
-from .models import Unit
+from .models import Unit, Store
+
+
+def get_permission_message(permission_code):
+    """Returns a human-readable message when `permission_code` is not met
+    by the current context.
+    """
+    default_message = _("Insufficient rights to access this directory.")
+
+    return {
+        'suggest': _('Insufficient rights to access suggestion mode.'),
+        'translate': _('Insufficient rights to access translation mode.'),
+        'review': _('Insufficient rights to access review mode.'),
+    }.get(permission_code, default_message)
 
 
 def _common_context(request, translation_project, permission_codes):
@@ -41,24 +54,18 @@ def _common_context(request, translation_project, permission_codes):
                        permission_codes)
 
 
-def _check_permissions(request, directory, permission_codes):
+def _check_permissions(request, directory, permission_code):
     """Checks if the current user has enough permissions defined by
-    `permission_codes` in the current`directory`.
+    `permission_code` in the current`directory`.
     """
     request.profile = get_profile(request.user)
-    request.permissions = get_matching_permissions(request.profile,
-                                                   directory)
+    request.permissions = get_matching_permissions(request.user, directory)
 
-    if not permission_codes:
+    if not permission_code:
         return
 
-    if isinstance(permission_codes, basestring):
-        permission_codes = [permission_codes]
-    for permission_code in permission_codes:
-        if not check_permission(permission_code, request):
-            raise PermissionDenied(
-                _("Insufficient rights to access this directory."),
-            )
+    if not check_permission(permission_code, request):
+        raise PermissionDenied(get_permission_message(permission_code))
 
 
 def get_store_context(permission_codes):

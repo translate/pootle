@@ -1,0 +1,102 @@
+{% load i18n locale %}
+{% load url from future %}
+
+<table class="sortable stats" id="{{ table.id }}" cellpadding="5"
+  cellspacing="0" width="100%" lang="{{ LANGUAGE_CODE }}"
+  dir="{% locale_dir %}" data-sort-cookie="browser-sorting-pref">
+  <thead>
+    <tr>
+      {% for th in table.headings %}
+      <th id="js-stats-{{ th.id }}" class="{{ th.class }}">
+        {{ th.display_name }}
+      </th>
+      {% endfor %}
+    </tr>
+    {% if table.parent %}
+      <tr class="item">
+        <td colspan="6" class="stats-name {{ table.parent.icon }}">
+          <a href="{{ table.parent.href }}"><i class="icon-{{ table.parent.icon }}"></i> <span>{{ table.parent.title }}</span></a>
+        </td>
+      </tr>
+    {% endif %}
+  </thead>
+  <tbody class="stats">
+    {% for item in table.items %}
+
+    <tr class="item">
+
+      {% if 'name' in table.fields %}
+      <td class="stats-name {{ item.icon }}"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
+        <a href="{{ item.href }}"><i class="icon-{{ item.icon }}"></i> <span>{{ item.title }}</span></a>
+      </td>
+      {% endif %}
+
+      {% if 'priority' in table.fields %}
+      <td class="stats-number">
+        <span class="zero muted">{{ item.priority }}</span>
+      </td>
+      {% endif %}
+
+      {% if 'progress' in table.fields %}
+      <td class="stats-graph">
+        <div id="translated-ratio-{{ item.code }}" class="sortkey"></div>
+        <div id="progressbar-{{ item.code }}">
+          {% include "browser/_progressbar.html" %}
+        </div>
+      </td>
+      {% endif %}
+
+      {% if 'total' in table.fields %}
+      <td id="total-words-{{ item.code }}" class="stats-number total js-total">
+        <a class="non-zero" href="{{ item.href_all }}"></a>
+        <span class="zero muted">0</span>
+      </td>
+      {% endif %}
+
+      {% if 'need-translation' in table.fields %}
+      <td id="need-translation-{{ item.code }}" class="stats-number need-translation js-need-translation">
+        <a class="non-zero" href="{{ item.href_todo }}"></a>
+        <span class="zero muted">0</span>
+      </td>
+      {% endif %}
+
+      {% if 'suggestions' in table.fields %}
+      <td id="suggestions-{{ item.code }}" class="stats-number suggestions js-suggestions">
+        <a class="non-zero" href="{{ item.href_sugg }}"></a>
+        <span class="zero muted">0</span>
+      </td>
+      {% endif %}
+
+      {% if 'critical' in table.fields %}
+      <td id="critical-{{ item.code }}" class="stats-number critical js-critical">
+        <a class="non-zero" href="{{ item.href_critical }}"></a>
+        <span class="zero muted">0</span>
+      </td>
+      {% endif %}
+
+      {% if 'last-updated' in table.fields %}
+      <td id="last-updated-{{ item.code }}" class="last-updated"></td>
+      {% endif %}
+
+      {% if 'activity' in table.fields %}
+      <td id="last-activity-{{ item.code }}" class="last-activity"></td>
+      {% endif %}
+
+      {% if 'tags' in table.fields %}
+      <td id="js-tag-tp-{{ item.pk }}-hidden" class="hide tags-cell" colspan="{{ table.headings|length|add:'-1' }}">
+        {% if user.is_superuser or request.permissions.administrate %}
+        <a href="#js-add-tag-dialog" class="js-project-add-tag-popup tags-aside tags-add"
+          title="{% trans "Add a tag" %}">
+          <i class="icon-tag-add"></i>
+        </a>
+        {% endif %}
+        <ul class="tag-list">
+          {% include "projects/xhr_tags_list.html" with tp_tags=item.tags project=item.project language=item.code %}
+        </ul>
+      </td>
+      {% endif %}
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>

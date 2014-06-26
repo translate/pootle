@@ -10,7 +10,7 @@ FULLNAME=$(shell python setup.py --fullname)
 SFUSERNAME=$(shell egrep -A5 sourceforge ~/.ssh/config | egrep -m1 User | cut -d" " -f2)
 FORMATS=--formats=bztar
 
-.PHONY: all build sprite pot mo mo-all requirements help docs assets
+.PHONY: all build clean sprite test pot mo mo-all requirements help docs assets
 
 all: help
 
@@ -25,10 +25,16 @@ assets:
 docs:
 	# The following creates the HTML docs.
 	# NOTE: cd and make must be in the same line.
-	cd ${DOCS_DIR}; make html ${TAIL}
+	cd ${DOCS_DIR}; make SPHINXOPTS="-W -q" html ${TAIL}
+
+docs-review: docs
+	python -mwebbrowser file://$(shell pwd)/${DOCS_DIR}/_build/html/index.html
 
 sprite:
 	glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
+
+test: assets
+	python setup.py test
 
 pot:
 	@${SRC_DIR}/tools/createpootlepot
@@ -69,7 +75,10 @@ help:
 	@echo
 	@echo "  assets - collect and rebuild the static assets"
 	@echo "  build - create sdist with required prep"
+	@echo "  docs - build Sphinx docs"
+	@echo "  docs-review - launch webbrowser to review docs"
 	@echo "  sprite - create CSS sprite"
+	@echo "  test - run test suite"
 	@echo "  pot - update the POT translations templates"
 	@echo "  get-translations - retreive Pootle translations from server (requires ssh config for pootletranslations)"
 	@echo "  linguas - update the LINGUAS file with languages over 80% complete"
@@ -83,7 +92,7 @@ help:
 
 # Perform forced build using -W for the (.PHONY) requirements target
 requirements:
-	$(MAKE) -W $(REQFILE) requirements-pinned.txt requirements-min-versions.txt
+	$(MAKE) -W $(REQFILE) requirements-pinned.txt requirements/min-versions.txt
 
 REQS=.reqs
 REQFILE=requirements/base.txt
@@ -112,15 +121,23 @@ requirements-pinned.txt: requirements-pinned.txt.in $(REQFILE)
 	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
 	     (cd $(REQS) && ls *.tar* *.whl |					\
 	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') >> $@;	\
-	 esac; 
+	 esac;
 
-requirements-min-versions.txt: requirements-min-versions.txt.in requirements/*.txt
+requirements/min-versions.txt: requirements/*.txt
 	@if grep -q '>[0-9]' $^; then				\
 	   echo "Use '>=' not '>' for requirements"; exit 1;	\
 	 fi
 	@echo "creating $@"
 	@echo "# Automatically generated: DO NOT EDIT" > $@
 	@echo "# Regenerate using 'make requirements'" >> $@
+	@echo "# ====================================" >> $@
+	@echo "# Minimum Requirements" >> $@
+	@echo "# ====================================" >> $@
+	@echo "#" >> $@
+	@echo "# These are the minimum versions of dependencies that the Pootle developers" >> $@
+	@echo "# claim will work with Pootle." >> $@
+	@echo "#" >> $@
+	@echo "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $@
+	@echo "#" >> $@
 	@echo >> $@
-	@cat $< >> $@
 	@cat $^ | sed -n '/=/{s/>=/==/;s/,<.*//;p;}' >> $@

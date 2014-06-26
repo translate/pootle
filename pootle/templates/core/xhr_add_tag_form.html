@@ -1,18 +1,19 @@
 {% load url from future %}
 {% load i18n %}
+
 {% if add_tag_form %}
   <form action="{{ add_tag_action_url }}" method="post" id="js-add-tag-form"
     enctype="multipart/form-data">
     {% csrf_token %}
     {{ add_tag_form.non_field_errors }}
     {% for field in add_tag_form %}
-    <p {% if field.help_text %}title="{{ field.help_text }}"{% endif %}>
+    <p{% if field.help_text %} title="{{ field.help_text }}"{% endif %}>
       {{ field.label_tag }} {{ field }}
       {{ field.errors }}
     </p>
     {% endfor %}
     <p class="buttons">
-      <input type="submit" value="{% trans "Add tag" %}" />
+      <input type="submit" class="btn" value="{% trans 'Add tag' %}" />
     </p>
   </form>
 {% endif %}

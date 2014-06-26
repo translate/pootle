@@ -20,11 +20,8 @@
 
 """Utility functions to help deploy Pootle under different url prefixes."""
 
-import os
-
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.http import HttpResponseRedirect
 from django.utils.http import urlencode
 
 
@@ -41,23 +38,14 @@ def s(path):
     return settings.STATIC_URL + path
 
 
-def redirect(url, **kwargs):
-    if os.name == 'nt':
-        # A catch-all to fix any issues on Windows
-        url = url.replace("\\", "/")
-    if len(kwargs) > 0:
-        return HttpResponseRedirect(l('%s?%s' % (url, urlencode(kwargs))))
-    else:
-        return HttpResponseRedirect(l(url))
-
-
 def get_next(request):
     """Return a query string to use as a next URL."""
     try:
         next = request.GET.get(REDIRECT_FIELD_NAME, '')
+
         if not next:
             next = request.path_info
-    except AttributeError as e:
+    except AttributeError:
         next = ''
 
     return u"?%s" % urlencode({REDIRECT_FIELD_NAME: next})

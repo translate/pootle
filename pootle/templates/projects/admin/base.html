@@ -1,0 +1,16 @@
+{% extends "projects/base.html" %}
+
+{% load assets %}
+
+{% block css %}
+{{ block.super }}
+{% assets "css_admin" %}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+{% endassets %}
+{% endblock %}
+
+{% block scripts_extra %}
+{% assets "js_admin" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+{% endblock %}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Zuza Software Foundation
+# Copyright 2013, 2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -17,8 +17,6 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import absolute_import
-
 import logging
 import os
 
@@ -26,39 +24,23 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.core.management import call_command
-from django.core.management.base import NoArgsCommand
-from django.db.utils import DatabaseError
+from django.core.management.base import CommandError, NoArgsCommand
 
-from pootle_misc import siteconfig
 from pootle.__version__ import build as NEW_POOTLE_BUILD
+from pootle_app.models.pootle_config import get_pootle_build
 
 
 class Command(NoArgsCommand):
     help = 'Runs the install/upgrade machinery.'
-
-    def get_current_buildversion(self):
-        try:
-            config = siteconfig.load_site_config()
-            current_buildversion = config.get('POOTLE_BUILDVERSION', None)
-
-            if current_buildversion is None:
-                # Old Pootle versions used BUILDVERSION instead.
-                current_buildversion = config.get('BUILDVERSION', None)
-        except DatabaseError:
-            # Assume that the DatabaseError is because we have a blank database
-            # from a new install, is there a better way to do this?
-            current_buildversion = None
-
-        return current_buildversion
 
     def handle_noargs(self, **options):
         """Run the install or upgrade machinery.
 
         If there is an up-to-date Pootle setup then no action is performed.
         """
-        current_buildversion = self.get_current_buildversion()
+        current_buildversion = get_pootle_build()
 
-        if current_buildversion is None:
+        if not current_buildversion:
             logging.info('Setting up a new Pootle installation.')
 
             call_command('syncdb', interactive=False)
@@ -66,12 +48,16 @@ class Command(NoArgsCommand):
             call_command('initdb')
 
             logging.info('Successfully deployed new Pootle.')
+        elif current_buildversion < 21010:
+            # Trying to upgrade a deployment older than Pootle 2.1.1 for which
+            # we can't provide a direct upgrade.
+            raise CommandError('This Pootle installation is too old. Please '
+                               'upgrade first to 2.1.6 before upgrading to '
+                               'this version.')
         elif current_buildversion < NEW_POOTLE_BUILD:
             logging.info('Upgrading existing Pootle installation.')
 
-            from .upgrade import DEFAULT_POOTLE_BUILDVERSION
-
-            if current_buildversion < DEFAULT_POOTLE_BUILDVERSION:
+            if current_buildversion < 22000:
                 # Run only if Pootle is < 2.5.0.
                 call_command('updatedb')
 
@@ -84,8 +70,12 @@ class Command(NoArgsCommand):
                 OLD_APPS = ("pootle_app", "pootle_language",
                             "pootle_notifications", "pootle_profile",
                             "pootle_project", "pootle_statistics",
-                            "pootle_store", "pootle_translationproject",
-                            "staticpages")
+                            "pootle_store", "pootle_translationproject")
+
+                if current_buildversion >= 22000:
+                    # Fake the migration only if Pootle is 2.5.0.
+                    OLD_APPS += ("staticpages", )
+
                 for app in OLD_APPS:
                     call_command("migrate", app, "0001", fake=True)
 

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2010, 2013 Zuza Software Foundation
+# Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -19,6 +20,7 @@
 
 import locale
 import logging
+import os
 
 from django.conf import settings
 from django.utils import translation
@@ -28,6 +30,13 @@ class SetLocale(object):
     """Set python locale for each request."""
 
     def process_request(self, request):
+        # Under Windows, locale names are different and setlocale()
+        # with regular locale names will fail;
+        # so just set the default locale and quit early
+        if os.name == 'nt':
+            locale.setlocale(locale.LC_ALL, '')
+            return
+
         #FIXME: some languages like arabic don't have a language only
         # locale for no good reason. we need a function to pick default
         # locale for these.
@@ -52,6 +61,12 @@ class SetLocale(object):
 
 def set_pootle_locale_from_settings():
     """Try to set Pootle locale based on the language specified in settings."""
+    # Under Windows, locale names are different and setlocale()
+    # with regular locale names will fail;
+    # so just set the default locale and quit early
+    if os.name == 'nt':
+        locale.setlocale(locale.LC_ALL, '')
+        return
 
     lang = translation.to_locale(settings.LANGUAGE_CODE)
     try:

@@ -21,12 +21,15 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.forms.models import BaseModelFormSet
 from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import admin_required
 from pootle_app.views.admin import util
+
+
+User = get_user_model()
 
 
 @admin_required
@@ -66,11 +69,6 @@ class BaseUserFormSet(BaseModelFormSet):
         # set encrypted password
         if password != '':
             instance.set_password(password)
-            changed = True
-        # no point in seperating admin rights from access to
-        # django_admin, make sure the two bits are in synch
-        if instance.is_staff != instance.is_superuser:
-            instance.is_staff = instance.is_superuser
             changed = True
 
         if commit and changed:

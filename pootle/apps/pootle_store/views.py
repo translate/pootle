@@ -22,17 +22,18 @@ import logging
 import os
 from itertools import groupby
 
+from translate.filters.decorators import Category
 from translate.lang import data
 from translate.search.lshtein import LevenshteinComparer
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponse, Http404
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -43,15 +44,14 @@ from django.views.decorators.http import require_POST
 
 from taggit.models import Tag
 
-from pootle.core.decorators import (get_path_obj, get_resource_context,
+from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
 from pootle.core.url_helpers import split_pootle_path
-from pootle_app.models import Suggestion as SuggestionStat
 from pootle_app.models.permissions import (check_permission,
-                                           check_profile_permission)
+                                           check_user_permission)
 from pootle_language.models import Language
-from pootle_misc.baseurl import redirect
+from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, jsonify, to_int
 from pootle_profile.models import get_profile
@@ -63,14 +63,18 @@ from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
 
 from .decorators import get_store_context, get_unit_context
+from .fields import to_python
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
-from .models import Store, TMUnit, Unit
+from .models import Store, Suggestion, SuggestionStates, TMUnit, Unit
 from .signals import translation_submitted
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
                    absolute_real_path, find_altsrcs, get_sugg_list)
+
+
+User = get_user_model()
 
 
 @get_store_context('view')
@@ -342,15 +346,14 @@ def get_step_query(request, units_queryset):
     """Narrows down unit query to units matching conditions in GET."""
     if 'filter' in request.GET:
         unit_filter = request.GET['filter']
-        username = request.GET.get('user', None)
 
-        profile = request.profile
-        if username is not None:
+        user = request.user
+        if request.GET.get("user"):
             try:
-                user = User.objects.get(username=username)
-                profile = user.get_profile()
+                user = User.objects.get(username=request.GET["user"])
             except User.DoesNotExist:
                 pass
+        profile = user.get_profile()
 
         if unit_filter:
             match_queryset = units_queryset.none()
@@ -368,34 +371,28 @@ def get_step_query(request, units_queryset):
                     Q(state=UNTRANSLATED) | Q(state=FUZZY),
                 )
             elif unit_filter == 'suggestions':
-                #FIXME: is None the most efficient query
-                match_queryset = units_queryset.exclude(suggestion=None)
+                match_queryset = units_queryset.filter(
+                        suggestion__state=SuggestionStates.PENDING
+                    ).distinct()
             elif unit_filter in ('my-suggestions', 'user-suggestions'):
                 match_queryset = units_queryset.filter(
+                        suggestion__state=SuggestionStates.PENDING,
                         suggestion__user=profile,
                     ).distinct()
             elif unit_filter == 'user-suggestions-accepted':
-                # FIXME: Oh, this is pretty lame, we need a completely
-                # different way to model suggestions
-                unit_ids = SuggestionStat.objects.filter(
-                        suggester=profile,
-                        state='accepted',
-                    ).values_list('unit', flat=True)
                 match_queryset = units_queryset.filter(
-                        id__in=unit_ids,
+                        suggestion__state=SuggestionStates.ACCEPTED,
+                        suggestion__user=profile,
                     ).distinct()
             elif unit_filter == 'user-suggestions-rejected':
-                # FIXME: Oh, this is as lame as above
-                unit_ids = SuggestionStat.objects.filter(
-                        suggester=profile,
-                        state='rejected',
-                    ).values_list('unit', flat=True)
                 match_queryset = units_queryset.filter(
-                        id__in=unit_ids,
+                        suggestion__state=SuggestionStates.REJECTED,
+                        suggestion__user=profile,
                     ).distinct()
             elif unit_filter in ('my-submissions', 'user-submissions'):
                 match_queryset = units_queryset.filter(
                         submission__submitter=profile,
+                        submission__type=SubmissionTypes.NORMAL,
                     ).distinct()
             elif (unit_filter in ('my-submissions-overwritten',
                                   'user-submissions-overwritten')):
@@ -408,7 +405,7 @@ def get_step_query(request, units_queryset):
                 if checks:
                     match_queryset = units_queryset.filter(
                         qualitycheck__false_positive=False,
-                        qualitycheck__name__in=checks
+                        qualitycheck__name__in=checks,
                     ).distinct()
 
 
@@ -543,7 +540,7 @@ def get_units(request):
     request.profile = get_profile(request.user)
     limit = request.profile.get_unit_rows()
 
-    units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
+    units_qs = Unit.objects.get_for_path(pootle_path, request.user)
     step_queryset = get_step_query(request, units_qs)
 
     is_initial_request = request.GET.get('initial', False)
@@ -621,21 +618,24 @@ def timeline(request, unit):
     """
     timeline = Submission.objects.filter(unit=unit, field__in=[
         SubmissionFields.TARGET, SubmissionFields.STATE,
-        SubmissionFields.COMMENT
+        SubmissionFields.COMMENT, SubmissionFields.NONE
     ])
     timeline = timeline.select_related("submitter__user",
                                        "translation_project__language")
 
-    context = {}
     entries_group = []
+    context = {
+        'system': User.objects.get_system_user().get_profile()
+    }
 
-    import locale
-    from pootle_store.fields import to_python
+    if unit.creation_time:
+        context['created'] = {
+            'datetime': unit.creation_time,
+        }
 
     for key, values in groupby(timeline, key=lambda x: x.creation_time):
         entry_group = {
             'datetime': key,
-            'datetime_str': key.strftime(locale.nl_langinfo(locale.D_T_FMT)),
             'entries': [],
         }
 
@@ -653,6 +653,17 @@ def timeline(request, unit):
             if item.field == SubmissionFields.STATE:
                 entry['old_value'] = STATES_MAP[int(to_python(item.old_value))]
                 entry['new_value'] = STATES_MAP[int(to_python(item.new_value))]
+            elif item.check:
+                entry.update({
+                    'check_name': item.check.name,
+                    'check_display_name': check_names[item.check.name],
+                    'checks_url': reverse('pootle-staticpages-display',
+                                          args=['help/quality-checks']),
+                    'action': {
+                                SubmissionTypes.MUTE_CHECK: 'Muted',
+                                SubmissionTypes.UNMUTE_CHECK: 'Unmuted'
+                              }.get(item.type, '')
+                })
             else:
                 entry['new_value'] = to_python(item.new_value)
 
@@ -662,11 +673,6 @@ def timeline(request, unit):
 
     # Let's reverse the chronological order
     entries_group.reverse()
-
-    # Remove first timeline item if it's solely a change to the target
-    if (entries_group and len(entries_group[0]['entries']) == 1 and
-        entries_group[0]['entries'][0]['field'] == SubmissionFields.TARGET):
-        del entries_group[0]
 
     context['entries_group'] = entries_group
 
@@ -682,28 +688,27 @@ def timeline(request, unit):
         response = jsonify(json)
         return HttpResponse(response, mimetype="application/json")
     else:
-        return render_to_response('editor/units/timeline.html', context,
-                                  context_instance=RequestContext(request))
+        return render(request, "editor/units/timeline.html", context)
 
 
 @ajax_required
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def get_qualitycheck_stats(request, path_obj, **kwargs):
-    qc_stats = request.resource_obj.get_checks()
-
-    return HttpResponse(jsonify(qc_stats), mimetype="application/json")
+    failing_checks = request.resource_obj.get_checks()['checks']
+    response = jsonify(failing_checks)
+    return HttpResponse(response, mimetype="application/json")
 
 
 @ajax_required
 @get_path_obj
 @permission_required('view')
-@get_resource_context
+@get_resource
 def get_overview_stats(request, path_obj, **kwargs):
     stats = request.resource_obj.get_stats()
-
-    return HttpResponse(jsonify(stats), mimetype="application/json")
+    response = jsonify(stats)
+    return HttpResponse(response, mimetype="application/json")
 
 
 @require_POST
@@ -766,12 +771,13 @@ def get_edit_unit(request, unit):
         snplurals = None
 
     form_class = unit_form_factory(language, snplurals, request)
-    form = form_class(instance=unit)
+    form = form_class(instance=unit, request=request)
     comment_form_class = unit_comment_form_factory(language)
     comment_form = comment_form_class({}, instance=unit)
 
     store = unit.store
     directory = store.parent
+    user = request.user
     profile = request.profile
     alt_src_langs = get_alt_src_langs(request, profile, translation_project)
     project = translation_project.project
@@ -784,14 +790,14 @@ def get_edit_unit(request, unit):
         'store': store,
         'directory': directory,
         'profile': profile,
-        'user': request.user,
+        'user': user,
         'project': project,
         'language': language,
         'source_language': translation_project.project.source_language,
-        'cantranslate': check_profile_permission(profile, "translate",
-                                                 directory),
-        'cansuggest': check_profile_permission(profile, "suggest", directory),
-        'canreview': check_profile_permission(profile, "review", directory),
+        'cantranslate': check_user_permission(user, "translate", directory),
+        'cansuggest': check_user_permission(user, "suggest", directory),
+        'canreview': check_user_permission(user, "review", directory),
+        'is_admin': check_user_permission(user, "administrate", directory),
         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
                                 project=project),
         'suggestions': suggestions,
@@ -883,8 +889,8 @@ def get_tm_results(request, unit):
                                 submitter=profile,
                                 type=SubmissionTypes.NORMAL,
                                 ).distinct().count()
-                suggestions = SuggestionStat.objects.filter(
-                                suggester=profile,
+                suggestions = Suggestion.objects.filter(
+                                user=profile
                                 ).distinct().count()
                 translations = submissions - suggestions  # XXX: is this correct?
                 title = _("By %s on %s<br/><br/>%s translations<br/>%s suggestions" % (
@@ -906,7 +912,7 @@ def get_tm_results(request, unit):
 
 @require_POST
 @ajax_required
-@get_unit_context('')
+@get_unit_context('translate')
 def submit(request, unit):
     """Processes translation submissions and stores them in the database.
 
@@ -915,13 +921,9 @@ def submit(request, unit):
     """
     json = {}
 
-    cantranslate = check_permission("translate", request)
-    if not cantranslate:
-        raise PermissionDenied(_("You do not have rights to access "
-                                 "translation mode."))
-
     translation_project = request.translation_project
     language = translation_project.language
+    user = request.user
 
     if unit.hasplural():
         snplurals = len(unit.source.strings)
@@ -936,7 +938,7 @@ def submit(request, unit):
     unit.submitted_on = current_time
 
     form_class = unit_form_factory(language, snplurals, request)
-    form = form_class(request.POST, instance=unit)
+    form = form_class(request.POST, instance=unit, request=request)
 
     if form.is_valid():
         if form.updated_fields:
@@ -952,7 +954,7 @@ def submit(request, unit):
                         new_value=new_value,
                 )
                 sub.save()
-
+            form.instance._log_user = request.profile
             form.save()
             translation_submitted.send(
                     sender=translation_project,
@@ -960,19 +962,34 @@ def submit(request, unit):
                     profile=request.profile,
             )
 
+            has_critical_checks = unit.qualitycheck_set.filter(
+                category=Category.CRITICAL
+            ).exists()
+
+            if has_critical_checks:
+                can_review = check_user_permission(user, "review", unit.store.parent)
+                ctx = {
+                    'canreview': can_review,
+                    'unit': unit
+                }
+                template = loader.get_template('editor/units/xhr_checks.html')
+                context = RequestContext(request, ctx)
+                json['checks'] = template.render(context)
+
         rcode = 200
     else:
         # Form failed
         #FIXME: we should display validation errors here
         rcode = 400
         json["msg"] = _("Failed to process submission.")
+
     response = jsonify(json)
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
 @require_POST
 @ajax_required
-@get_unit_context('')
+@get_unit_context('suggest')
 def suggest(request, unit):
     """Processes translation suggestions and stores them in the database.
 
@@ -980,11 +997,6 @@ def suggest(request, unit):
              units for the unit next to unit ``uid``.
     """
     json = {}
-
-    cansuggest = check_permission("suggest", request)
-    if not cansuggest:
-        raise PermissionDenied(_("You do not have rights to access "
-                                 "translation mode."))
 
     translation_project = request.translation_project
     language = translation_project.language
@@ -995,7 +1007,7 @@ def suggest(request, unit):
         snplurals = None
 
     form_class = unit_form_factory(language, snplurals, request)
-    form = form_class(request.POST, instance=unit)
+    form = form_class(request.POST, instance=unit, request=request)
 
     if form.is_valid():
         if form.instance._target_updated:
@@ -1003,13 +1015,9 @@ def suggest(request, unit):
             #HACKISH: django 1.2 stupidly modifies instance on
             # model form validation, reload unit from db
             unit = Unit.objects.get(id=unit.id)
-            sugg = unit.add_suggestion(form.cleaned_data['target_f'],
-                                       request.profile)
-            if sugg:
-                SuggestionStat.objects.get_or_create(
-                    translation_project=translation_project,
-                    suggester=request.profile, state='pending', unit=unit.id
-                )
+            unit.add_suggestion(form.cleaned_data['target_f'],
+                                user=request.profile)
+
         rcode = 200
     else:
         # Form failed
@@ -1021,39 +1029,21 @@ def suggest(request, unit):
 
 
 @ajax_required
-@get_unit_context('')
+@get_unit_context('review')
 def reject_suggestion(request, unit, suggid):
-    json = {}
-    translation_project = request.translation_project
-
-    json["udbid"] = unit.id
-    json["sugid"] = suggid
     if request.POST.get('reject'):
         try:
             sugg = unit.suggestion_set.get(id=suggid)
         except ObjectDoesNotExist:
             raise Http404
 
-        if (not check_permission('review', request) and
-            (not request.user.is_authenticated() or sugg and
-                 sugg.user != request.profile)):
-            raise PermissionDenied(_("You do not have rights to access "
-                                     "review mode."))
+        unit.reject_suggestion(sugg, request.translation_project,
+                               request.profile)
 
-        success = unit.reject_suggestion(suggid)
-        if sugg is not None and success:
-            # FIXME: we need a totally different model for tracking stats, this
-            # is just lame
-            suggstat, created = SuggestionStat.objects.get_or_create(
-                    translation_project=translation_project,
-                    suggester=sugg.user,
-                    state='pending',
-                    unit=unit.id,
-            )
-            suggstat.reviewer = request.profile
-            suggstat.state = 'rejected'
-            suggstat.save()
-
+    json = {
+        'udbid': unit.id,
+        'sugid': suggid,
+    }
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
@@ -1065,16 +1055,14 @@ def accept_suggestion(request, unit, suggid):
         'udbid': unit.id,
         'sugid': suggid,
     }
-    translation_project = request.translation_project
-
     if request.POST.get('accept'):
         try:
             suggestion = unit.suggestion_set.get(id=suggid)
         except ObjectDoesNotExist:
             raise Http404
 
-        old_target = unit.target
-        success = unit.accept_suggestion(suggid)
+        unit.accept_suggestion(suggestion, request.translation_project,
+                               request.profile)
 
         json['newtargets'] = [highlight_whitespace(target)
                               for target in unit.target.strings]
@@ -1084,90 +1072,22 @@ def accept_suggestion(request, unit, suggid):
                     [highlight_diffs(unit.target.strings[i], target)
                      for i, target in enumerate(sugg.target.strings)]
 
-        if suggestion is not None and success:
-            if suggestion.user:
-                translation_submitted.send(sender=translation_project,
-                                           unit=unit, profile=suggestion.user)
-
-            # FIXME: we need a totally different model for tracking stats, this
-            # is just lame
-            suggstat, created = SuggestionStat.objects.get_or_create(
-                    translation_project=translation_project,
-                    suggester=suggestion.user,
-                    state='pending',
-                    unit=unit.id,
-            )
-            suggstat.reviewer = request.profile
-            suggstat.state = 'accepted'
-            suggstat.save()
-
-            # For now assume the target changed
-            # TODO: check all fields for changes
-            creation_time = timezone.now()
-            sub = Submission(
-                    creation_time=creation_time,
-                    translation_project=translation_project,
-                    submitter=suggestion.user,
-                    from_suggestion=suggstat,
-                    unit=unit,
-                    field=SubmissionFields.TARGET,
-                    type=SubmissionTypes.SUGG_ACCEPT,
-                    old_value=old_target,
-                    new_value=unit.target,
-            )
-            sub.save()
-
-    response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
-
-@ajax_required
-def clear_vote(request, voteid):
-    json = {}
-    json["voteid"] = voteid
-    if request.POST.get('clear'):
-        try:
-            from voting.models import Vote
-            vote = Vote.objects.get(pk=voteid)
-            if vote.user != request.user:
-                # No i18n, will not go to UI
-                raise PermissionDenied("Users can only remove their own votes")
-            vote.delete()
-        except ObjectDoesNotExist:
-            raise Http404
-    response = jsonify(json)
-    return HttpResponse(response, mimetype="application/json")
-
-
-@ajax_required
-@get_unit_context('')
-def vote_up(request, unit, suggid):
-    json = {}
-    json["suggid"] = suggid
-    if request.POST.get('up'):
-        try:
-            suggestion = unit.suggestion_set.get(id=suggid)
-            from voting.models import Vote
-            # Why can't it just return the vote object?
-            Vote.objects.record_vote(suggestion, request.user, +1)
-            json["voteid"] = Vote.objects.get_for_user(suggestion,
-                                                       request.user).id
-        except ObjectDoesNotExist:
-            raise Http404(_("The suggestion or vote is not valid any more."))
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
 
 
 @ajax_required
 @get_unit_context('review')
-def reject_qualitycheck(request, unit, check_id):
+def toggle_qualitycheck(request, unit, check_id):
     json = {}
     json["udbid"] = unit.id
     json["checkid"] = check_id
-    if request.POST.get('reject'):
-        try:
-            unit.reject_qualitycheck(check_id)
-        except ObjectDoesNotExist:
-            raise Http404
+
+    try:
+        unit.toggle_qualitycheck(check_id,
+            bool(request.POST.get('mute')), request.profile)
+    except ObjectDoesNotExist:
+        raise Http404
 
     response = jsonify(json)
     return HttpResponse(response, mimetype="application/json")
@@ -1201,8 +1121,7 @@ def _add_tag(request, store, tag_like_object):
         'path_obj': store,
         'can_edit': check_permission('administrate', request),
     }
-    response = render_to_response('stores/xhr_tags_list.html', context,
-                                  RequestContext(request))
+    response = render(request, "stores/xhr_tags_list.html", context)
     response.status_code = 201
     return response
 
@@ -1253,5 +1172,4 @@ def ajax_add_tag_to_store(request, store_pk):
                 'add_tag_action_url': reverse('pootle-xhr-tag-store',
                                               args=[store.pk])
             }
-            return render_to_response('core/xhr_add_tag_form.html', context,
-                                      RequestContext(request))
+            return render(request, "core/xhr_add_tag_form.html", context)

@@ -1,12 +1,10 @@
-{% extends "layout.html"  %}
-{% load i18n cleanhtml %}
+{% extends "layout.html" %}
+
+{% load cleanhtml %}
+
 {% block content %}
-
-<h3 class="title">{{ title }}</h3>
-
-<div>
-{{ notice_message|safe|linebreaks|clean }}
-</div>
-
+  <h3 class="title">{{ title }}</h3>
+  <div>
+    {{ notice_message|safe|linebreaks|clean }}
+  </div>
 {% endblock %}
-

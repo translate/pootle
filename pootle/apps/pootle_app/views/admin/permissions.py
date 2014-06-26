@@ -21,6 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django import forms
+from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
 
 from pootle_app.models import Directory
@@ -30,6 +31,9 @@ from pootle_app.views.admin import util
 from pootle_misc.forms import GroupedModelChoiceField
 from pootle_profile.models import PootleProfile
 from pootle_statistics.models import Submission
+
+
+User = get_user_model()
 
 
 class PermissionFormField(forms.ModelMultipleChoiceField):
@@ -113,10 +117,10 @@ def admin_permissions(request, current_directory, template, context):
                 initial=current_directory.pk,
                 widget=forms.HiddenInput,
         )
-        profile = GroupedModelChoiceField(
+        user = GroupedModelChoiceField(
                 label=_('Username'),
                 querysets=querysets,
-                queryset=PootleProfile.objects.all(),
+                queryset=User.objects.all(),
                 required=True,
                 widget=forms.Select(attrs={
                     'class': 'js-select2 select2-username',
@@ -132,10 +136,9 @@ def admin_permissions(request, current_directory, template, context):
                 }),
         )
 
-    link = lambda instance: unicode(instance.profile)
-    directory_permissions = current_directory.permission_sets \
-                                             .order_by('profile').all()
+    link = lambda instance: unicode(instance.user)
+    queryset = current_directory.permission_sets.order_by("user").all()
 
     return util.edit(request, template, PermissionSet, context, link,
-                     linkfield='profile', queryset=directory_permissions,
+                     linkfield="user", queryset=queryset,
                      can_delete=True, form=PermissionSetForm)

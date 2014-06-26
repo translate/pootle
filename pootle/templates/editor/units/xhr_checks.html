@@ -1,0 +1,17 @@
+{% load i18n locale %}
+{% if unit.get_qualitychecks.count %}
+<div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Possible issues with the translation' %}">{% trans "Failing checks:" %}</div>
+<ul class="checks">
+  {% for check in unit.get_qualitychecks.iterator %}
+  <li class="check{% if check.false_positive %} false-positive{% endif %}">
+    <a href="http://docs.translatehouse.org/projects/translate-toolkit/en/latest/commands/pofilter_tests.html#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
+    {% if canreview %}
+    <a class="js-toggle-check" data-check-id="{{ check.id }}">
+      <i title="{% trans 'Mute quality check' %}" class="mute-check icon-block"></i>
+      <i title="{% trans 'Unmute quality check' %}" class="unmute-check icon-block-muted"></i>
+    </a>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

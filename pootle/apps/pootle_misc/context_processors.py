@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2012 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -19,11 +19,10 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-from django.core.cache import cache
 
 from pootle.__version__ import sver
+from pootle_app.models.pootle_site import get_site_description, get_site_title
 from pootle_language.models import Language
-from pootle_misc.siteconfig import load_site_config
 from pootle_project.models import Project
 from staticpages.models import LegalPage
 
@@ -33,25 +32,21 @@ def _agreement_context(request):
     request_path = request.META['PATH_INFO']
     nocheck = filter(lambda x: request_path.startswith(x),
                      settings.LEGALPAGE_NOCHECK_PREFIXES)
-    display_agreement = False
 
     if (request.user.is_authenticated() and not nocheck and
         LegalPage.objects.pending_user_agreement(request.user).exists()):
-        display_agreement = True
+        return True
 
-    return {
-        'display_agreement': display_agreement,
-    }
+    return False
 
 
 def pootle_context(request):
     """Exposes settings to templates."""
-    siteconfig = load_site_config()
     #FIXME: maybe we should expose relevant settings only?
-    context = {
+    return {
         'settings': {
-            'TITLE': siteconfig.get('TITLE'),
-            'DESCRIPTION':  siteconfig.get('DESCRIPTION'),
+            'TITLE': get_site_title(),
+            'DESCRIPTION':  get_site_description(),
             'CAN_REGISTER': settings.CAN_REGISTER,
             'CAN_CONTACT': settings.CAN_CONTACT and settings.CONTACT_EMAIL,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
@@ -60,13 +55,7 @@ def pootle_context(request):
             'DEBUG': settings.DEBUG,
         },
         'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
-    }
-
-    context.update({
         'ALL_LANGUAGES': Language.live.cached(),
         'ALL_PROJECTS': Project.objects.cached(),
-    })
-
-    context.update(_agreement_context(request))
-
-    return context
+        'display_agreement': _agreement_context(request),
+    }

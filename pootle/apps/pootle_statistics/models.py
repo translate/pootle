@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -18,12 +18,14 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import escape, truncatechars
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.managers import RelatedManager
+from pootle_misc.checks import check_names
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
@@ -34,16 +36,23 @@ class SubmissionTypes(object):
     REVERT = 2  # Revert action on the web
     SUGG_ACCEPT = 3  # Accepting a suggestion
     UPLOAD = 4  # Uploading an offline file
+    SYSTEM = 5  # Batch actions performed offline
+    MUTE_CHECK = 6  # Mute QualityCheck
+    UNMUTE_CHECK = 7  # Unmute QualityCheck
+    SUGG_ADD = 8  # Add new Suggestion
+    SUGG_REJECT = 9  # Reject Suggestion
 
 
 class SubmissionFields(object):
     """Values for the 'field' field of Submission."""
+    NONE = 0  # non-field submission
     SOURCE = 1  # pootle_store.models.Unit.source
     TARGET = 2  # pootle_store.models.Unit.target
     STATE = 3  # pootle_store.models.Unit.state
     COMMENT = 4  # pootle_store.models.Unit.translator_comment
 
     NAMES_MAP = {
+        NONE: "",
         SOURCE: _("Source"),
         TARGET: _("Target"),
         STATE: _("State"),
@@ -63,13 +72,20 @@ class Submission(models.Model):
         null=True,
         db_index=True,
     )
-    from_suggestion = models.OneToOneField(
-        'pootle_app.Suggestion',
+    suggestion = models.ForeignKey(
+        'pootle_store.Suggestion',
+        blank=True,
         null=True,
         db_index=True,
     )
     unit = models.ForeignKey(
         'pootle_store.Unit',
+        blank=True,
+        null=True,
+        db_index=True,
+    )
+    check = models.ForeignKey(
+        'pootle_store.QualityCheck',
         blank=True,
         null=True,
         db_index=True,
@@ -99,39 +115,8 @@ class Submission(models.Model):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
 
-    @classmethod
-    def get_latest_for_dir(cls, directory):
-        """Return the latest submission, if any, for the given directory.
-
-        The submission is returned as an action bundle. An empty string is
-        returned if no submission exists for the given directory.
-        """
-        try:
-            criteria = {
-                'unit__store__pootle_path__startswith': directory.pootle_path,
-            }
-            sub = Submission.objects.filter(**criteria).latest()
-        except Submission.DoesNotExist:
-            return ''
-        return sub.get_submission_message()
-
     def as_html(self):
-        #FIXME: Sadly we may not have submitter information in all the
-        # situations yet.
-        if self.submitter:
-            submitter_info = u'<a href="%(profile_url)s">%(submitter)s</a>' % {
-                    'profile_url': self.submitter.get_absolute_url(),
-                    'submitter': unicode(self.submitter),
-                }
-        else:
-            submitter_info = _("anonymous user")
-
-        snippet = u'%(time)s (%(submitter_info)s)' % {
-                    'time': self.creation_time.strftime("%Y-%m-%d %H:%M"),
-                    'submitter_info': submitter_info,
-                }
-
-        return mark_safe(snippet)
+        return self.get_submission_message()
 
     def get_submission_message(self):
         """Return a message describing the submission.
@@ -140,37 +125,84 @@ class Submission(models.Model):
         message describing the action performed, and when it was performed.
         """
 
-        action_bundle = {
-            "profile_url": self.submitter.get_absolute_url(),
-            "gravatar_url": self.submitter.gravatar_url(20),
-            "username": self.submitter.user.username,
-        }
-
-        unit = {
-            'user': ('  <a href="%(profile_url)s">'
-                     '    <span>%(username)s</span>'
-                     '  </a>') % action_bundle,
-        }
-
+        unit = None
         if self.unit is not None:
-            unit.update({
+            unit = {
                 'source': escape(truncatechars(self.unit, 50)),
-                'url': self.unit.get_absolute_url(),
-            })
+                'url': self.unit.get_translate_url(),
+            }
 
-        action_bundle.update({
+            if self.check is not None:
+                unit['check_name'] = self.check.name
+                unit['check_display_name'] = check_names[self.check.name]
+                unit['checks_url'] = ('http://docs.translatehouse.org/'
+                                      'projects/translate-toolkit/en/latest/'
+                                      'commands/pofilter_tests.html')
+
+        if (self.suggestion and
+            self.type in (SubmissionTypes.SUGG_ACCEPT, SubmissionTypes.SUGG_REJECT)):
+            displayuser = self.suggestion.reviewer
+        else:
+            # Sadly we may not have submitter information in all the
+            # situations yet
+            # TODO check if it is true
+            if self.submitter:
+                displayuser = self.submitter
+            else:
+                User = get_user_model()
+                displayuser = User.objects.get_nobody_user().get_profile()
+
+        displayname = displayuser.fullname
+        if not displayname:
+            displayname = displayuser.user.username
+
+        action_bundle = {
+            "url": displayuser.get_absolute_url(),
+            "gravatar_url": displayuser.gravatar_url(20),
+            "displayname": displayname,
+            "username": displayuser.user.username,
             "date": self.creation_time,
             "isoformat_date": self.creation_time.isoformat(),
-            "action": {
-                SubmissionTypes.REVERT: _('%(user)s reverted translation for '
-                                          'string <i><a href="%(url)s">'
-                                          '%(source)s</a></i>', unit),
-                SubmissionTypes.SUGG_ACCEPT: _('%(user)s accepted suggestion '
-                                               'for string <i><a href="%(url)s">'
-                                               '%(source)s</a></i>', unit),
-                SubmissionTypes.UPLOAD: _('%(user)s uploaded a file', unit),
-            }.get(self.type, ''),
-        })
+            "action": "",
+        }
+
+        action_bundle["action"] = {
+            SubmissionTypes.REVERT: _(
+                'reverted translation for '
+                '<i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.SUGG_ACCEPT: _(
+                'accepted suggestion for '
+                '<i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.SUGG_ADD: _(
+                'added suggestion for '
+                '<i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.SUGG_REJECT: _(
+                'rejected suggestion for '
+                '<i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.UPLOAD: _(
+                'uploaded a file'
+            ),
+            SubmissionTypes.MUTE_CHECK: _(
+                'muted '
+                '<a href="%(checks_url)s#%(check_name)s">%(check_display_name)s</a>'
+                ' check for <i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+            SubmissionTypes.UNMUTE_CHECK: _(
+                'unmuted '
+                '<a href="%(checks_url)s#%(check_name)s">%(check_display_name)s</a>'
+                ' check for <i><a href="%(url)s">%(source)s</a></i>',
+                unit
+            ),
+        }.get(self.type, '')
 
         #TODO Look how to detect submissions for "sent suggestion", "rejected
         # suggestion"...
@@ -183,30 +215,34 @@ class Submission(models.Model):
                 # If the action is unset, maybe the action is one of the
                 # following ones.
                 action_bundle["action"] = {
-                    TRANSLATED: _('%(user)s submitted translation for string '
-                                  '<i><a href="%(url)s">%(source)s</a></i>',
-                                  unit),
-                    FUZZY: _('%(user)s submitted "needs work" translation for '
-                             'string <i><a href="%(url)s">%(source)s</a></i>',
-                             unit),
-                    UNTRANSLATED: _('%(user)s removed translation for string '
-                                    '<i><a href="%(url)s">%(source)s</a></i>',
-                                    unit),
+                    TRANSLATED: _(
+                        'translated '
+                        '<i><a href="%(url)s">%(source)s</a></i>',
+                        unit
+                    ),
+                    FUZZY: _(
+                        'pre-translated '
+                        '<i><a href="%(url)s">%(source)s</a></i>',
+                        unit
+                    ),
+                    UNTRANSLATED: _(
+                        'removed translation for '
+                        '<i><a href="%(url)s">%(source)s</a></i>',
+                        unit
+                    ),
                 }.get(self.unit.state, '')
             except AttributeError:
                 return ''
 
-        # If it is not possible to provide the action performed, then it is
-        # better to not return anything at all.
-        if not action_bundle["action"]:
-            return ''
-
-        return (u'<div class="last-action">'
-            '  <a href="%(profile_url)s">'
+        return mark_safe(
+            u'<div class="last-action">'
+            '  <a href="%(url)s">'
             '    <img src="%(gravatar_url)s" />'
+            '    <span title="%(username)s">%(displayname)s</span>'
             '  </a>'
-            '  %(action)s'
+            '  <span class="action-text">%(action)s</span>'
             '  <time class="extra-item-meta js-relative-date"'
             '    title="%(date)s" datetime="%(isoformat_date)s">&nbsp;'
             '  </time>'
-            '</div>' % action_bundle)
+            '</div>'
+            % action_bundle)

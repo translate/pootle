@@ -10,8 +10,8 @@
       $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
     },
 
-    nicePercentage: function (part, total) {
-      var percentage = total ? part / total * 100 : 0;
+    nicePercentage: function (part, total, noTotalDefault) {
+      var percentage = total ? part / total * 100 : noTotalDefault;
       if (99 < percentage && percentage < 100) {
         return 99;
       }
@@ -27,8 +27,8 @@
         return;
       }
 
-      var translated = PTL.stats.nicePercentage(item.translated, item.total),
-          fuzzy = PTL.stats.nicePercentage(item.fuzzy, item.total),
+      var translated = PTL.stats.nicePercentage(item.translated, item.total, 100),
+          fuzzy = PTL.stats.nicePercentage(item.fuzzy, item.total, 0),
           untranslated = 100 - translated - fuzzy,
           $legend = $('<span>').html($td.find('script').text());
 
@@ -48,40 +48,21 @@
       setTdWidth($td.find('td.untranslated'), untranslated);
     },
 
-    updatePathSummary: function () {
-      var $summary = $('#path-summary-head');
-      if ($summary.length) {
-        var url = $summary.attr('data-url'),
-            reqData = {
-              path: PTL.stats.pootlePath
-            };
-        $.ajax({
-          url: url,
-          data: reqData,
-          success: function (data) {
-            $summary.append(data);
-          },
-        });
-      }
-    },
-
     updateSummary: function ($summary, data) {
-      var summary,
-          percent = PTL.stats.nicePercentage(data.translated, data.total);
-      summary = interpolate(gettext(', %s% translated'), [percent]);
-      $summary.append(summary);
+      var percent = PTL.stats.nicePercentage(data.translated, data.total);
+      $summary.append(interpolate(gettext(', %s% translated'), [percent]));
     },
 
-    updateTranslationStats: function ($tr, total, value) {
+    updateTranslationStats: function ($tr, total, value, noTotalDefault) {
       $tr.find('.stats-number a').html(value);
       $tr.find('.stats-percentage span').html(
-        PTL.stats.nicePercentage(value, total)
+        PTL.stats.nicePercentage(value, total, noTotalDefault)
       );
       $tr.find('.stats-percentage').show();
     },
 
     updateAction: function ($action, count) {
-      $action.toggle(count > 0);
+      $action.css('display', count > 0 ? 'inline-block' : 'none');
       $action.find('.counter').text(count);
     },
 
@@ -97,8 +78,22 @@
       }
     },
 
+    updateLastUpdates: function (stats) {
+      if (stats.lastupdated) {
+        $('#js-last-updated').toggle(stats.lastupdated.snippet !== '');
+        if (stats.lastupdated.snippet) {
+          $('#js-last-updated .last-updated').html(stats.lastupdated.snippet);
+        }
+      }
+      if (stats.lastaction) {
+        $('#js-last-action').toggle(stats.lastaction.snippet !== '');
+        if (stats.lastaction.snippet) {
+          $('#js-last-action .last-action').html(stats.lastaction.snippet);
+        }
+      }
+    },
+
     load: function (callback) {
-      PTL.stats.updatePathSummary();
       var url = l('/xhr/stats/overview/'),
           reqData = {
             path: this.pootlePath
@@ -107,35 +102,36 @@
         url: url,
         data: reqData,
         dataType: 'json',
-        async: true,
         success: function (data) {
           var $table = $('#content table.stats'),
               now = parseInt(Date.now() / 1000, 10);
           PTL.stats.updateProgressbar($('#progressbar'), data);
           PTL.stats.updateSummary($('#summary'), data);
 
-          PTL.stats.updateAction($('#action-view-all'), data.total);
-          PTL.stats.updateAction($('#action-continue'),
+          PTL.stats.updateAction($('#js-action-view-all'), data.total);
+          PTL.stats.updateAction($('#js-action-continue'),
                                  data.total - data.translated);
-          PTL.stats.updateAction($('#action-fix-critical'), data.critical);
-          PTL.stats.updateAction($('#action-review'), data.suggestions);
+          PTL.stats.updateAction($('#js-action-fix-critical'), data.critical);
+          PTL.stats.updateAction($('#js-action-review'), data.suggestions);
+          PTL.stats.updateAction($('#js-action-next-goal'), data.nextGoal);
 
           $('body').removeClass('js-not-loaded');
 
           PTL.stats.updateTranslationStats($('#stats-total'),
-                                           data.total, data.total);
+                                           data.total, data.total, 100);
           PTL.stats.updateTranslationStats($('#stats-translated'),
-                                           data.total, data.translated);
+                                           data.total, data.translated, 100);
           PTL.stats.updateTranslationStats($('#stats-fuzzy'),
-                                           data.total, data.fuzzy);
+                                           data.total, data.fuzzy, 0);
           var untranslated = data.total - data.translated - data.fuzzy;
           PTL.stats.updateTranslationStats($('#stats-untranslated'),
-                                           data.total, untranslated);
+                                           data.total, untranslated, 0);
+          PTL.stats.updateLastUpdates(data);
 
           if ($table.length) {
             for (var name in data.children) {
               var item = data.children[name],
-                  code = name.replace(/\./g, '-').replace(/@/g, '\\@'),
+                  code = name.replace(/[\.@]/g, '-'),
                   $td = $table.find('#total-words-' + code);
 
               PTL.stats.updateItemStats($td, item.total);
@@ -158,6 +154,11 @@
 
               $td = $table.find('#critical-' + code);
               PTL.stats.updateItemStats($td, item.critical);
+
+              $td = $table.find('#last-updated-' + code);
+              $td.html(item.lastupdated.snippet);
+              $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
+
             }
 
             // Sort columns based on previously-made selections
@@ -186,7 +187,7 @@
             }
           } else {
             $('#js-path-summary').click();
-	  }
+          }
 
           if (callback) {
             callback(data);
@@ -199,21 +200,22 @@
     toggleChecks: function (e) {
       e.preventDefault();
       var node = $("#" + $(this).data('target')),
-          $textNode = $(this),
+          $iconNode = $(this).find("#js-expand-icon"),
           data = node.data();
 
       function hideShow() {
-        node.slideToggle('slow', 'easeOutQuad', function () {
-          node.data('collapsed', !data.collapsed);
-          var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
-          $textNode.text(newText);
-        });
+        node.data('collapsed', !data.collapsed);
+        var newClass = data.collapsed ? 'icon-expand-stats' : 'icon-collapse-stats';
+        var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
+        $iconNode.attr('class', newClass);
+        $iconNode.attr('title', newText);
+        node.slideToggle('slow', 'easeOutQuad');
       }
 
       if (data.loaded) {
         hideShow();
       } else {
-        var url = $(this).attr('href'),
+        var url = l('/xhr/stats/checks/'),
             reqData = {
               path: PTL.stats.pootlePath
             };
@@ -221,7 +223,30 @@
           url: url,
           data: reqData,
           success: function (data) {
-            node.html(data).hide();
+            node.hide();
+            if (Object.keys(data).length) {
+              node.find('.js-checks').each(function (e) {
+                var empty = true,
+                    $cat = $(this);
+
+                $cat.find('.js-check').each(function (e) {
+                  var $check = $(this),
+                      code = $(this).data('code');
+                  if (code in data) {
+                    empty = false;
+                    $check.show();
+                    $check.find('.check-count a').html(data[code]);
+                  } else {
+                    $check.hide();
+                  }
+                });
+
+                $cat.toggle(!empty);
+              });
+
+              $('#js-stats-checks').show();
+            }
+
             node.data('loaded', true);
             hideShow();
           },

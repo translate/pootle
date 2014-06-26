@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009,2012 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -20,13 +20,13 @@
 
 from django.conf.urls import patterns, url
 
-from pootle_notifications import feeds
+from pootle_notifications.feeds import NoticeFeed
 
 
 urlpatterns = patterns('pootle_notifications',
     # Feed
     url(r'^(?P<path>.*)notices/rss.xml$',
-        feeds.NoticeFeed(),
+        NoticeFeed(),
         name='pootle-notifications-feed'),
 
     url(r'^projects/(?P<project_code>[^/]*)/notices/$',

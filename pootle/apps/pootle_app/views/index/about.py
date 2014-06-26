@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009, 2013 Zuza Software Foundation
+# Copyright 2009-2014 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -18,26 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import absolute_import
+from translate.__version__ import sver as toolkit_version
 
-import sys
+from django.shortcuts import render
 
-from translate import __version__ as toolkitversion
-
-import django
-from django.conf import settings
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.utils.translation import ugettext as _
-
-from pootle import __version__ as pootleversion
-from pootle_misc.siteconfig import load_site_config
+from pootle.__version__ import sver as pootle_version
 
 
 def view(request):
-    siteconfig = load_site_config()
     ctx = {
-        'description': _(siteconfig.get('DESCRIPTION')),
         'keywords': [
             'Pootle',
             'locamotion',
@@ -49,15 +38,7 @@ def view(request):
             'traduction',
             'traduire',
         ],
-        'pootle_version': _("Pootle %(pootle_ver)s is powered by Translate "
-                            "Toolkit %(toolkit_ver)s",
-                            {'pootle_ver': pootleversion.sver,
-                             'toolkit_ver': toolkitversion.sver}),
-        'version_details': "\n".join([
-            "Django %s" % django.get_version(),
-            "Python %s" % sys.version,
-            "Running on %s" % sys.platform,
-        ]),
+        'pootle_version': pootle_version,
+        'toolkit_version': toolkit_version,
     }
-    return render_to_response('about/about.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, 'about/about.html', ctx)

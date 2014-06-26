@@ -4,24 +4,32 @@
 <form action="{% url 'pootle-staticpages-delete' page_type object.pk %}"
   method="post" class="pull-{% locale_reverse_align %}">
   {% csrf_token %}
-  <input type="submit" class="delete" value="{% trans 'Delete' %}" />
+  <input type="submit" class="btn btn-danger" value="{% trans 'Delete' %}" />
 </form>
 {% endif %}
 <form action="" method="post" class="staticpages-form">
   {% csrf_token %}
   {{ form.non_field_errors }}
     {% include 'admin/staticpages/_field.html' with field=form.title %}
-    {% include 'admin/staticpages/_field.html' with field=form.virtual_path help_pre='True'%}
+    {% include 'admin/staticpages/_field.html' with field=form.virtual_path help_pre='True' %}
     {% include 'admin/staticpages/_field.html' with field=form.active %}
+    {% if form.url %}
     {% include 'admin/staticpages/_field.html' with field=form.url %}
     <div class="control-group-separator">
       {% comment %} Translators: Displayed as 'Redirect to URL or Display Content'{% endcomment %}
       <span class="help_text">{% trans "or" %}</span>
     </div>
+    {% endif %}
     {% include 'admin/staticpages/_field.html' with field=form.body %}
     <div class="control-group">
       <div class="controls">
-        <input type="submit" class="save" value="{% trans 'Save' %}" />
+        <input type="submit" class="btn" value="{% trans 'Save' %}" />
       </div>
     </div>
 </form>
+
+<p>
+{% blocktrans %}
+Use <code>&lt;a href="<strong>#/page-slug</strong>"&gt;Link text&lt;/a&gt;</code> code to provide links between static pages. Such links will be rewritten with full paths to static pages.
+{% endblocktrans %}
+</p>

@@ -1,29 +1,14 @@
-{% extends "projects/base.html" %}
+{% extends "projects/admin/base.html" %}
 
-{% load i18n assets %}
+{% load i18n %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{% trans "Administrate" %} | {{ project.name }} | {{ block.super }}{% endblock %}
-
-{% block css %}
-{{ block.super }}
-{% assets "css_admin" %}
-<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
-{% endassets %}
-{% endblock %}
-
-{% block body_id %}projectadmin{% endblock %}
+{% block title %}{% trans "Languages" %} | {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
-    <p>{% trans "Here you can add, edit, or delete the languages for this project." %}</p>
-    {% include "admin/_generic_formset.html" %}
+  <p>{% trans "Here you can add, edit, or delete the languages for this project." %}</p>
+  {% include "admin/_generic_formset.html" %}
 </div>
-{% endblock %}
-
-{% block scripts_extra %}
-{% assets "js_admin" %}
-<script type="text/javascript" src="{{ ASSET_URL }}"></script>
-{% endassets %}
 {% endblock %}

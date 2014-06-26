@@ -17,25 +17,17 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.utils.encoding import iri_to_uri
-from django.utils.http import is_safe_url, urlquote
-
+from django.core.urlresolvers import reverse
+from django.shortcuts import redirect, render
 from profiles.views import edit_profile
-
-from pootle_misc.baseurl import redirect
-from staticpages.forms import agreement_form_factory
-from staticpages.models import Agreement, LegalPage
 
 from .forms import UserForm, pootle_profile_form_factory
 
 
 def profile_edit(request):
     # FIXME: better to whitelist fields rather than blacklisting them.
-    excluded = ('user', 'ui_lang')
+    excluded = ('user', )
 
     return edit_profile(request,
                         form_class=pootle_profile_form_factory(excluded),
@@ -59,5 +51,4 @@ def edit_personal_info(request):
     ctx = {
         'form': user_form,
     }
-    return render_to_response('profiles/settings/personal.html', ctx,
-                              context_instance=RequestContext(request))
+    return render(request, "profiles/settings/personal.html", ctx)
