@@ -3,6 +3,8 @@ import datetime
 from hashlib import md5
 from itertools import groupby
 
+from south.db import db
+from django.db import connection
 from django.db.utils import IntegrityError
 
 from south.v2 import DataMigration
@@ -16,6 +18,8 @@ _debug = True
 class Migration(DataMigration):
 
     depends_on = (
+        ("pootle_app", "0001_initial"),
+        ("pootle_language", "0001_initial"),
         ("pootle_statistics", "0003_auto__add_field_submission_suggestion"),
     )
 
@@ -53,6 +57,7 @@ class Migration(DataMigration):
                         sugg = ss[0]
                         sugg.state = pas.state # state == pending
                         sugg.creation_time = pas.creation_time
+                        sugg.translation_project = pas.translation_project
                         sugg.save()
 
                         log("pas %d copied and will be deleted" % pas.id)
@@ -91,19 +96,35 @@ class Migration(DataMigration):
                         sub = orm['pootle_statistics.Submission'].objects.get(unit=unit, from_suggestion=pas)
                         target = u"%s" % sub.new_value
                         sugg = {
-                            'target_f': target,
-                            'target_hash': md5(target.encode("utf-8")).hexdigest(),
-                            'unit': unit,
-                            'user': pas.suggester,
-                            'reviewer': pas.reviewer,
-                            'review_time': sub.creation_time,
-                            'state': pas.state, #accepted
-                            'creation_time': None,
+                            "target_hash": md5(target.encode("utf-8")).hexdigest(),
+                            "target_f": target,
+                            "creation_time": pas.creation_time,
+                            "review_time": sub.creation_time,
+                            "user_id": pas.suggester_id,
+                            "reviewer_id": pas.reviewer_id,
+                            "unit_id": unit.pk,
+                            "state": pas.state, #accepted
+                            "translator_comment_f": None,
+                            "translation_project_id": sub.translation_project_id,
                         }
-                            
+
                         try:
-                            sugg = orm['pootle_store.Suggestion'].objects.create(**sugg)
-                            sub.suggestion = sugg
+                            keys = [
+                                "target_hash", "target_f", "creation_time", "review_time",
+                                "user_id", "reviewer_id", "unit_id", "state",
+                                "translator_comment_f", "translation_project_id"
+                            ]
+                            values = [sugg[k] for k in keys]
+                            db.execute("""
+                                INSERT INTO pootle_store_suggestion
+                                (target_hash, target_f, creation_time, review_time,
+                                 user_id, reviewer_id, unit_id, state,
+                                 translator_comment_f, translation_project_id)
+                                VALUES
+                                (%s, %s, %s, %s,
+                                 %s, %s, %s, %s,
+                                 %s, %s)""", values)
+                            sub.suggestion_id = connection.cursor().lastrowid
                             sub.save()
 
                             log("suggestion created from pas %d and sub %d" % (pas.id, sub.id))
