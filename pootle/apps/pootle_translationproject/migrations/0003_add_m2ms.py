@@ -7,6 +7,11 @@ from django.db import models, connection
 
 class Migration(SchemaMigration):
 
+    depends_on = (
+        ("pootle_language" , "0001_initial"),
+        ("pootle_project" , "0001_initial"),
+    )
+
     def forwards(self, orm):
         cursor = connection.cursor()
         if "language_id" in [column[0] for column in connection.introspection.get_table_description(cursor, "pootle_app_translationproject")]:

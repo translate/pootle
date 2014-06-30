@@ -18,9 +18,8 @@ _debug = True
 class Migration(DataMigration):
 
     depends_on = (
-        ("pootle_app", "0001_initial"),
-        ("pootle_language", "0001_initial"),
         ("pootle_statistics", "0003_auto__add_field_submission_suggestion"),
+        ("pootle_translationproject", "0006_auto__add_field_translationproject_failing_critical_count"),
     )
 
     def forwards(self, orm):
