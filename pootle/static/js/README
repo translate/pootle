@@ -56,20 +56,6 @@ Directory contents
 
   + vendor/
 
-    - backbone.js :
-      Library for providing structure to web applications.
-
-      Version 1.0.0
-
-      http://backbonejs.org
-
-    - backbone-relational.js :
-      Relationships for Backbone models.
-
-      Version 0.8.5
-
-      http://backbonerelational.org
-
     - diff_match_patch.js :
       Google's Diff, Match, and Patch libraries for plain text.
       It's used for suggestion's diff highlighting.
@@ -126,6 +112,22 @@ Directory contents
         Version 2.1.1
 
         https://github.com/twitter/bootstrap/blob/master/js/bootstrap-transition.js
+
+    + backbone/
+
+      - backbone.js :
+        Library for providing structure to web applications.
+
+        Version 1.0.0
+
+        http://backbonejs.org
+
+      - backbone-relational.js :
+        Relationships for Backbone models.
+
+        Version 0.8.5
+
+        http://backbonerelational.org
 
     + jquery/
 
