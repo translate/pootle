@@ -298,8 +298,9 @@ class APIView(View):
         :param single_object: if `True` (or the URL specified an id), it
             will return a single JSON object. Note that if
             `self.edit_form_template` is set, the response will include
-            the edit form rendered as HTML.  If `False`, a JSON array of
-            objects is returned otherwise.
+            the edit form rendered as HTML.
+            If `False`, a JSON object is returned with an array of objects
+            in `models` and the total object count in `count`.
         """
         values = queryset.values(*self.serialize_fields)
 
@@ -336,7 +337,10 @@ class APIView(View):
 
                 values = values[offset:offset+self.page_size]
 
-            serialize_values = list(values)
+            serialize_values = {
+                'models': list(values),
+                'count': queryset.count(),
+            }
 
         return self.json_encoder.encode(serialize_values)
 

@@ -129,8 +129,10 @@ def test_apiview_get_multiple(rf):
 
     # Response should contain a 1-item list
     assert response.status_code == 200
-    assert isinstance(response_data, list)
-    assert len(response_data) == 1
+    assert isinstance(response_data, dict)
+    assert 'count' in response_data
+    assert 'models' in response_data
+    assert len(response_data['models']) == 1
 
     # Let's add more users
     users = UserFactory.create_batch(5)
@@ -139,8 +141,10 @@ def test_apiview_get_multiple(rf):
     response_data = json.loads(response.content)
 
     assert response.status_code == 200
-    assert isinstance(response_data, list)
-    assert len(response_data) == 6
+    assert isinstance(response_data, dict)
+    assert 'count' in response_data
+    assert 'models' in response_data
+    assert len(response_data['models']) == 6
 
     # Let's add even more users to test pagination
     users = UserFactory.create_batch(5)
@@ -150,8 +154,10 @@ def test_apiview_get_multiple(rf):
 
     # First page is full
     assert response.status_code == 200
-    assert isinstance(response_data, list)
-    assert len(response_data) == 10
+    assert isinstance(response_data, dict)
+    assert 'count' in response_data
+    assert 'models' in response_data
+    assert len(response_data['models']) == 10
 
     request = _create_api_request(rf, url='/?p=2')
     response = view(request)
@@ -159,8 +165,10 @@ def test_apiview_get_multiple(rf):
 
     # Second page constains a single user
     assert response.status_code == 200
-    assert isinstance(response_data, list)
-    assert len(response_data) == 1
+    assert isinstance(response_data, dict)
+    assert 'count' in response_data
+    assert 'models' in response_data
+    assert len(response_data['models']) == 1
 
 
 @pytest.mark.django_db
