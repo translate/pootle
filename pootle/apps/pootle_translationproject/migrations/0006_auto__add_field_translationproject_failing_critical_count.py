@@ -7,6 +7,10 @@ from django.db import models
 
 class Migration(SchemaMigration):
 
+    needed_by = (
+        ("pootle_store", "0009_move_data_from_pootle_app_suggestion"),
+    )
+
     def forwards(self, orm):
         # Adding field 'TranslationProject.failing_critical_count'
         db.add_column('pootle_app_translationproject', 'failing_critical_count',
