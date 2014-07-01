@@ -200,6 +200,11 @@
     line-height: 1.2;
 }
 
+#user-edit .fields input[type="checkbox"]
+{
+    width: auto;
+}
+
 #user-edit #id_twitter
 {
     width: 35%;
