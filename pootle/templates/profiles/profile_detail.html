@@ -2,17 +2,17 @@
 {% load i18n profile_tags %}
 
 {% block title %}
-{{ profile.user }} | {% trans "Users" %} | {{ settings.TITLE }}
+{{ profile }} | {% trans "Users" %} | {{ settings.TITLE }}
 {% endblock %}
 
 {% block body_id %}dashboard{% endblock %}
 
 {% block breadcrumbs %}
-<li>{% trans "Users" %}</li><li>{{ profile.user }}</li>
+<li>{% trans "Users" %}</li><li>{{ profile }}</li>
 {% endblock %}
 
 {% block header_tabs_block %}
-{% if user == profile.user %}
+{% if user == profile %}
   {{ block.super }}
 {% endif %}
 {% endblock %}
@@ -25,12 +25,12 @@
   <div class="bd">
     <div id="user-meta-wrapper">
       <div id="user-meta">
-        <img src="{{ profile.user|gravatar:150 }}" width="150" height="150"{% if user == profile.user %} title="{% trans 'You can set or change your avatar image at www.gravatar.com' %}"{% endif %} />
-        <div class="user-name">{{ profile.user.username }}</div>
+        <img src="{{ profile|gravatar:150 }}" width="150" height="150"{% if user == profile %} title="{% trans 'You can set or change your avatar image at www.gravatar.com' %}"{% endif %} />
+        <div class="user-name">{{ profile.username }}</div>
         {% if user.is_superuser or request.permissions.administrate %}
         <div>
-          {% if profile.user.email %}
-          <a href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a>
+          {% if profile.email %}
+          <a href="mailto:{{ profile.email }}">{{ profiler.email }}</a>
           {% else %}
           {% trans 'No email address.' %}
           {% endif %}

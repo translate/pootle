@@ -23,7 +23,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic import UpdateView
+from django.views.generic import TemplateView, UpdateView
 
 
 User = get_user_model()
@@ -70,3 +70,16 @@ class UserProfileView(UserUpdateView):
     template_name = "profiles/settings/personal.html"
 
 edit_personal_info = UserUpdateView.as_view()
+
+
+class UserDetailView(TemplateView):
+    template_name = "profiles/profile_detail.html"
+
+    def get_context_data(self, **kwargs):
+        user = User.objects.get(username=kwargs["username"])
+
+        return {
+            "profile": user,
+        }
+
+user_detail = UserDetailView.as_view()
