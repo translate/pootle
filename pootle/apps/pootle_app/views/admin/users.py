@@ -36,3 +36,4 @@ class UserAPIView(SuperuserRequiredMixin, APIView):
     fields = ('id', 'username', 'is_active', 'password', 'full_name', 'email',
               'is_superuser', 'twitter', 'linkedin', 'website', 'bio')
     page_size = 10
+    search_fields = ('username', 'full_name', 'email')
