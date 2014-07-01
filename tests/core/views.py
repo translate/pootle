@@ -302,3 +302,40 @@ def test_apiview_delete(rf):
     # Should raise 404 if we try to access a deleted resource again:
     with pytest.raises(Http404):
         view(request, id='1')
+
+
+@pytest.mark.django_db
+def test_apiview_search(rf):
+    """Tests filtering through a search query."""
+    # Note that `UserAPIView` is configured to search in all defined
+    # fields, which are `username` and `full_name`
+    view = UserAPIView.as_view()
+
+    # Let's create some users to search for
+    UserFactory.create(username='foo', full_name='Foo Bar')
+    UserFactory.create(username='foobar', full_name='Foo Bar')
+    UserFactory.create(username='foobarbaz', full_name='Foo Bar')
+
+    # `q=bar` should match 3 users (full names match)
+    request = _create_api_request(rf, url='/?q=bar')
+    response = view(request)
+    response_data = json.loads(response.content)
+
+    assert response.status_code == 200
+    assert len(response_data['models']) == 3
+
+    # `q=baz` should match 1 user
+    request = _create_api_request(rf, url='/?q=baz')
+    response = view(request)
+    response_data = json.loads(response.content)
+
+    assert response.status_code == 200
+    assert len(response_data['models']) == 1
+
+    # Searches are case insensitive; `q=BaZ` should match 1 user
+    request = _create_api_request(rf, url='/?q=BaZ')
+    response = view(request)
+    response_data = json.loads(response.content)
+
+    assert response.status_code == 200
+    assert len(response_data['models']) == 1

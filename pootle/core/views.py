@@ -21,10 +21,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import json
+import operator
 
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.db.models import ObjectDoesNotExist
+from django.db.models import ObjectDoesNotExist, Q
 from django.forms.models import modelform_factory
 from django.http import Http404, HttpResponse
 from django.template import loader, RequestContext
@@ -148,6 +149,12 @@ class APIView(View):
 
     # HTTP GET parameter to use for accessing pages
     page_param_name = 'p'
+
+    # HTTP GET parameter to use for search queries
+    search_param_name = 'q'
+
+    # Field names in which searching will be allowed
+    search_fields = None
 
     # Override these if you have custom JSON encoding/decoding needs
     json_encoder = PootleJSONEncoder()
@@ -302,9 +309,8 @@ class APIView(View):
             If `False`, a JSON object is returned with an array of objects
             in `models` and the total object count in `count`.
         """
-        values = queryset.values(*self.serialize_fields)
-
         if single_object or self.kwargs.get(self.pk_field_name):
+            values = queryset.values(*self.serialize_fields)
             # For single-item requests, convert ValuesQueryset to a dict simply
             # by slicing the first item
             instance_values = values[0]
@@ -326,6 +332,13 @@ class APIView(View):
             else:
                 serialize_values = instance_values
         else:
+            search_keyword = self.request.GET.get(self.search_param_name, None)
+            if search_keyword is not None:
+                filter_by = self.get_search_filter(search_keyword)
+                queryset = queryset.filter(filter_by)
+
+            values = queryset.values(*self.serialize_fields)
+
             # Process pagination options if they are enabled
             if isinstance(self.page_size, int):
                 try:
@@ -343,6 +356,19 @@ class APIView(View):
             }
 
         return self.json_encoder.encode(serialize_values)
+
+    def get_search_filter(self, keyword):
+        search_fields = getattr(self, 'search_fields', None)
+        if search_fields is None:
+            search_fields = self.fields  # Assume all fields
+
+        field_queries = list(
+            zip(map(lambda x: '%s__icontains' % x, search_fields),
+                (keyword,)*len(search_fields))
+        )
+        lookups = [Q(x) for x in field_queries]
+
+        return reduce(operator.or_, lookups)
 
     def status_msg(self, msg, status=400):
         data = self.json_encoder.encode({'msg': msg})
