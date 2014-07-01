@@ -5,7 +5,7 @@ PTL.user = PTL.user || {};
 PTL.models = PTL.models || {};
 
 
-(function (ns, models, $) {
+(function (ns, models, mixins, $) {
   'use strict';
 
   /*
@@ -17,6 +17,7 @@ PTL.models = PTL.models || {};
       return l('/xhr/users/');
     },
 
+    // XXX: this should be part of a base class or mixin
     parse: function (response, options) {
       if (response.hasOwnProperty('form')) {
         this.form = response.form;
@@ -85,30 +86,9 @@ PTL.models = PTL.models || {};
         this.mustReload = false;
         window.location.reload();
       }
-    },
-
-    displayErrors: function (xhr) {
-      var errors = $.parseJSON(xhr.responseText).errors;
-      $('ul.errorlist').remove();
-
-      for (var fieldName in errors) {
-        this.validationError(fieldName, errors[fieldName]);
-      }
-    },
-
-    /* Injects a form validation error next to the input it failed to
-     * validate */
-    validationError: function (fieldName, msgs) {
-      var $field = $('#id_' + fieldName),
-          errorList = ['<ul class="errorlist">'];
-      for (var i=0; i<msgs.length; i++) {
-        errorList.push(['<li>', msgs[i], '</li>'].join(''));
-      }
-      errorList.push(['</ul>']);
-
-      $field.after(errorList.join(''));
     }
   });
+  _.extend(ns.EditFormView.prototype, mixins.Forms);
 
   ns.UserRouter = Backbone.Router.extend({
 
@@ -155,4 +135,4 @@ PTL.models = PTL.models || {};
 
   });
 
-}(PTL.user, PTL.models, jQuery));
+}(PTL.user, PTL.models, PTL.mixins, jQuery));
