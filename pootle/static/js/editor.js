@@ -26,7 +26,6 @@
     this.ctxGap = 0;
     this.ctxQty = parseInt($.cookie('ctxQty'), 10) || 1;
     this.ctxStep= 1;
-    this.keepState = false;
     this.preventNavigation = false;
 
     this.isLoading = true;
@@ -69,6 +68,8 @@
                    this.onTextareaChange.bind(this));
     $(document).on('change', 'input.fuzzycheck',
                    this.onStateChange.bind(this));
+    $(document).on('click', 'input.fuzzycheck',
+                   this.onStateClick.bind(this));
 
     /* Suggest / submit */
     $(document).on('click', '.switch-suggest-mode a',
@@ -493,6 +494,7 @@
     $("table.translate-table").trigger("mt_ready");
     $("table.translate-table").trigger("lookup_ready");
 
+    PTL.editor.keepState = false;
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
     PTL.editor.updateExportLink();
@@ -760,7 +762,6 @@
   /* Sets the current unit status as fuzzy (both styling and checkbox) */
   goFuzzy: function () {
     if (!this.isFuzzy()) {
-      this.keepState = true;
       this.doFuzzyStyle();
       this.doFuzzyBox();
     }
@@ -770,7 +771,6 @@
   /* Unsets the current unit status as fuzzy (both styling and checkbox) */
   ungoFuzzy: function () {
     if (this.isFuzzy()) {
-      this.keepState = true;
       this.undoFuzzyStyle();
       this.undoFuzzyBox();
     }
@@ -791,9 +791,6 @@
   },
 
   toggleState: function () {
-    // Prevent automatic unfuzzying on keyup
-    this.keepState = true;
-
     // `blur()` prevents a double-click effect if the checkbox was
     // previously clicked using the mouse
     $('input.fuzzycheck').blur().click();
@@ -828,6 +825,11 @@
     this.handleTranslationChange();
 
     this.toggleFuzzyStyle();
+  },
+
+  onStateClick: function () {
+    // Prevent automatic unfuzzying on explicit user action
+    this.keepState = true;
   },
 
   onTextareaChange: function (e) {
@@ -2190,11 +2192,10 @@
         }
 
         $area.val($('<div />').html(translation).text());
-        $area.trigger('input');
       });
     });
 
-    $areas[0].focus();
+    $areas.eq(0).trigger('input').focus();
 
     PTL.editor.goFuzzy();
     return false;
