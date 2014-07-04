@@ -59,8 +59,6 @@ for more details.
 - The ``update_translation_projects`` management command no longer removes
   projects when using the ``--cleanup`` option. This was an undocumented
   behavior.
-- Added support to disable the Pootle server for maintenance using
-  ``django-maintenancemode``.
 - Dropped support for old web browsers. Despite that Pootle might work on such
   browsers. More on :ref:`Supported Browsers <browsers>`.
 - Changed the format of the files accepted by the ``add_project_goals``

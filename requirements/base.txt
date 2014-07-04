@@ -1,7 +1,7 @@
 # Make sure you update as well these places:
 # - pootle/depcheck.py
 # - .travis.yml configuration file
-# - docs/server/installation.rst 
+# - docs/server/installation.rst
 # - release notes in docs/releases/$next
 # when bumping Django versions and dependencies.
 Django>=1.5.8,<1.7
@@ -10,7 +10,6 @@ Django>=1.5.8,<1.7
 django-allauth==0.16.1
 django-assets>=0.8
 django-contact-form==1.0
-django-maintenancemode
 django-taggit>=0.10,<0.11.2
 South>=0.8.4
 
