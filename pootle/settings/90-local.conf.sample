@@ -33,18 +33,6 @@ SECRET_KEY = '${default_key}'
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-# Puts the app into maintenance mode.
-# When `DEBUG` is `False`, this will display a template for every request
-# made to the application.
-#
-# The maintenance pages is not displayed if:
-#   - The user is logged in and is a staff member.
-#   - The user's IP is in `INTERNAL_IPS`.
-MAINTENANCE_MODE = False
-
-# Sequence of URL path regexes to exclude from the maintenance mode.
-MAINTENANCE_IGNORE_URLS = ()
-
 
 #
 # Backends

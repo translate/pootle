@@ -4,7 +4,6 @@ Django>=1.6.5,<1.7
 South>=0.8.4
 django-assets>=0.10
 django-contact-form==1.0
-django-maintenancemode
 
 # Required by webassets, isn't shipped in Python < 2.7
 argparse
