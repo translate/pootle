@@ -21,7 +21,7 @@ if [ "$select" == "travis" ]; then
 fi
 
 pep8 \
---exclude=djblets,assets,profiles,migrations \
+--exclude=djblets,assets,migrations \
 --select=$select \
 --statistics \
 $files
