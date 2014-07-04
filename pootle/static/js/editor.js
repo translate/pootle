@@ -1929,10 +1929,14 @@
         filtered = PTL.editor.filterTMResults(data, sourceText),
         name = gettext("Similar translations");
 
-    return PTL.editor.tmpl.tm({store: store.toJSON(),
-                               unit: unit.toJSON(),
-                               suggs: filtered,
-                               name: name});
+    if (filtered.length) {
+      return PTL.editor.tmpl.tm({store: store.toJSON(),
+                                 unit: unit.toJSON(),
+                                 suggs: filtered,
+                                 name: name});
+    }
+
+    return '';
   },
 
   /* Gets TM suggestions from amaGama */
