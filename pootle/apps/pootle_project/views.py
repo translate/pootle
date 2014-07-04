@@ -23,6 +23,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader, RequestContext
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 
@@ -34,7 +35,7 @@ from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
-from pootle.core.url_helpers import split_pootle_path
+from pootle.core.paginator import paginate
 from pootle_app.models.permissions import check_permission
 from pootle_misc.util import ajax_required, jsonify
 from pootle_project.forms import (TranslationProjectFormSet,
@@ -274,31 +275,59 @@ def export_view(request, project, dir_path, filename):
 @permission_required('administrate')
 def project_admin(request, project):
     """Adding and deleting project languages."""
-    from pootle_app.views.admin.util import edit as admin_edit
+    from django.forms.models import modelformset_factory
+    from pootle.core.url_helpers import split_pootle_path
+    from pootle_app.views.admin.util import form_set_as_table
 
     def generate_link(tp):
         path_args = split_pootle_path(tp.pootle_path)[:2]
         perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
         return '<a href="%s">%s</a>' % (perms_url, tp.language)
 
+    # Create a formset class for TranslationProject.
+    formset_args = {
+        "form": tp_form_factory(project),
+        "formset": TranslationProjectFormSet,
+        "can_delete": True,
+        "exclude": ("description", ),
+    }
+    formset_class = modelformset_factory(TranslationProject, **formset_args)
+
     queryset = TranslationProject.objects.filter(project=project)
-    queryset = queryset.order_by('pootle_path')
-
+    objects = paginate(request, queryset.order_by("pootle_path"))
     ctx = {
-        'page': 'admin-languages',
-
-        'project': {
-            'code': project.code,
-            'name': project.fullname,
+        "page": "admin-languages",
+        "project": {
+            "code": project.code,
+            "name": project.fullname,
         }
     }
 
-    return admin_edit(request, 'projects/admin/languages.html',
-                      TranslationProject, ctx, generate_link,
-                      linkfield="language", queryset=queryset,
-                      can_delete=True, form=tp_form_factory(project),
-                      formset=TranslationProjectFormSet,
-                      exclude=('description',))
+    # If the request is a POST, we want to possibly update our data
+    if request.method == "POST" and request.POST:
+        # Create a formset from all the TranslationProject instances whose
+        # values will be updated using the contents of request.POST
+        formset = formset_class(request.POST, queryset=objects.object_list)
+
+        # Validate all the forms in the formset
+        if formset.is_valid():
+            # If all is well, Django can save all our data for us
+            formset.save()
+        else:
+            # Otherwise, complain to the user that something went wrong
+            ctx["error_msg"] = _("There are errors in the form. Please review "
+                                 "the problems below.")
+    else:
+        formset = formset_class(queryset=objects.object_list)
+
+    table = form_set_as_table(formset, generate_link, "language")
+    ctx.update({
+        "formset_text": mark_safe(table),
+        "formset": formset,
+        "objects": objects,
+    })
+
+    return render(request, "projects/admin/languages.html", ctx)
 
 
 @get_path_obj
