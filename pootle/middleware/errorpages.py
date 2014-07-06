@@ -25,6 +25,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.mail import mail_admins
 from django.core.urlresolvers import reverse
+from django.db import transaction
 from django.http import (Http404, HttpResponse, HttpResponseForbidden,
                          HttpResponseServerError)
 from django.template import RequestContext
@@ -89,6 +90,10 @@ class ErrorPagesMiddleware(object):
             # check the class name instead. Since python uses duck typing
             # I will call this
             # poking-the-duck-until-it-quacks-like-a-duck-test.
+
+            # Roll back the transaction first; otherwise, queries in the 500
+            # page will cause a "current transaction is aborted" message
+            transaction.rollback()
 
             if request.is_ajax():
                 return self._ajax_error(500, msg)
