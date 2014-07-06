@@ -194,8 +194,11 @@ html[dir="rtl"] #nav-access
 
 #s2id_js-language-picker
 {
-    padding-top: 8px;
     width: auto !important;
+}
+#s2id_js-language-picker>a
+{
+    display: block !important;
 }
 
 #s2id_js-language-picker:not(.select2-dropdown-open)
