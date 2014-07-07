@@ -29,7 +29,6 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.core.management import call_command
-from django.db import transaction
 from django.utils.translation import ugettext_noop as _
 
 from pootle.__version__ import build as CODE_PTL_BUILD_VERSION
@@ -37,8 +36,6 @@ from pootle_app.models import Directory, PootleConfig, PootleSite
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_store.models import TMUnit, Unit
-from pootle_store.util import TRANSLATED
 
 
 User = get_user_model()
@@ -61,8 +58,6 @@ def initdb():
     create_default_admin()
 
     create_default_pootle_site(settings.TITLE, settings.DESCRIPTION)
-
-    create_local_tm()
 
     save_build_versions()
 
@@ -378,22 +373,6 @@ def create_default_pootle_site(site_title, site_description):
         description=site_description,
     )
     pootle_site.save()
-
-
-def create_local_tm():
-    """Create the local TM using translations from existing projects.
-
-    Iterates over all the translation units and creates the corresponding local
-    TM units.
-    """
-    logging.info('About to create local TM using existing translations')
-
-    with transaction.commit_on_success():
-        for unit in Unit.objects.filter(state__gte=TRANSLATED).iterator():
-            tmunit = TMUnit().create(unit)
-            tmunit.save()
-
-        logging.info('Successfully created local TM from existing translations')
 
 
 def save_build_versions():

@@ -63,15 +63,6 @@ def upgrade_to_25100():
     Directory.objects.root.get_or_make_subdir('goals')
 
 
-def upgrade_to_25200():
-    """Post-upgrade actions for upgrades to 25200."""
-    from pootle.core.initdb import create_local_tm
-
-    logging.info('About to create the local translation memory.')
-    create_local_tm()
-    logging.info('Succesfully created the local translation memory.')
-
-
 def upgrade_to_25201():
     """New semantics for the `view` permission."""
     from django.contrib.auth import get_user_model

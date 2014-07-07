@@ -92,6 +92,17 @@ The procedure is easy, just run:
   $ pootle setup
 
 
+.. note::
+
+  After a succesful upgrade, you might want to create a local Translation
+  Memory. Have in mind that this can take a lot of time depending on how many
+  translations you have in your Pootle database.
+
+  .. code-block:: bash
+
+    $ pootle create_local_tm
+
+
 .. _upgrading#detailed-upgrade:
 
 Step by step database upgrade
@@ -183,6 +194,17 @@ available flags.
 .. code-block:: bash
 
   $ pootle upgrade
+
+
+.. note::
+
+  After a succesful upgrade, you might want to create a local Translation
+  Memory. Have in mind that this can take a lot of time depending on how many
+  translations you have in your Pootle database.
+
+  .. code-block:: bash
+
+    $ pootle create_local_tm
 
 
 .. _upgrading#custom_changes:

@@ -41,6 +41,7 @@ for more details.
   projects hosted on the Pootle server.  Images stored in
   :setting:`PODIRECTORY` ``$project/.pootle/icon.png`` provide an icon to the
   TM result.
+- Added a new management command to populate the local TM.
 - The ``view`` permission is now project-centric, it can be set server-wide or
   for projects, but not for individual language-project combinations.
 - Dropped code for several external apps from Pootle codebase. Also upgraded to

@@ -411,6 +411,32 @@ user in the ``task-123`` project.
     $ pootle assign_permissions --user=sauron --project=task-123 --permissions=translate
 
 
+.. _commands#local-tm:
+
+Local TM
+--------
+
+These commands allow you to perform tasks with the local Translation Memory
+from the command line.
+
+
+.. _commands#create-local-tm:
+
+create_local_tm
+^^^^^^^^^^^^^^^
+
+.. versionchanged:: 2.5.2
+
+This command allows to create a local Translation Memory for Pootle usage by
+using already existing translated units in Pootle database.
+
+It has no options:
+
+.. code-block:: bash
+
+    $ pootle create_local_tm
+
+
 .. _commands#goals:
 
 Goals
