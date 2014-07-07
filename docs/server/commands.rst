@@ -428,13 +428,21 @@ create_local_tm
 .. versionchanged:: 2.5.2
 
 This command allows to create a local Translation Memory for Pootle usage by
-using already existing translated units in Pootle database.
-
-It has no options:
+using already existing translated units in Pootle database. To run it just
+type:
 
 .. code-block:: bash
 
     $ pootle create_local_tm
+
+
+This command has one optional option: :option:`--drop-local-tm` which is used
+to tell whether the local TM (if it exists) should be dropped before recreating
+it:
+
+.. code-block:: bash
+
+    $ pootle create_local_tm --drop-local-tm
 
 
 .. _commands#goals:
