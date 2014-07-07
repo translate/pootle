@@ -27,7 +27,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from pootle_store.models import TMUnit, Unit
+from pootle_store.models import Store, TMUnit, Unit
 from pootle_store.util import TRANSLATED
 
 
@@ -50,9 +50,12 @@ class Command(BaseCommand):
             self.stdout.write('Successfully dropped existing local TM')
 
         self.stdout.write('About to create local TM using existing translations')
-        with transaction.commit_on_success():
-            for unit in Unit.objects.filter(state__gte=TRANSLATED).iterator():
-                tmunit = TMUnit().create(unit)
-                tmunit.save()
+        for store in Store.objects.all().iterator():
+            self.stdout.write("Adding translations from %r" % (store))
+
+            with transaction.commit_on_success():
+                for unit in Unit.objects.filter(store=store, state__gte=TRANSLATED).iterator():
+                    tmunit = TMUnit().create(unit)
+                    tmunit.save()
 
         self.stdout.write('Successfully created local TM from existing translations')
