@@ -60,8 +60,9 @@ def admin_permissions(request, current_directory, template, context):
         codename__in=excluded_permissions,
     )
 
-    excluded = current_directory.permission_sets.values_list("user_id", flat=True)
-    base_queryset = User.objects.filter(is_active=True).exclude(excluded)
+    base_queryset = User.objects.filter(is_active=True).exclude(
+        id__in=current_directory.permission_sets.values_list("user_id", flat=True)
+    )
     querysets = [(None, base_queryset.filter(username__in=("nobody", "default")))]
 
     if project is not None:
