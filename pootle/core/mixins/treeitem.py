@@ -182,7 +182,7 @@ class TreeItem(object):
             getattr(item, name)() for item in self.children
         ])
 
-    def get_stats(self, include_children=True):
+    def get_stats(self, include_children=True, goal=None):
         """get stats for self and - optionally - for children"""
         self.initialize_children()
 
@@ -192,10 +192,14 @@ class TreeItem(object):
             'fuzzy': self.get_fuzzy_wordcount(),
             'suggestions': self.get_suggestion_count(),
             'critical': self.get_critical_error_unit_count(),
-            'nextGoal': self.get_next_goal_count(),
             'lastupdated': self.get_last_updated(),
             'lastaction': self.get_last_action(),
         }
+
+        if goal is None:
+            result.update({
+                'nextGoal': self.get_next_goal_count(),
+            })
 
         if include_children:
             result['children'] = {}

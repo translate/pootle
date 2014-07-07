@@ -6,6 +6,7 @@
 
     init: function (options) {
       this.pootlePath = options.pootlePath;
+      this.goalSlug = options.goalSlug;
 
       $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
     },
@@ -96,7 +97,8 @@
     load: function (callback) {
       var url = l('/xhr/stats/overview/'),
           reqData = {
-            path: this.pootlePath
+            path: this.pootlePath,
+            goalSlug: this.goalSlug
           };
       $.ajax({
         url: url,

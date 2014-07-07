@@ -701,7 +701,11 @@ def get_qualitycheck_stats(request, path_obj, **kwargs):
 @permission_required('view')
 @get_resource
 def get_overview_stats(request, path_obj, **kwargs):
-    stats = request.resource_obj.get_stats()
+    try:
+        goal = Goal.objects.get(slug=request.GET.get('goalSlug', ''))
+    except Goal.DoesNotExist:
+        goal = None
+    stats = request.resource_obj.get_stats(goal=goal)
     response = jsonify(stats)
     return HttpResponse(response, mimetype="application/json")
 
