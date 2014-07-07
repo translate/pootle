@@ -820,7 +820,7 @@ class Unit(models.Model, base.TranslationUnit):
         """Retrieve reviewer information for the current unit.
 
         :return: In case the current unit's status is an effect of accepting a
-            suggestion, the reviewer profile is returned.
+            suggestion, the reviewer user is returned.
             Otherwise, returns ``None``, indicating that the current unit's
             status is an effect of any other actions.
         """
