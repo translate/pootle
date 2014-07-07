@@ -22,7 +22,13 @@ from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns("accounts.views",
-    url(r"^edit/$", "edit_profile", name="pootle-profile-edit"),
-    url(r"^personal/edit/$", "edit_personal_info", name="accounts-personal-edit"),
-    url(r"^(?P<username>[^/]+)/?$", "user_detail", name="profiles_profile_detail"),
+    url(r"^edit/$",
+        "edit_profile",
+        name="pootle-profile-edit"),
+    url(r"^personal/edit/$",
+        "edit_personal_info",
+        name="accounts-personal-edit"),
+    url(r"^(?P<username>[^/]+)/?$",
+        "user_detail",
+        name="profiles_profile_detail"),
 )
