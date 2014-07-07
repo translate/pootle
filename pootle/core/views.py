@@ -20,10 +20,9 @@
 
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
-from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 
-from pootle_misc.util import ajax_required, jsonify
+from pootle_misc.util import jsonify
 
 
 class SuperuserRequiredMixin(object):
@@ -40,7 +39,6 @@ class SuperuserRequiredMixin(object):
 
 class AjaxResponseMixin(object):
     """Mixin to add AJAX support to a form."""
-    @method_decorator(ajax_required)
     def dispatch(self, *args, **kwargs):
         return super(AjaxResponseMixin, self).dispatch(*args, **kwargs)
 

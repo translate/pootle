@@ -48,7 +48,7 @@ from pootle_app.models.permissions import check_permission
 from pootle_app.project_tree import (ensure_target_dir_exists,
                                      direct_language_match_filename)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from pootle_misc.util import jsonify, ajax_required
+from pootle_misc.util import jsonify
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
 from pootle_store.util import (absolute_real_path, relative_real_path,
@@ -529,7 +529,6 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
 
 
 @require_POST
-@ajax_required
 @get_path_obj
 @permission_required('administrate')
 def ajax_remove_tag_from_tp(request, translation_project, tag_name):
@@ -559,7 +558,6 @@ def _add_tag(request, translation_project, tag_like_object):
 
 
 @require_POST
-@ajax_required
 @get_path_obj
 @permission_required('administrate')
 def ajax_add_tag_to_tp(request, translation_project):
@@ -647,7 +645,6 @@ def export_view(request, translation_project, dir_path, filename=None):
 
 
 @require_POST
-@ajax_required
 @get_path_obj
 @permission_required('administrate')
 def edit_settings(request, translation_project):

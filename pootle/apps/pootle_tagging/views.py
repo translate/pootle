@@ -24,14 +24,13 @@ from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle_misc.util import ajax_required, jsonify
+from pootle_misc.util import jsonify
 
 from .decorators import get_goal, require_goal
 from .forms import GoalForm
 
 
 @require_POST
-@ajax_required
 @get_path_obj
 @get_goal
 @require_goal

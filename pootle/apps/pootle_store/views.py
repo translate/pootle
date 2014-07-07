@@ -53,7 +53,7 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_language.models import Language
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
-from pootle_misc.util import ajax_required, jsonify, to_int
+from pootle_misc.util import jsonify, to_int
 from pootle_project.models import Project
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
@@ -518,7 +518,6 @@ def _build_units_list(units, reverse=False):
     return return_units
 
 
-@ajax_required
 def get_units(request):
     """Gets source and target texts and its metadata.
 
@@ -586,7 +585,6 @@ def _is_filtered(request):
             ('search' in request.GET and 'sfields' in request.GET))
 
 
-@ajax_required
 @get_unit_context('view')
 def get_more_context(request, unit):
     """Retrieves more context units.
@@ -686,7 +684,6 @@ def timeline(request, unit):
         return render(request, "editor/units/timeline.html", context)
 
 
-@ajax_required
 @get_path_obj
 @permission_required('view')
 @get_resource
@@ -696,7 +693,6 @@ def get_qualitycheck_stats(request, path_obj, **kwargs):
     return HttpResponse(response, mimetype="application/json")
 
 
-@ajax_required
 @get_path_obj
 @permission_required('view')
 @get_resource
@@ -707,7 +703,6 @@ def get_overview_stats(request, path_obj, **kwargs):
 
 
 @require_POST
-@ajax_required
 @get_unit_context('translate')
 def comment(request, unit):
     """Stores a new comment for the given ``unit``.
@@ -745,7 +740,6 @@ def comment(request, unit):
 
 
 @never_cache
-@ajax_required
 @get_unit_context('view')
 def get_edit_unit(request, unit):
     """Given a store path ``pootle_path`` and unit id ``uid``, gathers all the
@@ -831,7 +825,7 @@ def _get_project_icon(project):
     else:
         return ""
 
-@ajax_required
+
 @get_unit_context('view')
 def get_tm_results(request, unit):
     """Gets a list of TM results for the current object.
@@ -903,7 +897,6 @@ def get_tm_results(request, unit):
 
 
 @require_POST
-@ajax_required
 @get_unit_context('translate')
 def submit(request, unit):
     """Processes translation submissions and stores them in the database.
@@ -980,7 +973,6 @@ def submit(request, unit):
 
 
 @require_POST
-@ajax_required
 @get_unit_context('suggest')
 def suggest(request, unit):
     """Processes translation suggestions and stores them in the database.
@@ -1020,7 +1012,6 @@ def suggest(request, unit):
     return HttpResponse(response, status=rcode, mimetype="application/json")
 
 
-@ajax_required
 @get_unit_context('review')
 def reject_suggestion(request, unit, suggid):
     if request.POST.get('reject'):
@@ -1040,7 +1031,6 @@ def reject_suggestion(request, unit, suggid):
     return HttpResponse(response, mimetype="application/json")
 
 
-@ajax_required
 @get_unit_context('review')
 def accept_suggestion(request, unit, suggid):
     json = {
@@ -1068,7 +1058,6 @@ def accept_suggestion(request, unit, suggid):
     return HttpResponse(response, mimetype="application/json")
 
 
-@ajax_required
 @get_unit_context('review')
 def toggle_qualitycheck(request, unit, check_id):
     json = {}
@@ -1086,7 +1075,6 @@ def toggle_qualitycheck(request, unit, check_id):
 
 
 @require_POST
-@ajax_required
 def ajax_remove_tag_from_store(request, tag_slug, store_pk):
     if not check_permission('administrate', request):
         raise PermissionDenied(_("You do not have rights to remove tags."))
@@ -1119,7 +1107,6 @@ def _add_tag(request, store, tag_like_object):
 
 
 @require_POST
-@ajax_required
 def ajax_add_tag_to_store(request, store_pk):
     """Return an HTML snippet with the failed form or blank if valid."""
 

@@ -29,7 +29,7 @@ from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
 from pootle.core.views import SuperuserRequiredMixin
-from pootle_misc.util import ajax_required, jsonify
+from pootle_misc.util import jsonify
 
 from .forms import agreement_form_factory
 from .models import AbstractPage, LegalPage, StaticPage
@@ -196,7 +196,6 @@ def display_page(request, virtual_path):
     return render(request, template_name, ctx)
 
 
-@ajax_required
 def legal_agreement(request):
     """Displays the pending documents to be agreed by the current user."""
     pending_pages = LegalPage.objects.pending_user_agreement(request.user)

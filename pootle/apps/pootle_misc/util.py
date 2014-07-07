@@ -121,27 +121,6 @@ def jsonify(obj):
     return json.dumps(obj, indent=indent, cls=PootleJSONEncoder)
 
 
-def ajax_required(f):
-    """Check that the request is an AJAX request.
-
-    Use it in your views:
-
-    @ajax_required
-    def my_view(request):
-        ....
-
-    Taken from:
-    http://djangosnippets.org/snippets/771/
-    """
-    @wraps(f)
-    def wrapper(request, *args, **kwargs):
-        if not settings.DEBUG and not request.is_ajax():
-            return HttpResponseBadRequest("This must be an AJAX request.")
-        return f(request, *args, **kwargs)
-
-    return wrapper
-
-
 def to_int(value):
     """Converts `value` to `int` and returns `None` if the conversion is
     not possible.
