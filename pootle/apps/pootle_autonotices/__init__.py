@@ -17,23 +17,4 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.db.models.signals import post_save
-
-from pootle_app.signals import (post_file_upload, post_template_update,
-                                post_vc_commit, post_vc_update)
-from pootle_language.models import Language
-from pootle_project.models import Project
-
-from . import signals
-
-
-post_save.connect(signals.new_language, sender=Language)
-post_save.connect(signals.new_project, sender=Project)
-
-post_file_upload.connect(signals.file_uploaded)
-
-post_template_update.connect(signals.updated_against_template)
-
-post_vc_commit.connect(signals.committed_to_version_control)
-
-post_vc_update.connect(signals.updated_from_version_control)
+from .signals import *
