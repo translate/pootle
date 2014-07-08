@@ -27,6 +27,10 @@ except:
 from django.conf import settings
 
 
+# Elasticsearch filter settings
+MIN_SCORE = 0.1
+
+
 def get_params():
     params = getattr(settings, 'POOTLE_TM_SERVER', None)
 
@@ -51,26 +55,34 @@ def update(language, obj):
                  body=obj,
                  id=obj['id'])
 
-def search(language, source):
+
+def is_valuable_hit(unit, hit):
+    if hit['_score'] < MIN_SCORE or str(unit.id) == hit['_id']:
+        return False
+
+    return True
+
+
+def search(unit):
     if es is not None:
         res = []
+        language = unit.store.translation_project.language.code
         es_res = es.search(index=es_params['INDEX_NAME'],
                         doc_type=language,
-                        body={"query": {"match": {'source': source}}})
+                        body={"query": {"match": {'source': unit.source}}})
 
-        max_score = es_res['hits']['max_score']
         for hit in es_res['hits']['hits']:
-            res.append({
-                'unit_id': ['_id'],
-                'quality': 100 * hit['_score'] / max_score,
-                'source': hit['_source']['source'],
-                'target': hit['_source']['target'],
-                'project': hit['_source']['project'],
-                'path': hit['_source']['path'],
-                'username': hit['_source']['username'],
-                'fullname': hit['_source']['fullname'],
-                'email_md5': hit['_source']['email_md5'],
-            })
+            if is_valuable_hit(unit, hit):
+                res.append({
+                    'unit_id': hit['_id'],
+                    'source': hit['_source']['source'],
+                    'target': hit['_source']['target'],
+                    'project': hit['_source']['project'],
+                    'path': hit['_source']['path'],
+                    'username': hit['_source']['username'],
+                    'fullname': hit['_source']['fullname'],
+                    'email_md5': hit['_source']['email_md5'],
+                })
 
         return res
 

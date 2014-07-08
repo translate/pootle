@@ -861,8 +861,7 @@ class Unit(models.Model, base.TranslationUnit):
         update_tmserver(self.store.translation_project.language.code, obj)
 
     def get_tm_suggestions(self):
-        return get_tmsuggestions(self.store.translation_project.language.code,
-                                 self.source)
+        return get_tmsuggestions(self)
 
 ##################### TranslationUnit ############################
 
