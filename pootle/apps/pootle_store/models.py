@@ -203,10 +203,8 @@ class Suggestion(models.Model, base.TranslationUnit):
         super(Suggestion, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        self.unit.store.suggestion_count -= 1
-        self.unit.store.save()
-        self.unit.store.translation_project.suggestion_count -= 1
-        self.unit.store.translation_project.save()
+        if self.state == SuggestionStates.PENDING:
+            self.unit.decrease_suggestion_count()
         super(Suggestion, self).delete(*args, **kwargs)
 
 
@@ -1074,6 +1072,8 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.review_time = self.submitted_on
         suggestion.save()
 
+        self.decrease_suggestion_count()
+
         create_subs = {}
         # assume the target changed
         create_subs[SubmissionFields.TARGET] = [old_target, self.target]
@@ -1123,6 +1123,13 @@ class Unit(models.Model, base.TranslationUnit):
         # Update timestamp
         self.save()
 
+        self.decrease_suggestion_count()
+
+    def decrease_suggestion_count(self):
+        self.store.suggestion_count -= 1
+        self.store.save()
+        self.store.translation_project.suggestion_count -= 1
+        self.store.translation_project.save()
 
     def toggle_qualitycheck(self, check_id, false_positive, user):
         check = self.qualitycheck_set.get(id=check_id)
