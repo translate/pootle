@@ -474,6 +474,13 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
 
         if goal is not None:
             # Then show the drill down view for the specified goal.
+            continue_url = goal.get_translate_url_for_path(request.pootle_path,
+                                                           state='incomplete')
+            critical_url = goal.get_critical_url_for_path(request.pootle_path)
+            review_url = goal.get_translate_url_for_path(request.pootle_path,
+                                                         state='suggestions')
+            all_url = goal.get_translate_url_for_path(request.pootle_path)
+
             ctx.update({
                 'table': {
                     'id': 'tp-goals',
@@ -482,6 +489,10 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
                     'parent': get_goal_parent(request.directory, goal),
                     'items': get_goal_children(request.directory, goal),
                 },
+                'url_action_continue': continue_url,
+                'url_action_fixcritical': critical_url,
+                'url_action_review': review_url,
+                'url_action_view_all': all_url,
             })
         else:
             # Then show the files tab.
