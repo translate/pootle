@@ -395,6 +395,15 @@ class TranslationProject(models.Model, TreeItem):
 
     ### TreeItem
 
+    def get_children_for_stats(self, goal=None):
+        if goal is None:
+            return super(TranslationProject, self).get_children_for_stats()
+        else:
+            from itertools import chain
+
+            stores, dirs = goal.get_children_for_path(self.pootle_path)
+            return list(chain(stores, dirs))
+
     def get_children(self):
         return self.directory.get_children()
 

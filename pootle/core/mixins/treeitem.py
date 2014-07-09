@@ -203,12 +203,23 @@ class TreeItem(object):
 
         if include_children:
             result['children'] = {}
-            for item in self.children:
+            children = self.get_children_for_stats(goal)
+            for item in children:
                 code = (self._get_code(item) if hasattr(self, '_get_code')
                                              else item.code)
                 result['children'][code] = item.get_stats(False)
 
         return result
+
+    def get_children_for_stats(self, goal=None):
+        """Get children for calculating the stats.
+
+        Children means first level descendants.
+
+        This method is meant to be extended for those child models that allow
+        drilling down in a goal.
+        """
+        return self.children
 
     @getfromcache
     def get_checks(self):

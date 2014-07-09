@@ -192,6 +192,15 @@ class Directory(models.Model, TreeItem):
 
     ### TreeItem
 
+    def get_children_for_stats(self, goal=None):
+        if self.parent is not None and goal is not None:
+            from itertools import chain
+
+            stores, dirs = goal.get_children_for_path(self.pootle_path)
+            return list(chain(stores, dirs))
+        else:
+            return super(Directory, self).get_children_for_stats()
+
     def get_children(self):
         result = []
         if self.parent is None:
