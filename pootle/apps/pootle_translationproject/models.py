@@ -404,23 +404,58 @@ class TranslationProject(models.Model, TreeItem):
             stores, dirs = goal.get_children_for_path(self.pootle_path)
             return list(chain(stores, dirs))
 
+    def get_progeny(self, goal=None):
+        if goal is None:
+            return super(TranslationProject, self).get_progeny()
+        else:
+            return goal.get_stores_for_path(self.pootle_path)
+
+    def get_self_stats(self, goal=None):
+        if goal is None:
+            return super(TranslationProject, self).get_self_stats()
+        else:
+            return {
+                'total': self.get_total_wordcount(goal),
+                'translated': self.get_translated_wordcount(goal),
+                'fuzzy': self.get_fuzzy_wordcount(goal),
+                'suggestions': self.get_suggestion_count(goal),
+                'critical': self.get_critical_error_unit_count(goal),
+                'lastupdated': self.get_last_updated(goal),
+                'lastaction': self.get_last_action(goal),
+            }
+
     def get_children(self):
         return self.directory.get_children()
 
-    def get_total_wordcount(self):
-        return self.total_wordcount
+    def get_total_wordcount(self, goal=None):
+        if goal is None:
+            return self.total_wordcount
+        else:
+            return super(TranslationProject, self).get_total_wordcount(goal)
 
-    def get_translated_wordcount(self):
-        return self.translated_wordcount
+    def get_translated_wordcount(self, goal=None):
+        if goal is None:
+            return self.translated_wordcount
+        else:
+            return super(TranslationProject, self).get_translated_wordcount(goal)
 
-    def get_fuzzy_wordcount(self):
-        return self.fuzzy_wordcount
+    def get_fuzzy_wordcount(self, goal=None):
+        if goal is None:
+            return self.fuzzy_wordcount
+        else:
+            return super(TranslationProject, self).get_fuzzy_wordcount(goal)
 
-    def get_suggestion_count(self):
-        return self.suggestion_count
+    def get_suggestion_count(self, goal=None):
+        if goal is None:
+            return self.suggestion_count
+        else:
+            return super(TranslationProject, self).get_suggestion_count(goal)
 
-    def get_critical_error_unit_count(self):
-        return self.failing_critical_count
+    def get_critical_error_unit_count(self, goal=None):
+        if goal is None:
+            return self.failing_critical_count
+        else:
+            return super(TranslationProject, self).get_critical_error_unit_count(goal)
 
     def get_next_goal_count(self):
         # Putting the next import at the top of the file causes circular
@@ -434,7 +469,7 @@ class TranslationProject(models.Model, TreeItem):
 
         return 0
 
-    def get_last_updated(self):
+    def get_last_updated(self, goal=None):
         if self.last_unit is None:
             return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
@@ -445,7 +480,7 @@ class TranslationProject(models.Model, TreeItem):
             'snippet': self.last_unit.get_last_updated_message()
         }
 
-    def get_last_action(self):
+    def get_last_action(self, goal=None):
         if self.last_submission is None:
             return {'id': 0, 'mtime': 0, 'snippet': ''}
 

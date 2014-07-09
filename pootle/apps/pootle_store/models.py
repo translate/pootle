@@ -1968,19 +1968,19 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def get_cachekey(self):
         return self.pootle_path
 
-    def get_total_wordcount(self):
+    def get_total_wordcount(self, goal=None):
         return self.total_wordcount
 
-    def get_translated_wordcount(self):
+    def get_translated_wordcount(self, goal=None):
         return self.translated_wordcount
 
-    def get_fuzzy_wordcount(self):
+    def get_fuzzy_wordcount(self, goal=None):
         return self.fuzzy_wordcount
 
-    def get_suggestion_count(self):
+    def get_suggestion_count(self, goal=None):
         return self.suggestion_count
 
-    def get_critical_error_unit_count(self):
+    def get_critical_error_unit_count(self, goal=None):
         return self.failing_critical_count
 
     def _get_checks(self):
@@ -2016,7 +2016,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def _get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
 
-    def get_last_updated(self):
+    def get_last_updated(self, goal=None):
         if self.last_unit is None:
             return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
@@ -2027,7 +2027,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             'snippet': self.last_unit.get_last_updated_message()
         }
 
-    def get_last_action(self):
+    def get_last_action(self, goal=None):
         if self.last_submission is None:
             return {'id': 0, 'mtime': 0, 'snippet': ''}
 

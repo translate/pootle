@@ -68,23 +68,23 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         raise NotImplementedError('`get_cachekey()` not implemented')
 
-    def _get_total_wordcount(self):
+    def _get_total_wordcount(self, goal=None):
         """This method will be overridden in descendants"""
         return 0
 
-    def _get_translated_wordcount(self):
+    def _get_translated_wordcount(self, goal=None):
         """This method will be overridden in descendants"""
         return 0
 
-    def _get_fuzzy_wordcount(self):
+    def _get_fuzzy_wordcount(self, goal=None):
         """This method will be overridden in descendants"""
         return 0
 
-    def _get_suggestion_count(self):
+    def _get_suggestion_count(self, goal=None):
         """This method will be overridden in descendants"""
         return 0
 
-    def _get_critical_error_unit_count(self):
+    def _get_critical_error_unit_count(self, goal=None):
         """This method will be overridden in descendants"""
         return 0
 
@@ -96,7 +96,7 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return {'unit_count': 0, 'checks': {}}
 
-    def _get_last_action(self):
+    def _get_last_action(self, goal=None):
         """This method will be overridden in descendants"""
         return {'id': 0, 'mtime': 0, 'snippet': ''}
 
@@ -104,7 +104,7 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return datetime_min
 
-    def _get_last_updated(self):
+    def _get_last_updated(self, goal=None):
         """This method will be overridden in descendants"""
         return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
@@ -113,48 +113,47 @@ class TreeItem(object):
             self.children = self.get_children()
             self.initialized = True
 
-    def get_total_wordcount(self):
+    def get_total_wordcount(self, goal=None):
         """calculate total wordcount statistics"""
         self.initialize_children()
-        return (self._get_total_wordcount() +
-                self._sum('get_total_wordcount'))
+        return (self._get_total_wordcount(goal) +
+                self._sum('get_total_wordcount', goal))
 
-    def get_translated_wordcount(self):
+    def get_translated_wordcount(self, goal=None):
         """calculate translated units statistics"""
         self.initialize_children()
-        return (self._get_translated_wordcount() +
-                self._sum('get_translated_wordcount'))
+        return (self._get_translated_wordcount(goal) +
+                self._sum('get_translated_wordcount', goal))
 
-    def get_fuzzy_wordcount(self):
+    def get_fuzzy_wordcount(self, goal=None):
         """calculate untranslated units statistics"""
         self.initialize_children()
-        return (self._get_fuzzy_wordcount() +
-                self._sum('get_fuzzy_wordcount'))
+        return (self._get_fuzzy_wordcount(goal) +
+                self._sum('get_fuzzy_wordcount', goal))
 
-    def get_suggestion_count(self):
+    def get_suggestion_count(self, goal=None):
         """check if any child store has suggestions"""
         self.initialize_children()
-        return (self._get_suggestion_count() +
-                self._sum('get_suggestion_count'))
+        return (self._get_suggestion_count(goal) +
+                self._sum('get_suggestion_count', goal))
 
-    def get_critical_error_unit_count(self):
+    def get_critical_error_unit_count(self, goal=None):
         """Calculate number of units with critical errors."""
         self.initialize_children()
-        return (self._get_critical_error_unit_count() +
-                self._sum('get_critical_error_unit_count'))
+        return (self._get_critical_error_unit_count(goal) +
+                self._sum('get_critical_error_unit_count', goal))
 
     def get_next_goal_count(self):
         """Calculate next goal untranslated statistics."""
         return self._get_next_goal_count()
 
-    @getfromcache
-    def get_last_action(self):
+    def get_last_action(self, goal=None):
         """get last action HTML snippet"""
         self.initialize_children()
 
         return max(
-            [self._get_last_action()] +
-            [item.get_last_action() for item in self.children],
+            [self._get_last_action(goal)] +
+            [item.get_last_action(goal) for item in self.get_progeny(goal)],
             key=lambda x: x['mtime'] if 'mtime' in x else 0
         )
 
@@ -167,39 +166,25 @@ class TreeItem(object):
             [item.get_mtime() for item in self.children]
         )
 
-    @getfromcache
-    def get_last_updated(self):
+    def get_last_updated(self, goal=None):
         """get last updated"""
         self.initialize_children()
         return max(
-            [self._get_last_updated()] +
-            [item.get_last_updated() for item in self.children],
+            [self._get_last_updated(goal)] +
+            [item.get_last_updated(goal) for item in self.get_progeny(goal)],
             key=lambda x: x['creation_time'] if 'creation_time' in x else 0
         )
 
-    def _sum(self, name):
+    def _sum(self, name, goal=None):
         return sum([
-            getattr(item, name)() for item in self.children
+            getattr(item, name)(goal) for item in self.get_progeny(goal)
         ])
 
     def get_stats(self, include_children=True, goal=None):
         """get stats for self and - optionally - for children"""
         self.initialize_children()
 
-        result = {
-            'total': self.get_total_wordcount(),
-            'translated': self.get_translated_wordcount(),
-            'fuzzy': self.get_fuzzy_wordcount(),
-            'suggestions': self.get_suggestion_count(),
-            'critical': self.get_critical_error_unit_count(),
-            'lastupdated': self.get_last_updated(),
-            'lastaction': self.get_last_action(),
-        }
-
-        if goal is None:
-            result.update({
-                'nextGoal': self.get_next_goal_count(),
-            })
+        result = self.get_self_stats(goal)
 
         if include_children:
             result['children'] = {}
@@ -207,7 +192,7 @@ class TreeItem(object):
             for item in children:
                 code = (self._get_code(item) if hasattr(self, '_get_code')
                                              else item.code)
-                result['children'][code] = item.get_stats(False)
+                result['children'][code] = item.get_stats(False, goal)
 
         return result
 
@@ -220,6 +205,33 @@ class TreeItem(object):
         drilling down in a goal.
         """
         return self.children
+
+    def get_progeny(self, goal=None):
+        """Get progeny for calculating the stats.
+
+        Progeny means descendants for all levels.
+
+        This method is meant to be extended for those child models that allow
+        drilling down in a goal.
+        """
+        return self.children
+
+    def get_self_stats(self, goal=None):
+        """Get stats for self.
+
+        This method is meant to be extended for those child models that require
+        different stats when drilling down in a goal.
+        """
+        return {
+            'total': self.get_total_wordcount(),
+            'translated': self.get_translated_wordcount(),
+            'fuzzy': self.get_fuzzy_wordcount(),
+            'suggestions': self.get_suggestion_count(),
+            'critical': self.get_critical_error_unit_count(),
+            'nextGoal': self.get_next_goal_count(),
+            'lastupdated': self.get_last_updated(),
+            'lastaction': self.get_last_action(),
+        }
 
     @getfromcache
     def get_checks(self):

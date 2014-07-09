@@ -201,6 +201,26 @@ class Directory(models.Model, TreeItem):
         else:
             return super(Directory, self).get_children_for_stats()
 
+    def get_progeny(self, goal=None):
+        if self.parent is not None and goal is not None:
+            return goal.get_stores_for_path(self.pootle_path)
+        else:
+            return super(Directory, self).get_progeny()
+
+    def get_self_stats(self, goal=None):
+        if self.parent is not None and goal is not None:
+            return {
+                'total': self.get_total_wordcount(goal),
+                'translated': self.get_translated_wordcount(goal),
+                'fuzzy': self.get_fuzzy_wordcount(goal),
+                'suggestions': self.get_suggestion_count(goal),
+                'critical': self.get_critical_error_unit_count(goal),
+                'lastupdated': self.get_last_updated(goal),
+                'lastaction': self.get_last_action(goal),
+            }
+        else:
+            return super(Directory, self).get_self_stats()
+
     def get_children(self):
         result = []
         if self.parent is None:
