@@ -148,7 +148,7 @@ the default rights.
 Manage permissions with management commands
 -------------------------------------------
 
-.. versionadded:: 2.5.2
+.. versionadded:: 2.6.0
 
 The assignment of Pootle permissions can also be handled using management
 commands.
@@ -159,7 +159,7 @@ commands.
 Assign permissions with management command
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. versionadded:: 2.5.2
+.. versionadded:: 2.6.0
 
 It is also possible to assign permissions to a given user in a project,
 language or translation project using the :ref:`assign_permissions

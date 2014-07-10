@@ -206,7 +206,7 @@ Examples:
 drop_deployment
 ^^^^^^^^^^^^^^^
 
-.. versionadded:: 2.5.2
+.. versionadded:: 2.6.0
 
 This command:
 
@@ -373,7 +373,7 @@ Examples:
 migrate_app
 ^^^^^^^^^^^
 
-.. versionadded:: 2.5.2
+.. versionadded:: 2.6.0
 
 This command:
 
@@ -521,7 +521,7 @@ altering is necessary for working with feature-staging servers.
 send_file
 ^^^^^^^^^
 
-.. versionadded:: 2.5.2
+.. versionadded:: 2.6.0
 
 This command:
 
@@ -740,7 +740,7 @@ Examples:
 unstage_feature
 ^^^^^^^^^^^^^^^
 
-.. versionchanged:: 2.5.2
+.. versionchanged:: 2.6.0
 
 This command:
 

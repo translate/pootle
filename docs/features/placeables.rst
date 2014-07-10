@@ -3,7 +3,7 @@
 Placeables
 **********
 
-.. versionadded:: 2.5.2
+.. versionadded:: 2.6.0
 
 Placeables are special parts of the text that can be automatically highlighted
 and easily inserted into the translation. By using placeables, a translator can

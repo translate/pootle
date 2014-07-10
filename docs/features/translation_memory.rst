@@ -41,7 +41,7 @@ There are two source for Translation Memory in Pootle:
 Local Translation Memory
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. versionadded:: 2.5.2
+.. versionadded:: 2.6.0
 
 Local Translation Memory is served from Pootle itself.  All projects hosted on
 Pootle are available to give TM suggestions to translators.

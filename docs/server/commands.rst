@@ -361,7 +361,7 @@ with these IDs.
 assign_permissions
 ^^^^^^^^^^^^^^^^^^
 
-.. versionadded:: 2.5.2
+.. versionadded:: 2.6.0
 
 This command allows to assign permissions for a given user in a project,
 language or translation project.
@@ -458,7 +458,7 @@ These commands allow you to perform tasks with goals from the command line.
 add_project_goals
 ^^^^^^^^^^^^^^^^^
 
-.. versionchanged:: 2.5.2
+.. versionchanged:: 2.6.0
 
 This command allows you to create **project goals** for a given project reading
 them from a phaselist file.
