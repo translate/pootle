@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-10-29 02:36+0000\n"
+"PO-Revision-Date: 2014-05-24 10:02+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ja\n"
@@ -15,9 +15,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1383014170.0\n"
+"X-POOTLE-MTIME: 1400925763.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -845,7 +845,7 @@ msgstr "最終更新日時"
 
 #: apps/pootle_misc/checks.py:27
 msgid "Critical"
-msgstr "重大"
+msgstr "致命的"
 
 #: apps/pootle_misc/checks.py:28
 msgid "Functional"
@@ -1131,7 +1131,7 @@ msgid ""
 msgid_plural ""
 "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 "review)."
-msgstr[0] ""
+msgstr[0] "%(type)s: %(total)d 語中 %(translated)d 語が翻訳済みです (%(fuzzy)d 語が査読待ち)。"
 
 #: apps/pootle_misc/stats.py:304
 #, python-format
@@ -1368,7 +1368,7 @@ msgstr "フィルターを表示"
 
 #: apps/pootle_project/templates/project/overview.html:33
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "タグでフィルター"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
@@ -1377,7 +1377,7 @@ msgstr "フィルター"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
-msgstr ""
+msgstr "選択したタグでフィルター"
 
 #: apps/pootle_project/templates/project/overview.html:76
 #: apps/pootle_translationproject/templates/translation_project/overview.html:43
@@ -1421,26 +1421,26 @@ msgstr "匿名ユーザー"
 msgid ""
 "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "%(user)s が文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の翻訳を差し戻しました"
 
 #: apps/pootle_statistics/models.py:155
 #, python-format
 msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "%(user)s が文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の提案を受諾しました"
 
 #: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s がファイルをアップロードしました"
 
 #: apps/pootle_statistics/models.py:173
 #, python-format
 msgid ""
 "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "%(user)s が文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の翻訳を送信しました"
 
 #: apps/pootle_statistics/models.py:176
 #, python-format
@@ -1448,13 +1448,14 @@ msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
 msgstr ""
+"%(user)s が <i><a href=\"%(url)s\">%(source)s</a></i> の翻訳を \"要修正\" として送信しました"
 
 #: apps/pootle_statistics/models.py:179
 #, python-format
 msgid ""
 "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
-msgstr ""
+msgstr "%(user)s が文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の翻訳を削除しました"
 
 #: apps/pootle_store/decorators.py:63
 msgid "Insufficient rights to access this directory."
@@ -1616,7 +1617,7 @@ msgstr "コメント:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "文字列 %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1692,8 +1693,8 @@ msgstr "この文字列に要修正の印を付ける (Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "査読者: <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "査読者: <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -1832,7 +1833,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "同じ名前の目標が既にあります。他の名前を使用してください。"
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1845,7 +1846,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
-msgstr ""
+msgstr "同じスラッグを持つ目標が既に存在します。"
 
 #: apps/pootle_tagging/forms.py:194
 msgid ""
@@ -1868,15 +1869,15 @@ msgstr "この目標の優先度"
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
-msgstr ""
+msgstr "このプロジェクトにおける目標を示します (プロジェクト内のすべての言語に共通)。"
 
 #: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
-msgstr ""
+msgstr "プロジェクトの目標は？"
 
 #: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr ""
+msgstr "（プロジェクトの目標）"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2153,12 +2154,12 @@ msgstr "ファイルの削除試行中にエラーが発生しました。"
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
+msgstr "'%(action)s' が '%(extdir)s' 内に見つかりませんでした"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Error while running '%s' extension action"
-msgstr ""
+msgstr "拡張 '%s' の実行中にエラーが発生しました"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2201,7 +2202,7 @@ msgstr "以下では、この翻訳プロジェクトの権限の追加、編集
 #. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
-msgstr ""
+msgstr "出力一覧"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
@@ -2310,7 +2311,7 @@ msgstr "プロファイル登録"
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
-msgstr ""
+msgstr "これを読み受諾しました: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2324,12 +2325,12 @@ msgstr "このページがアクティブかそうではないかです。"
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "仮想パス"
 
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:47
 msgid "Display Content"
-msgstr ""
+msgstr "コンテンツを表示"
 
 #: apps/staticpages/models.py:48
 #, python-format
@@ -2352,74 +2353,75 @@ msgstr "URL またはコンテンツの入力は必須です。"
 
 #: apps/staticpages/models.py:106
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "仮想パスが既に使われています。"
 
 #: apps/staticpages/models.py:111
 msgid "Legal Page"
 msgstr "法的事項のページ"
 
 #: apps/staticpages/models.py:122
+#, fuzzy
 msgid "Regular Page"
-msgstr ""
+msgstr "通常のページ"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "ページタイトル"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "%dページ"
 
 #: apps/staticpages/views.py:130
 #, python-format
 msgid ""
 "This page is inactive and visible to administrators only. You can activate "
 "it by <a href=\"%s\">editing its properties</a>"
-msgstr ""
+msgstr "このページは無効化されており管理者だけが閲覧できます。 <a href=\"%s\">プロパティを編集</a> から有効化できます。"
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "対処が必要"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "参加する前に以下の文書を読んで同意していただく必要があります。"
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "同意しない（ログアウト）"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "次へ"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
 #: templates/admin_profile_menu.html:9
 msgid "Static Pages"
-msgstr ""
+msgstr "静的ページ"
 
 #. Translators: Displayed as 'Redirect to URL or Display Content'
 #: apps/staticpages/templates/staticpages/admin/_form.html:19
 msgid "or"
-msgstr ""
+msgstr "または"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:8
 msgid "Page"
-msgstr ""
+msgstr "ページ"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "最近の編集"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2434,17 +2436,18 @@ msgid "Add Legal Page"
 msgstr "法的事項のページを追加"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
+#, fuzzy
 msgid "Regular Pages"
-msgstr ""
+msgstr "通常のページ"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 #, fuzzy
 msgid "Add Regular Page"
-msgstr "法的事項のページを編集"
+msgstr "通常のページを追加"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "このページにアクセスする十分な権限がありません。"
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2527,15 +2530,15 @@ msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr "%(filename)s へのアクセス時にエラーが発生しました。 Filesystem sent error: %(errormsg)s"
 
 #: scripts/actions.py:529
-#, python-format
+#, fuzzy, python-format
 msgid "Failed to copy download file to export directory %s"
-msgstr ""
+msgstr "ディレクトリ %s へのダウンロード用ファイルのコピーに失敗しました"
 
 #: scripts/example-actions/mozlangpack.py:132
 msgid ""
 "Finished building the language pack, click on the download link to download "
 "it."
-msgstr ""
+msgstr "言語ファイルの生成が終了しました。ダウンロード をクリックして保存してください。"
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
@@ -2570,7 +2573,7 @@ msgstr "支援が必要な場合は、このエラーについて <strong>%(ref)
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "メインページ"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2621,7 +2624,7 @@ msgstr "デフォルト権限の管理"
 
 #: templates/admin_profile_menu.html:9
 msgid "Manage Static Pages"
-msgstr ""
+msgstr "静的ページの管理"
 
 #: templates/base.html:121
 msgid "skip to navigation"
@@ -2698,16 +2701,18 @@ msgstr "確認"
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
 msgid "Database Error"
-msgstr ""
+msgstr "データベースエラー"
 
 #: templates/db_error.html:14
 msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootleがデータベースに接続できません。\n"
+"データベースが未初期化か、スキーマのアップグレードが必要です。"
 
 #: templates/db_error.html:18
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "\n"
 "Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
@@ -2716,10 +2721,13 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"\n"
+"<a href=\"%(url)s\">Pootle ドキュメント</a> のインストールとアップグレード方法の項目を参照してください。\n"
+"サーバ側の不具合と思われる場合は、管理者におしらせください。"
 
 #: templates/db_error.html:24
 msgid "The reported error was:"
-msgstr ""
+msgstr "返されたエラー:"
 
 #: templates/language_menu.html:4
 msgid "Language main page"
@@ -2731,7 +2739,7 @@ msgstr "言語ニュース"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "この言語を翻訳する"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2739,7 +2747,7 @@ msgstr "言語の権限を管理します"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "メイン"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2899,7 +2907,7 @@ msgstr "前の文字列に移動 (Ctrl+↑)"
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
-msgstr ""
+msgstr "現在の文字列番号 (Ctrl+Shift+U)<br/><br/>番号を入力して Enter キーを押し<br/>任意の位置へ移動"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
@@ -2939,7 +2947,6 @@ msgid ""
 msgstr "ここでは、翻訳インターフェイスとあなたの言語に関する設定を行います。"
 
 #: templates/profiles/profile_detail.html:23
-#, fuzzy
 msgid "Contributions"
 msgstr "貢献者たち"
 
@@ -2953,7 +2960,7 @@ msgstr "留保中の提案"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "上書き済み"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."

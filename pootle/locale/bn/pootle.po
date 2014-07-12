@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2010-08-03 00:57+0200\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2014-04-20 04:55+0000\n"
+"Last-Translator: Hossain Al <hossainalikram@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1397969711.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -101,8 +102,9 @@ msgid "e-mail address"
 msgstr "ই-মেইল ঠিকানা"
 
 #: strings.py:36
+#, fuzzy
 msgid "active"
-msgstr ""
+msgstr "সক্রিয় কর"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
@@ -410,9 +412,8 @@ msgid "Dependency Checks"
 msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
-#, fuzzy
 msgid "Optional"
-msgstr "অপশন"
+msgstr "ঐচ্ছিক"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
@@ -471,7 +472,6 @@ msgstr ""
 
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
-#, fuzzy
 msgid "Register."
 msgstr "নিবন্ধন"
 
@@ -654,9 +654,8 @@ msgid "Active languages"
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:274
-#, fuzzy
 msgid "Translated strings"
-msgstr "আমার স্ট্রিংটি অনুবাদ কর"
+msgstr "অনুবাদ করা স্ট্রিং"
 
 #: apps/pootle_app/views/admin/dashboard.py:275
 msgid "Translated words"
@@ -741,7 +740,7 @@ msgstr ""
 #: apps/pootle_language/models.py:83
 #, fuzzy
 msgid "Special Characters"
-msgstr "(বিশেষ বর্ণসমূহ)"
+msgstr "বিশেষ অক্ষর"
 
 #: apps/pootle_language/models.py:86
 msgid ""
@@ -791,12 +790,10 @@ msgid "Name"
 msgstr "নাম"
 
 #: apps/pootle_misc/browser.py:35 templates/profiles/profile_detail.html:41
-#, fuzzy
 msgid "Project"
-msgstr "প্রোজেক্ট"
+msgstr "প্রকল্প"
 
 #: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
-#, fuzzy
 msgid "Language"
 msgstr "ভাষা"
 
@@ -882,7 +879,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:45
 msgid "E-mail"
-msgstr ""
+msgstr "ইমেইল"
 
 #: apps/pootle_misc/checks.py:46
 msgid "Ending punctuation"
@@ -925,8 +922,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:56
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "প্লুরাল এর সংখ্যা"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Don't translate words"
@@ -938,7 +936,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:59
 msgid "Options"
-msgstr ""
+msgstr "বিকল্পসমূহ"
 
 #: apps/pootle_misc/checks.py:60
 msgid "printf()"
@@ -1034,12 +1032,14 @@ msgid "Locations"
 msgstr "অবস্থান"
 
 #: apps/pootle_misc/forms.py:131
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "উৎস টেক্সট"
 
 #: apps/pootle_misc/forms.py:132
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "লক্ষ্যনীয় টেক্সট"
 
 #: apps/pootle_misc/forms.py:133
 msgid "Definitions"
@@ -1185,8 +1185,9 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/forms.py:52
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "সমস্ত প্রজেক্ট "
 
 #: apps/pootle_notifications/forms.py:56
 msgid "Project Selection"
@@ -1197,8 +1198,9 @@ msgid "Select one or more projects"
 msgstr ""
 
 #: apps/pootle_notifications/forms.py:68
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "সমস্ত ভাষা"
 
 #: apps/pootle_notifications/forms.py:72
 msgid "Language Selection"
@@ -1402,8 +1404,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:49
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "মন্তব্যসমূহ"
 
 #: apps/pootle_statistics/models.py:114
 msgid "anonymous user"
@@ -1596,16 +1599,19 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "এই প্রজেক্টের প্রসাশনিক কার্যক্রমে আমার অধিকার নেই।"
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "এই প্রজেক্টের প্রসাশনিক কার্যক্রমে আমার অধিকার নেই।"
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "মন্তব্যসমূহ"
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
@@ -1617,12 +1623,14 @@ msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "মন্তব্যসমূহ"
 
 #: apps/pootle_store/templates/unit/edit.html:47
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "অবস্থান"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Terminology:"
@@ -1686,7 +1694,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:181
@@ -1742,8 +1750,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:248
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "প্রস্তাবনা:"
 
 #: apps/pootle_store/templates/unit/edit.html:266
 msgid "Accept suggestion"
@@ -1768,8 +1777,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "মন্তব্যসমূহ"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -2305,8 +2315,9 @@ msgstr ""
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "সক্রিয় কর"
 
 #: apps/staticpages/models.py:38
 msgid "Whether this page is active or not."
@@ -2868,8 +2879,9 @@ msgid "Filter by:"
 msgstr ""
 
 #: templates/editor/_toolbar.html:18
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "প্রস্তাবনা:"
 
 #: templates/editor/_toolbar.html:19
 msgid "My submissions"

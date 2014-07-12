@@ -7,23 +7,23 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-04-09 19:30+0000\n"
+"PO-Revision-Date: 2014-05-17 14:37+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1365535833.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1400337458.000000\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Hamma tillar"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Barcha loyihalar"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -43,57 +43,57 @@ msgstr "Ushbu amalni orqaga qaytarib boʻlmaydi."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Teglarni ko‘rsatish"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:357
 msgid "Hide tags"
-msgstr ""
+msgstr "Teglarni yashirish"
 
 #: static/js/common.js:293 static/js/common.js.c:309
 msgid "Hide filtering"
-msgstr ""
+msgstr "Filterlashni yashirish"
 
 #: static/js/common.js:296 static/js/common.js.c:303
 msgid "Show filtering"
-msgstr ""
+msgstr "Filterlashni ko‘rsatish"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Keyingi qatorga o‘tish (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Oldingi qatorga o‘tish (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "%s's tavsiyalar jo‘natmoqda"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "%s's tavsiyalarni qabul qildi"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "%s's tavsiyalarni rad qildi"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "%s's tarjimalari"
 
 #. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "%s'ning almashtirilgan tarjimalari"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
@@ -101,7 +101,7 @@ msgstr "Natijalarsiz."
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "Eksport ko‘rinishida"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"
@@ -129,7 +129,7 @@ msgstr "Roʻyxatning oxiriga yetdingiz."
 
 #: static/js/editor.js:1372
 msgid "Return to the overview page."
-msgstr ""
+msgstr "Umumiy ko‘rinish sahifasiga qaytish."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -167,40 +167,35 @@ msgstr "Koʻrsatish"
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bir yil oldin%s yil oldin"
 
 #: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bir hafta oldin%s hafta oldin"
 
 #: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kecha%s kun oldin"
 
 #: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bir soat oldin%s soat oldin"
 
 #: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bir daqiqa oldin%s daqiqa oldin"
 
 #: static/js/utils.js:163
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Bir necha soniy oldin"
 
 #, c-format
 #~ msgid "<a href=\"%s\">String %s</a>"

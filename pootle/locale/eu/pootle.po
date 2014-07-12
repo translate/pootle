@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-11-13 11:01+0000\n"
+"PO-Revision-Date: 2014-02-25 14:40+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: eu\n"
@@ -15,9 +15,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1384340513.0\n"
+"X-POOTLE-MTIME: 1393339207.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -1780,8 +1780,8 @@ msgstr "Markatu kate hau lantzeke dagoela (Ktrl+Zuriunea)"
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "<a href=\"%(url)s\">%(reviewer)s</a> erabiltzaileak berrikusia"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "<a href=\"%(profile_url)s\">%(reviewer)s</a> erabiltzaileak berrikusia"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -2974,7 +2974,7 @@ msgstr ""
 "kudeaketa egiten laguntzeko web software ahaltsua. Komunitate-tresna hau "
 "Software Librea da eta nornahik erabil dezake, bai eta atzera ekarpenak egin "
 "ere. Irakurri gehiago <a href=\"http://pootle.translatehouse.org/\"><i class"
-"=\"icon-external-link\"> proiektuaren webgunean</a>."
+"=\"icon-external-link\"></i> proiektuaren webgunean</a>."
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-05-22 12:57+0000\n"
+"PO-Revision-Date: 2014-03-10 21:05+0000\n"
 "Last-Translator: Massimeddu <massimeddu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sc\n"
@@ -15,28 +15,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1369227422.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1394485538.000000\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Totus is Limbas"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Totus is Progetos"
 
 #: static/js/common.js:62
 msgid "Expand details"
-msgstr ""
+msgstr "Ammustra prus informatziones"
 
 #: static/js/common.js:62
 msgid "Collapse details"
-msgstr ""
+msgstr "Cua is informatziones"
 
 #: static/js/common.js:91
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "Seguru ses de bòlere sighire?"
 
 #: static/js/common.js:92
 msgid "This operation cannot be undone."

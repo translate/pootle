@@ -7,17 +7,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2012-03-29 07:08+0000\n"
-"Last-Translator: Jihui <jihui.choi@gmail.com>\n"
+"PO-Revision-Date: 2013-02-08 00:05+0000\n"
+"Last-Translator: chozekun <chozekun@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1333004908.0\n"
+"X-POOTLE-MTIME: 1360281940.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -896,8 +896,9 @@ msgid "Repeated word"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:45
+#, fuzzy
 msgid "E-mail"
-msgstr ""
+msgstr "전자메일"
 
 #: apps/pootle_misc/checks.py:46
 msgid "Ending punctuation"
@@ -940,8 +941,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:56
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "복수형의 수"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Don't translate words"
@@ -952,8 +954,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:59
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "선택사항"
 
 #: apps/pootle_misc/checks.py:60
 msgid "printf()"
@@ -1049,12 +1052,14 @@ msgid "Locations"
 msgstr "위치"
 
 #: apps/pootle_misc/forms.py:131
+#, fuzzy
 msgid "Source Terms"
-msgstr ""
+msgstr "원본 텍스트"
 
 #: apps/pootle_misc/forms.py:132
+#, fuzzy
 msgid "Target Terms"
-msgstr ""
+msgstr "타겟 텍스트"
 
 #: apps/pootle_misc/forms.py:133
 msgid "Definitions"
@@ -1108,8 +1113,9 @@ msgid_plural "Next most important goal (%(num)d words left)"
 msgstr[0] ""
 
 #: apps/pootle_misc/stats.py:249
+#, fuzzy
 msgid "Translation is complete"
-msgstr ""
+msgstr "번역 완료"
 
 #: apps/pootle_misc/stats.py:260
 #, python-format
@@ -1148,9 +1154,9 @@ msgid_plural "%d words need review"
 msgstr[0] "리뷰 필요: %d 개 단어"
 
 #: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
+#, fuzzy, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percentage)d%% 완료"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/templates/search.html:5 core/helpers.py:59
@@ -1189,8 +1195,9 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/forms.py:52
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "모든 프로젝트"
 
 #: apps/pootle_notifications/forms.py:56
 msgid "Project Selection"
@@ -1201,8 +1208,9 @@ msgid "Select one or more projects"
 msgstr ""
 
 #: apps/pootle_notifications/forms.py:68
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "모든 언어"
 
 #: apps/pootle_notifications/forms.py:72
 msgid "Language Selection"
@@ -1405,8 +1413,9 @@ msgid "State"
 msgstr ""
 
 #: apps/pootle_statistics/models.py:49
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "주석"
 
 #: apps/pootle_statistics/models.py:114
 msgid "anonymous user"
@@ -1598,16 +1607,19 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "%s를 관리할 권한이 없습니다."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "%s를 관리할 권한이 없습니다."
 
 #: apps/pootle_store/templates/unit/comment.html:12
+#, fuzzy
 msgid "Comment:"
-msgstr ""
+msgstr "주석"
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
@@ -1619,16 +1631,19 @@ msgid "Context:"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:32
+#, fuzzy
 msgid "Comments:"
-msgstr ""
+msgstr "주석"
 
 #: apps/pootle_store/templates/unit/edit.html:47
+#, fuzzy
 msgid "Locations:"
-msgstr ""
+msgstr "위치"
 
 #: apps/pootle_store/templates/unit/edit.html:56
+#, fuzzy
 msgid "Terminology:"
-msgstr ""
+msgstr "용어 정의"
 
 #: apps/pootle_store/templates/unit/edit.html:58
 msgid "Insert the translated term into the editor"
@@ -1639,8 +1654,9 @@ msgid "Possible issues with the translation"
 msgstr "번역문의 잠재적 문제"
 
 #: apps/pootle_store/templates/unit/edit.html:71
+#, fuzzy
 msgid "Failing checks:"
-msgstr ""
+msgstr "자동 검토 문제제기"
 
 #: apps/pootle_store/templates/unit/edit.html:77
 msgid "Remove quality check"
@@ -1688,7 +1704,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:181
@@ -1744,8 +1760,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:248
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "제안 보기"
 
 #: apps/pootle_store/templates/unit/edit.html:266
 msgid "Accept suggestion"
@@ -1768,8 +1785,9 @@ msgid "Vote for this suggestion"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
+#, fuzzy
 msgid "Comment: "
-msgstr ""
+msgstr "주석"
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
@@ -1986,13 +2004,15 @@ msgstr "VCS로 내려받기"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:166
+#, fuzzy
 msgid "Update all from VCS"
-msgstr ""
+msgstr "VCS로부터 업데이트"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
 #: apps/pootle_translationproject/actions.py:182
+#, fuzzy
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "VCS로 내려받기"
 
 #: apps/pootle_translationproject/actions.py:195
 msgid "Rescan project files"
@@ -2202,8 +2222,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "프로젝트 관리"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2301,8 +2322,9 @@ msgstr ""
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "활성"
 
 #: apps/staticpages/models.py:38
 msgid "Whether this page is active or not."
@@ -2658,8 +2680,9 @@ msgstr "서버 정보"
 
 #: templates/base.html:201 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "기여자"
 
 #: templates/captcha-xhr.html:8 templates/captcha.html:4
 #: templates/captcha.html.py:7
@@ -2759,8 +2782,9 @@ msgid "Translation project news"
 msgstr "번역 프로젝트 소식"
 
 #: templates/tp_menu.html:8
+#, fuzzy
 msgid "Manage terminology"
-msgstr ""
+msgstr "용어 관리"
 
 #: templates/tp_menu.html:8
 msgid "Terminology"
@@ -2858,8 +2882,9 @@ msgid "Filter by:"
 msgstr ""
 
 #: templates/editor/_toolbar.html:18
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "제안"
 
 #: templates/editor/_toolbar.html:19
 msgid "My submissions"
@@ -2920,8 +2945,9 @@ msgid ""
 msgstr "여기서 언어 및 인터페이스 관련 설정을 할 수 있습니다."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "기여자"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3024,8 +3050,9 @@ msgid ""
 msgstr ""
 
 #: templates/registration/password_change_form.html:21
+#, fuzzy
 msgid "Old password"
-msgstr ""
+msgstr "새 비밀번호"
 
 #: templates/registration/password_change_form.html:26
 #, fuzzy

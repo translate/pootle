@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2014-01-24 04:10+0000\n"
-"Last-Translator: wwycheuk <wwycheuk@gmail.com>\n"
+"PO-Revision-Date: 2014-03-03 15:01+0000\n"
+"Last-Translator: df910105 <df910105@yahoo.com.tw>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1390536604.000000\n"
+"X-POOTLE-MTIME: 1393858895.000000\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
@@ -52,49 +52,49 @@ msgstr "隱藏標記"
 
 #: static/js/common.js:293 static/js/common.js.c:309
 msgid "Hide filtering"
-msgstr ""
+msgstr "隱藏過濾器"
 
 #: static/js/common.js:296 static/js/common.js.c:303
 msgid "Show filtering"
-msgstr ""
+msgstr "顯示過濾器"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "轉到下一字符串(Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "轉到上一字符串(Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "%s的建議待處理"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "%s的建議核准"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "%s的建議駁回"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "%s的提交"
 
 #. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "%s被覆蓋的提交"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
@@ -102,7 +102,7 @@ msgstr "無結果。"
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "匯出視圖"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"

@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2014-01-22 07:44+0000\n"
-"Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
+"PO-Revision-Date: 2014-02-14 09:49+0000\n"
+"Last-Translator: selim <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -17,13 +17,14 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1390376643.000000\n"
+"X-POOTLE-MTIME: 1392371388.000000\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 msgstr ""
-"Birden fazla seçmek için \"Ctrl\" veya Mac'deki \"Command\" tuşuna basılı tutun."
+"Birden fazla seçmek için \"Ctrl\" veya Mac'teki \"Command\" tuşuna basılı "
+"tutun."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
@@ -71,15 +72,15 @@ msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
-"Lütfen doğru bir kullanıcı adı ve parola girin. Unutmayın her iki alanda "
-"büyük küçük harfe duyarlıdır."
+"Lütfen doğru bir kullanıcı adı ve parola girin. Her iki alanın da büyük-"
+"küçük harfe duyarlı olduğunu unutmayın."
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr "%s tarihinde parola sıfırlama"
+msgstr "%s parola sıfırlama"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -98,15 +99,15 @@ msgstr "Sitede görüntüle"
 
 #: strings.py:33
 msgid "first name"
-msgstr "Ad"
+msgstr "ad"
 
 #: strings.py:34
 msgid "last name"
-msgstr "Soyad"
+msgstr "soyadı"
 
 #: strings.py:35
 msgid "e-mail address"
-msgstr "E-posta adresi"
+msgstr "e-posta adresi"
 
 #: strings.py:36
 msgid "active"
@@ -116,7 +117,7 @@ msgstr "aktif"
 #. needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:40
 msgid "superuser status"
-msgstr "Süper kullanıcı durumu"
+msgstr "süper kullanıcı durumu"
 
 #. Translators: The language from which translation will happen
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:47
@@ -164,7 +165,7 @@ msgstr "Adınız"
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr "Eposta adresiniz"
+msgstr "E-posta adresiniz"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
@@ -421,7 +422,7 @@ msgstr "Pootle belgeleri"
 
 #: apps/pootle_app/templates/admin/dashboard.html:46
 msgid "The Pootle mailing list"
-msgstr "Pootle postalama listesi"
+msgstr "Pootle e-posta listesi"
 
 #: apps/pootle_app/templates/admin/dashboard.html:47
 msgid "(commercial support)"
@@ -493,7 +494,7 @@ msgstr "Henüz hesabınız yok mu?"
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
 msgid "Register."
-msgstr "Kayıt Olun."
+msgstr "Kaydolun."
 
 #: apps/pootle_app/views/admin/adminprojects.py:90
 #: apps/pootle_project/models.py:221
@@ -1762,8 +1763,8 @@ msgstr "Bu satırı daha fazla çalışmak gerekiyor olarak işaretle (Ctrl+Boş
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "<a href=\"%(url)s\">%(reviewer)s</a> tarafından gözden geçirildi"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "<a href=\"%(profile_url)s\">%(reviewer)s</a> tarafından gözden geçirildi"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"

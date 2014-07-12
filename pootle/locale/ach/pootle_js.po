@@ -7,40 +7,41 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-01-21 09:11+0000\n"
-"Last-Translator: George Patrick <chanchumgpa@gmail.com>\n"
+"PO-Revision-Date: 2014-07-15 14:36+0000\n"
+"Last-Translator: Shariful14 <rony.crony@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ach\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1358759487.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1405435003.000000\n"
 
+# all
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "11"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Si todavía no reservó su"
 
 #: static/js/common.js:62
 msgid "Expand details"
-msgstr "Nyaa lok kome"
+msgstr "haalde"
 
 #: static/js/common.js:62
 msgid "Collapse details"
-msgstr ""
+msgstr "Wirnu paccire"
 
 #: static/js/common.js:91
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "Ko goonga e maa aɗa yiɗi jokkude ?"
 
 #: static/js/common.js:92
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "Tic ma eni ni pe kitwero weko labongo timo ne."
 
 #: static/js/common.js:139
 msgid "Show tags"
