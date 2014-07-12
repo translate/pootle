@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-06-13 15:59+0000\n"
+"PO-Revision-Date: 2014-02-13 13:58+0000\n"
 "Last-Translator: Jojoo <jojoo.imbeah@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ak\n"
@@ -15,9 +15,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1371139192.0\n"
+"X-POOTLE-MTIME: 1392299905.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -867,7 +867,7 @@ msgstr "Total"
 
 #: apps/pootle_misc/browser.py:64
 msgid "Need Translation"
-msgstr ""
+msgstr "Hia asekyerɛ"
 
 #: apps/pootle_misc/browser.py:75
 msgid "Last Activity"
@@ -1187,8 +1187,8 @@ msgstr[1] "%d nkasafua hia wo adwen"
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] "%d nnkyerɛɛ kasafua"
-msgstr[1] "%d nnkyerɛɛ nkasafua"
+msgstr[0] "nnkyerɛɛ kasafua %d ase"
+msgstr[1] "nnkyerɛɛ akasafua %d ase"
 
 #: apps/pootle_misc/stats.py:310
 #, python-format
@@ -1656,12 +1656,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Woo nni tumi sɛ wo bɛdi panin wɔ %s so."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Woo nni tumi sɛ wo bɛdi panin wɔ %s so."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 #, fuzzy
@@ -1751,7 +1753,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:181
@@ -2066,7 +2068,7 @@ msgstr "Kyerɛw kɔ VCS"
 
 #: apps/pootle_translationproject/actions.py:195
 msgid "Rescan project files"
-msgstr "San skaane dwumadi yi ne mfael nyinara"
+msgstr "San skan dwumadi yi ne mfael nyinara"
 
 #: apps/pootle_translationproject/actions.py:226
 msgid "Delete this folder..."
@@ -2173,7 +2175,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/views.py:100
 msgid "Translation project files have been rescanned."
-msgstr ""
+msgstr "Wɔasan askan asekyerɛ dwumadi no ne mfael nyinara."
 
 #: apps/pootle_translationproject/views.py:105
 msgid "Error while rescanning translation project files."
@@ -2273,8 +2275,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Di panindwuma wɔ wo nkɔsodwuma so"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2758,7 +2761,7 @@ msgstr "Meserɛwo yi asɛnfua yi ano:"
 
 #: templates/captcha-xhr.html:14
 msgid "Confirm"
-msgstr "Gye tom"
+msgstr "Foa-so"
 
 #: templates/db_error.html:4 templates/db_error.html.py:7
 #: templates/db_error.html:12
@@ -3005,8 +3008,9 @@ msgstr ""
 "Wo betumi ayɛ nhyehyɛe fa wo asekyerɛ intafes anaaso wo kasa apɛde wɔ ha."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Aboafo Titiriw"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

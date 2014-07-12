@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2010-07-02 14:23+0200\n"
-"Last-Translator: admin <>\n"
+"PO-Revision-Date: 2014-01-28 17:13+0000\n"
+"Last-Translator: Hrant <hrant@freenet.am>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1390929229.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -338,7 +339,7 @@ msgstr ""
 #: apps/pootle_project/templates/project/projects.html:15
 #: templates/admin_profile_menu.html:7 templates/project_base.html:5
 msgid "Projects"
-msgstr "Պրոյեկտներ"
+msgstr "Նախագծեր"
 
 #: apps/pootle_app/templates/admin/admin_general_projects.html:12
 msgid ""
@@ -454,7 +455,7 @@ msgstr ""
 #: apps/pootle_app/templates/index/login.html:7
 #: apps/pootle_app/templates/index/login.html:23
 msgid "Login"
-msgstr "Կոչական"
+msgstr "Մուտք"
 
 #: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
@@ -489,7 +490,7 @@ msgstr ""
 #: templates/user_profile_menu.html:7
 #: templates/registration/registration_form.html:30
 msgid "Password"
-msgstr "Ծածկագիր"
+msgstr "Գաղտնաբառ"
 
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
@@ -730,7 +731,7 @@ msgstr ""
 
 #: apps/pootle_language/models.py:73 apps/pootle_project/models.py:66
 msgid "Full Name"
-msgstr "Լրիվ անուն"
+msgstr "Անուն, ազգանուն"
 
 #: apps/pootle_language/models.py:75
 #, python-format
@@ -928,8 +929,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:56
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "Հոգնակիների թիվ"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Don't translate words"
@@ -940,8 +942,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:59
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Օպցիաներ"
 
 #: apps/pootle_misc/checks.py:60
 msgid "printf()"
@@ -1177,8 +1180,9 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/forms.py:52
+#, fuzzy
 msgid "All Projects"
-msgstr ""
+msgstr "Բոլոր պրոյեկտները"
 
 #: apps/pootle_notifications/forms.py:56
 msgid "Project Selection"
@@ -1189,8 +1193,9 @@ msgid "Select one or more projects"
 msgstr ""
 
 #: apps/pootle_notifications/forms.py:68
+#, fuzzy
 msgid "All Languages"
-msgstr ""
+msgstr "Բոլոր լեզուները"
 
 #: apps/pootle_notifications/forms.py:72
 msgid "Language Selection"
@@ -1588,12 +1593,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Դուք այս պրոյեկտի կառավարման իրավունքներ չունեք։"
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Դուք այս պրոյեկտի կառավարման իրավունքներ չունեք։"
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1678,7 +1685,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:181
@@ -1734,8 +1741,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:248
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "Առաջարկ՝"
 
 #: apps/pootle_store/templates/unit/edit.html:266
 msgid "Accept suggestion"
@@ -2859,8 +2867,9 @@ msgid "Filter by:"
 msgstr ""
 
 #: templates/editor/_toolbar.html:18
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "Առաջարկ՝"
 
 #: templates/editor/_toolbar.html:19
 msgid "My submissions"

@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2014-01-24 10:12+0000\n"
-"Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
+"PO-Revision-Date: 2014-07-17 08:52+0000\n"
+"Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1390558325.000000\n"
+"X-POOTLE-MTIME: 1405587142.000000\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr "按住\"Control\"键，或 Mac 的\"Command\"键，可以选择多个项目。"
+msgstr "按住 \"Control\"键，或 Mac 的 \"Command\" 键，可以选择多个项目。"
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
@@ -31,7 +31,7 @@ msgstr "请输入一个有效的电子邮件地址。"
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
-msgstr "这个电子邮件地址无相关的用户帐号。您确信已经注册了吗？"
+msgstr "这个电子邮件地址没有相关联的用户帐号。您确信已经注册了吗？"
 
 #: strings.py:11
 msgid "This field is required."
@@ -90,11 +90,11 @@ msgstr "在站点上查看"
 
 #: strings.py:33
 msgid "first name"
-msgstr "名"
+msgstr "名字"
 
 #: strings.py:34
 msgid "last name"
-msgstr "姓"
+msgstr "姓氏"
 
 #: strings.py:35
 msgid "e-mail address"
@@ -203,7 +203,7 @@ msgstr "标题"
 
 #: apps/pootle_app/forms.py:31
 msgid "The name for this Pootle server"
-msgstr "本 Pootle 服务器的名字"
+msgstr "本 Pootle 服务器的名称"
 
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
@@ -211,7 +211,7 @@ msgstr "本 Pootle 服务器的名字"
 #: apps/pootle_tagging/models.py:69
 #: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
-msgstr "介绍"
+msgstr "描述"
 
 #: apps/pootle_app/forms.py:38
 msgid ""
@@ -251,7 +251,7 @@ msgstr "审阅"
 #: apps/pootle_app/templates/admin/dashboard.html:19 core/helpers.py:61
 #: templates/profiles/profile_detail.html:45
 msgid "Submissions"
-msgstr "已提交项目"
+msgstr "提交"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
@@ -309,7 +309,7 @@ msgstr "权限"
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
-msgstr "您可以在这个 Pootle 服务器上增加、编辑和删除缺省权限。"
+msgstr "您可以在这个 Pootle 服务器上增加、编辑和删除默认权限。"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:16
 #: apps/pootle_language/templates/language/language_admin.html:13
@@ -321,8 +321,8 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"“nobody”帐户表示那些没有登录的用户（一个匿名、未定义的用户）。“default”帐户表示所有登录的用户都缺省拥有的权限，除非他们被指派有其他特定"
-"权限。"
+"\"nobody\" 帐户表示没有登录的用户(匿名、未定义的用户)。\"default\" "
+"帐户表示所有登录的用户都默认拥有的权限，除非他们被指派有其他特定权限。"
 
 #: apps/pootle_app/templates/admin/admin_general_projects.html:4
 #: apps/pootle_app/templates/admin/admin_general_projects.html:9
@@ -403,7 +403,7 @@ msgstr "Pootle 邮件列表"
 
 #: apps/pootle_app/templates/admin/dashboard.html:47
 msgid "(commercial support)"
-msgstr "（商业支持）"
+msgstr "(商业支持)"
 
 #: apps/pootle_app/templates/admin/dashboard.html:55
 msgid "Dependency Checks"
@@ -477,7 +477,7 @@ msgstr "注册。"
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr "“%s”不能用作项目代码"
+msgstr "\"%s\" 不能用作项目代码"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -568,12 +568,12 @@ msgstr "MARKUP_FILTER 配置错误。将退回 HTML。"
 msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
-msgstr "无法找到提供“%s”标记支持的包。将退回 HTML。"
+msgstr "无法找到提供 '%s' 标记支持的包。将退回 HTML。"
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr "MARKUP_FILTER 中的值“%s”无效。将退回 HTML。"
+msgstr "MARKUP_FILTER 中的值 '%s' 无效。将退回 HTML。"
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -621,7 +621,7 @@ msgstr "为优化性能，使用 Apache 作为 web 服务器。"
 msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
-msgstr "用于发送注册邮件的“来自”地址尚未指定。同时请检查邮件服务器设置。"
+msgstr "用于发送注册邮件的 \"发件人\" 地址尚未指定。同时请检查邮件服务器设置。"
 
 #: apps/pootle_app/views/admin/dashboard.py:211
 msgid ""
@@ -1428,7 +1428,7 @@ msgstr "%(user)s 已提交对字符串 <i><a href=\"%(url)s\">%(source)s</a></i>
 msgid ""
 "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
 "\">%(source)s</a></i>"
-msgstr "%(user)s 已提交对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> “尚需工作”的翻译"
+msgstr "%(user)s 已提交对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> \"尚需工作\" 的翻译"
 
 #: apps/pootle_statistics/models.py:179
 #, python-format
@@ -1592,7 +1592,7 @@ msgstr "您没有添加标签的权限。"
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
-msgstr "注释:"
+msgstr "注释："
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
@@ -1673,8 +1673,8 @@ msgstr "将此字符串标记为尚需完善(Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "经 <a href=\"%(url)s\">%(reviewer)s</a> 审核"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "经 <a href=\"%(profile_url)s\">%(reviewer)s</a> 审核"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -1797,18 +1797,18 @@ msgid ""
 "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 "underscores (_), slashes (/) or periods (.)!"
 msgstr ""
-"标签名必须是一个小写字母和数字组成的字符串，并且不能以如下字符开始或结束（但可以在中间）：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号"
-"(.)！ "
+"标签名必须是一个小写字母和数字组成的字符串，并且不能以如下字符开始或结束(但可以在中间)：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号"
+"(.)！"
 
 #: apps/pootle_tagging/forms.py:74
 msgid ""
 "Name cannot contain just after 'goal:' any of these characters: spaces, "
 "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
-msgstr "在'goal:'之后的名称不能包含任何如下字符：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号(.)"
+msgstr "在 'goal:' 之后的名称不能包含任何如下字符：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号(.)"
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr "已经存在使用该名称的目标，请挑选一个新名称。"
+msgstr "已经存在使用该名称的目标。请挑选一个新名称。"
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1816,6 +1816,7 @@ msgid ""
 "single or multiple occurrences of the following characters: spaces, colons "
 "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"标记缩略名必须与标记相同，同时应用连字符替换如下一次或多次出现的字符：空格，冒号 (:)，连字符(-)，下划线(_)，反斜线(/)或句号 (.)！"
 
 #: apps/pootle_tagging/forms.py:180
 msgid "A goal with this slug already exists."
@@ -1832,7 +1833,7 @@ msgstr "警告：改变名字的同时也会改变缩略名，所以将无法在
 msgid ""
 "A description of this goal. This is useful to give more information or "
 "instructions. Allowed markup: %s"
-msgstr "一个关于这个目标的描述。这对于提供更多的信息和介绍是有用的。允许的。允许的名字：%s"
+msgstr "一个关于这个目标的描述。这对于提供更多的信息和介绍是有用的。允许的名字：%s"
 
 #: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
@@ -1842,7 +1843,7 @@ msgstr "该目标的优先级。"
 msgid ""
 "Designates that this is a project goal (shared across all languages in the "
 "project)."
-msgstr ""
+msgstr "指定本项为一个项目目标(在项目的全部语言里共享)。"
 
 #: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
@@ -1850,7 +1851,7 @@ msgstr "项目目标？"
 
 #: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr "（项目目标）"
+msgstr "(项目目标)"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2024,7 +2025,7 @@ msgstr "上传至"
 msgid ""
 "Optionally select the file you want to merge with. If not specified, the "
 "uploaded file's name is used."
-msgstr "选择要合并的文件(可选)。若不指定，将使用上传文件的文件名。"
+msgstr "选择要合并的文件。若不指定，将使用上传文件的文件名。"
 
 #: apps/pootle_translationproject/models.py:103
 #, python-format
@@ -2129,12 +2130,12 @@ msgstr "删除文件时出错。"
 #: apps/pootle_translationproject/views.py:373
 #, python-format
 msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr "无法在'%(extdir)s'里找到'%(action)s'"
+msgstr "无法在 '%(extdir)s' 里找到 '%(action)s'"
 
 #: apps/pootle_translationproject/views.py:400
 #, python-format
 msgid "Error while running '%s' extension action"
-msgstr ""
+msgstr "在运行 '%s' 扩展动作时出错"
 
 #: apps/pootle_translationproject/views.py:820
 #, python-format
@@ -2690,6 +2691,10 @@ msgid ""
 "is\n"
 "a mistake."
 msgstr ""
+"\n"
+"请您阅读 <a href=\"%(url)s\">Pootle 文档</a> 以获取安装\n"
+"和升级介绍。若您觉得有错误请联络\n"
+"服务器管理员。"
 
 #: templates/db_error.html:24
 msgid "The reported error was:"
@@ -2713,7 +2718,7 @@ msgstr "管理您的语言权限"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr "主要"
+msgstr "主页"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2807,7 +2812,7 @@ msgid ""
 msgstr ""
 "本站运行 Pootle &mdash; 强大的团队协同翻译及翻译管理网络软件。该社区工具为自由软件，任何团队均可使用它并向 Pootle "
 "社区作贡献。更多信息，见 <a href=\"http://pootle.translatehouse.org/\"><i class=\"icon-"
-"external-link\"></i> 项目网站</a>."
+"external-link\"></i> 项目网站</a>。"
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"
@@ -2834,7 +2839,7 @@ msgstr "感谢您的反馈。"
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
-msgstr "%(name)s 的消息"
+msgstr " %(name)s 的消息"
 
 #: templates/editor/_editor.html:5
 msgid "Pootle's editor requires JavaScript"
@@ -2872,7 +2877,7 @@ msgstr "转到上一字符串(Ctrl+↑)"
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
-msgstr ""
+msgstr "当前字符串编号 (Ctrl+Shift+U)<br/><br/>请输入编号并按下回车键<br/>以到达任意位置"
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"

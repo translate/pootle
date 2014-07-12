@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-03-29 19:35+0000\n"
+"PO-Revision-Date: 2014-05-27 17:47+0000\n"
 "Last-Translator: dushku <nandidushku@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sq\n"
@@ -15,86 +15,86 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1364585730.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1401212862.000000\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Të gjitha gjuhët"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Të gjitha projektet"
 
 #: static/js/common.js:62
 msgid "Expand details"
-msgstr "Shtjello detajet"
+msgstr "Trego detajet"
 
 #: static/js/common.js:62
 msgid "Collapse details"
-msgstr "Kthe papra detajet"
+msgstr "Përmblidh detajet"
 
 #: static/js/common.js:91
 msgid "Are you sure you want to continue?"
-msgstr "Je i sigurtë që do të vazhdoni?"
+msgstr "Jeni i sigurtë që doni të vazhdoni?"
 
 #: static/js/common.js:92
 msgid "This operation cannot be undone."
-msgstr "Ky veprim nuk mund c`behet."
+msgstr "Ky veprim nuk mund të ç`bëhet."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Shfaq tags"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:357
 msgid "Hide tags"
-msgstr ""
+msgstr "Fshih tags"
 
 #: static/js/common.js:293 static/js/common.js.c:309
 msgid "Hide filtering"
-msgstr ""
+msgstr "Fshih filtrimin"
 
 #: static/js/common.js:296 static/js/common.js.c:303
 msgid "Show filtering"
-msgstr ""
+msgstr "Shfaq filtrimin"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Shko tek Stringë tjetër (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Shko tek Stringë i mëparshëm (Ctrl+,)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "%s është një sygjerim i lënë pezull"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "%s është një sygjerim i pranuar"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "%s është një sygjerim i refuzuar"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "%s është i aplikuar"
 
 #. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
 #: static/js/editor.js:345
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "%s është aplikim i mbishkruar"
 
 #: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
@@ -102,19 +102,19 @@ msgstr "Asnjë rezultat."
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "Eksporto të shikuarat"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"
-msgstr "Gabim kur lidhemi ne serverin"
+msgstr "Error gjatë lidhjes me serverin"
 
 #: static/js/editor.js:800
 msgid "Server error"
-msgstr "Gabim i serverit"
+msgstr "Server Error"
 
 #: static/js/editor.js:802
 msgid "The server seems down. Try again later."
-msgstr "Ky server duket i fikur. Provo me vone."
+msgstr "Ky server duket i fikur. Provo më vonë."
 
 #: static/js/editor.js:809
 msgid "Unknown error"
@@ -122,15 +122,15 @@ msgstr "Gabim i panjohur"
 
 #: static/js/editor.js:1367
 msgid "You reached the beginning of the list"
-msgstr "Ju aritet ne fillimin e listes"
+msgstr "Ju arritët në fillimin e listës"
 
 #: static/js/editor.js:1370
 msgid "You reached the end of the list."
-msgstr "Ju aritet ne fund te listes."
+msgstr "Ju arritët në fundin e listës."
 
 #: static/js/editor.js:1372
 msgid "Return to the overview page."
-msgstr "Ktheu prapa te rishikoni faqen."
+msgstr "Kthehu prapa tek rishikimi i faqes."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
@@ -142,17 +142,17 @@ msgstr "%s% përputhet"
 
 #: static/js/editor.js:1851
 msgid "Similar translations"
-msgstr "Perkthim i ngjashem"
+msgstr "Përkthim i ngjashëm"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr "Me shume"
+msgstr "Më shumë"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr "Fshehe"
+msgstr "Fshih"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
@@ -169,21 +169,21 @@ msgstr "Shfaq"
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Nje vit më parë "
-msgstr[1] "%s vite me pare"
+msgstr[1] "%s vite më parë"
 
 #: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Nje javë më parë "
-msgstr[1] "%s javë me parë"
+msgstr[0] "Një javë më parë "
+msgstr[1] "%s javë më parë"
 
 #: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Dje"
-msgstr[1] "%s ditë me parë"
+msgstr[1] "%s ditë më parë"
 
 #: static/js/utils.js:152
 #, c-format
@@ -196,12 +196,12 @@ msgstr[1] "%s orë më parë"
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Nje minutë më parë"
+msgstr[0] "Një minutë më parë"
 msgstr[1] "%s minutë më parë"
 
 #: static/js/utils.js:163
 msgid "A few seconds ago"
-msgstr "Disa sekonga më parë"
+msgstr "Disa sekonda më parë"
 
 #, c-format
 #~ msgid "<a href=\"%s\">String %s</a>"

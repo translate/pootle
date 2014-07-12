@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-12-25 17:06+0000\n"
-"Last-Translator: Manuela <manuela.silva@sky.com>\n"
+"PO-Revision-Date: 2014-06-01 14:07+0000\n"
+"Last-Translator: smarquespt <smarquespt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1387991174.000000\n"
+"X-POOTLE-MTIME: 1401631644.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -45,7 +45,7 @@ msgstr "Este campo é obrigatório."
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
-"Certifique-se se este valor tem no máximo %(max)d carateres (este tem "
+"Certifique-se que este valor tem no máximo %(max)d caracteres (este tem "
 "%(length)d)."
 
 #: strings.py:13
@@ -72,7 +72,7 @@ msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
-"Por favor, insira um nome de utilizador e senha corretos. Note que ambos os "
+"Por favor insira um nome de utilizador e senha corretos. Note que ambos os "
 "campos são sensíveis a maiúsculas e minúsculas."
 
 #. Translators: Email subject line. The variable is the server name shown
@@ -500,7 +500,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
-msgstr "Esqueceu-se da sua senha?"
+msgstr "Esqueceu-se da senha?"
 
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
@@ -1174,9 +1174,9 @@ msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
 msgstr[0] ""
-"Esta ficheiro tem %(num)d palavra, em que %(percentage)d%% está traduzido."
+"Este ficheiro tem %(num)d palavra, em que %(percentage)d%% está traduzido."
 msgstr[1] ""
-"Esta ficheiro tem %(num)d palavras, em que %(percentage)d%% está traduzido."
+"Este ficheiro tem %(num)d palavras, em que %(percentage)d%% está traduzido."
 
 #: apps/pootle_misc/stats.py:206
 msgid "Expand details"
@@ -1803,8 +1803,8 @@ msgstr "Marcar esta frase como \"Deve ser revista\" (Ctrl+Espaço)"
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "revisto por <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "revisto por <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -3331,8 +3331,8 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"Esqueceu-se da sua senha? Introduza o seu endereço eletrónico para que "
-"possamos enviar uma mensagem com as instruções de redefinição de senhas."
+"Esqueceu-se da senha? Introduza o seu endereço eletrónico para que possamos "
+"enviar uma mensagem com as instruções de redefinição de senhas."
 
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25
