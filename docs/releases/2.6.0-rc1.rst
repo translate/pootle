@@ -2,6 +2,8 @@
 Welcome to the new Pootle 2.6.0-rc1
 ===================================
 
+*Released on 11 July 2014*
+
 For those who can't wait you might be interested to know what we've got planned
 on our :ref:`roadmap <roadmap>`.
 
