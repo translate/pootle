@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2014-01-17 04:01+0000\n"
-"Last-Translator: wwycheuk <wwycheuk@gmail.com>\n"
+"PO-Revision-Date: 2014-03-04 07:16+0000\n"
+"Last-Translator: df910105 <df910105@yahoo.com.tw>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1389931309.000000\n"
+"X-POOTLE-MTIME: 1393917374.000000\n"
 
 # PC鍵盤上顯示的是「Ctrl」，所以將原文Control改成Ctrl。
 #: strings.py:8
@@ -269,7 +269,7 @@ msgstr "已翻譯"
 #: apps/pootle_store/util.py:47 core/helpers.py:56
 #: templates/editor/_toolbar.html:16
 msgid "Needs work"
-msgstr "尚需完善"
+msgstr "尚需改善"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:159 apps/pootle_store/util.py:46
@@ -478,7 +478,7 @@ msgstr "註冊"
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "“%s”不能用於專案代碼"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -670,15 +670,15 @@ msgstr "活動中的使用者"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "翻譯專案貢獻者"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "專案貢獻者"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "語言貢獻者"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -692,7 +692,7 @@ msgstr "使用者名稱"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "選擇一項或多項權限"
 
 #: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
@@ -805,7 +805,7 @@ msgstr "語系"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
-msgstr ""
+msgstr "優先權"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1017,7 +1017,7 @@ msgstr "搜索(Ctrl+Shift+S)<br/>鍵入並按 Enter 鍵進行搜索"
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "完全符合"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1186,7 +1186,7 @@ msgstr "選擇專案"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "選擇一個或多個專案"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1198,7 +1198,7 @@ msgstr "選擇語言"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "選擇一種或多種語言"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1344,11 +1344,11 @@ msgstr "以下您有能為這個專案新增、編輯和刪除的權限。"
 #: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "顯示標籤"
 
 #: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
-msgstr ""
+msgstr "顯示過濾器"
 
 #: apps/pootle_project/templates/project/overview.html:33
 msgid "Filter using one or more tags"
@@ -1357,7 +1357,7 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "過濾"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
@@ -1368,7 +1368,7 @@ msgstr ""
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "新增標籤"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1417,7 +1417,7 @@ msgstr ""
 #: apps/pootle_statistics/models.py:158
 #, python-format
 msgid "%(user)s uploaded a file"
-msgstr ""
+msgstr "%(user)s上傳一個檔案"
 
 #: apps/pootle_statistics/models.py:173
 #, python-format
@@ -1450,7 +1450,7 @@ msgstr ""
 
 #: apps/pootle_store/decorators.py:147
 msgid "File does not exist."
-msgstr ""
+msgstr "檔案不存在。"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1538,7 +1538,6 @@ msgstr "路徑"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:121
-#, fuzzy
 msgid "Tags"
 msgstr "標籤"
 
@@ -1551,7 +1550,7 @@ msgstr ""
 #: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "目標"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:128
@@ -1587,23 +1586,21 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "建議或投票已不再有效。"
 
 #: apps/pootle_store/views.py:1096
-#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr "您沒有管理 %s 的權限。"
+msgstr "您沒有移除標籤的權限。"
 
 #: apps/pootle_store/views.py:1132
-#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr "您沒有管理 %s 的權限。"
+msgstr "您沒有新增標籤的權限。"
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
-msgstr "註解："
+msgstr "備註："
 
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "字符串 %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1679,8 +1676,8 @@ msgstr "標記此字服串為不完整(Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "經<a href=\"%(url)s\">%(reviewer)s</a> 審核"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "經<a href=\"%(profile_url)s\">%(reviewer)s</a> 審核"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -1812,7 +1809,7 @@ msgstr ""
 
 #: apps/pootle_tagging/forms.py:133
 msgid "A goal with that name already exists. Please pick another name."
-msgstr ""
+msgstr "目標名稱已經存在。請改用其他名稱。"
 
 #: apps/pootle_tagging/forms.py:173
 msgid ""
@@ -1850,11 +1847,11 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:81
 msgid "Project goal?"
-msgstr ""
+msgstr "專案目標？"
 
 #: apps/pootle_tagging/models.py:105
 msgid "(Project goal)"
-msgstr ""
+msgstr "(專案目標)"
 
 #: apps/pootle_terminology/views.py:171
 msgid "This term already exists in this file."
@@ -2177,24 +2174,23 @@ msgstr "下面您可以為這個翻譯專案新增、編輯和刪除相關權限
 #. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
-msgstr ""
+msgstr "匯出視圖"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
-msgstr ""
+msgstr "目標"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
-msgstr ""
+msgstr "無字符串。"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
-msgstr ""
+msgstr "翻譯專案檔案和資料夾"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
-#, fuzzy
 msgid "Administrate your project goals"
-msgstr "管理您的專案"
+msgstr "管理您的專案目標"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2203,12 +2199,12 @@ msgstr "動作"
 #: apps/pootle_translationproject/templates/translation_project/overview.html:137
 #, python-format
 msgid "%(project)s project information"
-msgstr ""
+msgstr "%(project)s 專案資訊"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:144
 #, python-format
 msgid "%(language)s language information"
-msgstr ""
+msgstr "%(language)s 語言資訊"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:156
 msgid "Upload File"
@@ -2216,7 +2212,7 @@ msgstr "上傳檔案"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
-msgstr ""
+msgstr "翻譯統計"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
 msgid "Failing Checks"
@@ -2302,12 +2298,12 @@ msgstr "這個頁面是否活動。"
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "虛擬路徑"
 
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:47
 msgid "Display Content"
-msgstr ""
+msgstr "顯示內容"
 
 #: apps/staticpages/models.py:48
 #, python-format
@@ -2317,7 +2313,7 @@ msgstr "允許標記：%s"
 #: apps/staticpages/models.py:50
 #: apps/staticpages/templates/staticpages/admin/_table.html:10
 msgid "Redirect to URL"
-msgstr ""
+msgstr "重新轉到 URL"
 
 #: apps/staticpages/models.py:51
 #, fuzzy
@@ -2334,23 +2330,21 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:111
-#, fuzzy
 msgid "Legal Page"
-msgstr "有效頁面"
+msgstr "法律頁面"
 
 #: apps/staticpages/models.py:122
-#, fuzzy
 msgid "Regular Page"
-msgstr "編輯有效頁面"
+msgstr "常規頁面"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "頁面標題"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "第 %d 頁"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2361,7 +2355,7 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "需要操作"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
@@ -2369,11 +2363,11 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "不用了。登出"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
-msgstr ""
+msgstr "繼續"
 
 #: apps/staticpages/templates/staticpages/base.html:5
 #: apps/staticpages/templates/staticpages/base.html:11
@@ -2421,9 +2415,8 @@ msgid "Regular Pages"
 msgstr "編輯有效頁面"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
-#, fuzzy
 msgid "Add Regular Page"
-msgstr "編輯有效頁面"
+msgstr "新增常規頁面"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2435,7 +2428,7 @@ msgstr "您沒有管理 Pootle 的權限。"
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "請填寫用戶"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2451,9 +2444,8 @@ msgid "Checks"
 msgstr "檢查"
 
 #: core/helpers.py:62
-#, fuzzy
 msgid "Overwritten submissions"
-msgstr "我被覆蓋的提交"
+msgstr "被覆蓋的提交"
 
 #: core/initdb.py:143
 msgid "Can view a translation project"
@@ -2553,7 +2545,7 @@ msgstr ""
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "主頁"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2715,7 +2707,7 @@ msgstr "語言新聞"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "翻譯此語言"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2723,7 +2715,7 @@ msgstr "管理您語言的權限"
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "主要"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2804,7 +2796,7 @@ msgstr "改變您的密碼"
 
 #: templates/about/about.html:6 templates/about/about.html.py:9
 msgid "This Pootle Server"
-msgstr ""
+msgstr "此 Pootle 伺服器"
 
 #. Translators: For better readability, make sure to leave an space after the closing </i> tag
 #: templates/about/about.html:16
@@ -2822,11 +2814,11 @@ msgstr "關於"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "新增標籤"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
-msgstr ""
+msgstr "傳送"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:8
@@ -2836,7 +2828,7 @@ msgstr "訊息已送出"
 
 #: templates/contact_form/contact_form_sent.html:14
 msgid "Thank you for your feedback."
-msgstr ""
+msgstr "感謝您的回饋。"
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
@@ -2873,7 +2865,7 @@ msgstr "我被覆蓋的提交"
 
 #: templates/editor/_toolbar.html:34
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "轉到上一字符串(Ctrl+↑)"
 
 #: templates/editor/_toolbar.html:37
 msgid ""
@@ -2883,11 +2875,11 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "全部字符串"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "轉到下一字符串(Ctrl+↓)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
@@ -2919,9 +2911,8 @@ msgid ""
 msgstr "您可以在這裡設定與翻譯介面和語言偏好設定相關的設定值。"
 
 #: templates/profiles/profile_detail.html:23
-#, fuzzy
 msgid "Contributions"
-msgstr "最大貢獻者"
+msgstr "貢獻"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -2933,7 +2924,7 @@ msgstr "建議未決定"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "已覆蓋"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."

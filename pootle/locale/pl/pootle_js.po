@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-10-28 17:41+0000\n"
-"Last-Translator: jo no soi marinero <multi@matusz.waw.pl>\n"
+"PO-Revision-Date: 2014-07-14 08:15+0000\n"
+"Last-Translator: Piotr <strebski@o2.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1382982116.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1405325733.000000\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Wszystkie języki"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Wszystkie projekty"
 
 #: static/js/common.js:62
 msgid "Expand details"
-msgstr ""
+msgstr "Wyświetl szczegóły"
 
 #: static/js/common.js:62
 msgid "Collapse details"
-msgstr ""
+msgstr "Ukryj szczegóły"
 
 #: static/js/common.js:91
 msgid "Are you sure you want to continue?"
@@ -45,19 +45,19 @@ msgstr "Działania nie można cofnąć."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Wyświetlanie etykiet"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:357
 msgid "Hide tags"
-msgstr ""
+msgstr "Ukrywanie etykiet"
 
 #: static/js/common.js:293 static/js/common.js.c:309
 msgid "Hide filtering"
-msgstr ""
+msgstr "Ukrywanie filtrowania"
 
 #: static/js/common.js:296 static/js/common.js.c:303
 msgid "Show filtering"
-msgstr ""
+msgstr "Wyświetlanie filtrowania"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"

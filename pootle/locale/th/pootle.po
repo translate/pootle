@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-12-19 10:18+0000\n"
+"PO-Revision-Date: 2014-03-15 05:34+0000\n"
 "Last-Translator: teerapat.top <teerapat.top@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1387448325.000000\n"
+"X-POOTLE-MTIME: 1394861655.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -416,7 +416,7 @@ msgstr "ไม่จำเป็น"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
-msgstr ""
+msgstr "การเพิ่มประสิทธิภาพ"
 
 #: apps/pootle_app/templates/admin/edit_links.html:2
 msgid "Edit"
@@ -444,7 +444,7 @@ msgstr "ข่าวล่าสุด"
 
 #: apps/pootle_app/templates/index/index.html:65
 msgid "Subscribe to the RSS feed."
-msgstr ""
+msgstr "บอกรับฟีด RSS"
 
 #: apps/pootle_app/templates/index/login.html:4
 #: apps/pootle_app/templates/index/login.html:7
@@ -458,7 +458,7 @@ msgstr "เข้าสู่ระบบ Pootle"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "ชื่อผู้ใช้และรหัสผ่านไม่ตรงกัน โปรดลองใหม่อีกครั้ง"
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
@@ -467,7 +467,7 @@ msgstr "ลืมรหัสผ่านของคุณ?"
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "ยังไม่มีบัญชี?"
 
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
@@ -790,7 +790,6 @@ msgid "Name"
 msgstr "ชื่อ"
 
 #: apps/pootle_misc/browser.py:35 templates/profiles/profile_detail.html:41
-#, fuzzy
 msgid "Project"
 msgstr "โครงการ"
 
@@ -806,7 +805,7 @@ msgstr ""
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
 msgid "Progress"
-msgstr ""
+msgstr "ความคืบหน้า"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
@@ -816,11 +815,11 @@ msgstr "ยอดรวม"
 
 #: apps/pootle_misc/browser.py:64
 msgid "Need Translation"
-msgstr ""
+msgstr "ต้องการการแปล"
 
 #: apps/pootle_misc/browser.py:75
 msgid "Last Activity"
-msgstr ""
+msgstr "กิจกรรมล่าสุด"
 
 #: apps/pootle_misc/checks.py:27
 msgid "Critical"
@@ -1030,7 +1029,7 @@ msgstr "ความเห็น"
 
 #: apps/pootle_misc/forms.py:118
 msgid "Locations"
-msgstr ""
+msgstr "ตำแหน่ง"
 
 #: apps/pootle_misc/forms.py:131
 #, fuzzy
@@ -1079,7 +1078,7 @@ msgstr[0] "ไฟล์นี้มี %(num)d คำ, แปลแล้ว %(p
 
 #: apps/pootle_misc/stats.py:206
 msgid "Expand details"
-msgstr ""
+msgstr "ขยายรายละเอียด"
 
 #: apps/pootle_misc/stats.py:217
 #, python-format
@@ -1095,7 +1094,7 @@ msgstr[0] ""
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
-msgstr ""
+msgstr "การแปลเสร็จสมบูรณ์"
 
 #: apps/pootle_misc/stats.py:260
 #, python-format
@@ -1152,12 +1151,12 @@ msgstr ""
 #: apps/pootle_misc/templatetags/render_pager.py:34
 #: templates/editor/_toolbar.html:33
 msgid "Previous"
-msgstr ""
+msgstr "ก่อนหน้า"
 
 #: apps/pootle_misc/templatetags/render_pager.py:50
 #: templates/editor/_toolbar.html:42
 msgid "Next"
-msgstr ""
+msgstr "ถัดไป"
 
 #: apps/pootle_misc/templatetags/render_pager.py:52
 #, python-format
@@ -1177,7 +1176,6 @@ msgid "Email only to recently active users"
 msgstr ""
 
 #: apps/pootle_notifications/forms.py:52
-#, fuzzy
 msgid "All Projects"
 msgstr "โครงการทั้งหมด"
 
@@ -1190,7 +1188,6 @@ msgid "Select one or more projects"
 msgstr ""
 
 #: apps/pootle_notifications/forms.py:68
-#, fuzzy
 msgid "All Languages"
 msgstr "ภาษาทั้งหมด"
 
@@ -1256,7 +1253,7 @@ msgstr ""
 
 #: apps/pootle_notifications/templates/notices.html:70
 msgid "Publish"
-msgstr ""
+msgstr "เผยแพร่"
 
 #: apps/pootle_profile/forms.py:32
 msgid "Default"
@@ -1346,7 +1343,7 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "แสดงป้ายกำกับ"
 
 #: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
@@ -1359,7 +1356,7 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "ตัวกรอง"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
@@ -1370,7 +1367,7 @@ msgstr ""
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "เพิ่มป้ายกำกับ"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1622,7 +1619,7 @@ msgstr "ความเห็น"
 
 #: apps/pootle_store/templates/unit/edit.html:47
 msgid "Locations:"
-msgstr ""
+msgstr "ตำแหน่ง:"
 
 #: apps/pootle_store/templates/unit/edit.html:56
 msgid "Terminology:"
@@ -1686,7 +1683,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:181
@@ -2210,7 +2207,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
-msgstr ""
+msgstr "การกระทำ"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:137
 #, python-format
@@ -2635,7 +2632,6 @@ msgid "ADMIN"
 msgstr ""
 
 #: templates/base.html:144
-#, fuzzy
 msgid "Log Out"
 msgstr "ออกจากระบบ"
 
@@ -2661,7 +2657,6 @@ msgid "Contact Us"
 msgstr "ติดต่อเรา"
 
 #: templates/base.html:200
-#, fuzzy
 msgid "About this Pootle Server"
 msgstr "เกี่ยวกับเซิร์ฟเวอร์ Pootle นี้"
 
@@ -3048,7 +3043,7 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:31
 msgid "Confirm password"
-msgstr ""
+msgstr "ยืนยันรหัสผ่าน"
 
 #: templates/registration/password_change_form.html:36
 msgid "Change My Password"
@@ -3097,7 +3092,7 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:26
 msgid "Confirm Password"
-msgstr ""
+msgstr "ยืนยันรหัสผ่าน"
 
 #: templates/registration/password_reset_confirm.html:31
 #: templates/registration/password_reset_form.html:24

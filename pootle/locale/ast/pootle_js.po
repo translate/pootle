@@ -7,24 +7,24 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-03-11 14:51+0000\n"
-"Last-Translator: Xandru <xandru@softastur.org>\n"
+"PO-Revision-Date: 2014-06-28 13:22+0000\n"
+"Last-Translator: Llumex03 <l.lumex03.tornes@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1363013513.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1403961737.000000\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
-msgstr ""
+msgstr "Toles llingües"
 
 #: static/js/common.js:26
 msgid "All Projects"
-msgstr ""
+msgstr "Tolos proyeutos"
 
 #: static/js/common.js:62
 msgid "Expand details"
@@ -44,45 +44,45 @@ msgstr "Esta operación nun se pue desfacer."
 
 #: static/js/common.js:139
 msgid "Show tags"
-msgstr ""
+msgstr "Amosar etiquetes"
 
 #: static/js/common.js:142 static/js/vendor/sorttable.js:357
 msgid "Hide tags"
-msgstr ""
+msgstr "Anubrir etiquetes"
 
 #: static/js/common.js:293 static/js/common.js.c:309
 msgid "Hide filtering"
-msgstr ""
+msgstr "Anubrir filtráu"
 
 #: static/js/common.js:296 static/js/common.js.c:303
 msgid "Show filtering"
-msgstr ""
+msgstr "Amosar filtráu"
 
 #: static/js/editor.js:209
 msgid "Go to the next string (Ctrl+.)"
-msgstr ""
+msgstr "Dir a la cadena siguiente (Ctrl+.)"
 
 #: static/js/editor.js:215
 msgid "Go to the previous string (Ctrl+,)"
-msgstr ""
+msgstr "Dir a la cadena postrer (Ctrl+.)"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:333
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "Suxerencies pendientes de %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:336
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "Suxerencies aceutaes de %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:339
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "Suxerencies refugaes de %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor.js:342
@@ -102,7 +102,7 @@ msgstr "Ensin resultados."
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "Vista d'esportación"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"
@@ -168,40 +168,40 @@ msgstr "Amosar"
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hai un añu"
+msgstr[1] "Hai %s años"
 
 #: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hai una selmana"
+msgstr[1] "Hai %s selmanes"
 
 #: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ayeri"
+msgstr[1] "Hai %s díes"
 
 #: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hai una hora"
+msgstr[1] "Hai %s hores"
 
 #: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hai un minutu"
+msgstr[1] "Hai %s minutos"
 
 #: static/js/utils.js:163
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Hai dellos segundos"
 
 #, c-format
 #~ msgid "<a href=\"%s\">String %s</a>"

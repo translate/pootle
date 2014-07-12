@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-10-29 20:54+0000\n"
+"PO-Revision-Date: 2014-03-17 17:09+0000\n"
 "Last-Translator: A S <apreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa\n"
@@ -15,9 +15,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1383080065.0\n"
+"X-POOTLE-MTIME: 1395076182.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -68,6 +68,8 @@ msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
+"ਕਿਰਪਾ ਕਰਕੇ ਠੀਕ ਯੂਜ਼ਰ-ਨਾਂ ਅਤੇ ਪਾਸਵਰਡ ਦਿਉ। ਯਾਦ ਰੱਖੋ ਕਿ ਦੋਵੇਂ ਖੇਤਰ ਛੋਟੇ ਵੱਡੇ ਅੱ"
+"ਖਰ ਆਕਾਰ ਲਈ ਸੰਵੇਦਨਸ਼ੀਲ ਹਨ।"
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
@@ -798,7 +800,7 @@ msgstr "ਭਾਸ਼ਾ"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
-msgstr ""
+msgstr "ਤਰਜੀਹ"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -869,11 +871,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:43
 msgid "Double spaces"
-msgstr ""
+msgstr "ਦੂਹਰੀ ਖਾਲੀ ਥਾਂ"
 
 #: apps/pootle_misc/checks.py:44
 msgid "Repeated word"
-msgstr ""
+msgstr "ਦੁਹਰਾਏ ਸ਼ਬਦ"
 
 #: apps/pootle_misc/checks.py:45
 msgid "E-mail"
@@ -881,15 +883,15 @@ msgstr "ਈਮੇਲ"
 
 #: apps/pootle_misc/checks.py:46
 msgid "Ending punctuation"
-msgstr ""
+msgstr "ਅੰਤ ਵਿੱਚ ਵਿਰਾਮ-ਚਿੰਨ੍ਹ"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Ending whitespace"
-msgstr ""
+msgstr "ਅੰਤ ਉੱਤੇ ਖਾਲੀ ਥਾਂ"
 
 #: apps/pootle_misc/checks.py:48
 msgid "Escapes"
-msgstr ""
+msgstr "ਇਸਕੇਪ"
 
 #: apps/pootle_misc/checks.py:49
 msgid "File paths"
@@ -913,13 +915,12 @@ msgid "Long"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:54
-#, fuzzy
 msgid "Must translate words"
-msgstr "ਸ਼ਬਦਾਂ ਦਾ ਅਨੁਵਾਦ ਨਾ ਕਰੋ"
+msgstr "ਸ਼ਬਦਾਂ ਦਾ ਅਨੁਵਾਦ ਜ਼ਰੂਰੀ ਹੈ"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Newlines"
-msgstr ""
+msgstr "ਨਵੀਂ ਲਾਈਨ"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Number of plurals"
@@ -939,7 +940,7 @@ msgstr "ਚੋਣਾਂ"
 
 #: apps/pootle_misc/checks.py:60
 msgid "printf()"
-msgstr ""
+msgstr "printf()"
 
 #: apps/pootle_misc/checks.py:61
 msgid "Punctuation spacing"
@@ -951,7 +952,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:63
 msgid "Number of sentences"
-msgstr ""
+msgstr "ਵਾਕਾਂ ਦੀ ਗਿਣਤੀ"
 
 #: apps/pootle_misc/checks.py:64
 msgid "Short"
@@ -1031,9 +1032,8 @@ msgid "Locations"
 msgstr "ਟਿਕਾਣੇ"
 
 #: apps/pootle_misc/forms.py:131
-#, fuzzy
 msgid "Source Terms"
-msgstr "ਸਰੋਤ ਟੈਕਸਟ"
+msgstr "ਸਰੋਤ ਸ਼ਬਦ"
 
 #: apps/pootle_misc/forms.py:132
 msgid "Target Terms"
@@ -1067,20 +1067,20 @@ msgstr[1] "(%(num)d ਲਾਈਨਾਂ)"
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਇਹ ਫੋਲਡਰ ਵਿੱਚ %(num)d ਸ਼ਬਦ ਹੈ, ਜਿਹਨਾਂ ਵਿੱਚੋਂ %(percentage)d%% ਅਨੁਵਾਦ ਹਨ।"
+msgstr[1] "ਇਹ ਫੋਲਡਰ ਵਿੱਚ %(num)d ਸ਼ਬਦ ਹਨ, ਜਿਹਨਾਂ ਵਿੱਚੋਂ %(percentage)d%% ਅਨੁਵਾਦ ਹਨ।"
 
 #: apps/pootle_misc/stats.py:184
 #, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਇਹ ਫਾਇਲ ਵਿੱਚ %(num)d ਸ਼ਬਦ ਹੈ, ਜਿਹਨਾਂ ਵਿੱਚੋਂ %(percentage)d%% ਅਨੁਵਾਦ ਹਨ।"
+msgstr[1] "ਇਹ ਫਾਇਲ ਵਿੱਚ %(num)d ਸ਼ਬਦ ਹਨ, ਜਿਹਨਾਂ ਵਿੱਚੋਂ %(percentage)d%% ਅਨੁਵਾਦ ਹਨ।"
 
 #: apps/pootle_misc/stats.py:206
 msgid "Expand details"
-msgstr ""
+msgstr "ਵੇਰਵਾ ਫੈਲਾਓ"
 
 #: apps/pootle_misc/stats.py:217
 #, python-format
@@ -1352,20 +1352,20 @@ msgstr "ਹੇਠਾਂ ਤੁਹਾਨੂੰ ਇਹ ਭਾਸ਼ਾ ਲਈ ਸ਼ਾ�
 #: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "ਟੈਗ ਵੇਖਾਓ"
 
 #: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
-msgstr ""
+msgstr "ਫਿਲਟਰ ਕਰਨਾ ਵੇਖਾਓ"
 
 #: apps/pootle_project/templates/project/overview.html:33
 msgid "Filter using one or more tags"
-msgstr ""
+msgstr "ਇੱਕ ਜਾਂ ਵੱਧ ਟੈਗ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਫਿਲਟਰ"
 
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "ਫਿਲਟਰ"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
@@ -1376,7 +1376,7 @@ msgstr ""
 #: apps/pootle_translationproject/templates/translation_project/overview.html:175
 #: templates/common/xhr_add_tag_form.html:15
 msgid "Add tag"
-msgstr ""
+msgstr "ਟੈਗ ਸ਼ਾਮਲ"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
 #: templates/project_menu.html:9
@@ -1491,7 +1491,7 @@ msgstr ""
 
 #: apps/pootle_store/filetypes.py:71
 msgid "Mozilla .lang"
-msgstr ""
+msgstr "ਮੋਜ਼ੀਲਾ .lang"
 
 #: apps/pootle_store/filetypes.py:81 apps/pootle_store/filetypes.py:85
 msgid "Java Properties"
@@ -1612,7 +1612,7 @@ msgstr "ਟਿੱਪਣੀ:"
 #: apps/pootle_store/templates/unit/edit.html:15
 #, python-format
 msgid "String %(id)s"
-msgstr ""
+msgstr "ਸਤਰ %(id)s"
 
 #: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
@@ -1632,7 +1632,7 @@ msgstr "ਸ਼ਬਦਾਵਲੀ:"
 
 #: apps/pootle_store/templates/unit/edit.html:58
 msgid "Insert the translated term into the editor"
-msgstr ""
+msgstr "ਐਡੀਟਰ ਵਿੱਚ ਅਨੁਵਾਦ ਕੀਤੇ ਸ਼ਬਦ ਵਜੋਂ ਜੋੜੋ"
 
 #: apps/pootle_store/templates/unit/edit.html:71
 msgid "Possible issues with the translation"
@@ -1685,12 +1685,12 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:150
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "ਇਹ ਸਤਰ ਨੂੰ ਹੋਰ ਕੰਮ ਕਰਨ ਦੀ ਲੋੜ ਵਜੋਂ ਨਿਸ਼ਾਨਬੱਧ ਕਰੋ (Ctrl+Space)"
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr ""
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "<a href=\"%(profile_url)s\">%(reviewer)s</a> ਵਲੋਂ ਪੜਤਾਲ ਕੀਤੀ"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -2053,10 +2053,9 @@ msgid "Failed to update from version control: %(error)s"
 msgstr ""
 
 #: apps/pootle_translationproject/models.py:659
-#, python-format
-#, fuzzy, python-format
+#, python-format, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
-msgstr "ਫਾਇਲ <em>%(filename)s</em> ਵਰਜਨ ਕੰਟਰੋਲ ਵਿੱਚ ਕਮਿਟ ਕੀਤੀ ਗਈ"
+msgstr "ਪ੍ਰੋਜੈਕਟ <em>%(project)s</em> ਵਰਜਨ ਕੰਟਰੋਲ ਤੋਂ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ"
 
 #: apps/pootle_translationproject/models.py:661
 #: apps/pootle_translationproject/models.py:683
@@ -2074,10 +2073,9 @@ msgid "Merged copy"
 msgstr "ਮਿਲਾਈ ਗਈ ਕਾਪੀ"
 
 #: apps/pootle_translationproject/models.py:681
-#, python-format
-#, fuzzy, python-format
+#, python-format, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
-msgstr "ਫਾਇਲ <em>%(filename)s</em> ਵਰਜਨ ਕੰਟਰੋਲ ਵਿੱਚ ਕਮਿਟ ਕੀਤੀ ਗਈ"
+msgstr "ਫਾਇਲ <em>%(filename)s</em> ਵਰਜਨ ਕੰਟਰੋਲ ਤੋਂ ਅੱਪਡੇਟ ਕੀਤੀ ਗਈ"
 
 #: apps/pootle_translationproject/models.py:695
 #, python-format
@@ -2191,15 +2189,15 @@ msgstr "ਹੇਠਾਂ ਤੁਹਾਨੂੰ ਇਹ ਭਾਸ਼ਾ ਲਈ ਸ਼ਾ�
 #. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
-msgstr ""
+msgstr "ਐਕਸਪੋਰਟ ਝਲਕ"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
-msgstr ""
+msgstr "ਟੀਚਾ"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
-msgstr ""
+msgstr "ਕੋਈ ਸਤਰ ਨਹੀਂ।"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
@@ -2346,9 +2344,8 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:111
-#, fuzzy
 msgid "Legal Page"
-msgstr "ਕਾਨੂੰਨੀ ਪੇਜ਼"
+msgstr "ਕਾਨੂੰਨੀ ਸਫ਼ਾ"
 
 #: apps/staticpages/models.py:122
 msgid "Regular Page"
@@ -2372,7 +2369,7 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "ਕਾਰਵਾਈ ਦੀ ਲੋੜ ਹੈ"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
@@ -2405,15 +2402,15 @@ msgstr "ਸਫ਼ਾ"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:11
 msgid "Last Edited"
-msgstr ""
+msgstr "ਆਖਰੀ ਸੋਧ ਕੀਤੀ"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "Yes"
-msgstr ""
+msgstr "ਹਾਂ"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:17
 msgid "No"
-msgstr ""
+msgstr "ਨਹੀਂ"
 
 #: apps/staticpages/templates/staticpages/admin/_table.html:30
 msgid "No pages yet."
@@ -2429,8 +2426,9 @@ msgid "Add Legal Page"
 msgstr "ਕਾਨੂੰਨੀ ਪੇਜ਼ ਸੋਧ"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
+#, fuzzy
 msgid "Regular Pages"
-msgstr ""
+msgstr "ਨਿਯਮਤ ਪੇਜ਼"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 #, fuzzy
@@ -2726,7 +2724,7 @@ msgstr "ਭਾਸ਼ਾ ਖ਼ਬਰਾਂ"
 
 #: templates/language_menu.html:6
 msgid "Translate this language"
-msgstr ""
+msgstr "ਇਹ ਭਾਸ਼ਾ ਵਿੱਚ ਅਨੁਵਾਦ ਕਰੋ"
 
 #: templates/language_menu.html:8
 msgid "Administrate your language permissions"
@@ -2734,7 +2732,7 @@ msgstr "ਆਪਣੇ ਭਾਸ਼ਾ ਅਧਿਕਾਰ ਲਈ ਪਰਸ਼ਾ�
 
 #: templates/main_base.html:6
 msgid "Main"
-msgstr ""
+msgstr "ਮੁੱਖ"
 
 #: templates/project_menu.html:4
 msgid "Project main page"
@@ -2894,17 +2892,19 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "ਕੁੱਲ ਸਤਰਾਂ"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "ਅਗਲੀ ਸਤਰ ਉੱਤੇ ਜਾਓ (Ctrl+Down)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
+"ਇੱਥੇ ਤੁਸੀਂ ਨਿੱਜੀ ਵੇਰਵਾ ਬਦਲ ਸਕਦੇ ਹੋ। ਇਹ ਜਾਣਕਾਰੀ ਨੂੰ ਅਨੁਵਾਦਿਤ ਫਾਇਲਾਂ ਦੇ ਹੈੱਡਰ "
+"ਵਿੱਚ ਵਰਤਿਆ ਜਾਵੇਗਾ।"
 
 #: templates/profiles/edit_personal.html:18
 msgid "First Name"
@@ -2930,9 +2930,8 @@ msgid ""
 msgstr ""
 
 #: templates/profiles/profile_detail.html:23
-#, fuzzy
 msgid "Contributions"
-msgstr "ਯੋਗਦਾਨੀ"
+msgstr "ਯੋਗਦਾਨ"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -2977,7 +2976,7 @@ msgstr ""
 
 #: templates/registration/activation_email.html:4
 msgid "Pootle Account Created!"
-msgstr ""
+msgstr "ਪੋਟਲ ਖਾਤਾ ਬਣਾਇਆ ਗਿਆ ਹੈ!"
 
 #: templates/registration/activation_email.html:5
 #: templates/registration/activation_email.txt:2

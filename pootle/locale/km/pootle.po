@@ -7,35 +7,38 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2010-07-18 03:37+0200\n"
-"Last-Translator: sungkhum <sungkhum@gmail.com>\n"
+"PO-Revision-Date: 2014-07-02 02:37+0000\n"
+"Last-Translator: sovichet.tep <sovichet.tep@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: km\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1404268629.000000\n"
 
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr ""
+msgstr "សង្កត់ \"Control\" ឬ \"Command\" លើ Mac ដើម្បី​ជ្រើស​ច្រើន​ជាង​មួយ។"
 
 # while the "you" is understood in English, it must be added in the Khmer
 #: strings.py:9
 msgid "Enter a valid e-mail address."
-msgstr "អ្នក​ត្រូវតែ​បញ្ចូល​អាសយដ្ឋាន​អ៊ីមែល​ដែល​ត្រឹមត្រូវុ។"
+msgstr "អ្នក​ត្រូវតែ​​បញ្ចូលអាសយដ្ឋាន​អ៊ីមែល​ដែល​ត្រឹមត្រូវ។"
 
 #: strings.py:10
 msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"អាសយដ្ឋាន​អ៊ីមែល​នេះ​មិន​ទាន់​បាន​ភ្ជាប់​ជាមួយ​គណនី​អ្នក​ប្រើ​ណាមួយ​ទេ។ "
+"តើ​អ្នក​ប្រាកដ​ថា​បាន​ចុះឈ្មោះ​ហើយ​មែន​ឬ?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr "ត្រូវ​ការ​វាល​នេះ ។"
+msgstr "ទាមទារ​វាល​នេះ។"
 
 #: strings.py:12
 #, python-format
@@ -44,34 +47,36 @@ msgstr ""
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "រក្សា​ទុក ហើយ​បន្ថែម​មួយ​ទៀត"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "រក្សា​ទុក ហើយ​បន្ត​កែប្រែ"
 
 #: strings.py:15
 #: apps/staticpages/templates/staticpages/admin/page_create.html:5
 #: apps/staticpages/templates/staticpages/admin/page_create.html:8
 msgid "Add"
-msgstr ""
+msgstr "បន្ថែម"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "ផ្លាស់ប្ដូរ"
 
 #: strings.py:17 apps/pootle_profile/forms.py:83
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
+"សូម​បញ្ចូល​ឈ្មោះ​អ្នក​ប្រើ និង​ពាក្យ​សម្ងាត់​ដែល​ត្រឹម​ត្រូវ។ សូម​ចាំ​ទេ "
+"វាល​ទាំង​ពីរ​នេះ​ប្រកាន់​តួ​អក្សរ​តូច​ធំ។"
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "កំណត់​ពាក្យ​សម្ងាត់​ឡើង​វិញ​នៅ %s"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -80,29 +85,29 @@ msgstr ""
 #: strings.py:27
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "បន្ថែម %(name)s"
 
 #. Translators: This link takes the user to the page where the currently
 #. configured option is displayed (such as a project or language)
 #: strings.py:31
 msgid "View on site"
-msgstr ""
+msgstr "មើល​លើ​វេបសាយ"
 
 #: strings.py:33
 msgid "first name"
-msgstr ""
+msgstr "នាមខ្លួន"
 
 #: strings.py:34
 msgid "last name"
-msgstr ""
+msgstr "នាម​ត្រកូល"
 
 #: strings.py:35
 msgid "e-mail address"
-msgstr ""
+msgstr "នាម​ត្រកូល"
 
 #: strings.py:36
 msgid "active"
-msgstr ""
+msgstr "សកម្ម"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
@@ -114,66 +119,66 @@ msgstr ""
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:47
 #: apps/pootle_project/models.py:97
 msgid "Source Language"
-msgstr ""
+msgstr "ភាសា​ប្រភព"
 
 #: strings.py:45
 msgid "Android strings"
-msgstr ""
+msgstr "ខ្សែ​អក្សរ Android"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "គោល​នយោបាយ​ឯកជន"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "ស្រប​ច្បាប់"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "អាជ្ញាបណ្ណ"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "អាជ្ញាបណ្ណ​អ្នក​រួម​ចំណែក"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "លក្ខខណ្ឌ​ប្រើប្រាស់"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "លក្ខខណ្ឌ​សេវាកម្ម"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "ឈ្មោះ​របស់​អ្នក"
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "អាសយដ្ឋាន​អ៊ីមែល​របស់​អ្នក"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "សារ​របស់​អ្នក"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet គិត​ថា​សារ​នេះ​គឺ​ជា​របស់​ឥត​បាន​ការ"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
+msgstr[0] "សូម​កែ​កំហុស​ខាង​ក្រោម។"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "បាន​រក្សា​ទុក​ការ​កំណត់។"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
@@ -182,19 +187,19 @@ msgstr ""
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "រក្សាទុក​"
 
 #: apps/pootle_app/admin.py:45
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "កូដ​ភាសា​មិន​ស្រប​តាម​អនុសញ្ញា ISO"
 
 #: apps/pootle_app/admin.py:71
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "កូដ​គម្រោក​អាច​មាន​តែ​តួ​អក្សរ លេខ និង _"
 
 #: apps/pootle_app/admin.py:83
 msgid "Advanced Options"
-msgstr ""
+msgstr "​ជម្រើស​កម្រិត​ខ្ពស់"
 
 #: apps/pootle_app/forms.py:30 apps/pootle_notifications/forms.py:42
 #: apps/staticpages/models.py:45
@@ -203,7 +208,7 @@ msgstr ""
 
 #: apps/pootle_app/forms.py:31
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "ឈ្មោះ​សម្រាប់​ម៉ាស៊ីន​បម្រើ Pootle នេះ"
 
 #: apps/pootle_app/forms.py:37
 #: apps/pootle_language/templates/language/overview.html:26
@@ -211,91 +216,92 @@ msgstr ""
 #: apps/pootle_tagging/models.py:69
 #: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
-msgstr ""
+msgstr "ការ​ពិពណ៌នា"
 
 #: apps/pootle_app/forms.py:38
 msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
+"ការ​អធិប្បាយ​និង​សេចក្ដី​ណែនាំ​ដែល​ត្រូវ​បង្ហាញ​នៅ​លើ​ទំព័រ​មុខ​និង​ទំព័រ​អំព"
+"ី។ ត្រូវ​ប្រើ HTML ឲ្យ​បាន​ត្រឹមត្រូវ។"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
-msgstr ""
+msgstr "កំពុង​រង់ចាំ"
 
 #: apps/pootle_app/models/suggestion.py:36
 #: templates/profiles/profile_detail.html:43
 msgid "Accepted"
-msgstr ""
+msgstr "បានទទួល​យក"
 
 #: apps/pootle_app/models/suggestion.py:37
 #: templates/profiles/profile_detail.html:44
 msgid "Rejected"
-msgstr ""
+msgstr "បាន​ច្រានចោល"
 
 #: apps/pootle_app/templates/top_contributers_table.html:8
 msgid "Top Contributors"
-msgstr ""
+msgstr "អ្នក​ចូលរួម​កំពូល"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
 #: apps/pootle_misc/browser.py:70 templates/editor/_toolbar.html:17
 msgid "Suggestions"
-msgstr ""
+msgstr "ការ​ផ្ដល់​យោបល់"
 
 #: apps/pootle_app/templates/top_contributers_table.html:13
-#, fuzzy
 msgid "Reviews"
-msgstr "រំលឹក​ឡើងវិញ"
+msgstr "ការ​ពិនិត្យឡើងវិញ"
 
 #: apps/pootle_app/templates/top_contributers_table.html:14
 #: apps/pootle_app/templates/admin/dashboard.html:19 core/helpers.py:61
 #: templates/profiles/profile_detail.html:45
 msgid "Submissions"
-msgstr ""
+msgstr "ការ​ដាក់​ស្នើ"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "អ្នក​ប្រើ​អនាមិក"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:153 apps/pootle_store/util.py:48
 #: core/helpers.py:54 templates/editor/_toolbar.html:13
-#, fuzzy
 msgid "Translated"
-msgstr "បកប្រែ"
+msgstr "បាន​បកប្រែ​"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:5
 #: apps/pootle_misc/stats.py:156 apps/pootle_store/forms.py:215
 #: apps/pootle_store/util.py:47 core/helpers.py:56
 #: templates/editor/_toolbar.html:16
 msgid "Needs work"
-msgstr ""
+msgstr "ត្រូវ​ធ្វើ​ការ​ទៀត"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
 #: apps/pootle_misc/stats.py:159 apps/pootle_store/util.py:46
 #: core/helpers.py:55 templates/editor/_toolbar.html:15
-#, fuzzy
 msgid "Untranslated"
-msgstr "បកប្រែ"
+msgstr "មិនបាន​បកប្រែ​"
 
 #: apps/pootle_app/templates/admin/admin_general.html:15
 #: apps/pootle_terminology/templates/terminology/manage.html:50
 msgid "Save Changes"
-msgstr ""
+msgstr "រក្សាទុក​បន្លាស់​ប្ដូរ"
 
 #: apps/pootle_app/templates/admin/admin_general_languages.html:4
 #: apps/pootle_app/templates/admin/admin_general_languages.html:9
 #: apps/pootle_app/templates/index/index.html:42
 #: apps/pootle_profile/models.py:87 templates/admin_profile_menu.html:6
 msgid "Languages"
-msgstr ""
+msgstr "ភាសា​"
 
 #: apps/pootle_app/templates/admin/admin_general_languages.html:12
 msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"នៅ​ទីនេះ អ្នក​អាច​បន្ថែម កែប្រែ "
+"និង​លុប​ភាសា​ទាំង​អស់​ដែល​មាន​នៅ​ក្នុង​ម៉ាស៊ីន​បម្រើ Pootle នេះ។"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
@@ -306,13 +312,15 @@ msgstr ""
 #: templates/admin_profile_menu.html:8 templates/language_menu.html:8
 #: templates/project_menu.html:10 templates/tp_menu.html:9
 msgid "Permissions"
-msgstr ""
+msgstr "សិទ្ធិ"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:12
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"នៅ​ទីនេះ អ្នក​អាច​បន្ថែម កែប្រែ "
+"និង​លុប​សិទ្ធិ​លំនាំ​ដើម​នៅ​ក្នុង​ម៉ាស៊ីន​បម្រើ Pootle នេះ។"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:16
 #: apps/pootle_language/templates/language/language_admin.html:13
@@ -334,18 +342,20 @@ msgstr ""
 #: apps/pootle_project/templates/project/projects.html:15
 #: templates/admin_profile_menu.html:7 templates/project_base.html:5
 msgid "Projects"
-msgstr ""
+msgstr "គម្រោង"
 
 #: apps/pootle_app/templates/admin/admin_general_projects.html:12
 msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
+"នៅ​ទីនេះ អ្នក​អាច​បន្ថែម កែប្រែ "
+"និង​លុប​គម្រោង​ទាំង​អស់​ដែល​មាន​នៅ​ក្នុង​ម៉ាស៊ីន​បម្រើ Pootle នេះ។"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:4
 #: apps/pootle_app/templates/admin/admin_general_settings.html:9
 msgid "General Settings"
-msgstr ""
+msgstr "ការកំណត់​ទូទៅ"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:12
 msgid "Configure here the general settings for your site."
@@ -358,29 +368,31 @@ msgstr ""
 #: templates/profiles/profile_detail.html:5
 #: templates/profiles/profile_detail.html:11
 msgid "Users"
-msgstr ""
+msgstr "អ្នក​ប្រើ"
 
 #: apps/pootle_app/templates/admin/admin_general_users.html:12
 msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
+"នៅ​ទីនេះ អ្នក​អាច​បន្ថែម កែប្រែ "
+"និង​លុប​អ្នក​ប្រើ​ទាំង​អស់​ដែល​មាន​នៅ​ក្នុង​ម៉ាស៊ីន​បម្រើ Pootle នេះ។"
 
 #: apps/pootle_app/templates/admin/dashboard.html:13
 msgid "Server Statistics"
-msgstr ""
+msgstr "ស្ថិតិ​ម៉ាស៊ីនបម្រើ"
 
 #: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
-msgstr ""
+msgstr "សំណើ​ដែល​កំពុង​រង់ចាំ"
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
-msgstr ""
+msgstr "ច្រើន​ទៀត..."
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
-msgstr ""
+msgstr "ការគាំទ្រ"
 
 #: apps/pootle_app/templates/admin/dashboard.html:42
 msgid ""
@@ -388,6 +400,9 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle ត្រូវ​បាន​អភិវឌ្ឍ​ដោយ Translate.org.za "
+"និង​សហគមន៍​អ្នក​ជំនាញ​ផ្នែក​មូលដ្ឋានីយកម្ម (localization) ។ យើង​ចង់​ឲ្យ "
+"Pootle ជួយ​ឲ្យ​ការងារ​ប្រែប្រួល​របស់​អ្នក​ឈាន​ដល់​សក្ដានុពល​មួយ​ពេញ​លេញ។"
 
 #: apps/pootle_app/templates/admin/dashboard.html:43
 msgid "You will find the following helpful for support:"
@@ -395,7 +410,7 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:45
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "កម្រង​ឯកសារ​អំពី Pootle"
 
 #: apps/pootle_app/templates/admin/dashboard.html:46
 msgid "The Pootle mailing list"
@@ -411,84 +426,86 @@ msgstr ""
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
 msgid "Optional"
-msgstr ""
+msgstr "ស្រេច​ចិត្ត"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
-msgstr ""
+msgstr "ការ​បង្កើន​ប្រសិទ្ធភាព"
 
 #: apps/pootle_app/templates/admin/edit_links.html:2
 msgid "Edit"
-msgstr ""
+msgstr "កែសម្រួល​"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "បោះបង់"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "សញ្ញា​ព្រមាន Pootle"
 
 #: apps/pootle_app/templates/index/index.html:25
 #: apps/pootle_language/templates/language/overview.html:36
 #: apps/pootle_project/templates/project/overview.html:61
 #: apps/pootle_translationproject/templates/translation_project/overview.html:124
 msgid "No description set."
-msgstr ""
+msgstr "គ្មាន​សេចក្ដី​ពិពណ៌នា។"
 
 #: apps/pootle_app/templates/index/index.html:62
 #: apps/pootle_notifications/templates/notices.html:77
 msgid "Latest News"
-msgstr ""
+msgstr "ព័ត៌មាន​ចុងក្រោយ"
 
 #: apps/pootle_app/templates/index/index.html:65
 msgid "Subscribe to the RSS feed."
-msgstr ""
+msgstr "តាមដាន​ព័ត៌មាន RSS ។"
 
 #: apps/pootle_app/templates/index/login.html:4
 #: apps/pootle_app/templates/index/login.html:7
 #: apps/pootle_app/templates/index/login.html:23
 msgid "Login"
-msgstr ""
+msgstr "ចូល"
 
 #: apps/pootle_app/templates/index/login.html:12
 msgid "Login to Pootle"
-msgstr ""
+msgstr "ចូល Pootle"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
+"ឈ្មោះ​អ្នកប្រើ និង​ពាក្យ​សម្ងាត់​របស់​អ្នក មិន​ត្រូវ​គ្នា​ទេ។ "
+"សូម​ព្យាយាម​ម្ដង​ទៀត។"
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
-msgstr ""
+msgstr "ភ្លេច​ពាក្យ​សម្ងាត់​របស់​អ្នក?"
 
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "មិន​ទាន់​មាន​គណនី​ទេ?"
 
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
 msgid "Register."
-msgstr ""
+msgstr "ចុះឈ្មោះ។"
 
 #: apps/pootle_app/views/admin/adminprojects.py:90
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "មិន​អាច​ប្រើ \"%s\" ជា​កូដ​គម្រោង​ទេ"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
 #: templates/registration/registration_form.html:30
 msgid "Password"
-msgstr ""
+msgstr "ពាក្យ​សម្ងាត់"
 
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "បាន​ដំឡើង​កំណែ %s នៃ Translate Toolkit។"
 
 #: apps/pootle_app/views/admin/dashboard.py:55
 #, python-format
@@ -500,7 +517,7 @@ msgstr ""
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "បាន​ដំឡើង Django កំណែ %s ។"
 
 #: apps/pootle_app/views/admin/dashboard.py:65
 #, python-format
@@ -1231,7 +1248,7 @@ msgstr ""
 #: templates/language_menu.html:5 templates/project_menu.html:5
 #: templates/tp_menu.html:5
 msgid "News"
-msgstr ""
+msgstr "ព័ត៌មាន"
 
 #: apps/pootle_notifications/templates/notices.html:54
 msgid "Publish News"
@@ -1636,11 +1653,11 @@ msgstr ""
 #: apps/pootle_store/templates/unit/edit.html:146
 #: apps/pootle_store/templates/unit/edit.html:232
 msgid "Submit"
-msgstr ""
+msgstr "ដាក់​ស្នើ"
 
 #: apps/pootle_store/templates/unit/edit.html:136
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "ដាក់ស្នើ​ការ​បកប្រែ ហើយ​បន្ត​ទៅ​ខ្សែ​អក្សរ​បន្ទាប់ (Ctrl + Enter)"
 
 #: apps/pootle_store/templates/unit/edit.html:139
 #: apps/pootle_store/templates/unit/edit.html:147
@@ -1665,7 +1682,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:181
@@ -2353,7 +2370,7 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/agreement.html:18
 msgid "No thanks. Log out"
-msgstr ""
+msgstr "ទេ អេរគុណ។ ចាក់ចេញ"
 
 #: apps/staticpages/templates/staticpages/agreement.html:21
 msgid "Continue"
@@ -2445,7 +2462,7 @@ msgstr ""
 
 #: core/initdb.py:151
 msgid "Can submit a translation"
-msgstr ""
+msgstr "អាច​ដាក់ស្នើ​ការបកប្រែ"
 
 #: core/initdb.py:155
 msgid "Can overwrite translations on uploading files"
@@ -2600,7 +2617,7 @@ msgstr ""
 
 #: templates/base.html:130
 msgid "Zoom in (Ctrl+Shift++)"
-msgstr ""
+msgstr "ពង្រីក (Ctrl+Shift++)"
 
 #: templates/base.html:141
 msgid "ADMIN"
@@ -2608,7 +2625,7 @@ msgstr ""
 
 #: templates/base.html:144
 msgid "Log Out"
-msgstr ""
+msgstr "ចាកចេញ"
 
 #: templates/base.html:147 templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:7
@@ -3097,52 +3114,54 @@ msgstr ""
 #: templates/registration/password_reset_email.html:9
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "ឈ្មោះ​អ្នក​ប្រើ​របស់​អ្នក​គឺ %(user)s ។"
 
 #: templates/registration/password_reset_email.html:11
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "អរគុណ​សម្រាប់​ការ​ប្រើប្រាស់ Pootle!"
 
 #: templates/registration/password_reset_form.html:14
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"អ្នក​បាន​ភ្លេច​ពាក្យ​សម្ងាត់​ឬ? បញ្ចូល​អាសយដ្ឋាន​អ៊ីមែល​របស់​អ្នក​នៅ​ខាង​ក្រោ"
+"ម ហើយ​យើង​នឹង​ផ្ញើ​អ៊ីមែល​អំពី​របៀប​កំណត់​ពាក្យ​សម្ងាត់​ថ្មី​មួយ។"
 
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25
 msgid "Email Address"
-msgstr ""
+msgstr "អាសយដ្ឋាន​អ៊ីមែល​"
 
 #: templates/registration/registration_complete.html:5
 #: templates/registration/registration_complete.html:8
 #: templates/registration/registration_complete.html:13
 msgid "Registration Complete"
-msgstr ""
+msgstr "បញ្ចប់​ការ​ចុះ​ឈ្មោះ"
 
 #: templates/registration/registration_complete.html:14
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "សូម​ពិនិត្យ​អ៊ីមែល​របស់​អ្នក ដើម្បី​បើក​ដំណើរការ​គណនី​របស់​អ្នក។"
 
 #: templates/registration/registration_form.html:12
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "ចុះ​ឈ្មោះ​គណនី Pootle មួយ"
 
 #: templates/registration/registration_form.html:13
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "បំពេញ​បែបបទ​ទាំង​នេះ ដើម្បី​ចាប់​ផ្ដើម​ការ​បកប្រែ។"
 
 #: templates/registration/registration_form.html:35
 msgid "Password (again)"
-msgstr ""
+msgstr "ពាក្យ​សម្ងាត់ (ម្ដង​ទៀត)"
 
 #: templates/registration/registration_form.html:53
 msgid "Already have an account?"
-msgstr ""
+msgstr "មាន​គណនី​រួច​ហើយ​ឬ?"
 
 #: templates/registration/registration_form.html:54
 msgid "Log In."
-msgstr ""
+msgstr "ភ្ជាប់​ចូល។"
 
 #~ msgid "You do not have rights to commit files here"
 #~ msgstr "អ្នក​មិន​មាន​សិទ្ធ​ដាក់​ស្នើ​ឯកសារ​នៅ​ទី​នេះ​ទេ"

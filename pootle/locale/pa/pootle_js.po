@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-10-29 19:26+0000\n"
+"PO-Revision-Date: 2014-03-17 16:52+0000\n"
 "Last-Translator: A S <apreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383074785.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1395075138.000000\n"
 
 #: static/js/common.js:13
 msgid "All Languages"
@@ -102,7 +102,7 @@ msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ।"
 
 #: static/js/editor.js:748
 msgid "Export View"
-msgstr ""
+msgstr "ਐਕਸਪੋਰਟ ਝਲਕ"
 
 #: static/js/editor.js:798
 msgid "Error while connecting to the server"

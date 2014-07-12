@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-05-19 08:40+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2014-04-13 09:20+0000\n"
+"Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1368952857.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1397380846.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -45,8 +45,8 @@ msgstr "Aqueste camp es requesit."
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
-"Asseguratz-vos qu'aquesta valor a al maximum %(max)d caractèrs (n'a %"
-"(length)d)."
+"Asseguratz-vos qu'aquesta valor a al maximum %(max)d caractèrs (n'a "
+"%(length)d)."
 
 #: strings.py:13
 msgid "Save and add another"
@@ -338,8 +338,8 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"L'identificant « nobody » correspond a tot utilizaire qu'es pas connectat "
-"(doncas un utilizaire anonim). L'identificant « default » indica los dreches "
+"L'identificant « nobody » correspond a tot utilizaire qu'es pas connectat ("
+"doncas un utilizaire anonim). L'identificant « default » indica los dreches "
 "qu'auràn per defaut los utilizaires, tant que de dreches particulars lor "
 "seràn pas acordats."
 
@@ -503,7 +503,7 @@ msgstr "Inscripcion."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "Impossible d'utilizar «%s» coma còde de projècte"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -598,7 +598,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "Manca MARKUP_FILTER. S'utilizarà HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
@@ -739,11 +739,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Collaborators del projècte"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Collaborators de la lenga"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -789,8 +789,8 @@ msgid ""
 "articles/language-tags/\">More information</a>"
 msgstr ""
 "Còde ISO 639 de la lenga, eventualament seguit d'un caractèr de solinhament "
-"(_) e del còde ISO 3166 d'un país. <a "
-"href=\"http://www.w3.org/International/articles/language-tags/\">Mai "
+"(_) e del còde ISO 3166 d'un país. <a href=\""
+"http://www.w3.org/International/articles/language-tags/\">Mai "
 "d'informacions</a>"
 
 #: apps/pootle_language/models.py:71 apps/pootle_project/models.py:62
@@ -825,9 +825,9 @@ msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
-"Per mai d'informacions, consultatz <a "
-"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">la pagina "
-"wiki</a> relativa a las formas pluralas."
+"Per mai d'informacions, consultatz <a href=\""
+"http://translate.sourceforge.net/wiki/l10n/pluralforms\">la pagina wiki</a> "
+"relativa a las formas pluralas."
 
 #: apps/pootle_language/models.py:90
 msgid "Unknown"
@@ -883,7 +883,7 @@ msgstr "Lenga"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
-msgstr ""
+msgstr "Prioritat"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1097,7 +1097,7 @@ msgstr ""
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Correspondéncia exacta"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1279,7 +1279,7 @@ msgstr "Seleccion de projècte"
 
 #: apps/pootle_notifications/forms.py:61
 msgid "Select one or more projects"
-msgstr ""
+msgstr "Seleccionatz un o mai d'un projècte"
 
 #: apps/pootle_notifications/forms.py:68
 msgid "All Languages"
@@ -1291,7 +1291,7 @@ msgstr "Seleccion de lenga"
 
 #: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Seleccionatz una o mai d'una lenga"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
@@ -1445,11 +1445,11 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:19
 #: apps/pootle_translationproject/templates/translation_project/overview.html:25
 msgid "Show tags"
-msgstr ""
+msgstr "Afichar los etiquetas"
 
 #: apps/pootle_project/templates/project/overview.html:22
 msgid "Show filtering"
-msgstr ""
+msgstr "Afichar lo filtratge"
 
 #: apps/pootle_project/templates/project/overview.html:33
 msgid "Filter using one or more tags"
@@ -1458,7 +1458,7 @@ msgstr ""
 #: apps/pootle_project/templates/project/overview.html:37
 msgctxt "verb"
 msgid "Filter"
-msgstr ""
+msgstr "Filtre"
 
 #: apps/pootle_project/templates/project/overview.html:38
 msgid "Filter using the selected tags"
@@ -1549,11 +1549,11 @@ msgstr ""
 
 #: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
 msgid "Arguments missing."
-msgstr ""
+msgstr "Arguments mancants."
 
 #: apps/pootle_store/decorators.py:147
 msgid "File does not exist."
-msgstr ""
+msgstr "Lo fichièr existís pas"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
@@ -1642,7 +1642,7 @@ msgstr "Camin"
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:121
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetas"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:122
@@ -1653,7 +1653,7 @@ msgstr ""
 #: apps/pootle_translationproject/models.py:126
 #: apps/pootle_translationproject/templates/translation_project/overview.html:69
 msgid "Goals"
-msgstr ""
+msgstr "Objectius"
 
 #: apps/pootle_store/models.py:904
 #: apps/pootle_translationproject/models.py:128
@@ -1689,12 +1689,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "La suggestion o lo vòte es pas mai valable."
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Avètz pas las autorizacions per administrar %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Avètz pas las autorizacions per administrar %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1779,8 +1781,8 @@ msgstr "Precisar qu'aqueste cadena a besonh d'èsser repassada (Ctrl+Espaci)"
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "repassat per <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "repassat per <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -1940,7 +1942,7 @@ msgstr ""
 
 #: apps/pootle_tagging/models.py:74
 msgid "The priority for this goal."
-msgstr ""
+msgstr "La prioritat d'aqueste objectiu."
 
 #: apps/pootle_tagging/models.py:79
 msgid ""
@@ -2152,8 +2154,7 @@ msgstr ""
 #, python-format
 msgid "Failed to update from version control: %(error)s"
 msgstr ""
-"Fracàs de mesa a jorn dempuèi lo sistèma de seguiment de versions : %"
-"(error)s"
+"Fracàs de mesa a jorn dempuèi lo sistèma de seguiment de versions : %(error)s"
 
 #: apps/pootle_translationproject/models.py:659
 #, python-format
@@ -2311,15 +2312,15 @@ msgstr ""
 #. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:7
 msgid "Export View"
-msgstr ""
+msgstr "Exportar la vista"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:99
 msgid "Goal"
-msgstr ""
+msgstr "Objectiu"
 
 #: apps/pootle_translationproject/templates/translation_project/export_view.html:141
 msgid "No strings."
-msgstr ""
+msgstr "Pas cap de cadena."
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:61
 msgid "Translation project files and folders"
@@ -2327,7 +2328,7 @@ msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Gerir los objectiu de vòstre projècte"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2423,6 +2424,7 @@ msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
+"Ai legit a accèpti : <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
@@ -2436,12 +2438,12 @@ msgstr "Indica se aquesta pagina es activa."
 #: apps/staticpages/models.py:40
 #: apps/staticpages/templates/staticpages/admin/_table.html:9
 msgid "Virtual Path"
-msgstr ""
+msgstr "Camin virtual"
 
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:47
 msgid "Display Content"
-msgstr ""
+msgstr "Afichar lo contengut"
 
 #: apps/staticpages/models.py:48
 #, python-format
@@ -2456,6 +2458,7 @@ msgstr ""
 #: apps/staticpages/models.py:51
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Se definit, tota referéncia a aquesta pagina redirigirà cap a aquesta URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:98
@@ -2464,24 +2467,24 @@ msgstr "Cal indicar una URL o un contengut."
 
 #: apps/staticpages/models.py:106
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "Lo camin virtual es ja utilizat."
 
 #: apps/staticpages/models.py:111
 msgid "Legal Page"
-msgstr ""
+msgstr "Paginas de mencions legalas"
 
 #: apps/staticpages/models.py:122
 msgid "Regular Page"
-msgstr ""
+msgstr "Pagina normala"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
-msgstr ""
+msgstr "Títol de la pagina"
 
 #: apps/staticpages/views.py:88
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "pagina-%d"
 
 #: apps/staticpages/views.py:130
 #, python-format
@@ -2492,7 +2495,7 @@ msgstr ""
 
 #: apps/staticpages/templates/staticpages/agreement.html:4
 msgid "Action Required"
-msgstr ""
+msgstr "Accion requesida"
 
 #: apps/staticpages/templates/staticpages/agreement.html:5
 msgid "Before continuing, you must read and accept the following documents."
@@ -2543,19 +2546,19 @@ msgstr "Paginas de mencions legalas"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Apondre una pagina de mencions legalas"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
 msgid "Regular Pages"
-msgstr ""
+msgstr "Paginas normalas"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Apondre una pagina normala"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Avètz pas los dreches sufisents per accedir a aquesta pagina."
 
 #: core/decorators.py:191 core/views.py:29
 msgid "You do not have rights to administer Pootle."
@@ -2563,7 +2566,7 @@ msgstr "Avètz pas las autorizacions per administrar Pootle."
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "Manca l'utilizaire"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_toolbar.html:12
@@ -2580,7 +2583,7 @@ msgstr "Contraròtles"
 
 #: core/helpers.py:62
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Traduccions mandadas espotidas"
 
 #: core/initdb.py:143
 msgid "Can view a translation project"
@@ -2637,8 +2640,8 @@ msgstr ""
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
-"Error d'accès a %(filename)s, L'error tornada pel sistèma de fichièrs es : %"
-"(errormsg)s"
+"Error d'accès a %(filename)s, L'error tornada pel sistèma de fichièrs es : "
+"%(errormsg)s"
 
 #: scripts/actions.py:529
 #, python-format
@@ -2681,12 +2684,12 @@ msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
-"S'avètz besonh d'ajuda, vos podètz referir a aquesta error amb <strong>%"
-"(ref)s</strong>."
+"S'avètz besonh d'ajuda, vos podètz referir a aquesta error amb "
+"<strong>%(ref)s</strong>."
 
 #: templates/_main_tabs.html:5
 msgid "Main page"
-msgstr ""
+msgstr "Pagina principala"
 
 #: templates/_main_tabs.html:5 templates/language_menu.html:4
 #: templates/project_menu.html:4 templates/tp_menu.html:4
@@ -2964,7 +2967,7 @@ msgstr "A prepaus"
 
 #: templates/common/_table_row.html:87
 msgid "Add a tag"
-msgstr ""
+msgstr "Apondre una etiqueta"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
@@ -3027,7 +3030,7 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:39
 msgid "Total strings"
-msgstr ""
+msgstr "Cadenas al total"
 
 #: templates/editor/_toolbar.html:43
 msgid "Go to the next string (Ctrl+Down)"
@@ -3068,7 +3071,7 @@ msgstr ""
 
 #: templates/profiles/profile_detail.html:23
 msgid "Contributions"
-msgstr ""
+msgstr "Contributors"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -3080,7 +3083,7 @@ msgstr "Suggestions en espèra"
 
 #: templates/profiles/profile_detail.html:46
 msgid "Overwritten"
-msgstr ""
+msgstr "Espotits"
 
 #: templates/profiles/profile_detail.html:66
 msgid "This user doesn't have any contributions yet."
@@ -3213,8 +3216,8 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
-"Vòstre senhal es estat establit. Podètz contunhar e <a href=\"%"
-"(login_url)s\">vos connectar</a> ara."
+"Vòstre senhal es estat establit. Podètz contunhar e <a href=\"%(login_url)s\""
+">vos connectar</a> ara."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_confirm.html:8
@@ -3236,8 +3239,7 @@ msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
-"Picatz vòstre senhal novèl dos còps, per verificar que la picada es "
-"corrècta."
+"Picatz vòstre senhal novèl dos còps, per verificar que la picada es corrècta."
 
 #: templates/registration/password_reset_confirm.html:21
 msgid "New Password"

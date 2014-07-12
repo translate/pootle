@@ -7,17 +7,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-05-27 03:17+0000\n"
+"PO-Revision-Date: 2014-05-15 03:41+0000\n"
 "Last-Translator: Ђорђе <djordje.vasiljevich@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1369624671.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1400125284.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -499,7 +499,7 @@ msgstr "Региструјте се."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "„%s“ се не може користити као кôд пројекта"
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -594,11 +594,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "Недостаје MARKUP_FILTER. Враћам на HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER је неисправно подешен. Враћам на HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -606,11 +606,12 @@ msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
+"Не могу да пронађем пакет који пружа подршку за назнаку „%s“. Враћам на HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:137
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
+msgstr "Неисправна вредност „%s“ у MARKUP_FILTER. Враћам на HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
@@ -728,15 +729,15 @@ msgstr "Активни корисници"
 
 #: apps/pootle_app/views/admin/permissions.py:61
 msgid "Translation Project Contributors"
-msgstr ""
+msgstr "Сарадници преводилачког пројекта"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Сарадници пројекта"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
-msgstr ""
+msgstr "Језични сарадници"
 
 #: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
@@ -750,7 +751,7 @@ msgstr "Корисничко име"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Изаберите једну дозволу или више њих"
 
 #: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
@@ -870,7 +871,7 @@ msgstr "Језик"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
-msgstr ""
+msgstr "Приоритет"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1082,7 +1083,7 @@ msgstr "Претрага (Ctrl+Shift+S)<br/>Унесите појам па пр�
 
 #: apps/pootle_misc/forms.py:108
 msgid "Exact Match"
-msgstr ""
+msgstr "Тачно поклапање"
 
 #: apps/pootle_misc/forms.py:115
 msgid "Source Text"
@@ -1167,9 +1168,9 @@ msgstr[2] "Настави са превођењем (преостало %(num)d 
 #, python-format
 msgid "Next most important goal (%(num)d word left)"
 msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Следећи најважнији циљ (преостала %(num)d реч)"
+msgstr[1] "Следећи најважнији циљ (преостале %(num)d речи)"
+msgstr[2] "Следећи најважнији циљ (преостало %(num)d речи)"
 
 #: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
@@ -1631,8 +1632,9 @@ msgstr "Путања"
 
 #: apps/pootle_store/models.py:900
 #: apps/pootle_translationproject/models.py:121
+#, fuzzy
 msgid "Tags"
-msgstr ""
+msgstr "Картице"
 
 #: apps/pootle_store/models.py:901
 #: apps/pootle_translationproject/models.py:122
@@ -1679,12 +1681,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr "Предлог или глас више није исправан."
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "Немате права да администрирате %s."
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "Немате права да администрирате %s."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1769,8 +1773,8 @@ msgstr "Означи ову поруку као непоуздану (Ctrl+Space
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "редиговао <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "редиговао <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -2304,8 +2308,9 @@ msgid "Translation project files and folders"
 msgstr ""
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:68
+#, fuzzy
 msgid "Administrate your project goals"
-msgstr ""
+msgstr "Администрирај пројектом"
 
 #: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
@@ -2431,8 +2436,11 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:51
+#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
+"Ако је постављено, свака референца на ову правну страницу биће преусмерена "
+"на наведену URL адресу"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:98
@@ -2444,12 +2452,14 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:111
+#, fuzzy
 msgid "Legal Page"
-msgstr ""
+msgstr "Правне странице"
 
 #: apps/staticpages/models.py:122
+#, fuzzy
 msgid "Regular Page"
-msgstr ""
+msgstr "Уреди правну страницу"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
@@ -2519,16 +2529,19 @@ msgid "Legal Pages"
 msgstr "Правне странице"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#, fuzzy
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Уреди правну страницу"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
+#, fuzzy
 msgid "Regular Pages"
-msgstr ""
+msgstr "Уреди правну страницу"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Уреди правну страницу"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."
@@ -2556,8 +2569,9 @@ msgid "Checks"
 msgstr "Провере"
 
 #: core/helpers.py:62
+#, fuzzy
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Моји замењени поднесци"
 
 #: core/initdb.py:143
 msgid "Can view a translation project"
@@ -3040,8 +3054,9 @@ msgstr ""
 "приоритетне језике."
 
 #: templates/profiles/profile_detail.html:23
+#, fuzzy
 msgid "Contributions"
-msgstr ""
+msgstr "Сарадници"
 
 #: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"

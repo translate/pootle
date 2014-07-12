@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: OpenOffice.org\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2013-10-28 17:28+0000\n"
-"Last-Translator: Domen <dbc334@gmail.com>\n"
+"PO-Revision-Date: 2014-06-04 21:00+0000\n"
+"Last-Translator: mspiller <matej.spiller@gmail.com>\n"
 "Language-Team: Slovenščina <users@sl.openoffice.org>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,9 +14,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1382981312.0\n"
+"X-POOTLE-MTIME: 1401915632.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -500,7 +500,7 @@ msgstr "Registrirajte se."
 #: apps/pootle_project/models.py:221
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "Kot oznako projekta ne morete uporabiti \"%s\""
 
 #: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
@@ -595,11 +595,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:129
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "Manjka MARKUP_FILTER. Uporabljen je HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:131
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER je napačno nastavljen. Uporabljen je HTML."
 
 #: apps/pootle_app/views/admin/dashboard.py:133
 #, python-format
@@ -732,7 +732,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "Project Contributors"
-msgstr ""
+msgstr "Avtorji projekta"
 
 #: apps/pootle_app/views/admin/permissions.py:84
 msgid "Language Contributors"
@@ -750,7 +750,7 @@ msgstr "Uporabniško ime"
 
 #: apps/pootle_app/views/admin/permissions.py:122
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Izberite enega ali več pravic"
 
 #: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
@@ -872,7 +872,7 @@ msgstr "Jezik"
 #. Translators: Heading representing the priority for a goal
 #: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
 msgid "Priority"
-msgstr ""
+msgstr "Prioriteta"
 
 #. Translators: noun. The graphical representation of translation status
 #: apps/pootle_misc/browser.py:52
@@ -1787,8 +1787,8 @@ msgstr "Označi niz kot potreben dodatnega dela (ctrl+presledek)"
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "pregledal(-a) <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "pregledal(-a) <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
@@ -2469,8 +2469,9 @@ msgid "Legal Page"
 msgstr "Pravne strani"
 
 #: apps/staticpages/models.py:122
+#, fuzzy
 msgid "Regular Page"
-msgstr ""
+msgstr "Uredi pravno stran"
 
 #: apps/staticpages/views.py:87
 msgid "Page Title"
@@ -2545,12 +2546,14 @@ msgid "Add Legal Page"
 msgstr "Uredi pravno stran"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:15
+#, fuzzy
 msgid "Regular Pages"
-msgstr ""
+msgstr "Uredi pravno stran"
 
 #: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#, fuzzy
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Uredi pravno stran"
 
 #: core/decorators.py:178
 msgid "Insufficient rights to access this page."

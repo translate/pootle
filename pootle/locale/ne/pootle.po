@@ -5,15 +5,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2010-05-07 15:31+0200\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2014-06-27 04:39+0000\n"
+"Last-Translator: abhi_nepal <abhi_nepal@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1403843982.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -29,46 +30,51 @@ msgid ""
 "That e-mail address doesn't have an associated user account. Are you sure "
 "you've registered?"
 msgstr ""
+"त्यो इमेल ठेगाना संबद्ध प्रयोगकर्ता खाता छैन। के तपाईं दर्ता क्लिक निश्चित "
+"हुनुहुन्छ?"
 
 #: strings.py:11
 msgid "This field is required."
-msgstr ""
+msgstr "यो क्षेत्र आवश्यक छ।"
 
 #: strings.py:12
 #, python-format
 msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
 msgstr ""
+"यो मूल्य (यो (लम्बाइ) घ% छ) भन्दा% (अधिकतम) d क्यारेक्टरहरू मा छ सुनिश्चित।"
 
 #: strings.py:13
 msgid "Save and add another"
-msgstr ""
+msgstr "बचत र अर्को जोडने"
 
 #: strings.py:14
 msgid "Save and continue editing"
-msgstr ""
+msgstr "सम्पादन बचत र जारी"
 
 #: strings.py:15
 #: apps/staticpages/templates/staticpages/admin/page_create.html:5
 #: apps/staticpages/templates/staticpages/admin/page_create.html:8
 msgid "Add"
-msgstr ""
+msgstr "थप्नुहोस्"
 
 #: strings.py:16
 msgid "Change"
-msgstr ""
+msgstr "परिवर्तन गर्नुहोस्"
 
 #: strings.py:17 apps/pootle_profile/forms.py:83
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
 msgstr ""
+"एक सही प्रयोगकर्ता नाम र पासवर्ड प्रविष्ट गर्नुहोस्। दुवै क्षेत्रहरु केस "
+"संवेदनशिल हुन्छन् ।"
 
 #. Translators: Email subject line. The variable is the server name shown
 #. on the top of each page
 #: strings.py:21
 #, python-format
 msgid "Password reset on %s"
-msgstr ""
+msgstr "पासवर्ड मा समायोजन सबै नष्ट"
 
 #. Translators: This is a constructed string that might end up saying
 #. "Add language" or "Add project". If you need to translate that differently,
@@ -77,21 +83,21 @@ msgstr ""
 #: strings.py:27
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "% थप्नुहोस (नाम) को"
 
 #. Translators: This link takes the user to the page where the currently
 #. configured option is displayed (such as a project or language)
 #: strings.py:31
 msgid "View on site"
-msgstr ""
+msgstr "साइट मा हेर्नुहोस्"
 
 #: strings.py:33
 msgid "first name"
-msgstr ""
+msgstr "पहिलो नाम"
 
 #: strings.py:34
 msgid "last name"
-msgstr ""
+msgstr "अन्तिम नाम"
 
 #: strings.py:35
 #, fuzzy
@@ -99,80 +105,81 @@ msgid "e-mail address"
 msgstr "इमेल ठेगाना"
 
 #: strings.py:36
+#, fuzzy
 msgid "active"
-msgstr ""
+msgstr "चालु"
 
 #. Translators: Please translate this simply as "Administrator". This string is
 #. needed by Django, but 'superuser' is very technical and should be avoided.
 #: strings.py:40
 msgid "superuser status"
-msgstr ""
+msgstr "सुपर प्रयोगकर्ता अवस्था"
 
 #. Translators: The language from which translation will happen
 #: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:47
 #: apps/pootle_project/models.py:97
 msgid "Source Language"
-msgstr ""
+msgstr "स्रोत भाषा"
 
 #: strings.py:45
 msgid "Android strings"
-msgstr ""
+msgstr "अन्द्रोइद तार"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:51
 msgid "Privacy Policy"
-msgstr ""
+msgstr "गोपनीयता निति"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:53
 msgid "Legal"
-msgstr ""
+msgstr "कानुनी"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:55
 msgid "License"
-msgstr ""
+msgstr "अनुमतिपत्र"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:57
 msgid "Contributor License"
-msgstr ""
+msgstr "योगदानकर्ता इजाजतपत्र"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:59
 msgid "Terms of Use"
-msgstr ""
+msgstr "प्रयोग शर्तहरु"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:61
 msgid "Terms of Service"
-msgstr ""
+msgstr "सेवाको सर्तहरू"
 
 #: apps/contact_form_i18n/forms.py:143
 msgid "Your name"
-msgstr ""
+msgstr "तपाईँंको नाम"
 
 #: apps/contact_form_i18n/forms.py:146
 msgid "Your email address"
-msgstr ""
+msgstr "तपाईँको इमेल ठेगाना"
 
 #: apps/contact_form_i18n/forms.py:148
 msgid "Your message"
-msgstr ""
+msgstr "सन्देश प्रतिलिपि गर्नुहोस्"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet ले यो सन्देश लाई स्पाम सोच्छ"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "तलको त्रुटि सुधार गर्नुहोस्।"
+msgstr[1] "तलको त्रुटिहरू सुधार गर्नुहोस्।"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "सेटिङ बचत भएको छ।"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
@@ -181,15 +188,15 @@ msgstr ""
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "बचत गर्नुहोस्"
 
 #: apps/pootle_app/admin.py:45
 msgid "Language code does not follow the ISO convention"
-msgstr ""
+msgstr "भाषा कोड आईएसओ अधिवेशनमा पालन गर्दैन"
 
 #: apps/pootle_app/admin.py:71
 msgid "Project code may only contain letters, numbers and _"
-msgstr ""
+msgstr "आयोजना कोड अक्षर, संख्या र _ समावेश गर्न सक्छ"
 
 #: apps/pootle_app/admin.py:83
 msgid "Advanced Options"
@@ -217,33 +224,34 @@ msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
+"पहिलो पृष्ठमा र पृष्ठ बारेमा देखाइएको विवरण र निर्देश। वैध HTML उपयोग "
+"सुनिश्चित।"
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
-msgstr ""
+msgstr "विचाराधिन"
 
 #: apps/pootle_app/models/suggestion.py:36
 #: templates/profiles/profile_detail.html:43
-#, fuzzy
 msgid "Accepted"
-msgstr "सहमत"
+msgstr "स्वीकार गरियो"
 
 #: apps/pootle_app/models/suggestion.py:37
 #: templates/profiles/profile_detail.html:44
 #, fuzzy
 msgid "Rejected"
-msgstr "असहमत"
+msgstr "अस्वीकार गरियो"
 
 #: apps/pootle_app/templates/top_contributers_table.html:8
 msgid "Top Contributors"
-msgstr ""
+msgstr "शीर्ष दाताहरू"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
 #: apps/pootle_misc/browser.py:70 templates/editor/_toolbar.html:17
 #, fuzzy
 msgid "Suggestions"
-msgstr "सुझाव:"
+msgstr "सुझावहरू"
 
 #: apps/pootle_app/templates/top_contributers_table.html:13
 #, fuzzy
@@ -254,11 +262,11 @@ msgstr "पुनरावलोकन"
 #: apps/pootle_app/templates/admin/dashboard.html:19 core/helpers.py:61
 #: templates/profiles/profile_detail.html:45
 msgid "Submissions"
-msgstr ""
+msgstr "दाखिलाहरू"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "अज्ञात प्रयोगकर्ता"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
 #: apps/pootle_misc/stats.py:153 apps/pootle_store/util.py:48
@@ -297,6 +305,7 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"यहाँ, थप्न, सम्पादन, र यो अपडेट सर्भर मा सबै उपलब्ध भाषामा नष्ट गर्न सक्छन्।"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
@@ -307,7 +316,7 @@ msgstr ""
 #: templates/admin_profile_menu.html:8 templates/language_menu.html:8
 #: templates/project_menu.html:10 templates/tp_menu.html:9
 msgid "Permissions"
-msgstr ""
+msgstr "अनुमतिहरू"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:12
 msgid ""
@@ -366,22 +375,24 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
+"यहाँ, थप्न, सम्पादन, र यो अपडेट सर्भर मा सबै उपलब्ध प्रयोगकर्ताहरू नष्ट गर्न "
+"सक्छन्।"
 
 #: apps/pootle_app/templates/admin/dashboard.html:13
 msgid "Server Statistics"
-msgstr ""
+msgstr "सर्भर तथ्याङ्क"
 
 #: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
-msgstr ""
+msgstr "अपूर्ण सुझाव"
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
-msgstr ""
+msgstr "थप ..."
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
-msgstr ""
+msgstr "समर्थन"
 
 #: apps/pootle_app/templates/admin/dashboard.html:42
 msgid ""
@@ -926,8 +937,9 @@ msgid "Newlines"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:56
+#, fuzzy
 msgid "Number of plurals"
-msgstr ""
+msgstr "बहुवचनहरुको संख्या"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Don't translate words"
@@ -938,8 +950,9 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:59
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "विकल्प"
 
 #: apps/pootle_misc/checks.py:60
 msgid "printf()"
@@ -1599,12 +1612,14 @@ msgid "The suggestion or vote is not valid any more."
 msgstr ""
 
 #: apps/pootle_store/views.py:1096
+#, fuzzy
 msgid "You do not have rights to remove tags."
-msgstr ""
+msgstr "तपाईँ संग पोटललाई प्रशासित गर्ने अधिकार छैन ।"
 
 #: apps/pootle_store/views.py:1132
+#, fuzzy
 msgid "You do not have rights to add tags."
-msgstr ""
+msgstr "तपाईँ संग पोटललाई प्रशासित गर्ने अधिकार छैन ।"
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
@@ -1689,7 +1704,7 @@ msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:181
@@ -1745,8 +1760,9 @@ msgid "Hide Timeline"
 msgstr ""
 
 #: apps/pootle_store/templates/unit/edit.html:248
+#, fuzzy
 msgid "User suggestions"
-msgstr ""
+msgstr "सुझाव:"
 
 #: apps/pootle_store/templates/unit/edit.html:266
 msgid "Accept suggestion"
@@ -2308,8 +2324,9 @@ msgstr ""
 
 #: apps/staticpages/models.py:37
 #: apps/staticpages/templates/staticpages/admin/_table.html:7
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "चालु"
 
 #: apps/staticpages/models.py:38
 msgid "Whether this page is active or not."
@@ -2872,8 +2889,9 @@ msgid "Filter by:"
 msgstr ""
 
 #: templates/editor/_toolbar.html:18
+#, fuzzy
 msgid "My suggestions"
-msgstr ""
+msgstr "सुझाव:"
 
 #: templates/editor/_toolbar.html:19
 msgid "My submissions"

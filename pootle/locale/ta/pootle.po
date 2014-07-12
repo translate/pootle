@@ -1776,8 +1776,8 @@ msgstr "இச்சரத்திற்கு மேலும் வேலை 
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "<a href=\"%(url)s\">% மதிப்பாய்வு (விமர்சகர்) கள் </ a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "<a href=\"%(profile_url)s\">% மதிப்பாய்வு (விமர்சகர்) கள் </ a>"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"

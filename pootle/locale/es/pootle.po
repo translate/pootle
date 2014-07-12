@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2013-11-12 10:57+0000\n"
-"PO-Revision-Date: 2014-01-04 09:10+0000\n"
+"PO-Revision-Date: 2014-04-29 02:41+0000\n"
 "Last-Translator: Adolfo <fitoschido@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1388826633.000000\n"
+"X-POOTLE-MTIME: 1398739319.000000\n"
 
 #: strings.py:8
 msgid ""
@@ -1526,8 +1526,8 @@ msgid ""
 "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 msgstr ""
-"%(user)s aceptó sugerencia por la cadena <i><a href=\"%(url)s\">%"
-"(source)s</a></i>"
+"Sugerencia de %(user)s aceptada para la cadena <i><a href=\"%(url)s\""
+">%(source)s</a></i>"
 
 #: apps/pootle_statistics/models.py:158
 #, python-format
@@ -1798,8 +1798,8 @@ msgstr "Marcar esta cadena que necesita más trabajo (Ctrl+Espacio)"
 
 #: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
-msgid "reviewed by <a href=\"%(url)s\">%(reviewer)s</a>"
-msgstr "revisada por <a href=\"%(url)s\">%(reviewer)s</a>"
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "revisada por <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:181
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
