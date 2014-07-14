@@ -48,18 +48,17 @@ def init_settings(settings_filepath, template_filename):
         will be written to.
     :param template_filename: Template file used to initialize settings from.
     """
+    from base64 import b64encode
+
     dirname = os.path.dirname(settings_filepath)
     if dirname and not os.path.exists(dirname):
         os.makedirs(dirname)
 
     fp = open(settings_filepath, 'w')
 
-    import base64
     output = open(template_filename).read()
-    output = output % {
-            'default_key': base64.b64encode(os.urandom(KEY_LENGTH)),
-    }
-
+    # We can't use regular python string formatting here.
+    output = output.replace("${default_key}", b64encode(os.urandom(KEY_LENGTH)))
     fp.write(output)
     fp.close()
 
