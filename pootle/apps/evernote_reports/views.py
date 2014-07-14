@@ -46,6 +46,8 @@ PRJ_NAME = 'translation_project__project__fullname'
 INITIAL = 'old_value'
 POOTLE_WORDCOUNT = 'unit__source_wordcount'
 
+SCORE_TRANSLATION_PROJECT = 'submission__translation_project'
+
 # field aliases
 DATE = 'creation_time_date'
 
@@ -221,122 +223,7 @@ def user_date_prj_activity(request):
 
     [start, end] = get_date_interval(start_date, end_date)
 
-    def get_item_stats(r={}):
-        res = {}
-        for f in STAT_FIELDS:
-            res[f] = r[f] if (r.has_key(f) and r[f] is not None) else 0
-        return res
-
-    def create_total():
-        return {
-            INITIAL_STATES[0]: get_item_stats(),
-            INITIAL_STATES[1]: get_item_stats()
-        }
-
-    json = {'total': create_total()}
-
-    def aggregate(total, item):
-        for f in STAT_FIELDS:
-            total[f] += item[f]
-
-    def add2total(total, subtotal):
-        for t in ['new', 'edit']:
-            aggregate(total[t], subtotal[t])
-
-    if user:
-        rr = Submission.objects.filter(
-                submitter=user,
-                creation_time__gte=start,
-                creation_time__lte=end,
-                field=SubmissionFields.TARGET
-            ).extra(select={
-                DATE: "DATE(`pootle_app_submission`.`creation_time`)",
-            }).values(LANG_CODE, LANG_NAME, PRJ_CODE, PRJ_NAME, DATE, INITIAL) \
-             .annotate(
-                n1=Sum(POOTLE_WORDCOUNT),
-            ).order_by(LANG_CODE, DATE)
-
-        projects = {}
-        res = {}
-
-        saved_lang = None
-        res_date = None
-        lang_data = None
-
-        for r in rr:
-            cur_lang = r[LANG_CODE]
-            cur_prj = r[PRJ_CODE]
-            cur = get_item_stats(r)
-
-            if cur_lang != saved_lang:
-                if saved_lang != None and lang_data != None:
-                    add2total(lang_data['total'], res_date['total'])
-                    add2total(json['total'], lang_data['total'])
-
-                saved_lang = cur_lang
-                res[cur_lang] = {
-                    'name': r[LANG_NAME],
-                    'dates': [],
-                    'sums': {},
-                    'total': create_total()
-                }
-
-                lang_data = res[cur_lang]
-                sums = lang_data['sums']
-
-                saved_date = None
-
-            if saved_date != r[DATE]:
-                if saved_date is not None:
-                    after_break = (r[DATE] - saved_date).days > 1
-                    add2total(lang_data['total'], res_date['total'])
-
-                else:
-                    after_break = False
-
-                saved_date = r[DATE]
-                res_date = {
-                    'date': datetime.strftime(saved_date, '%Y-%m-%d'),
-                    'projects': {},
-                    'after_break': after_break,
-                    'total': create_total()
-                }
-
-                lang_data['dates'].append(res_date)
-
-            if res_date is not None:
-                if r[INITIAL] == '':
-                    states = INITIAL_STATES
-                else:
-                    states = INITIAL_STATES[::-1]
-
-                if sums.has_key(cur_prj):
-                    aggregate(sums[cur_prj][states[0]], cur)
-                else:
-                    sums[cur_prj] = {
-                        states[0]: get_item_stats(cur),
-                        states[1]: get_item_stats()
-                    }
-
-                if res_date['projects'].has_key(cur_prj):
-                    res_date['projects'][cur_prj].update({
-                        states[0]: get_item_stats(cur)
-                    })
-                else:
-                    res_date['projects'][cur_prj] = {
-                        states[0]: get_item_stats(cur)
-                    }
-
-                aggregate(res_date['total'][states[0]], cur)
-                projects[cur_prj] = r[PRJ_NAME]
-
-        if lang_data is not None and res_date is not None:
-            add2total(lang_data['total'], res_date['total'])
-            add2total(json['total'], lang_data['total'])
-
-        json['all_projects'] = projects
-        json['results'] = res
-
+    json = {}
     user_dict = {
         'id': user.id,
         'username': user.username,
@@ -347,10 +234,40 @@ def user_date_prj_activity(request):
 
     json['meta'] = {'user': user_dict, 'start': start_date, 'end': end_date}
     if user != '':
-        json['scores'] = get_paid_words(user, start, end)
+        json['score_summary'] = get_paid_words(user, start, end)
+        json['score_grouped'] = get_grouped_paid_words(user, start, end)
+
     response = jsonify(json)
 
     return HttpResponse(response, content_type="application/json")
+
+
+def get_grouped_paid_words(user, start, end):
+    result = []
+    scores = ScoreLog.objects \
+        .filter(user=user,
+                creation_time__gte=start,
+                creation_time__lte=end) \
+        .order_by(SCORE_TRANSLATION_PROJECT)
+    tp = None
+    for score in scores:
+        if tp != score.submission.translation_project:
+            tp = score.submission.translation_project
+            row = {
+                'translation_project': u'%s / %s' %
+                    (tp.project.fullname, tp.language.fullname),
+                'score_delta': 0,
+                'translated': 0,
+                'reviewed': 0,
+            }
+            result.append(row)
+
+        translated_words, reviewed_words = score.get_paid_words()
+        row['translated'] += translated_words
+        row['reviewed'] += reviewed_words
+        row['score_delta'] += score.score_delta
+
+    return sorted(result, key=lambda x: x['translation_project'])
 
 
 def get_paid_words(user, start, end):

@@ -138,3 +138,8 @@ tr.after_break {
 #user-rates-form input {
     width: 100px;
 }
+
+#detailed {
+    display: inline-block;
+    margin-left: 50px;
+}

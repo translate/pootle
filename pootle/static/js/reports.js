@@ -8,46 +8,38 @@
 
       /* Compile templates */
       this.tmpl = {
-        results: _.template($('#language_user_activity').html())
+        results: _.template($('#language_user_activity').html()),
+        month_selector: _.template($('#month_selector').html()),
       };
 
-      $(document).on('click', '#reports-show', function (e) {
-        PTL.reports.user_id = $('#reports-user').val();
-        PTL.reports.update();
-      });
+      $(document).on('click', '.month-selector', function (e) {
+        var offset = parseInt($(this).data('month-offset')),
+            dateRange = PTL.reports.getDateRangeByOffset(offset);
 
-      $(document).on('click', '#current-month', function (e) {
-        PTL.reports.date_range = [
-          moment().date(1),
-          moment()
-        ];
+        PTL.reports.date_range = date_range;
         PTL.reports.update();
 
         return false;
       });
 
-      $(document).on('click', '#previous-month', function (e) {
-        PTL.reports.date_range = [
-          moment().subtract({M:1}).date(1),
-          moment().date(1).subtract('days', 1)
-        ];
-
+      $(document).on('change', '#reports-user', function (e) {
+        PTL.reports.userName = $('#reports-user').val();
         PTL.reports.update();
-
-        return false;
-      });
-
-      $(document).on('keypress', '#reports-user', function (e) {
-        if (e.which === 13) {
-          PTL.reports.user_id = $('#reports-user').val();
-
-          PTL.reports.update();
-        }
       });
       $(document).on('click', '#user-rates-form input.submit', this.updateRates);
       $(document).on('change', '#id_currency', this.refreshCurrency);
 
-      this.date_range = [moment().date(1), moment()]
+      this.now = moment();
+
+      for (var i=3; i>= 0; i--) {
+        var month = this.tmpl.month_selector({
+          'month_offset': i,
+          'month': this.now.clone().subtract({M:i}).format('MMMM'),
+        });
+        $('#reports-params .dates ul').append(month);
+      }
+
+      this.date_range = [this.now.clone().date(1), this.now.clone()]
       this.user = null;
       $('#user-rates-form').hide();
       $('#reports-user').select2({'data': users});
@@ -55,7 +47,8 @@
       PTL.reports.currentRowIsEven = false;
 
       $.history.init(function (hash) {
-        var params = PTL.utils.getParsedHash(hash);
+        var params = PTL.utils.getParsedHash(hash),
+            detailed = $('#detailed a').attr('href').split('?')[0];
 
         // Walk through known report criterias and apply them to the
         // reports object
@@ -66,11 +59,11 @@
           ];
         } else {
           PTL.reports.date_range = [
-            moment().date(1),
-            moment()
+            PTL.reports.now.clone().date(1),
+            PTL.reports.now.clone()
           ];
         }
-
+        PTL.reports.selectMonth();
         PTL.reports.setViewMode(params.mode || 'new');
 
         if ('username' in params) {
@@ -83,6 +76,7 @@
         }
 
         PTL.reports.loadedHashParams = params;
+        $('#detailed a').attr('href', detailed + '?' + PTL.utils.getHash());
       }, {'unescape': true});
 
       $(document).on('change', '#reports-viewmode select', function (e) {
@@ -247,6 +241,33 @@
 
     resetRowStyle: function () {
       PTL.reports.currentRowIsEven = false;
+    },
+
+    selectMonth: function () {
+      var dr = PTL.reports.dateRange;
+      $('.month-selector').each(function () {
+        var $el = $(this),
+            offset = parseInt($el.data('month-offset')),
+            dateRange = PTL.reports.getDateRangeByOffset(offset);
+
+        $el.removeClass('selected');
+        if (dr[0].format('YYYY-MM-DD') === dateRange[0].format('YYYY-MM-DD') &&
+            dr[1].format('YYYY-MM-DD') === dateRange[1].format('YYYY-MM-DD')) {
+          $el.addClass('selected');
+        }
+      });
+    },
+
+    getDateRangeByOffset: function (offset) {
+      var start = PTL.reports.now.clone().subtract({M: offset}).date(1),
+          end = PTL.reports.now.clone();
+
+      if (offset > 0) {
+        end = PTL.reports.now.clone().subtract({M: offset}).date(1)
+                             .add({M: 1}).subtract('days', 1);
+      }
+
+      return [start, end];
     }
 
   };
