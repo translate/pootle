@@ -22,6 +22,7 @@
 import re
 
 from django import forms
+from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -48,3 +49,35 @@ class MyLanguageAdminForm(forms.ModelForm):
                 _('Language code does not follow the ISO convention')
             )
         return self.cleaned_data["code"]
+
+
+class UserForm(forms.ModelForm):
+
+    password = forms.CharField(label=_('Password'), required=False,
+                               widget=forms.PasswordInput)
+
+    class Meta:
+        model = get_user_model()
+        fields = ('id', 'username', 'is_active', 'full_name', 'email',
+                  'is_superuser', 'twitter', 'linkedin', 'website', 'bio')
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+
+        # Require setting the password for new users
+        if self.instance.pk is None:
+            self.fields['password'].required = True
+
+    def save(self, commit=True):
+        password = self.cleaned_data['password']
+
+        if password != '':
+            user = super(UserForm, self).save(commit=False)
+            user.set_password(password)
+
+            if commit:
+                user.save()
+        else:
+            user = super(UserForm, self).save(commit=commit)
+
+        return user

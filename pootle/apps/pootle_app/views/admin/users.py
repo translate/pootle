@@ -24,6 +24,7 @@ from django.contrib.auth import get_user_model
 from django.views.generic import TemplateView
 
 from pootle.core.views import APIView, SuperuserRequiredMixin
+from pootle_app.forms import UserForm
 
 
 class UserAdminView(SuperuserRequiredMixin, TemplateView):
@@ -33,7 +34,7 @@ class UserAdminView(SuperuserRequiredMixin, TemplateView):
 class UserAPIView(SuperuserRequiredMixin, APIView):
     model = get_user_model()
     base_queryset = get_user_model().objects.order_by('-id')
-    fields = ('id', 'username', 'is_active', 'password', 'full_name', 'email',
-              'is_superuser', 'twitter', 'linkedin', 'website', 'bio')
+    add_form_class = UserForm
+    edit_form_class = UserForm
     page_size = 10
     search_fields = ('username', 'full_name', 'email')
