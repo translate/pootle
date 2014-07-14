@@ -132,7 +132,7 @@ def run_app(project, default_settings_path, settings_template,
                              % config_path).lower()
             if resp not in ("y", "yes"):
                 print("File already exists, not overwriting.")
-                return
+                exit(2)
 
         try:
             init_settings(config_path, settings_template)
