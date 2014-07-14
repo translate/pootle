@@ -114,19 +114,14 @@ def run_app(project, default_settings_path, settings_template,
     parser.add_argument("--config",
                         default=default_settings_path,
                         help=u"Use the specified configuration file.")
+    parser.add_argument("--noinput", action="store_true", default=False,
+                        help=u"Never prompt for input")
     parser.add_argument("-v", "--version", action="version", version=get_version())
 
-    subparsers = parser.add_subparsers(dest="command")
-    init_parser = subparsers.add_parser("init")
-    init_parser.add_argument("--noinput", action="store_true", default=False,
-                             help=u"Never prompt for input")
+    args, remainder = parser.parse_known_args(sys.argv[1:])
 
-    start_parser = subparsers.add_parser("start")
-    start_parser.add_argument("arguments", nargs="?", default=[])
-
-    args = parser.parse_args(sys.argv[1:])
-
-    if args.command == 'init':
+    # bit hacky
+    if "init" in remainder:
         config_path = os.path.expanduser(args.config)
 
         if os.path.exists(config_path):
@@ -147,15 +142,13 @@ def run_app(project, default_settings_path, settings_template,
                 % config_path)
 
         print("Configuration file created at %r" % config_path)
+        exit(0)
 
-        return
+    configure_app(project=project, config_path=args.config,
+                  django_settings_module=django_settings_module,
+                  runner_name=runner_name)
 
-    if args.command == "start":
-        configure_app(project=project, config_path=args.config,
-                      django_settings_module=django_settings_module,
-                      runner_name=runner_name)
-
-        management.execute_from_command_line([runner_name, args.command] + args.arguments)
+    management.execute_from_command_line([runner_name] + remainder)
 
     sys.exit(0)
 
