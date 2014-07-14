@@ -28,6 +28,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadReque
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import timezone
+from django.utils.html import escape
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.decorators import admin_required
@@ -57,10 +58,10 @@ def evernote_reports(request):
     User = get_user_model()
 
     ctx = {
-        'users': map(
-            lambda x: {'code': x.username, 'name': u'%s' % x },
+        'users': jsonify(map(
+            lambda x: {'id': x.username, 'text': escape(x.formatted_name)},
             User.objects.hide_meta()
-        ),
+        )),
         'user_rates_form': UserRatesForm(),
     }
 
@@ -69,13 +70,13 @@ def evernote_reports(request):
 
 @admin_required
 def evernote_reports_detailed(request):
-    user = request.GET.get('user', None)
+    username = request.GET.get('username', None)
     start_date = request.GET.get('start', None)
     end_date = request.GET.get('end', None)
 
     try:
         User = get_user_model()
-        user = User.objects.get(username=user)
+        user = User.objects.get(username=username)
     except:
         user = ''
 
@@ -208,13 +209,13 @@ def update_user_rates(request):
 @ajax_required
 @admin_required
 def user_date_prj_activity(request):
-    user = request.GET.get('user', None)
+    username = request.GET.get('username', None)
     start_date = request.GET.get('start', None)
     end_date = request.GET.get('end', None)
 
     try:
         User = get_user_model()
-        user = User.objects.get(username=user)
+        user = User.objects.get(username=username)
     except:
         user = ''
 
@@ -337,6 +338,7 @@ def user_date_prj_activity(request):
         json['results'] = res
 
     user_dict = {
+        'id': user.id,
         'username': user.username,
         'currency': user.currency,
         'rate': user.rate,

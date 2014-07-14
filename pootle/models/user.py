@@ -119,6 +119,13 @@ class User(AbstractBaseUser):
                                      else self.get_short_name())
 
     @property
+    def formatted_name(self):
+        """Full name (username)"""
+        if self.get_full_name():
+            return "%s (%s)" % (self.get_full_name(), self.get_short_name())
+        return self.get_short_name()
+
+    @property
     def public_score(self):
         return _humanize_score(self.score)
 

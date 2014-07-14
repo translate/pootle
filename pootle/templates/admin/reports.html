@@ -21,6 +21,12 @@
 {% include_raw "admin/xhr_language_user_activity.html" %}
 </script>
 
+<script type="text/javascript">
+  {% autoescape off %}
+  var users = {{ users }};
+  {% endautoescape %}
+</script>
+
 {% endblock scripts_extra %}
 
 {% block title %}{% trans "Reports" %} | {{ block.super }}{% endblock %}

@@ -12,7 +12,7 @@
       };
 
       $(document).on('click', '#reports-show', function (e) {
-        PTL.reports.user = $('#reports-user').val();
+        PTL.reports.user_id = $('#reports-user').val();
         PTL.reports.update();
       });
 
@@ -39,7 +39,7 @@
 
       $(document).on('keypress', '#reports-user', function (e) {
         if (e.which === 13) {
-          PTL.reports.user = $('#reports-user').val();
+          PTL.reports.user_id = $('#reports-user').val();
 
           PTL.reports.update();
         }
@@ -50,6 +50,7 @@
       this.date_range = [moment().date(1), moment()]
       this.user = null;
       $('#user-rates-form').hide();
+      $('#reports-user').select2({'data': users});
 
       PTL.reports.currentRowIsEven = false;
 
@@ -72,10 +73,10 @@
 
         PTL.reports.setViewMode(params.mode || 'new');
 
-        if ('user' in params) {
-          PTL.reports.user = params.user;
+        if ('username' in params) {
+          PTL.reports.userName = params.username;
         }
-        $('#reports-user').val(PTL.reports.user);
+        $('#reports-user').select2('val', PTL.reports.userName);
 
         if (!PTL.reports.compareParams(params)) {
           PTL.reports.buildResults();
@@ -125,21 +126,19 @@
     },
 
     validate: function () {
-      if (PTL.reports.user) {
-        return  PTL.reports.date_range.length == 2;
-      } else {
-        return false;
+      if (PTL.reports.userName) {
+        return  PTL.reports.dateRange.length == 2;
       }
+      return false;
     },
 
     update: function () {
       if (PTL.reports.validate()) {
-        var newHash = [
-          'user=', PTL.reports.user,
-          '&start=', PTL.reports.date_range[0].format('YYYY-MM-DD'),
-          '&end=', PTL.reports.date_range[1].format('YYYY-MM-DD'),
-          '&mode=', PTL.reports.mode
-        ].join('');
+        var newHash = $.param({
+          'username': PTL.reports.userName,
+          'start': PTL.reports.dateRange[0].format('YYYY-MM-DD'),
+          'end': PTL.reports.dateRange[1].format('YYYY-MM-DD'),
+        });
         $.history.load(newHash);
       } else {
         alert('Wrong input data');
@@ -162,9 +161,9 @@
 
     buildResults: function () {
       var reqData = {
-        start: PTL.reports.date_range[0].format('YYYY-MM-DD'),
-        end: PTL.reports.date_range[1].format('YYYY-MM-DD'),
-        user: PTL.reports.user
+        start: PTL.reports.dateRange[0].format('YYYY-MM-DD'),
+        end: PTL.reports.dateRange[1].format('YYYY-MM-DD'),
+        username: PTL.reports.userName
       };
 
       $.ajax({
