@@ -196,7 +196,7 @@ class User(AbstractBaseUser):
         if top_scorers is not None:
             return top_scorers
 
-        now = datetime.datetime.now()
+        now = timezone.now()
         past = now + datetime.timedelta(-days)
 
         lookup_kwargs = {
@@ -443,7 +443,7 @@ class User(AbstractBaseUser):
         """
         position = -1
 
-        now = datetime.datetime.now()
+        now = timezone.now()
         past = now + datetime.timedelta(-days)
 
         sum_field = 'translationproject__submission__scorelog__score_delta'
