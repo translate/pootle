@@ -128,10 +128,10 @@ def run_app(project, default_settings_path, settings_template,
             resp = None
             if args.noinput:
                 resp = 'n'
-            while resp not in ('Y', 'n'):
-                resp = input('File already exists at %r, overwrite? [nY] '
-                             % config_path)
-            if resp == 'n':
+            else:
+                resp = input("File already exists at %r, overwrite? [Ny] "
+                             % config_path).lower()
+            if resp not in ("y", "yes"):
                 print("File already exists, not overwriting.")
                 return
 
