@@ -26,7 +26,7 @@ TITLE = 'Translation Server'
 TIME_ZONE = 'UTC'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '%(default_key)s'
+SECRET_KEY = '${default_key}'
 
 # A list of strings representing the host/domain names that this Pootle server
 # can serve. This is a Django's security measure. More details at
