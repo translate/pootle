@@ -20,6 +20,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import re
+import urlparse
 
 from django import forms
 from django.contrib.auth import get_user_model
@@ -81,3 +82,14 @@ class UserForm(forms.ModelForm):
             user = super(UserForm, self).save(commit=commit)
 
         return user
+
+    def clean_linkedin(self):
+        url = self.cleaned_data['linkedin']
+        if url != '':
+            parsed = urlparse.urlparse(url)
+            if 'linkedin.com' not in parsed.netloc or parsed.path == '/':
+                raise forms.ValidationError(
+                    _('Please enter a valid LinkedIn user profile URL.')
+                )
+
+        return url
