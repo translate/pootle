@@ -890,6 +890,10 @@ class TranslationProject(models.Model, TreeItem):
 
         This does not do permission checking.
         """
+        from pootle_app.signals import post_vc_commit
+        from pootle_misc import versioncontrol
+        from pootle.scripts import hooks
+
         store.sync(update_structure=False, update_translation=True,
                    conservative=True)
         total = store.get_total_wordcount()
@@ -905,7 +909,6 @@ class TranslationProject(models.Model, TreeItem):
         if user.is_authenticated() and len(user.email):
             author += " <%s>" % user.email
 
-        from pootle.scripts import hooks
         try:
             filestocommit = hooks.hook(self.project.code, "precommit",
                                        store.file.name, author=author,
@@ -917,9 +920,8 @@ class TranslationProject(models.Model, TreeItem):
             filestocommit = [store.file.name]
 
         success = True
-        try:
-            from pootle_misc import versioncontrol
-            for file in filestocommit:
+        for file in filestocommit:
+            try:
                 versioncontrol.commit_file(file, message=message,
                                            author=author)
 
@@ -928,20 +930,19 @@ class TranslationProject(models.Model, TreeItem):
                     msg = _("Committed file <em>%(filename)s</em> to version "
                             "control", {'filename': file})
                     messages.success(request, msg)
-        except Exception as e:
-            logging.exception(u"Failed to commit file")
+            except Exception as e:
+                logging.exception(u"Failed to commit file")
 
-            # FIXME: This belongs to views
-            if request is not None:
-                msg_params = {
-                    'filename': filename,
-                    'error': e,
-                }
-                msg = _("Failed to commit <em>%(filename)s</em> to version "
-                        "control: %(error)s", msg_params)
-                messages.error(request, msg)
-
-            success = False
+                # FIXME: This belongs to views
+                if request is not None:
+                    msg_params = {
+                        "filename": file,
+                        "error": e,
+                    }
+                    msg = _("Failed to commit <em>%(filename)s</em> to version "
+                            "control: %(error)s", msg_params)
+                    messages.error(request, msg)
+                success = False
 
         try:
             hooks.hook(self.project.code, "postcommit", store.file.name,
@@ -951,7 +952,6 @@ class TranslationProject(models.Model, TreeItem):
             # impossible
             pass
 
-        from pootle_app.signals import post_vc_commit
         post_vc_commit.send(sender=self, path_obj=store,
                             user=user, success=success)
 
