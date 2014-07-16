@@ -303,7 +303,7 @@ class User(AbstractBaseUser):
         return Submission.objects.filter(
             submitter=self,
             translation_project=tp,
-            type=SubmissionTypes.NORMAL,
+            type__in=SubmissionTypes.CONTRIBUTION_TYPES,
         ).count()
 
     def overwritten_submission_count(self, tp):
@@ -316,7 +316,7 @@ class User(AbstractBaseUser):
         return Submission.objects.filter(
             submitter=self,
             translation_project=tp,
-            type=SubmissionTypes.NORMAL,
+            type__in=SubmissionTypes.CONTRIBUTION_TYPES,
         ).exclude(
             unit__submitted_by=self,
         ).count()
@@ -364,11 +364,7 @@ class User(AbstractBaseUser):
         # of needed queries for these kind of data retrievals
         contributions = []
         username = self.username
-        edit_types = [
-            SubmissionTypes.NORMAL,
-            SubmissionTypes.SUGG_ADD,
-            SubmissionTypes.SYSTEM,
-        ]
+        edit_types = SubmissionTypes.EDIT_TYPES
         languages = Language.objects.filter(
             translationproject__submission__submitter=self,
             translationproject__submission__type__in=edit_types,

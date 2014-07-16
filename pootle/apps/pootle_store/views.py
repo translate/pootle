@@ -248,7 +248,7 @@ def get_step_query(request, units_queryset):
             elif unit_filter in ('my-submissions', 'user-submissions'):
                 match_queryset = units_queryset.filter(
                         submission__submitter=user,
-                        submission__type=SubmissionTypes.NORMAL,
+                        submission__type__in=SubmissionTypes.EDIT_TYPES,
                     ).distinct()
                 sort_on = 'submissions'
             elif (unit_filter in ('my-submissions-overwritten',

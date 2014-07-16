@@ -56,6 +56,12 @@ class SubmissionTypes(object):
     SUGG_REJECT = 9 # Reject Suggestion
     UNIT_CREATE = 10 # Create a Unit with translation
 
+    # Combined types that rely on other types (useful for querying)
+    # Please use the `_TYPES` suffix to make it clear they're not core
+    # types that are stored in the DB
+    EDIT_TYPES = [NORMAL, SYSTEM]
+    CONTRIBUTION_TYPES = [NORMAL, SYSTEM, SUGG_ADD]
+
 
 #: Values for the 'field' field of Submission
 class SubmissionFields(object):
@@ -374,9 +380,8 @@ class ScoreLog(models.Model):
         if submission.suggestion is not None:
             suggester_score['user'] = submission.suggestion.user
 
-        edit_types = [SubmissionTypes.NORMAL, SubmissionTypes.SYSTEM]
         if (submission.field == SubmissionFields.TARGET and
-            submission.type in edit_types):
+            submission.type in SubmissionTypes.EDIT_TYPES):
             if submission.old_value == '' and submission.new_value != '':
                 submitter_score['action_code'] = TranslationActionCodes.NEW
             else:
