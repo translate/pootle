@@ -289,12 +289,12 @@ texinfo_documents = [
 # -- Options for Intersphinx -------------------------------------------------
 
 intersphinx_mapping = {
-    'python': ('http://docs.python.org/2.7', None),
-    'django': ('http://docs.djangoproject.com/en/dev',
-        'http://docs.djangoproject.com/en/dev/_objects'),
+    'python': ('https://docs.python.org/2.7', None),
+    'django': ('https://docs.djangoproject.com/en/dev',
+        'https://docs.djangoproject.com/en/dev/_objects'),
     'toolkit': ('http://docs.translatehouse.org/projects/translate-toolkit/en/latest/', None),
-    'south':  ('http://south.readthedocs.org/en/latest/', None),
-    'tastypie':  ('http://django-tastypie.readthedocs.org/en/latest/', None),
+    'south':  ('https://south.readthedocs.org/en/latest/', None),
+    'tastypie':  ('https://django-tastypie.readthedocs.org/en/latest/', None),
 }
 
 
@@ -305,7 +305,7 @@ extlinks = {
     'bug': ('http://bugs.locamotion.org/show_bug.cgi?id=%s', 'bug '),
     'man': ('http://linux.die.net/man/1/%s', ''),
     'wiki': ('http://translate.sourceforge.net/wiki/%s', ''),
-    'wp': ('http://en.wikipedia.org/wiki/%s', ''),
+    'wp': ('https://en.wikipedia.org/wiki/%s', ''),
 }
 
 # -- Options for Gettext -------------------------------------------------
