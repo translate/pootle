@@ -24,21 +24,21 @@ from optparse import make_option
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from django.core.management.base import BaseCommand
 from django.db import transaction
 
+from pootle_app.management.commands import PootleCommand
 from pootle_store.models import Store, TMUnit, Unit
 from pootle_store.util import TRANSLATED
 
 
-class Command(BaseCommand):
-    option_list = BaseCommand.option_list + (
+class Command(PootleCommand):
+    option_list = PootleCommand.option_list + (
         make_option("--drop-local-tm", dest="drop_local_tm",
                     action="store_true", help="Drop any existing local TM"),
     )
     help = ("Recreate the local translation memory.")
 
-    def handle(self, *args, **options):
+    def handle_noargs(self, **options):
         """Recreate the local TM using translations from existing projects.
 
         Iterates over all the translation units and creates the corresponding
@@ -50,12 +50,15 @@ class Command(BaseCommand):
             self.stdout.write('Successfully dropped existing local TM')
 
         self.stdout.write('About to create local TM using existing translations')
-        for store in Store.objects.all().iterator():
+        super(Command, self).handle_noargs(**options)
+        self.stdout.write('Successfully created local TM from existing translations')
+
+    def handle_translation_project(self, tp, **options):
+        """Push translation project units to local TM."""
+        for store in tp.stores.iterator():
             self.stdout.write("Adding translations from %r" % (store))
 
             with transaction.commit_on_success():
                 for unit in Unit.objects.filter(store=store, state__gte=TRANSLATED).iterator():
                     tmunit = TMUnit().create(unit)
                     tmunit.save()
-
-        self.stdout.write('Successfully created local TM from existing translations')
