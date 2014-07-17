@@ -19,6 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import datetime
+
 from django import template
 from django.contrib.auth import get_user_model
 
@@ -67,3 +69,25 @@ def top_scorers(*args, **kwargs):
     return {
         'top_scorers': User.top_scorers(**lookup_kwargs),
     }
+
+
+@register.simple_tag
+def format_date_range(date_from, date_to, separator=" - ",
+    format_str="%B %-d, %Y", year_f=", %Y", month_f="%B"):
+    """ Takes a start date, end date, separator and formatting strings and
+    returns a pretty date range string
+    """
+    if (isinstance(date_to, datetime.datetime) and
+        isinstance(date_from, datetime.datetime)):
+        date_to = date_to.date()
+        date_from = date_from.date()
+
+    if date_to and date_to != date_from:
+        from_format = to_format = format_str
+        if date_from.year == date_to.year:
+            from_format = from_format.replace(year_f, '')
+            if date_from.month == date_to.month:
+                to_format = to_format.replace(month_f, '')
+        return separator.join((date_from.strftime(from_format), date_to.strftime(to_format)))
+
+    return date_from.strftime(format_str)

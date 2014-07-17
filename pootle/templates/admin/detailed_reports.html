@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n common_tags %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,7 +95,7 @@
 </head>
 <body>
   <table>
-    <caption>{% blocktrans %}Report for {{ user }}{% endblocktrans %} {{ start|date:"j M, Y" }}&ndash;{{ end|date:"j M, Y" }}</caption>
+    <caption>{% blocktrans %}Report for {{ user }}, {% endblocktrans %}{% format_date_range start end " &ndash; " %}</caption>
     <thead>
       <tr>
         <th id="datetime">{% trans "Local server time" %} (GMT{{ utc_offset }})</th>
