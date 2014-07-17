@@ -287,7 +287,7 @@ using:
 .. code-block:: bash
 
     $ mkvirtualenv pootle-testing
-    $pip install path/to/dist/Pootle-$version.tar.bz2
+    $pip install $path-to-dist/Pootle-$version.tar.bz2
 
 
 This will allow you test installation of the software.
