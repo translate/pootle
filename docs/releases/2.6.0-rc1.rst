@@ -108,3 +108,10 @@ data, make a backup of the ``voting_vote`` table before upgrading.
 ...and lots of refactoring, upgrades of upstream code, cleanups to remove
 Django 1.4 specifics, improved documentation and of course, loads of bugs were
 fixed.
+
+Credits
+=======
+This release was made possible thanks to the contributions of Julen Ruiz
+Aizpuru, Leandro Regueiro, Jerome Leclanche, Igor Afanasyev, Taras Semenenko,
+Khaled Hosny, Dwayne Bailey, Arky, Peter Bengtsson, Miha Vrhovnik, Henrik Saari
+and Folkert van Heusden
