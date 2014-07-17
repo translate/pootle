@@ -167,7 +167,6 @@ setup(
     download_url="http://sourceforge.net/projects/translate/files/Pootle/" + pootle_version,
 
     install_requires=parse_requirements('requirements/base.txt'),
-    tests_require=parse_requirements('requirements/tests.txt'),
 
     platforms=["any"],
     classifiers=[

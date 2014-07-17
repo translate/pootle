@@ -1,4 +1,0 @@
--r deploy.txt
-
-pytest
-pytest-django>=2.6.1

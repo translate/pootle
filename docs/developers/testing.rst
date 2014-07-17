@@ -22,8 +22,7 @@ However, if you're developing you can simply run
 
     $ py.test
 
-from the root of the repository. Note that you need to install the testing
-requirements into your virtualenv first (*requirements/tests.txt*).
+from the root of the repository.
 
 .. note::
 
