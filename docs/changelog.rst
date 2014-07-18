@@ -7,19 +7,6 @@ Changelog
    :doc:`Release notes <releases/index>`.
 
 
-Version 2.1.1
--------------
-
-Bugfix release, released on September 3rd 2010.
-
-- The default cache backend is now a database backend. Memcached is
-  still the preferred cache backend, but consider using the database cache
-  if you are using the local memory backend and can't use memcached.
-
-- You can perform a :ref:`database migration away from SQLite
-  <database-migration>`.
-
-
 Version 2.1
 -----------
 
