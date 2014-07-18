@@ -1,0 +1,95 @@
+Pootle 2.1.1 Released including security fix
+============================================
+
+*Released on 03 September 2010*
+
+With the coming of spring we thought it's a good time to make the first
+bug fix release of the exciting new Pootle. We bring you Pootle 2.1.1
+get it while it is blooming from
+http://sourceforge.net/projects/translate/files/Pootle/2.1.1/
+
+Pootle is a web based system for translation and translation
+management.
+
+This release finally brings the ability to migrate data between
+different database engines. This means all of you stuck with the
+default sqlite3 can now move to a database engine that scales better
+like MySQL or PostgreSQL.
+
+Note that database migration depends on Django 1.2 or later.
+
+As an added bonus we added database migration to the 2.0 branch and
+quietly slipped in the last bug fix release for that series
+http://sourceforge.net/projects/translate/files/Pootle/2.0.6/ we made
+this bonus release so users still on the 2.0 branch using sqlite can
+migrate databases before they upgrade to 2.1 since the upgrade process
+is slow and the database size under 2.1 is considerably larger.
+
+For instructions and more details check :doc:`Database migration
+</server/database_migration>` docs.
+
+We noticed some users running Pootle under apache fail to use memcached
+for caching and stick to the default local memory cache backend. This
+causes buggy behavior as the default is not compatible with
+multiprocess servers. So for 2.1.1 we changed the default to a database
+cache backend. We still recommend using memcached but if for any reason
+you can't please update your localsettings.py.
+
+Users upgrading from 2.1.0 will see the upgrade screen appear
+for a few seconds while Pootle prepares the database for the new cache
+backend.
+
+For more information check :doc:`Caching System </server/cache>` docs.
+
+Apart from these two major changes 2.1.1 includes four new
+translations (Slovenian, Songhai, Tamil and Faroese) and many fixes and
+performance improvements. Here are the highlights:
+
+* Translation progress tables now show icons to indicate
+  ability to change table sorting.
+
+* Apertium machine translation improved their Javascript APIs with the
+  help of our Julen, Pootle has been updated to use these new apis
+  which make apertium a much more attractive option (specially for
+  translation between European languages).
+
+* Pootle no longer attempts to save translations to disk when there
+  are no new translations. Speeds up downloads.
+
+* Pootle now keeps a cached copy of exported ZIP archives and XLIFF
+  files to improve performance.
+
+* Correct From header for emails sent by contact form.
+
+* Fixed a bug where Pootle kept files open even when not needed.
+  May make us more Windows friendly (but no promises).
+
+* Better handling of invalid file types on upload.
+
+* Expensive serverwide stats on admin dashboard are not calculated
+  on demand only. Should make admin page loading more snappy.
+
+* Don't accept empty suggestions.
+
+* Thanks to Terin Stock (terinjokes) it is now possible to send
+  registration email as HTML emails.
+
+
+Pootle 2.1.1 depends on at least version 1.8.0 of Translate Toolkit, and as
+always will benefit from fixes in any later versions. So always use the latest.
+
+This work was made possible by many volunteers and our funders:
+
+- ANLoc, funded by IDRC http://africanlocalisation.net/
+
+* `Feature list`_
+* `Download`_
+* `Installation instructions`_
+* `Bugs`_
+* `More information`_
+
+.. _Feature list: http://docs.translatehouse.org/projects/pootle/en/latest/features/index.html
+.. _Download: http://sourceforge.net/projects/translate/files/Pootle/2.1.1/
+.. _Installation instructions: http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html
+.. _Bugs: http://bugs.locamotion.org/
+.. _More information: http://pootle.translatehouse.org
