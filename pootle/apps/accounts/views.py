@@ -39,6 +39,7 @@ class LoginRequiredMixin(object):
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
+    template_name = "account/user_form.html"
 
     def get_object(self, queryset=None):
         return self.request.user
