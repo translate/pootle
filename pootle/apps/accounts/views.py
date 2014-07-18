@@ -23,6 +23,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.utils.translation import gettext as _
 from django.views.generic import TemplateView, UpdateView
 
 
