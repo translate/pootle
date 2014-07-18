@@ -47,6 +47,11 @@ class Command(NoArgsCommand):
             call_command('migrate')
             call_command('initdb')
 
+            # Ensure we have the assets. Should be necessary only when running
+            # from a checkout.
+            call_command("collectstatic", clean=True, interactive=False)
+            call_command("assets", "build")
+
             logging.info('Successfully deployed new Pootle.')
         elif current_buildversion < 21010:
             # Trying to upgrade a deployment older than Pootle 2.1.1 for which
@@ -81,6 +86,10 @@ class Command(NoArgsCommand):
 
             call_command('migrate')
             call_command('upgrade')
+
+            # Ensure we don't use the old assets after upgrading.
+            call_command("collectstatic", clean=True, interactive=False)
+            call_command("assets", "build")
 
             logging.info('Successfully upgraded Pootle.')
         else:

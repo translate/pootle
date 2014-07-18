@@ -142,15 +142,6 @@ To perform the upgrade follow the next steps:
   </developers/customization>` to move your customizations to the right
   locations in order to reduce the pain in future upgrades.
 
-* Run the :ref:`collectstatic <commands#collectstatic>` and :ref:`assets build
-  <commands#assets>` commands to update the static assets:
-
-  .. code-block:: bash
-
-    (env)$ pootle collectstatic --clear --noinput
-    (env)$ pootle assets build
-
-
 * Finally clear your cache. For users of :command:`memcached` it is enough to
   restart it.
 

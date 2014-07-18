@@ -167,17 +167,6 @@ executing the :ref:`setup <commands#setup>` management command:
   (env) $ pootle setup
 
 
-.. note::
-
-   If you are installing directly from the code then you must also build the
-   assets after running the previous command:
-
-   .. code-block:: bash
-
-    (env) $ pootle collectstatic --noinput
-    (env) $ pootle assets build
-
-
 .. _installation#running_pootle:
 
 Running Pootle
