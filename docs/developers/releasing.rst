@@ -15,6 +15,7 @@ Summary
 #. Test install and other tests
 #. Tag the release
 #. Publish on PyPI
+#. Upload to Github
 #. Upload to Sourceforge
 #. Add product version to Bugzilla
 #. Release documentation
@@ -33,7 +34,7 @@ We need to check and document these if needed:
   tarball.
 - Change URLs to point to the correct docs: do we want to change URLs to point
   to the $version docs rather then 'latest'?
-- Building on Windows, building for other Linux distros. We have produced 
+- Building on Windows, building for other Linux distros. We have produced
 - Communicating to upstream packagers
 
 
@@ -105,6 +106,7 @@ The release notes will be used in these places:
 - Pootle website -- `download page
   <http://pootle.translatehouse.org/download.html>`_ (used in gh-pages)
 - Sourceforge download -- README.rst (used to give user info)
+- Github releases (converted to Markdown)
 - Email announcements -- text version
 
 We create our release notes in reStructured Text, since we use that elsewhere
@@ -188,7 +190,7 @@ The version string should follow the pattern::
 E.g. ::
 
     1.10.0
-    0.9.1-rc1 
+    0.9.1-rc1
 
 ``$EXTRA`` is optional but all the three others are required.  The first
 release of a ``$MINOR`` version will always have a ``$MICRO`` of ``.0``. So
@@ -367,6 +369,23 @@ Then to actually publish:
 .. code-block:: bash
 
     $ make publish-pypi
+
+
+Create a release on Github
+--------------------------
+
+- https://github.com/translate/pootle/releases/new
+
+You will need:
+
+- Tarball of the release
+- Release notes in Markdown
+
+#. Draft a new release with the corresponding tag version
+#. Convert the release notes to Markdown with `Pandoc
+   <http://johnmacfarlane.net/pandoc/>`_ and add those to the release
+#. Attach the tarball to the release
+#. Mark it as pre-release if it's a release candidate.
 
 
 Copy files to sourceforge
