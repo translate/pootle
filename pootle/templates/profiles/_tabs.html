@@ -4,6 +4,6 @@
   <li><a href="{% url 'profiles_profile_detail' user.username %}" class="dashboard">{% trans "Dashboard" %}</a></li>
   <li><a href="{% url 'pootle-profile-edit' %}" class="settings">{% trans "Settings" %}</a></li>
   <li><a href="{% url 'accounts-personal-edit' %}" class="profile">{% trans "Profile" %}</a></li>
-  <li><a href="{% url 'account_reset_password' %}" class="password">{% trans "Password" %}</a></li>
+  <li><a href="{% url 'account_change_password' %}" class="password">{% trans "Password" %}</a></li>
   {% endif %}
 </ul>
