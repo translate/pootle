@@ -479,6 +479,9 @@ We use github pages for the website. First we need to checkout the pages:
 
 Update Pootle dashboard
 -----------------------
+
+.. note:: Do not do this for release candidates, only for final releases.
+
 The dashboard used in Pootle's dashboard is updated in its own project:
 
 #. git clone git@github.com:translate/pootle-dashboard.git
