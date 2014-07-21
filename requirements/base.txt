@@ -11,7 +11,7 @@ django-allauth==0.16.1
 django-assets>=0.10
 django-contact-form==1.0
 django-taggit>=0.10,<0.11.2
-South>=0.8.4
+South==1.0
 
 # Required by webassets, isn't shipped in Python < 2.7
 argparse
