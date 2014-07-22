@@ -96,7 +96,7 @@ also ensure that someone else could replicate your process.
     $ cd pootle-release
     $ git submodule update --init
     $ mkvirtualenv pootle-release
-    $ pip install -r requirements/build.txt
+    (pootle-release) $ pip install -r requirements/build.txt
 
 
 Create release notes
@@ -289,7 +289,7 @@ using:
 .. code-block:: bash
 
     $ mkvirtualenv pootle-testing
-    $pip install $path-to-dist/Pootle-$version.tar.bz2
+    (pootle-testing) $ pip install $path-to-dist/Pootle-$version.tar.bz2
 
 
 This will allow you test installation of the software.
