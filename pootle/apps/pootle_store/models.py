@@ -1018,7 +1018,7 @@ class Unit(models.Model, base.TranslationUnit):
             return None
 
         if user is None:
-            user = User.objects.get_system_user()
+            user = get_user_model().objects.get_system_user()
 
         suggestion = Suggestion(
             unit=self,
