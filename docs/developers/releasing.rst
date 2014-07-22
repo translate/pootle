@@ -95,7 +95,7 @@ also ensure that someone else could replicate your process.
     $ git clone git@github.com:translate/pootle.git pootle-release
     $ cd pootle-release
     $ git submodule update --init
-    $ mktmpenv
+    $ mkvirtualenv pootle-release
     $ pip install -r requirements/build.txt
 
 
@@ -288,8 +288,8 @@ using:
 
 .. code-block:: bash
 
-    $ mktmpenv
-    $ pip install $path-to-dist/Pootle-$version.tar.bz2
+    $ mkvirtualenv pootle-testing
+    $pip install $path-to-dist/Pootle-$version.tar.bz2
 
 
 This will allow you test installation of the software.
