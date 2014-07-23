@@ -82,21 +82,6 @@ def unit_update_cache(unit):
             unit.store.fuzzy_wordcount += source_wordcount
             unit.store.translation_project.fuzzy_wordcount += source_wordcount
 
-    if unit._source_updated or unit._target_updated:
-        # Calculate quality checks for the unit and update critical counts.
-        had_failures = unit.has_critical_failures
-
-        unit.update_qualitychecks()
-
-        has_failures_now = unit.has_critical_failures
-
-        if has_failures_now and not had_failures:
-            unit.store.failing_critical_count += 1
-            unit.store.translation_project.failing_critical_count += 1
-        elif not has_failures_now and had_failures:
-            unit.store.failing_critical_count -= 1
-            unit.store.translation_project.failing_critical_count -= 1
-
     if unit._source_updated:
         # update source related fields
         unit.source_hash = md5(unit.source_f.encode("utf-8")).hexdigest()

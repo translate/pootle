@@ -551,6 +551,9 @@ class Unit(models.Model, base.TranslationUnit):
                 tmunit = TMUnit().create(self)
                 tmunit.save()
 
+            # Update quality checks
+            self.update_qualitychecks()
+
         # done processing source/target update remove flag
         self._source_updated = False
         self._target_updated = False
@@ -774,6 +777,9 @@ class Unit(models.Model, base.TranslationUnit):
         """Run quality checks and store result in the database."""
         existing = []
 
+        # Calculate quality checks for the unit and update critical counts.
+        had_failures = self.has_critical_failures
+
         if not created:
             checks = self.qualitycheck_set.all()
             if keep_false_positives:
@@ -805,6 +811,20 @@ class Unit(models.Model, base.TranslationUnit):
                                          category=category)
 
             self.store.flag_for_deletion(CachedMethods.CHECKS)
+
+        # XXX we can probably figure that out from the code above
+        has_failures_now = self.has_critical_failures
+
+        if has_failures_now and not had_failures:
+            self.store.failing_critical_count += 1
+            self.store.save()
+            self.store.translation_project.failing_critical_count += 1
+            self.store.translation_project.save()
+        elif not has_failures_now and had_failures:
+            self.store.failing_critical_count -= 1
+            self.store.save()
+            self.store.translation_project.failing_critical_count -= 1
+            self.store.translation_project.save()
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.all()
