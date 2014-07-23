@@ -773,24 +773,23 @@ class Unit(models.Model, base.TranslationUnit):
 
         return changed
 
-    def update_qualitychecks(self, created=False, keep_false_positives=False):
+    def update_qualitychecks(self, keep_false_positives=False):
         """Run quality checks and store result in the database."""
         existing = []
 
         # Calculate quality checks for the unit and update critical counts.
         had_failures = self.has_critical_failures
 
-        if not created:
-            checks = self.qualitycheck_set.all()
-            if keep_false_positives:
-                existing = set(checks.filter(false_positive=True) \
-                                     .values_list('name', flat=True))
-                checks = checks.filter(false_positive=False)
+        checks = self.qualitycheck_set.all()
+        if keep_false_positives:
+            existing = set(checks.filter(false_positive=True) \
+                                 .values_list('name', flat=True))
+            checks = checks.filter(false_positive=False)
 
-            if checks.count() > 0:
-                self.store.flag_for_deletion(CachedMethods.CHECKS)
-                # all checks should be recalculated
-                checks.delete()
+        if checks.count() > 0:
+            self.store.flag_for_deletion(CachedMethods.CHECKS)
+            # all checks should be recalculated
+            checks.delete()
 
         # no checks if unit is untranslated
         if not self.target:
