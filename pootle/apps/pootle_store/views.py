@@ -152,6 +152,11 @@ def download(request, store):
 ####################### Translate Page ##############################
 
 def get_alt_src_langs(request, user, translation_project):
+    from pootle_language.models import Language
+
+    if not user.is_authenticated():
+        return Language.objects.none()
+
     language = translation_project.language
     project = translation_project.project
     source_language = project.source_language
@@ -161,7 +166,6 @@ def get_alt_src_langs(request, user, translation_project):
         ).filter(translationproject__project=project)
 
     if not user.alt_src_langs.count():
-        from pootle_language.models import Language
         accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
 
         for accept_lang, unused in parse_accept_lang_header(accept):
