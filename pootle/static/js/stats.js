@@ -98,8 +98,10 @@
       var url = l('/xhr/stats/overview/'),
           reqData = {
             path: this.pootlePath,
-            goalSlug: this.goalSlug
           };
+      if (this.goalSlug) {
+        reqData.goalSlug = this.goalSlug;
+      }
       $.ajax({
         url: url,
         data: reqData,
