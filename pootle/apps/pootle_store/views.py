@@ -538,8 +538,12 @@ def get_units(request):
     units_qs = Unit.objects.get_for_path(pootle_path, request.user)
     step_queryset = get_step_query(request, units_qs)
 
+    user = request.user
+    if not user.is_authenticated():
+        user = User.objects.get_nobody_user()
+
     is_initial_request = request.GET.get('initial', False)
-    chunk_size = request.GET.get("count", request.user.unit_rows)
+    chunk_size = request.GET.get("count", user.unit_rows)
     uids_param = filter(None, request.GET.get('uids', '').split(u','))
     uids = filter(None, map(to_int, uids_param))
 
