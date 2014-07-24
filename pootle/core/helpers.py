@@ -20,6 +20,7 @@
 from itertools import groupby
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import check_permission
@@ -30,6 +31,9 @@ from pootle_store.models import Unit
 from pootle_store.views import get_step_query
 
 from .url_helpers import get_path_parts, get_previous_url
+
+
+User = get_user_model()
 
 
 def get_filter_name(GET):
@@ -83,6 +87,10 @@ def get_translation_context(request, is_terminology=False):
     """
     resource_path = getattr(request, 'resource_path', '')
 
+    user = request.user
+    if not user.is_authenticated():
+        user = User.objects.get_nobody_user()
+
     return {
         'page': 'translate',
 
@@ -97,6 +105,8 @@ def get_translation_context(request, is_terminology=False):
         'resource_path_parts': get_path_parts(resource_path),
 
         'check_categories': get_qualitycheck_schema(),
+
+        'unit_rows': user.unit_rows,
 
         'search_form': make_search_form(request=request,
                                         terminology=is_terminology),
