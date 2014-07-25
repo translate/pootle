@@ -1,0 +1,32 @@
+<% if (meta.user !== "") { %>
+  <h2><%= gettext('Summary') %></h2>
+  <table class="stats">
+    <thead>
+    <tr>
+      <th><%= gettext('Period') %></th>
+      <th><%= gettext('Action') %></th>
+      <th class="number"><%= gettext('Amount') %></th>
+      <th class="number"><%= gettext('x Rate') %></th>
+      <th class="number"><%= gettext('Subtotal') %></th>
+    </tr>
+    </thead>
+    <%= PTL.reports.resetRowStyle()  %>
+    <% var total =  0; %>
+    <% _.each(summary, function (row) { %>
+      <% var subTotal = Math.round(row.amount) * row.rate; %>
+      <% total += subTotal; %>
+      <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
+        <td><%= PTL.reports.dateRangeString(row.start, row.end, false) %></td>
+        <td><%= row.action %></td>
+        <td class="number"><%= Math.round(row.amount) %> <% if (row.action === "Hourly Work") { %><%= ngettext("hour", "hours", Math.round(row.amount)) %><% } else { %><%= ngettext("word", "words", Math.round(row.amount)) %><% } %></td>
+        <td class="number"><%= row.rate %> <%= meta.user.currency %></td>
+        <td class="number"><%= subTotal.toFixed(2) %> <%= meta.user.currency %></td>
+      </tr>
+    <% }); %>
+      <tr class="total">
+          <td>Total (<%= meta.user.currency %>)</td>
+          <td colspan="3"></td>
+          <td class="number"><%= total.toFixed(2) %> <%= meta.user.currency %></td>
+      </tr>
+  </table>
+<% } %>

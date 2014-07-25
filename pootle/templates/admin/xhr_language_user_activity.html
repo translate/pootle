@@ -1,76 +1,39 @@
 <% if (meta.user !== "") { %>
-<% if ((typeof score_summary !== "undefined") && (_.size(score_summary) > 0)) { %>
-<h2>Report for <%= meta.user.username %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
+<% if ((typeof grouped !== "undefined") && (_.size(grouped) > 0)) { %>
+  <h2>Report for <%= meta.user.username %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
   <table class="stats">
     <thead>
     <tr>
       <th><%= gettext('Project / Language') %></th>
-      <th class="project"><%= gettext('Translated') %></th>
-      <th class="project"><%= gettext('Reviewed') %></th>
-      <th class="project"><%= gettext('Score Delta') %></th>
+      <th class="number"><%= gettext('Translated (raw)') %></th>
+      <th class="number"><%= gettext('Translated (with similarity)') %></th>
+      <th class="number"><%= gettext('Reviewed') %></th>
+      <th class="number"><%= gettext('Score Delta') %></th>
     </tr>
     </thead>
     <%= PTL.reports.resetRowStyle()  %>
-    <% var totalTranslated = totalReviewed = totalScoreDelta = 0; %>
-    <% _.each(score_grouped, function (row) { %>
+    <% var totalTranslatedRaw = totalTranslated = totalReviewed = totalScoreDelta = 0; %>
+    <% _.each(grouped, function (row) { %>
       <% totalTranslated += row.translated %>
+      <% totalTranslatedRaw += row.translated_raw %>
       <% totalReviewed += row.reviewed %>
       <% totalScoreDelta += row.score_delta %>
       <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
         <td><%= row.translation_project %></td>
-        <td><%= Math.round(row.translated) %></td>
-        <td><%= row.reviewed %></td>
-        <td><% if (row.score_delta > 0) { %>+<% } %><%= row.score_delta.toFixed(2) %></td>
+        <td class="number<% if (row.translated_raw == 0) { %> zero<% } %>"><%= Math.round(row.translated_raw) %> <%= ngettext("word", "words", Math.round(row.translated_raw)) %></td>
+        <td class="number<% if (row.translated == 0) { %> zero<% } %>"><%= Math.round(row.translated) %> <%= ngettext("word", "words", Math.round(row.translated)) %></td>
+        <td class="number<% if (row.reviewed == 0) { %> zero<% } %>"><%= row.reviewed %> <%= ngettext("word", "words", Math.round(row.reviewed)) %></td>
+        <td class="number<% if (row.score_delta == 0) { %> zero<% } %>"><% if (row.score_delta > 0) { %>+<% } %><%= row.score_delta.toFixed(2) %></td>
       </tr>
     <% }); %>
       <tr class="total">
           <td>&nbsp;</td>
-          <td><%= Math.round(totalTranslated) %></td>
-          <td><%= Math.round(totalReviewed) %></td>
-          <td><% if (totalScoreDelta > 0) { %>+<% } %><%= totalScoreDelta.toFixed(2) %></td>
+          <td class="number<% if (totalTranslatedRaw == 0) { %> zero<% } %>"><%= Math.round(totalTranslatedRaw) %> <%= ngettext("word", "words", Math.round(totalTranslatedRaw)) %></td>
+          <td class="number<% if (totalTranslated == 0) { %> zero<% } %>"><%= Math.round(totalTranslated) %> <%= ngettext("word", "words", Math.round(totalTranslated)) %></td>
+          <td class="number<% if (totalReviewed == 0) { %> zero<% } %>"><%= Math.round(totalReviewed) %> <%= ngettext("word", "words", Math.round(totalReviewed)) %></td>
+          <td class="number<% if (totalScoreDelta == 0) { %> zero<% } %>"><% if (totalScoreDelta > 0) { %>+<% } %><%= totalScoreDelta.toFixed(2) %></td>
       </tr>
-    </table>
-
-<h2>Summary</h2>
-  <table class="stats">
-    <thead>
-    <tr>
-      <th>Period</th>
-      <th class="project">Translated</th>
-      <th class="project">x Rate</th>
-      <th class="project">Reviewed</th>
-      <th class="project">x Rate</th>
-      <th class="project">Subtotal (Words)</th>
-      <th class="project">Score Delta</th>
-      <th class="project">Subtotal (Score)</th>
-    </tr>
-    </thead>
-    <%= PTL.reports.resetRowStyle()  %>
-    <% var totalWords = totalScore = 0; %>
-    <% _.each(score_summary, function (row) { %>
-      <% var subTotalWords = row.reviewed * row.review_rate + Math.round(row.translated) * row.rate %>
-      <% var subTotalScore = row.score_delta * row.rate %>
-      <% totalWords += subTotalWords %>
-      <% totalScore += subTotalScore %>
-      <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
-        <td><%= PTL.reports.dateRangeString(row.start, row.end, false) %></td>
-        <td><%= Math.round(row.translated) %></td>
-        <td><%= row.rate %></td>
-        <td><%= row.reviewed %></td>
-        <td><%= row.review_rate %></td>
-        <td><%= subTotalWords.toFixed(2) %></td>
-        <td><% if (row.score_delta > 0) { %>+<% } %><%= row.score_delta.toFixed(2) %></td>
-        <td><%= subTotalScore.toFixed(2) %></td>
-      </tr>
-    <% }); %>
-      <tr class="total">
-          <td>Total (<%= meta.user.currency %>)</td>
-          <td colspan="4"></td>
-          <td><%= totalWords.toFixed(2) %></td>
-          <td></td>
-          <td><%= totalScore.toFixed(2) %></td>
-      </tr>
-    </table>
+  </table>
 <% } else { %>
   <p class="noresults"><%= gettext('No activity recorded during this period.') %></p>
 <% } %>

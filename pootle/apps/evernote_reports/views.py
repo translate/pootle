@@ -19,7 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -170,6 +170,17 @@ def get_date_interval(start_date, end_date):
     return [start, end]
 
 
+def get_max_month_datetime(dt):
+    next_month = dt.replace(day=1) + timedelta(days=31)
+
+    return next_month.replace(day=1, hour=23, minute=59, second=59) - \
+        timedelta(days=1)
+
+
+def get_min_month_datetime(dt):
+    return dt.replace(day=1, hour=0, minute=0, second=0)
+
+
 @ajax_required
 @admin_required
 def update_user_rates(request):
@@ -290,8 +301,8 @@ def user_date_prj_activity(request):
 
     json['meta'] = {'user': user_dict, 'start': start_date, 'end': end_date}
     if user != '':
-        json['score_summary'] = get_paid_words(user, start, end)
-        json['score_grouped'] = get_grouped_paid_words(user, start, end)
+        json['summary'] = get_summary(user, start, end)
+        json['grouped'] = get_grouped_paid_words(user, start, end)
         json['paid_tasks'] = get_paid_tasks(user, start, end)
 
     response = jsonify(json)
@@ -336,21 +347,28 @@ def get_grouped_paid_words(user, start, end):
                     (tp.project.fullname, tp.language.fullname),
                 'score_delta': 0,
                 'translated': 0,
+                'translated_raw': 0,
                 'reviewed': 0,
             }
             result.append(row)
 
         translated_words, reviewed_words = score.get_paid_words()
         row['translated'] += translated_words
+        if translated_words:
+            row['translated_raw'] += score.wordcount
         row['reviewed'] += reviewed_words
         row['score_delta'] += score.score_delta
 
     return sorted(result, key=lambda x: x['translation_project'])
 
 
-def get_paid_words(user, start, end):
-    rate = review_rate = row = None
-    result = []
+def get_summary(user, start, end):
+    rate = review_rate = None
+    translation_month = review_month = None
+    translated_row = reviewed_row = None
+
+    translations = []
+    reviews = []
 
     scores = ScoreLog.objects \
         .filter(user=user,
@@ -359,29 +377,109 @@ def get_paid_words(user, start, end):
         .order_by('creation_time')
 
     for score in scores:
-        if score.rate != rate or score.review_rate != review_rate:
+        if (score.rate != rate or
+            translation_month != score.creation_time.month):
             rate = score.rate
-            review_rate = score.review_rate
-            row = {
-                'translated': 0,
-                'reviewed': 0,
-                'score_delta': 0,
-                'rate': rate,
-                'review_rate': review_rate,
-                'start': score.creation_time.strftime('%Y-%m-%d'),
-                'end': score.creation_time.strftime('%Y-%m-%d'),
+            translation_month = score.creation_time.month
+            translated_row = {
+                'action': PaidTaskTypes.TRANSLATION,
+                'amount': 0,
+                'rate': score.rate,
+                'start': score.creation_time,
+                'end': score.creation_time,
             }
-            result.append(row)
+            translations.append(translated_row)
+        if (score.review_rate != review_rate or
+            review_month != score.creation_time.month):
+            review_rate = score.review_rate
+            review_month = score.creation_time.month
+            reviewed_row = {
+                'action': PaidTaskTypes.REVIEW,
+                'amount': 0,
+                'rate': score.review_rate,
+                'start': score.creation_time,
+                'end': score.creation_time,
+            }
+            reviews.append(reviewed_row)
 
         translated_words, reviewed_words = score.get_paid_words()
-        row['translated'] += translated_words
-        row['reviewed'] += reviewed_words
-        row['score_delta'] += score.score_delta
-        row['end'] = score.creation_time.strftime('%Y-%m-%d')
 
-    if result:
-        result[0]['start'] = start.strftime('%Y-%m-%d')
-        result[-1]['end'] = end.strftime('%Y-%m-%d')
+        translated_row['amount'] += translated_words
+        reviewed_row['amount'] += reviewed_words
+        if translated_words > 0:
+            translated_row['end'] = score.creation_time
+        elif reviewed_row > 0:
+            reviewed_row['end'] = score.creation_time
+
+    for group in [translations, reviews]:
+        for i, item in enumerate(group):
+            if i == 0:
+                item['start'] = start
+            else:
+                item['start'] = get_min_month_datetime(item['start'])
+
+            if item['end'].month == end.month and item['end'].year == end.year:
+                item['end'] = end
+            else:
+                item['end'] = get_max_month_datetime(item['end'])
+
+    result = filter(lambda x: x['amount'] > 0, translations + reviews)
+    result = sorted(result, key=lambda x: x['start'])
+
+    tasks = PaidTask.objects \
+        .filter(user=user,
+                date__gte=start,
+                date__lte=end) \
+        .order_by('pk', 'task_type')
+
+    for task in tasks:
+        extended = None
+        task_datetime = datetime.combine(
+            task.date,
+            datetime_time(hour=23, minute=59, second=59)
+        )
+        if settings.USE_TZ:
+            tz = timezone.get_default_timezone()
+            task_datetime = timezone.make_aware(task_datetime, tz)
+
+        for item in result:
+            if (item['start'] <= task_datetime <= item['end'] and
+                task.task_type == item['action'] and
+                item['rate'] == task.rate):
+                extended = item
+                break
+
+        if extended is not None:
+            extended['amount'] += task.amount
+        else:
+            insert_index = len(result)
+            for index, item in enumerate(result):
+                if item['start'] > task_datetime:
+                    insert_index = index
+                    break
+            start = start.replace(hour=0, minute=0, second=0)
+            end = end.replace(hour=23, minute=59, second=59)
+
+            task_start = task_datetime.replace(day=1, hour=0, minute=0, second=0)
+            task_end = get_max_month_datetime(task_datetime)
+            if end <= task_end:
+                task_end = end
+
+            result.insert(insert_index, {
+                'action': task.task_type,
+                'amount': task.amount,
+                'rate': task.rate,
+                'start': task_start,
+                'end': task_end,
+            })
+
+    for item in result:
+        item['type'] = item['action']
+        item['action'] = PaidTask.get_task_type_title(item['action'])
+
+    for item in result:
+        item['start'] = item['start'].strftime('%Y-%m-%d')
+        item['end'] = item['end'].strftime('%Y-%m-%d')
 
     return result
 

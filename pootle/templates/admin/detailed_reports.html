@@ -118,9 +118,9 @@
           <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
         </td>
         <td class="number">{{ score.wordcount }}</td>
-        <td class="number">{% if score.action == 2 %}&mdash;{% elif score.action == 1 %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
+        <td class="number">{% if score.action == 'Review' %}&mdash;{% elif score.action == 'Translation' %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
         <td class="number">{{ score.words|floatformat:2 }}</td>
-        <td class="number">{% if score.action == 2 %}{{ score.review_rate }}{% elif score.action = 1%}{{ score.rate }}{% endif %} {{ user.currency }}</td>
+        <td class="number">{% if score.action == 'Review' %}{{ score.review_rate }}{% elif score.action = 'Translation' %}{{ score.rate }}{% endif %} {{ user.currency }}</td>
         <td class="number">{{ score.subtotal|floatformat:2 }} {{ user.currency }}</td>
       </tr>
       {% endif %}

@@ -10,6 +10,7 @@
       this.tmpl = {
         results: _.template($('#language_user_activity').html()),
         month_selector: _.template($('#month_selector').html()),
+        summary: _.template($('#summary').html()),
         paid_tasks: _.template($('#paid-tasks').html()),
       };
 
@@ -17,7 +18,7 @@
         var offset = parseInt($(this).data('month-offset')),
             dateRange = PTL.reports.getDateRangeByOffset(offset);
 
-        PTL.reports.date_range = date_range;
+        PTL.reports.dateRange = dateRange;
         PTL.reports.update();
 
         return false;
@@ -51,7 +52,7 @@
       this.refreshAmountMeasureUnits(taskType);
       $('#reports-user').select2({'data': users});
 
-      PTL.reports.currentRowIsEven = false;
+      this.currentRowIsEven = false;
 
       $.history.init(function (hash) {
         var params = PTL.utils.getParsedHash(hash),
@@ -60,18 +61,17 @@
         // Walk through known report criterias and apply them to the
         // reports object
         if ('start' in params && 'end' in params) {
-          PTL.reports.date_range = [
+          PTL.reports.dateRange = [
             moment(params.start),
             moment(params.end)
           ];
         } else {
-          PTL.reports.date_range = [
+          PTL.reports.dateRange = [
             PTL.reports.now.clone().date(1),
             PTL.reports.now.clone()
           ];
         }
         PTL.reports.selectMonth();
-        PTL.reports.setViewMode(params.mode || 'new');
 
         if ('username' in params) {
           PTL.reports.userName = params.username;
@@ -219,16 +219,22 @@
         success: function (data) {
           $('#reports-results').empty();
           $('#reports-results').html(PTL.reports.tmpl.results(data));
-          PTL.reports.setViewMode(PTL.reports.mode);
+          $('#reports-summary').html(PTL.reports.tmpl.summary(data));
+          $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(data));
           if (data.meta.user) {
-            var user = data.meta.user;
+            PTL.reports.user = data.meta.user;
 
-            $('#id_username').val(user.username);
-            $('#id_rate').val(user.rate);
-            $('#id_review_rate').val(user.review_rate);
+            $('#id_username').val(PTL.reports.user.username);
+            $('#id_user').val(PTL.reports.user.id);
+            $('#id_rate').val(PTL.reports.user.rate);
+            $('#id_review_rate').val(PTL.reports.user.review_rate);
+            $('#id_hourly_rate').val(PTL.reports.user.hourly_rate);
 
-            if (user.currency) {
-              $('#id_currency').val(user.currency);
+            var taskType = $('#id_task_type').val();
+            $('#id_paid_task_rate').val(PTL.reports.getRateByTaskType(taskType));
+
+            if (PTL.reports.user.currency) {
+              $('#id_currency').val(PTL.reports.user.currency);
             }
             $('#user-rates-form .currency').text($('#id_currency').val())
             $('#forms').show();
@@ -307,6 +313,16 @@
           $el.addClass('selected');
         }
       });
+
+      $('#paid-task-form .month').html(PTL.reports.dateRange[1].format('MMMM, YYYY'));
+      // set paid task date
+      if (PTL.reports.now >= PTL.reports.dateRange[1]) {
+        $('#paid-task-form #id_date').val(PTL.reports.dateRange[1].format('YYYY-MM-DD'));
+      } else if (PTL.reports.now <= PTL.reports.dateRange[0]) {
+        $('#paid-task-form #id_date').val(PTL.reports.dateRange[0].format('YYYY-MM-DD'));
+      } else {
+        $('#paid-task-form #id_date').val(PTL.reports.now.format('YYYY-MM-DD'));
+      }
     },
 
     getDateRangeByOffset: function (offset) {
