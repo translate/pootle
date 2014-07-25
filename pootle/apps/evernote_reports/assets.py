@@ -31,5 +31,6 @@ register('js_reports', js_reports)
 
 css_reports = Bundle(
     'css/reports.css',
+    'css/sprite.css',
     filters='cssmin', output='css/reports.min.css')
 register('css_reports', css_reports)

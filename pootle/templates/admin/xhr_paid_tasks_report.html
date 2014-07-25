@@ -1,0 +1,30 @@
+<% if (meta.user !== "") { %>
+<% if ((typeof paid_tasks !== "undefined") && (_.size(paid_tasks) > 0)) { %>
+  <h2>Paid tasks</h2>
+  <table class="stats">
+    <thead>
+    <tr>
+      <th><%= gettext('Action') %></th>
+      <th><%= gettext('Comment') %></th>
+      <th class="number"><%= gettext('Amount') %></th>
+      <th class="number"><%= gettext('x Rate') %></th>
+      <th class="number"><%= gettext('Subtotal') %></th>
+      <th class="remove"></th>
+    </tr>
+    </thead>
+    <%= PTL.reports.resetRowStyle()  %>
+    <% _.each(paid_tasks, function (row) { %>
+      <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
+        <td><%= row.type %></td>
+        <td><%= row.description %></td>
+        <td class="number"><%= row.amount %> <% if (row.type === "Hourly Work") { %><%= ngettext("hour", "hours", Math.round(row.amount)) %><% } else { %><%= ngettext("word", "words", Math.round(row.amount)) %><% } %></td>
+        <td class="number"><%= row.rate %> <%= meta.user.currency %></td>
+        <td class="number"><%= (row.rate * row.amount).toFixed(2) %> <%= meta.user.currency %></td>
+        <td class="remove">
+          <i class="icon-reject js-remove-task"  data-id="<%= row.id %>" original-title="Remove task"></i>
+        </td>
+      </tr>
+    <% }); %>
+  </table>
+<% } %>
+<% } %>

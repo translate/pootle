@@ -22,6 +22,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.models.user import CURRENCIES
+from evernote_reports.models import PaidTask
 
 
 class UserRatesForm(forms.Form):
@@ -40,3 +41,14 @@ class UserRatesForm(forms.Form):
         widget=forms.DateInput(attrs={'placeholder': 'YYYY-MM-DD'}),
         required=False,
     )
+
+
+class PaidTaskForm(forms.ModelForm):
+    class Meta:
+        model = PaidTask
+        widgets = {
+            'user': forms.HiddenInput(),
+            'rate': forms.HiddenInput(attrs={
+                'id': 'id_paid_task_rate'
+            }),
+        }

@@ -23,7 +23,6 @@ from datetime import datetime
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.db.models import Sum
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -33,9 +32,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.decorators import admin_required
 from pootle_misc.util import ajax_required, jsonify
-from pootle_statistics.models import Submission, SubmissionFields, ScoreLog
+from pootle_statistics.models import ScoreLog
 
-from .forms import UserRatesForm
+from .forms import UserRatesForm, PaidTaskForm
+from .models import PaidTask, PaidTaskTypes
 
 
 # Django field query aliases
@@ -65,6 +65,7 @@ def evernote_reports(request):
             User.objects.hide_meta()
         )),
         'user_rates_form': UserRatesForm(),
+        'paid_task_form': PaidTaskForm(),
     }
 
     return render_to_response('admin/reports.html', ctx,
@@ -100,11 +101,11 @@ def evernote_reports_detailed(request):
         for score in scores:
             translated, reviewed = score.get_paid_words()
             if translated:
-                score.action = 1
+                score.action = PaidTask.get_task_type_title(PaidTaskTypes.TRANSLATION)
                 score.subtotal = score.rate * translated
                 score.words = score.wordcount * (1 - score.get_similarity())
             elif reviewed:
-                score.action = 2
+                score.action = PaidTask.get_task_type_title(PaidTaskTypes.REVIEW)
                 score.subtotal = score.review_rate * reviewed
                 score.words = score.wordcount
             score.similarity = score.get_similarity() * 100
@@ -177,9 +178,9 @@ def update_user_rates(request):
     if form.is_valid():
         try:
             User = get_user_model()
-            user = User.objects.get(username=form.cleaned_data['username'])
-        except User.ObjectDoesNotExist:
-            error_text = _("User %s not found" % form.cleaned_data['username'])
+            user = User.objects.get(id=form.cleaned_data['user'])
+        except User.DoesNotExist:
+            error_text = _("User %s not found" % form.cleaned_data['user'])
 
             return HttpResponseNotFound(jsonify({'msg': error_text}),
                                         content_type="application/json")
@@ -210,6 +211,37 @@ def update_user_rates(request):
 
 @ajax_required
 @admin_required
+def add_paid_task(request):
+    form = PaidTaskForm(request.POST)
+    if form.is_valid():
+        form.save()
+
+        return HttpResponse(jsonify({'result': form.instance.id}),
+                            content_type="application/json")
+
+    return HttpResponseBadRequest(jsonify({'html': form.errors}),
+                                  content_type="application/json")
+
+
+@ajax_required
+@admin_required
+def remove_paid_task(request, task_id=None):
+    if request.method == 'DELETE':
+        tasks = PaidTask.objects.filter(id=task_id)
+        count = tasks.count()
+        tasks.delete()
+
+        return HttpResponse(jsonify({'removed': count}),
+                            content_type="application/json")
+
+    return HttpResponseBadRequest(
+        jsonify({'error': _('Invalid request method')}),
+        content_type="application/json"
+    )
+
+
+@ajax_required
+@admin_required
 def user_date_prj_activity(request):
     username = request.GET.get('username', None)
     start_date = request.GET.get('start', None)
@@ -236,10 +268,32 @@ def user_date_prj_activity(request):
     if user != '':
         json['score_summary'] = get_paid_words(user, start, end)
         json['score_grouped'] = get_grouped_paid_words(user, start, end)
+        json['paid_tasks'] = get_paid_tasks(user, start, end)
 
     response = jsonify(json)
 
     return HttpResponse(response, content_type="application/json")
+
+
+def get_paid_tasks(user, start, end):
+    result = []
+
+    tasks = PaidTask.objects \
+        .filter(user=user,
+                date__gte=start,
+                date__lte=end) \
+        .order_by('pk')
+
+    for task in tasks:
+        result.append({
+            'id': task.id,
+            'description': task.description,
+            'amount': task.amount,
+            'type': PaidTask.get_task_type_title(task.task_type),
+            'rate': task.rate,
+        })
+
+    return result
 
 
 def get_grouped_paid_words(user, start, end):

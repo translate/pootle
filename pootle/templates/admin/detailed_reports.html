@@ -113,7 +113,7 @@
       {% if score.action %}
       <tr>
         <td>{{ score.creation_time }}</td>
-        <td>{% if score.action == 2 %}{% trans "Reviewed" %}{% elif score.action == 1 %}{% trans "Translated" %}{% endif %}</td>
+        <td>{{ score.action }}</td>
         <td class="unit">
           <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
         </td>

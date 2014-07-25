@@ -20,6 +20,9 @@
 <script id="language_user_activity" type="text/template">
 {% include_raw "admin/xhr_language_user_activity.html" %}
 </script>
+<script id="paid-tasks" type="text/template">
+{% include_raw "admin/xhr_paid_tasks_report.html" %}
+</script>
 <script id="month_selector" type="text/template">
   <li>
     <a class="month-selector"
@@ -31,6 +34,9 @@
 <script type="text/javascript">
   {% autoescape off %}
   var users = {{ users }};
+  var updateUserRatesUrl = "{% url 'evernote-update-user-rates' %}",
+      addPaidTaskUrl = "{% url 'evernote-add-paid-task' %}",
+      removePaidTaskUrl = "{% url 'evernote-remove-paid-task' %}";
   {% endautoescape %}
 </script>
 
@@ -56,7 +62,7 @@
     <a href="{% url 'evernote-reports-detailed' %}" target="_blank">{% trans 'Detailed report' %}</a>
   </div>
   <div id="reports-results"></div>
-  <div>
+  <div id="forms">
     <form id="user-rates-form" method="post" action="">
       {% csrf_token %}
       <table>
@@ -88,6 +94,41 @@
         </tr>
       </table>
     </form>
+    <form id="paid-task-form" method="post" action="">
+      {% csrf_token %}
+      <table>
+      {% for field in paid_task_form %}
+        {% if not field.is_hidden %}
+        <tr>
+        <td>
+          {{ field.label_tag }}
+        </td>
+        <td>
+          <div class="field-wrapper">
+          {% if field.name == 'date' %}
+            {{ field.as_hidden }}
+            <div class="month"></div>
+          {% else %}
+            {{ field }}
+          {% endif %}
+          </div>
+          {% if field.name == 'amount' %}
+            <div class="units task-0 task-1">{% trans "words" %}</div>
+            <div class="units task-2">{% trans "hours" %}</div>
+          {% endif %}
+        </td>
+        </tr>
+        {% else %}
+          {{ field }}
+        {% endif %}
+      {% endfor %}
+        <tr>
+          <td></td>
+          <td><input type="submit" class="submit btn" value="{% trans 'Add record' %}"/></td>
+        </tr>
+      </table>
+    </form>
   </div>
+  <div id="reports-paid-tasks"></div>
 </div>
 {% endblock %}

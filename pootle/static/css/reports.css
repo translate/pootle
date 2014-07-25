@@ -19,7 +19,9 @@
 /*#reports-results .reports-lang th.project {
     text-align: right;
 }*/
-#reports-results th {
+#reports-results th,
+#reports-summary th,
+#reports-paid-tasks th {
     color: #999;
     text-align: left;
     font-size: 85%;
@@ -125,7 +127,7 @@ tr.after_break {
     font-size: 75%;
     color: #999;
 }
-#user-rates-form .field-wrapper {
+.field-wrapper {
     float: left;
 }
 #user-rates-form .currency {
@@ -135,11 +137,61 @@ tr.after_break {
 #user-rates-form .error {
     background-color: #c55;
 }
+
 #user-rates-form input {
-    width: 100px;
+    width: 85px;
+}
+#user-rates-form input.rate {
+    width: 51px;
+}
+#user-rates-form select.rate {
+    width: 55px;
 }
 
 #detailed {
     display: inline-block;
     margin-left: 50px;
+}
+
+#forms {
+    display: none;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#forms form {
+    float: left;
+}
+
+#forms tr:hover {
+    background-color: #fff !important;
+}
+
+#paid-task-form {
+    width: 500px;
+}
+
+#paid-task-form input {
+    width: 100px;
+}
+
+#paid-task-form .units {
+    float: left;
+    padding: 5px;
+}
+
+#paid-task-form #id_description {
+    height: 60px;
+    width: 200px;
+}
+
+#reports-summary,
+#reports-paid-tasks {
+    display: inline-block;
+    width: 100%;
+}
+
+#reports-paid-tasks i {
+    cursor: pointer;
+    vertical-align: middle;
 }

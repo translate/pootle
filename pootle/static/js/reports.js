@@ -10,6 +10,7 @@
       this.tmpl = {
         results: _.template($('#language_user_activity').html()),
         month_selector: _.template($('#month_selector').html()),
+        paid_tasks: _.template($('#paid-tasks').html()),
       };
 
       $(document).on('click', '.month-selector', function (e) {
@@ -27,7 +28,11 @@
         PTL.reports.update();
       });
       $(document).on('click', '#user-rates-form input.submit', this.updateRates);
+      $(document).on('click', '#paid-task-form input.submit', this.addPaidTask);
       $(document).on('change', '#id_currency', this.refreshCurrency);
+      $(document).on('change', '#id_task_type', this.onPaidTaskTypeChange);
+
+      $(document).on('click', '#reports-paid-tasks .js-remove-task', this.removePaidTask);
 
       this.now = moment();
 
@@ -39,9 +44,11 @@
         $('#reports-params .dates ul').append(month);
       }
 
-      this.date_range = [this.now.clone().date(1), this.now.clone()]
+      this.dateRange = [this.now.clone().date(1), this.now.clone()]
       this.user = null;
-      $('#user-rates-form').hide();
+
+      var taskType = $('#id_task_type').val();
+      this.refreshAmountMeasureUnits(taskType);
       $('#reports-user').select2({'data': users});
 
       PTL.reports.currentRowIsEven = false;
@@ -79,27 +86,57 @@
         $('#detailed a').attr('href', detailed + '?' + PTL.utils.getHash());
       }, {'unescape': true});
 
-      $(document).on('change', '#reports-viewmode select', function (e) {
-        PTL.reports.setViewMode($(this).val());
-        PTL.reports.update();
-        return false;
-      });
-
     },
 
     updateRates: function () {
-      var reqData = $('#user-rates-form').serializeObject(),
-          submitUrl = l('/admin/reports/update_user_rates');
+      var reqData = $('#user-rates-form').serializeObject();
 
       $.ajax({
-        url: submitUrl,
+        url: updateUserRatesUrl,
         type: 'POST',
         data: reqData,
         dataType: 'json',
         success: function (data) {
-          if (data.updated_count > 0) {
+          if (data.scorelog_count + data.paid_task_count > 0) {
             PTL.reports.buildResults();
           }
+        },
+        error: function (xhr, s) {
+          alert('Error status: ' + xhr.status);
+        }
+      });
+      return false;
+    },
+
+    addPaidTask: function () {
+      var reqData = $('#paid-task-form').serializeObject();
+
+      $.ajax({
+        url: addPaidTaskUrl,
+        type: 'POST',
+        data: reqData,
+        dataType: 'json',
+        success: function (data) {
+          if (data.result > 0) {
+            $('#id_amount').val(0);
+            $('#id_description').val('');
+            PTL.reports.buildResults();
+          }
+        },
+        error: function (xhr, s) {
+          alert('Error status: ' + xhr.status);
+        }
+      });
+      return false;
+    },
+
+    removePaidTask: function () {
+      $.ajax({
+        url: removePaidTaskUrl + $(this).data('id'),
+        type: 'DELETE',
+        dataType: 'json',
+        success: function (data) {
+          PTL.reports.buildResults();
         },
         error: function (xhr, s) {
           alert('Error status: ' + xhr.status);
@@ -113,10 +150,24 @@
       $('#user-rates-form .currency').text(currency);
     },
 
-    setViewMode: function (mode) {
-      PTL.reports.mode = mode;
-      $('#reports-viewmode select').val(mode);
-      $('#reports-results').attr('class', mode);
+    onPaidTaskTypeChange: function (e) {
+      var taskType = $(this).val();
+
+      PTL.reports.refreshAmountMeasureUnits(taskType);
+      $('#id_paid_task_rate').val(PTL.reports.getRateByTaskType(taskType));
+    },
+
+    refreshAmountMeasureUnits: function (taskType) {
+      $('#paid-task-form .units').hide();
+      $('#paid-task-form .units.task-' + taskType).show();
+    },
+
+    getRateByTaskType: function (taskType) {
+      return {
+        0: PTL.reports.user.rate,
+        1: PTL.reports.user.review_rate,
+        2: PTL.reports.user.hourly_rate,
+      }[taskType] || 0;
     },
 
     validate: function () {
@@ -180,7 +231,7 @@
               $('#id_currency').val(user.currency);
             }
             $('#user-rates-form .currency').text($('#id_currency').val())
-            $('#user-rates-form').show();
+            $('#forms').show();
           }
         },
         error: function (xhr, s) {
