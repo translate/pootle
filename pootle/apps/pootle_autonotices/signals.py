@@ -22,10 +22,15 @@
 events."""
 
 import logging
-
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 from pootle_app.models import Directory
+from pootle_app.signals import (post_file_upload, post_template_update,
+                                post_vc_commit, post_vc_update)
+from pootle_language.models import Language
 from pootle_misc.stats import stats_message_raw
 from pootle_notifications.models import Notice
+from pootle_project.models import Project
 
 
 ##### Model Events #####
@@ -36,6 +41,7 @@ def new_object(created, message, parent):
         notice.save()
 
 
+@receiver(post_save, sender=Language)
 def new_language(sender, instance, created=False, raw=False, **kwargs):
     if raw:
         return
@@ -48,6 +54,7 @@ def new_language(sender, instance, created=False, raw=False, **kwargs):
     new_object(created, message, instance.directory.parent)
 
 
+@receiver(post_save, sender=Project)
 def new_project(sender, instance, created=False, raw=False, **kwargs):
     if raw:
         return
@@ -62,6 +69,7 @@ def new_project(sender, instance, created=False, raw=False, **kwargs):
 
 ##### TranslationProject Events #####
 
+@receiver(post_template_update)
 def updated_against_template(sender, **kwargs):
     args = {
         'url': sender.get_absolute_url(),
@@ -72,6 +80,7 @@ def updated_against_template(sender, **kwargs):
     new_object(True, message, sender.directory)
 
 
+@receiver(post_vc_update)
 def updated_from_version_control(sender, **kwargs):
     if sender.is_template_project:
         # Add template news to project instead of translation project.
@@ -88,6 +97,7 @@ def updated_from_version_control(sender, **kwargs):
     new_object(True, message, directory)
 
 
+@receiver(post_vc_commit)
 def committed_to_version_control(sender, path_obj, user, success, **kwargs):
     args = {
         'user_url': user.get_absolute_url(),
@@ -106,6 +116,7 @@ def committed_to_version_control(sender, path_obj, user, success, **kwargs):
     new_object(success, message, sender.directory)
 
 
+@receiver(post_file_upload)
 def file_uploaded(sender, oldstats, user, newstats, archive, **kwargs):
     if sender.is_template_project:
         # Add template news to project instead of translation project.

@@ -26,6 +26,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.dispatch import receiver
 from django.utils.encoding import iri_to_uri
 from django.utils.translation import ugettext_lazy as _
 
@@ -479,6 +480,7 @@ class ItemWithGoal(GenericTaggedItemBase):
 
 ################################ Signal handlers ##############################
 
+@receiver(translation_submitted)
 def flush_goal_caches_for_unit(sender, unit, **kwargs):
     """Flush all goals caches for the store that holds the unit.
 
@@ -489,9 +491,7 @@ def flush_goal_caches_for_unit(sender, unit, **kwargs):
     Goal.flush_all_caches_for_path(pootle_path)
 
 
-translation_submitted.connect(flush_goal_caches_for_unit)
-
-
+@receiver([post_file_upload, post_template_update, post_vc_update])
 def flush_goal_caches(sender, **kwargs):
     """Flush all goals caches for sender if a signal is received.
 
@@ -506,8 +506,3 @@ def flush_goal_caches(sender, **kwargs):
         #FIXME: It is too radical to remove all the caches even if just one
         # file was uploaded. Look at a more surgical way to perform this.
         Goal.flush_all_caches_in_tp(sender)
-
-
-post_file_upload.connect(flush_goal_caches)
-post_template_update.connect(flush_goal_caches)
-post_vc_update.connect(flush_goal_caches)
