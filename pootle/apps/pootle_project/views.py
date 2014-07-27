@@ -36,7 +36,7 @@ from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
-from pootle_misc.util import ajax_required, jsonify
+from pootle_misc.util import jsonify
 from pootle_project.forms import (TranslationProjectFormSet,
                                   TranslationProjectTagForm, tp_form_factory)
 from pootle_project.models import Project
@@ -44,7 +44,6 @@ from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
 
 
-@ajax_required
 @get_path_obj
 @permission_required('view')
 def ajax_list_tags(request, project):
@@ -62,8 +61,8 @@ def ajax_list_tags(request, project):
 
     return HttpResponse(serializers.serialize("json", queryset))
 
+
 @require_POST
-@ajax_required
 @get_path_obj
 @permission_required('administrate')
 def ajax_remove_tag_from_tp_in_project(request, translation_project, tag_name):
@@ -98,7 +97,6 @@ def _add_tag(request, translation_project, tag_like_object):
 
 
 @require_POST
-@ajax_required
 @get_path_obj
 @permission_required('administrate')
 def ajax_add_tag_to_tp_in_project(request, project):
@@ -201,7 +199,6 @@ def overview(request, project, dir_path, filename):
 
 
 @require_POST
-@ajax_required
 @get_path_obj
 @permission_required('administrate')
 def project_settings_edit(request, project):
