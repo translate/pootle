@@ -193,3 +193,213 @@ html[dir="rtl"] .admin-content h2 + .btn
     right: auto;
     left: 2em;
 }
+
+
+/* Add/Edit form */
+
+/* FIXME: #item-form styles copied from user.css, the styles should be
+ * shared and `#user-edit` should become `#item-form` */
+
+#item-form
+{
+    width: 500px;
+}
+
+#item-form label
+{
+    width: 30%;
+}
+
+#item-form .fields label,
+#item-form .fields input,
+#item-form .fields textarea,
+#item-form .fields .helptext
+{
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+#item-form .fields input,
+#item-form .fields textarea
+{
+    width: 70%;
+    padding: 0.3em;
+    line-height: 1.2;
+}
+
+#item-form .fields input[type="checkbox"]
+{
+    width: auto;
+}
+
+#item-form #id_twitter
+{
+    width: 35%;
+}
+
+#item-form #id_bio
+{
+    height: 5em;
+}
+
+#item-form .helptext,
+#item-form .errorlist,
+#item-form .buttons
+{
+    margin-left: 30%;
+}
+
+html[dir="rtl"] #item-form .helptext,
+html[dir="rtl"] #item-form .errorlist,
+html[dir="rtl"] #item-form .buttons
+{
+    margin-left: auto;
+    margin-right: 30%;
+}
+
+#item-form .buttons
+{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#item-form .buttons input
+{
+    margin-bottom: 1em;
+}
+
+#item-form .buttons a
+{
+    font-style: italic;
+}
+
+#item-form .helptext
+{
+    position: absolute;
+    margin-top: -0.2em;
+    left: 80px;
+    width: 40%;
+}
+
+html[dir="rtl"] #item-form .helptext
+{
+    left: auto;
+    right: 80px;
+}
+
+.admin-content #item-form
+{
+    width: 100%;
+}
+
+.admin-content #item-form .divider
+{
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    clear: both;
+    margin: 1em 0;
+}
+
+.admin-content #item-form .helptext
+{
+    position: relative;
+    width: auto;
+    margin-top: 0;
+    left: auto;
+}
+
+.admin-content #item-form #id_bio
+{
+    resize: vertical;
+}
+
+
+/* Delete */
+
+.admin-content .item-delete
+{
+    margin-top: 1em;
+    margin-left: 30%;
+}
+
+html[dir="rtl"] .admin-content .item-delete
+{
+    margin-left: auto;
+    margin-right: 30%;
+}
+
+.admin-content .item-delete input,
+.admin-content .item-delete button
+{
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.admin-content .item-delete input
+{
+    margin-right: 1em;
+    margin-left: -2em;
+}
+
+html[dir="rtl"] .admin-content .item-delete input
+{
+    margin-right: -2em;
+    margin-left: 1em;
+}
+
+.admin-content .item-delete .helptext
+{
+    display: block;
+    margin-top: 1em !important;
+    margin-left: auto !important;
+}
+
+
+/* Search */
+
+.search-box input
+{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5em;
+    margin: 2em 0;
+}
+
+.search-results.loading
+{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.search-results caption
+{
+    padding: 0 0 1em 0;
+}
+
+.search-results tr
+{
+    cursor: pointer;
+}
+
+.search-results tr:nth-child(2n+1)
+{
+    background-color: #F5FBFD;
+    color: #000;
+}
+
+.search-results tr.selected
+{
+    background-color: #E2F4F8;
+}
+
+.search-results tr.row-divider
+{
+    border-top: 1px solid #ccc;
+}
+
+.search-results td
+{
+    padding: 0.5em;
+}

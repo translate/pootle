@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-{% load i18n %}
+{% load i18n assets %}
 
 {% block content %}
 <div id="admin-page" class="js-admin-app settings-container"></div>
@@ -7,5 +7,8 @@
 
 {% block scripts_extra %}
 {{ block.super }}
+{% assets 'js_admin_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 {% block app_init %}{% endblock %}
 {% endblock %}

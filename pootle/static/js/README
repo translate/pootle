@@ -141,12 +141,24 @@ Directory contents
 
         http://backbonejs.org
 
+      - backbone.move.js :
+        Small extension script to allow moving the position of a model
+        within a collection.
+
       - backbone-relational.js :
         Relationships for Backbone models.
 
         Version 0.8.5
 
         http://backbonerelational.org
+
+      - backbone.queryparameters.js :
+        Proper support for routing using query parameters.
+
+        Using 12e9f46c from git along with the shim required for Backbone
+        1.1.
+
+        https://github.com/jhudson8/backbone-query-parameters
 
     + jquery/
 

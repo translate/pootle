@@ -60,6 +60,15 @@ js_admin = Bundle(
     filters='rjsmin', output='js/admin.min.%(version)s.js')
 register('js_admin', js_admin)
 
+
+# Handled by webpack and therefore has no filters applied
+# It's kept here so hash-based cache invalidation can be used
+js_admin_app = Bundle(
+    'js/admin/app.bundle.js',
+    output='js/admin/app.min.%(version)s.js')
+register('js_admin_app', js_admin_app)
+
+
 js_editor = Bundle(
     'js/vendor/jquery/jquery.history.js',
     'js/vendor/jquery/jquery.textarea-expander.js',

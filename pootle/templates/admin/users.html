@@ -8,3 +8,13 @@
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Users" %}</li>
 {% endblock %}
+
+{% block app_init %}
+<script type="text/javascript">
+$(function () {
+  PTL.admin.init({el: '.js-admin-app',
+                  itemType: 'user',
+                  appRoot: '{% url "pootle-admin-users" %}'});
+});
+</script>
+{% endblock %}
