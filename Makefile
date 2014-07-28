@@ -2,6 +2,7 @@ SRC_DIR = pootle
 DOCS_DIR = docs
 STATIC_DIR = ${SRC_DIR}/static
 ASSETS_DIR = ${SRC_DIR}/assets
+JS_DIR = ${STATIC_DIR}/js
 CSS_DIR = ${STATIC_DIR}/css
 IMAGES_DIR = ${STATIC_DIR}/images
 SPRITE_DIR = ${IMAGES_DIR}/sprite
@@ -19,8 +20,9 @@ build: docs mo assets
 	python setup.py sdist ${FORMATS} ${TAIL}
 
 assets:
+	NODE_ENV="production" webpack -p --config=${JS_DIR}/webpack.config.js
 	mkdir -p ${ASSETS_DIR}
-	python manage.py collectstatic --noinput --clear ${TAIL}
+	python manage.py collectstatic --noinput --clear -i node_modules -i *.jsx ${TAIL}
 	python manage.py assets build ${TAIL}
 
 docs:

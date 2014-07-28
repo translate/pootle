@@ -38,6 +38,14 @@
 *.po.tm
 .translation_index
 
+# npm
+node_modules/
+
+# webpack
+.module-cache
+*.bundle.js
+*.bundle.js.map
+
 # Temporary/local files
 ~*
 
