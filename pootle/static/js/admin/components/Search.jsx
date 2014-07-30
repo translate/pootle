@@ -164,7 +164,17 @@ var ItemTable = React.createClass({
       },
       caption, msg;
 
-    msg = ngettext('%(count)s User', '%(count)s Users', args.count);
+
+    if (this.props.searchQuery) {
+      msg = ngettext('%(count)s user matches your query.',
+                     '%(count)s users match your query.', args.count);
+    } else {
+      msg = ngettext(
+        'There is %(count)s user.',
+        'There are %(count)s users. Below are the most recently added ones.',
+        args.count
+      );
+    }
     caption = interpolate(msg, args, true);
 
     return (
