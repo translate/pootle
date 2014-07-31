@@ -237,11 +237,11 @@ class User(AbstractBaseUser):
         Since we treat the `nobody` user as special anonymous-like user,
         we can't rely on `auth.User` model's `is_authenticated()` method.
         """
-        return True if self.username == 'nobody' else False
+        return self.username == 'nobody'
 
     def is_system(self):
         """Returns `True` if this is the special `system` user."""
-        return True if self.username == 'system' else False
+        return self.username == 'system'
 
     def get_full_name(self):
         """Returns the user's full name."""
