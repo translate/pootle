@@ -94,8 +94,9 @@
   </style>
 </head>
 <body>
+  {% if user %}
   <table>
-    <caption>{% blocktrans %}Report for {{ user }}, {% endblocktrans %}{% format_date_range start end " &ndash; " %}</caption>
+    <caption>{% blocktrans with user.formatted_name as user %}Report for {{ user }}, {% endblocktrans %}{% format_date_range start end " &ndash; " %}</caption>
     <thead>
       <tr>
         <th id="datetime">{% trans "Local server time" %} (GMT{{ utc_offset }})</th>
@@ -159,5 +160,8 @@
     {% endif %}
     </tbody>
   </table>
+  {% else %}
+    <div id="message">{% trans "Please select a valid user." %}</div>
+  {% endif %}
 </body>
 </html>

@@ -294,6 +294,7 @@ def user_date_prj_activity(request):
     user_dict = {
         'id': user.id,
         'username': user.username,
+        'formatted_name': user.formatted_name,
         'currency': user.currency,
         'rate': user.rate,
         'review_rate': user.review_rate,
