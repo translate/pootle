@@ -32,6 +32,7 @@ class UserManager(BaseUserManager):
     queries, since they are special users. Code that needs access to these
     users should use the methods get_default_user and get_nobody_user.
     """
+    PERMISSION_USERS = ('default', 'nobody')
     META_USERS = ('default', 'nobody', 'system')
 
     def _create_user(self, username, email, password, is_superuser,
@@ -78,6 +79,11 @@ class UserManager(BaseUserManager):
 
     def get_system_user(self):
         return super(UserManager, self).get_queryset().get(username='system')
+
+    def hide_permission_users(self):
+        return super(UserManager, self).get_queryset().exclude(
+            username__in=self.PERMISSION_USERS
+        )
 
     def hide_meta(self):
         return super(UserManager, self).get_queryset().exclude(
