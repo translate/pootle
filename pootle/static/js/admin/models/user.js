@@ -68,11 +68,11 @@ var UserSet = Backbone.Collection.extend({
 
   /* Methods */
 
-  incrCount: function (model) {
+  incrCount: function () {
     this.count++;
   },
 
-  decrCount: function (model) {
+  decrCount: function () {
     this.count--;
   },
 
