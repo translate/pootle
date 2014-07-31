@@ -38,6 +38,7 @@ var FormElement = React.createClass({
       handleChange: this.props.handleChange,
       placeholder: this.props.placeholder,
       autoFocus: this.props.autoFocus,
+      readOnly: this.props.readOnly,
       type: type
     };
     var formInput = React.addons.cloneWithProps(el, newProps);
@@ -79,6 +80,7 @@ var FormValueInput = React.createClass({
           value={this.props.value}
           placeholder={this.props.placeholder}
           autoFocus={this.props.autoFocus}
+          readOnly={this.props.readOnly}
           onChange={this.handleChange} />
       );
     }
@@ -91,6 +93,7 @@ var FormValueInput = React.createClass({
         value={this.props.value}
         placeholder={this.props.placeholder}
         autoFocus={this.props.autoFocus}
+        readOnly={this.props.readOnly}
         onChange={this.handleChange} />
     );
   }
