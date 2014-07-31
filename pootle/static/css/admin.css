@@ -389,9 +389,15 @@ html[dir="rtl"] .admin-content .item-delete input
     color: #000;
 }
 
-.search-results tr.selected
+.search-results tr:hover
 {
     background-color: #E2F4F8;
+}
+
+.search-results tr.selected
+{
+    background-color: #222;
+    color: #fff;
 }
 
 .search-results tr.row-divider
