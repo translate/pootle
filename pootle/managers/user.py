@@ -32,6 +32,8 @@ class UserManager(BaseUserManager):
     queries, since they are special users. Code that needs access to these
     users should use the methods get_default_user and get_nobody_user.
     """
+    SPECIAL_USERS = ('default', 'nobody', 'system')
+
     def _create_user(self, username, email, password, is_superuser,
                      **extra_fields):
         """Creates and saves a User with the given username, email,
@@ -79,5 +81,5 @@ class UserManager(BaseUserManager):
 
     def hide_defaults(self):
         return super(UserManager, self).get_queryset().exclude(
-            username__in=('nobody', 'default', 'system')
+            username__in=self.SPECIAL_USERS
         )

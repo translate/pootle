@@ -46,8 +46,6 @@ from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 
-SPECIAL_USERS = ('default', 'nobody', 'system')
-
 CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'))
 
 
@@ -145,7 +143,7 @@ class User(AbstractBaseUser):
     @cached_property
     def is_meta(self):
         """Returns `True` if this is a special fake user."""
-        meta_users = SPECIAL_USERS
+        meta_users = UserManager.SPECIAL_USERS
         if settings.POOTLE_META_USERS:
             meta_users += settings.POOTLE_META_USERS
 
