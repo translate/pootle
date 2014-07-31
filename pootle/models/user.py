@@ -46,7 +46,7 @@ from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 
-SPECIAL_USERS = ('nobody', 'system')
+SPECIAL_USERS = ('default', 'nobody', 'system')
 
 CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'))
 
