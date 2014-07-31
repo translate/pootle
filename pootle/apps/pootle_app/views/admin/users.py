@@ -33,7 +33,8 @@ class UserAdminView(SuperuserRequiredMixin, TemplateView):
 
 class UserAPIView(SuperuserRequiredMixin, APIView):
     model = get_user_model()
-    base_queryset = get_user_model().objects.order_by('-id')
+    base_queryset = get_user_model().objects.hide_permission_users() \
+                                            .order_by('-id')
     add_form_class = UserForm
     edit_form_class = UserForm
     page_size = 10
