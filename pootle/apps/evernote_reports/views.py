@@ -59,7 +59,7 @@ def evernote_reports(request):
     ctx = {
         'users': map(
             lambda x: {'code': x.username, 'name': u'%s' % x },
-            User.objects.hide_defaults()
+            User.objects.hide_meta()
         ),
         'user_rates_form': UserRatesForm(),
     }
@@ -392,7 +392,7 @@ def get_paid_words(user, start, end):
 def users(request):
     User = get_user_model()
     json = list(
-        User.objects.hide_defaults()
+        User.objects.hide_meta()
                     .select_related('evernote_account')
                     .values('id', 'username', 'full_name')
     )

@@ -143,7 +143,7 @@ class User(AbstractBaseUser):
     @cached_property
     def is_meta(self):
         """Returns `True` if this is a special fake user."""
-        meta_users = UserManager.SPECIAL_USERS
+        meta_users = UserManager.META_USERS
         if settings.POOTLE_META_USERS:
             meta_users += settings.POOTLE_META_USERS
 
@@ -213,7 +213,7 @@ class User(AbstractBaseUser):
                     project,
             })
 
-        top_scorers = cls.objects.hide_defaults().filter(
+        top_scorers = cls.objects.hide_meta().filter(
             **lookup_kwargs
         ).annotate(
             total_score=Sum('scorelog__score_delta'),
