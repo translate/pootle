@@ -95,24 +95,28 @@ var UserForm = React.createClass({
               formData={formData}
               model={model}
               errors={errors} />
+        {!model.isMeta() &&
+          <div className="no-meta">
+            <FormElement
+                type="checkbox"
+                attribute="is_active"
+                label={gettext('Active')}
+                handleChange={this.handleChange}
+                formData={formData}
+                model={model}
+                errors={errors} />
+            <FormElement
+                type="password"
+                attribute="password"
+                label={gettext('Password')}
+                placeholder={gettext('Set a new password')}
+                handleChange={this.handleChange}
+                formData={formData}
+                model={model}
+                errors={errors} />
+          </div>}
           <FormElement
-              type="checkbox"
-              attribute="is_active"
-              label={gettext('Active')}
-              handleChange={this.handleChange}
-              formData={formData}
-              model={model}
-              errors={errors} />
-          <FormElement
-              type="password"
-              attribute="password"
-              label={gettext('Password')}
-              placeholder={gettext('Set a new password')}
-              handleChange={this.handleChange}
-              formData={formData}
-              model={model}
-              errors={errors} />
-          <FormElement
+              autoFocus={model.isMeta()}
               attribute="full_name"
               label={gettext('Full Name')}
               handleChange={this.handleChange}
@@ -126,49 +130,52 @@ var UserForm = React.createClass({
               formData={formData}
               model={model}
               errors={errors} />
-          <FormElement
-              type="checkbox"
-              attribute="is_superuser"
-              label={gettext('Administrator')}
-              handleChange={this.handleChange}
-              formData={formData}
-              model={model}
-              errors={errors} />
-          <p className="divider" />
-          <FormElement
-              attribute="twitter"
-              label={gettext('Twitter')}
-              handleChange={this.handleChange}
-              placeholder={gettext('Twitter username')}
-              formData={formData}
-              model={model}
-              errors={errors}
-              maxLength="15" />
-          <FormElement
-              attribute="linkedin"
-              label={gettext('LinkedIn')}
-              handleChange={this.handleChange}
-              placeholder={gettext('LinkedIn profile URL')}
-              formData={formData}
-              model={model}
-              errors={errors} />
-          <FormElement
-              attribute="website"
-              label={gettext('Website')}
-              handleChange={this.handleChange}
-              placeholder={gettext('Personal website URL')}
-              formData={formData}
-              model={model}
-              errors={errors} />
-          <FormElement
-              type="textarea"
-              attribute="bio"
-              label={gettext('Short Bio')}
-              handleChange={this.handleChange}
-              placeholder={gettext('Personal description')}
-              formData={formData}
-              model={model}
-              errors={errors} />
+        {!model.isMeta() &&
+          <div className="no-meta">
+            <FormElement
+                type="checkbox"
+                attribute="is_superuser"
+                label={gettext('Administrator')}
+                handleChange={this.handleChange}
+                formData={formData}
+                model={model}
+                errors={errors} />
+            <p className="divider" />
+            <FormElement
+                attribute="twitter"
+                label={gettext('Twitter')}
+                handleChange={this.handleChange}
+                placeholder={gettext('Twitter username')}
+                formData={formData}
+                model={model}
+                errors={errors}
+                maxLength="15" />
+            <FormElement
+                attribute="linkedin"
+                label={gettext('LinkedIn')}
+                handleChange={this.handleChange}
+                placeholder={gettext('LinkedIn profile URL')}
+                formData={formData}
+                model={model}
+                errors={errors} />
+            <FormElement
+                attribute="website"
+                label={gettext('Website')}
+                handleChange={this.handleChange}
+                placeholder={gettext('Personal website URL')}
+                formData={formData}
+                model={model}
+                errors={errors} />
+            <FormElement
+                type="textarea"
+                attribute="bio"
+                label={gettext('Short Bio')}
+                handleChange={this.handleChange}
+                placeholder={gettext('Personal description')}
+                formData={formData}
+                model={model}
+                errors={errors} />
+          </div>}
         </div>
         <p className="buttons">
           <input type="submit" className="btn btn-primary"
@@ -177,7 +184,7 @@ var UserForm = React.createClass({
         {this.props.model.id &&
           <a href={model.getProfileUrl()}>{gettext("View user's public profile page")}</a>}
         </p>
-      {this.props.handleDelete &&
+      {(this.props.handleDelete && !model.isMeta()) &&
         <div>
           <p className="divider"></p>
           <p className="buttons">
