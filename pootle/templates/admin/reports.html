@@ -65,6 +65,10 @@
     <a href="{% url 'evernote-reports-detailed' %}" target="_blank">{% trans 'Detailed report' %}</a>
   </div>
   <div id="reports-results"></div>
+  <div id="reports-activity">
+    <h2>{% trans 'Daily activity' %}</h2>
+    <div id="daily-chart"></div>
+  </div>
   <div id="forms">
     <form id="user-rates-form" method="post" action="">
       {% csrf_token %}

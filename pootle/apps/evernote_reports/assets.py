@@ -23,6 +23,9 @@ from django_assets import Bundle, register
 
 js_reports = Bundle(
     'js/vendor/jquery/jquery.history.js',
+    'js/vendor/jquery/jquery.flot.js',
+    'js/vendor/jquery/jquery.flot.stack.js',
+    'js/vendor/jquery/jquery.flot.time.js',
     'js/vendor/underscore.js',
     'js/vendor/moment.js',
     'js/reports.js',

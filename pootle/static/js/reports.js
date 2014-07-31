@@ -14,6 +14,10 @@
         paid_tasks: _.template($('#paid-tasks').html()),
       };
 
+      $(window).resize(function() {
+        PTL.reports.drawChart();
+      });
+
       $(document).on('click', '.month-selector', function (e) {
         var offset = parseInt($(this).data('month-offset')),
             dateRange = PTL.reports.getDateRangeByOffset(offset);
@@ -204,6 +208,33 @@
       return result;
     },
 
+    drawChart: function () {
+      $.plot($("#daily-chart"),
+        PTL.reports.dailyData.data,
+        {
+          series: {
+            stack: true,
+            lines: {show: false, steps: false },
+            bars: {
+              show: true,
+              barWidth: 1000*60*60*24,
+              align: "center"
+            },
+          },
+          xaxis: {
+              min: PTL.reports.dailyData.min_ts,
+              max: PTL.reports.dailyData.max_ts,
+              minTickSize: [1, "day"],
+              mode: "time",
+              timeformat: "%b %d, %a",
+          },
+          yaxis: {
+              max: PTL.reports.dailyData.max_day_score
+          }
+        }
+      );
+    },
+
     buildResults: function () {
       var reqData = {
         start: PTL.reports.dateRange[0].format('YYYY-MM-DD'),
@@ -219,6 +250,13 @@
         success: function (data) {
           $('#reports-results').empty();
           $('#reports-results').html(PTL.reports.tmpl.results(data));
+          var showChart = data.daily !== undefined && data.daily.nonempty;
+          $('#reports-activity').toggle(showChart);
+          if (showChart) {
+            PTL.reports.dailyData = data.daily;
+            PTL.reports.drawChart();
+          }
+
           $('#reports-summary').html(PTL.reports.tmpl.summary(data));
           $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(data));
           if (data.meta.user) {

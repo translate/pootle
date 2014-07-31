@@ -19,7 +19,8 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
-from datetime import datetime, timedelta
+import time
+from datetime import datetime, timedelta, time as datetime_time
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -152,12 +153,12 @@ def get_date_interval(start_date, end_date):
     if start_date:
         start = datetime.strptime(start_date, '%Y-%m-%d')
     else:
-        start = datetime.now()
+        start = timezone.now()
 
     if end_date:
         end = datetime.strptime(end_date, '%Y-%m-%d')
     else:
-        end = datetime.now()
+        end = timezone.now()
 
     if settings.USE_TZ:
         tz = timezone.get_default_timezone()
@@ -304,10 +305,71 @@ def user_date_prj_activity(request):
         json['summary'] = get_summary(user, start, end)
         json['grouped'] = get_grouped_paid_words(user, start, end)
         json['paid_tasks'] = get_paid_tasks(user, start, end)
+        json['daily'] = get_daily_activity(user, start, end)
 
     response = jsonify(json)
 
     return HttpResponse(response, content_type="application/json")
+
+
+def get_daily_activity(user, start, end):
+    result_translated = {
+        'label': PaidTask.get_task_type_title(
+            PaidTaskTypes.TRANSLATION),
+        'data': {},
+    }
+    result_reviewed = {
+        'label': PaidTask.get_task_type_title(
+            PaidTaskTypes.REVIEW),
+        'data': {},
+    }
+
+    result = {
+        'data': [result_translated, result_reviewed],
+        'max_day_score': 10,
+        'min_ts': "%d" % (time.mktime(start.timetuple()) * 1000),
+        'max_ts': "%d" % (time.mktime(end.timetuple()) * 1000),
+        'nonempty': False,
+    }
+
+    scores = ScoreLog.objects \
+                     .select_related('submission__unit') \
+                     .filter(user=user,
+                             creation_time__gte=start,
+                             creation_time__lte=end) \
+                     .order_by('creation_time')
+
+    saved_ts = None
+    current_day_score = 0
+    for score in scores:
+        score_time = score.creation_time
+        if settings.USE_TZ:
+            tz = timezone.get_default_timezone()
+            score_time = timezone.make_naive(score_time, tz)
+        date = score_time.date()
+        ts = int((time.mktime(date.timetuple()) + 60*60*12) * 1000)
+
+        translated, reviewed = score.get_paid_words()
+        if translated or reviewed:
+            if saved_ts != ts:
+                saved_ts = ts
+                result_reviewed['data'][ts] = 0
+                result_translated['data'][ts] = 0
+                if result['max_day_score'] < current_day_score:
+                    result['max_day_score'] = current_day_score
+                current_day_score = 0
+            current_day_score += int(reviewed + translated)
+            result['nonempty'] |= current_day_score > 0
+
+            result_translated['data'][ts] += translated
+            result_reviewed['data'][ts] += reviewed
+
+    result_translated['data'] = sorted(result_translated['data'].items(),
+                                       key=lambda x: x[0])
+    result_reviewed['data'] = sorted(result_reviewed['data'].items(),
+                                     key=lambda x: x[0])
+
+    return result
 
 
 def get_paid_tasks(user, start, end):

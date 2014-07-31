@@ -195,3 +195,15 @@ tr.after_break {
     cursor: pointer;
     vertical-align: middle;
 }
+
+#reports-activity {
+    display: none;
+}
+
+#daily-chart {
+    min-height: 300px;
+}
+
+#daily-chart table {
+    width: inherit;
+}
