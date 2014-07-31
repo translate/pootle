@@ -3,6 +3,9 @@
 var Backbone = require('backbone');
 
 
+var metaUsers = ['nobody', 'default', 'system'];
+
+
 var User = Backbone.Model.extend({
 
   defaults: {
@@ -39,6 +42,10 @@ var User = Backbone.Model.extend({
     }
 
     return response;
+  },
+
+  isMeta: function () {
+    return metaUsers.indexOf(this.get('username')) !== -1;
   }
 });
 
