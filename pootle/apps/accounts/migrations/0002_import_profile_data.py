@@ -64,7 +64,7 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
-        raise NotImplementedError
+        raise RuntimeError("Cannot reverse this migration.")
 
     models = {
         u'auth.group': {
