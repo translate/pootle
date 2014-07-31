@@ -5,6 +5,9 @@ from django.db import connection, models
 
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("accounts", "0001_initial"),
+    )
 
     def forwards(self, orm):
         # First we check whether the migration is needed.
