@@ -25,7 +25,7 @@ import operator
 
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.db.models import ObjectDoesNotExist, Q
+from django.db.models import ObjectDoesNotExist, ProtectedError, Q
 from django.forms.models import modelform_factory
 from django.http import Http404, HttpResponse
 from django.template import loader, RequestContext
@@ -294,8 +294,12 @@ class APIView(View):
         qs = self.base_queryset.filter(id=kwargs[self.pk_field_name])
         if qs:
             output = self.serialize_qs(qs)
-            qs.delete()
-            return self.json_response(output)
+            obj = qs[0]
+            try:
+                obj.delete()
+                return self.json_response(output)
+            except ProtectedError as e:
+                return self.status_msg(e[0], status=405)
 
         raise Http404
 

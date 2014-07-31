@@ -33,7 +33,7 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
-from django.db.models import Sum, Q
+from django.db.models import ProtectedError, Sum, Q
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
@@ -227,6 +227,16 @@ class User(AbstractBaseUser):
 
     def __unicode__(self):
         return self.username
+
+    def delete(self, *args, **kwargs):
+        """Deletes a user instance.
+
+        Trying to delete a meta user raises the `ProtectedError` exception.
+        """
+        if self.is_meta:
+            raise ProtectedError('Cannot remove meta user instances', None)
+
+        super(User, self).delete(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('pootle-user-profile', args=[self.username])
