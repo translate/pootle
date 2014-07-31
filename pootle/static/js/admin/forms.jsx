@@ -87,7 +87,8 @@ var UserForm = React.createClass({
             onSubmit={this.handleSubmit}>
         <div className="fields">
           <FormElement
-              autoFocus
+              autoFocus={!model.isMeta()}
+              readOnly={model.isMeta()}
               attribute="username"
               label={gettext('Username')}
               handleChange={this.handleChange}
