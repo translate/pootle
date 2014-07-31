@@ -78,6 +78,7 @@ var FormValueInput = React.createClass({
           name={this.props.name}
           value={this.props.value}
           placeholder={this.props.placeholder}
+          autoFocus={this.props.autoFocus}
           onChange={this.handleChange} />
       );
     }
