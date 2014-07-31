@@ -9,6 +9,8 @@ class Migration(SchemaMigration):
         ("accounts", "0001_initial"),
     )
 
+    no_dry_run = True
+
     def forwards(self, orm):
         # First we check whether the migration is needed.
         profiles_table = "pootle_app_pootleprofile"
