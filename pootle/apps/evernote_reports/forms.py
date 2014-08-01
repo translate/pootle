@@ -27,14 +27,25 @@ from evernote_reports.models import PaidTask
 
 class UserRatesForm(forms.Form):
     username = forms.CharField(widget=forms.HiddenInput())
-    currency = forms.ChoiceField(choices=CURRENCIES, initial=CURRENCIES[0])
+    currency = forms.ChoiceField(
+        choices=CURRENCIES,
+        initial=CURRENCIES[0],
+        widget=forms.Select(attrs={'class': 'rate'})
+    )
     rate = forms.FloatField(
         label=_("Translation Rate"),
-        widget=forms.TextInput(attrs={'step': '0.01', 'type': 'number'}),
+        widget=forms.TextInput(attrs={'step': '0.01', 'type': 'number',
+                                      'class': 'rate'}),
     )
     review_rate = forms.FloatField(
         label=_("Review Rate"),
-        widget=forms.TextInput(attrs={'step': '0.01', 'type': 'number'}),
+        widget=forms.TextInput(attrs={'step': '0.01', 'type': 'number',
+                                      'class': 'rate'}),
+    )
+    hourly_rate = forms.FloatField(
+        label=_("Hourly Rate"),
+        widget=forms.TextInput(attrs={'step': '0.01', 'type': 'number',
+                                      'class': 'rate'}),
     )
     effective_from = forms.DateField(
         label=_("Effective from"),

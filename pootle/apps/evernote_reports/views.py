@@ -178,9 +178,9 @@ def update_user_rates(request):
     if form.is_valid():
         try:
             User = get_user_model()
-            user = User.objects.get(id=form.cleaned_data['user'])
+            user = User.objects.get(username=form.cleaned_data['username'])
         except User.DoesNotExist:
-            error_text = _("User %s not found" % form.cleaned_data['user'])
+            error_text = _("User %s not found" % form.cleaned_data['username'])
 
             return HttpResponseNotFound(jsonify({'msg': error_text}),
                                         content_type="application/json")
@@ -188,22 +188,45 @@ def update_user_rates(request):
         user.currency = form.cleaned_data['currency']
         user.rate = form.cleaned_data['rate']
         user.review_rate = form.cleaned_data['review_rate']
+        user.hourly_rate = form.cleaned_data['hourly_rate']
 
         scorelog_filter = {'user': user}
+        paid_task_filter = scorelog_filter.copy()
         if form.cleaned_data['effective_from'] is not None:
             effective_from = form.cleaned_data['effective_from']
             scorelog_filter.update({
                 'creation_time__gte': effective_from
             })
+            paid_task_filter.update({
+                'date__gte': effective_from
+            })
+
         scorelog_query = ScoreLog.objects.filter(**scorelog_filter)
-        updated_count = scorelog_query.count()
+        scorelog_count = scorelog_query.count()
+
+        paid_task_query = PaidTask.objects.filter(**paid_task_filter)
+        paid_task_count = paid_task_query.count()
 
         scorelog_query.update(rate=user.rate, review_rate=user.review_rate)
+
+        def get_task_rate_for(user, task_type):
+            return {
+                PaidTaskTypes.TRANSLATION: user.rate,
+                PaidTaskTypes.REVIEW: user.review_rate,
+                PaidTaskTypes.HOURLY_WORK: user.hourly_rate,
+            }.get(task_type, 0)
+
+        for task in paid_task_query:
+            task.rate = get_task_rate_for(user, task.task_type)
+            task.save()
+
         user.save()
 
-        return HttpResponse(jsonify({'updated_count': updated_count}),
-                            content_type="application/json")
-
+        return HttpResponse(
+            jsonify({
+                'scorelog_count': scorelog_count,
+                'paid_task_count': paid_task_count
+            }), content_type="application/json")
 
     return HttpResponseBadRequest(jsonify({'html': form.errors}),
                                   content_type="application/json")
@@ -262,6 +285,7 @@ def user_date_prj_activity(request):
         'currency': user.currency,
         'rate': user.rate,
         'review_rate': user.review_rate,
+        'hourly_rate': user.hourly_rate,
     } if user != '' else user
 
     json['meta'] = {'user': user_dict, 'start': start_date, 'end': end_date}
