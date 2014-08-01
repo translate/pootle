@@ -25,8 +25,11 @@ class Migration(SchemaMigration):
             def clean_constraints(t1, c1, t2, c2):
                 # Workaround for http://south.aeracode.org/ticket/775
                 if db.backend_name != "sqlite3":
-                    db.delete_foreign_key(t1, c1)
-                    db.execute(db.foreign_key_sql(t1, c1, t2, c2))
+                    try:
+                        db.delete_foreign_key(t1, c1)
+                        db.execute(db.foreign_key_sql(t1, c1, t2, c2))
+                    except ValueError as e:
+                        print("Warning: Could not clean up constraints (this may be harmless): %s" % (e))
 
             print("Starting migration from Profile to User.")
             print("This may take anywhere between a few minutes to several hours, depending on the size of your projects.")
