@@ -19,7 +19,7 @@ argparse
 # Libraries
 cssmin>=0.2.0
 diff-match-patch>=20121119
-lxml>=2.1.4
+lxml>=2.2.0
 
 # For providing API
 #django-tastypie>=0.11.1
