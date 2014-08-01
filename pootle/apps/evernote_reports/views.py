@@ -32,6 +32,7 @@ from django.utils.html import escape
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.decorators import admin_required
+from pootle.models.user import CURRENCIES
 from pootle_misc.util import ajax_required, jsonify
 from pootle_statistics.models import ScoreLog
 
@@ -134,6 +135,9 @@ def evernote_reports_detailed(request):
             totals['all'] += totals['reviewed'][rate]['subtotal']
 
         totals['all'] = totals['all']
+
+    if user.currency is None:
+        user.currency = CURRENCIES[0][0]
 
     ctx = {
         'scores': scores,
@@ -295,7 +299,7 @@ def user_date_prj_activity(request):
         'id': user.id,
         'username': user.username,
         'formatted_name': user.formatted_name,
-        'currency': user.currency,
+        'currency': user.currency if user.currency else CURRENCIES[0][0],
         'rate': user.rate,
         'review_rate': user.review_rate,
         'hourly_rate': user.hourly_rate,
