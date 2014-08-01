@@ -261,6 +261,8 @@
           $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(data));
           if (data.meta.user) {
             PTL.reports.user = data.meta.user;
+            $('#reports-params').show();
+            $('#detailed').show();
 
             $('#id_username').val(PTL.reports.user.username);
             $('#id_user').val(PTL.reports.user.id);

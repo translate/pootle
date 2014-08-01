@@ -53,17 +53,21 @@
 
 {% block section_body %}
 <div id="reports-container">
-  <div id="reports-form">
-    <input id="reports-user" type="text" placeholder="User"></input>
-  </div>
-  <div id="reports-params">
-    <div class="dates">
-      <ul></ul>
-    </div>
-  </div>
-  <div id="detailed">
-    <a href="{% url 'evernote-reports-detailed' %}" target="_blank">{% trans 'Detailed report' %}</a>
-  </div>
+  <table id="reports-header">
+    <tr>
+      <td id="reports-form">
+        <input id="reports-user" type="text" placeholder="User"></input>
+      </td>
+      <td id="reports-params">
+        <div class="dates">
+          <ul></ul>
+        </div>
+      </td>
+      <td id="detailed">
+        <a href="{% url 'evernote-reports-detailed' %}" target="_blank">{% trans 'Detailed report' %}</a>
+      </td>
+    </tr>
+  </table>
   <div id="reports-results"></div>
   <div id="reports-activity">
     <h2>{% trans 'Daily activity' %}</h2>

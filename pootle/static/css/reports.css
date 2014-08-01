@@ -16,14 +16,10 @@
     width: 1%;
 }
 
-/*#reports-results .reports-lang th.project {
-    text-align: right;
-}*/
 #reports-results th,
 #reports-summary th,
 #reports-paid-tasks th {
     color: #999;
-    text-align: left;
     font-size: 85%;
     padding: 5px;
 }
@@ -37,17 +33,19 @@
     margin-right: 2em;
 }
 
-#reports-form,
-#reports-params {
-    display: inline-block;
-}
-
 #reports-form {
+    width: 250px;
     margin-right: 2em;
 }
 
-#reports-form input {
-    display: inline-block;
+#reports-params {
+    white-space: nowrap;
+    text-align: center;
+}
+
+#reports-form .select2-container {
+    width: 100% !important;
+    max-width: 250px;
 }
 
 /* table row colors, see 'Table Row Colors.psd' */
@@ -62,37 +60,28 @@ tr.odd td.total {
 
 tr.total {
     background-color: #c0e4f0;
-}
-
-tr.total td.total {
-    font-weight: bold;
-    background-color: #aad6e5;
-}
-
-tr:hover {
-    background-color: #abfbfd !important;
-}
-
-tr:hover td.total {
-    background-color: #9ef5fa !important;
+    height: 2.5em;
 }
 
 tr.after_break {
     border-top: 1px dashed #c0e4f0;
 }
 
-#reports-results.new td .new {
-    display: inherit;
+th.number {
+    text-align: right;
 }
-#reports-results.new td .edit {
-    display: none;
+
+#reports-results tr:hover,
+#reports-summary tr:hover,
+#reports-paid-tasks tr:hover {
+    background-color: #abfbfd !important;
 }
-#reports-results.edit td .edit {
-    display: inherit;
+
+#reports-results tr:hover td.total,
+#reports-summary tr:hover td.total {
+    background-color: #9ef5fa !important;
 }
-#reports-results.edit td .new {
-    display: none;
-}
+
 #reports-params .selected {
     font-size: 125%;
     font-weight: bold;
@@ -149,22 +138,32 @@ tr.after_break {
 }
 
 #detailed {
-    display: inline-block;
-    margin-left: 50px;
+    text-align: right;
+    margin-right: 5px;
+    display: none;
+}
+
+#reports-params {
+    display: none;
 }
 
 #forms {
     display: none;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #eee;
+    padding-top: 30px;
+    padding-bottom: 10px;
 }
 
 #forms form {
-    float: left;
+    display: inline-block;
 }
 
-#forms tr:hover {
-    background-color: #fff !important;
+#forms label {
+    float: right;
+    margin-right: 35px;
 }
 
 #paid-task-form {
@@ -194,6 +193,11 @@ tr.after_break {
 #reports-paid-tasks i {
     cursor: pointer;
     vertical-align: middle;
+    margin-left: 30px;
+}
+
+#reports-paid-tasks .remove {
+    width: 40px;
 }
 
 #reports-activity {
@@ -206,4 +210,8 @@ tr.after_break {
 
 #daily-chart table {
     width: inherit;
+}
+
+.zero {
+    opacity: 0.5;
 }
