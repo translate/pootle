@@ -25,7 +25,7 @@ from django.conf import settings
 
 
 # Minimum Translate Toolkit version required for Pootle to run.
-TTK_MINIMUM_REQUIRED_VERSION = (1, 11, 0)
+TTK_MINIMUM_REQUIRED_VERSION = (1, 12, 0)
 
 # Minimum Django version required for Pootle to run.
 DJANGO_MINIMUM_REQUIRED_VERSION = (1, 5, 8)
