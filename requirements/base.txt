@@ -13,7 +13,7 @@ argparse
 # Libraries
 cssmin
 diff-match-patch>=20121119
-lxml>=2.1.4
+lxml>=2.2.0
 pyDes
 
 # Translate Toolkit
