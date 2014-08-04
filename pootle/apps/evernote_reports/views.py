@@ -244,7 +244,7 @@ def update_user_rates(request):
                 'paid_task_count': paid_task_count
             }), content_type="application/json")
 
-    return HttpResponseBadRequest(jsonify({'html': form.errors}),
+    return HttpResponseBadRequest(jsonify({'errors': form.errors}),
                                   content_type="application/json")
 
 
@@ -258,7 +258,7 @@ def add_paid_task(request):
         return HttpResponse(jsonify({'result': form.instance.id}),
                             content_type="application/json")
 
-    return HttpResponseBadRequest(jsonify({'html': form.errors}),
+    return HttpResponseBadRequest(jsonify({'errors': form.errors}),
                                   content_type="application/json")
 
 
