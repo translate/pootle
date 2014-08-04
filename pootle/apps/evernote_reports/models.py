@@ -19,7 +19,6 @@
 # along with Pootle; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-
 __all__ = ('PaidTask', )
 
 from django.conf import settings
@@ -37,7 +36,6 @@ class PaidTask(models.Model):
     """The Paid Task.
 
     ``task_type``, ``amount`` and ``date`` are required.
-
     """
     type_choices = [
         (PaidTaskTypes.TRANSLATION, _('Translation')),

@@ -124,6 +124,7 @@ class User(AbstractBaseUser):
         """Full name (username)"""
         if self.get_full_name():
             return "%s (%s)" % (self.get_full_name(), self.get_short_name())
+
         return self.get_short_name()
 
     @property
