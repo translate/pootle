@@ -186,6 +186,21 @@ Directory contents
 
         http://gsgd.co.uk/sandbox/jquery/easing/
 
+      - jquery.flot.js :
+        Plotting library for jQuery.
+
+        https://github.com/flot/flot/blob/master/jquery.flot.js
+
+      - jquery.flot.stack.js :
+        Flot plugin for stacking data sets rather than overlyaing them.
+
+        https://github.com/flot/flot/blob/master/jquery.flot.stack.js
+
+      - jquery.flot.time.js :
+        Flot plugin for pretty handling of time axes.
+
+        https://github.com/flot/flot/blob/master/jquery.flot.time.js
+
       - jquery.highlighRegex.js :
         Plugin to highlight text on selected elements using regular expressions.
 
