@@ -41,7 +41,7 @@
 
       this.now = moment();
 
-      for (var i=3; i>= 0; i--) {
+      for (var i=3; i>=0; i--) {
         var month = this.tmpl.month_selector({
           'month_offset': i,
           'month': this.now.clone().subtract({M:i}).format('MMMM'),
@@ -176,7 +176,7 @@
 
     validate: function () {
       if (PTL.reports.userName) {
-        return  PTL.reports.dateRange.length == 2;
+        return PTL.reports.dateRange.length == 2;
       }
       return false;
     },
