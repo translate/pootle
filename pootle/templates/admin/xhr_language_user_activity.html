@@ -27,11 +27,11 @@
       </tr>
     <% }); %>
       <tr class="total">
-          <td>&nbsp;</td>
-          <td class="number<% if (totalTranslatedRaw == 0) { %> zero<% } %>"><%= Math.round(totalTranslatedRaw) %> <%= ngettext("word", "words", Math.round(totalTranslatedRaw)) %></td>
-          <td class="number<% if (totalTranslated == 0) { %> zero<% } %>"><%= Math.round(totalTranslated) %> <%= ngettext("word", "words", Math.round(totalTranslated)) %></td>
-          <td class="number<% if (totalReviewed == 0) { %> zero<% } %>"><%= Math.round(totalReviewed) %> <%= ngettext("word", "words", Math.round(totalReviewed)) %></td>
-          <td class="number<% if (totalScoreDelta == 0) { %> zero<% } %>"><% if (totalScoreDelta > 0) { %>+<% } %><%= totalScoreDelta.toFixed(2) %></td>
+        <td>&nbsp;</td>
+        <td class="number<% if (totalTranslatedRaw == 0) { %> zero<% } %>"><%= Math.round(totalTranslatedRaw) %> <%= ngettext("word", "words", Math.round(totalTranslatedRaw)) %></td>
+        <td class="number<% if (totalTranslated == 0) { %> zero<% } %>"><%= Math.round(totalTranslated) %> <%= ngettext("word", "words", Math.round(totalTranslated)) %></td>
+        <td class="number<% if (totalReviewed == 0) { %> zero<% } %>"><%= Math.round(totalReviewed) %> <%= ngettext("word", "words", Math.round(totalReviewed)) %></td>
+        <td class="number<% if (totalScoreDelta == 0) { %> zero<% } %>"><% if (totalScoreDelta > 0) { %>+<% } %><%= totalScoreDelta.toFixed(2) %></td>
       </tr>
   </table>
 <% } else { %>
