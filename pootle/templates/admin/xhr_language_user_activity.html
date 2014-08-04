@@ -1,5 +1,5 @@
 <% if (meta.user !== "") { %>
-<h2>Report for <%= meta.user.formatted_name %>, <%= PTL.reports.dateRangeString(meta.start, meta.end) %></h2>
+<h2><%= interpolate(gettext("Report for %(user)s, %(dateRange)s"), {'user': meta.user.formatted_name, 'dateRange': PTL.reports.dateRangeString(meta.start, meta.end)}, true) %></h2>
 <% if ((typeof grouped !== "undefined") && (_.size(grouped) > 0)) { %>
   <table class="stats">
     <thead>

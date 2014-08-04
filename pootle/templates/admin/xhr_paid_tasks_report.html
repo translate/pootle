@@ -1,6 +1,6 @@
 <% if (meta.user !== "") { %>
 <% if ((typeof paid_tasks !== "undefined") && (_.size(paid_tasks) > 0)) { %>
-  <h2>Paid tasks</h2>
+  <h2><%= gettext('Paid tasks') %></h2>
   <table class="stats">
     <thead>
     <tr>
@@ -21,7 +21,7 @@
         <td class="number"><%= row.rate %> <%= meta.user.currency %></td>
         <td class="number"><%= (row.rate * row.amount).toFixed(2) %> <%= meta.user.currency %></td>
         <td class="remove">
-          <i class="icon-reject js-remove-task"  data-id="<%= row.id %>" original-title="Remove task"></i>
+          <i class="icon-reject js-remove-task"  data-id="<%= row.id %>" original-title="<%= gettext('Remove task') %>"></i>
         </td>
       </tr>
     <% }); %>

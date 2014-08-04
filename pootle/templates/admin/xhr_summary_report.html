@@ -24,7 +24,7 @@
       </tr>
     <% }); %>
       <tr class="total">
-          <td>Total (<%= meta.user.currency %>)</td>
+          <td><%= interpolate(gettext('Total (%(currency)s)'), {'currency': meta.user.currency}, true) %></td>
           <td colspan="3"></td>
           <td class="number"><%= total.toFixed(2) %> <%= meta.user.currency %></td>
       </tr>
