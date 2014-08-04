@@ -1,5 +1,5 @@
 <% if (meta.user !== "") { %>
-<% if ((typeof paid_tasks !== "undefined") && (_.size(paid_tasks) > 0)) { %>
+<% if (_.size(paid_tasks) > 0) { %>
   <h2><%= gettext('Paid tasks') %></h2>
   <table class="stats">
     <thead>
