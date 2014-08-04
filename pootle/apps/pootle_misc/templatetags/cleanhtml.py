@@ -27,7 +27,7 @@ from lxml.html.clean import clean_html
 
 from django import template
 from django.template.defaultfilters import stringfilter
-from django.utils.html import escape, simple_email_re as email_re
+from django.utils.html import escape, simple_email_re
 from django.utils.safestring import mark_safe
 
 
@@ -55,7 +55,7 @@ def obfuscate(text):
 
     Based on the implementation used in addons.mozilla.org
     """
-    if not email_re.match(text):
+    if not simple_email_re.match(text):
         return text
 
     fallback = text[::-1]  # Reverse.
