@@ -18,7 +18,7 @@
       <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
         <td><%= PTL.reports.dateRangeString(row.start, row.end, false) %></td>
         <td><%= row.action %></td>
-        <td class="number"><%= Math.round(row.amount) %> <% if (row.action === "Hourly Work") { %><%= ngettext("hour", "hours", Math.round(row.amount)) %><% } else { %><%= ngettext("word", "words", Math.round(row.amount)) %><% } %></td>
+        <td class="number"><%= Math.round(row.amount) %> <% if (row.type === 2) { %><%= ngettext("hour", "hours", Math.round(row.amount)) %><% } else { %><%= ngettext("word", "words", Math.round(row.amount)) %><% } %></td>
         <td class="number"><%= row.rate %> <%= meta.user.currency %></td>
         <td class="number"><%= subTotal.toFixed(2) %> <%= meta.user.currency %></td>
       </tr>

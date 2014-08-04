@@ -391,7 +391,8 @@ def get_paid_tasks(user, start, end):
             'id': task.id,
             'description': task.description,
             'amount': task.amount,
-            'type': PaidTask.get_task_type_title(task.task_type),
+            'type': task.task_type,
+            'action': PaidTask.get_task_type_title(task.task_type),
             'rate': task.rate,
         })
 
@@ -449,6 +450,7 @@ def get_summary(user, start, end):
             rate = score.rate
             translation_month = score.creation_time.month
             translated_row = {
+                'type': PaidTaskTypes.TRANSLATION,
                 'action': PaidTaskTypes.TRANSLATION,
                 'amount': 0,
                 'rate': score.rate,
@@ -461,6 +463,7 @@ def get_summary(user, start, end):
             review_rate = score.review_rate
             review_month = score.creation_time.month
             reviewed_row = {
+                'type': PaidTaskTypes.REVIEW,
                 'action': PaidTaskTypes.REVIEW,
                 'amount': 0,
                 'rate': score.review_rate,
@@ -533,6 +536,7 @@ def get_summary(user, start, end):
                 task_end = end
 
             result.insert(insert_index, {
+                'type': task.task_type,
                 'action': task.task_type,
                 'amount': task.amount,
                 'rate': task.rate,

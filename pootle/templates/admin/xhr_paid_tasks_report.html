@@ -15,9 +15,9 @@
     <%= PTL.reports.resetRowStyle()  %>
     <% _.each(paid_tasks, function (row) { %>
       <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
-        <td><%= row.type %></td>
+        <td><%= row.action %></td>
         <td><%= row.description %></td>
-        <td class="number"><%= row.amount %> <% if (row.type === "Hourly Work") { %><%= ngettext("hour", "hours", Math.round(row.amount)) %><% } else { %><%= ngettext("word", "words", Math.round(row.amount)) %><% } %></td>
+        <td class="number"><%= row.amount %> <% if (row.type === 2) { %><%= ngettext("hour", "hours", Math.round(row.amount)) %><% } else { %><%= ngettext("word", "words", Math.round(row.amount)) %><% } %></td>
         <td class="number"><%= row.rate %> <%= meta.user.currency %></td>
         <td class="number"><%= (row.rate * row.amount).toFixed(2) %> <%= meta.user.currency %></td>
         <td class="remove">
