@@ -54,7 +54,7 @@
 
       var taskType = $('#id_task_type').val();
       this.refreshAmountMeasureUnits(taskType);
-      $('#reports-user').select2({'data': users});
+      $('#reports-user').select2({'data': PTL.reports.users});
 
       this.currentRowIsEven = false;
 
@@ -96,7 +96,7 @@
       var reqData = $('#user-rates-form').serializeObject();
 
       $.ajax({
-        url: updateUserRatesUrl,
+        url: PTL.reports.updateUserRatesUrl,
         type: 'POST',
         data: reqData,
         dataType: 'json',
@@ -116,7 +116,7 @@
       var reqData = $('#paid-task-form').serializeObject();
 
       $.ajax({
-        url: addPaidTaskUrl,
+        url: PTL.reports.addPaidTaskUrl,
         type: 'POST',
         data: reqData,
         dataType: 'json',
@@ -136,7 +136,7 @@
 
     removePaidTask: function () {
       $.ajax({
-        url: removePaidTaskUrl + $(this).data('id'),
+        url: PTL.reports.removePaidTaskUrl + $(this).data('id'),
         type: 'DELETE',
         dataType: 'json',
         success: function (data) {

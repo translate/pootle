@@ -36,10 +36,10 @@
 
 <script type="text/javascript">
   {% autoescape off %}
-  var users = {{ users }};
-  var updateUserRatesUrl = "{% url 'evernote-update-user-rates' %}",
-      addPaidTaskUrl = "{% url 'evernote-add-paid-task' %}",
-      removePaidTaskUrl = "{% url 'evernote-remove-paid-task' %}";
+    PTL.reports.users = {{ users }};
+    PTL.reports.updateUserRatesUrl = "{% url 'evernote-update-user-rates' %}",
+    PTL.reports.addPaidTaskUrl = "{% url 'evernote-add-paid-task' %}",
+    PTL.reports.removePaidTaskUrl = "{% url 'evernote-remove-paid-task' %}";
   {% endautoescape %}
 </script>
 
