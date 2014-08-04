@@ -37,8 +37,8 @@
 <script type="text/javascript">
   {% autoescape off %}
     PTL.reports.users = {{ users }};
-    PTL.reports.updateUserRatesUrl = "{% url 'evernote-update-user-rates' %}",
-    PTL.reports.addPaidTaskUrl = "{% url 'evernote-add-paid-task' %}",
+    PTL.reports.updateUserRatesUrl = "{% url 'evernote-update-user-rates' %}";
+    PTL.reports.addPaidTaskUrl = "{% url 'evernote-add-paid-task' %}";
     PTL.reports.removePaidTaskUrl = "{% url 'evernote-remove-paid-task' %}";
   {% endautoescape %}
 </script>
