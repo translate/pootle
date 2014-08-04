@@ -136,7 +136,7 @@ def evernote_reports_detailed(request):
 
         totals['all'] = totals['all']
 
-    if user.currency is None:
+    if user != '' and user.currency is None:
         user.currency = CURRENCIES[0][0]
 
     ctx = {
