@@ -28,6 +28,10 @@
 # /pootle/settings/
 /pootle/settings/*-local.conf
 
+# Possible customizations
+/pootle/templates/custom
+/pootle/static/*/custom
+
 # General
 *.bak
 *.pyc
