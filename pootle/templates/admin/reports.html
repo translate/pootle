@@ -75,12 +75,13 @@
   </div>
   <div id="forms">
     <form id="user-rates-form" method="post" action="">
+      <h2>{% trans "Set rates" %}</h2>
       {% csrf_token %}
       <table>
       {% for field in user_rates_form %}
         {% if not field.is_hidden %}
         <tr>
-        <td>
+        <td class="label">
           {{ field.label_tag }}
         </td>
         <td>
@@ -107,11 +108,12 @@
     </form>
     <form id="paid-task-form" method="post" action="">
       {% csrf_token %}
+      <h2>{% trans "Record New Paid Task" %}</h2>
       <table>
       {% for field in paid_task_form %}
         {% if not field.is_hidden %}
         <tr>
-        <td>
+        <td class="label">
           {{ field.label_tag }}
         </td>
         <td>

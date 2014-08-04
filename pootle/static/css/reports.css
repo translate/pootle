@@ -110,7 +110,7 @@ th.number {
 }
 
 #user-rates-form {
-    width: 400px;
+    width: 300px;
 }
 #user-rates-form .help {
     font-size: 75%;
@@ -153,21 +153,26 @@ th.number {
     margin-bottom: 10px;
     text-align: center;
     background-color: #eee;
-    padding-top: 30px;
+    padding-top: 10px;
     padding-bottom: 10px;
+}
+
+#forms h2 {
+    color: #c30;
+    text-align: left;
 }
 
 #forms form {
     display: inline-block;
 }
 
-#forms label {
-    float: right;
-    margin-right: 35px;
+#forms .label {
+    text-align: left;
 }
 
 #paid-task-form {
-    width: 500px;
+    width: 400px;
+    margin-left: 100px;
 }
 
 #paid-task-form input {
