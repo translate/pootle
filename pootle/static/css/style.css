@@ -582,16 +582,6 @@ button.close
 }
 
 
-.callout
-{
-    background-color: rgba(255, 255, 224, 0.5);
-    padding: 1em;
-    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-}
-
-
 /*
  * PAGE BODY
  */

@@ -7,11 +7,6 @@
     display: inline;
 }
 
-#contact .callout
-{
-    width: 38em;
-}
-
 #contact #id_name,
 #contact #id_email
 {
