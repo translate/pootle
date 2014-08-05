@@ -45,14 +45,6 @@
     padding: 0 16px;
 }
 
-#navbar .logo
-{
-    width: 32px;
-    height: 32px;
-    margin-top: -4px;
-    vertical-align: middle;
-}
-
 html[dir="rtl"] #navbar h1.brand
 {
     float: right;
@@ -67,6 +59,17 @@ html[dir="rtl"] #navbar h1.brand
 {
     color: #fff;
     padding-left: 0.2em;
+}
+
+html[dir="rtl"] #navbar h1 .site-title
+{
+    padding-left: auto;
+    padding-right: 0.2em;
+}
+
+#navbar h1 .icon-logo
+{
+    vertical-align: middle;
 }
 
 #nav-main > .menu-divider

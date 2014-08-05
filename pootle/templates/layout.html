@@ -157,7 +157,9 @@
         <div id="nav-access">
           <a href="#nav-main">{% trans 'skip to navigation' %}</a>
         </div>
-        <h1 class="brand"><a href="{% url 'pootle-home' %}"><img class="logo" src="{{ "images/logo.png"|s }}" /> <span class="site-title">{{ settings.TITLE }}</span></a></h1>
+        {% block logo %}
+        <h1 class="brand"><a href="{% url 'pootle-home' %}"><i class="icon-logo"></i><span class="site-title">{{ settings.TITLE }}</span></a></h1>
+        {% endblock %}
         <a href="#nav-main" id="menu-toggle" class="js-toggle">&nbsp;</a>
         <ul id="nav-main">
           <li><a href="{% staticpage_url 'getting-started' %}">{% trans "Getting Started" %}</a></li>
