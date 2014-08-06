@@ -6,6 +6,8 @@ External documentation
 These are external sources of documentation, often relevant to a specific
 Pootle server for one of the many projects that use Pootle.
 
+- https://taoeffect.s3.amazonaws.com/other/Pootle_Tutorial.pdf
+
 - http://colivre.coop.br/Tech/TraducaoPootle
 
 - http://wiki.creativecommons.org/Translating_with_Pootle
