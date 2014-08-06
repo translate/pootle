@@ -21,6 +21,7 @@
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
+from django.views.generic import TemplateView
 
 from pootle.i18n.override import get_lang_from_http_header
 from pootle_language.models import Language
@@ -47,3 +48,16 @@ def view(request):
     redirect_url = '%s%s' % (url, qs)
 
     return redirect(redirect_url)
+
+
+class AboutView(TemplateView):
+    template_name = 'about.html'
+
+    def get_context_data(self, **kwargs):
+        from translate.__version__ import sver as toolkit_version
+        from pootle.__version__ import sver as pootle_version
+
+        return {
+            'pootle_version': pootle_version,
+            'toolkit_version': toolkit_version,
+        }
