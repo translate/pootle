@@ -4,8 +4,7 @@
 
 #welcome-page #content
 {
-  background: url(../images/translation-toons.jpg) 50% 0px no-repeat;
-  min-height: 500px;
+  background: url(../images/bg.png) 0px 0px repeat-x;
   margin: 0;
 }
 
@@ -29,7 +28,7 @@
     margin-top: 0.5em;
 }
 
-#welcome-page #evernote-login
+#welcome-page #login
 {
     margin: 3em auto;
 }

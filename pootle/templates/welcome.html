@@ -8,19 +8,17 @@
 {% block header_block %}{% endblock %}
 
 {% block content %}
+{% block jumbo %}
 <div class="top">
-  <h1>{% trans 'Make Evernote' %}<br/>{% trans 'Speak Your Language' %}</h1>
-  <h2>{% trans 'Join our translation community' %}</h2>
+  <h1>{% trans 'Welcome to Pootle' %}</h1>
+  <h2>{% trans 'Come and Join Us!' %}</h2>
 
-  <div id="evernote-login">
-    <form method="post" action="{% url 'en-auth-sso-login' %}">
-      {% csrf_token %}
-      <input type="submit" class="btn btn-xl btn-success"
-        value="{% trans 'Sign In with Evernote' %}"></input>
-      <input type="hidden" name="next" value="{{ next }}" />
-    </form>
+  <div id="login">
+    <a href="{% url 'pootle-profile-login' %}"
+       class="btn btn-xl btn-success">{% trans 'Sign In' %}</a>
   </div>
 </div>
+{% endblock %}
 
 <div class="columns">
   <div class="columns-inner">
