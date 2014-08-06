@@ -1,4 +1,4 @@
-{% load i18n assets baseurl locale profile_tags staticpages humanize %}
+{% load i18n assets baseurl locale profile_tags humanize %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}{% endblock %}" class="{{ settings.POOTLE_INSTANCE_ID }}">
@@ -162,8 +162,8 @@
         {% endblock %}
         <a href="#nav-main" id="menu-toggle" class="js-toggle">&nbsp;</a>
         <ul id="nav-main">
-          <li><a href="{% staticpage_url 'getting-started' %}">{% trans "Getting Started" %}</a></li>
-          <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
+          {% block nav_items %}
+          {% block nav_items_pre %}{% endblock %}
           {% if user.is_authenticated %}
           <li id="user" class="js-navbar-dropdown">
             <a href="{{ user.get_absolute_url }}" data-action="toggle">
@@ -186,8 +186,8 @@
           {% else %}
           <li><a id="js-login" href="{% url 'pootle-profile-login' %}{{ request|get_next }}"><span class="btn btn-success">{% trans "Sign In" %}</span></a></li>
           {% endif %}
-          <li class="menu-divider">&nbsp;</li>
-          <li class="parent-site"><a href="//evernote.com">evernote.com</a></li>
+          {% block nav_items_post %}{% endblock %}
+          {% endblock %}
         </ul>
         {% block navbar_extra %}{% endblock %}
         {% endblock %}
@@ -228,8 +228,9 @@
     {% block footer %}
     <div id="footer">
       <ul class="nav">
+        {% block footer_items_pre %}{% endblock %}
         <li><a href="{% url 'pootle-about' %}">{% trans "About" %}</a></li>
-        <li><a href="{% staticpage_url 'tos' %}">{% trans "Terms and Conditions" %}</a></li>
+        {% block footer_items_post %}{% endblock %}
       </ul>
     </div>
     {% endblock footer %}
