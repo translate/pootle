@@ -20,6 +20,8 @@
 
 from django.conf.urls import patterns, url
 
+from .index import AboutView
+
 
 urlpatterns = patterns('pootle_app.views.index',
     url(r'^robots.txt$',
@@ -29,4 +31,8 @@ urlpatterns = patterns('pootle_app.views.index',
     url(r'^/?$',
         'index.view',
         name='pootle-home'),
+
+    url(r'^about/$',
+        AboutView.as_view(),
+        name='pootle-about'),
 )
