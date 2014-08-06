@@ -1,17 +1,16 @@
-{% extends "about/base.html" %}
+{% extends "layout.html" %}
 
-{% load i18n %}
+{% load i18n locale %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}{% trans "This Pootle Server" %} | {{ block.super }}{% endblock %}
+{% block title %}{% trans 'About' %} | {{ block.super }}{% endblock %}
 
-{% block breadcrumbs %}
-{{ block.super }}<li>{% trans "This Pootle Server" %}</li>
-{% endblock %}
+{% block header_block %}{% endblock %}
 
 {% block content %}
-<div id="about" lang="{{ LANGUAGE_CODE }}">
+<div id="staticpage" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+  <h1 class="title">{% trans 'About This Pootle Server' %}</h1>
   {# Translators: For better readability, make sure to leave an space after the closing </i> tag #}
   <p>{% blocktrans %}This site is running Pootle &mdash; powerful web software to empower teams to do translation and translation management. This community tool is Free Software, and any team can use it and contribute to the Pootle community. Read more on the <a href="http://pootle.translatehouse.org/"><i class="icon-external-link"></i> project website</a>.{% endblocktrans %}</p>
   <p>{% blocktrans %}Pootle {{ pootle_version }} is powered by Translate Toolkit {{ toolkit_version }}.{% endblocktrans %}</p>
