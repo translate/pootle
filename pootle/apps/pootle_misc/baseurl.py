@@ -34,11 +34,6 @@ def l(path):
     return path
 
 
-def s(path):
-    """Filter URLs adding STATIC_URL prefix."""
-    return settings.STATIC_URL + path
-
-
 def get_next(request):
     """Return a query string to use as a next URL."""
     try:
