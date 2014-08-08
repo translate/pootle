@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -24,6 +25,7 @@ from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.utils.http import urlencode
 
+
 def l(path):
     """ filter urls adding base_path prefix if required """
     if path and path.startswith('/'):
@@ -31,11 +33,6 @@ def l(path):
         #if not path.startswith(base_url):
         return base_url + path
     return path
-
-
-def s(path):
-    """Filter URLs adding STATIC_URL prefix."""
-    return settings.STATIC_URL + path
 
 
 def get_next(request):

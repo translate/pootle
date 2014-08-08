@@ -1,4 +1,4 @@
-{% load i18n assets baseurl locale profile_tags humanize %}
+{% load i18n assets baseurl locale profile_tags humanize staticfiles %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}{% endblock %}" class="{{ settings.POOTLE_INSTANCE_ID }}">
@@ -9,8 +9,8 @@
     {% block meta %}
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="application-name" content="{{ settings.TITLE }}" />
-    <link rel="icon" href="{{ "images/app-32x32.png"|s }}" sizes="32x32" />
-    <link rel="icon" href="{{ "images/app-64x64.png"|s }}" sizes="64x64" />
+    <link rel="icon" href="{% static 'images/app-32x32.png' %}" sizes="32x32" />
+    <link rel="icon" href="{% static 'images/app-64x64.png' %}" sizes="64x64" />
     {% endblock meta %}
     {% block css %}
     
@@ -26,7 +26,7 @@
     {% endassets %}
     {% endblock css %}
     {% block favicon %}
-    <link rel="shortcut icon" href="{{ "favicon.ico"|s }}" />
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
     {% endblock favicon %}
     {% block js %}
     {% assets "js_common" %}
