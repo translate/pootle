@@ -20,12 +20,10 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import template
-from django.template.defaultfilters import stringfilter
 
-from pootle_misc.baseurl import s, get_next
+from pootle_misc.baseurl import get_next
 
 
 register = template.Library()
 
-register.filter('s', stringfilter(s))
 register.filter('get_next', get_next)
