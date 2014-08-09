@@ -115,7 +115,7 @@ def run_app(project, default_settings_path, settings_template,
                         help=u"Use the specified configuration file.")
     parser.add_argument("--noinput", action="store_true", default=False,
                         help=u"Never prompt for input")
-    parser.add_argument("-v", "--version", action="version", version=get_version())
+    parser.add_argument("--version", action="version", version=get_version())
 
     args, remainder = parser.parse_known_args(sys.argv[1:])
 
