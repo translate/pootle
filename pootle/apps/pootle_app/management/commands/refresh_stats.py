@@ -118,8 +118,11 @@ class Command(PootleCommand):
             last_unit_store = tp.stores.latest('last_unit__creation_time')
             tp.last_unit = last_unit_store.last_unit
 
-            last_sub_store = tp.stores.latest('last_submission__creation_time')
-            tp.last_submission = last_sub_store.last_submission
+            try:
+                last_sub_store = tp.stores.latest('last_submission__creation_time')
+                tp.last_submission = last_sub_store.last_submission
+            except Submission.DoesNotExist:
+                pass
 
             tp.save()
 
