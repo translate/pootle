@@ -575,25 +575,25 @@ class ScoreLog(models.Model):
             reviewer = self.submission.submitter.pk
             if suggester == reviewer:
                 if self.submission.old_value == '':
-                    return translated_words, 0
+                    return translated_words, None
             else:
-                return 0, reviewed_words
+                return None, reviewed_words
 
-            return 0, 0
+            return None, None
 
         def get_sugg_accepted():
             suggester = self.submission.suggestion.user.pk
             reviewer = self.submission.submitter.pk
             if suggester != reviewer:
                 if self.submission.old_value == '':
-                    return translated_words, 0
+                    return translated_words, None
 
-            return 0, 0
+            return None, None
 
         return {
-            TranslationActionCodes.NEW: lambda: (translated_words, 0),
-            TranslationActionCodes.EDITED: lambda: (0, reviewed_words),
-            TranslationActionCodes.REVIEWED: lambda: (0, reviewed_words),
+            TranslationActionCodes.NEW: lambda: (translated_words, None),
+            TranslationActionCodes.EDITED: lambda: (None, reviewed_words),
+            TranslationActionCodes.REVIEWED: lambda: (None, reviewed_words),
             TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
             TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: get_sugg_reviewed_accepted,
-        }.get(self.action_code, lambda:(0, 0))()
+        }.get(self.action_code, lambda: (None, None))()

@@ -102,25 +102,26 @@ def evernote_reports_detailed(request):
 
         for score in scores:
             translated, reviewed = score.get_paid_words()
-            if translated:
+            if translated is not None:
                 score.action = PaidTask.get_task_type_title(PaidTaskTypes.TRANSLATION)
                 score.subtotal = score.rate * translated
                 score.words = score.wordcount * (1 - score.get_similarity())
-            elif reviewed:
+
+                if score.rate in totals['translated']:
+                    totals['translated'][score.rate]['words'] += translated
+                else:
+                    totals['translated'][score.rate] = {'words': translated}
+
+            elif reviewed is not None:
                 score.action = PaidTask.get_task_type_title(PaidTaskTypes.REVIEW)
                 score.subtotal = score.review_rate * reviewed
                 score.words = score.wordcount
+                if score.review_rate in totals['reviewed']:
+                    totals['reviewed'][score.review_rate]['words'] += reviewed
+                else:
+                    totals['reviewed'][score.review_rate] = {'words': reviewed}
+
             score.similarity = score.get_similarity() * 100
-
-            if score.rate in totals['translated']:
-                totals['translated'][score.rate]['words'] += translated
-            else:
-                totals['translated'][score.rate] = {'words': translated}
-
-            if score.review_rate in totals['reviewed']:
-                totals['reviewed'][score.review_rate]['words'] += reviewed
-            else:
-                totals['reviewed'][score.review_rate] = {'words': reviewed}
 
         totals['all'] = 0
 
@@ -356,6 +357,9 @@ def get_daily_activity(user, start, end):
 
         translated, reviewed = score.get_paid_words()
         if translated or reviewed:
+            translated = 0 if translated is None else translated
+            reviewed = 0 if reviewed is None else reviewed
+
             if saved_ts != ts:
                 saved_ts = ts
                 result_reviewed['data'][ts] = 0
@@ -421,10 +425,11 @@ def get_grouped_paid_words(user, start, end):
             result.append(row)
 
         translated_words, reviewed_words = score.get_paid_words()
-        row['translated'] += translated_words
         if translated_words:
+            row['translated'] += translated_words
             row['translated_raw'] += score.wordcount
-        row['reviewed'] += reviewed_words
+        if reviewed_words:
+            row['reviewed'] += reviewed_words
         row['score_delta'] += score.score_delta
 
     return sorted(result, key=lambda x: x['translation_project'])
@@ -474,12 +479,12 @@ def get_summary(user, start, end):
 
         translated_words, reviewed_words = score.get_paid_words()
 
-        translated_row['amount'] += translated_words
-        reviewed_row['amount'] += reviewed_words
         if translated_words > 0:
             translated_row['end'] = score.creation_time
-        elif reviewed_row > 0:
+            translated_row['amount'] += translated_words
+        elif reviewed_words > 0:
             reviewed_row['end'] = score.creation_time
+            reviewed_row['amount'] += reviewed_words
 
     for group in [translations, reviews]:
         for i, item in enumerate(group):
