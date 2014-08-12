@@ -42,7 +42,7 @@
 
 #user-stats .user-score-title
 {
-    font-family: 'webfont_light_italic', sans-serif;
+    font-family: sans-serif;
     font-size: 1.8em;
     font-weight: normal;
     color: #1a1a1a;
@@ -135,7 +135,7 @@
 
 #user-details .user-bio
 {
-    font-family: "webfont_light_italic", sans-serif;
+    font-family: sans-serif;
     font-weight: normal;
     line-height: 1.6;
     max-width: 750px;

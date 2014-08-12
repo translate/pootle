@@ -138,9 +138,7 @@ h1, h2, h3, h4, h5, h6
 
 h1, h2, h3
 {
-    font-family: webfont_bold, sans-serif;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+    font-family: sans-serif;
 }
 
 h1
@@ -974,7 +972,7 @@ div.settings-container
 .module-primary .hd h2,
 .hd h2
 {
-    font-family: webfont_light, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
     font-size: 2.2em;
 }
 
@@ -1483,7 +1481,7 @@ html[dir="rtl"] ul.pager li:last-child > *
 {
     font-size: 1.5em;
     font-weight: normal;
-    font-family: webfont_light, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
     visibility: hidden;
     margin-left: -5px;
     padding-top: 5px;

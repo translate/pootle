@@ -13,14 +13,6 @@
     <link rel="icon" href="{% static 'images/app-64x64.png' %}" sizes="64x64" />
     {% endblock meta %}
     {% block css %}
-    
-    {#   The CSS file below link copyrighted web fonts (Caecilia family)          #}
-    {#   so we're not distributing this as a part of open-source Pootle project   #}
-    {#   but link directly to an external /media/ directory where the CSS file    #}
-    {#   and the fonts should be located.                                         #}
-
-    <link rel="stylesheet" type="text/css" href="/media/css/fonts.css" />
-
     {% assets "css_common" %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
     {% endassets %}
