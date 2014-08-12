@@ -71,18 +71,6 @@ On the contrary, if you want to reference images from HTML code or inline CSS,
 you should use the `{% static %}` template tag.
 
 
-.. _customization#favicon:
-
-Customizing the favicon
------------------------
-
-The favicon can be customized by editing the base template directly
-:file:`templates/base.html`). This has the downside that you have to
-reimplement this on upgrades if the base template is replaced. Alternatively
-the base template can be overridden as a whole with the favicon customized to
-your needs (see the next section).
-
-
 .. _customization#templates:
 
 Customizing templates
