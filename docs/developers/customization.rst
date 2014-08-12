@@ -45,6 +45,9 @@ Rebuilding assets after customization
       (env) $ python manage.py collectstatic --noinput --clear
       (env) $ python manage.py assets build
 
+Alternatively you can run the `make assets` command from the root of the
+repository.
+
 
 .. _customization#css:
 
