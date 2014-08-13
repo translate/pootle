@@ -186,6 +186,7 @@ CAN_CONTACT = True
 #
 
 # Translation memory service
+# If intergated TM server used AMAGAMA_URL should be set as '' (empty string)
 POOTLE_TM_SERVER = {
     'default': {
         # TODO 'ENGINE': '',
