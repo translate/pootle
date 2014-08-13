@@ -42,6 +42,8 @@ es_params = get_params()
 es = None
 if es_params is not None and ES is not None:
     es = ES([{'host': es_params['HOST'], 'port': es_params['PORT']}, ])
+    if not es.indices.exists(es_params['INDEX_NAME']):
+        es.indices.create(es_params['INDEX_NAME'])
 
 
 def update(language, obj):
