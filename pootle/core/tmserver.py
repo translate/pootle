@@ -27,10 +27,6 @@ except:
 from django.conf import settings
 
 
-# Elasticsearch filter settings
-MIN_SCORE = 0.1
-
-
 def get_params():
     params = getattr(settings, 'POOTLE_TM_SERVER', None)
 
@@ -57,7 +53,7 @@ def update(language, obj):
 
 
 def is_valuable_hit(unit, hit):
-    if hit['_score'] < MIN_SCORE or str(unit.id) == hit['_id']:
+    if hit['_score'] < es_params['MIN_SCORE'] or str(unit.id) == hit['_id']:
         return False
 
     return True
