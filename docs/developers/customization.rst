@@ -45,7 +45,7 @@ Rebuilding assets after customization
       (env) $ python manage.py collectstatic --noinput --clear
       (env) $ python manage.py assets build
 
-Alternatively you can run the `make assets` command from the root of the
+Alternatively you can run the ``make assets`` command from the root of the
 repository.
 
 
@@ -68,7 +68,7 @@ You should put your custom images in your custom ``STATICFILES_DIRS``. From CSS
 you would just reference them using a relative path.
 
 On the contrary, if you want to reference images from HTML code or inline CSS,
-you should use the `{% static %}` template tag.
+you should use the ``{% static %}`` template tag.
 
 
 .. _customization#templates:
