@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-{% load i18n locale notification_tags %}
+{% load i18n locale %}
 
 {% block body_id %}admindashboard{% endblock %}
 
@@ -32,11 +32,6 @@
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="hd"><h2>{% trans 'Latest News' %}</h2></div>
-  <div class="bd latestnews">
-    {% render_latest_news "" 10 %}
   </div>
 </div>
 

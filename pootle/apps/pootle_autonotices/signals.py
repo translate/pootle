@@ -56,22 +56,3 @@ def new_project(sender, instance, created=False, raw=False, **kwargs):
     }
     message = 'New project <a href="%(url)s">%(project)s</a> created.' % args
     new_object(created, message, parent=Directory.objects.root)
-
-
-def new_user(sender, instance, created=False, raw=False, **kwargs):
-    if raw:
-        return
-
-    # New user needs to be wrapped in a try block because it might be
-    # called before the rest of the models are loaded when first
-    # installing Pootle
-
-    try:
-        args = {
-            'url': instance.get_absolute_url(),
-            'user': instance,
-        }
-        message = 'New user <a href="%(url)s">%(user)s</a> registered.' % args
-        new_object(created, message, parent=Directory.objects.root)
-    except:
-        pass

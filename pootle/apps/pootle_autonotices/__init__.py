@@ -19,7 +19,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 
 from pootle_language.models import Language
@@ -29,4 +28,3 @@ from . import signals
 
 post_save.connect(signals.new_language, sender=Language)
 post_save.connect(signals.new_project, sender=Project)
-post_save.connect(signals.new_user, sender=get_user_model())
