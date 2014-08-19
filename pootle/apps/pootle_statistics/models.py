@@ -571,6 +571,10 @@ class ScoreLog(models.Model):
         ns = self.wordcount
         s = self.get_similarity()
         translated_words = ns * (1 - s)
+        if self.rate != 0:
+            translated_words += self.review_rate * ns * s / self.rate
+        else:
+            translated_words += REVIEW_COEF * ns * s / (EDIT_COEF + REVIEW_COEF)
         reviewed_words = ns
 
         def get_sugg_reviewed_accepted():

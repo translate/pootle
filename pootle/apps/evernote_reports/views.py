@@ -105,7 +105,7 @@ def evernote_reports_detailed(request):
             if translated is not None:
                 score.action = PaidTask.get_task_type_title(PaidTaskTypes.TRANSLATION)
                 score.subtotal = score.rate * translated
-                score.words = score.wordcount * (1 - score.get_similarity())
+                score.words = translated
 
                 if score.rate in totals['translated']:
                     totals['translated'][score.rate]['words'] += translated
