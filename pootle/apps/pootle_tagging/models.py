@@ -156,7 +156,8 @@ class Goal(TagBase):
             # Get the 'non-project goals' (aka regular goals) applied to stores
             # in this path.
             criteria['project_goal'] = False
-            regular_goals = cls.objects.filter(**criteria).distinct()
+            regular_goals = cls.objects.filter(**criteria).distinct() \
+                                       .order_by('priority', 'name')
 
             # Now get the 'project goals' applied to stores in the 'templates'
             # TP for this TP's project.
@@ -177,7 +178,8 @@ class Goal(TagBase):
                     'project_goal': True,
                     'items_with_goal__object_id__in': tpl_stores_pks,
                 })
-                project_goals = cls.objects.filter(**criteria).distinct()
+                project_goals = cls.objects.filter(**criteria).distinct() \
+                                           .order_by('priority', 'name')
 
                 return list(chain(regular_goals, project_goals))
 
