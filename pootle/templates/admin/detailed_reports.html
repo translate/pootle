@@ -82,6 +82,12 @@
       text-align: right;
     }
 
+    .number sup
+    {
+      float:left;
+      margin: -5px;
+    }
+
     .unit a
     {
       text-decoration: none;
@@ -119,7 +125,7 @@
           <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
         </td>
         <td class="number">{{ score.wordcount }}</td>
-        <td class="number">{% if score.action == 'Review' %}&mdash;{% elif score.action == 'Translation' %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
+        <td class="number">{% if score.is_similarity_taken_from_mt %}<sup>MT</sup>{% endif %}{% if score.action == 'Review' %}&mdash;{% elif score.action == 'Translation' %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
         <td class="number">{{ score.words|floatformat:2 }}</td>
         <td class="number">{% if score.action == 'Review' %}{{ score.review_rate }}{% elif score.action = 'Translation' %}{{ score.rate }}{% endif %} {{ user.currency }}</td>
         <td class="number">{{ score.subtotal|floatformat:2 }} {{ user.currency }}</td>

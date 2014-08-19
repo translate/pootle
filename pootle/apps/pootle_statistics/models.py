@@ -563,6 +563,9 @@ class ScoreLog(models.Model):
     def get_similarity(self):
         return self.similarity if self.similarity >= SIMILARITY_THRESHOLD else 0
 
+    def is_similarity_taken_from_mt(self):
+        return self.submission.similarity < self.submission.mt_similarity
+
     def get_paid_words(self):
         """Returns the translated and reviewed words in the current action."""
         ns = self.wordcount
