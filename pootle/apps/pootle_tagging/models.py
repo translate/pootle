@@ -163,24 +163,23 @@ class Goal(TagBase):
             template_tp = tp.project.get_template_translationproject()
 
             if template_tp is None:  # If this project has no 'templates' TP.
-                project_goals = cls.objects.none()
+                return regular_goals
             else:
                 tpl_dir_path = "/%s/%s" % (template_tp.language.code,
                                            pootle_path.split("/", 2)[-1])
                 try:
                     tpl_dir = Directory.objects.get(pootle_path=tpl_dir_path)
                 except Directory.DoesNotExist:
-                    project_goals = cls.objects.none()
-                else:
-                    tpl_stores_pks =  tpl_dir.stores.values_list('pk',
-                                                                 flat=True)
-                    criteria.update({
-                        'project_goal': True,
-                        'items_with_goal__object_id__in': tpl_stores_pks,
-                    })
-                    project_goals = cls.objects.filter(**criteria).distinct()
+                    return regular_goals
 
-            return list(chain(regular_goals, project_goals))
+                tpl_stores_pks =  tpl_dir.stores.values_list('pk', flat=True)
+                criteria.update({
+                    'project_goal': True,
+                    'items_with_goal__object_id__in': tpl_stores_pks,
+                })
+                project_goals = cls.objects.filter(**criteria).distinct()
+
+                return list(chain(regular_goals, project_goals))
 
     @classmethod
     def get_trail_for_path(cls, pootle_path):
