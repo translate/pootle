@@ -19,8 +19,8 @@ PTL.admin = (function () {
 
   var itemTypes = {
     user: {
-      model: require('./models/user').User,
-      collection: require('./models/user').UserSet
+      model: require('../models/user').User,
+      collection: require('../models/user').UserSet
     }
   };
 
