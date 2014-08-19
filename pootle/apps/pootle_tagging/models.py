@@ -462,9 +462,15 @@ class Goal(TagBase):
 
         :param path_obj: A pootle path object.
         """
-        total = path_obj.get_total_wordcount()
-        translated = path_obj.get_translated_wordcount()
-        return total - translated
+        incomplete = 0
+
+        goal_stores = self.get_stores_for_path(path_obj.pootle_path)
+        for store in goal_stores:
+            total = store.get_total_wordcount()
+            translated = store.get_translated_wordcount()
+            incomplete += total - translated
+
+        return incomplete
 
 
 class ItemWithGoal(GenericTaggedItemBase):
