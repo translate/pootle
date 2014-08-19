@@ -34,6 +34,7 @@ from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import ProtectedError, Sum, Q
+from django.forms.models import model_to_dict
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
@@ -41,6 +42,7 @@ from django.utils.translation import ugettext_lazy as _
 from pootle.core.cache import make_method_key
 from pootle.managers import UserManager
 from pootle_language.models import Language
+from pootle_misc.util import jsonify
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
@@ -249,6 +251,10 @@ class User(AbstractBaseUser):
 
     def get_absolute_url(self):
         return reverse('pootle-user-profile', args=[self.username])
+
+    def as_json(self):
+        """Returns the user's field-values as a JSON-encoded string."""
+        return jsonify(model_to_dict(self, exclude=['password']))
 
     def is_anonymous(self):
         """Returns `True` if this is an anonymous user.
