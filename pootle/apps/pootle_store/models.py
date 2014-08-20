@@ -47,7 +47,7 @@ from pootle_app.models import Revision
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              UNIT_OBSOLETE, UNIT_RESURRECTED,
-                             STORE_ADDED, STORE_DELETED,
+                             STORE_ADDED, STORE_OBSOLETE, STORE_DELETED,
                              MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
                              action_log, store_log, log)
 from pootle.core.mixins import CachedMethods, TreeItem
@@ -1285,14 +1285,25 @@ fs = FileSystemStorage(location=settings.PODIRECTORY)
 
 
 class StoreManager(models.Manager):
+    use_for_related_fields = True
 
     def get_queryset(self):
         """Mimics `select_related(depth=1)` behavior. Pending review."""
-        return (
-            super(StoreManager, self).get_queryset().select_related(
-                'parent', 'translation_project',
-            )
-        )
+        return super(StoreManager, self).get_queryset() \
+                                        .filter(obsolete=False) \
+                                        .select_related(
+                                            'parent',
+                                            'translation_project',
+                                        )
+
+    def with_obsolete(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return super(StoreManager, self).get_queryset() \
+                                        .select_related(
+                                            'parent',
+                                            'translation_project',
+                                        )
+
 
 class Store(models.Model, TreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
@@ -1320,6 +1331,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
     last_sync_revision = models.IntegerField(db_index=True, null=True)
+    obsolete = models.BooleanField(default=False)
 
     objects = StoreManager()
 
@@ -1420,6 +1432,23 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                        unit=unit.id, translation='', path=self.pootle_path)
 
         super(Store, self).delete(*args, **kwargs)
+
+    def makeobsolete(self):
+        """Make this store and all its units obsolete."""
+        self.clear_all_cache(parents=True, children=False)
+
+        store_log(user='system', action=STORE_OBSOLETE,
+                  path=self.pootle_path, store=self.id)
+
+        lang = self.translation_project.language.code
+        unit_query = self.unit_set.filter(state__gt=OBSOLETE)
+        unit_ids = unit_query.values_list('id', flat=True)
+        for unit_id in unit_ids:
+            action_log(user='system', action=STORE_OBSOLETE, lang=lang,
+                       unit=unit_id, translation='', path=self.pootle_path)
+        unit_query.update(state=OBSOLETE)
+        self.obsolete = True
+        self.save()
 
     def get_absolute_url(self):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
@@ -1604,7 +1633,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         try:
             changes = {
                 'obsolete': 0,
-                'deleted': 0,
                 'updated': 0,
                 'added': 0,
             }
@@ -1628,14 +1656,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 # object
                 unit.store = self
                 if not unit.isobsolete():
-                    if unit.istranslated():
-                        unit.makeobsolete()
-                        unit._from_update_stores = True
-                        unit.save()
-                        changes['obsolete'] += 1
-                    else:
-                        unit.delete()
-                        changes['deleted'] += 1
+                    unit.makeobsolete()
+                    unit._from_update_stores = True
+                    unit.save()
+                    changes['obsolete'] += 1
 
             User = get_user_model()
             system = User.objects.get_system_user()
@@ -1663,8 +1687,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 if self.last_sync_revision is not None:
                     filter_by.update({'revision__gt': self.last_sync_revision})
 
+                # If a dbunit is obsolete
+                # then the dbunit should be resurrected in any case
                 modified_units = set(
-                    Unit.objects.filter(**filter_by)
+                    Unit.objects.filter(**filter_by).exclude(state=OBSOLETE)
                                 .values_list('id', flat=True).distinct()
                 )
 
