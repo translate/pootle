@@ -1,4 +1,4 @@
-﻿/* glue: 0.9.4 hash: 65a5560820 */
+﻿/* glue: 0.9.4 hash: 4cb498d832 */
         .icon-user-website,
 .icon-user-twitter,
 .icon-user-linkedin,
@@ -8,6 +8,7 @@
 .icon-asc,
 .icon-expand-stats,
 .icon-collapse-stats,
+.icon-yandex-translate,
 .icon-web-translate,
 .icon-warning,
 .icon-timeline,
@@ -94,158 +95,164 @@
             height: 17px;
         }
         
-        .icon-web-translate {
+        .icon-yandex-translate {
             background-position: 0 -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-warning {
+        .icon-web-translate {
             background-position: -16px -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-timeline {
+        .icon-warning {
             background-position: -32px -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-tick {
+        .icon-timeline {
             background-position: -48px -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-search {
+        .icon-tick {
             background-position: -64px -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-reject {
+        .icon-search {
             background-position: -85px 0;
             width: 16px;
             height: 16px;
         }
         
-        .icon-raw-mode {
+        .icon-reject {
             background-position: -85px -16px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-project {
+        .icon-raw-mode {
             background-position: -85px -32px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-language {
+        .icon-project {
             background-position: -85px -48px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-information {
+        .icon-language {
             background-position: -85px -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-google-translate {
+        .icon-information {
             background-position: 0 -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-folder {
+        .icon-google-translate {
             background-position: -16px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-folder-parent {
+        .icon-folder {
             background-position: -32px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-file {
+        .icon-folder-parent {
             background-position: -48px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-error {
+        .icon-file {
             background-position: -64px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-copy {
+        .icon-error {
             background-position: -80px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-comment-user {
+        .icon-copy {
             background-position: -101px 0;
             width: 16px;
             height: 16px;
         }
         
-        .icon-comment-add {
+        .icon-comment-user {
             background-position: -101px -16px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-block {
+        .icon-comment-add {
             background-position: -101px -32px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-block-muted {
+        .icon-block {
             background-position: -101px -48px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-arrow-up {
+        .icon-block-muted {
             background-position: -101px -64px;
-            width: 9px;
+            width: 16px;
             height: 16px;
         }
         
-        .icon-arrow-down {
+        .icon-arrow-up {
             background-position: -101px -80px;
             width: 9px;
             height: 16px;
         }
         
-        .icon-apertium {
+        .icon-arrow-down {
             background-position: 0 -96px;
+            width: 9px;
+            height: 16px;
+        }
+        
+        .icon-apertium {
+            background-position: -9px -96px;
             width: 16px;
             height: 16px;
         }
         
         .icon-accept {
-            background-position: -16px -96px;
+            background-position: -25px -96px;
             width: 16px;
             height: 16px;
         }
         
         .icon-upload {
-            background-position: -32px -96px;
+            background-position: -41px -96px;
             width: 14px;
             height: 14px;
         }
         
         .icon-download {
-            background-position: -46px -96px;
+            background-position: -55px -96px;
             width: 14px;
             height: 14px;
         }
@@ -257,7 +264,7 @@
         }
         
         .icon-external-link {
-            background-position: -60px -96px;
+            background-position: -69px -96px;
             width: 12px;
             height: 12px;
         }
@@ -272,6 +279,7 @@
     .icon-asc,
     .icon-expand-stats,
     .icon-collapse-stats,
+    .icon-yandex-translate,
     .icon-web-translate,
     .icon-warning,
     .icon-timeline,

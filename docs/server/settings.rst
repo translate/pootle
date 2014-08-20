@@ -381,6 +381,9 @@ Translation environment configuration settings.
     API is a paid service. See more at
     https://developers.google.com/translate/v2/pricing
 
+  ``YANDEX_TRANSLATE``: Yandex.Translate service.
+    For this service you need to set the API key. Get your key at
+    https://tech.yandex.com/keys/get/?service=trnsl
 
 .. setting:: PARSE_POOL_CULL_FREQUENCY
 

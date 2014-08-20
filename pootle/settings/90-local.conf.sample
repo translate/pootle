@@ -180,6 +180,7 @@ MARKUP_FILTER = (None, {})
 MT_BACKENDS = [
 #        ('APERTIUM', ''),
 #        ('GOOGLE_TRANSLATE', ''),
+#        ('YANDEX_TRANSLATE', ''),
 ]
 
 
