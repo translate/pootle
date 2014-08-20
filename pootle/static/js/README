@@ -54,6 +54,9 @@ Directory contents
     - google-translate.js :
       Script to load translation suggestions using the Google Translate service.
 
+    - yandex-translate.js :
+      Script to load translation suggestions using the Yandex.Translate service
+
   + vendor/
 
     - backbone.js :
