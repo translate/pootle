@@ -23,8 +23,10 @@ import logging
 import os
 import re
 
+from pootle.core.log import store_log, STORE_RESURRECTED
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
+from pootle_misc.util import datetime_min
 from pootle_store.models import Store, PARSED
 from pootle_store.util import absolute_real_path
 
@@ -142,11 +144,13 @@ def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
     return files, dirs
 
 
-def add_items(fs_items, db_items, create_db_item):
-    """Add/remove the database items to correspond to the filesystem.
+def add_items(fs_items, db_items, create_or_resurrect_db_item):
+    """Add/make obsolete the database items to correspond to the filesystem.
 
     :param fs_items: entries currently in the filesystem
     :param db_items: entries currently in the database
+    :create_or_resurrect_db_item: callable that will create a new db item
+        or resurrect an obsolete db item with a given name and parent.
     :create_db_item: callable that will create a new db item with a given name
     :return: list of all items, list of newly added items
     :rtype: tuple
@@ -160,22 +164,55 @@ def add_items(fs_items, db_items, create_db_item):
     items_to_create = fs_items_set - db_items_set
 
     for name in items_to_delete:
-        db_items[name].delete()
+        db_items[name].makeobsolete()
 
     for name in db_items_set - items_to_delete:
         items.append(db_items[name])
 
     for name in items_to_create:
-        item = create_db_item(name)
+        item = create_or_resurrect_db_item(name)
         items.append(item)
         new_items.append(item)
         try:
             item.save()
         except Exception:
             logging.exception('Error while adding %s', item)
+
     return items, new_items
 
 
+def create_or_resurrect_store(file, parent, name, translation_project):
+    """Create or resurrect a store db item with given name and parent."""
+    try:
+        Store.objects.with_obsolete().filter(parent=parent, name=name) \
+                                     .update(obsolete=False)
+        store = parent.child_stores.get(name=name)
+        store.file_mtime = datetime_min
+        if store.last_sync_revision is None:
+           store.last_sync_revision = store.get_max_unit_revision()
+
+        store_log(user='system', action=STORE_RESURRECTED,
+                  path=store.pootle_path, store=store.id)
+    except Store.DoesNotExist:
+        store = Store(file=file, parent=parent,
+                      name=name, translation_project=translation_project)
+
+    return store
+
+
+def create_or_resurrect_dir(name, parent):
+    """Create or resurrect a directory db item with given name and parent."""
+    try:
+        Directory.objects.with_obsolete().filter(parent=parent, name=name) \
+                                         .update(obsolete=False)
+        dir = parent.child_dirs.get(name=name)
+    except Directory.DoesNotExist:
+        dir = Directory(name=name, parent=parent)
+
+    return dir
+
+
+# TODO: rename function or even rewrite it
 def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
               file_filter=lambda _x: True):
     from pootle_misc import versioncontrol
@@ -189,14 +226,22 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
                            db_dir.child_stores.exclude(file='').iterator())
     existing_dirs = dict((dir.name, dir) for dir in
                          db_dir.child_dirs.iterator())
-    files, new_files = add_items(file_set, existing_stores,
-              lambda name: Store(file=os.path.join(relative_dir, name),
-                                 parent=db_dir,
-                                 name=name,
-                                 translation_project=translation_project))
+    files, new_files = add_items(
+        file_set,
+        existing_stores,
+        lambda name: create_or_resurrect_store(
+             file=os.path.join(relative_dir, name),
+             parent=db_dir,
+             name=name,
+             translation_project=translation_project,
+        )
+    )
 
-    db_subdirs, new_db_subdirs = add_items(dir_set, existing_dirs,
-                           lambda name: Directory(name=name, parent=db_dir))
+    db_subdirs, new_db_subdirs = add_items(
+        dir_set,
+        existing_dirs,
+        lambda name: create_or_resurrect_dir(name=name, parent=db_dir)
+    )
 
     for db_subdir in db_subdirs:
         fs_subdir = os.path.join(relative_dir, db_subdir.name)

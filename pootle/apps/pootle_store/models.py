@@ -450,6 +450,8 @@ class Unit(models.Model, base.TranslationUnit):
         null=True,
     )
 
+    obsolete = models.BooleanField(default=False)
+
     objects = UnitManager()
 
     class Meta:
@@ -1248,6 +1250,32 @@ fs = FileSystemStorage(location=settings.PODIRECTORY)
 suggester_regexp = re.compile(r'suggested by (.*) \[[-0-9]+\]')
 
 
+class StoreManager(models.Manager):
+    use_for_related_fields = True
+
+    def get_queryset(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return (
+            super(StoreManager, self).get_queryset().select_related(
+                'parent', 'translation_project',
+            )
+        )
+        return super(StoreManager, self).get_queryset() \
+                                        .filter(obsolete=False) \
+                                        .select_related(
+                                            'parent',
+                                            'translation_project',
+                                        )
+
+    def with_obsolete(self):
+        """Mimics `select_related(depth=1)` behavior. Pending review."""
+        return super(StoreManager, self).get_queryset() \
+                                        .select_related(
+                                            'parent',
+                                            'translation_project',
+                                        )
+
+
 class Store(models.Model, TreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
 
@@ -1436,6 +1464,23 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 unit=unit.id, Translation="")
 
         super(Store, self).delete(*args, **kwargs)
+
+    def makeobsolete(self):
+        """Make this store and all its units obsolete."""
+        self.clear_all_cache(parents=True, children=False)
+
+        store_log(user='system', action=log.STORE_OBSOLETE,
+                  path=self.pootle_path, store=self.id)
+
+        lang = self.translation_project.language.code
+        unit_query = self.unit_set.filter(state__gt=OBSOLETE)
+        unit_ids = unit_query.values_list('id', flat=True)
+        for unit_id in unit_ids:
+            action_log(user='system', action=log.STORE_OBSOLETE, lang=lang,
+                       unit=unit_id, translation='', path=self.pootle_path)
+        unit_query.update(state=OBSOLETE)
+        self.obsolete = True
+        self.save()
 
     def get_absolute_url(self):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
@@ -2141,11 +2186,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 obsolete_dbids = [self.dbid_index.get(uid)
                                   for uid in old_ids - new_ids]
                 for unit in self.findid_bulk(obsolete_dbids):
-                    if unit.istranslated():
-                        unit.makeobsolete()
-                        unit.save()
-                    else:
-                        unit.delete()
+                    unit.makeobsolete()
+                    unit._from_update_stores = True
+                    unit.save()
 
             common_dbids = [self.dbid_index.get(uid)
                             for uid in old_ids & new_ids]

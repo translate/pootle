@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+
 import logging
 
 
@@ -26,13 +27,16 @@ TRANSLATION_ADDED = 'A'
 TRANSLATION_CHANGED = 'C'
 TRANSLATION_DELETED = 'D'
 UNIT_ADDED = 'UA'
-UNIT_DELETED = 'UD'
 UNIT_OBSOLETE = 'UO'
+UNIT_RESURRECTED = 'UR'
+UNIT_DELETED = 'UD'
 STORE_ADDED = 'SA'
+STORE_OBSOLETE = 'SO'
+STORE_RESURRECTED = 'SR'
 STORE_DELETED = 'SD'
 CMD_EXECUTED = 'X'
-MUTE_QUALITYCHECK = "QM"
-UNMUTE_QUALITYCHECK = "QU"
+MUTE_QUALITYCHECK = 'QM'
+UNMUTE_QUALITYCHECK = 'QU'
 
 
 def log(message):

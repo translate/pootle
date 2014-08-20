@@ -29,10 +29,16 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.baseurl import l
 
 class DirectoryManager(models.Manager):
+    use_for_related_fields = True
 
     def get_queryset(self):
         # ForeignKey fields with null=True are not selected by select_related
         # unless explicitly specified.
+        return super(DirectoryManager, self).get_queryset() \
+                                            .filter(obsolete=False) \
+                                            .select_related('parent')
+
+    def with_obsolete(self):
         return super(DirectoryManager, self).get_queryset() \
                                             .select_related('parent')
 
@@ -59,6 +65,7 @@ class Directory(models.Model, TreeItem):
         db_index=True,
     )
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
+    obsolete = models.BooleanField(default=False)
 
     is_dir = True
 
@@ -140,6 +147,16 @@ class Directory(models.Model, TreeItem):
             store.delete()
 
         super(Directory, self).delete(*args, **kwargs)
+
+    def makeobsolete(self, *args, **kwargs):
+        """Make this directory and all its children obsolete"""
+        # cache will be cleared from child stores
+        self.initialize_children()
+        for item in self.children:
+            item.makeobsolete()
+
+        self.obsolete = True
+        self.save()
 
     def get_absolute_url(self):
         return l(self.pootle_path)
