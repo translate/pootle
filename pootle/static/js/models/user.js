@@ -36,15 +36,6 @@ var User = Backbone.Model.extend({
     return this.collection.indexOf(this) + 1;
   },
 
-  parse: function (response, options) {
-    if (response.hasOwnProperty('form')) {
-      this.form = response.form;
-      return response.model;
-    }
-
-    return response;
-  },
-
   gravatarUrl: function (size) {
     size = size || '48';
     return [
