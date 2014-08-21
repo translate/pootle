@@ -17,8 +17,13 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+import re
+
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
+
+
+ITEM_CODE_RE = re.compile("[\.@]")
 
 
 HEADING_CHOICES = [
@@ -102,7 +107,7 @@ def make_generic_item(path_obj):
         'href_sugg': path_obj.get_translate_url(state='suggestions'),
         'href_critical': path_obj.get_critical_url(),
         'title': path_obj.name,
-        'code': path_obj.code
+        'code': ITEM_CODE_RE.sub("-", path_obj.code),
     }
 
 
