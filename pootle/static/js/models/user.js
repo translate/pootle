@@ -22,8 +22,10 @@ var User = Backbone.Model.extend({
     'bio': ''
   },
 
-  // FIXME: change endpoint depending if this is being used by admins
-  // or regular users
+  /*
+   * URL defaults to the admin backend. Customize when instantiating
+   * `User` objects as needed.
+   */
   urlRoot: function () {
     return l('/xhr/admin/users/');
   },
