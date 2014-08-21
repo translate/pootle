@@ -1,6 +1,7 @@
 'use strict';
 
 var Backbone = require('backbone');
+var md5 = require('md5').digest_s;
 
 
 var metaUsers = ['nobody', 'default', 'system'];
@@ -42,6 +43,14 @@ var User = Backbone.Model.extend({
     }
 
     return response;
+  },
+
+  gravatarUrl: function (size) {
+    size = size || '48';
+    return [
+      'https://secure.gravatar.com/avatar/', md5(this.get('email')),
+      '?s=', size, '&d=mm'
+    ].join('');
   },
 
   isMeta: function () {
