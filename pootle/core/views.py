@@ -28,7 +28,6 @@ from django.core.exceptions import PermissionDenied
 from django.db.models import ObjectDoesNotExist, ProtectedError, Q
 from django.forms.models import modelform_factory
 from django.http import Http404, HttpResponse
-from django.template import loader, RequestContext
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic import View
@@ -134,11 +133,6 @@ class APIView(View):
     # auto-populate model forms built using `self.model` and `self.fields`
     add_form_class = None
     edit_form_class = None
-
-    # Optional form template (and its context) to return for single object
-    # requests
-    edit_form_template = None
-    edit_form_ctx = None
 
     # Tuple of sensitive field names that will be excluded from any
     # serialized responses
@@ -307,9 +301,7 @@ class APIView(View):
         """Serialize a queryset into a JSON object.
 
         :param single_object: if `True` (or the URL specified an id), it
-            will return a single JSON object. Note that if
-            `self.edit_form_template` is set, the response will include
-            the edit form rendered as HTML.
+            will return a single JSON object.
             If `False`, a JSON object is returned with an array of objects
             in `models` and the total object count in `count`.
         """
@@ -317,24 +309,7 @@ class APIView(View):
             values = queryset.values(*self.serialize_fields)
             # For single-item requests, convert ValuesQueryset to a dict simply
             # by slicing the first item
-            instance_values = values[0]
-
-            if (self.edit_form_class is not None and
-                self.edit_form_template is not None):
-                # Create fake model instance to feed the form
-                instance = self.model(**instance_values)
-                form = self.edit_form_class(instance=instance)
-                tpl = loader.get_template(self.edit_form_template)
-                ctx = {'form': form}
-                ctx.update(self.edit_form_ctx or {})
-                html_form = tpl.render(RequestContext(self.request, ctx))
-
-                serialize_values = {
-                    'model': instance_values,
-                    'form': html_form,
-                }
-            else:
-                serialize_values = instance_values
+            serialize_values = values[0]
         else:
             search_keyword = self.request.GET.get(self.search_param_name, None)
             if search_keyword is not None:
