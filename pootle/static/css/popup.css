@@ -11,7 +11,8 @@
     position: relative;
 }
 
-.popup-ajax .mfp-content
+.popup-ajax .mfp-content,
+.lightbox-content
 {
     background-color: #fff;
     border-radius: 0.5em;
@@ -20,36 +21,52 @@
     display: inline-block;
 }
 
-.popup-ajax .popup-form
+.popup-ajax .popup-form,
+.lightbox-content
 {
     line-height: 1!important;
     padding: 2em 3em;
+}
+
+/* MFP popus are next to the body, they need a bigger font-size */
+.popup-ajax .popup-form
+{
     font-size: 1.2em;
 }
 
-.popup-form h1
+.lightbox-content
+{
+    font-size: 0.8em;
+}
+
+.popup-form h1,
+.lightbox-content h1
 {
     margin-bottom: 1em;
 }
 
-.popup-form p
+.popup-form p,
+.lightbox-content p
 {
     margin: 1em 0;
 }
 
-.popup-form textarea
+.popup-form textarea,
+.lightbox-content textarea
 {
     font-size: 1em;
     padding-left: 0.2em;
     padding-right: 0.2em;
 }
 
-.popup-form .buttons input
+.popup-form .buttons input,
+.lightbox-content .buttons input
 {
     margin: 0.3em 0px 0px;
 }
 
-.popup-form label
+.popup-form label,
+.lightbox-content label
 {
     display: block;
     color: rgba(0, 0, 0, 0.6);

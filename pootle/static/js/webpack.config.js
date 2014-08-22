@@ -26,6 +26,7 @@ module.exports = {
   context: __dirname,
   entry: {
     admin: './admin/app.js',
+    user: './user/app.js',
   },
   output: {
     path: __dirname,
@@ -33,6 +34,7 @@ module.exports = {
   },
   module: {
     loaders: [
+      { test: /\.css/, loader: "style-loader!css-loader" },
       { test: /\.jsx$/, loader: 'jsx-loader?harmony&insertPragma=React.DOM' },
     ]
   },

@@ -29,27 +29,6 @@ class EditUserForm(forms.ModelForm):
         model = get_user_model()
         fields = ('full_name', 'twitter', 'linkedin', 'website', 'bio')
 
-    def __init__(self, *args, **kwargs):
-        kwargs.update({'label_suffix': ''})
-
-        super(EditUserForm, self).__init__(*args, **kwargs)
-
-        full_name_ph = _('Your full name')
-        self.fields['full_name'].widget.attrs['placeholder'] = full_name_ph
-
-        twitter_ph = _('Your Twitter username')
-        self.fields['twitter'].widget.attrs['placeholder'] = twitter_ph
-
-        linkedin_ph = _('Your LinkedIn profile URL')
-        self.fields['linkedin'].widget.attrs['placeholder'] = linkedin_ph
-
-        website_ph = _('Your personal website/blog URL')
-        self.fields['website'].widget.attrs['placeholder'] = website_ph
-
-        bio_ph = _('Why are you part of our translation project? '
-                   'Describe yourself, inspire others!')
-        self.fields['bio'].widget.attrs['placeholder'] = bio_ph
-
     def clean_linkedin(self):
         url = self.cleaned_data['linkedin']
         if url != '':

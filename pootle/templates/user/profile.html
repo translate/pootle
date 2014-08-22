@@ -1,5 +1,5 @@
 {% extends 'user/base.html'  %}
-{% load humanize i18n profile_tags %}
+{% load humanize i18n profile_tags assets %}
 
 {% block body_id %}profile-page{% endblock %}
 
@@ -80,10 +80,7 @@
       {% if not object.has_contact_details or not object.bio %}
         <div class="user-bio placeholder">{% trans 'Show others who you are, tell about yourself<br/>and make your public profile look gorgeous!' %}</div>
       {% endif %}
-      <div class="edit-profile-btn">
-        <a href="{% url 'pootle-user-profile-edit' object.username %}"
-           data-bb="true" class="btn btn-primary">{% trans 'Edit My Public Profile' %}</a>
-      </div>
+      <div class="js-user-profile-edit"></div>
     {% endif %}
   </div>
   {% endif %}
@@ -106,22 +103,20 @@
 
 {% block scripts_extra %}
 {{ block.super }}
+{% if user == object %}
+{% assets 'js_user_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+{% endif %}
 <script type="text/javascript">
 $(function() {
   PTL.common.updateRelativeDates();
   setInterval(PTL.common.updateRelativeDates, 6e4);
 
   {% if user == object %}
-  PTL.user.router = new PTL.user.UserRouter({{ object.id }});
-
-  $(document).on('click', 'a[data-bb]', function (e) {
-    e.preventDefault();
-    var appRoot = Backbone.history.options.root,
-        href = this.getAttribute('href').slice(appRoot.length);
-    PTL.user.router.navigate(href, true);
-  });
-
-  Backbone.history.start({pushState: true, root: '{{ user.get_absolute_url }}'});
+  PTL.user.init({el: '.js-user-profile-edit',
+                 userData: {{ user.as_json|safe }},
+                 appRoot: '{{ user.get_absolute_url }}'});
   {% endif %}
 });
 </script>

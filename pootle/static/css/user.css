@@ -17,6 +17,11 @@
     color: #5fb336;
 }
 
+#user-profile .lightbox-content a
+{
+    color: #0489b7;
+}
+
 #user-profile a:active,
 #user-profile a:hover,
 #user-profile a:focus

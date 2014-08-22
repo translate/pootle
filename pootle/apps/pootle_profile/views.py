@@ -42,7 +42,6 @@ class UserAPIView(TestUserFieldMixin, APIView):
     restrict_to_methods = ('GET', 'PUT')
     test_user_field = 'id'
     edit_form_class = EditUserForm
-    edit_form_template = 'user/edit.html'
 
 
 class UserStatsView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):

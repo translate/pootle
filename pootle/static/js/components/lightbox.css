@@ -1,0 +1,88 @@
+.lightbox-lock
+{
+  overflow: hidden;
+}
+
+.lightbox-bg
+{
+  position: fixed;
+  z-index: 9998;
+  top: 0px;
+  left: 0px;
+
+  height: 100%;
+  width: 100%;
+
+  background: rgba(11, 11, 11, 0.8);
+
+  outline: medium none;
+}
+
+.lightbox-container
+{
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 100%;
+
+  padding: 0;
+  text-align: center;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.lightbox-container::before
+{
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.lightbox-content
+{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.lightbox-close
+{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+
+  text-decoration: none;
+  text-align: center;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.6);
+
+  font-style: normal;
+  font-size: 28px;
+  font-family: "Arial", monospace;
+
+  border: 0;
+  cursor: pointer;
+}
+
+html[dir="rtl"] .lightbox-close
+{
+  right: auto;
+  left: 0;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus
+{
+  color: rgba(0, 0, 0, 1);
+}

@@ -46,7 +46,6 @@ js_common = Bundle(
     'js/search.js',
     'js/score.js',
     'js/stats.js',
-    'js/user.js',
     'js/utils.js',
     'js/vendor/sorttable.js',
     'js/vendor/spin.js',
@@ -66,6 +65,14 @@ js_admin_app = Bundle(
     'js/admin/app.bundle.js',
     output='js/admin/app.min.%(version)s.js')
 register('js_admin_app', js_admin_app)
+
+
+# Handled by webpack and therefore has no filters applied
+# It's kept here so hash-based cache invalidation can be used
+js_user_app = Bundle(
+    'js/user/app.bundle.js',
+    output='js/user/app.min.%(version)s.js')
+register('js_user_app', js_user_app)
 
 
 js_editor = Bundle(
