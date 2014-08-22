@@ -29,7 +29,7 @@ module.exports = {
   },
   output: {
     path: __dirname,
-    filename: './admin/app.bundle.js'
+    filename: './[name]/app.bundle.js'
   },
   module: {
     loaders: [
