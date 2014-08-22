@@ -23,7 +23,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 
-ITEM_CODE_RE = re.compile("[\.@]")
+ITEM_CODE_RE = re.compile("[\.@]")  # This must match the regexp in JS code.
 
 
 HEADING_CHOICES = [
