@@ -71,7 +71,6 @@ var FormValueInput = React.createClass({
   /* Layout */
 
   render: function () {
-    var el;
     if (this.props.type === 'textarea') {
       return (
         <textarea
