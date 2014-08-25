@@ -1,18 +1,11 @@
 var React = require('react/addons');
 
-var BackboneMixin = require('../mixins/backbone');
-var FormValidationMixin = require('../mixins/forms');
-
 var FormElement = require('../components/forms').FormElement;
+var ModelFormMixin = require('../mixins/forms').ModelFormMixin;
 
 
 var UserForm = React.createClass({
-  mixins: [FormValidationMixin, BackboneMixin],
-
-  /* BackboneMixin */
-  getResource: function () {
-    return this.props.model;
-  },
+  mixins: [ModelFormMixin],
 
   fields: [
       'username', 'is_active', 'password', 'full_name', 'email',
@@ -20,56 +13,17 @@ var UserForm = React.createClass({
   ],
 
 
-  /* Lifecycle */
-
-  getInitialState: function () {
-    var initialData = _.pick(this.props.model.toJSON(), this.fields);
-    return {
-      initialData: _.extend({}, initialData),
-      formData: _.extend({}, initialData),
-      isDirty: false
-    };
-  },
-
-
   /* Handlers */
 
-  handleChange: function (name, value) {
-    var newData = _.extend({}, this.state.formData);
-    newData[name] = value;
-    var isDirty = !_.isEqual(newData, this.state.initialData);
-    this.setState({formData: newData, isDirty: isDirty});
-  },
-
-  handleSubmit: function (e) {
-    e.preventDefault();
-
-    this.props.model.save(this.state.formData, {wait: true})
-                    .done(this.handleSuccess)
-                    .error(this.handleError);
-
-  },
-
-  handleSuccess: function () {
+  handleSuccess: function (model) {
     // Add models at the beginning of the collection. When models exist,
     // we need to move them to the first position, as Backbone doesn't
     // honor the `at: <pos>` option in that scenario and there's
     // no modified time attribute that could be used for sorting.
-    this.props.collection.unshift(this.props.model, {merge: true});
-    this.props.collection.move(this.props.model, 0);
+    this.props.collection.unshift(model, {merge: true});
+    this.props.collection.move(model, 0);
 
-    // Cleanup state
-    this.clearValidation();
-    this.setState({
-      initialData: _.extend({}, this.state.formData),
-      isDirty: false
-    });
-
-    this.props.handleSuccess(this.props.model);
-  },
-
-  handleError: function (xhr) {
-    this.validateResponse(xhr);
+    this.props.handleSuccess(model);
   },
 
 
@@ -84,7 +38,7 @@ var UserForm = React.createClass({
       <form method="post"
             id="item-form"
             autoComplete="off"
-            onSubmit={this.handleSubmit}>
+            onSubmit={this.handleFormSubmit}>
         <div className="fields">
           <FormElement
               autoFocus={!model.isMeta()}

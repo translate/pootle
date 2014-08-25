@@ -5,64 +5,19 @@ var React = require('react/addons');
 var linkify = require('autolinker').link;
 
 var FormElement = require('../components/forms').FormElement;
-var BackboneMixin = require('../mixins/backbone');
-var FormValidationMixin = require('../mixins/forms');
+var ModelFormMixin = require('../mixins/forms').ModelFormMixin;
 
 
 var UserProfileForm = React.createClass({
-  mixins: [FormValidationMixin, BackboneMixin],
-
-  /* BackboneMixin */
-  getResource: function () {
-    return this.props.model;
-  },
+  mixins: [ModelFormMixin],
 
   fields: ['full_name', 'twitter', 'linkedin', 'website', 'bio'],
 
 
-  /* Lifecycle */
-
-  getInitialState: function () {
-    var initialData = _.pick(this.props.model.toJSON(), this.fields);
-    return {
-      initialData: _.extend({}, initialData),
-      formData: _.extend({}, initialData),
-      isDirty: false
-    };
-  },
-
-
   /* Handlers */
 
-  handleChange: function (name, value) {
-    var newData = _.extend({}, this.state.formData);
-    newData[name] = value;
-    var isDirty = !_.isEqual(newData, this.state.initialData);
-    this.setState({formData: newData, isDirty: isDirty});
-  },
-
-  handleSubmit: function (e) {
-    e.preventDefault();
-
-    this.props.model.save(this.state.formData, {wait: true})
-                    .done(this.handleSuccess)
-                    .error(this.handleError);
-
-  },
-
-  handleSuccess: function () {
-    // Cleanup state
-    this.clearValidation();
-    this.setState({
-      initialData: _.extend({}, this.state.formData),
-      isDirty: false
-    });
-
-    this.props.handleSuccess(this.props.model);
-  },
-
-  handleError: function (xhr) {
-    this.validateResponse(xhr);
+  handleSuccess: function (user) {
+    this.props.handleSuccess(user);
   },
 
 
@@ -82,7 +37,7 @@ var UserProfileForm = React.createClass({
       <form method="post"
             id="item-form"
             autoComplete="off"
-            onSubmit={this.handleSubmit}>
+            onSubmit={this.handleFormSubmit}>
         <div className="fields">
           <FormElement attribute="full_name"
                        label={gettext('Full Name')}
