@@ -30,7 +30,7 @@ var UserForm = React.createClass({
   /* Layout */
 
   render: function () {
-    var model = this.props.model;
+    var model = this.getResource();
     var errors = this.state.errors;
     var formData = this.state.formData;
 
@@ -135,7 +135,7 @@ var UserForm = React.createClass({
           <input type="submit" className="btn btn-primary"
                  disabled={!this.state.isDirty}
                  value={gettext('Save')} />
-        {this.props.model.id &&
+        {model.id &&
           <a href={model.getProfileUrl()}>{gettext("View user's public profile page")}</a>}
         </p>
       {(this.props.handleDelete && !model.isMeta()) &&

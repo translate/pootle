@@ -24,7 +24,7 @@ var UserProfileForm = React.createClass({
   /* Layout */
 
   render: function () {
-    var model = this.props.model;
+    var model = this.getResource();
     var errors = this.state.errors;
     var formData = this.state.formData;
     var avatarHelp = gettext(
