@@ -286,7 +286,6 @@ def project_admin(request, project):
 
     ctx = {
         'page': 'admin-languages',
-
         'project': {
             'code': project.code,
             'name': project.fullname,
