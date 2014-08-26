@@ -71,30 +71,14 @@ var FormValueInput = React.createClass({
   /* Layout */
 
   render: function () {
+    var el;
     if (this.props.type === 'textarea') {
-      return (
-        <textarea
-          id={this.props.id}
-          name={this.props.name}
-          value={this.props.value}
-          placeholder={this.props.placeholder}
-          autoFocus={this.props.autoFocus}
-          readOnly={this.props.readOnly}
-          onChange={this.handleChange} />
-      );
+      el = <textarea onChange={this.handleChange} />;
+    } else {
+      el = <input onChange={this.handleChange} />;
     }
 
-    return (
-      <input
-        type={this.props.type}
-        id={this.props.id}
-        name={this.props.name}
-        value={this.props.value}
-        placeholder={this.props.placeholder}
-        autoFocus={this.props.autoFocus}
-        readOnly={this.props.readOnly}
-        onChange={this.handleChange} />
-    );
+    return this.transferPropsTo(el);
   }
 
 });
@@ -112,14 +96,8 @@ var FormCheckedInput = React.createClass({
   /* Layout */
 
   render: function () {
-    return (
-      <input
-        type={this.props.type}
-        id={this.props.id}
-        name={this.props.name}
-        checked={this.props.value}
-        onChange={this.handleChange} />
-    );
+    var el = <input checked={this.props.value} onChange={this.handleChange} />;
+    return this.transferPropsTo(el);
   }
 
 });
