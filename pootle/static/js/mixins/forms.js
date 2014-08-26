@@ -59,10 +59,9 @@ var ModelFormMixin = {
   /* Lifecycle */
 
   getInitialState: function () {
-    var initialData = _.pick(this.getResource().toJSON(), this.fields);
+    this.initialData = _.pick(this.getResource().toJSON(), this.fields);
     return {
-      initialData: _.extend({}, initialData),
-      formData: _.extend({}, initialData),
+      formData: _.extend({}, this.initialData),
       isDirty: false
     };
   },
@@ -84,7 +83,7 @@ var ModelFormMixin = {
   handleChange: function (name, value) {
     var newData = _.extend({}, this.state.formData);
     newData[name] = value;
-    var isDirty = !_.isEqual(newData, this.state.initialData);
+    var isDirty = !_.isEqual(newData, this.initialData);
     this.setState({formData: newData, isDirty: isDirty});
   },
 
@@ -99,8 +98,8 @@ var ModelFormMixin = {
   handleFormSuccess: function () {
     // Cleanup state
     this.clearValidation();
+    this.initialData = _.extend({}, this.state.formData);
     this.setState({
-      initialData: _.extend({}, this.state.formData),
       isDirty: false
     });
 
