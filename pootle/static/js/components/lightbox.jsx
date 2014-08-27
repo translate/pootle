@@ -20,6 +20,11 @@ var keys = {
 
 var Modal = React.createClass({
 
+  propTypes: {
+    closeBtn: React.PropTypes.bool,
+    closeBtnTitle: React.PropTypes.string,
+  },
+
   /* Lifecycle */
 
   getDefaultProps: function () {
