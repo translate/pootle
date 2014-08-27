@@ -76,14 +76,14 @@ var UserProfileEdit = React.createClass({
             {gettext('Edit My Public Profile')}
           </button>
         </div>
-        <Modal isOpen={this.state.editing}
-               handleClose={this.handleClose}>
+      {this.state.editing &&
+        <Modal handleClose={this.handleClose}>
           <div id="user-edit">
             <h1>{gettext('My Public Profile')}</h1>
             <UserProfileForm model={this.props.user}
                              handleSuccess={this.handleSave} />
           </div>
-        </Modal>
+        </Modal>}
       </div>
     );
   }

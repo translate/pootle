@@ -28,7 +28,6 @@ var Modal = React.createClass({
 
   getDefaultProps: function () {
     return {
-      isOpen: true,
       showClose: true,
     };
   },
@@ -62,7 +61,7 @@ var Modal = React.createClass({
   /* Layout */
 
   render: function () {
-    return (this.props.isOpen &&
+    return (
       <div className="lightbox-bg">
         <div className="lightbox-container">
           <div className="lightbox-content">
