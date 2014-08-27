@@ -77,7 +77,6 @@ var UserProfileEdit = React.createClass({
           </button>
         </div>
         <Modal isOpen={this.state.editing}
-               closeTitle={gettext('Close (Esc)')}
                handleClose={this.handleClose}>
           <div id="user-edit">
             <h1>{gettext('My Public Profile')}</h1>
