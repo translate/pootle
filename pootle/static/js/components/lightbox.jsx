@@ -29,6 +29,7 @@ var Modal = React.createClass({
 
   getDefaultProps: function () {
     return {
+      isOpen: true,
       closeBtn: true,
       closeBtnTitle: 'Close (Esc)',
     };
@@ -63,7 +64,7 @@ var Modal = React.createClass({
   /* Layout */
 
   render: function () {
-    return (
+    return (this.props.isOpen &&
       <div className="lightbox-bg">
         <div className="lightbox-container">
           <div className="lightbox-content">
@@ -84,31 +85,6 @@ var Modal = React.createClass({
 });
 
 
-var Lightbox = React.createClass({
-
-  typeMap: {
-    modal: Modal
-  },
-
-
-  /* Lifecycle */
-
-  getDefaultProps: function () {
-    return {
-      isOpen: true,
-      type: 'modal'
-    };
-  },
-
-
-  /* Layout */
-
-  render: function () {
-    var LightboxComponent = this.typeMap[this.props.type];
-    return this.props.isOpen ? new LightboxComponent(this.props) : null;
-  }
-
-});
-
-
-module.exports = Lightbox;
+module.exports = {
+  Modal: Modal,
+};

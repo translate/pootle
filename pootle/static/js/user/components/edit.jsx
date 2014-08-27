@@ -4,7 +4,7 @@ var Backbone = require('backbone');
 var React = require('react');
 var _ = require('underscore');
 
-var Lightbox = require('../../components/lightbox');
+var Modal = require('../../components/lightbox').Modal;
 var UserProfileForm = require('../forms').UserProfileForm;
 
 
@@ -76,15 +76,15 @@ var UserProfileEdit = React.createClass({
             {gettext('Edit My Public Profile')}
           </button>
         </div>
-        <Lightbox isOpen={this.state.editing}
-                  closeBtnTitle={gettext('Close (Esc)')}
-                  handleClose={this.handleClose}>
+        <Modal isOpen={this.state.editing}
+               closeBtnTitle={gettext('Close (Esc)')}
+               handleClose={this.handleClose}>
           <div id="user-edit">
             <h1>{gettext('My Public Profile')}</h1>
             <UserProfileForm model={this.props.user}
                              handleSuccess={this.handleSave} />
           </div>
-        </Lightbox>
+        </Modal>
       </div>
     );
   }
