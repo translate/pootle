@@ -21,8 +21,8 @@ var keys = {
 var Modal = React.createClass({
 
   propTypes: {
-    closeBtn: React.PropTypes.bool,
-    closeBtnTitle: React.PropTypes.string,
+    showClose: React.PropTypes.bool,
+    closeTitle: React.PropTypes.string,
   },
 
   /* Lifecycle */
@@ -30,8 +30,8 @@ var Modal = React.createClass({
   getDefaultProps: function () {
     return {
       isOpen: true,
-      closeBtn: true,
-      closeBtnTitle: 'Close (Esc)',
+      showClose: true,
+      closeTitle: 'Close (Esc)',
     };
   },
 
@@ -71,10 +71,10 @@ var Modal = React.createClass({
 
             {this.props.children}
 
-            {this.props.closeBtn &&
+          {this.props.showClose &&
             <button type="button"
                     className="lightbox-close"
-                    title={this.props.closeBtnTitle}
+                    title={this.props.closeTitle}
                     onClick={this.handleClose}>×</button>}
           </div>
         </div>
