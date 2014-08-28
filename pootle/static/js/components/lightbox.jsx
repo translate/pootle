@@ -9,6 +9,9 @@ var keys = {
   ESC: 27
 };
 
+// Global state to keep track of the created lightbox components
+var boxes = [];
+
 
 var Modal = React.createClass({
 
@@ -27,13 +30,21 @@ var Modal = React.createClass({
   },
 
   componentDidMount: function () {
-    window.addEventListener('keyup', this.handleWindowKeyUp, false);
-    document.body.classList.add('lightbox-lock');
+    if (boxes.length === 0) {
+      window.addEventListener('keyup', this.handleWindowKeyUp, false);
+      document.body.classList.add('lightbox-lock');
+    }
+
+    boxes.push(this);
   },
 
   componentWillUnmount: function () {
-    window.removeEventListener('keyup', this.handleWindowKeyUp, false);
-    document.body.classList.remove('lightbox-lock');
+    var box = boxes.pop();
+
+    if (boxes.length === 0) {
+      window.removeEventListener('keyup', box.handleWindowKeyUp, false);
+      document.body.classList.remove('lightbox-lock');
+    }
   },
 
 
@@ -41,7 +52,7 @@ var Modal = React.createClass({
 
   handleWindowKeyUp: function (e) {
     if (e.keyCode === keys.ESC) {
-      this.handleClose();
+      boxes[boxes.length-1].handleClose();
     }
   },
 
