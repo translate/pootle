@@ -22,7 +22,9 @@ var Modal = React.createClass({
 
   propTypes: {
     showClose: React.PropTypes.bool,
+    handleClose: React.PropTypes.func.isRequired,
   },
+
 
   /* Lifecycle */
 
