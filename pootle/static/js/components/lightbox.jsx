@@ -10,14 +10,6 @@ var keys = {
 };
 
 
-/*
- * TODO: support various types of lightboxes, including
- * modal, dialog or gallery:
- * <Modal /> == <Lightbox type="modal" />
- * <Dialog /> == <Lightbox type="dialog" />
- */
-
-
 var Modal = React.createClass({
 
   propTypes: {
@@ -83,6 +75,62 @@ var Modal = React.createClass({
 });
 
 
+var Dialog = React.createClass({
+
+  propTypes: {
+    title: React.PropTypes.string,
+    okLabel: React.PropTypes.string,
+    cancelLabel: React.PropTypes.string,
+    handleOk: React.PropTypes.func.isRequired,
+    handleCancel: React.PropTypes.func.isRequired,
+  },
+
+
+  /* Lifecycle */
+
+  getDefaultProps: function () {
+    return {
+      okLabel: 'OK',
+      cancelLabel: 'Cancel',
+    };
+  },
+
+
+  /* Layout */
+
+  render: function () {
+    return this.transferPropsTo(
+      <Modal>
+      {this.props.title &&
+        <div className="lightbox-header">
+          <h3>{this.props.title}</h3>
+        </div>}
+
+        <div className="lightbox-body">
+          {this.props.children}
+        </div>
+
+        <div className="lightbox-footer">
+          <button type="button"
+                  className="btn btn-primary"
+                  onClick={this.props.handleOk}>
+            {this.props.okLabel}
+          </button>
+          <button type="button"
+                  className="btn"
+                  autoFocus={true}
+                  onClick={this.props.handleCancel}>
+            {this.props.cancelLabel}
+          </button>
+        </div>
+      </Modal>
+    );
+  }
+
+});
+
+
 module.exports = {
   Modal: Modal,
+  Dialog: Dialog
 };

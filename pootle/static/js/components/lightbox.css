@@ -51,6 +51,40 @@
   vertical-align: middle;
   margin: 0 auto;
   text-align: left;
+  padding: 2em 3em;
+  min-width: 255px;
+}
+
+.lightbox-header
+{
+  padding-bottom: 1em;
+}
+
+.lightbox-body
+{
+  padding: 1em 0;
+}
+
+.lightbox-footer
+{
+  padding-top: 1em;
+  text-align: right;
+}
+
+html[dir="rtl"] .lightbox-footer
+{
+  text-align: left;
+}
+
+.lightbox-footer .btn + .btn
+{
+  margin-left: 0.5em;
+}
+
+html[dir="rtl"] .lightbox-footer .btn + .btn
+{
+  margin-left: 0;
+  margin-right: 0.5em;
 }
 
 .lightbox-close

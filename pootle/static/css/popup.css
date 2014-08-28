@@ -25,13 +25,13 @@
 .lightbox-content
 {
     line-height: 1!important;
-    padding: 2em 3em;
 }
 
 /* MFP popus are next to the body, they need a bigger font-size */
 .popup-ajax .popup-form
 {
     font-size: 1.2em;
+    padding: 2em 3em;
 }
 
 .lightbox-content
