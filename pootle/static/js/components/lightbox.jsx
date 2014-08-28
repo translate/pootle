@@ -10,7 +10,9 @@ var keys = {
 };
 
 // Global state to keep track of the created lightbox components
+// and the previously-focused elements
 var boxes = [];
+var focusedElements = [];
 
 
 var Modal = React.createClass({
@@ -29,6 +31,10 @@ var Modal = React.createClass({
     };
   },
 
+  componentWillMount: function () {
+    focusedElements.push(document.activeElement);
+  },
+
   componentDidMount: function () {
     if (boxes.length === 0) {
       window.addEventListener('keyup', this.handleWindowKeyUp, false);
@@ -45,6 +51,8 @@ var Modal = React.createClass({
       window.removeEventListener('keyup', box.handleWindowKeyUp, false);
       document.body.classList.remove('lightbox-lock');
     }
+
+    focusedElements.pop().focus();
   },
 
 
