@@ -14,6 +14,15 @@ var UserProfileForm = React.createClass({
   fields: ['full_name', 'twitter', 'linkedin', 'website', 'bio'],
 
 
+  /* Lifecycle */
+
+  componentWillUpdate: function (nextProps, nextState) {
+    if (nextState.isDirty !== this.state.isDirty) {
+      this.props.handleDirtyFlag(nextState.isDirty);
+    }
+  },
+
+
   /* Handlers */
 
   handleSuccess: function (user) {

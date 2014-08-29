@@ -4,6 +4,7 @@ var Backbone = require('backbone');
 var React = require('react');
 var _ = require('underscore');
 
+var Dialog = require('../../components/lightbox').Dialog;
 var Modal = require('../../components/lightbox').Modal;
 var UserProfileForm = require('../forms').UserProfileForm;
 
@@ -14,7 +15,9 @@ var UserProfileEdit = React.createClass({
 
   getInitialState: function () {
     return {
-      editing: false
+      editing: false,
+      confirmClose: false,
+      isDirty: false
     };
   },
 
@@ -44,15 +47,36 @@ var UserProfileEdit = React.createClass({
     this.setState({editing: true});
   },
 
-  handleClose: function () {
-    // TODO: check if it should actually switch the state
-    // by seeing if the model is dirty (#243)
-    this.setState({editing: false});
+  handleClose: function (opts) {
+    opts = opts || {};
+    var forceClose = opts.forceClose || false;
+
+    if (this.state.isDirty && !forceClose) {
+      this.setState({confirmClose: true});
+    } else {
+      this.setState({
+        editing: false,
+        confirmClose: false,
+        isDirty: false
+      });
+    }
   },
 
   handleSave: function (item) {
     this.handleClose();
     window.location.reload();
+  },
+
+  handleDlgOk: function () {
+    this.handleClose({forceClose: true});
+  },
+
+  handleDlgCancel: function () {
+    this.setState({confirmClose: false});
+  },
+
+  handleDirtyFlag: function (isDirty) {
+    this.setState({isDirty: isDirty});
   },
 
 
@@ -80,9 +104,19 @@ var UserProfileEdit = React.createClass({
           <div id="user-edit">
             <h1>{gettext('My Public Profile')}</h1>
             <UserProfileForm model={this.props.user}
+                             handleDirtyFlag={this.handleDirtyFlag}
                              handleSuccess={this.handleSave} />
           </div>
         </Modal>}
+      {this.state.confirmClose &&
+        <Dialog handleOk={this.handleDlgOk}
+                handleCancel={this.handleDlgCancel}
+                handleClose={this.handleDlgCancel}
+                title={gettext('Discard changes.')}
+                okLabel={gettext('Yes')}
+                cancelLabel={gettext('No')}>
+          {gettext('There are unsaved changes. Do you want to discard them?')}
+        </Dialog>}
       </div>
     );
   }
