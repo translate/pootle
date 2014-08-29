@@ -40,8 +40,7 @@ var UserProfileEdit = React.createClass({
 
   /* State-changing handlers */
 
-  handleEdit: function (e) {
-    e.preventDefault();
+  handleEdit: function () {
     this.setState({editing: true});
   },
 
