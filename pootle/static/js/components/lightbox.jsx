@@ -99,8 +99,7 @@ var Modal = React.createClass({
             {this.props.children}
 
           {this.props.showClose &&
-            <button type="button"
-                    className="lightbox-close"
+            <button className="lightbox-close"
                     onClick={this.handleClose}>×</button>}
           </div>
         </div>
@@ -147,13 +146,11 @@ var Dialog = React.createClass({
         </div>
 
         <div className="lightbox-footer">
-          <button type="button"
-                  className="btn btn-primary"
+          <button className="btn btn-primary"
                   onClick={this.props.handleOk}>
             {this.props.okLabel}
           </button>
-          <button type="button"
-                  className="btn"
+          <button className="btn"
                   autoFocus={true}
                   onClick={this.props.handleCancel}>
             {this.props.cancelLabel}
