@@ -73,7 +73,7 @@ var Modal = React.createClass({
   handleWindowFocus: function (e) {
     var box = boxes[boxes.length-1].refs.content.getDOMNode();
 
-    if (!box.contains(e.target)) {
+    if (e.target !== window && !box.contains(e.target)) {
       e.stopPropagation();
       box.focus();
     }
