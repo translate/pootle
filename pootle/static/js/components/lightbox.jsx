@@ -38,6 +38,7 @@ var Modal = React.createClass({
   componentDidMount: function () {
     if (boxes.length === 0) {
       window.addEventListener('keyup', this.handleWindowKeyUp, false);
+      window.addEventListener('focus', this.handleWindowFocus, true);
       document.body.classList.add('lightbox-lock');
     }
 
@@ -49,10 +50,15 @@ var Modal = React.createClass({
 
     if (boxes.length === 0) {
       window.removeEventListener('keyup', box.handleWindowKeyUp, false);
+      window.removeEventListener('focus', box.handleWindowFocus, true);
       document.body.classList.remove('lightbox-lock');
     }
 
-    focusedElements.pop().focus();
+    // `setTimeout()` is necessary to slightly delay the call to
+    // `.focus()` when components are about to be unmounted
+    setTimeout(function () {
+      focusedElements.pop().focus();
+    }, 0);
   },
 
 
@@ -61,6 +67,15 @@ var Modal = React.createClass({
   handleWindowKeyUp: function (e) {
     if (e.keyCode === keys.ESC) {
       boxes[boxes.length-1].handleClose();
+    }
+  },
+
+  handleWindowFocus: function (e) {
+    var box = boxes[boxes.length-1].refs.content.getDOMNode();
+
+    if (!box.contains(e.target)) {
+      e.stopPropagation();
+      box.focus();
     }
   },
 
@@ -77,7 +92,9 @@ var Modal = React.createClass({
     return (
       <div className="lightbox-bg">
         <div className="lightbox-container">
-          <div className="lightbox-content">
+          <div className="lightbox-content"
+               ref="content"
+               tabIndex="-1">
 
             {this.props.children}
 
