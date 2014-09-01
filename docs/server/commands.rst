@@ -142,7 +142,7 @@ recalculated for all existing units in the database.
 .. _commands#refresh_scores:
 
 refresh_scores
-^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 This command will go through all users and recalculate user's score.
 
