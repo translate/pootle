@@ -1,5 +1,6 @@
 .lightbox-lock
 {
+  position: fixed;
   overflow: hidden;
 }
 
