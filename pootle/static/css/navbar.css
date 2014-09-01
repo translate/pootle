@@ -4,7 +4,7 @@
 
 #navbar
 {
-    background-color: #222;
+    background-color: #0489b7;
     height: 50px;
     line-height: 50px;
 }
@@ -58,13 +58,13 @@ html[dir="rtl"] #navbar h1.brand
 #navbar h1 .site-title
 {
     color: #fff;
-    padding-left: 0.2em;
+    padding-left: 16px;
 }
 
 html[dir="rtl"] #navbar h1 .site-title
 {
     padding-left: auto;
-    padding-right: 0.2em;
+    padding-right: 16px;
 }
 
 #navbar h1 .icon-logo
@@ -75,7 +75,6 @@ html[dir="rtl"] #navbar h1 .site-title
 #nav-main > .menu-divider
 {
     display: inline-block;
-    background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
     height: 100%;
     margin-right: 2px;
@@ -121,7 +120,7 @@ html[dir="rtl"] #nav-main > li
 #nav-main li a:active,
 #nav-main li a:focus
 {
-    color: rgba(255, 255, 255, 0.9);
+    color: #fff;
     display: inline-block;
     text-decoration: none;
     padding: 0 1.5em;
@@ -134,13 +133,13 @@ html[dir="rtl"] #nav-main > li
 #nav-main li a:hover,
 #nav-main li.show-dropdown
 {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 #nav-main li a:active,
 #nav-main li a:focus
 {
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 #nav-main a.admin,
@@ -181,7 +180,6 @@ html[dir="rtl"] #nav-main > li
     display: block;
 }
 
-
 .dropdown-menu
 {
     position: absolute;
@@ -190,19 +188,17 @@ html[dir="rtl"] #nav-main > li
 
     display: none;
 
-    background-color: #222;
+    background-color: #0489b7;
     min-width: 200px;
     line-height: 35px;
     padding: 0.2em 0;
 
     border-radius: 0 0 3px 3px;
-    border: 1px solid #000;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
 }
 
 .dropdown-menu .menu-divider
 {
-    background-color: #000;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
     height: 1px;
     margin: 0.25em 0;
