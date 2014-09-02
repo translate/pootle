@@ -258,6 +258,12 @@ revision
 
 This command prints the number of the latest revision.
 
+The revision is a common system-wide counter for units, which is
+incremented with every translation action made from the browser. Zero
+length units that have been auto-translated also increment the unit
+revision.
+
+
 .. _commands#changed_languages:
 
 changed_languages
