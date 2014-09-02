@@ -11,6 +11,7 @@ other way, make sure to read through this part.
 
    contributing
    hacking
+   frontend
    customization
    browsers
    testing
