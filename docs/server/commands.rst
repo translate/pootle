@@ -159,60 +159,71 @@ This command will save all translations currently in the database to the file
 system, thereby bringing the files under the :setting:`PODIRECTORY` directory
 in sync with the Pootle database.
 
-.. note:: For better performance Pootle keeps translations in database and
-   doesn't save them to disk except on demand (before file downloads and
-   major file level operations like version control updates).
+.. note:: For better performance Pootle only saves translations to disk on
+  demand (before file downloads and major file-level operations like
+  version control updates).
 
 You must run this command before taking backups or running scripts that modify
 the translation files directly on the file system, otherwise you might miss out
-on translations that are in database but not yet saved to disk.
+on translations that are in the database but not yet saved to disk.
 
-When the ``--overwrite`` option is specified, the sync operation will not be
-conservative and it will overwrite the existing files on disk, making strings
-obsolete and updating the file's structure.
+For every file being synced, the in-DB ``Store`` will be updated to
+reflect the latest revision across the units in the file at the time of
+syncing. This allows Pootle to make optimizations when syncing and
+updating files, ignoring files that didn't change.
 
-With the ``--skip-missing`` option, files that are missing on disk will be
-ignored, and no new files will be created.
+The default behavior of ``sync_stores`` can be altered by specifying some
+parameters:
 
-With the ``--force`` option, files that were synced after the last change in DB
-won't be ignored.
+``--force``
+  Synchronizes files even if nothing changed in the database.
+
+``--overwrite``
+  Copies all units from database stores regardless if they have been
+  modified since the last sync or not. This operation will (over)write
+  existing on-disk files.
+
+``--skip-missing``
+  Ignores files missing on disk, and no new files will be created.
+
 
 .. _commands#update_stores:
 
 update_stores
 ^^^^^^^^^^^^^
 
-This command is the opposite of :ref:`commands#sync_stores`. It will update the
-strings in database to reflect what is on disk, as Pootle will not detect
-changes in the file system on its own.
+This command is the opposite of :ref:`commands#sync_stores`. It will
+update the strings in the database to reflect what is on disk, as Pootle
+will not detect changes in the file system on its own.
 
-It will also discover and import any new files added to existing languages
-within the projects.
+It also discovers new units, files and translation projects that were
+added on disk:
+
+- Translation projects that exist in the DB but ceased to exist on disk
+  will be **disabled** (not deleted).
+
+- Enabled translation projects will be scanned for new files and
+  directories. In-DB files and directories that no longer exist on disk
+  will be **marked as obsolete**.
+
+- In-DB stores will be updated with the contents of the on-disk files.
+  New units will be **added** to the store, units that ceased to exist
+  will be **marked as obsolete**. Translations that were updated on-disk
+  will be reflected in the DB.
 
 You must run this command after running scripts that modify translation files
 directly on the file system.
 
-``update_stores`` has an extra command line option ``--overwrite`` that will
-overwrite any existing translation in the database, without this
-option only updating new translations, removing obsolete strings and discovering
-new files and strings will be done.
+``update_stores`` accepts several parameters:
 
-``update_stores`` scans project directories looking for files matching languages not
-added to the project then adds them. It basically repeats the discovery process
-done by Pootle when you create a new project. Languages added to projects that
-have no matching files on the filesystem will be disabled.
+``--force``
+  Updates in-DB translations even if the on-disk file hasn't been changed
+  since the last sync operation.
 
-.. versionchanged:: 2.5.1
-
-Note that ``update_stores`` doesn't keep obsolete units around anymore, they are
-either deleted in case the string is untranslated or marked as obsolete in
-case the string was translated.
-
-.. versionchanged:: 2.5
-
-By default, ``update_stores`` will only update files that appear to have changed
-on disk since the last synchronization with Pootle. To force all files to
-update, specify ``--force``.
+``--overwrite``
+  Mirrors the on-disk contents of the file. If there have been changes in
+  the database **since the last sync operation**, these will be
+  overwritten.
 
 .. warning:: If files on the file system are corrupt, translations might be
    deleted from the database. Handle with care!
@@ -246,7 +257,6 @@ revision
 ^^^^^^^^
 
 This command prints the number of the latest revision.
-
 
 .. _commands#changed_languages:
 
