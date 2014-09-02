@@ -2,7 +2,7 @@ Front-end Development
 =====================
 
 Parts of Pootle front-end development require a Node.js run-time and packages
-installed via `npm<https://www.npmjs.org/>`_.  This is only the case for
+installed via `npm <https://www.npmjs.org/>`_.  This is only the case for
 developing or building Pootle.
 
 
@@ -11,7 +11,7 @@ Setting Things Up
 
 In order to setup the front-end development enviroment, it's necessary to have
 Node.js installed. Please check the `installation instructions for your
-OS<http://nodejs.org/download/>`_.
+OS <http://nodejs.org/download/>`_.
 
 Once Node.js is available, Pootle dependencies need to be installed.
 
@@ -65,7 +65,7 @@ For creating a production-ready build, use:
   $ NODE_ENV=production webpack -p
 
 This will also run the output through
-`UglifyJS<https://github.com/mishoo/UglifyJS2>`_, making the output build
+`UglifyJS <https://github.com/mishoo/UglifyJS2>`_, making the output build
 considerably lighter in size.
 
 As an alternative to the previous step, you can use ``make assets`` from the
