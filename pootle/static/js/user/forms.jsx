@@ -2,10 +2,18 @@
 
 var React = require('react/addons');
 
-var linkify = require('autolinker').link;
+var link = require('autolinker').link;
 
 var FormElement = require('../components/forms').FormElement;
 var ModelFormMixin = require('../mixins/forms').ModelFormMixin;
+
+
+// XXX: should probably live somewhere else
+var linkify = function (input) {
+  return {
+    __html: link(input)
+  };
+};
 
 
 var UserProfileForm = React.createClass({
@@ -65,7 +73,7 @@ var UserProfileForm = React.createClass({
             <img className="gravatar" height="48" width="48"
                  src={model.gravatarUrl()} />
             <span className="helptext"
-                  dangerouslySetInnerHTML={{__html: linkify(avatarHelp)}} />
+                  dangerouslySetInnerHTML={linkify(avatarHelp)} />
           </p>
           <p className="divider" />
           <FormElement attribute="twitter"
