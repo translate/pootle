@@ -47,7 +47,9 @@ var ModelFormMixin = {
   mixins: [BackboneMixin, FormValidationMixin],
 
   propTypes: {
-    model: React.PropTypes.object.isRequired
+    model: React.PropTypes.object.isRequired,
+    handleSuccess: React.PropTypes.func,
+    handleError: React.PropTypes.func
   },
 
   /* BackboneMixin */

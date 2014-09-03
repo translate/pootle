@@ -11,6 +11,10 @@ var ModelFormMixin = require('../mixins/forms').ModelFormMixin;
 var UserProfileForm = React.createClass({
   mixins: [ModelFormMixin],
 
+  propTypes: {
+    handleDirtyFlag: React.PropTypes.func.isRequired
+  },
+
   fields: ['full_name', 'twitter', 'linkedin', 'website', 'bio'],
 
 
