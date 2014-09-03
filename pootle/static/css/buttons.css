@@ -16,10 +16,7 @@
     text-align: center;
     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
 
-    /* there seems to be a bug in Chrome (tested on v32) with filter+transition,
-       which increases the size of the button by 1px while transition takes place;
-       so the rule below is disabled for the time being */
-    /*transition: all 0.25s linear 0s;*/
+    transition: all 0.25s linear 0s;
 
     /* btn-normal size */
     font-size: inherit;
