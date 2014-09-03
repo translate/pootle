@@ -3,8 +3,8 @@
 var React = require('react');
 var _ = require('underscore');
 
-var Search = require('./Search');
-var User = require('./User');
+var Search = require('./search');
+var User = require('./user');
 
 
 var AdminApp = React.createClass({
