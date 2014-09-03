@@ -34,7 +34,6 @@ var FormElement = React.createClass({
       id: fieldId,
       name: attribute,
       value: this.props.formData[attribute],
-      initialValue: this.props.model.get(attribute),
       handleChange: this.props.handleChange,
       placeholder: this.props.placeholder,
       autoFocus: this.props.autoFocus,
