@@ -60,7 +60,9 @@ class Command(PootleCommand):
             state=SuggestionStates.PENDING,
         ).count()
 
-        QualityCheck.objects.filter(unit__store=store).delete()
+        calculate_checks = options["calculate_checks"]
+        if calculate_checks:
+            QualityCheck.objects.filter(unit__store=store).exclude(false_positive=True).delete()
 
         for unit in store.units.all():
             wordcount = count_words(unit.source_f.strings)
@@ -87,7 +89,7 @@ class Command(PootleCommand):
         except IndexError:
             pass
 
-        if options["calculate_checks"]:
+        if calculate_checks:
             self.stdout.write("Calculating checks for %r" % (store))
             store.update_qualitychecks()
 
