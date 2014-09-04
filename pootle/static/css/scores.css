@@ -4,6 +4,12 @@
     font-size: 1.5em;
 }
 
+#top-scorers.no-results
+{
+    margin: 1em 0;
+    text-align: center;
+}
+
 #top-scorers th
 {
     font-size: 0.8em;
