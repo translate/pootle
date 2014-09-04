@@ -18,8 +18,6 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-import logging
-
 from translate.__version__ import build as CODE_TTK_BUILD_VERSION
 from translate.lang import data, factory
 
@@ -28,7 +26,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
-from django.core.management import call_command
 from django.utils.translation import ugettext_noop as _
 
 from pootle.__version__ import build as CODE_PTL_BUILD_VERSION
