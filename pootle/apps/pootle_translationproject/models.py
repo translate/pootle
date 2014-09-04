@@ -30,6 +30,7 @@ from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models import Q
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils import dateformat
 from django.utils.encoding import force_unicode
 from django.utils.functional import cached_property
@@ -52,6 +53,8 @@ from pootle_store.models import Store, Unit, PARSED
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                OBSOLETE)
 from pootle_tagging.models import ItemWithGoal
+
+from .signals import post_tp_creation
 
 
 class TranslationProjectNonDBState(object):
@@ -322,7 +325,8 @@ class TranslationProject(models.Model, TreeItem):
         super(TranslationProject, self).save(*args, **kwargs)
 
         if created:
-            self.scan_files()
+            post_tp_creation.send(sender=self, instance=self)
+
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -1223,6 +1227,16 @@ class TranslationProject(models.Model, TreeItem):
 ###############################################################################
 # Signal handlers                                                             #
 ###############################################################################
+
+@receiver(post_tp_creation)
+def build_tp_stats(sender, instance, **kwargs):
+    from django.core.management import call_command
+
+    instance.scan_files()
+
+    call_command("refresh_stats", projects=[instance.project.code],
+                 languages=[instance.language.code])
+
 
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:
