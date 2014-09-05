@@ -89,7 +89,6 @@ class Command(PootleCommand):
 
         translation_project.refresh_stats(include_children=True)
 
-
     def handle_store(self, store, **options):
         store_fk_filter = {
             'store': store,
