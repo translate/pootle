@@ -370,9 +370,6 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
     def get_cachekey(self):
         return self.directory.pootle_path
 
-    def get_parents(self):
-        return [Directory.objects.projects]
-
     ### /TreeItem
 
     def get_real_path(self):
