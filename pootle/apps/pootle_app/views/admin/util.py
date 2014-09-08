@@ -98,7 +98,7 @@ def form_set_as_table(formset, link=None, linkfield='code'):
             # widget
             if field == linkfield and linkfield in form.initial and link:
                 if callable(link):
-                    result.append(link(form.instance))
+                    result.append(link(form.instance).decode("utf-8"))
                 result.append(form[field].as_hidden())
             else:
                 result.append(form[field].as_widget())
