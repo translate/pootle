@@ -481,7 +481,12 @@ class TranslationProject(models.Model, TreeItem):
         }
 
     def get_last_action(self, goal=None):
-        if self.last_submission is None or self.last_submission.unit is None:
+        try:
+            if (self.last_submission is None or
+                (self.last_submission is not None and
+                 self.last_submission.unit is None)):
+                return {'id': 0, 'mtime': 0, 'snippet': ''}
+        except Submission.DoesNotExist:
             return {'id': 0, 'mtime': 0, 'snippet': ''}
 
         mtime = dateformat.format(self.last_submission.creation_time, 'U')
