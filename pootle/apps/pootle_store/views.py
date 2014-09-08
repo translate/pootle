@@ -698,7 +698,7 @@ def timeline(request, unit):
 @get_path_obj
 @permission_required('view')
 @get_resource
-def get_qualitycheck_stats(request, path_obj, **kwargs):
+def get_qualitycheck_stats(request, *args, **kwargs):
     failing_checks = request.resource_obj.get_checks()['checks']
     response = jsonify(failing_checks)
     return HttpResponse(response, mimetype="application/json")
@@ -708,7 +708,7 @@ def get_qualitycheck_stats(request, path_obj, **kwargs):
 @get_path_obj
 @permission_required('view')
 @get_resource
-def get_overview_stats(request, path_obj, **kwargs):
+def get_overview_stats(request, *args, **kwargs):
     goal = None
     if 'goalSlug' in request.GET:
         try:
