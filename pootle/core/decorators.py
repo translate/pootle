@@ -51,13 +51,12 @@ def get_path_obj(func):
     def wrapped(request, *args, **kwargs):
         language_code = kwargs.pop('language_code', None)
         project_code = kwargs.pop('project_code', None)
-        if request.is_ajax():
-            pootle_path = request.GET.get('path', None)
-            if pootle_path is not None:
-                language_code, project_code, dir_path, filename = \
-                    split_pootle_path(pootle_path)
-                kwargs['dir_path'] = dir_path
-                kwargs['filename'] = filename
+        pootle_path = request.GET.get('path', None)
+        if pootle_path is not None:
+            language_code, project_code, dir_path, filename = \
+                split_pootle_path(pootle_path)
+            kwargs['dir_path'] = dir_path
+            kwargs['filename'] = filename
 
         if language_code and project_code:
             try:
