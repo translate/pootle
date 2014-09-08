@@ -1597,6 +1597,13 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.parse(store=store)
             return
 
+        if not self.file:
+            # This will always happen for pootle-terminology.po, don't warn
+            if not self.pootle_path.endswith("pootle-terminology.po"):
+                logging.warning(u"Attempted to update a non-existing file",
+                                self.pootle_path)
+            return
+
         if only_newer:
             disk_mtime = datetime.datetime \
                                  .fromtimestamp(self.file.getpomtime()[0])
