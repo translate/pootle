@@ -32,9 +32,8 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
-from django.db import models, DatabaseError, IntegrityError
+from django.db import models, DatabaseError, IntegrityError, transaction
 from django.db.models.signals import post_delete
-from django.db.transaction import commit_on_success
 from django.template.defaultfilters import escape, truncatechars
 from django.utils import dateformat, timezone, tzinfo
 from django.utils.functional import cached_property
@@ -1512,7 +1511,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         return False
 
-    @commit_on_success
+    @transaction.atomic
     def parse(self, store=None):
         self.clean_stale_lock()
 
@@ -1564,7 +1563,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         if obsolete_unit:
             obsolete_unit.delete()
 
-    @commit_on_success
+    @transaction.atomic
     def update(self, update_structure=False, update_translation=False,
                store=None, fuzzy=False, only_newer=False, modified_since=0):
         """Update DB with units from file.
@@ -1766,7 +1765,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         if self.state < CHECKED:
             self.update_qualitychecks()
 
-    @commit_on_success
+    @transaction.atomic
     def update_qualitychecks(self):
         logging.debug(u"Updating quality checks for %s", self.pootle_path)
         for unit in self.units.iterator():
@@ -2072,7 +2071,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         """Returns a single unit based on the item number."""
         return self.units[item]
 
-    @commit_on_success
+    @transaction.atomic
     def mergefile(self, newfile, user, allownewstrings, suggestions,
                   notranslate, obsoletemissing):
         """Merges :param:`newfile` with the current store.

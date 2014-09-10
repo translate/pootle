@@ -58,7 +58,7 @@ class Command(PootleCommand):
         for store in tp.stores.iterator():
             self.stdout.write("Adding translations from %r" % (store))
 
-            with transaction.commit_on_success():
+            with transaction.atomic():
                 for unit in Unit.objects.filter(store=store, state__gte=TRANSLATED).iterator():
                     tmunit = TMUnit().create(unit)
                     tmunit.save()

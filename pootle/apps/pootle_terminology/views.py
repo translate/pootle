@@ -20,7 +20,7 @@
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.db.transaction import commit_on_success
+from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import ugettext as _
 
@@ -73,7 +73,7 @@ def get_terminology_filename(translation_project):
     return 'pootle-terminology.' + translation_project.project.localfiletype
 
 
-@commit_on_success
+@transaction.atomic
 @get_path_obj
 @permission_required('administrate')
 def extract(request, translation_project):
