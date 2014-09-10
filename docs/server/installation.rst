@@ -119,7 +119,7 @@ line tool within your environment.
   (env) $ pootle --version
   Pootle 2.5.1
   Translate Toolkit 1.11.0
-  Django 1.5.8
+  Django 1.6.2
 
 
 .. _installation#initializing_the_configuration:
