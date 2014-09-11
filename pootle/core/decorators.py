@@ -92,7 +92,9 @@ def get_path_obj(func):
                                          disabled=False)
         else:  # No arguments: all user-accessible projects
             user_projects = Project.accessible_by_user(request.user)
-            user_projects = Project.objects.filter(code__in=user_projects)
+            user_projects = Project.objects.enabled() \
+                                   .filter(code__in=user_projects)
+
             path_obj = ProjectSet(user_projects, '/projects/')
 
             # HACKISH: inject directory so that permissions can be

@@ -66,6 +66,9 @@ class ProjectManager(RelatedManager):
 
         return projects
 
+    def enabled(self):
+        return self.filter(disabled=False)
+
 
 class ProjectURLMixin(object):
     """Mixin class providing URL methods to be shared across
