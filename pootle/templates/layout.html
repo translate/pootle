@@ -1,4 +1,3 @@
-{% load url from future %}
 {% load i18n assets baseurl staticpages locale profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
@@ -62,7 +61,7 @@
     PTL.common.displayAgreementPopup = function () {
       $.magnificPopup.open({
         items: {
-          src: '{% url "pootle-staticpages-legal-agreement" %}',
+          src: "{% url 'pootle-staticpages-legal-agreement' %}",
           type: 'ajax'
         },
         callbacks: {
