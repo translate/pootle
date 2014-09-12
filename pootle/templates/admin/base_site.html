@@ -1,4 +1,4 @@
-{% load admin_static %}{% load url from future %}{% load i18n %}<!DOCTYPE html>
+{% load admin_static i18n %}<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
 <title>{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}</title>
