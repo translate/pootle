@@ -32,11 +32,15 @@ from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
 from django_rq import job
+from django_rq.queues import get_connection
 
 from pootle.core.log import log
 from pootle.core.url_helpers import get_all_pootle_paths, split_pootle_path
 from pootle_misc.checks import get_qualitychecks_by_category
 from pootle_misc.util import datetime_min, dictsum
+
+
+POOTLE_DIRTY_TREEITEMS = 'pootle:dirty:treeitems'
 
 
 def statslog(function):
@@ -302,6 +306,47 @@ class TreeItem(object):
 
     ################ Update stats in Redis Queue Worker process ###############
 
+    def all_pootle_paths(self):
+        """Get cache_keys for all parents (to the Language and Project)
+        of current TreeItem"""
+
+        res = []
+        p = self.get_cachekey()
+        res.append(p)
+        if p[-1] != u'/':
+            p += u'/'
+        while True:
+            chunks = p.rsplit(u'/', 2)
+            p = chunks[0] + u'/'
+            res.append(p)
+            if chunks[0].count(u'/') == 1:
+                # first chunk is /lang_code
+                res.append(u'/projects/%s/' % chunks[1])
+                break
+
+        return res
+
+    def is_dirty(self):
+        """Checks if current TreeItem is registered as dirty"""
+        r_con = get_connection()
+        return r_con.zscore(POOTLE_DIRTY_TREEITEMS, self.get_cachekey()) > 0
+
+    def register_dirty(self):
+        """Register current TreeItem as dirty
+        (should be called before RQ job adding)
+        """
+
+        r_con = get_connection()
+        for p in self.all_pootle_paths():
+            r_con.zincrby(POOTLE_DIRTY_TREEITEMS, p)
+
+    def unregister_dirty(self):
+        """Unregister current TreeItem as dirty
+        (should be called from RQ job procedure after cache is updated)
+        """
+        r_con = get_connection()
+        r_con.zincrby(POOTLE_DIRTY_TREEITEMS, self.get_cachekey(), -1)
+
     def update_dirty_cache(self):
         """Add a RQ job which updates dirty cached stats of current TreeItem
         to the default queue
@@ -309,6 +354,7 @@ class TreeItem(object):
         _dirty = self._dirty_cache.copy()
         if _dirty:
             self._dirty_cache = set()
+            self.register_dirty()
             update_cache.delay(self, _dirty)
 
     def update_all_cache(self):
@@ -322,16 +368,14 @@ class TreeItem(object):
         """Update dirty cached stats of current TreeItem"""
         for key in keys:
             self.update_cached(key)
-
-        parents = self.get_parents()
-        for p in parents:
+        self.unregister_dirty()
+        for p in self.get_parents():
             p._update_cache(keys)
 
     def update_parent_cache(self, exclude_self=False):
         """Update dirty cached stats for a all parents of the current TreeItem"""
         all_cache_methods = CachedMethods.get_all()
-        parents = self.get_parents()
-        for p in parents:
+        for p in self.get_parents():
             p.initialize_children()
             if exclude_self:
                 p.children = filter(
@@ -339,6 +383,7 @@ class TreeItem(object):
                                x.__class__ == self.__class__),
                     p.children
                 )
+            p.register_dirty()
             update_cache.delay(p, all_cache_methods)
 
     def init_cache(self):
