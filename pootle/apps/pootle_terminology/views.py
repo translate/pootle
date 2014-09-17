@@ -23,12 +23,13 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.shortcuts import redirect, render
-from django.utils.translation import ugettext as _
 
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.views.admin import util
 from pootle_store.models import Store, Unit, PARSED, LOCKED
+
+from .forms import term_unit_form_factory
 
 
 def create_termunit(term, unit, targets, locations, sourcenotes, transnotes,
@@ -149,41 +150,7 @@ def extract(request, translation_project):
 
 
 def manage_store(request, ctx, language, term_store):
-    from django import forms
-    from pootle_store.forms import unit_form_factory
-    unit_form_class = unit_form_factory(language)
-
-    class TermUnitForm(unit_form_class):
-        # Set store for new terms
-        qs = Store.objects.filter(pk=term_store.pk)
-        store = forms.ModelChoiceField(queryset=qs, initial=term_store.pk,
-                                       widget=forms.HiddenInput)
-        index = forms.IntegerField(required=False, widget=forms.HiddenInput)
-
-        class Meta:
-            fields = ('index', 'source_f', 'store',)
-
-        def clean_index(self):
-            # Assign new terms an index value
-            value = self.cleaned_data['index']
-
-            if self.instance.id is None:
-                value = term_store.max_index() + 1
-            return value
-
-        def clean_source_f(self):
-            value = super(TermUnitForm, self).clean_source_f()
-
-            if value:
-                existing = term_store.findid(value[0])
-
-                if existing and existing.id != self.instance.id:
-                    raise forms.ValidationError(_('This term already exists '
-                                                  'in this file.'))
-                self.instance.setid(value[0])
-
-            return value
-
+    TermUnitForm = term_unit_form_factory(term_store)
     template_name = 'translation_projects/terminology/manage.html'
     return util.edit(request, template_name, Unit, ctx,
                      None, None, queryset=term_store.units, can_delete=True,

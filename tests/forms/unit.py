@@ -48,6 +48,30 @@ def _create_unit_form(request, language, unit):
     return form_class(request.POST, instance=unit, request=request)
 
 
+def test_submit_no_source(rf, default, default_ps, af_tutorial_po):
+    """Tests that the source string cannot be modified."""
+    language = af_tutorial_po.translation_project.language
+    unit = af_tutorial_po.getitem(0)
+    source_string = unit.source_f
+    directory = unit.store.parent
+    post_dict = {
+        'id': unit.id,
+        'index': unit.index,
+        'source_f_0': 'altered source string',
+        'target_f_0': 'dummy',
+    }
+
+    request = _create_post_request(rf, directory, data=post_dict, user=default)
+    form = _create_unit_form(request, language, unit)
+
+    assert form.is_valid()
+    form.save()
+
+    unit = af_tutorial_po.getitem(0)
+    assert unit.source_f == source_string
+    assert unit.target_f == 'dummy'
+
+
 def test_submit_fuzzy(rf, admin, default, default_ps,
                       afrikaans, af_tutorial_po):
     """Tests that non-admin users can't set the fuzzy flag."""
@@ -57,7 +81,6 @@ def test_submit_fuzzy(rf, admin, default, default_ps,
     post_dict = {
         'id': unit.id,
         'index': unit.index,
-        'source_f_0': unit.source_f,
         'target_f_0': unit.target_f,
         'state': FUZZY,
     }
@@ -80,7 +103,6 @@ def test_submit_similarity(rf, default, default_ps, afrikaans, af_tutorial_po):
     post_dict = {
         'id': unit.id,
         'index': unit.index,
-        'source_f_0': unit.source_f,
         'target_f_0': unit.target_f,
     }
 

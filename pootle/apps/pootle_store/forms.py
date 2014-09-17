@@ -36,7 +36,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_store.models import Unit
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
-from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
+from pootle_store.fields import to_db
 
 ############## text cleanup and highlighting #########################
 
@@ -209,14 +209,9 @@ def unit_form_factory(language, snplurals=None, request=None):
     class UnitForm(forms.ModelForm):
         class Meta:
             model = Unit
-            fields = ('id', 'index', 'source_f', 'target_f', 'state',)
+            fields = ('id', 'index', 'target_f', 'state',)
 
         id = forms.IntegerField(required=False)
-        source_f = MultiStringFormField(
-            nplurals=snplurals or 1,
-            required=False,
-            textarea=False,
-        )
         target_f = MultiStringFormField(
             nplurals=tnplurals,
             required=False,
@@ -240,20 +235,6 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             self.fields['target_f'].widget.attrs['data-translation-aid'] = \
                 self['target_f'].value()
-
-        def clean_source_f(self):
-            value = self.cleaned_data['source_f']
-
-            if self.instance.source.strings != value:
-                self.instance._source_updated = True
-                self.updated_fields.append((SubmissionFields.SOURCE,
-                                            to_db(self.instance.source),
-                                            to_db(value)))
-            if snplurals == 1:
-                # Plural with single form, insert placeholder.
-                value.append(PLURAL_PLACEHOLDER)
-
-            return value
 
         def clean_target_f(self):
             value = self.cleaned_data['target_f']
