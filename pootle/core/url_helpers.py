@@ -61,6 +61,28 @@ def split_pootle_path(pootle_path):
     return (language_code, project_code, dir_path, filename)
 
 
+def get_all_pootle_paths(pootle_path):
+    """Get list of `pootle_path` for all parents."""
+    res = []
+    res.append(pootle_path)
+    if pootle_path == '' or pootle_path[-1] != u'/':
+        pootle_path += u'/'
+    while True:
+        chunks = pootle_path.rsplit(u'/', 2)
+        slash_count = chunks[0].count(u'/')
+        pootle_path = chunks[0] + u'/'
+        if slash_count > 1:
+            res.append(pootle_path)
+        else:
+            if slash_count == 1 and pootle_path != u'/projects/':
+                # first chunk is /lang_code
+                res.append(u'/projects/%s/' % chunks[1])
+                res.append(chunks[0] + u'/')
+            break
+
+    return res
+
+
 def get_path_sortkey(path):
     """Returns the sortkey to use for a `path`."""
     if path == '' or path.endswith('/'):

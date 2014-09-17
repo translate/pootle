@@ -233,7 +233,8 @@ class TreeItem(object):
             'suggestions': self.get_cached(CachedMethods.SUGGESTIONS),
             'lastaction': self.get_cached(CachedMethods.LAST_ACTION),
             'critical': self.get_error_unit_count(),
-            'lastupdated': self.get_cached(CachedMethods.LAST_UPDATED)
+            'lastupdated': self.get_cached(CachedMethods.LAST_UPDATED),
+            'is_dirty': self.is_dirty(),
         }
 
         if include_children:
@@ -307,29 +308,14 @@ class TreeItem(object):
     ################ Update stats in Redis Queue Worker process ###############
 
     def all_pootle_paths(self):
-        """Get cache_keys for all parents (to the Language and Project)
-        of current TreeItem"""
-
-        res = []
-        p = self.get_cachekey()
-        res.append(p)
-        if p[-1] != u'/':
-            p += u'/'
-        while True:
-            chunks = p.rsplit(u'/', 2)
-            p = chunks[0] + u'/'
-            res.append(p)
-            if chunks[0].count(u'/') == 1:
-                # first chunk is /lang_code
-                res.append(u'/projects/%s/' % chunks[1])
-                break
-
-        return res
+        """Get cache_key for all parents (to the Language and Project)
+        of current TreeItem
+        """
+        return get_all_pootle_paths(self.get_cachekey())
 
     def is_dirty(self):
         """Checks if current TreeItem is registered as dirty"""
-        r_con = get_connection()
-        return r_con.zscore(POOTLE_DIRTY_TREEITEMS, self.get_cachekey()) > 0
+        return self.get_dirty_score() > 0
 
     def register_dirty(self):
         """Register current TreeItem as dirty
@@ -346,6 +332,10 @@ class TreeItem(object):
         """
         r_con = get_connection()
         r_con.zincrby(POOTLE_DIRTY_TREEITEMS, self.get_cachekey(), -1)
+
+    def get_dirty_score(self):
+        r_con = get_connection()
+        return r_con.zscore(POOTLE_DIRTY_TREEITEMS, self.get_cachekey())
 
     def update_dirty_cache(self):
         """Add a RQ job which updates dirty cached stats of current TreeItem

@@ -1916,6 +1916,20 @@ table.stats td.non-zero span.non-zero
     display: inline;
 }
 
+#top-stats.dirty #progressbar td,
+#translate-actions.dirty,
+#top-stats.dirty .path-summary-more .stats-number,
+#top-stats.dirty .path-summary-more .stats-percentage,
+#top-stats.dirty .path-summary-more td.last-action,
+#top-stats.dirty .path-summary-more td.last-updated,
+table.stats .item.dirty .stats-graph,
+table.stats .item.dirty .stats-number,
+table.stats .item.dirty .last-activity,
+table.stats .item.dirty .last-updated
+{
+    opacity: 0.35;
+}
+
 .muted
 {
     color: #999;

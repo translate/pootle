@@ -56,4 +56,8 @@ class VirtualResource(TreeItem):
     def get_cachekey(self):
         return self.pootle_path
 
+    def is_dirty(self):
+        """Checks if any of resources is registered as dirty"""
+        return any(map(lambda x: x.is_dirty(), self.resources))
+
     ### /TreeItem

@@ -86,9 +86,12 @@
 
     processLoadedData: function (data, callback) {
       var $table = $('#content table.stats'),
+          dirtySelector = '#top-stats, #translate-actions',
           now = parseInt(Date.now() / 1000, 10);
-      PTL.stats.updateProgressbar($('#progressbar'), data);
 
+      $(dirtySelector).toggleClass('dirty', data.is_dirty);
+
+      PTL.stats.updateProgressbar($('#progressbar'), data);
       PTL.stats.updateAction($('#js-action-view-all'), data.total);
       PTL.stats.updateAction($('#js-action-continue'),
                              data.total - data.translated);
@@ -114,6 +117,7 @@
               code = name.replace(/[\.@]/g, '-'),
               $td = $table.find('#total-words-' + code);
 
+          $td.parent().toggleClass('dirty', item.is_dirty);
           PTL.stats.updateItemStats($td, item.total);
 
           var ratio = item.total === 0 ? 1 : item.translated / item.total;
@@ -177,7 +181,7 @@
         data: reqData,
         dataType: 'json',
         success: function (data) {
-            return this.processLoadedData(data, callback);
+          return this.processLoadedData(data, callback);
         }
       });
     },
