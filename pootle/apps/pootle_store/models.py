@@ -1398,8 +1398,9 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
     def save(self, *args, **kwargs):
         created = not self.id
-
         self.pootle_path = self.parent.pootle_path + self.name
+        if created:
+            self.init_cache()
         super(Store, self).save(*args, **kwargs)
         if created:
             store_log(user='system', action=STORE_ADDED,

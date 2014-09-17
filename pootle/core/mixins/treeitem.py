@@ -89,34 +89,42 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         raise NotImplementedError('`get_cachekey()` not implemented')
 
+    @classmethod
     def _get_total_wordcount(self):
         """This method will be overridden in descendants"""
         return 0
 
+    @classmethod
     def _get_translated_wordcount(self):
         """This method will be overridden in descendants"""
         return 0
 
+    @classmethod
     def _get_fuzzy_wordcount(self):
         """This method will be overridden in descendants"""
         return 0
 
+    @classmethod
     def _get_suggestion_count(self):
         """This method will be overridden in descendants"""
         return 0
 
+    @classmethod
     def _get_checks(self):
         """This method will be overridden in descendants"""
         return {'unit_count': 0, 'checks': {}}
 
+    @classmethod
     def _get_last_action(self):
         """This method will be overridden in descendants"""
         return {'id': 0, 'mtime': 0, 'snippet': ''}
 
+    @classmethod
     def _get_mtime(self):
         """This method will be overridden in descendants"""
         return datetime_min
 
+    @classmethod
     def _get_last_updated(self):
         """This method will be overridden in descendants"""
         return {'id': 0, 'creation_time': 0, 'snippet': ''}
@@ -332,6 +340,12 @@ class TreeItem(object):
                     p.children
                 )
             update_cache.delay(p, all_cache_methods)
+
+    def init_cache(self):
+        """Set initial values for all cached method for the current TreeItem"""
+        for method_name in CachedMethods.get_all():
+            method = getattr(TreeItem, '_%s' % method_name)
+            self.set_cached_value(method_name, method())
 
 
 @job

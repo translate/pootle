@@ -129,6 +129,9 @@ class Directory(models.Model, TreeItem):
         else:
             self.pootle_path = '/'
 
+        if not self.id:
+            self.init_cache()
+
         super(Directory, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
