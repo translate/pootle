@@ -416,6 +416,11 @@
       PTL.editor.getTMUnits();
     }
 
+    if (PTL.editor.tmData !== null) {
+      var tmContent = PTL.editor.getTMUnitsContent(PTL.editor.tmData);
+      $('#extras-container').append(tmContent);
+    }
+
     // All is ready, let's call the ready functions of the MT backends
     $("table.translate-table").trigger("mt_ready");
 
@@ -1228,14 +1233,8 @@
       async: false,
       dataType: 'json',
       success: function (data) {
-        if (data['tm_suggestions'] !== null) {
-          widget = $(data['editor']);
-          widget.find('#extras-container')
-            .append(PTL.editor.getTMUnitsContent(data['tm_suggestions']));
-          widget = widget[0].outerHTML;
-        } else {
-          widget = data['editor'];
-        }
+        PTL.editor.tmData = data.tm_suggestions || null;
+        widget = data.editor;
 
         PTL.editor.updateNav();
 
