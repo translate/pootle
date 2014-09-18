@@ -181,6 +181,7 @@ POOTLE_TM_SERVER = {
         'HOST': 'localhost',
         'PORT': 9200,
         'INDEX_NAME': 'translations',
+        'MIN_SCORE': 0.1,
     }
 }
 
