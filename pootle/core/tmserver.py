@@ -67,8 +67,8 @@ def search(unit):
         res = []
         language = unit.store.translation_project.language.code
         es_res = es.search(index=es_params['INDEX_NAME'],
-                        doc_type=language,
-                        body={"query": {"match": {'source': unit.source}}})
+                           doc_type=language,
+                           body={"query": {"match": {'source': unit.source}}})
 
         for hit in es_res['hits']['hits']:
             if is_valuable_hit(unit, hit):
