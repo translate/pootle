@@ -62,34 +62,34 @@ def is_valuable_hit(unit, hit):
 
 
 def search(unit):
-    if es is not None:
-        counter = {}
-        res = []
-        language = unit.store.translation_project.language.code
-        es_res = es.search(index=es_params['INDEX_NAME'],
-                           doc_type=language,
-                           body={"query": {"match": {'source': unit.source}}})
+    if es is None:
+        return None
 
-        for hit in es_res['hits']['hits']:
-            if is_valuable_hit(unit, hit):
-                if hit['_source']['target'] not in counter:
-                    counter[hit['_source']['target']] = 1
-                    res.append({
-                        'unit_id': hit['_id'],
-                        'source': hit['_source']['source'],
-                        'target': hit['_source']['target'],
-                        'project': hit['_source']['project'],
-                        'path': hit['_source']['path'],
-                        'username': hit['_source']['username'],
-                        'fullname': hit['_source']['fullname'],
-                        'email_md5': hit['_source']['email_md5'],
-                    })
-                else:
-                    counter[hit['_source']['target']] += 1
+    counter = {}
+    res = []
+    language = unit.store.translation_project.language.code
+    es_res = es.search(index=es_params['INDEX_NAME'],
+                       doc_type=language,
+                       body={"query": {"match": {'source': unit.source}}})
 
-        for item in res:
-            item['count'] = counter[item['target']]
+    for hit in es_res['hits']['hits']:
+        if is_valuable_hit(unit, hit):
+            if hit['_source']['target'] not in counter:
+                counter[hit['_source']['target']] = 1
+                res.append({
+                    'unit_id': hit['_id'],
+                    'source': hit['_source']['source'],
+                    'target': hit['_source']['target'],
+                    'project': hit['_source']['project'],
+                    'path': hit['_source']['path'],
+                    'username': hit['_source']['username'],
+                    'fullname': hit['_source']['fullname'],
+                    'email_md5': hit['_source']['email_md5'],
+                })
+            else:
+                counter[hit['_source']['target']] += 1
 
-        return res
+    for item in res:
+        item['count'] = counter[item['target']]
 
-    return None
+    return res
