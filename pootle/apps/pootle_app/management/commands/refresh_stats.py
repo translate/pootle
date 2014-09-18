@@ -325,7 +325,7 @@ class Command(PootleCommand):
             sub = Submission.objects.select_related('store') \
                                     .get(id=s_id['max_id'])
 
-            if sub.unit:
+            if sub.unit and not sub.store.obsolete:
                 sub_filter = {
                     'unit': sub.unit,
                     'creation_time': sub.creation_time,
@@ -372,7 +372,10 @@ class Command(PootleCommand):
         )
 
         for item in queryset.iterator():
-            key = Store.objects.get(id=item['store']).get_cachekey()
+            try:
+                key = Store.objects.get(id=item['store']).get_cachekey()
+            except Store.DoesNotExist:
+                continue
             logging.info('Set mtime for %s' % key)
             cache.set(iri_to_uri(key + ':get_mtime'),
                       item['max_mtime'], timeout)
@@ -390,7 +393,10 @@ class Command(PootleCommand):
         for item in queryset.iterator():
             max_time = item['max_creation_time']
             if max_time:
-                store = Store.objects.get(id=item['store'])
+                try:
+                    store = Store.objects.get(id=item['store'])
+                except Store.DoesNotExist:
+                    continue
                 unit = store.unit_set.filter(creation_time=max_time)[0]
                 key = store.get_cachekey()
                 logging.info('Set last_updated for %s' % key)
