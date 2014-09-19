@@ -3,4 +3,4 @@
 	url = https://github.com/translate/sphinx-themes.git
 [submodule "tests/version-migration/data"]
 	path = tests/version-migration/data
-	url = git://github.com/translate/pootle-test-data.git
+	url = https://github.com/translate/pootle-test-data.git
