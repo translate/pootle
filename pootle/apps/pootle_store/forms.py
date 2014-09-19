@@ -217,8 +217,7 @@ def unit_form_factory(language, snplurals=None, request=None):
     class UnitForm(forms.ModelForm):
         class Meta:
             model = Unit
-            exclude = ['store', 'developer_comment', 'translator_comment',
-                       'submitted_by', 'commented_by']
+            fields = ("id", "index", "source_f", "target_f", "state")
 
         id = forms.IntegerField(required=False)
         source_f = MultiStringFormField(
