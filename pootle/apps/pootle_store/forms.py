@@ -34,9 +34,10 @@ from pootle.core.mixins import CachedMethods
 from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from pootle_store.models import Unit
-from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
-from pootle_store.fields import to_db
+
+from .models import Unit
+from .fields import to_db
+from .util import UNTRANSLATED, FUZZY, TRANSLATED
 
 ############## text cleanup and highlighting #########################
 

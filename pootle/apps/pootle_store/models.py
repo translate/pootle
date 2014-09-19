@@ -51,7 +51,8 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
                              action_log, store_log, log)
 from pootle.core.mixins import CachedMethods, TreeItem
-from pootle.core.tmserver import update as update_tmserver, search as get_tmsuggestions
+from pootle.core.tmserver import (update as update_tmserver,
+                                  search as get_tmsuggestions)
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names, run_given_filters, get_checker
