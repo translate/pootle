@@ -353,7 +353,6 @@ td.stats-name a:hover > i + span,
 {
     width: 100%;
     min-height: 100%;
-    height: auto !important;
     height: 100%;
     margin-bottom: -62px; /* footer margin-top + height */
 }
