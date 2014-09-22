@@ -428,6 +428,12 @@ td.stats-name a:hover > i + span,
     transition: all 0.3s ease 0s;
 }
 
+#sidebar:not(.sidebar-open) js-sidebar-pane {
+    /* Hide the contents when the sidebar is closed so they are not
+       taken into account when calculating page height */
+    display: none;
+}
+
 #sidebar.sidebar-open
 {
     width: 30%;
