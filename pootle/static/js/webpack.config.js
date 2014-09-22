@@ -51,7 +51,9 @@ module.exports = {
   },
   plugins: plugins,
   externals: {
-    // avoid duplicating external scripts already available on the global scope
+    // FIXME: ideally everything should be using CommonJS modules now, and
+    // this shouldn't be necessary at all.
+    // Avoid duplicating external scripts available on the global scope
     backbone: 'Backbone',
     jquery: 'jQuery',
     underscore: '_'
