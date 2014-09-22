@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var join = require('path').join;
 
 var env = process.env.NODE_ENV;
 var plugins;
