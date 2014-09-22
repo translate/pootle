@@ -59,20 +59,22 @@ js_admin = Bundle(
 register('js_admin', js_admin)
 
 
-# Handled by webpack and therefore has no filters applied
-# It's kept here so hash-based cache invalidation can be used
+# <Webpack>
+# These are handled by webpack and therefore have no filters applied
+# They're kept here so hash-based cache invalidation can be used
+
 js_admin_app = Bundle(
     'js/admin/app.bundle.js',
     output='js/admin/app.min.%(version)s.js')
 register('js_admin_app', js_admin_app)
 
 
-# Handled by webpack and therefore has no filters applied
-# It's kept here so hash-based cache invalidation can be used
 js_user_app = Bundle(
     'js/user/app.bundle.js',
     output='js/user/app.min.%(version)s.js')
 register('js_user_app', js_user_app)
+
+# </Webpack>
 
 
 js_editor = Bundle(
