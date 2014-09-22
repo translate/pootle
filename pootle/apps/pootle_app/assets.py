@@ -63,6 +63,11 @@ register('js_admin', js_admin)
 # These are handled by webpack and therefore have no filters applied
 # They're kept here so hash-based cache invalidation can be used
 
+js_vendor = Bundle(
+    'js/vendor.bundle.js',
+    output='js/vendor.min.%(version)s.js')
+register('js_vendor', js_vendor)
+
 js_admin_app = Bundle(
     'js/admin/app.bundle.js',
     output='js/admin/app.min.%(version)s.js')
