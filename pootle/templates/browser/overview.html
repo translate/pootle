@@ -85,6 +85,10 @@
 {% endblock %}
 
 {% block content %}
+<div id="autorefresh-notice">
+  {% blocktrans %}Some data on this page is currently being calculated, and the page will be refreshed automatically in <strong>30 seconds</strong>. <a href="#">Refresh now</a>{% endblocktrans %}
+</div>
+
 {% if table %}
 <div class="bd">
   <div class="files-subfolders" lang="{{ LANGUAGE_CODE }}">
