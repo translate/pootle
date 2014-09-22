@@ -24,6 +24,7 @@
 {
     color: #c1e1ee;
     text-decoration: none;
+    text-shadow: 0 1px 0 #130f30;
     outline: none;
 }
 
@@ -47,8 +48,7 @@
 
 #navbar .logo
 {
-    width: 32px;
-    height: 32px;
+    display: inline-block;
     margin-top: -4px;
     vertical-align: middle;
 }
