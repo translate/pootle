@@ -37,13 +37,13 @@ category_names = {
 
 
 check_names = {
-    'accelerators': _(u"Accelerators"), # fixme duplicated
+    'accelerators': _(u"Accelerators"),  # fixme duplicated
     'acronyms': _(u"Acronyms"),
     'blank': _(u"Blank"),
     'brackets': _(u"Brackets"),
     'compendiumconflicts': _(u"Compendium conflict"),
     'credits': _(u"Translator credits"),
-    'doublequoting': _(u"Double quotes"),
+    'doublequoting': _(u"Double quotes"),  # fixme duplicated
     'doublespacing': _(u"Double spaces"),
     'doublewords': _(u"Repeated word"),
     'emails': _(u"E-mail"),
@@ -105,6 +105,7 @@ check_names = {
     'tags_differ': _(u"Tags differ"),
     'unbalanced_curly_braces': _(u"Curly braces"),
     'potential_unwanted_placeholders': _(u"Potential unwanted placeholders"),
+    'doublequoting': _(u"Double quotes"),
 }
 
 excluded_filters = ['hassuggestion', 'spellcheck']
@@ -775,6 +776,33 @@ class ENChecker(checks.TranslationChecker):
             return True
         else:
             raise checks.FilterFailure(u"Potential unwanted placeholders")
+
+    @critical
+    def doublequoting(self, str1, str2):
+        """Checks whether double quotation mark `"` is consistent between the
+        two strings.
+        """
+        def get_fingerprint(str, is_source=False, translation=''):
+            chunks = str.split('"')
+            translate = False
+            double_quote_count = 0
+
+            for chunk in chunks:
+                translate = not translate
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                double_quote_count += 1
+
+            fingerprint = u"%d\001" % double_quote_count
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Double quotes mismatch")
 
 
 def run_given_filters(checker, unit, check_names=[]):
