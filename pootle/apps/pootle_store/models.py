@@ -1766,10 +1766,10 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.update_qualitychecks()
 
     @transaction.atomic
-    def update_qualitychecks(self):
+    def update_qualitychecks(self, keep_false_positives=False):
         logging.debug(u"Updating quality checks for %s", self.pootle_path)
         for unit in self.units.iterator():
-            unit.update_qualitychecks()
+            unit.update_qualitychecks(keep_false_positives)
 
         if self.state < CHECKED:
             self.state = CHECKED
