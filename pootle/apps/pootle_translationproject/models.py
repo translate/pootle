@@ -105,7 +105,7 @@ class TranslationProjectManager(RelatedManager):
     use_for_related_fields = True
 
     def enabled(self):
-        return self.filter(disabled=False)
+        return self.filter(disabled=False, project__disabled=False)
 
     def disabled(self):
         return self.filter(Q(disabled=True) | Q(project__disabled=True))
