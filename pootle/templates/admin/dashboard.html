@@ -63,4 +63,27 @@
     {% endif %}
   </div>
 </div>
+
+<div id="rqstats" class="module first" lang="{{ LANGUAGE_CODE }}">
+  <div class="hd">
+    <h2>{% trans "RQ Statistics" %}</h2>
+  </div>
+  <div class="bd">
+    <table>
+      <tbody>
+        <tr>
+          <th scope="row">{% trans "Status" %}</th>
+          <td class="stats-number">{% if rq_stats.is_running %}<i class="icon-tick"></i>&nbsp;{% trans "Running" %}{% else %}<i class="icon-reject"></i>&nbsp;{% trans "Stopped" %}{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Pending jobs" %}</th><td class="stats-number">{{ rq_stats.job_count }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Failed jobs" %}</th><td class="stats-number">{{ rq_stats.failed_job_count }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 {% endblock %}

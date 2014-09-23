@@ -29,6 +29,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.translation import ugettext as _
 
+from django_rq.queues import get_queue, get_failed_queue
+from django_rq.workers import Worker
+
 from pootle import depcheck
 from pootle.core.decorators import admin_required
 from pootle.core.markup import get_markup_filter
@@ -286,10 +289,28 @@ def server_stats_more(request):
     return HttpResponse(response, content_type="application/json")
 
 
+def rq_stats():
+    queue = get_queue()
+    failed_queue = get_failed_queue()
+    workers = Worker.all(queue.connection)
+    is_running = False
+    if len(workers) == 1:
+        is_running = not workers[0].stopped
+
+    result = {
+        'job_count': queue.count,
+        'failed_job_count': failed_queue.count,
+        'is_running': is_running,
+    }
+
+    return result
+
+
 @admin_required
 def view(request):
     ctx = {
         'server_stats': server_stats(),
+        'rq_stats': rq_stats(),
         'required': required_depcheck(),
         'optional': optional_depcheck(),
         'optimal': optimal_depcheck(),
