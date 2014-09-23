@@ -22,6 +22,7 @@ build: docs mo assets
 
 assets:
 	cd ${JS_DIR} && \
+	npm update && \
 	NODE_ENV="production" webpack -p && \
 	cd ${CWD}
 	mkdir -p ${ASSETS_DIR}
