@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -153,16 +153,6 @@ def manage_store(request, ctx, language, term_store):
     from pootle_store.forms import unit_form_factory
     unit_form_class = unit_form_factory(language)
 
-    # XXX: Review this
-    # HACKISH: Django won't allow excluding form fields already defined in
-    # the parent class, manually extra fields.
-    del(unit_form_class.base_fields['target_f'])
-    del(unit_form_class.base_fields['id'])
-    del(unit_form_class.base_fields['state'])
-    del(unit_form_class.declared_fields['target_f'])
-    del(unit_form_class.declared_fields['id'])
-    del(unit_form_class.declared_fields['state'])
-
     class TermUnitForm(unit_form_class):
         # Set store for new terms.
         qs = Store.objects.filter(pk=term_store.pk)
@@ -191,16 +181,10 @@ def manage_store(request, ctx, language, term_store):
 
             return value
 
-    #TODO 'submitted_by' and 'commented_by' had to be excluded in order to get
-    # terminology editing working. When the schema can be changed again this
-    # exclusion should be removed and change the schema accordingly.
-    excluded_fields = ['state', 'target_f', 'id', 'translator_comment',
-                       'submitted_by', 'commented_by']
     template_name = 'translation_projects/terminology/manage.html'
-
     return util.edit(request, template_name, Unit, ctx,
                      None, None, queryset=term_store.units, can_delete=True,
-                     form=TermUnitForm, exclude=excluded_fields)
+                     form=TermUnitForm)
 
 
 @get_path_obj
