@@ -32,8 +32,9 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         try:
-            self.stdout.write(Submission.objects.values_list('id', flat=True) \
-                                    .select_related("").latest())
+            changeid = Submission.objects.values_list("id", flat=True) \
+                       .select_related("").latest()
         except Submission.DoesNotExist:
             # if there is no latest id, treat it as id 0
-            self.stdout.write(0)
+            changeid = 0
+        self.stdout.write("%i\n" % (changeid))
