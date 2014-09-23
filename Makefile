@@ -21,7 +21,9 @@ build: docs mo assets
 	python setup.py sdist ${FORMATS} ${TAIL}
 
 assets:
-	NODE_ENV="production" webpack -p --config=${JS_DIR}/webpack.config.js
+	cd ${JS_DIR} && \
+	NODE_ENV="production" webpack -p && \
+	cd ${CWD}
 	mkdir -p ${ASSETS_DIR}
 	python manage.py collectstatic --noinput --clear -i node_modules -i *.jsx ${TAIL}
 	python manage.py assets build ${TAIL}
