@@ -1,5 +1,6 @@
-SRC_DIR = pootle
-DOCS_DIR = docs
+CWD = $(shell pwd)
+SRC_DIR = ${CWD}/pootle
+DOCS_DIR = ${CWD}/docs
 STATIC_DIR = ${SRC_DIR}/static
 ASSETS_DIR = ${SRC_DIR}/assets
 JS_DIR = ${STATIC_DIR}/js
