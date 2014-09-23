@@ -51,7 +51,6 @@ def test_submit_fuzzy(rf, admin, default, default_ps,
     post_dict = {
         'id': unit.id,
         'index': unit.index,
-        'source_f_0': unit.source_f,
         'target_f_0': unit.target_f,
         'state': FUZZY,
     }

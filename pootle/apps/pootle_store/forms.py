@@ -32,7 +32,7 @@ from pootle.core.log import TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_
 from pootle.core.mixins import CachedMethods
 from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import Submission, SubmissionFields, SubmissionTypes
-from pootle_store.fields import PLURAL_PLACEHOLDER, to_db
+from pootle_store.fields import to_db
 from pootle_store.models import Unit
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
@@ -212,14 +212,9 @@ def unit_form_factory(language, snplurals=None, request=None):
     class UnitForm(forms.ModelForm):
         class Meta:
             model = Unit
-            fields = ("id", "index", "source_f", "target_f", "state")
+            fields = ("id", "index", "target_f", "state")
 
         id = forms.IntegerField(required=False)
-        source_f = MultiStringFormField(
-            nplurals=snplurals or 1,
-            required=False,
-            textarea=False,
-        )
         target_f = MultiStringFormField(
             nplurals=tnplurals,
             required=False,
@@ -238,20 +233,6 @@ def unit_form_factory(language, snplurals=None, request=None):
             self.request = kwargs.pop('request', None)
             super(UnitForm, self).__init__(*args, **kwargs)
             self.updated_fields = []
-
-        def clean_source_f(self):
-            value = self.cleaned_data['source_f']
-
-            if self.instance.source.strings != value:
-                self.instance._source_updated = True
-                self.updated_fields.append((SubmissionFields.SOURCE,
-                                            to_db(self.instance.source),
-                                            to_db(value)))
-            if snplurals == 1:
-                # Plural with single form, insert placeholder.
-                value.append(PLURAL_PLACEHOLDER)
-
-            return value
 
         def clean_target_f(self):
             value = self.cleaned_data['target_f']
