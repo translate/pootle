@@ -423,7 +423,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
     ### TreeItem
 
     def get_children(self):
-        return self.translationproject_set.all()
+        return self.translationproject_set.enabled()
 
     def get_cachekey(self):
         return self.directory.pootle_path
