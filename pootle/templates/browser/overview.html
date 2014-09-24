@@ -96,6 +96,8 @@
 
 {% block scripts_extra %}
 {{ block.super }}
+
+<script id="table-data" type="text/json">{{ table.data }}</script>
 <script type="text/javascript">
 $(function () {
   $("body").spin();
@@ -103,7 +105,9 @@ $(function () {
   PTL.stats.init({
       pootlePath: "{{ pootle_path }}",
   });
-  PTL.stats.load(function () {
+
+  var data = JSON.parse($("#table-data").text());
+  PTL.stats.processLoadedData(data, function() {
     PTL.common.updateRelativeDates();
     setInterval(PTL.common.updateRelativeDates, 6e4);
     $("body").spin(false);

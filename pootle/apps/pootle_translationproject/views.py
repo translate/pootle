@@ -24,6 +24,7 @@ from urllib import quote, unquote
 
 from django.shortcuts import render
 from django.utils import dateformat
+from django.utils.safestring import mark_safe
 
 from pootle.core.browser import get_children, get_table_headings, get_parent
 from pootle.core.decorators import (get_path_obj, get_resource,
@@ -32,6 +33,7 @@ from pootle.core.helpers import (get_export_view_context,
                                  get_overview_context,
                                  get_translation_context)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
+from pootle_misc.util import jsonify
 from staticpages.models import StaticPage
 
 
@@ -119,6 +121,7 @@ def overview(request, translation_project, dir_path, filename=None):
                 'headings': get_table_headings(table_fields),
                 'parent': get_parent(directory),
                 'items': get_children(directory),
+                'data': mark_safe(jsonify(request.resource_obj.get_stats())),
             }
         })
 

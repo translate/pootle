@@ -20,6 +20,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.shortcuts import render
+from django.utils.safestring import mark_safe
 
 from pootle.core.browser import (make_project_item,
                                  get_table_headings)
@@ -29,6 +30,7 @@ from pootle.core.helpers import (get_export_view_context,
                                  get_translation_context)
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.admin.permissions import admin_permissions
+from pootle_misc.util import jsonify
 
 
 @get_path_obj
@@ -47,6 +49,7 @@ def overview(request, language):
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items,
+        'data': mark_safe(jsonify(request.resource_obj.get_stats())),
     }
 
     ctx = get_overview_context(request)

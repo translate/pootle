@@ -83,6 +83,86 @@
       }
     },
 
+    processLoadedData: function (data, callback) {
+      var $table = $('#content table.stats'),
+          now = parseInt(Date.now() / 1000, 10);
+      PTL.stats.updateProgressbar($('#progressbar'), data);
+
+      PTL.stats.updateAction($('#js-action-view-all'), data.total);
+      PTL.stats.updateAction($('#js-action-continue'),
+                             data.total - data.translated);
+      PTL.stats.updateAction($('#js-action-fix-critical'), data.critical);
+      PTL.stats.updateAction($('#js-action-review'), data.suggestions);
+
+      $('body').removeClass('js-not-loaded');
+
+      PTL.stats.updateTranslationStats($('#stats-total'),
+                                       data.total, data.total, 100);
+      PTL.stats.updateTranslationStats($('#stats-translated'),
+                                       data.total, data.translated, 100);
+      PTL.stats.updateTranslationStats($('#stats-fuzzy'),
+                                       data.total, data.fuzzy, 0);
+      var untranslated = data.total - data.translated - data.fuzzy;
+      PTL.stats.updateTranslationStats($('#stats-untranslated'),
+                                       data.total, untranslated, 0);
+      PTL.stats.updateLastUpdates(data);
+
+      if ($table.length) {
+        for (var name in data.children) {
+          var item = data.children[name],
+              code = name.replace(/[\.@]/g, '-'),
+              $td = $table.find('#total-words-' + code);
+
+          PTL.stats.updateItemStats($td, item.total);
+
+          var ratio = item.total === 0 ? 1 : item.translated / item.total;
+          $table.find('#translated-ratio-' + code).text(ratio);
+
+          $td = $table.find('#need-translation-' + code);
+          PTL.stats.updateItemStats($td, item.total - item.translated);
+
+          $td = $table.find('#suggestions-' + code);
+          PTL.stats.updateItemStats($td, item.suggestions);
+
+          $td = $table.find('#progressbar-' + code);
+          PTL.stats.updateProgressbar($td, item);
+
+          $td = $table.find('#last-activity-' + code);
+          $td.html(item.lastaction.snippet);
+          $td.attr('sorttable_customkey', now - item.lastaction.mtime);
+
+          $td = $table.find('#critical-' + code);
+          PTL.stats.updateItemStats($td, item.critical);
+
+          $td = $table.find('#last-updated-' + code);
+          $td.html(item.lastupdated.snippet);
+          $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
+
+        }
+
+        // Sort columns based on previously-made selections
+        var sortCookie = $table.data('sort-cookie'),
+            columnSort = sorttable.getSortCookie(sortCookie);
+        if (columnSort !== null) {
+          var $th = $('#' + columnSort.columnId);
+          setTimeout(function() {
+            $th.click();
+            if (columnSort.order === "desc") {
+              $th.click();
+            }
+          }, 1);
+        }
+      } else {
+        setTimeout(function() {
+          $('#js-path-summary').click();
+        }, 1);
+      }
+
+      if (callback) {
+        callback(data);
+      }
+    },
+
     load: function (callback) {
       var url = l('/xhr/stats/overview/'),
           reqData = {
@@ -93,80 +173,7 @@
         data: reqData,
         dataType: 'json',
         success: function (data) {
-          var $table = $('#content table.stats'),
-              now = parseInt(Date.now() / 1000, 10);
-          PTL.stats.updateProgressbar($('#progressbar'), data);
-
-          PTL.stats.updateAction($('#js-action-view-all'), data.total);
-          PTL.stats.updateAction($('#js-action-continue'),
-                                 data.total - data.translated);
-          PTL.stats.updateAction($('#js-action-fix-critical'), data.critical);
-          PTL.stats.updateAction($('#js-action-review'), data.suggestions);
-
-          $('body').removeClass('js-not-loaded');
-
-          PTL.stats.updateTranslationStats($('#stats-total'),
-                                           data.total, data.total, 100);
-          PTL.stats.updateTranslationStats($('#stats-translated'),
-                                           data.total, data.translated, 100);
-          PTL.stats.updateTranslationStats($('#stats-fuzzy'),
-                                           data.total, data.fuzzy, 0);
-          var untranslated = data.total - data.translated - data.fuzzy;
-          PTL.stats.updateTranslationStats($('#stats-untranslated'),
-                                           data.total, untranslated, 0);
-          PTL.stats.updateLastUpdates(data);
-
-          if ($table.length) {
-            for (var name in data.children) {
-              var item = data.children[name],
-                  code = name.replace(/[\.@]/g, '-'),
-                  $td = $table.find('#total-words-' + code);
-
-              PTL.stats.updateItemStats($td, item.total);
-
-              var ratio = item.total === 0 ? 1 : item.translated / item.total;
-              $table.find('#translated-ratio-' + code).text(ratio);
-
-              $td = $table.find('#need-translation-' + code);
-              PTL.stats.updateItemStats($td, item.total - item.translated);
-
-              $td = $table.find('#suggestions-' + code);
-              PTL.stats.updateItemStats($td, item.suggestions);
-
-              $td = $table.find('#progressbar-' + code);
-              PTL.stats.updateProgressbar($td, item);
-
-              $td = $table.find('#last-activity-' + code);
-              $td.html(item.lastaction.snippet);
-              $td.attr('sorttable_customkey', now - item.lastaction.mtime);
-
-              $td = $table.find('#critical-' + code);
-              PTL.stats.updateItemStats($td, item.critical);
-
-              $td = $table.find('#last-updated-' + code);
-              $td.html(item.lastupdated.snippet);
-              $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
-
-            }
-
-            // Sort columns based on previously-made selections
-            var sortCookie = $table.data('sort-cookie'),
-                columnSort = sorttable.getSortCookie(sortCookie);
-            if (columnSort !== null) {
-              var $th = $('#' + columnSort.columnId);
-              $th.click();
-
-              if (columnSort.order === "desc") {
-                $th.click();
-              }
-            }
-          } else {
-            $('#js-path-summary').click();
-          }
-
-          if (callback) {
-            callback(data);
-          }
+            return this.processLoadedData(data, callback);
         }
       });
     },
