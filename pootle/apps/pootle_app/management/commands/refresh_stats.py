@@ -424,7 +424,7 @@ class Command(PootleCommand):
         r_con.delete(POOTLE_REFRESH_STATS)
 
 
-@job
+@job('default', timeout=7200)
 def refresh_stats(**options):
     # The script prefix needs to be set here because the generated
     # URLs need to be aware of that and they are cached. Ideally
