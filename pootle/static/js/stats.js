@@ -9,6 +9,10 @@
       this.processLoadedData(options.data);
 
       $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
+      $(document).on("click", "#autorefresh-notice", function () {
+          PTL.stats.dirtyInterval = 1;
+          PTL.stats.updateDirty();
+      });
     },
 
     nicePercentage: function (part, total, noTotalDefault) {
@@ -86,10 +90,15 @@
 
     processLoadedData: function (data, callback) {
       var $table = $('#content table.stats'),
-          dirtySelector = '#top-stats, #translate-actions',
+          dirtySelector = '#top-stats, #translate-actions, #autorefresh-notice',
           now = parseInt(Date.now() / 1000, 10);
 
       $(dirtySelector).toggleClass('dirty', data.is_dirty);
+      if (data.is_dirty) {
+        $('#autorefresh-notice a').show();
+        PTL.stats.dirtyInterval = 30;
+        PTL.stats.dirtyIntervalId = setInterval(PTL.stats.updateDirty, 1000);
+      }
 
       PTL.stats.updateProgressbar($('#progressbar'), data);
       PTL.stats.updateAction($('#js-action-view-all'), data.total);
@@ -165,10 +174,27 @@
           $('#js-path-summary').click();
         }, 1);
       }
+      PTL.common.updateRelativeDates();
 
       if (callback) {
         callback(data);
       }
+    },
+
+    updateDirty: function () {
+      if (--PTL.stats.dirtyInterval === 0) {
+        $('body').spin();
+        $('#autorefresh-notice a').hide();
+        clearInterval(PTL.stats.dirtyIntervalId);
+        setTimeout(function () {
+          PTL.stats.load(function() {
+            $('body').spin(false);
+          });
+        }, 250);
+      }
+      noticeStr = ngettext('%s second', '%s seconds', PTL.stats.dirtyInterval);
+      noticeStr = interpolate(noticeStr, [PTL.stats.dirtyInterval], false);
+      $('#autorefresh-notice strong').text(noticeStr);
     },
 
     load: function (callback) {

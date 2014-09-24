@@ -1928,6 +1928,11 @@ table.stats td.non-zero span.non-zero
     display: inline;
 }
 
+#autorefresh-notice.dirty
+{
+    display: inherit;
+}
+
 #top-stats.dirty #progressbar td,
 #translate-actions.dirty,
 #top-stats.dirty .path-summary-more .stats-number,
