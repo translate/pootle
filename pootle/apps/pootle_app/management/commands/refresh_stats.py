@@ -33,6 +33,9 @@ from django.db.models import Count, Max, Sum
 from django.utils import dateformat
 from django.utils.encoding import force_unicode, iri_to_uri
 
+from django_rq import get_connection, job
+
+from pootle.core.mixins.treeitem import POOTLE_REFRESH_STATS
 from pootle_language.models import Language
 from pootle_misc.util import datetime_min
 from pootle_project.models import Project
@@ -61,15 +64,11 @@ class Command(PootleCommand):
     option_list = PootleCommand.option_list + shared_option_list
 
     def handle_noargs(self, **options):
-        # The script prefix needs to be set here because the generated
-        # URLs need to be aware of that and they are cached. Ideally
-        # Django should take care of setting this up, but it doesn't yet:
-        # https://code.djangoproject.com/ticket/16734
-        script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
-                            else force_unicode(settings.FORCE_SCRIPT_NAME))
-        set_script_prefix(script_name)
-
-        super(Command, self).handle_noargs(**options)
+        refresh_stats.delay(**options)
+        option_list = map(lambda x: '%s=%s' % (x, options[x]),
+                          filter(lambda x: options[x], options))
+        logging.info('refresh_stats RQ job added with options: %s.' %
+                     ', '.join(option_list))
 
     def handle_all_stores(self, translation_project, **options):
         store_fk_filter = {
@@ -82,12 +81,15 @@ class Command(PootleCommand):
             'translation_project': translation_project,
         }
 
+        self.register_refresh_stats(translation_project.pootle_path)
         self.process(store_fk_filter=store_fk_filter,
                      unit_fk_filter=unit_fk_filter,
                      store_filter=store_filter,
                       **options)
 
         translation_project.refresh_stats(include_children=True)
+        self.unregister_refresh_stats()
+        translation_project.update_parent_cache()
 
     def handle_store(self, store, **options):
         store_fk_filter = {
@@ -100,18 +102,20 @@ class Command(PootleCommand):
             'pk': store.pk,
         }
 
+        self.register_refresh_stats(store.pootle_path)
         self.process(store_fk_filter=store_fk_filter,
                      unit_fk_filter=unit_fk_filter,
                      store_filter=store_filter,
-                      **options)
-
-        store.clear_all_cache()
+                     **options)
+        self.unregister_refresh_stats()
+        store.update_parent_cache()
 
     def handle_all(self, **options):
         if not self.projects and not self.languages:
             logging.info(u"Running %s (noargs)", self.name)
-
             try:
+                self.register_refresh_stats('/')
+
                 self.process(**options)
                 logging.info('Refreshing directories stats...')
 
@@ -125,6 +129,7 @@ class Command(PootleCommand):
                 for prj in prj_query.iterator():
                     prj.refresh_stats(include_children=False)
 
+                self.unregister_refresh_stats()
             except Exception as e:
                 logging.error(u"Failed to run %s:\n%s", self.name, e)
         else:
@@ -407,3 +412,25 @@ class Command(PootleCommand):
                 }
                 cache.set(iri_to_uri(key + ':get_last_updated'), res, timeout)
                 del self.cache_values[key]['get_last_updated']
+
+    def register_refresh_stats(self, path):
+        """Register that stats for current path is going to be refreshed"""
+        r_con = get_connection()
+        r_con.set(POOTLE_REFRESH_STATS, path)
+
+    def unregister_refresh_stats(self):
+        """Unregister current path when stats for this path were refreshed"""
+        r_con = get_connection()
+        r_con.delete(POOTLE_REFRESH_STATS)
+
+
+@job
+def refresh_stats(**options):
+    # The script prefix needs to be set here because the generated
+    # URLs need to be aware of that and they are cached. Ideally
+    # Django should take care of setting this up, but it doesn't yet:
+    # https://code.djangoproject.com/ticket/16734
+    script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
+                        else force_unicode(settings.FORCE_SCRIPT_NAME))
+    set_script_prefix(script_name)
+    super(Command, Command()).handle_noargs(**options)

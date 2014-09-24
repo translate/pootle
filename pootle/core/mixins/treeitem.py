@@ -41,6 +41,7 @@ from pootle_misc.util import datetime_min, dictsum
 
 
 POOTLE_DIRTY_TREEITEMS = 'pootle:dirty:treeitems'
+POOTLE_REFRESH_STATS = 'pootle:refresh:stats'
 
 
 def statslog(function):
@@ -313,9 +314,25 @@ class TreeItem(object):
         """
         return get_all_pootle_paths(self.get_cachekey())
 
+    def is_being_refreshed(self):
+        """Checks if current TreeItem is being refreshed"""
+        r_con = get_connection()
+        path = r_con.get(POOTLE_REFRESH_STATS)
+
+        if path is not None:
+            if path == '/':
+                return True
+
+            lang, prj, dir, file = split_pootle_path(path)
+            key = self.get_cachekey()
+
+            return key in path or path in key or key in '/projects/%s/' % prj
+
+        return False
+
     def is_dirty(self):
         """Checks if current TreeItem is registered as dirty"""
-        return self.get_dirty_score() > 0
+        return self.get_dirty_score() > 0 or self.is_being_refreshed()
 
     def register_dirty(self):
         """Register current TreeItem as dirty

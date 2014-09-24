@@ -119,15 +119,26 @@ project, run:
 refresh_stats
 ^^^^^^^^^^^^^
 
-This command will go through all existing projects making sure calculated data
-is up to date. Running ``refresh_stats`` immediately after an install, upgrade
-or after adding a large number of files will make Pootle feel faster as it will
-require less on-demand calculation of expensive statistics.
+This command will add RQ job to go through all existing projects making sure
+calculated data is up to date.
 
-``refresh_stats`` will flush existing caches and update the statistics cache.
+``refresh_stats`` job will flush existing caches and update the statistics cache.
 
 When the ``--calculate-checks`` option is set, quality checks will be
 recalculated for all existing units in the database.
+
+This command will go through all existing projects making sure statistics are
+up to date.
+
+It's necessary to run this command after installing or upgrading Pootle. Also
+consider running this command when things might go out-of-sync: if you make
+changes directly in the database, if the cache backend has been restarted, etc.
+
+The task is executed as a background job. The time it takes to complete
+the whole process will vary depending on the amount of units you have
+in the database. If a user hits a page that needs to display stats but they
+haven't been calculated yet, a message will be displayed indicating that
+the stats are on its way.
 
 To only recalculate date_format quality checks, run:
 
