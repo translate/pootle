@@ -122,7 +122,11 @@
         <td>{{ score.creation_time }}</td>
         <td>{{ score.action }}</td>
         <td class="unit">
-          <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
+          {% if score.submission.unit.isobsolete %}
+            <strike>#{{ score.submission.unit.id }}</strike>
+          {% else %}
+            <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
+          {% endif %}
         </td>
         <td class="number">{{ score.wordcount }}</td>
         <td class="number">{% if score.is_similarity_taken_from_mt %}<sup>MT</sup>{% endif %}{% if score.action == 'Review' %}&mdash;{% elif score.action == 'Translation' %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
