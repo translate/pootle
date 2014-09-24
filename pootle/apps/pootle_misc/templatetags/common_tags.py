@@ -89,7 +89,7 @@ def format_date_range(date_from, date_to, separator=" - ",
             from_format = from_format.replace(year_f, '')
             if date_from.month == date_to.month:
                 to_format = to_format.replace(month_f, '')
-        return separator.join((from_format.format(dt = date_from),
-                               to_format.format(dt = date_to)))
+        return separator.join((from_format.format(dt=date_from),
+                               to_format.format(dt=date_to)))
 
-    return format_str.format(dt = date_from)
+    return format_str.format(dt=date_from)
