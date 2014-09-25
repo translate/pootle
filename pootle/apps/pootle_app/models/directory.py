@@ -159,9 +159,15 @@ class Directory(models.Model, TreeItem):
 
     def get_children(self):
         result = []
-        #FIXME: can we replace this with a quicker path query?
-        result.extend([item for item in self.child_stores.iterator()])
-        result.extend([item for item in self.child_dirs.iterator()])
+        if not self.is_projects_root():
+            #FIXME: can we replace this with a quicker path query?
+            result.extend([item for item in self.child_stores.iterator()])
+            result.extend([item for item in self.child_dirs.iterator()])
+        else:
+            project_list = [item.project for item in self.child_dirs.iterator()
+                            if not item.project.disabled]
+            result.extend(project_list)
+
         return result
 
     def get_parents(self):
@@ -239,6 +245,10 @@ class Directory(models.Model, TreeItem):
         """does this directory point at a translation project"""
         return (self.pootle_path.count('/') == 3 and not
                 self.pootle_path.startswith('/projects/'))
+
+    def is_projects_root(self):
+        """is this directory a projects root directory"""
+        return self.pootle_path == '/projects/'
 
     def get_real_path(self):
         """physical filesystem path for directory"""
