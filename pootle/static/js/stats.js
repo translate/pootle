@@ -6,6 +6,7 @@
 
     init: function (options) {
       this.pootlePath = options.pootlePath;
+      this.processLoadedData(options.data);
 
       $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
     },
@@ -83,7 +84,7 @@
       }
     },
 
-    processLoadedData: function (data, callback) {
+    processLoadedData: function (data) {
       var $table = $('#content table.stats'),
           now = parseInt(Date.now() / 1000, 10);
       PTL.stats.updateProgressbar($('#progressbar'), data);
@@ -156,10 +157,6 @@
         setTimeout(function() {
           $('#js-path-summary').click();
         }, 1);
-      }
-
-      if (callback) {
-        callback(data);
       }
     },
 

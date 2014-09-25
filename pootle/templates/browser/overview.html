@@ -97,21 +97,16 @@
 {% block scripts_extra %}
 {{ block.super }}
 
-<script id="table-data" type="text/json">{{ table.data }}</script>
 <script type="text/javascript">
 $(function () {
-  $("body").spin();
   PTL.search.init();
   PTL.stats.init({
       pootlePath: "{{ pootle_path }}",
+      data: {{ table.data }}
   });
 
-  var data = JSON.parse($("#table-data").text());
-  PTL.stats.processLoadedData(data, function() {
-    PTL.common.updateRelativeDates();
-    setInterval(PTL.common.updateRelativeDates, 6e4);
-    $("body").spin(false);
-  });
+  PTL.common.updateRelativeDates();
+  setInterval(PTL.common.updateRelativeDates, 6e4);
 
   {% if announcement %}
   PTL.common.fixSidebarHeight();
