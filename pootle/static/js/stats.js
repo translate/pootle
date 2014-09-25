@@ -163,21 +163,6 @@
       }
     },
 
-    load: function (callback) {
-      var url = l('/xhr/stats/overview/'),
-          reqData = {
-            path: this.pootlePath
-          };
-      $.ajax({
-        url: url,
-        data: reqData,
-        dataType: 'json',
-        success: function (data) {
-            return this.processLoadedData(data, callback);
-        }
-      });
-    },
-
     /* Path summary */
     toggleChecks: function (e) {
       e.preventDefault();
