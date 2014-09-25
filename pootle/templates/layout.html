@@ -21,10 +21,11 @@
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
     {% endblock favicon %}
     {% block js %}
-    {% assets "js_vendor" %}
+    {% assets "js_common" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
-    {% assets "js_common" %}
+    {# For now this is after `js_common` because we shim the libraries #}
+    {% assets "js_vendor" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
     <script type="text/javascript">
