@@ -204,15 +204,17 @@
 
     load: function (callback) {
       var url = l('/xhr/stats/overview/'),
+          self = this,
           reqData = {
             path: this.pootlePath
           };
+
       $.ajax({
         url: url,
         data: reqData,
         dataType: 'json',
         success: function (data) {
-          return this.processLoadedData(data, callback);
+          return self.processLoadedData(data, callback);
         }
       });
     },
