@@ -95,8 +95,9 @@
 
       $(dirtySelector).toggleClass('dirty', data.is_dirty);
       if (data.is_dirty) {
-        $('#autorefresh-notice a').show();
         PTL.stats.dirtyInterval = 30;
+        PTL.stats.updateDirtyIntervalCounter();
+        $('#autorefresh-notice a').show();
         PTL.stats.dirtyIntervalId = setInterval(PTL.stats.updateDirty, 1000);
       }
 
@@ -192,6 +193,10 @@
           });
         }, 250);
       }
+      PTL.stats.updateDirtyIntervalCounter();
+    },
+
+    updateDirtyIntervalCounter: function () {
       noticeStr = ngettext('%s second', '%s seconds', PTL.stats.dirtyInterval);
       noticeStr = interpolate(noticeStr, [PTL.stats.dirtyInterval], false);
       $('#autorefresh-notice strong').text(noticeStr);
