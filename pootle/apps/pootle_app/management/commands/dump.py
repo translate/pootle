@@ -120,6 +120,7 @@ class Command(PootleCommand):
     def _dump_item(self, item, level, stop_level):
         self.stdout.write(self.dumped(item))
         if item.is_dir:
+            # item is a Directory
             if item.is_project():
                 self.stdout.write(self.dumped(item.project))
             elif item.is_language():

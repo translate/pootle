@@ -166,6 +166,7 @@ def add_items(fs_items, db_items, create_or_resurrect_db_item):
     items_to_create = fs_items_set - db_items_set
 
     for name in items_to_delete:
+        db_items[name].update_parent_cache(exclude_self=True)
         db_items[name].makeobsolete()
 
     for name in db_items_set - items_to_delete:

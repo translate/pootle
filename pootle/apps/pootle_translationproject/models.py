@@ -33,10 +33,9 @@ from django.db.models.signals import post_save
 from django.utils.functional import cached_property
 
 from pootle_app.project_tree import does_not_exist
-from pootle.core.mixins import TreeItem
+from pootle.core.mixins import TreeItem, CachedMethods
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
-from pootle_app.project_tree import does_not_exist
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters, ENChecker
 from pootle_project.models import Project
@@ -88,7 +87,7 @@ def scan_translation_projects(languages=None, projects=None):
             logging.info(u"Disabling %s", project)
             project.disabled = True
             project.save()
-            project.clear_all_cache(parents=True, children=False)
+            project.update_parent_cache()
         else:
             lang_query = Language.objects.exclude(
                     id__in=project.translationproject_set.enabled() \
@@ -248,10 +247,6 @@ class TranslationProject(models.Model, TreeItem):
 
     def delete(self, *args, **kwargs):
         directory = self.directory
-        # clear cache for translation_project parents only
-        # (they differ from directory ones)
-        # children cache will be cleared in directory.delete()
-        self.clear_all_cache(parents=True, children=False)
 
         super(TranslationProject, self).delete(*args, **kwargs)
         directory.delete()
@@ -295,9 +290,6 @@ class TranslationProject(models.Model, TreeItem):
                        conservative=conservative,
                        skip_missing=skip_missing, only_newer=only_newer)
 
-    def get_mtime(self):
-        return self.directory.get_mtime()
-
     def require_units(self):
         """Makes sure all stores are parsed"""
         errors = 0
@@ -339,7 +331,7 @@ class TranslationProject(models.Model, TreeItem):
             logging.info(u"Disabling %s", self)
             self.disabled = True
             self.save()
-            self.clear_all_cache(parents=True, children=False)
+            self.update_parent_cache(exclude_self=True)
 
             return True
 
@@ -397,7 +389,7 @@ class TranslationProject(models.Model, TreeItem):
             try:
                 termproject = TranslationProject.objects \
                         .get_terminology_project(self.language_id)
-                mtime = termproject.get_mtime()
+                mtime = termproject.get_cached(CachedMethods.MTIME)
                 terminology_stores = termproject.stores.all()
             except TranslationProject.DoesNotExist:
                 pass
@@ -406,9 +398,9 @@ class TranslationProject(models.Model, TreeItem):
                     name__startswith='pootle-terminology')
             for store in local_terminology.iterator():
                 if mtime is None:
-                    mtime = store.get_mtime()
+                    mtime = store.get_cached(CachedMethods.MTIME)
                 else:
-                    mtime = max(mtime, store.get_mtime())
+                    mtime = max(mtime, store.get_cached(CachedMethods.MTIME))
 
             terminology_stores = terminology_stores | local_terminology
 

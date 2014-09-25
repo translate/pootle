@@ -27,13 +27,16 @@ from functools import wraps
 
 from translate.filters.decorators import Category
 
+from django.conf import settings
 from django.core.cache import cache
 from django.utils.encoding import iri_to_uri
 
+from django_rq import job
+
 from pootle.core.log import log
-from pootle_misc.util import (getfromcache, dictsum, get_cached_value,
-                              set_cached_value, datetime_min)
+from pootle.core.url_helpers import get_all_pootle_paths, split_pootle_path
 from pootle_misc.checks import get_qualitychecks_by_category
+from pootle_misc.util import datetime_min, dictsum
 
 
 def statslog(function):
@@ -42,8 +45,8 @@ def statslog(function):
         start = datetime.now()
         result = function(instance, *args, **kwargs)
         end = datetime.now()
-        log("%s\t%s\t%s" % (function.__name__, end - start,
-                            instance.get_cachekey()))
+        log("%s(%s)\t%s\t%s" % (function.__name__, ', '.join(args), end - start,
+                                instance.get_cachekey()))
         return result
     return _statslog
 
@@ -71,7 +74,7 @@ class TreeItem(object):
     def __init__(self, *args, **kwargs):
         self.children = None
         self.initialized = False
-        self._flagged_for_deletion = set()
+        self._dirty_cache = set()
         super(TreeItem, self).__init__()
 
     def get_children(self):
@@ -123,88 +126,102 @@ class TreeItem(object):
             self.children = self.get_children()
             self.initialized = True
 
-    @getfromcache
-    @statslog
-    def get_total_wordcount(self):
-        """calculate total wordcount statistics"""
-        self.initialize_children()
-        return (self._get_total_wordcount() +
-                self._sum('get_total_wordcount'))
+    def set_cached_value(self, name, value,
+                         timeout=settings.OBJECT_CACHE_TIMEOUT):
+        key = iri_to_uri(self.get_cachekey() + ":" + name)
+        return cache.set(key, value, timeout)
 
-    @getfromcache
-    @statslog
-    def get_translated_wordcount(self):
-        """calculate translated units statistics"""
-        self.initialize_children()
-        return (self._get_translated_wordcount() +
-                self._sum('get_translated_wordcount'))
+    def get_cached_value(self, name):
+        key = iri_to_uri(self.get_cachekey() + ":" + name)
+        return cache.get(key)
 
-    @getfromcache
-    @statslog
-    def get_fuzzy_wordcount(self):
-        """calculate untranslated units statistics"""
+    def _calc_sum(self, name):
         self.initialize_children()
-        return (self._get_fuzzy_wordcount() +
-                self._sum('get_fuzzy_wordcount'))
+        method = getattr(self, '_%s' % name)
+        return (method() +
+                sum([item.get_cached(name) for item in self.children]))
 
-    @getfromcache
-    @statslog
-    def get_suggestion_count(self):
-        """check if any child store has suggestions"""
-        self.initialize_children()
-        return (self._get_suggestion_count() +
-                self._sum('get_suggestion_count'))
-
-    @getfromcache
-    @statslog
-    def get_last_action(self):
-        """get last action HTML snippet"""
+    def _calc_last_action(self):
         self.initialize_children()
 
         return max(
             [self._get_last_action()] +
-            [item.get_last_action() for item in self.children],
+            [item.get_cached(CachedMethods.LAST_ACTION)
+             for item in self.children],
             key=lambda x: x['mtime'] if 'mtime' in x else 0
         )
 
-    @getfromcache
-    @statslog
-    def get_mtime(self):
+    def _calc_mtime(self):
         """get latest modification time"""
         self.initialize_children()
         return max(
             [self._get_mtime()] +
-            [item.get_mtime() for item in self.children]
+            [item.get_cached(CachedMethods.MTIME) for item in self.children]
         )
 
-    @getfromcache
-    @statslog
-    def get_last_updated(self):
+    def _calc_last_updated(self):
         """get last updated"""
         self.initialize_children()
         return max(
             [self._get_last_updated()] +
-            [item.get_last_updated() for item in self.children],
+            [item.get_cached(CachedMethods.LAST_UPDATED)
+             for item in self.children],
             key=lambda x: x['creation_time'] if 'creation_time' in x else 0
         )
 
-    def _sum(self, name):
-        return sum([
-            getattr(item, name)() for item in self.children
-        ])
+    def _calc_checks(self):
+        result = self._get_checks()
+        self.initialize_children()
+        for item in self.children:
+            item_res = item.get_cached(CachedMethods.CHECKS)
+            result['checks'] = dictsum(result['checks'], item_res['checks'])
+            result['unit_count'] += item_res['unit_count']
+
+        return result
+
+    def _calc(self, name):
+        return {
+            CachedMethods.TOTAL: self._calc_sum(CachedMethods.TOTAL),
+            CachedMethods.TRANSLATED: self._calc_sum(CachedMethods.TRANSLATED),
+            CachedMethods.FUZZY: self._calc_sum(CachedMethods.FUZZY),
+            CachedMethods.SUGGESTIONS: self._calc_sum(CachedMethods.SUGGESTIONS),
+            CachedMethods.LAST_ACTION: self._calc_last_action(),
+            CachedMethods.LAST_UPDATED: self._calc_last_updated(),
+            CachedMethods.CHECKS: self._calc_checks(),
+            CachedMethods.MTIME: self._calc_mtime(),
+        }.get(name, None)
+
+    @statslog
+    def update_cached(self, name):
+        """calculate total wordcount statistics and update cached value"""
+        self.set_cached_value(name, self._calc(name))
+
+    def get_cached(self, name):
+        """get total wordcount statistics from cache or calculate for
+        virtual resources
+        """
+        if getattr(self, 'no_cache', False):
+            return self._calc(name)
+
+        result = self.get_cached_value(name)
+        if result is None:
+            log("cache miss %s for %s(%s)" %
+                (name, self.get_cachekey(), self.__class__))
+
+        return result
 
     def get_stats(self, include_children=True):
         """get stats for self and - optionally - for children"""
         self.initialize_children()
 
         result = {
-            'total': self.get_total_wordcount(),
-            'translated': self.get_translated_wordcount(),
-            'fuzzy': self.get_fuzzy_wordcount(),
-            'suggestions': self.get_suggestion_count(),
-            'lastaction': self.get_last_action(),
+            'total': self.get_cached(CachedMethods.TOTAL),
+            'translated': self.get_cached(CachedMethods.TRANSLATED),
+            'fuzzy': self.get_cached(CachedMethods.FUZZY),
+            'suggestions': self.get_cached(CachedMethods.SUGGESTIONS),
+            'lastaction': self.get_cached(CachedMethods.LAST_ACTION),
             'critical': self.get_error_unit_count(),
-            'lastupdated': self.get_last_updated()
+            'lastupdated': self.get_cached(CachedMethods.LAST_UPDATED)
         }
 
         if include_children:
@@ -217,56 +234,35 @@ class TreeItem(object):
         return result
 
     def refresh_stats(self, include_children=True):
-        """refresh stats for self and for children"""
+        """refresh cached stats for self and for children"""
         self.initialize_children()
 
         if include_children:
             for item in self.children:
+                # note that refresh_stats for a Store object does nothing
                 item.refresh_stats()
-            else:
-                self.clear_all_cache(parents=True, children=False)
 
-        self.get_total_wordcount()
-        self.get_translated_wordcount()
-        self.get_fuzzy_wordcount()
-        self.get_suggestion_count()
-        self.get_last_action()
-        self.get_checks()
-        self.get_mtime()
-        self.get_last_updated()
-
-    @getfromcache
-    @statslog
-    def get_checks(self):
-        result = self._get_checks()
-        self.initialize_children()
-        for item in self.children:
-            item_res = item.get_checks()
-            result['checks'] = dictsum(result['checks'], item_res['checks'])
-            result['unit_count'] += item_res['unit_count']
-
-        return result
+        for name in CachedMethods.get_all():
+            self.update_cached(name)
 
     def get_error_unit_count(self):
-        check_stats = self.get_checks()
+        check_stats = self.get_cached(CachedMethods.CHECKS)
 
-        return check_stats['unit_count']
+        return getattr(check_stats, 'unit_count', 0)
 
     def get_critical_url(self):
         critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
         return self.get_translate_url(check=critical)
 
-    def flag_for_deletion(self, *args):
+    def mark_dirty(self, *args):
+        """Mark cached method names for this TreeItem as dirty"""
         for key in args:
-            self._flagged_for_deletion.add(key)
+            self._dirty_cache.add(key)
 
-    def set_last_action(self, last_action):
-        set_cached_value(self, 'get_last_action', last_action)
-        parents = self.get_parents()
-        for p in parents:
-            pla = get_cached_value(p, 'get_last_action')
-            if pla and pla['mtime'] < last_action['mtime']:
-                p.set_last_action(last_action)
+    def mark_all_dirty(self):
+        """Mark all cached method names for this TreeItem as dirty"""
+        all_cache_methods = CachedMethods.get_all()
+        self._dirty_cache = set(all_cache_methods)
 
     def _clear_cache(self, keys, parents=True, children=False):
         itemkey = self.get_cachekey()
@@ -286,12 +282,59 @@ class TreeItem(object):
             for item in self.children:
                 item._clear_cache(keys, parents=False, children=True)
 
-    def clear_flagged_cache(self, parents=True, children=False):
-        self._clear_cache(self._flagged_for_deletion,
+    def clear_dirty_cache(self, parents=True, children=False):
+        self._clear_cache(self._dirty_cache,
                           parents=parents, children=children)
-        self._flagged_for_deletion = set()
+        self._dirty_cache = set()
 
     def clear_all_cache(self, children=True, parents=True):
         all_cache_methods = CachedMethods.get_all()
-        self.flag_for_deletion(*all_cache_methods)
-        self.clear_flagged_cache(children=children, parents=parents)
+        self.mark_dirty(*all_cache_methods)
+        self.clear_dirty_cache(children=children, parents=parents)
+
+    ################ Update stats in Redis Queue Worker process ###############
+
+    def update_dirty_cache(self):
+        """Add a RQ job which updates dirty cached stats of current TreeItem
+        to the default queue
+        """
+        _dirty = self._dirty_cache.copy()
+        if _dirty:
+            self._dirty_cache = set()
+            update_cache.delay(self, _dirty)
+
+    def update_all_cache(self):
+        """Add a RQ job which updates all cached stats of current TreeItem
+        to the default queue
+        """
+        self.mark_all_dirty()
+        self.update_dirty_cache()
+
+    def _update_cache(self, keys):
+        """Update dirty cached stats of current TreeItem"""
+        for key in keys:
+            self.update_cached(key)
+
+        parents = self.get_parents()
+        for p in parents:
+            p._update_cache(keys)
+
+    def update_parent_cache(self, exclude_self=False):
+        """Update dirty cached stats for a all parents of the current TreeItem"""
+        all_cache_methods = CachedMethods.get_all()
+        parents = self.get_parents()
+        for p in parents:
+            p.initialize_children()
+            if exclude_self:
+                p.children = filter(
+                    lambda x: (x.id != self.id and
+                               x.__class__ == self.__class__),
+                    p.children
+                )
+            update_cache.delay(p, all_cache_methods)
+
+
+@job
+def update_cache(instance, keys):
+    """RQ job"""
+    instance._update_cache(keys)

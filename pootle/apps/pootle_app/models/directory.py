@@ -265,7 +265,8 @@ class Directory(models.Model, TreeItem):
             return translation_project.real_path + path_prefix
 
     def delete(self, *args, **kwargs):
-        # cache will be cleared from child stores
+        self.clear_all_cache(parents=False, children=False)
+
         self.initialize_children()
         for item in self.children:
             item.delete()
@@ -275,7 +276,6 @@ class Directory(models.Model, TreeItem):
     def makeobsolete(self, *args, **kwargs):
         """Make this directory and all its children obsolete"""
 
-        # cache will be cleared from child stores
         self.initialize_children()
         for item in self.children:
             item.makeobsolete()

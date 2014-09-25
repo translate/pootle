@@ -323,11 +323,11 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
             cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                                   users_list))
 
-        # clear stats cache
+        # update stats cache
         if self.__disabled != self.disabled:
-            self.clear_all_cache(parents=True, children=False)
+            self.update_parent_cache()
             for tp in self.get_children():
-                tp.language.clear_all_cache(parents=True, children=False)
+                tp.language.update_all_cache()
             self.__disabled = self.disabled
 
     def delete(self, *args, **kwargs):

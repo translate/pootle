@@ -56,7 +56,7 @@ from pootle.core.tmserver import (update as update_tmserver,
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names, run_given_filters, get_checker
-from pootle_misc.util import datetime_min, get_cached_value, import_func
+from pootle_misc.util import datetime_min, import_func
 from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
 
@@ -387,28 +387,28 @@ class Unit(models.Model, base.TranslationUnit):
     # should be called to flag the store cache for a deletion
     # before the unit will be deleted
     def flag_store_before_going_away(self):
-        self.store.flag_for_deletion(CachedMethods.TOTAL)
+        self.store.mark_dirty(CachedMethods.TOTAL)
 
         if self.state == FUZZY:
-            self.store.flag_for_deletion(CachedMethods.FUZZY)
+            self.store.mark_dirty(CachedMethods.FUZZY)
         elif self.state == TRANSLATED:
-            self.store.flag_for_deletion(CachedMethods.TRANSLATED)
+            self.store.mark_dirty(CachedMethods.TRANSLATED)
 
         if self.suggestion_set.pending().count() > 0:
-            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS)
+            self.store.mark_dirty(CachedMethods.SUGGESTIONS)
 
         if self.get_qualitychecks().filter(false_positive=False):
-            self.store.flag_for_deletion(CachedMethods.CHECKS)
+            self.store.mark_dirty(CachedMethods.CHECKS)
 
         # Check if unit currently being deleted is the one referenced in
         # last_action
-        la = get_cached_value(self.store, 'get_last_action')
+        la = self.store.get_cached(CachedMethods.LAST_ACTION)
         if not la or not 'id' in la or la['id'] == self.id:
-            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
+            self.store.mark_dirty(CachedMethods.LAST_ACTION)
         # and last_updated
-        lu = get_cached_value(self.store, 'get_last_updated')
+        lu = self.store.get_cached(CachedMethods.LAST_UPDATED)
         if not lu or not 'id' in lu or lu['id'] == self.id:
-            self.store.flag_for_deletion(CachedMethods.LAST_UPDATED)
+            self.store.mark_dirty(CachedMethods.LAST_UPDATED)
 
     def delete(self, *args, **kwargs):
         action_log(user='system', action=UNIT_DELETED,
@@ -428,8 +428,8 @@ class Unit(models.Model, base.TranslationUnit):
 
         if not self.id:
             self._save_action = UNIT_ADDED
-            self.store.flag_for_deletion(CachedMethods.TOTAL,
-                                         CachedMethods.LAST_UPDATED)
+            self.store.mark_dirty(CachedMethods.TOTAL,
+                                  CachedMethods.LAST_UPDATED)
 
         if self._source_updated:
             # update source related fields
@@ -441,11 +441,11 @@ class Unit(models.Model, base.TranslationUnit):
             # update target related fields
             self.target_wordcount = count_words(self.target_f.strings)
             self.target_length = len(self.target_f)
-            self.store.flag_for_deletion(CachedMethods.LAST_ACTION)
+            self.store.mark_dirty(CachedMethods.LAST_ACTION)
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
                     self.state = TRANSLATED
-                    self.store.flag_for_deletion(CachedMethods.TRANSLATED)
+                    self.store.mark_dirty(CachedMethods.TRANSLATED)
 
                     if not hasattr(self, '_save_action'):
                         self._save_action = TRANSLATION_ADDED
@@ -457,7 +457,7 @@ class Unit(models.Model, base.TranslationUnit):
                 # if it was TRANSLATED then set to UNTRANSLATED
                 if self.state > FUZZY:
                     self.state = UNTRANSLATED
-                    self.store.flag_for_deletion(CachedMethods.TRANSLATED)
+                    self.store.mark_dirty(CachedMethods.TRANSLATED)
 
         # Updating unit from the .po file should not change its revision property,
         # since that change doesn't require further sync but note that
@@ -499,7 +499,7 @@ class Unit(models.Model, base.TranslationUnit):
         if hasattr(self, '_save_action') and self._save_action == UNIT_ADDED:
             # just added FUZZY unit
             if self.state == FUZZY:
-                self.store.flag_for_deletion(CachedMethods.FUZZY)
+                self.store.mark_dirty(CachedMethods.FUZZY)
 
             action_log(user=self._log_user, action=self._save_action,
                 lang=self.store.translation_project.language.code,
@@ -525,8 +525,8 @@ class Unit(models.Model, base.TranslationUnit):
 
         # update cache only if we are updating a single unit
         if self.store.state >= PARSED:
-            self.store.flag_for_deletion(CachedMethods.MTIME)
-            self.store.clear_flagged_cache()
+            self.store.mark_dirty(CachedMethods.MTIME)
+            self.store.update_dirty_cache()
 
     def get_absolute_url(self):
         lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
@@ -797,7 +797,7 @@ class Unit(models.Model, base.TranslationUnit):
                 checks = checks.filter(false_positive=False)
 
             if checks.count() > 0:
-                self.store.flag_for_deletion(CachedMethods.CHECKS)
+                self.store.mark_dirty(CachedMethods.CHECKS)
                 # all checks should be recalculated
                 checks.delete()
 
@@ -823,7 +823,7 @@ class Unit(models.Model, base.TranslationUnit):
             self.qualitycheck_set.create(name=name, message=message,
                                          category=category)
 
-            self.store.flag_for_deletion(CachedMethods.CHECKS)
+            self.store.mark_dirty(CachedMethods.CHECKS)
 
         # delete inactive checks
         if existing:
@@ -922,9 +922,9 @@ class Unit(models.Model, base.TranslationUnit):
         if value != (self.state == FUZZY):
             # when Unit toggles its FUZZY state the number of translated words
             # also changes
-            self.store.flag_for_deletion(CachedMethods.FUZZY,
-                                         CachedMethods.TRANSLATED,
-                                         CachedMethods.LAST_ACTION)
+            self.store.mark_dirty(CachedMethods.FUZZY,
+                                  CachedMethods.TRANSLATED,
+                                  CachedMethods.LAST_ACTION)
             self._state_updated = True
             # that's additional check
             # but leave old value in case _save_action is set
@@ -969,11 +969,11 @@ class Unit(models.Model, base.TranslationUnit):
             self.state = TRANSLATED
             # when Unit toggles its OBSOLETE state the number of translated words
             # also changes
-            self.store.flag_for_deletion(CachedMethods.TRANSLATED)
+            self.store.mark_dirty(CachedMethods.TRANSLATED)
         else:
             self.state = UNTRANSLATED
 
-        self.store.flag_for_deletion(CachedMethods.TOTAL)
+        self.store.mark_dirty(CachedMethods.TOTAL)
         self._state_updated = True
         self._save_action = UNIT_RESURRECTED
 
@@ -1112,8 +1112,8 @@ class Unit(models.Model, base.TranslationUnit):
             )
             sub.save()
 
-            self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
-                                         CachedMethods.LAST_ACTION)
+            self.store.mark_dirty(CachedMethods.SUGGESTIONS,
+                                  CachedMethods.LAST_ACTION)
             if touch:
                 self.save()
 
@@ -1161,12 +1161,6 @@ class Unit(models.Model, base.TranslationUnit):
             sub = Submission(**kwargs)
             sub.save()
 
-            # TODO:
-            # uncomment if we need to calculate last_action directly
-            # after saving
-            #if field == SubmissionFields.TARGET:
-            #   self.store.set_last_action(self.store._get_last_action(sub))
-
         # Update current unit instance's attributes
         # important to set these attributes after saving Submission
         # because we need to access the unit's state before it was saved
@@ -1176,8 +1170,8 @@ class Unit(models.Model, base.TranslationUnit):
         self.reviewed_on = self.submitted_on
         self._log_user = reviewer
 
-        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
-                                     CachedMethods.LAST_ACTION)
+        self.store.mark_dirty(CachedMethods.SUGGESTIONS,
+                              CachedMethods.LAST_ACTION)
         # Update timestamp
         self.save()
 
@@ -1202,8 +1196,8 @@ class Unit(models.Model, base.TranslationUnit):
         )
         sub.save()
 
-        self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
-                                     CachedMethods.LAST_ACTION)
+        self.store.mark_dirty(CachedMethods.SUGGESTIONS,
+                              CachedMethods.LAST_ACTION)
         # Update timestamp
         self.save()
 
@@ -1217,8 +1211,8 @@ class Unit(models.Model, base.TranslationUnit):
         check.false_positive = false_positive
         check.save()
 
-        self.store.flag_for_deletion(CachedMethods.CHECKS,
-                                     CachedMethods.LAST_ACTION)
+        self.store.mark_dirty(CachedMethods.CHECKS,
+                              CachedMethods.LAST_ACTION)
         self._log_user = user
         if false_positive:
             self._save_action = MUTE_QUALITYCHECK
@@ -1419,10 +1413,11 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 unit.save()
 
         if self.state >= PARSED:
-            self.clear_flagged_cache()
+            self.update_dirty_cache()
 
     def delete(self, *args, **kwargs):
-        self.clear_all_cache(parents=True, children=False)
+        self.update_parent_cache(exclude_self=True)
+        self.clear_all_cache(parents=False, children=False)
 
         store_log(user='system', action=STORE_DELETED,
                   path=self.pootle_path, store=self.id)
@@ -1436,8 +1431,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
     def makeobsolete(self):
         """Make this store and all its units obsolete."""
-        self.clear_all_cache(parents=True, children=False)
-
         store_log(user='system', action=STORE_OBSOLETE,
                   path=self.pootle_path, store=self.id)
 
@@ -1564,6 +1557,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 raise
 
             self.state = PARSED
+            self.mark_all_dirty()
             self.save()
             return
 
@@ -2122,7 +2116,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
 
         from translate.storage import poheader
         if isinstance(disk_store, poheader.poheader):
-            mtime = self.get_mtime()
+            mtime = self.get_cached(CachedMethods.MTIME)
             if mtime == datetime_min:
                 mtime = timezone.now()
             if user is None:

@@ -128,17 +128,20 @@
           $td = $table.find('#progressbar-' + code);
           PTL.stats.updateProgressbar($td, item);
 
-          $td = $table.find('#last-activity-' + code);
-          $td.html(item.lastaction.snippet);
-          $td.attr('sorttable_customkey', now - item.lastaction.mtime);
+          if (item.lastaction) {
+            $td = $table.find('#last-activity-' + code);
+            $td.html(item.lastaction.snippet);
+            $td.attr('sorttable_customkey', now - item.lastaction.mtime);
+          }
 
           $td = $table.find('#critical-' + code);
           PTL.stats.updateItemStats($td, item.critical);
 
-          $td = $table.find('#last-updated-' + code);
-          $td.html(item.lastupdated.snippet);
-          $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
-
+          if (item.lastupdated) {
+            $td = $table.find('#last-updated-' + code);
+            $td.html(item.lastupdated.snippet);
+            $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
+          }
         }
 
         // Sort columns based on previously-made selections

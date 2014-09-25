@@ -40,8 +40,9 @@ from translate.lang import data
 
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
-from pootle_app.models.permissions import check_user_permission
 from pootle.core.exceptions import Http400
+from pootle.core.mixins.treeitem import CachedMethods
+from pootle_app.models.permissions import check_user_permission
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, jsonify, to_int
@@ -736,7 +737,7 @@ def permalink_redirect(request, unit):
 @permission_required('view')
 @get_resource
 def get_qualitycheck_stats(request, *args, **kwargs):
-    failing_checks = request.resource_obj.get_checks()['checks']
+    failing_checks = request.resource_obj.get_cached(CachedMethods.CHECKS)['checks']
     response = jsonify(failing_checks)
     return HttpResponse(response, mimetype="application/json")
 

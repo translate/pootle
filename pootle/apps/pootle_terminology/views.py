@@ -119,7 +119,8 @@ def extract(request, translation_project):
             store.units.delete()
 
         # Calculate maximum terms
-        source_words = translation_project.get_total_wordcount()
+        source_words = sum(store._get_total_wordcount()
+                           for store in translation_project.stores.iterator())
         maxunits = int(source_words * 0.02)
         maxunits = min(max(settings.MIN_AUTOTERMS, maxunits),
                        settings.MAX_AUTOTERMS)

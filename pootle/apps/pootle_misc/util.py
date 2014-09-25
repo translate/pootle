@@ -20,16 +20,14 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import json
-import logging
 
 from functools import wraps
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponseBadRequest
 from django.utils import timezone
-from django.utils.encoding import force_unicode, iri_to_uri
+from django.utils.encoding import force_unicode
 from django.utils.functional import Promise
 from django.utils.importlib import import_module
 
@@ -58,61 +56,6 @@ def import_func(path):
             % (module, attr))
 
     return func
-
-
-def getfromcachebyname(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
-    def _getfromcache(instance, *args, **kwargs):
-        key = iri_to_uri(instance.pootle_path + ":" + args[0] + function.__name__)
-        result = cache.get(key)
-        if result is None:
-            logging.debug(u"cache miss for %s", key)
-            result = function(instance, *args, **kwargs)
-            cache.set(key, result, timeout)
-        return result
-    return _getfromcache
-
-
-def get_cached_value(obj, fn):
-    key = iri_to_uri(obj.get_cachekey() + ":" + fn)
-    return cache.get(key)
-
-
-def set_cached_value(obj, fn, value, timeout=settings.OBJECT_CACHE_TIMEOUT):
-    key = iri_to_uri(obj.get_cachekey() + ":" + fn)
-    return cache.set(key, value, timeout)
-
-
-def getfromcache(function, timeout=settings.OBJECT_CACHE_TIMEOUT):
-    def _getfromcache(instance, *args, **kwargs):
-        key = iri_to_uri(instance.get_cachekey() + ":" + function.__name__)
-        no_cache = getattr(instance, 'no_cache', False)
-        result = None if no_cache else cache.get(key)
-        if result is None:
-            logging.debug(u"cache miss for %s", key)
-            result = function(instance, *args, **kwargs)
-            if not no_cache:
-                cache.set(key, result, timeout)
-        return result
-    return _getfromcache
-
-
-def deletefromcache(sender, functions, **kwargs):
-    path = iri_to_uri(sender.pootle_path)
-    path_parts = path.split("/")
-
-    # clean project cache
-    if len(path_parts):
-        key = "/projects/%s/" % path_parts[2]
-        for func in functions:
-            cache.delete(key + ":" + func)
-
-    # clean store and directory cache
-    while path_parts:
-        for func in functions:
-            cache.delete(path + ":" + func)
-
-        path_parts = path_parts[:-1]
-        path = "/".join(path_parts) + "/"
 
 
 def dictsum(x, y):
