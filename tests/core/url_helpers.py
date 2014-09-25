@@ -18,7 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from pootle.core.url_helpers import urljoin, get_all_pootle_paths
+from pootle.core.url_helpers import (urljoin, get_all_pootle_paths,
+                                     split_pootle_path)
 
 
 def test_urljoin():
@@ -48,3 +49,15 @@ def test_get_all_pootle_paths():
     assert get_all_pootle_paths('/pt/tutorial/tutorial.po') == \
         ['/pt/tutorial/tutorial.po', '/pt/tutorial/', '/projects/tutorial/',
          '/pt/']
+
+
+def test_split_pootle_path():
+    """Tests pootle path are properly split."""
+    assert split_pootle_path('') == (None, None, '', '')
+    assert split_pootle_path('/projects/') == (None, None, '', '')
+    assert split_pootle_path('/projects/tutorial/') == \
+        (None, 'tutorial', '', '')
+    assert split_pootle_path('/pt/tutorial/tutorial.po') == \
+        ('pt', 'tutorial', '', 'tutorial.po')
+    assert split_pootle_path('/pt/tutorial/foo/tutorial.po') == \
+        ('pt', 'tutorial', 'foo/', 'tutorial.po')
