@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from pootle.core.url_helpers import urljoin
+from pootle.core.url_helpers import urljoin, get_all_pootle_paths
 
 
 def test_urljoin():
@@ -34,3 +34,17 @@ def test_urljoin():
     assert urljoin(base, 'foo', 'bar/baz', 'blah') == base + 'foo/bar/baz/blah'
     assert urljoin(base, 'foo/', 'bar', 'baz/') == base + 'foo/bar/baz/'
     assert urljoin('', '', '/////foo') == '/foo'
+
+
+def test_get_all_pootle_paths():
+    """Tests all paths are properly extracted."""
+    assert get_all_pootle_paths('') == ['']
+    assert get_all_pootle_paths('/') == ['/']
+    assert get_all_pootle_paths('/projects/') == ['/projects/']
+    assert get_all_pootle_paths('/projects/tutorial/') == \
+        ['/projects/tutorial/']
+    assert get_all_pootle_paths('/pt/tutorial/') == \
+        ['/pt/tutorial/', '/projects/tutorial/', '/pt/']
+    assert get_all_pootle_paths('/pt/tutorial/tutorial.po') == \
+        ['/pt/tutorial/tutorial.po', '/pt/tutorial/', '/projects/tutorial/',
+         '/pt/']
