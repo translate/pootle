@@ -23,7 +23,6 @@ import locale
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.utils.safestring import mark_safe
 
 from pootle.core.browser import (make_language_item,
                                  make_xlanguage_item,
@@ -59,7 +58,7 @@ def overview(request, project, dir_path, filename):
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items,
-        'data': mark_safe(jsonify(request.resource_obj.get_stats())),
+        'data': jsonify(request.resource_obj.get_stats()),
     }
 
     ctx = get_overview_context(request)
@@ -164,7 +163,7 @@ def projects_overview(request, project_set):
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items,
-        'data': mark_safe(jsonify(request.resource_obj.get_stats())),
+        'data': jsonify(request.resource_obj.get_stats()),
     }
 
     ctx = get_overview_context(request)

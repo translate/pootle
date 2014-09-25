@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2004-2010,2012 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,7 +20,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.shortcuts import render
-from django.utils.safestring import mark_safe
 
 from pootle.core.browser import (make_project_item,
                                  get_table_headings)
@@ -49,7 +48,7 @@ def overview(request, language):
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items,
-        'data': mark_safe(jsonify(request.resource_obj.get_stats())),
+        'data': jsonify(request.resource_obj.get_stats()),
     }
 
     ctx = get_overview_context(request)

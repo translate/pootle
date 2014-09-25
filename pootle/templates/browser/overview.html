@@ -102,7 +102,7 @@ $(function () {
   PTL.search.init();
   PTL.stats.init({
       pootlePath: "{{ pootle_path }}",
-      data: {{ table.data }}
+      data: {{ table.data|safe }}
   });
 
   PTL.common.updateRelativeDates();

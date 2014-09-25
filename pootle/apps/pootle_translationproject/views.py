@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2014 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -24,7 +24,6 @@ from urllib import quote, unquote
 
 from django.shortcuts import render
 from django.utils import dateformat
-from django.utils.safestring import mark_safe
 
 from pootle.core.browser import get_children, get_table_headings, get_parent
 from pootle.core.decorators import (get_path_obj, get_resource,
@@ -121,7 +120,7 @@ def overview(request, translation_project, dir_path, filename=None):
                 'headings': get_table_headings(table_fields),
                 'parent': get_parent(directory),
                 'items': get_children(directory),
-                'data': mark_safe(jsonify(request.resource_obj.get_stats())),
+                'data': jsonify(request.resource_obj.get_stats()),
             }
         })
 
