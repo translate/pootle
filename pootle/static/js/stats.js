@@ -84,7 +84,7 @@
       }
     },
 
-    processLoadedData: function (data) {
+    processLoadedData: function (data, callback) {
       var $table = $('#content table.stats'),
           now = parseInt(Date.now() / 1000, 10);
       PTL.stats.updateProgressbar($('#progressbar'), data);
@@ -157,6 +157,10 @@
         setTimeout(function() {
           $('#js-path-summary').click();
         }, 1);
+      }
+
+      if (callback) {
+        callback(data);
       }
     },
 
