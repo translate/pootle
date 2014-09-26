@@ -50,11 +50,6 @@
     line-height: 1.5;
 }
 
-#top-scorers .properties a
-{
-    color: #5fb336;
-}
-
 #top-scorers .properties a:active,
 #top-scorers .properties a:hover,
 #top-scorers .properties a:focus

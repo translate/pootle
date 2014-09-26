@@ -4,7 +4,7 @@
 
 #navbar
 {
-    background-color: #0489b7;
+    background-color: #005b7a;
     height: 50px;
     line-height: 50px;
 }
@@ -41,7 +41,7 @@
     padding: 0;
     display: inline-block;
     float: left;
-    font-size: 18px;
+    font-size: 23px;
     padding: 0 16px;
 }
 
@@ -69,7 +69,8 @@ html[dir="rtl"] #navbar h1 .site-title
 
 #navbar h1 .icon-logo
 {
-    vertical-align: middle;
+    position: relative;
+    top: -4px;
 }
 
 #nav-main > .menu-divider

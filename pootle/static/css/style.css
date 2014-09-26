@@ -72,7 +72,7 @@ a,
 a:link
 {
     text-decoration: none;
-    color: #0489b7;
+    color: #4dbdcb;
     cursor: pointer;
 }
 
@@ -143,7 +143,7 @@ h1, h2, h3
 
 h1
 {
-    color: #4dbdcb;
+    color: #005b7a;
     font-size: 185%;
 }
 
@@ -776,6 +776,7 @@ html[dir="rtl"] .form
 }
 
 .form input[type="text"],
+.form input[type="email"],
 .form input[type="password"],
 .form select,
 .form textarea
@@ -997,12 +998,16 @@ div.settings-container
 .settings-container select,
 .settings-container textarea,
 #login input[type="text"],
-#login input[type="password"]
+#login input[type="password"],
+#reset input[type="text"],
+#reset input[type="email"],
+#reset input[type="password"]
 {
     display: block;
 }
 
-#login input
+#login input,
+#reset input
 {
     box-sizing: border-box;
 }
