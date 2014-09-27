@@ -1114,6 +1114,7 @@ td.stats-number.need-translation a,
 td.stats-number.suggestions a,
 td.stats-number.critical a
 {
+    text-decoration: none;
     display: inline-block;
     background: #0489b7;
     color: #fff;
@@ -1121,6 +1122,13 @@ td.stats-number.critical a
     margin-right: -0.5em;
 
     border-radius: 1em;
+}
+
+td.stats-number.need-translation a:hover,
+td.stats-number.suggestions a:hover,
+td.stats-number.critical a:hover
+{
+    background: #000 !important;
 }
 
 td.stats-number.suggestions a
