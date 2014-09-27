@@ -73,6 +73,11 @@ a.btn:link
     background-color: #5fb336;
 }
 
+.btn.btn-login
+{
+    background-color: #1cc8dd;
+}
+
 .btn.btn-info
 {
     background-color: #3498db;
