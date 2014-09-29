@@ -86,7 +86,8 @@
 
 {% block content %}
 <div id="autorefresh-notice">
-  {% blocktrans %}Some data on this page is currently being calculated, and the page will be refreshed automatically in <strong>30 seconds</strong>. <a href="#">Refresh now</a>{% endblocktrans %}
+  {% blocktrans %}Some data on this page is currently being calculated, and the page will be refreshed automatically in <strong>30 seconds</strong>.{% endblocktrans %}
+  <a href="#">{% trans "Refresh now" %}</a>
 </div>
 
 {% if table %}
