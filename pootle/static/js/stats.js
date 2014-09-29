@@ -26,11 +26,13 @@
       this.processLoadedData(options.data);
 
       $(document).on('click', '#js-path-summary', this.toggleChecks.bind(this));
-      $(document).on('click', '.js-stats-refresh', function (e) {
-        e.preventDefault();
-        this.dirtyInterval = 1;
-        this.updateDirty();
-      }.bind(this));
+      $(document).on('click', '.js-stats-refresh', this.refreshStats.bind(this));
+    },
+
+    refreshStats: function (e) {
+      e.preventDefault();
+      this.dirtyInterval = 1;
+      this.updateDirty();
     },
 
     updateProgressbar: function ($td, item) {
