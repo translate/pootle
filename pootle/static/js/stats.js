@@ -2,6 +2,19 @@
 
   window.PTL = window.PTL || {};
 
+
+  var nicePercentage = function (part, total, noTotalDefault) {
+    var percentage = total ? part / total * 100 : noTotalDefault;
+    if (99 < percentage && percentage < 100) {
+      return 99;
+    }
+    if (0 < percentage && percentage < 1) {
+      return 1;
+    }
+    return Math.round(percentage);
+  };
+
+
   PTL.stats = {
 
     init: function (options) {
@@ -16,20 +29,9 @@
       });
     },
 
-    nicePercentage: function (part, total, noTotalDefault) {
-      var percentage = total ? part / total * 100 : noTotalDefault;
-      if (99 < percentage && percentage < 100) {
-        return 99;
-      }
-      if (0 < percentage && percentage < 1) {
-        return 1;
-      }
-      return Math.round(percentage);
-    },
-
     updateProgressbar: function ($td, item) {
-      var translated = PTL.stats.nicePercentage(item.translated, item.total, 100),
-          fuzzy = PTL.stats.nicePercentage(item.fuzzy, item.total, 0),
+      var translated = nicePercentage(item.translated, item.total, 100),
+          fuzzy = nicePercentage(item.fuzzy, item.total, 0),
           untranslated = 100 - translated - fuzzy,
           $legend = $('<span>').html($td.find('script').text());
 
@@ -52,7 +54,7 @@
     updateTranslationStats: function ($tr, total, value, noTotalDefault) {
       $tr.find('.stats-number a').html(value);
       $tr.find('.stats-percentage span').html(
-        PTL.stats.nicePercentage(value, total, noTotalDefault)
+        nicePercentage(value, total, noTotalDefault)
       );
       $tr.find('.stats-percentage').show();
     },
