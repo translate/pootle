@@ -9,7 +9,8 @@
       this.processLoadedData(options.data);
 
       $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
-      $(document).on("click", "#autorefresh-notice", function () {
+      $(document).on('click', '.js-stats-refresh', function (e) {
+        e.preventDefault();
         PTL.stats.dirtyInterval = 1;
         PTL.stats.updateDirty();
       });
@@ -97,7 +98,7 @@
       if (data.is_dirty) {
         PTL.stats.dirtyInterval = 30;
         PTL.stats.updateDirtyIntervalCounter();
-        $('#autorefresh-notice a').show();
+        $('.js-stats-refresh').show();
         PTL.stats.dirtyIntervalId = setInterval(PTL.stats.updateDirty, 1000);
       }
 
@@ -186,7 +187,7 @@
     updateDirty: function () {
       if (--PTL.stats.dirtyInterval === 0) {
         $('body').spin();
-        $('#autorefresh-notice a').hide();
+        $('.js-stats-refresh').hide();
         clearInterval(PTL.stats.dirtyIntervalId);
         setTimeout(function () {
           PTL.stats.load(function() {
