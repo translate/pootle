@@ -22,6 +22,8 @@
 
 __all__ = ('TreeItem', 'CachedMethods',)
 
+import logging
+
 from datetime import datetime
 from functools import wraps
 
@@ -218,8 +220,11 @@ class TreeItem(object):
 
         result = self.get_cached_value(name)
         if result is None:
-            log("cache miss %s for %s(%s)" %
-                (name, self.get_cachekey(), self.__class__))
+            logging.error(
+                "cache miss %s for %s(%s)" % (name,
+                                              self.get_cachekey(),
+                                              self.__class__),
+            )
 
         return result
 
