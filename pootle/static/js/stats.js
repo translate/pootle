@@ -172,7 +172,7 @@
         if (columnSort !== null) {
           var $th = $('#' + columnSort.columnId);
           $th.removeClass('sorttable_sorted sorttable_sorted_reverse');
-          setTimeout(function() {
+          setTimeout(function () {
             $th.click();
             if (columnSort.order === "desc") {
               $th.click();
@@ -180,7 +180,7 @@
           }, 1);
         }
       } else {
-        setTimeout(function() {
+        setTimeout(function () {
           $('#js-path-summary').click();
         }, 1);
       }
