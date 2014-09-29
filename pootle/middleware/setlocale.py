@@ -1,22 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010, 2013 Zuza Software Foundation
+# Copyright 2010 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# Pootle; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import locale
 import logging
@@ -27,19 +28,19 @@ from django.utils import translation
 
 
 class SetLocale(object):
-    """Set python locale for each request."""
+    """Sets python locale for each request."""
 
     def process_request(self, request):
-        # Under Windows, locale names are different and setlocale()
-        # with regular locale names will fail;
-        # so just set the default locale and quit early
+        # Under Windows, locale names are different, setlocale()
+        # with regular locale names will fail and
+        # locale.setlocale(locale.LC_ALL, '') will produce side effect
+        # seems like the safest option is just not set any locale at all
         if os.name == 'nt':
-            locale.setlocale(locale.LC_ALL, '')
             return
 
         #FIXME: some languages like arabic don't have a language only
         # locale for no good reason. we need a function to pick default
-        # locale for these.
+        # locale for these
         lang = translation.to_locale(translation.get_language())
         try:
             if lang == 'tr' or lang.startswith('tr_'):
@@ -61,11 +62,10 @@ class SetLocale(object):
 
 def set_pootle_locale_from_settings():
     """Try to set Pootle locale based on the language specified in settings."""
-    # Under Windows, locale names are different and setlocale()
-    # with regular locale names will fail;
-    # so just set the default locale and quit early
+
+    # See above for the reasoning why we need to skip
+    # setting locale under Windows
     if os.name == 'nt':
-        locale.setlocale(locale.LC_ALL, '')
         return
 
     lang = translation.to_locale(settings.LANGUAGE_CODE)

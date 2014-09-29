@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2014 Zuza Software Foundation
+# Copyright 2009-2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
@@ -202,7 +202,6 @@ def pluralize_source(unit):
     else:
         return [(0, unit.source, None)]
 
-
 @register.filter('pluralize_target')
 def pluralize_target(unit, nplurals=None):
     if unit.hasplural():
@@ -225,7 +224,6 @@ def pluralize_target(unit, nplurals=None):
         return forms
     else:
         return [(0, unit.target, None)]
-
 
 @register.filter('pluralize_diff_sugg')
 def pluralize_diff_sugg(sugg):

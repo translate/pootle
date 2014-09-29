@@ -1,30 +1,32 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# Pootle; if not, see <http://www.gnu.org/licenses/>.
-
-from translate.lang import data as langdata
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.utils import translation
 from django.utils.translation import _trans
 
+from translate.lang import data as langdata
+
 
 def _format_translation(message, vars=None):
-    """Override the gettext function, handling variable errors more gracefully.
+    """Overrides the gettext function, handling variable errors more
+    gracefully.
 
     This is needed to avoid tracebacks on translation errors with live
     translation.
@@ -56,14 +58,14 @@ def ngettext(singular, plural, number, vars=None):
 
 
 def tr_lang(language_name):
-    """Translate language names."""
+    """Translates language names."""
     language_code = translation.to_locale(translation.get_language())
 
     return langdata.tr_lang(language_code)(language_name)
 
 
 def language_dir(language_code):
-    """Return whether the language is right to left."""
+    """Returns whether the language is right to left"""
     RTL_LANGS = [
         "ar", "arc", "dv", "fa", "he", "ks", "ps", "ug", "ur", "yi", "nqo"
     ]

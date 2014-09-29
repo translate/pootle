@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2009-2012 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
@@ -22,6 +22,7 @@
 import datetime
 import logging
 import sys
+
 from optparse import make_option
 
 from django.core.management.base import BaseCommand, NoArgsCommand
@@ -70,9 +71,9 @@ class PootleCommand(NoArgsCommand):
             logging.info(u"Running %s over %s's files", self.name, tp)
             try:
                 self.handle_all_stores(tp, **options)
-            except Exception:
-                logging.exception(u"Failed to run %s over %s's files.",
-                                  self.name, tp)
+            except Exception as e:
+                logging.error(u"Failed to run %s over %s's files\n%s",
+                              self.name, tp, e)
                 return
         elif hasattr(self, "handle_store"):
             store_query = tp.stores.all()
@@ -86,9 +87,9 @@ class PootleCommand(NoArgsCommand):
                              self.name, store.pootle_path)
                 try:
                     self.handle_store(store, **options)
-                except Exception:
-                    logging.exception(u"Failed to run %s over %s.", self.name,
-                                      store.pootle_path)
+                except Exception as e:
+                    logging.error(u"Failed to run %s over %s:\n%s",
+                                  self.name, store.pootle_path, e)
 
     def handle_noargs(self, **options):
         # adjust debug level to the verbosity option
@@ -219,7 +220,7 @@ class ModifiedSinceMixin(object):
         if change_id is None or change_id == 0:
             options.pop('modified_since')
             if change_id == 0:
-                logging.info("Change ID is zero, no modified-since filtering.")
+                logging.info(u"Change ID is zero, no modified-since filtering.")
         elif change_id < 0:
             logging.error(u"Change IDs must be positive integers.")
             sys.exit(1)
