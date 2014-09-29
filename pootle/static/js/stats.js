@@ -14,6 +14,10 @@
     return Math.round(percentage);
   };
 
+  var onDataLoad = function () {
+    $('body').spin(false);
+  };
+
 
   PTL.stats = {
 
@@ -191,9 +195,7 @@
         $('.js-stats-refresh').hide();
         clearInterval(this.dirtyIntervalId);
         setTimeout(function () {
-          this.load(function() {
-            $('body').spin(false);
-          });
+          this.load(onDataLoad);
         }.bind(this), 250);
       }
       this.updateDirtyIntervalCounter();
@@ -276,9 +278,7 @@
             $node.data('loaded', true);
             hideShow();
           },
-          complete: function () {
-            $('body').spin(false);
-          },
+          complete: onDataLoad
         });
       }
     }
