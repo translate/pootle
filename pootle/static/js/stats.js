@@ -21,12 +21,12 @@
       this.pootlePath = options.pootlePath;
       this.processLoadedData(options.data);
 
-      $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
+      $(document).on('click', '#js-path-summary', this.toggleChecks.bind(this));
       $(document).on('click', '.js-stats-refresh', function (e) {
         e.preventDefault();
-        PTL.stats.dirtyInterval = 1;
-        PTL.stats.updateDirty();
-      });
+        this.dirtyInterval = 1;
+        this.updateDirty();
+      }.bind(this));
     },
 
     updateProgressbar: function ($td, item) {
@@ -98,31 +98,30 @@
 
       $(dirtySelector).toggleClass('dirty', data.is_dirty);
       if (data.is_dirty) {
-        PTL.stats.dirtyInterval = 30;
-        PTL.stats.updateDirtyIntervalCounter();
+        this.dirtyInterval = 30;
+        this.updateDirtyIntervalCounter();
         $('.js-stats-refresh').show();
-        PTL.stats.dirtyIntervalId = setInterval(PTL.stats.updateDirty, 1000);
+        this.dirtyIntervalId = setInterval(this.updateDirty.bind(this), 1000);
       }
 
-      PTL.stats.updateProgressbar($('#progressbar'), data);
-      PTL.stats.updateAction($('#js-action-view-all'), data.total);
-      PTL.stats.updateAction($('#js-action-continue'),
-                             data.total - data.translated);
-      PTL.stats.updateAction($('#js-action-fix-critical'), data.critical);
-      PTL.stats.updateAction($('#js-action-review'), data.suggestions);
+      this.updateProgressbar($('#progressbar'), data);
+      this.updateAction($('#js-action-view-all'), data.total);
+      this.updateAction($('#js-action-continue'), data.total - data.translated);
+      this.updateAction($('#js-action-fix-critical'), data.critical);
+      this.updateAction($('#js-action-review'), data.suggestions);
 
       $('body').removeClass('js-not-loaded');
 
-      PTL.stats.updateTranslationStats($('#stats-total'),
-                                       data.total, data.total, 100);
-      PTL.stats.updateTranslationStats($('#stats-translated'),
-                                       data.total, data.translated, 100);
-      PTL.stats.updateTranslationStats($('#stats-fuzzy'),
-                                       data.total, data.fuzzy, 0);
+      this.updateTranslationStats($('#stats-total'),
+                                  data.total, data.total, 100);
+      this.updateTranslationStats($('#stats-translated'),
+                                  data.total, data.translated, 100);
+      this.updateTranslationStats($('#stats-fuzzy'),
+                                  data.total, data.fuzzy, 0);
       var untranslated = data.total - data.translated - data.fuzzy;
-      PTL.stats.updateTranslationStats($('#stats-untranslated'),
-                                       data.total, untranslated, 0);
-      PTL.stats.updateLastUpdates(data);
+      this.updateTranslationStats($('#stats-untranslated'),
+                                  data.total, untranslated, 0);
+      this.updateLastUpdates(data);
 
       if ($table.length) {
         for (var name in data.children) {
@@ -131,19 +130,19 @@
               $td = $table.find('#total-words-' + code);
 
           $td.parent().toggleClass('dirty', item.is_dirty);
-          PTL.stats.updateItemStats($td, item.total);
+          this.updateItemStats($td, item.total);
 
           var ratio = item.total === 0 ? 1 : item.translated / item.total;
           $table.find('#translated-ratio-' + code).text(ratio);
 
           $td = $table.find('#need-translation-' + code);
-          PTL.stats.updateItemStats($td, item.total - item.translated);
+          this.updateItemStats($td, item.total - item.translated);
 
           $td = $table.find('#suggestions-' + code);
-          PTL.stats.updateItemStats($td, item.suggestions);
+          this.updateItemStats($td, item.suggestions);
 
           $td = $table.find('#progressbar-' + code);
-          PTL.stats.updateProgressbar($td, item);
+          this.updateProgressbar($td, item);
 
           if (item.lastaction) {
             $td = $table.find('#last-activity-' + code);
@@ -152,7 +151,7 @@
           }
 
           $td = $table.find('#critical-' + code);
-          PTL.stats.updateItemStats($td, item.critical);
+          this.updateItemStats($td, item.critical);
 
           if (item.lastupdated) {
             $td = $table.find('#last-updated-' + code);
@@ -187,28 +186,27 @@
     },
 
     updateDirty: function () {
-      if (--PTL.stats.dirtyInterval === 0) {
+      if (--this.dirtyInterval === 0) {
         $('body').spin();
         $('.js-stats-refresh').hide();
-        clearInterval(PTL.stats.dirtyIntervalId);
+        clearInterval(this.dirtyIntervalId);
         setTimeout(function () {
-          PTL.stats.load(function() {
+          this.load(function() {
             $('body').spin(false);
           });
-        }, 250);
+        }.bind(this), 250);
       }
-      PTL.stats.updateDirtyIntervalCounter();
+      this.updateDirtyIntervalCounter();
     },
 
     updateDirtyIntervalCounter: function () {
-      noticeStr = ngettext('%s second', '%s seconds', PTL.stats.dirtyInterval);
-      noticeStr = interpolate(noticeStr, [PTL.stats.dirtyInterval], false);
+      noticeStr = ngettext('%s second', '%s seconds', this.dirtyInterval);
+      noticeStr = interpolate(noticeStr, [this.dirtyInterval], false);
       $('#autorefresh-notice strong').text(noticeStr);
     },
 
     load: function (callback) {
       var url = l('/xhr/stats/overview/'),
-          self = this,
           reqData = {
             path: this.pootlePath
           };
@@ -218,8 +216,8 @@
         data: reqData,
         dataType: 'json',
         success: function (data) {
-          return self.processLoadedData(data, callback);
-        }
+          return this.processLoadedData(data, callback);
+        }.bind(this)
       });
     },
 
@@ -245,7 +243,7 @@
         $('body').spin();
         var url = l('/xhr/stats/checks/'),
             reqData = {
-              path: PTL.stats.pootlePath
+              path: this.pootlePath
             };
         $.ajax({
           url: url,
