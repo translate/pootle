@@ -228,8 +228,9 @@
     /* Path summary */
     toggleChecks: function (e) {
       e.preventDefault();
-      var $node = $("#" + $(this).data('target')),
-          $iconNode = $(this).find("#js-expand-icon"),
+      var $el = $(e.currentTarget),
+          $node = $("#" + $el.data('target')),
+          $iconNode = $el.find("#js-expand-icon"),
           data = $node.data();
 
       function hideShow() {
