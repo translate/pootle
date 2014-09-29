@@ -1,22 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
-# This file is part of Pootle.
+# This file is part of translate.
 #
-# Pootle is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# Pootle; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.forms.models import modelformset_factory
 from django.forms.util import ErrorList
@@ -175,9 +176,8 @@ def process_modelformset(request, model_class, queryset, **kwargs):
     return formset_class(queryset=objects.object_list), None, objects
 
 
-def edit(request, template, model_class, ctx={}, link=None, linkfield='code',
-         queryset=None, **kwargs):
-
+def edit(request, template, model_class, ctx={},
+         link=None, linkfield='code', queryset=None, **kwargs):
     formset, msg, objects = process_modelformset(request, model_class,
                                                  queryset=queryset, **kwargs)
     ctx.update({
@@ -186,4 +186,5 @@ def edit(request, template, model_class, ctx={}, link=None, linkfield='code',
         'objects': objects,
         'error_msg': msg,
     })
+
     return render(request, template, ctx)

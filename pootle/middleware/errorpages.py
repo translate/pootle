@@ -1,22 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# Pootle; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import sys
 import traceback
@@ -104,7 +105,7 @@ class ErrorPagesMiddleware(object):
                 )
 
         else:
-            #FIXME: implement better 500.
+            #FIXME: implement better 500
             tb = traceback.format_exc()
             print >> sys.stderr, tb
 
@@ -123,7 +124,7 @@ class ErrorPagesMiddleware(object):
                         templatevars['fserror'] = msg
 
                     if sentry_exception_handler is None:
-                        # Send email to admins with details about exception.
+                        # Send email to admins with details about exception
                         ip_type = (request.META.get('REMOTE_ADDR') in
                                    settings.INTERNAL_IPS and 'internal' or
                                    'EXTERNAL')
@@ -152,5 +153,5 @@ class ErrorPagesMiddleware(object):
                         render_to_string('500.html', templatevars,
                                          RequestContext(request)))
                 except:
-                    # Let's not confuse things by throwing an exception here.
+                    # Let's not confuse things by throwing an exception here
                     pass

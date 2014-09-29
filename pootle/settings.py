@@ -18,8 +18,8 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-import glob
 import os
+import glob
 
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
 

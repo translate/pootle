@@ -1,32 +1,34 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2008-2012 Zuza Software Foundation
 #
-# This file is part of Pootle.
+# This file is part of translate.
 #
-# Pootle is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# translate is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# translate is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# Pootle; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with translate; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 """Overrides and support functions for arbitrary locale support."""
 
 import locale
 import os
 
-from translate.lang import data
-
 from django.utils import translation
 from django.utils.functional import lazy
 from django.utils.translation import trans_real
+
+from translate.lang import data
 
 from pootle.i18n import bidi, gettext
 
@@ -46,7 +48,7 @@ def find_languages(locale_path):
 
 
 def supported_langs():
-    """Return a list of supported locales."""
+    """Returns a list of supported locales."""
     from django.conf import settings
     return settings.LANGUAGES
 
@@ -77,6 +79,7 @@ def get_lang_from_session(request, supported):
         lang_code = request.session.get('django_language', None)
         if lang_code and lang_code in supported:
             return lang_code
+
     return None
 
 
@@ -110,7 +113,7 @@ def get_lang_from_http_header(request, supported):
         if normalized in supported:
             return normalized
 
-        #FIXME: horribly slow way of dealing with languages with @ in them.
+        #FIXME: horribly slow way of dealing with languages with @ in them
         for lang in supported.keys():
             if normalized == data.normalize_code(lang):
                 return lang
@@ -148,8 +151,7 @@ def override_gettext(real_translation):
 
 def get_language_bidi():
     """Override for Django's get_language_bidi that's aware of more
-    RTL languages.
-    """
+    RTL languages."""
     return gettext.language_dir(translation.get_language()) == 'rtl'
 
 

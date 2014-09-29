@@ -2,21 +2,22 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# Pootle; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
 from django.core.cache import cache
@@ -41,8 +42,6 @@ class LiveLanguageManager(models.Manager):
     A live language is any language other than the special `Templates`
     language that have any project with translatable files and is not a
     source language.
-
-    Note that this doesn't inherit from :cls:`RelatedManager`.
     """
     def get_query_set(self):
         return super(LiveLanguageManager, self).get_query_set().filter(
@@ -134,12 +133,15 @@ class Language(models.Model, TreeItem):
         """Localized fullname for the language."""
         return tr_lang(self.fullname)
 
+    ############################ Methods ######################################
+
     @property
     def direction(self):
         """Return the language direction."""
         return language_dir(self.code)
 
-    ############################ Methods ######################################
+    def __unicode__(self):
+        return u"%s - %s" % (self.name, self.code)
 
     def __init__(self, *args, **kwargs):
         super(Language, self).__init__(*args, **kwargs)
@@ -147,17 +149,14 @@ class Language(models.Model, TreeItem):
     def __repr__(self):
         return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
 
-    def __unicode__(self):
-        return u"%s - %s" % (self.name, self.code)
-
     def save(self, *args, **kwargs):
-        # create corresponding directory object.
+        # create corresponding directory object
         from pootle_app.models.directory import Directory
         self.directory = Directory.objects.root.get_or_make_subdir(self.code)
 
         super(Language, self).save(*args, **kwargs)
 
-        # FIXME: far from ideal, should cache at the manager level instead.
+        # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
     def delete(self, *args, **kwargs):
@@ -165,7 +164,7 @@ class Language(models.Model, TreeItem):
         super(Language, self).delete(*args, **kwargs)
         directory.delete()
 
-        # FIXME: far from ideal, should cache at the manager level instead.
+        # FIXME: far from ideal, should cache at the manager level instead
         cache.delete(CACHE_KEY)
 
     def get_absolute_url(self):
