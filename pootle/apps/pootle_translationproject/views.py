@@ -103,6 +103,7 @@ def overview(request, translation_project, dir_path, filename=None):
         'translation_project': translation_project,
         'project': project,
         'language': language,
+        'stats': jsonify(request.resource_obj.get_stats()),
 
         'browser_extends': 'translation_projects/base.html',
 
@@ -120,7 +121,6 @@ def overview(request, translation_project, dir_path, filename=None):
                 'headings': get_table_headings(table_fields),
                 'parent': get_parent(directory),
                 'items': get_children(directory),
-                'data': jsonify(request.resource_obj.get_stats()),
             }
         })
 

@@ -48,7 +48,6 @@ def overview(request, language):
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items,
-        'data': jsonify(request.resource_obj.get_stats()),
     }
 
     ctx = get_overview_context(request)
@@ -58,6 +57,7 @@ def overview(request, language):
           'name': tr_lang(language.fullname),
         },
         'table': table,
+        'stats': jsonify(request.resource_obj.get_stats()),
 
         'browser_extends': 'languages/base.html',
     })

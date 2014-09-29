@@ -58,13 +58,13 @@ def overview(request, project, dir_path, filename):
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items,
-        'data': jsonify(request.resource_obj.get_stats()),
     }
 
     ctx = get_overview_context(request)
     ctx.update({
         'project': project,
         'table': table,
+        'stats': jsonify(request.resource_obj.get_stats()),
 
         'browser_extends': 'projects/base.html',
     })
@@ -163,12 +163,12 @@ def projects_overview(request, project_set):
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items,
-        'data': jsonify(request.resource_obj.get_stats()),
     }
 
     ctx = get_overview_context(request)
     ctx.update({
         'table': table,
+        'stats': jsonify(request.resource_obj.get_stats()),
 
         'browser_extends': 'projects/all/base.html',
     })
