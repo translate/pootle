@@ -10,8 +10,8 @@
 
       $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
       $(document).on("click", "#autorefresh-notice", function () {
-          PTL.stats.dirtyInterval = 1;
-          PTL.stats.updateDirty();
+        PTL.stats.dirtyInterval = 1;
+        PTL.stats.updateDirty();
       });
     },
 
