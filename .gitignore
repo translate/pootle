@@ -12,7 +12,6 @@
 
 # /pootle/dbs/
 /pootle/dbs/*.db
-/pootle/dbs/*.db-journal
 
 # /pootle/locale/*/LC_MESSAGES/
 /pootle/locale/*/LC_MESSAGES/
@@ -29,6 +28,10 @@
 # /pootle/settings/
 /pootle/settings/*-local.conf
 
+# Possible customizations
+/pootle/templates/custom
+/pootle/static/*/custom
+
 # General
 *.bak
 *.pyc
@@ -38,6 +41,17 @@
 *.pending
 *.po.tm
 .translation_index
+
+# npm
+node_modules/
+
+# webpack
+.module-cache
+*.bundle.js
+*.bundle.js.map
+
+# Temporary/local files
+~*
 
 # ViM-generated
 *.swn
@@ -59,13 +73,16 @@ dist/
 build/
 Pootle.egg-info/
 
-# Requirements generation
-.reqs
-requirements/min-versions.txt
-requirements-pinned.txt
+# PyDev (Intellij) local configuration folder
+.idea
 
-# Coverage
-.coverage.*
-
-# Logs
+# local log direcotry
 log/
+
+# Eclipse PyDev projects
+.project
+.pydevproject
+
+# custom manage shell script
+rqworker
+manage
