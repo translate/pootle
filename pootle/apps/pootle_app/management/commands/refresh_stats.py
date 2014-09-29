@@ -67,8 +67,9 @@ class Command(PootleCommand):
         refresh_stats.delay(**options)
         option_list = map(lambda x: '%s=%s' % (x, options[x]),
                           filter(lambda x: options[x], options))
-        logging.info('refresh_stats RQ job added with options: %s.' %
-                     ', '.join(option_list))
+        self.stdout.write('refresh_stats RQ job added with options: %s. %s.' %
+                          (', '.join(option_list),
+                          'Please make sure rqworker is running'))
 
     def handle_all_stores(self, translation_project, **options):
         store_fk_filter = {
