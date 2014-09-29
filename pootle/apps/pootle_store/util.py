@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2004-2013 Zuza Software Foundation
+# Copyright 2004-2012 Zuza Software Foundation
 #
 # This file is part of translate.
 #

@@ -1,22 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2009-2013 Zuza Software Foundation
+# Copyright 2009-2011 Zuza Software Foundation
 # Copyright 2013-2014 Evernote Corporation
 #
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# Pootle; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -61,7 +62,7 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes,
 
 def get_terminology_filename(translation_project):
     try:
-        # See if a terminology store already exists.
+        # See if a terminology store already exists
         return translation_project.stores.filter(
             name__startswith='pootle-terminology.',
         ).values_list('name', flat=True)[0]
@@ -89,6 +90,7 @@ def extract(request, translation_project):
         'project': translation_project.project,
         'directory': translation_project.directory,
     }
+    terminology_filename = get_terminology_filename(translation_project)
 
     if request.method == 'POST' and request.POST['extract']:
         from translate.tools.poterminology import TerminologyExtractor
@@ -108,10 +110,10 @@ def extract(request, translation_project):
         store, created = Store.objects.get_or_create(
             parent=translation_project.directory,
             translation_project=translation_project,
-            name=get_terminology_filename(translation_project),
+            name=terminology_filename,
         )
 
-        # Lock file.
+        # Lock file
         oldstate = store.state
         store.state = LOCKED
         store.save()
@@ -129,10 +131,10 @@ def extract(request, translation_project):
             #FIXME: what to do with score?
             unit.save()
             for suggestion in unit.pending_suggestions:
-                # Touch=True which saves unit on every call.
+                # Touch=True which saves unit on every call
                 unit.add_suggestion(suggestion)
 
-        # Unlock file.
+        # Unlock file
         store.state = oldstate
         if store.state < PARSED:
             store.state = PARSED

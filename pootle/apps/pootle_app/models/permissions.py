@@ -2,45 +2,50 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
+# Copyright 2014 Evernote Corporation
 #
-# This file is part of Pootle.
+# This file is part of translate.
 #
-# Pootle is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# translate is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# translate is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# Pootle; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with translate; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.cache import cache
-from django.db import models
 from django.utils.encoding import iri_to_uri
 
 from pootle.core.managers import RelatedManager
 
 
 def get_permission_contenttype():
-    return ContentType.objects.filter(name='pootle', app_label='pootle_app',
-                                      model="directory")[0]
+    content_type = ContentType.objects.filter(name='pootle',
+                                              app_label='pootle_app',
+                                              model="directory")[0]
+    return content_type
 
 
 def get_pootle_permission(codename):
-    # The content type of our permission.
+    # The content type of our permission
     content_type = get_permission_contenttype()
-    # Get the pootle view permission.
+    # Get the pootle view permission
     return Permission.objects.get(content_type=content_type, codename=codename)
 
 
 def get_pootle_permissions(codenames=None):
-    """Get the available rights and their localized names."""
+    """Gets the available rights and their localized names."""
     content_type = get_permission_contenttype()
 
     if codenames is not None:
@@ -70,7 +75,7 @@ def get_permissions_by_username(username, directory):
             (permissionset is None or
             len(filter(None, permissionset.directory.pootle_path.split('/'))) < 2)):
                 # Active permission at language level or higher, check project
-                # level permission.
+                # level permission
                 try:
                     project_path = '/projects/%s/' % path_parts[1]
                     permissionset = PermissionSet.objects \
@@ -91,7 +96,8 @@ def get_permissions_by_username(username, directory):
 
 def get_matching_permissions(user, directory, check_default=True):
     if user.is_authenticated():
-        permissions = get_permissions_by_username(user.username, directory)
+        permissions = get_permissions_by_username(user.username,
+                                                  directory)
         if permissions is not None:
             return permissions
 
