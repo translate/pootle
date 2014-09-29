@@ -150,68 +150,74 @@ class TreeItem(object):
         key = iri_to_uri(self.get_cachekey() + ":" + name)
         return cache.get(key)
 
-    def _calc_sum(self, name):
+    def _calc_sum(self, name, from_update):
         self.initialize_children()
         method = getattr(self, '_%s' % name)
         return (method() +
-                sum([item.get_cached(name) for item in self.children]))
+                sum([item.get_cached(name, from_update)
+                     for item in self.children]))
 
-    def _calc_last_action(self):
+    def _calc_last_action(self, from_update):
         self.initialize_children()
 
         return max(
             [self._get_last_action()] +
-            [item.get_cached(CachedMethods.LAST_ACTION)
+            [item.get_cached(CachedMethods.LAST_ACTION, from_update)
              for item in self.children],
             key=lambda x: x['mtime'] if 'mtime' in x else 0
         )
 
-    def _calc_mtime(self):
+    def _calc_mtime(self, from_update):
         """get latest modification time"""
         self.initialize_children()
         return max(
             [self._get_mtime()] +
-            [item.get_cached(CachedMethods.MTIME) for item in self.children]
+            [item.get_cached(CachedMethods.MTIME, from_update)
+             for item in self.children]
         )
 
-    def _calc_last_updated(self):
+    def _calc_last_updated(self, from_update):
         """get last updated"""
         self.initialize_children()
         return max(
             [self._get_last_updated()] +
-            [item.get_cached(CachedMethods.LAST_UPDATED)
+            [item.get_cached(CachedMethods.LAST_UPDATED, from_update)
              for item in self.children],
             key=lambda x: x['creation_time'] if 'creation_time' in x else 0
         )
 
-    def _calc_checks(self):
+    def _calc_checks(self, from_update):
         result = self._get_checks()
         self.initialize_children()
         for item in self.children:
-            item_res = item.get_cached(CachedMethods.CHECKS)
+            item_res = item.get_cached(CachedMethods.CHECKS, from_update)
             result['checks'] = dictsum(result['checks'], item_res['checks'])
             result['unit_count'] += item_res['unit_count']
 
         return result
 
-    def _calc(self, name):
+    def _calc(self, name, from_update=False):
         return {
-            CachedMethods.TOTAL: self._calc_sum(CachedMethods.TOTAL),
-            CachedMethods.TRANSLATED: self._calc_sum(CachedMethods.TRANSLATED),
-            CachedMethods.FUZZY: self._calc_sum(CachedMethods.FUZZY),
-            CachedMethods.SUGGESTIONS: self._calc_sum(CachedMethods.SUGGESTIONS),
-            CachedMethods.LAST_ACTION: self._calc_last_action(),
-            CachedMethods.LAST_UPDATED: self._calc_last_updated(),
-            CachedMethods.CHECKS: self._calc_checks(),
-            CachedMethods.MTIME: self._calc_mtime(),
+            CachedMethods.TOTAL: self._calc_sum(CachedMethods.TOTAL,
+                                                from_update),
+            CachedMethods.TRANSLATED: self._calc_sum(CachedMethods.TRANSLATED,
+                                                     from_update),
+            CachedMethods.FUZZY: self._calc_sum(CachedMethods.FUZZY,
+                                                from_update),
+            CachedMethods.SUGGESTIONS: self._calc_sum(CachedMethods.SUGGESTIONS,
+                                                      from_update),
+            CachedMethods.LAST_ACTION: self._calc_last_action(from_update),
+            CachedMethods.LAST_UPDATED: self._calc_last_updated(from_update),
+            CachedMethods.CHECKS: self._calc_checks(from_update),
+            CachedMethods.MTIME: self._calc_mtime(from_update),
         }.get(name, None)
 
     @statslog
     def update_cached(self, name):
         """calculate total wordcount statistics and update cached value"""
-        self.set_cached_value(name, self._calc(name))
+        self.set_cached_value(name, self._calc(name, from_update=True))
 
-    def get_cached(self, name):
+    def get_cached(self, name, from_update=False):
         """get total wordcount statistics from cache or calculate for
         virtual resources
         """
@@ -225,6 +231,9 @@ class TreeItem(object):
                                               self.get_cachekey(),
                                               self.__class__),
             )
+            if not from_update:
+                # get initial (empty, zero) value
+                result = getattr(TreeItem, '_%s' % name)()
 
         return result
 
