@@ -20,7 +20,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59
 
-__all__ = ('TreeItem', 'CachedMethods',)
+__all__ = ('VirtualTreeItem', 'TreeItem', 'CachedMethods')
 
 import logging
 
@@ -77,12 +77,11 @@ class CachedMethods(object):
                 filter(lambda x: x[:2] != '__' and x != 'get_all', dir(self))]
 
 
-class TreeItem(object):
+class VirtualTreeItem(object):
     def __init__(self, *args, **kwargs):
         self.children = None
         self.initialized = False
-        self._dirty_cache = set()
-        super(TreeItem, self).__init__()
+        super(VirtualTreeItem, self).__init__()
 
     def get_children(self):
         """This method will be overridden in descendants"""
@@ -136,19 +135,14 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
+    def is_dirty(self):
+        """This method will be overridden in descendants"""
+        return False
+
     def initialize_children(self):
         if not self.initialized:
             self.children = self.get_children()
             self.initialized = True
-
-    def set_cached_value(self, name, value,
-                         timeout=settings.OBJECT_CACHE_TIMEOUT):
-        key = iri_to_uri(self.get_cachekey() + ":" + name)
-        return cache.set(key, value, timeout)
-
-    def get_cached_value(self, name):
-        key = iri_to_uri(self.get_cachekey() + ":" + name)
-        return cache.get(key)
 
     def _calc_sum(self, name, from_update):
         self.initialize_children()
@@ -212,6 +206,54 @@ class TreeItem(object):
             CachedMethods.MTIME: self._calc_mtime(from_update),
         }.get(name, None)
 
+    def get_critical_url(self):
+        critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
+        return self.get_translate_url(check=critical)
+
+    def get_stats(self, include_children=True):
+        """get stats for self and - optionally - for children"""
+        self.initialize_children()
+
+        result = {
+            'total': self._calc(CachedMethods.TOTAL),
+            'translated': self._calc(CachedMethods.TRANSLATED),
+            'fuzzy': self._calc(CachedMethods.FUZZY),
+            'suggestions': self._calc(CachedMethods.SUGGESTIONS),
+            'lastaction': self._calc(CachedMethods.LAST_ACTION),
+            'critical': self.get_error_unit_count(),
+            'lastupdated': self._calc(CachedMethods.LAST_UPDATED),
+            'is_dirty': self.is_dirty(),
+        }
+
+        if include_children:
+            result['children'] = {}
+            for item in self.children:
+                code = (self._get_code(item) if hasattr(self, '_get_code')
+                                             else item.code)
+                result['children'][code] = item.get_stats(False)
+
+        return result
+
+    def get_error_unit_count(self):
+        check_stats = self._calc(CachedMethods.CHECKS)
+
+        return getattr(check_stats, 'unit_count', 0)
+
+
+class TreeItem(VirtualTreeItem):
+    def __init__(self, *args, **kwargs):
+        self._dirty_cache = set()
+        super(TreeItem, self).__init__()
+
+    def set_cached_value(self, name, value,
+                         timeout=settings.OBJECT_CACHE_TIMEOUT):
+        key = iri_to_uri(self.get_cachekey() + ":" + name)
+        return cache.set(key, value, timeout)
+
+    def get_cached_value(self, name):
+        key = iri_to_uri(self.get_cachekey() + ":" + name)
+        return cache.get(key)
+
     @statslog
     def update_cached(self, name):
         """calculate total wordcount statistics and update cached value"""
@@ -221,9 +263,6 @@ class TreeItem(object):
         """get total wordcount statistics from cache or calculate for
         virtual resources
         """
-        if getattr(self, 'no_cache', False):
-            return self._calc(name)
-
         result = self.get_cached_value(name)
         if result is None:
             logging.error(
@@ -278,9 +317,9 @@ class TreeItem(object):
 
         return getattr(check_stats, 'unit_count', 0)
 
-    def get_critical_url(self):
-        critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
-        return self.get_translate_url(check=critical)
+    def is_dirty(self):
+        """Checks if current TreeItem is registered as dirty"""
+        return self.get_dirty_score() > 0 or self.is_being_refreshed()
 
     def mark_dirty(self, *args):
         """Mark cached method names for this TreeItem as dirty"""
@@ -344,15 +383,10 @@ class TreeItem(object):
 
         return False
 
-    def is_dirty(self):
-        """Checks if current TreeItem is registered as dirty"""
-        return self.get_dirty_score() > 0 or self.is_being_refreshed()
-
     def register_dirty(self):
         """Register current TreeItem as dirty
         (should be called before RQ job adding)
         """
-
         r_con = get_connection()
         for p in self.all_pootle_paths():
             r_con.zincrby(POOTLE_DIRTY_TREEITEMS, p)

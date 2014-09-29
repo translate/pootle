@@ -20,10 +20,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
-from .mixins import TreeItem
+from .mixins import VirtualTreeItem
 
 
-class VirtualResource(TreeItem):
+class VirtualResource(VirtualTreeItem):
     """An object representing a virtual resource.
 
     A virtual resource doesn't live in the DB and has a unique
@@ -39,9 +39,6 @@ class VirtualResource(TreeItem):
     def __init__(self, resources, pootle_path, *args, **kwargs):
         self.resources = resources  #: Collection of underlying resources
         self.pootle_path = pootle_path
-
-        # do not cache statistic for a virtual resources
-        self.no_cache = True
 
         super(VirtualResource, self).__init__(*args, **kwargs)
 
