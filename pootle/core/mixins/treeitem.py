@@ -256,13 +256,11 @@ class TreeItem(VirtualTreeItem):
 
     @statslog
     def update_cached(self, name):
-        """calculate total wordcount statistics and update cached value"""
+        """calculate stat value and update cached value"""
         self.set_cached_value(name, self._calc(name, from_update=True))
 
     def get_cached(self, name, from_update=False):
-        """get total wordcount statistics from cache or calculate for
-        virtual resources
-        """
+        """get stat value from cache"""
         result = self.get_cached_value(name)
         if result is None:
             logging.error(
