@@ -130,7 +130,10 @@ def delete_path_obj(request, translation_project, dir_path, filename=None):
     """Deletes the path objects under `dir_path` (+ `filename`) from the
     filesystem, including `dir_path` in case it's not a translation project.
     """
-    current_path = translation_project.directory.pootle_path + dir_path
+    current_path = translation_project.directory.pootle_path
+    if current_path != dir_path:
+        # HACK see bug 3274
+        current_path += dir_path
 
     try:
         if filename:
