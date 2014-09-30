@@ -1,4 +1,4 @@
-/* glue: 0.9.4 hash: 1330eba229 */
+/* glue: 0.9.4 hash: 510de363e9 */
 .icon-user-website,
 .icon-user-twitter,
 .icon-user-linkedin,
@@ -20,6 +20,7 @@
 .icon-folder,
 .icon-folder-parent,
 .icon-file,
+.icon-error,
 .icon-copy,
 .icon-comment-user,
 .icon-comment-add,
@@ -161,68 +162,74 @@
             height: 16px;
         }
 
-        .icon-copy {
+        .icon-error {
             background-position: -32px -80px;
             width: 16px;
             height: 16px;
         }
 
-        .icon-comment-user {
+        .icon-copy {
             background-position: -48px -80px;
             width: 16px;
             height: 16px;
         }
 
-        .icon-comment-add {
+        .icon-comment-user {
             background-position: -64px -80px;
             width: 16px;
             height: 16px;
         }
 
-        .icon-block {
+        .icon-comment-add {
             background-position: -80px -80px;
             width: 16px;
             height: 16px;
         }
 
-        .icon-block-muted {
+        .icon-block {
             background-position: -101px 0;
             width: 16px;
             height: 16px;
         }
 
-        .icon-arrow-up {
+        .icon-block-muted {
             background-position: -101px -16px;
-            width: 9px;
+            width: 16px;
             height: 16px;
         }
 
-        .icon-arrow-down {
+        .icon-arrow-up {
             background-position: -101px -32px;
             width: 9px;
             height: 16px;
         }
 
-        .icon-apertium {
+        .icon-arrow-down {
             background-position: -101px -48px;
-            width: 16px;
+            width: 9px;
             height: 16px;
         }
 
-        .icon-accept {
+        .icon-apertium {
             background-position: -101px -64px;
             width: 16px;
             height: 16px;
         }
 
-        .icon-back {
+        .icon-accept {
             background-position: -101px -80px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-back {
+            background-position: -64px -51px;
             width: 14px;
             height: 13px;
         }
 
         .icon-external-link {
-            background-position: -64px -51px;
+            background-position: 0 -96px;
             width: 12px;
             height: 12px;
         }
@@ -249,6 +256,7 @@
     .icon-folder,
     .icon-folder-parent,
     .icon-file,
+    .icon-error,
     .icon-copy,
     .icon-comment-user,
     .icon-comment-add,
@@ -261,8 +269,8 @@
     .icon-back,
     .icon-external-link {
                 background-image: url('../images/sprite.png');
-                -webkit-background-size: 117px 96px;
-                -moz-background-size: 117px 96px;
-                background-size: 117px 96px;
+                -webkit-background-size: 117px 108px;
+                -moz-background-size: 117px 108px;
+                background-size: 117px 108px;
             }
         }
