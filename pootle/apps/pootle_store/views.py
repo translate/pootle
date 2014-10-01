@@ -737,7 +737,7 @@ def permalink_redirect(request, unit):
 @permission_required('view')
 @get_resource
 def get_qualitycheck_stats(request, *args, **kwargs):
-    failing_checks = request.resource_obj.get_cached(CachedMethods.CHECKS)['checks']
+    failing_checks = request.resource_obj.get_checks()
     response = jsonify(failing_checks)
     return HttpResponse(response, mimetype="application/json")
 

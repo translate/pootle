@@ -240,6 +240,9 @@ class VirtualTreeItem(object):
 
         return getattr(check_stats, 'unit_count', 0)
 
+    def get_checks(self):
+        return self._calc(CachedMethods.CHECKS)['checks']
+
 
 class TreeItem(VirtualTreeItem):
     def __init__(self, *args, **kwargs):
@@ -274,6 +277,9 @@ class TreeItem(VirtualTreeItem):
                 result = getattr(TreeItem, '_%s' % name)()
 
         return result
+
+    def get_checks(self):
+        return self.get_cached(CachedMethods.CHECKS)['checks']
 
     def get_stats(self, include_children=True):
         """get stats for self and - optionally - for children"""
