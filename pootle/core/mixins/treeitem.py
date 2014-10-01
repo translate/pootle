@@ -31,7 +31,8 @@ from translate.filters.decorators import Category
 
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.encoding import iri_to_uri
+from django.core.urlresolvers import set_script_prefix
+from django.utils.encoding import force_unicode, iri_to_uri
 
 from django_rq import job
 from django_rq.queues import get_connection
@@ -449,4 +450,11 @@ class TreeItem(VirtualTreeItem):
 @job
 def update_cache(instance, keys):
     """RQ job"""
+    # The script prefix needs to be set here because the generated
+    # URLs need to be aware of that and they are cached. Ideally
+    # Django should take care of setting this up, but it doesn't yet:
+    # https://code.djangoproject.com/ticket/16734
+    script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
+                        else force_unicode(settings.FORCE_SCRIPT_NAME))
+    set_script_prefix(script_name)
     instance._update_cache(keys)
