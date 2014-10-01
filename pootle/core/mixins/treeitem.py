@@ -249,10 +249,9 @@ class TreeItem(VirtualTreeItem):
         self._dirty_cache = set()
         super(TreeItem, self).__init__()
 
-    def set_cached_value(self, name, value,
-                         timeout=settings.OBJECT_CACHE_TIMEOUT):
+    def set_cached_value(self, name, value):
         key = iri_to_uri(self.get_cachekey() + ":" + name)
-        return cache.set(key, value, timeout)
+        return cache.set(key, value, None)
 
     def get_cached_value(self, name):
         key = iri_to_uri(self.get_cachekey() + ":" + name)
