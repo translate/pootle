@@ -1,10 +1,11 @@
 var webpack = require('webpack');
 
 var env = process.env.NODE_ENV;
-var plugins;
 
 
 /* Plugins */
+
+var plugins;
 
 if (env === 'production') {
   plugins = [
