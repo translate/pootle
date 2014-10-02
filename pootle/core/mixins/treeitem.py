@@ -238,7 +238,7 @@ class VirtualTreeItem(object):
     def get_error_unit_count(self):
         check_stats = self._calc(CachedMethods.CHECKS)
 
-        return getattr(check_stats, 'unit_count', 0)
+        return check_stats.get('unit_count', 0)
 
     def get_checks(self):
         return self._calc(CachedMethods.CHECKS)['checks']
@@ -319,7 +319,7 @@ class TreeItem(VirtualTreeItem):
     def get_error_unit_count(self):
         check_stats = self.get_cached(CachedMethods.CHECKS)
 
-        return getattr(check_stats, 'unit_count', 0)
+        return check_stats.get('unit_count', 0)
 
     def is_dirty(self):
         """Checks if current TreeItem is registered as dirty"""
