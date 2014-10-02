@@ -97,6 +97,11 @@ class User(AbstractBaseUser):
         return (self.get_full_name() if self.get_full_name()
                                      else self.get_short_name())
 
+    @property
+    def is_staff(self):
+        # For compatibility with django admin.
+        return self.is_superuser
+
     def __unicode__(self):
         return self.username
 
