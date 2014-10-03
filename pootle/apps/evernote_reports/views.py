@@ -405,6 +405,8 @@ def get_paid_tasks(user, start, end):
 def get_grouped_paid_words(user, start, end):
     result = []
     scores = ScoreLog.objects \
+        .select_related('submission__translation_project__project',
+                        'submission__translation_project__language',) \
         .filter(user=user,
                 creation_time__gte=start,
                 creation_time__lte=end) \
