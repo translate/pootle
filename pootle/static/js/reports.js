@@ -262,6 +262,16 @@
           $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(data));
           if (data.meta.user) {
             PTL.reports.user = data.meta.user;
+            $('#reports-params .dates ul li a').each(function(){
+              var $this = $(this),
+                  offset = parseInt($this.data('month-offset')),
+                  dateRange = PTL.reports.getDateRangeByOffset(offset),
+                  link = '#username=' + PTL.reports.user.username;
+              link += '&start=' + dateRange[0].format('YYYY-MM-DD');
+              link += '&end=' + dateRange[1].format('YYYY-MM-DD')
+
+              $this.attr('href', link);
+            });
             $('#reports-params').show();
             $('#detailed').show();
 
