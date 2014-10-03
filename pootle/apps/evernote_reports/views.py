@@ -347,10 +347,10 @@ def get_daily_activity(user, start, end):
 
     saved_ts = None
     current_day_score = 0
+    tz = timezone.get_default_timezone()
     for score in scores:
         score_time = score.creation_time
         if settings.USE_TZ:
-            tz = timezone.get_default_timezone()
             score_time = timezone.make_naive(score_time, tz)
         date = score_time.date()
         ts = int((time.mktime(date.timetuple()) + 60*60*12) * 1000)
@@ -449,41 +449,45 @@ def get_summary(user, start, end):
                 creation_time__lte=end) \
         .order_by('creation_time')
 
+    tz = timezone.get_default_timezone()
     for score in scores:
+        if settings.USE_TZ:
+            score_time = timezone.make_naive(score.creation_time, tz)
+
         if (score.rate != rate or
-            translation_month != score.creation_time.month):
+            translation_month != score_time.month):
             rate = score.rate
-            translation_month = score.creation_time.month
+            translation_month = score_time.month
             translated_row = {
                 'type': PaidTaskTypes.TRANSLATION,
                 'action': PaidTaskTypes.TRANSLATION,
                 'amount': 0,
                 'rate': score.rate,
-                'start': score.creation_time,
-                'end': score.creation_time,
+                'start': score_time,
+                'end': score_time,
             }
             translations.append(translated_row)
         if (score.review_rate != review_rate or
-            review_month != score.creation_time.month):
+            review_month != score_time.month):
             review_rate = score.review_rate
-            review_month = score.creation_time.month
+            review_month = score_time.month
             reviewed_row = {
                 'type': PaidTaskTypes.REVIEW,
                 'action': PaidTaskTypes.REVIEW,
                 'amount': 0,
                 'rate': score.review_rate,
-                'start': score.creation_time,
-                'end': score.creation_time,
+                'start': score_time,
+                'end': score_time,
             }
             reviews.append(reviewed_row)
 
         translated_words, reviewed_words = score.get_paid_words()
 
         if translated_words > 0:
-            translated_row['end'] = score.creation_time
+            translated_row['end'] = score_time
             translated_row['amount'] += translated_words
         elif reviewed_words > 0:
-            reviewed_row['end'] = score.creation_time
+            reviewed_row['end'] = score_time
             reviewed_row['amount'] += reviewed_words
 
     for group in [translations, reviews]:
@@ -514,7 +518,6 @@ def get_summary(user, start, end):
             datetime_time(hour=23, minute=59, second=59)
         )
         if settings.USE_TZ:
-            tz = timezone.get_default_timezone()
             task_datetime = timezone.make_aware(task_datetime, tz)
 
         for item in result:
