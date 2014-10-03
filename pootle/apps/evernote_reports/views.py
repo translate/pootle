@@ -420,7 +420,6 @@ def get_grouped_paid_words(user, start, end):
                     (tp.project.fullname, tp.language.fullname),
                 'score_delta': 0,
                 'translated': 0,
-                'translated_raw': 0,
                 'reviewed': 0,
             }
             result.append(row)
@@ -428,7 +427,6 @@ def get_grouped_paid_words(user, start, end):
         translated_words, reviewed_words = score.get_paid_words()
         if translated_words:
             row['translated'] += translated_words
-            row['translated_raw'] += score.wordcount
         if reviewed_words:
             row['reviewed'] += reviewed_words
         row['score_delta'] += score.score_delta

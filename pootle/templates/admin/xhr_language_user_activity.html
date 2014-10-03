@@ -5,7 +5,6 @@
     <thead>
     <tr>
       <th><%= gettext('Project / Language') %></th>
-      <th class="number"><%= gettext('Translated (raw)') %></th>
       <th class="number"><%= gettext('Translated (with similarity)') %></th>
       <th class="number"><%= gettext('Reviewed') %></th>
       <th class="number"><%= gettext('Score Delta') %></th>
@@ -15,12 +14,10 @@
     <% var totalTranslatedRaw = totalTranslated = totalReviewed = totalScoreDelta = 0; %>
     <% _.each(grouped, function (row) { %>
       <% totalTranslated += row.translated %>
-      <% totalTranslatedRaw += row.translated_raw %>
       <% totalReviewed += row.reviewed %>
       <% totalScoreDelta += row.score_delta %>
       <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
         <td><%= row.translation_project %></td>
-        <td class="number<% if (row.translated_raw == 0) { %> zero<% } %>"><%= Math.round(row.translated_raw) %> <%= ngettext("word", "words", Math.round(row.translated_raw)) %></td>
         <td class="number<% if (row.translated == 0) { %> zero<% } %>"><%= Math.round(row.translated) %> <%= ngettext("word", "words", Math.round(row.translated)) %></td>
         <td class="number<% if (row.reviewed == 0) { %> zero<% } %>"><%= row.reviewed %> <%= ngettext("word", "words", Math.round(row.reviewed)) %></td>
         <td class="number<% if (row.score_delta == 0) { %> zero<% } %>"><% if (row.score_delta > 0) { %>+<% } %><%= row.score_delta.toFixed(2) %></td>
@@ -28,7 +25,6 @@
     <% }); %>
       <tr class="total">
         <td>&nbsp;</td>
-        <td class="number<% if (totalTranslatedRaw == 0) { %> zero<% } %>"><%= Math.round(totalTranslatedRaw) %> <%= ngettext("word", "words", Math.round(totalTranslatedRaw)) %></td>
         <td class="number<% if (totalTranslated == 0) { %> zero<% } %>"><%= Math.round(totalTranslated) %> <%= ngettext("word", "words", Math.round(totalTranslated)) %></td>
         <td class="number<% if (totalReviewed == 0) { %> zero<% } %>"><%= Math.round(totalReviewed) %> <%= ngettext("word", "words", Math.round(totalReviewed)) %></td>
         <td class="number<% if (totalScoreDelta == 0) { %> zero<% } %>"><% if (totalScoreDelta > 0) { %>+<% } %><%= totalScoreDelta.toFixed(2) %></td>
