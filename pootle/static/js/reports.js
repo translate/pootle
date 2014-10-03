@@ -242,6 +242,7 @@
         username: PTL.reports.userName
       };
 
+      $('body').spin();
       $.ajax({
         url: 'activity',
         data: reqData,
@@ -279,9 +280,11 @@
             $('#user-rates-form .currency').text($('#id_currency').val())
             $('#forms').show();
           }
+          $('body').spin(false);
         },
         error: function (xhr, s) {
           alert('Error status: ' + $.parseJSON(xhr.responseText));
+          $('body').spin(false);
         }
       });
     },
