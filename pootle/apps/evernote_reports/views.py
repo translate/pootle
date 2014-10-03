@@ -92,7 +92,7 @@ def evernote_reports_detailed(request):
 
     if user and start and end:
         scores = ScoreLog.objects \
-            .select_related('submission__unit') \
+            .select_related('submission__unit__store') \
             .filter(user=user,
                     creation_time__gte=start,
                     creation_time__lte=end) \
