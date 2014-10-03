@@ -339,7 +339,6 @@ def get_daily_activity(user, start, end):
     }
 
     scores = ScoreLog.objects \
-                     .select_related('submission__unit') \
                      .filter(user=user,
                              creation_time__gte=start,
                              creation_time__lte=end) \
