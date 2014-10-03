@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>{% blocktrans %}Report for {{ user }}{% endblocktrans %} ({{ start|date:"j M Y" }} &ndash; {{ end|date:"j M Y" }}) | {{ settings.TITLE }}</title>
+  <title>{% blocktrans with user.formatted_name as user %}Report for {{ user }}, {% endblocktrans %}{% format_date_range start end " &ndash; " %} | {{ settings.TITLE }}</title>
   <base href="http://{{ request.META.HTTP_HOST }}" />
   <style type="text/css">
     html
