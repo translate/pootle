@@ -22,12 +22,14 @@
         <td class="number"><%= Math.round(row.amount) %> <% if (row.type === 2) { %><%= ngettext("hour", "hours", Math.round(row.amount)) %><% } else { %><%= ngettext("word", "words", Math.round(row.amount)) %><% } %></td>
         <td class="number"><%= row.rate %> <%= meta.user.currency %></td>
         <td class="number"><%= subTotal.toFixed(2) %> <%= meta.user.currency %></td>
+        <td></td>
       </tr>
     <% }); %>
       <tr class="total">
           <td><%= interpolate(gettext('Total (%(currency)s)'), {'currency': meta.user.currency}, true) %></td>
           <td colspan="3"></td>
           <td class="number"><%= total.toFixed(2) %> <%= meta.user.currency %></td>
+          <td></td>
       </tr>
     </tbody>
   </table>

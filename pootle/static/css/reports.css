@@ -274,16 +274,34 @@ th.number
     width: 100%;
 }
 
+#reports-summary td:nth-child(1),
+#reports-paid-tasks td:nth-child(1)
+{
+    width: 40%;
+}
+
+#reports-summary td:nth-child(2),
+#reports-paid-tasks td:nth-child(2)
+{
+    width: 10%;
+}
+
+#reports-summary td,
+#reports-paid-tasks td
+{
+    width: 15%;
+}
+
+#reports-paid-tasks td:last-child
+{
+    width: 5%;
+}
+
 #reports-paid-tasks i
 {
     cursor: pointer;
     vertical-align: middle;
     margin-left: 30px;
-}
-
-#reports-paid-tasks .remove
-{
-    width: 40px;
 }
 
 #reports-activity
