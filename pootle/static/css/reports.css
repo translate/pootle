@@ -8,10 +8,9 @@
     margin-top: 1em;
 }
 
-#reports-results table
+#reports-results table.stats
 {
-    margin-top: 0.5em;
-    margin-bottom: 1.5em;
+    margin-bottom: 2em !important;
 }
 
 #reports-results td
