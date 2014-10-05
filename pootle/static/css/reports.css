@@ -1,160 +1,204 @@
-#reports-container {
+#reports-container
+{
     margin: 2em 0;
 }
 
-#reports-results {
+#reports-results
+{
     margin-top: 1em;
 }
 
-#reports-results table {
+#reports-results table
+{
     margin-top: 0.5em;
     margin-bottom: 1.5em;
 }
 
-#reports-results td {
+#reports-results td
+{
     padding: 5px;
     width: 1%;
 }
 
 #reports-results th,
 #reports-summary th,
-#reports-paid-tasks th {
+#reports-paid-tasks th
+{
     color: #999;
     font-size: 85%;
     padding: 5px;
 }
 
-#reports-calendar {
+#reports-calendar
+{
     display: none;
 }
 
-#reports-params .dates li {
+#reports-params .dates li
+{
     display: inline-block;
     margin-right: 2em;
 }
 
-#reports-form {
+#reports-form
+{
     width: 250px;
     margin-right: 2em;
 }
 
-#reports-params {
+#reports-params
+{
     white-space: nowrap;
     text-align: center;
 }
 
-#reports-form .select2-container {
+#reports-form .select2-container
+{
     width: 100% !important;
     max-width: 250px;
 }
 
 /* table row colors, see 'Table Row Colors.psd' */
 
-tr.even td.total {
+tr.even td.total
+{
     background-color: #e2f4f8;
 }
 
-tr.odd td.total {
+tr.odd td.total
+{
     background-color: #ebf7fb;
 }
 
-tr.total {
+tr.total
+{
     background-color: #c0e4f0;
     height: 2.5em;
 }
 
-tr.after_break {
+tr.after_break
+{
     border-top: 1px dashed #c0e4f0;
 }
 
-th.number {
+th.number
+{
     text-align: right;
 }
 
 #reports-results tr:hover,
 #reports-summary tr:hover,
-#reports-paid-tasks tr:hover {
+#reports-paid-tasks tr:hover
+{
     background-color: #abfbfd !important;
 }
 
 #reports-results tr:hover td.total,
-#reports-summary tr:hover td.total {
+#reports-summary tr:hover td.total
+{
     background-color: #9ef5fa !important;
 }
 
-#reports-params .selected {
+#reports-params .selected
+{
     font-size: 125%;
     font-weight: bold;
 }
-#reports-results h2 {
+
+#reports-results h2
+{
     display: inline-block;
 }
-#reports-viewmode {
+
+#reports-viewmode
+{
     display: inline-block;
     padding-bottom: 10px;
     vertical-align: middle;
     margin-left: 10px;
 }
 
-#reports-results.new .new-empty {
-    display: none;
-}
-#reports-results.new .edit-empty {
-    display: inherit;
-}
-#reports-results.edit .new-empty {
-    display: inherit;
-}
-#reports-results.edit .edit-empty {
+#reports-results.new .new-empty
+{
     display: none;
 }
 
-#user-rates-form {
+#reports-results.new .edit-empty
+{
+    display: inherit;
+}
+
+#reports-results.edit .new-empty
+{
+    display: inherit;
+}
+
+#reports-results.edit .edit-empty
+{
+    display: none;
+}
+
+#user-rates-form
+{
     width: 300px;
 }
 
-#evernote_reports .settings-container table {
+#evernote_reports .settings-container table
+{
     margin-bottom: 0;
 }
 
-#user-rates-form .help {
+#user-rates-form .help
+{
     font-size: 75%;
     color: #999;
 }
-.field-wrapper {
+
+.field-wrapper
+{
     float: left;
 }
-#user-rates-form .currency {
+
+#user-rates-form .currency
+{
     float: left;
     padding: 5px;
 }
-#user-rates-form .error {
+
+#user-rates-form .error
+{
     background-color: #c55;
 }
 
-#user-rates-form input {
+#user-rates-form input
+{
     width: 95px;
 }
 
-#user-rates-form input.rate {
+#user-rates-form input.rate
+{
     width: 61px;
 }
 
-#user-rates-form select.rate {
+#user-rates-form select.rate
+{
     width: 65px;
 }
 
-#detailed {
+#detailed
+{
     text-align: right;
     margin-right: 5px;
     display: none;
 }
 
-#reports-params {
+#reports-params
+{
     display: none;
 }
 
-#forms {
+#forms
+{
     display: none;
     margin: 3em -2em 1em;
     text-align: center;
@@ -163,70 +207,85 @@ th.number {
     padding-bottom: 2em ;
 }
 
-#forms h2 {
+#forms h2
+{
     color: #c30;
     text-align: left;
 }
 
-#forms form {
+#forms form
+{
     display: inline-block;
 }
 
-#forms .label {
+#forms .label
+{
     text-align: left;
 }
 
-#paid-task-form {
+#paid-task-form
+{
     width: 400px;
     margin-left: 100px;
 }
 
-#paid-task-form #id_task_type {
+#paid-task-form #id_task_type
+{
     width: 104px;
 }
 
-#paid-task-form input {
+#paid-task-form input
+{
     width: 100px;
 }
 
-#paid-task-form .units {
+#paid-task-form .units
+{
     float: left;
     padding: 5px;
 }
 
-#paid-task-form #id_description {
+#paid-task-form #id_description
+{
     height: 60px;
     width: 200px;
 }
 
 #reports-summary,
-#reports-paid-tasks {
+#reports-paid-tasks
+{
     display: inline-block;
     width: 100%;
 }
 
-#reports-paid-tasks i {
+#reports-paid-tasks i
+{
     cursor: pointer;
     vertical-align: middle;
     margin-left: 30px;
 }
 
-#reports-paid-tasks .remove {
+#reports-paid-tasks .remove
+{
     width: 40px;
 }
 
-#reports-activity {
+#reports-activity
+{
     display: none;
 }
 
-#daily-chart {
+#daily-chart
+{
     min-height: 300px;
 }
 
-#daily-chart table {
+#daily-chart table
+{
     width: inherit;
 }
 
-.zero {
+.zero
+{
     opacity: 0.5;
 }
