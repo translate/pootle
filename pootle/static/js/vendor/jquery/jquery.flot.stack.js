@@ -1,6 +1,6 @@
 /* Flot plugin for stacking data sets rather than overlyaing them.
 
-Copyright (c) 2007-2013 IOLA and Ole Laursen.
+Copyright (c) 2007-2014 IOLA and Ole Laursen.
 Licensed under the MIT license.
 
 The plugin assumes the data is sorted on x (or y if stacking horizontally).
@@ -39,21 +39,21 @@ charts or filled areas).
     var options = {
         series: { stack: null } // or number/string
     };
-
+    
     function init(plot) {
         function findMatchingSeries(s, allseries) {
             var res = null;
             for (var i = 0; i < allseries.length; ++i) {
                 if (s == allseries[i])
                     break;
-
+                
                 if (allseries[i].stack == s.stack)
                     res = allseries[i];
             }
-
+            
             return res;
         }
-
+        
         function stackData(plot, s, datapoints) {
             if (s.stack == null || s.stack === false)
                 return;
@@ -113,13 +113,12 @@ charts or filled areas).
                     bottom = 0;
 
                     if (px == qx) {
-                        if (points[i + 1] !== 0) {
-                            for (m = 0; m < ps; ++m)
-                                newpoints.push(points[i + m]);
+                        for (m = 0; m < ps; ++m)
+                            newpoints.push(points[i + m]);
 
-                            newpoints[l + accumulateOffset] += qy;
-                            bottom = qy;
-                        }
+                        newpoints[l + accumulateOffset] += qy;
+                        bottom = qy;
+                        
                         i += ps;
                         j += otherps;
                     }
@@ -132,7 +131,7 @@ charts or filled areas).
                             newpoints.push(intery + qy);
                             for (m = 2; m < ps; ++m)
                                 newpoints.push(points[i + m]);
-                            bottom = qy;
+                            bottom = qy; 
                         }
 
                         j += otherps;
@@ -143,22 +142,22 @@ charts or filled areas).
                             i += ps;
                             continue;
                         }
-
+                            
                         for (m = 0; m < ps; ++m)
                             newpoints.push(points[i + m]);
-
+                        
                         // we might be able to interpolate a point below,
                         // this can give us a better y
                         if (withlines && j > 0 && otherpoints[j - otherps] != null)
                             bottom = qy + (otherpoints[j - otherps + accumulateOffset] - qy) * (px - qx) / (otherpoints[j - otherps + keyOffset] - qx);
 
                         newpoints[l + accumulateOffset] += bottom;
-
+                        
                         i += ps;
                     }
 
                     fromgap = false;
-
+                    
                     if (l != newpoints.length && withbottom)
                         newpoints[l + 2] += bottom;
                 }
@@ -176,10 +175,10 @@ charts or filled areas).
 
             datapoints.points = newpoints;
         }
-
+        
         plot.hooks.processDatapoints.push(stackData);
     }
-
+    
     $.plot.plugins.push({
         init: init,
         options: options,

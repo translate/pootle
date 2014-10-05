@@ -222,8 +222,8 @@
             },
           },
           xaxis: {
-              min: PTL.reports.dailyData.min_ts,
-              max: PTL.reports.dailyData.max_ts,
+              min: parseInt(PTL.reports.dailyData.min_ts) - 1000*60*60*12,
+              max: parseInt(PTL.reports.dailyData.max_ts) - 1000*60*60*12,
               minTickSize: [1, "day"],
               mode: "time",
               timeformat: "%b %d, %a",

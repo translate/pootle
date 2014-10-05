@@ -19,6 +19,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
+import calendar
 import time
 from datetime import datetime, timedelta, time as datetime_time
 
@@ -333,8 +334,8 @@ def get_daily_activity(user, start, end):
     result = {
         'data': [result_translated, result_reviewed],
         'max_day_score': 10,
-        'min_ts': "%d" % (time.mktime(start.timetuple()) * 1000),
-        'max_ts': "%d" % (time.mktime(end.timetuple()) * 1000),
+        'min_ts': "%d" % (calendar.timegm(start.timetuple()) * 1000),
+        'max_ts': "%d" % (calendar.timegm(end.timetuple()) * 1000),
         'nonempty': False,
     }
 
@@ -346,13 +347,10 @@ def get_daily_activity(user, start, end):
 
     saved_ts = None
     current_day_score = 0
-    tz = timezone.get_default_timezone()
     for score in scores:
         score_time = score.creation_time
-        if settings.USE_TZ:
-            score_time = timezone.make_naive(score_time, tz)
         date = score_time.date()
-        ts = int((time.mktime(date.timetuple()) + 60*60*12) * 1000)
+        ts = int((calendar.timegm(date.timetuple())) * 1000)
 
         translated, reviewed = score.get_paid_words()
         if translated or reviewed:
