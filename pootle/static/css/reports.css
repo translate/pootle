@@ -112,6 +112,11 @@ th.number {
 #user-rates-form {
     width: 300px;
 }
+
+#evernote_reports .settings-container table {
+    margin-bottom: 0;
+}
+
 #user-rates-form .help {
     font-size: 75%;
     color: #999;
@@ -128,13 +133,15 @@ th.number {
 }
 
 #user-rates-form input {
-    width: 85px;
+    width: 95px;
 }
+
 #user-rates-form input.rate {
-    width: 51px;
+    width: 61px;
 }
+
 #user-rates-form select.rate {
-    width: 55px;
+    width: 65px;
 }
 
 #detailed {
@@ -149,12 +156,11 @@ th.number {
 
 #forms {
     display: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 3em -2em 1em;
     text-align: center;
     background-color: #eee;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 2em;
+    padding-bottom: 2em ;
 }
 
 #forms h2 {
@@ -173,6 +179,10 @@ th.number {
 #paid-task-form {
     width: 400px;
     margin-left: 100px;
+}
+
+#paid-task-form #id_task_type {
+    width: 104px;
 }
 
 #paid-task-form input {
