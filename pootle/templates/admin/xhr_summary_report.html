@@ -6,11 +6,12 @@
       <th><%= gettext('Period') %></th>
       <th><%= gettext('Action') %></th>
       <th class="number"><%= gettext('Amount') %></th>
-      <th class="number"><%= gettext('x Rate') %></th>
+      <th class="number">&times; <%= gettext('Rate') %></th>
       <th class="number"><%= gettext('Subtotal') %></th>
     </tr>
     </thead>
     <%= PTL.reports.resetRowStyle()  %>
+    <tbody>
     <% var total =  0; %>
     <% _.each(summary, function (row) { %>
       <% var subTotal = Math.round(row.amount) * row.rate; %>
@@ -28,5 +29,6 @@
           <td colspan="3"></td>
           <td class="number"><%= total.toFixed(2) %> <%= meta.user.currency %></td>
       </tr>
+    </tbody>
   </table>
 <% } %>

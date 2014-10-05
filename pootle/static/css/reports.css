@@ -13,6 +13,11 @@
     margin-bottom: 2em !important;
 }
 
+table.stats td
+{
+    padding: 5px;
+}
+
 #reports-results td
 {
     padding: 5px;
@@ -75,6 +80,11 @@ tr.total
     height: 2.5em;
 }
 
+tr.total .number
+{
+    font-size: 130%;
+}
+
 tr.after_break
 {
     border-top: 1px dashed #c0e4f0;
@@ -85,17 +95,17 @@ th.number
     text-align: right;
 }
 
-#reports-results tr:hover,
-#reports-summary tr:hover,
-#reports-paid-tasks tr:hover
+#reports-results tbody tr:hover,
+#reports-summary tbody tr:hover,
+#reports-paid-tasks tbody tr:hover
 {
-    background-color: #abfbfd !important;
+    background-color: #b8fdff !important;
 }
 
-#reports-results tr:hover td.total,
-#reports-summary tr:hover td.total
+#reports-results tbody tr.total:hover,
+#reports-summary tbody tr.total:hover
 {
-    background-color: #9ef5fa !important;
+    background-color: #7ad3d8 !important;
 }
 
 #reports-params .selected
@@ -199,7 +209,7 @@ th.number
 #forms
 {
     display: none;
-    margin: 3em -2em 1em;
+    margin: 3em -2em 0;
     text-align: center;
     background-color: #eee;
     padding-top: 2em;
@@ -249,6 +259,13 @@ th.number
     height: 60px;
     width: 200px;
 }
+
+#reports-summary h2,
+#reports-paid-tasks h2
+{
+    margin-top: 1em;
+}
+
 
 #reports-summary,
 #reports-paid-tasks

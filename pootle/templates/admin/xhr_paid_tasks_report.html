@@ -1,17 +1,18 @@
 <% if (meta.user !== "") { %>
 <% if (_.size(paid_tasks) > 0) { %>
-  <h2><%= gettext('Paid tasks') %></h2>
+  <h2><%= gettext('Registered Paid Tasks') %></h2>
   <table class="stats">
     <thead>
     <tr>
       <th><%= gettext('Action') %></th>
       <th><%= gettext('Comment') %></th>
       <th class="number"><%= gettext('Amount') %></th>
-      <th class="number"><%= gettext('x Rate') %></th>
+      <th class="number">&times; <%= gettext('Rate') %></th>
       <th class="number"><%= gettext('Subtotal') %></th>
       <th class="remove"></th>
     </tr>
     </thead>
+    <tbody>
     <%= PTL.reports.resetRowStyle()  %>
     <% _.each(paid_tasks, function (row) { %>
       <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
@@ -25,6 +26,7 @@
         </td>
       </tr>
     <% }); %>
+    </tbody>
   </table>
 <% } %>
 <% } %>

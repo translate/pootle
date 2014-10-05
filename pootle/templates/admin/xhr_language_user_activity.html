@@ -4,12 +4,13 @@
       <thead>
       <tr>
         <th><%= gettext('Project / Language') %></th>
-        <th class="number"><%= gettext('Translated (with similarity)') %></th>
+        <th class="number"><%= gettext('Translated') %></th>
         <th class="number"><%= gettext('Reviewed') %></th>
-        <th class="number"><%= gettext('Score Delta') %></th>
+        <th class="number"><%= gettext('Score Change') %></th>
       </tr>
       </thead>
       <%= PTL.reports.resetRowStyle()  %>
+      <tbody>
       <% var totalTranslatedRaw = totalTranslated = totalReviewed = totalScoreDelta = 0; %>
       <% _.each(grouped, function (row) { %>
         <% totalTranslated += row.translated %>
@@ -28,6 +29,7 @@
           <td class="number<% if (totalReviewed == 0) { %> zero<% } %>"><%= Math.round(totalReviewed) %> <%= ngettext("word", "words", Math.round(totalReviewed)) %></td>
           <td class="number<% if (totalScoreDelta == 0) { %> zero<% } %>"><% if (totalScoreDelta > 0) { %>+<% } %><%= totalScoreDelta.toFixed(2) %></td>
         </tr>
+      </tbody>
     </table>
   <% } else { %>
     <p class="noresults"><%= gettext('No activity recorded in a given period') %></p>
