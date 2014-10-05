@@ -288,3 +288,13 @@ th.number
 {
     opacity: 0.5;
 }
+
+.noresults
+{
+    padding: 3em;
+    text-align: center;
+    border: 1px dashed #ccc;
+    color: #999;
+    font-size: 120%;
+    font-style: italic;
+}
