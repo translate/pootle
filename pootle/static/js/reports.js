@@ -250,7 +250,9 @@
         async: true,
         success: function (data) {
           $('#reports-results').empty();
-          $('#reports-results').html(PTL.reports.tmpl.results(data));
+          $('#reports-results').html(PTL.reports.tmpl.results(data)).show();
+          $("#js-breadcrumb-user").html(data.meta.user.formatted_name).show();
+          $("#js-breadcrumb-period").html(PTL.reports.dateRangeString(data.meta.start, data.meta.end)).show();
           var showChart = data.daily !== undefined && data.daily.nonempty;
           $('#reports-activity').toggle(showChart);
           if (showChart) {

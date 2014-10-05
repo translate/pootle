@@ -1,5 +1,4 @@
 <% if (meta.user !== "") { %>
-<h2><%= interpolate(gettext("Report for %(user)s, %(dateRange)s"), {'user': meta.user.formatted_name, 'dateRange': PTL.reports.dateRangeString(meta.start, meta.end)}, true) %></h2>
 <% if (_.size(grouped) > 0) { %>
   <table class="stats">
     <thead>
