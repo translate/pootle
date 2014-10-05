@@ -1,37 +1,37 @@
 <% if (meta.user !== "") { %>
-<% if (_.size(grouped) > 0) { %>
-  <table class="stats">
-    <thead>
-    <tr>
-      <th><%= gettext('Project / Language') %></th>
-      <th class="number"><%= gettext('Translated (with similarity)') %></th>
-      <th class="number"><%= gettext('Reviewed') %></th>
-      <th class="number"><%= gettext('Score Delta') %></th>
-    </tr>
-    </thead>
-    <%= PTL.reports.resetRowStyle()  %>
-    <% var totalTranslatedRaw = totalTranslated = totalReviewed = totalScoreDelta = 0; %>
-    <% _.each(grouped, function (row) { %>
-      <% totalTranslated += row.translated %>
-      <% totalReviewed += row.reviewed %>
-      <% totalScoreDelta += row.score_delta %>
-      <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
-        <td><%= row.translation_project %></td>
-        <td class="number<% if (row.translated == 0) { %> zero<% } %>"><%= Math.round(row.translated) %> <%= ngettext("word", "words", Math.round(row.translated)) %></td>
-        <td class="number<% if (row.reviewed == 0) { %> zero<% } %>"><%= row.reviewed %> <%= ngettext("word", "words", Math.round(row.reviewed)) %></td>
-        <td class="number<% if (row.score_delta == 0) { %> zero<% } %>"><% if (row.score_delta > 0) { %>+<% } %><%= row.score_delta.toFixed(2) %></td>
+  <% if (_.size(grouped) > 0) { %>
+    <table class="stats">
+      <thead>
+      <tr>
+        <th><%= gettext('Project / Language') %></th>
+        <th class="number"><%= gettext('Translated (with similarity)') %></th>
+        <th class="number"><%= gettext('Reviewed') %></th>
+        <th class="number"><%= gettext('Score Delta') %></th>
       </tr>
-    <% }); %>
-      <tr class="total">
-        <td>&nbsp;</td>
-        <td class="number<% if (totalTranslated == 0) { %> zero<% } %>"><%= Math.round(totalTranslated) %> <%= ngettext("word", "words", Math.round(totalTranslated)) %></td>
-        <td class="number<% if (totalReviewed == 0) { %> zero<% } %>"><%= Math.round(totalReviewed) %> <%= ngettext("word", "words", Math.round(totalReviewed)) %></td>
-        <td class="number<% if (totalScoreDelta == 0) { %> zero<% } %>"><% if (totalScoreDelta > 0) { %>+<% } %><%= totalScoreDelta.toFixed(2) %></td>
-      </tr>
-  </table>
-<% } else { %>
-  <p class="noresults"><%= gettext('No activity recorded during this period.') %></p>
-<% } %>
+      </thead>
+      <%= PTL.reports.resetRowStyle()  %>
+      <% var totalTranslatedRaw = totalTranslated = totalReviewed = totalScoreDelta = 0; %>
+      <% _.each(grouped, function (row) { %>
+        <% totalTranslated += row.translated %>
+        <% totalReviewed += row.reviewed %>
+        <% totalScoreDelta += row.score_delta %>
+        <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
+          <td><%= row.translation_project %></td>
+          <td class="number<% if (row.translated == 0) { %> zero<% } %>"><%= Math.round(row.translated) %> <%= ngettext("word", "words", Math.round(row.translated)) %></td>
+          <td class="number<% if (row.reviewed == 0) { %> zero<% } %>"><%= row.reviewed %> <%= ngettext("word", "words", Math.round(row.reviewed)) %></td>
+          <td class="number<% if (row.score_delta == 0) { %> zero<% } %>"><% if (row.score_delta > 0) { %>+<% } %><%= row.score_delta.toFixed(2) %></td>
+        </tr>
+      <% }); %>
+        <tr class="total">
+          <td>&nbsp;</td>
+          <td class="number<% if (totalTranslated == 0) { %> zero<% } %>"><%= Math.round(totalTranslated) %> <%= ngettext("word", "words", Math.round(totalTranslated)) %></td>
+          <td class="number<% if (totalReviewed == 0) { %> zero<% } %>"><%= Math.round(totalReviewed) %> <%= ngettext("word", "words", Math.round(totalReviewed)) %></td>
+          <td class="number<% if (totalScoreDelta == 0) { %> zero<% } %>"><% if (totalScoreDelta > 0) { %>+<% } %><%= totalScoreDelta.toFixed(2) %></td>
+        </tr>
+    </table>
+  <% } else { %>
+    <p class="noresults"><%= gettext('No activity recorded during this period.') %></p>
+  <% } %>
 <% } else { %>
   <p class="noresults"><%= gettext('Please select a valid user.') %></p>
 <% } %>
