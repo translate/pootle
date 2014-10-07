@@ -176,10 +176,13 @@ def process_modelformset(request, model_class, queryset, **kwargs):
     return formset_class(queryset=objects.object_list), None, objects
 
 
-def edit(request, template, model_class, ctx={},
+def edit(request, template, model_class, ctx=None,
          link=None, linkfield='code', queryset=None, **kwargs):
     formset, msg, objects = process_modelformset(request, model_class,
                                                  queryset=queryset, **kwargs)
+    if ctx is None:
+        ctx = {}
+
     ctx.update({
         'formset_text': mark_safe(form_set_as_table(formset, link, linkfield)),
         'formset': formset,
