@@ -1,0 +1,42 @@
+===================================
+Welcome to the new Pootle 2.6.0-rc2
+===================================
+
+*Released on 8 October 2014*
+
+For those who can't wait you might be interested to know what we've got planned
+on our :ref:`roadmap <roadmap>`.
+
+For the list of changes for Pootle 2.6.0, please also see the
+:doc:`2.6.0-rc1 Release Notes <2.6.0-rc1>`.
+
+Changes since 2.6.0-rc1
+=======================
+- Django 1.6.5 is now required to run Pootle. Earlier versions are unsupported.
+- Upgraded Underscore.js to version 1.6
+- Overwriting source texts from the web interface is no longer supported
+- Some missing UI elements have returned
+- Dozens of bugfixes
+
+Known issues
+============
+
+.. note::
+
+   Despite our best efforts this release is going to be shipped with several
+   behavior flaws. These include translation statistics and checks not being
+   calculated when adding a new language to an existing project. To circumvent
+   this specific issue you can run :command:`refresh_stats` management command
+   with the :option:`--project` and :option:`--language` options.
+
+- Statistics sometimes go out of sync.
+- Some operations, such as update_against_templates, are significantly slower.
+- The page footer is sometimes significantly larger than intended.
+- Usernames are set wrong when creating an account through certain third party backends.
+
+Credits
+=======
+This release was made possible thanks to the contributions of Julen Ruiz
+Aizpuru, Leandro Regueiro, Jerome Leclanche, Igor Afanasyev, Taras Semenenko,
+Khaled Hosny, Dwayne Bailey, Arky, Peter Bengtsson, Miha Vrhovnik, Henrik Saari
+and Folkert van Heusden
