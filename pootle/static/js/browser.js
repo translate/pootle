@@ -148,15 +148,20 @@
         return;
       }
 
-      if (!languageCode) {
+      var actionKey = $(sel.navigation).val(),
+          action = actionMap[actionKey],
+          inAdmin = (actionKey.indexOf('admin-') !== -1 &&
+                     ((curLanguage === '' && curProject !== '') ||
+                      (curLanguage !== '' && curProject === '')));
+
+      if (!languageCode && !inAdmin) {
         languageCode = 'projects';
       }
       if (projectCode === '' || projChanged) {
         resource = '';
       }
 
-      var action = actionMap[$(sel.navigation).val()],
-          parts = ['', languageCode, projectCode, action, resource],
+      var parts = ['', languageCode, projectCode, action, resource],
           urlParts = parts.filter(function (p, i) {
             return i === 0 || p !== '';
           }),
