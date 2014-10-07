@@ -165,26 +165,33 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         db_table = 'pootle_app_project'
 
     @classmethod
-    def for_username(self, username):
+    def for_username(self, username, is_superuser=False):
         """Returns a list of project codes available to `username`.
 
         Checks for `view` permissions in project directories, and if no
         explicit permissions are available, falls back to the root
         directory for that user.
+
+        :param username: username to look projects for.
+        :param is_superuser: whether the given username is an admin user.
+            No restrictions will be put in place for such users.
         """
         key = iri_to_uri('projects:accessible:%s' % username)
         user_projects = cache.get(key, None)
 
         if user_projects is None:
             logging.debug(u'Cache miss for %s', key)
-            lookup_args = {
-                'directory__permission_sets__positive_permissions__codename':
-                    'view',
-                'directory__permission_sets__profile__username':
-                    username,
-            }
-            user_projects = self.objects.cached().filter(**lookup_args) \
-                                                 .values_list('code', flat=True)
+
+            if is_superuser:
+                user_projects = self.objects.cached()
+            else:
+                lookup_args = {
+                    'directory__permission_sets__positive_permissions__codename':
+                        'view',
+                    'directory__permission_sets__profile__username':
+                        username,
+                }
+                user_projects = self.objects.cached().filter(**lookup_args)
 
             # No explicit permissions for projects, let's examine the root
             if not user_projects.count():
@@ -194,9 +201,9 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
                     positive_permissions__codename='view',
                 )
                 if root_permissions.count():
-                    user_projects = self.objects.cached() \
-                                                .values_list('code', flat=True)
+                    user_projects = self.objects.cached()
 
+            user_projects = user_projects.values_list('code', flat=True)
             cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
 
         return user_projects
@@ -211,12 +218,17 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         """
         user_projects = []
 
-        check_usernames = ['nobody']
+        check_usernames = [('nobody', False)]
         if user.is_authenticated():
-            check_usernames = [user.username, 'default', 'nobody']
+            check_usernames = [
+                (user.username, user.is_superuser),
+                ('default', False),
+                ('nobody', False),
+            ]
 
-        for username in check_usernames:
-            user_projects = self.for_username(username)
+        for username, is_superuser in check_usernames:
+            user_projects = self.for_username(username,
+                                              is_superuser=is_superuser)
 
             if user_projects:
                 break
