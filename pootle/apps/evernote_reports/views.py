@@ -20,6 +20,7 @@
 
 
 import calendar
+import math
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -126,12 +127,12 @@ def evernote_reports_detailed(request):
         totals['all'] = 0
 
         for rate, words in totals['translated'].items():
-            totals['translated'][rate]['words'] = int(totals['translated'][rate]['words'] + 0.5)
+            totals['translated'][rate]['words'] = int(math.ceil(totals['translated'][rate]['words']))
             totals['translated'][rate]['subtotal'] = rate * totals['translated'][rate]['words']
             totals['all'] += totals['translated'][rate]['subtotal']
 
         for rate, words in totals['reviewed'].items():
-            totals['reviewed'][rate]['words'] = int(totals['reviewed'][rate]['words'] + 0.5)
+            totals['reviewed'][rate]['words'] = int(math.ceil(totals['reviewed'][rate]['words']))
             totals['reviewed'][rate]['subtotal'] = rate * totals['reviewed'][rate]['words']
             totals['all'] += totals['reviewed'][rate]['subtotal']
 

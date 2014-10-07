@@ -19,14 +19,14 @@
         <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
           <td><%= row.translation_project %></td>
           <td class="number<% if (row.translated == 0) { %> zero<% } %>"><%= Math.round(row.translated) %> <%= ngettext("word", "words", Math.round(row.translated)) %></td>
-          <td class="number<% if (row.reviewed == 0) { %> zero<% } %>"><%= row.reviewed %> <%= ngettext("word", "words", Math.round(row.reviewed)) %></td>
+          <td class="number<% if (row.reviewed == 0) { %> zero<% } %>"><%= row.reviewed %> <%= ngettext("word", "words", row.reviewed) %></td>
           <td class="number<% if (row.score_delta == 0) { %> zero<% } %>"><% if (row.score_delta > 0) { %>+<% } %><%= row.score_delta.toFixed(2) %></td>
         </tr>
       <% }); %>
         <tr class="total">
           <td>&nbsp;</td>
-          <td class="number<% if (totalTranslated == 0) { %> zero<% } %>"><%= Math.round(totalTranslated) %> <%= ngettext("word", "words", Math.round(totalTranslated)) %></td>
-          <td class="number<% if (totalReviewed == 0) { %> zero<% } %>"><%= Math.round(totalReviewed) %> <%= ngettext("word", "words", Math.round(totalReviewed)) %></td>
+          <td class="number<% if (totalTranslated == 0) { %> zero<% } %>"><%= Math.ceil(totalTranslated) %> <%= ngettext("word", "words", Math.ceil(totalTranslated)) %></td>
+          <td class="number<% if (totalReviewed == 0) { %> zero<% } %>"><%= totalReviewed %> <%= ngettext("word", "words", totalReviewed) %></td>
           <td class="number<% if (totalScoreDelta == 0) { %> zero<% } %>"><% if (totalScoreDelta > 0) { %>+<% } %><%= totalScoreDelta.toFixed(2) %></td>
         </tr>
       </tbody>

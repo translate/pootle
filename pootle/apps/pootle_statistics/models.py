@@ -575,6 +575,8 @@ class ScoreLog(models.Model):
             translated_words += self.review_rate * ns * s / self.rate
         else:
             translated_words += REVIEW_COEF * ns * s / (EDIT_COEF + REVIEW_COEF)
+
+        translated_words = round(translated_words, 2)
         reviewed_words = ns
 
         def get_sugg_reviewed_accepted():
