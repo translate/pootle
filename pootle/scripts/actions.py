@@ -526,7 +526,7 @@ class DownloadAction(ExtensionAction):
         try:
             ensure_target_dir_exists(abs_export_path)
             shutil.copyfile(filepath, abs_export_path)
-        except (IOError, OSError, shutil.Error), e:
+        except (IOError, OSError, shutil.Error) as e:
             msg = (_("Failed to copy download file to export directory %s") %
                    abs_export_path)
             logger.exception('%s', msg)
