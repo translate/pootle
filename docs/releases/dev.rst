@@ -9,7 +9,7 @@ on our :ref:`roadmap <roadmap>`.
 
 Changes in Requirements
 =======================
-- Django >= 1.6.2 < 1.7
+- Django >= 1.6.5 < 1.7
 - `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
   1.12.0
 - Python >= 2.6
