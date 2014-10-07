@@ -597,9 +597,15 @@ class ScoreLog(models.Model):
 
             return None, None
 
+        def get_edited():
+            # if similarity is below threshold treat this event as translation
+            if s == 0:
+                return translated_words, None
+            return None, reviewed_words
+
         return {
             TranslationActionCodes.NEW: lambda: (translated_words, None),
-            TranslationActionCodes.EDITED: lambda: (None, reviewed_words),
+            TranslationActionCodes.EDITED: get_edited,
             TranslationActionCodes.REVIEWED: lambda: (None, reviewed_words),
             TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
             TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: get_sugg_reviewed_accepted,
