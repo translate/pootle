@@ -322,12 +322,12 @@ def get_daily_activity(user, start, end):
     result_translated = {
         'label': PaidTask.get_task_type_title(
             PaidTaskTypes.TRANSLATION),
-        'data': {},
+        'data': [],
     }
     result_reviewed = {
         'label': PaidTask.get_task_type_title(
             PaidTaskTypes.REVIEW),
-        'data': {},
+        'data': [],
     }
 
     result = {
@@ -344,35 +344,42 @@ def get_daily_activity(user, start, end):
                              creation_time__lte=end) \
                      .order_by('creation_time')
 
-    saved_ts = None
+    saved_date = None
     current_day_score = 0
+    tz = timezone.get_default_timezone()
+    translated_group = {}
+    reviewed_group = {}
     for score in scores:
         score_time = score.creation_time
+        if settings.USE_TZ:
+            score_time = timezone.make_naive(score_time, tz)
         date = score_time.date()
-        ts = int((calendar.timegm(date.timetuple())) * 1000)
 
         translated, reviewed = score.get_paid_words()
         if translated or reviewed:
             translated = 0 if translated is None else translated
             reviewed = 0 if reviewed is None else reviewed
 
-            if saved_ts != ts:
-                saved_ts = ts
-                result_reviewed['data'][ts] = 0
-                result_translated['data'][ts] = 0
+            if saved_date != date:
+                saved_date = date
+                reviewed_group[date] = 0
+                translated_group[date] = 0
                 if result['max_day_score'] < current_day_score:
                     result['max_day_score'] = current_day_score
                 current_day_score = 0
             current_day_score += int(reviewed + translated)
             result['nonempty'] |= current_day_score > 0
 
-            result_translated['data'][ts] += translated
-            result_reviewed['data'][ts] += reviewed
+            translated_group[date] += translated
+            reviewed_group[date] += reviewed
 
-    result_translated['data'] = sorted(result_translated['data'].items(),
-                                       key=lambda x: x[0])
-    result_reviewed['data'] = sorted(result_reviewed['data'].items(),
-                                     key=lambda x: x[0])
+    for date, item in sorted(translated_group.items(), key=lambda x: x[0]):
+        ts = int(calendar.timegm(date.timetuple()) * 1000)
+        result_translated['data'].append((ts, item))
+
+    for date, item in sorted(reviewed_group.items(), key=lambda x: x[0]):
+        ts = int(calendar.timegm(date.timetuple()) * 1000)
+        result_reviewed['data'].append((ts, item))
 
     return result
 
