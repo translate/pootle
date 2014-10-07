@@ -235,6 +235,38 @@
       );
     },
 
+    getPaidTaskSummaryItem: function (type, rate) {
+      if (PTL.reports.paid_task_summary) {
+        for (var index in PTL.reports.paid_task_summary) {
+          if (PTL.reports.paid_task_summary[index].rate === rate &&
+              PTL.reports.paid_task_summary[index].type === type) {
+            return item
+          }
+        }
+      }
+
+      return null;
+    },
+
+    setData: function (data) {
+      PTL.reports.data = data;
+      data.paid_task_summary = [];
+      for (var index in data.paid_tasks) {
+        var task = data.paid_tasks[index],
+            item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate);
+        if (item !== null) {
+          item.amount += task.amount
+        } else {
+          PTL.reports.data.paid_task_summary.push({
+            'type': task.type,
+            'amount': task.amount,
+            'action': task.action,
+            'rate': task.rate,
+          });
+        }
+      }
+    },
+
     buildResults: function () {
       var reqData = {
         start: PTL.reports.dateRange[0].format('YYYY-MM-DD'),
@@ -259,9 +291,9 @@
             PTL.reports.dailyData = data.daily;
             PTL.reports.drawChart();
           }
-
-          $('#reports-summary').html(PTL.reports.tmpl.summary(data));
-          $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(data));
+          PTL.reports.setData(data);
+          $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(PTL.reports.data));
+          $('#reports-summary').html(PTL.reports.tmpl.summary(PTL.reports.data));
           if (data.meta.user) {
             PTL.reports.user = data.meta.user;
             $('#reports-params .dates ul li a').each(function(){

@@ -20,8 +20,7 @@
 
 
 import calendar
-import time
-from datetime import datetime, timedelta, time as datetime_time
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -501,53 +500,6 @@ def get_summary(user, start, end):
 
     result = filter(lambda x: x['amount'] > 0, translations + reviews)
     result = sorted(result, key=lambda x: x['start'])
-
-    tasks = PaidTask.objects \
-        .filter(user=user,
-                date__gte=start,
-                date__lte=end) \
-        .order_by('pk', 'task_type')
-
-    for task in tasks:
-        extended = None
-        task_datetime = datetime.combine(
-            task.date,
-            datetime_time(hour=23, minute=59, second=59)
-        )
-        if settings.USE_TZ:
-            task_datetime = timezone.make_aware(task_datetime, tz)
-
-        for item in result:
-            if (item['start'] <= task_datetime <= item['end'] and
-                task.task_type == item['action'] and
-                item['rate'] == task.rate):
-                extended = item
-                break
-
-        if extended is not None:
-            extended['amount'] += task.amount
-        else:
-            insert_index = len(result)
-            for index, item in enumerate(result):
-                if item['start'] > task_datetime:
-                    insert_index = index
-                    break
-            start = start.replace(hour=0, minute=0, second=0)
-            end = end.replace(hour=23, minute=59, second=59)
-
-            task_start = task_datetime.replace(day=1, hour=0, minute=0, second=0)
-            task_end = get_max_month_datetime(task_datetime)
-            if end <= task_end:
-                task_end = end
-
-            result.insert(insert_index, {
-                'type': task.task_type,
-                'action': task.task_type,
-                'amount': task.amount,
-                'rate': task.rate,
-                'start': task_start,
-                'end': task_end,
-            })
 
     for item in result:
         item['type'] = item['action']
