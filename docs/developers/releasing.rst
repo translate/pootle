@@ -17,7 +17,6 @@ Summary
 #. Publish on PyPI
 #. Upload to Github
 #. Upload to Sourceforge
-#. Add product version to Bugzilla
 #. Release documentation
 #. Update translate website
 #. Update Pootle dashboard
@@ -428,15 +427,6 @@ You will need:
       appropriate, this text is the text from ``/README.rst``.
    #. Check all the links in ``README.rst`` files for existing releases, new
       release and the parent folders.
-
-
-Add product version to Bugzilla
--------------------------------
-We need to allow users to report issues against the released version.
-
-#. In Administration->Products add a product version.
-#. Review existing versions that are available and disable older version from
-   accepting bug reports.
 
 
 Release documentation

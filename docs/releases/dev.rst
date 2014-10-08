@@ -38,7 +38,7 @@ Changes since 2.6.0-rc1
 
    Despite our best efforts this release is going to be shipped with several
    behavior flaws. These include translation statistics and checks not being
-   calculated when adding a new language to an existing project. To circunvent
+   calculated when adding a new language to an existing project. To circumvent
    this specific issue you can run :command:`refresh_stats` management command
    with the :option:`--project` and :option:`--language` options.
 

@@ -12,9 +12,9 @@ know programming! Want to know how? Please keep reading.
   the `#pootle channel in FreeNode <irc://irc.freenode.net/#pootle>`_.
 
 - Found a bug? Report it in our `Bugzilla tracker
-  <http://bugs.locamotion.org>`_. If you don't want to create an account you
-  can always contact us on IRC. Make sure to read more about :ref:`how to
-  report bugs <contributing#reporting_bugs>`.
+  <https://github.com/translate/pootle/issues/>`_. You can also always contact
+  us on IRC. Make sure to read more about :ref:`how to report bugs
+  <contributing#reporting_bugs>`.
 
 - Translate the User Interface into your own language. Pootle is translated
   into `nearly 50 languages <http://pootle.locamotion.org/projects/pootle/>`_.

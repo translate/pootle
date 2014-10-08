@@ -253,7 +253,7 @@ Commit messages
     Also was partially reworked to ease extending it in the future.
 
 
-  If your change fixes a bug in Bugzilla, mention the bug number. This way the
+  If your change fixes a bug in the tracker, mention the bug number. This way the
   bug is automatically closed after merging the commit.
 
   ::
