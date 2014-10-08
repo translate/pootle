@@ -137,8 +137,8 @@ class TreeItem(object):
         return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
     def is_dirty(self):
-        """This method will be overridden in descendants"""
-        return False
+        """Checks if any of children is registered as dirty"""
+        return any(map(lambda x: x.is_dirty(), self.children))
 
     def initialize_children(self):
         if not self.initialized:
