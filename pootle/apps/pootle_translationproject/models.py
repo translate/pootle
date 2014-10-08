@@ -310,7 +310,7 @@ class TranslationProject(models.Model, TreeItem):
 
     ### TreeItem
     def get_children(self):
-        return self.directory.get_children()
+        return self.directory.children
 
     def get_cachekey(self):
         return self.directory.pootle_path

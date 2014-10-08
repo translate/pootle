@@ -80,7 +80,7 @@ class CachedMethods(object):
 
 class VirtualTreeItem(object):
     def __init__(self, *args, **kwargs):
-        self.children = None
+        self._children = None
         self.initialized = False
         super(VirtualTreeItem, self).__init__()
 
@@ -142,8 +142,14 @@ class VirtualTreeItem(object):
 
     def initialize_children(self):
         if not self.initialized:
-            self.children = self.get_children()
+            self._children = self.get_children()
             self.initialized = True
+
+    @property
+    def children(self):
+        if not self.initialized:
+            self.initialize_children()
+        return self._children
 
     def _calc_sum(self, name, from_update):
         self.initialize_children()

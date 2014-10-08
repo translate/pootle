@@ -48,7 +48,7 @@ def overview(request, project, dir_path, filename):
     """Languages overview for a given project."""
     item_func = (make_xlanguage_item if dir_path or filename
                                      else make_language_item)
-    items = [item_func(item) for item in request.resource_obj.get_children()]
+    items = [item_func(item) for item in request.resource_obj.children]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
@@ -153,7 +153,7 @@ def project_admin_permissions(request, project):
 def projects_overview(request, project_set):
     """Page listing all projects"""
     items = [make_project_list_item(project)
-             for project in project_set.get_children()]
+             for project in project_set.children]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',

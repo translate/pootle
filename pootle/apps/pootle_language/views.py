@@ -35,7 +35,7 @@ from pootle_misc.util import jsonify
 @get_path_obj
 @permission_required('view')
 def overview(request, language):
-    translation_projects = language.get_children() \
+    translation_projects = language.children \
                                    .order_by('project__fullname')
     user_tps = filter(lambda x: x.is_accessible_by(request.user),
                       translation_projects)
