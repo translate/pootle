@@ -20,7 +20,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59
 
-__all__ = ('VirtualTreeItem', 'CachedTreeItem', 'CachedMethods')
+__all__ = ('TreeItem', 'CachedTreeItem', 'CachedMethods')
 
 import logging
 
