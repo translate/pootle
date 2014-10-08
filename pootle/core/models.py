@@ -20,10 +20,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
-from .mixins import VirtualTreeItem
+from .mixins import TreeItem
 
 
-class VirtualResource(VirtualTreeItem):
+class VirtualResource(TreeItem):
     """An object representing a virtual resource.
 
     A virtual resource doesn't live in the DB and has a unique

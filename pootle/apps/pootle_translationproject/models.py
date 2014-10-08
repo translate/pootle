@@ -33,7 +33,7 @@ from django.db.models.signals import post_save
 from django.utils.functional import cached_property
 
 from pootle_app.project_tree import does_not_exist
-from pootle.core.mixins import TreeItem, CachedMethods
+from pootle.core.mixins import CachedTreeItem, CachedMethods
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
@@ -131,7 +131,7 @@ class TranslationProjectManager(models.Manager):
         return self.filter(Q(disabled=True) | Q(project__disabled=True))
 
 
-class TranslationProject(models.Model, TreeItem):
+class TranslationProject(models.Model, CachedTreeItem):
 
     language = models.ForeignKey(Language, db_index=True)
     project = models.ForeignKey(Project, db_index=True)

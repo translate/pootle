@@ -50,7 +50,7 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              STORE_ADDED, STORE_OBSOLETE, STORE_DELETED,
                              MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
                              action_log, store_log, log)
-from pootle.core.mixins import CachedMethods, TreeItem
+from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.tmserver import (update as update_tmserver,
                                   search as get_tmsuggestions)
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
@@ -1300,7 +1300,7 @@ class StoreManager(models.Manager):
                                         )
 
 
-class Store(models.Model, TreeItem, base.TranslationStore):
+class Store(models.Model, CachedTreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
     UnitClass = Unit
     Name = "Model Store"

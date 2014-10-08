@@ -40,7 +40,7 @@ from translate.filters import checks
 from translate.lang.data import langcode_re
 
 from pootle.core.cache import make_method_key
-from pootle.core.mixins import TreeItem
+from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
                                      split_pootle_path)
@@ -111,7 +111,7 @@ class ProjectURLMixin(object):
         ])
 
 
-class Project(models.Model, TreeItem, ProjectURLMixin):
+class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     code_help_text = _('A short code for the project. This should only contain '
             'ASCII characters, numbers, and the underscore (_) character.')

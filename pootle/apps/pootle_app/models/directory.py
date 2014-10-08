@@ -24,7 +24,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
 
-from pootle.core.mixins import TreeItem
+from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.baseurl import l
 
@@ -51,7 +51,7 @@ class DirectoryManager(models.Manager):
         return self.get(pootle_path='/projects/')
 
 
-class Directory(models.Model, TreeItem):
+class Directory(models.Model, CachedTreeItem):
 
     name = models.CharField(max_length=255, null=False)
     parent = models.ForeignKey('Directory', related_name='child_dirs',

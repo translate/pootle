@@ -20,7 +20,7 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59
 
-__all__ = ('VirtualTreeItem', 'TreeItem', 'CachedMethods')
+__all__ = ('VirtualTreeItem', 'CachedTreeItem', 'CachedMethods')
 
 import logging
 
@@ -78,11 +78,11 @@ class CachedMethods(object):
                 filter(lambda x: x[:2] != '__' and x != 'get_all', dir(self))]
 
 
-class VirtualTreeItem(object):
+class TreeItem(object):
     def __init__(self, *args, **kwargs):
         self._children = None
         self.initialized = False
-        super(VirtualTreeItem, self).__init__()
+        super(TreeItem, self).__init__()
 
     def get_children(self):
         """This method will be overridden in descendants"""
@@ -250,10 +250,10 @@ class VirtualTreeItem(object):
         return self._calc(CachedMethods.CHECKS)['checks']
 
 
-class TreeItem(VirtualTreeItem):
+class CachedTreeItem(TreeItem):
     def __init__(self, *args, **kwargs):
         self._dirty_cache = set()
-        super(TreeItem, self).__init__()
+        super(CachedTreeItem, self).__init__()
 
     def set_cached_value(self, name, value):
         key = iri_to_uri(self.get_cachekey() + ":" + name)
@@ -279,7 +279,7 @@ class TreeItem(VirtualTreeItem):
             )
             if not from_update:
                 # get initial (empty, zero) value
-                result = getattr(TreeItem, '_%s' % name)()
+                result = getattr(CachedTreeItem, '_%s' % name)()
 
         return result
 
@@ -454,7 +454,7 @@ class TreeItem(VirtualTreeItem):
     def init_cache(self):
         """Set initial values for all cached method for the current TreeItem"""
         for method_name in CachedMethods.get_all():
-            method = getattr(TreeItem, '_%s' % method_name)
+            method = getattr(CachedTreeItem, '_%s' % method_name)
             self.set_cached_value(method_name, method())
 
 
