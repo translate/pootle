@@ -90,7 +90,12 @@ def get_path_obj(func):
 
                 raise Http404
         elif language_code:
-            path_obj = get_object_or_404(Language, code=language_code)
+            user_projects = Project.accessible_by_user(request.user)
+            language = get_object_or_404(Language, code=language_code)
+            children = language.children \
+                               .filter(project__code__in=user_projects)
+            language.set_children(children)
+            path_obj = language
         elif project_code:
             path_obj = get_object_or_404(Project, code=project_code,
                                          disabled=False)

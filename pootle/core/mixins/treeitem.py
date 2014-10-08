@@ -88,6 +88,9 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return []
 
+    def set_children(self, children):
+        self._children = children
+
     def get_parents(self):
         """This method will be overridden in descendants"""
         return []
