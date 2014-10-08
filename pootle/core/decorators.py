@@ -99,12 +99,7 @@ def get_path_obj(func):
             user_projects = Project.objects.enabled() \
                                    .filter(code__in=user_projects)
 
-            path_obj = ProjectSet(user_projects, '/projects/')
-
-            # HACKISH: inject directory so that permissions can be
-            # queried
-            directory = Directory.objects.get(pootle_path='/projects/')
-            setattr(path_obj, 'directory', directory)
+            path_obj = ProjectSet(user_projects)
 
         request.ctx_obj = path_obj
         request.ctx_path = path_obj.pootle_path

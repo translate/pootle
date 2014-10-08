@@ -492,6 +492,10 @@ class ProjectResource(VirtualResource, ProjectURLMixin):
 
 class ProjectSet(VirtualResource, ProjectURLMixin):
 
+    def __init__(self, resources, *args, **kwargs):
+        self.directory = Directory.objects.projects
+        super(ProjectSet, self).__init__(resources, self.directory.pootle_path)
+
     ### TreeItem
 
     def _get_code(self, project):
