@@ -316,7 +316,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         return self.directory.pootle_path
 
     def get_parents(self):
-        return [self.language, self.project]
+        return [self.project]
 
     ### /TreeItem
 

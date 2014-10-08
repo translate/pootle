@@ -45,10 +45,9 @@ def test_get_all_pootle_paths():
     assert get_all_pootle_paths('/projects/tutorial/') == \
         ['/projects/tutorial/']
     assert get_all_pootle_paths('/pt/tutorial/') == \
-        ['/pt/tutorial/', '/projects/tutorial/', '/pt/']
+        ['/pt/tutorial/', '/projects/tutorial/']
     assert get_all_pootle_paths('/pt/tutorial/tutorial.po') == \
-        ['/pt/tutorial/tutorial.po', '/pt/tutorial/', '/projects/tutorial/',
-         '/pt/']
+        ['/pt/tutorial/tutorial.po', '/pt/tutorial/', '/projects/tutorial/']
 
 
 def test_split_pootle_path():

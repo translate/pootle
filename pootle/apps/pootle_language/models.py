@@ -25,7 +25,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.mixins import CachedTreeItem
+from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
 
@@ -68,7 +68,7 @@ class LiveLanguageManager(models.Manager):
         return languages
 
 
-class Language(models.Model, CachedTreeItem):
+class Language(models.Model, TreeItem):
 
     code_help_text = _('ISO 639 language code for the language, possibly '
             'followed by an underscore (_) and an ISO 3166 country code. '

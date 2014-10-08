@@ -335,13 +335,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
                                   users_list))
 
-        # update stats cache
-        if self.__disabled != self.disabled:
-            self.update_parent_cache()
-            for tp in self.get_children():
-                tp.language.update_all_cache()
-            self.__disabled = self.disabled
-
     def delete(self, *args, **kwargs):
         directory = self.directory
 

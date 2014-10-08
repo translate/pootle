@@ -75,9 +75,10 @@ def get_all_pootle_paths(pootle_path):
             res.append(pootle_path)
         else:
             if slash_count == 1 and pootle_path != u'/projects/':
-                # first chunk is /lang_code
+                # omit chunk[0] which is a language_code
+                # since language is inherited from a (non cached) TreeItem
+                # chunk[1] is a project_code
                 res.append(u'/projects/%s/' % chunks[1])
-                res.append(chunks[0] + u'/')
             break
 
     return res

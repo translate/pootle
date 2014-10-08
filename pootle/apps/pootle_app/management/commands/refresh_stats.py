@@ -120,15 +120,11 @@ class Command(PootleCommand):
                 self.process(**options)
                 logging.info('Refreshing directories stats...')
 
-                lang_query = Language.objects.all()
                 prj_query = Project.objects.enabled()
 
-                for lang in lang_query.iterator():
-                    # Calculate stats for all directories and translation projects
-                    lang.refresh_stats(include_children=True)
-
                 for prj in prj_query.iterator():
-                    prj.refresh_stats(include_children=False)
+                    # Calculate stats for all directories and translation projects
+                    prj.refresh_stats(include_children=True)
 
                 self.unregister_refresh_stats()
             except Exception as e:
