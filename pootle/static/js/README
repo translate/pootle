@@ -38,9 +38,6 @@ Directory contents
   - msg.js :
     Generic alert messages.
 
-  - mixins.js :
-    Mixins of grouped functionality to be reused by other classes.
-
   - stats.js :
     Statistics/overview browser page code.
 

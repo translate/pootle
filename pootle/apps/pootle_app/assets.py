@@ -41,7 +41,6 @@ js_common = Bundle(
     'js/common.js',
     'js/contact.js',
     'js/dropdown.js',
-    'js/mixins.js',
     'js/msg.js',
     'js/search.js',
     'js/score.js',
