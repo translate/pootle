@@ -158,6 +158,52 @@ available settings<settings#available>`.
 Setting Up the Database
 -----------------------
 
+By default, Pootle uses SQLite as database, which is good enough for testing
+purposes.  If you plan to deploy your application in a production environment,
+we highly recommend that you use MySQL because it's has been heavily tested. If
+you already have data that you would like to migrate from, take a look at our
+:doc:`database migration <database_migration>` tutorial.
+
+To use a MySQL database with Pootle, you need to create a new database and
+database user. This can be done several different ways (MySQL workbench,
+command line, etc.).
+
+
+We'll show how to do this via command line:
+
+.. code-block:: bash
+
+  mysql -u root -p  #will ask for your root password to log in
+  > CREATE DATABASE pootle CHARACTER SET = 'utf8';
+  > GRANT ALL PRIVILEGES ON pootle.* TO pootle@localhost IDENTIFIED BY 'passwordhere';
+  > FLUSH PRIVILEGES;
+
+
+.. warning:: **it's highly important** that you set the ``CHARACTER SET`` when
+  creating your database. Doing so will eliminate several problems in the future.
+
+Next step, you need to edit ``/home/user/.pootle/pootle.conf`` file and modify
+the  ``DATABASES`` dictionary to use your newly created database.
+
+.. code-block:: bash
+
+	DATABASES = {
+	    'default': {
+	        'ENGINE': 'django.db.backends.mysql',  # Options are sqlite3, mysql, postgresql_psycopg2, oracle
+	        'NAME': 'pootle',                      # Or the name you gave to your instance
+	        'USER': 'pootle',                      # Or the username you gave when creating it
+	        'PASSWORD': 'passwordhere',            # Or the password you assigned when creating it
+	        'HOST': '',                            # Set to empty string for localhost
+	        'PORT': '',                            # Set to empty string for default
+	    }
+	}
+
+
+.. _installation#populating_the_database:
+
+Populating the Database
+-----------------------
+
 Before your run Pootle for the first time, you need to create the schema
 for the database and populate it with initial data. This is done by
 executing the :command:`setup` management command:
