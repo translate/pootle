@@ -30,7 +30,7 @@
 {% block scripts_extra %}
 {{ block.super }}
 <script type="text/javascript">
-$(function ($) {
+$(function () {
   PTL.common.updateRelativeDates();
   setInterval(PTL.common.updateRelativeDates, 6e4);
 });
