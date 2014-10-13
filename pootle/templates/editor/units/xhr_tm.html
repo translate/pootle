@@ -1,18 +1,9 @@
-<% if (firstResult) {%>
 <div id="tm-results" class="tm-server">
   <div class="extra-item-title"><%= name %></div>
-<% } %>
   <% _.each(suggs, function (sugg, i) { %>
   <div id="tm<%= i %>" class="extra-item-block"
     data-translation-aid="<%= sugg.target %>">
-    <% if ('translator' in sugg) { %>
-    <div class="extra-item-tm-user">
-      <a href="<%= sugg.translator.absolute_url %>"><img src="<%= sugg.translator.gravatar %>"
-        alt="<%= sugg.translator.username %>" width="24" height="24"
-        title="<%= sugg.translator.title %>" /></a>
-    </div>
-    <% } %>
-    <div class="extra-item-tm-content" title="<%= sugg.qTitle %>">
+    <div class="extra-item-content" title="<%= sugg.qTitle %>">
       <div class="extra-item js-editor-copytext" data-action="overwrite">
         <div class="suggestion-original" lang="<%= store.source_lang %>"
           dir="<%= store.source_dir %>"><%= sugg.source %></div>
@@ -20,21 +11,6 @@
           dir="<%= store.target_dir %>"><%= sugg.target %></div>
       </div>
     </div>
-    <% if ('project' in sugg) { %>
-    <div class="extra-item-tm-project">
-      <a href="<%= sugg.project.absolute_url %>">
-      <% if (sugg.project.icon != "") {%>
-        <img src="<%= sugg.project.icon %>"
-        alt="<%= sugg.project.project %>" width="24" height="24"
-        title="<%= sugg.project.projectname %>" />
-      <% } else { %>
-        <%= sugg.project.projectname %>
-      <% } %>
-      </a>
-    </div>
-    <% } %>
   </div>
   <% }); %>
-<% if (firstResult) {%>
 </div>
-<% } %>
