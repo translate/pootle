@@ -69,6 +69,7 @@ def evernote_reports(request):
         )),
         'user_rates_form': UserRatesForm(),
         'paid_task_form': PaidTaskForm(),
+        'now': timezone.now().strftime('%Y-%m-%d %H-%M-%S'),
     }
 
     return render_to_response('admin/reports.html', ctx,
@@ -77,8 +78,7 @@ def evernote_reports(request):
 @admin_required
 def evernote_reports_detailed(request):
     username = request.GET.get('username', None)
-    start_date = request.GET.get('start', None)
-    end_date = request.GET.get('end', None)
+    month = request.GET.get('month', None)
 
     try:
         User = get_user_model()
@@ -86,7 +86,7 @@ def evernote_reports_detailed(request):
     except:
         user = ''
 
-    [start, end] = get_date_interval(start_date, end_date)
+    [start, end] = get_date_interval(month)
 
     scores = []
     totals = {'translated': {}, 'reviewed': {}, 'total': 0}
@@ -141,11 +141,14 @@ def evernote_reports_detailed(request):
     if user != '' and user.currency is None:
         user.currency = CURRENCIES[0][0]
 
+
     ctx = {
         'scores': scores,
         'user': user,
         'start': start,
         'end': end,
+        'next': start.replace(day=1) + timedelta(days=31),
+        'previous': start.replace(day=1) - timedelta(days=1),
         'totals': totals,
         'utc_offset': start.strftime("%z"),
         'http_host': request.META['HTTP_HOST'],
@@ -155,24 +158,24 @@ def evernote_reports_detailed(request):
                               context_instance=RequestContext(request))
 
 
-def get_date_interval(start_date, end_date):
-    if start_date:
-        start = datetime.strptime(start_date, '%Y-%m-%d')
-    else:
-        start = timezone.now()
+def get_date_interval(month):
+    now = start = end = timezone.now()
+    if month:
+        try:
+            start = datetime.strptime(month, '%Y-%m')
+            if settings.USE_TZ:
+                tz = timezone.get_default_timezone()
+                start = timezone.make_aware(start, tz)
+            if start < now:
+                if start.month != now.month or start.year != now.year:
+                    end = get_max_month_datetime(start)
+            else:
+                end = start
 
-    if end_date:
-        end = datetime.strptime(end_date, '%Y-%m-%d')
-    else:
-        end = timezone.now()
-
-    if settings.USE_TZ:
-        tz = timezone.get_default_timezone()
-        start = timezone.make_aware(start, tz)
-        end = timezone.make_aware(end, tz)
-
-    start = start.replace(hour=0, minute=0, second=0)
-    end = end.replace(hour=23, minute=59, second=59)
+            start = start.replace(hour=0, minute=0, second=0)
+            end = end.replace(hour=23, minute=59, second=59)
+        except ValueError:
+            pass
 
     return [start, end]
 
@@ -285,8 +288,7 @@ def remove_paid_task(request, task_id=None):
 @admin_required
 def user_date_prj_activity(request):
     username = request.GET.get('username', None)
-    start_date = request.GET.get('start', None)
-    end_date = request.GET.get('end', None)
+    month = request.GET.get('month', None)
 
     try:
         User = get_user_model()
@@ -294,7 +296,7 @@ def user_date_prj_activity(request):
     except:
         user = ''
 
-    [start, end] = get_date_interval(start_date, end_date)
+    [start, end] = get_date_interval(month)
 
     json = {}
     user_dict = {
@@ -307,7 +309,13 @@ def user_date_prj_activity(request):
         'hourly_rate': user.hourly_rate,
     } if user != '' else user
 
-    json['meta'] = {'user': user_dict, 'start': start_date, 'end': end_date}
+    json['meta'] = {
+        'user': user_dict,
+        'month': month,
+        'now': timezone.now().strftime('%Y-%m-%d %H-%M-%S'),
+        'start': start.strftime('%Y-%m-%d'),
+        'end': end.strftime('%Y-%m-%d'),
+    }
     if user != '':
         json['summary'] = get_summary(user, start, end)
         json['grouped'] = get_grouped_paid_words(user, start, end)

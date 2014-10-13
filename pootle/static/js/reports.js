@@ -9,23 +9,12 @@
       /* Compile templates */
       this.tmpl = {
         results: _.template($('#language_user_activity').html()),
-        month_selector: _.template($('#month_selector').html()),
         summary: _.template($('#summary').html()),
         paid_tasks: _.template($('#paid-tasks').html()),
       };
 
       $(window).resize(function() {
         PTL.reports.drawChart();
-      });
-
-      $(document).on('click', '.month-selector', function (e) {
-        var offset = parseInt($(this).data('month-offset')),
-            dateRange = PTL.reports.getDateRangeByOffset(offset);
-
-        PTL.reports.dateRange = dateRange;
-        PTL.reports.update();
-
-        return false;
       });
 
       $(document).on('change', '#reports-user', function (e) {
@@ -39,19 +28,6 @@
 
       $(document).on('click', '#reports-paid-tasks .js-remove-task', this.removePaidTask);
 
-      this.now = moment();
-
-      for (var i=3; i>=0; i--) {
-        var month = this.tmpl.month_selector({
-          'month_offset': i,
-          'month': this.now.clone().subtract({M:i}).format('MMMM'),
-        });
-        $('#reports-params .dates ul').append(month);
-      }
-
-      this.dateRange = [this.now.clone().date(1), this.now.clone()]
-      this.user = null;
-
       var taskType = $('#id_task_type').val();
       this.refreshAmountMeasureUnits(taskType);
       $('#reports-user').select2({'data': PTL.reports.users});
@@ -64,22 +40,15 @@
 
         // Walk through known report criterias and apply them to the
         // reports object
-        if ('start' in params && 'end' in params) {
-          PTL.reports.dateRange = [
-            moment(params.start),
-            moment(params.end)
-          ];
+        if ('month' in params) {
+          PTL.reports.month = moment(params.month);
         } else {
-          PTL.reports.dateRange = [
-            PTL.reports.now.clone().date(1),
-            PTL.reports.now.clone()
-          ];
+          PTL.reports.month = moment(PTL.reports.serverTime);
         }
-        PTL.reports.selectMonth();
-
         if ('username' in params) {
           PTL.reports.userName = params.username;
         }
+        PTL.reports.updateMonthSelector();
         $('#reports-user').select2('val', PTL.reports.userName);
 
         if (!PTL.reports.compareParams(params)) {
@@ -176,7 +145,7 @@
 
     validate: function () {
       if (PTL.reports.userName) {
-        return PTL.reports.dateRange.length == 2;
+        return moment(PTL.reports.month).date() == 1;
       }
       return false;
     },
@@ -185,8 +154,7 @@
       if (PTL.reports.validate()) {
         var newHash = $.param({
           'username': PTL.reports.userName,
-          'start': PTL.reports.dateRange[0].format('YYYY-MM-DD'),
-          'end': PTL.reports.dateRange[1].format('YYYY-MM-DD'),
+          'month': PTL.reports.month.format('YYYY-MM'),
         });
         $.history.load(newHash);
       } else {
@@ -269,8 +237,7 @@
 
     buildResults: function () {
       var reqData = {
-        start: PTL.reports.dateRange[0].format('YYYY-MM-DD'),
-        end: PTL.reports.dateRange[1].format('YYYY-MM-DD'),
+        month: PTL.reports.month.format('YYYY-MM'),
         username: PTL.reports.userName
       };
 
@@ -281,10 +248,13 @@
         dataType: 'json',
         async: true,
         success: function (data) {
+          PTL.reports.serverTime = data.meta.now;
+          PTL.reports.now = moment(data.meta.now);
+          PTL.reports.month = moment(data.meta.month);
+
           $('#reports-results').empty();
           $('#reports-results').html(PTL.reports.tmpl.results(data)).show();
           $("#js-breadcrumb-user").html(data.meta.user.formatted_name).show();
-          $("#js-breadcrumb-period").html(PTL.reports.dateRangeString(data.meta.start, data.meta.end)).show();
           var showChart = data.daily !== undefined && data.daily.nonempty;
           $('#reports-activity').toggle(showChart);
           if (showChart) {
@@ -296,16 +266,9 @@
           $('#reports-summary').html(PTL.reports.tmpl.summary(PTL.reports.data));
           if (data.meta.user) {
             PTL.reports.user = data.meta.user;
-            $('#reports-params .dates ul li a').each(function(){
-              var $this = $(this),
-                  offset = parseInt($this.data('month-offset')),
-                  dateRange = PTL.reports.getDateRangeByOffset(offset),
-                  link = '#username=' + PTL.reports.user.username;
-              link += '&start=' + dateRange[0].format('YYYY-MM-DD');
-              link += '&end=' + dateRange[1].format('YYYY-MM-DD')
+            PTL.reports.updateMonthSelector();
+            PTL.reports.setPaidTaskDate();
 
-              $this.attr('href', link);
-            });
             $('#reports-params').show();
             $('#detailed').show();
 
@@ -323,6 +286,8 @@
             }
             $('#user-rates-form .currency').text($('#id_currency').val())
             $('#forms').show();
+          } else {
+            $('#forms').hide();
           }
           $('body').spin(false);
         },
@@ -387,42 +352,33 @@
       PTL.reports.currentRowIsEven = false;
     },
 
-    selectMonth: function () {
-      var dr = PTL.reports.dateRange;
-      $('.month-selector').each(function () {
+    updateMonthSelector: function () {
+      $('.js-month').each(function () {
         var $el = $(this),
-            offset = parseInt($el.data('month-offset')),
-            dateRange = PTL.reports.getDateRangeByOffset(offset);
+            link = '#username=' + PTL.reports.userName;
 
-        $el.removeClass('selected');
-        if (dr[0].format('YYYY-MM-DD') === dateRange[0].format('YYYY-MM-DD') &&
-            dr[1].format('YYYY-MM-DD') === dateRange[1].format('YYYY-MM-DD')) {
-          $el.addClass('selected');
+        if ($el.hasClass('js-previous')) {
+          link += '&month=' + PTL.reports.month.clone().subtract({M:1}).format('YYYY-MM');
         }
+        if ($el.hasClass('js-next')){
+          link += '&month=' + PTL.reports.month.clone().add({M:1}).format('YYYY-MM');
+        }
+        $el.attr('href', link);
       });
+      $('.dates .selected').html(PTL.reports.month.format('MMMM, YYYY'));
+    },
 
-      $('#paid-task-form .month').html(PTL.reports.dateRange[1].format('MMMM, YYYY'));
+    setPaidTaskDate: function () {
+      $('#paid-task-form .month').html(PTL.reports.month.format('MMMM, YYYY'));
       // set paid task date
-      if (PTL.reports.now >= PTL.reports.dateRange[1]) {
-        $('#paid-task-form #id_date').val(PTL.reports.dateRange[1].format('YYYY-MM-DD'));
-      } else if (PTL.reports.now <= PTL.reports.dateRange[0]) {
-        $('#paid-task-form #id_date').val(PTL.reports.dateRange[0].format('YYYY-MM-DD'));
+      if (PTL.reports.now >= PTL.reports.month.clone().add({M: 1})) {
+        $('#paid-task-form #id_date').val(PTL.reports.month.clone().add({M: 1}).subtract({d: 1}).format('YYYY-MM-DD'));
+      } else if (PTL.reports.now <= PTL.reports.month) {
+        $('#paid-task-form #id_date').val(PTL.reports.month.format('YYYY-MM-DD'));
       } else {
         $('#paid-task-form #id_date').val(PTL.reports.now.format('YYYY-MM-DD'));
       }
     },
-
-    getDateRangeByOffset: function (offset) {
-      var start = PTL.reports.now.clone().subtract({M: offset}).date(1),
-          end = PTL.reports.now.clone();
-
-      if (offset > 0) {
-        end = PTL.reports.now.clone().subtract({M: offset}).date(1)
-                             .add({M: 1}).subtract('days', 1);
-      }
-
-      return [start, end];
-    }
 
   };
 
