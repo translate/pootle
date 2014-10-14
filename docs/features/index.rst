@@ -14,7 +14,6 @@ Backends and storage
 
    authentication
    formats
-   hooks
    statistics
    templates
    version_control
