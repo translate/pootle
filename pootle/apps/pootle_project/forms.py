@@ -79,10 +79,6 @@ def tp_form_factory(current_project):
                 label=_("Update against templates"),
             )
 
-        #FIXME: maybe we can detect if initialize is needed to avoid
-        # displaying it when not relevant.
-        #initialize = forms.BooleanField(required=False, label=_("Initialize"))
-
         project = forms.ModelChoiceField(
             queryset=Project.objects.filter(pk=current_project.pk),
             initial=current_project.pk,
@@ -104,9 +100,6 @@ def tp_form_factory(current_project):
 
         def process_extra_fields(self):
             if self.instance.pk is not None:
-                if self.cleaned_data.get('initialize', None):
-                    self.instance.initialize()
-
                 if (self.cleaned_data.get('update', None) or
                     not self.instance.stores.count()):
                     self.instance.update_against_templates()
