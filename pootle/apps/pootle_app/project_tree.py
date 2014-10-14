@@ -29,7 +29,7 @@ from translate.lang import data as langdata
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_store.models import Store, PARSED
-from pootle_store.util import absolute_real_path, add_trailing_slash
+from pootle_store.util import absolute_real_path
 
 
 #: Case insensitive match for language codes
@@ -150,36 +150,6 @@ def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
     return files, dirs
 
 
-def recursive_files_and_dirs(ignored_files, ext, real_dir, file_filter):
-    """Traverses :param:`real_dir` searching for files and directories.
-
-    :param ignored_files: List of files that will be ignored.
-    :param ext: Only files ending with this extension will be considered.
-    :param real_dir:
-    :param file_filter: Filtering function applied to the list of files found.
-    :return: A tuple of lists of files and directories found when traversing the
-        given path and after applying the given restrictions.
-    """
-    real_dir = add_trailing_slash(real_dir)
-    files = []
-    dirs = []
-
-    for _path, _dirs, _files in os.walk(real_dir, followlinks=True):
-        # Make it relative:
-        _path = _path[len(real_dir):]
-        files += [os.path.join(_path, f) for f in filter(file_filter, _files)
-                  if f.endswith(ext) and f not in ignored_files]
-
-        # Edit _dirs in place to avoid further recursion into hidden directories
-        for d in _dirs:
-            if is_hidden_file(d):
-                _dirs.remove(d)
-
-        dirs += _dirs
-
-    return files, dirs
-
-
 def add_items(fs_items, db_items, create_db_item):
     """Add/remove the database items to correspond to the filesystem.
 
@@ -244,50 +214,6 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
         new_files += _new_files
 
     return files, new_files
-
-
-def sync_from_vcs(ignored_files, ext, relative_dir,
-                  file_filter=lambda _x: True):
-    """Recursively synchronise the PO directory from the VCS directory.
-
-    This brings over files from VCS, and removes files in PO directory that
-    were removed in VCS.
-    """
-    from pootle_misc import versioncontrol
-    if not versioncontrol.hasversioning(relative_dir):
-        return
-
-    podir_path = versioncontrol.to_podir_path(relative_dir)
-    vcs_path = versioncontrol.to_vcs_path(relative_dir)
-    vcs_files, vcs_dirs = recursive_files_and_dirs(ignored_files, ext,
-                                                   vcs_path, file_filter)
-    files, dirs = recursive_files_and_dirs(ignored_files, ext, podir_path,
-                                           file_filter)
-
-    vcs_file_set = set(vcs_files)
-    vcs_dir_set = set(vcs_dirs)
-    file_set = set(files)
-    dir_set = set(dirs)
-
-    for d in vcs_dir_set - dir_set:
-        new_path = os.path.join(podir_path, d)
-        os.makedirs(new_path)
-
-    # copy into podir
-    for f in vcs_file_set - file_set:
-        vcs_f = os.path.join(vcs_path, f)
-        new_path = os.path.join(podir_path, f)
-        shutil.copy2(vcs_f, new_path)
-
-    # remove from podir
-    #TODO: review this carefully, as we are now deleting stuff
-    for f in file_set - vcs_file_set:
-        remove_path = os.path.join(podir_path, f)
-        os.remove(remove_path)
-
-    for d in dir_set - vcs_dir_set:
-        remove_path = os.path.join(podir_path, d)
-        shutil.rmtree(remove_path)
 
 
 def find_lang_postfix(filename):
