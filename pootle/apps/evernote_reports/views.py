@@ -75,17 +75,8 @@ def evernote_reports(request):
     return render_to_response('admin/reports.html', ctx,
                               context_instance=RequestContext(request))
 
-@admin_required
-def evernote_reports_detailed(request):
-    username = request.GET.get('username', None)
-    month = request.GET.get('month', None)
 
-    try:
-        User = get_user_model()
-        user = User.objects.get(username=username)
-    except:
-        user = ''
-
+def get_detailed_report_context(user, month):
     [start, end] = get_date_interval(month)
 
     scores = []
@@ -141,8 +132,7 @@ def evernote_reports_detailed(request):
     if user != '' and user.currency is None:
         user.currency = CURRENCIES[0][0]
 
-
-    ctx = {
+    return {
         'scores': scores,
         'object': user,
         'start': start,
@@ -153,6 +143,19 @@ def evernote_reports_detailed(request):
         'utc_offset': start.strftime("%z"),
     }
 
+
+@admin_required
+def evernote_reports_detailed(request):
+    username = request.GET.get('username', None)
+    month = request.GET.get('month', None)
+    User = get_user_model()
+
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        user = ''
+
+    ctx = get_detailed_report_context(user=user, month=month)
     return render_to_response('admin/detailed_reports.html', ctx,
                               context_instance=RequestContext(request))
 
@@ -285,18 +288,7 @@ def remove_paid_task(request, task_id=None):
     )
 
 
-@ajax_required
-@admin_required
-def user_date_prj_activity(request):
-    username = request.GET.get('username', None)
-    month = request.GET.get('month', None)
-
-    try:
-        User = get_user_model()
-        user = User.objects.get(username=username)
-    except:
-        user = ''
-
+def get_activity_data(user, month):
     [start, end] = get_date_interval(month)
 
     json = {}
@@ -323,6 +315,22 @@ def user_date_prj_activity(request):
         json['paid_tasks'] = get_paid_tasks(user, start, end)
         json['daily'] = get_daily_activity(user, start, end)
 
+    return json
+
+
+@ajax_required
+@admin_required
+def user_date_prj_activity(request):
+    username = request.GET.get('username', None)
+    month = request.GET.get('month', None)
+
+    try:
+        User = get_user_model()
+        user = User.objects.get(username=username)
+    except:
+        user = ''
+
+    json = get_activity_data(user, month)
     response = jsonify(json)
 
     return HttpResponse(response, content_type="application/json")
