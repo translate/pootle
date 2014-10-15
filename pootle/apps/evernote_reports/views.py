@@ -144,7 +144,7 @@ def evernote_reports_detailed(request):
 
     ctx = {
         'scores': scores,
-        'user': user,
+        'object': user,
         'start': start,
         'end': end,
         'next': start.replace(day=1) + timedelta(days=31),

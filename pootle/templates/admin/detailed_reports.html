@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>{% blocktrans with user.formatted_name as user %}Report for {{ user }}, {% endblocktrans %}{% format_date_range start end " &ndash; " %} | {{ settings.TITLE }}</title>
+  <title>{% blocktrans with object.formatted_name as user %}Report for {{ user }}, {% endblocktrans %}{% format_date_range start end " &ndash; " %} | {{ settings.TITLE }}</title>
   <base href="http://{{ request.META.HTTP_HOST }}" />
   <style type="text/css">
     html
@@ -116,16 +116,18 @@
   </style>
 </head>
 <body>
-  {% if user %}
+  {% if object %}
   <table>
     <caption>
-      {% blocktrans with user.formatted_name as user %}Report for {{ user }}{% endblocktrans %}
+      {% blocktrans with object.formatted_name as user %}Report for {{ user }}{% endblocktrans %}
       <div class="dates">
+        {% block dates %}
         <ul>
-          <li class="previos"><a href="{% url 'evernote-reports-detailed' %}?username={{user.username}}&amp;month={{previous|date:'Y-m'}}">{% trans "Previos month" %}</a></li>
+          <li class="previos"><a href="{% url 'evernote-reports-detailed' %}?username={{object.username}}&amp;month={{previous|date:'Y-m'}}">{% trans "Previos month" %}</a></li>
           <li class="selected">{{start|date:'E, Y'}}</li>
-          <li class="next"><a href="{% url 'evernote-reports-detailed' %}?username={{user.username}}&amp;month={{next|date:'Y-m'}}">{% trans "Next month" %}</a></li>
+          <li class="next"><a href="{% url 'evernote-reports-detailed' %}?username={{object.username}}&amp;month={{next|date:'Y-m'}}">{% trans "Next month" %}</a></li>
         </ul>
+        {% endblock dates %}
       </div>
     </caption>
     <thead>
@@ -156,8 +158,8 @@
         <td class="number">{{ score.wordcount }}</td>
         <td class="number">{% if score.is_similarity_taken_from_mt %}<sup>MT</sup>{% endif %}{% if score.action == 'Review' %}&mdash;{% elif score.action == 'Translation' %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
         <td class="number">{{ score.words|floatformat:2 }}</td>
-        <td class="number">{% if score.action == 'Review' %}{{ score.review_rate }}{% elif score.action = 'Translation' %}{{ score.rate }}{% endif %} {{ user.currency }}</td>
-        <td class="number">{{ score.subtotal|floatformat:2 }} {{ user.currency }}</td>
+        <td class="number">{% if score.action == 'Review' %}{{ score.review_rate }}{% elif score.action = 'Translation' %}{{ score.rate }}{% endif %} {{ object.currency }}</td>
+        <td class="number">{{ score.subtotal|floatformat:2 }} {{ object.currency }}</td>
       </tr>
       {% endif %}
     {% empty %}
@@ -174,8 +176,8 @@
         <td>&nbsp;</td>
         <td colspan="4">{% trans "Translated (subtotal)" %}</td>
         <td class="number">{% if item.words > 0 %}{{ item.words }}{% else %}&mdash;{% endif %}</td>
-        <td class="number">{{ rate }} {{ user.currency }}</td>
-        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }} {{ user.currency }}{% else %}&mdash;{% endif %}</td>
+        <td class="number">{{ rate }} {{ object.currency }}</td>
+        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }} {{ object.currency }}{% else %}&mdash;{% endif %}</td>
       </tr>
     {% endfor %}
     {% for rate, item in totals.reviewed.items %}
@@ -183,14 +185,14 @@
         <td>&nbsp;</td>
         <td colspan="4">{% trans "Reviewed (subtotal)" %}</td>
         <td class="number">{% if item.words > 0 %}{{ item.words }}{% else %}&mdash;{% endif %}</td>
-        <td class="number">{{ rate }} {{ user.currency }}</td>
-        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }} {{ user.currency }}{% else %}&mdash;{% endif %}</td>
+        <td class="number">{{ rate }} {{ object.currency }}</td>
+        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }} {{ object.currency }}{% else %}&mdash;{% endif %}</td>
       </tr>
     {% endfor %}
       <tr class="total">
         <td>&nbsp;</td>
         <td colspan="6">{% trans "Total" %}</td>
-        <td class="number">{{ totals.all|floatformat:2 }} {{ user.currency }}</td>
+        <td class="number">{{ totals.all|floatformat:2 }} {{ object.currency }}</td>
       </tr>
     {% endif %}
     </tbody>
