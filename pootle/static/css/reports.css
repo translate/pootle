@@ -1,6 +1,6 @@
 #reports-container
 {
-    margin: 2em 0;
+    margin: 2em 1em;
 }
 
 #reports-results
@@ -332,4 +332,14 @@ th.number
     color: #999;
     font-size: 120%;
     font-style: italic;
+}
+
+#reports-container table
+{
+    width: 100%;
+}
+
+#reports-header
+{
+    width: 100%;
 }
