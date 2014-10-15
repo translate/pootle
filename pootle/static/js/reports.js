@@ -56,7 +56,7 @@
         }
 
         PTL.reports.loadedHashParams = params;
-        $('#detailed a').attr('href', detailed + '?' + PTL.utils.getHash());
+        $('#detailed a').attr('href', PTL.reports.detailedUrl + '?' + PTL.utils.getHash());
       }, {'unescape': true});
 
     },
