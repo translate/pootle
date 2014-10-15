@@ -382,6 +382,9 @@ def get_daily_activity(user, start, end):
             translated_group[date] += translated
             reviewed_group[date] += reviewed
 
+    if result['max_day_score'] < current_day_score:
+        result['max_day_score'] = current_day_score
+
     for date, item in sorted(translated_group.items(), key=lambda x: x[0]):
         ts = int(calendar.timegm(date.timetuple()) * 1000)
         result_translated['data'].append((ts, item))
