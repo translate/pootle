@@ -9,34 +9,37 @@
       /* Compile templates */
       this.tmpl = {
         results: _.template($('#language_user_activity').html()),
-        summary: _.template($('#summary').html()),
-        paid_tasks: _.template($('#paid-tasks').html()),
+        summary: PTL.reports.userReport ? '' : _.template($('#summary').html()),
+        paid_tasks: PTL.reports.userReport ? '' : _.template($('#paid-tasks').html()),
       };
 
       $(window).resize(function() {
         PTL.reports.drawChart();
       });
 
-      $(document).on('change', '#reports-user', function (e) {
-        PTL.reports.userName = $('#reports-user').val();
-        PTL.reports.update();
-      });
-      $(document).on('click', '#user-rates-form input.submit', this.updateRates);
+      if (!PTL.reports.userReport) {
+        $(document).on('change', '#reports-user', function (e) {
+          PTL.reports.userName = $('#reports-user').val();
+          PTL.reports.update();
+        });
+        $(document).on('click', '#user-rates-form input.submit', this.updateRates);
+        $(document).on('click', '#reports-paid-tasks .js-remove-task', this.removePaidTask);
+        $('#reports-user').select2({'data': PTL.reports.users});
+      } else {
+        $('#reports-form').empty();
+      }
+
       $(document).on('click', '#paid-task-form input.submit', this.addPaidTask);
       $(document).on('change', '#id_currency', this.refreshCurrency);
       $(document).on('change', '#id_task_type', this.onPaidTaskTypeChange);
 
-      $(document).on('click', '#reports-paid-tasks .js-remove-task', this.removePaidTask);
-
       var taskType = $('#id_task_type').val();
       this.refreshAmountMeasureUnits(taskType);
-      $('#reports-user').select2({'data': PTL.reports.users});
 
       this.currentRowIsEven = false;
 
       $.history.init(function (hash) {
-        var params = PTL.utils.getParsedHash(hash),
-            detailed = $('#detailed a').attr('href').split('?')[0];
+        var params = PTL.utils.getParsedHash(hash);
 
         // Walk through known report criterias and apply them to the
         // reports object
@@ -262,8 +265,10 @@
             PTL.reports.drawChart();
           }
           PTL.reports.setData(data);
-          $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(PTL.reports.data));
-          $('#reports-summary').html(PTL.reports.tmpl.summary(PTL.reports.data));
+          if (!PTL.reports.userReport) {
+            $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(PTL.reports.data));
+            $('#reports-summary').html(PTL.reports.tmpl.summary(PTL.reports.data));
+          }
           if (data.meta.user) {
             PTL.reports.user = data.meta.user;
             PTL.reports.updateMonthSelector();
@@ -355,13 +360,13 @@
     updateMonthSelector: function () {
       $('.js-month').each(function () {
         var $el = $(this),
-            link = '#username=' + PTL.reports.userName;
+            link = PTL.reports.userReport ? '#' : '#username=' + PTL.reports.userName + '&';
 
         if ($el.hasClass('js-previous')) {
-          link += '&month=' + PTL.reports.month.clone().subtract({M:1}).format('YYYY-MM');
+          link += 'month=' + PTL.reports.month.clone().subtract({M:1}).format('YYYY-MM');
         }
         if ($el.hasClass('js-next')){
-          link += '&month=' + PTL.reports.month.clone().add({M:1}).format('YYYY-MM');
+          link += 'month=' + PTL.reports.month.clone().add({M:1}).format('YYYY-MM');
         }
         $el.attr('href', link);
       });

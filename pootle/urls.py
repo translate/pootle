@@ -26,13 +26,14 @@ urlpatterns = patterns('',
     url(r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
         {'packages': ('pootle', ), }, ),
 
-    # External apps
-    url(r'^contact/', include('evernote_contact.urls')),
-    url(r'', include('pootle_profile.urls')),
-
     # URLs added by Evernote
     url(r'^accounts/evernote/', include('evernote_auth.urls')),
     url(r'^admin/reports/', include('evernote_reports.urls')),
+    url(r'', include('evernote_reports.profile_urls')),
+
+    # External apps
+    url(r'^contact/', include('evernote_contact.urls')),
+    url(r'', include('pootle_profile.urls')),
 
     # Pootle URLs
     url(r'^pages/', include('staticpages.urls')),

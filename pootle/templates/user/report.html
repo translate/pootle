@@ -1,0 +1,54 @@
+{% extends "user/base.html" %}
+
+{% load i18n assets store_tags %}
+
+{% block body_id %}evernote_reports{% endblock %}
+
+{% block css %}
+{{ block.super }}
+{% assets "css_reports" %}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+{% endassets %}
+{% endblock css %}
+
+{% block scripts_extra %}
+{{ block.super }}
+{% assets "js_reports" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+
+<script id="language_user_activity" type="text/template">
+{% include_raw "admin/xhr_language_user_activity.html" %}
+</script>
+
+<script type="text/javascript">
+  {% autoescape off %}
+    PTL.reports.serverTime = "{{ now }}";
+    PTL.reports.userReport = true;
+    PTL.reports.userName = "{{ object.username }}";
+    PTL.reports.detailedUrl = "{% url 'pootle-user-detailed-report' object.username %}";
+  {% endautoescape %}
+</script>
+
+{% endblock scripts_extra %}
+
+{% block title %}{% trans "Reports" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+  <li>{% trans 'Users' %}</li>
+  <li>{{ object.formatted_name }}</li>
+  <li>{% trans 'Reports' %}</li>
+{% endblock %}
+
+{% block header_tabs_block %}{% endblock %}
+
+{% block content %}
+  <div id="reports-container">
+    {% include "admin/reports/header.html" %}
+    <div id="reports-results"></div>
+    <div id="reports-activity">
+      <h2>{% trans 'Daily activity' %}</h2>
+      <div id="daily-chart"></div>
+    </div>
+  </div>
+{% endblock %}

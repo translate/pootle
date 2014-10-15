@@ -1,0 +1,11 @@
+{% extends "admin/detailed_reports.html" %}
+
+{% load i18n %}
+
+{% block dates %}
+        <ul>
+          <li class="previos"><a href="{% url 'pootle-user-detailed-report' object.username %}?month={{previous|date:'Y-m'}}">{% trans "Previos month" %}</a></li>
+          <li class="selected">{{start|date:'E, Y'}}</li>
+          <li class="next"><a href="{% url 'pootle-user-detailed-report' object.username %}?month={{next|date:'Y-m'}}">{% trans "Next month" %}</a></li>
+        </ul>
+{% endblock %}

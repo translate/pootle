@@ -25,16 +25,22 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.urlresolvers import resolve
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 from django.utils.html import escape
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic import View
+from django.views.generic.detail import SingleObjectMixin
 
 from pootle.core.decorators import admin_required
-from pootle.models.user import CURRENCIES
+from pootle.models.user import CURRENCIES, User
 from pootle_misc.util import ajax_required, jsonify
+from pootle_profile.views import (NoDefaultUserMixin, TestUserFieldMixin,
+                                  DetailView)
 from pootle_statistics.models import ScoreLog
 
 from .forms import UserRatesForm, PaidTaskForm
@@ -56,6 +62,56 @@ DATE = 'creation_time_date'
 
 STAT_FIELDS = ['n1']
 INITIAL_STATES = ['new', 'edit']
+
+
+class UserReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
+    model = User
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    template_name = 'user/report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(UserReportView, self).get_context_data(**kwargs)
+        context.update({
+            'paid_task_form': PaidTaskForm(),
+            'now': timezone.now().strftime('%Y-%m-%d %H-%M-%S'),
+        })
+
+        return context
+
+
+class UserActivityView(NoDefaultUserMixin, TestUserFieldMixin, SingleObjectMixin, View):
+    model = User
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+    @method_decorator(ajax_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.month = request.GET.get('month', None)
+        return super(UserActivityView, self).dispatch(request, *args, **kwargs)
+
+    def get(self, *args, **kwargs):
+        data = get_activity_data(self.get_object(), self.month)
+        return HttpResponse(jsonify(data), content_type="application/json")
+
+
+class UserDetailedReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
+    model = User
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    template_name = 'user/detailed_report.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.month = request.GET.get('month', None)
+        self.url_name = resolve(request.path_info).url_name
+        return super(UserDetailedReportView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(UserDetailedReportView, self).get_context_data(**kwargs)
+        context.update(get_detailed_report_context(user=self.get_object(), month=self.month))
+        context.update({'url_name': self.url_name})
+
+        return context
 
 
 @admin_required
