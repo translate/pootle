@@ -160,22 +160,24 @@ def evernote_reports_detailed(request):
 
 def get_date_interval(month):
     now = start = end = timezone.now()
-    if month:
-        try:
-            start = datetime.strptime(month, '%Y-%m')
-            if settings.USE_TZ:
-                tz = timezone.get_default_timezone()
-                start = timezone.make_aware(start, tz)
-            if start < now:
-                if start.month != now.month or start.year != now.year:
-                    end = get_max_month_datetime(start)
-            else:
-                end = start
+    if month is None:
+        month = start.strftime('%Y-%m')
 
-            start = start.replace(hour=0, minute=0, second=0)
-            end = end.replace(hour=23, minute=59, second=59)
-        except ValueError:
-            pass
+    try:
+        start = datetime.strptime(month, '%Y-%m')
+        if settings.USE_TZ:
+            tz = timezone.get_default_timezone()
+            start = timezone.make_aware(start, tz)
+        if start < now:
+            if start.month != now.month or start.year != now.year:
+                end = get_max_month_datetime(start)
+        else:
+            end = start
+
+        start = start.replace(hour=0, minute=0, second=0)
+        end = end.replace(hour=23, minute=59, second=59)
+    except ValueError:
+        pass
 
     return [start, end]
 
