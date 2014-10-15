@@ -113,11 +113,13 @@ charts or filled areas).
                     bottom = 0;
 
                     if (px == qx) {
-                        for (m = 0; m < ps; ++m)
-                            newpoints.push(points[i + m]);
+                        if (points[i + 1] !== 0) {
+                            for (m = 0; m < ps; ++m)
+                                newpoints.push(points[i + m]);
 
-                        newpoints[l + accumulateOffset] += qy;
-                        bottom = qy;
+                            newpoints[l + accumulateOffset] += qy;
+                            bottom = qy;
+                        }
                         
                         i += ps;
                         j += otherps;
