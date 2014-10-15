@@ -151,7 +151,6 @@ def evernote_reports_detailed(request):
         'previous': start.replace(day=1) - timedelta(days=1),
         'totals': totals,
         'utc_offset': start.strftime("%z"),
-        'http_host': request.META['HTTP_HOST'],
     }
 
     return render_to_response('admin/detailed_reports.html', ctx,
