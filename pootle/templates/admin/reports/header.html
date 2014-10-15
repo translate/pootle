@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<table id="reports-header">
+  <tr>
+    <td id="reports-form">
+      <input id="reports-user" type="text" placeholder="User"></input>
+    </td>
+    <td id="reports-params">
+      <div class="dates">
+        <ul>
+          <li>
+            <a class="js-month js-previous" href="#">{% trans "Previos month" %}</a>
+          </li>
+          <li class="selected"></li>
+          <li>
+             <a class="js-month js-next" href="#">{% trans "Next month" %}</a>
+          </li>
+        </ul>
+      </div>
+    </td>
+    <td id="detailed">
+      <a href="" target="_blank">{% trans 'Detailed report' %}</a>
+    </td>
+  </tr>
+</table>
