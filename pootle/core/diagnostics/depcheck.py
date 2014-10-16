@@ -1,73 +1,22 @@
+from django.conf import settings
 from . import checks
 
 
 def required_checks():
-    required = []
+    # TODO move the other checks to this system
+    dependencies = []
+    for app in settings.INSTALLED_APPS:
+        if app.startswith("django"):
+            # XXX ideally, we check for app.startswith("pootle.")
+            # but we are not there yet.
+            continue
+        try:
+            module = __import__(app + ".dependencies")
+        except ImportError:
+            continue
+        dependencies += module.test_dependencies()
 
-    status, version = checks.test_translate()
-    if status:
-        text = _("Translate Toolkit version %s installed.", version)
-        state = "tick"
-    else:
-        trans_vars = {
-            "installed": version,
-            "required": ".".join([str(i) for i in
-                                  checks.TTK_MINIMUM_REQUIRED_VERSION]),
-        }
-        text = _("Translate Toolkit version %(installed)s installed. Pootle "
-                 "requires at least version %(required)s.", trans_vars)
-        state = "error"
-
-    required.append({
-        "dependency": "translate",
-        "state": state,
-        "text": text,
-    })
-
-    status, version = checks.test_django()
-    if status:
-        text = _("Django version %s is installed.", version)
-        state = "tick"
-    else:
-        trans_vars = {
-            "installed": version,
-            "required": ".".join([str(i) for i in
-                                  checks.DJANGO_MINIMUM_REQUIRED_VERSION]),
-        }
-        text = _("Django version %(installed)s is installed. Pootle requires "
-                 "at least version %(required)s.", trans_vars)
-        state = "error"
-
-    required.append({
-        "dependency": "django",
-        "state": state,
-        "text": text,
-    })
-
-    status, version = checks.test_lxml()
-    if status:
-        text = _("lxml version %s is installed.", version)
-        state = "tick"
-    elif version is not None:
-        trans_vars = {
-            "installed": version,
-            "required": ".".join([str(i) for i in
-                                  checks.LXML_MINIMUM_REQUIRED_VERSION]),
-        }
-        text = _("lxml version %(installed)s is installed. Pootle requires at "
-                 "least version %(required)s.", trans_vars)
-        state = "error"
-    else:
-        text = _("lxml is not installed. Pootle requires lxml.")
-        state = "error"
-
-    required.append({
-        "dependency": "lxml",
-        "state": state,
-        "text": text,
-    })
-
-    return required
+    return dependencies
 
 
 def optional_checks():
