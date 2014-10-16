@@ -37,7 +37,7 @@ from django.views.generic import View
 from django.views.generic.detail import SingleObjectMixin
 
 from pootle.core.decorators import admin_required
-from pootle.models.user import CURRENCIES, User
+from pootle.models.user import CURRENCIES
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.views import (NoDefaultUserMixin, TestUserFieldMixin,
                                   DetailView)
@@ -65,7 +65,7 @@ INITIAL_STATES = ['new', 'edit']
 
 
 class UserReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
-    model = User
+    model = get_user_model()
     slug_field = 'username'
     slug_url_kwarg = 'username'
     template_name = 'user/report.html'
@@ -81,7 +81,7 @@ class UserReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
 
 
 class UserActivityView(NoDefaultUserMixin, TestUserFieldMixin, SingleObjectMixin, View):
-    model = User
+    model = get_user_model()
     slug_field = 'username'
     slug_url_kwarg = 'username'
 
@@ -96,7 +96,7 @@ class UserActivityView(NoDefaultUserMixin, TestUserFieldMixin, SingleObjectMixin
 
 
 class UserDetailedReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
-    model = User
+    model = get_user_model()
     slug_field = 'username'
     slug_url_kwarg = 'username'
     template_name = 'user/detailed_report.html'
