@@ -46,6 +46,12 @@ def optional_checks():
             "text": _("No text indexing engine found. Searching is faster if "
                       "an indexing engine like Xapian or Lucene is installed.")
         })
+    if not checks.test_chardet():
+        optional.append({
+            "dependency": "chardet",
+            "text": _("Can't find chardet package. Automatic detection of"
+                      "encodings may be faulty.")
+        })
 
     filter_name, filter_args = get_markup_filter()
     if filter_name is None:
