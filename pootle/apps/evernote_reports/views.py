@@ -71,13 +71,13 @@ class UserReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
     template_name = 'user/report.html'
 
     def get_context_data(self, **kwargs):
-        context = super(UserReportView, self).get_context_data(**kwargs)
-        context.update({
+        ctx = super(UserReportView, self).get_context_data(**kwargs)
+        ctx.update({
             'paid_task_form': PaidTaskForm(),
             'now': timezone.now().strftime('%Y-%m-%d %H-%M-%S'),
         })
 
-        return context
+        return ctx
 
 
 class UserActivityView(NoDefaultUserMixin, TestUserFieldMixin, SingleObjectMixin, View):
@@ -107,11 +107,11 @@ class UserDetailedReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView)
         return super(UserDetailedReportView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(UserDetailedReportView, self).get_context_data(**kwargs)
-        context.update(get_detailed_report_context(user=self.get_object(), month=self.month))
-        context.update({'url_name': self.url_name})
+        ctx = super(UserDetailedReportView, self).get_context_data(**kwargs)
+        ctx.update(get_detailed_report_context(user=self.get_object(), month=self.month))
+        ctx.update({'url_name': self.url_name})
 
-        return context
+        return ctx
 
 
 @admin_required
