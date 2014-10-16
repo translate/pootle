@@ -39,6 +39,14 @@ def test_unzip():
         return False
 
 
+def test_chardet():
+    try:
+        import chardet
+        return True
+    except ImportError:
+        return False
+
+
 def test_iso_codes():
     import gettext
     languages = (lang[0] for lang in settings.LANGUAGES)
