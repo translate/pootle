@@ -314,11 +314,6 @@ th.number
     min-height: 300px;
 }
 
-#daily-chart table
-{
-    width: inherit;
-}
-
 .zero
 {
     opacity: 0.5;
@@ -342,4 +337,9 @@ th.number
 #reports-header
 {
     width: 100%;
+}
+
+#daily-chart table
+{
+    width: inherit;
 }
