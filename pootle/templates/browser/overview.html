@@ -2,8 +2,6 @@
 {% load assets cleanhtml i18n locale translation_project_tags common_tags profile_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block body_class %}{{ block.super }} js-not-loaded{% endblock %}
-
 {% block header_content_block %}
 <div id="top-stats" class="header">
   {% block header_content %}

@@ -116,8 +116,6 @@
       this.updateAction($('#js-action-fix-critical'), data.critical);
       this.updateAction($('#js-action-review'), data.suggestions);
 
-      $('body').removeClass('js-not-loaded');
-
       this.updateTranslationStats($('#stats-total'),
                                   data.total, data.total, 100);
       this.updateTranslationStats($('#stats-translated'),

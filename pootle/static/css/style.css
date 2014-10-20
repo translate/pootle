@@ -1921,19 +1921,6 @@ table.stats span.muted
     display: none;
 }
 
-body.js-not-loaded span.zero,
-body.js-not-loaded span.non-zero,
-body.js-not-loaded th.when-loaded
-{
-    /* Hide placeholders and certain headers by default */
-    display: none;
-}
-
-body.js-not-loaded table.graph
-{
-    opacity: 0.3;
-}
-
 table.stats td.zero span.zero,
 table.stats td.non-zero span.non-zero
 {
