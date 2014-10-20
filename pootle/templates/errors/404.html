@@ -1,0 +1,11 @@
+{% extends "errors/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Page Not Found" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+<h2 class="error-face">{õ_õ}</h2>
+<h2 class="error-title">{% trans 'Page Not Found' %}</h2>
+
+<p>{% trans "We're sorry, but the requested page could not be found." %}</p>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "errors/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Server Error" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+<h2 class="error-face">{õ_õ}</h2>
+<h2 class="error-title">{% trans 'Server Error' %}</h2>
+
+<p>{% trans "A server error has occurred. Thank you for your patience." %}</p>
+
+<p class="exception exception-details">
+{% if fserror %}
+{{ fserror }}
+{% else %}
+<span class="exception-label">{% trans 'Exception:' %}</span> {{ exception }}
+{% endif %}
+</p>
+{% if request.sentry.id %}
+<p class="exception exception-sentry">{% blocktrans with ref=request.sentry.id %}If you need assistance, you may refer to this error as <strong>{{ ref }}</strong>.{% endblocktrans %}</p>
+{% endif %}
+{% endblock %}

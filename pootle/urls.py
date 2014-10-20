@@ -44,3 +44,9 @@ urlpatterns = patterns('',
     url(r'', include('pootle_language.urls')),
     url(r'', include('pootle_translationproject.urls')),
 )
+
+
+# TODO: handler400
+handler403 = 'pootle.core.views.permission_denied'
+handler404 = 'pootle.core.views.page_not_found'
+handler500 = 'pootle.core.views.server_error'

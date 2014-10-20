@@ -1,0 +1,19 @@
+{% extends "errors/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Permission Denied" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+<h2 class="error-face">{õ_õ}</h2>
+<h2 class="error-title">{% trans 'Permission Denied' %}</h2>
+
+{% if permission_error %}
+<p>{{ permission_error }}</p>
+{% else %}
+<p>{% trans "You don't seem to have permissions to access this page." %}</p>
+{% endif %}
+
+{% if login_message %}
+<p>{{ login_message|safe }}</p>
+{% endif %}
+{% endblock %}

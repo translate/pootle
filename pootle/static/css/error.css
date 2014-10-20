@@ -1,0 +1,56 @@
+/* ERROR PAGES */
+
+#error-page #body
+{
+    position: absolute;
+    display: table;
+    height: calc(100% - 62px);  /* #wrapper margin-bottom */
+}
+
+#error-page #content
+{
+    display: table-cell;
+    vertical-align: middle;
+
+    font-size: 130%;
+    text-align: center;
+}
+
+#error-page h2.error-face
+{
+    font-size: 500%;
+    color: #005b7a;
+}
+
+#error-page h2.error-title
+{
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+}
+
+#error-page h3
+{
+    margin-bottom: 1em;
+}
+
+#error-page .exception
+{
+    font-style: italic;
+}
+
+#error-page .exception-details
+{
+    margin-top: 6.5em;
+}
+
+#error-page .exception-label
+{
+    font-style: normal;
+}
+
+#error-page .exception-sentry
+{
+    color: #999;
+    font-size: 0.8em;
+    margin-top: 1em;
+}

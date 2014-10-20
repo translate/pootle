@@ -30,6 +30,9 @@ from django.forms.models import modelform_factory
 from django.http import Http404, HttpResponse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
+from django.views.defaults import (permission_denied as django_403,
+                                   page_not_found as django_404,
+                                   server_error as django_500)
 from django.views.generic import View
 
 from pootle_misc.util import PootleJSONEncoder, ajax_required, jsonify
@@ -360,3 +363,15 @@ class APIView(View):
     def json_response(self, output, **response_kwargs):
         response_kwargs['content_type'] = 'application/json'
         return HttpResponse(output, **response_kwargs)
+
+
+def permission_denied(request):
+    return django_403(request, template_name='errors/403.html')
+
+
+def page_not_found(request):
+    return django_404(request, template_name='errors/404.html')
+
+
+def server_error(request):
+    return django_500(request, template_name='errors/500.html')

@@ -103,6 +103,7 @@ css_common = Bundle(
     'css/actions.css',
     'css/buttons.css',
     'css/contact.css',
+    'css/error.css',
     'css/login.css',
     'css/magnific-popup.css',
     'css/navbar.css',

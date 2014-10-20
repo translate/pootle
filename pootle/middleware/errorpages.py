@@ -80,7 +80,7 @@ class ErrorPagesMiddleware(object):
                 templatevars["login_message"] = login_msg
 
             return HttpResponseForbidden(
-                    render_to_string('403.html', templatevars,
+                    render_to_string('errors/403.html', templatevars,
                                      RequestContext(request))
                 )
         elif (exception.__class__.__name__ in
@@ -95,7 +95,7 @@ class ErrorPagesMiddleware(object):
                 return self._ajax_error(500, msg)
 
             return HttpResponseServerError(
-                    render_to_string('db_error.html', {'exception': msg},
+                    render_to_string('errors/db.html', {'exception': msg},
                                      RequestContext(request))
                 )
 
@@ -145,7 +145,7 @@ class ErrorPagesMiddleware(object):
                         return self._ajax_error(500, msg)
 
                     return HttpResponseServerError(
-                        render_to_string('500.html', templatevars,
+                        render_to_string('errors/500.html', templatevars,
                                          RequestContext(request)))
                 except:
                     # Let's not confuse things by throwing an exception here
