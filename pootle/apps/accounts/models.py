@@ -22,7 +22,7 @@
 import re
 from hashlib import md5
 
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
@@ -43,7 +43,7 @@ from pootle_translationproject.models import TranslationProject
 from .managers import UserManager
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     """The Pootle User.
 
     ``username``, ``password`` and ``email`` are required. Other fields
@@ -67,9 +67,6 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(_("active"), default=True,
         help_text=_("Designates whether this user should be treated as "
                     "active. Unselect this instead of deleting accounts."))
-    is_superuser = models.BooleanField(_("superuser status"), default=False,
-        help_text=_("Designates that this user has all permissions without "
-                    "explicitly assigning them."))
 
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 
