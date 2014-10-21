@@ -206,7 +206,7 @@
     },
 
     updateDirtyBackoffCounter: function () {
-      noticeStr = ngettext('%s second', '%s seconds', this.dirtyBackoff);
+      var noticeStr = ngettext('%s second', '%s seconds', this.dirtyBackoff);
       noticeStr = interpolate(noticeStr, [this.dirtyBackoff], false);
       $('#autorefresh-notice strong').text(noticeStr);
     },
