@@ -16,6 +16,8 @@ virtualenv, this is a good start:
   (pootleenv)$ pip install Pootle-......tar.gz
   (pootleenv)$ pootle init
   (pootleenv)$ pootle setup
+  (pootleenv)$ pootle collectstatic --noinput
+  (pootleenv)$ pootle assets build
   (pootleenv)$ pootle start
 
 On your first visit, Pootle will calculate stats, which might take a while.
