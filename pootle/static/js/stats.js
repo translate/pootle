@@ -22,6 +22,7 @@
   PTL.stats = {
 
     init: function (options) {
+      this.retries = 0;
       this.pootlePath = options.pootlePath;
       this.processLoadedData(options.data);
 
@@ -31,7 +32,7 @@
 
     refreshStats: function (e) {
       e.preventDefault();
-      this.dirtyInterval = 1;
+      this.dirtyBackoff = 1;
       this.updateDirty();
     },
 
@@ -104,10 +105,10 @@
 
       $(dirtySelector).toggleClass('dirty', data.is_dirty);
       if (data.is_dirty) {
-        this.dirtyInterval = 30;
-        this.updateDirtyIntervalCounter();
+        this.dirtyBackoff = Math.pow(2, this.retries);
+        this.updateDirtyBackoffCounter();
         $('.js-stats-refresh').show();
-        this.dirtyIntervalId = setInterval(this.updateDirty.bind(this), 1000);
+        this.dirtyBackoffId = setInterval(this.updateDirty.bind(this), 1000);
       }
 
       this.updateProgressbar($('#progressbar'), data);
@@ -190,20 +191,23 @@
     },
 
     updateDirty: function () {
-      if (--this.dirtyInterval === 0) {
+      if (--this.dirtyBackoff === 0) {
         $('body').spin();
         $('.js-stats-refresh').hide();
-        clearInterval(this.dirtyIntervalId);
+        clearInterval(this.dirtyBackoffId);
         setTimeout(function () {
+          if (this.retries < 5) {
+            this.retries++;
+          }
           this.load(onDataLoad);
         }.bind(this), 250);
       }
-      this.updateDirtyIntervalCounter();
+      this.updateDirtyBackoffCounter();
     },
 
-    updateDirtyIntervalCounter: function () {
-      noticeStr = ngettext('%s second', '%s seconds', this.dirtyInterval);
-      noticeStr = interpolate(noticeStr, [this.dirtyInterval], false);
+    updateDirtyBackoffCounter: function () {
+      noticeStr = ngettext('%s second', '%s seconds', this.dirtyBackoff);
+      noticeStr = interpolate(noticeStr, [this.dirtyBackoff], false);
       $('#autorefresh-notice strong').text(noticeStr);
     },
 
