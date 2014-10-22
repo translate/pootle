@@ -30,10 +30,10 @@ from pootle_misc.baseurl import l
 
 class DirectoryManager(models.Manager):
 
-    def get_query_set(self):
+    def get_queryset(self):
         # ForeignKey fields with null=True are not selected by select_related
         # unless explicitly specified.
-        return super(DirectoryManager, self).get_query_set() \
+        return super(DirectoryManager, self).get_queryset() \
                                             .select_related('parent')
 
     @cached_property

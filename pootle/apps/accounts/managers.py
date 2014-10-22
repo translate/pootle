@@ -62,15 +62,15 @@ class UserManager(BaseUserManager):
                                  **extra_fields)
 
     def get_default_user(self):
-        return super(UserManager, self).get_query_set().get(username='default')
+        return super(UserManager, self).get_queryset().get(username='default')
 
     def get_nobody_user(self):
-        return super(UserManager, self).get_query_set().get(username='nobody')
+        return super(UserManager, self).get_queryset().get(username='nobody')
 
     def get_system_user(self):
-        return super(UserManager, self).get_query_set().get(username='system')
+        return super(UserManager, self).get_queryset().get(username='system')
 
     def hide_defaults(self):
-        return super(UserManager, self).get_query_set().exclude(
+        return super(UserManager, self).get_queryset().exclude(
             username__in=('nobody', 'default', 'system')
         )

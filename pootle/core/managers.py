@@ -25,6 +25,6 @@ class RelatedManager(models.Manager):
 
     This saves us lots of database queries later.
     """
-    def get_query_set(self):
-        return super(RelatedManager, self).get_query_set() \
+    def get_queryset(self):
+        return super(RelatedManager, self).get_queryset() \
                                           .select_related(depth=1)
