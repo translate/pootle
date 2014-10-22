@@ -22,27 +22,6 @@
 import logging
 
 
-def ensure_pootle_config():
-    """Ensure that the PootleConfig object exists, so the code can use it."""
-    from pootle_app.models import PootleConfig
-
-    try:
-        PootleConfig.objects.get_current()
-        logging.info("No need to migrate old build versions.")
-    except Exception:
-        from pootle_app.models.pootle_config import (get_legacy_ptl_build,
-                                                     get_legacy_ttk_build)
-
-        # Copy the Pootle and Translate Toolkit build versions.
-        pootle_config = PootleConfig(
-            ptl_build=get_legacy_ptl_build(),
-            ttk_build=get_legacy_ttk_build(),
-        )
-        pootle_config.save()
-        logging.info("Succesfully migrated old build versions to new "
-                     "PootleConfig.")
-
-
 def save_build_version(product, build_version):
     """Update build version number for specified product."""
     from pootle_app.models import PootleConfig
@@ -109,11 +88,6 @@ def upgrade(product, old_buildversion, new_buildversion):
     """
     import sys
     from django.utils.importlib import import_module
-
-    # Before upgrading anything try to migrate the buildversions to the new
-    # PootleConfig model, so all the code uses the same way to retrieve and
-    # save the build versions.
-    ensure_pootle_config()
 
     product_module = '.'.join((__name__, product))
     import_module(''.join(('.', product)), __name__)
