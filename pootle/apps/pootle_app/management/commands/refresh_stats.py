@@ -127,8 +127,8 @@ class Command(PootleCommand):
                     prj.refresh_stats(include_children=True)
 
                 self.unregister_refresh_stats()
-            except Exception as e:
-                logging.error(u"Failed to run %s:\n%s", self.name, e)
+            except Exception:
+                logging.exception(u"Failed to run %s", self.name)
         else:
             super(Command, self).handle_all(**options)
 

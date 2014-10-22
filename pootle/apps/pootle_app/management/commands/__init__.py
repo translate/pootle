@@ -60,9 +60,8 @@ class PootleCommand(NoArgsCommand):
             logging.info(u"Running %s over %s", self.name, tp)
             try:
                 process_stores = self.handle_translation_project(tp, **options)
-            except Exception as e:
-                logging.error(u"Failed to run %s over %s:\n%s",
-                              self.name, tp, e)
+            except Exception:
+                logging.exception(u"Failed to run %s over %s", self.name, tp)
                 return
 
             if not process_stores:
@@ -72,9 +71,9 @@ class PootleCommand(NoArgsCommand):
             logging.info(u"Running %s over %s's files", self.name, tp)
             try:
                 self.handle_all_stores(tp, **options)
-            except Exception as e:
-                logging.error(u"Failed to run %s over %s's files\n%s",
-                              self.name, tp, e)
+            except Exception:
+                logging.exception(u"Failed to run %s over %s's files",
+                                  self.name, tp)
                 return
         elif hasattr(self, "handle_store"):
             store_query = tp.stores.all()
@@ -88,9 +87,9 @@ class PootleCommand(NoArgsCommand):
                              self.name, store.pootle_path)
                 try:
                     self.handle_store(store, **options)
-                except Exception as e:
-                    logging.error(u"Failed to run %s over %s:\n%s",
-                                  self.name, store.pootle_path, e)
+                except Exception:
+                    logging.exception(u"Failed to run %s over %s",
+                                      self.name, store.pootle_path)
 
     def handle_noargs(self, **options):
         # adjust debug level to the verbosity option
