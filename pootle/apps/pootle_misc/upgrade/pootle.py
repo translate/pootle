@@ -123,19 +123,6 @@ def upgrade_to_25203():
                       .update(type=SubmissionTypes.SYSTEM)
 
 
-def upgrade_to_25204():
-    """Copy site title and description stored using djblets to new models."""
-    from pootle.core.initdb import create_default_pootle_site
-    from pootle_app.models.pootle_site import (get_legacy_site_description,
-                                               get_legacy_site_title)
-
-    # Copy the Pootle site data.
-    create_default_pootle_site(
-        get_legacy_site_title(),
-        get_legacy_site_description()
-    )
-
-
 def upgrade_to_25205():
     """Synchronize latest submission data with the denormalized submission
     fields available in the :cls:`pootle_store.models.Unit` model.

@@ -40,22 +40,6 @@ def get_site_description():
         return PootleSite._meta.get_field('description').default
 
 
-def get_legacy_site_title():
-    """Retrieve the site title from the database as stored by djblets."""
-    from pootle_misc.siteconfig import load_site_config
-
-    siteconfig = load_site_config()
-    return siteconfig.get('TITLE')
-
-
-def get_legacy_site_description():
-    """Retrieve the site description from the database as stored by djblets."""
-    from pootle_misc.siteconfig import load_site_config
-
-    siteconfig = load_site_config()
-    return siteconfig.get('DESCRIPTION')
-
-
 class PootleSiteManager(models.Manager):
 
     def get_current(self):
