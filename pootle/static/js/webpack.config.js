@@ -5,25 +5,20 @@ var env = process.env.NODE_ENV;
 
 /* Plugins */
 
-var plugins;
+var plugins = [];
 
 if (env === 'production') {
   plugins = [
-    new webpack.DefinePlugin({
-      'process.env': {NODE_ENV: JSON.stringify('production')}
-    }),
     new webpack.optimize.UglifyJsPlugin(),
   ];
 } else {
   env = 'development';
-  plugins = [
-    new webpack.DefinePlugin({
-      'process.env': {NODE_ENV: JSON.stringify('development')}
-    }),
-  ];
 }
 
 plugins.push.apply(plugins, [
+  new webpack.DefinePlugin({
+    'process.env': {NODE_ENV: JSON.stringify(env)}
+  }),
   new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
 ]);
 
