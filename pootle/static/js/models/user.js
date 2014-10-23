@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('underscore');
 var Backbone = require('backbone');
 var md5 = require('md5').digest_s;
 

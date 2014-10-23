@@ -2,6 +2,7 @@
 
 var React = require('react');
 var _ = require('underscore');
+var Backbone = require('backbone');
 
 var Search = require('./search');
 var User = require('./user');

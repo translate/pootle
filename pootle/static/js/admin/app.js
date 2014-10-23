@@ -8,6 +8,8 @@ require('imports!../vendor/backbone/backbone.move.js');
 
 var React = require('react/addons');
 
+var Backbone = require('backbone');
+
 var AdminApp = require('./components/main');
 var AdminRouter = require('./routers');
 
