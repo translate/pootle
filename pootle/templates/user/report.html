@@ -24,7 +24,8 @@
 <script type="text/javascript">
   {% autoescape off %}
     PTL.reports.serverTime = "{{ now }}";
-    PTL.reports.userReport = true;
+    PTL.reports.freeUserReport = {% if object.rate == 0 %}true{% else %}false{% endif %};
+    PTL.reports.adminReport = false;
     PTL.reports.userName = "{{ object.username }}";
     PTL.reports.detailedUrl = "{% url 'pootle-user-detailed-report' object.username %}";
   {% endautoescape %}

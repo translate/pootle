@@ -35,6 +35,8 @@
     PTL.reports.removePaidTaskUrl = "{% url 'evernote-remove-paid-task' %}";
     PTL.reports.serverTime = "{{ now }}";
     PTL.reports.detailedUrl = "{% url 'evernote-reports-detailed' %}";
+    PTL.reports.adminReport = true;
+    PTL.reports.freeUserReport = false;
   {% endautoescape %}
 </script>
 

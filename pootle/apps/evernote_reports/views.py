@@ -124,6 +124,7 @@ def evernote_reports(request):
         'user_rates_form': UserRatesForm(),
         'paid_task_form': PaidTaskForm(),
         'now': timezone.now().strftime('%Y-%m-%d %H-%M-%S'),
+        'admin_report': True,
     }
 
     return render_to_response('admin/reports.html', ctx,

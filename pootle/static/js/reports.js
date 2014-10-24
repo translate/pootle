@@ -9,15 +9,15 @@
       /* Compile templates */
       this.tmpl = {
         results: _.template($('#language_user_activity').html()),
-        summary: PTL.reports.userReport ? '' : _.template($('#summary').html()),
-        paid_tasks: PTL.reports.userReport ? '' : _.template($('#paid-tasks').html()),
+        summary: PTL.reports.freeUserReport ? '' : _.template($('#summary').html()),
+        paid_tasks: PTL.reports.freeUserReport ? '' : _.template($('#paid-tasks').html()),
       };
 
       $(window).resize(function() {
         PTL.reports.drawChart();
       });
 
-      if (!PTL.reports.userReport) {
+      if (PTL.reports.adminReport) {
         $(document).on('change', '#reports-user', function (e) {
           PTL.reports.userName = $('#reports-user').val();
           PTL.reports.update();
@@ -265,7 +265,7 @@
             PTL.reports.drawChart();
           }
           PTL.reports.setData(data);
-          if (!PTL.reports.userReport) {
+          if (!PTL.reports.freeUserReport) {
             $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(PTL.reports.data));
             $('#reports-summary').html(PTL.reports.tmpl.summary(PTL.reports.data));
           }
@@ -360,7 +360,7 @@
     updateMonthSelector: function () {
       $('.js-month').each(function () {
         var $el = $(this),
-            link = PTL.reports.userReport ? '#' : '#username=' + PTL.reports.userName + '&';
+            link = PTL.reports.adminReport ? '#username=' + PTL.reports.userName + '&' : '#';
 
         if ($el.hasClass('js-previous')) {
           link += 'month=' + PTL.reports.month.clone().subtract({M:1}).format('YYYY-MM');
