@@ -389,6 +389,7 @@ webserver.  Typically, this is run with the :option:`--clear`
 :option:`--noinput` options, to flush any existing static data and use default
 answers for the content finders.
 
+
 .. _commands#assets:
 
 assets
@@ -398,6 +399,24 @@ Pootle uses the Django app `django-assets`_ interface of `webassets` to minify
 and bundle CSS and JavaScript; this app has a management command that is used
 to make these preparations using the command ``assets build``. This command is
 usually executed after the :ref:`collectstatic <commands#collectstatic>` one.
+
+
+.. _commands#webpack:
+
+webpack
+^^^^^^^
+
+.. versionadded:: 2.7
+
+The `webpack <http://webpack.github.io/>`_ tool is used under the hood to
+bundle JavaScript scripts, and this management command is a convenient
+wrapper that sets everything up ready for production and makes sure to
+include any 3rd party customizations.
+
+When the ``--dev`` flag is enabled, development builds will be created and
+the process will start a watchdog to track any client-side scripts for
+changes. Use this only when developing Pootle.
+
 
 .. _commands#useful_django_commands:
 

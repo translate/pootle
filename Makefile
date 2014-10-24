@@ -23,8 +23,8 @@ build: docs mo assets
 assets:
 	cd ${JS_DIR} && \
 	npm update && \
-	NODE_ENV="production" webpack -p && \
 	cd ${CWD}
+	python manage.py webpack
 	mkdir -p ${ASSETS_DIR}
 	python manage.py collectstatic --noinput --clear -i node_modules -i *.jsx ${TAIL}
 	python manage.py assets build ${TAIL}

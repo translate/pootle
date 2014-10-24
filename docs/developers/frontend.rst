@@ -35,39 +35,26 @@ builds.
 Building Scripts
 ----------------
 
-Webpack-related configuration lives in *pootle/static/js/webpack.config.js*, so
-in order to execute webpack commands successfully it's necessary either to:
-
-  - Point webpack to the configuration file:
-    `--config=pootle/static/js/webpack.config.js`,  or
-  - `cd` into the root *js* directory.
-
-The following examples will assume the latter for simplicity.
-
-While in development, it's desired to create incremental builds while watching
-file changes.
+Simply run:
 
 ..code-block::bash
 
-  $ webpack --watch
+  (env) $ ./manage.py webpack --dev
 
-If you want to enable source maps in the development build for debugging,
-just add the `-d` flag.
+This will make sure to build all the necessary scripts and create the
+relevant bundles with source maps support. It will also watch for changes
+in scripts so you don't need to constantly be running this.
 
-..code-block::bash
-
-  $ webpack -d --watch
 
 For creating a production-ready build, use:
 
 ..code-block::bash
 
-  $ NODE_ENV=production webpack -p
+  (env) $ ./manage.py webpack
 
 This will also run the output through
 `UglifyJS <https://github.com/mishoo/UglifyJS2>`_, making the output build
 considerably lighter in size.
 
-As an alternative to the previous step, you can use ``make assets`` from the
-root of the repository clone, which will make all the static assets ready for
-production use.
+Note that this step is also done as part of the ``make assets`` command,
+so you may only want to run the latter.
