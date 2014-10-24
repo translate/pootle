@@ -25,8 +25,6 @@
         $(document).on('click', '#user-rates-form input.submit', this.updateRates);
         $(document).on('click', '#reports-paid-tasks .js-remove-task', this.removePaidTask);
         $('#reports-user').select2({'data': PTL.reports.users});
-      } else {
-        $('#reports-form').empty();
       }
 
       $(document).on('click', '#paid-task-form input.submit', this.addPaidTask);
