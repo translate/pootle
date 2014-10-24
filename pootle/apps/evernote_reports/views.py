@@ -25,7 +25,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import resolve
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -103,13 +103,11 @@ class UserDetailedReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView)
 
     def dispatch(self, request, *args, **kwargs):
         self.month = request.GET.get('month', None)
-        self.url_name = resolve(request.path_info).url_name
         return super(UserDetailedReportView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(UserDetailedReportView, self).get_context_data(**kwargs)
         ctx.update(get_detailed_report_context(user=self.get_object(), month=self.month))
-        ctx.update({'url_name': self.url_name})
 
         return ctx
 
