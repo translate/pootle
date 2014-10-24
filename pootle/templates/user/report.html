@@ -20,6 +20,14 @@
 <script id="language_user_activity" type="text/template">
 {% include_raw "admin/xhr_language_user_activity.html" %}
 </script>
+{% if object.rate > 0 %}
+  <script id="summary" type="text/template">
+  {% include_raw "admin/xhr_summary_report.html" %}
+  </script>
+  <script id="paid-tasks" type="text/template">
+  {% include_raw "admin/xhr_paid_tasks_report.html" %}
+  </script>
+{% endif %}
 
 <script type="text/javascript">
   {% autoescape off %}
@@ -51,5 +59,13 @@
       <h2>{% trans 'Daily activity' %}</h2>
       <div id="daily-chart"></div>
     </div>
+    {% if object.rate > 0 %}
+      <div id="forms">
+        {% include "admin/reports/user_rates_form.html" %}
+        {% include "admin/reports/paid_task_form.html" %}
+      </div>
+      <div id="reports-paid-tasks"></div>
+      <div id="reports-summary"></div>
+    {% endif %}
   </div>
 {% endblock %}

@@ -70,12 +70,20 @@ class UserReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
     slug_url_kwarg = 'username'
     template_name = 'user/report.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        self.user = request.user
+        return super(UserReportView, self).dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         ctx = super(UserReportView, self).get_context_data(**kwargs)
         ctx.update({
-            'paid_task_form': PaidTaskForm(),
             'now': timezone.now().strftime('%Y-%m-%d %H-%M-%S'),
         })
+        if self.user.rate > 0:
+            ctx.update({
+                'paid_task_form': PaidTaskForm(),
+                'user_rates_form': UserRatesForm(read_only=True),
+            })
 
         return ctx
 
