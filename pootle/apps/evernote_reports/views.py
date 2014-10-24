@@ -33,10 +33,11 @@ from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.html import escape
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import View
+from django.views.generic import View, CreateView
 from django.views.generic.detail import SingleObjectMixin
 
 from pootle.core.decorators import admin_required
+from pootle.core.views import AjaxResponseMixin
 from pootle.models.user import CURRENCIES
 from pootle_misc.util import ajax_required, jsonify
 from pootle_profile.views import (NoDefaultUserMixin, TestUserFieldMixin,
@@ -118,6 +119,27 @@ class UserDetailedReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView)
         ctx.update(get_detailed_report_context(user=self.get_object(), month=self.month))
 
         return ctx
+
+
+class PaidTaskFormView(AjaxResponseMixin, CreateView):
+    form_class = PaidTaskForm
+    template_name = 'admin/reports/paid_task_form.html'
+
+    def get_success_url(self):
+        # XXX: This is unused. We don't need this URL, but
+        # the parent :cls:`PaidTaskFormView` enforces us to set some value here
+        return reverse('pootle-user-report', kwargs=self.kwargs)
+
+    def form_valid(self, form):
+        response = super(PaidTaskFormView, self).form_valid(form)
+        # ignore redirect response
+        return self.render_to_json_response({'result': self.object.id})
+
+
+class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin, PaidTaskFormView):
+    model = get_user_model()
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
 
 
 @admin_required

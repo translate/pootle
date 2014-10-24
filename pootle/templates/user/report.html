@@ -36,6 +36,7 @@
     PTL.reports.adminReport = false;
     PTL.reports.userName = "{{ object.username }}";
     PTL.reports.detailedUrl = "{% url 'pootle-user-detailed-report' object.username %}";
+    PTL.reports.addPaidTaskUrl = "{% url 'pootle-user-add-paid-task' object.username %}";
   {% endautoescape %}
 </script>
 
