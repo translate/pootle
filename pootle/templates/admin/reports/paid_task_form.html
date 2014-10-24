@@ -1,0 +1,37 @@
+{% load i18n %}
+
+<form id="paid-task-form" method="post" action="">
+    {% csrf_token %}
+    <h2>{% trans "Add Paid Task" %}</h2>
+    <table>
+    {% for field in paid_task_form %}
+      {% if not field.is_hidden %}
+      <tr>
+      <td class="label">
+        {{ field.label_tag }}
+      </td>
+      <td>
+        <div class="field-wrapper">
+        {% if field.name == 'date' %}
+          {{ field.as_hidden }}
+          <div class="month"></div>
+        {% else %}
+          {{ field }}
+        {% endif %}
+        </div>
+        {% if field.name == 'amount' %}
+          <div class="units task-0 task-1">{% trans "words" %}</div>
+          <div class="units task-2">{% trans "hours" %}</div>
+        {% endif %}
+      </td>
+      </tr>
+      {% else %}
+        {{ field }}
+      {% endif %}
+    {% endfor %}
+      <tr>
+        <td></td>
+        <td><input type="submit" class="submit btn" value="{% trans 'Add record' %}"/></td>
+      </tr>
+    </table>
+  </form>

@@ -56,7 +56,10 @@
       <h2>{% trans 'Daily activity' %}</h2>
       <div id="daily-chart"></div>
     </div>
-    {% include "admin/reports/forms.html" %}
+    <div id="forms">
+      {% include "admin/reports/user_rates_form.html" %}
+      {% include "admin/reports/paid_task_form.html" %}
+    </div>
     <div id="reports-paid-tasks"></div>
     <div id="reports-summary"></div>
   </div>
