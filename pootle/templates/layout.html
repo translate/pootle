@@ -97,7 +97,7 @@
 
     PTL.contact.init({url: "{% url 'pootle-contact' %}"});
 
-    $(function() {
+    $(function () {
       {% if user.is_authenticated %}
       PTL.score.init({{ request.user.public_score }});
       PTL.dropdown.init('.js-navbar-dropdown');
