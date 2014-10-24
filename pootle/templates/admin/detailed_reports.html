@@ -140,8 +140,10 @@
         <th id="source-words">{% trans "Source words" %}</th>
         <th id="similarity">{% trans "Similarity" %}</th>
         <th id="words">{% trans "Words" %}</th>
-        <th id="rate">{% trans "Rate" %}</th>
-        <th id="subtotal">{% trans "Subtotal" %}</th>
+        {% if object.rate > 0 %}
+          <th id="rate">{% trans "Rate" %}</th>
+          <th id="subtotal">{% trans "Subtotal" %}</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -160,8 +162,10 @@
         <td class="number">{{ score.wordcount }}</td>
         <td class="number">{% if score.is_similarity_taken_from_mt %}<sup>MT</sup>{% endif %}{% if score.action == 'Review' %}&mdash;{% elif score.action == 'Translation' %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
         <td class="number">{{ score.words|floatformat:2 }}</td>
-        <td class="number">{% if score.action == 'Review' %}{{ score.review_rate }}{% elif score.action = 'Translation' %}{{ score.rate }}{% endif %} {{ object.currency }}</td>
-        <td class="number">{{ score.subtotal|floatformat:2 }} {{ object.currency }}</td>
+        {% if object.rate > 0 %}
+          <td class="number">{% if score.action == 'Review' %}{{ score.review_rate }}{% elif score.action = 'Translation' %}{{ score.rate }}{% endif %} {{ object.currency }}</td>
+          <td class="number">{{ score.subtotal|floatformat:2 }} {{ object.currency }}</td>
+        {% endif %}
       </tr>
       {% endif %}
     {% empty %}
@@ -178,8 +182,10 @@
         <td>&nbsp;</td>
         <td colspan="4">{% trans "Translated (subtotal)" %}</td>
         <td class="number">{% if item.words > 0 %}{{ item.words }}{% else %}&mdash;{% endif %}</td>
-        <td class="number">{{ rate }} {{ object.currency }}</td>
-        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }} {{ object.currency }}{% else %}&mdash;{% endif %}</td>
+        {% if object.rate > 0 %}
+          <td class="number">{{ rate }} {{ object.currency }}</td>
+          <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }} {{ object.currency }}{% else %}&mdash;{% endif %}</td>
+        {% endif %}
       </tr>
     {% endfor %}
     {% for rate, item in totals.reviewed.items %}
@@ -187,15 +193,19 @@
         <td>&nbsp;</td>
         <td colspan="4">{% trans "Reviewed (subtotal)" %}</td>
         <td class="number">{% if item.words > 0 %}{{ item.words }}{% else %}&mdash;{% endif %}</td>
-        <td class="number">{{ rate }} {{ object.currency }}</td>
-        <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }} {{ object.currency }}{% else %}&mdash;{% endif %}</td>
+        {% if object.rate > 0 %}
+          <td class="number">{{ rate }} {{ object.currency }}</td>
+          <td class="number">{% if item.subtotal > 0 %}{{ item.subtotal|floatformat:2 }} {{ object.currency }}{% else %}&mdash;{% endif %}</td>
+        {% endif %}
       </tr>
     {% endfor %}
-      <tr class="total">
-        <td>&nbsp;</td>
-        <td colspan="6">{% trans "Total" %}</td>
-        <td class="number">{{ totals.all|floatformat:2 }} {{ object.currency }}</td>
-      </tr>
+      {% if object.rate > 0 %}
+        <tr class="total">
+          <td>&nbsp;</td>
+          <td colspan="6">{% trans "Total" %}</td>
+          <td class="number">{{ totals.all|floatformat:2 }} {{ object.currency }}</td>
+        </tr>
+      {% endif %}
     {% endif %}
     </tbody>
   </table>
