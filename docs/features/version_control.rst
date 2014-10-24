@@ -197,8 +197,8 @@ from Pootle will look something like this::
 
 So it is still possible to see who submitted what and when, and actually
 provides some useful statistics in the commit message.  A user must be assigned
-'commit' privileges by the project administrator.  If the user has the correct
-privileges, they will see a "submit" link next to each file.
+'commit' privileges by the project administrator, and must have his email defined.  
+If the user has the correct privileges, they will see a "submit" link next to each file.
 
 
 .. _version_control#authentication:
