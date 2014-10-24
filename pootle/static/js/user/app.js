@@ -10,22 +10,18 @@ var UserProfileRouter = require('./routers');
 window.PTL = window.PTL || {};
 
 
-PTL.user = (function () {
+PTL.user = {
 
-  return {
+  init: function (opts) {
+    this.el = document.querySelector(opts.el);
 
-    init: function (opts) {
-      this.el = document.querySelector(opts.el);
+    var user = new User(opts.userData, {url: l('/xhr/users/')});
+    var userProfileEdit = new UserProfileEdit({
+      router: new UserProfileRouter(),
+      appRoot: opts.appRoot,
+      user: user
+    });
+    React.renderComponent(userProfileEdit, this.el);
+  }
 
-      var user = new User(opts.userData, {url: l('/xhr/users/')});
-      var userProfileEdit = new UserProfileEdit({
-        router: new UserProfileRouter(),
-        appRoot: opts.appRoot,
-        user: user
-      });
-      React.renderComponent(userProfileEdit, this.el);
-    }
-
-  };
-
-}());
+};
