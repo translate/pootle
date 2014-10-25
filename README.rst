@@ -33,7 +33,7 @@ Resources
 - `Pootle Website <http://pootle.translatehouse.org/>`_
 - `Documentation <http://docs.translatehouse.org/projects/pootle/>`_
 - `Translations <http://pootle.locamotion.org/projects/pootle/>`_
-- `Bug Tracker <http://bugs.locamotion.org/>`_
+- `Bug Tracker <https://github.com/translate/pootle/issues>`_
 - `Mailing List
   <https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_
 - IRC: `#pootle on irc.freenode.org <irc://irc.freenode.net/#pootle>`_
