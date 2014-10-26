@@ -41,7 +41,6 @@ table.stats td
 #reports-params .dates li
 {
     display: inline-block;
-    margin-right: 2em;
 }
 
 #reports-form
@@ -112,6 +111,12 @@ th.number
 {
     font-size: 125%;
     font-weight: bold;
+    width: 10em;
+}
+
+#reports-params .arrow
+{
+    font-size: 130%;
 }
 
 #reports-results h2

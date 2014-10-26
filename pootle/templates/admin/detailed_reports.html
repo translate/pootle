@@ -44,7 +44,7 @@
       background-color: #eee;
       border-style: solid solid none;
       font-size: 1.2em;
-      font-weight: bold;
+      font-weight: normal;
     }
 
     caption span
@@ -104,16 +104,28 @@
       font-size: 130%;
     }
 
-    .dates
+    .dates ul
     {
       font-size: 75%;
+      padding: 0;
     }
 
     .dates li
     {
       display: inline-block;
-      margin-right: 2em;
       list-style: none;
+    }
+
+    .dates li.selected
+    {
+      font-size: 125%;
+      font-weight: bold;
+      width: 10em;
+    }
+
+    .dates .arrow
+    {
+      font-size: 130%;
     }
   </style>
 </head>
@@ -121,13 +133,13 @@
   {% if object %}
   <table>
     <caption>
-      {% blocktrans with object.formatted_name as user %}Report for {{ user }}{% endblocktrans %}
+      <h2>{% blocktrans with object.formatted_name as user %}Report for {{ user }}{% endblocktrans %}</h2>
       <div class="dates">
         {% block dates %}
         <ul>
-          <li class="previous"><a href="{% url 'evernote-reports-detailed' %}?username={{object.username}}&amp;month={{previous|date:'Y-m'}}">{% trans "Previous month" %}</a></li>
+          <li class="previous"><a href="{% url 'evernote-reports-detailed' %}?username={{object.username}}&amp;month={{previous|date:'Y-m'}}"><span class="arrow">&larr;</span> {% trans "Previous month" %}</a></li>
           <li class="selected">{{start|date:'E, Y'}}</li>
-          <li class="next"><a href="{% url 'evernote-reports-detailed' %}?username={{object.username}}&amp;month={{next|date:'Y-m'}}">{% trans "Next month" %}</a></li>
+          <li class="next"><a href="{% url 'evernote-reports-detailed' %}?username={{object.username}}&amp;month={{next|date:'Y-m'}}">{% trans "Next month" %} <span class="arrow">&rarr;</span></a></li>
         </ul>
         {% endblock dates %}
       </div>
