@@ -201,20 +201,24 @@ class TreeItem(object):
         return result
 
     def _calc(self, name, from_update=False):
-        return {
-            CachedMethods.TOTAL: self._calc_sum(CachedMethods.TOTAL,
-                                                from_update),
-            CachedMethods.TRANSLATED: self._calc_sum(CachedMethods.TRANSLATED,
-                                                     from_update),
-            CachedMethods.FUZZY: self._calc_sum(CachedMethods.FUZZY,
-                                                from_update),
-            CachedMethods.SUGGESTIONS: self._calc_sum(CachedMethods.SUGGESTIONS,
-                                                      from_update),
-            CachedMethods.LAST_ACTION: self._calc_last_action(from_update),
-            CachedMethods.LAST_UPDATED: self._calc_last_updated(from_update),
-            CachedMethods.CHECKS: self._calc_checks(from_update),
-            CachedMethods.MTIME: self._calc_mtime(from_update),
-        }.get(name, None)
+        if name == CachedMethods.TOTAL:
+            return self._calc_sum(CachedMethods.TOTAL, from_update)
+        elif name == CachedMethods.TRANSLATED:
+            return self._calc_sum(CachedMethods.TRANSLATED, from_update)
+        elif name == CachedMethods.FUZZY:
+            return self._calc_sum(CachedMethods.FUZZY, from_update)
+        elif name == CachedMethods.SUGGESTIONS:
+            return self._calc_sum(CachedMethods.SUGGESTIONS, from_update)
+        elif name == CachedMethods.LAST_ACTION:
+            return self._calc_last_action(from_update)
+        elif name == CachedMethods.LAST_UPDATED:
+            return self._calc_last_updated(from_update)
+        elif name == CachedMethods.CHECKS:
+            return self._calc_checks(from_update)
+        elif name == CachedMethods.MTIME:
+            return self._calc_mtime(from_update)
+
+        return None
 
     def get_critical_url(self):
         critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
