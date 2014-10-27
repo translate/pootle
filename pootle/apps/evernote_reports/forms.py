@@ -53,18 +53,6 @@ class UserRatesForm(forms.Form):
         required=False,
     )
 
-    def __init__(self, *args, **kwargs):
-        read_only = kwargs.pop('read_only', False)
-        super(UserRatesForm, self).__init__(*args, **kwargs)
-        if read_only:
-            for field_name in self.fields:
-                if field_name == 'currency':
-                    self.fields[field_name].widget = forms.TextInput(attrs={'readonly': True})
-                elif field_name == 'effective_from':
-                    self.fields[field_name].widget = forms.HiddenInput()
-                else:
-                    self.fields[field_name].widget.attrs['readonly'] = True
-
 
 class PaidTaskForm(forms.ModelForm):
     class Meta:

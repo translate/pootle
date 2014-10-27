@@ -152,7 +152,8 @@ th.number
     display: none;
 }
 
-#user-rates-form
+#user-rates-form,
+#user-rates
 {
     width: 300px;
 }
@@ -227,7 +228,9 @@ th.number
     text-align: left;
 }
 
-#forms form
+#user-rates-form,
+#paid-task-form,
+#user-rates
 {
     display: inline-block;
 }

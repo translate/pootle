@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <form id="user-rates-form" method="post" action="">
-  <h2>{% if admin_report %}{% trans "Set Rates" %}{% else %}{% trans "Rates" %}{% endif %}</h2>
+  <h2>{% trans "Set Rates" %}</h2>
   {% csrf_token %}
   <table>
   {% for field in user_rates_form %}
@@ -26,11 +26,9 @@
       {{ field }}
     {% endif %}
   {% endfor %}
-  {% if admin_report %}
     <tr>
       <td></td>
       <td><input type="submit" class="submit btn" value="{% trans 'Save' %}"/></td>
     </tr>
-  {% endif %}
   </table>
 </form>

@@ -79,7 +79,6 @@ class UserReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
         if self.object.rate > 0:
             ctx.update({
                 'paid_task_form': PaidTaskForm(),
-                'user_rates_form': UserRatesForm(read_only=True),
             })
 
         return ctx

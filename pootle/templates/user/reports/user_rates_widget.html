@@ -1,0 +1,50 @@
+{% load i18n %}
+
+<div id="user-rates">
+  <h2>{% trans "Rates" %}</h2>
+  <table>
+    <tr>
+      <td class="label">
+        {% trans "Currency:" %}
+      </td>
+      <td>
+        <div class="field-wrapper">
+        {{ object.currency }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">
+        {% trans "Translation Rate:" %}
+      </td>
+      <td>
+        <div class="field-wrapper">
+        {{ object.rate }}
+        </div>
+        <div class="currency">{{ object.currency }}</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">
+        {% trans "Review Rate:" %}
+      </td>
+      <td>
+        <div class="field-wrapper">
+        {{ object.review_rate }}
+        </div>
+        <div class="currency">{{ object.currency }}</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">
+        {% trans "Hourly Rate:" %}
+      </td>
+      <td>
+        <div class="field-wrapper">
+        {{ object.hourly_rate }}
+        </div>
+        <div class="currency">{{ object.currency }}</div>
+      </td>
+    </tr>
+  </table>
+</div>
