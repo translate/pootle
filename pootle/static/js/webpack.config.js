@@ -16,6 +16,45 @@ var resolve = {
   extensions: ['', '.js', '.jsx'],
   alias: {
     pootle: __dirname,
+
+    jquery: __dirname + '/vendor/jquery/jquery.js',
+    backbone: __dirname + '/vendor/backbone/backbone.js',
+    underscore: __dirname + '/vendor/underscore.js',
+
+    'backbone-move': __dirname + '/vendor/backbone/backbone.move.js',
+    // FIXME: get rid of bb-router
+    'backbone-queryparams': __dirname + '/vendor/backbone/backbone.queryparams.js',
+    'backbone-queryparams-shim': __dirname + '/vendor/backbone/backbone.queryparams-1.1-shim.js',
+    'backbone-relational': __dirname + '/vendor/backbone/backbone-relational.js',
+
+    'jquery-autosize': __dirname + '/vendor/jquery/jquery.autosize.js',
+    'jquery-bidi': __dirname + '/vendor/jquery/jquery.bidi.js',
+    'jquery-caret': __dirname + '/vendor/jquery/jquery.caret.js',
+    'jquery-cookie': __dirname + '/vendor/jquery/jquery.cookie.js',
+    'jquery-easing': __dirname + '/vendor/jquery/jquery.easing.js',
+    'jquery-flot': __dirname + '/vendor/jquery/jquery.flot.js',
+    'jquery-flot-stack': __dirname + '/vendor/jquery/jquery.flot.stack.js',
+    'jquery-flot-time': __dirname + '/vendor/jquery/jquery.flot.time.js',
+    'jquery-highlightRegex': __dirname + '/vendor/jquery/jquery.highlightRegex.js',
+    'jquery-history': __dirname + '/vendor/jquery/jquery.history.js',
+    'jquery-jsonp': __dirname + '/vendor/jquery/jquery.jsonp.js',
+    'jquery-magnific-popup': __dirname + '/vendor/jquery/jquery.magnific-popup.js',
+    'jquery-select2': __dirname + '/vendor/jquery/jquery.select2.js',
+    'jquery-serializeObject': __dirname + '/vendor/jquery/jquery.serializeObject.js',
+    'jquery-tipsy': __dirname + '/vendor/jquery/jquery.tipsy.js',
+    'jquery-utils': __dirname + '/vendor/jquery/jquery.utils.js',
+
+    'bootstrap-alert': __dirname + '/vendor/bootstrap/bootstrap-alert.js',
+    'bootstrap-transition': __dirname + '/vendor/bootstrap/bootstrap-transition.js',
+
+    'diff-match-patch': __dirname + '/vendor/diff_match_patch.js', // FIXME: use npm module
+    iso8601: __dirname + '/vendor/iso8601.js', // FIXME: use npm module
+    levenshtein: __dirname + '/vendor/levenshtein.js', // FIXME: use npm module
+    moment: __dirname + '/vendor/moment.js', // FIXME: use npm module
+    odometer: __dirname + '/vendor/odometer.js', // FIXME: use npm module
+    shortcut: __dirname + '/vendor/shortcut.js',
+    sorttable: __dirname + '/vendor/sorttable.js',
+    spin: __dirname + '/vendor/spin.js', // FIXME: use npm module
   }
 };
 
@@ -82,12 +121,4 @@ module.exports = {
   },
   resolve: resolve,
   plugins: plugins,
-  externals: {
-    // FIXME: ideally everything should be using CommonJS modules now, and
-    // this shouldn't be necessary at all.
-    // Avoid duplicating external scripts available on the global scope
-    backbone: 'Backbone',
-    jquery: 'jQuery',
-    underscore: '_'
-  }
 };

@@ -1,14 +1,12 @@
 'use strict';
 
-// External deps
-// TODO: get rid of BB router; this shouldn't be necessary at all
-require('imports!../vendor/backbone/backbone.queryparams.js');
-require('imports!../vendor/backbone/backbone.queryparams-1.1-shim.js');
-require('imports!../vendor/backbone/backbone.move.js');
-
 var React = require('react/addons');
 
 var Backbone = require('backbone');
+
+require('backbone-queryparams');
+require('backbone-queryparams-shim');
+require('imports?Backbone=>require("backbone")!backbone-move');
 
 var AdminApp = require('./components/main');
 var AdminRouter = require('./routers');
