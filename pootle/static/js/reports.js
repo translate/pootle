@@ -7,10 +7,11 @@
     init: function () {
 
       /* Compile templates */
+      var showSummary = !PTL.reports.freeUserReport && (PTL.reports.ownReport || PTL.reports.adminReport);
       this.tmpl = {
         results: _.template($('#language_user_activity').html()),
-        summary: PTL.reports.freeUserReport ? '' : _.template($('#summary').html()),
-        paid_tasks: PTL.reports.freeUserReport ? '' : _.template($('#paid-tasks').html()),
+        summary: showSummary ? _.template($('#summary').html()) : '',
+        paid_tasks: showSummary ? _.template($('#paid-tasks').html()) : '',
       };
 
       $(window).resize(function() {
@@ -263,7 +264,7 @@
             PTL.reports.drawChart();
           }
           PTL.reports.setData(data);
-          if (!PTL.reports.freeUserReport) {
+          if (PTL.reports.adminReport || !PTL.reports.freeUserReport && PTL.reports.ownReport) {
             $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(PTL.reports.data));
             $('#reports-summary').html(PTL.reports.tmpl.summary(PTL.reports.data));
           }

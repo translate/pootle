@@ -65,7 +65,7 @@ STAT_FIELDS = ['n1']
 INITIAL_STATES = ['new', 'edit']
 
 
-class UserReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
+class UserReportView(NoDefaultUserMixin, DetailView):
     model = get_user_model()
     slug_field = 'username'
     slug_url_kwarg = 'username'
@@ -84,7 +84,7 @@ class UserReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
         return ctx
 
 
-class UserActivityView(NoDefaultUserMixin, TestUserFieldMixin, SingleObjectMixin, View):
+class UserActivityView(NoDefaultUserMixin, SingleObjectMixin, View):
     model = get_user_model()
     slug_field = 'username'
     slug_url_kwarg = 'username'
@@ -99,7 +99,7 @@ class UserActivityView(NoDefaultUserMixin, TestUserFieldMixin, SingleObjectMixin
         return HttpResponse(jsonify(data), content_type="application/json")
 
 
-class UserDetailedReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
+class UserDetailedReportView(NoDefaultUserMixin, DetailView):
     model = get_user_model()
     slug_field = 'username'
     slug_url_kwarg = 'username'
@@ -107,12 +107,14 @@ class UserDetailedReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView)
 
     def dispatch(self, request, *args, **kwargs):
         self.month = request.GET.get('month', None)
+        self.user = request.user
         return super(UserDetailedReportView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(UserDetailedReportView, self).get_context_data(**kwargs)
-        ctx.update(get_detailed_report_context(user=self.get_object(), month=self.month))
-
+        object = self.get_object()
+        ctx.update(get_detailed_report_context(user=object, month=self.month))
+        ctx.update({'own_report': object.username == self.user.username})
         return ctx
 
 
@@ -236,6 +238,8 @@ def evernote_reports_detailed(request):
         user = ''
 
     ctx = get_detailed_report_context(user=user, month=month)
+    ctx.update({'admin_report': True})
+
     return render_to_response('admin/detailed_reports.html', ctx,
                               context_instance=RequestContext(request))
 
