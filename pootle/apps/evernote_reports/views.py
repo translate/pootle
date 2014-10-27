@@ -74,7 +74,7 @@ class UserReportView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
     def get_context_data(self, **kwargs):
         ctx = super(UserReportView, self).get_context_data(**kwargs)
         ctx.update({
-            'now': timezone.now().strftime('%Y-%m-%d %H-%M-%S'),
+            'now': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
         })
         if self.object.rate > 0:
             ctx.update({
