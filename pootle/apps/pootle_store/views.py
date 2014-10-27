@@ -38,6 +38,7 @@ from django.views.decorators.http import require_http_methods
 from translate.filters.decorators import Category
 from translate.lang import data
 
+from pootle.core.dateparse import parse_datetime
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
@@ -200,6 +201,7 @@ def get_step_query(request, units_queryset):
     if 'filter' in request.GET:
         unit_filter = request.GET['filter']
         username = request.GET.get('user', None)
+        modified_since = request.GET.get('modified-since', None)
         sort_by_param = request.GET.get('sort', None)
         sort_on = 'units'
 
@@ -264,6 +266,13 @@ def get_step_query(request, units_queryset):
                     match_queryset = units_queryset.filter(
                         qualitycheck__false_positive=False,
                         qualitycheck__name__in=checks,
+                    ).distinct()
+
+            if modified_since is not None:
+                datetime_obj = parse_datetime(modified_since)
+                if datetime_obj is not None:
+                    match_queryset = match_queryset.filter(
+                        submitted_on__gt=datetime_obj,
                     ).distinct()
 
             sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param, None)

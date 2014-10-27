@@ -32,6 +32,7 @@
     this.filter = 'all';
     this.checks = [];
     this.sortBy = 'default';
+    this.modifiedSince = null;
     this.user = null;
     this.ctxGap = 0;
     this.ctxQty = parseInt($.cookie('ctxQty'), 10) || 1;
@@ -267,6 +268,12 @@
           if ('sort' in params) {
             PTL.editor.sortBy = params.sort;
           }
+        }
+
+        if ('modified-since' in params) {
+          PTL.editor.modifiedSince = params['modified-since'];
+        } else {
+          PTL.editor.modifiedSince = null;
         }
 
         // Only accept the user parameter for 'user-*' filters
@@ -937,6 +944,10 @@
     } else {
       reqData.filter = this.filter;
       this.sortBy !== 'default' && (reqData.sort = this.sortBy);
+    }
+
+    if (this.modifiedSince !== null) {
+      reqData['modified-since'] = this.modifiedSince;
     }
 
     if (this.user) {
