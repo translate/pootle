@@ -440,9 +440,9 @@ class CachedTreeItem(TreeItem):
         """Update dirty cached stats of current TreeItem"""
         for key in keys:
             self.update_cached(key)
-        self.unregister_dirty()
         for p in self.get_parents():
             p._update_cache(keys)
+        self.unregister_dirty()
 
     def update_parent_cache(self, exclude_self=False):
         """Update dirty cached stats for a all parents of the current TreeItem"""
