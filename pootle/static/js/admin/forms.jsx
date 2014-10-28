@@ -139,7 +139,7 @@ var UserForm = React.createClass({
           <ul className="user-links">
             <li><a href={model.getProfileUrl()}>{gettext("Public Profile")}</a></li>
             <li><a href={model.getStatsUrl()}>{gettext("Statistics")}</a></li>
-            <li><a href={model.getDetailedStatsUrl()}>{gettext("Detailed Statistics")}</a></li>
+            <li><a href={model.getReportsUrl()}>{gettext("Reports")}</a></li>
           </ul>}
         </p>
       {(this.props.handleDelete && !model.isMeta()) &&

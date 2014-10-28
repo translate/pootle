@@ -39,7 +39,7 @@ var User = Backbone.Model.extend({
     return l(['', 'user', this.get('username'), 'stats', ''].join('/'));
   },
 
-  getDetailedStatsUrl: function () {
+  getReportsUrl: function () {
     return l(['', 'admin', 'reports',
               '#username=' + this.get('username')].join('/'));
   },
