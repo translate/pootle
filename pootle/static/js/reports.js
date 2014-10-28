@@ -147,6 +147,7 @@
 
     validate: function () {
       if (PTL.reports.userName) {
+        // month should be defined correctly
         return moment(PTL.reports.month).date() == 1;
       }
       return false;
