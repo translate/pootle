@@ -20,19 +20,19 @@
 
 from django.conf.urls import patterns, url
 
-from .views import (UserReportView, UserDetailedReportView,
+from .views import (UserStatsView, UserDetailedStatsView,
                     UserActivityView, AddUserPaidTaskView)
 
 
 urlpatterns = patterns('evernote_reports.views',
     url('^user/(?P<username>[^/]+)/stats/detailed/?$',
-        UserDetailedReportView.as_view(),
+        UserDetailedStatsView.as_view(),
         name='pootle-user-detailed-report'),
     url('^user/(?P<username>[^/]+)/stats/activity/?$',
         UserActivityView.as_view(),
         name='pootle-user-activity'),
     url('^user/(?P<username>[^/]+)/stats/$',
-        UserReportView.as_view(),
+        UserStatsView.as_view(),
         name='pootle-user-report'),
     url('^user/(?P<username>[^/]+)/paid-tasks/?$',
         AddUserPaidTaskView.as_view(),

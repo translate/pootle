@@ -65,14 +65,14 @@ STAT_FIELDS = ['n1']
 INITIAL_STATES = ['new', 'edit']
 
 
-class UserReportView(NoDefaultUserMixin, DetailView):
+class UserStatsView(NoDefaultUserMixin, DetailView):
     model = get_user_model()
     slug_field = 'username'
     slug_url_kwarg = 'username'
-    template_name = 'user/report.html'
+    template_name = 'user/stats.html'
 
     def get_context_data(self, **kwargs):
-        ctx = super(UserReportView, self).get_context_data(**kwargs)
+        ctx = super(UserStatsView, self).get_context_data(**kwargs)
         ctx.update({
             'now': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
         })
@@ -99,19 +99,19 @@ class UserActivityView(NoDefaultUserMixin, SingleObjectMixin, View):
         return HttpResponse(jsonify(data), content_type="application/json")
 
 
-class UserDetailedReportView(NoDefaultUserMixin, DetailView):
+class UserDetailedStatsView(NoDefaultUserMixin, DetailView):
     model = get_user_model()
     slug_field = 'username'
     slug_url_kwarg = 'username'
-    template_name = 'user/detailed_report.html'
+    template_name = 'user/detailed_stats.html'
 
     def dispatch(self, request, *args, **kwargs):
         self.month = request.GET.get('month', None)
         self.user = request.user
-        return super(UserDetailedReportView, self).dispatch(request, *args, **kwargs)
+        return super(UserDetailedStatsView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        ctx = super(UserDetailedReportView, self).get_context_data(**kwargs)
+        ctx = super(UserDetailedStatsView, self).get_context_data(**kwargs)
         object = self.get_object()
         ctx.update(get_detailed_report_context(user=object, month=self.month))
         ctx.update({'own_report': object.username == self.user.username})
