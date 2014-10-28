@@ -143,9 +143,9 @@
             description = $('#id_description').val();
 
         if (description === '' || amount <= 0) {
-          $('#paid-task-form .submit').attr('disabled', '');
+          $('#paid-task-form .submit').prop('disabled', true);
         } else {
-          $('#paid-task-form .submit').removeAttr('disabled');
+          $('#paid-task-form .submit').prop('disabled', false);
         }
       }, 100);
     },
