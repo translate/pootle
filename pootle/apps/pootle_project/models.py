@@ -183,7 +183,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             logging.debug(u'Cache miss for %s', key)
 
             if is_superuser:
-                user_projects = self.objects.cached()
+                user_projects = self.objects.all()
             else:
                 lookup_args = {
                     'directory__permission_sets__positive_permissions__codename':
@@ -191,7 +191,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                     'directory__permission_sets__profile__username':
                         username,
                 }
-                user_projects = self.objects.cached().filter(**lookup_args)
+                user_projects = self.objects.filter(**lookup_args)
 
             # No explicit permissions for projects, let's examine the root
             if not user_projects.count():
@@ -201,7 +201,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                     positive_permissions__codename='view',
                 )
                 if root_permissions.count():
-                    user_projects = self.objects.cached()
+                    user_projects = self.objects.all()
 
             user_projects = user_projects.values_list('code', flat=True)
             cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
