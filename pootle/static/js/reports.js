@@ -247,6 +247,7 @@
           item.amount += task.amount
         } else {
           PTL.reports.data.paid_task_summary.push({
+            'period': PTL.reports.month.format('MMMM, YYYY'),
             'type': task.type,
             'amount': task.amount,
             'action': task.action,
