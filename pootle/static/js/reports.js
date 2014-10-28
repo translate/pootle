@@ -15,7 +15,10 @@
       };
 
       $(window).resize(function() {
-        PTL.reports.drawChart();
+        if (PTL.reports.data.daily !== undefined &&
+            PTL.reports.data.daily.nonempty) {
+          PTL.reports.drawChart();
+        }
       });
 
       if (PTL.reports.adminReport) {
