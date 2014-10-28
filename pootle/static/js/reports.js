@@ -43,9 +43,9 @@
         // Walk through known report criterias and apply them to the
         // reports object
         if ('month' in params) {
-          PTL.reports.month = moment(params.month);
+          PTL.reports.month = moment(params.month, 'YYYY-MM');
         } else {
-          PTL.reports.month = moment(PTL.reports.serverTime);
+          PTL.reports.month = moment(PTL.reports.serverTime, 'YYYY-MM-DD HH:mm:ss');
         }
         if ('username' in params) {
           PTL.reports.userName = params.username;
@@ -252,8 +252,8 @@
         async: true,
         success: function (data) {
           PTL.reports.serverTime = data.meta.now;
-          PTL.reports.now = moment(data.meta.now);
-          PTL.reports.month = moment(data.meta.month);
+          PTL.reports.now = moment(data.meta.now, 'YYYY-MM-DD HH:mm:ss');
+          PTL.reports.month = moment(data.meta.month, 'YYYY-MM');
 
           $('#reports-results').empty();
           $('#reports-results').html(PTL.reports.tmpl.results(data)).show();
@@ -305,8 +305,8 @@
 
     dateRangeString: function (d1, d2, showYear) {
       var res = '',
-          m1 = moment(d1),
-          m2 = moment(d2);
+          m1 = moment(d1, 'YYYY-MM-DD HH:mm:ss'),
+          m2 = moment(d2, 'YYYY-MM-DD HH:mm:ss');
 
       showYear = showYear || true;
 
@@ -339,7 +339,7 @@
     },
 
     formatDate: function (d) {
-      var m = moment(d);
+      var m = moment(d, 'YYYY-MM-DD HH:mm:ss');
       return m.format('MMM, D');
     },
 
