@@ -18,7 +18,11 @@
       </div>
     </td>
     <td id="detailed">
-      <a href="" target="_blank">{% trans 'Detailed report' %}</a>
+      {% if admin_report %}
+      <a href="" target="_blank">{% trans 'Detailed Report' %}</a>
+      {% else %}
+      <a href="" target="_blank">{% trans 'Detailed Statistics' %}</a>
+      {% endif %}
     </td>
   </tr>
 </table>
