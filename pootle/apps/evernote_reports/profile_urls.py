@@ -21,7 +21,7 @@
 from django.conf.urls import patterns, url
 
 from .views import (UserReportView, UserDetailedReportView,
-                    UserActivityView, PaidTaskFormView)
+                    UserActivityView, AddUserPaidTaskView)
 
 
 urlpatterns = patterns('evernote_reports.views',
@@ -35,6 +35,6 @@ urlpatterns = patterns('evernote_reports.views',
         UserReportView.as_view(),
         name='pootle-user-report'),
     url('^user/(?P<username>[^/]+)/paid-tasks/?$',
-        PaidTaskFormView.as_view(),
+        AddUserPaidTaskView.as_view(),
         name='pootle-user-add-paid-task'),
 )
