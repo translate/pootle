@@ -31,6 +31,8 @@
       $(document).on('click', '#paid-task-form input.submit', this.addPaidTask);
       $(document).on('change', '#id_currency', this.refreshCurrency);
       $(document).on('change', '#id_task_type', this.onPaidTaskTypeChange);
+      $(document).on('keyup paste change blur', '#id_description', this.addPaidTaskValidate);
+      $(document).on('keyup paste change blur', '#id_amount', this.addPaidTaskValidate);
 
       var taskType = $('#id_task_type').val();
       this.refreshAmountMeasureUnits(taskType);
@@ -130,6 +132,19 @@
 
       PTL.reports.refreshAmountMeasureUnits(taskType);
       $('#id_paid_task_rate').val(PTL.reports.getRateByTaskType(taskType));
+    },
+
+    addPaidTaskValidate: function (e) {
+      setTimeout(function () {
+        var amount = $('#id_amount').val(),
+            description = $('#id_description').val();
+
+        if (description === '' || amount <= 0) {
+          $('#paid-task-form .submit').attr('disabled', '');
+        } else {
+          $('#paid-task-form .submit').removeAttr('disabled');
+        }
+      }, 100);
     },
 
     refreshAmountMeasureUnits: function (taskType) {
@@ -273,6 +288,7 @@
             PTL.reports.user = data.meta.user;
             PTL.reports.updateMonthSelector();
             PTL.reports.setPaidTaskDate();
+            PTL.reports.addPaidTaskValidate();
 
             $('#reports-params').show();
             $('#detailed').show();
