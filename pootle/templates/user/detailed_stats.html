@@ -4,8 +4,8 @@
 
 {% block dates %}
   <ul>
-    <li class="previous"><a href="{% url 'pootle-user-detailed-report' object.username %}?month={{previous|date:'Y-m'}}">{% trans "Previous month" %}</a></li>
+    <li class="previous"><a href="{% url 'pootle-user-detailed-report' object.username %}?month={{previous|date:'Y-m'}}"><span class="arrow">&larr;</span> {% trans "Previous month" %}</a></li>
     <li class="selected">{{start|date:'E, Y'}}</li>
-    <li class="next"><a href="{% url 'pootle-user-detailed-report' object.username %}?month={{next|date:'Y-m'}}">{% trans "Next month" %}</a></li>
+    <li class="next"><a href="{% url 'pootle-user-detailed-report' object.username %}?month={{next|date:'Y-m'}}">{% trans "Next month" %} <span class="arrow">&rarr;</span></a></li>
   </ul>
 {% endblock %}
