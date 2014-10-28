@@ -171,7 +171,7 @@
             <ul class="dropdown-menu">
               <li><a href="{{ user.get_absolute_url }}">{% trans 'Public Profile' %}</a></li>
               <li><a href="{% url 'pootle-profile-edit' %}">{% trans 'Settings' %}</a></li>
-              <li><a href="{% url 'pootle-user-stats' user.username %}">{% trans 'Detailed Statistics' %}</a></li>
+              <li><a href="{% url 'pootle-user-stats' user.username %}">{% trans 'Statistics' %}</a></li>
               {% if user.is_superuser %}
               <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans 'Admin' %}</a></li>
               {% endif %}
