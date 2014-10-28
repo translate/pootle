@@ -389,7 +389,7 @@ def get_activity_data(user, month):
     json['meta'] = {
         'user': user_dict,
         'month': month,
-        'now': timezone.now().strftime('%Y-%m-%d %H-%M-%S'),
+        'now': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
         'start': start.strftime('%Y-%m-%d'),
         'end': end.strftime('%Y-%m-%d'),
     }
