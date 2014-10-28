@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>{% blocktrans with object.formatted_name as user %}Report for {{ user }}, {% endblocktrans %}{% format_date_range start end " &ndash; " %} | {{ settings.TITLE }}</title>
+  <title>{% blocktrans with object.display_name as user %}Report for {{ user }}, {% endblocktrans %}{% format_date_range start end " &ndash; " %} | {{ settings.TITLE }}</title>
   <base href="http://{{ request.META.HTTP_HOST }}" />
   <style type="text/css">
     html
@@ -133,7 +133,7 @@
   {% if object %}
   <table>
     <caption>
-      <h2>{% blocktrans with object.formatted_name as user %}Report for {{ user }}{% endblocktrans %}</h2>
+      <h2>{% blocktrans with object.display_name as user %}Report for {{ user }}{% endblocktrans %}</h2>
       <div class="dates">
         {% block dates %}
         <ul>
