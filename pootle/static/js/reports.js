@@ -225,11 +225,11 @@
     },
 
     getPaidTaskSummaryItem: function (type, rate) {
-      if (PTL.reports.paid_task_summary) {
-        for (var index in PTL.reports.paid_task_summary) {
-          if (PTL.reports.paid_task_summary[index].rate === rate &&
-              PTL.reports.paid_task_summary[index].type === type) {
-            return item
+      if (PTL.reports.data.paid_task_summary) {
+        var summary = PTL.reports.data.paid_task_summary;
+        for (var index in summary) {
+          if (summary[index].rate === rate && summary[index].type === type) {
+            return summary[index]
           }
         }
       }
