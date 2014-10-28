@@ -44,13 +44,6 @@ class UserAPIView(TestUserFieldMixin, APIView):
     edit_form_class = EditUserForm
 
 
-class UserStatsView(NoDefaultUserMixin, TestUserFieldMixin, DetailView):
-    model = User
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
-    template_name = 'user/stats.html'
-
-
 class UserDetailView(NoDefaultUserMixin, DetailView):
     model = User
     slug_field = 'username'
