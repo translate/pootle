@@ -1439,7 +1439,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         unit_query = self.unit_set.filter(state__gt=OBSOLETE)
         unit_ids = unit_query.values_list('id', flat=True)
         for unit_id in unit_ids:
-            action_log(user='system', action=STORE_OBSOLETE, lang=lang,
+            action_log(user='system', action=UNIT_OBSOLETE, lang=lang,
                        unit=unit_id, translation='', path=self.pootle_path)
         unit_query.update(state=OBSOLETE)
         self.obsolete = True
