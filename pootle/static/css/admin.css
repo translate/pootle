@@ -245,14 +245,16 @@ html[dir="rtl"] .admin-content h2 + .btn
 
 #item-form .helptext,
 #item-form .errorlist,
-#item-form .buttons
+#item-form .buttons,
+#item-form .user-links
 {
     margin-left: 30%;
 }
 
 html[dir="rtl"] #item-form .helptext,
 html[dir="rtl"] #item-form .errorlist,
-html[dir="rtl"] #item-form .buttons
+html[dir="rtl"] #item-form .buttons,
+html[dir="rtl"] #item-form .user-links
 {
     margin-left: auto;
     margin-right: 30%;
@@ -269,8 +271,9 @@ html[dir="rtl"] #item-form .buttons
     margin-bottom: 1em;
 }
 
-#item-form .buttons a
+#item-form .user-links li
 {
+    margin-bottom: 0.5em;
     font-style: italic;
 }
 
