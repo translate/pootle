@@ -240,6 +240,16 @@ th.number
     text-align: left;
 }
 
+#forms td
+{
+    text-align: left;
+}
+
+#user-rates .currency
+{
+    margin-left: 5px;
+}
+
 #paid-task-form
 {
     width: 400px;

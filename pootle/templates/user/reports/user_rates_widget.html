@@ -8,9 +8,9 @@
         {% trans "Currency:" %}
       </td>
       <td>
-        <div class="field-wrapper">
+        <span class="field-wrapper">
         {{ object.currency }}
-        </div>
+        </span>
       </td>
     </tr>
     <tr>
@@ -18,10 +18,10 @@
         {% trans "Translation Rate:" %}
       </td>
       <td>
-        <div class="field-wrapper">
+        <span class="field-wrapper">
         {{ object.rate }}
-        </div>
-        <div class="currency">{{ object.currency }}</div>
+        </span>
+        <span class="currency">{{ object.currency }}</span>
       </td>
     </tr>
     <tr>
@@ -29,10 +29,10 @@
         {% trans "Review Rate:" %}
       </td>
       <td>
-        <div class="field-wrapper">
+        <span class="field-wrapper">
         {{ object.review_rate }}
-        </div>
-        <div class="currency">{{ object.currency }}</div>
+        </span>
+        <span class="currency">{{ object.currency }}</span>
       </td>
     </tr>
     <tr>
@@ -40,10 +40,10 @@
         {% trans "Hourly Rate:" %}
       </td>
       <td>
-        <div class="field-wrapper">
+        <span class="field-wrapper">
         {{ object.hourly_rate }}
-        </div>
-        <div class="currency">{{ object.currency }}</div>
+        </span>
+        <span class="currency">{{ object.currency }}</span>
       </td>
     </tr>
   </table>
