@@ -22,7 +22,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.models.user import CURRENCIES
-from evernote_reports.models import PaidTask
+from evernote_reports.models import PaidTask, PaidTaskTypes
 
 
 class UserRatesForm(forms.Form):
@@ -63,3 +63,12 @@ class PaidTaskForm(forms.ModelForm):
                 'id': 'id_paid_task_rate'
             }),
         }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(PaidTaskForm, self).__init__(*args, **kwargs)
+
+        if user is not None and user.hourly_rate == 0:
+            choices = [item for item in self.fields['task_type'].choices
+                       if item[0] != PaidTaskTypes.HOURLY_WORK]
+            self.fields['task_type'].choices = choices

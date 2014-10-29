@@ -78,7 +78,7 @@ class UserStatsView(NoDefaultUserMixin, DetailView):
         })
         if self.object.rate > 0:
             ctx.update({
-                'paid_task_form': PaidTaskForm(),
+                'paid_task_form': PaidTaskForm(user=self.object),
             })
 
         return ctx
