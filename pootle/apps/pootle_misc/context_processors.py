@@ -53,7 +53,7 @@ def pootle_context(request):
             'DEBUG': settings.DEBUG,
         },
         'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
-        'ALL_LANGUAGES': Language.live.cached(),
-        'ALL_PROJECTS': Project.objects.cached(),
+        'ALL_LANGUAGES': Language.live.cached_dict(),
+        'ALL_PROJECTS': Project.objects.cached_dict(),
         'display_agreement': _agreement_context(request),
     }

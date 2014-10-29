@@ -32,6 +32,7 @@ from django.db import connection, models
 from django.db.models import Q
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
+from django.utils.datastructures import SortedDict
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
@@ -66,10 +67,14 @@ class ProjectManager(models.Manager):
             )
         )
 
-    def cached(self):
+    def cached_dict(self):
         projects = cache.get(CACHE_KEY)
         if not projects:
-            projects = self.order_by('fullname').all()
+            # XXX: create a `LiveProjectManager` instead of forcing
+            # `enable()` on this
+            projects = SortedDict(
+                self.enabled().order_by('fullname').values_list('code', 'fullname')
+            )
             cache.set(CACHE_KEY, projects, settings.OBJECT_CACHE_TIMEOUT)
 
         return projects
@@ -323,17 +328,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         self.directory = Directory.objects.projects \
                                           .get_or_make_subdir(self.code)
 
-        # check if a Project is not saved to DB
-        create = not self.id
         super(Project, self).save(*args, **kwargs)
-
-        # FIXME: far from ideal, should cache at the manager level instead
-        cache.delete(CACHE_KEY)
-        if create:
-            User = get_user_model()
-            users_list = User.objects.values_list('username', flat=True)
-            cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
-                                  users_list))
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -353,13 +348,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         super(Project, self).delete(*args, **kwargs)
 
         directory.delete()
-
-        # FIXME: far from ideal, should cache at the manager level instead
-        cache.delete(CACHE_KEY)
-        User = get_user_model()
-        users_list = User.objects.values_list('username', flat=True)
-        cache.delete_many(map(lambda x: 'projects:accessible:%s' % x,
-                              users_list))
 
     def clean(self):
         if self.code in RESERVED_PROJECT_CODES:
@@ -510,3 +498,16 @@ def invalidate_resources_cache(sender, instance, **kwargs):
     lang, proj, dir, fn = split_pootle_path(instance.pootle_path)
     if proj is not None:
         cache.delete(make_method_key(Project, 'resources', proj))
+
+
+@receiver([post_delete, post_save])
+def invalidate_project_list_cache(sender, instance, **kwargs):
+    # XXX: maybe use custom signals or simple function calls?
+    if instance.__class__.__name__ not in ['Project', 'TranslationProject']:
+        return
+
+    cache.delete(CACHE_KEY)
+
+    User = get_user_model()
+    users_list = User.objects.values_list('username', flat=True)
+    cache.delete_many(map(lambda x: 'projects:accessible:%s' % x, users_list))

@@ -23,6 +23,9 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models.signals import post_delete, post_save
+from django.dispatch import receiver
+from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.mixins import TreeItem
@@ -59,10 +62,12 @@ class LiveLanguageManager(models.Manager):
                 project__isnull=True,
             ).distinct()
 
-    def cached(self):
+    def cached_dict(self):
         languages = cache.get(CACHE_KEY)
         if not languages:
-            languages = self.all()
+            languages = SortedDict(
+                self.order_by('fullname').values_list('code', 'fullname')
+            )
             cache.set(CACHE_KEY, languages, settings.OBJECT_CACHE_TIMEOUT)
 
         return languages
@@ -141,16 +146,10 @@ class Language(models.Model, TreeItem):
 
         super(Language, self).save(*args, **kwargs)
 
-        # FIXME: far from ideal, should cache at the manager level instead
-        cache.delete(CACHE_KEY)
-
     def delete(self, *args, **kwargs):
         directory = self.directory
         super(Language, self).delete(*args, **kwargs)
         directory.delete()
-
-        # FIXME: far from ideal, should cache at the manager level instead
-        cache.delete(CACHE_KEY)
 
     def get_absolute_url(self):
         return reverse('pootle-language-overview', args=[self.code])
@@ -170,3 +169,12 @@ class Language(models.Model, TreeItem):
         return self.directory.pootle_path
 
     ### /TreeItem
+
+
+@receiver([post_delete, post_save])
+def invalidate_language_list_cache(sender, instance, **kwargs):
+    # XXX: maybe use custom signals or simple function calls?
+    if instance.__class__.__name__ not in ['Language', 'TranslationProject']:
+        return
+
+    cache.delete(CACHE_KEY)

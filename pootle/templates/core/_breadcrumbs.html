@@ -11,8 +11,8 @@
   <select id="js-select-language" data-initial-code="{{ language.code }}"
     style="visibility: hidden;">
     <option value=""></option>
-    {% for lang in ALL_LANGUAGES %}
-    <option value="{{ lang.code }}">{{ lang.name }}</option>
+    {% for lang_code, lang_name in ALL_LANGUAGES.items %}
+    <option value="{{ lang_code }}">{{ lang_name }}</option>
     {% endfor %}
   </select>
 </li>
@@ -20,10 +20,8 @@
   <select id="js-select-project" data-initial-code="{{ project.code }}"
     style="visibility: hidden;">
     <option value=""></option>
-    {% for proj in ALL_PROJECTS %}
-    {% if not proj.disabled %}
-    <option value="{{ proj.code }}">{{ proj.name }}</option>
-    {% endif %}
+    {% for proj_code, proj_name in ALL_PROJECTS.items %}
+    <option value="{{ proj_code }}">{{ proj_name }}</option>
     {% endfor %}
   </select>
 </li>
