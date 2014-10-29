@@ -125,7 +125,7 @@ class PaidTaskFormView(AjaxResponseMixin, CreateView):
     def get_success_url(self):
         # XXX: This is unused. We don't need this URL, but
         # the parent :cls:`PaidTaskFormView` enforces us to set some value here
-        return reverse('pootle-user-report', kwargs=self.kwargs)
+        return reverse('pootle-user-stats', kwargs=self.kwargs)
 
     def form_valid(self, form):
         response = super(PaidTaskFormView, self).form_valid(form)
