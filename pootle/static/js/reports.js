@@ -15,7 +15,8 @@
       };
 
       $(window).resize(function() {
-        if (PTL.reports.data.daily !== undefined &&
+        if (PTL.reports.data !== undefined &&
+            PTL.reports.data.daily !== undefined &&
             PTL.reports.data.daily.nonempty) {
           PTL.reports.drawChart();
         }
