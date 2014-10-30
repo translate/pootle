@@ -45,7 +45,7 @@
       this.currentRowIsEven = false;
 
       $.history.init(function (hash) {
-        var params = PTL.utils.getParsedHash(hash);
+        var params = PTL.reports.params = PTL.utils.getParsedHash(hash);
 
         // Walk through known report criterias and apply them to the
         // reports object
@@ -264,6 +264,14 @@
       }
     },
 
+    makeAbsoluteUrl: function (url) {
+      var img = document.createElement('img');
+      img.src = url;
+      url = img.src;
+      img.src = '';
+      return url;
+    },
+
     buildResults: function () {
       var reqData = {
         month: PTL.reports.month.format('YYYY-MM'),
@@ -280,6 +288,7 @@
           PTL.reports.serverTime = data.meta.now;
           PTL.reports.now = moment(data.meta.now, 'YYYY-MM-DD HH:mm:ss');
           PTL.reports.month = moment(data.meta.month, 'YYYY-MM');
+          PTL.reports.adminUrl = data.meta.admin_url;
 
           $('#reports-results').empty();
           $('#reports-results').html(PTL.reports.tmpl.results(data)).show();
@@ -290,6 +299,10 @@
             PTL.reports.dailyData = data.daily;
             PTL.reports.drawChart();
           }
+          data.meta.admin_permalink = PTL.reports.makeAbsoluteUrl(data.meta.admin_permalink)
+            +'#username='+data.meta.user.username
+            +'&month='+data.meta.month
+            +'&task=';
           PTL.reports.setData(data);
           if (PTL.reports.adminReport || !PTL.reports.freeUserReport && PTL.reports.ownReport) {
             $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(PTL.reports.data));
@@ -317,6 +330,15 @@
               $('#id_currency').val(PTL.reports.user.currency);
             }
             $('#user-rates-form .currency').text($('#id_currency').val())
+
+            if ('task' in PTL.reports.params) {
+              var selector = '.task'+PTL.reports.params.task;
+              $(selector).addClass('highlight');
+              setTimeout(function() {
+                $(selector).get(0).scrollIntoView();
+              }, 0);
+            }
+
             $('#forms').show();
           } else {
             $('#forms').hide();

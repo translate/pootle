@@ -392,6 +392,7 @@ def get_activity_data(user, month):
         'now': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
         'start': start.strftime('%Y-%m-%d'),
         'end': end.strftime('%Y-%m-%d'),
+        'admin_permalink': reverse('evernote-reports'),
     }
     if user != '':
         json['summary'] = get_summary(user, start, end)
