@@ -111,7 +111,7 @@ Pootle::
 This will display the installed engines and check if they work as expected.
 
 .. note:: Please file a `bug report
-   <http://bugs.locamotion.org/enter_bug.cgi?product=Pootle&component=Pootle>`_
-   if you encounter any errors when running these tests.
+   <https://github.com/translate/pootle/issues/new>`_ if you encounter any
+   errors when running these tests.
 
 The actual test for xapian is ``xapian-check --version``.

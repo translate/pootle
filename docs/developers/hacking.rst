@@ -16,11 +16,9 @@ Before doing anything
 Before starting any actual work on the source code, make sure that:
 
 - There is nobody working on the bug you are trying to fix. See the `existing
-  bug reports
-  <http://bugs.locamotion.org/buglist.cgi?list_id=983&resolution=---&query_format=advanced&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&product=Pootle>`_
-  and the `existing pull requests
-  <https://github.com/translate/pootle/pulls>`_. In the situation where
-  somebody else is working on a fix, you can always offer your help.
+  bug reports <https://github.com/translate/pootle/issues>`_ and the `existing
+  pull requests <https://github.com/translate/pootle/pulls>`_. In the situation
+  where somebody else is working on a fix, you can always offer your help.
 
 - If you plan to develop a new feature and want to include it upstream, please
   first discuss it with the developers `on IRC

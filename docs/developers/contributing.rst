@@ -181,7 +181,8 @@ translate Pootle itself. In case you feel more comfortable working with files
 and offline tools, just head to the `code repository at GitHub
 <https://github.com/translate/pootle/>`_, create your localization based on the
 latest template and submit it to us by `opening a bug
-<http://bugs.locamotion.org>`_ or by sending us a pull request.
+<https://github.com/translate/pootle/issues/new>`_ or by sending us a pull
+request.
 
 
 .. _contributing#documentation:
