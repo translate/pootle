@@ -1998,6 +1998,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return max_column(self.unit_set.all(), 'revision', 0)
 
     ### TreeItem
+    def can_be_updated(self):
+        return not self.obsolete
 
     def get_parents(self):
         if self.parent.is_translationproject():

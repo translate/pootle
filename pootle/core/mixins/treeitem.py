@@ -262,6 +262,10 @@ class CachedTreeItem(TreeItem):
         self._dirty_cache = set()
         super(CachedTreeItem, self).__init__()
 
+    def can_be_updated(self):
+        """This method will be overridden in descendants"""
+        return True
+
     def set_cached_value(self, name, value):
         key = iri_to_uri(self.get_cachekey() + ":" + name)
         return cache.set(key, value, None)
@@ -438,8 +442,11 @@ class CachedTreeItem(TreeItem):
 
     def _update_cache(self, keys):
         """Update dirty cached stats of current TreeItem"""
-        for key in keys:
-            self.update_cached(key)
+        if self.can_be_updated():
+            for key in keys:
+                self.update_cached(key)
+        else:
+            logging.warning('Cache for %s object cannot be updated.' % self)
         for p in self.get_parents():
             p._update_cache(keys)
         self.unregister_dirty()
