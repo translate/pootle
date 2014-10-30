@@ -36,7 +36,8 @@
       $(document).on('change', '#id_currency', this.refreshCurrency);
       $(document).on('change', '#id_task_type', this.onPaidTaskTypeChange);
       $(document).on('keyup paste change blur', '#id_description', this.addPaidTaskValidate);
-      $(document).on('keyup paste change blur', '#id_amount', this.addPaidTaskValidate);
+      $(document).on('keyup paste change', '#id_amount', this.addPaidTaskValidate);
+      $(document).on('blur', '#id_amount', this.roundAmount);
 
       var taskType = $('#id_task_type').val();
       this.refreshAmountMeasureUnits(taskType);
@@ -136,6 +137,11 @@
 
       PTL.reports.refreshAmountMeasureUnits(taskType);
       $('#id_paid_task_rate').val(PTL.reports.getRateByTaskType(taskType));
+    },
+
+    roundAmount: function (e) {
+      var amount = $(this).val();
+      $(this).val(Math.round(amount))
     },
 
     addPaidTaskValidate: function (e) {
