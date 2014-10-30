@@ -30,7 +30,7 @@
       <% total += subTotal; %>
       <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
         <td><%= row.period %></td>
-        <td><%= row.action %> <%= gettext("(paid tasks)") %></td>
+        <td><%= row.action %> <%= gettext("(registered tasks)") %></td>
         <td class="number"><%= Math.round(row.amount) %> <% if (row.type === 2) { %><%= ngettext("hour", "hours", Math.round(row.amount)) %><% } else { %><%= ngettext("word", "words", Math.round(row.amount)) %><% } %></td>
         <td class="number"><%= row.rate %> <%= meta.user.currency %></td>
         <td class="number"><%= subTotal.toFixed(2) %> <%= meta.user.currency %></td>
