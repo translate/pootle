@@ -450,10 +450,10 @@ class CachedTreeItem(TreeItem):
         for p in self.get_parents():
             p.initialize_children()
             if exclude_self:
-                p.children = filter(
-                    lambda x: (x.id != self.id and
-                               x.__class__ == self.__class__),
-                    p.children
+                p.set_children(
+                    filter(lambda x: (x.id != self.id and
+                                      x.__class__ == self.__class__),
+                           p.children)
                 )
             p.register_dirty()
             update_cache.delay(p, all_cache_methods)
