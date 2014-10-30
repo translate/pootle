@@ -22,10 +22,10 @@ Before starting any actual work on the source code, make sure that:
 
 - If you plan to develop a new feature and want to include it upstream, please
   first discuss it with the developers `on IRC
-  <irc://irc.freenode.net/#pootle>`_ or in the `translate-pootle mailing list
-  <https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ so that it
-  doesn't interfere in current development plans. Also note that adding new
-  features is relatively easy, but keeping them updated is harder.
+  <irc://irc.freenode.net/#pootle-dev>`_ or in the `translate-pootle mailing
+  list <https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ so
+  that it doesn't interfere in current development plans. Also note that adding
+  new features is relatively easy, but keeping them updated is harder.
 
 
 .. _hacking#setup:
