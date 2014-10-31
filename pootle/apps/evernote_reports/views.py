@@ -37,6 +37,7 @@ from django.views.generic import View, CreateView
 from django.views.generic.detail import SingleObjectMixin
 
 from pootle.core.decorators import admin_required
+from pootle.core.log import PAID_TASK_ADDED, PAID_TASK_DELETED, log
 from pootle.core.views import AjaxResponseMixin
 from pootle.models.user import CURRENCIES
 from pootle_misc.util import ajax_required, jsonify
@@ -130,6 +131,8 @@ class PaidTaskFormView(AjaxResponseMixin, CreateView):
     def form_valid(self, form):
         response = super(PaidTaskFormView, self).form_valid(form)
         # ignore redirect response
+        log('%s\t%s\t%s' % (PAID_TASK_ADDED, self.object.user.username,
+                            self.object))
         return self.render_to_json_response({'result': self.object.id})
 
 
@@ -347,8 +350,9 @@ def add_paid_task(request):
     form = PaidTaskForm(request.POST)
     if form.is_valid():
         form.save()
-
-        return HttpResponse(jsonify({'result': form.instance.id}),
+        obj = form.instance
+        log('%s\t%s\t%s' % (PAID_TASK_ADDED, request.user.username, obj))
+        return HttpResponse(jsonify({'result': obj.id}),
                             content_type="application/json")
 
     return HttpResponseBadRequest(jsonify({'errors': form.errors}),
@@ -359,12 +363,17 @@ def add_paid_task(request):
 @admin_required
 def remove_paid_task(request, task_id=None):
     if request.method == 'DELETE':
-        tasks = PaidTask.objects.filter(id=task_id)
-        count = tasks.count()
-        tasks.delete()
+        try:
+            obj = PaidTask.objects.get(id=task_id)
+            str = '%s\t%s\t%s' % (PAID_TASK_DELETED,
+                                  request.user.username, obj)
+            obj.delete()
+            log(str)
+            return HttpResponse(jsonify({'removed': 1}),
+                                content_type="application/json")
 
-        return HttpResponse(jsonify({'removed': count}),
-                            content_type="application/json")
+        except PaidTask.DoesNotExist:
+            return HttpResponseNotFound({}, content_type="application/json")
 
     return HttpResponseBadRequest(
         jsonify({'error': _('Invalid request method')}),

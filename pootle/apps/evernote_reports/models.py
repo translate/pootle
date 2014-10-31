@@ -55,3 +55,8 @@ class PaidTask(models.Model):
     @classmethod
     def get_task_type_title(self, task_type):
         return dict(self.type_choices).get(task_type, '')
+
+    def __unicode__(self):
+        return u'Task: [id=%s, user=%s, type=%s, amount=%s, comment=%s ]' % \
+            (self.id, self.user.username, PaidTask.get_task_type_title(self.task_type),
+             self.amount, self.description)
