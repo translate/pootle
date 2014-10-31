@@ -57,6 +57,6 @@ class PaidTask(models.Model):
         return dict(self.type_choices).get(task_type, '')
 
     def __unicode__(self):
-        return u'Task: [id=%s, user=%s, type=%s, amount=%s, comment=%s]' % \
+        return u'Task: [id=%s, user=%s, type=%s, amount=%s, comment=%s, month=%s]' % \
             (self.id, self.user.username, PaidTask.get_task_type_title(self.task_type),
-             self.amount, self.description)
+             self.amount, self.description, self.date.strftime('%Y-%m'))
