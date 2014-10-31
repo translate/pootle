@@ -131,7 +131,7 @@ class PaidTaskFormView(AjaxResponseMixin, CreateView):
     def form_valid(self, form):
         response = super(PaidTaskFormView, self).form_valid(form)
         # ignore redirect response
-        log('%s\t%s\t%s' % (PAID_TASK_ADDED, self.object.user.username,
+        log('%s\t%s\t%s' % (self.object.user.username, PAID_TASK_ADDED,
                             self.object))
         return self.render_to_json_response({'result': self.object.id})
 
@@ -351,7 +351,7 @@ def add_paid_task(request):
     if form.is_valid():
         form.save()
         obj = form.instance
-        log('%s\t%s\t%s' % (PAID_TASK_ADDED, request.user.username, obj))
+        log('%s\t%s\t%s' % (request.user.username, PAID_TASK_ADDED, obj))
         return HttpResponse(jsonify({'result': obj.id}),
                             content_type="application/json")
 
@@ -365,8 +365,8 @@ def remove_paid_task(request, task_id=None):
     if request.method == 'DELETE':
         try:
             obj = PaidTask.objects.get(id=task_id)
-            str = '%s\t%s\t%s' % (PAID_TASK_DELETED,
-                                  request.user.username, obj)
+            str = '%s\t%s\t%s' % (request.user.username,
+                                  PAID_TASK_DELETED, obj)
             obj.delete()
             log(str)
             return HttpResponse(jsonify({'removed': 1}),
