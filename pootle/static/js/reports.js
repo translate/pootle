@@ -92,6 +92,7 @@
 
     addPaidTask: function () {
       var reqData = $('#paid-task-form').serializeObject();
+      $('#paid-task-form .submit').prop('disabled', true);
 
       $.ajax({
         url: PTL.reports.addPaidTaskUrl,
