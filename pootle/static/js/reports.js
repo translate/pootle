@@ -238,7 +238,7 @@
         var summary = PTL.reports.data.paid_task_summary;
         for (var index in summary) {
           if (summary[index].rate === rate && summary[index].type === type) {
-            return summary[index]
+            return summary[index];
           }
         }
       }
@@ -253,7 +253,7 @@
         var task = data.paid_tasks[index],
             item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate);
         if (item !== null) {
-          item.amount += task.amount
+          item.amount += task.amount;
         } else {
           PTL.reports.data.paid_task_summary.push({
             'period': PTL.reports.month.format('MMMM, YYYY'),
@@ -329,7 +329,7 @@
             if (PTL.reports.user.currency) {
               $('#id_currency').val(PTL.reports.user.currency);
             }
-            $('#user-rates-form .currency').text($('#id_currency').val())
+            $('#user-rates-form .currency').text($('#id_currency').val());
 
             if ('task' in PTL.reports.params) {
               var selector = '.task'+PTL.reports.params.task;
