@@ -266,14 +266,6 @@
       }
     },
 
-    makeAbsoluteUrl: function (url) {
-      var img = document.createElement('img');
-      img.src = url;
-      url = img.src;
-      img.src = '';
-      return url;
-    },
-
     buildResults: function () {
       var reqData = {
         month: PTL.reports.month.format('YYYY-MM'),
@@ -301,7 +293,7 @@
             PTL.reports.dailyData = data.daily;
             PTL.reports.drawChart();
           }
-          data.meta.admin_permalink = PTL.reports.makeAbsoluteUrl(data.meta.admin_permalink)
+          data.meta.admin_permalink = data.meta.admin_permalink
             +'#username='+data.meta.user.username
             +'&month='+data.meta.month
             +'&task=';

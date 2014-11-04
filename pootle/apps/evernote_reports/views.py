@@ -96,7 +96,7 @@ class UserActivityView(NoDefaultUserMixin, SingleObjectMixin, View):
         return super(UserActivityView, self).dispatch(request, *args, **kwargs)
 
     def get(self, *args, **kwargs):
-        data = get_activity_data(self.get_object(), self.month)
+        data = get_activity_data(self.request, self.get_object(), self.month)
         return HttpResponse(jsonify(data), content_type="application/json")
 
 
@@ -381,7 +381,7 @@ def remove_paid_task(request, task_id=None):
     )
 
 
-def get_activity_data(user, month):
+def get_activity_data(request, user, month):
     [start, end] = get_date_interval(month)
 
     json = {}
@@ -401,7 +401,7 @@ def get_activity_data(user, month):
         'now': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
         'start': start.strftime('%Y-%m-%d'),
         'end': end.strftime('%Y-%m-%d'),
-        'admin_permalink': reverse('evernote-reports'),
+        'admin_permalink': request.build_absolute_uri(reverse('evernote-reports')),
     }
     if user != '':
         json['summary'] = get_summary(user, start, end)
@@ -424,7 +424,7 @@ def user_date_prj_activity(request):
     except:
         user = ''
 
-    json = get_activity_data(user, month)
+    json = get_activity_data(request, user, month)
     response = jsonify(json)
 
     return HttpResponse(response, content_type="application/json")
