@@ -282,7 +282,6 @@
           PTL.reports.serverTime = data.meta.now;
           PTL.reports.now = moment(data.meta.now, 'YYYY-MM-DD HH:mm:ss');
           PTL.reports.month = moment(data.meta.month, 'YYYY-MM');
-          PTL.reports.adminUrl = data.meta.admin_url;
 
           $('#reports-results').empty();
           $('#reports-results').html(PTL.reports.tmpl.results(data)).show();
