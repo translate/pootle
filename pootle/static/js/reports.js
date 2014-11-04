@@ -332,10 +332,10 @@
             $('#user-rates-form .currency').text($('#id_currency').val());
 
             if ('task' in PTL.reports.params) {
-              var selector = '.task'+PTL.reports.params.task;
-              $(selector).addClass('highlight');
+              var task = document.querySelector('.task' + PTL.reports.params.task);
+              task.classList.add('highlight');
               setTimeout(function() {
-                $(selector).get(0).scrollIntoView();
+                task.scrollIntoView();
               }, 0);
             }
 
