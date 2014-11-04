@@ -128,9 +128,4 @@ $(function () {
   {% endif %}
 });
 </script>
-{% if user.is_superuser or request.permissions.administrate %}
-{% assets "js_admin" %}
-<script type="text/javascript" src="{{ ASSET_URL }}"></script>
-{% endassets %}
-{% endif %}
 {% endblock %}
