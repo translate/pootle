@@ -141,8 +141,9 @@
     },
 
     roundAmount: function (e) {
-      var amount = $(this).val();
-      $(this).val(Math.round(amount))
+      var $this = $(this),
+          amount = $this.val();
+      $this.val(Math.round(amount));
     },
 
     addPaidTaskValidate: function (e) {
