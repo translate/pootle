@@ -293,11 +293,17 @@
             PTL.reports.dailyData = data.daily;
             PTL.reports.drawChart();
           }
-          data.meta.admin_permalink = data.meta.admin_permalink
-            +'#username='+data.meta.user.username
-            +'&month='+data.meta.month
-            +'&task=';
+
+          var permalinkArgs = {
+            username: data.meta.user.username,
+            month: data.meta.month,
+            task: '',
+          };
+          data.meta.admin_permalink = [data.meta.admin_permalink,
+                                       $.param(permalinkArgs)].join('#');
+
           PTL.reports.setData(data);
+
           if (PTL.reports.adminReport || !PTL.reports.freeUserReport && PTL.reports.ownReport) {
             $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(PTL.reports.data));
             $('#reports-summary').html(PTL.reports.tmpl.summary(PTL.reports.data));
