@@ -447,8 +447,10 @@ class CachedTreeItem(TreeItem):
                 self.update_cached(key)
         else:
             logging.warning('Cache for %s object cannot be updated.' % self)
+
         for p in self.get_parents():
             p._update_cache(keys)
+
         self.unregister_dirty()
 
     def update_parent_cache(self, exclude_self=False):
