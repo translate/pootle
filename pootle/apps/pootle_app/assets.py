@@ -52,11 +52,6 @@ js_common = Bundle(
     filters='rjsmin', output='js/common.min.%(version)s.js')
 register('js_common', js_common)
 
-js_admin = Bundle(
-    'js/admin.js',
-    filters='rjsmin', output='js/admin.min.%(version)s.js')
-register('js_admin', js_admin)
-
 
 # <Webpack>
 # These are handled by webpack and therefore have no filters applied
@@ -66,6 +61,11 @@ js_vendor = Bundle(
     'js/vendor.bundle.js',
     output='js/vendor.min.%(version)s.js')
 register('js_vendor', js_vendor)
+
+js_admin_general_app = Bundle(
+    'js/admin/general/app.bundle.js',
+    output='js/admin/general/app.min.%(version)s.js')
+register('js_admin_general_app', js_admin_general_app)
 
 js_admin_app = Bundle(
     'js/admin/app.bundle.js',
