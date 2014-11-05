@@ -8,8 +8,10 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Removing unique constraint on 'PermissionSet', fields ['profile', 'directory']
-        db.delete_unique(u'pootle_app_permissionset', ['profile_id', 'directory_id'])
+        # Adding field 'Directory.obsolete'
+        db.add_column(u'pootle_app_directory', 'obsolete',
+                      self.gf('django.db.models.fields.BooleanField')(default=False),
+                      keep_default=False)
 
     def backwards(self, orm):
         # Deleting field 'Directory.obsolete'
