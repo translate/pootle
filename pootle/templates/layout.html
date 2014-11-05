@@ -59,41 +59,6 @@
     function s(path) {
       return "{{ STATIC_URL }}" + path;
     }
-    {% if display_agreement %}
-    PTL.common.displayAgreementPopup = function () {
-      $.magnificPopup.open({
-        items: {
-          src: '{% url "pootle-staticpages-legal-agreement" %}',
-          type: 'ajax'
-        },
-        callbacks: {
-          parseAjax: function (mfpResponse) {
-            mfpResponse.data = mfpResponse.data.form;
-          }
-        },
-        modal: true
-      });
-    };
-
-    $(document).on('click', '.js-agreement-popup', function (e) {
-      e.preventDefault();
-      $.magnificPopup.close();
-      $.magnificPopup.open({
-        items: {
-          src: this.href,
-          type: 'ajax'
-        },
-        callbacks: {
-          afterClose: PTL.common.displayAgreementPopup
-        },
-        mainClass: 'popup-ajax'
-      });
-    });
-    $(document).on('submit', '.js-agreement-form', function (e) {
-      e.preventDefault();
-      PTL.common.submitAgreementForm();
-    });
-    {% endif %}
 
     PTL.contact.init({url: "{% url 'pootle-contact' %}"});
 
@@ -122,7 +87,7 @@
       });
 
       {% if display_agreement %}
-      PTL.common.displayAgreementPopup();
+      PTL.agreement.init('{% url "pootle-staticpages-legal-agreement" %}');
       {% endif %}
     });
     </script>
