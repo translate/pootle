@@ -538,6 +538,7 @@ def get_grouped_paid_words(user, start, end):
             row = {
                 'translation_project': u'%s / %s' %
                     (tp.project.fullname, tp.language.fullname),
+                'project_code': tp.project.code,
                 'score_delta': 0,
                 'translated': 0,
                 'reviewed': 0,
