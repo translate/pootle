@@ -10,10 +10,6 @@ class Migration(SchemaMigration):
         ("pootle_app", "0001_initial"),
     )
 
-    depends_on = (
-        ("pootle_app" , "0001_initial"),
-    )
-
     def forwards(self, orm):
         # Adding model 'Language'
         db.create_table('pootle_app_language', (
