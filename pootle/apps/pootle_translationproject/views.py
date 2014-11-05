@@ -297,7 +297,6 @@ def _handle_upload_form(request, translation_project):
 def overview(request, translation_project, dir_path, filename=None, goal=None):
     from django.utils import dateformat
     from staticpages.models import StaticPage
-    from pootle.scripts.actions import EXTDIR, StoreAction, TranslationProjectAction
     from .actions import action_groups
 
     if filename:
@@ -333,90 +332,6 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
         actions = []
 
     action_output = ''
-    running = request.GET.get(EXTDIR, '')
-
-    #TODO enable the following again when drilling down a goal.
-    if running and goal is None:
-        if request.store:
-            act = StoreAction
-        else:
-            act = TranslationProjectAction
-        try:
-            action = act.lookup(running)
-        except KeyError:
-            messages.error(request, _("Unable to find '%(action)s' in '%(extdir)s'") %
-                                      {'action': act, 'extdir': running})
-        else:
-            if not getattr(action, 'nosync', False):
-                (request.store or translation_project).sync()
-            if action.is_active(request):
-                vcs_dir = settings.VCS_DIRECTORY
-                po_dir = settings.PODIRECTORY
-                tp_dir = request.directory.get_real_path()
-                store_fn = '*'
-                if request.store:
-                    tp_dir_slash = add_trailing_slash(tp_dir)
-                    if request.store.file.name.startswith(tp_dir_slash):
-                        # Note: store_f used below in reverse() call.
-                        store_f = request.store.file.name[len(tp_dir_slash):]
-                        store_fn = store_f.replace('/', os.sep)
-
-                # Clear possibly stale output/error (even from other
-                # resource_obj).
-                action.set_output('')
-                action.set_error('')
-                try:
-                    action.run(path=resource_obj, root=po_dir, tpdir=tp_dir,
-                               project=project.code, language=language.code,
-                               store=store_fn,
-                               style=translation_project.file_style,
-                               vc_root=vcs_dir)
-                except StandardError:
-                    err = (_("Error while running '%s' extension action") %
-                           action.title)
-                    logging.exception(err)
-                    if (action.error):
-                        messages.error(request, action.error)
-                    else:
-                        messages.error(request, err)
-                else:
-                    if (action.error):
-                        messages.warning(request, action.error)
-
-                action_output = action.output
-                if getattr(action, 'get_download', None):
-                    export_path = action.get_download(resource_obj)
-                    if export_path:
-                        import mimetypes
-                        abs_path = absolute_real_path(export_path)
-                        filename = os.path.basename(export_path)
-                        content_type, encoding = mimetypes.guess_type(filename)
-                        content_type = content_type or 'application/octet-stream'
-                        with open(abs_path, 'rb') as f:
-                            response = HttpResponse(f.read(),
-                                                    content_type=content_type)
-                        response['Content-Disposition'] = (
-                                'attachment; filename="%s"' % filename)
-                        return response
-
-                if not action_output:
-                    if not request.store:
-                        rev_args = [language.code, project.code, '']
-                        overview_url = reverse('pootle-tp-overview',
-                                               args=rev_args)
-                    else:
-                        slash = store_f.rfind('/')
-                        store_d = ''
-                        if slash > 0:
-                            store_d = store_f[:slash]
-                            store_f = store_f[slash + 1:]
-                        elif slash == 0:
-                            store_f = store_f[1:]
-                        rev_args = [language.code, project.code, store_d,
-                                    store_f]
-                        overview_url = reverse('pootle-tp-overview',
-                                               args=rev_args)
-                    return redirect(overview_url)
 
     # TODO: cleanup and refactor, retrieve from cache
     try:
