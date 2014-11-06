@@ -140,3 +140,28 @@ def sync_from_vcs(ignored_files, ext, relative_dir,
                                                    vcs_path, file_filter)
     files, dirs = recursive_files_and_dirs(ignored_files, ext, podir_path,
                                            file_filter)
+
+    vcs_file_set = set(vcs_files)
+    vcs_dir_set = set(vcs_dirs)
+    file_set = set(files)
+    dir_set = set(dirs)
+
+    for d in vcs_dir_set - dir_set:
+        new_path = os.path.join(podir_path, d)
+        os.makedirs(new_path)
+
+    # copy into podir
+    for f in vcs_file_set - file_set:
+        vcs_f = os.path.join(vcs_path, f)
+        new_path = os.path.join(podir_path, f)
+        shutil.copy2(vcs_f, new_path)
+
+    # remove from podir
+    #TODO: review this carefully, as we are now deleting stuff
+    for f in file_set - vcs_file_set:
+        remove_path = os.path.join(podir_path, f)
+        os.remove(remove_path)
+
+    for d in dir_set - vcs_dir_set:
+        remove_path = os.path.join(podir_path, d)
+        shutil.rmtree(remove_path)
