@@ -19,6 +19,27 @@ require('bootstrap-transition');
 var Spinner = require('spin');
 
 
+Spinner.defaults = {
+  lines: 11,
+  length: 2,
+  width: 5,
+  radius: 11,
+  rotate: 0,
+  corners: 1,
+  color: '#000',
+  direction: 1,
+  speed: 1,
+  trail: 50,
+  opacity: 1/4,
+  fps: 20,
+  zIndex: 2e9,
+  className: 'spinner',
+  top: 'auto',
+  left: 'auto',
+  position: 'relative'
+};
+
+
 // Pootle-specifics. These need to be kept here until:
 // 1. they evolve into apps of their own
 // 2. they're only used directly as modules from other apps (and they are

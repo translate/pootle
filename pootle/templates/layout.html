@@ -28,26 +28,6 @@
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
     <script type="text/javascript">
-      Spinner.defaults = {
-        lines: 11,
-        length: 2,
-        width: 5,
-        radius: 11,
-        rotate: 0,
-        corners: 1,
-        color: '#000',
-        direction: 1,
-        speed: 1,
-        trail: 50,
-        opacity: 1/4,
-        fps: 20,
-        zIndex: 2e9,
-        className: 'spinner',
-        top: 'auto',
-        left: 'auto',
-        position: 'relative'
-      };
-
     function l(path) {
       var basepath = "{{ settings.SCRIPT_NAME  }}";
       if (path[0] == '/') {
