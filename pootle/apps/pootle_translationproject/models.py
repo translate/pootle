@@ -605,7 +605,7 @@ class TranslationProject(models.Model, TreeItem):
             file_filter = lambda filename: True
 
         if vcs_sync:
-            from pootle_app.vcs import sync_from_vcs
+            from versioncontrol.utils import sync_from_vcs
             sync_from_vcs(ignored_files, ext, self.real_path, file_filter)
 
         all_files, new_files = add_files(
