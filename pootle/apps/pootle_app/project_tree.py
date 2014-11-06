@@ -23,12 +23,14 @@ import logging
 import os
 import re
 
+from django.conf import settings
+
 from pootle.core.log import store_log, STORE_RESURRECTED
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.util import datetime_min
 from pootle_store.models import Store, PARSED
-from pootle_store.util import absolute_real_path
+from pootle_store.util import absolute_real_path, relative_real_path
 
 
 #: Case insensitive match for language codes
@@ -215,8 +217,7 @@ def create_or_resurrect_dir(name, parent):
 # TODO: rename function or even rewrite it
 def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
               file_filter=lambda _x: True):
-    from pootle_misc import versioncontrol
-    podir_path = versioncontrol.to_podir_path(relative_dir)
+    podir_path = to_podir_path(relative_dir)
     files, dirs = split_files_and_dirs(ignored_files, ext, podir_path,
                                        file_filter)
     file_set = set(files)
@@ -251,6 +252,11 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
         new_files += _new_files
 
     return files, new_files
+
+
+def to_podir_path(path):
+    path = relative_real_path(path)
+    return os.path.join(settings.PODIRECTORY, path)
 
 
 def find_lang_postfix(filename):

@@ -19,8 +19,9 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
-from pootle_store.util import add_trailing_slash
+from pootle_app.project_tree import to_podir_path
 from pootle_misc import versioncontrol
+from pootle_store.util import add_trailing_slash
 
 
 def recursive_files_and_dirs(ignored_files, ext, real_dir, file_filter):
@@ -63,7 +64,7 @@ def sync_from_vcs(ignored_files, ext, relative_dir,
     if not versioncontrol.hasversioning(relative_dir):
         return
 
-    podir_path = versioncontrol.to_podir_path(relative_dir)
+    podir_path = to_podir_path(relative_dir)
     vcs_path = versioncontrol.to_vcs_path(relative_dir)
     vcs_files, vcs_dirs = recursive_files_and_dirs(ignored_files, ext,
                                                    vcs_path, file_filter)
