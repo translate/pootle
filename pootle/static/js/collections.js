@@ -1,15 +1,17 @@
-window.PTL = window.PTL || {};
+var Backbone = require('backbone');
 
-PTL.collections = PTL.collections || {};
+var Unit = require('./models.js').Unit;
 
-(function (collections, models) {
+
+var collections = {};
+
 
 /*
- * PTL.collections.Units
+ * collections.UnitSet
  */
 
 collections.UnitSet = Backbone.Collection.extend({
-  model: models.Unit,
+  model: Unit,
 
   initialize: function (model, opts) {
     this.chunkSize = opts.chunkSize;
@@ -58,4 +60,4 @@ collections.UnitSet = Backbone.Collection.extend({
 });
 
 
-}(PTL.collections, PTL.models));
+module.exports = collections;
