@@ -1,6 +1,11 @@
 /*
  * Several utilities that extend jQuery's functionalities.
  */
+
+
+var Spinner = require('spin');
+
+
 (function ($) {
 
   $.fn.spin = function(opts) {
