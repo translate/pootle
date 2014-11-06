@@ -34,6 +34,8 @@ var stats = {
     this.pootlePath = options.pootlePath;
     this.processLoadedData(options.data);
 
+    $('td.stats-name').filter(':not([dir])').bidi();
+
     $(document).on('click', '#js-path-summary', this.toggleChecks.bind(this));
     $(document).on('click', '.js-stats-refresh', this.refreshStats.bind(this));
   },

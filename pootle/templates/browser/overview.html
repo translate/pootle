@@ -118,7 +118,6 @@ $(function () {
   PTL.common.fixSidebarHeight();
   $(window).on('resize', PTL.common.fixSidebarHeight);
   {% endif %}
-  $("td.stats-name").filter(":not([dir])").bidi();
 
   {% if 'finished' in request.GET %}
   PTL.msg.show({
