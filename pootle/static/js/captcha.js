@@ -1,33 +1,27 @@
-(function ($) {
+'use strict';
 
-  window.PTL = window.PTL || {};
+var $ = require('jquery');
 
-  PTL.captcha = {
+require('jquery-magnific-popup');
+require('jquery-serializeObject');
 
-    display: function (html) {
-      $.magnificPopup.open({
-        items: {
-          src: html,
-          type: 'inline'
-        },
-        focus: '#id_captcha_answer'
-      });
+var utils = require('./utils.js');
+
+
+var display = function (html) {
+  $(document).on('submit', '#js-captcha', onSubmit);
+
+  $.magnificPopup.open({
+    items: {
+      src: html,
+      type: 'inline'
     },
-
-    onError: function (xhr, errorFn) {
-      if (xhr.status == 402) {
-        PTL.captcha.display(xhr.responseText);
-      } else {
-        PTL.utils.executeFunctionByName(errorFn, window, xhr);
-      }
-    }
-
-  };
-
-}(jQuery));
+    focus: '#id_captcha_answer'
+  });
+};
 
 
-$(document).on('submit', '#js-captcha', function (e) {
+var onSubmit = function (e) {
   e.preventDefault();
   var $form = $(this),
       reqData = $form.serializeObject(),
@@ -40,11 +34,25 @@ $(document).on('submit', '#js-captcha', function (e) {
     type: 'POST',
     data: reqData,
     success: function () {
-      PTL.utils.executeFunctionByName(successFn, window, e);
+      utils.executeFunctionByName(successFn, window, e);
       $.magnificPopup.close();
     },
     error: function (xhr) {
-      PTL.captcha.onError(xhr, errorFn);
+      onError(xhr, errorFn);
     }
   });
-});
+};
+
+
+var onError = function (xhr, errorFn) {
+  if (xhr.status == 402) {
+    display(xhr.responseText);
+  } else {
+    utils.executeFunctionByName(errorFn, window, xhr);
+  }
+};
+
+
+module.exports = {
+  onError: onError,
+};
