@@ -21,11 +21,10 @@
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
     {% endblock favicon %}
     {% block js %}
-    {% assets "js_common" %}
+    {% assets "js_vendor" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
-    {# For now this is after `js_common` because we shim the libraries #}
-    {% assets "js_vendor" %}
+    {% assets "js_common" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
     <script type="text/javascript">
@@ -63,6 +62,8 @@
     PTL.contact.init({url: "{% url 'pootle-contact' %}"});
 
     $(function () {
+      PTL.common.init();
+
       {% if user.is_authenticated %}
       PTL.score.init({{ request.user.public_score }});
       PTL.dropdown.init('.js-navbar-dropdown');

@@ -21,37 +21,6 @@
 
 from django_assets import Bundle, register
 
-js_common = Bundle(
-    'js/vendor/jquery/jquery.js',
-    'js/vendor/jquery/jquery.tipsy.js',
-    'js/vendor/jquery/jquery.cookie.js',
-    'js/vendor/jquery/jquery.bidi.js',
-    'js/vendor/jquery/jquery.magnific-popup.js',
-    'js/vendor/jquery/jquery.utils.js',
-    'js/vendor/jquery/jquery.easing.js',
-    'js/vendor/jquery/jquery.serializeObject.js',
-    'js/vendor/jquery/jquery.select2.js',
-    'js/vendor/bootstrap/bootstrap-alert.js',
-    'js/vendor/bootstrap/bootstrap-transition.js',
-    'js/vendor/underscore.js',
-    'js/vendor/backbone/backbone.js',
-    'js/vendor/odometer.js',
-    'js/browser.js',
-    'js/captcha.js',
-    'js/common.js',
-    'js/contact.js',
-    'js/dropdown.js',
-    'js/msg.js',
-    'js/search.js',
-    'js/score.js',
-    'js/stats.js',
-    'js/utils.js',
-    'js/vendor/sorttable.js',
-    'js/vendor/spin.js',
-    'js/vendor/shortcut.js',  # Leave shortcut.js as the last one
-    filters='rjsmin', output='js/common.min.%(version)s.js')
-register('js_common', js_common)
-
 
 # <Webpack>
 # These are handled by webpack and therefore have no filters applied
@@ -62,6 +31,11 @@ js_vendor = Bundle(
     output='js/vendor.min.%(version)s.js')
 register('js_vendor', js_vendor)
 
+js_common = Bundle(
+    'js/common/app.bundle.js',
+    output='js/common/app.min.%(version)s.js')
+register('js_common', js_common)
+
 js_admin_general_app = Bundle(
     'js/admin/general/app.bundle.js',
     output='js/admin/general/app.min.%(version)s.js')
@@ -71,7 +45,6 @@ js_admin_users_app = Bundle(
     'js/admin/users/app.bundle.js',
     output='js/admin/users/app.min.%(version)s.js')
 register('js_admin_users_app', js_admin_users_app)
-
 
 js_user_app = Bundle(
     'js/user/app.bundle.js',
