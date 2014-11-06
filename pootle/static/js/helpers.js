@@ -1,8 +1,17 @@
-//'use strict';
+'use strict';
 
 var $ = require('jquery');
 
 var utils = require('./utils.js');
+
+
+var updateInputState = function ($checkboxes, $input) {
+  if ($checkboxes.length === $checkboxes.filter(':checked').length) {
+    $input.prop('disabled', false);
+  } else {
+    $input.prop('disabled', true);
+  }
+};
 
 
 var helpers = {
@@ -35,13 +44,6 @@ var helpers = {
   updateInputState: function (checkboxSelector, inputSelector) {
     var $checkbox = $(checkboxSelector);
     if ($checkbox.length) {
-      function updateInputState($checkboxes, $input) {
-        if ($checkboxes.length === $checkboxes.filter(':checked').length) {
-          $input.prop('disabled', false);
-        } else {
-          $input.prop('disabled', true);
-        }
-      }
       var $input = $(inputSelector);
       updateInputState($checkbox, $input);
       $checkbox.change(function () {
