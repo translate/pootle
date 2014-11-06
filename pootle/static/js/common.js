@@ -76,6 +76,8 @@ PTL.common = {
       $(window).on('resize', helpers.fixSidebarHeight);
     }
 
+    helpers.updateRelativeDates();
+    setInterval(helpers.updateRelativeDates, 6e4);
 
     setInterval($.fn.tipsy.revalidate, 1000);
 

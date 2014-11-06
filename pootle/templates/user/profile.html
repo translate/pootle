@@ -110,9 +110,6 @@
 {% endif %}
 <script type="text/javascript">
 $(function() {
-  PTL.common.updateRelativeDates();
-  setInterval(PTL.common.updateRelativeDates, 6e4);
-
   {% if user == object %}
   PTL.user.init({el: '.js-user-profile-edit',
                  userData: {{ user.as_json|safe }},

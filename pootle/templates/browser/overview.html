@@ -111,9 +111,6 @@ $(function () {
     data: {{ stats|safe }}
   });
 
-  PTL.common.updateRelativeDates();
-  setInterval(PTL.common.updateRelativeDates, 6e4);
-
   {% if 'finished' in request.GET %}
   PTL.msg.show({
     text: '{% trans "Congratulations! You have completed this task!" %}',
