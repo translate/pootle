@@ -1226,7 +1226,7 @@ class TranslationProject(models.Model, TreeItem):
 ###############################################################################
 
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
-    if not created or raw:
+    if not created or raw or instance.disabled:
         return
 
     for language in Language.objects.iterator():
@@ -1239,7 +1239,7 @@ def scan_projects(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:
         return
 
-    for project in Project.objects.iterator():
+    for project in Project.objects.enabled().iterator():
         create_translation_project(instance, project)
 
 post_save.connect(scan_projects, sender=Language)
