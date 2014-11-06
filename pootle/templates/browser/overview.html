@@ -114,11 +114,6 @@ $(function () {
   PTL.common.updateRelativeDates();
   setInterval(PTL.common.updateRelativeDates, 6e4);
 
-  {% if announcement %}
-  PTL.common.fixSidebarHeight();
-  $(window).on('resize', PTL.common.fixSidebarHeight);
-  {% endif %}
-
   {% if 'finished' in request.GET %}
   PTL.msg.show({
     text: '{% trans "Congratulations! You have completed this task!" %}',

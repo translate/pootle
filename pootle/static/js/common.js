@@ -71,6 +71,10 @@ PTL.common = {
       $('body').removeClass('preload');
     });
 
+    if (opts.hasSidebar) {
+      helpers.fixSidebarHeight();
+      $(window).on('resize', helpers.fixSidebarHeight);
+    }
 
 
     setInterval($.fn.tipsy.revalidate, 1000);
