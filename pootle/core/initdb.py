@@ -99,16 +99,8 @@ def create_essential_users():
         default.set_unusable_password()
         default.save()
 
-    # Now create the 'system' user.
-    create_system_user()
-
-
-def create_system_user():
-    """Create the 'system' User instance.
-
-    The 'system' user represents a system, and is used to associate updates
-    done by bulk commands as update_stores.
-    """
+    # The 'system' user represents a system, and is used to associate updates
+    # done by bulk commands as update_stores.
     criteria = {
         'username': u"system",
         'full_name': u"system user",

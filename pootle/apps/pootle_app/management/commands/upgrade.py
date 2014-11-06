@@ -41,6 +41,25 @@ DEFAULT_POOTLE_BUILDVERSION = 22000
 DEFAULT_TT_BUILDVERSION = 12005
 
 
+def save_build_version(product, build_version):
+    """Update build version number for specified product."""
+    from pootle_app.models import PootleConfig
+
+    pootle_config = PootleConfig.objects.get_current()
+
+    if product == 'pootle':
+        pootle_config.ptl_build = build_version
+    elif product == 'ttk':
+        pootle_config.ttk_build = build_version
+
+    pootle_config.save()
+
+    if product == 'pootle':
+        logging.info("Database now at Pootle build %d" % build_version)
+    elif product == 'ttk':
+        logging.info("Database now at Toolkit build %d" % build_version)
+
+
 def calculate_stats():
     """Calculate full translation statistics.
 
@@ -114,23 +133,15 @@ class Command(BaseCommand):
         tt_changed = db_tt_buildversion < CODE_TTK_BUILDVERSION
 
         if ptl_changed or tt_changed:
-            from pootle_misc.upgrade import upgrade
-
             if ptl_changed:
                 logging.info('Detected new Pootle version: %d.',
                              CODE_PTL_BUILDVERSION)
+                save_build_version('pootle', CODE_PTL_BUILDVERSION)
 
             if tt_changed:
                 logging.info('Detected new Translate Toolkit version: %d.',
                              CODE_TTK_BUILDVERSION)
-
-            logging.info('Running the upgrade machinery...')
-
-            if ptl_changed:
-                upgrade('pootle', db_ptl_buildversion, CODE_PTL_BUILDVERSION)
-
-            if tt_changed:
-                upgrade('ttk', db_tt_buildversion, CODE_TTK_BUILDVERSION)
+                save_build_version('ttk', CODE_TTK_BUILDVERSION)
 
             # Perform the option related actions.
             if options['calculate_stats']:
