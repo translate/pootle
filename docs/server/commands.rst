@@ -544,7 +544,12 @@ command line.
 setup
 ^^^^^
 
-.. versionadded:: 2.5.1
+.. warning::
+
+  .. versionchanged:: 2.7.0
+
+  Direct upgrade from Pootle versions older than 2.6.0 is no longer supported.
+  Users of such versions must upgrade first to Pootle 2.6.0.
 
 This command either initializes a new DB or upgrades an existing DB, as
 required.
@@ -610,36 +615,16 @@ initializes several terminology projects, and creates the tutorial project.
   first visit to Pootle after ``initdb`` will be very slow. **It is
   best to run** :ref:`commands#refresh_stats` **immediately after initdb**.
 
-.. _commands#updatedb:
-
-
-updatedb
-^^^^^^^^
-
-.. versionchanged:: 2.5.1
-
-This is a command line interface to Pootle's database schema upgrade
-process.
-
-This will only perform schema upgrades to version 2.5 from Pootle versions
-older than 2.5. To upgrade to version 2.5.1 and later South's
-:ref:`migrate command <south:commands>` must be used, after upgrading
-to version 2.5.
-
-For detailed instructions on upgrading, read the :ref:`upgrading` section
-of the documentation.
-
 
 .. _commands#upgrade:
 
 upgrade
 ^^^^^^^^
 
-.. versionadded:: 2.5.1
+.. versionchanged:: 2.7.0
 
-Performs post schema upgrade actions that are necessary to leave all the
-bits in place. It also serves as a trigger for any changes needed by
-Translate Toolkit version upgrades.
+Performs post upgrade actions that are necessary to leave all the bits in
+place.
 
 Optionally, the command accepts the :option:`--calculate-stats` flag, which
 will calculate full translation statistics after doing the upgrade.

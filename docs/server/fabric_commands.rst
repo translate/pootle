@@ -819,8 +819,8 @@ update_db
 
 This command:
 
-- Runs :ref:`updatedb <commands#updatedb>` and :ref:`migrate
-  <commands#migrate>` to update the database schema to the latest version
+- Runs :ref:`syncdb <commands#syncdb>` and :ref:`migrate <commands#migrate>` to
+  update the database schema to the latest version
 
 Examples:
 
