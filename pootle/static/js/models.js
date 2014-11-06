@@ -1,19 +1,28 @@
-window.PTL = window.PTL || {};
+var _ = require('underscore');
+var Backbone = require('backbone');
 
-PTL.models = PTL.models || {};
+require('backbone-relational');
 
-(function (models, utils) {
+var utils = require('./utils.js');
+
 
 /*
- * PTL.models.Unit
+ * Store
  */
 
-models.Unit = Backbone.RelationalModel.extend({
+var Store = Backbone.RelationalModel.extend({});
+
+
+/*
+ * Unit
+ */
+
+var Unit = Backbone.RelationalModel.extend({
 
   relations: [{
     type: 'HasOne',
     key: 'store',
-    relatedModel: 'PTL.models.Store',
+    relatedModel: Store,
     reverseRelation: {
       key: 'units'
     }
@@ -34,11 +43,7 @@ models.Unit = Backbone.RelationalModel.extend({
 });
 
 
-/*
- * PTL.models.Store
- */
-
-models.Store = Backbone.RelationalModel.extend({});
-
-
-}(PTL.models, PTL.utils));
+module.exports = {
+  Store: Store,
+  Unit: Unit,
+};
