@@ -24,7 +24,7 @@ from django.utils.translation import ugettext as _
 
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
-from pootle_misc.versioncontrol import hasversioning
+from versioncontrol.utils import hasversioning
 from pootle.scripts import actions
 
 

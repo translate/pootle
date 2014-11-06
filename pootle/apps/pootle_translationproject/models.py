@@ -54,6 +54,7 @@ from pootle_store.models import Store, Unit, PARSED
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                OBSOLETE)
 from pootle_tagging.models import ItemWithGoal
+from versioncontrol import utils as versioncontrol
 
 
 class TranslationProjectNonDBState(object):
@@ -96,10 +97,6 @@ def scan_translation_projects():
     for language in Language.objects.iterator():
         for project in Project.objects.iterator():
             create_translation_project(language, project)
-
-
-class VersionControlError(Exception):
-    pass
 
 
 class TranslationProjectManager(RelatedManager):
@@ -555,7 +552,6 @@ class TranslationProject(models.Model, TreeItem):
 
         all_files, new_files = self.scan_files(vcs_sync=False)
 
-        from pootle_misc import versioncontrol
         project_path = self.project.get_real_path()
 
         if new_files and versioncontrol.hasversioning(project_path):
@@ -632,7 +628,6 @@ class TranslationProject(models.Model, TreeItem):
 
         try:
             logging.debug(u"Updating %s from version control", store.file.name)
-            from pootle_misc import versioncontrol
             versioncontrol.update_file(filetoupdate)
             store.file._delete_store_cache()
             store.file._update_store_cache()
@@ -643,7 +638,7 @@ class TranslationProject(models.Model, TreeItem):
                               u"from version control", store.file.name)
             working_copy.save()
 
-            raise VersionControlError
+            raise versioncontrol.VersionControlError
 
         try:
             logging.debug(u"Parsing version control copy of %s into db",
@@ -669,7 +664,6 @@ class TranslationProject(models.Model, TreeItem):
         """
         remote_stats = {}
 
-        from pootle_misc import versioncontrol
         try:
             versioncontrol.update_dir(self.real_path)
         except IOError as e:
@@ -743,7 +737,7 @@ class TranslationProject(models.Model, TreeItem):
 
             from pootle_app.signals import post_vc_update
             post_vc_update.send(sender=self)
-        except VersionControlError as e:
+        except versioncontrol.VersionControlError as e:
             # FIXME: This belongs to views
             msg = _(u"Failed to update <em>%(filename)s</em> from "
                     u"version control: %(error)s",
@@ -784,7 +778,6 @@ class TranslationProject(models.Model, TreeItem):
         filestocommit = [store.file.name for store in stores]
         success = True
         try:
-            from pootle_misc import versioncontrol
             project_path = self.project.get_real_path()
             versioncontrol.add_files(project_path, filestocommit, message,
                                      author)
@@ -816,7 +809,6 @@ class TranslationProject(models.Model, TreeItem):
         This does not do permission checking.
         """
         from pootle_app.signals import post_vc_commit
-        from pootle_misc import versioncontrol
 
         store.sync(update_structure=False, update_translation=True,
                    conservative=True)

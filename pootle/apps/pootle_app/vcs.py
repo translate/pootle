@@ -20,8 +20,8 @@
 
 import os
 from pootle_app.project_tree import to_podir_path
-from pootle_misc import versioncontrol
 from pootle_store.util import add_trailing_slash
+from versioncontrol import utils as versioncontrol
 
 
 def recursive_files_and_dirs(ignored_files, ext, real_dir, file_filter):
