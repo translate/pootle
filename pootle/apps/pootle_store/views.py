@@ -869,6 +869,7 @@ def get_tm_results(request, unit):
         'target_lang': unit.store.translation_project.language,
         'source_lang': unit.store.translation_project.project.source_language,
         'source_length__range': (min_unit_len, max_unit_len),
+        'target_length__gt': (1),
     }
     tmunits = TMUnit.objects.filter(**criteria).exclude(unit=unit)
 
