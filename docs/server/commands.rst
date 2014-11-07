@@ -599,11 +599,12 @@ upgrading from a previous release.
 initdb
 ^^^^^^
 
-This is Pootle's install process, it creates the default *admin* user, populates
-the language table with several languages with their correct fields, initializes
-several terminology projects, and creates the tutorial project.
+This is Pootle's install process, it creates the default *admin* user,
+populates the language table with several languages with their correct fields,
+initializes several terminology projects, and creates the tutorial project.
 
-``initdb`` can only be run after :ref:`commands#syncdb` and :ref:`commands#migrate`.
+``initdb`` can only be run after :ref:`commands#syncdb` and
+:ref:`commands#migrate`.
 
 .. note:: ``initdb`` will not import translations into the database, so the
   first visit to Pootle after ``initdb`` will be very slow. **It is
@@ -640,10 +641,10 @@ Performs post schema upgrade actions that are necessary to leave all the
 bits in place. It also serves as a trigger for any changes needed by
 Translate Toolkit version upgrades.
 
-Optionally, the command accepts the ``--calculate-stats`` flag, which will
-calculate full translation statistics after doing the upgrade.
+Optionally, the command accepts the :option:`--calculate-stats` flag, which
+will calculate full translation statistics after doing the upgrade.
 
-Also, the ``--flush-checks`` flag forces flushing the existing quality
+Also, the :option:`--flush-checks` flag forces flushing the existing quality
 checks. This is useful when new quality checks have been added or existing
 ones have been updated, but take into account that **this operation is
 very expensive**.
