@@ -28,9 +28,9 @@ def paginate(request, queryset, items=30, page=None):
         try:
             page = int(request.GET.get('page', 1))
         except ValueError:
-            # wasn't an int use 1
+            # It wasn't an int, so use 1.
             page = 1
-    # page value too large
+    # If page value is too large.
     page = min(page, paginator.num_pages)
 
     return paginator.page(page)

@@ -1,6 +1,7 @@
 {% extends "translation_projects/terminology/base.html" %}
 
 {% load i18n assets render_pager store_tags terminology_tags locale %}
+
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block css %}
@@ -47,7 +48,7 @@
       {% endfor %}
       </table>
       <p class="buttons">
-        <input type="submit" class="btn" name="submit" value="{% trans "Save Changes" %}" />
+        <input type="submit" class="btn" name="submit" value="{% trans 'Save Changes' %}" />
       </p>
     </form>
   </div>
@@ -62,4 +63,4 @@
   <p><a href="{% url 'pootle-terminology-extract' language.code project.code %}">{% trans "Generate Glossary" %}</a></p>
 </div>
 {% endif %}
-{% endblock content %}
+{% endblock %}
