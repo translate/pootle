@@ -51,24 +51,13 @@ js_user_app = Bundle(
     output='js/user/app.min.%(version)s.js')
 register('js_user_app', js_user_app)
 
+js_editor = Bundle(
+    'js/editor/app.bundle.js',
+    output='js/editor/app.min.%(version)s.js')
+register('js_editor', js_editor)
+
 # </Webpack>
 
-
-js_editor = Bundle(
-    'js/vendor/jquery/jquery.history.js',
-    'js/vendor/jquery/jquery.autosize.js',
-    'js/vendor/levenshtein.js',
-    'js/vendor/diff_match_patch.js',
-    'js/vendor/jquery/jquery.caret.js',
-    'js/vendor/jquery/jquery.highlightRegex.js',
-    'js/vendor/jquery/jquery.jsonp.js',
-    'js/vendor/iso8601.js',
-    'js/vendor/backbone/backbone-relational.js',
-    'js/models.js',
-    'js/collections.js',
-    'js/editor.js',
-    filters='rjsmin', output='js/editor.min.%(version)s.js')
-register('js_editor', js_editor)
 
 css_common = Bundle(
     'css/style.css',

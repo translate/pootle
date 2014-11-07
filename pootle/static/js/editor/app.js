@@ -1,18 +1,41 @@
-(function ($) {
+var $ = require('jquery');
+var _ = require('underscore');
 
-  window.PTL = window.PTL || {};
+// jQuery plugins
+require('jquery-autosize');
+require('jquery-caret');
+require('jquery-cookie');
+require('jquery-easing');
+require('jquery-highlightRegex');
+require('jquery-history');
+require('jquery-jsonp');
+require('jquery-serializeObject');
+require('jquery-utils');
+
+// Other plugins
+// XXX: this weirdness is temporarily needed because the version of
+// diff-match-patch we bundle is not CommonJS-friendly
+require('imports?this=>window!diff-match-patch');
+require('iso8601');
+require('shortcut');
+var Levenshtein = require('levenshtein');
+
+var UnitSet = require('../collections').UnitSet;
 
 
-  var filterSelectOpts = {
-        dropdownAutoWidth: true,
-        width: 'off'
-      },
-      sortSelectOpts = _.extend({
-        minimumResultsForSearch: -1
-      }, filterSelectOpts);
+var filterSelectOpts = {
+      dropdownAutoWidth: true,
+      width: 'off'
+    },
+    sortSelectOpts = _.extend({
+      minimumResultsForSearch: -1
+    }, filterSelectOpts);
 
 
-  PTL.editor = {
+window.PTL = window.PTL || {};
+
+
+PTL.editor = {
 
   /* Initializes the editor */
   init: function (options) {
@@ -25,7 +48,7 @@
     options && $.extend(this.settings, options);
 
     /* Initialize variables */
-    this.units = new PTL.collections.UnitSet([], {
+    this.units = new UnitSet([], {
       chunkSize: this.settings.chunkSize
     });
 
@@ -2282,6 +2305,4 @@
     return false;
   }
 
-  }; // PTL.editor
-
-}(jQuery));
+};

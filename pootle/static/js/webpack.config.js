@@ -10,6 +10,7 @@ var entries = {
   'admin/users': './admin/users/app.js',
   user: './user/app.js',
   common: ['./common.js'],
+  editor: ['./editor/app.js'],
   vendor: ['react', 'jquery', 'underscore', 'backbone'],
 };
 
