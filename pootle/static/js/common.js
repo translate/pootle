@@ -66,6 +66,7 @@ var utils = require('./utils.js');
 PTL.common = {
 
   init: function (opts) {
+    PTL.browser.init();
 
     $(window).load(function () {
       $('body').removeClass('preload');
