@@ -1828,7 +1828,7 @@
   filterTMResults: function (results) {
     // FIXME: this just retrieves the first four results
     // we could limit based on a threshold too.
-    var source = $("[id^=id_source_f_]").first().val(),
+    var source = $('.translate-focus .translation-text').first().text(); //$("[id^=id_source_f_]").first().val(),
         filtered = [],
         quality;
 
