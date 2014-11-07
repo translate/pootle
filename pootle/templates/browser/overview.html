@@ -1,5 +1,7 @@
 {% extends browser_extends %}
+
 {% load assets cleanhtml i18n locale translation_project_tags common_tags profile_tags %}
+
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block header_content_block %}
@@ -8,7 +10,7 @@
   <a id="js-path-summary" data-target="js-path-summary-more" href="#">
     <div id="progressbar">
       <i id="js-expand-icon" class="icon-expand-stats"
-         title="{% trans "Expand details" %}"></i>
+         title="{% trans 'Expand details' %}"></i>
       {% include "browser/_progressbar.html" %}
     </div>
   </a>

@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
+
 {% load i18n locale %}
+
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}{% trans 'About' %} | {{ block.super }}{% endblock title %}
@@ -13,4 +15,4 @@
   <p>{% blocktrans %}This site is running Pootle &mdash; powerful web software to empower teams to do translation and translation management. This community tool is Free Software, and any team can use it and contribute to the Pootle community. Read more on the <a href="http://pootle.translatehouse.org/"><i class="icon-external-link"></i> project website</a>.{% endblocktrans %}</p>
   <p>{% blocktrans %}Pootle {{ pootle_version }} is powered by Translate Toolkit {{ toolkit_version }}.{% endblocktrans %}</p>
 </div>
-{% endblock content %}
+{% endblock %}
