@@ -639,12 +639,13 @@ def export_zip(request, translation_project, file_path):
 
     tp_time = translation_project.get_mtime().replace(tzinfo=utc)
     up_to_date = False
+
     if last_export:
         # Make both datetimes tz-aware to avoid a crash here
         last_export = last_export.replace(tzinfo=utc)
         up_to_date = last_export == tp_time
 
-    if (not (up_to_date and os.path.isfile(abs_export_path))):
+    if not (up_to_date and os.path.isfile(abs_export_path)):
         ensure_target_dir_exists(abs_export_path)
         stores = Store.objects.filter(pootle_path__startswith=pootle_path) \
                               .exclude(file='')

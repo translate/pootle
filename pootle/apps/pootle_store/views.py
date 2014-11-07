@@ -81,9 +81,11 @@ User = get_user_model()
 def export_as_xliff(request, store):
     """Export given file to xliff for offline translation."""
     path = store.real_path
+
     if not path:
         # bug 2106
         project = request.translation_project.project
+
         if project.get_treestyle() == "gnu":
             path = "/".join(store.pootle_path.split(os.path.sep)[2:])
         else:
@@ -96,12 +98,14 @@ def export_as_xliff(request, store):
 
     key = iri_to_uri("%s:export_as_xliff" % store.pootle_path)
     last_export = cache.get(key)
+
     if (not (last_export and last_export == store.get_mtime() and
         os.path.isfile(abs_export_path))):
         from pootle_app.project_tree import ensure_target_dir_exists
         from translate.storage.poxliff import PoXliffFile
         from pootle_misc import ptempfile as tempfile
         import shutil
+
         ensure_target_dir_exists(abs_export_path)
         outputstore = store.convert(PoXliffFile)
         outputstore.switchfile(store.name, createifmissing=True)
@@ -110,6 +114,7 @@ def export_as_xliff(request, store):
         outputstore.savefile(tempstore)
         shutil.move(tempstore, abs_export_path)
         cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
+
     return redirect('/export/' + export_path)
 
 
@@ -147,6 +152,7 @@ def export_as_type(request, store, filetype):
 @get_store_context('view')
 def download(request, store):
     store.sync(update_translation=True)
+
     return redirect('/export/' + store.real_path)
 
 
