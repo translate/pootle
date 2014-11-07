@@ -6,17 +6,19 @@
 #
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# Pootle is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# translate is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# Pootle; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with translate; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 __all__ = ('DirtyFieldsMixin',)
 
@@ -24,7 +26,7 @@ from django.db.models.signals import post_save
 
 
 class DirtyFieldsMixin(object):
-    """Track dirty fields in a model.
+    """Tracks dirty fields in a model.
 
     Initial code borrowed from django-dirtyfields, which is
     Copyright (c) Praekelt Foundation and individual contributors
@@ -51,7 +53,7 @@ class DirtyFieldsMixin(object):
     def is_dirty(self):
         # In order to be dirty we need to have been saved at least once,
         # so we check for a primary key and we need our dirty fields to
-        # not be empty.
+        # not be empty
         if not self.pk:
             return True
 
