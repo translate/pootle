@@ -7,7 +7,7 @@ var env = process.env.NODE_ENV;
 
 var entries = {
   'admin/general': './admin/general/app.js',
-  admin: './admin/app.js',
+  'admin/users': './admin/users/app.js',
   user: './user/app.js',
   vendor: ['react', 'jquery', 'underscore', 'backbone'],
 };

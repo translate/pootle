@@ -67,10 +67,10 @@ js_admin_general_app = Bundle(
     output='js/admin/general/app.min.%(version)s.js')
 register('js_admin_general_app', js_admin_general_app)
 
-js_admin_app = Bundle(
-    'js/admin/app.bundle.js',
-    output='js/admin/app.min.%(version)s.js')
-register('js_admin_app', js_admin_app)
+js_admin_users_app = Bundle(
+    'js/admin/users/app.bundle.js',
+    output='js/admin/users/app.min.%(version)s.js')
+register('js_admin_users_app', js_admin_users_app)
 
 
 js_user_app = Bundle(
