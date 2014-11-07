@@ -280,68 +280,6 @@ Configuration settings for applications used by Pootle.
   Enable spam prevention through a captcha.
 
 
-.. _settings#ldap:
-
-51-ldap.conf
-^^^^^^^^^^^^
-
-Optional LDAP configuration settings. To enable the LDAP authentication
-backend, you'll need to append ``'pootle.core.auth.ldap_backend.LdapBackend'``
-to the list of ``AUTHENTICATION_BACKENDS``.
-
-
-.. setting:: AUTH_LDAP_ANON_DN
-
-``AUTH_LDAP_ANON_DN``
-  Default: ``''``
-
-  Anonymous credentials: Distinguished Name.
-
-
-.. setting:: AUTH_LDAP_ANON_PASS
-
-``AUTH_LDAP_ANON_PASS``
-  Default: ``''``
-
-  Anonymous credentials: password.
-
-
-.. setting:: AUTH_LDAP_BASE_DN
-
-``AUTH_LDAP_BASE_DN``
-  Default: ``''``
-
-  Base DN to search
-
-
-.. setting:: AUTH_LDAP_FIELDS
-
-``AUTH_LDAP_FIELDS``
-  Default: ``{'dn': 'dn'}``
-
-  A mapping of Pootle field names to LDAP fields.  The key is Pootle's name,
-  the value should be your LDAP field name.  If you don't use the field or
-  don't want to automatically retrieve these fields from LDAP comment them out.
-  The only required field is ``dn``.
-
-
-.. setting:: AUTH_LDAP_FILTER
-
-``AUTH_LDAP_FILTER``
-  Default: ``''``
-
-  What are we filtering on? %s will be the username, for example ``'sn=%s'``,
-  or ``'uid=%s'``.
-
-
-.. setting:: AUTH_LDAP_SERVER
-
-``AUTH_LDAP_SERVER``
-  Default: ``''``
-
-  The LDAP server. Format: ``protocol://hostname:port``
-
-
 60-translation.conf
 ^^^^^^^^^^^^^^^^^^^
 

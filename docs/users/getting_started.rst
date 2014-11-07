@@ -21,9 +21,8 @@ Registration
 ------------
 
 While everybody can view the files, only registered users can edit them and
-receive credit for their effort, so unless your server uses LDAP
-authentication, the first thing you should do in order to translate, is to
-register.
+receive credit for their effort, so the first thing you should do in order to
+translate, is to register.
 
 You can register in the register page (accessible by clicking *Register* in the
 menubar) following two simple steps, providing you have a current e-mail

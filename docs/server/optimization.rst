@@ -95,10 +95,6 @@ zip and unzip
   <http://sentry.readthedocs.org/en/latest/>`_. If installed and configured,
   Pootle will automatically use the raven client.
 
-`python-ldap <http://www.python-ldap.org/>`_
-  Enables :ref:`LDAP authentication <authentication#ldap>`. Be sure to check the
-  :ref:`LDAP settings <settings#ldap>`.
-
 
 .. _optimization#tips:
 
