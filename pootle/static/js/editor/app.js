@@ -22,6 +22,13 @@ var Levenshtein = require('levenshtein');
 
 var UnitSet = require('../collections').UnitSet;
 
+var captcha = require('../captcha.js');
+var helpers = require('../helpers.js');
+var msg = require('../msg.js');
+var score = require('../score.js');
+var search = require('../search.js');
+var utils = require('../utils.js');
+
 
 var filterSelectOpts = {
       dropdownAutoWidth: true,
@@ -90,7 +97,7 @@ PTL.editor = {
 
     /* Initialize search */
     // TODO: pass the environment option to the init
-    PTL.search.init({
+    search.init({
       onSubmit: this.search
     });
 
@@ -258,12 +265,12 @@ PTL.editor = {
     });
 
     // Update relative dates every minute
-    setInterval(PTL.common.updateRelativeDates, 6e4);
+    setInterval(helpers.updateRelativeDates, 6e4);
 
     /* History support */
     setTimeout(function () {
       $.history.init(function (hash) {
-        var params = PTL.utils.getParsedHash(hash),
+        var params = utils.getParsedHash(hash),
             isInitial = true,
             uId = 0;
 
@@ -471,7 +478,7 @@ PTL.editor = {
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
     PTL.editor.updateExportLink();
-    PTL.common.updateRelativeDates();
+    helpers.updateRelativeDates();
 
     // clear any pending 'Loading...' indicator timer
     // as ajaxStop() is not fired in IE properly
@@ -608,7 +615,7 @@ PTL.editor = {
 
     for (i=0; i<diff.length; i++) {
       op = diff[i][0];
-      text = PTL.utils.fancyEscape(diff[i][1]);
+      text = utils.fancyEscape(diff[i][1]);
       if (op === DIFF_INSERT) {
         html[i] = ['<span class="diff-insert">', text, '</span>'].join('');
       } else if (op === DIFF_DELETE) {
@@ -890,7 +897,7 @@ PTL.editor = {
   updateExportLink: function () {
     var $exportOpt = $('.js-export-view'),
         baseUrl = $exportOpt.data('export-url'),
-        hash = PTL.utils.getHash().replace(/&?unit=\d+/, ''),
+        hash = utils.getHash().replace(/&?unit=\d+/, ''),
         exportLink = hash ? [baseUrl, hash].join('?') : baseUrl;
 
     $exportOpt.data('href', exportLink);
@@ -912,7 +919,7 @@ PTL.editor = {
   /* Displays an informative message */
   displayMsg: function (msg) {
     this.hideActivity();
-    PTL.common.fixSidebarHeight();
+    helpers.fixSidebarHeight();
     $("#js-editor-msg").show().find("span").html(msg).fadeIn(300);
   },
 
@@ -925,7 +932,7 @@ PTL.editor = {
   /* Displays error messages on top of the toolbar */
   displayError: function (msg) {
     this.hideActivity();
-    PTL.msg.show({text: msg, level: 'error'});
+    msg.show({text: msg, level: 'error'});
   },
 
 
@@ -940,7 +947,7 @@ PTL.editor = {
     if (xhr.status == 0) {
       msg = gettext("Error while connecting to the server");
     } else if (xhr.status == 402) {
-      PTL.captcha.onError(xhr, 'PTL.editor.error');
+      captcha.onError(xhr, 'PTL.editor.error');
     } else if (xhr.status == 404) {
       msg = gettext("Not found");
     } else if (xhr.status == 500) {
@@ -1390,7 +1397,7 @@ PTL.editor = {
     $('.translate-container').toggleClass('error', !!data.checks);
 
     if (data.user_score) {
-      PTL.score.set(data.user_score);
+      score.set(data.user_score);
     }
 
     if (data.checks) {
@@ -1446,7 +1453,7 @@ PTL.editor = {
 
   processSuggestion: function (data) {
     if (data.user_score) {
-      PTL.score.set(data.user_score);
+      score.set(data.user_score);
     }
 
     PTL.editor.gotoNext();
@@ -1457,7 +1464,7 @@ PTL.editor = {
   gotoPrev: function () {
     var newUnit = this.units.prev();
     if (newUnit) {
-      var newHash = PTL.utils.updateHashPart('unit', newUnit.id);
+      var newHash = utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
     }
   },
@@ -1470,7 +1477,7 @@ PTL.editor = {
 
     var newUnit = this.units.next();
     if (newUnit) {
-      var newHash = PTL.utils.updateHashPart('unit', newUnit.id);
+      var newHash = utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
     } else if (isSubmission) {
       var backLink = $('.js-back-to-browser').attr('href');
@@ -1505,7 +1512,7 @@ PTL.editor = {
           type = m[1],
           uid = parseInt(m[2], 10);
       if (type === 'row') {
-        newHash = PTL.utils.updateHashPart("unit", uid);
+        newHash = utils.updateHashPart("unit", uid);
       } else {
         newHash = ['unit=', encodeURIComponent(uid)].join('');
       }
@@ -1538,7 +1545,7 @@ PTL.editor = {
       if (index && !isNaN(index) && index > 0 &&
           index <= this.units.total) {
         var uId = this.units.uIds[index-1],
-            newHash = PTL.utils.updateHashPart('unit', uId);
+            newHash = utils.updateHashPart('unit', uId);
         $.history.load(newHash);
       }
     }
@@ -1809,7 +1816,7 @@ PTL.editor = {
           queryString = PTL.search.buildSearchQuery(text, remember);
       newHash = "search=" + queryString;
     } else {
-      newHash = PTL.utils.updateHashPart("filter", "all", ["search", "sfields","soptions"]);
+      newHash = utils.updateHashPart("filter", "all", ["search", "sfields","soptions"]);
     }
     $.history.load(newHash);
   },
@@ -1842,7 +1849,7 @@ PTL.editor = {
                         .hide().animate({height: 'show'}, 1000, 'easeOutQuad');
         }
 
-        PTL.common.updateRelativeDates();
+        helpers.updateRelativeDates();
       },
       error: PTL.editor.error
     });
@@ -1906,7 +1913,7 @@ PTL.editor = {
                             .slideDown(1000, 'easeOutQuad');
           }
 
-          PTL.common.updateRelativeDates();
+          helpers.updateRelativeDates();
 
           $('.timeline-field-body').filter(':not([dir])').bidi();
           $("#js-show-timeline").addClass('selected');
@@ -2049,7 +2056,7 @@ PTL.editor = {
     $.post(url, {'reject': 1},
       function (data) {
         if (data.user_score) {
-          PTL.score.set(data.user_score);
+          score.set(data.user_score);
         }
 
         element.fadeOut(200, function () {
@@ -2097,7 +2104,7 @@ PTL.editor = {
         unit.set('isfuzzy', false);
 
         if (data.user_score) {
-          PTL.score.set(data.user_score);
+          score.set(data.user_score);
         }
 
         element.fadeOut(200, function () {
