@@ -11,6 +11,7 @@ var entries = {
   user: './user/app.js',
   common: ['./common.js'],
   editor: ['./editor/app.js'],
+  reports: ['./reports/app.js'],
   vendor: ['react', 'jquery', 'underscore', 'backbone'],
 };
 
