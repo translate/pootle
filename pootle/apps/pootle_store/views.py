@@ -115,14 +115,14 @@ def export_as_xliff(request, store):
         shutil.move(tempstore, abs_export_path)
         cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
 
-    return redirect('/export/' + export_path)
+    return redirect(reverse('pootle-export', args=[export_path]))
 
 
 @get_store_context('view')
 def download(request, store):
     store.sync(update_translation=True)
 
-    return redirect('/export/' + store.real_path)
+    return redirect(reverse('pootle-export', args=[store.real_path]))
 
 
 ####################### Translate Page ##############################

@@ -737,7 +737,7 @@ def export_zip(request, translation_project, file_path):
         translation_project.get_archive(stores, abs_export_path)
         cache.set(key, tp_time, settings.OBJECT_CACHE_TIMEOUT)
 
-    return redirect('/export/' + export_path)
+    return redirect(reverse('pootle-export', args=[export_path]))
 
 
 def unix_to_host_path(p):
