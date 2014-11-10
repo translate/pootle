@@ -11,23 +11,19 @@
       </thead>
       <%= PTL.reports.resetRowStyle()  %>
       <tbody>
-      <% var totalTranslatedRaw = totalTranslated = totalReviewed = totalScoreDelta = 0; %>
       <% _.each(grouped, function (row) { %>
-        <% totalTranslated += row.translated %>
-        <% totalReviewed += row.reviewed %>
-        <% totalScoreDelta += row.score_delta %>
         <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
           <td><%= row.translation_project %></td>
-          <td class="number<% if (row.translated == 0) { %> zero<% } %>"><%= Math.round(row.translated) %> <%= ngettext("word", "words", Math.round(row.translated)) %></td>
+          <td class="number<% if (row.translated == 0) { %> zero<% } %>"><%= row.translated %> <%= ngettext("word", "words", row.translated) %></td>
           <td class="number<% if (row.reviewed == 0) { %> zero<% } %>"><%= row.reviewed %> <%= ngettext("word", "words", row.reviewed) %></td>
           <td class="number<% if (row.score_delta == 0) { %> zero<% } %>"><% if (row.score_delta > 0) { %>+<% } %><%= row.score_delta.toFixed(2) %></td>
         </tr>
       <% }); %>
         <tr class="total">
           <td>&nbsp;</td>
-          <td class="number<% if (totalTranslated == 0) { %> zero<% } %>"><%= Math.ceil(totalTranslated) %> <%= ngettext("word", "words", Math.ceil(totalTranslated)) %></td>
-          <td class="number<% if (totalReviewed == 0) { %> zero<% } %>"><%= totalReviewed %> <%= ngettext("word", "words", totalReviewed) %></td>
-          <td class="number<% if (totalScoreDelta == 0) { %> zero<% } %>"><% if (totalScoreDelta > 0) { %>+<% } %><%= totalScoreDelta.toFixed(2) %></td>
+          <td class="number<% if (groupedTranslatedTotal == 0) { %> zero<% } %>"><%= groupedTranslatedTotal %> <%= ngettext("word", "words", groupedTranslatedTotal) %></td>
+          <td class="number<% if (groupedReviewedTotal == 0) { %> zero<% } %>"><%= groupedReviewedTotal %> <%= ngettext("word", "words", groupedReviewedTotal) %></td>
+          <td class="number<% if (groupedScoreDeltaTotal == 0) { %> zero<% } %>"><% if (groupedScoreDeltaTotal > 0) { %>+<% } %><%= groupedScoreDeltaTotal.toFixed(2) %></td>
         </tr>
       </tbody>
     </table>
