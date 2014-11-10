@@ -28,8 +28,7 @@
 </script>
 
 <script type="text/javascript">
-  {% autoescape off %}
-    PTL.reports.users = {{ users }};
+    PTL.reports.users = {{ users|safe }};
     PTL.reports.updateUserRatesUrl = "{% url 'evernote-update-user-rates' %}";
     PTL.reports.addPaidTaskUrl = "{% url 'evernote-add-paid-task' %}";
     PTL.reports.removePaidTaskUrl = "{% url 'evernote-remove-paid-task' %}";
@@ -37,7 +36,6 @@
     PTL.reports.detailedUrl = "{% url 'evernote-reports-detailed' %}";
     PTL.reports.adminReport = true;
     PTL.reports.freeUserReport = false;
-  {% endautoescape %}
 </script>
 
 {% endblock scripts_extra %}

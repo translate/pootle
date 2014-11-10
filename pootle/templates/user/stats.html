@@ -30,7 +30,6 @@
 {% endif %}
 
 <script type="text/javascript">
-  {% autoescape off %}
     PTL.reports.serverTime = "{{ now }}";
     PTL.reports.freeUserReport = {% if object.rate == 0 %}true{% else %}false{% endif %};
     PTL.reports.ownReport = {% if object.username == request.user.username %}true{% else %}false{% endif %};
@@ -38,7 +37,6 @@
     PTL.reports.userName = "{{ object.username }}";
     PTL.reports.detailedUrl = "{% url 'pootle-user-detailed-stats' object.username %}";
     PTL.reports.addPaidTaskUrl = "{% url 'pootle-user-add-paid-task' object.username %}";
-  {% endautoescape %}
 </script>
 
 {% endblock scripts_extra %}
