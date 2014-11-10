@@ -438,16 +438,6 @@ PTL.reports = {
     return m.format('MMM, D');
   },
 
-  cycleEvenOdd: function () {
-    PTL.reports.currentRowIsEven = !PTL.reports.currentRowIsEven;
-
-    if (PTL.reports.currentRowIsEven) {
-      return 'even';
-    } else {
-      return 'odd';
-    }
-  },
-
   resetRowStyle: function () {
     PTL.reports.currentRowIsEven = false;
   },

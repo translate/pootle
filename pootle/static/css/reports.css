@@ -63,16 +63,6 @@ table.stats td
 
 /* table row colors, see 'Table Row Colors.psd' */
 
-tr.even td.total
-{
-    background-color: #e2f4f8;
-}
-
-tr.odd td.total
-{
-    background-color: #ebf7fb;
-}
-
 tr.total
 {
     background-color: #c0e4f0;

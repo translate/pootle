@@ -23,7 +23,7 @@
           amount += ' ' + ngettext("word", "words", Math.round(row.amount));
         }
       %>
-      <tr class="item <%= PTL.reports.cycleEvenOdd() %> task<%= row.id %>">
+      <tr class="item task<%= row.id %>">
         <td><%= row.description %></td>
         <td><%= row.action %></td>
         <td class="number"><%= amount %></td>

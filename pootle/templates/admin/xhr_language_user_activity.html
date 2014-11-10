@@ -12,7 +12,7 @@
       <%= PTL.reports.resetRowStyle()  %>
       <tbody>
       <% _.each(grouped, function (row) { %>
-        <tr class="item <%= PTL.reports.cycleEvenOdd() %>">
+        <tr class="item">
           <td><%= row.translation_project %></td>
           <td class="number<% if (row.translated == 0) { %> zero<% } %>"><%= row.translated %> <%= ngettext("word", "words", row.translated) %></td>
           <td class="number<% if (row.reviewed == 0) { %> zero<% } %>"><%= row.reviewed %> <%= ngettext("word", "words", row.reviewed) %></td>
