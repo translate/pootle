@@ -59,14 +59,11 @@ def download_zip(request, path_obj, **kwargs):
         language_code = path_obj.translation_project.language.code
         project_code = path_obj.translation_project.project.code
 
-        text = _('Download (.zip)')
-        link = reverse('pootle-tp-export-zip',
-                       args=[language_code, project_code, path_obj.path])
-
         return {
             'icon': 'icon-download',
-            'href': link,
-            'text': text,
+            'href': reverse('pootle-tp-export-zip',
+                            args=[language_code, project_code, path_obj.path]),
+            'text': _('Download (.zip)'),
         }
 
 
@@ -96,20 +93,16 @@ def download_source(request, path_obj, **kwargs):
 
 @store
 def download_xliff(request, path_obj):
-    if path_obj.translation_project.project.localfiletype == 'xlf':
+    if (path_obj.translation_project.project.localfiletype == 'xlf' or
+        path_obj.name.startswith("pootle-terminology")):
         return
-    if path_obj.name.startswith("pootle-terminology"):
-        return
-
-    text = _("Download XLIFF")
-    tooltip = _('Download XLIFF file for offline translation')
-    href = reverse('pootle-store-export-xliff', args=[path_obj.pootle_path])
 
     return {
         'icon': 'icon-download',
-        'href': href,
-        'text': text,
-        'tooltip': tooltip,
+        'href': reverse('pootle-store-export-xliff',
+                        args=[path_obj.pootle_path]),
+        'text': _("Download XLIFF"),
+        'tooltip': _('Download XLIFF file for offline translation'),
     }
 
 
@@ -117,16 +110,13 @@ def upload_zip(request, path_obj, **kwargs):
     if (check_permission('translate', request) or
         check_permission('suggest', request) or
         check_permission('overwrite', request)):
-        text = _('Upload')
-        tooltip = _('Upload translation files or archives in .zip format')
-        link = '#upload'
-
         return {
             'icon': 'icon-upload',
             'class': 'js-popup-inline',
-            'href': link,
-            'text': text,
-            'tooltip': tooltip,
+            'href': '#upload',
+            'text': _('Upload'),
+            'tooltip': _('Upload translation files or archives in .zip '
+                         'format'),
         }
 
 
@@ -263,14 +253,28 @@ def action_groups(request, path_obj, **kwargs):
     action_groups = []
 
     groups = [
-        {'group': 'translate-offline', 'group_display': _("Translate offline"),
-         'actions': [download_source, download_xliff,
-                     download_zip, upload_zip]},
-        {'group': 'manage', 'group_display': _("Manage"),
-         'actions': [update_from_vcs, commit_to_vcs, update_dir_from_vcs,
-                     commit_dir_to_vcs, rescan_project_files,
-                     update_against_templates, delete_path_obj,
-                    ]
+        {
+            'group': 'translate-offline',
+            'group_display': _("Translate offline"),
+            'actions': [
+                download_source,
+                download_xliff,
+                download_zip,
+                upload_zip,
+            ],
+        },
+        {
+            'group': 'manage',
+            'group_display': _("Manage"),
+            'actions': [
+                update_from_vcs,
+                commit_to_vcs,
+                update_dir_from_vcs,
+                commit_dir_to_vcs,
+                rescan_project_files,
+                update_against_templates,
+                delete_path_obj,
+            ],
         },
     ]
 

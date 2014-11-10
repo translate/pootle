@@ -33,7 +33,6 @@ from django.db import models, IntegrityError
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.utils import dateformat
-from django.utils.encoding import force_unicode
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 

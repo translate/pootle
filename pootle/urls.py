@@ -48,8 +48,8 @@ urlpatterns = patterns('',
 
 if settings.POOTLE_ENABLE_API:
     from api_factory import api_factory
-    urlpatterns += patterns(
-        '',
+
+    urlpatterns += patterns('',
         # Pootle API URLs.
         url(r'^api/', include(api_factory().urls)),
     )
