@@ -28,14 +28,18 @@
 </script>
 
 <script type="text/javascript">
-    PTL.reports.users = {{ users|safe }};
-    PTL.reports.updateUserRatesUrl = "{% url 'evernote-update-user-rates' %}";
-    PTL.reports.addPaidTaskUrl = "{% url 'evernote-add-paid-task' %}";
-    PTL.reports.removePaidTaskUrl = "{% url 'evernote-remove-paid-task' %}";
-    PTL.reports.serverTime = "{{ now }}";
-    PTL.reports.detailedUrl = "{% url 'evernote-reports-detailed' %}";
-    PTL.reports.adminReport = true;
-    PTL.reports.freeUserReport = false;
+  $(function () {
+    PTL.reports.init({
+      users: {{ users|safe }},
+      updateUserRatesUrl: "{% url 'evernote-update-user-rates' %}",
+      addPaidTaskUrl: "{% url 'evernote-add-paid-task' %}",
+      removePaidTaskUrl: "{% url 'evernote-remove-paid-task' %}",
+      serverTime: "{{ now }}",
+      detailedUrl: "{% url 'evernote-reports-detailed' %}",
+      adminReport: true,
+      freeUserReport: false,
+    });
+  });
 </script>
 
 {% endblock scripts_extra %}

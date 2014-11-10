@@ -15,7 +15,8 @@ window.PTL = window.PTL || {};
 
 PTL.reports = {
 
-  init: function () {
+  init: function (opts) {
+    _.defaults(this, opts);
 
     /* Compile templates */
     var showSummary = !PTL.reports.freeUserReport && (PTL.reports.ownReport || PTL.reports.adminReport);
@@ -478,7 +479,3 @@ PTL.reports = {
   },
 
 };
-
-$(function ($) {
-  PTL.reports.init();
-});

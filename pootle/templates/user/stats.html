@@ -30,13 +30,17 @@
 {% endif %}
 
 <script type="text/javascript">
-    PTL.reports.serverTime = "{{ now }}";
-    PTL.reports.freeUserReport = {% if object.rate == 0 %}true{% else %}false{% endif %};
-    PTL.reports.ownReport = {% if object.username == request.user.username %}true{% else %}false{% endif %};
-    PTL.reports.adminReport = false;
-    PTL.reports.userName = "{{ object.username }}";
-    PTL.reports.detailedUrl = "{% url 'pootle-user-detailed-stats' object.username %}";
-    PTL.reports.addPaidTaskUrl = "{% url 'pootle-user-add-paid-task' object.username %}";
+  $(function () {
+    PTL.reports.init({
+      serverTime: "{{ now }}",
+      freeUserReport: {% if object.rate == 0 %}true{% else %}false{% endif %},
+      ownReport: {% if object.username == request.user.username %}true{% else %}false{% endif %},
+      adminReport: false,
+      userName: "{{ object.username }}",
+      detailedUrl: "{% url 'pootle-user-detailed-stats' object.username %}",
+      addPaidTaskUrl: "{% url 'pootle-user-add-paid-task' object.username %}",
+    });
+  });
 </script>
 
 {% endblock scripts_extra %}
