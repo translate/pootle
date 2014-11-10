@@ -314,10 +314,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     def __unicode__(self):
         return self.fullname
 
-    def __init__(self, *args, **kwargs):
-        super(Project, self).__init__(*args, **kwargs)
-        self.__disabled = self.disabled
-
     def save(self, *args, **kwargs):
         # Create file system directory if needed
         project_path = self.get_real_path()
