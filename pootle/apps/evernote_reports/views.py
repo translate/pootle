@@ -405,10 +405,20 @@ def get_activity_data(request, user, month):
         'admin_permalink': request.build_absolute_uri(reverse('evernote-reports')),
     }
     if user != '':
-        json['summary'] = get_summary(user, start, end)
-        json['grouped'] = get_grouped_paid_words(user, start, end)
+        scores = ScoreLog.objects \
+            .select_related('submission__translation_project__project',
+                            'submission__translation_project__language',) \
+            .filter(user=user,
+                    creation_time__gte=start,
+                    creation_time__lte=end) \
+            .order_by(SCORE_TRANSLATION_PROJECT)
+
+        scores = list(scores)
+        json['grouped'] = get_grouped_paid_words(scores)
+        scores.sort(key=lambda x: x.creation_time)
+        json['daily'] = get_daily_activity(scores, start, end)
+        json['summary'] = get_summary(scores, start, end)
         json['paid_tasks'] = get_paid_tasks(user, start, end)
-        json['daily'] = get_daily_activity(user, start, end)
 
     return json
 
@@ -431,7 +441,7 @@ def user_date_prj_activity(request):
     return HttpResponse(response, content_type="application/json")
 
 
-def get_daily_activity(user, start, end):
+def get_daily_activity(scores, start, end):
     result_translated = {
         'label': PaidTask.get_task_type_title(
             PaidTaskTypes.TRANSLATION),
@@ -450,12 +460,6 @@ def get_daily_activity(user, start, end):
         'max_ts': "%d" % (calendar.timegm(end.timetuple()) * 1000),
         'nonempty': False,
     }
-
-    scores = ScoreLog.objects \
-                     .filter(user=user,
-                             creation_time__gte=start,
-                             creation_time__lte=end) \
-                     .order_by('creation_time')
 
     saved_date = None
     current_day_score = 0
@@ -522,15 +526,8 @@ def get_paid_tasks(user, start, end):
     return result
 
 
-def get_grouped_paid_words(user, start, end):
+def get_grouped_paid_words(scores):
     result = []
-    scores = ScoreLog.objects \
-        .select_related('submission__translation_project__project',
-                        'submission__translation_project__language',) \
-        .filter(user=user,
-                creation_time__gte=start,
-                creation_time__lte=end) \
-        .order_by(SCORE_TRANSLATION_PROJECT)
     tp = None
     for score in scores:
         if tp != score.submission.translation_project:
@@ -555,21 +552,15 @@ def get_grouped_paid_words(user, start, end):
     return sorted(result, key=lambda x: x['translation_project'])
 
 
-def get_summary(user, start, end):
+def get_summary(scores, start, end):
     rate = review_rate = None
     translation_month = review_month = None
     translated_row = reviewed_row = None
 
     translations = []
     reviews = []
-
-    scores = ScoreLog.objects \
-        .filter(user=user,
-                creation_time__gte=start,
-                creation_time__lte=end) \
-        .order_by('creation_time')
-
     tz = timezone.get_default_timezone()
+
     for score in scores:
         if settings.USE_TZ:
             score_time = timezone.make_naive(score.creation_time, tz)
