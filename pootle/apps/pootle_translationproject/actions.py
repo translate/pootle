@@ -25,7 +25,6 @@ from django.utils.translation import ugettext as _
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
 from versioncontrol.utils import hasversioning
-from pootle.scripts import actions
 
 
 def directory(fn):
@@ -273,22 +272,6 @@ def action_groups(request, path_obj, **kwargs):
                     ]
         },
     ]
-
-    if path_obj.is_dir:
-        act = actions.TranslationProjectAction
-    else:
-        act = actions.StoreAction
-
-    for ext in act.instances():
-        if ext.is_active(request):
-            group = ext.category.lower().replace(' ', '-')
-            for grp in groups:
-                if grp['group'] == group:
-                    grp['actions'].append(ext.get_link_func())
-                    break
-            else:
-                groups.append({'group': group, 'group_display': _(ext.category),
-                               'actions': [ext.get_link_func()]})
 
     for group in groups:
         action_links = _gen_link_list(request, path_obj, group['actions'],
