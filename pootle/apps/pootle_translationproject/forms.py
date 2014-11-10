@@ -35,21 +35,18 @@ class DescriptionForm(forms.ModelForm):
 def upload_form_factory(request):
     translation_project = request.translation_project
     choices = []
+    initial = 'suggest'
 
     if check_permission('overwrite', request):
         choices.append(('overwrite', _("Overwrite the current file if it "
                                        "exists")))
     if check_permission('translate', request):
+        initial = 'merge'
         choices.append(('merge', _("Merge the file with the current file and "
                                    "turn conflicts into suggestions")))
     if check_permission('suggest', request):
         choices.append(('suggest', _("Add all new translations as "
                                      "suggestions")))
-
-    if check_permission('translate', request):
-        initial = 'merge'
-    else:
-        initial = 'suggest'
 
     class StoreFormField(forms.ModelChoiceField):
         def label_from_instance(self, instance):

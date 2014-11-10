@@ -28,7 +28,6 @@ from django.utils.translation import ugettext as _
 
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
-from pootle_misc.util import jsonify
 
 from .models import Unit, Store
 
