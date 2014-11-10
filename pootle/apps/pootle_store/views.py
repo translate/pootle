@@ -119,37 +119,6 @@ def export_as_xliff(request, store):
 
 
 @get_store_context('view')
-def export_as_type(request, store, filetype):
-    """Export given file to xliff for offline translation."""
-    from pootle_store.filetypes import factory_classes, is_monolingual
-    klass = factory_classes.get(filetype, None)
-    if (not klass or is_monolingual(klass) or
-        store.pootle_path.endswith(filetype)):
-        raise ValueError
-
-    path, ext = os.path.splitext(store.real_path)
-    export_path = os.path.join('POOTLE_EXPORT',
-                               path + os.path.extsep + filetype)
-    abs_export_path = absolute_real_path(export_path)
-
-    key = iri_to_uri("%s:export_as_%s" % (store.pootle_path, filetype))
-    last_export = cache.get(key)
-    if (not (last_export and last_export == store.get_mtime() and
-        os.path.isfile(abs_export_path))):
-        from pootle_app.project_tree import ensure_target_dir_exists
-        from pootle_misc import ptempfile as tempfile
-        import shutil
-        ensure_target_dir_exists(abs_export_path)
-        outputstore = store.convert(klass)
-        fd, tempstore = tempfile.mkstemp(prefix=store.name,
-                                         suffix=os.path.extsep + filetype)
-        os.close(fd)
-        outputstore.savefile(tempstore)
-        shutil.move(tempstore, abs_export_path)
-        cache.set(key, store.get_mtime(), settings.OBJECT_CACHE_TIMEOUT)
-    return redirect('/export/' + export_path)
-
-@get_store_context('view')
 def download(request, store):
     store.sync(update_translation=True)
 

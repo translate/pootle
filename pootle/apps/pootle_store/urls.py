@@ -30,8 +30,6 @@ urlpatterns = patterns('pootle_store.views',
     url(r'^export-file/xlf/(?P<pootle_path>.*)/?$',
         'export_as_xliff',
         name='pootle-store-export-xliff'),
-    url(r'^export-file/(?P<filetype>.*)/(?P<pootle_path>.*)/?$',
-        'export_as_type'),
 
     # XHR
     url(r'^xhr/stats/checks/?$',
