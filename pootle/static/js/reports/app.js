@@ -10,6 +10,8 @@ require('jquery-flot-time');
 require('jquery-history');
 require('jquery-serializeObject');
 
+var utils = require('../utils.js');
+
 
 window.PTL = window.PTL || {};
 
@@ -57,7 +59,7 @@ PTL.reports = {
     this.currentRowIsEven = false;
 
     $.history.init(function (hash) {
-      var params = PTL.reports.params = PTL.utils.getParsedHash(hash);
+      var params = PTL.reports.params = utils.getParsedHash(hash);
 
       // Walk through known report criterias and apply them to the
       // reports object
@@ -77,7 +79,7 @@ PTL.reports = {
       }
 
       PTL.reports.loadedHashParams = params;
-      $('#detailed a').attr('href', PTL.reports.detailedUrl + '?' + PTL.utils.getHash());
+      $('#detailed a').attr('href', PTL.reports.detailedUrl + '?' + utils.getHash());
     }, {'unescape': true});
 
   },
