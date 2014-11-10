@@ -35,6 +35,8 @@ urlpatterns = patterns('',
 
     # XXX: Do we really want to let Django serve these files in production?
     # Direct download of translation files.
+    #
+    # This is also used to provide reverse for the URL.
     url(r'^export/(?P<path>.*)$',
         'django.views.static.serve',
         {'document_root': settings.PODIRECTORY},
