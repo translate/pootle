@@ -56,8 +56,18 @@ js_editor = Bundle(
     output='js/editor/app.min.%(version)s.js')
 register('js_editor', js_editor)
 
+js_reports = Bundle(
+    'js/reports/app.bundle.js',
+    filters='rjsmin', output='js/reports.min.js')
+register('js_reports', js_reports)
+
 # </Webpack>
 
+
+css_reports = Bundle(
+    'css/reports.css',
+    filters='cssmin', output='css/reports.min.css')
+register('css_reports', css_reports)
 
 css_common = Bundle(
     'css/style.css',
