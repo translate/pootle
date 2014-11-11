@@ -396,15 +396,9 @@ class ENChecker(checks.TranslationChecker):
 
     @critical
     def unescaped_ampersands(self, str1, str2):
-        def get_fingerprint(str, is_source=False, translation=''):
-            # skip comparing strings if there are no ampersands in the
-            # translation
-            if is_source and u"&" not in translation:
-                return None
-
+        def get_fingerprint(str):
             chunks = unescaped_ampersands_regex.split(str)
             translate = False
-            fingerprint = 0
             escaped_count = 0
             unescaped_count = 0
 
@@ -417,23 +411,22 @@ class ENChecker(checks.TranslationChecker):
 
                 # special text
                 if chunk == '&':
-                   unescaped_count += 1
+                    unescaped_count += 1
                 else:
                     escaped_count += 1
 
-            # fingerprint will not count the number of & or &amp;, but
-            # just the fact of their presence
-            if unescaped_count > 0:
-                fingerprint = 2
-            if escaped_count > 0:
-                fingerprint += 1
+            return escaped_count, unescaped_count
 
-            return fingerprint
+        escaped1, unescaped1 = get_fingerprint(str1)
+        if not (escaped1 > 0 and unescaped1 > 0):
+            escaped2, unescaped2 = get_fingerprint(str2)
+            if not (escaped2 > 0 and unescaped2 > 0):
+                if escaped1 == 0:
+                    return True
+                elif unescaped2 == 0:
+                    return True
 
-        if check_translation(get_fingerprint, str1, str2):
-            return True
-        else:
-            raise checks.FilterFailure(u"Unescaped ampersand mismatch")
+        raise checks.FilterFailure(u"Unescaped ampersand mismatch")
 
     @critical
     def changed_attributes(self, str1, str2):

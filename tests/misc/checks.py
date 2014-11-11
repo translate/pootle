@@ -72,3 +72,34 @@ def test_double_quotes_in_tags():
 
             assert (not state), info
 
+
+def test_unescaped_ampersands():
+    check = checker.unescaped_ampersands
+    tests = [
+        (u'A and B', u'A и B', True),
+        (u'A and B', u'A & B', True),
+        (u'A and B', u'A &amp; B', True),
+        (u'A and B and C', u'A &amp; B & C ', False),
+        (u'A & B', u'A и B', True),
+        (u'A & B', u'A & B', True),
+        (u'A & B', u'A &amp; B', True),  # this is another error
+        (u'A & B & C', u'A &amp; B & C', False),
+        (u'A &amp; B', u'A и B', True),
+        (u'A &amp; B', u'A & B', False),
+        (u'A &amp; B', u'A &amp; B', True),
+        (u'A &amp; B &amp; C', u'A &amp; B & C', False),
+        (u'A &amp; B & C', u'A и B и C', False),
+        (u'A &amp; B & C', u'A & B & C', False),
+        (u'A &amp; B & C', u'A &amp; B &amp; C', False),
+        (u'A &amp; B & C', u'A &amp; B & C', False),
+    ]
+
+    for str1, str2, state in tests:
+        info = "check('%s', '%s') == %s" % (str1, str2, state)
+        try:
+            assert (state == check(str1, str2)), info
+
+        except FilterFailure as e:
+
+            assert (not state), info
+
