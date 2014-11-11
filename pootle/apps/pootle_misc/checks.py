@@ -106,6 +106,7 @@ check_names = {
     'unbalanced_curly_braces': _(u"Curly braces"),
     'potential_unwanted_placeholders': _(u"Potential unwanted placeholders"),
     'doublequoting': _(u"Double quotes"),
+    'double_quotes_in_tags': _(u"Double quotes in tags"),
 }
 
 excluded_filters = ['hassuggestion', 'spellcheck']
@@ -803,6 +804,45 @@ class ENChecker(checks.TranslationChecker):
             return True
         else:
             raise checks.FilterFailure(u"Double quotes mismatch")
+
+    @critical
+    def double_quotes_in_tags(self, str1, str2):
+        """Checks whether double quotation mark `"` in tags is consistent between the
+-        two strings.
+        """
+        def get_fingerprint(str, is_source=False, translation=''):
+            chunks = unbalanced_tag_braces_regex.split(str)
+            translate = False
+            level = 0
+            d = {}
+            fingerprint = ''
+
+            for chunk in chunks:
+                translate = not translate
+                if translate:
+                    if level > 0:
+                        d[level] += chunk.count('"')
+                    continue
+
+                # special text
+                if level >= 0:
+                    if chunk == '<':
+                        level += 1
+                        if level not in d:
+                            d[level] = 0
+
+                    if chunk == '>':
+                        level -= 1
+
+            for key in sorted([x for x in d.keys() if d[x] > 0]):
+                fingerprint += u"\001%s\001%s" % (key, d[key])
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"Double quotes in tags mismatch")
 
 
 def run_given_filters(checker, unit, check_names=[]):

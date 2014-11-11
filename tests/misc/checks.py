@@ -41,3 +41,34 @@ def test_dollar_sign_check():
         except FilterFailure as e:
 
             assert (not state), info
+
+
+def test_double_quotes_in_tags():
+    check = checker.double_quotes_in_tags
+    tests = [
+        (u'foo bar', u'FOO BAR', True),
+        (u'foo "bar"', u'"FOO" <BAR>', True),
+        (u'foo "bar"', u'FOO <BAR>', True),
+        (u'foo <a href="bar">foo bar</a>',
+         u'FOO <a href="BAR">FOO BAR</a>', True),
+        (u'"foo" <a href="bar">"foo" bar</a>',
+         u'FOO <a href="BAR">FOO BAR</a>', True),
+        (u'foo <a href="bar">foo bar</a>',
+         u'FOO <a href="BAR>FOO BAR</a>', False),
+        (u'foo <a href="bar">foo bar</a>',
+         u'FOO <a href=\'BAR\'>FOO BAR</a>', False),
+        (u'foo <a href="<?php echo("bar");?>">foo bar</a>',
+         u'FOO <a href="<?php echo("BAR");?>">FOO BAR</a>', True),
+        (u'foo <a href="<?php echo("bar");?>">foo bar</a>',
+         u'FOO <a href="<?php echo(\'BAR\');?>">FOO BAR</a>', False),
+    ]
+
+    for str1, str2, state in tests:
+        info = "check('%s', '%s') == %s" % (str1, str2, state)
+        try:
+            assert (state == check(str1, str2)), info
+
+        except FilterFailure as e:
+
+            assert (not state), info
+
