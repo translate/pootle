@@ -230,6 +230,7 @@
       <div id="extras-bar">
         <a id="js-show-timeline" href="{% url 'pootle-xhr-units-timeline' unit.id %}">{% trans 'Show Timeline' %}</a>
         <a id="js-hide-timeline" class="hide">{% trans 'Hide Timeline' %}</a>
+        {% block translator_comment_edit %}
         {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
         {% if cantranslate %}
         <div id="editor-comment" class="hide">
@@ -241,16 +242,19 @@
           </form>
         </div>
         {% endif %}
+        {% endblock %}
       </div>
       <!-- Latest comment, [timeline of changes], suggestions from users
            and Translation Memory -->
       <div id="extras-container">
+        {% block translator_comment %}
         {% if unit.translator_comment %}
         <!-- Latest comment -->
         <div id="translator-comment" lang="{{ LANGUAGE_CODE }}">
           {% include "editor/units/xhr_comment.html" %}
         </div>
         {% endif %}
+        {% endblock %}
         {% with unit.get_suggestions as suggestions %}
         {% if suggestions %}
         <div id="suggestions">
