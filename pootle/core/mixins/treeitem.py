@@ -122,7 +122,7 @@ class TreeItem(object):
     @classmethod
     def _get_checks(self):
         """This method will be overridden in descendants"""
-        return {'unit_count': 0, 'checks': {}}
+        return {'unit_critical_error_count': 0, 'checks': {}}
 
     @classmethod
     def _get_last_action(self):
@@ -196,7 +196,7 @@ class TreeItem(object):
         for item in self.children:
             item_res = item.get_cached(CachedMethods.CHECKS, from_update)
             result['checks'] = dictsum(result['checks'], item_res['checks'])
-            result['unit_count'] += item_res['unit_count']
+            result['unit_critical_error_count'] += item_res['unit_critical_error_count']
 
         return result
 
@@ -251,7 +251,7 @@ class TreeItem(object):
     def get_error_unit_count(self):
         check_stats = self._calc(CachedMethods.CHECKS)
 
-        return check_stats.get('unit_count', 0)
+        return check_stats.get('unit_critical_error_count', 0)
 
     def get_checks(self):
         return self._calc(CachedMethods.CHECKS)['checks']
@@ -336,7 +336,7 @@ class CachedTreeItem(TreeItem):
     def get_error_unit_count(self):
         check_stats = self.get_cached(CachedMethods.CHECKS)
 
-        return check_stats.get('unit_count', 0)
+        return check_stats.get('unit_critical_error_count', 0)
 
     def is_dirty(self):
         """Checks if current TreeItem is registered as dirty"""

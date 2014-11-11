@@ -2028,18 +2028,19 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                                    unit__state__gt=UNTRANSLATED,
                                                    false_positive=False)
 
-            queryset = queryset.values('unit', 'name').order_by('unit')
+            queryset = queryset.values('unit', 'name', 'category') \
+                               .order_by('unit')
 
             saved_unit = None
             result = {
-                'unit_count': 0,
+                'unit_critical_error_count': 0,
                 'checks': {},
             }
             for item in queryset:
                 if item['unit'] != saved_unit or saved_unit is None:
                     saved_unit = item['unit']
-                    # assumed all checks are critical and should be counted
-                    result['unit_count'] += 1
+                    if item['category'] == Category.CRITICAL:
+                        result['unit_critical_error_count'] += 1
                 if item['name'] in result['checks']:
                     result['checks'][item['name']] += 1
                 else:

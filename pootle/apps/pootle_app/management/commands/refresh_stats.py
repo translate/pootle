@@ -26,6 +26,8 @@ from optparse import make_option
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
+from translate.filters.decorators import Category
+
 from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import set_script_prefix
@@ -213,7 +215,7 @@ class Command(PootleCommand):
         if check_filter:
             checks = checks.filter(**check_filter)
 
-        queryset = checks.values('unit', 'unit__store', 'name') \
+        queryset = checks.values('unit', 'unit__store', 'name', 'category') \
                          .order_by('unit__store', 'unit')
 
         saved_store = None
@@ -233,11 +235,12 @@ class Command(PootleCommand):
 
             if saved_unit != item['unit']:
                 saved_unit = item['unit']
-                stats['unit_count'] += 1
+                if item['category'] == Category.CRITICAL:
+                    stats['unit_critical_error_count'] += 1
 
         for key in self.cache_values:
             stats = self.cache_values[key]['get_checks']
-            if stats['unit_count'] > 0:
+            if stats['unit_critical_error_count'] > 0:
                 self._set_qualitycheck_stats_cache(stats, key)
 
     def _set_wordcount_stats_cache(self, stats, key):
@@ -307,7 +310,8 @@ class Command(PootleCommand):
     def _init_checks(self):
         for key in self.cache_values:
             self.cache_values[key].update({
-                'get_checks': {'unit_count': 0, 'checks': {}},
+                'get_checks': {'unit_critical_error_count': 0,
+                               'checks': {}},
             })
 
     def _set_empty_values(self):

@@ -22,7 +22,7 @@
 import re
 re._MAXCACHE = 2000
 
-from translate.filters.decorators import Category, critical
+from translate.filters.decorators import Category, critical, cosmetic
 from translate.filters import checks
 from translate.lang import data
 
@@ -33,6 +33,7 @@ from pootle_misc.util import import_func
 
 category_names = {
     Category.CRITICAL: _("Critical"),
+    Category.COSMETIC: _("Cosmetic"),
 }
 
 
@@ -771,13 +772,16 @@ class ENChecker(checks.TranslationChecker):
         else:
             raise checks.FilterFailure(u"Potential unwanted placeholders")
 
-    @critical
+    @cosmetic
     def doublequoting(self, str1, str2):
-        """Checks whether double quotation mark `"` is consistent between the
-        two strings.
+        """Checks whether there is no double quotation mark `"` in source string but
+        there is in a translation string.
         """
         def get_fingerprint(str, is_source=False, translation=''):
             chunks = str.split('"')
+            if is_source and '"' in str:
+                return None
+
             translate = False
             double_quote_count = 0
 
