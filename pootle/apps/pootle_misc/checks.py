@@ -808,17 +808,12 @@ class ENChecker(checks.TranslationChecker):
 -        two strings.
         """
         def get_fingerprint(str, is_source=False, translation=''):
-            if is_source:
-                # hardcoded rule: skip web banner images which are translated
-                # differently
-                if img_banner_regex.match(str):
-                    return None
-
             chunks = unbalanced_tag_braces_regex.split(str)
             translate = False
             level = 0
             d = {}
             fingerprint = ''
+            quotes_paired = True
 
             for chunk in chunks:
                 translate = not translate
@@ -839,13 +834,22 @@ class ENChecker(checks.TranslationChecker):
 
             for key in sorted([x for x in d.keys() if d[x] > 0]):
                 fingerprint += u"\001%s\001%s" % (key, d[key])
+                quotes_paired &= d[key] % 2 == 0
 
-            return fingerprint
+            return fingerprint, quotes_paired
 
-        if check_translation(get_fingerprint, str1, str2):
+        # hardcoded rule: skip web banner images which are translated
+        # differently
+        if img_banner_regex.match(str1):
             return True
-        else:
-            raise checks.FilterFailure(u"Double quotes in tags mismatch")
+
+        fingerprint1, paired1 = get_fingerprint(str1, is_source=True)
+        if paired1:
+            fingerprint2, paired2 = get_fingerprint(str2, is_source=False)
+            if fingerprint1 == '' and paired2 or fingerprint1 == fingerprint2:
+                return True
+
+        raise checks.FilterFailure(u"Double quotes in tags mismatch")
 
 
 def run_given_filters(checker, unit, check_names=[]):
