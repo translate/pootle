@@ -37,7 +37,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 
 from .models import Unit
 from .fields import to_db
-from .util import UNTRANSLATED, FUZZY, TRANSLATED
+from .util import UNTRANSLATED, FUZZY, TRANSLATED, OBSOLETE
 
 ############## text cleanup and highlighting #########################
 
@@ -282,14 +282,16 @@ def unit_form_factory(language, snplurals=None, request=None):
                                                CachedMethods.TRANSLATED,
                                                CachedMethods.LAST_ACTION)
 
-            if old_state != new_state:
+            if old_state != new_state and old_state != OBSOLETE:
                 self.instance._state_updated = True
                 self.updated_fields.append((SubmissionFields.STATE,
                                             old_state, new_state))
-            else:
-                self.instance._state_updated = False
 
-            return new_state
+                return new_state
+
+            self.instance._state_updated = False
+
+            return old_state
 
         def clean_similarity(self):
             value = self.cleaned_data['similarity']
