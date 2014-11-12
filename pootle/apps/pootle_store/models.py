@@ -2029,7 +2029,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                                    false_positive=False)
 
             queryset = queryset.values('unit', 'name', 'category') \
-                               .order_by('unit')
+                               .order_by('unit', '-category')
 
             saved_unit = None
             result = {

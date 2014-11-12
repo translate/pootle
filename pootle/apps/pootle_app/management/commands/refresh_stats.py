@@ -216,7 +216,7 @@ class Command(PootleCommand):
             checks = checks.filter(**check_filter)
 
         queryset = checks.values('unit', 'unit__store', 'name', 'category') \
-                         .order_by('unit__store', 'unit')
+                         .order_by('unit__store', 'unit', '-category')
 
         saved_store = None
         saved_unit = None
