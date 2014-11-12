@@ -224,7 +224,10 @@ class Command(PootleCommand):
 
         for item in queryset.iterator():
             if item['unit__store'] != saved_store:
-                key = Store.objects.get(id=item['unit__store']).get_cachekey()
+                try:
+                    key = Store.objects.get(id=item['unit__store']).get_cachekey()
+                except Store.DoesNotExist:
+                    continue
                 saved_store = item['unit__store']
                 stats = self.cache_values[key]['get_checks']
 
@@ -272,7 +275,11 @@ class Command(PootleCommand):
 
         for item in res.iterator():
             if saved_id != item['store']:
-                key = Store.objects.get(id=item['store']).get_cachekey()
+                try:
+                    key = Store.objects.get(id=item['store']).get_cachekey()
+                except Store.DoesNotExist:
+                    continue
+
                 if saved_key:
                     self._set_wordcount_stats_cache(stats, saved_key)
 
@@ -361,7 +368,10 @@ class Command(PootleCommand):
             .values('unit__store').annotate(count=Count('id'))
 
         for item in queryset.iterator():
-            key = Store.objects.get(id=item['unit__store']).get_cachekey()
+            try:
+                key = Store.objects.get(id=item['unit__store']).get_cachekey()
+            except Store.DoesNotExist:
+                continue
             logging.info('Set suggestion count for %s' % key)
             cache.set(iri_to_uri(key + ':get_suggestion_count'),
                       item['count'], None)
