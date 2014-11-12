@@ -808,6 +808,12 @@ class ENChecker(checks.TranslationChecker):
 -        two strings.
         """
         def get_fingerprint(str, is_source=False, translation=''):
+            if is_source:
+                # hardcoded rule: skip web banner images which are translated
+                # differently
+                if img_banner_regex.match(str):
+                    return None
+
             chunks = unbalanced_tag_braces_regex.split(str)
             translate = False
             level = 0
