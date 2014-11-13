@@ -616,6 +616,20 @@ html[dir="rtl"] .sidebar
     font-style: italic;
 }
 
+.extras-bar
+{
+    position: absolute;
+    left: 0;
+    text-align: left;
+}
+
+html[dir="rtl"] .extras-bar
+{
+    left: auto;
+    right: 0;
+    text-align: right;
+}
+
 .unit-meta
 {
     position: absolute;
@@ -695,14 +709,14 @@ html[dir="rtl"] .extra-item-meta
     margin-top: 1em;
 }
 
-#extras-bar a
+.extras-bar a
 {
     cursor: pointer;
     margin-right: 10px;
     font-size: 0.9em;
 }
 
-html[dir="rtl"] #extras-bar a
+html[dir="rtl"] .extras-bar a
 {
     margin-right: 0;
     margin-left: 10px;
@@ -762,14 +776,19 @@ html[dir="rtl"] .suggestion-action
     padding: 0.5em;
 }
 
-.extra-item:hover
+.extra-item-block:hover
 {
     background-color: #fff;
 }
 
-#translator-comment .extra-item:hover
+#translator-comment .extra-item-block
 {
-    background-color: #f1f7e4;
+    background-color: rgba(255, 153, 0, 0.3);
+}
+
+#translator-comment .extra-item-block:hover
+{
+    background-color: rgba(255, 153, 0, 0.5);
 }
 
 .suggestion-original
@@ -861,9 +880,47 @@ html[dir="rtl"] .timeline-arrow:before
     content: "←";
 }
 
+#editor-comment.hide
+{
+    display: none;
+}
+
 #editor-comment
 {
-    margin: 10px 0;
+    font-size: 115%;
+    display: inline-block;
+    white-space: nowrap;
+    width:100%;
+    margin-top: 1em;
+}
+
+html[dir="rtl"] #editor-comment
+{
+    float: right;
+    text-align: right;
+}
+
+#editor-comment form > *
+{
+    float: left;
+}
+
+html[dir="rtl"] #editor-comment form > *
+{
+    float: right;
+}
+
+#editor-comment textarea
+{
+    margin-right: 1em;
+    max-height: 300px;
+    max-width: 80%;
+}
+
+html[dir="rtl"] #editor-comment textarea
+{
+    margin-right: 0;
+    margin-left: 1em;
 }
 
 /* CHECKS */

@@ -146,7 +146,13 @@
     /* Commenting */
     $(document).on('click', '.js-editor-comment', function (e) {
       e.preventDefault();
-      $('#editor-comment').slideToggle('fast');
+      var el = $('.js-editor-comment-form');
+      if (el.is(':visible')) {
+        el.css('display','none');
+      } else {
+        el.css('display','inline-block');
+        $('#id_translator_comment').focus();
+      }
     });
     $(document).on('submit', '#js-comment-form', this.comment);
     $(document).on('click', '.js-comment-remove', this.removeComment);
@@ -398,9 +404,9 @@
 
   /* Stuff to be done when the editor is ready  */
   ready: function () {
-    // Set textarea's initial height as well as the max-height
-    var maxheight = $(window).height() * 0.3;
-    $('textarea.expanding').TextAreaExpander('10', maxheight);
+    $('textarea.expanding').autosize({
+      append : null
+    });
 
     // set direction of the comment body
     $('.extra-item-comment').filter(':not([dir])').bidi();

@@ -83,7 +83,7 @@ register('js_user_app', js_user_app)
 
 js_editor = Bundle(
     'js/vendor/jquery/jquery.history.js',
-    'js/vendor/jquery/jquery.textarea-expander.js',
+    'js/vendor/jquery/jquery.autosize.js',
     'js/vendor/levenshtein.js',
     'js/vendor/diff_match_patch.js',
     'js/vendor/jquery/jquery.caret.js',

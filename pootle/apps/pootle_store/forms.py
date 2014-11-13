@@ -323,7 +323,7 @@ def unit_comment_form_factory(language):
         'lang': language.code,
         'dir': language.direction,
         'class': 'comments expanding focusthis',
-        'rows': 2,
+        'rows': 1,
         'tabindex': 15,
     }
 

@@ -247,12 +247,10 @@ Directory contents
 
         http://benalman.com/projects/jquery-misc-plugins/#serializeobject
 
-      - jquery.textarea-expander.js :
+      - jquery.autosize.js :
         jQuery plugin used in the translate page textareas.
 
-        Using patched version to remove `$.browser` calls.
-
-        http://blogs.sitepointstatic.com/examples/tech/textarea-expander/jquery.textarea-expander.js
+        http://www.jacklmoore.com/autosize/
 
       - jquery.tipsy.js :
         Facebook-style tooltips for jQuery.

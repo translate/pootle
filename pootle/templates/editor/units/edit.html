@@ -167,6 +167,13 @@
 
             {{ form.target_f }}
 
+            <div class="extras-bar">
+              <a id="js-show-timeline" href="{% url 'pootle-xhr-units-timeline' unit.id %}">{% trans 'Show Timeline' %}</a>
+              <a id="js-hide-timeline" class="hide">{% trans 'Hide Timeline' %}</a>
+              {% block translator_comment_edit_trigger %}
+              {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
+              {% endblock %}
+            </div>
             {% if unit.submitted_by and unit.submitted_on %}
             <div class="unit-meta">
               <time class="js-relative-date"
@@ -226,19 +233,14 @@
             {% endif %}
           </div>
         </form>
-      </div>
-      <div id="extras-bar">
-        <a id="js-show-timeline" href="{% url 'pootle-xhr-units-timeline' unit.id %}">{% trans 'Show Timeline' %}</a>
-        <a id="js-hide-timeline" class="hide">{% trans 'Hide Timeline' %}</a>
-        {% block translator_comment_edit %}
-        {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
+        {% block translator_comment_edit_form %}
         {% if cantranslate %}
-        <div id="editor-comment" class="hide">
+        <div id="editor-comment" class="js-editor-comment-form hide">
           <form id="js-comment-form" method="POST"
             action="{% url 'pootle-xhr-units-comment' unit.id %}">
-            <p>{{ comment_form.translator_comment }}</p>
-            <p><input type="submit" class="btn btn-xs btn-primary"
-                      value="{% trans 'Submit' %}" /></p>
+            {{ comment_form.translator_comment }}
+            <input type="submit" class="btn btn-xs btn-primary"
+                      value="{% trans 'Submit' %}" />
           </form>
         </div>
         {% endif %}
