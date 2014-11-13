@@ -145,12 +145,13 @@
     /* Commenting */
     $(document).on('click', '.js-editor-comment', function (e) {
       e.preventDefault();
-      var el = $('.js-editor-comment-form');
-      if (el.is(':visible')) {
-        el.css('display','none');
-      } else {
-        el.css('display','inline-block');
+      var elem = $('.js-editor-comment-form');
+      $('.js-editor-comment').toggleClass('selected');
+      if ($('.js-editor-comment').hasClass('selected')) {
+        elem.css('display','inline-block');
         $('#id_translator_comment').focus();
+      } else {
+        elem.css('display','none');
       }
     });
     $(document).on('submit', '#js-comment-form', this.comment);
@@ -1805,6 +1806,7 @@
       type: 'POST',
       data: reqData,
       success: function (data) {
+        $('.js-editor-comment').removeClass('selected');
         $("#editor-comment").fadeOut(200);
 
         if ($("#translator-comment").length) {
