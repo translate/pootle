@@ -168,8 +168,7 @@
             {{ form.target_f }}
 
             <div class="extras-bar">
-              <a id="js-show-timeline" href="{% url 'pootle-xhr-units-timeline' unit.id %}">{% trans 'Show Timeline' %}</a>
-              <a id="js-hide-timeline" class="hide">{% trans 'Hide Timeline' %}</a>
+              <a id="js-toggle-timeline" href="{% url 'pootle-xhr-units-timeline' unit.id %}">{% trans 'Show Timeline' %}</a>
               {% block translator_comment_edit_trigger %}
               {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
               {% endblock %}

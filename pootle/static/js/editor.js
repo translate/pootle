@@ -128,8 +128,7 @@
     $(document).on('click', '#js-nav-next', this.gotoNext.bind(this));
     $(document).on('click', '.js-suggestion-reject', this.rejectSuggestion);
     $(document).on('click', '.js-suggestion-accept', this.acceptSuggestion);
-    $(document).on('click', '#js-show-timeline', this.showTimeline);
-    $(document).on('click', '#js-hide-timeline', this.hideTimeline);
+    $(document).on('click', '#js-toggle-timeline', this.toggleTimeline);
     $(document).on('click', '.js-toggle-check', this.toggleCheck);
 
     /* Filtering */
@@ -1848,14 +1847,10 @@
    */
 
   /* Get the timeline data */
-  showTimeline: function (e) {
-    e.preventDefault();
-
+  showTimeline: function () {
     // The results might already be there from earlier:
     if ($("#timeline-results").length) {
-      $("#js-hide-timeline").show();
       $("#timeline-results").slideDown(1000, 'easeOutQuad');
-      $("#js-show-timeline").hide();
       return;
     }
 
@@ -1889,8 +1884,7 @@
           PTL.common.updateRelativeDates();
 
           $('.timeline-field-body').filter(':not([dir])').bidi();
-          $("#js-show-timeline").hide();
-          $("#js-hide-timeline").show();
+          $("#js-show-timeline").addClass('selected');
         }
       },
       complete: function () {
@@ -1901,10 +1895,14 @@
   },
 
  /* Hide the timeline panel */
-  hideTimeline: function (e) {
-    $("#js-hide-timeline").hide();
-    $("#timeline-results").slideUp(1000, 'easeOutQuad');
-    $("#js-show-timeline").show();
+  toggleTimeline: function (e) {
+    e.preventDefault();
+    $("#js-toggle-timeline").toggleClass('selected');
+    if ($("#js-toggle-timeline").hasClass('selected')) {
+      PTL.editor.showTimeline();
+    } else {
+      $("#timeline-results").slideUp(1000, 'easeOutQuad');
+    }
   },
 
 
