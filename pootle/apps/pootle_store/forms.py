@@ -193,7 +193,7 @@ def unit_form_factory(language, snplurals=None, request=None):
         'lang': language.code,
         'dir': language.direction,
         'class': 'translation expanding focusthis js-translation-area',
-        'rows': 5,
+        'rows': 2,
         'tabindex': 10,
     }
 
