@@ -36,9 +36,7 @@ var Search = React.createClass({
   /* Layout */
 
   render: function () {
-    // FIXME: get the label out of here!
-    var searchLabel = gettext('Search Users'),
-        isLoading = this.state.isLoading,
+    var isLoading = this.state.isLoading,
         items = this.props.items,
         loadMoreBtn;
 
@@ -56,12 +54,13 @@ var Search = React.createClass({
     return (
       <div className="search">
         <div className="hd">
-          <h2>{searchLabel}</h2>
+          <h2>{this.props.searchLabel}</h2>
         </div>
         <div className="bd">
           <div className="search-box">
             <SearchBox
               handleSearch={this.props.handleSearch}
+              placeholder={this.props.searchPlaceholder}
               searchQuery={this.props.searchQuery} />
           </div>
           <div className={resultsClassNames}>
@@ -70,6 +69,7 @@ var Search = React.createClass({
             <div>
               <ItemTable
                 items={items}
+                resultsCaption={this.props.resultsCaption}
                 searchQuery={this.props.searchQuery}
                 selectedItem={this.props.selectedItem}
                 handleSelectItem={this.props.handleSelectItem} />
@@ -128,12 +128,11 @@ var SearchBox = React.createClass({
   /* Layout */
 
   render: function () {
-    return (
+    return this.transferPropsTo(
       <input
         type="text"
         ref="input"
         value={this.state.searchQuery}
-        placeholder={gettext('Find user by name, email, properties')}
         onKeyUp={this.handleKeyUp}
         onChange={this.onChange} />
     );
@@ -154,27 +153,11 @@ var ItemTable = React.createClass({
           selectedItem={this.props.selectedItem}
           handleSelectItem={this.props.handleSelectItem} />
         );
-      }, args = {
-        count: this.props.items.count
-      },
-      caption, msg;
-
-
-    if (this.props.searchQuery) {
-      msg = ngettext('%(count)s user matches your query.',
-                     '%(count)s users match your query.', args.count);
-    } else {
-      msg = ngettext(
-        'There is %(count)s user.',
-        'There are %(count)s users. Below are the most recently added ones.',
-        args.count
-      );
-    }
-    caption = interpolate(msg, args, true);
+      };
 
     return (
       <table>
-        <caption>{caption}</caption>
+        <caption>{this.props.resultsCaption}</caption>
         <tbody>
         {this.props.items.map(createRow.bind(this))}
         </tbody>

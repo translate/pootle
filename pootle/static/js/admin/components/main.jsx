@@ -133,6 +133,22 @@ var AdminApp = React.createClass({
               handleDelete={this.handleDelete} />
     };
 
+    var args = {
+      count: this.state.items.count,
+    }, msg;
+
+    if (this.state.searchQuery) {
+      msg = ngettext('%(count)s user matches your query.',
+                     '%(count)s users match your query.', args.count);
+    } else {
+      msg = ngettext(
+        'There is %(count)s user.',
+        'There are %(count)s users. Below are the most recently added ones.',
+        args.count
+      );
+    }
+    var resultsCaption = interpolate(msg, args, true);
+
     return (
       <div>
         <div className="module first">
@@ -141,6 +157,9 @@ var AdminApp = React.createClass({
             handleSelectItem={this.handleSelectItem}
             items={this.state.items}
             selectedItem={this.state.selectedItem}
+            searchLabel={gettext('Search Users')}
+            searchPlaceholder={gettext('Find user by name, email, properties')}
+            resultsCaption={resultsCaption}
             searchQuery={this.state.searchQuery} />
         </div>
 
