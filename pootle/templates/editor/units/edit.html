@@ -158,7 +158,7 @@
             </div>
           </div>
           <!-- Translation -->
-          <div id="orig{{ unit.index }}" class="translate-translation" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+          <div id="orig{{ unit.index }}" class="js-translate-translation" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             {% if unit.submitted_by %}
             <div id="target-item-gravatar">
               {% include 'core/_avatar.html' with user=unit.submitted_by %}
@@ -173,6 +173,7 @@
               {% block translator_comment_edit_trigger %}
               {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
               {% endblock %}
+              <a class="js-toggle-raw">{% trans 'Raw View' %}</a>
             </div>
             {% if unit.submitted_by and unit.submitted_on %}
             <div class="unit-meta">

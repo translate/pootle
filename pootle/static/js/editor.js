@@ -160,6 +160,13 @@
     /* Misc */
     $(document).on('click', '.js-editor-msg-hide', this.hideMsg);
 
+    $(document).on('click', '.js-toggle-raw', function (e) {
+      e.preventDefault();
+      $('.js-translate-translation').toggleClass('raw');
+      $('.js-toggle-raw').toggleClass('selected');
+      $('.js-translation-area').trigger('autosize.resizeIncludeStyle');
+    });
+
     /* Bind hotkeys */
     shortcut.add('ctrl+return', function () {
       if (PTL.editor.isSuggestMode()) {

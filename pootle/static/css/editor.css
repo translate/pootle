@@ -621,6 +621,7 @@ html[dir="rtl"] .sidebar
     position: absolute;
     left: 0;
     text-align: left;
+    max-width: 30%;
 }
 
 html[dir="rtl"] .extras-bar
@@ -714,12 +715,20 @@ html[dir="rtl"] .extra-item-meta
     cursor: pointer;
     margin-right: 10px;
     font-size: 0.9em;
+    padding: 0.3em 0.5em;
+    border-radius: 0.2em;
 }
 
 html[dir="rtl"] .extras-bar a
 {
     margin-right: 0;
     margin-left: 10px;
+}
+
+.extras-bar a.selected
+{
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3) inset;
 }
 
 .extra-item-block
@@ -1263,17 +1272,25 @@ a.editor-specialchar,
 
 /* FUZZY TRANSLATION */
 
-div.translate-translation
+div.js-translate-translation
 {
     min-height: 1.5em;
 }
 
+div.js-translate-translation.raw .js-translation-area
+{
+    direction: ltr;
+    font-family: monospace;
+    font-size: 150%;
+    line-height: 110%;
+}
+
 /* Special handling for languages with big fonts */
-td.translate-full div.translate-translation:lang(bn),
-td.translate-full div.translate-translation:lang(fa),
-td.translate-full div.translate-translation:lang(ja),
-td.translate-full div.translate-translation:lang(ko),
-td.translate-full div.translate-translation:lang(zh)
+td.translate-full div.js-translate-translation:lang(bn),
+td.translate-full div.js-translate-translation:lang(fa),
+td.translate-full div.js-translate-translation:lang(ja),
+td.translate-full div.js-translate-translation:lang(ko),
+td.translate-full div.js-translate-translation:lang(zh)
 {
     margin-bottom: 35px;
 }
