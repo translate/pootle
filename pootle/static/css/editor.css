@@ -1104,6 +1104,8 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar a
 .editor-specialchars-block
 {
     text-align: center;
+    max-width: 40%;
+    margin: 0 auto;
 }
 
 a.editor-specialchar
