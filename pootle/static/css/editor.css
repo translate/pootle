@@ -619,16 +619,14 @@ html[dir="rtl"] .sidebar
 
 .extras-bar
 {
-    position: absolute;
-    left: 0;
+    float: left;
     text-align: left;
     max-width: 30%;
 }
 
 html[dir="rtl"] .extras-bar
 {
-    left: auto;
-    right: 0;
+    float: right;
     text-align: right;
 }
 
@@ -703,6 +701,7 @@ html[dir="rtl"] .extra-item-meta
 /* EXTRAS: SUGGESTIONS, TM RESULTS, COMMENTS */
 
 #suggestions,
+#extras-container,
 #timeline-results,
 #tm-results,
 #translator-comment
@@ -714,7 +713,8 @@ html[dir="rtl"] .extra-item-meta
 .extras-bar a
 {
     cursor: pointer;
-    margin-right: 10px;
+    display: inline-block;
+    margin: 0 0.1em 0.4em 0;
     padding: 0.3em 0.5em;
     border-radius: 0.2em;
 }
