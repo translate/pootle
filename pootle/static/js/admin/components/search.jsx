@@ -12,18 +12,8 @@ var Search = React.createClass({
 
   getInitialState: function () {
     return {
-      isLoading: true
+      isLoading: false,
     };
-  },
-
-  componentWillReceiveProps: function (nextProps) {
-    if (nextProps.searchQuery !== this.props.searchQuery) {
-      this.fetchResults(nextProps.searchQuery);
-    }
-  },
-
-  componentDidMount: function () {
-    this.fetchResults(this.props.searchQuery);
   },
 
 
@@ -31,8 +21,7 @@ var Search = React.createClass({
 
   fetchResults: function (query) {
     this.setState({isLoading: true});
-    // XXX: Review this; it's "changing" props
-    this.props.items.search(query).then(this.onResultsFetched);
+    this.props.handleSearch(query).then(this.onResultsFetched);
   },
 
   onResultsFetched: function (data) {
@@ -104,6 +93,12 @@ var SearchBox = React.createClass({
     return {
       searchQuery: this.props.searchQuery
     };
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    if (nextProps.searchQuery !== this.state.searchQuery) {
+      this.setState({searchQuery: nextProps.searchQuery});
+    }
   },
 
   componentDidMount: function () {

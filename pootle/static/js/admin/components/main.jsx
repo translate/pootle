@@ -24,17 +24,14 @@ var AdminApp = React.createClass({
   setupRoutes: function (router) {
 
     router.on('route:main', function (qs) {
-      var searchQuery;
+      var searchQuery = '';
       qs !== undefined && (searchQuery = qs.q);
-      searchQuery && this.setState({searchQuery: searchQuery});
+      this.handleSearch(searchQuery);
     }.bind(this));
 
     router.on('route:edit', function (id, qs) {
       var item = new this.props.model({id: id});
-
-      item.fetch().then(function () {
-        this.setState({selectedItem: item});
-      }.bind(this));
+      this.handleSelectItem(item);
     }.bind(this));
   },
 
@@ -50,12 +47,30 @@ var AdminApp = React.createClass({
 
   /* State-changing handlers */
 
-  handleSearch: function (query) {
-    this.setState({selectedItem: null, searchQuery: query});
+  handleSearch: function (query, extraState) {
+    var newState = extraState || {};
+
+    if (query !== this.state.searchQuery) {
+      newState.searchQuery = query;
+      newState.selectedItem = null;
+    }
+
+    return this.state.items.search(query).then(function () {
+      newState.items = this.state.items;
+      this.setState(newState);
+    }.bind(this));
   },
 
   handleSelectItem: function (item) {
-    this.setState({selectedItem: item, view: 'edit'});
+    var newState = {selectedItem: item, view: 'edit'};
+
+    if (this.state.items.contains(item)) {
+      this.setState(newState);
+    } else {
+      item.fetch().then(function () {
+        this.handleSearch(this.state.searchQuery, newState);
+      }.bind(this));
+    }
   },
 
   handleAdd: function () {
