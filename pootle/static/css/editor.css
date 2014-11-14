@@ -604,6 +604,7 @@ html[dir="rtl"] .sidebar
 .sidetitle,
 .unit-empty,
 .unit-meta,
+.extras-bar,
 .extra-item-meta,
 .extra-item-title
 {
@@ -714,7 +715,6 @@ html[dir="rtl"] .extra-item-meta
 {
     cursor: pointer;
     margin-right: 10px;
-    font-size: 0.9em;
     padding: 0.3em 0.5em;
     border-radius: 0.2em;
 }
