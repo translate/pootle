@@ -27,10 +27,9 @@ from django.utils.http import urlencode
 
 
 def l(path):
-    """ filter urls adding base_path prefix if required """
+    """Filter URLs adding base_path prefix if required."""
     if path and path.startswith('/'):
         base_url = getattr(settings, "SCRIPT_NAME", "")
-        #if not path.startswith(base_url):
         return base_url + path
     return path
 

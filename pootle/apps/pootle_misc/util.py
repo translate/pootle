@@ -65,8 +65,8 @@ def dictsum(x, y):
 class PootleJSONEncoder(json.JSONEncoder):
     """Custom JSON encoder for Pootle.
 
-    This is mostly implemented to avoid calling `force_unicode` all the
-    time on certain types of objects.
+    This is mostly implemented to avoid calling `force_unicode` all the time on
+    certain types of objects.
     https://docs.djangoproject.com/en/1.4/topics/serialization/#id2
     """
     def default(self, obj):
@@ -88,9 +88,9 @@ def jsonify(obj):
 
 
 def ajax_required(f):
-    """
-    AJAX request required decorator
-    use it in your views:
+    """Check that the request is an AJAX request.
+
+    Use it in your views:
 
     @ajax_required
     def my_view(request):
