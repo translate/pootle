@@ -731,6 +731,11 @@ html[dir="rtl"] .extras-bar a
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3) inset;
 }
 
+.extras-bar a i
+{
+    margin: 0 0.3em 0;
+}
+
 .extra-item-block
 {
     clear: both;

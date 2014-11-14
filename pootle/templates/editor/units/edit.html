@@ -168,11 +168,11 @@
             {{ form.target_f }}
 
             <div class="extras-bar">
-              <a id="js-toggle-timeline" href="{% url 'pootle-xhr-units-timeline' unit.id %}">{% trans 'Show Timeline' %}</a>
+              <a id="js-toggle-timeline" href="{% url 'pootle-xhr-units-timeline' unit.id %}"><i class="icon-timeline" title="{% trans 'Show Timeline' %}"></i></a>
               {% block translator_comment_edit_trigger %}
-              {% if cantranslate %}<a class="js-editor-comment" tabindex="15">{% trans "Add Comment" %}</a>{% endif %}
+              {% if cantranslate %}<a class="js-editor-comment" tabindex="15"><i class="icon-comment-add" title="{% trans 'Add Comment' %}"></i></a>{% endif %}
               {% endblock %}
-              <a class="js-toggle-raw">{% trans 'Raw View' %}</a>
+              <a class="js-toggle-raw"><i class="icon-raw-mode" title="{% trans 'Raw View' %}"></i></a>
             </div>
             {% if unit.submitted_by and unit.submitted_on %}
             <div class="unit-meta">
