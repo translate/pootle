@@ -48,7 +48,11 @@ class Command(BaseCommand):
         webpack_config_file = os.path.join(default_static_dir,
                                    'js/webpack.config.js')
 
-        args = ['webpack', '--config=%s' % webpack_config_file, '--progress',
+        webpack_cmd = 'webpack'
+        if os.name == 'nt':
+            webpack_cmd = '%s.cmd' % webpack_cmd
+
+        args = [webpack_cmd, '--config=%s' % webpack_config_file, '--progress',
                 '--colors']
 
         if options['dev']:
