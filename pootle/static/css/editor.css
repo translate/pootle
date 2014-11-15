@@ -1277,12 +1277,12 @@ a.editor-specialchar,
 
 /* FUZZY TRANSLATION */
 
-div.js-translate-translation
+div.translate-translation
 {
     min-height: 1.5em;
 }
 
-div.js-translate-translation.raw .js-translation-area
+div.translate-translation.raw textarea.translation
 {
     direction: ltr;
     font-family: monospace;
@@ -1291,11 +1291,11 @@ div.js-translate-translation.raw .js-translation-area
 }
 
 /* Special handling for languages with big fonts */
-td.translate-full div.js-translate-translation:lang(bn),
-td.translate-full div.js-translate-translation:lang(fa),
-td.translate-full div.js-translate-translation:lang(ja),
-td.translate-full div.js-translate-translation:lang(ko),
-td.translate-full div.js-translate-translation:lang(zh)
+td.translate-full div.translate-translation:lang(bn),
+td.translate-full div.translate-translation:lang(fa),
+td.translate-full div.translate-translation:lang(ja),
+td.translate-full div.translate-translation:lang(ko),
+td.translate-full div.translate-translation:lang(zh)
 {
     margin-bottom: 35px;
 }
