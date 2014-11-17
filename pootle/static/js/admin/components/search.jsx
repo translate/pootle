@@ -68,6 +68,7 @@ var Search = React.createClass({
             <div>{gettext('Loading...')}</div> :
             <div>
               <ItemTable
+                fields={this.props.fields}
                 items={items}
                 resultsCaption={this.props.resultsCaption}
                 searchQuery={this.props.searchQuery}
@@ -147,6 +148,7 @@ var ItemTable = React.createClass({
     var createRow = function (item, index) {
       return (
         <ItemTableRow
+          fields={this.props.fields}
           key={item.id}
           item={item}
           index={index}
@@ -176,8 +178,6 @@ var ItemTableRow = React.createClass({
         values = item.toJSON();
 
     values.index = item.displayIndex();
-    // FIXME: pass fields as `props`
-    var fields = ['index', 'full_name', 'username', 'email'];
     var createColumn = function (field, i) {
       return <td key={i}>{values[field]}</td>;
     };
@@ -191,7 +191,7 @@ var ItemTableRow = React.createClass({
       <tr className={classNames}
           key={item.id}
           onClick={this.props.handleSelectItem.bind(null, item)}>
-        {fields.map(createColumn)}
+        {this.props.fields.map(createColumn)}
       </tr>
     );
   }

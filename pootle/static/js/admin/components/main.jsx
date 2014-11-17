@@ -149,10 +149,13 @@ var AdminApp = React.createClass({
     }
     var resultsCaption = interpolate(msg, args, true);
 
+    var fields = ['index', 'full_name', 'username', 'email'];
+
     return (
       <div>
         <div className="module first">
           <Search
+            fields={fields}
             handleSearch={this.handleSearch}
             handleSelectItem={this.handleSelectItem}
             items={this.state.items}
