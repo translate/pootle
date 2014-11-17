@@ -28,7 +28,7 @@ PTL.admin = {
   init: function (opts) {
     this.el = document.querySelector(opts.el);
 
-    if (!opts.itemType in itemTypes) {
+    if (!itemTypes.hasOwnProperty(opts.itemType)) {
       throw new Error('Invalid `itemType`.');
     }
 
