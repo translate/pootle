@@ -93,7 +93,6 @@ pygments_style = 'sphinx'
 
 # Build a refence icon.rst.inc files that we can include for inline
 # icons.
-import os
 
 icons_dir = "../pootle/static/images/sprite"
 icons_inc_file_name = "icons.rst.inc"

@@ -27,7 +27,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.db import transaction
 
 from pootle_app.management.commands import PootleCommand
-from pootle_store.models import Store, TMUnit, Unit
+from pootle_store.models import TMUnit, Unit
 from pootle_store.util import TRANSLATED
 
 

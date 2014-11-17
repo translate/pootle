@@ -28,6 +28,7 @@ from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.baseurl import l
 
+
 class DirectoryManager(models.Manager):
 
     def get_query_set(self):

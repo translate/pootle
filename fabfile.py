@@ -182,12 +182,12 @@ def bootstrap():
     if (not exists('%(project_path)s' % env) or
         confirm('\n%(project_path)s already exists. Do you want to continue?'
                 % env, default=False)):
-            with settings(hide('stdout', 'stderr')):
-                _init_directories()
-                _init_virtualenv()
-                _clone_repo()
-                _update_repo()
-                _install_requirements()
+        with settings(hide('stdout', 'stderr')):
+            _init_directories()
+            _init_virtualenv()
+            _clone_repo()
+            _update_repo()
+            _install_requirements()
     else:
         abort('\nAborting.')
 
@@ -221,12 +221,12 @@ def drop_deployment():
 
     try:
         disable_site()
-    except:
+    except Exception:
         print('\n\nSeems that the site was not enabled on Apache.')
 
     try:
         drop_db()
-    except:
+    except Exception:
         print("\n\nSeems that database didn't exist.")
 
     _remove_config()
