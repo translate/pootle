@@ -35,7 +35,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
 from django.db import models, transaction, DatabaseError, IntegrityError
-from django.db.models.signals import post_delete
 from django.template.defaultfilters import escape, truncatechars
 from django.utils import dateformat, timezone, tzinfo
 from django.utils.functional import cached_property

@@ -35,12 +35,10 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.signals import (post_file_upload, post_template_update,
                                 post_vc_update)
-from pootle_misc.checks import category_names, check_names
+from pootle_misc.checks import check_names
 from pootle_misc.checks import get_qualitychecks_by_category
 from pootle_store.signals import translation_submitted
-from pootle_store.util import OBSOLETE, suggestions_sum
-
-from .decorators import get_from_cache_for_path
+from pootle_store.util import suggestions_sum
 
 
 def slugify_tag_name(tag_name):
@@ -145,7 +143,7 @@ class Goal(TagBase):
         }
         try:
             tp = directory.translation_project
-        except:
+        except Exception:
             return []
 
         if tp.is_template_project:
