@@ -44,10 +44,6 @@ var User = Backbone.Model.extend({
               '#username=' + this.get('username')].join('/'));
   },
 
-  displayIndex: function () {
-    return this.collection.indexOf(this) + 1;
-  },
-
   gravatarUrl: function (size) {
     size = size || '48';
     return [

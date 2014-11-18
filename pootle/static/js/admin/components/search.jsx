@@ -175,16 +175,17 @@ var ItemTableRow = React.createClass({
   render: function () {
     var item = this.props.item,
         selectedItem = this.props.selectedItem,
+        index = this.props.index,
         values = item.toJSON();
 
-    values.index = item.displayIndex();
+    values.index = index + 1;
     var createColumn = function (field, i) {
       return <td key={i}>{values[field]}</td>;
     };
 
     var classNames = cx({
       'selected': selectedItem && item.id === selectedItem.id,
-      'row-divider': (values.index - 1) !== 0 && (values.index - 1) % 10 === 0
+      'row-divider': index !== 0 && index % 10 === 0,
     });
 
     return (
