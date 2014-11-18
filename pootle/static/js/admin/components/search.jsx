@@ -8,6 +8,18 @@ var cx = React.addons.classSet;
 
 var Search = React.createClass({
 
+  propTypes: {
+    fields: React.PropTypes.array.isRequired,
+    handleSearch: React.PropTypes.func.isRequired,
+    handleSelectItem: React.PropTypes.func.isRequired,
+    items: React.PropTypes.obj.isRequired,
+    selectedItem: React.PropTypes.obj.isRequired,
+    searchLabel: React.PropTypes.string.isRequired,
+    searchPlaceholder: React.PropTypes.string.isRequired,
+    resultsCaption: React.PropTypes.string.isRequired,
+    searchQuery: React.PropTypes.string.isRequired,
+  },
+
   /* Lifecycle */
 
   getInitialState: function () {
@@ -88,6 +100,12 @@ var Search = React.createClass({
 
 var SearchBox = React.createClass({
 
+  propTypes: {
+    handleSearch: React.PropTypes.func,
+    placeholder: React.PropTypes.string,
+    searchQuery: React.PropTypes.string,
+  },
+
   /* Lifecycle */
 
   getInitialState: function () {
@@ -144,6 +162,15 @@ var SearchBox = React.createClass({
 
 var ItemTable = React.createClass({
 
+  propTypes: {
+    fields: React.PropTypes.array.isRequired,
+    items: React.PropTypes.obj.isRequired,
+    resultsCaption: React.PropTypes.string.isRequired,
+    searchQuery: React.PropTypes.string.isRequired,
+    selectedItem: React.PropTypes.obj.isRequired,
+    handleSelectItem: React.PropTypes.func.isRequired,
+  },
+
   render: function () {
     var createRow = function (item, index) {
       return (
@@ -171,6 +198,15 @@ var ItemTable = React.createClass({
 
 
 var ItemTableRow = React.createClass({
+
+  propTypes: {
+    fields: React.PropTypes.array.isRequired,
+    key: React.PropTypes.string.isRequired,
+    item: React.PropTypes.obj.isRequired,
+    index: React.PropTypes.number.isRequired,
+    selectedItem: React.PropTypes.obj.isRequired,
+    handleSelectItem: React.PropTypes.func.isRequired,
+  },
 
   render: function () {
     var item = this.props.item,
