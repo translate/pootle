@@ -1,11 +1,7 @@
 'use strict';
 
 var React = require('react');
-var _ = require('underscore');
 var Backbone = require('backbone');
-
-var Search = require('./search');
-var User = require('./user');
 
 
 var AdminApp = React.createClass({
@@ -119,59 +115,29 @@ var AdminApp = React.createClass({
   /* Layout */
 
   render: function () {
-    var viewsMap = {
-      add: <User.UserAdd
-              model={this.props.model}
-              collection={this.state.items}
-              handleSuccess={this.handleSave}
-              handleCancel={this.handleCancel} />,
-      edit: <User.UserEdit
-              model={this.state.selectedItem}
-              collection={this.state.items}
-              handleAdd={this.handleAdd}
-              handleSuccess={this.handleSave}
-              handleDelete={this.handleDelete} />
+    var props = {
+      items: this.state.items,
+      selectedItem: this.state.selectedItem,
+      searchQuery: this.state.searchQuery,
+      view: this.state.view,
+      collection: this.props.collection,
+      model: this.props.model,
+
+      handleSearch: this.handleSearch,
+      handleSelectItem: this.handleSelectItem,
+      handleAdd: this.handleAdd,
+      handleCancel: this.handleCancel,
+      handleSave: this.handleSave,
+      handleDelete: this.handleDelete,
     };
 
-    var args = {
-      count: this.state.items.count,
-    }, msg;
-
-    if (this.state.searchQuery) {
-      msg = ngettext('%(count)s user matches your query.',
-                     '%(count)s users match your query.', args.count);
-    } else {
-      msg = ngettext(
-        'There is %(count)s user.',
-        'There are %(count)s users. Below are the most recently added ones.',
-        args.count
-      );
-    }
-    var resultsCaption = interpolate(msg, args, true);
-
-    var fields = ['index', 'full_name', 'username', 'email'];
-
     return (
-      <div>
-        <div className="module first">
-          <Search
-            fields={fields}
-            handleSearch={this.handleSearch}
-            handleSelectItem={this.handleSelectItem}
-            items={this.state.items}
-            selectedItem={this.state.selectedItem}
-            searchLabel={gettext('Search Users')}
-            searchPlaceholder={gettext('Find user by name, email, properties')}
-            resultsCaption={resultsCaption}
-            searchQuery={this.state.searchQuery} />
-        </div>
-
-        <div className="module admin-content">
-          {viewsMap[this.state.view]}
-        </div>
+      <div className="admin-app">
+        {this.props.adminModule(props)}
       </div>
     );
   }
+
 });
 
 

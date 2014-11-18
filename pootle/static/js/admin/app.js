@@ -8,8 +8,8 @@ require('backbone-queryparams');
 require('backbone-queryparams-shim');
 require('imports?Backbone=>require("backbone")!backbone-move');
 
-var AdminApp = require('../components/main');
-var AdminRouter = require('../routers');
+var AdminApp = require('./components/main');
+var AdminRouter = require('./routers');
 
 
 window.PTL = window.PTL || {};
@@ -17,8 +17,9 @@ window.PTL = window.PTL || {};
 
 var itemTypes = {
   user: {
-    model: require('../../models/user').User,
-    collection: require('../../models/user').UserSet
+    adminModule: require('./components/user').UsersAdmin,
+    model: require('../models/user').User,
+    collection: require('../models/user').UserSet
   }
 };
 
@@ -37,7 +38,8 @@ PTL.admin = {
       router: new AdminRouter(),
       appRoot: opts.appRoot,
       collection: item.collection,
-      model: item.model
+      model: item.model,
+      adminModule: item.adminModule,
     });
     React.renderComponent(main, this.el);
   }

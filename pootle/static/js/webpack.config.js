@@ -7,7 +7,7 @@ var env = process.env.NODE_ENV;
 
 var entries = {
   'admin/general': './admin/general/app.js',
-  'admin/users': './admin/users/app.js',
+  admin: './admin/app.js',
   user: './user/app.js',
   common: ['./common.js'],
   editor: ['./editor/app.js'],

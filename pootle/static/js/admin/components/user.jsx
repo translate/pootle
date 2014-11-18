@@ -2,7 +2,68 @@
 
 var React = require('react');
 
+var Search = require('./search');
 var UserForm = require('../forms').UserForm;
+
+
+var UsersAdmin = React.createClass({
+
+  render: function () {
+    var viewsMap = {
+      add: <UserAdd
+              model={this.props.model}
+              collection={this.props.items}
+              handleSuccess={this.props.handleSave}
+              handleCancel={this.props.handleCancel} />,
+      edit: <UserEdit
+              model={this.props.selectedItem}
+              collection={this.props.items}
+              handleAdd={this.props.handleAdd}
+              handleSuccess={this.props.handleSave}
+              handleDelete={this.props.handleDelete} />
+    };
+
+    var args = {
+      count: this.props.items.count,
+    }, msg;
+
+    if (this.props.searchQuery) {
+      msg = ngettext('%(count)s user matches your query.',
+                     '%(count)s users match your query.', args.count);
+    } else {
+      msg = ngettext(
+        'There is %(count)s user.',
+        'There are %(count)s users. Below are the most recently added ones.',
+        args.count
+      );
+    }
+    var resultsCaption = interpolate(msg, args, true);
+
+    var fields = ['index', 'full_name', 'username', 'email'];
+
+    return (
+      <div className="admin-app-users">
+        <div className="module first">
+          <Search
+            fields={fields}
+            handleSearch={this.props.handleSearch}
+            handleSelectItem={this.props.handleSelectItem}
+            items={this.props.items}
+            selectedItem={this.props.selectedItem}
+            searchLabel={gettext('Search Users')}
+            searchPlaceholder={gettext('Find user by name, email, properties')}
+            resultsCaption={resultsCaption}
+            searchQuery={this.props.searchQuery} />
+        </div>
+
+        <div className="module admin-content">
+          {viewsMap[this.props.view]}
+        </div>
+      </div>
+    );
+  }
+
+});
 
 
 var UserAdd = React.createClass({
@@ -63,6 +124,5 @@ var UserEdit = React.createClass({
 
 
 module.exports = {
-  UserAdd: UserAdd,
-  UserEdit: UserEdit
+  UsersAdmin: UsersAdmin,
 };
