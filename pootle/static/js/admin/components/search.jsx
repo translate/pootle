@@ -13,7 +13,7 @@ var Search = React.createClass({
     handleSearch: React.PropTypes.func.isRequired,
     handleSelectItem: React.PropTypes.func.isRequired,
     items: React.PropTypes.object.isRequired,
-    selectedItem: React.PropTypes.object.isRequired,
+    selectedItem: React.PropTypes.object,
     searchLabel: React.PropTypes.string.isRequired,
     searchPlaceholder: React.PropTypes.string.isRequired,
     resultsCaption: React.PropTypes.string.isRequired,
@@ -167,7 +167,7 @@ var ItemTable = React.createClass({
     items: React.PropTypes.object.isRequired,
     resultsCaption: React.PropTypes.string.isRequired,
     searchQuery: React.PropTypes.string.isRequired,
-    selectedItem: React.PropTypes.object.isRequired,
+    selectedItem: React.PropTypes.object,
     handleSelectItem: React.PropTypes.func.isRequired,
   },
 
@@ -203,7 +203,7 @@ var ItemTableRow = React.createClass({
     fields: React.PropTypes.array.isRequired,
     item: React.PropTypes.object.isRequired,
     index: React.PropTypes.number.isRequired,
-    selectedItem: React.PropTypes.object.isRequired,
+    selectedItem: React.PropTypes.object,
     handleSelectItem: React.PropTypes.func.isRequired,
   },
 
