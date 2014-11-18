@@ -10,7 +10,7 @@ history, including the comparison view to the previous release.
 Release .next
 -------------
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-current...HEAD)
   <https://github.com/evernote/pootle/compare/release-current...HEAD>`_
 
 
@@ -19,7 +19,7 @@ Release `2014-06-24`_
 
 - Bugfix release (scores/ranks were not being properly displayed).
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2014-06-23...release-2014-06-24)
   <https://github.com/evernote/pootle/compare/release-2014-06-23...release-2014-06-24>`_
 
 .. _2014-06-24: https://github.com/evernote/pootle/releases/tag/release-2014-06-24
@@ -46,7 +46,7 @@ Release `2014-06-23`_
 - The ``update_translation_projects`` command has been removed — it's
   functionality has been merged into ``update_stores``. (`#241`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2014-05-22...release-2014-06-23)
   <https://github.com/evernote/pootle/compare/release-2014-05-22...release-2014-06-23>`_
 
 .. _2014-06-23: https://github.com/evernote/pootle/releases/tag/release-2014-06-23
@@ -63,7 +63,7 @@ Release `2014-05-22`_
 
 - Bugfix release (data integrity and caching issues, broken password reset).
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2014-05-20...release-2014-05-22)
   <https://github.com/evernote/pootle/compare/release-2014-05-20...release-2014-05-22>`_
 
 .. _2014-05-22: https://github.com/evernote/pootle/releases/tag/release-2014-05-22
@@ -88,7 +88,7 @@ Release `2014-05-20`_
 - User score is displayed in the header and dynamically updated when
   translation actions are made. (`#156`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2014-04-03...release-2014-05-20)
   <https://github.com/evernote/pootle/compare/release-2014-04-03...release-2014-05-20>`_
 
 .. _2014-05-20: https://github.com/evernote/pootle/releases/tag/release-2014-05-20
@@ -113,7 +113,7 @@ Release `2014-04-03`_
 - The same string can't be suggested more than once at the same time,
   avoiding duplicated suggestions pending review. (`#159`_, `#168`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2014-03-13...release-2014-04-03)
   <https://github.com/evernote/pootle/compare/release-2014-03-13...release-2014-04-03>`_
 
 .. _2014-04-03: https://github.com/evernote/pootle/releases/tag/release-2014-04-03
@@ -136,7 +136,7 @@ Release `2014-03-13`_
   the unit was already fuzzy, or some other action turned it fuzzy, such
   as using MT), they are always forced to clear the flag. (`#157`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2014-03-05...release-2014-03-13)
   <https://github.com/evernote/pootle/compare/release-2014-03-05...release-2014-03-13>`_
 
 .. _2014-03-13: https://github.com/evernote/pootle/releases/tag/release-2014-03-13
@@ -150,7 +150,7 @@ Release `2014-03-05`_
 
 - Added the ``changed_languages`` management command. (`9dd4023110`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2014-02-28...release-2014-03-05)
   <https://github.com/evernote/pootle/compare/release-2014-02-28...release-2014-03-05>`_
 
 .. _2014-03-05: https://github.com/evernote/pootle/releases/tag/release-2014-03-05
@@ -177,7 +177,7 @@ Release `2014-02-28`_
 
 - Several layout improvements that take into account different screen sizes.
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2014-01-31...release-2014-02-28)
   <https://github.com/evernote/pootle/compare/release-2014-01-31...release-2014-02-28>`_
 
 .. _2014-02-28: https://github.com/evernote/pootle/releases/tag/release-2014-02-28
@@ -202,7 +202,7 @@ Release `2014-01-31`_
 
 - Fixed contact form. (`#114`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2014-01-27...release-2014-01-31)
   <https://github.com/evernote/pootle/compare/release-2014-01-27...release-2014-01-31>`_
 
 .. _2014-01-31: https://github.com/evernote/pootle/releases/tag/release-2014-01-31
@@ -230,7 +230,7 @@ Release `2014-01-27`_
 - Projects can be disabled from the administration page, allowing to hide
   them temporarily while retaining statistics. (`#97`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2013-12-19...release-2014-01-27)
   <https://github.com/evernote/pootle/compare/release-2013-12-19...release-2014-01-27>`_
 
 .. _2014-01-27: https://github.com/evernote/pootle/releases/tag/release-2014-01-27
@@ -283,7 +283,7 @@ Release `2013-12-19`_
 - When going through all units in the translation editor, users will be
   automatically redirected back to overview. (`#87`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2013-11-29...release-2013-12-19)
   <https://github.com/evernote/pootle/compare/release-2013-11-29...release-2013-12-19>`_
 
 .. _2013-12-19: https://github.com/evernote/pootle/releases/tag/release-2013-12-19
@@ -312,7 +312,7 @@ Release `2013-11-29`_
 
 - Bugfix release.
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2013-11-28...release-2013-11-29)
   <https://github.com/evernote/pootle/compare/release-2013-11-28...release-2013-11-29>`_
 
 .. _2013-11-29: https://github.com/evernote/pootle/releases/tag/release-2013-11-29
@@ -345,7 +345,7 @@ Release `2013-11-28`_
 - The *Submit*/*Suggest* button is disabled until a change over the
   initial state of the unit is detected. (`#67`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2013-11-15...release-2013-11-28)
   <https://github.com/evernote/pootle/compare/release-2013-11-15...release-2013-11-28>`_
 
 .. _2013-11-28: https://github.com/evernote/pootle/releases/tag/release-2013-11-28
@@ -368,7 +368,7 @@ Release `2013-11-15`_
 - Table sorting is now remembered across overview pages, and not
   separately in project, language and translation project pages. (`#47`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2013-11-08...release-2013-11-15)
   <https://github.com/evernote/pootle/compare/release-2013-11-08...release-2013-11-15>`_
 
 .. _2013-11-15: https://github.com/evernote/pootle/releases/tag/release-2013-11-15
@@ -386,7 +386,7 @@ Release `2013-11-08`_
 - Fixed and avoided any inconsistencies in the unit's submitter
   information. (`#33`_)
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2013-10-29...release-2013-11-08)
   <https://github.com/evernote/pootle/compare/release-2013-10-29...release-2013-11-08>`_
 
 .. _2013-11-08: https://github.com/evernote/pootle/releases/tag/release-2013-11-08
@@ -418,7 +418,7 @@ Release `2013-10-29`_
 
 - Implemented new header styling.
 
-- `Commit comparison wrt previous release
+- `Commit comparison wrt previous release (release-2013-08-27...release-2013-10-29)
   <https://github.com/evernote/pootle/compare/release-2013-08-27...release-2013-10-29>`_
 
 .. _2013-10-29: https://github.com/evernote/pootle/releases/tag/release-2013-10-29
