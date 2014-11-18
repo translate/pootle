@@ -177,3 +177,13 @@
     min-width: 24em;
     max-width: 30em;
 }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)  {
+  .select2-search input,
+  .select2-search-choice-close,
+  .select2-container .select2-choice abbr,
+  .select2-container .select2-choice .select2-arrow b
+  {
+      background-image: url('../images/select2x2.png') !important;
+  }
+}
