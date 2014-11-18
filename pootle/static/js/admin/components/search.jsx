@@ -12,8 +12,8 @@ var Search = React.createClass({
     fields: React.PropTypes.array.isRequired,
     handleSearch: React.PropTypes.func.isRequired,
     handleSelectItem: React.PropTypes.func.isRequired,
-    items: React.PropTypes.obj.isRequired,
-    selectedItem: React.PropTypes.obj.isRequired,
+    items: React.PropTypes.object.isRequired,
+    selectedItem: React.PropTypes.object.isRequired,
     searchLabel: React.PropTypes.string.isRequired,
     searchPlaceholder: React.PropTypes.string.isRequired,
     resultsCaption: React.PropTypes.string.isRequired,
@@ -164,10 +164,10 @@ var ItemTable = React.createClass({
 
   propTypes: {
     fields: React.PropTypes.array.isRequired,
-    items: React.PropTypes.obj.isRequired,
+    items: React.PropTypes.object.isRequired,
     resultsCaption: React.PropTypes.string.isRequired,
     searchQuery: React.PropTypes.string.isRequired,
-    selectedItem: React.PropTypes.obj.isRequired,
+    selectedItem: React.PropTypes.object.isRequired,
     handleSelectItem: React.PropTypes.func.isRequired,
   },
 
@@ -201,10 +201,9 @@ var ItemTableRow = React.createClass({
 
   propTypes: {
     fields: React.PropTypes.array.isRequired,
-    key: React.PropTypes.string.isRequired,
-    item: React.PropTypes.obj.isRequired,
+    item: React.PropTypes.object.isRequired,
     index: React.PropTypes.number.isRequired,
-    selectedItem: React.PropTypes.obj.isRequired,
+    selectedItem: React.PropTypes.object.isRequired,
     handleSelectItem: React.PropTypes.func.isRequired,
   },
 
