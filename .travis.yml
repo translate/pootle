@@ -21,8 +21,14 @@ before_script:
   - if [[ $DATABASE_BACKEND == 'mysql' ]]; then mysql -e 'create database pootle;'; fi
 script:
   - python -m compileall -q -f .
-  - make docs
-  - make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
+  # FIXME revert breakdown of 'make build' after core merge
+  #- make docs
+  #- make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
+  # FIXME Don't raise Warning as Errors till docs have landed and are cleaned
+  # up See https://github.com/translate/pootle/issues/3307
+  - (cd docs; make SPHINXOPTS="-q" html)
+  - make assets
+  - make mo
   - coverage run --parallel-mode manage.py syncdb --noinput --traceback
   - coverage run --parallel-mode manage.py migrate --traceback
   - coverage run --parallel-mode manage.py initdb --traceback
