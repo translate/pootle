@@ -5,9 +5,26 @@ python:
   - 2.7
 env:
   matrix:
-    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=sqlite
-    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=postgres
-    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=mysql
+    - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=sqlite
+    - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=postgres
+    - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql
+    - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
+    - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
+    - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql
+matrix:
+  exclude:
+    - python: 2.6
+      env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
+    - python: 2.6
+      env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql
+    - python: 2.6
+      env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
+  allow_failures:
+    # Allow failure on Django 1.7.1 until we've migrated away from South to
+    # Django migration
+    - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
+    - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql
+    - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
 cache:
   - apt
 before_install:
