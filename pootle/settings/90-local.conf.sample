@@ -80,7 +80,8 @@ DATABASES = {
 # (these are the high-level logs of events on store/unit changes
 # and manage.py commands executed)
 
-LOGDIRECTORY = '/var/log/pootle'
+POOTLE_LOG_DIRECTORY = '/var/log/pootle'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -97,7 +98,8 @@ LOGGING = {
         # Log to a text file that can be rotated by logrotate
         'log_action': {
             'class': 'logging.handlers.WatchedFileHandler',
-            'filename': LOGDIRECTORY + '/pootle-activity.log',
+            'filename': os.path.join(POOTLE_LOG_DIRECTORY,
+                                     'pootle-activity.log'),
             'formatter':'action',
         },
     },
