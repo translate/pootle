@@ -382,6 +382,15 @@ def remove_paid_task(request, task_id=None):
     )
 
 
+def get_scores(user, start, end):
+    return ScoreLog.objects \
+        .select_related('submission__translation_project__project',
+                        'submission__translation_project__language',) \
+        .filter(user=user,
+                creation_time__gte=start,
+                creation_time__lte=end)
+
+
 def get_activity_data(request, user, month):
     [start, end] = get_date_interval(month)
 
@@ -404,16 +413,10 @@ def get_activity_data(request, user, month):
         'end': end.strftime('%Y-%m-%d'),
         'admin_permalink': request.build_absolute_uri(reverse('evernote-reports')),
     }
-    if user != '':
-        scores = ScoreLog.objects \
-            .select_related('submission__translation_project__project',
-                            'submission__translation_project__language',) \
-            .filter(user=user,
-                    creation_time__gte=start,
-                    creation_time__lte=end) \
-            .order_by(SCORE_TRANSLATION_PROJECT)
 
-        scores = list(scores)
+    if user != '':
+        scores = get_scores(user, start, end)
+        scores = list(scores.order_by(SCORE_TRANSLATION_PROJECT))
         json['grouped'] = get_grouped_paid_words(scores)
         scores.sort(key=lambda x: x.creation_time)
         json['daily'] = get_daily_activity(scores, start, end)
@@ -521,6 +524,7 @@ def get_paid_tasks(user, start, end):
             'type': task.task_type,
             'action': PaidTask.get_task_type_title(task.task_type),
             'rate': task.rate,
+            'date': task.date,
         })
 
     return result
