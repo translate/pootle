@@ -1,0 +1,9 @@
+-r build.txt
+
+coveralls
+MySQL-python
+psycopg2
+python-memcached
+pep8
+pytest
+pytest-django

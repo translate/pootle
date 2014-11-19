@@ -4,24 +4,40 @@ python:
   - 2.6
   - 2.7
 env:
-  - DJANGO_VERSION=1.4.5
-# When we do finally support Django 1.5 - it requires Python 2.6.5, so exclude
-# earlier versions (see https://docs.djangoproject.com/en/dev/faq/install/).
-#matrix:
-#  exclude:
-#    - python: 2.5
-#      env: DJANGO_VERSION=1.5
+  matrix:
+    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=sqlite
+    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=postgres
+    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=mysql
+cache:
+  - apt
+before_install:
+  - travis_retry sudo apt-get install -qq bc
 install:
-  - pip install --use-mirrors Django==$DJANGO_VERSION --timeout=240
-  - pip install -r requirements/build.txt --use-mirrors --timeout=240
+  - travis_retry pip install -r requirements/travis.txt --timeout=240
+  - travis_retry pip install "Django>=$DJANGO_VERSION,<"$(echo $(echo $DJANGO_VERSION | cut -d"." -f1,2) + 0.1 | bc) --timeout=240
   - python -V; pip freeze  # Print all installed versions for reference.
+before_script:
+  - if [[ $DATABASE_BACKEND == 'postgres' ]]; then psql -c 'create database pootle;' -U postgres; fi
+  - if [[ $DATABASE_BACKEND == 'mysql' ]]; then mysql -e 'create database pootle;'; fi
 script:
+  - python -m compileall -q -f .
+  - make docs
   - make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
-  - ./manage.py runserver &
+  - coverage run --parallel-mode manage.py syncdb --noinput --traceback
+  - coverage run --parallel-mode manage.py migrate --traceback
+  - coverage run --parallel-mode manage.py initdb --traceback
+  - coverage run --parallel-mode ./manage.py runserver --traceback &
   - TESTPID=$!
-  - sleep 100
+  - sleep 20
   - kill -2 $TESTPID
+  - tests/version-migration/migrate.sh
+  - make pep8
+after_success:
+  - coverage combine
+  - coveralls
 notifications:
   email:
     on_failure: always
     on_success: change
+services:
+  - memcached
