@@ -13,7 +13,7 @@ SFUSERNAME=$(shell egrep -A5 sourceforge ~/.ssh/config | egrep -m1 User | cut -d
 FORMATS=--formats=bztar
 TEST_ENV_NAME = pootle_test_env
 
-.PHONY: all build clean sprite test pot mo mo-all help docs assets
+.PHONY: all build clean sprite test pot mo mo-all help docs assets pep8
 
 all: help
 
@@ -60,6 +60,9 @@ mo:
 mo-all:
 	python setup.py build_mo --all
 
+pep8:
+	@./pootle/tools/pep8.sh travis
+
 publish-pypi:
 	python setup.py sdist ${FORMATS} upload
 
@@ -85,6 +88,7 @@ help:
 	@echo "  sprite - create CSS sprite"
 	@echo "  clean - remove any temporal files"
 	@echo "  test - run test suite"
+	@echo "  pep8 - run pep8 checks"
 	@echo "  pot - update the POT translations templates"
 	@echo "  mo - build MO files for languages listed in 'pootle/locale/LINGUAS'"
 	@echo "  mo-all - build MO files for all languages (only use for testing)"
