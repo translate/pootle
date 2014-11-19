@@ -26,6 +26,7 @@ var resolve = {
     underscore: __dirname + '/vendor/underscore.js',
 
     'backbone-move': __dirname + '/vendor/backbone/backbone.move.js',
+    'backbone-safesync': __dirname + '/vendor/backbone/backbone.safesync.js',
     // FIXME: get rid of bb-router
     'backbone-queryparams': __dirname + '/vendor/backbone/backbone.queryparams.js',
     'backbone-queryparams-shim': __dirname + '/vendor/backbone/backbone.queryparams-1.1-shim.js',
@@ -103,6 +104,9 @@ if (env === 'production') {
 plugins.push.apply(plugins, [
   new webpack.DefinePlugin({
     'process.env': {NODE_ENV: JSON.stringify(env)}
+  }),
+  new webpack.ProvidePlugin({
+    'window.Backbone': 'backbone',
   }),
   new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
 ]);

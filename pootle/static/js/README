@@ -157,6 +157,11 @@ Directory contents
 
         https://github.com/jhudson8/backbone-query-parameters
 
+      - backbone.safesync.js :
+        Prevents duplicated fetches in models and collections.
+
+        https://github.com/amccloud/backbone-safesync
+
     + jquery/
 
       - jquery.js :

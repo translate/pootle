@@ -11,6 +11,9 @@ require('jquery-magnific-popup');
 require('jquery-select2');
 require('jquery-tipsy');
 
+// Backbone plugins
+require('backbone-safesync');
+
 // Bootstrap (possibly fine to get rid of it)
 require('bootstrap-alert');
 require('bootstrap-transition');
