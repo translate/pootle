@@ -55,8 +55,6 @@ pep8:
 publish-pypi:
 	python setup.py sdist ${FORMATS} upload
 
-publish: publish-pypi
-
 help:
 	@echo "Help"
 	@echo "----"
@@ -74,7 +72,6 @@ help:
 	@echo "  mo-all - build MO files for all languages (only use for testing)"
 	@echo "  requirements - (re)generate pinned and minimum requirements"
 	@echo "  publish-pypi - publish on PyPI"
-	@echo "  publish - publish on PyPI"
 
 # Perform forced build using -W for the (.PHONY) requirements target
 requirements:
