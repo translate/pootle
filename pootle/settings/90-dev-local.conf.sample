@@ -228,4 +228,4 @@ LOOKUP_BACKENDS = [
 ]
 
 # URL for the amaGama TM server.
-AMAGAMA_URL = 'http://amagama.locamotion.org/tmserver/'
+AMAGAMA_URL = 'https://amagama-live.translatehouse.org/api/v1/'
