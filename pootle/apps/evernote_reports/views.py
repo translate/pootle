@@ -567,7 +567,7 @@ def get_summary(scores, start, end):
 
     for score in scores:
         if settings.USE_TZ:
-            score_time = timezone.make_naive(score.creation_time, tz)
+            score_time = timezone.make_aware(score.creation_time, tz)
 
         if (score.rate != rate or
             translation_month != score_time.month):
