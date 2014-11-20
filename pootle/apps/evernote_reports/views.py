@@ -524,7 +524,7 @@ def get_paid_tasks(user, start, end):
             'type': task.task_type,
             'action': PaidTask.get_task_type_title(task.task_type),
             'rate': task.rate,
-            'date': task.date,
+            'date': task.date.strftime('%Y-%m-%d'),
         })
 
     return result
