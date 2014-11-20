@@ -1,8 +1,8 @@
 Release Notes
 =============
 
-The following are release notes used on PyPI, Sourceforge and mailing lists for
-Pootle releases.
+The following are release notes used on PyPI and mailing lists for Pootle
+releases.
 
 These are the changes that have happened in Pootle and may affect your server.
 Also be aware of the :ref:`important changes in the Translate Toolkit
