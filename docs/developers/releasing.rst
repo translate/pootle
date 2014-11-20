@@ -16,11 +16,9 @@ Summary
 #. Tag the release
 #. Publish on PyPI
 #. Upload to Github
-#. Upload to Sourceforge
 #. Release documentation
 #. Update translate website
 #. Update Pootle dashboard
-#. Unstage sourceforge
 #. Announce to the world
 #. Cleanup
 
@@ -104,7 +102,6 @@ The release notes will be used in these places:
 
 - Pootle website -- `download page
   <http://pootle.translatehouse.org/download.html>`_ (used in gh-pages)
-- Sourceforge download -- README.rst (used to give user info)
 - Github releases (converted to Markdown)
 - Email announcements -- text version
 
@@ -387,48 +384,6 @@ You will need:
 #. Mark it as pre-release if it's a release candidate.
 
 
-Copy files to sourceforge
--------------------------
-Publishing files to the Translate Sourceforge project.
-
-.. note:: You need to have release permissions on sourceforge to perform this
-   step.
-
-- http://sourceforge.net/projects/translate/files/Pootle/
-
-You will need:
-
-- Tarball of the release
-- Release notes in reStructured Text
-
-#. Create a new folder in the `Pootle Sourceforge release folder
-   <https://sourceforge.net/projects/translate/files/Pootle/>`_ using the 'Add
-   Folder' button.  The folder name must be the same as the release name e.g.
-   ``2.5.0-rc1``.  Mark this as being for staging for the moment.
-#. ``make publish-sourceforge`` will give you the command to upload your
-   tarball and ``README.rst``.
-
-   #. Upload tarball for release.
-   #. Upload release notes as ``README.rst``.
-   #. Click on the info icon for ``README.rst`` and tick "Exclude Stats" to
-      exlude the README from stats counting.
-
-#. Check ``README.rst``. Since this is generated on Sourceforge, without
-   reference to the docs folder, some of the links will be broken.
-
-   #. Check all links
-   #. If broken links exist then download ``README.rst`` from Sourceforge, make
-      changes and upload your adjusted version.  Don't change the version in
-      ``releases/`` as we want that to continue to work correctly.
-
-#. Final checks:
-
-   #. Check that the README.rst for the parent ``Pootle`` folder is still
-      appropriate, this text is the text from ``/README.rst``.
-   #. Check all the links in ``README.rst`` files for existing releases, new
-      release and the parent folders.
-
-
 Release documentation
 ---------------------
 We need a tagged release or branch before we can do this.  The docs are
@@ -482,11 +437,6 @@ The dashboard used in Pootle's dashboard is updated in its own project:
 Do a ``git pull`` on the server to get the latest changes from the repo.
 
 
-Unstage on sourceforge
-----------------------
-If you have created a staged release folder, then unstage it now.
-
-
 Announce to the world
 ---------------------
 Let people know that there is a new version:
@@ -505,8 +455,6 @@ Cleanup
 -------
 Some possible cleanup tasks:
 
-- Remove any RC builds from the sourceforge download pages and add redirects to
-  Sourceforge ``Pootle`` top level download page.
 - Checkin any release notes and such (or maybe do that before tagging).
 - Remove your pootle-release checkout.
 - Remove pootle-release virtualenv: ``deactivate; rmvirtualenv pootle-release``
