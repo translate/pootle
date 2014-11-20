@@ -22,7 +22,7 @@ Additional Notes
 .. toctree::
    :maxdepth: 1
 
-   changelog
    releases/index
+   changelog
    external_docs
    license
