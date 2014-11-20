@@ -279,7 +279,7 @@ Translation environment configuration settings.
 .. setting:: AMAGAMA_URL
 
 ``AMAGAMA_URL``
-  Default: ``http://amagama.locamotion.org/tmserver/``
+  Default: ``https://amagama-live.translatehouse.org/api/v1/``
 
   URL to an amaGama Translation Memory server. The default service should work
   fine, but if you have a custom server set it here.
