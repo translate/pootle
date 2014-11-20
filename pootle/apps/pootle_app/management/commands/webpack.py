@@ -43,15 +43,15 @@ class Command(BaseCommand):
         default_static_dir = os.path.join(settings.WORKING_DIR, 'static')
         custom_static_dirs = filter(lambda x: x != default_static_dir,
                                     settings.STATICFILES_DIRS)
+        default_js_dir = os.path.join(default_static_dir, 'js')
 
-        webpack_config_file = os.path.join(default_static_dir,
-                                           'js/webpack.config.js')
+        webpack_config_file = os.path.join(default_js_dir, 'webpack.config.js')
 
-        webpack_cmd = 'webpack'
+        webpack_bin = os.path.join(default_js_dir, 'node_modules/.bin/webpack')
         if os.name == 'nt':
-            webpack_cmd = '%s.cmd' % webpack_cmd
+            webpack_bin = '%s.cmd' % webpack_bin
 
-        args = [webpack_cmd, '--config=%s' % webpack_config_file, '--progress',
+        args = [webpack_bin, '--config=%s' % webpack_config_file, '--progress',
                 '--colors']
 
         if options['dev']:
@@ -73,7 +73,7 @@ class Command(BaseCommand):
         except OSError:
             raise CommandError(
                 'webpack executable not found.\n'
-                'Make sure to install it globally by running '
-                '`npm install -g webpack`'
+                'Make sure to install it by running '
+                '`cd %s && npm install`' % default_js_dir
             )
             sys.exit(0)
