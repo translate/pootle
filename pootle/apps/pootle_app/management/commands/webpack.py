@@ -24,7 +24,6 @@ import subprocess
 
 from optparse import make_option
 
-
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
@@ -46,7 +45,7 @@ class Command(BaseCommand):
                                     settings.STATICFILES_DIRS)
 
         webpack_config_file = os.path.join(default_static_dir,
-                                   'js/webpack.config.js')
+                                           'js/webpack.config.js')
 
         webpack_cmd = 'webpack'
         if os.name == 'nt':
