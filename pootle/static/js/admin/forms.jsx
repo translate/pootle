@@ -6,6 +6,99 @@ var FormElement = require('../components/forms').FormElement;
 var ModelFormMixin = require('../mixins/forms').ModelFormMixin;
 
 
+var LanguageForm = React.createClass({
+  mixins: [ModelFormMixin],
+
+  fields: ['code', 'fullname', 'specialchars', 'nplurals', 'pluralequation'],
+
+
+  /* Handlers */
+
+  handleSuccess: function (model) {
+    // Add models at the beginning of the collection. When models exist,
+    // we need to move them to the first position, as Backbone doesn't
+    // honor the `at: <pos>` option in that scenario and there's
+    // no modified time attribute that could be used for sorting.
+    this.props.collection.unshift(model, {merge: true});
+    this.props.collection.move(model, 0);
+
+    this.props.handleSuccess(model);
+  },
+
+
+  /* Layout */
+
+  render: function () {
+    var model = this.getResource();
+    var errors = this.state.errors;
+    var formData = this.state.formData;
+
+    return (
+      <form method="post"
+            id="item-form"
+            onSubmit={this.handleFormSubmit}>
+        <div className="fields">
+          <FormElement
+            autoFocus={true}
+            attribute="code"
+            label={gettext('Code')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors} />
+          <FormElement
+            attribute="fullname"
+            label={gettext('Full Name')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors} />
+          <FormElement
+            attribute="specialchars"
+            label={gettext('Special Characters')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors} />
+          <FormElement
+            type="select"
+            clearable={false}
+            attribute="nplurals"
+            options={model.getFieldChoices('nplurals')}
+            label={gettext('Number of Plurals')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors} />
+          <FormElement
+            attribute="pluralequation"
+            label={gettext('Plural Equation')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors} />
+        </div>
+        <div className="buttons">
+          <input
+            type="submit"
+            className="btn btn-primary"
+            disabled={!this.state.isDirty}
+            value={gettext('Save')} />
+        {model.id &&
+          <ul className="action-links">
+            <li><a href={model.getAbsoluteUrl()}>{gettext('Overview')}</a></li>
+            <li><a href={model.getPermissionsUrl()}>{gettext('Permissions')}</a></li>
+          </ul>}
+        </div>
+      {this.props.handleDelete &&
+        <div>
+          <p className="divider" />
+          <div className="buttons">
+            <ItemDelete item={model} handleDelete={this.props.handleDelete} />
+          </div>
+        </div>}
+      </form>
+    );
+  }
+
+});
+
+
 var UserForm = React.createClass({
   mixins: [ModelFormMixin],
 
@@ -197,5 +290,6 @@ var ItemDelete = React.createClass({
 
 
 module.exports = {
-  UserForm: UserForm
+  LanguageForm: LanguageForm,
+  UserForm: UserForm,
 };

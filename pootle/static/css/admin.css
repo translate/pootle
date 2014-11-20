@@ -226,11 +226,31 @@ html[dir="rtl"] .admin-content h2 + .btn
 }
 
 #item-form .fields input,
-#item-form .fields textarea
+#item-form .fields textarea,
+#item-form .fields .Select
 {
     width: 70%;
     padding: 0.3em;
     line-height: 1.2;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+#item-form .fields .Select
+{
+    padding: 0;
+}
+
+#item-form .fields .Select-control
+{
+    border-radius: 0;
+}
+
+#item-form .fields .Select-input input
+{
+    padding: inherit;
+    line-height: inherit;
+    display: inherit;
 }
 
 #item-form .fields input[type="checkbox"]

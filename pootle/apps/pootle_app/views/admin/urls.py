@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2014 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -22,7 +22,7 @@ from django.conf.urls import include, patterns, url
 
 import staticpages.urls
 
-from . import UserAdminView, UserAPIView
+from . import LanguageAdminView, LanguageAPIView, UserAdminView, UserAPIView
 
 
 urlpatterns = patterns('pootle_app.views.admin',
@@ -41,8 +41,12 @@ urlpatterns = patterns('pootle_app.views.admin',
         name='pootle-admin-user-edit'),
 
     url(r'^/languages/$',
-        'adminlanguages.view',
+        LanguageAdminView.as_view(),
         name='pootle-admin-languages'),
+    url(r'^/languages/(?P<id>[0-9]+)/?$',
+        LanguageAdminView.as_view(),
+        name='pootle-admin-language-edit'),
+
     url(r'^/projects/$',
         'adminprojects.view',
         name='pootle-admin-projects'),
@@ -64,4 +68,11 @@ api_patterns = patterns('',
     url(r'^users/(?P<id>[0-9]+)/?$',
         UserAPIView.as_view(),
         name='pootle-xhr-admin-user'),
+
+    url(r'^languages/?$',
+        LanguageAPIView.as_view(),
+        name='pootle-xhr-admin-languages'),
+    url(r'^languages/(?P<id>[0-9]+)/?$',
+        LanguageAPIView.as_view(),
+        name='pootle-xhr-admin-languages'),
 )

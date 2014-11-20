@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -26,22 +26,19 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
+from pootle_language.models import Language
+
 
 LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$",
                          re.IGNORECASE)
 
 
-class MyLanguageAdminForm(forms.ModelForm):
+class LanguageForm(forms.ModelForm):
 
     class Meta:
-        fields = (
-            'code', 'fullname', 'specialchars', 'nplurals', 'pluralequation',
-        )
-
-    def __init__(self, *args, **kwargs):
-        super(MyLanguageAdminForm, self).__init__(*args, **kwargs)
-        self.fields['nplurals'].widget.attrs['class'] = \
-            "js-select2 select2-nplurals"
+        model = Language
+        fields = ('id', 'code', 'fullname', 'specialchars', 'nplurals',
+                  'pluralequation',)
 
     def clean_code(self):
         if (not self.cleaned_data['code'] == 'templates' and
@@ -49,6 +46,7 @@ class MyLanguageAdminForm(forms.ModelForm):
             raise forms.ValidationError(
                 _('Language code does not follow the ISO convention')
             )
+
         return self.cleaned_data["code"]
 
 
