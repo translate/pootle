@@ -353,12 +353,6 @@ Review the meta data. This is stored in ``setup.py``, use ``./setup.py --help``
 to se some options to display meta-data. The actual long description is taken
 from ``/README.rst``.
 
-To test before publishing run:
-
-.. code-block:: bash
-
-    $ make test-publish-pypi
-
 
 Then to actually publish:
 
