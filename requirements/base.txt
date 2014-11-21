@@ -9,6 +9,7 @@ django-redis-cache
 django-rq
 
 # Required by webassets, isn't shipped in Python < 2.7
+# FIXME remove once Django >= 1.7 is required
 argparse
 
 # Libraries
