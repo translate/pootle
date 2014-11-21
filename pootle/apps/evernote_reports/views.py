@@ -564,10 +564,14 @@ def get_summary(scores, start, end):
     translations = []
     reviews = []
     tz = timezone.get_default_timezone()
+    if settings.USE_TZ:
+        start = timezone.make_naive(start, tz)
+        end = timezone.make_naive(end, tz)
 
     for score in scores:
+        score_time = score.creation_time
         if settings.USE_TZ:
-            score_time = timezone.make_naive(score.creation_time, tz)
+           score_time = timezone.make_naive(score_time, tz)
 
         if (score.rate != rate or
             translation_month != score_time.month):
