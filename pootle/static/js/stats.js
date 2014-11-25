@@ -33,6 +33,7 @@ var stats = {
     this.retries = 0;
     this.pootlePath = options.pootlePath;
     this.processLoadedData(options.data);
+    this.first_page_load = true;
 
     $('td.stats-name').filter(':not([dir])').bidi();
 
@@ -139,6 +140,7 @@ var stats = {
     this.updateLastUpdates(data);
 
     if ($table.length) {
+      // this is a directory that contains subitems
       for (var name in data.children) {
         var item = data.children[name],
             code = name.replace(/[\.@]/g, '-'),
@@ -189,15 +191,22 @@ var stats = {
         }, 1);
       }
     } else {
-      setTimeout(function () {
-        $('#js-path-summary').click();
-      }, 1);
+      // this is a single store stats, let's expand its details
+      // only on first page load, and unless it is already expanded
+      if (this.first_page_load && $('#js-path-summary-more').data().collapsed) {
+        setTimeout(function () {
+          $('#js-path-summary').click();
+        }, 1);
+      }
+
     }
     helpers.updateRelativeDates();
 
     if (callback) {
       callback(data);
     }
+
+    this.first_page_load = false;
   },
 
   updateDirty: function () {
