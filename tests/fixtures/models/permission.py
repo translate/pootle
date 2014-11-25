@@ -74,7 +74,7 @@ def translate(pootle_content_type):
 
 @pytest.fixture
 def review(pootle_content_type):
-    """Require the `suggest` permission."""
+    """Require the `review` permission."""
     return _require_permission('review', 'Can review translations',
                                pootle_content_type)
 
