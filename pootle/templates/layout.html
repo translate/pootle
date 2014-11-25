@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
     {% endassets %}
     {% endblock css %}
+    {% block css_overrides %}
+    {% endblock css_overrides %}
     {% block favicon %}
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
     {% endblock favicon %}
