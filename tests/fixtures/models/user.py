@@ -21,8 +21,7 @@
 import pytest
 
 
-def _require_user(username, fullname, password=None,
-                  is_superuser=False, is_staff=False):
+def _require_user(username, fullname, password=None, is_superuser=False):
     """Helper to get/create a new user."""
     from django.contrib.auth import get_user_model
     User = get_user_model()
@@ -67,4 +66,4 @@ def system(db):
 def admin(db):
     """Require the admin user."""
     return _require_user('admin', 'Administrator', password='admin',
-                         is_superuser=True, is_staff=True)
+                         is_superuser=True)
