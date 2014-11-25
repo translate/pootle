@@ -530,6 +530,26 @@ table td.translate-translation
     height: auto;
     margin: 2px;
     vertical-align: top;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.developer-images a:active,
+.developer-images a:focus
+{
+    outline: none;
+    opacity: 1;
+}
+
+.developer-images a:hover img
+{
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+}
+
+.developer-images a:active img,
+.developer-images a:focus img
+{
+    outline: 2px solid Highlight;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
 
 .translate-locations,
@@ -1151,12 +1171,13 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar a
     text-decoration: none;
     white-space: nowrap;
 
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .translate-container a:hover
 {
     opacity: 1;
+    outline: none;
 }
 
 /* We don't want the above hover activity for links in the comments. */
