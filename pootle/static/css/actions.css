@@ -45,11 +45,6 @@ body.translate #actions
     font-weight: bold;
 }
 
-body.js-not-loaded #translate-actions li
-{
-    display: none;
-}
-
 #translate-actions .counter
 {
     padding: 0.1em 0.9em;
