@@ -43,7 +43,7 @@ def parse_requirements(file_name):
     requirements = []
     for line in open(file_name, 'r').read().split('\n'):
         # Ignore comments, blank lines and included requirements files
-        if re.match(r'(\s*#)|(\s*$)|(-r .*$)', line):
+        if re.match(r'(\s*#)|(\s*$)|((-r|--allow-external|--allow-unverified) .*$)', line):
             continue
 
         if re.match(r'\s*-e\s+', line):
