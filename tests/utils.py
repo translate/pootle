@@ -35,3 +35,10 @@ def formset_dict(data):
             new_data["form-%d-%s" % (i, key)] = value
 
     return new_data
+
+
+def items_equal(left, right):
+    """Returns `True` if items in `left` list are equal to items in
+    `right` list.
+    """
+    return sorted(left) == sorted(right)
