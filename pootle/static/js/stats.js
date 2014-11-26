@@ -32,8 +32,7 @@ var stats = {
   init: function (options) {
     this.retries = 0;
     this.pootlePath = options.pootlePath;
-    this.processLoadedData(options.data);
-    this.first_page_load = true;
+    this.processLoadedData(options.data, undefined, true);
 
     $('td.stats-name').filter(':not([dir])').bidi();
 
@@ -109,7 +108,7 @@ var stats = {
     }
   },
 
-  processLoadedData: function (data, callback) {
+  processLoadedData: function (data, callback, firstPageLoad) {
     var $table = $('#content table.stats'),
         dirtySelector = '#top-stats, #translate-actions, #autorefresh-notice',
         now = parseInt(Date.now() / 1000, 10);
@@ -193,7 +192,7 @@ var stats = {
     } else {
       // this is a single store stats, let's expand its details
       // only on first page load, and unless it is already expanded
-      if (this.first_page_load && $('#js-path-summary-more').data().collapsed) {
+      if (firstPageLoad && $('#js-path-summary-more').data('collapsed')) {
         setTimeout(function () {
           $('#js-path-summary').click();
         }, 1);
@@ -205,8 +204,6 @@ var stats = {
     if (callback) {
       callback(data);
     }
-
-    this.first_page_load = false;
   },
 
   updateDirty: function () {
