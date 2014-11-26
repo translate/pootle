@@ -9,6 +9,7 @@ from django.contrib.contenttypes.models import ContentType
 class Migration(SchemaMigration):
     depends_on = (
         ("pootle_statistics", "0004_auto__del_field_submission_from_suggestion"),
+        ("pootle_store", "0009_move_data_from_pootle_app_suggestion"),
     )
 
     def forwards(self, orm):
