@@ -109,7 +109,7 @@ Update the requirements files:
 
        - :file:`requirements-pinned.txt` - the maximum available version when
          we released.  Chances are we've tested with these and they are good.
-         Using this would prevent a person from intalling something newer but
+         Using this would prevent a person from installing something newer but
          untested.
 
 .. FIXME check that these are actually packaged next time we build as they are
@@ -304,11 +304,12 @@ You can then proceed with other tests such as checking:
      $ rmvirtualenv test-pootle-release
 
 #. Documentation is available in the package
-#. Installation documentation is correct
-
-   - Follow the :doc:`installation </server/installation>` and :doc:`hacking
-     <hacking>` guides to ensure that they are correct.
-
+#. Check that the instructions in the :doc:`Installation guide
+   </server/installation>` are correct
+#. Check that the instructions in the :doc:`Upgrade guide </server/upgrading>`
+   are correct
+#. Check that the instructions in the :doc:`Hacking guide <hacking>` are
+   correct
 #. Meta information about the package is correct. This is stored in
    :file:`setup.py`, to see some options to display meta-data use:
 
@@ -418,10 +419,12 @@ Do the following to create the release:
 
 #. Draft a new release with the corresponding tag version
 #. Convert the major changes in the release notes to Markdown with `Pandoc
-   <http://johnmacfarlane.net/pandoc/>`_ and add those to the release
-#. Include a link to the full release notes in the description
+   <http://johnmacfarlane.net/pandoc/>`_
+#. Add the converted major changes to the release description
+#. Include at the bottom of the release description a link to the full release
+   notes at Read The Docs
 #. Attach the tarball to the release
-#. Mark it as pre-release if it's a release candidate.
+#. Mark it as pre-release if it's a release candidate
 
 
 Update Pootle website
