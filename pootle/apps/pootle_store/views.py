@@ -748,7 +748,7 @@ def permalink_redirect(request, unit):
 def get_qualitycheck_stats(request, *args, **kwargs):
     failing_checks = request.resource_obj.get_checks()
     response = jsonify(failing_checks)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 @ajax_required
@@ -758,7 +758,7 @@ def get_qualitycheck_stats(request, *args, **kwargs):
 def get_overview_stats(request, *args, **kwargs):
     stats = request.resource_obj.get_stats()
     response = jsonify(stats)
-    return HttpResponse(response, mimetype="application/json")
+    return HttpResponse(response, content_type="application/json")
 
 
 @ajax_required
