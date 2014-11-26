@@ -12,10 +12,10 @@ ROOT_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 PODIRECTORY = os.path.join(ROOT_DIR, 'tests', 'data', 'po')
 
 
-# In-memory caching
+# Dummy caching
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
         'LOCATION': 'pootle-tests'
     }
 }
