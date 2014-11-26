@@ -217,14 +217,14 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     def accessible_by_user(self, user):
         """Returns a list of project codes accessible by `user`.
 
-        First checks for `user`, and if no explicit `view` permissions
-        have been found, falls back to `default` (if logged-in) and
-        `nobody` users.
+        Checks for explicit `view` permissions for `user`, and extends
+        them with the `default` (if logged-in) and `nobody` users' `view`
+        permissions.
         """
         user_projects = []
 
         check_usernames = [('nobody', False)]
-        if user.is_authenticated():
+        if not user.is_anonymous():
             check_usernames = [
                 (user.username, user.is_superuser),
                 ('default', False),
@@ -232,13 +232,10 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             ]
 
         for username, is_superuser in check_usernames:
-            user_projects = self.for_username(username,
-                                              is_superuser=is_superuser)
+            user_projects.extend(self.for_username(username,
+                                                   is_superuser=is_superuser))
 
-            if user_projects:
-                break
-
-        return user_projects
+        return list(set(user_projects))
 
     ############################ Properties ###################################
 

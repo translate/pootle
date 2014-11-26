@@ -50,3 +50,15 @@ def tutorial_disabled(projects, english):
     """Require `tutorial-disabled` test project in a disabled state."""
     return _require_project('tutorial-disabled', 'Tutorial', english,
                             disabled=True)
+
+
+@pytest.fixture
+def project_foo(projects, english):
+    """Require `foo` test project."""
+    return _require_project('foo', 'Foo Project', english)
+
+
+@pytest.fixture
+def project_bar(projects, english):
+    """Require `bar` test project."""
+    return _require_project('bar', 'Bar Project', english)
