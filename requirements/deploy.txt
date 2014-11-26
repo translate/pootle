@@ -7,7 +7,6 @@ MySQL-python
 
 # Libraries
 python-levenshtein
-python-memcached
 
 # Logging
 raven
