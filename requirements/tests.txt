@@ -2,4 +2,4 @@
 
 factory_boy
 pytest
-pytest-django>=2.6.1
+pytest-django>=2.6.1,<2.7

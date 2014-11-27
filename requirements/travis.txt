@@ -6,4 +6,4 @@ psycopg2
 python-memcached
 pep8
 pytest
-pytest-django
+pytest-django>=2.6.1,<2.7
