@@ -198,15 +198,15 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                 }
                 user_projects = self.objects.filter(**lookup_args)
 
-            # No explicit permissions for projects, let's examine the root
-            if not user_projects.count():
-                root_permissions = PermissionSet.objects.filter(
-                    directory__pootle_path='/',
-                    profile__username=username,
-                    positive_permissions__codename='view',
-                )
-                if root_permissions.count():
-                    user_projects = self.objects.all()
+                # No explicit permissions for projects, let's examine the root
+                if not user_projects.count():
+                    root_permissions = PermissionSet.objects.filter(
+                        directory__pootle_path='/',
+                        profile__username=username,
+                        positive_permissions__codename='view',
+                    )
+                    if root_permissions.count():
+                        user_projects = self.objects.all()
 
             user_projects = user_projects.values_list('code', flat=True)
             cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
