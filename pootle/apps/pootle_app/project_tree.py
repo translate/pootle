@@ -378,7 +378,7 @@ def get_translated_name_gnu(translation_project, store):
     if store.file:
         path_parts = store.file.path.split(os.sep)
         name = prefix + suffix
-        path_parts[-1] =  name
+        path_parts[-1] = name
         pootle_path_parts[-1] = name
     else:
         path_parts = store.parent.get_real_path().split(os.sep)

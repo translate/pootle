@@ -92,7 +92,7 @@ class Command(NoArgsCommand):
 
             message = "%s - %s" % (filterresult, check)
             if filtermessage:
-                message += ": %s" %  filtermessage
+                message += ": %s" % filtermessage
             logging.info(message)
 
             if not filterresult:
