@@ -25,6 +25,10 @@ matrix:
     - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
     - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql
     - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
+    # Disable alternate databases until we break away from being stuck on
+    # MyISAM
+    - env: DJANGO_VERSION=1.6.5 DATABASE_BACKEND=sqlite
+    - env: DJANGO_VERSION=1.6.5 DATABASE_BACKEND=postgres
 cache:
   - apt
 before_install:
