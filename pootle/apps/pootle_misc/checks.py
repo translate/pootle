@@ -679,7 +679,7 @@ class ENChecker(checks.TranslationChecker):
             chunks = broken_entities_regex_0.split(str)
             translate = False
             fingerprint = 1
-            
+
             for chunk in chunks:
                 translate = not translate
                 if translate:
