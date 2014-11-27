@@ -1,9 +1,8 @@
 -r build.txt
+-r tests.txt
 
 coveralls
 MySQL-python
 psycopg2
 python-memcached
 pep8
-pytest
-pytest-django>=2.6.1,<2.7
