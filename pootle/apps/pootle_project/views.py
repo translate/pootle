@@ -78,7 +78,7 @@ def overview(request, project, dir_path, filename):
 def translate(request, project, dir_path, filename):
     language = None
 
-    ctx= get_translation_context(request)
+    ctx = get_translation_context(request)
     ctx.update({
         'language': language,
         'project': project,
