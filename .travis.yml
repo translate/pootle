@@ -58,6 +58,7 @@ script:
   # FIXME reenable migration testing
   #- tests/version-migration/migrate.sh
   - make pep8
+  - py.test
 after_success:
   - coverage combine
   - coveralls
