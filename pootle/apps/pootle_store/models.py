@@ -403,11 +403,11 @@ class Unit(models.Model, base.TranslationUnit):
         # Check if unit currently being deleted is the one referenced in
         # last_action
         la = self.store.get_cached(CachedMethods.LAST_ACTION)
-        if not la or not 'id' in la or la['id'] == self.id:
+        if not la or 'id' not in la or la['id'] == self.id:
             self.store.mark_dirty(CachedMethods.LAST_ACTION)
         # and last_updated
         lu = self.store.get_cached(CachedMethods.LAST_UPDATED)
-        if not lu or not 'id' in lu or lu['id'] == self.id:
+        if not lu or 'id' not in lu or lu['id'] == self.id:
             self.store.mark_dirty(CachedMethods.LAST_UPDATED)
 
     def delete(self, *args, **kwargs):
