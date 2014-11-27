@@ -114,7 +114,7 @@ PTL.editor = {
         gallery: {
           enabled: true
         }
-      });
+      }).magnificPopup('open');
     });
 
     /*
