@@ -23,14 +23,6 @@ Once Node.js is available, Pootle dependencies need to be installed.
 This will read the `package.json` file and install the development
 dependencies.
 
-Afterwards Webpack needs to be installed system-wide. This tool allows to use
-CommonJS/AMD style modules, and offers advanced ways to create client-side
-builds.
-
-..code-block::bash
-
-  $ npm install -g webpack
-
 
 Building Scripts
 ----------------
