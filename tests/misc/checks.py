@@ -105,4 +105,3 @@ def test_unescaped_ampersands():
         except FilterFailure as e:
 
             assert (not state), info
-
