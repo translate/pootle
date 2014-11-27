@@ -21,7 +21,8 @@
 import pytest
 
 
-def _require_permission_set(user, directory, permissions):
+def _require_permission_set(user, directory, positive_permissions=None,
+                            negative_permissions=None):
     """Helper to get/create a new PermissionSet."""
     from pootle_app.models.permissions import PermissionSet
 
@@ -30,9 +31,12 @@ def _require_permission_set(user, directory, permissions):
         'directory': directory,
     }
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)
-    if created:
-        permission_set.positive_permissions = permissions
-        permission_set.save()
+    if positive_permissions is not None:
+        permission_set.positive_permissions = positive_permissions
+    if negative_permissions is not None:
+        permission_set.negative_permissions = negative_permissions
+
+    permission_set.save()
 
     return permission_set
 
