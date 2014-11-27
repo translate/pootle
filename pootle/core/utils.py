@@ -25,10 +25,10 @@ from difflib import SequenceMatcher
 
 ADDED, REMOVED = range(2)
 
-remove = re.compile(u"[\.]+", re.U) # dots
-delimiters = re.compile(u"[\W]+", re.U) # anything except a-z, A-Z and _
-delimiters_begin = re.compile(u"^[\W]+", re.U) # anything except a-z, A-Z and _
-delimiters_end = re.compile(u"[\W]+$", re.U) # anything except a-z, A-Z and _
+remove = re.compile(u"[\.]+", re.U)  # dots
+delimiters = re.compile(u"[\W]+", re.U)  # anything except a-z, A-Z and _
+delimiters_begin = re.compile(u"^[\W]+", re.U)  # anything except a-z, A-Z and _
+delimiters_end = re.compile(u"[\W]+$", re.U)  # anything except a-z, A-Z and _
 
 english_date = re.compile(
     u"(^|\W)(January|February|March|April|May|June|July|August|September|"

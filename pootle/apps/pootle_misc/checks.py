@@ -298,7 +298,7 @@ class ENChecker(checks.TranslationChecker):
 
                 # special text
                 if not is_source and fingerprint:
-                    tag = chunk[3:-2] # extract 'tagname' from '{{#tagname}}'
+                    tag = chunk[3:-2]  # extract 'tagname' from '{{#tagname}}'
 
                     if chunk[2:3] in ['#','^']:
                         # opening tag

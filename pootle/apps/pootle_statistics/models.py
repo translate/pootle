@@ -50,11 +50,11 @@ class SubmissionTypes(object):
     SUGG_ACCEPT = 3  # Accepting a suggestion
     UPLOAD = 4  # Uploading an offline file
     SYSTEM = 5  # Batch actions performed offline
-    MUTE_CHECK = 6 # Mute QualityCheck
-    UNMUTE_CHECK = 7 # Unmute QualityCheck
-    SUGG_ADD = 8 # Add new Suggestion
-    SUGG_REJECT = 9 # Reject Suggestion
-    UNIT_CREATE = 10 # Create a Unit with translation
+    MUTE_CHECK = 6  # Mute QualityCheck
+    UNMUTE_CHECK = 7  # Unmute QualityCheck
+    SUGG_ADD = 8  # Add new Suggestion
+    SUGG_REJECT = 9  # Reject Suggestion
+    UNIT_CREATE = 10  # Create a Unit with translation
 
     # Combined types that rely on other types (useful for querying)
     # Please use the `_TYPES` suffix to make it clear they're not core
