@@ -47,7 +47,7 @@ def test_auth_no_en_account(rf, monkeypatch, admin):
     request.user = admin
 
     # Account doesn't exist and we don't want to create it
-    assert auth.authenticate(request=request, create_account=False) == None
+    assert auth.authenticate(request=request, create_account=False) is None
 
     # New account will be created
     user = auth.authenticate(request=request)
