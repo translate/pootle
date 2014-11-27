@@ -4,5 +4,4 @@
 coveralls
 MySQL-python
 psycopg2
-python-memcached
 pep8
