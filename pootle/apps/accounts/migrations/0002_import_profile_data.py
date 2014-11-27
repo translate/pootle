@@ -82,6 +82,8 @@ class Migration(SchemaMigration):
         },
         'accounts.user': {
             'Meta': {'object_name': 'User'},
+            '_unit_rows': ('django.db.models.fields.SmallIntegerField', [], {'default': '9', 'db_column': "'unit_rows'"}),
+            'alt_src_langs': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'user_alt_src_langs'", 'blank': 'True', 'db_index': 'True', 'to': u"orm['pootle_language.Language']"}),
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '255'}),
             'full_name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
@@ -189,4 +191,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['pootle_app']
+    complete_apps = ['pootle_app', 'accounts']
