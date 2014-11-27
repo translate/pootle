@@ -90,27 +90,27 @@ def diff_stat(old, new):
 
 def find_placeholders(aref, regex, cls=''):
     # regex is compiled re object with pattern surrounded by "()"
-    i = 0;
+    i = 0
     while i < len(aref):
-        chunk = aref[i];
+        chunk = aref[i]
 
         if not chunk['translate']:
-            i += 1;
+            i += 1
         else:
-            subchunks = regex.split(chunk['string']);
-            a = [];
-            translate = False;
+            subchunks = regex.split(chunk['string'])
+            a = []
+            translate = False
 
             for subchunk in  subchunks:
-                translate = not translate;
+                translate = not translate
                 a.append({
                     'translate': translate,
                     'string': subchunk,
                     'class': cls
-                });
+                })
 
-            aref[i:i+1] = a;
-            i += len(a);
+            aref[i:i+1] = a
+            i += len(a)
 
 
 def wordcount(string):
@@ -179,7 +179,7 @@ def _count_words(aref):
             s = delimiters_begin.sub(u'', s)
             s = delimiters_end.sub(u'', s)
 
-            a = delimiters.split(s);
+            a = delimiters.split(s)
 
             if len(a) > 1 and a[-1] == u'':
                 a.pop()
@@ -187,6 +187,6 @@ def _count_words(aref):
             if len(a) == 1 and a[0] == u'':
                 a.pop()
 
-            n += len(a);
+            n += len(a)
 
     return n
