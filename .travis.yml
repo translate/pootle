@@ -68,3 +68,4 @@ notifications:
     on_success: change
 services:
   - memcached
+  - redis-server
