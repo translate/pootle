@@ -7,28 +7,34 @@ env:
   matrix:
     - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=sqlite
     - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=postgres
-    - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql
+    - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql_myisam
+    - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql_innodb
     - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
     - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
-    - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql
+    - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_myisam
+    - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_innodb
 matrix:
   exclude:
     - python: 2.6
       env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
     - python: 2.6
-      env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql
+      env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_myisam
+    - python: 2.6
+      env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_innodb
     - python: 2.6
       env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
   allow_failures:
     # Allow failure on Django 1.7.1 until we've migrated away from South to
     # Django migration
     - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
-    - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql
+    - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_myisam
+    - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_innodb
     - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
     # Disable alternate databases until we break away from being stuck on
     # MyISAM
     - env: DJANGO_VERSION=1.6.5 DATABASE_BACKEND=sqlite
     - env: DJANGO_VERSION=1.6.5 DATABASE_BACKEND=postgres
+    - env: DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql_innodb
 cache:
   - apt
 before_install:
@@ -39,7 +45,7 @@ install:
   - pip freeze  # Print all installed versions for reference.
 before_script:
   - if [[ $DATABASE_BACKEND == 'postgres' ]]; then psql -c 'create database pootle;' -U postgres; fi
-  - if [[ $DATABASE_BACKEND == 'mysql' ]]; then mysql -e 'create database pootle;'; fi
+  - if [ $DATABASE_BACKEND == 'mysql_myisam' -o  $DATABASE_BACKEND == 'mysql_innodb' ]; then mysql -e 'create database pootle;'; fi
 script:
   - python -m compileall -q -f .
   # FIXME revert breakdown of 'make build' after core merge
