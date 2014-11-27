@@ -255,7 +255,7 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             if (self.request is not None and
                 not check_permission('administrate', self.request) and
-                is_fuzzy == True):
+                is_fuzzy):
                 raise forms.ValidationError(_('Fuzzy flag must be cleared'))
 
             if new_target:

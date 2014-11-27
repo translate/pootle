@@ -142,7 +142,7 @@ def test_update_fuzzy(af_tutorial_po):
                                  {'target': u'samaka', 'fuzzy': True})
     store_unit = db_unit.getorig()
 
-    assert db_unit.isfuzzy() == True
+    assert db_unit.isfuzzy()
     assert db_unit.isfuzzy() == store_unit.isfuzzy()
 
     po_file = factory.getobject(af_tutorial_po.file.path)
@@ -194,7 +194,7 @@ def test_add_suggestion(af_tutorial_po, system):
     # Add new suggestion
     sugg, added = untranslated_unit.add_suggestion(suggestion_text)
     assert sugg is not None
-    assert added == True
+    assert added
     assert len(untranslated_unit.get_suggestions()) == 1
 
     # Already-suggested text can't be suggested again
@@ -210,5 +210,5 @@ def test_add_suggestion(af_tutorial_po, system):
 
     sugg, added = untranslated_unit.add_suggestion(suggestion_text)
     assert sugg is not None
-    assert added == True
+    assert added
     assert len(untranslated_unit.get_suggestions()) == 1
