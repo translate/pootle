@@ -101,7 +101,7 @@ def find_placeholders(aref, regex, cls=''):
             a = []
             translate = False
 
-            for subchunk in  subchunks:
+            for subchunk in subchunks:
                 translate = not translate
                 a.append({
                     'translate': translate,
