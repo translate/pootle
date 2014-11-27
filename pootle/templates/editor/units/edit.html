@@ -23,6 +23,21 @@
       </div>
       {% endif %}
       {% if unit.developer_comment or unit.locations %}
+      <!-- Terminology suggestions -->
+      {% with unit.get_terminology as terms %}
+      {% if terms %}
+      <div id="tm" class="sidebar" dir="{% locale_dir %}">
+        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</div>
+        {% for term in terms %}
+        <div class="tm-unit js-editor-copytext" data-string="{{ term.target }}"
+          title="{% trans 'Insert the translated term into the editor' %}">
+          <span class="tm-original" dir="{{ source_language.direction }}" lang="{{ source_language.code }}">{{ term.source }}</span>
+          <span class="tm-translation" dir="{{ language.direction }}" lang="{{ language.code }}">{{ term.target }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
       <!-- Developer comments -->
       <div class="comments sidebar">
         {% if unit.developer_comment %}
@@ -49,21 +64,6 @@
         {% endif %}
       </div>
       {% endif %}
-      <!-- Terminology suggestions -->
-      {% with unit.get_terminology as terms %}
-      {% if terms %}
-      <div id="tm" class="sidebar" dir="{% locale_dir %}">
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</div>
-        {% for term in terms %}
-        <div class="tm-unit js-editor-copytext" data-string="{{ term.target }}"
-          title="{% trans 'Insert the translated term into the editor' %}">
-          <span class="tm-original" dir="{{ source_language.direction }}" lang="{{ source_language.code }}">{{ term.source }}</span>
-          <span class="tm-translation" dir="{{ language.direction }}" lang="{{ language.code }}">{{ term.target }}</span>
-        </div>
-        {% endfor %}
-      </div>
-      {% endif %}
-      {% endwith %}
       <!-- Screenshot links -->
       {% if project.screenshot_search_prefix %}
       <div class="screenshot-link sidebar">
