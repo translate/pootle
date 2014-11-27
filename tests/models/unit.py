@@ -151,7 +151,7 @@ def test_update_fuzzy(af_tutorial_po):
     db_unit = _update_translation(af_tutorial_po, 0, {'fuzzy': False})
     store_unit = db_unit.getorig()
 
-    assert db_unit.isfuzzy() == False
+    assert not db_unit.isfuzzy()
     assert db_unit.isfuzzy() == store_unit.isfuzzy()
 
     po_file = factory.getobject(af_tutorial_po.file.path)
@@ -184,12 +184,12 @@ def test_add_suggestion(af_tutorial_po, system):
     # Empty suggestion is not recorded
     sugg, added = untranslated_unit.add_suggestion('')
     assert sugg is None
-    assert added == False
+    assert not added
 
     # Existing translation can't be added as a suggestion
     sugg, added = translated_unit.add_suggestion(translated_unit.target)
     assert sugg is None
-    assert added == False
+    assert not added
 
     # Add new suggestion
     sugg, added = untranslated_unit.add_suggestion(suggestion_text)
@@ -200,7 +200,7 @@ def test_add_suggestion(af_tutorial_po, system):
     # Already-suggested text can't be suggested again
     sugg, added = untranslated_unit.add_suggestion(suggestion_text)
     assert sugg is not None
-    assert added == False
+    assert not added
     assert len(untranslated_unit.get_suggestions()) == 1
 
     # Removing a suggestion should allow suggesting the same text again
