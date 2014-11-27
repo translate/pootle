@@ -438,7 +438,7 @@ class ScoreLog(models.Model):
         for score in [submitter_score, previous_translator_score,
                       previous_reviewer_score, suggester_score]:
             if 'action_code' in score and score['user'] is not None:
-               ScoreLog.objects.create(**score)
+                ScoreLog.objects.create(**score)
 
     def save(self, *args, **kwargs):
         # copy current user rate
@@ -482,7 +482,7 @@ class ScoreLog(models.Model):
             params.append('NS=%(wordcount)s')
 
             if self.action_code not in no_similarity_types:
-                  params.append('S=%(similarity)s')
+                params.append('S=%(similarity)s')
 
         params.append('(total: %(total)s)')
 
