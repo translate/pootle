@@ -175,9 +175,7 @@ class PermissionSet(models.Model):
                                   related_name='permission_sets')
     positive_permissions = models.ManyToManyField(Permission, db_index=True,
             related_name='permission_sets_positive')
-    # Negative permissions are no longer used, kept around to scheme
-    # compatibility with older versions.
-    negative_permissions = models.ManyToManyField(Permission, editable=False,
+    negative_permissions = models.ManyToManyField(Permission, db_index=True,
             related_name='permission_sets_negative')
 
     def __unicode__(self):

@@ -20,11 +20,11 @@
 
 import pytest
 
+from pootle_project.models import Project
+
 from ..factories import UserFactory
 from ..fixtures.models.permission_set import _require_permission_set
 from ..utils import items_equal
-
-from pootle_project.models import Project
 
 
 @pytest.mark.django_db
@@ -102,3 +102,92 @@ def test_root_view_permissions(nobody, default, admin, view,
     _require_permission_set(nobody, root, [view])
 
     assert items_equal(Project.accessible_by_user(nobody), ALL_PROJECTS)
+
+
+@pytest.mark.django_db
+def test_no_root_hide_permissions(nobody, default, admin, hide, view,
+                                  project_foo, project_bar, root):
+    """Tests user-accessible projects when there are no `hide` permissions
+    set at the root.
+    """
+    ALL_PROJECTS = [project_foo.code, project_bar.code]
+
+    foo_user = UserFactory.create(username='foo')
+    bar_user = UserFactory.create(username='bar')
+
+    # By default everyone has access to projects
+    _require_permission_set(default, root, [view])
+    _require_permission_set(nobody, root, [view])
+
+    # At the same time, `project_foo` is inaccessible registered users...
+    _require_permission_set(default, project_foo.directory,
+                            negative_permissions=[hide])
+
+    assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
+    assert items_equal(Project.accessible_by_user(default), [project_bar.code])
+    assert items_equal(Project.accessible_by_user(nobody), [project_bar.code])
+    assert items_equal(Project.accessible_by_user(foo_user), [project_bar.code])
+    assert items_equal(Project.accessible_by_user(bar_user), [project_bar.code])
+
+
+    # ...and anonymous users as well
+    _require_permission_set(nobody, project_foo.directory,
+                            negative_permissions=[hide])
+
+    assert items_equal(Project.accessible_by_user(nobody), [project_bar.code])
+
+
+    # Let's make `project_foo` accessible for `foo_user`
+    _require_permission_set(foo_user, project_foo.directory, [view])
+
+    assert items_equal(Project.accessible_by_user(foo_user), ALL_PROJECTS)
+
+
+    # `project_bar` is now inaccessible for anonymous users
+    _require_permission_set(nobody, project_bar.directory,
+                            negative_permissions=[hide])
+
+    assert items_equal(Project.accessible_by_user(nobody), [])
+
+
+@pytest.mark.django_db
+def test_root_hide_permissions(nobody, default, admin, hide, view,
+                               project_foo, project_bar, root):
+    """Tests user-accessible projects when there are `hide` permissions
+    set at the root.
+    """
+    ALL_PROJECTS = [project_foo.code, project_bar.code]
+
+    foo_user = UserFactory.create(username='foo')
+    bar_user = UserFactory.create(username='bar')
+
+    # By default all projects are not accessible
+    _require_permission_set(default, root, negative_permissions=[hide])
+    _require_permission_set(nobody, root, negative_permissions=[hide])
+
+    assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
+    assert items_equal(Project.accessible_by_user(default), [])
+    assert items_equal(Project.accessible_by_user(nobody), [])
+    assert items_equal(Project.accessible_by_user(foo_user), [])
+    assert items_equal(Project.accessible_by_user(bar_user), [])
+
+
+    # Now let's make `project_foo` accessible to `foo_user`.
+    _require_permission_set(foo_user, project_foo.directory, [view])
+
+    assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
+    assert items_equal(Project.accessible_by_user(default), [])
+    assert items_equal(Project.accessible_by_user(nobody), [])
+    assert items_equal(Project.accessible_by_user(foo_user), [project_foo.code])
+    assert items_equal(Project.accessible_by_user(bar_user), [])
+
+
+    # Making projects accessible for anonymous users should open the door
+    # for everyone
+    _require_permission_set(nobody, root, [view])
+
+    assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
+    assert items_equal(Project.accessible_by_user(default), ALL_PROJECTS)
+    assert items_equal(Project.accessible_by_user(nobody), ALL_PROJECTS)
+    assert items_equal(Project.accessible_by_user(foo_user), ALL_PROJECTS)
+    assert items_equal(Project.accessible_by_user(bar_user), ALL_PROJECTS)

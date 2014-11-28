@@ -34,6 +34,11 @@ from pootle_statistics.models import Submission
 
 User = get_user_model()
 
+PERMISSIONS = {
+    'positive': ['view', 'suggest', 'translate', 'review', 'administrate'],
+    'negative': ['hide'],
+}
+
 
 class PermissionFormField(forms.ModelMultipleChoiceField):
 
@@ -45,16 +50,24 @@ def admin_permissions(request, current_directory, template, context):
     project = context.get('project', None)
     language = context.get('language', None)
 
-    excluded_permissions = []
-    # Don't provide means to add `view` permissions under /<lang_code>/*
-    # In other words: only allow setting `view` permissions for the root
+    negative_permissions_excl = PERMISSIONS['negative']
+    positive_permissions_excl = PERMISSIONS['positive']
+
+    # Don't provide means to alter access permissions under /<lang_code>/*
+    # In other words: only allow setting access permissions for the root
     # and the `/projects/<code>/` directories
     if language is not None:
-        excluded_permissions.append('view')
+        access_permissions = ['view', 'hide']
+        negative_permissions_excl.extend(access_permissions)
+        positive_permissions_excl.extend(access_permissions)
 
     content_type = get_permission_contenttype()
-    permission_queryset = content_type.permission_set.exclude(
-        codename__in=excluded_permissions,
+
+    positive_permissions_qs = content_type.permission_set.exclude(
+        codename__in=negative_permissions_excl,
+    )
+    negative_permissions_qs = content_type.permission_set.exclude(
+        codename__in=positive_permissions_excl,
     )
 
     base_queryset = User.objects.filter(is_active=1).exclude(
@@ -107,7 +120,8 @@ def admin_permissions(request, current_directory, template, context):
 
         class Meta:
             model = PermissionSet
-            fields = ('profile', 'directory', 'positive_permissions',)
+            fields = ('profile', 'directory', 'positive_permissions',
+                      'negative_permissions')
 
         directory = forms.ModelChoiceField(
                 queryset=Directory.objects.filter(pk=current_directory.pk),
@@ -124,14 +138,32 @@ def admin_permissions(request, current_directory, template, context):
                 }),
         )
         positive_permissions = PermissionFormField(
-                label=_('Permissions'),
-                queryset=permission_queryset,
+                label=_('Add Permissions'),
+                queryset=positive_permissions_qs,
                 required=False,
                 widget=forms.SelectMultiple(attrs={
                     'class': 'js-select2 select2-multiple',
                     'data-placeholder': _('Select one or more permissions'),
                 }),
         )
+        negative_permissions = PermissionFormField(
+                label=_('Revoke Permissions'),
+                queryset=negative_permissions_qs,
+                required=False,
+                widget=forms.SelectMultiple(attrs={
+                    'class': 'js-select2 select2-multiple',
+                    'data-placeholder': _('Select one or more permissions'),
+                }),
+        )
+
+        def __init__(self, *args, **kwargs):
+            super(PermissionSetForm, self).__init__(*args, **kwargs)
+
+            # Don't display extra negative permissions field where they
+            # are not applicable
+            if language is not None:
+                del self.fields['negative_permissions']
+
 
     link = lambda instance: unicode(instance.profile)
     directory_permissions = current_directory.permission_sets \

@@ -54,7 +54,14 @@ def _require_permission(code, name, content_type):
 @pytest.fixture
 def view(pootle_content_type):
     """Require the `view` permission."""
-    return _require_permission('view', 'Can view a project',
+    return _require_permission('view', 'Can access a project',
+                               pootle_content_type)
+
+
+@pytest.fixture
+def hide(pootle_content_type):
+    """Require the `hide` permission."""
+    return _require_permission('hide', 'Cannot access a project',
                                pootle_content_type)
 
 

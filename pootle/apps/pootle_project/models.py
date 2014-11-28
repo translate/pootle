@@ -170,72 +170,79 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         db_table = 'pootle_app_project'
 
     @classmethod
-    def for_username(self, username, is_superuser=False):
-        """Returns a list of project codes available to `username`.
-
-        Checks for `view` permissions in project directories, and if no
-        explicit permissions are available, falls back to the root
-        directory for that user.
-
-        :param username: username to look projects for.
-        :param is_superuser: whether the given username is an admin user.
-            No restrictions will be put in place for such users.
-        """
-        key = iri_to_uri('projects:accessible:%s' % username)
-        user_projects = cache.get(key, None)
-
-        if user_projects is None:
-            logging.debug(u'Cache miss for %s', key)
-
-            if is_superuser:
-                user_projects = self.objects.all()
-            else:
-                lookup_args = {
-                    'directory__permission_sets__positive_permissions__codename':
-                        'view',
-                    'directory__permission_sets__profile__username':
-                        username,
-                }
-                user_projects = self.objects.filter(**lookup_args)
-
-                # No explicit permissions for projects, let's examine the root
-                if not user_projects.count():
-                    root_permissions = PermissionSet.objects.filter(
-                        directory__pootle_path='/',
-                        profile__username=username,
-                        positive_permissions__codename='view',
-                    )
-                    if root_permissions.count():
-                        user_projects = self.objects.all()
-
-            user_projects = user_projects.values_list('code', flat=True)
-            cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
-
-        return user_projects
-
-    @classmethod
-    def accessible_by_user(self, user):
+    def accessible_by_user(cls, user):
         """Returns a list of project codes accessible by `user`.
 
         Checks for explicit `view` permissions for `user`, and extends
         them with the `default` (if logged-in) and `nobody` users' `view`
         permissions.
+
+        Negative `hide` permissions are also taken into account and
+        they'll forbid project access as far as there's no `view`
+        permission set at the same level for the same user.
+
+        :param user: The ``User`` instance to get accessible projects for.
         """
-        user_projects = []
+        username = 'nobody' if user.is_anonymous() else user.username
+        key = iri_to_uri('projects:accessible:%s' % username)
+        user_projects = cache.get(key, None)
 
-        check_usernames = [('nobody', False)]
-        if not user.is_anonymous():
-            check_usernames = [
-                (user.username, user.is_superuser),
-                ('default', False),
-                ('nobody', False),
-            ]
+        if user_projects is not None:
+            return user_projects
 
-        for username, is_superuser in check_usernames:
-            user_projects.extend(self.for_username(username,
-                                                   is_superuser=is_superuser))
+        logging.debug(u'Cache miss for %s', key)
 
-        return list(set(user_projects))
+        if user.is_anonymous():
+            allow_usernames = [username]
+            forbid_usernames = [username, 'default']
+        else:
+            allow_usernames = list(set([username, 'default', 'nobody']))
+            forbid_usernames = list(set([username, 'default']))
+
+        # FIXME: use `cls.objects.cached_dict().keys()`, but that needs
+        # to use the `LiveProjectManager` first, as it only considers
+        # `enabled()` projects
+        ALL_PROJECTS = cls.objects.values_list('code', flat=True)
+
+        if user.is_superuser:
+            user_projects = ALL_PROJECTS
+        else:
+            ALL_PROJECTS = set(ALL_PROJECTS)
+
+            # Check root for `view` permissions
+
+            root_permissions = PermissionSet.objects.filter(
+                directory__pootle_path='/',
+                profile__username__in=allow_usernames,
+                positive_permissions__codename='view',
+            )
+            if root_permissions.count():
+                user_projects = ALL_PROJECTS
+            else:
+                user_projects = set()
+
+
+            # Check specific permissions at the project level
+
+            accessible_projects = cls.objects.filter(
+                directory__permission_sets__positive_permissions__codename='view',
+                directory__permission_sets__profile__username__in=allow_usernames,
+            ).values_list('code', flat=True)
+
+            forbidden_projects = cls.objects.filter(
+                directory__permission_sets__negative_permissions__codename='hide',
+                directory__permission_sets__profile__username__in=forbid_usernames,
+            ).values_list('code', flat=True)
+
+            allow_projects = set(accessible_projects)
+            forbid_projects = set(forbidden_projects) - allow_projects
+            user_projects = \
+                (user_projects.union(allow_projects)).difference(forbid_projects)
+
+        user_projects = list(user_projects)
+        cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
+
+        return user_projects
 
     ############################ Properties ###################################
 
