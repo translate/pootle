@@ -4,8 +4,8 @@ Hooks
 =====
 
 Pootle supports hooks to customize its behavior at various points in its
-interaction with :doc:`Version Control Systems <version_control>`,
-translation update, and translation initialization.
+interaction with Version Control Systems, translation update, and translation
+initialization.
 
 Hooks are Python scripts and can do things like checking or converting
 formats before commit.
@@ -64,9 +64,7 @@ symlinks in the :setting:`VCS_DIRECTORY`.
 
 The first parameter is the path to the project directory. It's up to this
 script to know any internal structure of the directory (in particular whether
-standard, GNU, or a special
-:ref:`tree style <version_control#how_to_treat_special_directory_layouts>`
-is used).
+standard, GNU, or a special tree style is used).
 
 The second parameter is the code for the language (e.g. ``nl``, ``pt-BR``,
 ``sr_RS@latin`` etc.) that is being added to the project.
@@ -76,12 +74,11 @@ The second parameter is the code for the language (e.g. ``nl``, ``pt-BR``,
 precommit
 ---------
 
-This hook is called when a translation file for a project is
-:ref:`committed <version_control#committing>` to VCS (possibly as a result of
-an :ref:`update against templates <templates#updating_against_templates>` that
-added a new file, in which case it is called after the ``pretemplateupdate``
-hook). It can be used to perform conversion to another format and other
-pre-commit checks and fixups.
+This hook is called when a translation file for a project is committed to VCS
+(possibly as a result of an :ref:`update against templates
+<templates#updating_against_templates>` that added a new file, in which case it
+is called after the ``pretemplateupdate`` hook). It can be used to perform
+conversion to another format and other pre-commit checks and fixups.
 
 The first parameter is the path to the file that will be committed. The second
 parameter is the author what will be used for the commit, and the third argument
@@ -107,9 +104,9 @@ parameter is a boolean indicating whether the commit was successful.
 preupdate
 ---------
 
-This hook is called when a translation file for a project is
-:ref:`updated <version_control#updating>` from VCS.  It can be used to
-set up for conversion from another format in the project source files.
+This hook is called when a translation file for a project is updated from VCS.
+It can be used to set up for conversion from another format in the project
+source files.
 
 The first (and only) parameter is the path to the translation file that will be
 updated.

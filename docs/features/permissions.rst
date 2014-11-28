@@ -82,7 +82,7 @@ administrate
 
 commit
   The right to update or commit a file to the version control system (if the
-  files are configured for :doc:`version_control` integration)
+  files are configured for version_control integration)
 
 
 .. _permissions#permissions_interface:
