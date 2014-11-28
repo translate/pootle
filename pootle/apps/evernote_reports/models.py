@@ -23,6 +23,7 @@ __all__ = ('PaidTask', )
 
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -48,7 +49,7 @@ class PaidTask(models.Model):
                                                  default=PaidTaskTypes.TRANSLATION)
     amount = models.PositiveIntegerField(_('Amount'), default=0, null=False)
     rate = models.FloatField(null=False, default=0)
-    date = models.DateField(_('Task month'), null=False, db_index=True)
+    datetime = models.DateTimeField(_('Date'), null=False, db_index=True)
     description = models.TextField(_('Description'), null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
@@ -58,5 +59,10 @@ class PaidTask(models.Model):
 
     def __unicode__(self):
         return u'Task: [id=%s, user=%s, month=%s, type=%s, amount=%s, comment=%s]' % \
-            (self.id, self.user.username, self.date.strftime('%Y-%m'),
+            (self.id, self.user.username, self.datetime.strftime('%Y-%m'),
              PaidTask.get_task_type_title(self.task_type), self.amount, self.description)
+
+    def clean(self):
+        if (timezone.now().month == self.datetime.month and
+            timezone.now().year == self.datetime.year):
+            self.datetime = timezone.now()

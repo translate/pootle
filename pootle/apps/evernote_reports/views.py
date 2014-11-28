@@ -21,7 +21,7 @@
 
 import calendar
 import math
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -74,8 +74,12 @@ class UserStatsView(NoDefaultUserMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         ctx = super(UserStatsView, self).get_context_data(**kwargs)
+        now = datetime.now()
+        if settings.USE_TZ:
+            tz = timezone.get_default_timezone()
+            now = timezone.make_aware(now, tz)
         ctx.update({
-            'now': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'now': now.strftime('%Y-%m-%d %H:%M:%S'),
         })
         if self.object.rate > 0:
             ctx.update({
@@ -145,6 +149,10 @@ class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin, PaidTaskFormVi
 @admin_required
 def evernote_reports(request):
     User = get_user_model()
+    now = datetime.now()
+    if settings.USE_TZ:
+        tz = timezone.get_default_timezone()
+        now = timezone.make_aware(now, tz)
 
     ctx = {
         'users': jsonify(map(
@@ -153,7 +161,7 @@ def evernote_reports(request):
         )),
         'user_rates_form': UserRatesForm(),
         'paid_task_form': PaidTaskForm(),
-        'now': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'now': now.strftime('%Y-%m-%d %H:%M:%S'),
         'admin_report': True,
     }
 
@@ -164,8 +172,9 @@ def evernote_reports(request):
 def get_detailed_report_context(user, month):
     [start, end] = get_date_interval(month)
 
-    scores = []
-    totals = {'translated': {}, 'reviewed': {}, 'total': 0}
+    totals = {'translated': {}, 'reviewed': {}, 'total': 0,
+              'paid_tasks': {},
+              'all': 0}
 
     if user and start and end:
         scores = ScoreLog.objects \
@@ -175,7 +184,14 @@ def get_detailed_report_context(user, month):
                     creation_time__lte=end) \
             .order_by('creation_time')
 
+        tasks = PaidTask.objects \
+                .filter(user=user,
+                        datetime__gte=start,
+                        datetime__lte=end) \
+                .order_by('datetime')
+
         scores = list(scores)
+        tasks = list(tasks)
 
         for score in scores:
             translated, reviewed = score.get_paid_words()
@@ -200,7 +216,27 @@ def get_detailed_report_context(user, month):
 
             score.similarity = score.get_similarity() * 100
 
-        totals['all'] = 0
+        paid_tasks = totals['paid_tasks']
+        for task in tasks:
+            task.action = PaidTask.get_task_type_title(task.task_type)
+            task.subtotal = task.amount * task.rate
+            totals['all'] += task.subtotal
+
+            if task.task_type not in paid_tasks:
+                paid_tasks[task.task_type] = {
+                    'rates': {},
+                    'action': task.action
+                }
+
+            if task.rate in paid_tasks[task.task_type]['rates']:
+                current = paid_tasks[task.task_type]['rates'][task.rate]
+                current['amount'] += task.amount
+                current['subtotal'] += task.subtotal
+            else:
+                paid_tasks[task.task_type]['rates'][task.rate] = {
+                    'amount': task.amount,
+                    'subtotal': task.subtotal,
+                }
 
         for rate, words in totals['translated'].items():
             totals['translated'][rate]['words'] = totals['translated'][rate]['words']
@@ -214,11 +250,16 @@ def get_detailed_report_context(user, month):
 
         totals['all'] = totals['all']
 
+        items = [{'score': x, 'creation_time': x.creation_time} for x in scores] + \
+                [{'task': x, 'creation_time': x.datetime}
+                 for x in tasks]
+        items = sorted(items, key=lambda x: x['creation_time'])
+
     if user != '' and user.currency is None:
         user.currency = CURRENCIES[0][0]
 
     return {
-        'scores': scores,
+        'items': items,
         'object': user,
         'start': start,
         'end': end,
@@ -308,7 +349,7 @@ def update_user_rates(request):
                 'creation_time__gte': effective_from
             })
             paid_task_filter.update({
-                'date__gte': effective_from
+                'datetime__gte': effective_from
             })
 
         scorelog_query = ScoreLog.objects.filter(**scorelog_filter)
@@ -402,12 +443,18 @@ def get_activity_data(request, user, month):
         'hourly_rate': user.hourly_rate,
     } if user != '' else user
 
+    now = datetime.now()
+    if settings.USE_TZ:
+        tz = timezone.get_default_timezone()
+        now = timezone.make_aware(now, tz)
+
     json['meta'] = {
         'user': user_dict,
         'month': month,
-        'now': timezone.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'now': now.strftime('%Y-%m-%d %H:%M:%S'),
         'start': start.strftime('%Y-%m-%d'),
         'end': end.strftime('%Y-%m-%d'),
+        'utc_offset': start.strftime("%z"),
         'admin_permalink': request.build_absolute_uri(reverse('evernote-reports')),
     }
 
@@ -418,7 +465,13 @@ def get_activity_data(request, user, month):
         scores.sort(key=lambda x: x.creation_time)
         json['daily'] = get_daily_activity(scores, start, end)
         json['summary'] = get_summary(scores, start, end)
-        json['paid_tasks'] = get_paid_tasks(user, start, end)
+        tasks = get_paid_tasks(user, start, end)
+        for task in tasks:
+            if settings.USE_TZ:
+                task['datetime'] = timezone.localtime(task['datetime'], tz)
+            task['datetime'] = task['datetime'].strftime('%Y-%m-%d %H:%M:%S')
+
+        json['paid_tasks'] = tasks
 
     return json
 
@@ -509,8 +562,8 @@ def get_paid_tasks(user, start, end):
 
     tasks = PaidTask.objects \
         .filter(user=user,
-                date__gte=start,
-                date__lte=end) \
+                datetime__gte=start,
+                datetime__lte=end) \
         .order_by('pk')
 
     for task in tasks:
@@ -521,7 +574,7 @@ def get_paid_tasks(user, start, end):
             'type': task.task_type,
             'action': PaidTask.get_task_type_title(task.task_type),
             'rate': task.rate,
-            'date': task.date.strftime('%Y-%m-%d'),
+            'datetime': task.datetime,
         })
 
     return result

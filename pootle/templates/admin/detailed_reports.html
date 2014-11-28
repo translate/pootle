@@ -152,40 +152,57 @@
       </tr>
     </thead>
     <tbody>
-    {% for score in scores %}
-      {% if score.action %}
-      <tr>
-        <td>{{ score.creation_time }}</td>
-        <td>{{ score.action }}</td>
-        <td class="unit">
-          {% if score.submission.unit.isobsolete %}
-            <strike>#{{ score.submission.unit.id }}</strike>
-          {% else %}
-            <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
+    {% for item in items %}
+      {% if item.score %}
+        {% with score=item.score %}
+          {% if score.action %}
+          <tr>
+            <td>{{ score.creation_time }}</td>
+            <td>{{ score.action }}</td>
+            <td class="unit">
+              {% if score.submission.unit.isobsolete %}
+                <strike>#{{ score.submission.unit.id }}</strike>
+              {% else %}
+                <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
+              {% endif %}
+            </td>
+            <td class="number">{{ score.wordcount }}</td>
+            <td class="number">{% if score.is_similarity_taken_from_mt %}<sup>MT</sup>{% endif %}{% if score.action == 'Review' %}&mdash;{% elif score.action == 'Translation' %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
+            <td class="number">{{ score.words|floatformat:2 }}</td>
+            {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
+              <td class="number">{% if score.action == 'Review' %}{{ score.review_rate }}{% elif score.action = 'Translation' %}{{ score.rate }}{% endif %} {{ object.currency }}</td>
+              <td class="number">{{ score.subtotal|floatformat:4 }} {{ object.currency }}</td>
+            {% endif %}
+          </tr>
           {% endif %}
-        </td>
-        <td class="number">{{ score.wordcount }}</td>
-        <td class="number">{% if score.is_similarity_taken_from_mt %}<sup>MT</sup>{% endif %}{% if score.action == 'Review' %}&mdash;{% elif score.action == 'Translation' %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
-        <td class="number">{{ score.words|floatformat:2 }}</td>
-        {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
-          <td class="number">{% if score.action == 'Review' %}{{ score.review_rate }}{% elif score.action = 'Translation' %}{{ score.rate }}{% endif %} {{ object.currency }}</td>
-          <td class="number">{{ score.subtotal|floatformat:4 }} {{ object.currency }}</td>
+        {% endwith %}
+      {% else %}
+        {% if own_report and object.rate > 0 or admin_report and object.rate > 0 %}
+          {% with task=item.task %}
+            <tr>
+              <td>{{ task.datetime }}</td>
+              <td colspan="4">{{ task.action }} ({% trans "registered tasks" %})</td>
+              <td class="number">{{ task.amount }}</td>
+              <td class="number">{{ task.rate }} {{ object.currency }}</td>
+              <td class="number">{{ task.subtotal }} {{ object.currency }}</td>
+            </tr>
+          {% endwith %}
         {% endif %}
-      </tr>
       {% endif %}
+
     {% empty %}
       <tr class="empty">
         <td colspan="8">{% trans "No activity recorded in a given period" %}</td>
       </tr>
     {% endfor %}
-    {% if scores %}
+    {% if items %}
     <tr class="separator">
         <th colspan="8"></th>
     </tr>
     {% for rate, item in totals.translated.items %}
       <tr>
         <td>&nbsp;</td>
-        <td colspan="4">{% trans "Translated (subtotal)" %}</td>
+        <td colspan="4">{% trans "Translation (subtotal)" %}</td>
         <td class="number">{% if item.words > 0 %}{{ item.words }}{% else %}&mdash;{% endif %}</td>
         {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
           <td class="number">{{ rate }} {{ object.currency }}</td>
@@ -196,7 +213,7 @@
     {% for rate, item in totals.reviewed.items %}
       <tr>
         <td>&nbsp;</td>
-        <td colspan="4">{% trans "Reviewed (subtotal)" %}</td>
+        <td colspan="4">{% trans "Review (subtotal)" %}</td>
         <td class="number">{% if item.words > 0 %}{{ item.words }}{% else %}&mdash;{% endif %}</td>
         {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
           <td class="number">{{ rate }} {{ object.currency }}</td>
@@ -205,6 +222,19 @@
       </tr>
     {% endfor %}
       {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
+
+        {% for type, value in totals.paid_tasks.items %}
+          {% for rate, item in value.rates.items %}
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="4">{{ value.action }} ({% trans "registered tasks" %})</td>
+            <td class="number">{{ item.amount }}</td>
+            <td class="number">{{ rate }} {{ object.currency }}</td>
+            <td class="number">{{ item.subtotal }} {{ object.currency }}</td>
+          </tr>
+          {% endfor %}
+        {% endfor %}
+
         <tr class="total">
           <td>&nbsp;</td>
           <td colspan="6">{% trans "Total" %}</td>

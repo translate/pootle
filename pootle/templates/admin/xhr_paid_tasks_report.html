@@ -4,6 +4,7 @@
   <table class="stats">
     <thead>
     <tr>
+      <th><%= gettext('Datetime') %> (UTC<%= meta.utc_offset %>)</th>
       <th><%= gettext('Comment') %></th>
       <th><%= gettext('Action') %></th>
       <th class="number"><%= gettext('Amount') %></th>
@@ -17,13 +18,14 @@
     <% _.each(paid_tasks, function (row) { %>
       <%
         var amount = row.amount;
-        if (row.type === 2) {
+        if (row.type === PTL.reports.paidTaskTypes.hourlyWork) {
           amount += ' ' + ngettext("hour", "hours", Math.round(row.amount));
-        } else {
+        } else if (row.type === PTL.reports.paidTaskTypes.translation || row.type === PTL.reports.paidTaskTypes.review) {
           amount += ' ' + ngettext("word", "words", Math.round(row.amount));
         }
       %>
       <tr class="item task<%= row.id %>">
+        <td><%= row.datetime %></td>
         <td><%= row.description %></td>
         <td><%= row.action %></td>
         <td class="number"><%= amount %></td>

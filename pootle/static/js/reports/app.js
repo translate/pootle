@@ -271,6 +271,8 @@ PTL.reports = {
     for (var index in data.paid_tasks) {
       var task = data.paid_tasks[index],
           item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate);
+
+      task.datetime = moment(task.datetime, 'YYYY-MM-DD hh:mm:ss').format('MMMM D, HH:mm')
       if (item !== null) {
         item.amount += task.amount;
       } else {
@@ -459,15 +461,17 @@ PTL.reports = {
   },
 
   setPaidTaskDate: function () {
-    $('#paid-task-form .month').html(PTL.reports.month.format('MMMM, YYYY'));
-    // set paid task date
+    var datetime;
+    // set paid task datetime
     if (PTL.reports.now >= PTL.reports.month.clone().add({M: 1})) {
-      $('#paid-task-form #id_date').val(PTL.reports.month.clone().add({M: 1}).subtract({d: 1}).format('YYYY-MM-DD'));
+      datetime = PTL.reports.month.clone().add({M: 1}).subtract({s: 1})
     } else if (PTL.reports.now <= PTL.reports.month) {
-      $('#paid-task-form #id_date').val(PTL.reports.month.format('YYYY-MM-DD'));
+      datetime = PTL.reports.month;
     } else {
-      $('#paid-task-form #id_date').val(PTL.reports.now.format('YYYY-MM-DD'));
+      datetime = PTL.reports.now;
     }
+    $('#paid-task-form .month').html(datetime.format('MMMM D, YYYY'));
+    $('#paid-task-form #id_datetime').val(datetime.format('YYYY-MM-DD HH:mm:ss'));
   },
 
 };
