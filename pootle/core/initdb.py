@@ -130,8 +130,12 @@ def create_pootle_permissions():
     # Create the permissions.
     permissions = [
         {
-            'name': _("Can view a project"),
+            'name': _("Can access a project"),
             'codename': "view",
+        },
+        {
+            'name': _("Cannot access a project"),
+            'codename': "hide",
         },
         {
             'name': _("Can make a suggestion for a translation"),

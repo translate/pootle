@@ -319,58 +319,76 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
     ############################ Methods ######################################
 
     @classmethod
-    def for_username(self, username):
-        """Returns a list of project codes available to `username`.
+    def accessible_by_user(cls, user):
+        """Returns a list of project codes accessible by `user`.
 
-        Checks for `view` permissions in project directories, and if no
-        explicit permissions are available, falls back to the root
-        directory for that user.
+        Checks for explicit `view` permissions for `user`, and extends
+        them with the `default` (if logged-in) and `nobody` users' `view`
+        permissions.
+
+        Negative `hide` permissions are also taken into account and
+        they'll forbid project access as far as there's no `view`
+        permission set at the same level for the same user.
+
+        :param user: The ``User`` instance to get accessible projects for.
         """
+        username = 'nobody' if user.is_anonymous() else user.username
         key = iri_to_uri('projects:accessible:%s' % username)
         user_projects = cache.get(key, None)
 
-        if user_projects is None:
-            logging.debug(u'Cache miss for %s', key)
-            lookup_args = {
-                'directory__permission_sets__positive_permissions__codename': 'view',
-                'directory__permission_sets__user__username': username,
-            }
-            user_projects = self.objects.cached().filter(**lookup_args)
+        if user_projects is not None:
+            return user_projects
 
-            # No explicit permissions for projects, let's examine the root
-            if not user_projects.count():
-                root_permissions = PermissionSet.objects.filter(
-                    directory__pootle_path='/',
-                    user__username=username,
-                    positive_permissions__codename='view',
-                )
-                if root_permissions.count():
-                    user_projects = self.objects.cached()
+        logging.debug(u'Cache miss for %s', key)
 
-            user_projects = user_projects.values_list('code', flat=True)
-            cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
+        if user.is_anonymous():
+            allow_usernames = [username]
+            forbid_usernames = [username, 'default']
+        else:
+            allow_usernames = list(set([username, 'default', 'nobody']))
+            forbid_usernames = list(set([username, 'default']))
 
-        return user_projects
+        # FIXME: use `cls.objects.cached_dict().keys()`, but that needs
+        # to use the `LiveProjectManager` first, as it only considers
+        # `enabled()` projects
+        ALL_PROJECTS = cls.objects.values_list('code', flat=True)
 
-    @classmethod
-    def accessible_by_user(self, user):
-        """Returns a list of project codes accessible by `user`.
+        if user.is_superuser:
+            user_projects = ALL_PROJECTS
+        else:
+            ALL_PROJECTS = set(ALL_PROJECTS)
 
-        First checks for `user`, and if no explicit `view` permissions
-        have been found, falls back to `default` (if logged-in) and
-        `nobody` users.
-        """
-        user_projects = []
+            # Check root for `view` permissions
 
-        check_usernames = ['nobody']
-        if user.is_authenticated():
-            check_usernames = [user.username, 'default', 'nobody']
+            root_permissions = PermissionSet.objects.filter(
+                directory__pootle_path='/',
+                user__username__in=allow_usernames,
+                positive_permissions__codename='view',
+            )
+            if root_permissions.count():
+                user_projects = ALL_PROJECTS
+            else:
+                user_projects = set()
 
-        for username in check_usernames:
-            user_projects = self.for_username(username)
+            # Check specific permissions at the project level
 
-            if user_projects:
-                break
+            accessible_projects = cls.objects.filter(
+                directory__permission_sets__positive_permissions__codename='view',
+                directory__permission_sets__user__username__in=allow_usernames,
+            ).values_list('code', flat=True)
+
+            forbidden_projects = cls.objects.filter(
+                directory__permission_sets__negative_permissions__codename='hide',
+                directory__permission_sets__user__username__in=forbid_usernames,
+            ).values_list('code', flat=True)
+
+            allow_projects = set(accessible_projects)
+            forbid_projects = set(forbidden_projects) - allow_projects
+            user_projects = \
+                (user_projects.union(allow_projects)).difference(forbid_projects)
+
+        user_projects = list(user_projects)
+        cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
 
         return user_projects
 

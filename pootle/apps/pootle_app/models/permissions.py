@@ -160,11 +160,9 @@ class PermissionSet(models.Model):
         db_index=True,
         related_name='permission_sets_positive',
     )
-    # Negative permissions are no longer used, kept around to scheme
-    # compatibility with older versions.
     negative_permissions = models.ManyToManyField(
         Permission,
-        editable=False,
+        db_index=True,
         related_name='permission_sets_negative',
     )
 

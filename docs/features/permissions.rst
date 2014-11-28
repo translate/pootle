@@ -46,14 +46,25 @@ override all permissions.
 Available permissions
 ---------------------
 
-The following permissions may be set server-wide or for projects:
+
+Access Permissions
+^^^^^^^^^^^^^^^^^^
+
+Access rights can be set server-wide or for projects. Bear in mind that
+when limiting access to projects the permissions affect to *all the
+languages* available in the project.
 
 view
-  Limits access to a project but does not limit its visibility. Giving
-  access to a project automatically gives access to all the languages
-  available for that project.
+Gives access to a project.
 
-The following permissions may be set server-wide or per language, or
+hide
+  Forbids access to a project.
+
+
+Action Permissions
+^^^^^^^^^^^^^^^^^^
+
+Permissions restricting actions can be set server-wide, per language, or
 language-project combination:
 
 suggest
