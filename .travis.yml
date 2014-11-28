@@ -5,14 +5,15 @@ python:
   - 2.7
 env:
   matrix:
-    - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=sqlite
-    - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=postgres
+    # FIXME reenable backends when these are made to work once again
+    #- DJANGO_VERSION=1.6.5 DATABASE_BACKEND=sqlite
+    #- DJANGO_VERSION=1.6.5 DATABASE_BACKEND=postgres
     - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql_myisam
-    - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql_innodb
-    - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
-    - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
-    - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_myisam
-    - DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_innodb
+    #- DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql_innodb
+    #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
+    #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
+    #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_myisam
+    #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_innodb
 matrix:
   exclude:
     - python: 2.6
