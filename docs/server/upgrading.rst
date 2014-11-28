@@ -128,9 +128,9 @@ process and tweak it. This is useful for debugging purposes.
     $ pootle updatedb
 
 
-  The :ref:`updatedb command <commands#updatedb>` upgrades the database schema
-  to the state of Pootle 2.5.0. This is necessary due to the changes made to
-  the database schema migration mechanisms after the 2.5.0 release.
+  The :command:`updatedb` command upgrades the database schema to the state of
+  Pootle 2.5.0. This is necessary due to the changes made to the database
+  schema migration mechanisms after the 2.5.0 release.
 
 
 In the first step, the syncdb command will create any missing database tables
@@ -167,11 +167,10 @@ about the :ref:`migrate command <south:commands>` in South's documentation.
   $ pootle migrate
 
 
-Lastly, the :ref:`upgrade command <commands#upgrade>` will perform any extra
-operations needed by Pootle to finish the upgrade and will record the current
-code build versions for Pootle and the Translate Toolkit. Before running this
-command please check if you are interested on running it using any of its
-available flags.
+Lastly, the :command:`upgrade` command will perform any extra operations needed
+by Pootle to finish the upgrade and will record the current code build versions
+for Pootle and the Translate Toolkit. Before running this command please check
+if you are interested on running it using any of its available flags.
 
 .. code-block:: bash
 

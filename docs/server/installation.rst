@@ -159,9 +159,9 @@ available settings<settings#available>`.
 Setting Up the Database
 -----------------------
 
-Before your run Pootle for the first time, you need to create the schema
-for the database and populate it with initial data. This is done by
-executing the :ref:`setup <commands#setup>` management command:
+Before your run Pootle for the first time, you need to create the schema for
+the database and populate it with initial data. This is done by executing the
+:command:`setup` management command:
 
 .. code-block:: bash
 

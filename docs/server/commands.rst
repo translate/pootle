@@ -348,11 +348,10 @@ migrate
 
 .. note::
 
-  Since the addition of the :ref:`setup <commands#setup>` management command it
-  is not necessary to directly run this command. Please refer to the
-  :ref:`Upgrading <upgrading>` or :ref:`Installation <installation>`
-  instructions to see how to run the ``setup`` management command in those
-  scenarios.
+  Since the addition of the :command:`setup` management command it is not
+  necessary to directly run this command. Please refer to the :ref:`Upgrading
+  <upgrading>` or :ref:`Installation <installation>` instructions to see how to
+  run the :command:`setup` management command in those scenarios.
 
 
 This is South's :ref:`migrate command <south:commands>`, which applies

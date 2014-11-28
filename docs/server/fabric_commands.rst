@@ -634,8 +634,8 @@ update_db
 
 This command:
 
-- Runs :ref:`updatedb <commands#updatedb>` and :ref:`migrate
-  <commands#migrate>` to update the database schema to the latest version
+- Runs :command:`updatedb` and :ref:`migrate <commands#migrate>` to update the
+  database schema to the latest version
 
 Examples:
 
@@ -653,13 +653,13 @@ upgrade
 
 This command:
 
-- Runs :ref:`upgrade <commands#upgrade>` to apply any special
-  post-schema-upgrade actions (including changes needed for updated Translate
-  Toolkit version).  This would typically be performed after running the
-  :ref:`update_code <fabric-commands#update-code>` command. If you haven't
-  just upgraded Pootle or the Translate Toolkit to a new release, this isn't
-  generally required, so there is no need to run it unless release notes or
-  other instructions direct you to do so.
+- Runs :command:`upgrade` to apply any special post-schema-upgrade actions
+  (including changes needed for updated Translate Toolkit version).  This would
+  typically be performed after running the :ref:`update_code
+  <fabric-commands#update-code>` command. If you haven't just upgraded Pootle
+  or the Translate Toolkit to a new release, this isn't generally required, so
+  there is no need to run it unless release notes or other instructions direct
+  you to do so.
 
 Examples:
 
