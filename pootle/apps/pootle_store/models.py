@@ -236,12 +236,11 @@ class UnitManager(models.Manager):
             )
         )
 
-    def get_for_path(self, pootle_path, user, permission_code='view'):
+    def get_for_path(self, pootle_path, user):
         """Returns units that fall below the `pootle_path` umbrella.
 
         :param pootle_path: An internal pootle path.
         :param user: The user who is accessing the units.
-        :param permission_code: The permission code to check units for.
         """
         lang, proj, dir_path, filename = split_pootle_path(pootle_path)
 
