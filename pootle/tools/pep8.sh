@@ -27,8 +27,13 @@ fi
 # - migrations - auto generated so lets not PEP8 them
 exclude=migrations
 
+# Match styleguide maximum line length:
+# http://docs.translatehouse.org/projects/translate-toolkit/en/latest/developers/styleguide.html#maximum-line-length
+max_line_length=84
+
 pep8 \
 --exclude=$exclude \
 --select=$select \
 --statistics \
+--max-line-length=$max_line_length \
 $files
