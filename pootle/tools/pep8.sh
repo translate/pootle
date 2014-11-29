@@ -1,13 +1,16 @@
 #!/bin/bash
 
 script_name=$(basename $0)
-if [ $1 = '--help' -o $1 = '-h' ]; then
-	echo "Usage: $script_name [test] [file(s)]"
-	echo "       $script_name - run pep8 from current directory"
-	echo "       $script_name E2 - run all E2* checks"
-	echo "       $script_name E221 dir/ - run E221 in directory dir/"
-	exit
+if [ $# -eq 1 ]; then
+	if [ $1 = '--help' -o $1 = '-h' ]; then
+		echo "Usage: $script_name [test] [file(s)]"
+		echo "       $script_name - run pep8 from current directory"
+		echo "       $script_name E2 - run all E2* checks"
+		echo "       $script_name E221 dir/ - run E221 in directory dir/"
+		exit
+	fi
 fi
+
 select=$1
 shift
 files=$*
