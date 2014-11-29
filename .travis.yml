@@ -41,7 +41,7 @@ cache:
 before_install:
   - travis_retry sudo apt-get install -qq bc
 install:
-  - travis_retry pip install -r requirements/travis.txt --timeout=240
+  - CFLAGS="-O0" travis_retry pip install -r requirements/travis.txt --timeout=240
   - travis_retry pip install "Django>=$DJANGO_VERSION,<"$(echo $(echo $DJANGO_VERSION | cut -d"." -f1,2) + 0.1 | bc) --timeout=240
   - pip freeze  # Print all installed versions for reference.
 before_script:
