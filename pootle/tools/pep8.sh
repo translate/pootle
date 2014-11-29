@@ -23,8 +23,12 @@ if [ "$select" == "travis" ]; then
 	select="E10,E11,E222,E251,E261,E262,E27,E401,E70,E711,E712,E713,E721,W191,W291,W292,W293,W391,W60"
 fi
 
+# Add patterns for parts to be excluded:
+# - migrations - auto generated so lets not PEP8 them
+exclude=migrations
+
 pep8 \
---exclude=djblets,assets,migrations \
+--exclude=$exclude \
 --select=$select \
 --statistics \
 $files
