@@ -1720,6 +1720,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 if changed:
                     changes['updated'] += 1
                     create_subs = {}
+                    current_time = timezone.now()
 
                     if unit._target_updated:
                         create_subs[SubmissionFields.TARGET] = \
@@ -1729,7 +1730,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                         create_subs[SubmissionFields.STATE] = \
                             [old_unit_state, unit.state]
 
-                    current_time = timezone.now()
+                    if unit._comment_updated:
+                        unit.commented_by = system
+                        unit.commented_on = current_time
+                        create_subs[SubmissionFields.COMMENT] = \
+                            ['', unit.translator_comment]
+
                     # Create Submission after unit saved
                     for field in create_subs:
                         sub = Submission(
