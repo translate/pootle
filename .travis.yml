@@ -76,5 +76,12 @@ notifications:
   email:
     on_failure: always
     on_success: change
+  irc:
+    on_failure: always
+    on_success: change
+    channels:
+      - "chat.freenode.net#pootle-dev"
+    use_notice: true
+    skip_join: true
 services:
   - redis-server
