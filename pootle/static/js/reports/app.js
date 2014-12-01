@@ -92,7 +92,7 @@ PTL.reports = {
 
   updateRates: function () {
     var reqData = $('#user-rates-form').serializeObject();
-
+    $('body').spin();
     $.ajax({
       url: PTL.reports.updateUserRatesUrl,
       type: 'POST',
@@ -102,8 +102,11 @@ PTL.reports = {
         if (data.scorelog_count + data.paid_task_count > 0) {
           PTL.reports.buildResults();
         }
+        $('#id_effective_from').val('');
+        $('body').spin(false);
       },
       error: function (xhr, s) {
+        $('body').spin(false);
         alert('Error status: ' + xhr.status);
       }
     });
