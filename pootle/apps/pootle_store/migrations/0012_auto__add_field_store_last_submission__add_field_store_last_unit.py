@@ -6,6 +6,10 @@ from django.db import models
 
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("pootle_translationproject", "0007_auto__add_field_translationproject_last_submission__add_field_translat"),
+        ("pootle_app", "0006_auto__del_suggestion"),
+    )
 
     def forwards(self, orm):
         # Adding field 'Store.last_submission'
@@ -41,20 +45,16 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
-        u'auth.user': {
+        u'accounts.user': {
             'Meta': {'object_name': 'User'},
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
-            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Group']"}),
+            'email': ('django.db.models.fields.EmailField', [], {'max_length': '255'}),
+            'full_name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
         u'contenttypes.contenttype': {
@@ -71,17 +71,6 @@ class Migration(SchemaMigration):
             'parent': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'child_dirs'", 'null': 'True', 'to': "orm['pootle_app.Directory']"}),
             'pootle_path': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'})
         },
-        'pootle_app.suggestion': {
-            'Meta': {'object_name': 'Suggestion'},
-            'creation_time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'db_index': 'True', 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'review_time': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_index': 'True'}),
-            'reviewer': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'reviewer'", 'null': 'True', 'to': u"orm['pootle_profile.PootleProfile']"}),
-            'state': ('django.db.models.fields.CharField', [], {'default': "'pending'", 'max_length': '16', 'db_index': 'True'}),
-            'suggester': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'suggester'", 'null': 'True', 'to': u"orm['pootle_profile.PootleProfile']"}),
-            'translation_project': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_translationproject.TranslationProject']"}),
-            'unit': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'})
-        },
         u'pootle_language.language': {
             'Meta': {'ordering': "['code']", 'object_name': 'Language', 'db_table': "'pootle_app_language'"},
             'code': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
@@ -92,14 +81,6 @@ class Migration(SchemaMigration):
             'nplurals': ('django.db.models.fields.SmallIntegerField', [], {'default': '0'}),
             'pluralequation': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
             'specialchars': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'})
-        },
-        u'pootle_profile.pootleprofile': {
-            'Meta': {'object_name': 'PootleProfile', 'db_table': "'pootle_app_pootleprofile'"},
-            'alt_src_langs': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'user_alt_src_langs'", 'blank': 'True', 'db_index': 'True', 'to': u"orm['pootle_language.Language']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'input_height': ('django.db.models.fields.SmallIntegerField', [], {'default': '5'}),
-            'unit_rows': ('django.db.models.fields.SmallIntegerField', [], {'default': '9'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'})
         },
         u'pootle_project.project': {
             'Meta': {'ordering': "['code']", 'object_name': 'Project', 'db_table': "'pootle_app_project'"},
@@ -121,11 +102,11 @@ class Migration(SchemaMigration):
             'check': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_store.QualityCheck']", 'null': 'True', 'blank': 'True'}),
             'creation_time': ('django.db.models.fields.DateTimeField', [], {'db_index': 'True'}),
             'field': ('django.db.models.fields.IntegerField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
-            'from_suggestion': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['pootle_app.Suggestion']", 'unique': 'True', 'null': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'new_value': ('django.db.models.fields.TextField', [], {'default': "u''", 'blank': 'True'}),
             'old_value': ('django.db.models.fields.TextField', [], {'default': "u''", 'blank': 'True'}),
-            'submitter': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_profile.PootleProfile']", 'null': 'True'}),
+            'submitter': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['accounts.User']", 'null': 'True'}),
+            'suggestion': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_store.Suggestion']", 'null': 'True', 'blank': 'True'}),
             'translation_project': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_translationproject.TranslationProject']"}),
             'type': ('django.db.models.fields.IntegerField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
             'unit': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_store.Unit']", 'null': 'True', 'blank': 'True'})
@@ -159,12 +140,17 @@ class Migration(SchemaMigration):
         },
         u'pootle_store.suggestion': {
             'Meta': {'unique_together': "(('unit', 'target_hash'),)", 'object_name': 'Suggestion'},
+            'creation_time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'db_index': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'review_time': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_index': 'True'}),
+            'reviewer': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'reviews'", 'null': 'True', 'to': u"orm['accounts.User']"}),
+            'state': ('django.db.models.fields.CharField', [], {'default': "'pending'", 'max_length': '16', 'db_index': 'True'}),
             'target_f': ('pootle_store.fields.MultiStringField', [], {}),
             'target_hash': ('django.db.models.fields.CharField', [], {'max_length': '32', 'db_index': 'True'}),
+            'translation_project': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'suggestions'", 'null': 'True', 'to': u"orm['pootle_translationproject.TranslationProject']"}),
             'translator_comment_f': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'unit': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_store.Unit']"}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_profile.PootleProfile']", 'null': 'True'})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'suggestions'", 'null': 'True', 'to': u"orm['accounts.User']"})
         },
         u'pootle_store.tmunit': {
             'Meta': {'object_name': 'TMUnit'},
@@ -173,7 +159,7 @@ class Migration(SchemaMigration):
             'source_f': ('pootle_store.fields.MultiStringField', [], {'null': 'True'}),
             'source_lang': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'tmunit_source_lang'", 'to': u"orm['pootle_language.Language']"}),
             'source_length': ('django.db.models.fields.SmallIntegerField', [], {'default': '0', 'db_index': 'True'}),
-            'submitted_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'tmunit_submitted_by'", 'null': 'True', 'to': u"orm['pootle_profile.PootleProfile']"}),
+            'submitted_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'tmunit_submitted_by'", 'null': 'True', 'to': u"orm['accounts.User']"}),
             'submitted_on': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'db_index': 'True', 'blank': 'True'}),
             'target_f': ('pootle_store.fields.MultiStringField', [], {'null': 'True'}),
             'target_lang': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'tmunit_target_lang'", 'to': u"orm['pootle_language.Language']"}),
@@ -182,7 +168,7 @@ class Migration(SchemaMigration):
         },
         u'pootle_store.unit': {
             'Meta': {'ordering': "['store', 'index']", 'unique_together': "(('store', 'unitid_hash'),)", 'object_name': 'Unit'},
-            'commented_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'commented'", 'null': 'True', 'to': u"orm['pootle_profile.PootleProfile']"}),
+            'commented_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'commented'", 'null': 'True', 'to': u"orm['accounts.User']"}),
             'commented_on': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'db_index': 'True', 'blank': 'True'}),
             'context': ('django.db.models.fields.TextField', [], {'null': 'True'}),
             'creation_time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'db_index': 'True', 'blank': 'True'}),
@@ -197,7 +183,7 @@ class Migration(SchemaMigration):
             'source_wordcount': ('django.db.models.fields.SmallIntegerField', [], {'default': '0'}),
             'state': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_index': 'True'}),
             'store': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_store.Store']"}),
-            'submitted_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'submitted'", 'null': 'True', 'to': u"orm['pootle_profile.PootleProfile']"}),
+            'submitted_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'submitted'", 'null': 'True', 'to': u"orm['accounts.User']"}),
             'submitted_on': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'db_index': 'True', 'blank': 'True'}),
             'target_f': ('pootle_store.fields.MultiStringField', [], {'null': 'True', 'blank': 'True'}),
             'target_length': ('django.db.models.fields.SmallIntegerField', [], {'default': '0', 'db_index': 'True'}),
