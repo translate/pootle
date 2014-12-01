@@ -312,9 +312,12 @@ def get_date_interval(month):
 
 def get_max_month_datetime(dt):
     next_month = dt.replace(day=1) + timedelta(days=31)
+    if settings.USE_TZ:
+        tz = timezone.get_default_timezone()
+        next_month = timezone.localtime(next_month, tz)
 
-    return next_month.replace(day=1, hour=23, minute=59, second=59) - \
-        timedelta(days=1)
+    return next_month.replace(day=1, hour=0, minute=0, second=0) - \
+        timedelta(microseconds=1)
 
 
 def get_min_month_datetime(dt):
