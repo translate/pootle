@@ -6,6 +6,9 @@ from django.db import models
 
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("pootle_project", "0006_auto__add_field_project_disabled"),
+    )
 
     def forwards(self, orm):
         # Adding field 'TranslationProject.disabled'
