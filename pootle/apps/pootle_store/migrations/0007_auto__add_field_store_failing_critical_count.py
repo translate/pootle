@@ -9,6 +9,9 @@ AUTH_USER_MODEL = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("pootle_translationproject", "0006_auto__add_field_translationproject_failing_critical_count"),
+    )
 
     def forwards(self, orm):
         # Adding field 'Store.failing_critical_count'
