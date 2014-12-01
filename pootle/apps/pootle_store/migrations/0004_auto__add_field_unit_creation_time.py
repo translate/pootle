@@ -9,6 +9,9 @@ AUTH_USER_MODEL = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("pootle_project", "0005_auto__add_field_project_report_email"),
+    )
 
     def forwards(self, orm):
         # Adding field 'Unit.creation_time'
