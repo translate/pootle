@@ -41,6 +41,7 @@
 *.pending
 *.po.tm
 .translation_index
+.DS_Store
 
 # npm
 node_modules/
