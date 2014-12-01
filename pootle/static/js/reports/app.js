@@ -27,6 +27,12 @@ PTL.reports = {
       summary: showSummary ? _.template($('#summary').html()) : '',
       paid_tasks: showSummary ? _.template($('#paid-tasks').html()) : '',
     };
+    this.paidTaskTypes = {
+      translation: 0,
+      review: 1,
+      hourlyWork: 2,
+      correction: 3,
+    };
 
     $(window).resize(function() {
       if (PTL.reports.data !== undefined &&
@@ -53,7 +59,7 @@ PTL.reports = {
     $(document).on('keyup paste change', '#id_amount', this.addPaidTaskValidate);
     $(document).on('blur', '#id_amount', this.roundAmount);
 
-    var taskType = $('#id_task_type').val();
+    var taskType = parseInt($('#id_task_type').val());
     this.refreshAmountMeasureUnits(taskType);
 
     this.currentRowIsEven = false;
@@ -145,27 +151,37 @@ PTL.reports = {
   refreshCurrency: function (e) {
     var currency = $(this).val();
     $('#user-rates-form .currency').text(currency);
+    $('#paid-task-form .currency').text(currency);
   },
 
   onPaidTaskTypeChange: function (e) {
-    var taskType = $(this).val();
+    var taskType = parseInt($(this).val());
 
     PTL.reports.refreshAmountMeasureUnits(taskType);
     $('#id_paid_task_rate').val(PTL.reports.getRateByTaskType(taskType));
+    $('#paid-task-form .currency').text(PTL.reports.user.currency);
   },
 
   roundAmount: function (e) {
     var $this = $(this),
-        amount = $this.val();
-    $this.val(Math.round(amount));
+        amount = $this.val(),
+        taskType = parseInt($('#id_task_type').val()),
+        types = PTL.reports.paidTaskTypes;
+    if (taskType === types.translation || taskType === types.review || taskType === types.hourlyWork) {
+      $this.val(amount > 0 ? amount : 0);
+      if (taskType !== taskType === types.hourlyWork) {
+        $this.val(Math.round(amount));
+      }
+    }
   },
 
   addPaidTaskValidate: function (e) {
     setTimeout(function () {
       var amount = $('#id_amount').val(),
-          description = $('#id_description').val();
+          description = $('#id_description').val(),
+          taskType = parseInt($('#id_task_type').val());
 
-      if (description === '' || amount <= 0) {
+      if (description === '' || amount <= 0 && taskType !== PTL.reports.paidTaskTypes.correction) {
         $('#paid-task-form .submit').prop('disabled', true);
       } else {
         $('#paid-task-form .submit').prop('disabled', false);
@@ -179,11 +195,17 @@ PTL.reports = {
   },
 
   getRateByTaskType: function (taskType) {
-    return {
-      0: PTL.reports.user.rate,
-      1: PTL.reports.user.review_rate,
-      2: PTL.reports.user.hourly_rate,
-    }[taskType] || 0;
+    if (taskType === PTL.reports.paidTaskTypes.translation) {
+      return PTL.reports.user.rate;
+    }
+    else if (taskType === PTL.reports.paidTaskTypes.review) {
+      return PTL.reports.user.review_rate;
+    }
+    else if (taskType === PTL.reports.paidTaskTypes.hourlyWork) {
+      return PTL.reports.user.hourly_rate;
+    }
+
+    return 1;
   },
 
   validate: function () {
@@ -371,7 +393,7 @@ PTL.reports = {
           $('#id_review_rate').val(PTL.reports.user.review_rate);
           $('#id_hourly_rate').val(PTL.reports.user.hourly_rate);
 
-          var taskType = $('#id_task_type').val();
+          var taskType = parseInt($('#id_task_type').val());
           $('#id_paid_task_rate').val(PTL.reports.getRateByTaskType(taskType));
 
           if (PTL.reports.user.currency) {

@@ -259,7 +259,7 @@ th.number
 #paid-task-form .units
 {
     float: left;
-    padding: 5px;
+    padding: 5px 5px 0px 5px;
 }
 
 #paid-task-form #id_description

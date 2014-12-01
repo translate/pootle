@@ -84,6 +84,7 @@ class UserStatsView(NoDefaultUserMixin, DetailView):
         if self.object.rate > 0:
             ctx.update({
                 'paid_task_form': PaidTaskForm(user=self.object),
+                'paid_task_types': PaidTaskTypes,
             })
 
         return ctx
@@ -163,6 +164,7 @@ def evernote_reports(request):
         'paid_task_form': PaidTaskForm(),
         'now': now.strftime('%Y-%m-%d %H:%M:%S'),
         'admin_report': True,
+        'paid_task_types': PaidTaskTypes,
     }
 
     return render_to_response('admin/reports.html', ctx,
@@ -368,6 +370,7 @@ def update_user_rates(request):
                 PaidTaskTypes.TRANSLATION: user.rate,
                 PaidTaskTypes.REVIEW: user.review_rate,
                 PaidTaskTypes.HOURLY_WORK: user.hourly_rate,
+                PaidTaskTypes.CORRECTION: 1,
             }.get(task_type, 0)
 
         for task in paid_task_query:

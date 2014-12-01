@@ -19,7 +19,7 @@
       <tr class="item">
         <td><%= PTL.reports.dateRangeString(row.start, row.end, false) %></td>
         <td><%= row.action %></td>
-        <td class="number"><%= Math.round(row.amount) %> <% if (row.type === 2) { %><%= ngettext("hour", "hours", Math.round(row.amount)) %><% } else { %><%= ngettext("word", "words", Math.round(row.amount)) %><% } %></td>
+        <td class="number"><%= Math.round(row.amount) %> <%= ngettext("word", "words", Math.round(row.amount)) %></td>
         <td class="number"><%= row.rate %> <%= meta.user.currency %></td>
         <td class="number"><%= subTotal.toFixed(2) %> <%= meta.user.currency %></td>
         <td></td>
@@ -27,11 +27,19 @@
     <% }); %>
     <% _.each(paid_task_summary, function (row) { %>
       <% var subTotal = Math.round(row.amount) * row.rate; %>
+      <%
+        var amount = row.amount;
+        if (row.type === PTL.reports.paidTaskTypes.hourlyWork) {
+          amount += ' ' + ngettext("hour", "hours", Math.round(row.amount));
+        } else if (row.type === PTL.reports.paidTaskTypes.translation || row.type === PTL.reports.paidTaskTypes.review) {
+          amount += ' ' + ngettext("word", "words", Math.round(row.amount));
+        }
+      %>
       <% total += subTotal; %>
       <tr class="item">
         <td><%= row.period %></td>
         <td><%= row.action %> <%= gettext("(registered tasks)") %></td>
-        <td class="number"><%= Math.round(row.amount) %> <% if (row.type === 2) { %><%= ngettext("hour", "hours", Math.round(row.amount)) %><% } else { %><%= ngettext("word", "words", Math.round(row.amount)) %><% } %></td>
+        <td class="number"><%= amount %></td>
         <td class="number"><%= row.rate %> <%= meta.user.currency %></td>
         <td class="number"><%= subTotal.toFixed(2) %> <%= meta.user.currency %></td>
         <td></td>

@@ -20,8 +20,9 @@
         {% endif %}
         </div>
         {% if field.name == 'amount' %}
-          <div class="units task-0 task-1">{% trans "words" %}</div>
-          <div class="units task-2">{% trans "hours" %}</div>
+          <div class="units task-{{ paid_task_types.TRANSLATION }} task-{{ paid_task_types.REVIEW }}">{% trans "words" %}</div>
+          <div class="units task-{{ paid_task_types.HOURLY_WORK }}">{% trans "hours" %}</div>
+          <div class="units task-{{ paid_task_types.CORRECTION }} currency"></div>
         {% endif %}
       </td>
       </tr>

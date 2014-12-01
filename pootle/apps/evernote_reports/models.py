@@ -31,6 +31,7 @@ class PaidTaskTypes(object):
     TRANSLATION = 0
     REVIEW = 1
     HOURLY_WORK = 2
+    CORRECTION = 3
 
 
 class PaidTask(models.Model):
@@ -42,12 +43,13 @@ class PaidTask(models.Model):
         (PaidTaskTypes.TRANSLATION, _('Translation')),
         (PaidTaskTypes.REVIEW, _('Review')),
         (PaidTaskTypes.HOURLY_WORK, _('Hourly Work')),
+        (PaidTaskTypes.CORRECTION, _('Correction')),
     ]
 
     task_type = models.PositiveSmallIntegerField(_('Type'), choices=type_choices,
                                                  null=False, db_index=True,
                                                  default=PaidTaskTypes.TRANSLATION)
-    amount = models.PositiveIntegerField(_('Amount'), default=0, null=False)
+    amount = models.FloatField(_('Amount'), default=0, null=False)
     rate = models.FloatField(null=False, default=0)
     datetime = models.DateTimeField(_('Date'), null=False, db_index=True)
     description = models.TextField(_('Description'), null=True)
