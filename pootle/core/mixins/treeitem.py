@@ -288,7 +288,7 @@ class CachedTreeItem(TreeItem):
                                               self.get_cachekey(),
                                               self.__class__),
             )
-            if not from_update:
+            if not from_update or settings.DEBUG:
                 # get initial (empty, zero) value
                 result = getattr(CachedTreeItem, '_%s' % name)()
 
