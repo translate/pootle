@@ -13,6 +13,16 @@ class Migration(SchemaMigration):
     )
 
     def forwards(self, orm):
+        # Adjust the permissions for dealing with Suggestions to instead use
+        # the pootle_store.Suggestion contenttype.
+        try:
+            old_ctype = ContentType.objects.get(app_label='pootle_app', model='suggestion')
+            new_ctype = ContentType.objects.get(app_label='pootle_store', model='suggestion')
+        except ContentType.DoesNotExist:
+            pass
+        else:
+            orm['auth.permission'].objects.filter(content_type=old_ctype).update(content_type=new_ctype)
+
         # Deleting model 'Suggestion'
         db.delete_table('pootle_app_suggestion')
         ContentType.objects.filter(app_label='pootle_app', model='suggestion').delete()
