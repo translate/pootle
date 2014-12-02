@@ -26,7 +26,7 @@
       </tr>
     <% }); %>
     <% _.each(paid_task_summary, function (row) { %>
-      <% var subTotal = Math.round(row.amount) * row.rate; %>
+      <% var subTotal = row.amount * row.rate; %>
       <%
         var amount = row.amount;
         if (row.type === PTL.reports.paidTaskTypes.hourlyWork) {
