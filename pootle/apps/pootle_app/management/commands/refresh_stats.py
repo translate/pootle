@@ -48,6 +48,7 @@ from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 from . import PootleCommand
 
 
+logger = logging.getLogger('stats')
 cache = get_cache('stats')
 
 
@@ -117,12 +118,12 @@ class Command(PootleCommand):
 
     def handle_all(self, **options):
         if not self.projects and not self.languages:
-            logging.info(u"Running %s (noargs)", self.name)
+            logger.info(u"Running %s (noargs)", self.name)
             try:
                 self.register_refresh_stats('/')
 
                 self.process(**options)
-                logging.info('Refreshing directories stats...')
+                logger.info('Refreshing directories stats...')
 
                 prj_query = Project.objects.enabled()
 
@@ -132,7 +133,7 @@ class Command(PootleCommand):
 
                 self.unregister_refresh_stats()
             except Exception:
-                logging.exception(u"Failed to run %s", self.name)
+                logger.exception(u"Failed to run %s", self.name)
         else:
             super(Command, self).handle_all(**options)
 
@@ -144,7 +145,7 @@ class Command(PootleCommand):
         unit_fk_filter = options.get('unit_fk_filter', {})
         store_fk_filter = options.get('store_fk_filter', {})
 
-        logging.info('Initializing stores...')
+        logger.info('Initializing stores...')
 
         stores = Store.objects.all()
         if store_filter:
@@ -158,56 +159,56 @@ class Command(PootleCommand):
         self._init_checks()
 
         if calculate_checks:
-            logging.info('Calculating quality checks for all units...')
+            logger.info('Calculating quality checks for all units...')
 
             QualityCheck.delete_unknown_checks()
 
             unit_count = 0
             for i, store in enumerate(stores.iterator(), start=1):
-                logging.info("update_qualitychecks for %s" % store.pootle_path)
+                logger.info("update_qualitychecks for %s" % store.pootle_path)
                 for unit in store.units.iterator():
                     unit_count += 1
                     unit.update_qualitychecks(keep_false_positives=True,
                                               check_names=check_names)
 
                 if i % 20 == 0:
-                    logging.info("%d units processed" % unit_count)
+                    logger.info("%d units processed" % unit_count)
 
         if calculate_wordcount:
-            logging.info('Calculating wordcount for all units...')
+            logger.info('Calculating wordcount for all units...')
             unit_count = 0
             for i, store in enumerate(stores.iterator(), start=1):
-                logging.info("calculate wordcount for %s" % store.pootle_path)
+                logger.info("calculate wordcount for %s" % store.pootle_path)
                 for unit in store.unit_set.iterator():
                     unit_count += 1
                     unit.update_wordcount()
                     unit.save()
 
                 if i % 20 == 0:
-                    logging.info("%d units processed" % unit_count)
+                    logger.info("%d units processed" % unit_count)
 
-        logging.info('Setting quality check stats values for all stores...')
+        logger.info('Setting quality check stats values for all stores...')
         self._set_qualitycheck_stats(unit_fk_filter)
 
         if not check_names:
-            logging.info('Setting last action values for all stores...')
+            logger.info('Setting last action values for all stores...')
             self._set_last_action_stats(store_fk_filter)
-            logging.info('Setting last updated values for all stores...')
+            logger.info('Setting last updated values for all stores...')
             self._set_last_updated_stats(store_fk_filter)
-            logging.info('Setting mtime values for all stores...')
+            logger.info('Setting mtime values for all stores...')
             self._set_mtime_stats(store_fk_filter)
-            logging.info('Setting wordcount stats values for all stores...')
+            logger.info('Setting wordcount stats values for all stores...')
             self._set_wordcount_stats(store_fk_filter)
-            logging.info('Setting suggestion count values for all stores...')
+            logger.info('Setting suggestion count values for all stores...')
             self._set_suggestion_stats(unit_fk_filter)
 
 
-        logging.info('Setting empty values for other cache entries...')
+        logger.info('Setting empty values for other cache entries...')
         self._set_empty_values()
 
     def _set_qualitycheck_stats_cache(self, stats, key):
         if key:
-            logging.info('Set get_checks for %s' % key)
+            logger.info('Set get_checks for %s' % key)
             cache.set(iri_to_uri(key + ':get_checks'), stats, None)
             del self.cache_values[key]['get_checks']
 
@@ -250,7 +251,7 @@ class Command(PootleCommand):
 
     def _set_wordcount_stats_cache(self, stats, key):
         if key:
-            logging.info('Set wordcount stats for %s' % key)
+            logger.info('Set wordcount stats for %s' % key)
             cache.set(iri_to_uri(key + ':get_total_wordcount'),
                       stats['total'], None)
             cache.set(iri_to_uri(key + ':get_fuzzy_wordcount'),
@@ -349,7 +350,7 @@ class Command(PootleCommand):
                                         .filter(**sub_filter) \
                                         .order_by('field')[:1][0]
                 key = sub.store.get_cachekey()
-                logging.info('Set last action stats for %s' % key)
+                logger.info('Set last action stats for %s' % key)
                 res = {
                     'id': sub.unit.id,
                     'mtime': int(dateformat.format(sub.creation_time, 'U')),
@@ -374,7 +375,7 @@ class Command(PootleCommand):
                 key = Store.objects.get(id=item['unit__store']).get_cachekey()
             except Store.DoesNotExist:
                 continue
-            logging.info('Set suggestion count for %s' % key)
+            logger.info('Set suggestion count for %s' % key)
             cache.set(iri_to_uri(key + ':get_suggestion_count'),
                       item['count'], None)
             del self.cache_values[key]['get_suggestion_count']
@@ -393,7 +394,7 @@ class Command(PootleCommand):
                 key = Store.objects.get(id=item['store']).get_cachekey()
             except Store.DoesNotExist:
                 continue
-            logging.info('Set mtime for %s' % key)
+            logger.info('Set mtime for %s' % key)
             cache.set(iri_to_uri(key + ':get_mtime'),
                       item['max_mtime'], None)
             del self.cache_values[key]['get_mtime']
@@ -416,7 +417,7 @@ class Command(PootleCommand):
                     continue
                 unit = store.unit_set.filter(creation_time=max_time)[0]
                 key = store.get_cachekey()
-                logging.info('Set last_updated for %s' % key)
+                logger.info('Set last_updated for %s' % key)
                 res = {
                     'id': unit.id,
                     'creation_time': int(dateformat.format(max_time, 'U')),

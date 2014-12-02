@@ -47,6 +47,7 @@ POOTLE_DIRTY_TREEITEMS = 'pootle:dirty:treeitems'
 POOTLE_REFRESH_STATS = 'pootle:refresh:stats'
 
 
+logger = logging.getLogger('stats')
 cache = get_cache('stats')
 
 
@@ -56,8 +57,8 @@ def statslog(function):
         start = datetime.now()
         result = function(instance, *args, **kwargs)
         end = datetime.now()
-        log("%s(%s)\t%s\t%s" % (function.__name__, ', '.join(args), end - start,
-                                instance.get_cachekey()))
+        logger.info("%s(%s)\t%s\t%s" % (function.__name__, ', '.join(args), end - start,
+                                        instance.get_cachekey()))
         return result
     return _statslog
 
@@ -286,7 +287,7 @@ class CachedTreeItem(TreeItem):
         """get stat value from cache"""
         result = self.get_cached_value(name)
         if result is None:
-            logging.error(
+            logger.error(
                 "cache miss %s for %s(%s)" % (name,
                                               self.get_cachekey(),
                                               self.__class__),
@@ -449,7 +450,7 @@ class CachedTreeItem(TreeItem):
             for key in keys:
                 self.update_cached(key)
         else:
-            logging.warning('Cache for %s object cannot be updated.' % self)
+            logger.warning('Cache for %s object cannot be updated.' % self)
 
         for p in self.get_parents():
             p._update_cache(keys)
