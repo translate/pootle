@@ -930,9 +930,9 @@ PTL.editor = {
   },
 
   /* Displays error messages on top of the toolbar */
-  displayError: function (msg) {
+  displayError: function (text) {
     this.hideActivity();
-    msg.show({text: msg, level: 'error'});
+    msg.show({text: text, level: 'error'});
   },
 
 
