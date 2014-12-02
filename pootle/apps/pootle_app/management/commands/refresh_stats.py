@@ -38,7 +38,6 @@ from django.utils.encoding import force_unicode, iri_to_uri
 from django_rq import get_connection, job
 
 from pootle.core.mixins.treeitem import POOTLE_REFRESH_STATS
-from pootle_language.models import Language
 from pootle_misc.util import datetime_min
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
