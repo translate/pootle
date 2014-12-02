@@ -29,7 +29,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from translate.filters.decorators import Category
 
 from django.conf import settings
-from django.core.cache import cache
+from django.core.cache import get_cache
 from django.core.urlresolvers import set_script_prefix
 from django.db.models import Count, Max, Sum
 from django.utils import dateformat
@@ -46,6 +46,9 @@ from pootle_store.models import (Store, Unit, QualityCheck,
 from pootle_store.util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED
 
 from . import PootleCommand
+
+
+cache = get_cache('stats')
 
 
 class Command(PootleCommand):

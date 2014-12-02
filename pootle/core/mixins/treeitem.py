@@ -30,7 +30,7 @@ from functools import wraps
 from translate.filters.decorators import Category
 
 from django.conf import settings
-from django.core.cache import cache
+from django.core.cache import get_cache
 from django.core.urlresolvers import set_script_prefix
 from django.utils.encoding import force_unicode, iri_to_uri
 
@@ -45,6 +45,9 @@ from pootle_misc.util import datetime_min, dictsum
 
 POOTLE_DIRTY_TREEITEMS = 'pootle:dirty:treeitems'
 POOTLE_REFRESH_STATS = 'pootle:refresh:stats'
+
+
+cache = get_cache('stats')
 
 
 def statslog(function):
