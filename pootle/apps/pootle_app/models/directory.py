@@ -287,3 +287,4 @@ class Directory(models.Model, CachedTreeItem):
 
         self.obsolete = True
         self.save()
+        self.clear_all_cache(parents=False, children=False)

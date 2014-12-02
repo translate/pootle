@@ -1443,6 +1443,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         unit_query.update(state=OBSOLETE)
         self.obsolete = True
         self.save()
+        self.clear_all_cache(parents=False, children=False)
 
     def get_absolute_url(self):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
