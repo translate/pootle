@@ -87,7 +87,7 @@ excluded_filters = ['hassuggestion', 'spellcheck']
 def get_qualitychecks():
     sc = checks.StandardChecker()
     for filt in sc.defaultfilters:
-        if not filt in excluded_filters:
+        if filt not in excluded_filters:
             # don't use an empty string because of
             # http://bugs.python.org/issue18190
             getattr(sc, filt)(u'_', u'_')
@@ -100,7 +100,7 @@ def get_qualitycheck_schema(path_obj=None):
     checks = get_qualitychecks()
 
     for check, cat in checks.items():
-        if not cat in d:
+        if cat not in d:
             d[cat] = {
                 'code': cat,
                 'title': u"%s" % category_names[cat],

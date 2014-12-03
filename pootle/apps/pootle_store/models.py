@@ -64,6 +64,7 @@ from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 #
 # Store States
+#
 
 # Store being modified
 LOCKED = -1
@@ -98,6 +99,7 @@ class QualityCheck(models.Model):
 ################# Suggestion ################
 
 class SuggestionManager(RelatedManager):
+
     def pending(self):
         return self.get_query_set().filter(state=SuggestionStates.PENDING)
 
@@ -223,6 +225,13 @@ def fix_monolingual(oldunit, newunit, monolingual=None):
     if monolingual and newunit.source != oldunit.source:
         newunit.target = newunit.source
         newunit.source = oldunit.source
+
+
+def stringcount(string):
+    try:
+        return len(string.strings)
+    except AttributeError:
+        return 1
 
 
 class UnitManager(RelatedManager):
@@ -375,6 +384,7 @@ class TMUnit(models.Model, base.TranslationUnit):
                 or hasattr(self.source, "plural") and
                 self.source.plural))
 
+
 class Unit(models.Model, base.TranslationUnit):
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
@@ -426,6 +436,8 @@ class Unit(models.Model, base.TranslationUnit):
         db_index=True,
         editable=False,
     )
+
+    # unit translator
     submitted_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
@@ -433,9 +445,9 @@ class Unit(models.Model, base.TranslationUnit):
         related_name='submitted',
     )
     submitted_on = models.DateTimeField(
-        auto_now_add=True,
         db_index=True,
         null=True,
+        auto_now_add=True,
     )
     commented_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -444,9 +456,9 @@ class Unit(models.Model, base.TranslationUnit):
         related_name='commented',
     )
     commented_on = models.DateTimeField(
-        auto_now_add=True,
         db_index=True,
         null=True,
+        auto_now_add=True,
     )
 
     objects = UnitManager()
@@ -507,6 +519,7 @@ class Unit(models.Model, base.TranslationUnit):
             lang=self.store.translation_project.language.code,
             unit=self.id,
             translation='')
+
         unit_delete_cache(self)
 
         super(Unit, self).delete(*args, **kwargs)
@@ -663,7 +676,8 @@ class Unit(models.Model, base.TranslationUnit):
                 changed = True
 
         self_notes = self.getnotes(origin="translator")
-        if unit.getnotes(origin="translator") != self_notes or '':
+        unit_notes = unit.getnotes(origin="translator")
+        if unit_notes != (self_notes or ''):
             unit.addnote(self_notes, origin="translator", position="replace")
             changed = True
 
@@ -695,12 +709,6 @@ class Unit(models.Model, base.TranslationUnit):
             translator/developer comments, locations, context, status...).
         """
         changed = False
-
-        def stringcount(string):
-            try:
-                return len(string.strings)
-            except AttributeError:
-                return 1
 
         if (self.source != unit.source or
             len(self.source.strings) != stringcount(unit.source) or
@@ -1048,6 +1056,7 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.target = translation
         try:
             suggestion.save()
+
             sub = Submission(
                 creation_time=timezone.now(),
                 translation_project=self.store.translation_project,
@@ -1077,8 +1086,9 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             suggestion_user = get_user_model().objects.get_nobody_user()
 
+        current_time = timezone.now()
         self.submitted_by = suggestion_user
-        self.submitted_on = timezone.now()
+        self.submitted_on = current_time
 
         self._log_user = reviewer
         self.store.flag_for_deletion(CachedMethods.SUGGESTIONS,
@@ -1088,7 +1098,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         suggestion.state = SuggestionStates.ACCEPTED
         suggestion.reviewer = reviewer
-        suggestion.review_time = self.submitted_on
+        suggestion.review_time = current_time
         suggestion.save()
 
         self.decrease_suggestion_count()
@@ -1102,7 +1112,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         for field in create_subs:
             kwargs = {
-                'creation_time': self.submitted_on,
+                'creation_time': current_time,
                 'translation_project': translation_project,
                 'submitter': reviewer,
                 'unit': self,
@@ -1408,11 +1418,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         return str(store)
 
     def save(self, *args, **kwargs):
+        created = not self.id
         self.pootle_path = self.parent.pootle_path + self.name
         super(Store, self).save(*args, **kwargs)
-        if not self.id:
+        if created:
             # new unit
-            log.store_log(user="system", action=log.STORE_ADDED,
+            log.store_log(user='system', action=log.STORE_ADDED,
                           path=self.pootle_path, store=self.id)
 
         if hasattr(self, '_units'):
@@ -1421,16 +1432,17 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                 unit.store = self
                 unit.index = index + i
                 unit.save()
+
         if self.state >= PARSED:
             self.update_cache()
 
     def delete(self, *args, **kwargs):
-        log.store_log(user="system", action=log.STORE_DELETED,
+        log.store_log(user='system', action=log.STORE_DELETED,
                       path=self.pootle_path, store=self.id)
         for unit in self.unit_set.iterator():
-            log.action_log(user="system", action=log.UNIT_DELETED,
-                lang=self.translation_project.language.code,
-                unit=unit.id, Translation="")
+            log.action_log(user='system', action=log.UNIT_DELETED,
+                           lang=self.translation_project.language.code,
+                           unit=unit.id, translation='')
 
         super(Store, self).delete(*args, **kwargs)
 
@@ -1811,7 +1823,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             # don't save to templates
             return
 
-        logging.debug(u"Syncing %s", self.pootle_path)
+        logging.info(u"Syncing %s", self.pootle_path)
         self.require_dbid_index(update=True)
         disk_store = self.file.store
         old_ids = set(disk_store.getids())
@@ -1820,7 +1832,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         file_changed = False
 
         if update_structure:
-            obsolete_units = (disk_store.findid(uid) \
+            obsolete_units = (disk_store.findid(uid)
                               for uid in old_ids - new_ids)
             for unit in obsolete_units:
                 if not unit.istranslated():
@@ -2190,7 +2202,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                     submitter = submission.submitter
 
                     if submitter is not None:
-                        if submitter.username != "nobody":
+                        if submitter.username != 'nobody':
                             user = submitter
                 except ObjectDoesNotExist:
                     try:
@@ -2200,7 +2212,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
                         submitter = submission.submitter
 
                         if submitter is not None:
-                            if submitter.username != "nobody":
+                            if submitter.username != 'nobody':
                                 user = submitter
                     except ObjectDoesNotExist:
                         pass

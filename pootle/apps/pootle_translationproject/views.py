@@ -658,7 +658,7 @@ def export_view(request, translation_project, dir_path, filename=None):
         'goal': request.GET.get('goal', ''),
     })
 
-    return render(request, "editor/export_view.html", ctx)
+    return render(request, 'editor/export_view.html', ctx)
 
 
 @require_POST

@@ -204,6 +204,7 @@ def add_items(fs_items, db_items, create_db_item):
             item.save()
         except Exception:
             logging.exception('Error while adding %s', item)
+
     return items, new_items
 
 
@@ -220,14 +221,22 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
                            db_dir.child_stores.exclude(file='').iterator())
     existing_dirs = dict((dir.name, dir) for dir in
                          db_dir.child_dirs.iterator())
-    files, new_files = add_items(file_set, existing_stores,
-              lambda name: Store(file=os.path.join(relative_dir, name),
-                                 parent=db_dir,
-                                 name=name,
-                                 translation_project=translation_project))
+    files, new_files = add_items(
+        file_set,
+        existing_stores,
+        lambda name: Store(
+             file=os.path.join(relative_dir, name),
+             parent=db_dir,
+             name=name,
+             translation_project=translation_project,
+        )
+    )
 
-    db_subdirs, new_db_subdirs = add_items(dir_set, existing_dirs,
-                           lambda name: Directory(name=name, parent=db_dir))
+    db_subdirs, new_db_subdirs = add_items(
+        dir_set,
+        existing_dirs,
+        lambda name: Directory(name=name, parent=db_dir)
+    )
 
     for db_subdir in db_subdirs:
         fs_subdir = os.path.join(relative_dir, db_subdir.name)
@@ -466,7 +475,7 @@ def get_translated_name_gnu(translation_project, store):
     if store.file:
         path_parts = store.file.path.split(os.sep)
         name = prefix + suffix
-        path_parts[-1] =  name
+        path_parts[-1] = name
         pootle_path_parts[-1] = name
     else:
         path_parts = store.parent.get_real_path().split(os.sep)

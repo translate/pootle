@@ -77,7 +77,7 @@ def overview(request, language):
                                    args=[language.code]),
         })
 
-    response = render(request, "browser/overview.html", ctx)
+    response = render(request, 'browser/overview.html', ctx)
     response.set_cookie('pootle-language', language.code)
 
     return response

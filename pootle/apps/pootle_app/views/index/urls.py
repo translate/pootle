@@ -22,6 +22,7 @@ from django.conf.urls import patterns, url
 
 from .index import AboutView
 
+
 urlpatterns = patterns('pootle_app.views.index',
     url(r'^robots.txt$',
         'robots.view',

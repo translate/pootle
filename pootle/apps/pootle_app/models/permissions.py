@@ -113,24 +113,24 @@ def get_matching_permissions(user, directory, check_default=True):
     return permissions
 
 
-def check_user_permission(user, permission, directory, check_default=True):
-    """Check if the current user has the permission to perform ``permission``."""
+def check_user_permission(user, perm_code, directory, check_default=True):
+    """Check if the current user has the permission to perform ``perm_code``."""
     if user.is_superuser:
         return True
 
     permissions = get_matching_permissions(user, directory, check_default)
 
-    return ("administrate" in permissions or permission in permissions)
+    return ("administrate" in permissions or perm_code in permissions)
 
 
-def check_permission(codename, request):
-    """Check if the current user has `codename` permissions."""
+def check_permission(perm_code, request):
+    """Check if the current user has `perm_code` permission."""
     if request.user.is_superuser:
         return True
 
     # `view` permissions are project-centric, and we must treat them
     # differently
-    if codename == "view":
+    if perm_code == 'view':
         path_obj = None
         if hasattr(request, 'translation_project'):
             path_obj = request.translation_project
@@ -144,7 +144,7 @@ def check_permission(codename, request):
 
     permissions = request.permissions
 
-    return ("administrate" in permissions or codename in permissions)
+    return ("administrate" in permissions or perm_code in permissions)
 
 
 class PermissionSet(models.Model):
@@ -171,7 +171,7 @@ class PermissionSet(models.Model):
     objects = RelatedManager()
 
     class Meta:
-        unique_together = ("user", "directory")
+        unique_together = ('user', 'directory')
         app_label = "pootle_app"
 
     def __unicode__(self):

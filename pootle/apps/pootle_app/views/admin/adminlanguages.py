@@ -30,9 +30,8 @@ from pootle_language.models import Language
 def view(request):
 
     def generate_link(language):
-        url = reverse('pootle-language-admin-permissions',
-                      args=[language.code])
-        return '<a href="%s">%s</a>' % (url, language)
+        url = reverse('pootle-language-admin-permissions', args=[language.code])
+        return '<a href="%s">%s</a>' % (url, language.code)
 
     return util.edit(request, 'admin/languages.html', Language,
                      link=generate_link, form=LanguageAdminForm,

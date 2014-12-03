@@ -17,7 +17,8 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# along with Pootle; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django import forms
 from django.contrib.auth import get_user_model
@@ -61,9 +62,11 @@ def admin_permissions(request, current_directory, template, context):
     )
 
     base_queryset = User.objects.filter(is_active=True).exclude(
-        id__in=current_directory.permission_sets.values_list("user_id", flat=True)
+        id__in=current_directory.permission_sets.values_list('user_id', flat=True)
     )
-    querysets = [(None, base_queryset.filter(username__in=("nobody", "default")))]
+    querysets = [(None, base_queryset.filter(
+        username__in=('nobody', 'default')
+    ))]
 
     if project is not None:
         if language is not None:
@@ -81,7 +84,8 @@ def admin_permissions(request, current_directory, template, context):
         querysets.append((
             group_label,
             base_queryset.filter(submission__in=contributions)
-                         .distinct().order_by("username"),
+                         .distinct()
+                         .order_by('username'),
         ))
 
     if language is not None:
@@ -91,13 +95,14 @@ def admin_permissions(request, current_directory, template, context):
         querysets.append((
             _('Language Contributors'),
             base_queryset.filter(submission__in=contributions)
-                         .distinct().order_by("username"),
+                         .distinct()
+                         .order_by('username'),
         ))
 
     querysets.append((
         _('All Users'),
-        base_queryset.exclude(username__in=("nobody", "default"))
-                     .order_by("username"),
+        base_queryset.exclude(username__in=('nobody', 'default'))
+                     .order_by('username'),
     ))
 
 
@@ -131,8 +136,8 @@ def admin_permissions(request, current_directory, template, context):
         )
 
     link = lambda instance: unicode(instance.user)
-    queryset = current_directory.permission_sets.order_by("user").all()
+    queryset = current_directory.permission_sets.order_by('user').all()
 
     return util.edit(request, template, PermissionSet, context, link,
-                     linkfield="user", queryset=queryset,
+                     linkfield='user', queryset=queryset,
                      can_delete=True, form=PermissionSetForm)

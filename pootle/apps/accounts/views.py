@@ -6,19 +6,17 @@
 #
 # This file is part of Pootle.
 #
-# Pootle is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
+# Pootle is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
 #
-# translate is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with translate; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# You should have received a copy of the GNU General Public License along with
+# Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -46,21 +44,21 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super(UserUpdateView, self).get_form_kwargs()
-        kwargs.update({"label_suffix": ""})
+        kwargs.update({'label_suffix': ''})
         return kwargs
 
 
 class UserSettingsView(UserUpdateView):
-    fields = ("_unit_rows", "alt_src_langs")
-    template_name = "profiles/settings/profile.html"
+    fields = ('_unit_rows', 'alt_src_langs')
+    template_name = 'profiles/settings/profile.html'
 
     def get_form(self, *args, **kwargs):
         form = super(UserSettingsView, self).get_form(*args, **kwargs)
 
-        form.fields["alt_src_langs"].widget.attrs["class"] = \
-            "js-select2 select2-multiple"
-        form.fields["alt_src_langs"].widget.attrs["data-placeholder"] = \
-            _("Select one or more languages")
+        form.fields['alt_src_langs'].widget.attrs['class'] = \
+            'js-select2 select2-multiple'
+        form.fields['alt_src_langs'].widget.attrs['data-placeholder'] = \
+            _('Select one or more languages')
 
         return form
 

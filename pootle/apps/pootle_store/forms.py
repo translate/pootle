@@ -28,13 +28,16 @@ from django.utils.translation import get_language, ugettext as _
 
 from translate.misc.multistring import multistring
 
-from pootle.core.log import TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED
+from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
+                             TRANSLATION_DELETED)
 from pootle.core.mixins import CachedMethods
 from pootle_app.models.permissions import check_permission
-from pootle_statistics.models import Submission, SubmissionFields, SubmissionTypes
-from pootle_store.fields import to_db
-from pootle_store.models import Unit
-from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
+from pootle_statistics.models import (Submission, SubmissionFields,
+                                      SubmissionTypes)
+
+from .fields import to_db
+from .models import Unit
+from .util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
 ############## text cleanup and highlighting #########################
@@ -212,7 +215,7 @@ def unit_form_factory(language, snplurals=None, request=None):
     class UnitForm(forms.ModelForm):
         class Meta:
             model = Unit
-            fields = ("id", "index", "target_f", "state")
+            fields = ('id', 'index', 'target_f', 'state',)
 
         id = forms.IntegerField(required=False)
         target_f = MultiStringFormField(
@@ -252,7 +255,7 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             if (self.request is not None and
                 not check_permission('administrate', self.request) and
-                is_fuzzy == True):
+                is_fuzzy):
                 raise forms.ValidationError(_('Fuzzy flag must be cleared'))
 
             if new_target:

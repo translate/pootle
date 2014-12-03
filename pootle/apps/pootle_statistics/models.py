@@ -4,19 +4,21 @@
 # Copyright 2009-2014 Zuza Software Foundation
 # Copyright 2013 Evernote Corporation
 #
-# This file is part of Pootle.
+# This file is part of translate.
 #
-# Pootle is free software; you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation; either version 2 of the License, or (at your option) any later
-# version.
+# translate is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Pootle is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# translate is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License along with
-# Pootle; if not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with translate; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -91,7 +93,7 @@ class Submission(models.Model):
         null=True,
         db_index=True,
     )
-    # The field that was changed in the unit.
+    # The field in the unit that changed.
     field = models.IntegerField(null=True, blank=True, db_index=True)
 
     # How did this submission come about? (one of the constants above).
@@ -136,7 +138,6 @@ class Submission(models.Model):
         The message includes the user (with link to profile and gravatar), a
         message describing the action performed, and when it was performed.
         """
-
         unit = None
         if self.unit is not None:
             unit = {
@@ -145,11 +146,13 @@ class Submission(models.Model):
             }
 
             if self.check is not None:
-                unit['check_name'] = self.check.name
-                unit['check_display_name'] = check_names[self.check.name]
-                unit['checks_url'] = ('http://docs.translatehouse.org/'
-                                      'projects/translate-toolkit/en/latest/'
-                                      'commands/pofilter_tests.html')
+                unit.update({
+                    'check_name': self.check.name,
+                    'check_display_name': check_names[self.check.name],
+                    'checks_url': ('http://docs.translatehouse.org/'
+                                   'projects/translate-toolkit/en/latest/'
+                                   'commands/pofilter_tests.html'),
+                })
 
         if (self.suggestion and
             self.type in (SubmissionTypes.SUGG_ACCEPT, SubmissionTypes.SUGG_REJECT)):

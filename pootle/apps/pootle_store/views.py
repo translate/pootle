@@ -128,8 +128,6 @@ def download(request, store):
 ####################### Translate Page ##############################
 
 def get_alt_src_langs(request, user, translation_project):
-    from pootle_language.models import Language
-
     if not user.is_authenticated():
         return Language.objects.none()
 
@@ -231,9 +229,9 @@ def get_non_indexed_search_exact_query(form, units_queryset):
 
     return result
 
+
 def get_search_step_query(request, form, units_queryset):
     """Narrows down units query to units matching search string."""
-
     if 'exact' in form.cleaned_data['soptions']:
         logging.debug(u"Using exact database search")
         return get_non_indexed_search_exact_query(form, units_queryset)
@@ -670,32 +668,6 @@ def timeline(request, unit):
         return render(request, "editor/units/timeline.html", context)
 
 
-@ajax_required
-@get_path_obj
-@permission_required('view')
-@get_resource
-def get_qualitycheck_stats(request, *args, **kwargs):
-    failing_checks = request.resource_obj.get_checks()['checks']
-    response = jsonify(failing_checks)
-    return HttpResponse(response, content_type="application/json")
-
-
-@ajax_required
-@get_path_obj
-@permission_required('view')
-@get_resource
-def get_overview_stats(request, *args, **kwargs):
-    goal = None
-    if 'goalSlug' in request.GET:
-        try:
-            goal = Goal.objects.get(slug=request.GET.get('goalSlug', ''))
-        except Goal.DoesNotExist:
-            goal = None
-    stats = request.resource_obj.get_stats(goal=goal)
-    response = jsonify(stats)
-    return HttpResponse(response, content_type="application/json")
-
-
 @require_POST
 @ajax_required
 @get_unit_context('translate')
@@ -779,7 +751,7 @@ def get_edit_unit(request, unit):
         'cantranslate': check_user_permission(user, "translate", directory),
         'cansuggest': check_user_permission(user, "suggest", directory),
         'canreview': check_user_permission(user, "review", directory),
-        'is_admin': check_user_permission(user, "administrate", directory),
+        'is_admin': check_user_permission(user, 'administrate', directory),
         'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
                                 project=project),
         'suggestions': suggestions,
@@ -820,6 +792,33 @@ def _get_project_icon(project):
         return "/export" + path
     else:
         return ""
+
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource
+def get_qualitycheck_stats(request, *args, **kwargs):
+    failing_checks = request.resource_obj.get_checks()['checks']
+    response = jsonify(failing_checks)
+    return HttpResponse(response, content_type="application/json")
+
+
+@ajax_required
+@get_path_obj
+@permission_required('view')
+@get_resource
+def get_overview_stats(request, *args, **kwargs):
+    goal = None
+    if 'goalSlug' in request.GET:
+        try:
+            goal = Goal.objects.get(slug=request.GET.get('goalSlug', ''))
+        except Goal.DoesNotExist:
+            goal = None
+    stats = request.resource_obj.get_stats(goal=goal)
+    response = jsonify(stats)
+    return HttpResponse(response, content_type="application/json")
+
 
 @ajax_required
 @get_unit_context('view')
@@ -936,7 +935,9 @@ def submit(request, unit):
                         new_value=new_value,
                 )
                 sub.save()
+
             form.instance._log_user = request.user
+
             form.save()
             translation_submitted.send(
                     sender=translation_project,
@@ -949,7 +950,8 @@ def submit(request, unit):
             ).exists()
 
             if has_critical_checks:
-                can_review = check_user_permission(user, "review", unit.store.parent)
+                can_review = check_user_permission(user, 'review',
+                                                   unit.store.parent)
                 ctx = {
                     'canreview': can_review,
                     'unit': unit
@@ -1006,6 +1008,7 @@ def suggest(request, unit):
         #FIXME: we should display validation errors here
         rcode = 400
         json["msg"] = _("Failed to process suggestion.")
+
     response = jsonify(json)
     return HttpResponse(response, status=rcode, content_type="application/json")
 
@@ -1067,7 +1070,7 @@ def toggle_qualitycheck(request, unit, check_id):
 
     try:
         unit.toggle_qualitycheck(check_id,
-            bool(request.POST.get("mute")), request.user)
+            bool(request.POST.get('mute')), request.user)
     except ObjectDoesNotExist:
         raise Http404
 

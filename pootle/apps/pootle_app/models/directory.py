@@ -247,6 +247,9 @@ class Directory(models.Model, TreeItem):
         else:
             return []
 
+    def get_cachekey(self):
+        return self.pootle_path
+
     def _get_next_goal_count(self):
         # Trigger only if it is a regular directory inside a TP.
         if self.pootle_path.count('/') > 3:
@@ -274,9 +277,6 @@ class Directory(models.Model, TreeItem):
                 return goal.get_translate_url_for_path(self.pootle_path,
                                                        state='incomplete')
         return ''
-
-    def get_cachekey(self):
-        return self.pootle_path
 
     ### /TreeItem
 

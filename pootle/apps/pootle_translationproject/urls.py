@@ -95,5 +95,4 @@ urlpatterns = patterns('pootle_translationproject.views',
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'overview',
         name='pootle-tp-overview'),
-
 )

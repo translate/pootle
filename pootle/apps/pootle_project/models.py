@@ -96,7 +96,6 @@ class ProjectURLMixin(object):
         ])
 
 
-
 class Project(models.Model, TreeItem, ProjectURLMixin):
 
     code = models.CharField(
@@ -322,8 +321,8 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         if user_projects is None:
             logging.debug(u'Cache miss for %s', key)
             lookup_args = {
-                "directory__permission_sets__positive_permissions__codename": "view",
-                "directory__permission_sets__user__username": username,
+                'directory__permission_sets__positive_permissions__codename': 'view',
+                'directory__permission_sets__user__username': username,
             }
             user_projects = self.objects.cached().filter(**lookup_args) \
                                                  .values_list('code', flat=True)
@@ -367,9 +366,6 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
 
     def __unicode__(self):
         return self.fullname
-
-    def __init__(self, *args, **kwargs):
-        super(Project, self).__init__(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         # Create file system directory if needed

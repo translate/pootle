@@ -58,6 +58,7 @@ class LiveLanguageManager(models.Manager):
 
         return languages
 
+
 class Language(models.Model, TreeItem):
 
     code = models.CharField(

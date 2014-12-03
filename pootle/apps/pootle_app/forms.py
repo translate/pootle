@@ -27,8 +27,12 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_app.models.pootle_site import PootleSite
 from pootle_language.models import Language
-from pootle_project.models import Project, RESERVED_PROJECT_CODES
-from pootle_store.models import Store
+
+
+class GeneralSettingsForm(forms.ModelForm):
+
+    class Meta:
+        model = PootleSite
 
 
 LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$",
@@ -48,81 +52,7 @@ class LanguageAdminForm(forms.ModelForm):
     def clean_code(self):
         if (self.cleaned_data['code'] != 'templates' and
             not LANGCODE_RE.match(self.cleaned_data['code'])):
-            raise forms.ValidationError(_('Language code does not follow the '
-                                          'ISO convention'))
+            raise forms.ValidationError(
+                _('Language code does not follow the ISO convention')
+            )
         return self.cleaned_data["code"]
-
-
-class GeneralSettingsForm(forms.ModelForm):
-
-    class Meta:
-        model = PootleSite
-
-
-def project_admin_form_factory():
-
-    queryset = Language.objects.exclude(code='templates')
-
-    try:
-        default_lang = Language.objects.get(code='en')
-    except Language.DoesNotExist:
-        default_lang = queryset[0]
-
-    class ProjectAdminForm(forms.ModelForm):
-
-        source_language = forms.ModelChoiceField(
-            label=_('Source Language'),
-            initial=default_lang.pk,
-            queryset=queryset,
-        )
-
-        class Meta:
-            model = Project
-
-        def __init__(self, *args, **kwargs):
-            super(ProjectAdminForm, self).__init__(*args, **kwargs)
-            if self.instance.id:
-                has_stores = Store.objects.filter(
-                    translation_project__project=self.instance
-                ).count()
-
-                if has_stores:
-                    self.fields['localfiletype'].widget.attrs['disabled'] = True
-                    self.fields['localfiletype'].required = False
-
-                if (self.instance.treestyle != 'auto' and
-                    self.instance.translationproject_set.count() and
-                    self.instance.treestyle ==
-                        self.instance._detect_treestyle()):
-                    self.fields['treestyle'].widget.attrs['disabled'] = True
-                    self.fields['treestyle'].required = False
-
-            self.fields['checkstyle'].widget.attrs['class'] = \
-                "js-select2 select2-checkstyle"
-            self.fields['localfiletype'].widget.attrs['class'] = \
-                "js-select2 select2-localfiletype"
-            self.fields['treestyle'].widget.attrs['class'] = \
-                "js-select2 select2-treestyle"
-            self.fields['source_language'].widget.attrs['class'] = \
-                "js-select2 select2-language"
-
-        def clean_localfiletype(self):
-            value = self.cleaned_data.get('localfiletype', None)
-            if not value:
-                value = self.instance.localfiletype
-            return value
-
-        def clean_treestyle(self):
-            value = self.cleaned_data.get('treestyle', None)
-            if not value:
-                value = self.instance.treestyle
-            return value
-
-        def clean_code(self):
-            value = self.cleaned_data['code']
-            if value in RESERVED_PROJECT_CODES:
-                raise ValidationError(_('"%s" cannot be used as a project '
-                                        'code' % value))
-            return value
-
-    return ProjectAdminForm

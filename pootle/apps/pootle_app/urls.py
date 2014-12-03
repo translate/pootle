@@ -20,10 +20,12 @@
 
 from django.conf.urls import include, patterns, url
 
+from .views.admin import urls as admin_urls
+
 
 urlpatterns = patterns('',
     url(r'^admin',
-        include('pootle_app.views.admin.urls')),
+        include(admin_urls)),
     url(r'',
         include('pootle_app.views.index.urls')),
 )

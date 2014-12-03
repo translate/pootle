@@ -19,7 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from django import forms
+import locale
+
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -37,6 +38,8 @@ from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import check_permission
+from pootle_app.views.admin import util
+from pootle_app.views.admin.permissions import admin_permissions
 from pootle_misc.util import ajax_required, jsonify
 from pootle_project.forms import (TranslationProjectFormSet,
                                   TranslationProjectTagForm, tp_form_factory)
@@ -162,12 +165,10 @@ def ajax_add_tag_to_tp_in_project(request, project):
 @get_resource
 def overview(request, project, dir_path, filename):
     """Languages overview for a given project."""
-    from locale import strcoll
-
     item_func = (make_xlanguage_item if dir_path or filename
                                      else make_language_item)
     items = [item_func(item) for item in request.resource_obj.get_children()]
-    items.sort(lambda x, y: strcoll(x['title'], y['title']))
+    items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
                     'suggestions', 'critical', 'last-updated', 'activity']
@@ -252,7 +253,7 @@ def translate(request, project, dir_path, filename):
         'editor_extends': 'projects/base.html',
     })
 
-    return render(request, "editor/main.html", ctx)
+    return render(request, 'editor/main.html', ctx)
 
 
 @get_path_obj
@@ -268,44 +269,43 @@ def export_view(request, project, dir_path, filename):
         'project': project,
     })
 
-    return render(request, "editor/export_view.html", ctx)
+    return render(request, 'editor/export_view.html', ctx)
 
 
 @get_path_obj
 @permission_required('administrate')
-def project_admin(request, project):
+def project_admin(request, current_project):
     """Adding and deleting project languages."""
-    from pootle_app.views.admin.util import edit as admin_edit
+    tp_form_class = tp_form_factory(current_project)
+
+    queryset = TranslationProject.objects.filter(project=current_project)
+    queryset = queryset.order_by('pootle_path')
+
+    ctx = {
+        'page': 'admin-languages',
+
+        'project': {
+            'code': current_project.code,
+            'name': current_project.fullname,
+        }
+    }
 
     def generate_link(tp):
         path_args = split_pootle_path(tp.pootle_path)[:2]
         perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
         return '<a href="%s">%s</a>' % (perms_url, tp.language)
 
-    queryset = TranslationProject.objects.filter(project=project)
-    queryset = queryset.order_by('pootle_path')
-
-    ctx = {
-        'page': 'admin-languages',
-        'project': {
-            'code': project.code,
-            'name': project.fullname,
-        }
-    }
-
-    return admin_edit(request, 'projects/admin/languages.html',
-                      TranslationProject, ctx, generate_link,
-                      linkfield="language", queryset=queryset,
-                      can_delete=True, form=tp_form_factory(project),
-                      formset=TranslationProjectFormSet,
-                      exclude=('description',))
+    return util.edit(request, 'projects/admin/languages.html',
+                     TranslationProject, ctx, generate_link,
+                     linkfield="language", queryset=queryset,
+                     can_delete=True, form=tp_form_class,
+                     formset=TranslationProjectFormSet,
+                     exclude=('description',))
 
 
 @get_path_obj
 @permission_required('administrate')
 def project_admin_permissions(request, project):
-    from pootle_app.views.admin.permissions import admin_permissions
-
     ctx = {
         'page': 'admin-permissions',
 
@@ -356,7 +356,7 @@ def projects_translate(request, project_set):
         'editor_extends': 'projects/all/base.html',
     })
 
-    return render(request, "editor/main.html", ctx)
+    return render(request, 'editor/main.html', ctx)
 
 
 @get_path_obj
@@ -369,4 +369,4 @@ def projects_export_view(request, project_set):
         'project': None,
     })
 
-    return render(request, "editor/export_view.html", ctx)
+    return render(request, 'editor/export_view.html', ctx)

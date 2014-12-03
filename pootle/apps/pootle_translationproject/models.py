@@ -316,8 +316,9 @@ class TranslationProject(models.Model, TreeItem):
             from pootle_app.project_tree import get_translation_project_dir
             self.abs_real_path = get_translation_project_dir(self.language,
                     project_dir, self.file_style, make_dirs=True)
+
             self.directory = self.language.directory \
-                                        .get_or_make_subdir(self.project.code)
+                                          .get_or_make_subdir(self.project.code)
             self.pootle_path = self.directory.pootle_path
 
         super(TranslationProject, self).save(*args, **kwargs)
@@ -327,6 +328,7 @@ class TranslationProject(models.Model, TreeItem):
 
     def delete(self, *args, **kwargs):
         directory = self.directory
+
         super(TranslationProject, self).delete(*args, **kwargs)
         #TODO: avoid an access to directory while flushing the cache
         directory.flush_cache()
