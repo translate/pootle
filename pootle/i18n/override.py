@@ -106,8 +106,8 @@ def get_lang_from_http_header(request, supported):
     for accept_lang, unused in trans_real.parse_accept_lang_header(accept):
         if accept_lang == '*':
             return None
-        normalized = data.normalize_code(data.simplify_to_common(accept_lang,
-                                                                 supported))
+
+        normalized = data.normalize_code(data.simplify_to_common(accept_lang))
         if normalized in ['en-us', 'en']:
             return None
         if normalized in supported:
