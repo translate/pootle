@@ -1735,7 +1735,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                         unit.commented_by = system
                         unit.commented_on = current_time
                         create_subs[SubmissionFields.COMMENT] = \
-                            ['', unit.translator_comment]
+                            ['', unit.translator_comment or '']
 
                     # Create Submission after unit saved
                     for field in create_subs:
