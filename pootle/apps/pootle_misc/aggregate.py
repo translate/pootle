@@ -42,8 +42,3 @@ def sum_column(queryset, columns, count=False):
         arg_dict[column] = Sum(column)
 
     return queryset.aggregate(**arg_dict)
-
-
-def group_by_sort(queryset, column, fields):
-    return queryset.annotate(count=Count(column)).order_by('-count') \
-                   .values('count', *fields)

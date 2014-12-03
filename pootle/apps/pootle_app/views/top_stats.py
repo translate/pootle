@@ -20,12 +20,19 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
+from django.db.models import Count
 from django.utils.encoding import iri_to_uri
 
 from pootle_misc.aggregate import group_by_sort
 
 
 User = get_user_model()
+
+
+def group_by_sort(queryset, column, fields):
+    queryset = queryset.annotate(count=Count(column)).order_by('-count')
+    queryset = queryset.values('count', *fields)
+    return queryset
 
 
 def gentopstats_root():
