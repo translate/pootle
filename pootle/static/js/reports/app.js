@@ -297,7 +297,7 @@ PTL.reports = {
       var task = data.paid_tasks[index],
           item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate);
 
-      task.datetime = moment(task.datetime, 'YYYY-MM-DD hh:mm:ss').format('MMMM D, HH:mm')
+      task.datetime = moment(task.datetime, 'YYYY-MM-DD hh:mm:ss').format('MMMM D, HH:mm');
       if (item !== null) {
         item.amount += task.amount;
       } else {
