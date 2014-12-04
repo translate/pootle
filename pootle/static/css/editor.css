@@ -142,6 +142,11 @@ Unicode ranges is supported, and that they all look the same */
     position: relative;
 }
 
+.loader > div
+{
+    margin: 180px auto;
+}
+
 .editor-overlay
 {
     background-color: rgba(255, 255, 255, 0.8);
@@ -152,11 +157,6 @@ Unicode ranges is supported, and that they all look the same */
     right: 0;
     z-index: 99;
     text-align: center;
-}
-
-.loader > div
-{
-    margin: 180px auto;
 }
 
 .editor-overlay > div.alert
