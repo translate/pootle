@@ -42,18 +42,14 @@ ANN_COOKIE_NAME = 'project-announcements'
 @get_path_obj
 @permission_required('administrate')
 def admin_permissions(request, translation_project):
-    language = translation_project.language
-    project = translation_project.project
-
     ctx = {
         'page': 'admin-permissions',
 
         'translation_project': translation_project,
-        'project': project,
-        'language': language,
+        'project': translation_project.project,
+        'language': translation_project.language,
         'directory': translation_project.directory,
     }
-
     return admin_perms(request, translation_project.directory,
                        'translation_projects/admin/permissions.html', ctx)
 

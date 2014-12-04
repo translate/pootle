@@ -28,12 +28,13 @@ from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.baseurl import l
 
+
 class DirectoryManager(models.Manager):
     use_for_related_fields = True
 
     def get_queryset(self):
-        # ForeignKey fields with null=True are not selected by
-        # select_related unless explicitly specified
+        # ForeignKey fields with null=True are not selected by select_related
+        # unless explicitly specified.
         return super(DirectoryManager, self).get_queryset() \
                                             .filter(obsolete=False) \
                                             .select_related('parent')
@@ -54,8 +55,12 @@ class DirectoryManager(models.Manager):
 class Directory(models.Model, CachedTreeItem):
 
     name = models.CharField(max_length=255, null=False)
-    parent = models.ForeignKey('Directory', related_name='child_dirs',
-            null=True, db_index=True)
+    parent = models.ForeignKey(
+        'Directory',
+        related_name='child_dirs',
+        null=True,
+        db_index=True,
+    )
     pootle_path = models.CharField(max_length=255, null=False, db_index=True)
     obsolete = models.BooleanField(default=False)
 
@@ -73,6 +78,7 @@ class Directory(models.Model, CachedTreeItem):
     def stores(self):
         """Queryset with all descending stores."""
         from pootle_store.models import Store
+
         return Store.objects.filter(pootle_path__startswith=self.pootle_path)
 
     @property
@@ -92,7 +98,7 @@ class Directory(models.Model, CachedTreeItem):
 
     @cached_property
     def path(self):
-        """Returns just the path part omitting language and project codes.
+        """Return just the path part omitting language and project codes.
 
         If the `pootle_path` of a :cls:`Directory` object `dir` is
         `/af/project/dir1/dir2/file.po`, `dir.path` will return
@@ -102,19 +108,19 @@ class Directory(models.Model, CachedTreeItem):
 
     @cached_property
     def translation_project(self):
-        """Returns the translation project belonging to this directory."""
+        """Return the translation project belonging to this directory."""
         if self.is_language() or self.is_project():
             return None
+        elif self.is_translationproject():
+            return self.translationproject
         else:
-            if self.is_translationproject():
-                return self.translationproject
-            else:
-                aux_dir = self
-                while (not aux_dir.is_translationproject() and
-                       aux_dir.parent is not None):
-                    aux_dir = aux_dir.parent
+            aux_dir = self
+            while (not aux_dir.is_translationproject() and
+                   aux_dir.parent is not None):
+                aux_dir = aux_dir.parent
 
-                return aux_dir.translationproject
+            return aux_dir.translationproject
+
     ############################ Methods ######################################
 
     def __unicode__(self):
@@ -216,7 +222,7 @@ class Directory(models.Model, CachedTreeItem):
         return child_dir
 
     def trail(self, only_dirs=True):
-        """Returns a list of ancestor directories excluding
+        """Return a list of ancestor directories excluding
         :cls:`~pootle_translationproject.models.TranslationProject` and above.
         """
         path_parts = self.pootle_path.split('/')
@@ -238,16 +244,17 @@ class Directory(models.Model, CachedTreeItem):
         return Directory.objects.none()
 
     def is_language(self):
-        """does this directory point at a language"""
+        """Tell if this directory points at a language."""
         return (self.pootle_path.count('/') == 2 and
                 not self.pootle_path.startswith('/projects/'))
 
     def is_project(self):
+        """Tell if this directory points at a project."""
         return (self.pootle_path.startswith('/projects/') and
                 self.pootle_path.count('/') == 3)
 
     def is_translationproject(self):
-        """does this directory point at a translation project"""
+        """Tell if this directory points at a translation project."""
         return (self.pootle_path.count('/') == 3 and not
                 self.pootle_path.startswith('/projects/'))
 
@@ -256,7 +263,7 @@ class Directory(models.Model, CachedTreeItem):
         return self.pootle_path == '/projects/'
 
     def get_real_path(self):
-        """physical filesystem path for directory"""
+        """Return physical filesystem path for directory."""
         if self.is_project():
             return self.project.code
 

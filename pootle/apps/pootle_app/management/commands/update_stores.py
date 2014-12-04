@@ -19,12 +19,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-
 import logging
-
+import os
 from optparse import make_option
+
+# This must be run before importing Django.
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
 from pootle_translationproject.models import scan_translation_projects

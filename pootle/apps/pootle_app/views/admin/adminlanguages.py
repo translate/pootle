@@ -21,7 +21,7 @@
 from django.core.urlresolvers import reverse
 
 from pootle.core.decorators import admin_required
-from pootle_app.forms import MyLanguageAdminForm
+from pootle_app.forms import LanguageAdminForm
 from pootle_app.views.admin import util
 from pootle_language.models import Language
 
@@ -30,10 +30,9 @@ from pootle_language.models import Language
 def view(request):
 
     def generate_link(language):
-        perms_url = reverse('pootle-language-admin-permissions',
-                            args=[language.code])
-        return '<a href="%s">%s</a>' % (perms_url, language.code)
+        url = reverse('pootle-language-admin-permissions', args=[language.code])
+        return '<a href="%s">%s</a>' % (url, language.code)
 
     return util.edit(request, 'admin/languages.html', Language,
-                     link=generate_link, form=MyLanguageAdminForm,
+                     link=generate_link, form=LanguageAdminForm,
                      can_delete=True)

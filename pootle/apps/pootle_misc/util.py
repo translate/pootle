@@ -20,7 +20,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import json
-
+from datetime import datetime
 from functools import wraps
 
 from django.conf import settings
@@ -31,13 +31,13 @@ from django.utils.encoding import force_unicode
 from django.utils.functional import Promise
 from django.utils.importlib import import_module
 
+from pootle.core.markup import Markup
+
+
 # Timezone aware minimum for datetime (if appropriate) (bug 2567)
-from datetime import datetime
 datetime_min = datetime.min
 if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
-
-from pootle.core.markup import Markup
 
 
 def import_func(path):

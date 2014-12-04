@@ -57,7 +57,7 @@ def admin_permissions(request, current_directory, template, context):
         codename__in=excluded_permissions,
     )
 
-    base_queryset = User.objects.filter(is_active=1).exclude(
+    base_queryset = User.objects.filter(is_active=True).exclude(
             id__in=current_directory.permission_sets \
                                     .values_list('profile_id', flat=True),
     )

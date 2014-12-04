@@ -48,6 +48,7 @@ class RevisionManager(models.Manager):
 
 class Revision(models.Model):
     counter = models.IntegerField(null=False, default=0)
+
     objects = RevisionManager()
 
     class Meta:

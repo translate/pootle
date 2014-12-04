@@ -26,5 +26,6 @@ from pootle_project.models import Project
 
 from . import signals
 
+
 post_save.connect(signals.new_language, sender=Language)
 post_save.connect(signals.new_project, sender=Project)

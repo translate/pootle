@@ -118,7 +118,7 @@ def extract(request, translation_project):
         if not created:
             store.units.delete()
 
-        # Calculate maximum terms
+        # Calculate maximum terms.
         source_words = sum(store._get_total_wordcount()
                            for store in translation_project.stores.iterator())
         maxunits = int(source_words * 0.02)

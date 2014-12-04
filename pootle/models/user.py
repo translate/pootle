@@ -65,7 +65,10 @@ class User(AbstractBaseUser):
     Note that the ``password`` and ``last_login`` fields are inherited
     from ``AbstractBaseUser``.
     """
-    username = models.CharField(_('Username'), max_length=30, unique=True,
+    username = models.CharField(
+        _('Username'),
+        max_length=30,
+        unique=True,
         help_text=_('Required. 30 characters or fewer. Letters, numbers and '
                     '@/./+/-/_ characters'),
         validators=[
@@ -77,32 +80,53 @@ class User(AbstractBaseUser):
     email = models.EmailField(_('Email Address'), max_length=255)
     full_name = models.CharField(_('Full Name'), max_length=255, blank=True)
 
-    is_active = models.BooleanField(_('Active'), default=True,
+    is_active = models.BooleanField(
+        _('Active'),
+        default=True,
         help_text=_('Designates whether this user should be treated as '
-                    'active. Unselect this instead of deleting accounts.'))
-    is_superuser = models.BooleanField(_('Superuser Status'), default=False,
+                    'active. Unselect this instead of deleting accounts.'),
+    )
+    is_superuser = models.BooleanField(
+        _('Superuser Status'),
+        default=False,
         help_text=_('Designates that this user has all permissions without '
-                    'explicitly assigning them.'))
+                    'explicitly assigning them.'),
+    )
 
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
     # Translation setting fields
-    unit_rows = models.SmallIntegerField(default=9,
-            verbose_name=_("Number of Rows"))
-    alt_src_langs = models.ManyToManyField('pootle_language.Language',
-            blank=True, db_index=True, limit_choices_to=~Q(code='templates'),
-            verbose_name=_("Alternative Source Languages"))
+    unit_rows = models.SmallIntegerField(
+        default=9,
+        verbose_name=_("Number of Rows"),
+    )
+    alt_src_langs = models.ManyToManyField(
+        'pootle_language.Language',
+        blank=True,
+        db_index=True,
+        limit_choices_to=~Q(code='templates'),
+        verbose_name=_("Alternative Source Languages"),
+    )
 
     # Score-related fields
     rate = models.FloatField(_('Rate'), null=False, default=0)
     review_rate = models.FloatField(_('Review Rate'), null=False, default=0)
     hourly_rate = models.FloatField(_('Hourly Rate'), null=False, default=0)
     score = models.FloatField(_('Score'), null=False, default=0)
-    currency = models.CharField(_('Currency'), max_length=3, null=True,
-                                blank=True, choices=CURRENCIES)
+    currency = models.CharField(
+        _('Currency'),
+        max_length=3,
+        null=True,
+        blank=True,
+        choices=CURRENCIES,
+    )
     is_employee = models.BooleanField(_('Is employee?'), default=False)
-    twitter = models.CharField(_('Twitter'), max_length=15, null=True,
-                               blank=True)
+    twitter = models.CharField(
+        _('Twitter'),
+        max_length=15,
+        null=True,
+        blank=True,
+    )
     website = models.URLField(_('Website'), null=True, blank=True)
     linkedin = models.URLField(_('LinkedIn'), null=True, blank=True)
     bio = models.TextField(_('Short Bio'), null=True, blank=True)

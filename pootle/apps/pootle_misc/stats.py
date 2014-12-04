@@ -34,7 +34,7 @@ def get_translation_states(path_obj):
 
     states.append(make_dict('total', _("Total"), False))
     states.append(make_dict('translated', _("Translated")))
-    states.append(make_dict('fuzzy', _("Fuzzy")))
+    states.append(make_dict('fuzzy', _("Needs work")))
     states.append(make_dict('untranslated', _("Untranslated")))
 
     return states

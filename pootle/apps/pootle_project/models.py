@@ -118,49 +118,79 @@ class ProjectURLMixin(object):
 
 class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
-    code_help_text = _('A short code for the project. This should only contain '
-            'ASCII characters, numbers, and the underscore (_) character.')
-    code = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, verbose_name=_('Code'), help_text=code_help_text)
+    code = models.CharField(
+        max_length=255,
+        null=False,
+        unique=True,
+        db_index=True,
+        verbose_name=_('Code'),
+        help_text=_('A short code for the project. This should only contain '
+                    'ASCII characters, numbers, and the underscore (_) '
+                    'character.'),
+    )
+    fullname = models.CharField(
+        max_length=255,
+        null=False,
+        verbose_name=_("Full Name"),
+    )
 
-    fullname = models.CharField(max_length=255, null=False,
-            verbose_name=_("Full Name"))
-
-    checker_choices = [('standard', 'standard')]
     checkers = list(checks.projectcheckers.keys())
     checkers.sort()
+    checker_choices = [('standard', 'standard')]
     checker_choices.extend([(checker, checker) for checker in checkers])
-    checkstyle = models.CharField(max_length=50, default='standard',
-            null=False, choices=checker_choices,
-            verbose_name=_('Quality Checks'))
+    checkstyle = models.CharField(
+        max_length=50,
+        default='standard',
+        null=False,
+        choices=checker_choices,
+        verbose_name=_('Quality Checks'),
+    )
 
-    localfiletype = models.CharField(max_length=50, default="po",
-            choices=filetype_choices, verbose_name=_('File Type'))
-
-    treestyle_choices = (
+    localfiletype = models.CharField(
+        max_length=50,
+        default="po",
+        choices=filetype_choices,
+        verbose_name=_('File Type'),
+    )
+    treestyle = models.CharField(
+        max_length=20,
+        default='auto',
+        choices=(
             # TODO: check that the None is stored and handled correctly
             ('auto', _('Automatic detection (slower)')),
             ('gnu', _('GNU style: files named by language code')),
             ('nongnu', _('Non-GNU: Each language in its own directory')),
+        ),
+        verbose_name=_('Project Tree Style'),
     )
-    treestyle = models.CharField(max_length=20, default='auto',
-            choices=treestyle_choices, verbose_name=_('Project Tree Style'))
-
-    source_language = models.ForeignKey('pootle_language.Language',
-            db_index=True, verbose_name=_('Source Language'))
-
-    ignoredfiles = models.CharField(max_length=255, blank=True, null=False,
-            default="", verbose_name=_('Ignore Files'))
-
-    directory = models.OneToOneField('pootle_app.Directory', db_index=True,
-            editable=False)
-
-    screenshot_search_prefix = models.URLField(blank=True, null=True,
-            verbose_name=_('Screenshot Search Prefix'))
-
-    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
-                                         editable=False, null=True)
-
+    source_language = models.ForeignKey(
+        'pootle_language.Language',
+        db_index=True,
+        verbose_name=_('Source Language'),
+    )
+    ignoredfiles = models.CharField(
+        max_length=255,
+        blank=True,
+        null=False,
+        default="",
+        verbose_name=_('Ignore Files'),
+    )
+    directory = models.OneToOneField(
+        'pootle_app.Directory',
+        db_index=True,
+        editable=False,
+    )
+    screenshot_search_prefix = models.URLField(
+        blank=True,
+        null=True,
+        verbose_name=_('Screenshot Search Prefix'),
+    )
+    creation_time = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        editable=False,
+        null=True,
+    )
     disabled = models.BooleanField(verbose_name=_('Disabled'), default=False)
 
     objects = ProjectManager()
@@ -168,77 +198,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     class Meta:
         ordering = ['code']
         db_table = 'pootle_app_project'
-
-    @classmethod
-    def for_username(self, username, is_superuser=False):
-        """Returns a list of project codes available to `username`.
-
-        Checks for `view` permissions in project directories, and if no
-        explicit permissions are available, falls back to the root
-        directory for that user.
-
-        :param username: username to look projects for.
-        :param is_superuser: whether the given username is an admin user.
-            No restrictions will be put in place for such users.
-        """
-        key = iri_to_uri('projects:accessible:%s' % username)
-        user_projects = cache.get(key, None)
-
-        if user_projects is None:
-            logging.debug(u'Cache miss for %s', key)
-
-            if is_superuser:
-                user_projects = self.objects.all()
-            else:
-                lookup_args = {
-                    'directory__permission_sets__positive_permissions__codename':
-                        'view',
-                    'directory__permission_sets__profile__username':
-                        username,
-                }
-                user_projects = self.objects.filter(**lookup_args)
-
-            # No explicit permissions for projects, let's examine the root
-            if not user_projects.count():
-                root_permissions = PermissionSet.objects.filter(
-                    directory__pootle_path='/',
-                    profile__username=username,
-                    positive_permissions__codename='view',
-                )
-                if root_permissions.count():
-                    user_projects = self.objects.all()
-
-            user_projects = user_projects.values_list('code', flat=True)
-            cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
-
-        return user_projects
-
-    @classmethod
-    def accessible_by_user(self, user):
-        """Returns a list of project codes accessible by `user`.
-
-        First checks for `user`, and if no explicit `view` permissions
-        have been found, falls back to `default` (if logged-in) and
-        `nobody` users.
-        """
-        user_projects = []
-
-        check_usernames = [('nobody', False)]
-        if user.is_authenticated():
-            check_usernames = [
-                (user.username, user.is_superuser),
-                ('default', False),
-                ('nobody', False),
-            ]
-
-        for username, is_superuser in check_usernames:
-            user_projects = self.for_username(username,
-                                              is_superuser=is_superuser)
-
-            if user_projects:
-                break
-
-        return user_projects
 
     ############################ Properties ###################################
 
@@ -310,6 +269,77 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         return resources
 
     ############################ Methods ######################################
+
+    @classmethod
+    def for_username(self, username, is_superuser=False):
+        """Returns a list of project codes available to `username`.
+
+        Checks for `view` permissions in project directories, and if no
+        explicit permissions are available, falls back to the root
+        directory for that user.
+
+        :param username: username to look projects for.
+        :param is_superuser: whether the given username is an admin user.
+            No restrictions will be put in place for such users.
+        """
+        key = iri_to_uri('projects:accessible:%s' % username)
+        user_projects = cache.get(key, None)
+
+        if user_projects is None:
+            logging.debug(u'Cache miss for %s', key)
+
+            if is_superuser:
+                user_projects = self.objects.all()
+            else:
+                lookup_args = {
+                    'directory__permission_sets__positive_permissions__codename':
+                        'view',
+                    'directory__permission_sets__profile__username':
+                        username,
+                }
+                user_projects = self.objects.filter(**lookup_args)
+
+            # No explicit permissions for projects, let's examine the root
+            if not user_projects.count():
+                root_permissions = PermissionSet.objects.filter(
+                    directory__pootle_path='/',
+                    profile__username=username,
+                    positive_permissions__codename='view',
+                )
+                if root_permissions.count():
+                    user_projects = self.objects.all()
+
+            user_projects = user_projects.values_list('code', flat=True)
+            cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
+
+        return user_projects
+
+    @classmethod
+    def accessible_by_user(self, user):
+        """Returns a list of project codes accessible by `user`.
+
+        First checks for `user`, and if no explicit `view` permissions
+        have been found, falls back to `default` (if logged-in) and
+        `nobody` users.
+        """
+        user_projects = []
+
+        check_usernames = [('nobody', False)]
+        if user.is_authenticated():
+            check_usernames = [
+                (user.username, user.is_superuser),
+                ('default', False),
+                ('nobody', False),
+            ]
+
+        for username, is_superuser in check_usernames:
+            user_projects = self.for_username(username,
+                                              is_superuser=is_superuser)
+
+            if user_projects:
+                break
+
+        return user_projects
 
     def __unicode__(self):
         return self.fullname

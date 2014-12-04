@@ -33,11 +33,11 @@ from pootle_store.models import Store
 @admin_required
 def view(request):
     queryset = Language.objects.exclude(code='templates')
+
     try:
         default_lang = Language.objects.get(code='en')
     except Language.DoesNotExist:
         default_lang = queryset[0]
-
 
     class ProjectForm(forms.ModelForm):
 
@@ -58,17 +58,20 @@ def view(request):
             super(ProjectForm, self).__init__(*args, **kwargs)
             if self.instance.id:
                 has_stores = Store.objects.filter(
-                        translation_project__project=self.instance
-                    ).count
+                    translation_project__project=self.instance
+                ).count()
+
                 if has_stores:
                     self.fields['localfiletype'].widget.attrs['disabled'] = True
                     self.fields['localfiletype'].required = False
+
                 if (self.instance.treestyle != 'auto' and
                     self.instance.translationproject_set.count() and
                     self.instance.treestyle ==
                         self.instance._detect_treestyle()):
                     self.fields['treestyle'].widget.attrs['disabled'] = True
                     self.fields['treestyle'].required = False
+
             self.fields['checkstyle'].widget.attrs['class'] = \
                 "js-select2 select2-checkstyle"
             self.fields['localfiletype'].widget.attrs['class'] = \
@@ -98,9 +101,8 @@ def view(request):
             return value
 
     def generate_link(project):
-        langs_url = reverse('pootle-project-admin-languages',
-                            args=[project.code])
-        return '<a href="%s">%s</a>' % (langs_url, project.code)
+        url = reverse('pootle-project-admin-languages', args=[project.code])
+        return '<a href="%s">%s</a>' % (url, project.code)
 
     return util.edit(
             request,

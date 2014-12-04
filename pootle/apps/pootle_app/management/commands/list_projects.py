@@ -20,6 +20,8 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import os
+
+# This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import NoArgsCommandMixin

@@ -40,7 +40,7 @@ from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters, ENChecker
 from pootle_project.models import Project
-from pootle_store.models import (Store, Unit, PARSED)
+from pootle_store.models import Store, Unit, PARSED
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                OBSOLETE)
 
@@ -64,6 +64,7 @@ def create_or_enable_translation_project(language, project):
         else:
             logging.info(u"Created %s", tp)
 
+
 def create_translation_project(language, project):
     from pootle_app import project_tree
     if project_tree.translation_project_should_exist(language, project):
@@ -71,9 +72,7 @@ def create_translation_project(language, project):
             translation_project, created = TranslationProject.objects.all() \
                     .get_or_create(language=language, project=project)
             return translation_project
-        except OSError:
-            return None
-        except IndexError:
+        except (OSError, IndexError):
             return None
 
 
@@ -138,24 +137,29 @@ class TranslationProject(models.Model, CachedTreeItem):
     project = models.ForeignKey(Project, db_index=True)
     real_path = models.FilePathField(editable=False)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
-    pootle_path = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, editable=False)
-    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
-                                         editable=False, null=True)
+    pootle_path = models.CharField(
+        max_length=255,
+        null=False,
+        unique=True,
+        db_index=True,
+        editable=False,
+    )
+    creation_time = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        editable=False,
+        null=True,
+    )
     disabled = models.BooleanField(default=False)
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
-            settings.PARSE_POOL_CULL_FREQUENCY)
+                                         settings.PARSE_POOL_CULL_FREQUENCY)
 
     objects = TranslationProjectManager()
 
     class Meta:
         unique_together = ('language', 'project')
         db_table = 'pootle_app_translationproject'
-
-    @cached_property
-    def code(self):
-        return u'-'.join([self.language.code, self.project.code])
 
     ############################ Properties ###################################
 
@@ -220,6 +224,12 @@ class TranslationProject(models.Model, CachedTreeItem):
     def is_template_project(self):
         return self == self.project.get_template_translationproject()
 
+    ############################ Cached properties ############################
+
+    @cached_property
+    def code(self):
+        return u'-'.join([self.language.code, self.project.code])
+
     ############################ Methods ######################################
 
     def __unicode__(self):
@@ -230,8 +240,8 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     def save(self, *args, **kwargs):
         created = self.id is None
-
         project_dir = self.project.get_real_path()
+
         if not self.disabled:
             from pootle_app.project_tree import get_translation_project_dir
             self.abs_real_path = get_translation_project_dir(self.language,
@@ -278,13 +288,13 @@ class TranslationProject(models.Model, CachedTreeItem):
         return self.project.code in Project.accessible_by_user(user)
 
     def update(self, overwrite=True):
-        """Update all stores to reflect state on disk"""
+        """Update all stores to reflect state on disk."""
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
             store.update(overwrite=overwrite)
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
-        """Sync unsaved work on all stores to disk"""
+        """Sync unsaved work on all stores to disk."""
         stores = self.stores.exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
             store.sync(update_structure=not conservative,
@@ -339,8 +349,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         return False
 
     def scan_files(self):
-        """Scans the file system and returns a list of translation files.
-        """
+        """Scan the file system and return a list of translation files."""
         projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
         ignored_files = set(projects)
         ext = os.extsep + self.project.localfiletype
@@ -349,7 +358,8 @@ class TranslationProject(models.Model, CachedTreeItem):
         if self.is_template_project:
             ext = os.extsep + self.project.get_template_filetype()
 
-        from pootle_app.project_tree import (add_files, match_template_filename,
+        from pootle_app.project_tree import (add_files,
+                                             match_template_filename,
                                              direct_language_match_filename)
 
         all_files = []
@@ -417,7 +427,10 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         return self.non_db_state.termmatcher
 
-    ###########################################################################
+
+###############################################################################
+# Signal handlers                                                             #
+###############################################################################
 
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw or instance.disabled:

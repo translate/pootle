@@ -22,7 +22,6 @@
 import datetime
 import logging
 import os
-
 from hashlib import md5
 
 from django.conf import settings
@@ -57,16 +56,16 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names, run_given_filters, get_checker
 from pootle_misc.util import datetime_min, import_func
-from pootle_statistics.models import (SubmissionFields,
-                                      SubmissionTypes, Submission)
+from pootle_statistics.models import (Submission, SubmissionFields,
+                                      SubmissionTypes)
 
-from .fields import (TranslationStoreField, MultiStringField,
+from .fields import (MultiStringField, TranslationStoreField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes
+from .signals import translation_submitted
 from .util import (calc_total_wordcount, calc_translated_wordcount,
                    calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED,
                    FUZZY, TRANSLATED, get_change_str)
-from .signals import translation_submitted
 
 
 #
@@ -106,9 +105,6 @@ class QualityCheck(models.Model):
 
     objects = QualityCheckManager()
 
-    def __unicode__(self):
-        return self.name
-
     @property
     def display_name(self):
         return check_names.get(self.name, self.name)
@@ -118,6 +114,10 @@ class QualityCheck(models.Model):
         unknown_checks = QualityCheck.objects \
             .exclude(name__in=check_names.keys())
         unknown_checks.delete()
+
+    def __unicode__(self):
+        return self.name
+
 
 ################# Suggestion ################
 
@@ -148,21 +148,30 @@ class Suggestion(models.Model, base.TranslationUnit):
     target_f = MultiStringField()
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-                             related_name='suggestions', db_index=True)
-    reviewer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-                                 related_name='reviews', db_index=True)
-
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        related_name='suggestions',
+        db_index=True,
+    )
+    reviewer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        related_name='reviews',
+        db_index=True,
+    )
     translator_comment_f = models.TextField(null=True, blank=True)
-
-    state_choices = [
-        (SuggestionStates.PENDING, _('Pending')),
-        (SuggestionStates.ACCEPTED, _('Accepted')),
-        (SuggestionStates.REJECTED, _('Rejected')),
-    ]
-    state = models.CharField(max_length=16, default=SuggestionStates.PENDING,
-                             null=False, choices=state_choices, db_index=True)
-
+    state = models.CharField(
+        max_length=16,
+        default=SuggestionStates.PENDING,
+        null=False,
+        choices=(
+            (SuggestionStates.PENDING, _('Pending')),
+            (SuggestionStates.ACCEPTED, _('Accepted')),
+            (SuggestionStates.REJECTED, _('Rejected')),
+        ),
+        db_index=True,
+    )
     creation_time = models.DateTimeField(db_index=True, null=True)
     review_time = models.DateTimeField(null=True, db_index=True)
 
@@ -270,8 +279,8 @@ class UnitManager(models.Manager):
 
         units_qs = units_qs.extra(
             where=[
-                '`pootle_store_store`.`pootle_path` LIKE %s',
-                '`pootle_store_store`.`pootle_path` NOT LIKE %s',
+                'pootle_store_store.pootle_path LIKE %s',
+                'pootle_store_store.pootle_path NOT LIKE %s',
             ], params=[units_path, '/templates/%']
         )
 
@@ -290,48 +299,84 @@ class Unit(models.Model, base.TranslationUnit):
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
     unitid = models.TextField(editable=False)
-    unitid_hash = models.CharField(max_length=32, db_index=True,
-            editable=False)
-
+    unitid_hash = models.CharField(
+        max_length=32,
+        db_index=True,
+        editable=False,
+    )
     source_f = MultiStringField(null=True)
-    source_hash = models.CharField(max_length=32, db_index=True,
-            editable=False)
+    source_hash = models.CharField(
+        max_length=32,
+        db_index=True,
+        editable=False,
+    )
     source_wordcount = models.SmallIntegerField(default=0, editable=False)
-    source_length = models.SmallIntegerField(db_index=True, default=0,
-            editable=False)
-
+    source_length = models.SmallIntegerField(
+        db_index=True,
+        default=0,
+        editable=False,
+    )
     target_f = MultiStringField(null=True, blank=True)
     target_wordcount = models.SmallIntegerField(default=0, editable=False)
-    target_length = models.SmallIntegerField(db_index=True, default=0,
-            editable=False)
-
+    target_length = models.SmallIntegerField(
+        db_index=True,
+        default=0,
+        editable=False,
+    )
     developer_comment = models.TextField(null=True, blank=True)
     translator_comment = models.TextField(null=True, blank=True)
     locations = models.TextField(null=True, editable=False)
     context = models.TextField(null=True, editable=False)
-
-    state = models.IntegerField(null=False, default=UNTRANSLATED, db_index=True)
-    revision = models.IntegerField(null=False, default=0, db_index=True, blank=True)
+    state = models.IntegerField(
+        null=False,
+        default=UNTRANSLATED,
+        db_index=True,
+    )
+    revision = models.IntegerField(
+        null=False,
+        default=0,
+        db_index=True,
+        blank=True,
+    )
 
     # Metadata
-    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
-                                         editable=False, null=True)
-    mtime = models.DateTimeField(auto_now=True, auto_now_add=True,
-                                 db_index=True, editable=False)
+    creation_time = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        editable=False,
+        null=True,
+    )
+    mtime = models.DateTimeField(
+        auto_now=True,
+        auto_now_add=True,
+        db_index=True,
+        editable=False,
+    )
 
     # unit translator
-    submitted_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-            db_index=True, related_name='submitted')
+    submitted_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        db_index=True,
+        related_name='submitted',
+    )
     submitted_on = models.DateTimeField(db_index=True, null=True)
-
-    commented_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-            db_index=True, related_name='commented')
+    commented_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        db_index=True,
+        related_name='commented',
+    )
     commented_on = models.DateTimeField(db_index=True, null=True)
 
     # reviewer: who has accepted suggestion or removed FUZZY
     # None if translation has been submitted by approved translator
-    reviewed_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-            db_index=True, related_name='reviewed')
+    reviewed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        db_index=True,
+        related_name='reviewed',
+    )
     reviewed_on = models.DateTimeField(db_index=True, null=True)
 
     objects = UnitManager()
@@ -835,8 +880,6 @@ class Unit(models.Model, base.TranslationUnit):
     def get_active_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
 
-##################### TranslationUnit ############################
-
     def update_tmserver(self):
         obj = {
             'id': self.id,
@@ -863,7 +906,7 @@ class Unit(models.Model, base.TranslationUnit):
     def get_tm_suggestions(self):
         return get_tmsuggestions(self)
 
-##################### TranslationUnit ############################
+    ################# TranslationUnit ############################
 
     def getnotes(self, origin=None):
         if origin is None:
@@ -1051,7 +1094,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         return changed
 
-##################### Suggestions #################################
+    ################# Suggestions #################################
     def get_suggestions(self):
         return self.suggestion_set.pending().select_related('user').all()
 
@@ -1224,7 +1267,8 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             sub_type = SubmissionTypes.UNMUTE_CHECK
 
-        sub = Submission(creation_time=timezone.now(),
+        sub = Submission(
+            creation_time=timezone.now(),
             translation_project=self.store.translation_project,
             submitter=user,
             field=SubmissionFields.NONE,
@@ -1301,31 +1345,54 @@ class StoreManager(models.Manager):
 
 class Store(models.Model, CachedTreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
+
+    file = TranslationStoreField(
+        upload_to="fish",
+        max_length=255,
+        storage=fs,
+        db_index=True,
+        null=False,
+        editable=False,
+    )
+    parent = models.ForeignKey(
+        'pootle_app.Directory',
+        related_name='child_stores',
+        db_index=True,
+        editable=False,
+    )
+    translation_project = models.ForeignKey(
+        'pootle_translationproject.TranslationProject',
+        related_name='stores',
+        db_index=True,
+        editable=False,
+    )
+    pootle_path = models.CharField(
+        max_length=255,
+        null=False,
+        unique=True,
+        db_index=True,
+        verbose_name=_("Path"),
+    )
+    name = models.CharField(max_length=128, null=False, editable=False)
+    file_mtime = models.DateTimeField(default=datetime_min)
+    state = models.IntegerField(
+        null=False,
+        default=NEW,
+        editable=False,
+        db_index=True,
+    )
+    creation_time = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        editable=False,
+        null=True,
+    )
+    last_sync_revision = models.IntegerField(db_index=True, null=True)
+    obsolete = models.BooleanField(default=False)
+
     UnitClass = Unit
     Name = "Model Store"
     is_dir = False
-
-    file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs,
-            db_index=True, null=False, editable=False)
-
-    parent = models.ForeignKey('pootle_app.Directory',
-            related_name='child_stores', db_index=True, editable=False)
-
-    translation_project_fk = 'pootle_translationproject.TranslationProject'
-    translation_project = models.ForeignKey(translation_project_fk,
-            related_name='stores', db_index=True, editable=False)
-
-    pootle_path = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, verbose_name=_("Path"))
-    name = models.CharField(max_length=128, null=False, editable=False)
-
-    file_mtime = models.DateTimeField(default=datetime_min)
-    state = models.IntegerField(null=False, default=NEW, editable=False,
-            db_index=True)
-    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
-                                         editable=False, null=True)
-    last_sync_revision = models.IntegerField(db_index=True, null=True)
-    obsolete = models.BooleanField(default=False)
 
     objects = StoreManager()
 
@@ -1350,7 +1417,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     @property
     def is_terminology(self):
-        """is this a project specific terminology store?"""
+        """Is this a project specific terminology store?"""
         #TODO: Consider if this should check if the store belongs to a
         # terminology project. Probably not, in case this might be called over
         # several files in a project.
@@ -1372,7 +1439,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         """
         pass
 
-    ############################ Methods ######################################
+    ############################ Cached properties ############################
 
     @cached_property
     def path(self):
@@ -1383,6 +1450,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         `dir1/dir2/file.po`.
         """
         return self.pootle_path.split(u'/', 2)[-1]
+
+    ############################ Methods ######################################
+
 
     def __init__(self, *args, **kwargs):
         super(Store, self).__init__(*args, **kwargs)
@@ -1421,10 +1491,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         store_log(user='system', action=STORE_DELETED,
                   path=self.pootle_path, store=self.id)
-
-        lang = self.translation_project.language.code
         for unit in self.unit_set.iterator():
-            action_log(user='system', action=UNIT_DELETED, lang=lang,
+            action_log(user='system', action=UNIT_DELETED,
+                       lang=self.translation_project.language.code,
                        unit=unit.id, translation='', path=self.pootle_path)
 
         super(Store, self).delete(*args, **kwargs)
@@ -1922,7 +1991,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             output.addunit(unit.convert(output.UnitClass))
         return output
 
-######################## TranslationStore #########################
+    #################### TranslationStore #########################
 
     suggestions_in_format = True
 
@@ -2109,8 +2178,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     ### /TreeItem
 
-
-################################ Translation #############################
+    ############################ Translation #############################
 
     def getitem(self, item):
         """Returns a single unit based on the item number."""
@@ -2131,17 +2199,19 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 mtime = timezone.now()
             if user is None:
                 try:
-                    submit = self.translation_project.submission_set \
-                                 .filter(creation_time=mtime).latest()
-                    if submit.submitter.username != 'nobody':
-                        user = submit.submitter
+                    submission = self.translation_project.submission_set \
+                                     .filter(creation_time=mtime).latest()
+
+                    if submission.submitter.username != 'nobody':
+                        user = submission.submitter
                 except ObjectDoesNotExist:
                     try:
-                        lastsubmit = self.translation_project.submission_set \
+                        submission = self.translation_project.submission_set \
                                                              .latest()
-                        if lastsubmit.submitter.username != 'nobody':
-                            user = lastsubmit.submitter
-                        mtime = min(lastsubmit.creation_time, mtime)
+                        if submission.submitter.username != 'nobody':
+                            user = submission.submitter
+
+                        mtime = min(submission.creation_time, mtime)
                     except ObjectDoesNotExist:
                         pass
 
@@ -2156,7 +2226,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                        (int(dateformat.format(mtime, 'U')),
                                         mtime.microsecond)),
                     }
-            if user and user.is_authenticated():
+            if user is not None and user.is_authenticated():
                 headerupdates['Last_Translator'] = '%s <%s>' % \
                         (user.display_name, user.email)
             else:

@@ -112,29 +112,24 @@ def get_matching_permissions(user, directory, check_default=True):
     return permissions
 
 
-def check_user_permission(user, permission_codename, directory,
-                          check_default=True):
-    """Checks if the current user has the permission the perform
-    ``permission_codename``."""
+def check_user_permission(user, perm_code, directory, check_default=True):
+    """Check if the current user has the permission to perform ``perm_code``."""
     if user.is_superuser:
         return True
 
     permissions = get_matching_permissions(user, directory, check_default)
 
-    return ("administrate" in permissions or
-            permission_codename in permissions)
+    return ("administrate" in permissions or perm_code in permissions)
 
 
-def check_permission(permission_codename, request):
-    """Checks if the current user has `permission_codename`
-    permissions.
-    """
+def check_permission(perm_code, request):
+    """Check if the current user has `perm_code` permission."""
     if request.user.is_superuser:
         return True
 
     # `view` permissions are project-centric, and we must treat them
     # differently
-    if permission_codename == 'view':
+    if perm_code == 'view':
         path_obj = None
         if hasattr(request, 'translation_project'):
             path_obj = request.translation_project
@@ -146,8 +141,9 @@ def check_permission(permission_codename, request):
 
         return path_obj.is_accessible_by(request.user)
 
-    return ("administrate" in request.permissions or
-            permission_codename in request.permissions)
+    permissions = request.permissions
+
+    return ("administrate" in permissions or perm_code in permissions)
 
 
 class PermissionSetManager(models.Manager):
@@ -163,22 +159,31 @@ class PermissionSetManager(models.Manager):
 
 class PermissionSet(models.Model):
 
+    # FIXME: rename to `user` for clearer semantics
+    profile = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
+    directory = models.ForeignKey(
+        'pootle_app.Directory',
+        db_index=True,
+        related_name='permission_sets',
+    )
+    positive_permissions = models.ManyToManyField(
+        Permission,
+        db_index=True,
+        related_name='permission_sets_positive',
+    )
+    # Negative permissions are no longer used, kept around to scheme
+    # compatibility with older versions.
+    negative_permissions = models.ManyToManyField(
+        Permission,
+        editable=False,
+        related_name='permission_sets_negative',
+    )
+
     objects = PermissionSetManager()
 
     class Meta:
         unique_together = ('profile', 'directory')
         app_label = "pootle_app"
-
-    # FIXME: rename to `user` for clearer semantics
-    profile = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
-    directory = models.ForeignKey('pootle_app.Directory', db_index=True,
-                                  related_name='permission_sets')
-    positive_permissions = models.ManyToManyField(Permission, db_index=True,
-            related_name='permission_sets_positive')
-    # Negative permissions are no longer used, kept around to scheme
-    # compatibility with older versions.
-    negative_permissions = models.ManyToManyField(Permission, editable=False,
-            related_name='permission_sets_negative')
 
     def __unicode__(self):
         return "%s : %s" % (self.profile.username,

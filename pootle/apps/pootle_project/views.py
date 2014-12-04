@@ -24,14 +24,11 @@ import locale
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 
-from pootle.core.browser import (make_language_item,
-                                 make_xlanguage_item,
-                                 make_project_list_item,
-                                 get_table_headings)
+from pootle.core.browser import (get_table_headings, make_language_item,
+                                 make_project_list_item, make_xlanguage_item)
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
-from pootle.core.helpers import (get_export_view_context,
-                                 get_overview_context,
+from pootle.core.helpers import (get_export_view_context, get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.views.admin import util
@@ -53,17 +50,16 @@ def overview(request, project, dir_path, filename):
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
                     'suggestions', 'critical', 'last-updated', 'activity']
-    table = {
-        'id': 'project',
-        'fields': table_fields,
-        'headings': get_table_headings(table_fields),
-        'items': items,
-    }
 
     ctx = get_overview_context(request)
     ctx.update({
         'project': project,
-        'table': table,
+        'table': {
+            'id': 'project',
+            'fields': table_fields,
+            'headings': get_table_headings(table_fields),
+            'items': items,
+        },
         'stats': jsonify(request.resource_obj.get_stats()),
 
         'browser_extends': 'projects/base.html',
@@ -76,11 +72,9 @@ def overview(request, project, dir_path, filename):
 @permission_required('view')
 @get_resource
 def translate(request, project, dir_path, filename):
-    language = None
-
     ctx = get_translation_context(request)
     ctx.update({
-        'language': language,
+        'language': None,
         'project': project,
 
         'editor_extends': 'projects/base.html',
@@ -143,7 +137,6 @@ def project_admin_permissions(request, project):
         'project': project,
         'directory': project.directory,
     }
-
     return admin_permissions(request, project.directory,
                              'projects/admin/permissions.html', ctx)
 
@@ -151,23 +144,22 @@ def project_admin_permissions(request, project):
 @get_path_obj
 @permission_required('view')
 def projects_overview(request, project_set):
-    """Page listing all projects"""
+    """Page listing all projects."""
     items = [make_project_list_item(project)
              for project in project_set.children]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
                     'suggestions', 'critical', 'last-updated', 'activity']
-    table = {
-        'id': 'projects',
-        'fields': table_fields,
-        'headings': get_table_headings(table_fields),
-        'items': items,
-    }
 
     ctx = get_overview_context(request)
     ctx.update({
-        'table': table,
+        'table': {
+            'id': 'projects',
+            'fields': table_fields,
+            'headings': get_table_headings(table_fields),
+            'items': items,
+        },
         'stats': jsonify(request.resource_obj.get_stats()),
 
         'browser_extends': 'projects/all/base.html',

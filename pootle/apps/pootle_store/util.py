@@ -36,6 +36,7 @@ FUZZY = 50
 #: Unit is fully translated
 TRANSLATED = 200
 
+
 # Map for retrieving natural names for unit states
 STATES_MAP = {
     OBSOLETE: _("Obsolete"),
@@ -43,6 +44,7 @@ STATES_MAP = {
     FUZZY: _("Needs work"),
     TRANSLATED: _("Translated"),
 }
+
 
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""

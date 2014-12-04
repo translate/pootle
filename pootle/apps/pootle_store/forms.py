@@ -28,16 +28,17 @@ from django.utils.translation import get_language, ugettext as _
 
 from translate.misc.multistring import multistring
 
-from pootle.core.log import (TRANSLATION_ADDED,
-                             TRANSLATION_CHANGED, TRANSLATION_DELETED)
+from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
+                             TRANSLATION_DELETED)
 from pootle.core.mixins import CachedMethods
 from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .models import Unit
 from .fields import to_db
-from .util import UNTRANSLATED, FUZZY, TRANSLATED, OBSOLETE
+from .models import Unit
+from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
+
 
 ############## text cleanup and highlighting #########################
 
@@ -58,7 +59,9 @@ def highlight_whitespace(text):
 
     return FORM_RE.sub(replace, text)
 
+
 FORM_UNRE = re.compile('\r|\n|\t|\\\\r|\\\\n|\\\\t|\\\\\\\\')
+
 def unhighlight_whitespace(text):
     """Replace visible whitespace with proper whitespace."""
 
@@ -75,6 +78,7 @@ def unhighlight_whitespace(text):
         return submap[match.group()]
 
     return FORM_UNRE.sub(replace, text)
+
 
 class MultiStringWidget(forms.MultiWidget):
     """Custom Widget for editing multistrings, expands number of text
@@ -114,6 +118,7 @@ class MultiStringWidget(forms.MultiWidget):
             return [highlight_whitespace(value)]
         else:
             raise ValueError
+
 
 class HiddenMultiStringWidget(MultiStringWidget):
     """Uses hidden input instead of textareas."""
@@ -377,6 +382,5 @@ def unit_comment_form_factory(language):
                 sub.save()
 
             super(UnitCommentForm, self).save()
-
 
     return UnitCommentForm

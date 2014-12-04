@@ -37,7 +37,7 @@ from pootle.core.decorators import admin_required
 from pootle.core.markup import get_markup_filter
 from pootle_misc.aggregate import sum_column
 from pootle_statistics.models import Submission
-from pootle_store.models import Unit, Suggestion
+from pootle_store.models import Suggestion, Unit
 from pootle_store.util import TRANSLATED
 
 

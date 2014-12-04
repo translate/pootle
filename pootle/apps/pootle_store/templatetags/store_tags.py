@@ -101,7 +101,8 @@ def fancy_highlight(text):
 
 
 def call_highlight(old, new):
-    """Calls diff highlighting code only if the target is set.
+    """Call diff highlighting code only if the target is set.
+
     Otherwise, highlight as a normal unit.
     """
     if isinstance(old, multistring):
@@ -118,28 +119,32 @@ differencer = diff_match_patch()
 def highlight_diffs(old, new):
     """Highlight the differences between old and new."""
 
-    textdiff = u""  # to store the final result
-    removed = u""  # the removed text that we might still want to add
+    textdiff = u""  # To store the final result.
+    removed = u""  # The removed text that we might still want to add.
     diff = differencer.diff_main(old, new)
     differencer.diff_cleanupSemantic(diff)
     for op, text in diff:
-        if op == 0:  # equality
+        if op == 0:  # Equality.
             if removed:
-                textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
+                textdiff += ('<span class="diff-delete">%s</span>' %
+                             fancy_escape(removed))
                 removed = u""
             textdiff += fancy_escape(text)
-        elif op == 1:  # insertion
+        elif op == 1:  # Insertion.
             if removed:
-                # this is part of a substitution, not a plain insertion. We
+                # This is part of a substitution, not a plain insertion. We
                 # will format this differently.
-                textdiff += '<span class="diff-replace">%s</span>' % fancy_escape(text)
+                textdiff += ('<span class="diff-replace">%s</span>' %
+                             fancy_escape(text))
                 removed = u""
             else:
-                textdiff += '<span class="diff-insert">%s</span>' % fancy_escape(text)
-        elif op == -1:  # deletion
+                textdiff += ('<span class="diff-insert">%s</span>' %
+                             fancy_escape(text))
+        elif op == -1:  # Deletion.
             removed = text
     if removed:
-        textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
+        textdiff += ('<span class="diff-delete">%s</span>' %
+                     fancy_escape(removed))
     return mark_safe(textdiff)
 
 
@@ -148,9 +153,11 @@ def pluralize_source(unit):
     if unit.hasplural():
         count = len(unit.source.strings)
         if count == 1:
-            return [(0, unit.source.strings[0], "%s+%s" % (_('Singular'), _('Plural')))]
+            return [(0, unit.source.strings[0], "%s+%s" % (_('Singular'),
+                                                           _('Plural')))]
         elif count == 2:
-            return [(0, unit.source.strings[0], _('Singular')), (1, unit.source.strings[1], _('Plural'))]
+            return [(0, unit.source.strings[0], _('Singular')),
+                    (1, unit.source.strings[1], _('Plural'))]
         else:
             forms = []
             for i, source in enumerate(unit.source.strings):
@@ -189,30 +196,36 @@ def pluralize_diff_sugg(sugg):
         forms = []
         for i, target in enumerate(sugg.target.strings):
             if i < len(unit.target.strings):
-                forms.append((i, target, call_highlight(unit.target.strings[i], target), _('Plural Form %d', i)))
+                forms.append((i, target, call_highlight(unit.target.strings[i],
+                                                        target),
+                              _('Plural Form %d', i)))
             else:
-                forms.append((i, target, call_highlight('', target), _('Plural Form %d', i)))
+                forms.append((i, target, call_highlight('', target),
+                              _('Plural Form %d', i)))
         return forms
     else:
-        return [(0, sugg.target, call_highlight(unit.target, sugg.target), None)]
+        return [(0, sugg.target, call_highlight(unit.target, sugg.target),
+                 None)]
 
 
 @register.tag(name="include_raw")
 def do_include_raw(parser, token):
-    """
-    Performs a template include without parsing the context, just dumps
-    the template in.
+    """Perform a raw template include.
+
+    This means to include the template without parsing context, just dump the
+    template in.
+
     Source: http://djangosnippets.org/snippets/1684/
     """
     bits = token.split_contents()
     if len(bits) != 2:
-        raise template.TemplateSyntaxError(
-            "%r tag takes one argument: the name of the template "
-            "to be included" % bits[0]
-        )
+        excp_msg = ("%r tag takes one argument: the name of the template to "
+                    "be included" % bits[0])
+        raise template.TemplateSyntaxError(excp_msg)
 
     template_name = bits[1]
-    if template_name[0] in ('"', "'") and template_name[-1] == template_name[0]:
+    if (template_name[0] in ('"', "'") and
+        template_name[-1] == template_name[0]):
         template_name = template_name[1:-1]
 
     template_loader = Loader()

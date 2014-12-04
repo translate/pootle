@@ -19,10 +19,10 @@
 # along with translate; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+from django.conf import settings
 from django.db import models
 from django.db.models import Q
 from django.db.models.aggregates import Max
-from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.utils.timezone import now

@@ -42,8 +42,8 @@ ANALYZE_COEF = 0.1
 SIMILARITY_THRESHOLD = 0.5
 
 
-#: These are the values for the 'type' field of Submission
 class SubmissionTypes(object):
+    """Values for the 'type' field of Submission."""
     # None/0 = no information
     NORMAL = 1  # Interactive web editing
     REVERT = 2  # Revert action on the web
@@ -63,8 +63,8 @@ class SubmissionTypes(object):
     CONTRIBUTION_TYPES = [NORMAL, SYSTEM, SUGG_ADD]
 
 
-#: Values for the 'field' field of Submission
 class SubmissionFields(object):
+    """Values for the 'field' field of Submission."""
     NONE = 0  # non-field submission
     SOURCE = 1  # pootle_store.models.Unit.source
     TARGET = 2  # pootle_store.models.Unit.target
@@ -93,33 +93,48 @@ class SubmissionManager(models.Manager):
 
 
 class Submission(models.Model):
-    class Meta:
-        ordering = ["creation_time"]
-        get_latest_by = "creation_time"
-        db_table = 'pootle_app_submission'
-
-    objects = SubmissionManager()
-    simple_objects = models.Manager()
 
     creation_time = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey(
-            'pootle_translationproject.TranslationProject', db_index=True
+        'pootle_translationproject.TranslationProject',
+        db_index=True,
     )
-    submitter = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-            db_index=True)
-    suggestion = models.ForeignKey('pootle_store.Suggestion', blank=True,
-            null=True, db_index=True)
-    unit = models.ForeignKey('pootle_store.Unit', blank=True, null=True,
-            db_index=True)
-    check = models.ForeignKey('pootle_store.QualityCheck', blank=True, null=True,
-            db_index=True)
-    store = models.ForeignKey('pootle_store.Store', blank=True, null=True,
-            db_index=True)
+    submitter = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        db_index=True,
+    )
+    suggestion = models.ForeignKey(
+        'pootle_store.Suggestion',
+        blank=True,
+        null=True,
+        db_index=True,
+    )
+    unit = models.ForeignKey(
+        'pootle_store.Unit',
+        blank=True,
+        null=True,
+        db_index=True,
+    )
+    check = models.ForeignKey(
+        'pootle_store.QualityCheck',
+        blank=True,
+        null=True,
+        db_index=True,
+    )
+    store = models.ForeignKey(
+        'pootle_store.Store',
+        blank=True,
+        null=True,
+        db_index=True,
+    )
 
-    #: The field in the unit that changed
+    # The field in the unit that changed.
     field = models.IntegerField(null=True, blank=True, db_index=True)
-    # how did this submission come about? (one of the constants above)
+
+    # How did this submission come about? (one of the constants above).
     type = models.IntegerField(null=True, blank=True, db_index=True)
+
     # old_value and new_value can store string representations of multistrings
     # in the case where they store values for a unit's source or target. In
     # such cases, the strings might not be usable as is. Use the two helper
@@ -131,6 +146,14 @@ class Submission(models.Model):
     similarity = models.FloatField(blank=True, null=True)
     # similarity ratio to the result of machine translation
     mt_similarity = models.FloatField(blank=True, null=True)
+
+    objects = SubmissionManager()
+    simple_objects = models.Manager()
+
+    class Meta:
+        ordering = ["creation_time"]
+        get_latest_by = "creation_time"
+        db_table = 'pootle_app_submission'
 
     def __unicode__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
@@ -159,7 +182,7 @@ class Submission(models.Model):
         return self.get_submission_message()
 
     def get_submission_message(self):
-        """Returns a message describing the submission.
+        """Return a message describing the submission.
 
         The message includes the user (with link to profile and gravatar), a
         message describing the action performed, and when it was performed.
