@@ -172,7 +172,7 @@ PTL.reports = {
         types = PTL.reports.paidTaskTypes;
     if (taskType === types.translation || taskType === types.review || taskType === types.hourlyWork) {
       $this.val(amount > 0 ? amount : 0);
-      if (taskType !== taskType === types.hourlyWork) {
+      if (taskType === types.hourlyWork) {
         $this.val(Math.round(amount));
       }
     }
