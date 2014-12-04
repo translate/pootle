@@ -95,6 +95,7 @@ PTL.editor = {
       vUnit: _.template($('#view_unit').html()),
       tm: _.template($('#tm_suggestions').html()),
       editCtx: _.template($('#editCtx').html()),
+      msg: _.template($('#js-editor-msg').html()),
     };
 
     /* Initialize search */
@@ -490,7 +491,7 @@ PTL.editor = {
 
   /* Things to do when no results are returned */
   noResults: function () {
-    PTL.editor.displayMsg(gettext("No results."));
+    PTL.editor.displayMsg({body: gettext("No results."), showClose: true});
     PTL.editor.reDraw(false);
   },
 
@@ -919,16 +920,15 @@ PTL.editor = {
   },
 
   /* Displays an informative message */
-  displayMsg: function (msg) {
+  displayMsg: function (opts) {
     this.hideActivity();
     helpers.fixSidebarHeight();
-    $("#js-editor-msg").show().find("span").html(msg).fadeIn(300);
+    $('#js-editor-msg-overlay').html(this.tmpl.msg({opts: opts})).fadeIn(300);
   },
 
   hideMsg: function () {
-    if ($("#js-editor-msg").is(":visible")) {
-      $("#js-editor-msg").fadeOut(300);
-    }
+    var $wrapper = $('#js-editor-msg-overlay');
+    $wrapper.length && $wrapper.fadeOut(300);
   },
 
   /* Displays error messages on top of the toolbar */
@@ -1623,7 +1623,7 @@ PTL.editor = {
       $checks.select2(filterSelectOpts).select2('val', selectedValue);
       $('.js-filter-checks-wrapper').css('display', 'inline-block');
     } else { // No results
-      PTL.editor.displayMsg(gettext("No results."));
+      PTL.editor.displayMsg({body: gettext("No results."), showClose: true});
       $('#js-filter-status').select2('val', PTL.editor.filter);
     }
   },
