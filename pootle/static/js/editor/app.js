@@ -925,7 +925,7 @@ PTL.editor = {
     $("#js-editor-msg").show().find("span").html(msg).fadeIn(300);
   },
 
-  hideMsg: function (msg) {
+  hideMsg: function () {
     if ($("#js-editor-msg").is(":visible")) {
       $("#js-editor-msg").fadeOut(300);
     }
