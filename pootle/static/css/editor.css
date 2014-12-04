@@ -166,6 +166,16 @@ Unicode ranges is supported, and that they all look the same */
     width: 400px;
 }
 
+.editor-msg-btns
+{
+    margin-top: 1em;
+}
+
+.editor-msg-btns .btn
+{
+    margin: 0 0.5em;
+}
+
 .toolbar-message
 {
     position: fixed;

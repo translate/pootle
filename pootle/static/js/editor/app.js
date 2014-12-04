@@ -141,6 +141,12 @@ PTL.editor = {
       PTL.editor.focused = e.target;
     });
 
+    /* General */
+    $(document).on('click', '.js-editor-reload', function (e) {
+      e.preventDefault();
+      $.history.check();
+    });
+
     /* Write TM results, special chars... into the currently focused element */
     $(document).on('click', '.js-editor-copytext', this.copyText.bind(this));
 
@@ -969,6 +975,23 @@ PTL.editor = {
     PTL.editor.displayError(msg);
   },
 
+  displayObsoleteMsg: function () {
+    var msgText = gettext('This unit no longer exists.'),
+        backMsg = gettext('Go back to overview'),
+        backLink = $('.js-back-to-browser').attr('href'),
+        reloadMsg = gettext('Reload page'),
+        html = [
+          '<div>', msgText, '</div>',
+          '<div class="editor-msg-btns">',
+            '<a class="btn btn-xs js-editor-reload" href="#">', reloadMsg, '</a>',
+            '<a class="btn btn-xs" href="', backLink, '">', backMsg, '</a>',
+
+          '</div>',
+        ].join('');
+
+    PTL.editor.displayMsg({body: html, showClose: false});
+  },
+
 
   /*
    * Misc functions
@@ -1293,6 +1316,10 @@ PTL.editor = {
         widget = data.editor;
 
         PTL.editor.updateNav();
+
+        if (data.is_obsolete) {
+          PTL.editor.displayObsoleteMsg();
+        }
 
         if (data.ctx) {
           // Initialize context gap to the maximum context rows available
