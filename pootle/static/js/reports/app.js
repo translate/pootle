@@ -62,8 +62,6 @@ PTL.reports = {
     var taskType = parseInt($('#id_task_type').val());
     this.refreshAmountMeasureUnits(taskType);
 
-    this.currentRowIsEven = false;
-
     $.history.init(function (hash) {
       var params = PTL.reports.params = utils.getParsedHash(hash);
 
@@ -463,10 +461,6 @@ PTL.reports = {
   formatDate: function (d) {
     var m = moment(d, 'YYYY-MM-DD HH:mm:ss');
     return m.format('MMM, D');
-  },
-
-  resetRowStyle: function () {
-    PTL.reports.currentRowIsEven = false;
   },
 
   updateMonthSelector: function () {
