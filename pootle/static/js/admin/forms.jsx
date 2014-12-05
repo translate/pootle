@@ -158,6 +158,11 @@ var UserForm = React.createClass({
 
 var ItemDelete = React.createClass({
 
+  propTypes: {
+    item: React.PropTypes.object.isRequired,
+    handleDelete: React.PropTypes.func.isRequired,
+  },
+
   /* Lifecycle */
 
   getInitialState: function () {
