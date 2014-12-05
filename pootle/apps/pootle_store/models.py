@@ -43,7 +43,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from taggit.managers import TaggableManager
 
-from pootle.core import log
+from pootle.core.log import (MUTE_QUALITYCHECK, STORE_ADDED, STORE_DELETED,
+                             UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE,
+                             UNMUTE_QUALITYCHECK, action_log, store_log)
 from pootle.core.managers import RelatedManager
 from pootle.core.mixins import CachedMethods, TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
@@ -515,7 +517,7 @@ class Unit(models.Model, base.TranslationUnit):
         self._encoding = 'UTF-8'
 
     def delete(self, *args, **kwargs):
-        log.action_log(user='system', action=log.UNIT_DELETED,
+        action_log(user='system', action=UNIT_DELETED,
             lang=self.store.translation_project.language.code,
             unit=self.id,
             translation='')
@@ -530,13 +532,13 @@ class Unit(models.Model, base.TranslationUnit):
         if not hasattr(self, '_log_user'):
             self._log_user = 'system'
         if created:
-            self._save_action = log.UNIT_ADDED
+            self._save_action = UNIT_ADDED
 
         unit_update_cache(self)
 
         if self.id:
             if hasattr(self, '_save_action'):
-                log.action_log(user=self._log_user, action=self._save_action,
+                action_log(user=self._log_user, action=self._save_action,
                     lang=self.store.translation_project.language.code,
                     unit=self.id, translation=self.target_f
                 )
@@ -551,8 +553,8 @@ class Unit(models.Model, base.TranslationUnit):
             self.store.last_unit.save()
             self.store.translation_project.last_unit.save()
 
-        if hasattr(self, '_save_action') and self._save_action == log.UNIT_ADDED:
-            log.action_log(user=self._log_user, action=self._save_action,
+        if hasattr(self, '_save_action') and self._save_action == UNIT_ADDED:
+            action_log(user=self._log_user, action=self._save_action,
                 lang=self.store.translation_project.language.code,
                 unit=self.id,
                 translation=self.target_f
@@ -945,7 +947,7 @@ class Unit(models.Model, base.TranslationUnit):
         if self.state > OBSOLETE:
             # when Unit becomes obsolete the cache should be updated
             unit_delete_cache(self)
-            self._save_action = log.UNIT_OBSOLETE
+            self._save_action = UNIT_OBSOLETE
 
             self.state = OBSOLETE
 
@@ -1180,14 +1182,14 @@ class Unit(models.Model, base.TranslationUnit):
                                      CachedMethods.LAST_ACTION)
         self._log_user = user
         if false_positive:
-            self._save_action = log.MUTE_QUALITYCHECK
+            self._save_action = MUTE_QUALITYCHECK
             if not has_other_critical_failures:
                 self.store.failing_critical_count -= 1
                 self.store.translation_project.failing_critical_count -= 1
                 self.store.save()
                 self.store.translation_project.save()
         else:
-            self._save_action = log.UNMUTE_QUALITYCHECK
+            self._save_action = UNMUTE_QUALITYCHECK
             if not has_other_critical_failures:
                 self.store.failing_critical_count += 1
                 self.store.translation_project.failing_critical_count += 1
@@ -1424,8 +1426,8 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         super(Store, self).save(*args, **kwargs)
         if created:
             # new unit
-            log.store_log(user='system', action=log.STORE_ADDED,
-                          path=self.pootle_path, store=self.id)
+            store_log(user='system', action=STORE_ADDED,
+                      path=self.pootle_path, store=self.id)
 
         if hasattr(self, '_units'):
             index = self.max_index() + 1
@@ -1438,12 +1440,12 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             self.update_cache()
 
     def delete(self, *args, **kwargs):
-        log.store_log(user='system', action=log.STORE_DELETED,
-                      path=self.pootle_path, store=self.id)
+        store_log(user='system', action=STORE_DELETED,
+                  path=self.pootle_path, store=self.id)
         for unit in self.unit_set.iterator():
-            log.action_log(user='system', action=log.UNIT_DELETED,
-                           lang=self.translation_project.language.code,
-                           unit=unit.id, translation='')
+            action_log(user='system', action=UNIT_DELETED,
+                       lang=self.translation_project.language.code,
+                       unit=unit.id, translation='')
 
         super(Store, self).delete(*args, **kwargs)
 
