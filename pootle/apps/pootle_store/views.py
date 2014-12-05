@@ -432,7 +432,7 @@ def get_units(request):
         # `__max`, where Django thinks we're trying to lookup a field on a
         # relationship field.
         # https://code.djangoproject.com/ticket/19434
-        uid_list = [u.id for u in step_queryset]
+        uid_list = [u.id for u in step_queryset.iterator()]
 
         if len(uids) == 1:
             try:
