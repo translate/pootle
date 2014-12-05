@@ -144,7 +144,7 @@ PTL.editor = {
     /* General */
     $(document).on('click', '.js-editor-reload', function (e) {
       e.preventDefault();
-      $.history.check();
+      $.history.load('');
     });
 
     /* Write TM results, special chars... into the currently focused element */
