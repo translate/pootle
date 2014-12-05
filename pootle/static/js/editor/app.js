@@ -497,7 +497,7 @@ PTL.editor = {
 
   /* Things to do when no results are returned */
   noResults: function () {
-    PTL.editor.displayMsg({body: gettext("No results."), showClose: true});
+    PTL.editor.displayMsg({body: gettext("No results.")});
     PTL.editor.reDraw(false);
   },
 
@@ -927,6 +927,8 @@ PTL.editor = {
 
   /* Displays an informative message */
   displayMsg: function (opts) {
+    _.defaults(opts, {showClose: true});
+
     this.hideActivity();
     helpers.fixSidebarHeight();
     $('#js-editor-msg-overlay').html(this.tmpl.msg({opts: opts})).fadeIn(300);
@@ -1650,7 +1652,7 @@ PTL.editor = {
       $checks.select2(filterSelectOpts).select2('val', selectedValue);
       $('.js-filter-checks-wrapper').css('display', 'inline-block');
     } else { // No results
-      PTL.editor.displayMsg({body: gettext("No results."), showClose: true});
+      PTL.editor.displayMsg({body: gettext("No results.")});
       $('#js-filter-status').select2('val', PTL.editor.filter);
     }
   },
