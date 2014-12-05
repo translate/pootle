@@ -3,6 +3,8 @@
 var React = require('react');
 var Backbone = require('backbone');
 
+var msg = require('../../msg.js');
+
 
 var AdminApp = React.createClass({
 
@@ -79,7 +81,7 @@ var AdminApp = React.createClass({
 
   handleSave: function (item) {
     this.handleSelectItem(item);
-    PTL.msg.show({
+    msg.show({
       text: gettext('Saved successfully.'),
       level: 'success'
     });
@@ -87,7 +89,7 @@ var AdminApp = React.createClass({
 
   handleDelete: function () {
     this.setState({selectedItem: null});
-    PTL.msg.show({
+    msg.show({
       text: gettext('Deleted successfully.'),
       level: 'danger'
     });
