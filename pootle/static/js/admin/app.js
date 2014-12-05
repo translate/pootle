@@ -16,11 +16,7 @@ window.PTL = window.PTL || {};
 
 
 var itemTypes = {
-  user: {
-    adminModule: require('./components/user').UsersAdmin,
-    model: require('../models/user').User,
-    collection: require('../models/user').UserSet
-  }
+  user: require('./components/user'),
 };
 
 
@@ -37,9 +33,7 @@ PTL.admin = {
     var main = new AdminApp({
       router: new AdminRouter(),
       appRoot: opts.appRoot,
-      collection: item.collection,
-      model: item.model,
-      adminModule: item.adminModule,
+      adminModule: item,
     });
     React.renderComponent(main, this.el);
   }

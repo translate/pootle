@@ -12,7 +12,7 @@ var AdminApp = React.createClass({
 
   getInitialState: function () {
     return {
-      items: new this.props.collection(),
+      items: new this.props.adminModule.collection(),
       selectedItem: null,
       searchQuery: '',
       view: 'edit'
@@ -28,7 +28,8 @@ var AdminApp = React.createClass({
     }.bind(this));
 
     router.on('route:edit', function (id, qs) {
-      var item = new this.props.model({id: id});
+      var Model = this.props.adminModule.model;
+      var item = new Model({id: id});
       this.handleSelectItem(item);
     }.bind(this));
   },
@@ -122,8 +123,8 @@ var AdminApp = React.createClass({
       selectedItem: this.state.selectedItem,
       searchQuery: this.state.searchQuery,
       view: this.state.view,
-      collection: this.props.collection,
-      model: this.props.model,
+      collection: this.props.adminModule.collection,
+      model: this.props.adminModule.model,
 
       handleSearch: this.handleSearch,
       handleSelectItem: this.handleSelectItem,
@@ -135,7 +136,7 @@ var AdminApp = React.createClass({
 
     return (
       <div className="admin-app">
-        {this.props.adminModule(props)}
+        {this.props.adminModule.App(props)}
       </div>
     );
   }

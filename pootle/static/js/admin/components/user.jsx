@@ -4,6 +4,7 @@ var React = require('react');
 
 var Search = require('./search');
 var UserForm = require('../forms').UserForm;
+var models = require('../../models/user');
 
 
 var UsersAdmin = React.createClass({
@@ -124,5 +125,7 @@ var UserEdit = React.createClass({
 
 
 module.exports = {
-  UsersAdmin: UsersAdmin,
+  App: UsersAdmin,
+  model: models.User,
+  collection: models.UserSet,
 };
