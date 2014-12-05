@@ -33,6 +33,7 @@ var UserForm = React.createClass({
     var model = this.getResource();
     var errors = this.state.errors;
     var formData = this.state.formData;
+    var deleteHelpText = gettext('Note: deleting the user will make its suggestions and translations become attributed to an anonymous user (nobody).');
 
     return (
       <form method="post"
@@ -146,7 +147,8 @@ var UserForm = React.createClass({
         <div>
           <p className="divider"></p>
           <p className="buttons">
-            <ItemDelete item={model} handleDelete={this.props.handleDelete} />
+            <ItemDelete item={model} handleDelete={this.props.handleDelete}
+                helpText={deleteHelpText} />
           </p>
         </div>}
       </form>
@@ -161,6 +163,7 @@ var ItemDelete = React.createClass({
   propTypes: {
     item: React.PropTypes.object.isRequired,
     handleDelete: React.PropTypes.func.isRequired,
+    helpText: React.PropTypes.string,
   },
 
   /* Lifecycle */
@@ -192,7 +195,8 @@ var ItemDelete = React.createClass({
         <button className="btn btn-danger"
                 disabled={this.state.buttonDisabled}
                 onClick={this.onClick}>{gettext('Delete')}</button>
-        <span className="helptext">{gettext('Note: deleting the user will make its suggestions and translations become attributed to an anonymous user (nobody).')}</span>
+      {this.props.helpText &&
+        <span className="helptext">{this.props.helpText}</span>}
       </div>
     );
   }
