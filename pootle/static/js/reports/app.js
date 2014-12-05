@@ -13,6 +13,14 @@ require('jquery-serializeObject');
 var utils = require('../utils.js');
 
 
+var paidTaskTypes = {
+  translation: 0,
+  review: 1,
+  hourlyWork: 2,
+  correction: 3,
+};
+
+
 window.PTL = window.PTL || {};
 
 PTL.reports = {
@@ -26,12 +34,6 @@ PTL.reports = {
       results: _.template($('#language_user_activity').html()),
       summary: showSummary ? _.template($('#summary').html()) : '',
       paid_tasks: showSummary ? _.template($('#paid-tasks').html()) : '',
-    };
-    this.paidTaskTypes = {
-      translation: 0,
-      review: 1,
-      hourlyWork: 2,
-      correction: 3,
     };
 
     $(window).resize(function() {
@@ -166,11 +168,13 @@ PTL.reports = {
   roundAmount: function (e) {
     var $this = $(this),
         amount = $this.val(),
-        taskType = parseInt($('#id_task_type').val()),
-        types = PTL.reports.paidTaskTypes;
-    if (taskType === types.translation || taskType === types.review || taskType === types.hourlyWork) {
+        taskType = parseInt($('#id_task_type').val());
+
+    if (taskType === paidTaskTypes.translation ||
+        taskType === paidTaskTypes.review ||
+        taskType === paidTaskTypes.hourlyWork) {
       $this.val(amount > 0 ? amount : 0);
-      if (taskType === types.hourlyWork) {
+      if (taskType === paidTaskTypes.hourlyWork) {
         $this.val(Math.round(amount));
       }
     }
@@ -182,7 +186,8 @@ PTL.reports = {
           description = $('#id_description').val(),
           taskType = parseInt($('#id_task_type').val());
 
-      if (description === '' || amount <= 0 && taskType !== PTL.reports.paidTaskTypes.correction) {
+      if (description === '' || amount <= 0 &&
+          taskType !== paidTaskTypes.correction) {
         $('#paid-task-form .submit').prop('disabled', true);
       } else {
         $('#paid-task-form .submit').prop('disabled', false);
@@ -196,13 +201,13 @@ PTL.reports = {
   },
 
   getRateByTaskType: function (taskType) {
-    if (taskType === PTL.reports.paidTaskTypes.translation) {
+    if (taskType === paidTaskTypes.translation) {
       return PTL.reports.user.rate;
     }
-    else if (taskType === PTL.reports.paidTaskTypes.review) {
+    else if (taskType === paidTaskTypes.review) {
       return PTL.reports.user.review_rate;
     }
-    else if (taskType === PTL.reports.paidTaskTypes.hourlyWork) {
+    else if (taskType === paidTaskTypes.hourlyWork) {
       return PTL.reports.user.hourly_rate;
     }
 
@@ -382,10 +387,16 @@ PTL.reports = {
         data.meta.admin_permalink = [data.meta.admin_permalink,
                                      $.param(permalinkArgs)].join('#');
 
-        if (PTL.reports.adminReport || !PTL.reports.freeUserReport && PTL.reports.ownReport) {
-          $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(PTL.reports.data));
-          $('#reports-summary').html(PTL.reports.tmpl.summary(PTL.reports.data));
+        if (PTL.reports.adminReport || !PTL.reports.freeUserReport &&
+            PTL.reports.ownReport) {
+          var ctx = {
+            data: PTL.reports.data,
+            paidTaskTypes: paidTaskTypes,
+          };
+          $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(ctx));
+          $('#reports-summary').html(PTL.reports.tmpl.summary(ctx));
         }
+
         if (data.meta.user) {
           PTL.reports.user = data.meta.user;
           PTL.reports.updateMonthSelector();
