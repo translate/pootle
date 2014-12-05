@@ -450,6 +450,11 @@ PTL.editor = {
 
   /* Stuff to be done when the editor is ready  */
   ready: function () {
+    var currentUnit = PTL.editor.units.getCurrent();
+    if (currentUnit.get('isObsolete')) {
+      PTL.editor.displayObsoleteMsg();
+    }
+
     $('textarea.expanding').autosize({
       append : null
     });
@@ -1319,9 +1324,7 @@ PTL.editor = {
 
         PTL.editor.updateNav();
 
-        if (data.is_obsolete) {
-          PTL.editor.displayObsoleteMsg();
-        }
+        currentUnit.set('isObsolete', data.is_obsolete);
 
         if (data.ctx) {
           // Initialize context gap to the maximum context rows available
