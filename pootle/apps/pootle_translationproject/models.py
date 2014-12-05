@@ -113,6 +113,7 @@ class TranslationProjectManager(RelatedManager):
 
 
 class TranslationProject(models.Model, TreeItem):
+
     description = MarkupField(
         blank=True,
         help_text=_('A description of this translation project. This is '
@@ -315,7 +316,7 @@ class TranslationProject(models.Model, TreeItem):
         if not self.disabled:
             from pootle_app.project_tree import get_translation_project_dir
             self.abs_real_path = get_translation_project_dir(self.language,
-                    project_dir, self.file_style, make_dirs=True)
+                 project_dir, self.file_style, make_dirs=True)
 
             self.directory = self.language.directory \
                                           .get_or_make_subdir(self.project.code)
@@ -616,8 +617,8 @@ class TranslationProject(models.Model, TreeItem):
         :param vcs_sync: boolean on whether or not to synchronise the PO
                          directory with the VCS checkout.
         """
-        proj_ignore = [p.strip() for p in self.project.ignoredfiles.split(',')]
-        ignored_files = set(proj_ignore)
+        projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
+        ignored_files = set(projects)
         ext = os.extsep + self.project.localfiletype
 
         # Scan for pots if template project

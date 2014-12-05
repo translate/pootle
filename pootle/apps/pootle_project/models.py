@@ -324,8 +324,7 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
                 'directory__permission_sets__positive_permissions__codename': 'view',
                 'directory__permission_sets__user__username': username,
             }
-            user_projects = self.objects.cached().filter(**lookup_args) \
-                                                 .values_list('code', flat=True)
+            user_projects = self.objects.cached().filter(**lookup_args)
 
             # No explicit permissions for projects, let's examine the root
             if not user_projects.count():
@@ -335,9 +334,9 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
                     positive_permissions__codename='view',
                 )
                 if root_permissions.count():
-                    user_projects = self.objects.cached() \
-                                                .values_list('code', flat=True)
+                    user_projects = self.objects.cached()
 
+            user_projects = user_projects.values_list('code', flat=True)
             cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
 
         return user_projects

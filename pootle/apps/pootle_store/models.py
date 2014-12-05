@@ -1084,7 +1084,8 @@ class Unit(models.Model, base.TranslationUnit):
         if suggestion.user_id is not None:
             suggestion_user = suggestion.user
         else:
-            suggestion_user = get_user_model().objects.get_nobody_user()
+            User = get_user_model()
+            suggestion_user = User.objects.get_nobody_user()
 
         current_time = timezone.now()
         self.submitted_by = suggestion_user
