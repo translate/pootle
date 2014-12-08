@@ -71,8 +71,8 @@ ALLOWED_SORTS = {
         'newest': '-mtime',
     },
     'suggestions': {
-        'oldest': 'submission__suggestion__creation_time',
-        'newest': '-submission__suggestion__creation_time',
+        'oldest': 'suggestion__creation_time',
+        'newest': '-suggestion__creation_time',
     },
     'submissions': {
         'oldest': 'submission__creation_time',
