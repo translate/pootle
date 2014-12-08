@@ -12,9 +12,9 @@ class Migration(SchemaMigration):
         db.create_table(u'evernote_reports_paidtask', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('task_type', self.gf('django.db.models.fields.PositiveSmallIntegerField')(default=0, db_index=True)),
-            ('amount', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
+            ('amount', self.gf('django.db.models.fields.FloatField')(default=0)),
             ('rate', self.gf('django.db.models.fields.FloatField')(default=0)),
-            ('date', self.gf('django.db.models.fields.DateField')(db_index=True)),
+            ('datetime', self.gf('django.db.models.fields.DateTimeField')(db_index=True)),
             ('description', self.gf('django.db.models.fields.TextField')(null=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pootle.User'])),
         ))
@@ -29,8 +29,8 @@ class Migration(SchemaMigration):
     models = {
         u'evernote_reports.paidtask': {
             'Meta': {'object_name': 'PaidTask'},
-            'amount': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
-            'date': ('django.db.models.fields.DateField', [], {'db_index': 'True'}),
+            'amount': ('django.db.models.fields.FloatField', [], {'default': '0'}),
+            'datetime': ('django.db.models.fields.DateTimeField', [], {'db_index': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'rate': ('django.db.models.fields.FloatField', [], {'default': '0'}),
@@ -65,6 +65,7 @@ class Migration(SchemaMigration):
             'Meta': {'ordering': "['name']", 'object_name': 'Directory'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'obsolete': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'parent': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'child_dirs'", 'null': 'True', 'to': "orm['pootle_app.Directory']"}),
             'pootle_path': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'})
         },
