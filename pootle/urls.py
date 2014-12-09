@@ -26,6 +26,9 @@ urlpatterns = patterns('',
     url(r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
         {'packages': ('pootle', ), }, ),
 
+    # Allauth
+    url(r'^accounts/', include('allauth.urls')),
+
     # URLs added by Evernote
     url(r'^accounts/evernote/', include('evernote_auth.urls')),
     url(r'^admin/reports/', include('evernote_reports.urls')),
