@@ -281,14 +281,20 @@ def get_step_query(request, units_queryset):
                 if sort_on in SIMPLY_SORTED:
                     match_queryset = match_queryset.order_by(sort_by)
                 else:
+                    # Omit leading `-` sign
+                    if sort_by[0] == '-':
+                        max_field = sort_by[1:]
+                        sort_order = '-sort_by_field'
+                    else:
+                        max_field = sort_by
+                        sort_order = 'sort_by_field'
+
                     # It's necessary to use `Max()` here because we can't
                     # use `distinct()` and `order_by()` at the same time
                     # (unless PostreSQL is used and `distinct(field_name)`)
-                    sort_by_max = '%s__max' % sort_by
-                    # Omit leading `-` sign
-                    max_field = sort_by[1:] if sort_by[0] == '-' else sort_by
-                    match_queryset = match_queryset.annotate(Max(max_field)) \
-                                                   .order_by(sort_by_max)
+                    match_queryset = match_queryset \
+                        .annotate(sort_by_field=Max(max_field)) \
+                        .order_by(sort_order)
 
             units_queryset = match_queryset
 
@@ -427,13 +433,29 @@ def get_units(request):
     uid_list = []
 
     if is_initial_request:
-        # Not using `values_list()` here because it doesn't know about all
-        # existing relations when `extra()` has been used before in the
-        # queryset. This affects annotated names such as those ending in
-        # `__max`, where Django thinks we're trying to lookup a field on a
-        # relationship field.
-        # https://code.djangoproject.com/ticket/19434
-        uid_list = [u.id for u in step_queryset.iterator()]
+        sort_by_field = None
+        if len(step_queryset.query.order_by) == 1:
+            sort_by_field = step_queryset.query.order_by[0]
+
+        sort_on = None
+        for key, item in ALLOWED_SORTS.items():
+            if sort_by_field in item.values():
+                sort_on = key
+                break
+
+        if sort_by_field is None or sort_on == 'units':
+            uid_list = list(step_queryset.values_list('id', flat=True))
+        else:
+            # Not using `values_list()` here because it doesn't know about all
+            # existing relations when `extra()` has been used before in the
+            # queryset. This affects annotated names such as those ending in
+            # `__max`, where Django thinks we're trying to lookup a field on a
+            # relationship field. That's why `sort_by_field` alias for `__max`
+            # is used here. This alias must be queried in
+            # `values('sort_by_field', 'id')` with `id` otherwise
+            # Django looks for `sort_by_field` field in the initial table.
+            # https://code.djangoproject.com/ticket/19434
+            uid_list = [u['id'] for u in step_queryset.values('id', 'sort_by_field')]
 
         if len(uids) == 1:
             try:
