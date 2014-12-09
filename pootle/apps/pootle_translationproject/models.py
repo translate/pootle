@@ -145,39 +145,6 @@ class TranslationProject(models.Model, TreeItem):
         help_text=_("A comma-separated list of goals."),
     )
 
-    # Cached Unit values
-    total_wordcount = models.PositiveIntegerField(
-        default=0,
-        null=True,
-        editable=False,
-    )
-    translated_wordcount = models.PositiveIntegerField(
-        default=0,
-        null=True,
-        editable=False,
-    )
-    fuzzy_wordcount = models.PositiveIntegerField(
-        default=0,
-        null=True,
-        editable=False,
-    )
-    suggestion_count = models.PositiveIntegerField(
-        default=0,
-        null=True,
-        editable=False,
-    )
-    failing_critical_count = models.PositiveIntegerField(
-        default=0,
-        null=True,
-        editable=False,
-    )
-    last_submission = models.OneToOneField(
-        Submission,
-        null=True,
-        editable=False,
-    )
-    last_unit = models.OneToOneField(Unit, null=True, editable=False)
-
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
                                          settings.PARSE_POOL_CULL_FREQUENCY)
 
