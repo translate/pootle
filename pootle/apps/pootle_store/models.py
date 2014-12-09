@@ -146,14 +146,10 @@ class Suggestion(models.Model, base.TranslationUnit):
     creation_time = models.DateTimeField(
         db_index=True,
         null=True,
-        auto_now_add=True,
     )
     review_time = models.DateTimeField(null=True, db_index=True)
 
     objects = SuggestionManager()
-
-    class Meta:
-        unique_together = ('unit', 'target_hash')
 
     ############################ Properties ###################################
 
