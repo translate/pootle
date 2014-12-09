@@ -24,6 +24,8 @@ from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_app.models.pootle_config import PootleConfig
 from pootle_app.models.pootle_site import PootleSite
+from pootle_app.models.revision import Revision
 
 
-__all__ = ["Directory", "PermissionSet", "PootleConfig", "PootleSite"]
+__all__ = ["Directory", "PermissionSet", "PootleConfig", "PootleSite",
+           "Revision"]
