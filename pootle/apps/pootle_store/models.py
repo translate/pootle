@@ -278,105 +278,6 @@ class UnitManager(RelatedManager):
         return units_qs
 
 
-class TMUnit(models.Model, base.TranslationUnit):
-    """A model representing a translation memory unit."""
-
-    project = models.ForeignKey('pootle_project.Project', db_index=True)
-    source_lang = models.ForeignKey(
-        'pootle_language.Language',
-        db_index=True,
-        related_name='tmunit_source_lang',
-    )
-    target_lang = models.ForeignKey(
-        'pootle_language.Language',
-        db_index=True,
-        related_name='tmunit_target_lang',
-    )
-    source_f = MultiStringField(null=True)
-    source_length = models.SmallIntegerField(
-        db_index=True,
-        default=0,
-        editable=False,
-    )
-    target_f = MultiStringField(null=True)
-    target_length = models.SmallIntegerField(
-        db_index=True,
-        default=0,
-        editable=False,
-    )
-    submitted_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        null=True,
-        db_index=True,
-        related_name='tmunit_submitted_by',
-    )
-    submitted_on = models.DateTimeField(
-        auto_now_add=True,
-        db_index=True,
-        null=True,
-    )
-    unit = models.ForeignKey('pootle_store.Unit', db_index=True)
-
-    ############################ Properties ###################################
-
-    @property
-    def _source(self):
-        return self.source_f
-
-    @_source.setter
-    def _source(self, value):
-        self.source_f = value
-        self.source_length = len(value)
-
-    @property
-    def _target(self):
-        return self.target_f
-
-    @_target.setter
-    def _target(self, value):
-        self.target_f = value
-        self.target_length = len(value)
-
-    ############################ Methods ######################################
-
-    def __unicode__(self):
-        # FIXME: consider using unit id instead?
-        return unicode(self.source)
-
-    def __init__(self, *args, **kwargs):
-        super(TMUnit, self).__init__(*args, **kwargs)
-
-    def create(self, unit):
-        if unit is not None:
-            try:
-                tmunit = TMUnit.objects.get(unit=unit)
-            except TMUnit.DoesNotExist:
-                tmunit = self
-            except TMUnit.MultipleObjectsReturned:
-                raise AssertionError("Multiple TMUnits for the same Unit")
-
-            tmunit.source = unit.source
-            tmunit.target = unit.target
-
-            tmunit.submitted_by = unit.submitted_by
-            tmunit.submitted_on = unit.submitted_on
-
-            tp = unit.store.translation_project
-            tmunit.project = tp.project
-            tmunit.source_lang = tp.project.source_language
-            tmunit.target_lang = tp.language
-
-            tmunit.unit = unit
-
-            return tmunit
-
-    def hasplural(self):
-        return (self.source is not None and
-                (len(self.source.strings) > 1
-                or hasattr(self.source, "plural") and
-                self.source.plural))
-
-
 class Unit(models.Model, base.TranslationUnit):
     store = models.ForeignKey("pootle_store.Store", db_index=True)
     index = models.IntegerField(db_index=True)
@@ -551,11 +452,6 @@ class Unit(models.Model, base.TranslationUnit):
             )
 
         if self._source_updated or self._target_updated:
-            # Add to TM
-            if (self.source is not None) and (self.target is not None):
-                tmunit = TMUnit().create(self)
-                tmunit.save()
-
             # Update quality checks
             self.update_qualitychecks()
 

@@ -1868,42 +1868,6 @@
     }
   },
 
-  /* Gets TM suggestions from Pootle */
-  getLocalTMUnits: function () {
-    var unit = this.units.getCurrent(),
-        uid = unit.id,
-        sText = unit.get('source')[0],
-        store = unit.get('store'),
-        pStyle = store.get('project_style'),
-        tmUrl = l(['/xhr/units/', uid, '/tm/'].join(''));
-
-    if (!sText.length) {
-        // No use in looking up an empty string
-        return;
-    }
-
-    if (pStyle.length && pStyle != "standard") {
-    //    tmUrl += '&style=' + pStyle;
-    }
-
-    // Always abort previous requests so we only get results for the
-    // current unit
-    if (this.tmLocalReq != null) {
-      this.tmLocalReq.abort();
-    }
-
-    this.tmLocalReq = $.ajax({
-      url: tmUrl,
-      dataType: 'json',
-      callback: '_json' + PTL.editor.units.getCurrent().id,
-      success: function (data) {
-        var uid = this.callback.slice(5);
-        PTL.editor.appendTMResults(uid, data, store);
-      },
-      error: PTL.editor.error
-    });
-  },
-
   /* Gets TM suggestions from amaGama */
   getRemoteTMUnits: function () {
     var unit = this.units.getCurrent(),
@@ -1944,7 +1908,6 @@
   },
 
   getTMUnits: function () {
-    this.getLocalTMUnits();
     this.getRemoteTMUnits();
   },
 

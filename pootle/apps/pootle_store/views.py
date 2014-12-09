@@ -66,7 +66,7 @@ from .decorators import get_store_context, get_unit_context
 from .fields import to_python
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
-from .models import Store, Suggestion, SuggestionStates, TMUnit, Unit
+from .models import Store, Suggestion, SuggestionStates, Unit
 from .signals import translation_submitted
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
@@ -818,77 +818,6 @@ def get_overview_stats(request, *args, **kwargs):
     stats = request.resource_obj.get_stats(goal=goal)
     response = jsonify(stats)
     return HttpResponse(response, content_type="application/json")
-
-
-@ajax_required
-@get_unit_context('view')
-def get_tm_results(request, unit):
-    """Gets a list of TM results for the current object.
-
-    :return: JSON string with a list of TM results.
-    """
-
-    max_len = settings.LV_MAX_LENGTH
-    min_similarity = settings.LV_MIN_SIMILARITY
-
-    results = []
-
-    # Shortcut Levenshtein comparer, since the distance, by definition, can't
-    # be less than the difference in string length
-    diff_len = unit.source_length * (100 - min_similarity)/100
-    max_unit_len = unit.source_length + diff_len
-    min_unit_len = unit.source_length - diff_len
-
-    criteria = {
-        'target_lang': unit.store.translation_project.language,
-        'source_lang': unit.store.translation_project.project.source_language,
-        'source_length__range': (min_unit_len, max_unit_len),
-    }
-    tmunits = TMUnit.objects.filter(**criteria).exclude(unit=unit)
-
-    comparer = LevenshteinComparer(max_len)
-    for tmunit in tmunits:
-        quality = comparer.similarity(tmunit.source, unit.source,
-                                      min_similarity)
-        if quality >= min_similarity:
-            project = tmunit.project
-            user = tmunit.submitted_by
-            result = {
-                'source': tmunit.source,
-                'target': tmunit.target,
-                'quality': quality,
-                'project': {
-                    'project': project.code,
-                    'projectname': project.fullname,
-                    'absolute_url': project.get_absolute_url(),
-                    'icon': _get_project_icon(project),
-                }
-            }
-
-            if user is not None:
-                submissions = Submission.objects.filter(
-                                submitter=user,
-                                type=SubmissionTypes.NORMAL,
-                                ).distinct().count()
-                suggestions = Suggestion.objects.filter(
-                                user=user
-                                ).distinct().count()
-                translations = submissions - suggestions  # XXX: is this correct?
-                title = _("By %s on %s<br/><br/>%s translations<br/>%s suggestions" % (
-                            user.full_name,
-                            tmunit.submitted_on,
-                            translations, suggestions))
-
-                result['translator'] = {
-                    'username': user.username,
-                    'title': title,
-                    'absolute_url': user.get_absolute_url(),
-                    'gravatar': user.gravatar_url(24),
-                }
-
-            results.append(result)
-
-    return HttpResponse(jsonify(results), content_type="application/json")
 
 
 @require_POST
