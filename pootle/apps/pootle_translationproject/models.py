@@ -88,7 +88,6 @@ def scan_translation_projects(languages=None, projects=None):
             logging.info(u"Disabling %s", project)
             project.disabled = True
             project.save()
-            project.update_parent_cache()
         else:
             lang_query = Language.objects.exclude(
                     id__in=project.translationproject_set.enabled() \
