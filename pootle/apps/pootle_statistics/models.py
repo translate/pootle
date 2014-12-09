@@ -112,6 +112,11 @@ class Submission(models.Model):
     old_value = models.TextField(blank=True, default=u"")
     new_value = models.TextField(blank=True, default=u"")
 
+    # similarity ratio to the best existing suggestion
+    similarity = models.FloatField(blank=True, null=True)
+    # similarity ratio to the result of machine translation
+    mt_similarity = models.FloatField(blank=True, null=True)
+
     objects = RelatedManager()
     simple_objects = models.Manager()
 
