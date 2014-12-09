@@ -132,12 +132,6 @@ class Suggestion(models.Model, base.TranslationUnit):
         db_index=True,
     )
     translator_comment_f = models.TextField(null=True, blank=True)
-    translation_project = models.ForeignKey(
-        'pootle_translationproject.TranslationProject',
-        null=True,
-        related_name='suggestions',
-        db_index=True,
-    )
     state = models.CharField(
         max_length=16,
         default=SuggestionStates.PENDING,
