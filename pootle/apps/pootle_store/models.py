@@ -315,6 +315,12 @@ class Unit(models.Model, base.TranslationUnit):
         default=UNTRANSLATED,
         db_index=True,
     )
+    revision = models.IntegerField(
+        null=False,
+        default=0,
+        db_index=True,
+        blank=True,
+    )
 
     # Metadata
     creation_time = models.DateTimeField(
