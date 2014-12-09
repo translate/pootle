@@ -131,6 +131,12 @@ class TranslationProject(models.Model, TreeItem):
         db_index=True,
         editable=False,
     )
+    creation_time = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        editable=False,
+        null=True,
+    )
     disabled = models.BooleanField(default=False)
 
     tags = TaggableManager(
