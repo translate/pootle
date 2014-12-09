@@ -337,22 +337,24 @@ class Unit(models.Model, base.TranslationUnit):
         db_index=True,
         related_name='submitted',
     )
-    submitted_on = models.DateTimeField(
-        db_index=True,
-        null=True,
-        auto_now_add=True,
-    )
+    submitted_on = models.DateTimeField(db_index=True, null=True)
     commented_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
         db_index=True,
         related_name='commented',
     )
-    commented_on = models.DateTimeField(
-        db_index=True,
+    commented_on = models.DateTimeField(db_index=True, null=True)
+
+    # reviewer: who has accepted suggestion or removed FUZZY
+    # None if translation has been submitted by approved translator
+    reviewed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
         null=True,
-        auto_now_add=True,
+        db_index=True,
+        related_name='reviewed',
     )
+    reviewed_on = models.DateTimeField(db_index=True, null=True)
 
     objects = UnitManager()
 
