@@ -41,8 +41,6 @@ from django.utils.functional import cached_property
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from taggit.managers import TaggableManager
-
 from pootle.core.log import (MUTE_QUALITYCHECK, STORE_ADDED, STORE_DELETED,
                              UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE,
                              UNMUTE_QUALITYCHECK, action_log, store_log)
@@ -54,7 +52,6 @@ from pootle_misc.checks import check_names
 from pootle_misc.util import datetime_min
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from pootle_tagging.models import ItemWithGoal
 
 from .caching import unit_delete_cache, unit_update_cache
 from .fields import (MultiStringField, TranslationStoreField,
@@ -1198,18 +1195,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     )
     last_sync_revision = models.IntegerField(db_index=True, null=True)
     obsolete = models.BooleanField(default=False)
-
-    tags = TaggableManager(
-        blank=True,
-        verbose_name=_("Tags"),
-        help_text=_("A comma-separated list of tags."),
-    )
-    goals = TaggableManager(
-        blank=True,
-        verbose_name=_("Goals"),
-        through=ItemWithGoal,
-        help_text=_("A comma-separated list of goals."),
-    )
 
     UnitClass = Unit
     Name = "Model Store"
