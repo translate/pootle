@@ -36,8 +36,6 @@ from django.utils import dateformat
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
-from taggit.managers import TaggableManager
-
 from pootle.core.managers import RelatedManager
 from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
@@ -51,7 +49,6 @@ from pootle_statistics.models import Submission
 from pootle_store.models import Store, Unit, PARSED
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                OBSOLETE)
-from pootle_tagging.models import ItemWithGoal
 
 
 class TranslationProjectNonDBState(object):
@@ -137,18 +134,6 @@ class TranslationProject(models.Model, TreeItem):
         null=True,
     )
     disabled = models.BooleanField(default=False)
-
-    tags = TaggableManager(
-        blank=True,
-        verbose_name=_("Tags"),
-        help_text=_("A comma-separated list of tags."),
-    )
-    goals = TaggableManager(
-        blank=True,
-        verbose_name=_("Goals"),
-        through=ItemWithGoal,
-        help_text=_("A comma-separated list of goals."),
-    )
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
                                          settings.PARSE_POOL_CULL_FREQUENCY)
