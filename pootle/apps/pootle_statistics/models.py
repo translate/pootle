@@ -268,3 +268,20 @@ class Submission(models.Model):
             '  </time>'
             '</div>'
             % action_bundle)
+
+
+class ScoreLog(models.Model):
+    creation_time = models.DateTimeField(db_index=True, null=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False)
+    # current user’s new translation rate
+    rate = models.FloatField(null=False, default=0)
+    # current user’s review rate
+    review_rate = models.FloatField(null=False, default=0)
+    # number of words in the original source string
+    wordcount = models.PositiveIntegerField(null=False)
+    # the reported similarity ratio
+    similarity = models.FloatField(null=False)
+    # the final calculated score delta for the action
+    score_delta = models.FloatField(null=False)
+    action_code = models.IntegerField(null=False)
+    submission = models.ForeignKey(Submission, null=False)
