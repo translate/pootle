@@ -332,7 +332,7 @@ class TranslationProject(models.Model, CachedTreeItem):
             logging.info(u"Disabling %s", self)
             self.disabled = True
             self.save()
-            self.update_parent_cache(exclude_self=True)
+            self.update_parent_cache()
 
             return True
 

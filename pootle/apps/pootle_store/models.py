@@ -1416,8 +1416,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             self.update_dirty_cache()
 
     def delete(self, *args, **kwargs):
-        self.update_parent_cache(exclude_self=True)
-        self.clear_all_cache(parents=False, children=False)
+        parents = self.get_parents()
 
         store_log(user='system', action=STORE_DELETED,
                   path=self.pootle_path, store=self.id)
@@ -1428,6 +1427,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                        unit=unit.id, translation='', path=self.pootle_path)
 
         super(Store, self).delete(*args, **kwargs)
+
+        self.clear_all_cache(parents=False, children=False)
+        for p in parents:
+            p.update_all_cache()
 
     def makeobsolete(self):
         """Make this store and all its units obsolete."""

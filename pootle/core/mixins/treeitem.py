@@ -452,6 +452,10 @@ class CachedTreeItem(TreeItem):
     def _update_cache(self, keys):
         """Update dirty cached stats of current TreeItem"""
         if self.can_be_updated():
+            # children should be recalculated to avoid using of obsolete directories
+            # or stores which could be saved in `children` property
+            self.initialized = False
+            self.initialize_children()
             for key in keys:
                 self.update_cached(key)
         else:
@@ -462,17 +466,10 @@ class CachedTreeItem(TreeItem):
 
         self.unregister_dirty()
 
-    def update_parent_cache(self, exclude_self=False):
+    def update_parent_cache(self):
         """Update dirty cached stats for a all parents of the current TreeItem"""
         all_cache_methods = CachedMethods.get_all()
         for p in self.get_parents():
-            p.initialize_children()
-            if exclude_self:
-                p.set_children(
-                    filter(lambda x: (x.id != self.id and
-                                      x.__class__ == self.__class__),
-                           p.children)
-                )
             p.register_dirty()
             update_cache.delay(p, all_cache_methods)
 
