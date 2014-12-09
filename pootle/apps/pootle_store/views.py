@@ -258,6 +258,7 @@ def get_step_query(request, units_queryset):
                                   'user-submissions-overwritten')):
                 match_queryset = units_queryset.filter(
                         submission__submitter=user,
+                        submission__type__in=SubmissionTypes.EDIT_TYPES,
                     ).exclude(submitted_by=user).distinct()
             elif unit_filter == 'checks' and 'checks' in request.GET:
                 checks = request.GET['checks'].split(',')
