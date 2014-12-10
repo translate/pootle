@@ -238,7 +238,6 @@ def create_root_directories():
     root, created = Directory.objects.get_or_create(name='')
     projects, created = Directory.objects.get_or_create(name='projects',
                                                         parent=root)
-    goals, created = Directory.objects.get_or_create(name='goals', parent=root)
 
 
 def create_template_languages():

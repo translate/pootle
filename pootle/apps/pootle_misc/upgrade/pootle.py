@@ -55,14 +55,6 @@ def upgrade_to_22000():
             store.save()
 
 
-def upgrade_to_25100():
-    """Post-upgrade actions for upgrades to 25100."""
-    from pootle_app.models import Directory
-
-    # Create the new directory used for goals.
-    Directory.objects.root.get_or_make_subdir('goals')
-
-
 def upgrade_to_25201():
     """New semantics for the `view` permission."""
     from django.contrib.auth import get_user_model

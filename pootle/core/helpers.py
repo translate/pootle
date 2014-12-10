@@ -150,7 +150,6 @@ def get_overview_context(request):
     url_action_fixcritical = resource_obj.get_critical_url()
     url_action_review = resource_obj.get_translate_url(state='suggestions')
     url_action_view_all = resource_obj.get_translate_url(state='all')
-    url_action_next_goal = resource_obj.get_next_goal_url()
 
     return {
         'page': 'overview',
@@ -167,5 +166,4 @@ def get_overview_context(request):
         'url_action_fixcritical': url_action_fixcritical,
         'url_action_review': url_action_review,
         'url_action_view_all': url_action_view_all,
-        'url_action_next_goal': url_action_next_goal,
     }

@@ -80,20 +80,6 @@
       {% if 'activity' in table.fields %}
       <td id="last-activity-{{ item.code }}" class="last-activity"></td>
       {% endif %}
-
-      {% if 'tags' in table.fields %}
-      <td id="js-tag-tp-{{ item.pk }}-hidden" class="hide tags-cell" colspan="{{ table.headings|length|add:'-1' }}">
-        {% if user.is_superuser or request.permissions.administrate %}
-        <a href="#js-add-tag-dialog" class="js-project-add-tag-popup tags-aside tags-add"
-          title="{% trans "Add a tag" %}">
-          <i class="icon-tag-add"></i>
-        </a>
-        {% endif %}
-        <ul class="tag-list">
-          {% include "projects/xhr_tags_list.html" with tp_tags=item.tags project=item.project language=item.code %}
-        </ul>
-      </td>
-      {% endif %}
     </tr>
 
     {% endfor %}

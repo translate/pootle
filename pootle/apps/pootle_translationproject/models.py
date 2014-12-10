@@ -149,15 +149,6 @@ class TranslationProject(models.Model, TreeItem):
     ############################ Properties ###################################
 
     @property
-    def tag_like_objects(self):
-        """Return the tag like objects applied to this translation project.
-
-        Tag like objects can be either tags or goals.
-        """
-        return list(chain(self.tags.all().order_by("name"),
-                          self.goals.all().order_by("name")))
-
-    @property
     def name(self):
         # TODO: See if `self.fullname` can be removed
         return self.fullname
@@ -249,14 +240,6 @@ class TranslationProject(models.Model, TreeItem):
     @cached_property
     def code(self):
         return u'-'.join([self.language.code, self.project.code])
-
-    @cached_property
-    def all_goals(self):
-        # Putting the next import at the top of the file causes circular
-        # import issues.
-        from pootle_tagging.models import Goal
-
-        return Goal.get_goals_for_path(self.pootle_path)
 
     ############################ Methods ######################################
 
@@ -356,81 +339,34 @@ class TranslationProject(models.Model, TreeItem):
 
     ### TreeItem
 
-    def get_children_for_stats(self, goal=None):
-        if goal is None:
-            return super(TranslationProject, self).get_children_for_stats()
-        else:
-            from itertools import chain
+    def get_children_for_stats(self):
+        return super(TranslationProject, self).get_children_for_stats()
 
-            stores, dirs = goal.get_children_for_path(self.pootle_path)
-            return list(chain(stores, dirs))
+    def get_progeny(self):
+        return super(TranslationProject, self).get_progeny()
 
-    def get_progeny(self, goal=None):
-        if goal is None:
-            return super(TranslationProject, self).get_progeny()
-        else:
-            return goal.get_stores_for_path(self.pootle_path)
-
-    def get_self_stats(self, goal=None):
-        if goal is None:
-            return super(TranslationProject, self).get_self_stats()
-        else:
-            return {
-                'total': self.get_total_wordcount(goal),
-                'translated': self.get_translated_wordcount(goal),
-                'fuzzy': self.get_fuzzy_wordcount(goal),
-                'suggestions': self.get_suggestion_count(goal),
-                'critical': self.get_critical_error_unit_count(goal),
-                'lastupdated': self.get_last_updated(goal),
-                'lastaction': self.get_last_action(goal),
-            }
+    def get_self_stats(self):
+        return super(TranslationProject, self).get_self_stats()
 
     def get_children(self):
         return self.directory.get_children()
 
-    def get_total_wordcount(self, goal=None):
-        if goal is None:
-            return self.total_wordcount
-        else:
-            return super(TranslationProject, self).get_total_wordcount(goal)
+    def get_total_wordcount(self):
+        return self.total_wordcount
 
-    def get_translated_wordcount(self, goal=None):
-        if goal is None:
-            return self.translated_wordcount
-        else:
-            return super(TranslationProject, self).get_translated_wordcount(goal)
+    def get_translated_wordcount(self):
+        return self.translated_wordcount
 
-    def get_fuzzy_wordcount(self, goal=None):
-        if goal is None:
-            return self.fuzzy_wordcount
-        else:
-            return super(TranslationProject, self).get_fuzzy_wordcount(goal)
+    def get_fuzzy_wordcount(self):
+        return self.fuzzy_wordcount
 
-    def get_suggestion_count(self, goal=None):
-        if goal is None:
-            return self.suggestion_count
-        else:
-            return super(TranslationProject, self).get_suggestion_count(goal)
+    def get_suggestion_count(self):
+        return self.suggestion_count
 
-    def get_critical_error_unit_count(self, goal=None):
-        if goal is None:
-            return self.failing_critical_count
-        else:
-            return super(TranslationProject, self).get_critical_error_unit_count(goal)
+    def get_critical_error_unit_count(self):
+        return self.failing_critical_count
 
-    def get_next_goal_count(self):
-        # Putting the next import at the top of the file causes circular
-        # import issues.
-        from pootle_tagging.models import Goal
-
-        goal = Goal.get_most_important_incomplete_for_path(self.directory)
-
-        if goal is not None:
-            return goal.get_incomplete_words_in_path(self.directory)
-
-        return 0
-
-    def get_last_updated(self, goal=None):
+    def get_last_updated(self):
         if self.last_unit is None:
             return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
@@ -441,7 +377,7 @@ class TranslationProject(models.Model, TreeItem):
             'snippet': self.last_unit.get_last_updated_message()
         }
 
-    def get_last_action(self, goal=None):
+    def get_last_action(self):
         try:
             if (self.last_submission is None or
                 (self.last_submission is not None and
@@ -456,19 +392,6 @@ class TranslationProject(models.Model, TreeItem):
             'mtime': int(mtime),
             'snippet': self.last_submission.get_submission_message()
         }
-
-    def get_next_goal_url(self):
-        # Putting the next import at the top of the file causes circular
-        # import issues.
-        from pootle_tagging.models import Goal
-
-        goal = Goal.get_most_important_incomplete_for_path(self.directory)
-
-        if goal is not None:
-            return goal.get_translate_url_for_path(self.directory.pootle_path,
-                                                   state='incomplete')
-
-        return ''
 
     def get_cachekey(self):
         return self.directory.pootle_path

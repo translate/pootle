@@ -43,12 +43,6 @@ HEADING_CHOICES = [
         'display_name': _("Language"),
     },
     {
-        'id': 'priority',
-        'class': 'stats-number sorttable_numeric',
-        # Translators: Heading representing the priority for a goal
-        'display_name': _("Priority"),
-    },
-    {
         'id': 'progress',
         'class': 'stats',
         # Translators: noun. The graphical representation of translation status
@@ -189,70 +183,5 @@ def get_children(directory):
 
     stores = [make_store_item(child_store)
               for child_store in directory.child_stores.iterator()]
-
-    return directories + stores
-
-
-################################ Goal specific ################################
-
-def make_goal_dir_item(directory, goal):
-    return {
-        'href': goal.get_drill_down_url_for_path(directory.pootle_path),
-        'href_all': goal.get_translate_url_for_path(directory.pootle_path),
-        'href_todo': goal.get_translate_url_for_path(directory.pootle_path,
-                                                     state='incomplete'),
-        'href_sugg': goal.get_translate_url_for_path(directory.pootle_path,
-                                                     state='suggestions'),
-        'href_critical': goal.get_critical_url_for_path(directory.pootle_path),
-        'title': directory.name,
-        'code': directory.code,
-        'icon': 'folder',
-    }
-
-
-def make_goal_store_item(store, goal):
-    item = make_store_item(store)
-    item.update({
-        'href': goal.get_drill_down_url_for_path(store.pootle_path),
-    })
-    return item
-
-
-def get_goal_parent(directory, goal):
-    """Return the parent directory in a drill down view.
-
-    If the parent directory is the directory for a language or a project then
-    return an item pointing at the goals tab.
-    """
-    parent_dir = directory.parent
-
-    if not (parent_dir.is_language() or parent_dir.is_project()):
-        parent_path = directory.parent.pootle_path
-        return {
-            'icon': 'folder-parent',
-            'title': _("Back to parent folder"),
-            'href': goal.get_drill_down_url_for_path(parent_path),
-        }
-    else:
-        return None
-
-
-def get_goal_children(directory, goal):
-    """Return a list of children directories and stores for this ``directory``
-    that in the provided stores,
-    and also the parent directory.
-
-    The elements of the list are dictionaries which keys are populated after
-    in the templates.
-    """
-    # Get the stores and subdirectories for this goal in the current directory.
-    dir_stores, dir_subdirs = goal.get_children_for_path(directory.pootle_path)
-
-    # Now get and return the items for those stores and subdirectories.
-    directories = [make_goal_dir_item(child_dir, goal)
-                   for child_dir in dir_subdirs]
-
-    stores = [make_goal_store_item(child_store, goal)
-              for child_store in dir_stores]
 
     return directories + stores

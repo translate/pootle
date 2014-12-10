@@ -56,15 +56,6 @@ urlpatterns = patterns('pootle_translationproject.views',
         'vcs_update',
         name='pootle-vcs-update'),
 
-    # XHR views
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-add-tag/$',
-        'ajax_add_tag_to_tp',
-        name='pootle-xhr-tag-tp'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/ajax-remove-tag/'
-        r'(?P<tag_name>.*\.*)?$',
-        'ajax_remove_tag_from_tp',
-        name='pootle-xhr-untag-tp'),
-
     # Exporting files
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'(?P<file_path>.*)export/zip/$',
@@ -82,13 +73,6 @@ urlpatterns = patterns('pootle_translationproject.views',
         r'export-view/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'export_view',
         name='pootle-tp-export-view'),
-
-    # Goals
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'goals/(?P<goal_slug>[a-z0-9-]+)/real-path/'
-        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'overview',
-        name='pootle-tp-goal-drill-down'),
 
     # Overview
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'

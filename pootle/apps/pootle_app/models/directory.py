@@ -45,10 +45,6 @@ class DirectoryManager(models.Manager):
     def projects(self):
         return self.get(pootle_path='/projects/')
 
-    @cached_property
-    def goals(self):
-        return self.get(pootle_path='/goals/')
-
 
 class Directory(models.Model, TreeItem):
 
@@ -195,31 +191,22 @@ class Directory(models.Model, TreeItem):
 
     ### TreeItem
 
-    def get_children_for_stats(self, goal=None):
-        if self.parent is not None and goal is not None:
-            from itertools import chain
+    def get_children_for_stats(self):
+        return super(Directory, self).get_children_for_stats()
 
-            stores, dirs = goal.get_children_for_path(self.pootle_path)
-            return list(chain(stores, dirs))
-        else:
-            return super(Directory, self).get_children_for_stats()
+    def get_progeny(self):
+        return super(Directory, self).get_progeny()
 
-    def get_progeny(self, goal=None):
-        if self.parent is not None and goal is not None:
-            return goal.get_stores_for_path(self.pootle_path)
-        else:
-            return super(Directory, self).get_progeny()
-
-    def get_self_stats(self, goal=None):
-        if self.parent is not None and goal is not None:
+    def get_self_stats(self):
+        if self.parent is not None:
             return {
-                'total': self.get_total_wordcount(goal),
-                'translated': self.get_translated_wordcount(goal),
-                'fuzzy': self.get_fuzzy_wordcount(goal),
-                'suggestions': self.get_suggestion_count(goal),
-                'critical': self.get_critical_error_unit_count(goal),
-                'lastupdated': self.get_last_updated(goal),
-                'lastaction': self.get_last_action(goal),
+                'total': self.get_total_wordcount(),
+                'translated': self.get_translated_wordcount(),
+                'fuzzy': self.get_fuzzy_wordcount(),
+                'suggestions': self.get_suggestion_count(),
+                'critical': self.get_critical_error_unit_count(),
+                'lastupdated': self.get_last_updated(),
+                'lastaction': self.get_last_action(),
             }
         else:
             return super(Directory, self).get_self_stats()
@@ -250,34 +237,6 @@ class Directory(models.Model, TreeItem):
 
     def get_cachekey(self):
         return self.pootle_path
-
-    def _get_next_goal_count(self):
-        # Trigger only if it is a regular directory inside a TP.
-        if self.pootle_path.count('/') > 3:
-            # Putting the next import at the top of the file causes circular
-            # import issues.
-            from pootle_tagging.models import Goal
-
-            goal = Goal.get_most_important_incomplete_for_path(self)
-
-            if goal is not None:
-                return goal.get_incomplete_words_in_path(self)
-
-        return 0
-
-    def get_next_goal_url(self):
-        # Trigger only if it is a regular directory inside a TP.
-        if self.pootle_path.count('/') > 3:
-            # Putting the next import at the top of the file causes circular
-            # import issues.
-            from pootle_tagging.models import Goal
-
-            goal = Goal.get_most_important_incomplete_for_path(self)
-
-            if goal is not None:
-                return goal.get_translate_url_for_path(self.pootle_path,
-                                                       state='incomplete')
-        return ''
 
     ### /TreeItem
 

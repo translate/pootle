@@ -6,7 +6,6 @@
 
     init: function (options) {
       this.pootlePath = options.pootlePath;
-      this.goalSlug = options.goalSlug;
 
       $(document).on("click", "#js-path-summary", PTL.stats.toggleChecks);
     },
@@ -94,9 +93,6 @@
           reqData = {
             path: this.pootlePath,
           };
-      if (this.goalSlug) {
-        reqData.goalSlug = this.goalSlug;
-      }
       $.ajax({
         url: url,
         data: reqData,
@@ -111,7 +107,6 @@
                                  data.total - data.translated);
           PTL.stats.updateAction($('#js-action-fix-critical'), data.critical);
           PTL.stats.updateAction($('#js-action-review'), data.suggestions);
-          PTL.stats.updateAction($('#js-action-next-goal'), data.nextGoal);
 
           $('body').removeClass('js-not-loaded');
 

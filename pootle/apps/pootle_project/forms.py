@@ -23,7 +23,6 @@ from django.utils.translation import ugettext as _
 from pootle_language.models import Language
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project
-from pootle_tagging.forms import TagForm
 from pootle_translationproject.models import TranslationProject
 
 
@@ -32,25 +31,6 @@ class DescriptionForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ("fullname", "description", "report_email")
-
-
-class TranslationProjectTagForm(TagForm):
-
-    def __init__(self, *args, **kwargs):
-        project = kwargs.pop('project')
-        super(TranslationProjectTagForm, self).__init__(*args, **kwargs)
-
-        self.fields['translation_project'] = forms.ModelChoiceField(
-            label='',  # Blank label to don't see it.
-            queryset=TranslationProject.objects.filter(project=project),
-            widget=forms.Select(attrs={
-                'id': 'js-tags-tp',
-                # Use the 'hide' class to hide the field. The HiddenInput
-                # widget renders a 'input' tag instead of a 'select' one and
-                # that way the translation project can't be set.
-                'class': 'hide',
-            }),
-        )
 
 
 class TranslationProjectFormSet(forms.models.BaseModelFormSet):

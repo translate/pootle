@@ -1213,15 +1213,6 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         return self.name.replace('.', '-')
 
     @property
-    def tag_like_objects(self):
-        """Return the tag like objects applied to this store.
-
-        Tag like objects can be either tags or goals.
-        """
-        return list(chain(self.tags.all().order_by("name"),
-                          self.goals.all().order_by("name")))
-
-    @property
     def abs_real_path(self):
         if self.file:
             return self.file.path
@@ -1887,19 +1878,19 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def get_cachekey(self):
         return self.pootle_path
 
-    def get_total_wordcount(self, goal=None):
+    def get_total_wordcount(self):
         return self.total_wordcount
 
-    def get_translated_wordcount(self, goal=None):
+    def get_translated_wordcount(self):
         return self.translated_wordcount
 
-    def get_fuzzy_wordcount(self, goal=None):
+    def get_fuzzy_wordcount(self):
         return self.fuzzy_wordcount
 
-    def get_suggestion_count(self, goal=None):
+    def get_suggestion_count(self):
         return self.suggestion_count
 
-    def get_critical_error_unit_count(self, goal=None):
+    def get_critical_error_unit_count(self):
         return self.failing_critical_count
 
     def _get_checks(self):
@@ -1935,7 +1926,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
     def _get_mtime(self):
         return max_column(self.unit_set.all(), 'mtime', datetime_min)
 
-    def get_last_updated(self, goal=None):
+    def get_last_updated(self):
         if self.last_unit is None:
             return {'id': 0, 'creation_time': 0, 'snippet': ''}
 
@@ -1946,7 +1937,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
             'snippet': self.last_unit.get_last_updated_message()
         }
 
-    def get_last_action(self, goal=None):
+    def get_last_action(self):
         if self.last_submission is None:
             return {'id': 0, 'mtime': 0, 'snippet': ''}
 

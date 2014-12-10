@@ -21,7 +21,6 @@
 
     this.filter = 'all';
     this.checks = [];
-    this.goal = null;
     this.user = null;
     this.ctxGap = 0;
     this.ctxQty = parseInt($.cookie('ctxQty'), 10) || 1;
@@ -278,11 +277,6 @@
           } else {
             PTL.editor.checks = [];
           }
-        }
-
-        PTL.editor.goal = null;
-        if ('goal' in params) {
-          PTL.editor.goal = params['goal'];
         }
 
         // Only accept the user parameter for 'user-*' filters
@@ -990,10 +984,6 @@
       reqData.user = this.user;
     }
 
-    if (this.goal) {
-      reqData.goal = this.goal;
-    }
-
     return reqData;
   },
 
@@ -1499,9 +1489,6 @@
 
     if (filterBy != "none") {
       var newHash = "filter=checks&checks=" + encodeURIComponent(filterBy);
-      if (PTL.editor.goal) {
-        newHash += '&goal=' + PTL.editor.goal;
-      }
       $.history.load(newHash);
     }
   },
@@ -1562,9 +1549,6 @@
         } else {
           PTL.editor.user = null;
           $(".js-user-filter").remove();
-        }
-        if (PTL.editor.goal) {
-          newHash += '&goal=' + PTL.editor.goal;
         }
         $.history.load(newHash);
       }
@@ -1712,9 +1696,6 @@
       newHash = "search=" + queryString;
     } else {
       newHash = PTL.utils.updateHashPart("filter", "all", ["search", "sfields","soptions"]);
-    }
-    if (PTL.editor.goal) {
-      newHash += '&goal=' + PTL.editor.goal;
     }
     $.history.load(newHash);
   },

@@ -7,7 +7,6 @@
     navigation: '#js-select-navigation',
     language: '#js-select-language',
     project: '#js-select-project',
-    goal: '#js-select-goal',
     resource: '#js-select-resource'
   };
 
@@ -41,22 +40,18 @@
 
         var langCode = $(sel.language).val(),
             projectCode = $(sel.project).val(),
-            $goal = $(sel.goal),
-            goalSlug = $goal.length ? $goal.val(): '';
             $resource = $(sel.resource),
             resource = $resource.length ? $resource.val()
                                                    .replace('ctx-', '')
                                         : '';
-        PTL.browser.navigateTo(langCode, projectCode, goalSlug, resource);
+        PTL.browser.navigateTo(langCode, projectCode, resource);
       }
     );
   };
 
   var fixDropdowns = function (e) {
     // We can't use `e.persisted` here. See bug 2949 for reference
-    var selectors = [sel.navigation, sel.language, sel.project, sel.goal,
-          sel.resource
-        ];
+    var selectors = [sel.navigation, sel.language, sel.project, sel.resource];
     for (var i=0; i<selectors.length; i++) {
       var $el = $(selectors[i]),
           initial = $el.data('initial-code');
@@ -104,9 +99,6 @@
       makeNavDropdown(sel.project, {
         placeholder: gettext("All Projects")
       });
-      makeNavDropdown(sel.goal, {
-        placeholder: gettext("All Goals")
-      });
       makeNavDropdown(sel.resource, {
         placeholder: gettext("Entire Project"),
         formatResult: formatResource
@@ -115,26 +107,19 @@
 
     /* Navigates to `languageCode`, `projectCode`, `resource` while
      * retaining the current context when applicable */
-    navigateTo: function (languageCode, projectCode, goalSlug, resource) {
+    navigateTo: function (languageCode, projectCode, resource) {
       var curProject = $(sel.project).data('initial-code'),
           curLanguage = $(sel.language).data('initial-code'),
-          $goal = $(sel.goal),
-          curGoal = $goal.length ? $goal.data('initial-code') : '',
           $resource = $(sel.resource),
           curResource = $resource.length ? $resource.data('initial-code')
                                                     .replace('ctx-', '') : '',
           langChanged = languageCode !== curLanguage,
           projChanged = projectCode !== curProject,
-          goalChanged = goalSlug !== curGoal,
           resChanged = resource !== curResource,
-          hasChanged = langChanged || projChanged || goalChanged || resChanged;
+          hasChanged = langChanged || projChanged || resChanged;
 
       if (!hasChanged) {
         return;
-      }
-
-      if (!languageCode || !projectCode) {
-        goalSlug = '';
       }
 
       if (!languageCode) {
@@ -145,8 +130,7 @@
       }
 
       var action = actionMap[$(sel.navigation).val()],
-          goalPart = goalSlug ? ['goals', goalSlug, 'real-path'].join('/') : '',
-          parts = ['', languageCode, projectCode, action, goalPart, resource],
+          parts = ['', languageCode, projectCode, action, resource],
           urlParts = parts.filter(function (p, i) {
             return i === 0 || p !== '';
           });

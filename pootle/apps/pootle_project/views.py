@@ -28,8 +28,6 @@ from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 
-from taggit.models import Tag
-
 from pootle.core.browser import (get_table_headings, make_language_item,
                                  make_project_list_item, make_xlanguage_item)
 from pootle.core.decorators import (get_path_obj, get_resource,
@@ -42,122 +40,9 @@ from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_misc.util import ajax_required, jsonify
 from pootle_project.forms import (TranslationProjectFormSet,
-                                  TranslationProjectTagForm, tp_form_factory)
+                                  tp_form_factory)
 from pootle_project.models import Project
-from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
-
-
-@ajax_required
-@get_path_obj
-@permission_required('view')
-def ajax_list_tags(request, project):
-    from django.contrib.contenttypes.models import ContentType
-    from django.core import serializers
-
-    translation_projects = project.translationproject_set.all()
-    ct = ContentType.objects.get_for_model(TranslationProject)
-    criteria = {
-        "taggit_taggeditem_items__content_type": ct,
-        "taggit_taggeditem_items__object_id__in": translation_projects,
-    }
-
-    queryset = Tag.objects.filter(**criteria).distinct()  # .values_list("id", "name")
-
-    return HttpResponse(serializers.serialize("json", queryset))
-
-@require_POST
-@ajax_required
-@get_path_obj
-@permission_required('administrate')
-def ajax_remove_tag_from_tp_in_project(request, translation_project, tag_name):
-
-    if tag_name.startswith("goal:"):
-        translation_project.goals.remove(tag_name)
-    else:
-        translation_project.tags.remove(tag_name)
-    ctx = {
-        'tp_tags': translation_project.tags.all().order_by('name'),
-        'project': translation_project.project.code,
-        'language': translation_project.language.code,
-    }
-    response = render(request, "projects/xhr_tags_list.html", ctx)
-    response.status_code = 201
-    return response
-
-
-def _add_tag(request, translation_project, tag_like_object):
-    if isinstance(tag_like_object, Tag):
-        translation_project.tags.add(tag_like_object)
-    else:
-        translation_project.goals.add(tag_like_object)
-    ctx = {
-        'tp_tags': translation_project.tag_like_objects,
-        'project': translation_project.project.code,
-        'language': translation_project.language.code,
-    }
-    response = render(request, "projects/xhr_tags_list.html", ctx)
-    response.status_code = 201
-    return response
-
-
-@require_POST
-@ajax_required
-@get_path_obj
-@permission_required('administrate')
-def ajax_add_tag_to_tp_in_project(request, project):
-    """Return an HTML snippet with the failed form or blank if valid."""
-
-    add_tag_form = TranslationProjectTagForm(request.POST, project=project)
-
-    if add_tag_form.is_valid():
-        translation_project = add_tag_form.cleaned_data['translation_project']
-        new_tag_like_object = add_tag_form.save()
-        return _add_tag(request, translation_project, new_tag_like_object)
-    else:
-        # If the form is invalid, perhaps it is because the tag already
-        # exists, so instead of creating the tag just retrieve it and add
-        # it to the translation project.
-        try:
-            # Try to retrieve the translation project.
-            kwargs = {
-                'pk': add_tag_form.data['translation_project'],
-            }
-            translation_project = TranslationProject.objects.get(**kwargs)
-
-            # Check if the tag (or goal) is already added to the translation
-            # project, or try adding it.
-            criteria = {
-                'name': add_tag_form.data['name'],
-                'slug': add_tag_form.data['slug'],
-            }
-            if len(translation_project.tags.filter(**criteria)) == 1:
-                # If the tag is already applied to the translation project then
-                # avoid reloading the page.
-                return HttpResponse(status=204)
-            elif len(translation_project.goals.filter(**criteria)) == 1:
-                # If the goal is already applied to the translation project
-                # then avoid reloading the page.
-                return HttpResponse(status=204)
-            else:
-                # Else add the tag (or goal) to the translation project.
-                if criteria['name'].startswith("goal:"):
-                    tag_like_object = Goal.objects.get(**criteria)
-                else:
-                    tag_like_object = Tag.objects.get(**criteria)
-                return _add_tag(request, translation_project, tag_like_object)
-        except Exception:
-            # If the form is invalid and the tag (or goal) doesn't exist yet
-            # then display the form with the error messages.
-            url_kwargs = {
-                'project_code': project.code,
-            }
-            ctx = {
-                'add_tag_form': add_tag_form,
-                'add_tag_action_url': reverse('pootle-xhr-tag-tp-in-project',
-                                              kwargs=url_kwargs)
-            }
-            return render(request, "core/xhr_add_tag_form.html", ctx)
 
 
 @get_path_obj
@@ -189,14 +74,10 @@ def overview(request, project, dir_path, filename):
 
     if ctx['can_edit']:
         from pootle_project.forms import DescriptionForm
-        tag_action_url = reverse('pootle-xhr-tag-tp-in-project',
-                                 kwargs={'project_code': project.code})
         ctx.update({
             'form': DescriptionForm(instance=project),
             'form_action': reverse('pootle-project-admin-settings',
                                    args=[project.code]),
-            'add_tag_form': TranslationProjectTagForm(project=project),
-            'add_tag_action_url': tag_action_url,
         })
 
     return render(request, 'browser/overview.html', ctx)

@@ -22,20 +22,6 @@
     {% endfor %}
   </select>
 </li>
-{% if translation_project and tp_goals %}
-{% if page == 'overview' or page == 'translate' %}
-<li>
-  <select id="js-select-goal" data-initial-code="{{ goal.slug }}">
-    <option value=""></option>
-    {% for this_goal in tp_goals %}
-    <option value="{{ this_goal.slug }}">
-      {{ this_goal.goal_name }}
-    </option>
-    {% endfor %}
-  </select>
-</li>
-{% endif %}
-{% endif %}
 {% if project %}
 {% if page == 'overview' or page == 'translate' %}
 <li>

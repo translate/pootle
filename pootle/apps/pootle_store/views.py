@@ -43,8 +43,6 @@ from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_POST
 
-from taggit.models import Tag
-
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
@@ -58,8 +56,6 @@ from pootle_misc.util import ajax_required, jsonify, to_int
 from pootle_project.models import Project
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from pootle_tagging.forms import TagForm
-from pootle_tagging.models import Goal
 from pootle_translationproject.models import TranslationProject
 
 from .decorators import get_store_context, get_unit_context
@@ -386,17 +382,6 @@ def get_step_query(request, units_queryset):
 
 
             units_queryset = match_queryset
-
-    if 'goal' in request.GET:
-        try:
-            goal = Goal.objects.get(slug=request.GET['goal'])
-        except Goal.DoesNotExist:
-            pass
-        else:
-            pootle_path = (request.GET.get('path', '') or
-                           request.path.replace("/export-view/", "/", 1))
-            goal_stores = goal.get_stores_for_path(pootle_path)
-            units_queryset = units_queryset.filter(store__in=goal_stores)
 
     if 'search' in request.GET and 'sfields' in request.GET:
         # Accept `sfields` to be a comma-separated string of fields (#46)
@@ -809,13 +794,7 @@ def get_qualitycheck_stats(request, *args, **kwargs):
 @permission_required('view')
 @get_resource
 def get_overview_stats(request, *args, **kwargs):
-    goal = None
-    if 'goalSlug' in request.GET:
-        try:
-            goal = Goal.objects.get(slug=request.GET.get('goalSlug', ''))
-        except Goal.DoesNotExist:
-            goal = None
-    stats = request.resource_obj.get_stats(goal=goal)
+    stats = request.resource_obj.get_stats()
     response = jsonify(stats)
     return HttpResponse(response, content_type="application/json")
 
@@ -1005,85 +984,3 @@ def toggle_qualitycheck(request, unit, check_id):
 
     response = jsonify(json)
     return HttpResponse(response, content_type="application/json")
-
-
-@require_POST
-@ajax_required
-def ajax_remove_tag_from_store(request, tag_slug, store_pk):
-    if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to remove tags."))
-
-    store = get_object_or_404(Store, pk=store_pk)
-
-    if tag_slug.startswith("goal-"):
-        goal = get_object_or_404(Goal, slug=tag_slug)
-        store.goals.remove(goal)
-    else:
-        tag = get_object_or_404(Tag, slug=tag_slug)
-        store.tags.remove(tag)
-
-    return HttpResponse(status=201)
-
-
-def _add_tag(request, store, tag_like_object):
-    if isinstance(tag_like_object, Tag):
-        store.tags.add(tag_like_object)
-    else:
-        store.goals.add(tag_like_object)
-    context = {
-        'store_tags': store.tag_like_objects,
-        'path_obj': store,
-        'can_edit': check_permission('administrate', request),
-    }
-    response = render(request, "stores/xhr_tags_list.html", context)
-    response.status_code = 201
-    return response
-
-
-@require_POST
-@ajax_required
-def ajax_add_tag_to_store(request, store_pk):
-    """Return an HTML snippet with the failed form or blank if valid."""
-
-    if not check_permission('administrate', request):
-        raise PermissionDenied(_("You do not have rights to add tags."))
-
-    store = get_object_or_404(Store, pk=store_pk)
-
-    add_tag_form = TagForm(request.POST)
-
-    if add_tag_form.is_valid():
-        new_tag_like_object = add_tag_form.save()
-        return _add_tag(request, store, new_tag_like_object)
-    else:
-        # If the form is invalid, perhaps it is because the tag already exists,
-        # so check if the tag exists.
-        try:
-            criteria = {
-                'name': add_tag_form.data['name'],
-                'slug': add_tag_form.data['slug'],
-            }
-            if len(store.tags.filter(**criteria)) == 1:
-                # If the tag is already applied to the store then avoid
-                # reloading the page.
-                return HttpResponse(status=204)
-            elif len(store.goals.filter(**criteria)) == 1:
-                # If the goal is already applied to the store then avoid
-                # reloading the page.
-                return HttpResponse(status=204)
-            else:
-                # Else add the tag (or goal) to the store.
-                if criteria['name'].startswith("goal:"):
-                    tag_like_object = Goal.objects.get(**criteria)
-                else:
-                    tag_like_object = Tag.objects.get(**criteria)
-                return _add_tag(request, store, tag_like_object)
-        except Exception:
-            # If the form is invalid and the tag doesn't exist yet then display
-            # the form with the error messages.
-            context = {
-                'add_tag_form': add_tag_form,
-                'add_tag_action_url': reverse('pootle-xhr-tag-store',
-                                              args=[store.pk])
-            }
-            return render(request, "core/xhr_add_tag_form.html", context)

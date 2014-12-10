@@ -1,6 +1,6 @@
 {% extends browser_extends %}
 
-{% load assets cleanhtml i18n locale translation_project_tags goal_tags common_tags %}
+{% load assets cleanhtml i18n locale translation_project_tags common_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -77,9 +77,9 @@
 {% endblock %}
 
 {% block pre_content %}
-{% if announcement or action_groups or description or project.description or language.description or can_edit or goal %}
+{% if announcement or action_groups or description or project.description or language.description or can_edit %}
 <div id="sidebar"
-  class="js-sidebar{% if announcement_displayed or action_output or goal %} sidebar-open{% endif %}">
+  class="js-sidebar{% if announcement_displayed or action_output %} sidebar-open{% endif %}">
   <div id="sidebar-tabs">
     <ul id="tabs">
       {% if announcement %}
@@ -100,12 +100,6 @@
           data-target="js-instructions-sidebar-pane">{% trans 'Instructions' %}</a>
       </li>
       {% endif %}
-      {% if goal %}
-      <li>
-        <a class="js-sidebar-tab-display active-sidebar-tab"
-          data-target="js-goal-sidebar-pane">{% trans 'Goal' %}</a>
-      </li>
-      {% endif %}
     </ul>
   </div>
   {% if announcement %}
@@ -121,11 +115,6 @@
   {% if description or project.description or language.description or can_edit %}
   <div id="js-instructions-sidebar-pane" class="js-sidebar-pane">
     {% include 'translation_projects/_instructions_sidebar.html' %}
-  </div>
-  {% endif %}
-  {% if goal %}
-  <div id="js-goal-sidebar-pane" class="js-sidebar-pane">
-    {% include 'translation_projects/_goal_sidebar.html' %}
   </div>
   {% endif %}
   <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
@@ -162,7 +151,6 @@ $(function () {
   PTL.search.init();
   PTL.stats.init({
       pootlePath: "{{ pootle_path }}",
-      goalSlug: "{{ goal.slug }}"
   });
   PTL.stats.load(function () {
     PTL.common.updateRelativeDates();

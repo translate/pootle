@@ -35,10 +35,7 @@ from django.template import loader, RequestContext
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 
-from taggit.models import Tag
-
-from pootle.core.browser import (get_children, get_goal_children,
-                                 get_goal_parent, get_parent,
+from pootle.core.browser import (get_children, get_parent,
                                  get_table_headings)
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
@@ -54,9 +51,6 @@ from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import Store
 from pootle_store.util import (absolute_real_path, relative_real_path,
                                add_trailing_slash)
-from pootle_tagging.decorators import get_goal
-from pootle_tagging.forms import GoalForm, TagForm
-from pootle_tagging.models import Goal
 
 from .forms import DescriptionForm, upload_form_factory
 
@@ -293,23 +287,13 @@ def _handle_upload_form(request, translation_project):
 @get_path_obj
 @permission_required('view')
 @get_resource
-@get_goal
-def overview(request, translation_project, dir_path, filename=None, goal=None):
+def overview(request, translation_project, dir_path, filename=None):
     from django.utils import dateformat
     from staticpages.models import StaticPage
     from pootle.scripts.actions import EXTDIR, StoreAction, TranslationProjectAction
     from .actions import action_groups
 
-    if filename:
-        ctx = {
-            'store_tags': request.store.tag_like_objects,
-        }
-        template_name = "translation_projects/store_overview.html"
-    else:
-        ctx = {
-            'tp_tags': translation_project.tag_like_objects,
-        }
-        template_name = "browser/overview.html"
+    ctx = {}
 
     if (check_permission('translate', request) or
         check_permission('suggest', request) or
@@ -326,17 +310,12 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
 
     resource_obj = request.store or request.directory
 
-    #TODO enable again some actions when drilling down a goal.
-    if goal is None:
-        actions = action_groups(request, resource_obj)
-    else:
-        actions = []
+    actions = action_groups(request, resource_obj)
 
     action_output = ''
     running = request.GET.get(EXTDIR, '')
 
-    #TODO enable the following again when drilling down a goal.
-    if running and goal is None:
+    if running:
         if request.store:
             act = StoreAction
         else:
@@ -448,8 +427,6 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
             display_announcement = True
             new_mtime = ann_mtime
 
-    tp_goals = translation_project.all_goals
-
     ctx.update(get_overview_context(request))
     ctx.update({
         'resource_obj': request.store or request.directory,  # Dirty hack.
@@ -457,8 +434,6 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
         'description': translation_project.description,
         'project': project,
         'language': language,
-        'tp_goals': tp_goals,
-        'goal': goal,
         'feed_path': request.directory.pootle_path[1:],
         'action_groups': actions,
         'action_output': action_output,
@@ -476,64 +451,24 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
         table_fields = ['name', 'progress', 'total', 'need-translation',
                         'suggestions', 'critical', 'last-updated', 'activity']
 
-        if goal is not None:
-            # Then show the drill down view for the specified goal.
-            continue_url = goal.get_translate_url_for_path(request.pootle_path,
-                                                           state='incomplete')
-            critical_url = goal.get_critical_url_for_path(request.pootle_path)
-            review_url = goal.get_translate_url_for_path(request.pootle_path,
-                                                         state='suggestions')
-            all_url = goal.get_translate_url_for_path(request.pootle_path)
-
-            ctx.update({
-                'table': {
-                    'id': 'tp-goals',
-                    'fields': table_fields,
-                    'headings': get_table_headings(table_fields),
-                    'parent': get_goal_parent(request.directory, goal),
-                    'items': get_goal_children(request.directory, goal),
-                },
-                'url_action_continue': continue_url,
-                'url_action_fixcritical': critical_url,
-                'url_action_review': review_url,
-                'url_action_view_all': all_url,
-            })
-        else:
-            # Then show the files tab.
-            ctx.update({
-                'table': {
-                    'id': 'tp-files',
-                    'fields': table_fields,
-                    'headings': get_table_headings(table_fields),
-                    'parent': get_parent(request.directory),
-                    'items': get_children(request.directory),
-                },
-            })
+        ctx.update({
+            'table': {
+                'id': 'tp-files',
+                'fields': table_fields,
+                'headings': get_table_headings(table_fields),
+                'parent': get_parent(request.directory),
+                'items': get_children(request.directory),
+            },
+        })
 
     if can_edit:
-        if request.store is None:
-            add_tag_action_url = reverse('pootle-xhr-tag-tp',
-                                         args=[language.code, project.code])
-        else:
-            add_tag_action_url = reverse('pootle-xhr-tag-store',
-                                         args=[resource_obj.pk])
-
         ctx.update({
             'form': DescriptionForm(instance=translation_project),
             'form_action': reverse('pootle-tp-admin-settings',
                                    args=[language.code, project.code]),
-            'add_tag_form': TagForm(),
-            'add_tag_action_url': add_tag_action_url,
         })
 
-        if goal is not None:
-            ctx.update({
-                'goal_form': GoalForm(instance=goal),
-                'goal_form_action': reverse('pootle-xhr-edit-goal',
-                                            args=[goal.slug]),
-            })
-
-    response = render(request, template_name, ctx)
+    response = render(request, 'browser/overview.html', ctx)
 
     if new_mtime is not None:
         cookie_data[project.code] = new_mtime
@@ -541,86 +476,6 @@ def overview(request, translation_project, dir_path, filename=None, goal=None):
         response.set_cookie(ANN_COOKIE_NAME, cookie_data)
 
     return response
-
-
-@require_POST
-@ajax_required
-@get_path_obj
-@permission_required('administrate')
-def ajax_remove_tag_from_tp(request, translation_project, tag_name):
-
-    if tag_name.startswith("goal:"):
-        translation_project.goals.remove(tag_name)
-    else:
-        translation_project.tags.remove(tag_name)
-
-    return HttpResponse(status=201)
-
-
-def _add_tag(request, translation_project, tag_like_object):
-    if isinstance(tag_like_object, Tag):
-        translation_project.tags.add(tag_like_object)
-    else:
-        translation_project.goals.add(tag_like_object)
-    context = {
-        'tp_tags': translation_project.tag_like_objects,
-        'language': translation_project.language,
-        'project': translation_project.project,
-        'can_edit': check_permission('administrate', request),
-    }
-    response = render(request, "translation_projects/xhr_tags_list.html", context)
-    response.status_code = 201
-    return response
-
-
-@require_POST
-@ajax_required
-@get_path_obj
-@permission_required('administrate')
-def ajax_add_tag_to_tp(request, translation_project):
-    """Return an HTML snippet with the failed form or blank if valid."""
-
-    add_tag_form = TagForm(request.POST)
-
-    if add_tag_form.is_valid():
-        new_tag_like_object = add_tag_form.save()
-        return _add_tag(request, translation_project, new_tag_like_object)
-    else:
-        # If the form is invalid, perhaps it is because the tag (or goal)
-        # already exists, so check if the tag (or goal) exists.
-        try:
-            criteria = {
-                'name': add_tag_form.data['name'],
-                'slug': add_tag_form.data['slug'],
-            }
-            if len(translation_project.tags.filter(**criteria)) == 1:
-                # If the tag is already applied to the translation project then
-                # avoid reloading the page.
-                return HttpResponse(status=204)
-            elif len(translation_project.goals.filter(**criteria)) == 1:
-                # If the goal is already applied to the translation project
-                # then avoid reloading the page.
-                return HttpResponse(status=204)
-            else:
-                # Else add the tag (or goal) to the translation project.
-                if criteria['name'].startswith("goal:"):
-                    tag_like_object = Goal.objects.get(**criteria)
-                else:
-                    tag_like_object = Tag.objects.get(**criteria)
-                return _add_tag(request, translation_project, tag_like_object)
-        except Exception:
-            # If the form is invalid and the tag (or goal) doesn't exist yet
-            # then display the form with the error messages.
-            url_kwargs = {
-                'language_code': translation_project.language.code,
-                'project_code': translation_project.project.code,
-            }
-            context = {
-                'add_tag_form': add_tag_form,
-                'add_tag_action_url': reverse('pootle-xhr-tag-tp',
-                                              kwargs=url_kwargs)
-            }
-            return render(request, "core/xhr_add_tag_form.html", context)
 
 
 @get_path_obj
@@ -655,7 +510,6 @@ def export_view(request, translation_project, dir_path, filename=None):
         'source_language': translation_project.project.source_language,
         'language': translation_project.language,
         'project': translation_project.project,
-        'goal': request.GET.get('goal', ''),
     })
 
     return render(request, 'editor/export_view.html', ctx)
