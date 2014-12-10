@@ -132,8 +132,8 @@ class Command(BaseCommand):
             if tt_changed:
                 upgrade('ttk', db_tt_buildversion, CODE_TTK_BUILDVERSION)
 
-            # Dirty hack to drop PootleConfig table after upgrading up to
-            # Pootle 2.6.0.
+            # Dirty hack to drop PootleConfig and SiteConfiguration tables
+            # after upgrading up to Pootle 2.6.0.
             from django.contrib.contenttypes.models import ContentType
             from django.db import connection
             from south.db import db
@@ -142,6 +142,11 @@ class Command(BaseCommand):
                 # Deleting 'PootleConfig' table.
                 ContentType.objects.filter(app_label='pootle_app', model='pootleconfig').delete()
                 db.delete_table(u'pootle_app_pootleconfig')
+
+            if u'siteconfig_siteconfiguration' in connection.introspection.table_names():
+                # Deleting 'SiteConfiguration' table.
+                ContentType.objects.filter(app_label='siteconfig', model='siteconfiguration').delete()
+                db.delete_table(u'siteconfig_siteconfiguration')
 
             # Perform the option related actions.
             if options['calculate_stats']:
