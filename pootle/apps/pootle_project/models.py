@@ -173,6 +173,17 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         help_text=_('An email address where issues with the source text can '
                     'be reported.'),
     )
+    screenshot_search_prefix = models.URLField(
+        blank=True,
+        null=True,
+        verbose_name=_('Screenshot Search Prefix'),
+    )
+    creation_time = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        editable=False,
+        null=True,
+    )
     disabled = models.BooleanField(verbose_name=_('Disabled'), default=False)
 
     objects = ProjectManager()
