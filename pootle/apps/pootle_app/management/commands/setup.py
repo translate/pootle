@@ -44,7 +44,7 @@ class Command(NoArgsCommand):
             logging.info('Setting up a new Pootle installation.')
 
             call_command('syncdb', interactive=False)
-            call_command('migrate')
+            call_command('migrate', interactive=False)
             call_command('initdb')
 
             # Ensure we have the assets. Should be necessary only when running
@@ -82,9 +82,9 @@ class Command(NoArgsCommand):
                     OLD_APPS += ("staticpages", )
 
                 for app in OLD_APPS:
-                    call_command("migrate", app, "0001", fake=True)
+                    call_command("migrate", app, "0001", fake=True, interactive=False)
 
-            call_command('migrate')
+            call_command('migrate', interactive=False)
             call_command('upgrade')
 
             # Ensure we don't use the old assets after upgrading.
