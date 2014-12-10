@@ -1183,7 +1183,7 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         verbose_name=_("Path"),
     )
     name = models.CharField(max_length=128, null=False, editable=False)
-    sync_time = models.DateTimeField(default=datetime_min)
+    file_mtime = models.DateTimeField(default=datetime_min)
     state = models.IntegerField(
         null=False,
         default=NEW,
