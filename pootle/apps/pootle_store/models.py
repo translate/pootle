@@ -1190,6 +1190,14 @@ class Store(models.Model, TreeItem, base.TranslationStore):
         editable=False,
         db_index=True,
     )
+    creation_time = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        editable=False,
+        null=True,
+    )
+    last_sync_revision = models.IntegerField(db_index=True, null=True)
+    obsolete = models.BooleanField(default=False)
 
     tags = TaggableManager(
         blank=True,
