@@ -43,7 +43,6 @@ from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
-from pootle_app.models.pootle_site import get_site_title
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
 from pootle_misc.stats import stats_message_raw
@@ -548,7 +547,7 @@ class TranslationProject(models.Model, TreeItem):
             from pootle.scripts import hooks
 
             message = ("New files added from %s based on templates" %
-                       get_site_title())
+                       settings.TITLE)
 
             filestocommit = []
             for new_file in new_files:
@@ -802,7 +801,7 @@ class TranslationProject(models.Model, TreeItem):
         author = user.username
 
         message = stats_message_raw("Commit from %s by user %s." %
-                                    (get_site_title(), author),
+                                    (settings.TITLE, author),
                                     total, translated, fuzzy)
 
         # Try to append email as well, since some VCS does not allow omitting
@@ -884,7 +883,7 @@ class TranslationProject(models.Model, TreeItem):
         author = user.username
 
         message = stats_message_raw("Commit from %s by user %s." % \
-                (get_site_title(), author), total, translated, fuzzy)
+                (settings.TITLE, author), total, translated, fuzzy)
 
         # Try to append email as well, since some VCS does not allow omitting
         # it (ie. Git).

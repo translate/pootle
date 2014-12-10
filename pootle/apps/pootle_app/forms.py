@@ -25,14 +25,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_app.models.pootle_site import PootleSite
 from pootle_language.models import Language
-
-
-class GeneralSettingsForm(forms.ModelForm):
-
-    class Meta:
-        model = PootleSite
 
 
 LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$",

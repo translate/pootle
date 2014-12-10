@@ -21,7 +21,6 @@
 from django.conf import settings
 
 from pootle.__version__ import sver
-from pootle_app.models.pootle_site import get_site_description, get_site_title
 from pootle_language.models import Language
 from pootle_project.models import Project
 from staticpages.models import LegalPage
@@ -45,8 +44,8 @@ def pootle_context(request):
     #FIXME: maybe we should expose relevant settings only?
     return {
         'settings': {
-            'TITLE': get_site_title(),
-            'DESCRIPTION':  get_site_description(),
+            'TITLE': settings.TITLE,
+            'DESCRIPTION':  settings.DESCRIPTION,
             'CAN_REGISTER': settings.CAN_REGISTER,
             'CAN_CONTACT': settings.CAN_CONTACT and settings.CONTACT_EMAIL,
             'SCRIPT_NAME': settings.SCRIPT_NAME,

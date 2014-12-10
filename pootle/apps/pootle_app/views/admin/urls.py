@@ -43,9 +43,6 @@ urlpatterns = patterns('pootle_app.views.admin',
     url(r'^/permissions/$',
         'adminroot.view',
         name='pootle-admin-permissions'),
-    url(r'^/general/$',
-        'adminpages.view',
-        name='pootle-admin-general'),
 
     # XHR
     url(r'^/more-stats/$',
