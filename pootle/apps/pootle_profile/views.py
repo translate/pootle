@@ -112,9 +112,3 @@ def login(request, template_name='login.html'):
     }
 
     return render(request, template_name, ctx)
-
-
-def logout(request):
-    from django.contrib.auth import logout
-    logout(request)
-    return redirect('pootle-home')
