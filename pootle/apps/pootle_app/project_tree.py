@@ -194,13 +194,13 @@ def create_or_resurrect_store(file, parent, name, translation_project):
         if store.last_sync_revision is None:
             store.last_sync_revision = store.get_max_unit_revision()
 
-        store.mark_all_dirty()
         store_log(user='system', action=STORE_RESURRECTED,
                   path=store.pootle_path, store=store.id)
     except Store.DoesNotExist:
         store = Store(file=file, parent=parent,
                       name=name, translation_project=translation_project)
 
+    store.mark_all_dirty()
     return store
 
 
@@ -210,10 +210,10 @@ def create_or_resurrect_dir(name, parent):
         Directory.objects.with_obsolete().filter(parent=parent, name=name) \
                                          .update(obsolete=False)
         dir = parent.child_dirs.get(name=name)
-        dir.mark_all_dirty()
     except Directory.DoesNotExist:
         dir = Directory(name=name, parent=parent)
 
+    dir.mark_all_dirty()
     return dir
 
 
