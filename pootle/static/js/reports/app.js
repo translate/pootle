@@ -174,7 +174,9 @@ PTL.reports = {
         taskType === paidTaskTypes.review ||
         taskType === paidTaskTypes.hourlyWork) {
       $this.val(amount > 0 ? amount : 0);
-      if (taskType === paidTaskTypes.hourlyWork) {
+      if (taskType !== paidTaskTypes.hourlyWork) {
+        // round if amount is in words (i.e. taskType is translation or review)
+        // hours can be fractional
         $this.val(Math.round(amount));
       }
     }
