@@ -26,6 +26,8 @@ def view(request):
     """generates the robots.txt file"""
     langcodes = [language.code for language in Language.objects.iterator()]
     content = "User-agent: *\n"
-    for langcode in langcodes + ["accounts"]:
+    for path in ["accounts", "projects", "unit", "xhr"]:
+        content += "Disallow: /%s/\n" % path
+    for langcode in langcodes:
         content += "Disallow: /%s/\n" % langcode
     return HttpResponse(content, content_type="text/plain")
