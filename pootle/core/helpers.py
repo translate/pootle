@@ -33,6 +33,9 @@ from pootle_store.views import get_step_query
 from .url_helpers import get_path_parts, get_previous_url
 
 
+EXPORT_VIEW_QUERY_LIMIT = 10000
+
+
 def get_filter_name(GET):
     """Gets current filter's human-readable name.
 
@@ -115,19 +118,30 @@ def get_export_view_context(request):
 
     :param request: a :cls:`django.http.HttpRequest` object.
     """
+    res = {}
     filter_name, filter_extra = get_filter_name(request.GET)
 
     units_qs = Unit.objects.get_for_path(request.pootle_path,
                                          request.profile)
     units = get_step_query(request, units_qs)
+    unit_total_count = units.count()
+
+    units = units.select_related('store')
+    if unit_total_count > EXPORT_VIEW_QUERY_LIMIT:
+        units = units[:EXPORT_VIEW_QUERY_LIMIT]
+        res['unit_total_count'] = unit_total_count
+        res['displayed_unit_count'] = EXPORT_VIEW_QUERY_LIMIT
+
     unit_groups = [(path, list(units)) for path, units in
                    groupby(units, lambda x: x.store.pootle_path)]
-    return {
-        'unit_groups': unit_groups,
 
+    res.update({
+        'unit_groups': unit_groups,
         'filter_name': filter_name,
         'filter_extra': filter_extra,
-    }
+    })
+
+    return res
 
 
 def get_overview_context(request):
