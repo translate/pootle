@@ -335,6 +335,7 @@ class Unit(models.Model, base.TranslationUnit):
     reviewed_on = models.DateTimeField(db_index=True, null=True)
 
     objects = UnitManager()
+    simple_objects = models.Manager()
 
     class Meta:
         ordering = ['store', 'index']

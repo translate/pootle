@@ -23,6 +23,8 @@ import logging
 import os
 from optparse import make_option
 
+from itertools import groupby
+
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
@@ -145,6 +147,40 @@ class Command(PootleCommand):
         else:
             super(Command, self).handle_all(**options)
 
+    def calculate_checks(self, check_names, unit_fk_filter, store_fk_filter):
+        logger.info('Calculating quality checks for all units...')
+
+        QualityCheck.delete_unknown_checks()
+
+        checks = QualityCheck.objects.filter(**unit_fk_filter)
+        if check_names:
+            checks = checks.filter(name__in=check_names)
+        checks = checks.values('id', 'name', 'unit_id',
+                               'category', 'false_positive')
+        all_units_checks = {}
+        for unit_id, checks in groupby(checks, lambda x: x['unit_id']):
+            all_units_checks[unit_id] = {}
+            for check in checks:
+                all_units_checks[unit_id][check['name']] = check
+
+        unit_count = 0
+        for unit in Unit.simple_objects.select_related('store') \
+                        .filter(**store_fk_filter).iterator():
+            unit_count += 1
+            unit_checks = {}
+            if unit.id in all_units_checks:
+                unit_checks = all_units_checks[unit.id]
+
+            if unit.update_qualitychecks(keep_false_positives=True,
+                                         check_names=check_names,
+                                         existing=unit_checks):
+                # update unit.mtime
+                # TODO: add new action type `quality checks were updated`?
+                unit.save()
+
+            if unit_count % 10000 == 0:
+                logger.info("%d units processed" % unit_count)
+
     def process(self, **options):
         calculate_checks = options.get('calculate_checks', False)
         calculate_wordcount = options.get('calculate_wordcount', False)
@@ -167,20 +203,7 @@ class Command(PootleCommand):
         self._init_checks()
 
         if calculate_checks:
-            logger.info('Calculating quality checks for all units...')
-
-            QualityCheck.delete_unknown_checks()
-
-            unit_count = 0
-            for i, store in enumerate(stores.iterator(), start=1):
-                logger.info("update_qualitychecks for %s" % store.pootle_path)
-                for unit in store.units.iterator():
-                    unit_count += 1
-                    unit.update_qualitychecks(keep_false_positives=True,
-                                              check_names=check_names)
-
-                if i % 20 == 0:
-                    logger.info("%d units processed" % unit_count)
+            self.calculate_checks(check_names, unit_fk_filter, store_fk_filter)
 
         if calculate_wordcount:
             logger.info('Calculating wordcount for all units...')
