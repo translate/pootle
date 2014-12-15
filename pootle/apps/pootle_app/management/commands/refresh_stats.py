@@ -72,6 +72,7 @@ class Command(PootleCommand):
     )
 
     option_list = PootleCommand.option_list + shared_option_list
+    cached_methods = None
 
     def handle_noargs(self, **options):
         refresh_stats.delay(**options)
@@ -98,7 +99,8 @@ class Command(PootleCommand):
                      store_filter=store_filter,
                       **options)
 
-        translation_project.refresh_stats(include_children=True)
+        translation_project.refresh_stats(include_children=True,
+                                          cached_methods=self.cached_methods)
         self.unregister_refresh_stats()
         translation_project.update_parent_cache()
 
@@ -134,7 +136,8 @@ class Command(PootleCommand):
 
                 for prj in prj_query.iterator():
                     # Calculate stats for all directories and translation projects
-                    prj.refresh_stats(include_children=True)
+                    prj.refresh_stats(include_children=True,
+                                      cached_methods=self.cached_methods)
 
                 self.unregister_refresh_stats()
             except Exception:
