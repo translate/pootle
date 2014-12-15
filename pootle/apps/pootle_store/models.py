@@ -774,35 +774,42 @@ class Unit(models.Model, base.TranslationUnit):
                 self.state = FUZZY
                 self._auto_translated = True
 
-    def update_qualitychecks(self, delete_existing=True,
-                             keep_false_positives=False,
-                             check_names=None):
+    def update_qualitychecks(self, keep_false_positives=False,
+                             check_names=None, existing=None):
         """Run quality checks and store result in the database.
 
-        :param delete_existing: when set to `False`, it won't delete any existing
-            checks, do this when unit has just been created or you are
-            sure that it has no checks.
-        """
-        existing = []
+        :param keep_false_positives: when set to `False`, it will activate (unmute)
+            any existing false positive checks.
+        :param check_names: list of quality check names to update, `None` to update all
+            quality checks
+        :param existing: if existing checks were calculated before they can be passed,
+            `None` to calculate existing checks during updating
+        :return: `True` if quality checks were updated or `False` if they left unchanged.
 
-        if delete_existing:
+        """
+        unmute_list = []
+        result = False
+
+        if existing is None:
             checks = self.qualitycheck_set.all()
             if check_names:
                 checks = checks.filter(name__in=check_names)
 
-            if keep_false_positives:
-                existing = set(checks.filter(false_positive=True) \
-                                     .values_list('name', flat=True))
-                checks = checks.filter(false_positive=False)
-
-            if checks.count() > 0:
-                self.store.mark_dirty(CachedMethods.CHECKS)
-                # all checks should be recalculated
-                checks.delete()
+            existing = {}
+            for check in checks.values('name', 'false_positive', 'id'):
+                existing[check['name']] = {
+                    'false_positive': check['false_positive'],
+                    'id': check['id'],
+                }
 
         # no checks if unit is untranslated
         if not self.target:
-            return
+            if existing:
+                self.store.mark_dirty(CachedMethods.CHECKS)
+                self.qualitycheck_set.all().delete()
+                return True
+
+            return False
 
         checker = get_checker(self)
         if check_names is None:
@@ -811,9 +818,11 @@ class Unit(models.Model, base.TranslationUnit):
             qc_failures = run_given_filters(checker, self, check_names)
 
         for name in qc_failures.iterkeys():
-            if name == 'fuzzy' or name in existing:
+            if name in existing:
                 # keep false-positive checks if check is active
-                existing.remove(name)
+                if existing[name]['false_positive'] and not keep_false_positives:
+                    unmute_list.append(name)
+                del existing[name]
                 continue
 
             message = qc_failures[name]['message']
@@ -823,11 +832,18 @@ class Unit(models.Model, base.TranslationUnit):
                                          category=category)
 
             self.store.mark_dirty(CachedMethods.CHECKS)
+            result = True
+
+        if not keep_false_positives and unmute_list:
+            self.qualitycheck_set.filter(name__in=unmute_list) \
+                                 .update(false_positive=False)
 
         # delete inactive checks
         if existing:
-            QualityCheck.objects.filter(name__in=existing, unit=self).delete()
+            self.store.mark_dirty(CachedMethods.CHECKS)
+            self.qualitycheck_set.filter(name__in=existing).delete()
 
+        return result or bool(unmute_list) or bool(existing)
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.all()
