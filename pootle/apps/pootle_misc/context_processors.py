@@ -50,6 +50,7 @@ def pootle_context(request):
             'SCRIPT_NAME': settings.SCRIPT_NAME,
             'POOTLE_VERSION': sver,
             'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
+            'POOTLE_CACHE_TIMEOUT': settings.POOTLE_CACHE_TIMEOUT,
             'DEBUG': settings.DEBUG,
         },
         'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
