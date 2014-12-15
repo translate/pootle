@@ -1956,7 +1956,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         newunit = self.UnitClass(store=self, index=index)
         newunit.update(unit, user=user)
-        if newunit._target_updated:
+        if newunit._target_updated or newunit.istranslated():
             newunit.submitted_by = user
             newunit.submitted_on = timezone.now()
 
