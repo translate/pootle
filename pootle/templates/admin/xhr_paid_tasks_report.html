@@ -35,7 +35,7 @@
           <% if (PTL.reports.adminReport) { %>
             <i class="icon-reject js-remove-task" data-id="<%= row.id %>" original-title="<%= gettext('Remove task') %>"></i>
           <% } else { %>
-            <a data-action="contact" data-subject-prefix="Task %>"
+            <a data-action="contact" data-subject-prefix="Task"
                data-subject="<%= _.escape(row.description) + ' (' + amount + ')' %>"
                data-body="Task permalink (for administrators):&#010;<%= data.meta.admin_permalink + row.id %>&#010;&#010;"><%= gettext('Comment on it') %></a>
           <% } %>
