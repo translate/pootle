@@ -33,7 +33,7 @@ from django.core.cache import get_cache, cache as default_cache
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import set_script_prefix
 from django.db.models import Count, Max, Sum
-from django.utils import dateformat
+from django.utils import dateformat, timezone
 from django.utils.encoding import force_unicode, iri_to_uri
 
 from django_rq import get_connection, job
@@ -175,7 +175,7 @@ class Command(PootleCommand):
                                          existing=unit_checks):
                 # update unit.mtime
                 # TODO: add new action type `quality checks were updated`?
-                unit.save()
+                Unit.simple_objects.filter(id=unit.id).update(mtime=timezone.now())
 
             if unit_count % 10000 == 0:
                 logger.info("%d units processed" % unit_count)
