@@ -162,8 +162,9 @@ class Command(PootleCommand):
             all_units_checks[check['unit_id']][check['name']] = check
 
         unit_count = 0
-        for unit in Unit.simple_objects.select_related('store') \
-                        .filter(**store_fk_filter).iterator():
+        units = Unit.simple_objects.select_related('store')
+        units.query.clear_ordering(True)
+        for unit in units.filter(**store_fk_filter).iterator():
             unit_count += 1
             unit_checks = {}
             if unit.id in all_units_checks:
