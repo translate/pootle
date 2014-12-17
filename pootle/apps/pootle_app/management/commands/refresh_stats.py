@@ -23,8 +23,6 @@ import logging
 import os
 from optparse import make_option
 
-from itertools import groupby
-
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
@@ -158,10 +156,10 @@ class Command(PootleCommand):
         checks = checks.values('id', 'name', 'unit_id',
                                'category', 'false_positive')
         all_units_checks = {}
-        for unit_id, checks in groupby(checks, lambda x: x['unit_id']):
-            all_units_checks[unit_id] = {}
-            for check in checks:
-                all_units_checks[unit_id][check['name']] = check
+        for check in checks:
+            if check['unit_id'] not in all_units_checks:
+                all_units_checks[check['unit_id']] = {}
+            all_units_checks[check['unit_id']][check['name']] = check
 
         unit_count = 0
         for unit in Unit.simple_objects.select_related('store') \
