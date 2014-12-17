@@ -23,13 +23,17 @@ var User = Backbone.Model.extend({
     'bio': ''
   },
 
+  initialize: function (args, opts) {
+    if (opts && opts.urlRoot) {
+      this.urlRoot = opts.urlRoot;
+    }
+  },
+
   /*
    * URL defaults to the admin backend. Customize when instantiating
-   * `User` objects as needed.
+   * `User` objects as needed by passing `urlRoot` as opts.
    */
-  urlRoot: function () {
-    return l('/xhr/admin/users/');
-  },
+  urlRoot: l('/xhr/admin/users/'),
 
   getProfileUrl: function () {
     return l(['', 'user', this.get('username'), ''].join('/'));
