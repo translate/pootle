@@ -416,13 +416,21 @@ class CachedTreeItem(TreeItem):
 
         return False
 
-    def register_dirty(self):
-        """Register current TreeItem as dirty
+    def register_all_dirty(self):
+        """Register current TreeItem and all parent paths as dirty
         (should be called before RQ job adding)
         """
         r_con = get_connection()
         for p in self.all_pootle_paths():
             r_con.zincrby(POOTLE_DIRTY_TREEITEMS, p)
+
+    def unregister_all_dirty(self):
+        """Unregister current TreeItem and all parent paths as dirty
+        (should be called from RQ job procedure after cache is updated)
+        """
+        r_con = get_connection()
+        for p in self.all_pootle_paths():
+            r_con.zincrby(POOTLE_DIRTY_TREEITEMS, p, -1)
 
     def unregister_dirty(self):
         """Unregister current TreeItem as dirty
@@ -442,7 +450,7 @@ class CachedTreeItem(TreeItem):
         _dirty = self._dirty_cache.copy()
         if _dirty:
             self._dirty_cache = set()
-            self.register_dirty()
+            self.register_all_dirty()
             update_cache.delay(self, _dirty)
 
     def update_all_cache(self):
@@ -461,19 +469,21 @@ class CachedTreeItem(TreeItem):
             self.initialize_children()
             for key in keys:
                 self.update_cached(key)
+            for p in self.get_parents():
+                p._update_cache(keys)
+
+            self.unregister_dirty()
         else:
             logger.warning('Cache for %s object cannot be updated.' % self)
+            self.unregister_all_dirty()
 
-        for p in self.get_parents():
-            p._update_cache(keys)
 
-        self.unregister_dirty()
 
     def update_parent_cache(self):
         """Update dirty cached stats for a all parents of the current TreeItem"""
         all_cache_methods = CachedMethods.get_all()
         for p in self.get_parents():
-            p.register_dirty()
+            p.register_all_dirty()
             update_cache.delay(p, all_cache_methods)
 
     def init_cache(self):

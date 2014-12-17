@@ -160,7 +160,9 @@ class Directory(models.Model, CachedTreeItem):
 
     ### TreeItem
     def can_be_updated(self):
-        return not self.obsolete
+        return (not self.obsolete and
+                not self.translation_project.disabled and
+                not self.translation_project.project.disabled)
 
     def get_children(self):
         result = []
