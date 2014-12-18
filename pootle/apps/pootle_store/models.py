@@ -779,14 +779,15 @@ class Unit(models.Model, base.TranslationUnit):
                              check_names=None, existing=None):
         """Run quality checks and store result in the database.
 
-        :param keep_false_positives: when set to `False`, it will activate (unmute)
-            any existing false positive checks.
-        :param check_names: list of quality check names to update, `None` to update all
-            quality checks
-        :param existing: if existing checks were calculated before they can be passed,
-            `None` to calculate existing checks during updating
-        :return: `True` if quality checks were updated or `False` if they left unchanged.
-
+        :param keep_false_positives: when set to `False`, it will activate
+            (unmute) any existing false positive checks.
+        :param check_names: list of quality check names to update, use
+            `None` to update all quality checks.
+        :param existing: if existing checks were calculated before, they
+            can be passed `None` to calculate existing checks during
+            updating.
+        :return: `True` if quality checks were updated or `False` if they
+            left unchanged.
         """
         unmute_list = []
         result = False
