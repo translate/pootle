@@ -119,13 +119,11 @@ project, run:
 refresh_stats
 ^^^^^^^^^^^^^
 
-This command will add RQ job to go through all existing projects making sure
-calculated data is up to date.
+This command will add a background job to go through all existing projects
+making sure calculated data is up to date.
 
-``refresh_stats`` job will flush existing caches and update the statistics cache.
-
-When the ``--calculate-checks`` option is set, quality checks will be
-recalculated for all existing units in the database.
+The ``refresh_stats`` job will flush existing caches and update the
+statistics cache.
 
 This command will go through all existing projects making sure statistics are
 up to date.
@@ -134,20 +132,22 @@ It's necessary to run this command after installing or upgrading Pootle. Also
 consider running this command when things might go out-of-sync: if you make
 changes directly in the database, if the cache backend has been restarted, etc.
 
-The task is executed as a background job. The time it takes to complete
-the whole process will vary depending on the amount of units you have
-in the database. If a user hits a page that needs to display stats but they
-haven't been calculated yet, a message will be displayed indicating that
-the stats are on its way.
+The time it takes to complete the whole process will vary depending on the
+amount of units you have in the database. If a user hits a page that needs
+to display stats but they haven't been calculated yet, a message will be
+displayed indicating that the stats are on its way.
 
-To only recalculate date_format quality checks, run:
+When the ``--calculate-checks`` option is set, quality checks will be
+recalculated for all existing units in the database.
+
+To only recalculate ``date_format`` quality checks, run:
 
 .. code-block:: bash
 
     $ pootle refresh_stats --calculate-checks --check=date_format
 
-When the ``--calculate-wordcount`` option is set, source_wordcount will be
-recalculated for all existing units in the database.
+When the ``--calculate-wordcount`` option is set, the source wordcount
+will be recalculated for all existing units in the database.
 
 
 .. _commands#calculate_checks:
@@ -157,22 +157,21 @@ calculate_checks
 
 .. versionadded:: 2.7
 
-This command will add RQ job to go through all units recalculating
-quality checks.
+This command will add a background job to go through all units and to
+recalculate quality checks.
 
-``calculate_checks`` job will flush existing caches and update the quality
-checks cache.
+The ``calculate_checks`` job will flush existing caches and update the
+quality checks cache.
 
-It's necessary to run this command after upgrading Pootle if new quality checks are
-added.
+It's necessary to run this command after upgrading Pootle if new quality
+checks are added.
 
-The task is executed as a background job. The time it takes to complete
-the whole process will vary depending on the amount of units you have
-in the database. If a user hits a page that needs to display stats but they
-haven't been calculated yet, a message will be displayed indicating that
-the stats are on its way.
+The time it takes to complete the whole process will vary depending on the
+amount of units you have in the database. If a user hits a page that needs
+to display stats but they haven't been calculated yet, a message will be
+displayed indicating that the stats are on its way.
 
-To only recalculate date_format quality checks, run:
+To only recalculate the ``date_format`` quality checks, run:
 
 .. code-block:: bash
 
