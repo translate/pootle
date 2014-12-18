@@ -129,8 +129,10 @@ def get_export_view_context(request):
     units = units.select_related('store')
     if unit_total_count > EXPORT_VIEW_QUERY_LIMIT:
         units = units[:EXPORT_VIEW_QUERY_LIMIT]
-        res['unit_total_count'] = unit_total_count
-        res['displayed_unit_count'] = EXPORT_VIEW_QUERY_LIMIT
+        res.update({
+            'unit_total_count': unit_total_count,
+            'displayed_unit_count': EXPORT_VIEW_QUERY_LIMIT,
+        })
 
     unit_groups = [(path, list(units)) for path, units in
                    groupby(units, lambda x: x.store.pootle_path)]
