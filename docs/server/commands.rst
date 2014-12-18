@@ -155,6 +155,8 @@ recalculated for all existing units in the database.
 calculate_checks
 ^^^^^^^^^^^^^^^^
 
+.. versionadded:: 2.7
+
 This command will add RQ job to go through all units recalculating
 quality checks.
 
