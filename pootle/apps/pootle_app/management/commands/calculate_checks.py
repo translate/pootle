@@ -86,6 +86,7 @@ class Command(RefreshStatsCommand):
         logger.info('Setting empty values for other cache entries...')
         self._set_empty_values()
 
+
 @job('default', timeout=18000)
 def calculate_checks(**options):
     # The script prefix needs to be set here because the generated
@@ -96,4 +97,3 @@ def calculate_checks(**options):
                         else force_unicode(settings.FORCE_SCRIPT_NAME))
     set_script_prefix(script_name)
     super(RefreshStatsCommand, Command()).handle_noargs(**options)
-
