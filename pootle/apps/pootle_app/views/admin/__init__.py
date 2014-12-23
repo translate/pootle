@@ -19,4 +19,5 @@
 # with Pootle; if not, see <http://www.gnu.org/licenses/>.
 
 from .languages import *
+from .projects import *
 from .users import *

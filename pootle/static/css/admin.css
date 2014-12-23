@@ -418,6 +418,11 @@ html[dir="rtl"] .admin-content .item-delete input
     background-color: #E2F4F8;
 }
 
+.search-results tr.is-disabled
+{
+    font-style: italic;
+}
+
 .search-results tr.selected
 {
     background-color: #222;

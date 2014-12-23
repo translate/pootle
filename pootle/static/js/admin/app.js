@@ -20,6 +20,7 @@ window.PTL = window.PTL || {};
 var itemTypes = {
   user: require('./components/user'),
   language: require('./components/language'),
+  project: require('./components/project'),
 };
 
 
