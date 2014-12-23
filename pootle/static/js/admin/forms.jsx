@@ -1,3 +1,5 @@
+'use strict';
+
 var React = require('react/addons');
 
 var FormElement = require('../components/forms').FormElement;
