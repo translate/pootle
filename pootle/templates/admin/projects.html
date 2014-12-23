@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends "admin/base_app.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
@@ -9,8 +9,12 @@
 {{ block.super }}<li>{% trans "Projects" %}</li>
 {% endblock %}
 
-{% block section_description %}{% trans "Here you can add, edit, and delete all the available projects in this Pootle server." %}{% endblock %}
-
-{% block section_body %}
-{% include "admin/_generic_formset.html" %}
+{% block app_init %}
+<script type="text/javascript">
+$(function () {
+  PTL.admin.init({itemType: 'project',
+                  appRoot: '{% url "pootle-admin-projects" %}',
+                  formChoices: {{ form_choices|safe }}});
+});
+</script>
 {% endblock %}

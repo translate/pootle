@@ -22,7 +22,8 @@ from django.conf.urls import include, patterns, url
 
 import staticpages.urls
 
-from . import LanguageAdminView, LanguageAPIView, UserAdminView, UserAPIView
+from . import (LanguageAdminView, LanguageAPIView, ProjectAdminView,
+               ProjectAPIView, UserAdminView, UserAPIView)
 
 
 urlpatterns = patterns('pootle_app.views.admin',
@@ -48,8 +49,12 @@ urlpatterns = patterns('pootle_app.views.admin',
         name='pootle-admin-language-edit'),
 
     url(r'^/projects/$',
-        'adminprojects.view',
+        ProjectAdminView.as_view(),
         name='pootle-admin-projects'),
+    url(r'^/projects/(?P<id>[0-9]+)/?$',
+        ProjectAdminView.as_view(),
+        name='pootle-admin-project-edit'),
+
     url(r'^/permissions/$',
         'adminroot.view',
         name='pootle-admin-permissions'),
@@ -75,4 +80,11 @@ api_patterns = patterns('',
     url(r'^languages/(?P<id>[0-9]+)/?$',
         LanguageAPIView.as_view(),
         name='pootle-xhr-admin-languages'),
+
+    url(r'^projects/?$',
+        ProjectAPIView.as_view(),
+        name='pootle-xhr-admin-projects'),
+    url(r'^projects/(?P<id>[0-9]+)/?$',
+        ProjectAPIView.as_view(),
+        name='pootle-xhr-admin-project'),
 )
