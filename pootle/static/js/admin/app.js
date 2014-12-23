@@ -8,8 +8,10 @@ require('backbone-queryparams');
 require('backbone-queryparams-shim');
 require('imports?Backbone=>require("backbone")!backbone-move');
 
-var AdminApp = require('./components/main');
+var AdminAppClass = require('./components/main');
 var AdminRouter = require('./routers');
+
+var AdminApp = React.createFactory(AdminAppClass);
 
 
 window.PTL = window.PTL || {};
@@ -35,7 +37,7 @@ PTL.admin = {
       appRoot: opts.appRoot,
       adminModule: item,
     });
-    React.renderComponent(main, this.el);
+    React.render(main, this.el);
   }
 
 };

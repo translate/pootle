@@ -70,14 +70,11 @@ var FormValueInput = React.createClass({
   /* Layout */
 
   render: function () {
-    var el;
     if (this.props.type === 'textarea') {
-      el = <textarea onChange={this.handleChange} />;
-    } else {
-      el = <input onChange={this.handleChange} />;
+      return <textarea onChange={this.handleChange} {...this.props} />;
     }
 
-    return this.transferPropsTo(el);
+    return <input onChange={this.handleChange} {...this.props} />;
   }
 
 });
@@ -95,8 +92,8 @@ var FormCheckedInput = React.createClass({
   /* Layout */
 
   render: function () {
-    var el = <input checked={this.props.value} onChange={this.handleChange} />;
-    return this.transferPropsTo(el);
+    return <input checked={this.props.value} onChange={this.handleChange}
+                  {...this.props} />;
   }
 
 });

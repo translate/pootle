@@ -134,8 +134,8 @@ var Dialog = React.createClass({
   /* Layout */
 
   render: function () {
-    return this.transferPropsTo(
-      <Modal>
+    return (
+      <Modal {...this.props}>
       {this.props.title &&
         <div className="lightbox-header">
           <h3>{this.props.title}</h3>

@@ -147,14 +147,13 @@ var SearchBox = React.createClass({
   /* Layout */
 
   render: function () {
-    return this.transferPropsTo(
-      <input
-        type="text"
-        ref="input"
-        value={this.state.searchQuery}
-        onKeyUp={this.handleKeyUp}
-        onChange={this.onChange} />
-    );
+    return <input
+             type="text"
+             ref="input"
+             value={this.state.searchQuery}
+             onKeyUp={this.handleKeyUp}
+             onChange={this.onChange}
+             {...this.props} />;
   }
 
 });

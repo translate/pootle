@@ -124,7 +124,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css/, loader: "style-loader!css-loader" },
-      { test: /\.jsx$/, loader: 'jsx-loader?harmony&insertPragma=React.DOM' },
+      { test: /\.jsx$/, loader: 'jsx-loader?harmony' },
     ]
   },
   resolve: resolve,

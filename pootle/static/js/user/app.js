@@ -3,8 +3,10 @@
 var React = require('react/addons');
 
 var User = require('../models/user').User;
-var UserProfileEdit = require('./components/edit');
+var UserProfileEditClass = require('./components/edit');
 var UserProfileRouter = require('./routers');
+
+var UserProfileEdit = React.createFactory(UserProfileEditClass);
 
 
 window.PTL = window.PTL || {};
@@ -21,7 +23,7 @@ PTL.user = {
       appRoot: opts.appRoot,
       user: user
     });
-    React.renderComponent(userProfileEdit, this.el);
+    React.render(userProfileEdit, this.el);
   }
 
 };
