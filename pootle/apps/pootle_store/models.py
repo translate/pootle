@@ -732,7 +732,7 @@ class Unit(models.Model, base.TranslationUnit):
             if unit.isobsolete():
                 self.makeobsolete()
             else:
-                self.resurrect()
+                self.resurrect(unit.isfuzzy())
 
             changed = True
 
@@ -978,15 +978,20 @@ class Unit(models.Model, base.TranslationUnit):
 
             self.state = OBSOLETE
 
-    def resurrect(self):
+    def resurrect(self, is_fuzzy=False):
         if self.state > OBSOLETE:
             return
 
         if filter(None, self.target_f.strings):
-            self.state = TRANSLATED
             # when Unit toggles its OBSOLETE state the number of translated words
-            # also changes
-            self.store.mark_dirty(CachedMethods.TRANSLATED)
+            # or fuzzy words also changes
+            if is_fuzzy:
+                self.state = FUZZY
+                self.store.mark_dirty(CachedMethods.FUZZY)
+            else:
+                self.state = TRANSLATED
+                self.store.mark_dirty(CachedMethods.TRANSLATED)
+
         else:
             self.state = UNTRANSLATED
 
