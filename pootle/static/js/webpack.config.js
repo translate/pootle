@@ -105,6 +105,7 @@ plugins.push.apply(plugins, [
   new webpack.DefinePlugin({
     'process.env': {NODE_ENV: JSON.stringify(env)}
   }),
+  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new webpack.ProvidePlugin({
     'window.Backbone': 'backbone',
   }),
