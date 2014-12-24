@@ -154,7 +154,7 @@ fmt = u"\{{2}[#\^\/]\S+?\}{2}"
 mustache_placeholder_pairs_regex = re.compile(u"(%s)" % fmt, re.U)
 
 date_format_regex_0 = re.compile(u"^([GyMwWDdFEaHkKhmsSzZ]+[^\w]*)+$", re.U)
-date_format_regex_1 = re.compile(u"^(Day|Days|May|SMS|M|S|W|F|add)$", re.I|re.U)
+date_format_regex_1 = re.compile(u"^(Day|Days|May|SMS|M|S|W|F|add|ads)$", re.I|re.U)
 date_format_regex_2 = re.compile(u"^(h:mm a|h:mm aa|hh:mm a|hh:mm aa)$", re.U)
 date_format_regex_3 = re.compile(u"^(H:mm|HH:mm)$", re.U)
 date_format_regex_4 = re.compile(u"^EEEE, MMMM d yyyy, (h:mm a|h:mm aa|hh:mm a|hh:mm aa)$", re.U)
