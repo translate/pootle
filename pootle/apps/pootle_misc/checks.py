@@ -226,6 +226,10 @@ def get_checker(unit):
         return unit.store.translation_project.checker
 
 
+class SkipCheck(Exception):
+    pass
+
+
 class ENChecker(checks.TranslationChecker):
 
     @critical
@@ -326,24 +330,24 @@ class ENChecker(checks.TranslationChecker):
         def get_fingerprint(str, is_source=False, translation=''):
             if is_source:
                 if not date_format_regex_0.match(str):
-                    return None
+                    raise SkipCheck()
 
                 # filter out specific English strings which are not dates
                 if date_format_regex_1.match(str):
-                    return None
+                    raise SkipCheck()
 
                 # filter out specific translation pairs
                 if date_format_regex_2.match(str):
                     if date_format_regex_3.match(translation):
-                        return None
+                        raise SkipCheck()
 
                 if date_format_regex_4.match(str):
                     if date_format_regex_5.match(translation):
-                        return None
+                        raise SkipCheck()
 
                 if date_format_regex_6.match(str):
                     if date_format_regex_7.match(translation):
-                        return None
+                        raise SkipCheck()
 
             fingerprint = u"\001".join(sorted(date_format_regex_8.split(str)))
 
@@ -436,7 +440,7 @@ class ENChecker(checks.TranslationChecker):
             # differently
             if is_source:
                 if img_banner_regex.match(str):
-                    return None
+                    raise SkipCheck()
 
             chunks = changed_attributes_regex.split(str)
             translate = False
@@ -584,12 +588,12 @@ class ENChecker(checks.TranslationChecker):
                 # hardcoded rule: skip web banner images which are translated
                 # differently
                 if img_banner_regex.match(str):
-                    return None
+                    raise SkipCheck()
 
                 # hardcoded rules for strings that look like tags but are
                 # not them
                 if no_tags_regex.match(str):
-                    return None
+                    raise SkipCheck()
 
             chunks = tags_differ_regex_0.split(str)
             translate = False
@@ -633,7 +637,7 @@ class ENChecker(checks.TranslationChecker):
             # To:   <h1>Allow Konto Zugriff</h1>
             if is_source:
                 if img_banner_regex.match(str):
-                    return None
+                    raise SkipCheck()
 
             # temporarily escape HTML entities
             s = accelerators_regex_0.sub(r'\001\1\001', str)
@@ -780,7 +784,7 @@ class ENChecker(checks.TranslationChecker):
         def get_fingerprint(str, is_source=False, translation=''):
             chunks = str.split('"')
             if is_source and '"' in str:
-                return None
+                raise SkipCheck()
 
             translate = False
             double_quote_count = 0
@@ -985,9 +989,9 @@ def check_translation(get_fingerprint_func, string, translation):
         # no real translation provided, skipping
         return True
 
-    a_fingerprint = get_fingerprint_func(string, True, translation)
-
-    if a_fingerprint is None:
+    try:
+        a_fingerprint = get_fingerprint_func(string, True, translation)
+    except SkipCheck:
         # skip translation as it doesn't match required criteria
         return True
 
