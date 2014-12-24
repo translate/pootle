@@ -25,14 +25,8 @@ from pootle_misc.checks import ENChecker
 
 checker = ENChecker()
 
-def test_dollar_sign_check():
-    check = checker.dollar_sign_placeholders
 
-    tests = [
-        (u'$1 aa $2', u'$1 dd $2', True),
-        (u'$1 aa $2', u'$1dd$2', True),
-    ]
-
+def do_test(check, tests):
     for str1, str2, state in tests:
         info = "check('%s', '%s') == %s" % (str1, str2, state)
         try:
@@ -41,6 +35,17 @@ def test_dollar_sign_check():
         except FilterFailure as e:
 
             assert (not state), info
+
+
+def test_dollar_sign_check():
+    check = checker.dollar_sign_placeholders
+
+    tests = [
+        (u'$1 aa $2', u'$1 dd $2', True),
+        (u'$1 aa $2', u'$1dd$2', True),
+    ]
+
+    do_test(check, tests)
 
 
 def test_double_quotes_in_tags():
@@ -66,14 +71,7 @@ def test_double_quotes_in_tags():
          u'FOO <a href="<?php echo(\'BAR\');?>">FOO BAR</a>', False),
     ]
 
-    for str1, str2, state in tests:
-        info = "check('%s', '%s') == %s" % (str1, str2, state)
-        try:
-            assert (state == check(str1, str2)), info
-
-        except FilterFailure as e:
-
-            assert (not state), info
+    do_test(check, tests)
 
 
 def test_unescaped_ampersands():
@@ -97,11 +95,95 @@ def test_unescaped_ampersands():
         (u'A &amp; B & C', u'A &amp; B & C', False),
     ]
 
-    for str1, str2, state in tests:
-        info = "check('%s', '%s') == %s" % (str1, str2, state)
-        try:
-            assert (state == check(str1, str2)), info
+    do_test(check, tests)
 
-        except FilterFailure as e:
 
-            assert (not state), info
+def test_mustache_placeholders():
+    check = checker.mustache_placeholders
+    tests = [
+        (u'{foo}bar', u'{foo}BAR', True),
+        (u'{{foo}}bar', u'{{foo}}BAR', True),
+        (u'{{{foo}}}bar', u'{{{foo}}}BAR', True),
+
+        (u'{{foo}}bar{{foobar}}', u'{{foobar}}BAR{{foo}}', True),
+
+        (u'{foo}bar', u'{Foo}BAR', False),
+        (u'{{foo}}bar', u'{{Foo}}BAR', False),
+        (u'{{{foo}}}bar', u'{{{Foo}}}BAR', False),
+
+        (u'{{foo}}bar', u'{foo}}BAR', False),
+        (u'{{{foo}}}bar', u'{{foo}}}BAR', False),
+        (u'{{foo}}bar', u'{{foo}BAR', False),
+        (u'{{{foo}}}bar', u'{{{foo}}BAR', False),
+
+        (u'{{#a}}a{{/a}}', u'{{#a}}A{{a}}', False),
+        (u'{{a}}a{{/a}}', u'{{a}}A{{a}}', False),
+        (u'{{#a}}a{{/a}}', u'{{#a}}A', False),
+        (u'{{#a}}a{{/a}}', u'{{#a}}A{{/s}}', False),
+
+        (u'{{a}}a{{/a}}', u'{{a}}A', False),
+        (u'{{a}}a{{/a}}', u'{{a}}A{{a}}', False),
+        (u'{{a}}a{{/a}}', u'{{a}}A{{/s}}', False),
+        (u'{{#a}}a{{/a}}', u'{{a}}A{{/a#}}', False),
+    ]
+
+    do_test(check, tests)
+
+
+def test_mustache_placeholder_pairs():
+    check = checker.mustache_placeholder_pairs
+    tests = [
+        (u'{{#a}}a{{/a}}', u'{{#a}}A{{/a}}', True),
+
+        (u'{{#a}}a', u'{{#a}}A', False),
+        (u'{{#a}}a{{/a}}', u'{{#a}}A', False),
+        (u'{{#a}}a{{/a}}', u'{{#a}}A{{#a}}', False),
+        (u'{{#a}}a{{/a}}', u'{{#a}}A{{a}}', False),
+        (u'{{#a}}a{{/a}}', u'{{/a}}A{{#a}}', False),
+        (u'{{#a}}a{{/a}}', u'{{a}}A{{/a}}', False),
+        (u'{{#a}}a{{/a}}', u'{{#a}}A{{/s}}', False),
+
+        (u'{{#a}}a{{/a}}', u'{{a}}A{{/a#}}', False),
+    ]
+
+    do_test(check, tests)
+
+
+def test_mustache_like_placeholder_pairs():
+    check = checker.mustache_like_placeholder_pairs
+    tests = [
+        (u'a', u'A', True),
+        (u'{{a}}a', u'{{a}}A', True),
+        (u'{{a}}a{{/a}}', u'{{a}}A{{/a}}', True),
+        (u'a {{#a}}a{{/a}}', u'A {{#a}}A{{/a}}', True),
+
+        (u'foo {{a}}a{{/a}}', u'FOO {{/a}}A{{a}}', False),
+        (u'foo {{a}}a{{/a}}', u'FOO {{a}}A{{/s}}', False),
+        (u'foo {{a}}a{{/a}}', u'FOO {{a}}A{{/s}}', False),
+    ]
+
+    do_test(check, tests)
+
+
+def test_unbalanced_curly_braces():
+    check = checker.unbalanced_curly_braces
+
+    tests = [
+        (u'', u'', True),
+        (u'{a}', u'{a}', True),
+        (u'{{a}}', u'{{a}', False),
+    ]
+
+    do_test(check, tests)
+
+
+def test_tags_differ():
+    check = checker.tags_differ
+    tests = [
+        (u'a', u'A', True),
+        (u'<a href="">a</a>', u'<a href="">a</a>', True),
+        (u'<a href="">a</a>', u'<a href="">a<a>', False),
+        (u'<a class="a">a</a>', u'<b class="b">a</b>', False),
+    ]
+
+    do_test(check, tests)
