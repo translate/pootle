@@ -87,6 +87,7 @@ check_names = {
     'template_format': _(u"Template format"),
     'mustache_placeholders': _(u"Mustache placeholders"),
     'mustache_placeholder_pairs': _(u"Mustache placeholder pairs"),
+    'mustache_like_placeholder_pairs': _(u"Mustache like placeholder pairs"),
     'c_format': _(u"C format placeholders"),
     'non_printable': _(u"Non printable"),
     'unbalanced_tag_braces': _(u"Unbalanced tag braces"),
@@ -150,8 +151,12 @@ fmt2 = u"\{{2}[^\}]+\}{2}"
 fmt1 = u"\{{1}[^\}]+\}{1}"
 mustache_placeholders_regex = re.compile(u"(%s|%s|%s)" % (fmt3, fmt2, fmt1), re.U)
 
+mustache_placeholder_pairs_open_tag_regex = re.compile(u"\{{2}[#\^][^\}]+\}{2}", re.U)
 fmt = u"\{{2}[#\^\/][^\}]+\}{2}"
 mustache_placeholder_pairs_regex = re.compile(u"(%s)" % fmt, re.U)
+
+fmt = u"\{{2}[\/]?[^\}]+\}{2}"
+mustache_like_placeholder_pairs_regex = re.compile(u"(%s)" % fmt, re.U)
 
 date_format_regex_0 = re.compile(u"^([GyMwWDdFEaHkKhmsSzZ]+[^\w]*)+$", re.U)
 date_format_regex_1 = re.compile(u"^(Day|Days|May|SMS|M|S|W|F|add|ads)$", re.I|re.U)
@@ -292,6 +297,13 @@ class ENChecker(checks.TranslationChecker):
             chunks = mustache_placeholder_pairs_regex.split(str)
             translate = False
             fingerprint = 1
+
+            if is_source:
+                if not mustache_placeholder_pairs_open_tag_regex.search(str1):
+                    raise SkipCheck()
+
+                return fingerprint
+
             stack = []
             for chunk in chunks:
                 translate = not translate
@@ -301,22 +313,26 @@ class ENChecker(checks.TranslationChecker):
                     continue
 
                 # special text
-                if not is_source and fingerprint:
-                    tag = chunk[3:-2]  # extract 'tagname' from '{{#tagname}}'
+                tag = chunk[3:-2]  # extract 'tagname' from '{{#tagname}}'
 
-                    if chunk[2:3] in ['#','^']:
-                        # opening tag
-                        # check that all similar tags were closed
-                        if tag in stack:
-                            fingerprint = None
-                        stack.append(tag)
+                if chunk[2:3] in ['#', '^']:
+                    # opening tag
+                    # check that all similar tags were closed
+                    if tag in stack:
+                        fingerprint = 0
+                        break
+                    stack.append(tag)
 
+                else:
+                    # closing tag '{{/tagname}}'
+                    if len(stack) == 0 or not stack[-1] == tag:
+                        fingerprint = 0
+                        break
                     else:
-                        # closing tag
-                        if len(stack) == 0 or not stack[-1] == tag:
-                            fingerprint = None
-                        else:
-                            stack.pop()
+                        stack.pop()
+
+            if len(stack) > 0:
+                fingerprint = 0
 
             return fingerprint
 
@@ -324,6 +340,52 @@ class ENChecker(checks.TranslationChecker):
             return True
         else:
             raise checks.FilterFailure(u"mustache_placeholder_pairs")
+
+    @critical
+    def mustache_like_placeholder_pairs(self, str1, str2):
+        def get_fingerprint(str, is_source=False, translation=''):
+            chunks = mustache_like_placeholder_pairs_regex.split(str)
+            translate = False
+            fingerprint = 1
+            d = {}
+
+            if is_source:
+                if mustache_placeholder_pairs_open_tag_regex.search(str1):
+                    raise SkipCheck()
+
+                return fingerprint
+
+            for chunk in chunks:
+                translate = not translate
+
+                if translate:
+                    # ordinary text (safe to translate)
+                    continue
+
+                # special text
+                if chunk[2:3] != '/':
+                    # opening tag
+                    tag = chunk[2:-2]
+                    if chunk not in d:
+                        d[tag] = 1
+                    else:
+                        d[tag] += 1
+                else:
+                    # closing tag
+                    # extract 'tagname' from '{{/tagname}}'
+                    tag = chunk[3:-2]
+                    if tag not in d or d[tag] == 0:
+                        fingerprint = None
+                        break
+
+                    d[tag] -= 1
+
+            return fingerprint
+
+        if check_translation(get_fingerprint, str1, str2):
+            return True
+        else:
+            raise checks.FilterFailure(u"mustache_like_placeholder_pairs")
 
     @critical
     def date_format(self, str1, str2):
