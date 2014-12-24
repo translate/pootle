@@ -106,7 +106,7 @@ class EvernoteBackend(object):
 
             if match:
                 data = match.groupdict()
-                if time.time() > data['expired']:
+                if time.time() > int(data['expired']):
                     raise CookieExpired
 
                 return data
