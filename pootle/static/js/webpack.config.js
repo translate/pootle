@@ -12,7 +12,7 @@ var entries = {
   common: ['./common.js'],
   editor: ['./editor/app.js'],
   reports: ['./reports/app.js'],
-  vendor: ['react', 'jquery', 'underscore', 'backbone'],
+  vendor: ['react', 'react/addons', 'jquery', 'underscore', 'backbone'],
 };
 
 
