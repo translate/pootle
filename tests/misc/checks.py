@@ -107,6 +107,9 @@ def test_mustache_placeholders():
 
         (u'{{foo}}bar{{foobar}}', u'{{foobar}}BAR{{foo}}', True),
 
+        (u'{1, foo}bar{{foobar}}', u'{1, foo}BAR{{foobar}}', True),
+        (u'bar {1, foo}bar{{foobar}}', u'BAR {1, FOO}BAR{{foobar}}', False),
+
         (u'{foo}bar', u'{Foo}BAR', False),
         (u'{{foo}}bar', u'{{Foo}}BAR', False),
         (u'{{{foo}}}bar', u'{{{Foo}}}BAR', False),
@@ -125,6 +128,7 @@ def test_mustache_placeholders():
         (u'{{a}}a{{/a}}', u'{{a}}A{{a}}', False),
         (u'{{a}}a{{/a}}', u'{{a}}A{{/s}}', False),
         (u'{{#a}}a{{/a}}', u'{{a}}A{{/a#}}', False),
+        (u'{{#a}}a{{/a}}', u'{{# a}}A{{/ a}}', False),
     ]
 
     do_test(check, tests)
@@ -144,6 +148,7 @@ def test_mustache_placeholder_pairs():
         (u'{{#a}}a{{/a}}', u'{{#a}}A{{/s}}', False),
 
         (u'{{#a}}a{{/a}}', u'{{a}}A{{/a#}}', False),
+        (u'{{#a}}a{{/a}}', u'{{#a}}A{{/ a}}', False),
     ]
 
     do_test(check, tests)
@@ -160,6 +165,7 @@ def test_mustache_like_placeholder_pairs():
         (u'foo {{a}}a{{/a}}', u'FOO {{/a}}A{{a}}', False),
         (u'foo {{a}}a{{/a}}', u'FOO {{a}}A{{/s}}', False),
         (u'foo {{a}}a{{/a}}', u'FOO {{a}}A{{/s}}', False),
+        (u'foo {{a}}a{{/a}}', u'FOO {{a}}A{{/ a}}', False),
     ]
 
     do_test(check, tests)

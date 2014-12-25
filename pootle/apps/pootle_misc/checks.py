@@ -146,10 +146,12 @@ percent_sign_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 fmt = u"[A-Z_][A-Z0-9]*_[A-Z0-9_]*(?![a-z])"
 uppercase_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
-fmt3 = u"\{{3}[^\}]+\}{3}"
-fmt2 = u"\{{2}[^\}]+\}{2}"
-fmt1 = u"\{{1}[^\}]+\}{1}"
-mustache_placeholders_regex = re.compile(u"(%s|%s|%s)" % (fmt3, fmt2, fmt1), re.U)
+fmt4 = u"\{{1}\d+,[^\}]+\}{1}"
+fmt3 = u"\{{3}\S+?\}{3}"
+fmt2 = u"\{{2}\S+?\}{2}"
+fmt1 = u"\{{1}\S+?\}{1}"
+
+mustache_placeholders_regex = re.compile(u"(%s|%s|%s|%s)" % (fmt4, fmt3, fmt2, fmt1), re.U)
 
 mustache_placeholder_pairs_open_tag_regex = re.compile(u"\{{2}[#\^][^\}]+\}{2}", re.U)
 fmt = u"\{{2}[#\^\/][^\}]+\}{2}"
