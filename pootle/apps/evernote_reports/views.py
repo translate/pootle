@@ -592,9 +592,14 @@ def get_grouped_paid_words(scores):
     for score in scores:
         if tp != score.submission.translation_project:
             tp = score.submission.translation_project
+            tp_translate_url = reverse(
+                'pootle-tp-translate',
+                args=[tp.language.code, tp.project.code, '', '']
+            )
             row = {
                 'translation_project': u'%s / %s' %
                     (tp.project.fullname, tp.language.fullname),
+                'tp_translate_url': tp_translate_url,
                 'project_code': tp.project.code,
                 'score_delta': 0,
                 'translated': 0,
