@@ -50,8 +50,8 @@ def admin_permissions(request, current_directory, template, context):
     project = context.get('project', None)
     language = context.get('language', None)
 
-    negative_permissions_excl = PERMISSIONS['negative']
-    positive_permissions_excl = PERMISSIONS['positive']
+    negative_permissions_excl = list(PERMISSIONS['negative'])
+    positive_permissions_excl = list(PERMISSIONS['positive'])
 
     # Don't provide means to alter access permissions under /<lang_code>/*
     # In other words: only allow setting access permissions for the root
