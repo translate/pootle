@@ -187,9 +187,14 @@ def add_items(fs_items, db_items, create_or_resurrect_db_item):
 def create_or_resurrect_store(file, parent, name, translation_project):
     """Create or resurrect a store db item with given name and parent."""
     try:
+        # obsolete attribute can't be saved from store.save() method
+        # because of default ObjectManager doesn't contain obsolete stores
         Store.objects.with_obsolete().filter(parent=parent, name=name) \
                                      .update(obsolete=False)
-        store = parent.child_stores.get(name=name)
+        store = Store.objects.get(parent=parent, name=name)
+        # initialize cache with empty values to avoid errors
+        # in RQ jobs stats refreshing
+        store.init_cache()
         store.file_mtime = datetime_min
         if store.last_sync_revision is None:
             store.last_sync_revision = store.get_max_unit_revision()
@@ -207,9 +212,14 @@ def create_or_resurrect_store(file, parent, name, translation_project):
 def create_or_resurrect_dir(name, parent):
     """Create or resurrect a directory db item with given name and parent."""
     try:
+        # obsolete attribute can't be saved from dir.save() method
+        # because of default ObjectManager doesn't contain obsolete directories
         Directory.objects.with_obsolete().filter(parent=parent, name=name) \
                                          .update(obsolete=False)
-        dir = parent.child_dirs.get(name=name)
+        dir = Directory.objects.get(parent=parent, name=name)
+        # initialize cache with empty values to avoid errors
+        # in RQ jobs stats refreshing
+        dir.init_cache()
     except Directory.DoesNotExist:
         dir = Directory(name=name, parent=parent)
 
