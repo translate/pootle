@@ -467,7 +467,7 @@ def get_activity_data(request, user, month):
     if user != '':
         scores = get_scores(user, start, end)
         scores = list(scores.order_by(SCORE_TRANSLATION_PROJECT))
-        json['grouped'] = get_grouped_paid_words(scores)
+        json['grouped'] = get_grouped_paid_words(scores, user)
         scores.sort(key=lambda x: x.creation_time)
         json['daily'] = get_daily_activity(scores, start, end)
         json['summary'] = get_summary(scores, start, end)
@@ -586,20 +586,20 @@ def get_paid_tasks(user, start, end):
     return result
 
 
-def get_grouped_paid_words(scores):
+def get_grouped_paid_words(scores, user):
     result = []
     tp = None
     for score in scores:
         if tp != score.submission.translation_project:
             tp = score.submission.translation_project
-            tp_translate_url = reverse(
-                'pootle-tp-translate',
-                args=[tp.language.code, tp.project.code, '', '']
-            )
+            editor_filter = {
+                'state': 'user-submissions',
+                'user': user.username,
+            }
             row = {
                 'translation_project': u'%s / %s' %
                     (tp.project.fullname, tp.language.fullname),
-                'tp_translate_url': tp_translate_url,
+                'tp_translate_url': tp.get_translate_url(**editor_filter),
                 'project_code': tp.project.code,
                 'score_delta': 0,
                 'translated': 0,
