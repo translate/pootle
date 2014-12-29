@@ -78,37 +78,6 @@ def admin_permissions(request, current_directory, template, context):
         username__in=('nobody', 'default')
     ))]
 
-    if project is not None:
-        if language is not None:
-            group_label = _('Translation Project Contributors')
-            tp_path = '/%s/%s/' % (language.code, project.code)
-            contributions = Submission.objects.filter(
-                    translation_project__pootle_path=tp_path,
-                )
-        else:
-            group_label = _('Project Contributors')
-            contributions = Submission.objects.filter(
-                    translation_project__project__code=project.code,
-                )
-
-        querysets.append((
-            group_label,
-            base_queryset.filter(submission__in=contributions)
-                         .distinct()
-                         .order_by('username'),
-        ))
-
-    if language is not None:
-        contributions = Submission.objects.filter(
-                translation_project__language__code=language.code,
-            )
-        querysets.append((
-            _('Language Contributors'),
-            base_queryset.filter(submission__in=contributions)
-                         .distinct()
-                         .order_by('username'),
-        ))
-
     querysets.append((
         _('All Users'),
         base_queryset.exclude(username__in=('nobody', 'default'))
