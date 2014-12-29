@@ -40,7 +40,8 @@ from pootle.core.decorators import admin_required
 from pootle.core.log import PAID_TASK_ADDED, PAID_TASK_DELETED, log
 from pootle.core.views import AjaxResponseMixin
 from pootle.models.user import CURRENCIES
-from pootle_misc.util import ajax_required, jsonify
+from pootle_misc.util import (ajax_required, jsonify, get_date_interval,
+                              get_max_month_datetime)
 from pootle_profile.views import (NoDefaultUserMixin, TestUserFieldMixin,
                                   DetailView)
 from pootle_statistics.models import ScoreLog
@@ -290,38 +291,6 @@ def evernote_reports_detailed(request):
                               context_instance=RequestContext(request))
 
 
-def get_date_interval(month):
-    now = start = end = timezone.now()
-    if month is None:
-        month = start.strftime('%Y-%m')
-
-    start = datetime.strptime(month, '%Y-%m')
-    if settings.USE_TZ:
-        tz = timezone.get_default_timezone()
-        start = timezone.make_aware(start, tz)
-
-    if start < now:
-        if start.month != now.month or start.year != now.year:
-            end = get_max_month_datetime(start)
-    else:
-        end = start
-
-    start = start.replace(hour=0, minute=0, second=0)
-    end = end.replace(hour=23, minute=59, second=59, microsecond=999999)
-
-    return [start, end]
-
-
-def get_max_month_datetime(dt):
-    next_month = dt.replace(day=1) + timedelta(days=31)
-    if settings.USE_TZ:
-        tz = timezone.get_default_timezone()
-        next_month = timezone.localtime(next_month, tz)
-
-    return next_month.replace(day=1, hour=0, minute=0, second=0) - \
-        timedelta(microseconds=1)
-
-
 def get_min_month_datetime(dt):
     return dt.replace(day=1, hour=0, minute=0, second=0)
 
@@ -467,7 +436,7 @@ def get_activity_data(request, user, month):
     if user != '':
         scores = get_scores(user, start, end)
         scores = list(scores.order_by(SCORE_TRANSLATION_PROJECT))
-        json['grouped'] = get_grouped_paid_words(scores, user)
+        json['grouped'] = get_grouped_paid_words(scores, user, month)
         scores.sort(key=lambda x: x.creation_time)
         json['daily'] = get_daily_activity(scores, start, end)
         json['summary'] = get_summary(scores, start, end)
@@ -586,25 +555,30 @@ def get_paid_tasks(user, start, end):
     return result
 
 
-def get_grouped_paid_words(scores, user):
+def get_grouped_paid_words(scores, user=None, month=None):
     result = []
     tp = None
     for score in scores:
         if tp != score.submission.translation_project:
             tp = score.submission.translation_project
-            editor_filter = {
-                'state': 'user-submissions',
-                'user': user.username,
-            }
             row = {
                 'translation_project': u'%s / %s' %
                     (tp.project.fullname, tp.language.fullname),
-                'tp_translate_url': tp.get_translate_url(**editor_filter),
                 'project_code': tp.project.code,
                 'score_delta': 0,
                 'translated': 0,
                 'reviewed': 0,
             }
+            if user is not None:
+                editor_filter = {
+                    'state': 'user-submissions',
+                    'user': user.username,
+                }
+                if month is not None:
+                    editor_filter['month'] = month
+
+                row['tp_translate_url'] = tp.get_translate_url(**editor_filter)
+
             result.append(row)
 
         translated_words, reviewed_words = score.get_paid_words()

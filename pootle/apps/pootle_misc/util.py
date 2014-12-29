@@ -32,7 +32,7 @@ from django.utils.functional import Promise
 from django.utils.importlib import import_module
 
 # Timezone aware minimum for datetime (if appropriate) (bug 2567)
-from datetime import datetime
+from datetime import datetime, timedelta
 datetime_min = datetime.min
 if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
@@ -116,3 +116,35 @@ def to_int(value):
         return int(value)
     except ValueError:
         return None
+
+
+def get_max_month_datetime(dt):
+    next_month = dt.replace(day=1) + timedelta(days=31)
+    if settings.USE_TZ:
+        tz = timezone.get_default_timezone()
+        next_month = timezone.localtime(next_month, tz)
+
+    return next_month.replace(day=1, hour=0, minute=0, second=0) - \
+        timedelta(microseconds=1)
+
+
+def get_date_interval(month):
+    now = start = end = timezone.now()
+    if month is None:
+        month = start.strftime('%Y-%m')
+
+    start = datetime.strptime(month, '%Y-%m')
+    if settings.USE_TZ:
+        tz = timezone.get_default_timezone()
+        start = timezone.make_aware(start, tz)
+
+    if start < now:
+        if start.month != now.month or start.year != now.year:
+            end = get_max_month_datetime(start)
+    else:
+        end = start
+
+    start = start.replace(hour=0, minute=0, second=0)
+    end = end.replace(hour=23, minute=59, second=59, microsecond=999999)
+
+    return [start, end]

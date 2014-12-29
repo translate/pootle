@@ -42,11 +42,10 @@ from pootle.core.dateparse import parse_datetime
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
-from pootle.core.mixins.treeitem import CachedMethods
 from pootle_app.models.permissions import check_user_permission
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
-from pootle_misc.util import ajax_required, jsonify, to_int
+from pootle_misc.util import ajax_required, jsonify, to_int, get_date_interval
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
@@ -202,6 +201,7 @@ def get_step_query(request, units_queryset):
         unit_filter = request.GET['filter']
         username = request.GET.get('user', None)
         modified_since = request.GET.get('modified-since', None)
+        month = request.GET.get('month', None)
         sort_by_param = request.GET.get('sort', None)
         sort_on = 'units'
 
@@ -275,6 +275,13 @@ def get_step_query(request, units_queryset):
                     match_queryset = match_queryset.filter(
                         submitted_on__gt=datetime_obj,
                     ).distinct()
+
+            if month is not None:
+                [start, end] = get_date_interval(month)
+                match_queryset = match_queryset.filter(
+                    submitted_on__gte=start,
+                    submitted_on__lte=end,
+                ).distinct()
 
             sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param, None)
             if sort_by is not None:

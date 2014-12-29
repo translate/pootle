@@ -117,7 +117,7 @@ def get_path_parts(path):
     return parts
 
 
-def get_editor_filter(state=None, check=None, user=None):
+def get_editor_filter(state=None, check=None, user=None, month=None):
     """Return a filter string to be appended to a translation URL."""
     filter_string = ''
 
@@ -125,6 +125,9 @@ def get_editor_filter(state=None, check=None, user=None):
         filter_string = '#filter=%s' % state
         if user is not None:
             filter_string += '&user=%s' % user
+        if month is not None:
+            filter_string += '&month=%s' % month
+
     elif check is not None:
         filter_string = '#filter=checks&checks=%s' % check
 

@@ -328,6 +328,12 @@ PTL.editor = {
           PTL.editor.modifiedSince = null;
         }
 
+        if ('month' in params) {
+          PTL.editor.month = params['month'];
+        } else {
+          PTL.editor.month = null;
+        }
+
         // Only accept the user parameter for 'user-*' filters
         if ('user' in params && PTL.editor.filter.indexOf('user-') === 0) {
           var user;
