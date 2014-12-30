@@ -3,6 +3,8 @@
 var React = require('react');
 var _ = require('underscore');
 
+var Select = require('react-select');
+
 
 var FormElement = React.createClass({
 
@@ -32,9 +34,9 @@ var FormElement = React.createClass({
       textarea: FormValueInput,
 
       checkbox: FormCheckedInput,
-      radio: FormCheckedInput
+      radio: FormCheckedInput,
 
-      // TODO: FormSelectInput
+      select: FormSelectInput,
     }[this.props.type];
 
     var newProps = {
@@ -42,6 +44,17 @@ var FormElement = React.createClass({
       name: attribute,
       value: this.props.formData[attribute],
     };
+    if (this.props.type === 'select') {
+      // FIXME: react-select's issue #25 prevents using non-string values
+      newProps.value = newProps.value.toString();
+
+      newProps.placeholder = gettext('Select...');
+      newProps.noResultsText = gettext('No results found');
+      newProps.clearValueText = gettext('Clear value');
+      newProps.clearAllText = gettext('Clear all');
+      newProps.searchPromptText = gettext('Type to search');
+    }
+
     var inputProps = _.extend({}, this.props, newProps);
     var formInput = React.createFactory(inputClass)(inputProps);
 
@@ -97,6 +110,39 @@ var FormCheckedInput = React.createClass({
   render: function () {
     return <input checked={this.props.value} onChange={this.handleChange}
                   {...this.props} />;
+  }
+
+});
+
+
+var FormSelectInput = React.createClass({
+
+  propTypes: {
+    name: React.PropTypes.string.isRequired,
+    value: React.PropTypes.string.isRequired,
+    options: React.PropTypes.array.isRequired,
+    handleChange: React.PropTypes.func.isRequired,
+  },
+
+
+  /* Handlers */
+
+  handleChange: function (value, values) {
+    this.props.handleChange(this.props.name, value);
+  },
+
+
+  /* Layout */
+
+  render: function () {
+    return (
+      <Select
+        value={this.props.value.toString()}
+        options={this.props.options}
+        onChange={this.handleChange}
+        {...this.props}
+      />
+    );
   }
 
 });

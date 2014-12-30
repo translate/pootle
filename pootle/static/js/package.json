@@ -16,6 +16,7 @@
     "autolinker": "^0.11.2",
     "imports-loader": "^0.6.3",
     "md5": "^1.0.0",
-    "react": "^0.12.2"
+    "react": "^0.12.2",
+    "react-select": "^0.2.14"
   }
 }
