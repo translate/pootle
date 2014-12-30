@@ -124,7 +124,7 @@ var UserForm = React.createClass({
                 errors={errors} />
           </div>}
         </div>
-        <p className="buttons">
+        <div className="buttons">
           <input type="submit" className="btn btn-primary"
                  disabled={!this.state.isDirty}
                  value={gettext('Save')} />
@@ -134,7 +134,7 @@ var UserForm = React.createClass({
             <li><a href={model.getStatsUrl()}>{gettext("Statistics")}</a></li>
             <li><a href={model.getReportsUrl()}>{gettext("Reports")}</a></li>
           </ul>}
-        </p>
+        </div>
       {(this.props.handleDelete && !model.isMeta()) &&
         <div>
           <p className="divider"></p>

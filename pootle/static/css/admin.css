@@ -250,8 +250,7 @@ html[dir="rtl"] .admin-content h2 + .btn
 
 #item-form .helptext,
 #item-form .errorlist,
-#item-form .buttons,
-#item-form .user-links
+#item-form .buttons
 {
     margin-left: 30%;
 }
