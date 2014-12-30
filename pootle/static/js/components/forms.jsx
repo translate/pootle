@@ -43,7 +43,7 @@ var FormElement = React.createClass({
     var formInput = React.addons.cloneWithProps(el, newProps);
 
     return (
-      <p>
+      <div className="field-wrapper">
         <label htmlFor={fieldId}>{this.props.label}</label>
         {formInput}
       {hint &&
@@ -52,7 +52,7 @@ var FormElement = React.createClass({
         <ul className="errorlist">{errors.map(function (msg, i) {
           return <li key={i}>{msg}</li>;
         })}</ul>}
-      </p>
+      </div>
     );
   }
 });

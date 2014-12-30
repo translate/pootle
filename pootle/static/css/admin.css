@@ -220,6 +220,11 @@ html[dir="rtl"] .admin-content h2 + .btn
     vertical-align: top;
 }
 
+#item-form .field-wrapper
+{
+    margin-bottom: 1em;
+}
+
 #item-form .fields input,
 #item-form .fields textarea
 {
