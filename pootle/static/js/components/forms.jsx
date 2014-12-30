@@ -38,10 +38,10 @@ var FormElement = React.createClass({
     }[this.props.type];
 
     var newProps = {
-      ...this.props,
       id: fieldId,
       name: attribute,
       value: this.props.formData[attribute],
+      ...this.props,
     };
     var formInput = React.addons.cloneWithProps(el, newProps);
 
