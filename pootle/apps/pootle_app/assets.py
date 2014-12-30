@@ -80,6 +80,7 @@ css_common = Bundle(
     'css/navbar.css',
     'css/odometer.css',
     'css/popup.css',
+    'css/react-select.css',
     'css/tipsy.css',
     'css/sprite.css',
     'css/select2.css',
