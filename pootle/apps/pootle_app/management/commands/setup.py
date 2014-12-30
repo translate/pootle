@@ -41,9 +41,16 @@ class Command(NoArgsCommand):
         current_buildversion = get_pootle_build()
 
         if not current_buildversion:
-            logging.info('Pootle 2.6.0 is not meant to be used in real world '
-                         'deployments, so please install Pootle 2.7.0 or '
-                         'later instead.')
+            raise CommandError('Pootle 2.6.0 is not meant to be used in real '
+                               'world deployments.'
+                               '\n\n'
+                               'If you want to install a fresh Pootle then '
+                               'install Pootle 2.7.0 or later.'
+                               '\n\n'
+                               'Otherwise you are upgrading Pootle and you '
+                               'already have have upgraded up to the 2.6.0 '
+                               'stage, so you must now proceed now with the '
+                               'final upgrade to Pootle 2.7.0 or later.')
         elif current_buildversion < 21010:
             # Trying to upgrade a deployment older than Pootle 2.1.1 for which
             # we can't provide a direct upgrade.
@@ -83,9 +90,3 @@ class Command(NoArgsCommand):
                                'Pootle 2.6.0 is not meant to be used in real '
                                'world deployments, so please proceed now with '
                                'the upgrade to Pootle 2.7.0 or later.')
-        else:
-            logging.info('Pootle already was up-to-date to version 2.6.0. No '
-                         'action has been performed.')
-            logging.info('Pootle 2.6.0 is not meant to be used in real world '
-                         'deployments, so please proceed now with the upgrade '
-                         'to Pootle 2.7.0 or later.')
