@@ -25,7 +25,7 @@ var itemTypes = {
 PTL.admin = {
 
   init: function (opts) {
-    this.el = document.querySelector(opts.el);
+    var el = document.querySelector(opts.el || '.js-admin-app');
 
     if (!itemTypes.hasOwnProperty(opts.itemType)) {
       throw new Error('Invalid `itemType`.');
@@ -37,7 +37,7 @@ PTL.admin = {
       appRoot: opts.appRoot,
       adminModule: item,
     });
-    React.render(main, this.el);
+    React.render(main, el);
   }
 
 };

@@ -12,8 +12,7 @@
 {% block app_init %}
 <script type="text/javascript">
 $(function () {
-  PTL.admin.init({el: '.js-admin-app',
-                  itemType: 'user',
+  PTL.admin.init({itemType: 'user',
                   appRoot: '{% url "pootle-admin-users" %}'});
 });
 </script>
