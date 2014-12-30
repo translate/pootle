@@ -6,6 +6,14 @@ var _ = require('underscore');
 
 var FormElement = React.createClass({
 
+  /* Lifecycle */
+
+  getDefaultProps: function () {
+    return {
+      type: 'text',
+    };
+  },
+
 
   /* Layout */
 
@@ -17,7 +25,6 @@ var FormElement = React.createClass({
     var errors = (_.size(this.props.errors) > 0 &&
                   this.props.errors[attribute]);
 
-    var type = this.props.type || 'text';  // Default to `text` type
     var el = {
       text: <FormValueInput />,
       email: <FormValueInput />,
@@ -28,17 +35,13 @@ var FormElement = React.createClass({
       radio: <FormCheckedInput />
 
       // TODO: FormSelectInput
-    }[type];
+    }[this.props.type];
 
     var newProps = {
+      ...this.props,
       id: fieldId,
       name: attribute,
       value: this.props.formData[attribute],
-      handleChange: this.props.handleChange,
-      placeholder: this.props.placeholder,
-      autoFocus: this.props.autoFocus,
-      readOnly: this.props.readOnly,
-      type: type
     };
     var formInput = React.addons.cloneWithProps(el, newProps);
 
