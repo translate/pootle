@@ -50,7 +50,6 @@ var UserForm = React.createClass({
               label={gettext('Username')}
               handleChange={this.handleChange}
               formData={formData}
-              model={model}
               errors={errors} />
         {!model.isMeta() &&
           <div className="no-meta">
@@ -60,7 +59,6 @@ var UserForm = React.createClass({
                 label={gettext('Active')}
                 handleChange={this.handleChange}
                 formData={formData}
-                model={model}
                 errors={errors} />
             <FormElement
                 type="password"
@@ -69,7 +67,6 @@ var UserForm = React.createClass({
                 placeholder={gettext('Set a new password')}
                 handleChange={this.handleChange}
                 formData={formData}
-                model={model}
                 errors={errors} />
           </div>}
           <FormElement
@@ -78,14 +75,12 @@ var UserForm = React.createClass({
               label={gettext('Full Name')}
               handleChange={this.handleChange}
               formData={formData}
-              model={model}
               errors={errors} />
           <FormElement
               attribute="email"
               label={gettext('Email')}
               handleChange={this.handleChange}
               formData={formData}
-              model={model}
               errors={errors} />
         {!model.isMeta() &&
           <div className="no-meta">
@@ -95,7 +90,6 @@ var UserForm = React.createClass({
                 label={gettext('Administrator')}
                 handleChange={this.handleChange}
                 formData={formData}
-                model={model}
                 errors={errors} />
             <p className="divider" />
             <FormElement
@@ -104,7 +98,6 @@ var UserForm = React.createClass({
                 handleChange={this.handleChange}
                 placeholder={gettext('Twitter username')}
                 formData={formData}
-                model={model}
                 errors={errors}
                 maxLength="15" />
             <FormElement
@@ -113,7 +106,6 @@ var UserForm = React.createClass({
                 handleChange={this.handleChange}
                 placeholder={gettext('LinkedIn profile URL')}
                 formData={formData}
-                model={model}
                 errors={errors} />
             <FormElement
                 attribute="website"
@@ -121,7 +113,6 @@ var UserForm = React.createClass({
                 handleChange={this.handleChange}
                 placeholder={gettext('Personal website URL')}
                 formData={formData}
-                model={model}
                 errors={errors} />
             <FormElement
                 type="textarea"
@@ -130,7 +121,6 @@ var UserForm = React.createClass({
                 handleChange={this.handleChange}
                 placeholder={gettext('Personal description')}
                 formData={formData}
-                model={model}
                 errors={errors} />
           </div>}
         </div>
