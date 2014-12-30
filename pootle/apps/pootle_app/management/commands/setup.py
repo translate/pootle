@@ -78,10 +78,6 @@ class Command(NoArgsCommand):
             call_command('migrate', interactive=False)
             call_command('upgrade')
 
-            # Ensure we don't use the old assets after upgrading.
-            call_command("collectstatic", clean=True, interactive=False)
-            call_command("assets", "build")
-
             raise CommandError('Successfully upgraded Pootle to version 2.6.0.'
                                '\n\n'
                                'Pootle 2.6.0 is not meant to be used in real '
