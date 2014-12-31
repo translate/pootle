@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var _ = require('underscore');
 
 
@@ -25,14 +25,14 @@ var FormElement = React.createClass({
     var errors = (_.size(this.props.errors) > 0 &&
                   this.props.errors[attribute]);
 
-    var el = {
-      text: <FormValueInput />,
-      email: <FormValueInput />,
-      password: <FormValueInput />,
-      textarea: <FormValueInput />,
+    var inputClass = {
+      text: FormValueInput,
+      email: FormValueInput,
+      password: FormValueInput,
+      textarea: FormValueInput,
 
-      checkbox: <FormCheckedInput />,
-      radio: <FormCheckedInput />
+      checkbox: FormCheckedInput,
+      radio: FormCheckedInput
 
       // TODO: FormSelectInput
     }[this.props.type];
@@ -43,7 +43,7 @@ var FormElement = React.createClass({
       value: this.props.formData[attribute],
     };
     var inputProps = _.extend({}, this.props, newProps);
-    var formInput = React.addons.cloneWithProps(el, inputProps);
+    var formInput = React.createFactory(inputClass)(inputProps);
 
     return (
       <div className="field-wrapper">
