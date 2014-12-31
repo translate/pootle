@@ -41,9 +41,9 @@ var FormElement = React.createClass({
       id: fieldId,
       name: attribute,
       value: this.props.formData[attribute],
-      ...this.props,
     };
-    var formInput = React.addons.cloneWithProps(el, newProps);
+    var inputProps = _.extend({}, this.props, newProps);
+    var formInput = React.addons.cloneWithProps(el, inputProps);
 
     return (
       <div className="field-wrapper">
