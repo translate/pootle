@@ -3,6 +3,7 @@ import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
+from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 
 
@@ -21,7 +22,13 @@ class Migration(SchemaMigration):
         except ContentType.DoesNotExist:
             pass
         else:
-            orm['auth.permission'].objects.filter(content_type=old_ctype).update(content_type=new_ctype)
+            old_perms = Permission.objects.filter(content_type=old_ctype)
+            perms_qs = Permission.objects.filter(content_type=new_ctype)
+
+            for old_permission in old_perms:
+                # Ensure that this permission is not there already.
+                if not perms_qs.filter(codename=old_permission.codename).exists():
+                    old_permission.update(content_type=new_ctype)
 
         # Deleting model 'Suggestion'
         db.delete_table('pootle_app_suggestion')
