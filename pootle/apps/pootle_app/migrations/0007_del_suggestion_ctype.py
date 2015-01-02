@@ -1,52 +1,23 @@
 # -*- coding: utf-8 -*-
-import datetime
+from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
-from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 
 
 class Migration(SchemaMigration):
     depends_on = (
-        ("pootle_statistics", "0004_auto__del_field_submission_from_suggestion"),
-        ("accounts", "0002_import_profile_data"),
+        ("accounts", "0003_auto__inherit_from_permissionsmixin"),
     )
 
     def forwards(self, orm):
-        # Adjust the permissions for dealing with Suggestions to instead use
-        # the pootle_store.Suggestion contenttype.
-        try:
-            old_ctype = ContentType.objects.get(app_label='pootle_app', model='suggestion')
-            new_ctype = ContentType.objects.get(app_label='pootle_store', model='suggestion')
-        except ContentType.DoesNotExist:
-            pass
-        else:
-            old_perms = Permission.objects.filter(content_type=old_ctype)
-            perms_qs = Permission.objects.filter(content_type=new_ctype)
-
-            for old_permission in old_perms:
-                # Ensure that this permission is not there already.
-                if not perms_qs.filter(codename=old_permission.codename).exists():
-                    old_permission.update(content_type=new_ctype)
-
-        # Deleting model 'Suggestion'
-        db.delete_table('pootle_app_suggestion')
+        ContentType.objects.filter(app_label='pootle_app', model='suggestion').delete()
 
 
     def backwards(self, orm):
-        # Adding model 'Suggestion'
-        db.create_table('pootle_app_suggestion', (
-            ('translation_project', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['pootle_translationproject.TranslationProject'])),
-            ('state', self.gf('django.db.models.fields.CharField')(default='pending', max_length=16, db_index=True)),
-            ('suggester', self.gf('django.db.models.fields.related.ForeignKey')(related_name='suggester', null=True, to=orm['accounts.User'])),
-            ('review_time', self.gf('django.db.models.fields.DateTimeField')(null=True, db_index=True)),
-            ('reviewer', self.gf('django.db.models.fields.related.ForeignKey')(related_name='reviewer', null=True, to=orm['accounts.User'])),
-            ('creation_time', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True, db_index=True)),
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('unit', self.gf('django.db.models.fields.IntegerField')(db_index=True)),
-        ))
-        db.send_create_signal('pootle_app', ['Suggestion'])
+        ct = ContentType(app_label='pootle_app', model='suggestion', name='suggestion')
+        ct.save()
 
 
     models = {
@@ -70,11 +41,13 @@ class Migration(SchemaMigration):
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '255'}),
             'full_name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
+            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Group']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
+            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
         u'contenttypes.contenttype': {
@@ -92,13 +65,12 @@ class Migration(SchemaMigration):
             'pootle_path': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'})
         },
         'pootle_app.permissionset': {
-            'Meta': {'unique_together': "(('profile', 'directory'),)", 'object_name': 'PermissionSet'},
+            'Meta': {'unique_together': "(('user', 'directory'),)", 'object_name': 'PermissionSet'},
             'directory': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'permission_sets'", 'to': "orm['pootle_app.Directory']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'negative_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'permission_sets_negative'", 'symmetrical': 'False', 'to': u"orm['auth.Permission']"}),
             'positive_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'db_index': 'True', 'related_name': "'permission_sets_positive'", 'symmetrical': 'False', 'to': u"orm['auth.Permission']"}),
-            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['accounts.User']"}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['accounts.User']", 'null': 'True'})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['accounts.User']"})
         },
         'pootle_app.pootleconfig': {
             'Meta': {'object_name': 'PootleConfig'},
