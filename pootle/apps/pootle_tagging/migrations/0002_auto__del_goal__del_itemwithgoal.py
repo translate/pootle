@@ -7,6 +7,9 @@ from django.contrib.contenttypes.models import ContentType
 
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("accounts", "0003_auto__inherit_from_permissionsmixin"),
+    )
 
     def forwards(self, orm):
         if u'pootle_tagging_itemwithgoal' in connection.introspection.table_names():
