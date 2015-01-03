@@ -15,6 +15,8 @@ env:
     #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
     #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_myisam
     #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_innodb
+  global:
+    - PIP_DOWNLOAD_CACHE=".pip_download_cache"
 matrix:
   exclude:
     - python: 2.6
@@ -41,6 +43,7 @@ cache:
   apt: true
   directories:
     - node_modules
+    - .pip_download_cache
 before_install:
   - travis_retry sudo apt-get install -qq bc
 install:
