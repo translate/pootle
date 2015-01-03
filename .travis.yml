@@ -9,8 +9,13 @@ env:
     - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=sqlite
     - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=postgres
     - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=mysql
+  global:
+    - PIP_DOWNLOAD_CACHE=".pip_download_cache"
 cache:
-  - apt
+  apt: true
+  directories:
+    - .pip_download_cache
+    - docs/_build
 before_install:
   - travis_retry sudo apt-get install -qq bc
 install:
