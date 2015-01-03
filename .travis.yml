@@ -38,7 +38,9 @@ matrix:
     - env: DJANGO_VERSION=1.6.5 DATABASE_BACKEND=postgres
     - env: DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql_innodb
 cache:
-  - apt
+  apt: true
+  directories:
+    - node_modules
 before_install:
   - travis_retry sudo apt-get install -qq bc
 install:
