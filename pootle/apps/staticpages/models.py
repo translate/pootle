@@ -38,6 +38,7 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
 
     active = models.BooleanField(
         _('Active'),
+        default=False,
         help_text=_('Whether this page is active or not.'),
     )
     virtual_path = models.CharField(
