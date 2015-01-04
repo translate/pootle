@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009 Zuza Software Foundation
+# Copyright 2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -25,8 +26,6 @@ import os
 
 from django.db import models
 from django.db.models.fields.files import FieldFile, FileField
-
-from south.modelsinspector import add_introspection_rules
 
 from translate.misc.multistring import multistring
 
@@ -112,11 +111,6 @@ class MultiStringField(models.Field):
             value = self.get_prep_value(value)
         return super(MultiStringField, self) \
                 .get_prep_lookup(lookup_type, value)
-
-add_introspection_rules(
-        [],
-        ["^pootle_store\.fields\.MultiStringField"],
-    )
 
 
 ################# File ###############################
@@ -244,11 +238,6 @@ class TranslationStoreFieldFile(FieldFile):
         if save:
             super(TranslationStoreFieldFile, self).delete(save)
 
-add_introspection_rules(
-        [],
-        ["^pootle_store\.fields\.TranslationStoreFieldFile"],
-    )
-
 
 class TranslationStoreField(FileField):
     """This is the field class to represent a FileField in a model that
@@ -262,12 +251,8 @@ class TranslationStoreField(FileField):
         self.ignore = ignore
         super(TranslationStoreField, self).__init__(**kwargs)
 
-add_introspection_rules([
-    (
-        [TranslationStoreField],
-        [],
-        {
-            'ignore': ['ignore', {'default': None}],
-        },
-    ),
-], ["^pootle_store\.fields\.TranslationStoreField"])
+    def deconstruct(self):
+        name, path, args, kwargs = super(TranslationStoreField, self).deconstruct()
+        if self.ignore is not None:
+            kwargs['ignore'] = self.ignore
+        return name, path, args, kwargs

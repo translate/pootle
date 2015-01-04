@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
+# Copyright 2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -25,7 +26,6 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.utils.safestring import mark_safe
-from south.modelsinspector import add_introspection_rules
 
 from .filters import apply_markup_filter
 from .widgets import MarkupTextarea
@@ -135,9 +135,3 @@ class MarkupField(models.TextField):
         defaults = {'widget': MarkupTextarea}
         defaults.update(kwargs)
         return super(MarkupField, self).formfield(**defaults)
-
-
-add_introspection_rules(
-        [],
-        ["^pootle\.core\.markup\.fields\.MarkupField"],
-    )
