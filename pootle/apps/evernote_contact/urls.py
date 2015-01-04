@@ -21,12 +21,12 @@
 
 from django.conf.urls import patterns, url
 
-from .views import EvernoteContactFormView, PootleReportFormView
+from .views import PootleContactFormView, PootleReportFormView
 
 
 urlpatterns = patterns('',
     url(r'^$',
-        EvernoteContactFormView.as_view(),
+        PootleContactFormView.as_view(),
         name='pootle-contact'),
     url(r'report/$',
         PootleReportFormView.as_view(),

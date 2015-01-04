@@ -28,7 +28,7 @@ from contact_form.forms import ContactForm
 from pootle.core.forms import MathCaptchaForm
 
 
-class EvernoteContactForm(MathCaptchaForm, ContactForm):
+class PootleContactForm(MathCaptchaForm, ContactForm):
 
     subject = forms.CharField(
         max_length=100,
@@ -39,7 +39,7 @@ class EvernoteContactForm(MathCaptchaForm, ContactForm):
     )
 
     def __init__(self, *args, **kwargs):
-        super(EvernoteContactForm, self).__init__(*args, **kwargs)
+        super(PootleContactForm, self).__init__(*args, **kwargs)
 
         self.fields['name'].label = _(u'Name')
         name_placeholder = _('Please enter your name')
@@ -67,7 +67,7 @@ class EvernoteContactForm(MathCaptchaForm, ContactForm):
         )
 
 
-class PootleReportForm(EvernoteContactForm):
+class PootleReportForm(PootleContactForm):
     """Contact form used to report errors on strings."""
 
     report_email = forms.EmailField(

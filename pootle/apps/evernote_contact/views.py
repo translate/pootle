@@ -25,7 +25,7 @@ from contact_form.views import ContactFormView
 
 from pootle.core.views import AjaxResponseMixin
 
-from .forms import EvernoteContactForm, PootleReportForm
+from .forms import PootleContactForm, PootleReportForm
 
 
 SUBJECT_TEMPLATE = 'Unit #%d (%s)'
@@ -40,8 +40,8 @@ Your question or comment:
 '''
 
 
-class EvernoteContactFormView(AjaxResponseMixin, ContactFormView):
-    form_class = EvernoteContactForm
+class PootleContactFormView(AjaxResponseMixin, ContactFormView):
+    form_class = PootleContactForm
 
     def get_context_data(self, **kwargs):
         # Provide the form action URL to use in the template that renders the
@@ -50,10 +50,10 @@ class EvernoteContactFormView(AjaxResponseMixin, ContactFormView):
             'contact_form_url': reverse('pootle-contact'),
         }
         context.update(kwargs)
-        return super(EvernoteContactFormView, self).get_context_data(**context)
+        return super(PootleContactFormView, self).get_context_data(**context)
 
     def get_initial(self):
-        initial = super(EvernoteContactFormView, self).get_initial()
+        initial = super(PootleContactFormView, self).get_initial()
 
         user = self.request.user
         if user.is_authenticated():
