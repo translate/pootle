@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
+# Copyright 2013 Evernote Corporation
 # Copyright 2013 Zuza Software Foundation
 #
 # This file is part of Pootle.
