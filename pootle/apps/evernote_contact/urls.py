@@ -19,16 +19,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-
 from django.conf.urls import patterns, url
 
 from .views import EvernoteContactFormView, PootleReportFormView
 
 
 urlpatterns = patterns('',
-   url(r'^$',
-       EvernoteContactFormView.as_view(),
-       name='pootle-contact'),
+    url(r'^$',
+        EvernoteContactFormView.as_view(),
+        name='pootle-contact'),
     url(r'report/$',
         PootleReportFormView.as_view(),
         name='pootle-contact-report-error'),

@@ -19,7 +19,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-
 from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -36,7 +35,7 @@ class EvernoteContactForm(MathCaptchaForm, ContactForm):
         label=_(u'Summary'),
         widget=forms.TextInput(
             attrs={'placeholder': _('Please enter your message summary')}
-        )
+        ),
     )
 
     def __init__(self, *args, **kwargs):
