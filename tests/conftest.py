@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,14 +21,20 @@
 import os
 from pkgutil import iter_modules
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
-os.environ['POOTLE_SETTINGS'] = os.path.join(WORKING_DIR, 'settings.py')
-
-from pootle import syspath_override  # Needed for monkey-patching
+from django import setup
+from django.conf import settings
 
 from . import fixtures
 from .fixtures import models as fixture_models
+
+
+def pytest_configure():
+    if not settings.configured:
+        from pootle import syspath_override  # Needed for monkey-patching
+        os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
+        WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
+        os.environ['POOTLE_SETTINGS'] = os.path.join(WORKING_DIR, 'settings.py')
+        setup()  # Required until pytest-dev/pytest-django#146 is fixed
 
 
 def _load_fixtures(*modules):
