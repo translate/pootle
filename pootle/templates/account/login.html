@@ -12,7 +12,7 @@
 {% block content %}
 <div id="login" class="form" dir="{% locale_dir %}">
   <h2>{% trans 'Login to Pootle' %}</h2>
-  <form method="post" action="{% url 'pootle-profile-login' %}"
+  <form method="post" action="{% url 'account_login' %}"
         name="loginform" id="loginform">
   {% csrf_token %}
   {% if form.errors %}
@@ -22,7 +22,7 @@
   {% endif %}
   {{ form.as_p }}
   <p class="buttons">
-    <input type="submit" class="btn btn-lg btn-primary" name="login"
+    <input type="submit" class="btn btn-lg btn-primary"
            value="{% trans 'Login' %}" />
     <input type="hidden" name="next" value="{{ next }}" />
   </p>
