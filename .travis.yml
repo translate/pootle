@@ -42,7 +42,7 @@ matrix:
 cache:
   apt: true
   directories:
-    - node_modules
+    - pootle/assets/js/node_modules
     - .pip_download_cache
     - docs/_build
 install:
