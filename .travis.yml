@@ -44,6 +44,7 @@ cache:
   directories:
     - node_modules
     - .pip_download_cache
+    - docs/_build
 install:
   - CFLAGS="-O0" travis_retry pip install -r requirements/travis.txt --timeout=240
   - travis_retry pip install "Django>=$DJANGO_VERSION,<"$(echo $(echo $DJANGO_VERSION | cut -d"." -f1).$(( $(echo $DJANGO_VERSION | cut -d"." -f2) + 1 )) ) --timeout=240
