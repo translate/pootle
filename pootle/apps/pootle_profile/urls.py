@@ -25,10 +25,6 @@ from .views import UserAPIView, UserDetailView, UserSettingsView
 
 
 account_patterns = patterns('pootle_profile.views',
-    url(r'^login/?$',
-        'login',
-        name='pootle-profile-login'),
-
     url(r'^settings/$',
         UserSettingsView.as_view(),
         name='pootle-profile-edit'),

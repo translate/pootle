@@ -72,7 +72,7 @@ class ErrorPagesMiddleware(object):
 
             if not request.user.is_authenticated():
                 msg_args = {
-                    'login_link': "%s%s" % (reverse('pootle-profile-login'),
+                    'login_link': "%s%s" % (reverse('account_login'),
                                             get_next(request)),
                 }
                 login_msg = _('You need to <a href="%(login_link)s">login</a> '

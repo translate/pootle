@@ -130,7 +130,7 @@
             </ul>
           </li>
           {% else %}
-          <li><a id="js-login" href="{% url 'pootle-profile-login' %}{{ request|get_next }}"><span class="btn btn-login">{% trans "Sign In" %}</span></a></li>
+          <li><a id="js-login" href="{% url 'account_login' %}{{ request|get_next }}"><span class="btn btn-login">{% trans "Sign In" %}</span></a></li>
           {% endif %}
           {% block nav_items_post %}{% endblock %}
           {% endblock %}
