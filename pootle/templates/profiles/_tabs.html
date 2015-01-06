@@ -2,7 +2,7 @@
 <ul id="tabs">
   {% if user == request.user %}
   <li><a href="{% url 'pootle-profile-edit' %}" class="settings">{% trans "Settings" %}</a></li>
-  <li><a href="{% url 'pootle-password-change' %}" class="password">{% trans "Password" %}</a></li>
+  <li><a href="{% url 'account_reset_password' %}" class="password">{% trans "Password" %}</a></li>
   <li><a href="{% url 'en-auth-account-info' %}" class="evernote_account_link">{% trans "Link with Evernote" %}</a></li>
   {% endif %}
 </ul>
