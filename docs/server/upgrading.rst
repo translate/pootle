@@ -3,8 +3,17 @@
 Upgrading
 =========
 
+.. warning::
+
+  **Pootle 2.6.0 is just an intermediate upgrade step towards newer releases.**
+
+  Pootle 2.6.0 is meant to be only used as an intermediate step for upgrading
+  older Pootle deployments to the newer Pootle releases.
+
+
 Here are some points to take into account while performing Pootle
 upgrades.
+
 
 .. warning::
 
@@ -19,7 +28,8 @@ upgrades.
 This page is divided in three sections. The first one lists some previous tasks
 that should be performed before upgrading. The second section includes a
 detailed list of steps to follow to actually perform the upgrade. The third one
-suggests some possible tasks to fine tune the setup after upgrading.
+tells you how to continue with the upgrade to the next version, since Pootle
+2.6.0 is only an intermediate upgrade step.
 
 
 .. _upgrading#previous-tasks:
@@ -137,34 +147,18 @@ To perform the upgrade follow the next steps:
     (env)$ pootle setup
 
 
-* Reapply your custom changes to Pootle code, templates or styling. Check about
-  the :doc:`customization of style sheets and templates
-  </developers/customization>` to move your customizations to the right
-  locations in order to reduce the pain in future upgrades.
+.. _upgrading#continue-the-upgrade:
 
-* Finally clear your cache. For users of :command:`memcached` it is enough to
-  restart it.
+Continue the upgrade to a newer version
+---------------------------------------
 
+Since Pootle 2.6.0 is intended to be an intermediate upgrade step towards newer
+Pootle releases you will have to upgrade again to the desired version. In order
+to do that just follow the upgrade instructions for that version.
 
-.. _upgrading#post-upgrade:
+.. warning::
 
-Post-upgrade adjustments
-------------------------
-
-After a succesful upgrade you can now consider :doc:`making some optimizations
-to your setup <optimization>`, like for example using a real database or a
-proper web server.
-
-.. note::
-
-  If you are already using some optimizations you might need to find out if you
-  need to perform any adjustment or reload any server.
-
-
-Also you might want to create a local Translation Memory. Have in mind that
-this can take a lot of time depending on how many translations you have in your
-Pootle database.
-
-.. code-block:: bash
-
-  (env)$ pootle create_local_tm
+  Please note that if you have some custom changes to Pootle code, templates or
+  styling you will have to reapply those **after** finishing the upgrade to the
+  desired Pootle version. Instructions on how to do that are available on the
+  upgrade instructions.
