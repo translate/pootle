@@ -1,0 +1,16 @@
+{% extends "layout.html"  %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Registration Disabled" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Registration Disabled" %}</li>
+{% endblock %}
+
+{% block content %}
+<div class="form message error">
+    <h2>{% trans "Registration Disabled" %}</h2>
+    <p>{% trans "Registration is currently disabled. Please try again later." %}
+</div>
+{% endblock %}
