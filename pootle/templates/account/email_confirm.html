@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% load i18n account %}
+
+{% block title %}{% trans "Confirm E-mail Address" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Confirm E-mail Address" %}</li>
+{% endblock %}
+
+{% block content %}
+{% if confirmation %}
+    {% user_display confirmation.email_address.user as user_display %}
+    <p>{% blocktrans with confirmation.email_address.email as email %}
+        Please confirm <a href="mailto:{{email}}">{{ email }}</a> as a valid e-mail address for {{ user_display }}.
+    {% endblocktrans %}</p>
+    <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+    {% csrf_token %}
+        <button type="submit" class="btn">{% trans 'Confirm' %}</button>
+    </form>
+{% else %}
+<div class="form message error">
+    <h2>{% trans "Account Activation Failed" %}</h2>
+    <p>{% trans "Unable to activate account using the provided activation key." %}</p>
+</div>
+{% endif %}
+{% endblock %}
