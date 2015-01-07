@@ -36,7 +36,7 @@ urlpatterns = patterns('',
 
     # External apps
     url(r'^contact/', include('evernote_contact.urls')),
-    url(r'', include('pootle_profile.urls')),
+    url(r'profiles/', include('pootle_profile.urls')),
 
     # Pootle URLs
     url(r'^pages/', include('staticpages.urls')),
