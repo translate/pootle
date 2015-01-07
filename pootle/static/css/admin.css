@@ -328,13 +328,11 @@ html[dir="rtl"] #item-form .helptext
 .admin-content .item-delete
 {
     margin-top: 1em;
-    margin-left: 30%;
 }
 
 html[dir="rtl"] .admin-content .item-delete
 {
     margin-left: auto;
-    margin-right: 30%;
 }
 
 .admin-content .item-delete input,

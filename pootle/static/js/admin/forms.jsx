@@ -138,10 +138,10 @@ var UserForm = React.createClass({
       {(this.props.handleDelete && !model.isMeta()) &&
         <div>
           <p className="divider" />
-          <p className="buttons">
+          <div className="buttons">
             <ItemDelete item={model} handleDelete={this.props.handleDelete}
                 helpText={deleteHelpText} />
-          </p>
+          </div>
         </div>}
       </form>
     );
