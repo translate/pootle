@@ -1,0 +1,6 @@
+{% load i18n %}
+{% filter wordwrap:70 %}{% trans "A Pootle account has been created for you using this email address." %}{% endfilter %}
+{% trans "To activate your account, follow this link:" %}
+     {{ activate_url }}
+
+{% filter wordwrap:70 %}{% trans "This message is sent to verify that the email address is in fact correct. If you did not want to register an account, you may simply ignore the message." %}{% endfilter %}
