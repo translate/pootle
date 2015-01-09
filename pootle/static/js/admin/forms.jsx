@@ -129,7 +129,7 @@ var UserForm = React.createClass({
                  disabled={!this.state.isDirty}
                  value={gettext('Save')} />
         {model.id &&
-          <ul className="user-links">
+          <ul className="action-links">
             <li><a href={model.getProfileUrl()}>{gettext("Public Profile")}</a></li>
             <li><a href={model.getStatsUrl()}>{gettext("Statistics")}</a></li>
             <li><a href={model.getReportsUrl()}>{gettext("Reports")}</a></li>
