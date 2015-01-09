@@ -26,23 +26,19 @@ localization tool.  It works to lower the barrier of entry, providing tools to
 enable teams to work towards higher quality while welcoming newcomers.
 
 
-Pootle is a Server
-------------------
+Warning
+-------
 
-Pootle is written in Python using the Django framework and therefore can be
-installed on any web server that supports serving WSGI applications.
+**Pootle 2.6.x is not meant to be installed for new deployments. Pootle 2.6.x
+is provided only to be used as an intermediate step for upgrading older Pootle
+deployments to newer Pootle releases like 2.7.x or later (which might not be
+yet released).**
 
-A number of translation projects for a number of languages can be hosted on
-Pootle.  Teams can manage their files, permissions, projects, and translate
-on-line.  Files can be downloaded for offline translation.
+**Please install the latest stable release instead. Note that the latest stable
+version might still be 2.5.1.1.**
 
-Installation can be done via pip::
-
-  pip install Pootle
-
-But don't forget to read the `installation guide
-<http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
-for the important details.
+**Do not upgrade to Pootle 2.6.x unless you are sure there are some newer
+stable version, like for example 2.7.x.**
 
 
 Resources
