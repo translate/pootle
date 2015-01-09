@@ -114,7 +114,7 @@ Site-specific settings.
 ``POOTLE_REPORT_STRING_ERRORS_EMAIL``
   Default: ``string_errors_manager@YOUR_DOMAIN.com``
 
-  .. versionadded:: 2.6
+  .. versionadded:: 2.7
 
   Email address to report errors on strings.
 
