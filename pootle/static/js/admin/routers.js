@@ -7,7 +7,7 @@ var AdminRouter = Backbone.Router.extend({
 
   routes: {
     '': 'main',
-    'edit/:id(/)': 'edit'
+    ':id(/)': 'edit'
   }
 
 });

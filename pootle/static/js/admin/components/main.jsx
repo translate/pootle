@@ -105,7 +105,7 @@ var AdminApp = React.createClass({
         newURL;
 
     if (newState.selectedItem) {
-      newURL = ['edit', newState.selectedItem.get('id'), ''].join('/');
+      newURL = ['', newState.selectedItem.id, ''].join('/');
     } else {
       var params = query === '' ? {} : {q: query};
       newURL = router.toFragment('', params);

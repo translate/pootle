@@ -36,7 +36,7 @@ urlpatterns = patterns('pootle_app.views.admin',
     url(r'^/users/$',
         UserAdminView.as_view(),
         name='pootle-admin-users'),
-    url(r'^/users/edit/(?P<id>[0-9]+)/?$',
+    url(r'^/users/(?P<id>[0-9]+)/?$',
         UserAdminView.as_view(),
         name='pootle-admin-user-edit'),
 
