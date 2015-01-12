@@ -7,6 +7,9 @@ from django.contrib.contenttypes.models import ContentType
 
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("accounts", "0004_drop_pootle_app_pootleprofile_ctype"),
+    )
 
     def forwards(self, orm):
         ContentType.objects.filter(app_label='taggit', model='tag').delete()
