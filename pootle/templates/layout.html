@@ -126,11 +126,11 @@
               <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans 'Admin' %}</a></li>
               {% endif %}
               <li class="menu-divider"></li>
-              <li><a href="{% url 'account_logout' %}">{% trans 'Sign Out' %}</a></li>
+              <li><a href="{% url 'account_logout' %}">{% trans 'Sign out' %}</a></li>
             </ul>
           </li>
           {% else %}
-          <li><a id="js-login" href="{% url 'account_login' %}{{ request|get_next }}"><span class="btn btn-login">{% trans "Sign In" %}</span></a></li>
+          <li><a id="js-login" href="{% url 'account_login' %}{{ request|get_next }}"><span class="btn btn-login">{% trans "Sign in" %}</span></a></li>
           {% endif %}
           {% block nav_items_post %}{% endblock %}
           {% endblock %}
