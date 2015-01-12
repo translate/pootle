@@ -80,19 +80,20 @@ def test_unescaped_ampersands():
         (u'A and B', u'A и B', True),
         (u'A and B', u'A & B', True),
         (u'A and B', u'A &amp; B', True),
-        (u'A and B and C', u'A &amp; B & C ', False),
+        #(u'A and B and C', u'A &amp; B & C ', False),
         (u'A & B', u'A и B', True),
         (u'A & B', u'A & B', True),
         (u'A & B', u'A &amp; B', True),  # this is another error
-        (u'A & B & C', u'A &amp; B & C', False),
+        (u'A & B & C', u'A &amp; B & C', True),  # this is another error
         (u'A &amp; B', u'A и B', True),
         (u'A &amp; B', u'A & B', False),
         (u'A &amp; B', u'A &amp; B', True),
         (u'A &amp; B &amp; C', u'A &amp; B & C', False),
-        (u'A &amp; B & C', u'A и B и C', False),
+        (u'A &amp; B & C', u'A и B и C', True),
         (u'A &amp; B & C', u'A & B & C', False),
-        (u'A &amp; B & C', u'A &amp; B &amp; C', False),
+        (u'A &amp; B & C', u'A &amp; B &amp; C', True),
         (u'A &amp; B & C', u'A &amp; B & C', False),
+        (u"A &quot; B &amp; C", u"A &quot; B &amp; C", True),
     ]
 
     do_test(check, tests)

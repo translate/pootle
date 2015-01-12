@@ -173,8 +173,9 @@ date_format_regex_8 = re.compile(u"[^\w]+", re.U)
 fmt = u"^\s+|\s+$"
 whitespace_regex = re.compile(u"(%s)" % fmt, re.U)
 
-fmt = u"&amp;|&"
-unescaped_ampersands_regex = re.compile(u"(%s)" % fmt, re.U)
+fmt = u"&#\d+;|&[a-zA-Z]+;|&#x[0-9a-fA-F]+;"
+escaped_entities_regex = re.compile(u"(%s)" % fmt, re.U)
+broken_ampersand_regex = re.compile(u"(&[^#a-zA-Z]+)", re.U)
 
 img_banner_regex = re.compile(u'^\<img src="\/images\/account\/bnr_', re.U)
 
@@ -465,37 +466,14 @@ class ENChecker(checks.TranslationChecker):
 
     @critical
     def unescaped_ampersands(self, str1, str2):
-        def get_fingerprint(str):
-            chunks = unescaped_ampersands_regex.split(str)
-            translate = False
-            escaped_count = 0
-            unescaped_count = 0
+        if escaped_entities_regex.search(str1):
+            chunks = broken_ampersand_regex.split(str2)
+            if len(chunks) == 1:
+                return True
 
-            for chunk in chunks:
-                translate = not translate
+            raise checks.FilterFailure(u"Unescaped ampersand mismatch")
 
-                if translate:
-                    # ordinary text (safe to translate)
-                    continue
-
-                # special text
-                if chunk == '&':
-                    unescaped_count += 1
-                else:
-                    escaped_count += 1
-
-            return escaped_count, unescaped_count
-
-        escaped1, unescaped1 = get_fingerprint(str1)
-        if not (escaped1 > 0 and unescaped1 > 0):
-            escaped2, unescaped2 = get_fingerprint(str2)
-            if not (escaped2 > 0 and unescaped2 > 0):
-                if escaped1 == 0:
-                    return True
-                elif unescaped2 == 0:
-                    return True
-
-        raise checks.FilterFailure(u"Unescaped ampersand mismatch")
+        return True
 
     @critical
     def changed_attributes(self, str1, str2):
