@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Backbone = require('backbone');
+var _ = require('underscore');
 
 var msg = require('../../msg.js');
 
@@ -118,13 +119,21 @@ var AdminApp = React.createClass({
   /* Layout */
 
   render: function () {
+    var model = this.props.adminModule.model;
+
+    // Inject dynamic model form choices
+    // FIXME: hackish and too far from ideal
+    _.defaults(model.prototype, {fieldChoices: {}});
+    _.extend(model.prototype.fieldChoices, this.props.formChoices);
+    _.extend(model.prototype.defaults, this.props.formChoices.defaults);
+
     var props = {
       items: this.state.items,
       selectedItem: this.state.selectedItem,
       searchQuery: this.state.searchQuery,
       view: this.state.view,
       collection: this.props.adminModule.collection,
-      model: this.props.adminModule.model,
+      model: model,
 
       handleSearch: this.handleSearch,
       handleSelectItem: this.handleSelectItem,

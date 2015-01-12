@@ -37,6 +37,7 @@ PTL.admin = {
       router: new AdminRouter(),
       appRoot: opts.appRoot,
       adminModule: item,
+      formChoices: opts.formChoices || {},
     });
     React.render(main, el);
   }
