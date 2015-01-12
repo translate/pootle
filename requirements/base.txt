@@ -2,7 +2,7 @@ Django>=1.7.7,<1.8
 
 # Django apps
 django-assets>=0.10
-django-allauth>=0.18.0
+django-allauth==0.18.0
 django-contact-form==1.0
 django-overextends>=0.3.2
 django-redis
