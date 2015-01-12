@@ -13,7 +13,7 @@
 {% if user.evernote_account %}
   <p>{% blocktrans with username=user.evernote_account.name %}This Pootle account is linked with "<strong>{{ username }}</strong>" Evernote account.{% endblocktrans %}</p>
 {% else %}
-  <p>{% blocktrans %}Here you can link this Pootle account with Evernote account — this will allow you to log in faster next time.{% endblocktrans %}</p>
+  <p>{% blocktrans %}Here you can link this Pootle account with Evernote account — this will allow you to sign in faster next time.{% endblocktrans %}</p>
 {% endif %}
 {% endblock %}
 
