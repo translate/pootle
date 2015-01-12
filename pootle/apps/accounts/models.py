@@ -44,6 +44,9 @@ from pootle_translationproject.models import TranslationProject
 from .managers import UserManager
 
 
+CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'))
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     """The Pootle User.
 
@@ -91,6 +94,20 @@ class User(AbstractBaseUser, PermissionsMixin):
         related_name='user_alt_src_langs',
         verbose_name=_("Alternative Source Languages"),
     )
+
+    # Score-related fields
+    rate = models.FloatField(_('Rate'), null=False, default=0)
+    review_rate = models.FloatField(_('Review Rate'), null=False, default=0)
+    hourly_rate = models.FloatField(_('Hourly Rate'), null=False, default=0)
+    score = models.FloatField(_('Score'), null=False, default=0)
+    currency = models.CharField(_('Currency'), max_length=3, null=True,
+                                blank=True, choices=CURRENCIES)
+    is_employee = models.BooleanField(_('Is employee?'), default=False)
+    twitter = models.CharField(_('Twitter'), max_length=15, null=True,
+                               blank=True)
+    website = models.URLField(_('Website'), null=True, blank=True)
+    linkedin = models.URLField(_('LinkedIn'), null=True, blank=True)
+    bio = models.TextField(_('Short Bio'), null=True, blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
