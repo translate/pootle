@@ -507,7 +507,8 @@ def invalidate_resources_cache(sender, instance, **kwargs):
 @receiver([post_delete, post_save])
 def invalidate_accessible_projects_cache(sender, instance, **kwargs):
     # XXX: maybe use custom signals or simple function calls?
-    if instance.__class__.__name__ not in ['Project', 'TranslationProject']:
+    if (instance.__class__.__name__ not in
+        ['Project', 'TranslationProject', 'PermissionSet']):
         return
 
     cache.delete(CACHE_KEY)
