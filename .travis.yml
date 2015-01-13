@@ -62,14 +62,12 @@ script:
   - make assets
   - make mo
   - coverage run --parallel-mode manage.py syncdb --noinput --traceback
-  # FIXME disable the migrate, initdb, runserver..kill block until merge or
-  # #3378 and #3379 are fixed
-  #- coverage run --parallel-mode manage.py migrate --traceback
-  #- coverage run --parallel-mode manage.py initdb --traceback
-  #- coverage run --parallel-mode ./manage.py runserver --traceback &
-  #- TESTPID=$!
-  #- sleep 20
-  #- kill -2 $TESTPID
+  - coverage run --parallel-mode manage.py migrate --traceback
+  - coverage run --parallel-mode manage.py initdb --traceback
+  - coverage run --parallel-mode ./manage.py runserver --traceback &
+  - TESTPID=$!
+  - sleep 10
+  - kill -2 $TESTPID
   # FIXME reenable migration testing
   #- tests/version-migration/migrate.sh
   - make pep8
