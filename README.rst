@@ -1,30 +1,63 @@
-### Unofficial Fork ###
-=======================
+Pootle
+======
 
-**This is an unofficial fork of Pootle used at Evernote. No external
-customer support is provided for it; use at your own risk.**
+.. image:: https://api.travis-ci.org/translate/pootle.png
+    :alt: Build Status
+    :target: https://travis-ci.org/translate/pootle
 
-See also `the official Pootle repository <http://github.com/translate/pootle>`_.
-You might want to check `this fork's changelog
-<https://github.com/evernote/pootle/blob/master/docs/evernote_changelog.rst>`_
-as well as the `major differences with respect to upstream
-<https://github.com/evernote/pootle/blob/master/docs/upstream_differences.rst>`_.
+.. image:: https://pypip.in/download/Pootle/badge.png
+    :alt: Downloads
+    :target: https://pypi.python.org/pypi/Pootle/
 
-About
------
+.. image:: https://pypip.in/py_versions/Pootle/badge.png
+    :alt: Supported Python versions
+    :target: https://pypi.python.org/pypi/Pootle/
 
-Pootle is an online translation server that works off .po files.
+.. image:: https://pypip.in/status/Pootle/badge.png
+    :alt: Development Status
+    :target: https://pypi.python.org/pypi/Pootle/
 
-Preview
--------
+.. image:: https://pypip.in/license/Pootle/badge.svg
+    :target: https://pypi.python.org/pypi/Pootle/
+    :alt: License
 
-See this translation server in action (and join our translation community!) at:
+`Pootle <http://pootle.translatehouse.org/>`_ is an online translation and
+localization tool.  It works to lower the barrier of entry, providing tools to
+enable teams to work towards higher quality while welcoming newcomers.
 
-`translate.evernote.com <https://translate.evernote.com>`_
-----------------------------------------------------------
+
+Pootle is a Server
+------------------
+
+Pootle is written in Python using the Django framework and therefore can be
+installed on any web server that supports serving WSGI applications.
+
+A number of translation projects for a number of languages can be hosted on
+Pootle.  Teams can manage their files, permissions, projects, and translate
+on-line.  Files can be downloaded for offline translation.
+
+Installation can be done via pip::
+
+  pip install Pootle
+
+But don't forget to read the `installation guide
+<http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
+for the important details.
+
+
+Resources
+---------
+
+- `Pootle Website <http://pootle.translatehouse.org/>`_
+- `Documentation <http://docs.translatehouse.org/projects/pootle/>`_
+- `Translations <http://pootle.locamotion.org/projects/pootle/>`_
+- `Bug Tracker <https://github.com/translate/pootle/issues>`_
+- `Mailing List
+  <https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_
+- IRC: `#pootle on irc.freenode.org <irc://irc.freenode.net/#pootle>`_
 
 Copying
 -------
 
-Pootle is released under the General Public License, version 2 or later.
-See the LICENSE file for details.
+Pootle is released under the General Public License, version 2 or later. See
+the file LICENSE for details.
