@@ -41,7 +41,6 @@ from translate.lang.data import langcode_re
 
 from pootle.core.cache import make_method_key
 from pootle.core.managers import RelatedManager
-from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
@@ -112,12 +111,6 @@ class Project(models.Model, TreeItem, ProjectURLMixin):
         max_length=255,
         null=False,
         verbose_name=_("Full Name"),
-    )
-    description = MarkupField(
-        blank=True,
-        help_text=_('A description of this project. This is useful to give '
-                    'more information or instructions. Allowed markup: %s',
-                    get_markup_filter_name()),
     )
 
     checkers = list(checks.projectcheckers.keys())

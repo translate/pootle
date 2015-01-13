@@ -98,16 +98,11 @@ def project_settings_edit(request, project):
         form.save()
         status = 200
 
-        if project.description:
-            the_html = project.description
-        else:
-            the_html = u"".join([
-                u'<p class="placeholder muted">',
-                _(u"No description yet."),
-                u"</p>",
-            ])
-
-        response["description"] = the_html
+        response["description"] = u"".join([
+            u'<p class="placeholder muted">',
+            _(u"No description yet."),
+            u"</p>",
+        ])
 
     ctx = {
         "form": form,
@@ -180,8 +175,7 @@ def project_admin(request, current_project):
                      TranslationProject, ctx, generate_link,
                      linkfield="language", queryset=queryset,
                      can_delete=True, form=tp_form_class,
-                     formset=TranslationProjectFormSet,
-                     exclude=('description',))
+                     formset=TranslationProjectFormSet)
 
 
 @get_path_obj

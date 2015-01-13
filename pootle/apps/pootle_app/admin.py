@@ -37,13 +37,13 @@ class MyProjectAdminForm(forms.ModelForm):
         return self.cleaned_data["code"]
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('code', 'fullname', 'description', 'localfiletype')
+    list_display = ('code', 'fullname', 'localfiletype')
     list_display_links = ('code', 'fullname')
     prepopulated_fields = {"fullname": ("code",)}
     radio_fields = {"treestyle": admin.VERTICAL}
     fieldsets = (
         (None, {
-            'fields': ('code', 'fullname', 'description', 'localfiletype'),
+            'fields': ('code', 'fullname', 'localfiletype'),
         }),
         (_('Advanced Options'), {
             'classes': ('collapse',),
