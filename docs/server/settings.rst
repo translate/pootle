@@ -111,8 +111,8 @@ Site-specific settings.
 
 .. setting:: POOTLE_REPORT_STRING_ERRORS_EMAIL
 
-``POOTLE_REPORT_STRING_ERRORS_EMAIL``
-  Default: ``string_errors_manager@YOUR_DOMAIN.com``
+``POOTLE_CONTACT_REPORT_EMAIL``
+  Default: ``CONTACT_EMAIL``
 
   .. versionadded:: 2.7
 

@@ -89,4 +89,4 @@ class PootleReportForm(PootleContactForm):
         # string errors report email.
         if self.cleaned_data['report_email']:
             return [self.cleaned_data['report_email']]
-        return [settings.POOTLE_REPORT_STRING_ERRORS_EMAIL]
+        return [settings.POOTLE_CONTACT_REPORT_EMAIL]
