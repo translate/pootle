@@ -58,6 +58,16 @@ class Migration(DataMigration):
             'screenshot_search_prefix': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'source_language': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['pootle_language.Language']"}),
             'treestyle': ('django.db.models.fields.CharField', [], {'default': "'auto'", 'max_length': '20'})
+        },
+        'staticpages.staticpage': {
+            'Meta': {'object_name': 'StaticPage'},
+            'active': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'body': ('pootle.core.markup.fields.MarkupField', [], {'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'modified_on': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now_add': 'True', 'blank': 'True'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
+            'virtual_path': ('django.db.models.fields.CharField', [], {'default': "''", 'unique': 'True', 'max_length': '100'})
         }
     }
 
