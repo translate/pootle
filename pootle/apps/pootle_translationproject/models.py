@@ -31,6 +31,7 @@ from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models import Q
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils.functional import cached_property
 
 from pootle_app.project_tree import does_not_exist
@@ -418,6 +419,7 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     ###########################################################################
 
+@receiver(post_save, sender=Project)
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw or instance.disabled:
         return
@@ -425,14 +427,11 @@ def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     for language in Language.objects.iterator():
         create_translation_project(language, instance)
 
-post_save.connect(scan_languages, sender=Project)
 
-
+@receiver(post_save, sender=Language)
 def scan_projects(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:
         return
 
     for project in Project.objects.enabled().iterator():
         create_translation_project(instance, project)
-
-post_save.connect(scan_projects, sender=Language)
