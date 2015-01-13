@@ -37,7 +37,7 @@ from pootle_store.fields import list_empty
 register = template.Library()
 
 
-IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))")
+IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))", re.IGNORECASE)
 @register.filter
 def image_urls(text):
     """Return a list of image URLs extracted from `text`."""
