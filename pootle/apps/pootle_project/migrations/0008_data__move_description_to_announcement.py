@@ -14,9 +14,9 @@ class Migration(DataMigration):
 
         for project in orm.Project.objects.all():
             if project.description.raw:
-                announcement_title =  "%s instructions" % project.name
-                ann = Announcement(active=True, title=announcement_title,
-                                   body=project.description.raw)
+                ann = Announcement(active=True, title="Project instructions",
+                                   body=project.description.raw,
+                                   virtual_path="announcements/"+project.code)
                 ann.save()
 
     def backwards(self, orm):
