@@ -18,7 +18,7 @@ class Migration(DataMigration):
         """
         if "pootle_app_pootleprofile" in connection.introspection.table_names():
             db.add_column('staticpages_agreement', 'new_user_id',
-                          models.IntegerField(null=False))
+                          models.IntegerField(null=True))
 
             db.execute('''
                 UPDATE staticpages_agreement AS A
