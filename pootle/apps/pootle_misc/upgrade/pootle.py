@@ -22,6 +22,7 @@
 
 from __future__ import absolute_import
 import logging
+from django.utils.translation import ugettext_noop as _
 
 
 def upgrade_to_21060():
@@ -60,7 +61,6 @@ def upgrade_to_25201():
     from django.contrib.auth import get_user_model
     from django.contrib.auth.models import Permission
     from django.contrib.contenttypes.models import ContentType
-    from django.utils.translation import ugettext_noop as _
 
     from pootle_app.models import Directory
     from pootle_app.models.permissions import PermissionSet
@@ -163,3 +163,32 @@ def upgrade_to_25206():
     """
     from . import save_build_version
     save_build_version('ttk', 12008)
+
+
+def upgrade_to_25999():
+    """
+    Create the "view" and "hide permissions.
+    """
+    from django.contrib.auth.models import Permission
+    from django.contrib.contenttypes.models import ContentType
+
+    content_type, created = ContentType.objects.\
+                            get_or_create(app_label="pootle_app",
+                                          model="directory")
+    content_type.name = "pootle"
+    content_type.save()
+
+    logging.info("Updating 'view' permission")
+    view_permission, created = Permission.objects.get_or_create(
+        codename="view",
+        content_type=content_type,
+    )
+    view_permission.name = _("Can access a project")
+    view_permission.save()
+
+    logging.info("Creating 'hide' permission")
+    Permission.objects.get_or_create(
+        name=_("Cannot access a project"),
+        codename="hide",
+        content_type=content_type,
+    )
