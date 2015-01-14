@@ -7,10 +7,10 @@ python:
 env:
   matrix:
     # FIXME reenable backends when these are made to work once again
-    #- DJANGO_VERSION=1.6.5 DATABASE_BACKEND=sqlite
-    #- DJANGO_VERSION=1.6.5 DATABASE_BACKEND=postgres
-    - DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql_myisam
-    #- DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql_innodb
+    #- DJANGO_VERSION=1.6.10 DATABASE_BACKEND=sqlite
+    #- DJANGO_VERSION=1.6.10 DATABASE_BACKEND=postgres
+    - DJANGO_VERSION=1.6.10 DATABASE_BACKEND=mysql_myisam
+    #- DJANGO_VERSION=1.6.10 DATABASE_BACKEND=mysql_innodb
     #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
     #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
     #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_myisam
@@ -36,9 +36,9 @@ matrix:
     - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
     # Disable alternate databases until we break away from being stuck on
     # MyISAM
-    - env: DJANGO_VERSION=1.6.5 DATABASE_BACKEND=sqlite
-    - env: DJANGO_VERSION=1.6.5 DATABASE_BACKEND=postgres
-    - env: DJANGO_VERSION=1.6.5 DATABASE_BACKEND=mysql_innodb
+    - env: DJANGO_VERSION=1.6.10 DATABASE_BACKEND=sqlite
+    - env: DJANGO_VERSION=1.6.10 DATABASE_BACKEND=postgres
+    - env: DJANGO_VERSION=1.6.10 DATABASE_BACKEND=mysql_innodb
 cache:
   apt: true
   directories:
