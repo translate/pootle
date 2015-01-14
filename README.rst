@@ -5,22 +5,6 @@ Pootle
     :alt: Build Status
     :target: https://travis-ci.org/translate/pootle
 
-.. image:: https://pypip.in/download/Pootle/badge.png
-    :alt: Downloads
-    :target: https://pypi.python.org/pypi/Pootle/
-
-.. image:: https://pypip.in/py_versions/Pootle/badge.png
-    :alt: Supported Python versions
-    :target: https://pypi.python.org/pypi/Pootle/
-
-.. image:: https://pypip.in/status/Pootle/badge.png
-    :alt: Development Status
-    :target: https://pypi.python.org/pypi/Pootle/
-
-.. image:: https://pypip.in/license/Pootle/badge.svg
-    :target: https://pypi.python.org/pypi/Pootle/
-    :alt: License
-
 `Pootle <http://pootle.translatehouse.org/>`_ is an online translation and
 localization tool.  It works to lower the barrier of entry, providing tools to
 enable teams to work towards higher quality while welcoming newcomers.
