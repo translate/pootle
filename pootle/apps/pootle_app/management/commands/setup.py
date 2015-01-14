@@ -85,8 +85,7 @@ class Command(NoArgsCommand):
             call_command('migrate', interactive=False)
             call_command('upgrade')
 
-            raise CommandError('Successfully upgraded Pootle to version 2.6.0.'
-                               '\n\n'
-                               'Pootle 2.6.0 is not meant to be used in real '
-                               'world deployments, so please proceed now with '
-                               'the upgrade to Pootle 2.7.0 or later.')
+            logging.warning('\n\n\n    Warning: Pootle 2.6.0 is an interim '
+                            'release (a migration step to Pootle'
+                            '\n             2.7.0). Do not use Pootle 2.6.0 '
+                            'for any deployment.\n\n')
