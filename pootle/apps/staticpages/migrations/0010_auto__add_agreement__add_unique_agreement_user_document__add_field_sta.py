@@ -10,6 +10,10 @@ AUTH_USER_MODEL = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 class Migration(SchemaMigration):
 
+    depends_on = (
+        ("accounts", "0003_auto__inherit_from_permissionsmixin"),
+    )
+
     def forwards(self, orm):
         # Adding model 'Agreement'
         db.create_table('staticpages_agreement', (
