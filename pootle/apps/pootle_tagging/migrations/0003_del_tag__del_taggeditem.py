@@ -29,7 +29,7 @@ class Migration(SchemaMigration):
 
 
     models = {
-        
+
     }
 
     complete_apps = ['pootle_tagging']
