@@ -11,11 +11,7 @@ class Migration(DataMigration):
     )
 
     def forwards(self, orm):
-        """Replace existing User FKs with their PootleProfile counterparts.
-
-        This will create temporal DB fields to copy data over and avoid
-        integrity errors while we are at it.
-        """
+        """Replace existing PootleProfile FKs with their User counterparts."""
         if "pootle_app_pootleprofile" in connection.introspection.table_names():
             if db.backend_name == "sqlite3":
                 # sqlite3 doesn't support UNION JOINS
@@ -29,11 +25,11 @@ class Migration(DataMigration):
 
             db.execute('''
                 UPDATE staticpages_agreement AS A
-                JOIN accounts_user AS U
-                  ON A.user_id = U.id
                 JOIN pootle_app_pootleprofile AS PP
-                  ON U.id = PP.user_id
-                SET A.new_user_id = PP.id;
+                  ON A.user_id = PP.id
+                JOIN accounts_user AS U
+                  ON PP.id = U.id
+                SET A.new_user_id = U.id;
             ''')
 
             db.delete_unique('staticpages_agreement', ['user_id', 'document_id'])
