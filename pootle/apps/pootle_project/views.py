@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2013 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -48,7 +48,8 @@ def overview(request, project, dir_path, filename):
     """Languages overview for a given project."""
     item_func = (make_xlanguage_item if dir_path or filename
                                      else make_language_item)
-    items = [item_func(item) for item in request.resource_obj.children]
+    items = [item_func(item) for item in
+             request.resource_obj.get_children_for_user(request.profile)]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',

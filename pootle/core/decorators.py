@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -97,12 +97,15 @@ def get_path_obj(func):
             language.set_children(children)
             path_obj = language
         elif project_code:
-            path_obj = get_object_or_404(Project, code=project_code,
-                                         disabled=False)
+            try:
+                path_obj = Project.objects.get_for_user(project_code,
+                                                        request.user)
+            except Project.DoesNotExist:
+                raise Http404
         else:  # No arguments: all user-accessible projects
             user_projects = Project.accessible_by_user(request.user)
-            user_projects = Project.objects.enabled() \
-                                   .filter(code__in=user_projects)
+            user_projects = Project.objects.for_user(request.user) \
+                                           .filter(code__in=user_projects)
 
             path_obj = ProjectSet(user_projects)
 

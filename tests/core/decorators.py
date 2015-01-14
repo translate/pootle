@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -31,13 +31,10 @@ from pootle_translationproject.models import TranslationProject
 
 
 @pytest.mark.django_db
-def test_get_path_obj(rf, default, afrikaans_tutorial,
-                      arabic_tutorial_disabled, tutorial_disabled):
+def test_get_path_obj(rf, default, afrikaans_tutorial):
     """Ensure the correct path object is retrieved."""
     language_code = afrikaans_tutorial.language.code
     project_code = afrikaans_tutorial.project.code
-
-    project_code_disabled = tutorial_disabled.code
 
     language_code_fake = 'faf'
     project_code_fake = 'fake-tutorial'
@@ -52,12 +49,9 @@ def test_get_path_obj(rf, default, afrikaans_tutorial,
     func(request, project_code=project_code)
     assert isinstance(request.ctx_obj, Project)
 
-    # Missing/disabled project
+    # Missing project
     with pytest.raises(Http404):
         func(request, project_code=project_code_fake)
-
-    with pytest.raises(Http404):
-        func(request, project_code=project_code_disabled)
 
     # Single language
     func(request, language_code=language_code)
@@ -71,18 +65,67 @@ def test_get_path_obj(rf, default, afrikaans_tutorial,
     func(request, language_code=language_code, project_code=project_code)
     assert isinstance(request.ctx_obj, TranslationProject)
 
-    # Missing/disabled Translation Project
+    # Missing Translation Project
     with pytest.raises(Http404):
         func(request, language_code=language_code_fake,
              project_code=project_code)
 
+
+def test_get_path_obj_disabled(rf, default, admin, project_foo,
+                               afrikaans_tutorial,
+                               arabic_tutorial_disabled, tutorial_disabled):
+    """Ensure the correct path object is retrieved when projects and
+    translation projects are disabled (#3451).
+    """
+    language_code = afrikaans_tutorial.language.code
+
+    language_code_disabled = arabic_tutorial_disabled.language.code
+    project_code_disabled = tutorial_disabled.code
+
+    # Regular users first
+    request = rf.get('/')
+    request.user = default
+
+    func = get_path_obj(lambda x, y: (x, y))
+
+    # Single project
+    func(request, project_code=project_foo.code)
+    assert isinstance(request.ctx_obj, Project)
+
+    with pytest.raises(Http404):
+        func(request, project_code=project_code_disabled)
+
+    # Disabled translation project
     with pytest.raises(Http404):
         func(request, language_code=language_code,
              project_code=project_code_disabled)
 
     with pytest.raises(Http404):
-        func(request, language_code=arabic_tutorial_disabled.language.code,
-             project_code=arabic_tutorial_disabled.project.code)
+        func(request, language_code=language_code_disabled,
+             project_code=project_code_disabled)
+
+
+    # Now admin users, they should have access to disabled projects too
+    request = rf.get('/')
+    request.user = admin
+
+    func = get_path_obj(lambda x, y: (x, y))
+
+    # Single project
+    func(request, project_code=project_foo.code)
+    assert isinstance(request.ctx_obj, Project)
+
+    func(request, project_code=project_code_disabled)
+    assert isinstance(request.ctx_obj, Project)
+
+    # Disabled translation projects are still inaccessible
+    with pytest.raises(Http404):
+        func(request, language_code=language_code,
+             project_code=project_code_disabled)
+
+    with pytest.raises(Http404):
+        func(request, language_code=language_code_disabled,
+             project_code=project_code_disabled)
 
 
 def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):

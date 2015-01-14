@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -94,7 +94,8 @@ def make_generic_item(path_obj):
         'href_sugg': path_obj.get_translate_url(state='suggestions'),
         'href_critical': path_obj.get_critical_url(),
         'title': path_obj.name,
-        'code': path_obj.code
+        'code': path_obj.code,
+        'is_disabled': getattr(path_obj, 'disabled', False),
     }
 
 

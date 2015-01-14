@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2015 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -51,9 +51,6 @@ from pootle_store.filetypes import filetype_choices, factory_classes
 from pootle_store.util import absolute_real_path
 
 
-# FIXME: Generate key dynamically
-CACHE_KEY = 'pootle-projects'
-
 RESERVED_PROJECT_CODES = ('admin', 'translate', 'settings')
 
 
@@ -67,20 +64,56 @@ class ProjectManager(models.Manager):
             )
         )
 
-    def cached_dict(self):
-        projects = cache.get(CACHE_KEY)
+    def cached_dict(self, user):
+        """Return a cached list of projects tuples for `user`.
+
+        :param user: The user for whom projects need to be retrieved for.
+        :return: A list of project tuples including (code, fullname)
+        """
+        cache_key = make_method_key('Project', 'cached_dict',
+                                    {'is_admin': user.is_superuser})
+        projects = cache.get(cache_key)
         if not projects:
-            # XXX: create a `LiveProjectManager` instead of forcing
-            # `enable()` on this
+            logging.debug('Cache miss for %s', cache_key)
             projects = SortedDict(
-                self.enabled().order_by('fullname').values_list('code', 'fullname')
+                self.for_user(user).order_by('fullname')
+                                   .values_list('code', 'fullname')
             )
-            cache.set(CACHE_KEY, projects, settings.OBJECT_CACHE_TIMEOUT)
+            cache.set(cache_key, projects, settings.OBJECT_CACHE_TIMEOUT)
 
         return projects
 
     def enabled(self):
         return self.filter(disabled=False)
+
+    def get_for_user(self, project_code, user):
+        """Gets a `project_code` project for a specific `user`.
+
+        - Admins can get the project even if it's disabled.
+        - Regular users only get a project if it's not disabled.
+
+        :param project_code: The code of the project to retrieve.
+        :param user: The user for whom the project needs to be retrieved.
+        :return: The `Project` matching the params, raises otherwise.
+        """
+        if user.is_superuser:
+            return self.get(code=project_code)
+
+        return self.get(code=project_code, disabled=False)
+
+    def for_user(self, user):
+        """Filters projects for a specific user.
+
+        - Admins always get all projects.
+        - Regular users only get enabled projects.
+
+        :param user: The user for whom the projects need to be retrieved for.
+        :return: A filtered queryset with `Project`s for `user`.
+        """
+        if user.is_superuser:
+            return self.all()
+
+        return self.enabled()
 
 
 class ProjectURLMixin(object):
@@ -369,6 +402,10 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     ### /TreeItem
 
+    def get_children_for_user(self, user):
+        """Returns children translation projects for a specific `user`."""
+        return self.translationproject_set.for_user(user)
+
     def get_real_path(self):
         return absolute_real_path(self.code)
 
@@ -474,6 +511,9 @@ class ProjectResource(VirtualResource, ProjectURLMixin):
 
     ### /TreeItem
 
+    def get_children_for_user(self, user):
+        return self.children
+
 
 class ProjectSet(VirtualResource, ProjectURLMixin):
 
@@ -511,7 +551,12 @@ def invalidate_accessible_projects_cache(sender, instance, **kwargs):
         ['Project', 'TranslationProject', 'PermissionSet']):
         return
 
-    cache.delete(CACHE_KEY)
+    # FIXME: use Redis directly to clear these caches effectively
+
+    cache.delete_many([
+        make_method_key('Project', 'cached_dict', {'is_admin': False}),
+        make_method_key('Project', 'cached_dict', {'is_admin': True}),
+    ])
 
     User = get_user_model()
     users_list = User.objects.values_list('username', flat=True)

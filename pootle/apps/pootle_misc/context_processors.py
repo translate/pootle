@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2014 Zuza Software Foundation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -55,6 +56,6 @@ def pootle_context(request):
         },
         'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
         'ALL_LANGUAGES': Language.live.cached_dict(),
-        'ALL_PROJECTS': Project.objects.cached_dict(),
+        'ALL_PROJECTS': Project.objects.cached_dict(request.user),
         'display_agreement': _agreement_context(request),
     }

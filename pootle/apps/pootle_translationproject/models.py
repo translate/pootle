@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -130,6 +130,21 @@ class TranslationProjectManager(models.Manager):
 
     def disabled(self):
         return self.filter(Q(disabled=True) | Q(project__disabled=True))
+
+    def for_user(self, user):
+        """Filters translation projects for a specific user.
+
+        - Admins always get all translation projects.
+        - Regular users only get enabled translation projects.
+
+        :param user: The user for whom the translation projects need to be
+            retrieved for.
+        :return: A filtered queryset with `TranslationProject`s for `user`.
+        """
+        if user.is_superuser:
+            return self.all()
+
+        return self.enabled()
 
 
 class TranslationProject(models.Model, CachedTreeItem):

@@ -502,6 +502,11 @@ html[dir="rtl"] #sidebar-toggle
     z-index: 101;
 }
 
+.browser .alert
+{
+    margin: 1em 0.5em;
+}
+
 .alert
 {
     padding: 1em;
@@ -1945,6 +1950,12 @@ table.stats .item.dirty .last-activity,
 table.stats .item.dirty .last-updated
 {
     opacity: 0.35;
+}
+
+.item.is-disabled
+{
+    font-style: italic;
+    opacity: 0.5;
 }
 
 .muted

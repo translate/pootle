@@ -85,6 +85,12 @@
 {% endblock %}
 
 {% block content %}
+{% if project and project.disabled %}
+<div class="alert alert-danger">
+{% trans "This project is disabled and visible to administrators only." %}
+</div>
+{% endif %}
+
 <div id="autorefresh-notice">
   {% blocktrans %}Some data on this page is currently being calculated, and the page will be refreshed automatically in <strong>30 seconds</strong>.{% endblocktrans %}
   <a href="#" class="js-stats-refresh">{% trans "Refresh now" %}</a>
