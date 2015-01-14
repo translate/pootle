@@ -46,5 +46,5 @@ To create a database dump for an older Pootle version you will need to:
 5. Run Pootle such that it can import and configure things in older versions.
    Running refresh_stats and such can be helpful to make sure Pootle is in
    running order, not just post install state.
-6. Dump the database to ``data/dump-$engine-$pootle_versions.sql``
+6. Dump the database to ``data/[description]-$engine-$pootle_versions.sql``
 7. Commit to Git and make sure any needed migration instructions are in place.
