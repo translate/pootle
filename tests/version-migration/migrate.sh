@@ -4,7 +4,7 @@ user_supplied_db=$1
 export TRAVIS
 export DATABASE_BACKEND=${DATABASE_BACKEND:=$user_supplied_db}
 basedir=$(dirname "$0")
-datadir=$basedir/data
+datadir=$(readlink -f $basedir/data)
 dbname=pootle
 dbuser_postgres=postgres
 dbuser_mysql=travis
