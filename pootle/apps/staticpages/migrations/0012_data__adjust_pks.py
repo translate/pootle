@@ -17,6 +17,13 @@ class Migration(DataMigration):
         integrity errors while we are at it.
         """
         if "pootle_app_pootleprofile" in connection.introspection.table_names():
+            if db.backend_name == "sqlite3":
+                # sqlite3 doesn't support UNION JOINS
+                # There's a better fix for this, but it's not worth it right now.
+                # Wipe it out.
+                db.execute("""DELETE FROM staticpages_agreement;""")
+                return
+
             db.add_column('staticpages_agreement', 'new_user_id',
                           models.IntegerField(null=True))
 
