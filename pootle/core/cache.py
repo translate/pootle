@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -27,8 +27,13 @@ def make_method_key(model, method, key):
     :param key: a unique key to identify the object to be cached
     """
     prefix = 'method-cache'
-    name = (model.__name__ if hasattr(model, '__name__')
-                           else model.__class__.__name__)
+
+    if isinstance(model, basestring):
+        name = model
+    else:
+        name = (model.__name__ if hasattr(model, '__name__')
+                               else model.__class__.__name__)
+
     key = key if not isinstance(key, dict) else make_key(**key)
     return u':'.join([prefix, name, method, key])
 
