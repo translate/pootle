@@ -71,9 +71,9 @@ function migrate_database {
 	esac
 }
 
-for database_dump in $(find $datadir -name "dump-$DATABASE_BACKEND-*.sql")
+for database_dump in $(find $datadir -name "*-$DATABASE_BACKEND-*.sql")
 do
-	pootle_version=$(basename $database_dump .sql | cut -d"-" -f3)
+	pootle_version=$(echo $database_dump | sed "s/.*-\([^-]*\)\.sql/\1/")
 	load_database $database_dump
 	migrate_database $pootle_version
 	# TODO actually run the server
