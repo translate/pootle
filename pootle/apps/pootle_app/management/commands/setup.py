@@ -41,22 +41,22 @@ class Command(NoArgsCommand):
         current_buildversion = get_pootle_build()
 
         if not current_buildversion:
-            logging.warning('Pootle 2.6.0 is not meant to be used in real '
-                            'world deployments.'
-                            '\n\n'
-                            'If you want to install a fresh Pootle then '
-                            'install Pootle 2.7.0 or later.'
-                            '\n\n'
-                            'Otherwise you are upgrading Pootle and you '
-                            'already have have upgraded up to the 2.6.0 '
-                            'stage, so you must now proceed now with the '
-                            'final upgrade to Pootle 2.7.0 or later.')
+            raise CommandError('Pootle 2.6.0 is not meant to be used in real '
+                               'world deployments.'
+                               '\n\n'
+                               'If you want to install a fresh Pootle then '
+                               'install Pootle 2.7.0 or later.'
+                               '\n\n'
+                               'Otherwise you are upgrading Pootle and you '
+                               'already have have upgraded up to the 2.6.0 '
+                               'stage, so you must now proceed now with the '
+                               'final upgrade to Pootle 2.7.0 or later.')
         elif current_buildversion < 21010:
             # Trying to upgrade a deployment older than Pootle 2.1.1 for which
             # we can't provide a direct upgrade.
-            logging.warning('This Pootle installation is too old. Please '
-                            'upgrade first to 2.1.6 before upgrading to '
-                            'this version.')
+            raise CommandError('This Pootle installation is too old. Please '
+                               'upgrade first to 2.1.6 before upgrading to '
+                               'this version.')
         elif current_buildversion < NEW_POOTLE_BUILD:
             logging.info('Upgrading existing Pootle installation.')
 
