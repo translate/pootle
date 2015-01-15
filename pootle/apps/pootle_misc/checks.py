@@ -93,6 +93,7 @@ check_names = {
     'unbalanced_tag_braces': _(u"Unbalanced tag braces"),
     'changed_attributes': _(u"Changed attributes"),
     'unescaped_ampersands': _(u"Unescaped ampersands"),
+    'incorrectly_escaped_ampersands': _(u"Incorrectly escaped ampersands"),
     'whitespace': _(u"Whitespaces"),
     'date_format': _(u"Date format"),
     'uppercase_placeholders': _(u"Uppercase placeholders"),
@@ -472,6 +473,17 @@ class ENChecker(checks.TranslationChecker):
                 return True
 
             raise checks.FilterFailure(u"Unescaped ampersand mismatch")
+
+        return True
+
+    @critical
+    def incorrectly_escaped_ampersands(self, str1, str2):
+        if escaped_entities_regex.search(str2):
+            chunks = broken_ampersand_regex.split(str1)
+            if len(chunks) == 1:
+                return True
+
+            raise checks.FilterFailure(u"Escaped ampersand mismatch")
 
         return True
 
