@@ -16,7 +16,7 @@ class Migration(DataMigration):
             if project.description.raw:
                 ann = Announcement(active=True, title="Project instructions",
                                    body=project.description.raw,
-                                   virtual_path="announcements/"+project.code)
+                                   virtual_path="announcements/projects/"+project.code)
                 ann.save()
 
     def backwards(self, orm):
