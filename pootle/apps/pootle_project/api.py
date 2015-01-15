@@ -44,7 +44,6 @@ class ProjectResource(StatisticsModelResource):
         fields = [
             'checkstyle',
             'code',
-            'description',
             'fullname',
             'ignoredfiles',
             'localfiletype',
