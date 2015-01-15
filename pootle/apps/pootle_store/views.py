@@ -566,10 +566,11 @@ def timeline(request, unit):
             if item.field == SubmissionFields.STATE:
                 entry['old_value'] = STATES_MAP[int(to_python(item.old_value))]
                 entry['new_value'] = STATES_MAP[int(to_python(item.new_value))]
-            elif item.check:
+            elif item.quality_check:
+                check_name = item.quality_check.name
                 entry.update({
-                    'check_name': item.check.name,
-                    'check_display_name': check_names[item.check.name],
+                    'check_name': check_name,
+                    'check_display_name': check_names[check_name],
                     'checks_url': reverse('pootle-staticpages-display',
                                           args=['help/quality-checks']),
                     'action': {

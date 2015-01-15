@@ -87,7 +87,7 @@ class SubmissionManager(models.Manager):
         return (
             super(SubmissionManager, self).get_queryset().select_related(
                 'translation_project', 'suggestion', 'submitter', 'unit',
-                'check', 'store',
+                'quality_check', 'store',
             )
         )
 
@@ -111,7 +111,7 @@ class Submission(models.Model):
             null=True, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit', blank=True, null=True,
             db_index=True)
-    check = models.ForeignKey('pootle_store.QualityCheck', blank=True, null=True,
+    quality_check = models.ForeignKey('pootle_store.QualityCheck', blank=True, null=True,
             db_index=True)
     store = models.ForeignKey('pootle_store.Store', blank=True, null=True,
             db_index=True)
@@ -177,10 +177,11 @@ class Submission(models.Model):
                     unit,
             }
 
-            if self.check is not None:
+            if self.quality_check is not None:
+                check_name = self.quality_check.name
                 unit.update({
-                    'check_name': self.check.name,
-                    'check_display_name': check_names[self.check.name],
+                    'check_name': check_name,
+                    'check_display_name': check_names[check_name],
                     'checks_url': reverse('pootle-staticpages-display',
                                           args=['help/quality-checks']),
                 })

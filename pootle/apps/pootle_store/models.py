@@ -1254,7 +1254,7 @@ class Unit(models.Model, base.TranslationUnit):
             unit=self,
             store=self.store,
             type=sub_type,
-            check=check
+            quality_check=check
         )
         sub.save()
 
