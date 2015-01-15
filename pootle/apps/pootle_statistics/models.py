@@ -87,7 +87,7 @@ class Submission(models.Model):
         null=True,
         db_index=True,
     )
-    check = models.ForeignKey(
+    quality_check = models.ForeignKey(
         'pootle_store.QualityCheck',
         blank=True,
         null=True,
@@ -156,10 +156,11 @@ class Submission(models.Model):
                 'url': self.unit.get_translate_url(),
             }
 
-            if self.check is not None:
+            if self.quality_check is not None:
+                check_name = self.quality_check.name
                 unit.update({
-                    'check_name': self.check.name,
-                    'check_display_name': check_names[self.check.name],
+                    'check_name': check_name,
+                    'check_display_name': check_names[check_name],
                     'checks_url': ('http://docs.translatehouse.org/'
                                    'projects/translate-toolkit/en/latest/'
                                    'commands/pofilter_tests.html'),

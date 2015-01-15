@@ -1103,7 +1103,7 @@ class Unit(models.Model, base.TranslationUnit):
             field=SubmissionFields.NONE,
             unit=self,
             type=sub_type,
-            check=check
+            quality_check=check
         )
         sub.save()
 
