@@ -1,7 +1,8 @@
 #!/bin/bash
 
 user_supplied_db=$1
-export TRAVIS
+# Use Travis setup i.e. settings/91-travis.conf
+export TRAVIS=1
 export DATABASE_BACKEND=${DATABASE_BACKEND:=$user_supplied_db}
 basedir=$(dirname "$0")
 datadir=$(readlink -f $basedir/data)
