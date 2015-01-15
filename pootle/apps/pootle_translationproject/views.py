@@ -431,7 +431,6 @@ def overview(request, translation_project, dir_path, filename=None):
     ctx.update({
         'resource_obj': request.store or request.directory,  # Dirty hack.
         'translation_project': translation_project,
-        'description': translation_project.description,
         'project': project,
         'language': language,
         'feed_path': request.directory.pootle_path[1:],
@@ -530,11 +529,8 @@ def edit_settings(request, translation_project):
         form.save()
         rcode = 200
 
-        if translation_project.description:
-            response["description"] = translation_project.description
-        else:
-            response["description"] = (u'<p class="placeholder muted">%s</p>' %
-                                       _(u"No description yet."))
+        response["description"] = (u'<p class="placeholder muted">%s</p>' %
+                                   _(u"No description yet."))
 
     path_args = split_pootle_path(translation_project.pootle_path)[:2]
     context = {

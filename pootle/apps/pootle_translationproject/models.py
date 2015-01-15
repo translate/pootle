@@ -37,7 +37,6 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.managers import RelatedManager
-from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
@@ -110,12 +109,6 @@ class TranslationProjectManager(RelatedManager):
 
 class TranslationProject(models.Model, TreeItem):
 
-    description = MarkupField(
-        blank=True,
-        help_text=_('A description of this translation project. This is '
-                    'useful to give more information or instructions. Allowed '
-                    'markup: %s', get_markup_filter_name()),
-    )
     language = models.ForeignKey(Language, db_index=True)
     project = models.ForeignKey(Project, db_index=True)
     real_path = models.FilePathField(editable=False)

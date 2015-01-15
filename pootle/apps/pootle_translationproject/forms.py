@@ -29,7 +29,6 @@ class DescriptionForm(forms.ModelForm):
 
     class Meta:
         model = TranslationProject
-        fields = ("description",)
 
 
 def upload_form_factory(request):

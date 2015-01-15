@@ -37,7 +37,6 @@ class TranslationProjectResource(StatisticsModelResource):
         queryset = TranslationProject.objects.all()
         resource_name = 'translation-projects'
         fields = [
-            'description',
             'language',
             'pootle_path',
             'project',
