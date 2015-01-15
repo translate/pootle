@@ -60,7 +60,6 @@ def overview(request, language):
         'language': {
           'code': language.code,
           'name': tr_lang(language.fullname),
-          'description': language.description,
         },
         'feed_path': '%s/' % language.code,
         'can_edit': can_edit,
@@ -97,15 +96,11 @@ def language_settings_edit(request, language):
         form.save()
         rcode = 200
 
-        if language.description:
-            the_html = language.description
-        else:
-            the_html = u"".join([
-                u'<p class="placeholder muted">',
-                _(u"No description yet."), u"</p>"
-            ])
-
-        response["description"] = the_html
+        response["description"] = u"".join([
+            u'<p class="placeholder muted">',
+            _(u"No description yet."),
+            u"</p>"
+        ])
 
     context = {
         "form": form,

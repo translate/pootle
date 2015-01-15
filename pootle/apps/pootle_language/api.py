@@ -42,7 +42,6 @@ class LanguageResource(StatisticsModelResource):
         resource_name = 'languages'
         fields = [
             'code',
-            'description',
             'fullname',
             'nplurals',
             'pluralequation',

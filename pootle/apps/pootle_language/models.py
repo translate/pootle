@@ -26,7 +26,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.managers import RelatedManager
-from pootle.core.markup import get_markup_filter_name, MarkupField
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
@@ -76,12 +75,6 @@ class Language(models.Model, TreeItem):
         max_length=255,
         null=False,
         verbose_name=_("Full Name"),
-    )
-    description = MarkupField(
-        blank=True,
-        help_text=_('A description of this language. This is useful to give '
-                    'more information or instructions. Allowed markup: %s',
-                    get_markup_filter_name()),
     )
     specialchars = models.CharField(
         max_length=255,

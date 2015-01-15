@@ -25,4 +25,4 @@ class DescriptionForm(forms.ModelForm):
 
     class Meta:
         model = Language
-        fields = ("description", "specialchars")
+        fields = ("specialchars", )
