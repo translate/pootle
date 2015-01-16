@@ -27,7 +27,7 @@ def _require_permission_set(user, directory, positive_permissions=None,
     from pootle_app.models.permissions import PermissionSet
 
     criteria = {
-        'profile': user,
+        'user': user,
         'directory': directory,
     }
     permission_set, created = PermissionSet.objects.get_or_create(**criteria)

@@ -250,7 +250,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
             root_permissions = PermissionSet.objects.filter(
                 directory__pootle_path='/',
-                profile__username__in=allow_usernames,
+                user__username__in=allow_usernames,
                 positive_permissions__codename='view',
             )
             if root_permissions.count():
@@ -263,12 +263,12 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
             accessible_projects = cls.objects.filter(
                 directory__permission_sets__positive_permissions__codename='view',
-                directory__permission_sets__profile__username__in=allow_usernames,
+                directory__permission_sets__user__username__in=allow_usernames,
             ).values_list('code', flat=True)
 
             forbidden_projects = cls.objects.filter(
                 directory__permission_sets__negative_permissions__codename='hide',
-                directory__permission_sets__profile__username__in=forbid_usernames,
+                directory__permission_sets__user__username__in=forbid_usernames,
             ).values_list('code', flat=True)
 
             allow_projects = set(accessible_projects)

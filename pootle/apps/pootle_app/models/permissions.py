@@ -65,7 +65,7 @@ def get_permissions_by_username(username, directory):
         try:
             permissionset = PermissionSet.objects.filter(
                 directory__in=directory.trail(only_dirs=False),
-                profile__username=username) \
+                user__username=username) \
                         .order_by('-directory__pootle_path')[0]
         except IndexError:
             permissionset = None
@@ -79,7 +79,7 @@ def get_permissions_by_username(username, directory):
                     project_path = '/projects/%s/' % path_parts[1]
                     permissionset = PermissionSet.objects \
                             .get(directory__pootle_path=project_path,
-                                 profile__username=username)
+                                 user__username=username)
                 except PermissionSet.DoesNotExist:
                     pass
 
@@ -156,7 +156,7 @@ class PermissionSetManager(models.Manager):
         """Mimics `select_related(depth=1)` behavior. Pending review."""
         return (
             super(PermissionSetManager, self).get_queryset().select_related(
-                'profile', 'directory',
+                'user', 'directory',
             )
         )
 
@@ -166,11 +166,10 @@ class PermissionSet(models.Model):
     objects = PermissionSetManager()
 
     class Meta:
-        unique_together = ('profile', 'directory')
+        unique_together = ('user', 'directory')
         app_label = "pootle_app"
 
-    # FIXME: rename to `user` for clearer semantics
-    profile = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
     directory = models.ForeignKey('pootle_app.Directory', db_index=True,
                                   related_name='permission_sets')
     positive_permissions = models.ManyToManyField(Permission, db_index=True,
@@ -179,7 +178,7 @@ class PermissionSet(models.Model):
             related_name='permission_sets_negative')
 
     def __unicode__(self):
-        return "%s : %s" % (self.profile.username,
+        return "%s : %s" % (self.user.username,
                             self.directory.pootle_path)
 
     def to_dict(self):
@@ -190,12 +189,12 @@ class PermissionSet(models.Model):
         super(PermissionSet, self).save(*args, **kwargs)
         # FIXME: can we use `post_save` signals or invalidate caches in
         # model managers, please?
-        key = iri_to_uri('Permissions:%s' % self.profile.username)
+        key = iri_to_uri('Permissions:%s' % self.user.username)
         cache.delete(key)
 
     def delete(self, *args, **kwargs):
         super(PermissionSet, self).delete(*args, **kwargs)
         # FIXME: can we use `post_delete` signals or invalidate caches in
         # model managers, please?
-        key = iri_to_uri('Permissions:%s' % self.profile.username)
+        key = iri_to_uri('Permissions:%s' % self.user.username)
         cache.delete(key)
