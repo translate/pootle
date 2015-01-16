@@ -9,7 +9,6 @@ requirements in a virtual environment.
 Before proceeding, consider installing these first:
 
 - At least Python 2.6
-- At least Django 1.4.8 (Won't work yet with Django 1.5 or newer)
 - `python-pip <http://www.pip-installer.org/>`_
 
 If you only want to have a sneak peek of Pootle, the default configuration and
@@ -119,8 +118,8 @@ line tool within your environment.
 
   (env) $ pootle --version
   Pootle 2.5.1
-  Translate Toolkit 1.10
-  Django 1.4.10
+  Translate Toolkit 1.11.0
+  Django 1.6.5
 
 
 .. _installation#initializing_the_configuration:
@@ -142,9 +141,9 @@ command.
 If the desired path exists, you will be prompted for whether to overwrite the
 old configuration. Passing the ``--noinput`` flag assumes a negative answer.
 
-This default configuration is enough to initially experiment with Pootle but
-**it's highly discouraged and unsupported to use this configuration in a
-production environment**.
+.. warning:: This default configuration is enough to initially experiment with
+   Pootle but **it's highly discouraged and unsupported to use this
+   configuration in a production environment**.
 
 Also, the default configuration uses SQLite, which shouldn't be used for
 anything more than testing purposes.
@@ -159,9 +158,9 @@ available settings<settings#available>`.
 Setting Up the Database
 -----------------------
 
-Before your run Pootle for the first time, you need to create the schema for
-the database and populate it with initial data. This is done by executing the
-:command:`setup` management command:
+Before your run Pootle for the first time, you need to create the schema
+for the database and populate it with initial data. This is done by
+executing the :ref:`setup <commands#setup>` management command:
 
 .. code-block:: bash
 
