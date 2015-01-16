@@ -17,3 +17,4 @@ other way, make sure to read through this part.
    testing
    glossary
    styleguide
+   releasing
