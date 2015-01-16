@@ -60,6 +60,7 @@ def overview(request, translation_project, dir_path, filename=None):
     directory = request.directory
     store = request.store
     is_admin = check_permission('administrate', request)
+    announcements = []
 
     # TODO: cleanup and refactor, retrieve from cache
     try:
@@ -67,11 +68,29 @@ def overview(request, translation_project, dir_path, filename=None):
         announcement = StaticPage.objects.live(request.user).get(
             virtual_path=ann_virtual_path,
         )
+        announcements.append(announcement)
     except StaticPage.DoesNotExist:
         announcement = None
 
-    has_announcement = announcement is not None
-    has_sidebar = has_announcement
+    try:
+        ann_virtual_path = 'announcements/' + language.code
+        language_announcement = StaticPage.objects.live(request.user).get(
+            virtual_path=ann_virtual_path,
+        )
+        announcements.append(language_announcement)
+    except StaticPage.DoesNotExist:
+        pass
+
+    try:
+        ann_virtual_path = ('announcements/' + language.code + '/' +
+                            project.code)
+        tp_announcement = StaticPage.objects.live(request.user).get(
+            virtual_path=ann_virtual_path,
+        )
+        announcements.append(tp_announcement)
+    except StaticPage.DoesNotExist:
+        pass
+
     is_sidebar_open = True
     stored_mtime = None
     new_mtime = None
@@ -87,13 +106,19 @@ def overview(request, translation_project, dir_path, filename=None):
         if project.code in cookie_data:
             stored_mtime = cookie_data[project.code]
 
-    if has_announcement:
+    if announcement is not None:
         ann_mtime = dateformat.format(announcement.modified_on, 'U')
         if ann_mtime != stored_mtime:
             is_sidebar_open = True
             new_mtime = ann_mtime
 
-    ctx = get_overview_context(request)
+    ctx = {
+        'announcements': announcements,
+        'is_sidebar_open': is_sidebar_open,
+        'has_sidebar': len(announcements) > 0,
+    }
+
+    ctx.update(get_overview_context(request))
 
     # TODO improve plugin logic
     if "import_export" in settings.INSTALLED_APPS and request.user.is_authenticated():
@@ -105,8 +130,8 @@ def overview(request, translation_project, dir_path, filename=None):
                         check_permission('suggest', request))
         ctx.update({
             'display_download': has_download,
+            'has_sidebar': True,
         })
-        has_sidebar = True
 
     stats = request.resource_obj.get_stats()
 
@@ -151,10 +176,6 @@ def overview(request, translation_project, dir_path, filename=None):
         'is_admin': is_admin,
 
         'browser_extends': 'translation_projects/base.html',
-
-        'announcement': announcement,
-        'is_sidebar_open': is_sidebar_open,
-        'has_sidebar': has_sidebar,
     })
 
     response = render(request, 'browser/overview.html', ctx)
