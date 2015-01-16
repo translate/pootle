@@ -21,7 +21,6 @@ Additional Notes
    :maxdepth: 1
 
    changelog
-   evernote_changelog
    upstream_differences
    releases/index
    license
