@@ -71,11 +71,28 @@ def overview(request, translation_project, dir_path, filename=None):
     # TODO: cleanup and refactor, retrieve from cache
     try:
         ann_virtual_path = 'announcements/projects/' + project.code
-        announcement = StaticPage.objects.live(request.user).get(
+        project_announcement = StaticPage.objects.live(request.user).get(
             virtual_path=ann_virtual_path,
         )
     except StaticPage.DoesNotExist:
-        announcement = None
+        project_announcement = None
+
+    try:
+        ann_virtual_path = 'announcements/' + language.code
+        language_announcement = StaticPage.objects.live(request.user).get(
+            virtual_path=ann_virtual_path,
+        )
+    except StaticPage.DoesNotExist:
+        language_announcement = None
+
+    try:
+        ann_virtual_path = ('announcements/' + language.code + '/' +
+                            project.code)
+        tp_announcement = StaticPage.objects.live(request.user).get(
+            virtual_path=ann_virtual_path,
+        )
+    except StaticPage.DoesNotExist:
+        tp_announcement = None
 
     display_announcement = True
     stored_mtime = None
@@ -92,8 +109,8 @@ def overview(request, translation_project, dir_path, filename=None):
         if project.code in cookie_data:
             stored_mtime = cookie_data[project.code]
 
-    if announcement is not None:
-        ann_mtime = dateformat.format(announcement.modified_on, 'U')
+    if project_announcement is not None:
+        ann_mtime = dateformat.format(project_announcement.modified_on, 'U')
         if ann_mtime != stored_mtime:
             display_announcement = True
             new_mtime = ann_mtime
@@ -107,7 +124,9 @@ def overview(request, translation_project, dir_path, filename=None):
 
         'browser_extends': 'translation_projects/base.html',
 
-        'announcement': announcement,
+        'project_announcement': project_announcement,
+        'language_announcement': language_announcement,
+        'tp_announcement': tp_announcement,
         'announcement_displayed': display_announcement,
     })
 
