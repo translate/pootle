@@ -1,0 +1,38 @@
+=============================
+Pootle bugfix release 2.5.1.1
+=============================
+
+*Released on 2014-04-29*
+
+The 2.5.1.1 release is a bugfix release for the 2.5.1 branch.
+
+
+Installation and Upgrade
+========================
+- :doc:`Installation </server/installation>`
+- :doc:`Upgrade </server/upgrading>`
+
+
+Bugfixes
+========
+
+For a full list of changes, please check the `git log
+<https://github.com/translate/pootle/compare/2.5.1...2.5.1.1>`_.
+
+- Top stats are now cached for a much longer time and are
+  :setting:`configurable <POOTLE_TOP_STATS_CACHE_TIMEOUT>`.
+- Updated Google Translate support to work with the updated Google Translate API
+- Fixed potential failures with zip exports
+- Fixed several requirements issues with newer versions of Python and some libraries
+- Fixed an obscure crash caused by pagination queries
+- Fixed a potential crash when calculating statistics for a submission
+- Fixed some javascript issues for users with corrupt cookies
+- Assorted documentation updates and fixes
+
+
+Credits
+=======
+The following people have made Pootle 2.5.1.1 possible:
+
+Julen Ruiz Aizpuru, Leandro Regueiro, Dwayne Bailey, Khaled Hosny, Jerome Leclanche,
+Igor Afanasyev and @qdinar.
