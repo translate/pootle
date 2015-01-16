@@ -123,8 +123,11 @@ class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
 
         if self.page_type == ANN_TYPE:
             del form.fields['url']
-            form.fields['virtual_path'] \
-                .widget.attrs['placeholder'] = u'projects/<project_code>'
+            # Translators: 'projects' must not be translated.
+            msg = _(u'projects/<project_code> or <language_code> or '
+                    u'<language_code>/<project_code>')
+            form.fields['virtual_path'].widget.attrs['placeholder'] = msg
+            form.fields['virtual_path'].widget.attrs['size'] = 60
 
         return form
 
