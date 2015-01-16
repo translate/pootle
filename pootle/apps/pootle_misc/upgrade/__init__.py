@@ -129,4 +129,5 @@ def upgrade(product, old_buildversion, new_buildversion):
         upgrade_function()
         save_build_version(product, upgrade_buildversion)
 
-    save_build_version(product, new_buildversion)
+    if len(upgrade_functions) == 0:
+        save_build_version(product, new_buildversion)
