@@ -19,29 +19,25 @@ class Migration(DataMigration):
 
         cur_id = None
         processed_id = None
+
         skip_types = [
             SubmissionTypes.MUTE_CHECK,
             SubmissionTypes.UNMUTE_CHECK,
             SubmissionTypes.SUGG_ADD,
             SubmissionTypes.SUGG_REJECT,
         ]
-
         for s in ss:
             if (processed_id != s.unit_id and
                 (cur_id != s.unit_id or s.type in skip_types or
                  s.field == SubmissionFields.COMMENT)):
-
                 cur_id = s.unit_id
-
-                if s.field == SubmissionFields.TARGET:
+                if s.type == SubmissionTypes.SUGG_ACCEPT:
+                    s.unit.reviewed_by = s.submitter
+                    s.unit.reviewed_on = s.creation_time
+                    s.unit.save()
                     processed_id = cur_id
-
-                    if s.type == SubmissionTypes.SUGG_ACCEPT:
-                        s.submitter = s.suggestion.reviewer
-                        s.unit.reviewed_by = s.submitter
-                        s.unit.reviewed_on = s.creation_time
-                        s.save()
-                        s.unit.save()
+                elif s.field == SubmissionFields.TARGET:
+                    processed_id = cur_id
 
     def backwards(self, orm):
         pass
