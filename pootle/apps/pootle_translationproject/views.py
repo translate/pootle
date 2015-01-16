@@ -70,7 +70,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
     # TODO: cleanup and refactor, retrieve from cache
     try:
-        ann_virtual_path = 'announcements/' + project.code
+        ann_virtual_path = 'announcements/projects/' + project.code
         announcement = StaticPage.objects.live(request.user).get(
             virtual_path=ann_virtual_path,
         )

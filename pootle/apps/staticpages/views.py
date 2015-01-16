@@ -135,7 +135,7 @@ class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
         if self.page_type == ANN_TYPE:
             del form.fields['url']
             form.fields['virtual_path'] \
-                .widget.attrs['placeholder'] = u'<project_code>'
+                .widget.attrs['placeholder'] = u'projects/<project_code>'
 
         return form
 
