@@ -1,7 +1,7 @@
 {% load i18n assets baseurl locale profile_tags humanize staticfiles %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}{% endblock %}" class="{{ settings.POOTLE_INSTANCE_ID }}">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}pootle-base{% endblock %}" class="{{ settings.POOTLE_INSTANCE_ID }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -80,7 +80,7 @@
     {% block extra_head %}{% endblock %}
   </head>
 
-  <body id="{% block body_id %}{% endblock %}" class="preload {% block body_class %}{% endblock %}">
+  <body id="{% block body_id %}pootle-body-base{% endblock %}" class="preload {% block body_class %}{% endblock %}">
     {% block body %}
     <div id="wrapper">
       <noscript>
