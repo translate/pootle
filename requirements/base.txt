@@ -1,18 +1,11 @@
-Django>=1.6.10,<1.7
+Django>=1.7.3,<1.8
 
 # Django apps
-South>=0.8.4
 django-assets>=0.10
 django-contact-form==1.0
 django-overextends>=0.3.2
 django-redis-cache
 django-rq
-
-# Required by webassets, isn't shipped in Python < 2.7
-# FIXME remove once Django >= 1.7 is required
-argparse
-# Needed for Python < 2.7
-importlib
 
 # Libraries
 cssmin
