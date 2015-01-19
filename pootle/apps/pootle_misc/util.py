@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2004-2013 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -22,6 +22,7 @@
 import json
 
 from functools import wraps
+from importlib import import_module
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -29,7 +30,6 @@ from django.http import HttpResponseBadRequest
 from django.utils import timezone
 from django.utils.encoding import force_unicode
 from django.utils.functional import Promise
-from django.utils.importlib import import_module
 
 # Timezone aware minimum for datetime (if appropriate) (bug 2567)
 from datetime import datetime, timedelta
