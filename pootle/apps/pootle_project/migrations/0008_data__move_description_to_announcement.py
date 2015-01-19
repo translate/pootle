@@ -6,7 +6,7 @@ from django.db import models
 
 class Migration(DataMigration):
     depends_on = (
-        ("staticpages", "0012_data__adjust_pks"),
+        ("staticpages", "0013_alter_project_announcements_virtual_path"),
     )
 
     def forwards(self, orm):
@@ -14,9 +14,16 @@ class Migration(DataMigration):
 
         for project in orm.Project.objects.all():
             if project.description.raw:
-                ann = Announcement(active=True, title="Project instructions",
-                                   body=project.description.raw,
-                                   virtual_path="announcements/projects/"+project.code)
+                ann_qs = Announcement.objects.filter(virtual_path="announcements/projects/"+project.code)
+                if ann_qs.exists():
+                    # If an announcement for this project already exists, then
+                    # concatenate it with the project description.
+                    ann = ann_qs[0]
+                    ann.body = ann.body.raw + '\r\n\r\n' + project.description.raw
+                else:
+                    ann = Announcement(active=True, title="Project instructions",
+                                       body=project.description.raw,
+                                       virtual_path="announcements/projects/"+project.code)
                 ann.save()
 
     def backwards(self, orm):

@@ -6,7 +6,7 @@ from django.db import models
 
 class Migration(DataMigration):
     depends_on = (
-        ("staticpages", "0012_data__adjust_pks"),
+        ("staticpages", "0013_alter_project_announcements_virtual_path"),
     )
 
     def forwards(self, orm):
