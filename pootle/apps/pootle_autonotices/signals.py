@@ -106,7 +106,11 @@ def unit_updated(sender, instance, raw=False, **kwargs):
         return
 
     if instance.id is not None and instance.istranslated():
-        dbcopy = Unit.objects.get(id=instance.id)
+        try:
+            dbcopy = Unit.objects.get(id=instance.id)
+        except Exception:
+            return
+
         if dbcopy.istranslated():
             # Unit state didn't change, let's quit.
             return
