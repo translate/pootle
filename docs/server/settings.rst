@@ -265,14 +265,6 @@ Configuration settings for applications used by Pootle.
   automatically extracted.
 
 
-.. setting:: TOPSTAT_SIZE
-
-``TOPSTAT_SIZE``
-  Default: ``5``
-
-  The number of rows displayed in the top contributors table.
-
-
 .. setting:: USE_CAPTCHA
 
 ``USE_CAPTCHA``
