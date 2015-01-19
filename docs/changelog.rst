@@ -108,14 +108,3 @@ Major release, released on May 18th 2013.
 
 - The ``update_from_templates`` management command has been renamed to
   :command:`update_against_templates`.
-
-Version 2.1.6
--------------
-
-Bugfix release, released on April 13th 2011.
-
-- This is the first version that is compatible with Django 1.2.5 and
-  Django 1.3.
-
-- You also need Translate Toolkit 1.9.0 to be able to use these newer
-  versions of Django.
