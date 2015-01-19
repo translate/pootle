@@ -120,6 +120,34 @@ Infrastructure
   <https://travis-ci.org/translate/pootle>`_
 - All our `code <https://github.com/translate/pootle>`_ is now on Github
 
+
+Other important changes
+-----------------------
+- Static files are now handled by the ``django.contrib.staticfiles`` module.
+  This means you will need to run the ``pootle collectstatic`` command on
+  production and serve the *pootle/assets/* directory from your webserver at
+  */assets/*. If you are upgrading from a previous version, you will need to
+  replace the occurrences of *static* with *assets* within your web server
+  configuration.
+- Static files are bundled into assets by using `django-assets
+  <http://elsdoerfer.name/docs/django-assets/>`_.
+- Several features from translation projects have been merged into the
+  *Overview* tab, including quality check failures and directory- and
+  file-level actions. As a consequence the *Review* tab has been dropped and
+  the *Translate* tab serves solely to display the actual translation editor.
+- Settings have been migrated from *localsettings.py* into *settings/\*.conf*
+  files. Your customizations now go in a :ref:`separate configuration file
+  <settings#customizing>` (or in *settings/90-local.conf* if running from a
+  repository clone).
+- The ``PootleServer`` script has been phased out in favor of a ``pootle``
+  runner script.
+- If you will be using Pootle with Django 1.3, you *have* to keep the timezone
+  on ``UTC``, unless you are using PostgreSQL. Users of PostgreSQL or Django
+  1.4 or later are free to set the time zone as they prefer.  Also make sure to
+  use the minimum required South version when performing database upgrades.
+- The ``update_from_templates`` management command has been renamed to
+  :command:`update_against_templates`.
+
 ...and of course, loads of bugs were fixed
 
 Credits
