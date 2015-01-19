@@ -27,5 +27,4 @@ If you are upgrading Pootle, you might want to see some tips to ensure your
    2.1.3 <2.1.3>
    2.1.2 <2.1.2>
    2.1.1 <2.1.1>
-
-Check the :doc:`Changelog </changelog>` for older releases.
+   Older releases (0.10 to 2.1) <old_releases>
