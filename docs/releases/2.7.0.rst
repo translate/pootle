@@ -97,7 +97,7 @@ Editor
 
 - Checks:
 
-  - Muted checks are now displayed and can be unmuted.
+  - Quality checks are always displayed and can be individually muted/unmuted.
   - When a users mutes or unmutes a quality check, the action will be recorded
     in the unit's timeline.
 

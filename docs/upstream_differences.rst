@@ -155,24 +155,6 @@ of these might contain small differences, mostly because
 Pootle-as-a-product has different business needs.
 
 
-Editor Differences
-^^^^^^^^^^^^^^^^^^
-
-- Non-admin users can't submit units in fuzzy state.
-
-- If the currently-submitted unit has pending checks, the editor won't
-  advance to the next unit and it will be updated displaying the
-  unresolved checks.
-
-- Quality checks can be individually muted/unmuted.
-
-- The *Submit*/*Suggest* button is not enabled until a change over the
-  initial state of the unit is detected.
-
-- When going through all units in the translation editor, users will be
-  automatically redirected back to overview.
-
-
 Layout Differences
 ^^^^^^^^^^^^^^^^^^
 
