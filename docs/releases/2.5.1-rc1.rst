@@ -36,15 +36,14 @@ These are by no means exhaustive, check the `git log
 <https://github.com/translate/pootle/compare/stable%2F2.5.0...2.5.1-rc1>`_
 for more details.
 
-- :doc:`Tags </features/tags>` -- You can now tag and filter translation
-  projects, making it easy to focus on a set of languages.
-- :doc:`Goals </features/goals>` -- you can now group files within a project to
-  ensure that translators focus on the most important tasks first.
-- :doc:`Extension Actions </features/actions>` -- you can create custom actions
-  using Python scripts. These are displayed with current actions and allow you
-  to extend Pootle's functionality.
-- :doc:`API </api/index>` -- an initial Pootle API is in place (disabled by
-  default).
+- Tags -- You can now tag and filter translation projects, making it easy to
+  focus on a set of languages.
+- Goals -- you can now group files within a project to ensure that translators
+  focus on the most important tasks first.
+- Extension Actions -- you can create custom actions using Python scripts.
+  These are displayed with current actions and allow you to extend Pootle's
+  functionality.
+- API -- an initial Pootle API is in place (disabled by default).
 
 
 Important server admin changes
