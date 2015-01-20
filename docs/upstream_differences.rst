@@ -153,27 +153,3 @@ Features Merged Back to Upstream
 Some of the work done in our fork has been merged back to upstream. Some
 of these might contain small differences, mostly because
 Pootle-as-a-product has different business needs.
-
-
-Layout Differences
-^^^^^^^^^^^^^^^^^^
-
-- Redesigned navigation scheme, including fast, easy and practical
-  navigation via breadcrumb drop-downs.
-
-- Tabs have been replaced in favor of drop-down menus.
-
-- Critical errors are prominently displayed.
-
-- No home page. Users are redirected to their preferred language pages
-  instead, falling back to the project listings page.
-
-- Single-column and wide browsing table.
-
-- All templates are gathered in a single location (*pootle/templates*),
-  and have been reorganized and sorted.
-
-- `Modern browser support <browsers>`_. This includes latest stable
-  versions of major browsers, and therefore some JavaScript libraries
-  that don't rely on old browsers can be used (namely jQuery 2.x). Some
-  CSS prefixes have been removed too.

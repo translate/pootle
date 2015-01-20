@@ -41,9 +41,13 @@ Major user interface revamp
 Overview
 ~~~~~~~~
 
-- Pootle overview pages now has a wide stats table that shows the same data in
-  the different views. This create a consistent look while browsing through
-  languages and projects.
+- Pootle overview pages now has a single column and wide stats table that shows
+  the same data in the different views. This create a consistent look while
+  browsing through languages and projects.
+- No home page. Users are redirected to their preferred language pages
+  instead, falling back to the project listings page.
+- Critical errors are pending suggestions are prominently displayed on the
+  overview page and not hidden.
 - New navigation scheme:
 
   + All directories/files for a project are displayed in a new drop-down.
@@ -220,6 +224,10 @@ Internal changes
 - URLs have been unified and all follow the same scheme. URLs ending in *.html*
   have been removed altogether. ``reverse()`` and ``{% url %}`` are used almost
   everywhere.
+- All templates are gathered in a single location (*pootle/templates*),
+  and have been reorganized and sorted.
+- Targetting modern browsers has allowed some CSS prefixes to be removed.
+
 
 
 Infrastructure
