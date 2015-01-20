@@ -14,7 +14,6 @@ Upgrading
 Here are some points to take into account while performing Pootle
 upgrades.
 
-
 .. warning::
 
   Upgrading Pootle to a newer version can be a dangerous endeavour, so please:

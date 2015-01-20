@@ -55,7 +55,7 @@ when limiting access to projects the permissions affect to *all the
 languages* available in the project.
 
 view
-Gives access to a project.
+  Gives access to a project.
 
 hide
   Forbids access to a project.

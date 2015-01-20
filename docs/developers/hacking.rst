@@ -261,7 +261,7 @@ Commit messages
     Now the docs are exact and represent the actual behavior introduced in
     commits ef4517ab and abc361fd.
 
-    Fixes bug #2399
+    Fixes #2399
 
   If you are reverting a previous commit, mention the sha1 revision that is
   being reverted.

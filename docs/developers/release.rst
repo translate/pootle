@@ -49,7 +49,7 @@ Pootle's minor number is changed to indicate the latest version of Django that
 is supported.  Thus when the latest version of Django is released, and Pootle
 gains support for this version, then the Pootle minor number will change.
 
-.. note:: Pootle 2.5.0 is an exception to this rule.  It did not not support
+.. note:: Pootle 2.5.0 is an exception to this rule.  It did not support
    Django 1.5 at the time of release.
 
 Every six months, when a new release train is ready to be shipped, Pootle's
