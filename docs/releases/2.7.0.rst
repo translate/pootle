@@ -9,185 +9,221 @@ Translate.
 
 Changes in Requirements
 =======================
-- Django >= 1.6.10 < 1.7
+- Django >= 1.7, < 1.8
 - `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
   1.12.0
-- Python >= 2.6
+- Python >= 2.7, < 3.0
 - Redis - latest stable release.
-- Raven 5.0.0 or higher is now recommended for Sentry support on production
-  setups. While older versions should still work, they may encounter problems
-  in newer versions of Django or Python.
 
 
 Major Changes
 =============
 
-These are by no means exhaustive, check the `git log
-<https://github.com/translate/pootle/compare/stable%2F2.5.1...master>`_
-for more details.
+- Major UI revamp - overview pages are consistent across all views.  Navigation
+  is now much easier, more consistent and more powerful.  The editor is cleaner
+  and works to prevent errors early.
+- Backgrounding statistics calculations - so Pootle and its users are never
+  bogged down or delayed by real time stats calculations.  Instead these are
+  backgrounded and updated when available.
 
 
-- Statistics calculations:
-
-  - Major rewrite of the way statistics are handled. RQ is used to manage the
-    calculation of invalidated statistics.  On the frontend side, stats are now
-    loaded asynchronously, thus any pending calculations no longer block page
-    loads.
-  - Custom word counting calculation method.
+Below we provide much more detail.  These are by no means exhaustive, view the
+`git log
+<https://github.com/translate/pootle/compare/stable%2F2.5.1...master>`_ for
+complete information.
 
 
-- Big revamp of UI:
+Major user interface revamp
+---------------------------
 
-  - We now have a wide stats table that shows the same data in the different
-    levels. This affects several features which are now relocated in a sidebar:
-    actions, instructions or current goal.
-  - New navigation scheme using dropdowns.
-  - Removed zoom feature. Now users should rely on their browsers.
-  - *All Projects* page now shares the same browsing table as available in any
-    other overview page.
-  - When there are failing checks, overview tables now display the number of
-    units which have failing checks, not the total number of failing checks.
-  - Table sorting is now remembered across overview pages, and not separately
-    in project, language and translation project pages.
-  - Major speed improvements when calculating last action information.
-  - User actionable items in the navbar have been moved to a drop-down.
-  - When selecting languages, redirect logic is smarter now.
-  - Different last activity messages for new translations and edits.
-  - Added landing page for anonymous users.
-  - The welcome page displays the top scorers over the last 30 days.
-  - User score is displayed in the header and dynamically updated when
-    translation actions are made.
-  - Several layout improvements that take into account different screen sizes.
-  - Filters allow sorting units according to their last action date.
-  - New navigation scheme:
-  
-    + All directories/files for a project are displayed in a new drop-down.
-      The differences between directories and files are visually highlighted.
-    + Directories/files can be navigated and translated across multiple
-      languages in a project.
-    + Tabs have been replaced in favor of drop-down menus.
-    + The editor search box is now displayed in the action links section,
-      keeping its positioning consistent with the overview page.
-    + A new action link in the editor, *Go back to overview*, allows users to
-      go back to the same place they entered translation mode from.
+Overview
+~~~~~~~~
 
-  - Overview pages now report the last time a unit was added to a
-    store/project. In the browsing tables a *Last Updated* column is displayed
-    and in the extended stats *Created* and *Last Updated* dates.
-  - Implemented project notifications by reusing static pages. Notifications
-    are per-project and are displayed across languages (automatically adapting
-    any hyperlinks).
-  - Rewritten contact form. Allows both to contact site owners from any page as
-    well as to report any issues with strings.
-  - Revamped user profile pages. These now display user's latest activity and
-    its personal properties.
-  - Dropped support for old web browsers. Despite that Pootle might work on
-    such browsers. More on :ref:`Supported Browsers <browsers>`.
-  - Implemented export view for cross-language and cross-project views.
-  - Implemented global search. This allows to perform searches and edit units
-    in collections that span multiple projects across languages, multiple
-    languages across projects, or even the whole server.
+- Pootle overview pages now has a wide stats table that shows the same data in
+  the different views. This create a consistent look while browsing through
+  languages and projects.
+- New navigation scheme:
+
+  + All directories/files for a project are displayed in a new drop-down.
+  + Directories/files can be navigated and translated across multiple languages
+    in a project.
+  + Tabs have been replaced in favor of drop-down menus.
+  + The editor search box is now displayed in the action links section, keeping
+    its positioning consistent with the overview page.
+  + A new action link in the editor, *Go back to overview*, allows users to go
+    back to the same place they entered translation mode from.
+
+- When there are failing checks, overview tables now display the number of
+  units which have failing checks, not the total number of failing checks.
+- Table sorting is now remembered across overview pages, and not separately in
+  project, language and translation project pages.
+- User actionable items in the navbar have been moved to a drop-down.
+- When selecting languages, redirect logic is now smarter.
+- Different last activity messages for new translations and edits.
+- Filters allow sorting units according to their last action date.
+- Overview pages now report the last time a unit was added to a store/project.
+  In the browsing tables a *Last Updated* column is displayed and in the
+  extended stats *Created* and *Last Updated* dates.
+- Implemented project notifications by reusing static pages. Notifications are
+  per-project and are displayed across languages (automatically adapting any
+  hyperlinks).
+- Major speed improvements when calculating last action information.
 
 
-- Editor changes:
+Editor
+~~~~~~
 
-  - Added keyboard shortcuts help.
-  - Several minor improvements.
-  - Placeables are used to highlight parts of the source text and easily insert
-    them into the translation.
+- New features:
+
   - Added screenshot prefix URL for projects, which allow integrating
     screenshots for units. The images are retrieved from public Evernote
     notebooks.
-  - The editor now displays the numbering for units, not pages.
-  - When going through all units in the translation editor, users will be
-    automatically redirected back to overview.
-  - If the currently-submitted unit has pending checks, the editor won't
-    advance to the next unit and it will be updated displaying the unresolved
-    checks.
-  - Removed the concept of *pages* in the editor and its underlying APIs.  This
-    was problematic and buggy.
-  - The *Submit*/*Suggest* button is disabled until a change over the initial
-    state of the unit is detected.
-  - Muted checks are now displayed and can be unmuted. Apart from that, when a
-    users mutes or unmutes a quality check, the action will be recorded in the
-    unit's timeline.
   - Translation similarities are calculated in the client and sent to the
     server to calculate the user's score. The score changes are logged over
     time. Along with this, the best matches are highlighted in the editor.
+
+- Navigation:
+
+  - The editor now displays the numbering for units, not pages.
+  - When going through all units in the translation editor, users will be
+    automatically redirected back to overview.
+  - If the currently-submitted unit has failing checks then the editor won't
+    advance to the next unit and it will be updated displaying the unresolved
+    checks.
+  - The *Submit*/*Suggest* button is disabled until a change, over the initial
+    state of the unit, is detected.
+
+- Checks:
+
+  - Muted checks are now displayed and can be unmuted.
+  - When a users mutes or unmutes a quality check, the action will be recorded
+    in the unit's timeline.
+
+- Usability improvements and other fixes:
+
   - The same string can't be suggested more than once at the same time,
     avoiding duplicated suggestions pending review.
-  - Fixed the gallery mode for unit images and related fixes.
   - TM diffs now display what has been removed and what's being added.
   - Latest translator comments can be "removed" or, in other words, can be
     blanked. The action is recorded in the timeline.
 
 
-- Command changes:
+Users
+~~~~~
 
-  - ``update_stores``: if a directory doesn't exist while running the command,
-    the project or translation project will be disabled.
-  - The ``update_translation_projects`` command has been removed — it's
-    functionality has been merged into ``update_stores``.
-  - Added the ``changed_languages`` management command.
-  - Translation projects are not deleted from the filesystem but marked as
-    disabled in the DB when running ``update_translation_projects --cleanup``.
-  - Individual quality checks can now be recalculated via the ``--check`` flag
-    passed to the ``refresh_stats`` management command.
-  - Added ``--calculate-checks`` parameter to the ``refresh_stats`` command.
-  - Incorporated ``refresh_all_stats`` functionality into ``refresh_stats``.
-  - Using dumpdata and loaddata to move between databases is no longer
-    supported.  If you need to move, please use proper SQL scripts instead.
-  - Added a new ``system`` user to attribute to changes done by the management
-    commands.
-  - Command and action logging.
+- New welcome page for anonymous users, which displays the top scorers over the
+  last 30 days.
+- User score is displayed in the header and dynamically updated when
+  translation actions are made.
+- Revamped user profile pages. These now display user's latest activity and
+  their personal properties.
 
 
-- Internal changes:
+Miscellaneous
+~~~~~~~~~~~~~
 
-  - Switched to a custom user model. This merges the data and functionality
-    available in `auth.User` and `PootleProfile` before, and has allowed to
-    remove the dependency on deprecated third party apps that were bundled in
-    the code.
-  - The multiple Suggestion models have been merged into a single model.
-  - Changed the way units needing to be sync'ed to disk is determined. Units
-    now have a unique revision number within the store they belong to and
-    they'll be synchronized based on the `last_sync_revision` field of the
-    store.
-  - Tests have been resurrected.
-  - Upgraded jQuery to 2.x and applied a bunch of fixes to the Tipsy plugin,
-    avoiding ad-hoc hacks to remove dangling tips.
-  - Translation projects now have a ``creation_time`` field.
-  - Dropped code for several external apps from Pootle codebase. Also upgraded
-    to newer versions of those apps.
-  - The default caching in database has been replaced by local-memory caching.
-    Using memcached is still highly recommended.
-  - Fixed and avoided any inconsistencies in the unit's submitter information.
+- Rewritten contact form. It used to both contact the site owners from any page
+  as well as to report any issues with strings.
+- Support for old web browsers has been dropped, despite this change Pootle
+  might work on such browsers. More information on Pootle's :ref:`supported
+  browsers <browsers>`.
+- Several layout improvements that take into account different screen sizes.
+- Implemented export view for cross-language and cross-project views.
+- Implemented global search. This allows to perform searches and edit units in
+  collections that span multiple projects across languages, multiple languages
+  across projects, or even the whole server.
+- Removed the zoom feature. Now users should rely on their browsers zooming
+  features.
 
 
-- Sysadmins:
+Statistics calculations
+-----------------------
 
-  - The registration and authentication layer is now handled by django-allauth.
-    This gives Pootle implicit support for OpenID, OAuth, OAuth2 and Persona
-    sign-in protocols.
-  - Integrated ElasticSearch-based local TM server into Pootle. Unit
-    submissions update the index instantly.
-  - Upgrade: Direct upgrade is now only possible from 2.6.0
-  - The report target for reporting string errors has been dropped in favor of
-    a report email address. The report is now sent using an automatically
-    pre-filled  contact form. If the project doesn't have a report email then
-    the reports are sent to :setting:`POOTLE_REPORT_STRING_ERRORS_EMAIL`.
+- Statistics handling has received a major rewrite (in fact 3 rewrites). `RQ
+  <http://python-rq.org/>`_ is used to queue and manage the calculation of
+  invalidated statistics.  On the frontend, stats are now loaded
+  asynchronously, thus any pending calculations no longer block page loads.
+  This results in a major usability improvement for Pootle users.
+- :setting:`WORDCOUNT_FUNC` allows a custom word counting method to be used.
 
 
-- Administrators:
+Administrators
+--------------
 
-  - Only admins can set the fuzzy flag on the unit. Non-admin users are not
-    shown the fuzzy checkbox by default, but in case it's displayed (because
-    the unit was already fuzzy, or some other action turned it fuzzy, such as
-    using MT), they are always forced to clear the flag.
-  - Projects can be disabled from the administration page, allowing to hide
-    them temporarily while retaining statistics.
-  - The ``view`` permission is now project-centric, it can be set server-wide
-    or for projects, but not for individual language-project combinations.
+- Only admins can set the fuzzy flag on the unit. Non-admin users are not shown
+  the fuzzy checkbox by default, but in case it's displayed (because the unit
+  was already fuzzy, or some other action turned it fuzzy, such as using MT),
+  they are always forced to clear the flag.
+- Projects can be disabled from the administration page, allowing to hide them
+  temporarily while retaining statistics.
+- The ``view`` permission is now project-centric, it can be set server-wide or
+  for projects, but not for individual language-project combinations.
+
+
+Sysadmins
+---------
+
+- Direct upgrade is now only possible from 2.6.0.  Thus to upgrade from older
+  releases first upgrade to 2.6.0
+- registration and authentication is now handled by `django-allauth
+  <https://readthedocs.org/projects/django-allauth/>`_.  This gives Pootle
+  implicit support for OpenID, OAuth, OAuth2 and Persona sign-in protocols.
+- Integrated ElasticSearch-based local TM server into Pootle. Unit submissions
+  update the index instantly.
+- The report target for reporting string errors has been dropped in favor of a
+  report email address. The report is now sent using an automatically
+  pre-filled  contact form. If the project doesn't have a report email then the
+  reports are sent to :setting:`POOTLE_CONTACT_REPORT_EMAIL`.
+- Using the Django ``dumpdata`` and ``loaddata`` commands to move between
+  databases is no longer supported.  If you need to move, please use proper SQL
+  scripts instead.
+
+
+Command changes
+---------------
+
+- In ``update_stores`` if a directory doesn't exist while running the command,
+  the project or translation project will be disabled. Thus the
+  ``update_translation_projects`` command has been removed, it's functionality
+  has been merged into ``update_stores`` with this change.
+- Added the ``changed_languages`` management command.
+- Individual quality checks can now be recalculated via the ``--check`` flag
+  passed to the ``refresh_stats`` management command.
+- Added ``--calculate-checks`` parameter to the ``refresh_stats`` command.
+- Added a new ``system`` user to attribute changes done by the management
+  commands.
+- Added command and action logging.
+
+
+Internal changes
+----------------
+
+- Switched to a custom user model. This merges the data and functionality
+  available in `auth.User` and `PootleProfile` before, and has allowed to
+  remove the dependency on deprecated third party apps that were bundled in the
+  code.
+- The multiple Suggestion models have been merged into a single model.
+- Changed the way units needing to be sync'ed to disk is determined. Units now
+  have a unique revision number within the store they belong to and they'll be
+  synchronized based on the `last_sync_revision` field of the store.
+- Tests have been resurrected.
+- Upgraded jQuery to 2.x and applied a bunch of fixes to the Tipsy plugin,
+  avoiding ad-hoc hacks to remove dangling tips.
+- Translation projects now have a ``creation_time`` field.
+- Dropped code for several external apps from Pootle codebase. Also upgraded to
+  newer versions of those apps.
+- The default caching in database has been replaced by local-memory caching.
+  Using memcached is still highly recommended.
+- Fixed and avoided any inconsistencies in the unit's submitter information.
+
+
+Infrastructure
+--------------
+- All bugs have moved from `Bugzilla <http://bugs.locamotion.org/>`_ to `Github
+  issues <https://github.com/translate/pootle/issues>`_.
+- The `Evernote Pootle fork
+  <https://github.com/evernote/pootle#-unofficial-fork->`_ and Translate Pootle
+  are now merged into the same code base and being actively developed together.
 
 
 
