@@ -145,11 +145,3 @@ Other Notable Differences
 
 - Hard dependency differences. Check the *requirements/* directory for
   details.
-
-
-Features Merged Back to Upstream
---------------------------------
-
-Some of the work done in our fork has been merged back to upstream. Some
-of these might contain small differences, mostly because
-Pootle-as-a-product has different business needs.
