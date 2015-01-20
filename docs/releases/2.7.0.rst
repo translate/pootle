@@ -249,6 +249,32 @@ There are two groups of features that have been dropped:
 1. Those removed that we will likely recover in future Pootle releases.
 2. Legacy features that will not be comming back
 
+
+Recoverable features
+--------------------
+
+The following features are removed from Pootle since 2.5.1.1 and will be
+recovered at some time.  Where possible we provide alternate approaches that
+can be used.
+
+.. note: sysadmins should take note of these changes and determine if this
+   prevents use of Pootle within their environment.  Essentially you will need
+   to evaluate the use and need for each missing feature.
+
+Major fatures
+~~~~~~~~~~~~~
+
+- Extension actions.
+- Tags and Goals.
+- ``assign_permissions`` management command
+- Placeables support in the editor
+
+Minor features
+~~~~~~~~~~~~~~
+
+- The Wikipedia lookup backend
+- No *Top Contributors* tables.
+
 Legacy features
 ---------------
 
