@@ -67,9 +67,6 @@ Overview
 - When selecting languages, redirect logic is now smarter.
 - Different last activity messages for new translations and edits.
 - Filters allow sorting units according to their last action date.
-- Overview pages now report the last time a unit was added to a store/project.
-  In the browsing tables a *Last Updated* column is displayed and in the
-  extended stats *Created* and *Last Updated* dates.
 - Implemented project specific announcements in a sidebar.  These make use of
   static pages. Notifications are per-project and are displayed across
   languages (automatically adapting any hyperlinks).
@@ -104,6 +101,7 @@ Editor
   - Quality checks are always displayed and can be individually muted/unmuted.
   - When a users mutes or unmutes a quality check, the action will be recorded
     in the unit's timeline.
+  - Quality checks. A custom set of quality checks has been incorporated.
 
 - Usability improvements and other fixes:
 
@@ -149,7 +147,14 @@ Statistics calculations
   invalidated statistics.  On the frontend, stats are now loaded
   asynchronously, thus any pending calculations no longer block page loads.
   This results in a major usability improvement for Pootle users.
-- :setting:`WORDCOUNT_FUNC` allows a custom word counting method to be used.
+- :setting:`WORDCOUNT_FUNC` allows a custom word counting method to be used.  A
+  new method has been incorporated (omits placeholders and words that shouldn't
+  be translated). Non-empty units with 0 words are immediately translated and
+  marked as fuzzy.
+- Overview pages now report the last time a unit was added to a store/project.
+  In the browsing tables a *Last Updated* column is displayed and in the
+  extended stats *Created* and *Last Updated* dates.
+- Statistics are also available for the *All Projects* view.
 
 
 Administrators
@@ -170,7 +175,7 @@ Sysadmins
 
 - Direct upgrade is now only possible from 2.6.0.  Thus to upgrade from older
   releases first upgrade to 2.6.0
-- registration and authentication is now handled by `django-allauth
+- Registration and authentication is now handled by `django-allauth
   <https://readthedocs.org/projects/django-allauth/>`_.  This gives Pootle
   implicit support for OpenID, OAuth, OAuth2 and Persona sign-in protocols.
 - Integrated ElasticSearch-based local TM server into Pootle. Unit submissions
