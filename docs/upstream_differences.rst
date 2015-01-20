@@ -178,14 +178,6 @@ Added Features
 
 - Projects and Translation Projects can be disabled.
 
-Removed Features
-^^^^^^^^^^^^^^^^
-
-- Removed Live Translation.
-
-- Removed support for autosync.
-
-- Page zoom.
 
 Editor Differences
 ^^^^^^^^^^^^^^^^^^

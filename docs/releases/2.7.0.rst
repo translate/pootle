@@ -25,6 +25,8 @@ Major Changes
 - Backgrounding statistics calculations - so Pootle and its users are never
   bogged down or delayed by real time stats calculations.  Instead these are
   backgrounded and updated when available.
+- A number of features have been :ref:`removed <270-removed-features>` and will
+  be recovered in future releases.
 
 
 Below we provide much more detail.  These are by no means exhaustive, view the
@@ -132,8 +134,6 @@ Miscellaneous
 - Implemented global search. This allows to perform searches and edit units in
   collections that span multiple projects across languages, multiple languages
   across projects, or even the whole server.
-- Removed the zoom feature. Now users should rely on their browsers zooming
-  features.
 
 
 Statistics calculations
@@ -226,29 +226,36 @@ Infrastructure
   are now merged into the same code base and being actively developed together.
 
 
+.. _270-removed-features:
 
 Removed features
 ================
 
-We have dropped some legacy features we kept around for allowing a swift
-upgrade in the past.
+There are two groups of features that have been dropped:
 
-The removal of some of these feature required extensive changes on the
-upgrading code, which resulted in that upgrading directly from ancient versions
-is no longer possible. In case you are trying to upgrade from Pootle 2.1.0 or
-older you must first upgrade to 2.1.6 before upgrading to this version.
+1. Those removed that we will likely recover in future Pootle releases.
+2. Legacy features that will not be comming back
 
-These are the features we got rid of:
+Legacy features
+---------------
 
-- .pending and .tm files support: Not necessary since the updatetm tool was
+We have dropped these features, some of which have been kept around to allow
+easy upgrades in the past:
+
+.. note: The removal of some of these feature required extensive changes to the
+   upgrading code, which means that upgrading directly from very old Pootle
+   versions is no longer possible. In case you are trying to upgrade from
+   Pootle 2.1.0 or older you must first upgrade to 2.1.6 before continuing the
+   upgrade process.
+
+- .pending and .tm files support: Not necessary since the ``updatetm`` tool was
   removed in Pootle 2.5.0.
-- Live translation: Rarely enabled, and it was discouraged to use it.
-- Autosync: It was recommended to never use it. The files can now be synced
-  instead using the appropriate management commands.
-
-The voting feature for terminology suggestions has also been removed, due to
-its low popularity and high maintenance cost. In order to save existing voting
-data, make a backup of the ``voting_vote`` table before upgrading.
+- Live translation: Rarely enabled, and its use was actively discouraged.
+- Autosync: It was recommended to never use it. The files can be synced using
+  :command:`sync_stores` instead.
+- The voting feature for terminology suggestions has also been removed, due to
+  its low popularity and high maintenance cost.
+- Removed the zoom feature. Users should use their browsers zooming features.
 
 
 ...and lots of refactoring, upgrades of upstream code, cleanups to remove
