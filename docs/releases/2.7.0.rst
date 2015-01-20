@@ -266,14 +266,26 @@ Major fatures
 
 - Extension actions.
 - Tags and Goals.
-- ``assign_permissions`` management command
 - Placeables support in the editor
+- SQLite support.
+- LDAP support.
+- Monolingual file format support - perform file conversion to and from bilingual files outside of Pootle.
+- Support for Version Control Systems - automate your version control integration outside of Pootle.
+- News, notifications and RSS feeds - make use of announcement pages use other channels of communication.
+- Offline translation: file uploads and downloads.
+- Update against templates - do template updates outside of Pootle and use
+  :command:`update_stores` to load the changed files.
+- Public API.
 
 Minor features
 ~~~~~~~~~~~~~~
 
 - The Wikipedia lookup backend
-- No *Top Contributors* tables.
+- No *Top Contributors* tables - user scores likely provide the information you are looking for.
+- Project/Language/Translation Project descriptions - these are migrated to announcement static pages.
+- Management commands: update_translation_projects, updatedb, upgrade, setup
+- ``assign_permissions`` management command
+
 
 Legacy features
 ---------------
@@ -295,6 +307,7 @@ easy upgrades in the past:
 - The voting feature for terminology suggestions has also been removed, due to
   its low popularity and high maintenance cost.
 - Removed the zoom feature. Users should use their browsers zooming features.
+- Hooks.
 
 
 ...and lots of refactoring, upgrades of upstream code, cleanups to remove
