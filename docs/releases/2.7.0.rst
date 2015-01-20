@@ -204,6 +204,8 @@ Command changes
 - Added a new ``system`` user to attribute changes done by the management
   commands.
 - Added command and store action logging.
+- Added ``test_checks`` management command.
+- New management commands: ``revision``, ``refresh_scores``.
 
 
 Internal changes
@@ -232,6 +234,7 @@ Internal changes
 - All templates are gathered in a single location (*pootle/templates*),
   and have been reorganized and sorted.
 - Targetting modern browsers has allowed some CSS prefixes to be removed.
+- Ability to list top scorers over a period of time.
 
 
 
@@ -274,9 +277,12 @@ Major fatures
 - Placeables support in the editor
 - SQLite support.
 - LDAP support.
-- Monolingual file format support - perform file conversion to and from bilingual files outside of Pootle.
-- Support for Version Control Systems - automate your version control integration outside of Pootle.
-- News, notifications and RSS feeds - make use of announcement pages use other channels of communication.
+- Monolingual file format support - perform file conversion to and from
+  bilingual files outside of Pootle.
+- Support for Version Control Systems - automate your version control
+  integration outside of Pootle.
+- News, notifications and RSS feeds - make use of announcement pages use other
+  channels of communication.
 - Offline translation: file uploads and downloads.
 - Update against templates - do template updates outside of Pootle and use
   :command:`update_stores` to load the changed files.
@@ -286,8 +292,10 @@ Minor features
 ~~~~~~~~~~~~~~
 
 - The Wikipedia lookup backend
-- No *Top Contributors* tables - user scores likely provide the information you are looking for.
-- Project/Language/Translation Project descriptions - these are migrated to announcement static pages.
+- No *Top Contributors* tables - user scores likely provide the information you
+  are looking for.
+- Project/Language/Translation Project descriptions - these are migrated to
+  announcement static pages.
 - Management commands: update_translation_projects, updatedb, upgrade, setup
 - ``assign_permissions`` management command
 
