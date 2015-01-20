@@ -217,6 +217,9 @@ Internal changes
 - The default caching in database has been replaced by local-memory caching.
   Using memcached is still highly recommended.
 - Fixed and avoided any inconsistencies in the unit's submitter information.
+- URLs have been unified and all follow the same scheme. URLs ending in *.html*
+  have been removed altogether. ``reverse()`` and ``{% url %}`` are used almost
+  everywhere.
 
 
 Infrastructure

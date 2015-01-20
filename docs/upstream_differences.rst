@@ -177,10 +177,3 @@ Layout Differences
   versions of major browsers, and therefore some JavaScript libraries
   that don't rely on old browsers can be used (namely jQuery 2.x). Some
   CSS prefixes have been removed too.
-
-Other Notable Differences
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- URLs have been unified and all follow the same scheme. URLs ending in
-  *.html* have been removed altogether. ``reverse()`` and ``{% url %}``
-  are used almost everywhere.
