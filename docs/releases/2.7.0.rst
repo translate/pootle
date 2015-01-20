@@ -66,9 +66,9 @@ Overview
 - Overview pages now report the last time a unit was added to a store/project.
   In the browsing tables a *Last Updated* column is displayed and in the
   extended stats *Created* and *Last Updated* dates.
-- Implemented project notifications by reusing static pages. Notifications are
-  per-project and are displayed across languages (automatically adapting any
-  hyperlinks).
+- Implemented project specific announcements in a sidebar.  These make use of
+  static pages. Notifications are per-project and are displayed across
+  languages (automatically adapting any hyperlinks).
 - Major speed improvements when calculating last action information.
 
 
@@ -134,6 +134,7 @@ Miscellaneous
 - Implemented global search. This allows to perform searches and edit units in
   collections that span multiple projects across languages, multiple languages
   across projects, or even the whole server.
+- Timeline tracks all changes done to units.
 
 
 Statistics calculations
@@ -154,8 +155,8 @@ Administrators
   the fuzzy checkbox by default, but in case it's displayed (because the unit
   was already fuzzy, or some other action turned it fuzzy, such as using MT),
   they are always forced to clear the flag.
-- Projects can be disabled from the administration page, allowing to hide them
-  temporarily while retaining statistics.
+- Projects and Translation Projects can be disabled from the administration
+  page, allowing them to be hidden temporarily while retaining statistics.
 - The ``view`` permission is now project-centric, it can be set server-wide or
   for projects, but not for individual language-project combinations.
 
@@ -177,6 +178,7 @@ Sysadmins
 - Using the Django ``dumpdata`` and ``loaddata`` commands to move between
   databases is no longer supported.  If you need to move, please use proper SQL
   scripts instead.
+- Captcha implementation details have been refined.
 
 
 Command changes
@@ -192,7 +194,7 @@ Command changes
 - Added ``--calculate-checks`` parameter to the ``refresh_stats`` command.
 - Added a new ``system`` user to attribute changes done by the management
   commands.
-- Added command and action logging.
+- Added command and store action logging.
 
 
 Internal changes

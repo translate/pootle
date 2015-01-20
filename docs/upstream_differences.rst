@@ -154,30 +154,6 @@ Some of the work done in our fork has been merged back to upstream. Some
 of these might contain small differences, mostly because
 Pootle-as-a-product has different business needs.
 
-Added Features
-^^^^^^^^^^^^^^
-
-- Report target field has been removed. This functionality has been
-  integrated into a new contact form.
-
-- Table sorting is remembered across overview pages.
-
-- Captcha implementation details have been refined.
-
-- General *system* user which is the author of the batch actions performed
-  via management commands.
-
-- Timeline tracks all changes done to units.
-
-- Project-specific announcements in a sidebar.
-
-- Maintenance mode middleware. It can be enabled in the settings before
-  performing any app upgrades.
-
-- Commands and store action logging.
-
-- Projects and Translation Projects can be disabled.
-
 
 Editor Differences
 ^^^^^^^^^^^^^^^^^^
