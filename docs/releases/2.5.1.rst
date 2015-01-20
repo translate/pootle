@@ -86,6 +86,7 @@ Important server admin changes
 - The quality check for spell checking has been globally disabled. It wasn't
   properly advertised nor documented, and it didn't perform well enough to be
   considered useful.
+- *css/custom/custom.css* is now served as part of the common bundle.
 
 
 Visual Changes
