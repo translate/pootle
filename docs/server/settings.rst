@@ -329,7 +329,7 @@ Translation environment configuration settings.
   ``GOOGLE_TRANSLATE``: Google Translate service.
     For this service you need to set the API key. Note that Google Translate
     API is a paid service. See more at
-    https://developers.google.com/translate/v2/pricing 
+    https://developers.google.com/translate/v2/pricing
 
 
 .. setting:: PARSE_POOL_CULL_FREQUENCY

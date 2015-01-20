@@ -39,7 +39,7 @@ remote server:
 - Apache web server
 - MySQL database server
 - OpenSSH server
-- C compiler (to install Pootle's Python dependencies - can be removed later)
+- C compiler (to install Pootle's Python dependencies -- can be removed later)
 
 .. note:: Currently only Debian-based (e.g. Ubuntu) servers are supported.
 
@@ -160,7 +160,7 @@ Once you make your changes to the settings you are ready to run the
 Fabric commands.
 
 .. note:: For security, please make sure you change the ``db_password`` setting
-   - using the example one could make your server vulnerable to exploits.  The
+   -- using the example one could make your server vulnerable to exploits.  The
    ``db_password`` setting is used both to properly configure Pootle, as well
    as to set up the database user access for the deployment.
 
