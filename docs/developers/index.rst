@@ -10,11 +10,13 @@ other way, make sure to read through this part.
    :maxdepth: 2
 
    contributing
+   roadmap
    hacking
    frontend
    customization
    browsers
    testing
+   release
    glossary
    styleguide
    releasing
