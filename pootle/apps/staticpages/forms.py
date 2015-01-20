@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -48,7 +48,7 @@ def agreement_form_factory(pages, user, anchor_class=''):
             for page in self._pages:
                 self.add_page_field(page)
 
-        def save(self):
+        def save(self, **kwargs):
             """Saves user agreements."""
             for page in self._pages:
                 agreement, created = Agreement.objects.get_or_create(

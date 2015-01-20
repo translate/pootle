@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012-2013 Zuza Software Foundation
+# Copyright 2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -77,13 +78,13 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
     def __unicode__(self):
         return self.virtual_path
 
-    def save(self):
+    def save(self, **kwargs):
         # Update the `modified_on` timestamp only when specific fields change.
         dirty_fields = self.get_dirty_fields()
         if any(field in dirty_fields for field in ('title', 'body', 'url')):
             self.modified_on = now()
 
-        super(AbstractPage, self).save()
+        super(AbstractPage, self).save(**kwargs)
 
     def get_absolute_url(self):
         if self.url:

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -356,7 +356,7 @@ def unit_comment_form_factory(language):
 
             return self.cleaned_data['translator_comment']
 
-        def save(self):
+        def save(self, **kwargs):
             """Register the submission and save the comment."""
             if self.has_changed():
                 self.instance._comment_updated = True
@@ -376,7 +376,7 @@ def unit_comment_form_factory(language):
                 )
                 sub.save()
 
-            super(UnitCommentForm, self).save()
+            super(UnitCommentForm, self).save(**kwargs)
 
 
     return UnitCommentForm
