@@ -118,13 +118,12 @@ Pootle internals
 Context object (``ctx_obj``)
   An object representing the context that encloses the current view.
 
-  If we are navigating through the files for an existing translation
-  project, the context object will refer to the current translation
-  project.
+  If we are navigating through the files for an existing translation project,
+  the context object will refer to the current translation project.
 
-  Similarly, iff we are in the overview page for a language, the context
-  will point to the current language object. In the overview page for a
-  project, the context object points to the current project.
+  Similarly, if we are in the overview page for a language, the context will
+  point to the current language object. In the overview page for a project, the
+  context object points to the current project.
 
   At a higher level, the root directory is considered the context object.
 
@@ -134,9 +133,9 @@ Context object (``ctx_obj``)
 Resource object (``resource_obj``)
   An object representing the resource that the current view is referring to.
 
-  For example, if we are navigating through the files and directories for
-  an existing translation project, the resource object will refer to the
-  current file or directory object.
+  For example, if we are navigating through the files and directories for an
+  existing translation project, the resource object will refer to the current
+  file or directory object.
 
-  If the current view refers to multiple resources, the resource object is
-  the same as the context object.
+  If the current view refers to multiple resources, the resource object is the
+  same as the context object.
