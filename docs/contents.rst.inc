@@ -20,6 +20,5 @@ Additional Notes
 .. toctree::
    :maxdepth: 1
 
-   upstream_differences
    releases/index
    license
