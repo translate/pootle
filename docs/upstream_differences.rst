@@ -104,23 +104,13 @@ incorporated.
 
 - Tags and Goals.
 
-- Local Translation Memory.
-
 - ``assign_permissions`` management command (688b8482)
 
 - Placeables support in the editor (2cb03709 .. 97f92ad3)
 
-- Integration with django-allauth. We use our own auth mechanisms.
-
 
 Editor Differences
 ------------------
-
-- Filters allow sorting units according to their last action date.
-
-- TM diffs show what has been removed and what's being added.
-
-- Latest translator comments can be removed/blanked.
 
 - The Wikipedia lookup backend has been removed.
 
@@ -128,20 +118,4 @@ Editor Differences
 Layout Differences
 ------------------
 
-- Highly customized layout and look & feel.
-
 - No *Top Contributors* tables.
-
-- User-actionable items are in a navbar drop-down.
-
-- User-friendly public profile editing.
-
-
-Other Notable Differences
--------------------------
-
-- Different way of handling and caching stats. Different implementation
-  for `refresh_stats`.
-
-- Hard dependency differences. Check the *requirements/* directory for
-  details.
