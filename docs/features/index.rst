@@ -35,6 +35,7 @@ Online translation editor
    shortcuts
    suggestions
    terminology
+   virtual_folders
 
 
 .. _features#admin:
