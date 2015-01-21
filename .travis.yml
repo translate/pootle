@@ -2,43 +2,30 @@
 sudo: false
 language: python
 python:
-  - 2.6
   - 2.7
 env:
   matrix:
     # FIXME reenable backends when these are made to work once again
-    #- DJANGO_VERSION=1.6.10 DATABASE_BACKEND=sqlite
-    #- DJANGO_VERSION=1.6.10 DATABASE_BACKEND=postgres
-    - DJANGO_VERSION=1.6.10 DATABASE_BACKEND=mysql_myisam
-    #- DJANGO_VERSION=1.6.10 DATABASE_BACKEND=mysql_innodb
-    #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
-    #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
-    #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_myisam
-    #- DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_innodb
+    #- DJANGO_VERSION=1.7.3 DATABASE_BACKEND=sqlite
+    #- DJANGO_VERSION=1.7.3 DATABASE_BACKEND=postgres
+    - DJANGO_VERSION=1.7.3 DATABASE_BACKEND=mysql_myisam
+    #- DJANGO_VERSION=1.7.3 DATABASE_BACKEND=mysql_innodb
   global:
     - PIP_DOWNLOAD_CACHE=".pip_download_cache"
 matrix:
   exclude:
-    - python: 2.6
-      env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
-    - python: 2.6
-      env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_myisam
-    - python: 2.6
-      env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_innodb
-    - python: 2.6
-      env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
+    - python: 2.7
+      env: DJANGO_VERSION=1.7.3 DATABASE_BACKEND=sqlite
+    - python: 2.7
+      env: DJANGO_VERSION=1.7.3 DATABASE_BACKEND=mysql_innodb
+    - python: 2.7
+      env: DJANGO_VERSION=1.7.3 DATABASE_BACKEND=postgres
   allow_failures:
-    # Allow failure on Django 1.7.1 until we've migrated away from South to
-    # Django migration
-    - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=sqlite
-    - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_myisam
-    - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=mysql_innodb
-    - env: DJANGO_VERSION=1.7.1 DATABASE_BACKEND=postgres
     # Disable alternate databases until we break away from being stuck on
     # MyISAM
-    - env: DJANGO_VERSION=1.6.10 DATABASE_BACKEND=sqlite
-    - env: DJANGO_VERSION=1.6.10 DATABASE_BACKEND=postgres
-    - env: DJANGO_VERSION=1.6.10 DATABASE_BACKEND=mysql_innodb
+    - env: DJANGO_VERSION=1.7.3 DATABASE_BACKEND=sqlite
+    - env: DJANGO_VERSION=1.7.3 DATABASE_BACKEND=postgres
+    - env: DJANGO_VERSION=1.7.3 DATABASE_BACKEND=mysql_innodb
 cache:
   apt: true
   directories:
@@ -59,8 +46,7 @@ script:
   #- make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
   - make assets
   - make mo
-  - coverage run --parallel-mode manage.py syncdb --noinput --traceback
-  - coverage run --parallel-mode manage.py migrate --traceback
+  - coverage run --parallel-mode manage.py migrate --noinput --traceback
   - coverage run --parallel-mode manage.py initdb --traceback
   - coverage run --parallel-mode ./manage.py runserver --traceback &
   - TESTPID=$!

@@ -25,7 +25,8 @@ fi
 
 # Add patterns for parts to be excluded:
 # - migrations - auto generated so lets not PEP8 them
-exclude=migrations
+# - south_migrations - same as above, remove once 2.6 work is completed
+exclude=migrations,south_migrations
 
 # Match styleguide maximum line length:
 # http://docs.translatehouse.org/projects/translate-toolkit/en/latest/developers/styleguide.html#maximum-line-length
