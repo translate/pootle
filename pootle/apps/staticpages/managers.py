@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -42,8 +42,7 @@ class PageManager(Manager):
         agreements.
         """
         # FIXME: This should be a method exclusive to a LegalPage manager
-        return self.live().filter(
-            Q(agreement__user=user,
-              modified_on__gt=F('agreement__agreed_on')) |
-            ~Q(agreement__user=user)
-        )
+        return self.live().exclude(
+            agreement__user=user,
+            modified_on__lt=F('agreement__agreed_on'),
+        ).distinct()

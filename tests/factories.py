@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -38,3 +38,20 @@ class UserFactory(factory.django.DjangoModelFactory):
 
     username = factory.Sequence(lambda n: 'foo%s' % n)
     email = factory.LazyAttribute(lambda o: '%s@example.org' % o.username)
+
+
+class LegalPageFactory(factory.django.DjangoModelFactory):
+    FACTORY_FOR = 'staticpages.LegalPage'
+
+    title = factory.Sequence(lambda n: 'title%s' % n)
+    virtual_path = factory.Sequence(lambda n: '/foo/bar%s' % n)
+
+    class Meta:
+        abstract = True
+
+
+class AgreementFactory(factory.django.DjangoModelFactory):
+    FACTORY_FOR = 'staticpages.Agreement'
+
+    user = factory.SubFactory(UserFactory)
+    document = factory.SubFactory(LegalPageFactory)
