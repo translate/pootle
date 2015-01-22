@@ -17,10 +17,11 @@ Once Node.js is available, Pootle dependencies need to be installed.
 
 ..code-block::bash
 
-  $ cd pootle/static/js
-  $ npm install
+    $ cd pootle/static/js
+    $ npm install
 
-This will read the `package.json` file and install the development
+
+This will read the :file:`package.json` file and install the development
 dependencies.
 
 
@@ -31,22 +32,23 @@ Simply run:
 
 ..code-block::bash
 
-  (env) $ ./manage.py webpack --dev
+    (env) $ ./manage.py webpack --dev
+
 
 This will make sure to build all the necessary scripts and create the
 relevant bundles with source maps support. It will also watch for changes
 in scripts so you don't need to constantly be running this.
 
-
 For creating a production-ready build, use:
 
 ..code-block::bash
 
-  (env) $ ./manage.py webpack
+    (env) $ ./manage.py webpack
+
 
 This will also run the output through
 `UglifyJS <https://github.com/mishoo/UglifyJS2>`_, making the output build
 considerably lighter in size.
 
-Note that this step is also done as part of the ``make assets`` command,
+Note that this step is also done as part of the :command:`make assets` command,
 so you may only want to run the latter.
