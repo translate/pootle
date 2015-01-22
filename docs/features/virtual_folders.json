@@ -1,0 +1,76 @@
+[
+    {
+        "name": "user1",
+        "location": "/{LANG}/firefox/browser/",
+        "priority": 999.99,
+        "is_browsable": true,
+        "description": "Most visible strings for the user.",
+        "filters": {
+            "files": [
+                "branding/official/brand.dtd.po",
+                "chrome/browser/aboutDialog.dtd.po"
+            ]
+        }
+    },
+    {
+        "name": "user2",
+        "location": "/gl/firefox/",
+        "priority": 7.5,
+        "is_browsable": false,
+        "filters": {
+            "files": [
+                "browser/chrome/browser/aboutSessionRestore.dtd.po",
+                "browser/chrome/browser/downloads/downloads.dtd.po"
+            ]
+        }
+    },
+    {
+        "name": "user3",
+        "location": "/ru/{PROJ}/",
+        "priority": 0.3,
+        "filters": {
+            "files": [
+                "browser/chrome/browser/engineManager.dtd.po"
+            ]
+        }
+    },
+    {
+        "name": "default",
+        "location": "/"
+    },
+    {
+        "name": "other",
+        "location": "/af/firefox/",
+        "is_browsable": true,
+        "filters": {
+            "files": [
+                "browser/chrome/browser/aboutCertError.dtd.po"
+            ]
+        }
+    },
+    {
+        "name": "developer",
+        "location": "/af/firefox/",
+        "priority": 0.9,
+        "description": "As you can see this\\n description spans\\n several lines.",
+        "filters": {
+            "files": [
+                "browser/chrome/browser/devtools/appcacheutils.properties.po",
+                "browser/chrome/browser/devtools/debugger.dtd.po"
+            ]
+        }
+    },
+    {
+        "name": "install",
+        "location": "/ru/{PROJ}/",
+        "priority": 5,
+        "is_browsable": true,
+        "description": "Installation related strings.",
+        "filters": {
+            "files": [
+                "browser/chrome/browser/migration/migration.dtd.po",
+                "browser/chrome/browser/migration/migration.properties.po"
+            ]
+        }
+    }
+]

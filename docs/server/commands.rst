@@ -346,6 +346,36 @@ By default, :ref:`commands#test_checks` tests all existing checks. When
 against.
 
 
+.. _commands#vfolders:
+
+Virtual Folders
+---------------
+
+These commands allow you to perform tasks with virtual folders from the command
+line.
+
+
+.. _commands#add-virtual-folders:
+
+add_vfolders
+^^^^^^^^^^^^
+
+.. versionadded:: 2.7.0
+
+This command allows you to create :ref:`virtual folders <virtual_folders>` from
+a JSON file. If the specified virtual folders already exist then they are
+updated with the provided data, but only if the data differs.
+
+Check the specs for the :ref:`JSON format <virtual_folders#json-format>` in
+order to know how to craft a JSON file that fits your needs.
+
+This command requires a mandatory filename argument.
+
+.. code-block:: bash
+
+    $ pootle add_vfolders virtual_folders.json
+
+
 .. _commands#manually_installing_pootle:
 
 Manually Installing Pootle
