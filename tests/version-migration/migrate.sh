@@ -58,8 +58,8 @@ function migrate_database {
 			exit 1
 			;;
 		2.5.0)
-			echo "Not implemented"
-			exit 1
+			echo "Migrating using $pootle_version rules"
+			./manage.py setup --traceback -v0
 			;;
 		2.5.1)
 			echo "Migrating using $pootle_version rules"
