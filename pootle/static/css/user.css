@@ -191,6 +191,11 @@
     vertical-align: top;
 }
 
+#user-edit .field-wrapper
+{
+    margin-bottom: 1em;
+}
+
 #user-edit .fields input,
 #user-edit .fields textarea
 {
