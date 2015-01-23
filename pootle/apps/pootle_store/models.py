@@ -2031,9 +2031,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     ### TreeItem
     def can_be_updated(self):
-        return (not self.obsolete and
-                not self.translation_project.disabled and
-                not self.translation_project.project.disabled)
+        return not self.obsolete
 
     def get_parents(self):
         if self.parent.is_translationproject():

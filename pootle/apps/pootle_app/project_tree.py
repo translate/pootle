@@ -147,7 +147,7 @@ def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
     return files, dirs
 
 
-def add_items(fs_items, db_items, create_or_resurrect_db_item):
+def add_items(fs_items, db_items, create_or_resurrect_db_item, parent):
     """Add/make obsolete the database items to correspond to the filesystem.
 
     :param fs_items: entries currently in the filesystem
@@ -167,7 +167,8 @@ def add_items(fs_items, db_items, create_or_resurrect_db_item):
 
     for name in items_to_delete:
         db_items[name].makeobsolete()
-        db_items[name].update_parent_cache()
+    if len(items_to_delete) > 0:
+        parent.update_all_cache()
 
     for name in db_items_set - items_to_delete:
         items.append(db_items[name])
@@ -248,13 +249,15 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
              parent=db_dir,
              name=name,
              translation_project=translation_project,
-        )
+        ),
+        db_dir,
     )
 
     db_subdirs, new_db_subdirs = add_items(
         dir_set,
         existing_dirs,
-        lambda name: create_or_resurrect_dir(name=name, parent=db_dir)
+        lambda name: create_or_resurrect_dir(name=name, parent=db_dir),
+        db_dir,
     )
 
     for db_subdir in db_subdirs:
