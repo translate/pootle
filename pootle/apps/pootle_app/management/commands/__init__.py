@@ -46,6 +46,7 @@ class PootleCommand(NoArgsCommand):
                          'files to refresh'),
         )
     option_list = NoArgsCommand.option_list + shared_option_list
+    process_disabled_projects = False
 
     def __init__(self, *args, **kwargs):
         self.languages = []
@@ -139,7 +140,11 @@ class PootleCommand(NoArgsCommand):
         logging.info('All done for %s in %s', self.name, end - start)
 
     def handle_all(self, **options):
-        project_query = Project.objects.enabled()
+        if self.process_disabled_projects:
+            project_query = Project.objects.all()
+        else:
+            project_query = Project.objects.enabled()
+
         if self.projects:
             project_query = project_query.filter(code__in=self.projects)
 

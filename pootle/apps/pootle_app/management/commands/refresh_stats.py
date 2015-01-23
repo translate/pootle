@@ -73,6 +73,7 @@ class Command(PootleCommand):
 
     option_list = PootleCommand.option_list + shared_option_list
     cached_methods = None
+    process_disabled_projects = True
 
     def handle_noargs(self, **options):
         refresh_stats.delay(**options)
@@ -132,7 +133,7 @@ class Command(PootleCommand):
                 self.process(**options)
                 logger.info('Refreshing directories stats...')
 
-                prj_query = Project.objects.enabled()
+                prj_query = Project.objects.all()
 
                 for prj in prj_query.iterator():
                     # Calculate stats for all directories and translation projects
