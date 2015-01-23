@@ -475,7 +475,7 @@ def get_units(request):
                 raise Http404  # `uid` not found in `uid_list`
         else:
             count = 2 * chunk_size
-            units = step_queryset[:count]
+            uids = uid_list[:count]
 
     if units is None and uids:
         units = step_queryset.filter(id__in=uids)
