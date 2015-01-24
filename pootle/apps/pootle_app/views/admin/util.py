@@ -20,7 +20,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django.forms.models import modelformset_factory
-from django.forms.util import ErrorList
+from django.forms.utils import ErrorList
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
