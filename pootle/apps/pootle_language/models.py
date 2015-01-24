@@ -19,13 +19,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+from collections import OrderedDict
+
 from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
-from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.mixins import TreeItem
@@ -65,7 +66,7 @@ class LiveLanguageManager(models.Manager):
     def cached_dict(self):
         languages = cache.get(CACHE_KEY)
         if not languages:
-            languages = SortedDict(
+            languages = OrderedDict(
                 self.order_by('fullname').values_list('code', 'fullname')
             )
             cache.set(CACHE_KEY, languages, settings.OBJECT_CACHE_TIMEOUT)

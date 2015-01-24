@@ -22,6 +22,7 @@
 
 import logging
 import os
+from collections import OrderedDict
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -32,7 +33,6 @@ from django.db import connection, models
 from django.db.models import Q
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
-from django.utils.datastructures import SortedDict
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
@@ -75,7 +75,7 @@ class ProjectManager(models.Manager):
         projects = cache.get(cache_key)
         if not projects:
             logging.debug('Cache miss for %s', cache_key)
-            projects = SortedDict(
+            projects = OrderedDict(
                 self.for_user(user).order_by('fullname')
                                    .values_list('code', 'fullname')
             )
