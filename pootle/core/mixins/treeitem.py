@@ -30,8 +30,8 @@ from functools import wraps
 from translate.filters.decorators import Category
 
 from django.conf import settings
-from django.core.cache import get_cache, cache as default_cache
-from django.core.exceptions import ImproperlyConfigured
+from django.core.cache import caches, cache as default_cache
+from django.core.cache.backends.base import InvalidCacheBackendError
 from django.core.urlresolvers import set_script_prefix
 from django.utils.encoding import force_unicode, iri_to_uri
 
@@ -51,8 +51,8 @@ POOTLE_REFRESH_STATS = 'pootle:refresh:stats'
 logger = logging.getLogger('stats')
 
 try:
-    cache = get_cache('stats')
-except ImproperlyConfigured:
+    cache = caches['stats']
+except InvalidCacheBackendError:
     cache = default_cache
 
 
