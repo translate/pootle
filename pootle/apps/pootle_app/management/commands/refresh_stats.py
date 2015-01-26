@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2014 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -158,9 +158,7 @@ class Command(PootleCommand):
                                'category', 'false_positive')
         all_units_checks = {}
         for check in checks:
-            if check['unit_id'] not in all_units_checks:
-                all_units_checks[check['unit_id']] = {}
-            all_units_checks[check['unit_id']][check['name']] = check
+            all_units_checks.setdefault(check['unit_id'], {})[check['name']] = check
 
         unit_count = 0
         units = Unit.simple_objects.select_related('store')
