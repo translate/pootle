@@ -128,6 +128,8 @@ statistics cache.
 This command will go through all existing projects making sure statistics are
 up to date.
 
+.. note:: Disabled projects are processed.
+
 It's necessary to run this command after installing or upgrading Pootle. Also
 consider running this command when things might go out-of-sync: if you make
 changes directly in the database, if the cache backend has been restarted, etc.
@@ -159,6 +161,8 @@ calculate_checks
 
 This command will add a background job to go through all units and to
 recalculate quality checks.
+
+.. note:: Disabled projects are processed.
 
 The ``calculate_checks`` job will flush existing caches and update the
 quality checks cache.
@@ -202,6 +206,8 @@ in sync with the Pootle database.
   demand (before file downloads and major file-level operations like
   version control updates).
 
+.. note:: Disabled projects are skipped.
+
 You must run this command before taking backups or running scripts that modify
 the translation files directly on the file system, otherwise you might miss out
 on translations that are in the database but not yet saved to disk.
@@ -234,6 +240,8 @@ update_stores
 This command is the opposite of :ref:`commands#sync_stores`. It will
 update the strings in the database to reflect what is on disk, as Pootle
 will not detect changes in the file system on its own.
+
+.. note:: Disabled projects are skipped.
 
 It also discovers new units, files and translation projects that were
 added on disk:
