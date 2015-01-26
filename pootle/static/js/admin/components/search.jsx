@@ -120,6 +120,12 @@ var SearchBox = React.createClass({
     }
   },
 
+  componentWillMount: function () {
+    this.handleSearchDebounced = _.debounce(function () {
+      this.props.handleSearch.apply(this, [this.state.searchQuery]);
+    }, 300);
+  },
+
   componentDidMount: function () {
     this.refs.input.getDOMNode().focus();
   },
@@ -133,10 +139,6 @@ var SearchBox = React.createClass({
       this.refs.input.getDOMNode().blur();
     }
   },
-
-  handleSearchDebounced: _.debounce(function () {
-    this.props.handleSearch.apply(this, [this.state.searchQuery]);
-  }, 300),
 
   onChange: function () {
     this.setState({searchQuery: this.refs.input.getDOMNode().value});
