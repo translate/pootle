@@ -126,11 +126,6 @@ module.exports = {
     loaders: [
       { test: /\.css/, loader: "style-loader!css-loader" },
       { test: /\.jsx$/, loader: 'jsx-loader?harmony' },
-      {
-        test: /\.js$/,
-        include: path.join(__dirname, 'node_modules', 'react-select'),
-        loader: 'jsx-loader?harmony',
-      },
     ]
   },
   resolve: resolve,
