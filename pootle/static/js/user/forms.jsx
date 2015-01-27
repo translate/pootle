@@ -66,7 +66,6 @@ var UserProfileForm = React.createClass({
                        autoFocus={true}
                        handleChange={this.handleChange}
                        formData={formData}
-                       model={model}
                        errors={errors} />
           <p>
             <label>{gettext('Avatar')}</label>
@@ -81,7 +80,6 @@ var UserProfileForm = React.createClass({
                        handleChange={this.handleChange}
                        placeholder={gettext('Your Twitter username')}
                        formData={formData}
-                       model={model}
                        errors={errors}
                        maxLength="15" />
           <FormElement attribute="linkedin"
@@ -89,14 +87,12 @@ var UserProfileForm = React.createClass({
                        handleChange={this.handleChange}
                        placeholder={gettext('Your LinkedIn profile URL')}
                        formData={formData}
-                       model={model}
                        errors={errors} />
           <FormElement attribute="website"
                        label={gettext('Website')}
                        handleChange={this.handleChange}
                        placeholder={gettext('Your Personal website/blog URL')}
                        formData={formData}
-                       model={model}
                        errors={errors} />
           <FormElement type="textarea"
                        attribute="bio"
@@ -106,7 +102,6 @@ var UserProfileForm = React.createClass({
                          'Why are you part of our translation project? ' +
                          'Describe yourself, inspire others!')}
                        formData={formData}
-                       model={model}
                        errors={errors} />
         </div>
         <p className="buttons">
