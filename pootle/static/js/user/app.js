@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 
 var User = require('../models/user').User;
 var UserProfileEditClass = require('./components/edit');
