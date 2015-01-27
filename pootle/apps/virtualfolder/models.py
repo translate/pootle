@@ -71,6 +71,18 @@ class VirtualFolder(models.Model):
         unique_together = ('name', 'location')
         ordering = ['-priority', 'name']
 
+    @classmethod
+    def get_matching_for(cls, pootle_path):
+        """Return the matching virtual folders in the given pootle path.
+
+        Not all the applicable virtual folders have matching filtering rules.
+        This method further restricts the list of applicable virtual folders to
+        retrieve only those with filtering rules that actually match.
+        """
+        return VirtualFolder.objects.filter(
+            units__store__pootle_path__startswith=pootle_path
+        ).distinct()
+
     def __unicode__(self):
         return ": ".join([self.name, self.location])
 
