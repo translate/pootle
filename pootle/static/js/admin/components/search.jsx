@@ -221,6 +221,7 @@ var ItemTableRow = React.createClass({
 
     var classNames = cx({
       'is-selected': selectedItem && item.id === selectedItem.id,
+      // FIXME: this is too coupled to certain item types
       'is-disabled': item.get('disabled'),
       'row-divider': index !== 0 && index % 10 === 0,
     });
