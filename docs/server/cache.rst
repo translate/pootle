@@ -22,6 +22,24 @@ of :doc:`optimizing <optimization>` your Pootle installation. It is based on
 
 Without a well functioning cache system, Pootle could be slow.
 
+.. _cache#named_caches:
+
+Named Caches
+------------
+The cache backends are at least configured with a 'default' cache.  If this is
+the only cache that exists then all caching is placed into this cache.  The
+Pootle cache can also be configured to take advantage of certain named caches.
+
+Current named caches:
+
+- ``'default'`` -- all non specified cache data and all cache data if only one
+  cache is defined.
+- ``'stats'`` --  all cached data related to overview stats.
+
+In large installations you may want to setup separate caches to improve cache
+performance.  You can then setup caching parameters for each cache separately.
+In most cases though you will simply use a single 'default' cache.
+
 
 .. _cache#cache_backends:
 
