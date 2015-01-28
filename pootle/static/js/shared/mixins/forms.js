@@ -105,13 +105,13 @@ var ModelFormMixin = {
       isDirty: false
     });
 
-    _.isFunction(this.handleSuccess) && this.handleSuccess(this.getResource());
+    this.handleSuccess && this.handleSuccess(this.getResource());
   },
 
   handleFormError: function (xhr) {
     this.validateResponse(xhr);
 
-    _.isFunction(this.handleError) && this.handleError(xhr);
+    this.handleError && this.handleError(xhr);
   }
 };
 
