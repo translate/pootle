@@ -3,8 +3,8 @@
 var React = require('react');
 
 var Search = require('./search');
-var LanguageForm = require('../forms').LanguageForm;
-var models = require('../../models/language');
+var LanguageForm = require('forms').LanguageForm;
+var models = require('models/language');
 
 
 var LanguagesAdmin = React.createClass({

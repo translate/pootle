@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var User = require('../models/user').User;
+var User = require('models/user').User;
 var UserProfileEditClass = require('./components/edit');
 var UserProfileRouter = require('./routers');
 

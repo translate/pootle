@@ -4,7 +4,7 @@ var _ = require('underscore');
 var Backbone = require('backbone');
 var md5 = require('md5').digest_s;
 
-var AdminAPIMixin = require('../mixins/admin_api');
+var AdminAPIMixin = require('mixins/admin_api');
 
 
 var metaUsers = ['nobody', 'default', 'system'];

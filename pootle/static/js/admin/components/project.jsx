@@ -3,8 +3,8 @@
 var React = require('react');
 
 var Search = require('./search');
-var ProjectForm = require('../forms').ProjectForm;
-var models = require('../../models/project');
+var ProjectForm = require('forms').ProjectForm;
+var models = require('models/project');
 
 
 var ProjectsAdmin = React.createClass({

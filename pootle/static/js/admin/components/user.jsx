@@ -3,8 +3,8 @@
 var React = require('react');
 
 var Search = require('./search');
-var UserForm = require('../forms').UserForm;
-var models = require('../../models/user');
+var UserForm = require('forms').UserForm;
+var models = require('models/user');
 
 
 var UsersAdmin = React.createClass({

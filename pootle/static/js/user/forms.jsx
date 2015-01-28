@@ -4,8 +4,8 @@ var React = require('react');
 
 var link = require('autolinker').link;
 
-var FormElement = require('../components/forms').FormElement;
-var ModelFormMixin = require('../mixins/forms').ModelFormMixin;
+var FormElement = require('components/forms').FormElement;
+var ModelFormMixin = require('mixins/forms').ModelFormMixin;
 
 
 // XXX: should probably live somewhere else

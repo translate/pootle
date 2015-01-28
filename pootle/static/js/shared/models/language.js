@@ -3,7 +3,7 @@
 var _ = require('underscore');
 var Backbone = require('backbone');
 
-var AdminAPIMixin = require('../mixins/admin_api');
+var AdminAPIMixin = require('mixins/admin_api');
 
 
 var Language = Backbone.Model.extend({

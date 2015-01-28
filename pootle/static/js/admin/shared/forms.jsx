@@ -2,8 +2,8 @@
 
 var React = require('react/addons');
 
-var FormElement = require('../components/forms').FormElement;
-var ModelFormMixin = require('../mixins/forms').ModelFormMixin;
+var FormElement = require('components/forms').FormElement;
+var ModelFormMixin = require('mixins/forms').ModelFormMixin;
 
 
 var LanguageForm = React.createClass({

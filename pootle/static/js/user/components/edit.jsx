@@ -4,8 +4,8 @@ var Backbone = require('backbone');
 var React = require('react');
 var _ = require('underscore');
 
-var Dialog = require('../../components/lightbox').Dialog;
-var Modal = require('../../components/lightbox').Modal;
+var Dialog = require('components/lightbox').Dialog;
+var Modal = require('components/lightbox').Modal;
 var UserProfileForm = require('../forms').UserProfileForm;
 
 
