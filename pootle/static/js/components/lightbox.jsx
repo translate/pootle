@@ -96,11 +96,11 @@ var Modal = React.createClass({
                ref="content"
                tabIndex="-1">
 
-            {this.props.children}
-
           {this.props.showClose &&
             <button className="lightbox-close"
                     onClick={this.handleClose}>×</button>}
+
+            {this.props.children}
           </div>
         </div>
       </div>
