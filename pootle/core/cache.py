@@ -19,6 +19,10 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
+from django.core.cache import caches, cache as default_cache
+from django.core.cache.backends.base import InvalidCacheBackendError
+
+
 def make_method_key(model, method, key):
     """Creates a cache key for model's `method` method.
 
@@ -43,3 +47,15 @@ def make_key(*args, **kwargs):
     return ':'.join([
         '%s=%s' % (k, v) for k, v in sorted(kwargs.iteritems())
     ])
+
+
+def get_cache(cache=None):
+    """Return ``cache`` or the 'default' cache if ``cache`` is not specified or
+    ``cache`` is not configured.
+
+    :param cache: The name of the requested cache.
+    """
+    try:
+        return caches[cache]
+    except InvalidCacheBackendError:
+        return default_cache

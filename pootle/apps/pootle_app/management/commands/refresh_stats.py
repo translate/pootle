@@ -29,8 +29,6 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from translate.filters.decorators import Category
 
 from django.conf import settings
-from django.core.cache import caches, cache as default_cache
-from django.core.cache.backends.base import InvalidCacheBackendError
 from django.core.urlresolvers import set_script_prefix
 from django.db.models import Count, Max, Sum
 from django.utils import dateformat, timezone
@@ -38,6 +36,7 @@ from django.utils.encoding import force_unicode, iri_to_uri
 
 from django_rq import get_connection, job
 
+from pootle.core.cache import get_cache
 from pootle.core.mixins.treeitem import POOTLE_REFRESH_STATS
 from pootle_misc.util import datetime_min
 from pootle_project.models import Project
@@ -50,11 +49,7 @@ from . import PootleCommand
 
 
 logger = logging.getLogger('stats')
-
-try:
-    cache = caches['stats']
-except InvalidCacheBackendError:
-    cache = default_cache
+cache = get_cache('stats')
 
 
 class Command(PootleCommand):

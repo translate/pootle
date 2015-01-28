@@ -30,14 +30,13 @@ from functools import wraps
 from translate.filters.decorators import Category
 
 from django.conf import settings
-from django.core.cache import caches, cache as default_cache
-from django.core.cache.backends.base import InvalidCacheBackendError
 from django.core.urlresolvers import set_script_prefix
 from django.utils.encoding import force_unicode, iri_to_uri
 
 from django_rq import job
 from django_rq.queues import get_connection
 
+from pootle.core.cache import get_cache
 from pootle.core.log import log
 from pootle.core.url_helpers import get_all_pootle_paths, split_pootle_path
 from pootle_misc.checks import get_qualitychecks_by_category
@@ -49,11 +48,7 @@ POOTLE_REFRESH_STATS = 'pootle:refresh:stats'
 
 
 logger = logging.getLogger('stats')
-
-try:
-    cache = caches['stats']
-except InvalidCacheBackendError:
-    cache = default_cache
+cache = get_cache('stats')
 
 
 def statslog(function):
