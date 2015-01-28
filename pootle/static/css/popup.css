@@ -12,7 +12,7 @@
 }
 
 .popup-ajax .mfp-content,
-.lightbox-content
+.lightbox-body
 {
     background-color: #fff;
     border-radius: 0.5em;
@@ -22,7 +22,7 @@
 }
 
 .popup-ajax .popup-form,
-.lightbox-content
+.lightbox-body
 {
     line-height: 1!important;
 }
@@ -34,25 +34,25 @@
     padding: 2em 3em;
 }
 
-.lightbox-content
+.lightbox-body
 {
     font-size: 0.8em;
 }
 
 .popup-form h1,
-.lightbox-content h1
+.lightbox-body h1
 {
     margin-bottom: 1em;
 }
 
 .popup-form p,
-.lightbox-content p
+.lightbox-body p
 {
     margin: 1em 0;
 }
 
 .popup-form textarea,
-.lightbox-content textarea
+.lightbox-body textarea
 {
     font-size: 1em;
     padding-left: 0.2em;
@@ -60,13 +60,13 @@
 }
 
 .popup-form .buttons input,
-.lightbox-content .buttons input
+.lightbox-body .buttons input
 {
     margin: 0.3em 0px 0px;
 }
 
 .popup-form label,
-.lightbox-content label
+.lightbox-body label
 {
     display: block;
     color: rgba(0, 0, 0, 0.6);

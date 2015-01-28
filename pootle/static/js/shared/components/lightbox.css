@@ -45,7 +45,7 @@
   vertical-align: middle;
 }
 
-.lightbox-content
+.lightbox-body
 {
   position: relative;
   display: inline-block;
@@ -61,7 +61,7 @@
   padding-bottom: 1em;
 }
 
-.lightbox-body
+.lightbox-content
 {
   padding: 1em 0;
 }

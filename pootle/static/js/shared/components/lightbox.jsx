@@ -71,7 +71,7 @@ var Modal = React.createClass({
   },
 
   handleWindowFocus: function (e) {
-    var box = boxes[boxes.length-1].refs.content.getDOMNode();
+    var box = boxes[boxes.length-1].refs.body.getDOMNode();
 
     if (e.target !== window && !box.contains(e.target)) {
       e.stopPropagation();
@@ -92,8 +92,8 @@ var Modal = React.createClass({
     return (
       <div className="lightbox-bg">
         <div className="lightbox-container">
-          <div className="lightbox-content"
-               ref="content"
+          <div className="lightbox-body"
+               ref="body"
                tabIndex="-1">
 
           {this.props.showClose &&
@@ -141,7 +141,7 @@ var Dialog = React.createClass({
           <h3>{this.props.title}</h3>
         </div>}
 
-        <div className="lightbox-body">
+        <div className="lightbox-content">
           {this.props.children}
         </div>
 
