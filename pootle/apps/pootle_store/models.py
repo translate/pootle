@@ -29,7 +29,6 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
 from django.db import models, transaction, IntegrityError
 from django.template.defaultfilters import escape, truncatechars
@@ -51,6 +50,7 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
                              action_log, store_log, log)
 from pootle.core.mixins import CachedMethods, CachedTreeItem
+from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.tmserver import (update as update_tmserver,
                                   search as get_tmsuggestions)
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
@@ -1296,9 +1296,9 @@ class Unit(models.Model, base.TranslationUnit):
 
 ###################### Store ###########################
 
-# custom storage otherwise django assumes all files are uploads headed to
-# media dir
-fs = FileSystemStorage(location=settings.PODIRECTORY)
+
+# Needed to alter storage location in tests
+fs = PootleFileSystemStorage()
 
 
 class StoreManager(models.Manager):
@@ -1328,7 +1328,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     Name = "Model Store"
     is_dir = False
 
-    file = TranslationStoreField(upload_to="fish", max_length=255, storage=fs,
+    file = TranslationStoreField(max_length=255, storage=fs,
             db_index=True, null=False, editable=False)
 
     parent = models.ForeignKey('pootle_app.Directory',
