@@ -435,7 +435,7 @@ def get_units(request):
     uids_param = filter(None, request.GET.get('uids', '').split(u','))
     uids = filter(None, map(to_int, uids_param))
 
-    units = None
+    units = []
     unit_groups = []
     uid_list = []
 
@@ -477,7 +477,7 @@ def get_units(request):
             count = 2 * chunk_size
             uids = uid_list[:count]
 
-    if units is None and uids:
+    if not units and uids:
         units = step_queryset.filter(id__in=uids)
 
     units_by_path = groupby(units, lambda x: x.store.pootle_path)
