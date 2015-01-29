@@ -28,7 +28,6 @@ var FormValidationMixin = {
 
 
 /*
- * Backbone model form mixin.
  *
  * Includes:
  *  - server-side validation
@@ -43,40 +42,20 @@ var FormValidationMixin = {
  *  - `handleError (xhr)`:
  *    called in the `model.save()`'s error callback
  */
-var ModelFormMixin = {
-  mixins: [BackboneMixin, FormValidationMixin],
+var FormMixin = {
 
   propTypes: {
-    model: React.PropTypes.object.isRequired,
     handleSuccess: React.PropTypes.func,
     handleError: React.PropTypes.func
-  },
-
-  /* BackboneMixin */
-  getResource: function () {
-    return this.props.model;
   },
 
 
   /* Lifecycle */
 
   getInitialState: function () {
-    this.initialData = _.pick(this.getResource().toJSON(), this.fields);
     return {
-      formData: _.extend({}, this.initialData),
-      isDirty: false
+      isDirty: false,
     };
-  },
-
-  componentDidMount: function () {
-    if (_.isUndefined(this.fields)) {
-      throw new Error(
-        'To use ModelFormMixin, you must define a `fields` property.'
-      );
-    }
-    if (!_.isArray(this.fields)) {
-      throw new Error('The `fields` property must be an array.');
-    }
   },
 
 
@@ -87,14 +66,6 @@ var ModelFormMixin = {
     newData[name] = value;
     var isDirty = !_.isEqual(newData, this.initialData);
     this.setState({formData: newData, isDirty: isDirty});
-  },
-
-  handleFormSubmit: function (e) {
-    e.preventDefault();
-
-    this.getResource().save(this.state.formData, {wait: true})
-                      .done(this.handleFormSuccess)
-                      .error(this.handleFormError);
   },
 
   handleFormSuccess: function () {
@@ -112,11 +83,64 @@ var ModelFormMixin = {
     this.validateResponse(xhr);
 
     this.handleError && this.handleError(xhr);
-  }
+  },
+
+};
+
+
+/*
+ * Backbone model form mixin.
+ * Like `FormMixin` but specialized for BB models.
+ */
+var ModelFormMixin = {
+  mixins: [BackboneMixin, FormMixin, FormValidationMixin],
+
+  propTypes: {
+    model: React.PropTypes.object.isRequired,
+  },
+
+
+  /* Lifecycle */
+
+  getInitialState: function () {
+    this.initialData = _.pick(this.getResource().toJSON(), this.fields);
+    return {
+      formData: _.extend({}, this.initialData),
+    };
+  },
+
+  componentDidMount: function () {
+    if (_.isUndefined(this.fields)) {
+      throw new Error(
+        'To use ModelFormMixin, you must define a `fields` property.'
+      );
+    }
+    if (!_.isArray(this.fields)) {
+      throw new Error('The `fields` property must be an array.');
+    }
+  },
+
+  /* BackboneMixin */
+  getResource: function () {
+    return this.props.model;
+  },
+
+
+  /* Handlers */
+
+  handleFormSubmit: function (e) {
+    e.preventDefault();
+
+    this.getResource().save(this.state.formData, {wait: true})
+                      .done(this.handleFormSuccess)
+                      .error(this.handleFormError);
+  },
+
 };
 
 
 module.exports = {
+  FormMixin: FormMixin,
   FormValidationMixin: FormValidationMixin,
   ModelFormMixin: ModelFormMixin
 };
