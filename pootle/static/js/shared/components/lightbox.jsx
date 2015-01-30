@@ -48,6 +48,7 @@ var ModalFooter = React.createClass({
 var Modal = React.createClass({
 
   propTypes: {
+    title: React.PropTypes.string,
     showClose: React.PropTypes.bool,
     handleClose: React.PropTypes.func.isRequired,
   },
@@ -57,6 +58,7 @@ var Modal = React.createClass({
 
   getDefaultProps: function () {
     return {
+      title: '',
       showClose: true,
     };
   },
@@ -119,6 +121,9 @@ var Modal = React.createClass({
   /* Layout */
 
   renderHeader: function () {
+    var title = (this.props.title &&
+      <h3 className="lightbox-title">{this.props.title}</h3>
+    );
     var closeBtn = (this.props.showClose &&
       <button className="lightbox-close"
               onClick={this.handleClose}>×</button>
@@ -126,6 +131,7 @@ var Modal = React.createClass({
 
     return (
       <ModalHeader>
+        {title}
         {closeBtn}
       </ModalHeader>
     );
@@ -164,7 +170,6 @@ var Modal = React.createClass({
 var Dialog = React.createClass({
 
   propTypes: {
-    title: React.PropTypes.string,
     okLabel: React.PropTypes.string,
     cancelLabel: React.PropTypes.string,
     handleOk: React.PropTypes.func.isRequired,

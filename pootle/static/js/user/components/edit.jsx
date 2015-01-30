@@ -100,9 +100,10 @@ var UserProfileEdit = React.createClass({
           </button>
         </div>
       {this.state.editing &&
-        <Modal handleClose={this.handleClose}>
+        <Modal
+          handleClose={this.handleClose}
+          title={gettext('My Public Profile')}>
           <div id="user-edit">
-            <h1>{gettext('My Public Profile')}</h1>
             <UserProfileForm model={this.props.user}
                              handleDirtyFlag={this.handleDirtyFlag}
                              handleSuccess={this.handleSave} />
