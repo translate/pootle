@@ -15,6 +15,36 @@ var boxes = [];
 var focusedElements = [];
 
 
+/* Reusable micro components */
+
+var ModalHeader = React.createClass({
+
+  render: function () {
+    return (
+      <div className="lightbox-header">
+        {this.props.children}
+      </div>
+    );
+  },
+
+});
+
+
+var ModalFooter = React.createClass({
+
+  render: function () {
+    return (
+      <div className="lightbox-footer">
+        {this.props.children}
+      </div>
+    );
+  },
+
+});
+
+
+/* Actual components */
+
 var Modal = React.createClass({
 
   propTypes: {
@@ -88,24 +118,45 @@ var Modal = React.createClass({
 
   /* Layout */
 
+  renderHeader: function () {
+    var closeBtn = (this.props.showClose &&
+      <button className="lightbox-close"
+              onClick={this.handleClose}>×</button>
+    );
+
+    return (
+      <ModalHeader>
+        {closeBtn}
+      </ModalHeader>
+    );
+  },
+
+  renderFooter: function () {
+    return null;
+  },
+
   render: function () {
+    var header = this.props.header ? this.props.header(this.props)
+                                   : this.renderHeader(this.props);
+    var footer = this.props.footer ? this.props.footer(this.props)
+                                   : this.renderFooter(this.props);
+
     return (
       <div className="lightbox-bg">
         <div className="lightbox-container">
           <div className="lightbox-body"
                ref="body"
                tabIndex="-1">
-
-          {this.props.showClose &&
-            <button className="lightbox-close"
-                    onClick={this.handleClose}>×</button>}
-
-            {this.props.children}
+            {header}
+            <div className="lightbox-content">
+              {this.props.children}
+            </div>
+            {footer}
           </div>
         </div>
       </div>
     );
-  }
+  },
 
 });
 
@@ -133,30 +184,25 @@ var Dialog = React.createClass({
 
   /* Layout */
 
+  renderFooter: function () {
+    return (
+      <ModalFooter>
+        <button className="btn btn-primary"
+                onClick={this.props.handleOk}>
+          {this.props.okLabel}
+        </button>
+        <button className="btn"
+                autoFocus={true}
+                onClick={this.props.handleCancel}>
+          {this.props.cancelLabel}
+        </button>
+      </ModalFooter>
+    );
+  },
+
   render: function () {
     return (
-      <Modal {...this.props}>
-      {this.props.title &&
-        <div className="lightbox-header">
-          <h3>{this.props.title}</h3>
-        </div>}
-
-        <div className="lightbox-content">
-          {this.props.children}
-        </div>
-
-        <div className="lightbox-footer">
-          <button className="btn btn-primary"
-                  onClick={this.props.handleOk}>
-            {this.props.okLabel}
-          </button>
-          <button className="btn"
-                  autoFocus={true}
-                  onClick={this.props.handleCancel}>
-            {this.props.cancelLabel}
-          </button>
-        </div>
-      </Modal>
+      <Modal {...this.props} footer={this.renderFooter} />
     );
   }
 
