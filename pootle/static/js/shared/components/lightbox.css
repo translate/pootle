@@ -58,17 +58,17 @@
 
 .lightbox-header
 {
-  padding-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 .lightbox-content
 {
-  padding: 1em 0;
+  margin: 1em 0;
 }
 
 .lightbox-footer
 {
-  padding-top: 1em;
+  margin-top: 2em;
   text-align: right;
 }
 
