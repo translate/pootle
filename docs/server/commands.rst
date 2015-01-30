@@ -369,8 +369,8 @@ migrate
   run the :command:`setup` management command in those scenarios.
 
 
-This is Django's :ref:`migrate command <django:django-admin>`, which syncs
-the state of models with the DB and applies migrations for them.
+This is Django's :djadmin:`django:migrate` command, which syncs the state
+of models with the DB and applies migrations for them.
 
 
 .. _commands#initdb:
