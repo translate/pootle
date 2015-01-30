@@ -44,12 +44,6 @@ var FormValidationMixin = {
  */
 var FormMixin = {
 
-  propTypes: {
-    handleSuccess: React.PropTypes.func,
-    handleError: React.PropTypes.func
-  },
-
-
   /* Lifecycle */
 
   getInitialState: function () {

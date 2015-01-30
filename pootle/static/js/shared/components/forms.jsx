@@ -8,6 +8,15 @@ var Select = require('react-select');
 
 var FormElement = React.createClass({
 
+  propTypes: {
+    type: React.PropTypes.string,
+    attribute: React.PropTypes.string.isRequired,
+    label: React.PropTypes.string.isRequired,
+    handleChange: React.PropTypes.func.isRequired,
+    formData: React.PropTypes.object.isRequired,
+    errors: React.PropTypes.object,
+  },
+
   /* Lifecycle */
 
   getDefaultProps: function () {
