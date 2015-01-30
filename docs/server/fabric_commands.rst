@@ -407,7 +407,7 @@ setup_db
 
 This command:
 
-- Runs :ref:`syncdb --noinput <commands#syncdb>` to create the database schema
+- Runs ``syncdb --noinput`` to create the database schema
 - Runs :ref:`initdb <commands#initdb>` to populate the standard schema objects
 - Runs :ref:`migrate <commands#migrate>` to bring the database schema
   up to the latest version
@@ -503,7 +503,7 @@ syncdb
 
 This command:
 
-- Runs :ref:`syncdb --noinput <commands#syncdb>` to create the database schema
+- Runs ``syncdb --noinput`` to create the database schema
 
 Examples:
 

@@ -167,7 +167,6 @@ schema and add initial data.
 
 .. code-block:: bash
 
-    (env-name) $ python manage.py syncdb --noinput
     (env-name) $ python manage.py migrate
     (env-name) $ python manage.py initdb
 
