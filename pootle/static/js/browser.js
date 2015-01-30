@@ -204,7 +204,7 @@ var browser = {
 
     newUrl = l(urlParts.join('/'));
 
-    var PTL = PTL || {};
+    var PTL = window.PTL || {};
     if (PTL.hasOwnProperty('editor')) {
       var hash = utils.getHash().replace(/&?unit=\d+/, '');
       if (hash !== '') {
