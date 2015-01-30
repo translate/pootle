@@ -353,33 +353,12 @@ These commands expose the database installation and upgrade process from the
 command line.
 
 
-.. _commands#syncdb:
-
-syncdb
-^^^^^^
-
-Originally, ``syncdb`` was a generic Django management command that creates
-empty database tables. It has been customized for Pootle to create everything
-required for a bare bones install for releases up to 2.5.0. This includes
-database tables, default permissions, some default objects used internally by
-Pootle (like the *"default"* and *"nobody"* user profiles) and the special
-:ref:`Terminology <terminology>` project and
-:ref:`Templates language <templates#the_templates_language>`.
-
-For releases up to 2.5.0, if you just run ``syncdb`` you will have a usable
-Pootle install but you will need to create all languages manually, and you will
-not have a tutorial project to play with.  For releases after 2.5.0, ``syncdb``
-is not sufficient to create the database schema; it will remain incomplete and
-unusable until you apply all migrations to the database schema by running the
-:ref:`commands#migrate` command.
-
-
 .. _commands#migrate:
 
 migrate
 ^^^^^^^
 
-.. versionadded:: 2.5.1
+.. versionchanged:: 2.7
 
 
 .. note::
@@ -390,10 +369,8 @@ migrate
   run the :command:`setup` management command in those scenarios.
 
 
-This is South's :ref:`migrate command <south:commands>`, which applies
-migrations to bring the database up to the latest schema revision. It is
-required for releases after 2.5.0, even for a fresh install where you are not
-upgrading from a previous release.
+This is Django's :ref:`migrate command <django:django-admin>`, which syncs
+the state of models with the DB and applies migrations for them.
 
 
 .. _commands#initdb:
@@ -405,7 +382,7 @@ This is Pootle's install process, it creates the default *admin* user, populates
 the language table with several languages with their correct fields, initializes
 several terminology projects, and creates the tutorial project.
 
-``initdb`` can only be run after :ref:`commands#syncdb` and :ref:`commands#migrate`.
+``initdb`` can only be run after :ref:`commands#migrate`.
 
 .. note:: ``initdb`` will not import translations into the database, so the
   first visit to Pootle after ``initdb`` will be very slow. **It is
