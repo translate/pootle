@@ -107,6 +107,21 @@ def required_depcheck():
         'text': text,
     })
 
+    status, connection_settings = depcheck.test_redis_server_available()
+    if status:
+        text = _('Redis server accepting connections on %(host)s:%(port)s.', connection_settings)
+        state = 'tick'
+    else:
+        text = _('Redis server is not running on %(host)s:%(port)s.', connection_settings)
+        state = 'error'
+
+    required.append({
+        'dependency': 'rq',
+        'state': state,
+        'text': text,
+    })
+
+
     return required
 
 

@@ -67,6 +67,18 @@ def test_lxml():
         return None, None
 
 
+def test_redis_server_available():
+    from django_rq.queues import get_queue
+    from django_rq.workers import Worker
+    from redis.exceptions import ConnectionError
+    queue = get_queue()
+    try:
+        workers = Worker.all(queue.connection)
+        return True, queue.connection.connection_pool.connection_kwargs
+    except ConnectionError:
+        return False, queue.connection.connection_pool.connection_kwargs
+
+
 ##############################
 # Test optional dependencies #
 ##############################
