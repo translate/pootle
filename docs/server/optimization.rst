@@ -177,18 +177,3 @@ might result in smaller memory usage and better performance). If high
 concurrency is expected, `InnoDB
 <https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html>`_ is
 suggested to avoid locking issues.
-
-
-.. _optimization#fast_po_implementation:
-
-Fast PO implementation
-^^^^^^^^^^^^^^^^^^^^^^
-
-If you want better performance for your PO based operations, you can try to
-enable the fast PO implementation. This implementation will be used if
-``USECPO=2`` is available in the operating system environment variables. Note
-that this is different from the web server's environment variables.
-
-Your PO files will have to have character encodings specified, and be perfectly
-valid PO files (no duplicate messages or other format errors). Be sure to test
-this extensively before you migrate your live server to this setup.
