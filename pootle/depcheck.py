@@ -79,6 +79,14 @@ def test_redis_server_available():
         return False, queue.connection.connection_pool.connection_kwargs
 
 
+def test_rq_workers_running():
+    from django_rq.queues import get_queue
+    from django_rq.workers import Worker
+    queue = get_queue()
+    workers = Worker.all(queue.connection)
+    return len(workers) >= 1 and not workers[0].stopped, len(workers)
+
+
 ##############################
 # Test optional dependencies #
 ##############################

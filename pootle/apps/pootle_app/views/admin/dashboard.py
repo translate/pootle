@@ -27,7 +27,7 @@ from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, ungettext
 
 from django_rq.queues import get_queue, get_failed_queue
 from django_rq.workers import Worker
@@ -108,12 +108,25 @@ def required_depcheck():
         'text': text,
     })
 
-    status, connection_settings = depcheck.test_redis_server_available()
-    if status:
-        text = _('Redis server accepting connections on %(host)s:%(port)s.', connection_settings)
-        state = 'tick'
+    status_redis, connection_settings = depcheck.test_redis_server_available()
+    if status_redis:
+        status_workers, connection_settings['num'] = \
+            depcheck.test_rq_workers_running()
+        if status_workers:
+            text = ungettext(
+                    'Redis server accepting connections on %(host)s:%(port)s. '
+                    'With %(num)d RQ worker running.',
+                    'Redis server accepting connections on %(host)s:%(port)s. '
+                    'With %(num)d RQ workers running.',
+                    connection_settings['num'], connection_settings)
+            state = 'tick'
+        else:
+            text = _('No RQ workers are running.  Redis server is accepting '
+                     'connections on %(host)s:%(port)s.', connection_settings)
+            state = 'error'
     else:
-        text = _('Redis server is not running on %(host)s:%(port)s.', connection_settings)
+        text = _('Redis server is not running on %(host)s:%(port)s.',
+                 connection_settings)
         state = 'error'
 
     required.append({
