@@ -31,6 +31,7 @@ from django.utils.translation import ugettext as _
 
 from django_rq.queues import get_queue, get_failed_queue
 from django_rq.workers import Worker
+from redis.exceptions import ConnectionError
 
 from pootle import depcheck
 from pootle.core.decorators import admin_required
@@ -307,7 +308,10 @@ def server_stats_more(request):
 def rq_stats():
     queue = get_queue()
     failed_queue = get_failed_queue()
-    workers = Worker.all(queue.connection)
+    try:
+        workers = Worker.all(queue.connection)
+    except ConnectionError:
+        return None
     is_running = False
     if len(workers) == 1:
         is_running = not workers[0].stopped
