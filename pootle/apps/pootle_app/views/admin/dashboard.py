@@ -293,9 +293,7 @@ def rq_stats():
     queue = get_queue()
     failed_queue = get_failed_queue()
     workers = Worker.all(queue.connection)
-    is_running = False
-    if len(workers) == 1:
-        is_running = not workers[0].stopped
+    is_running = len(workers) >= 1 and not workers[0].stopped
 
     result = {
         'job_count': queue.count,
