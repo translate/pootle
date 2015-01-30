@@ -481,7 +481,9 @@ class ENChecker(checks.TranslationChecker):
         if escaped_entities_regex.search(str2):
             chunks = broken_ampersand_regex.split(str1)
             if len(chunks) == 1:
-                return True
+                chunks = broken_ampersand_regex.split(str2)
+                if len(chunks) == 1:
+                    return True
 
             raise checks.FilterFailure(u"Escaped ampersand mismatch")
 
