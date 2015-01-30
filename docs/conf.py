@@ -292,7 +292,6 @@ intersphinx_mapping = {
     'django': ('https://docs.djangoproject.com/en/dev',
         'https://docs.djangoproject.com/en/dev/_objects'),
     'toolkit': ('http://docs.translatehouse.org/projects/translate-toolkit/en/latest/', None),
-    'south':  ('https://south.readthedocs.org/en/latest/', None),
     'tastypie':  ('https://django-tastypie.readthedocs.org/en/latest/', None),
 }
 
