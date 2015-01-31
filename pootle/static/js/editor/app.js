@@ -227,15 +227,11 @@ PTL.editor = {
       // Optimize string join with '<br/>' as separator
       $('#js-nav-next')
         .attr('title',
-              gettext(['Go to the next string (Ctrl+.)', '',
-                       'Also:', 'Next page: Ctrl+Shift+.',
-                       'Last page: Ctrl+Shift+End'].join('<br/>'))
+              gettext('Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/>Last page: Ctrl+Shift+End')
       );
       $('#js-nav-prev')
         .attr('title',
-              gettext(['Go to the previous string (Ctrl+,)', '',
-                       'Also:', 'Previous page: Ctrl+Shift+,',
-                       'First page: Ctrl+Shift+Home'].join('<br/>'))
+              gettext('Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl+Shift+,<br/>First page: Ctrl+Shift+Home')
       );
     }
 
