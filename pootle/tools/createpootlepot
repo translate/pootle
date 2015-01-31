@@ -31,7 +31,7 @@ pushd . 2>&1 > /dev/null
 cd $SRC_DIR
 
 django-admin.py makemessages -v $VERBOSITY -e py,txt,html,conf -l templates
-django-admin.py makemessages -v $VERBOSITY --ignore assets -d djangojs -l templates
+django-admin.py makemessages -v $VERBOSITY --ignore assets --ignore="*.bundle.js" -d djangojs -e js -l templates
 popd  2>&1  >  /dev/null
 
 # Header replacements
