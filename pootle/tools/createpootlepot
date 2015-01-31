@@ -32,6 +32,8 @@ cd $SRC_DIR
 
 django-admin.py makemessages -v $VERBOSITY -e py,txt,html,conf -l templates
 django-admin.py makemessages -v $VERBOSITY --ignore assets --ignore="*.bundle.js" -d djangojs -e js -l templates
+(cd $SRC_DIR; xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find static/js -name "*.jsx"))
+(cd $SRC_DIR; xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find templates -name "*.html"))
 popd  2>&1  >  /dev/null
 
 # Header replacements
