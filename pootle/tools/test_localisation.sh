@@ -1,17 +1,31 @@
 #!/bin/bash
 
-basedir=../..
+basedir=$(dirname $0)/../..
 
-if [ $# -ne 1 ]; then
-	echo "$0 lang"
-	exit 0
+if [ $# -lt 1 ]; then
+	echo "$(basename $0) [--pot] <lang> [style (default is xxx)]"
+	exit 1
+fi
+
+if [[ $1 == "--pot" ]]; then
+	pot="yes"
+	shift
 fi
 
 lang=$1
+style=${2-xxx}
 
 cd $basedir
-mkdir locale
-./manage.py makemessages --settings=pootle/settings.py -v 1 -e ".html" -e ".py" -l pot
-sed --in-place "s/INTEGER/2/g;s/EXPRESSION/(n!=1)/g" locale/pot/LC_MESSAGES/django.po
-podebug --rewrite=xxx locale/pot/LC_MESSAGES/django.po po/pootle/$lang/pootle.po
-rm -rf locale
+
+[[ $pot ]] && make pot
+
+cd pootle
+mkdir -p locale/$lang
+podebug --rewrite=$style --progress=none locale/templates/pootle.pot locale/$lang/pootle.po
+podebug --rewrite=$style --progress=none locale/templates/pootle_js.pot locale/$lang/pootle_js.po
+
+sed -i .bak "s/INTEGER/2/g;s/EXPRESSION/(n!=1)/g" locale/$lang/pootle.po
+sed -i .bak "s/INTEGER/2/g;s/EXPRESSION/(n!=1)/g" locale/$lang/pootle_js.po
+
+cd ..
+./setup.py build_mo --lang=$lang
