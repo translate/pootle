@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% load i18n cache staticpages locale %}
+
+{% block title %}{% trans "Register" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Register" %}</li>
+{% endblock %}
+
+{% block content %}
+<div id="register" class="form" dir="{% locale_dir %}">
+    <h2>{% trans "Register a New Pootle Account" %}</h2>
+    <p>{% trans "Fill in the following form to get started translating." %}</p>
+    <form method="post" action="" name="registerform" id="registerform">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        {{ form.non_field_errors }}
+    {% endif %}
+    <p>
+        <label for="username">{% trans "Username" %}</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+    </p>
+    <p>
+        <label for="email">{% trans "Email Address" %}</label>
+        {{ form.email }}
+        {{ form.email.errors }}
+    </p>
+    <p>
+        <label for="password1">{% trans "Password" %}</label>
+        {{ form.password1 }}
+        {{ form.password1.errors }}
+    </p>
+    <p>
+        <label for="password2">{% trans "Password (again)" %}</label>
+        {{ form.password2 }}
+        {{ form.password2.errors }}
+    </p>
+    {% for lp_field in form.legal_fields %}
+    <p>
+      {{ lp_field.errors }}
+      {{ lp_field }}
+      {{ lp_field.label_tag }}
+    </p>
+    {% endfor %}
+    <p class="buttons">
+      <input type="submit" class="btn" name="register"
+             value="{% trans 'Register' %}" />
+    </p>
+</form>
+</div>
+
+<h2 class="formlink">{% trans "Already have an account?" %}
+    <a href="{% url 'account_login' %}" title="{% trans 'Log In.' %}">{% trans "Log In." %}</a>
+</h2>
+{% endblock %}
+
+{% block scripts_extra %}
+<script type="text/javascript">
+$(function () {
+  $("#id_username").focus();
+  PTL.common.updateInputState('.js-legalfield', 'input.register');
+});
+</script>
+{% endblock scripts_extra %}
