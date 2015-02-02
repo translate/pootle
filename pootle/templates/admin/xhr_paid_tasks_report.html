@@ -33,7 +33,8 @@
         <td class="number"><%= (row.rate * row.amount).toFixed(2) %> <%= data.meta.user.currency %></td>
         <td class="remove">
           <% if (PTL.reports.adminReport) { %>
-            <i class="icon-reject js-remove-task" data-id="<%= row.id %>" original-title="<%= gettext('Remove task') %>"></i>
+            <% var removeTask = gettext('Remove task'); %>
+            <i class="icon-reject js-remove-task" data-id="<%= row.id %>" original-title="<%= removeTask %>"></i>
           <% } else { %>
             <a data-action="contact" data-subject-prefix="Task"
                data-subject="<%= _.escape(row.description) + ' (' + amount + ')' %>"
