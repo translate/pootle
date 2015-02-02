@@ -324,10 +324,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         resources_path = ''.join(['/%/', self.code, '/%'])
 
         sql_query = '''
-        SELECT DISTINCT
-            REPLACE(pootle_path,
-                    CONCAT(SUBSTRING_INDEX(pootle_path, '/', 3), '/'),
-                    '')
+        SELECT pootle_path
         FROM (
             SELECT pootle_path
             FROM pootle_store_store
@@ -339,13 +336,17 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         '''
         cursor = connection.cursor()
         cursor.execute(sql_query, [resources_path, resources_path])
-
         results = cursor.fetchall()
 
         # Flatten tuple and sort in a list
-        resources = list(reduce(lambda x,y: x+y, results))
-        resources.sort(key=get_path_sortkey)
+        resources = set()
+        for result in results:
+            s = result[0]
+            s = s[s.find("/", s.find("/", 1) + 1) + 1:]
+            resources.add(s)
 
+        resources = list(resources)
+        resources.sort(key=get_path_sortkey)
         cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
 
         return resources
