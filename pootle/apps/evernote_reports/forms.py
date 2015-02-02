@@ -28,6 +28,7 @@ from evernote_reports.models import PaidTask, PaidTaskTypes
 class UserRatesForm(forms.Form):
     username = forms.CharField(widget=forms.HiddenInput())
     currency = forms.ChoiceField(
+        label=_("Currency"),
         choices=CURRENCIES,
         initial=CURRENCIES[0],
         widget=forms.Select(attrs={'class': 'rate'})
