@@ -1,30 +1,30 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2012 Zuza Software Foundation (Translate.org.za)
+# Copyright (C) 2012-2015 Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
 "POT-Creation-Date: 2015-02-02 22:45+0100\n"
-"PO-Revision-Date: 2013-11-12 17:08+0000\n"
-"Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1384276110.0\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Translate Toolkit 1.12.0\n"
 
 #: static/js/browser.js:148
 msgid "All Languages"
-msgstr "Todos os idiomas"
+msgstr ""
 
 #: static/js/browser.js:151
 msgid "All Projects"
-msgstr "Todos os proxectos"
+msgstr ""
 
 #: static/js/browser.js:154
 msgid "Entire Project"
@@ -46,40 +46,40 @@ msgstr ""
 #: static/js/editor/app.js:342
 #, c-format
 msgid "%s's pending suggestions"
-msgstr "Suxestións pendentes de %s"
+msgstr ""
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:345
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr "Suxestións aceptadas de %s"
+msgstr ""
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:348
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr "Suxestións rexeitadas de %s"
+msgstr ""
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:351
 #, c-format
 msgid "%s's submissions"
-msgstr "Envíos de %s"
+msgstr ""
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
 #: static/js/editor/app.js:355
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr "Envíos sobrescritos de %s"
+msgstr ""
 
 #: static/js/editor/app.js:507 static/js/editor/app.js.c:1660
 msgid "No results."
-msgstr "Sen resultados."
+msgstr ""
 
 #: static/js/editor/app.js:965
 msgid "Error while connecting to the server"
-msgstr "Produciuse un erro ao conectar co servidor"
+msgstr ""
 
 #: static/js/editor/app.js:969
 msgid "Not found"
@@ -87,15 +87,15 @@ msgstr ""
 
 #: static/js/editor/app.js:971
 msgid "Server error"
-msgstr "Erro do servidor"
+msgstr ""
 
 #: static/js/editor/app.js:973
 msgid "The server seems down. Try again later."
-msgstr "Parece ser que o servidor está caído. Probe de novo máis tarde."
+msgstr ""
 
 #: static/js/editor/app.js:980
 msgid "Unknown error"
-msgstr "Erro descoñecido"
+msgstr ""
 
 #: static/js/editor/app.js:988
 msgid "This unit no longer exists."
@@ -119,7 +119,7 @@ msgstr ""
 
 #: static/js/editor/app.js:2019 static/js/editor/app.js.c:2068
 msgid "Similar translations"
-msgstr "Traducións semellantes"
+msgstr ""
 
 #: static/js/shared/models/project.js:51
 msgid "disabled"
@@ -132,53 +132,52 @@ msgid_plural "%s seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-# resposta
 #: static/js/stats.js:257
 msgid "Expand details"
-msgstr "Mostrar os detalles"
+msgstr ""
 
 #: static/js/stats.js:257
 msgid "Collapse details"
-msgstr "Contraer os detalles"
+msgstr ""
 
 #: static/js/utils.js:143
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Hai un ano"
-msgstr[1] "Hai %s anos"
+msgstr[0] ""
+msgstr[1] ""
 
 #: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Hai unha semana"
-msgstr[1] "Hai %s semanas"
+msgstr[0] ""
+msgstr[1] ""
 
 #: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] "Onte"
-msgstr[1] "Hai %s días"
+msgstr[0] ""
+msgstr[1] ""
 
 #: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Hai unha hora"
-msgstr[1] "Hai %s horas"
+msgstr[0] ""
+msgstr[1] ""
 
 #: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Hai un minuto"
-msgstr[1] "Hai %s minutos"
+msgstr[0] ""
+msgstr[1] ""
 
 #: static/js/utils.js:163
 msgid "A few seconds ago"
-msgstr "Hai uns segundos"
+msgstr ""
 
 #: static/js/admin/components/language.jsx:32
 #, python-format
@@ -205,9 +204,8 @@ msgstr ""
 
 #: static/js/admin/components/language.jsx:78
 #: static/js/admin/components/language.jsx:107
-#, fuzzy
 msgid "Add Language"
-msgstr "Todos os idiomas"
+msgstr ""
 
 #: static/js/admin/components/language.jsx:81
 #: static/js/admin/components/project.jsx:81
@@ -257,9 +255,8 @@ msgstr ""
 
 #: static/js/admin/components/project.jsx:78
 #: static/js/admin/components/project.jsx:107
-#, fuzzy
 msgid "Add Project"
-msgstr "Todos os proxectos"
+msgstr ""
 
 #: static/js/admin/components/project.jsx:104
 msgid "Edit Project"
@@ -641,19 +638,19 @@ msgstr ""
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
-msgstr "Máis"
+msgstr ""
 
 #: templates/editor/units/xhr_edit_ctx.html:5
 msgid "Hide"
-msgstr "Ocultar"
+msgstr ""
 
 #: templates/editor/units/xhr_edit_ctx.html:6
 msgid "Less"
-msgstr "Menos"
+msgstr ""
 
 #: templates/editor/units/xhr_edit_ctx.html:7
 msgid "Show"
-msgstr "Mostrar"
+msgstr ""
 
 #: templates/editor/units/xhr_tm.html:12
 #, python-format
@@ -661,63 +658,3 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-
-#~ msgid "Are you sure you want to continue?"
-#~ msgstr "Ten a certeza de que quere continuar?"
-
-#~ msgid "This operation cannot be undone."
-#~ msgstr "Esta operación non se pode desfacer."
-
-#~ msgid "Show tags"
-#~ msgstr "Mostrar as etiquetas"
-
-#~ msgid "Hide tags"
-#~ msgstr "Ocultar as etiquetas"
-
-#~ msgid "Hide filtering"
-#~ msgstr "Ocultar o filtrado"
-
-#~ msgid "Show filtering"
-#~ msgstr "Mostrar o filtrado"
-
-#~ msgid "Go to the next string (Ctrl+.)"
-#~ msgstr "Ir á seguinte cadea (Ctrl+.)"
-
-#~ msgid "Go to the previous string (Ctrl+,)"
-#~ msgstr "Ir á anterior cadea (Ctrl+,)"
-
-#~ msgid "Export View"
-#~ msgstr "Vista de exportación"
-
-#~ msgid "You reached the beginning of the list"
-#~ msgstr "Chegou ao comezo da lista"
-
-#~ msgid "You reached the end of the list."
-#~ msgstr "Chegou ao final da lista."
-
-#~ msgid "Return to the overview page."
-#~ msgstr "Volver á páxina de vista xeral."
-
-#, c-format
-#~ msgid "%s% match"
-#~ msgstr "Coincidencia do %s%"
-
-#, c-format
-#~ msgid "<a href=\"%s\">String %s</a>"
-#~ msgstr "<a href=\"%s\">Sreang</a>"
-
-#~ msgid "Congratulations, you walked through all strings."
-#~ msgstr "Meal do naidheachd, rinn thu eadar-theangachadh air a h-uile rud."
-
-#, c-format
-#~ msgid "<a href=\"%s\">Unit %s</a>"
-#~ msgstr "<a href=\"%s\">Unidade %s</a>"
-
-#~ msgid "Congratulations, you walked through all items"
-#~ msgstr "Parabéns, pasou por todos os elementos"
-
-#~ msgid "You reached the end of the list"
-#~ msgstr "Acadou o final da lista"
-
-#~ msgid "amaGama server"
-#~ msgstr "Servidor amaGama"

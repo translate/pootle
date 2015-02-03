@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"POT-Creation-Date: 2015-02-02 22:43+0100\n"
 "PO-Revision-Date: 2014-02-13 13:58+0000\n"
 "Last-Translator: Jojoo <jojoo.imbeah@suuch.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: ak\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,10 +19,1335 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-POOTLE-MTIME: 1392299905.000000\n"
 
+#: apps/contact/forms.py:35
+msgid "Summary"
+msgstr "Ntwatia"
+
+#: apps/contact/forms.py:37
+msgid "Please enter your message summary"
+msgstr ""
+
+#: apps/contact/forms.py:44 core/browser.py:29
+msgid "Name"
+msgstr "Din"
+
+#: apps/contact/forms.py:45
+msgid "Please enter your name"
+msgstr ""
+
+#: apps/contact/forms.py:48
+msgid "Email address"
+msgstr "Emel adrɛs"
+
+#: apps/contact/forms.py:49
+msgid "Please enter your email address"
+msgstr ""
+
+#: apps/contact/forms.py:52 apps/pootle_notifications/models.py:30
+msgid "Message"
+msgstr "Nkrato"
+
+#: apps/contact/forms.py:53
+msgid "Please enter your message"
+msgstr ""
+
+#: apps/evernote_auth/views.py:62
+msgid ""
+"Cannot link: your Evernote account is already linked with another Pootle "
+"account."
+msgstr ""
+
+#: apps/evernote_reports/forms.py:31 models/user.py:101
+msgid "Currency"
+msgstr ""
+
+#: apps/evernote_reports/forms.py:37
+msgid "Translation Rate"
+msgstr ""
+
+#: apps/evernote_reports/forms.py:42 models/user.py:98
+msgid "Review Rate"
+msgstr ""
+
+#: apps/evernote_reports/forms.py:47 models/user.py:99
+msgid "Hourly Rate"
+msgstr ""
+
+#: apps/evernote_reports/forms.py:52
+msgid "Effective from"
+msgstr ""
+
+#: apps/evernote_reports/models.py:43 templates/editor/export_view.html:106
+#: templates/translation_projects/terminology/manage.html:37
+msgid "Translation"
+msgstr "Asekyerɛ"
+
+#: apps/evernote_reports/models.py:44
+msgid "Review"
+msgstr "Hwɛ mu"
+
+#: apps/evernote_reports/models.py:45
+msgid "Hourly Work"
+msgstr ""
+
+#: apps/evernote_reports/models.py:46
+msgid "Correction"
+msgstr ""
+
+#: apps/evernote_reports/models.py:49
+msgid "Type"
+msgstr ""
+
+#: apps/evernote_reports/models.py:52
+msgid "Amount"
+msgstr ""
+
+#: apps/evernote_reports/models.py:54
+msgid "Date"
+msgstr ""
+
+# Nkyerɛmu rekɛyɛ sɛ "explanation" sen sɛ "description"
+#: apps/evernote_reports/models.py:55
+msgid "Description"
+msgstr "Nkyerɛmu"
+
+#: apps/evernote_reports/views.py:308
+#, python-format
+msgid "User %s not found"
+msgstr ""
+
+#: apps/evernote_reports/views.py:393
+msgid "Invalid request method"
+msgstr ""
+
+#: apps/pootle_app/forms.py:49
+msgid "Language code does not follow the ISO convention"
+msgstr "Kood ma kasa no nndi ISO mbra so"
+
+#. Translators: The language from which translation will happen
+#: apps/pootle_app/forms.py:57 apps/pootle_project/models.py:183 strings.py:43
+msgid "Source Language"
+msgstr "Sɔɔs Kasa"
+
+#: apps/pootle_app/forms.py:103 apps/pootle_project/models.py:392
+#, python-format
+msgid "\"%s\" cannot be used as a project code"
+msgstr ""
+
+#: apps/pootle_app/forms.py:110 templates/profiles/_tabs.html:5
+msgid "Password"
+msgstr "Ehintasɛmfua"
+
+#: apps/pootle_app/forms.py:145 apps/pootle_profile/forms.py:38
+msgid "Please enter a valid LinkedIn user profile URL."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:50
+#, python-format
+msgid "Translate Toolkit version %s installed."
+msgstr "Translate Toolkit ne vɛɛhyɛn %s na wɔeinstɔle."
+
+#: apps/pootle_app/views/admin/dashboard.py:58
+#, fuzzy, python-format
+msgid ""
+"Translate Toolkit version %(installed)s installed. Pootle requires at least "
+"version %(required)s."
+msgstr ""
+"Translate Toolkit ne vɛɛhyɛn %(installed)s na wɔeinstɔle. Pootle hia vɛɛhyɛn "
+"%(required)s."
+
+#: apps/pootle_app/views/admin/dashboard.py:70
+#, python-format
+msgid "Django version %s is installed."
+msgstr "Django vɛɛhyɛn %s a einstɔl."
+
+#: apps/pootle_app/views/admin/dashboard.py:78
+#, python-format
+msgid ""
+"Django version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:90
+#, python-format
+#, python-format,
+msgid "lxml version %s is installed."
+msgstr "wɔeinstɔl lxml vɛɛhyɛn %s."
+
+#: apps/pootle_app/views/admin/dashboard.py:98
+#, python-format
+msgid ""
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:102
+msgid "lxml is not installed. Pootle requires lxml."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:117
+#, python-format
+msgid ""
+"Redis server accepting connections on %(host)s:%(port)s. With %(num)d RQ "
+"worker running."
+msgid_plural ""
+"Redis server accepting connections on %(host)s:%(port)s. With %(num)d RQ "
+"workers running."
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/pootle_app/views/admin/dashboard.py:124
+#, python-format
+msgid ""
+"No RQ workers are running.  Redis server is accepting connections on "
+"%(host)s:%(port)s."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:128
+#, python-format
+msgid "Redis server is not running on %(host)s:%(port)s."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:148
+msgid ""
+"Can't find the ISO codes package. Pootle uses ISO codes to translate "
+"language names."
+msgstr ""
+"Nnhu bɔho ma ISO nkood. Pootle de ISO nkood na ɔde kyerɛ akasa wɔn din mu."
+
+#: apps/pootle_app/views/admin/dashboard.py:154
+#, fuzzy
+msgid ""
+"Can't find python-levenshtein package. Updating against templates is faster "
+"with python-levenshtein."
+msgstr ""
+"Nnhu python-levenshtein bɔho. Ntoso a wɔyɛ firi atɛmplet mu kɔ ntɛm sɛ wɔde "
+"python-levenshtein yɛ a."
+
+#: apps/pootle_app/views/admin/dashboard.py:162
+msgid "MARKUP_FILTER is missing. Falling back to HTML."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:164
+msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:166
+#, python-format
+msgid ""
+"Can't find the package which provides '%s' markup support. Falling back to "
+"HTML."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:170
+#, python-format
+msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:187
+msgid ""
+"Using the default sqlite3 database engine. SQLite is only suitable for small "
+"installations with a small number of users. Pootle will perform better with "
+"the MySQL database engine."
+msgstr ""
+"De sqlite3 fidie ma databes de redi dwuma. SQLite boa sɛ instɔlehyɛn no sua "
+"a adehye nndɔɔso a. Pootle bedi dwuma a ɛsɔ eni sɛ wode MySQL fidie databes "
+"di dwuma a."
+
+#: apps/pootle_app/views/admin/dashboard.py:192
+msgid ""
+"Using the default sqlite3 database engine. SQLite is only suitable for small "
+"installations with a small number of users. Pootle will perform better with "
+"the MySQL database engine, but you need to install python-MySQLdb first."
+msgstr ""
+"De sqlite3 fidie ma databes de redi dwuma. SQLite boa sɛ instɔlehyɛn no sua "
+"a adehye nndɔɔso. Pootle bedi dwuma a ɛsɔ eni sɛ wode MySQL fidie databes di "
+"dwuma a, naaso ɛwɔ sɛ wo instɔle python-MySQLdb ansa."
+
+#: apps/pootle_app/views/admin/dashboard.py:205
+msgid ""
+"Pootle is configured to use memcached as a caching backend, but can't "
+"connect to the memcached server. Caching is currently disabled."
+msgstr ""
+"Wɔahyehyɛ Pootle sɛ ɔmfa memcached nnyɛ kaahye dwumadi, naaso ɔnntumi "
+"nnkɔnɛkte nnkɔ memcached sɛɛva no so. Wɔedum kaahye dwumadi bere yi mu."
+
+#: apps/pootle_app/views/admin/dashboard.py:212
+msgid ""
+"For optimal performance, use django.contrib.sessions.backends.cached_db as "
+"the session engine."
+msgstr ""
+"Sɛ wo pɛ mbɔdenbɔ a ɛsɔ eni ara yie a, fa "
+"django.contrib.sessions.backends.cached_db yɛ wo sɛhyɛn fidie."
+
+#: apps/pootle_app/views/admin/dashboard.py:219
+msgid ""
+"Pootle is configured to use memcached as caching backend, but Python support "
+"for memcached is not installed. Caching is currently disabled."
+msgstr ""
+"Wɔahyehyɛ Pootle sɛ ɔmfa memcached nnyɛ kaahye dwumadi, naaso wo nninstɔɔl "
+"Python mmaa memcached. Woedum kaahye dwumadi bere yi mu."
+
+#: apps/pootle_app/views/admin/dashboard.py:226
+msgid "For optimal performance, use memcached as the caching backend."
+msgstr ""
+"Sɛ wo pɛ mbɔdenbɔ a ɛsɔ eni ara yie a, fa memcached yɛ wo kaahye dwumadi."
+
+#: apps/pootle_app/views/admin/dashboard.py:233
+msgid "For optimal performance, use Apache as the webserver."
+msgstr "Sɛ wo pɛ mbɔdenbɔ a ɛsɔ eni ara yie a, fa Apache yɛ wo sɛɛva ma wɛb."
+
+#: apps/pootle_app/views/admin/dashboard.py:238
+msgid ""
+"The \"from\" address used to send registration emails is not specified. Also "
+"review the mail server settings."
+msgstr ""
+"\"from\" adrɛs a wɔde somaa dinkyerɛw emel no nni hɔ. Bio so, san-hwɛ emel "
+"sɛɛva ne nhyehyɛe."
+
+#: apps/pootle_app/views/admin/dashboard.py:244
+msgid ""
+"No contact address is specified. The contact form will allow users to "
+"contact the server administrators."
+msgstr ""
+"Nkitahodeɛ biara nni hɔ. Nkitahodeɛ bea no bɛ ma wɔn a wɔ di duma no kwan "
+"ama wɔ ne server hyɛ so foɔ no adi nketaho."
+
+#: apps/pootle_app/views/admin/dashboard.py:250
+msgid ""
+"Running in debug mode. Debug mode is only needed when developing Pootle. For "
+"optimal performance, disable debugging mode."
+msgstr ""
+"Redi dwuma wɔ dibag tebea mu. Dibag tebea ho hia sɛ wo rekyerɛw kood ama "
+"Pootle a. Sɛ wo pɛ mbɔdenbɔ a ɛsɔ eni ara yie a, firi dibag tebea mu."
+
+#: apps/pootle_app/views/admin/dashboard.py:307
+msgid "Files"
+msgstr "Mfael"
+
+#: apps/pootle_app/views/admin/dashboard.py:308
+msgid "Active projects"
+msgstr "Edwumadi a wosi so"
+
+#: apps/pootle_app/views/admin/dashboard.py:309
+msgid "Active languages"
+msgstr "Akasa a wosi so"
+
+#: apps/pootle_app/views/admin/dashboard.py:310
+msgid "Translated strings"
+msgstr "Nstreng a wɔakyerɛ ase"
+
+#: apps/pootle_app/views/admin/dashboard.py:311
+msgid "Translated words"
+msgstr "Akasafua a wɔakyerɛ ase"
+
+#: apps/pootle_app/views/admin/dashboard.py:312
+msgid "Active users"
+msgstr "Adehye a wɔekyan wɔn ho"
+
+#: apps/pootle_app/views/admin/permissions.py:82
+msgid "All Users"
+msgstr "Dwumafoɔ Nyenaa"
+
+#: apps/pootle_app/views/admin/permissions.py:101 models/user.py:68
+msgid "Username"
+msgstr "Agodin"
+
+#: apps/pootle_app/views/admin/permissions.py:110
+#, fuzzy
+msgid "Add Permissions"
+msgstr "Dehye Akwanya"
+
+#: apps/pootle_app/views/admin/permissions.py:115
+#: apps/pootle_app/views/admin/permissions.py:124
+msgid "Select one or more permissions"
+msgstr ""
+
+#: apps/pootle_app/views/admin/permissions.py:119
+msgid "Revoke Permissions"
+msgstr ""
+
+#: apps/pootle_app/views/admin/util.py:138
+msgid "No files in this project."
+msgstr "Mfael biara nni nkɔsodwuma yi mu."
+
+#: apps/pootle_app/views/admin/util.py:171
+msgid "There are errors in the form. Please review the problems below."
+msgstr "Mfomso wɔ fɔɔm yi so. Yɛsrɛ wo san hwɛ haw yinom wɔ ase ha."
+
+#: apps/pootle_language/models.py:79
+msgid ""
+"ISO 639 language code for the language, possibly followed by an underscore "
+"(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
+"articles/language-tags/\">More information</a>"
+msgstr ""
+"ISO 639 kood kasa ma kasa no, etumi ba no sɛ ehia famudahye (_) ne ISO 3166 "
+"kood ma amanaman. <a href=\"http://www.w3.org/International/articles"
+"/language-tags/\">Infɔmehyɛn bio a wɔka ho</a>"
+
+#: apps/pootle_language/models.py:84 apps/pootle_project/models.py:157
+msgid "Code"
+msgstr "Kood"
+
+#: apps/pootle_language/models.py:86 apps/pootle_project/models.py:160
+#: models/user.py:78
+msgid "Full Name"
+msgstr "Wo Din Nyinara"
+
+#: apps/pootle_language/models.py:88
+msgid "Enter any special characters that users might find difficult to type"
+msgstr ""
+"Kyerɛw nkarakta soronko biara a ebetumi aba no sɛ adehye bɛbrɛ ansaana wɔde "
+"kiibɔd akyerɛw"
+
+# * kasafua foforo. karakta = character. nkarakta = characters. yay!
+#: apps/pootle_language/models.py:91
+msgid "Special Characters"
+msgstr "Nkarakta Soronko"
+
+#: apps/pootle_language/models.py:94
+msgid ""
+"For more information, visit <a href=\"http://docs.translatehouse.org/"
+"projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
+"on plural forms."
+msgstr ""
+
+#: apps/pootle_language/models.py:99
+msgid "Unknown"
+msgstr "Nnim"
+
+#: apps/pootle_language/models.py:102
+msgid "Number of Plurals"
+msgstr "Ɔdodow Nɔmba"
+
+# "Equation" ne Akan ne sɛn? *kasafua foforo equation = ikuwehyɛn; equations = nkuwehyɛn
+#: apps/pootle_language/models.py:104
+msgid "Plural Equation"
+msgstr "Ɔdodow Ikuwehyɛn"
+
+#: apps/pootle_misc/checks.py:35 core/browser.py:73
+msgid "Critical"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:36
+msgid "Cosmetic"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:107
+msgid "Accelerators"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:42
+msgid "Acronyms"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:43
+msgid "Blank"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:44
+msgid "Brackets"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:45
+msgid "Compendium conflict"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:46
+msgid "Translator credits"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:47 apps/pootle_misc/checks.py:111
+msgid "Double quotes"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:48
+msgid "Double spaces"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:49
+msgid "Repeated word"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:50
+msgid "E-mail"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:51
+msgid "Ending punctuation"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:52
+msgid "Ending whitespace"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:53
+msgid "Escapes"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:54
+msgid "File paths"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:55
+msgid "Functions"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:56
+msgid "GConf values"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:57
+msgid "Old KDE comment"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:58
+msgid "Long"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:59
+msgid "Must translate words"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:60
+msgid "Newlines"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:61
+#, fuzzy
+msgid "Number of plurals"
+msgstr "Ɔdodow Nɔmba"
+
+#: apps/pootle_misc/checks.py:62
+msgid "Don't translate words"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:63
+msgid "Numbers"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:64
+#, fuzzy
+msgid "Options"
+msgstr "Ɔphyɛnal"
+
+#: apps/pootle_misc/checks.py:65
+msgid "printf()"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:66
+msgid "Punctuation spacing"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:67
+msgid "Pure punctuation"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:68
+msgid "Number of sentences"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:69
+msgid "Short"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:70
+msgid "Simple capitalization"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:71
+msgid "Simple plural(s)"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:72
+msgid "Single quotes"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:73
+msgid "Starting capitalization"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:74
+msgid "Starting punctuation"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:75
+msgid "Starting whitespace"
+msgstr ""
+
+#. Translators: This refers to tabulation characters
+#: apps/pootle_misc/checks.py:77
+msgid "Tabs"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:78
+msgid "Unchanged"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:79 apps/pootle_misc/stats.py:38
+#: apps/pootle_store/util.py:42 core/helpers.py:66
+#: templates/editor/_filters.html:9
+msgid "Untranslated"
+msgstr "Wɔnnkyerɛɛ ase"
+
+#: apps/pootle_misc/checks.py:80
+msgid "URLs"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:81
+msgid "Valid characters"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:82
+msgid "Placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:83
+msgid "XML tags"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:85
+msgid "Broken HTML Entities"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:86
+msgid "Java format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:87
+msgid "Template format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:88
+msgid "Mustache placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:89
+msgid "Mustache placeholder pairs"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:90
+msgid "Mustache like placeholder pairs"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:91
+msgid "C format placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:92
+msgid "Non printable"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:93
+msgid "Unbalanced tag braces"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:94
+msgid "Changed attributes"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:95
+msgid "Unescaped ampersands"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:96
+msgid "Incorrectly escaped ampersands"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:97
+msgid "Whitespaces"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:98
+msgid "Date format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:99
+msgid "Uppercase placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:100
+msgid "Percent sign placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:101
+msgid "Percent sign closure placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:102
+msgid "$ placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:103
+msgid "$ closure placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:104
+msgid "Java-encoded unicode"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:105
+msgid "Objective-C format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:106
+msgid "Android format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:108
+msgid "Tags differ"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:109
+msgid "Curly braces"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:110
+msgid "Potential unwanted placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:112
+msgid "Double quotes in tags"
+msgstr ""
+
+#: apps/pootle_misc/forms.py:102
+msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
+msgstr ""
+
+#: apps/pootle_misc/forms.py:110
+msgid "Exact Match"
+msgstr ""
+
+#: apps/pootle_misc/forms.py:117
+msgid "Source Text"
+msgstr "Tɛkst farebae"
+
+#: apps/pootle_misc/forms.py:118
+msgid "Target Text"
+msgstr "Tɛkst taagɛt"
+
+#: apps/pootle_misc/forms.py:119
+msgid "Comments"
+msgstr "Adwenkyerɛ nkyerɛmu"
+
+#: apps/pootle_misc/forms.py:120
+msgid "Locations"
+msgstr "Alokehyɛn"
+
+#: apps/pootle_misc/forms.py:133
+#, fuzzy
+msgid "Source Terms"
+msgstr "Tɛkst farebae"
+
+#: apps/pootle_misc/forms.py:134
+#, fuzzy
+msgid "Target Terms"
+msgstr "Tɛkst taagɛt"
+
+#: apps/pootle_misc/forms.py:135
+msgid "Definitions"
+msgstr ""
+
+#. Translators: Heading representing the total number of words of a file
+#. or directory
+#: apps/pootle_misc/stats.py:35 core/browser.py:52
+#: templates/admin/detailed_reports.html:240
+msgid "Total"
+msgstr "Total"
+
+#: apps/pootle_misc/stats.py:36 apps/pootle_store/util.py:44
+#: core/helpers.py:65 templates/editor/_filters.html:7
+msgid "Translated"
+msgstr "Akyerɛ ase"
+
+#: apps/pootle_misc/stats.py:37
+msgid "Fuzzy"
+msgstr "Yɛ naa"
+
+#: apps/pootle_misc/templatetags/render_pager.py:33
+msgid "First"
+msgstr "Kan"
+
+#: apps/pootle_misc/templatetags/render_pager.py:35
+msgid "Previous"
+msgstr "Ekyiri"
+
+#: apps/pootle_misc/templatetags/render_pager.py:51
+msgid "Next"
+msgstr "Ndiso"
+
+#: apps/pootle_misc/templatetags/render_pager.py:53
+#, python-format
+msgid "Last (%d)"
+msgstr "Awieyɛ (%d)"
+
+#. Translators: The date that the news item was written
+#: apps/pootle_notifications/models.py:33
+msgid "Added"
+msgstr "Aka ho"
+
+#: apps/pootle_profile/views.py:76
+msgid "Select one or more languages"
+msgstr ""
+
+#: apps/pootle_project/forms.py:39 core/browser.py:39
+msgid "Language"
+msgstr "Kasa"
+
+#: apps/pootle_project/models.py:154
+msgid ""
+"A short code for the project. This should only contain ASCII characters, "
+"numbers, and the underscore (_) character."
+msgstr ""
+"Kood tiawa ma nkɔsodwuma yi. Ɛwɔ sɛ ASCII nkarakta, nɔmba ne famudahye (_) "
+"pɛ na ɛwɔ mu."
+
+#: apps/pootle_project/models.py:168
+msgid "Quality Checks"
+msgstr "Nhwehwɛmu wɔ sɛnea wodi Mu"
+
+# Fantefo ka ne sɛ "horow", Twi fo ka no sɛ "hodoɔ"
+#: apps/pootle_project/models.py:171
+msgid "File Type"
+msgstr "Fael Horow"
+
+#: apps/pootle_project/models.py:175
+msgid "Automatic detection (slower)"
+msgstr "Nhunumu otomatik (nnkɔ ntɛm)"
+
+#: apps/pootle_project/models.py:176
+msgid "GNU style: files named by language code"
+msgstr "Stael GNU: wɔde kasa ne kood na wɔde to mfael din"
+
+#: apps/pootle_project/models.py:177
+msgid "Non-GNU: Each language in its own directory"
+msgstr "Nnyɛ-GNU: Kasa biara wɔ noara ne folda"
+
+#: apps/pootle_project/models.py:180
+msgid "Project Tree Style"
+msgstr "Stael ma Dwumadi ne Dua"
+
+#: apps/pootle_project/models.py:186
+msgid "Ignore Files"
+msgstr "Yi w'eni firi Mfael so"
+
+#: apps/pootle_project/models.py:191
+msgid "Errors Report Email"
+msgstr ""
+
+#: apps/pootle_project/models.py:192
+msgid "An email address where issues with the source text can be reported."
+msgstr ""
+
+#: apps/pootle_project/models.py:196
+msgid "Screenshot Search Prefix"
+msgstr ""
+
+#: apps/pootle_project/models.py:201
+msgid "Disabled"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:76 templates/editor/export_view.html:105
+msgid "Source"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:77
+msgid "Target"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:78
+msgid "State"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:79
+#, fuzzy
+msgid "Comment"
+msgstr "Adwenkyerɛ nkyerɛmu"
+
+#: apps/pootle_statistics/models.py:220
+#, python-format
+msgid "reverted translation for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:224
+#, python-format
+msgid "accepted suggestion for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:228
+#, python-format
+msgid "added suggestion for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:232
+#, python-format
+msgid "rejected suggestion for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:236
+msgid "uploaded a file"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:239
+#, python-format
+msgid "muted %(check_name)s for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:243
+#, python-format
+msgid "unmmuted %(check_name)s for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:263
+#, python-format
+msgid "translated %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:265 apps/pootle_statistics/models.py:271
+#, python-format
+msgid "edited %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:268
+#, python-format
+msgid "pre-translated %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:273
+#, python-format
+msgid "removed translation for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:280
+#, python-format
+msgid "reviewed %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:281
+#, python-format
+msgid "marked as fuzzy %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:284
+#, python-format
+msgid "unknown action %(source_string)s"
+msgstr ""
+
+#: apps/pootle_store/decorators.py:39
+msgid "Insufficient rights to access this directory."
+msgstr ""
+
+#: apps/pootle_store/decorators.py:42
+msgid "Insufficient rights to access suggestion mode."
+msgstr ""
+
+#: apps/pootle_store/decorators.py:43
+msgid "Insufficient rights to access translation mode."
+msgstr ""
+
+#: apps/pootle_store/decorators.py:44
+msgid "Insufficient rights to access review mode."
+msgstr ""
+
+#: apps/pootle_store/filetypes.py:32
+msgid "Gettext PO"
+msgstr "Gettext PO"
+
+#: apps/pootle_store/filetypes.py:36 apps/pootle_store/filetypes.py:37
+msgid "XLIFF"
+msgstr "XLIFF"
+
+#: apps/pootle_store/filetypes.py:43
+msgid "Qt ts"
+msgstr "Qt ts"
+
+#: apps/pootle_store/filetypes.py:49
+msgid "TMX"
+msgstr "TMX"
+
+#: apps/pootle_store/filetypes.py:55
+msgid "TBX"
+msgstr "TBX"
+
+#: apps/pootle_store/filetypes.py:61
+msgid "Haiku catkeys"
+msgstr "Haiku catkeys"
+
+#: apps/pootle_store/filetypes.py:67
+msgid "Excel CSV"
+msgstr ""
+
+#: apps/pootle_store/filetypes.py:73
+msgid "Mozilla .lang"
+msgstr ""
+
+#: apps/pootle_store/forms.py:100
+#: apps/pootle_store/templatetags/store_tags.py:157
+#: apps/pootle_store/templatetags/store_tags.py:173
+#: apps/pootle_store/templatetags/store_tags.py:180
+#: apps/pootle_store/templatetags/store_tags.py:192
+#: apps/pootle_store/templatetags/store_tags.py:194
+#, python-format
+msgid "Plural Form %d"
+msgstr "Ɔdodow Tebea %d"
+
+#: apps/pootle_store/forms.py:223 apps/pootle_store/util.py:43
+#: core/helpers.py:67 templates/editor/_filters.html:10
+msgid "Needs work"
+msgstr ""
+
+#: apps/pootle_store/forms.py:259
+msgid "Fuzzy flag must be cleared"
+msgstr ""
+
+#: apps/pootle_store/forms.py:303
+msgid "Value of `similarity` should be in in the [0..1] range"
+msgstr ""
+
+#: apps/pootle_store/forms.py:313
+msgid "Value of `mt_similarity` should be in in the [0..1] range"
+msgstr ""
+
+#: apps/pootle_store/forms.py:338
+msgid "Translator comment"
+msgstr "Asekyerɛfo nkyerɛmu"
+
+#: apps/pootle_store/models.py:159
+msgid "Pending"
+msgstr "Gu so retweɔn"
+
+#: apps/pootle_store/models.py:160
+msgid "Accepted"
+msgstr "Agye ato mu"
+
+#: apps/pootle_store/models.py:161
+msgid "Rejected"
+msgstr "Apow"
+
+#: apps/pootle_store/models.py:1282
+#, python-format
+msgid "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;added"
+msgstr ""
+
+#: apps/pootle_store/models.py:1342
+msgid "Path"
+msgstr "Kwan"
+
+#: apps/pootle_store/templatetags/store_tags.py:151
+#: apps/pootle_store/templatetags/store_tags.py:153
+msgid "Singular"
+msgstr "Ankonam"
+
+#: apps/pootle_store/templatetags/store_tags.py:151
+#: apps/pootle_store/templatetags/store_tags.py:153
+msgid "Plural"
+msgstr "Ɔdodow"
+
+#: apps/pootle_store/util.py:41
+msgid "Obsolete"
+msgstr ""
+
+#: apps/pootle_store/views.py:420 core/decorators.py:56
+msgid "Arguments missing."
+msgstr ""
+
+#: apps/pootle_store/views.py:648
+msgid "Failed to remove comment."
+msgstr ""
+
+#: apps/pootle_store/views.py:683
+msgid "Comment submission failed."
+msgstr ""
+
+#: apps/pootle_store/views.py:878
+msgid "Failed to process submission."
+msgstr ""
+
+#: apps/pootle_store/views.py:925
+msgid "Failed to process suggestion."
+msgstr ""
+
+#: apps/pootle_terminology/forms.py:59
+msgid "This term already exists in this file."
+msgstr ""
+
+#: apps/staticpages/forms.py:73
+#, python-format
+msgid ""
+"I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
+"a>"
+msgstr ""
+
+#: apps/staticpages/models.py:41 models/user.py:80
+#: templates/admin/staticpages/_table.html:6
+#, fuzzy
+msgid "Active"
+msgstr "si so"
+
+#: apps/staticpages/models.py:43
+msgid "Whether this page is active or not."
+msgstr ""
+
+#: apps/staticpages/models.py:46 templates/admin/staticpages/_table.html:7
+msgid "Virtual Path"
+msgstr ""
+
+#: apps/staticpages/models.py:53
+msgid "Title"
+msgstr "Taetel"
+
+#. Translators: Content that will be used to display this static page
+#: apps/staticpages/models.py:56
+msgid "Display Content"
+msgstr ""
+
+#: apps/staticpages/models.py:58
+#, python-format
+msgid "Allowed markup: %s"
+msgstr ""
+
+#: apps/staticpages/models.py:61 templates/admin/staticpages/_table.html:9
+msgid "Redirect to URL"
+msgstr ""
+
+#: apps/staticpages/models.py:63
+msgid "If set, any references to this page will redirect to this URL"
+msgstr ""
+
+#. Translators: 'URL' and 'content' refer to form fields.
+#: apps/staticpages/models.py:112
+msgid "URL or content must be provided."
+msgstr ""
+
+#: apps/staticpages/models.py:120
+msgid "Virtual path already in use."
+msgstr ""
+
+#: apps/staticpages/models.py:125
+msgid "Legal Page"
+msgstr ""
+
+#: apps/staticpages/models.py:136
+msgid "Regular Page"
+msgstr ""
+
+#: apps/staticpages/views.py:121 templates/admin/staticpages/_table.html:8
+msgid "Page Title"
+msgstr ""
+
+#: apps/staticpages/views.py:126
+#, python-format
+msgid "page-%d"
+msgstr ""
+
+#: core/browser.py:34
+msgid "Project"
+msgstr "Nkɔsodwuma"
+
+#. Translators: noun. The graphical representation of translation status
+#: core/browser.py:45
+msgid "Progress"
+msgstr "Nkɔso"
+
+#: core/browser.py:57 templates/browser/overview.html:39
+msgid "Last updated"
+msgstr ""
+
+#: core/browser.py:62
+msgid "Need Translation"
+msgstr "Hia asekyerɛ"
+
+#. Translators: The number of suggestions pending review
+#: core/browser.py:68 templates/editor/_filters.html:11
+msgid "Suggestions"
+msgstr "Nsusui"
+
+#: core/browser.py:78
+msgid "Last Activity"
+msgstr "Hyewbɔ a Etwa to"
+
+#: core/browser.py:124
+msgid "Back to parent folder"
+msgstr ""
+
+#: core/decorators.py:312
+msgid "Insufficient rights to access this page."
+msgstr ""
+
+#: core/decorators.py:325 core/views.py:46
+msgid "You do not have rights to administer Pootle."
+msgstr "Wo nni tumi sɛ wo bɛdi panin wɔ Pootle so."
+
+#: core/forms.py:125
+msgid "Time to answer has expired"
+msgstr "Mmerɛ a wode bɛyi asɛm no ano atwam"
+
+#: core/forms.py:144
+msgid "Enter a number"
+msgstr "Bɔ nɔmba no"
+
+#: core/forms.py:159
+msgid "Incorrect"
+msgstr "Ɛnyɛ pɛpɛɛpɛ"
+
+#: core/helpers.py:52
+msgid "User missing"
+msgstr ""
+
+#. Translators: This refers to "All strings"
+#: core/helpers.py:64 templates/editor/_filters.html:6
+msgid "All"
+msgstr ""
+
+#: core/helpers.py:68 templates/editor/_filters.html:8
+msgid "Incomplete"
+msgstr ""
+
+#. Translators: This is the name of a filter
+#: core/helpers.py:70 templates/core/search.html:5
+msgid "Search"
+msgstr "Hwehwɛ"
+
+#: core/helpers.py:71 templates/editor/_filters.html:18
+msgid "Checks"
+msgstr ""
+
+#: core/helpers.py:72 templates/editor/_filters.html:13
+msgid "My submissions"
+msgstr ""
+
+#: core/helpers.py:73 templates/admin/dashboard.html:19
+msgid "Submissions"
+msgstr "Nsabmihyɛn"
+
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: core/helpers.py:74 templates/editor/_filters.html:17
+msgid "My overwritten submissions"
+msgstr ""
+
+#: core/helpers.py:75
+msgid "Overwritten submissions"
+msgstr ""
+
+#: core/initdb.py:120
+msgid "Can access a project"
+msgstr ""
+
+#: core/initdb.py:124
+msgid "Cannot access a project"
+msgstr ""
+
+#: core/initdb.py:128
+msgid "Can make a suggestion for a translation"
+msgstr "Wo betumi akyerɛ w'adwen ama asekyerɛ bi"
+
+#: core/initdb.py:132
+msgid "Can submit a translation"
+msgstr "Wo betumi akyerɛ biribi ase"
+
+#: core/initdb.py:136
+msgid "Can review translations"
+msgstr "Wo betumi asan ahwɛ asekyerɛ mu"
+
+#: core/initdb.py:140
+msgid "Can administrate a translation project"
+msgstr "Wo betumi edi panin ahwɛ asekyerɛ dwumadi so"
+
+#: core/views.py:78
+msgid "You cannot access this page."
+msgstr ""
+
+#: middleware/errorpages.py:78
+#, python-format
+msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
+msgstr ""
+"Ho hia sɛ wo <a href=\"%(login_link)s\">bɛlɔgin</a> ansaana wo akɔ krataafa "
+"yi so."
+
+#: middleware/errorpages.py:117
+#, python-format
+msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
+msgstr ""
+"Mfomso sii wɔ bere a wo repɛ %(filename)s, Fael sestɛm de mfomso asɛm yi "
+"somae: %(errormsg)s"
+
+#: models/user.py:69
+msgid ""
+"Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
+msgstr ""
+
+#: models/user.py:73
+msgid "Enter a valid username."
+msgstr ""
+
+#: models/user.py:77 templates/registration/password_reset_form.html:19
+msgid "Email Address"
+msgstr "Emel Adrɛs"
+
+#: models/user.py:81
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: models/user.py:83
+#, fuzzy
+msgid "Superuser Status"
+msgstr "dehye kokroko tebea"
+
+#: models/user.py:84
+msgid ""
+"Designates that this user has all permissions without explicitly assigning "
+"them."
+msgstr ""
+
+#: models/user.py:87
+msgid "date joined"
+msgstr ""
+
+#: models/user.py:91
+msgid "Number of Rows"
+msgstr "Roo Dodow"
+
+#: models/user.py:94
+msgid "Alternative Source Languages"
+msgstr "Akasa a wo de Wɔn bedi dwuma sɛ wo Sɔɔs"
+
+#: models/user.py:97 templates/admin/detailed_reports.html:149
+msgid "Rate"
+msgstr ""
+
+#: models/user.py:100
+msgid "Score"
+msgstr ""
+
+#: models/user.py:103
+msgid "Is employee?"
+msgstr ""
+
+#: models/user.py:104
+msgid "Twitter"
+msgstr ""
+
+#: models/user.py:106
+msgid "Website"
+msgstr ""
+
+#: models/user.py:107
+msgid "LinkedIn"
+msgstr ""
+
+#: models/user.py:108
+msgid "Short Bio"
+msgstr ""
+
 #: strings.py:8
 msgid ""
 "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr "Mea \"Control\", anaaso \"Command\" wɔ Mac so sɛ wo pɛ sɛ wo paw bebree a."
+msgstr ""
+"Mea \"Control\", anaaso \"Command\" wɔ Mac so sɛ wo pɛ sɛ wo paw bebree a."
 
 #: strings.py:9
 msgid "Enter a valid e-mail address."
@@ -53,9 +1378,8 @@ msgstr "Sie na fa baako so ka ho"
 msgid "Save and continue editing"
 msgstr "Sie na toa so sɛ wo reyɛ nsesa"
 
-#: strings.py:15
-#: apps/staticpages/templates/staticpages/admin/page_create.html:5
-#: apps/staticpages/templates/staticpages/admin/page_create.html:8
+#: strings.py:15 templates/admin/staticpages/page_create.html:4
+#: templates/admin/staticpages/page_create.html:7
 msgid "Add"
 msgstr "Fa ka ho"
 
@@ -63,7 +1387,7 @@ msgstr "Fa ka ho"
 msgid "Change"
 msgstr "Sesa"
 
-#: strings.py:17 apps/pootle_profile/forms.py:83
+#: strings.py:17
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
@@ -113,12 +1437,6 @@ msgstr "si so"
 msgid "superuser status"
 msgstr "dehye kokroko tebea"
 
-#. Translators: The language from which translation will happen
-#: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:47
-#: apps/pootle_project/models.py:97
-msgid "Source Language"
-msgstr "Sɔɔs Kasa"
-
 #: strings.py:45
 msgid "Android strings"
 msgstr "Android nstreng"
@@ -153,168 +1471,210 @@ msgstr ""
 msgid "Terms of Service"
 msgstr ""
 
-#: apps/contact_form_i18n/forms.py:143
-msgid "Your name"
-msgstr "Wo din"
+#: templates/about.html:7 templates/layout.html:178
+msgid "About"
+msgstr "Fa"
 
-#: apps/contact_form_i18n/forms.py:146
-msgid "Your email address"
-msgstr "Wo emel adrɛs"
+#: templates/about.html:13
+#, fuzzy
+msgid "About This Pootle Server"
+msgstr "Fa Pootle Sɛɛva yi ho"
 
-#: apps/contact_form_i18n/forms.py:148
-msgid "Your message"
-msgstr "Wo nkrato"
-
-#: apps/contact_form_i18n/forms.py:260
-msgid "Akismet thinks this message is spam"
-msgstr ""
-
-#: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
-msgid "Please correct the error below."
-msgid_plural "Please correct the errors below."
-msgstr[0] "Yɛsrɛ wo yi mfomso firi nea ɛwɔ ase yi."
-msgstr[1] "Yɛsrɛ wo yi mfomso firi nea wɔwɔ ase yi."
-
-#: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
-msgid "The settings have been saved."
-msgstr "Esie nhyehyɛe no."
-
-#: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
-#: apps/pootle_app/templates/admin/admin_general_settings.html:29
-#: apps/pootle_app/templates/admin/general_settings_form.html:15
-#: apps/staticpages/templates/staticpages/admin/_form.html:24
-#: templates/profiles/edit_personal.html:33
-#: templates/profiles/edit_profile.html:25
-msgid "Save"
-msgstr "Sie"
-
-#: apps/pootle_app/admin.py:45
-msgid "Language code does not follow the ISO convention"
-msgstr "Kood ma kasa no nndi ISO mbra so"
-
-#: apps/pootle_app/admin.py:71
-msgid "Project code may only contain letters, numbers and _"
-msgstr ""
-"Nea wo betumi de akyerɛw projɛkt ne kood noara ne akyerɛwamba, nnɔmba ne"
-
-#: apps/pootle_app/admin.py:83
-msgid "Advanced Options"
-msgstr "Nɔphyɛn Akɔenim"
-
-#: apps/pootle_app/forms.py:30 apps/pootle_notifications/forms.py:42
-#: apps/staticpages/models.py:45
-msgid "Title"
-msgstr "Taetel"
-
-#: apps/pootle_app/forms.py:31
-msgid "The name for this Pootle server"
-msgstr "Pootle sɛɛva yi ne din"
-
-# Nkyerɛmu rekɛyɛ sɛ "explanation" sen sɛ "description"
-#: apps/pootle_app/forms.py:37
-#: apps/pootle_language/templates/language/overview.html:26
-#: apps/pootle_project/templates/project/overview.html:52
-#: apps/pootle_tagging/models.py:69
-#: apps/pootle_translationproject/templates/translation_project/overview.html:114
-msgid "Description"
-msgstr "Nkyerɛmu"
-
-#: apps/pootle_app/forms.py:38
+#. Translators: For better readability, make sure to leave an space after the closing </i> tag
+#: templates/about.html:15
+#, fuzzy
 msgid ""
-"The description and instructions shown on the front page and about page. Be "
-"sure to use valid HTML."
+"This site is running Pootle &mdash; powerful web software to empower teams "
+"to do translation and translation management. This community tool is Free "
+"Software, and any team can use it and contribute to the Pootle community. "
+"Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
+"\"icon-external-link\"></i> project website</a>."
 msgstr ""
-"Wɔakyerɛ kyerɛmu ne akwankyerɛ wɔ enim krataafa ne fa krataafa. Bɔ mbɔden sɛ "
-"wo de HTML a odi mu bedi dwuma."
+"Saet yi de Pootle &mdash; a ɔyɛ wɛb sɔftwɛɛ a ɛma ntiim tumi ma wɔde yɛ "
+"asekyerɛ ne asekyerɛ ne nhwɛso redi dwuma. Amansan tuul yɛ Sɔftwɛɛ a ayɛ fo, "
+"na tiim biara betumi de edi dwuma na wɔaboa Pootle mankuw no. Kan bio ka ho "
+"wɔ <a href=\"http://translate.sourceforge.net/\">nkɔsodwuma no ne "
+"wɛbsaet</a>."
 
-#: apps/pootle_app/models/suggestion.py:35
-msgid "Pending"
-msgstr "Gu so retweɔn"
-
-#: apps/pootle_app/models/suggestion.py:36
-#: templates/profiles/profile_detail.html:43
-msgid "Accepted"
-msgstr "Agye ato mu"
-
-#: apps/pootle_app/models/suggestion.py:37
-#: templates/profiles/profile_detail.html:44
-msgid "Rejected"
-msgstr "Apow"
-
-#: apps/pootle_app/templates/top_contributers_table.html:8
-msgid "Top Contributors"
-msgstr "Aboafo Titiriw"
-
-#. Translators: The number of suggestions pending review
-#: apps/pootle_app/templates/top_contributers_table.html:12
-#: apps/pootle_misc/browser.py:70 templates/editor/_toolbar.html:17
-msgid "Suggestions"
-msgstr "Nsusui"
-
-#: apps/pootle_app/templates/top_contributers_table.html:13
-msgid "Reviews"
-msgstr "Nsanhwɛ"
-
-#: apps/pootle_app/templates/top_contributers_table.html:14
-#: apps/pootle_app/templates/admin/dashboard.html:19 core/helpers.py:61
-#: templates/profiles/profile_detail.html:45
-msgid "Submissions"
-msgstr "Nsabmihyɛn"
-
-#: apps/pootle_app/templates/top_contributers_table.html:19
-msgid "anonymous users"
+#: templates/about.html:16
+#, fuzzy, python-format
+msgid ""
+"Pootle %(pootle_version)s is powered by Translate Toolkit "
+"%(toolkit_version)s."
 msgstr ""
+"Translate Toolkit %(toolkit_ver)s de tumi tae Pootle %(pootle_ver)s ekyiri"
 
-#: apps/pootle_app/templates/translation_summary_legend.html:4
-#: apps/pootle_misc/stats.py:153 apps/pootle_store/util.py:48
-#: core/helpers.py:54 templates/editor/_toolbar.html:13
-msgid "Translated"
-msgstr "Akyerɛ ase"
-
-#: apps/pootle_app/templates/translation_summary_legend.html:5
-#: apps/pootle_misc/stats.py:156 apps/pootle_store/forms.py:215
-#: apps/pootle_store/util.py:47 core/helpers.py:56
-#: templates/editor/_toolbar.html:16
-msgid "Needs work"
-msgstr ""
-
-#: apps/pootle_app/templates/translation_summary_legend.html:6
-#: apps/pootle_misc/stats.py:159 apps/pootle_store/util.py:46
-#: core/helpers.py:55 templates/editor/_toolbar.html:15
-msgid "Untranslated"
-msgstr "Wɔnnkyerɛɛ ase"
-
-#: apps/pootle_app/templates/admin/admin_general.html:15
-#: apps/pootle_terminology/templates/terminology/manage.html:50
+#: templates/admin/_generic_formset.html:15
+#: templates/translation_projects/terminology/manage.html:51
 msgid "Save Changes"
 msgstr "Sie Nsesa"
 
-#: apps/pootle_app/templates/admin/admin_general_languages.html:4
-#: apps/pootle_app/templates/admin/admin_general_languages.html:9
-#: apps/pootle_app/templates/index/index.html:42
-#: apps/pootle_profile/models.py:87 templates/admin_profile_menu.html:6
+#: templates/admin/_tabs.html:3
+msgid "Info"
+msgstr "Info"
+
+#: templates/admin/_tabs.html:4 templates/admin/dashboard.html:25
+#: templates/admin/users.html:4 templates/admin/users.html.py:9
+#: templates/user/base.html:4 templates/user/base.html.py:6
+#: templates/user/stats.html:51
+msgid "Users"
+msgstr "Adehye"
+
+#: templates/admin/_tabs.html:5 templates/admin/languages.html:4
+#: templates/admin/languages.html.py:9 templates/projects/_nav.html:26
+#: templates/projects/admin/languages.html:7
+#: templates/projects/all/_nav.html:26
 msgid "Languages"
 msgstr "Akasa"
 
-#: apps/pootle_app/templates/admin/admin_general_languages.html:12
-msgid ""
-"Here you can add, edit, and delete all the available languages in this "
-"Pootle server."
-msgstr ""
-"Wo betumi di bi aka ho, asesa, ne eyi akasa a wɔwɔ Pootle sɛɛva yi so wɔ ha."
+#: templates/admin/_tabs.html:6 templates/admin/projects.html:4
+#: templates/admin/projects.html.py:9 templates/projects/base.html:5
+msgid "Projects"
+msgstr "Nkɔsodwuma"
 
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:4
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:9
-#: apps/pootle_app/views/admin/permissions.py:117
-#: apps/pootle_language/templates/language/language_admin.html:5
-#: apps/pootle_project/templates/project/admin_permissions.html:7
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:5
-#: templates/admin_profile_menu.html:8 templates/language_menu.html:8
-#: templates/project_menu.html:10 templates/tp_menu.html:9
+#: templates/admin/_tabs.html:7 templates/admin/permissions.html:4
+#: templates/admin/permissions.html.py:9 templates/languages/_nav.html:26
+#: templates/languages/admin/permissions.html:5
+#: templates/projects/_nav.html:31 templates/projects/admin/permissions.html:7
+#: templates/projects/all/_nav.html:31
+#: templates/translation_projects/_nav.html:31
+#: templates/translation_projects/admin/permissions.html:5
 msgid "Permissions"
 msgstr "Akwanya"
 
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:12
+#: templates/admin/_tabs.html:8 templates/admin/staticpages/base.html:4
+#: templates/admin/staticpages/base.html:10
+msgid "Static Pages"
+msgstr ""
+
+#: templates/admin/_tabs.html:9 templates/admin/reports.html:47
+#: templates/admin/reports.html.py:50
+msgid "Reports"
+msgstr ""
+
+#: templates/admin/base.html:4 templates/admin/base.html.py:7
+msgid "Administration"
+msgstr "Administrehyɛn"
+
+#: templates/admin/dashboard.html:13
+msgid "Server Statistics"
+msgstr "Sɛɛva ho nkontaabu"
+
+#: templates/admin/dashboard.html:22
+msgid "Pending suggestions"
+msgstr "Adwenkyerɛ a wɔaba na wɔretweɔn"
+
+#: templates/admin/dashboard.html:31
+msgid "More..."
+msgstr "Bio..."
+
+#: templates/admin/dashboard.html:38
+msgid "Background Jobs"
+msgstr ""
+
+#: templates/admin/dashboard.html:44
+msgid "Status"
+msgstr ""
+
+#: templates/admin/dashboard.html:45
+msgid "Running"
+msgstr ""
+
+#: templates/admin/dashboard.html:45
+msgid "Stopped"
+msgstr ""
+
+#: templates/admin/dashboard.html:48
+msgid "Pending jobs"
+msgstr ""
+
+#: templates/admin/dashboard.html:51
+msgid "Failed jobs"
+msgstr ""
+
+#: templates/admin/dashboard.html:60
+msgid "Dependency Checks"
+msgstr "Dependency nhwehwɛmu"
+
+#: templates/admin/dashboard.html:69
+msgid "Optional"
+msgstr "Ɔphyɛnal"
+
+#: templates/admin/dashboard.html:77
+msgid "Optimizations"
+msgstr "Mpontu nsesae"
+
+#: templates/admin/detailed_reports.html:6
+#, python-format
+msgid "Report for %(user)s, "
+msgstr ""
+
+#: templates/admin/detailed_reports.html:129
+#, python-format
+msgid "Report for %(user)s"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:133
+#: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
+msgid "Previous month"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:135
+#: templates/admin/reports/header.html:15 templates/user/detailed_stats.html:9
+msgid "Next month"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:142
+msgid "Local server time"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:143
+msgid "Action"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:144
+msgid "Unit"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:145
+#, fuzzy
+msgid "Source words"
+msgstr "Tɛkst farebae"
+
+#: templates/admin/detailed_reports.html:146
+msgid "Similarity"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:147
+msgid "Words"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:150
+msgid "Subtotal"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:184
+#: templates/admin/detailed_reports.html:230
+msgid "registered tasks"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:195
+msgid "No activity recorded in a given period"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:205
+msgid "Translation (subtotal)"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:216
+msgid "Review (subtotal)"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:248
+msgid "Please select a valid user."
+msgstr ""
+
+#: templates/admin/permissions.html:12
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
@@ -322,2432 +1682,239 @@ msgstr ""
 "Wo betumi di bi aka ho, asesa, ne eyi akwanya difɔlt a wɔwɔ Pootle sɛɛva yi "
 "so wɔ ha."
 
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:16
-#: apps/pootle_language/templates/language/language_admin.html:13
-#: apps/pootle_project/templates/project/admin_permissions.html:22
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:13
+#: templates/admin/permissions.html:16
+#: templates/languages/admin/permissions.html:11
+#: templates/projects/admin/permissions.html:13
+#: templates/translation_projects/admin/permissions.html:13
 msgid ""
 "The user “nobody” refers to any user that is not logged in (an anonymous, "
 "unidentified user). The user “default” refers to the rights that all logged "
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"Dehye a wɔfrɛ no \"nobody\" kyerɛ dehye biara a ɔmmbaa mu (dehye a obiara nnim "
-"no nipaban anaaso ne din mpo). \"default\" kyerɛ tumi a adehye a wɔaba mu no "
-"nyinara bɛwɔ ntɛmpa ara mu, sɛ mpo wɔmmfaa tumi foforo biara mma wɔn a."
+"Dehye a wɔfrɛ no \"nobody\" kyerɛ dehye biara a ɔmmbaa mu (dehye a obiara "
+"nnim no nipaban anaaso ne din mpo). \"default\" kyerɛ tumi a adehye a wɔaba "
+"mu no nyinara bɛwɔ ntɛmpa ara mu, sɛ mpo wɔmmfaa tumi foforo biara mma wɔn a."
 
-#: apps/pootle_app/templates/admin/admin_general_projects.html:4
-#: apps/pootle_app/templates/admin/admin_general_projects.html:9
-#: apps/pootle_app/templates/index/index.html:52
-#: apps/pootle_notifications/templates/notices.html:20
-#: apps/pootle_profile/models.py:90
-#: apps/pootle_project/templates/project/projects.html:6
-#: apps/pootle_project/templates/project/projects.html:15
-#: templates/admin_profile_menu.html:7 templates/project_base.html:5
-msgid "Projects"
-msgstr "Nkɔsodwuma"
-
-#: apps/pootle_app/templates/admin/admin_general_projects.html:12
-msgid ""
-"Here you can add, edit, and delete all the available projects in this Pootle "
-"server."
+#: templates/admin/reports.html:60 templates/user/stats.html:63
+msgid "Daily activity"
 msgstr ""
-"Wɔ ha wo betumi de aka ho, asesa, ne eyi nkɔsodwuma nyinara a wɔwɔ Pootle "
-"sɛɛva yi so."
 
-#: apps/pootle_app/templates/admin/admin_general_settings.html:4
-#: apps/pootle_app/templates/admin/admin_general_settings.html:9
-msgid "General Settings"
-msgstr "Nhyehyɛe Gyɛnɛral"
-
-#: apps/pootle_app/templates/admin/admin_general_settings.html:12
-msgid "Configure here the general settings for your site."
-msgstr "Yɛ nhyehyɛe gyɛnɛral ma wo saet no wɔ ha."
-
-#: apps/pootle_app/templates/admin/admin_general_users.html:4
-#: apps/pootle_app/templates/admin/admin_general_users.html:9
-#: apps/pootle_app/templates/admin/dashboard.html:25
-#: templates/admin_profile_menu.html:5
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
-msgid "Users"
+#: templates/admin/reports/header.html:5
+#, fuzzy
+msgid "User"
 msgstr "Adehye"
 
-#: apps/pootle_app/templates/admin/admin_general_users.html:12
-msgid ""
-"Here you can add, edit, and delete all the available users in this Pootle "
-"server."
+#: templates/admin/reports/header.html:22
+msgid "Detailed Report"
 msgstr ""
-"Wo betumi de aka ho, asesa, ne eyi adehye nyinara a wɔwɔ Pootle sɛɛva yi so."
 
-#: apps/pootle_app/templates/admin/dashboard.html:13
-msgid "Server Statistics"
-msgstr "Sɛɛva ho nkontaabu"
-
-#: apps/pootle_app/templates/admin/dashboard.html:22
-msgid "Pending suggestions"
-msgstr "Adwenkyerɛ a wɔaba na wɔretweɔn"
-
-#: apps/pootle_app/templates/admin/dashboard.html:31
-msgid "More..."
-msgstr "Bio..."
-
-#: apps/pootle_app/templates/admin/dashboard.html:39
-msgid "Support"
-msgstr "Mboa"
-
-#: apps/pootle_app/templates/admin/dashboard.html:42
-msgid ""
-"Pootle is developed by Translate.org.za and a community of passionate "
-"localization experts. We want Pootle to help your localization work reach "
-"its full potential."
-msgstr ""
-"Translate.org.za ne nipa a wɔaben wɔ lokalizehyɛn mu na wɔyɛ Pootle. Yɛ pɛ "
-"sɛ Pootle boa ma wo lokalizehyɛn dwumadi kɔ nkan, kɔ n'enim, kɔpem."
-
-#: apps/pootle_app/templates/admin/dashboard.html:43
-msgid "You will find the following helpful for support:"
-msgstr "Wo behu sɛ yinom bɛboa wo:"
-
-#: apps/pootle_app/templates/admin/dashboard.html:45
-msgid "The Pootle documentation"
-msgstr "Pootle ho nkrataa"
-
-#: apps/pootle_app/templates/admin/dashboard.html:46
-msgid "The Pootle mailing list"
-msgstr "Pootle emel list"
-
-#: apps/pootle_app/templates/admin/dashboard.html:47
-msgid "(commercial support)"
-msgstr "(mboa a wotua ho kaw)"
-
-#: apps/pootle_app/templates/admin/dashboard.html:55
-msgid "Dependency Checks"
-msgstr "Dependency nhwehwɛmu"
-
-#: apps/pootle_app/templates/admin/dashboard.html:64
-msgid "Optional"
-msgstr "Ɔphyɛnal"
-
-#: apps/pootle_app/templates/admin/dashboard.html:72
-msgid "Optimizations"
-msgstr "Mpontu nsesae"
-
-#: apps/pootle_app/templates/admin/edit_links.html:2
-msgid "Edit"
-msgstr "Sesa"
-
-#: apps/pootle_app/templates/admin/general_settings_form.html:16
-msgid "Cancel"
-msgstr ""
-
-#: apps/pootle_app/templates/admin/rss_widget.html:5
-msgid "Pootle Alerts"
-msgstr "Pootle akɔkɔbɔ"
-
-#: apps/pootle_app/templates/index/index.html:25
-#: apps/pootle_language/templates/language/overview.html:36
-#: apps/pootle_project/templates/project/overview.html:61
-#: apps/pootle_translationproject/templates/translation_project/overview.html:124
-msgid "No description set."
-msgstr ""
-
-#: apps/pootle_app/templates/index/index.html:62
-#: apps/pootle_notifications/templates/notices.html:77
-msgid "Latest News"
-msgstr "Nkaebɔ a Etwa to"
-
-#: apps/pootle_app/templates/index/index.html:65
-msgid "Subscribe to the RSS feed."
-msgstr "Kyerɛw wo din ama wo nsa aka neɛma efiri RSS fiid no mu."
-
-#: apps/pootle_app/templates/index/login.html:4
-#: apps/pootle_app/templates/index/login.html:7
-#: apps/pootle_app/templates/index/login.html:23
-msgid "Login"
-msgstr "Kɔ mu"
-
-#: apps/pootle_app/templates/index/login.html:12
-msgid "Login to Pootle"
-msgstr "Kɔ Pootle mu"
-
-#: apps/pootle_app/templates/index/login.html:18
-msgid "Your username and password didn't match. Please try again."
-msgstr "Wo agodin ne ehintasɛmfua mmfa. Yɛsrɛ wo san kyerɛw wɔn bio."
-
-#: apps/pootle_app/templates/index/login.html:30
-msgid "Lost your Password?"
-msgstr "Wo ayera wo Ehintasɛmfua anaa?"
-
-#: apps/pootle_app/templates/index/login.html:33
-#: templates/registration/password_reset_form.html:30
-msgid "Don't have an account yet?"
-msgstr "Wo nni akawnt anaa?"
-
-#: apps/pootle_app/templates/index/login.html:34
-#: templates/registration/password_reset_form.html:31
-msgid "Register."
-msgstr "Kyerɛw wo din."
-
-#: apps/pootle_app/views/admin/adminprojects.py:90
-#: apps/pootle_project/models.py:221
-#, python-format
-msgid "\"%s\" cannot be used as a project code"
-msgstr ""
-
-#: apps/pootle_app/views/admin/adminusers.py:55
-#: templates/user_profile_menu.html:7
-#: templates/registration/registration_form.html:30
-msgid "Password"
-msgstr "Ehintasɛmfua"
-
-#: apps/pootle_app/views/admin/dashboard.py:48
-#, python-format
-msgid "Translate Toolkit version %s installed."
-msgstr "Translate Toolkit ne vɛɛhyɛn %s na wɔeinstɔle."
-
-#: apps/pootle_app/views/admin/dashboard.py:55
-#, python-format
-msgid ""
-"Translate Toolkit version %(installed)s installed. Pootle requires at least "
-"version %(required)s."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:62
-#, python-format
-msgid "Django version %s is installed."
-msgstr "Django vɛɛhyɛn %s a einstɔl."
-
-#: apps/pootle_app/views/admin/dashboard.py:65
-#, python-format
-msgid ""
-"Django version %s is installed, but a higher version is highly recommended."
-msgstr ""
-"Django vɛɛhyɛn %s a Einstɔl, naaso wo tuu vɛɛhyɛn no mpon a anka ɛbɛboa."
-
-#: apps/pootle_app/views/admin/dashboard.py:72
-#, python-format
-#, python-format,
-msgid "lxml version %s is installed."
-msgstr "wɔeinstɔl lxml vɛɛhyɛn %s."
-
-#: apps/pootle_app/views/admin/dashboard.py:76
-#, python-format
-msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version "
-"%(required)s."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:83
-msgid "lxml is not installed. Pootle requires lxml."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:97
-msgid ""
-"Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
-"available."
-msgstr "Nntumi nnhu nnzip nhyɛ no. Esiei wɔn mpiakɔ kɔ ntɛm sɛ \"unzip\" wɔ hɔ a."
-
-#: apps/pootle_app/views/admin/dashboard.py:103
-msgid ""
-"Can't find the ISO codes package. Pootle uses ISO codes to translate "
-"language names."
-msgstr ""
-"Nnhu bɔho ma ISO nkood. Pootle de ISO nkood na ɔde kyerɛ akasa wɔn din mu."
-
-#: apps/pootle_app/views/admin/dashboard.py:109
-msgid ""
-"Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
-"subtitle formats."
-msgstr ""
-"Nntumi nnhu aeidon bɔho. Pootle hia Gaupol anaaso aeidon ama wɔetumi asuo "
-"subtitle mfɔɔmat ahorow mu."
-
-#: apps/pootle_app/views/admin/dashboard.py:115
-msgid ""
-"Can't find python-levenshtein package. Updating against templates is faster "
-"with python-levenshtein."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:121
-msgid ""
-"No text indexing engine found. Searching is faster if an indexing engine "
-"like Xapian or Lucene is installed."
-msgstr ""
-"Ennhu fidie biara a wɔde yɛ tɛkst indɛksen. Nhwehwɛ kɔ ntɛm sɛ wo einstɔle "
-"fidie bi te sɛ Xapian anaason Lucene a."
-
-#: apps/pootle_app/views/admin/dashboard.py:129
-msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:131
-msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:133
-#, python-format
-msgid ""
-"Can't find the package which provides '%s' markup support. Falling back to "
-"HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:137
-#, python-format
-msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:154
-msgid ""
-"Using the default sqlite3 database engine. SQLite is only suitable for small "
-"installations with a small number of users. Pootle will perform better with "
-"the MySQL database engine."
-msgstr ""
-"De sqlite3 fidie ma databes de redi dwuma. SQLite boa sɛ instɔlehyɛn no sua "
-"a adehye nndɔɔso a. Pootle bedi dwuma a ɛsɔ eni sɛ wode MySQL fidie databes "
-"di dwuma a."
-
-#: apps/pootle_app/views/admin/dashboard.py:159
-msgid ""
-"Using the default sqlite3 database engine. SQLite is only suitable for small "
-"installations with a small number of users. Pootle will perform better with "
-"the MySQL database engine, but you need to install python-MySQLdb first."
-msgstr ""
-"De sqlite3 fidie ma databes de redi dwuma. SQLite boa sɛ instɔlehyɛn no sua "
-"a adehye nndɔɔso. Pootle bedi dwuma a ɛsɔ eni sɛ wode MySQL fidie databes di "
-"dwuma a, naaso ɛwɔ sɛ wo instɔle python-MySQLdb ansa."
-
-#: apps/pootle_app/views/admin/dashboard.py:172
-msgid ""
-"Pootle is configured to use memcached as a caching backend, but can't "
-"connect to the memcached server. Caching is currently disabled."
-msgstr ""
-"Wɔahyehyɛ Pootle sɛ ɔmfa memcached nnyɛ kaahye dwumadi, naaso ɔnntumi "
-"nnkɔnɛkte nnkɔ memcached sɛɛva no so. Wɔedum kaahye dwumadi bere yi mu."
-
-#: apps/pootle_app/views/admin/dashboard.py:179
-msgid ""
-"For optimal performance, use django.contrib.sessions.backends.cached_db as "
-"the session engine."
-msgstr ""
-"Sɛ wo pɛ mbɔdenbɔ a ɛsɔ eni ara yie a, fa "
-"django.contrib.sessions.backends.cached_db yɛ wo sɛhyɛn fidie."
-
-#: apps/pootle_app/views/admin/dashboard.py:186
-msgid ""
-"Pootle is configured to use memcached as caching backend, but Python support "
-"for memcached is not installed. Caching is currently disabled."
-msgstr ""
-"Wɔahyehyɛ Pootle sɛ ɔmfa memcached nnyɛ kaahye dwumadi, naaso wo nninstɔɔl "
-"Python mmaa memcached. Woedum kaahye dwumadi bere yi mu."
-
-#: apps/pootle_app/views/admin/dashboard.py:193
-msgid "For optimal performance, use memcached as the caching backend."
-msgstr ""
-"Sɛ wo pɛ mbɔdenbɔ a ɛsɔ eni ara yie a, fa memcached yɛ wo kaahye dwumadi."
-
-#: apps/pootle_app/views/admin/dashboard.py:200
-msgid "For optimal performance, use Apache as the webserver."
-msgstr "Sɛ wo pɛ mbɔdenbɔ a ɛsɔ eni ara yie a, fa Apache yɛ wo sɛɛva ma wɛb."
-
-#: apps/pootle_app/views/admin/dashboard.py:205
-msgid ""
-"The \"from\" address used to send registration emails is not specified. Also "
-"review the mail server settings."
-msgstr ""
-"\"from\" adrɛs a wɔde somaa dinkyerɛw emel no nni hɔ. Bio so, san-hwɛ emel "
-"sɛɛva ne nhyehyɛe."
-
-#: apps/pootle_app/views/admin/dashboard.py:211
-msgid ""
-"No contact address is specified. The contact form will allow users to "
-"contact the server administrators."
-msgstr ""
-"Nkitahodeɛ biara nni hɔ. Nkitahodeɛ bea no bɛ ma wɔn a wɔ di duma no kwan "
-"ama wɔ ne server hyɛ so foɔ no adi nketaho."
-
-#: apps/pootle_app/views/admin/dashboard.py:217
-msgid ""
-"Running in debug mode. Debug mode is only needed when developing Pootle. For "
-"optimal performance, disable debugging mode."
-msgstr ""
-"Redi dwuma wɔ dibag tebea mu. Dibag tebea ho hia sɛ wo rekyerɛw kood ama "
-"Pootle a. Sɛ wo pɛ mbɔdenbɔ a ɛsɔ eni ara yie a, firi dibag tebea mu."
-
-#: apps/pootle_app/views/admin/dashboard.py:224
-msgid ""
-"Running in live translation mode. Live translation is useful as a tool to "
-"learn about Pootle and localization, but has high impact on performance."
-msgstr ""
-"Redi dwuma wɔ asekyerɛ seseiara tebea mu. Asekyerɛ seiseiara boa sɛ wo pɛ sɛ "
-"wo sua Pootle ne lokalaezehyɛn ho nsɛm a, naaso ɔhaw mbɔdenbɔ papaapa."
-
-#: apps/pootle_app/views/admin/dashboard.py:271
-#: apps/pootle_translationproject/templates/translation_project/overview.html:62
-msgid "Files"
-msgstr "Mfael"
-
-#: apps/pootle_app/views/admin/dashboard.py:272
-msgid "Active projects"
-msgstr "Edwumadi a wosi so"
-
-#: apps/pootle_app/views/admin/dashboard.py:273
-msgid "Active languages"
-msgstr "Akasa a wosi so"
-
-#: apps/pootle_app/views/admin/dashboard.py:274
-msgid "Translated strings"
-msgstr "Nstreng a wɔakyerɛ ase"
-
-#: apps/pootle_app/views/admin/dashboard.py:275
-msgid "Translated words"
-msgstr "Akasafua a wɔakyerɛ ase"
-
-#: apps/pootle_app/views/admin/dashboard.py:276
-msgid "Active users"
-msgstr "Adehye a wɔekyan wɔn ho"
-
-#: apps/pootle_app/views/admin/permissions.py:61
-msgid "Translation Project Contributors"
-msgstr ""
-
-#: apps/pootle_app/views/admin/permissions.py:67
-msgid "Project Contributors"
-msgstr ""
-
-#: apps/pootle_app/views/admin/permissions.py:84
-msgid "Language Contributors"
-msgstr ""
-
-#: apps/pootle_app/views/admin/permissions.py:91
-msgid "All Users"
-msgstr "Dwumafoɔ Nyenaa"
-
-#: apps/pootle_app/views/admin/permissions.py:108
-#: templates/profiles/profile_list.html:11
-#: templates/registration/registration_form.html:20
-msgid "Username"
-msgstr "Agodin"
-
-#: apps/pootle_app/views/admin/permissions.py:122
-msgid "Select one or more permissions"
-msgstr ""
-
-#: apps/pootle_app/views/admin/util.py:144
-msgid "No files in this project."
-msgstr "Mfael biara nni nkɔsodwuma yi mu."
-
-#: apps/pootle_app/views/admin/util.py:177
-msgid "There are errors in the form. Please review the problems below."
-msgstr "Mfomso wɔ fɔɔm yi so. Yɛsrɛ wo san hwɛ haw yinom wɔ ase ha."
-
-#: apps/pootle_app/views/index/about.py:49
-#, python-format
-msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
-msgstr ""
-"Translate Toolkit %(toolkit_ver)s de tumi tae Pootle %(pootle_ver)s ekyiri"
-
-#: apps/pootle_app/views/index/index.py:57 apps/pootle_language/views.py:69
-#: apps/pootle_misc/browser.py:103 apps/pootle_misc/browser.py:191
-#: apps/pootle_misc/browser.py:230 apps/pootle_project/views.py:88
-#, python-format
-msgid "%(percentage)d%% complete"
-msgstr "%(percentage)d%% awie"
-
-#: apps/pootle_language/models.py:66
-msgid ""
-"ISO 639 language code for the language, possibly followed by an underscore "
-"(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
-"articles/language-tags/\">More information</a>"
-msgstr ""
-"ISO 639 kood kasa ma kasa no, etumi ba no sɛ ehia famudahye (_) ne ISO 3166 "
-"kood ma amanaman. <a href=\"http://www.w3.org/International/articles"
-"/language-tags/\">Infɔmehyɛn bio a wɔka ho</a>"
-
-#: apps/pootle_language/models.py:71 apps/pootle_project/models.py:62
-msgid "Code"
-msgstr "Kood"
-
-#: apps/pootle_language/models.py:73 apps/pootle_project/models.py:66
-msgid "Full Name"
-msgstr "Wo Din Nyinara"
-
-#: apps/pootle_language/models.py:75
-#, python-format
-msgid ""
-"A description of this language. This is useful to give more information or "
-"instructions. Allowed markup: %s"
-msgstr ""
-
-#: apps/pootle_language/models.py:80
-msgid "Enter any special characters that users might find difficult to type"
-msgstr ""
-"Kyerɛw nkarakta soronko biara a ebetumi aba no sɛ adehye bɛbrɛ ansaana wɔde "
-"kiibɔd akyerɛw"
-
-# * kasafua foforo. karakta = character. nkarakta = characters. yay!
-#: apps/pootle_language/models.py:83
-msgid "Special Characters"
-msgstr "Nkarakta Soronko"
-
-#: apps/pootle_language/models.py:86
-msgid ""
-"For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
-"l10n/pluralforms\">our wiki page</a> on plural forms."
-msgstr ""
-"Sɛ wo hia infɔmehyɛn bio a wɔkeka ho a, sra <a "
-"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">yɛn wiki "
-"krataafa</a> a ɔka ɔdodow ho nsɛm."
-
-#: apps/pootle_language/models.py:90
-msgid "Unknown"
-msgstr "Nnim"
-
-#: apps/pootle_language/models.py:93
-msgid "Number of Plurals"
-msgstr "Ɔdodow Nɔmba"
-
-# "Equation" ne Akan ne sɛn? *kasafua foforo equation = ikuwehyɛn; equations = nkuwehyɛn
-#: apps/pootle_language/models.py:95
-msgid "Plural Equation"
-msgstr "Ɔdodow Ikuwehyɛn"
-
-#: apps/pootle_language/views.py:76 apps/pootle_misc/browser.py:110
-#: apps/pootle_misc/browser.py:197 apps/pootle_misc/browser.py:236
-#: apps/pootle_project/views.py:94
-#, python-format
-msgid "Error reading %d file"
-msgid_plural "Error reading %d files"
-msgstr[0] "Mfomso sii wɔ bere a wɔrekan fael %d"
-msgstr[1] "Mfomso sii wɔ bere a wɔrekan mfael %d"
-
-#: apps/pootle_language/views.py:113
-#, python-format
-msgid "%(projects)d project, %(average)d%% translated"
-msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] "%(projects)d kɔsodwuma, %(average)d%% asekyerɛ"
-msgstr[1] "%(projects)d nkɔsodwuma, %(average)d%% asekyerɛ"
-
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
-#: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
-msgid "No description yet."
-msgstr ""
-
-#: apps/pootle_language/templates/language/language_admin.html:11
-msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr "Wo betumi de aka ho, asesa, ne eyi kasa yi ne akwanya wɔ famu ha."
-
-#: apps/pootle_misc/browser.py:30
-msgid "Name"
-msgstr "Din"
-
-#: apps/pootle_misc/browser.py:35 templates/profiles/profile_detail.html:41
-msgid "Project"
-msgstr "Nkɔsodwuma"
-
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
-msgid "Language"
-msgstr "Kasa"
-
-#. Translators: Heading representing the priority for a goal
-#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
-msgid "Priority"
-msgstr ""
-
-#. Translators: noun. The graphical representation of translation status
-#: apps/pootle_misc/browser.py:52
-msgid "Progress"
-msgstr "Nkɔso"
-
-#. Translators: Heading representing the total number of words of a file
-#. or directory
-#: apps/pootle_misc/browser.py:59 apps/pootle_misc/stats.py:150
-msgid "Total"
-msgstr "Total"
-
-#: apps/pootle_misc/browser.py:64
-msgid "Need Translation"
-msgstr "Hia asekyerɛ"
-
-#: apps/pootle_misc/browser.py:75
-msgid "Last Activity"
-msgstr "Hyewbɔ a Etwa to"
-
-#: apps/pootle_misc/checks.py:27
-msgid "Critical"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:28
-msgid "Functional"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:29
-msgid "Cosmetic"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:30
-msgid "Extraction"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:31
-msgid "No category"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:36
-msgid "Accelerators"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:37
-msgid "Acronyms"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:38
-msgid "Blank"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:39
-msgid "Brackets"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:40
-msgid "Compendium conflict"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:41
-msgid "Translator credits"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:42
-msgid "Double quotes"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:43
-msgid "Double spaces"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:44
-msgid "Repeated word"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:45
-msgid "E-mail"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:46
-msgid "Ending punctuation"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:47
-msgid "Ending whitespace"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:48
-msgid "Escapes"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:49
-msgid "File paths"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:50
-msgid "Functions"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:51
-msgid "GConf values"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:52
-msgid "Old KDE comment"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:53
-msgid "Long"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:54
-msgid "Must translate words"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:55
-msgid "Newlines"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:56
-#, fuzzy
-msgid "Number of plurals"
-msgstr "Ɔdodow Nɔmba"
-
-#: apps/pootle_misc/checks.py:57
-msgid "Don't translate words"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:58
-msgid "Numbers"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:59
-#, fuzzy
-msgid "Options"
-msgstr "Ɔphyɛnal"
-
-#: apps/pootle_misc/checks.py:60
-msgid "printf()"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:61
-msgid "Punctuation spacing"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:62
-msgid "Pure punctuation"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:63
-msgid "Number of sentences"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:64
-msgid "Short"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:65
-msgid "Simple capitalization"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:66
-msgid "Simple plural(s)"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:67
-msgid "Single quotes"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:68
-msgid "Starting capitalization"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:69
-msgid "Starting punctuation"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:70
-msgid "Starting whitespace"
-msgstr ""
-
-#. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:72
-msgid "Tabs"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:73
-msgid "Unchanged"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:74
-msgid "URLs"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:75
-msgid "Valid characters"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:76
-msgid "Placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:77
-msgid "XML tags"
-msgstr ""
-
-#: apps/pootle_misc/forms.py:100
-msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr ""
-
-#: apps/pootle_misc/forms.py:108
-msgid "Exact Match"
-msgstr ""
-
-#: apps/pootle_misc/forms.py:115
-msgid "Source Text"
-msgstr "Tɛkst farebae"
-
-#: apps/pootle_misc/forms.py:116
-msgid "Target Text"
-msgstr "Tɛkst taagɛt"
-
-#: apps/pootle_misc/forms.py:117
-msgid "Comments"
-msgstr "Adwenkyerɛ nkyerɛmu"
-
-#: apps/pootle_misc/forms.py:118
-msgid "Locations"
-msgstr "Alokehyɛn"
-
-#: apps/pootle_misc/forms.py:131
-#, fuzzy
-msgid "Source Terms"
-msgstr "Tɛkst farebae"
-
-#: apps/pootle_misc/forms.py:132
-#, fuzzy
-msgid "Target Terms"
-msgstr "Tɛkst taagɛt"
-
-#: apps/pootle_misc/forms.py:133
-msgid "Definitions"
-msgstr ""
-
-#: apps/pootle_misc/stats.py:134
-#, python-format
-msgid "<a href=\"%(url)s\">%(num)d word</a>"
-msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] ""
-msgstr[1] ""
-
-#: apps/pootle_misc/stats.py:141
-#, python-format
-msgid "%(num)d%%"
-msgstr ""
-
-#: apps/pootle_misc/stats.py:143
-#, python-format
-msgid "(%(num)d string)"
-msgid_plural "(%(num)d strings)"
-msgstr[0] ""
-msgstr[1] ""
-
-#: apps/pootle_misc/stats.py:172
-#, python-format
-msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
-msgid_plural ""
-"This folder has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
-msgstr[1] ""
-
-#: apps/pootle_misc/stats.py:184
-#, python-format
-msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
-msgid_plural ""
-"This file has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
-msgstr[1] ""
-
-#: apps/pootle_misc/stats.py:206
-msgid "Expand details"
-msgstr ""
-
-#: apps/pootle_misc/stats.py:217
-#, python-format
-msgid "Continue translation (%(num)d word left)"
-msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
-
-#: apps/pootle_misc/stats.py:239
-#, python-format
-msgid "Next most important goal (%(num)d word left)"
-msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] ""
-msgstr[1] ""
-
-#: apps/pootle_misc/stats.py:249
-#, fuzzy
-msgid "Translation is complete"
-msgstr "Asekyerɛ ewie"
-
-#: apps/pootle_misc/stats.py:260
-#, python-format
-msgid "Review suggestion (%(num)d left)"
-msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] ""
-msgstr[1] ""
-
-#. Translators: 'type' is the type of VCS file: working, remote,
-#. or merged copy.
-#: apps/pootle_misc/stats.py:282
-#, python-format
-msgid ""
-"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
-"review)."
-msgid_plural ""
-"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
-"review)."
-msgstr[0] ""
-msgstr[1] ""
-
-#: apps/pootle_misc/stats.py:304
-#, python-format
-msgid "%d word needs attention"
-msgid_plural "%d words need attention"
-msgstr[0] "%d kasafua hia wo adwen"
-msgstr[1] "%d nkasafua hia wo adwen"
-
-#: apps/pootle_misc/stats.py:307
-#, python-format
-msgid "%d word untranslated"
-msgid_plural "%d words untranslated"
-msgstr[0] "nnkyerɛɛ kasafua %d ase"
-msgstr[1] "nnkyerɛɛ akasafua %d ase"
-
-#: apps/pootle_misc/stats.py:310
-#, python-format
-msgid "%d word needs review"
-msgid_plural "%d words need review"
-msgstr[0] "%d ehia sɛ wo bɛsan ahwɛ kasafua"
-msgstr[1] "%d ehia sɛ wo bɛsan ahwɛ nkasafua"
-
-#: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
-#, fuzzy, python-format
-msgid "%(percent)s%% complete"
-msgstr "%(percentage)d%% awie"
-
-#. Translators: This is the name of a filter
-#: apps/pootle_misc/templates/search.html:5 core/helpers.py:59
-msgid "Search"
-msgstr "Hwehwɛ"
-
-#: apps/pootle_misc/templatetags/render_pager.py:32
-msgid "First"
-msgstr "Kan"
-
-#: apps/pootle_misc/templatetags/render_pager.py:34
-#: templates/editor/_toolbar.html:33
-msgid "Previous"
-msgstr "Ekyiri"
-
-#: apps/pootle_misc/templatetags/render_pager.py:50
-#: templates/editor/_toolbar.html:42
-msgid "Next"
-msgstr "Ndiso"
-
-#: apps/pootle_misc/templatetags/render_pager.py:52
-#, python-format
-msgid "Last (%d)"
-msgstr "Awieyɛ (%d)"
-
-#: apps/pootle_notifications/forms.py:38
-msgid "Publish on news feed"
-msgstr ""
-
-#: apps/pootle_notifications/forms.py:41
-msgid "Send email"
-msgstr ""
-
-#: apps/pootle_notifications/forms.py:44
-msgid "Email only to recently active users"
-msgstr ""
-
-#: apps/pootle_notifications/forms.py:52
-#, fuzzy
-msgid "All Projects"
-msgstr "Nkɔsodwuma nyinara"
-
-#: apps/pootle_notifications/forms.py:56
-msgid "Project Selection"
-msgstr ""
-
-#: apps/pootle_notifications/forms.py:61
-msgid "Select one or more projects"
-msgstr ""
-
-#: apps/pootle_notifications/forms.py:68
-#, fuzzy
-msgid "All Languages"
-msgstr "Akasa nyinara"
-
-#: apps/pootle_notifications/forms.py:72
-msgid "Language Selection"
-msgstr ""
-
-#: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
-msgid "Select one or more languages"
-msgstr ""
-
-#: apps/pootle_notifications/models.py:31
-msgid "Message"
-msgstr "Nkrato"
-
-#. Translators: The date that the news item was written
-#: apps/pootle_notifications/models.py:33
-msgid "Added"
-msgstr "Aka ho"
-
-#: apps/pootle_notifications/views.py:95
-#, python-format
-msgid "News for %(language)s"
-msgstr "Nkaebɔ ma %(language)s"
-
-#: apps/pootle_notifications/views.py:100
-#, python-format
-msgid "News for %(project)s"
-msgstr "Nkaebɔ ma %(project)s"
-
-#: apps/pootle_notifications/views.py:106
-#, python-format
-msgid "News for the %(project)s project in %(language)s"
-msgstr "Nkaebɔ ma %(project)s nkɔsodwuma wɔ %(language)s"
-
-#: apps/pootle_notifications/views.py:107
-#, python-format
-msgid "News for %(path)s"
-msgstr "Nkaebɔ ma %(path)s"
-
-#: apps/pootle_notifications/views.py:226
-msgid "View News Item"
-msgstr "Hwɛ Aetɛm ma Nkaebɔ"
-
-#: apps/pootle_notifications/templates/latest_news_snippet.html:9
-#: apps/pootle_notifications/templates/notices.html:83
-msgid "No news yet."
-msgstr "Nkaebɔ biara mmbae."
-
-#: apps/pootle_notifications/templates/notices.html:15
-#: templates/language_menu.html:5 templates/project_menu.html:5
-#: templates/tp_menu.html:5
-msgid "News"
-msgstr "Nkaebɔ"
-
-#: apps/pootle_notifications/templates/notices.html:54
-msgid "Publish News"
-msgstr ""
-
-#: apps/pootle_notifications/templates/notices.html:57
-msgid "Successfully published the following news"
-msgstr ""
-
-#: apps/pootle_notifications/templates/notices.html:70
-msgid "Publish"
-msgstr "Pablehye"
-
-#: apps/pootle_profile/forms.py:32
-msgid "Default"
-msgstr "Difɔlt"
-
-#: apps/pootle_profile/forms.py:49 apps/pootle_profile/models.py:94
-msgid "Interface Language"
-msgstr "Kasa ma Intafes"
-
-#: apps/pootle_profile/forms.py:87
-msgid "This account is inactive."
-msgstr ""
-
-#: apps/pootle_profile/models.py:81
-msgid "Number of Rows"
-msgstr "Roo Dodow"
-
-#: apps/pootle_profile/models.py:98
-msgid "Alternative Source Languages"
-msgstr "Akasa a wo de Wɔn bedi dwuma sɛ wo Sɔɔs"
-
-#: apps/pootle_project/models.py:58
-msgid ""
-"A short code for the project. This should only contain ASCII characters, "
-"numbers, and the underscore (_) character."
-msgstr ""
-"Kood tiawa ma nkɔsodwuma yi. Ɛwɔ sɛ ASCII nkarakta, nɔmba ne famudahye (_) "
-"pɛ na ɛwɔ mu."
-
-#: apps/pootle_project/models.py:68
-#, python-format
-msgid ""
-"A description of this project. This is useful to give more information or "
-"instructions. Allowed markup: %s"
-msgstr ""
-
-#: apps/pootle_project/models.py:79
-msgid "Quality Checks"
-msgstr "Nhwehwɛmu wɔ sɛnea wodi Mu"
-
-# Fantefo ka ne sɛ "horow", Twi fo ka no sɛ "hodoɔ"
-#: apps/pootle_project/models.py:83
-msgid "File Type"
-msgstr "Fael Horow"
-
-#: apps/pootle_project/models.py:87
-msgid "Automatic detection (slower)"
-msgstr "Nhunumu otomatik (nnkɔ ntɛm)"
-
-#: apps/pootle_project/models.py:88
-msgid "GNU style: files named by language code"
-msgstr "Stael GNU: wɔde kasa ne kood na wɔde to mfael din"
-
-#: apps/pootle_project/models.py:89
-msgid "Non-GNU: Each language in its own directory"
-msgstr "Nnyɛ-GNU: Kasa biara wɔ noara ne folda"
-
-#: apps/pootle_project/models.py:93
-msgid "Project Tree Style"
-msgstr "Stael ma Dwumadi ne Dua"
-
-#: apps/pootle_project/models.py:100
-msgid "Ignore Files"
-msgstr "Yi w'eni firi Mfael so"
-
-#: apps/pootle_project/models.py:105
-msgid ""
-"A URL or an email address where issues with the source text can be reported."
-msgstr ""
-
-#: apps/pootle_project/models.py:108
-msgid "Report Target"
-msgstr ""
-
-#: apps/pootle_project/views.py:119
-#, python-format
-msgid "%(languages)d language, %(average)d%% translated"
-msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] "kasa %(languages)d, akyerɛ %(average)d%%"
-msgstr[1] "akasa %(languages)d, akyerɛ %(average)d%%"
-
-#: apps/pootle_project/views.py:377
-#: apps/pootle_translationproject/actions.py:209
-msgid "Update against templates"
-msgstr ""
-
-#: apps/pootle_project/templates/project/admin_permissions.html:20
-msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr "Wobɛtumi de akwanya aka, asesa, na woapepa wɔ dwumadi yi mu."
-
-#: apps/pootle_project/templates/project/overview.html:19
-#: apps/pootle_translationproject/templates/translation_project/overview.html:25
-msgid "Show tags"
-msgstr ""
-
-#: apps/pootle_project/templates/project/overview.html:22
-msgid "Show filtering"
-msgstr ""
-
-#: apps/pootle_project/templates/project/overview.html:33
-msgid "Filter using one or more tags"
-msgstr ""
-
-#: apps/pootle_project/templates/project/overview.html:37
-msgctxt "verb"
-msgid "Filter"
-msgstr ""
-
-#: apps/pootle_project/templates/project/overview.html:38
-msgid "Filter using the selected tags"
-msgstr ""
-
-#: apps/pootle_project/templates/project/overview.html:76
-#: apps/pootle_translationproject/templates/translation_project/overview.html:43
-#: apps/pootle_translationproject/templates/translation_project/overview.html:175
-#: templates/common/xhr_add_tag_form.html:15
-msgid "Add tag"
-msgstr ""
-
-#: apps/pootle_project/templates/project/project_admin.html:7
-#: templates/project_menu.html:9
-msgid "Administrate"
-msgstr "Di so panin"
-
-#: apps/pootle_project/templates/project/project_admin.html:20
-msgid "Here you can add, edit, or delete the languages for this project."
-msgstr "Wo betumi de aka ho, asesa, anaaso eyi akasa ama nkɔsodwuma yi."
-
-#: apps/pootle_statistics/models.py:46
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:103
-msgid "Source"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:47
-msgid "Target"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:48
-msgid "State"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:49
-#, fuzzy
-msgid "Comment"
-msgstr "Adwenkyerɛ nkyerɛmu"
-
-#: apps/pootle_statistics/models.py:114
-msgid "anonymous user"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:152
-#, python-format
-msgid ""
-"%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:155
-#, python-format
-msgid ""
-"%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:158
-#, python-format
-msgid "%(user)s uploaded a file"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:173
-#, python-format
-msgid ""
-"%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:176
-#, python-format
-msgid ""
-"%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
-"\">%(source)s</a></i>"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:179
-#, python-format
-msgid ""
-"%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
-
-#: apps/pootle_store/decorators.py:63
-msgid "Insufficient rights to access this directory."
-msgstr ""
-
-#: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
-msgid "Arguments missing."
-msgstr ""
-
-#: apps/pootle_store/decorators.py:147
-msgid "File does not exist."
-msgstr ""
-
-#: apps/pootle_store/filetypes.py:31
-msgid "Gettext PO"
-msgstr "Gettext PO"
-
-#: apps/pootle_store/filetypes.py:35
-msgid "XLIFF"
-msgstr "XLIFF"
-
-#: apps/pootle_store/filetypes.py:41
-msgid "Qt ts"
-msgstr "Qt ts"
-
-#: apps/pootle_store/filetypes.py:47
-msgid "TMX"
-msgstr "TMX"
-
-#: apps/pootle_store/filetypes.py:53
-msgid "TBX"
-msgstr "TBX"
-
-#: apps/pootle_store/filetypes.py:59
-msgid "Haiku catkeys"
-msgstr "Haiku catkeys"
-
-#: apps/pootle_store/filetypes.py:65
-msgid "Excel CSV"
-msgstr ""
-
-#: apps/pootle_store/filetypes.py:71
-msgid "Mozilla .lang"
-msgstr ""
-
-#: apps/pootle_store/filetypes.py:81 apps/pootle_store/filetypes.py:85
-msgid "Java Properties"
-msgstr "Java bɔbea"
-
-#: apps/pootle_store/filetypes.py:89
-msgid "Java Properties (UTF-8)"
-msgstr ""
-
-#. Translators: Don't translate "strings" unless you are sure these
-#. files have another name in your language
-#: apps/pootle_store/filetypes.py:98
-msgid "OS X Strings"
-msgstr "OS X Strings"
-
-#: apps/pootle_store/filetypes.py:104
-msgid "PHP arrays"
-msgstr "PHP arrays"
-
-#: apps/pootle_store/filetypes.py:110
-msgid "Subtitles: srt"
-msgstr "Asɛmsekyerɛ: srt"
-
-#: apps/pootle_store/filetypes.py:112
-msgid "Subtitles: sub"
-msgstr "Asɛmsekyerɛ: sub"
-
-#: apps/pootle_store/filetypes.py:114
-msgid "Subtitles: ssa"
-msgstr "Asɛmsekyerɛ: ssa"
-
-#: apps/pootle_store/filetypes.py:116
-msgid "Subtitles: ass"
-msgstr "Asɛmsekyerɛ: ass"
-
-#: apps/pootle_store/forms.py:95
-#: apps/pootle_store/templatetags/store_tags.py:125
-#: apps/pootle_store/templatetags/store_tags.py:142
-#: apps/pootle_store/templatetags/store_tags.py:149
-#: apps/pootle_store/templatetags/store_tags.py:162
-#: apps/pootle_store/templatetags/store_tags.py:164
-#, python-format
-msgid "Plural Form %d"
-msgstr "Ɔdodow Tebea %d"
-
-#: apps/pootle_store/forms.py:296
-msgid "Translator comment"
-msgstr "Asekyerɛfo nkyerɛmu"
-
-#: apps/pootle_store/models.py:893
-msgid "Path"
-msgstr "Kwan"
-
-#: apps/pootle_store/models.py:900
-#: apps/pootle_translationproject/models.py:121
-msgid "Tags"
-msgstr ""
-
-#: apps/pootle_store/models.py:901
-#: apps/pootle_translationproject/models.py:122
-msgid "A comma-separated list of tags."
-msgstr ""
-
-#: apps/pootle_store/models.py:902
-#: apps/pootle_translationproject/models.py:126
-#: apps/pootle_translationproject/templates/translation_project/overview.html:69
-msgid "Goals"
-msgstr ""
-
-#: apps/pootle_store/models.py:904
-#: apps/pootle_translationproject/models.py:128
-msgid "A comma-separated list of goals."
-msgstr ""
-
-#: apps/pootle_store/util.py:45
-msgid "Obsolete"
-msgstr ""
-
-#: apps/pootle_store/views.py:705
-msgid "Comment submission failed."
-msgstr ""
-
-#: apps/pootle_store/views.py:832 apps/pootle_store/views.py:898
-msgid "You do not have rights to access translation mode."
-msgstr "Wo nni ho kwan sɛ wo bɛkɔ asekyerɛ tebea mu."
-
-#: apps/pootle_store/views.py:880
-msgid "Failed to process submission."
-msgstr ""
-
-#: apps/pootle_store/views.py:930
-msgid "Failed to process suggestion."
-msgstr ""
-
-#: apps/pootle_store/views.py:952
-msgid "You do not have rights to access review mode."
-msgstr "Wo nni ho kwan sɛ wo bɛkɔ tebea riviw mu."
-
-#: apps/pootle_store/views.py:1067
-msgid "The suggestion or vote is not valid any more."
-msgstr ""
-
-#: apps/pootle_store/views.py:1096
-#, fuzzy
-msgid "You do not have rights to remove tags."
-msgstr "Woo nni tumi sɛ wo bɛdi panin wɔ %s so."
-
-#: apps/pootle_store/views.py:1132
-#, fuzzy
-msgid "You do not have rights to add tags."
-msgstr "Woo nni tumi sɛ wo bɛdi panin wɔ %s so."
-
-#: apps/pootle_store/templates/unit/comment.html:12
-#, fuzzy
-msgid "Comment:"
-msgstr "Adwenkyerɛ nkyerɛmu"
-
-#: apps/pootle_store/templates/unit/edit.html:15
-#, python-format
-msgid "String %(id)s"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:22
-msgid "Context:"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:32
-#, fuzzy
-msgid "Comments:"
-msgstr "Adwenkyerɛ nkyerɛmu"
-
-#: apps/pootle_store/templates/unit/edit.html:47
-#, fuzzy
-msgid "Locations:"
-msgstr "Alokehyɛn"
-
-#: apps/pootle_store/templates/unit/edit.html:56
-#, fuzzy
-msgid "Terminology:"
-msgstr "Tɛminɔlɔgi"
-
-#: apps/pootle_store/templates/unit/edit.html:58
-msgid "Insert the translated term into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:71
-msgid "Possible issues with the translation"
-msgstr "Nsɛm nokware a ɛka nkyerɛkyerɛmu ho"
-
-#: apps/pootle_store/templates/unit/edit.html:71
-#, fuzzy
-msgid "Failing checks:"
-msgstr "Nkugu nhwehwɛmu"
-
-#: apps/pootle_store/templates/unit/edit.html:77
-msgid "Remove quality check"
-msgstr "Yi kwaliti nhwehwɛmu"
-
-#: apps/pootle_store/templates/unit/edit.html:100
-#: apps/pootle_store/templates/unit/edit.html:121
-msgid "Copy into translation"
-msgstr "kɔɔpe gu nkyerɛkyerɛmu mu"
-
-#: apps/pootle_store/templates/unit/edit.html:119
-msgid "Report a problem with the source string"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:136
-#: apps/pootle_store/templates/unit/edit.html:146
-#: apps/pootle_store/templates/unit/edit.html:232
-msgid "Submit"
-msgstr "Sabmet"
-
-#: apps/pootle_store/templates/unit/edit.html:136
-msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:139
-#: apps/pootle_store/templates/unit/edit.html:147
-msgid "Suggest"
-msgstr "Susu"
-
-#: apps/pootle_store/templates/unit/edit.html:139
-msgid "Suggest translation and go to the next string (Ctrl+Enter)"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:146
-msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:147
-msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:150
-msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:171
-#, python-format
-msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:181
-msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:184
-msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:187
-msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:190
-msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:193
-msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:196
-msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:199
-msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:202
-msgid "Insert ZWJ (Zero Width Joiner) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:205
-msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:211
-msgid "Insert this symbol into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:223
-msgid "Add Comment"
-msgstr "Kyerɛ wo adwen"
-
-#: apps/pootle_store/templates/unit/edit.html:225
-msgid "Show Timeline"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:226
-msgid "Hide Timeline"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:248
-#, fuzzy
-msgid "User suggestions"
-msgstr "Hwɛ Nsusui"
-
-#: apps/pootle_store/templates/unit/edit.html:266
-msgid "Accept suggestion"
-msgstr "Gye nsusui to mu"
-
-#: apps/pootle_store/templates/unit/edit.html:271
-msgid "Reject suggestion"
-msgstr "Po nsusui"
-
-#: apps/pootle_store/templates/unit/edit.html:278
-msgid "Remove suggestion"
-msgstr "Yi nsusui no"
-
-#: apps/pootle_store/templates/unit/term_edit.html:21
-msgid "Your current vote. Click to remove this vote."
-msgstr ""
-
-#: apps/pootle_store/templates/unit/term_edit.html:33
-msgid "Vote for this suggestion"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/term_edit.html:40
-#, fuzzy
-msgid "Comment: "
-msgstr "Adwenkyerɛ nkyerɛmu"
-
-#: apps/pootle_store/templates/unit/timeline.html:4
-#: apps/pootle_store/templates/unit/timeline.html:14
-msgid "Previous Work"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/xhr-timeline.html:3
-msgid "Timeline"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/xhr-timeline.html:27
-msgid "No results."
-msgstr ""
-
-#: apps/pootle_store/templatetags/store_tags.py:119
-#: apps/pootle_store/templatetags/store_tags.py:121
-msgid "Singular"
-msgstr "Ankonam"
-
-#: apps/pootle_store/templatetags/store_tags.py:119
-#: apps/pootle_store/templatetags/store_tags.py:121
-msgid "Plural"
-msgstr "Ɔdodow"
-
-#: apps/pootle_tagging/forms.py:47
-msgid ""
-"Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
-"underscores (_), slashes (/) or periods (.)!"
-msgstr ""
-
-#: apps/pootle_tagging/forms.py:53
-msgid ""
-"Tag names cannot contain two or more consecutive: spaces, colons (:), "
-"hyphens (-), underscores (_), slashes (/) or periods (.)!"
-msgstr ""
-
-#: apps/pootle_tagging/forms.py:60
-msgid ""
-"Tag names must be an alphanumeric lowercase string with no trailing nor "
-"leading (but yes on the middle): spaces, colons (:), hyphens (-), "
-"underscores (_), slashes (/) or periods (.)!"
-msgstr ""
-
-#: apps/pootle_tagging/forms.py:74
-msgid ""
-"Name cannot contain just after 'goal:' any of these characters: spaces, "
-"colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
+#: templates/admin/reports/header.html:24
+msgid "Detailed Statistics"
 msgstr ""
 
-#: apps/pootle_tagging/forms.py:133
-msgid "A goal with that name already exists. Please pick another name."
+#: templates/admin/reports/paid_task_form.html:5
+msgid "Add Task"
 msgstr ""
 
-#: apps/pootle_tagging/forms.py:173
-msgid ""
-"Tag slugs must be equal to the tag name, but replacing with a hyphen the "
-"single or multiple occurrences of the following characters: spaces, colons "
-"(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
+#: templates/admin/reports/paid_task_form.html:23
+msgid "words"
 msgstr ""
 
-#: apps/pootle_tagging/forms.py:180
-msgid "A goal with this slug already exists."
+#: templates/admin/reports/paid_task_form.html:24
+msgid "hours"
 msgstr ""
 
-#: apps/pootle_tagging/forms.py:194
-msgid ""
-"Warning: Changing the name also changes the slug, so it won't be possible to "
-"view this goal on this page!"
+#: templates/admin/reports/paid_task_form.html:35
+msgid "Add record"
 msgstr ""
 
-#: apps/pootle_tagging/models.py:66
-#, python-format
-msgid ""
-"A description of this goal. This is useful to give more information or "
-"instructions. Allowed markup: %s"
+#: templates/admin/reports/user_rates_form.html:4
+msgid "Set Rates"
 msgstr ""
-
-#: apps/pootle_tagging/models.py:74
-msgid "The priority for this goal."
-msgstr ""
-
-#: apps/pootle_tagging/models.py:79
-msgid ""
-"Designates that this is a project goal (shared across all languages in the "
-"project)."
-msgstr ""
-
-#: apps/pootle_tagging/models.py:81
-msgid "Project goal?"
-msgstr ""
-
-#: apps/pootle_tagging/models.py:105
-msgid "(Project goal)"
-msgstr ""
-
-#: apps/pootle_terminology/views.py:171
-msgid "This term already exists in this file."
-msgstr ""
-
-#: apps/pootle_terminology/templates/terminology/extract.html:6
-msgid "Regenerate Glossary"
-msgstr "San gɛnerate Glossori"
-
-#: apps/pootle_terminology/templates/terminology/extract.html:7
-msgid ""
-"Are you sure you want to regenerate the glossary? Any existing terms and "
-"their translations will be deleted."
-msgstr ""
-"Wogyedi sɛ wopɛsɛ wosan nya glɔssari no? Ɛfene ɛwɔhɔ bea ne no asekyerɛ "
-"bɛpepa."
-
-#: apps/pootle_terminology/templates/terminology/extract.html:11
-msgid "Extract"
-msgstr "Yiyi"
-
-#: apps/pootle_terminology/templates/terminology/manage.html:22
-msgid "You can regenerate the glossary from scratch."
-msgstr "Wobɛtumi asan agɛnerate grooseri afre ase."
-
-#: apps/pootle_terminology/templates/terminology/manage.html:35
-msgid "Term"
-msgstr "Nhyehyɛyɛ"
 
-#: apps/pootle_terminology/templates/terminology/manage.html:36
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:104
-msgid "Translation"
-msgstr "Asekyerɛ"
+#: templates/admin/reports/user_rates_form.html:31
+#: templates/admin/staticpages/_form.html:24
+#: templates/profiles/settings/personal.html:21
+#: templates/profiles/settings/profile.html:25
+msgid "Save"
+msgstr "Sie"
 
-#: apps/pootle_terminology/templates/terminology/manage.html:37
-#: apps/staticpages/templates/staticpages/admin/_form.html:7
+#: templates/admin/staticpages/_form.html:6
+#: templates/translation_projects/terminology/manage.html:38
 msgid "Delete"
 msgstr "Dilit"
 
-#: apps/pootle_terminology/templates/terminology/manage.html:61
-msgid "Glossary is Empty"
-msgstr "Grooseri no asa"
-
-#: apps/pootle_terminology/templates/terminology/manage.html:62
-msgid "Generate Glossary"
-msgstr "Gɛnerate Glossori"
-
-#: apps/pootle_terminology/templates/terminology/stores.html:7
-msgid "Here you can manage the terms in the terminology files."
-msgstr ""
-
-#: apps/pootle_terminology/templates/terminology/stores.html:14
-#: apps/pootle_translationproject/forms.py:63
-msgid "File"
-msgstr "Fael"
-
-#: apps/pootle_terminology/templates/terminology/stores.html:29
-msgid "Once you upload files, you will be able to add, edit and delete terms."
-msgstr ""
-
-# Nkyerɛmu rekɛyɛ sɛ "explanation" sen sɛ "description"
-#: apps/pootle_terminology/templates/terminology/term_edit.html:11
-msgid "Description..."
-msgstr "Nkyerɛkyerɛmu..."
-
-#: apps/pootle_terminology/templates/terminology/term_edit.html:18
-msgid "Details..."
-msgstr "Details..."
-
-#: apps/pootle_terminology/templates/terminology/term_edit.html:31
-msgid "Translator Comments"
-msgstr "Asekyerɛni adwenkyerɛ nkyerɛmu"
-
-#: apps/pootle_translationproject/actions.py:61
-msgid "Download (.zip)"
-msgstr ""
-
-#: apps/pootle_translationproject/actions.py:75
-#: apps/pootle_translationproject/actions.py:100
-msgid "Download XLIFF"
-msgstr "Twe XLIFF"
-
-#: apps/pootle_translationproject/actions.py:76
-msgid "Download file in XLIFF format"
-msgstr ""
-
-#: apps/pootle_translationproject/actions.py:79
-msgid "Export"
-msgstr "Amane"
-
-#: apps/pootle_translationproject/actions.py:80
-msgid "Export translations"
-msgstr "Amane nkyerɛkyerɛmu"
-
-#: apps/pootle_translationproject/actions.py:82
-msgid "Download"
-msgstr "Twe"
-
-#: apps/pootle_translationproject/actions.py:83
-msgid "Download file"
-msgstr "Twe fael"
-
-#: apps/pootle_translationproject/actions.py:101
-msgid "Download XLIFF file for offline translation"
-msgstr "Twe XLIFF fael ma offline nkyerase"
-
-#: apps/pootle_translationproject/actions.py:116
-#: apps/pootle_translationproject/templates/translation_project/overview.html:167
-msgid "Upload"
-msgstr "Pia kɔ"
-
-#: apps/pootle_translationproject/actions.py:117
-msgid "Upload translation files or archives in .zip format"
-msgstr ""
-
-#: apps/pootle_translationproject/actions.py:135
-msgid "Update from VCS"
-msgstr "To so firi VCS"
-
-#: apps/pootle_translationproject/actions.py:150
-msgid "Commit to VCS"
-msgstr "Kyerɛw kɔ VCS"
-
-#. Translators: "all" here refers to all files and sub directories in a directory/project.
-#: apps/pootle_translationproject/actions.py:166
-#, fuzzy
-msgid "Update all from VCS"
-msgstr "To so firi VCS"
-
-#. Translators: "all" here refers to all files and sub directories in a directory/project.
-#: apps/pootle_translationproject/actions.py:182
-#, fuzzy
-msgid "Commit all to VCS"
-msgstr "Kyerɛw kɔ VCS"
-
-#: apps/pootle_translationproject/actions.py:195
-msgid "Rescan project files"
-msgstr "San skan dwumadi yi ne mfael nyinara"
-
-#: apps/pootle_translationproject/actions.py:226
-msgid "Delete this folder..."
-msgstr ""
-
-#: apps/pootle_translationproject/actions.py:228
-msgid "Delete this file..."
-msgstr ""
-
-#: apps/pootle_translationproject/actions.py:262
-msgid "Translate offline"
-msgstr "kyerɛ ase nni ahomaso"
-
-#: apps/pootle_translationproject/actions.py:265
-msgid "Manage"
-msgstr ""
-
-#: apps/pootle_translationproject/forms.py:40
-msgid "Overwrite the current file if it exists"
-msgstr "Kyerɛw seiseiara fael so sɛ ɔte ase a"
-
-#: apps/pootle_translationproject/forms.py:43
-msgid ""
-"Merge the file with the current file and turn conflicts into suggestions"
-msgstr "Fa seiseiara fael ka fael no ho na dane ntɔkwa kɔ adwenkyerɛ"
-
-#: apps/pootle_translationproject/forms.py:46
-msgid "Add all new translations as suggestions"
-msgstr "Fa asekyerɛ afoforo nyinara ka ho sɛ adwenkyerɛ"
-
-#: apps/pootle_translationproject/forms.py:73
-#: apps/pootle_translationproject/forms.py:81
-msgid "Upload to"
-msgstr "Uplode kɔ"
-
-#: apps/pootle_translationproject/forms.py:76
-#: apps/pootle_translationproject/forms.py:85
-msgid ""
-"Optionally select the file you want to merge with. If not specified, the "
-"uploaded file's name is used."
-msgstr "Wopɛ a yi fale a wopɛsɛ wo de bom. Sɛ ɛni hɔ a wɔde fale no din yɛ."
-
-#: apps/pootle_translationproject/models.py:103
-#, python-format
-msgid ""
-"A description of this translation project. This is useful to give more "
-"information or instructions. Allowed markup: %s"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:589
-#, python-format
-msgid "Failed to update from version control: %(error)s"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:659
-#, python-format
-msgid "Updated project <em>%(project)s</em> from version control"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:661
-#: apps/pootle_translationproject/models.py:683
-msgid "Working copy"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:662
-#: apps/pootle_translationproject/models.py:684
-msgid "Remote copy"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:663
-#: apps/pootle_translationproject/models.py:685
-msgid "Merged copy"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:681
-#, python-format
-msgid "Updated file <em>%(filename)s</em> from version control"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:695
-#, python-format
-msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:751
-#, python-format
-msgid "Committed all files under <em>%(path)s</em> to version control"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:759
-#, python-format
-msgid "Failed to commit to version control: %(error)s"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:818
-#, python-format
-msgid "Committed file <em>%(filename)s</em> to version control"
-msgstr ""
-
-#: apps/pootle_translationproject/models.py:830
-#, python-format
-msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:100
-msgid "Translation project files have been rescanned."
-msgstr "Wɔasan askan asekyerɛ dwumadi no ne mfael nyinara."
-
-#: apps/pootle_translationproject/views.py:105
-msgid "Error while rescanning translation project files."
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:120
-msgid "Translation project has been updated against latest templates."
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:125
-msgid "Error while updating translation project against latest templates."
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:190
-msgid "Symbolic link hasn't been removed from the filesystem."
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:194
-msgid "Directory and its containing files have been deleted."
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:197
-msgid "File has been deleted."
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:201
-msgid "Error while trying to delete directory."
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:204
-msgid "Error while trying to delete file."
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:373
-#, python-format
-msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:400
-#, python-format
-msgid "Error while running '%s' extension action"
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:820
-#, python-format
-msgid "Invalid/insecure file name: %s"
-msgstr "Fael din a onndi mu: %s"
-
-#: apps/pootle_translationproject/views.py:835
-#, python-format
-msgid ""
-"Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
-"%(filetype)s'."
-msgstr ""
-"GNU-stael fael din a onndi mu: %(local_filename)s. Ɛwɔ sɛ ɔde '%(langcode)s."
-"%(filetype)s' fa."
-
-#: apps/pootle_translationproject/views.py:858
-msgid "Error while extracting archive"
-msgstr "Mfomso sii wɔ bere a wɔretwe mfael efiri esiei mu"
-
-#: apps/pootle_translationproject/views.py:1041
-msgid "You do not have rights to overwrite files here."
-msgstr "Wo nni ho kwan sɛ wo bɛkyerɛw afa mfael so wɔ ha."
-
-#: apps/pootle_translationproject/views.py:1045
-msgid "You do not have rights to upload new files here."
-msgstr "Wo nni ho kwan sɛ wo bepia mfael afoforo wɔ ha."
-
-#: apps/pootle_translationproject/views.py:1049
-#: apps/pootle_translationproject/views.py:1053
-msgid "You do not have rights to upload files here."
-msgstr "Wo nni ho kwan sɛ wo bepia mfael wɔ ha."
-
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:11
-msgid ""
-"Below you can add, edit, and delete the permissions for this translation "
-"project."
-msgstr "Wobɛtumi a hwɛ fael no so ɛwɔ asekyerɛ asekyerɛ dwumadi yimu."
-
-#. Translators: A view showing the export of strings in a flat form.
-#. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:7
-msgid "Export View"
-msgstr ""
-
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:99
-msgid "Goal"
-msgstr ""
-
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:141
-msgid "No strings."
-msgstr ""
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:61
-msgid "Translation project files and folders"
-msgstr ""
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:68
-#, fuzzy
-msgid "Administrate your project goals"
-msgstr "Di panindwuma wɔ wo nkɔsodwuma so"
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:84
-msgid "Actions"
-msgstr ""
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:137
-#, python-format
-msgid "%(project)s project information"
-msgstr ""
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:144
-#, python-format
-msgid "%(language)s language information"
-msgstr ""
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:156
-msgid "Upload File"
-msgstr "Pia Fael kɔ"
-
-#: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
-msgid "Translation Statistics"
-msgstr ""
-
-#: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
-msgid "Failing Checks"
-msgstr "Nkugu nhwehwɛmu"
-
-#: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:44
-msgid "Nothing to show"
-msgstr ""
-
-#: apps/registration/forms.py:36
-msgid "username"
-msgstr "agodin"
-
-#: apps/registration/forms.py:39
-msgid "email address"
-msgstr "emel adrɛs"
-
-#: apps/registration/forms.py:41
-msgid "password"
-msgstr "ehintasɛmfua"
-
-#: apps/registration/forms.py:43
-msgid "password (again)"
-msgstr "ehintasɛmfua (bio)"
-
-#: apps/registration/forms.py:55
-msgid "This username is already taken. Please choose another."
-msgstr "Obi afa agodin yi dadaw. Yɛsrɛ wo fa foforo."
-
-#: apps/registration/forms.py:67
-msgid "You must type the same password each time"
-msgstr "Ɛwɔ sɛ wo kyerɛw ehintasɛmfua noara bio bere biara"
-
-#: apps/registration/forms.py:90
-msgid "I have read and agree to the Terms of Service"
-msgstr "Meakenkn na megye Terms of Service no to mu"
-
-#: apps/registration/forms.py:107
-msgid ""
-"This email address is already in use. Please supply a different email "
-"address."
-msgstr "Obi afa emel adrɛs yi dadaw. Yɛsrɛ wo fa emel adrɛs foforo."
-
-#: apps/registration/forms.py:133
-msgid ""
-"Registration using free email addresses is prohibited. Please supply a "
-"different email address."
-msgstr ""
-"Yɛnngye emel adrɛs a wɔayɛ fo sɛ wo rekyerɛ wo din a. Yɛsrɛ wo fa emel adrɛs "
-"foforo."
-
-#: apps/registration/models.py:231
-msgid "user"
-msgstr "dehye"
-
-#: apps/registration/models.py:232
-msgid "activation key"
-msgstr "safowa nkeynan"
-
-#: apps/registration/models.py:237
-msgid "registration profile"
-msgstr "profael dinkyerɛw"
-
-#: apps/registration/models.py:238
-msgid "registration profiles"
-msgstr "mprofael edinkyerɛw"
-
-#: apps/staticpages/forms.py:78
-#, python-format
-msgid ""
-"I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
-"a>"
-msgstr ""
-
-#: apps/staticpages/models.py:37
-#: apps/staticpages/templates/staticpages/admin/_table.html:7
-#, fuzzy
-msgid "Active"
-msgstr "si so"
-
-#: apps/staticpages/models.py:38
-msgid "Whether this page is active or not."
-msgstr ""
-
-#: apps/staticpages/models.py:40
-#: apps/staticpages/templates/staticpages/admin/_table.html:9
-msgid "Virtual Path"
-msgstr ""
-
-#. Translators: Content that will be used to display this static page
-#: apps/staticpages/models.py:47
-msgid "Display Content"
-msgstr ""
-
-#: apps/staticpages/models.py:48
-#, python-format
-msgid "Allowed markup: %s"
-msgstr ""
-
-#: apps/staticpages/models.py:50
-#: apps/staticpages/templates/staticpages/admin/_table.html:10
-msgid "Redirect to URL"
-msgstr ""
-
-#: apps/staticpages/models.py:51
-msgid "If set, any references to this page will redirect to this URL"
-msgstr ""
-
-#. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:98
-msgid "URL or content must be provided."
-msgstr ""
-
-#: apps/staticpages/models.py:106
-msgid "Virtual path already in use."
-msgstr ""
-
-#: apps/staticpages/models.py:111
-msgid "Legal Page"
-msgstr ""
-
-#: apps/staticpages/models.py:122
-msgid "Regular Page"
-msgstr ""
-
-#: apps/staticpages/views.py:87
-msgid "Page Title"
-msgstr ""
-
-#: apps/staticpages/views.py:88
-#, python-format
-msgid "page-%d"
-msgstr ""
-
-#: apps/staticpages/views.py:130
-#, python-format
-msgid ""
-"This page is inactive and visible to administrators only. You can activate "
-"it by <a href=\"%s\">editing its properties</a>"
-msgstr ""
-
-#: apps/staticpages/templates/staticpages/agreement.html:4
-msgid "Action Required"
-msgstr ""
-
-#: apps/staticpages/templates/staticpages/agreement.html:5
-msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
-
-#: apps/staticpages/templates/staticpages/agreement.html:18
-msgid "No thanks. Log out"
-msgstr ""
-
-#: apps/staticpages/templates/staticpages/agreement.html:21
-msgid "Continue"
-msgstr ""
-
-#: apps/staticpages/templates/staticpages/base.html:5
-#: apps/staticpages/templates/staticpages/base.html:11
-#: templates/admin_profile_menu.html:9
-msgid "Static Pages"
-msgstr ""
-
-#. Translators: Displayed as 'Redirect to URL or Display Content'
-#: apps/staticpages/templates/staticpages/admin/_form.html:19
+#: templates/admin/staticpages/_form.html:18
 msgid "or"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/_table.html:8
-msgid "Page"
+#: templates/admin/staticpages/_form.html:30
+msgid ""
+"\n"
+"Use <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/a&gt;"
+"</code> code to provide links between static pages. Such links will be "
+"rewritten with full paths to static pages.\n"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/_table.html:11
+#: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/_table.html:17
+#: templates/admin/staticpages/_table.html:16
 msgid "Yes"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/_table.html:17
+#: templates/admin/staticpages/_table.html:16
 msgid "No"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/_table.html:30
+#: templates/admin/staticpages/_table.html:19
+#, fuzzy
+msgid "edit"
+msgstr "Sesa"
+
+#: templates/admin/staticpages/_table.html:24
+#, fuzzy
+msgid "view"
+msgstr "Hwɛ"
+
+#: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/page_list.html:8
+#: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#: templates/admin/staticpages/page_list.html:11
 msgid "Add Legal Page"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/page_list.html:15
+#: templates/admin/staticpages/page_list.html:14
 msgid "Regular Pages"
 msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#: templates/admin/staticpages/page_list.html:18
 msgid "Add Regular Page"
 msgstr ""
 
-#: core/decorators.py:178
-msgid "Insufficient rights to access this page."
+#: templates/admin/staticpages/page_list.html:21
+msgid "Announcements"
 msgstr ""
 
-#: core/decorators.py:191 core/views.py:29
-msgid "You do not have rights to administer Pootle."
-msgstr "Wo nni tumi sɛ wo bɛdi panin wɔ Pootle so."
-
-#: core/helpers.py:41
-msgid "User missing"
+#: templates/admin/staticpages/page_list.html:25
+msgid "Add Announcement"
 msgstr ""
 
-#. Translators: This refers to "All strings"
-#: core/helpers.py:53 templates/editor/_toolbar.html:12
-msgid "All"
+#: templates/browser/_actions.html:5
+#, fuzzy
+msgid "Continue translation"
+msgstr "kɔɔpe gu nkyerɛkyerɛmu mu"
+
+#: templates/browser/_actions.html:11
+#, fuzzy
+msgid "Review suggestions"
+msgstr "San hwɛ Nsusui"
+
+#: templates/browser/_actions.html:17
+msgid "Fix critical errors"
 msgstr ""
 
-#: core/helpers.py:57 templates/editor/_toolbar.html:14
-msgid "Incomplete"
+#: templates/browser/_actions.html:23
+msgid "View all"
 msgstr ""
 
-#: core/helpers.py:60 templates/editor/_toolbar.html:24
-msgid "Checks"
-msgstr ""
-
-#: core/helpers.py:62
-msgid "Overwritten submissions"
-msgstr ""
-
-#: core/initdb.py:143
-msgid "Can view a translation project"
-msgstr "Wo betumi ahwɛ asekyerɛ dwumadi"
-
-#: core/initdb.py:147
-msgid "Can make a suggestion for a translation"
-msgstr "Wo betumi akyerɛ w'adwen ama asekyerɛ bi"
-
-#: core/initdb.py:151
-msgid "Can submit a translation"
-msgstr "Wo betumi akyerɛ biribi ase"
-
-#: core/initdb.py:155
-msgid "Can overwrite translations on uploading files"
-msgstr "Wo betumi epia mfael akɔ de akyerɛw afa asekyerɛ so"
-
-#: core/initdb.py:159
-msgid "Can review translations"
-msgstr "Wo betumi asan ahwɛ asekyerɛ mu"
-
-#: core/initdb.py:163
-msgid "Can download archives of translation projects"
-msgstr "Wo betumi atwe asekyerɛ ndwumadi a wɔde esie"
-
-#: core/initdb.py:167
-msgid "Can administrate a translation project"
-msgstr "Wo betumi edi panin ahwɛ asekyerɛ dwumadi so"
-
-#: core/initdb.py:171
-msgid "Can commit to version control"
-msgstr "Wo betumi akyerɛw akɔ kɔntrol vɛɛhyɛn so"
-
-#: middleware/captcha.py:122
-msgid "Time to answer has expired"
-msgstr "Mmerɛ a wode bɛyi asɛm no ano atwam"
-
-#: middleware/captcha.py:141
-msgid "Enter a number"
-msgstr "Bɔ nɔmba no"
-
-#: middleware/captcha.py:156
-msgid "Incorrect"
-msgstr "Ɛnyɛ pɛpɛɛpɛ"
-
-#: middleware/errorpages.py:74
+#: templates/browser/_progressbar.html:3
 #, python-format
-msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
+msgid "<span class='value translated'>0</span>%% translated"
 msgstr ""
-"Ho hia sɛ wo <a href=\"%(login_link)s\">bɛlɔgin</a> ansaana wo akɔ krataafa yi "
-"so."
 
-#: middleware/errorpages.py:109
+#: templates/browser/_progressbar.html:4
 #, python-format
-msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
+msgid "<span class='value fuzzy'>0</span>%% fuzzy"
 msgstr ""
-"Mfomso sii wɔ bere a wo repɛ %(filename)s, Fael sestɛm de mfomso asɛm yi "
-"somae: %(errormsg)s"
 
-#: scripts/actions.py:529
+#: templates/browser/_progressbar.html:5
 #, python-format
-msgid "Failed to copy download file to export directory %s"
+msgid "<span class='value untranslated'>0</span>%% untranslated"
 msgstr ""
 
-#: scripts/example-actions/mozlangpack.py:132
+#: templates/browser/overview.html:13
+msgid "Expand details"
+msgstr ""
+
+#: templates/browser/overview.html:20
+msgid "Translation Statistics"
+msgstr ""
+
+#: templates/browser/overview.html:43
+msgid "Last action"
+msgstr ""
+
+#: templates/browser/overview.html:51
+msgid "Failing Checks"
+msgstr "Nkugu nhwehwɛmu"
+
+#: templates/browser/overview.html:90
+msgid "This project is disabled and visible to administrators only."
+msgstr ""
+
+#: templates/browser/overview.html:95
 msgid ""
-"Finished building the language pack, click on the download link to download "
-"it."
+"Some data on this page is currently being calculated, and the page will be "
+"refreshed automatically in <strong>30 seconds</strong>."
 msgstr ""
 
-#: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
-msgid "Permission Denied"
-msgstr "Enntie Kwan"
-
-#: templates/403.html:16
-msgid "You don't have permission to access this page."
-msgstr "Wo nni ho kwan sɛ wo bɛkɔ krataafa yi so."
-
-#: templates/404.html:4 templates/404.html.py:7 templates/404.html.py:12
-msgid "Page Not Found"
-msgstr "Ennhu Krataafa No"
-
-#: templates/404.html:13
-msgid "We're sorry, but the requested page could not be found."
-msgstr "Yɛsrɛ wo, yennhu krataafa a wo bisae no."
-
-#: templates/500.html:4 templates/500.html.py:7 templates/500.html.py:12
-msgid "Server Error"
-msgstr "Sɛɛva Mfomso"
-
-#: templates/500.html:13
-msgid "An error has occurred. Thank you for your patience."
-msgstr "Mfomso bi esi. Yɛda wo ase sɛ wo enya abotare ama yɛn."
-
-#: templates/500.html:20
-#, python-format
-msgid ""
-"If you need assistance, you may refer to this error as <strong>%(ref)s</"
-"strong>."
+#: templates/browser/overview.html:96
+msgid "Refresh now"
 msgstr ""
 
-#: templates/_main_tabs.html:5
-msgid "Main page"
+#: templates/browser/overview.html:121
+msgid "Congratulations! You have completed this task!"
 msgstr ""
 
-#: templates/_main_tabs.html:5 templates/language_menu.html:4
-#: templates/project_menu.html:4 templates/tp_menu.html:4
-msgid "Overview"
-msgstr "Ovaviw"
-
-#: templates/_main_tabs.html:7 templates/language_menu.html:6
-#: templates/project_menu.html:7 templates/tp_menu.html:6
-#: templates/editor/main.html:4
-msgid "Translate"
-msgstr "Kyerɛ ase"
-
-#: templates/admin_profile_base.html:4 templates/admin_profile_base.html:7
-msgid "Administration"
-msgstr "Administrehyɛn"
-
-#: templates/admin_profile_menu.html:3
-msgid "Information and statistics about this Pootle server"
-msgstr "Infɔmahwen ne statistics fa Pootle sɛɛva ho"
-
-#: templates/admin_profile_menu.html:3
-msgid "Info"
-msgstr "Info"
-
-#: templates/admin_profile_menu.html:4
-msgid "Configure the general settings for your site"
-msgstr "Kɔnfiga nhyehyɛ gyɛnɛral ma wo saet no"
-
-#: templates/admin_profile_menu.html:4
-msgid "General"
-msgstr "Gyɛnɛral"
-
-#: templates/admin_profile_menu.html:5
-msgid "Manage the users"
-msgstr "Hwɛ adehye so"
-
-#: templates/admin_profile_menu.html:6
-msgid "Manage the languages"
-msgstr "Hwɛ akasa so"
-
-#: templates/admin_profile_menu.html:7
-msgid "Manage the projects"
-msgstr "Hwɛ nkɔsodwuma so"
-
-#: templates/admin_profile_menu.html:8
-msgid "Manage the default permissions"
-msgstr "Hwɛ akwanya difɔlt so"
-
-#: templates/admin_profile_menu.html:9
-msgid "Manage Static Pages"
-msgstr ""
-
-#: templates/base.html:121
-msgid "skip to navigation"
-msgstr "tra kɔ navigehyɛn"
-
-#: templates/base.html:126
-msgid "Zoom out (Ctrl+Shift+-)"
-msgstr ""
-
-#: templates/base.html:128
-msgid "Reset zoom (Ctrl+Shift+0)"
-msgstr ""
-
-#: templates/base.html:130
-msgid "Zoom in (Ctrl+Shift++)"
-msgstr ""
-
-#: templates/base.html:141
-msgid "ADMIN"
-msgstr ""
-
-#: templates/base.html:144
-msgid "Log Out"
-msgstr "Bae-bae"
-
-#: templates/base.html:147 templates/registration/registration_form.html:4
-#: templates/registration/registration_form.html:7
-#: templates/registration/registration_form.html:48
-msgid "Register"
-msgstr "Dinkyerɛw"
-
-#: templates/base.html:149
-msgid "Log In"
-msgstr "Kɔ Mu"
-
-#: templates/base.html:196
-msgid "Help"
-msgstr "Mboa"
-
-#: templates/base.html:198 templates/contact_form/contact_form.html:4
-#: templates/contact_form/contact_form.html:7
-#: templates/contact_form/contact_form.html:12
+#: templates/contact_form/contact_form.html:5
 msgid "Contact Us"
 msgstr "Ɛne yɛ nni nkitaho"
 
-#: templates/base.html:200
-msgid "About this Pootle Server"
-msgstr "Fa Pootle Sɛɛva yi ho"
+#: templates/contact_form/contact_form.html:7
+msgid "You have to fill all the fields, and please <b>write in English</b>."
+msgstr ""
 
-#: templates/base.html:201 templates/about/contributors.html:6
-#: templates/about/contributors.html:9
-#, fuzzy
-msgid "Contributors"
-msgstr "Aboafo Titiriw"
+#: templates/contact_form/contact_form.html:15
+msgid "Send Message"
+msgstr ""
 
-#: templates/captcha-xhr.html:8 templates/captcha.html:4
-#: templates/captcha.html.py:7
+#: templates/contact_form/contact_form.html:20
+msgid "Thanks!"
+msgstr ""
+
+#: templates/contact_form/contact_form.html:21
+msgid ""
+"We have received your message and will try to\n"
+"      respond as soon as possible."
+msgstr ""
+
+#: templates/core/_top_scorers.html:8
+msgid "score"
+msgstr ""
+
+#: templates/core/_top_scorers.html:14
+#, python-format
+msgid "#%(position)s"
+msgstr ""
+
+#: templates/core/_top_scorers.html:30
+msgid "No user contributions yet."
+msgstr ""
+
+#: templates/core/captcha.html:4 templates/core/captcha.html.py:7
+#: templates/core/xhr_captcha.html:8
 msgid "Are You Human?"
 msgstr "Wo yɛ nipa?"
 
-#: templates/captcha-xhr.html:9
+#: templates/core/xhr_captcha.html:9
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
@@ -2755,26 +1922,27 @@ msgstr ""
 "Sɛ wopɛsɛ wobɔ sɛɛba no wo ban fre ataake ho a ɛwɔsɛ yɛ vɛrefai sɛ nnipa na "
 "ɛsabmihyen yɛ."
 
-#: templates/captcha-xhr.html:10
+#: templates/core/xhr_captcha.html:10
 msgid "Please answer this question:"
 msgstr "Meserɛwo yi asɛnfua yi ano:"
 
-#: templates/captcha-xhr.html:14
+#: templates/core/xhr_captcha.html:13
 msgid "Confirm"
 msgstr "Foa-so"
 
 #: templates/db_error.html:4 templates/db_error.html.py:7
-#: templates/db_error.html:12
+#: templates/db_error.html:12 templates/errors/db.html:4
+#: templates/errors/db.html.py:8
 msgid "Database Error"
 msgstr ""
 
-#: templates/db_error.html:14
+#: templates/db_error.html:14 templates/errors/db.html:11
 msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
 
-#: templates/db_error.html:18
+#: templates/db_error.html:18 templates/errors/db.html:16
 #, python-format
 msgid ""
 "\n"
@@ -2785,313 +1953,475 @@ msgid ""
 "a mistake."
 msgstr ""
 
-#: templates/db_error.html:24
+#: templates/db_error.html:24 templates/errors/db.html:23
 msgid "The reported error was:"
 msgstr ""
 
-#: templates/language_menu.html:4
-msgid "Language main page"
-msgstr "Kasa ne krataafa titiriw"
-
-#: templates/language_menu.html:5
-msgid "Language news"
-msgstr "Kasa nkaebɔ"
-
-#: templates/language_menu.html:6
-msgid "Translate this language"
+#: templates/editor/_actions.html:5
+msgid "Go back to overview"
 msgstr ""
 
-#: templates/language_menu.html:8
-msgid "Administrate your language permissions"
-msgstr "Di panindwuma wɔ wo akasa wɔn akwanya so"
-
-#: templates/main_base.html:6
-msgid "Main"
-msgstr ""
-
-#: templates/project_menu.html:4
-msgid "Project main page"
-msgstr "Nkɔsodwuma krataafa titiriw"
-
-#: templates/project_menu.html:5
-msgid "Project news"
-msgstr "Progɛt news"
-
-#: templates/project_menu.html:7 templates/tp_menu.html:6
-msgid "Translate this project"
-msgstr "Kyerɛ nkɔsodwuma yi ase"
-
-#: templates/project_menu.html:9
-msgid "Administrate your project"
-msgstr "Di panindwuma wɔ wo nkɔsodwuma so"
-
-#: templates/project_menu.html:10
-msgid "Manage project permissions"
-msgstr "Yɛ progɛt no nhyehyɛ yɛ no yie"
-
-#: templates/tp_base_terminology.html:4
-msgid "Manage Terminology"
-msgstr "Yɛ Tɛmenɔlɔge no yie"
-
-#: templates/tp_menu.html:4
-msgid "Translation project main page"
-msgstr "Asekyerɛ nkɔsodwuma ne krataafa titiriw"
-
-#: templates/tp_menu.html:5
-msgid "Translation project news"
-msgstr "Asekyerɛ nkɔsodwuma nkaebɔ"
-
-#: templates/tp_menu.html:8
-#, fuzzy
-msgid "Manage terminology"
-msgstr "Yɛ Tɛmenɔlɔge no yie"
-
-#: templates/tp_menu.html:8
-msgid "Terminology"
-msgstr "Tɛminɔlɔgi"
-
-#: templates/tp_menu.html:9
-msgid "Administrate your project permissions"
-msgstr "Di panindwuma wɔ wo nkɔsodwuma n'akwanya"
-
-#: templates/user_profile_base.html:4 templates/user_profile_base.html.py:6
-msgid "My Account"
-msgstr "Me Akawnt"
-
-#: templates/user_profile_menu.html:4
-msgid "Overview of your account"
-msgstr "Wo akawnt ovaviw"
-
-#: templates/user_profile_menu.html:4
-msgid "Dashboard"
-msgstr "Dashboard"
-
-#: templates/user_profile_menu.html:5
-msgid "Configure your translation preferences"
-msgstr "Kyerɛ wo asekyerɛ apɛde"
-
-#: templates/user_profile_menu.html:5
-msgid "Settings"
-msgstr "Nhyehyɛe"
-
-#: templates/user_profile_menu.html:6
-msgid "Change your personal information"
-msgstr "Sesa wo ho nsɛm"
-
-#: templates/user_profile_menu.html:6 templates/profiles/edit_personal.html:4
-#: templates/profiles/edit_personal.html:7
-msgid "Profile"
-msgstr "Profael"
-
-#: templates/user_profile_menu.html:7
-msgid "Change your password"
-msgstr "Sesa wo ehintasɛmfua"
-
-#: templates/about/about.html:6 templates/about/about.html.py:9
-msgid "This Pootle Server"
-msgstr ""
-
-#. Translators: For better readability, make sure to leave an space after the closing </i> tag
-#: templates/about/about.html:16
-msgid ""
-"This site is running Pootle &mdash; powerful web software to empower teams "
-"to do translation and translation management. This community tool is Free "
-"Software, and any team can use it and contribute to the Pootle community. "
-"Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
-"\"icon-external-link\"></i> project website</a>."
-msgstr ""
-
-#: templates/about/base.html:4 templates/about/base.html.py:7
-msgid "About"
-msgstr "Fa"
-
-#: templates/common/_table_row.html:87
-msgid "Add a tag"
-msgstr ""
-
-#: templates/contact_form/contact_form.html:17
-msgid "Send"
-msgstr "Sɛnde"
-
-#: templates/contact_form/contact_form_sent.html:5
-#: templates/contact_form/contact_form_sent.html:8
-#: templates/contact_form/contact_form_sent.html:13
-msgid "Message Sent"
-msgstr "Mɛsege no asɛende"
-
-#: templates/contact_form/contact_form_sent.html:14
-msgid "Thank you for your feedback."
-msgstr ""
-
-#: templates/contact_form/contact_form_subject.txt:2
-#, python-format
-msgid " message by %(name)s"
-msgstr " nkratoɔ a efre %(name)"
-
-#: templates/editor/_editor.html:5
-msgid "Pootle's editor requires JavaScript"
-msgstr ""
-
-#: templates/editor/_editor.html:6
-msgid ""
-"Please enable JavaScript in your browser preferences and reload the page."
-msgstr ""
-
-#: templates/editor/_toolbar.html:8
-msgid "Filter by:"
-msgstr ""
-
-#: templates/editor/_toolbar.html:18
+#: templates/editor/_filters.html:12
 #, fuzzy
 msgid "My suggestions"
 msgstr "Nsusui"
 
-#: templates/editor/_toolbar.html:19
-msgid "My submissions"
+#: templates/editor/_filters.html:23
+msgid "Select type"
 msgstr ""
 
-#. Translators: This is a type of filtering criterion that
-#. selects the strings that have been submitted by me at some point
-#. in time but have been overwritten by other users.
-#: templates/editor/_toolbar.html:23
-msgid "My overwritten submissions"
+#: templates/editor/_toolbar.html:6
+msgid "Default order"
 msgstr ""
 
-#: templates/editor/_toolbar.html:34
+#: templates/editor/_toolbar.html:7
+msgid "Newest first"
+msgstr ""
+
+#: templates/editor/_toolbar.html:8
+msgid "Oldest first"
+msgstr ""
+
+#: templates/editor/_toolbar.html:14
 msgid "Go to the previous string (Ctrl+Up)"
 msgstr ""
 
-#: templates/editor/_toolbar.html:37
+#: templates/editor/_toolbar.html:17
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
 
-#: templates/editor/_toolbar.html:39
+#: templates/editor/_toolbar.html:19
 msgid "Total strings"
 msgstr ""
 
-#: templates/editor/_toolbar.html:43
+#: templates/editor/_toolbar.html:22
 msgid "Go to the next string (Ctrl+Down)"
 msgstr ""
 
-#: templates/profiles/edit_personal.html:12
-msgid ""
-"Here you can change your personal details. This information will be used in "
-"the header of the translation files."
+#: templates/editor/export_view.html:6 templates/languages/_nav.html:18
+#: templates/projects/_nav.html:18 templates/projects/all/_nav.html:18
+#: templates/translation_projects/_nav.html:18
+msgid "Export View"
 msgstr ""
-"Wo betumi asesa wo ho nsɛm wɔ ha. Wɔde infɔmehyɛn yi bɛhyɛ wo asekyerɛ mfael "
-"wɔn nhɛda mu."
 
-#: templates/profiles/edit_personal.html:18
-msgid "First Name"
-msgstr "Edikan Din"
+#: templates/editor/export_view.html:7 templates/editor/export_view.html:98
+#, fuzzy
+msgid "All Projects"
+msgstr "Nkɔsodwuma nyinara"
 
-#: templates/profiles/edit_personal.html:23
-msgid "Last Name"
-msgstr "Ebusua Din"
+#: templates/editor/export_view.html:8 templates/editor/export_view.html:99
+#, fuzzy
+msgid "All Languages"
+msgstr "Akasa nyinara"
 
-#: templates/profiles/edit_personal.html:28
-msgid "Email address"
-msgstr "Emel adrɛs"
+#: templates/editor/export_view.html:143
+msgid "No strings."
+msgstr ""
 
-#: templates/profiles/edit_profile.html:4
-#: templates/profiles/edit_profile.html:7
+#: templates/editor/export_view.html:148
+#, python-format
+msgid ""
+"We displayed first %(count)s units out of %(total_count)s. Please refine "
+"your search."
+msgstr ""
+
+#: templates/editor/main.html:4 templates/languages/_nav.html:10
+#: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
+#: templates/translation_projects/_nav.html:10
+msgid "Translate"
+msgstr "Kyerɛ ase"
+
+#: templates/editor/units/edit.html:12
+#, python-format
+msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
+msgstr ""
+
+#: templates/editor/units/edit.html:19
+msgid "Context:"
+msgstr ""
+
+#: templates/editor/units/edit.html:30
+#, fuzzy
+msgid "Terminology:"
+msgstr "Tɛminɔlɔgi"
+
+#: templates/editor/units/edit.html:33
+msgid "Insert the translated term into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:44
+#, fuzzy
+msgid "Comments:"
+msgstr "Adwenkyerɛ nkyerɛmu"
+
+#: templates/editor/units/edit.html:53
+msgid "Click to open the image in a popup"
+msgstr ""
+
+#: templates/editor/units/edit.html:62
+#, fuzzy
+msgid "Locations:"
+msgstr "Alokehyɛn"
+
+#: templates/editor/units/edit.html:71
+msgid "Screenshots..."
+msgstr ""
+
+#: templates/editor/units/edit.html:95 templates/editor/units/edit.html:121
+msgid "Copy into translation"
+msgstr "kɔɔpe gu nkyerɛkyerɛmu mu"
+
+#: templates/editor/units/edit.html:117
+msgid "Report a problem with this string"
+msgstr ""
+
+#: templates/editor/units/edit.html:139 templates/editor/units/edit.html:150
+#: templates/editor/units/edit.html:243
+msgid "Submit"
+msgstr "Sabmet"
+
+#: templates/editor/units/edit.html:140
+msgid "Submit translation and go to the next string (Ctrl+Enter)"
+msgstr ""
+
+#: templates/editor/units/edit.html:145 templates/editor/units/edit.html:151
+msgid "Suggest"
+msgstr "Susu"
+
+#: templates/editor/units/edit.html:146
+msgid "Suggest translation and go to the next string (Ctrl+Enter)"
+msgstr ""
+
+#: templates/editor/units/edit.html:150
+msgid "Switch to translation mode (Ctrl+Shift+Space)"
+msgstr ""
+
+#: templates/editor/units/edit.html:151
+msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
+msgstr ""
+
+#: templates/editor/units/edit.html:156
+msgid "Mark this string as needing further work (Ctrl+Space)"
+msgstr ""
+
+#: templates/editor/units/edit.html:171
+msgid "Show Timeline"
+msgstr ""
+
+#: templates/editor/units/edit.html:173
+msgid "Add Comment"
+msgstr "Kyerɛ wo adwen"
+
+#: templates/editor/units/edit.html:175
+msgid "Raw View"
+msgstr ""
+
+#: templates/editor/units/edit.html:185
+#, python-format
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr ""
+
+#: templates/editor/units/edit.html:195
+msgid "Insert RLM (Right-To-Left Mark) into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:198
+msgid "Insert LRM (Left-To-Right Mark) into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:201
+msgid "Insert RLE (Right-To-Left Embedding) into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:204
+msgid "Insert LRE (Left-To-Right Embedding) into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:207
+msgid "Insert RLO (Right-To-Left Override) into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:210
+msgid "Insert LRO (Left-To-Right Override) into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:213
+msgid "Insert PDF (Pop Directional Format ) into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:216
+msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:219
+msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:226
+msgid "Insert this symbol into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:263
+#, fuzzy
+msgid "User suggestions"
+msgstr "Hwɛ Nsusui"
+
+#: templates/editor/units/edit.html:280
+msgid "Accept suggestion"
+msgstr "Gye nsusui to mu"
+
+#: templates/editor/units/edit.html:285
+msgid "Reject suggestion"
+msgstr "Po nsusui"
+
+#: templates/editor/units/edit.html:292
+msgid "Remove suggestion"
+msgstr "Yi nsusui no"
+
+#: templates/editor/units/edit.html:307
+msgid "A long time ago"
+msgstr ""
+
+#: templates/editor/units/term_edit.html:9
+#, fuzzy
+msgid "Comment: "
+msgstr "Adwenkyerɛ nkyerɛmu"
+
+#: templates/editor/units/timeline.html:4
+#: templates/editor/units/timeline.html:14
+msgid "Previous Work"
+msgstr ""
+
+#: templates/editor/units/xhr_checks.html:3
+msgid "Possible issues with the translation"
+msgstr "Nsɛm nokware a ɛka nkyerɛkyerɛmu ho"
+
+#: templates/editor/units/xhr_checks.html:3
+#, fuzzy
+msgid "Failing checks:"
+msgstr "Nkugu nhwehwɛmu"
+
+#: templates/editor/units/xhr_checks.html:9
+#, fuzzy
+msgid "Mute quality check"
+msgstr "Yi kwaliti nhwehwɛmu"
+
+#: templates/editor/units/xhr_checks.html:9
+#, fuzzy
+msgid "Unmute quality check"
+msgstr "Yi kwaliti nhwehwɛmu"
+
+#: templates/editor/units/xhr_comment.html:15
+msgid "Remove comment"
+msgstr ""
+
+#: templates/editor/units/xhr_comment.html:18
+msgid "Last comment:"
+msgstr ""
+
+#: templates/editor/units/xhr_timeline.html:3
+msgid "Timeline"
+msgstr ""
+
+#: templates/editor/units/xhr_timeline.html:25
+msgid "Last comment removed"
+msgstr ""
+
+#: templates/editor/units/xhr_timeline.html:30
+msgid "check"
+msgstr ""
+
+#: templates/editor/units/xhr_timeline.html:38
+msgid "Unit created"
+msgstr ""
+
+#: templates/errors/400.html:4 templates/errors/400.html.py:11
+msgid "Bad Request"
+msgstr ""
+
+#: templates/errors/400.html:12
+msgid "Error 400"
+msgstr ""
+
+#: templates/errors/400.html:14
+msgid "The operation is not permitted."
+msgstr ""
+
+#: templates/errors/403.html:4 templates/errors/403.html.py:8
+msgid "Permission Denied"
+msgstr "Enntie Kwan"
+
+#: templates/errors/403.html:13
+#, fuzzy
+msgid "You don't seem to have permissions to access this page."
+msgstr "Wo nni ho kwan sɛ wo bɛkɔ krataafa yi so."
+
+#: templates/errors/404.html:4 templates/errors/404.html.py:8
+msgid "Page Not Found"
+msgstr "Ennhu Krataafa No"
+
+#: templates/errors/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr "Yɛsrɛ wo, yennhu krataafa a wo bisae no."
+
+#: templates/errors/500.html:4 templates/errors/500.html.py:8
+msgid "Server Error"
+msgstr "Sɛɛva Mfomso"
+
+#: templates/errors/500.html:10
+#, fuzzy
+msgid "A server error has occurred. Thank you for your patience."
+msgstr "Mfomso bi esi. Yɛda wo ase sɛ wo enya abotare ama yɛn."
+
+#: templates/errors/500.html:16
+msgid "Exception:"
+msgstr ""
+
+#: templates/errors/500.html:20
+#, python-format
+msgid ""
+"If you need assistance, you may refer to this error as <strong>%(ref)s</"
+"strong>."
+msgstr ""
+
+#: templates/languages/_nav.html:5 templates/projects/_nav.html:5
+#: templates/projects/all/_nav.html:5
+#: templates/translation_projects/_nav.html:5
+msgid "Overview"
+msgstr "Ovaviw"
+
+#: templates/languages/admin/permissions.html:9
+msgid "Below you can add, edit, and delete the permissions for this language."
+msgstr "Wo betumi de aka ho, asesa, ne eyi kasa yi ne akwanya wɔ famu ha."
+
+#: templates/layout.html:88
+msgid "Pootle requires JavaScript"
+msgstr ""
+
+#: templates/layout.html:89
+msgid ""
+"Please enable JavaScript in your browser preferences and reload the page."
+msgstr ""
+
+#: templates/layout.html:104
+msgid "skip to navigation"
+msgstr "tra kɔ navigehyɛn"
+
+#: templates/layout.html:122
+msgid "Public Profile"
+msgstr ""
+
+#: templates/layout.html:123 templates/profiles/_tabs.html:4
+msgid "Settings"
+msgstr "Nhyehyɛe"
+
+#: templates/layout.html:124 templates/user/stats.html:48
+#: templates/user/stats.html.py:53
+msgid "Statistics"
+msgstr ""
+
+#: templates/layout.html:126
+msgid "Admin"
+msgstr "Admin"
+
+#: templates/layout.html:129
+msgid "Sign Out"
+msgstr ""
+
+#: templates/layout.html:133 templates/welcome.html:18
+msgid "Sign In"
+msgstr ""
+
+#: templates/login.html:4 templates/login.html.py:9
+msgid "Log In"
+msgstr "Kɔ Mu"
+
+#: templates/login.html:14
+msgid "Login to Pootle"
+msgstr "Kɔ Pootle mu"
+
+#: templates/login.html:20
+msgid "Your username and password didn't match. Please try again."
+msgstr "Wo agodin ne ehintasɛmfua mmfa. Yɛsrɛ wo san kyerɛw wɔn bio."
+
+#: templates/login.html:26
+msgid "Login"
+msgstr "Kɔ mu"
+
+#: templates/login.html:33
+msgid "Lost your Password?"
+msgstr "Wo ayera wo Ehintasɛmfua anaa?"
+
+#: templates/notifications/_latest.html:9
+msgid "No news yet."
+msgstr "Nkaebɔ biara mmbae."
+
+#: templates/profiles/_tabs.html:6
+#: templates/profiles/settings/evernote_account.html:38
+msgid "Link with Evernote"
+msgstr ""
+
+#: templates/profiles/base.html:4 templates/profiles/base.html.py:6
+msgid "My Account"
+msgstr "Me Akawnt"
+
+#: templates/profiles/settings/evernote_account.html:4
+#: templates/profiles/settings/evernote_account.html:7
+msgid "Evernote account"
+msgstr ""
+
+#: templates/profiles/settings/evernote_account.html:14
+#, python-format
+msgid ""
+"This Pootle account is linked with \"<strong>%(username)s</strong>\" "
+"Evernote account."
+msgstr ""
+
+#: templates/profiles/settings/evernote_account.html:16
+msgid ""
+"Here you can link this Pootle account with Evernote account — this will "
+"allow you to log in faster next time."
+msgstr ""
+
+#: templates/profiles/settings/evernote_account.html:24
+msgid "This Pootle account cannot be unlinked from Evernote."
+msgstr ""
+
+#: templates/profiles/settings/evernote_account.html:30
+msgid "Unlink from Evernote"
+msgstr ""
+
+#: templates/profiles/settings/personal.html:4
+#: templates/profiles/settings/personal.html:7
+msgid "Profile"
+msgstr "Profael"
+
+#: templates/profiles/settings/personal.html:13
+msgid ""
+"Here you can change your personal details. After clicking the 'Save' button "
+"you will be redirected to your public profile page to see your changes in "
+"action."
+msgstr ""
+
+#: templates/profiles/settings/profile.html:4
+#: templates/profiles/settings/profile.html:7
 msgid "Translation Settings"
 msgstr "Asekyerɛ Nhyehɛe"
 
-#: templates/profiles/edit_profile.html:12
+#: templates/profiles/settings/profile.html:12
 msgid ""
-"Here you can configure the settings related to the translation interface as "
-"well as your language preferences."
-msgstr ""
-"Wo betumi ayɛ nhyehyɛe fa wo asekyerɛ intafes anaaso wo kasa apɛde wɔ ha."
-
-#: templates/profiles/profile_detail.html:23
-#, fuzzy
-msgid "Contributions"
-msgstr "Aboafo Titiriw"
-
-#: templates/profiles/profile_detail.html:28
-msgid "You can set or change your avatar image at www.gravatar.com"
+"Here you can configure the settings related to the translation interface."
 msgstr ""
 
-#: templates/profiles/profile_detail.html:42
-msgid "Suggestions Pending"
-msgstr "Nsusui gu so Retweɔn"
+#: templates/projects/admin/languages.html:11
+msgid "Here you can add, edit, or delete the languages for this project."
+msgstr "Wo betumi de aka ho, asesa, anaaso eyi akasa ama nkɔsodwuma yi."
 
-#: templates/profiles/profile_detail.html:46
-msgid "Overwritten"
-msgstr ""
-
-#: templates/profiles/profile_detail.html:66
-msgid "This user doesn't have any contributions yet."
-msgstr ""
-
-#: templates/profiles/profile_list.html:7
-msgid "Profiles list"
-msgstr "Mprofael list"
-
-#: templates/profiles/profile_list.html:12
-msgid "First name"
-msgstr "Edikan din"
-
-#: templates/profiles/profile_list.html:13
-msgid "Last name"
-msgstr "Ebusua din"
-
-#: templates/registration/activate.html:5
-#: templates/registration/activate.html:8
-#: templates/registration/activate.html:13
-msgid "Account Activated"
-msgstr "Ekenyan Akawnt"
-
-#: templates/registration/activate.html:14
-#, python-format
-msgid ""
-"The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in."
-msgstr "Ekenyan Akawnt no ama \"%(account)s\". Wo betumi akɔ wo enim akɔyɛ lɔgin."
-
-#: templates/registration/activation_email.html:4
-msgid "Pootle Account Created!"
-msgstr ""
-
-#: templates/registration/activation_email.html:5
-#: templates/registration/activation_email.txt:2
-msgid "A Pootle account has been created for you using this email address."
-msgstr "Wɔde emel adrɛs yi ayɛ Pootle akawnt am wo."
-
-#: templates/registration/activation_email.html:6
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Sɛ wo pɛ sɛ wo kenyan wo akawnt a, di link yi so:"
-
-#: templates/registration/activation_email.html:8
-msgid "Activate my Pootle account"
-msgstr ""
-
-#: templates/registration/activation_email.html:10
-#, python-format
-msgid "Your activation code is: <code>%(activation_key)s</code>"
-msgstr ""
-
-#: templates/registration/activation_email.html:11
-#: templates/registration/activation_email.txt:9
-msgid ""
-"This message is sent to verify that the email address is in fact correct. If "
-"you did not want to register an account, you may simply ignore the message."
-msgstr ""
-"Wɔsoma nkrato yi de hwɛ sɛ emel adres no di mu a. Sɛ nna wo mmpɛ sɛ wo bɛbue "
-"akwant a, ɛnnkasa nkrato yi ho."
-
-#: templates/registration/activation_email.txt:6
-msgid "Your activation code is:"
-msgstr "Wo nkenyane kood yɛ:"
-
-#: templates/registration/activation_email_subject.txt:2
-msgid "Pootle registration"
-msgstr "Pootle dinkyerɛw"
+#: templates/projects/admin/permissions.html:11
+msgid "Below you can add, edit, and delete the permissions for this project."
+msgstr "Wobɛtumi de akwanya aka, asesa, na woapepa wɔ dwumadi yi mu."
 
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:8
@@ -3143,13 +2473,13 @@ msgid "Password Reset Complete."
 msgstr "Ehintasɛmfua ne Nsesae Ewie."
 
 #: templates/registration/password_reset_complete.html:14
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
-"\">log in</a> now."
+"\">sign in</a> now."
 msgstr ""
-"Wɔahyɛ wo ehintasɛmfua no. Wo betumi atoa so na wo <a href=\"%"
-"(login_url)s\">akɔ mu</a> seiseiara."
+"Wɔahyɛ wo ehintasɛmfua no. Wo betumi atoa so na wo <a href=\"%(login_url)s\">"
+"akɔ mu</a> seiseiara."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_confirm.html:8
@@ -3207,25 +2537,25 @@ msgstr ""
 "Yɛnam emel adrɛs a wo de maa yɛn so akyerɛw wo emel a akwankyerɛ fa sɛnea wo "
 "bɛsesa wo ehintasɛmfua wɔ mu. Wo nsa bɛka no a ɛrennkyɛ koraa."
 
-#: templates/registration/password_reset_email.html:3
+#: templates/registration/password_reset_email.html:2
 #, python-format
 msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
-"Wo nsa aka emel yi efiri sɛ wo bisaa sɛ wo bɛsesa wo ehintasɛmfua wɔ %"
-"(site_name)s."
+"Wo nsa aka emel yi efiri sɛ wo bisaa sɛ wo bɛsesa wo ehintasɛmfua wɔ "
+"%(site_name)s."
 
-#: templates/registration/password_reset_email.html:5
+#: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
 msgstr "Yɛsrɛ wo kɔ krataafa yi so na fa ehintasɛmfua foforo:"
 
-#: templates/registration/password_reset_email.html:9
+#: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
 msgstr "Wo agodin yɛ %(user)s."
 
-#: templates/registration/password_reset_email.html:11
+#: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
 msgstr "Yɛda wo ase sɛ wo de Pootle edi dwuma!"
 
@@ -3237,40 +2567,804 @@ msgstr ""
 "Wo were efiri wo ehintasɛmfua anaa? Kyerɛw wo emel adrɛs wɔ famu ha, na "
 "yɛbɛfa emel so akra wo akwankyerɛ a wo bɛfa so de ahyɛ ehintasɛmfua foforo."
 
-#: templates/registration/password_reset_form.html:19
-#: templates/registration/registration_form.html:25
-msgid "Email Address"
-msgstr "Emel Adrɛs"
+#: templates/staticpages/_body.html:6
+#, python-format
+msgid ""
+"This static page is inactive and visible to administrators only. You can "
+"activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
+msgstr ""
 
-#: templates/registration/registration_complete.html:5
-#: templates/registration/registration_complete.html:8
-#: templates/registration/registration_complete.html:13
-msgid "Registration Complete"
-msgstr "Ewie Dinkyerɛw"
+#: templates/staticpages/agreement.html:3
+msgid "Action Required"
+msgstr ""
 
-#: templates/registration/registration_complete.html:14
-msgid "Please check your email to activate your account."
-msgstr "Yɛsrɛ wo hwɛ sɛ wo nsa aka emel a wo de bɛkenyan wo akawnt."
+#: templates/staticpages/agreement.html:4
+msgid "Before continuing, you must read and accept the following documents."
+msgstr ""
 
-#: templates/registration/registration_form.html:12
-msgid "Register a New Pootle Account"
-msgstr "Kyerɛw wo Din fa yɛ Pootle Akawnt Foforo"
+#: templates/staticpages/agreement.html:17
+msgid "No thanks. Log out"
+msgstr ""
 
-#: templates/registration/registration_form.html:13
-msgid "Fill in the following form to get started translating."
-msgstr "Hyɛ fɔɔm yi so ma ama wo ahyɛ ase sɛ wo reyɛ asekyerɛ ara no no."
+#: templates/staticpages/agreement.html:20
+msgid "Continue"
+msgstr ""
 
-#: templates/registration/registration_form.html:35
-msgid "Password (again)"
-msgstr "Ehintasɛmfua (bio)"
+#: templates/translation_projects/_nav.html:26
+msgid "Terminology"
+msgstr "Tɛminɔlɔgi"
 
-#: templates/registration/registration_form.html:53
-msgid "Already have an account?"
-msgstr "Wo wɔ akawnt dadaw?"
+#: templates/translation_projects/admin/permissions.html:11
+msgid ""
+"Below you can add, edit, and delete the permissions for this translation "
+"project."
+msgstr "Wobɛtumi a hwɛ fael no so ɛwɔ asekyerɛ asekyerɛ dwumadi yimu."
 
-#: templates/registration/registration_form.html:54
-msgid "Log In."
-msgstr "Kɔ Mu."
+# Nkyerɛmu rekɛyɛ sɛ "explanation" sen sɛ "description"
+#: templates/translation_projects/terminology/_term_edit.html:11
+msgid "Description..."
+msgstr "Nkyerɛkyerɛmu..."
+
+#: templates/translation_projects/terminology/_term_edit.html:18
+msgid "Details..."
+msgstr "Details..."
+
+#: templates/translation_projects/terminology/_term_edit.html:31
+msgid "Translator Comments"
+msgstr "Asekyerɛni adwenkyerɛ nkyerɛmu"
+
+#: templates/translation_projects/terminology/base.html:4
+msgid "Manage Terminology"
+msgstr "Yɛ Tɛmenɔlɔge no yie"
+
+#: templates/translation_projects/terminology/extract.html:6
+msgid "Regenerate Glossary"
+msgstr "San gɛnerate Glossori"
+
+#: templates/translation_projects/terminology/extract.html:7
+msgid ""
+"Are you sure you want to regenerate the glossary? Any existing terms and "
+"their translations will be deleted."
+msgstr ""
+"Wogyedi sɛ wopɛsɛ wosan nya glɔssari no? Ɛfene ɛwɔhɔ bea ne no asekyerɛ "
+"bɛpepa."
+
+#: templates/translation_projects/terminology/extract.html:11
+msgid "Extract"
+msgstr "Yiyi"
+
+#: templates/translation_projects/terminology/manage.html:23
+msgid "You can regenerate the glossary from scratch."
+msgstr "Wobɛtumi asan agɛnerate grooseri afre ase."
+
+#: templates/translation_projects/terminology/manage.html:36
+msgid "Term"
+msgstr "Nhyehyɛyɛ"
+
+#: templates/translation_projects/terminology/manage.html:62
+msgid "Glossary is Empty"
+msgstr "Grooseri no asa"
+
+#: templates/translation_projects/terminology/manage.html:63
+msgid "Generate Glossary"
+msgstr "Gɛnerate Glossori"
+
+#: templates/translation_projects/terminology/stores.html:7
+msgid "Here you can manage the terms in the terminology files."
+msgstr ""
+
+#: templates/translation_projects/terminology/stores.html:14
+msgid "File"
+msgstr "Fael"
+
+#: templates/translation_projects/terminology/stores.html:28
+msgid "Once you upload files, you will be able to add, edit and delete terms."
+msgstr ""
+
+#: templates/user/profile.html:14
+msgid "You can set or change your avatar image at www.gravatar.com"
+msgstr ""
+
+#: templates/user/profile.html:17
+msgid "Anonymous User"
+msgstr ""
+
+#: templates/user/profile.html:26
+msgid "Score:"
+msgstr ""
+
+#: templates/user/profile.html:29
+#, python-format
+msgid "My current score at %(server_title)s is %(score)s "
+msgstr ""
+
+#: templates/user/profile.html:29 templates/user/profile.html.py:41
+msgid "Tweet this!"
+msgstr ""
+
+#: templates/user/profile.html:38
+msgid "No contributions in the last month"
+msgstr ""
+
+#: templates/user/profile.html:41
+#, python-format
+msgid ""
+"I am #%(pos)s contributor in %(lang_name)s for this month at "
+"%(server_title)s! "
+msgstr ""
+
+#: templates/user/profile.html:42
+#, python-format
+msgid "#%(pos)s contributor in %(lang_name)s for this month"
+msgstr ""
+
+#: templates/user/profile.html:45
+#, python-format
+msgid ""
+"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
+msgstr ""
+
+#: templates/user/profile.html:54
+#, fuzzy
+msgid "Latest activity:"
+msgstr "Hyewbɔ a Etwa to"
+
+#: templates/user/profile.html:66
+msgid "My Website"
+msgstr ""
+
+#: templates/user/profile.html:72
+msgid "My LinkedIn Profile"
+msgstr ""
+
+#: templates/user/profile.html:81
+msgid ""
+"Show others who you are, tell about yourself<br/>and make your public "
+"profile look gorgeous!"
+msgstr ""
+
+#: templates/user/profile.html:91
+msgid ""
+"Some translations are provided by anonymous volunteers. These are registered "
+"under this special meta-account."
+msgstr ""
+
+#: templates/user/profile.html:93
+msgid ""
+"Some translations are imported from external files. These are registered "
+"under this special meta-account."
+msgstr ""
+
+#: templates/user/reports/user_rates_widget.html:4
+msgid "Rates"
+msgstr ""
+
+#: templates/user/reports/user_rates_widget.html:8
+msgid "Currency:"
+msgstr ""
+
+#: templates/user/reports/user_rates_widget.html:18
+msgid "Translation Rate:"
+msgstr ""
+
+#: templates/user/reports/user_rates_widget.html:29
+msgid "Review Rate:"
+msgstr ""
+
+#: templates/user/reports/user_rates_widget.html:41
+msgid "Hourly Rate:"
+msgstr ""
+
+#: templates/welcome.html:4
+msgid "Welcome"
+msgstr ""
+
+#: templates/welcome.html:13
+msgid "Welcome to Pootle"
+msgstr ""
+
+#: templates/welcome.html:14
+msgid "Come and join us!"
+msgstr ""
+
+#: templates/welcome.html:30
+msgid "Top Contributors This Month"
+msgstr ""
+
+#~ msgid "Your name"
+#~ msgstr "Wo din"
+
+#~ msgid "Your email address"
+#~ msgstr "Wo emel adrɛs"
+
+#~ msgid "Your message"
+#~ msgstr "Wo nkrato"
+
+#~ msgid "Please correct the error below."
+#~ msgid_plural "Please correct the errors below."
+#~ msgstr[0] "Yɛsrɛ wo yi mfomso firi nea ɛwɔ ase yi."
+#~ msgstr[1] "Yɛsrɛ wo yi mfomso firi nea wɔwɔ ase yi."
+
+#~ msgid "The settings have been saved."
+#~ msgstr "Esie nhyehyɛe no."
+
+#~ msgid "Project code may only contain letters, numbers and _"
+#~ msgstr ""
+#~ "Nea wo betumi de akyerɛw projɛkt ne kood noara ne akyerɛwamba, nnɔmba ne"
+
+#~ msgid "Advanced Options"
+#~ msgstr "Nɔphyɛn Akɔenim"
+
+#~ msgid "The name for this Pootle server"
+#~ msgstr "Pootle sɛɛva yi ne din"
+
+#~ msgid ""
+#~ "The description and instructions shown on the front page and about page. Be "
+#~ "sure to use valid HTML."
+#~ msgstr ""
+#~ "Wɔakyerɛ kyerɛmu ne akwankyerɛ wɔ enim krataafa ne fa krataafa. Bɔ mbɔden sɛ "
+#~ "wo de HTML a odi mu bedi dwuma."
+
+#~ msgid "Top Contributors"
+#~ msgstr "Aboafo Titiriw"
+
+#~ msgid "Reviews"
+#~ msgstr "Nsanhwɛ"
+
+#~ msgid ""
+#~ "Here you can add, edit, and delete all the available languages in this "
+#~ "Pootle server."
+#~ msgstr ""
+#~ "Wo betumi di bi aka ho, asesa, ne eyi akasa a wɔwɔ Pootle sɛɛva yi so wɔ ha."
+
+#~ msgid ""
+#~ "Here you can add, edit, and delete all the available projects in this Pootle "
+#~ "server."
+#~ msgstr ""
+#~ "Wɔ ha wo betumi de aka ho, asesa, ne eyi nkɔsodwuma nyinara a wɔwɔ Pootle "
+#~ "sɛɛva yi so."
+
+#~ msgid "General Settings"
+#~ msgstr "Nhyehyɛe Gyɛnɛral"
+
+#~ msgid "Configure here the general settings for your site."
+#~ msgstr "Yɛ nhyehyɛe gyɛnɛral ma wo saet no wɔ ha."
+
+#~ msgid ""
+#~ "Here you can add, edit, and delete all the available users in this Pootle "
+#~ "server."
+#~ msgstr ""
+#~ "Wo betumi de aka ho, asesa, ne eyi adehye nyinara a wɔwɔ Pootle sɛɛva yi so."
+
+#~ msgid "Support"
+#~ msgstr "Mboa"
+
+#~ msgid ""
+#~ "Pootle is developed by Translate.org.za and a community of passionate "
+#~ "localization experts. We want Pootle to help your localization work reach "
+#~ "its full potential."
+#~ msgstr ""
+#~ "Translate.org.za ne nipa a wɔaben wɔ lokalizehyɛn mu na wɔyɛ Pootle. Yɛ pɛ "
+#~ "sɛ Pootle boa ma wo lokalizehyɛn dwumadi kɔ nkan, kɔ n'enim, kɔpem."
+
+#~ msgid "You will find the following helpful for support:"
+#~ msgstr "Wo behu sɛ yinom bɛboa wo:"
+
+#~ msgid "The Pootle documentation"
+#~ msgstr "Pootle ho nkrataa"
+
+#~ msgid "The Pootle mailing list"
+#~ msgstr "Pootle emel list"
+
+#~ msgid "(commercial support)"
+#~ msgstr "(mboa a wotua ho kaw)"
+
+#~ msgid "Pootle Alerts"
+#~ msgstr "Pootle akɔkɔbɔ"
+
+#~ msgid "Latest News"
+#~ msgstr "Nkaebɔ a Etwa to"
+
+#~ msgid "Subscribe to the RSS feed."
+#~ msgstr "Kyerɛw wo din ama wo nsa aka neɛma efiri RSS fiid no mu."
+
+#~ msgid "Don't have an account yet?"
+#~ msgstr "Wo nni akawnt anaa?"
+
+#~ msgid "Register."
+#~ msgstr "Kyerɛw wo din."
+
+#, python-format
+#~ msgid ""
+#~ "Django version %s is installed, but a higher version is highly recommended."
+#~ msgstr ""
+#~ "Django vɛɛhyɛn %s a Einstɔl, naaso wo tuu vɛɛhyɛn no mpon a anka ɛbɛboa."
+
+#~ msgid ""
+#~ "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
+#~ "available."
+#~ msgstr "Nntumi nnhu nnzip nhyɛ no. Esiei wɔn mpiakɔ kɔ ntɛm sɛ \"unzip\" wɔ hɔ a."
+
+#~ msgid ""
+#~ "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
+#~ "subtitle formats."
+#~ msgstr ""
+#~ "Nntumi nnhu aeidon bɔho. Pootle hia Gaupol anaaso aeidon ama wɔetumi asuo "
+#~ "subtitle mfɔɔmat ahorow mu."
+
+#~ msgid ""
+#~ "No text indexing engine found. Searching is faster if an indexing engine "
+#~ "like Xapian or Lucene is installed."
+#~ msgstr ""
+#~ "Ennhu fidie biara a wɔde yɛ tɛkst indɛksen. Nhwehwɛ kɔ ntɛm sɛ wo einstɔle "
+#~ "fidie bi te sɛ Xapian anaason Lucene a."
+
+#~ msgid ""
+#~ "Running in live translation mode. Live translation is useful as a tool to "
+#~ "learn about Pootle and localization, but has high impact on performance."
+#~ msgstr ""
+#~ "Redi dwuma wɔ asekyerɛ seseiara tebea mu. Asekyerɛ seiseiara boa sɛ wo pɛ sɛ "
+#~ "wo sua Pootle ne lokalaezehyɛn ho nsɛm a, naaso ɔhaw mbɔdenbɔ papaapa."
+
+#, python-format
+#~ msgid "%(percentage)d%% complete"
+#~ msgstr "%(percentage)d%% awie"
+
+#~ msgid ""
+#~ "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
+#~ "l10n/pluralforms\">our wiki page</a> on plural forms."
+#~ msgstr ""
+#~ "Sɛ wo hia infɔmehyɛn bio a wɔkeka ho a, sra <a "
+#~ "href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">yɛn wiki "
+#~ "krataafa</a> a ɔka ɔdodow ho nsɛm."
+
+#, python-format
+#~ msgid "Error reading %d file"
+#~ msgid_plural "Error reading %d files"
+#~ msgstr[0] "Mfomso sii wɔ bere a wɔrekan fael %d"
+#~ msgstr[1] "Mfomso sii wɔ bere a wɔrekan mfael %d"
+
+#, python-format
+#~ msgid "%(projects)d project, %(average)d%% translated"
+#~ msgid_plural "%(projects)d projects, %(average)d%% translated"
+#~ msgstr[0] "%(projects)d kɔsodwuma, %(average)d%% asekyerɛ"
+#~ msgstr[1] "%(projects)d nkɔsodwuma, %(average)d%% asekyerɛ"
+
+#, fuzzy
+#~ msgid "Translation is complete"
+#~ msgstr "Asekyerɛ ewie"
+
+#, python-format
+#~ msgid "%d word needs attention"
+#~ msgid_plural "%d words need attention"
+#~ msgstr[0] "%d kasafua hia wo adwen"
+#~ msgstr[1] "%d nkasafua hia wo adwen"
+
+#, python-format
+#~ msgid "%d word untranslated"
+#~ msgid_plural "%d words untranslated"
+#~ msgstr[0] "nnkyerɛɛ kasafua %d ase"
+#~ msgstr[1] "nnkyerɛɛ akasafua %d ase"
+
+#, python-format
+#~ msgid "%d word needs review"
+#~ msgid_plural "%d words need review"
+#~ msgstr[0] "%d ehia sɛ wo bɛsan ahwɛ kasafua"
+#~ msgstr[1] "%d ehia sɛ wo bɛsan ahwɛ nkasafua"
+
+#, python-format
+#, fuzzy, python-format
+#~ msgid "%(percent)s%% complete"
+#~ msgstr "%(percentage)d%% awie"
+
+#, python-format
+#~ msgid "News for %(language)s"
+#~ msgstr "Nkaebɔ ma %(language)s"
+
+#, python-format
+#~ msgid "News for %(project)s"
+#~ msgstr "Nkaebɔ ma %(project)s"
+
+#, python-format
+#~ msgid "News for the %(project)s project in %(language)s"
+#~ msgstr "Nkaebɔ ma %(project)s nkɔsodwuma wɔ %(language)s"
+
+#, python-format
+#~ msgid "News for %(path)s"
+#~ msgstr "Nkaebɔ ma %(path)s"
+
+#~ msgid "View News Item"
+#~ msgstr "Hwɛ Aetɛm ma Nkaebɔ"
+
+#~ msgid "News"
+#~ msgstr "Nkaebɔ"
+
+#~ msgid "Publish"
+#~ msgstr "Pablehye"
+
+#~ msgid "Default"
+#~ msgstr "Difɔlt"
+
+#~ msgid "Interface Language"
+#~ msgstr "Kasa ma Intafes"
+
+#, python-format
+#~ msgid "%(languages)d language, %(average)d%% translated"
+#~ msgid_plural "%(languages)d languages, %(average)d%% translated"
+#~ msgstr[0] "kasa %(languages)d, akyerɛ %(average)d%%"
+#~ msgstr[1] "akasa %(languages)d, akyerɛ %(average)d%%"
+
+#~ msgid "Administrate"
+#~ msgstr "Di so panin"
+
+#~ msgid "Java Properties"
+#~ msgstr "Java bɔbea"
+
+#~ msgid "OS X Strings"
+#~ msgstr "OS X Strings"
+
+#~ msgid "PHP arrays"
+#~ msgstr "PHP arrays"
+
+#~ msgid "Subtitles: srt"
+#~ msgstr "Asɛmsekyerɛ: srt"
+
+#~ msgid "Subtitles: sub"
+#~ msgstr "Asɛmsekyerɛ: sub"
+
+#~ msgid "Subtitles: ssa"
+#~ msgstr "Asɛmsekyerɛ: ssa"
+
+#~ msgid "Subtitles: ass"
+#~ msgstr "Asɛmsekyerɛ: ass"
+
+#~ msgid "You do not have rights to access translation mode."
+#~ msgstr "Wo nni ho kwan sɛ wo bɛkɔ asekyerɛ tebea mu."
+
+#~ msgid "You do not have rights to access review mode."
+#~ msgstr "Wo nni ho kwan sɛ wo bɛkɔ tebea riviw mu."
+
+#, fuzzy
+#~ msgid "You do not have rights to remove tags."
+#~ msgstr "Woo nni tumi sɛ wo bɛdi panin wɔ %s so."
+
+#, fuzzy
+#~ msgid "You do not have rights to add tags."
+#~ msgstr "Woo nni tumi sɛ wo bɛdi panin wɔ %s so."
+
+#, fuzzy
+#~ msgid "Comment:"
+#~ msgstr "Adwenkyerɛ nkyerɛmu"
+
+#~ msgid "Download XLIFF"
+#~ msgstr "Twe XLIFF"
+
+#~ msgid "Export"
+#~ msgstr "Amane"
+
+#~ msgid "Export translations"
+#~ msgstr "Amane nkyerɛkyerɛmu"
+
+#~ msgid "Download"
+#~ msgstr "Twe"
+
+#~ msgid "Download file"
+#~ msgstr "Twe fael"
+
+#~ msgid "Download XLIFF file for offline translation"
+#~ msgstr "Twe XLIFF fael ma offline nkyerase"
+
+#~ msgid "Upload"
+#~ msgstr "Pia kɔ"
+
+#~ msgid "Update from VCS"
+#~ msgstr "To so firi VCS"
+
+#~ msgid "Commit to VCS"
+#~ msgstr "Kyerɛw kɔ VCS"
+
+#, fuzzy
+#~ msgid "Update all from VCS"
+#~ msgstr "To so firi VCS"
+
+#, fuzzy
+#~ msgid "Commit all to VCS"
+#~ msgstr "Kyerɛw kɔ VCS"
+
+#~ msgid "Rescan project files"
+#~ msgstr "San skan dwumadi yi ne mfael nyinara"
+
+#~ msgid "Translate offline"
+#~ msgstr "kyerɛ ase nni ahomaso"
+
+#~ msgid "Overwrite the current file if it exists"
+#~ msgstr "Kyerɛw seiseiara fael so sɛ ɔte ase a"
+
+#~ msgid ""
+#~ "Merge the file with the current file and turn conflicts into suggestions"
+#~ msgstr "Fa seiseiara fael ka fael no ho na dane ntɔkwa kɔ adwenkyerɛ"
+
+#~ msgid "Add all new translations as suggestions"
+#~ msgstr "Fa asekyerɛ afoforo nyinara ka ho sɛ adwenkyerɛ"
+
+#~ msgid "Upload to"
+#~ msgstr "Uplode kɔ"
+
+#~ msgid ""
+#~ "Optionally select the file you want to merge with. If not specified, the "
+#~ "uploaded file's name is used."
+#~ msgstr "Wopɛ a yi fale a wopɛsɛ wo de bom. Sɛ ɛni hɔ a wɔde fale no din yɛ."
+
+#~ msgid "Translation project files have been rescanned."
+#~ msgstr "Wɔasan askan asekyerɛ dwumadi no ne mfael nyinara."
+
+#, python-format
+#~ msgid "Invalid/insecure file name: %s"
+#~ msgstr "Fael din a onndi mu: %s"
+
+#, python-format
+#~ msgid ""
+#~ "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
+#~ "%(filetype)s'."
+#~ msgstr ""
+#~ "GNU-stael fael din a onndi mu: %(local_filename)s. Ɛwɔ sɛ ɔde '%(langcode)s."
+#~ "%(filetype)s' fa."
+
+#~ msgid "Error while extracting archive"
+#~ msgstr "Mfomso sii wɔ bere a wɔretwe mfael efiri esiei mu"
+
+#~ msgid "You do not have rights to overwrite files here."
+#~ msgstr "Wo nni ho kwan sɛ wo bɛkyerɛw afa mfael so wɔ ha."
+
+#~ msgid "You do not have rights to upload new files here."
+#~ msgstr "Wo nni ho kwan sɛ wo bepia mfael afoforo wɔ ha."
+
+#~ msgid "You do not have rights to upload files here."
+#~ msgstr "Wo nni ho kwan sɛ wo bepia mfael wɔ ha."
+
+#, fuzzy
+#~ msgid "Administrate your project goals"
+#~ msgstr "Di panindwuma wɔ wo nkɔsodwuma so"
+
+#~ msgid "Upload File"
+#~ msgstr "Pia Fael kɔ"
+
+#~ msgid "username"
+#~ msgstr "agodin"
+
+#~ msgid "email address"
+#~ msgstr "emel adrɛs"
+
+#~ msgid "password"
+#~ msgstr "ehintasɛmfua"
+
+#~ msgid "password (again)"
+#~ msgstr "ehintasɛmfua (bio)"
+
+#~ msgid "This username is already taken. Please choose another."
+#~ msgstr "Obi afa agodin yi dadaw. Yɛsrɛ wo fa foforo."
+
+#~ msgid "You must type the same password each time"
+#~ msgstr "Ɛwɔ sɛ wo kyerɛw ehintasɛmfua noara bio bere biara"
+
+#~ msgid "I have read and agree to the Terms of Service"
+#~ msgstr "Meakenkn na megye Terms of Service no to mu"
+
+#~ msgid ""
+#~ "This email address is already in use. Please supply a different email "
+#~ "address."
+#~ msgstr "Obi afa emel adrɛs yi dadaw. Yɛsrɛ wo fa emel adrɛs foforo."
+
+#~ msgid ""
+#~ "Registration using free email addresses is prohibited. Please supply a "
+#~ "different email address."
+#~ msgstr ""
+#~ "Yɛnngye emel adrɛs a wɔayɛ fo sɛ wo rekyerɛ wo din a. Yɛsrɛ wo fa emel adrɛs "
+#~ "foforo."
+
+#~ msgid "user"
+#~ msgstr "dehye"
+
+#~ msgid "activation key"
+#~ msgstr "safowa nkeynan"
+
+#~ msgid "registration profile"
+#~ msgstr "profael dinkyerɛw"
+
+#~ msgid "registration profiles"
+#~ msgstr "mprofael edinkyerɛw"
+
+#~ msgid "Can view a translation project"
+#~ msgstr "Wo betumi ahwɛ asekyerɛ dwumadi"
+
+#~ msgid "Can overwrite translations on uploading files"
+#~ msgstr "Wo betumi epia mfael akɔ de akyerɛw afa asekyerɛ so"
+
+#~ msgid "Can download archives of translation projects"
+#~ msgstr "Wo betumi atwe asekyerɛ ndwumadi a wɔde esie"
+
+#~ msgid "Can commit to version control"
+#~ msgstr "Wo betumi akyerɛw akɔ kɔntrol vɛɛhyɛn so"
+
+#~ msgid "Information and statistics about this Pootle server"
+#~ msgstr "Infɔmahwen ne statistics fa Pootle sɛɛva ho"
+
+#~ msgid "Configure the general settings for your site"
+#~ msgstr "Kɔnfiga nhyehyɛ gyɛnɛral ma wo saet no"
+
+#~ msgid "General"
+#~ msgstr "Gyɛnɛral"
+
+#~ msgid "Manage the users"
+#~ msgstr "Hwɛ adehye so"
+
+#~ msgid "Manage the languages"
+#~ msgstr "Hwɛ akasa so"
+
+#~ msgid "Manage the projects"
+#~ msgstr "Hwɛ nkɔsodwuma so"
+
+#~ msgid "Manage the default permissions"
+#~ msgstr "Hwɛ akwanya difɔlt so"
+
+#~ msgid "Log Out"
+#~ msgstr "Bae-bae"
+
+#~ msgid "Register"
+#~ msgstr "Dinkyerɛw"
+
+#~ msgid "Help"
+#~ msgstr "Mboa"
+
+#, fuzzy
+#~ msgid "Contributors"
+#~ msgstr "Aboafo Titiriw"
+
+#~ msgid "Language main page"
+#~ msgstr "Kasa ne krataafa titiriw"
+
+#~ msgid "Language news"
+#~ msgstr "Kasa nkaebɔ"
+
+#~ msgid "Administrate your language permissions"
+#~ msgstr "Di panindwuma wɔ wo akasa wɔn akwanya so"
+
+#~ msgid "Project main page"
+#~ msgstr "Nkɔsodwuma krataafa titiriw"
+
+#~ msgid "Project news"
+#~ msgstr "Progɛt news"
+
+#~ msgid "Translate this project"
+#~ msgstr "Kyerɛ nkɔsodwuma yi ase"
+
+#~ msgid "Administrate your project"
+#~ msgstr "Di panindwuma wɔ wo nkɔsodwuma so"
+
+#~ msgid "Manage project permissions"
+#~ msgstr "Yɛ progɛt no nhyehyɛ yɛ no yie"
+
+#~ msgid "Translation project main page"
+#~ msgstr "Asekyerɛ nkɔsodwuma ne krataafa titiriw"
+
+#~ msgid "Translation project news"
+#~ msgstr "Asekyerɛ nkɔsodwuma nkaebɔ"
+
+#, fuzzy
+#~ msgid "Manage terminology"
+#~ msgstr "Yɛ Tɛmenɔlɔge no yie"
+
+#~ msgid "Administrate your project permissions"
+#~ msgstr "Di panindwuma wɔ wo nkɔsodwuma n'akwanya"
+
+#~ msgid "Overview of your account"
+#~ msgstr "Wo akawnt ovaviw"
+
+#~ msgid "Dashboard"
+#~ msgstr "Dashboard"
+
+#~ msgid "Configure your translation preferences"
+#~ msgstr "Kyerɛ wo asekyerɛ apɛde"
+
+#~ msgid "Change your personal information"
+#~ msgstr "Sesa wo ho nsɛm"
+
+#~ msgid "Change your password"
+#~ msgstr "Sesa wo ehintasɛmfua"
+
+#~ msgid "Send"
+#~ msgstr "Sɛnde"
+
+#~ msgid "Message Sent"
+#~ msgstr "Mɛsege no asɛende"
+
+#, python-format
+#~ msgid " message by %(name)s"
+#~ msgstr " nkratoɔ a efre %(name)"
+
+#~ msgid ""
+#~ "Here you can change your personal details. This information will be used in "
+#~ "the header of the translation files."
+#~ msgstr ""
+#~ "Wo betumi asesa wo ho nsɛm wɔ ha. Wɔde infɔmehyɛn yi bɛhyɛ wo asekyerɛ mfael "
+#~ "wɔn nhɛda mu."
+
+#~ msgid "First Name"
+#~ msgstr "Edikan Din"
+
+#~ msgid "Last Name"
+#~ msgstr "Ebusua Din"
+
+#~ msgid ""
+#~ "Here you can configure the settings related to the translation interface as "
+#~ "well as your language preferences."
+#~ msgstr ""
+#~ "Wo betumi ayɛ nhyehyɛe fa wo asekyerɛ intafes anaaso wo kasa apɛde wɔ ha."
+
+#, fuzzy
+#~ msgid "Contributions"
+#~ msgstr "Aboafo Titiriw"
+
+#~ msgid "Suggestions Pending"
+#~ msgstr "Nsusui gu so Retweɔn"
+
+#~ msgid "Profiles list"
+#~ msgstr "Mprofael list"
+
+#~ msgid "First name"
+#~ msgstr "Edikan din"
+
+#~ msgid "Last name"
+#~ msgstr "Ebusua din"
+
+#~ msgid "Account Activated"
+#~ msgstr "Ekenyan Akawnt"
+
+#, python-format
+#~ msgid ""
+#~ "The account has been activated for username \"%(account)s\". You can now "
+#~ "proceed to log in."
+#~ msgstr "Ekenyan Akawnt no ama \"%(account)s\". Wo betumi akɔ wo enim akɔyɛ lɔgin."
+
+#~ msgid "A Pootle account has been created for you using this email address."
+#~ msgstr "Wɔde emel adrɛs yi ayɛ Pootle akawnt am wo."
+
+#~ msgid "To activate your account, follow this link:"
+#~ msgstr "Sɛ wo pɛ sɛ wo kenyan wo akawnt a, di link yi so:"
+
+#~ msgid ""
+#~ "This message is sent to verify that the email address is in fact correct. If "
+#~ "you did not want to register an account, you may simply ignore the message."
+#~ msgstr ""
+#~ "Wɔsoma nkrato yi de hwɛ sɛ emel adres no di mu a. Sɛ nna wo mmpɛ sɛ wo bɛbue "
+#~ "akwant a, ɛnnkasa nkrato yi ho."
+
+#~ msgid "Your activation code is:"
+#~ msgstr "Wo nkenyane kood yɛ:"
+
+#~ msgid "Pootle registration"
+#~ msgstr "Pootle dinkyerɛw"
+
+#~ msgid "Registration Complete"
+#~ msgstr "Ewie Dinkyerɛw"
+
+#~ msgid "Please check your email to activate your account."
+#~ msgstr "Yɛsrɛ wo hwɛ sɛ wo nsa aka emel a wo de bɛkenyan wo akawnt."
+
+#~ msgid "Register a New Pootle Account"
+#~ msgstr "Kyerɛw wo Din fa yɛ Pootle Akawnt Foforo"
+
+#~ msgid "Fill in the following form to get started translating."
+#~ msgstr "Hyɛ fɔɔm yi so ma ama wo ahyɛ ase sɛ wo reyɛ asekyerɛ ara no no."
+
+#~ msgid "Password (again)"
+#~ msgstr "Ehintasɛmfua (bio)"
+
+#~ msgid "Already have an account?"
+#~ msgstr "Wo wɔ akawnt dadaw?"
+
+#~ msgid "Log In."
+#~ msgstr "Kɔ Mu."
 
 #, fuzzy
 #~ msgid "Inactive"
@@ -3420,9 +3514,6 @@ msgstr "Kɔ Mu."
 #~ msgid "Quick Links"
 #~ msgstr "Ntɛmtɛmara"
 
-#~ msgid "Admin"
-#~ msgstr "Admin"
-
 #~ msgid "No languages or projects selected. Choose yours now."
 #~ msgstr "Wɔmmfaa akasa anaaso nkɔsodwuma biara. Fa wo de seiseiara."
 
@@ -3460,13 +3551,6 @@ msgstr "Kɔ Mu."
 #~ msgid "Needs review"
 #~ msgstr "Hia sɛ wɔbɛsan ahwɛ"
 
-#~ msgid ""
-#~ "Can't find python-levenshtein package. Updating from templates is faster "
-#~ "with python-levenshtein."
-#~ msgstr ""
-#~ "Nnhu python-levenshtein bɔho. Ntoso a wɔyɛ firi atɛmplet mu kɔ ntɛm sɛ wɔde "
-#~ "python-levenshtein yɛ a."
-
 #~ msgid "Translations are complete"
 #~ msgstr "Asekyerɛ ewie"
 
@@ -3475,9 +3559,6 @@ msgstr "Kɔ Mu."
 
 #~ msgid "Translated percentage"
 #~ msgstr "Ɔha mu nkyɛmu a wɔakyerɛ ase"
-
-#~ msgid "Fuzzy"
-#~ msgstr "Yɛ naa"
 
 #~ msgid "Fuzzy percentage"
 #~ msgstr "Ɔha mu nkyɛmu a wɔyɛ naa"
@@ -3493,9 +3574,6 @@ msgstr "Kɔ Mu."
 
 #~ msgid "Total Words"
 #~ msgstr "Akasafua Total"
-
-#~ msgid "Summary"
-#~ msgstr "Ntwatia"
 
 #, python-format
 #~ msgid "Imported %(count)d unit from %(store)s"
@@ -3519,32 +3597,11 @@ msgstr "Kɔ Mu."
 #~ msgid "About Pootle"
 #~ msgstr "Fa Pootle ho"
 
-#~ msgid ""
-#~ "This site is running Pootle &mdash; powerful web software to empower teams "
-#~ "to do translation and translation management. This community tool is Free "
-#~ "Software, and any team can use it and contribute to the Pootle community. "
-#~ "Read more on the <a href=\"http://translate.sourceforge.net/\">project "
-#~ "website</a>."
-#~ msgstr ""
-#~ "Saet yi de Pootle &mdash; a ɔyɛ wɛb sɔftwɛɛ a ɛma ntiim tumi ma wɔde yɛ "
-#~ "asekyerɛ ne asekyerɛ ne nhwɛso redi dwuma. Amansan tuul yɛ Sɔftwɛɛ a ayɛ fo, "
-#~ "na tiim biara betumi de edi dwuma na wɔaboa Pootle mankuw no. Kan bio ka ho "
-#~ "wɔ <a href=\"http://translate.sourceforge.net/\">nkɔsodwuma no ne "
-#~ "wɛbsaet</a>."
-
 #~ msgid "Error"
 #~ msgstr "Mfomso"
 
 #~ msgid "Complete"
 #~ msgstr "Ewie"
-
-#, python-format
-#~ msgid ""
-#~ "Translate Toolkit version %(installed)s installed. Pootle requires version %"
-#~ "(required)s."
-#~ msgstr ""
-#~ "Translate Toolkit ne vɛɛhyɛn %(installed)s na wɔeinstɔle. Pootle hia vɛɛhyɛn "
-#~ "%(required)s."
 
 #, python-format
 #~ msgid ""
@@ -3572,9 +3629,6 @@ msgstr "Kɔ Mu."
 #~ msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 #~ msgstr[0] "%(checks)d string (%(checkspercent)d%%) annkɔ yie"
 #~ msgstr[1] "%(checks)d astring (%(checkspercent)d%%) annkɔ yie"
-
-#~ msgid "Review Suggestions"
-#~ msgstr "San hwɛ Nsusui"
 
 #~ msgid "View Suggestions"
 #~ msgstr "Hwɛ Nsusui"
@@ -3657,9 +3711,6 @@ msgstr "Kɔ Mu."
 
 #~ msgid "Update files from templates"
 #~ msgstr "To fael so firi ntɛmplete yi"
-
-#~ msgid "Review"
-#~ msgstr "Hwɛ mu"
 
 #~ msgid ""
 #~ "<div dir=\"ltr\" lang=\"en\">\n"
@@ -3748,9 +3799,6 @@ msgstr "Kɔ Mu."
 
 #~ msgid "This is a standard style project (one directory per language)."
 #~ msgstr "Yi yɛ standaad stael nkɔsodwuma (kasa biara ne folda baako)."
-
-#~ msgid "User Permissions"
-#~ msgstr "Dehye Akwanya"
 
 #~ msgid "(select to add user)"
 #~ msgstr "(paw yi sɛ wopɛ sɛ wo de dehye no ka ho a)"
@@ -4103,9 +4151,6 @@ msgstr "Kɔ Mu."
 
 #~ msgid "Activate"
 #~ msgstr "Nyan"
-
-#~ msgid "View"
-#~ msgstr "Hwɛ"
 
 #~ msgid "Archive"
 #~ msgstr "Fa sie"

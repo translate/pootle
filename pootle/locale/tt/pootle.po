@@ -6,17 +6,1340 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"POT-Creation-Date: 2015-02-02 22:43+0100\n"
 "PO-Revision-Date: 2014-05-21 22:04+0000\n"
 "Last-Translator: Динар <qdinar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: tt\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1400709881.000000\n"
+
+#: apps/contact/forms.py:35
+msgid "Summary"
+msgstr ""
+
+#: apps/contact/forms.py:37
+msgid "Please enter your message summary"
+msgstr ""
+
+#: apps/contact/forms.py:44 core/browser.py:29
+msgid "Name"
+msgstr "Исеме"
+
+#: apps/contact/forms.py:45
+msgid "Please enter your name"
+msgstr ""
+
+#: apps/contact/forms.py:48
+msgid "Email address"
+msgstr "Электрон почта адресы"
+
+#: apps/contact/forms.py:49
+msgid "Please enter your email address"
+msgstr ""
+
+#: apps/contact/forms.py:52 apps/pootle_notifications/models.py:30
+msgid "Message"
+msgstr "Хәбәр"
+
+#: apps/contact/forms.py:53
+msgid "Please enter your message"
+msgstr ""
+
+#: apps/evernote_auth/views.py:62
+msgid ""
+"Cannot link: your Evernote account is already linked with another Pootle "
+"account."
+msgstr ""
+
+#: apps/evernote_reports/forms.py:31 models/user.py:101
+msgid "Currency"
+msgstr ""
+
+#: apps/evernote_reports/forms.py:37
+msgid "Translation Rate"
+msgstr ""
+
+#: apps/evernote_reports/forms.py:42 models/user.py:98
+msgid "Review Rate"
+msgstr ""
+
+#: apps/evernote_reports/forms.py:47 models/user.py:99
+msgid "Hourly Rate"
+msgstr ""
+
+#: apps/evernote_reports/forms.py:52
+msgid "Effective from"
+msgstr ""
+
+#: apps/evernote_reports/models.py:43 templates/editor/export_view.html:106
+#: templates/translation_projects/terminology/manage.html:37
+msgid "Translation"
+msgstr "Тәрҗемәсе"
+
+#: apps/evernote_reports/models.py:44
+#, fuzzy
+msgid "Review"
+msgstr "Карап чыгулар"
+
+#: apps/evernote_reports/models.py:45
+msgid "Hourly Work"
+msgstr ""
+
+#: apps/evernote_reports/models.py:46
+msgid "Correction"
+msgstr ""
+
+#: apps/evernote_reports/models.py:49
+msgid "Type"
+msgstr ""
+
+#: apps/evernote_reports/models.py:52
+msgid "Amount"
+msgstr ""
+
+#: apps/evernote_reports/models.py:54
+msgid "Date"
+msgstr ""
+
+#: apps/evernote_reports/models.py:55
+msgid "Description"
+msgstr "Тасвирлама"
+
+#: apps/evernote_reports/views.py:308
+#, python-format
+msgid "User %s not found"
+msgstr ""
+
+#: apps/evernote_reports/views.py:393
+msgid "Invalid request method"
+msgstr ""
+
+#: apps/pootle_app/forms.py:49
+msgid "Language code does not follow the ISO convention"
+msgstr "Тел коды ISO га туры килми"
+
+#. Translators: The language from which translation will happen
+#: apps/pootle_app/forms.py:57 apps/pootle_project/models.py:183 strings.py:43
+msgid "Source Language"
+msgstr "Чыганак тел"
+
+#: apps/pootle_app/forms.py:103 apps/pootle_project/models.py:392
+#, python-format
+msgid "\"%s\" cannot be used as a project code"
+msgstr "\"%s\"-ны проект коды итеп кулланып булмый"
+
+#: apps/pootle_app/forms.py:110 templates/profiles/_tabs.html:5
+msgid "Password"
+msgstr "Серсүзе"
+
+#: apps/pootle_app/forms.py:145 apps/pootle_profile/forms.py:38
+msgid "Please enter a valid LinkedIn user profile URL."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:50
+#, python-format
+msgid "Translate Toolkit version %s installed."
+msgstr "%s-нче версия Translate Toolkit куелган."
+
+#: apps/pootle_app/views/admin/dashboard.py:58
+#, python-format
+msgid ""
+"Translate Toolkit version %(installed)s installed. Pootle requires at least "
+"version %(required)s."
+msgstr ""
+"%(installed)s-нче версия Translate Toolkit куелган. Pootle-га иң киме "
+"%(required)s-нчесе кирәк."
+
+#: apps/pootle_app/views/admin/dashboard.py:70
+#, python-format
+msgid "Django version %s is installed."
+msgstr "%s-нче версия Django куелган."
+
+#: apps/pootle_app/views/admin/dashboard.py:78
+#, fuzzy, python-format
+msgid ""
+"Django version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
+msgstr ""
+"lxml-нең %(installed)s-нче версиясе куелган. Pootle-га иң киме %(required)s "
+"кирәк."
+
+#: apps/pootle_app/views/admin/dashboard.py:90
+#, python-format
+msgid "lxml version %s is installed."
+msgstr "lxml-нең %s-нче версиясе куелган."
+
+#: apps/pootle_app/views/admin/dashboard.py:98
+#, python-format
+msgid ""
+"lxml version %(installed)s is installed. Pootle requires at least version "
+"%(required)s."
+msgstr ""
+"lxml-нең %(installed)s-нче версиясе куелган. Pootle-га иң киме %(required)s "
+"кирәк."
+
+#: apps/pootle_app/views/admin/dashboard.py:102
+msgid "lxml is not installed. Pootle requires lxml."
+msgstr "lxml куелмаган. Pootle-га lxml кирәк."
+
+#: apps/pootle_app/views/admin/dashboard.py:117
+#, python-format
+msgid ""
+"Redis server accepting connections on %(host)s:%(port)s. With %(num)d RQ "
+"worker running."
+msgid_plural ""
+"Redis server accepting connections on %(host)s:%(port)s. With %(num)d RQ "
+"workers running."
+msgstr[0] ""
+
+#: apps/pootle_app/views/admin/dashboard.py:124
+#, python-format
+msgid ""
+"No RQ workers are running.  Redis server is accepting connections on "
+"%(host)s:%(port)s."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:128
+#, python-format
+msgid "Redis server is not running on %(host)s:%(port)s."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:148
+msgid ""
+"Can't find the ISO codes package. Pootle uses ISO codes to translate "
+"language names."
+msgstr ""
+"ISO кодлары пакеты табылмады. Pootle аны тел исемнәрен тәрҗемә итү өчен "
+"куллана."
+
+#: apps/pootle_app/views/admin/dashboard.py:154
+msgid ""
+"Can't find python-levenshtein package. Updating against templates is faster "
+"with python-levenshtein."
+msgstr ""
+"python-levenshtein пакетын табып булмады. Шаблоннарга карата яңарту python-"
+"levenshtein белән тизрәк бара."
+
+#: apps/pootle_app/views/admin/dashboard.py:162
+msgid "MARKUP_FILTER is missing. Falling back to HTML."
+msgstr "MARKUP_FILTER юк. HTML-га кайтабыз."
+
+#: apps/pootle_app/views/admin/dashboard.py:164
+msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
+msgstr "MARKUP_FILTER көйләнеше бозык. HTML-га кайтабыз."
+
+#: apps/pootle_app/views/admin/dashboard.py:166
+#, python-format
+msgid ""
+"Can't find the package which provides '%s' markup support. Falling back to "
+"HTML."
+msgstr "'%s' билгеләү телен тәэмин итүче пакет табылмады. HTML-га кайтабыз."
+
+#: apps/pootle_app/views/admin/dashboard.py:170
+#, python-format
+msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
+msgstr "MARKUP_FILTER-ның кыйммәте '%s' яраксыз. HTML-га кире кайтабыз."
+
+#: apps/pootle_app/views/admin/dashboard.py:187
+msgid ""
+"Using the default sqlite3 database engine. SQLite is only suitable for small "
+"installations with a small number of users. Pootle will perform better with "
+"the MySQL database engine."
+msgstr ""
+"Хәзер алдан килешенгән sqlite3 мәгълүмат җыентысы кулланыла. SQLite әз "
+"кулланучылы, кечкенә куелышлар өчен генә яраклы. Pootle MySQL мәгълүмат "
+"җыентысы белән яхшырак эшләр."
+
+#: apps/pootle_app/views/admin/dashboard.py:192
+msgid ""
+"Using the default sqlite3 database engine. SQLite is only suitable for small "
+"installations with a small number of users. Pootle will perform better with "
+"the MySQL database engine, but you need to install python-MySQLdb first."
+msgstr ""
+"Хәзер алдан килешенгән sqlite3 мәгълүмат җыентысы кулланыла. SQLite әз "
+"кулланучылы, кечкенә куелышлар өчен генә яраклы. Pootle MySQL мәгълүмат "
+"җыентысы белән яхшырак эшләр, ләкин сезгә python-MySQLdb-ны да куярга кирәк."
+
+#: apps/pootle_app/views/admin/dashboard.py:205
+msgid ""
+"Pootle is configured to use memcached as a caching backend, but can't "
+"connect to the memcached server. Caching is currently disabled."
+msgstr ""
+"Pootle арткы әзер тоткыч итеп memcached-ны куллануга көйләнгән, әмма "
+"memcached серверына тоташа алмый. Әзер тоту хәзер сүнек."
+
+#: apps/pootle_app/views/admin/dashboard.py:212
+msgid ""
+"For optimal performance, use django.contrib.sessions.backends.cached_db as "
+"the session engine."
+msgstr ""
+"Оптималь җитештерүчәнлек өчен, сессия йөрткече итеп "
+"django.contrib.sessions.backends.cached_db-ны кулланыгыз."
+
+#: apps/pootle_app/views/admin/dashboard.py:219
+msgid ""
+"Pootle is configured to use memcached as caching backend, but Python support "
+"for memcached is not installed. Caching is currently disabled."
+msgstr ""
+"Pootle арткы әзер тоткыч итеп memcached-ны куллануга көйләнгән, әмма Python-"
+"ның memcached белән тәэмин иткече куелмаган. Әзер тоту хәзер сүнек."
+
+#: apps/pootle_app/views/admin/dashboard.py:226
+msgid "For optimal performance, use memcached as the caching backend."
+msgstr ""
+"Оптималь җитештерүчәнлек өчен, арткы әзер тоткыч итеп memcached-ны "
+"кулланыгыз."
+
+#: apps/pootle_app/views/admin/dashboard.py:233
+msgid "For optimal performance, use Apache as the webserver."
+msgstr "Оптималь җитештерүчәнлек өчен, веб серверы итеп Apache-ны кулланыгыз."
+
+#: apps/pootle_app/views/admin/dashboard.py:238
+msgid ""
+"The \"from\" address used to send registration emails is not specified. Also "
+"review the mail server settings."
+msgstr ""
+"Теркәлү хатларын җибәргәндә кулланыла торган \"кемнән\" адресы кертелмәгән. "
+"Тагы, электрон почта серверы көйләнешләрен тикшереп чыгыгыз."
+
+#: apps/pootle_app/views/admin/dashboard.py:244
+msgid ""
+"No contact address is specified. The contact form will allow users to "
+"contact the server administrators."
+msgstr ""
+"Элемтәгә керү адресы кертелмәгән. Бәйләнеш формасы кулланучыларга сервер "
+"админнары белән элемтәгәкерергә булышыр."
+
+#: apps/pootle_app/views/admin/dashboard.py:250
+msgid ""
+"Running in debug mode. Debug mode is only needed when developing Pootle. For "
+"optimal performance, disable debugging mode."
+msgstr ""
+"Сайт тикшерү режимында эшли. Тикшерү режимы Pootle-ны төзегәндә генә кирәк. "
+"Оптималь җитештерүчәнлек өчен тикшерү режимын сүндереп куегыз."
+
+#: apps/pootle_app/views/admin/dashboard.py:307
+msgid "Files"
+msgstr "Файллар"
+
+#: apps/pootle_app/views/admin/dashboard.py:308
+msgid "Active projects"
+msgstr "Актив проектлар"
+
+#: apps/pootle_app/views/admin/dashboard.py:309
+msgid "Active languages"
+msgstr "Актив телләр"
+
+#: apps/pootle_app/views/admin/dashboard.py:310
+msgid "Translated strings"
+msgstr "Тәрҗемә ителгән билге тезентеләре"
+
+#: apps/pootle_app/views/admin/dashboard.py:311
+msgid "Translated words"
+msgstr "Тәрҗемә ителгән сүзләр"
+
+#: apps/pootle_app/views/admin/dashboard.py:312
+msgid "Active users"
+msgstr "Актив кулланучылар"
+
+#: apps/pootle_app/views/admin/permissions.py:82
+msgid "All Users"
+msgstr "Барча кулланучылар"
+
+#: apps/pootle_app/views/admin/permissions.py:101 models/user.py:68
+msgid "Username"
+msgstr "Кулланучы исеме"
+
+#: apps/pootle_app/views/admin/permissions.py:110
+msgid "Add Permissions"
+msgstr ""
+
+#: apps/pootle_app/views/admin/permissions.py:115
+#: apps/pootle_app/views/admin/permissions.py:124
+msgid "Select one or more permissions"
+msgstr "Хокукларны сайлагыз"
+
+#: apps/pootle_app/views/admin/permissions.py:119
+msgid "Revoke Permissions"
+msgstr ""
+
+#: apps/pootle_app/views/admin/util.py:138
+msgid "No files in this project."
+msgstr "Бу проектта бер файл да юк."
+
+#: apps/pootle_app/views/admin/util.py:171
+msgid "There are errors in the form. Please review the problems below."
+msgstr ""
+"Түбәндәге форма дөрес тутырылмаган. Зинһар өчен, проблемаларны карап чыгыгыз."
+
+#: apps/pootle_language/models.py:79
+msgid ""
+"ISO 639 language code for the language, possibly followed by an underscore "
+"(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
+"articles/language-tags/\">More information</a>"
+msgstr ""
+"Бу телнең 639-нчы ISO буенча тел коды, аннан соң асты сызык буш урын (_) "
+"белән 3166-нчы ISO буенча ил коды торуы мөмкин. <a href=\""
+"http://www.w3.org/International/articles/language-tags/\">Күбрәк "
+"мәгълүмат</a>"
+
+#: apps/pootle_language/models.py:84 apps/pootle_project/models.py:157
+msgid "Code"
+msgstr "Коды"
+
+#: apps/pootle_language/models.py:86 apps/pootle_project/models.py:160
+#: models/user.py:78
+msgid "Full Name"
+msgstr "Исем белән фамилия"
+
+#: apps/pootle_language/models.py:88
+msgid "Enter any special characters that users might find difficult to type"
+msgstr "Кулланучыларга кертүе кыен булган махсус билгеләрне кертегез"
+
+#: apps/pootle_language/models.py:91
+msgid "Special Characters"
+msgstr "Махсус билгеләр"
+
+#: apps/pootle_language/models.py:94
+msgid ""
+"For more information, visit <a href=\"http://docs.translatehouse.org/"
+"projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
+"on plural forms."
+msgstr ""
+
+#: apps/pootle_language/models.py:99
+msgid "Unknown"
+msgstr "Билгесез"
+
+#: apps/pootle_language/models.py:102
+msgid "Number of Plurals"
+msgstr "Күплек сан төрләре саны"
+
+#: apps/pootle_language/models.py:104
+msgid "Plural Equation"
+msgstr "Күплек саннары формуласы"
+
+#: apps/pootle_misc/checks.py:35 core/browser.py:73
+msgid "Critical"
+msgstr "Критик"
+
+#: apps/pootle_misc/checks.py:36
+msgid "Cosmetic"
+msgstr "Косметик"
+
+#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:107
+msgid "Accelerators"
+msgstr "Тиз эшләү клавишлары"
+
+#: apps/pootle_misc/checks.py:42
+msgid "Acronyms"
+msgstr "Кыскартмалар"
+
+#: apps/pootle_misc/checks.py:43
+msgid "Blank"
+msgstr "Буш"
+
+#: apps/pootle_misc/checks.py:44
+msgid "Brackets"
+msgstr "Җәяләр"
+
+#: apps/pootle_misc/checks.py:45
+msgid "Compendium conflict"
+msgstr "Тәрҗемәләр җыелмасы конфликты"
+
+#: apps/pootle_misc/checks.py:46
+msgid "Translator credits"
+msgstr "Тәрҗемәчеләргә рәхмәт белдерү"
+
+#: apps/pootle_misc/checks.py:47 apps/pootle_misc/checks.py:111
+msgid "Double quotes"
+msgstr "Куштырнак"
+
+#: apps/pootle_misc/checks.py:48
+msgid "Double spaces"
+msgstr "Икеле ара"
+
+#: apps/pootle_misc/checks.py:49
+msgid "Repeated word"
+msgstr "Кабатланган сүз"
+
+#: apps/pootle_misc/checks.py:50
+msgid "E-mail"
+msgstr "Электрон почтасы"
+
+#: apps/pootle_misc/checks.py:51
+msgid "Ending punctuation"
+msgstr "Тәмамлаучы тыныш билгесе"
+
+#: apps/pootle_misc/checks.py:52
+msgid "Ending whitespace"
+msgstr "Ахырдагы буш урын"
+
+#: apps/pootle_misc/checks.py:53
+msgid "Escapes"
+msgstr "Кодланган билгеләр"
+
+#: apps/pootle_misc/checks.py:54
+msgid "File paths"
+msgstr "Файл адреслары"
+
+#: apps/pootle_misc/checks.py:55
+msgid "Functions"
+msgstr "Функцияләр"
+
+#: apps/pootle_misc/checks.py:56
+msgid "GConf values"
+msgstr "GConf кыйммәтләре"
+
+#: apps/pootle_misc/checks.py:57
+msgid "Old KDE comment"
+msgstr "Иске KDE комменты"
+
+#: apps/pootle_misc/checks.py:58
+msgid "Long"
+msgstr "Озын"
+
+#: apps/pootle_misc/checks.py:59
+msgid "Must translate words"
+msgstr "Тәрҗемә итергә сөйләшенгән сүзләр"
+
+#: apps/pootle_misc/checks.py:60
+msgid "Newlines"
+msgstr "Юл күчешләре"
+
+#: apps/pootle_misc/checks.py:61
+msgid "Number of plurals"
+msgstr "Күплек сан төрләре саны"
+
+#: apps/pootle_misc/checks.py:62
+msgid "Don't translate words"
+msgstr "Тәрҗемә итмәскә сөйләшенгән сүзләр"
+
+#: apps/pootle_misc/checks.py:63
+msgid "Numbers"
+msgstr "Саннар"
+
+#: apps/pootle_misc/checks.py:64
+msgid "Options"
+msgstr "Көйләүләр"
+
+#: apps/pootle_misc/checks.py:65
+msgid "printf()"
+msgstr "printf()"
+
+#: apps/pootle_misc/checks.py:66
+msgid "Punctuation spacing"
+msgstr "Тыныш билгеләре янында буш урыннар"
+
+#: apps/pootle_misc/checks.py:67
+msgid "Pure punctuation"
+msgstr "Тыныш билгеләреннән генә торучы билге тезентесе"
+
+#: apps/pootle_misc/checks.py:68
+msgid "Number of sentences"
+msgstr "Җөмлә саны"
+
+#: apps/pootle_misc/checks.py:69
+msgid "Short"
+msgstr "Тәрҗемә артык кыска"
+
+#: apps/pootle_misc/checks.py:70
+msgid "Simple capitalization"
+msgstr "Баш хәреф туры килмәү"
+
+#: apps/pootle_misc/checks.py:71
+msgid "Simple plural(s)"
+msgstr "Күплек сан туры килмәү"
+
+#: apps/pootle_misc/checks.py:72
+msgid "Single quotes"
+msgstr "Ялгыз тырнак"
+
+#: apps/pootle_misc/checks.py:73
+msgid "Starting capitalization"
+msgstr "Җөмлә башы баш хәрефе"
+
+#: apps/pootle_misc/checks.py:74
+msgid "Starting punctuation"
+msgstr "Җөмлә башындагы тыныш билгесе"
+
+#: apps/pootle_misc/checks.py:75
+msgid "Starting whitespace"
+msgstr "Җөмлә башындагы буш урын"
+
+#. Translators: This refers to tabulation characters
+#: apps/pootle_misc/checks.py:77
+msgid "Tabs"
+msgstr "Tab билгеләре"
+
+#: apps/pootle_misc/checks.py:78
+msgid "Unchanged"
+msgstr "Үзгәртелмәгән"
+
+#: apps/pootle_misc/checks.py:79 apps/pootle_misc/stats.py:38
+#: apps/pootle_store/util.py:42 core/helpers.py:66
+#: templates/editor/_filters.html:9
+msgid "Untranslated"
+msgstr "Тәрҗемә ителмәгән"
+
+#: apps/pootle_misc/checks.py:80
+msgid "URLs"
+msgstr "Веб адреслары"
+
+#: apps/pootle_misc/checks.py:81
+msgid "Valid characters"
+msgstr "Рөхсәт билгеләр"
+
+#: apps/pootle_misc/checks.py:82
+msgid "Placeholders"
+msgstr "Урын билгеләгечләр"
+
+#: apps/pootle_misc/checks.py:83
+msgid "XML tags"
+msgstr "XML теглары"
+
+#: apps/pootle_misc/checks.py:85
+msgid "Broken HTML Entities"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:86
+msgid "Java format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:87
+msgid "Template format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:88
+msgid "Mustache placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:89
+msgid "Mustache placeholder pairs"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:90
+msgid "Mustache like placeholder pairs"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:91
+msgid "C format placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:92
+msgid "Non printable"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:93
+msgid "Unbalanced tag braces"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:94
+msgid "Changed attributes"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:95
+msgid "Unescaped ampersands"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:96
+msgid "Incorrectly escaped ampersands"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:97
+msgid "Whitespaces"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:98
+msgid "Date format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:99
+msgid "Uppercase placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:100
+msgid "Percent sign placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:101
+msgid "Percent sign closure placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:102
+#, fuzzy
+msgid "$ placeholders"
+msgstr "Урын билгеләгечләр"
+
+#: apps/pootle_misc/checks.py:103
+msgid "$ closure placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:104
+msgid "Java-encoded unicode"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:105
+msgid "Objective-C format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:106
+msgid "Android format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:108
+msgid "Tags differ"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:109
+msgid "Curly braces"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:110
+msgid "Potential unwanted placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:112
+msgid "Double quotes in tags"
+msgstr ""
+
+#: apps/pootle_misc/forms.py:102
+msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
+msgstr "Эзләү (Ctrl+Shift+S)<br/>Языгыз да эзләр өчен Enter-га басыгыз"
+
+#: apps/pootle_misc/forms.py:110
+msgid "Exact Match"
+msgstr "Төгәл туры килү"
+
+#: apps/pootle_misc/forms.py:117
+msgid "Source Text"
+msgstr "Чыганак текст"
+
+#: apps/pootle_misc/forms.py:118
+msgid "Target Text"
+msgstr "Максат текст"
+
+#: apps/pootle_misc/forms.py:119
+msgid "Comments"
+msgstr "Комментлар"
+
+#: apps/pootle_misc/forms.py:120
+msgid "Locations"
+msgstr "Урыннар"
+
+#: apps/pootle_misc/forms.py:133
+msgid "Source Terms"
+msgstr "Чыганак терминнар"
+
+#: apps/pootle_misc/forms.py:134
+msgid "Target Terms"
+msgstr "Максат терминнар"
+
+#: apps/pootle_misc/forms.py:135
+msgid "Definitions"
+msgstr "Билгеләмәләр"
+
+#. Translators: Heading representing the total number of words of a file
+#. or directory
+#: apps/pootle_misc/stats.py:35 core/browser.py:52
+#: templates/admin/detailed_reports.html:240
+msgid "Total"
+msgstr "Барысы"
+
+#: apps/pootle_misc/stats.py:36 apps/pootle_store/util.py:44
+#: core/helpers.py:65 templates/editor/_filters.html:7
+msgid "Translated"
+msgstr "Тәрҗемә ителгән"
+
+#: apps/pootle_misc/stats.py:37
+msgid "Fuzzy"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/render_pager.py:33
+msgid "First"
+msgstr "Беренче"
+
+#: apps/pootle_misc/templatetags/render_pager.py:35
+msgid "Previous"
+msgstr "Моңарчыгы"
+
+#: apps/pootle_misc/templatetags/render_pager.py:51
+msgid "Next"
+msgstr "Киләсе"
+
+#: apps/pootle_misc/templatetags/render_pager.py:53
+#, python-format
+msgid "Last (%d)"
+msgstr "Ахыргы (%d)"
+
+#. Translators: The date that the news item was written
+#: apps/pootle_notifications/models.py:33
+msgid "Added"
+msgstr "Өстәлде"
+
+#: apps/pootle_profile/views.py:76
+msgid "Select one or more languages"
+msgstr "Бер яки берничә тел сайлагыз"
+
+#: apps/pootle_project/forms.py:39 core/browser.py:39
+msgid "Language"
+msgstr "Тел"
+
+#: apps/pootle_project/models.py:154
+msgid ""
+"A short code for the project. This should only contain ASCII characters, "
+"numbers, and the underscore (_) character."
+msgstr ""
+"Проектны билгеләүче кыска код. Бу бары тик ASCII билгеләре, саннар һәм асты "
+"сызык буш урын (_) нан гына торырга тиеш."
+
+#: apps/pootle_project/models.py:168
+msgid "Quality Checks"
+msgstr "Сыйфатын тикшерү"
+
+#: apps/pootle_project/models.py:171
+msgid "File Type"
+msgstr "Файл төре"
+
+#: apps/pootle_project/models.py:175
+msgid "Automatic detection (slower)"
+msgstr "Автоматик ачыклау (әкренрәк)"
+
+#: apps/pootle_project/models.py:176
+msgid "GNU style: files named by language code"
+msgstr "GNU стиле: файллар тел коды белән аталган"
+
+#: apps/pootle_project/models.py:177
+msgid "Non-GNU: Each language in its own directory"
+msgstr "GNU түгел: Һәр тел үз папкасында"
+
+#: apps/pootle_project/models.py:180
+msgid "Project Tree Style"
+msgstr "Проект агачы стиле"
+
+#: apps/pootle_project/models.py:186
+msgid "Ignore Files"
+msgstr "Түбәндәге файлларны аласы түгел"
+
+#: apps/pootle_project/models.py:191
+msgid "Errors Report Email"
+msgstr ""
+
+#: apps/pootle_project/models.py:192
+#, fuzzy
+msgid "An email address where issues with the source text can be reported."
+msgstr ""
+"Чыганак тексты проблемалары турында хәбәр итер өчен веб яки электрон почта "
+"адресы."
+
+#: apps/pootle_project/models.py:196
+msgid "Screenshot Search Prefix"
+msgstr ""
+
+#: apps/pootle_project/models.py:201
+msgid "Disabled"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:76 templates/editor/export_view.html:105
+msgid "Source"
+msgstr "Чыганак"
+
+#: apps/pootle_statistics/models.py:77
+msgid "Target"
+msgstr "Максат"
+
+#: apps/pootle_statistics/models.py:78
+msgid "State"
+msgstr "Халәте"
+
+#: apps/pootle_statistics/models.py:79
+msgid "Comment"
+msgstr "Комментарий"
+
+#: apps/pootle_statistics/models.py:220
+#, python-format
+msgid "reverted translation for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:224
+#, python-format
+msgid "accepted suggestion for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:228
+#, python-format
+msgid "added suggestion for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:232
+#, python-format
+msgid "rejected suggestion for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:236
+msgid "uploaded a file"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:239
+#, python-format
+msgid "muted %(check_name)s for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:243
+#, python-format
+msgid "unmmuted %(check_name)s for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:263
+#, python-format
+msgid "translated %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:265 apps/pootle_statistics/models.py:271
+#, python-format
+msgid "edited %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:268
+#, python-format
+msgid "pre-translated %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:273
+#, python-format
+msgid "removed translation for %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:280
+#, python-format
+msgid "reviewed %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:281
+#, python-format
+msgid "marked as fuzzy %(source_string)s"
+msgstr ""
+
+#: apps/pootle_statistics/models.py:284
+#, python-format
+msgid "unknown action %(source_string)s"
+msgstr ""
+
+#: apps/pootle_store/decorators.py:39
+msgid "Insufficient rights to access this directory."
+msgstr "Бу папкага керү өчен хокук җитми."
+
+#: apps/pootle_store/decorators.py:42
+msgid "Insufficient rights to access suggestion mode."
+msgstr ""
+
+#: apps/pootle_store/decorators.py:43
+msgid "Insufficient rights to access translation mode."
+msgstr ""
+
+#: apps/pootle_store/decorators.py:44
+#, fuzzy
+msgid "Insufficient rights to access review mode."
+msgstr "Бу биткә керү өчен хокук җитми."
+
+#: apps/pootle_store/filetypes.py:32
+msgid "Gettext PO"
+msgstr "Gettext PO-сы"
+
+#: apps/pootle_store/filetypes.py:36 apps/pootle_store/filetypes.py:37
+msgid "XLIFF"
+msgstr "XLIFF"
+
+#: apps/pootle_store/filetypes.py:43
+msgid "Qt ts"
+msgstr "Qt ts-ы"
+
+#: apps/pootle_store/filetypes.py:49
+msgid "TMX"
+msgstr "TMX"
+
+#: apps/pootle_store/filetypes.py:55
+msgid "TBX"
+msgstr "TBX"
+
+#: apps/pootle_store/filetypes.py:61
+msgid "Haiku catkeys"
+msgstr "Haiku catkeys"
+
+#: apps/pootle_store/filetypes.py:67
+msgid "Excel CSV"
+msgstr "Excel CSV"
+
+#: apps/pootle_store/filetypes.py:73
+msgid "Mozilla .lang"
+msgstr "Mozilla .lang"
+
+#: apps/pootle_store/forms.py:100
+#: apps/pootle_store/templatetags/store_tags.py:157
+#: apps/pootle_store/templatetags/store_tags.py:173
+#: apps/pootle_store/templatetags/store_tags.py:180
+#: apps/pootle_store/templatetags/store_tags.py:192
+#: apps/pootle_store/templatetags/store_tags.py:194
+#, python-format
+msgid "Plural Form %d"
+msgstr "%d-нче күплек саны"
+
+#: apps/pootle_store/forms.py:223 apps/pootle_store/util.py:43
+#: core/helpers.py:67 templates/editor/_filters.html:10
+msgid "Needs work"
+msgstr "Эшләп бетерәсе бар"
+
+#: apps/pootle_store/forms.py:259
+msgid "Fuzzy flag must be cleared"
+msgstr ""
+
+#: apps/pootle_store/forms.py:303
+msgid "Value of `similarity` should be in in the [0..1] range"
+msgstr ""
+
+#: apps/pootle_store/forms.py:313
+msgid "Value of `mt_similarity` should be in in the [0..1] range"
+msgstr ""
+
+#: apps/pootle_store/forms.py:338
+msgid "Translator comment"
+msgstr "Тәрҗемәче комменты"
+
+#: apps/pootle_store/models.py:159
+msgid "Pending"
+msgstr "Көтүче"
+
+#: apps/pootle_store/models.py:160
+msgid "Accepted"
+msgstr "Кабул ителгән"
+
+#: apps/pootle_store/models.py:161
+msgid "Rejected"
+msgstr "Кире кагылган"
+
+#: apps/pootle_store/models.py:1282
+#, python-format
+msgid "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;added"
+msgstr ""
+
+#: apps/pootle_store/models.py:1342
+msgid "Path"
+msgstr "Файл системасындагы адрес"
+
+#: apps/pootle_store/templatetags/store_tags.py:151
+#: apps/pootle_store/templatetags/store_tags.py:153
+msgid "Singular"
+msgstr "Берлек сандагы"
+
+#: apps/pootle_store/templatetags/store_tags.py:151
+#: apps/pootle_store/templatetags/store_tags.py:153
+msgid "Plural"
+msgstr "Күплек сандагы"
+
+#: apps/pootle_store/util.py:41
+msgid "Obsolete"
+msgstr "Искергән"
+
+#: apps/pootle_store/views.py:420 core/decorators.py:56
+msgid "Arguments missing."
+msgstr "Параметрлары юк."
+
+#: apps/pootle_store/views.py:648
+msgid "Failed to remove comment."
+msgstr ""
+
+#: apps/pootle_store/views.py:683
+msgid "Comment submission failed."
+msgstr "Комментарий өстәү барып чыкмады."
+
+#: apps/pootle_store/views.py:878
+msgid "Failed to process submission."
+msgstr "Кертемне эшкәртү барып чыкмады."
+
+#: apps/pootle_store/views.py:925
+msgid "Failed to process suggestion."
+msgstr "Тәкъдимне эшкәртү барып чыкмады."
+
+#: apps/pootle_terminology/forms.py:59
+msgid "This term already exists in this file."
+msgstr "Бу термин бу файлда бар инде."
+
+#: apps/staticpages/forms.py:73
+#, python-format
+msgid ""
+"I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
+"a>"
+msgstr ""
+"<a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>-ны укыдым һәм кабул "
+"иттем"
+
+#: apps/staticpages/models.py:41 models/user.py:80
+#: templates/admin/staticpages/_table.html:6
+msgid "Active"
+msgstr "Актив"
+
+#: apps/staticpages/models.py:43
+msgid "Whether this page is active or not."
+msgstr "Бу битнең актив булу-булмавы."
+
+#: apps/staticpages/models.py:46 templates/admin/staticpages/_table.html:7
+msgid "Virtual Path"
+msgstr "Виртуаль {файл адресы}"
+
+#: apps/staticpages/models.py:53
+msgid "Title"
+msgstr "Башлык"
+
+#. Translators: Content that will be used to display this static page
+#: apps/staticpages/models.py:56
+msgid "Display Content"
+msgstr "Эчтәлеген күрсәтү"
+
+#: apps/staticpages/models.py:58
+#, python-format
+msgid "Allowed markup: %s"
+msgstr "Рөхсәт ителгән билгеләү теле: %s"
+
+#: apps/staticpages/models.py:61 templates/admin/staticpages/_table.html:9
+msgid "Redirect to URL"
+msgstr "Веб адресына күчерү"
+
+#: apps/staticpages/models.py:63
+msgid "If set, any references to this page will redirect to this URL"
+msgstr "Куелса, бу биткә булган һәртөрле сылтамалар шул веб адресына күчерер"
+
+#. Translators: 'URL' and 'content' refer to form fields.
+#: apps/staticpages/models.py:112
+msgid "URL or content must be provided."
+msgstr "Веб адресы яки эчтәлек кертү кирәк."
+
+#: apps/staticpages/models.py:120
+msgid "Virtual path already in use."
+msgstr "Виртуаль юл (файл адресы) кулланылышта инде."
+
+#: apps/staticpages/models.py:125
+msgid "Legal Page"
+msgstr "Юридик бит"
+
+#: apps/staticpages/models.py:136
+msgid "Regular Page"
+msgstr "Гади бит"
+
+#: apps/staticpages/views.py:121 templates/admin/staticpages/_table.html:8
+msgid "Page Title"
+msgstr "Бит башлыгы"
+
+#: apps/staticpages/views.py:126
+#, python-format
+msgid "page-%d"
+msgstr "%d-нче-бит"
+
+#: core/browser.py:34
+msgid "Project"
+msgstr "Проект"
+
+#. Translators: noun. The graphical representation of translation status
+#: core/browser.py:45
+msgid "Progress"
+msgstr "Эш барышы"
+
+#: core/browser.py:57 templates/browser/overview.html:39
+#, fuzzy
+msgid "Last updated"
+msgstr "Соңгы үзгәртелгән вакыты"
+
+#: core/browser.py:62
+msgid "Need Translation"
+msgstr "Тәрҗемә ителүе кирәк"
+
+#. Translators: The number of suggestions pending review
+#: core/browser.py:68 templates/editor/_filters.html:11
+msgid "Suggestions"
+msgstr "Тәкъдимнәр"
+
+#: core/browser.py:78
+msgid "Last Activity"
+msgstr "Ахыргы гамәлләре"
+
+#: core/browser.py:124
+msgid "Back to parent folder"
+msgstr ""
+
+#: core/decorators.py:312
+msgid "Insufficient rights to access this page."
+msgstr "Бу биткә керү өчен хокук җитми."
+
+#: core/decorators.py:325 core/views.py:46
+msgid "You do not have rights to administer Pootle."
+msgstr "Синең Pootle белән идарә итергә хокукың юк."
+
+#: core/forms.py:125
+msgid "Time to answer has expired"
+msgstr "Җавап бирү вакыты узды"
+
+#: core/forms.py:144
+msgid "Enter a number"
+msgstr "Бер сан кертегез"
+
+#: core/forms.py:159
+msgid "Incorrect"
+msgstr "Дөрес түгел"
+
+#: core/helpers.py:52
+msgid "User missing"
+msgstr "Андый кулланучы юк"
+
+#. Translators: This refers to "All strings"
+#: core/helpers.py:64 templates/editor/_filters.html:6
+msgid "All"
+msgstr "Бөтенесе"
+
+#: core/helpers.py:68 templates/editor/_filters.html:8
+msgid "Incomplete"
+msgstr "Тәмамланмаган"
+
+#. Translators: This is the name of a filter
+#: core/helpers.py:70 templates/core/search.html:5
+msgid "Search"
+msgstr "Эзләү"
+
+#: core/helpers.py:71 templates/editor/_filters.html:18
+msgid "Checks"
+msgstr "Тикшерүләр"
+
+#: core/helpers.py:72 templates/editor/_filters.html:13
+msgid "My submissions"
+msgstr "Кертемнәрем"
+
+#: core/helpers.py:73 templates/admin/dashboard.html:19
+msgid "Submissions"
+msgstr "Кертүләр"
+
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: core/helpers.py:74 templates/editor/_filters.html:17
+msgid "My overwritten submissions"
+msgstr "Өстенә яздырылган кертемнәрем"
+
+#: core/helpers.py:75
+msgid "Overwritten submissions"
+msgstr "Өстенә яздырылган кертемнәр"
+
+#: core/initdb.py:120
+msgid "Can access a project"
+msgstr ""
+
+#: core/initdb.py:124
+msgid "Cannot access a project"
+msgstr ""
+
+#: core/initdb.py:128
+msgid "Can make a suggestion for a translation"
+msgstr "Тәрҗемә тәкъдим итә ала"
+
+#: core/initdb.py:132
+msgid "Can submit a translation"
+msgstr "Тәрҗемә кертә ала"
+
+#: core/initdb.py:136
+msgid "Can review translations"
+msgstr "Тәрҗемә тәкъдимнәрен кабул итә йә кире кага ала"
+
+#: core/initdb.py:140
+msgid "Can administrate a translation project"
+msgstr "Тәрҗемә проекты белән идарә итә ала"
+
+#: core/views.py:78
+msgid "You cannot access this page."
+msgstr ""
+
+#: middleware/errorpages.py:78
+#, python-format
+msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
+msgstr "Бу битне ачу өчен сезгә <a href=\"%(login_link)s\">кер</a>ергә кирәк."
+
+#: middleware/errorpages.py:117
+#, python-format
+msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
+msgstr ""
+"%(filename)s-ны ачканда хата чыкты, файл системасы %(errormsg)s дип хәбәр "
+"итте"
+
+#: models/user.py:69
+msgid ""
+"Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
+msgstr ""
+
+#: models/user.py:73
+msgid "Enter a valid username."
+msgstr ""
+
+#: models/user.py:77 templates/registration/password_reset_form.html:19
+msgid "Email Address"
+msgstr "Электрон почта адресы"
+
+#: models/user.py:81
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: models/user.py:83
+#, fuzzy
+msgid "Superuser Status"
+msgstr "идарәче дәрәҗәсе"
+
+#: models/user.py:84
+msgid ""
+"Designates that this user has all permissions without explicitly assigning "
+"them."
+msgstr ""
+
+#: models/user.py:87
+msgid "date joined"
+msgstr ""
+
+#: models/user.py:91
+msgid "Number of Rows"
+msgstr "Рәтләр саны"
+
+#: models/user.py:94
+msgid "Alternative Source Languages"
+msgstr "Башка чыганак телләре"
+
+#: models/user.py:97 templates/admin/detailed_reports.html:149
+msgid "Rate"
+msgstr ""
+
+#: models/user.py:100
+msgid "Score"
+msgstr ""
+
+#: models/user.py:103
+msgid "Is employee?"
+msgstr ""
+
+#: models/user.py:104
+msgid "Twitter"
+msgstr ""
+
+#: models/user.py:106
+msgid "Website"
+msgstr ""
+
+#: models/user.py:107
+msgid "LinkedIn"
+msgstr ""
+
+#: models/user.py:108
+msgid "Short Bio"
+msgstr ""
 
 #: strings.py:8
 msgid ""
@@ -53,9 +1376,8 @@ msgstr "Саклап тагы берне өстәү"
 msgid "Save and continue editing"
 msgstr "Саклап төзәтүне дәвам итү"
 
-#: strings.py:15
-#: apps/staticpages/templates/staticpages/admin/page_create.html:5
-#: apps/staticpages/templates/staticpages/admin/page_create.html:8
+#: strings.py:15 templates/admin/staticpages/page_create.html:4
+#: templates/admin/staticpages/page_create.html:7
 msgid "Add"
 msgstr "Өстәү"
 
@@ -63,7 +1385,7 @@ msgstr "Өстәү"
 msgid "Change"
 msgstr "Үзгәртү"
 
-#: strings.py:17 apps/pootle_profile/forms.py:83
+#: strings.py:17
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
@@ -115,12 +1437,6 @@ msgstr "эшли"
 msgid "superuser status"
 msgstr "идарәче дәрәҗәсе"
 
-#. Translators: The language from which translation will happen
-#: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:47
-#: apps/pootle_project/models.py:97
-msgid "Source Language"
-msgstr "Чыганак тел"
-
 #: strings.py:45
 msgid "Android strings"
 msgstr "Android-тагы билге тезентеләре"
@@ -155,165 +1471,210 @@ msgstr "Куллану шартлары"
 msgid "Terms of Service"
 msgstr "Хезмәт күрсәтү шартлары"
 
-#: apps/contact_form_i18n/forms.py:143
-msgid "Your name"
-msgstr "Исемең"
+#: templates/about.html:7 templates/layout.html:178
+msgid "About"
+msgstr "Сайт турында"
 
-#: apps/contact_form_i18n/forms.py:146
-msgid "Your email address"
-msgstr "Электрон почта адресың"
+#: templates/about.html:13
+#, fuzzy
+msgid "About This Pootle Server"
+msgstr "Бу Pootle серверы турында"
 
-#: apps/contact_form_i18n/forms.py:148
-msgid "Your message"
-msgstr "Хәбәрең"
-
-#: apps/contact_form_i18n/forms.py:260
-msgid "Akismet thinks this message is spam"
-msgstr "Akismet бу хәбәрне спам дип уйлый"
-
-#: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
-msgid "Please correct the error below."
-msgid_plural "Please correct the errors below."
-msgstr[0] "Зинһар, түбәндәге хатаны төзәтегез."
-
-#: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
-msgid "The settings have been saved."
-msgstr "Көйләнмәләр сакланды."
-
-#: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
-#: apps/pootle_app/templates/admin/admin_general_settings.html:29
-#: apps/pootle_app/templates/admin/general_settings_form.html:15
-#: apps/staticpages/templates/staticpages/admin/_form.html:24
-#: templates/profiles/edit_personal.html:33
-#: templates/profiles/edit_profile.html:25
-msgid "Save"
-msgstr "Саклау"
-
-#: apps/pootle_app/admin.py:45
-msgid "Language code does not follow the ISO convention"
-msgstr "Тел коды ISO га туры килми"
-
-#: apps/pootle_app/admin.py:71
-msgid "Project code may only contain letters, numbers and _"
-msgstr "Проект коды бары тик хәреф, цифр һәм аст сызык _ тан тора ала"
-
-#: apps/pootle_app/admin.py:83
-msgid "Advanced Options"
-msgstr "Киңәйтелгән көйләүләр"
-
-#: apps/pootle_app/forms.py:30 apps/pootle_notifications/forms.py:42
-#: apps/staticpages/models.py:45
-msgid "Title"
-msgstr "Башлык"
-
-#: apps/pootle_app/forms.py:31
-msgid "The name for this Pootle server"
-msgstr "Бу Pootle серверы өчен исем"
-
-#: apps/pootle_app/forms.py:37
-#: apps/pootle_language/templates/language/overview.html:26
-#: apps/pootle_project/templates/project/overview.html:52
-#: apps/pootle_tagging/models.py:69
-#: apps/pootle_translationproject/templates/translation_project/overview.html:114
-msgid "Description"
-msgstr "Тасвирлама"
-
-#: apps/pootle_app/forms.py:38
+#. Translators: For better readability, make sure to leave an space after the closing </i> tag
+#: templates/about.html:15
 msgid ""
-"The description and instructions shown on the front page and about page. Be "
-"sure to use valid HTML."
+"This site is running Pootle &mdash; powerful web software to empower teams "
+"to do translation and translation management. This community tool is Free "
+"Software, and any team can use it and contribute to the Pootle community. "
+"Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
+"\"icon-external-link\"></i> project website</a>."
 msgstr ""
-"Алгы бит белән мәгълүмат битендә күрсәтелә торган тасвирлама белән "
-"инструкцияләр. Дөрес HTML кулланыгыз."
+"Бу сайтта Pootle &mdash; төркемнәргә тәрҗемә итергә һәм тәрҗемәләр белән "
+"идарә итергә көч бирә торган куәтле веб программасы. Бу җәмгыять коралы - "
+"ирекле программа, һәм һәр төркем аны куллана ала һәм Pootle җәмгыятенә өлеш "
+"кертә ала. Күбрәген <a href=\"http://pootle.translatehouse.org/\"><i class"
+"=\"icon-external-link\"></i>проектның сайтында</a> укыгыз."
 
-#: apps/pootle_app/models/suggestion.py:35
-msgid "Pending"
-msgstr "Көтүче"
+#: templates/about.html:16
+#, fuzzy, python-format
+msgid ""
+"Pootle %(pootle_version)s is powered by Translate Toolkit "
+"%(toolkit_version)s."
+msgstr ""
+"%(pootle_ver)s-нче Pootle %(toolkit_ver)s-нче Translate Toolkit белән эшли"
 
-#: apps/pootle_app/models/suggestion.py:36
-#: templates/profiles/profile_detail.html:43
-msgid "Accepted"
-msgstr "Кабул ителгән"
-
-#: apps/pootle_app/models/suggestion.py:37
-#: templates/profiles/profile_detail.html:44
-msgid "Rejected"
-msgstr "Кире кагылган"
-
-#: apps/pootle_app/templates/top_contributers_table.html:8
-msgid "Top Contributors"
-msgstr "Иң күп өлеш кертүчеләр"
-
-#. Translators: The number of suggestions pending review
-#: apps/pootle_app/templates/top_contributers_table.html:12
-#: apps/pootle_misc/browser.py:70 templates/editor/_toolbar.html:17
-msgid "Suggestions"
-msgstr "Тәкъдимнәр"
-
-#: apps/pootle_app/templates/top_contributers_table.html:13
-msgid "Reviews"
-msgstr "Карап чыгулар"
-
-#: apps/pootle_app/templates/top_contributers_table.html:14
-#: apps/pootle_app/templates/admin/dashboard.html:19 core/helpers.py:61
-#: templates/profiles/profile_detail.html:45
-msgid "Submissions"
-msgstr "Кертүләр"
-
-#: apps/pootle_app/templates/top_contributers_table.html:19
-msgid "anonymous users"
-msgstr "аталмаган кулланучылар"
-
-#: apps/pootle_app/templates/translation_summary_legend.html:4
-#: apps/pootle_misc/stats.py:153 apps/pootle_store/util.py:48
-#: core/helpers.py:54 templates/editor/_toolbar.html:13
-msgid "Translated"
-msgstr "Тәрҗемә ителгән"
-
-#: apps/pootle_app/templates/translation_summary_legend.html:5
-#: apps/pootle_misc/stats.py:156 apps/pootle_store/forms.py:215
-#: apps/pootle_store/util.py:47 core/helpers.py:56
-#: templates/editor/_toolbar.html:16
-msgid "Needs work"
-msgstr "Эшләп бетерәсе бар"
-
-#: apps/pootle_app/templates/translation_summary_legend.html:6
-#: apps/pootle_misc/stats.py:159 apps/pootle_store/util.py:46
-#: core/helpers.py:55 templates/editor/_toolbar.html:15
-msgid "Untranslated"
-msgstr "Тәрҗемә ителмәгән"
-
-#: apps/pootle_app/templates/admin/admin_general.html:15
-#: apps/pootle_terminology/templates/terminology/manage.html:50
+#: templates/admin/_generic_formset.html:15
+#: templates/translation_projects/terminology/manage.html:51
 msgid "Save Changes"
 msgstr "Үзгәрешләрне саклау"
 
-#: apps/pootle_app/templates/admin/admin_general_languages.html:4
-#: apps/pootle_app/templates/admin/admin_general_languages.html:9
-#: apps/pootle_app/templates/index/index.html:42
-#: apps/pootle_profile/models.py:87 templates/admin_profile_menu.html:6
+#: templates/admin/_tabs.html:3
+msgid "Info"
+msgstr "Мәгълүмат"
+
+#: templates/admin/_tabs.html:4 templates/admin/dashboard.html:25
+#: templates/admin/users.html:4 templates/admin/users.html.py:9
+#: templates/user/base.html:4 templates/user/base.html.py:6
+#: templates/user/stats.html:51
+msgid "Users"
+msgstr "Кулланучылар"
+
+#: templates/admin/_tabs.html:5 templates/admin/languages.html:4
+#: templates/admin/languages.html.py:9 templates/projects/_nav.html:26
+#: templates/projects/admin/languages.html:7
+#: templates/projects/all/_nav.html:26
 msgid "Languages"
 msgstr "Телләр"
 
-#: apps/pootle_app/templates/admin/admin_general_languages.html:12
-msgid ""
-"Here you can add, edit, and delete all the available languages in this "
-"Pootle server."
-msgstr ""
-"Монда син бу Pootle серверындагы барча телләрне өсти, үзгәртә, бетерә аласың."
+#: templates/admin/_tabs.html:6 templates/admin/projects.html:4
+#: templates/admin/projects.html.py:9 templates/projects/base.html:5
+msgid "Projects"
+msgstr "Проектлар"
 
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:4
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:9
-#: apps/pootle_app/views/admin/permissions.py:117
-#: apps/pootle_language/templates/language/language_admin.html:5
-#: apps/pootle_project/templates/project/admin_permissions.html:7
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:5
-#: templates/admin_profile_menu.html:8 templates/language_menu.html:8
-#: templates/project_menu.html:10 templates/tp_menu.html:9
+#: templates/admin/_tabs.html:7 templates/admin/permissions.html:4
+#: templates/admin/permissions.html.py:9 templates/languages/_nav.html:26
+#: templates/languages/admin/permissions.html:5
+#: templates/projects/_nav.html:31 templates/projects/admin/permissions.html:7
+#: templates/projects/all/_nav.html:31
+#: templates/translation_projects/_nav.html:31
+#: templates/translation_projects/admin/permissions.html:5
 msgid "Permissions"
 msgstr "Хокуклар"
 
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:12
+#: templates/admin/_tabs.html:8 templates/admin/staticpages/base.html:4
+#: templates/admin/staticpages/base.html:10
+msgid "Static Pages"
+msgstr "Гел үзгәреп тормый торган битләр"
+
+#: templates/admin/_tabs.html:9 templates/admin/reports.html:47
+#: templates/admin/reports.html.py:50
+msgid "Reports"
+msgstr ""
+
+#: templates/admin/base.html:4 templates/admin/base.html.py:7
+msgid "Administration"
+msgstr "Идарә итү"
+
+#: templates/admin/dashboard.html:13
+msgid "Server Statistics"
+msgstr "Сервер статистикасы"
+
+#: templates/admin/dashboard.html:22
+msgid "Pending suggestions"
+msgstr "Көтүче тәкъдимнәр"
+
+#: templates/admin/dashboard.html:31
+msgid "More..."
+msgstr "Күбрәк..."
+
+#: templates/admin/dashboard.html:38
+msgid "Background Jobs"
+msgstr ""
+
+#: templates/admin/dashboard.html:44
+msgid "Status"
+msgstr ""
+
+#: templates/admin/dashboard.html:45
+msgid "Running"
+msgstr ""
+
+#: templates/admin/dashboard.html:45
+msgid "Stopped"
+msgstr ""
+
+#: templates/admin/dashboard.html:48
+msgid "Pending jobs"
+msgstr ""
+
+#: templates/admin/dashboard.html:51
+msgid "Failed jobs"
+msgstr ""
+
+#: templates/admin/dashboard.html:60
+msgid "Dependency Checks"
+msgstr "Бәйләнешләрне тикшерү"
+
+#: templates/admin/dashboard.html:69
+msgid "Optional"
+msgstr "Ирекле"
+
+#: templates/admin/dashboard.html:77
+msgid "Optimizations"
+msgstr "Оптимальләштерүләр"
+
+#: templates/admin/detailed_reports.html:6
+#, python-format
+msgid "Report for %(user)s, "
+msgstr ""
+
+#: templates/admin/detailed_reports.html:129
+#, python-format
+msgid "Report for %(user)s"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:133
+#: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
+msgid "Previous month"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:135
+#: templates/admin/reports/header.html:15 templates/user/detailed_stats.html:9
+msgid "Next month"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:142
+msgid "Local server time"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:143
+#, fuzzy
+msgid "Action"
+msgstr "Гамәлләр"
+
+#: templates/admin/detailed_reports.html:144
+msgid "Unit"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:145
+#, fuzzy
+msgid "Source words"
+msgstr "Чыганак терминнар"
+
+#: templates/admin/detailed_reports.html:146
+msgid "Similarity"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:147
+msgid "Words"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:150
+msgid "Subtotal"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:184
+#: templates/admin/detailed_reports.html:230
+msgid "registered tasks"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:195
+msgid "No activity recorded in a given period"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:205
+msgid "Translation (subtotal)"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:216
+msgid "Review (subtotal)"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:248
+msgid "Please select a valid user."
+msgstr ""
+
+#: templates/admin/permissions.html:12
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
@@ -321,10 +1682,10 @@ msgstr ""
 "Монда син бу Pootle серверындагы әйтелмәгәндәге хокукларны өсти, үзгәртә, "
 "бетерә аласың."
 
-#: apps/pootle_app/templates/admin/admin_general_permissions.html:16
-#: apps/pootle_language/templates/language/language_admin.html:13
-#: apps/pootle_project/templates/project/admin_permissions.html:22
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:13
+#: templates/admin/permissions.html:16
+#: templates/languages/admin/permissions.html:11
+#: templates/projects/admin/permissions.html:13
+#: templates/translation_projects/admin/permissions.html:13
 msgid ""
 "The user “nobody” refers to any user that is not logged in (an anonymous, "
 "unidentified user). The user “default” refers to the rights that all logged "
@@ -334,2445 +1695,223 @@ msgstr ""
 "“nobody” дигәне кермәгән (аталмаган, танылмаган) кулланучыларга карый. "
 "“default” дигәне кергән һәм махсус хокуклары булмаган кулланучыны аңлата."
 
-#: apps/pootle_app/templates/admin/admin_general_projects.html:4
-#: apps/pootle_app/templates/admin/admin_general_projects.html:9
-#: apps/pootle_app/templates/index/index.html:52
-#: apps/pootle_notifications/templates/notices.html:20
-#: apps/pootle_profile/models.py:90
-#: apps/pootle_project/templates/project/projects.html:6
-#: apps/pootle_project/templates/project/projects.html:15
-#: templates/admin_profile_menu.html:7 templates/project_base.html:5
-msgid "Projects"
-msgstr "Проектлар"
-
-#: apps/pootle_app/templates/admin/admin_general_projects.html:12
-msgid ""
-"Here you can add, edit, and delete all the available projects in this Pootle "
-"server."
+#: templates/admin/reports.html:60 templates/user/stats.html:63
+msgid "Daily activity"
 msgstr ""
-"Монда син бу Pootle серверындагы барча проектларны өсти, үзгәртә, бетерә "
-"аласың."
 
-#: apps/pootle_app/templates/admin/admin_general_settings.html:4
-#: apps/pootle_app/templates/admin/admin_general_settings.html:9
-msgid "General Settings"
-msgstr "Төп көйләүләр"
-
-#: apps/pootle_app/templates/admin/admin_general_settings.html:12
-msgid "Configure here the general settings for your site."
-msgstr "Бу төштә сайтыгызның төп көйләнмәләрен көйләгез."
-
-#: apps/pootle_app/templates/admin/admin_general_users.html:4
-#: apps/pootle_app/templates/admin/admin_general_users.html:9
-#: apps/pootle_app/templates/admin/dashboard.html:25
-#: templates/admin_profile_menu.html:5
-#: templates/profiles/profile_detail.html:5
-#: templates/profiles/profile_detail.html:11
-msgid "Users"
+#: templates/admin/reports/header.html:5
+#, fuzzy
+msgid "User"
 msgstr "Кулланучылар"
 
-#: apps/pootle_app/templates/admin/admin_general_users.html:12
-msgid ""
-"Here you can add, edit, and delete all the available users in this Pootle "
-"server."
+#: templates/admin/reports/header.html:22
+msgid "Detailed Report"
 msgstr ""
-"Монда сез бу Pootle серверындагы барча кулланучыларны өсти, үзгәртә, бетерә "
-"аласыз."
 
-#: apps/pootle_app/templates/admin/dashboard.html:13
-msgid "Server Statistics"
-msgstr "Сервер статистикасы"
-
-#: apps/pootle_app/templates/admin/dashboard.html:22
-msgid "Pending suggestions"
-msgstr "Көтүче тәкъдимнәр"
-
-#: apps/pootle_app/templates/admin/dashboard.html:31
-msgid "More..."
-msgstr "Күбрәк..."
-
-#: apps/pootle_app/templates/admin/dashboard.html:39
-msgid "Support"
-msgstr "Булышу"
-
-#: apps/pootle_app/templates/admin/dashboard.html:42
-msgid ""
-"Pootle is developed by Translate.org.za and a community of passionate "
-"localization experts. We want Pootle to help your localization work reach "
-"its full potential."
+#: templates/admin/reports/header.html:24
+msgid "Detailed Statistics"
 msgstr ""
-"Pootle-ны Translate.org.za компаниясе һәм үз эшен яратучы тәрҗемәчеләр "
-"ясады. Без Pootle-ның сезнең тәрҗемә эшегезнең тулы потенциалына җитүенә "
-"ярдәм итүен телибез."
 
-#: apps/pootle_app/templates/admin/dashboard.html:43
-msgid "You will find the following helpful for support:"
-msgstr "Түбәндәгеләрне эшегездә терәк, ярдәм буларак файдалы табарсыз:"
-
-#: apps/pootle_app/templates/admin/dashboard.html:45
-msgid "The Pootle documentation"
-msgstr "Pootle документациясе"
-
-#: apps/pootle_app/templates/admin/dashboard.html:46
-msgid "The Pootle mailing list"
-msgstr "Pootle-ның электрон почта аша хәбәр тарату исемлеге"
-
-#: apps/pootle_app/templates/admin/dashboard.html:47
-msgid "(commercial support)"
-msgstr "(түләүле ярдәм)"
-
-#: apps/pootle_app/templates/admin/dashboard.html:55
-msgid "Dependency Checks"
-msgstr "Бәйләнешләрне тикшерү"
-
-#: apps/pootle_app/templates/admin/dashboard.html:64
-msgid "Optional"
-msgstr "Ирекле"
-
-#: apps/pootle_app/templates/admin/dashboard.html:72
-msgid "Optimizations"
-msgstr "Оптимальләштерүләр"
-
-#: apps/pootle_app/templates/admin/edit_links.html:2
-msgid "Edit"
-msgstr "Үзгәртү"
-
-#: apps/pootle_app/templates/admin/general_settings_form.html:16
-msgid "Cancel"
-msgstr "Сакламыйча китү"
-
-#: apps/pootle_app/templates/admin/rss_widget.html:5
-msgid "Pootle Alerts"
-msgstr "Pootle искә төшергечләре"
-
-#: apps/pootle_app/templates/index/index.html:25
-#: apps/pootle_language/templates/language/overview.html:36
-#: apps/pootle_project/templates/project/overview.html:61
-#: apps/pootle_translationproject/templates/translation_project/overview.html:124
-msgid "No description set."
-msgstr "Тасвирламасы юк."
-
-#: apps/pootle_app/templates/index/index.html:62
-#: apps/pootle_notifications/templates/notices.html:77
-msgid "Latest News"
-msgstr "Иң соңгы яңалыклар"
-
-#: apps/pootle_app/templates/index/index.html:65
-msgid "Subscribe to the RSS feed."
-msgstr "RSS каналына язылу."
-
-#: apps/pootle_app/templates/index/login.html:4
-#: apps/pootle_app/templates/index/login.html:7
-#: apps/pootle_app/templates/index/login.html:23
-msgid "Login"
-msgstr "Керү"
-
-#: apps/pootle_app/templates/index/login.html:12
-msgid "Login to Pootle"
-msgstr "Pootle-га керү"
-
-#: apps/pootle_app/templates/index/login.html:18
-msgid "Your username and password didn't match. Please try again."
+#: templates/admin/reports/paid_task_form.html:5
+msgid "Add Task"
 msgstr ""
-"Керткән исем белән серсүзегез ярамады. Зинһар, тагын бер тапкыр кертеп "
-"карагыз."
 
-#: apps/pootle_app/templates/index/login.html:30
-msgid "Lost your Password?"
-msgstr "Серсүзеңне оныттыңмы?"
-
-#: apps/pootle_app/templates/index/login.html:33
-#: templates/registration/password_reset_form.html:30
-msgid "Don't have an account yet?"
-msgstr "Хисап язмагыз юкмы әле?"
-
-#: apps/pootle_app/templates/index/login.html:34
-#: templates/registration/password_reset_form.html:31
-msgid "Register."
-msgstr "Теркәлү."
-
-#: apps/pootle_app/views/admin/adminprojects.py:90
-#: apps/pootle_project/models.py:221
-#, python-format
-msgid "\"%s\" cannot be used as a project code"
-msgstr "\"%s\"-ны проект коды итеп кулланып булмый"
-
-#: apps/pootle_app/views/admin/adminusers.py:55
-#: templates/user_profile_menu.html:7
-#: templates/registration/registration_form.html:30
-msgid "Password"
-msgstr "Серсүзе"
-
-#: apps/pootle_app/views/admin/dashboard.py:48
-#, python-format
-msgid "Translate Toolkit version %s installed."
-msgstr "%s-нче версия Translate Toolkit куелган."
-
-#: apps/pootle_app/views/admin/dashboard.py:55
-#, python-format
-msgid ""
-"Translate Toolkit version %(installed)s installed. Pootle requires at least "
-"version %(required)s."
+#: templates/admin/reports/paid_task_form.html:23
+msgid "words"
 msgstr ""
-"%(installed)s-нче версия Translate Toolkit куелган. Pootle-га иң киме "
-"%(required)s-нчесе кирәк."
 
-#: apps/pootle_app/views/admin/dashboard.py:62
-#, python-format
-msgid "Django version %s is installed."
-msgstr "%s-нче версия Django куелган."
-
-#: apps/pootle_app/views/admin/dashboard.py:65
-#, python-format
-msgid ""
-"Django version %s is installed, but a higher version is highly recommended."
+#: templates/admin/reports/paid_task_form.html:24
+msgid "hours"
 msgstr ""
-"%s-нче версия Django куелган, әмма югарырак версиясе каты итеп киңәш ителә."
 
-#: apps/pootle_app/views/admin/dashboard.py:72
-#, python-format
-msgid "lxml version %s is installed."
-msgstr "lxml-нең %s-нче версиясе куелган."
-
-#: apps/pootle_app/views/admin/dashboard.py:76
-#, python-format
-msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version "
-"%(required)s."
+#: templates/admin/reports/paid_task_form.html:35
+msgid "Add record"
 msgstr ""
-"lxml-нең %(installed)s-нче версиясе куелган. Pootle-га иң киме %(required)s "
-"кирәк."
 
-#: apps/pootle_app/views/admin/dashboard.py:83
-msgid "lxml is not installed. Pootle requires lxml."
-msgstr "lxml куелмаган. Pootle-га lxml кирәк."
-
-#: apps/pootle_app/views/admin/dashboard.py:97
-msgid ""
-"Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
-"available."
+#: templates/admin/reports/user_rates_form.html:4
+msgid "Set Rates"
 msgstr ""
-"unzip командасы табылмады. \"unzip\" булса архивларны менгерү тизрәк бара."
 
-#: apps/pootle_app/views/admin/dashboard.py:103
-msgid ""
-"Can't find the ISO codes package. Pootle uses ISO codes to translate "
-"language names."
-msgstr ""
-"ISO кодлары пакеты табылмады. Pootle аны тел исемнәрен тәрҗемә итү өчен "
-"куллана."
-
-#: apps/pootle_app/views/admin/dashboard.py:109
-msgid ""
-"Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
-"subtitle formats."
-msgstr ""
-"aeidon пакеты табылмады. Pootle-га төрле субтитр форматларын куллану өчен "
-"Gaupol яки aeidon кирәк."
-
-#: apps/pootle_app/views/admin/dashboard.py:115
-msgid ""
-"Can't find python-levenshtein package. Updating against templates is faster "
-"with python-levenshtein."
-msgstr ""
-"python-levenshtein пакетын табып булмады. Шаблоннарга карата яңарту python-"
-"levenshtein белән тизрәк бара."
-
-#: apps/pootle_app/views/admin/dashboard.py:121
-msgid ""
-"No text indexing engine found. Searching is faster if an indexing engine "
-"like Xapian or Lucene is installed."
-msgstr ""
-"Бер текст индекслагычы да табылмады. Xapian яки Lucene кебек текст "
-"индекслагыч куелган булса, эзләү тизрәк эшли."
-
-#: apps/pootle_app/views/admin/dashboard.py:129
-msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr "MARKUP_FILTER юк. HTML-га кайтабыз."
-
-#: apps/pootle_app/views/admin/dashboard.py:131
-msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr "MARKUP_FILTER көйләнеше бозык. HTML-га кайтабыз."
-
-#: apps/pootle_app/views/admin/dashboard.py:133
-#, python-format
-msgid ""
-"Can't find the package which provides '%s' markup support. Falling back to "
-"HTML."
-msgstr "'%s' билгеләү телен тәэмин итүче пакет табылмады. HTML-га кайтабыз."
-
-#: apps/pootle_app/views/admin/dashboard.py:137
-#, python-format
-msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr "MARKUP_FILTER-ның кыйммәте '%s' яраксыз. HTML-га кире кайтабыз."
-
-#: apps/pootle_app/views/admin/dashboard.py:154
-msgid ""
-"Using the default sqlite3 database engine. SQLite is only suitable for small "
-"installations with a small number of users. Pootle will perform better with "
-"the MySQL database engine."
-msgstr ""
-"Хәзер алдан килешенгән sqlite3 мәгълүмат җыентысы кулланыла. SQLite әз "
-"кулланучылы, кечкенә куелышлар өчен генә яраклы. Pootle MySQL мәгълүмат "
-"җыентысы белән яхшырак эшләр."
-
-#: apps/pootle_app/views/admin/dashboard.py:159
-msgid ""
-"Using the default sqlite3 database engine. SQLite is only suitable for small "
-"installations with a small number of users. Pootle will perform better with "
-"the MySQL database engine, but you need to install python-MySQLdb first."
-msgstr ""
-"Хәзер алдан килешенгән sqlite3 мәгълүмат җыентысы кулланыла. SQLite әз "
-"кулланучылы, кечкенә куелышлар өчен генә яраклы. Pootle MySQL мәгълүмат "
-"җыентысы белән яхшырак эшләр, ләкин сезгә python-MySQLdb-ны да куярга кирәк."
-
-#: apps/pootle_app/views/admin/dashboard.py:172
-msgid ""
-"Pootle is configured to use memcached as a caching backend, but can't "
-"connect to the memcached server. Caching is currently disabled."
-msgstr ""
-"Pootle арткы әзер тоткыч итеп memcached-ны куллануга көйләнгән, әмма "
-"memcached серверына тоташа алмый. Әзер тоту хәзер сүнек."
-
-#: apps/pootle_app/views/admin/dashboard.py:179
-msgid ""
-"For optimal performance, use django.contrib.sessions.backends.cached_db as "
-"the session engine."
-msgstr ""
-"Оптималь җитештерүчәнлек өчен, сессия йөрткече итеп "
-"django.contrib.sessions.backends.cached_db-ны кулланыгыз."
-
-#: apps/pootle_app/views/admin/dashboard.py:186
-msgid ""
-"Pootle is configured to use memcached as caching backend, but Python support "
-"for memcached is not installed. Caching is currently disabled."
-msgstr ""
-"Pootle арткы әзер тоткыч итеп memcached-ны куллануга көйләнгән, әмма Python-"
-"ның memcached белән тәэмин иткече куелмаган. Әзер тоту хәзер сүнек."
-
-#: apps/pootle_app/views/admin/dashboard.py:193
-msgid "For optimal performance, use memcached as the caching backend."
-msgstr ""
-"Оптималь җитештерүчәнлек өчен, арткы әзер тоткыч итеп memcached-ны "
-"кулланыгыз."
-
-#: apps/pootle_app/views/admin/dashboard.py:200
-msgid "For optimal performance, use Apache as the webserver."
-msgstr "Оптималь җитештерүчәнлек өчен, веб серверы итеп Apache-ны кулланыгыз."
-
-#: apps/pootle_app/views/admin/dashboard.py:205
-msgid ""
-"The \"from\" address used to send registration emails is not specified. Also "
-"review the mail server settings."
-msgstr ""
-"Теркәлү хатларын җибәргәндә кулланыла торган \"кемнән\" адресы кертелмәгән. "
-"Тагы, электрон почта серверы көйләнешләрен тикшереп чыгыгыз."
-
-#: apps/pootle_app/views/admin/dashboard.py:211
-msgid ""
-"No contact address is specified. The contact form will allow users to "
-"contact the server administrators."
-msgstr ""
-"Элемтәгә керү адресы кертелмәгән. Бәйләнеш формасы кулланучыларга сервер "
-"админнары белән элемтәгәкерергә булышыр."
-
-#: apps/pootle_app/views/admin/dashboard.py:217
-msgid ""
-"Running in debug mode. Debug mode is only needed when developing Pootle. For "
-"optimal performance, disable debugging mode."
-msgstr ""
-"Сайт тикшерү режимында эшли. Тикшерү режимы Pootle-ны төзегәндә генә кирәк. "
-"Оптималь җитештерүчәнлек өчен тикшерү режимын сүндереп куегыз."
-
-#: apps/pootle_app/views/admin/dashboard.py:224
-msgid ""
-"Running in live translation mode. Live translation is useful as a tool to "
-"learn about Pootle and localization, but has high impact on performance."
-msgstr ""
-"Эш тере тәрҗемәләү режимында бара. Тере тәрҗемәләү Pootle белән "
-"локализацияне өйрәнү өчен корал буларак файдалы, әмма ул күп көч куллана."
-
-#: apps/pootle_app/views/admin/dashboard.py:271
-#: apps/pootle_translationproject/templates/translation_project/overview.html:62
-msgid "Files"
-msgstr "Файллар"
-
-#: apps/pootle_app/views/admin/dashboard.py:272
-msgid "Active projects"
-msgstr "Актив проектлар"
-
-#: apps/pootle_app/views/admin/dashboard.py:273
-msgid "Active languages"
-msgstr "Актив телләр"
-
-#: apps/pootle_app/views/admin/dashboard.py:274
-msgid "Translated strings"
-msgstr "Тәрҗемә ителгән билге тезентеләре"
-
-#: apps/pootle_app/views/admin/dashboard.py:275
-msgid "Translated words"
-msgstr "Тәрҗемә ителгән сүзләр"
-
-#: apps/pootle_app/views/admin/dashboard.py:276
-msgid "Active users"
-msgstr "Актив кулланучылар"
-
-#: apps/pootle_app/views/admin/permissions.py:61
-msgid "Translation Project Contributors"
-msgstr "Тәрҗемә проектында катнашучылар"
-
-#: apps/pootle_app/views/admin/permissions.py:67
-msgid "Project Contributors"
-msgstr "Проектта катнашучылар"
-
-#: apps/pootle_app/views/admin/permissions.py:84
-msgid "Language Contributors"
-msgstr "Тел катнашучылары"
-
-#: apps/pootle_app/views/admin/permissions.py:91
-msgid "All Users"
-msgstr "Барча кулланучылар"
-
-#: apps/pootle_app/views/admin/permissions.py:108
-#: templates/profiles/profile_list.html:11
-#: templates/registration/registration_form.html:20
-msgid "Username"
-msgstr "Кулланучы исеме"
-
-#: apps/pootle_app/views/admin/permissions.py:122
-msgid "Select one or more permissions"
-msgstr "Хокукларны сайлагыз"
-
-#: apps/pootle_app/views/admin/util.py:144
-msgid "No files in this project."
-msgstr "Бу проектта бер файл да юк."
-
-#: apps/pootle_app/views/admin/util.py:177
-msgid "There are errors in the form. Please review the problems below."
-msgstr ""
-"Түбәндәге форма дөрес тутырылмаган. Зинһар өчен, проблемаларны карап чыгыгыз."
-
-#: apps/pootle_app/views/index/about.py:49
-#, python-format
-msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
-msgstr ""
-"%(pootle_ver)s-нче Pootle %(toolkit_ver)s-нче Translate Toolkit белән эшли"
-
-#: apps/pootle_app/views/index/index.py:57 apps/pootle_language/views.py:69
-#: apps/pootle_misc/browser.py:103 apps/pootle_misc/browser.py:191
-#: apps/pootle_misc/browser.py:230 apps/pootle_project/views.py:88
-#, python-format
-msgid "%(percentage)d%% complete"
-msgstr "%(percentage)d%%-ы тәмам"
-
-#: apps/pootle_language/models.py:66
-msgid ""
-"ISO 639 language code for the language, possibly followed by an underscore "
-"(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
-"articles/language-tags/\">More information</a>"
-msgstr ""
-"Бу телнең 639-нчы ISO буенча тел коды, аннан соң асты сызык буш урын (_) "
-"белән 3166-нчы ISO буенча ил коды торуы мөмкин. <a href=\""
-"http://www.w3.org/International/articles/language-tags/\">Күбрәк "
-"мәгълүмат</a>"
-
-#: apps/pootle_language/models.py:71 apps/pootle_project/models.py:62
-msgid "Code"
-msgstr "Коды"
-
-#: apps/pootle_language/models.py:73 apps/pootle_project/models.py:66
-msgid "Full Name"
-msgstr "Исем белән фамилия"
-
-#: apps/pootle_language/models.py:75
-#, python-format
-msgid ""
-"A description of this language. This is useful to give more information or "
-"instructions. Allowed markup: %s"
-msgstr ""
-"Бу телнең тасвирламасы. Бу мәгълүмат яки инструкция бирер өчен файдалы. "
-"Монда %s билгеләү теле рөхсәт ителә"
-
-#: apps/pootle_language/models.py:80
-msgid "Enter any special characters that users might find difficult to type"
-msgstr "Кулланучыларга кертүе кыен булган махсус билгеләрне кертегез"
-
-#: apps/pootle_language/models.py:83
-msgid "Special Characters"
-msgstr "Махсус билгеләр"
-
-#: apps/pootle_language/models.py:86
-msgid ""
-"For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
-"l10n/pluralforms\">our wiki page</a> on plural forms."
-msgstr ""
-"Күбрәк мәгълүмат өчен, күплек саны турындагы <a href=\""
-"http://translate.sourceforge.net/wiki/l10n/pluralforms\">безнең вики "
-"язмасын</a> карагыз."
-
-#: apps/pootle_language/models.py:90
-msgid "Unknown"
-msgstr "Билгесез"
-
-#: apps/pootle_language/models.py:93
-msgid "Number of Plurals"
-msgstr "Күплек сан төрләре саны"
-
-#: apps/pootle_language/models.py:95
-msgid "Plural Equation"
-msgstr "Күплек саннары формуласы"
-
-#: apps/pootle_language/views.py:76 apps/pootle_misc/browser.py:110
-#: apps/pootle_misc/browser.py:197 apps/pootle_misc/browser.py:236
-#: apps/pootle_project/views.py:94
-#, python-format
-msgid "Error reading %d file"
-msgid_plural "Error reading %d files"
-msgstr[0] "%d файлны укыганда хата чыкты"
-
-#: apps/pootle_language/views.py:113
-#, python-format
-msgid "%(projects)d project, %(average)d%% translated"
-msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] "%(projects)d проект, %(average)d%% тәрҗемә ителгән"
-
-#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
-#: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
-msgid "No description yet."
-msgstr "Тасвирлама юк әле."
-
-#: apps/pootle_language/templates/language/language_admin.html:11
-msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr "Түбәндә син бу тел өчен хокукларны өсти, үзгәртә, бетерә аласың."
-
-#: apps/pootle_misc/browser.py:30
-msgid "Name"
-msgstr "Исеме"
-
-#: apps/pootle_misc/browser.py:35 templates/profiles/profile_detail.html:41
-msgid "Project"
-msgstr "Проект"
-
-#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
-msgid "Language"
-msgstr "Тел"
-
-#. Translators: Heading representing the priority for a goal
-#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
-msgid "Priority"
-msgstr "Алдынгылык"
-
-#. Translators: noun. The graphical representation of translation status
-#: apps/pootle_misc/browser.py:52
-msgid "Progress"
-msgstr "Эш барышы"
-
-#. Translators: Heading representing the total number of words of a file
-#. or directory
-#: apps/pootle_misc/browser.py:59 apps/pootle_misc/stats.py:150
-msgid "Total"
-msgstr "Барысы"
-
-#: apps/pootle_misc/browser.py:64
-msgid "Need Translation"
-msgstr "Тәрҗемә ителүе кирәк"
-
-#: apps/pootle_misc/browser.py:75
-msgid "Last Activity"
-msgstr "Ахыргы гамәлләре"
-
-#: apps/pootle_misc/checks.py:27
-msgid "Critical"
-msgstr "Критик"
-
-#: apps/pootle_misc/checks.py:28
-msgid "Functional"
-msgstr "Функциональ"
-
-#: apps/pootle_misc/checks.py:29
-msgid "Cosmetic"
-msgstr "Косметик"
-
-#: apps/pootle_misc/checks.py:30
-msgid "Extraction"
-msgstr "Чыгару"
-
-#: apps/pootle_misc/checks.py:31
-msgid "No category"
-msgstr "Категория юк"
-
-#: apps/pootle_misc/checks.py:36
-msgid "Accelerators"
-msgstr "Тиз эшләү клавишлары"
-
-#: apps/pootle_misc/checks.py:37
-msgid "Acronyms"
-msgstr "Кыскартмалар"
-
-#: apps/pootle_misc/checks.py:38
-msgid "Blank"
-msgstr "Буш"
-
-#: apps/pootle_misc/checks.py:39
-msgid "Brackets"
-msgstr "Җәяләр"
-
-#: apps/pootle_misc/checks.py:40
-msgid "Compendium conflict"
-msgstr "Тәрҗемәләр җыелмасы конфликты"
-
-#: apps/pootle_misc/checks.py:41
-msgid "Translator credits"
-msgstr "Тәрҗемәчеләргә рәхмәт белдерү"
-
-#: apps/pootle_misc/checks.py:42
-msgid "Double quotes"
-msgstr "Куштырнак"
-
-#: apps/pootle_misc/checks.py:43
-msgid "Double spaces"
-msgstr "Икеле ара"
-
-#: apps/pootle_misc/checks.py:44
-msgid "Repeated word"
-msgstr "Кабатланган сүз"
-
-#: apps/pootle_misc/checks.py:45
-msgid "E-mail"
-msgstr "Электрон почтасы"
-
-#: apps/pootle_misc/checks.py:46
-msgid "Ending punctuation"
-msgstr "Тәмамлаучы тыныш билгесе"
-
-#: apps/pootle_misc/checks.py:47
-msgid "Ending whitespace"
-msgstr "Ахырдагы буш урын"
-
-#: apps/pootle_misc/checks.py:48
-msgid "Escapes"
-msgstr "Кодланган билгеләр"
-
-#: apps/pootle_misc/checks.py:49
-msgid "File paths"
-msgstr "Файл адреслары"
-
-#: apps/pootle_misc/checks.py:50
-msgid "Functions"
-msgstr "Функцияләр"
-
-#: apps/pootle_misc/checks.py:51
-msgid "GConf values"
-msgstr "GConf кыйммәтләре"
-
-#: apps/pootle_misc/checks.py:52
-msgid "Old KDE comment"
-msgstr "Иске KDE комменты"
-
-#: apps/pootle_misc/checks.py:53
-msgid "Long"
-msgstr "Озын"
-
-#: apps/pootle_misc/checks.py:54
-msgid "Must translate words"
-msgstr "Тәрҗемә итергә сөйләшенгән сүзләр"
-
-#: apps/pootle_misc/checks.py:55
-msgid "Newlines"
-msgstr "Юл күчешләре"
-
-#: apps/pootle_misc/checks.py:56
-msgid "Number of plurals"
-msgstr "Күплек сан төрләре саны"
-
-#: apps/pootle_misc/checks.py:57
-msgid "Don't translate words"
-msgstr "Тәрҗемә итмәскә сөйләшенгән сүзләр"
-
-#: apps/pootle_misc/checks.py:58
-msgid "Numbers"
-msgstr "Саннар"
-
-#: apps/pootle_misc/checks.py:59
-msgid "Options"
-msgstr "Көйләүләр"
-
-#: apps/pootle_misc/checks.py:60
-msgid "printf()"
-msgstr "printf()"
-
-#: apps/pootle_misc/checks.py:61
-msgid "Punctuation spacing"
-msgstr "Тыныш билгеләре янында буш урыннар"
-
-#: apps/pootle_misc/checks.py:62
-msgid "Pure punctuation"
-msgstr "Тыныш билгеләреннән генә торучы билге тезентесе"
-
-#: apps/pootle_misc/checks.py:63
-msgid "Number of sentences"
-msgstr "Җөмлә саны"
-
-#: apps/pootle_misc/checks.py:64
-msgid "Short"
-msgstr "Тәрҗемә артык кыска"
-
-#: apps/pootle_misc/checks.py:65
-msgid "Simple capitalization"
-msgstr "Баш хәреф туры килмәү"
-
-#: apps/pootle_misc/checks.py:66
-msgid "Simple plural(s)"
-msgstr "Күплек сан туры килмәү"
-
-#: apps/pootle_misc/checks.py:67
-msgid "Single quotes"
-msgstr "Ялгыз тырнак"
-
-#: apps/pootle_misc/checks.py:68
-msgid "Starting capitalization"
-msgstr "Җөмлә башы баш хәрефе"
-
-#: apps/pootle_misc/checks.py:69
-msgid "Starting punctuation"
-msgstr "Җөмлә башындагы тыныш билгесе"
-
-#: apps/pootle_misc/checks.py:70
-msgid "Starting whitespace"
-msgstr "Җөмлә башындагы буш урын"
-
-#. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:72
-msgid "Tabs"
-msgstr "Tab билгеләре"
-
-#: apps/pootle_misc/checks.py:73
-msgid "Unchanged"
-msgstr "Үзгәртелмәгән"
-
-#: apps/pootle_misc/checks.py:74
-msgid "URLs"
-msgstr "Веб адреслары"
-
-#: apps/pootle_misc/checks.py:75
-msgid "Valid characters"
-msgstr "Рөхсәт билгеләр"
-
-#: apps/pootle_misc/checks.py:76
-msgid "Placeholders"
-msgstr "Урын билгеләгечләр"
-
-#: apps/pootle_misc/checks.py:77
-msgid "XML tags"
-msgstr "XML теглары"
-
-#: apps/pootle_misc/forms.py:100
-msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr "Эзләү (Ctrl+Shift+S)<br/>Языгыз да эзләр өчен Enter-га басыгыз"
-
-#: apps/pootle_misc/forms.py:108
-msgid "Exact Match"
-msgstr "Төгәл туры килү"
-
-#: apps/pootle_misc/forms.py:115
-msgid "Source Text"
-msgstr "Чыганак текст"
-
-#: apps/pootle_misc/forms.py:116
-msgid "Target Text"
-msgstr "Максат текст"
-
-#: apps/pootle_misc/forms.py:117
-msgid "Comments"
-msgstr "Комментлар"
-
-#: apps/pootle_misc/forms.py:118
-msgid "Locations"
-msgstr "Урыннар"
-
-#: apps/pootle_misc/forms.py:131
-msgid "Source Terms"
-msgstr "Чыганак терминнар"
-
-#: apps/pootle_misc/forms.py:132
-msgid "Target Terms"
-msgstr "Максат терминнар"
-
-#: apps/pootle_misc/forms.py:133
-msgid "Definitions"
-msgstr "Билгеләмәләр"
-
-#: apps/pootle_misc/stats.py:134
-#, python-format
-msgid "<a href=\"%(url)s\">%(num)d word</a>"
-msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] "<a href=\"%(url)s\">%(num)d сүз</a>"
-
-#: apps/pootle_misc/stats.py:141
-#, python-format
-msgid "%(num)d%%"
-msgstr "%(num)d%%"
-
-#: apps/pootle_misc/stats.py:143
-#, python-format
-msgid "(%(num)d string)"
-msgid_plural "(%(num)d strings)"
-msgstr[0] "(%(num)d билге тезентесе)"
-
-#: apps/pootle_misc/stats.py:172
-#, python-format
-msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
-msgid_plural ""
-"This folder has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] "Бу папкада %(num)d сүз, аларның %(percentage)d%%-ы тәрҗемә ителгән."
-
-#: apps/pootle_misc/stats.py:184
-#, python-format
-msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
-msgid_plural ""
-"This file has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] "Бу файлда %(num)d сүз, аларның %(percentage)d%%-ы тәрҗемә ителгән."
-
-#: apps/pootle_misc/stats.py:206
-msgid "Expand details"
-msgstr "Җентекле мәгълүматын күрсәтү"
-
-#: apps/pootle_misc/stats.py:217
-#, python-format
-msgid "Continue translation (%(num)d word left)"
-msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] "Тәрҗемәне дәвам итү (%(num)d сүз калды)"
-
-#: apps/pootle_misc/stats.py:239
-#, python-format
-msgid "Next most important goal (%(num)d word left)"
-msgid_plural "Next most important goal (%(num)d words left)"
-msgstr[0] "Киләсе иң мөһим эшлисе эш (%(num)d сүз калды)"
-
-#: apps/pootle_misc/stats.py:249
-msgid "Translation is complete"
-msgstr "Тәрҗемә тәмам"
-
-#: apps/pootle_misc/stats.py:260
-#, python-format
-msgid "Review suggestion (%(num)d left)"
-msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] "Тәкъдимнәрне карап чыгу (%(num)d калды)"
-
-#. Translators: 'type' is the type of VCS file: working, remote,
-#. or merged copy.
-#: apps/pootle_misc/stats.py:282
-#, python-format
-msgid ""
-"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
-"review)."
-msgid_plural ""
-"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
-"review)."
-msgstr[0] ""
-"%(type)s: %(total)d билге тезентесенең %(translated)d-сы тәрҗемә ителгән "
-"(%(fuzzy)d-сын карап чыгу кирәк)."
-
-#: apps/pootle_misc/stats.py:304
-#, python-format
-msgid "%d word needs attention"
-msgid_plural "%d words need attention"
-msgstr[0] "%d сүзгә игътибар кирәк"
-
-#: apps/pootle_misc/stats.py:307
-#, python-format
-msgid "%d word untranslated"
-msgid_plural "%d words untranslated"
-msgstr[0] "%d сүз тәрҗемә ителмәгән"
-
-#: apps/pootle_misc/stats.py:310
-#, python-format
-msgid "%d word needs review"
-msgid_plural "%d words need review"
-msgstr[0] "%d сүзне карап чыгу кирәк"
-
-#: apps/pootle_misc/templates/progressbar.html:3
-#, python-format
-msgid "%(percent)s%% complete"
-msgstr "%(percent)s%% тәмам"
-
-#. Translators: This is the name of a filter
-#: apps/pootle_misc/templates/search.html:5 core/helpers.py:59
-msgid "Search"
-msgstr "Эзләү"
-
-#: apps/pootle_misc/templatetags/render_pager.py:32
-msgid "First"
-msgstr "Беренче"
-
-#: apps/pootle_misc/templatetags/render_pager.py:34
-#: templates/editor/_toolbar.html:33
-msgid "Previous"
-msgstr "Моңарчыгы"
-
-#: apps/pootle_misc/templatetags/render_pager.py:50
-#: templates/editor/_toolbar.html:42
-msgid "Next"
-msgstr "Киләсе"
-
-#: apps/pootle_misc/templatetags/render_pager.py:52
-#, python-format
-msgid "Last (%d)"
-msgstr "Ахыргы (%d)"
-
-#: apps/pootle_notifications/forms.py:38
-msgid "Publish on news feed"
-msgstr "Яңалык тасмасында нәшер итү"
-
-#: apps/pootle_notifications/forms.py:41
-msgid "Send email"
-msgstr "Электрон почта хаты җибәрү"
-
-#: apps/pootle_notifications/forms.py:44
-msgid "Email only to recently active users"
-msgstr "Соңгы вакытта актив булган кулланучыларга гына хат җибәрү"
-
-#: apps/pootle_notifications/forms.py:52
-msgid "All Projects"
-msgstr "Барча проектлар"
-
-#: apps/pootle_notifications/forms.py:56
-msgid "Project Selection"
-msgstr "Проект сайлау"
-
-#: apps/pootle_notifications/forms.py:61
-msgid "Select one or more projects"
-msgstr "Бер йә берничә проектны сайлагыз"
-
-#: apps/pootle_notifications/forms.py:68
-msgid "All Languages"
-msgstr "Барча телләр"
-
-#: apps/pootle_notifications/forms.py:72
-msgid "Language Selection"
-msgstr "Тел сайлау"
-
-#: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
-msgid "Select one or more languages"
-msgstr "Бер яки берничә тел сайлагыз"
-
-#: apps/pootle_notifications/models.py:31
-msgid "Message"
-msgstr "Хәбәр"
-
-#. Translators: The date that the news item was written
-#: apps/pootle_notifications/models.py:33
-msgid "Added"
-msgstr "Өстәлде"
-
-#: apps/pootle_notifications/views.py:95
-#, python-format
-msgid "News for %(language)s"
-msgstr "%(language)s өчен хәбәрләр"
-
-#: apps/pootle_notifications/views.py:100
-#, python-format
-msgid "News for %(project)s"
-msgstr "%(project)s хәбәрләре"
-
-#: apps/pootle_notifications/views.py:106
-#, python-format
-msgid "News for the %(project)s project in %(language)s"
-msgstr "%(language)s телендәге %(project)s проекты хәбәрләре"
-
-#: apps/pootle_notifications/views.py:107
-#, python-format
-msgid "News for %(path)s"
-msgstr "%(path)s яңалыклары"
-
-#: apps/pootle_notifications/views.py:226
-msgid "View News Item"
-msgstr "Яңалыкларның берсен карау"
-
-#: apps/pootle_notifications/templates/latest_news_snippet.html:9
-#: apps/pootle_notifications/templates/notices.html:83
-msgid "No news yet."
-msgstr "Яңалыклар юк әле."
-
-#: apps/pootle_notifications/templates/notices.html:15
-#: templates/language_menu.html:5 templates/project_menu.html:5
-#: templates/tp_menu.html:5
-msgid "News"
-msgstr "Яңалыклар"
-
-#: apps/pootle_notifications/templates/notices.html:54
-msgid "Publish News"
-msgstr "Яңалыкларны нәшер итү"
-
-#: apps/pootle_notifications/templates/notices.html:57
-msgid "Successfully published the following news"
-msgstr "Түбәндәге яңалыклар уңышлы нәшер ителде"
-
-#: apps/pootle_notifications/templates/notices.html:70
-msgid "Publish"
-msgstr "Нәшер итү"
-
-#: apps/pootle_profile/forms.py:32
-msgid "Default"
-msgstr "Алдан килешенгән"
-
-#: apps/pootle_profile/forms.py:49 apps/pootle_profile/models.py:94
-msgid "Interface Language"
-msgstr "Интерфейс теле"
-
-#: apps/pootle_profile/forms.py:87
-msgid "This account is inactive."
-msgstr "Бу хисап язмасы актив түгел."
-
-#: apps/pootle_profile/models.py:81
-msgid "Number of Rows"
-msgstr "Рәтләр саны"
-
-#: apps/pootle_profile/models.py:98
-msgid "Alternative Source Languages"
-msgstr "Башка чыганак телләре"
-
-#: apps/pootle_project/models.py:58
-msgid ""
-"A short code for the project. This should only contain ASCII characters, "
-"numbers, and the underscore (_) character."
-msgstr ""
-"Проектны билгеләүче кыска код. Бу бары тик ASCII билгеләре, саннар һәм асты "
-"сызык буш урын (_) нан гына торырга тиеш."
-
-#: apps/pootle_project/models.py:68
-#, python-format
-msgid ""
-"A description of this project. This is useful to give more information or "
-"instructions. Allowed markup: %s"
-msgstr ""
-"Бу проектның тасвирламасы. Бу мәгълүмат яки инструкция бирер өчен файдалы. "
-"Монда %s билгеләү теле рөхсәт ителә"
-
-#: apps/pootle_project/models.py:79
-msgid "Quality Checks"
-msgstr "Сыйфатын тикшерү"
-
-#: apps/pootle_project/models.py:83
-msgid "File Type"
-msgstr "Файл төре"
-
-#: apps/pootle_project/models.py:87
-msgid "Automatic detection (slower)"
-msgstr "Автоматик ачыклау (әкренрәк)"
-
-#: apps/pootle_project/models.py:88
-msgid "GNU style: files named by language code"
-msgstr "GNU стиле: файллар тел коды белән аталган"
-
-#: apps/pootle_project/models.py:89
-msgid "Non-GNU: Each language in its own directory"
-msgstr "GNU түгел: Һәр тел үз папкасында"
-
-#: apps/pootle_project/models.py:93
-msgid "Project Tree Style"
-msgstr "Проект агачы стиле"
-
-#: apps/pootle_project/models.py:100
-msgid "Ignore Files"
-msgstr "Түбәндәге файлларны аласы түгел"
-
-#: apps/pootle_project/models.py:105
-msgid ""
-"A URL or an email address where issues with the source text can be reported."
-msgstr ""
-"Чыганак тексты проблемалары турында хәбәр итер өчен веб яки электрон почта "
-"адресы."
-
-#: apps/pootle_project/models.py:108
-msgid "Report Target"
-msgstr "Максат турында хәбәр җибәрү"
-
-#: apps/pootle_project/views.py:119
-#, python-format
-msgid "%(languages)d language, %(average)d%% translated"
-msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] "%(languages)d тел, %(average)d%% тәрҗемә ителгән"
-
-#: apps/pootle_project/views.py:377
-#: apps/pootle_translationproject/actions.py:209
-msgid "Update against templates"
-msgstr "Шаблоннарга карата яңарту"
-
-#: apps/pootle_project/templates/project/admin_permissions.html:20
-msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr "Түбәндә син бу проект өчен хокукларны өсти, үзгәртә, бетерә аласың."
-
-#: apps/pootle_project/templates/project/overview.html:19
-#: apps/pootle_translationproject/templates/translation_project/overview.html:25
-msgid "Show tags"
-msgstr "Тегларны күрсәтү"
-
-#: apps/pootle_project/templates/project/overview.html:22
-msgid "Show filtering"
-msgstr "Сөзгеч (фильтрлагыч)-ларны күрсәтү"
-
-#: apps/pootle_project/templates/project/overview.html:33
-msgid "Filter using one or more tags"
-msgstr "Теглар кулланып сөзү (фильтрлау)"
-
-#: apps/pootle_project/templates/project/overview.html:37
-msgctxt "verb"
-msgid "Filter"
-msgstr "Сөзгеч (Фильтр)"
-
-#: apps/pootle_project/templates/project/overview.html:38
-msgid "Filter using the selected tags"
-msgstr "Сайланган тегларны кулланып сөзү (фильтрлау)"
-
-#: apps/pootle_project/templates/project/overview.html:76
-#: apps/pootle_translationproject/templates/translation_project/overview.html:43
-#: apps/pootle_translationproject/templates/translation_project/overview.html:175
-#: templates/common/xhr_add_tag_form.html:15
-msgid "Add tag"
-msgstr "Тег өстәү"
-
-#: apps/pootle_project/templates/project/project_admin.html:7
-#: templates/project_menu.html:9
-msgid "Administrate"
-msgstr "Идарә итү"
-
-#: apps/pootle_project/templates/project/project_admin.html:20
-msgid "Here you can add, edit, or delete the languages for this project."
-msgstr "Монда сез бу проект өчен телләр өсти, үзгәртә, бетерә аласыз."
-
-#: apps/pootle_statistics/models.py:46
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:103
-msgid "Source"
-msgstr "Чыганак"
-
-#: apps/pootle_statistics/models.py:47
-msgid "Target"
-msgstr "Максат"
-
-#: apps/pootle_statistics/models.py:48
-msgid "State"
-msgstr "Халәте"
-
-#: apps/pootle_statistics/models.py:49
-msgid "Comment"
-msgstr "Комментарий"
-
-#: apps/pootle_statistics/models.py:114
-msgid "anonymous user"
-msgstr "Аталмаган кулланучы"
-
-#: apps/pootle_statistics/models.py:152
-#, python-format
-msgid ""
-"%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
-"%(user)s никлы кулланучы <i><a href=\"%(url)s\">%(source)s</a></i> билге "
-"тезентесе тәрҗемәсен кире кайтарды"
-
-#: apps/pootle_statistics/models.py:155
-#, python-format
-msgid ""
-"%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
-"%(user)s <i><a href=\"%(url)s\">%(source)s</a></i> билге тезентесе өчен "
-"тәрҗемә тәкъдимен кабул итте"
-
-#: apps/pootle_statistics/models.py:158
-#, python-format
-msgid "%(user)s uploaded a file"
-msgstr "%(user)s бер файл йөкләде"
-
-#: apps/pootle_statistics/models.py:173
-#, python-format
-msgid ""
-"%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
-"%(user)s никлы кулланучы <i><a href=\"%(url)s\">%(source)s</a></i> билге "
-"тезентесе өчен тәрҗемә тапшырды"
-
-#: apps/pootle_statistics/models.py:176
-#, python-format
-msgid ""
-"%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
-"\">%(source)s</a></i>"
-msgstr ""
-"%(user)s никлы кулланучы <i><a href=\"%(url)s\">%(source)s</a></i> билге "
-"тезентесе өчен \"эшләп бетерү кирәк\" тәрҗемә тапшырды"
-
-#: apps/pootle_statistics/models.py:179
-#, python-format
-msgid ""
-"%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
-msgstr ""
-"%(user)s никлы кулланучы <i><a href=\"%(url)s\">%(source)s</a></i> билге "
-"тезентесе тәрҗемәсен бетерде"
-
-#: apps/pootle_store/decorators.py:63
-msgid "Insufficient rights to access this directory."
-msgstr "Бу папкага керү өчен хокук җитми."
-
-#: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
-msgid "Arguments missing."
-msgstr "Параметрлары юк."
-
-#: apps/pootle_store/decorators.py:147
-msgid "File does not exist."
-msgstr "Файл юк."
-
-#: apps/pootle_store/filetypes.py:31
-msgid "Gettext PO"
-msgstr "Gettext PO-сы"
-
-#: apps/pootle_store/filetypes.py:35
-msgid "XLIFF"
-msgstr "XLIFF"
-
-#: apps/pootle_store/filetypes.py:41
-msgid "Qt ts"
-msgstr "Qt ts-ы"
-
-#: apps/pootle_store/filetypes.py:47
-msgid "TMX"
-msgstr "TMX"
-
-#: apps/pootle_store/filetypes.py:53
-msgid "TBX"
-msgstr "TBX"
-
-#: apps/pootle_store/filetypes.py:59
-msgid "Haiku catkeys"
-msgstr "Haiku catkeys"
-
-#: apps/pootle_store/filetypes.py:65
-msgid "Excel CSV"
-msgstr "Excel CSV"
-
-#: apps/pootle_store/filetypes.py:71
-msgid "Mozilla .lang"
-msgstr "Mozilla .lang"
-
-#: apps/pootle_store/filetypes.py:81 apps/pootle_store/filetypes.py:85
-msgid "Java Properties"
-msgstr "Java Properties"
-
-#: apps/pootle_store/filetypes.py:89
-msgid "Java Properties (UTF-8)"
-msgstr "Java Properties (UTF-8)"
-
-#. Translators: Don't translate "strings" unless you are sure these
-#. files have another name in your language
-#: apps/pootle_store/filetypes.py:98
-msgid "OS X Strings"
-msgstr "OS X Strings"
-
-#: apps/pootle_store/filetypes.py:104
-msgid "PHP arrays"
-msgstr "PHP массивлары"
-
-#: apps/pootle_store/filetypes.py:110
-msgid "Subtitles: srt"
-msgstr "srt субтитр форматы"
-
-#: apps/pootle_store/filetypes.py:112
-msgid "Subtitles: sub"
-msgstr "sub субтитр форматы"
-
-#: apps/pootle_store/filetypes.py:114
-msgid "Subtitles: ssa"
-msgstr "ssa субтитрлары"
-
-#: apps/pootle_store/filetypes.py:116
-msgid "Subtitles: ass"
-msgstr "ass субтитрлары"
-
-#: apps/pootle_store/forms.py:95
-#: apps/pootle_store/templatetags/store_tags.py:125
-#: apps/pootle_store/templatetags/store_tags.py:142
-#: apps/pootle_store/templatetags/store_tags.py:149
-#: apps/pootle_store/templatetags/store_tags.py:162
-#: apps/pootle_store/templatetags/store_tags.py:164
-#, python-format
-msgid "Plural Form %d"
-msgstr "%d-нче күплек саны"
-
-#: apps/pootle_store/forms.py:296
-msgid "Translator comment"
-msgstr "Тәрҗемәче комменты"
-
-#: apps/pootle_store/models.py:893
-msgid "Path"
-msgstr "Файл системасындагы адрес"
-
-#: apps/pootle_store/models.py:900
-#: apps/pootle_translationproject/models.py:121
-msgid "Tags"
-msgstr "Теглар"
-
-#: apps/pootle_store/models.py:901
-#: apps/pootle_translationproject/models.py:122
-msgid "A comma-separated list of tags."
-msgstr "Өтер белән аерылган теглар теземе."
-
-#: apps/pootle_store/models.py:902
-#: apps/pootle_translationproject/models.py:126
-#: apps/pootle_translationproject/templates/translation_project/overview.html:69
-msgid "Goals"
-msgstr "Эшлисе эшләр"
-
-#: apps/pootle_store/models.py:904
-#: apps/pootle_translationproject/models.py:128
-msgid "A comma-separated list of goals."
-msgstr "Өтер белән аерылган эшлисе эшләр исемлеге."
-
-#: apps/pootle_store/util.py:45
-msgid "Obsolete"
-msgstr "Искергән"
-
-#: apps/pootle_store/views.py:705
-msgid "Comment submission failed."
-msgstr "Комментарий өстәү барып чыкмады."
-
-#: apps/pootle_store/views.py:832 apps/pootle_store/views.py:898
-msgid "You do not have rights to access translation mode."
-msgstr "Синең тәрҗемә режимына күчергә хокугың юк."
-
-#: apps/pootle_store/views.py:880
-msgid "Failed to process submission."
-msgstr "Кертемне эшкәртү барып чыкмады."
-
-#: apps/pootle_store/views.py:930
-msgid "Failed to process suggestion."
-msgstr "Тәкъдимне эшкәртү барып чыкмады."
-
-#: apps/pootle_store/views.py:952
-msgid "You do not have rights to access review mode."
-msgstr "Синең тикшереп чыгу режимына керергә хокугың юк."
-
-#: apps/pootle_store/views.py:1067
-msgid "The suggestion or vote is not valid any more."
-msgstr "Ул тәкъдим яки тавыш моннан соң исәпләнми."
-
-#: apps/pootle_store/views.py:1096
-msgid "You do not have rights to remove tags."
-msgstr "Синең тегларны бетерергә хокукың юк."
-
-#: apps/pootle_store/views.py:1132
-msgid "You do not have rights to add tags."
-msgstr "Синең теглар өстәргә хокукың юк."
-
-#: apps/pootle_store/templates/unit/comment.html:12
-msgid "Comment:"
-msgstr "Комментарий:"
-
-#: apps/pootle_store/templates/unit/edit.html:15
-#, python-format
-msgid "String %(id)s"
-msgstr "%(id)s-нче билге тезентесе"
-
-#: apps/pootle_store/templates/unit/edit.html:22
-msgid "Context:"
-msgstr "Янындагы сүзләр:"
-
-#: apps/pootle_store/templates/unit/edit.html:32
-msgid "Comments:"
-msgstr "Комментлар:"
-
-#: apps/pootle_store/templates/unit/edit.html:47
-msgid "Locations:"
-msgstr "Урыннар:"
-
-#: apps/pootle_store/templates/unit/edit.html:56
-msgid "Terminology:"
-msgstr "Терминнар:"
-
-#: apps/pootle_store/templates/unit/edit.html:58
-msgid "Insert the translated term into the editor"
-msgstr "Термин тәрҗемәсен төзәткечкә кертү"
-
-#: apps/pootle_store/templates/unit/edit.html:71
-msgid "Possible issues with the translation"
-msgstr "Тәрҗемәдә мөмкин булган мәсьәләләр"
-
-#: apps/pootle_store/templates/unit/edit.html:71
-msgid "Failing checks:"
-msgstr "Хата тапкан тикшерүләр:"
-
-#: apps/pootle_store/templates/unit/edit.html:77
-msgid "Remove quality check"
-msgstr "Сыйфатын тикшерүне бетерү"
-
-#: apps/pootle_store/templates/unit/edit.html:100
-#: apps/pootle_store/templates/unit/edit.html:121
-msgid "Copy into translation"
-msgstr "Тәрҗемәгә копияләү"
-
-#: apps/pootle_store/templates/unit/edit.html:119
-msgid "Report a problem with the source string"
-msgstr "Чыганак билге тезентесендәге хата турында хәбәр бирү"
-
-#: apps/pootle_store/templates/unit/edit.html:136
-#: apps/pootle_store/templates/unit/edit.html:146
-#: apps/pootle_store/templates/unit/edit.html:232
-msgid "Submit"
-msgstr "Тапшыру"
-
-#: apps/pootle_store/templates/unit/edit.html:136
-msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr "Тәрҗемәне тапшырып киләсе билге тезентесенә күчү (Ctrl+Enter)"
-
-#: apps/pootle_store/templates/unit/edit.html:139
-#: apps/pootle_store/templates/unit/edit.html:147
-msgid "Suggest"
-msgstr "Тәкъдим итү"
-
-#: apps/pootle_store/templates/unit/edit.html:139
-msgid "Suggest translation and go to the next string (Ctrl+Enter)"
-msgstr "Тәрҗемә тәкъдим итеп киләсе билге тезентесенә күчү (Ctrl+Enter)"
-
-#: apps/pootle_store/templates/unit/edit.html:146
-msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr "Тәрҗемә итү режимына күчү (Ctrl+Shift+Space)"
-
-#: apps/pootle_store/templates/unit/edit.html:147
-msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr "Тәкъдим итү режимына күчү (Ctrl+Shift+Space)"
-
-#: apps/pootle_store/templates/unit/edit.html:150
-msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr "Бу билге тезентесе белән эшлисе бар дип билгеләү (Ctrl+Space)"
-
-#: apps/pootle_store/templates/unit/edit.html:171
-#, python-format
-msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr "<a href=\"%(profile_url)s\">%(reviewer)s</a> тикшереп чыкты"
-
-#: apps/pootle_store/templates/unit/edit.html:181
-msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr "RLM (уңнан сулга язу билгесе) урнаштыру"
-
-#: apps/pootle_store/templates/unit/edit.html:184
-msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr "Төзәткечкә LRM (Сулдан уңга агым билгесе)-не кертү"
-
-#: apps/pootle_store/templates/unit/edit.html:187
-msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr "Төзәткечкә RLE (Уңнан сулга юнәлгән язу беркетү билгесе)-не кертү"
-
-#: apps/pootle_store/templates/unit/edit.html:190
-msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr "Төзәткечкә LRE (Сулдан уңга юнәлгән язу беркетү билгесе)-не кертү"
-
-#: apps/pootle_store/templates/unit/edit.html:193
-msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr "Төзәткечкә RLO (Уңнан сулга яздыру билгесе)-не кертү"
-
-#: apps/pootle_store/templates/unit/edit.html:196
-msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr "Төзәткечкә LRO (Сулдан уңга яздыру билгесе)-не кертү"
-
-#: apps/pootle_store/templates/unit/edit.html:199
-msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr "Төзәткечкә PDF (Элекке юнәлешне кайтару билгесе)-не кертү"
-
-#: apps/pootle_store/templates/unit/edit.html:202
-msgid "Insert ZWJ (Zero Width Joiner) into the editor"
-msgstr "Төзәткечкә ZWJ (Ноль киңлекле кушкыч билгесе)-не кертү"
-
-#: apps/pootle_store/templates/unit/edit.html:205
-msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
-msgstr "Төзәткечкә ZWNJ (Ноль киңлекле кушмаучы билгесе)-не кертү"
-
-#: apps/pootle_store/templates/unit/edit.html:211
-msgid "Insert this symbol into the editor"
-msgstr "Бу билгене төзәткечкә кертү"
-
-#: apps/pootle_store/templates/unit/edit.html:223
-msgid "Add Comment"
-msgstr "Коммент өстәү"
-
-#: apps/pootle_store/templates/unit/edit.html:225
-msgid "Show Timeline"
-msgstr "Вакыт турысын күрсәтү"
-
-#: apps/pootle_store/templates/unit/edit.html:226
-msgid "Hide Timeline"
-msgstr "Вакыт турысын яшерү"
-
-#: apps/pootle_store/templates/unit/edit.html:248
-msgid "User suggestions"
-msgstr "Кулланучыларның тәкъдимнәре"
-
-#: apps/pootle_store/templates/unit/edit.html:266
-msgid "Accept suggestion"
-msgstr "Тәкъдимне кабул итү"
-
-#: apps/pootle_store/templates/unit/edit.html:271
-msgid "Reject suggestion"
-msgstr "Тәкъдимне кире кагу"
-
-#: apps/pootle_store/templates/unit/edit.html:278
-msgid "Remove suggestion"
-msgstr "Тәкъдимне бетерү"
-
-#: apps/pootle_store/templates/unit/term_edit.html:21
-msgid "Your current vote. Click to remove this vote."
-msgstr "Синең хәзерге тавышың. Аны бетерәсең килсә, чирт."
-
-#: apps/pootle_store/templates/unit/term_edit.html:33
-msgid "Vote for this suggestion"
-msgstr "Бу тәкъдим өчен тавыш бирү"
-
-#: apps/pootle_store/templates/unit/term_edit.html:40
-msgid "Comment: "
-msgstr "Комментарий: "
-
-#: apps/pootle_store/templates/unit/timeline.html:4
-#: apps/pootle_store/templates/unit/timeline.html:14
-msgid "Previous Work"
-msgstr "Моңарчыгы эш"
-
-#: apps/pootle_store/templates/unit/xhr-timeline.html:3
-msgid "Timeline"
-msgstr "Вакыт турысы"
-
-#: apps/pootle_store/templates/unit/xhr-timeline.html:27
-msgid "No results."
-msgstr "Бер табыш та юк."
-
-#: apps/pootle_store/templatetags/store_tags.py:119
-#: apps/pootle_store/templatetags/store_tags.py:121
-msgid "Singular"
-msgstr "Берлек сандагы"
-
-#: apps/pootle_store/templatetags/store_tags.py:119
-#: apps/pootle_store/templatetags/store_tags.py:121
-msgid "Plural"
-msgstr "Күплек сандагы"
-
-#: apps/pootle_tagging/forms.py:47
-msgid ""
-"Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
-"underscores (_), slashes (/) or periods (.)!"
-msgstr ""
-"Тег исемнәрендә баштагы я ахырдагы буш урыннар, ике нокта (:), сызык (-), "
-"асты сызык буш урын (_), авыш сызык (/), нокта (.) була алмый!"
-
-#: apps/pootle_tagging/forms.py:53
-msgid ""
-"Tag names cannot contain two or more consecutive: spaces, colons (:), "
-"hyphens (-), underscores (_), slashes (/) or periods (.)!"
-msgstr ""
-"Тег исемнәрендә янәшә ике йә күбрәк буш урын, ике нокта (:), сызык (-), асты "
-"сызык буш урын (_), авыш сызык (/), нокта (.) була алмый!"
-
-#: apps/pootle_tagging/forms.py:60
-msgid ""
-"Tag names must be an alphanumeric lowercase string with no trailing nor "
-"leading (but yes on the middle): spaces, colons (:), hyphens (-), "
-"underscores (_), slashes (/) or periods (.)!"
-msgstr ""
-"Тег исемнәре кечкенә латин хәрефләре белән цифрлардан торырга тиеш һәм "
-"башында һәм ахырында буш урын, ике нокта (:), сызык (-), асты сызык буш урын "
-"(_), авыш сызык (/), нокта (.) була алмый (әмма уртасында була ала)!"
-
-#: apps/pootle_tagging/forms.py:74
-msgid ""
-"Name cannot contain just after 'goal:' any of these characters: spaces, "
-"colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
-msgstr ""
-"Исемдә \"эшлисе эш:\"-тән соң ук буш урын, ике нокта (:), сызык (-), асты "
-"сызык буш урын (_), авыш сызык (/), нокта (.) була алмый"
-
-#: apps/pootle_tagging/forms.py:133
-msgid "A goal with that name already exists. Please pick another name."
-msgstr "Ул исемле эшлисе эш бар инде. Башка исем сайласаң иде."
-
-#: apps/pootle_tagging/forms.py:173
-msgid ""
-"Tag slugs must be equal to the tag name, but replacing with a hyphen the "
-"single or multiple occurrences of the following characters: spaces, colons "
-"(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
-msgstr ""
-"Тег адреслары тег исеменә тигез булырга тиеш, әмма бер йә берничә буш урын, "
-"ике нокта (:), сызык (-), асты сызык буш урын (_), авыш сызык (/), нокта (.) "
-"билгеләрен сызык белән алыштырасы."
-
-#: apps/pootle_tagging/forms.py:180
-msgid "A goal with this slug already exists."
-msgstr "Бу адреслы бер эшлисе эш бар инде."
-
-#: apps/pootle_tagging/forms.py:194
-msgid ""
-"Warning: Changing the name also changes the slug, so it won't be possible to "
-"view this goal on this page!"
-msgstr ""
-"Кисәтү: Исемне үзгәртү белән адрес та үзгәрә, шуңа күрә бу эшлисе эшне бу "
-"адреста күреп булмаячак!"
-
-#: apps/pootle_tagging/models.py:66
-#, python-format
-msgid ""
-"A description of this goal. This is useful to give more information or "
-"instructions. Allowed markup: %s"
-msgstr ""
-"Бу эшлисе эшнең тасвирламасы. Бу мәгълүмат яки инструкция бирер өчен "
-"файдалы. Монда %s билгеләү теле рөхсәт ителә"
-
-#: apps/pootle_tagging/models.py:74
-msgid "The priority for this goal."
-msgstr "Бу эшлисе эшнең алдынгылыгы."
-
-#: apps/pootle_tagging/models.py:79
-msgid ""
-"Designates that this is a project goal (shared across all languages in the "
-"project)."
-msgstr ""
-"Моның проекттагы эшлисе эш (бу проектның барча телләре өчен уртак) булуын "
-"күрсәтү."
-
-#: apps/pootle_tagging/models.py:81
-msgid "Project goal?"
-msgstr "Проект дәрәҗәсендәге эшлисе эшме?"
-
-#: apps/pootle_tagging/models.py:105
-msgid "(Project goal)"
-msgstr "(Проекттагы эшлисе эш)"
-
-#: apps/pootle_terminology/views.py:171
-msgid "This term already exists in this file."
-msgstr "Бу термин бу файлда бар инде."
-
-#: apps/pootle_terminology/templates/terminology/extract.html:6
-msgid "Regenerate Glossary"
-msgstr "Термин сүзлеген яңарту"
-
-#: apps/pootle_terminology/templates/terminology/extract.html:7
-msgid ""
-"Are you sure you want to regenerate the glossary? Any existing terms and "
-"their translations will be deleted."
-msgstr ""
-"Термин сүзлеген яңартасымы? Ризалашсагыз, булган барча терминнар да, аларның "
-"тәрҗемәләре дә бетереләчәк."
-
-#: apps/pootle_terminology/templates/terminology/extract.html:11
-msgid "Extract"
-msgstr "Чыгару"
-
-#: apps/pootle_terminology/templates/terminology/manage.html:22
-msgid "You can regenerate the glossary from scratch."
-msgstr "Сез сүзлекне буштан башлап яңадан төзетә аласыз."
-
-#: apps/pootle_terminology/templates/terminology/manage.html:35
-msgid "Term"
-msgstr "Термин"
-
-#: apps/pootle_terminology/templates/terminology/manage.html:36
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:104
-msgid "Translation"
-msgstr "Тәрҗемәсе"
-
-#: apps/pootle_terminology/templates/terminology/manage.html:37
-#: apps/staticpages/templates/staticpages/admin/_form.html:7
+#: templates/admin/reports/user_rates_form.html:31
+#: templates/admin/staticpages/_form.html:24
+#: templates/profiles/settings/personal.html:21
+#: templates/profiles/settings/profile.html:25
+msgid "Save"
+msgstr "Саклау"
+
+#: templates/admin/staticpages/_form.html:6
+#: templates/translation_projects/terminology/manage.html:38
 msgid "Delete"
 msgstr "Бетерү"
 
-#: apps/pootle_terminology/templates/terminology/manage.html:61
-msgid "Glossary is Empty"
-msgstr "Сүзлек буш"
-
-#: apps/pootle_terminology/templates/terminology/manage.html:62
-msgid "Generate Glossary"
-msgstr "Сүзлек төзетү"
-
-#: apps/pootle_terminology/templates/terminology/stores.html:7
-msgid "Here you can manage the terms in the terminology files."
-msgstr "Монда син термин файлларындагы терминнар белән идарә итә аласың."
-
-#: apps/pootle_terminology/templates/terminology/stores.html:14
-#: apps/pootle_translationproject/forms.py:63
-msgid "File"
-msgstr "Файл"
-
-#: apps/pootle_terminology/templates/terminology/stores.html:29
-msgid "Once you upload files, you will be able to add, edit and delete terms."
-msgstr "Файллар йөкләгәч сез аларны өсти, үзгәртә, бетерә алырсыз."
-
-#: apps/pootle_terminology/templates/terminology/term_edit.html:11
-msgid "Description..."
-msgstr "Тасвирлама..."
-
-#: apps/pootle_terminology/templates/terminology/term_edit.html:18
-msgid "Details..."
-msgstr "Җентеклерәк..."
-
-#: apps/pootle_terminology/templates/terminology/term_edit.html:31
-msgid "Translator Comments"
-msgstr "Тәрҗемәче комментарие"
-
-#: apps/pootle_translationproject/actions.py:61
-msgid "Download (.zip)"
-msgstr "Алу (.zip)"
-
-#: apps/pootle_translationproject/actions.py:75
-#: apps/pootle_translationproject/actions.py:100
-msgid "Download XLIFF"
-msgstr "XLIFF итеп алу"
-
-#: apps/pootle_translationproject/actions.py:76
-msgid "Download file in XLIFF format"
-msgstr "Файлны XLIFF форматында алу"
-
-#: apps/pootle_translationproject/actions.py:79
-msgid "Export"
-msgstr "Чыгару"
-
-#: apps/pootle_translationproject/actions.py:80
-msgid "Export translations"
-msgstr "Тәрҗемәләрне чыгару"
-
-#: apps/pootle_translationproject/actions.py:82
-msgid "Download"
-msgstr "Алу"
-
-#: apps/pootle_translationproject/actions.py:83
-msgid "Download file"
-msgstr "Файлны алу"
-
-#: apps/pootle_translationproject/actions.py:101
-msgid "Download XLIFF file for offline translation"
-msgstr "Интернетсыз тәрҗемәләү өчен XLIFF файлын алу"
-
-#: apps/pootle_translationproject/actions.py:116
-#: apps/pootle_translationproject/templates/translation_project/overview.html:167
-msgid "Upload"
-msgstr "Йөкләү"
-
-#: apps/pootle_translationproject/actions.py:117
-msgid "Upload translation files or archives in .zip format"
-msgstr "Тәрҗемә файллары яки .zip форматлы архивлар йөкләгез"
-
-#: apps/pootle_translationproject/actions.py:135
-msgid "Update from VCS"
-msgstr "VCS-тан яңарту"
-
-#: apps/pootle_translationproject/actions.py:150
-msgid "Commit to VCS"
-msgstr "VCS-ка кертү"
-
-#. Translators: "all" here refers to all files and sub directories in a directory/project.
-#: apps/pootle_translationproject/actions.py:166
-msgid "Update all from VCS"
-msgstr "VCS-тан барчасын яңарту"
-
-#. Translators: "all" here refers to all files and sub directories in a directory/project.
-#: apps/pootle_translationproject/actions.py:182
-msgid "Commit all to VCS"
-msgstr "VCS-ка барчасын кертү"
-
-#: apps/pootle_translationproject/actions.py:195
-msgid "Rescan project files"
-msgstr "Проект файлларын яңадан уку"
-
-#: apps/pootle_translationproject/actions.py:226
-msgid "Delete this folder..."
-msgstr "Бу папканы бетерү..."
-
-#: apps/pootle_translationproject/actions.py:228
-msgid "Delete this file..."
-msgstr "Бу файлны бетерү..."
-
-#: apps/pootle_translationproject/actions.py:262
-msgid "Translate offline"
-msgstr "Интернетсыз тәрҗемә итү"
-
-#: apps/pootle_translationproject/actions.py:265
-msgid "Manage"
-msgstr "Идарә итү"
-
-#: apps/pootle_translationproject/forms.py:40
-msgid "Overwrite the current file if it exists"
-msgstr "Эш барышындагы файлның, ул инде булса, өстенә яздыру"
-
-#: apps/pootle_translationproject/forms.py:43
-msgid ""
-"Merge the file with the current file and turn conflicts into suggestions"
-msgstr "Бу файлны эштәге файл белән кушу, каршылыкларны тәкъдимнәргә әйләндерү"
-
-#: apps/pootle_translationproject/forms.py:46
-msgid "Add all new translations as suggestions"
-msgstr "Барча яңа тәрҗемәләрне тәкъдим итеп өстәү"
-
-#: apps/pootle_translationproject/forms.py:73
-#: apps/pootle_translationproject/forms.py:81
-msgid "Upload to"
-msgstr "Бу урынга йөкләү:"
-
-#: apps/pootle_translationproject/forms.py:76
-#: apps/pootle_translationproject/forms.py:85
-msgid ""
-"Optionally select the file you want to merge with. If not specified, the "
-"uploaded file's name is used."
-msgstr ""
-"Кушыр өчен файлны күрсәтү мөмкин. Ул күрсәтелмәсә, йөкләнүче файлның исеме "
-"кулланылачак."
-
-#: apps/pootle_translationproject/models.py:103
-#, python-format
-msgid ""
-"A description of this translation project. This is useful to give more "
-"information or instructions. Allowed markup: %s"
-msgstr ""
-"Бу тәрҗемәләү проектының тасвирламасы. Бу мәгълүмат яки инструкция бирер "
-"өчен файдалы. Монда %s билгеләү теле рөхсәт ителә"
-
-#: apps/pootle_translationproject/models.py:589
-#, python-format
-msgid "Failed to update from version control: %(error)s"
-msgstr "Версияләрне контрольләү истемасыннан алганда хата чыкты: %(error)s"
-
-#: apps/pootle_translationproject/models.py:659
-#, python-format
-msgid "Updated project <em>%(project)s</em> from version control"
-msgstr ""
-"<em>%(project)s</em> проекты версияләрне контрольләү системасыннан яңартылды"
-
-#: apps/pootle_translationproject/models.py:661
-#: apps/pootle_translationproject/models.py:683
-msgid "Working copy"
-msgstr "Бу сайттагы версия"
-
-#: apps/pootle_translationproject/models.py:662
-#: apps/pootle_translationproject/models.py:684
-msgid "Remote copy"
-msgstr "Версияләр контрольләү системасындагы версия"
-
-#: apps/pootle_translationproject/models.py:663
-#: apps/pootle_translationproject/models.py:685
-msgid "Merged copy"
-msgstr "Берләштереп ясалган версия"
-
-#: apps/pootle_translationproject/models.py:681
-#, python-format
-msgid "Updated file <em>%(filename)s</em> from version control"
-msgstr ""
-"Версияләрне контрольләү системасыннан яңартылган <em>%(filename)s</em> файлы"
-
-#: apps/pootle_translationproject/models.py:695
-#, python-format
-msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
-msgstr ""
-"<em>%(filename)s</em>-ны версияләрне контрольләү системасыннан яңарту барып "
-"чыкмады: %(error)s"
-
-#: apps/pootle_translationproject/models.py:751
-#, python-format
-msgid "Committed all files under <em>%(path)s</em> to version control"
-msgstr ""
-"<em>%(path)s</em> эчендәге барча файлларны версияләрне контрольләү "
-"системасына керттек"
-
-#: apps/pootle_translationproject/models.py:759
-#, python-format
-msgid "Failed to commit to version control: %(error)s"
-msgstr "Версияләрне контрольләү системасына кертү барып чыкмады: %(error)s"
-
-#: apps/pootle_translationproject/models.py:818
-#, python-format
-msgid "Committed file <em>%(filename)s</em> to version control"
-msgstr ""
-"<em>%(filename)s</em> файлын версияләрне контрольләү системасына керттек"
-
-#: apps/pootle_translationproject/models.py:830
-#, python-format
-msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
-msgstr ""
-"<em>%(filename)s</em> файлын версияләрне контрольләү системасына кертү барып "
-"чыкмады: %(error)s"
-
-#: apps/pootle_translationproject/views.py:100
-msgid "Translation project files have been rescanned."
-msgstr "Тәрҗемә проекты файллары яңадан укылды."
-
-#: apps/pootle_translationproject/views.py:105
-msgid "Error while rescanning translation project files."
-msgstr "Тәрҗемә проекты файлларын яңадан укыганда хата чыкты."
-
-#: apps/pootle_translationproject/views.py:120
-msgid "Translation project has been updated against latest templates."
-msgstr "Тәрҗемә проекты иң соңгы шаблоннарга карата яңартылды."
-
-#: apps/pootle_translationproject/views.py:125
-msgid "Error while updating translation project against latest templates."
-msgstr "Тәрҗемә проектын соңгы шаблоннардан яңартканда хата чыкты."
-
-#: apps/pootle_translationproject/views.py:190
-msgid "Symbolic link hasn't been removed from the filesystem."
-msgstr "Символик сылтама файл системасыннан бетерелмәде."
-
-#: apps/pootle_translationproject/views.py:194
-msgid "Directory and its containing files have been deleted."
-msgstr "Папка, эчендәге файллары белән, бетерелде."
-
-#: apps/pootle_translationproject/views.py:197
-msgid "File has been deleted."
-msgstr "Файл бетерелде."
-
-#: apps/pootle_translationproject/views.py:201
-msgid "Error while trying to delete directory."
-msgstr "Папканы бетермәкче булганда хата чыкты."
-
-#: apps/pootle_translationproject/views.py:204
-msgid "Error while trying to delete file."
-msgstr "Файл бетермәкче булганда хата чыкты."
-
-#: apps/pootle_translationproject/views.py:373
-#, python-format
-msgid "Unable to find '%(action)s' in '%(extdir)s'"
-msgstr "'%(extdir)s' эчендә '%(action)s'-ны табып булмый"
-
-#: apps/pootle_translationproject/views.py:400
-#, python-format
-msgid "Error while running '%s' extension action"
-msgstr "'%s' өстәмәсе гамәлен эшләгәндә хата чыкты"
-
-#: apps/pootle_translationproject/views.py:820
-#, python-format
-msgid "Invalid/insecure file name: %s"
-msgstr "%s дигән файл исеме дөрес түгел яки куркынычлы"
-
-#: apps/pootle_translationproject/views.py:835
-#, python-format
-msgid ""
-"Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
-"%(filetype)s'."
-msgstr ""
-"GNU-стилендә дөрес булмаган файл исеме: %(local_filename)s. Ул "
-"'%(langcode)s.%(filetype)s'-га туры килергә тиеш."
-
-#: apps/pootle_translationproject/views.py:858
-msgid "Error while extracting archive"
-msgstr "Архивтан чыгарганда хата чыкты"
-
-#: apps/pootle_translationproject/views.py:1041
-msgid "You do not have rights to overwrite files here."
-msgstr "Синең монда файлларның өстенә яздыру хокукың юк."
-
-#: apps/pootle_translationproject/views.py:1045
-msgid "You do not have rights to upload new files here."
-msgstr "Синең монда яңа файллар йөкләү хокукың юк."
-
-#: apps/pootle_translationproject/views.py:1049
-#: apps/pootle_translationproject/views.py:1053
-msgid "You do not have rights to upload files here."
-msgstr "Синең монда файл йөкләү хокукың юк."
-
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:11
-msgid ""
-"Below you can add, edit, and delete the permissions for this translation "
-"project."
-msgstr ""
-"Түбәндә син бу тәрҗемә проекты өчен хокукларны өсти, үзгәртә, бетерә аласың."
-
-#. Translators: A view showing the export of strings in a flat form.
-#. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:7
-msgid "Export View"
-msgstr "Күренешне чыгару"
-
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:99
-msgid "Goal"
-msgstr "Эшлисе эш"
-
-#: apps/pootle_translationproject/templates/translation_project/export_view.html:141
-msgid "No strings."
-msgstr "Бер билге тезентесе дә юк."
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:61
-msgid "Translation project files and folders"
-msgstr "Тәрҗемә проекты файл һәм папкалары"
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:68
-msgid "Administrate your project goals"
-msgstr "Проектыгыздагы эшлисе эшләр белән идарә итү"
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:84
-msgid "Actions"
-msgstr "Гамәлләр"
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:137
-#, python-format
-msgid "%(project)s project information"
-msgstr "%(project)s проекты мәгълүматы"
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:144
-#, python-format
-msgid "%(language)s language information"
-msgstr "%(language)s теле мәгълүматы"
-
-#: apps/pootle_translationproject/templates/translation_project/overview.html:156
-msgid "Upload File"
-msgstr "Файл йөкләү"
-
-#: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
-msgid "Translation Statistics"
-msgstr "Тәрҗемә статистикасы"
-
-#: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
-msgid "Failing Checks"
-msgstr "Хата табучы тикшерүләр"
-
-#: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:44
-msgid "Nothing to show"
-msgstr "Күрсәтергә бер ни дә юк"
-
-#: apps/registration/forms.py:36
-msgid "username"
-msgstr "кулланучы исеме"
-
-#: apps/registration/forms.py:39
-msgid "email address"
-msgstr "электрон почта адресы"
-
-#: apps/registration/forms.py:41
-msgid "password"
-msgstr "серсүз"
-
-#: apps/registration/forms.py:43
-msgid "password (again)"
-msgstr "серсүз (шуны ук тагын)"
-
-#: apps/registration/forms.py:55
-msgid "This username is already taken. Please choose another."
-msgstr "Бу кулланучы исеме алынган инде. Зинһар, башканы сайлагыз."
-
-#: apps/registration/forms.py:67
-msgid "You must type the same password each time"
-msgstr "Син икесендә дә бер үк серсүзне язарга тиеш."
-
-#: apps/registration/forms.py:90
-msgid "I have read and agree to the Terms of Service"
-msgstr "Мин Хезмәт күрсәтү шартларын укып чыктым һәм аңа риза"
-
-#: apps/registration/forms.py:107
-msgid ""
-"This email address is already in use. Please supply a different email "
-"address."
-msgstr "Бу электрон почта адресы кулланыла инде. Зинһар, башкасын кертегез."
-
-#: apps/registration/forms.py:133
-msgid ""
-"Registration using free email addresses is prohibited. Please supply a "
-"different email address."
-msgstr ""
-"Бушлай электрон почта адреслары белән теркәлү тыелган. Зинһар, башкасын "
-"кертегез."
-
-#: apps/registration/models.py:231
-msgid "user"
-msgstr "кулланучы"
-
-#: apps/registration/models.py:232
-msgid "activation key"
-msgstr "активлаштыргыч код"
-
-#: apps/registration/models.py:237
-msgid "registration profile"
-msgstr "теркәлү профиле"
-
-#: apps/registration/models.py:238
-msgid "registration profiles"
-msgstr "теркәлү профилләре"
-
-#: apps/staticpages/forms.py:78
-#, python-format
-msgid ""
-"I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
-"a>"
-msgstr ""
-"<a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>-ны укыдым һәм кабул "
-"иттем"
-
-#: apps/staticpages/models.py:37
-#: apps/staticpages/templates/staticpages/admin/_table.html:7
-msgid "Active"
-msgstr "Актив"
-
-#: apps/staticpages/models.py:38
-msgid "Whether this page is active or not."
-msgstr "Бу битнең актив булу-булмавы."
-
-#: apps/staticpages/models.py:40
-#: apps/staticpages/templates/staticpages/admin/_table.html:9
-msgid "Virtual Path"
-msgstr "Виртуаль {файл адресы}"
-
-#. Translators: Content that will be used to display this static page
-#: apps/staticpages/models.py:47
-msgid "Display Content"
-msgstr "Эчтәлеген күрсәтү"
-
-#: apps/staticpages/models.py:48
-#, python-format
-msgid "Allowed markup: %s"
-msgstr "Рөхсәт ителгән билгеләү теле: %s"
-
-#: apps/staticpages/models.py:50
-#: apps/staticpages/templates/staticpages/admin/_table.html:10
-msgid "Redirect to URL"
-msgstr "Веб адресына күчерү"
-
-#: apps/staticpages/models.py:51
-msgid "If set, any references to this page will redirect to this URL"
-msgstr "Куелса, бу биткә булган һәртөрле сылтамалар шул веб адресына күчерер"
-
-#. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:98
-msgid "URL or content must be provided."
-msgstr "Веб адресы яки эчтәлек кертү кирәк."
-
-#: apps/staticpages/models.py:106
-msgid "Virtual path already in use."
-msgstr "Виртуаль юл (файл адресы) кулланылышта инде."
-
-#: apps/staticpages/models.py:111
-msgid "Legal Page"
-msgstr "Юридик бит"
-
-#: apps/staticpages/models.py:122
-msgid "Regular Page"
-msgstr "Гади бит"
-
-#: apps/staticpages/views.py:87
-msgid "Page Title"
-msgstr "Бит башлыгы"
-
-#: apps/staticpages/views.py:88
-#, python-format
-msgid "page-%d"
-msgstr "%d-нче-бит"
-
-#: apps/staticpages/views.py:130
-#, python-format
-msgid ""
-"This page is inactive and visible to administrators only. You can activate "
-"it by <a href=\"%s\">editing its properties</a>"
-msgstr ""
-"Бу бит актив түгел һәм админнарга гына күренә. Син аны <a href=\"%s\">"
-"үзлекләрен үзгәртеп</a> активлаштыра аласың"
-
-#: apps/staticpages/templates/staticpages/agreement.html:4
-msgid "Action Required"
-msgstr "Гамәл кирәк"
-
-#: apps/staticpages/templates/staticpages/agreement.html:5
-msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
-"Дәвам иткәнгә хәтле, син түбәндәге документларны укырга һәм кабул итергә "
-"тиеш."
-
-#: apps/staticpages/templates/staticpages/agreement.html:18
-msgid "No thanks. Log out"
-msgstr "Юк, рәхмәт. Чыгу"
-
-#: apps/staticpages/templates/staticpages/agreement.html:21
-msgid "Continue"
-msgstr "Дәвам итү"
-
-#: apps/staticpages/templates/staticpages/base.html:5
-#: apps/staticpages/templates/staticpages/base.html:11
-#: templates/admin_profile_menu.html:9
-msgid "Static Pages"
-msgstr "Гел үзгәреп тормый торган битләр"
-
-#. Translators: Displayed as 'Redirect to URL or Display Content'
-#: apps/staticpages/templates/staticpages/admin/_form.html:19
+#: templates/admin/staticpages/_form.html:18
 msgid "or"
 msgstr "яки"
 
-#: apps/staticpages/templates/staticpages/admin/_table.html:8
-msgid "Page"
-msgstr "Бит"
+#: templates/admin/staticpages/_form.html:30
+msgid ""
+"\n"
+"Use <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/a&gt;"
+"</code> code to provide links between static pages. Such links will be "
+"rewritten with full paths to static pages.\n"
+msgstr ""
 
-#: apps/staticpages/templates/staticpages/admin/_table.html:11
+#: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
 msgstr "Соңгы үзгәртелгән вакыты"
 
-#: apps/staticpages/templates/staticpages/admin/_table.html:17
+#: templates/admin/staticpages/_table.html:16
 msgid "Yes"
 msgstr "Әйе"
 
-#: apps/staticpages/templates/staticpages/admin/_table.html:17
+#: templates/admin/staticpages/_table.html:16
 msgid "No"
 msgstr "Юк"
 
-#: apps/staticpages/templates/staticpages/admin/_table.html:30
+#: templates/admin/staticpages/_table.html:19
+#, fuzzy
+msgid "edit"
+msgstr "Үзгәртү"
+
+#: templates/admin/staticpages/_table.html:24
+msgid "view"
+msgstr ""
+
+#: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
 msgstr "Бер бит тә юк."
 
-#: apps/staticpages/templates/staticpages/admin/page_list.html:8
+#: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
 msgstr "Юридик битләр"
 
-#: apps/staticpages/templates/staticpages/admin/page_list.html:12
+#: templates/admin/staticpages/page_list.html:11
 msgid "Add Legal Page"
 msgstr "Юридик бит өстәү"
 
-#: apps/staticpages/templates/staticpages/admin/page_list.html:15
+#: templates/admin/staticpages/page_list.html:14
 msgid "Regular Pages"
 msgstr "Гади битләр"
 
-#: apps/staticpages/templates/staticpages/admin/page_list.html:19
+#: templates/admin/staticpages/page_list.html:18
 msgid "Add Regular Page"
 msgstr "Гади бит өстәү"
 
-#: core/decorators.py:178
-msgid "Insufficient rights to access this page."
-msgstr "Бу биткә керү өчен хокук җитми."
-
-#: core/decorators.py:191 core/views.py:29
-msgid "You do not have rights to administer Pootle."
-msgstr "Синең Pootle белән идарә итергә хокукың юк."
-
-#: core/helpers.py:41
-msgid "User missing"
-msgstr "Андый кулланучы юк"
-
-#. Translators: This refers to "All strings"
-#: core/helpers.py:53 templates/editor/_toolbar.html:12
-msgid "All"
-msgstr "Бөтенесе"
-
-#: core/helpers.py:57 templates/editor/_toolbar.html:14
-msgid "Incomplete"
-msgstr "Тәмамланмаган"
-
-#: core/helpers.py:60 templates/editor/_toolbar.html:24
-msgid "Checks"
-msgstr "Тикшерүләр"
-
-#: core/helpers.py:62
-msgid "Overwritten submissions"
-msgstr "Өстенә яздырылган кертемнәр"
-
-#: core/initdb.py:143
-msgid "Can view a translation project"
-msgstr "Тәрҗемә проектын күрә ала"
-
-#: core/initdb.py:147
-msgid "Can make a suggestion for a translation"
-msgstr "Тәрҗемә тәкъдим итә ала"
-
-#: core/initdb.py:151
-msgid "Can submit a translation"
-msgstr "Тәрҗемә кертә ала"
-
-#: core/initdb.py:155
-msgid "Can overwrite translations on uploading files"
-msgstr "Файл йөкләгәндә тәрҗемәләрнең өстенә яздыра ала"
-
-#: core/initdb.py:159
-msgid "Can review translations"
-msgstr "Тәрҗемә тәкъдимнәрен кабул итә йә кире кага ала"
-
-#: core/initdb.py:163
-msgid "Can download archives of translation projects"
-msgstr "Тәрҗемә проектлары архивларын ала ала"
-
-#: core/initdb.py:167
-msgid "Can administrate a translation project"
-msgstr "Тәрҗемә проекты белән идарә итә ала"
-
-#: core/initdb.py:171
-msgid "Can commit to version control"
-msgstr "Версияләрне контрольләү истемасына кертә ала"
-
-#: middleware/captcha.py:122
-msgid "Time to answer has expired"
-msgstr "Җавап бирү вакыты узды"
-
-#: middleware/captcha.py:141
-msgid "Enter a number"
-msgstr "Бер сан кертегез"
-
-#: middleware/captcha.py:156
-msgid "Incorrect"
-msgstr "Дөрес түгел"
-
-#: middleware/errorpages.py:74
-#, python-format
-msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
-msgstr "Бу битне ачу өчен сезгә <a href=\"%(login_link)s\">кер</a>ергә кирәк."
-
-#: middleware/errorpages.py:109
-#, python-format
-msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
+#: templates/admin/staticpages/page_list.html:21
+msgid "Announcements"
 msgstr ""
-"%(filename)s-ны ачканда хата чыкты, файл системасы %(errormsg)s дип хәбәр "
-"итте"
 
-#: scripts/actions.py:529
-#, python-format
-msgid "Failed to copy download file to export directory %s"
-msgstr "Алынасы файлны %s чыгару папкасына копияләп булмады"
-
-#: scripts/example-actions/mozlangpack.py:132
-msgid ""
-"Finished building the language pack, click on the download link to download "
-"it."
-msgstr "Тел пакетын ясау тәмам, аны алу өчен алу күчкесенә басыгыз."
-
-#: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
-msgid "Permission Denied"
-msgstr "Рөхсәт юк"
-
-#: templates/403.html:16
-msgid "You don't have permission to access this page."
-msgstr "Синең бу битне ачарга хокукың юк."
-
-#: templates/404.html:4 templates/404.html.py:7 templates/404.html.py:12
-msgid "Page Not Found"
-msgstr "Андый бит табылмады"
-
-#: templates/404.html:13
-msgid "We're sorry, but the requested page could not be found."
-msgstr "Кызганыч, соралган адреслы бит табылмады."
-
-#: templates/500.html:4 templates/500.html.py:7 templates/500.html.py:12
-msgid "Server Error"
-msgstr "Сервер хатасы"
-
-#: templates/500.html:13
-msgid "An error has occurred. Thank you for your patience."
-msgstr "Хата чыкты. Сабырлыгыгыз өчен рәхмәт."
-
-#: templates/500.html:20
-#, python-format
-msgid ""
-"If you need assistance, you may refer to this error as <strong>%(ref)s</"
-"strong>."
+#: templates/admin/staticpages/page_list.html:25
+msgid "Add Announcement"
 msgstr ""
-"Сезгә ярдәм кирәк булса, сез бу хатага <strong>%(ref)s</strong> дип күрсәтә "
-"аласыз."
 
-#: templates/_main_tabs.html:5
-msgid "Main page"
-msgstr "Төп бит"
+#: templates/browser/_actions.html:5
+#, fuzzy
+msgid "Continue translation"
+msgstr "Тәрҗемәгә копияләү"
 
-#: templates/_main_tabs.html:5 templates/language_menu.html:4
-#: templates/project_menu.html:4 templates/tp_menu.html:4
-msgid "Overview"
-msgstr "Гомуми күренеш"
+#: templates/browser/_actions.html:11
+msgid "Review suggestions"
+msgstr ""
 
-#: templates/_main_tabs.html:7 templates/language_menu.html:6
-#: templates/project_menu.html:7 templates/tp_menu.html:6
-#: templates/editor/main.html:4
-msgid "Translate"
-msgstr "Тәрҗемә итү"
+#: templates/browser/_actions.html:17
+msgid "Fix critical errors"
+msgstr ""
 
-#: templates/admin_profile_base.html:4 templates/admin_profile_base.html:7
-msgid "Administration"
-msgstr "Идарә итү"
+#: templates/browser/_actions.html:23
+msgid "View all"
+msgstr ""
 
-#: templates/admin_profile_menu.html:3
-msgid "Information and statistics about this Pootle server"
-msgstr "Бу Pootle серверы турында мәгълүмат һәм статистика"
+#: templates/browser/_progressbar.html:3
+#, python-format
+msgid "<span class='value translated'>0</span>%% translated"
+msgstr ""
 
-#: templates/admin_profile_menu.html:3
-msgid "Info"
-msgstr "Мәгълүмат"
+#: templates/browser/_progressbar.html:4
+#, python-format
+msgid "<span class='value fuzzy'>0</span>%% fuzzy"
+msgstr ""
 
-#: templates/admin_profile_menu.html:4
-msgid "Configure the general settings for your site"
-msgstr "Сайтыгызның гомуми көйләнешләрен үзгәртү"
+#: templates/browser/_progressbar.html:5
+#, python-format
+msgid "<span class='value untranslated'>0</span>%% untranslated"
+msgstr ""
 
-#: templates/admin_profile_menu.html:4
-msgid "General"
-msgstr "Гомуми"
+#: templates/browser/overview.html:13
+msgid "Expand details"
+msgstr "Җентекле мәгълүматын күрсәтү"
 
-#: templates/admin_profile_menu.html:5
-msgid "Manage the users"
-msgstr "Кулланучылар белән идарә итү"
+#: templates/browser/overview.html:20
+msgid "Translation Statistics"
+msgstr "Тәрҗемә статистикасы"
 
-#: templates/admin_profile_menu.html:6
-msgid "Manage the languages"
-msgstr "Телләр белән идарә итү"
+#: templates/browser/overview.html:43
+msgid "Last action"
+msgstr ""
 
-#: templates/admin_profile_menu.html:7
-msgid "Manage the projects"
-msgstr "Проектлар белән идарә итү"
+#: templates/browser/overview.html:51
+msgid "Failing Checks"
+msgstr "Хата табучы тикшерүләр"
 
-#: templates/admin_profile_menu.html:8
-msgid "Manage the default permissions"
-msgstr "Алдан килешенгән рөхсәтләр белән идарә итү"
+#: templates/browser/overview.html:90
+msgid "This project is disabled and visible to administrators only."
+msgstr ""
 
-#: templates/admin_profile_menu.html:9
-msgid "Manage Static Pages"
-msgstr "Гел үзгәреп тормый торган битләр белән идарә итү"
+#: templates/browser/overview.html:95
+msgid ""
+"Some data on this page is currently being calculated, and the page will be "
+"refreshed automatically in <strong>30 seconds</strong>."
+msgstr ""
 
-#: templates/base.html:121
-msgid "skip to navigation"
-msgstr "сайт менюсына күчү"
+#: templates/browser/overview.html:96
+msgid "Refresh now"
+msgstr ""
 
-#: templates/base.html:126
-msgid "Zoom out (Ctrl+Shift+-)"
-msgstr "Кечерәйтү (Ctrl+Shift+-)"
+#: templates/browser/overview.html:121
+msgid "Congratulations! You have completed this task!"
+msgstr ""
 
-#: templates/base.html:128
-msgid "Reset zoom (Ctrl+Shift+0)"
-msgstr "Алдан килешенгән зурлыкка кайтару (Ctrl+Shift+0)"
-
-#: templates/base.html:130
-msgid "Zoom in (Ctrl+Shift++)"
-msgstr "Зурайту (Ctrl+Shift++)"
-
-#: templates/base.html:141
-msgid "ADMIN"
-msgstr "АДМИН"
-
-#: templates/base.html:144
-msgid "Log Out"
-msgstr "Чыгу"
-
-#: templates/base.html:147 templates/registration/registration_form.html:4
-#: templates/registration/registration_form.html:7
-#: templates/registration/registration_form.html:48
-msgid "Register"
-msgstr "Теркәлү"
-
-#: templates/base.html:149
-msgid "Log In"
-msgstr "Керү"
-
-#: templates/base.html:196
-msgid "Help"
-msgstr "Ярдәм"
-
-#: templates/base.html:198 templates/contact_form/contact_form.html:4
-#: templates/contact_form/contact_form.html:7
-#: templates/contact_form/contact_form.html:12
+#: templates/contact_form/contact_form.html:5
 msgid "Contact Us"
 msgstr "Безнең белән бәйләнешкә керү"
 
-#: templates/base.html:200
-msgid "About this Pootle Server"
-msgstr "Бу Pootle серверы турында"
+#: templates/contact_form/contact_form.html:7
+msgid "You have to fill all the fields, and please <b>write in English</b>."
+msgstr ""
 
-#: templates/base.html:201 templates/about/contributors.html:6
-#: templates/about/contributors.html:9
-msgid "Contributors"
-msgstr "Катнашучылар"
+#: templates/contact_form/contact_form.html:15
+msgid "Send Message"
+msgstr ""
 
-#: templates/captcha-xhr.html:8 templates/captcha.html:4
-#: templates/captcha.html.py:7
+#: templates/contact_form/contact_form.html:20
+msgid "Thanks!"
+msgstr ""
+
+#: templates/contact_form/contact_form.html:21
+msgid ""
+"We have received your message and will try to\n"
+"      respond as soon as possible."
+msgstr ""
+
+#: templates/core/_top_scorers.html:8
+msgid "score"
+msgstr ""
+
+#: templates/core/_top_scorers.html:14
+#, python-format
+msgid "#%(position)s"
+msgstr ""
+
+#: templates/core/_top_scorers.html:30
+msgid "No user contributions yet."
+msgstr ""
+
+#: templates/core/captcha.html:4 templates/core/captcha.html.py:7
+#: templates/core/xhr_captcha.html:8
 msgid "Are You Human?"
 msgstr "Син кешеме?"
 
-#: templates/captcha-xhr.html:9
+#: templates/core/xhr_captcha.html:9
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
@@ -2780,20 +1919,21 @@ msgstr ""
 "Серверны һөҗүмнәрдән саклар өчен без кертемнәрне кешеләр ясавын тикшерергә "
 "мәҗбүр."
 
-#: templates/captcha-xhr.html:10
+#: templates/core/xhr_captcha.html:10
 msgid "Please answer this question:"
 msgstr "Зинһар, бу сорауга җавап бирегез:"
 
-#: templates/captcha-xhr.html:14
+#: templates/core/xhr_captcha.html:13
 msgid "Confirm"
 msgstr "Раслау"
 
 #: templates/db_error.html:4 templates/db_error.html.py:7
-#: templates/db_error.html:12
+#: templates/db_error.html:12 templates/errors/db.html:4
+#: templates/errors/db.html.py:8
 msgid "Database Error"
 msgstr "Мәгълүмат җыентысы хатасы"
 
-#: templates/db_error.html:14
+#: templates/db_error.html:14 templates/errors/db.html:11
 msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
@@ -2801,7 +1941,7 @@ msgstr ""
 "Pootle ул мәгълүмат җыентысына тоташа алмый, ул җыентының башлангыч\n"
 "кыйммәтләре куелмаган, яки дәвам итәр өчен схемасын яңарту кирәк."
 
-#: templates/db_error.html:18
+#: templates/db_error.html:18 templates/errors/db.html:16
 #, python-format
 msgid ""
 "\n"
@@ -2816,187 +1956,39 @@ msgstr ""
 "документациясе</a>н укыгыз. Моның ниндидер хата икәнен сизсәгез,\n"
 "сервер админы белән сөйләшегез."
 
-#: templates/db_error.html:24
+#: templates/db_error.html:24 templates/errors/db.html:23
 msgid "The reported error was:"
 msgstr "Түбәндәге хата турында хәбәр җибәрелде:"
 
-#: templates/language_menu.html:4
-msgid "Language main page"
-msgstr "Телнең төп бите"
-
-#: templates/language_menu.html:5
-msgid "Language news"
-msgstr "Телнең яңалыклары"
-
-#: templates/language_menu.html:6
-msgid "Translate this language"
-msgstr "Бу телгә тәрҗемә итү"
-
-#: templates/language_menu.html:8
-msgid "Administrate your language permissions"
-msgstr "Телегездәге хокуклар белән идарә итү"
-
-#: templates/main_base.html:6
-msgid "Main"
-msgstr "Төп"
-
-#: templates/project_menu.html:4
-msgid "Project main page"
-msgstr "Проектның төп бите"
-
-#: templates/project_menu.html:5
-msgid "Project news"
-msgstr "Проект яңалыклары"
-
-#: templates/project_menu.html:7 templates/tp_menu.html:6
-msgid "Translate this project"
-msgstr "Бу проектны тәрҗемә итү"
-
-#: templates/project_menu.html:9
-msgid "Administrate your project"
-msgstr "Проектыгыз белән идарә итү"
-
-#: templates/project_menu.html:10
-msgid "Manage project permissions"
-msgstr "Проекттагы хокуклар белән идарә итү"
-
-#: templates/tp_base_terminology.html:4
-msgid "Manage Terminology"
-msgstr "Терминнар белән идарә итү"
-
-#: templates/tp_menu.html:4
-msgid "Translation project main page"
-msgstr "Тәрҗемә проекты төп бите"
-
-#: templates/tp_menu.html:5
-msgid "Translation project news"
-msgstr "Тәрҗемә проекты яңалыклары"
-
-#: templates/tp_menu.html:8
-msgid "Manage terminology"
-msgstr "Терминнар белән идарә итү"
-
-#: templates/tp_menu.html:8
-msgid "Terminology"
-msgstr "Терминнар"
-
-#: templates/tp_menu.html:9
-msgid "Administrate your project permissions"
-msgstr "Проектыгыздагы хокуклар белән идарә итү"
-
-#: templates/user_profile_base.html:4 templates/user_profile_base.html.py:6
-msgid "My Account"
-msgstr "Минем хисап язмасы"
-
-#: templates/user_profile_menu.html:4
-msgid "Overview of your account"
-msgstr "Синең хисап язмаңның гомуми күренеше"
-
-#: templates/user_profile_menu.html:4
-msgid "Dashboard"
-msgstr "Идарә чаралары бите"
-
-#: templates/user_profile_menu.html:5
-msgid "Configure your translation preferences"
-msgstr "Тәрҗемә итү көйләнешләреңне көйләү"
-
-#: templates/user_profile_menu.html:5
-msgid "Settings"
-msgstr "Көйләүләр"
-
-#: templates/user_profile_menu.html:6
-msgid "Change your personal information"
-msgstr "Шәхси мәгълүматыңны үзгәртү"
-
-#: templates/user_profile_menu.html:6 templates/profiles/edit_personal.html:4
-#: templates/profiles/edit_personal.html:7
-msgid "Profile"
-msgstr "Кулланучы бите"
-
-#: templates/user_profile_menu.html:7
-msgid "Change your password"
-msgstr "Серсүзеңне алыштыру"
-
-#: templates/about/about.html:6 templates/about/about.html.py:9
-msgid "This Pootle Server"
-msgstr "Бу Pootle серверы"
-
-#. Translators: For better readability, make sure to leave an space after the closing </i> tag
-#: templates/about/about.html:16
-msgid ""
-"This site is running Pootle &mdash; powerful web software to empower teams "
-"to do translation and translation management. This community tool is Free "
-"Software, and any team can use it and contribute to the Pootle community. "
-"Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
-"\"icon-external-link\"></i> project website</a>."
+#: templates/editor/_actions.html:5
+msgid "Go back to overview"
 msgstr ""
-"Бу сайтта Pootle &mdash; төркемнәргә тәрҗемә итергә һәм тәрҗемәләр белән "
-"идарә итергә көч бирә торган куәтле веб программасы. Бу җәмгыять коралы - "
-"ирекле программа, һәм һәр төркем аны куллана ала һәм Pootle җәмгыятенә өлеш "
-"кертә ала. Күбрәген <a href=\"http://pootle.translatehouse.org/\"><i class"
-"=\"icon-external-link\"></i>проектның сайтында</a> укыгыз."
 
-#: templates/about/base.html:4 templates/about/base.html.py:7
-msgid "About"
-msgstr "Сайт турында"
-
-#: templates/common/_table_row.html:87
-msgid "Add a tag"
-msgstr "Тег өстәү"
-
-#: templates/contact_form/contact_form.html:17
-msgid "Send"
-msgstr "Җибәрү"
-
-#: templates/contact_form/contact_form_sent.html:5
-#: templates/contact_form/contact_form_sent.html:8
-#: templates/contact_form/contact_form_sent.html:13
-msgid "Message Sent"
-msgstr "Хәбәр җибәрелде"
-
-#: templates/contact_form/contact_form_sent.html:14
-msgid "Thank you for your feedback."
-msgstr "Куллануыгыздан килеп чыккан фикерләрегезне җибәргәнегез өчен рәхмәт."
-
-#: templates/contact_form/contact_form_subject.txt:2
-#, python-format
-msgid " message by %(name)s"
-msgstr " %(name)s хәбәре"
-
-#: templates/editor/_editor.html:5
-msgid "Pootle's editor requires JavaScript"
-msgstr "Pootle төзәткеченә JavaScript кирәк"
-
-#: templates/editor/_editor.html:6
-msgid ""
-"Please enable JavaScript in your browser preferences and reload the page."
-msgstr ""
-"Зинһар, браузерың көйләнешләрендә JavaScript-ны кабыз да бу битне яңарт."
-
-#: templates/editor/_toolbar.html:8
-msgid "Filter by:"
-msgstr "Сөзгеч:"
-
-#: templates/editor/_toolbar.html:18
+#: templates/editor/_filters.html:12
 msgid "My suggestions"
 msgstr "Тәрҗемә тәкъдимнәрем"
 
-#: templates/editor/_toolbar.html:19
-msgid "My submissions"
-msgstr "Кертемнәрем"
+#: templates/editor/_filters.html:23
+msgid "Select type"
+msgstr ""
 
-#. Translators: This is a type of filtering criterion that
-#. selects the strings that have been submitted by me at some point
-#. in time but have been overwritten by other users.
-#: templates/editor/_toolbar.html:23
-msgid "My overwritten submissions"
-msgstr "Өстенә яздырылган кертемнәрем"
+#: templates/editor/_toolbar.html:6
+msgid "Default order"
+msgstr ""
 
-#: templates/editor/_toolbar.html:34
+#: templates/editor/_toolbar.html:7
+msgid "Newest first"
+msgstr ""
+
+#: templates/editor/_toolbar.html:8
+msgid "Oldest first"
+msgstr ""
+
+#: templates/editor/_toolbar.html:14
 msgid "Go to the previous string (Ctrl+Up)"
 msgstr "Моңарчыгы билге тезентесенә күчү (Ctrl+Up)"
 
-#: templates/editor/_toolbar.html:37
+#: templates/editor/_toolbar.html:17
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
@@ -3004,136 +1996,434 @@ msgstr ""
 "Бу билге тезентесенең тәртип саны (Ctrl+Shift+U)<br/><br/>Теләгән җиреңә "
 "күчү өчен<br/>тәртип санын язып Enter-га бас"
 
-#: templates/editor/_toolbar.html:39
+#: templates/editor/_toolbar.html:19
 msgid "Total strings"
 msgstr "Барча билге тезентесе саны"
 
-#: templates/editor/_toolbar.html:43
+#: templates/editor/_toolbar.html:22
 msgid "Go to the next string (Ctrl+Down)"
 msgstr "Киләсе билге тезентесенә күчү (Ctrl+Down)"
 
-#: templates/profiles/edit_personal.html:12
+#: templates/editor/export_view.html:6 templates/languages/_nav.html:18
+#: templates/projects/_nav.html:18 templates/projects/all/_nav.html:18
+#: templates/translation_projects/_nav.html:18
+msgid "Export View"
+msgstr "Күренешне чыгару"
+
+#: templates/editor/export_view.html:7 templates/editor/export_view.html:98
+msgid "All Projects"
+msgstr "Барча проектлар"
+
+#: templates/editor/export_view.html:8 templates/editor/export_view.html:99
+msgid "All Languages"
+msgstr "Барча телләр"
+
+#: templates/editor/export_view.html:143
+msgid "No strings."
+msgstr "Бер билге тезентесе дә юк."
+
+#: templates/editor/export_view.html:148
+#, python-format
 msgid ""
-"Here you can change your personal details. This information will be used in "
-"the header of the translation files."
+"We displayed first %(count)s units out of %(total_count)s. Please refine "
+"your search."
 msgstr ""
-"Монда син шәхси мәгълүматыңны үзгәртә аласың. Бу мәгълүмат тәрҗемә "
-"файлларының башламаларында кулланылачак."
 
-#: templates/profiles/edit_personal.html:18
-msgid "First Name"
-msgstr "Исем"
+#: templates/editor/main.html:4 templates/languages/_nav.html:10
+#: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
+#: templates/translation_projects/_nav.html:10
+msgid "Translate"
+msgstr "Тәрҗемә итү"
 
-#: templates/profiles/edit_personal.html:23
-msgid "Last Name"
-msgstr "Фамилия"
+#: templates/editor/units/edit.html:12
+#, python-format
+msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
+msgstr ""
 
-#: templates/profiles/edit_personal.html:28
-msgid "Email address"
-msgstr "Электрон почта адресы"
+#: templates/editor/units/edit.html:19
+msgid "Context:"
+msgstr "Янындагы сүзләр:"
 
-#: templates/profiles/edit_profile.html:4
-#: templates/profiles/edit_profile.html:7
+#: templates/editor/units/edit.html:30
+msgid "Terminology:"
+msgstr "Терминнар:"
+
+#: templates/editor/units/edit.html:33
+msgid "Insert the translated term into the editor"
+msgstr "Термин тәрҗемәсен төзәткечкә кертү"
+
+#: templates/editor/units/edit.html:44
+msgid "Comments:"
+msgstr "Комментлар:"
+
+#: templates/editor/units/edit.html:53
+msgid "Click to open the image in a popup"
+msgstr ""
+
+#: templates/editor/units/edit.html:62
+msgid "Locations:"
+msgstr "Урыннар:"
+
+#: templates/editor/units/edit.html:71
+msgid "Screenshots..."
+msgstr ""
+
+#: templates/editor/units/edit.html:95 templates/editor/units/edit.html:121
+msgid "Copy into translation"
+msgstr "Тәрҗемәгә копияләү"
+
+#: templates/editor/units/edit.html:117
+#, fuzzy
+msgid "Report a problem with this string"
+msgstr "Чыганак билге тезентесендәге хата турында хәбәр бирү"
+
+#: templates/editor/units/edit.html:139 templates/editor/units/edit.html:150
+#: templates/editor/units/edit.html:243
+msgid "Submit"
+msgstr "Тапшыру"
+
+#: templates/editor/units/edit.html:140
+msgid "Submit translation and go to the next string (Ctrl+Enter)"
+msgstr "Тәрҗемәне тапшырып киләсе билге тезентесенә күчү (Ctrl+Enter)"
+
+#: templates/editor/units/edit.html:145 templates/editor/units/edit.html:151
+msgid "Suggest"
+msgstr "Тәкъдим итү"
+
+#: templates/editor/units/edit.html:146
+msgid "Suggest translation and go to the next string (Ctrl+Enter)"
+msgstr "Тәрҗемә тәкъдим итеп киләсе билге тезентесенә күчү (Ctrl+Enter)"
+
+#: templates/editor/units/edit.html:150
+msgid "Switch to translation mode (Ctrl+Shift+Space)"
+msgstr "Тәрҗемә итү режимына күчү (Ctrl+Shift+Space)"
+
+#: templates/editor/units/edit.html:151
+msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
+msgstr "Тәкъдим итү режимына күчү (Ctrl+Shift+Space)"
+
+#: templates/editor/units/edit.html:156
+msgid "Mark this string as needing further work (Ctrl+Space)"
+msgstr "Бу билге тезентесе белән эшлисе бар дип билгеләү (Ctrl+Space)"
+
+#: templates/editor/units/edit.html:171
+msgid "Show Timeline"
+msgstr "Вакыт турысын күрсәтү"
+
+#: templates/editor/units/edit.html:173
+msgid "Add Comment"
+msgstr "Коммент өстәү"
+
+#: templates/editor/units/edit.html:175
+msgid "Raw View"
+msgstr ""
+
+#: templates/editor/units/edit.html:185
+#, python-format
+msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "<a href=\"%(profile_url)s\">%(reviewer)s</a> тикшереп чыкты"
+
+#: templates/editor/units/edit.html:195
+msgid "Insert RLM (Right-To-Left Mark) into the editor"
+msgstr "RLM (уңнан сулга язу билгесе) урнаштыру"
+
+#: templates/editor/units/edit.html:198
+msgid "Insert LRM (Left-To-Right Mark) into the editor"
+msgstr "Төзәткечкә LRM (Сулдан уңга агым билгесе)-не кертү"
+
+#: templates/editor/units/edit.html:201
+msgid "Insert RLE (Right-To-Left Embedding) into the editor"
+msgstr "Төзәткечкә RLE (Уңнан сулга юнәлгән язу беркетү билгесе)-не кертү"
+
+#: templates/editor/units/edit.html:204
+msgid "Insert LRE (Left-To-Right Embedding) into the editor"
+msgstr "Төзәткечкә LRE (Сулдан уңга юнәлгән язу беркетү билгесе)-не кертү"
+
+#: templates/editor/units/edit.html:207
+msgid "Insert RLO (Right-To-Left Override) into the editor"
+msgstr "Төзәткечкә RLO (Уңнан сулга яздыру билгесе)-не кертү"
+
+#: templates/editor/units/edit.html:210
+msgid "Insert LRO (Left-To-Right Override) into the editor"
+msgstr "Төзәткечкә LRO (Сулдан уңга яздыру билгесе)-не кертү"
+
+#: templates/editor/units/edit.html:213
+msgid "Insert PDF (Pop Directional Format ) into the editor"
+msgstr "Төзәткечкә PDF (Элекке юнәлешне кайтару билгесе)-не кертү"
+
+#: templates/editor/units/edit.html:216
+msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+msgstr "Төзәткечкә ZWJ (Ноль киңлекле кушкыч билгесе)-не кертү"
+
+#: templates/editor/units/edit.html:219
+msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+msgstr "Төзәткечкә ZWNJ (Ноль киңлекле кушмаучы билгесе)-не кертү"
+
+#: templates/editor/units/edit.html:226
+msgid "Insert this symbol into the editor"
+msgstr "Бу билгене төзәткечкә кертү"
+
+#: templates/editor/units/edit.html:263
+msgid "User suggestions"
+msgstr "Кулланучыларның тәкъдимнәре"
+
+#: templates/editor/units/edit.html:280
+msgid "Accept suggestion"
+msgstr "Тәкъдимне кабул итү"
+
+#: templates/editor/units/edit.html:285
+msgid "Reject suggestion"
+msgstr "Тәкъдимне кире кагу"
+
+#: templates/editor/units/edit.html:292
+msgid "Remove suggestion"
+msgstr "Тәкъдимне бетерү"
+
+#: templates/editor/units/edit.html:307
+msgid "A long time ago"
+msgstr ""
+
+#: templates/editor/units/term_edit.html:9
+msgid "Comment: "
+msgstr "Комментарий: "
+
+#: templates/editor/units/timeline.html:4
+#: templates/editor/units/timeline.html:14
+msgid "Previous Work"
+msgstr "Моңарчыгы эш"
+
+#: templates/editor/units/xhr_checks.html:3
+msgid "Possible issues with the translation"
+msgstr "Тәрҗемәдә мөмкин булган мәсьәләләр"
+
+#: templates/editor/units/xhr_checks.html:3
+msgid "Failing checks:"
+msgstr "Хата тапкан тикшерүләр:"
+
+#: templates/editor/units/xhr_checks.html:9
+#, fuzzy
+msgid "Mute quality check"
+msgstr "Сыйфатын тикшерүне бетерү"
+
+#: templates/editor/units/xhr_checks.html:9
+#, fuzzy
+msgid "Unmute quality check"
+msgstr "Сыйфатын тикшерүне бетерү"
+
+#: templates/editor/units/xhr_comment.html:15
+msgid "Remove comment"
+msgstr ""
+
+#: templates/editor/units/xhr_comment.html:18
+msgid "Last comment:"
+msgstr ""
+
+#: templates/editor/units/xhr_timeline.html:3
+msgid "Timeline"
+msgstr "Вакыт турысы"
+
+#: templates/editor/units/xhr_timeline.html:25
+msgid "Last comment removed"
+msgstr ""
+
+#: templates/editor/units/xhr_timeline.html:30
+msgid "check"
+msgstr ""
+
+#: templates/editor/units/xhr_timeline.html:38
+msgid "Unit created"
+msgstr ""
+
+#: templates/errors/400.html:4 templates/errors/400.html.py:11
+msgid "Bad Request"
+msgstr ""
+
+#: templates/errors/400.html:12
+msgid "Error 400"
+msgstr ""
+
+#: templates/errors/400.html:14
+msgid "The operation is not permitted."
+msgstr ""
+
+#: templates/errors/403.html:4 templates/errors/403.html.py:8
+msgid "Permission Denied"
+msgstr "Рөхсәт юк"
+
+#: templates/errors/403.html:13
+#, fuzzy
+msgid "You don't seem to have permissions to access this page."
+msgstr "Синең бу битне ачарга хокукың юк."
+
+#: templates/errors/404.html:4 templates/errors/404.html.py:8
+msgid "Page Not Found"
+msgstr "Андый бит табылмады"
+
+#: templates/errors/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr "Кызганыч, соралган адреслы бит табылмады."
+
+#: templates/errors/500.html:4 templates/errors/500.html.py:8
+msgid "Server Error"
+msgstr "Сервер хатасы"
+
+#: templates/errors/500.html:10
+#, fuzzy
+msgid "A server error has occurred. Thank you for your patience."
+msgstr "Хата чыкты. Сабырлыгыгыз өчен рәхмәт."
+
+#: templates/errors/500.html:16
+msgid "Exception:"
+msgstr ""
+
+#: templates/errors/500.html:20
+#, python-format
+msgid ""
+"If you need assistance, you may refer to this error as <strong>%(ref)s</"
+"strong>."
+msgstr ""
+"Сезгә ярдәм кирәк булса, сез бу хатага <strong>%(ref)s</strong> дип күрсәтә "
+"аласыз."
+
+#: templates/languages/_nav.html:5 templates/projects/_nav.html:5
+#: templates/projects/all/_nav.html:5
+#: templates/translation_projects/_nav.html:5
+msgid "Overview"
+msgstr "Гомуми күренеш"
+
+#: templates/languages/admin/permissions.html:9
+msgid "Below you can add, edit, and delete the permissions for this language."
+msgstr "Түбәндә син бу тел өчен хокукларны өсти, үзгәртә, бетерә аласың."
+
+#: templates/layout.html:88
+msgid "Pootle requires JavaScript"
+msgstr ""
+
+#: templates/layout.html:89
+msgid ""
+"Please enable JavaScript in your browser preferences and reload the page."
+msgstr ""
+"Зинһар, браузерың көйләнешләрендә JavaScript-ны кабыз да бу битне яңарт."
+
+#: templates/layout.html:104
+msgid "skip to navigation"
+msgstr "сайт менюсына күчү"
+
+#: templates/layout.html:122
+msgid "Public Profile"
+msgstr ""
+
+#: templates/layout.html:123 templates/profiles/_tabs.html:4
+msgid "Settings"
+msgstr "Көйләүләр"
+
+#: templates/layout.html:124 templates/user/stats.html:48
+#: templates/user/stats.html.py:53
+msgid "Statistics"
+msgstr ""
+
+#: templates/layout.html:126
+msgid "Admin"
+msgstr ""
+
+#: templates/layout.html:129
+msgid "Sign Out"
+msgstr ""
+
+#: templates/layout.html:133 templates/welcome.html:18
+msgid "Sign In"
+msgstr ""
+
+#: templates/login.html:4 templates/login.html.py:9
+msgid "Log In"
+msgstr "Керү"
+
+#: templates/login.html:14
+msgid "Login to Pootle"
+msgstr "Pootle-га керү"
+
+#: templates/login.html:20
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+"Керткән исем белән серсүзегез ярамады. Зинһар, тагын бер тапкыр кертеп "
+"карагыз."
+
+#: templates/login.html:26
+msgid "Login"
+msgstr "Керү"
+
+#: templates/login.html:33
+msgid "Lost your Password?"
+msgstr "Серсүзеңне оныттыңмы?"
+
+#: templates/notifications/_latest.html:9
+msgid "No news yet."
+msgstr "Яңалыклар юк әле."
+
+#: templates/profiles/_tabs.html:6
+#: templates/profiles/settings/evernote_account.html:38
+msgid "Link with Evernote"
+msgstr ""
+
+#: templates/profiles/base.html:4 templates/profiles/base.html.py:6
+msgid "My Account"
+msgstr "Минем хисап язмасы"
+
+#: templates/profiles/settings/evernote_account.html:4
+#: templates/profiles/settings/evernote_account.html:7
+msgid "Evernote account"
+msgstr ""
+
+#: templates/profiles/settings/evernote_account.html:14
+#, python-format
+msgid ""
+"This Pootle account is linked with \"<strong>%(username)s</strong>\" "
+"Evernote account."
+msgstr ""
+
+#: templates/profiles/settings/evernote_account.html:16
+msgid ""
+"Here you can link this Pootle account with Evernote account — this will "
+"allow you to log in faster next time."
+msgstr ""
+
+#: templates/profiles/settings/evernote_account.html:24
+msgid "This Pootle account cannot be unlinked from Evernote."
+msgstr ""
+
+#: templates/profiles/settings/evernote_account.html:30
+msgid "Unlink from Evernote"
+msgstr ""
+
+#: templates/profiles/settings/personal.html:4
+#: templates/profiles/settings/personal.html:7
+msgid "Profile"
+msgstr "Кулланучы бите"
+
+#: templates/profiles/settings/personal.html:13
+msgid ""
+"Here you can change your personal details. After clicking the 'Save' button "
+"you will be redirected to your public profile page to see your changes in "
+"action."
+msgstr ""
+
+#: templates/profiles/settings/profile.html:4
+#: templates/profiles/settings/profile.html:7
 msgid "Translation Settings"
 msgstr "Тәрҗемә көйләнешләре"
 
-#: templates/profiles/edit_profile.html:12
+#: templates/profiles/settings/profile.html:12
 msgid ""
-"Here you can configure the settings related to the translation interface as "
-"well as your language preferences."
+"Here you can configure the settings related to the translation interface."
 msgstr ""
-"Монда син тәрҗемә интерфейсы көйләнешләрен һәм үзеңнең тел көйләнешләрен "
-"үзгәртә аласың."
 
-#: templates/profiles/profile_detail.html:23
-msgid "Contributions"
-msgstr "Өлеш кертүләр"
+#: templates/projects/admin/languages.html:11
+msgid "Here you can add, edit, or delete the languages for this project."
+msgstr "Монда сез бу проект өчен телләр өсти, үзгәртә, бетерә аласыз."
 
-#: templates/profiles/profile_detail.html:28
-msgid "You can set or change your avatar image at www.gravatar.com"
-msgstr "Син аватар рәсемеңне www.gravatar.com-да куя яки алыштыра аласың."
-
-#: templates/profiles/profile_detail.html:42
-msgid "Suggestions Pending"
-msgstr "Көтүче тәкъдимнәр"
-
-#: templates/profiles/profile_detail.html:46
-msgid "Overwritten"
-msgstr "Өстенә яздырылган"
-
-#: templates/profiles/profile_detail.html:66
-msgid "This user doesn't have any contributions yet."
-msgstr "Бу кулланучының бер кертеме дә юк әле."
-
-#: templates/profiles/profile_list.html:7
-msgid "Profiles list"
-msgstr "Профиль тезмәсе"
-
-#: templates/profiles/profile_list.html:12
-msgid "First name"
-msgstr "Исем"
-
-#: templates/profiles/profile_list.html:13
-msgid "Last name"
-msgstr "Фамилия"
-
-#: templates/registration/activate.html:5
-#: templates/registration/activate.html:8
-#: templates/registration/activate.html:13
-msgid "Account Activated"
-msgstr "Хисап язмасы активлаштырылды"
-
-#: templates/registration/activate.html:14
-#, python-format
-msgid ""
-"The account has been activated for username \"%(account)s\". You can now "
-"proceed to log in."
-msgstr ""
-"Бу хисап язмасы \"%(account)s\" дигән кулланучы исеме өчен активлаштырылды. "
-"Син хәзер керү өчен юлыңны дәвам итә аласың."
-
-#: templates/registration/activation_email.html:4
-msgid "Pootle Account Created!"
-msgstr "Pootle хисап язмасы барлыкка китерелде!"
-
-#: templates/registration/activation_email.html:5
-#: templates/registration/activation_email.txt:2
-msgid "A Pootle account has been created for you using this email address."
-msgstr ""
-"Бу электрон почта адресын кулланып синең өчен бер Pootle хисап язмасы "
-"барлыкка китерелде."
-
-#: templates/registration/activation_email.html:6
-#: templates/registration/activation_email.txt:3
-msgid "To activate your account, follow this link:"
-msgstr "Хисап язмаңны активлаштыру өчен, түбәндәге күчке белән бар:"
-
-#: templates/registration/activation_email.html:8
-msgid "Activate my Pootle account"
-msgstr "Минем Pootle хисап язмасын активлаштыру"
-
-#: templates/registration/activation_email.html:10
-#, python-format
-msgid "Your activation code is: <code>%(activation_key)s</code>"
-msgstr "Синең активлаштыру коды <code>%(activation_key)s</code>"
-
-#: templates/registration/activation_email.html:11
-#: templates/registration/activation_email.txt:9
-msgid ""
-"This message is sent to verify that the email address is in fact correct. If "
-"you did not want to register an account, you may simply ignore the message."
-msgstr ""
-"Бу хат бу электрон почта адресының чынлап та дөрес булуын тикшерү өчен "
-"җибәрелде. Теркәлергә теләмәгән булсаң, просто бу хатка игътибар итмәсәң "
-"була."
-
-#: templates/registration/activation_email.txt:6
-msgid "Your activation code is:"
-msgstr "Синең активлаштыру коды:"
-
-#: templates/registration/activation_email_subject.txt:2
-msgid "Pootle registration"
-msgstr "Pootle-да теркәлү"
+#: templates/projects/admin/permissions.html:11
+msgid "Below you can add, edit, and delete the permissions for this project."
+msgstr "Түбәндә син бу проект өчен хокукларны өсти, үзгәртә, бетерә аласың."
 
 #: templates/registration/password_change_done.html:5
 #: templates/registration/password_change_done.html:8
@@ -3184,10 +2474,10 @@ msgid "Password Reset Complete."
 msgstr "Серсүзне яңадан кую тәмам."
 
 #: templates/registration/password_reset_complete.html:14
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
-"\">log in</a> now."
+"\">sign in</a> now."
 msgstr ""
 "Серсүзең куелды. Хәзер син алга таба бара һәм <a href=\"%(login_url)s\""
 ">керә</a> аласың."
@@ -3248,7 +2538,7 @@ msgstr ""
 "Без син күрсәткән электрон почта адресына серсүзеңне кую өчен инструкцияләр "
 "җибәрдек. Озакламый алар сиңа килеп җитергә тиеш."
 
-#: templates/registration/password_reset_email.html:3
+#: templates/registration/password_reset_email.html:2
 #, python-format
 msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
@@ -3257,16 +2547,16 @@ msgstr ""
 "Бу хат сиңа %(site_name)s сайтындагы хисап язмаңның серсүзен алыштыруны "
 "сораганың өчен килә."
 
-#: templates/registration/password_reset_email.html:5
+#: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
 msgstr "Зинһар, түбәндә күрсәтелгән биткә бар да яңа серсүз керт:"
 
-#: templates/registration/password_reset_email.html:9
+#: templates/registration/password_reset_email.html:8
 #, python-format
 msgid "Your username is %(user)s."
 msgstr "Синең кулланучы исемең %(user)s."
 
-#: templates/registration/password_reset_email.html:11
+#: templates/registration/password_reset_email.html:10
 msgid "Thank you for using Pootle!"
 msgstr "Pootle-ны кулланганың өчен рәхмәт!"
 
@@ -3278,37 +2568,1300 @@ msgstr ""
 "Серсүзеңне оныттыңмы? Түбәндә электрон почта адресыңны яз да, без сиңа яңа "
 "серсүз кую өчен инструкция җибәрербез."
 
-#: templates/registration/password_reset_form.html:19
-#: templates/registration/registration_form.html:25
-msgid "Email Address"
-msgstr "Электрон почта адресы"
+#: templates/staticpages/_body.html:6
+#, fuzzy, python-format
+msgid ""
+"This static page is inactive and visible to administrators only. You can "
+"activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
+msgstr ""
+"Бу бит актив түгел һәм админнарга гына күренә. Син аны <a href=\"%s\">"
+"үзлекләрен үзгәртеп</a> активлаштыра аласың"
 
-#: templates/registration/registration_complete.html:5
-#: templates/registration/registration_complete.html:8
-#: templates/registration/registration_complete.html:13
-msgid "Registration Complete"
-msgstr "Теркәү эше тәмам"
+#: templates/staticpages/agreement.html:3
+msgid "Action Required"
+msgstr "Гамәл кирәк"
 
-#: templates/registration/registration_complete.html:14
-msgid "Please check your email to activate your account."
-msgstr "Зинһар, хисап язмаңны активлаштыру өчен электрон почтаңны кара."
+#: templates/staticpages/agreement.html:4
+msgid "Before continuing, you must read and accept the following documents."
+msgstr ""
+"Дәвам иткәнгә хәтле, син түбәндәге документларны укырга һәм кабул итергә "
+"тиеш."
 
-#: templates/registration/registration_form.html:12
-msgid "Register a New Pootle Account"
-msgstr "Яңа Pootle хисап язмасы теркәү"
+#: templates/staticpages/agreement.html:17
+msgid "No thanks. Log out"
+msgstr "Юк, рәхмәт. Чыгу"
 
-#: templates/registration/registration_form.html:13
-msgid "Fill in the following form to get started translating."
-msgstr "Тәрҗемә итүне башлау өчен түбәндәге форманы тутырыгыз."
+#: templates/staticpages/agreement.html:20
+msgid "Continue"
+msgstr "Дәвам итү"
 
-#: templates/registration/registration_form.html:35
-msgid "Password (again)"
-msgstr "Серсүзе (шунысын ук тагын)"
+#: templates/translation_projects/_nav.html:26
+msgid "Terminology"
+msgstr "Терминнар"
 
-#: templates/registration/registration_form.html:53
-msgid "Already have an account?"
-msgstr "Хисап язмаң бармы инде?"
+#: templates/translation_projects/admin/permissions.html:11
+msgid ""
+"Below you can add, edit, and delete the permissions for this translation "
+"project."
+msgstr ""
+"Түбәндә син бу тәрҗемә проекты өчен хокукларны өсти, үзгәртә, бетерә аласың."
 
-#: templates/registration/registration_form.html:54
-msgid "Log In."
-msgstr "Керү."
+#: templates/translation_projects/terminology/_term_edit.html:11
+msgid "Description..."
+msgstr "Тасвирлама..."
+
+#: templates/translation_projects/terminology/_term_edit.html:18
+msgid "Details..."
+msgstr "Җентеклерәк..."
+
+#: templates/translation_projects/terminology/_term_edit.html:31
+msgid "Translator Comments"
+msgstr "Тәрҗемәче комментарие"
+
+#: templates/translation_projects/terminology/base.html:4
+msgid "Manage Terminology"
+msgstr "Терминнар белән идарә итү"
+
+#: templates/translation_projects/terminology/extract.html:6
+msgid "Regenerate Glossary"
+msgstr "Термин сүзлеген яңарту"
+
+#: templates/translation_projects/terminology/extract.html:7
+msgid ""
+"Are you sure you want to regenerate the glossary? Any existing terms and "
+"their translations will be deleted."
+msgstr ""
+"Термин сүзлеген яңартасымы? Ризалашсагыз, булган барча терминнар да, аларның "
+"тәрҗемәләре дә бетереләчәк."
+
+#: templates/translation_projects/terminology/extract.html:11
+msgid "Extract"
+msgstr "Чыгару"
+
+#: templates/translation_projects/terminology/manage.html:23
+msgid "You can regenerate the glossary from scratch."
+msgstr "Сез сүзлекне буштан башлап яңадан төзетә аласыз."
+
+#: templates/translation_projects/terminology/manage.html:36
+msgid "Term"
+msgstr "Термин"
+
+#: templates/translation_projects/terminology/manage.html:62
+msgid "Glossary is Empty"
+msgstr "Сүзлек буш"
+
+#: templates/translation_projects/terminology/manage.html:63
+msgid "Generate Glossary"
+msgstr "Сүзлек төзетү"
+
+#: templates/translation_projects/terminology/stores.html:7
+msgid "Here you can manage the terms in the terminology files."
+msgstr "Монда син термин файлларындагы терминнар белән идарә итә аласың."
+
+#: templates/translation_projects/terminology/stores.html:14
+msgid "File"
+msgstr "Файл"
+
+#: templates/translation_projects/terminology/stores.html:28
+msgid "Once you upload files, you will be able to add, edit and delete terms."
+msgstr "Файллар йөкләгәч сез аларны өсти, үзгәртә, бетерә алырсыз."
+
+#: templates/user/profile.html:14
+msgid "You can set or change your avatar image at www.gravatar.com"
+msgstr "Син аватар рәсемеңне www.gravatar.com-да куя яки алыштыра аласың."
+
+#: templates/user/profile.html:17
+#, fuzzy
+msgid "Anonymous User"
+msgstr "Аталмаган кулланучы"
+
+#: templates/user/profile.html:26
+msgid "Score:"
+msgstr ""
+
+#: templates/user/profile.html:29
+#, python-format
+msgid "My current score at %(server_title)s is %(score)s "
+msgstr ""
+
+#: templates/user/profile.html:29 templates/user/profile.html.py:41
+msgid "Tweet this!"
+msgstr ""
+
+#: templates/user/profile.html:38
+msgid "No contributions in the last month"
+msgstr ""
+
+#: templates/user/profile.html:41
+#, python-format
+msgid ""
+"I am #%(pos)s contributor in %(lang_name)s for this month at "
+"%(server_title)s! "
+msgstr ""
+
+#: templates/user/profile.html:42
+#, python-format
+msgid "#%(pos)s contributor in %(lang_name)s for this month"
+msgstr ""
+
+#: templates/user/profile.html:45
+#, python-format
+msgid ""
+"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
+msgstr ""
+
+#: templates/user/profile.html:54
+#, fuzzy
+msgid "Latest activity:"
+msgstr "Ахыргы гамәлләре"
+
+#: templates/user/profile.html:66
+msgid "My Website"
+msgstr ""
+
+#: templates/user/profile.html:72
+msgid "My LinkedIn Profile"
+msgstr ""
+
+#: templates/user/profile.html:81
+msgid ""
+"Show others who you are, tell about yourself<br/>and make your public "
+"profile look gorgeous!"
+msgstr ""
+
+#: templates/user/profile.html:91
+msgid ""
+"Some translations are provided by anonymous volunteers. These are registered "
+"under this special meta-account."
+msgstr ""
+
+#: templates/user/profile.html:93
+msgid ""
+"Some translations are imported from external files. These are registered "
+"under this special meta-account."
+msgstr ""
+
+#: templates/user/reports/user_rates_widget.html:4
+msgid "Rates"
+msgstr ""
+
+#: templates/user/reports/user_rates_widget.html:8
+msgid "Currency:"
+msgstr ""
+
+#: templates/user/reports/user_rates_widget.html:18
+msgid "Translation Rate:"
+msgstr ""
+
+#: templates/user/reports/user_rates_widget.html:29
+msgid "Review Rate:"
+msgstr ""
+
+#: templates/user/reports/user_rates_widget.html:41
+msgid "Hourly Rate:"
+msgstr ""
+
+#: templates/welcome.html:4
+msgid "Welcome"
+msgstr ""
+
+#: templates/welcome.html:13
+msgid "Welcome to Pootle"
+msgstr ""
+
+#: templates/welcome.html:14
+msgid "Come and join us!"
+msgstr ""
+
+#: templates/welcome.html:30
+msgid "Top Contributors This Month"
+msgstr ""
+
+#~ msgid "Your name"
+#~ msgstr "Исемең"
+
+#~ msgid "Your email address"
+#~ msgstr "Электрон почта адресың"
+
+#~ msgid "Your message"
+#~ msgstr "Хәбәрең"
+
+#~ msgid "Akismet thinks this message is spam"
+#~ msgstr "Akismet бу хәбәрне спам дип уйлый"
+
+#~ msgid "Please correct the error below."
+#~ msgid_plural "Please correct the errors below."
+#~ msgstr[0] "Зинһар, түбәндәге хатаны төзәтегез."
+
+#~ msgid "The settings have been saved."
+#~ msgstr "Көйләнмәләр сакланды."
+
+#~ msgid "Project code may only contain letters, numbers and _"
+#~ msgstr "Проект коды бары тик хәреф, цифр һәм аст сызык _ тан тора ала"
+
+#~ msgid "Advanced Options"
+#~ msgstr "Киңәйтелгән көйләүләр"
+
+#~ msgid "The name for this Pootle server"
+#~ msgstr "Бу Pootle серверы өчен исем"
+
+#~ msgid ""
+#~ "The description and instructions shown on the front page and about page. Be "
+#~ "sure to use valid HTML."
+#~ msgstr ""
+#~ "Алгы бит белән мәгълүмат битендә күрсәтелә торган тасвирлама белән "
+#~ "инструкцияләр. Дөрес HTML кулланыгыз."
+
+#~ msgid "Top Contributors"
+#~ msgstr "Иң күп өлеш кертүчеләр"
+
+#~ msgid "anonymous users"
+#~ msgstr "аталмаган кулланучылар"
+
+#~ msgid ""
+#~ "Here you can add, edit, and delete all the available languages in this "
+#~ "Pootle server."
+#~ msgstr ""
+#~ "Монда син бу Pootle серверындагы барча телләрне өсти, үзгәртә, бетерә аласың."
+
+#~ msgid ""
+#~ "Here you can add, edit, and delete all the available projects in this Pootle "
+#~ "server."
+#~ msgstr ""
+#~ "Монда син бу Pootle серверындагы барча проектларны өсти, үзгәртә, бетерә "
+#~ "аласың."
+
+#~ msgid "General Settings"
+#~ msgstr "Төп көйләүләр"
+
+#~ msgid "Configure here the general settings for your site."
+#~ msgstr "Бу төштә сайтыгызның төп көйләнмәләрен көйләгез."
+
+#~ msgid ""
+#~ "Here you can add, edit, and delete all the available users in this Pootle "
+#~ "server."
+#~ msgstr ""
+#~ "Монда сез бу Pootle серверындагы барча кулланучыларны өсти, үзгәртә, бетерә "
+#~ "аласыз."
+
+#~ msgid "Support"
+#~ msgstr "Булышу"
+
+#~ msgid ""
+#~ "Pootle is developed by Translate.org.za and a community of passionate "
+#~ "localization experts. We want Pootle to help your localization work reach "
+#~ "its full potential."
+#~ msgstr ""
+#~ "Pootle-ны Translate.org.za компаниясе һәм үз эшен яратучы тәрҗемәчеләр "
+#~ "ясады. Без Pootle-ның сезнең тәрҗемә эшегезнең тулы потенциалына җитүенә "
+#~ "ярдәм итүен телибез."
+
+#~ msgid "You will find the following helpful for support:"
+#~ msgstr "Түбәндәгеләрне эшегездә терәк, ярдәм буларак файдалы табарсыз:"
+
+#~ msgid "The Pootle documentation"
+#~ msgstr "Pootle документациясе"
+
+#~ msgid "The Pootle mailing list"
+#~ msgstr "Pootle-ның электрон почта аша хәбәр тарату исемлеге"
+
+#~ msgid "(commercial support)"
+#~ msgstr "(түләүле ярдәм)"
+
+#~ msgid "Cancel"
+#~ msgstr "Сакламыйча китү"
+
+#~ msgid "Pootle Alerts"
+#~ msgstr "Pootle искә төшергечләре"
+
+#~ msgid "No description set."
+#~ msgstr "Тасвирламасы юк."
+
+#~ msgid "Latest News"
+#~ msgstr "Иң соңгы яңалыклар"
+
+#~ msgid "Subscribe to the RSS feed."
+#~ msgstr "RSS каналына язылу."
+
+#~ msgid "Don't have an account yet?"
+#~ msgstr "Хисап язмагыз юкмы әле?"
+
+#~ msgid "Register."
+#~ msgstr "Теркәлү."
+
+#, python-format
+#~ msgid ""
+#~ "Django version %s is installed, but a higher version is highly recommended."
+#~ msgstr ""
+#~ "%s-нче версия Django куелган, әмма югарырак версиясе каты итеп киңәш ителә."
+
+#~ msgid ""
+#~ "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
+#~ "available."
+#~ msgstr ""
+#~ "unzip командасы табылмады. \"unzip\" булса архивларны менгерү тизрәк бара."
+
+#~ msgid ""
+#~ "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
+#~ "subtitle formats."
+#~ msgstr ""
+#~ "aeidon пакеты табылмады. Pootle-га төрле субтитр форматларын куллану өчен "
+#~ "Gaupol яки aeidon кирәк."
+
+#~ msgid ""
+#~ "No text indexing engine found. Searching is faster if an indexing engine "
+#~ "like Xapian or Lucene is installed."
+#~ msgstr ""
+#~ "Бер текст индекслагычы да табылмады. Xapian яки Lucene кебек текст "
+#~ "индекслагыч куелган булса, эзләү тизрәк эшли."
+
+#~ msgid ""
+#~ "Running in live translation mode. Live translation is useful as a tool to "
+#~ "learn about Pootle and localization, but has high impact on performance."
+#~ msgstr ""
+#~ "Эш тере тәрҗемәләү режимында бара. Тере тәрҗемәләү Pootle белән "
+#~ "локализацияне өйрәнү өчен корал буларак файдалы, әмма ул күп көч куллана."
+
+#~ msgid "Translation Project Contributors"
+#~ msgstr "Тәрҗемә проектында катнашучылар"
+
+#~ msgid "Project Contributors"
+#~ msgstr "Проектта катнашучылар"
+
+#~ msgid "Language Contributors"
+#~ msgstr "Тел катнашучылары"
+
+#, python-format
+#~ msgid "%(percentage)d%% complete"
+#~ msgstr "%(percentage)d%%-ы тәмам"
+
+#, python-format
+#~ msgid ""
+#~ "A description of this language. This is useful to give more information or "
+#~ "instructions. Allowed markup: %s"
+#~ msgstr ""
+#~ "Бу телнең тасвирламасы. Бу мәгълүмат яки инструкция бирер өчен файдалы. "
+#~ "Монда %s билгеләү теле рөхсәт ителә"
+
+#~ msgid ""
+#~ "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
+#~ "l10n/pluralforms\">our wiki page</a> on plural forms."
+#~ msgstr ""
+#~ "Күбрәк мәгълүмат өчен, күплек саны турындагы <a href=\""
+#~ "http://translate.sourceforge.net/wiki/l10n/pluralforms\">безнең вики "
+#~ "язмасын</a> карагыз."
+
+#, python-format
+#~ msgid "Error reading %d file"
+#~ msgid_plural "Error reading %d files"
+#~ msgstr[0] "%d файлны укыганда хата чыкты"
+
+#, python-format
+#~ msgid "%(projects)d project, %(average)d%% translated"
+#~ msgid_plural "%(projects)d projects, %(average)d%% translated"
+#~ msgstr[0] "%(projects)d проект, %(average)d%% тәрҗемә ителгән"
+
+#~ msgid "No description yet."
+#~ msgstr "Тасвирлама юк әле."
+
+#~ msgid "Priority"
+#~ msgstr "Алдынгылык"
+
+#~ msgid "Functional"
+#~ msgstr "Функциональ"
+
+#~ msgid "Extraction"
+#~ msgstr "Чыгару"
+
+#~ msgid "No category"
+#~ msgstr "Категория юк"
+
+#, python-format
+#~ msgid "<a href=\"%(url)s\">%(num)d word</a>"
+#~ msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
+#~ msgstr[0] "<a href=\"%(url)s\">%(num)d сүз</a>"
+
+#, python-format
+#~ msgid "%(num)d%%"
+#~ msgstr "%(num)d%%"
+
+#, python-format
+#~ msgid "(%(num)d string)"
+#~ msgid_plural "(%(num)d strings)"
+#~ msgstr[0] "(%(num)d билге тезентесе)"
+
+#, python-format
+#~ msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
+#~ msgid_plural ""
+#~ "This folder has %(num)d words, %(percentage)d%% of which are translated."
+#~ msgstr[0] "Бу папкада %(num)d сүз, аларның %(percentage)d%%-ы тәрҗемә ителгән."
+
+#, python-format
+#~ msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
+#~ msgid_plural ""
+#~ "This file has %(num)d words, %(percentage)d%% of which are translated."
+#~ msgstr[0] "Бу файлда %(num)d сүз, аларның %(percentage)d%%-ы тәрҗемә ителгән."
+
+#, python-format
+#~ msgid "Continue translation (%(num)d word left)"
+#~ msgid_plural "Continue translation (%(num)d words left)"
+#~ msgstr[0] "Тәрҗемәне дәвам итү (%(num)d сүз калды)"
+
+#, python-format
+#~ msgid "Next most important goal (%(num)d word left)"
+#~ msgid_plural "Next most important goal (%(num)d words left)"
+#~ msgstr[0] "Киләсе иң мөһим эшлисе эш (%(num)d сүз калды)"
+
+#~ msgid "Translation is complete"
+#~ msgstr "Тәрҗемә тәмам"
+
+#, python-format
+#~ msgid "Review suggestion (%(num)d left)"
+#~ msgid_plural "Review suggestions (%(num)d left)"
+#~ msgstr[0] "Тәкъдимнәрне карап чыгу (%(num)d калды)"
+
+#, python-format
+#~ msgid ""
+#~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
+#~ "review)."
+#~ msgid_plural ""
+#~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
+#~ "review)."
+#~ msgstr[0] ""
+#~ "%(type)s: %(total)d билге тезентесенең %(translated)d-сы тәрҗемә ителгән "
+#~ "(%(fuzzy)d-сын карап чыгу кирәк)."
+
+#, python-format
+#~ msgid "%d word needs attention"
+#~ msgid_plural "%d words need attention"
+#~ msgstr[0] "%d сүзгә игътибар кирәк"
+
+#, python-format
+#~ msgid "%d word untranslated"
+#~ msgid_plural "%d words untranslated"
+#~ msgstr[0] "%d сүз тәрҗемә ителмәгән"
+
+#, python-format
+#~ msgid "%d word needs review"
+#~ msgid_plural "%d words need review"
+#~ msgstr[0] "%d сүзне карап чыгу кирәк"
+
+#, python-format
+#~ msgid "%(percent)s%% complete"
+#~ msgstr "%(percent)s%% тәмам"
+
+#~ msgid "Publish on news feed"
+#~ msgstr "Яңалык тасмасында нәшер итү"
+
+#~ msgid "Send email"
+#~ msgstr "Электрон почта хаты җибәрү"
+
+#~ msgid "Email only to recently active users"
+#~ msgstr "Соңгы вакытта актив булган кулланучыларга гына хат җибәрү"
+
+#~ msgid "Project Selection"
+#~ msgstr "Проект сайлау"
+
+#~ msgid "Select one or more projects"
+#~ msgstr "Бер йә берничә проектны сайлагыз"
+
+#~ msgid "Language Selection"
+#~ msgstr "Тел сайлау"
+
+#, python-format
+#~ msgid "News for %(language)s"
+#~ msgstr "%(language)s өчен хәбәрләр"
+
+#, python-format
+#~ msgid "News for %(project)s"
+#~ msgstr "%(project)s хәбәрләре"
+
+#, python-format
+#~ msgid "News for the %(project)s project in %(language)s"
+#~ msgstr "%(language)s телендәге %(project)s проекты хәбәрләре"
+
+#, python-format
+#~ msgid "News for %(path)s"
+#~ msgstr "%(path)s яңалыклары"
+
+#~ msgid "View News Item"
+#~ msgstr "Яңалыкларның берсен карау"
+
+#~ msgid "News"
+#~ msgstr "Яңалыклар"
+
+#~ msgid "Publish News"
+#~ msgstr "Яңалыкларны нәшер итү"
+
+#~ msgid "Successfully published the following news"
+#~ msgstr "Түбәндәге яңалыклар уңышлы нәшер ителде"
+
+#~ msgid "Publish"
+#~ msgstr "Нәшер итү"
+
+#~ msgid "Default"
+#~ msgstr "Алдан килешенгән"
+
+#~ msgid "Interface Language"
+#~ msgstr "Интерфейс теле"
+
+#~ msgid "This account is inactive."
+#~ msgstr "Бу хисап язмасы актив түгел."
+
+#, python-format
+#~ msgid ""
+#~ "A description of this project. This is useful to give more information or "
+#~ "instructions. Allowed markup: %s"
+#~ msgstr ""
+#~ "Бу проектның тасвирламасы. Бу мәгълүмат яки инструкция бирер өчен файдалы. "
+#~ "Монда %s билгеләү теле рөхсәт ителә"
+
+#~ msgid "Report Target"
+#~ msgstr "Максат турында хәбәр җибәрү"
+
+#, python-format
+#~ msgid "%(languages)d language, %(average)d%% translated"
+#~ msgid_plural "%(languages)d languages, %(average)d%% translated"
+#~ msgstr[0] "%(languages)d тел, %(average)d%% тәрҗемә ителгән"
+
+#~ msgid "Update against templates"
+#~ msgstr "Шаблоннарга карата яңарту"
+
+#~ msgid "Show tags"
+#~ msgstr "Тегларны күрсәтү"
+
+#~ msgid "Show filtering"
+#~ msgstr "Сөзгеч (фильтрлагыч)-ларны күрсәтү"
+
+#~ msgid "Filter using one or more tags"
+#~ msgstr "Теглар кулланып сөзү (фильтрлау)"
+
+#~ msgctxt "verb"
+#~ msgid "Filter"
+#~ msgstr "Сөзгеч (Фильтр)"
+
+#~ msgid "Filter using the selected tags"
+#~ msgstr "Сайланган тегларны кулланып сөзү (фильтрлау)"
+
+#~ msgid "Add tag"
+#~ msgstr "Тег өстәү"
+
+#~ msgid "Administrate"
+#~ msgstr "Идарә итү"
+
+#, python-format
+#~ msgid ""
+#~ "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
+#~ "a></i>"
+#~ msgstr ""
+#~ "%(user)s никлы кулланучы <i><a href=\"%(url)s\">%(source)s</a></i> билге "
+#~ "тезентесе тәрҗемәсен кире кайтарды"
+
+#, python-format
+#~ msgid ""
+#~ "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
+#~ "a></i>"
+#~ msgstr ""
+#~ "%(user)s <i><a href=\"%(url)s\">%(source)s</a></i> билге тезентесе өчен "
+#~ "тәрҗемә тәкъдимен кабул итте"
+
+#, python-format
+#~ msgid "%(user)s uploaded a file"
+#~ msgstr "%(user)s бер файл йөкләде"
+
+#, python-format
+#~ msgid ""
+#~ "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
+#~ "a></i>"
+#~ msgstr ""
+#~ "%(user)s никлы кулланучы <i><a href=\"%(url)s\">%(source)s</a></i> билге "
+#~ "тезентесе өчен тәрҗемә тапшырды"
+
+#, python-format
+#~ msgid ""
+#~ "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
+#~ "\">%(source)s</a></i>"
+#~ msgstr ""
+#~ "%(user)s никлы кулланучы <i><a href=\"%(url)s\">%(source)s</a></i> билге "
+#~ "тезентесе өчен \"эшләп бетерү кирәк\" тәрҗемә тапшырды"
+
+#, python-format
+#~ msgid ""
+#~ "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
+#~ "a></i>"
+#~ msgstr ""
+#~ "%(user)s никлы кулланучы <i><a href=\"%(url)s\">%(source)s</a></i> билге "
+#~ "тезентесе тәрҗемәсен бетерде"
+
+#~ msgid "File does not exist."
+#~ msgstr "Файл юк."
+
+#~ msgid "Java Properties"
+#~ msgstr "Java Properties"
+
+#~ msgid "Java Properties (UTF-8)"
+#~ msgstr "Java Properties (UTF-8)"
+
+#~ msgid "OS X Strings"
+#~ msgstr "OS X Strings"
+
+#~ msgid "PHP arrays"
+#~ msgstr "PHP массивлары"
+
+#~ msgid "Subtitles: srt"
+#~ msgstr "srt субтитр форматы"
+
+#~ msgid "Subtitles: sub"
+#~ msgstr "sub субтитр форматы"
+
+#~ msgid "Subtitles: ssa"
+#~ msgstr "ssa субтитрлары"
+
+#~ msgid "Subtitles: ass"
+#~ msgstr "ass субтитрлары"
+
+#~ msgid "Tags"
+#~ msgstr "Теглар"
+
+#~ msgid "A comma-separated list of tags."
+#~ msgstr "Өтер белән аерылган теглар теземе."
+
+#~ msgid "Goals"
+#~ msgstr "Эшлисе эшләр"
+
+#~ msgid "A comma-separated list of goals."
+#~ msgstr "Өтер белән аерылган эшлисе эшләр исемлеге."
+
+#~ msgid "You do not have rights to access translation mode."
+#~ msgstr "Синең тәрҗемә режимына күчергә хокугың юк."
+
+#~ msgid "You do not have rights to access review mode."
+#~ msgstr "Синең тикшереп чыгу режимына керергә хокугың юк."
+
+#~ msgid "The suggestion or vote is not valid any more."
+#~ msgstr "Ул тәкъдим яки тавыш моннан соң исәпләнми."
+
+#~ msgid "You do not have rights to remove tags."
+#~ msgstr "Синең тегларны бетерергә хокукың юк."
+
+#~ msgid "You do not have rights to add tags."
+#~ msgstr "Синең теглар өстәргә хокукың юк."
+
+#~ msgid "Comment:"
+#~ msgstr "Комментарий:"
+
+#, python-format
+#~ msgid "String %(id)s"
+#~ msgstr "%(id)s-нче билге тезентесе"
+
+#~ msgid "Hide Timeline"
+#~ msgstr "Вакыт турысын яшерү"
+
+#~ msgid "Your current vote. Click to remove this vote."
+#~ msgstr "Синең хәзерге тавышың. Аны бетерәсең килсә, чирт."
+
+#~ msgid "Vote for this suggestion"
+#~ msgstr "Бу тәкъдим өчен тавыш бирү"
+
+#~ msgid "No results."
+#~ msgstr "Бер табыш та юк."
+
+#~ msgid ""
+#~ "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
+#~ "underscores (_), slashes (/) or periods (.)!"
+#~ msgstr ""
+#~ "Тег исемнәрендә баштагы я ахырдагы буш урыннар, ике нокта (:), сызык (-), "
+#~ "асты сызык буш урын (_), авыш сызык (/), нокта (.) була алмый!"
+
+#~ msgid ""
+#~ "Tag names cannot contain two or more consecutive: spaces, colons (:), "
+#~ "hyphens (-), underscores (_), slashes (/) or periods (.)!"
+#~ msgstr ""
+#~ "Тег исемнәрендә янәшә ике йә күбрәк буш урын, ике нокта (:), сызык (-), асты "
+#~ "сызык буш урын (_), авыш сызык (/), нокта (.) була алмый!"
+
+#~ msgid ""
+#~ "Tag names must be an alphanumeric lowercase string with no trailing nor "
+#~ "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
+#~ "underscores (_), slashes (/) or periods (.)!"
+#~ msgstr ""
+#~ "Тег исемнәре кечкенә латин хәрефләре белән цифрлардан торырга тиеш һәм "
+#~ "башында һәм ахырында буш урын, ике нокта (:), сызык (-), асты сызык буш урын "
+#~ "(_), авыш сызык (/), нокта (.) була алмый (әмма уртасында була ала)!"
+
+#~ msgid ""
+#~ "Name cannot contain just after 'goal:' any of these characters: spaces, "
+#~ "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
+#~ msgstr ""
+#~ "Исемдә \"эшлисе эш:\"-тән соң ук буш урын, ике нокта (:), сызык (-), асты "
+#~ "сызык буш урын (_), авыш сызык (/), нокта (.) була алмый"
+
+#~ msgid "A goal with that name already exists. Please pick another name."
+#~ msgstr "Ул исемле эшлисе эш бар инде. Башка исем сайласаң иде."
+
+#~ msgid ""
+#~ "Tag slugs must be equal to the tag name, but replacing with a hyphen the "
+#~ "single or multiple occurrences of the following characters: spaces, colons "
+#~ "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
+#~ msgstr ""
+#~ "Тег адреслары тег исеменә тигез булырга тиеш, әмма бер йә берничә буш урын, "
+#~ "ике нокта (:), сызык (-), асты сызык буш урын (_), авыш сызык (/), нокта (.) "
+#~ "билгеләрен сызык белән алыштырасы."
+
+#~ msgid "A goal with this slug already exists."
+#~ msgstr "Бу адреслы бер эшлисе эш бар инде."
+
+#~ msgid ""
+#~ "Warning: Changing the name also changes the slug, so it won't be possible to "
+#~ "view this goal on this page!"
+#~ msgstr ""
+#~ "Кисәтү: Исемне үзгәртү белән адрес та үзгәрә, шуңа күрә бу эшлисе эшне бу "
+#~ "адреста күреп булмаячак!"
+
+#, python-format
+#~ msgid ""
+#~ "A description of this goal. This is useful to give more information or "
+#~ "instructions. Allowed markup: %s"
+#~ msgstr ""
+#~ "Бу эшлисе эшнең тасвирламасы. Бу мәгълүмат яки инструкция бирер өчен "
+#~ "файдалы. Монда %s билгеләү теле рөхсәт ителә"
+
+#~ msgid "The priority for this goal."
+#~ msgstr "Бу эшлисе эшнең алдынгылыгы."
+
+#~ msgid ""
+#~ "Designates that this is a project goal (shared across all languages in the "
+#~ "project)."
+#~ msgstr ""
+#~ "Моның проекттагы эшлисе эш (бу проектның барча телләре өчен уртак) булуын "
+#~ "күрсәтү."
+
+#~ msgid "Project goal?"
+#~ msgstr "Проект дәрәҗәсендәге эшлисе эшме?"
+
+#~ msgid "(Project goal)"
+#~ msgstr "(Проекттагы эшлисе эш)"
+
+#~ msgid "Download (.zip)"
+#~ msgstr "Алу (.zip)"
+
+#~ msgid "Download XLIFF"
+#~ msgstr "XLIFF итеп алу"
+
+#~ msgid "Download file in XLIFF format"
+#~ msgstr "Файлны XLIFF форматында алу"
+
+#~ msgid "Export"
+#~ msgstr "Чыгару"
+
+#~ msgid "Export translations"
+#~ msgstr "Тәрҗемәләрне чыгару"
+
+#~ msgid "Download"
+#~ msgstr "Алу"
+
+#~ msgid "Download file"
+#~ msgstr "Файлны алу"
+
+#~ msgid "Download XLIFF file for offline translation"
+#~ msgstr "Интернетсыз тәрҗемәләү өчен XLIFF файлын алу"
+
+#~ msgid "Upload"
+#~ msgstr "Йөкләү"
+
+#~ msgid "Upload translation files or archives in .zip format"
+#~ msgstr "Тәрҗемә файллары яки .zip форматлы архивлар йөкләгез"
+
+#~ msgid "Update from VCS"
+#~ msgstr "VCS-тан яңарту"
+
+#~ msgid "Commit to VCS"
+#~ msgstr "VCS-ка кертү"
+
+#~ msgid "Update all from VCS"
+#~ msgstr "VCS-тан барчасын яңарту"
+
+#~ msgid "Commit all to VCS"
+#~ msgstr "VCS-ка барчасын кертү"
+
+#~ msgid "Rescan project files"
+#~ msgstr "Проект файлларын яңадан уку"
+
+#~ msgid "Delete this folder..."
+#~ msgstr "Бу папканы бетерү..."
+
+#~ msgid "Delete this file..."
+#~ msgstr "Бу файлны бетерү..."
+
+#~ msgid "Translate offline"
+#~ msgstr "Интернетсыз тәрҗемә итү"
+
+#~ msgid "Manage"
+#~ msgstr "Идарә итү"
+
+#~ msgid "Overwrite the current file if it exists"
+#~ msgstr "Эш барышындагы файлның, ул инде булса, өстенә яздыру"
+
+#~ msgid ""
+#~ "Merge the file with the current file and turn conflicts into suggestions"
+#~ msgstr "Бу файлны эштәге файл белән кушу, каршылыкларны тәкъдимнәргә әйләндерү"
+
+#~ msgid "Add all new translations as suggestions"
+#~ msgstr "Барча яңа тәрҗемәләрне тәкъдим итеп өстәү"
+
+#~ msgid "Upload to"
+#~ msgstr "Бу урынга йөкләү:"
+
+#~ msgid ""
+#~ "Optionally select the file you want to merge with. If not specified, the "
+#~ "uploaded file's name is used."
+#~ msgstr ""
+#~ "Кушыр өчен файлны күрсәтү мөмкин. Ул күрсәтелмәсә, йөкләнүче файлның исеме "
+#~ "кулланылачак."
+
+#, python-format
+#~ msgid ""
+#~ "A description of this translation project. This is useful to give more "
+#~ "information or instructions. Allowed markup: %s"
+#~ msgstr ""
+#~ "Бу тәрҗемәләү проектының тасвирламасы. Бу мәгълүмат яки инструкция бирер "
+#~ "өчен файдалы. Монда %s билгеләү теле рөхсәт ителә"
+
+#, python-format
+#~ msgid "Failed to update from version control: %(error)s"
+#~ msgstr "Версияләрне контрольләү истемасыннан алганда хата чыкты: %(error)s"
+
+#, python-format
+#~ msgid "Updated project <em>%(project)s</em> from version control"
+#~ msgstr ""
+#~ "<em>%(project)s</em> проекты версияләрне контрольләү системасыннан яңартылды"
+
+#~ msgid "Working copy"
+#~ msgstr "Бу сайттагы версия"
+
+#~ msgid "Remote copy"
+#~ msgstr "Версияләр контрольләү системасындагы версия"
+
+#~ msgid "Merged copy"
+#~ msgstr "Берләштереп ясалган версия"
+
+#, python-format
+#~ msgid "Updated file <em>%(filename)s</em> from version control"
+#~ msgstr ""
+#~ "Версияләрне контрольләү системасыннан яңартылган <em>%(filename)s</em> файлы"
+
+#, python-format
+#~ msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
+#~ msgstr ""
+#~ "<em>%(filename)s</em>-ны версияләрне контрольләү системасыннан яңарту барып "
+#~ "чыкмады: %(error)s"
+
+#, python-format
+#~ msgid "Committed all files under <em>%(path)s</em> to version control"
+#~ msgstr ""
+#~ "<em>%(path)s</em> эчендәге барча файлларны версияләрне контрольләү "
+#~ "системасына керттек"
+
+#, python-format
+#~ msgid "Failed to commit to version control: %(error)s"
+#~ msgstr "Версияләрне контрольләү системасына кертү барып чыкмады: %(error)s"
+
+#, python-format
+#~ msgid "Committed file <em>%(filename)s</em> to version control"
+#~ msgstr ""
+#~ "<em>%(filename)s</em> файлын версияләрне контрольләү системасына керттек"
+
+#, python-format
+#~ msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
+#~ msgstr ""
+#~ "<em>%(filename)s</em> файлын версияләрне контрольләү системасына кертү барып "
+#~ "чыкмады: %(error)s"
+
+#~ msgid "Translation project files have been rescanned."
+#~ msgstr "Тәрҗемә проекты файллары яңадан укылды."
+
+#~ msgid "Error while rescanning translation project files."
+#~ msgstr "Тәрҗемә проекты файлларын яңадан укыганда хата чыкты."
+
+#~ msgid "Translation project has been updated against latest templates."
+#~ msgstr "Тәрҗемә проекты иң соңгы шаблоннарга карата яңартылды."
+
+#~ msgid "Error while updating translation project against latest templates."
+#~ msgstr "Тәрҗемә проектын соңгы шаблоннардан яңартканда хата чыкты."
+
+#~ msgid "Symbolic link hasn't been removed from the filesystem."
+#~ msgstr "Символик сылтама файл системасыннан бетерелмәде."
+
+#~ msgid "Directory and its containing files have been deleted."
+#~ msgstr "Папка, эчендәге файллары белән, бетерелде."
+
+#~ msgid "File has been deleted."
+#~ msgstr "Файл бетерелде."
+
+#~ msgid "Error while trying to delete directory."
+#~ msgstr "Папканы бетермәкче булганда хата чыкты."
+
+#~ msgid "Error while trying to delete file."
+#~ msgstr "Файл бетермәкче булганда хата чыкты."
+
+#, python-format
+#~ msgid "Unable to find '%(action)s' in '%(extdir)s'"
+#~ msgstr "'%(extdir)s' эчендә '%(action)s'-ны табып булмый"
+
+#, python-format
+#~ msgid "Error while running '%s' extension action"
+#~ msgstr "'%s' өстәмәсе гамәлен эшләгәндә хата чыкты"
+
+#, python-format
+#~ msgid "Invalid/insecure file name: %s"
+#~ msgstr "%s дигән файл исеме дөрес түгел яки куркынычлы"
+
+#, python-format
+#~ msgid ""
+#~ "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
+#~ "%(filetype)s'."
+#~ msgstr ""
+#~ "GNU-стилендә дөрес булмаган файл исеме: %(local_filename)s. Ул "
+#~ "'%(langcode)s.%(filetype)s'-га туры килергә тиеш."
+
+#~ msgid "Error while extracting archive"
+#~ msgstr "Архивтан чыгарганда хата чыкты"
+
+#~ msgid "You do not have rights to overwrite files here."
+#~ msgstr "Синең монда файлларның өстенә яздыру хокукың юк."
+
+#~ msgid "You do not have rights to upload new files here."
+#~ msgstr "Синең монда яңа файллар йөкләү хокукың юк."
+
+#~ msgid "You do not have rights to upload files here."
+#~ msgstr "Синең монда файл йөкләү хокукың юк."
+
+#~ msgid "Goal"
+#~ msgstr "Эшлисе эш"
+
+#~ msgid "Translation project files and folders"
+#~ msgstr "Тәрҗемә проекты файл һәм папкалары"
+
+#~ msgid "Administrate your project goals"
+#~ msgstr "Проектыгыздагы эшлисе эшләр белән идарә итү"
+
+#, python-format
+#~ msgid "%(project)s project information"
+#~ msgstr "%(project)s проекты мәгълүматы"
+
+#, python-format
+#~ msgid "%(language)s language information"
+#~ msgstr "%(language)s теле мәгълүматы"
+
+#~ msgid "Upload File"
+#~ msgstr "Файл йөкләү"
+
+#~ msgid "Nothing to show"
+#~ msgstr "Күрсәтергә бер ни дә юк"
+
+#~ msgid "username"
+#~ msgstr "кулланучы исеме"
+
+#~ msgid "email address"
+#~ msgstr "электрон почта адресы"
+
+#~ msgid "password"
+#~ msgstr "серсүз"
+
+#~ msgid "password (again)"
+#~ msgstr "серсүз (шуны ук тагын)"
+
+#~ msgid "This username is already taken. Please choose another."
+#~ msgstr "Бу кулланучы исеме алынган инде. Зинһар, башканы сайлагыз."
+
+#~ msgid "You must type the same password each time"
+#~ msgstr "Син икесендә дә бер үк серсүзне язарга тиеш."
+
+#~ msgid "I have read and agree to the Terms of Service"
+#~ msgstr "Мин Хезмәт күрсәтү шартларын укып чыктым һәм аңа риза"
+
+#~ msgid ""
+#~ "This email address is already in use. Please supply a different email "
+#~ "address."
+#~ msgstr "Бу электрон почта адресы кулланыла инде. Зинһар, башкасын кертегез."
+
+#~ msgid ""
+#~ "Registration using free email addresses is prohibited. Please supply a "
+#~ "different email address."
+#~ msgstr ""
+#~ "Бушлай электрон почта адреслары белән теркәлү тыелган. Зинһар, башкасын "
+#~ "кертегез."
+
+#~ msgid "user"
+#~ msgstr "кулланучы"
+
+#~ msgid "activation key"
+#~ msgstr "активлаштыргыч код"
+
+#~ msgid "registration profile"
+#~ msgstr "теркәлү профиле"
+
+#~ msgid "registration profiles"
+#~ msgstr "теркәлү профилләре"
+
+#~ msgid "Page"
+#~ msgstr "Бит"
+
+#~ msgid "Can view a translation project"
+#~ msgstr "Тәрҗемә проектын күрә ала"
+
+#~ msgid "Can overwrite translations on uploading files"
+#~ msgstr "Файл йөкләгәндә тәрҗемәләрнең өстенә яздыра ала"
+
+#~ msgid "Can download archives of translation projects"
+#~ msgstr "Тәрҗемә проектлары архивларын ала ала"
+
+#~ msgid "Can commit to version control"
+#~ msgstr "Версияләрне контрольләү истемасына кертә ала"
+
+#, python-format
+#~ msgid "Failed to copy download file to export directory %s"
+#~ msgstr "Алынасы файлны %s чыгару папкасына копияләп булмады"
+
+#~ msgid ""
+#~ "Finished building the language pack, click on the download link to download "
+#~ "it."
+#~ msgstr "Тел пакетын ясау тәмам, аны алу өчен алу күчкесенә басыгыз."
+
+#~ msgid "Main page"
+#~ msgstr "Төп бит"
+
+#~ msgid "Information and statistics about this Pootle server"
+#~ msgstr "Бу Pootle серверы турында мәгълүмат һәм статистика"
+
+#~ msgid "Configure the general settings for your site"
+#~ msgstr "Сайтыгызның гомуми көйләнешләрен үзгәртү"
+
+#~ msgid "General"
+#~ msgstr "Гомуми"
+
+#~ msgid "Manage the users"
+#~ msgstr "Кулланучылар белән идарә итү"
+
+#~ msgid "Manage the languages"
+#~ msgstr "Телләр белән идарә итү"
+
+#~ msgid "Manage the projects"
+#~ msgstr "Проектлар белән идарә итү"
+
+#~ msgid "Manage the default permissions"
+#~ msgstr "Алдан килешенгән рөхсәтләр белән идарә итү"
+
+#~ msgid "Manage Static Pages"
+#~ msgstr "Гел үзгәреп тормый торган битләр белән идарә итү"
+
+#~ msgid "Zoom out (Ctrl+Shift+-)"
+#~ msgstr "Кечерәйтү (Ctrl+Shift+-)"
+
+#~ msgid "Reset zoom (Ctrl+Shift+0)"
+#~ msgstr "Алдан килешенгән зурлыкка кайтару (Ctrl+Shift+0)"
+
+#~ msgid "Zoom in (Ctrl+Shift++)"
+#~ msgstr "Зурайту (Ctrl+Shift++)"
+
+#~ msgid "ADMIN"
+#~ msgstr "АДМИН"
+
+#~ msgid "Log Out"
+#~ msgstr "Чыгу"
+
+#~ msgid "Register"
+#~ msgstr "Теркәлү"
+
+#~ msgid "Help"
+#~ msgstr "Ярдәм"
+
+#~ msgid "Contributors"
+#~ msgstr "Катнашучылар"
+
+#~ msgid "Language main page"
+#~ msgstr "Телнең төп бите"
+
+#~ msgid "Language news"
+#~ msgstr "Телнең яңалыклары"
+
+#~ msgid "Translate this language"
+#~ msgstr "Бу телгә тәрҗемә итү"
+
+#~ msgid "Administrate your language permissions"
+#~ msgstr "Телегездәге хокуклар белән идарә итү"
+
+#~ msgid "Main"
+#~ msgstr "Төп"
+
+#~ msgid "Project main page"
+#~ msgstr "Проектның төп бите"
+
+#~ msgid "Project news"
+#~ msgstr "Проект яңалыклары"
+
+#~ msgid "Translate this project"
+#~ msgstr "Бу проектны тәрҗемә итү"
+
+#~ msgid "Administrate your project"
+#~ msgstr "Проектыгыз белән идарә итү"
+
+#~ msgid "Manage project permissions"
+#~ msgstr "Проекттагы хокуклар белән идарә итү"
+
+#~ msgid "Translation project main page"
+#~ msgstr "Тәрҗемә проекты төп бите"
+
+#~ msgid "Translation project news"
+#~ msgstr "Тәрҗемә проекты яңалыклары"
+
+#~ msgid "Manage terminology"
+#~ msgstr "Терминнар белән идарә итү"
+
+#~ msgid "Administrate your project permissions"
+#~ msgstr "Проектыгыздагы хокуклар белән идарә итү"
+
+#~ msgid "Overview of your account"
+#~ msgstr "Синең хисап язмаңның гомуми күренеше"
+
+#~ msgid "Dashboard"
+#~ msgstr "Идарә чаралары бите"
+
+#~ msgid "Configure your translation preferences"
+#~ msgstr "Тәрҗемә итү көйләнешләреңне көйләү"
+
+#~ msgid "Change your personal information"
+#~ msgstr "Шәхси мәгълүматыңны үзгәртү"
+
+#~ msgid "Change your password"
+#~ msgstr "Серсүзеңне алыштыру"
+
+#~ msgid "This Pootle Server"
+#~ msgstr "Бу Pootle серверы"
+
+#~ msgid "Add a tag"
+#~ msgstr "Тег өстәү"
+
+#~ msgid "Send"
+#~ msgstr "Җибәрү"
+
+#~ msgid "Message Sent"
+#~ msgstr "Хәбәр җибәрелде"
+
+#~ msgid "Thank you for your feedback."
+#~ msgstr "Куллануыгыздан килеп чыккан фикерләрегезне җибәргәнегез өчен рәхмәт."
+
+#, python-format
+#~ msgid " message by %(name)s"
+#~ msgstr " %(name)s хәбәре"
+
+#~ msgid "Pootle's editor requires JavaScript"
+#~ msgstr "Pootle төзәткеченә JavaScript кирәк"
+
+#~ msgid "Filter by:"
+#~ msgstr "Сөзгеч:"
+
+#~ msgid ""
+#~ "Here you can change your personal details. This information will be used in "
+#~ "the header of the translation files."
+#~ msgstr ""
+#~ "Монда син шәхси мәгълүматыңны үзгәртә аласың. Бу мәгълүмат тәрҗемә "
+#~ "файлларының башламаларында кулланылачак."
+
+#~ msgid "First Name"
+#~ msgstr "Исем"
+
+#~ msgid "Last Name"
+#~ msgstr "Фамилия"
+
+#~ msgid ""
+#~ "Here you can configure the settings related to the translation interface as "
+#~ "well as your language preferences."
+#~ msgstr ""
+#~ "Монда син тәрҗемә интерфейсы көйләнешләрен һәм үзеңнең тел көйләнешләрен "
+#~ "үзгәртә аласың."
+
+#~ msgid "Contributions"
+#~ msgstr "Өлеш кертүләр"
+
+#~ msgid "Suggestions Pending"
+#~ msgstr "Көтүче тәкъдимнәр"
+
+#~ msgid "Overwritten"
+#~ msgstr "Өстенә яздырылган"
+
+#~ msgid "This user doesn't have any contributions yet."
+#~ msgstr "Бу кулланучының бер кертеме дә юк әле."
+
+#~ msgid "Profiles list"
+#~ msgstr "Профиль тезмәсе"
+
+#~ msgid "First name"
+#~ msgstr "Исем"
+
+#~ msgid "Last name"
+#~ msgstr "Фамилия"
+
+#~ msgid "Account Activated"
+#~ msgstr "Хисап язмасы активлаштырылды"
+
+#, python-format
+#~ msgid ""
+#~ "The account has been activated for username \"%(account)s\". You can now "
+#~ "proceed to log in."
+#~ msgstr ""
+#~ "Бу хисап язмасы \"%(account)s\" дигән кулланучы исеме өчен активлаштырылды. "
+#~ "Син хәзер керү өчен юлыңны дәвам итә аласың."
+
+#~ msgid "Pootle Account Created!"
+#~ msgstr "Pootle хисап язмасы барлыкка китерелде!"
+
+#~ msgid "A Pootle account has been created for you using this email address."
+#~ msgstr ""
+#~ "Бу электрон почта адресын кулланып синең өчен бер Pootle хисап язмасы "
+#~ "барлыкка китерелде."
+
+#~ msgid "To activate your account, follow this link:"
+#~ msgstr "Хисап язмаңны активлаштыру өчен, түбәндәге күчке белән бар:"
+
+#~ msgid "Activate my Pootle account"
+#~ msgstr "Минем Pootle хисап язмасын активлаштыру"
+
+#, python-format
+#~ msgid "Your activation code is: <code>%(activation_key)s</code>"
+#~ msgstr "Синең активлаштыру коды <code>%(activation_key)s</code>"
+
+#~ msgid ""
+#~ "This message is sent to verify that the email address is in fact correct. If "
+#~ "you did not want to register an account, you may simply ignore the message."
+#~ msgstr ""
+#~ "Бу хат бу электрон почта адресының чынлап та дөрес булуын тикшерү өчен "
+#~ "җибәрелде. Теркәлергә теләмәгән булсаң, просто бу хатка игътибар итмәсәң "
+#~ "була."
+
+#~ msgid "Your activation code is:"
+#~ msgstr "Синең активлаштыру коды:"
+
+#~ msgid "Pootle registration"
+#~ msgstr "Pootle-да теркәлү"
+
+#~ msgid "Registration Complete"
+#~ msgstr "Теркәү эше тәмам"
+
+#~ msgid "Please check your email to activate your account."
+#~ msgstr "Зинһар, хисап язмаңны активлаштыру өчен электрон почтаңны кара."
+
+#~ msgid "Register a New Pootle Account"
+#~ msgstr "Яңа Pootle хисап язмасы теркәү"
+
+#~ msgid "Fill in the following form to get started translating."
+#~ msgstr "Тәрҗемә итүне башлау өчен түбәндәге форманы тутырыгыз."
+
+#~ msgid "Password (again)"
+#~ msgstr "Серсүзе (шунысын ук тагын)"
+
+#~ msgid "Already have an account?"
+#~ msgstr "Хисап язмаң бармы инде?"
+
+#~ msgid "Log In."
+#~ msgstr "Керү."
