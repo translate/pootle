@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-25 07:44+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,135 +14,212 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.1-pre\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0-beta1\n"
+"X-POOTLE-MTIME: 1382962980.0\n"
 
-#: static/js/common.js:43
+#: static/js/common.js:13
+msgid "All Languages"
+msgstr ""
+
+#: static/js/common.js:26
+msgid "All Projects"
+msgstr ""
+
+# resposta
+#: static/js/common.js:62
 msgid "Expand details"
-msgstr ""
+msgstr "Expandir os detalles"
 
-#: static/js/common.js:43
+#: static/js/common.js:62
 msgid "Collapse details"
-msgstr ""
+msgstr "Contraer os detalles"
 
-#: static/js/common.js:77
+#: static/js/common.js:91
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "Confirma que quere continuar?"
 
-#: static/js/common.js:78
+#: static/js/common.js:92
 msgid "This operation cannot be undone."
+msgstr "Non é posíbel desfacer esta operación."
+
+#: static/js/common.js:139
+msgid "Show tags"
 msgstr ""
 
-#: static/js/editor.js:409 static/js/editor.js.c:1493
-msgid "No results."
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
+msgid "Hide tags"
 msgstr ""
 
-#. Translators: Permalink to the current unit in the editor.
-#. The first '%s' is the permalink URL.
-#. The second '%s' is the unit number.
-#: static/js/editor.js:726
+#: static/js/common.js:293 static/js/common.js.c:309
+msgid "Hide filtering"
+msgstr ""
+
+#: static/js/common.js:296 static/js/common.js.c:303
+msgid "Show filtering"
+msgstr ""
+
+#: static/js/editor.js:209
+msgid "Go to the next string (Ctrl+.)"
+msgstr ""
+
+#: static/js/editor.js:215
+msgid "Go to the previous string (Ctrl+,)"
+msgstr ""
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:333
 #, c-format
-msgid "<a href=\"%s\">String %s</a>"
+msgid "%s's pending suggestions"
 msgstr ""
 
-#: static/js/editor.js:786
-msgid "Error while connecting to the server"
+#. Translators: '%s' is a username
+#: static/js/editor.js:336
+#, c-format
+msgid "%s's accepted suggestions"
 msgstr ""
 
-#: static/js/editor.js:788
-msgid "Server error"
+#. Translators: '%s' is a username
+#: static/js/editor.js:339
+#, c-format
+msgid "%s's rejected suggestions"
 msgstr ""
 
-#: static/js/editor.js:790
-msgid "The server seems down. Try again later."
+#. Translators: '%s' is a username
+#: static/js/editor.js:342
+#, c-format
+msgid "%s's submissions"
+msgstr ""
+
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
+#: static/js/editor.js:345
+#, c-format
+msgid "%s's overwritten submissions"
+msgstr ""
+
+#: static/js/editor.js:476 static/js/editor.js.c:1521
+msgid "No results."
+msgstr "Sen resultados."
+
+#: static/js/editor.js:748
+msgid "Export View"
 msgstr ""
 
 #: static/js/editor.js:798
+msgid "Error while connecting to the server"
+msgstr "Produciuse un erro ao conectar ao servidor"
+
+#: static/js/editor.js:800
+msgid "Server error"
+msgstr "Erro do servidor"
+
+#: static/js/editor.js:802
+msgid "The server seems down. Try again later."
+msgstr "Semella que o servidor está caído. Inténteo de novo máis tarde."
+
+#: static/js/editor.js:809
 msgid "Unknown error"
-msgstr ""
+msgstr "Erro descoñecido"
 
-#: static/js/editor.js:1342
-msgid "Congratulations, you walked through all strings."
-msgstr ""
-
-#: static/js/editor.js:1344 static/js/editor.js.c:1368
-msgid "Return to the overview page."
-msgstr ""
-
-#: static/js/editor.js:1363
+#: static/js/editor.js:1367
 msgid "You reached the beginning of the list"
-msgstr ""
+msgstr "Acadou o comezo da lista"
 
-#: static/js/editor.js:1366
+#: static/js/editor.js:1370
 msgid "You reached the end of the list."
-msgstr ""
+msgstr "Acadou o final da lista."
+
+#: static/js/editor.js:1372
+msgid "Return to the overview page."
+msgstr "Volver á páxina de vista xeral."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1766
+#: static/js/editor.js:1807
 #, c-format
 msgid "%s% match"
-msgstr ""
+msgstr "Coincidencia %s%"
 
-#: static/js/editor.js:1808
+#: static/js/editor.js:1851
 msgid "Similar translations"
-msgstr ""
+msgstr "Traducións semellantes"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Máis"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Ocultar"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "Menos"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "Mostrar"
 
-#: static/js/utils.js:76
+#: static/js/utils.js:143
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hai un ano"
+msgstr[1] "Hai %s anos"
 
-#: static/js/utils.js:79
+#: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hai unha semana"
+msgstr[1] "Hai %s semanas"
 
-#: static/js/utils.js:82
+#: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Onte"
+msgstr[1] "Hai %s días"
 
-#: static/js/utils.js:85
+#: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hai unha hora"
+msgstr[1] "Hai %s horas"
 
-#: static/js/utils.js:88
+#: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hai un minuto"
+msgstr[1] "Hai %s minutos"
 
-#: static/js/utils.js:96
+#: static/js/utils.js:163
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Hai uns segundos"
+
+#, c-format
+#~ msgid "<a href=\"%s\">String %s</a>"
+#~ msgstr "<a href=\"%s\">Cadea %s</a>"
+
+#~ msgid "Congratulations, you walked through all strings."
+#~ msgstr "Parabéns, pasou por todas as cadeas."
+
+#, c-format
+#~ msgid "<a href=\"%s\">Unit %s</a>"
+#~ msgstr "<a href=\"%s\">Unidade %s</a>"
+
+#~ msgid "Congratulations, you walked through all items"
+#~ msgstr "Parabéns, pasou por todos os elementos"
+
+#~ msgid "You reached the end of the list"
+#~ msgstr "Acadou o final da lista"
+
+#~ msgid "amaGama server"
+#~ msgstr "Servidor amaGama"

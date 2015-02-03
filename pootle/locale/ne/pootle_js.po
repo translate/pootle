@@ -6,148 +6,209 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"PO-Revision-Date: 2014-06-25 05:30+0000\n"
+"Last-Translator: abhi_nepal <abhi_nepal@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1359231125.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1403674249.000000\n"
 
-#: static/js/common.js:43
+#: static/js/common.js:13
+msgid "All Languages"
+msgstr "भाषा थप्नुहोस्"
+
+#: static/js/common.js:26
+msgid "All Projects"
+msgstr "सबै परियोजनाहरु"
+
+#: static/js/common.js:62
 msgid "Expand details"
 msgstr "Utvid detaljer"
 
-#: static/js/common.js:43
+#: static/js/common.js:62
 msgid "Collapse details"
 msgstr "Fold sammen detaljer"
 
-#: static/js/common.js:77
+#: static/js/common.js:91
 msgid "Are you sure you want to continue?"
 msgstr "Er du sikker på at du vil fortsette?"
 
-#: static/js/common.js:78
+#: static/js/common.js:92
 msgid "This operation cannot be undone."
 msgstr "Denne operasjonen kan ikke omgjøres."
 
-#: static/js/editor.js:409 static/js/editor.js.c:1493
-msgid "No results."
-msgstr "Ingen resultater."
+#: static/js/common.js:139
+msgid "Show tags"
+msgstr "लेबल लगाउनु"
 
-#. Translators: Permalink to the current unit in the editor.
-#. The first '%s' is the permalink URL.
-#. The second '%s' is the unit number.
-#: static/js/editor.js:726
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
+msgid "Hide tags"
+msgstr "लेबल लुकाउनुहोस्"
+
+#: static/js/common.js:293 static/js/common.js.c:309
+msgid "Hide filtering"
+msgstr "फिल्टरिङ लुकाउन"
+
+#: static/js/common.js:296 static/js/common.js.c:303
+msgid "Show filtering"
+msgstr "फिल्टरिङ देखाउने"
+
+#: static/js/editor.js:209
+msgid "Go to the next string (Ctrl+.)"
+msgstr "अर्को स्ट्रिङ जानुहोस् (Ctrl+.)"
+
+#: static/js/editor.js:215
+msgid "Go to the previous string (Ctrl+,)"
+msgstr "अघिल्लो स्ट्रिङ जानुहोस् (Ctrl+.) "
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:333
 #, c-format
-msgid "<a href=\"%s\">String %s</a>"
-msgstr "<a href=\"%s\">Tekststreng %s</a>"
+msgid "%s's pending suggestions"
+msgstr "%s's अपूर्ण सुझाव"
 
-#: static/js/editor.js:786
-msgid "Error while connecting to the server"
-msgstr "Feil ved tilkopling til tjeneren"
+#. Translators: '%s' is a username
+#: static/js/editor.js:336
+#, c-format
+msgid "%s's accepted suggestions"
+msgstr "%s's स्वीकृत सुझाव"
 
-#: static/js/editor.js:788
-msgid "Server error"
-msgstr "Tjenerfeil"
+#. Translators: '%s' is a username
+#: static/js/editor.js:339
+#, c-format
+msgid "%s's rejected suggestions"
+msgstr "%s's अस्वीकृत सुझाव"
 
-#: static/js/editor.js:790
-msgid "The server seems down. Try again later."
-msgstr "Tjeneren virker frakoblet. Prøv igjen senere."
+#. Translators: '%s' is a username
+#: static/js/editor.js:342
+#, c-format
+msgid "%s's submissions"
+msgstr "%s's प्रस्तुतिहरु"
+
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
+#: static/js/editor.js:345
+#, c-format
+msgid "%s's overwritten submissions"
+msgstr "अधिलेखित प्रस्तुतिहरु"
+
+#: static/js/editor.js:476 static/js/editor.js.c:1521
+msgid "No results."
+msgstr "परिणाम छैन ।"
+
+#: static/js/editor.js:748
+msgid "Export View"
+msgstr "निर्यात दृश्य"
 
 #: static/js/editor.js:798
+msgid "Error while connecting to the server"
+msgstr "सर्भरमा जडान गर्दा त्रुटि"
+
+#: static/js/editor.js:800
+msgid "Server error"
+msgstr "सर्भर त्रुटि"
+
+#: static/js/editor.js:802
+msgid "The server seems down. Try again later."
+msgstr "सर्भर त्रुटि देखिन्छ। पछि फेरि प्रयास गर्नुहोस्।"
+
+#: static/js/editor.js:809
 msgid "Unknown error"
-msgstr "Ukjent feil"
+msgstr "अज्ञात त्रुटि"
 
-#: static/js/editor.js:1342
-msgid "Congratulations, you walked through all strings."
-msgstr "Gratulerer, du gikk gjennom alle tekststrengene."
-
-#: static/js/editor.js:1344 static/js/editor.js.c:1368
-msgid "Return to the overview page."
-msgstr "Tilbake til oversiktssiden."
-
-#: static/js/editor.js:1363
+#: static/js/editor.js:1367
 msgid "You reached the beginning of the list"
-msgstr "Du har nådd starten av listen"
+msgstr "तपाईं सूची को शुरुवातमा पुग्नुभयो"
 
-#: static/js/editor.js:1366
+#: static/js/editor.js:1370
 msgid "You reached the end of the list."
-msgstr "Du har nådd slutten av listen."
+msgstr "तपाईं सूची को अन्त सम्म पुग्नुभयो"
+
+#: static/js/editor.js:1372
+msgid "Return to the overview page."
+msgstr "सिंहावलोकन पृष्ठमा फर्कनुहोस्।"
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1766
+#: static/js/editor.js:1807
 #, c-format
 msgid "%s% match"
 msgstr "%s% treff"
 
-#: static/js/editor.js:1808
+#: static/js/editor.js:1851
 msgid "Similar translations"
 msgstr "Lignende oversettelser"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "थप"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "लुकाउनुहोस्"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "अझ कम"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "देखाउनुहोस्"
 
-#: static/js/utils.js:76
+#: static/js/utils.js:143
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
+msgstr[0] "१ वर्ष अगाडि"
 msgstr[1] ""
 
-#: static/js/utils.js:79
+#: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
+msgstr[0] "१ हप्ता अगाडि"
 msgstr[1] ""
 
-#: static/js/utils.js:82
+#: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
+msgstr[0] "हिजो"
 msgstr[1] ""
 
-#: static/js/utils.js:85
+#: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
+msgstr[0] "१ घन्टा अगाडि"
 msgstr[1] ""
 
-#: static/js/utils.js:88
+#: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
+msgstr[0] "१ मिनेट अगाडि"
 msgstr[1] ""
 
-#: static/js/utils.js:96
+#: static/js/utils.js:163
 msgid "A few seconds ago"
-msgstr ""
+msgstr "केहि सेकेन्ड पहिले"
+
+#, c-format
+#~ msgid "<a href=\"%s\">String %s</a>"
+#~ msgstr "<a href=\"%s\">Tekststreng %s</a>"
+
+#~ msgid "Congratulations, you walked through all strings."
+#~ msgstr "Gratulerer, du gikk gjennom alle tekststrengene."
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-25 07:46+0000\n"
-"PO-Revision-Date: 2013-03-30 04:56+0000\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"PO-Revision-Date: 2013-11-13 04:02+0000\n"
+"Last-Translator: Andika <andika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1364619383.0\n"
+"X-POOTLE-MTIME: 1384315339.0\n"
 
 #: strings.py:8
 msgid ""
@@ -55,6 +55,8 @@ msgid "Save and continue editing"
 msgstr "Simpan dan teruskan menyunting"
 
 #: strings.py:15
+#: apps/staticpages/templates/staticpages/admin/page_create.html:5
+#: apps/staticpages/templates/staticpages/admin/page_create.html:8
 msgid "Add"
 msgstr "Tambah"
 
@@ -62,7 +64,7 @@ msgstr "Tambah"
 msgid "Change"
 msgstr "Ubah"
 
-#: strings.py:17 apps/pootle_profile/forms.py:64
+#: strings.py:17 apps/pootle_profile/forms.py:83
 msgid ""
 "Please enter a correct username and password. Note that both fields are case-"
 "sensitive."
@@ -115,8 +117,8 @@ msgid "superuser status"
 msgstr "status pengguna super"
 
 #. Translators: The language from which translation will happen
-#: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:44
-#: apps/pootle_project/models.py:92
+#: strings.py:43 apps/pootle_app/views/admin/adminprojects.py:47
+#: apps/pootle_project/models.py:97
 msgid "Source Language"
 msgstr "Bahasa Sumber"
 
@@ -168,253 +170,129 @@ msgstr "Pesan Anda"
 
 #: apps/contact_form_i18n/forms.py:260
 msgid "Akismet thinks this message is spam"
-msgstr ""
+msgstr "Akismet menganggap pesan ini spam"
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
+msgstr[0] "Harap perbaiki kesalahan di bawah."
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:23
 msgid "The settings have been saved."
-msgstr ""
+msgstr "Pengaturan telah disimpan."
 
 #: apps/djblets/siteconfig/templates/siteconfig/settings.html:54
-#: apps/legalpages/templates/legalpages/admin/form.html:15
 #: apps/pootle_app/templates/admin/admin_general_settings.html:29
 #: apps/pootle_app/templates/admin/general_settings_form.html:15
+#: apps/staticpages/templates/staticpages/admin/_form.html:24
 #: templates/profiles/edit_personal.html:33
 #: templates/profiles/edit_profile.html:25
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
-#. Translators: 'URL' and 'content' refer to form fields.
-#: apps/legalpages/forms.py:42
-msgid "URL or content must be provided."
-msgstr ""
+#: apps/pootle_app/admin.py:45
+msgid "Language code does not follow the ISO convention"
+msgstr "Kode bahasa tidak mengikuti konvensi ISO"
 
-#: apps/legalpages/models.py:31
-#: apps/legalpages/templates/legalpages/admin/list.html:22
-#, fuzzy
-msgid "Active"
-msgstr "Aktifkan"
+#: apps/pootle_app/admin.py:71
+msgid "Project code may only contain letters, numbers and _"
+msgstr "Kode projek hanya boleh memuat huruf, angka, dan _"
 
-#: apps/legalpages/models.py:32
-msgid "Whether this page is active or not."
-msgstr ""
+#: apps/pootle_app/admin.py:83
+msgid "Advanced Options"
+msgstr "Opsi Tingkat Lanjut"
 
-#: apps/legalpages/models.py:34
-msgid "Display on registration"
-msgstr ""
-
-#: apps/legalpages/models.py:35
-msgid "Whether this page should be displayed on registration."
-msgstr ""
-
-#: apps/legalpages/models.py:38 apps/pootle_app/forms.py:30
-#: apps/pootle_notifications/views.py:141
+#: apps/pootle_app/forms.py:30 apps/pootle_notifications/forms.py:42
+#: apps/staticpages/models.py:45
 msgid "Title"
 msgstr "Judul"
 
-#: apps/legalpages/models.py:39
-msgid "URL"
-msgstr ""
-
-#: apps/legalpages/models.py:40
-msgid "If set, any references to this legal page will redirect to this URL"
-msgstr ""
-
-#. Translators: See http://en.wikipedia.org/wiki/Slug_%28web_publishing%29#Slug
-#: apps/legalpages/models.py:43
-msgid "Slug"
-msgstr ""
-
-#: apps/legalpages/models.py:44
-msgid "The page will be available at /about/<slug>/"
-msgstr ""
-
-#: apps/legalpages/models.py:46
-msgid "Content"
-msgstr ""
-
-#: apps/legalpages/models.py:47
-#, python-format
-msgid "Allowed markup: %s"
-msgstr ""
-
-#: apps/legalpages/views.py:67
-msgid "Legal page created."
-msgstr ""
-
-#: apps/legalpages/templates/legalpages/admin/edit.html:4
-#: apps/legalpages/templates/legalpages/admin/edit.html:9
-#: apps/legalpages/templates/legalpages/admin/edit.html:16
-msgid "Edit Legal Page"
-msgstr ""
-
-#: apps/legalpages/templates/legalpages/admin/form.html:17
-#: apps/pootle_terminology/templates/terminology/manage.html:37
-msgid "Delete"
-msgstr ""
-
-#: apps/legalpages/templates/legalpages/admin/list.html:5
-#: apps/legalpages/templates/legalpages/admin/list.html:10
-#: templates/admin_profile_menu.html:9
-msgid "Legal Pages"
-msgstr ""
-
-#: apps/legalpages/templates/legalpages/admin/list.html:17
-msgid "Existing Legal Pages"
-msgstr ""
-
-#: apps/legalpages/templates/legalpages/admin/list.html:22
-#, fuzzy
-msgid "Inactive"
-msgstr "Aktifkan"
-
-#: apps/legalpages/templates/legalpages/admin/list.html:22
-#: apps/pootle_app/templates/admin/edit_links.html:2
-msgid "Edit"
-msgstr "Sunting"
-
-#: apps/legalpages/templates/legalpages/admin/list.html:24
-msgid "No pages yet."
-msgstr ""
-
-#: apps/legalpages/templates/legalpages/admin/list.html:31
-msgid "New Legal Page"
-msgstr ""
-
-#: apps/pootle_app/admin.py:39
-msgid "Language code does not follow the ISO convention"
-msgstr ""
-
-#: apps/pootle_app/admin.py:65
-msgid "Project code may only contain letters, numbers and _"
-msgstr ""
-
-#: apps/pootle_app/admin.py:77
-msgid "Advanced Options"
-msgstr ""
-
 #: apps/pootle_app/forms.py:31
 msgid "The name for this Pootle server"
-msgstr ""
+msgstr "Nama server Pootle ini"
 
 #: apps/pootle_app/forms.py:37
-#: apps/pootle_language/templates/language/language_index.html:24
-#: apps/pootle_project/templates/project/project.html:29
-#: apps/pootle_translationproject/templates/translation_project/overview.html:78
+#: apps/pootle_language/templates/language/overview.html:26
+#: apps/pootle_project/templates/project/overview.html:52
+#: apps/pootle_tagging/models.py:69
+#: apps/pootle_translationproject/templates/translation_project/overview.html:114
 msgid "Description"
-msgstr "Gambaran"
+msgstr "Deskripsi"
 
 #: apps/pootle_app/forms.py:38
 msgid ""
 "The description and instructions shown on the front page and about page. Be "
 "sure to use valid HTML."
 msgstr ""
-
-#: apps/pootle_app/management/__init__.py:73
-msgid "Can view a translation project"
-msgstr ""
-
-#: apps/pootle_app/management/__init__.py:75
-msgid "Can make a suggestion for a translation"
-msgstr ""
-
-#: apps/pootle_app/management/__init__.py:77
-msgid "Can submit a translation"
-msgstr ""
-
-#: apps/pootle_app/management/__init__.py:79
-msgid "Can overwrite translations on uploading files"
-msgstr ""
-
-#: apps/pootle_app/management/__init__.py:81
-msgid "Can review translations"
-msgstr ""
-
-#: apps/pootle_app/management/__init__.py:83
-msgid "Can download archives of translation projects"
-msgstr ""
-
-#: apps/pootle_app/management/__init__.py:85
-msgid "Can administrate a translation project"
-msgstr ""
-
-#: apps/pootle_app/management/__init__.py:87
-msgid "Can commit to version control"
-msgstr ""
+"Deskripsi dan instruksi ditampilkan pada halaman depan dan halaman ihwal. "
+"Pastikan memakai HTML yang valid."
 
 #: apps/pootle_app/models/suggestion.py:35
 msgid "Pending"
-msgstr ""
+msgstr "Tertunda"
 
 #: apps/pootle_app/models/suggestion.py:36
-#, fuzzy
+#: templates/profiles/profile_detail.html:43
 msgid "Accepted"
-msgstr "Terima"
+msgstr "Diterima"
 
 #: apps/pootle_app/models/suggestion.py:37
-#, fuzzy
+#: templates/profiles/profile_detail.html:44
 msgid "Rejected"
-msgstr "Tolak"
+msgstr "Ditolak"
 
 #: apps/pootle_app/templates/top_contributers_table.html:8
 msgid "Top Contributors"
-msgstr ""
+msgstr "Kontributor Top"
 
 #. Translators: The number of suggestions pending review
 #: apps/pootle_app/templates/top_contributers_table.html:12
-#: apps/pootle_misc/browser.py:65
-#: apps/pootle_store/templates/store/translate.html:74
-#, fuzzy
+#: apps/pootle_misc/browser.py:70 templates/editor/_toolbar.html:17
 msgid "Suggestions"
-msgstr "Saran:"
+msgstr "Saran"
 
 #: apps/pootle_app/templates/top_contributers_table.html:13
-#, fuzzy
 msgid "Reviews"
-msgstr "Review"
+msgstr "Ulasan"
 
 #: apps/pootle_app/templates/top_contributers_table.html:14
-#: apps/pootle_app/templates/admin/dashboard.html:19
+#: apps/pootle_app/templates/admin/dashboard.html:19 core/helpers.py:61
+#: templates/profiles/profile_detail.html:45
 msgid "Submissions"
-msgstr ""
+msgstr "Submisi"
 
 #: apps/pootle_app/templates/top_contributers_table.html:19
 msgid "anonymous users"
-msgstr ""
+msgstr "pengguna anonim"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:4
-#: apps/pootle_misc/stats.py:109 apps/pootle_store/util.py:47
-#: apps/pootle_store/templates/store/translate.html:70
+#: apps/pootle_misc/stats.py:153 apps/pootle_store/util.py:48
+#: core/helpers.py:54 templates/editor/_toolbar.html:13
 msgid "Translated"
 msgstr "Diterjemahkan"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:5
-#: apps/pootle_misc/stats.py:112 apps/pootle_store/forms.py:215
-#: apps/pootle_store/util.py:46
-#: apps/pootle_store/templates/store/translate.html:73
+#: apps/pootle_misc/stats.py:156 apps/pootle_store/forms.py:215
+#: apps/pootle_store/util.py:47 core/helpers.py:56
+#: templates/editor/_toolbar.html:16
 msgid "Needs work"
-msgstr ""
+msgstr "Perlu perbaikan"
 
 #: apps/pootle_app/templates/translation_summary_legend.html:6
-#: apps/pootle_misc/stats.py:115 apps/pootle_store/util.py:45
-#: apps/pootle_store/templates/store/translate.html:72
+#: apps/pootle_misc/stats.py:159 apps/pootle_store/util.py:46
+#: core/helpers.py:55 templates/editor/_toolbar.html:15
 msgid "Untranslated"
 msgstr "Belum diterjemahkan"
 
 #: apps/pootle_app/templates/admin/admin_general.html:15
 #: apps/pootle_terminology/templates/terminology/manage.html:50
-#, fuzzy
 msgid "Save Changes"
-msgstr "Simpan perubahan"
+msgstr "Simpan Perubahan"
 
 #: apps/pootle_app/templates/admin/admin_general_languages.html:4
 #: apps/pootle_app/templates/admin/admin_general_languages.html:9
-#: apps/pootle_app/templates/index/index.html:38
-#: apps/pootle_profile/models.py:90 templates/admin_profile_menu.html:6
+#: apps/pootle_app/templates/index/index.html:42
+#: apps/pootle_profile/models.py:87 templates/admin_profile_menu.html:6
 msgid "Languages"
 msgstr "Bahasa"
 
@@ -423,51 +301,51 @@ msgid ""
 "Here you can add, edit, and delete all the available languages in this "
 "Pootle server."
 msgstr ""
+"Di sini Anda dapat menambah, menyunting, dan menghapus semua bahasa yang "
+"tersedia dalam server Pootle ini."
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:4
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:9
-#: apps/pootle_app/views/admin/permissions.py:101
+#: apps/pootle_app/views/admin/permissions.py:117
 #: apps/pootle_language/templates/language/language_admin.html:5
-#: apps/pootle_language/templates/language/language_admin.html:8
 #: apps/pootle_project/templates/project/admin_permissions.html:7
-#: apps/pootle_project/templates/project/admin_permissions.html:10
 #: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:5
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:8
-#: templates/admin_profile_menu.html:8 templates/language_menu.html:6
-#: templates/project_menu.html:7 templates/tp_menu.html:9
-#: templates/profiles/profile_detail.html:47
+#: templates/admin_profile_menu.html:8 templates/language_menu.html:8
+#: templates/project_menu.html:10 templates/tp_menu.html:9
 msgid "Permissions"
-msgstr ""
+msgstr "Ijin"
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:12
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"Di sini Anda dapat menambah, menyunting, dan menghapus ijin bawaan dalam "
+"server Pootle ini."
 
 #: apps/pootle_app/templates/admin/admin_general_permissions.html:16
-#: apps/pootle_language/templates/language/language_admin.html:17
-#: apps/pootle_project/templates/project/admin_permissions.html:26
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:17
+#: apps/pootle_language/templates/language/language_admin.html:13
+#: apps/pootle_project/templates/project/admin_permissions.html:22
+#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:13
 msgid ""
 "The user “nobody” refers to any user that is not logged in (an anonymous, "
 "unidentified user). The user “default” refers to the rights that all logged "
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Pengguna \"nobody\" mengacu ke sebarang pengguna yang tidak masuk log (seorang "
+"pengguna anonim yang tak teridentifikasi). Pengguna \"default\" mengacu ke "
+"hak baku yang bakal dimiliki oleh semua pengguna yang log masuk, kecuali "
+"bila hak spesifik lain diberikan ke mereka."
 
 #: apps/pootle_app/templates/admin/admin_general_projects.html:4
 #: apps/pootle_app/templates/admin/admin_general_projects.html:9
-#: apps/pootle_app/templates/index/index.html:48
+#: apps/pootle_app/templates/index/index.html:52
 #: apps/pootle_notifications/templates/notices.html:20
-#: apps/pootle_notifications/templates/notices.html:34
-#: apps/pootle_profile/models.py:93
+#: apps/pootle_profile/models.py:90
 #: apps/pootle_project/templates/project/projects.html:6
-#: apps/pootle_project/templates/project/projects.html:9
 #: apps/pootle_project/templates/project/projects.html:15
-#: templates/admin_profile_menu.html:7 templates/base.html:100
-#: templates/project_base.html:5 templates/project_base.html.py:8
-#: templates/tp_base.html:9
+#: templates/admin_profile_menu.html:7 templates/project_base.html:5
 msgid "Projects"
 msgstr "Proyek"
 
@@ -476,22 +354,24 @@ msgid ""
 "Here you can add, edit, and delete all the available projects in this Pootle "
 "server."
 msgstr ""
+"Di sini Anda dapat menambah, menyunting, dan menghapus semua projek yang "
+"tersedia di server Pootle ini."
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:4
 #: apps/pootle_app/templates/admin/admin_general_settings.html:9
 msgid "General Settings"
-msgstr ""
+msgstr "Pengaturan Umum"
 
 #: apps/pootle_app/templates/admin/admin_general_settings.html:12
 msgid "Configure here the general settings for your site."
-msgstr ""
+msgstr "Tata di sini pengaturan umum bagi situs Anda."
 
 #: apps/pootle_app/templates/admin/admin_general_users.html:4
 #: apps/pootle_app/templates/admin/admin_general_users.html:9
 #: apps/pootle_app/templates/admin/dashboard.html:25
 #: templates/admin_profile_menu.html:5
-#: templates/profiles/profile_detail.html:8
-#: templates/profiles/profile_detail.html:18
+#: templates/profiles/profile_detail.html:5
+#: templates/profiles/profile_detail.html:11
 msgid "Users"
 msgstr "Pengguna"
 
@@ -500,22 +380,24 @@ msgid ""
 "Here you can add, edit, and delete all the available users in this Pootle "
 "server."
 msgstr ""
+"Di sini Anda dapat menambah, menyunting, dan menghapus semua pengguna yang "
+"tersedia dalam server Pootle ini."
 
 #: apps/pootle_app/templates/admin/dashboard.html:13
 msgid "Server Statistics"
-msgstr ""
+msgstr "Statistik Server"
 
 #: apps/pootle_app/templates/admin/dashboard.html:22
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Saran tertunda"
 
 #: apps/pootle_app/templates/admin/dashboard.html:31
 msgid "More..."
-msgstr ""
+msgstr "Lebih banyak..."
 
 #: apps/pootle_app/templates/admin/dashboard.html:39
 msgid "Support"
-msgstr ""
+msgstr "Dukungan"
 
 #: apps/pootle_app/templates/admin/dashboard.html:42
 msgid ""
@@ -523,59 +405,65 @@ msgid ""
 "localization experts. We want Pootle to help your localization work reach "
 "its full potential."
 msgstr ""
+"Pootle dikembangkan oleh Translate.org.za dan suatu komunitas pakar "
+"lokalisasi yang penuh semangat. Kami ingin Pootle membantu pekerjaan "
+"lokalisasi Anda mencapai potensinya secara penuh."
 
 #: apps/pootle_app/templates/admin/dashboard.html:43
 msgid "You will find the following helpful for support:"
-msgstr ""
+msgstr "Anda akan temui yang berikut ini membantu untuk dukungan:"
 
 #: apps/pootle_app/templates/admin/dashboard.html:45
 msgid "The Pootle documentation"
-msgstr ""
+msgstr "Dokumentasi Pootle"
 
 #: apps/pootle_app/templates/admin/dashboard.html:46
 msgid "The Pootle mailing list"
-msgstr ""
+msgstr "Milis Pootle"
 
 #: apps/pootle_app/templates/admin/dashboard.html:47
 msgid "(commercial support)"
-msgstr ""
+msgstr "(dukungan komersil)"
 
 #: apps/pootle_app/templates/admin/dashboard.html:55
 msgid "Dependency Checks"
-msgstr ""
+msgstr "Pemeriksaan Kebergantungan"
 
 #: apps/pootle_app/templates/admin/dashboard.html:64
-#, fuzzy
 msgid "Optional"
-msgstr "Opsi"
+msgstr "Pilihan"
 
 #: apps/pootle_app/templates/admin/dashboard.html:72
 msgid "Optimizations"
-msgstr ""
+msgstr "Optimisasi"
+
+#: apps/pootle_app/templates/admin/edit_links.html:2
+msgid "Edit"
+msgstr "Sunting"
 
 #: apps/pootle_app/templates/admin/general_settings_form.html:16
 msgid "Cancel"
-msgstr ""
+msgstr "Batal"
 
 #: apps/pootle_app/templates/admin/rss_widget.html:5
 msgid "Pootle Alerts"
-msgstr ""
+msgstr "Peringatan Pootle"
 
-#: apps/pootle_app/templates/index/index.html:21
-#: apps/pootle_language/templates/language/language_index.html:34
-#: apps/pootle_project/templates/project/project.html:40
-#: apps/pootle_translationproject/templates/translation_project/overview.html:88
+#: apps/pootle_app/templates/index/index.html:25
+#: apps/pootle_language/templates/language/overview.html:36
+#: apps/pootle_project/templates/project/overview.html:61
+#: apps/pootle_translationproject/templates/translation_project/overview.html:124
 msgid "No description set."
-msgstr ""
+msgstr "Deskripsi belum diisi."
 
-#: apps/pootle_app/templates/index/index.html:58
-#: apps/pootle_notifications/templates/notices.html:87
+#: apps/pootle_app/templates/index/index.html:62
+#: apps/pootle_notifications/templates/notices.html:77
 msgid "Latest News"
-msgstr ""
+msgstr "Berita Terbaru"
 
-#: apps/pootle_app/templates/index/index.html:61
+#: apps/pootle_app/templates/index/index.html:65
 msgid "Subscribe to the RSS feed."
-msgstr ""
+msgstr "Berlangganan ke asupan RSS."
 
 #: apps/pootle_app/templates/index/login.html:4
 #: apps/pootle_app/templates/index/login.html:7
@@ -589,24 +477,29 @@ msgstr "Masuk ke Pootle"
 
 #: apps/pootle_app/templates/index/login.html:18
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Nama pengguna dan sandi Anda tak cocok. Harap coba lagi."
 
 #: apps/pootle_app/templates/index/login.html:30
 msgid "Lost your Password?"
-msgstr ""
+msgstr "Lupa Sandi Anda?"
 
 #: apps/pootle_app/templates/index/login.html:33
 #: templates/registration/password_reset_form.html:30
 msgid "Don't have an account yet?"
-msgstr ""
+msgstr "Belum punya akun?"
 
 #: apps/pootle_app/templates/index/login.html:34
 #: templates/registration/password_reset_form.html:31
-#, fuzzy
 msgid "Register."
-msgstr "Daftar"
+msgstr "Mendaftar."
 
-#: apps/pootle_app/views/admin/adminusers.py:48
+#: apps/pootle_app/views/admin/adminprojects.py:90
+#: apps/pootle_project/models.py:221
+#, python-format
+msgid "\"%s\" cannot be used as a project code"
+msgstr "\"%s\" tak bisa dipakai sebagai kode projek"
+
+#: apps/pootle_app/views/admin/adminusers.py:55
 #: templates/user_profile_menu.html:7
 #: templates/registration/registration_form.html:30
 msgid "Password"
@@ -615,1856 +508,2156 @@ msgstr "Kata kunci"
 #: apps/pootle_app/views/admin/dashboard.py:48
 #, python-format
 msgid "Translate Toolkit version %s installed."
-msgstr ""
+msgstr "Translate Toolkit versi %s terpasang."
 
-#: apps/pootle_app/views/admin/dashboard.py:51
+#: apps/pootle_app/views/admin/dashboard.py:55
 #, python-format
 msgid ""
 "Translate Toolkit version %(installed)s installed. Pootle requires at least "
 "version %(required)s."
 msgstr ""
+"Translate Toolket versi %(installed)s terpasang. Pootle memerlukan paling "
+"tidak versi %(required)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:62
 #, python-format
 msgid "Django version %s is installed."
-msgstr ""
+msgstr "Django versi %s terpasang."
 
 #: apps/pootle_app/views/admin/dashboard.py:65
 #, python-format
 msgid ""
 "Django version %s is installed, but a higher version is highly recommended."
 msgstr ""
+"Django versi %s terpasang, tapi versi yang lebih tinggi sangat disarankan."
 
-#: apps/pootle_app/views/admin/dashboard.py:71
+#: apps/pootle_app/views/admin/dashboard.py:72
 #, python-format
 msgid "lxml version %s is installed."
-msgstr ""
+msgstr "lxml versi %s terpasang."
 
-#: apps/pootle_app/views/admin/dashboard.py:75
+#: apps/pootle_app/views/admin/dashboard.py:76
 #, python-format
 msgid ""
 "lxml version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
+"lxml versi %(installed)s terpasang. Pootle memerlukan paling tidak versi %"
+"(required)s."
 
-#: apps/pootle_app/views/admin/dashboard.py:82
+#: apps/pootle_app/views/admin/dashboard.py:83
 msgid "lxml is not installed. Pootle requires lxml."
-msgstr ""
+msgstr "lxml tak terpasang. Pootle memerlukan lxml."
 
-#: apps/pootle_app/views/admin/dashboard.py:95
+#: apps/pootle_app/views/admin/dashboard.py:97
 msgid ""
 "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
 "available."
 msgstr ""
+"Tak bisa temukan perintah unzip. Mengunggah arsip lebih cepat bila \"unzip\" "
+"tersedia."
 
-#: apps/pootle_app/views/admin/dashboard.py:99
+#: apps/pootle_app/views/admin/dashboard.py:103
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
+"Tak bisa temukan paket kode ISO. Pootle memakai kode ISO untuk menerjemahkan "
+"nama bahasa."
 
-#: apps/pootle_app/views/admin/dashboard.py:103
+#: apps/pootle_app/views/admin/dashboard.py:109
 msgid ""
 "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
 "subtitle formats."
 msgstr ""
+"Tak bisa temukan paket aeidon. Pootle memerlukan Gaupol atau aeidon untuk "
+"mendukung format subtitel."
 
-#: apps/pootle_app/views/admin/dashboard.py:107
+#: apps/pootle_app/views/admin/dashboard.py:115
 msgid ""
 "Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
+"Tak bisa temukan paket python-levenshtein. Memutakhirkan terhadap templat "
+"lebih cepat dengan python-levenshtein."
 
-#: apps/pootle_app/views/admin/dashboard.py:111
+#: apps/pootle_app/views/admin/dashboard.py:121
 msgid ""
 "No text indexing engine found. Searching is faster if an indexing engine "
 "like Xapian or Lucene is installed."
 msgstr ""
+"Tak ditemukan mesin pengindeks teks. Pencarian lebih cepat bila mesin "
+"pengindeks seperti Xapian atau Lucene terpasang."
 
-#: apps/pootle_app/views/admin/dashboard.py:121
+#: apps/pootle_app/views/admin/dashboard.py:129
+msgid "MARKUP_FILTER is missing. Falling back to HTML."
+msgstr "MARKUP_FILTER tidak ada. Beralih ke HTML."
+
+#: apps/pootle_app/views/admin/dashboard.py:131
+msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
+msgstr "MARKUP_FILTER salah tata. Beralih ke HTML."
+
+#: apps/pootle_app/views/admin/dashboard.py:133
+#, python-format
+#, python-format, python-format
+msgid ""
+"Can't find the package which provides '%s' markup support. Falling back to "
+"HTML."
+msgstr ""
+"Tak bisa temukan paket yang menyediakan dukungan markup '%s'. Fall back ke "
+"HTML."
+
+#: apps/pootle_app/views/admin/dashboard.py:137
+#, python-format
+msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
+msgstr "Nilai '%s' yang tak valid dalam MARKUP_FILTER. Beralih ke HTML."
+
+#: apps/pootle_app/views/admin/dashboard.py:154
 msgid ""
 "Using the default sqlite3 database engine. SQLite is only suitable for small "
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine."
 msgstr ""
+"Menggunakan mesin basis data sqlite3 bawaan. SQLite hanya cocok bagi "
+"instalasi dengan sedikit pengguna. Kinerja Pootle akan lebih baik dengan "
+"mesin basis data MySQL."
 
-#: apps/pootle_app/views/admin/dashboard.py:123
+#: apps/pootle_app/views/admin/dashboard.py:159
 msgid ""
 "Using the default sqlite3 database engine. SQLite is only suitable for small "
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
+"Menggunakan mesin basis data sqlite3 bawaan. SQLite hanya cocok bagi "
+"instalasi dengan sedikit pengguna. Kinerja Pootle akan lebih baik dengan "
+"mesin basis data MySQL, tapi Anda perlu memasang python-MySQLdb terlebih "
+"dahulu."
 
-#: apps/pootle_app/views/admin/dashboard.py:131
+#: apps/pootle_app/views/admin/dashboard.py:172
 msgid ""
 "Pootle is configured to use memcached as a caching backend, but can't "
 "connect to the memcached server. Caching is currently disabled."
 msgstr ""
+"Pootle dikonfigurasi untuk memakai memcached sebagai backend penyinggahan, "
+"tapi tak bisa menyambung ke server memcached. Penyinggahan saat ini "
+"dinonaktifkan."
 
-#: apps/pootle_app/views/admin/dashboard.py:134
+#: apps/pootle_app/views/admin/dashboard.py:179
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cached_db as "
 "the session engine."
 msgstr ""
+"Untuk kinerja optimal, gunakan django.contrib.sessions.backends.cached_db "
+"sebagai mesin sesi."
 
-#: apps/pootle_app/views/admin/dashboard.py:138
+#: apps/pootle_app/views/admin/dashboard.py:186
 msgid ""
 "Pootle is configured to use memcached as caching backend, but Python support "
 "for memcached is not installed. Caching is currently disabled."
 msgstr ""
+"Pootle dikonfigurasi untuk memakai memcached sebagai backend penyinggahan, "
+"tapi dukungan Python bagi memcached tidak terpasang. Penyinggahan kini "
+"dinonaktifkan."
 
-#: apps/pootle_app/views/admin/dashboard.py:141
+#: apps/pootle_app/views/admin/dashboard.py:193
 msgid "For optimal performance, use memcached as the caching backend."
-msgstr ""
+msgstr "Untuk kinerja optimal, gunakan memcached sebagai backend penyinggahan."
 
-#: apps/pootle_app/views/admin/dashboard.py:145
+#: apps/pootle_app/views/admin/dashboard.py:200
 msgid "For optimal performance, use Apache as the webserver."
-msgstr ""
+msgstr "Untuk kinerja optimal, gunakan Apache sebagai server web."
 
-#: apps/pootle_app/views/admin/dashboard.py:148
+#: apps/pootle_app/views/admin/dashboard.py:205
 msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
+"Alamat \"from\" yang dipakai untuk mengirim surel registrasi tak dinyatakan. "
+"Periksa juga pengaturan server surat."
 
-#: apps/pootle_app/views/admin/dashboard.py:151
+#: apps/pootle_app/views/admin/dashboard.py:211
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
+"Tak ada alamat kontak yang dinyatakan. Formulir kontak akan mengijinkan "
+"pengguna menghubungi administrator server."
 
-#: apps/pootle_app/views/admin/dashboard.py:155
+#: apps/pootle_app/views/admin/dashboard.py:217
 msgid ""
 "Running in debug mode. Debug mode is only needed when developing Pootle. For "
 "optimal performance, disable debugging mode."
 msgstr ""
+"Berjalan dalam modus debug. Modus debug hanya dibutuhkan untuk pengembangan "
+"Pootle. Untuk performa optimal, matikan modus debug"
 
-#: apps/pootle_app/views/admin/dashboard.py:159
+#: apps/pootle_app/views/admin/dashboard.py:224
 msgid ""
 "Running in live translation mode. Live translation is useful as a tool to "
 "learn about Pootle and localization, but has high impact on performance."
 msgstr ""
+"Berjalan dalam mode penerjemahan langsung. Penerjemahan langsung adalah alat "
+"yang berguna untuk belajar tentang Pootle dan lokalisasi, tapi "
+"mengakibatkan impak tinggi pada kinerja."
 
-#: apps/pootle_app/views/admin/dashboard.py:199
-#: templates/profiles/profile_detail.html:47
+#: apps/pootle_app/views/admin/dashboard.py:271
+#: apps/pootle_translationproject/templates/translation_project/overview.html:62
 msgid "Files"
-msgstr ""
+msgstr "Berkas"
 
-#: apps/pootle_app/views/admin/dashboard.py:200
+#: apps/pootle_app/views/admin/dashboard.py:272
 msgid "Active projects"
-msgstr ""
+msgstr "Projek aktif"
 
-#: apps/pootle_app/views/admin/dashboard.py:201
+#: apps/pootle_app/views/admin/dashboard.py:273
 msgid "Active languages"
-msgstr ""
+msgstr "Bahasa-bahasa yang aktif"
 
-#: apps/pootle_app/views/admin/dashboard.py:202
-#, fuzzy
+#: apps/pootle_app/views/admin/dashboard.py:274
 msgid "Translated strings"
-msgstr "Terjemahkan String Saya"
+msgstr "String yang diterjemahkan"
 
-#: apps/pootle_app/views/admin/dashboard.py:203
+#: apps/pootle_app/views/admin/dashboard.py:275
 msgid "Translated words"
 msgstr "Kata-kata yang diterjemahkan"
 
-#: apps/pootle_app/views/admin/dashboard.py:204
+#: apps/pootle_app/views/admin/dashboard.py:276
 msgid "Active users"
-msgstr ""
+msgstr "Para pengguna yang aktif"
 
 #: apps/pootle_app/views/admin/permissions.py:61
+msgid "Translation Project Contributors"
+msgstr "Kontributor Projek Penerjemahan"
+
 #: apps/pootle_app/views/admin/permissions.py:67
-msgid "Project Members"
-msgstr ""
+msgid "Project Contributors"
+msgstr "Kontributor Projek"
 
-#: apps/pootle_app/views/admin/permissions.py:74
-msgid "Language Members"
-msgstr ""
+#: apps/pootle_app/views/admin/permissions.py:84
+msgid "Language Contributors"
+msgstr "Kontributor Bahasa"
 
-#: apps/pootle_app/views/admin/permissions.py:79
+#: apps/pootle_app/views/admin/permissions.py:91
 msgid "All Users"
-msgstr ""
+msgstr "Semua Pengguna"
 
-#: apps/pootle_app/views/admin/util.py:40
-#, fuzzy
-msgid "You do not have rights to administer Pootle."
-msgstr "Anda tidak mempunyai hak untuk mengadministrasi pootle."
+#: apps/pootle_app/views/admin/permissions.py:108
+#: templates/profiles/profile_list.html:11
+#: templates/registration/registration_form.html:20
+msgid "Username"
+msgstr "Nama pengguna"
 
-#: apps/pootle_app/views/admin/util.py:58
-#, python-format
-#, fuzzy
-msgid "You do not have rights to administer %s."
-msgstr "Anda tidak mempunyai hak untuk mengadministrasi pootle."
+#: apps/pootle_app/views/admin/permissions.py:122
+msgid "Select one or more permissions"
+msgstr "Pilih satu ijin atau lebih"
 
-#: apps/pootle_app/views/admin/util.py:176
+#: apps/pootle_app/views/admin/util.py:144
 msgid "No files in this project."
-msgstr ""
+msgstr "Tak ada berkas dalam projek ini."
 
-#: apps/pootle_app/views/admin/util.py:209
+#: apps/pootle_app/views/admin/util.py:177
 msgid "There are errors in the form. Please review the problems below."
-msgstr ""
+msgstr "Ada kesalahan dalam formulir. Harap tinjau masalah di bawah."
 
-#: apps/pootle_app/views/index/about.py:47
+#: apps/pootle_app/views/index/about.py:49
 #, python-format
 msgid "Pootle %(pootle_ver)s is powered by Translate Toolkit %(toolkit_ver)s"
-msgstr ""
+msgstr "Pootle %(pootle_ver)s menggunakan Translate Toolkit %(toolkit_ver)s"
 
-#: apps/pootle_app/views/index/index.py:55 apps/pootle_language/views.py:67
-#: apps/pootle_misc/browser.py:94 apps/pootle_project/views.py:75
+#: apps/pootle_app/views/index/index.py:57 apps/pootle_language/views.py:69
+#: apps/pootle_misc/browser.py:103 apps/pootle_misc/browser.py:191
+#: apps/pootle_misc/browser.py:230 apps/pootle_project/views.py:88
 #, python-format
 msgid "%(percentage)d%% complete"
-msgstr ""
+msgstr "%(percentage)d%% komplit"
 
-#: apps/pootle_app/views/language/view.py:96
-#: apps/pootle_translationproject/views.py:268
-#, fuzzy
-msgid "You do not have rights to access this translation project."
-msgstr "Anda tidak mempunyai hak untuk mengubah terjemahan di sini"
-
-#: apps/pootle_app/views/language/view.py:111
-#: apps/pootle_app/views/language/view.py:137
-msgid "You do not have rights to commit files here"
-msgstr "Anda tidak mempunyai hak untuk melakukan commit berkas di sini"
-
-#: apps/pootle_app/views/language/view.py:124
-#: apps/pootle_app/views/language/view.py:150
-msgid "You do not have rights to update files here"
-msgstr "Anda tidak mempunyai hak untuk meng-update berkas di sini"
-
-#: apps/pootle_language/models.py:48
+#: apps/pootle_language/models.py:66
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
+"Kode bahasa ISO 639 bagi bahasa, mungkin diikuti dengan garis bawah (_) dan "
+"suatu kode negara ISO 3166. <a "
+"href=\"http://www.w3.org/International/articles/language-tags/\">Informasi "
+"lebih lanjut</a>"
 
-#: apps/pootle_language/models.py:53 apps/pootle_project/models.py:60
+#: apps/pootle_language/models.py:71 apps/pootle_project/models.py:62
 msgid "Code"
-msgstr ""
+msgstr "Kode"
 
-#: apps/pootle_language/models.py:55 apps/pootle_project/models.py:63
+#: apps/pootle_language/models.py:73 apps/pootle_project/models.py:66
 msgid "Full Name"
 msgstr "Nama Lengkap"
 
-#: apps/pootle_language/models.py:57
+#: apps/pootle_language/models.py:75
 #, python-format
 msgid ""
 "A description of this language. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Suatu deskripsi tentang bahasa ini. Ini berguna untuk memberikan lebih "
+"banyak informasi atau instruksi. Markup yang diijinkan: %s"
 
-#: apps/pootle_language/models.py:63
+#: apps/pootle_language/models.py:80
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
+"Masukkan sebarang karakter khusus yang mungkin sulit diketikkan oleh "
+"pengguna "
 
-#: apps/pootle_language/models.py:66
-#, fuzzy
+#: apps/pootle_language/models.py:83
 msgid "Special Characters"
-msgstr "(karakter khusus)"
+msgstr "Karakter Khusus"
 
-#: apps/pootle_language/models.py:69
+#: apps/pootle_language/models.py:86
 msgid ""
 "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
 "l10n/pluralforms\">our wiki page</a> on plural forms."
 msgstr ""
+"Untuk informasi lebih lanjut, kunjungi <a "
+"href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">halaman wiki "
+"kami</a> tentang bentuk jamak."
 
-#: apps/pootle_language/models.py:73
+#: apps/pootle_language/models.py:90
 msgid "Unknown"
-msgstr ""
+msgstr "Tak dikenal"
 
-#: apps/pootle_language/models.py:76
+#: apps/pootle_language/models.py:93
 msgid "Number of Plurals"
 msgstr "Jumlah Jamak"
 
-#: apps/pootle_language/models.py:78
+#: apps/pootle_language/models.py:95
 msgid "Plural Equation"
 msgstr "Persamaan Jamak"
 
-#: apps/pootle_language/views.py:74 apps/pootle_misc/browser.py:101
-#: apps/pootle_project/views.py:82
+#: apps/pootle_language/views.py:76 apps/pootle_misc/browser.py:110
+#: apps/pootle_misc/browser.py:197 apps/pootle_misc/browser.py:236
+#: apps/pootle_project/views.py:94
 #, python-format
 msgid "Error reading %d file"
 msgid_plural "Error reading %d files"
-msgstr[0] ""
+msgstr[0] "Galat saat membaca %d berkas"
 
-#: apps/pootle_language/views.py:115
+#: apps/pootle_language/views.py:113
 #, python-format
 msgid "%(projects)d project, %(average)d%% translated"
 msgid_plural "%(projects)d projects, %(average)d%% translated"
-msgstr[0] ""
+msgstr[0] "%(projects)d projek, %(average)d%% diterjemahkan"
 
-#: apps/pootle_language/views.py:158 apps/pootle_project/views.py:169
-#: apps/pootle_translationproject/views.py:347
+#: apps/pootle_language/views.py:151 apps/pootle_project/views.py:306
+#: apps/pootle_tagging/views.py:52 apps/pootle_translationproject/views.py:740
 msgid "No description yet."
-msgstr ""
+msgstr "Belum ada deskripsi."
 
-#: apps/pootle_language/views.py:181
-#, fuzzy
-msgid "You do not have rights to administer this language."
-msgstr "Anda tidak mempunyai hak untuk mengadministrasi proyek ini."
-
-#: apps/pootle_language/templates/language/language_admin.html:15
+#: apps/pootle_language/templates/language/language_admin.html:11
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
+"Di bawah Anda dapat menambah, menyunting, dan menghapus ijin bagi bahasa "
+"ini."
 
-#: apps/pootle_misc/browser.py:31
+#: apps/pootle_misc/browser.py:30
 msgid "Name"
 msgstr "Nama"
 
-#: apps/pootle_misc/browser.py:36
-#, fuzzy
+#: apps/pootle_misc/browser.py:35 templates/profiles/profile_detail.html:41
 msgid "Project"
-msgstr "Proyek"
+msgstr "Projek"
 
-#: apps/pootle_misc/browser.py:41 apps/pootle_project/views.py:232
+#: apps/pootle_misc/browser.py:40 apps/pootle_project/views.py:388
 msgid "Language"
 msgstr "Bahasa"
 
+#. Translators: Heading representing the priority for a goal
+#: apps/pootle_misc/browser.py:46 apps/pootle_tagging/models.py:73
+msgid "Priority"
+msgstr "Prioritas"
+
 #. Translators: noun. The graphical representation of translation status
-#: apps/pootle_misc/browser.py:47
+#: apps/pootle_misc/browser.py:52
 msgid "Progress"
-msgstr ""
+msgstr "Kemajuan"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
-#: apps/pootle_misc/browser.py:54 apps/pootle_misc/stats.py:106
+#: apps/pootle_misc/browser.py:59 apps/pootle_misc/stats.py:150
 msgid "Total"
 msgstr "Total"
 
-#: apps/pootle_misc/browser.py:59
+#: apps/pootle_misc/browser.py:64
 msgid "Need Translation"
-msgstr ""
+msgstr "Perlu Terjemahan"
 
-#: apps/pootle_misc/browser.py:70
+#: apps/pootle_misc/browser.py:75
 msgid "Last Activity"
-msgstr ""
+msgstr "Aktivitas Terakhir"
+
+#: apps/pootle_misc/checks.py:27
+msgid "Critical"
+msgstr "Kritis"
+
+#: apps/pootle_misc/checks.py:28
+msgid "Functional"
+msgstr "Fungsional"
 
 #: apps/pootle_misc/checks.py:29
-msgid "Critical"
-msgstr ""
+msgid "Cosmetic"
+msgstr "Kosmetik"
 
 #: apps/pootle_misc/checks.py:30
-msgid "Functional"
-msgstr ""
+msgid "Extraction"
+msgstr "Ekstraksi"
 
 #: apps/pootle_misc/checks.py:31
-msgid "Cosmetic"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:32
-msgid "Extraction"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:33
 msgid "No category"
-msgstr ""
+msgstr "Tanpa kategori"
+
+#: apps/pootle_misc/checks.py:36
+msgid "Accelerators"
+msgstr "Akselerator"
 
 #: apps/pootle_misc/checks.py:37
-msgid "Accelerators"
-msgstr ""
+msgid "Acronyms"
+msgstr "Akronim"
 
 #: apps/pootle_misc/checks.py:38
-msgid "Acronyms"
-msgstr ""
+msgid "Blank"
+msgstr "Kosong"
 
 #: apps/pootle_misc/checks.py:39
-msgid "Blank"
-msgstr ""
+msgid "Brackets"
+msgstr "Kurung siku"
 
 #: apps/pootle_misc/checks.py:40
-msgid "Brackets"
-msgstr ""
+msgid "Compendium conflict"
+msgstr "Konflik kompendium"
 
 #: apps/pootle_misc/checks.py:41
-msgid "Compendium conflict"
-msgstr ""
+msgid "Translator credits"
+msgstr "Kredit para penerjemah"
 
 #: apps/pootle_misc/checks.py:42
-msgid "Translator credits"
-msgstr ""
+msgid "Double quotes"
+msgstr "Petik ganda"
 
 #: apps/pootle_misc/checks.py:43
-msgid "Double quotes"
-msgstr ""
+msgid "Double spaces"
+msgstr "Spasi ganda"
 
 #: apps/pootle_misc/checks.py:44
-msgid "Double spaces"
-msgstr ""
+msgid "Repeated word"
+msgstr "Kata berulang"
 
 #: apps/pootle_misc/checks.py:45
-msgid "Repeated word"
-msgstr ""
+msgid "E-mail"
+msgstr "Surel"
 
 #: apps/pootle_misc/checks.py:46
-#, fuzzy
-msgid "E-mail"
-msgstr "Email"
+msgid "Ending punctuation"
+msgstr "Tanda baca penutup"
 
 #: apps/pootle_misc/checks.py:47
-msgid "Ending punctuation"
-msgstr ""
+msgid "Ending whitespace"
+msgstr "Whitespace akhiran"
 
 #: apps/pootle_misc/checks.py:48
-msgid "Ending whitespace"
-msgstr ""
+msgid "Escapes"
+msgstr "Escape"
 
 #: apps/pootle_misc/checks.py:49
-msgid "Escapes"
-msgstr ""
+msgid "File paths"
+msgstr "Path berkas"
 
 #: apps/pootle_misc/checks.py:50
-msgid "File paths"
-msgstr ""
+msgid "Functions"
+msgstr "Fungsi"
 
 #: apps/pootle_misc/checks.py:51
-msgid "Functions"
-msgstr ""
+msgid "GConf values"
+msgstr "Nilai GConf"
 
 #: apps/pootle_misc/checks.py:52
-msgid "GConf values"
-msgstr ""
+msgid "Old KDE comment"
+msgstr "Komentar KDE lama"
 
 #: apps/pootle_misc/checks.py:53
-msgid "Old KDE comment"
-msgstr ""
+msgid "Long"
+msgstr "Panjang"
 
 #: apps/pootle_misc/checks.py:54
-msgid "Long"
-msgstr ""
+msgid "Must translate words"
+msgstr "Mesti menerjemahkan kata"
 
 #: apps/pootle_misc/checks.py:55
-msgid "Must translate words"
-msgstr ""
+msgid "Newlines"
+msgstr "Baris baru"
 
 #: apps/pootle_misc/checks.py:56
-msgid "Newlines"
-msgstr ""
+msgid "Number of plurals"
+msgstr "Cacah jamak"
 
 #: apps/pootle_misc/checks.py:57
-#, fuzzy
-msgid "Number of plurals"
-msgstr "Jumlah Jamak"
+msgid "Don't translate words"
+msgstr "Jangan terjemahkan kata"
 
 #: apps/pootle_misc/checks.py:58
-msgid "Don't translate words"
-msgstr ""
+msgid "Numbers"
+msgstr "Bilangan"
 
 #: apps/pootle_misc/checks.py:59
-msgid "Numbers"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:60
-#, fuzzy
 msgid "Options"
 msgstr "Opsi"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:60
 msgid "printf()"
-msgstr ""
+msgstr "printf()"
+
+#: apps/pootle_misc/checks.py:61
+msgid "Punctuation spacing"
+msgstr "Jarak antara tanda baca"
 
 #: apps/pootle_misc/checks.py:62
-msgid "Punctuation spacing"
-msgstr ""
+msgid "Pure punctuation"
+msgstr "Tanda baca murni"
 
 #: apps/pootle_misc/checks.py:63
-msgid "Pure punctuation"
-msgstr ""
+msgid "Number of sentences"
+msgstr "Banyaknya kalimat"
 
 #: apps/pootle_misc/checks.py:64
-msgid "Number of sentences"
-msgstr ""
+msgid "Short"
+msgstr "Pendek"
 
 #: apps/pootle_misc/checks.py:65
-msgid "Short"
-msgstr ""
+msgid "Simple capitalization"
+msgstr "Kapitalisasi sederhana"
 
 #: apps/pootle_misc/checks.py:66
-msgid "Simple capitalization"
-msgstr ""
+msgid "Simple plural(s)"
+msgstr "Jamak sederhana"
 
 #: apps/pootle_misc/checks.py:67
-msgid "Simple plural(s)"
-msgstr ""
+msgid "Single quotes"
+msgstr "Kutip tunggal"
 
 #: apps/pootle_misc/checks.py:68
-msgid "Single quotes"
-msgstr ""
+msgid "Starting capitalization"
+msgstr "Kapitalisasi pembuka"
 
 #: apps/pootle_misc/checks.py:69
-msgid "Starting capitalization"
-msgstr ""
+msgid "Starting punctuation"
+msgstr "Tanda baca pembuka"
 
 #: apps/pootle_misc/checks.py:70
-msgid "Starting punctuation"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:71
 msgid "Starting whitespace"
-msgstr ""
+msgstr "Whitespace awalan"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:72
 msgid "Tabs"
-msgstr ""
+msgstr "Tab"
+
+#: apps/pootle_misc/checks.py:73
+msgid "Unchanged"
+msgstr "Tak berubah"
 
 #: apps/pootle_misc/checks.py:74
-msgid "Unchanged"
-msgstr ""
+msgid "URLs"
+msgstr "URL"
 
 #: apps/pootle_misc/checks.py:75
-msgid "URLs"
-msgstr ""
+msgid "Valid characters"
+msgstr "Karakter yang valid"
 
 #: apps/pootle_misc/checks.py:76
-msgid "Valid characters"
-msgstr ""
+msgid "Placeholders"
+msgstr "Tempat letak"
 
 #: apps/pootle_misc/checks.py:77
-msgid "Placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:78
 msgid "XML tags"
-msgstr ""
+msgstr "Tag XML"
 
-#: apps/pootle_misc/dbinit.py:68
-msgid "Pootle: Install"
-msgstr ""
-
-#: apps/pootle_misc/dbinit.py:69
-#, python-format
-msgid ""
-"Error: \"%s\" while attempting to access the Pootle database, will try to "
-"initialize database."
-msgstr ""
-
-#: apps/pootle_misc/dbinit.py:75
-msgid "Creating database tables..."
-msgstr ""
-
-#: apps/pootle_misc/dbinit.py:82
-msgid "Creating default languages, projects and admin user"
-msgstr ""
-
-#: apps/pootle_misc/dbinit.py:90
-msgid "Calculating translation statistics, this will take a few minutes"
-msgstr ""
-
-#: apps/pootle_misc/dbinit.py:96
-#, python-format
-msgid "%(language)s is %(percent)d%% complete"
-msgstr ""
-
-#: apps/pootle_misc/dbinit.py:103
-#, python-format
-msgid "Project %(project)s is %(percent)d%% complete"
-msgstr ""
-
-#: apps/pootle_misc/dbinit.py:111
-msgid "Done calculating statistics for default languages and projects"
-msgstr ""
-
-#: apps/pootle_misc/dbinit.py:119
-msgid ""
-"Initialized database, you will be redirected to the front page in 10 seconds"
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:132
-msgid "Pootle: Update"
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:133
-#, python-format
-msgid ""
-"Database tables are currently at build version %d. Pootle will now update "
-"the database."
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:143
-msgid "Creating missing database tables..."
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:154
-msgid "Fixing permission table..."
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:180 apps/pootle_misc/dbupdate.py:257
-msgid "Updating existing database tables..."
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:221
-msgid "Removing potentially incorrect cached stats, will be recalculated..."
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:238
-msgid "Reparsing Qt ts files..."
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:338 apps/pootle_misc/dbupdate.py:350
-msgid "Removing quality checks, will be recalculated on demand..."
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:363
-msgid ""
-"Pootle will now import all the translations into the database. It could take "
-"a long time."
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:382
-#, python-format
-msgid "Imported %(count)d suggestion from %(store)s"
-msgid_plural "Imported %(count)d suggestions from %(store)s"
-msgstr[0] ""
-
-#: apps/pootle_misc/dbupdate.py:390
-#, python-format
-msgid "Failed to import suggestions from %s"
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:402
-#, python-format
-msgid "Imported %(count)d string from %(store)s"
-msgid_plural "Imported %(count)d strings from %(store)s"
-msgstr[0] ""
-
-#: apps/pootle_misc/dbupdate.py:408
-#, python-format
-msgid "Failed to import strings from %s"
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:417
-msgid "All translations are now imported."
-msgstr ""
-
-#: apps/pootle_misc/dbupdate.py:427
-msgid ""
-"Pootle initialized the database. You will be redirected to the front page in "
-"10 seconds."
-msgstr ""
-
-#: apps/pootle_misc/forms.py:97
+#: apps/pootle_misc/forms.py:100
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr ""
+msgstr "Cari (Ctrl+Shift+S)<br/>Ketik dan tekan Enter untuk mencari"
 
-#: apps/pootle_misc/forms.py:103
+#: apps/pootle_misc/forms.py:108
+msgid "Exact Match"
+msgstr "Cocok Sempurna"
+
+#: apps/pootle_misc/forms.py:115
 msgid "Source Text"
-msgstr ""
+msgstr "Teks Sumber"
 
-#: apps/pootle_misc/forms.py:104
+#: apps/pootle_misc/forms.py:116
 msgid "Target Text"
-msgstr ""
+msgstr "Teks Target"
 
-#: apps/pootle_misc/forms.py:105
+#: apps/pootle_misc/forms.py:117
 msgid "Comments"
-msgstr ""
+msgstr "Komentar"
 
-#: apps/pootle_misc/forms.py:106
+#: apps/pootle_misc/forms.py:118
 msgid "Locations"
-msgstr ""
+msgstr "Lokasi"
 
-#: apps/pootle_misc/forms.py:119
+#: apps/pootle_misc/forms.py:131
 msgid "Source Terms"
-msgstr ""
+msgstr "Istilah Sumber"
 
-#: apps/pootle_misc/forms.py:120
+#: apps/pootle_misc/forms.py:132
 msgid "Target Terms"
-msgstr ""
+msgstr "Istilah Target"
 
-#: apps/pootle_misc/forms.py:121
+#: apps/pootle_misc/forms.py:133
 msgid "Definitions"
-msgstr ""
+msgstr "Definisi"
 
-#: apps/pootle_misc/stats.py:91
+#: apps/pootle_misc/stats.py:134
 #, python-format
 msgid "<a href=\"%(url)s\">%(num)d word</a>"
 msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
-msgstr[0] ""
+msgstr[0] "<a href=\"%(url)s\">%(num)d kata</a>"
 
-#: apps/pootle_misc/stats.py:97
+#: apps/pootle_misc/stats.py:141
 #, python-format
 msgid "%(num)d%%"
-msgstr ""
+msgstr "%(num)d%%"
 
-#: apps/pootle_misc/stats.py:99
+#: apps/pootle_misc/stats.py:143
 #, python-format
 msgid "(%(num)d string)"
 msgid_plural "(%(num)d strings)"
-msgstr[0] ""
+msgstr[0] "(%(num)d string)"
 
-#: apps/pootle_misc/stats.py:128
+#: apps/pootle_misc/stats.py:172
 #, python-format
 msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This folder has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
+msgstr[0] "Folder ini memuat %(num)d kata, %(percentage)d%% telah diterjemahkan."
 
-#: apps/pootle_misc/stats.py:140
+#: apps/pootle_misc/stats.py:184
 #, python-format
 msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 msgid_plural ""
 "This file has %(num)d words, %(percentage)d%% of which are translated."
-msgstr[0] ""
+msgstr[0] "Berkas ini memuat %(num)d kata, %(percentage)d%% telah diterjemahkan."
 
-#: apps/pootle_misc/stats.py:162
+#: apps/pootle_misc/stats.py:206
 msgid "Expand details"
-msgstr ""
+msgstr "Kembangkan rincian"
 
-#: apps/pootle_misc/stats.py:173
+#: apps/pootle_misc/stats.py:217
 #, python-format
 msgid "Continue translation (%(num)d word left)"
 msgid_plural "Continue translation (%(num)d words left)"
-msgstr[0] ""
+msgstr[0] "Lanjutkan penerjemahan (%(num)d kata tersisa)"
 
-#: apps/pootle_misc/stats.py:183
+#: apps/pootle_misc/stats.py:239
+#, python-format
+msgid "Next most important goal (%(num)d word left)"
+msgid_plural "Next most important goal (%(num)d words left)"
+msgstr[0] "Sasaran paling penting selanjutnya (%(num)d kata tersisa)"
+
+#: apps/pootle_misc/stats.py:249
 msgid "Translation is complete"
-msgstr ""
+msgstr "Penerjemahan komplit"
 
-#: apps/pootle_misc/stats.py:194
+#: apps/pootle_misc/stats.py:260
 #, python-format
 msgid "Review suggestion (%(num)d left)"
 msgid_plural "Review suggestions (%(num)d left)"
-msgstr[0] ""
+msgstr[0] "Tinjau saran (%(num)d tersisa)"
 
 #. Translators: 'type' is the type of VCS file: working, remote,
 #. or merged copy.
-#: apps/pootle_misc/stats.py:215
+#: apps/pootle_misc/stats.py:282
 #, python-format
 msgid ""
-"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+"%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
+"review)."
 msgid_plural ""
-"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+"%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
+"review)."
 msgstr[0] ""
+"%(type)s: %(translated)d dari %(total)d string diterjemahkan (%(fuzzy)d "
+"perlu diperiksa)."
 
-#: apps/pootle_misc/stats.py:237
+#: apps/pootle_misc/stats.py:304
 #, python-format
 msgid "%d word needs attention"
 msgid_plural "%d words need attention"
-msgstr[0] ""
+msgstr[0] "%d kata perlu diperhatikan"
 
-#: apps/pootle_misc/stats.py:240
+#: apps/pootle_misc/stats.py:307
 #, python-format
 msgid "%d word untranslated"
 msgid_plural "%d words untranslated"
-msgstr[0] ""
+msgstr[0] "%d kata belum diterjemahkan"
 
-#: apps/pootle_misc/stats.py:243
+#: apps/pootle_misc/stats.py:310
 #, python-format
 msgid "%d word needs review"
 msgid_plural "%d words need review"
-msgstr[0] ""
-
-#: apps/pootle_misc/middleware/errorpages.py:65
-#, python-format
-msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
-msgstr ""
-
-#: apps/pootle_misc/middleware/errorpages.py:83
-#, python-format
-msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
-msgstr ""
+msgstr[0] "%d kata perlu ditinjau"
 
 #: apps/pootle_misc/templates/progressbar.html:3
 #, python-format
 msgid "%(percent)s%% complete"
-msgstr ""
+msgstr "%(percent)s%% komplit"
 
-#: apps/pootle_misc/templates/search.html:5
+#. Translators: This is the name of a filter
+#: apps/pootle_misc/templates/search.html:5 core/helpers.py:59
 msgid "Search"
 msgstr "Cari"
 
-#: apps/pootle_misc/templates/search.html:7
-msgid "Advanced search"
-msgstr ""
-
 #: apps/pootle_misc/templatetags/render_pager.py:32
 msgid "First"
-msgstr ""
+msgstr "Pertama"
 
 #: apps/pootle_misc/templatetags/render_pager.py:34
+#: templates/editor/_toolbar.html:33
 msgid "Previous"
-msgstr ""
+msgstr "Sebelumnya"
 
 #: apps/pootle_misc/templatetags/render_pager.py:50
+#: templates/editor/_toolbar.html:42
 msgid "Next"
-msgstr ""
+msgstr "Selanjutnya"
 
 #: apps/pootle_misc/templatetags/render_pager.py:52
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Terakhir (%d)"
+
+#: apps/pootle_notifications/forms.py:38
+msgid "Publish on news feed"
+msgstr "Terbitkan pada asupan berita"
+
+#: apps/pootle_notifications/forms.py:41
+msgid "Send email"
+msgstr "Kirim surel"
+
+#: apps/pootle_notifications/forms.py:44
+msgid "Email only to recently active users"
+msgstr "Surel hanya ke pengguna yang baru-baru ini aktif"
+
+#: apps/pootle_notifications/forms.py:52
+msgid "All Projects"
+msgstr "Semua Projek"
+
+#: apps/pootle_notifications/forms.py:56
+msgid "Project Selection"
+msgstr "Pilihan Projek"
+
+#: apps/pootle_notifications/forms.py:61
+msgid "Select one or more projects"
+msgstr "Pilih satu projek atau lebih"
+
+#: apps/pootle_notifications/forms.py:68
+msgid "All Languages"
+msgstr "Semua Bahasa"
+
+#: apps/pootle_notifications/forms.py:72
+msgid "Language Selection"
+msgstr "Pemilihan Bahasa"
+
+#: apps/pootle_notifications/forms.py:77 apps/pootle_profile/forms.py:120
+msgid "Select one or more languages"
+msgstr "Pilih satu bahasa atau lebih"
 
 #: apps/pootle_notifications/models.py:31
 msgid "Message"
-msgstr ""
+msgstr "Pesan"
 
 #. Translators: The date that the news item was written
 #: apps/pootle_notifications/models.py:33
 msgid "Added"
-msgstr ""
+msgstr "Ditambahkan"
 
-#: apps/pootle_notifications/views.py:103
+#: apps/pootle_notifications/views.py:95
 #, python-format
 msgid "News for %(language)s"
-msgstr ""
+msgstr "Berita untuk %(language)s"
 
-#: apps/pootle_notifications/views.py:105
+#: apps/pootle_notifications/views.py:100
 #, python-format
 msgid "News for %(project)s"
-msgstr ""
+msgstr "Berita untuk %(project)s"
 
-#: apps/pootle_notifications/views.py:111
+#: apps/pootle_notifications/views.py:106
 #, python-format
 msgid "News for the %(project)s project in %(language)s"
-msgstr ""
+msgstr "Berita untuk projek %(project)s dalam %(language)s"
 
-#: apps/pootle_notifications/views.py:112
+#: apps/pootle_notifications/views.py:107
 #, python-format
 msgid "News for %(path)s"
-msgstr ""
+msgstr "Berita untuk %(path)s"
 
-#: apps/pootle_notifications/views.py:138
-msgid "Publish on news feed"
-msgstr ""
-
-#: apps/pootle_notifications/views.py:140
-msgid "Send email"
-msgstr ""
-
-#: apps/pootle_notifications/views.py:143
-msgid "Email only to recently active users"
-msgstr ""
-
-#: apps/pootle_notifications/views.py:151
-#, fuzzy
-msgid "All Projects"
-msgstr "Semua proyek"
-
-#: apps/pootle_notifications/views.py:155
-msgid "Project Selection"
-msgstr ""
-
-#: apps/pootle_notifications/views.py:163
-#, fuzzy
-msgid "All Languages"
-msgstr "Semua bahasa"
-
-#: apps/pootle_notifications/views.py:167
-msgid "Language Selection"
-msgstr ""
-
-#: apps/pootle_notifications/views.py:293
+#: apps/pootle_notifications/views.py:226
 msgid "View News Item"
-msgstr ""
+msgstr "Lihat Butir Berita"
 
 #: apps/pootle_notifications/templates/latest_news_snippet.html:9
-#: apps/pootle_notifications/templates/notices.html:98
+#: apps/pootle_notifications/templates/notices.html:83
 msgid "No news yet."
-msgstr ""
+msgstr "Belum ada berita."
 
 #: apps/pootle_notifications/templates/notices.html:15
-#: apps/pootle_notifications/templates/notices.html:38
-#: templates/language_menu.html:4 templates/project_menu.html:4
+#: templates/language_menu.html:5 templates/project_menu.html:5
 #: templates/tp_menu.html:5
 msgid "News"
-msgstr ""
+msgstr "Berita"
 
-#: apps/pootle_notifications/templates/notices.html:64
+#: apps/pootle_notifications/templates/notices.html:54
 msgid "Publish News"
-msgstr ""
+msgstr "Terbitkan Berita"
 
-#: apps/pootle_notifications/templates/notices.html:68
+#: apps/pootle_notifications/templates/notices.html:57
 msgid "Successfully published the following news"
-msgstr ""
+msgstr "Sukses menerbitkan berita berikut"
 
-#: apps/pootle_notifications/templates/notices.html:81
+#: apps/pootle_notifications/templates/notices.html:70
 msgid "Publish"
-msgstr ""
+msgstr "Terbitkan"
 
 #: apps/pootle_profile/forms.py:32
 msgid "Default"
 msgstr "Default"
 
-#: apps/pootle_profile/forms.py:49 apps/pootle_profile/models.py:96
+#: apps/pootle_profile/forms.py:49 apps/pootle_profile/models.py:94
 msgid "Interface Language"
-msgstr ""
+msgstr "Bahasa Antar Muka"
 
-#: apps/pootle_profile/forms.py:68
+#: apps/pootle_profile/forms.py:87
 msgid "This account is inactive."
-msgstr ""
+msgstr "Akun ini tak aktif."
 
-#: apps/pootle_profile/models.py:86
+#: apps/pootle_profile/models.py:81
 msgid "Number of Rows"
-msgstr ""
+msgstr "Cacah Baris"
 
-#: apps/pootle_profile/models.py:100
+#: apps/pootle_profile/models.py:98
 msgid "Alternative Source Languages"
-msgstr ""
+msgstr "Bahasa Sumber Alternatif"
 
-#: apps/pootle_profile/models.py:150
-msgid "Suggestions Accepted"
-msgstr ""
-
-#: apps/pootle_profile/models.py:154
-msgid "Suggestions Pending"
-msgstr ""
-
-#: apps/pootle_profile/models.py:158
-msgid "Suggestions Reviewed"
-msgstr ""
-
-#: apps/pootle_profile/models.py:162
-msgid "Submissions Made"
-msgstr ""
-
-#: apps/pootle_project/models.py:57
+#: apps/pootle_project/models.py:58
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
+"Kode pendek untuk projek. Ini hanya boleh memuat karater ASCII, angka, dan "
+"karakter garis bawah (_)."
 
-#: apps/pootle_project/models.py:65
+#: apps/pootle_project/models.py:68
 #, python-format
 msgid ""
 "A description of this project. This is useful to give more information or "
 "instructions. Allowed markup: %s"
 msgstr ""
+"Deskripsi projek ini. Ini berguna untuk memberikan informasi atau instruksi "
+"lebih banyak. Markup yang diijinkan: %s"
 
-#: apps/pootle_project/models.py:77
+#: apps/pootle_project/models.py:79
 msgid "Quality Checks"
-msgstr ""
+msgstr "Pemeriksaan Kualitas"
 
-#: apps/pootle_project/models.py:80
+#: apps/pootle_project/models.py:83
 msgid "File Type"
 msgstr "Tipe Berkas"
 
-#: apps/pootle_project/models.py:84
+#: apps/pootle_project/models.py:87
 msgid "Automatic detection (slower)"
-msgstr ""
+msgstr "Deteksi otomatis (lebih lambat)"
 
-#: apps/pootle_project/models.py:85
+#: apps/pootle_project/models.py:88
 msgid "GNU style: files named by language code"
-msgstr ""
-
-#: apps/pootle_project/models.py:86
-msgid "Non-GNU: Each language in its own directory"
-msgstr ""
+msgstr "Gaya GNU: berkas dinamai dengan kode bahasa"
 
 #: apps/pootle_project/models.py:89
-msgid "Project Tree Style"
-msgstr ""
+msgid "Non-GNU: Each language in its own directory"
+msgstr "Bukan GNU: Setiap bahasa pada direktorinya sendiri"
 
-#: apps/pootle_project/models.py:95
-msgid "Ignore Files"
-msgstr ""
+#: apps/pootle_project/models.py:93
+msgid "Project Tree Style"
+msgstr "Gaya Pohon Projek"
 
 #: apps/pootle_project/models.py:100
+msgid "Ignore Files"
+msgstr "Abaikan Berkas-berkas"
+
+#: apps/pootle_project/models.py:105
 msgid ""
 "A URL or an email address where issues with the source text can be reported."
 msgstr ""
+"Suatu URL atau alamat surel dimana masalah dengan teks sumber dapat "
+"dilaporkan."
 
-#: apps/pootle_project/models.py:103
+#: apps/pootle_project/models.py:108
 msgid "Report Target"
-msgstr ""
+msgstr "Target Laporan"
 
-#: apps/pootle_project/views.py:127
+#: apps/pootle_project/views.py:119
 #, python-format
 msgid "%(languages)d language, %(average)d%% translated"
 msgid_plural "%(languages)d languages, %(average)d%% translated"
-msgstr[0] ""
+msgstr[0] "%(languages)d bahasa, %(average)d%% diterjemahkan"
 
-#: apps/pootle_project/views.py:210 apps/pootle_project/views.py:278
-#, fuzzy
-msgid "You do not have rights to administer this project."
-msgstr "Anda tidak mempunyai hak untuk mengadministrasi proyek ini."
-
-#: apps/pootle_project/views.py:221
-#: apps/pootle_translationproject/actions.py:201
+#: apps/pootle_project/views.py:377
+#: apps/pootle_translationproject/actions.py:209
 msgid "Update against templates"
-msgstr ""
+msgstr "Perbarui terhadap templat"
 
-#: apps/pootle_project/templates/project/admin_permissions.html:24
+#: apps/pootle_project/templates/project/admin_permissions.html:20
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
+"Di bawah, Anda dapat menambah, menyunting, dan menghapus ijin bagi projek "
+"ini."
+
+#: apps/pootle_project/templates/project/overview.html:19
+#: apps/pootle_translationproject/templates/translation_project/overview.html:25
+msgid "Show tags"
+msgstr "Tampilkan tag"
+
+#: apps/pootle_project/templates/project/overview.html:22
+msgid "Show filtering"
+msgstr "Tampilkan penyaringan"
+
+#: apps/pootle_project/templates/project/overview.html:33
+msgid "Filter using one or more tags"
+msgstr "Saring memakai satu tag atau lebih"
+
+#: apps/pootle_project/templates/project/overview.html:37
+msgctxt "verb"
+msgid "Filter"
+msgstr "Saring"
+
+#: apps/pootle_project/templates/project/overview.html:38
+msgid "Filter using the selected tags"
+msgstr "Saring memakai tag yang dipilih"
+
+#: apps/pootle_project/templates/project/overview.html:76
+#: apps/pootle_translationproject/templates/translation_project/overview.html:43
+#: apps/pootle_translationproject/templates/translation_project/overview.html:175
+#: templates/common/xhr_add_tag_form.html:15
+msgid "Add tag"
+msgstr "Tambah tag"
 
 #: apps/pootle_project/templates/project/project_admin.html:7
-#: apps/pootle_project/templates/project/project_admin.html:10
-#: templates/project_menu.html:6
+#: templates/project_menu.html:9
 msgid "Administrate"
 msgstr "Administrasi"
 
-#: apps/pootle_project/templates/project/project_admin.html:24
+#: apps/pootle_project/templates/project/project_admin.html:20
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
+"Di sini Anda dapat menambah, menyunting, atau menghapus bahasa-bahasa untuk "
+"projek ini."
+
+#: apps/pootle_statistics/models.py:46
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:103
+msgid "Source"
+msgstr "Sumber"
 
 #: apps/pootle_statistics/models.py:47
-msgid "Source"
-msgstr ""
+msgid "Target"
+msgstr "Target"
 
 #: apps/pootle_statistics/models.py:48
-msgid "Target"
-msgstr ""
+msgid "State"
+msgstr "Keadaan"
 
 #: apps/pootle_statistics/models.py:49
-msgid "State"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:50
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
-#: apps/pootle_statistics/models.py:95
+#: apps/pootle_statistics/models.py:114
 msgid "anonymous user"
+msgstr "pengguna anonim"
+
+#: apps/pootle_statistics/models.py:152
+#, python-format
+msgid ""
+"%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
 msgstr ""
+"%(user)s mengembalikan terjemahan bagi string <i><a href=\"%(url)s\">%"
+"(source)s</a></i> ke keadaan sebelumnya"
+
+#: apps/pootle_statistics/models.py:155
+#, python-format
+msgid ""
+"%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
+"%(user)s menerima saran bagi string <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#: apps/pootle_statistics/models.py:158
+#, python-format
+msgid "%(user)s uploaded a file"
+msgstr "%(user)s mengunggah suatu berkas"
+
+#: apps/pootle_statistics/models.py:173
+#, python-format
+msgid ""
+"%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
+"%(user)s menyetorkan terjemahan bagi string <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
+
+#: apps/pootle_statistics/models.py:176
+#, python-format
+msgid ""
+"%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
+"\">%(source)s</a></i>"
+msgstr ""
+"%(user)s menyetorkan terjemahan yang \"perlu pengerjaan\" untuk string <i><a "
+"href=\"%(url)s\">%(source)s</a></i>"
+
+#: apps/pootle_statistics/models.py:179
+#, python-format
+msgid ""
+"%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
+"a></i>"
+msgstr ""
+"%(user)s menghapus terjemahan bagi string <i><a href=\"%(url)s\">%"
+"(source)s</a></i>"
+
+#: apps/pootle_store/decorators.py:63
+msgid "Insufficient rights to access this directory."
+msgstr "Hak tidak cukup untuk mengakses direktori ini."
+
+#: apps/pootle_store/decorators.py:135 apps/pootle_store/views.py:531
+msgid "Arguments missing."
+msgstr "Kurang argumen."
+
+#: apps/pootle_store/decorators.py:147
+msgid "File does not exist."
+msgstr "Berkas tidak ada."
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Gettext PO"
-msgstr ""
+msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:35
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: apps/pootle_store/filetypes.py:41
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: apps/pootle_store/filetypes.py:47
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: apps/pootle_store/filetypes.py:53
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: apps/pootle_store/filetypes.py:59
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkeys"
 
 #: apps/pootle_store/filetypes.py:65
 msgid "Excel CSV"
-msgstr ""
+msgstr "Excel CSV"
 
 #: apps/pootle_store/filetypes.py:71
 msgid "Mozilla .lang"
-msgstr ""
+msgstr "Mozilla .lang"
 
 #: apps/pootle_store/filetypes.py:81 apps/pootle_store/filetypes.py:85
 msgid "Java Properties"
-msgstr ""
+msgstr "Properti Java"
 
 #: apps/pootle_store/filetypes.py:89
 msgid "Java Properties (UTF-8)"
-msgstr ""
+msgstr "Properti Java (UTF-8)"
 
 #. Translators: Don't translate "strings" unless you are sure these
 #. files have another name in your language
 #: apps/pootle_store/filetypes.py:98
 msgid "OS X Strings"
-msgstr ""
+msgstr "String OS X"
 
 #: apps/pootle_store/filetypes.py:104
 msgid "PHP arrays"
-msgstr ""
+msgstr "Array PHP"
 
 #: apps/pootle_store/filetypes.py:110
 msgid "Subtitles: srt"
-msgstr ""
+msgstr "Subtitel: srt"
 
 #: apps/pootle_store/filetypes.py:112
 msgid "Subtitles: sub"
-msgstr ""
+msgstr "Subtitel: sub"
 
 #: apps/pootle_store/filetypes.py:114
 msgid "Subtitles: ssa"
-msgstr ""
+msgstr "Subtitel: ssa"
 
 #: apps/pootle_store/filetypes.py:116
 msgid "Subtitles: ass"
-msgstr ""
+msgstr "Subtitel: ass"
 
 #: apps/pootle_store/forms.py:95
-#: apps/pootle_store/templatetags/store_tags.py:119
-#: apps/pootle_store/templatetags/store_tags.py:135
+#: apps/pootle_store/templatetags/store_tags.py:125
 #: apps/pootle_store/templatetags/store_tags.py:142
-#: apps/pootle_store/templatetags/store_tags.py:154
-#: apps/pootle_store/templatetags/store_tags.py:156
+#: apps/pootle_store/templatetags/store_tags.py:149
+#: apps/pootle_store/templatetags/store_tags.py:162
+#: apps/pootle_store/templatetags/store_tags.py:164
 #, python-format
 msgid "Plural Form %d"
 msgstr "Bentuk Jamak %d"
 
 #: apps/pootle_store/forms.py:296
-#, fuzzy
 msgid "Translator comment"
 msgstr "Catatan penerjemah"
 
-#: apps/pootle_store/models.py:835
+#: apps/pootle_store/models.py:893
 msgid "Path"
-msgstr ""
+msgstr "Path"
 
-#: apps/pootle_store/util.py:44
+#: apps/pootle_store/models.py:900
+#: apps/pootle_translationproject/models.py:121
+msgid "Tags"
+msgstr "Tag"
+
+#: apps/pootle_store/models.py:901
+#: apps/pootle_translationproject/models.py:122
+msgid "A comma-separated list of tags."
+msgstr "Daftar tag yang dipisah koma."
+
+#: apps/pootle_store/models.py:902
+#: apps/pootle_translationproject/models.py:126
+#: apps/pootle_translationproject/templates/translation_project/overview.html:69
+msgid "Goals"
+msgstr "Sasaran"
+
+#: apps/pootle_store/models.py:904
+#: apps/pootle_translationproject/models.py:128
+msgid "A comma-separated list of goals."
+msgstr "Daftar sasaran yang dipisah koma."
+
+#: apps/pootle_store/util.py:45
 msgid "Obsolete"
-msgstr ""
+msgstr "Usang"
 
-#: apps/pootle_store/views.py:77
-msgid "Insufficient rights to this translation project."
-msgstr ""
-
-#: apps/pootle_store/views.py:702
+#: apps/pootle_store/views.py:705
 msgid "Comment submission failed."
-msgstr ""
+msgstr "Penyetoran komentar gagal."
 
-#: apps/pootle_store/views.py:823 apps/pootle_store/views.py:888
-#, fuzzy
+#: apps/pootle_store/views.py:832 apps/pootle_store/views.py:898
 msgid "You do not have rights to access translation mode."
-msgstr "Anda tidak mempunyai hak untuk mengubah terjemahan di sini"
+msgstr "Anda tidak mempunyai hak untuk mengakses mode penerjemahan."
 
-#: apps/pootle_store/views.py:871
+#: apps/pootle_store/views.py:880
 msgid "Failed to process submission."
-msgstr ""
+msgstr "Gagal memroses setoran."
 
-#: apps/pootle_store/views.py:920
+#: apps/pootle_store/views.py:930
 msgid "Failed to process suggestion."
-msgstr ""
+msgstr "Gagal memroses saran."
 
-#: apps/pootle_store/views.py:942
-#, fuzzy
+#: apps/pootle_store/views.py:952
 msgid "You do not have rights to access review mode."
-msgstr "Anda tidak mempunyai hak untuk mengubah terjemahan di sini"
+msgstr "Anda tidak mempunyai hak untuk mengakses mode tinjau."
 
-#: apps/pootle_store/views.py:1057
+#: apps/pootle_store/views.py:1067
 msgid "The suggestion or vote is not valid any more."
-msgstr ""
+msgstr "Saran atau vote tak valid lagi."
 
-#: apps/pootle_store/templates/store/translate.html:5 templates/tp_menu.html:6
-msgid "Translate"
-msgstr "Terjemahkan"
+#: apps/pootle_store/views.py:1096
+msgid "You do not have rights to remove tags."
+msgstr "Anda tidak mempunyai hak untuk menghapus tag."
 
-#: apps/pootle_store/templates/store/translate.html:27
-msgid "Pootle's editor requires JavaScript"
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:28
-msgid ""
-"Please enable JavaScript in your browser preferences and reload the page."
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:65
-msgid "Filter by:"
-msgstr ""
-
-#. Translators: This refers to "All strings"
-#: apps/pootle_store/templates/store/translate.html:69
-msgid "All"
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:71
-msgid "Incomplete"
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:75
-#, fuzzy
-msgid "My suggestions"
-msgstr "Saran:"
-
-#: apps/pootle_store/templates/store/translate.html:76
-msgid "My submissions"
-msgstr ""
-
-#. Translators: This is a type of filtering criterion that
-#. selects the strings that have been submitted by me at some point
-#. in time but have been overwritten by other users.
-#: apps/pootle_store/templates/store/translate.html:80
-msgid "My overwritten submissions"
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:81
-msgid "Checks"
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:89
-msgid "Previous string"
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:89
-msgid ""
-"Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
-"+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:91
-msgid ""
-"Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
-"Enter<br/>to go to any position"
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:93
-msgid "Total pages"
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:95
-msgid "Next string"
-msgstr ""
-
-#: apps/pootle_store/templates/store/translate.html:95
-msgid ""
-"Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
-"+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
-msgstr ""
+#: apps/pootle_store/views.py:1132
+msgid "You do not have rights to add tags."
+msgstr "Anda tidak mempunyai hak untuk menambah tag."
 
 #: apps/pootle_store/templates/unit/comment.html:12
 msgid "Comment:"
-msgstr ""
+msgstr "Komentar:"
 
-#: apps/pootle_store/templates/unit/edit.html:11
-msgid "File:"
-msgstr ""
+#: apps/pootle_store/templates/unit/edit.html:15
+#, python-format
+msgid "String %(id)s"
+msgstr "String %(id)s"
 
-#: apps/pootle_store/templates/unit/edit.html:18
+#: apps/pootle_store/templates/unit/edit.html:22
 msgid "Context:"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:28
-msgid "Comments:"
-msgstr ""
+msgstr "Konteks:"
 
 #: apps/pootle_store/templates/unit/edit.html:32
+msgid "Comments:"
+msgstr "Komentar:"
+
+#: apps/pootle_store/templates/unit/edit.html:47
 msgid "Locations:"
-msgstr ""
+msgstr "Lokasi:"
 
-#: apps/pootle_store/templates/unit/edit.html:41
+#: apps/pootle_store/templates/unit/edit.html:56
 msgid "Terminology:"
-msgstr ""
+msgstr "Terminologi:"
 
-#: apps/pootle_store/templates/unit/edit.html:43
+#: apps/pootle_store/templates/unit/edit.html:58
 msgid "Insert the translated term into the editor"
-msgstr ""
+msgstr "Sisipkan istilah yang diterjemahkan ke dalam penyunting"
 
-#: apps/pootle_store/templates/unit/edit.html:56
+#: apps/pootle_store/templates/unit/edit.html:71
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Mungkin ada masalah pada terjemahan"
 
-#: apps/pootle_store/templates/unit/edit.html:56
+#: apps/pootle_store/templates/unit/edit.html:71
 msgid "Failing checks:"
-msgstr ""
+msgstr "Pemeriksaan yang gagal:"
 
-#: apps/pootle_store/templates/unit/edit.html:62
+#: apps/pootle_store/templates/unit/edit.html:77
 msgid "Remove quality check"
-msgstr ""
+msgstr "Hapus pemeriksaan kualitas"
 
-#: apps/pootle_store/templates/unit/edit.html:85
-#: apps/pootle_store/templates/unit/edit.html:106
-msgid "Copy into translation"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:104
-msgid "Report a problem with the source string"
-msgstr ""
-
+#: apps/pootle_store/templates/unit/edit.html:100
 #: apps/pootle_store/templates/unit/edit.html:121
-#: apps/pootle_store/templates/unit/edit.html:131
-#: apps/pootle_store/templates/unit/edit.html:217
+msgid "Copy into translation"
+msgstr "Salin ke terjemahan"
+
+#: apps/pootle_store/templates/unit/edit.html:119
+msgid "Report a problem with the source string"
+msgstr "Laporkan suatu masalah pada string sumber"
+
+#: apps/pootle_store/templates/unit/edit.html:136
+#: apps/pootle_store/templates/unit/edit.html:146
+#: apps/pootle_store/templates/unit/edit.html:232
 msgid "Submit"
 msgstr "Kirim"
 
-#: apps/pootle_store/templates/unit/edit.html:121
+#: apps/pootle_store/templates/unit/edit.html:136
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "Setorkan terjemahan dan pergi ke string berikutnya (Ctrl+Enter)"
 
-#: apps/pootle_store/templates/unit/edit.html:124
-#: apps/pootle_store/templates/unit/edit.html:132
+#: apps/pootle_store/templates/unit/edit.html:139
+#: apps/pootle_store/templates/unit/edit.html:147
 msgid "Suggest"
 msgstr "Saran"
 
-#: apps/pootle_store/templates/unit/edit.html:124
+#: apps/pootle_store/templates/unit/edit.html:139
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "Sarankan terjemahan dan pergi ke string selanjutnya (Ctrl+Enter)"
 
-#: apps/pootle_store/templates/unit/edit.html:131
+#: apps/pootle_store/templates/unit/edit.html:146
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Berpindah ke mode penerjemahan (Ctrl+Shift+Spasi)"
 
-#: apps/pootle_store/templates/unit/edit.html:132
+#: apps/pootle_store/templates/unit/edit.html:147
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Berpindah ke mode saran (Ctrl+Shift+Spasi)"
 
-#: apps/pootle_store/templates/unit/edit.html:135
+#: apps/pootle_store/templates/unit/edit.html:150
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "Tandai string ini sebagai perlu pengerjaan lebih lanjut (Ctrl+Spasi)"
 
-#: apps/pootle_store/templates/unit/edit.html:156
+#: apps/pootle_store/templates/unit/edit.html:171
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:166
-msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:169
-msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:172
-msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:175
-msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/edit.html:178
-msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr ""
+msgstr "ditinjau oleh <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: apps/pootle_store/templates/unit/edit.html:181
-msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr ""
+msgid "Insert RLM (Right-To-Left Mark) into the editor"
+msgstr "Sisipkan RLM (Right-To-Left Mark) ke dalam penyunting"
 
 #: apps/pootle_store/templates/unit/edit.html:184
-msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr ""
+msgid "Insert LRM (Left-To-Right Mark) into the editor"
+msgstr "Sisipkan LRM (Left-To-Right Mark) ke dalam penyunting"
 
 #: apps/pootle_store/templates/unit/edit.html:187
-msgid "Insert ZWJ (Zero Width Joiner) into the editor"
-msgstr ""
+msgid "Insert RLE (Right-To-Left Embedding) into the editor"
+msgstr "Sisipkan RLE (Right-To-Left Embedding) ke dalam penyunting"
 
 #: apps/pootle_store/templates/unit/edit.html:190
-msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
-msgstr ""
+msgid "Insert LRE (Left-To-Right Embedding) into the editor"
+msgstr "Sisipkan LRE (Left-To-Right Embedding) ke dalam penyunting"
+
+#: apps/pootle_store/templates/unit/edit.html:193
+msgid "Insert RLO (Right-To-Left Override) into the editor"
+msgstr "Sisipkan RLO (Right-To-Left Override) ke dalam penyunting"
 
 #: apps/pootle_store/templates/unit/edit.html:196
-msgid "Insert this symbol into the editor"
-msgstr ""
+msgid "Insert LRO (Left-To-Right Override) into the editor"
+msgstr "Sisipkan LRO (Left-To-Right Override) ke dalam penyunting"
 
-#: apps/pootle_store/templates/unit/edit.html:208
-msgid "Add Comment"
-msgstr ""
+#: apps/pootle_store/templates/unit/edit.html:199
+msgid "Insert PDF (Pop Directional Format ) into the editor"
+msgstr "Sisipkan PDF (Pop Directional Format) ke dalam penyunting"
 
-#: apps/pootle_store/templates/unit/edit.html:210
-msgid "Show Timeline"
-msgstr ""
+#: apps/pootle_store/templates/unit/edit.html:202
+msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+msgstr "Sisipkan ZWJ (Zero Width Joiner) ke dalam penyunting"
+
+#: apps/pootle_store/templates/unit/edit.html:205
+msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+msgstr "Sisipkan ZWNJ (Zero Width Non Joiner) ke dalam penyunting"
 
 #: apps/pootle_store/templates/unit/edit.html:211
+msgid "Insert this symbol into the editor"
+msgstr "Sisipkan simbol ini ke dalam penyunting"
+
+#: apps/pootle_store/templates/unit/edit.html:223
+msgid "Add Comment"
+msgstr "Tambah Komentar"
+
+#: apps/pootle_store/templates/unit/edit.html:225
+msgid "Show Timeline"
+msgstr "Tampilkan Alur Waktu"
+
+#: apps/pootle_store/templates/unit/edit.html:226
 msgid "Hide Timeline"
-msgstr ""
+msgstr "Sembunyikan Alur Waktu"
 
-#: apps/pootle_store/templates/unit/edit.html:233
-#, fuzzy
+#: apps/pootle_store/templates/unit/edit.html:248
 msgid "User suggestions"
-msgstr "Lihat Saran"
+msgstr "Saran pengguna"
 
-#: apps/pootle_store/templates/unit/edit.html:251
+#: apps/pootle_store/templates/unit/edit.html:266
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Terima saran"
 
-#: apps/pootle_store/templates/unit/edit.html:256
+#: apps/pootle_store/templates/unit/edit.html:271
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Tolak saran"
 
-#: apps/pootle_store/templates/unit/edit.html:263
+#: apps/pootle_store/templates/unit/edit.html:278
 msgid "Remove suggestion"
-msgstr ""
+msgstr "Hapus saran"
 
 #: apps/pootle_store/templates/unit/term_edit.html:21
 msgid "Your current vote. Click to remove this vote."
-msgstr ""
+msgstr "Suara Anda saat ini. Klik untuk menghapus suara ini."
 
 #: apps/pootle_store/templates/unit/term_edit.html:33
 msgid "Vote for this suggestion"
-msgstr ""
+msgstr "Berikan suara untuk saran ini"
 
 #: apps/pootle_store/templates/unit/term_edit.html:40
 msgid "Comment: "
-msgstr ""
+msgstr "Komentar: "
 
 #: apps/pootle_store/templates/unit/timeline.html:4
 #: apps/pootle_store/templates/unit/timeline.html:14
 msgid "Previous Work"
-msgstr ""
-
-#: apps/pootle_store/templates/unit/view.html:35
-#: apps/pootle_terminology/templates/terminology/term_edit.html:31
-#, fuzzy
-msgid "Translator Comments"
-msgstr "Catatan penerjemah"
+msgstr "Pekerjaan Sebelumnya"
 
 #: apps/pootle_store/templates/unit/xhr-timeline.html:3
 msgid "Timeline"
-msgstr ""
+msgstr "Alur waktu"
 
-#: apps/pootle_store/templates/unit/xhr-timeline.html:28
+#: apps/pootle_store/templates/unit/xhr-timeline.html:27
 msgid "No results."
-msgstr ""
+msgstr "Tidak ada hasil."
 
-#: apps/pootle_store/templatetags/store_tags.py:113
-#: apps/pootle_store/templatetags/store_tags.py:115
+#: apps/pootle_store/templatetags/store_tags.py:119
+#: apps/pootle_store/templatetags/store_tags.py:121
 msgid "Singular"
 msgstr "Tunggal"
 
-#: apps/pootle_store/templatetags/store_tags.py:113
-#: apps/pootle_store/templatetags/store_tags.py:115
+#: apps/pootle_store/templatetags/store_tags.py:119
+#: apps/pootle_store/templatetags/store_tags.py:121
 msgid "Plural"
 msgstr "Jamak"
 
-#: apps/pootle_terminology/views.py:156
-msgid "This term already exists in this file."
+#: apps/pootle_tagging/forms.py:47
+msgid ""
+"Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
+"underscores (_), slashes (/) or periods (.)!"
 msgstr ""
+"Nama tag tak boleh memuat spasi, titik dua (:), tanda sambung (-), garis "
+"bawah (_), garis miring (/), atau titik (.) di awal atau akhir!"
+
+#: apps/pootle_tagging/forms.py:53
+msgid ""
+"Tag names cannot contain two or more consecutive: spaces, colons (:), "
+"hyphens (-), underscores (_), slashes (/) or periods (.)!"
+msgstr ""
+"Nama tag tak boleh memuat dua atau lebih yang berturutan: spasi, titik dua "
+"(:), tanda sambung (-), garis bawah (_), garis miring (/), atau titik (.)!"
+
+#: apps/pootle_tagging/forms.py:60
+msgid ""
+"Tag names must be an alphanumeric lowercase string with no trailing nor "
+"leading (but yes on the middle): spaces, colons (:), hyphens (-), "
+"underscores (_), slashes (/) or periods (.)!"
+msgstr ""
+"Nama tag mesti string huruf kecil alfanumerik tanpa yang berikut di awal "
+"atau akhir (tapi boleh di tengah): spasi, titik dua (:), tanda sambung (-), "
+"garis bawah (_), garis miring (/), atau titik (.)!"
+
+#: apps/pootle_tagging/forms.py:74
+msgid ""
+"Name cannot contain just after 'goal:' any of these characters: spaces, "
+"colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
+msgstr ""
+"Nama tak bisa memuat persis setelah 'goal:' sebarang karakter ini: spasi, "
+"titik dua (:), strip (-), garis bawah (_), garis miring (/), atau titik (.)"
+
+#: apps/pootle_tagging/forms.py:133
+msgid "A goal with that name already exists. Please pick another name."
+msgstr "Sasaran dengan nama itu sudah ada. Silakan pilih nama lain."
+
+#: apps/pootle_tagging/forms.py:173
+msgid ""
+"Tag slugs must be equal to the tag name, but replacing with a hyphen the "
+"single or multiple occurrences of the following characters: spaces, colons "
+"(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
+msgstr ""
+"Slug tag mesti sama dengan nama tag, tapi mengganti dengan tanda hubung "
+"kemunculan tunggal atau berganda dari karakter berikut: spasi, titik dua "
+"(:), tanda hubung (-), garis bawah (_), garis miring (/), atau titik (.)!"
+
+#: apps/pootle_tagging/forms.py:180
+msgid "A goal with this slug already exists."
+msgstr "Sasaran dengan slug ini telah ada."
+
+#: apps/pootle_tagging/forms.py:194
+msgid ""
+"Warning: Changing the name also changes the slug, so it won't be possible to "
+"view this goal on this page!"
+msgstr ""
+"Peringatan: Mengubah nama juga mengubah sluh, sehingga tak akan mungkin "
+"melihat sasaran pada halaman ini!"
+
+#: apps/pootle_tagging/models.py:66
+#, python-format
+msgid ""
+"A description of this goal. This is useful to give more information or "
+"instructions. Allowed markup: %s"
+msgstr ""
+"Penjelasan dari sasaran ini. Ini berguna untuk memberikan lebih banyak "
+"informasi atau instruksi. Markup yang diijinkan: %s"
+
+#: apps/pootle_tagging/models.py:74
+msgid "The priority for this goal."
+msgstr "Prioritas dari sasaran ini."
+
+#: apps/pootle_tagging/models.py:79
+msgid ""
+"Designates that this is a project goal (shared across all languages in the "
+"project)."
+msgstr ""
+"Menunjuk bahwa ini adalah suatu sasaran projek (dipakai bersama di seluruh "
+"bahasa dalam projek)."
+
+#: apps/pootle_tagging/models.py:81
+msgid "Project goal?"
+msgstr "Sasaran projek?"
+
+#: apps/pootle_tagging/models.py:105
+msgid "(Project goal)"
+msgstr "(Sasaran projek)"
+
+#: apps/pootle_terminology/views.py:171
+msgid "This term already exists in this file."
+msgstr "Istilah ini telah ada dalam berkas ini."
 
 #: apps/pootle_terminology/templates/terminology/extract.html:6
 msgid "Regenerate Glossary"
-msgstr ""
+msgstr "Buat Ulang Glosarium"
 
 #: apps/pootle_terminology/templates/terminology/extract.html:7
 msgid ""
 "Are you sure you want to regenerate the glossary? Any existing terms and "
 "their translations will be deleted."
 msgstr ""
+"Apakah Anda yakin ingin membuat ulang glosarium? Sebarang istilah dan "
+"terjemahannya yang telah ada akan dihapus."
 
 #: apps/pootle_terminology/templates/terminology/extract.html:11
 msgid "Extract"
-msgstr ""
+msgstr "Ekstrak"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:22
 msgid "You can regenerate the glossary from scratch."
-msgstr ""
+msgstr "Anda dapat membuat ulang glosarium dari awal."
 
 #: apps/pootle_terminology/templates/terminology/manage.html:35
 msgid "Term"
-msgstr ""
+msgstr "Istilah"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:36
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:104
 msgid "Translation"
 msgstr "Terjemahan"
 
+#: apps/pootle_terminology/templates/terminology/manage.html:37
+#: apps/staticpages/templates/staticpages/admin/_form.html:7
+msgid "Delete"
+msgstr "Hapus"
+
 #: apps/pootle_terminology/templates/terminology/manage.html:61
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Glosarium Kosong"
 
 #: apps/pootle_terminology/templates/terminology/manage.html:62
 msgid "Generate Glossary"
-msgstr ""
+msgstr "Buat Glosarium"
 
 #: apps/pootle_terminology/templates/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
-msgstr ""
+msgstr "Di sini Anda dapat mengelola istilah-istilah dalam berkas terminologi."
 
 #: apps/pootle_terminology/templates/terminology/stores.html:14
-#: apps/pootle_translationproject/views.py:741
+#: apps/pootle_translationproject/forms.py:63
 msgid "File"
-msgstr ""
+msgstr "Berkas"
 
 #: apps/pootle_terminology/templates/terminology/stores.html:29
 msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
+"Sekali Anda mengunggah berkas, Anda akan dapat menambah, menyunting, dan "
+"menghapus istilah."
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:11
-#, fuzzy
 msgid "Description..."
-msgstr "Gambaran"
+msgstr "Deskripsi..."
 
 #: apps/pootle_terminology/templates/terminology/term_edit.html:18
 msgid "Details..."
-msgstr ""
+msgstr "Rincian..."
 
-#: apps/pootle_translationproject/actions.py:59
+#: apps/pootle_terminology/templates/terminology/term_edit.html:31
+msgid "Translator Comments"
+msgstr "Komentar Penerjemah"
+
+#: apps/pootle_translationproject/actions.py:61
 msgid "Download (.zip)"
-msgstr ""
+msgstr "Unduh (.zip)"
 
-#: apps/pootle_translationproject/actions.py:73
+#: apps/pootle_translationproject/actions.py:75
+#: apps/pootle_translationproject/actions.py:100
 msgid "Download XLIFF"
-msgstr ""
+msgstr "Unduh XLIFF"
 
-#: apps/pootle_translationproject/actions.py:74
+#: apps/pootle_translationproject/actions.py:76
 msgid "Download file in XLIFF format"
-msgstr ""
+msgstr "Unduh berkas dalam format XLIFF"
 
-#: apps/pootle_translationproject/actions.py:77
+#: apps/pootle_translationproject/actions.py:79
 msgid "Export"
-msgstr ""
-
-#: apps/pootle_translationproject/actions.py:78
-msgid "Export translations"
-msgstr ""
+msgstr "Ekspor"
 
 #: apps/pootle_translationproject/actions.py:80
+msgid "Export translations"
+msgstr "Ekspor terjemahan"
+
+#: apps/pootle_translationproject/actions.py:82
 msgid "Download"
-msgstr ""
+msgstr "Unduh"
 
-#: apps/pootle_translationproject/actions.py:81
+#: apps/pootle_translationproject/actions.py:83
 msgid "Download file"
-msgstr ""
+msgstr "Unduh berkas"
 
-#: apps/pootle_translationproject/actions.py:96
-#: apps/pootle_translationproject/actions.py:254
-msgid "Translate offline"
-msgstr ""
-
-#: apps/pootle_translationproject/actions.py:97
+#: apps/pootle_translationproject/actions.py:101
 msgid "Download XLIFF file for offline translation"
-msgstr ""
+msgstr "Unduh berkas XLIFF untuk penerjemahan luring"
 
-#: apps/pootle_translationproject/actions.py:112
-#: apps/pootle_translationproject/views.py:700
+#: apps/pootle_translationproject/actions.py:116
+#: apps/pootle_translationproject/templates/translation_project/overview.html:167
 msgid "Upload"
-msgstr ""
+msgstr "Unggah"
 
-#: apps/pootle_translationproject/actions.py:113
+#: apps/pootle_translationproject/actions.py:117
 msgid "Upload translation files or archives in .zip format"
-msgstr ""
+msgstr "Unggah berkas terjemahan atau arsip dalam format .zip"
 
-#: apps/pootle_translationproject/actions.py:130
+#: apps/pootle_translationproject/actions.py:135
 msgid "Update from VCS"
-msgstr ""
+msgstr "Mutakhirkan dari VCS"
 
-#: apps/pootle_translationproject/actions.py:144
+#: apps/pootle_translationproject/actions.py:150
 msgid "Commit to VCS"
-msgstr ""
+msgstr "Komit ke VCS"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
-#: apps/pootle_translationproject/actions.py:159
+#: apps/pootle_translationproject/actions.py:166
 msgid "Update all from VCS"
-msgstr ""
+msgstr "Mutakhirkan semua dari VCS"
 
 #. Translators: "all" here refers to all files and sub directories in a directory/project.
-#: apps/pootle_translationproject/actions.py:174
+#: apps/pootle_translationproject/actions.py:182
 msgid "Commit all to VCS"
-msgstr ""
+msgstr "Komit semua ke VCS"
 
-#: apps/pootle_translationproject/actions.py:187
+#: apps/pootle_translationproject/actions.py:195
 msgid "Rescan project files"
-msgstr ""
+msgstr "Pindai ulang berkas projek"
 
-#: apps/pootle_translationproject/actions.py:218
+#: apps/pootle_translationproject/actions.py:226
 msgid "Delete this folder..."
-msgstr ""
+msgstr "Hapus folder ini..."
 
-#: apps/pootle_translationproject/actions.py:220
+#: apps/pootle_translationproject/actions.py:228
 msgid "Delete this file..."
-msgstr ""
+msgstr "Hapus berkas ini..."
 
-#: apps/pootle_translationproject/actions.py:256
+#: apps/pootle_translationproject/actions.py:262
+msgid "Translate offline"
+msgstr "Terjemahkan luring"
+
+#: apps/pootle_translationproject/actions.py:265
 msgid "Manage"
-msgstr ""
+msgstr "Kelola"
 
-#: apps/pootle_translationproject/models.py:105
+#: apps/pootle_translationproject/forms.py:40
+msgid "Overwrite the current file if it exists"
+msgstr "Timpa berkas sekarang jika sudah ada"
+
+#: apps/pootle_translationproject/forms.py:43
+msgid ""
+"Merge the file with the current file and turn conflicts into suggestions"
+msgstr "Gabungkan berkas dengan berkas sekarang dan ubah konflik ke saran"
+
+#: apps/pootle_translationproject/forms.py:46
+msgid "Add all new translations as suggestions"
+msgstr "Tambahkan semua terjemahan baru sebagai saran"
+
+#: apps/pootle_translationproject/forms.py:73
+#: apps/pootle_translationproject/forms.py:81
+msgid "Upload to"
+msgstr "Unggah ke"
+
+#: apps/pootle_translationproject/forms.py:76
+#: apps/pootle_translationproject/forms.py:85
+msgid ""
+"Optionally select the file you want to merge with. If not specified, the "
+"uploaded file's name is used."
+msgstr ""
+"Memilih berkas yang ingin Anda gabungkan dengannya. Bila tak dinyatakan, "
+"nama berkas yang diunggah dipakai."
+
+#: apps/pootle_translationproject/models.py:103
 #, python-format
 msgid ""
 "A description of this translation project. This is useful to give more "
 "information or instructions. Allowed markup: %s"
 msgstr ""
+"Suatu deskripsi dari projek penerjemahan ini. Ini berguna untuk memberikan "
+"lebih banyak informasi atau instruksi. Markup yang diijinkan: %s"
 
-#: apps/pootle_translationproject/models.py:488
+#: apps/pootle_translationproject/models.py:589
 #, python-format
 msgid "Failed to update from version control: %(error)s"
-msgstr ""
+msgstr "Gagal memutakhirkan dari kendali versi: %(error)s"
 
-#: apps/pootle_translationproject/models.py:556
+#: apps/pootle_translationproject/models.py:659
 #, python-format
 msgid "Updated project <em>%(project)s</em> from version control"
-msgstr ""
+msgstr "Projek <em>%(project)s</em> dimutakhirkan dari kendali versi"
 
-#: apps/pootle_translationproject/models.py:558
-#: apps/pootle_translationproject/models.py:579
+#: apps/pootle_translationproject/models.py:661
+#: apps/pootle_translationproject/models.py:683
 msgid "Working copy"
-msgstr ""
+msgstr "Salinan kerja"
 
-#: apps/pootle_translationproject/models.py:559
-#: apps/pootle_translationproject/models.py:580
+#: apps/pootle_translationproject/models.py:662
+#: apps/pootle_translationproject/models.py:684
 msgid "Remote copy"
-msgstr ""
+msgstr "Salinan remote"
 
-#: apps/pootle_translationproject/models.py:560
-#: apps/pootle_translationproject/models.py:581
+#: apps/pootle_translationproject/models.py:663
+#: apps/pootle_translationproject/models.py:685
 msgid "Merged copy"
-msgstr ""
+msgstr "Salinan yang di-merge"
 
-#: apps/pootle_translationproject/models.py:577
+#: apps/pootle_translationproject/models.py:681
 #, python-format
 msgid "Updated file <em>%(filename)s</em> from version control"
-msgstr ""
+msgstr "Berkas <em>%(filename)s</em> dimutakhirkan dari kendali versi"
 
-#: apps/pootle_translationproject/models.py:590
+#: apps/pootle_translationproject/models.py:695
 #, python-format
 msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
-msgstr ""
+msgstr "Gagal memutakhirkan <em>%(filename)s</em> dari kendali versi: %(error)s"
 
-#: apps/pootle_translationproject/models.py:649
+#: apps/pootle_translationproject/models.py:751
 #, python-format
 msgid "Committed all files under <em>%(path)s</em> to version control"
-msgstr ""
+msgstr "Mengkomit semua berkas di bawah <em>%(path)s</em> ke kendali versi"
 
-#: apps/pootle_translationproject/models.py:658
+#: apps/pootle_translationproject/models.py:759
 #, python-format
 msgid "Failed to commit to version control: %(error)s"
-msgstr ""
+msgstr "Gagal mengkomit ke kendali versi: %(error)s"
 
-#: apps/pootle_translationproject/models.py:716
+#: apps/pootle_translationproject/models.py:818
 #, python-format
 msgid "Committed file <em>%(filename)s</em> to version control"
-msgstr ""
+msgstr "Berkas <em>%(filename)s</em> dikomit ke kendali versi"
 
-#: apps/pootle_translationproject/models.py:724
+#: apps/pootle_translationproject/models.py:830
 #, python-format
 msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
-msgstr ""
+msgstr "Gagal komit <em>%(filename)s</em> ke kendali versi: %(error)s"
 
-#: apps/pootle_translationproject/views.py:96
+#: apps/pootle_translationproject/views.py:100
 msgid "Translation project files have been rescanned."
-msgstr ""
+msgstr "Berkas projek penerjemahan telah dipindai ulang."
 
-#: apps/pootle_translationproject/views.py:101
+#: apps/pootle_translationproject/views.py:105
 msgid "Error while rescanning translation project files."
-msgstr ""
+msgstr "Kesalahan ketika memindai ulang berkas projek penerjemahan."
 
-#: apps/pootle_translationproject/views.py:118
+#: apps/pootle_translationproject/views.py:120
 msgid "Translation project has been updated against latest templates."
-msgstr ""
+msgstr "Projek penerjemahan telah dimutakhirkan terhadap templat terakhir."
 
-#: apps/pootle_translationproject/views.py:123
+#: apps/pootle_translationproject/views.py:125
 msgid "Error while updating translation project against latest templates."
 msgstr ""
+"Kesalahn ketika memutakhirkan projek penerjemahan terhadap templat terakhir."
 
-#: apps/pootle_translationproject/views.py:188
+#: apps/pootle_translationproject/views.py:190
 msgid "Symbolic link hasn't been removed from the filesystem."
-msgstr ""
+msgstr "Taut simbolik belum dihapus dari sistem berkas."
 
-#: apps/pootle_translationproject/views.py:192
+#: apps/pootle_translationproject/views.py:194
 msgid "Directory and its containing files have been deleted."
-msgstr ""
+msgstr "Direktori dan berkas yang dimuatnya telah dihapus."
 
-#: apps/pootle_translationproject/views.py:195
+#: apps/pootle_translationproject/views.py:197
 msgid "File has been deleted."
-msgstr ""
+msgstr "Berkas telah dihapus."
 
-#: apps/pootle_translationproject/views.py:200
+#: apps/pootle_translationproject/views.py:201
 msgid "Error while trying to delete directory."
-msgstr ""
+msgstr "Kesalahan ketika mencoba menghapus direktori."
 
-#: apps/pootle_translationproject/views.py:203
+#: apps/pootle_translationproject/views.py:204
 msgid "Error while trying to delete file."
-msgstr ""
+msgstr "Kesalahan ketika mencoba menghapus berkas."
 
-#: apps/pootle_translationproject/views.py:370
-msgid "You do not have the right to create ZIP archives."
-msgstr ""
+#: apps/pootle_translationproject/views.py:373
+#, python-format
+msgid "Unable to find '%(action)s' in '%(extdir)s'"
+msgstr "Tak bisa temukan '%(action)s' dalam '%(extdir)s'"
 
-#: apps/pootle_translationproject/views.py:437
+#: apps/pootle_translationproject/views.py:400
+#, python-format
+msgid "Error while running '%s' extension action"
+msgstr "Kesalahan ketika menjalankan aksi ekstensi '%s'"
+
+#: apps/pootle_translationproject/views.py:820
 #, python-format
 msgid "Invalid/insecure file name: %s"
-msgstr ""
+msgstr "Nama berkas tak valid/tak aman: %s"
 
-#: apps/pootle_translationproject/views.py:446
+#: apps/pootle_translationproject/views.py:835
 #, python-format
 msgid ""
 "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
 "%(filetype)s'."
 msgstr ""
+"Nama berkas gaya GNU yang tak valid: %(local_filename)s. Ini mesti cocok "
+"dengan '%(langcode)s.%(filetype)s'."
 
-#: apps/pootle_translationproject/views.py:473
+#: apps/pootle_translationproject/views.py:858
 msgid "Error while extracting archive"
-msgstr ""
+msgstr "Kesalahan ketika sedang mengekstrak arsip"
 
-#: apps/pootle_translationproject/views.py:657
-#, fuzzy
+#: apps/pootle_translationproject/views.py:1041
 msgid "You do not have rights to overwrite files here."
-msgstr "Anda tidak mempunyai hak untuk menimpa berkas di sini"
+msgstr "Anda tidak mempunyai hak untuk menimpa berkas di sini."
 
-#: apps/pootle_translationproject/views.py:661
-#, fuzzy
+#: apps/pootle_translationproject/views.py:1045
 msgid "You do not have rights to upload new files here."
-msgstr "Anda tidak mempunyai hak untuk meng-upload berkas baru di sini"
+msgstr "Anda tidak mempunyai hak untuk mengunggah berkas baru di sini."
 
-#: apps/pootle_translationproject/views.py:665
-#: apps/pootle_translationproject/views.py:669
-#, fuzzy
+#: apps/pootle_translationproject/views.py:1049
+#: apps/pootle_translationproject/views.py:1053
 msgid "You do not have rights to upload files here."
-msgstr "Anda tidak mempunyai hak untuk meng-upload berkas di sini"
+msgstr "Anda tidak mempunyai hak untuk mengunggah berkas di sini."
 
-#: apps/pootle_translationproject/views.py:713
-msgid "Overwrite the current file if it exists"
-msgstr "Timpa berkas sekarang jika sudah ada"
-
-#: apps/pootle_translationproject/views.py:717
-msgid ""
-"Merge the file with the current file and turn conflicts into suggestions"
-msgstr "Gabungkan berkas dengan berkas sekarang dan ubah konflik ke saran"
-
-#: apps/pootle_translationproject/views.py:722
-msgid "Add all new translations as suggestions"
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:752
-#: apps/pootle_translationproject/views.py:760
-msgid "Upload to"
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:755
-#: apps/pootle_translationproject/views.py:764
-msgid ""
-"Optionally select the file you want to merge with. If not specified, the "
-"uploaded file's name is used."
-msgstr ""
-
-#: apps/pootle_translationproject/views.py:774
-msgid "Upload File"
-msgstr "Upload Berkas"
-
-#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:15
+#: apps/pootle_translationproject/templates/translation_project/admin_permissions.html:11
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
+"Di bawah, Anda dapat menambah, menyunting, dan menghapus ijin bagi projek "
+"penerjemahan ini."
 
-#: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:23
-msgid "Update from Version Control"
-msgstr ""
+#. Translators: A view showing the export of strings in a flat form.
+#. See http://staging.locamotion.org/he/birdfont/export-view/?filter=incomplete
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:7
+msgid "Export View"
+msgstr "Tilikan Ekspor"
 
-#: apps/pootle_translationproject/templates/translation_project/fileop_forms.html:24
-msgid ""
-"Use this option to update all the files in this area from version control."
-msgstr ""
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:99
+msgid "Goal"
+msgstr "Sasaran"
 
-#: apps/pootle_translationproject/templates/translation_project/overview.html:40
-msgid "Files and Subfolders"
-msgstr ""
+#: apps/pootle_translationproject/templates/translation_project/export_view.html:141
+msgid "No strings."
+msgstr "Tak ada string."
 
-#: apps/pootle_translationproject/templates/translation_project/overview.html:53
+#: apps/pootle_translationproject/templates/translation_project/overview.html:61
+msgid "Translation project files and folders"
+msgstr "Berkas dan folder projek penerjemahan"
+
+#: apps/pootle_translationproject/templates/translation_project/overview.html:68
+msgid "Administrate your project goals"
+msgstr "Administrasikan sasaran projek Anda"
+
+#: apps/pootle_translationproject/templates/translation_project/overview.html:84
 msgid "Actions"
-msgstr ""
+msgstr "Aksi"
 
-#: apps/pootle_translationproject/templates/translation_project/overview.html:101
+#: apps/pootle_translationproject/templates/translation_project/overview.html:137
 #, python-format
 msgid "%(project)s project information"
-msgstr ""
+msgstr "Informasi projek %(project)s"
 
-#: apps/pootle_translationproject/templates/translation_project/overview.html:108
+#: apps/pootle_translationproject/templates/translation_project/overview.html:144
 #, python-format
 msgid "%(language)s language information"
-msgstr ""
+msgstr "Informasi bahasa %(language)s"
+
+#: apps/pootle_translationproject/templates/translation_project/overview.html:156
+msgid "Upload File"
+msgstr "Upload Berkas"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:4
 msgid "Translation Statistics"
-msgstr ""
+msgstr "Statistik Terjemahan"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:23
 msgid "Failing Checks"
-msgstr ""
+msgstr "Pengujian Yang Gagal"
 
 #: apps/pootle_translationproject/templates/translation_project/xhr-path_summary.html:44
 msgid "Nothing to show"
-msgstr ""
+msgstr "Tak ada yang dapat ditampilkan"
 
 #: apps/registration/forms.py:36
-#, fuzzy
 msgid "username"
-msgstr "Nama pengguna"
+msgstr "nama pengguna"
 
 #: apps/registration/forms.py:39
-#, fuzzy
 msgid "email address"
-msgstr "Alamat Email"
+msgstr "alamat surel"
 
 #: apps/registration/forms.py:41
-#, fuzzy
 msgid "password"
-msgstr "Kata kunci"
+msgstr "kata sandi"
 
 #: apps/registration/forms.py:43
 msgid "password (again)"
-msgstr ""
+msgstr "kata sandi (lagi)"
 
 #: apps/registration/forms.py:55
 msgid "This username is already taken. Please choose another."
-msgstr ""
+msgstr "Nama pengguna telah dipakai. Silakan pilih lainnya."
 
 #: apps/registration/forms.py:67
 msgid "You must type the same password each time"
-msgstr ""
+msgstr "Anda harus memasukkan kata sandi yang sama"
 
 #: apps/registration/forms.py:90
 msgid "I have read and agree to the Terms of Service"
-msgstr ""
+msgstr "Saya telah membaca dan setuju dengan Ketentuan Layanan"
 
 #: apps/registration/forms.py:107
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
-msgstr ""
+msgstr "Alamat surel ini telah dipakai. Harap berikan alamat surel lain."
 
 #: apps/registration/forms.py:133
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
+"Pendaftaran memakai alamat surel gratis dilarang. Harap berikan alamat surel "
+"lain."
 
 #: apps/registration/models.py:231
 msgid "user"
-msgstr ""
+msgstr "pengguna"
 
 #: apps/registration/models.py:232
 msgid "activation key"
-msgstr ""
+msgstr "kunci aktivasi"
 
 #: apps/registration/models.py:237
 msgid "registration profile"
-msgstr ""
+msgstr "profil pendaftaran"
 
 #: apps/registration/models.py:238
 msgid "registration profiles"
-msgstr ""
+msgstr "profil registrasi"
 
-#: middleware/captcha.py:125
-msgid "Time to answer has expired"
-msgstr ""
-
-#: middleware/captcha.py:143
-msgid "Enter a number"
-msgstr ""
-
-#: middleware/captcha.py:158
-msgid "Incorrect"
-msgstr ""
-
-#: settings/10-base.conf:9
-msgid "Pootle Demo"
-msgstr "Demo Pootle"
-
-#. Translators: Change the language code (en) to your language code, and replace
-#. ltr with rtl if you language is written from right to left.
-#: settings/10-base.conf:13
+#: apps/staticpages/forms.py:78
+#, python-format
 msgid ""
-"<div dir=\"ltr\" lang=\"en\">\n"
-"<h2>This is a demo installation of Pootle.</h2>\n"
-"<p>You can also visit the official <a href=\"http://pootle.locamotion.org"
-"\">Pootle server</a>. The server administrator has not provided contact "
-"information or a description of this server. If you are the administrator "
-"for this server, edit this description in your preference file or in the "
-"administration interface.</p>\n"
-"</div>\n"
+"I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
+"a>"
 msgstr ""
+"Saya telah membaca dan menyetujui: <a href=\"%(url)s\" class=\"%(classes)s\">%"
+"(title)s</a>"
+
+#: apps/staticpages/models.py:37
+#: apps/staticpages/templates/staticpages/admin/_table.html:7
+msgid "Active"
+msgstr "Aktif"
+
+#: apps/staticpages/models.py:38
+msgid "Whether this page is active or not."
+msgstr "Halaman ini aktif atau tidak"
+
+#: apps/staticpages/models.py:40
+#: apps/staticpages/templates/staticpages/admin/_table.html:9
+msgid "Virtual Path"
+msgstr "Path Virtual"
+
+#. Translators: Content that will be used to display this static page
+#: apps/staticpages/models.py:47
+msgid "Display Content"
+msgstr "Tampilkan Isi"
+
+#: apps/staticpages/models.py:48
+#, python-format
+msgid "Allowed markup: %s"
+msgstr "Markup yang diijinkan: %s"
+
+#: apps/staticpages/models.py:50
+#: apps/staticpages/templates/staticpages/admin/_table.html:10
+msgid "Redirect to URL"
+msgstr "Pengalihan ke URL"
+
+#: apps/staticpages/models.py:51
+msgid "If set, any references to this page will redirect to this URL"
+msgstr "Bila diisi, sebarang acuan ke halaman ini akan dialihkan ke URL ini"
+
+#. Translators: 'URL' and 'content' refer to form fields.
+#: apps/staticpages/models.py:98
+msgid "URL or content must be provided."
+msgstr "URL atau isi mesti diberikan."
+
+#: apps/staticpages/models.py:106
+msgid "Virtual path already in use."
+msgstr "Path virtual telah dipakai."
+
+#: apps/staticpages/models.py:111
+msgid "Legal Page"
+msgstr "Halaman Hukum"
+
+#: apps/staticpages/models.py:122
+msgid "Regular Page"
+msgstr "Halaman Biasa"
+
+#: apps/staticpages/views.py:87
+msgid "Page Title"
+msgstr "Judul Halaman"
+
+#: apps/staticpages/views.py:88
+#, python-format
+msgid "page-%d"
+msgstr "halaman-%d"
+
+#: apps/staticpages/views.py:130
+#, python-format
+msgid ""
+"This page is inactive and visible to administrators only. You can activate "
+"it by <a href=\"%s\">editing its properties</a>"
+msgstr ""
+"Halaman ini tak aktif dan hanya nampak ke administrator. Anda dapat "
+"mengaktifkannya dengan <a href=\"%s\">menyunting propertinya</a>"
+
+#: apps/staticpages/templates/staticpages/agreement.html:4
+msgid "Action Required"
+msgstr "Perlu Aksi"
+
+#: apps/staticpages/templates/staticpages/agreement.html:5
+msgid "Before continuing, you must read and accept the following documents."
+msgstr "Sebelum melanjutkan, Anda mesti membaca dan menyetujui dokumen berikut."
+
+#: apps/staticpages/templates/staticpages/agreement.html:18
+msgid "No thanks. Log out"
+msgstr "Tidak mau. Log keluar"
+
+#: apps/staticpages/templates/staticpages/agreement.html:21
+msgid "Continue"
+msgstr "Lanjutkan"
+
+#: apps/staticpages/templates/staticpages/base.html:5
+#: apps/staticpages/templates/staticpages/base.html:11
+#: templates/admin_profile_menu.html:9
+msgid "Static Pages"
+msgstr "Halaman Statik"
+
+#. Translators: Displayed as 'Redirect to URL or Display Content'
+#: apps/staticpages/templates/staticpages/admin/_form.html:19
+msgid "or"
+msgstr "atau"
+
+#: apps/staticpages/templates/staticpages/admin/_table.html:8
+msgid "Page"
+msgstr "Halaman"
+
+#: apps/staticpages/templates/staticpages/admin/_table.html:11
+msgid "Last Edited"
+msgstr "Terakhir Disunting"
+
+#: apps/staticpages/templates/staticpages/admin/_table.html:17
+msgid "Yes"
+msgstr "Ya"
+
+#: apps/staticpages/templates/staticpages/admin/_table.html:17
+msgid "No"
+msgstr "Tidak"
+
+#: apps/staticpages/templates/staticpages/admin/_table.html:30
+msgid "No pages yet."
+msgstr "Belum ada halaman."
+
+#: apps/staticpages/templates/staticpages/admin/page_list.html:8
+msgid "Legal Pages"
+msgstr "Halaman Hukum"
+
+#: apps/staticpages/templates/staticpages/admin/page_list.html:12
+msgid "Add Legal Page"
+msgstr "Tambahkan Halaman Hukum"
+
+#: apps/staticpages/templates/staticpages/admin/page_list.html:15
+msgid "Regular Pages"
+msgstr "Halaman Biasa"
+
+#: apps/staticpages/templates/staticpages/admin/page_list.html:19
+msgid "Add Regular Page"
+msgstr "Tambahkan Halaman Biasa"
+
+#: core/decorators.py:178
+msgid "Insufficient rights to access this page."
+msgstr "Tidak cukup hak untuk mengakses halaman ini."
+
+#: core/decorators.py:191 core/views.py:29
+msgid "You do not have rights to administer Pootle."
+msgstr "Anda tidak mempunyai hak untuk mengadministrasi Pootle."
+
+#: core/helpers.py:41
+msgid "User missing"
+msgstr "Pengguna hilang"
+
+#. Translators: This refers to "All strings"
+#: core/helpers.py:53 templates/editor/_toolbar.html:12
+msgid "All"
+msgstr "Semua"
+
+#: core/helpers.py:57 templates/editor/_toolbar.html:14
+msgid "Incomplete"
+msgstr "Tak lengkap"
+
+#: core/helpers.py:60 templates/editor/_toolbar.html:24
+msgid "Checks"
+msgstr "Pemeriksaan"
+
+#: core/helpers.py:62
+msgid "Overwritten submissions"
+msgstr "Setoran yang ditimpa"
+
+#: core/initdb.py:143
+msgid "Can view a translation project"
+msgstr "Bisa melihat sebuah project terjemahan"
+
+#: core/initdb.py:147
+msgid "Can make a suggestion for a translation"
+msgstr "Dapat memberikan sebuah saran bagi terjemahan"
+
+#: core/initdb.py:151
+msgid "Can submit a translation"
+msgstr "Dapat mengirimkan sebuah terjemahan"
+
+#: core/initdb.py:155
+msgid "Can overwrite translations on uploading files"
+msgstr "Dapat menimpa terjemahan saat mengunggah berkas"
+
+#: core/initdb.py:159
+msgid "Can review translations"
+msgstr "Dapat meninjau terjemahan"
+
+#: core/initdb.py:163
+msgid "Can download archives of translation projects"
+msgstr "Dapat mengunduh arsip dari projek terjemahan"
+
+#: core/initdb.py:167
+msgid "Can administrate a translation project"
+msgstr "Dapat mengadministrasi suatu projek terjemahan"
+
+#: core/initdb.py:171
+msgid "Can commit to version control"
+msgstr "Dapat komit ke kendali versi"
+
+#: middleware/captcha.py:122
+msgid "Time to answer has expired"
+msgstr "Tenggang waktu untuk menjawab telah habis"
+
+#: middleware/captcha.py:141
+msgid "Enter a number"
+msgstr "Masukkan suatu bilangan"
+
+#: middleware/captcha.py:156
+msgid "Incorrect"
+msgstr "Salah"
+
+#: middleware/errorpages.py:74
+#, python-format
+msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
+msgstr ""
+"Anda perlu <a href=\"%(login_link)s\">log masuk</a> untuk mengakses halaman "
+"ini."
+
+#: middleware/errorpages.py:109
+#, python-format
+msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
+msgstr ""
+"Kesalahan saat mengakses %(filename)s, Kesalahan yang dikirim oleh sistem "
+"berkas: %(errormsg)s"
+
+#: scripts/actions.py:529
+#, python-format
+msgid "Failed to copy download file to export directory %s"
+msgstr "Gagal menyalin berkas unduh ke direktori ekspor %s"
+
+#: scripts/example-actions/mozlangpack.py:132
+msgid ""
+"Finished building the language pack, click on the download link to download "
+"it."
+msgstr ""
+"Selesai membangun paket bahasa, klik pada taut unduh untuk mengunduhnya."
 
 #: templates/403.html:4 templates/403.html.py:7 templates/403.html.py:12
 msgid "Permission Denied"
-msgstr ""
+msgstr "Ijin Ditolak"
 
 #: templates/403.html:16
 msgid "You don't have permission to access this page."
-msgstr ""
+msgstr "Anda tidak memiliki ijin untuk mengakses halaman ini."
 
 #: templates/404.html:4 templates/404.html.py:7 templates/404.html.py:12
 msgid "Page Not Found"
-msgstr ""
+msgstr "Halaman Tak Ditemukan"
 
 #: templates/404.html:13
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "Maaf, halaman yang diminta tak dapat ditemukan."
 
 #: templates/500.html:4 templates/500.html.py:7 templates/500.html.py:12
 msgid "Server Error"
-msgstr ""
+msgstr "Kesalahan Server"
 
 #: templates/500.html:13
 msgid "An error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "Terjadi suatu kesalahan. Terima kasih atas kesabaran Anda."
 
 #: templates/500.html:20
 #, python-format
@@ -2472,222 +2665,270 @@ msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
+"Bila Anda perlu bantuan, Anda boleh mengacu ke kesalahan ini sebagai "
+"<strong>%(ref)s</strong>."
+
+#: templates/_main_tabs.html:5
+msgid "Main page"
+msgstr "Halaman utama"
+
+#: templates/_main_tabs.html:5 templates/language_menu.html:4
+#: templates/project_menu.html:4 templates/tp_menu.html:4
+msgid "Overview"
+msgstr "Ringkasan"
+
+#: templates/_main_tabs.html:7 templates/language_menu.html:6
+#: templates/project_menu.html:7 templates/tp_menu.html:6
+#: templates/editor/main.html:4
+msgid "Translate"
+msgstr "Terjemahkan"
 
 #: templates/admin_profile_base.html:4 templates/admin_profile_base.html:7
-#, fuzzy
 msgid "Administration"
 msgstr "Administrasi"
 
 #: templates/admin_profile_menu.html:3
 msgid "Information and statistics about this Pootle server"
-msgstr ""
+msgstr "Informasi dan statistik tentang server Pootle ini"
 
 #: templates/admin_profile_menu.html:3
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: templates/admin_profile_menu.html:4
 msgid "Configure the general settings for your site"
-msgstr ""
+msgstr "Tata pengaturan umum bagi situs Anda"
 
 #: templates/admin_profile_menu.html:4
 msgid "General"
-msgstr ""
+msgstr "Umum"
 
 #: templates/admin_profile_menu.html:5
 msgid "Manage the users"
-msgstr ""
+msgstr "Kelola pengguna"
 
 #: templates/admin_profile_menu.html:6
 msgid "Manage the languages"
-msgstr ""
+msgstr "Kelola bahasa"
 
 #: templates/admin_profile_menu.html:7
 msgid "Manage the projects"
-msgstr ""
+msgstr "Kelola projek"
 
 #: templates/admin_profile_menu.html:8
 msgid "Manage the default permissions"
-msgstr ""
+msgstr "Kelola ijin baku"
 
 #: templates/admin_profile_menu.html:9
-msgid "Manage Legal Pages"
-msgstr ""
+msgid "Manage Static Pages"
+msgstr "Kelola Halaman Statik"
 
-#: templates/base.html:81
+#: templates/base.html:121
 msgid "skip to navigation"
-msgstr ""
+msgstr "lewati ke navigasi"
 
-#: templates/base.html:86
+#: templates/base.html:126
 msgid "Zoom out (Ctrl+Shift+-)"
-msgstr ""
+msgstr "Zum perkecil (Ctrl+Shift+-)"
 
-#: templates/base.html:88
+#: templates/base.html:128
 msgid "Reset zoom (Ctrl+Shift+0)"
-msgstr ""
+msgstr "Reset zum (Ctrl+Shift+0)"
 
-#: templates/base.html:90
+#: templates/base.html:130
 msgid "Zoom in (Ctrl+Shift++)"
-msgstr ""
+msgstr "Zum perbesar (Ctrl+Shift++)"
 
-#: templates/base.html:102
+#: templates/base.html:141
 msgid "ADMIN"
-msgstr ""
+msgstr "ADMIN"
 
-#: templates/base.html:105
-#, fuzzy
+#: templates/base.html:144
 msgid "Log Out"
-msgstr "Keluar"
+msgstr "Log Keluar"
 
-#: templates/base.html:108 templates/registration/registration_form.html:4
+#: templates/base.html:147 templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:7
-#: templates/registration/registration_form.html:51
+#: templates/registration/registration_form.html:48
 msgid "Register"
 msgstr "Daftar"
 
-#: templates/base.html:110
-#, fuzzy
+#: templates/base.html:149
 msgid "Log In"
-msgstr "Masuk"
+msgstr "Log Masuk"
 
-#: templates/base.html:157
+#: templates/base.html:196
 msgid "Help"
-msgstr ""
+msgstr "Bantuan"
 
-#: templates/base.html:159 templates/contact_form/contact_form.html:4
+#: templates/base.html:198 templates/contact_form/contact_form.html:4
 #: templates/contact_form/contact_form.html:7
 #: templates/contact_form/contact_form.html:12
 msgid "Contact Us"
-msgstr ""
+msgstr "Hubungi Kami"
 
-#: templates/base.html:161
-#, fuzzy
+#: templates/base.html:200
 msgid "About this Pootle Server"
 msgstr "Tentang server Pootle ini"
 
-#: templates/base.html:162 templates/about/contributors.html:6
+#: templates/base.html:201 templates/about/contributors.html:6
 #: templates/about/contributors.html:9
 msgid "Contributors"
-msgstr ""
+msgstr "Para Kontributor"
 
-#: templates/captcha-xhr.html:14 templates/captcha.html:4
+#: templates/captcha-xhr.html:8 templates/captcha.html:4
 #: templates/captcha.html.py:7
 msgid "Are You Human?"
-msgstr ""
+msgstr "Anda Manusia?"
 
-#: templates/captcha-xhr.html:15
+#: templates/captcha-xhr.html:9
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"Untuk melindungi server dari serangan maka kami harus memastikan bahwa "
+"setoran dibuat oleh pengguna manusia."
 
-#: templates/captcha-xhr.html:16
+#: templates/captcha-xhr.html:10
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Harap jawab pertanyaan ini:"
 
-#: templates/captcha-xhr.html:20
+#: templates/captcha-xhr.html:14
 msgid "Confirm"
-msgstr ""
+msgstr "Konfirmasi"
 
-#: templates/language_menu.html:3
-msgid "Language main page"
-msgstr ""
+#: templates/db_error.html:4 templates/db_error.html.py:7
+#: templates/db_error.html:12
+msgid "Database Error"
+msgstr "Kesalahan Basis Data"
 
-#: templates/language_menu.html:3 templates/project_menu.html:3
-#: templates/tp_menu.html:4
-msgid "Overview"
+#: templates/db_error.html:14
+msgid ""
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle tak bisa menyambung ke basis data, basis data belum\n"
+"diinisialisasi, atau peningkatan skeme diperlukan sebleum melanjutkan."
+
+#: templates/db_error.html:18
+#, python-format
+msgid ""
+"\n"
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
+msgstr ""
+"Harap baca <a href=\"%(url)s\">dokumentasi Pootle</a> untuk instruksi "
+"instalasi\n"
+"dan peningkatan. Hubungi administrator server bila Anda rasa ini adalah\n"
+"suatu kesalahan."
+
+#: templates/db_error.html:24
+msgid "The reported error was:"
+msgstr "Kesalahan yang dilaporkan adalah:"
 
 #: templates/language_menu.html:4
+msgid "Language main page"
+msgstr "Halaman utama bahasa"
+
+#: templates/language_menu.html:5
 msgid "Language news"
-msgstr ""
+msgstr "Berita bahasa"
 
 #: templates/language_menu.html:6
-msgid "Administrate your language permissions"
-msgstr ""
+msgid "Translate this language"
+msgstr "Terjemahkan bahasa ini"
 
-#: templates/project_menu.html:3
-#, fuzzy
-msgid "Project main page"
-msgstr "Home page proyek"
+#: templates/language_menu.html:8
+msgid "Administrate your language permissions"
+msgstr "Administrasikan ijin bahasa Anda"
+
+#: templates/main_base.html:6
+msgid "Main"
+msgstr "Utama"
 
 #: templates/project_menu.html:4
+msgid "Project main page"
+msgstr "Halaman utama projek"
+
+#: templates/project_menu.html:5
 msgid "Project news"
-msgstr ""
+msgstr "Berita projek"
 
-#: templates/project_menu.html:6
+#: templates/project_menu.html:7 templates/tp_menu.html:6
+msgid "Translate this project"
+msgstr "Terjemahkan projek ini"
+
+#: templates/project_menu.html:9
 msgid "Administrate your project"
-msgstr ""
+msgstr "Administrasikan projek Anda"
 
-#: templates/project_menu.html:7
+#: templates/project_menu.html:10
 msgid "Manage project permissions"
-msgstr ""
+msgstr "Kelola ijin projek"
 
-#: templates/tp_base_terminology.html:4 templates/tp_base_terminology.html:7
+#: templates/tp_base_terminology.html:4
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Kelola Terminologi"
 
 #: templates/tp_menu.html:4
 msgid "Translation project main page"
-msgstr ""
+msgstr "Halaman utama projek penerjemahan"
 
 #: templates/tp_menu.html:5
 msgid "Translation project news"
-msgstr ""
-
-#: templates/tp_menu.html:6
-msgid "Translate this project"
-msgstr ""
+msgstr "Berita projek penerjemahan"
 
 #: templates/tp_menu.html:8
 msgid "Manage terminology"
-msgstr ""
+msgstr "Kelola terminologi"
 
 #: templates/tp_menu.html:8
 msgid "Terminology"
-msgstr ""
+msgstr "Terminologi"
 
 #: templates/tp_menu.html:9
 msgid "Administrate your project permissions"
-msgstr ""
+msgstr "Administrasikan ijin projek Anda"
 
-#: templates/user_profile_base.html:4 templates/user_profile_base.html.py:7
-#, fuzzy
+#: templates/user_profile_base.html:4 templates/user_profile_base.html.py:6
 msgid "My Account"
-msgstr "Akun saya"
+msgstr "Akunku"
 
 #: templates/user_profile_menu.html:4
 msgid "Overview of your account"
-msgstr ""
+msgstr "Ringkasan tentang akun Anda"
 
 #: templates/user_profile_menu.html:4
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: templates/user_profile_menu.html:5
 msgid "Configure your translation preferences"
-msgstr ""
+msgstr "Tata preferensi penerjemahan Anda"
 
 #: templates/user_profile_menu.html:5
 msgid "Settings"
-msgstr ""
+msgstr "Pengaturan"
 
 #: templates/user_profile_menu.html:6
 msgid "Change your personal information"
-msgstr ""
+msgstr "Ubah informasi pribadi Anda"
 
 #: templates/user_profile_menu.html:6 templates/profiles/edit_personal.html:4
 #: templates/profiles/edit_personal.html:7
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: templates/user_profile_menu.html:7
 msgid "Change your password"
-msgstr ""
+msgstr "Ubah kata sandi Anda"
 
 #: templates/about/about.html:6 templates/about/about.html.py:9
 msgid "This Pootle Server"
-msgstr ""
+msgstr "Server Pootle Ini"
 
 #. Translators: For better readability, make sure to leave an space after the closing </i> tag
 #: templates/about/about.html:16
@@ -2698,106 +2939,161 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
+"Situs ini menjalankan Pootle &mdash; perangkat lunak web yang kuat yang "
+"memberdayai tim untuk mengerjakan penerjemahan dan manajemen terjemahan. "
+"Perkakas komunitas ini adalah Perangkat Lunak Bebas, dan sebarang tim dapat "
+"memakainya dan menyumbang ke komunitas Pootle. Baca lebih lanjut pada <a "
+"href=\"http://pootle.translatehouse.org/\"><i class=\"icon-external-link\">situs "
+"web projek</a>."
 
 #: templates/about/base.html:4 templates/about/base.html.py:7
 msgid "About"
-msgstr ""
+msgstr "Tentang"
+
+#: templates/common/_table_row.html:87
+msgid "Add a tag"
+msgstr "Tambah tag"
 
 #: templates/contact_form/contact_form.html:17
 msgid "Send"
-msgstr ""
+msgstr "Kirim"
 
 #: templates/contact_form/contact_form_sent.html:5
 #: templates/contact_form/contact_form_sent.html:8
 #: templates/contact_form/contact_form_sent.html:13
 msgid "Message Sent"
-msgstr ""
+msgstr "Pesan Terkirim"
 
 #: templates/contact_form/contact_form_sent.html:14
 msgid "Thank you for your feedback."
-msgstr ""
+msgstr "Terima kasih atas masukan Anda."
 
 #: templates/contact_form/contact_form_subject.txt:2
 #, python-format
 msgid " message by %(name)s"
+msgstr " pesan oleh %(name)s"
+
+#: templates/editor/_editor.html:5
+msgid "Pootle's editor requires JavaScript"
+msgstr "Penyunting Pootle memerlukan JavaScript"
+
+#: templates/editor/_editor.html:6
+msgid ""
+"Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
+"Harap fungsikan JavaScript dalam preferensi peramban Anda dan muat ulang "
+"halaman."
+
+#: templates/editor/_toolbar.html:8
+msgid "Filter by:"
+msgstr "Saring menurut:"
+
+#: templates/editor/_toolbar.html:18
+msgid "My suggestions"
+msgstr "Saranku"
+
+#: templates/editor/_toolbar.html:19
+msgid "My submissions"
+msgstr "Kirimanku"
+
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: templates/editor/_toolbar.html:23
+msgid "My overwritten submissions"
+msgstr "Kirimanku yang ditimpa"
+
+#: templates/editor/_toolbar.html:34
+msgid "Go to the previous string (Ctrl+Up)"
+msgstr "Ke string sebelumnya (Ctrl+Up)"
+
+#: templates/editor/_toolbar.html:37
+msgid ""
+"Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
+"Enter<br/>to go to any position"
+msgstr ""
+"Nomor string saat ini (Ctrl+Shift+U)<br/><br/>Ketikkan nomornya dan tekan "
+"Enter<br/>untuk menuju ke sebarang posisi"
+
+#: templates/editor/_toolbar.html:39
+msgid "Total strings"
+msgstr "Total string"
+
+#: templates/editor/_toolbar.html:43
+msgid "Go to the next string (Ctrl+Down)"
+msgstr "Ke string selanjutnya (Ctrl+Down)"
 
 #: templates/profiles/edit_personal.html:12
 msgid ""
 "Here you can change your personal details. This information will be used in "
 "the header of the translation files."
 msgstr ""
+"Di sini Anda dapat mengubah rincian pribadi Anda. Informasi ini akan dipakai "
+"dalam header berkas terjemahan."
 
 #: templates/profiles/edit_personal.html:18
 msgid "First Name"
-msgstr ""
+msgstr "Nama Depan"
 
 #: templates/profiles/edit_personal.html:23
 msgid "Last Name"
-msgstr ""
+msgstr "Nama Belakang"
 
 #: templates/profiles/edit_personal.html:28
-#, fuzzy
 msgid "Email address"
-msgstr "Alamat Email"
+msgstr "Alamat surel"
 
 #: templates/profiles/edit_profile.html:4
 #: templates/profiles/edit_profile.html:7
 msgid "Translation Settings"
-msgstr ""
+msgstr "Pengaturan Penerjemahan"
 
 #: templates/profiles/edit_profile.html:12
 msgid ""
 "Here you can configure the settings related to the translation interface as "
 "well as your language preferences."
 msgstr ""
+"Di sini Anda dapat menata pengaturan yang berkaitan dengan antar muka "
+"penerjemahan maupun preferensi bahasa Anda."
 
-#: templates/profiles/profile_detail.html:31
-msgid "Quick Links"
-msgstr "Link Cepat"
+#: templates/profiles/profile_detail.html:23
+msgid "Contributions"
+msgstr "Kontribusi"
 
-#: templates/profiles/profile_detail.html:40
-msgid "Admin"
-msgstr "Admin"
-
-#: templates/profiles/profile_detail.html:55
-msgid "No languages or projects selected. Choose yours now."
-msgstr ""
-
-#: templates/profiles/profile_detail.html:57
-msgid "This user has not selected languages or projects yet."
-msgstr ""
-
-#: templates/profiles/profile_detail.html:67
-msgid "User Statistics"
-msgstr ""
-
-#: templates/profiles/profile_detail.html:71
+#: templates/profiles/profile_detail.html:28
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
+"Anda dapat menata atau mengubah gambar avatar Anda pada www.gravatar.com"
+
+#: templates/profiles/profile_detail.html:42
+msgid "Suggestions Pending"
+msgstr "Saran Tertunda"
+
+#: templates/profiles/profile_detail.html:46
+msgid "Overwritten"
+msgstr "Ditimpa"
+
+#: templates/profiles/profile_detail.html:66
+msgid "This user doesn't have any contributions yet."
+msgstr "Pengguna ini belum memiliki kontribusi apapun."
 
 #: templates/profiles/profile_list.html:7
 msgid "Profiles list"
-msgstr ""
-
-#: templates/profiles/profile_list.html:11
-#: templates/registration/registration_form.html:20
-msgid "Username"
-msgstr "Nama pengguna"
+msgstr "Daftar profil"
 
 #: templates/profiles/profile_list.html:12
 msgid "First name"
-msgstr ""
+msgstr "Nama depan"
 
 #: templates/profiles/profile_list.html:13
 msgid "Last name"
-msgstr ""
+msgstr "Nama belakang"
 
 #: templates/registration/activate.html:5
 #: templates/registration/activate.html:8
 #: templates/registration/activate.html:13
 msgid "Account Activated"
-msgstr ""
+msgstr "Akun Diaktifkan"
 
 #: templates/registration/activate.html:14
 #, python-format
@@ -2805,52 +3101,47 @@ msgid ""
 "The account has been activated for username \"%(account)s\". You can now "
 "proceed to log in."
 msgstr ""
+"Akun telah diaktikan bagi nama pengguna \"%(account)s\". Kini Anda dapat "
+"meneruskan ke log masuk."
 
 #: templates/registration/activation_email.html:4
 msgid "Pootle Account Created!"
-msgstr ""
+msgstr "Akun Pootle Telah Dibuat!"
 
 #: templates/registration/activation_email.html:5
 #: templates/registration/activation_email.txt:2
-#, fuzzy
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Sebuah akun Pootle telah dibuat untuk Anda dengan menggunakan alamat email "
-"ini.\n"
+msgstr ""
+"Sebuah akun Pootle telah dibuat untuk Anda menggunakan alamat surel ini."
 
 #: templates/registration/activation_email.html:6
 #: templates/registration/activation_email.txt:3
-#, fuzzy
 msgid "To activate your account, follow this link:"
-msgstr "Untuk mengaktifkan akun anda, ikuti link ini:\n"
+msgstr "Untuk mengaktifkan akun Anda, ikuti taut ini:"
 
 #: templates/registration/activation_email.html:8
 msgid "Activate my Pootle account"
-msgstr ""
+msgstr "Aktifkan akun Pootleku"
 
 #: templates/registration/activation_email.html:10
 #, python-format
 msgid "Your activation code is: <code>%(activation_key)s</code>"
-msgstr ""
+msgstr "Kode aktivasi Anda adalah <code>%(activation_key)s</code>"
 
 #: templates/registration/activation_email.html:11
 #: templates/registration/activation_email.txt:9
-#, fuzzy
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
-msgstr "Pesan ini dikirimkan untuk memverifikasi bahwa alamat email Anda adalah "
-"benar. Jika Anda tidak ingin mendaftar akun, Anda dapat mengabaikan pesan "
-"ini.\n"
+msgstr ""
+"Pesan ini dikirimkan untuk memastikan bahwa alamat surel Anda adalah benar. "
+"Jika Anda tidak ingin mendaftar akun, Anda dapat mengabaikan pesan ini."
 
 #: templates/registration/activation_email.txt:6
-#, fuzzy
 msgid "Your activation code is:"
-msgstr ""
-"Kode aktivasi anda adalah:\n"
-"%s\n"
+msgstr "Kode aktivasi Anda adalah:"
 
 #: templates/registration/activation_email_subject.txt:2
-#, fuzzy
 msgid "Pootle registration"
 msgstr "Pendaftaran Pootle"
 
@@ -2858,30 +3149,33 @@ msgstr "Pendaftaran Pootle"
 #: templates/registration/password_change_done.html:8
 #: templates/registration/password_change_done.html:13
 msgid "Password Changed"
-msgstr ""
+msgstr "Kata Sandi Diubah"
 
 #: templates/registration/password_change_done.html:14
 msgid "Your password was changed successfully."
-msgstr ""
+msgstr "Kata sandi Anda sukses diubah."
 
 #: templates/registration/password_change_form.html:4
 #: templates/registration/password_change_form.html:7
 msgid "Change Password"
-msgstr ""
+msgstr "Ubah Kata Sandi"
 
 #: templates/registration/password_change_form.html:12
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"Harap masukkan kata sandi lama Anda, untuk alasan keamanan, lalu masukkan "
+"kata sandi baru Anda dua kali sehingga kami dapat memeriksa bahwa Anda "
+"mengetikkannya dengan benar."
 
 #: templates/registration/password_change_form.html:21
 msgid "Old password"
-msgstr ""
+msgstr "Sandi lama"
 
 #: templates/registration/password_change_form.html:26
 msgid "New password"
-msgstr ""
+msgstr "Sandi baru"
 
 #: templates/registration/password_change_form.html:31
 msgid "Confirm password"
@@ -2889,16 +3183,16 @@ msgstr "Kata kunci konfirmasi"
 
 #: templates/registration/password_change_form.html:36
 msgid "Change My Password"
-msgstr ""
+msgstr "Ubah Kata Sandiku"
 
 #: templates/registration/password_reset_complete.html:4
 #: templates/registration/password_reset_complete.html:7
 msgid "Password Reset"
-msgstr ""
+msgstr "Reset Kata Sandi"
 
 #: templates/registration/password_reset_complete.html:12
 msgid "Password Reset Complete."
-msgstr ""
+msgstr "Reset Kata Sandi Selesai."
 
 #: templates/registration/password_reset_complete.html:14
 #, python-format
@@ -2906,6 +3200,8 @@ msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">log in</a> now."
 msgstr ""
+"Kata sandi Anda telah ditata. Anda kini bisa terus dan <a href=\"%"
+"(login_url)s\">log masuk</a>."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_confirm.html:8
@@ -2916,47 +3212,52 @@ msgstr ""
 #: templates/registration/password_reset_form.html:7
 #: templates/registration/password_reset_form.html:12
 msgid "Reset Password"
-msgstr ""
+msgstr "Tata Ulang Kata Sandi"
 
 #: templates/registration/password_reset_confirm.html:14
 msgid "Enter New Password."
-msgstr ""
+msgstr "Masukkan Kata Sandi Baru."
 
 #: templates/registration/password_reset_confirm.html:16
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
+"Harap masukkan kata sandi baru Anda dua kali sehingga kami dapat memastikan "
+"bahwa Anda mengetikkannya dengan benar."
 
 #: templates/registration/password_reset_confirm.html:21
 msgid "New Password"
-msgstr ""
+msgstr "Kata Sandi Baru"
 
 #: templates/registration/password_reset_confirm.html:26
-#, fuzzy
 msgid "Confirm Password"
-msgstr "Kata kunci konfirmasi"
+msgstr "Konfirmasi Kata Sandi"
 
 #: templates/registration/password_reset_confirm.html:31
 #: templates/registration/password_reset_form.html:24
 msgid "Reset My Password"
-msgstr ""
+msgstr "Reset Kata Sandiku"
 
 #: templates/registration/password_reset_confirm.html:35
 msgid "Password Reset Failed."
-msgstr ""
+msgstr "Reset Kata Sandi Gagal"
 
 #: templates/registration/password_reset_confirm.html:37
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Taut reset kata sandi tak valid, mungkin karena telah dipakai. Silakan minta "
+"suatu reset kata sandi yang baru."
 
 #: templates/registration/password_reset_done.html:15
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should receive it shortly."
 msgstr ""
+"Kami telah mengirim surel ke Anda instruksi untuk menata kata sandi Anda ke "
+"alamat surel yang Anda kirimkan. Anda mestinya segera menerimanya."
 
 #: templates/registration/password_reset_email.html:3
 #, python-format
@@ -2964,25 +3265,29 @@ msgid ""
 "You're receiving this e-mail because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"Anda menerima surel ini karena Anda meminta suatu reset kata sandi bagi akun "
+"pengguna Anda di %(site_name)s."
 
 #: templates/registration/password_reset_email.html:5
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Harap pergi ke halaman berikut dan pilih suatu kata sandi baru:"
 
 #: templates/registration/password_reset_email.html:9
 #, python-format
 msgid "Your username is %(user)s."
-msgstr ""
+msgstr "Nama pengguna Anda adalah %(user)s."
 
 #: templates/registration/password_reset_email.html:11
 msgid "Thank you for using Pootle!"
-msgstr ""
+msgstr "Terima kasih telah menggunakan Pootle!"
 
 #: templates/registration/password_reset_form.html:14
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Lupa kata sandi Anda? Masukkan alamat surel Anda di bawah, dan kami akan "
+"mengirim instruksi untuk menata yang baru."
 
 #: templates/registration/password_reset_form.html:19
 #: templates/registration/registration_form.html:25
@@ -2993,36 +3298,117 @@ msgstr "Alamat Email"
 #: templates/registration/registration_complete.html:8
 #: templates/registration/registration_complete.html:13
 msgid "Registration Complete"
-msgstr ""
+msgstr "Registrasi Selesai"
 
 #: templates/registration/registration_complete.html:14
 msgid "Please check your email to activate your account."
-msgstr ""
+msgstr "Harap periksa surel Anda untuk mengaktifkan akun Anda."
 
 #: templates/registration/registration_form.html:12
 msgid "Register a New Pootle Account"
-msgstr ""
+msgstr "Mendaftarkan suatu Akun Pootle Baru"
 
 #: templates/registration/registration_form.html:13
 msgid "Fill in the following form to get started translating."
-msgstr ""
+msgstr "Isilah formulir berikut untuk mulai menerjemahkan."
 
 #: templates/registration/registration_form.html:35
 msgid "Password (again)"
-msgstr ""
+msgstr "Kata sandi (lagi)"
 
-#: templates/registration/registration_form.html:42
-msgid "Make sure to read the following:"
-msgstr ""
-
-#: templates/registration/registration_form.html:56
+#: templates/registration/registration_form.html:53
 msgid "Already have an account?"
-msgstr ""
+msgstr "Sudah punya akun?"
 
-#: templates/registration/registration_form.html:57
-#, fuzzy
+#: templates/registration/registration_form.html:54
 msgid "Log In."
-msgstr "Masuk"
+msgstr "Log Masuk."
+
+#~ msgid ""
+#~ "\n"
+#~ "  Pootle can't connect to the database, the database is not initialized\n"
+#~ "  yet, or a schema upgrade is needed before continuing.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Pootle tak bisa menyambung ke basis data, basis data belum diinisialisasi,\n"
+#~ "  atau peningkatan skema diperlukan sebelum melanjutkan.\n"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "  Please read the <a href=\"%(url)s\">Pootle documentation</a> on\n"
+#~ "  installation and upgrade instructions. Contact the server administrator\n"
+#~ "  if you feel this is a mistake.\n"
+#~ "  "
+#~ msgstr ""
+#~ "\n"
+#~ "  Harap baca <a href=\"%(url)s\">dokumentasi Pootle</a> tentang\n"
+#~ "  instruksi instalasi dan peningkatan. Hubungi administrator server\n"
+#~ "  bila Anda rasa ini adalah suatu kesalahan.\n"
+
+#, python-format
+#~ msgid ""
+#~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
+#~ msgid_plural ""
+#~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
+#~ msgstr[0] ""
+#~ "%(type)s: %(translated)d dari %(total)d string diterjemahkan (%(fuzzy)d "
+#~ "ragu)."
+
+#~ msgid "Filter the translation projects using this tags"
+#~ msgstr "Saring projek penerjemahan memakai tag ini"
+
+#, python-format
+#~ msgid ""
+#~ "accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</a></i>"
+#~ msgstr "saran diterima bagi string <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#~ msgid "uploaded a file"
+#~ msgstr "suatu berkas diunggah"
+
+#, python-format
+#~ msgid "<a href=\"%(url)s\">String %(id)s</a>"
+#~ msgstr "<a href=\"%(url)s\">String %(id)s</a>"
+
+#~ msgid "Display on registration"
+#~ msgstr "Tampilkan di pendaftaran"
+
+#, fuzzy
+#~ msgid "Inactive"
+#~ msgstr "Aktifkan"
+
+#, python-format
+#, fuzzy
+#~ msgid "You do not have rights to administer %s."
+#~ msgstr "Anda tidak mempunyai hak untuk mengadministrasi pootle."
+
+#, fuzzy
+#~ msgid "You do not have rights to access this translation project."
+#~ msgstr "Anda tidak mempunyai hak untuk mengubah terjemahan di sini"
+
+#~ msgid "You do not have rights to commit files here"
+#~ msgstr "Anda tidak mempunyai hak untuk melakukan commit berkas di sini"
+
+#~ msgid "You do not have rights to update files here"
+#~ msgstr "Anda tidak mempunyai hak untuk meng-update berkas di sini"
+
+#, fuzzy
+#~ msgid "You do not have rights to administer this language."
+#~ msgstr "Anda tidak mempunyai hak untuk mengadministrasi proyek ini."
+
+#, fuzzy
+#~ msgid "You do not have rights to administer this project."
+#~ msgstr "Anda tidak mempunyai hak untuk mengadministrasi proyek ini."
+
+#~ msgid "Pootle Demo"
+#~ msgstr "Demo Pootle"
+
+#~ msgid "Quick Links"
+#~ msgstr "Link Cepat"
+
+#~ msgid "Admin"
+#~ msgstr "Admin"
 
 #, fuzzy
 #~ msgid "To activation your account, follow this link:"

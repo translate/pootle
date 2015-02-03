@@ -6,87 +6,141 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-02-23 11:18+0000\n"
-"Last-Translator: Suresh <sureshiim@gmail.com>\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"PO-Revision-Date: 2014-09-01 10:16+0000\n"
+"Last-Translator: அருண் குமார் - <thangam.arunx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361618310.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1409566581.000000\n"
 
-#: static/js/common.js:43
+#: static/js/common.js:13
+msgid "All Languages"
+msgstr "அனைத்து மொழிகளும்"
+
+#: static/js/common.js:26
+msgid "All Projects"
+msgstr "அனைத்து திட்டங்களும்"
+
+#: static/js/common.js:62
 msgid "Expand details"
 msgstr "தகவலை விரிவாக்கு"
 
-#: static/js/common.js:43
+#: static/js/common.js:62
 msgid "Collapse details"
 msgstr "தகவலை சுருக்கு"
 
-#: static/js/common.js:77
+#: static/js/common.js:91
 msgid "Are you sure you want to continue?"
 msgstr "தாங்கள் உறுதியாக தொடர விரும்புகிறீர்களா?"
 
-#: static/js/common.js:78
+#: static/js/common.js:92
 msgid "This operation cannot be undone."
 msgstr "இச்செயலை திருப்ப முடியாது."
 
-#: static/js/editor.js:409 static/js/editor.js.c:1493
+#: static/js/common.js:139
+msgid "Show tags"
+msgstr "ஒட்டுகளை காட்டு"
+
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
+msgid "Hide tags"
+msgstr "ஒட்டுகளை மறை"
+
+#: static/js/common.js:293 static/js/common.js.c:309
+msgid "Hide filtering"
+msgstr "வடிகட்டுதலை மறை"
+
+#: static/js/common.js:296 static/js/common.js.c:303
+msgid "Show filtering"
+msgstr "வடிகட்டுதலை காட்டு"
+
+#: static/js/editor.js:209
+msgid "Go to the next string (Ctrl+.)"
+msgstr "அடுத்த சரத்திற்கு செல் (Ctrl+.)"
+
+#: static/js/editor.js:215
+msgid "Go to the previous string (Ctrl+,)"
+msgstr "முந்தைய சரத்திற்கு செல் (Ctrl+,)"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:333
+#, c-format
+msgid "%s's pending suggestions"
+msgstr "%s நிலுவையிலுள்ள பரிந்துரைகள்"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:336
+#, c-format
+msgid "%s's accepted suggestions"
+msgstr "%s ஏற்றுக்கொள்ளப்பட்ட பரிந்துரைகள்"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:339
+#, c-format
+msgid "%s's rejected suggestions"
+msgstr "%s நிராகரிக்கப்பட்ட பரிந்துரைகள்"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:342
+#, c-format
+msgid "%s's submissions"
+msgstr "%s சமர்பிப்புகள்"
+
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
+#: static/js/editor.js:345
+#, c-format
+msgid "%s's overwritten submissions"
+msgstr "%s மேலெழுதப்பட்ட சமர்பிப்புகள்"
+
+#: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
 msgstr "முடிவுகள் இல்லை."
 
-#. Translators: Permalink to the current unit in the editor.
-#. The first '%s' is the permalink URL.
-#. The second '%s' is the unit number.
-#: static/js/editor.js:726
-#, c-format
-msgid "<a href=\"%s\">String %s</a>"
-msgstr "<a href=\"%s\">சரங் %கள்</a>"
+#: static/js/editor.js:748
+msgid "Export View"
+msgstr "ஏற்றுமதி பார்வை"
 
-#: static/js/editor.js:786
+#: static/js/editor.js:798
 msgid "Error while connecting to the server"
 msgstr "செயலியுடன் இணைக்கும் போது பிழை"
 
-#: static/js/editor.js:788
+#: static/js/editor.js:800
 msgid "Server error"
 msgstr "செயலியில் பிழை"
 
-#: static/js/editor.js:790
+#: static/js/editor.js:802
 msgid "The server seems down. Try again later."
 msgstr "செயலி இயங்கவில்லை. பிறகு முயற்சிக்கவும்."
 
-#: static/js/editor.js:798
+#: static/js/editor.js:809
 msgid "Unknown error"
 msgstr "தெரியாத பிழை"
 
-#: static/js/editor.js:1342
-msgid "Congratulations, you walked through all strings."
-msgstr "அனைத்து சரங்களை முடித்ததிறக்கு நல்வாழ்த்துகள்"
-
-#: static/js/editor.js:1344 static/js/editor.js.c:1368
-msgid "Return to the overview page."
-msgstr "தலைப்பு பக்கத்திற்கு திரும்பு."
-
-#: static/js/editor.js:1363
+#: static/js/editor.js:1367
 msgid "You reached the beginning of the list"
 msgstr "அட்டவணைப் பட்டியலின் தொடக்கத்தில் உள்ளாய்."
 
-#: static/js/editor.js:1366
+#: static/js/editor.js:1370
 msgid "You reached the end of the list."
 msgstr "அட்டவணைப் பட்டியலின் முடிவில் உள்ளாய்."
+
+#: static/js/editor.js:1372
+msgid "Return to the overview page."
+msgstr "தலைப்பு பக்கத்திற்கு திரும்பு."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1766
+#: static/js/editor.js:1807
 #, c-format
 msgid "%s% match"
 msgstr "%s% பொருத்தம்"
 
-#: static/js/editor.js:1808
+#: static/js/editor.js:1851
 msgid "Similar translations"
 msgstr "ஒத்த மொழிபெயர்ப்புக்கள்."
 
@@ -110,41 +164,48 @@ msgstr "குறைவு"
 msgid "Show"
 msgstr "காட்டு"
 
-#: static/js/utils.js:76
+#: static/js/utils.js:143
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "ஒரு வருடத்திற்கு முன்"
-msgstr[1] "%d வருடத்திற்கு முன்"
+msgstr[1] "%s வருடங்களுக்கு முன்"
 
-#: static/js/utils.js:79
+#: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "ஒரு வாரம் முன்"
-msgstr[1] "%d வாரம் முன்"
+msgstr[1] "%s வாரங்களுக்கு முன்"
 
-#: static/js/utils.js:82
+#: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "நேற்று"
-msgstr[1] "%d நாட்கள் முன்"
+msgstr[1] "%s நாட்களுக்கு முன்"
 
-#: static/js/utils.js:85
+#: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "ஒரு மணி நேரத்திற்கு முன்"
-msgstr[1] "%d மணிநேரங்களுக்கு முன்"
+msgstr[1] "%s மணிநேரங்களுக்கு முன்"
 
-#: static/js/utils.js:88
+#: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "ஒரு நிமிடத்திற்கு முன்"
-msgstr[1] "%d நிமிடங்களுக்கு முன்"
+msgstr[1] "%s நிமிடங்களுக்கு முன்"
 
-#: static/js/utils.js:96
+#: static/js/utils.js:163
 msgid "A few seconds ago"
 msgstr "ஒரு சில வினாடிகளுக்கு முன்"
+
+#, c-format
+#~ msgid "<a href=\"%s\">String %s</a>"
+#~ msgstr "<a href=\"%s\">  %s சரம்</a>"
+
+#~ msgid "Congratulations, you walked through all strings."
+#~ msgstr "அனைத்து சரங்களை முடித்ததிறக்கு நல்வாழ்த்துகள்"

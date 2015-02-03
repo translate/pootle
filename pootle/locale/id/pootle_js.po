@@ -6,87 +6,142 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-02-22 02:26+0000\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"PO-Revision-Date: 2014-09-04 05:51+0000\n"
+"Last-Translator: aggggha <agha.alwayson@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361500013.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1409809869.000000\n"
 
-#: static/js/common.js:43
+#: static/js/common.js:13
+msgid "All Languages"
+msgstr "Semua Bahasa"
+
+#: static/js/common.js:26
+msgid "All Projects"
+msgstr "Semua Projek"
+
+#: static/js/common.js:62
 msgid "Expand details"
-msgstr "Kembangkan rincian"
+msgstr "tampilkan rincian"
 
-#: static/js/common.js:43
+#: static/js/common.js:62
+#, fuzzy
 msgid "Collapse details"
-msgstr "Lipat rincian"
+msgstr "Sembunyikan rincian"
 
-#: static/js/common.js:77
+#: static/js/common.js:91
 msgid "Are you sure you want to continue?"
 msgstr "Anda yakin ingin melanjutkan?"
 
-#: static/js/common.js:78
+#: static/js/common.js:92
 msgid "This operation cannot be undone."
 msgstr "Operasi ini tak dapat dibatalkan."
 
-#: static/js/editor.js:409 static/js/editor.js.c:1493
+#: static/js/common.js:139
+msgid "Show tags"
+msgstr "Tampilkan tag"
+
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
+msgid "Hide tags"
+msgstr "Sembunyikan tag"
+
+#: static/js/common.js:293 static/js/common.js.c:309
+msgid "Hide filtering"
+msgstr "Sembunyikan penyaringan"
+
+#: static/js/common.js:296 static/js/common.js.c:303
+msgid "Show filtering"
+msgstr "Tampilkan penyaringan"
+
+#: static/js/editor.js:209
+msgid "Go to the next string (Ctrl+.)"
+msgstr "Ke string selanjutnya (Ctrl+.)"
+
+#: static/js/editor.js:215
+msgid "Go to the previous string (Ctrl+,)"
+msgstr "Ke string sebelumnya (Ctrl+,)"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:333
+#, c-format
+msgid "%s's pending suggestions"
+msgstr "Saran %s yang tertunda"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:336
+#, c-format
+msgid "%s's accepted suggestions"
+msgstr "Saran %s yang diterima"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:339
+#, c-format
+msgid "%s's rejected suggestions"
+msgstr "Saran %s yang ditolak"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:342
+#, c-format
+msgid "%s's submissions"
+msgstr "Setoran %s"
+
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
+#: static/js/editor.js:345
+#, c-format
+msgid "%s's overwritten submissions"
+msgstr "Setoran %s yang ditimpa"
+
+#: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
 msgstr "Tiada hasil."
 
-#. Translators: Permalink to the current unit in the editor.
-#. The first '%s' is the permalink URL.
-#. The second '%s' is the unit number.
-#: static/js/editor.js:726
-#, c-format
-msgid "<a href=\"%s\">String %s</a>"
-msgstr "<a href=\"%s\">String %s</a>"
+#: static/js/editor.js:748
+msgid "Export View"
+msgstr "Tampilan Ekspor"
 
-#: static/js/editor.js:786
+#: static/js/editor.js:798
 msgid "Error while connecting to the server"
 msgstr "Kesalahan ketika menyambung ke server"
 
-#: static/js/editor.js:788
+#: static/js/editor.js:800
 msgid "Server error"
 msgstr "Kesalahan server"
 
-#: static/js/editor.js:790
+#: static/js/editor.js:802
 msgid "The server seems down. Try again later."
 msgstr "Nampaknya server mati. Coba lagi nanti."
 
-#: static/js/editor.js:798
+#: static/js/editor.js:809
 msgid "Unknown error"
 msgstr "Kesalahan tak dikenal"
 
-#: static/js/editor.js:1342
-msgid "Congratulations, you walked through all strings."
-msgstr "Selamat, Anda telah mengerjakan semua string."
-
-#: static/js/editor.js:1344 static/js/editor.js.c:1368
-msgid "Return to the overview page."
-msgstr "Kembali ke halaman ringkasan."
-
-#: static/js/editor.js:1363
+#: static/js/editor.js:1367
 msgid "You reached the beginning of the list"
 msgstr "Anda mencapai awal daftar"
 
-#: static/js/editor.js:1366
+#: static/js/editor.js:1370
 msgid "You reached the end of the list."
 msgstr "Anda mencapai akhir daftar."
+
+#: static/js/editor.js:1372
+msgid "Return to the overview page."
+msgstr "Kembali ke halaman ringkasan."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1766
+#: static/js/editor.js:1807
 #, c-format
 msgid "%s% match"
 msgstr "%s% cocok"
 
-#: static/js/editor.js:1808
+#: static/js/editor.js:1851
 msgid "Similar translations"
 msgstr "Terjemahan serupa"
 
@@ -110,36 +165,43 @@ msgstr "Kurang"
 msgid "Show"
 msgstr "Tampilkan"
 
-#: static/js/utils.js:76
+#: static/js/utils.js:143
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "%s tahun yang lalu"
 
-#: static/js/utils.js:79
+#: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "%s minggu yang lalu"
 
-#: static/js/utils.js:82
+#: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "%s hari yang lalu"
 
-#: static/js/utils.js:85
+#: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "%s jam yang lalu"
 
-#: static/js/utils.js:88
+#: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "%s menit yang lalu"
 
-#: static/js/utils.js:96
+#: static/js/utils.js:163
 msgid "A few seconds ago"
 msgstr "Beberapa detik yang lalu"
+
+#, c-format
+#~ msgid "<a href=\"%s\">String %s</a>"
+#~ msgstr "<a href=\"%s\">String %s</a>"
+
+#~ msgid "Congratulations, you walked through all strings."
+#~ msgstr "Selamat, Anda telah mengerjakan semua string."

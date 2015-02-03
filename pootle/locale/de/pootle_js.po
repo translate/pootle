@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-02-23 21:01+0000\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"PO-Revision-Date: 2013-10-29 08:16+0000\n"
 "Last-Translator: real68er <sebastian@wallroth.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -16,81 +16,133 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361653277.0\n"
+"X-POOTLE-MTIME: 1383034613.0\n"
 
-#: static/js/common.js:43
+#: static/js/common.js:13
+msgid "All Languages"
+msgstr "Alle Sprachen"
+
+#: static/js/common.js:26
+msgid "All Projects"
+msgstr "Alle Projekte"
+
+#: static/js/common.js:62
 msgid "Expand details"
 msgstr "Details erweitern"
 
-#: static/js/common.js:43
+#: static/js/common.js:62
 msgid "Collapse details"
 msgstr "Details verbergen"
 
-#: static/js/common.js:77
+#: static/js/common.js:91
 msgid "Are you sure you want to continue?"
 msgstr "Sind Sie sicher, dass Sie fortfahren möchten?"
 
-#: static/js/common.js:78
+#: static/js/common.js:92
 msgid "This operation cannot be undone."
 msgstr "Dieser Vorgang kann nicht rückgängig gemacht werden."
 
-#: static/js/editor.js:409 static/js/editor.js.c:1493
+#: static/js/common.js:139
+msgid "Show tags"
+msgstr "Markierungen anzeigen"
+
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
+msgid "Hide tags"
+msgstr "Markierungen verbergen"
+
+#: static/js/common.js:293 static/js/common.js.c:309
+msgid "Hide filtering"
+msgstr "Filter ausblenden"
+
+#: static/js/common.js:296 static/js/common.js.c:303
+msgid "Show filtering"
+msgstr "Filter anzeigen"
+
+#: static/js/editor.js:209
+msgid "Go to the next string (Ctrl+.)"
+msgstr "Gehe zur nächsten Zeichenfolge (Strg+.)"
+
+#: static/js/editor.js:215
+msgid "Go to the previous string (Ctrl+,)"
+msgstr "Gehe zur vorherigen Zeichenfolge (Strg+,)"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:333
+#, c-format
+msgid "%s's pending suggestions"
+msgstr "%ss wartende Vorschläge"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:336
+#, c-format
+msgid "%s's accepted suggestions"
+msgstr "%ss akzeptierte Vorschläge"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:339
+#, c-format
+msgid "%s's rejected suggestions"
+msgstr "%ss abgelehnte Vorschläge"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:342
+#, c-format
+msgid "%s's submissions"
+msgstr "%ss Einreichungen"
+
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
+#: static/js/editor.js:345
+#, c-format
+msgid "%s's overwritten submissions"
+msgstr "%ss geänderte Einreichungen"
+
+#: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
 msgstr "Keine Ergebnisse."
 
-#. Translators: Permalink to the current unit in the editor.
-#. The first '%s' is the permalink URL.
-#. The second '%s' is the unit number.
-#: static/js/editor.js:726
-#, c-format
-#, c-format, fuzzy
-msgid "<a href=\"%s\">String %s</a>"
-msgstr "<a href=\"%s\">Eintrag %s</a>"
+#: static/js/editor.js:748
+msgid "Export View"
+msgstr "Ansicht exportieren"
 
-#: static/js/editor.js:786
+#: static/js/editor.js:798
 msgid "Error while connecting to the server"
 msgstr "Fehler beim Verbinden mit dem Server"
 
-#: static/js/editor.js:788
+#: static/js/editor.js:800
 msgid "Server error"
 msgstr "Serverfehler"
 
-#: static/js/editor.js:790
+#: static/js/editor.js:802
 msgid "The server seems down. Try again later."
 msgstr ""
 "Der Server scheint nicht erreichbar zu sein. Versuchen Sie es später "
 "nochmals."
 
-#: static/js/editor.js:798
+#: static/js/editor.js:809
 msgid "Unknown error"
 msgstr "Unbekannter Fehler"
 
-#: static/js/editor.js:1342
-#, fuzzy
-msgid "Congratulations, you walked through all strings."
-msgstr "Herzlichen Glückwunsch. Sie haben alle Einträge durchlaufen."
+#: static/js/editor.js:1367
+msgid "You reached the beginning of the list"
+msgstr "Sie haben den Anfang der Liste erreicht"
 
-#: static/js/editor.js:1344 static/js/editor.js.c:1368
+#: static/js/editor.js:1370
+msgid "You reached the end of the list."
+msgstr "Sie haben das Ende der Liste erreicht."
+
+#: static/js/editor.js:1372
 msgid "Return to the overview page."
 msgstr "Zurück zur Übersicht."
-
-#: static/js/editor.js:1363
-msgid "You reached the beginning of the list"
-msgstr "Dies ist der erste Eintrag der Liste"
-
-#: static/js/editor.js:1366
-msgid "You reached the end of the list."
-msgstr "Dies ist der letzte Eintrag der Liste."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1766
+#: static/js/editor.js:1807
 #, c-format
 msgid "%s% match"
 msgstr "%s% Übereinstimmung"
 
-#: static/js/editor.js:1808
+#: static/js/editor.js:1851
 msgid "Similar translations"
 msgstr "Ähnliche Übersetzungen"
 
@@ -114,44 +166,51 @@ msgstr "Weniger"
 msgid "Show"
 msgstr "Anzeigen"
 
-#: static/js/utils.js:76
+#: static/js/utils.js:143
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Vor einem Jahr"
 msgstr[1] "Vor %s Jahren"
 
-#: static/js/utils.js:79
+#: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Vor einer Woche"
 msgstr[1] "Vor %s Wochen"
 
-#: static/js/utils.js:82
+#: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Gestern"
 msgstr[1] "Vor %s Tagen"
 
-#: static/js/utils.js:85
+#: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Vor einer Stunde"
 msgstr[1] "Vor %s Stunden"
 
-#: static/js/utils.js:88
+#: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Vor einer Minute"
 msgstr[1] "Vor %s Minuten"
 
-#: static/js/utils.js:96
+#: static/js/utils.js:163
 msgid "A few seconds ago"
 msgstr "Vor ein paar Sekunden"
+
+#, c-format, c-format
+#~ msgid "<a href=\"%s\">String %s</a>"
+#~ msgstr "<a href=\"%s\">Eintrag %s</a>"
+
+#~ msgid "Congratulations, you walked through all strings."
+#~ msgstr "Herzlichen Glückwunsch. Sie haben alle Einträge durchlaufen."
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

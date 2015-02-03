@@ -1,92 +1,146 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2012 Zuza Software Foundation (Translate.org.za)
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Rhoslyn Prys <post@meddal.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-02-25 16:00+0000\n"
-"Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"PO-Revision-Date: 2014-12-22 15:30+0100\n"
+"Last-Translator: Rhoslyn Prys <post@meddal.com>\n"
+"Language-Team: Cymraeg\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361808044.0\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-POOTLE-MTIME: 1382987175.0\n"
 
-#: static/js/common.js:43
+#: static/js/common.js:13
+msgid "All Languages"
+msgstr "Pob Iaith"
+
+#: static/js/common.js:26
+msgid "All Projects"
+msgstr "Pob Project"
+
+#: static/js/common.js:62
 msgid "Expand details"
-msgstr "Ehangu manylion"
+msgstr "Ehangu'r manylion"
 
-#: static/js/common.js:43
+#: static/js/common.js:62
 msgid "Collapse details"
-msgstr "Lleihau manylion"
+msgstr "Lleihau'r manylion"
 
-#: static/js/common.js:77
+#: static/js/common.js:91
 msgid "Are you sure you want to continue?"
 msgstr "Ydych chi'n siŵr eich bod am barhau?"
 
-#: static/js/common.js:78
+#: static/js/common.js:92
 msgid "This operation cannot be undone."
 msgstr "Nid oes modd dadwneud y weithred hon."
 
-#: static/js/editor.js:409 static/js/editor.js.c:1493
+#: static/js/common.js:139
+msgid "Show tags"
+msgstr "Dangos y tagiau"
+
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
+msgid "Hide tags"
+msgstr "Cuddio'r tagiau"
+
+#: static/js/common.js:293 static/js/common.js.c:309
+msgid "Hide filtering"
+msgstr "Cuddio'r hidlo"
+
+#: static/js/common.js:296 static/js/common.js.c:303
+msgid "Show filtering"
+msgstr "Dangos yr hidlo"
+
+#: static/js/editor.js:209
+msgid "Go to the next string (Ctrl+.)"
+msgstr "Mynd i'r llinyn nesaf (Ctrl+.)"
+
+#: static/js/editor.js:215
+msgid "Go to the previous string (Ctrl+,)"
+msgstr "Mynd i'r llinyn blaenorol (Ctrl+,)"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:333
+#, c-format
+msgid "%s's pending suggestions"
+msgstr "Awgrymiadau %s yn disgwyl cymeradwyaeth"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:336
+#, c-format
+msgid "%s's accepted suggestions"
+msgstr "Awgrymiadau %s wedi eu derbyn"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:339
+#, c-format
+msgid "%s's rejected suggestions"
+msgstr "Awgrymiadau %s wedi eu gwrthod"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:342
+#, c-format
+msgid "%s's submissions"
+msgstr "Awgrymiadau %s"
+
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
+#: static/js/editor.js:345
+#, c-format
+msgid "%s's overwritten submissions"
+msgstr "Awgrymiadau %s wedi eu trosysgrifennu"
+
+#: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
 msgstr "Dim canlyniadau."
 
-#. Translators: Permalink to the current unit in the editor.
-#. The first '%s' is the permalink URL.
-#. The second '%s' is the unit number.
-#: static/js/editor.js:726
-#, c-format
-msgid "<a href=\"%s\">String %s</a>"
-msgstr "<a href=\"%s\">Llinyn %s</a>"
-
-#: static/js/editor.js:786
-msgid "Error while connecting to the server"
-msgstr "Gwall wrth gysylltu a'r gweinydd"
-
-#: static/js/editor.js:788
-msgid "Server error"
-msgstr "Gall gweinydd"
-
-#: static/js/editor.js:790
-msgid "The server seems down. Try again later."
-msgstr "Mae'n ymddangos fod y gweinydd i lawr. Ceisiwch eto'n hwyrach."
+#: static/js/editor.js:748
+msgid "Export View"
+msgstr "Golwg Allforio"
 
 #: static/js/editor.js:798
+msgid "Error while connecting to the server"
+msgstr "Gwall wrth gysylltu â'r gweinydd"
+
+#: static/js/editor.js:800
+msgid "Server error"
+msgstr "Gwall gweinydd"
+
+#: static/js/editor.js:802
+msgid "The server seems down. Try again later."
+msgstr "Mae'r gweinydd i weld wedi torri. Ceisiwch rhywbryd eto."
+
+#: static/js/editor.js:809
 msgid "Unknown error"
 msgstr "Gwall anhysbys"
 
-#: static/js/editor.js:1342
-msgid "Congratulations, you walked through all strings."
-msgstr "Llongyfarchiadau, rydych wedi cwblhau'r holl linynnau."
-
-#: static/js/editor.js:1344 static/js/editor.js.c:1368
-msgid "Return to the overview page."
-msgstr "Nôl i'r dudalen trosolwg"
-
-#: static/js/editor.js:1363
+#: static/js/editor.js:1367
 msgid "You reached the beginning of the list"
-msgstr "Rydych wedi cyrraedd cychwyn y rhestr"
+msgstr "Rydych wedi cyrraedd dechrau'r rhestr"
 
-#: static/js/editor.js:1366
+#: static/js/editor.js:1370
 msgid "You reached the end of the list."
 msgstr "Rydych wedi cyrraedd diwedd y rhestr."
+
+#: static/js/editor.js:1372
+msgid "Return to the overview page."
+msgstr "Nôl i'r dudalen trosolwg."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1766
-#, c-format
+#: static/js/editor.js:1807
+#, c-format, c-format
 msgid "%s% match"
-msgstr "%s% yn cydweddu"
+msgstr "%s% cydweddiad"
 
-#: static/js/editor.js:1808
+#: static/js/editor.js:1851
 msgid "Similar translations"
 msgstr "Cyfieithiadau tebyg"
 
@@ -110,44 +164,56 @@ msgstr "Llai"
 msgid "Show"
 msgstr "Dangos"
 
-#: static/js/utils.js:76
-#, c-format
+#: static/js/utils.js:143
+#, c-format, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "1 blwyddyn yn ôl"
-msgstr[1] "% blwyddyn yn ôl"
+msgstr[0] "Blwyddyn yn ôl"
+msgstr[1] "%s blwyddyn yn ôl"
+msgstr[2] "Před %s roky"
 
-#: static/js/utils.js:79
-#, c-format
+#: static/js/utils.js:146
+#, c-format, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Wythnos yn ôl"
 msgstr[1] "%s wythnos yn ôl"
+msgstr[2] "Před %s týdny"
 
-#: static/js/utils.js:82
-#, c-format
+#: static/js/utils.js:149
+#, c-format, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] "Ddoe"
+msgstr[0] "Dde"
 msgstr[1] "%s diwrnod yn ôl"
+msgstr[2] "Před %s dny"
 
-#: static/js/utils.js:85
-#, c-format
+#: static/js/utils.js:152
+#, c-format, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Awr yn ôl"
 msgstr[1] "%s awr yn ôl"
+msgstr[2] "Před %s hodinami"
 
-#: static/js/utils.js:88
-#, c-format
+#: static/js/utils.js:155
+#, c-format, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Munud yn ôl"
-msgstr[1] "% munud yn ôl"
+msgstr[1] "%s munud yn ôl"
+msgstr[2] "Před %s minutami"
 
-#: static/js/utils.js:96
+#: static/js/utils.js:163
 msgid "A few seconds ago"
 msgstr "Ychydig eiliadau yn ôl"
+
+#, c-format
+#~ msgid "<a href=\"%s\">String %s</a>"
+#~ msgstr "<a href=\"%s\">Řetězec %s</a>"
+
+#~ msgid "Congratulations, you walked through all strings."
+#~ msgstr "Gratulujeme, prošli jste všechny položky."
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"

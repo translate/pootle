@@ -6,140 +6,201 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-01-01 10:25+0000\n"
-"Last-Translator: wwycheuk <wwycheuk@gmail.com>\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"PO-Revision-Date: 2014-03-03 15:01+0000\n"
+"Last-Translator: df910105 <df910105@yahoo.com.tw>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1357035934.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1393858895.000000\n"
 
-#: static/js/common.js:43
+#: static/js/common.js:13
+msgid "All Languages"
+msgstr "所有語言"
+
+#: static/js/common.js:26
+msgid "All Projects"
+msgstr "所有專案"
+
+#: static/js/common.js:62
 msgid "Expand details"
-msgstr ""
+msgstr "展開詳細說明"
 
-#: static/js/common.js:43
+#: static/js/common.js:62
 msgid "Collapse details"
-msgstr ""
+msgstr "收起詳細說明"
 
-#: static/js/common.js:77
+#: static/js/common.js:91
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "您確定要繼續嗎？"
 
-#: static/js/common.js:78
+#: static/js/common.js:92
 msgid "This operation cannot be undone."
-msgstr ""
+msgstr "這個操作將無法撤銷。"
 
-#: static/js/editor.js:409 static/js/editor.js.c:1493
-msgid "No results."
-msgstr ""
+#: static/js/common.js:139
+msgid "Show tags"
+msgstr "顯示標記"
 
-#. Translators: Permalink to the current unit in the editor.
-#. The first '%s' is the permalink URL.
-#. The second '%s' is the unit number.
-#: static/js/editor.js:726
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
+msgid "Hide tags"
+msgstr "隱藏標記"
+
+#: static/js/common.js:293 static/js/common.js.c:309
+msgid "Hide filtering"
+msgstr "隱藏過濾器"
+
+#: static/js/common.js:296 static/js/common.js.c:303
+msgid "Show filtering"
+msgstr "顯示過濾器"
+
+#: static/js/editor.js:209
+msgid "Go to the next string (Ctrl+.)"
+msgstr "轉到下一字符串(Ctrl+.)"
+
+#: static/js/editor.js:215
+msgid "Go to the previous string (Ctrl+,)"
+msgstr "轉到上一字符串(Ctrl+,)"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:333
 #, c-format
-msgid "<a href=\"%s\">String %s</a>"
-msgstr ""
+msgid "%s's pending suggestions"
+msgstr "%s的建議待處理"
 
-#: static/js/editor.js:786
+#. Translators: '%s' is a username
+#: static/js/editor.js:336
+#, c-format
+msgid "%s's accepted suggestions"
+msgstr "%s的建議核准"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:339
+#, c-format
+msgid "%s's rejected suggestions"
+msgstr "%s的建議駁回"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:342
+#, c-format
+msgid "%s's submissions"
+msgstr "%s的提交"
+
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
+#: static/js/editor.js:345
+#, c-format
+msgid "%s's overwritten submissions"
+msgstr "%s被覆蓋的提交"
+
+#: static/js/editor.js:476 static/js/editor.js.c:1521
+msgid "No results."
+msgstr "無結果。"
+
+#: static/js/editor.js:748
+msgid "Export View"
+msgstr "匯出視圖"
+
+#: static/js/editor.js:798
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "連接到伺服器時出錯"
 
-#: static/js/editor.js:788
+#: static/js/editor.js:800
 msgid "Server error"
 msgstr "伺服器錯誤"
 
-#: static/js/editor.js:790
+#: static/js/editor.js:802
 msgid "The server seems down. Try again later."
-msgstr ""
+msgstr "伺服器似乎停機了。請您稍後重試。"
 
-#: static/js/editor.js:798
+#: static/js/editor.js:809
 msgid "Unknown error"
 msgstr "不明錯誤"
 
-#: static/js/editor.js:1342
-msgid "Congratulations, you walked through all strings."
-msgstr ""
+#: static/js/editor.js:1367
+msgid "You reached the beginning of the list"
+msgstr "您已到達列表的前端"
 
-#: static/js/editor.js:1344 static/js/editor.js.c:1368
+#: static/js/editor.js:1370
+msgid "You reached the end of the list."
+msgstr "您已到達列表的末端"
+
+#: static/js/editor.js:1372
 msgid "Return to the overview page."
 msgstr "回到概覽頁面"
-
-#: static/js/editor.js:1363
-msgid "You reached the beginning of the list"
-msgstr ""
-
-#: static/js/editor.js:1366
-msgid "You reached the end of the list."
-msgstr ""
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1766
+#: static/js/editor.js:1807
 #, c-format
 msgid "%s% match"
-msgstr ""
+msgstr "%s% 項配對"
 
-#: static/js/editor.js:1808
+#: static/js/editor.js:1851
 msgid "Similar translations"
 msgstr "相似翻譯"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "更多"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
 msgid "Hide"
-msgstr ""
+msgstr "隱藏"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:13
 msgid "Less"
-msgstr ""
+msgstr "更少"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:16
 msgid "Show"
-msgstr ""
+msgstr "顯示"
 
-#: static/js/utils.js:76
+#: static/js/utils.js:143
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
+msgstr[0] "%s 年前"
 
-#: static/js/utils.js:79
+#: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
+msgstr[0] "%s 星期前"
 
-#: static/js/utils.js:82
+#: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
+msgstr[0] "%s 天前"
 
-#: static/js/utils.js:85
+#: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
+msgstr[0] "%s 小時前"
 
-#: static/js/utils.js:88
+#: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
+msgstr[0] "%s 分鐘前"
 
-#: static/js/utils.js:96
+#: static/js/utils.js:163
 msgid "A few seconds ago"
-msgstr ""
+msgstr "幾秒鐘前"
+
+#, c-format
+#~ msgid "<a href=\"%s\">String %s</a>"
+#~ msgstr "<a href=\"%s\">字符串 %s</a>"
+
+#~ msgid "Congratulations, you walked through all strings."
+#~ msgstr "恭喜您，您已瀏覽完所有字符串。"

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-02-23 21:41+0000\n"
-"Last-Translator: Stefán Freyr <stefan.freyr@gmail.com>\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"PO-Revision-Date: 2013-10-28 16:46+0000\n"
+"Last-Translator: Kristján Bjarni <kristjanbjarni@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
@@ -16,77 +16,131 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1361655680.0\n"
+"X-POOTLE-MTIME: 1382978773.0\n"
 
-#: static/js/common.js:43
+#: static/js/common.js:13
+msgid "All Languages"
+msgstr "Öll tungumál"
+
+#: static/js/common.js:26
+msgid "All Projects"
+msgstr "Öll verkefni"
+
+#: static/js/common.js:62
 msgid "Expand details"
 msgstr "Birta smáatriði"
 
-#: static/js/common.js:43
+#: static/js/common.js:62
 msgid "Collapse details"
 msgstr "Fela smáatriði"
 
-#: static/js/common.js:77
+#: static/js/common.js:91
 msgid "Are you sure you want to continue?"
 msgstr "Viltu örugglega halda áfram?"
 
-#: static/js/common.js:78
+#: static/js/common.js:92
 msgid "This operation cannot be undone."
 msgstr "Það er ekki hægt að hætta við þessa aðgerð."
 
-#: static/js/editor.js:409 static/js/editor.js.c:1493
+#: static/js/common.js:139
+msgid "Show tags"
+msgstr "Sýna tög"
+
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
+msgid "Hide tags"
+msgstr "Fela tög"
+
+#: static/js/common.js:293 static/js/common.js.c:309
+msgid "Hide filtering"
+msgstr "Fela síu"
+
+#: static/js/common.js:296 static/js/common.js.c:303
+msgid "Show filtering"
+msgstr "Sýna síu"
+
+#: static/js/editor.js:209
+msgid "Go to the next string (Ctrl+.)"
+msgstr "Fara á næsta streng (Ctrl+.)"
+
+#: static/js/editor.js:215
+msgid "Go to the previous string (Ctrl+,)"
+msgstr "Fara á fyrri streng (Ctrl+,)"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:333
+#, c-format
+msgid "%s's pending suggestions"
+msgstr "%s ókláraðar uppástungur"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:336
+#, c-format
+msgid "%s's accepted suggestions"
+msgstr "%s viðurkenndar uppástungur"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:339
+#, c-format
+msgid "%s's rejected suggestions"
+msgstr "%s uppástungum sem hefur verið hafnað"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:342
+#, c-format
+msgid "%s's submissions"
+msgstr "%s uppástungur"
+
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
+#: static/js/editor.js:345
+#, c-format
+msgid "%s's overwritten submissions"
+msgstr "%s yfirskrifaðar uppástungur"
+
+#: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
 msgstr "Engar niðurstöður."
 
-#. Translators: Permalink to the current unit in the editor.
-#. The first '%s' is the permalink URL.
-#. The second '%s' is the unit number.
-#: static/js/editor.js:726
-#, c-format
-msgid "<a href=\"%s\">String %s</a>"
-msgstr "<a href=\"%s\">Strengur %s</a>"
+#: static/js/editor.js:748
+msgid "Export View"
+msgstr "Flytja út sýn"
 
-#: static/js/editor.js:786
+#: static/js/editor.js:798
 msgid "Error while connecting to the server"
 msgstr "Villa við að tengjast þjóni"
 
-#: static/js/editor.js:788
+#: static/js/editor.js:800
 msgid "Server error"
 msgstr "Villa frá þjóni"
 
-#: static/js/editor.js:790
+#: static/js/editor.js:802
 msgid "The server seems down. Try again later."
 msgstr "Þjónninn virðist vera niðri. Vinsamlega reyndu síðar."
 
-#: static/js/editor.js:798
+#: static/js/editor.js:809
 msgid "Unknown error"
 msgstr "Óþekkt villa"
 
-#: static/js/editor.js:1342
-msgid "Congratulations, you walked through all strings."
-msgstr "Til hamingju, þú hefur farið í gegnum alla strengina."
-
-#: static/js/editor.js:1344 static/js/editor.js.c:1368
-msgid "Return to the overview page."
-msgstr "Fara aftur á yfirlitssíðuna."
-
-#: static/js/editor.js:1363
+#: static/js/editor.js:1367
 msgid "You reached the beginning of the list"
 msgstr "Þú hefur náð á byrjun listans"
 
-#: static/js/editor.js:1366
+#: static/js/editor.js:1370
 msgid "You reached the end of the list."
 msgstr "Þú hefur náð á enda listans."
+
+#: static/js/editor.js:1372
+msgid "Return to the overview page."
+msgstr "Fara aftur á yfirlitssíðuna."
 
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1766
+#: static/js/editor.js:1807
 #, c-format
 msgid "%s% match"
 msgstr "%s% samsvörun"
 
-#: static/js/editor.js:1808
+#: static/js/editor.js:1851
 msgid "Similar translations"
 msgstr "Svipaðar þýðingar"
 
@@ -111,7 +165,7 @@ msgid "Show"
 msgstr "Sýna"
 
 # Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:76
+#: static/js/utils.js:143
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
@@ -119,7 +173,7 @@ msgstr[0] "Fyrir %s ári"
 msgstr[1] "Fyrir %s árum"
 
 # Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:79
+#: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
@@ -127,7 +181,7 @@ msgstr[0] "Fyrir %s viku"
 msgstr[1] "Fyrir %s vikum"
 
 # Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:82
+#: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
@@ -135,7 +189,7 @@ msgstr[0] "Fyrir %s degi"
 msgstr[1] "Fyrir %s dögum"
 
 # Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:85
+#: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
@@ -143,13 +197,20 @@ msgstr[0] "Fyrir %s klukkustund"
 msgstr[1] "Fyrir %s klukkustundum"
 
 # Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:88
+#: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Fyrir %s mínútu"
 msgstr[1] "Fyrir %s mínútum"
 
-#: static/js/utils.js:96
+#: static/js/utils.js:163
 msgid "A few seconds ago"
 msgstr "Fyrir nokkrum sekúndum"
+
+#, c-format
+#~ msgid "<a href=\"%s\">String %s</a>"
+#~ msgstr "<a href=\"%s\">Strengur %s</a>"
+
+#~ msgid "Congratulations, you walked through all strings."
+#~ msgstr "Til hamingju, þú hefur farið í gegnum alla strengina."

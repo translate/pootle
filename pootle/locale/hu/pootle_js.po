@@ -6,99 +6,151 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-02-25 07:44+0000\n"
-"PO-Revision-Date: 2013-05-13 22:37+0000\n"
-"Last-Translator: gerikeeee22 <gerikeeee22@yahoo.com>\n"
+"POT-Creation-Date: 2013-11-12 10:57+0000\n"
+"PO-Revision-Date: 2014-12-19 20:45+0000\n"
+"Last-Translator: tguim <tguim@citromail.hu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1368484620.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1419021911.000000\n"
 
-#: static/js/common.js:43
-#, fuzzy
+#: static/js/common.js:13
+msgid "All Languages"
+msgstr "Minden nyelv"
+
+#: static/js/common.js:26
+msgid "All Projects"
+msgstr "Minden projekt"
+
+#: static/js/common.js:62
 msgid "Expand details"
-msgstr "Expand details"
+msgstr "Részletek megjelenítése"
 
-#: static/js/common.js:43
+#: static/js/common.js:62
 msgid "Collapse details"
 msgstr "Részletek elrejtése"
 
-#: static/js/common.js:77
+#: static/js/common.js:91
 msgid "Are you sure you want to continue?"
 msgstr "Biztos, hogy folytatni kívánja?"
 
-#: static/js/common.js:78
+#: static/js/common.js:92
 msgid "This operation cannot be undone."
 msgstr "A művelet nem vonható vissza."
 
-#: static/js/editor.js:409 static/js/editor.js.c:1493
+#: static/js/common.js:139
+msgid "Show tags"
+msgstr "Címkék megjelenítése"
+
+#: static/js/common.js:142 static/js/vendor/sorttable.js:357
+msgid "Hide tags"
+msgstr "Az elemek elrejtése"
+
+#: static/js/common.js:293 static/js/common.js.c:309
+msgid "Hide filtering"
+msgstr "Szűrő elrejtése"
+
+#: static/js/common.js:296 static/js/common.js.c:303
+msgid "Show filtering"
+msgstr "Szűrő megjelenítése"
+
+#: static/js/editor.js:209
+msgid "Go to the next string (Ctrl+.)"
+msgstr "A következő szóra ugrás (Ctrl+,)"
+
+#: static/js/editor.js:215
+msgid "Go to the previous string (Ctrl+,)"
+msgstr "Ugrás az előző szóra (Ctrl+,)"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:333
+#, c-format
+msgid "%s's pending suggestions"
+msgstr "%s függő javaslata"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:336
+#, c-format
+msgid "%s's accepted suggestions"
+msgstr "%s elfogadta a javaslatokat"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:339
+#, c-format, fuzzy
+msgid "%s's rejected suggestions"
+msgstr "%s nem fogadta meg a javaslatokat"
+
+#. Translators: '%s' is a username
+#: static/js/editor.js:342
+#, c-format
+msgid "%s's submissions"
+msgstr ""
+
+#. Translators: '%s' is a username, meaning "submissions by %s, that were overwritten"
+#: static/js/editor.js:345
+#, c-format
+msgid "%s's overwritten submissions"
+msgstr ""
+
+#: static/js/editor.js:476 static/js/editor.js.c:1521
 msgid "No results."
 msgstr "Nincs találat."
 
-#. Translators: Permalink to the current unit in the editor.
-#. The first '%s' is the permalink URL.
-#. The second '%s' is the unit number.
-#: static/js/editor.js:726
-#, c-format
-#, c-format, fuzzy
-msgid "<a href=\"%s\">String %s</a>"
-msgstr "<a href=\"%s\">%s. elem</a>"
+#: static/js/editor.js:748
+#, fuzzy
+msgid "Export View"
+msgstr "Nézet kiterjesztése"
 
-#: static/js/editor.js:786
+#: static/js/editor.js:798
 msgid "Error while connecting to the server"
 msgstr "Hiba a kiszolgálóhoz való kapcsolódás közben"
 
-#: static/js/editor.js:788
+#: static/js/editor.js:800
 msgid "Server error"
 msgstr "Kiszolgálóhiba"
 
-#: static/js/editor.js:790
+#: static/js/editor.js:802
 msgid "The server seems down. Try again later."
 msgstr "Úgy tűnik a szerver le van állva. Próbálja meg később."
 
-#: static/js/editor.js:798
+#: static/js/editor.js:809
 msgid "Unknown error"
 msgstr "Ismeretlen hiba"
 
-#: static/js/editor.js:1342
-#, fuzzy
-msgid "Congratulations, you walked through all strings."
-msgstr "Gratulálunk, befejezte az összes fordítást"
-
-#: static/js/editor.js:1344 static/js/editor.js.c:1368
-#, fuzzy
-msgid "Return to the overview page."
-msgstr "Vissza az összefoglaló oldalra."
-
-#: static/js/editor.js:1363
+#: static/js/editor.js:1367
 msgid "You reached the beginning of the list"
 msgstr "A fordítási lista elejére érkezett"
 
-#: static/js/editor.js:1366
+#: static/js/editor.js:1370
 #, fuzzy
 msgid "You reached the end of the list."
 msgstr "A fordítási lista végére érkezett"
 
+#: static/js/editor.js:1372
+#, fuzzy
+msgid "Return to the overview page."
+msgstr "Vissza az összefoglaló oldalra."
+
 #. Translators: This is the quality match percentage of a TM result.
 #. '%s' will be replaced by a number, and you should keep the extra
 #. '%' symbol to denote a percentage is being used.
-#: static/js/editor.js:1766
+#: static/js/editor.js:1807
 #, c-format
 msgid "%s% match"
 msgstr "%s% találat"
 
-#: static/js/editor.js:1808
+#: static/js/editor.js:1851
 msgid "Similar translations"
 msgstr "Hasonló fordítások"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:7
 msgid "More"
-msgstr ""
+msgstr "Többet"
 
 #. Translators: from pootle/apps/pootle_store/templates/unit/xhr-edit-ctx.html
 #: static/js/strings.js:10
@@ -115,44 +167,53 @@ msgstr "Kevesebb"
 msgid "Show"
 msgstr "Megjelenítés"
 
-#: static/js/utils.js:76
+#: static/js/utils.js:143
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Egy éve"
 msgstr[1] "%s éve"
 
-#: static/js/utils.js:79
+#: static/js/utils.js:146
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Egy hete"
 msgstr[1] "%s hete"
 
-#: static/js/utils.js:82
+#: static/js/utils.js:149
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Tegnap"
 msgstr[1] "%s napja"
 
-#: static/js/utils.js:85
+#: static/js/utils.js:152
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Egy órája"
 msgstr[1] "%s órája"
 
-#: static/js/utils.js:88
+#: static/js/utils.js:155
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Egy perce"
 msgstr[1] "%s perce"
 
-#: static/js/utils.js:96
+#: static/js/utils.js:163
 msgid "A few seconds ago"
 msgstr "Pár másodperce"
+
+#, c-format
+#, c-format, fuzzy
+#~ msgid "<a href=\"%s\">String %s</a>"
+#~ msgstr "<a href=\"%s\">%s. elem</a>"
+
+#, fuzzy
+#~ msgid "Congratulations, you walked through all strings."
+#~ msgstr "Gratulálunk, befejezte az összes fordítást"
 
 #, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"
