@@ -308,21 +308,15 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     def require_units(self):
         """Makes sure all stores are parsed"""
-        errors = 0
         for store in self.stores.filter(state__lt=PARSED).iterator():
             try:
                 store.require_units()
             except IntegrityError:
                 logging.info(u"Duplicate IDs in %s", store.abs_real_path)
-                errors += 1
             except ParseError as e:
                 logging.info(u"Failed to parse %s\n%s", store.abs_real_path, e)
-                errors += 1
             except (IOError, OSError) as e:
                 logging.info(u"Can't access %s\n%s", store.abs_real_path, e)
-                errors += 1
-
-        return errors
 
     ### TreeItem
     def get_children(self):
