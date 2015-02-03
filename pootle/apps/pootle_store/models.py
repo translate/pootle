@@ -1806,6 +1806,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     self.get_max_unit_revision())
                 )
 
+    def serialize(self):
+        self.file.store.updateheader(add=True, X_Pootle_Path=self.pootle_path)
+        return str(self.file.store)
 
     def sync(self, update_structure=False, conservative=True,
              user=None, skip_missing=False, only_newer=True):
