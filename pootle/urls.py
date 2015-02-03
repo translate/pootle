@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+from django.conf import settings
 from django.conf.urls import include, patterns, url
 
 
@@ -30,7 +31,16 @@ urlpatterns = patterns('',
     url(r'^accounts/evernote/', include('evernote_auth.urls')),
     url(r'^admin/reports/', include('evernote_reports.urls')),
     url(r'', include('evernote_reports.profile_urls')),
+)
 
+# XXX should be autodiscovered
+if "import_export" in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        # Pootle offline translation support URLs.
+        url(r'', include('import_export.urls')),
+    )
+
+urlpatterns += patterns('',
     # External apps
     url(r'^contact/', include('contact.urls')),
     url(r'', include('pootle_profile.urls')),
