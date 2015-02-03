@@ -61,6 +61,15 @@ def split_pootle_path(pootle_path):
     return (language_code, project_code, dir_path, filename)
 
 
+def to_tp_relative_path(pootle_path):
+    """Returns a path relative to translation projects.
+
+    If `pootle_path` is `/af/project/dir1/dir2/file.po`, this will
+    return `dir1/dir2/file.po`.
+    """
+    return u'/'.join(pootle_path.split(u'/')[3:])
+
+
 def get_all_pootle_paths(pootle_path):
     """Get list of `pootle_path` for all parents."""
     res = []

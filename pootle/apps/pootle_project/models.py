@@ -44,7 +44,7 @@ from pootle.core.cache import make_method_key
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
-                                     split_pootle_path)
+                                     split_pootle_path, to_tp_relative_path)
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_store.filetypes import filetype_choices, factory_classes
@@ -338,15 +338,10 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         cursor.execute(sql_query, [resources_path, resources_path])
         results = cursor.fetchall()
 
-        # Flatten tuple and sort in a list
-        resources = set()
-        for result in results:
-            s = result[0]
-            s = s[s.find("/", s.find("/", 1) + 1) + 1:]
-            resources.add(s)
-
-        resources = list(resources)
+        # Calculate TP-relative paths and sort them
+        resources = list({to_tp_relative_path(result[0]) for result in results})
         resources.sort(key=get_path_sortkey)
+
         cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
 
         return resources

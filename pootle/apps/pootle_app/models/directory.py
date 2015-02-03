@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2013 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of translate.
 #
@@ -25,7 +25,8 @@ from django.db import models
 from django.utils.functional import cached_property
 
 from pootle.core.mixins import CachedTreeItem
-from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle.core.url_helpers import (get_editor_filter, split_pootle_path,
+                                     to_tp_relative_path)
 from pootle_misc.baseurl import l
 
 class DirectoryManager(models.Manager):
@@ -92,13 +93,8 @@ class Directory(models.Model, CachedTreeItem):
 
     @cached_property
     def path(self):
-        """Returns just the path part omitting language and project codes.
-
-        If the `pootle_path` of a :cls:`Directory` object `dir` is
-        `/af/project/dir1/dir2/file.po`, `dir.path` will return
-        `dir1/dir2/file.po`.
-        """
-        return u'/'.join(self.pootle_path.split(u'/')[3:])
+        """Returns just the path part omitting language and project codes."""
+        return to_tp_relative_path(self.pootle_path)
 
     @cached_property
     def translation_project(self):
