@@ -55,6 +55,7 @@ class TranslationProjectNonDBState(object):
         self.termmatcher = None
         self.termmatchermtime = None
 
+
 def create_or_enable_translation_project(language, project):
     tp = create_translation_project(language, project)
     if tp is not None:
@@ -64,6 +65,7 @@ def create_or_enable_translation_project(language, project):
             logging.info(u"Enabled %s", tp)
         else:
             logging.info(u"Created %s", tp)
+
 
 def create_translation_project(language, project):
     from pootle_app import project_tree
