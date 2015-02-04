@@ -43,6 +43,7 @@ var FormValidationMixin = {
  *    called in the `model.save()`'s error callback
  */
 var FormMixin = {
+  mixins: [FormValidationMixin],
 
   /* Lifecycle */
 
@@ -87,7 +88,7 @@ var FormMixin = {
  * Like `FormMixin` but specialized for BB models.
  */
 var ModelFormMixin = {
-  mixins: [BackboneMixin, FormMixin, FormValidationMixin],
+  mixins: [BackboneMixin, FormMixin],
 
   propTypes: {
     model: React.PropTypes.object.isRequired,
