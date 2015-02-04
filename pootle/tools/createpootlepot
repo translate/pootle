@@ -2,11 +2,7 @@
 
 VERBOSITY=0
 
-if [ "$(uname -s)" != "Darwin" ]; then
-	SRC_DIR=$(readlink -f `dirname $0`/..)
-else
-	SRC_DIR=$(stat -f %N `dirname $0`/..)
-fi
+SRC_DIR=$(dirname $0)/..
 
 # Placeholders
 YEAR_COPYRIGHT_PLACEHOLDER="YEAR THE PACKAGE'S COPYRIGHT HOLDER"
@@ -14,7 +10,7 @@ PACKAGE_VERSION_PLACEHOLDER="PACKAGE VERSION"
 MSGID_BUGS_TO_PLACEHOLDER="Report-Msgid-Bugs-To:"
 
 # Filename constants
-POT_DIR="$SRC_DIR/locale/templates"
+POT_DIR="./locale/templates"
 DJANGO_POT="$POT_DIR/LC_MESSAGES/django.po"
 DJANGO_JS_POT="$POT_DIR/LC_MESSAGES/djangojs.po"
 POOTLE_POT="$POT_DIR/pootle.pot"
@@ -27,14 +23,12 @@ PACKAGE="Pootle"
 VERSION=`egrep "^ver" $SRC_DIR/__version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g" | sed "s/,/./g"`
 MSGID_BUGS_TO="translate-pootle@lists.sourceforge.net"
 
-pushd . 2>&1 > /dev/null
 cd $SRC_DIR
 
 django-admin.py makemessages -v $VERBOSITY -e py,txt,html,conf -l templates
 django-admin.py makemessages -v $VERBOSITY --ignore assets --ignore="*.bundle.js" -d djangojs -e js -l templates
-(cd $SRC_DIR; xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find static/js -name "*.jsx"))
-(cd $SRC_DIR; xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find templates -name "*.html"))
-popd  2>&1  >  /dev/null
+xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find static/js -name "*.jsx")
+xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find templates -name "*.html")
 
 # Header replacements
 sed -i"" -e "s/$YEAR_COPYRIGHT_PLACEHOLDER/2006-$YEAR $COPYRIGHT_HOLDER/" $DJANGO_POT
