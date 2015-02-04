@@ -25,8 +25,36 @@ MSGID_BUGS_TO="translate-pootle@lists.sourceforge.net"
 
 cd $SRC_DIR
 
-django-admin.py makemessages -v $VERBOSITY -e py,txt,html,conf -l templates
-django-admin.py makemessages -v $VERBOSITY --ignore assets --ignore="*.bundle.js" -d djangojs -e js -l templates
+
+# Common folders to ignore when extracting
+ignore="\
+	--ignore assets \
+	--ignore po \
+	--ignore migrations \
+	--ignore south_migrations \
+	--ignore static/images \
+	--ignore static/css \
+	--ignore log \
+	--ignore dbs \
+	--ignore tools \
+	"
+
+django-admin.py makemessages -v $VERBOSITY $ignore --ignore static/js -e py,txt,html,conf -l templates
+
+# Additional files and folder to ignore when extracting JS
+js_ignore="\
+	--ignore=*.bundle.js* \
+	--ignore=*.py \
+	--ignore=*.jsx \
+	--ignore docs \
+	--ignore=*.conf \
+	--ignore test \
+	--ignore node_modules \
+	"
+django-admin.py makemessages -v $VERBOSITY $ignore $js_ignore -d djangojs -e js -l templates
+
+# FIXME Python is not technicall correct but older xgettext have no JavaScript
+# and newer ones don't extract everything
 xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find static/js -name "*.jsx")
 xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find templates -name "*.html")
 
