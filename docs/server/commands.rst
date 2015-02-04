@@ -86,19 +86,12 @@ These commands will go through all existing projects performing maintenance
 tasks. The tasks are all available through the web interface but on a project
 by project or file by file basis.
 
-All commands in this category accept a ``--directory`` command line option that
-limits its action to a path relative to the *po/* directory.
-
 .. versionchanged:: 2.1.2
 
 The commands target can be limited in a more flexible way using the ``--project``
 ``--language`` command line options. They can be repeated to indicate multiple
 languages or projects. If you use both options together it will only match the
 files that match both languages and projects selected.
-
-If you need to limit the commands to certain files or subdirectories you can
-use the ``--path-prefix`` option, path should be relative to project/language
-pair.
 
 For example, to *refresh_stats* for the tutorial project only, run:
 

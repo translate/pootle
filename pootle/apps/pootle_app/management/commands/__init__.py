@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -27,7 +27,6 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand, NoArgsCommand
 
-from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 
@@ -35,15 +34,10 @@ from pootle_translationproject.models import TranslationProject
 class PootleCommand(NoArgsCommand):
     """Base class for handling recursive pootle store management commands."""
     shared_option_list = (
-        make_option('--directory', dest='directory',
-                    help='Directory to refresh relative to po directory'),
         make_option('--project', action='append', dest='projects',
                     help='Project to refresh'),
         make_option('--language', action='append', dest='languages',
                     help='Language to refresh'),
-        make_option('--path-prefix', action='store', dest='path',
-                    help='Path prefix relative to translation project of '
-                         'files to refresh'),
         )
     option_list = NoArgsCommand.option_list + shared_option_list
     process_disabled_projects = False
@@ -51,10 +45,9 @@ class PootleCommand(NoArgsCommand):
     def __init__(self, *args, **kwargs):
         self.languages = []
         self.projects = []
-        self.path = ''
         super(PootleCommand, self).__init__(*args, **kwargs)
 
-    def do_translation_project(self, tp, pootle_path, **options):
+    def do_translation_project(self, tp, **options):
         process_stores = True
 
         if hasattr(self, "handle_translation_project"):
@@ -68,7 +61,7 @@ class PootleCommand(NoArgsCommand):
             if not process_stores:
                 return
 
-        if not pootle_path and hasattr(self, "handle_all_stores"):
+        if hasattr(self, "handle_all_stores"):
             logging.info(u"Running %s over %s's files", self.name, tp)
             try:
                 self.handle_all_stores(tp, **options)
@@ -78,11 +71,6 @@ class PootleCommand(NoArgsCommand):
                 return
         elif hasattr(self, "handle_store"):
             store_query = tp.stores.all()
-            if pootle_path:
-                pootle_path = tp.pootle_path + pootle_path
-                store_query = store_query.filter(
-                        pootle_path__startswith=pootle_path
-                )
             for store in store_query.iterator():
                 logging.info(u"Running %s over %s",
                              self.name, store.pootle_path)
@@ -112,22 +100,8 @@ class PootleCommand(NoArgsCommand):
         TranslationProject._non_db_state_cache.maxsize = 2
         TranslationProject._non_db_state_cache.cullsize = 2
 
-        directory = options.get('directory', '')
-        if directory:
-            path_parts = directory.split('/')
-            if path_parts and path_parts[0]:
-                self.projects = [path_parts[0]]
-                if len(path_parts) > 1 and path_parts[1]:
-                    if Language.objects.filter(code=path_parts[1]).count():
-                        self.languages = [path_parts[1]]
-                        if len(path_parts) > 2:
-                            self.path = '/'.join(path_parts[2:])
-                    else:
-                        self.path = '/'.join(path_parts[1:])
-        else:
-            self.projects = options.get('projects', [])
-            self.languages = options.get('languages', [])
-            self.path = options.get('path', '')
+        self.projects = options.get('projects', [])
+        self.languages = options.get('languages', [])
 
         # info start
         start = datetime.datetime.now()
@@ -156,7 +130,7 @@ class PootleCommand(NoArgsCommand):
                 tp_query = tp_query.filter(language__code__in=self.languages)
 
             for tp in tp_query.iterator():
-                self.do_translation_project(tp, self.path, **options)
+                self.do_translation_project(tp, **options)
 
 
 class NoArgsCommandMixin(NoArgsCommand):
