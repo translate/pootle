@@ -245,6 +245,7 @@ will not detect changes in the file system on its own.
 
 It also discovers new units, files and translation projects that were
 added on disk:
+
 - Projects that exist is the DB but ceased to exist on disk will
   be **disabled** (not deleted). If a project is recovered on disk it can be
   enabled via admin UI only.
