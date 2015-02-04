@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2014 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -471,8 +471,6 @@ class CachedTreeItem(TreeItem):
         else:
             logger.warning('Cache for %s object cannot be updated.' % self)
             self.unregister_all_dirty()
-
-
 
     def update_parent_cache(self):
         """Update dirty cached stats for a all parents of the current TreeItem"""
