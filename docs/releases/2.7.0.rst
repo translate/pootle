@@ -205,6 +205,9 @@ Command changes
   commands.
 - Added command and store action logging.
 - Added ``test_checks`` management command.
+- Removed ``--directory`` and ``--path-prefix`` parameters from management
+  commands. ``--project`` and ``--language`` should be used instead to
+  reduce the scope of commands.
 - New management commands: ``revision``, ``refresh_scores``.
 
 
