@@ -208,6 +208,8 @@ Command changes
 - Removed ``--directory`` and ``--path-prefix`` parameters from management
   commands. ``--project`` and ``--language`` should be used instead to
   reduce the scope of commands.
+- Removed the ``--modified-since`` flag. Optimizations will automatically
+  be done based on the latest sync revision.
 - New management commands: ``revision``, ``refresh_scores``.
 
 
