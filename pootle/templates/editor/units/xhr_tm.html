@@ -9,7 +9,9 @@
           dir="<%= store.source_dir %>"><%= PTL.editor.doDiff(unit.source[0], sugg.source) %></div>
         <div class="suggestion-translation" lang="<%= store.target_lang %>"
           dir="<%= store.target_dir %>"><%= PTL.utils.fancyHl(sugg.target) %></div>
+        <% if (sugg.project) { %>
         <div class="tm-context"><%= interpolate(gettext('Translated by %(fullname)s in &ldquo;<span title="%(path)s">%(project)s</span>&rdquo; project'), {fullname: sugg.fullname, path: sugg.path, project: sugg.project}, true) %></div>
+        <% } %>
       </div>
     </div>
   </div>
