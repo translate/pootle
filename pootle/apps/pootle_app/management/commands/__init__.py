@@ -21,7 +21,6 @@
 
 import datetime
 import logging
-import sys
 
 from optparse import make_option
 
@@ -142,43 +141,6 @@ class NoArgsCommandMixin(NoArgsCommand):
 
     def handle_noargs(self, **options):
         pass
-
-
-class ModifiedSinceMixin(object):
-    option_modified_since = (
-        make_option('--modified-since', action='store', dest='modified_since',
-                type=int,
-                help="Only process translations newer than CHANGE_ID "
-                     "(as given by latest_change_id)"),
-        )
-
-    def __init__(self, *args, **kwargs):
-        super(ModifiedSinceMixin, self).__init__(*args, **kwargs)
-        self.__class__.option_list += self.__class__.option_modified_since
-
-    def handle_noargs(self, **options):
-        change_id = options.get('modified_since', None)
-
-        if change_id is None or change_id == 0:
-            options.pop('modified_since')
-            if change_id == 0:
-                logging.info(u"Change ID is zero, no modified-since filtering.")
-        elif change_id < 0:
-            logging.error(u"Change IDs must be positive integers.")
-            sys.exit(1)
-        else:
-            from pootle_statistics.models import Submission
-            try:
-                latest = Submission.objects.values_list('id', flat=True) \
-                                           .select_related('').latest()
-            except Submission.DoesNotExist:
-                latest = 0
-            if change_id > latest:
-                logging.warning(u"The given change ID is higher than the "
-                                u"latest known change.\nAborting.")
-                sys.exit(1)
-
-        super(ModifiedSinceMixin, self).handle_noargs(**options)
 
 
 class BaseRunCommand(BaseCommand):
