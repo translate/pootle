@@ -30,7 +30,7 @@ from django.utils import timezone
 User = get_user_model()
 
 
-def _update_translation(store, item, new_values):
+def _update_translation(store, item, new_values, sync=True):
     unit = store.getitem(item)
 
     if 'target' in new_values:
@@ -45,7 +45,9 @@ def _update_translation(store, item, new_values):
     unit.submitted_on = timezone.now()
     unit.submitted_by = User.objects.get_system_user()
     unit.save()
-    store.sync()
+
+    if sync:
+        store.sync()
 
     return store.getitem(item)
 
