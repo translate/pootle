@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -27,7 +27,7 @@ from optparse import make_option
 from django.core.management.base import NoArgsCommand
 from django.db.models import Max
 
-from pootle_app.models import Revision
+from pootle.core.models import Revision
 from pootle_store.models import Store, Unit
 
 from . import BaseRunCommand
@@ -43,7 +43,7 @@ class Command(NoArgsCommand):
     )
 
     def handle_noargs(self, **options):
-        last_known_revision = Revision.objects.last()
+        last_known_revision = Revision.get()
 
         if options['after_revision'] is not None:
             after_revision = int(options['after_revision'])

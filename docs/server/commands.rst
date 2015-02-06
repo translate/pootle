@@ -307,6 +307,11 @@ incremented with every translation action made from the browser. Zero
 length units that have been auto-translated also increment the unit
 revision.
 
+If for some external reason the revision counter was removed or got
+corrupted, passing the ``--restore`` flag to the command will restore the
+counter's value based on the revision data available on the relational DB
+backend. You shouldn't have the need to ever run this, though.
+
 
 .. _commands#changed_languages:
 

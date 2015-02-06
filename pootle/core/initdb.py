@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2013 Zuza Software Foundation
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -24,7 +24,8 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_noop as _
 
-from pootle_app.models import Directory, Revision
+from pootle.core.models import Revision
+from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
 from pootle_project.models import Project
@@ -49,7 +50,7 @@ def initdb():
 
 
 def create_revision():
-    Revision.objects.get_or_create(id=1)
+    Revision.initialize()
 
 
 def create_essential_users():

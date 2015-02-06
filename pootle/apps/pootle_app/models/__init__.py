@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008 Zuza Software Foundation
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -22,7 +22,6 @@
 
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
-from pootle_app.models.revision import Revision
 
 
-__all__ = ["Directory", "PermissionSet", "Revision"]
+__all__ = ["Directory", "PermissionSet"]

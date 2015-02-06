@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2008-2012 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -42,7 +42,6 @@ from django.utils.translation import ugettext_lazy as _
 from translate.filters.decorators import Category
 from translate.storage import base
 
-from pootle_app.models import Revision
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
                              UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -50,6 +49,7 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
                              action_log, store_log, log)
 from pootle.core.mixins import CachedMethods, CachedTreeItem
+from pootle.core.models import Revision
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.tmserver import (update as update_tmserver,
                                   search as get_tmsuggestions)
@@ -362,6 +362,13 @@ class Unit(models.Model, base.TranslationUnit):
         self.target_f = value
         self._target_updated = True
 
+    ######################### Class & static methods ##########################
+
+    @classmethod
+    def max_revision(cls):
+        """Returns the max revision number across all units."""
+        return max_column(cls.objects.all(), 'revision', 0)
+
     ############################ Methods ######################################
 
     def __unicode__(self):
@@ -465,7 +472,7 @@ class Unit(models.Model, base.TranslationUnit):
         if ((not self._from_update_stores or self._auto_translated) and
             (self._target_updated or self._state_updated
              or self._comment_updated)):
-            self.revision = Revision.objects.inc()
+            self.revision = Revision.incr()
 
         if self.id and hasattr(self, '_save_action'):
             action_log(user=self._log_user, action=self._save_action,

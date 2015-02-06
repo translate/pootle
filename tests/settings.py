@@ -15,7 +15,7 @@ PODIRECTORY = os.path.join(ROOT_DIR, 'tests', 'data', 'po')
 # Dummy caching
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'pootle-tests'
     }
 }

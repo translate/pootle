@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2012 Zuza Software Foundation
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -22,13 +22,24 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
+from optparse import make_option
+
 from django.core.management.base import NoArgsCommand
-from pootle_app.models import Revision
+
+from pootle.core.models import Revision
 
 
 class Command(NoArgsCommand):
+    option_list = NoArgsCommand.option_list + (
+        make_option('--restore', action='store_true', default=False, dest='restore',
+                    help='Restore the current revision number from the DB.'),
+    )
 
     help = "Print the number of the current revision."
 
     def handle_noargs(self, **options):
-        self.stdout.write('%s' % Revision.objects.last())
+        if options.get('restore'):
+            from pootle_store.models import Unit
+            Revision.set(Unit.max_revision())
+
+        self.stdout.write('%s' % Revision.get())

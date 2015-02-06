@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -76,14 +76,14 @@ def po_directory(request):
 
 
 @pytest.fixture
-def af_tutorial_po(settings, afrikaans_tutorial, revision, system):
+def af_tutorial_po(settings, afrikaans_tutorial, system):
     """Require the /af/tutorial/tutorial.po store."""
     po_directory = settings.PODIRECTORY
     return _require_store(afrikaans_tutorial, po_directory, 'tutorial.po')
 
 
 @pytest.fixture
-def af_tutorial_subdir_po(settings, afrikaans_tutorial, revision, system):
+def af_tutorial_subdir_po(settings, afrikaans_tutorial, system):
     """Require the /af/tutorial/subdir/tutorial.po store."""
     po_directory = settings.PODIRECTORY
     return _require_store(afrikaans_tutorial, po_directory, 'subdir/tutorial.po')

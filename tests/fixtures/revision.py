@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -21,8 +21,8 @@
 import pytest
 
 
-@pytest.fixture
-def revision(db):
-    """Require the revision object."""
-    from pootle_app.models import Revision
-    return Revision.objects.create()
+@pytest.fixture(autouse=True)
+def revision():
+    """Sets up the revision counter for each test call."""
+    from pootle.core.models import Revision
+    Revision.initialize(force=True)
