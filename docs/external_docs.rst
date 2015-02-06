@@ -31,3 +31,5 @@ Pootle server for one of the many projects that use Pootle.
 - http://wiki.list.org/display/DEV/Pootle+primer (mailman project)
 
 - http://wiki.squid-cache.org/Translations/Basics (Squid project)
+
+- http://pe.sugarlabs.org/ir/Manual%20de%20Traducci%C3%B3n%20de%20Sugar (Spanish, Español)
