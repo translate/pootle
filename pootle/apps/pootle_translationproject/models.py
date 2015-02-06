@@ -88,7 +88,7 @@ def process_translation_project(language, project, **options):
         tp.update_from_disk(overwrite=overwrite, only_newer=not force)
 
 
-def scan_translation_projects(languages=None, projects=None):
+def scan_translation_projects(languages=None, projects=None, **options):
     project_query = Project.objects.all()
 
     if projects is not None:
@@ -100,14 +100,15 @@ def scan_translation_projects(languages=None, projects=None):
             project.disabled = True
             project.save()
         else:
-            lang_query = Language.objects.exclude(
-                id__in=project.translationproject_set.live().values_list('language',
-                                                                         flat=True))
+            lang_query = Language.objects.values_list('code', flat=True)
+
             if languages is not None:
                 lang_query = lang_query.filter(code__in=languages)
 
-            for language in lang_query.iterator():
-                create_or_resurrect_translation_project(language, project)
+            for lang_code in lang_query.iterator():
+                logging.info(u"Add background job for (%s, %s) processing",
+                             lang_code, project)
+                process_translation_project.delay(lang_code, project.code, **options)
 
 
 class TranslationProjectManager(models.Manager):
@@ -498,10 +499,7 @@ def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw or instance.disabled:
         return
 
-    for language in Language.objects.iterator():
-        tp = create_translation_project(language, instance)
-        if tp is not None:
-            tp.update_from_disk()
+    scan_translation_projects(projects=[instance.code])
 
 
 @receiver(post_save, sender=Language)
@@ -509,7 +507,4 @@ def scan_projects(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:
         return
 
-    for project in Project.objects.enabled().iterator():
-        tp = create_translation_project(instance, project)
-        if tp is not None:
-            tp.update_from_disk()
+    scan_translation_projects(languages=[instance.code])
