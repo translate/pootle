@@ -325,14 +325,12 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         sql_query = '''
         SELECT pootle_path
-        FROM (
-            SELECT pootle_path
-            FROM pootle_store_store
-            WHERE pootle_path LIKE %s
+        FROM pootle_store_store
+        WHERE pootle_path LIKE %s
           UNION
-            SELECT pootle_path FROM pootle_app_directory
-            WHERE pootle_path LIKE %s
-        ) AS t;
+        SELECT pootle_path
+        FROM pootle_app_directory
+        WHERE pootle_path LIKE %s;
         '''
         cursor = connection.cursor()
         cursor.execute(sql_query, [resources_path, resources_path])
