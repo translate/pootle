@@ -10,8 +10,6 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-import logging
-
 from optparse import make_option
 
 from pootle_app.management.commands import PootleCommand
@@ -31,26 +29,6 @@ class Command(PootleCommand):
         )
     help = "Update database stores from files."
 
-    def handle_translation_project(self, translation_project, **options):
-        """
-        :return: flag if child stores should be updated
-        """
-        if translation_project.directory_exists():
-            logging.info(u"Scanning for new files in %s", translation_project)
-            translation_project.scan_files()
-            return True
-
-        translation_project.directory.makeobsolete()
-        return False
-
-    def handle_store(self, store, **options):
-        overwrite = options.get('overwrite', False)
-        force = options.get('force', False)
-
-        store.update(overwrite=overwrite, only_newer=not force)
-
     def handle_all(self, **options):
         scan_translation_projects(languages=self.languages,
-                                  projects=self.projects)
-
-        super(Command, self).handle_all(**options)
+                                  projects=self.projects, **options)

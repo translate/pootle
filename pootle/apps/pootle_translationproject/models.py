@@ -91,7 +91,7 @@ def process_translation_project(language, project, **options):
         tp.update(overwrite=overwrite, only_newer=not force)
 
 
-def scan_translation_projects(languages=None, projects=None):
+def scan_translation_projects(languages=None, projects=None, **options):
     project_query = Project.objects.enabled()
 
     if projects is not None:
@@ -103,15 +103,15 @@ def scan_translation_projects(languages=None, projects=None):
             project.disabled = True
             project.save()
         else:
-            lang_query = Language.objects.exclude(
-                    id__in=project.translationproject_set.live() \
-                                  .values_list('language', flat=True)
-                )
+            lang_query = Language.objects.all()
+
             if languages is not None:
                 lang_query = lang_query.filter(code__in=languages)
 
             for language in lang_query.iterator():
-                create_or_resurrect_translation_project(language, project)
+                logging.info(u"Add background job for (%s, %s) processing",
+                             language, project)
+                process_translation_project.delay(language.code, project.code, **options)
 
 
 class TranslationProjectManager(models.Manager):
@@ -315,11 +315,11 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         return self.project.code in Project.accessible_by_user(user)
 
-    def update(self, overwrite=True):
+    def update(self, overwrite=False, only_newer=True):
         """Update all stores to reflect state on disk"""
         stores = self.stores.live().exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
-            store.update(overwrite=overwrite)
+            store.update(overwrite=overwrite, only_newer=only_newer)
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
         """Sync unsaved work on all stores to disk"""
@@ -461,8 +461,7 @@ def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw or instance.disabled:
         return
 
-    for language in Language.objects.iterator():
-        create_translation_project(language, instance)
+    scan_translation_projects(projects=[instance.code])
 
 
 @receiver(post_save, sender=Language)
@@ -470,5 +469,4 @@ def scan_projects(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:
         return
 
-    for project in Project.objects.enabled().iterator():
-        create_translation_project(instance, project)
+    scan_translation_projects(languages=[instance.code])
