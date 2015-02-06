@@ -19,7 +19,9 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.functional import cached_property
 
-from pootle.core.mixins import CachedMethods, CachedTreeItem
+from django_rq import job
+
+from pootle.core.mixins import CachedTreeItem, CachedMethods
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import does_not_exist
@@ -41,28 +43,49 @@ class TranslationProjectNonDBState(object):
         self.termmatchermtime = None
 
 
-def create_or_resurrect_translation_project(language, project):
-    tp = create_translation_project(language, project)
-    if tp is not None:
-        if tp.directory.obsolete:
-            tp.directory.obsolete = False
-            tp.directory.save()
-            logging.info(u"Resurrected %s", tp)
-        else:
-            logging.info(u"Created %s", tp)
-
-
 def create_translation_project(language, project):
     from pootle_app import project_tree
     if project_tree.translation_project_dir_exists(language, project):
         try:
-            translation_project, created = TranslationProject.objects.all() \
-                .get_or_create(language=language, project=project)
-            return translation_project
+            tp, created = TranslationProject.objects \
+                                            .get_or_create(language=language,
+                                                           project=project)
+            if created:
+                logging.info(u"Created %s", tp)
+
+            return tp
         except OSError:
             return None
         except IndexError:
             return None
+
+
+@job('low')
+def process_translation_project(language, project, **options):
+    overwrite = options.get('overwrite', False)
+    force = options.get('force', False)
+    project = Project.objects.get(code=project)
+    language = Language.objects.get(code=language)
+    try:
+        tp = TranslationProject.objects.all() \
+                               .get(language=language, project=project)
+        if does_not_exist(tp.abs_real_path):
+            logging.info(u"Disabling %s", tp)
+            tp.disabled = True
+            tp.save()
+            tp.update_parent_cache()
+        else:
+            if tp.disabled:
+                tp.disabled = False
+                tp.save()
+                logging.info(u"Enabled %s", tp)
+
+    except TranslationProject.DoesNotExist:
+        tp = create_translation_project(language, project)
+
+    if tp is not None:
+        logging.info(u"Scanning for new files in %s", tp)
+        tp.update_from_disk(overwrite=overwrite, only_newer=not force)
 
 
 def scan_translation_projects(languages=None, projects=None):
