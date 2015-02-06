@@ -87,8 +87,8 @@ class PootleCommand(NoArgsCommand):
         TranslationProject._non_db_state_cache.maxsize = 2
         TranslationProject._non_db_state_cache.cullsize = 2
 
-        self.projects = options.get('projects', [])
-        self.languages = options.get('languages', [])
+        self.projects = options.pop('projects', [])
+        self.languages = options.pop('languages', [])
 
         # info start
         start = datetime.datetime.now()
