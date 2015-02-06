@@ -339,8 +339,8 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         results = cursor.fetchall()
 
         # Calculate TP-relative paths and sort them
-        resources = list({to_tp_relative_path(result[0]) for result in results})
-        resources.sort(key=get_path_sortkey)
+        resources = sorted({to_tp_relative_path(result[0]) for result in results},
+                           key=get_path_sortkey)
 
         cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
 
