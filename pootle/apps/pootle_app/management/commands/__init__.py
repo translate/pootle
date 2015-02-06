@@ -132,17 +132,6 @@ class PootleCommand(NoArgsCommand):
                 self.do_translation_project(tp, **options)
 
 
-class NoArgsCommandMixin(NoArgsCommand):
-    """Intermediary class to allow multiple inheritance from
-    :class:`NoArgsCommand` and mixins that implement :func:`handle_noargs`.
-    Classes derived from this will provide the implementation for
-    :func:`handle_noargs`.
-    """
-
-    def handle_noargs(self, **options):
-        pass
-
-
 class BaseRunCommand(BaseCommand):
     """Base class to build new server runners.
 
