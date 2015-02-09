@@ -60,3 +60,30 @@ def export(request):
                 zf.writestr(prefix + store.pootle_path, store.serialize())
 
         return download(f.getvalue(), "%s.zip" % (prefix), "application/zip")
+
+
+def _import_file(file):
+    pofile = po.pofile(file.read())
+    pootle_path = pofile.parseheader().get("X-Pootle-Path")
+    if not pootle_path:
+        raise ValueError("File %r missing X-Pootle-Path header\n" % (file.name))
+
+    try:
+        store, created = Store.objects.get_or_create(pootle_path=pootle_path)
+    except Exception as e:
+        raise ValueError("Could not create %r. Missing Project/Language? (%s)" % (file.name, e))
+
+    store.update(overwrite=True, store=pofile)
+
+
+def import_(request):
+    for file in request.FILES.values():
+        if is_zipfile(file):
+            with ZipFile(filename, "r") as zf:
+                for path in zf.namelist():
+                    _import_file(f)
+        else:
+            with open(file) as f:
+                _import_file(f)
+
+    return HttpResponse("OK")
