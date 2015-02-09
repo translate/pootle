@@ -27,8 +27,9 @@ from pootle_app.models.permissions import check_permission
 from pootle_misc.checks import check_names, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_translation_states
-from pootle_store.models import Unit
+from pootle_store.models import Store, Unit
 from pootle_store.views import get_step_query
+from virtualfolder.models import VirtualFolder
 
 from .url_helpers import get_path_parts, get_previous_url
 
@@ -154,9 +155,17 @@ def get_overview_context(request):
     resource_obj = request.resource_obj
     resource_path = getattr(request, 'resource_path', '')
 
-    url_action_continue = resource_obj.get_translate_url(state='incomplete')
-    url_action_fixcritical = resource_obj.get_critical_url()
-    url_action_review = resource_obj.get_translate_url(state='suggestions')
+    filters = {}
+
+    if (not isinstance(resource_obj, Store) and
+        VirtualFolder.get_matching_for(request.pootle_path).count()):
+        filters['sort'] = 'priority'
+
+    url_action_continue = resource_obj.get_translate_url(state='incomplete',
+                                                         **filters)
+    url_action_fixcritical = resource_obj.get_critical_url(**filters)
+    url_action_review = resource_obj.get_translate_url(state='suggestions',
+                                                       **filters)
     url_action_view_all = resource_obj.get_translate_url(state='all')
 
     return {

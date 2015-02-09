@@ -224,9 +224,9 @@ class TreeItem(object):
 
         return None
 
-    def get_critical_url(self):
+    def get_critical_url(self, **kwargs):
         critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
-        return self.get_translate_url(check=critical)
+        return self.get_translate_url(check=critical, **kwargs)
 
     def get_stats(self, include_children=True):
         """get stats for self and - optionally - for children"""
