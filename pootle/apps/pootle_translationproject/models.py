@@ -89,7 +89,12 @@ def process_translation_project(language, project, **options):
 
 
 def scan_translation_projects(languages=None, projects=None, **options):
-    project_query = Project.objects.all()
+    scan_disabled_projects = options.pop('scan_disabled_projects', False)
+
+    if scan_disabled_projects:
+        project_query = Project.objects.all()
+    else:
+        project_query = Project.objects.enabled()
 
     if projects is not None:
         project_query = project_query.filter(code__in=projects)
@@ -496,10 +501,10 @@ class TranslationProject(models.Model, CachedTreeItem):
 
 @receiver(post_save, sender=Project)
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
-    if not created or raw or instance.disabled:
+    if not created or raw:
         return
 
-    scan_translation_projects(projects=[instance.code])
+    scan_translation_projects(projects=[instance.code], scan_disabled_projects=instance.disabled)
 
 
 @receiver(post_save, sender=Language)
