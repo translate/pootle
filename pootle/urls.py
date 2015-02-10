@@ -20,7 +20,6 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('allauth.urls')),
 
     # URLs added by Evernote
-    url(r'^accounts/evernote/', include('evernote_auth.urls')),
     url(r'^admin/reports/', include('evernote_reports.urls')),
     url(r'', include('evernote_reports.profile_urls')),
 )

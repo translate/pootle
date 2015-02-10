@@ -136,46 +136,6 @@ Configuration settings for applications used by Pootle.
   templates as ``{{ custom.<key> }}``.
 
 
-.. setting:: EN_SSO_BASE
-
-``EN_SSO_BASE```
-  Default: ''
-
-  Base URL which logs the user into Evernote.
-
-
-.. setting:: EN_SSO_PATH
-
-``EN_SSO_PATH```
-  Default: ''
-
-  Path for logging the user into Evernote.
-
-
-.. setting:: EN_SSO_SERVER_ALIAS
-
-``EN_SSO_SERVER_ALIAS```
-  Default: ''
-
-  Alias for the server to redirect the authenticated request.
-
-
-.. setting:: EN_SSO_SECRET_KEY
-
-``EN_SSO_SECRET_KEY```
-  Default: ''
-
-  Key to decrypt the authentication cookie.
-
-
-.. setting:: EN_SSO_COOKIE
-
-``EN_SSO_COOKIE```
-  Default: ''
-
-  Name of the authentication cookie.
-
-
 .. setting:: FUZZY_MATCH_MAX_LENGTH
 
 ``FUZZY_MATCH_MAX_LENGTH``

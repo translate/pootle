@@ -262,19 +262,6 @@ CONTRIBUTORS_EXCLUDED_PROJECT_NAMES = (
 #        "Testing, please don't work here",
 )
 
-# Evernote apps params
-
-# Base URL which logins user to Evernote
-EN_SSO_BASE = ''
-# SSO path to log the user in
-EN_SSO_PATH = ''
-# Alias for server to redirect authenticated request
-EN_SSO_SERVER_ALIAS = ''
-# Key to decrypt Evernote auth cookie
-EN_SSO_SECRET_KEY = ''
-# Cookie name
-EN_SSO_COOKIE = ''
-
 # path to word count fucntion
 WORDCOUNT_FUNC = 'translate.storage.statsdb.wordcount'
 
