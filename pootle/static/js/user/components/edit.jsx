@@ -102,6 +102,7 @@ var UserProfileEdit = React.createClass({
         </div>
       {this.state.editing &&
         <Modal
+          className="user-edit"
           onClose={this.handleClose}
           title={gettext('My Public Profile')}>
           <div id="user-edit">

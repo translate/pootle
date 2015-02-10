@@ -166,6 +166,11 @@
 
 /* User profile editing form */
 
+.lightbox-body.user-edit
+{
+  font-size: 1.2em;
+}
+
 #user-edit
 {
     width: 500px;
