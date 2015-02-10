@@ -60,7 +60,7 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ('id', 'code', 'fullname', 'checkstyle', 'localfiletype',
-                  'treestyle', 'source_language',  'report_email',
+                  'treestyle', 'source_language', 'report_email',
                   'screenshot_search_prefix', 'disabled',)
 
     def __init__(self, *args, **kwargs):
