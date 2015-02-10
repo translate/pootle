@@ -48,7 +48,7 @@ clean:
 test: clean assets
 	virtualenv ${TEST_ENV_NAME} && \
 	source ${TEST_ENV_NAME}/bin/activate && \
-	pip install --allow-all-external --allow-unverified pyDes -r requirements/tests.txt && \
+	pip install -r requirements/tests.txt && \
 	python setup.py test
 
 pot:

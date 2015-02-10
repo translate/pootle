@@ -19,12 +19,6 @@ class SubmissionFactory(factory.django.DjangoModelFactory):
         model = 'pootle_statistics.Submission'
 
 
-class EvernoteAccountFactory(factory.django.DjangoModelFactory):
-
-    class Meta:
-        model = 'evernote_auth.EvernoteAccount'
-
-
 class UserFactory(factory.django.DjangoModelFactory):
     username = factory.Sequence(lambda n: 'foo%s' % n)
     email = factory.LazyAttribute(lambda o: '%s@example.org' % o.username)
