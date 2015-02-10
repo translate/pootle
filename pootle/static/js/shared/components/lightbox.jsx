@@ -1,10 +1,12 @@
 'use strict';
 
-var React = require('react');
+var React = require('react/addons');
 
 var LayersMixin = require('mixins/layers');
 
 require('./lightbox.css');
+
+var cx = React.addons.classSet;
 
 
 var classNames = {
@@ -89,7 +91,7 @@ var ModalContainer = React.createClass({
       <div className="lightbox-bg">
         <div className="lightbox-container"
              onKeyDown={this.handleKeyDown}>
-          <div className="lightbox-body"
+          <div className={cx('lightbox-body', this.props.className)}
                tabIndex="-1">
             {this.props.children}
           </div>
