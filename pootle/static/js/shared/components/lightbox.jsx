@@ -2,17 +2,18 @@
 
 var React = require('react');
 
+var LayersMixin = require('mixins/layers');
+
 require('./lightbox.css');
 
+
+var classNames = {
+  lock: 'lightbox-lock',
+};
 
 var keys = {
   ESC: 27
 };
-
-// Global state to keep track of the created lightbox components
-// and the previously-focused elements
-var boxes = [];
-var focusedElements = [];
 
 
 /* Reusable micro components */
@@ -45,12 +46,68 @@ var ModalFooter = React.createClass({
 
 /* Actual components */
 
+var ModalContainer = React.createClass({
+
+  _previousFocus: null,
+  _ownsLock: false,
+
+
+  /* Lifecycle */
+
+  componentWillMount: function () {
+    this._previousFocus = document.activeElement;
+  },
+
+  componentDidMount: function () {
+    if (!document.body.classList.contains(classNames.lock)) {
+      this._ownsLock = true;
+      document.body.classList.add(classNames.lock);
+    }
+  },
+
+  componentWillUnmount: function () {
+    if (this._ownsLock) {
+      document.body.classList.remove(classNames.lock);
+    }
+    this._previousFocus.focus();
+  },
+
+
+  /* Handlers */
+
+  handleKeyDown: function (e) {
+    if (e.keyCode === keys.ESC) {
+      this.props.onClose();
+    }
+  },
+
+
+  /* Layout */
+
+  render: function () {
+    return (
+      <div className="lightbox-bg">
+        <div className="lightbox-container"
+             onKeyDown={this.handleKeyDown}>
+          <div className="lightbox-body"
+               tabIndex="-1">
+            {this.props.children}
+          </div>
+        </div>
+      </div>
+    );
+  },
+
+});
+
+
 var Modal = React.createClass({
+  mixins: [LayersMixin],
 
   propTypes: {
     title: React.PropTypes.string,
     showClose: React.PropTypes.bool,
-    handleClose: React.PropTypes.func.isRequired,
+    onClose: React.PropTypes.func.isRequired,
   },
 
 
@@ -63,58 +120,13 @@ var Modal = React.createClass({
     };
   },
 
-  componentWillMount: function () {
-    focusedElements.push(document.activeElement);
-  },
-
-  componentDidMount: function () {
-    if (boxes.length === 0) {
-      window.addEventListener('keyup', this.handleWindowKeyUp, false);
-      window.addEventListener('focus', this.handleWindowFocus, true);
-      document.body.classList.add('lightbox-lock');
-    }
-
-    boxes.push(this);
-  },
-
-  componentWillUnmount: function () {
-    var box = boxes.pop();
-
-    if (boxes.length === 0) {
-      window.removeEventListener('keyup', box.handleWindowKeyUp, false);
-      window.removeEventListener('focus', box.handleWindowFocus, true);
-      document.body.classList.remove('lightbox-lock');
-    }
-
-    // `setTimeout()` is necessary to slightly delay the call to
-    // `.focus()` when components are about to be unmounted
-    setTimeout(function () {
-      focusedElements.pop().focus();
-    }, 0);
-  },
-
 
   /* Handlers */
-
-  handleWindowKeyUp: function (e) {
-    if (e.keyCode === keys.ESC) {
-      boxes[boxes.length-1].handleClose();
-    }
-  },
-
-  handleWindowFocus: function (e) {
-    var box = boxes[boxes.length-1].refs.body.getDOMNode();
-
-    if (e.target !== window && !box.contains(e.target)) {
-      e.stopPropagation();
-      box.focus();
-    }
-  },
 
   handleClose: function () {
     // Parent components need to take care of rendering the component
     // and unmounting it according to their needs
-    this.props.handleClose();
+    this.props.onClose();
   },
 
 
@@ -141,27 +153,24 @@ var Modal = React.createClass({
     return null;
   },
 
-  render: function () {
+  renderLayer: function () {
     var header = this.props.header ? this.props.header(this.props)
                                    : this.renderHeader(this.props);
     var footer = this.props.footer ? this.props.footer(this.props)
                                    : this.renderFooter(this.props);
-
     return (
-      <div className="lightbox-bg">
-        <div className="lightbox-container">
-          <div className="lightbox-body"
-               ref="body"
-               tabIndex="-1">
-            {header}
-            <div className="lightbox-content">
-              {this.props.children}
-            </div>
-            {footer}
-          </div>
+      <ModalContainer {...this.props}>
+        {header}
+        <div className="lightbox-content">
+          {this.props.children}
         </div>
-      </div>
+        {footer}
+      </ModalContainer>
     );
+  },
+
+  render: function () {
+    return null;
   },
 
 });
@@ -209,7 +218,7 @@ var Dialog = React.createClass({
     return (
       <Modal {...this.props} footer={this.renderFooter} />
     );
-  }
+  },
 
 });
 

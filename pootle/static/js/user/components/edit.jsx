@@ -6,6 +6,7 @@ var _ = require('underscore');
 
 var Dialog = require('components/lightbox').Dialog;
 var Modal = require('components/lightbox').Modal;
+var ModalContainer = require('components/lightbox').ModalContainer;
 var UserProfileForm = require('../forms').UserProfileForm;
 
 
@@ -101,7 +102,7 @@ var UserProfileEdit = React.createClass({
         </div>
       {this.state.editing &&
         <Modal
-          handleClose={this.handleClose}
+          onClose={this.handleClose}
           title={gettext('My Public Profile')}>
           <div id="user-edit">
             <UserProfileForm model={this.props.user}
@@ -110,12 +111,13 @@ var UserProfileEdit = React.createClass({
           </div>
         </Modal>}
       {this.state.confirmClose &&
-        <Dialog handleOk={this.handleDlgOk}
-                handleCancel={this.handleDlgCancel}
-                handleClose={this.handleDlgCancel}
-                title={gettext('Discard changes.')}
-                okLabel={gettext('Yes')}
-                cancelLabel={gettext('No')}>
+        <Dialog
+          handleOk={this.handleDlgOk}
+          handleCancel={this.handleDlgCancel}
+          onClose={this.handleDlgCancel}
+          title={gettext('Discard changes.')}
+          okLabel={gettext('Yes')}
+          cancelLabel={gettext('No')}>
           {gettext('There are unsaved changes. Do you want to discard them?')}
         </Dialog>}
       </div>
