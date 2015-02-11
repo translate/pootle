@@ -62,17 +62,18 @@ DATABASES = {
 
 # Cache Backend settings
 
-# By default we use Django's local-memory cache which is only suitable
-# for small deployments.
-#
-# If you are going to deploy a real server memcached is preferred. For more
-# information, check
+# For more information, check
 # http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
 #CACHES = {
 #    'default': {
-#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#        'LOCATION': '127.0.0.1:11211',
-#    }
+#        'BACKEND': 'redis_cache.RedisCache',
+#        'LOCATION': 'localhost:6379',
+#    },
+#    'stats': {
+#        'BACKEND': 'redis_cache.RedisCache',
+#        'LOCATION': 'localhost:6379',
+#        'TIMEOUT': None,
+#    },
 #}
 
 # The directory where the Pootle writes logs to
