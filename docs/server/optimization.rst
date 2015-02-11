@@ -28,16 +28,6 @@ Adjust the :setting:`DATABASES` setting accordingly.
   PostgreSQL adapter for Python.
 
 
-Caching
-^^^^^^^
-
-Fast and efficient caching avoids hitting the DB when it's not really needed.
-Adjust the :setting:`CACHES` setting accordingly.
-
-`python-memcached <http://www.tummy.com/software/python-memcached/>`_ Efficient
-caching.
-
-
 Indexing Engines
 ^^^^^^^^^^^^^^^^
 
@@ -110,8 +100,6 @@ some tips for performance tuning on your Pootle installation.
   <optimization#mysql>` instead of the default SQLite.  You can :doc:`migrate
   an existing installation <database_migration>` if you already have data you
   don't want to lose.
-
-- Install :doc:`memcached <cache>` and enable it in the settings file.
 
 - Install the latest recommended version of all dependencies. Django and the
   Translate Toolkit might affect performance.  Later versions of Pootle should
