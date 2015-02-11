@@ -175,6 +175,8 @@ Sysadmins
 
 - Direct upgrade is now only possible from 2.6.0.  Thus to upgrade from older
   releases first upgrade to 2.6.0
+- Redis is now required for all caching, memcached and other alternatives will
+  not work.
 - Registration and authentication is now handled by `django-allauth
   <https://readthedocs.org/projects/django-allauth/>`_.  This gives Pootle
   implicit support for OpenID, OAuth, OAuth2 and Persona sign-in protocols.
@@ -230,8 +232,6 @@ Internal changes
 - Translation projects now have a ``creation_time`` field.
 - Dropped code for several external apps from Pootle codebase. Also upgraded to
   newer versions of those apps.
-- The default caching in database has been replaced by local-memory caching.
-  Using memcached is still highly recommended.
 - Fixed and avoided any inconsistencies in the unit's submitter information.
 - URLs have been unified and all follow the same scheme. URLs ending in *.html*
   have been removed altogether. ``reverse()`` and ``{% url %}`` are used almost
