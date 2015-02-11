@@ -48,7 +48,7 @@ from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 
-CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'))
+CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'), ('CNY', 'CNY'), ('JPY', 'JPY'))
 
 
 def _humanize_score(score):
