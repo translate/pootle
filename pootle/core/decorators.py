@@ -24,6 +24,7 @@ from functools import wraps
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
+from django.db import connection
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _
@@ -208,6 +209,9 @@ def set_project_resource(request, path_obj, dir_path, filename):
     disabled_tps = list(disabled_tps)
     disabled_tps.append('/templates/')
     disabled_tps_regex = '^%s' % u'|'.join(disabled_tps)
+    sql_not_regex = 'NOT REGEXP'
+    if connection.vendor == 'postgresql':
+        sql_not_regex = '!~'
 
     if filename:
         query_pootle_path = query_pootle_path + filename
@@ -217,14 +221,14 @@ def set_project_resource(request, path_obj, dir_path, filename):
         resources = Store.objects.extra(
             where=[
                 'pootle_store_store.pootle_path LIKE %s',
-                'pootle_store_store.pootle_path NOT REGEXP %s',
+                'pootle_store_store.pootle_path ' + sql_not_regex + ' %s',
             ], params=[query_pootle_path, disabled_tps_regex]
         ).select_related('translation_project__language')
     else:
         resources = Directory.objects.extra(
             where=[
                 'pootle_app_directory.pootle_path LIKE %s',
-                'pootle_app_directory.pootle_path NOT REGEXP %s',
+                'pootle_app_directory.pootle_path ' + sql_not_regex + ' %s',
             ], params=[query_pootle_path, disabled_tps_regex]
         ).select_related('parent')
 
