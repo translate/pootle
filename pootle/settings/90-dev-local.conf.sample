@@ -63,15 +63,20 @@ DATABASES = {
 
 #
 # Cache Backend settings
-#
-# Use local memory caching for development
-# https://docs.djangoproject.com/en/dev/topics/cache/#local-memory-caching
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'pootlecache',
-    }
-}
+
+# For more information, check
+# http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
+#CACHES = {
+#    'default': {
+#        'BACKEND': 'redis_cache.RedisCache',
+#        'LOCATION': 'localhost:6379',
+#    },
+#    'stats': {
+#        'BACKEND': 'redis_cache.RedisCache',
+#        'LOCATION': 'localhost:6379',
+#        'TIMEOUT': None,
+#    },
+#}
 
 
 # Logging
