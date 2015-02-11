@@ -126,8 +126,6 @@ def test_db():
     """Test that we are not using sqlite3 as the django database."""
     if getattr(settings, "DATABASES", None):
         return "sqlite" not in settings.DATABASES['default']['ENGINE']
-    else:
-        return getattr(settings, "DATABASE_ENGINE", None) != 'sqlite3'
 
 
 def test_cache():
