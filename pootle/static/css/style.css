@@ -879,17 +879,6 @@ ul.errorlist
  * NEWS FORM
  */
 
-.news-feed,
-.news-feed-with-form
-{
-    margin-top: 2em;
-}
-
-.news-feed-with-form
-{
-    margin-left: 38em;
-}
-
 .news
 {
     margin: 2em 0;
@@ -1069,16 +1058,6 @@ div#settings
 /*
  * SUMMARIES
  */
-
-div.latestnews ul
-{
-    margin: 0 1em;
-}
-
-div.latestnews li
-{
-    list-style-type: square;
-}
 
 tr.item.empty
 {
