@@ -101,14 +101,19 @@ def overview(request, translation_project, dir_path, filename=None):
 
     ctx = get_overview_context(request)
 
-    if settings.POOTLE_ENABLE_OFFLINE and request.user.is_authenticated():
+    # TODO improve plugin logic
+    if "import_export" in settings.INSTALLED_APPS and request.user.is_authenticated():
+        from import_export.views import handle_upload_form
         from pootle_app.models.permissions import check_permission
+
+        ctx.update(handle_upload_form(request))
 
         if (check_permission("translate", request) or
             check_permission("suggest", request)):
 
             ctx.update({
-                'display_download': True,
+                "display_download": True,
+                "display_sidebar": True,
             })
 
     ctx.update({
@@ -121,6 +126,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
         'announcement': announcement,
         'announcement_displayed': display_announcement,
+        'display_sidebar': True,
     })
 
     if store is None:

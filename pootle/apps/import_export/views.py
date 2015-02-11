@@ -19,11 +19,12 @@
 
 import os
 from io import BytesIO
-from zipfile import ZipFile
+from zipfile import ZipFile, is_zipfile
 from django.core.servers.basehttp import FileWrapper
 from django.http import Http404, HttpResponse
-from pootle_store.models import Store
 from translate.storage import po
+from pootle_store.models import Store
+from .forms import UploadForm
 
 
 def download(contents, name, content_type):
@@ -69,6 +70,8 @@ def _import_file(file):
     if not pootle_path:
         raise ValueError("File %r missing X-Pootle-Path header\n" % (file.name))
 
+    # TODO: assert pofile.mtime >= whatever_is_in_the_db.mtime
+
     try:
         store, created = Store.objects.get_or_create(pootle_path=pootle_path)
     except Exception as e:
@@ -77,14 +80,33 @@ def _import_file(file):
     store.update(overwrite=True, store=pofile)
 
 
-def import_(request):
-    for file in request.FILES.values():
-        if is_zipfile(file):
-            with ZipFile(filename, "r") as zf:
-                for path in zf.namelist():
-                    _import_file(f)
-        else:
-            with open(file) as f:
-                _import_file(f)
+def handle_upload_form(request):
+    """Process the upload form."""
+    if request.method == "POST" and "file" in request.FILES:
+        upload_form = UploadForm(request.POST, request.FILES)
 
-    return HttpResponse("OK")
+        if upload_form.is_valid():
+            django_file = request.FILES["file"]
+            try:
+                if is_zipfile(django_file):
+                    with ZipFile(django_file, "r") as zf:
+                        for path in zf.namelist():
+                            with zf.open(path, "r") as f:
+                                _import_file(f)
+                else:
+                    # It is necessary to seek to the beginning because
+                    # is_zipfile fucks the file, and thus cannot be read.
+                    django_file.seek(0)
+                    _import_file(django_file)
+            except Exception as e:
+                upload_form.add_error("file", e.message)
+                return {
+                    "upload_form": upload_form,
+                    "display_sidebar": True,
+                }
+
+    # Always return a blank upload form unless the upload form is not valid.
+    return {
+        "upload_form": UploadForm(),
+        "display_sidebar": True,
+    }

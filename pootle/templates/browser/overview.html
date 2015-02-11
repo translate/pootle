@@ -75,7 +75,7 @@
 {% endblock %}
 
 {% block pre_content %}
-{% if announcement or display_download %}
+{% if display_sidebar %}
 <div id="sidebar"
   class="js-sidebar{% if announcement_displayed %} sidebar-open{% endif %}">
 
@@ -84,6 +84,17 @@
     title="{% trans 'Download translation files' %}">
     <i class="icon-download"></i> <span>{% trans 'Download' %}</span>
   </a>
+  {% endif %}
+
+  {% if upload_form %}
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in upload_form %}
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <input type="submit" value="{% trans 'Upload' %}" />
+  </form>
   {% endif %}
 
   {% if announcement %}
