@@ -114,8 +114,8 @@ def test_cache():
 
 def test_cache_server_connection():
     """Test if we can connect to the cache server."""
-    from django.core.cache import cache
-    return cache._cache.servers[0].connect()
+    from django_redis import get_redis_connection
+    return get_redis_connection()
 
 
 ##############################
