@@ -112,20 +112,9 @@ def required_depcheck():
     if status_redis_available:
         status_redis_version, version = depcheck.test_redis_server_version()
         if status_redis_version:
-            status_workers, connection_settings['num'] = \
-                depcheck.test_rq_workers_running()
-            if status_workers:
-                    text = ungettext(
-                            'Redis server accepting connections on %(host)s:%(port)s. '
-                            'With %(num)d RQ worker running.',
-                            'Redis server accepting connections on %(host)s:%(port)s. '
-                            'With %(num)d RQ workers running.',
-                            connection_settings['num'], connection_settings)
-                    state = 'tick'
-            else:
-                text = _('No RQ workers are running.  Redis server is accepting '
-                         'connections on %(host)s:%(port)s.', connection_settings)
-                state = 'error'
+            text = _('Redis server accepting connections on '
+                     '%(host)s:%(port)s.', connection_settings)
+            state = 'tick'
         else:
             trans_vars = {
                 'installed': version,
@@ -136,10 +125,26 @@ def required_depcheck():
                      "requires at least version %(required)s.", trans_vars)
             state = 'error'
     else:
-        text = _('Redis server is not running on %(host)s:%(port)s.',
+        text = _('Redis server is not available on %(host)s:%(port)s.',
                  connection_settings)
         state = 'error'
 
+    required.append({
+        'dependency': 'redis',
+        'state': state,
+        'text': text,
+    })
+
+    status_workers, connection_settings['num'] = depcheck.test_rq_workers_running()
+    if status_workers:
+            text = ungettext(
+                    '%(num)d RQ worker running.',
+                    '%(num)d RQ workers running.',
+                    connection_settings['num'], connection_settings)
+            state = 'tick'
+    else:
+        text = _('No RQ workers are running.')
+        state = 'error'
     required.append({
         'dependency': 'rq',
         'state': state,
