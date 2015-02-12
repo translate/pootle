@@ -153,7 +153,7 @@ def test_cache_server_connection():
 
 
 def test_session():
-    """Test that session backend is set to memcache."""
+    """Test that session backend is set to cache or cache_db."""
     return settings.SESSION_ENGINE.split('.')[-1] in ('cache', 'cached_db')
 
 
