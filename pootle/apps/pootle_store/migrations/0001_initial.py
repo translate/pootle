@@ -7,8 +7,8 @@ from django.utils.timezone import utc
 import translate.storage.base
 import pootle_store.fields
 import pootle.core.mixins.treeitem
+import pootle.core.storage
 from django.conf import settings
-import django.core.files.storage
 
 
 class Migration(migrations.Migration):
