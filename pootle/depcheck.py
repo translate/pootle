@@ -106,6 +106,18 @@ def test_rq_workers_running():
     return len(workers) >= 1 and not workers[0].stopped, len(workers)
 
 
+def test_cache():
+    """Test if cache backend is Redis."""
+    if getattr(settings, "CACHES", None):
+        return "RedisCache" in settings.CACHES['default']['BACKEND']
+
+
+def test_cache_server_connection():
+    """Test if we can connect to the cache server."""
+    from django.core.cache import cache
+    return cache._cache.servers[0].connect()
+
+
 ##############################
 # Test optional dependencies #
 ##############################
@@ -145,18 +157,6 @@ def test_db():
     """Test that we are not using sqlite3 as the django database."""
     if getattr(settings, "DATABASES", None):
         return "sqlite" not in settings.DATABASES['default']['ENGINE']
-
-
-def test_cache():
-    """Test if cache backend is Redis."""
-    if getattr(settings, "CACHES", None):
-        return "RedisCache" in settings.CACHES['default']['BACKEND']
-
-
-def test_cache_server_connection():
-    """Test if we can connect to the cache server."""
-    from django.core.cache import cache
-    return cache._cache.servers[0].connect()
 
 
 def test_session():

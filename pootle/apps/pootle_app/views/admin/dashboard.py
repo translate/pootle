@@ -146,6 +146,28 @@ def required_depcheck():
         'text': text,
     })
 
+    if depcheck.test_cache():
+        if not depcheck.test_cache_server_connection():
+            # Server configured but connection failing
+            required.append({
+                'dependency': 'cache',
+                'state': 'error',
+                'text': _("Pootle is configured to use Redis as a caching "
+                          "backend, but can't connect to the cache.")
+            })
+        else:
+            required.append({
+                'dependency': 'cache',
+                'state': 'tick',
+                'text': _("Caching configured and running.")
+            })
+    else:
+        required.append({
+            'dependency': 'cache',
+            'state': 'error',
+            'text': _("Redis is required as the caching backend.")
+        })
+
 
     return required
 
@@ -207,29 +229,11 @@ def optimal_depcheck():
                      "python-MySQLdb first.")
         optimal.append({'dependency': 'db', 'text': text})
 
-    if depcheck.test_cache():
-        if not depcheck.test_cache_server_connection():
-            # Server configured but connection failing
-            optimal.append({
-                'dependency': 'cache',
-                'text': _("Pootle is configured to use Redis as a "
-                          "caching backend, but can't connect to the "
-                          "Redis server. Caching is currently "
-                          "impossible.")
-            })
-        else:
-            if not depcheck.test_session():
-                text = _("For optimal performance, use django.contrib."
-                         "sessions.backends.cached_db as the session "
-                         "engine.")
-                optimal.append({'dependency': 'session', 'text': text})
-    else:
-        optimal.append({
-            'dependency': 'cache',
-            'text': _("For optimal performance, use Redis as the caching "
-                      "backend.")
-        })
-
+    if not depcheck.test_session():
+        text = _("For optimal performance, use django.contrib."
+                 "sessions.backends.cached_db as the session "
+                 "engine.")
+        optimal.append({'dependency': 'session', 'text': text})
     if not depcheck.test_webserver():
         optimal.append({
             'dependency': 'webserver',
