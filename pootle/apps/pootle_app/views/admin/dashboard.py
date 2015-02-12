@@ -197,29 +197,21 @@ def optimal_depcheck():
         optimal.append({'dependency': 'db', 'text': text})
 
     if depcheck.test_cache():
-        if depcheck.test_memcache():
-            if not depcheck.test_cache_server_connection():
-                # Server configured but connection failing
-                optimal.append({
-                    'dependency': 'cache',
-                    'text': _("Pootle is configured to use Redis as a "
-                              "caching backend, but can't connect to the "
-                              "Redis server. Caching is currently "
-                              "impossible.")
-                })
-            else:
-                if not depcheck.test_session():
-                    text = _("For optimal performance, use django.contrib."
-                             "sessions.backends.cached_db as the session "
-                             "engine.")
-                    optimal.append({'dependency': 'session', 'text': text})
-        else:
+        if not depcheck.test_cache_server_connection():
+            # Server configured but connection failing
             optimal.append({
                 'dependency': 'cache',
-                'text': _("Pootle is configured to use memcached as caching "
-                          "backend, but Python support for memcached is not "
-                          "installed. Caching is currently disabled.")
+                'text': _("Pootle is configured to use Redis as a "
+                          "caching backend, but can't connect to the "
+                          "Redis server. Caching is currently "
+                          "impossible.")
             })
+        else:
+            if not depcheck.test_session():
+                text = _("For optimal performance, use django.contrib."
+                         "sessions.backends.cached_db as the session "
+                         "engine.")
+                optimal.append({'dependency': 'session', 'text': text})
     else:
         optimal.append({
             'dependency': 'cache',

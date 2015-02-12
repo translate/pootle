@@ -134,18 +134,6 @@ def test_cache():
         return "RedisCache" in settings.CACHES['default']['BACKEND']
 
 
-def test_memcache():
-    try:
-        import memcache
-        return True
-    except ImportError:
-        try:
-            import pylibmc
-            return True
-        except ImportError:
-            return False
-
-
 def test_cache_server_connection():
     """Test if we can connect to the cache server."""
     from django.core.cache import cache
