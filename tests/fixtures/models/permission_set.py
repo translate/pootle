@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2014 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -42,7 +42,7 @@ def _require_permission_set(user, directory, positive_permissions=None,
 
 
 @pytest.fixture
-def nobody_ps(db, nobody, root, view, suggest):
+def nobody_ps(nobody, root, view, suggest):
     """Require permission sets at the root for the `nobody` user."""
     return _require_permission_set(nobody, root, [view, suggest])
 
