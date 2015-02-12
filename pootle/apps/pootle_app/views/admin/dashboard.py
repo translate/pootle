@@ -223,7 +223,7 @@ def optimal_depcheck():
     else:
         optimal.append({
             'dependency': 'cache',
-            'text': _("For optimal performance, use memcached as the caching "
+            'text': _("For optimal performance, use Redis as the caching "
                       "backend.")
         })
 

@@ -129,10 +129,9 @@ def test_db():
 
 
 def test_cache():
-    """Test if cache backend is memcached."""
-    #FIXME: maybe we shouldn't complain if cache is set to db or file?
+    """Test if cache backend is Redis."""
     if getattr(settings, "CACHES", None):
-        return "memcache" in settings.CACHES['default']['BACKEND']
+        return "RedisCache" in settings.CACHES['default']['BACKEND']
 
 
 def test_memcache():
