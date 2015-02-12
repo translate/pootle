@@ -22,7 +22,31 @@ var FormValidationMixin = {
     // XXX: should this also check for HTTP 500, 404 etc.?
     var response = JSON.parse(xhr.responseText);
     this.setState({errors: response.errors});
-  }
+  },
+
+
+  /* Layout */
+
+  renderSingleError: function (errorMsg, i) {
+    return <li key={i}>{errorMsg}</li>;
+  },
+
+
+  /* Renders form's global errors. These errors come in a special
+   * `__all__` field */
+  renderAllFormErrors: function () {
+    var errors = this.state.errors;
+
+    if (errors.hasOwnProperty('__all__')) {
+      return (
+        <ul className="errorlist">
+          {errors.__all__.map(this.renderSingleError)}
+        </ul>
+      );
+    }
+
+    return null;
+  },
 
 };
 
