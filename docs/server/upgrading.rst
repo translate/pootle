@@ -123,7 +123,7 @@ To perform the upgrade follow the next steps:
 
     .. code-block:: bash
 
-      (env)$ pip install Pootle
+      (env)$ pip install Pootle==2.6.0
 
 
 * Update Pootle settings to include new useful settings and updating existing
