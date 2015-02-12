@@ -3,9 +3,9 @@
 Caching System
 ==============
 
-Pootle uses a caching system to improve performance. It is an essential part
-of :doc:`optimizing <optimization>` your Pootle installation. It is based on
-|Django's caching system|_, and is used for various things:
+Pootle uses a caching system to improve performance. It is an essential part of
+your Pootle installation. It is based on |Django's caching system|_, and is
+used for various things:
 
 - To serve cached (possibly slightly outdated) versions of most pages to
   anonymous users to reduce their impact on server performance.
@@ -26,19 +26,13 @@ Without a well functioning cache system, Pootle could be slow.
 
 Named Caches
 ------------
-The cache backends are at least configured with a 'default' cache.  If this is
-the only cache that exists then all caching is placed into this cache.  The
-Pootle cache can also be configured to take advantage of certain named caches.
+Pootle is configured with a these named caches:
 
-Current named caches:
-
-- ``'default'`` -- all non specified cache data and all cache data if only one
-  cache is defined.
+- ``'default'`` -- all non specified cache data and all cache data.
 - ``'stats'`` --  all cached data related to overview stats.
 
 In large installations you may want to setup separate caches to improve cache
 performance.  You can then setup caching parameters for each cache separately.
-In most cases though you will simply use a single 'default' cache.
 
 
 .. _cache#cache_backends:
@@ -47,8 +41,10 @@ Cache Backends
 --------------
 
 Django supports |multiple cache backends|_ (methods of storing cache data).
-You can specify which backend to use by overriding the value of
-:setting:`CACHES` in your configuration file.
+However, Redis is the only cache backend supported by Pootle.  We use some
+custom features of Redis so cannot support other backends. You can customise
+the Redis cache settings by overriding the value of :setting:`CACHES` in your
+configuration file, an example exists in file:`90-local.conf.example`.
 
 
 .. _Django's caching system: http://docs.djangoproject.com/en/dev/topics/cache/
