@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.conf import settings
 from django.http import JsonResponse
 
 from allauth.account.adapter import DefaultAccountAdapter
@@ -34,3 +35,11 @@ class PootleAccountAdapter(DefaultAccountAdapter):
                 data["errors"] = form._errors
 
         return JsonResponse(data, status=status)
+
+    def is_open_for_signup(self, request):
+        """Controls whether signups are enabled on the site.
+
+        This can be changed by setting `POOTLE_SIGNUP_ENABLED = False` in
+        the settings. Defaults to `True`.
+        """
+        return getattr(settings, 'POOTLE_SIGNUP_ENABLED', True)

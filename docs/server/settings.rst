@@ -132,6 +132,17 @@ Site-specific settings.
 Configuration settings for applications used by Pootle.
 
 
+.. setting:: POOTLE_SIGNUP_ENABLED
+
+``POOTLE_SIGNUP_ENABLED``
+  Default: ``True``
+
+  .. versionchanged:: 2.7
+
+  Controls whether user sign ups are allowed or not. If set to ``False``,
+  administrators will still be able to create new user accounts.
+
+
 .. setting:: CUSTOM_TEMPLATE_CONTEXT
 
 ``CUSTOM_TEMPLATE_CONTEXT``
