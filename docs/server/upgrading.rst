@@ -173,7 +173,3 @@ proper web server.
 Also you might want to create a local Translation Memory. Have in mind that
 this can take a lot of time depending on how many translations you have in your
 Pootle database.
-
-.. code-block:: bash
-
-  (env)$ pootle create_local_tm
