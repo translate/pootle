@@ -198,14 +198,14 @@ def optimal_depcheck():
 
     if depcheck.test_cache():
         if depcheck.test_memcache():
-            if not depcheck.test_memcached():
-                # memcached configured but connection failing
+            if not depcheck.test_cache_server_connection():
+                # Server configured but connection failing
                 optimal.append({
                     'dependency': 'cache',
-                    'text': _("Pootle is configured to use memcached as a "
+                    'text': _("Pootle is configured to use Redis as a "
                               "caching backend, but can't connect to the "
-                              "memcached server. Caching is currently "
-                              "disabled.")
+                              "Redis server. Caching is currently "
+                              "impossible.")
                 })
             else:
                 if not depcheck.test_session():

@@ -146,8 +146,8 @@ def test_memcache():
             return False
 
 
-def test_memcached():
-    """Test if we can connect to memcache server."""
+def test_cache_server_connection():
+    """Test if we can connect to the cache server."""
     from django.core.cache import cache
     return cache._cache.servers[0].connect()
 
