@@ -4,7 +4,7 @@ Django>=1.7.4,<1.8
 django-assets>=0.10
 django-contact-form==1.0
 django-overextends>=0.3.2
-django-redis-cache
+django-redis
 django-rq
 
 # Libraries
