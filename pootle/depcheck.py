@@ -133,8 +133,6 @@ def test_cache():
     #FIXME: maybe we shouldn't complain if cache is set to db or file?
     if getattr(settings, "CACHES", None):
         return "memcache" in settings.CACHES['default']['BACKEND']
-    else:
-        return settings.CACHE_BACKEND.startswith('memcached')
 
 
 def test_memcache():
