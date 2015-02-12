@@ -110,6 +110,8 @@ var Modal = React.createClass({
     title: React.PropTypes.string,
     showClose: React.PropTypes.bool,
     onClose: React.PropTypes.func.isRequired,
+    header: React.PropTypes.func,
+    footer: React.PropTypes.func,
   },
 
 
@@ -135,6 +137,14 @@ var Modal = React.createClass({
   /* Layout */
 
   renderHeader: function () {
+    if (this.props.header) {
+      return (
+        <ModalHeader>
+          {this.props.header()}
+        </ModalHeader>
+      );
+    }
+
     var title = (this.props.title &&
       <h3 className="lightbox-title">{this.props.title}</h3>
     );
@@ -152,21 +162,25 @@ var Modal = React.createClass({
   },
 
   renderFooter: function () {
+    if (this.props.footer) {
+      return (
+        <ModalFooter>
+          {this.props.footer()}
+        </ModalFooter>
+      );
+    }
+
     return null;
   },
 
   renderLayer: function () {
-    var header = this.props.header ? this.props.header(this.props)
-                                   : this.renderHeader(this.props);
-    var footer = this.props.footer ? this.props.footer(this.props)
-                                   : this.renderFooter(this.props);
     return (
       <ModalContainer {...this.props}>
-        {header}
+        {this.renderHeader()}
         <div className="lightbox-content">
           {this.props.children}
         </div>
-        {footer}
+        {this.renderFooter()}
       </ModalContainer>
     );
   },
@@ -185,6 +199,8 @@ var Dialog = React.createClass({
     cancelLabel: React.PropTypes.string,
     handleOk: React.PropTypes.func.isRequired,
     handleCancel: React.PropTypes.func.isRequired,
+    header: React.PropTypes.func,
+    footer: React.PropTypes.func,
   },
 
 
