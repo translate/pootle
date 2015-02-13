@@ -39,7 +39,7 @@ var FormValidationMixin = {
 
     if (errors.hasOwnProperty('__all__')) {
       return (
-        <ul className="errorlist">
+        <ul className="errorlist errorlist-all">
           {errors.__all__.map(this.renderSingleError)}
         </ul>
       );
