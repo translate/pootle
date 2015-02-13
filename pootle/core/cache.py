@@ -19,8 +19,13 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
+from django.conf import settings
 from django.core.cache import caches, cache as default_cache
 from django.core.cache.backends.base import InvalidCacheBackendError
+from django.core.exceptions import ImproperlyConfigured
+
+
+PERSISTENT_STORES = ('redis', 'stats')
 
 
 def make_method_key(model, method, key):
@@ -56,6 +61,17 @@ def get_cache(cache=None):
     :param cache: The name of the requested cache.
     """
     try:
+        # Check for proper Redis persistent backends
+        # FIXME: this logic needs to be a system sanity check
+        if (cache in PERSISTENT_STORES and
+            (cache not in settings.CACHES or
+            'RedisCache' not in settings.CACHES[cache]['BACKEND'] or
+            settings.CACHES[cache].get('TIMEOUT', '') != None)):
+            raise ImproperlyConfigured(
+                'Pootle requires a Redis-backed caching backend for %r '
+                'with `TIMEOUT: None`. Please review your settings.' % cache
+            )
+
         return caches[cache]
     except InvalidCacheBackendError:
         return default_cache

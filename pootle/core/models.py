@@ -24,7 +24,7 @@ from .cache import get_cache
 from .mixins import TreeItem
 
 
-cache = get_cache()
+cache = get_cache('redis')
 
 
 class Revision(object):
