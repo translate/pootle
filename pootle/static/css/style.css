@@ -2107,3 +2107,21 @@ span.email .i
 {
     transition: none !important;
 }
+
+
+/*
+ * Import-export styling
+ */
+
+#import-export-sidebar {
+    background-color: #e5e5e5;
+    padding: 2em 1em;
+}
+
+#upload-form {
+    margin-top: .5em;
+}
+
+#upload-form input[type="file"] {
+    display: none;
+}

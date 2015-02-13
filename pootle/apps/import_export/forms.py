@@ -23,4 +23,8 @@ from django.utils.translation import ugettext as _
 
 
 class UploadForm(forms.Form):
-    file = forms.FileField(required=True, label=_('File'))
+    file = forms.FileField(required=True)
+
+    def __init__(self, *args, **kwargs):
+        super(UploadForm, self).__init__(*args, **kwargs)
+        self.fields["file"].widget.attrs["id"] = "js-file-upload-input"

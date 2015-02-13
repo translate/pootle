@@ -79,22 +79,8 @@
 <div id="sidebar"
   class="js-sidebar{% if announcement_displayed %} sidebar-open{% endif %}">
 
-  {% if display_download %}
-  <a href="{% url 'pootle-export' %}?path={{ pootle_path }}"
-    title="{% trans 'Download translation files' %}">
-    <i class="icon-download"></i> <span>{% trans 'Download' %}</span>
-  </a>
-  {% endif %}
-
-  {% if upload_form %}
-  <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for field in upload_form %}
-      {{ field }}
-      {{ field.errors }}
-    {% endfor %}
-    <input type="submit" value="{% trans 'Upload' %}" />
-  </form>
+  {% if display_download or upload_form %}
+  {% include "import_export/_sidebar.html" %}
   {% endif %}
 
   {% if announcement %}
@@ -142,6 +128,23 @@ $(function () {
     level: 'success',
     language: '{{ LANGUAGE_CODE }}'
   });
+  {% endif %}
+
+  {% if upload_form %}
+  document.getElementById("js-file-upload-input").onchange = function () {
+    var filename =  this.value.replace("C:\\fakepath\\", "");
+    document.getElementById("js-fake-upload").value = filename;
+  };
+
+  document.getElementById("js-fake-upload").onclick = function () {
+    document.getElementById("js-file-upload-input").click();
+  };
+
+  document.getElementById("js-fake-upload").onchange = function () {
+    if (document.getElementById("js-fake-upload").value.length == 0) {
+      document.getElementById("js-file-upload-input").value = '';
+    }
+  };
   {% endif %}
 });
 </script>

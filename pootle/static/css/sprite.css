@@ -1,4 +1,4 @@
-﻿/* glue: 0.9.4 hash: 1d5a1c9be8 */
+﻿/* glue: 0.9.4 hash: 65a5560820 */
         .icon-user-website,
 .icon-user-twitter,
 .icon-user-linkedin,
@@ -12,7 +12,6 @@
 .icon-warning,
 .icon-timeline,
 .icon-tick,
-.icon-symbols,
 .icon-search,
 .icon-reject,
 .icon-raw-mode,
@@ -33,6 +32,8 @@
 .icon-arrow-down,
 .icon-apertium,
 .icon-accept,
+.icon-upload,
+.icon-download,
 .icon-back,
 .icon-external-link {
             background-image: url('../images/sprite.png');
@@ -117,130 +118,136 @@
             height: 16px;
         }
         
-        .icon-symbols {
+        .icon-search {
             background-position: -64px -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-search {
+        .icon-reject {
             background-position: -85px 0;
             width: 16px;
             height: 16px;
         }
         
-        .icon-reject {
+        .icon-raw-mode {
             background-position: -85px -16px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-raw-mode {
+        .icon-project {
             background-position: -85px -32px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-project {
+        .icon-language {
             background-position: -85px -48px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-language {
+        .icon-information {
             background-position: -85px -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-information {
+        .icon-google-translate {
             background-position: 0 -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-google-translate {
+        .icon-folder {
             background-position: -16px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-folder {
+        .icon-folder-parent {
             background-position: -32px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-folder-parent {
+        .icon-file {
             background-position: -48px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-file {
+        .icon-error {
             background-position: -64px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-error {
+        .icon-copy {
             background-position: -80px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-copy {
+        .icon-comment-user {
             background-position: -101px 0;
             width: 16px;
             height: 16px;
         }
         
-        .icon-comment-user {
+        .icon-comment-add {
             background-position: -101px -16px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-comment-add {
+        .icon-block {
             background-position: -101px -32px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-block {
+        .icon-block-muted {
             background-position: -101px -48px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-block-muted {
-            background-position: -101px -64px;
-            width: 16px;
-            height: 16px;
-        }
-        
         .icon-arrow-up {
-            background-position: -101px -80px;
+            background-position: -101px -64px;
             width: 9px;
             height: 16px;
         }
         
         .icon-arrow-down {
-            background-position: 0 -96px;
+            background-position: -101px -80px;
             width: 9px;
             height: 16px;
         }
         
         .icon-apertium {
-            background-position: -9px -96px;
+            background-position: 0 -96px;
             width: 16px;
             height: 16px;
         }
         
         .icon-accept {
-            background-position: -25px -96px;
+            background-position: -16px -96px;
             width: 16px;
             height: 16px;
+        }
+        
+        .icon-upload {
+            background-position: -32px -96px;
+            width: 14px;
+            height: 14px;
+        }
+        
+        .icon-download {
+            background-position: -46px -96px;
+            width: 14px;
+            height: 14px;
         }
         
         .icon-back {
@@ -250,7 +257,7 @@
         }
         
         .icon-external-link {
-            background-position: -41px -96px;
+            background-position: -60px -96px;
             width: 12px;
             height: 12px;
         }
@@ -269,7 +276,6 @@
     .icon-warning,
     .icon-timeline,
     .icon-tick,
-    .icon-symbols,
     .icon-search,
     .icon-reject,
     .icon-raw-mode,
@@ -290,6 +296,8 @@
     .icon-arrow-down,
     .icon-apertium,
     .icon-accept,
+    .icon-upload,
+    .icon-download,
     .icon-back,
     .icon-external-link {
                 background-image: url('../images/sprite.png');

@@ -1,0 +1,22 @@
+{% load i18n %}
+<div id="import-export-sidebar">
+  {% if display_download %}
+  <a href="{% url 'pootle-export' %}?path={{ pootle_path }}"
+    title="{% trans 'Download translation files' %}">
+    <i class="icon-download"></i> <span>{% trans 'Download' %}</span>
+  </a>
+  {% endif %}
+
+  {% if upload_form %}
+  <form action="" method="post" enctype="multipart/form-data" id="upload-form">
+    {% csrf_token %}
+    <i class="icon-upload"></i>
+    {% for field in upload_form %}
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <input type="text" id="js-fake-upload" value="{% trans 'Select' %}" />
+    <input type="submit" value="{% trans 'Upload' %}" />
+  </form>
+  {% endif %}
+</div>
