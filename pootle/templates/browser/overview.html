@@ -75,10 +75,21 @@
 {% endblock %}
 
 {% block pre_content %}
-{% if announcement %}
+{% if announcement or display_download %}
 <div id="sidebar"
   class="js-sidebar{% if announcement_displayed %} sidebar-open{% endif %}">
+
+  {% if display_download %}
+  <a href="{% url 'pootle-export' %}?path={{ pootle_path }}"
+    title="{% trans 'Download translation files' %}">
+    <i class="icon-download"></i> <span>{% trans 'Download' %}</span>
+  </a>
+  {% endif %}
+
+  {% if announcement %}
   {% include "staticpages/_body.html" with page=announcement %}
+  {% endif %}
+
   <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
 </div>
 {% endif %}

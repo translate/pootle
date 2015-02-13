@@ -22,6 +22,7 @@
 import json
 from urllib import quote, unquote
 
+from django.conf import settings
 from django.shortcuts import render
 from django.utils import dateformat
 
@@ -99,6 +100,17 @@ def overview(request, translation_project, dir_path, filename=None):
             new_mtime = ann_mtime
 
     ctx = get_overview_context(request)
+
+    if settings.POOTLE_ENABLE_OFFLINE and request.user.is_authenticated():
+        from pootle_app.models.permissions import check_permission
+
+        if (check_permission("translate", request) or
+            check_permission("suggest", request)):
+
+            ctx.update({
+                'display_download': True,
+            })
+
     ctx.update({
         'translation_project': translation_project,
         'project': project,
