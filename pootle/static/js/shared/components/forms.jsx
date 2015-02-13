@@ -72,12 +72,12 @@ var FormElement = React.createClass({
       <div className="field-wrapper">
         <label htmlFor={fieldId}>{this.props.label}</label>
         {formInput}
-      {hint &&
-        <span className="helptext">{hint}</span>}
       {errors &&
         <ul className="errorlist">{errors.map(function (msg, i) {
           return <li key={i}>{msg}</li>;
         })}</ul>}
+      {hint &&
+        <span className="helptext">{hint}</span>}
       </div>
     );
   }
