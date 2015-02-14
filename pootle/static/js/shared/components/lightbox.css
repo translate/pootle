@@ -7,6 +7,7 @@
 .lightbox-bg
 {
   position: fixed;
+  z-index: 498;
   top: 0px;
   left: 0px;
 
@@ -22,6 +23,7 @@
 {
   box-sizing: border-box;
   position: absolute;
+  z-index: 499;
   left: 0;
   top: 0;
 
