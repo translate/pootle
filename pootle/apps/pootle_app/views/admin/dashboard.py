@@ -97,49 +97,6 @@ def required_depcheck():
         'text': text,
     })
 
-    status_redis_available, connection_settings = depcheck.test_redis_server_available()
-    if status_redis_available:
-        status_redis_version, version = depcheck.test_redis_server_version()
-        if status_redis_version:
-            text = _('Redis server accepting connections on '
-                     '%(host)s:%(port)s.', connection_settings)
-            state = 'tick'
-        else:
-            trans_vars = {
-                'installed': version,
-                'required': ".".join([str(i) for i in
-                                      depcheck.REDIS_MINIMUM_REQUIRED_SERVER_VERSION]),
-            }
-            text = _("Redis server version %(installed)s installed. Pootle "
-                     "requires at least version %(required)s.", trans_vars)
-            state = 'error'
-    else:
-        text = _('Redis server is not available on %(host)s:%(port)s.',
-                 connection_settings)
-        state = 'error'
-
-    required.append({
-        'dependency': 'redis',
-        'state': state,
-        'text': text,
-    })
-
-    status_workers, connection_settings['num'] = depcheck.test_rq_workers_running()
-    if status_workers:
-            text = ungettext(
-                    '%(num)d RQ worker running.',
-                    '%(num)d RQ workers running.',
-                    connection_settings['num'], connection_settings)
-            state = 'tick'
-    else:
-        text = _('No RQ workers are running.')
-        state = 'error'
-    required.append({
-        'dependency': 'rq',
-        'state': state,
-        'text': text,
-    })
-
     if depcheck.test_cache():
         if not depcheck.test_cache_server_connection():
             # Server configured but connection failing
