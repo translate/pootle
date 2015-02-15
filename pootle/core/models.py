@@ -62,7 +62,7 @@ class Revision(object):
 
         :return: `True` if the value was set, `False` otherwise.
         """
-        return cache.set(cls.CACHE_KEY, value, None)
+        return cache.set(cls.CACHE_KEY, value)
 
     @classmethod
     def add(cls, value):
@@ -71,7 +71,7 @@ class Revision(object):
 
         :return: `True` if the value was set, `False` otherwise.
         """
-        return cache.add(cls.CACHE_KEY, value, None)
+        return cache.add(cls.CACHE_KEY, value)
 
     @classmethod
     def incr(cls):
