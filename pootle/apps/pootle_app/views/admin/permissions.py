@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2012 Zuza Software Foundation
-# Copyright 2013-2014 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -47,7 +47,6 @@ class PermissionFormField(forms.ModelMultipleChoiceField):
 
 
 def admin_permissions(request, current_directory, template, context):
-    project = context.get('project', None)
     language = context.get('language', None)
 
     negative_permissions_excl = list(PERMISSIONS['negative'])
