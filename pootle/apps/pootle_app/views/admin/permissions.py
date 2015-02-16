@@ -29,7 +29,6 @@ from pootle_app.models.permissions import (get_permission_contenttype,
                                            PermissionSet)
 from pootle_app.views.admin import util
 from pootle_misc.forms import GroupedModelChoiceField
-from pootle_statistics.models import Submission
 
 
 User = get_user_model()
