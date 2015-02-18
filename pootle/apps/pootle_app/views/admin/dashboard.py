@@ -71,25 +71,6 @@ def optional_depcheck():
     return optional
 
 
-def optimal_depcheck():
-    optimal = []
-
-    if depcheck.test_mysqldb():
-        text = _("Using the default sqlite3 database engine. SQLite is "
-                 "only suitable for small installations with a small "
-                 "number of users. Pootle will perform better with the "
-                 "MySQL database engine.")
-        optimal.append({'dependency': 'db', 'text': text})
-
-    if not depcheck.test_webserver():
-        optimal.append({
-            'dependency': 'webserver',
-            'text': _("For optimal performance, use Apache as the webserver.")
-        })
-
-    return optimal
-
-
 def _format_numbers(dict):
     for k in dict.keys():
         formatted_number = locale.format("%d", dict[k], grouping=True)
@@ -180,6 +161,6 @@ def view(request):
         'rq_stats': rq_stats(),
         'required': {},
         'optional': optional_depcheck(),
-        'optimal': optimal_depcheck(),
+        'optimal': {},
     }
     return render(request, "admin/dashboard.html", ctx)

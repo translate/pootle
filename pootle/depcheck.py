@@ -33,30 +33,3 @@ def test_levenshtein():
         return True
     except ImportError:
         return False
-
-
-######################
-# Test optimal setup #
-######################
-
-def test_mysqldb():
-    try:
-        import MySQLdb
-        return True
-    except ImportError:
-        return False
-
-
-def test_webserver():
-    """Test that webserver is apache."""
-    return ('apache' in sys.modules or
-            '_apache' in sys.modules or
-            'mod_wsgi' in sys.modules)
-
-
-def test_from_email():
-    return bool(settings.DEFAULT_FROM_EMAIL)
-
-
-def test_contact_email():
-    return bool(settings.CONTACT_EMAIL)

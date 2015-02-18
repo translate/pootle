@@ -144,3 +144,5 @@ def test_settings(app_configs, **kwargs):
                    "Don't forget to review your mail server settings."),
             id="pootle.W009",
         ))
+
+    return errors
