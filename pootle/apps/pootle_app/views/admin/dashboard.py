@@ -31,35 +31,6 @@ from pootle_store.models import Unit, Suggestion
 from pootle_store.util import TRANSLATED
 
 
-def required_depcheck():
-    required = []
-
-    if depcheck.test_cache():
-        if not depcheck.test_cache_server_connection():
-            # Server configured but connection failing
-            required.append({
-                'dependency': 'cache',
-                'state': 'error',
-                'text': _("Pootle is configured to use Redis as a caching "
-                          "backend, but can't connect to the cache.")
-            })
-        else:
-            required.append({
-                'dependency': 'cache',
-                'state': 'tick',
-                'text': _("Caching configured and running.")
-            })
-    else:
-        required.append({
-            'dependency': 'cache',
-            'state': 'error',
-            'text': _("Redis is required as the caching backend.")
-        })
-
-
-    return required
-
-
 def optional_depcheck():
     optional = []
 
@@ -103,48 +74,17 @@ def optional_depcheck():
 def optimal_depcheck():
     optimal = []
 
-    if not depcheck.test_db():
-        if depcheck.test_mysqldb():
-            text = _("Using the default sqlite3 database engine. SQLite is "
-                     "only suitable for small installations with a small "
-                     "number of users. Pootle will perform better with the "
-                     "MySQL database engine.")
-        else:
-            text = _("Using the default sqlite3 database engine. SQLite is "
-                     "only suitable for small installations with a small "
-                     "number of users. Pootle will perform better with the "
-                     "MySQL database engine, but you need to install "
-                     "python-MySQLdb first.")
+    if depcheck.test_mysqldb():
+        text = _("Using the default sqlite3 database engine. SQLite is "
+                 "only suitable for small installations with a small "
+                 "number of users. Pootle will perform better with the "
+                 "MySQL database engine.")
         optimal.append({'dependency': 'db', 'text': text})
 
-    if not depcheck.test_session():
-        text = _("For optimal performance, use django.contrib."
-                 "sessions.backends.cached_db as the session "
-                 "engine.")
-        optimal.append({'dependency': 'session', 'text': text})
     if not depcheck.test_webserver():
         optimal.append({
             'dependency': 'webserver',
             'text': _("For optimal performance, use Apache as the webserver.")
-        })
-    if not depcheck.test_from_email():
-        optimal.append({
-            'dependency': 'from_email',
-            'text': _('The "from" address used to send registration emails is '
-                      'not specified. Also review the mail server settings.')
-        })
-    if not depcheck.test_contact_email():
-        optimal.append({
-            'dependency': 'contact_email',
-            'text': _("No contact address is specified. The contact form will "
-                      "allow users to contact the server administrators.")
-        })
-    if not depcheck.test_debug():
-        optimal.append({
-            'dependency': 'debug',
-            'text': _("Running in debug mode. Debug mode is only needed when "
-                      "developing Pootle. For optimal performance, disable "
-                      "debugging mode.")
         })
 
     return optimal
@@ -238,7 +178,7 @@ def view(request):
     ctx = {
         'server_stats': server_stats(),
         'rq_stats': rq_stats(),
-        'required': required_depcheck(),
+        'required': {},
         'optional': optional_depcheck(),
         'optimal': optimal_depcheck(),
     }

@@ -10,6 +10,7 @@
 from django.core import checks
 from django.utils.translation import ugettext as _
 
+
 # Minimum Translate Toolkit version required for Pootle to run.
 TTK_MINIMUM_REQUIRED_VERSION = (1, 11, 0)
 
@@ -88,3 +89,58 @@ def test_redis(app_configs, **kwargs):
             ))
 
     return errors
+
+
+@checks.register()
+def test_settings(app_configs, **kwargs):
+    from django.conf import settings
+
+    errors = []
+
+    if "RedisCache" not in settings.CACHES.get("default", {}).get("BACKEND"):
+        errors.append(checks.Critical(_("Cache backend is not set to Redis."),
+            hint=_("Set default cache backend to django_redis.cache.RedisCache\n"
+                   "Current settings: %r") % (settings.CACHES.get("default")),
+            id="pootle.C005",
+        ))
+    else:
+        from django_redis import get_redis_connection
+
+        if not get_redis_connection():
+            errors.append(checks.Critical(_("Could not initiate a Redis cache connection"),
+                hint=_("Double-check your CACHES settings"),
+                id="pootle.C004",
+            ))
+
+    if settings.DEBUG:
+        errors.append(checks.Warning(_("DEBUG mode is on. Do not do this in production!"),
+            hint=_("Set DEBUG = False in Pootle settings"),
+            id="pootle.W005"
+        ))
+    elif "sqlite" in settings.DATABASES.get("default", {}).get("ENGINE"):
+        # We don't bother warning about sqlite in DEBUG mode.
+        errors.append(checks.Warning(_("The sqlite database backend is unsupported"),
+            hint=_("Set your default database engine to postgresql_psycopg2 or mysql"),
+            id="pootle.W006",
+        ))
+
+    if settings.SESSION_ENGINE.split(".")[-1] not in ("cache", "cached_db"):
+        errors.append(checks.Warning(_("Not using cached_db as session engine"),
+            hint=_("Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
+                   "Current settings: %r") % (setting.SESSION_ENGINE),
+            id="pootle.W007",
+        ))
+
+    if not settings.CONTACT_EMAIL:
+        errors.append(checks.Warning(_("settings.CONTACT_EMAIL is not set."),
+            hint=_("Set CONTACT_EMAIL to allow users to contact administrators"
+                   "through the Pootle contact form."),
+            id="pootle.W008",
+        ))
+
+    if not settings.DEFAULT_FROM_EMAIL:
+        errors.append(checks.Warning(_("settings.DEFAULT_FROM_EMAIL is not set."),
+            hint=_("DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
+                   "Don't forget to review your mail server settings."),
+            id="pootle.W009",
+        ))

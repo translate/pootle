@@ -12,23 +12,6 @@ import sys
 from django.conf import settings
 
 
-##########################
-# Test core dependencies #
-##########################
-
-
-def test_cache():
-    """Test if cache backend is Redis."""
-    if getattr(settings, "CACHES", None):
-        return "RedisCache" in settings.CACHES['default']['BACKEND']
-
-
-def test_cache_server_connection():
-    """Test if we can connect to the cache server."""
-    from django_redis import get_redis_connection
-    return get_redis_connection()
-
-
 ##############################
 # Test optional dependencies #
 ##############################
@@ -62,21 +45,6 @@ def test_mysqldb():
         return True
     except ImportError:
         return False
-
-
-def test_db():
-    """Test that we are not using sqlite3 as the django database."""
-    if getattr(settings, "DATABASES", None):
-        return "sqlite" not in settings.DATABASES['default']['ENGINE']
-
-
-def test_session():
-    """Test that session backend is set to cache or cache_db."""
-    return settings.SESSION_ENGINE.split('.')[-1] in ('cache', 'cached_db')
-
-
-def test_debug():
-    return not settings.DEBUG
 
 
 def test_webserver():
