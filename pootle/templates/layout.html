@@ -23,6 +23,13 @@
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
     {% endblock favicon %}
     {% block js %}
+    <script type="text/javascript">
+    window.PTL = window.PTL || {};
+    PTL.settings = {
+      CAN_REGISTER: {{ settings.CAN_REGISTER|yesno:'true, false' }},
+    };
+    </script>
+
     {% assets "js_vendor" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
