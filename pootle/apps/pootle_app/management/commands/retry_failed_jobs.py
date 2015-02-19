@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright 2009-2014 Zuza Software Foundation
-# Copyright 2013 Evernote Corporation
+# Copyright 2014-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -19,9 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import logging
 import os
-from optparse import make_option
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
@@ -32,6 +30,7 @@ from django.core.urlresolvers import set_script_prefix
 from django.utils.encoding import force_unicode
 
 from django_rq.queues import get_failed_queue
+
 
 class Command(NoArgsCommand):
     help = "Retry failed RQ jobs."
