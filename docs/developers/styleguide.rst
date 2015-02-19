@@ -139,7 +139,7 @@ When writing the URL patterns:
     level to allow easily seeing the different URL patterns.
   - In URLs:
 
-    - Use hyphens. Avoid underscores at all costs.
+    - Use hyphens, never underscores.
     - To split long URLs use implicit string continuation. Note that URLs are
       raw strings.
 
