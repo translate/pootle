@@ -38,6 +38,7 @@ def pootle_context(request):
             'POOTLE_INSTANCE_ID': settings.POOTLE_INSTANCE_ID,
             'POOTLE_CONTACT_ENABLED': (settings.POOTLE_CONTACT_ENABLED and
                                        settings.POOTLE_CONTACT_EMAIL),
+            'POOTLE_SIGNUP_ENABLED': settings.POOTLE_SIGNUP_ENABLED,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
             'POOTLE_VERSION': __version__,
             'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
