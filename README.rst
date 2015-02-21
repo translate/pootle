@@ -1,7 +1,7 @@
 Pootle
 ======
 
-.. image:: https://api.travis-ci.org/translate/pootle.png
+.. image:: https://img.shields.io/travis/translate/pootle.svg?style=flat-square
     :alt: Build Status
     :target: https://travis-ci.org/translate/pootle
 
