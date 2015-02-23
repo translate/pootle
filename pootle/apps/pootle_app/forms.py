@@ -31,7 +31,7 @@ from pootle_project.models import Project, RESERVED_PROJECT_CODES
 from pootle_store.models import Store
 
 
-LANGCODE_RE = re.compile("^[a-z]{2,}([_-][a-z]{2,})*(@[a-z0-9]+)?$",
+LANGCODE_RE = re.compile("^[a-z]{2,}([_-]([a-z]{2,}|[0-9]{3}))*(@[a-z0-9]+)?$",
                          re.IGNORECASE)
 
 
