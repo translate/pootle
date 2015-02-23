@@ -36,7 +36,8 @@ The priority defaults to ``1`` and accepts any value greater than ``0``,
 including numbers with decimals, like ``0.75``. Higher numbers means higher
 priority.
 
-By default virtual folders can be browsed.
+By default virtual folders can be browsed. If they are not browsable then they
+won't be displayed, but they are still used for sorting.
 
 Also the virtual folders can have a description which might be useful to
 explain the contents of the folder or provide additional instructions. This
@@ -60,6 +61,18 @@ This command imports a JSON file holding a list of virtual folders, and the
 files included on each virtual folder along with all their attributes. Check
 the specs for the :ref:`JSON format <virtual_folders#json-format>` in order to
 know how to craft a JSON file that fits your needs.
+
+
+.. _virtual_folders#translate:
+
+Translating virtual folders
+---------------------------
+
+If a virtual folder applies in the current location, then clicking on the links
+on the overview page will provide the units in priority order when translating
+in the editor. The priority sorting on the translation editor is calculated
+taking into account all the applicable virtual folders in the current location,
+including the not browsable ones.
 
 
 .. _virtual_folders#json-format:

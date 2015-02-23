@@ -21,6 +21,8 @@
 
 from django.utils.translation import ugettext_lazy as _
 
+from virtualfolder.models import VirtualFolder
+
 
 HEADING_CHOICES = [
     {
@@ -85,14 +87,14 @@ def get_table_headings(choices):
     return filter(lambda x: x['id'] in choices, HEADING_CHOICES)
 
 
-def make_generic_item(path_obj):
+def make_generic_item(path_obj, **kwargs):
     """Template variables for each row in the table."""
     return {
         'href': path_obj.get_absolute_url(),
         'href_all': path_obj.get_translate_url(),
-        'href_todo': path_obj.get_translate_url(state='incomplete'),
-        'href_sugg': path_obj.get_translate_url(state='suggestions'),
-        'href_critical': path_obj.get_critical_url(),
+        'href_todo': path_obj.get_translate_url(state='incomplete', **kwargs),
+        'href_sugg': path_obj.get_translate_url(state='suggestions', **kwargs),
+        'href_critical': path_obj.get_critical_url(**kwargs),
         'title': path_obj.name,
         'code': path_obj.code,
         'is_disabled': getattr(path_obj, 'disabled', False),
@@ -100,7 +102,13 @@ def make_generic_item(path_obj):
 
 
 def make_directory_item(directory):
-    item = make_generic_item(directory)
+    filters = {}
+
+    if VirtualFolder.get_matching_for(directory.pootle_path).count():
+        # The directory has virtual folders, so append priority sorting to URL.
+        filters['sort'] = 'priority'
+
+    item = make_generic_item(directory, **filters)
     item.update({
         'icon': 'folder',
     })
