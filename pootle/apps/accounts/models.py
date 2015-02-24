@@ -112,9 +112,6 @@ class User(AbstractBaseUser):
 
     objects = UserManager()
 
-    class Meta:
-        app_label = 'pootle'
-
     @property
     def display_name(self):
         """Human-readable display name."""
