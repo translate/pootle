@@ -173,7 +173,13 @@ class Directory(models.Model, CachedTreeItem):
 
     def get_parents(self):
         if self.parent:
-            if self.parent.is_translationproject():
+            if self.is_translationproject():
+                return self.translationproject.get_parents()
+            elif self.is_project():
+                return self.project.get_parents()
+            elif self.is_language():
+                return self.language.get_parents()
+            elif self.parent.is_translationproject():
                 return [self.parent.translationproject]
             else:
                 return [self.parent]
