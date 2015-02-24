@@ -40,12 +40,13 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.cache import make_method_key
-from pootle.managers import UserManager
 from pootle_language.models import Language
 from pootle_misc.util import jsonify
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import SuggestionStates
 from pootle_translationproject.models import TranslationProject
+
+from .managers import UserManager
 
 
 CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'), ('CNY', 'CNY'), ('JPY', 'JPY'))
