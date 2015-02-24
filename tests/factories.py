@@ -34,7 +34,7 @@ class EvernoteAccountFactory(factory.django.DjangoModelFactory):
 
 
 class UserFactory(factory.django.DjangoModelFactory):
-    FACTORY_FOR = 'pootle.User'
+    FACTORY_FOR = 'accounts.User'
 
     username = factory.Sequence(lambda n: 'foo%s' % n)
     email = factory.LazyAttribute(lambda o: '%s@example.org' % o.username)

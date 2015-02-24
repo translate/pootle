@@ -26,7 +26,7 @@ from django import forms
 from django.http import Http404
 
 from pootle.core.views import APIView
-from pootle.models import User
+from accounts.models import User
 from pootle_misc.util import PootleJSONEncoder
 
 from ..factories import UserFactory
