@@ -21,7 +21,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.models.user import CURRENCIES
+from accounts.models import CURRENCIES
 from evernote_reports.models import PaidTask, PaidTaskTypes
 
 

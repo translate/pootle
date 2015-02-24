@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pootle', '0001_initial'),
+        ('accounts', '0001_initial'),
         ('pootle_language', '0001_initial'),
     ]
 
