@@ -146,7 +146,9 @@ POOTLE_TM_SERVER = {
         'HOST': 'localhost',
         'PORT': 9200,
         'INDEX_NAME': 'translations',
-        'MIN_SCORE': 0.1,
+        # For valid values for MIN_SCORE see
+        # http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/common-options.html#fuzziness
+        'MIN_SCORE': 'AUTO',
     }
 }
 

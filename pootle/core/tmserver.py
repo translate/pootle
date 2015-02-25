@@ -43,7 +43,7 @@ def update(language, obj):
 
 
 def is_valuable_hit(unit, hit):
-    if hit['_score'] < es_params['MIN_SCORE'] or str(unit.id) == hit['_id']:
+    if str(unit.id) == hit['_id']:
         return False
 
     return True
@@ -58,7 +58,16 @@ def search(unit):
     language = unit.store.translation_project.language.code
     es_res = es.search(index=es_params['INDEX_NAME'],
                        doc_type=language,
-                       body={"query": {"match": {'source': unit.source}}})
+                       body={
+                           "query": {
+                               "match": {
+                                   'source': {
+                                       'query': unit.source,
+                                       'fuzziness': es_params['MIN_SCORE'],
+                                   }
+                               }
+                           }
+                       })
 
     for hit in es_res['hits']['hits']:
         if is_valuable_hit(unit, hit):
