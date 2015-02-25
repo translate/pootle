@@ -58,7 +58,6 @@ script:
   - py.test
 after_success:
   - coverage combine
-  - coveralls
 notifications:
   email:
     on_failure: always
