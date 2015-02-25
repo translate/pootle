@@ -46,9 +46,9 @@ script:
   #- make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
   - make assets
   - make mo
-  - coverage run --parallel-mode manage.py migrate --noinput --traceback
-  - coverage run --parallel-mode manage.py initdb --traceback
-  - coverage run --parallel-mode ./manage.py runserver --traceback &
+  - ./manage.py migrate --noinput --traceback
+  - ./manage.py initdb --traceback
+  - ./manage.py runserver --traceback &
   - TESTPID=$!
   - sleep 10
   - kill -2 $TESTPID
@@ -56,8 +56,6 @@ script:
   #- tests/version-migration/migrate.sh
   - make pep8
   - py.test
-after_success:
-  - coverage combine
 notifications:
   email:
     on_failure: always
