@@ -24,6 +24,7 @@ from pootle_language.models import Language
 from pootle_project.models import Project, ProjectSet, ProjectResource
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
+from virtualfolder.helpers import extract_vfolder_from_path
 
 from .exceptions import Http400
 from .url_helpers import split_pootle_path
@@ -127,15 +128,22 @@ def set_resource(request, path_obj, dir_path, filename):
 
     is_404 = False
 
+    # Get a clean pootle path for retrieving the directory or store.
+    # A clean pootle path is a pootle path without any virtual folder name on
+    # it. For example /af/test_vfolders/browser/chrome/ is the corresponding
+    # clean pootle path for /af/test_vfolders/browser/vfolder8/chrome/
+    vfolder, clean_pootle_path = extract_vfolder_from_path(pootle_path)
+
     if filename:
         pootle_path = pootle_path + filename
+        clean_pootle_path = clean_pootle_path + filename
         resource_path = resource_path + filename
 
         try:
             store = Store.objects.live().select_related(
                 'translation_project',
                 'parent',
-            ).get(pootle_path=pootle_path)
+            ).get(pootle_path=clean_pootle_path)
             directory = store.parent
         except Store.DoesNotExist:
             is_404 = True
@@ -143,14 +151,14 @@ def set_resource(request, path_obj, dir_path, filename):
     if directory is None and not is_404:
         if dir_path:
             try:
-                directory = Directory.objects.live().get(pootle_path=pootle_path)
+                directory = Directory.objects.live().get(pootle_path=clean_pootle_path)
             except Directory.DoesNotExist:
                 is_404 = True
         else:
             directory = obj_directory
 
     if is_404:  # Try parent directory
-        language_code, project_code, dp, fn = split_pootle_path(pootle_path)
+        language_code, project_code, dp, fn = split_pootle_path(clean_pootle_path)
         if not filename:
             dir_path = dir_path[:dir_path[:-1].rfind('/') + 1]
 

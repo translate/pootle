@@ -38,6 +38,7 @@ from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, to_int, get_date_interval
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
+from virtualfolder.helpers import extract_vfolder_from_path
 from virtualfolder.models import VirtualFolder
 
 from .decorators import get_unit_context
@@ -459,7 +460,13 @@ def get_units(request):
     request.profile = User.get(request.user)
     limit = request.profile.get_unit_rows()
 
+    vfolder, pootle_path = extract_vfolder_from_path(pootle_path)
+
     units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
+
+    if vfolder is not None:
+        units_qs = units_qs.filter(vfolders=vfolder)
+
     units_qs = units_qs.select_related(
         'store__translation_project__project',
         'store__translation_project__language',
