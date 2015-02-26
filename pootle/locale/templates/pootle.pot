@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2015-02-02 22:43+0100\n"
+"POT-Creation-Date: 2015-02-26 15:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,12 +121,11 @@ msgstr ""
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#. Translators: The language from which translation will happen
-#: apps/pootle_app/forms.py:57 apps/pootle_project/models.py:183 strings.py:43
+#: apps/pootle_app/forms.py:57 apps/pootle_project/models.py:183
 msgid "Source Language"
 msgstr ""
 
-#: apps/pootle_app/forms.py:103 apps/pootle_project/models.py:392
+#: apps/pootle_app/forms.py:103 apps/pootle_project/models.py:386
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr ""
@@ -179,140 +178,143 @@ msgstr ""
 msgid "lxml is not installed. Pootle requires lxml."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:117
+#: apps/pootle_app/views/admin/dashboard.py:115
 #, python-format
-msgid ""
-"Redis server accepting connections on %(host)s:%(port)s. With %(num)d RQ "
-"worker running."
-msgid_plural ""
-"Redis server accepting connections on %(host)s:%(port)s. With %(num)d RQ "
-"workers running."
-msgstr[0] ""
-msgstr[1] ""
+msgid "Redis server accepting connections on %(host)s:%(port)s."
+msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:124
 #, python-format
 msgid ""
-"No RQ workers are running.  Redis server is accepting connections on "
-"%(host)s:%(port)s."
+"Redis server version %(installed)s installed. Pootle requires at least "
+"version %(required)s."
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:128
 #, python-format
-msgid "Redis server is not running on %(host)s:%(port)s."
+msgid "Redis server is not available on %(host)s:%(port)s."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:148
+#: apps/pootle_app/views/admin/dashboard.py:141
+#, python-format
+msgid "%(num)d RQ worker running."
+msgid_plural "%(num)d RQ workers running."
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/pootle_app/views/admin/dashboard.py:146
+msgid "No RQ workers are running."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:160
+msgid ""
+"Pootle is configured to use Redis as a caching backend, but can't connect to "
+"the cache."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:167
+msgid "Caching configured and running."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:173
+msgid "Redis is required as the caching backend."
+msgstr ""
+
+#: apps/pootle_app/views/admin/dashboard.py:186
 msgid ""
 "Can't find the ISO codes package. Pootle uses ISO codes to translate "
 "language names."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:154
+#: apps/pootle_app/views/admin/dashboard.py:192
 msgid ""
 "Can't find python-levenshtein package. Updating against templates is faster "
 "with python-levenshtein."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:162
+#: apps/pootle_app/views/admin/dashboard.py:200
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:164
+#: apps/pootle_app/views/admin/dashboard.py:202
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:166
+#: apps/pootle_app/views/admin/dashboard.py:204
 #, python-format
 msgid ""
 "Can't find the package which provides '%s' markup support. Falling back to "
 "HTML."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:170
+#: apps/pootle_app/views/admin/dashboard.py:208
 #, python-format
 msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:187
+#: apps/pootle_app/views/admin/dashboard.py:225
 msgid ""
 "Using the default sqlite3 database engine. SQLite is only suitable for small "
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:192
+#: apps/pootle_app/views/admin/dashboard.py:230
 msgid ""
 "Using the default sqlite3 database engine. SQLite is only suitable for small "
 "installations with a small number of users. Pootle will perform better with "
 "the MySQL database engine, but you need to install python-MySQLdb first."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:205
-msgid ""
-"Pootle is configured to use memcached as a caching backend, but can't "
-"connect to the memcached server. Caching is currently disabled."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:212
+#: apps/pootle_app/views/admin/dashboard.py:238
 msgid ""
 "For optimal performance, use django.contrib.sessions.backends.cached_db as "
 "the session engine."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:219
-msgid ""
-"Pootle is configured to use memcached as caching backend, but Python support "
-"for memcached is not installed. Caching is currently disabled."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:226
-msgid "For optimal performance, use memcached as the caching backend."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:233
+#: apps/pootle_app/views/admin/dashboard.py:245
 msgid "For optimal performance, use Apache as the webserver."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:238
+#: apps/pootle_app/views/admin/dashboard.py:250
 msgid ""
 "The \"from\" address used to send registration emails is not specified. Also "
 "review the mail server settings."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:244
+#: apps/pootle_app/views/admin/dashboard.py:256
 msgid ""
 "No contact address is specified. The contact form will allow users to "
 "contact the server administrators."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:250
+#: apps/pootle_app/views/admin/dashboard.py:262
 msgid ""
 "Running in debug mode. Debug mode is only needed when developing Pootle. For "
 "optimal performance, disable debugging mode."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:307
+#: apps/pootle_app/views/admin/dashboard.py:319
 msgid "Files"
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:308
+#: apps/pootle_app/views/admin/dashboard.py:320
 msgid "Active projects"
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:309
+#: apps/pootle_app/views/admin/dashboard.py:321
 msgid "Active languages"
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:310
+#: apps/pootle_app/views/admin/dashboard.py:322
 msgid "Translated strings"
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:311
+#: apps/pootle_app/views/admin/dashboard.py:323
 msgid "Translated words"
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:312
+#: apps/pootle_app/views/admin/dashboard.py:324
 msgid "Active users"
 msgstr ""
 
@@ -800,6 +802,7 @@ msgid "Screenshot Search Prefix"
 msgstr ""
 
 #: apps/pootle_project/models.py:201
+#: apps/pootle_translationproject/models.py:163
 msgid "Disabled"
 msgstr ""
 
@@ -979,12 +982,12 @@ msgstr ""
 msgid "Rejected"
 msgstr ""
 
-#: apps/pootle_store/models.py:1282
+#: apps/pootle_store/models.py:1289
 #, python-format
 msgid "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;added"
 msgstr ""
 
-#: apps/pootle_store/models.py:1342
+#: apps/pootle_store/models.py:1349
 msgid "Path"
 msgstr ""
 
@@ -1002,7 +1005,7 @@ msgstr ""
 msgid "Obsolete"
 msgstr ""
 
-#: apps/pootle_store/views.py:420 core/decorators.py:56
+#: apps/pootle_store/views.py:420 core/decorators.py:57
 msgid "Arguments missing."
 msgstr ""
 
@@ -1124,11 +1127,11 @@ msgstr ""
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:312
+#: core/decorators.py:316
 msgid "Insufficient rights to access this page."
 msgstr ""
 
-#: core/decorators.py:325 core/views.py:46
+#: core/decorators.py:329 core/views.py:46
 msgid "You do not have rights to administer Pootle."
 msgstr ""
 
@@ -1185,27 +1188,27 @@ msgstr ""
 msgid "Overwritten submissions"
 msgstr ""
 
-#: core/initdb.py:120
+#: core/initdb.py:121
 msgid "Can access a project"
 msgstr ""
 
-#: core/initdb.py:124
+#: core/initdb.py:125
 msgid "Cannot access a project"
 msgstr ""
 
-#: core/initdb.py:128
+#: core/initdb.py:129
 msgid "Can make a suggestion for a translation"
 msgstr ""
 
-#: core/initdb.py:132
+#: core/initdb.py:133
 msgid "Can submit a translation"
 msgstr ""
 
-#: core/initdb.py:136
+#: core/initdb.py:137
 msgid "Can review translations"
 msgstr ""
 
-#: core/initdb.py:140
+#: core/initdb.py:141
 msgid "Can administrate a translation project"
 msgstr ""
 
@@ -1292,128 +1295,33 @@ msgstr ""
 msgid "Short Bio"
 msgstr ""
 
-#: strings.py:8
-msgid ""
-"Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-msgstr ""
-
-#: strings.py:9
-msgid "Enter a valid e-mail address."
-msgstr ""
-
-#: strings.py:10
-msgid ""
-"That e-mail address doesn't have an associated user account. Are you sure "
-"you've registered?"
-msgstr ""
-
-#: strings.py:11
-msgid "This field is required."
-msgstr ""
-
-#: strings.py:12
-#, python-format
-msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
-msgstr ""
-
-#: strings.py:13
-msgid "Save and add another"
-msgstr ""
-
-#: strings.py:14
-msgid "Save and continue editing"
-msgstr ""
-
-#: strings.py:15 templates/admin/staticpages/page_create.html:4
-#: templates/admin/staticpages/page_create.html:7
-msgid "Add"
-msgstr ""
-
-#: strings.py:16
-msgid "Change"
-msgstr ""
-
-#: strings.py:17
-msgid ""
-"Please enter a correct username and password. Note that both fields are case-"
-"sensitive."
-msgstr ""
-
-#. Translators: Email subject line. The variable is the server name shown
-#. on the top of each page
-#: strings.py:21
-#, python-format
-msgid "Password reset on %s"
-msgstr ""
-
-#. Translators: This is a constructed string that might end up saying
-#. "Add language" or "Add project". If you need to translate that differently,
-#. you might want to try to translate it as "Add an entry to the %(name)s table"
-#. or "Add an object of type "%(name)s".
-#: strings.py:27
-#, python-format
-msgid "Add %(name)s"
-msgstr ""
-
-#. Translators: This link takes the user to the page where the currently
-#. configured option is displayed (such as a project or language)
-#: strings.py:31
-msgid "View on site"
-msgstr ""
-
-#: strings.py:33
-msgid "first name"
-msgstr ""
-
-#: strings.py:34
-msgid "last name"
-msgstr ""
-
-#: strings.py:35
-msgid "e-mail address"
-msgstr ""
-
-#: strings.py:36
-msgid "active"
-msgstr ""
-
-#. Translators: Please translate this simply as "Administrator". This string is
-#. needed by Django, but 'superuser' is very technical and should be avoided.
-#: strings.py:40
-msgid "superuser status"
-msgstr ""
-
-#: strings.py:45
-msgid "Android strings"
-msgstr ""
-
 #. Translators: Label that refers to the site's privacy policy
-#: strings.py:51
+#: strings.py:35
 msgid "Privacy Policy"
 msgstr ""
 
 #. Translators: Label that refers to the site's legal requirements
-#: strings.py:53
+#: strings.py:37
 msgid "Legal"
 msgstr ""
 
 #. Translators: Label that refers to the site's license requirements
-#: strings.py:55
+#: strings.py:39
 msgid "License"
 msgstr ""
 
 #. Translators: Label that refers to the site's license requirements
-#: strings.py:57
+#: strings.py:41
 msgid "Contributor License"
 msgstr ""
 
 #. Translators: Label that refers to the site's terms of use
-#: strings.py:59
+#: strings.py:43
 msgid "Terms of Use"
 msgstr ""
 
 #. Translators: Label that refers to the site's terms of service
-#: strings.py:61
+#: strings.py:45
 msgid "Terms of Service"
 msgstr ""
 
@@ -1712,6 +1620,11 @@ msgstr ""
 msgid "No pages yet."
 msgstr ""
 
+#: templates/admin/staticpages/page_create.html:4
+#: templates/admin/staticpages/page_create.html:7
+msgid "Add"
+msgstr ""
+
 #: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
 msgstr ""
@@ -1797,7 +1710,7 @@ msgstr ""
 msgid "Refresh now"
 msgstr ""
 
-#: templates/browser/overview.html:121
+#: templates/browser/overview.html:119
 msgid "Congratulations! You have completed this task!"
 msgstr ""
 
@@ -1853,33 +1766,6 @@ msgstr ""
 
 #: templates/core/xhr_captcha.html:13
 msgid "Confirm"
-msgstr ""
-
-#: templates/db_error.html:4 templates/db_error.html.py:7
-#: templates/db_error.html:12 templates/errors/db.html:4
-#: templates/errors/db.html.py:8
-msgid "Database Error"
-msgstr ""
-
-#: templates/db_error.html:14 templates/errors/db.html:11
-msgid ""
-"Pootle can't connect to the database, the database is not\n"
-"initialized yet, or a schema upgrade is needed before continuing."
-msgstr ""
-
-#: templates/db_error.html:18 templates/errors/db.html:16
-#, python-format
-msgid ""
-"\n"
-"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
-"installation\n"
-"and upgrade instructions. Contact the server administrator if you feel this "
-"is\n"
-"a mistake."
-msgstr ""
-
-#: templates/db_error.html:24 templates/errors/db.html:23
-msgid "The reported error was:"
 msgstr ""
 
 #: templates/editor/_actions.html:5
@@ -2196,6 +2082,31 @@ msgstr ""
 msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
+msgstr ""
+
+#: templates/errors/db.html:4 templates/errors/db.html.py:8
+msgid "Database Error"
+msgstr ""
+
+#: templates/errors/db.html:11
+msgid ""
+"Pootle can't connect to the database, the database is not\n"
+"initialized yet, or a schema upgrade is needed before continuing."
+msgstr ""
+
+#: templates/errors/db.html:16
+#, python-format
+msgid ""
+"\n"
+"Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
+"installation\n"
+"and upgrade instructions. Contact the server administrator if you feel this "
+"is\n"
+"a mistake."
+msgstr ""
+
+#: templates/errors/db.html:23
+msgid "The reported error was:"
 msgstr ""
 
 #: templates/languages/_nav.html:5 templates/projects/_nav.html:5
