@@ -66,14 +66,22 @@ def export(request):
 
 def _import_file(file):
     pofile = po.pofile(file.read())
-    pootle_path = pofile.parseheader().get("X-Pootle-Path")
+    header = pofile.parseheader()
+    pootle_path = header.get("X-Pootle-Path")
     if not pootle_path:
         raise ValueError("File %r missing X-Pootle-Path header\n" % (file.name))
 
-    # TODO: assert pofile.mtime >= whatever_is_in_the_db.mtime
+    rev = header.get("X-Pootle-Revision")
+    if not rev or not rev.isdigit():
+        raise ValueError("File %r missing or invalid X-Pootle-Revision header\n" % (file.name))
+    rev = int(rev)
 
     try:
         store, created = Store.objects.get_or_create(pootle_path=pootle_path)
+        if rev < store.get_max_unit_revision():
+            # TODO we could potentially check at the unit level and only reject
+            # units older than most recent. But that's in store.update().
+            raise ValueError("File %r was rejected because its X-Pootle-Revision is too old." % (file.name))
     except Exception as e:
         raise ValueError("Could not create %r. Missing Project/Language? (%s)" % (file.name, e))
 
