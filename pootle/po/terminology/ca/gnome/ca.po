@@ -1,5 +1,5 @@
 # Catalan translation of the GNOME Glossary.
-# Copyright © 2003 Free Software Foundation, Inc.
+# Copyright ¬© 2003 Free Software Foundation, Inc.
 # This file is distributed under the same license as the glossary.
 # Montse Nofre <mnofre@softcatala.org>, 2003.
 # Jordi Mas <jmas@softcatala.org>, 2003.
@@ -8,8 +8,8 @@
 #
 # Fitxer del Glossari del GNOME	
 #
-# ATENCI”: Aquest fitxer contÈ la terminologia del projecte GNOME
-# en catal‡. Ha estat traduÔt amb molta cura escollint cadaescun dels
+# ATENCI√ì: Aquest fitxer cont√© la terminologia del projecte GNOME
+# en catal√†. Ha estat tradu√Øt amb molta cura escollint cadaescun dels
 # termes. Si us plau, contacteu als autors abans de fer-ne cap canvi.
 #
 msgid ""
@@ -21,7 +21,7 @@ msgstr ""
 "Language-Team: <tradgnome@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.1.0-beta2\n"
@@ -47,7 +47,7 @@ msgstr "Accepta"
 
 #. "1. The act of reading data from or writing data to memory. 2. Connection to the Internet or other network or system.  2. To gain entry to memory in order to read or write data."
 msgid "access"
-msgstr "accÈs"
+msgstr "acc√©s"
 
 #. "A record of essential user information that is stored on the system.. Network accounts are created by network administrators and are used both to validate users and to administer policies-for example, permissions-related to each user."
 msgid "Account"
@@ -69,14 +69,14 @@ msgstr "Afegir"
 
 #. "1. A number specifying a location in memory where data is stored. 2. A unique code that specifies a particular computer (node) or site on the Internet or other network. 3. A code used to specify an e-mail destination."
 msgid "Address"
-msgstr "AdreÁa"
+msgstr "Adre√ßa"
 
 msgid "Adjust"
 msgstr "Ajustar"
 
 #. "The performing of maintenance tasks on a system or network"
 msgid "Administration"
-msgstr "AdministraciÛ"
+msgstr "Administraci√≥"
 
 msgid "Aggregate"
 msgstr "Agrega"
@@ -102,11 +102,11 @@ msgstr "canal alfa"
 
 #. "Pertaining to a device or signal that is continuously varying in strength or quantity, such as voltage or audio, rather than based on discrete units, such as the binary digits 1 and 0. "
 msgid "Analog"
-msgstr "AnalÚgic"
+msgstr "Anal√≤gic"
 
 #. "The evaluation of a situation or problem, including review from various aspects or points of view. In computing, analysis commonly involves such features as flow control, error control, and evaluation of efficiency."
 msgid "Analysis"
-msgstr "An‡lisi"
+msgstr "An√†lisi"
 
 #. "A tag in an HTML document that defines a section of text, an icon, or other element as a link to another element in the document or to another document or file. "
 msgid "Anchor"
@@ -118,11 +118,11 @@ msgstr "I"
 
 #. "The simulation of movement through a rapid succession of static images. "
 msgid "Animation"
-msgstr "AnimaciÛ"
+msgstr "Animaci√≥"
 
 #. "On the Internet, the standard login name used to obtain access to a public FTP file archive. "
 msgid "Anonymous"
-msgstr "AnÚnim, -a"
+msgstr "An√≤nim, -a"
 
 #. "A setting that allows a modem to answer an incoming call automatically. It is used in all fax machines. "
 msgid "Answer mode"
@@ -130,7 +130,7 @@ msgstr "Mode de resposta"
 
 #. "A software technique (algorithm) for smoothing the jagged appearance of curved or diagonal lines caused by poor resolution on a display screen. "
 msgid "Antialiasing"
-msgstr "ContrarËplica"
+msgstr "Contrar√®plica"
 
 #. "To place or insert as an attachment by adding data to the end of a file or database or extending a character string. To attach to the end of; most often used in reference to writing a file of adding to a string."
 msgid "Append"
@@ -138,15 +138,15 @@ msgstr "Afegeix"
 
 #. "An application working inside a small window in a panel. A program that can be downloaded over the Internet and executed on the recipient's machine. "
 msgid "Applet"
-msgstr "MiniaplicaciÛ"
+msgstr "Miniaplicaci√≥"
 
 #. "A software program designed to assist in the performance of a specific task or for particlar user needs, such as word processing, accounting, or inventory management. "
 msgid "Application"
-msgstr "AplicaciÛ"
+msgstr "Aplicaci√≥"
 
 #. "A button in the panel which launches an application or executes a command when pressed."
 msgid "Application Launcher"
-msgstr "Executor de l'aplicaciÛ"
+msgstr "Executor de l'aplicaci√≥"
 
 msgid "Applix"
 msgstr "Applix"
@@ -159,7 +159,7 @@ msgid "archive"
 msgstr "arxiu"
 
 msgid "area grid"
-msgstr "graella de l'‡rea"
+msgstr "graella de l'√†rea"
 
 #. "An item of information following a command. It may, for example, modify the command or identify a file to be affected. "
 msgid "Argument"
@@ -171,7 +171,7 @@ msgstr "Matriu"
 
 #. "The four directional keys on the numeri keypad."
 msgid "Arrow key"
-msgstr "Tecla de desplaÁament"
+msgstr "Tecla de despla√ßament"
 
 msgid "Article"
 msgstr "Article de revista"
@@ -186,11 +186,11 @@ msgstr "Ascii"
 
 #. "In computer displays and graphics, the ratio of the width of an image or image area to its height. The aspect ratio is an important factor in maintaining correct proportions when an image is printed, rescaled, or incorporated into another document."
 msgid "aspect ratio"
-msgstr "relaciÛ d'aspecte"
+msgstr "relaci√≥ d'aspecte"
 
 #. "Without regular time relationship; unexpected and unpredictable with respect to the execution of a program's instructions. "
 msgid "Asynchronous"
-msgstr "AsincrÚnic"
+msgstr "Asincr√≤nic"
 
 #. "Any file accompanying an e-mail message in a special format so that it can be viewed or saved to disk independently of the main message body."
 msgid "Attachment"
@@ -206,14 +206,14 @@ msgstr "So"
 
 #. "In a multiuser or network operating system, the process by which the system validates a user's logon information. "
 msgid "Authentication"
-msgstr "AutenticaciÛ"
+msgstr "Autenticaci√≥"
 
 #. "Traditionally, to author meant to write a literary work or journalistic piece. In a computer context it means to create a product for implementation via computer technology; to write a computer program or to create Web pages. "
 msgid "Author"
 msgstr "Autor"
 
 msgid "Autofill"
-msgstr "Omple autom‡ticament"
+msgstr "Omple autom√†ticament"
 
 #. "In processing, the accessibility of a computer system or resource, such as a printer, in terms of usage or of the percentage of the total amount of time the device is needed."
 msgid "Availability"
@@ -232,11 +232,11 @@ msgstr "Fons"
 
 #. "A duplicate copy of a program, a disk, or data, made either for archiving purposes or for safeguarding valuable files from loss should the active copy be damaged or destroyed. "
 msgid "Backup"
-msgstr "CÚpia de seguretat"
+msgstr "C√≤pia de seguretat"
 
 #. "Adjustment of sources of sound so that the final transmission adheres to an artistic standard."
 msgid "Balance"
-msgstr "BalanÁ"
+msgstr "Balan√ß"
 
 #. "In mathematics, a number that is raised to the power specified by an exponent. For example, in 23 = 2 ?2 ?2 = 8, the base is 2. "
 msgid "Base"
@@ -252,7 +252,7 @@ msgstr "Obligatori"
 
 #. "In statistics, a list or a function that describes the probabilities of the possible values of a random variable chosen by means of a Bernoulli sampling process. Also called Bernoulli distribution."
 msgid "Binomial distribution"
-msgstr "DistribuciÛ binomial"
+msgstr "Distribuci√≥ binomial"
 
 #. "The minimal possible unit of information, a digit which can take values 0 or 1. Saying that the file has length n bits is equivalent to saying that it can be written as  a sequence of n zeros and ones."
 msgid "Bit"
@@ -270,7 +270,7 @@ msgid "Blinking cursor"
 msgstr "Cursor parpellejant"
 
 msgid "block buffer"
-msgstr "bloqueja la memÚria intermËdia"
+msgstr "bloqueja la mem√≤ria interm√®dia"
 
 #. "A signal that is prevented from being transmitted"
 msgid "Blocked"
@@ -289,11 +289,11 @@ msgstr "Negreta"
 
 #. "1. A marker inserted at a specific point in a document to which the user may wish to return for later reference. 2. In Netscape Navigator, a link to a Web page or other URL that a user has stored in a local file in order to return to it later. "
 msgid "book mark"
-msgstr "adreces d'interËs"
+msgstr "adreces d'inter√®s"
 
 #. "Characteristic of logical (true, false) values. "
 msgid "Boolean"
-msgstr "Bole‡"
+msgstr "Bole√†"
 
 #. "The boundary around a graphic image on screen. "
 msgid "Box"
@@ -316,7 +316,7 @@ msgstr "Explorador"
 
 #. "A region of memory reserved for use as an intermediate repository in which data is temporarily held while waiting to be transferred between two locations or devices. "
 msgid "Buffer"
-msgstr "MemÚria intermËdia"
+msgstr "Mem√≤ria interm√®dia"
 
 #. "An error in coding or logic that causes a program to malfunction or to produce incorrect results. "
 msgid "bug"
@@ -343,7 +343,7 @@ msgstr "Ocupat, -ada"
 
 #. "A graphic element in a dialog box that, when activated, performs a specified function. "
 msgid "Button"
-msgstr "BotÛ"
+msgstr "Bot√≥"
 
 #. "8 bits, i.e. a sequence of 8 zeros and ones.There are 256 possible such sequences, so one can also say that one byte represents a number ranging from 0 to 255. Byte is the basic building block of filesystem: all files are composed of bytes. For text files, each byte represents one symbol."
 msgid "Byte"
@@ -355,7 +355,7 @@ msgstr "C"
 
 #. "A short-term storage area in RAM or on the hard disk.  Many programs use caches to store recently-accessed files or other items."
 msgid "Cache"
-msgstr "MemÚria cau"
+msgstr "Mem√≤ria cau"
 
 #. "Any device that performs arithmetic operations on numbers. "
 msgid "Calculator"
@@ -370,16 +370,16 @@ msgid "Call"
 msgstr "Crida"
 
 msgid "Cancel"
-msgstr "Cancel∑lar"
+msgstr "Cancel¬∑lar"
 
 msgid "canvas"
-msgstr "‡rea de dibuix"
+msgstr "√†rea de dibuix"
 
 msgid "Caption"
 msgstr "Etiqueta"
 
 msgid "Case Sensitive"
-msgstr "Sensible a les maj˙scules"
+msgstr "Sensible a les maj√∫scules"
 
 #. "Groups of like settings in a property window."
 msgid "Categories"
@@ -390,14 +390,14 @@ msgid "CD"
 msgstr "CD"
 
 msgid "CDE panel"
-msgstr "PlafÛ CDE"
+msgstr "Plaf√≥ CDE"
 
 #. "1. The intersection of a row and a column in a spreadsheet. 2. An addressable (named or numbered) storage unit for information. A "
 msgid "Cell"
-msgstr "Cel∑la"
+msgstr "Cel¬∑la"
 
 msgid "Cellular"
-msgstr "Cel∑lular"
+msgstr "Cel¬∑lular"
 
 #. "To align characters around a point located in the middle of a line, page, or other defined area."
 msgid "Center"
@@ -409,11 +409,11 @@ msgstr "Canal"
 
 #. "A rectangular block of pixels that represents the space in which a given character is drawn on the screen. "
 msgid "char cell"
-msgstr "cel∑la de car‡cter"
+msgstr "cel¬∑la de car√†cter"
 
 #. "A collection of symbols, such as letters of one or several alphabets, digits, punctuation marks, etc. "
 msgid "Character set"
-msgstr "Joc de car‡cters"
+msgstr "Joc de car√†cters"
 
 #. "Real-time conversation via computer. "
 msgid "Chat"
@@ -421,11 +421,11 @@ msgstr "Xat"
 
 #. "One of a set of bits that are added to a data message at its origin and scrutinized by the receiving process to determine whether an error has occurred during transmission. "
 msgid "Check bit"
-msgstr "Verifica el dÌgit"
+msgstr "Verifica el d√≠git"
 
 #. "A nonexclusive setting that shows a checkmark in a box when the setting is chosen. Check boxes are used to enable or disable one or more features or options from a set. "
 msgid "Checkbox"
-msgstr "Quadre de verificaciÛ"
+msgstr "Quadre de verificaci√≥"
 
 #. "In a tree structure, the relationship of a node to its immediate predecessor. "
 msgid "child"
@@ -433,14 +433,14 @@ msgstr "descendent"
 
 #. "A process initiated by another process (the parent)."
 msgid "child process"
-msgstr "procÈs descendent"
+msgstr "proc√©s descendent"
 
 #. "In object-oriented programming, a generalized category that describes a group of more specific items, called objects, that can exist within it. "
 msgid "Class"
 msgstr "Classe"
 
 msgid "Classification"
-msgstr "ClassificaciÛ"
+msgstr "Classificaci√≥"
 
 msgid "Clear"
 msgstr "Buida"
@@ -465,7 +465,7 @@ msgid "Coefficient"
 msgstr "Coeficient"
 
 msgid "Collaboration"
-msgstr "Col∑laboraciÛ"
+msgstr "Col¬∑laboraci√≥"
 
 #. "In data handling, to merge items from two or more similar sets to create a combined set that maintains the order or sequence of items in the original sets."
 msgid "Collate"
@@ -473,7 +473,7 @@ msgstr "Cotejar"
 
 #. "The result of two devices or network workstations trying to transmit signals at the exact same time on the same channel. "
 msgid "Collision"
-msgstr "Col∑lisiÛ"
+msgstr "Col¬∑lisi√≥"
 
 #. "An instruction to a computer program which causes an action to be carried out. Commands are usually either typed at the keyboard or chosen from a menu."
 msgid "Command"
@@ -481,11 +481,11 @@ msgstr "Ordre"
 
 #. "A string of text written in the command language and passed to the command interpreter for execution. It can contain a command followed by arguments, options, file names and other expressions."
 msgid "Command Line"
-msgstr "LÌnia d'ordre"
+msgstr "L√≠nia d'ordre"
 
 #. "Parameters or arguments given on the UNIX command line after a program name, which tell the program how to run. "
 msgid "Command line options"
-msgstr "Opcions de la lÌnia d'ordre"
+msgstr "Opcions de la l√≠nia d'ordre"
 
 msgid "Common properties"
 msgstr "Propietats comunes"
@@ -500,7 +500,7 @@ msgstr "Concatenar"
 
 #. "The state of an expression or a variable (for example, when a result can be either true or false, or equal or not equal)."
 msgid "Condition"
-msgstr "CondiciÛ"
+msgstr "Condici√≥"
 
 #. "A pipe containing electric wires or cables, in order to protect them against damage from external causes."
 msgid "Conduit"
@@ -511,21 +511,21 @@ msgstr "Confidencial"
 
 #. "In reference to a single microcomputer, the sum of a system's internal and external components, including memory, disk drives, keyboard, video, and generally less critical add-on hardware, such as a mouse, modem, or printer. Software (the operating system"
 msgid "Configuration"
-msgstr "ConfiguraciÛ"
+msgstr "Configuraci√≥"
 
 msgid "Confirm"
 msgstr "Confirma"
 
 msgid "Confirmation"
-msgstr "ConfirmaciÛ"
+msgstr "Confirmaci√≥"
 
 #. "A physical link via wire, radio, fiber-optic cable, or other medium between two or more communications devices."
 msgid "Connection"
-msgstr "ConnexiÛ"
+msgstr "Connexi√≥"
 
 #. "In programming, a restriction on the solutions that are acceptable for a problem."
 msgid "Constraint"
-msgstr "RestricciÛ"
+msgstr "Restricci√≥"
 
 #. "The data that appears between the starting and ending tags of an element in an SGML or HTML document. "
 msgid "Content"
@@ -541,7 +541,7 @@ msgstr "Control"
 
 #. "The process of changing from one form or format to another. Types of conversion include: data (changing the way information is represented), file (changing a file from one format to another), hardware (changing all or part of a computer system), media (tr"
 msgid "Conversion"
-msgstr "ConversiÛ"
+msgstr "Conversi√≥"
 
 #. "On the World Wide Web, a block of data that a Web server stores on a client system. When a user returns to the same Web site, the browser sends a copy of the cookie back to the server. "
 msgid "cookie"
@@ -549,7 +549,7 @@ msgstr "galeta"
 
 #. "To duplicate information and reproduce it in another part of a document, in a different file or memory location, or in a different medium. "
 msgid "Copy"
-msgstr "CÚpia"
+msgstr "C√≤pia"
 
 #. "A method of protecting the rights of an originator of a creative work, such as a text, a piece of music, a painting, or a computer program, through law. "
 msgid "Copyright"
@@ -565,7 +565,7 @@ msgstr "Fitxer de nucli"
 
 #. "A linear transformation which in the plane maps lines into points and lines into points and in space maps points into planes and planes into points."
 msgid "Correlation"
-msgstr "CorrelaciÛ"
+msgstr "Correlaci√≥"
 
 #. "An expression used to denote the power factor of a circuit, the power factor being equal to the cosine of the angle of the phase difference between the current and voltage in the circuit."
 msgid "cos"
@@ -578,7 +578,7 @@ msgid "Count"
 msgstr "Compta"
 
 msgid "Covariance"
-msgstr "CovarianÁa"
+msgstr "Covarian√ßa"
 
 #. "Acronym for central processing unit. The computational and control unit of a computer. The CPU is the device that interprets and executes instructions. By definition, the CPU is the chip that functions as the 'brain' of a computer. "
 msgid "CPU"
@@ -592,7 +592,7 @@ msgid "Create"
 msgstr "Crear"
 
 msgid "Criteria range"
-msgstr "SËrie de criteris"
+msgstr "S√®rie de criteris"
 
 #. "An error that suspends processing until the condition can be corrected either by software or by user intervention "
 msgid "Critical error"
@@ -600,10 +600,10 @@ msgstr "Error greu"
 
 #. "In computer graphics, to cut off part of an image, such as unneeded sections of a graphic or extra white space around the borders. "
 msgid "Crop"
-msgstr "EscapÁar"
+msgstr "Escap√ßar"
 
 msgid "Cross-reference"
-msgstr "ContrareferËncia"
+msgstr "Contrarefer√®ncia"
 
 #. "Short for control. A designation used to label the Control key on computer keyboards. "
 msgid "Ctrl"
@@ -648,7 +648,7 @@ msgstr "base de dades"
 
 #. "To detect, locate, and correct logical or syntactical errors in a program or malfunctions in hardware. In hardware contexts, the term troubleshoot is the term more often used."
 msgid "Debug"
-msgstr "DepuraciÛ"
+msgstr "Depuraci√≥"
 
 #. "The base-10 numbering system. "
 msgid "decimal"
@@ -667,7 +667,7 @@ msgstr "Eliminar"
 
 #. "The state in which one entity relies upon specific hardware, software, or specific events for its own definition or functionality. "
 msgid "Dependence"
-msgstr "DependËncia"
+msgstr "Depend√®ncia"
 
 msgid "Derived"
 msgstr "Derivat"
@@ -690,13 +690,13 @@ msgstr "Entorn de l'escriptori"
 
 #. "The location (drive, folder, or directory) to which a file is copied or moved. "
 msgid "Destination"
-msgstr "DestinaciÛ"
+msgstr "Destinaci√≥"
 
 msgid "Destroy"
 msgstr "Destrueix"
 
 msgid "Detection"
-msgstr "DetecciÛ"
+msgstr "Detecci√≥"
 
 #. "A piece of hardware with which the system interacts, such as a hard disk, modem, printer or mouse."
 msgid "Device"
@@ -714,22 +714,22 @@ msgstr "Marcar"
 
 #. "In a graphical user interface, a special window displayed by the system or application to solicit a response from the user. "
 msgid "Dialog Box"
-msgstr "Quadre de di‡leg"
+msgstr "Quadre de di√†leg"
 
 msgid "Dialout Device"
 msgstr "Dispositiu de sortida"
 
 #. "One of the characters used to indicate a whole number (unit) in a numbering system. In any numbering system, the number of possible digits is equal to the base used. For example, the decimal (base-10) system has 10 digits, 0 through 9."
 msgid "Digits"
-msgstr "DÌgits"
+msgstr "D√≠gits"
 
 #. "One of three or four coordinates determining a position in space or in space and time."
 msgid "Dimension"
-msgstr "DimensiÛ"
+msgstr "Dimensi√≥"
 
 #. "glade.pot"
 msgid "Direction"
-msgstr "DirecciÛ"
+msgstr "Direcci√≥"
 
 #. "A branch within UNIX's hierarchical file system; a 'folder' containing files or other directories (called 'subdirectories')."
 msgid "Directory"
@@ -759,11 +759,11 @@ msgstr "Descartar"
 
 #. "A visual presentation of data. The visual output device of a computer."
 msgid "Display"
-msgstr "VisualitzaciÛ"
+msgstr "Visualitzaci√≥"
 
 #. "Loss or diminution of power."
 msgid "Dissipation"
-msgstr "DissipaciÛ"
+msgstr "Dissipaci√≥"
 
 #. "To allocate among locations or facilities, as in a data-processing function."
 msgid "Distribute"
@@ -771,7 +771,7 @@ msgstr "Divideix"
 
 #. "A list of recipients on an e-mail mailing list. "
 msgid "Distribution list"
-msgstr "Llista de distribuciÛ"
+msgstr "Llista de distribuci√≥"
 
 #. "A technique used in computer graphics to create the illusion of varying shades of gray on a monochrome display or printer, or additional colors on a color display or printer. "
 msgid "Dithering"
@@ -779,7 +779,7 @@ msgstr "Tramatge"
 
 #. "An error condition caused by an attempt to divide a number by zero, which is mathematically undefined."
 msgid "Division by zero"
-msgstr "DivisiÛ per zero"
+msgstr "Divisi√≥ per zero"
 
 #. "Direct Memory Access; Memory access that does not involve the microprocessor and is frequently used for data transfer directly between memory and an intelligent peripheral device, such as a disk drive."
 msgid "DMA"
@@ -807,11 +807,11 @@ msgstr "Baixa"
 
 #. "In multimedia applications the area on the screen where drawing and editing functions are carried out"
 msgid "Drawing Area"
-msgstr "¿rea de dibuix"
+msgstr "√Ärea de dibuix"
 
 #. "To fix the position of an object that is being dragged by releasing the mouse button. To disconnect a communications line."
 msgid "Drop"
-msgstr "PËrdua"
+msgstr "P√®rdua"
 
 msgid "Druid"
 msgstr "Druid"
@@ -826,11 +826,11 @@ msgstr "Duplicat"
 
 #. "Occurring immediately and concurrently or at the time of execution. It describes some action or event that occurs when and as needed. "
 msgid "Dynamic"
-msgstr "Din‡mic"
+msgstr "Din√†mic"
 
 #. "Short for electronic mail.  "
 msgid "E-mail"
-msgstr "AdreÁa electrÚnica"
+msgstr "Adre√ßa electr√≤nica"
 
 #. "In communications, a signal transmitted back to the sender that is distinct from the original signal. Network connections can be tested by sending an echo back to the main computer."
 msgid "Echo"
@@ -852,11 +852,11 @@ msgstr "Expulsa"
 
 #. "A way of exchanging messages between users of computers connected to a network (local or Internet)."
 msgid "Electronic Mail"
-msgstr "Correu electrÚnic"
+msgstr "Correu electr√≤nic"
 
 #. "The process of a computer, device, or program imitating the function of another computer, device, or program."
 msgid "emulation"
-msgstr "imitaciÛ"
+msgstr "imitaci√≥"
 
 #. "To activate."
 msgid "Enable"
@@ -868,7 +868,7 @@ msgstr "Encapsulated Postcript"
 
 #. "A correspondence between characters of some character set and character codes, i.e. internal computer presentation of the symbols. In order to be able to read a text file, you need to know its character set and encoding. In most encodings, each symbol is represented by one byte, which is equivalent to a number from 0 to 255; the characters corresponding to codes 0 to 127 coincide with the ASCII standard, while the characters with codes higher than 127 vary between encodin. The most common encoding is iso-8859-1; in addition to ASCII characters, it also contains accented letters covering most of Western European languages."
 msgid "Encoding"
-msgstr "S'est‡ codificant"
+msgstr "S'est√† codificant"
 
 msgid "Engineering"
 msgstr "Enginyeria"
@@ -883,7 +883,7 @@ msgstr "variable d'entorn"
 
 #. "A mathematical statement that indicates equality with the use of an equal sign (=) between two expressions. In programming languages, assignment statements are written in equation form. "
 msgid "Equation"
-msgstr "EquaciÛ"
+msgstr "Equaci√≥"
 
 #. "A value or condition that is not consistent with the true, specified, or expected value or condition. "
 msgid "Error"
@@ -899,7 +899,7 @@ msgstr "Esdeveniment"
 
 #. "In programming, a problem or change in conditions that causes the microprocessor to stop what it is doing and handle the situation in a separate routine. "
 msgid "Exception"
-msgstr "ExcepciÛ"
+msgstr "Excepci√≥"
 
 #. "A logical operator that yields 'true' if and only if one of its operands is true and the other is false. "
 msgid "Exclusive OR"
@@ -919,18 +919,18 @@ msgstr "Surt"
 
 #. "A type of memory, up to 8 MB, that can be added to IBM PCs. Its use is defined by the Expanded Memory Specification (EMS). Expanded memory is not needed in Windows 9x, all versions of Windows NT, and Windows 2000. "
 msgid "Expanded memory"
-msgstr "MemÚria ampliada"
+msgstr "Mem√≤ria ampliada"
 
 msgid "expected location"
-msgstr "ubicaciÛ esperada"
+msgstr "ubicaci√≥ esperada"
 
 #. "Synonymous of Absolute state."
 msgid "Explicit state"
-msgstr "Estat explÌcit"
+msgstr "Estat expl√≠cit"
 
 #. "A numeric format that can be used to represent very large real numbers and very small real numbers. Synonymous of Floating-point representation."
 msgid "Exponential notation"
-msgstr "NotaciÛ exponencial"
+msgstr "Notaci√≥ exponencial"
 
 #. "To move information from one system or program to another. Files that consist only of text can be exported in ASCII (plain text format). "
 msgid "Export"
@@ -938,11 +938,11 @@ msgstr "Exporta"
 
 #. "A language construct for computing a value from one  or moe operands."
 msgid "expression"
-msgstr "expressiÛ"
+msgstr "expressi√≥"
 
 #. "1. A set of characters added to a filename that serves to extend or clarify its meaning or to identify a file as a member of a category. 2. A program or program module that adds functionality to or extends the effectiveness of a program. "
 msgid "Extension"
-msgstr "ExtensiÛ"
+msgstr "Extensi√≥"
 
 #. "To select and remove from a set of items those items that meet some criteria. "
 msgid "Extract"
@@ -1002,7 +1002,7 @@ msgstr "Disquet"
 
 #. "A method of tracing the movement of different types of information through a computer system, especially with regard to security and the controls applied to ensure the integrity of the information. "
 msgid "Flow analysis"
-msgstr "An‡lisi de flux"
+msgstr "An√†lisi de flux"
 
 #. "A graphic map of the path of control or data through the operations in a program or an information-handling system. "
 msgid "Flowchart"
@@ -1018,10 +1018,10 @@ msgstr "Tipus de lletra"
 
 #. "One or more identifying lines printed at the bottom of a page. A footer may contain a folio (page number), a date, the author's name, and the document title. "
 msgid "Footer"
-msgstr "Peu de p‡gina"
+msgstr "Peu de p√†gina"
 
 msgid "Forecast"
-msgstr "PronÚstic"
+msgstr "Pron√≤stic"
 
 #. "To run a program so that its output is visible to the user, or to bring a previously 'backgrounded' program to the foreground. Programs running in the foreground can display output and receive input from the user."
 msgid "Foreground"
@@ -1029,7 +1029,7 @@ msgstr "Primer pla"
 
 #. " A system call to create a new process.  The new process is called a child process. The original process is called a parent process. "
 msgid "fork"
-msgstr "bifurcaciÛ"
+msgstr "bifurcaci√≥"
 
 #. "A structured document with spaces reserved for entering information and often containing special coding as well. In some applications (especially databases), a structured window, box, or other self-contained presentation element with predefined areas for "
 msgid "Form"
@@ -1041,15 +1041,15 @@ msgstr "Format"
 
 #. "A mathematical statement that describes the actions to be performed on numeric values. A formula sets up a calculation without regard to the actual values."
 msgid "Formula"
-msgstr "FÛrmula"
+msgstr "F√≥rmula"
 
 #. "A mathematical method, developed by the French mathematician Jean-Baptiste-Joseph Fourier (1768-1830), for signal processing and signal generation tasks such as spectral analysis and image processing. It describes the strategy by which a periodic curve (a"
 msgid "Fourier Analysis"
-msgstr "An‡lisi de Fourier"
+msgstr "An√†lisi de Fourier"
 
 #. "A division indicated by the division sign or by a stroke bar. The dividend and the divisor are called the numerator and denominator respectively."
 msgid "Fraction"
-msgstr "FracciÛ"
+msgstr "Fracci√≥"
 
 #. "1. In asynchronous serial communications, a unit of transmission that is sometimes measured in elapsed time and begins with the start bit that precedes a character and ends with the last stop bit that follows the character. 2. In synchronous communication"
 msgid "Frame"
@@ -1061,7 +1061,7 @@ msgstr "Programari Lliure"
 
 #. "The measure of how often a periodic event occurs, such as a signal going through a complete cycle. Frequency is usually measured in hertz (Hz)."
 msgid "Frequency"
-msgstr "Freq¸Ëncia"
+msgstr "Freq√º√®ncia"
 
 #. "A protocol for exchanging files over the Internet or local network. There is a number of utilities based on this protocol, such as gFTP; you can also use command ftp on the command line. In addition, most file managers and Web browsers have built-in FTP c"
 msgid "FTP"
@@ -1069,11 +1069,11 @@ msgstr "FTP"
 
 #. "In a hierarchical filing system, a pathname containing all the possible components of a pathname, including the network share or drive and root directory, as well as any subdirectories and the file or object name. "
 msgid "full pathname"
-msgstr "Nom de camÌ complet"
+msgstr "Nom de cam√≠ complet"
 
 #. "1. The purpose of, or the action carried out by, a program or routine. 2. A general term for a subroutine. "
 msgid "Function"
-msgstr "FunciÛ"
+msgstr "Funci√≥"
 
 #. "A unit for magnetic field intensity particularly used in magnetic surveys. The numerical value of the power to which a video signal voltage is raised to obtain linear light."
 msgid "Gamma"
@@ -1105,7 +1105,7 @@ msgstr "GPL"
 
 #. "To capture graphical image data from a video camera or another full-motion video source and put it into memory. "
 msgid "Grab"
-msgstr "AdquisiciÛ"
+msgstr "Adquisici√≥"
 
 #. "The rate of change of a quantity with distance."
 msgid "Gradient"
@@ -1113,11 +1113,11 @@ msgstr "Gradient"
 
 #. "Synonymous with Chart. A graphic or diagram that displays data or the relationships between sets of data in pictorial rather than numeric form."
 msgid "Graph"
-msgstr "Gr‡fic"
+msgstr "Gr√†fic"
 
 #. "A visual computer environment that represents programs, files, and options with graphical images, such as icons, menus, and dialog boxes on the screen. "
 msgid "Graphical user interface"
-msgstr "InterfÌcie gr‡fica d'usuari"
+msgstr "Interf√≠cie gr√†fica d'usuari"
 
 #. "Two sets of lines or linear elements at right angles to each other. A spreadsheet is a grid of rows and columns."
 msgid "Grid"
@@ -1137,11 +1137,11 @@ msgstr "GUI"
 
 #. "The blank space or inner margin between two facing pages of a bound document."
 msgid "Gutter"
-msgstr "CanalÛ"
+msgstr "Canal√≥"
 
 #. "A person, more commonly considered a cracker, who uses computer expertise for illicit ends, such as by gaining access to computer systems without permission and tampering with programs and data. "
 msgid "Hacker"
-msgstr "Expert inform‡tic"
+msgstr "Expert inform√†tic"
 
 #. "Any token or pointer that a program can use to identify and access an object such as a device, a file, a window, a dialog box or any resource."
 msgid "Handle"
@@ -1157,13 +1157,13 @@ msgstr "Disc dur"
 
 #. "1. In word processing or printing, text that is to appear at the top of pages. 2. Information attached to the beginning of data that contains information about the subsequent dara, such as a block of bytes in communications, a file on a disk, a set of rec"
 msgid "Header"
-msgstr "CapÁalera"
+msgstr "Cap√ßalera"
 
 msgid "Headword"
 msgstr "Paraula principal"
 
 msgid "Hello World"
-msgstr "Hola MÛn"
+msgstr "Hola M√≥n"
 
 #. "An item on a menu bar in a graphical user interface that enables the user to access the help feature of the present application. "
 msgid "Help"
@@ -1207,11 +1207,11 @@ msgstr "Directori de l'usuari"
 
 #. "1. A document intended to serve as a starting point in a hypertext system, especially the World Wide Web. 2. An entry page for a set of Web pages and other files in a Web site. "
 msgid "Home Page"
-msgstr "P‡gina inicial"
+msgstr "P√†gina inicial"
 
 #. "A computing milieu, usually within an organization, in which only one manufacturer's hardware and one manufacturer's software are used. "
 msgid "Homogeneous environment"
-msgstr "CondiciÛ homogËnia"
+msgstr "Condici√≥ homog√®nia"
 
 #. "1. The main computer in a mainframe or minicomputer environment, that is, the computer to which terminals are connected. 2. In PC-based networks, a computer that provides access to other computers. 3. On the Internet or other large networks, a server comp"
 msgid "Host"
@@ -1223,7 +1223,7 @@ msgstr "Nom de l'ordinador central"
 
 #. "Hot-keys are keyboard combinations used to do actions on a computer instead of using the mouse to do the same action. Hot-keys can speed up computer usage. Also known under the name <quote>keyboard shortcut</quote> or <quote>keyboard accelerator</quote>."
 msgid "Hot Key"
-msgstr "Tecla r‡pida"
+msgstr "Tecla r√†pida"
 
 #. "Any of various routines, such as updating the clock or performing garbage collection, designed to keep the system, the environment within which a program runs, or the data structures within a program in good working order."
 msgid "Housekeeping"
@@ -1239,7 +1239,7 @@ msgstr "HTTP"
 
 #. "In the HSB color model, one of the three characteristics used to describe a color. Hue is the attribute that most readily distinguishes one color from other colors. It depends on the frequency of a light wave in the visible spectrum. "
 msgid "Hue"
-msgstr "MatÌs"
+msgstr "Mat√≠s"
 
 #. "A piece of hardware that can be used both for providing data to a computer and for receiving data from it, depending on the current situation. "
 msgid "I/O subsystem"
@@ -1267,7 +1267,7 @@ msgstr "Inactiu"
 
 #. "Not allowed, or leading to invalid results. For example, an illegal character in a word processing program would be one that the program cannot recognize; an illegal operation might be impossible for a program or system because of built-in constraints. "
 msgid "Illegal"
-msgstr "Il∑legal"
+msgstr "Il¬∑legal"
 
 #. "A stored description of a graphic picture, either as a set of brightness and color values of pixels or as a set of instructions for reproducing the picture. "
 msgid "Image"
@@ -1275,7 +1275,7 @@ msgstr "Imatge"
 
 #. "The process of getting an application into operation."
 msgid "Implementation"
-msgstr "AplicaciÛ"
+msgstr "Aplicaci√≥"
 
 #. "To bring information from one system or program into another. "
 msgid "Import"
@@ -1290,7 +1290,7 @@ msgstr "Incrementa"
 
 #. "An update of those files only that have changed since a specific date."
 msgid "Incremental update"
-msgstr "ActualitzaciÛ creixent"
+msgstr "Actualitzaci√≥ creixent"
 
 #. "Displacement of the left or right edge of a block of text in relation to the margin or to other blocks of text. "
 msgid "Indent"
@@ -1298,7 +1298,7 @@ msgstr "Sagnat"
 
 #. "A listing of keywords and associated data that point to the location of more comprehensive information, such as files and records on a disk or in a database."
 msgid "Index"
-msgstr "Õndex"
+msgstr "√çndex"
 
 #. "A dial or light that displays information about the status of a device, such as a light connected to a disk drive that glows when the disk is being accessed."
 msgid "Indicator"
@@ -1306,14 +1306,14 @@ msgstr "Indicador"
 
 #. "The meaning of data as it is intended to be interpreted by people. Data consists of facts, which become information when they are seen in context and convey meaning to people. "
 msgid "Information"
-msgstr "InformaciÛ"
+msgstr "Informaci√≥"
 
 #. "The process of assigning initial values to variables and data structures in a program to prepare them for operation."
 msgid "initialization"
-msgstr "inicialitzaciÛ"
+msgstr "inicialitzaci√≥"
 
 msgid "Inode"
-msgstr "Node d'identificaciÛ"
+msgstr "Node d'identificaci√≥"
 
 #. "Information entered into a computer or program for processing, as from a keyboard or from a file stored on a disk drive."
 msgid "Input"
@@ -1324,23 +1324,23 @@ msgid "Input/output"
 msgstr "Entrada/sortida"
 
 msgid "insensitive version"
-msgstr "VersiÛ insensible"
+msgstr "Versi√≥ insensible"
 
 #. "A blinking vertical bar on the screen, such as in graphical user interfaces, that marks the location at which inserted text will appear. "
 msgid "Insertion point"
-msgstr "Punt d'inserciÛ"
+msgstr "Punt d'inserci√≥"
 
 #. "To set in place and prepare for operation. Operating systems and application programs commonly include a disk-based installation, or setup, program that does most of the work of preparing the program to work with the computer, printer, and other devices. "
 msgid "Install"
-msgstr "Instal∑laciÛ"
+msgstr "Instal¬∑laci√≥"
 
 #. "A register (small, high-speed memory circuit within a microprocessor) that contains the address (location) of the instruction to be executed next in the program sequence."
 msgid "instruction pointer"
-msgstr "punter de la instrucciÛ"
+msgstr "punter de la instrucci√≥"
 
 #. "The conversational exchange of input and output, as when a user enters a question or command and the system immediately responds. "
 msgid "Interaction"
-msgstr "InteracciÛ"
+msgstr "Interacci√≥"
 
 msgid "Intercept"
 msgstr "Intercepta"
@@ -1351,7 +1351,7 @@ msgstr "Format del fitxer d'intercanvi"
 
 #. "1. The point at which a connection is made between two elements so that they can work with each other or exchange information. 2. Software that enables a program to work with the user (the user interface, which can be a command-line interface, menu-driven"
 msgid "Interface"
-msgstr "InterfÌcie"
+msgstr "Interf√≠cie"
 
 msgid "Internal bug"
 msgstr "Error intern"
@@ -1379,11 +1379,11 @@ msgid "Interval"
 msgstr "Interval"
 
 msgid "Intuitive"
-msgstr "IntuÔtiu"
+msgstr "Intu√Øtiu"
 
 #. "Erroneous or unrecognizable because of a flaw in reasoning or an error in input. "
 msgid "Invalid"
-msgstr "Inv‡lid"
+msgstr "Inv√†lid"
 
 #. "To reverse something or change it to its opposite. For example, to invert the colors on a monochrome display means to change light to dark and dark to light. "
 msgid "Invert"
@@ -1391,14 +1391,14 @@ msgstr "Inverteix"
 
 #. "The reversal of light and dark in the display of selected characters on a video screen. "
 msgid "Invert Selection"
-msgstr "Inverteix la selecciÛ"
+msgstr "Inverteix la selecci√≥"
 
 msgid "Invisible"
 msgstr "Invisible"
 
 #. "A unique address assigned to each computer connected to  the <link linkend='internet'>Internet</link> or a local  network. Has the form <systemitem>a.b.c.d</systemitem>, where a,b,c,d are numbers from 0 to 255, subject to a number of rules  and convention. All communication between computers on the Internet is based on IP addresses; however, on a properly set up network you can instead use domain names (such as www.gnome.org), which are automatically transformed to IP addresses using <link linkend='dns'>Dom"
 msgid "IP Address"
-msgstr "AdreÁa IP"
+msgstr "Adre√ßa IP"
 
 #. "Acronym for Internet Relay Chat. A service that enables an Internet user to participate in a conversation on line in real time with other users. An IRC channel, maintained by an IRC server, transmits the text typed by each user who has joined the channel "
 msgid "IRC"
@@ -1449,7 +1449,7 @@ msgstr "Aturar"
 
 #. "An application of such popularity and widespread standardization that it fuels sales of the hardware platform or operating system for which it was written. "
 msgid "Kill app"
-msgstr "AplicaciÛ d'aturar"
+msgstr "Aplicaci√≥ d'aturar"
 
 #. "A data unit of 1,024 bytes Abbreviated K, KB, or Kbyte. "
 msgid "Kilobyte"
@@ -1508,27 +1508,27 @@ msgstr "Biblioteca"
 
 #. "A legal contract between a software provider and a user specifying the rights of the user regarding the software. "
 msgid "License agreement"
-msgstr "LlicËncia de conformitat"
+msgstr "Llic√®ncia de conformitat"
 
 msgid "Light precipitation"
-msgstr "Precipitacions dËbils"
+msgstr "Precipitacions d√®bils"
 
 msgid "Limits"
-msgstr "LÌmits"
+msgstr "L√≠mits"
 
 #. "1. Any wire or wires, such as power lines and telephone lines, used to transmit electrical power or signals. 2. In communications, a connection, usually a physical wire or other cable, between sending and receiving (or calling and called) devices, includi"
 msgid "Line"
-msgstr "LÌnia"
+msgstr "L√≠nia"
 
 msgid "line arguments"
-msgstr "arguments de la lÌnia"
+msgstr "arguments de la l√≠nia"
 
 msgid "linear transfer"
-msgstr "transferËncia linear"
+msgstr "transfer√®ncia linear"
 
 #. "To connect two elements in a data structure by using index variables or pointer variables. A connection between an element in a hypertext document, such as a word, phrase, symbol, or image, and a different element in the document, another document, a file, or a script."
 msgid "Link"
-msgstr "EnllaÁ"
+msgstr "Enlla√ß"
 
 #. "A free (as in GNU GPL) UNIX-like operating system, written in  collaboration by hundreds of developers all around the world, most of them volunteers. One of the most successful and famous  <link linkend='freesoftware'>free software</link> projects. Strictly speaking, the name 'Linux' only applies to the kernel of the operating system. Most of other tools and utilities necessary for system functioning came from GNU project, so the operating system should be properly called 'GNU/Linux'; however, for c. There is a tremendous amount of information about Linux available on the Internet; good starting points are <ulink type='http' url='http://www.linux.com'>www.linux.com</ulink>,       <ulink type='http' url='http://www.linux.org'>www.linux.org</ulink>."
 msgid "Linux"
@@ -1536,7 +1536,7 @@ msgstr "Linux"
 
 #. "To place information from storage into memory for processing, if it is data, or for execution, if it is program code."
 msgid "load"
-msgstr "c‡rrega"
+msgstr "c√†rrega"
 
 #. "1. In communications, a device that can be accessed directly rather than by means of a communications line. 2. In information processing, an operation performed by the computer at hand rather than by a remote computer. "
 msgid "Local"
@@ -1544,7 +1544,7 @@ msgstr "Local"
 
 #. "A number specifying a location or address in memory where data is stored. "
 msgid "Location"
-msgstr "UbicaciÛ"
+msgstr "Ubicaci√≥"
 
 #. "1. A software security feature that requires a key or dongle in order for the application to run correctly. 2. A mechanical device on some removable storage medium (for example, the write-protect notch on a floppy disk) that prevents the contents from bei"
 msgid "Lock"
@@ -1556,7 +1556,7 @@ msgstr "Registre"
 
 #. "Based on true and false alternatives as opposed to arithmetic calculation of numeric values. "
 msgid "Logical"
-msgstr "LÚgiques"
+msgstr "L√≤giques"
 
 #. "The process by which a user authenticates herself to a computer system, usually by typing in a username and password."
 msgid "Login"
@@ -1598,7 +1598,7 @@ msgstr "Correu a"
 
 #. "A disk storage area assigned to a network user for receipt of electronic messages. "
 msgid "Mailbox"
-msgstr "B˙stia"
+msgstr "B√∫stia"
 
 #. "The set of statements in a computer program at which execution of the program begins and that invokes the subroutines of the program."
 msgid "Main body"
@@ -1606,7 +1606,7 @@ msgstr "Cos principal"
 
 #. "Online documentation for UNIX commands and programs and the UNIX library routines available for use in C programs. These documents, also found in the UNIX Programmer's Manual, can be displayed on a user's terminal or printed using the command man."
 msgid "Man Pages"
-msgstr "P‡gines del manual"
+msgstr "P√†gines del manual"
 
 #. "Any program that is designed to perform a certain set of housekeeping tasks related to computer operation, such as the maintenance of files. "
 msgid "Manager"
@@ -1617,7 +1617,7 @@ msgstr "Manual"
 
 #. "see 'Man Pages'."
 msgid "Manual page"
-msgstr "P‡gina del manual"
+msgstr "P√†gina del manual"
 
 #. "In printing, those portions of a page-top, bottom, and sides-outside the main body of text."
 msgid "Margins"
@@ -1644,15 +1644,15 @@ msgid "Median"
 msgstr "Mediana"
 
 msgid "Meeting"
-msgstr "ReuniÛ"
+msgstr "Reuni√≥"
 
 #. "A device where information can be stored and retrieved. In the most general sense, memory can refer to external storage such as disk drives or tape drives; in common usage, it refers only to a computer's main memory."
 msgid "Memory"
-msgstr "MemÚria"
+msgstr "Mem√≤ria"
 
 #. "A list of possible actions or options available within a program."
 msgid "Menu"
-msgstr "Men˙"
+msgstr "Men√∫"
 
 #. "To combine two or more items, such as lists, in an ordered way and without changing the basic structure of either. "
 msgid "Merge"
@@ -1689,7 +1689,7 @@ msgstr "faltes lleus"
 
 #. "An image that is an exact duplicate of the original with the exception that one dimension is reversed. "
 msgid "mirror"
-msgstr "rËplica"
+msgstr "r√®plica"
 
 #. "In multimedia applications, a device used to simultaneously combine and blend several inputs into one or two outputs."
 msgid "mixer device"
@@ -1709,7 +1709,7 @@ msgstr "Model"
 
 #. "Short for modulator/demodulator. A communications device that enables a computer to transmit information over a standard telephone line. "
 msgid "Modem"
-msgstr "MÚdem"
+msgstr "M√≤dem"
 
 #. "A key on the keyboard that, when held down while another key is pressed, changes the meaning of the keystroke. "
 msgid "Modifier"
@@ -1720,7 +1720,7 @@ msgstr "Modifica"
 
 #. "1. In programming, a collection of routines and data structures that performs a particular task or implements a particular abstract data type. 2. In hardware, a self-contained component that can provide a complete function to a system and can be interchan"
 msgid "Module"
-msgstr "MÚdul"
+msgstr "M√≤dul"
 
 #. "The device on which images generated by the computer's video adapter are displayed. "
 msgid "Monitor"
@@ -1736,7 +1736,7 @@ msgstr "Munta"
 
 #. "An small icon (usually an arrow) used to indicate the position of the mouse on the <link linkend='desktop'>desktop</link>."
 msgid "Mouse Cursor"
-msgstr "Cursor del ratolÌ"
+msgstr "Cursor del ratol√≠"
 
 #. "A command or instruction to transfer information from one location to another. "
 msgid "Move"
@@ -1760,10 +1760,10 @@ msgstr "Nautilus"
 
 #. "See: Binomial distribution"
 msgid "Negative Binomial"
-msgstr "BinÚmica negativa"
+msgstr "Bin√≤mica negativa"
 
 msgid "Netmask"
-msgstr "M‡scara de xarxa"
+msgstr "M√†scara de xarxa"
 
 msgid "Netscape"
 msgstr "Netscape"
@@ -1773,7 +1773,7 @@ msgid "Network"
 msgstr "Xarxa"
 
 msgid "News Site"
-msgstr "Lloc de notÌcies"
+msgstr "Lloc de not√≠cies"
 
 msgid "NO-DAEMON"
 msgstr "SENSE DIMONIS"
@@ -1784,7 +1784,7 @@ msgstr "node"
 
 #. "In statistics, a type of function that describes the probabilities of the possible values of a random variable. "
 msgid "Normal distribution"
-msgstr "DistribuciÛ normal"
+msgstr "Distribuci√≥ normal"
 
 #. "Any computer designed to be moved easily. Notebooks or portable computers can be characterized by size and weight."
 msgid "Notebook"
@@ -1795,13 +1795,13 @@ msgid "Notice"
 msgstr "Nota"
 
 msgid "Notification"
-msgstr "NotificaciÛ"
+msgstr "Notificaci√≥"
 
 msgid "Number"
-msgstr "N˙mero"
+msgstr "N√∫mero"
 
 msgid "Number Converter"
-msgstr "Convertidor de n˙meros"
+msgstr "Convertidor de n√∫meros"
 
 msgid "Number Theory"
 msgstr "Teoria de nombres"
@@ -1811,7 +1811,7 @@ msgstr "Llista numerada"
 
 #. "Pertaining to the digits 0 to 9."
 msgid "Numeric"
-msgstr "NumËric"
+msgstr "Num√®ric"
 
 #. "Output from a compiler or an assembler, that was translated from the source code of a program and is itself executable machine code or is suitable for processing to produce excutable machine code. "
 msgid "Object code"
@@ -1854,7 +1854,7 @@ msgstr "Sistema operatiu"
 
 #. "1. A specific action carried out by a computer in the process of executing a program. 2. In mathematics, an action performed on a set of entities that produces a new entity. "
 msgid "Operation"
-msgstr "OperaciÛ"
+msgstr "Operaci√≥"
 
 #. "Accepted but not required by a command or system."
 msgid "optional"
@@ -1874,7 +1874,7 @@ msgstr "Ordre"
 
 #. "The way text or images are printed, i.e. either lengways or sideways."
 msgid "Orientation"
-msgstr "OrientaciÛ"
+msgstr "Orientaci√≥"
 
 #. "The location of the Cartesian coordinates from which the axes that define 2-D and 3-D-space originate. This is the location (0,0)."
 msgid "Origin"
@@ -1916,7 +1916,7 @@ msgstr "Farciment"
 
 #. "1. In word processing, the text and display elements to be printed on one side of a sheet of paper. 2. A fixed-size block of memory (8192 contiguous byte locations). 2.  A Web-page."
 msgid "Page"
-msgstr "P‡gina"
+msgstr "P√†gina"
 
 msgid "Pager"
 msgstr "Paginador"
@@ -1927,14 +1927,14 @@ msgstr "Paleta"
 
 #. "A control area."
 msgid "Panel"
-msgstr "PlafÛ"
+msgstr "Plaf√≥"
 
 msgid "Panelize"
-msgstr "Converteix en un plafÛ"
+msgstr "Converteix en un plaf√≥"
 
 #. "In programming, a value that is given to a variable before an expression is evaluated by a program. A parameter can be text, a number, or an argument name assigned to a value that is passed from one routine to another. "
 msgid "Parameter"
-msgstr "Par‡metre"
+msgstr "Par√†metre"
 
 msgid "Parcel"
 msgstr "Paquet"
@@ -1945,7 +1945,7 @@ msgstr "Analitzar"
 
 #. "Hard disks and other similar devices can be 'divided' into parts which, for all practical purposes, can be used as separate disks; these parts are called partitions. For example, you can create partitions of differrent types (e.g., FAT32 used by Windows a"
 msgid "Partition"
-msgstr "ParticiÛ"
+msgstr "Partici√≥"
 
 #. "A string of typable characters (letters, numbers, punctuation marks, etc.) used to authenticate a user's identity. Required for <link linkend='login'>logging in</link>."
 msgid "Password"
@@ -1957,28 +1957,28 @@ msgstr "Enganxa"
 
 #. "1. In communications, a link between two nodes in a network. 2. A route through a structured collection of information. 3. In file storage, the route followed by the operating system through the directories to a file. "
 msgid "Path"
-msgstr "CamÌ"
+msgstr "Cam√≠"
 
 #. "Objects with meaningful regularities."
 msgid "Pattern"
-msgstr "PatrÛ"
+msgstr "Patr√≥"
 
 msgid "Peak indicator"
 msgstr "Indicador pic"
 
 #. "Statistical concept to describe the correlation coefficient between two variants."
 msgid "Pearson Correlation"
-msgstr "CorrelaciÛ de Pearson"
+msgstr "Correlaci√≥ de Pearson"
 
 msgid "pending signals"
 msgstr "Signes pendents"
 
 #. "The length of time required for an oscillation to complete one full cycle. "
 msgid "Period"
-msgstr "PerÌode"
+msgstr "Per√≠ode"
 
 msgid "Periodic"
-msgstr "PeriÚdic"
+msgstr "Peri√≤dic"
 
 #. "Acronym for Practical Extraction and Report Language. An interpreted language, based on C and several UNIX utilities. "
 msgid "Perl"
@@ -1986,21 +1986,21 @@ msgstr "Perl"
 
 #. "A program in Perl is known as a script. "
 msgid "Perl Script"
-msgstr "Seq¸Ëncia Perl"
+msgstr "Seq√º√®ncia Perl"
 
 #. "In a networked or multiuser computer environment, the ability of a particular user to access a particular resource by means of his or her user account. Permissions are granted by the system administrator."
 msgid "Permission"
-msgstr "PermÌs"
+msgstr "Perm√≠s"
 
 #. "Memory actually present in the system, as opposed to virtual memory. "
 msgid "physical memory"
-msgstr "MemÚria fÌsica"
+msgstr "Mem√≤ria f√≠sica"
 
 msgid "picker button"
-msgstr "botÛ capturador"
+msgstr "bot√≥ capturador"
 
 msgid "Picker Settings"
-msgstr "Par‡metres capturadors"
+msgstr "Par√†metres capturadors"
 
 #. "The ID number by which the system identifies individual processes. The first process to run on the system has PID 0."
 msgid "PID"
@@ -2015,14 +2015,14 @@ msgstr "Conducte"
 
 #. "A single element, or <quote>dot</quote>, on the computer's screen.  A pixel's colour is made up of a mixture of red, green and blue light. Screen resolution is measured in pixels."
 msgid "Pixel"
-msgstr "PÌxel"
+msgstr "P√≠xel"
 
 #. "A data structure that describes the pixel image of a graphic, including such features as color, image, resolution, dimensions, storage format, and number of bits used to describe each pixel. "
 msgid "Pixmap"
 msgstr "Mapa de pixels"
 
 msgid "Place"
-msgstr "EmplaÁament"
+msgstr "Empla√ßament"
 
 msgid "Play"
 msgstr "Reproduir"
@@ -2037,25 +2037,25 @@ msgstr "Punt"
 
 #. "A mathematical curve often used in statistics and simulation to represent the likelihood of some event occurring  when the average likelihood is known. "
 msgid "Poisson distribution"
-msgstr "DistribuciÛ Poisson"
+msgstr "Distribuci√≥ Poisson"
 
 msgid "Policy"
 msgstr "Normes"
 
 #. "Any two-dimensional closed (planar) shape composed of connected line segments (vectors), such as a hexagon, an octagon, or a triangle. "
 msgid "Polygon"
-msgstr "PolÌgon"
+msgstr "Pol√≠gon"
 
 #. "An open shape consisting of multiple connected segments. Polylines are used in CAD and other graphics programs. "
 msgid "Polyline"
-msgstr "PolilÌnia"
+msgstr "Polil√≠nia"
 
 msgid "Pooled Variance"
-msgstr "DiferËncia d'interessos"
+msgstr "Difer√®ncia d'interessos"
 
 #. "In a graphical user interface, a menu that appears on-screen when a user selects a certain item. "
 msgid "popup menu"
-msgstr "men˙ emergent"
+msgstr "men√∫ emergent"
 
 #. "An interface through which data is transferred between a computer and other devices (such as a printer, mouse, keyboard or monitor), a network, or a direct connection to another computer. "
 msgid "port"
@@ -2075,14 +2075,14 @@ msgstr "Processador del correu"
 
 #. "Synonym for Mailbox"
 msgid "Postal Box"
-msgstr "B˙stia"
+msgstr "B√∫stia"
 
 #. "A language for desribing printed pages, developed by <ulink type='http' url='http://www.adobe.com'>Adobe Corporation</ulink>. Can be used to describe both graphics and text, black and white or color. Postscript is the de-facto standard for quality printin Postscript files can  also be saved to disk; they usually have extension <filename>.ps</filename>. There is a number of utilities for viewing Postscript files, such as <application>gv</application> or <application>ggv</application>."
 msgid "postscript"
 msgstr "postadata"
 
 msgid "power management"
-msgstr "gestiÛ d'energia"
+msgstr "gesti√≥ d'energia"
 
 #. "A protocol allowing a computer to connect to a <link  linkend='tcpip'>TCP/IP</link> network via a modem.  A PPP connection allows an ordinary home computer connected to a telephone line to become a part of the <link linkend='internet'>Internet</link>"
 msgid "PPP"
@@ -2090,14 +2090,14 @@ msgstr "PPP"
 
 #. "A menu choice in many graphical user interface applications that allows the user to specify how the application will act each time it is used. "
 msgid "Preferences"
-msgstr "PreferËncies"
+msgstr "Prefer√®ncies"
 
 msgid "Prefix"
 msgstr "Prefix"
 
 #. "In word processors and other applications, the feature that formats a document for printing but displays it on the video monitor rather than sending it directly to the printer."
 msgid "Preview"
-msgstr "PrevisualitzaciÛ"
+msgstr "Previsualitzaci√≥"
 
 #. "For pigments these are red, yellow and blue."
 msgid "Primary Colors"
@@ -2109,7 +2109,7 @@ msgstr "Imprimir"
 
 #. "The area on the paper, excluding margins, where the printer can print data."
 msgid "Print area"
-msgstr "¿rea d'impressiÛ"
+msgstr "√Ärea d'impressi√≥"
 
 #. "A computer peripheral that puts text or a computer-generated image on paper or on another medium, such as a transparency film. "
 msgid "Printer"
@@ -2136,11 +2136,11 @@ msgstr "Problema"
 
 #. "A task run by the operating system. UNIX is a multitasking sytem, so at any given moment there are many processes running. Usually, each command or application you start is run as a new process; some applications may run several processes. In addition, th. Each process has a unique ID number  (<acronym>PID</acronym>). You can view the list of all the processes running on your system using <application>GNOME System monitor (gtop)</application> or <application>Ktop</application>."
 msgid "Process"
-msgstr "ProcÈs"
+msgstr "Proc√©s"
 
 #. "The unique identification numer of a programm or part of a program."
 msgid "Process ID"
-msgstr "ID del procÈs"
+msgstr "ID del proc√©s"
 
 msgid "Processor"
 msgstr "Processador"
@@ -2154,18 +2154,18 @@ msgid "Program"
 msgstr "Programa"
 
 msgid "Progress"
-msgstr "ProcÈs"
+msgstr "Proc√©s"
 
 #. "An indicator which shows the status of a process."
 msgid "Progress Bar"
-msgstr "Barra de progrÈs"
+msgstr "Barra de progr√©s"
 
 msgid "project"
 msgstr "projecte"
 
 #. "Travel of a signal, such as an Internet packet, from its source to one or more destinations. "
 msgid "Propagation"
-msgstr "PropagaciÛ"
+msgstr "Propagaci√≥"
 
 #. "A characteristic or parameter of an object or device. Properties of a file, for example, include type, size, and creation date "
 msgid "Properties"
@@ -2183,7 +2183,7 @@ msgid "protected workbooks"
 msgstr "llibres de treball protegits"
 
 msgid "Protection"
-msgstr "ProtecciÛ"
+msgstr "Protecci√≥"
 
 #. "A set of rules or standards designed to enable computers to connect with one another and to exchange information with as little error as possible. "
 msgid "Protocol"
@@ -2201,11 +2201,11 @@ msgid "proxy server"
 msgstr "servidor intermediari"
 
 msgid "Public"
-msgstr "P˙blic"
+msgstr "P√∫blic"
 
 #. "One of two keys in public key encryption. The user releases this key to the public, who can use it for encrypting messages to be sent to the user and for decrypting the user's digital signature. "
 msgid "Public Key"
-msgstr "Clau p˙blica"
+msgstr "Clau p√∫blica"
 
 #. "A specific set of instructions for extracting particular data."
 msgid "Query"
@@ -2226,11 +2226,11 @@ msgid "Radar map"
 msgstr "Mapa radar"
 
 msgid "Radio"
-msgstr "R‡dio"
+msgstr "R√†dio"
 
 #. "In graphical user interfaces, a means of selecting one of several options, usually within a dialog box. A radio button appears as a small circle that, when selected, has a smaller, filled circle inside it. "
 msgid "Radio Button"
-msgstr "BotÛ de r‡dio"
+msgstr "Bot√≥ de r√†dio"
 
 #. "Specifically, a reference to an arbitrary or unpredictable situation or event. "
 msgid "Random"
@@ -2245,30 +2245,30 @@ msgstr "Rang"
 
 #. "Specified limit to operating conditions, e.g. current rating."
 msgid "Rating"
-msgstr "ClassificaciÛ"
+msgstr "Classificaci√≥"
 
 msgid "Ratio"
-msgstr "ProporciÛ"
+msgstr "Proporci√≥"
 
 #. "Unprocessed, typically unformatted, data, such as a stream of bits that has not been filtered for commands or special characters. "
 msgid "Raw data"
 msgstr "Dades pures"
 
 msgid "Raw memory"
-msgstr "MemÚria pura"
+msgstr "Mem√≤ria pura"
 
 msgid "Readout"
-msgstr "Recuperar informaciÛ"
+msgstr "Recuperar informaci√≥"
 
 msgid "ready..."
 msgstr "preparat..."
 
 #. "See Physical memory."
 msgid "Real Memory"
-msgstr "MemÚria real"
+msgstr "Mem√≤ria real"
 
 msgid "real path"
-msgstr "camÌ real"
+msgstr "cam√≠ real"
 
 #. "Relating to a time frame imposed by external constraints. Real-time operations are those in which the machine's activities match the human perception of time."
 msgid "Real time"
@@ -2295,7 +2295,7 @@ msgid "Rectangle"
 msgstr "Rectangle"
 
 msgid "Recurrence"
-msgstr "RepeticiÛ"
+msgstr "Repetici√≥"
 
 #. "The ability of a routine to call itself. Recursion enables certain algorithms to be implemented with small, simple routines."
 msgid "Recursion"
@@ -2306,7 +2306,7 @@ msgstr "Torna-ho a visualitzar"
 
 #. "This reverses the effect of the last undo operation on an object."
 msgid "Redo"
-msgstr "RefÈs"
+msgstr "Ref√©s"
 
 #. "1. To retrace a video screen at frequent intervals. 2. To recharge dynamic random access memory chips (DRAMs) so that they continue to retain the information stored in them. "
 msgid "Refresh"
@@ -2314,29 +2314,29 @@ msgstr "Refresca"
 
 #. "An area dedicated to or reserved for a particular purpose. "
 msgid "Region"
-msgstr "RegiÛ"
+msgstr "Regi√≥"
 
 #. "In statistics, an analysis of the degree to which variations in an independent variable affect a dependent variable (a variable whose value depends on the value of another variable)."
 msgid "Regression analysis"
-msgstr "An‡lisi de regressiÛ"
+msgstr "An√†lisi de regressi√≥"
 
 msgid "regular"
 msgstr "regular"
 
 #. "A pattern representaing a class of character strings."
 msgid "Regular expression"
-msgstr "ExpressiÛ  regular"
+msgstr "Expressi√≥  regular"
 
 #. "To govern by a set of rules or to require the adherence to standards."
 msgid "Regulate"
 msgstr "Regula"
 
 msgid "Relationship"
-msgstr "RelaciÛ"
+msgstr "Relaci√≥"
 
 #. "1. A particular version of a piece of software, most commonly associated with the most recent version. 2. A version of a product that is available in general distribution. "
 msgid "Release"
-msgstr "LlanÁament"
+msgstr "Llan√ßament"
 
 #. "Not in the immediate vicinity, as a computer or other device located in another place and accessible through some type of cable or communications link."
 msgid "Remote"
@@ -2356,7 +2356,7 @@ msgstr "Repetir"
 
 #. "To put new data in the place of other data, usually after conducting a search for the data to be replaced. "
 msgid "Replace"
-msgstr "ReemplaÁa"
+msgstr "Reempla√ßa"
 
 #. "The presentation of information about a given topic, typically in printed form. Reports prepared with computers and appropriate software can include text, graphics, and charts."
 msgid "Reports"
@@ -2374,7 +2374,7 @@ msgid "Resident"
 msgstr "Resident"
 
 msgid "Resident memory"
-msgstr "MemÚria resident"
+msgstr "Mem√≤ria resident"
 
 msgid "Residual"
 msgstr "Residual"
@@ -2385,7 +2385,7 @@ msgstr "Redimensionar"
 
 #. "A measurement indicating the height and width of the visible screen of a computer in pixels."
 msgid "Resolution"
-msgstr "ResoluciÛ"
+msgstr "Resoluci√≥"
 
 #. "The data structures, templates, definition procedures, management routines, icon maps, and so forth associated with a particular resource, such as a menu, window, or dialog box. "
 msgid "Resource element"
@@ -2456,7 +2456,7 @@ msgstr "Mostreig"
 
 #. "In color graphics and printing, the amount of color in a specified hue. "
 msgid "Saturation"
-msgstr "SaturaciÛ"
+msgstr "Saturaci√≥"
 
 #. "To write data (typically a file) to a storage medium, such as a disk or tape."
 msgid "Save"
@@ -2487,7 +2487,7 @@ msgstr "Escaneja"
 
 #. "An operating-system process that starts and ends tasks (programs), manages concurrently running processes, and allocates system resources. "
 msgid "schedule manager"
-msgstr "gestor de planificiaciÛ"
+msgstr "gestor de planificiaci√≥"
 
 #. "A description of a database to a database management system (DBMS) in the language provided by the DBMS. A "
 msgid "schema"
@@ -2495,7 +2495,7 @@ msgstr "esquema"
 
 #. "A floating-point method of representing a number, especially a very large or very small one, in which numbers are expressed as products consisting of a number between 1 and 10 multiplied by a power of 10. "
 msgid "Scientific notation"
-msgstr "NotaciÛ cientÌfica"
+msgstr "Notaci√≥ cient√≠fica"
 
 #. "The physical monitor device of a computer, consisting of a cathode ray tube, liquid crystal display, or similar means of displaying pixels; the visible picture displayed on the monitor."
 msgid "Screen"
@@ -2511,11 +2511,11 @@ msgstr "Script"
 
 #. "To move a document or other data in a window in order to view a particular portion of the document. "
 msgid "Scroll"
-msgstr "DesplaÁament"
+msgstr "Despla√ßament"
 
 #. "In some graphical user interfaces, a vertical or horizontal bar at the side or bottom of a display area that can be used with a mouse for moving around in that area. "
 msgid "Scrollbars"
-msgstr "Barres de desplaÁament"
+msgstr "Barres de despla√ßament"
 
 #. "Small Computer System Interface; an interface for connecting various computer components, such as hard drives. Works faster than the more common IDE interface, but is more expensive, so it is used mostly on servers."
 msgid "SCSI"
@@ -2553,7 +2553,7 @@ msgstr "Segment"
 
 #. "A program crash. More precisely, this is what happens when a program tries to access resources which do not belong to it; in such a case, for security reasons the operating system immediately kills the offending program. Segfaults are almost always caused"
 msgid "Segmentation Fault"
-msgstr "Defecte de la segmentaciÛ"
+msgstr "Defecte de la segmentaci√≥"
 
 #. "In general computer use, to specify a block of data or text on screen by highlighting it. In information processing, to choose from a number of options or alternatives."
 msgid "Select"
@@ -2561,7 +2561,7 @@ msgstr "Selecciona"
 
 #. "In applications, the highlighted portion of an on-screen document. "
 msgid "Selection"
-msgstr "SelecciÛ"
+msgstr "Selecci√≥"
 
 #. "To transmit a message or file through a communications channel."
 msgid "Send"
@@ -2584,7 +2584,7 @@ msgstr "Servidor"
 
 #. "1. The time during which a program is running. In most interactive programs, a session is the time during which the program accepts input and processes information. 2. In communications, the time during which two computers maintain a connection. "
 msgid "Session"
-msgstr "SessiÛ"
+msgstr "Sessi√≥"
 
 #. "1. To change the value of a bit to 1. 2. To establish a particular condition."
 msgid "Set"
@@ -2592,11 +2592,11 @@ msgstr "Establir"
 
 #. "Controls for choosing predetermined values."
 msgid "Settings"
-msgstr "Par‡metres"
+msgstr "Par√†metres"
 
 #. "1. A computer along with all its devices. 2. The procedures involved in preparing a software program or application to operate within a computer."
 msgid "Setup"
-msgstr "ConfiguraciÛ"
+msgstr "Configuraci√≥"
 
 msgid "Severity"
 msgstr "Gravetat"
@@ -2610,15 +2610,15 @@ msgstr "Compartit"
 
 #. "On a local area network, a directory on a disk that is located on a computer other than the one the user is operating and that can be accessed by all users on the network. "
 msgid "Shared Memory"
-msgstr "MemÚria compartida"
+msgstr "Mem√≤ria compartida"
 
 #. "Any of a number of UNIX programs which interpret commands typed by the user before passing them to the operating system and provide other features such as command history, aliasing, and scripting.  Examples include <command>bash</command> and <command>tcs"
 msgid "Shell"
-msgstr "IntËrpret de comandaments "
+msgstr "Int√®rpret de comandaments "
 
 #. "A keyboard key that, when pressed in combination with another key, gives that key an alternative meaning; for example, producing an uppercase character when a letter key is pressed. "
 msgid "Shift key"
-msgstr "Tecla de maj˙scules"
+msgstr "Tecla de maj√∫scules"
 
 msgid "Show"
 msgstr "Mostra"
@@ -2633,7 +2633,7 @@ msgstr "Senyal"
 
 #. "A block of text that an e-mail client or a newsreader automatically places at the end of every message or article before the message or article is transmitted. "
 msgid "signature block"
-msgstr "signatura autom‡tica"
+msgstr "signatura autom√†tica"
 
 #. "A sequence of data used for identification, such as text appended to an e-mail message or fax. "
 msgid "signature"
@@ -2681,7 +2681,7 @@ msgstr "Elegant"
 
 #. "A terminal that contains a microprocessor and random access memory (RAM) and that does some rudimentary processing without intervention from the host computer.  "
 msgid "Smart terminal"
-msgstr "Terminal intel∑ligent"
+msgstr "Terminal intel¬∑ligent"
 
 #. "1. To eliminate irregularities in statistical data by some process such as continuous averaging or by removing random (irrelevant) values. 2. In graphics, to remove jagged edges from a figure or line. "
 msgid "smooth"
@@ -2700,7 +2700,7 @@ msgstr "Migdiada"
 
 #. "A software endpoint for network communication."
 msgid "Socket"
-msgstr "SÚcol"
+msgstr "S√≤col"
 
 msgid "SOCKS Server"
 msgstr "Servidor SOCKS"
@@ -2713,14 +2713,14 @@ msgid "software bug"
 msgstr "error de programa"
 
 msgid "Software Foundation"
-msgstr "FundaciÛ del programa"
+msgstr "Fundaci√≥ del programa"
 
 #. "A geometric shape or construction that has continuity in length, width, and depth and is treated by a program as if it had both surface and internal substance. "
 msgid "Solid model"
-msgstr "Model sÚlid"
+msgstr "Model s√≤lid"
 
 msgid "Solid lines"
-msgstr "LÌnies sÚlides"
+msgstr "L√≠nies s√≤lides"
 
 #. "To organize data, typically a set of records, in a particular order. "
 msgid "Sort"
@@ -2740,15 +2740,15 @@ msgstr "Codi font"
 
 #. "A character that is entered by pressing the Spacebar on the keyboard and that typically appears on the screen as a blank space."
 msgid "Space character"
-msgstr "Car‡cter espacial"
+msgstr "Car√†cter espacial"
 
 #. "Useless e-mail.  Spam normally comes in forms of chain-letters and advertisements for websites or services."
 msgid "Spam"
-msgstr "Correu electrÚnic no sol∑licitat"
+msgstr "Correu electr√≤nic no sol¬∑licitat"
 
 #. "Any character that is not alphabetic, numeric, or the space character (for example, a punctuation character). "
 msgid "Special character"
-msgstr "Car‡cter especial"
+msgstr "Car√†cter especial"
 
 msgid "Spell"
 msgstr "Ortografia"
@@ -2759,7 +2759,7 @@ msgstr "Verificador de l'ortografia"
 
 #. "To store a data document in a queue, where it awaits its turn to be printed. "
 msgid "spool"
-msgstr "gestiÛ de cues"
+msgstr "gesti√≥ de cues"
 
 msgid "Stabilize"
 msgstr "Estabilitza"
@@ -2770,28 +2770,28 @@ msgstr "Pila"
 
 #. "1. A de jure technical guideline advocated by a recognized noncommercial or government organization that is used to establish uniformity in an area of hardware or software development. 2. A de facto technical guideline for hardware or software development that occurs when a product or philosophy is developed by a single company and, through success and imitation, becomes so widely used that deviation from the norm causes compatibility p"
 msgid "Standard"
-msgstr "Est‡ndard"
+msgstr "Est√†ndard"
 
 #. "In statistics, a measure of the dispersion of a group of measurements relative to the mean (average) of that group. "
 msgid "Standard deviation"
-msgstr "DesviaciÛ est‡ndard"
+msgstr "Desviaci√≥ est√†ndard"
 
 msgid "Standby"
 msgstr "En espera"
 
 msgid "Start"
-msgstr "ComenÁa"
+msgstr "Comen√ßa"
 
 #. "The process of starting or resetting a computer. "
 msgid "Startup"
 msgstr "Inici"
 
 msgid "startup files"
-msgstr "Fitxers d'inicialitzaciÛ"
+msgstr "Fitxers d'inicialitzaci√≥"
 
 #. "The application that takes control of the system when the computer is turned on."
 msgid "Startup Program"
-msgstr "Programa d'inicialitzaciÛ"
+msgstr "Programa d'inicialitzaci√≥"
 
 #. "Synonymous with Status"
 msgid "State"
@@ -2799,14 +2799,14 @@ msgstr "Estat"
 
 #. "The branch of mathematics that deals with the relationships among groups of measurements and with the relevance of similarities and differences in those relationships. "
 msgid "Statistics"
-msgstr "EstadÌstica"
+msgstr "Estad√≠stica"
 
 #. "The condition at a particular time of any of numerous elements of computing-a device, a communications channel, a network station, a program, a bit, or other element-used to report on or to control computer operations."
 msgid "Status"
 msgstr "Estat"
 
 msgid "step increment"
-msgstr "increment d'un esglaÛ"
+msgstr "increment d'un esgla√≥"
 
 msgid "Stereotype"
 msgstr "Estereotip"
@@ -2815,7 +2815,7 @@ msgid "sticky notes"
 msgstr "notes adhesives"
 
 msgid "Stock Ticker"
-msgstr "Teletip burs‡til"
+msgstr "Teletip burs√†til"
 
 #. "In computing, any device in or on which information can be kept. Microcomputers have two main types of storage: random access memory (RAM) and disk drives and other external storage media. "
 msgid "Storage"
@@ -2830,7 +2830,7 @@ msgid "String"
 msgstr "Cadena"
 
 msgid "stripchart program"
-msgstr "Programa gr‡fic multilineal"
+msgstr "Programa gr√†fic multilineal"
 
 msgid "structure diagram"
 msgstr "diagrama de l'estructura"
@@ -2848,7 +2848,7 @@ msgstr "Assumpte"
 
 #. "A menu that resides within another menu."
 msgid "Submenu"
-msgstr "Submen˙"
+msgstr "Submen√∫"
 
 #. "A function that passes a job, function or setting to the system for processing"
 msgid "Submit"
@@ -2860,10 +2860,10 @@ msgstr "Subxarxa"
 
 #. "One or more characters printed slightly below the baseline of surrounding text. "
 msgid "Subscript"
-msgstr "SubÌndex"
+msgstr "Sub√≠ndex"
 
 msgid "subshell support"
-msgstr "Compatibilitat per al subintËrpret d'ordres"
+msgstr "Compatibilitat per al subint√®rpret d'ordres"
 
 #. "A sequential section of a string. "
 msgid "substring"
@@ -2874,7 +2874,7 @@ msgstr "Sufix"
 
 #. "A character printed slightly above the surrounding text, usually in smaller type. "
 msgid "Superscript"
-msgstr "SuperÌndex"
+msgstr "Super√≠ndex"
 
 #. "Assistance, such as technical advice provided to customers."
 msgid "Support"
@@ -2882,7 +2882,7 @@ msgstr "Suporta"
 
 #. "To halt a process temporarily. "
 msgid "Suspend"
-msgstr "SuspensiÛ"
+msgstr "Suspensi√≥"
 
 #. "1. To exchange one item for another, as in swapping floppy disks in and out of a single drive. 2. To move segments of programs or data between memory and disk storage. "
 msgid "Swap"
@@ -2898,18 +2898,18 @@ msgstr "Fitxer SYLK"
 
 #. "In programming, a name that represents a register, an absolute value, or a memory address (relative or absolute). "
 msgid "Symbol"
-msgstr "SÌmbol"
+msgstr "S√≠mbol"
 
 #. "A file of special type which contains no data but instead, points to another file or directory. Equivalent to a shortcut under Windows."
 msgid "Symbolic Link"
-msgstr "EnllaÁ simbÚlic"
+msgstr "Enlla√ß simb√≤lic"
 
 msgid "Symmetric control"
-msgstr "Control simËtric"
+msgstr "Control sim√®tric"
 
 #. "To cause to occur at the same time."
 msgid "Synchronize"
-msgstr "SincronitzaciÛ"
+msgstr "Sincronitzaci√≥"
 
 #. "An error resulting from a statement that violates one or more of the grammatical rules of a language and is thus not 'legal'. "
 msgid "Syntax error"
@@ -2925,14 +2925,14 @@ msgstr "Administrador del sistema"
 
 #. "A process that specifies the machines, devices and programs that form a particular processing system."
 msgid "System Configuration"
-msgstr "ConfiguraciÛ del sistema"
+msgstr "Configuraci√≥ del sistema"
 
 msgid "system settings"
-msgstr "par‡metres del sistema"
+msgstr "par√†metres del sistema"
 
 #. "A character used to align lines and columns on screen and in print. "
 msgid "Tab"
-msgstr "TabulaciÛ"
+msgstr "Tabulaci√≥"
 
 #. "1. In programming, a data structure usually consisting of a list of entries, each entry being identified by a unique key and containing a set of related values. 2. In relational databases, a data structure characterized by rows and columns, with data occu"
 msgid "Table"
@@ -2944,7 +2944,7 @@ msgstr "marcador"
 
 #. "The UNIX command that, when followed by another user's name and address, is used to generate a request for a synchronous chat session on the Internet. "
 msgid "Talk"
-msgstr "Di‡leg"
+msgstr "Di√†leg"
 
 msgid "tall"
 msgstr "alt"
@@ -2982,7 +2982,7 @@ msgstr "Plantilla"
 
 #. "A region in memory or on a storage device that is temporarily allocated for use in storing intermediate data in a computational, sorting, or transfer operation."
 msgid "temporary buffer"
-msgstr "memÚria intermËdia temporal"
+msgstr "mem√≤ria interm√®dia temporal"
 
 msgid "TERM variable"
 msgstr "Variable TERM"
@@ -3000,14 +3000,14 @@ msgid "Test"
 msgstr "Prova"
 
 msgid "Test Module"
-msgstr "MÚdul de prova"
+msgstr "M√≤dul de prova"
 
 #. "Data that consists of characters representing the words and symbols of human speech; usually, characters coded according to the ASCII standard."
 msgid "Text"
 msgstr "Text"
 
 msgid "text area"
-msgstr "‡rea de text"
+msgstr "√†rea de text"
 
 #. "A document file in ASCII format, containing characters, spaces, punctuation, carriage returns, and sometimes tabs and an end-of-file marker, but no formatting information. "
 msgid "Text only"
@@ -3045,7 +3045,7 @@ msgstr "Format de l'hora"
 
 #. "In computing, the timekeeping and datekeeping functions maintained by the computer's operating system, used most visibly as a means of 'stamping' files with the date and time of creation or last revision."
 msgid "time stamp"
-msgstr "marca hor‡ria"
+msgstr "marca hor√†ria"
 
 #. "An event that indicates that a predetermined amount of time has elapsed without some other expected event taking place. The time-out event is used to interrupt the process that had been waiting for the other expected event. "
 msgid "Timeout"
@@ -3062,7 +3062,7 @@ msgid "Timing"
 msgstr "Cronometratge"
 
 msgid "Title"
-msgstr "TÌtol"
+msgstr "T√≠tol"
 
 msgid "TODO List"
 msgstr "Llista TODO"
@@ -3072,10 +3072,10 @@ msgid "toggle"
 msgstr "commutador"
 
 msgid "Tolerance"
-msgstr "Toler‡ncia"
+msgstr "Toler√†ncia"
 
 msgid "tool menu"
-msgstr "Men˙ d'eines"
+msgstr "Men√∫ d'eines"
 
 #. "In an application in a graphical user interface, a row, column, or block of on-screen buttons or icons. When these buttons or icons are clicked on with the mouse, macros or certain functions of the application are activated. "
 msgid "Toolbar"
@@ -3090,11 +3090,11 @@ msgstr "tema"
 
 #. "The movement of data from one location to another. "
 msgid "Transfer"
-msgstr "TransferËncia"
+msgstr "Transfer√®ncia"
 
 #. "A statement in a programming language that transfers the flow of execution to another location in the program. "
 msgid "Transfer statement"
-msgstr "AfirmaciÛ de transferËncia"
+msgstr "Afirmaci√≥ de transfer√®ncia"
 
 #. "A relationship is transitive if when it applies from A to B and from B to C it also applies from A to C."
 msgid "Transitive"
@@ -3106,7 +3106,7 @@ msgstr "Tradueix"
 
 #. "1. A path or link through which information passes between two devices. A channel can be either internal or external to a microcomputer. 2. In communications, a medium for transferring information. "
 msgid "transmission channel"
-msgstr "canal de transmissiÛ"
+msgstr "canal de transmissi√≥"
 
 #. "In computer use, describing a device, function, or part of a program that works so smoothly and easily that it is invisible to the user. "
 msgid "Transparent"
@@ -3133,14 +3133,14 @@ msgstr "Tty"
 
 #. "A theoretical model created by British mathematician Alan Turing in 1936 that is considered the prototype for digital computers. "
 msgid "Turing Machine"
-msgstr "M‡quina Turing"
+msgstr "M√†quina Turing"
 
 #. "1. In programming, the nature of a variable, for example, integer, real number, text character, or floating-point number. 2. In printing, the characters that make up printed text, or the complete set of characters in a given size and style (font). "
 msgid "Type"
 msgstr "Tipus"
 
 msgid "type bindings"
-msgstr "tipus de vinculaciÛ"
+msgstr "tipus de vinculaci√≥"
 
 msgid "Type mismatch"
 msgstr "Tipus discordant"
@@ -3155,7 +3155,7 @@ msgstr "Subratllat"
 
 #. "To reverse the last action-for example, to undo a deletion, thus restoring deleted text to a document. "
 msgid "Undo"
-msgstr "DesfÈs"
+msgstr "Desf√©s"
 
 msgid "Unexpected end"
 msgstr "Final inesperat"
@@ -3169,7 +3169,7 @@ msgstr "Unicode"
 
 #. "To remove software completely from a system, including the elimination of files and components residing in system locations such as the Registry in Windows 9x, Windows NT, or Windows 2000. "
 msgid "Uninstall"
-msgstr "Desinstal∑lar"
+msgstr "Desinstal¬∑lar"
 
 #. "An operating system originally developed at Bell Labs in the early 1970s by Ken Thompson and Dennis Ritchie; any of a large number of operating systems sharing many features with the original UNIX operating system, such as Sun's Solaris or IBM's AIX. For legal reasons, operating systems such as FreeBSD and Linux can not be called UNIX, but they do share all important features with UNIX systems; thus, they are commonly called UNIX-like."
 msgid "UNIX"
@@ -3185,7 +3185,7 @@ msgstr "Descarrega"
 
 #. "A new file that has not yet been saved by the user unser a specific name."
 msgid "Untitled"
-msgstr "Sense tÌtol"
+msgstr "Sense t√≠tol"
 
 #. "A new release of an existing software product. A software update usually adds relatively minor new features to a product or corrects errors (bugs) found after the program was released. To change a system or a data file to make it more current."
 msgid "Update"
@@ -3193,14 +3193,14 @@ msgstr "Actualitza"
 
 #. "The new or enhanced version of a product. To change to a newer, usually more powerful or sophisticated version."
 msgid "Upgrade"
-msgstr "Actualitza la versiÛ"
+msgstr "Actualitza la versi√≥"
 
 #. "The amount or percentage of time a computer system or associated hardware is functioning and available for use. "
 msgid "Uptime"
 msgstr "Uptime"
 
 msgid "Urgent condition"
-msgstr "CondiciÛ d'urgËncia"
+msgstr "Condici√≥ d'urg√®ncia"
 
 #. "An address or ocation of a document. Most common URL types are a Web address (such as http://www.gnome.org), a file on a FTP server (e.g., ftp://ftp.gnome.org/pub), or a file on your own local system (e.g., file:/usr/doc/). "
 msgid "URL"
@@ -3224,14 +3224,14 @@ msgstr "Directori de l'usuari"
 
 #. "The portion of a program with which a user interacts. Types of user interfaces, or UIs, include command-line interfaces, menu-driven interfaces, and graphical user interfaces. "
 msgid "User Interface"
-msgstr "InterfÌcie d'usuari"
+msgstr "Interf√≠cie d'usuari"
 
 #. "A string of alphanumeric characters uniquely identifying a user of a computer system.  Most usernames are based on the user's real name, so Mary Smith might have the  username 'mary' or 'msmith'."
 msgid "Username"
 msgstr "Nom d'usuari"
 
 msgid "Valid chars"
-msgstr "Car‡cters v‡lids"
+msgstr "Car√†cters v√†lids"
 
 #. "A quantity assigned to an element such as a variable, symbol, or label. "
 msgid "Value"
@@ -3243,11 +3243,11 @@ msgstr "Variable"
 
 #. "The average of the squares of the deviations of a number of observations of a quantity from their mean value."
 msgid "Variance"
-msgstr "VarianÁa"
+msgstr "Varian√ßa"
 
 #. "Images generated from mathematical descriptions that determine the position, length, and direction in which lines are drawn. Objects are created as collections of lines rather than as patterns of individual dots or pixels. "
 msgid "Vector Graphics"
-msgstr "Gr‡fic vectorial"
+msgstr "Gr√†fic vectorial"
 
 msgid "Vendor"
 msgstr "Venedor"
@@ -3262,20 +3262,20 @@ msgstr "Verificar"
 
 #. "A particular issue or release of a hardware product or software title."
 msgid "Version"
-msgstr "VersiÛ"
+msgstr "Versi√≥"
 
 msgid "Vertical"
 msgstr "Vertical"
 
 msgid "Vertical Alignment"
-msgstr "AlineaciÛ vertical"
+msgstr "Alineaci√≥ vertical"
 
 msgid "VFS"
 msgstr "VFS"
 
 #. "Pertaining to the visual component of a television signal. In relation to computers, video refers to the rendering of text and graphics images on displays."
 msgid "Video"
-msgstr "VÌdeo"
+msgstr "V√≠deo"
 
 #. "The display of data or an image from a given perspective or location. "
 msgid "View"
@@ -3283,7 +3283,7 @@ msgstr "Visualitza"
 
 #. "A specified window on a display surface that marks the limits of a display."
 msgid "Viewport"
-msgstr "Sub‡rea"
+msgstr "Sub√†rea"
 
 #. "Pertaining to a device, service, or sensory input that is perceived to be what it is not in actuality, usually as more 'real' or concrete than it actually is."
 msgid "Virtual"
@@ -3295,7 +3295,7 @@ msgstr "Escriptori virtual"
 
 #. "A feature of an application that displays data in the form of a video image. For example, some databases can interpret and show data in the form of a two- or three-dimensional model."
 msgid "Visualization"
-msgstr "VisualitzaciÛ"
+msgstr "Visualitzaci√≥"
 
 #. "1. A disk or tape that stores computer data. Sometimes, large hard disks are divided into several volumes, each of which is treated as a separate disk. 2. The loudness of an audio signal."
 msgid "Volume"
@@ -3306,14 +3306,14 @@ msgid "Wallpaper"
 msgstr "Fons de pantalla"
 
 msgid "Warning"
-msgstr "AvÌs"
+msgstr "Av√≠s"
 
 msgid "Watch file"
-msgstr "Fitxer de vigil‡ncia"
+msgstr "Fitxer de vigil√†ncia"
 
 #. "A document on the World Wide Web. A Web page consists of an HTML file, with associated files for graphics and scripts, in a particular directory on a particular machine (and thus identifiable by a URL). "
 msgid "Web Page"
-msgstr "P‡gina web"
+msgstr "P√†gina web"
 
 msgid "Weight"
 msgstr "Pes"
@@ -3323,7 +3323,7 @@ msgid "Widget"
 msgstr "Widget"
 
 msgid "Width"
-msgstr "Ampl‡ria"
+msgstr "Ampl√†ria"
 
 #. "The interface element used to display most applications under a windowing GUI such as <link linkend='xwin'>X Window System</link>.  Windows typically consist of a main area in which typing or other work occurs, a title bar (which may contain buttons to mi window-specific menus, and a scroll bar down either side of the window if required."
 msgid "Window"
@@ -3350,7 +3350,7 @@ msgstr "Directori de treball"
 
 #. "The background screen area on which windows and icons are displayed."
 msgid "Workspaces"
-msgstr "¿rees de treball"
+msgstr "√Ärees de treball"
 
 #. "To continue movement, as with the cursor or a search operation, to the beginning or to a new starting point rather than stopping when the end of a series is reached. "
 msgid "Wrap"
@@ -3378,7 +3378,7 @@ msgid "zero"
 msgstr "zero"
 
 msgid "Zigzagline"
-msgstr "LÌnia en ziga-zaga"
+msgstr "L√≠nia en ziga-zaga"
 
 #. "A disk drive developed by Iomega that uses 3.5-inch removable disks (Zip disks) capable of storing 100 megabytes of data. "
 msgid "Zip Drive"
