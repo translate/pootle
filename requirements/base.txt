@@ -1,4 +1,4 @@
-Django>=1.7.4,<1.8
+Django>=1.7.5,<1.8
 
 # Django apps
 django-assets>=0.10
