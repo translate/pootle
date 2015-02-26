@@ -1,9 +1,21 @@
-# These are some strings that we need for successful extraction. They come from
-# Django and is not included in our POT file otherwise. This file itself is not
-# used for a running Pootle.
+# These are additional strings that we need for a fully localised Pootle. They
+# come from Django and other dependencies and are not included in our POT file
+# otherwise. This file itself is not used for a running Pootle.
 
-# Don't change any of these strings unless they changed in Django. The adding
-# of extra comments to help translators is fine.
+# Rationale:
+# Pootle sometimes needs one or two strings from an upstream project.  We don't
+# want to waste our localisers time translating the whole upstream project when
+# we need only a few strings. In addition having them here makes it easy for
+# the translator to easily correct linguistic issues.
+
+# Notes:
+# 1. Don't change any of these strings unless they changed in Django or the
+#    applicable Django app.
+# 2. The adding of extra comments to help translators is fine.
+# 3. If we ever rely on large parts of text from an upstream app, rather
+#    consider having translators work on the upstream translations.
+
+
 
 _('Hold down "Control", or "Command" on a Mac, to select more than one.')
 _("Enter a valid e-mail address.")
@@ -45,7 +57,13 @@ _("Source Language")
 _("Android strings")
 
 
-# Commonly used terms to refer to Terms of Services, Privacy Policies...
+###############
+# Static pages
+###############
+
+# Commonly used terms to refer to Terms of Services, Privacy Policies, etc.
+# We're anticipating possible link text for these pages so that the UI will
+# remain 100% translated.
 
 # Translators: Label that refers to the site's privacy policy
 _("Privacy Policy")
