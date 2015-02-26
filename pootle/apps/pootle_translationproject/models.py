@@ -33,6 +33,7 @@ from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.functional import cached_property
+from django.utils.translation import ugettext_lazy as _
 
 from pootle_app.project_tree import does_not_exist
 from pootle.core.mixins import CachedTreeItem, CachedMethods
@@ -159,7 +160,7 @@ class TranslationProject(models.Model, CachedTreeItem):
             db_index=True, editable=False)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
-    disabled = models.BooleanField(default=False)
+    disabled = models.BooleanField(verbose_name=_('Disabled'), default=False)
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
             settings.PARSE_POOL_CULL_FREQUENCY)
