@@ -22,6 +22,7 @@ from io import BytesIO
 from zipfile import ZipFile, is_zipfile
 from django.core.servers.basehttp import FileWrapper
 from django.http import Http404, HttpResponse
+from django.utils.translation import ugettext as _
 from translate.storage import po
 from pootle_store.models import Store
 from .forms import UploadForm
@@ -69,11 +70,11 @@ def _import_file(file):
     header = pofile.parseheader()
     pootle_path = header.get("X-Pootle-Path")
     if not pootle_path:
-        raise ValueError("File %r missing X-Pootle-Path header\n" % (file.name))
+        raise ValueError(_("File %r missing X-Pootle-Path header\n") % (file.name))
 
     rev = header.get("X-Pootle-Revision")
     if not rev or not rev.isdigit():
-        raise ValueError("File %r missing or invalid X-Pootle-Revision header\n" % (file.name))
+        raise ValueError(_("File %r missing or invalid X-Pootle-Revision header\n") % (file.name))
     rev = int(rev)
 
     try:
@@ -81,9 +82,9 @@ def _import_file(file):
         if rev < store.get_max_unit_revision():
             # TODO we could potentially check at the unit level and only reject
             # units older than most recent. But that's in store.update().
-            raise ValueError("File %r was rejected because its X-Pootle-Revision is too old." % (file.name))
+            raise ValueError(_("File %r was rejected because its X-Pootle-Revision is too old.") % (file.name))
     except Exception as e:
-        raise ValueError("Could not create %r. Missing Project/Language? (%s)" % (file.name, e))
+        raise ValueError(_("Could not create %r. Missing Project/Language? (%s)") % (file.name, e))
 
     store.update(overwrite=True, store=pofile)
 
