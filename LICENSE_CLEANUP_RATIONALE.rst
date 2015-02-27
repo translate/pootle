@@ -51,3 +51,31 @@ Rationale
    b) As we use code with other license e.g. Apache we are technical not
       allowed to distribute them with our GPL2 licensed code.
 
+
+Findings
+--------
+
+Pootle's definitive license is GPL2 or later.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Pootle was first release under the GPL v2 or later license.  This is from the
+__init__.py file for the very first Pootle commit.
+
+Some of these early commits are only in Subversion as they were not ported to
+Git.  The Subversion commits themselves are conversion of the origianl CVS
+repository.
+
+1. The `first Pootle commit
+   <http://translate.svn.sourceforge.net/viewvc/translate?view=revision&revision=609>`_
+   on Fri Oct 22 08:51:35 2004 UTC claim `GPL2 and later
+   <http://translate.svn.sourceforge.net/viewvc/translate/trunk/translate/pootle/__init__.py?view=markup&pathrev=609>`_
+2. The oldest tagged release is `Pootle 0.6.1
+   <http://translate.svn.sourceforge.net/viewvc/translate/src/tags/pootle-0-6-1/Pootle/__init__.py?revision=3282&view=markup>`_
+   and it claims GPL2 or later.
+3. The tarball for `Pootle 0.8
+   <http://sourceforge.net/projects/translate/files/Pootle/2005-02-17/Pootle-0.8.2005.0217.tar.gz/download>`_
+   says GPL2 or later (See Pootle-0.8.2005.0217/translate/pootle/__init__.py).
+   This is the oldest release that we have available.
+
+All of the license headers across Pootle code have been verified to be the
+standard GPL2 boiler plate for GPL2 or later.
