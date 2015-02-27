@@ -75,10 +75,20 @@
 {% endblock %}
 
 {% block pre_content %}
-{% if announcement %}
+{% if project_announcement or language_announcement or tp_announcement %}
 <div id="sidebar"
   class="js-sidebar{% if announcement_displayed %} sidebar-open{% endif %}">
-  {% include "staticpages/_body.html" with page=announcement %}
+  <div id="staticpage" dir="ltr">
+    {% if project_announcement %}
+    {% include "staticpages/_body.html" with page=project_announcement %}
+    {% endif %}
+    {% if language_announcement %}
+    {% include "staticpages/_body.html" with page=language_announcement %}
+    {% endif %}
+    {% if tp_announcement %}
+    {% include "staticpages/_body.html" with page=tp_announcement %}
+    {% endif %}
+  </div>
   <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
 </div>
 {% endif %}
