@@ -78,15 +78,13 @@
 {% if display_sidebar %}
 <div id="sidebar"
   class="js-sidebar{% if announcement_displayed %} sidebar-open{% endif %}">
-
-  {% if display_download or upload_form %}
-  {% include "import_export/_sidebar.html" %}
-  {% endif %}
+  {% block sidebar_content %}
 
   {% if announcement %}
   {% include "staticpages/_body.html" with page=announcement %}
   {% endif %}
 
+  {% endblock %}
   <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
 </div>
 {% endif %}
@@ -128,23 +126,6 @@ $(function () {
     level: 'success',
     language: '{{ LANGUAGE_CODE }}'
   });
-  {% endif %}
-
-  {% if upload_form %}
-  document.getElementById("js-file-upload-input").onchange = function () {
-    var filename =  this.value.replace("C:\\fakepath\\", "");
-    document.getElementById("js-fake-upload").value = filename;
-  };
-
-  document.getElementById("js-fake-upload").onclick = function () {
-    document.getElementById("js-file-upload-input").click();
-  };
-
-  document.getElementById("js-fake-upload").onchange = function () {
-    if (document.getElementById("js-fake-upload").value.length == 0) {
-      document.getElementById("js-file-upload-input").value = '';
-    }
-  };
   {% endif %}
 });
 </script>
