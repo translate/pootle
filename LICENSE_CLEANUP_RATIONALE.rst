@@ -79,3 +79,82 @@ repository.
 
 All of the license headers across Pootle code have been verified to be the
 standard GPL2 boiler plate for GPL2 or later.
+
+
+Revised Header
+~~~~~~~~~~~~~~
+
+We want a new simple header that:
+
+1. Points out the license terms simply and clearly
+2. Has no variable information as anything that varies needs maintenance and
+   thought, we don't want to think about headers or have to maintain them:
+
+   1. No dates - these change and often people forget to change them
+   2. No credits - there are better places to put this like an AUTHORS file
+
+
+Decisions:
+
+1. No dates - if you need dates these can be found in the git log or the
+   COPYING file.
+2. No specific contributors - these are credited in the AUTHORS file and in git
+   log.
+
+Do we have to use the full GPL2 header?
+
+In the GPL2 license, well actually in the section "How to Apply These Terms to
+Your New Programs" which appears after the "Terms and Conditions", the GPL2
+advises the following:
+
+"[A]ttach the following notices to the program. It is safest to attach them to
+the start of each source file to most effectively convey the exclusion of
+warranty; and each file should have at least the "copyright" line and a pointer
+to where the full notice is found."
+           GPL2, "How to Apply These Terms to Your New Programs", 2nd paragraph
+
+By default that has been interpreted as attaching that full notice to every
+single source files.  The advice is actually that this is safest because of the
+warranty exclusion.  But this ignores the "at least" part of this advice, which
+is what we will be following.
+
+Thus our header should contain:
+
+1. The copyright line
+2. Pointer to the full notice
+
+A similar, or best example, is the LibreOffice project.
+
+LibreOffice has a `detailed license breakdown
+<http://cgit.freedesktop.org/libreoffice/core/tree/readlicense_oo/license/LICENSE>`_
+for the product and for all included software.  At the top level they have the
+licenses applicable to the product.
+
+The LibreOffice MPL copyright header looks like this.
+
+# This file is part of the LibreOffice project.
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+LibreOffice also includes a `template of license header snippets
+<http://cgit.freedesktop.org/libreoffice/core/tree/TEMPLATE.SOURCECODE.HEADER>`_
+
+
+**Decision**
+
+# Copyright (C) Pootle contributors.
+#
+# This file is a part of the Pootle project. It is distributed under the GPL2
+# license. See the LICENSE file for a copy of the license and the AUTHORS
+# file for copyright and authorship information.
+
+This has the following features:
+
+1. Simple and small
+2. Copyright header
+3. Statement of the license being used
+4. Pointer to the full license
+5. Pointer the the copyright holders
