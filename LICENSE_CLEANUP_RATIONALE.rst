@@ -158,3 +158,12 @@ This has the following features:
 3. Statement of the license being used
 4. Pointer to the full license
 5. Pointer the the copyright holders
+
+
+Additional headers
+~~~~~~~~~~~~~~~~~~
+
+Pootle has been good at adding copyrights to code files but license headers are
+missing from other files that really should be licensed:
+
+- JavaScript
