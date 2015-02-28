@@ -1,4 +1,4 @@
-Python
+Python, Gettext PO (sans the Python bit)
 
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
