@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: translate-pootle@lists.sourceforge.net\n"
-"POT-Creation-Date: 2015-02-02 22:45+0100\n"
+"Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
+"POT-Creation-Date: 2015-02-28 23:44+0000\n"
 "PO-Revision-Date: 2013-10-28 16:09+0000\n"
 "Last-Translator: Cecilia Saltori <csaltori@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,175 +18,175 @@ msgstr ""
 "X-Generator: Pootle 2.5.0-beta1\n"
 "X-POOTLE-MTIME: 1382976570.0\n"
 
-#: static/js/browser.js:148
+#: static/js/browser.js:154
 msgid "All Languages"
 msgstr "Tutte le lingue"
 
-#: static/js/browser.js:151
+#: static/js/browser.js:157
 msgid "All Projects"
 msgstr "Tutti i progetti"
 
-#: static/js/browser.js:154
+#: static/js/browser.js:160
 msgid "Entire Project"
 msgstr ""
 
-#: static/js/editor/app.js:230
+#: static/js/editor/app.js:236
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
 
-#: static/js/editor/app.js:234
+#: static/js/editor/app.js:240
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:342
+#: static/js/editor/app.js:348
 #, c-format
 msgid "%s's pending suggestions"
 msgstr "%s suggerimenti indicati"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:345
+#: static/js/editor/app.js:351
 #, c-format
 msgid "%s's accepted suggestions"
 msgstr "%s suggerimenti accettati"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:348
+#: static/js/editor/app.js:354
 #, c-format
 msgid "%s's rejected suggestions"
 msgstr "%s suggerimenti rifiutati"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:351
+#: static/js/editor/app.js:357
 #, c-format
 msgid "%s's submissions"
 msgstr "%s inserimenti"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:355
+#: static/js/editor/app.js:361
 #, c-format
 msgid "%s's overwritten submissions"
 msgstr "%s inserimenti sovrascritti"
 
-#: static/js/editor/app.js:507 static/js/editor/app.js.c:1660
+#: static/js/editor/app.js:513 static/js/editor/app.js.c:1666
 msgid "No results."
 msgstr "Nessun risultato."
 
-#: static/js/editor/app.js:965
+#: static/js/editor/app.js:971
 msgid "Error while connecting to the server"
 msgstr "Errore durante la connessione al server"
 
-#: static/js/editor/app.js:969
+#: static/js/editor/app.js:975
 msgid "Not found"
 msgstr ""
 
-#: static/js/editor/app.js:971
+#: static/js/editor/app.js:977
 msgid "Server error"
 msgstr "Errore del server"
 
-#: static/js/editor/app.js:973
+#: static/js/editor/app.js:979
 msgid "The server seems down. Try again later."
 msgstr "Il server sembra non rispondere. Riprova più tardi."
 
-#: static/js/editor/app.js:980
+#: static/js/editor/app.js:986
 msgid "Unknown error"
 msgstr "Errore sconosciuto"
 
-#: static/js/editor/app.js:988
+#: static/js/editor/app.js:994
 msgid "This unit no longer exists."
 msgstr ""
 
-#: static/js/editor/app.js:989
+#: static/js/editor/app.js:995
 msgid "Go back to overview"
 msgstr ""
 
-#: static/js/editor/app.js:991
+#: static/js/editor/app.js:997
 msgid "Reload page"
 msgstr ""
 
-#: static/js/editor/app.js:2000
+#: static/js/editor/app.js:2006
 msgid "some anonymous user"
 msgstr ""
 
-#: static/js/editor/app.js:2002
+#: static/js/editor/app.js:2008
 msgid "someone"
 msgstr ""
 
-#: static/js/editor/app.js:2019 static/js/editor/app.js.c:2068
+#: static/js/editor/app.js:2025 static/js/editor/app.js.c:2074
 msgid "Similar translations"
 msgstr "Traduzioni simili"
 
-#: static/js/shared/models/project.js:51
+#: static/js/shared/models/project.js:57
 msgid "disabled"
 msgstr ""
 
-#: static/js/stats.js:225
+#: static/js/stats.js:231
 #, c-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats.js:257
+#: static/js/stats.js:263
 msgid "Expand details"
 msgstr "Espandi dettagli"
 
-#: static/js/stats.js:257
+#: static/js/stats.js:263
 msgid "Collapse details"
 msgstr "Riduci dettagli"
 
-#: static/js/utils.js:143
+#: static/js/utils.js:149
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Un anno fa"
 msgstr[1] "%s anni fa"
 
-#: static/js/utils.js:146
+#: static/js/utils.js:152
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Una settimana fa"
 msgstr[1] "%s settimane fa"
 
-#: static/js/utils.js:149
+#: static/js/utils.js:155
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Ieri"
 msgstr[1] "%s giorni fa"
 
-#: static/js/utils.js:152
+#: static/js/utils.js:158
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Un'ora fa"
 msgstr[1] "%s ore fa"
 
-#: static/js/utils.js:155
+#: static/js/utils.js:161
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Un minuto fa"
 msgstr[1] "%s minuti fa"
 
-#: static/js/utils.js:163
+#: static/js/utils.js:169
 msgid "A few seconds ago"
 msgstr "qualche secondo fa"
 
-#: static/js/admin/components/language.jsx:32
+#: static/js/admin/components/language.jsx:38
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/language.jsx:36
+#: static/js/admin/components/language.jsx:42
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
@@ -194,51 +194,51 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/language.jsx:54
+#: static/js/admin/components/language.jsx:60
 msgid "Search Languages"
 msgstr ""
 
-#: static/js/admin/components/language.jsx:55
+#: static/js/admin/components/language.jsx:61
 msgid "Find language by name, code"
 msgstr ""
 
-#: static/js/admin/components/language.jsx:78
-#: static/js/admin/components/language.jsx:107
+#: static/js/admin/components/language.jsx:84
+#: static/js/admin/components/language.jsx:113
 #, fuzzy
 msgid "Add Language"
 msgstr "Tutte le lingue"
 
-#: static/js/admin/components/language.jsx:81
-#: static/js/admin/components/project.jsx:81
-#: static/js/admin/components/user.jsx:81
+#: static/js/admin/components/language.jsx:87
+#: static/js/admin/components/project.jsx:87
+#: static/js/admin/components/user.jsx:87
 msgid "Cancel"
 msgstr ""
 
-#: static/js/admin/components/language.jsx:104
+#: static/js/admin/components/language.jsx:110
 msgid "Edit Language"
 msgstr ""
 
-#: static/js/admin/components/language.jsx:111
+#: static/js/admin/components/language.jsx:117
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
 
-#: static/js/admin/components/main.jsx:87
+#: static/js/admin/components/main.jsx:93
 msgid "Saved successfully."
 msgstr ""
 
-#: static/js/admin/components/main.jsx:95
+#: static/js/admin/components/main.jsx:101
 msgid "Deleted successfully."
 msgstr ""
 
-#: static/js/admin/components/project.jsx:32
+#: static/js/admin/components/project.jsx:38
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/project.jsx:36
+#: static/js/admin/components/project.jsx:42
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
@@ -246,45 +246,45 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/project.jsx:54
+#: static/js/admin/components/project.jsx:60
 msgid "Search Projects"
 msgstr ""
 
-#: static/js/admin/components/project.jsx:55
+#: static/js/admin/components/project.jsx:61
 msgid "Find project by name, code"
 msgstr ""
 
-#: static/js/admin/components/project.jsx:78
-#: static/js/admin/components/project.jsx:107
+#: static/js/admin/components/project.jsx:84
+#: static/js/admin/components/project.jsx:113
 #, fuzzy
 msgid "Add Project"
 msgstr "Tutti i progetti"
 
-#: static/js/admin/components/project.jsx:104
+#: static/js/admin/components/project.jsx:110
 msgid "Edit Project"
 msgstr ""
 
-#: static/js/admin/components/project.jsx:111
+#: static/js/admin/components/project.jsx:117
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
 
-#: static/js/admin/components/search.jsx:57
+#: static/js/admin/components/search.jsx:63
 msgid "Load More"
 msgstr ""
 
-#: static/js/admin/components/search.jsx:80
+#: static/js/admin/components/search.jsx:86
 msgid "Loading..."
 msgstr ""
 
-#: static/js/admin/components/user.jsx:32
+#: static/js/admin/components/user.jsx:38
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/user.jsx:36
+#: static/js/admin/components/user.jsx:42
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
@@ -292,247 +292,247 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/user.jsx:54
+#: static/js/admin/components/user.jsx:60
 msgid "Search Users"
 msgstr ""
 
-#: static/js/admin/components/user.jsx:55
+#: static/js/admin/components/user.jsx:61
 msgid "Find user by name, email, properties"
 msgstr ""
 
-#: static/js/admin/components/user.jsx:78
-#: static/js/admin/components/user.jsx:107
+#: static/js/admin/components/user.jsx:84
+#: static/js/admin/components/user.jsx:113
 msgid "Add User"
 msgstr ""
 
-#: static/js/admin/components/user.jsx:104
+#: static/js/admin/components/user.jsx:110
 msgid "Edit User"
 msgstr ""
 
-#: static/js/admin/components/user.jsx:111
+#: static/js/admin/components/user.jsx:117
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:44 static/js/admin/shared/forms.jsx:139
+#: static/js/admin/shared/forms.jsx:50 static/js/admin/shared/forms.jsx:145
 msgid "Code"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:50 static/js/admin/shared/forms.jsx:145
-#: static/js/admin/shared/forms.jsx:303 static/js/user/forms.jsx:64
+#: static/js/admin/shared/forms.jsx:56 static/js/admin/shared/forms.jsx:151
+#: static/js/admin/shared/forms.jsx:309 static/js/user/forms.jsx:70
 msgid "Full Name"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:56
+#: static/js/admin/shared/forms.jsx:62
 msgid "Special Characters"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:65
+#: static/js/admin/shared/forms.jsx:71
 msgid "Number of Plurals"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:71
+#: static/js/admin/shared/forms.jsx:77
 msgid "Plural Equation"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:81 static/js/admin/shared/forms.jsx:215
-#: static/js/admin/shared/forms.jsx:358 static/js/user/forms.jsx:111
+#: static/js/admin/shared/forms.jsx:87 static/js/admin/shared/forms.jsx:221
+#: static/js/admin/shared/forms.jsx:364 static/js/user/forms.jsx:117
 msgid "Save"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:84 static/js/admin/shared/forms.jsx:218
+#: static/js/admin/shared/forms.jsx:90 static/js/admin/shared/forms.jsx:224
 msgid "Overview"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:85 static/js/admin/shared/forms.jsx:220
+#: static/js/admin/shared/forms.jsx:91 static/js/admin/shared/forms.jsx:226
 msgid "Permissions"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:154
+#: static/js/admin/shared/forms.jsx:160
 msgid "Quality Checks"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:163
+#: static/js/admin/shared/forms.jsx:169
 msgid "File Type"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:172
+#: static/js/admin/shared/forms.jsx:178
 msgid "Project Tree Style"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:181
+#: static/js/admin/shared/forms.jsx:187
 msgid "Source Language"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:187
+#: static/js/admin/shared/forms.jsx:193
 msgid "Ignore Files"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:194
+#: static/js/admin/shared/forms.jsx:200
 msgid "String Errors Contact"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:200
+#: static/js/admin/shared/forms.jsx:206
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:207
+#: static/js/admin/shared/forms.jsx:213
 msgid "Disabled"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:219
+#: static/js/admin/shared/forms.jsx:225
 msgid "Languages"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:266
+#: static/js/admin/shared/forms.jsx:272
 msgid ""
 "Note: deleting the user will make its suggestions and translations become "
 "attributed to an anonymous user (nobody)."
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:278
+#: static/js/admin/shared/forms.jsx:284
 msgid "Username"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:287
+#: static/js/admin/shared/forms.jsx:293
 msgid "Active"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:294
+#: static/js/admin/shared/forms.jsx:300
 msgid "Password"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:295
+#: static/js/admin/shared/forms.jsx:301
 msgid "Set a new password"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:309
+#: static/js/admin/shared/forms.jsx:315
 msgid "Email"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:318
+#: static/js/admin/shared/forms.jsx:324
 msgid "Administrator"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:325 static/js/user/forms.jsx:79
+#: static/js/admin/shared/forms.jsx:331 static/js/user/forms.jsx:85
 msgid "Twitter"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:327
+#: static/js/admin/shared/forms.jsx:333
 msgid "Twitter username"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:333 static/js/user/forms.jsx:86
+#: static/js/admin/shared/forms.jsx:339 static/js/user/forms.jsx:92
 msgid "LinkedIn"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:335
+#: static/js/admin/shared/forms.jsx:341
 msgid "LinkedIn profile URL"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:340 static/js/user/forms.jsx:92
+#: static/js/admin/shared/forms.jsx:346 static/js/user/forms.jsx:98
 msgid "Website"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:342
+#: static/js/admin/shared/forms.jsx:348
 msgid "Personal website URL"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:348 static/js/user/forms.jsx:99
+#: static/js/admin/shared/forms.jsx:354 static/js/user/forms.jsx:105
 msgid "Short Bio"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:350
+#: static/js/admin/shared/forms.jsx:356
 msgid "Personal description"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:361
+#: static/js/admin/shared/forms.jsx:367
 msgid "Public Profile"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:362
+#: static/js/admin/shared/forms.jsx:368
 msgid "Statistics"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:363
+#: static/js/admin/shared/forms.jsx:369
 msgid "Reports"
 msgstr ""
 
-#: static/js/admin/shared/forms.jsx:417
+#: static/js/admin/shared/forms.jsx:423
 msgid "Delete"
 msgstr ""
 
-#: static/js/shared/components/forms.jsx:60
+#: static/js/shared/components/forms.jsx:67
 msgid "Select..."
 msgstr ""
 
-#: static/js/shared/components/forms.jsx:61
+#: static/js/shared/components/forms.jsx:68
 msgid "No results found"
 msgstr ""
 
-#: static/js/shared/components/forms.jsx:62
+#: static/js/shared/components/forms.jsx:69
 msgid "Clear value"
 msgstr ""
 
-#: static/js/shared/components/forms.jsx:63
+#: static/js/shared/components/forms.jsx:70
 msgid "Clear all"
 msgstr ""
 
-#: static/js/shared/components/forms.jsx:64
+#: static/js/shared/components/forms.jsx:71
 msgid "Type to search"
 msgstr ""
 
-#: static/js/user/components/edit.jsx:99
+#: static/js/user/components/edit.jsx:106
 msgid "Edit My Public Profile"
 msgstr ""
 
-#: static/js/user/components/edit.jsx:105
+#: static/js/user/components/edit.jsx:113
 msgid "My Public Profile"
 msgstr ""
 
-#: static/js/user/components/edit.jsx:116
+#: static/js/user/components/edit.jsx:125
 msgid "Discard changes."
 msgstr ""
 
-#: static/js/user/components/edit.jsx:117
+#: static/js/user/components/edit.jsx:126
 msgid "Yes"
 msgstr ""
 
-#: static/js/user/components/edit.jsx:118
+#: static/js/user/components/edit.jsx:127
 msgid "No"
 msgstr ""
 
-#: static/js/user/components/edit.jsx:119
+#: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
 msgstr ""
 
-#: static/js/user/forms.jsx:52
+#: static/js/user/forms.jsx:58
 #, python-format
 msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
 
-#: static/js/user/forms.jsx:65
+#: static/js/user/forms.jsx:71
 msgid "Your Full Name"
 msgstr ""
 
-#: static/js/user/forms.jsx:71
+#: static/js/user/forms.jsx:77
 msgid "Avatar"
 msgstr ""
 
-#: static/js/user/forms.jsx:81
+#: static/js/user/forms.jsx:87
 msgid "Your Twitter username"
 msgstr ""
 
-#: static/js/user/forms.jsx:88
+#: static/js/user/forms.jsx:94
 msgid "Your LinkedIn profile URL"
 msgstr ""
 
-#: static/js/user/forms.jsx:94
+#: static/js/user/forms.jsx:100
 msgid "Your Personal website/blog URL"
 msgstr ""
 
-#: static/js/user/forms.jsx:102
+#: static/js/user/forms.jsx:108
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
@@ -654,7 +654,7 @@ msgstr "Di meno"
 msgid "Show"
 msgstr "Mostra"
 
-#: templates/editor/units/xhr_tm.html:12
+#: templates/editor/units/xhr_tm.html:13
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
