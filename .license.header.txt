@@ -10,7 +10,7 @@ Python
 # for copyright and authorship information.
 
 
-JavaScript
+JavaScript, CSS
 
 /*
  * Copyright (C) Pootle contributors.

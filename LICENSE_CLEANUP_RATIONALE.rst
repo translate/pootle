@@ -167,3 +167,4 @@ Pootle has been good at adding copyrights to code files but license headers are
 missing from other files that really should be licensed:
 
 - JavaScript
+- CSS
