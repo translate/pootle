@@ -5,7 +5,6 @@ VERBOSITY=0
 SRC_DIR=$(dirname $0)/..
 
 # Placeholders
-YEAR_COPYRIGHT_PLACEHOLDER="YEAR THE PACKAGE'S COPYRIGHT HOLDER"
 PACKAGE_VERSION_PLACEHOLDER="PACKAGE VERSION"
 MSGID_BUGS_TO_PLACEHOLDER="Report-Msgid-Bugs-To:"
 
@@ -17,8 +16,6 @@ POOTLE_POT="$POT_DIR/pootle.pot"
 POOTLE_JS_POT="$POT_DIR/pootle_js.pot"
 
 # Header settings
-YEAR=`date +%Y`
-COPYRIGHT_HOLDER="Zuza Software Foundation (Translate.org.za)"
 PACKAGE="Pootle"
 VERSION=`egrep "^ver" $SRC_DIR/__version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g" | sed "s/,/./g"`
 MSGID_BUGS_TO="https://github.com/translate/pootle/issues/new"
@@ -57,17 +54,28 @@ django-admin.py makemessages -v $VERBOSITY $ignore $js_ignore -d djangojs -e js 
 xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find static/js -name "*.jsx")
 xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find templates -name "*.html")
 
-# Header replacements
-sed -i"" -e "s/$YEAR_COPYRIGHT_PLACEHOLDER/2006-$YEAR $COPYRIGHT_HOLDER/" $DJANGO_POT
-sed -i"" -e "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_POT
-sed -i"" -e "s|$MSGID_BUGS_TO_PLACEHOLDER |$MSGID_BUGS_TO_PLACEHOLDER $MSGID_BUGS_TO|" $DJANGO_POT
+# Copyright header replacement
+cat <<EOF >$POOTLE_POT
+# Copyright (C) Pootle contributors.
+#
+# This file is a part of the Pootle project. It is distributed under the GPL2
+# license. See the LICENSE file for a copy of the license and the AUTHORS file
+# for copyright and authorship information.
+EOF
 
-sed -i"" -e "s/$YEAR_COPYRIGHT_PLACEHOLDER/2012-$YEAR $COPYRIGHT_HOLDER/" $DJANGO_JS_POT
-sed -i"" -e "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $DJANGO_JS_POT
-sed -i"" -e "s|$MSGID_BUGS_TO_PLACEHOLDER |$MSGID_BUGS_TO_PLACEHOLDER $MSGID_BUGS_TO|" $DJANGO_JS_POT
+cp $POOTLE_POT $POOTLE_JS_POT
 
-mv $DJANGO_POT $POOTLE_POT
-mv $DJANGO_JS_POT $POOTLE_JS_POT
+tail -n +5 $DJANGO_POT >> $POOTLE_POT
+tail -n +5 $DJANGO_JS_POT >> $POOTLE_JS_POT
+rm $DJANGO_POT $DJANGO_JS_POT
+
+# Gettext Header replacements
+sed -i"" -e "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $POOTLE_POT
+sed -i"" -e "s|$MSGID_BUGS_TO_PLACEHOLDER |$MSGID_BUGS_TO_PLACEHOLDER $MSGID_BUGS_TO|" $POOTLE_POT
+
+sed -i"" -e "s/$PACKAGE_VERSION_PLACEHOLDER/$PACKAGE $VERSION/" $POOTLE_JS_POT
+sed -i"" -e "s|$MSGID_BUGS_TO_PLACEHOLDER |$MSGID_BUGS_TO_PLACEHOLDER $MSGID_BUGS_TO|" $POOTLE_JS_POT
+
 
 # Revert if we only have a header change
 [ "$(git status --porcelain ${POT_DIR})" != "?? ${POT_DIR}/" ] && git checkout --quiet -- $(git difftool -y -x 'diff --unified=3 --ignore-matching-lines=POT-Creation --ignore-matching-lines=X-Generator -s' ${POT_DIR} |
