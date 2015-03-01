@@ -5,7 +5,7 @@
 # Christian Perrier <bubulle@debian.org>, 2009, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
 "PO-Revision-Date: 2014-09-24 15:19+0000\n"

@@ -3,7 +3,7 @@
 # Alexander Dupuy <alex.dupuy@mac.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: pootle 0.11\n"
+"Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
 "PO-Revision-Date: 2014-03-26 03:09+0000\n"

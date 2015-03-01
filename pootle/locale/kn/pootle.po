@@ -4,7 +4,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 msgid ""
 msgstr ""
-"Project-Id-Version: pootle\n"
+"Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
 "PO-Revision-Date: 2010-07-07 23:28+0200\n"

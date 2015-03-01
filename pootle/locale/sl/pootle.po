@@ -2,7 +2,7 @@
 # Robert Ludvik <r@aufbix.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenOffice.org\n"
+"Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
 "PO-Revision-Date: 2014-06-04 21:00+0000\n"

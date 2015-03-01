@@ -4,7 +4,7 @@
 # Dwayne Bailey <dwayne@translate.org.za>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 1.1.0\n"
+"Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
 "PO-Revision-Date: 2013-07-04 21:14+0000\n"

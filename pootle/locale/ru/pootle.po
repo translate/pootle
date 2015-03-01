@@ -2,7 +2,7 @@
 # Pavel Maryanov <acid_jack@ukr.net>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: pootle\n"
+"Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
 "PO-Revision-Date: 2013-10-29 06:08+0000\n"
