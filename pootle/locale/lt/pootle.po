@@ -1,4 +1,3 @@
-# Rimas Kudelis <rq@akl.lt>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"

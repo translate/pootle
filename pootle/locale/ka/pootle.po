@@ -1,5 +1,3 @@
-# Something went wrong here - my translation (word by word) with very minor (and wrong) changes
-# was published by other translator, is it possible to avoid such things?
 msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"

@@ -1,6 +1,3 @@
-# Brazilian Portuguese translation of Pootle
-# Leonardo Ferreira Fontenelle <leonardof@gnome.org>, 2006-2008
-# Alexander Dupuy <alex.dupuy@mac.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"

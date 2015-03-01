@@ -1,7 +1,3 @@
-# translation of pootle.po to Shankar Gowda MBN
-# Shankar  <Shankar.Gowda@Sun.COM>, 2008.
-# Copyright (C) YEAR Zuza Software Foundation (Translate.org.za)
-# This file is distributed under the same license as the PACKAGE package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"

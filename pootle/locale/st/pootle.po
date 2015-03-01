@@ -1,5 +1,3 @@
-# translation of pootle.po to English South Africa
-# Neville Makopo <neville@impilinux.co.za>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"

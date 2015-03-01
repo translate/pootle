@@ -1,5 +1,3 @@
-# translation of pootle.po to Slovenščina
-# Robert Ludvik <r@aufbix.org>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"

@@ -1,5 +1,3 @@
-#  Përkthimi i mesazheve të pootle.po në shqip.
-# Laurent Dhima <laurenti@alblinux.net>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"

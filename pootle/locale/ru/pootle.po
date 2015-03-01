@@ -1,5 +1,3 @@
-# Translation of pootle.po to Russian
-# Pavel Maryanov <acid_jack@ukr.net>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"

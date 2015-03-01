@@ -1,5 +1,3 @@
-# translation of pootle.po to Nepali
-# Pawan Chitrakar  <pawan@mpp.org.np>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
