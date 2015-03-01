@@ -168,3 +168,4 @@ missing from other files that really should be licensed:
 
 - JavaScript
 - CSS
+- Gettext PO
