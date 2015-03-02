@@ -27,9 +27,8 @@ Pootle has specific conventions for Python coding style.
 Imports
 ~~~~~~~
 
-Like in `Python import conventions
-<http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
-in Translate styleguide, but imports should be grouped in the following order:
+Like in `Python import conventions`_ in Translate styleguide, but imports
+should be grouped in the following order:
 
 1) __future__ library imports
 2) Python standard library imports
@@ -40,9 +39,8 @@ in Translate styleguide, but imports should be grouped in the following order:
 7) Current package (or app) imports, using explicit relative imports (See `PEP
    328 <http://www.python.org/dev/peps/pep-0328/#guido-s-decision>`_)
 
-Check `Python import conventions
-<http://docs.translatehouse.org/projects/translate-toolkit/en/latest/development/styleguide.html#styleguide-imports>`_
-in Translate styleguide for other conventions that the imports must follow.
+Check `Python import conventions`_ in Translate styleguide for other
+conventions that the imports must follow.
 
 .. code-block:: python
 
@@ -443,6 +441,7 @@ Naming
     separated using dashes. As an example, rather use ``.tm-results`` and not
     ``.TM_results``.
 
+.. _Python import conventions: http://docs.translatehouse.org/projects/translate-toolkit/en/latest/developers/styleguide.html#styleguide-imports
 .. _1: http://javascript.crockford.com/code.html
 .. _2: http://drupal.org/node/172169
 .. _3: http://docs.jquery.com/JQuery_Core_Style_Guidelines
