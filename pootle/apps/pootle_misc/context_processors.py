@@ -11,6 +11,7 @@ from django.conf import settings
 from django.utils import translation
 
 from pootle import __version__
+from pootle.core.utils.json import jsonify
 from pootle_language.models import Language
 from pootle_project.models import Project
 from staticpages.models import LegalPage
@@ -27,6 +28,15 @@ def _agreement_context(request):
         return True
 
     return False
+
+
+def _get_social_auth_providers(request):
+    if 'allauth.socialaccount' not in settings.INSTALLED_APPS:
+        return []
+
+    from allauth.socialaccount import providers
+    return [{'name': provider.name, 'url': provider.get_login_url(request)}
+            for provider in providers.registry.get_list()]
 
 
 def pootle_context(request):
@@ -48,5 +58,6 @@ def pootle_context(request):
         'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
         'ALL_LANGUAGES': Language.live.cached_dict(translation.get_language()),
         'ALL_PROJECTS': Project.objects.cached_dict(request.user),
+        'SOCIAL_AUTH_PROVIDERS': jsonify(_get_social_auth_providers(request)),
         'display_agreement': _agreement_context(request),
     }
