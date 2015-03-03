@@ -169,3 +169,16 @@ missing from other files that really should be licensed:
 - JavaScript
 - CSS
 - Gettext PO
+
+However, for some file types we've chosen to not add these headers:
+
+- Django templates
+
+For the following reasons:
+
+1. They are problematic the implement and obtrusive when implemented in the
+   files.
+2. The files are not useful on their own outside of the body of work of Pootle.
+   They are already covered by the LICENSE files and are unlikely to have any
+   use outside of Pootle.  And if they where they would need the associated CSS
+   and JavaScript files which are explicitely licensed.
