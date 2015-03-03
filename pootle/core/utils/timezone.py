@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import datetime
+
 from django.conf import settings
 from django.utils import timezone
 
@@ -36,3 +38,7 @@ def make_naive(value):
         value = timezone.make_aware(value, tz)
 
     return value
+
+
+def aware_datetime(*args, **kwargs):
+    return make_aware(datetime.datetime(*args, **kwargs))
