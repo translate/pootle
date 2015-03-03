@@ -38,6 +38,7 @@ if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
 
 from pootle.core.markup import Markup
+from pootle.core.utils.timezone import make_aware
 
 
 def import_func(path):
@@ -133,10 +134,7 @@ def get_date_interval(month):
     if month is None:
         month = start.strftime('%Y-%m')
 
-    start = datetime.strptime(month, '%Y-%m')
-    if settings.USE_TZ:
-        tz = timezone.get_default_timezone()
-        start = timezone.make_aware(start, tz)
+    start = make_aware(datetime.strptime(month, '%Y-%m'))
 
     if start < now:
         if start.month != now.month or start.year != now.year:

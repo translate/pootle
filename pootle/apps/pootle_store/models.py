@@ -54,6 +54,7 @@ from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.tmserver import (update as update_tmserver,
                                   search as get_tmsuggestions)
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle.core.utils.timezone import make_aware
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names, run_given_filters, get_checker
 from pootle_misc.util import datetime_min, import_func
@@ -1607,10 +1608,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         disk_mtime = datetime.datetime \
                      .fromtimestamp(self.file.getpomtime()[0])
         # set microsecond to 0 for comparing with a time value without microseconds
-        disk_mtime = disk_mtime.replace(microsecond=0)
-        if settings.USE_TZ:
-            tz = timezone.get_default_timezone()
-            disk_mtime = timezone.make_aware(disk_mtime, tz)
+        disk_mtime = make_aware(disk_mtime.replace(microsecond=0))
 
         return disk_mtime
 

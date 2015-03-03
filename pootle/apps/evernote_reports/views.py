@@ -38,6 +38,7 @@ from django.views.generic.detail import SingleObjectMixin
 
 from pootle.core.decorators import admin_required
 from pootle.core.log import PAID_TASK_ADDED, PAID_TASK_DELETED, log
+from pootle.core.utils.timezone import make_aware, make_naive
 from pootle.core.views import AjaxResponseMixin
 from pootle.models.user import CURRENCIES
 from pootle_misc.util import (ajax_required, jsonify, get_date_interval,
@@ -75,10 +76,7 @@ class UserStatsView(NoDefaultUserMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         ctx = super(UserStatsView, self).get_context_data(**kwargs)
-        now = datetime.now()
-        if settings.USE_TZ:
-            tz = timezone.get_default_timezone()
-            now = timezone.make_aware(now, tz)
+        now = make_aware(datetime.now())
         ctx.update({
             'now': now.strftime('%Y-%m-%d %H:%M:%S'),
         })
@@ -151,10 +149,7 @@ class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin, PaidTaskFormVi
 @admin_required
 def evernote_reports(request):
     User = get_user_model()
-    now = datetime.now()
-    if settings.USE_TZ:
-        tz = timezone.get_default_timezone()
-        now = timezone.make_aware(now, tz)
+    now = make_aware(datetime.now())
 
     ctx = {
         'users': jsonify(map(
@@ -418,10 +413,7 @@ def get_activity_data(request, user, month):
         'hourly_rate': user.hourly_rate,
     } if user != '' else user
 
-    now = datetime.now()
-    if settings.USE_TZ:
-        tz = timezone.get_default_timezone()
-        now = timezone.make_aware(now, tz)
+    now = make_aware(datetime.now())
 
     json['meta'] = {
         'user': user_dict,
@@ -443,7 +435,7 @@ def get_activity_data(request, user, month):
         tasks = get_paid_tasks(user, start, end)
         for task in tasks:
             if settings.USE_TZ:
-                task['datetime'] = timezone.localtime(task['datetime'], tz)
+                task['datetime'] = timezone.localtime(task['datetime'])
             task['datetime'] = task['datetime'].strftime('%Y-%m-%d %H:%M:%S')
 
         json['paid_tasks'] = tasks
@@ -491,13 +483,10 @@ def get_daily_activity(scores, start, end):
 
     saved_date = None
     current_day_score = 0
-    tz = timezone.get_default_timezone()
     translated_group = {}
     reviewed_group = {}
     for score in scores:
-        score_time = score.creation_time
-        if settings.USE_TZ:
-            score_time = timezone.make_naive(score_time, tz)
+        score_time = make_naive(score.creation_time)
         date = score_time.date()
 
         translated, reviewed = score.get_paid_words()
@@ -598,15 +587,12 @@ def get_summary(scores, start, end):
 
     translations = []
     reviews = []
-    tz = timezone.get_default_timezone()
-    if settings.USE_TZ:
-        start = timezone.make_naive(start, tz)
-        end = timezone.make_naive(end, tz)
+
+    start = make_naive(start)
+    end = make_naive(end)
 
     for score in scores:
-        score_time = score.creation_time
-        if settings.USE_TZ:
-            score_time = timezone.make_naive(score_time, tz)
+        score_time = make_naive(score.creation_time)
 
         if (score.rate != rate or
             translation_month != score_time.month):
