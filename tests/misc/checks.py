@@ -120,6 +120,7 @@ def test_incorrectly_escaped_ampersands():
 def test_mustache_placeholders():
     check = checker.mustache_placeholders
     tests = [
+        (u'foobar', u'{foo}BAR', True),
         (u'{foo}bar', u'{foo}BAR', True),
         (u'{{foo}}bar', u'{{foo}}BAR', True),
         (u'{{{foo}}}bar', u'{{{foo}}}BAR', True),

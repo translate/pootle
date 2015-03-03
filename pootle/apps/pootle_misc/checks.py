@@ -1016,6 +1016,9 @@ def _generic_check(str1, str2, regex, message):
         d = {}
         fingerprint = ''
 
+        if is_source and len(chunks) == 1:
+            raise SkipCheck()
+
         for chunk in chunks:
             translate = not translate
 
