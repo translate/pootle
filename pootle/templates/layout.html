@@ -27,6 +27,7 @@
     window.PTL = window.PTL || {};
     PTL.settings = {
       CAN_REGISTER: {{ settings.CAN_REGISTER|yesno:'true, false' }},
+      SOCIAL_AUTH_PROVIDERS: {{ SOCIAL_AUTH_PROVIDERS|safe }},
     };
     </script>
 
