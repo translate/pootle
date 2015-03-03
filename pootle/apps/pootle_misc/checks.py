@@ -110,6 +110,7 @@ check_names = {
     'potential_unwanted_placeholders': _(u"Potential unwanted placeholders"),
     'doublequoting': _(u"Double quotes"),
     'double_quotes_in_tags': _(u"Double quotes in tags"),
+    'percent_brace_placeholders': _(u"Percent brace placeholders"),
 }
 
 excluded_filters = ['hassuggestion', 'spellcheck']
@@ -226,6 +227,9 @@ broken_entities_regex_7 = re.compile(u"&#x([a-zA-Z_]+);", re.U)
 fmt = u"[$%_@]"
 potential_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
+fmt = u"\%\{{1}[^\}]+\}{1}"
+percent_brace_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
+
 
 def get_checker(unit):
     checker_class = getattr(settings, 'QUALITY_CHECKER', '')
@@ -294,6 +298,11 @@ class ENChecker(checks.TranslationChecker):
     def mustache_placeholders(self, str1, str2):
         return _generic_check(str1, str2, mustache_placeholders_regex,
                               u"mustache_placeholders")
+
+    @critical
+    def percent_brace_placeholders(self, str1, str2):
+        return _generic_check(str1, str2, percent_brace_placeholders_regex,
+                              u"percent_brace_placeholders")
 
     @critical
     def mustache_placeholder_pairs(self, str1, str2):

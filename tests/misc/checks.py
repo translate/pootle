@@ -154,6 +154,17 @@ def test_mustache_placeholders():
     do_test(check, tests)
 
 
+def test_percent_brace_placeholders():
+    check = checker.percent_brace_placeholders
+    tests = [
+        (u'{foo}% bar', u'%{foo} BAR', True),
+        (u'%{foo} bar', u'%{foo} BAR', True),
+        (u'%{foo} bar', u'% {foo} BAR', False),
+    ]
+
+    do_test(check, tests)
+
+
 def test_mustache_placeholder_pairs():
     check = checker.mustache_placeholder_pairs
     tests = [
