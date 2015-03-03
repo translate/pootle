@@ -20,8 +20,7 @@
 
 import pytest
 
-import datetime
-
+from pootle.core.utils.timezone import aware_datetime
 from staticpages.models import LegalPage
 
 from ..factories import AgreementFactory, LegalPageFactory, UserFactory
@@ -37,9 +36,9 @@ def test_pending_agreements():
     # queryset caching: `len()`, and therefore `.count()`, always returns
     # the same value. Using `.create_batch()` here as a workaround
     privacy_policy, tos = LegalPageFactory.create_batch(2, active=True)
-    privacy_policy.modified_on = datetime.date(2014, 01, 01)
+    privacy_policy.modified_on = aware_datetime(2014, 01, 01)
     privacy_policy.save()
-    tos.modified_on = datetime.date(2015, 01, 01)
+    tos.modified_on = aware_datetime(2015, 01, 01)
     tos.save()
 
     # `foo_user` hasn't agreed any ToS yet
@@ -52,7 +51,7 @@ def test_pending_agreements():
     AgreementFactory.create(
         user=foo_user,
         document=privacy_policy,
-        agreed_on=datetime.date(2014, 02, 02),
+        agreed_on=aware_datetime(2014, 02, 02),
     )
 
     pending = LegalPage.objects.pending_user_agreement(foo_user)
@@ -63,14 +62,14 @@ def test_pending_agreements():
     AgreementFactory.create(
         user=foo_user,
         document=tos,
-        agreed_on=datetime.date(2015, 02, 02),
+        agreed_on=aware_datetime(2015, 02, 02),
     )
 
     pending = LegalPage.objects.pending_user_agreement(foo_user)
     assert len(pending) == 0
 
     # The ToS were modified, `foo_user` must agree it
-    tos.modified_on = datetime.date(2015, 03, 03)
+    tos.modified_on = aware_datetime(2015, 03, 03)
     tos.save()
 
     pending = LegalPage.objects.pending_user_agreement(foo_user)
