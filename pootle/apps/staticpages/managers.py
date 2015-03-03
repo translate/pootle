@@ -32,7 +32,7 @@ class PageManager(Manager):
             have administration privileges, only active pages will be
             returned.
         """
-        if user and user.is_superuser:
+        if user is not None and user.is_superuser:
             return self.get_queryset()
 
         return self.get_queryset().filter(active=True)
