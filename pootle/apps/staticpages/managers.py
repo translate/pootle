@@ -34,8 +34,8 @@ class PageManager(Manager):
         """
         if user and user.is_superuser:
             return self.get_queryset()
-        else:
-            return self.get_queryset().filter(active=True)
+
+        return self.get_queryset().filter(active=True)
 
     def pending_user_agreement(self, user, **kwargs):
         """Filters active pages where the given `user` has pending
