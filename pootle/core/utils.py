@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2013 Evernote Corporation
+# Copyright 2013-2015 Evernote Corporation
 #
 # This file is part of Pootle.
 #
@@ -20,10 +20,7 @@
 
 import re
 re._MAXCACHE = 1000
-from difflib import SequenceMatcher
 
-
-ADDED, REMOVED = range(2)
 
 remove = re.compile(u"[\.]+", re.U)  # dots
 delimiters = re.compile(u"[\W]+", re.U)  # anything except a-z, A-Z and _
@@ -56,36 +53,6 @@ product_names_regex = re.compile(
 shortcuts_regex = re.compile(u'(Ctrl\+\w$|Shift\+\w$|Alt\+\w$)', re.U)
 shortcuts_modifier_regex = re.compile(u'(Ctrl\+$|Shift\+$|Alt\+$)', re.U)
 hanging_symbols_regex = re.compile(u'(^[^\w\&]\s|\s[^\w\&]\s|\s[^\w\&]$|^[^\w\&]$)', re.U)
-
-
-def diff_stat(old, new):
-    result = [0, 0]  # [ADDED, REMOVED]
-
-    def insert(i1, i2, j1, j2):
-        result[ADDED] += j2 - j1
-
-    def delete(i1, i2, j1, j2):
-        result[REMOVED] += i2 - i1
-
-    def update(i1, i2, j1, j2):
-        result[REMOVED] += i2 - i1
-        result[ADDED] += j2 - j1
-
-    opcode_handler = {
-        'insert': insert,
-        'delete': delete,
-        'replace': update,
-        'equal': None,
-    }
-
-    sm = SequenceMatcher(None, old, new)
-
-    for (tag, i1, i2, j1, j2) in sm.get_opcodes():
-        f = opcode_handler[tag]
-        if callable(f):
-            f(i1, i2, j1, j2)
-
-    return result
 
 
 def find_placeholders(aref, regex, cls=''):
