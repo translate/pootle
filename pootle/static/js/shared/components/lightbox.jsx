@@ -92,6 +92,7 @@ var ModalContainer = React.createClass({
         <div className="lightbox-container"
              onKeyDown={this.handleKeyDown}>
           <div className={cx('lightbox-body', this.props.className)}
+               style={this.props.style}
                tabIndex="-1">
             {this.props.children}
           </div>
