@@ -16,6 +16,7 @@ lxml>=2.2.0
 --allow-external pyDes
 --allow-unverified pyDes
 pyDes
+rq>=0.5.0
 
 # Translate Toolkit
 translate-toolkit>=1.10.0

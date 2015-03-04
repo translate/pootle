@@ -20,8 +20,11 @@ from django.conf import settings
 from django.core.urlresolvers import set_script_prefix
 from django.utils.encoding import force_unicode, iri_to_uri
 
-from django_rq import job
-from django_rq.queues import get_connection
+from django_rq.queues import get_queue, get_connection
+from redis import WatchError
+from rq import get_current_job
+from rq.job import JobStatus, Job, loads, dumps
+from rq.utils import utcnow
 
 from pootle.core.cache import get_cache
 from pootle.core.log import log
@@ -32,6 +35,8 @@ from pootle_misc.util import datetime_min, dictsum
 
 POOTLE_DIRTY_TREEITEMS = 'pootle:dirty:treeitems'
 POOTLE_REFRESH_STATS = 'pootle:refresh:stats'
+POOTLE_STATS_LAST_JOB_PREFIX = "pootle:stats:lastjob:"
+POOTLE_STATS_JOB_PARAMS_PREFIX = "pootle:stats:job.params:"
 
 
 logger = logging.getLogger('stats')
@@ -265,6 +270,11 @@ class CachedTreeItem(TreeItem):
         key = iri_to_uri(self.get_cachekey() + ":" + name)
         return cache.get(key)
 
+    def get_last_job_key(self):
+        key = self.get_cachekey()
+        return POOTLE_STATS_LAST_JOB_PREFIX + \
+               key.replace("/", ".").strip(".")
+
     @statslog
     def update_cached(self, name):
         """calculate stat value and update cached value"""
@@ -312,6 +322,7 @@ class CachedTreeItem(TreeItem):
 
         return result
 
+    # TODO get rid of this method ?
     def refresh_stats(self, include_children=True, cached_methods=None):
         """refresh cached stats for self and for children"""
         self.initialize_children()
@@ -406,20 +417,26 @@ class CachedTreeItem(TreeItem):
         for p in self.all_pootle_paths():
             r_con.zincrby(POOTLE_DIRTY_TREEITEMS, p)
 
-    def unregister_all_dirty(self):
+    def unregister_all_dirty(self, decrement=1):
         """Unregister current TreeItem and all parent paths as dirty
         (should be called from RQ job procedure after cache is updated)
         """
         r_con = get_connection()
+        job = get_current_job()
         for p in self.all_pootle_paths():
-            r_con.zincrby(POOTLE_DIRTY_TREEITEMS, p, -1)
+            logger.debug('UNREGISTER %s (-%s) where job_id=%s' %
+                         (p, decrement, job.id))
+            r_con.zincrby(POOTLE_DIRTY_TREEITEMS, p, 0 - decrement)
 
-    def unregister_dirty(self):
+    def unregister_dirty(self, decrement=1):
         """Unregister current TreeItem as dirty
         (should be called from RQ job procedure after cache is updated)
         """
         r_con = get_connection()
-        r_con.zincrby(POOTLE_DIRTY_TREEITEMS, self.get_cachekey(), -1)
+        job = get_current_job()
+        logger.debug('UNREGISTER %s (-%s) where job_id=%s' %
+                     (self.get_cachekey(), decrement, job.id))
+        r_con.zincrby(POOTLE_DIRTY_TREEITEMS, self.get_cachekey(), 0 - decrement)
 
     def get_dirty_score(self):
         r_con = get_connection()
@@ -433,7 +450,7 @@ class CachedTreeItem(TreeItem):
         if _dirty:
             self._dirty_cache = set()
             self.register_all_dirty()
-            update_cache.delay(self, _dirty)
+            create_update_cache_job(self, _dirty)
 
     def update_all_cache(self):
         """Add a RQ job which updates all cached stats of current TreeItem
@@ -442,8 +459,9 @@ class CachedTreeItem(TreeItem):
         self.mark_all_dirty()
         self.update_dirty_cache()
 
-    def _update_cache(self, keys):
-        """Update dirty cached stats of current TreeItem"""
+    def _update_cache_job(self, keys, decrement):
+        """Update dirty cached stats of current TreeItem and add RQ job for updating
+        dirty cached stats of parent"""
         if self.can_be_updated():
             # children should be recalculated to avoid using of obsolete directories
             # or stores which could be saved in `children` property
@@ -452,19 +470,21 @@ class CachedTreeItem(TreeItem):
             for key in keys:
                 self.update_cached(key)
             for p in self.get_parents():
-                p._update_cache(keys)
+                create_update_cache_job(p, keys, decrement)
 
-            self.unregister_dirty()
+            self.unregister_dirty(decrement)
         else:
             logger.warning('Cache for %s object cannot be updated.' % self)
-            self.unregister_all_dirty()
+            self.unregister_all_dirty(decrement)
 
     def update_parent_cache(self):
-        """Update dirty cached stats for a all parents of the current TreeItem"""
+        """Add a RQ job which updates all cached stats of parent TreeItem
+        to the default queue
+        """
         all_cache_methods = CachedMethods.get_all()
         for p in self.get_parents():
             p.register_all_dirty()
-            update_cache.delay(p, all_cache_methods)
+            create_update_cache_job(p, all_cache_methods)
 
     def init_cache(self):
         """Set initial values for all cached method for the current TreeItem"""
@@ -473,8 +493,124 @@ class CachedTreeItem(TreeItem):
             self.set_cached_value(method_name, method())
 
 
-@job
-def update_cache(instance, keys):
+class JobWrapper():
+    """
+    Wraps RQ Job to handle it within external `watch`,
+    encapsulates work with external to RQ job params which is needed
+    because of possible race conditions
+    """
+    def __init__(self, id, connection):
+        self.id = id
+        self.func = None
+        self.instance = None
+        self.keys = None
+        self.decrement = None
+        self.depends_on = None
+        self.origin = None
+        self.timeout = None
+        self.connection = connection
+        self.job = Job(id=id, connection=self.connection)
+
+    @classmethod
+    def create(cls, func, instance, keys, decrement, connection, origin, timeout):
+        """
+        Creates object and initializes Job ID
+        """
+        job_wrapper = cls(None, connection)
+        job_wrapper.job = Job(connection=connection)
+        job_wrapper.id = job_wrapper.job.id
+        job_wrapper.func = func
+        job_wrapper.instance = instance
+        job_wrapper.keys = keys
+        job_wrapper.decrement = decrement
+        job_wrapper.connection = connection
+        job_wrapper.origin = origin
+        job_wrapper.timeout = timeout
+
+        return job_wrapper
+
+    @classmethod
+    def params_key_for(cls, id):
+        """
+        Gets Redis key for keeping Job params
+        """
+        return POOTLE_STATS_JOB_PARAMS_PREFIX + id
+
+    def get_job_params_key(self):
+        return self.params_key_for(self.id)
+
+    def get_job_params(self):
+        """
+        Loads job params from Redis key
+        """
+        key = self.get_job_params_key()
+        data = self.connection.get(key)
+        if data is not None:
+            return loads(data)
+        return None
+
+    def set_job_params(self, pipeline):
+        """
+        Sets dumped job params to Redis key
+        """
+        key = self.get_job_params_key()
+        value = (self.keys, self.decrement)
+        pipeline.set(key, dumps(value))
+
+    def clear_job_params(self):
+        """
+        Removes job params key (used after job finishes)
+        """
+        key = self.get_job_params_key()
+        self.job.connection.delete(key)
+
+    def merge_job_params(self, keys, decrement, pipeline):
+        """
+        Merges job parameters to allow to skip one of these jobs
+        """
+        key = self.get_job_params_key()
+        data = self.connection.get(key)
+        old_keys, old_decrement = loads(data)
+        new_params = (keys | old_keys, decrement + old_decrement)
+        pipeline.set(key, dumps(new_params))
+
+        return new_params
+
+    def create_job(self, status=None, depends_on=None):
+        """
+        Creates Job object with given job ID
+        """
+        args = (self.instance,)
+        return Job.create(self.func, args=args, id=self.id, connection=self.connection,
+                          depends_on=depends_on, status=status)
+
+    def save_enqueued(self, pipe):
+        """
+        Preparing job to enqueue. Works via pipeline.
+        Nothing done if WatchError happens while next `pipeline.execute()`.
+        """
+        job = self.create_job(status=JobStatus.QUEUED)
+        self.set_job_params(pipeline=pipe)
+        job.origin = self.origin
+        job.enqueued_at = utcnow()
+        if job.timeout is None:
+            job.timeout = self.timeout
+        job.save(pipeline=pipe)
+
+    def save_deferred(self, depends_on, pipe):
+        """
+        Preparing job to defer (add as dependent). Works via pipeline.
+        Nothing done if WatchError happens while next `pipeline.execute()`.
+        """
+        job = self.create_job(depends_on=depends_on, status=JobStatus.DEFERRED)
+        self.set_job_params(pipeline=pipe)
+        job.register_dependency(pipeline=pipe)
+        job.save(pipeline=pipe)
+
+        return job
+
+
+def update_cache_job(instance):
     """RQ job"""
     # The script prefix needs to be set here because the generated
     # URLs need to be aware of that and they are cached. Ideally
@@ -483,4 +619,78 @@ def update_cache(instance, keys):
     script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
                         else force_unicode(settings.FORCE_SCRIPT_NAME))
     set_script_prefix(script_name)
-    instance._update_cache(keys)
+    job = get_current_job()
+    job_wrapper = JobWrapper(job.id, job.connection)
+    keys, decrement = job_wrapper.get_job_params()
+    instance._update_cache_job(keys, decrement)
+    job_wrapper.clear_job_params()
+
+
+def create_update_cache_job(instance, keys, decrement=1):
+    queue = get_queue('default')
+    queue.connection.sadd(queue.redis_queues_keys, queue.key)
+    job_wrapper = JobWrapper.create(update_cache_job,
+                                               instance=instance,
+                                               keys=keys,
+                                               decrement=decrement,
+                                               connection=queue.connection,
+                                               origin=queue.name,
+                                               timeout=queue.DEFAULT_TIMEOUT)
+    last_job_key = instance.get_last_job_key()
+
+    with queue.connection.pipeline() as pipe:
+        while True:
+            try:
+                pipe.watch(last_job_key)
+                last_job_id = queue.connection.get(last_job_key)
+                depends_on_wrapper = None
+                if last_job_id is not None:
+                    pipe.watch(Job.key_for(last_job_id),
+                               JobWrapper.params_key_for(last_job_id))
+                    depends_on_wrapper = JobWrapper(last_job_id, queue.connection)
+
+                pipe.multi()
+
+                depends_on_status = None
+                if depends_on_wrapper is not None:
+                    depends_on = depends_on_wrapper.job
+                    depends_on_status = depends_on.get_status()
+
+                if depends_on_status is None:
+                    # enqueue without dependencies
+                    pipe.set(last_job_key, job_wrapper.id)
+                    job_wrapper.save_enqueued(pipe)
+                    pipe.execute()
+                    break
+
+                if depends_on_status in [JobStatus.QUEUED,
+                                         JobStatus.DEFERRED]:
+                    new_job_params = \
+                        depends_on_wrapper.merge_job_params(keys, decrement,
+                                                            pipeline=pipe)
+                    pipe.execute()
+                    msg = 'SKIP %s (decrement=%s, job_status=%s, job_id=%s)'
+                    msg = msg % (last_job_key, new_job_params[1],
+                                 depends_on_status, last_job_id)
+                    logger.debug(msg)
+                    # skip this job
+                    return None
+
+                pipe.set(last_job_key, job_wrapper.id)
+
+                if depends_on_status not in [JobStatus.FINISHED]:
+                    # add job as a dependent
+                    job = job_wrapper.save_deferred(last_job_id, pipe)
+                    pipe.execute()
+                    logger.debug('ADD AS DEPENDENT for %s (job_id=%s) OF %s' %
+                                 (last_job_key, job.id, last_job_id))
+                    return job
+
+                job_wrapper.save_enqueued(pipe)
+                pipe.execute()
+                break
+            except WatchError:
+                logger.debug('RETRY after WatchError for %s' % last_job_key)
+                continue
+    logger.debug('ENQUEUE %s (job_id=%s)' % (last_job_key, job_wrapper.id))
+    queue.push_job_id(job_wrapper.id)
