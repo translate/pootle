@@ -58,6 +58,7 @@ Spinner.defaults = {
 
 window.PTL = window.PTL || {};
 
+PTL.auth = require('./auth');
 PTL.agreement = require('./agreement.js');
 PTL.browser = require('./browser.js');
 PTL.captcha = require('./captcha.js');
@@ -77,6 +78,7 @@ var utils = require('./utils.js');
 PTL.common = {
 
   init: function (opts) {
+    PTL.auth.init();
     PTL.browser.init();
 
     $(window).load(function () {
@@ -100,26 +102,6 @@ PTL.common = {
     // Hide the help messages for the Select2 multiple selects.
     // FIXME: this needs to go away
     $("select[multiple].js-select2").siblings("span.help_text").hide();
-
-    // Append fragment identifiers for login redirects
-    // TODO: create a named function
-    $('#navbar').on('focus click', '#js-login', function (e) {
-      var $anchor = $(this),
-          currentURL = $anchor.attr('href'),
-          newURL = currentURL,
-          hashIndex = currentURL.indexOf(encodeURIComponent('#')),
-          hash = utils.getHash();
-
-      if (hashIndex !== -1) {
-        newURL = currentURL.slice(0, hashIndex);
-      }
-      if (hash !== '') {
-        newURL = [
-          newURL, encodeURIComponent(hash)
-        ].join(encodeURIComponent('#'));
-      }
-      $anchor.attr('href', newURL);
-    });
 
     /* Collapsing functionality */
     // XXX: crappy code, only used in `term_edit.html`
