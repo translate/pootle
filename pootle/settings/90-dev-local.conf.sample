@@ -83,6 +83,11 @@ DATABASES = {
 #        'LOCATION': 'redis://127.0.0.1:6379/3',
 #        'TIMEOUT': None,
 #    },
+#    'exports': {
+#        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+#        'LOCATION': working_path('exports/'),
+#        'TIMEOUT': 259200,  # 3 days.
+#    },
 #}
 
 

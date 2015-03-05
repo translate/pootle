@@ -43,6 +43,9 @@
 .translation_index
 .DS_Store
 
+# Django cache
+*.djcache
+
 # npm
 node_modules/
 
