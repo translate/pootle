@@ -28,27 +28,13 @@ from django.core.management.base import BaseCommand, CommandError
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
-from translate.storage import po
+from import_export.views import _import_file
+
 
 class Command(BaseCommand):
     args = "<file file ...>"
     help = "Import a translation file or a zip of translation files." \
            "X-Pootle-Path header must be present."
-
-    def _export_file(self, file):
-        pofile = po.pofile(file.read())
-        pootle_path = pofile.parseheader().get("X-Pootle-Path")
-        if not pootle_path:
-            self.stderr.write("File %r missing X-Pootle-Path header\n" % (file.name))
-            return
-
-        try:
-            store, created = Store.objects.get_or_create(pootle_path=pootle_path)
-        except Exception as e:
-            raise CommandError("Could not import %r. Bad X-Pootle-Path? (%s)" %
-                               (file.name, e))
-        store.update(store=pofile)
-        self.stdout.write("Imported %s to %r\n" % (pootle_path, store))
 
     def handle(self, *args, **options):
         for filename in args:
@@ -56,7 +42,13 @@ class Command(BaseCommand):
                 with ZipFile(filename, "r") as zf:
                     for path in zf.namelist():
                         with zf.open(path, "r") as f:
-                            self._export_file(f)
+                            try:
+                                _import_file(f)
+                            except Exception as e:
+                                self.stderr.write("Warning: %s" % (e))
             else:
                 with open(filename, "r") as f:
-                    self._export_file(f)
+                    try:
+                        _import_file(f)
+                    except Exception as e:
+                        raise CommandError(e)

@@ -23,6 +23,7 @@ from zipfile import ZipFile
 from django.core.servers.basehttp import FileWrapper
 from django.http import Http404, HttpResponse
 from pootle_store.models import Store
+from translate.storage import po
 
 
 def download(contents, name, content_type):
