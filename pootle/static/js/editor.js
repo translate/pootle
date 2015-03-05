@@ -324,7 +324,7 @@
         // Only accept the user parameter for 'user-*' filters
         if ('user' in params && PTL.editor.filter.indexOf('user-') === 0) {
           var user;
-          PTL.editor.user = user = params['user'];
+          PTL.editor.user = user = encodeURIComponent(params.user);
 
           var newOpts = [],
               values = {
