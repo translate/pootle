@@ -35,7 +35,7 @@ def make_aware(value):
 def make_naive(value):
     if getattr(settings, 'USE_TZ', False) and timezone.is_aware(value):
         tz = timezone.get_default_timezone()
-        value = timezone.make_aware(value, tz)
+        value = timezone.make_naive(value, tz)
 
     return value
 
