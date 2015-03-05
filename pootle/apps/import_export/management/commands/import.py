@@ -42,6 +42,9 @@ class Command(BaseCommand):
                 with ZipFile(filename, "r") as zf:
                     for path in zf.namelist():
                         with zf.open(path, "r") as f:
+                            if path.endswith("/"):
+                                # is a directory
+                                continue
                             try:
                                 import_file(f)
                             except Exception as e:

@@ -74,6 +74,9 @@ def handle_upload_form(request):
                 if is_zipfile(django_file):
                     with ZipFile(django_file, "r") as zf:
                         for path in zf.namelist():
+                            if path.endswith("/"):
+                                # is a directory
+                                continue
                             with zf.open(path, "r") as f:
                                 import_file(f)
                 else:
