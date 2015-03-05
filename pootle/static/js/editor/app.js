@@ -281,8 +281,8 @@ PTL.editor = {
 
         // Walk through known filtering criterias and apply them to the editor object
 
-        if (params['unit']) {
-          var uIdParam = parseInt(params['unit'], 10);
+        if (params.unit) {
+          var uIdParam = parseInt(params.unit, 10);
 
           if (uIdParam && !isNaN(uIdParam)) {
             var current = PTL.editor.units.getCurrent(),
@@ -305,13 +305,13 @@ PTL.editor = {
         PTL.editor.sortBy = 'default';
 
         if ('filter' in params) {
-          var filterName = params['filter'];
+          var filterName = params.filter;
 
           // Set current state
           PTL.editor.filter = filterName;
 
           if (filterName === 'checks' && 'checks' in params) {
-            PTL.editor.checks = params['checks'].split(',');
+            PTL.editor.checks = params.checks.split(',');
           }
           if ('sort' in params) {
             PTL.editor.sortBy = params.sort;
@@ -325,7 +325,7 @@ PTL.editor = {
         }
 
         if ('month' in params) {
-          PTL.editor.month = params['month'];
+          PTL.editor.month = params.month;
         } else {
           PTL.editor.month = null;
         }
@@ -368,13 +368,13 @@ PTL.editor = {
           // Note that currently the search, if provided along with the other
           // filters, would override them
           PTL.editor.filter = "search";
-          PTL.editor.searchText = params['search'];
+          PTL.editor.searchText = params.search;
           if ('sfields' in params) {
-            PTL.editor.searchFields = params['sfields'].split(',');
+            PTL.editor.searchFields = params.sfields.split(',');
           }
           PTL.editor.searchOptions = [];
           if ('soptions' in params) {
-             PTL.editor.searchOptions = params['soptions'].split(',');
+             PTL.editor.searchOptions = params.soptions.split(',');
           }
         }
 
