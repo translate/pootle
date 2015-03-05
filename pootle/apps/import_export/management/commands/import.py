@@ -28,7 +28,7 @@ from django.core.management.base import BaseCommand, CommandError
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
-from import_export.views import _import_file
+from import_export.utils import import_file
 
 
 class Command(BaseCommand):
@@ -43,12 +43,12 @@ class Command(BaseCommand):
                     for path in zf.namelist():
                         with zf.open(path, "r") as f:
                             try:
-                                _import_file(f)
+                                import_file(f)
                             except Exception as e:
                                 self.stderr.write("Warning: %s" % (e))
             else:
                 with open(filename, "r") as f:
                     try:
-                        _import_file(f)
+                        import_file(f)
                     except Exception as e:
                         raise CommandError(e)

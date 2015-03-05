@@ -20,12 +20,10 @@
 import os
 from io import BytesIO
 from zipfile import ZipFile, is_zipfile
-from django.core.servers.basehttp import FileWrapper
 from django.http import Http404, HttpResponse
-from django.utils.translation import ugettext as _
-from translate.storage import po
 from pootle_store.models import Store
 from .forms import UploadForm
+from .utils import import_file
 
 
 def download(contents, name, content_type):
@@ -65,30 +63,6 @@ def export(request):
         return download(f.getvalue(), "%s.zip" % (prefix), "application/zip")
 
 
-def _import_file(file):
-    pofile = po.pofile(file.read())
-    header = pofile.parseheader()
-    pootle_path = header.get("X-Pootle-Path")
-    if not pootle_path:
-        raise ValueError(_("File %r missing X-Pootle-Path header\n") % (file.name))
-
-    rev = header.get("X-Pootle-Revision")
-    if not rev or not rev.isdigit():
-        raise ValueError(_("File %r missing or invalid X-Pootle-Revision header\n") % (file.name))
-    rev = int(rev)
-
-    try:
-        store, created = Store.objects.get_or_create(pootle_path=pootle_path)
-        if rev < store.get_max_unit_revision():
-            # TODO we could potentially check at the unit level and only reject
-            # units older than most recent. But that's in store.update().
-            raise ValueError(_("File %r was rejected because its X-Pootle-Revision is too old.") % (file.name))
-    except Exception as e:
-        raise ValueError(_("Could not create %r. Missing Project/Language? (%s)") % (file.name, e))
-
-    store.update(overwrite=True, store=pofile)
-
-
 def handle_upload_form(request):
     """Process the upload form."""
     if request.method == "POST" and "file" in request.FILES:
@@ -101,12 +75,12 @@ def handle_upload_form(request):
                     with ZipFile(django_file, "r") as zf:
                         for path in zf.namelist():
                             with zf.open(path, "r") as f:
-                                _import_file(f)
+                                import_file(f)
                 else:
                     # It is necessary to seek to the beginning because
                     # is_zipfile fucks the file, and thus cannot be read.
                     django_file.seek(0)
-                    _import_file(django_file)
+                    import_file(django_file)
             except Exception as e:
                 upload_form.add_error("file", e.message)
                 return {
