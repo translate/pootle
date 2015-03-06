@@ -13,6 +13,7 @@ See https://docs.djangoproject.com/en/1.7/ref/applications/
 """
 
 from django.apps import AppConfig
+from pootle import checks
 
 
 class PootleConfig(AppConfig):
