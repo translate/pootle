@@ -29,6 +29,15 @@ LXML_MINIMUM_REQUIRED_VERSION = (2, 2, 2, 0)
 REDIS_MINIMUM_REQUIRED_VERSION = (2, 8, 4)
 
 
+# XXX List of manage.py commands not to run the rqworker check on.
+# Maybe tagging can improve this?
+RQWORKER_WHITELIST = [
+    "start", "initdb", "revision", "sync_stores", "run_cherrypy",
+    "refresh_stats", "update_stores", "calculate_checks", "retry_failed_jobs"
+]
+
+
+
 @checks.register()
 def test_library_versions(app_configs, **kwargs):
     from django import VERSION as django_version
@@ -76,10 +85,13 @@ def test_redis(app_configs, **kwargs):
         ))
     else:
         if not workers or workers[0].stopped:
-            errors.append(checks.Warning(_("No RQ Worker running."),
-                hint=_("Run new workers with manage.py rqworker"),
-                id="pootle.W001",
-            ))
+            # We need to check we're not running manage.py rqworker right now..
+            import sys
+            if len(sys.argv) > 1 and sys.argv[1] in RQWORKER_WHITELIST:
+                errors.append(checks.Warning(_("No RQ Worker running."),
+                    hint=_("Run new workers with manage.py rqworker"),
+                    id="pootle.W001",
+                ))
 
         redis_version = queue.connection.info()["redis_version"].split(".")
         if tuple(int(x) for x in redis_version) < REDIS_MINIMUM_REQUIRED_VERSION:
