@@ -22,47 +22,12 @@ from django_rq.queues import get_queue, get_failed_queue
 from django_rq.workers import Worker
 from redis.exceptions import ConnectionError
 
-from pootle import depcheck
 from pootle.core.decorators import admin_required
 from pootle.core.markup import get_markup_filter
 from pootle_misc.aggregate import sum_column
 from pootle_statistics.models import Submission
 from pootle_store.models import Unit, Suggestion
 from pootle_store.util import TRANSLATED
-
-
-def optional_depcheck():
-    optional = []
-
-    if not depcheck.test_iso_codes():
-        optional.append({
-            'dependency': 'iso-codes',
-            'text': _("Can't find the ISO codes package. Pootle uses ISO codes"
-                      " to translate language names.")
-        })
-
-    filter_name, filter_args = get_markup_filter()
-    if filter_name is None:
-        text = None
-        if filter_args == 'missing':
-            text = _("MARKUP_FILTER is missing. Falling back to HTML.")
-        elif filter_args == 'misconfigured':
-            text = _("MARKUP_FILTER is misconfigured. Falling back to HTML.")
-        elif filter_args == 'uninstalled':
-            text = _("Can't find the package which provides '%s' markup "
-                     "support. Falling back to HTML.",
-                     settings.MARKUP_FILTER[0])
-        elif filter_args == 'invalid':
-            text = _("Invalid value '%s' in MARKUP_FILTER. Falling back to "
-                     "HTML.", settings.MARKUP_FILTER[0])
-
-        if text is not None:
-            optional.append({
-                'dependency': filter_args + '-markup',
-                'text': text
-            })
-
-    return optional
 
 
 def _format_numbers(dict):
@@ -153,8 +118,5 @@ def view(request):
     ctx = {
         'server_stats': server_stats(),
         'rq_stats': rq_stats(),
-        'required': {},
-        'optional': optional_depcheck(),
-        'optimal': {},
     }
     return render(request, "admin/dashboard.html", ctx)
