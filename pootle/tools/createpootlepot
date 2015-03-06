@@ -31,7 +31,6 @@ ignore="\
 	--ignore assets \
 	--ignore po \
 	--ignore migrations \
-	--ignore south_migrations \
 	--ignore static/images \
 	--ignore static/css \
 	--ignore log \
