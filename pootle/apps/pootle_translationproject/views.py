@@ -126,7 +126,6 @@ def overview(request, translation_project, dir_path, filename=None):
 
         'announcement': announcement,
         'announcement_displayed': display_announcement,
-        'display_sidebar': True,
     })
 
     if store is None:
