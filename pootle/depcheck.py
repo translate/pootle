@@ -25,11 +25,3 @@ def test_iso_codes():
         # about that here.
         languages = ['af', 'ar', 'fr']
     return len(gettext.find('iso_639', languages=languages, all=True)) > 0
-
-
-def test_levenshtein():
-    try:
-        import Levenshtein
-        return True
-    except ImportError:
-        return False

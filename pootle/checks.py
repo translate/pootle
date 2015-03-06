@@ -68,6 +68,22 @@ def test_library_versions(app_configs, **kwargs):
 
 
 @checks.register()
+def test_optional_dependencies(app_configs, **kwargs):
+    errors = []
+
+    try:
+        import Levenshtein
+    except ImportError:
+        errors.append(checks.Warning(_("Can't find python-levenshtein package. Updating against "
+            "templates is faster with python-levenshtein."),
+            hint=_("Try pip install python-levenshtein"),
+            id="pootle.W010",
+        ))
+
+    return errors
+
+
+@checks.register()
 def test_redis(app_configs, **kwargs):
     from django_rq.queues import get_queue
     from django_rq.workers import Worker

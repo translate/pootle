@@ -40,12 +40,6 @@ def optional_depcheck():
             'text': _("Can't find the ISO codes package. Pootle uses ISO codes"
                       " to translate language names.")
         })
-    if not depcheck.test_levenshtein():
-        optional.append({
-            'dependency': 'levenshtein',
-            'text': _("Can't find python-levenshtein package. Updating against"
-                      " templates is faster with python-levenshtein.")
-        })
 
     filter_name, filter_args = get_markup_filter()
     if filter_name is None:
