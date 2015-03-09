@@ -8,11 +8,6 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.contrib import auth
-from django.contrib.auth.forms import AuthenticationForm
-from django.core.urlresolvers import reverse
-from django.shortcuts import redirect, render
-from django.utils.encoding import iri_to_uri
-from django.utils.http import is_safe_url
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import DetailView, UpdateView
 
@@ -64,39 +59,3 @@ class UserSettingsView(UserUpdateView):
             _('Select one or more languages')
 
         return form
-
-
-def redirect_after_login(request, redirect_to=None):
-    if redirect_to is None:
-        redirect_to = request.REQUEST.get(auth.REDIRECT_FIELD_NAME, '')
-
-    if not is_safe_url(url=redirect_to, host=request.get_host()):
-        redirect_to = iri_to_uri(reverse('pootle-user-profile',
-                                 args=[request.user.username]))
-
-    return redirect(redirect_to)
-
-
-def login(request, template_name='login.html'):
-    """Log the user in."""
-    if request.user.is_authenticated():
-        return redirect_after_login(request)
-
-    if request.POST:
-        form = AuthenticationForm(request, data=request.POST)
-        next = request.POST.get(auth.REDIRECT_FIELD_NAME, '')
-
-        # Do login here.
-        if form.is_valid():
-            auth.login(request, form.get_user())
-            return redirect_after_login(request)
-    else:
-        form = AuthenticationForm(request)
-        next = request.GET.get(auth.REDIRECT_FIELD_NAME, '')
-
-    ctx = {
-        'form': form,
-        'next': next,
-    }
-
-    return render(request, template_name, ctx)
