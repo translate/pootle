@@ -6,26 +6,26 @@ python:
 env:
   matrix:
     # FIXME reenable backends when these are made to work once again
-    #- DJANGO_VERSION=1.7.4 DATABASE_BACKEND=sqlite
-    #- DJANGO_VERSION=1.7.4 DATABASE_BACKEND=postgres
-    - DJANGO_VERSION=1.7.5 DATABASE_BACKEND=mysql_myisam
-    #- DJANGO_VERSION=1.7.4 DATABASE_BACKEND=mysql_innodb
+    #- DJANGO_VERSION=1.7.6 DATABASE_BACKEND=sqlite
+    #- DJANGO_VERSION=1.7.6 DATABASE_BACKEND=postgres
+    - DJANGO_VERSION=1.7.6 DATABASE_BACKEND=mysql_myisam
+    #- DJANGO_VERSION=1.7.6 DATABASE_BACKEND=mysql_innodb
   global:
     - PIP_DOWNLOAD_CACHE=".pip_download_cache"
 matrix:
   exclude:
     - python: 2.7
-      env: DJANGO_VERSION=1.7.5 DATABASE_BACKEND=sqlite
+      env: DJANGO_VERSION=1.7.6 DATABASE_BACKEND=sqlite
     - python: 2.7
-      env: DJANGO_VERSION=1.7.5 DATABASE_BACKEND=mysql_innodb
+      env: DJANGO_VERSION=1.7.6 DATABASE_BACKEND=mysql_innodb
     - python: 2.7
-      env: DJANGO_VERSION=1.7.5 DATABASE_BACKEND=postgres
+      env: DJANGO_VERSION=1.7.6 DATABASE_BACKEND=postgres
   allow_failures:
     # Disable alternate databases until we break away from being stuck on
     # MyISAM
-    - env: DJANGO_VERSION=1.7.5 DATABASE_BACKEND=sqlite
-    - env: DJANGO_VERSION=1.7.5 DATABASE_BACKEND=postgres
-    - env: DJANGO_VERSION=1.7.5 DATABASE_BACKEND=mysql_innodb
+    - env: DJANGO_VERSION=1.7.6 DATABASE_BACKEND=sqlite
+    - env: DJANGO_VERSION=1.7.6 DATABASE_BACKEND=postgres
+    - env: DJANGO_VERSION=1.7.6 DATABASE_BACKEND=mysql_innodb
 cache:
   apt: true
   directories:

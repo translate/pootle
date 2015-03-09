@@ -27,7 +27,7 @@ from django.conf import settings
 TTK_MINIMUM_REQUIRED_VERSION = (1, 11, 0)
 
 # Minimum Django version required for Pootle to run.
-DJANGO_MINIMUM_REQUIRED_VERSION = (1, 7, 5)
+DJANGO_MINIMUM_REQUIRED_VERSION = (1, 7, 6)
 
 # Minimum lxml version required for Pootle to run.
 LXML_MINIMUM_REQUIRED_VERSION = (2, 2, 2, 0)
