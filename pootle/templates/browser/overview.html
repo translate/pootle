@@ -75,7 +75,7 @@
 {% endblock %}
 
 {% block pre_content %}
-{% if display_sidebar %}
+{% if has_sidebar %}
 <div id="sidebar"
   class="js-sidebar{% if is_sidebar_open %} sidebar-open{% endif %}">
   {% block sidebar_content %}

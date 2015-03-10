@@ -78,6 +78,8 @@ def overview(request, translation_project, dir_path, filename=None):
     except StaticPage.DoesNotExist:
         announcement = None
 
+    has_announcement = announcement is not None
+    has_sidebar = has_announcement
     is_sidebar_open = True
     stored_mtime = None
     new_mtime = None
@@ -108,13 +110,12 @@ def overview(request, translation_project, dir_path, filename=None):
 
         ctx.update(handle_upload_form(request))
 
-        if (check_permission("translate", request) or
-            check_permission("suggest", request)):
-
-            ctx.update({
-                "display_download": True,
-                "display_sidebar": True,
-            })
+        has_download = (check_permission('translate', request) or
+                        check_permission('suggest', request))
+        ctx.update({
+            'display_download': has_download,
+        })
+        has_sidebar = True
 
     ctx.update({
         'translation_project': translation_project,
@@ -126,6 +127,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
         'announcement': announcement,
         'is_sidebar_open': is_sidebar_open,
+        'has_sidebar': has_sidebar,
     })
 
     if store is None:

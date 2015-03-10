@@ -88,11 +88,9 @@ def handle_upload_form(request):
                 upload_form.add_error("file", e.message)
                 return {
                     "upload_form": upload_form,
-                    "display_sidebar": True,
                 }
 
     # Always return a blank upload form unless the upload form is not valid.
     return {
         "upload_form": UploadForm(),
-        "display_sidebar": True,
     }
