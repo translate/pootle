@@ -78,7 +78,7 @@ def overview(request, translation_project, dir_path, filename=None):
     except StaticPage.DoesNotExist:
         announcement = None
 
-    display_announcement = True
+    is_sidebar_open = True
     stored_mtime = None
     new_mtime = None
     cookie_data = {}
@@ -88,7 +88,7 @@ def overview(request, translation_project, dir_path, filename=None):
         cookie_data = json.loads(json_str)
 
         if 'isOpen' in cookie_data:
-            display_announcement = cookie_data['isOpen']
+            is_sidebar_open = cookie_data['isOpen']
 
         if project.code in cookie_data:
             stored_mtime = cookie_data[project.code]
@@ -96,7 +96,7 @@ def overview(request, translation_project, dir_path, filename=None):
     if announcement is not None:
         ann_mtime = dateformat.format(announcement.modified_on, 'U')
         if ann_mtime != stored_mtime:
-            display_announcement = True
+            is_sidebar_open = True
             new_mtime = ann_mtime
 
     ctx = get_overview_context(request)
@@ -125,7 +125,7 @@ def overview(request, translation_project, dir_path, filename=None):
         'browser_extends': 'translation_projects/base.html',
 
         'announcement': announcement,
-        'announcement_displayed': display_announcement,
+        'is_sidebar_open': is_sidebar_open,
     })
 
     if store is None:
