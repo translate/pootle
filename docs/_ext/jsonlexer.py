@@ -35,3 +35,5 @@ def setup(app):
         pass  # not fatal if we have old (or no) Pygments and no pygments-json
     else:
         app.add_lexer('json', JsonLexer())
+
+    return {"parallel_read_safe": True}
