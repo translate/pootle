@@ -727,10 +727,14 @@ def get_edit_unit(request, unit):
     alt_src_langs = get_alt_src_langs(request, user, translation_project)
     project = translation_project.project
 
+    # Retrieve the unit top priority, if any.
+    priority = unit.vfolders.aggregate(priority=Max('priority'))['priority']
+
     template_vars = {
         'unit': unit,
         'form': form,
         'comment_form': comment_form,
+        'priority': priority,
         'store': store,
         'directory': directory,
         'profile': user,

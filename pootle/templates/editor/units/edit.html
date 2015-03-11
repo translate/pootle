@@ -13,6 +13,13 @@
       </ul>
     </div>
     <div class="translate-{% locale_align %}">
+      <!-- Priority -->
+      {% if priority %}
+      <div class="sidebar" dir="{% locale_dir %}">
+        <span class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Priority:" %}</span>
+        <div class="translate-priority">{{ priority }}</div>
+      </div>
+      {% endif %}
       {% if unit.getcontext and unit.locations != unit.context %}
       <!-- Context information and comments -->
       <div class="translate-context sidebar">
