@@ -18,8 +18,8 @@ upgrades.
 
 This page is divided in three sections. The first one lists some previous tasks
 that should be performed before upgrading. The second section includes a
-detailed list of steps to follow to actually perform the upgrade. The third one
-suggests some possible tasks to fine tune the setup after upgrading.
+detailed list of steps to actually perform the upgrade. The third one suggests
+some possible tasks to fine tune the setup after upgrading.
 
 
 .. _upgrading#previous-tasks:
@@ -42,8 +42,10 @@ checklist.
 * Familiarize yourself with :doc:`important changes </releases/index>` in
   Pootle over the versions.
 
-* If you want to change the database backed then have a look at the
-  :doc:`database migration <database_migration>` page first.
+* If you want to change the database backend then have a look at the
+  :doc:`database migration <database_migration>` page first. We discourage
+  using SQLite, so if you are using it please migrate to a real database
+  server.
 
 * Ensure that you meet all the :ref:`hardware requirements
   <installation#hardware_requirements>` for the newer version.
@@ -94,6 +96,11 @@ tool.
 
 To perform the upgrade follow the next steps:
 
+* If you are upgrading from a version older than Pootle 2.7.0, then you must
+  `upgrade first to Pootle 2.6.0
+  <http://docs.translatehouse.org/projects/pootle/en/stable-2.6.0/server/upgrading.html>`_
+  before continuing with this upgrade.
+
 * If you want to perform a :doc:`database migration <database_migration>` then
   do it right now.
 
@@ -104,7 +111,7 @@ To perform the upgrade follow the next steps:
 
   .. code-block:: bash
 
-    (env)$ pip install --upgrade Pootle==2.6.0
+    (env)$ pip install --upgrade Pootle
 
 
   .. note::
@@ -161,8 +168,7 @@ Post-upgrade adjustments
 ------------------------
 
 After a succesful upgrade you can now consider :doc:`making some optimizations
-to your setup <optimization>`, like for example using a real database or a
-proper web server.
+to your setup <optimization>`, like for example using a proper web server.
 
 .. note::
 

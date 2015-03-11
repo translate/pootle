@@ -7,7 +7,9 @@ Welcome to the Pootle 2.6.0 Interim
 The 2.6.0 release is an interim release. It is used to migrate from Pootle
 2.1.1 or newer to Pootle 2.7.0.
 
-*Do not run a Pootle instance using this version.*
+.. warning::
+
+  Do not run a Pootle instance using this version.
 
 
 Changes in Requirements
