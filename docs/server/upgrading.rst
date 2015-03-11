@@ -26,9 +26,9 @@ upgrades.
 
 This page is divided in three sections. The first one lists some previous tasks
 that should be performed before upgrading. The second section includes a
-detailed list of steps to follow to actually perform the upgrade. The third one
-tells you how to continue with the upgrade to the next version, since Pootle
-2.6.0 is only an intermediate upgrade step.
+detailed list of steps to actually perform the upgrade. The third one tells you
+how to continue with the upgrade to the next version, since Pootle 2.6.0 is
+only an intermediate upgrade step.
 
 
 .. _upgrading#previous-tasks:
@@ -51,8 +51,10 @@ checklist.
 * Familiarize yourself with :doc:`important changes </releases/index>` in
   Pootle over the versions.
 
-* If you want to change the database backed then have a look at the
-  :doc:`database migration <database_migration>` page first.
+* If you want to change the database backend then have a look at the
+  :doc:`database migration <database_migration>` page first. We discourage
+  using SQLite, so if you are using it please migrate to a real database
+  server.
 
 * Ensure that you meet all the :ref:`hardware requirements
   <installation#hardware_requirements>` for the newer version.
