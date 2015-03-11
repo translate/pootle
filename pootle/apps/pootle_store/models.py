@@ -27,13 +27,11 @@ from hashlib import md5
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models, transaction, IntegrityError
 from django.template.defaultfilters import escape, truncatechars
 from django.utils import dateformat, timezone
-from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
