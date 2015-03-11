@@ -34,3 +34,5 @@ def setup(app):
         indextemplate="pair: %s; django-admin command",
         #parse_node=parse_django_admin_node,
     )
+
+    return {"parallel_read_safe": True}
