@@ -29,6 +29,7 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_language.models import Language
 from pootle_project.models import Project
+from staticpages.models import StaticPage as Announcement
 
 
 def initdb():
@@ -266,6 +267,20 @@ def create_default_projects():
     }
     tutorial = Project(**criteria)
     tutorial.save()
+
+    criteria = {
+        'active': True,
+        'title': "Project instructions",
+        'body': ('<div dir="ltr" lang="en">Tutorial project where users can '
+                 'play with Pootle and learn more about translation and '
+                 'localisation.<br />For more help on localisation, visit the '
+                 '<a href="http://docs.translatehouse.org/projects/'
+                 'localization-guide/en/latest/guide/start.html">localisation '
+                 'guide</a>.</div>'),
+        'virtual_path': "announcements/projects/"+tutorial.code,
+    }
+    ann = Announcement(**criteria)
+    ann.save()
 
 
 def create_default_languages():
