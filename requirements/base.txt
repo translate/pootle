@@ -16,6 +16,10 @@ lxml>=2.2.0
 --allow-external pyDes
 --allow-unverified pyDes
 pyDes
+# Issue #3599 is fixed in an unreleased version of RQ. When
+# https://github.com/nvie/rq/pull/492 makes it into a released version of RQ
+# then this can be dropped, django-rq will then pull in the new release.
+-e git+https://github.com/nvie/rq.git@5bcca82ea423a8a824d3b040e766bd4746b7bd0a#egg=rq
 
 # Translate Toolkit
 translate-toolkit>=1.10.0
