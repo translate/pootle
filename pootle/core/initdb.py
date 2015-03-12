@@ -256,21 +256,6 @@ def create_default_projects():
 
     en = require_english()
 
-    #criteria = {
-    #    'code': u"pootle",
-    #    'source_language': en,
-    #    'fullname': u"Pootle",
-    #    'description': ('<div dir="ltr" lang="en">Interface translations for '
-    #                    'Pootle.<br />See the <a href="http://'
-    #                    'pootle.locamotion.org">official Pootle server</a> '
-    #                    'for the translations of Pootle.</div>')
-    #    'checkstyle': "standard",
-    #    'localfiletype': "po",
-    #    'treestyle': "auto",
-    #}
-    #pootle = Project(**criteria)
-    #pootle.save()
-
     criteria = {
         'code': u"tutorial",
         'source_language': en,
