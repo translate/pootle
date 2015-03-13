@@ -10,6 +10,7 @@ require('jquery-flot-time');
 require('jquery-history');
 require('jquery-serializeObject');
 
+var msg = require('../msg.js');
 var utils = require('../utils.js');
 
 
@@ -424,10 +425,14 @@ PTL.reports = {
 
           if ('task' in PTL.reports.params) {
             var task = document.querySelector('.task' + PTL.reports.params.task);
-            task.classList.add('highlight');
-            setTimeout(function() {
-              task.scrollIntoView();
-            }, 0);
+            if (!!task) {
+              task.classList.add('highlight');
+              setTimeout(function() {
+                task.scrollIntoView();
+              }, 0);
+            } else {
+              msg.show({text: 'Task with this ID not found', level: 'error'});
+            }
           }
 
           $('#forms').show();
