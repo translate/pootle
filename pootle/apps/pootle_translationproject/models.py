@@ -26,7 +26,6 @@ from translate.misc.lru import LRUCachingDict
 from translate.storage.base import ParseError
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
 from django.db.models import Q
