@@ -76,6 +76,7 @@ def get_translation_context(request, is_terminology=False):
         is relevant to a terminology project.
     """
     resource_path = getattr(request, 'resource_path', '')
+    vfolder_pk = getattr(request, 'current_vfolder', '')
 
     return {
         'page': 'translate',
@@ -88,6 +89,7 @@ def get_translation_context(request, is_terminology=False):
 
         'pootle_path': request.pootle_path,
         'ctx_path': request.ctx_path,
+        'current_vfolder_pk': vfolder_pk,
         'resource_path': resource_path,
         'resource_path_parts': get_path_parts(resource_path),
 

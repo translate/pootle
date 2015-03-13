@@ -747,8 +747,21 @@ def get_edit_unit(request, unit):
     alt_src_langs = get_alt_src_langs(request, user, translation_project)
     project = translation_project.project
 
-    # Retrieve the unit top priority, if any.
-    priority = unit.vfolders.aggregate(priority=Max('priority'))['priority']
+    priority = None
+    vfolder_pk = request.GET.get('vfolder', '')
+
+    if vfolder_pk:
+        try:
+            # If we are translating a virtual folder, then display its priority.
+            # Note that the passed virtual folder pk might be invalid.
+            priority = VirtualFolder.objects.get(pk=vfolder_pk).priority
+        except VirtualFolder.DoesNotExist:
+            pass
+
+    if priority is None:
+        # Retrieve the unit top priority, if any. This can happen if we are not
+        # in a virtual folder or if the passed virtual folder pk is invalid.
+        priority = unit.vfolders.aggregate(priority=Max('priority'))['priority']
 
     template_vars = {
         'unit': unit,

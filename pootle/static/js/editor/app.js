@@ -1308,11 +1308,15 @@ PTL.editor = {
         uid = currentUnit.id,
         editUrl = l(['/xhr/units/', uid, '/edit/'].join('')),
         widget = '',
-        ctx = {before: [], after: []};
+        ctx = {before: [], after: []},
+        reqData = {
+          vfolder: this.settings.vFolder
+        };
 
     $.ajax({
       url: editUrl,
       async: false,
+      data: reqData,
       dataType: 'json',
       success: function (data) {
         PTL.editor.tmData = data.tm_suggestions || null;

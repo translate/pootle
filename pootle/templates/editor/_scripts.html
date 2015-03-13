@@ -19,6 +19,7 @@ $(function() {
   var options = {
     tmUrl: '{{ AMAGAMA_URL }}',
     pootlePath: '{{ pootle_path }}',
+    vFolder: '{{ current_vfolder_pk }}',
     ctxPath: '{{ ctx_path }}',
     resourcePath: '{{ resource_path }}',
     chunkSize: {{ request.profile.get_unit_rows }},

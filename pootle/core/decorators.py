@@ -171,6 +171,7 @@ def set_resource(request, path_obj, dir_path, filename):
     request.store = store
     request.directory = directory
     request.pootle_path = pootle_path
+    request.current_vfolder = getattr(vfolder, 'pk', '')
 
     request.resource_obj = store or (directory if dir_path else path_obj)
     request.resource_path = resource_path
