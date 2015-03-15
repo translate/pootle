@@ -118,9 +118,11 @@ plugins.push.apply(plugins, [
 
 module.exports = {
   context: __dirname,
+  devtool: 'eval',
   entry: entries,
   output: {
     path: __dirname,
+    pathinfo: true,
     filename: './[name]/app.bundle.js'
   },
   module: {
