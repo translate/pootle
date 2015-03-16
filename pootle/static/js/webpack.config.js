@@ -3,6 +3,7 @@ var path = require('path');
 var _ = require('lodash');
 
 var env = process.env.NODE_ENV;
+var DEBUG = env !== 'production';
 
 
 var entries = {
@@ -94,7 +95,7 @@ if (root !== undefined) {
 
 var plugins = [];
 
-if (env === 'production') {
+if (!DEBUG) {
   plugins = [
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
@@ -137,7 +138,7 @@ var config = {
 };
 
 
-if (env !== 'production') {
+if (DEBUG) {
   config.debug = true;
   config.devtool = 'eval-source-map';
   config.output.pathinfo = true;
