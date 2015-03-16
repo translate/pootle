@@ -116,9 +116,8 @@ plugins.push.apply(plugins, [
 
 /* Exported configuration */
 
-module.exports = {
+var config = {
   context: __dirname,
-  devtool: 'eval',
   entry: entries,
   output: {
     path: __dirname,
@@ -134,3 +133,11 @@ module.exports = {
   resolve: resolve,
   plugins: plugins,
 };
+
+
+if (env !== 'production') {
+  config.devtool = 'eval-source-map';
+}
+
+
+module.exports = config;
