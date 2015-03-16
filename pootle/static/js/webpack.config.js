@@ -96,7 +96,9 @@ var plugins = [];
 
 if (env === 'production') {
   plugins = [
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false },
+    }),
   ];
 } else {
   env = 'development';
