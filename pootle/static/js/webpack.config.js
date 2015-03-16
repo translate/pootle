@@ -99,6 +99,7 @@ if (!DEBUG) {
   plugins = [
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
+      sourceMap: false,
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
   ];
