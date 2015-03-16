@@ -56,10 +56,9 @@ class Command(BaseCommand):
                 '--colors']
 
         if options['dev']:
-            args.extend(['-d', '--watch'])
+            args.append('--watch')
         else:
             os.environ['NODE_ENV'] = 'production'
-            args.append('-p')
 
         if custom_static_dirs:
             # XXX: review this for css

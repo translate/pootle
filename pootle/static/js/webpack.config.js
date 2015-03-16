@@ -99,6 +99,7 @@ if (env === 'production') {
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
     }),
+    new webpack.optimize.OccurenceOrderPlugin(),
   ];
 } else {
   env = 'development';
@@ -123,7 +124,6 @@ var config = {
   entry: entries,
   output: {
     path: __dirname,
-    pathinfo: true,
     filename: './[name]/app.bundle.js'
   },
   module: {
@@ -138,7 +138,9 @@ var config = {
 
 
 if (env !== 'production') {
+  config.debug = true;
   config.devtool = 'eval-source-map';
+  config.output.pathinfo = true;
 }
 
 
