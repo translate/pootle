@@ -29,6 +29,7 @@ from pootle_store.models import (QualityCheck, Store, Suggestion,
                                  SuggestionStates, Unit)
 from pootle_store.util import (calc_total_wordcount, calc_translated_wordcount,
                                calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED)
+from .signals import vfolder_post_save
 
 
 class VirtualFolder(models.Model):
@@ -73,6 +74,19 @@ class VirtualFolder(models.Model):
     class Meta:
         unique_together = ('name', 'location')
         ordering = ['-priority', 'name']
+
+    @property
+    def tp_relative_path(self):
+        """Return the virtual folder path relative to any translation project.
+
+        This is the virtual folder location stripping out the language and
+        project parts and appending the virtual folder name as if it were a
+        folder.
+
+        For example a location /af/{PROJ}/browser/ for a virtual folder default
+        is returned as browser/default/
+        """
+        return '/'.join(self.location.strip('/').split('/')[2:] + [self.name, ''])
 
     @cached_property
     def code(self):
@@ -155,6 +169,15 @@ class VirtualFolder(models.Model):
 
         self.name = self.name.lower()
 
+        if self.pk is None:
+            projects = set()
+        else:
+            # If this is an already existing vfolder, keep a list of the
+            # projects it was related to.
+            projects = set(Project.objects.filter(
+                translationproject__stores__unit__vfolders=self
+            ).distinct().values_list('code', flat=True))
+
         super(VirtualFolder, self).save(*args, **kwargs)
 
         # Clean any existing relationship between units and this vfolder.
@@ -180,6 +203,18 @@ class VirtualFolder(models.Model):
                                 store__pootle_path__startswith=vf_file
                             )
                             self.units.add(*qs)
+
+        # Get the set of projects whose resources cache must be invalidated.
+        # This includes the projects the projects it was previously related to
+        # for the already existing vfolders.
+        projects.update(Project.objects.filter(
+            translationproject__stores__unit__vfolders=self
+        ).distinct().values_list('code', flat=True))
+
+        # Send the signal. This is used to invalidate the cached resources for
+        # all the related projects.
+        vfolder_post_save.send(sender=self.__class__, instance=self,
+                               projects=list(projects))
 
     def clean_fields(self):
         """Validate virtual folder fields."""

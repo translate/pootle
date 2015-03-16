@@ -18,7 +18,7 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
 from django.db import connection, models
 from django.db.models import Q
-from django.db.models.signals import post_delete, post_save
+from django.db.models.signals import post_delete, post_save, pre_delete
 from django.dispatch import receiver
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
@@ -36,6 +36,7 @@ from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_store.filetypes import filetype_choices, factory_classes
 from pootle_store.util import absolute_real_path
+from virtualfolder.signals import vfolder_post_save
 
 
 RESERVED_PROJECT_CODES = ('admin', 'translate', 'settings')
@@ -283,6 +284,18 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         """Returns ``True`` if this project is a terminology project."""
         return self.checkstyle == 'terminology'
 
+    @property
+    def vfolders(self):
+        """Return the browsable virtual folders for this project."""
+        # This import must be here to avoid circular import issues.
+        from virtualfolder.models import VirtualFolder
+
+        return [vf.tp_relative_path
+                for vf in VirtualFolder.objects.filter(
+                    units__store__translation_project__project__code=self.code,
+                    is_browsable=True
+                ).distinct()]
+
     @cached_property
     def languages(self):
         """Returns a list of active :cls:`~pootle_languages.models.Language`
@@ -324,7 +337,8 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         results = cursor.fetchall()
 
         # Calculate TP-relative paths and sort them
-        resources = sorted({to_tp_relative_path(result[0]) for result in results},
+        resources_set = {to_tp_relative_path(result[0]) for result in results}
+        resources = sorted(resources_set | set(self.vfolders),
                            key=get_path_sortkey)
 
         cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
@@ -508,6 +522,24 @@ class ProjectSet(VirtualResource, ProjectURLMixin):
         return project.code
 
     ### /TreeItem
+
+
+@receiver([vfolder_post_save, pre_delete])
+def invalidate_resources_cache_for_vfolders(sender, instance, **kwargs):
+    if instance.__class__.__name__ == 'VirtualFolder':
+        try:
+            # In case this is vfolder_post_save.
+            affected_projects = kwargs['projects']
+        except KeyError:
+            # In case this is pre_delete.
+            affected_projects = Project.objects.filter(
+                translationproject__stores__unit__vfolders=instance
+            ).distinct().values_list('code', flat=True)
+
+        cache.delete_many([
+            make_method_key('Project', 'resources', proj)
+            for proj in affected_projects
+        ])
 
 
 @receiver([post_delete, post_save])
