@@ -141,7 +141,7 @@ var config = {
 
 if (DEBUG) {
   config.debug = true;
-  config.devtool = 'eval-source-map';
+  config.devtool = '#source-map';
   config.output.pathinfo = true;
 }
 
