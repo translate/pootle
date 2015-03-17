@@ -131,7 +131,7 @@ var config = {
   module: {
     loaders: [
       { test: /\.css/, loader: 'style-loader!css-loader', exclude: /node_modules/ },
-      { test: /\.jsx$/, loader: 'jsx-loader?harmony', exclude: /node_modules/ },
+      { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules|vendor/}
     ]
   },
   resolve: resolve,
