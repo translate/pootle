@@ -30,12 +30,20 @@ def get_template_source(name, dirs=None):
     :param dirs: list of directories to optionally override the defaults.
     :return: tuple including file contents and file path.
     """
+    loaders = []
     for loader_name in settings.TEMPLATE_LOADERS:
         loader = find_template_loader(loader_name)
         if loader is not None:
-            try:
-                return loader.load_template_source(name, template_dirs=dirs)
-            except TemplateDoesNotExist:
-                pass
+            # The cached loader includes the actual loaders underneath
+            if hasattr(loader, 'loaders'):
+                loaders.extend(loader.loaders)
+            else:
+                loaders.append(loader)
+
+    for loader in loaders:
+        try:
+            return loader.load_template_source(name, template_dirs=dirs)
+        except TemplateDoesNotExist:
+            pass
 
     raise TemplateDoesNotExist(name)
