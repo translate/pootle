@@ -105,19 +105,6 @@ def overview(request, translation_project, dir_path, filename=None):
         })
         has_sidebar = True
 
-    ctx.update({
-        'translation_project': translation_project,
-        'project': project,
-        'language': language,
-        'stats': jsonify(request.resource_obj.get_stats()),
-
-        'browser_extends': 'translation_projects/base.html',
-
-        'announcement': announcement,
-        'is_sidebar_open': is_sidebar_open,
-        'has_sidebar': has_sidebar,
-    })
-
     if store is None:
         table_fields = ['name', 'progress', 'total', 'need-translation',
                         'suggestions', 'critical', 'last-updated', 'activity']
@@ -130,6 +117,19 @@ def overview(request, translation_project, dir_path, filename=None):
                 'items': get_children(directory),
             }
         })
+
+    ctx.update({
+        'translation_project': translation_project,
+        'project': project,
+        'language': language,
+        'stats': jsonify(request.resource_obj.get_stats()),
+
+        'browser_extends': 'translation_projects/base.html',
+
+        'announcement': announcement,
+        'is_sidebar_open': is_sidebar_open,
+        'has_sidebar': has_sidebar,
+    })
 
     response = render(request, 'browser/overview.html', ctx)
 

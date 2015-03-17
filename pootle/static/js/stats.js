@@ -116,6 +116,38 @@ var stats = {
     }
   },
 
+  processTableItem: function (item, code, $table, $td, now) {
+    $td.parent().toggleClass('dirty', item.is_dirty);
+    this.updateItemStats($td, item.total);
+
+    var ratio = item.total === 0 ? 1 : item.translated / item.total;
+    $table.find('#translated-ratio-' + code).text(ratio);
+
+    $td = $table.find('#need-translation-' + code);
+    this.updateItemStats($td, item.total - item.translated);
+
+    $td = $table.find('#suggestions-' + code);
+    this.updateItemStats($td, item.suggestions);
+
+    $td = $table.find('#progressbar-' + code);
+    this.updateProgressbar($td, item);
+
+    if (item.lastaction) {
+      $td = $table.find('#last-activity-' + code);
+      $td.html(item.lastaction.snippet);
+      $td.attr('sorttable_customkey', now - item.lastaction.mtime);
+    }
+
+    $td = $table.find('#critical-' + code);
+    this.updateItemStats($td, item.critical);
+
+    if (item.lastupdated) {
+      $td = $table.find('#last-updated-' + code);
+      $td.html(item.lastupdated.snippet);
+      $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
+    }
+  },
+
   processLoadedData: function (data, callback, firstPageLoad) {
     var $table = $('#content table.stats'),
         dirtySelector = '#top-stats, #translate-actions, #autorefresh-notice',
@@ -153,35 +185,7 @@ var stats = {
             code = name.replace(/[\.@]/g, '-'),
             $td = $table.find('#total-words-' + code);
 
-        $td.parent().toggleClass('dirty', item.is_dirty);
-        this.updateItemStats($td, item.total);
-
-        var ratio = item.total === 0 ? 1 : item.translated / item.total;
-        $table.find('#translated-ratio-' + code).text(ratio);
-
-        $td = $table.find('#need-translation-' + code);
-        this.updateItemStats($td, item.total - item.translated);
-
-        $td = $table.find('#suggestions-' + code);
-        this.updateItemStats($td, item.suggestions);
-
-        $td = $table.find('#progressbar-' + code);
-        this.updateProgressbar($td, item);
-
-        if (item.lastaction) {
-          $td = $table.find('#last-activity-' + code);
-          $td.html(item.lastaction.snippet);
-          $td.attr('sorttable_customkey', now - item.lastaction.mtime);
-        }
-
-        $td = $table.find('#critical-' + code);
-        this.updateItemStats($td, item.critical);
-
-        if (item.lastupdated) {
-          $td = $table.find('#last-updated-' + code);
-          $td.html(item.lastupdated.snippet);
-          $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
-        }
+        this.processTableItem(item, code, $table, $td, now);
       }
 
       // Sort columns based on previously-made selections
