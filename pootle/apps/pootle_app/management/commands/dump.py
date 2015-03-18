@@ -22,6 +22,7 @@ from optparse import make_option
 from pootle_app.management.commands import PootleCommand
 from pootle_app.models import Directory
 from pootle_misc.util import PootleJSONEncoder
+from pootle_project.models import Project
 
 DUMPED = {
     'TranslationProject': ('pootle_path', 'real_path', 'disabled'),
@@ -77,30 +78,30 @@ class Command(PootleCommand):
             self._dump_item(tp.directory, 0, stop_level=stop_level)
 
     def dump_stats(self, stop_level):
-        root = Directory.objects.root
-        projects = Directory.objects.projects
         res = {}
-        self._dump_stats(root, res, stop_level=stop_level)
-        # stop on translation project level -> stop_level = 2
-        self._dump_stats(projects, res, stop_level=2)
+        for prj in Project.objects.all():
+            self._dump_stats(prj, res, stop_level=stop_level)
 
-        stats_dump = json.dumps(res, indent=4, cls=PootleJSONEncoder)
-        self.stdout.write(stats_dump)
+        for key, item in res.items():
+            out = u"%s  %s,%s,%s,%s,%s,%s,%s,%s" % \
+                  (key, item['total'], item['translated'], item['fuzzy'],
+                   item['suggestions'], item['critical'], item['is_dirty'],
+                   item['lastaction']['id'], item['lastupdated']['id'])
 
+            self.stdout.write(out)
 
     def _dump_stats(self, item, res, stop_level):
-        res[item.code] = {}
+        key = item.get_cachekey()
         item.initialize_children()
 
         if stop_level != 0 and item.children:
-            res[item.code]['children'] = {}
             if stop_level > 0:
                 stop_level = stop_level - 1
             for child in item.children:
-                self._dump_stats(child, res[item.code]['children'],
+                self._dump_stats(child, res,
                                  stop_level=stop_level)
 
-        res[item.code].update(item.get_stats(include_children=False))
+        res[key] = (item.get_stats(include_children=False))
 
     def dump_all(self, stop_level):
         root = Directory.objects.root
