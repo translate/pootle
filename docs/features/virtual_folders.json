@@ -35,6 +35,27 @@
         }
     },
     {
+        "name": "directories-for-lang",
+        "location": "/{LANG}/",
+        "filters": {
+            "files": [
+                "firefox/browser/profile/",
+                "firefox/browser/chrome/browser/"
+            ]
+        }
+    },
+    {
+        "name": "directories-and-files-for-tp",
+        "location": "/{LANG}/firefox/",
+        "filters": {
+            "files": [
+                "browser/updater/",
+                "browser/chrome/browser/devtools/appcacheutils.properties.po",
+                "browser/chrome/browser/migration/"
+            ]
+        }
+    },
+    {
         "name": "default",
         "location": "/"
     },

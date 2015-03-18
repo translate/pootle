@@ -12,6 +12,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store, Unit
@@ -95,6 +96,15 @@ class VirtualFolder(models.Model):
 
                 if qs.exists():
                     self.units.add(*qs[0].units.all())
+                else:
+                    if not vf_file.endswith("/"):
+                        vf_file += "/"
+
+                    if Directory.objects.filter(pootle_path=vf_file).exists():
+                        qs = Unit.objects.filter(
+                            store__pootle_path__startswith=vf_file
+                        )
+                        self.units.add(*qs)
 
     def clean_fields(self):
         """Validate virtual folder fields."""
