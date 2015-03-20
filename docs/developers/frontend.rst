@@ -13,6 +13,12 @@ In order to setup the front-end development enviroment, it's necessary to have
 Node.js installed. Please check the `installation instructions for your
 OS <http://nodejs.org/download/>`_.
 
+.. warning::
+
+   If you are using versions provided by you system then you need at least *npm
+   >= v1.4.3* for installation to work correctly.  ``npm upgrade -g npm`` may
+   work.
+
 Once Node.js is available, Pootle dependencies need to be installed.
 
 .. code-block:: bash
