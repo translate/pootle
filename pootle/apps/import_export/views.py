@@ -20,8 +20,11 @@
 import os
 from io import BytesIO
 from zipfile import ZipFile, is_zipfile
+
 from django.http import Http404, HttpResponse
+
 from pootle_store.models import Store
+
 from .forms import UploadForm
 from .utils import import_file
 

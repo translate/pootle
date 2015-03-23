@@ -23,7 +23,9 @@ import os
 os.environ["DJANGO_SETTINGS_MODULE"] = "pootle.settings"
 from optparse import make_option
 from zipfile import ZipFile
+
 from django.core.management.base import CommandError
+
 from pootle_app.management.commands import PootleCommand
 from pootle_language.models import Language
 from pootle_project.models import Project

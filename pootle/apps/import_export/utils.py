@@ -17,8 +17,10 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
-from django.utils.translation import ugettext as _
 from translate.storage import po
+
+from django.utils.translation import ugettext as _
+
 from pootle_store.models import Store
 
 
