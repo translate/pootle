@@ -33,7 +33,9 @@ def import_file(file):
 
     rev = header.get("X-Pootle-Revision")
     if not rev or not rev.isdigit():
-        raise ValueError(_("File %r missing or invalid X-Pootle-Revision header\n") % (file.name))
+        raise ValueError(
+            _("File %r missing or invalid X-Pootle-Revision header\n") % (file.name)
+        )
     rev = int(rev)
 
     try:
@@ -41,8 +43,14 @@ def import_file(file):
         if rev < store.get_max_unit_revision():
             # TODO we could potentially check at the unit level and only reject
             # units older than most recent. But that's in store.update().
-            raise ValueError(_("File %r was rejected because its X-Pootle-Revision is too old.") % (file.name))
+            raise ValueError(
+                _("File %r was rejected because its X-Pootle-Revision is too old.")
+                % (file.name)
+            )
     except Exception as e:
-        raise ValueError(_("Could not create %r. Missing Project/Language? (%s)") % (file.name, e))
+        raise ValueError(
+            _("Could not create %r. Missing Project/Language? (%s)")
+            % (file.name, e)
+        )
 
     store.update(overwrite=True, store=pofile)

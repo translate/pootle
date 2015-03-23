@@ -37,7 +37,8 @@ class Command(PootleCommand):
         make_option("--path", action="store", dest="pootle_path",
                     help="Export a single file"),
         )
-    help = "Export a Project, Translation Project, or path. Multiple files will be zipped."
+    help = "Export a Project, Translation Project, or path. " \
+           "Multiple files will be zipped."
 
 
     def _create_zip(self, stores, prefix):
@@ -82,7 +83,8 @@ class Command(PootleCommand):
 
     def handle_translation_project(self, translation_project, **options):
         stores = translation_project.stores.all()
-        prefix = "%s-%s" % (translation_project.project.code, translation_project.language.code)
+        prefix = "%s-%s" % (translation_project.project.code,
+                            translation_project.language.code)
         self._create_zip(stores, prefix)
 
     def handle_project(self, project, **options):
