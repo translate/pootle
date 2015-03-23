@@ -30,7 +30,7 @@ from import_export.utils import import_file
 
 class Command(BaseCommand):
     args = "<file file ...>"
-    help = "Import a translation file or a zip of translation files." \
+    help = "Import a translation file or a zip of translation files. " \
            "X-Pootle-Path header must be present."
 
     def handle(self, *args, **options):
