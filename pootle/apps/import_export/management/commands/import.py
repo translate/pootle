@@ -21,13 +21,10 @@
 
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-from optparse import make_option
 from zipfile import is_zipfile, ZipFile
+
 from django.core.management.base import BaseCommand, CommandError
 
-from pootle_language.models import Language
-from pootle_project.models import Project
-from pootle_store.models import Store
 from import_export.utils import import_file
 
 

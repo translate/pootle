@@ -19,7 +19,6 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 from django import forms
-from django.utils.translation import ugettext as _
 
 
 class UploadForm(forms.Form):
