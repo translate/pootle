@@ -41,10 +41,11 @@
       <!-- Developer comments -->
       <div class="comments sidebar">
         {% if unit.developer_comment %}
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
-        <div class="developer-comments" lang="{{ source_language.code }}"
-          dir="{{ source_language.direction }}"
-          {% if unit.locations %}title="{{ unit.locations }}"{% endif %}>{{ unit.developer_comment|urlize|url_target_blank|url_trim|linebreaks }}</div>
+        <div lang="{{ source_language.code }}" dir="{{ source_language.direction }}"
+          {% if unit.locations %}title="{{ unit.locations }}"{% endif %}>
+          <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
+          <div class="developer-comments">{{ unit.developer_comment|urlize|url_target_blank|url_trim|linebreaks }}</div>
+        </div>
         {% with image_urls=unit.developer_comment|image_urls %}
           {% if image_urls %}
           <div class="developer-images hr">
