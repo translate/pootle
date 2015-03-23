@@ -34,69 +34,6 @@ from pootle_store.util import TRANSLATED
 def required_depcheck():
     required = []
 
-    status, version = depcheck.test_translate()
-    if status:
-        text = _('Translate Toolkit version %s installed.', version)
-        state = 'tick'
-    else:
-        trans_vars = {
-            'installed': version,
-            'required': ".".join([str(i) for i in
-                                  depcheck.TTK_MINIMUM_REQUIRED_VERSION]),
-        }
-        text = _("Translate Toolkit version %(installed)s installed. Pootle "
-                 "requires at least version %(required)s.", trans_vars)
-        state = 'error'
-
-    required.append({
-        'dependency': 'translate',
-        'state': state,
-        'text': text,
-    })
-
-    status, version = depcheck.test_django()
-    if status:
-        text = _('Django version %s is installed.', version)
-        state = 'tick'
-    else:
-        trans_vars = {
-            'installed': version,
-            'required': ".".join([str(i) for i in
-                                  depcheck.DJANGO_MINIMUM_REQUIRED_VERSION]),
-        }
-        text = _("Django version %(installed)s is installed. Pootle requires "
-                 "at least version %(required)s.", trans_vars)
-        state = 'error'
-
-    required.append({
-        'dependency': 'django',
-        'state': state,
-        'text': text,
-    })
-
-    status, version = depcheck.test_lxml()
-    if status:
-        text = _('lxml version %s is installed.', version)
-        state = 'tick'
-    elif version is not None:
-        trans_vars = {
-            'installed': version,
-            'required': ".".join([str(i) for i in
-                                  depcheck.LXML_MINIMUM_REQUIRED_VERSION]),
-        }
-        text = _("lxml version %(installed)s is installed. Pootle requires at "
-                 "least version %(required)s.", trans_vars)
-        state = 'error'
-    else:
-        text = _('lxml is not installed. Pootle requires lxml.')
-        state = 'error'
-
-    required.append({
-        'dependency': 'lxml',
-        'state': state,
-        'text': text,
-    })
-
     if depcheck.test_cache():
         if not depcheck.test_cache_server_connection():
             # Server configured but connection failing

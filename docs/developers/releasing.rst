@@ -95,7 +95,7 @@ Update requirements versions
 Update the minimum version number for the requirements in:
 
 - :file:`requirements/`
-- :file:`pootle/depcheck.py`
+- :file:`pootle/checks.py`
 
 
 Update the requirements files:

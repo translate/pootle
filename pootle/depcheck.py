@@ -12,49 +12,9 @@ import sys
 from django.conf import settings
 
 
-# Minimum Translate Toolkit version required for Pootle to run.
-TTK_MINIMUM_REQUIRED_VERSION = (1, 11, 0)
-
-# Minimum Django version required for Pootle to run.
-DJANGO_MINIMUM_REQUIRED_VERSION = (1, 7, 7)
-
-# Minimum lxml version required for Pootle to run.
-LXML_MINIMUM_REQUIRED_VERSION = (2, 2, 2, 0)
-
-
-
 ##########################
 # Test core dependencies #
 ##########################
-
-def test_translate():
-    try:
-        from translate.__version__ import ver, sver
-        if ver >= TTK_MINIMUM_REQUIRED_VERSION:
-            return True, sver
-        else:
-            return False, sver
-    except ImportError:
-        return None, None
-
-
-def test_django():
-    from django import VERSION, get_version
-    if VERSION >= DJANGO_MINIMUM_REQUIRED_VERSION:
-        return True, get_version()
-    else:
-        return False, get_version()
-
-
-def test_lxml():
-    try:
-        from lxml.etree import LXML_VERSION, __version__
-        if LXML_VERSION >= LXML_MINIMUM_REQUIRED_VERSION:
-            return True, __version__
-        else:
-            return False, __version__
-    except ImportError:
-        return None, None
 
 
 def test_cache():
