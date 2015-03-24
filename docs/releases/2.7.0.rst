@@ -105,6 +105,8 @@ Editor
 
 - Usability improvements and other fixes:
 
+  - Location comments are always displayed, providing a shortcut link to
+    display the same source unit across languages.
   - The same string can't be suggested more than once at the same time,
     avoiding duplicated suggestions pending review.
   - TM diffs now display what has been removed and what's being added.
