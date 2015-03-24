@@ -525,10 +525,9 @@ table td.translate-translation
 }
 
 /* Force-wrap URLs */
-.comments p a,
-.developer-images a
+.comments.sidebar a
 {
-    white-space: normal !important;
+    white-space: normal;
 }
 
 .comments .developer-comments
