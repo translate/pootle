@@ -58,9 +58,9 @@ xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=u
 cat <<EOF >$POOTLE_POT
 # Copyright (C) Pootle contributors.
 #
-# This file is a part of the Pootle project. It is distributed under the GPL2
-# license. See the LICENSE file for a copy of the license and the AUTHORS file
-# for copyright and authorship information.
+# This file is a part of the Pootle project. It is distributed under the GPL3
+# or later license. See the LICENSE file for a copy of the license and the
+# AUTHORS file for copyright and authorship information.
 EOF
 
 cp $POOTLE_POT $POOTLE_JS_POT

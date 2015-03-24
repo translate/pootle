@@ -182,3 +182,21 @@ For the following reasons:
    They are already covered by the LICENSE files and are unlikely to have any
    use outside of Pootle.  And if they where they would need the associated CSS
    and JavaScript files which are explicitely licensed.
+
+
+Moving to GPL3
+==============
+
+Pootle combines a number of source with other license which are incompatible
+with the GPL3.  We wanted to ensure that we are compliant with out own and
+other upstream license.
+
+Moving to GPL3 is possible as we're licensed under GPL2 or later.  Moving to
+any other license, including AGPL, would have required agrement from all code
+contributors and certain funders.  Staying with GPL achieve our aim of the
+software being open source and the agreements reached with contributors and
+funders.
+
+We are technically already operating as GPL3 software because we combine
+licensed code that is only possible in GPL3.  So this exercise is in some ways
+a GPL license cleanup.
