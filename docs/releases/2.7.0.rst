@@ -19,6 +19,7 @@ Changes in Requirements
 Major Changes
 =============
 
+- Switched license from GPLv2 to GPLv3.
 - Major UI revamp - overview pages are consistent across all views.  Navigation
   is now much easier, more consistent and more powerful.  The editor is cleaner
   and works to prevent errors early.
