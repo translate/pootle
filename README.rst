@@ -44,5 +44,5 @@ Resources
 Copying
 -------
 
-Pootle is released under the General Public License, version 2 or later. See
+Pootle is released under the General Public License, version 3 or later. See
 the file LICENSE for details.
