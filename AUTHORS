@@ -1,16 +1,37 @@
-Pootle Credits
+Pootle Authors
 ==============
 
-These are people who have contributed documentation or code, but bug reports
-are also a valuable contribution!  Many people have contributed suggestions etc
-on the translate-pootle list and these are also appreciated.  Thank you for the
-many translators who translated the Pootle interface.  If you've been left out,
-let us know!
+These are people and organisations that have contributed to Pootle.
 
 More detailed contribution statistics can be found on the GitHub's
 contributor's page <https://github.com/translate/pootle/graphs/contributors>
 
-Alphabetical Order of Contributors
+
+Historical perspective
+----------------------
+
+Pootle was initially created by David Fraser for Translate.org.za.
+Translate.org.za continued development.
+
+
+Donors and funders
+------------------
+
+The Shuttleworth Foundation
+Obsidian Systems
+Open Society Institute
+International Development Research Center
+
+
+Major code contributors
+-----------------------
+
+Translate.org.za
+Translate House
+Evernote Corporation
+
+
+Alphabetical List of Contributors
 ----------------------------------
 
 Ahmed Toulan (أحمد طولون) (OpenCraft): development
