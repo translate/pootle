@@ -9,6 +9,7 @@
 
 import os
 import re
+import urllib
 import urlparse
 
 from django.core.urlresolvers import reverse
@@ -114,7 +115,7 @@ def get_path_parts(path):
 
 
 def get_editor_filter(state=None, check=None, user=None, month=None,
-                      sort=None):
+                      sort=None, search=None, sfields=None):
     """Return a filter string to be appended to a translation URL."""
     filter_string = ''
 
@@ -124,9 +125,14 @@ def get_editor_filter(state=None, check=None, user=None, month=None,
             filter_string += '&user=%s' % user
         if month is not None:
             filter_string += '&month=%s' % month
-
     elif check is not None:
         filter_string = '#filter=checks&checks=%s' % check
+    elif search is not None:
+        filter_string = '#search=%s' % urllib.quote_plus(search)
+        if sfields is not None:
+            if not isinstance(sfields, list):
+                sfields = [sfields]
+            filter_string += '&sfields=%s' % ','.join(sfields)
 
     if sort is not None:
         if filter_string:
