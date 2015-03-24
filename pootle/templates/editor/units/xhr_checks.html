@@ -1,6 +1,6 @@
 {% load i18n locale staticpages %}
 {% if unit.get_qualitychecks.count %}
-<div class="sidetitle" lang="{{ LANGUAGE_CODE }}" title="{% trans "Possible issues with the translation" %}">{% trans "Failing checks:" %}</div>
+<span class="sidetitle" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Possible issues with the translation' %}">{% trans "Failing checks:" %}</span>
 <ul class="checks">
   {% for check in unit.get_qualitychecks.iterator %}
   <li class="check{% if check.false_positive %} false-positive{% endif %}">

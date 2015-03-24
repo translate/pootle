@@ -16,7 +16,7 @@
       {% if unit.getcontext and unit.locations != unit.context %}
       <!-- Context information and comments -->
       <div class="translate-context sidebar">
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Context:" %}</div>
+        <span class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Context:" %}</span>
         <div class="translate-context-value">
           {{ unit.getcontext }}
         </div>
@@ -27,7 +27,7 @@
       {% with unit.get_terminology as terms %}
       {% if terms %}
       <div id="tm" class="sidebar" dir="{% locale_dir %}">
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</div>
+        <span class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</span>
         {% for term in terms %}
         <div class="tm-unit js-editor-copytext" data-string="{{ term.target }}"
           title="{% trans 'Insert the translated term into the editor' %}">
@@ -43,7 +43,7 @@
         {% if unit.developer_comment %}
         <div lang="{{ source_language.code }}" dir="{{ source_language.direction }}"
           {% if unit.locations %}title="{{ unit.locations }}"{% endif %}>
-          <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</div>
+          <span class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</span>
           <div class="developer-comments">{{ unit.developer_comment|urlize|url_target_blank|url_trim|linebreaks }}</div>
         </div>
         {% with image_urls=unit.developer_comment|image_urls %}
