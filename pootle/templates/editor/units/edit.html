@@ -22,7 +22,16 @@
         </div>
       </div>
       {% endif %}
-      {% if unit.developer_comment or unit.locations %}
+
+      {% if unit.locations %}
+      <!-- Location comments -->
+      <div class="comments sidebar">
+        <span class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Locations:" %}</span>
+        <a lang="en" dir="ltr" class="translate-locations" title="{{ unit.locations }}"
+            href="{{ unit.get_search_locations_url }}">{{ unit.locations|truncatewords:4 }}</a>
+      </div>
+      {% endif %}
+
       <!-- Terminology suggestions -->
       {% with unit.get_terminology as terms %}
       {% if terms %}
@@ -38,11 +47,11 @@
       </div>
       {% endif %}
       {% endwith %}
+
+      {% if unit.developer_comment %}
       <!-- Developer comments -->
       <div class="comments sidebar">
-        {% if unit.developer_comment %}
-        <div lang="{{ source_language.code }}" dir="{{ source_language.direction }}"
-          {% if unit.locations %}title="{{ unit.locations }}"{% endif %}>
+        <div lang="{{ source_language.code }}" dir="{{ source_language.direction }}">
           <span class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Comments:" %}</span>
           <div class="developer-comments">{{ unit.developer_comment|urlize|url_target_blank|url_trim|linebreaks }}</div>
         </div>
@@ -58,11 +67,6 @@
           </div>
           {% endif %}
         {% endwith %}
-        {% endif %}
-        {% if unit.locations and not unit.developer_comment %}
-        <div class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Locations:" %}</div>
-        <div class="translate-locations" lang="en" dir="ltr" title="{{ unit.locations }}">{{ unit.locations|truncatewords:3 }}</div>
-        {% endif %}
       </div>
       {% endif %}
 

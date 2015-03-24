@@ -533,6 +533,14 @@ class Unit(models.Model, base.TranslationUnit):
             '#unit=', unicode(self.id),
         ])
 
+    def get_search_locations_url(self, **kwargs):
+        lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
+
+        return u''.join([
+            reverse('pootle-project-translate', args=[proj, dir, fn]),
+            get_editor_filter(search=self.locations, sfields='locations'),
+        ])
+
     def get_screenshot_url(self):
         prefix = self.store.translation_project.project.screenshot_search_prefix
         if prefix:
