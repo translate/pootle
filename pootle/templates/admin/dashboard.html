@@ -57,30 +57,19 @@
 
 <div id="depchecks" class="module" lang="{{ LANGUAGE_CODE }}">
   <div class="hd">
-    <h2>{% trans "Dependency Checks" %}</h2>
+    <h2>{% trans "System Checks" %}</h2>
   </div>
   <div class="bd">
-    <ul id="required" class="icons">
-      {% for dep in required %}
-      <li class="{{ dep.dependency }}"><i class="icon-{{ dep.state }}"></i> {{ dep.text }}</li>
-      {% endfor %}
+    <ul>
+    {% for check in checks %}
+      <li>
+        <i class="icon-{% if check.is_serious %}error{% else %}warning{% endif %}"></i>
+        {{ check.msg }} <em>{{ check.hint }}</em>
+      </li>
+    {% empty %}
+      <li><i class="icon-tick"></i> {% trans "No issues have been detected. All is good!" %}</li>
+    {% endfor %}
     </ul>
-    {% if optional %}
-    <h3>{% trans "Optional" %}</h3>
-    <ul id="optional" class="icons">
-      {% for dep in optional %}
-      <li class="{{ dep.dependency }}"><i class="icon-warning"></i> {{ dep.text }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    {% if optimal %}
-    <h3>{% trans "Optimizations" %}</h3>
-    <ul id="optimal" class="icons">
-      {% for dep in optimal %}
-      <li class="{{ dep.dependency }}"><i class="icon-warning"></i> {{ dep.text }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
   </div>
 </div>
 {% endblock %}

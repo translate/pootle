@@ -113,10 +113,17 @@ def rq_stats():
     return result
 
 
+def checks():
+    from django.core.checks.registry import registry
+
+    return sum([check() for check in registry.registered_checks], [])
+
+
 @admin_required
 def view(request):
     ctx = {
         'server_stats': server_stats(),
         'rq_stats': rq_stats(),
+        'checks': checks(),
     }
     return render(request, "admin/dashboard.html", ctx)
