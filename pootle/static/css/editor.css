@@ -1198,19 +1198,6 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar a
     outline: none;
 }
 
-/* We don't want the above hover activity for links in the comments. */
-.developer-comments a
-{
-    text-decoration: none;
-
-    opacity: 1;
-}
-
-.developer-comments a:hover
-{
-    text-decoration: underline;
-}
-
 .editor-specialchars-block
 {
     text-align: center;
