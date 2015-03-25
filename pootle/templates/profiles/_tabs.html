@@ -2,6 +2,6 @@
 <ul id="tabs">
   {% if user == request.user %}
   <li><a href="{% url 'pootle-profile-edit' %}" class="settings">{% trans "Settings" %}</a></li>
-  <li><a href="{% url 'account_reset_password' %}" class="password">{% trans "Password" %}</a></li>
+  <li><a href="{% url 'account_change_password' %}" class="password">{% trans "Password" %}</a></li>
   {% endif %}
 </ul>
