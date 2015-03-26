@@ -10,7 +10,6 @@
 import json
 import logging
 import os
-from optparse import make_option
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
