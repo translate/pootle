@@ -39,7 +39,7 @@ RQWORKER_WHITELIST = [
 
 
 @checks.register()
-def test_library_versions(app_configs=None, **kwargs):
+def check_library_versions(app_configs=None, **kwargs):
     from django import VERSION as django_version
     from lxml.etree import LXML_VERSION as lxml_version
     from translate.__version__ import ver as ttk_version
@@ -68,7 +68,7 @@ def test_library_versions(app_configs=None, **kwargs):
 
 
 @checks.register()
-def test_optional_dependencies(app_configs=None, **kwargs):
+def check_optional_dependencies(app_configs=None, **kwargs):
     errors = []
 
     try:
@@ -84,7 +84,7 @@ def test_optional_dependencies(app_configs=None, **kwargs):
 
 
 @checks.register()
-def test_redis(app_configs=None, **kwargs):
+def check_redis(app_configs=None, **kwargs):
     from django_rq.queues import get_queue
     from django_rq.workers import Worker
 
@@ -120,7 +120,7 @@ def test_redis(app_configs=None, **kwargs):
 
 
 @checks.register()
-def test_settings(app_configs=None, **kwargs):
+def check_settings(app_configs=None, **kwargs):
     from django.conf import settings
 
     errors = []
