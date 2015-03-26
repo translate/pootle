@@ -248,3 +248,6 @@ MT_BACKENDS = [
 
 # URL for the amaGama TM server.
 AMAGAMA_URL = 'https://amagama-live.translatehouse.org/api/v1/'
+
+# Silence the DEBUG check on dev servers
+SILENCED_SYSTEM_CHECKS = ["pootle.W005"]
