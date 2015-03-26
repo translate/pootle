@@ -78,11 +78,6 @@ class Migration(SchemaMigration):
             'ptl_build': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
             'ttk_build': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
         },
-        'pootle_app.revision': {
-            'Meta': {'object_name': 'Revision'},
-            'counter': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
-        },
         u'pootle_language.language': {
             'Meta': {'ordering': "['code']", 'object_name': 'Language', 'db_table': "'pootle_app_language'"},
             'code': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
