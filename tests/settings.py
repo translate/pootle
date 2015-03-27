@@ -47,3 +47,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
+
+# Silence the RedisCache check as we use a dummy cache
+SILENCED_SYSTEM_CHECKS = ["pootle.C005"]
