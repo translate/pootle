@@ -71,11 +71,10 @@ def make_search_form(*args, **kwargs):
             import urllib
 
             initial_sparams = json.loads(urllib.unquote(sparams_cookie))
-            if isinstance(initial_sparams, dict):
-                if 'sfields' in initial_sparams:
-                    kwargs.update({
-                        'initial': initial_sparams,
-                    })
+            if isinstance(initial_sparams, dict) and 'sfields' in initial_sparams:
+                kwargs.update({
+                    'initial': initial_sparams,
+                })
 
     if terminology:
         return TermSearchForm(*args, **kwargs)
