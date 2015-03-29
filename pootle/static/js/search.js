@@ -71,12 +71,12 @@ var search = {
         }
         input.select();
         that.$form.addClass('focused');
-      }.bind(that)).blur(function () {
+      }).blur(function () {
         if (input.val() === '') {
           input.val(initial);
         }
         that.$form.removeClass('focused');
-      }.bind(that)).val(initial);
+      }).val(initial);
     });
 
     /* Dropdown toggling */
