@@ -16,7 +16,7 @@ import 'shortcut';
 
 let search = {
 
-  init: function (options) {
+  init(options) {
     var that = this;
 
     this.searchText = '';
@@ -88,12 +88,12 @@ let search = {
   },
 
   /* Returns true if the search drop-down is open */
-  isOpen: function () {
+  isOpen() {
     return this.$container.is(':visible');
   },
 
   /* Builds search query hash string */
-  buildSearchQuery: function (text, remember) {
+  buildSearchQuery(text, remember) {
     var searchFields = [],
         searchOptions = [],
         query = encodeURIComponent(text),
@@ -135,7 +135,7 @@ let search = {
     return query;
   },
 
-  onSubmit: function (e) {
+  onSubmit(e) {
     e.preventDefault();
 
     var s = this.$input.val();
