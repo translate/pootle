@@ -19,7 +19,11 @@ let search = {
   init(options) {
     var that = this;
 
-    this.searchText = '';
+    this.state = {
+      searchText: '',
+      searchFields: ['source', 'target'],
+      searchOptions: [],
+    };
 
     /* Reusable selectors */
     this.$form = $("#search-form");
@@ -30,7 +34,7 @@ let search = {
 
     this.settings = assign({
       environment: 'editor',
-      onSubmit: this.onSubmit,
+      onSearch: this.onSearch,
     }, options);
 
     /* Shortcuts */
@@ -51,7 +55,7 @@ let search = {
       this.$form.addClass('focused');
     }).blur(() => {
       if (this.$input.val() === '') {
-        this.$input.val(this.searchText);
+        this.$input.val(this.state.searchText);
       }
       this.$form.removeClass('focused');
     });
@@ -75,7 +79,7 @@ let search = {
         this.$form.trigger('submit');
       }
     });
-    this.$form.on('submit', this.settings.onSubmit.bind(this));
+    this.$form.on('submit', this.handleSearch.bind(this));
 
     /* Necessary to detect clicks out of search.$container */
     $(document).mouseup((e) => {
@@ -87,26 +91,22 @@ let search = {
     });
   },
 
+  setState(newState) {
+    this.state = assign({}, this.state, newState);
+    this.updateUI();
+  },
+
   /* Returns true if the search drop-down is open */
   isOpen() {
     return this.$container.is(':visible');
   },
 
   /* Builds search query hash string */
-  buildSearchQuery(text, remember) {
-    var searchFields = [],
-        searchOptions = [],
-        query = encodeURIComponent(text),
+  buildSearchQuery(remember) {
+    let {searchText, searchFields, searchOptions } = this.state;
+    let query = encodeURIComponent(searchText),
         // Won't remember field choices unless explicitely told so
         remember = remember === undefined ? false : remember;
-
-    // There were no fields specified within the text so we use the dropdown
-    this.$fields.find("input:checked").each(function () {
-      searchFields.push($(this).val());
-    });
-    this.$options.find("input:checked").each(function () {
-      searchOptions.push($(this).val());
-    });
 
     // If any options have been chosen, append them to the resulting URL
     if (remember) {
@@ -135,25 +135,48 @@ let search = {
     return query;
   },
 
-  onSubmit(e) {
+  handleSearch(e) {
     e.preventDefault();
 
-    var s = this.$input.val();
+    let searchText = this.$input.val();
+    let searchFields = [];
+    let searchOptions = [];
 
-    if (!s) {
+    this.$fields.find('input:checked').each(function () {
+      searchFields.push($(this).val());
+    });
+    this.$options.find('input:checked').each(function () {
+      searchOptions.push($(this).val());
+    });
+
+    if (!searchFields.length) {
+      searchFields = ['source', 'target'];
+    }
+
+    this.setState({
+      searchText: searchText,
+      searchFields: searchFields,
+      searchOptions: searchOptions,
+    });
+
+    this.settings.onSearch.call(this, this.state.searchText);
+  },
+
+  onSearch(searchText) {
+    if (!searchText) {
       return false;
     }
 
     var remember = true,
-        hash = "#search=" + this.buildSearchQuery(s, remember);
-    window.location = e.target.action + hash;
+        hash = "#search=" + this.buildSearchQuery(remember);
+    window.location = this.$form[0].action + hash;
 
     return false;
   },
 
-  updateUI(searchText, searchFields, searchOptions) {
-    this.searchText = searchText;
-    this.$input.val(searchText).focus();
+  updateUI() {
+    this.$input.val(this.state.searchText).focus();
+    let { searchFields, searchOptions } = this.state;
 
     this.$fields.find('input').each(function () {
       $(this).prop('checked', searchFields.indexOf(this.value) !== -1);

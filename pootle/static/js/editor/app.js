@@ -80,10 +80,6 @@ PTL.editor = {
     this.isLoading = true;
     this.showActivity();
 
-    /* Currently active search fields */
-    this.searchFields = [];
-    this.searchOptions = [];
-
     /* Regular expressions */
     this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
 
@@ -109,7 +105,7 @@ PTL.editor = {
     /* Initialize search */
     // TODO: pass the environment option to the init
     search.init({
-      onSubmit: this.search
+      onSearch: this.onSearch
     });
 
     /* Select2 */
@@ -376,16 +372,19 @@ PTL.editor = {
           // Note that currently the search, if provided along with the other
           // filters, would override them
           PTL.editor.filter = "search";
-          PTL.editor.searchText = params.search;
+
+          let newState = {
+            searchText: params.search,
+          };
+
           if ('sfields' in params) {
-            PTL.editor.searchFields = params.sfields.split(',');
-          } else {
-            PTL.editor.searchFields = ['source', 'target'];
+            newState.searchFields = params.sfields.split(',');
           }
-          PTL.editor.searchOptions = [];
           if ('soptions' in params) {
-             PTL.editor.searchOptions = params.soptions.split(',');
+            newState.searchOptions = params.soptions.split(',');
           }
+
+          search.setState(newState);
         }
 
         // Update the filter UI to match the current filter
@@ -409,9 +408,7 @@ PTL.editor = {
 
         $('#js-filter-sort').select2('val', PTL.editor.sortBy);
 
-        if (PTL.editor.filter == "search") {
-          search.updateUI(PTL.editor.searchText, PTL.editor.searchFields,
-                          PTL.editor.searchOptions);
+        if (PTL.editor.filter === 'search') {
           $('.js-filter-checks-wrapper').hide();
         }
 
@@ -529,7 +526,8 @@ PTL.editor = {
 
   /* Highlights search results */
   hlSearch: function () {
-    var hl = PTL.editor.filter == "search" ? PTL.editor.searchText : "",
+    let {searchText, searchFields, searchOptions} = search.state;
+    let hl = PTL.editor.filter === 'search' ? searchText : '',
         sel = [],
         selMap = {
           notes: 'div.developer-comments',
@@ -540,12 +538,12 @@ PTL.editor = {
         hlRegex;
 
     // Build highlighting selector based on chosen search fields
-    $.each(PTL.editor.searchFields, function (i, field) {
+    $.each(searchFields, function (i, field) {
       sel.push("tr.edit-row " + selMap[field]);
       sel.push("tr.view-row " + selMap[field]);
     });
 
-    if (PTL.editor.searchOptions.indexOf('exact') >= 0 ) {
+    if (searchOptions.indexOf('exact') >= 0 ) {
       hlRegex = new RegExp([
           '(', PTL.editor.escapeUnsafeRegexSymbols(hl), ')'
         ].join(''));
@@ -1001,9 +999,10 @@ PTL.editor = {
     }
 
     if (this.filter === 'search') {
-      reqData.search = this.searchText;
-      reqData.sfields = this.searchFields;
-      reqData.soptions = this.searchOptions;
+      let {searchText, searchFields, searchOptions} = search.state;
+      reqData.search = searchText;
+      reqData.sfields = searchFields;
+      reqData.soptions = searchOptions;
     } else {
       reqData.filter = this.filter;
       this.sortBy !== 'default' && (reqData.sort = this.sortBy);
@@ -1827,15 +1826,12 @@ PTL.editor = {
 
 
   /* Loads the search view */
-  search: function (e) {
-    e.preventDefault();
+  onSearch: function (searchText) {
+    var newHash;
 
-    var newHash,
-        text = $("#id_search").val();
-
-    if (text) {
+    if (searchText) {
       var remember = true,
-          queryString = search.buildSearchQuery(text, remember);
+          queryString = this.buildSearchQuery(remember);
       newHash = "search=" + queryString;
     } else {
       newHash = utils.updateHashPart("filter", "all", ["search", "sfields","soptions"]);
