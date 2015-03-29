@@ -379,6 +379,8 @@ PTL.editor = {
           PTL.editor.searchText = params.search;
           if ('sfields' in params) {
             PTL.editor.searchFields = params.sfields.split(',');
+          } else {
+            PTL.editor.searchFields = ['source', 'target'];
           }
           PTL.editor.searchOptions = [];
           if ('soptions' in params) {
@@ -410,11 +412,6 @@ PTL.editor = {
         if (PTL.editor.filter == "search") {
           $("#id_search").val(PTL.editor.searchText);
           $("#id_search").trigger('focus');
-
-          // Set defaults if no fields have been specified
-          if (!PTL.editor.searchFields.length) {
-            PTL.editor.searchFields = ["source", "target"];
-          }
 
           $(".js-search-fields input").each(function () {
             if ($.inArray($(this).val(), PTL.editor.searchFields) >= 0) {
