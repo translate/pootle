@@ -1830,8 +1830,7 @@ PTL.editor = {
     var newHash;
 
     if (searchText) {
-      var remember = true,
-          queryString = this.buildSearchQuery(remember);
+      let queryString = this.buildSearchQuery();
       newHash = "search=" + queryString;
     } else {
       newHash = utils.updateHashPart("filter", "all", ["search", "sfields","soptions"]);

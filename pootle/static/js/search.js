@@ -102,20 +102,16 @@ let search = {
   },
 
   /* Builds search query hash string */
-  buildSearchQuery(remember) {
+  buildSearchQuery() {
     let {searchText, searchFields, searchOptions } = this.state;
-    let query = encodeURIComponent(searchText),
-        // Won't remember field choices unless explicitely told so
-        remember = remember === undefined ? false : remember;
+    let query = encodeURIComponent(searchText);
 
     // If any options have been chosen, append them to the resulting URL
-    if (remember) {
-      if (searchFields.length) {
-        query += "&sfields=" + searchFields.join(',');
-      }
-      if (searchOptions.length) {
-        query += "&soptions=" + searchOptions.join(',');
-      }
+    if (searchFields.length) {
+      query += "&sfields=" + searchFields.join(',');
+    }
+    if (searchOptions.length) {
+      query += "&soptions=" + searchOptions.join(',');
     }
 
     if (searchFields.length || searchOptions.length) {
@@ -167,8 +163,7 @@ let search = {
       return false;
     }
 
-    var remember = true,
-        hash = "#search=" + this.buildSearchQuery(remember);
+    let hash = "#search=" + this.buildSearchQuery();
     window.location = this.$form[0].action + hash;
 
     return false;
