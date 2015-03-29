@@ -8,14 +8,12 @@
 
 'use strict';
 
-var $ = require('jquery');
-
-require('jquery-cookie');
-
-require('shortcut');
+import $ from 'jquery';
+import 'jquery-cookie';
+import 'shortcut';
 
 
-var search = {
+let search = {
 
   init: function (options) {
     var that = this;
@@ -176,4 +174,4 @@ var search = {
 };
 
 
-module.exports = search;
+export default search;
