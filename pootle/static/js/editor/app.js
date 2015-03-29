@@ -410,28 +410,9 @@ PTL.editor = {
         $('#js-filter-sort').select2('val', PTL.editor.sortBy);
 
         if (PTL.editor.filter == "search") {
-          $("#id_search").val(PTL.editor.searchText);
-          $("#id_search").trigger('focus');
-
-          $(".js-search-fields input").each(function () {
-            if ($.inArray($(this).val(), PTL.editor.searchFields) >= 0) {
-              $(this).attr("checked", "checked");
-            } else {
-              $(this).removeAttr("checked");
-            }
-          });
-
-          $(".js-search-options input").each(function () {
-            if ($.inArray($(this).val(), PTL.editor.searchOptions) >= 0) {
-              $(this).attr("checked", "checked");
-            } else {
-              $(this).removeAttr("checked");
-            }
-          });
-
+          search.updateUI(PTL.editor.searchText, PTL.editor.searchFields,
+                          PTL.editor.searchOptions);
           $('.js-filter-checks-wrapper').hide();
-        } else {
-          $("#id_search").val('').trigger('blur');
         }
 
         // re-enable normal event handling

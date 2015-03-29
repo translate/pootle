@@ -149,7 +149,31 @@ let search = {
     window.location = e.target.action + hash;
 
     return false;
+  },
+
+  updateUI(searchText, searchFields, searchOptions) {
+    this.searchText = searchText;
+    this.$input.val(searchText).focus();
+
+    this.$fields.find('input').each(function () {
+      let $input = $(this);
+      if ($.inArray($input.val(), searchFields) >= 0) {
+        $input.attr('checked', 'checked');
+      } else {
+        $input.removeAttr('checked');
+      }
+    });
+
+    this.$options.find('input').each(function () {
+      let $input = $(this);
+      if ($.inArray($input.val(), searchOptions) >= 0) {
+        $input.attr('checked', 'checked');
+      } else {
+        $input.removeAttr('checked');
+      }
+    });
   }
+
 };
 
 
