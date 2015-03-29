@@ -28,9 +28,8 @@ var search = {
     this.$input = $("#id_search");
 
     /* Default settings */
-    this.defaultEnv = "editor";
     this.settings = {
-      environment: this.defaultEnv,
+      environment: 'editor',
       onSubmit: this.onSubmit
     };
     /* Merge given options with default settings */
