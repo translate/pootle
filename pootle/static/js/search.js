@@ -10,6 +10,7 @@
 
 import $ from 'jquery';
 import 'jquery-cookie';
+import assign from 'object-assign';
 import 'shortcut';
 
 
@@ -25,15 +26,10 @@ let search = {
     this.$options = $(".js-search-options");
     this.$input = $("#id_search");
 
-    /* Default settings */
-    this.settings = {
+    this.settings = assign({
       environment: 'editor',
-      onSubmit: this.onSubmit
-    };
-    /* Merge given options with default settings */
-    if (options) {
-      $.extend(this.settings, options);
-    }
+      onSubmit: this.onSubmit,
+    }, options);
 
     /* Shortcuts */
     shortcut.add('ctrl+shift+s', () => {
