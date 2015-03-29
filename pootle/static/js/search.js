@@ -38,15 +38,15 @@ var search = {
     }
 
     /* Shortcuts */
-    shortcut.add('ctrl+shift+s', function () {
+    shortcut.add('ctrl+shift+s', () => {
       this.$input.focus();
-    }.bind(this));
-    shortcut.add('escape', function (e) {
+    });
+    shortcut.add('escape', (e) => {
       if (this.$form.hasClass('focused')) {
         this.$input.blur();
         toggleFields(e);
       }
-    }.bind(this));
+    });
 
     /* Search input text */
     $('.js-input-hint').each(function () {
@@ -93,21 +93,21 @@ var search = {
       toggleFields(e);
     });
 
-    this.$input.on('keypress', function (e) {
+    this.$input.on('keypress', (e) => {
       if (e.which === 13) {
         this.$form.trigger('submit');
       }
-    }.bind(this));
+    });
     this.$form.on('submit', this.settings.onSubmit.bind(this));
 
     /* Necessary to detect clicks out of search.$container */
-    $(document).mouseup(function (e) {
+    $(document).mouseup((e) => {
       if (this.isOpen() &&
           e.target !== that.$input.get(0) &&
           !this.$container.find(e.target).length) {
         toggleFields(e);
       }
-    }.bind(this));
+    });
   },
 
   /* Returns true if the search drop-down is open */
