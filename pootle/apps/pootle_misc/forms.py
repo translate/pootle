@@ -87,6 +87,7 @@ class SearchForm(forms.Form):
     search = forms.CharField(
         widget=forms.TextInput(attrs={
             'size': '15',
+            'placeholder': _('Search'),
             'title': _("Search (Ctrl+Shift+S)<br/>Type and press Enter to "
                        "search"),
         }),

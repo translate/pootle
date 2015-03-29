@@ -19,6 +19,8 @@ let search = {
   init: function (options) {
     var that = this;
 
+    this.searchText = '';
+
     /* Reusable selectors */
     this.$form = $("#search-form");
     this.$container = $(".js-search-container");
@@ -42,35 +44,16 @@ let search = {
       }
     });
 
-    /* Search input text */
-    $('.js-input-hint').each(function () {
-      var initial,
-          search = false,
-          $label = $(this),
-          input = $('#' + $label.attr('for'));
-
-      if (input.prop("defaultValue")) {
-        initial = input.prop("defaultValue");
-        search = true;
-      } else {
-        initial = $label.hide().text().replace(':', '');
+    this.$input.mouseup((e) => {
+      e.preventDefault();
+    }).focus(() => {
+      this.$input.select();
+      this.$form.addClass('focused');
+    }).blur(() => {
+      if (this.$input.val() === '') {
+        this.$input.val(this.searchText);
       }
-
-      // XXX: check if so much `that` is necessary
-      input.mouseup(function (e) {
-        e.preventDefault();
-      }).focus(function () {
-        if (input.val() === initial && !search) {
-          input.val('');
-        }
-        input.select();
-        that.$form.addClass('focused');
-      }).blur(function () {
-        if (input.val() === '') {
-          input.val(initial);
-        }
-        that.$form.removeClass('focused');
-      }).val(initial);
+      this.$form.removeClass('focused');
     });
 
     /* Dropdown toggling */
