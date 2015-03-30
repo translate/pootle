@@ -782,7 +782,7 @@ class ENChecker(checks.TranslationChecker):
                 mo = broken_entities_regex_6.match(chunk)
                 if mo:
                     number = int(mo.group(1))
-                    if (number < 32 and number != 10) or number > 65535:
+                    if number > 65535:
                         fingerprint += 1
 
                 # check if a hexadecimal numbered entity length is within
@@ -790,7 +790,7 @@ class ENChecker(checks.TranslationChecker):
                 mo = broken_entities_regex_7.match(chunk)
                 if mo:
                     v = int(mo.group(1), 16)
-                    if (v < 32 and v != 10) or v > 65535:
+                    if v > 65535:
                         fingerprint += 1
 
             if is_source and fingerprint > 1:

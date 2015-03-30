@@ -213,3 +213,21 @@ def test_tags_differ():
     ]
 
     do_test(check, tests)
+
+
+def test_broken_entities():
+    check = checker.broken_entities
+    tests = [
+        (u'foo bar?<br>&#13;',
+         u'FOO BAR<br>&#13;', True),
+        (u'foo &#65535;',
+         u'FOO &#65535;', True),
+        (u'foo &#xff;',
+         u'FOO &#xff;', True),
+        (u'foo &#65535;',
+         u'FOO &#65536;', False),
+        (u'foo &nbsp;',
+         u'FOO &nbsp', False),
+    ]
+
+    do_test(check, tests)
