@@ -811,7 +811,10 @@ def get_overview_stats(request, *args, **kwargs):
     stats = request.resource_obj.get_stats()
 
     if isinstance(request.resource_obj, Directory):
-        stats['vfolders'] = VirtualFolder.get_stats_for(request.resource_obj.pootle_path)
+        stats['vfolders'] = VirtualFolder.get_stats_for(
+            request.resource_obj.pootle_path,
+            request.user.is_superuser
+        )
 
     return JsonResponse(stats)
 

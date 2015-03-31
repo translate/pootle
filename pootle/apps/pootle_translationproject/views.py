@@ -22,6 +22,7 @@ from pootle.core.helpers import (get_export_view_context,
                                  get_overview_context,
                                  get_translation_context)
 from pootle.core.utils.json import jsonify
+from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from staticpages.models import StaticPage
 from virtualfolder.models import VirtualFolder
@@ -58,6 +59,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
     directory = request.directory
     store = request.store
+    is_admin = check_permission('administrate', request)
 
     # TODO: cleanup and refactor, retrieve from cache
     try:
@@ -96,7 +98,6 @@ def overview(request, translation_project, dir_path, filename=None):
     # TODO improve plugin logic
     if "import_export" in settings.INSTALLED_APPS and request.user.is_authenticated():
         from import_export.views import handle_upload_form
-        from pootle_app.models.permissions import check_permission
 
         ctx.update(handle_upload_form(request))
 
@@ -132,18 +133,22 @@ def overview(request, translation_project, dir_path, filename=None):
                     'id': 'vfolders',
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
-                    'items': get_vfolders(directory),
+                    'items': get_vfolders(directory, all_vfolders=is_admin),
                 },
             })
 
             #FIXME: set vfolders stats in the resource, don't inject them here.
-            stats['vfolders'] = VirtualFolder.get_stats_for(directory.pootle_path)
+            stats['vfolders'] = VirtualFolder.get_stats_for(
+                directory.pootle_path,
+                all_vfolders=is_admin
+            )
 
     ctx.update({
         'translation_project': translation_project,
         'project': project,
         'language': language,
         'stats': jsonify(stats),
+        'is_admin': is_admin,
 
         'browser_extends': 'translation_projects/base.html',
 

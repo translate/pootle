@@ -40,6 +40,7 @@ var stats = {
   init: function (options) {
     this.retries = 0;
     this.pootlePath = options.pootlePath;
+    this.isAdmin = options.isAdmin;
     this.processLoadedData(options.data, undefined, true);
 
     $('td.stats-name').filter(':not([dir])').bidi();
@@ -210,7 +211,7 @@ var stats = {
           $td = $vfoldersTable.find('#total-words-' + code);
 
           // Hide virtual folders that are completely translated.
-          if (item.translated === item.total) {
+          if (!this.isAdmin && item.translated === item.total) {
             //FIXME vfolders might be added or removed since they can become
             // completely translated or stop being completely translated, so
             // they might be displayable after the initial load of the overview.

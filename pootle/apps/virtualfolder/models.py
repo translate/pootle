@@ -103,11 +103,20 @@ class VirtualFolder(models.Model):
                                                         priority__gte=1)
 
     @classmethod
-    def get_stats_for(cls, pootle_path):
-        """Get stats for all the virtual folders in the given path."""
-        stats = {}
+    def get_stats_for(cls, pootle_path, all_vfolders=False):
+        """Get stats for all the virtual folders in the given path.
 
-        for vf in cls.get_visible_for(pootle_path):
+        If ``all_vfolders`` is True then all virtual folders in the passed
+        pootle_path are returned, independently of their priority of
+        browsability.
+        """
+        stats = {}
+        if all_vfolders:
+            vfolders = cls.get_matching_for(pootle_path)
+        else:
+            vfolders = cls.get_visible_for(pootle_path)
+
+        for vf in vfolders:
             units = vf.units.filter(store__pootle_path__startswith=pootle_path)
             stores = Store.objects.filter(
                 pootle_path__startswith=pootle_path,

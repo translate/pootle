@@ -198,11 +198,18 @@ def make_vfolder_item(virtual_folder, pootle_path):
     }
 
 
-def get_vfolders(directory):
+def get_vfolders(directory, all_vfolders=False):
     """Return a list of virtual folders for this ``directory``.
 
     The elements of the list are dictionaries which keys are populated after
     in the templates.
+
+    If ``all_vfolders`` is True then all the virtual folders matching the
+    provided directory are returned. If not only the visible ones are returned.
     """
+    if all_vfolders:
+        return [make_vfolder_item(vf, directory.pootle_path)
+            for vf in VirtualFolder.get_matching_for(directory.pootle_path)]
+
     return [make_vfolder_item(vf, directory.pootle_path)
             for vf in VirtualFolder.get_visible_for(directory.pootle_path)]
