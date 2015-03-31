@@ -2,6 +2,7 @@ Django>=1.7.7,<1.8
 
 # Django apps
 django-assets>=0.10
+django-allauth==0.18.0
 django-contact-form==1.0
 django-overextends>=0.3.2
 django-redis
@@ -11,11 +12,6 @@ django-rq
 cssmin
 diff-match-patch>=20121119
 lxml>=2.2.0
-# FIXME drop once https://github.com/translate/pootle/issues/3343 and Evernote
-# allauth backend have landed.
---allow-external pyDes
---allow-unverified pyDes
-pyDes
 
 # Translate Toolkit
 translate-toolkit>=1.10.0

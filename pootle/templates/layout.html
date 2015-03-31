@@ -23,6 +23,14 @@
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
     {% endblock favicon %}
     {% block js %}
+    <script type="text/javascript">
+    window.PTL = window.PTL || {};
+    PTL.settings = {
+      CAN_REGISTER: {{ settings.CAN_REGISTER|yesno:'true, false' }},
+      SOCIAL_AUTH_PROVIDERS: {{ SOCIAL_AUTH_PROVIDERS|safe }},
+    };
+    </script>
+
     {% assets "js_vendor" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
@@ -126,11 +134,11 @@
               <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans 'Admin' %}</a></li>
               {% endif %}
               <li class="menu-divider"></li>
-              <li><a href="{% url 'pootle-profile-logout' %}">{% trans 'Sign Out' %}</a></li>
+              <li><a href="{% url 'account_logout' %}">{% trans 'Sign out' %}</a></li>
             </ul>
           </li>
           {% else %}
-          <li><a id="js-login" href="{% url 'pootle-profile-login' %}{{ request|get_next }}"><span class="btn btn-login">{% trans "Sign In" %}</span></a></li>
+          <li><a class="js-login login" href="{% url 'account_login' %}{{ request|get_next }}"><span class="btn btn-login">{% trans 'Sign In' %}</span></a></li>
           {% endif %}
           {% block nav_items_post %}{% endblock %}
           {% endblock %}
@@ -185,5 +193,6 @@
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
     {% endblock scripts %}
     {% endblock body %}
+    <div class="js-auth" />{# Mount point for auth views #}
   </body>
 </html>

@@ -20,8 +20,10 @@ from pootle.core.forms import MathCaptchaForm
 URL_RE = re.compile("https?://", re.I)
 
 CAPTCHA_EXEMPT_URLPATTERNS = (
-    'pootle-profile-login',
-    'en-auth-sso-login', 'en-auth-account-link',
+    'account_login',
+    'account_signup',
+    'account_reset_password',
+    'account_reset_password_from_key',
     'pootle-contact',
 )
 

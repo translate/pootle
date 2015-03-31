@@ -125,6 +125,15 @@ Site-specific settings.
 Configuration settings for applications used by Pootle.
 
 
+.. setting:: CAN_REGISTER
+
+``CAN_REGISTER``
+  Default: ``True``
+
+  Controls whether user registrations are allowed or not. If set to ``False``,
+  administrators will still be able to create new user accounts.
+
+
 .. setting:: CUSTOM_TEMPLATE_CONTEXT
 
 ``CUSTOM_TEMPLATE_CONTEXT``
@@ -134,46 +143,6 @@ Configuration settings for applications used by Pootle.
 
   Custom template context dictionary. The values will be available in the
   templates as ``{{ custom.<key> }}``.
-
-
-.. setting:: EN_SSO_BASE
-
-``EN_SSO_BASE```
-  Default: ''
-
-  Base URL which logs the user into Evernote.
-
-
-.. setting:: EN_SSO_PATH
-
-``EN_SSO_PATH```
-  Default: ''
-
-  Path for logging the user into Evernote.
-
-
-.. setting:: EN_SSO_SERVER_ALIAS
-
-``EN_SSO_SERVER_ALIAS```
-  Default: ''
-
-  Alias for the server to redirect the authenticated request.
-
-
-.. setting:: EN_SSO_SECRET_KEY
-
-``EN_SSO_SECRET_KEY```
-  Default: ''
-
-  Key to decrypt the authentication cookie.
-
-
-.. setting:: EN_SSO_COOKIE
-
-``EN_SSO_COOKIE```
-  Default: ''
-
-  Name of the authentication cookie.
 
 
 .. setting:: FUZZY_MATCH_MAX_LENGTH
