@@ -2066,8 +2066,8 @@ PTL.editor = {
     e.stopPropagation(); //we don't want to trigger a click on the text below
     var suggId = $(this).data("sugg-id"),
         element = $("#suggestion-" + suggId),
-        uid = $('.translate-container #id_id').val(),
-        url = l(['/xhr/units/', uid,
+        unit = PTL.editor.units.getCurrent(),
+        url = l(['/xhr/units/', unit.id,
                  '/suggestions/', suggId, '/reject/'].join(''));
 
     $.post(url, {'reject': 1},
