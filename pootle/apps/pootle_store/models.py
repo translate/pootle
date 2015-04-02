@@ -2111,7 +2111,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     'snippet': max_unit.get_last_updated_message()
                 }
 
-        return {'id': 0, 'creation_time': 0, 'snippet': ''}
+        return CachedTreeItem._get_last_updated()
 
     def _get_last_action(self, submission=None):
         if submission is None:
@@ -2120,7 +2120,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                 .exclude(type=SubmissionTypes.UNIT_CREATE) \
                                 .latest()
             except Submission.DoesNotExist:
-                return {'id': 0, 'mtime': 0, 'snippet': ''}
+                return CachedTreeItem._get_last_action()
         else:
             sub = submission
 
