@@ -103,7 +103,6 @@ PTL.editor = {
     };
 
     /* Initialize search */
-    // TODO: pass the environment option to the init
     search.init({
       onSearch: this.onSearch
     });

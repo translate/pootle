@@ -33,7 +33,6 @@ let search = {
     this.$input = $("#id_search");
 
     this.settings = assign({
-      environment: 'editor',
       onSearch: this.onSearch,
     }, options);
 
@@ -116,7 +115,7 @@ let search = {
 
     if (searchFields.length || searchOptions.length) {
       // Remember field selection in a cookie
-      var cookieName = "search-" + this.settings.environment,
+      var cookieName = 'search-editor',
           cookieData = {};
       if (searchFields.length) {
         cookieData.sfields = searchFields;
