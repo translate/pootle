@@ -4,7 +4,11 @@
   <div id="js-contact">
     <h1>{% trans "Contact Us" %}</h1>
     {% block contact_preamble %}
-    <p>{% blocktrans %}You have to fill all the fields, and please <b>write in English</b>.{% endblocktrans %}</p>
+    <p>
+      {% blocktrans trimmed %}
+      You have to fill all the fields, and please <b>write in English</b>.
+      {% endblocktrans %}
+    </p>
     {% endblock %}
     <form method="post" action="{{ contact_form_url }}">
       {% csrf_token %}
@@ -18,7 +22,10 @@
   </div>
   <div id="js-sent" class="hide">
     <h1>{% trans "Thanks!" %}</h1>
-    <p>{% blocktrans %}We have received your message and will try to
-      respond as soon as possible.{% endblocktrans %}</p>
+    <p>
+      {% blocktrans trimmed %}
+      We have received your message and will try to respond as soon as possible.
+      {% endblocktrans %}
+    </p>
   </div>
 </div>

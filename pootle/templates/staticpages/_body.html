@@ -3,7 +3,10 @@
 <div id="staticpage" dir="ltr">
   {% if not page.active %}
   <div class="alert alert-error">
-  {% blocktrans with page.get_edit_url as edit_url %}This static page is inactive and visible to administrators only. You can activate it by <a href="{{ edit_url }}">editing its properties</a>{% endblocktrans %}
+    {% blocktrans with page.get_edit_url as edit_url trimmed %}
+    This static page is inactive and visible to administrators only.
+    You can activate it by <a href="{{ edit_url }}">editing its properties</a>
+    {% endblocktrans %}
   </div>
   {% endif %}
   <h1 class="title">{{ page.title }}</h1>

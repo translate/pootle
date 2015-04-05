@@ -8,15 +8,18 @@
 <h2 class="error-title">{% trans 'Database Error' %}</h2>
 
 <p>
-{% blocktrans %}Pootle can't connect to the database, the database is not
-initialized yet, or a schema upgrade is needed before continuing.{% endblocktrans %}
+  {% blocktrans trimmed %}
+  Pootle can't connect to the database, the database is not initialized
+  yet, or a schema upgrade is needed before continuing.
+  {% endblocktrans %}
 </p>
 
 <p>
-{% blocktrans with url="http://docs.translatehouse.org/projects/pootle/en/latest/server/index.html" %}
-Please read the <a href="{{ url }}">Pootle documentation</a> for installation
-and upgrade instructions. Contact the server administrator if you feel this is
-a mistake.{% endblocktrans %}
+  {% blocktrans with url="http://docs.translatehouse.org/projects/pootle/en/latest/server/index.html" trimmed %}
+  Please read the <a href="{{ url }}">Pootle documentation</a> for installation
+  and upgrade instructions. Contact the server administrator if you feel this is
+  a mistake.
+  {% endblocktrans %}
 </p>
 
 <p class="exception exception-details">

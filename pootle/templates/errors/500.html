@@ -17,6 +17,10 @@
 {% endif %}
 </p>
 {% if request.sentry.id %}
-<p class="exception exception-sentry">{% blocktrans with ref=request.sentry.id %}If you need assistance, you may refer to this error as <strong>{{ ref }}</strong>.{% endblocktrans %}</p>
+<p class="exception exception-sentry">
+  {% blocktrans with ref=request.sentry.id trimmed %}
+  If you need assistance, you may refer to this error as <strong>{{ ref }}</strong>.
+  {% endblocktrans %}
+</p>
 {% endif %}
 {% endblock %}
