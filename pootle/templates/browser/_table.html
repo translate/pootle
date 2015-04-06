@@ -41,39 +41,47 @@
       {% endif %}
 
       {% if 'total' in table.fields %}
-      <td id="total-words-{{ item.code }}" class="stats-number total js-total">
+      <td id="total-words-{{ item.code }}" class="stats-number total js-total not-inited">
         <a class="non-zero" href="{{ item.href_all }}"></a>
         <span class="zero muted">0</span>
+        <span class="not-inited muted">—</span>
       </td>
       {% endif %}
 
       {% if 'last-updated' in table.fields %}
-      <td id="last-updated-{{ item.code }}" class="stats last-updated"></td>
+      <td id="last-updated-{{ item.code }}" class="stats last-updated not-inited">
+        <span class="not-inited muted">—</span>
+      </td>
       {% endif %}
 
       {% if 'need-translation' in table.fields %}
-      <td id="need-translation-{{ item.code }}" class="stats-number need-translation js-need-translation">
+      <td id="need-translation-{{ item.code }}" class="stats-number need-translation js-need-translation not-inited">
         <a class="non-zero" href="{{ item.href_todo }}"></a>
         <span class="zero muted">0</span>
+        <span class="not-inited muted">—</span>
       </td>
       {% endif %}
 
       {% if 'suggestions' in table.fields %}
-      <td id="suggestions-{{ item.code }}" class="stats-number suggestions js-suggestions">
+      <td id="suggestions-{{ item.code }}" class="stats-number suggestions js-suggestions not-inited">
         <a class="non-zero" href="{{ item.href_sugg }}"></a>
         <span class="zero muted">0</span>
+        <span class="not-inited muted">—</span>
       </td>
       {% endif %}
 
       {% if 'critical' in table.fields %}
-      <td id="critical-{{ item.code }}" class="stats-number critical js-critical">
+      <td id="critical-{{ item.code }}" class="stats-number critical js-critical not-inited">
         <a class="non-zero" href="{{ item.href_critical }}"></a>
         <span class="zero muted">0</span>
+        <span class="not-inited muted">—</span>
       </td>
       {% endif %}
 
       {% if 'activity' in table.fields %}
-      <td id="last-activity-{{ item.code }}" class="last-activity"></td>
+      <td id="last-activity-{{ item.code }}" class="last-activity not-inited">
+        <span class="not-inited muted">—</span>
+      </td>
       {% endif %}
     </tr>
 

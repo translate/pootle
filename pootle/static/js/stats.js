@@ -85,19 +85,25 @@ var stats = {
   },
 
   updateAction: function ($action, count) {
-    $action.css('display', count > 0 ? 'inline-block' : 'none');
-    $action.find('.counter').text(count);
+    $action.toggleClass('non-zero', !(count === 0));
+    $action.find('.counter').text(count !== null ? count : '—');
   },
 
   updateItemStats: function ($td, count) {
     if (count) {
       $td.removeClass('zero');
+      $td.removeClass('not-inited');
       $td.addClass('non-zero');
       $td.find('a').html(count);
-    } else {
+    } else if (count === 0) {
       $td.find('a').html('');
       $td.addClass('zero');
+      $td.removeClass('not-inited');
       $td.removeClass('non-zero');
+    } else {
+      $td.removeClass('zero');
+      $td.removeClass('non-zero');
+      $td.addClass('not-inited');
     }
   },
 
@@ -120,11 +126,14 @@ var stats = {
     $td.parent().toggleClass('dirty', item.is_dirty);
     this.updateItemStats($td, item.total);
 
-    var ratio = item.total === 0 ? 1 : item.translated / item.total;
+    var isFullRatio = item.total === 0 || item.total === null,
+        ratio = isFullRatio ? 1 : item.translated / item.total;
     $table.find('#translated-ratio-' + code).text(ratio);
 
     $td = $table.find('#need-translation-' + code);
-    this.updateItemStats($td, item.total - item.translated);
+    var needTranslationCount = item.total !== null ?
+      item.total - item.translated : null;
+    this.updateItemStats($td, needTranslationCount);
 
     $td = $table.find('#suggestions-' + code);
     this.updateItemStats($td, item.suggestions);
@@ -134,6 +143,7 @@ var stats = {
 
     if (item.lastaction) {
       $td = $table.find('#last-activity-' + code);
+      $td.removeClass('not-inited');
       $td.html(item.lastaction.snippet);
       $td.attr('sorttable_customkey', now - item.lastaction.mtime);
     }
@@ -143,6 +153,7 @@ var stats = {
 
     if (item.lastupdated) {
       $td = $table.find('#last-updated-' + code);
+      $td.removeClass('not-inited');
       $td.html(item.lastupdated.snippet);
       $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
     }
@@ -153,8 +164,8 @@ var stats = {
         dirtySelector = '#top-stats, #translate-actions, #autorefresh-notice',
         now = parseInt(Date.now() / 1000, 10);
 
-    $(dirtySelector).toggleClass('dirty', data.is_dirty);
-    if (data.is_dirty) {
+    $(dirtySelector).toggleClass('dirty', !!data.is_dirty);
+    if (!!data.is_dirty) {
       this.dirtyBackoff = Math.pow(2, this.retries);
       this.updateDirtyBackoffCounter();
       $('.js-stats-refresh').show();
@@ -173,7 +184,8 @@ var stats = {
                                 data.total, data.translated, 100);
     this.updateTranslationStats($('#stats-fuzzy'),
                                 data.total, data.fuzzy, 0);
-    var untranslated = data.total - data.translated - data.fuzzy;
+    var untranslated = data.total === null ? null :
+      data.total - data.translated - data.fuzzy;
     this.updateTranslationStats($('#stats-untranslated'),
                                 data.total, untranslated, 0);
     this.updateLastUpdates(data);
@@ -285,7 +297,7 @@ var stats = {
         data: reqData,
         success: function (data) {
           $node.hide();
-          if (Object.keys(data).length) {
+          if (data !== null && Object.keys(data).length) {
             $node.find('.js-checks').each(function (e) {
               var empty = true,
                   $cat = $(this);

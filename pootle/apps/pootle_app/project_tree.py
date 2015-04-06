@@ -178,9 +178,6 @@ def create_or_resurrect_store(file, parent, name, translation_project):
     try:
         store = Store.objects.get(parent=parent, name=name)
         store.obsolete = False
-        # initialize cache with empty values to avoid errors
-        # in RQ jobs stats refreshing
-        store.init_cache()
         store.file_mtime = datetime_min
         if store.last_sync_revision is None:
             store.last_sync_revision = store.get_max_unit_revision()
@@ -200,9 +197,6 @@ def create_or_resurrect_dir(name, parent):
     try:
         dir = Directory.objects.get(parent=parent, name=name)
         dir.obsolete = False
-        # initialize cache with empty values to avoid errors
-        # in RQ jobs stats refreshing
-        dir.init_cache()
     except Directory.DoesNotExist:
         dir = Directory(name=name, parent=parent)
 

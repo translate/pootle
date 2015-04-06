@@ -1943,7 +1943,8 @@ table.stats span.muted
 }
 
 table.stats td.zero span.zero,
-table.stats td.non-zero span.non-zero
+table.stats td.non-zero span.non-zero,
+table.stats td.not-inited span.not-inited
 {
     /* Show appropriate placeholders when 'zero' or 'non-zero' class is set */
     display: inline;

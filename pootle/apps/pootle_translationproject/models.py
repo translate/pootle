@@ -382,7 +382,7 @@ class TranslationProject(models.Model, CachedTreeItem):
             try:
                 termproject = TranslationProject.objects \
                         .get_terminology_project(self.language_id)
-                mtime = termproject.get_cached(CachedMethods.MTIME)
+                mtime = termproject.get_cached_value(CachedMethods.MTIME)
                 terminology_stores = termproject.stores.live()
             except TranslationProject.DoesNotExist:
                 pass
@@ -391,9 +391,9 @@ class TranslationProject(models.Model, CachedTreeItem):
                     name__startswith='pootle-terminology')
             for store in local_terminology.iterator():
                 if mtime is None:
-                    mtime = store.get_cached(CachedMethods.MTIME)
+                    mtime = store.get_cached_value(CachedMethods.MTIME)
                 else:
-                    mtime = max(mtime, store.get_cached(CachedMethods.MTIME))
+                    mtime = max(mtime, store.get_cached_value(CachedMethods.MTIME))
 
             terminology_stores = terminology_stores | local_terminology
 

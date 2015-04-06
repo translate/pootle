@@ -55,6 +55,10 @@ def statslog(function):
     return _statslog
 
 
+class NoCachedStats(Exception):
+    pass
+
+
 class CachedMethods(object):
     """Cached method names."""
     CHECKS = 'get_checks'
@@ -223,17 +227,51 @@ class TreeItem(object):
     def get_stats(self, include_children=True):
         """get stats for self and - optionally - for children"""
         self.initialize_children()
-
         result = {
-            'total': self._calc(CachedMethods.TOTAL),
-            'translated': self._calc(CachedMethods.TRANSLATED),
-            'fuzzy': self._calc(CachedMethods.FUZZY),
-            'suggestions': self._calc(CachedMethods.SUGGESTIONS),
-            'lastaction': self._calc(CachedMethods.LAST_ACTION),
-            'critical': self.get_error_unit_count(),
-            'lastupdated': self._calc(CachedMethods.LAST_UPDATED),
+            'total': None,
+            'translated': None,
+            'fuzzy': None,
+            'suggestions': None,
+            'lastaction': None,
+            'critical': None,
+            'lastupdated': None,
             'is_dirty': self.is_dirty(),
         }
+
+        try:
+            result['total'] = self._calc(CachedMethods.TOTAL)
+        except NoCachedStats:
+            pass
+
+        try:
+            result['translated'] = self._calc(CachedMethods.TRANSLATED)
+        except NoCachedStats:
+            pass
+
+        try:
+            result['fuzzy'] = self._calc(CachedMethods.FUZZY),
+        except NoCachedStats:
+            pass
+
+        try:
+            result['suggestions'] = self._calc(CachedMethods.SUGGESTIONS)
+        except NoCachedStats:
+            pass
+
+        try:
+            result['lastaction'] = self._calc(CachedMethods.LAST_ACTION)
+        except NoCachedStats:
+            pass
+
+        try:
+            result['critical'] = self.get_error_unit_count()
+        except NoCachedStats:
+            pass
+
+        try:
+            result['lastupdated'] = self._calc(CachedMethods.LAST_UPDATED)
+        except NoCachedStats:
+            pass
 
         if include_children:
             result['children'] = {}
@@ -246,11 +284,16 @@ class TreeItem(object):
 
     def get_error_unit_count(self):
         check_stats = self._calc(CachedMethods.CHECKS)
+        if check_stats is not None:
+            return check_stats.get('unit_critical_error_count', 0)
 
-        return check_stats.get('unit_critical_error_count', 0)
+        return None
 
     def get_checks(self):
-        return self._calc(CachedMethods.CHECKS)['checks']
+        try:
+            return self._calc(CachedMethods.CHECKS)['checks']
+        except NoCachedStats:
+            return None
 
 
 class CachedTreeItem(TreeItem):
@@ -284,34 +327,69 @@ class CachedTreeItem(TreeItem):
         """get stat value from cache"""
         result = self.get_cached_value(name)
         if result is None:
-            logger.error(
-                "cache miss %s for %s(%s)" % (name,
+
+            msg = u"cache miss %s for %s(%s)" % (name,
                                               self.get_cachekey(),
-                                              self.__class__),
-            )
-            if not from_update or settings.DEBUG:
-                # get initial (empty, zero) value
-                result = getattr(CachedTreeItem, '_%s' % name)()
+                                              self.__class__)
+            logger.info(msg)
+            raise NoCachedStats(msg)
 
         return result
 
     def get_checks(self):
-        return self.get_cached(CachedMethods.CHECKS)['checks']
+        try:
+            return self.get_cached(CachedMethods.CHECKS)['checks']
+        except NoCachedStats:
+            return None
 
     def get_stats(self, include_children=True):
         """get stats for self and - optionally - for children"""
         self.initialize_children()
-
         result = {
-            'total': self.get_cached(CachedMethods.TOTAL),
-            'translated': self.get_cached(CachedMethods.TRANSLATED),
-            'fuzzy': self.get_cached(CachedMethods.FUZZY),
-            'suggestions': self.get_cached(CachedMethods.SUGGESTIONS),
-            'lastaction': self.get_cached(CachedMethods.LAST_ACTION),
-            'critical': self.get_error_unit_count(),
-            'lastupdated': self.get_cached(CachedMethods.LAST_UPDATED),
+            'total': None,
+            'translated': None,
+            'fuzzy': None,
+            'suggestions': None,
+            'lastaction': None,
+            'critical': None,
+            'lastupdated': None,
             'is_dirty': self.is_dirty(),
         }
+
+        try:
+            result['total'] = self.get_cached(CachedMethods.TOTAL)
+        except NoCachedStats:
+            pass
+
+        try:
+            result['translated'] = self.get_cached(CachedMethods.TRANSLATED)
+        except NoCachedStats:
+            pass
+
+        try:
+            result['fuzzy'] = self.get_cached(CachedMethods.FUZZY),
+        except NoCachedStats:
+            pass
+
+        try:
+            result['suggestions'] = self.get_cached(CachedMethods.SUGGESTIONS)
+        except NoCachedStats:
+            pass
+
+        try:
+            result['lastaction'] = self.get_cached(CachedMethods.LAST_ACTION)
+        except NoCachedStats:
+            pass
+
+        try:
+            result['critical'] = self.get_error_unit_count()
+        except NoCachedStats:
+            pass
+
+        try:
+            result['lastupdated'] = self.get_cached(CachedMethods.LAST_UPDATED)
+        except NoCachedStats:
+            pass
 
         if include_children:
             result['children'] = {}
@@ -467,12 +545,20 @@ class CachedTreeItem(TreeItem):
             # or stores which could be saved in `children` property
             self.initialized = False
             self.initialize_children()
+            keys_for_parent = set(keys)
             for key in keys:
-                self.update_cached(key)
-            for p in self.get_parents():
-                create_update_cache_job(p, keys, decrement)
+                try:
+                    self.update_cached(key)
+                except NoCachedStats:
+                    keys_for_parent.remove(key)
 
-            self.unregister_dirty(decrement)
+            if keys_for_parent:
+                for p in self.get_parents():
+                    create_update_cache_job(p, keys_for_parent, decrement)
+                self.unregister_dirty(decrement)
+            else:
+                self.unregister_all_dirty(decrement)
+
         else:
             logger.warning('Cache for %s object cannot be updated.' % self)
             self.unregister_all_dirty(decrement)
@@ -485,12 +571,6 @@ class CachedTreeItem(TreeItem):
         for p in self.get_parents():
             p.register_all_dirty()
             create_update_cache_job(p, all_cache_methods)
-
-    def init_cache(self):
-        """Set initial values for all cached method for the current TreeItem"""
-        for method_name in CachedMethods.get_all():
-            method = getattr(CachedTreeItem, '_%s' % method_name)
-            self.set_cached_value(method_name, method())
 
 
 class JobWrapper():

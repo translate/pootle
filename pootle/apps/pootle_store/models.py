@@ -395,11 +395,11 @@ class Unit(models.Model, base.TranslationUnit):
 
         # Check if unit currently being deleted is the one referenced in
         # last_action
-        la = self.store.get_cached(CachedMethods.LAST_ACTION)
+        la = self.store.get_cached_value(CachedMethods.LAST_ACTION)
         if not la or 'id' not in la or la['id'] == self.id:
             self.store.mark_dirty(CachedMethods.LAST_ACTION)
         # and last_updated
-        lu = self.store.get_cached(CachedMethods.LAST_UPDATED)
+        lu = self.store.get_cached_value(CachedMethods.LAST_UPDATED)
         if not lu or 'id' not in lu or lu['id'] == self.id:
             self.store.mark_dirty(CachedMethods.LAST_UPDATED)
 
@@ -1417,8 +1417,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def save(self, *args, **kwargs):
         created = not self.id
         self.pootle_path = self.parent.pootle_path + self.name
-        if created:
-            self.init_cache()
+
         super(Store, self).save(*args, **kwargs)
         if created:
             store_log(user='system', action=STORE_ADDED,
@@ -2160,8 +2159,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         from translate.storage import poheader
         if isinstance(disk_store, poheader.poheader):
-            mtime = self.get_cached(CachedMethods.MTIME)
-            if mtime == datetime_min:
+            mtime = self.get_cached_value(CachedMethods.MTIME)
+            if mtime is None or mtime == datetime_min:
                 mtime = timezone.now()
             if user is None:
                 try:

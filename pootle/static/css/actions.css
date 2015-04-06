@@ -47,10 +47,15 @@ body.translate #actions
 
 #translate-actions li
 {
-    display: inline-block;
+    display: none;
     margin-left: 2em;
     margin-right: -0.5em;
     font-weight: bold;
+}
+
+#translate-actions li.non-zero
+{
+    display: inline-block;
 }
 
 #translate-actions .counter
