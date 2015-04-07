@@ -155,20 +155,20 @@ class Directory(models.Model, CachedTreeItem):
 
         return result
 
-    def get_parents(self):
+    def get_parent(self):
         if self.parent:
             if self.is_translationproject():
-                return self.translationproject.get_parents()
+                return self.translationproject.get_parent()
             elif self.is_project():
-                return self.project.get_parents()
+                return self.project.get_parent()
             elif self.is_language():
-                return self.language.get_parents()
+                return self.language.get_parent()
             elif self.parent.is_translationproject():
-                return [self.parent.translationproject]
+                return self.parent.translationproject
             else:
-                return [self.parent]
+                return self.parent
         else:
-            return []
+            return None
 
     def get_cachekey(self):
         return self.pootle_path

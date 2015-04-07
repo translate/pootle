@@ -35,27 +35,23 @@ def test_get_children(tutorial, afrikaans):
 
 
 @pytest.mark.django_db
-def test_get_parents(af_tutorial_subdir_po, af_tutorial_po,
+def test_get_parent(af_tutorial_subdir_po, af_tutorial_po,
                      afrikaans_tutorial, afrikaans, tutorial):
     """Ensure that retrieved parent objects have a correct type."""
-    parents = af_tutorial_subdir_po.get_parents()
-    assert len(parents) == 1
-    assert isinstance(parents[0], Directory)
+    parent = af_tutorial_subdir_po.get_parent()
+    assert isinstance(parent, Directory)
 
-    parents = af_tutorial_po.get_parents()
-    assert len(parents) == 1
-    assert isinstance(parents[0], TranslationProject)
+    parent = af_tutorial_po.get_parent()
+    assert isinstance(parent, TranslationProject)
 
-    parents = afrikaans_tutorial.get_parents()
-    assert len(parents) == 1
-    assert isinstance(parents[0], Project)
+    parent = afrikaans_tutorial.get_parent()
+    assert isinstance(parent, Project)
 
-    parents = afrikaans_tutorial.directory.get_parents()
-    assert len(parents) == 1
-    assert isinstance(parents[0], Project)
+    parent = afrikaans_tutorial.directory.get_parent()
+    assert isinstance(parent, Project)
 
-    parents = tutorial.directory.get_parents()
-    assert len(parents) == 0
+    parent = tutorial.directory.get_parent()
+    assert parent is None
 
-    parents = afrikaans.directory.get_parents()
-    assert len(parents) == 0
+    parent = afrikaans.directory.get_parent()
+    assert parent is None

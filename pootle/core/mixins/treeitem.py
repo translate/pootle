@@ -91,9 +91,9 @@ class TreeItem(object):
     def set_children(self, children):
         self._children = children
 
-    def get_parents(self):
+    def get_parent(self):
         """This method will be overridden in descendants"""
-        return []
+        return None
 
     def get_cachekey(self):
         """This method will be overridden in descendants"""
@@ -444,8 +444,8 @@ class CachedTreeItem(TreeItem):
             log("%s deleted from %s cache" % (keys, itemkey))
 
         if parents:
-            parents = self.get_parents()
-            for p in parents:
+            p = self.get_parent()
+            if p is not None:
                 p._clear_cache(keys, parents=parents, children=False)
 
         if children:
@@ -553,7 +553,8 @@ class CachedTreeItem(TreeItem):
                     keys_for_parent.remove(key)
 
             if keys_for_parent:
-                for p in self.get_parents():
+                p = self.get_parent()
+                if p is not None:
                     create_update_cache_job(p, keys_for_parent, decrement)
                 self.unregister_dirty(decrement)
             else:
@@ -568,7 +569,8 @@ class CachedTreeItem(TreeItem):
         to the default queue
         """
         all_cache_methods = CachedMethods.get_all()
-        for p in self.get_parents():
+        p = self.get_parent()
+        if p is not None:
             p.register_all_dirty()
             create_update_cache_job(p, all_cache_methods)
 
