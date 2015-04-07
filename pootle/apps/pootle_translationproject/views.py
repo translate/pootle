@@ -83,7 +83,7 @@ def overview(request, translation_project, dir_path, filename=None):
         if project.code in cookie_data:
             stored_mtime = cookie_data[project.code]
 
-    if announcement is not None:
+    if has_announcement:
         ann_mtime = dateformat.format(announcement.modified_on, 'U')
         if ann_mtime != stored_mtime:
             is_sidebar_open = True
