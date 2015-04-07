@@ -91,6 +91,15 @@ PTL.common = {
     helpers.updateRelativeDates();
     setInterval(helpers.updateRelativeDates, 6e4);
 
+    // Tipsy setup
+    $(document).tipsy({
+      gravity: $.fn.tipsy.autoBounds2(150, 'n'),
+      html: true,
+      fade: true,
+      delayIn: 750,
+      opacity: 1,
+      live: '[title], [original-title]'
+    });
     setInterval($.fn.tipsy.revalidate, 1000);
 
     $(".js-select2").select2({

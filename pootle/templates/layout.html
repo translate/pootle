@@ -53,14 +53,6 @@
       PTL.dropdown.init('.js-navbar-dropdown');
       {% endif %}
 
-      $(document).tipsy({
-        gravity: $.fn.tipsy.autoBounds2(150, 'n'),
-        html: true,
-        fade: true,
-        delayIn: 750,
-        opacity: 1,
-        live: '[title], [original-title]'
-      });
       $.ajaxSetup({
         traditional: true,
         crossDomain: false,
