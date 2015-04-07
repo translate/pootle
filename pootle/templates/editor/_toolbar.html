@@ -4,7 +4,9 @@
   <div class="unit-sort">
     <select id="js-filter-sort">
       <option selected value="default">{% trans "Default order" %}</option>
+      {% if display_priority %}
       <option value="priority">{% trans "Important first" %}</option>
+      {% endif %}
       <option value="newest">{% trans "Newest first" %}</option>
       <option value="oldest">{% trans "Oldest first" %}</option>
     </select>

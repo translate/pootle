@@ -77,6 +77,12 @@ def get_translation_context(request, is_terminology=False):
     """
     resource_path = getattr(request, 'resource_path', '')
     vfolder_pk = getattr(request, 'current_vfolder', '')
+    display_priority = False
+
+    if not vfolder_pk:
+        display_priority = VirtualFolder.objects.filter(
+            units__store__pootle_path__startswith=request.pootle_path
+        ).exists()
 
     return {
         'page': 'translate',
@@ -90,6 +96,7 @@ def get_translation_context(request, is_terminology=False):
         'pootle_path': request.pootle_path,
         'ctx_path': request.ctx_path,
         'current_vfolder_pk': vfolder_pk,
+        'display_priority': display_priority,
         'resource_path': resource_path,
         'resource_path_parts': get_path_parts(resource_path),
 
