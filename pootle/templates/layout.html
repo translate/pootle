@@ -45,7 +45,7 @@
 
     $(function () {
       PTL.common.init({
-        hasSidebar: {{ announcement|yesno:'true, false' }}
+        hasSidebar: {{ has_sidebar|yesno:'true, false' }}
       });
 
       {% if user.is_authenticated %}
