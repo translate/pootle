@@ -145,22 +145,21 @@ def overview(request, translation_project, dir_path, filename=None):
 @permission_required('view')
 @get_resource
 def translate(request, translation_project, dir_path, filename):
-    language = translation_project.language
     project = translation_project.project
 
     is_terminology = (project.is_terminology or request.store and
                                                 request.store.is_terminology)
-    context = get_translation_context(request, is_terminology=is_terminology)
+    ctx = get_translation_context(request, is_terminology=is_terminology)
 
-    context.update({
-        'language': language,
+    ctx.update({
+        'language': translation_project.language,
         'project': project,
         'translation_project': translation_project,
 
         'editor_extends': 'translation_projects/base.html',
     })
 
-    return render(request, "editor/main.html", context)
+    return render(request, "editor/main.html", ctx)
 
 
 @get_path_obj
