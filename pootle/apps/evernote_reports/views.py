@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import render_to_response
@@ -30,7 +31,7 @@ from pootle.core.log import PAID_TASK_ADDED, PAID_TASK_DELETED, log
 from pootle.core.utils.timezone import make_aware, make_naive
 from pootle.core.views import AjaxResponseMixin
 from pootle_misc.util import (ajax_required, jsonify, get_date_interval,
-                              get_max_month_datetime)
+                              get_max_month_datetime, import_func)
 from pootle_profile.views import (NoDefaultUserMixin, TestUserFieldMixin,
                                   DetailView)
 from pootle_statistics.models import ScoreLog
@@ -418,7 +419,7 @@ def get_activity_data(request, user, month):
         scores = list(scores.order_by(SCORE_TRANSLATION_PROJECT))
         json['grouped'] = get_grouped_paid_words(scores, user, month)
         scores.sort(key=lambda x: x.creation_time)
-        json['daily'] = get_daily_activity(scores, start, end)
+        json['daily'] = get_daily_activity(user, scores, start, end)
         json['summary'] = get_summary(scores, start, end)
         tasks = get_paid_tasks(user, start, end)
         for task in tasks:
@@ -449,7 +450,7 @@ def user_date_prj_activity(request):
     return HttpResponse(response, content_type="application/json")
 
 
-def get_daily_activity(scores, start, end):
+def get_daily_activity(user, scores, start, end):
     result_translated = {
         'label': PaidTask.get_task_type_title(
             PaidTaskTypes.TRANSLATION),
@@ -468,6 +469,17 @@ def get_daily_activity(scores, start, end):
         'max_ts': "%d" % (calendar.timegm(end.timetuple()) * 1000),
         'nonempty': False,
     }
+
+    if settings.POOTLE_REPORTS_MARK_FUNC:
+        try:
+            get_mark_data = import_func(settings.POOTLE_REPORTS_MARK_FUNC)
+            result['data'].append({
+                'data': [],
+                'marks': {'show': True},
+                'markdata': get_mark_data(user, start, end)
+            })
+        except ImproperlyConfigured:
+            pass
 
     saved_date = None
     current_day_score = 0

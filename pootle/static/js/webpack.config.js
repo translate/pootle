@@ -49,6 +49,7 @@ var resolve = {
     'jquery-easing': __dirname + '/vendor/jquery/jquery.easing.js',
     'jquery-flot': __dirname + '/vendor/jquery/jquery.flot.js',
     'jquery-flot-stack': __dirname + '/vendor/jquery/jquery.flot.stack.js',
+    'jquery-flot-marks': __dirname + '/vendor/jquery/jquery.flot.marks.js',
     'jquery-flot-time': __dirname + '/vendor/jquery/jquery.flot.time.js',
     'jquery-highlightRegex': __dirname + '/vendor/jquery/jquery.highlightRegex.js',
     'jquery-history': __dirname + '/vendor/jquery/jquery.history.js',

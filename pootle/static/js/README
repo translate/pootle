@@ -193,6 +193,11 @@ Directory contents
 
         https://github.com/flot/flot/blob/master/jquery.flot.js
 
+      - jquery.flot.marks.js :
+        Flot plugin for rendering x-axis marks on plot canvas.
+
+        https://code.google.com/p/flot-marks/
+
       - jquery.flot.stack.js :
         Flot plugin for stacking data sets rather than overlyaing them.
 

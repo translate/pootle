@@ -14,6 +14,7 @@ var moment = require('moment');
 
 require('jquery-flot');
 require('jquery-flot-stack');
+require('jquery-flot-marks');
 require('jquery-flot-time');
 require('jquery-history');
 require('jquery-serializeObject');

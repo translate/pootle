@@ -273,6 +273,33 @@ Configuration settings for applications used by Pootle.
   Enable spam prevention through a captcha.
 
 
+.. setting:: POOTLE_REPORTS_MARK_FUNC
+
+``POOTLE_REPORTS_MARK_FUNC``
+  Default: ``''`` (empty string)
+
+  The graph of a user's activity, within reports, can be `marked
+  <https://code.google.com/p/flot-marks/>`_  to indicate events by using
+  this function. The setting must contain an import path to such a marking
+  function (string).
+
+  The function receives the user and graph ranges and returns an array of
+  applicable marks.
+
+  Parameters:
+
+  - ``username`` - user for whom we're producing this graph
+  - ``start`` (datetime) - start date of the graph
+  - ``end`` (datetime) - end date of the graph
+
+  The function must return an **array of dictionaries** (marks), where
+  every mark has the following properties:
+
+  - ``position``, specifying the point in the x-axis where the mark should
+    be set (UNIX timestamp multiplied by 1000), and
+  - ``label`` specifying the text that will be displayed next to the mark.
+
+
 60-translation.conf
 ^^^^^^^^^^^^^^^^^^^
 
