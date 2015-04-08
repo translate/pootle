@@ -273,6 +273,25 @@ Configuration settings for applications used by Pootle.
   Enable spam prevention through a captcha.
 
 
+.. setting:: POOTLE_REPORTS_MARK_FUNC
+
+``POOTLE_REPORTS_MARK_FUNC``
+  Default: ''
+
+  The timeline graph of user's activity within reports can be
+  `optionally marked <https://code.google.com/p/flot-marks/>`_ using
+  this function.
+
+  The function receives the ``username``, and the ``start`` and
+  ``end`` points (datetime) as parameters.
+  It must return an array of objects where every object has following
+  properties:
+
+  - `position`, specifying the point in the x-axis where the mark should be
+    set (UNIX timestamp multiplied by 1000), and
+
+  - `label` specifying the text that will be displayed next to the mark.
+
 60-translation.conf
 ^^^^^^^^^^^^^^^^^^^
 
