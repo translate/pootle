@@ -78,13 +78,17 @@
 {% if has_sidebar %}
 <div id="sidebar"
   class="js-sidebar{% if is_sidebar_open %} sidebar-open{% endif %}">
-  {% block sidebar_content %}
+  <div id="sidebar-content">
+    {% block sidebar_content %}
 
-  {% if announcement %}
-  {% include "staticpages/_body.html" with page=announcement %}
-  {% endif %}
+    {% if announcement %}
+    <div class="sidebar-group">
+      {% include "staticpages/_body.html" with page=announcement %}
+    </div>
+    {% endif %}
 
-  {% endblock %}
+    {% endblock %}
+  </div>
   <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
 </div>
 {% endif %}

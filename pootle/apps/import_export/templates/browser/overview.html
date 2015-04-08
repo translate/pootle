@@ -3,12 +3,12 @@
 
 {% block sidebar_content %}
 {% if display_download or upload_form %}
-<div id="import-export-sidebar">
+<div class="sidebar-group">
   {% if display_download %}
   <p class="sidebar-action">
     <a href="{% url 'pootle-export' %}?path={{ pootle_path }}"
-      title="{% trans 'Download translation files' %}">
-      <i class="icon-download"></i> <span>{% trans 'Download' %}</span>
+      title="{% trans 'Download translation files for offline translation' %}">
+      <i class="icon-download"></i> <span>{% trans 'Download for offline translation' %}</span>
     </a>
   </p>
   {% endif %}

@@ -433,6 +433,13 @@ td.stats-name a:hover > i + span,
     transition: all 0.3s ease 0s;
 }
 
+#sidebar-content
+{
+    margin: 2em auto;
+    padding: 0 2em;
+    max-width: 960px;
+}
+
 #sidebar.sidebar-open
 {
     width: 30%;
@@ -446,12 +453,12 @@ html[dir="rtl"] #sidebar
     box-shadow: 1px 0px 2px rgba(0, 0, 0, 0.2);
 }
 
-#sidebar #staticpage
+#sidebar #sidebar-content
 {
     display: none;
 }
 
-#sidebar.sidebar-open #staticpage
+#sidebar.sidebar-open #sidebar-content
 {
     display: block;
 }
@@ -492,6 +499,12 @@ html[dir="rtl"] #sidebar-toggle
 
     box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.2);
     border-radius: 0 2px 2px 0;
+}
+
+div.sidebar-group
+{
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -940,6 +953,12 @@ ul.errorlist
     padding: 0 2em;
     font-size: 120%;
     max-width: 960px;
+}
+
+div.sidebar-group #staticpage
+{
+    margin: 0;
+    padding: 0;
 }
 
 #staticpage h1
@@ -2122,11 +2141,6 @@ span.email .i
 /*
  * Import-export styling
  */
-
-#import-export-sidebar {
-    background-color: #e5e5e5;
-    padding: 2em 1em;
-}
 
 .upload-form
 {
