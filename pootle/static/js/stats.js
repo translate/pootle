@@ -40,6 +40,7 @@ var stats = {
   init: function (options) {
     this.retries = 0;
     this.pootlePath = options.pootlePath;
+    this.localeCode = options.localeCode;
     this.processLoadedData(options.data, undefined, true);
 
     $('td.stats-name').filter(':not([dir])').bidi();
@@ -77,7 +78,7 @@ var stats = {
   },
 
   updateTranslationStats: function ($tr, total, value, noTotalDefault) {
-    $tr.find('.stats-number a').html(value);
+    $tr.find('.stats-number a').html(value.toLocaleString(this.localeCode));
     $tr.find('.stats-percentage span').html(
       nicePercentage(value, total, noTotalDefault)
     );
@@ -86,14 +87,14 @@ var stats = {
 
   updateAction: function ($action, count) {
     $action.css('display', count > 0 ? 'inline-block' : 'none');
-    $action.find('.counter').text(count);
+    $action.find('.counter').text(count.toLocaleString(this.localeCode));
   },
 
   updateItemStats: function ($td, count) {
     if (count) {
       $td.removeClass('zero');
       $td.addClass('non-zero');
-      $td.find('a').html(count);
+      $td.find('a').html(count.toLocaleString(this.localeCode));
     } else {
       $td.find('a').html('');
       $td.addClass('zero');
