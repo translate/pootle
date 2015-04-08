@@ -265,15 +265,10 @@ class Command(PootleCommand):
     def _set_wordcount_stats_cache(self, stats, key):
         if key:
             logger.info('Set wordcount stats for %s' % key)
-            cache.set(iri_to_uri(key + ':get_total_wordcount'),
-                      stats['total'], None)
-            cache.set(iri_to_uri(key + ':get_fuzzy_wordcount'),
-                      stats[FUZZY], None)
-            cache.set(iri_to_uri(key + ':get_translated_wordcount'),
-                      stats[TRANSLATED], None)
-            del self.cache_values[key]['get_total_wordcount']
-            del self.cache_values[key]['get_fuzzy_wordcount']
-            del self.cache_values[key]['get_translated_wordcount']
+            cache.set(iri_to_uri(key + ':get_wordcount_stats'),
+                      stats, None)
+
+            del self.cache_values[key]['get_wordcount_stats']
 
     def _set_wordcount_stats(self, unit_filter):
         units = Unit.objects.filter(state__gt=OBSOLETE)
@@ -300,14 +295,16 @@ class Command(PootleCommand):
                 if saved_key:
                     self._set_wordcount_stats_cache(stats, saved_key)
 
-                stats = {'total': 0, FUZZY: 0, TRANSLATED: 0}
+                stats = {'total': 0, 'fuzzy': 0, 'translated': 0}
                 saved_key = key
                 saved_id = item['store']
 
             stats['total'] += item['wordcount']
 
-            if item['state'] in [FUZZY, TRANSLATED]:
-                stats[item['state']] = item['wordcount']
+            if item['state'] == FUZZY:
+                stats['fuzzy'] = item['wordcount']
+            elif item['state'] == TRANSLATED:
+                stats['translated'] = item['wordcount']
 
         if saved_id:
             self._set_wordcount_stats_cache(stats, key)
@@ -323,9 +320,7 @@ class Command(PootleCommand):
             self.cache_values[key].update({
                 'get_last_action': {'id': 0, 'mtime': 0, 'snippet': ''},
                 'get_suggestion_count': 0,
-                'get_total_wordcount': 0,
-                'get_translated_wordcount': 0,
-                'get_fuzzy_wordcount': 0,
+                'get_wordcount_stats': {'total': 0, 'fuzzy': 0, 'translated': 0},
                 'get_mtime': datetime_min,
                 'get_last_updated': {'id': 0, 'creation_time': 0,
                                      'snippet': ''},

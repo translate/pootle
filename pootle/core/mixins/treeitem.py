@@ -62,9 +62,7 @@ class NoCachedStats(Exception):
 class CachedMethods(object):
     """Cached method names."""
     CHECKS = 'get_checks'
-    TOTAL = 'get_total_wordcount'
-    TRANSLATED = 'get_translated_wordcount'
-    FUZZY = 'get_fuzzy_wordcount'
+    WORDCOUNT_STATS = 'get_wordcount_stats'
     LAST_ACTION = 'get_last_action'
     SUGGESTIONS = 'get_suggestion_count'
     MTIME = 'get_mtime'
@@ -100,19 +98,9 @@ class TreeItem(object):
         raise NotImplementedError('`get_cachekey()` not implemented')
 
     @classmethod
-    def _get_total_wordcount(self):
+    def _get_wordcount_stats(self):
         """This method will be overridden in descendants"""
-        return 0
-
-    @classmethod
-    def _get_translated_wordcount(self):
-        """This method will be overridden in descendants"""
-        return 0
-
-    @classmethod
-    def _get_fuzzy_wordcount(self):
-        """This method will be overridden in descendants"""
-        return 0
+        return {'total': 0, 'translated': 0, 'fuzzy': 0}
 
     @classmethod
     def _get_suggestion_count(self):
@@ -161,6 +149,17 @@ class TreeItem(object):
                 sum([item.get_cached(name, from_update)
                      for item in self.children]))
 
+    def _calc_wordcount_stats(self, from_update):
+        result = self._get_wordcount_stats()
+        self.initialize_children()
+        for item in self.children:
+            result = dictsum(
+                result,
+                item.get_cached(CachedMethods.WORDCOUNT_STATS, from_update)
+            )
+
+        return result
+
     def _calc_last_action(self, from_update):
         self.initialize_children()
 
@@ -201,12 +200,8 @@ class TreeItem(object):
         return result
 
     def _calc(self, name, from_update=False):
-        if name == CachedMethods.TOTAL:
-            return self._calc_sum(CachedMethods.TOTAL, from_update)
-        elif name == CachedMethods.TRANSLATED:
-            return self._calc_sum(CachedMethods.TRANSLATED, from_update)
-        elif name == CachedMethods.FUZZY:
-            return self._calc_sum(CachedMethods.FUZZY, from_update)
+        if name == CachedMethods.WORDCOUNT_STATS:
+            return self._calc_wordcount_stats(from_update)
         elif name == CachedMethods.SUGGESTIONS:
             return self._calc_sum(CachedMethods.SUGGESTIONS, from_update)
         elif name == CachedMethods.LAST_ACTION:
@@ -239,17 +234,7 @@ class TreeItem(object):
         }
 
         try:
-            result['total'] = self._calc(CachedMethods.TOTAL)
-        except NoCachedStats:
-            pass
-
-        try:
-            result['translated'] = self._calc(CachedMethods.TRANSLATED)
-        except NoCachedStats:
-            pass
-
-        try:
-            result['fuzzy'] = self._calc(CachedMethods.FUZZY),
+            result.update(self._calc(CachedMethods.WORDCOUNT_STATS))
         except NoCachedStats:
             pass
 
@@ -357,17 +342,7 @@ class CachedTreeItem(TreeItem):
         }
 
         try:
-            result['total'] = self.get_cached(CachedMethods.TOTAL)
-        except NoCachedStats:
-            pass
-
-        try:
-            result['translated'] = self.get_cached(CachedMethods.TRANSLATED)
-        except NoCachedStats:
-            pass
-
-        try:
-            result['fuzzy'] = self.get_cached(CachedMethods.FUZZY),
+            result.update(self.get_cached(CachedMethods.WORDCOUNT_STATS))
         except NoCachedStats:
             pass
 

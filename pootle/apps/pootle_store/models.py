@@ -380,12 +380,7 @@ class Unit(models.Model, base.TranslationUnit):
     # should be called to flag the store cache for a deletion
     # before the unit will be deleted
     def flag_store_before_going_away(self):
-        self.store.mark_dirty(CachedMethods.TOTAL)
-
-        if self.state == FUZZY:
-            self.store.mark_dirty(CachedMethods.FUZZY)
-        elif self.state == TRANSLATED:
-            self.store.mark_dirty(CachedMethods.TRANSLATED)
+        self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
 
         if self.suggestion_set.pending().count() > 0:
             self.store.mark_dirty(CachedMethods.SUGGESTIONS)
@@ -421,7 +416,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         if not self.id:
             self._save_action = UNIT_ADDED
-            self.store.mark_dirty(CachedMethods.TOTAL,
+            self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS,
                                   CachedMethods.LAST_UPDATED)
 
         if self._source_updated:
@@ -438,7 +433,7 @@ class Unit(models.Model, base.TranslationUnit):
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
                     self.state = TRANSLATED
-                    self.store.mark_dirty(CachedMethods.TRANSLATED)
+                    self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
 
                     if not hasattr(self, '_save_action'):
                         self._save_action = TRANSLATION_ADDED
@@ -450,7 +445,7 @@ class Unit(models.Model, base.TranslationUnit):
                 # if it was TRANSLATED then set to UNTRANSLATED
                 if self.state > FUZZY:
                     self.state = UNTRANSLATED
-                    self.store.mark_dirty(CachedMethods.TRANSLATED)
+                    self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
 
         # Updating unit from the .po file should not change its revision property,
         # since that change doesn't require further sync but note that
@@ -492,7 +487,7 @@ class Unit(models.Model, base.TranslationUnit):
         if hasattr(self, '_save_action') and self._save_action == UNIT_ADDED:
             # just added FUZZY unit
             if self.state == FUZZY:
-                self.store.mark_dirty(CachedMethods.FUZZY)
+                self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
 
             action_log(user=self._log_user, action=self._save_action,
                 lang=self.store.translation_project.language.code,
@@ -940,8 +935,7 @@ class Unit(models.Model, base.TranslationUnit):
         if value != (self.state == FUZZY):
             # when Unit toggles its FUZZY state the number of translated words
             # also changes
-            self.store.mark_dirty(CachedMethods.FUZZY,
-                                  CachedMethods.TRANSLATED,
+            self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS,
                                   CachedMethods.LAST_ACTION)
             self._state_updated = True
             # that's additional check
@@ -988,15 +982,12 @@ class Unit(models.Model, base.TranslationUnit):
             # or fuzzy words also changes
             if is_fuzzy:
                 self.state = FUZZY
-                self.store.mark_dirty(CachedMethods.FUZZY)
             else:
                 self.state = TRANSLATED
-                self.store.mark_dirty(CachedMethods.TRANSLATED)
-
         else:
             self.state = UNTRANSLATED
 
-        self.store.mark_dirty(CachedMethods.TOTAL)
+        self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
         self._state_updated = True
         self._save_action = UNIT_RESURRECTED
 
@@ -2049,17 +2040,23 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def get_cachekey(self):
         return self.pootle_path
 
-    def _get_total_wordcount(self):
-        """calculate total wordcount statistics"""
-        return calc_total_wordcount(self.units)
+    def _get_wordcount_stats(self):
+        """calculate full wordcount statistics"""
+        ret = {
+            'total': 0,
+            'translated': 0,
+            'fuzzy': 0
+        }
+        res = self.units.values('state') \
+                        .annotate(wordcount=models.Sum('source_wordcount'))
+        for item in res:
+            ret['total'] += item['wordcount']
+            if item['state'] == TRANSLATED:
+                ret['translated'] = item['wordcount']
+            elif item['state'] == FUZZY:
+                ret['fuzzy'] = item['wordcount']
 
-    def _get_translated_wordcount(self):
-        """calculate translated units statistics"""
-        return calc_translated_wordcount(self.units)
-
-    def _get_fuzzy_wordcount(self):
-        """calculate untranslated units statistics"""
-        return calc_fuzzy_wordcount(self.units)
+        return ret
 
     def _get_checks(self):
         try:
