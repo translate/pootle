@@ -337,12 +337,14 @@ html[dir="rtl"] ul.icons
 /* Hack to avoid ugly underlines in the space between icons and text */
 
 td.stats-name a:hover,
+.sidebar-action a:hover,
 .last-action > a:hover
 {
     text-decoration: none;
 }
 
 td.stats-name a:hover > i + span,
+.sidebar-action a:hover > i + span,
 .last-action > a:hover > img + span
 {
     text-decoration: underline;
@@ -2126,10 +2128,7 @@ span.email .i
     padding: 2em 1em;
 }
 
-#upload-form {
-    margin-top: .5em;
-}
-
-#upload-form input[type="file"] {
+.upload-form
+{
     display: none;
 }

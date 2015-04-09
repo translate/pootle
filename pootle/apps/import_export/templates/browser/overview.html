@@ -5,23 +5,34 @@
 {% if display_download or upload_form %}
 <div id="import-export-sidebar">
   {% if display_download %}
-  <a href="{% url 'pootle-export' %}?path={{ pootle_path }}"
-    title="{% trans 'Download translation files' %}">
-    <i class="icon-download"></i> <span>{% trans 'Download' %}</span>
-  </a>
+  <p class="sidebar-action">
+    <a href="{% url 'pootle-export' %}?path={{ pootle_path }}"
+      title="{% trans 'Download translation files' %}">
+      <i class="icon-download"></i> <span>{% trans 'Download' %}</span>
+    </a>
+  </p>
   {% endif %}
 
   {% if upload_form %}
-  <form action="" method="post" enctype="multipart/form-data" id="upload-form">
+  <p class="sidebar-action">
+    <a href="" id="js-open-upload-dialog"
+      title="{% trans 'Upload translation files or archives in .zip format' %}">
+      <i class="icon-upload"></i> <span>{% trans 'Upload translations' %}</span>
+    </a>
+  </p>
+
+  <form action="" method="post" enctype="multipart/form-data"
+    id="js-upload-form" class="upload-form">
     {% csrf_token %}
-    <i class="icon-upload"></i>
     {% for field in upload_form %}
       {{ field }}
-      {{ field.errors }}
     {% endfor %}
-    <input type="text" id="js-fake-upload" value="{% trans 'Select' %}" />
-    <input type="submit" value="{% trans 'Upload' %}" />
+    <input type="submit" />
   </form>
+  {# Dirty hack: Upload form is hidden, so render errors out of it so they get displayed. #}
+  {% for field in upload_form %}
+    <div>{{ field.errors }}</div>
+  {% endfor %}
   {% endif %}
 </div>
 {% endif %}
@@ -36,18 +47,19 @@
 {% if upload_form %}
 <script type="text/javascript">
 $(function () {
-  document.getElementById("js-file-upload-input").onchange = function () {
-    var filename =  this.value.replace("C:\\fakepath\\", "");
-    document.getElementById("js-fake-upload").value = filename;
-  };
-
-  document.getElementById("js-fake-upload").onclick = function () {
+  document.getElementById("js-open-upload-dialog").onclick = function () {
+    // Open the file browser dialog to select a file to upload.
     document.getElementById("js-file-upload-input").click();
+    // Prevent visiting URL.
+    return false;
   };
 
-  document.getElementById("js-fake-upload").onchange = function () {
-    if (document.getElementById("js-fake-upload").value.length === 0) {
-      document.getElementById("js-file-upload-input").value = "";
+  document.getElementById("js-file-upload-input").onchange = function () {
+    var filename = this.value.replace("C:\\fakepath\\", "");
+
+    // Submit form only if there is some actual value on the file input.
+    if (filename.length !== 0) {
+      document.getElementById("js-upload-form").submit();
     }
   };
 });
