@@ -25,7 +25,7 @@ from pootle_misc.util import jsonify
 from staticpages.models import StaticPage
 
 
-ANN_COOKIE_NAME = 'project-announcements'
+SIDEBAR_COOKIE_NAME = 'pootle-overview-sidebar'
 
 
 @get_path_obj
@@ -73,8 +73,8 @@ def overview(request, translation_project, dir_path, filename=None):
     new_mtime = None
     cookie_data = {}
 
-    if ANN_COOKIE_NAME in request.COOKIES:
-        json_str = unquote(request.COOKIES[ANN_COOKIE_NAME])
+    if SIDEBAR_COOKIE_NAME in request.COOKIES:
+        json_str = unquote(request.COOKIES[SIDEBAR_COOKIE_NAME])
         cookie_data = json.loads(json_str)
 
         if 'isOpen' in cookie_data:
@@ -136,7 +136,7 @@ def overview(request, translation_project, dir_path, filename=None):
     if new_mtime is not None:
         cookie_data[project.code] = new_mtime
         cookie_data = quote(json.dumps(cookie_data))
-        response.set_cookie(ANN_COOKIE_NAME, cookie_data)
+        response.set_cookie(SIDEBAR_COOKIE_NAME, cookie_data)
 
     return response
 

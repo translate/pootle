@@ -146,7 +146,7 @@ PTL.common = {
     $(document).on('click', '.js-sidebar-toggle', function () {
       var $sidebar = $('.js-sidebar'),
           openClass = 'sidebar-open',
-          cookieName = 'project-announcements',
+          cookieName = 'pootle-overview-sidebar',
           cookieData = JSON.parse($.cookie(cookieName)) || {};
 
       $sidebar.toggleClass(openClass);
