@@ -9,7 +9,6 @@
 
 from django.contrib import auth
 from django.contrib.auth.forms import AuthenticationForm
-from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.utils.encoding import iri_to_uri
