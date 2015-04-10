@@ -505,6 +505,14 @@ div.sidebar-group
 {
     margin: 0;
     padding: 0;
+    padding-bottom: 2em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+div.sidebar-group:last-child
+{
+    padding: 0;
+    border-bottom: none;
 }
 
 
