@@ -1,9 +1,9 @@
 'use strict';
 
-var React = require('react/addons');
-var { PureRenderMixin } = require('react/addons');
+import cx from 'classnames';
 
-var cx = React.addons.classSet;
+var React = require('react');
+var { PureRenderMixin } = require('react');
 
 
 var Tabs = React.createClass({
@@ -61,7 +61,7 @@ var Tabs = React.createClass({
         tabContent = child.props.children;
       }
 
-      return React.addons.cloneWithProps(child, {
+      return React.cloneElement(child, {
           key: index,
           onClick: this.handleClick,
           selected: isActive,

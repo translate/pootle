@@ -8,10 +8,10 @@
 
 'use strict';
 
-var React = require('react/addons');
-var _ = require('underscore');
+import cx from 'classnames';
 
-var cx = React.addons.classSet;
+var React = require('react');
+var _ = require('underscore');
 
 
 var Search = React.createClass({
@@ -135,7 +135,7 @@ var SearchBox = React.createClass({
   },
 
   componentDidMount: function () {
-    this.refs.input.getDOMNode().focus();
+    React.findDOMNode(this.refs.input).focus();
   },
 
 
@@ -144,12 +144,12 @@ var SearchBox = React.createClass({
   handleKeyUp: function (e) {
     var key = e.nativeEvent.keyCode;
     if (key === 27) {
-      this.refs.input.getDOMNode().blur();
+      React.findDOMNode(this.refs.input).blur();
     }
   },
 
   onChange: function () {
-    this.setState({searchQuery: this.refs.input.getDOMNode().value});
+    this.setState({searchQuery: React.findDOMNode(this.refs.input).value});
     this.handleSearchDebounced();
   },
 

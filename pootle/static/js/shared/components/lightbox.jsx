@@ -8,13 +8,13 @@
 
 'use strict';
 
-var React = require('react/addons');
+import cx from 'classnames';
+
+var React = require('react');
 
 var LayersMixin = require('mixins/layers');
 
 require('./lightbox.css');
-
-var cx = React.addons.classSet;
 
 
 var classNames = {
