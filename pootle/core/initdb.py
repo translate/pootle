@@ -124,7 +124,7 @@ def create_pootle_permissions():
             'codename': "translate",
         },
         {
-            'name': _("Can review translations"),
+            'name': _("Can review suggestions"),
             'codename': "review",
         },
         {
