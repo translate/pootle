@@ -88,8 +88,8 @@ var Tab = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
-    onClick: React.PropTypes.func.isRequired,
-    tabIndex: React.PropTypes.number.isRequired,
+    onClick: React.PropTypes.func, // Required but added dynamically
+    tabIndex: React.PropTypes.number, // Required but added dynamically
     title: React.PropTypes.string.isRequired,
     selected: React.PropTypes.bool,
   },
