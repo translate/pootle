@@ -8,6 +8,8 @@
 
 'use strict';
 
+import cookie from 'utils/cookie';
+
 // Aliased non-commonJS modules
 
 // Major libraries
@@ -109,6 +111,17 @@ PTL.common = {
     // Hide the help messages for the Select2 multiple selects.
     // FIXME: this needs to go away
     $("select[multiple].js-select2").siblings("span.help_text").hide();
+
+    // Set CSRF token for XHR requests (jQuery-specific)
+    $.ajaxSetup({
+      traditional: true,
+      crossDomain: false,
+      beforeSend: function (xhr, settings) {
+        if (!/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type)) {
+          xhr.setRequestHeader('X-CSRFToken', cookie('csrftoken'));
+        }
+      }
+    });
 
     // Append fragment identifiers for login redirects
     // TODO: create a named function

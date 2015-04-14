@@ -53,16 +53,6 @@
       PTL.dropdown.init('.js-navbar-dropdown');
       {% endif %}
 
-      $.ajaxSetup({
-        traditional: true,
-        crossDomain: false,
-        beforeSend: function (xhr, settings) {
-          if (!/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type)) {
-            xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
-          }
-        }
-      });
-
       {% if display_agreement %}
       PTL.agreement.init('{% url "pootle-staticpages-legal-agreement" %}');
       {% endif %}
