@@ -3,10 +3,6 @@
 
 {% block body_id %}admindashboard{% endblock %}
 
-{% block breadcrumbs %}
-{{ block.super }}
-{% endblock %}
-
 {% block section_body %}
 <div id="serverstats" class="module first" lang="{{ LANGUAGE_CODE }}">
   <div class="hd">
@@ -16,19 +12,24 @@
     <table>
       <tbody>
         <tr>
-          <th scope="row">{% trans "Submissions" %}</th><td class="stats-number">{{ server_stats.submission_count }}</td>
+          <th scope="row">{% trans "Submissions" %}</th>
+          <td class="stats-number">{{ server_stats.submission_count }}</td>
         </tr>
         <tr>
-          <th scope="row">{% trans "Pending suggestions" %}</th><td class="stats-number">{{ server_stats.pending_count }}</td>
+          <th scope="row">{% trans "Pending suggestions" %}</th>
+          <td class="stats-number">{{ server_stats.pending_count }}</td>
         </tr>
         <tr>
-          <th scope="row">{% trans "Users" %}</th><td class="stats-number">{{ server_stats.user_count }}</td>
+          <th scope="row">{% trans "Users" %}</th>
+          <td class="stats-number">{{ server_stats.user_count }}</td>
         </tr>
       </tbody>
       <tbody id="server-extra-stats"></tbody>
       <tbody>
         <tr>
-          <td colspan="2"><a class="slide tiny" data-target="server-extra-stats">{% trans "More..." %}</a></span></td>
+          <td colspan="2">
+            <a class="slide tiny" data-target="server-extra-stats">{% trans "More..." %}</a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -42,13 +43,21 @@
       <tbody>
         <tr>
           <th scope="row">{% trans "Status" %}</th>
-          <td class="stats-number">{% if rq_stats.is_running %}<i class="icon-tick"></i>&nbsp;{% trans "Running" %}{% else %}<i class="icon-reject"></i>&nbsp;{% trans "Stopped" %}{% endif %}</td>
+          <td class="stats-number">
+            {% if rq_stats.is_running %}
+            <i class="icon-tick"></i> {% trans "Running" %}
+            {% else %}
+            <i class="icon-reject"></i> {% trans "Stopped" %}
+            {% endif %}
+          </td>
         </tr>
         <tr>
-          <th scope="row">{% trans "Pending jobs" %}</th><td class="stats-number">{{ rq_stats.job_count }}</td>
+          <th scope="row">{% trans "Pending jobs" %}</th>
+          <td class="stats-number">{{ rq_stats.job_count }}</td>
         </tr>
         <tr>
-          <th scope="row">{% trans "Failed jobs" %}</th><td class="stats-number">{{ rq_stats.failed_job_count }}</td>
+          <th scope="row">{% trans "Failed jobs" %}</th>
+          <td class="stats-number">{{ rq_stats.failed_job_count }}</td>
         </tr>
       </tbody>
     </table>
