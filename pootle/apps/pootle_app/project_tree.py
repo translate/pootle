@@ -352,7 +352,7 @@ def get_translated_name_gnu(translation_project, store):
     if use_prefix:
         if store.translation_project.language.code == 'templates':
             tprefix = os.path.splitext(store.name)[0]
-            #FIXME: we should detect seperator
+            #FIXME: we should detect separator
             prefix = tprefix + '-'
         else:
             prefix = os.path.splitext(store.name)[0][:-len(store.translation_project.language.code)]
