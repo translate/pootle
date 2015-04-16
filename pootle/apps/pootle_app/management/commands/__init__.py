@@ -57,7 +57,7 @@ class PootleCommand(NoArgsCommand):
                                   self.name, tp)
                 return
         elif hasattr(self, "handle_store"):
-            store_query = tp.stores.all()
+            store_query = tp.stores.live()
             for store in store_query.iterator():
                 logging.info(u"Running %s over %s",
                              self.name, store.pootle_path)

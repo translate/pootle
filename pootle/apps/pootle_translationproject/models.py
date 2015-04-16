@@ -284,13 +284,13 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     def update(self, overwrite=True):
         """Update all stores to reflect state on disk"""
-        stores = self.stores.exclude(file='').filter(state__gte=PARSED)
+        stores = self.stores.live().exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
             store.update(overwrite=overwrite)
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
         """Sync unsaved work on all stores to disk"""
-        stores = self.stores.exclude(file='').filter(state__gte=PARSED)
+        stores = self.stores.live().exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
             store.sync(update_structure=not conservative,
                        conservative=conservative,
@@ -298,7 +298,7 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     def require_units(self):
         """Makes sure all stores are parsed"""
-        for store in self.stores.filter(state__lt=PARSED).iterator():
+        for store in self.stores.live().filter(state__lt=PARSED).iterator():
             try:
                 store.require_units()
             except IntegrityError:
@@ -390,11 +390,11 @@ class TranslationProject(models.Model, CachedTreeItem):
                 termproject = TranslationProject.objects \
                         .get_terminology_project(self.language_id)
                 mtime = termproject.get_cached(CachedMethods.MTIME)
-                terminology_stores = termproject.stores.all()
+                terminology_stores = termproject.stores.live()
             except TranslationProject.DoesNotExist:
                 pass
 
-            local_terminology = self.stores.filter(
+            local_terminology = self.stores.live().filter(
                     name__startswith='pootle-terminology')
             for store in local_terminology.iterator():
                 if mtime is None:

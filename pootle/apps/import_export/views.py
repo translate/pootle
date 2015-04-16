@@ -30,7 +30,7 @@ def export(request):
     if not path:
         raise Http404
 
-    stores = Store.objects.filter(pootle_path__startswith=path)
+    stores = Store.objects.live().filter(pootle_path__startswith=path)
     num_items = stores.count()
 
     if not num_items:

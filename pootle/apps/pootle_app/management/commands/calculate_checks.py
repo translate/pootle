@@ -56,7 +56,7 @@ class Command(RefreshStatsCommand):
 
         logger.info('Initializing stores...')
 
-        stores = Store.objects.all()
+        stores = Store.objects.live()
         if store_filter:
             stores = stores.filter(**store_filter)
 

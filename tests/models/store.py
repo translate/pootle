@@ -36,7 +36,7 @@ def test_delete_mark_obsolete(af_tutorial_subdir_po):
     tp.scan_files()
 
     # Now files that ceased to exist should be marked as obsolete
-    updated_store = Store.objects.with_obsolete().get(pootle_path=pootle_path)
+    updated_store = Store.objects.get(pootle_path=pootle_path)
     assert updated_store.obsolete
 
     # The units they contained are obsolete too

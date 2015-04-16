@@ -132,7 +132,7 @@ def set_resource(request, path_obj, dir_path, filename):
         resource_path = resource_path + filename
 
         try:
-            store = Store.objects.select_related(
+            store = Store.objects.live().select_related(
                 'translation_project',
                 'parent',
             ).get(pootle_path=pootle_path)
@@ -143,7 +143,7 @@ def set_resource(request, path_obj, dir_path, filename):
     if directory is None and not is_404:
         if dir_path:
             try:
-                directory = Directory.objects.get(pootle_path=pootle_path)
+                directory = Directory.objects.live().get(pootle_path=pootle_path)
             except Directory.DoesNotExist:
                 is_404 = True
         else:
@@ -206,14 +206,14 @@ def set_project_resource(request, path_obj, dir_path, filename):
         pootle_path = pootle_path + filename
         resource_path = resource_path + filename
 
-        resources = Store.objects.extra(
+        resources = Store.objects.live().extra(
             where=[
                 'pootle_store_store.pootle_path LIKE %s',
                 'pootle_store_store.pootle_path ' + sql_not_regex + ' %s',
             ], params=[query_pootle_path, disabled_tps_regex]
         ).select_related('translation_project__language')
     else:
-        resources = Directory.objects.extra(
+        resources = Directory.objects.live().extra(
             where=[
                 'pootle_app_directory.pootle_path LIKE %s',
                 'pootle_app_directory.pootle_path ' + sql_not_regex + ' %s',

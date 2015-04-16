@@ -170,9 +170,9 @@ def get_children(directory):
     in the templates.
     """
     directories = [make_directory_item(child_dir)
-                   for child_dir in directory.child_dirs.iterator()]
+                   for child_dir in directory.child_dirs.live().iterator()]
 
     stores = [make_store_item(child_store)
-              for child_store in directory.child_stores.iterator()]
+              for child_store in directory.child_stores.live().iterator()]
 
     return directories + stores

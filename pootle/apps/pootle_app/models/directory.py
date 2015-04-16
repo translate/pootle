@@ -23,12 +23,11 @@ class DirectoryManager(models.Manager):
         # ForeignKey fields with null=True are not selected by
         # select_related unless explicitly specified
         return super(DirectoryManager, self).get_queryset() \
-                                            .filter(obsolete=False) \
                                             .select_related('parent')
 
-    def with_obsolete(self):
-        return super(DirectoryManager, self).get_queryset() \
-                                            .select_related('parent')
+    def live(self):
+        """Filters non-obsolete directories."""
+        return self.filter(obsolete=False)
 
     @cached_property
     def root(self):
@@ -61,7 +60,8 @@ class Directory(models.Model, CachedTreeItem):
     def stores(self):
         """Queryset with all descending stores."""
         from pootle_store.models import Store
-        return Store.objects.filter(pootle_path__startswith=self.pootle_path)
+        return Store.objects.live() \
+                            .filter(pootle_path__startswith=self.pootle_path)
 
     @property
     def is_template_project(self):
@@ -149,8 +149,8 @@ class Directory(models.Model, CachedTreeItem):
         result = []
         if not self.is_projects_root():
             #FIXME: can we replace this with a quicker path query?
-            result.extend([item for item in self.child_stores.iterator()])
-            result.extend([item for item in self.child_dirs.iterator()])
+            result.extend([item for item in self.child_stores.live().iterator()])
+            result.extend([item for item in self.child_dirs.live().iterator()])
         else:
             project_list = [item.project for item in self.child_dirs.iterator()
                             if not item.project.disabled]
@@ -190,10 +190,10 @@ class Directory(models.Model, CachedTreeItem):
         if path not in (None, ''):
             pootle_path = '%s%s' % (self.pootle_path, path)
             try:
-                return Directory.objects.get(pootle_path=pootle_path)
+                return Directory.objects.live().get(pootle_path=pootle_path)
             except Directory.DoesNotExist as e:
                 try:
-                    return Store.objects.get(pootle_path=pootle_path)
+                    return Store.objects.live().get(pootle_path=pootle_path)
                 except Store.DoesNotExist:
                     raise e
         else:
@@ -221,8 +221,8 @@ class Directory(models.Model, CachedTreeItem):
             parents.append(path)
 
         if parents:
-            return Directory.objects.filter(pootle_path__in=parents) \
-                                    .order_by('pootle_path')
+            return Directory.objects.live().filter(pootle_path__in=parents) \
+                                           .order_by('pootle_path')
 
         return Directory.objects.none()
 

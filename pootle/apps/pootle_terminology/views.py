@@ -51,7 +51,7 @@ def create_termunit(term, unit, targets, locations, sourcenotes, transnotes,
 def get_terminology_filename(translation_project):
     try:
         # See if a terminology store already exists
-        return translation_project.stores.filter(
+        return translation_project.stores.live().filter(
             name__startswith='pootle-terminology.',
         ).values_list('name', flat=True)[0]
     except IndexError:
@@ -84,7 +84,7 @@ def extract(request, translation_project):
             sourcelanguage=str(translation_project.project.source_language.code)
         )
 
-        for store in translation_project.stores.iterator():
+        for store in translation_project.stores.live().iterator():
             if store.is_terminology:
                 continue
             extractor.processunits(store.units, store.pootle_path)
@@ -108,7 +108,8 @@ def extract(request, translation_project):
 
         # Calculate maximum terms
         source_words = sum(store._get_total_wordcount()
-                           for store in translation_project.stores.iterator())
+                           for store in translation_project.stores.live()
+                                                                  .iterator())
         maxunits = int(source_words * 0.02)
         maxunits = min(max(settings.MIN_AUTOTERMS, maxunits),
                        settings.MAX_AUTOTERMS)
@@ -161,7 +162,7 @@ def manage(request, translation_project):
 
     if translation_project.project.is_terminology:
         # Which file should we edit?
-        stores = list(Store.objects.filter(
+        stores = list(Store.objects.live().filter(
             translation_project=translation_project,
         ))
         if len(stores) == 1:

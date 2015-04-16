@@ -176,11 +176,8 @@ def add_items(fs_items, db_items, create_or_resurrect_db_item, parent):
 def create_or_resurrect_store(file, parent, name, translation_project):
     """Create or resurrect a store db item with given name and parent."""
     try:
-        # obsolete attribute can't be saved from store.save() method
-        # because of default ObjectManager doesn't contain obsolete stores
-        Store.objects.with_obsolete().filter(parent=parent, name=name) \
-                                     .update(obsolete=False)
         store = Store.objects.get(parent=parent, name=name)
+        store.obsolete = False
         # initialize cache with empty values to avoid errors
         # in RQ jobs stats refreshing
         store.init_cache()
@@ -201,11 +198,8 @@ def create_or_resurrect_store(file, parent, name, translation_project):
 def create_or_resurrect_dir(name, parent):
     """Create or resurrect a directory db item with given name and parent."""
     try:
-        # obsolete attribute can't be saved from dir.save() method
-        # because of default ObjectManager doesn't contain obsolete directories
-        Directory.objects.with_obsolete().filter(parent=parent, name=name) \
-                                         .update(obsolete=False)
         dir = Directory.objects.get(parent=parent, name=name)
+        dir.obsolete = False
         # initialize cache with empty values to avoid errors
         # in RQ jobs stats refreshing
         dir.init_cache()
@@ -226,9 +220,10 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
     dir_set = set(dirs)
 
     existing_stores = dict((store.name, store) for store in
-                           db_dir.child_stores.exclude(file='').iterator())
+                           db_dir.child_stores.live().exclude(file='')
+                                                     .iterator())
     existing_dirs = dict((dir.name, dir) for dir in
-                         db_dir.child_dirs.iterator())
+                         db_dir.child_dirs.live().iterator())
     files, new_files = add_items(
         file_set,
         existing_stores,
@@ -329,7 +324,7 @@ def get_translated_name_gnu(translation_project, store):
              translation_project.project.localfiletype
     # try loading file first
     try:
-        target_store = translation_project.stores.get(
+        target_store = translation_project.stores.live().get(
                 parent__pootle_path=pootle_path,
                 name__iexact=suffix,
         )
@@ -339,13 +334,14 @@ def get_translated_name_gnu(translation_project, store):
         target_store = None
 
     # is this GNU-style with prefix?
-    use_prefix = store.parent.child_stores.exclude(file="").count() > 1 or \
-                 translation_project.stores.exclude(name__iexact=suffix).exclude(file="").count()
+    use_prefix = (store.parent.child_stores.live().exclude(file="").count() > 1 or
+                  translation_project.stores.live().exclude(name__iexact=suffix,
+                                                            file='').count())
     if not use_prefix:
         # let's make sure
         for tp in translation_project.project.translationproject_set.exclude(language__code='templates').iterator():
             temp_suffix = tp.language.code + os.extsep + translation_project.project.localfiletype
-            if tp.stores.exclude(name__iexact=temp_suffix).exclude(file="").count():
+            if tp.stores.live().exclude(name__iexact=temp_suffix).exclude(file="").count():
                 use_prefix = True
                 break
 
@@ -359,7 +355,7 @@ def get_translated_name_gnu(translation_project, store):
             tprefix = prefix[:-1]
 
         try:
-            target_store = translation_project.stores.filter(
+            target_store = translation_project.stores.live().filter(
                     parent__pootle_path=pootle_path,
                     name__in=[
                         tprefix + '-' + suffix,

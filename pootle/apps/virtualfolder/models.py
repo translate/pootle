@@ -94,7 +94,7 @@ class VirtualFolder(models.Model):
             for filename in self.filter_rules.split(","):
                 vf_file = "".join([location, filename])
 
-                qs = Store.objects.filter(pootle_path=vf_file)
+                qs = Store.objects.live().filter(pootle_path=vf_file)
 
                 if qs.exists():
                     self.units.add(*qs[0].units.all())

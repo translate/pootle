@@ -1309,19 +1309,14 @@ class StoreManager(models.Manager):
     def get_queryset(self):
         """Mimics `select_related(depth=1)` behavior. Pending review."""
         return super(StoreManager, self).get_queryset() \
-                                        .filter(obsolete=False) \
                                         .select_related(
                                             'parent',
                                             'translation_project',
                                         )
 
-    def with_obsolete(self):
-        """Mimics `select_related(depth=1)` behavior. Pending review."""
-        return super(StoreManager, self).get_queryset() \
-                                        .select_related(
-                                            'parent',
-                                            'translation_project',
-                                        )
+    def live(self):
+        """Filters non-obsolete stores."""
+        return self.filter(obsolete=False)
 
 
 class Store(models.Model, CachedTreeItem, base.TranslationStore):

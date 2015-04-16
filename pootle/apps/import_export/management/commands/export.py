@@ -70,23 +70,23 @@ class Command(PootleCommand):
                 self.do_translation_project(tp, self.path, **options)
 
     def handle_translation_project(self, translation_project, **options):
-        stores = translation_project.stores.all()
+        stores = translation_project.stores.live()
         prefix = "%s-%s" % (translation_project.project.code,
                             translation_project.language.code)
         self._create_zip(stores, prefix)
 
     def handle_project(self, project, **options):
-        stores = Store.objects.filter(translation_project__project=project)
+        stores = Store.objects.live().filter(translation_project__project=project)
         if not stores:
             raise CommandError("No matches for project %r" % (project))
         self._create_zip(stores, prefix=project.code)
 
     def handle_language(self, language, **options):
-        stores = Store.objects.filter(translation_project__language=language)
+        stores = Store.objects.live().filter(translation_project__language=language)
         self._create_zip(stores, prefix=language.code)
 
     def handle_path(self, path, **options):
-        stores = Store.objects.filter(pootle_path__startswith=path)
+        stores = Store.objects.live().filter(pootle_path__startswith=path)
         if not stores:
             raise CommandError("Could not find store matching %r" % (path))
 

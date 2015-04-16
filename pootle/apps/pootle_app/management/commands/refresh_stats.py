@@ -172,7 +172,7 @@ class Command(PootleCommand):
 
         logger.info('Initializing stores...')
 
-        stores = Store.objects.all()
+        stores = Store.objects.live()
         if store_filter:
             stores = stores.filter(**store_filter)
 
@@ -240,7 +240,8 @@ class Command(PootleCommand):
         for item in queryset.iterator():
             if item['unit__store'] != saved_store:
                 try:
-                    key = Store.objects.get(id=item['unit__store']).get_cachekey()
+                    key = Store.objects.live().get(id=item['unit__store']) \
+                                              .get_cachekey()
                 except Store.DoesNotExist:
                     continue
                 saved_store = item['unit__store']
@@ -291,7 +292,8 @@ class Command(PootleCommand):
         for item in res.iterator():
             if saved_id != item['store']:
                 try:
-                    key = Store.objects.get(id=item['store']).get_cachekey()
+                    key = Store.objects.live().get(id=item['store']) \
+                                              .get_cachekey()
                 except Store.DoesNotExist:
                     continue
 
@@ -384,7 +386,8 @@ class Command(PootleCommand):
 
         for item in queryset.iterator():
             try:
-                key = Store.objects.get(id=item['unit__store']).get_cachekey()
+                key = Store.objects.live().get(id=item['unit__store']) \
+                                          .get_cachekey()
             except Store.DoesNotExist:
                 continue
             logger.info('Set suggestion count for %s' % key)
@@ -403,7 +406,7 @@ class Command(PootleCommand):
 
         for item in queryset.iterator():
             try:
-                key = Store.objects.get(id=item['store']).get_cachekey()
+                key = Store.objects.live().get(id=item['store']).get_cachekey()
             except Store.DoesNotExist:
                 continue
             logger.info('Set mtime for %s' % key)
@@ -424,7 +427,7 @@ class Command(PootleCommand):
             max_time = item['max_creation_time']
             if max_time:
                 try:
-                    store = Store.objects.get(id=item['store'])
+                    store = Store.objects.live().get(id=item['store'])
                 except Store.DoesNotExist:
                     continue
                 unit = store.unit_set.filter(creation_time=max_time)[0]
