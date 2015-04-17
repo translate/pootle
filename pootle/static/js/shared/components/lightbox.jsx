@@ -72,12 +72,14 @@ var ModalContainer = React.createClass({
     if (!document.body.classList.contains(classNames.lock)) {
       this._ownsLock = true;
       document.body.classList.add(classNames.lock);
+      document.addEventListener('keydown', this.handleKeyDown);
     }
   },
 
   componentWillUnmount: function () {
     if (this._ownsLock) {
       document.body.classList.remove(classNames.lock);
+      document.removeEventListener('keydown', this.handleKeyDown);
     }
     this._previousFocus.focus();
   },
@@ -97,8 +99,7 @@ var ModalContainer = React.createClass({
   render: function () {
     return (
       <div className="lightbox-bg">
-        <div className="lightbox-container"
-             onKeyDown={this.handleKeyDown}>
+        <div className="lightbox-container">
           <div className={cx('lightbox-body', this.props.className)}
                style={this.props.style}
                tabIndex="-1">
