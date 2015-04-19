@@ -1826,7 +1826,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 (self.pootle_path, self.last_sync_revision))
             return
 
-        if not self.file and not skip_missing:
+        if not self.file.exists() and not skip_missing:
             # File doesn't exist let's create it
             logging.debug(u"Creating file %s", self.pootle_path)
 
