@@ -57,6 +57,12 @@ def arabic(english):
 
 
 @pytest.fixture
+def french(english):
+    """Require the French language."""
+    return _require_language('fr', 'French')
+
+
+@pytest.fixture
 def fish(english):
     """Require the Fish language ><(((º>"""
     return _require_language(code='fish', fullname='Fish')

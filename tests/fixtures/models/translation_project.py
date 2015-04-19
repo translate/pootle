@@ -38,3 +38,9 @@ def afrikaans_tutorial(afrikaans, tutorial):
 def arabic_tutorial_disabled(arabic, tutorial):
     """Require Arabic Tutorial in disabled state."""
     return _require_disabled_tp(arabic, tutorial)
+
+
+@pytest.fixture
+def french_tutorial(french, tutorial):
+    """Require French Tutorial."""
+    return _require_tp(french, tutorial)

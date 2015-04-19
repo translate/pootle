@@ -43,3 +43,26 @@ def test_delete_mark_obsolete(af_tutorial_subdir_po):
     store_units = Unit.objects.filter(store=updated_store)
     for unit in store_units:
         assert unit.isobsolete()
+
+
+@pytest.mark.django_db
+def test_sync(fr_tutorial_remove_sync_po):
+    """Tests that the new on-disk file is created after sync for existing
+    in-DB Store if the corresponding on-disk file ceased to exist.
+    """
+
+    tp = fr_tutorial_remove_sync_po.translation_project
+    pootle_path = fr_tutorial_remove_sync_po.pootle_path
+
+    # Parse stores
+    for store in tp.stores.all():
+        store.update(overwrite=False, only_newer=False)
+
+    assert fr_tutorial_remove_sync_po.file.exists()
+    os.remove(fr_tutorial_remove_sync_po.file.path)
+
+    from pootle_store.models import Store
+    store = Store.objects.get(pootle_path=pootle_path)
+    assert not store.file.exists()
+    store.sync()
+    assert store.file.exists()
