@@ -202,10 +202,11 @@ PTL.common = {
       $.each($selects, function (i, select) {
         var $select = $(select);
         var options = $("option", $select);
+        var selected;
 
         if (options.length) {
           if (!$select.is("[multiple]")) {
-            var selected = $(":selected", $select);
+            selected = $(":selected", $select);
           }
 
           var opsArray = $.makeArray(options);
