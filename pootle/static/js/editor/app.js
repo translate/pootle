@@ -460,7 +460,7 @@ PTL.editor = {
 
     PTL.editor.hlSearch();
 
-    if (PTL.editor.settings.tmUrl != '') {
+    if (PTL.editor.settings.tmUrl !== '') {
       PTL.editor.getTMUnits();
     }
 
@@ -944,15 +944,15 @@ PTL.editor = {
         return;
     }
 
-    if (xhr.status == 0) {
+    if (xhr.status === 0) {
       msg = gettext("Error while connecting to the server");
-    } else if (xhr.status == 402) {
+    } else if (xhr.status === 402) {
       captcha.onError(xhr, 'PTL.editor.error');
-    } else if (xhr.status == 404) {
+    } else if (xhr.status === 404) {
       msg = gettext("Not found");
-    } else if (xhr.status == 500) {
+    } else if (xhr.status === 500) {
       msg = gettext("Server error");
-    } else if (s == "timeout") {
+    } else if (s === 'timeout') {
       msg = gettext("The server seems down. Try again later.");
     } else {
       // Since we use jquery-jsonp, we must differentiate between
@@ -1781,7 +1781,7 @@ PTL.editor = {
       PTL.editor.ctxGap -= PTL.editor.ctxStep;
 
       if (PTL.editor.ctxGap >= 0) {
-        if (PTL.editor.ctxGap == 0) {
+        if (PTL.editor.ctxGap === 0) {
           PTL.editor.editCtxUI({hasData: false, replace: true});
           $.cookie('ctxShow', false, {path: '/'});
         }
@@ -1910,7 +1910,7 @@ PTL.editor = {
 
     // Always abort previous requests so we only get results for the
     // current unit
-    if (PTL.editor.timelineReq != null) {
+    if (PTL.editor.timelineReq !== null) {
       PTL.editor.timelineReq.abort();
     }
 
@@ -2030,7 +2030,7 @@ PTL.editor = {
 
     // Always abort previous requests so we only get results for the
     // current unit
-    if (this.tmReq != null) {
+    if (this.tmReq !== null) {
       this.tmReq.abort();
     }
 
