@@ -152,7 +152,7 @@ class Language(models.Model, TreeItem):
     ### TreeItem
 
     def get_children(self):
-        return self.translationproject_set.enabled()
+        return self.translationproject_set.live()
 
     def get_cachekey(self):
         return self.directory.pootle_path

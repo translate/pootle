@@ -22,8 +22,7 @@ def _require_disabled_tp(language, project):
     from pootle_translationproject.models import create_translation_project
 
     tp = create_translation_project(language, project)
-    tp.disabled = True
-    tp.save()
+    tp.directory.makeobsolete()
 
     return tp
 

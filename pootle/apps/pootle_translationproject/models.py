@@ -44,13 +44,13 @@ class TranslationProjectNonDBState(object):
         self.termmatchermtime = None
 
 
-def create_or_enable_translation_project(language, project):
+def create_or_resurrect_translation_project(language, project):
     tp = create_translation_project(language, project)
     if tp is not None:
-        if tp.disabled:
-            tp.disabled = False
-            tp.save()
-            logging.info(u"Enabled %s", tp)
+        if tp.directory.obsolete:
+            tp.directory.obsolete = False
+            tp.directory.save()
+            logging.info(u"Resurrected %s", tp)
         else:
             logging.info(u"Created %s", tp)
 
@@ -81,14 +81,14 @@ def scan_translation_projects(languages=None, projects=None):
             project.save()
         else:
             lang_query = Language.objects.exclude(
-                    id__in=project.translationproject_set.enabled() \
+                    id__in=project.translationproject_set.live() \
                                   .values_list('language', flat=True)
                 )
             if languages:
                 lang_query = lang_query.filter(code__in=languages)
 
             for language in lang_query.iterator():
-                create_or_enable_translation_project(language, project)
+                create_or_resurrect_translation_project(language, project)
 
 
 class TranslationProjectManager(models.Manager):
@@ -115,11 +115,15 @@ class TranslationProjectManager(models.Manager):
         return self.get(language=language_id,
                         project__checkstyle='terminology')
 
-    def enabled(self):
-        return self.filter(disabled=False, project__disabled=False)
+    def live(self):
+        """Filters translation projects that have non-obsolete directories
+        and they belong to enabled projects."""
+        return self.filter(directory__obsolete=False, project__disabled=False)
 
     def disabled(self):
-        return self.filter(Q(disabled=True) | Q(project__disabled=True))
+        """Filters translation projects that have obsolete directories or they
+        belong to disabled projects."""
+        return self.filter(Q(directory__obsolete=True) | Q(project__disabled=True))
 
     def for_user(self, user):
         """Filters translation projects for a specific user.
@@ -134,7 +138,7 @@ class TranslationProjectManager(models.Manager):
         if user.is_superuser:
             return self.all()
 
-        return self.enabled()
+        return self.live()
 
 
 class TranslationProject(models.Model, CachedTreeItem):
@@ -147,7 +151,6 @@ class TranslationProject(models.Model, CachedTreeItem):
             db_index=True, editable=False)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
-    disabled = models.BooleanField(verbose_name=_('Disabled'), default=False)
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
             settings.PARSE_POOL_CULL_FREQUENCY)
@@ -236,15 +239,15 @@ class TranslationProject(models.Model, CachedTreeItem):
     def save(self, *args, **kwargs):
         created = self.id is None
 
-        project_dir = self.project.get_real_path()
-        if not self.disabled:
-            from pootle_app.project_tree import get_translation_project_dir
-            self.abs_real_path = get_translation_project_dir(self.language,
-                 project_dir, self.file_style, make_dirs=not self.disabled)
+        self.directory = self.language.directory \
+                                      .get_or_make_subdir(self.project.code)
+        self.pootle_path = self.directory.pootle_path
 
-            self.directory = self.language.directory \
-                                          .get_or_make_subdir(self.project.code)
-            self.pootle_path = self.directory.pootle_path
+        project_dir = self.project.get_real_path()
+        from pootle_app.project_tree import get_translation_project_dir
+        self.abs_real_path = get_translation_project_dir(self.language,
+             project_dir, self.file_style,
+             make_dirs=not self.directory.obsolete)
 
         super(TranslationProject, self).save(*args, **kwargs)
 
@@ -320,22 +323,12 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     ### /TreeItem
 
-    def disable_if_missing(self):
-        """Disable the current translation project
-        if its directory doesn't exist.
-
-        :return: True if the current translation_project (i.e. self)
-        has been disabled.
+    def directory_exists(self):
+        """Checks if the actual directory for the translation project
+        exists on-disk.
         """
-        if not self.disabled and does_not_exist(self.abs_real_path):
-            logging.info(u"Disabling %s", self)
-            self.disabled = True
-            self.save()
-            self.update_parent_cache()
+        return not does_not_exist(self.abs_real_path)
 
-            return True
-
-        return False
 
     def scan_files(self):
         """Scans the file system and returns a list of translation files.
