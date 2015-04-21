@@ -582,10 +582,10 @@ PTL.editor = {
 
     var targets = $('.js-translation-area');
     if (targets.length) {
-      var i, active,
+      var active,
           max = cleanSources.length - 1;
 
-      for (var i=0; i<targets.length; i++) {
+      for (let i=0; i<targets.length; i++) {
         var newval = cleanSources[i] || cleanSources[max];
         $(targets.get(i)).val(newval).trigger('input');
       }
