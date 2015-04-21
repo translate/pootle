@@ -43,3 +43,9 @@ def arabic_tutorial_disabled(arabic, tutorial):
 def french_tutorial(french, tutorial):
     """Require French Tutorial."""
     return _require_tp(french, tutorial)
+
+
+@pytest.fixture
+def spanish_tutorial(spanish, tutorial):
+    """Require French Tutorial."""
+    return _require_tp(spanish, tutorial)

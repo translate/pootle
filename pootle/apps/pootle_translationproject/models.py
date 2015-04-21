@@ -359,7 +359,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         else:
             file_filter = lambda filename: True
 
-        all_files, new_files = add_files(
+        all_files, new_files, is_empty = add_files(
                 self,
                 ignored_files,
                 ext,

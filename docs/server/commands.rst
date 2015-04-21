@@ -245,7 +245,9 @@ added on disk:
 
 - Translation projects will be scanned for new files and
   directories. In-DB files and directories that no longer exist on disk
-  will be **marked as obsolete**.
+  will be **marked as obsolete**. Also any in-DB directory will be
+  **marked as obsolete** if this directory is empty or contains empty
+  directories only.
 
 - In-DB stores will be updated with the contents of the on-disk files.
   New units will be **added** to the store, units that ceased to exist

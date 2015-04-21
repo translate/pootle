@@ -243,14 +243,20 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
         db_dir,
     )
 
+    is_empty = len(files) == 0
     for db_subdir in db_subdirs:
         fs_subdir = os.path.join(relative_dir, db_subdir.name)
-        _files, _new_files = add_files(translation_project, ignored_files, ext,
-                                       fs_subdir, db_subdir, file_filter)
+        _files, _new_files, _is_empty = \
+            add_files(translation_project, ignored_files, ext, fs_subdir,
+                      db_subdir, file_filter)
         files += _files
         new_files += _new_files
+        is_empty &= _is_empty
 
-    return files, new_files
+    if is_empty:
+        db_dir.makeobsolete()
+
+    return files, new_files, is_empty
 
 
 def to_podir_path(path):

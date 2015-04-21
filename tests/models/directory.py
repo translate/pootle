@@ -68,3 +68,18 @@ def test_delete_mark_obsolete_resurrect_sync(fr_tutorial_subdir_to_remove_po):
     updated_store.sync(only_newer=False)
     # Now file and directory for the store should exist
     assert os.path.exists(updated_store.file.path)
+
+
+@pytest.mark.django_db
+def test_scan_empty_project_obsolete_dirs(es_tutorial_subdir_remove_po):
+    """Tests that the in-DB Directories are marked as obsolete
+    if the on-disk directories are empty.
+    """
+    spanish_tutorial = es_tutorial_subdir_remove_po.translation_project
+    os.remove(es_tutorial_subdir_remove_po.file.path)
+
+    spanish_tutorial.scan_files()
+    for item in spanish_tutorial.directory.child_dirs.all():
+        assert item.obsolete
+
+    assert spanish_tutorial.directory.obsolete
