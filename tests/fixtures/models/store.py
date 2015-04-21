@@ -87,6 +87,6 @@ def fr_tutorial_subdir_to_remove_po(settings, french_tutorial, system):
 
 @pytest.fixture
 def fr_tutorial_remove_sync_po(settings, french_tutorial, system):
-    """Require the /af/tutorial/remove_sync_tutorial.po store."""
+    """Require the /fr/tutorial/remove_sync_tutorial.po store."""
     po_directory = settings.PODIRECTORY
     return _require_store(french_tutorial, po_directory, 'remove_sync_tutorial.po')
