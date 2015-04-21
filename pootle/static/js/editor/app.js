@@ -1456,7 +1456,7 @@ PTL.editor = {
 
     // in suggest mode, do not send the fuzzy state flag
     // even if it is set in the form internally
-    delete reqData['state'];
+    delete reqData.state;
 
     $.extend(reqData, PTL.editor.getReqData(), PTL.editor.getSimilarityData(),
              captchaCallbacks);
