@@ -44,11 +44,8 @@
         <tr>
           <th scope="row">{% trans "Status" %}</th>
           <td class="stats-number">
-            {% if rq_stats.is_running %}
-            <i class="icon-tick"></i> {% trans "Running" %}
-            {% else %}
-            <i class="icon-reject"></i> {% trans "Stopped" %}
-            {% endif %}
+            <i class="icon-{{ rq_stats.is_running|yesno:'tick,reject' }}"></i>
+            {{ rq_stats.status_msg }}
           </td>
         </tr>
         <tr>

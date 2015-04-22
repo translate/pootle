@@ -100,14 +100,22 @@ def rq_stats():
         workers = Worker.all(queue.connection)
     except ConnectionError:
         return None
-    is_running = False
-    if len(workers) == 1:
-        is_running = not workers[0].stopped
+
+    num_workers = len(workers)
+    is_running = num_workers >= 1 and not workers[0].stopped
+    if is_running:
+        # Translators: this refers to the status of the background job worker
+        status_msg = ungettext('Running (%d worker)', 'Running (%d workers)',
+                               num_workers) % num_workers
+    else:
+        # Translators: this refers to the status of the background job worker
+        status_msg = _('Stopped')
 
     result = {
         'job_count': queue.count,
         'failed_job_count': failed_queue.count,
         'is_running': is_running,
+        'status_msg': status_msg,
     }
 
     return result
