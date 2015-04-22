@@ -8,20 +8,20 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-var React = require('react');
-var _ = require('underscore');
+import Backbone from 'backbone';
+import React from 'react';
+import _ from 'underscore';
 
-var Dialog = require('components/lightbox').Dialog;
-var Modal = require('components/lightbox').Modal;
-var UserProfileForm = require('../forms').UserProfileForm;
+import { Dialog, Modal } from 'components/lightbox';
+
+import { UserProfileForm } from '../forms';
 
 
-var UserProfileEdit = React.createClass({
+let UserProfileEdit = React.createClass({
 
   /* Lifecycle */
 
-  getInitialState: function () {
+  getInitialState() {
     return {
       editing: false,
       confirmClose: false,
@@ -29,7 +29,7 @@ var UserProfileEdit = React.createClass({
     };
   },
 
-  setupRoutes: function (router) {
+  setupRoutes(router) {
     router.on('route:main', function (qs) {
       this.setState({editing: false});
     }.bind(this));
@@ -39,25 +39,25 @@ var UserProfileEdit = React.createClass({
     }.bind(this));
   },
 
-  componentWillMount: function () {
+  componentWillMount() {
     this.setupRoutes(this.props.router);
     Backbone.history.start({pushState: true, root: this.props.appRoot});
   },
 
-  componentWillUpdate: function (nextProps, nextState) {
+  componentWillUpdate(nextProps, nextState) {
     this.handleURL(nextState);
   },
 
 
   /* State-changing handlers */
 
-  handleEdit: function () {
+  handleEdit() {
     this.setState({editing: true});
   },
 
-  handleClose: function (opts) {
+  handleClose(opts) {
     opts = opts || {};
-    var forceClose = opts.forceClose || false;
+    let forceClose = opts.forceClose || false;
 
     if (this.state.isDirty && !forceClose) {
       this.setState({confirmClose: true});
@@ -70,35 +70,35 @@ var UserProfileEdit = React.createClass({
     }
   },
 
-  handleSave: function (item) {
+  handleSave(item) {
     this.handleClose();
     window.location.reload();
   },
 
-  handleDlgOk: function () {
+  handleDlgOk() {
     this.handleClose({forceClose: true});
   },
 
-  handleDlgCancel: function () {
+  handleDlgCancel() {
     this.setState({confirmClose: false});
   },
 
-  handleDirtyFlag: function (isDirty) {
+  handleDirtyFlag(isDirty) {
     this.setState({isDirty: isDirty});
   },
 
 
   /* Handlers */
 
-  handleURL: function (newState) {
-    var newURL = newState.editing ? '/edit/' : '/';
+  handleURL(newState) {
+    let newURL = newState.editing ? '/edit/' : '/';
     this.props.router.navigate(newURL);
   },
 
 
   /* Layout */
 
-  render: function () {
+  render() {
     return (
       <div>
         <div className="edit-profile-btn">
@@ -131,7 +131,8 @@ var UserProfileEdit = React.createClass({
       </div>
     );
   }
+
 });
 
 
-module.exports = UserProfileEdit;
+export default UserProfileEdit;
