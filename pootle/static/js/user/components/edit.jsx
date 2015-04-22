@@ -14,7 +14,6 @@ var _ = require('underscore');
 
 var Dialog = require('components/lightbox').Dialog;
 var Modal = require('components/lightbox').Modal;
-var ModalContainer = require('components/lightbox').ModalContainer;
 var UserProfileForm = require('../forms').UserProfileForm;
 
 
