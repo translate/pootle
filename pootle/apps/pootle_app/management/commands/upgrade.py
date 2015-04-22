@@ -17,11 +17,14 @@
 # You should have received a copy of the GNU General Public License along with
 # Pootle; if not, see <http://www.gnu.org/licenses/>.
 
+import codecs
 import logging
 import os
 from optparse import make_option
 
+from docutils.core import publish_parts
 from translate.__version__ import build as CODE_TTK_BUILDVERSION
+from translate.filters.checks import TeeChecker
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
@@ -30,6 +33,8 @@ from django.core.management.base import BaseCommand
 
 from pootle.__version__ import build as CODE_PTL_BUILDVERSION
 from pootle_app.models.pootle_config import get_pootle_build, get_toolkit_build
+from pootle_misc.checks import check_names, excluded_filters
+from staticpages.models import StaticPage
 
 
 #: Build version referring to Pootle version 2.5.
@@ -39,6 +44,45 @@ DEFAULT_POOTLE_BUILDVERSION = 22000
 #: Build version referring to Translate Toolkit version 1.7.0.
 #: We'll assume db represents version 1.7.0 if no build version is stored.
 DEFAULT_TT_BUILDVERSION = 12005
+
+
+def create_quality_checks_descriptions():
+    """Create the descriptions for all the quality checks."""
+    # First get Evernote quality checks descriptions.
+    filename = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                            'quality_checks_descriptions.html')
+
+    with codecs.open(filename, 'r', 'utf-8') as f:
+        body = f.read()
+
+    # Now get Translate Toolkit quality checks descriptions.
+
+    def get_check_description(name, filterfunc):
+        # Provide a header with an anchor to refer to.
+        description = ('\n<h3 id="%s">%s</h3>\n\n' %
+                       (name, unicode(check_names[name])))
+
+        # Clean the leading whitespace on each docstring line so it gets
+        # properly rendered.
+        docstring = filterfunc.__doc__.replace('        ', '')
+
+        # Render the reStructuredText in the docstring into HTML.
+        description += publish_parts(docstring, writer_name='html')['body']
+        return description
+
+    filterdict = TeeChecker().getfilters(excludefilters=excluded_filters)
+
+    filterdocs = [get_check_description(name, filterfunc)
+                  for (name, filterfunc) in filterdict.iteritems()]
+
+    filterdocs.sort()
+
+    body += u"\n".join(filterdocs)
+
+    # Finally save the quality checks descriptions in a staticpage.
+    checks_page = StaticPage(active=True, title="Quality Checks", body=body,
+                             virtual_path="help/quality-checks")
+    checks_page.save()
 
 
 def calculate_stats():
@@ -131,6 +175,10 @@ class Command(BaseCommand):
 
             if tt_changed:
                 upgrade('ttk', db_tt_buildversion, CODE_TTK_BUILDVERSION)
+
+            # Add staticpage with quality checks descriptions after upgrading
+            # up to Pootle 2.6.0.
+            create_quality_checks_descriptions()
 
             # Dirty hack to drop PootleConfig and SiteConfiguration tables
             # after upgrading up to Pootle 2.6.0.
