@@ -64,7 +64,8 @@ def create_quality_checks_descriptions():
 
         # Clean the leading whitespace on each docstring line so it gets
         # properly rendered.
-        docstring = filterfunc.__doc__.replace('        ', '')
+        docstring = '\n'.join([line.strip()
+                               for line in filterfunc.__doc__.split('\n')])
 
         # Render the reStructuredText in the docstring into HTML.
         description += publish_parts(docstring, writer_name='html')['body']
