@@ -90,9 +90,27 @@ class Command(BaseCommand):
         self.stdout.write("Last indexed revision = %s" % last_indexed_revision)
 
 
-        units_qs = Unit.objects.exclude(target_f__isnull=True) \
-                               .exclude(target_f__exact='') \
-                               .filter(revision__gt=last_indexed_revision)
+        units_qs = Unit.simple_objects \
+            .exclude(target_f__isnull=True) \
+            .exclude(target_f__exact='') \
+            .filter(revision__gt=last_indexed_revision) \
+            .select_related(
+                'submitted_by',
+                'store',
+                'store__translation_project__project',
+                'store__translation_project__language'
+            ).values(
+                'id',
+                'revision',
+                'source_f',
+                'target_f',
+                'submitted_by__username',
+                'submitted_by__full_name',
+                'submitted_by__email',
+                'store__translation_project__project__fullname',
+                'store__pootle_path',
+                'store__translation_project__language__code'
+            ).order_by()
 
         total = units_qs.count()
 
@@ -106,31 +124,27 @@ class Command(BaseCommand):
             sys.exit()
 
         for i, unit in enumerate(units_qs.iterator(), start=1):
+            fullname = (unit['submitted_by__full_name'] or
+                        unit['submitted_by__username'])
+            project = unit['store__translation_project__project__fullname']
+
             email_md5 = None
-            username = None
-            fullname = None
-            submitter = unit.submitted_by
-
-            if submitter:
-                username = submitter.username
-                fullname = submitter.full_name or username
-
-                if submitter.email:
-                    email_md5 = md5(submitter.email).hexdigest()
+            if unit['submitted_by__email']:
+                email_md5 = md5(unit['submitted_by__email']).hexdigest()
 
             es.index(
                 index=INDEX_NAME,
-                doc_type=unit.store.translation_project.language.code,
-                id=unit.id,
+                doc_type=unit['store__translation_project__language__code'],
+                id=unit['id'],
                 body={
-                    'revision': int(unit.revision),
-                    'project': unit.store.translation_project.project.fullname,
-                    'path': unit.store.pootle_path,
-                    'username': username,
+                    'revision': int(unit['revision']),
+                    'project': project,
+                    'path': unit['store__pootle_path'],
+                    'username': unit['submitted_by__username'],
                     'fullname': fullname,
                     'email_md5': email_md5,
-                    'source': unit.source_f,
-                    'target': unit.target_f,
+                    'source': unit['source_f'],
+                    'target': unit['target_f'],
                 }
             )
 
