@@ -64,8 +64,8 @@ def test_get_path_obj_disabled(rf, default, admin, project_foo,
                                afrikaans_tutorial,
                                arabic_tutorial_obsolete,
                                tutorial_disabled):
-    """Ensure the correct path object is retrieved when projects and
-    translation projects are disabled (#3451).
+    """Ensure the correct path object is retrieved when projects are
+    disabled (#3451) or translation projects are obsolete (#3682).
     """
     language_code = afrikaans_tutorial.language.code
     language_code_obsolete = arabic_tutorial_obsolete.language.code
