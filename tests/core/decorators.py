@@ -61,11 +61,15 @@ def test_get_path_obj(rf, default, afrikaans_tutorial):
 
 
 def test_get_path_obj_disabled(rf, default, admin, project_foo,
-                               afrikaans_tutorial, tutorial_disabled):
+                               afrikaans_tutorial,
+                               arabic_tutorial_obsolete,
+                               tutorial_disabled):
     """Ensure the correct path object is retrieved when projects and
     translation projects are disabled (#3451).
     """
     language_code = afrikaans_tutorial.language.code
+    language_code_obsolete = arabic_tutorial_obsolete.language.code
+    project_code_obsolete = arabic_tutorial_obsolete.project.code
     project_code_disabled = tutorial_disabled.code
 
     # Regular users first
@@ -81,10 +85,15 @@ def test_get_path_obj_disabled(rf, default, admin, project_foo,
     with pytest.raises(Http404):
         func(request, project_code=project_code_disabled)
 
-    # Disabled translation project
+    # Disabled project
     with pytest.raises(Http404):
         func(request, language_code=language_code,
              project_code=project_code_disabled)
+
+    # Obsolete translation project
+    with pytest.raises(Http404):
+        func(request, language_code=language_code_obsolete,
+             project_code=project_code_obsolete)
 
     # Now admin users, they should have access to disabled projects too
     request = rf.get('/')
@@ -99,10 +108,15 @@ def test_get_path_obj_disabled(rf, default, admin, project_foo,
     func(request, project_code=project_code_disabled)
     assert isinstance(request.ctx_obj, Project)
 
-    # Disabled translation projects are still inaccessible
+    # Disabled projects are still inaccessible
     with pytest.raises(Http404):
         func(request, language_code=language_code,
              project_code=project_code_disabled)
+
+    # Obsolete translation projects are still inaccessible
+    with pytest.raises(Http404):
+        func(request, language_code=language_code_obsolete,
+             project_code=project_code_obsolete)
 
 
 def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
@@ -147,7 +161,7 @@ def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
 
 
 def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
-                              arabic_tutorial):
+                              arabic_tutorial_obsolete):
     """Tests that the correct resources are set for the given Project
     contexts.
     """
@@ -171,15 +185,18 @@ def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
     func(request, tutorial, '', store_name)
     assert isinstance(request.resource_obj, ProjectResource)
 
-    # Two languages have this file
-    assert len(request.resource_obj.resources) == 2
+    # Two languages had this file, but it was marked as obsolete
+    # for the Arabic language!
+    # Should only contain a single file resource
+    assert len(request.resource_obj.resources) == 1
     assert isinstance(request.resource_obj.resources[0], Store)
 
     # Project, cross-language directory resource
     func(request, tutorial, subdir_name, '')
     assert isinstance(request.resource_obj, ProjectResource)
 
-    # Two languages have this dir, but the Arabic project is disabled!
+    # Two languages have this dir, but it was marked as obsolete for
+    # the Arabic language!
     # Should only contain a single dir resource
-    assert len(request.resource_obj.resources) == 2
+    assert len(request.resource_obj.resources) == 1
     assert isinstance(request.resource_obj.resources[0], Directory)

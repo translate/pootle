@@ -17,7 +17,7 @@ def _require_tp(language, project):
     return create_translation_project(language, project)
 
 
-def _require_disabled_tp(language, project):
+def _require_tp_with_obsolete_dir(language, project):
     """Helper to get/create a new translation project in disabled state."""
     from pootle_translationproject.models import create_translation_project
 
@@ -34,9 +34,9 @@ def afrikaans_tutorial(afrikaans, tutorial):
 
 
 @pytest.fixture
-def arabic_tutorial(arabic, tutorial):
+def arabic_tutorial_obsolete(arabic, tutorial):
     """Require Arabic Tutorial in disabled state."""
-    return _require_tp(arabic, tutorial)
+    return _require_tp_with_obsolete_dir(arabic, tutorial)
 
 
 @pytest.fixture
