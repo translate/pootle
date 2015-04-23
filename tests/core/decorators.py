@@ -61,14 +61,11 @@ def test_get_path_obj(rf, default, afrikaans_tutorial):
 
 
 def test_get_path_obj_disabled(rf, default, admin, project_foo,
-                               afrikaans_tutorial,
-                               arabic_tutorial_disabled, tutorial_disabled):
+                               afrikaans_tutorial, tutorial_disabled):
     """Ensure the correct path object is retrieved when projects and
     translation projects are disabled (#3451).
     """
     language_code = afrikaans_tutorial.language.code
-
-    language_code_disabled = arabic_tutorial_disabled.language.code
     project_code_disabled = tutorial_disabled.code
 
     # Regular users first
@@ -89,11 +86,6 @@ def test_get_path_obj_disabled(rf, default, admin, project_foo,
         func(request, language_code=language_code,
              project_code=project_code_disabled)
 
-    with pytest.raises(Http404):
-        func(request, language_code=language_code_disabled,
-             project_code=project_code_disabled)
-
-
     # Now admin users, they should have access to disabled projects too
     request = rf.get('/')
     request.user = admin
@@ -110,10 +102,6 @@ def test_get_path_obj_disabled(rf, default, admin, project_foo,
     # Disabled translation projects are still inaccessible
     with pytest.raises(Http404):
         func(request, language_code=language_code,
-             project_code=project_code_disabled)
-
-    with pytest.raises(Http404):
-        func(request, language_code=language_code_disabled,
              project_code=project_code_disabled)
 
 
@@ -159,7 +147,7 @@ def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
 
 
 def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
-                              arabic_tutorial_disabled):
+                              arabic_tutorial):
     """Tests that the correct resources are set for the given Project
     contexts.
     """
@@ -183,9 +171,8 @@ def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
     func(request, tutorial, '', store_name)
     assert isinstance(request.resource_obj, ProjectResource)
 
-    # Two languages have this file, but the Arabic project is disabled!
-    # Should only contain a single file resource
-    assert len(request.resource_obj.resources) == 1
+    # Two languages have this file
+    assert len(request.resource_obj.resources) == 2
     assert isinstance(request.resource_obj.resources[0], Store)
 
     # Project, cross-language directory resource
@@ -194,5 +181,5 @@ def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
 
     # Two languages have this dir, but the Arabic project is disabled!
     # Should only contain a single dir resource
-    assert len(request.resource_obj.resources) == 1
+    assert len(request.resource_obj.resources) == 2
     assert isinstance(request.resource_obj.resources[0], Directory)

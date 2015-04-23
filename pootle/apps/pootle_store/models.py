@@ -234,7 +234,6 @@ class UnitManager(models.Manager):
         units_qs = super(UnitManager, self).get_queryset().filter(
             state__gt=OBSOLETE,
             store__translation_project__project__disabled=False,
-            store__translation_project__disabled=False,
         )
 
         # /projects/<project_code>/translate/*

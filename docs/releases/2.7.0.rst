@@ -167,8 +167,8 @@ Administrators
   the fuzzy checkbox by default, but in case it's displayed (because the unit
   was already fuzzy, or some other action turned it fuzzy, such as using MT),
   they are always forced to clear the flag.
-- Projects and Translation Projects can be disabled from the administration
-  page, allowing them to be hidden temporarily while retaining statistics.
+- Projects can be disabled from the administration page, allowing them to
+  be hidden temporarily while retaining statistics.
 - The ``view`` permission is now project-centric, it can be set server-wide or
   for projects, but not for individual language-project combinations.
 
@@ -199,9 +199,9 @@ Command changes
 ---------------
 
 - In ``update_stores`` if a directory doesn't exist while running the command,
-  the project or translation project will be disabled. Thus the
-  ``update_translation_projects`` command has been removed, it's functionality
-  has been merged into ``update_stores`` with this change.
+  the project will be disabled. Thus the ``update_translation_projects``
+  command has been removed, it's functionality has been merged into
+  ``update_stores`` with this change.
 - Added the ``changed_languages`` management command.
 - Individual quality checks can now be recalculated via the ``--check`` flag
   passed to the ``refresh_stats`` management command.
