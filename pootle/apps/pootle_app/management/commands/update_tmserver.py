@@ -19,7 +19,6 @@ from elasticsearch import Elasticsearch
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
-from django.db import connection
 
 from pootle_store.models import Unit
 
@@ -90,9 +89,12 @@ class Command(BaseCommand):
 
         self.stdout.write("Last indexed revision = %s" % last_indexed_revision)
 
-        total = Unit.objects.exclude(target_f__isnull=True) \
-                            .exclude(target_f__exact='') \
-                            .filter(revision__gt=last_indexed_revision).count()
+
+        units_qs = Unit.objects.exclude(target_f__isnull=True) \
+                               .exclude(target_f__exact='') \
+                               .filter(revision__gt=last_indexed_revision)
+
+        total = units_qs.count()
 
         if total == 0:
             self.stdout.write("No translations to index")
@@ -103,49 +105,32 @@ class Command(BaseCommand):
         if options['dry_run']:
             sys.exit()
 
-        sqlquery = """
-        SELECT u.id, u.revision, u.source_f AS source, u.target_f AS target,
-           pu.username, pu.full_name, pu.email,
-           p.fullname AS project, s.pootle_path AS path,
-           l.code AS language
-        FROM pootle_store_unit u
-        LEFT OUTER JOIN accounts_user pu ON u.submitted_by_id = pu.id
-        JOIN pootle_store_store s on s.id = u.store_id
-        JOIN pootle_app_translationproject tp on tp.id = s.translation_project_id
-        JOIN pootle_app_language l on l.id = tp.language_id
-        JOIN pootle_app_project p on p.id = tp.project_id
-        WHERE u.target_f IS NOT NULL AND u.target_f != ''
-        AND revision > ?
-        """
-
-        cursor = connection.cursor()
-        translations = cursor.execute(sqlquery, (last_indexed_revision, ))
-
-        i = 0
-        desc = cursor.description
-        unit = translations.fetchone()
-        while (unit is not None):
-            i += 1
-
-            unit = dict(zip([col[0] for col in desc], unit))
-            fullname = unit['full_name'] or unit['username']
+        for i, unit in enumerate(units_qs.iterator(), start=1):
             email_md5 = None
-            if unit['email']:
-                email_md5 = md5(unit['email']).hexdigest()
+            username = None
+            fullname = None
+            submitter = unit.submitted_by
+
+            if submitter:
+                username = submitter.username
+                fullname = submitter.full_name or username
+
+                if submitter.email:
+                    email_md5 = md5(submitter.email).hexdigest()
 
             es.index(
                 index=INDEX_NAME,
-                doc_type=unit['language'],
-                id=unit['id'],
+                doc_type=unit.store.translation_project.language.code,
+                id=unit.id,
                 body={
-                    'revision': int(unit['revision']),
-                    'project': unit['project'],
-                    'path': unit['path'],
-                    'username': unit['username'],
+                    'revision': int(unit.revision),
+                    'project': unit.store.translation_project.project.fullname,
+                    'path': unit.store.pootle_path,
+                    'username': username,
                     'fullname': fullname,
                     'email_md5': email_md5,
-                    'source': unit['source'],
-                    'target': unit['target'],
+                    'source': unit.source_f,
+                    'target': unit.target_f,
                 }
             )
 
@@ -153,8 +138,6 @@ class Command(BaseCommand):
                 percent = "%.1f" % (i * 100.0 / total)
                 self.stdout.write("%s (%s%%)" % (i, percent), ending='\r')
                 self.stdout.flush()
-
-            unit = translations.fetchone()
 
         self.stdout.write("")
 
