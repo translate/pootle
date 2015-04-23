@@ -8,9 +8,9 @@
 # AUTHORS file for copyright and authorship information.
 
 try:
-    from elasticsearch import Elasticsearch as ES
+    from elasticsearch import Elasticsearch
 except:
-    ES = None
+    Elasticsearch = None
 
 from django.conf import settings
 
@@ -28,8 +28,8 @@ es_params = get_params()
 # TODO support ENGINE param
 # Elasticsearch is the only supported engine now
 es = None
-if es_params is not None and ES is not None:
-    es = ES([{'host': es_params['HOST'], 'port': es_params['PORT']}, ])
+if es_params is not None and Elasticsearch is not None:
+    es = Elasticsearch([{'host': es_params['HOST'], 'port': es_params['PORT']}, ])
     if not es.indices.exists(es_params['INDEX_NAME']):
         es.indices.create(es_params['INDEX_NAME'])
 
