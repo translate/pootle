@@ -50,9 +50,7 @@ from pootle_statistics.models import (SubmissionFields,
 from .fields import (TranslationStoreField, MultiStringField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes
-from .util import (calc_total_wordcount, calc_translated_wordcount,
-                   calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED,
-                   FUZZY, TRANSLATED, get_change_str)
+from .util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED, get_change_str
 from .signals import translation_submitted
 
 

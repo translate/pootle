@@ -11,7 +11,6 @@ import json
 import locale
 import os
 
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.http import HttpResponse
@@ -23,7 +22,6 @@ from django_rq.workers import Worker
 from redis.exceptions import ConnectionError
 
 from pootle.core.decorators import admin_required
-from pootle.core.markup import get_markup_filter
 from pootle_misc.aggregate import sum_column
 from pootle_statistics.models import Submission
 from pootle_store.models import Unit, Suggestion
