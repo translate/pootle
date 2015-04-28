@@ -53,7 +53,8 @@ body.translate #actions
     font-weight: bold;
 }
 
-#translate-actions li.non-zero
+#translate-actions li.non-zero,
+#translate-actions li.back-to-browser
 {
     display: inline-block;
 }
@@ -88,12 +89,12 @@ body.translate #actions
 }
 
 #translate-actions .continue-translation,
-#translate-actions .back-to-browser
+#translate-actions .back-to-browser a
 {
     color: #0489b7;
 }
 
-#translate-actions .back-to-browser
+#translate-actions .back-to-browser a
 {
     padding: 0.1em 0.4em;
     vertical-align: middle;
