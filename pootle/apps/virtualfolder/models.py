@@ -104,6 +104,7 @@ class VirtualFolder(models.Model):
 
                     if Directory.objects.filter(pootle_path=vf_file).exists():
                         qs = Unit.objects.filter(
+                            state__gt=OBSOLETE,
                             store__pootle_path__startswith=vf_file
                         )
                         self.units.add(*qs)
