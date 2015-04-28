@@ -342,6 +342,9 @@ class ScoreLog(models.Model):
     action_code = models.IntegerField(null=False)
     submission = models.ForeignKey(Submission, null=False)
 
+    class Meta:
+        unique_together = ('submission', 'action_code')
+
     @classmethod
     def record_submission(cls, submission):
         """Records a new log entry for ``submission``."""
