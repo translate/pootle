@@ -982,6 +982,11 @@ ul.checks
     font-size: 85%;
 }
 
+.checks .toggle-check
+{
+    display: inline-block;
+}
+
 div.check a
 {
     cursor: help;
