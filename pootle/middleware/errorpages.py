@@ -28,7 +28,6 @@ except ImportError:
 from pootle.core.exceptions import Http400
 from pootle.core.http import (JsonResponseBadRequest, JsonResponseForbidden,
                               JsonResponseNotFound, JsonResponseServerError)
-from pootle_misc.baseurl import get_next
 
 
 class ErrorPagesMiddleware(object):
@@ -52,11 +51,12 @@ class ErrorPagesMiddleware(object):
 
             if not request.user.is_authenticated():
                 msg_args = {
-                    'login_link': "%s%s" % (reverse('account_login'),
-                                            get_next(request)),
+                    'login_link': reverse('account_login'),
                 }
-                login_msg = _('You need to <a href="%(login_link)s">login</a> '
-                              'to access this page.', msg_args)
+                login_msg = _(
+                    'You need to <a class="js-login" href="%(login_link)s">login</a> '
+                    'to access this page.', msg_args
+                )
                 templatevars["login_message"] = login_msg
 
             return HttpResponseForbidden(

@@ -21,6 +21,9 @@ URL_RE = re.compile("https?://", re.I)
 
 CAPTCHA_EXEMPT_URLPATTERNS = (
     'account_login',
+    'account_signup',
+    'account_reset_password',
+    'account_reset_password_from_key',
     'pootle-contact',
 )
 

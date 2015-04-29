@@ -123,7 +123,7 @@
             </ul>
           </li>
           {% else %}
-          <li><a id="js-login" href="{% url 'account_login' %}{{ request|get_next }}"><span class="btn btn-login">{% trans "Sign in" %}</span></a></li>
+          <li><a class="js-login login" href="{% url 'account_login' %}"><span class="btn btn-login">{% trans 'Sign In' %}</span></a></li>
           {% endif %}
           {% block nav_items_post %}{% endblock %}
           {% endblock %}
@@ -178,5 +178,6 @@
     {% block scripts_extra %}{% endblock %}
     {% endblock scripts %}
     {% endblock body %}
+    <div class="js-auth" />{# Mount point for auth views #}
   </body>
 </html>

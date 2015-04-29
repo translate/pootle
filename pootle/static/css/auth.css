@@ -1,0 +1,182 @@
+/*
+ * Copyright (C) Pootle contributors.
+ *
+ * This file is a part of the Pootle project. It is distributed under the GPL3
+ * or later license. See the LICENSE file for a copy of the license and the
+ * AUTHORS file for copyright and authorship information.
+ */
+
+/* Popup window */
+
+.auth-window.lightbox-body
+{
+    font-size: 1.2em;
+    padding: 0;
+    border-radius: 0.25em;
+}
+
+.auth-window .lightbox-header
+{
+    background-color: #eee;
+    padding: 1em 2em;
+    border-radius: 0.25em 0.25em 0 0;
+    text-align: center;
+}
+
+.auth-window .lightbox-title
+{
+    color: #4dbdcb;
+    font-size: 1.3em;
+}
+
+.auth-window .lightbox-content
+{
+    width: 20em;
+    min-height: 22.5em;
+    padding: 0 2em;
+}
+
+.auth-window .lightbox-footer
+{
+    padding: 0 1em 1em;
+    font-size: 0.7em;
+    text-align: center;
+}
+
+
+/* Tabs */
+
+.auth-window .Tabs
+{
+    position: relative;
+    top: -2em;
+}
+
+.auth-window .Tabs__TabList
+{
+    margin-left: -2em;
+    margin-right: -2em;
+}
+
+.auth-window .TabList__Tab
+{
+    box-sizing: border-box;
+    padding: 1em;
+    width: 50%;
+
+    text-align: center;
+
+    background-color: #eee;
+    border-top: 2px solid transparent;
+}
+
+.auth-window .TabList__Tab--is-active
+{
+    background-color: inherit;
+    border-color: #ddd;
+}
+
+.auth-window .Tabs__TabContent
+{
+    padding-top: 1em;
+}
+
+
+/* Forms */
+
+/* Form fields */
+
+.auth-window form .fields
+{
+    color: #888;
+}
+
+.auth-window form .fields label
+{
+    color: #130f30;
+}
+
+.auth-window .fields .errorlist-all
+{
+    margin: 1em 0;
+    text-align: center;
+}
+
+.auth-window .fields .field-wrapper
+{
+    margin: 1em 0;
+}
+
+.auth-window .fields input
+{
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0.5em 0;
+    line-height: 1.5;
+}
+
+.auth-window .fields span
+{
+    display: block;
+}
+
+/* Form actions */
+
+
+.auth-window .actions
+{
+    display: block;
+    text-align: center;
+}
+
+.auth-window .actions > div
+{
+    margin: 1em auto;
+}
+.auth-window .actions.password-forgotten
+{
+    margin-top: -1.2em;
+}
+
+.auth-window .actions .btn
+{
+    margin: 1em auto;
+    width: 50%;
+}
+
+.auth-window .actions.sign-in-social .btn
+{
+    line-height: 3;
+    width: 90%;
+}
+
+.auth-window .actions a
+{
+    font-size: 0.85em;
+}
+
+
+/* General */
+
+.auth-window hr
+{
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1.5em auto;
+    width: 70%;
+}
+
+.auth-window p
+{
+    font-size: 0.85em;
+    font-style: italic;
+    color: #888;
+}
+
+.auth-window .actions.password-reset span,
+.auth-window .actions.sign-up span
+{
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+}
