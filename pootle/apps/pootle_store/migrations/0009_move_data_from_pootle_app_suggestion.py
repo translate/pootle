@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import logging
 from hashlib import md5
 from itertools import groupby
 
@@ -8,8 +9,6 @@ from django.db import connection
 from django.db.utils import IntegrityError
 
 from south.v2 import DataMigration
-
-from pootle.core.log import log
 
 
 _debug = True
@@ -59,17 +58,17 @@ class Migration(DataMigration):
                         sugg.translation_project = pas.translation_project
                         sugg.save()
 
-                        log("pas %d copied and will be deleted" % pas.id)
+                        logging.debug("pas %d copied and will be deleted" % pas.id)
                         stats['ONE_TO_ONE_COPY'] += 1
                         pas.delete()
 
                     else:
                         # there should be no such data in the database
-                        log("%d pending suggestions by %d for %d" % (len_ss, user_id, unit.id))
+                        logging.debug("%d pending suggestions by %d for %d" % (len_ss, user_id, unit.id))
                         stats['MANY_TO_MANY_COPY'] += 1
 
                 elif len_ss > len_app_pending_suggestions:
-                    log("%d pss > %d pas for unit %d" % (len_ss, len_app_pending_suggestions, unit.id))
+                    logging.debug("%d pss > %d pas for unit %d" % (len_ss, len_app_pending_suggestions, unit.id))
                     if len_app_pending_suggestions > 0:
                         stats['PAS_LESS_THAN_PSS'] += 1
                     else:
@@ -79,7 +78,7 @@ class Migration(DataMigration):
 
                 else:
                     # there should be no such data in the database
-                    log("%d pss < %d pas for %d" % (len_ss, len_app_pending_suggestions, unit.id))
+                    logging.debug("%d pss < %d pas for %d" % (len_ss, len_app_pending_suggestions, unit.id))
                     stats['PSS_LESS_THAN_PAS'] += 1
 
         # all pootle_app_suggestions corresponding to pootle_store_suggestions have been already deleted
@@ -126,33 +125,33 @@ class Migration(DataMigration):
                             sub.suggestion_id = connection.cursor().lastrowid
                             sub.save()
 
-                            log("suggestion created from pas %d and sub %d" % (pas.id, sub.id))
+                            logging.debug("suggestion created from pas %d and sub %d" % (pas.id, sub.id))
                             stats['SUG_CREATED_FROM_SUB'] += 1
 
                         except IntegrityError:
-                            log("failed to create duplicated suggestion from pas %d and sub %d" % (pas.id, sub.id))
+                            logging.debug("failed to create duplicated suggestion from pas %d and sub %d" % (pas.id, sub.id))
 
                             sub.delete()
                             stats['DUPLICATED_SUG'] += 1
 
                     except orm['pootle_statistics.Submission'].DoesNotExist:
-                        log('No submission found for pas %d' % pas.id)
+                        logging.debug('No submission found for pas %d' % pas.id)
                         stats['NO_SUB_FOR_PAS'] += 1
 
                 elif pas.state == 'pending':
-                    log('No suggestion found for pending pas %d' % pas.id)
+                    logging.debug('No suggestion found for pending pas %d' % pas.id)
                     stats['NO_PSS_FOR_PENDING_PAS'] += 1
                 else:
-                    log('Delete rejected pas %d' % pas.id)
+                    logging.debug('Delete rejected pas %d' % pas.id)
                     stats['DEL_REJECTED_PAS'] += 1
 
             except orm['pootle_store.Unit'].DoesNotExist:
-                log('no unit for %d' % pas.id)
+                logging.debug('no unit for %d' % pas.id)
                 stats['NO_UNIT_FOR_PAS'] += 1
 
             pas.delete()
 
-        log("%s" % stats)
+        logging.info("%s" % stats)
 
     def backwards(self, orm):
         pass
