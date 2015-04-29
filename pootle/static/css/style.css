@@ -1994,6 +1994,7 @@ table.stats .item.dirty .last-updated
     opacity: 0.35;
 }
 
+.item.is-grayed,
 .item.is-disabled
 {
     font-style: italic;

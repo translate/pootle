@@ -23,7 +23,7 @@
   <tbody class="stats">
     {% for item in table.items %}
 
-    <tr class="item{% if item.is_disabled %} is-disabled{% endif %}">
+    <tr class="item{% if item.is_disabled %} is-disabled{% endif %}{% if item.is_grayed %} is-grayed{% endif %}">
 
       {% if 'name' in table.fields %}
       <td class="stats-name {{ item.icon }}"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>

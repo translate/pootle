@@ -194,6 +194,8 @@ def make_vfolder_item(virtual_folder, pootle_path):
         'title': virtual_folder.name,
         'code': virtual_folder.code,
         'priority': virtual_folder.priority,
+        'is_grayed': (not virtual_folder.is_browsable or
+                      virtual_folder.priority < 1),
         'icon': 'folder',
     }
 
