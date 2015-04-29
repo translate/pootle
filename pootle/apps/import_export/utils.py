@@ -7,7 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from translate.storage import po
+from translate.storage.factory import getclass
 
 from django.utils.translation import ugettext as _
 
@@ -15,8 +15,8 @@ from pootle_store.models import Store
 
 
 def import_file(file):
-    pofile = po.pofile(file.read())
-    header = pofile.parseheader()
+    f = getclass(file.read())
+    header = f.parseheader()
     pootle_path = header.get("X-Pootle-Path")
     if not pootle_path:
         raise ValueError(_("File %r missing X-Pootle-Path header\n") % (file.name))
@@ -43,4 +43,4 @@ def import_file(file):
             % (file.name, e)
         )
 
-    store.update(overwrite=True, store=pofile)
+    store.update(overwrite=True, store=f)
