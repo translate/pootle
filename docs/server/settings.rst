@@ -342,6 +342,24 @@ Translation environment configuration settings.
   Pootle user to be able to read them.
 
 
+.. setting:: POOTLE_TM_SERVER
+
+.. versionadded:: 2.7
+
+``POOTLE_TM_SERVER``
+  Default: Set to ``http://localhost:9200/translations``
+
+  This is configured to access a standard Elasticsearch setup.  Change the
+  settings for any non-standard setup.  Change ``HOST`` and ``PORT`` settings
+  as required.
+
+  Use ``MIN_SCORE`` to set the Levenshtein Distance score.  Set it to ``AUTO``
+  so that Eslasticsearch will adjust the required score depending on the length
+  of the string being translated. Elasticsearch documentation provides further
+  details on `Fuzzy matching
+  <http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/common-options.html#fuzziness>`_.
+
+
 .. setting:: MT_BACKENDS
 
 ``MT_BACKENDS``
