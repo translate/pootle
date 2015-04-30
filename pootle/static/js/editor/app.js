@@ -1425,17 +1425,7 @@ PTL.editor = {
           focusedArea = $('.focusthis')[0];
 
       $checks.html(data.checks).show();
-
-      var blinkClass = function (elem, className, n, delay) {
-          elem.toggleClass(className);
-          if (n > 1) {
-            setTimeout(function() {
-                        blinkClass(elem, className, n-1, delay);
-                      }, delay);
-          }
-      };
-
-      blinkClass($checks, 'blink', 4, 200);
+      utils.blinkClass($checks, 'blink', 4, 200);
       focusedArea.focus();
     } else {
       PTL.editor.gotoNext();

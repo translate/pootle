@@ -203,6 +203,16 @@ var executeFunctionByName = function (functionName, context /*, args */) {
 };
 
 
+var blinkClass = function ($elem, className, n, delay) {
+  $elem.toggleClass(className);
+  if (n > 1) {
+    setTimeout(function() {
+                blinkClass($elem, className, n-1, delay);
+              }, delay);
+  }
+};
+
+
 module.exports = {
   getHash: getHash,
   getParsedHash: getParsedHash,
@@ -214,4 +224,5 @@ module.exports = {
   relativeDate: relativeDate,
   makeSelectableInput: makeSelectableInput,
   executeFunctionByName: executeFunctionByName,
+  blinkClass: blinkClass,
 };
