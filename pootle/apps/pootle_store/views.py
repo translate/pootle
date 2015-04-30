@@ -409,6 +409,32 @@ def _build_units_list(units, reverse=False):
     return return_units
 
 
+def _get_critical_checks_snippet(request, unit):
+    """Retrieves the critical checks snippet.
+
+    :param request: an `HttpRequest` object
+    :param unit: a `Unit` instance for which critical checks need to be
+        rendered.
+    :return: rendered HTML snippet with the failing checks, or `None` if
+        there are no critical failing checks.
+    """
+    has_critical_checks = unit.qualitycheck_set.filter(
+        category=Category.CRITICAL,
+    ).exists()
+
+    if not has_critical_checks:
+        return None
+
+    can_review = check_user_permission(request.profile, 'review',
+                                       unit.store.parent)
+    ctx = {
+        'canreview': can_review,
+        'unit': unit,
+    }
+    template = loader.get_template('editor/units/xhr_checks.html')
+    return template.render(RequestContext(request, ctx))
+
+
 @ajax_required
 def get_units(request):
     """Gets source and target texts and its metadata.
@@ -864,20 +890,7 @@ def submit(request, unit):
                     profile=request.profile,
             )
 
-            has_critical_checks = unit.qualitycheck_set.filter(
-                category=Category.CRITICAL
-            ).exists()
-
-            if has_critical_checks:
-                can_review = check_user_permission(request.profile, 'review',
-                                                   unit.store.parent)
-                ctx = {
-                    'canreview': can_review,
-                    'unit': unit
-                }
-                template = loader.get_template('editor/units/xhr_checks.html')
-                context = RequestContext(request, ctx)
-                json['checks'] = template.render(context)
+            json['checks'] = _get_critical_checks_snippet(request, unit)
 
         rcode = 200
         json['user_score'] = request.profile.public_score
