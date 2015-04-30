@@ -206,9 +206,7 @@ var executeFunctionByName = function (functionName, context /*, args */) {
 var blinkClass = function ($elem, className, n, delay) {
   $elem.toggleClass(className);
   if (n > 1) {
-    setTimeout(function() {
-                blinkClass($elem, className, n-1, delay);
-              }, delay);
+    setTimeout(() => blinkClass($elem, className, n-1, delay), delay);
   }
 };
 
