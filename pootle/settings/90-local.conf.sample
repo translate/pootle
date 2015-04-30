@@ -88,11 +88,11 @@ DATABASES = {
 #    },
 #}
 
-# The directory where the Pootle writes logs to
+#
+# Logging
+#
 
-# (these are the high-level logs of events on store/unit changes
-# and manage.py commands executed)
-
+# The directory where Pootle writes its logs
 POOTLE_LOG_DIRECTORY = working_path('log')
 
 LOGGING = {
