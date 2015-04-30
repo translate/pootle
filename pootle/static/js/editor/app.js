@@ -2119,11 +2119,19 @@ PTL.editor = {
           score.set(data.user_score);
         }
 
+        let hasCriticalChecks = !!data.checks;
+        $('.translate-container').toggleClass('error', hasCriticalChecks);
+        if (hasCriticalChecks) {
+          _refreshChecksSnippet(data.checks);
+        }
+
         element.fadeOut(200, function () {
           $(this).remove();
 
-          // Go to the next unit if there are no more suggestions left
-          if (skipToNext || !$('.js-user-suggestion').length) {
+          // Go to the next unit if there are no more suggestions left,
+          // providing there are no critical failing checks
+          if (!hasCriticalChecks &&
+              (skipToNext || !$('.js-user-suggestion').length)) {
             PTL.editor.gotoNext();
           }
         });

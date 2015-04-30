@@ -1000,6 +1000,8 @@ def accept_suggestion(request, unit, suggid):
                     [highlight_diffs(unit.target.strings[i], target)
                      for i, target in enumerate(sugg.target.strings)]
 
+        json['checks'] = _get_critical_checks_snippet(request, unit)
+
     response = jsonify(json)
     return HttpResponse(response, content_type="application/json")
 

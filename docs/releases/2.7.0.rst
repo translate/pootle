@@ -93,7 +93,7 @@ Editor
     automatically redirected back to overview.
   - If the currently-submitted unit has failing checks then the editor won't
     advance to the next unit and it will be updated displaying the unresolved
-    checks.
+    checks. The same behavior applies when a suggestion is accepted.
   - The *Submit*/*Suggest* button is disabled until a change, over the initial
     state of the unit, is detected.
 
