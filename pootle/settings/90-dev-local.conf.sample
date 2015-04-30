@@ -92,68 +92,6 @@ DATABASES = {
 
 
 #
-# Logging
-#
-
-# The directory where Pootle writes its logs
-POOTLE_LOG_DIRECTORY = working_path('log')
-
-LOGGING = {
-    'version': 1,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-        'action': {
-            'format' : "[%(asctime)s]\t%(message)s",
-            'datefmt' : "%d/%b/%Y %H:%M:%S"
-            # Under Windows, date formatting might give errors when trying to show
-            # localized month names, so use month number instead:
-            #'datefmt' : "%d/%m/%Y %H:%M:%S"
-        },
-    },
-    'handlers': {
-        'null': {
-            'level':'DEBUG',
-            'class':'django.utils.log.NullHandler',
-        },
-        'console':{
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',
-            'formatter': 'simple'
-        },
-        # Log to a text file that can be rotated by logrotate
-        'log_action': {
-            'class': 'logging.handlers.WatchedFileHandler',
-            'filename': os.path.join(POOTLE_LOG_DIRECTORY,
-                                     'pootle-activity.log'),
-            'formatter':'action',
-        },
-    },
-    'loggers': {
-        'django.db.backends': {
-            'handlers': ['null'],  # Quiet by default!
-            'propagate': False,
-            'level':'DEBUG',
-        },
-        'django.request': {
-            'handlers': ['null'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        'action': {
-            'handlers': ['log_action',],
-            'level': 'INFO',
-            'propagate': False,
-        },
-    },
-}
-
-
-#
 # Site
 #
 

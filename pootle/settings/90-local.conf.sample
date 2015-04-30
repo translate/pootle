@@ -95,36 +95,6 @@ DATABASES = {
 # The directory where Pootle writes its logs
 POOTLE_LOG_DIRECTORY = working_path('log')
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'action': {
-            'format' : "[%(asctime)s]\t%(message)s",
-            'datefmt' : "%d/%b/%Y %H:%M:%S"
-            # Under Windows, date formatting might give errors when trying to show
-            # localized month names, so use month number instead:
-            #'datefmt' : "%d/%m/%Y %H:%M:%S"
-        },
-    },
-    'handlers': {
-        # Log to a text file that can be rotated by logrotate
-        'log_action': {
-            'class': 'logging.handlers.WatchedFileHandler',
-            'filename': os.path.join(POOTLE_LOG_DIRECTORY,
-                                     'pootle-activity.log'),
-            'formatter':'action',
-        },
-    },
-    'loggers': {
-        'action': {
-            'handlers': ['log_action',],
-            'level': 'INFO',
-            'propagate': False,
-        },
-    },
-}
-
 
 #
 # Site
