@@ -1424,13 +1424,14 @@ PTL.editor = {
     unit.setTranslation(translations);
     unit.set('isfuzzy', PTL.editor.isFuzzy());
 
-    $('.translate-container').toggleClass('error', !!data.checks);
+    let hasCriticalChecks = !!data.checks;
+    $('.translate-container').toggleClass('error', hasCriticalChecks);
 
     if (data.user_score) {
       score.set(data.user_score);
     }
 
-    if (data.checks) {
+    if (hasCriticalChecks) {
       _refreshChecksSnippet(data.checks);
     } else {
       PTL.editor.gotoNext();
