@@ -849,8 +849,7 @@ def submit(request, unit):
             # Update current unit instance's attributes
             # important to set these attributes after saving Submission
             # because we need to access the unit's state before it was saved
-            if SubmissionFields.TARGET in \
-                    map(lambda x: x[0], form.updated_fields):
+            if SubmissionFields.TARGET in (f[0] for f in form.updated_fields):
                 form.instance.submitted_by = request.profile
                 form.instance.submitted_on = current_time
                 form.instance.reviewed_by = None
