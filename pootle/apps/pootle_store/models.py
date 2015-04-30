@@ -37,8 +37,7 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.storage import PootleFileSystemStorage
-from pootle.core.tmserver import (update as update_tmserver,
-                                  search as get_tmsuggestions)
+from pootle.core.search import ElasticSearchBackend
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle.core.utils.timezone import make_aware
 from pootle_misc.aggregate import max_column
@@ -209,6 +208,9 @@ def stringcount(string):
         return len(string.strings)
     except AttributeError:
         return 1
+
+
+TMServer = ElasticSearchBackend()
 
 
 class UnitManager(models.Manager):
@@ -870,10 +872,10 @@ class Unit(models.Model, base.TranslationUnit):
                 'email_md5': md5(self.submitted_by.email).hexdigest(),
             })
 
-        update_tmserver(self.store.translation_project.language.code, obj)
+        TMServer.update(self.store.translation_project.language.code, obj)
 
     def get_tm_suggestions(self):
-        return get_tmsuggestions(self)
+        return TMServer.search(self)
 
 ##################### TranslationUnit ############################
 
