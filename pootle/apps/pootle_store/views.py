@@ -995,9 +995,10 @@ def accept_suggestion(request, unit, suggid):
 @ajax_required
 @get_unit_context('review')
 def toggle_qualitycheck(request, unit, check_id):
-    json = {}
-    json["udbid"] = unit.id
-    json["checkid"] = check_id
+    json = {
+        'udbid': unit.id,
+        'checkid': suggid,
+    }
 
     try:
         unit.toggle_qualitycheck(check_id,
