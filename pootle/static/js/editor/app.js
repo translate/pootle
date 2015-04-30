@@ -47,6 +47,16 @@ var filterSelectOpts = {
     }, filterSelectOpts);
 
 
+function _refreshChecksSnippet(newChecks) {
+  let $checks = $('.js-unit-checks');
+  let focusedArea = $('.focusthis')[0];
+
+  $checks.html(newChecks).show();
+  utils.blinkClass($checks, 'blink', 4, 200);
+  focusedArea.focus();
+}
+
+
 window.PTL = window.PTL || {};
 
 
@@ -1421,12 +1431,7 @@ PTL.editor = {
     }
 
     if (data.checks) {
-      var $checks = $('.js-unit-checks'),
-          focusedArea = $('.focusthis')[0];
-
-      $checks.html(data.checks).show();
-      utils.blinkClass($checks, 'blink', 4, 200);
-      focusedArea.focus();
+      _refreshChecksSnippet(data.checks);
     } else {
       PTL.editor.gotoNext();
     }
