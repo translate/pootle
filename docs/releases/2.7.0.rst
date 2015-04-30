@@ -47,7 +47,7 @@ Overview
   browsing through languages and projects.
 - No home page. Users are redirected to their preferred language pages
   instead, falling back to the project listings page.
-- Critical errors are pending suggestions are prominently displayed on the
+- Critical errors and pending suggestions are prominently displayed on the
   overview page and not hidden.
 - New navigation scheme:
 
