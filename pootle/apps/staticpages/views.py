@@ -97,6 +97,7 @@ class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
 
 
 class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
+    fields = ('title', 'virtual_path', 'active', 'url', 'body')
 
     success_url = reverse_lazy('pootle-staticpages')
     template_name = 'admin/staticpages/page_create.html'
@@ -128,6 +129,7 @@ class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
 
 
 class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
+    fields = ('title', 'virtual_path', 'active', 'url', 'body')
 
     success_url = reverse_lazy('pootle-staticpages')
     template_name = 'admin/staticpages/page_update.html'
