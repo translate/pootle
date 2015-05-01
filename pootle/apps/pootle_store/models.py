@@ -37,7 +37,7 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.storage import PootleFileSystemStorage
-from pootle.core.search import ElasticSearchBackend
+from pootle.core.search import SearchBroker
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle.core.utils.timezone import make_aware
 from pootle_misc.aggregate import max_column
@@ -210,7 +210,7 @@ def stringcount(string):
         return 1
 
 
-TMServer = ElasticSearchBackend()
+TMServer = SearchBroker()
 
 
 class UnitManager(models.Manager):
