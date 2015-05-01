@@ -22,13 +22,13 @@ class ElasticSearchBackend(SearchBackend):
         super(ElasticSearchBackend, self).__init__(config_name)
         self.es = None
         if self._settings is not None and Elasticsearch is not None:
-            self.es = Elasticsearch([{'host': self._settings['HOST'], 'port': self._settings['PORT']}, ])
+            self._es = Elasticsearch([{'host': self._settings['HOST'], 'port': self._settings['PORT']}, ])
         if self._server_setup_and_alive()
-            if not self.es.indices.exists(self._settings['INDEX_NAME']):
-                self.es.indices.create(self._settings['INDEX_NAME'])
+            if not self._es.indices.exists(self._settings['INDEX_NAME']):
+                self._es.indices.create(self._settings['INDEX_NAME'])
 
     def _server_setup_and_alive(self):
-        return self.es is not None and self.es.ping()
+        return self._es is not None and self._es.ping()
 
     def _is_valuable_hit(self, unit, hit):
         return str(unit.id) != hit['_id']
@@ -40,18 +40,20 @@ class ElasticSearchBackend(SearchBackend):
         counter = {}
         res = []
         language = unit.store.translation_project.language.code
-        es_res = self.es.search(index=self._settings['INDEX_NAME'],
-                                doc_type=language,
-                                body={
-                                    "query": {
-                                        "match": {
-                                            "source": {
-                                                "query": unit.source,
-                                                "fuzziness": self._settings['MIN_SCORE'],
-                                            }
-                                        }
-                                    }
-                                })
+        es_res = self._es.search(
+            index=self._settings['INDEX_NAME'],
+            doc_type=language,
+            body={
+                "query": {
+                    "match": {
+                        "source": {
+                            "query": unit.source,
+                            "fuzziness": self._settings['MIN_SCORE'],
+                        }
+                    }
+                }
+            }
+        )
 
         for hit in es_res['hits']['hits']:
             if self._is_valuable_hit(unit, hit):
