@@ -354,7 +354,7 @@ These commands allow you to perform tasks with virtual folders from the command
 line.
 
 
-.. _commands#add-virtual-folders:
+.. _commands#add_vfolders:
 
 add_vfolders
 ^^^^^^^^^^^^
