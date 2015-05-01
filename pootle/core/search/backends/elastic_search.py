@@ -20,15 +20,24 @@ from ..base import SearchBackend
 class ElasticSearchBackend(SearchBackend):
     def __init__(self, config_name):
         super(ElasticSearchBackend, self).__init__(config_name)
-        self.es = None
-        if self._settings is not None and Elasticsearch is not None:
-            self._es = Elasticsearch([{'host': self._settings['HOST'], 'port': self._settings['PORT']}, ])
-        if self._server_setup_and_alive()
-            if not self._es.indices.exists(self._settings['INDEX_NAME']):
-                self._es.indices.create(self._settings['INDEX_NAME'])
+        self._es = self._get_es_server()
+        self._create_index_if_missing()
 
     def _server_setup_and_alive(self):
         return self._es is not None and self._es.ping()
+
+    def _get_es_server(self):
+        if self._settings is None or Elasticsearch is None:
+            return None
+        return Elasticsearch([
+            {'host': self._settings['HOST'],
+             'port': self._settings['PORT']},
+        ])
+
+    def _create_index_if_missing(self):
+        if self._server_setup_and_alive():
+            if not self._es.indices.exists(self._settings['INDEX_NAME']):
+                self._es.indices.create(self._settings['INDEX_NAME'])
 
     def _is_valuable_hit(self, unit, hit):
         return str(unit.id) != hit['_id']
