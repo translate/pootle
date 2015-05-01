@@ -55,7 +55,7 @@ Adding and updating virtual folders
 -----------------------------------
 
 To add or modify the properties of virtual folders use the
-:ref:`add_vfolders <commands#add-virtual-folders>` management command.
+:ref:`add_vfolders <commands#add_vfolders>` management command.
 
 This command imports a JSON file holding a list of virtual folders, and the
 files included on each virtual folder along with all their attributes. Check
