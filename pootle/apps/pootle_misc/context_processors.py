@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.conf import settings
+from django.utils import translation
 
 from pootle.__version__ import sver
 from pootle_language.models import Language
@@ -43,7 +44,7 @@ def pootle_context(request):
             'DEBUG': settings.DEBUG,
         },
         'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
-        'ALL_LANGUAGES': Language.live.cached_dict(),
+        'ALL_LANGUAGES': Language.live.cached_dict(translation.get_language()),
         'ALL_PROJECTS': Project.objects.cached_dict(request.user),
         'display_agreement': _agreement_context(request),
     }

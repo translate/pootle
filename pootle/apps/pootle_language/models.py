@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import locale
 from collections import OrderedDict
 
 from django.conf import settings
@@ -17,13 +18,10 @@ from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.cache import make_method_key
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import tr_lang, language_dir
-
-
-# FIXME: Generate key dynamically
-CACHE_KEY = 'pootle-languages'
 
 
 class LanguageManager(models.Manager):
@@ -51,13 +49,23 @@ class LiveLanguageManager(models.Manager):
                 project__isnull=True,
             ).distinct()
 
-    def cached_dict(self):
-        languages = cache.get(CACHE_KEY)
-        if not languages:
+    def cached_dict(self, locale_code='en-us'):
+        """Retrieves a sorted list of live language codes and names.
+
+        :param locale_code: the UI locale for which language full names need to
+            be localized.
+        :return: an `OrderedDict`
+        """
+        key = make_method_key(self, 'cached_dict', locale_code)
+        languages = cache.get(key, None)
+        if languages is None:
             languages = OrderedDict(
-                self.order_by('fullname').values_list('code', 'fullname')
+                sorted([(lang[0], tr_lang(lang[1]))
+                        for lang in self.values_list('code', 'fullname')],
+                        cmp=locale.strcoll,
+                        key=lambda x: x[1])
             )
-            cache.set(CACHE_KEY, languages, settings.OBJECT_CACHE_TIMEOUT)
+            cache.set(key, languages, settings.OBJECT_CACHE_TIMEOUT)
 
         return languages
 
@@ -166,4 +174,5 @@ def invalidate_language_list_cache(sender, instance, **kwargs):
     if instance.__class__.__name__ not in ['Language', 'TranslationProject']:
         return
 
-    cache.delete(CACHE_KEY)
+    key = make_method_key('LiveLanguageManager', 'cached_dict', '*')
+    cache.delete_pattern(key)
