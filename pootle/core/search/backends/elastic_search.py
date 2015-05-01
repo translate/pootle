@@ -23,18 +23,18 @@ class ElasticSearchBackend(SearchBackend):
         self.es = None
         if self._settings is not None and Elasticsearch is not None:
             self.es = Elasticsearch([{'host': self._settings['HOST'], 'port': self._settings['PORT']}, ])
-        if self.es.ping():
+        if self._server_setup_and_alive()
             if not self.es.indices.exists(self._settings['INDEX_NAME']):
                 self.es.indices.create(self._settings['INDEX_NAME'])
 
-    def _is_valuable_hit(self, unit, hit):
-        if str(unit.id) == hit['_id']:
-            return False
+    def _server_setup_and_alive(self):
+        return self.es is not None and self.es.ping()
 
-        return True
+    def _is_valuable_hit(self, unit, hit):
+        return str(unit.id) != hit['_id']
 
     def search(self, unit):
-        if self.es is None or not self.es.ping():
+        if not self._server_setup_and_alive():
             return []
 
         counter = {}
@@ -45,9 +45,9 @@ class ElasticSearchBackend(SearchBackend):
                                 body={
                                     "query": {
                                         "match": {
-                                            'source': {
-                                                'query': unit.source,
-                                                'fuzziness': self._settings['MIN_SCORE'],
+                                            "source": {
+                                                "query": unit.source,
+                                                "fuzziness": self._settings['MIN_SCORE'],
                                             }
                                         }
                                     }
@@ -77,8 +77,8 @@ class ElasticSearchBackend(SearchBackend):
         return res
 
     def update(self, language, obj):
-        if self.es is not None and self.es.ping():
-            self.es.index(
+        if self._server_setup_and_alive():
+            self._es.index(
                 index=self._settings['INDEX_NAME'],
                 doc_type=language,
                 body=obj,
