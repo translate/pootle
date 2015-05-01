@@ -1011,7 +1011,7 @@ def accept_suggestion(request, unit, suggid):
 def toggle_qualitycheck(request, unit, check_id):
     json = {
         'udbid': unit.id,
-        'checkid': suggid,
+        'checkid': check_id,
     }
 
     try:
