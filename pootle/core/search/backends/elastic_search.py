@@ -55,8 +55,9 @@ class ElasticSearchBackend(SearchBackend):
 
         for hit in es_res['hits']['hits']:
             if self._is_valuable_hit(unit, hit):
-                if hit['_source']['target'] not in counter:
-                    counter[hit['_source']['target']] = 1
+                translation_pair = hit['_source']['source'] + hit['_source']['target']
+                if translation_pair not in counter:
+                    counter[translation_pair] = 1
                     res.append({
                         'unit_id': hit['_id'],
                         'source': hit['_source']['source'],
@@ -68,10 +69,10 @@ class ElasticSearchBackend(SearchBackend):
                         'email_md5': hit['_source']['email_md5'],
                     })
                 else:
-                    counter[hit['_source']['target']] += 1
+                    counter[translation_pair] += 1
 
         for item in res:
-            item['count'] = counter[item['target']]
+            item['count'] = counter[item['source']+item['target']]
 
         return res
 
