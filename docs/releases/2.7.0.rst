@@ -184,7 +184,8 @@ Sysadmins
   <https://readthedocs.org/projects/django-allauth/>`_.  This gives Pootle
   implicit support for OpenID, OAuth, OAuth2 and Persona sign-in protocols.
 - Integrated ElasticSearch-based local TM server into Pootle. Unit submissions
-  update the index instantly.
+  update the index instantly.  To configure adjust :setting:`POOTLE_TM_SERVER`
+  and to load the TM use the :command:`update_tmserver` management command.
 - The report target for reporting string errors has been dropped in favor of a
   report email address. The report is now sent using an automatically
   pre-filled  contact form. If the project doesn't have a report email then the
