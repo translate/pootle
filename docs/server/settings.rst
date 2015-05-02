@@ -76,6 +76,9 @@ Backend and caching settings.
   Time in seconds the Pootle's statistics cache will last.
 
 
+25-logging.conf
+^^^^^^^^^^^^^^^^
+
 .. setting:: POOTLE_LOG_DIRECTORY
 
 ``POOTLE_LOG_DIRECTORY``
