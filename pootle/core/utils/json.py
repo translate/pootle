@@ -12,13 +12,14 @@ from __future__ import absolute_import
 import json
 
 from django.conf import settings
+from django.core.serializers.json import DjangoJSONEncoder
 from django.utils.encoding import force_unicode
 from django.utils.functional import Promise
 
 from ..markup import Markup
 
 
-class PootleJSONEncoder(json.JSONEncoder):
+class PootleJSONEncoder(DjangoJSONEncoder):
     """Custom JSON encoder for Pootle.
 
     This is mostly implemented to avoid calling `force_unicode` all the time on
@@ -26,8 +27,7 @@ class PootleJSONEncoder(json.JSONEncoder):
     https://docs.djangoproject.com/en/1.4/topics/serialization/#id2
     """
     def default(self, obj):
-        if (isinstance(obj, Promise) or isinstance(obj, Markup) or
-            isinstance(obj, datetime)):
+        if isinstance(obj, Promise) or isinstance(obj, Markup):
             return force_unicode(obj)
 
         return super(PootleJSONEncoder, self).default(obj)
