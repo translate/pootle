@@ -7,7 +7,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -33,7 +32,6 @@ def initdb():
     create_terminology_project()
     create_pootle_permissions()
     create_pootle_permission_sets()
-
     create_default_projects()
     create_default_languages()
     create_default_admin()
