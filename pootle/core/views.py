@@ -24,7 +24,8 @@ from django.views.generic import View
 
 from pootle_misc.util import ajax_required
 
-from .utils.json import PootleJSONEncoder, jsonify
+from .http import JsonResponse, JsonResponseBadRequest
+from .utils.json import PootleJSONEncoder
 
 
 class SuperuserRequiredMixin(object):
@@ -89,18 +90,13 @@ class AjaxResponseMixin(object):
     def dispatch(self, *args, **kwargs):
         return super(AjaxResponseMixin, self).dispatch(*args, **kwargs)
 
-    def render_to_json_response(self, context, **response_kwargs):
-        data = jsonify(context)
-        response_kwargs['content_type'] = 'application/json'
-        return HttpResponse(data, **response_kwargs)
-
     def form_invalid(self, form):
         response = super(AjaxResponseMixin, self).form_invalid(form)
-        return self.render_to_json_response(form.errors, status=400)
+        return JsonResponseBadRequest(response)
 
     def form_valid(self, form):
         response = super(AjaxResponseMixin, self).form_valid(form)
-        return self.render_to_json_response({})
+        return JsonResponse({})
 
 
 class APIView(View):

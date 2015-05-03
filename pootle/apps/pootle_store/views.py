@@ -14,7 +14,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Max, Q
-from django.http import HttpResponse, Http404
+from django.http import Http404
 from django.shortcuts import redirect, render
 from django.template import loader, RequestContext
 from django.utils.translation import to_locale, ugettext as _
@@ -30,7 +30,7 @@ from pootle.core.dateparse import parse_datetime
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
-from pootle.core.utils.json import jsonify
+from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle_app.models.permissions import check_user_permission
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
@@ -524,7 +524,7 @@ def get_units(request):
     if uid_list:
         response['uIds'] = uid_list
 
-    return HttpResponse(jsonify(response), content_type="application/json")
+    return JsonResponse(response)
 
 
 def _is_filtered(request):
@@ -548,9 +548,7 @@ def get_more_context(request, unit):
     qty = int(request.GET.get('qty', 1))
 
     json["ctx"] = _filter_ctx_units(store.units, unit, qty, gap)
-    rcode = 200
-    response = jsonify(json)
-    return HttpResponse(response, status=rcode, content_type="application/json")
+    return JsonResponse(json)
 
 
 @never_cache
@@ -645,8 +643,7 @@ def timeline(request, unit):
         c = RequestContext(request, context)
         json['timeline'] = t.render(c).replace('\n', '')
 
-        response = jsonify(json)
-        return HttpResponse(response, content_type="application/json")
+        return JsonResponse(json)
     else:
         return render(request, "editor/units/timeline.html", context)
 
@@ -675,15 +672,9 @@ def delete_comment(request, unit):
 
     if form.is_valid():
         form.save()
-        json = {}
-        rcode = 200
-    else:
-        json = {'msg': _("Failed to remove comment.")}
-        rcode = 400
+        return JsonResponse({})
 
-    response = jsonify(json)
-
-    return HttpResponse(response, status=rcode, content_type="application/json")
+    return JsonResponseBadRequest({'msg': _("Failed to remove comment.")})
 
 
 def save_comment(request, unit):
@@ -710,15 +701,9 @@ def save_comment(request, unit):
         t = loader.get_template('editor/units/xhr_comment.html')
         c = RequestContext(request, context)
 
-        json = {'comment': t.render(c)}
-        rcode = 200
-    else:
-        json = {'msg': _("Comment submission failed.")}
-        rcode = 400
+        return JsonResponse({'comment': t.render(c)})
 
-    response = jsonify(json)
-
-    return HttpResponse(response, status=rcode, content_type="application/json")
+    return JsonResponseBadRequest({'msg': _("Comment submission failed.")})
 
 
 @never_cache
@@ -785,8 +770,6 @@ def get_edit_unit(request, unit):
     json['tm_suggestions'] = unit.get_tm_suggestions()
     json['is_obsolete'] = unit.isobsolete()
 
-    rcode = 200
-
     # Return context rows if filtering is applied but
     # don't return any if the user has asked not to have it
     current_filter = request.GET.get('filter', 'all')
@@ -801,8 +784,7 @@ def get_edit_unit(request, unit):
             ctx_qty = int(request.COOKIES.get('ctxQty', 1))
             json['ctx'] = _filter_ctx_units(store.units, unit, ctx_qty)
 
-    response = jsonify(json)
-    return HttpResponse(response, status=rcode, content_type="application/json")
+    return JsonResponse(json)
 
 
 @get_unit_context('view')
@@ -816,8 +798,7 @@ def permalink_redirect(request, unit):
 @get_resource
 def get_qualitycheck_stats(request, *args, **kwargs):
     failing_checks = request.resource_obj.get_checks()
-    response = jsonify(failing_checks)
-    return HttpResponse(response, content_type="application/json")
+    return JsonResponse(failing_checks)
 
 
 @ajax_required
@@ -826,8 +807,7 @@ def get_qualitycheck_stats(request, *args, **kwargs):
 @get_resource
 def get_overview_stats(request, *args, **kwargs):
     stats = request.resource_obj.get_stats()
-    response = jsonify(stats)
-    return HttpResponse(response, content_type="application/json")
+    return JsonResponse(stats)
 
 
 @ajax_required
@@ -892,16 +872,11 @@ def submit(request, unit):
 
             json['checks'] = _get_critical_checks_snippet(request, unit)
 
-        rcode = 200
         json['user_score'] = request.profile.public_score
-    else:
-        # Form failed
-        #FIXME: we should display validation errors here
-        rcode = 400
-        json["msg"] = _("Failed to process submission.")
 
-    response = jsonify(json)
-    return HttpResponse(response, status=rcode, content_type="application/json")
+        return JsonResponse(json)
+
+    return JsonResponseBadRequest({'msg': _("Failed to process submission.")})
 
 
 @ajax_required
@@ -940,15 +915,9 @@ def suggest(request, unit):
 
             json['user_score'] = request.profile.public_score
 
-        rcode = 200
-    else:
-        # Form failed
-        #FIXME: we should display validation errors here
-        rcode = 400
-        json["msg"] = _("Failed to process suggestion.")
+        return JsonResponse(json)
 
-    response = jsonify(json)
-    return HttpResponse(response, status=rcode, content_type="application/json")
+    return JsonResponseBadRequest({'msg': _("Failed to process suggestion.")})
 
 
 @ajax_required
@@ -970,8 +939,7 @@ def reject_suggestion(request, unit, suggid):
 
         json['user_score'] = request.profile.public_score
 
-    response = jsonify(json)
-    return HttpResponse(response, content_type="application/json")
+    return JsonResponse(json)
 
 
 @ajax_required
@@ -1002,8 +970,7 @@ def accept_suggestion(request, unit, suggid):
 
         json['checks'] = _get_critical_checks_snippet(request, unit)
 
-    response = jsonify(json)
-    return HttpResponse(response, content_type="application/json")
+    return JsonResponse(json)
 
 
 @ajax_required
@@ -1020,5 +987,4 @@ def toggle_qualitycheck(request, unit, check_id):
     except ObjectDoesNotExist:
         raise Http404
 
-    response = jsonify(json)
-    return HttpResponse(response, content_type="application/json")
+    return JsonResponse(json)

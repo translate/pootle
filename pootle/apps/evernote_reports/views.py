@@ -15,7 +15,6 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import timezone
@@ -27,6 +26,8 @@ from django.views.generic.detail import SingleObjectMixin
 
 from accounts.models import CURRENCIES
 from pootle.core.decorators import admin_required
+from pootle.core.http import (JsonResponse, JsonResponseBadRequest,
+                              JsonResponseNotFound)
 from pootle.core.log import PAID_TASK_ADDED, PAID_TASK_DELETED, log
 from pootle.core.utils.json import jsonify
 from pootle.core.utils.timezone import make_aware, make_naive
@@ -91,7 +92,7 @@ class UserActivityView(NoDefaultUserMixin, SingleObjectMixin, View):
 
     def get(self, *args, **kwargs):
         data = get_activity_data(self.request, self.get_object(), self.month)
-        return HttpResponse(jsonify(data), content_type="application/json")
+        return JsonResponse(data)
 
 
 class UserDetailedStatsView(NoDefaultUserMixin, DetailView):
@@ -291,9 +292,7 @@ def update_user_rates(request):
             user = User.objects.get(username=form.cleaned_data['username'])
         except User.DoesNotExist:
             error_text = _("User %s not found" % form.cleaned_data['username'])
-
-            return HttpResponseNotFound(jsonify({'msg': error_text}),
-                                        content_type="application/json")
+            return JsonResponseNotFound({'msg': error_text})
 
         user.currency = form.cleaned_data['currency']
         user.rate = form.cleaned_data['rate']
@@ -333,14 +332,12 @@ def update_user_rates(request):
 
         user.save()
 
-        return HttpResponse(
-            jsonify({
-                'scorelog_count': scorelog_count,
-                'paid_task_count': paid_task_count
-            }), content_type="application/json")
+        return JsonResponse({
+            'scorelog_count': scorelog_count,
+            'paid_task_count': paid_task_count,
+        })
 
-    return HttpResponseBadRequest(jsonify({'errors': form.errors}),
-                                  content_type="application/json")
+    return JsonResponseBadRequest({'errors': form.errors})
 
 
 @ajax_required
@@ -351,11 +348,9 @@ def add_paid_task(request):
         form.save()
         obj = form.instance
         log('%s\t%s\t%s' % (request.user.username, PAID_TASK_ADDED, obj))
-        return HttpResponse(jsonify({'result': obj.id}),
-                            content_type="application/json")
+        return JsonResponse({'result': obj.id})
 
-    return HttpResponseBadRequest(jsonify({'errors': form.errors}),
-                                  content_type="application/json")
+    return JsonResponseBadRequest({'errors': form.errors})
 
 
 @ajax_required
@@ -368,16 +363,12 @@ def remove_paid_task(request, task_id=None):
                                   PAID_TASK_DELETED, obj)
             obj.delete()
             log(str)
-            return HttpResponse(jsonify({'removed': 1}),
-                                content_type="application/json")
+            return JsonResponse({'removed': 1})
 
         except PaidTask.DoesNotExist:
-            return HttpResponseNotFound({}, content_type="application/json")
+            return JsonResponseNotFound({})
 
-    return HttpResponseBadRequest(
-        jsonify({'error': _('Invalid request method')}),
-        content_type="application/json"
-    )
+    return JsonResponseBadRequest({'error': _('Invalid request method')})
 
 
 def get_scores(user, start, end):
@@ -445,10 +436,8 @@ def user_date_prj_activity(request):
     except:
         user = ''
 
-    json = get_activity_data(request, user, month)
-    response = jsonify(json)
-
-    return HttpResponse(response, content_type="application/json")
+    data = get_activity_data(request, user, month)
+    return JsonResponse(data)
 
 
 def get_daily_activity(user, scores, start, end):
@@ -659,11 +648,9 @@ def get_summary(scores, start, end):
 
 def users(request):
     User = get_user_model()
-    json = list(
+    data = list(
         User.objects.hide_meta()
                     .select_related('evernote_account')
                     .values('id', 'username', 'full_name')
     )
-    response = jsonify(json)
-
-    return HttpResponse(response, content_type="application/json")
+    return JsonResponse(data)

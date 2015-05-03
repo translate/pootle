@@ -9,14 +9,14 @@
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.shortcuts import redirect, render
 from django.template import loader, RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
-from pootle.core.utils.json import jsonify
+from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.views import SuperuserRequiredMixin
 from pootle_misc.util import ajax_required
 
@@ -186,34 +186,26 @@ def display_page(request, virtual_path):
     return render(request, template_name, ctx)
 
 
+def _get_rendered_agreement(request, form):
+    template = loader.get_template('staticpages/agreement.html')
+    return template.render(RequestContext(request, {'form': form}))
+
+
 @ajax_required
 def legal_agreement(request):
     """Displays the pending documents to be agreed by the current user."""
     pending_pages = LegalPage.objects.pending_user_agreement(request.user)
     form_class = agreement_form_factory(pending_pages, request.user)
 
-    rcode = 200
-    agreed = False
-
     if request.method == 'POST':
         form = form_class(request.POST)
 
         if form.is_valid():
-            # The user agreed, let's record the specific agreements
-            agreed = True
             form.save()
-        else:
-            rcode = 400
-    else:
-        form = form_class()
+            return JsonResponse({})
 
-    response = {'agreed': agreed}
-    if not agreed:
-        ctx = {
-            'form': form,
-        }
-        template = loader.get_template('staticpages/agreement.html')
-        response['form'] = template.render(RequestContext(request, ctx))
+        rendered_form = _get_rendered_agreement(request, form)
+        return JsonResponseBadRequest({'form': rendered_form})
 
-    return HttpResponse(jsonify(response), status=rcode,
-                        content_type='application/json')
+    rendered_form = _get_rendered_agreement(request, form_class())
+    return JsonResponse({'form': rendered_form})

@@ -27,6 +27,8 @@ except ImportError:
     sentry_exception_handler = None
 
 from pootle.core.exceptions import Http400
+from pootle.core.http import (JsonResponseBadRequest, JsonResponseForbidden,
+                              JsonResponseNotFound, JsonResponseServerError)
 from pootle.core.utils.json import jsonify
 from pootle_misc.baseurl import get_next
 
@@ -34,25 +36,17 @@ from pootle_misc.baseurl import get_next
 class ErrorPagesMiddleware(object):
     """Friendlier error pages."""
 
-    def _ajax_error(self, rcode, msg):
-        error_body = {
-            'msg': msg,
-        }
-        response = jsonify(error_body)
-        return HttpResponse(response, status=rcode,
-                            content_type="application/json")
-
     def process_exception(self, request, exception):
         msg = force_unicode(exception)
         if isinstance(exception, Http404):
             if request.is_ajax():
-                return self._ajax_error(404, msg)
+                return JsonResponseNotFound({'msg': msg})
         elif isinstance(exception, Http400):
             if request.is_ajax():
-                return self._ajax_error(400, msg)
+                return JsonResponseBadRequest({'msg': msg})
         elif isinstance(exception, PermissionDenied):
             if request.is_ajax():
-                return self._ajax_error(403, msg)
+                return JsonResponseForbidden({'msg': msg})
 
             templatevars = {
                 'permission_error': msg,
@@ -80,7 +74,7 @@ class ErrorPagesMiddleware(object):
             # poking-the-duck-until-it-quacks-like-a-duck-test
 
             if request.is_ajax():
-                return self._ajax_error(500, msg)
+                return JsonResponseServerError({'msg': msg})
 
             return HttpResponseServerError(
                     render_to_string('errors/db.html', {'exception': msg},
@@ -130,7 +124,7 @@ class ErrorPagesMiddleware(object):
                         sentry_exception_handler(request=request)
 
                     if request.is_ajax():
-                        return self._ajax_error(500, msg)
+                        return JsonResponseServerError({'msg': msg})
 
                     return HttpResponseServerError(
                         render_to_string('errors/500.html', templatevars,
