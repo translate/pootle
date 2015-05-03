@@ -28,8 +28,8 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.cache import make_method_key
+from pootle.core.utils.json import jsonify
 from pootle_language.models import Language
-from pootle_misc.util import jsonify
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import SuggestionStates
 

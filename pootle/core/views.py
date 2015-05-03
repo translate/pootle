@@ -22,7 +22,9 @@ from django.views.defaults import (permission_denied as django_403,
                                    server_error as django_500)
 from django.views.generic import View
 
-from pootle_misc.util import PootleJSONEncoder, ajax_required, jsonify
+from pootle_misc.util import ajax_required
+
+from .utils.json import PootleJSONEncoder, jsonify
 
 
 class SuperuserRequiredMixin(object):

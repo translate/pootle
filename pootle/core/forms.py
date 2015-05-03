@@ -20,7 +20,7 @@ from django.conf import settings
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
-from pootle_misc.util import jsonify
+from .utils.json import jsonify
 
 
 # MathCaptchaForm Copyright (c) 2007, Dima Dogadaylo (www.mysoftparade.com)

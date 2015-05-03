@@ -16,8 +16,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
+from pootle.core.utils.json import jsonify
 from pootle.core.views import SuperuserRequiredMixin
-from pootle_misc.util import ajax_required, jsonify
+from pootle_misc.util import ajax_required
 
 from .forms import agreement_form_factory
 from .models import AbstractPage, LegalPage, StaticPage

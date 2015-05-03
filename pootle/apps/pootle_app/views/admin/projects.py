@@ -11,9 +11,9 @@ __all__ = ('ProjectAdminView', 'ProjectAPIView')
 
 from django.views.generic import TemplateView
 
+from pootle.core.utils.json import jsonify
 from pootle.core.views import APIView, SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
-from pootle_misc.util import jsonify
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.filetypes import filetype_choices

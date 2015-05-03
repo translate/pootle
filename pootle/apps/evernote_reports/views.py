@@ -28,9 +28,10 @@ from django.views.generic.detail import SingleObjectMixin
 from accounts.models import CURRENCIES
 from pootle.core.decorators import admin_required
 from pootle.core.log import PAID_TASK_ADDED, PAID_TASK_DELETED, log
+from pootle.core.utils.json import jsonify
 from pootle.core.utils.timezone import make_aware, make_naive
 from pootle.core.views import AjaxResponseMixin
-from pootle_misc.util import (ajax_required, jsonify, get_date_interval,
+from pootle_misc.util import (ajax_required, get_date_interval,
                               get_max_month_datetime, import_func)
 from pootle_profile.views import (NoDefaultUserMixin, TestUserFieldMixin,
                                   DetailView)

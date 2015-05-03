@@ -19,9 +19,9 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from optparse import make_option
 
+from pootle.core.utils.json import PootleJSONEncoder
 from pootle_app.management.commands import PootleCommand
 from pootle_app.models import Directory
-from pootle_misc.util import PootleJSONEncoder
 from pootle_project.models import Project
 
 DUMPED = {

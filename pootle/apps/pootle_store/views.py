@@ -30,10 +30,11 @@ from pootle.core.dateparse import parse_datetime
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
+from pootle.core.utils.json import jsonify
 from pootle_app.models.permissions import check_user_permission
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
-from pootle_misc.util import ajax_required, jsonify, to_int, get_date_interval
+from pootle_misc.util import ajax_required, to_int, get_date_interval
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 

@@ -22,9 +22,9 @@ from pootle.core.helpers import (get_export_view_context,
                                  get_overview_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
+from pootle.core.utils.json import jsonify
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
-from pootle_misc.util import jsonify
 from pootle_project.forms import tp_form_factory
 from pootle_translationproject.models import TranslationProject
 

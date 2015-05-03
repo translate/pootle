@@ -27,8 +27,8 @@ except ImportError:
     sentry_exception_handler = None
 
 from pootle.core.exceptions import Http400
+from pootle.core.utils.json import jsonify
 from pootle_misc.baseurl import get_next
-from pootle_misc.util import jsonify
 
 
 class ErrorPagesMiddleware(object):
