@@ -169,8 +169,7 @@ class Submission(models.Model):
                 unit.update({
                     'check_name': check_name,
                     'check_display_name': check_names[check_name],
-                    'checks_url': reverse('pootle-staticpages-display',
-                                          args=['help/quality-checks']),
+                    'checks_url': reverse('pootle-checks-descriptions'),
                 })
                 source.update({
                     'check_name': '<a href="%(checks_url)s#%(check_name)s">'

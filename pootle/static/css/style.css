@@ -996,6 +996,24 @@ div.sidebar-group #staticpage
 
 
 /*
+ * CHECKS DESCRIPTIONS
+ */
+
+#staticpage.checks-descriptions code,
+#staticpage.checks-descriptions tt
+{
+    color: red;
+}
+
+#staticpage.checks-descriptions h3:target
+{
+    background-color: #ff9;
+    outline: 5px solid #ff9;
+    color: #880;
+}
+
+
+/*
  * SETTINGS PAGE
  */
 

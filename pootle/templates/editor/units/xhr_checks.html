@@ -4,7 +4,7 @@
 <ul class="checks">
   {% for check in unit.get_qualitychecks.iterator %}
   <li class="check{% if check.false_positive %} false-positive{% endif %}">
-    <a href="{% staticpage_url 'help/quality-checks' %}#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
+    <a href="{% url 'pootle-checks-descriptions' %}#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
     {% if canreview %}
     <a class="js-toggle-check toggle-check" data-check-id="{{ check.id }}">
       <i title="{% trans 'Mute quality check' %}" class="mute-check icon-block"></i>

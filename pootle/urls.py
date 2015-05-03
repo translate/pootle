@@ -9,6 +9,7 @@
 
 from django.conf import settings
 from django.conf.urls import include, patterns, url
+from django.views.generic import TemplateView
 
 
 urlpatterns = patterns('',
@@ -36,6 +37,9 @@ urlpatterns += patterns('',
 
     # Pootle URLs
     url(r'^pages/', include('staticpages.urls')),
+    url(r'^help/quality-checks/',
+        TemplateView.as_view(template_name="help/quality_checks.html"),
+        name='pootle-checks-descriptions'),
     url(r'', include('pootle_app.urls')),
     url(r'^projects/', include('pootle_project.urls')),
     url(r'', include('pootle_terminology.urls')),

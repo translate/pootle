@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}Quality Checks | {{ block.super }}{% endblock title %}
+
+{% block header_block %}{% endblock %}
+
+{% block content %}
+<div id="staticpage" class="checks-descriptions" dir="ltr">
+  <h1 class="title">Quality Checks</h1>
+
+  <p>Pootle has an ability to check for common translation mistakes. Once you submit a translation, it will compare its certain features with the original string and identify potential problems. Сhecks are displayed in the upper right corner, just above the submit button. Once there are checks in red, you will stay on the same unit, until you have each check resolved or muted. Note that you should only mute checks if you know what you're doing. Muted checks will be reviewed periodically by the managers.</p>
+
+  {% if settings.CAN_CONTACT %}
+  <p>If you are not sure what a particular error means and how to fix it properly, use <i>"Report a problem with this string"</i> link at the top of the unit. The managers will try to assist you as soon as possible.</p>
+  {% endif %}
+
+  <p>Below is the description of each quality check.</p>
+
+  {% include "help/_pootle_quality_checks.html" %}
+
+  {% include "help/_ttk_quality_checks.html" %}
+
+</div>
+{% endblock content %}
