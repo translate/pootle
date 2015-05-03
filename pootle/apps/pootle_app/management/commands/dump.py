@@ -9,7 +9,6 @@
 
 
 import os
-import json
 
 import sys
 reload(sys)
@@ -19,7 +18,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from optparse import make_option
 
-from pootle.core.utils.json import PootleJSONEncoder
+from pootle.core.utils.json import jsonify
 from pootle_app.management.commands import PootleCommand
 from pootle_app.models import Directory
 from pootle_project.models import Project
@@ -72,7 +71,7 @@ class Command(PootleCommand):
             res = {}
             self._dump_stats(tp.directory, res, stop_level=stop_level)
 
-            stats_dump = json.dumps(res, indent=4, cls=PootleJSONEncoder)
+            stats_dump = jsonify(res)
             self.stdout.write(stats_dump)
         if data:
             self._dump_item(tp.directory, 0, stop_level=stop_level)
