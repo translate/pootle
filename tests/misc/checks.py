@@ -20,9 +20,7 @@ def do_test(check, tests):
         info = "check('%s', '%s') == %s" % (str1, str2, state)
         try:
             assert (state == check(str1, str2)), info
-
         except FilterFailure as e:
-
             assert (not state), info
 
 
