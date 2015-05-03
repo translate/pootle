@@ -77,12 +77,14 @@ Backend and caching settings.
 
 
 25-logging.conf
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 .. setting:: POOTLE_LOG_DIRECTORY
 
 ``POOTLE_LOG_DIRECTORY``
   Default: ``working_path('log')``
+
+  .. versionadded:: 2.7
 
   The directory where Pootle writes event logs to. These are high-level
   logs of events on store/unit changes and manage.py commands executed
