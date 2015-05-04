@@ -37,6 +37,11 @@ RQWORKER_WHITELIST = [
 ]
 
 
+def _version_to_string(version, significance=None):
+    if significance is not None:
+        version = version[significance:]
+    return '.'.join(str(n) for n in version)
+
 
 @checks.register()
 def check_library_versions(app_configs=None, **kwargs):
@@ -49,7 +54,8 @@ def check_library_versions(app_configs=None, **kwargs):
     if django_version < DJANGO_MINIMUM_REQUIRED_VERSION:
         errors.append(checks.Critical(
             _("Your version of Django is too old."),
-            hint=_("Try pip install --upgrade Django"),
+            hint=_("Try pip install --upgrade 'Django==%s'" %
+                   _version_to_string(DJANGO_MINIMUM_REQUIRED_VERSION)),
             id="pootle.C002",
         ))
 
