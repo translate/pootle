@@ -90,24 +90,25 @@ class VirtualFolder(models.Model):
         self.units.clear()
 
         # Recreate relationships between this vfolder and units.
-        for location in self.get_all_pootle_paths():
-            for filename in self.filter_rules.split(","):
-                vf_file = "".join([location, filename])
+        if self.filter_rules:
+            for location in self.get_all_pootle_paths():
+                for filename in self.filter_rules.split(","):
+                    vf_file = "".join([location, filename])
 
-                qs = Store.objects.live().filter(pootle_path=vf_file)
+                    qs = Store.objects.live().filter(pootle_path=vf_file)
 
-                if qs.exists():
-                    self.units.add(*qs[0].units.all())
-                else:
-                    if not vf_file.endswith("/"):
-                        vf_file += "/"
+                    if qs.exists():
+                        self.units.add(*qs[0].units.all())
+                    else:
+                        if not vf_file.endswith("/"):
+                            vf_file += "/"
 
-                    if Directory.objects.filter(pootle_path=vf_file).exists():
-                        qs = Unit.objects.filter(
-                            state__gt=OBSOLETE,
-                            store__pootle_path__startswith=vf_file
-                        )
-                        self.units.add(*qs)
+                        if Directory.objects.filter(pootle_path=vf_file).exists():
+                            qs = Unit.objects.filter(
+                                state__gt=OBSOLETE,
+                                store__pootle_path__startswith=vf_file
+                            )
+                            self.units.add(*qs)
 
     def clean_fields(self):
         """Validate virtual folder fields."""
