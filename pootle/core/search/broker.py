@@ -10,6 +10,7 @@
 from . import SearchBackend
 
 import importlib
+import logging
 
 from django.conf import settings
 
@@ -24,10 +25,23 @@ class SearchBroker(SearchBackend):
 
         for server in self._settings:
             if config_name is None or server in config_name:
-                _module = '.'.join(self._settings[server]['ENGINE'].split('.')[:-1])
-                _search_class = self._settings[server]['ENGINE'].split('.')[-1]
-                module = importlib.import_module(_module)
-                self._servers[server] = getattr(module, _search_class)(server)
+                try:
+                    _module = '.'.join(self._settings[server]['ENGINE'].split('.')[:-1])
+                    _search_class = self._settings[server]['ENGINE'].split('.')[-1]
+                except KeyError:
+                    logging.warning("Search engine '%s' is missing the required "
+                                    "'ENGINE' setting" % server)
+                    break
+                try:
+                    module = importlib.import_module(_module)
+                    try:
+                        self._servers[server] = getattr(module, _search_class)(server)
+                    except AttributeError:
+                        logging.warning("Search backend '%s'. No search class "
+                                        "'%s' defined." % (server, _search_class))
+                except ImportError:
+                    logging.warning("Search backend '%s'. Cannot import '%s'" %
+                                    (server, _module))
 
     def search(self, unit):
         if not self._servers:
