@@ -12,18 +12,17 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from optparse import make_option
 
-from pootle_app.management.commands import NoArgsCommandMixin
+from django.core.management.base import NoArgsCommand
 
 
-class Command(NoArgsCommandMixin):
-    option_list = NoArgsCommandMixin.option_list + (
+class Command(NoArgsCommand):
+    option_list = NoArgsCommand.option_list + (
             make_option('--project', action='append', dest='projects',
                         help='Limit to PROJECTS'),
     )
     help = "List language codes."
 
     def handle_noargs(self, **options):
-        super(Command, self).handle_noargs(**options)
         self.list_languages(**options)
 
     def list_languages(self, **options):

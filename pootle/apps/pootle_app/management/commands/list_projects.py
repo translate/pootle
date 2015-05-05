@@ -10,14 +10,14 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from pootle_app.management.commands import NoArgsCommandMixin
+from django.core.management.base import NoArgsCommand
+
 from pootle_project.models import Project
 
 
-class Command(NoArgsCommandMixin):
+class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
-        super(Command, self).handle_noargs(**options)
         self.list_projects(**options)
 
     def list_projects(self, **options):
