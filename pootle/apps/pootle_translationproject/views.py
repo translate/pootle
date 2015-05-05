@@ -14,7 +14,8 @@ from django.conf import settings
 from django.shortcuts import render
 from django.utils import dateformat
 
-from pootle.core.browser import get_children, get_table_headings, get_parent
+from pootle.core.browser import (get_children, get_table_headings, get_parent,
+                                 get_vfolders)
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context,
@@ -23,6 +24,7 @@ from pootle.core.helpers import (get_export_view_context,
 from pootle.core.utils.json import jsonify
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from staticpages.models import StaticPage
+from virtualfolder.models import VirtualFolder
 
 
 SIDEBAR_COOKIE_NAME = 'pootle-overview-sidebar'
@@ -105,6 +107,8 @@ def overview(request, translation_project, dir_path, filename=None):
         })
         has_sidebar = True
 
+    stats = request.resource_obj.get_stats()
+
     if store is None:
         table_fields = ['name', 'progress', 'total', 'need-translation',
                         'suggestions', 'critical', 'last-updated', 'activity']
@@ -118,11 +122,28 @@ def overview(request, translation_project, dir_path, filename=None):
             }
         })
 
+        vfolders = get_vfolders(directory)
+        if len(vfolders) > 0:
+            table_fields = ['name', 'priority', 'progress', 'total',
+                            'need-translation', 'suggestions', 'critical',
+                            'activity']
+            ctx.update({
+                'vfolders': {
+                    'id': 'vfolders',
+                    'fields': table_fields,
+                    'headings': get_table_headings(table_fields),
+                    'items': get_vfolders(directory),
+                },
+            })
+
+            #FIXME: set vfolders stats in the resource, don't inject them here.
+            stats['vfolders'] = VirtualFolder.get_stats_for(directory.pootle_path)
+
     ctx.update({
         'translation_project': translation_project,
         'project': project,
         'language': language,
-        'stats': jsonify(request.resource_obj.get_stats()),
+        'stats': jsonify(stats),
 
         'browser_extends': 'translation_projects/base.html',
 

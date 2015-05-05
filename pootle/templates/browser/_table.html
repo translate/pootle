@@ -27,7 +27,15 @@
 
       {% if 'name' in table.fields %}
       <td class="stats-name {{ item.icon }}"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
-        <a href="{{ item.href }}"><i class="icon-{{ item.icon }}"></i> <span>{{ item.title }}</span></a>
+        {% if item.href %}<a href="{{ item.href }}">{% endif %}
+          <i class="icon-{{ item.icon }}"></i> <span>{{ item.title }}</span>
+        {% if item.href %}</a>{% endif %}
+      </td>
+      {% endif %}
+
+      {% if 'priority' in table.fields %}
+      <td id="priority-{{ item.code }}" class="stats-number total">
+        <span class="zero">{{ item.priority }}</span>
       </td>
       {% endif %}
 

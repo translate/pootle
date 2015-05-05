@@ -7,18 +7,28 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from translate.filters.decorators import Category
+
 from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import dateformat
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models import Directory
 from pootle_language.models import Language
+from pootle_misc.checks import get_qualitychecks_by_category
 from pootle_project.models import Project
-from pootle_store.models import Store, Unit
-from pootle_store.util import OBSOLETE
+from pootle_statistics.models import Submission
+from pootle_store.models import (QualityCheck, Store, Suggestion,
+                                 SuggestionStates, Unit)
+from pootle_store.util import (calc_total_wordcount, calc_translated_wordcount,
+                               calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED)
 
 
 class VirtualFolder(models.Model):
@@ -64,6 +74,10 @@ class VirtualFolder(models.Model):
         unique_together = ('name', 'location')
         ordering = ['-priority', 'name']
 
+    @cached_property
+    def code(self):
+        return self.pk
+
     @classmethod
     def get_matching_for(cls, pootle_path):
         """Return the matching virtual folders in the given pootle path.
@@ -75,6 +89,53 @@ class VirtualFolder(models.Model):
         return VirtualFolder.objects.filter(
             units__store__pootle_path__startswith=pootle_path
         ).distinct()
+
+    @classmethod
+    def get_visible_for(cls, pootle_path):
+        """Return the visible virtual folders in the given pootle path.
+
+        Not all the applicable virtual folders have matching filtering rules.
+        This method further restricts the list of applicable virtual folders to
+        retrieve only those with filtering rules that actually match, and that
+        are visible.
+        """
+        return cls.get_matching_for(pootle_path).filter(is_browsable=True,
+                                                        priority__gte=1)
+
+    @classmethod
+    def get_stats_for(cls, pootle_path):
+        """Get stats for all the virtual folders in the given path."""
+        stats = {}
+
+        for vf in cls.get_visible_for(pootle_path):
+            units = vf.units.filter(store__pootle_path__startswith=pootle_path)
+            stores = Store.objects.filter(
+                pootle_path__startswith=pootle_path,
+                unit__vfolders=vf
+            ).distinct()
+
+            stats[vf.code] = {
+                'total': calc_total_wordcount(units),
+                'translated': calc_translated_wordcount(units),
+                'fuzzy': calc_fuzzy_wordcount(units),
+                'suggestions': Suggestion.objects.filter(
+                    unit__vfolders=vf,
+                    unit__store__pootle_path__startswith=pootle_path,
+                    unit__state__gt=OBSOLETE,
+                    state=SuggestionStates.PENDING,
+                ).count(),
+                'critical': QualityCheck.objects.filter(
+                    unit__vfolders=vf,
+                    unit__store__pootle_path__startswith=pootle_path,
+                    unit__state__gt=UNTRANSLATED,
+                    category=Category.CRITICAL,
+                    false_positive=False,
+                ).values('unit').distinct().count(),
+                'lastaction': vf.get_last_action_for(pootle_path),
+                'is_dirty': any(map(lambda x: x.is_dirty(), stores)),
+            }
+
+        return stats
 
     def __unicode__(self):
         return ": ".join([self.name, self.location])
@@ -120,6 +181,37 @@ class VirtualFolder(models.Model):
             raise ValidationError(u'The "/" location is not allowed. Use '
                                   u'"/{LANG}/{PROJ}/" instead.')
 
+    def get_adjusted_location(self, pootle_path):
+        """Return the virtual folder location adjusted to the given path.
+
+        The virtual folder location might have placeholders, which affect the
+        actual filenames since those have to be concatenated to the virtual
+        folder location.
+        """
+        count = self.location.count("/")
+
+        if pootle_path.count("/") < count:
+            raise ValueError("%s is not applicable in %s" % (self,
+                                                             pootle_path))
+
+        pootle_path_parts = pootle_path.strip("/").split("/")
+        location_parts = self.location.strip("/").split("/")
+
+        try:
+            if (location_parts[0] != pootle_path_parts[0] and
+                location_parts[0] != "{LANG}"):
+                raise ValueError("%s is not applicable in %s" % (self,
+                                                                 pootle_path))
+
+            if (location_parts[1] != pootle_path_parts[1] and
+                location_parts[1] != "{PROJ}"):
+                raise ValueError("%s is not applicable in %s" % (self,
+                                                                 pootle_path))
+        except IndexError:
+            pass
+
+        return "/".join(pootle_path.split("/")[:count])
+
     def get_all_pootle_paths(self):
         """Return a list with all the locations this virtual folder applies.
 
@@ -161,6 +253,63 @@ class VirtualFolder(models.Model):
                     for proj in projects]
 
         return [self.location]
+
+    def get_last_action_for(self, pootle_path):
+        try:
+            sub = Submission.simple_objects.filter(
+                unit__vfolders=self,
+                unit__store__pootle_path__startswith=pootle_path,
+            ).latest()
+        except Submission.DoesNotExist:
+            return {'id': 0, 'mtime': 0, 'snippet': ''}
+
+        return {
+            'id': sub.unit.id,
+            'mtime': int(dateformat.format(sub.creation_time, 'U')),
+            'snippet': sub.get_submission_message()
+        }
+
+    def get_translate_url(self, pootle_path, **kwargs):
+        # The provided pootle path must be converted to a path that includes
+        # the virtual folder name in the right place.
+        #
+        # For example a virtual folder named vfolder8, with a location
+        # /{LANG}/firefox/browser/ in a path
+        # /af/firefox/browser/chrome/overrides/ gets converted to
+        # /af/firefox/browser/vfolder8/chrome/overrides/
+        count = self.location.count('/')
+
+        if pootle_path.count('/') < count:
+            # The provided pootle path is above the virtual folder location.
+            path_parts = pootle_path.rstrip('/').split('/')
+            pootle_path = '/'.join(path_parts +
+                                   self.location.split('/')[len(path_parts):])
+
+        if count < 3:
+            # If the virtual folder location is not long as a translation
+            # project pootle path then the returned adjusted location is too
+            # short, meaning that the returned translate URL will have the
+            # virtual folder name as the project or language code.
+            path_parts = pootle_path.split('/')
+            adjusted_path = '/'.join(path_parts[:3] + [self.name] +
+                                     path_parts[3:])
+        else:
+            # If the virtual folder location is as long as a TP pootle path and
+            # the provided pootle path isn't above the virtual folder location.
+            lead = self.get_adjusted_location(pootle_path)
+            trail = pootle_path.replace(lead, '').lstrip('/')
+            adjusted_path = '/'.join([lead, self.name, trail])
+
+        lang, proj, dp, fn = split_pootle_path(adjusted_path)
+
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dp, fn]),
+            get_editor_filter(**kwargs),
+        ])
+
+    def get_critical_url(self, pootle_path, **kwargs):
+        critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
+        return self.get_translate_url(pootle_path, check=critical, **kwargs)
 
 
 @receiver(post_save, sender=Unit)

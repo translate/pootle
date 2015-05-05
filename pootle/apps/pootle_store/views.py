@@ -31,12 +31,14 @@ from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
+from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_user_permission
 from pootle_misc.checks import check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, to_int, get_date_interval
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
+from virtualfolder.models import VirtualFolder
 
 from .decorators import get_unit_context
 from .fields import to_python
@@ -807,6 +809,10 @@ def get_qualitycheck_stats(request, *args, **kwargs):
 @get_resource
 def get_overview_stats(request, *args, **kwargs):
     stats = request.resource_obj.get_stats()
+
+    if isinstance(request.resource_obj, Directory):
+        stats['vfolders'] = VirtualFolder.get_stats_for(request.resource_obj.pootle_path)
+
     return JsonResponse(stats)
 
 

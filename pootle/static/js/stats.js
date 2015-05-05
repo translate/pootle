@@ -161,6 +161,7 @@ var stats = {
 
   processLoadedData: function (data, callback, firstPageLoad) {
     var $table = $('#content table.stats'),
+        $vfoldersTable = $('#content .vfolders table.stats'),
         dirtySelector = '#top-stats, #translate-actions, #autorefresh-notice',
         now = parseInt(Date.now() / 1000, 10);
 
@@ -192,12 +193,32 @@ var stats = {
 
     if ($table.length) {
       // this is a directory that contains subitems
-      for (var name in data.children) {
-        var item = data.children[name],
-            code = name.replace(/[\.@]/g, '-'),
-            $td = $table.find('#total-words-' + code);
+      var name, item, code, $td;
+
+      for (name in data.children) {
+        item = data.children[name];
+        code = name.replace(/[\.@]/g, '-');
+        $td = $table.find('#total-words-' + code);
 
         this.processTableItem(item, code, $table, $td, now);
+      }
+
+      if ($vfoldersTable.length) {
+        for (name in data.vfolders) {
+          item = data.vfolders[name];
+          code = name.replace(/[\.@]/g, '-');
+          $td = $vfoldersTable.find('#total-words-' + code);
+
+          // Hide virtual folders that are completely translated.
+          if (item.translated === item.total) {
+            //FIXME vfolders might be added or removed since they can become
+            // completely translated or stop being completely translated, so
+            // they might be displayable after the initial load of the overview.
+            $td.parent().hide();
+          } else {
+            this.processTableItem(item, code, $vfoldersTable, $td, now);
+          }
+        }
       }
 
       // Sort columns based on previously-made selections

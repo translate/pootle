@@ -19,6 +19,11 @@ HEADING_CHOICES = [
         'display_name': _("Name"),
     },
     {
+        'id': 'priority',
+        'class': 'stats-number sorttable_numeric',
+        'display_name': _("Priority"),
+    },
+    {
         'id': 'project',
         'class': 'stats',
         'display_name': _("Project"),
@@ -176,3 +181,28 @@ def get_children(directory):
               for child_store in directory.child_stores.live().iterator()]
 
     return directories + stores
+
+
+def make_vfolder_item(virtual_folder, pootle_path):
+    return {
+        'href_all': virtual_folder.get_translate_url(pootle_path),
+        'href_todo': virtual_folder.get_translate_url(pootle_path,
+                                                      state='incomplete'),
+        'href_sugg': virtual_folder.get_translate_url(pootle_path,
+                                                      state='suggestions'),
+        'href_critical': virtual_folder.get_critical_url(pootle_path),
+        'title': virtual_folder.name,
+        'code': virtual_folder.code,
+        'priority': virtual_folder.priority,
+        'icon': 'folder',
+    }
+
+
+def get_vfolders(directory):
+    """Return a list of virtual folders for this ``directory``.
+
+    The elements of the list are dictionaries which keys are populated after
+    in the templates.
+    """
+    return [make_vfolder_item(vf, directory.pootle_path)
+            for vf in VirtualFolder.get_visible_for(directory.pootle_path)]
