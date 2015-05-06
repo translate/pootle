@@ -11,6 +11,8 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
+from pootle_translationproject.models import create_rq_job, sync_translation_project
+
 
 
 class Command(PootleCommand):
@@ -43,17 +45,11 @@ class Command(PootleCommand):
         )
 
     def handle_all_stores(self, translation_project, **options):
-        if translation_project.directory_exists_on_disk():
-            translation_project.sync(
-                conservative=not options['overwrite'],
-                skip_missing=options['skip_missing'],
-                only_newer=not options['force']
-            )
-
-    def handle_store(self, store, **options):
-        store.sync(
+        create_rq_job(
+            translation_project.language,
+            translation_project.project,
+            sync_translation_project,
             conservative=not options['overwrite'],
-            update_structure=options['overwrite'],
             skip_missing=options['skip_missing'],
             only_newer=not options['force']
         )
