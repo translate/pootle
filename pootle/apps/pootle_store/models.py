@@ -1787,16 +1787,15 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def serialize(self):
         from django.core.cache import caches
         cache = caches["exports"]
-        mtime = int(dateformat.format(self.file_mtime, "U"))
+        rev = self.get_max_unit_revision()
         path = self.pootle_path
 
-        ret = cache.get(path, version=mtime)
+        ret = cache.get(path, version=rev)
         if not ret:
             self.file.store.updateheader(add=True, X_Pootle_Path=path)
-            rev = self.get_max_unit_revision()
             self.file.store.updateheader(add=True, X_Pootle_Revision=rev)
             ret = str(self.file.store)
-            cache.set(path, ret, version=mtime)
+            cache.set(path, ret, version=rev)
 
         return ret
 
