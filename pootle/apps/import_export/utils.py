@@ -15,7 +15,7 @@ from pootle_store.models import Store
 
 
 def import_file(file):
-    f = getclass(file.read())
+    f = getclass(file)(file.read())
     header = f.parseheader()
     pootle_path = header.get("X-Pootle-Path")
     if not pootle_path:
