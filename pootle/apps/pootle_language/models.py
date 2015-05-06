@@ -38,13 +38,11 @@ class LanguageManager(models.Manager):
 class LiveLanguageManager(models.Manager):
     """Manager that only considers `live` languages.
 
-    A live language is any language other than the special `Templates`
-    language that have any project with translatable files and is not a
-    source language.
+    A live language is any language containing at least a project with
+    translatable files.
     """
     def get_queryset(self):
         return super(LiveLanguageManager, self).get_queryset().filter(
-                ~models.Q(code='templates'),
                 translationproject__isnull=False,
                 project__isnull=True,
             ).distinct()
