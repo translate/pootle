@@ -144,6 +144,20 @@ To perform the upgrade follow the next steps:
     (env)$ pootle setup
 
 
+* If you are upgrading from Pootle 2.7.0 or later you also have to regenerate
+  the quality checks descriptions.
+
+  .. code-block:: bash
+
+    (env)$ pootle regenerate_checks_descriptions
+
+
+  .. note::
+
+    It is necessary to install the ``docutils`` package to be able to run this
+    command.
+
+
 * Reapply your custom changes to Pootle code, templates or styling. Check about
   the :doc:`customization of style sheets and templates
   </developers/customization>` to move your customizations to the right

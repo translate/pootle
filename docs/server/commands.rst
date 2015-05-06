@@ -345,6 +345,19 @@ By default, :ref:`commands#test_checks` tests all existing checks. When
 against.
 
 
+.. _commands#regenerate-checks-descriptions:
+
+regenerate_checks_descriptions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. versionadded:: 2.7
+
+This command regenerates the static page holding the quality checks
+descriptions. If new checks are added, or existing checks are updated or
+removed it is advisable to run this command in order to keep the descriptions
+updated.
+
+
 .. _commands#translation-memory:
 
 Translation Memory

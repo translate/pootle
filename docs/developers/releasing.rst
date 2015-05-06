@@ -139,6 +139,18 @@ that needs fixing.
     $ git grep 2013  # Should pick up anything that should be examined
 
 
+Update checks descriptions
+--------------------------
+
+The quality checks descriptions are kept as a static HTML page that has to be
+regenerated in order to ensure the descriptions match the currently available
+quality checks.
+
+.. code-block:: bash
+
+    $ pootle regenerate_checks_descriptions
+
+
 Update translations
 -------------------
 

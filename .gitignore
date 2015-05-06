@@ -28,6 +28,9 @@
 # /pootle/settings/
 /pootle/settings/*-local.conf
 
+# TTK checks descriptions template
+/pootle/templates/help/_ttk_quality_checks.html
+
 # Possible customizations
 /pootle/templates/custom
 /pootle/static/*/custom
