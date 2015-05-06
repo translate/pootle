@@ -91,7 +91,11 @@
         <a href="#nav-main" id="menu-toggle" class="js-toggle">&nbsp;</a>
         <ul id="nav-main">
           {% block nav_items %}
-          {% block nav_items_pre %}{% endblock %}
+          {% block nav_items_pre %}
+          {% if settings.CAN_CONTACT %}
+            <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
+          {% endif %}
+          {% endblock %}
           {% if user.is_authenticated %}
           <li id="user" class="js-navbar-dropdown">
             <a href="{{ user.get_absolute_url }}" data-action="toggle">
