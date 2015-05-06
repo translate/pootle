@@ -12,6 +12,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from optparse import make_option
 
 from pootle_app.management.commands import PootleCommand
+from pootle_translationproject.models import create_rq_job, sync_translation_project
+
 
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
@@ -30,17 +32,11 @@ class Command(PootleCommand):
         skip_missing = options.get('skip_missing', False)
         force = options.get('force', False)
 
-
-        translation_project.sync(
-                conservative=not overwrite,
-                skip_missing=skip_missing,
-                only_newer=not force
+        create_rq_job(
+            translation_project.language,
+            translation_project.project,
+            sync_translation_project,
+            conservative=not overwrite,
+            skip_missing=skip_missing,
+            only_newer=not force
         )
-
-    def handle_store(self, store, **options):
-        overwrite = options.get('overwrite', False)
-        skip_missing = options.get('skip_missing', False)
-        force = options.get('force', False)
-
-        store.sync(conservative=not overwrite, update_structure=overwrite,
-                   skip_missing=skip_missing, only_newer=not force)

@@ -21,7 +21,10 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.functional import cached_property
 
-from django_rq import job
+from django_rq.queues import get_queue
+from redis import WatchError
+from rq.job import JobStatus, Job
+from rq.utils import utcnow
 
 from pootle_app.project_tree import does_not_exist
 from pootle.core.mixins import CachedTreeItem, CachedMethods
@@ -62,33 +65,33 @@ def create_translation_project(language, project):
             return None
 
 
-@job('low')
-def process_translation_project(language, project, **options):
-    overwrite = options.get('overwrite', False)
-    force = options.get('force', False)
-    project = Project.objects.get(code=project)
-    language = Language.objects.get(code=language)
+def update_translation_project(language, project, overwrite=False,
+                               force=False):
     try:
-        tp = TranslationProject.objects.all() \
-                               .get(language=language, project=project)
+        tp = TranslationProject.objects.get(language=language, project=project)
         if does_not_exist(tp.abs_real_path):
-            logging.info(u"Disabling %s", tp)
-            tp.disabled = True
-            tp.save()
+            logging.info(u"Making obsolete %s", tp)
+            tp.directory.makeobsolete()
             tp.update_parent_cache()
-        else:
-            if tp.disabled:
-                tp.disabled = False
-                tp.save()
-                logging.info(u"Enabled %s", tp)
+            return
+        elif tp.directory.obsolete:
+            tp.directory.save()
+            tp.directory.obsolete = False
+            logging.info(u"Resurrected %s", tp)
 
     except TranslationProject.DoesNotExist:
+        # Create a translation project if the corresponding directory exists.
         tp = create_translation_project(language, project)
 
     if tp is not None:
         logging.info(u"Scanning for new files in %s", tp)
         tp.scan_files()
         tp.update(overwrite=overwrite, only_newer=not force)
+
+
+def sync_translation_project(language, project, **kwargs):
+    instance = TranslationProject.objects.get(language=language, project=project)
+    instance.sync(**kwargs)
 
 
 def scan_translation_projects(languages=None, projects=None, **options):
@@ -116,7 +119,7 @@ def scan_translation_projects(languages=None, projects=None, **options):
             for language in lang_query.iterator():
                 logging.info(u"Add background job for (%s, %s) processing",
                              language, project)
-                process_translation_project.delay(language.code, project.code, **options)
+                create_rq_job(language, project, update_translation_project, **options)
 
 
 class TranslationProjectManager(models.Manager):
@@ -475,3 +478,136 @@ def scan_projects(sender, instance, created=False, raw=False, **kwargs):
         return
 
     scan_translation_projects(languages=[instance.code])
+
+
+class JobWrapper(object):
+    """
+    Wraps RQ Job to handle it within external `watch`,
+    encapsulates work with external to RQ job params which is needed
+    because of possible race conditions
+    """
+    POOTLE_SYNC_LAST_JOB_PREFIX = "pootle:sync:last:job:"
+
+    def __init__(self, id, connection):
+        self.id = id
+        self.func = None
+        self.language = None
+        self.project = None
+        self.options = None
+        self.depends_on = None
+        self.origin = None
+        self.timeout = None
+        self.connection = connection
+        self.job = Job(id=id, connection=self.connection)
+
+    @classmethod
+    def create(cls, func, language, project, options, connection, origin, timeout):
+        """
+        Creates object and initializes Job ID
+        """
+        job_wrapper = cls(None, connection)
+        job_wrapper.job = Job(connection=connection)
+        job_wrapper.id = job_wrapper.job.id
+        job_wrapper.func = func
+        job_wrapper.language = language
+        job_wrapper.project = project
+        job_wrapper.options = options
+        job_wrapper.connection = connection
+        job_wrapper.origin = origin
+        job_wrapper.timeout = timeout
+
+        return job_wrapper
+
+    def get_last_job_key(self):
+        return "%s%s.%s" % (self.POOTLE_SYNC_LAST_JOB_PREFIX,
+                            self.language.code, self.project.code)
+
+    def create_job(self, status=None, depends_on=None):
+        """
+        Creates Job object with given job ID.
+        """
+        args = (self.language, self.project)
+        return Job.create(self.func, args=args, kwargs=self.options,
+                          id=self.id, connection=self.connection,
+                          depends_on=depends_on, status=status,
+                          origin=self.origin)
+
+    def save_enqueued(self, pipe):
+        """
+        Preparing job to enqueue. Works via pipeline.
+        Nothing done if WatchError happens while next `pipeline.execute()`.
+        """
+        job = self.create_job(status=JobStatus.QUEUED)
+        job.enqueued_at = utcnow()
+        if job.timeout is None:
+            job.timeout = self.timeout
+        job.save(pipeline=pipe)
+
+    def save_deferred(self, depends_on, pipe):
+        """
+        Preparing job to defer (add as dependent). Works via pipeline.
+        Nothing done if WatchError happens while next `pipeline.execute()`.
+        """
+        job = self.create_job(depends_on=depends_on, status=JobStatus.DEFERRED)
+        job.register_dependency(pipeline=pipe)
+        job.save(pipeline=pipe)
+
+        return job
+
+
+def create_rq_job(language, project, job_func, **options):
+    queue = get_queue('default')
+    queue.connection.sadd(queue.redis_queues_keys, queue.key)
+
+    job_wrapper = JobWrapper.create(job_func,
+                                    language=language,
+                                    project=project,
+                                    options=options,
+                                    connection=queue.connection,
+                                    origin=queue.name,
+                                    timeout=queue.DEFAULT_TIMEOUT)
+
+    last_job_key = job_wrapper.get_last_job_key()
+
+    with queue.connection.pipeline() as pipe:
+        while True:
+            try:
+                pipe.watch(last_job_key)
+                last_job_id = queue.connection.get(last_job_key)
+                depends_on_wrapper = None
+                if last_job_id is not None:
+                    pipe.watch(Job.key_for(last_job_id))
+                    depends_on_wrapper = JobWrapper(last_job_id, queue.connection)
+
+                pipe.multi()
+
+                depends_on_status = None
+                if depends_on_wrapper is not None:
+                    depends_on = depends_on_wrapper.job
+                    depends_on_status = depends_on.get_status()
+
+                if depends_on_status is None:
+                    # Enqueue without dependencies.
+                    pipe.set(last_job_key, job_wrapper.id)
+                    job_wrapper.save_enqueued(pipe)
+                    pipe.execute()
+                    break
+
+                pipe.set(last_job_key, job_wrapper.id)
+
+                if depends_on_status not in [JobStatus.FINISHED, JobStatus.FAILED]:
+                    # Add job as a dependent.
+                    job = job_wrapper.save_deferred(last_job_id, pipe)
+                    pipe.execute()
+                    logging.debug('ADD AS DEPENDENT for %s (job_id=%s) OF %s',
+                                  last_job_key, job.id, last_job_id)
+                    return job
+
+                job_wrapper.save_enqueued(pipe)
+                pipe.execute()
+                break
+            except WatchError:
+                logging.debug('RETRY after WatchError for %s', last_job_key)
+                continue
+    logging.debug('ENQUEUE %s (job_id=%s)', last_job_key, job_wrapper.id)
+    queue.push_job_id(job_wrapper.id)
