@@ -56,6 +56,8 @@ Supported Services:
 
 |icon:icon-apertium| Apertium
 
+.. versionadded:: 2.7 Yandex.Translate
+
 Google Translate is widely used and supports a number of `languages`_.
 It is a `paid service`_ requiring an account and API key.
 
