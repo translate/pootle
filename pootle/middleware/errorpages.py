@@ -29,7 +29,6 @@ except ImportError:
 from pootle.core.exceptions import Http400
 from pootle.core.http import (JsonResponseBadRequest, JsonResponseForbidden,
                               JsonResponseNotFound, JsonResponseServerError)
-from pootle.core.utils.json import jsonify
 from pootle_misc.baseurl import get_next
 
 
