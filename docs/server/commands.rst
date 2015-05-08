@@ -124,7 +124,7 @@ up to date.
 .. note:: Disabled projects are processed.
 
 .. note:: Don't run this command while having multiple workers running
-simultaneously. It should be run with a single worker process.
+  simultaneously. It should be run with a single worker process.
 
 It's necessary to run this command after installing or upgrading Pootle. Also
 consider running this command when things might go out-of-sync: if you make
@@ -160,8 +160,8 @@ finishes, it will create a new RQ job for its parent.
 .. note:: ``Store`` objects in disabled projects are processed.
 
 .. note:: :command:`refresh_stats` (the old command which works with a single
-worker) is roughly twice as fast compared to this version of the command.
-Your mileage might vary.
+  worker) is roughly twice as fast compared to this version of the command.
+  Your mileage might vary.
 
 This command was added to allow update stats while having multiple rqworkers.
 
