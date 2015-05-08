@@ -128,7 +128,7 @@ class PaidTaskFormView(AjaxResponseMixin, CreateView):
         # ignore redirect response
         log('%s\t%s\t%s' % (self.object.user.username, PAID_TASK_ADDED,
                             self.object))
-        return self.render_to_json_response({'result': self.object.id})
+        return JsonResponse({'result': self.object.id})
 
 
 class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin, PaidTaskFormView):
