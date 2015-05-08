@@ -153,6 +153,8 @@ will be recalculated for all existing units in the database.
 refresh_stats_rq
 ^^^^^^^^^^^^^^^^
 
+.. versionadded:: 2.7
+
 This command will add a background job for every ``Store`` object to make sure
 calculated stats data is up to date. When a RQ job for a ``Store`` object
 finishes, it will create a new RQ job for its parent.
