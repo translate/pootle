@@ -172,7 +172,7 @@ def check_settings(app_configs=None, **kwargs):
         errors.append(checks.Warning(
             _("Not using cached_db as session engine"),
             hint=_("Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
-                   "Current settings: %r") % (setting.SESSION_ENGINE),
+                   "Current settings: %r") % (settings.SESSION_ENGINE),
             id="pootle.W007",
         ))
 
