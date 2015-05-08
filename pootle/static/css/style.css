@@ -1548,10 +1548,15 @@ html[dir="rtl"] ul.pager li:last-child > *
     font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
     visibility: hidden;
     margin-left: -5px;
-    padding-top: 5px;
+    padding: 5px 0;
     min-height: 2.05em;
     display: inline-block;
     vertical-align: middle;
+}
+
+.browser .breadcrumb
+{
+    padding: 5px 0 0 0;
 }
 
 /* By default (on small screens), place resource dropdown on the second line */
