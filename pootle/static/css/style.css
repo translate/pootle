@@ -1465,6 +1465,8 @@ html[dir="rtl"] ul.pager li:last-child > *
 
 #header-meta
 {
+    display: table;
+    width: 100%;
     line-height: 2;
     border-bottom: none;
 }
@@ -1549,8 +1551,8 @@ html[dir="rtl"] ul.pager li:last-child > *
     visibility: hidden;
     margin-left: -5px;
     padding: 5px 0;
-    min-height: 2.05em;
-    display: inline-block;
+    height: 2em;
+    display: table-cell;
     vertical-align: middle;
 }
 
