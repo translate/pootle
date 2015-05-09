@@ -122,3 +122,8 @@ class MarkupField(models.TextField):
         defaults = {'widget': MarkupTextarea}
         defaults.update(kwargs)
         return super(MarkupField, self).formfield(**defaults)
+
+    def deconstruct(self):
+        name, path, args, kwargs = super(MarkupField, self).deconstruct()
+        kwargs.pop('help_text', None)
+        return name, path, args, kwargs

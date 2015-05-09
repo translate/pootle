@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('filter_rules', models.TextField(help_text='Filtering rules that tell which stores this virtual folder comprises.', verbose_name='Filter')),
                 ('priority', models.FloatField(default=1, help_text='Number specifying importance. Greater priority means it is more important.', verbose_name='Priority')),
                 ('is_browsable', models.BooleanField(default=True, help_text='Whether this virtual folder is active or not.', verbose_name='Is browsable?')),
-                ('description', pootle.core.markup.fields.MarkupField(help_text='Use this to provide more information or instructions. Allowed markup: HTML', verbose_name='Description', blank=True)),
+                ('description', pootle.core.markup.fields.MarkupField(verbose_name='Description', blank=True)),
                 ('units', models.ManyToManyField(related_name='vfolders', to='pootle_store.Unit', db_index=True)),
             ],
             options={
