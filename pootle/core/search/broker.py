@@ -12,8 +12,6 @@ from . import SearchBackend
 import importlib
 import logging
 
-from django.conf import settings
-
 
 class SearchBroker(SearchBackend):
     def __init__(self, config_name=None):

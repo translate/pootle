@@ -14,8 +14,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.mail import mail_admins
 from django.core.urlresolvers import reverse
-from django.http import (Http404, HttpResponse, HttpResponseForbidden,
-                         HttpResponseServerError)
+from django.http import Http404, HttpResponseForbidden, HttpResponseServerError
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.utils.encoding import force_unicode
