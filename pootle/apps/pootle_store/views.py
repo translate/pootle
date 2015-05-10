@@ -656,18 +656,15 @@ def timeline(request, unit):
 
     context['entries_group'] = entries_group
 
-    if request.is_ajax():
-        # The client will want to confirm that the response is relevant for
-        # the unit on screen at the time of receiving this, so we add the uid.
-        json = {'uid': unit.id}
+    # The client will want to confirm that the response is relevant for
+    # the unit on screen at the time of receiving this, so we add the uid.
+    json = {'uid': unit.id}
 
-        t = loader.get_template('editor/units/xhr_timeline.html')
-        c = RequestContext(request, context)
-        json['timeline'] = t.render(c).replace('\n', '')
+    t = loader.get_template('editor/units/xhr_timeline.html')
+    c = RequestContext(request, context)
+    json['timeline'] = t.render(c).replace('\n', '')
 
-        return JsonResponse(json)
-    else:
-        return render(request, "editor/units/timeline.html", context)
+    return JsonResponse(json)
 
 
 @ajax_required
