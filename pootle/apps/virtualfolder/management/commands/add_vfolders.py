@@ -39,6 +39,8 @@ class Command(BaseCommand):
             raise CommandError("Please check if the JSON file is malformed. "
                                "Original error:\n%s" %e)
 
+        logging.info("Importing virtual folders...")
+
         added_count = 0
         updated_count = 0
         errored_count = 0
@@ -72,6 +74,7 @@ class Command(BaseCommand):
                     errored_count += 1
                     logging.error(e.message)
                 else:
+                    logging.info("Added new virtual folder %s", vfolder.name)
                     added_count += 1
             else:
                 # Update the already existing virtual folder.
@@ -80,33 +83,33 @@ class Command(BaseCommand):
                 if vfolder.filter_rules != vfolder_item['filter_rules']:
                     vfolder.filter_rules = vfolder_item['filter_rules']
                     changed = True
-                    logging.info("Filter rules for virtual folder '%s' will "
-                                 "be changed.", vfolder.name)
+                    logging.debug("Filter rules for virtual folder '%s' will "
+                                  "be changed.", vfolder.name)
 
                 if ('priority' in vfolder_item and
                     vfolder.priority != vfolder_item['priority']):
 
                     vfolder.priority = vfolder_item['priority']
                     changed = True
-                    logging.info("Priority for virtual folder '%s' will be "
-                                 "changed to %f.", vfolder.name,
-                                 vfolder.priority)
+                    logging.debug("Priority for virtual folder '%s' will be "
+                                  "changed to %f.", vfolder.name,
+                                  vfolder.priority)
 
                 if ('is_browsable' in vfolder_item and
                     vfolder.is_browsable != vfolder_item['is_browsable']):
 
                     vfolder.is_browsable = vfolder_item['is_browsable']
                     changed = True
-                    logging.info("is_browsable status for virtual folder '%s' "
-                                 "will be changed.", vfolder.name)
+                    logging.debug("is_browsable status for virtual folder "
+                                  "'%s' will be changed.", vfolder.name)
 
                 if ('description' in vfolder_item and
                     vfolder.description.raw != vfolder_item['description']):
 
                     vfolder.description = vfolder_item['description']
                     changed = True
-                    logging.info("Description for virtual folder '%s' will be "
-                                 "changed.", vfolder.name)
+                    logging.debug("Description for virtual folder '%s' will "
+                                  "be changed.", vfolder.name)
 
                 if changed:
                     try:
@@ -115,6 +118,7 @@ class Command(BaseCommand):
                         errored_count += 1
                         logging.error(e.message)
                     else:
+                        logging.info("Updated virtual folder %s", vfolder.name)
                         updated_count += 1
 
         logging.info("\nErrored: %d\nAdded: %d\nUpdated: %d\nUnchanged: %d",
