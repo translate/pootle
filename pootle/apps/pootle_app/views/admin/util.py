@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django import forms
 from django.forms.models import modelformset_factory
 from django.forms.utils import ErrorList
 from django.shortcuts import render
@@ -110,6 +111,10 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         result.append('</tfoot>\n')
 
         result.append('<tbody>\n')
+
+        # Do not display the delete checkbox for the 'add a new entry' form.
+        formset.forms[-1].fields['DELETE'].widget = forms.HiddenInput()
+
         for i, form in enumerate(formset.forms):
             add_errors(result, fields, form)
             add_widgets(result, fields, form, link)
