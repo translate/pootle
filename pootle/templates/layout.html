@@ -166,8 +166,8 @@
     </div>
     {% endblock footer %}
     {% block scripts %}
-    {% block scripts_extra %}{% endblock %}
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+    {% block scripts_extra %}{% endblock %}
     {% endblock scripts %}
     {% endblock body %}
   </body>
