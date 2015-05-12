@@ -543,7 +543,7 @@ class CachedTreeItem(TreeItem):
         """Add a RQ job which updates all cached stats of parent TreeItem
         to the default queue
         """
-        all_cache_methods = CachedMethods.get_all()
+        all_cache_methods = set(CachedMethods.get_all())
         p = self.get_parent()
         if p is not None:
             p.register_all_dirty()
