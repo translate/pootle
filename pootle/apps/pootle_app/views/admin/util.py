@@ -19,8 +19,7 @@ from pootle.core.paginator import paginate
 def form_set_as_table(formset, link=None, linkfield='code'):
     """Create an HTML table from the formset. The first form in the
     formset is used to obtain a list of the fields that need to be
-    displayed. All these fields not appearing in 'exclude' will be
-    placed into consecutive columns.
+    displayed.
 
     Errors, if there are any, appear in the row above the form which
     triggered any errors.
