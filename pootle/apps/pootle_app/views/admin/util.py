@@ -26,7 +26,8 @@ def form_set_as_table(formset, link=None, linkfield='code'):
 
     If the forms are based on database models, the order of the
     columns is determined by the order of the fields in the model
-    specification."""
+    specification.
+    """
 
     def add_header(result, fields, form):
         result.append('<tr>\n')
