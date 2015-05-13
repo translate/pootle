@@ -67,6 +67,18 @@ let AuthAPI = {
     );
   },
 
+  verifySocial(reqData) {
+    let url = `${this.apiRoot}social/verify/`;
+
+    return Promise.resolve(
+      $.ajax(url, {
+        type: 'POST',
+        data: reqData,
+        dataType: 'json',
+      })
+    );
+  },
+
 };
 
 

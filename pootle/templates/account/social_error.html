@@ -1,0 +1,12 @@
+{% extends 'welcome.html' %}
+
+{% block scripts_extra %}
+<script type="text/javascript">
+  $(function () {
+    PTL.auth.open({
+      initialScreen: 'socialAuthError',
+      socialError: {{ social_error|safe }},
+    });
+  });
+</script>
+{% endblock %}

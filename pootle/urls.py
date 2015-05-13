@@ -18,6 +18,7 @@ urlpatterns = patterns('',
         {'packages': ('pootle', ), }, ),
 
     # Allauth
+    url(r'^accounts/', include('accounts.urls')),
     url(r'^accounts/', include('allauth.urls')),
 
     # URLs added by Evernote

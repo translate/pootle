@@ -53,4 +53,12 @@ export default class AuthActions extends Actions {
                   );
   }
 
+  verifySocial(reqData) {
+    return AuthAPI.verifySocial(reqData)
+                  .then(
+                    (value) => Promise.resolve(value.location),
+                    (reason) => Promise.reject(reason.responseJSON.errors)
+                  );
+  }
+
 }

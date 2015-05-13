@@ -36,6 +36,10 @@ export default class AuthStore extends Store {
                                                   this.handlePasswordResetSuccess,
                                                   this.handlePasswordResetError);
 
+    this.registerAsync(authActions.verifySocial, this.handleVerifySocialBegin,
+                                                 this.handleVerifySocialSuccess,
+                                                 this.handleVerifySocialError);
+
     this.state = {
       screen: 'signIn',
 
@@ -173,6 +177,33 @@ export default class AuthStore extends Store {
   }
 
   handlePasswordResetError(errors) {
+    this.setState({
+      isLoading: false,
+      formErrors: errors,
+    });
+  }
+
+
+  /* Social Sign In Verification */
+
+  handleVerifySocialBegin(reqData) {
+    this.setState({
+      formErrors: {},
+      isLoading: true,
+    });
+  }
+
+  handleVerifySocialSuccess(newLocation) {
+    let newState = {
+      isLoading: false,
+      formErrors: {},
+      redirectTo: newLocation,
+    };
+
+    this.setState(newState);
+  }
+
+  handleVerifySocialError(errors) {
     this.setState({
       isLoading: false,
       formErrors: errors,

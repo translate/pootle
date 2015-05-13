@@ -1,0 +1,13 @@
+{% extends 'welcome.html' %}
+
+{% block scripts_extra %}
+<script type="text/javascript">
+  $(function () {
+    PTL.auth.open({
+      initialScreen: 'socialVerification',
+      email: '{{ email }}',
+      providerName: '{{ provider_name }}',
+    });
+  });
+</script>
+{% endblock %}

@@ -19,6 +19,8 @@ import RequestPasswordResetSent from './RequestPasswordResetSent';
 import PasswordResetForm from './PasswordResetForm';
 import SignInPanel from './SignInPanel';
 import SignUpForm from './SignUpForm';
+import SocialAuthError from './SocialAuthError';
+import SocialVerification from './SocialVerification';
 
 
 let AuthController = React.createClass({
@@ -28,6 +30,7 @@ let AuthController = React.createClass({
     initialScreen: React.PropTypes.string,
     onClose: React.PropTypes.func.isRequired,
     socialAuthProviders: React.PropTypes.array.isRequired,
+    socialError: React.PropTypes.object,
     tokenFailed: React.PropTypes.bool,
   },
 
@@ -120,6 +123,20 @@ let AuthController = React.createClass({
           content: PasswordResetForm,
         };
         break;
+
+      case 'socialAuthError':
+        return {
+          title: gettext('Oops...'),
+          content: SocialAuthError,
+        };
+        break;
+
+      case 'socialVerification':
+        return {
+          title: gettext('Social Verification'),
+          content: SocialVerification,
+        };
+        break;
     }
   },
 
@@ -136,6 +153,7 @@ let AuthController = React.createClass({
           canRegister={this.props.canRegister}
           onClose={this.props.onClose}
           socialAuthProviders={this.props.socialAuthProviders}
+          socialError={this.props.socialError}
           tokenFailed={this.props.tokenFailed}
           {...this.props}
         />
