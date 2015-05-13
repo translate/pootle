@@ -145,6 +145,7 @@ body.translate #actions
 
 #translate-filters .breadcrumb
 {
+    display: inline-block;
     font-size: 1em;
     font-family: sans-serif;
     padding: 0;
