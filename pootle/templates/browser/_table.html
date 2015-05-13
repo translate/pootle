@@ -34,8 +34,8 @@
       {% endif %}
 
       {% if 'priority' in table.fields %}
-      <td id="priority-{{ item.code }}" class="stats-number total">
-        <span class="zero">{{ item.priority }}</span>
+      <td id="priority-{{ item.code }}" class="stats-number">
+        {{ item.priority }}
       </td>
       {% endif %}
 
