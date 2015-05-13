@@ -483,7 +483,7 @@ Announce to the world
 
 Let people know that there is a new version:
 
-#. Announce on mailing lists:
+#. Announce on mailing lists **using plain text** emails:
 
    - translate-announce@lists.sourceforge.net
    - translate-pootle@lists.sourceforge.net
