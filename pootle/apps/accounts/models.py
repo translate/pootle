@@ -17,6 +17,7 @@ from hashlib import md5
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser
 from django.core.cache import cache
+from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
@@ -26,6 +27,9 @@ from django.forms.models import model_to_dict
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
+
+from allauth.account.models import EmailAddress
+from allauth.account.utils import sync_user_email_addresses
 
 from pootle.core.cache import make_method_key
 from pootle.core.utils.json import jsonify
@@ -221,6 +225,14 @@ class User(AbstractBaseUser):
     def __unicode__(self):
         return self.username
 
+    def save(self, *args, **kwargs):
+        old_email = (None if self.pk is None
+                          else User.objects.get(pk=self.pk).email)
+
+        super(User, self).save(*args, **kwargs)
+
+        self.sync_email(old_email)
+
     def delete(self, *args, **kwargs):
         """Deletes a user instance.
 
@@ -261,6 +273,45 @@ class User(AbstractBaseUser):
     def email_user(self, subject, message, from_email=None):
         """Sends an email to this user."""
         send_mail(subject, message, from_email, [self.email])
+
+    def clean_fields(self, exclude=None):
+        super(User, self).clean_fields(exclude=exclude)
+
+        self.validate_email()
+
+    def validate_email(self):
+        """Ensure emails are unique across the models tracking emails.
+
+        Since it's essential to keep email addresses unique to support our
+        workflows, a `ValidationError` will be raised if the email trying
+        to be saved is already assigned to some other user.
+        """
+        lookup = Q(email__iexact=self.email)
+        if self.pk is not None:
+            # When there's an update, ensure no one else has this address
+            lookup &= ~Q(user=self)
+
+        try:
+            EmailAddress.objects.get(lookup)
+        except EmailAddress.DoesNotExist:
+            pass
+        else:
+            raise ValidationError({
+                'email': [_('This email address already exists.')]
+            })
+
+    def sync_email(self, old_email):
+        """Syncs up `self.email` with allauth's own `EmailAddress` model.
+
+        :param old_email: Address this user previously had
+        """
+        if old_email != self.email:  # Update
+            EmailAddress.objects.filter(
+                user=self,
+                email__iexact=old_email,
+            ).update(email=self.email)
+        else:
+            sync_user_email_addresses(self)
 
     def gravatar_url(self, size=80):
         if not self.email_hash:
