@@ -267,10 +267,10 @@ class User(AbstractBaseUser):
 
     def gravatar_url(self, size=80):
         if not self.email_hash:
-            return ''
+            return 'https://secure.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=%d' % size
 
-        return 'https://secure.gravatar.com/avatar/%s?s=%d&d=mm' % \
-            (self.email_hash, size)
+        return 'https://secure.gravatar.com/avatar/%s?s=%d&amp;d=mm' % \
+                (self.email_hash, size)
 
     def get_unit_rows(self):
         return min(max(self.unit_rows, 5), 49)
