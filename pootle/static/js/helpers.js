@@ -37,7 +37,7 @@ var helpers = {
         bodyPadding = parseInt($body.css('padding-bottom'), 10),
         contentAreaHeight = $('#wrapper').height() - $body.offset().top -
                             bodyPadding,
-        sidebarHeight = $('#sidebar #staticpage').height() +
+        sidebarHeight = $('#sidebar #sidebar-content').height() +
                         $('#footer').height() + bodyPadding,
         newHeight = Math.max(contentAreaHeight, sidebarHeight);
 
