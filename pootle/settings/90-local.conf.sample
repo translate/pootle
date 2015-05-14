@@ -184,17 +184,6 @@ MT_BACKENDS = [
 ]
 
 
-# Certain username and names should not be included in the contributors page
-CONTRIBUTORS_EXCLUDED_NAMES = (
-#        'sorryjusttesting',
-#        'testest',
-)
-
-# Certain projects should not be included in the contributors page
-CONTRIBUTORS_EXCLUDED_PROJECT_NAMES = (
-#        "Testing, please don't work here",
-)
-
 # Evernote apps params
 
 # Base URL which logins user to Evernote
