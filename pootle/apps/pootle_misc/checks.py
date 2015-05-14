@@ -53,6 +53,7 @@ check_names = {
     'printf': _(u"printf()"),
     'puncspacing': _(u"Punctuation spacing"),
     'purepunc': _(u"Pure punctuation"),
+    'pythonbraceformat': _(u"Python brace placeholders"),
     'sentencecount': _(u"Number of sentences"),
     'short': _(u"Short"),
     'simplecaps': _(u"Simple capitalization"),
