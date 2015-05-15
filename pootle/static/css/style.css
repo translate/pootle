@@ -1465,6 +1465,7 @@ html[dir="rtl"] ul.pager li:last-child > *
 
 #header-meta
 {
+    box-sizing: border-box;
     display: table;
     width: 100%;
     line-height: 2;
