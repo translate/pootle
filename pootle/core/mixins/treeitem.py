@@ -29,7 +29,6 @@ from rq.utils import utcnow
 from pootle.core.cache import get_cache
 from pootle.core.log import log
 from pootle.core.url_helpers import get_all_pootle_paths, split_pootle_path
-from pootle_misc.checks import get_qualitychecks_by_category
 from pootle_misc.util import datetime_min, dictsum
 
 
@@ -215,8 +214,8 @@ class TreeItem(object):
         return None
 
     def get_critical_url(self, **kwargs):
-        critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
-        return self.get_translate_url(check=critical, **kwargs)
+        return self.get_translate_url(check_category=Category.CRITICAL,
+                                      **kwargs)
 
     def get_stats(self, include_children=True):
         """get stats for self and - optionally - for children"""

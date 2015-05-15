@@ -251,13 +251,20 @@ def get_step_query(request, units_queryset):
                         submission__submitter=user,
                         submission__type__in=SubmissionTypes.EDIT_TYPES,
                     ).exclude(submitted_by=user).distinct()
-            elif unit_filter == 'checks' and 'checks' in request.GET:
-                checks = request.GET['checks'].split(',')
+            elif unit_filter == 'checks':
+                if 'checks' in request.GET:
+                    checks = request.GET['checks'].split(',')
 
-                if checks:
+                    if checks:
+                        match_queryset = units_queryset.filter(
+                            qualitycheck__false_positive=False,
+                            qualitycheck__name__in=checks,
+                        ).distinct()
+                elif 'category' in request.GET:
+                    category = request.GET['category']
                     match_queryset = units_queryset.filter(
                         qualitycheck__false_positive=False,
-                        qualitycheck__name__in=checks,
+                        qualitycheck__category=category,
                     ).distinct()
 
             if modified_since is not None:

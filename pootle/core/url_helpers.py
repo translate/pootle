@@ -115,7 +115,8 @@ def get_path_parts(path):
 
 
 def get_editor_filter(state=None, check=None, user=None, month=None,
-                      sort=None, search=None, sfields=None):
+                      sort=None, search=None, sfields=None,
+                      check_category=None):
     """Return a filter string to be appended to a translation URL."""
     filter_string = ''
 
@@ -127,6 +128,8 @@ def get_editor_filter(state=None, check=None, user=None, month=None,
             filter_string += '&month=%s' % month
     elif check is not None:
         filter_string = '#filter=checks&checks=%s' % check
+    elif check_category is not None:
+        filter_string = '#filter=checks&category=%s' % check_category
     elif search is not None:
         filter_string = '#search=%s' % urllib.quote_plus(search)
         if sfields is not None:

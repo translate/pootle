@@ -315,6 +315,7 @@ PTL.editor = {
         // Reset to defaults
         PTL.editor.filter = 'all';
         PTL.editor.checks = [];
+        PTL.editor.category = [];
         PTL.editor.sortBy = 'default';
 
         if ('filter' in params) {
@@ -325,6 +326,9 @@ PTL.editor = {
 
           if (filterName === 'checks' && 'checks' in params) {
             PTL.editor.checks = params.checks.split(',');
+          }
+          if (filterName === 'checks' && 'category' in params) {
+            PTL.editor.category = params.category;
           }
           if ('sort' in params) {
             PTL.editor.sortBy = params.sort;
@@ -1006,6 +1010,10 @@ PTL.editor = {
     if (this.filter === 'checks' && this.checks.length) {
       reqData.checks = this.checks.join(",");
     }
+    if (this.filter === 'checks' && this.category.length) {
+      reqData.category = this.category;
+    }
+
 
     if (this.filter === 'search') {
       let {searchText, searchFields, searchOptions} = search.state;
