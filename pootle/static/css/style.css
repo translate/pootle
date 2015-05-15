@@ -414,6 +414,77 @@ td.stats-name a:hover > i + span,
 }
 
 
+/*
+ * STATIC PAGES
+ */
+
+#staticpage
+{
+    margin: 2em auto;
+    padding: 0 2em;
+    font-size: 120%;
+    max-width: 960px;
+}
+
+div.sidebar-group #staticpage
+{
+    margin: 0;
+    padding: 0;
+}
+
+#staticpage h1
+{
+    font-size: 2.2em;
+    line-height: 85%;
+    margin: 1em 0 0.5em;
+    margin-bottom: 1em;
+}
+
+#staticpage h2
+{
+    color: rgba(25, 15, 0, 0.5);
+    font-size: 1.8em;
+    margin: 1em 0 0.5em;
+}
+
+#staticpage h3
+{
+    margin: 1em 0 0.5em;
+}
+
+#staticpage p
+{
+    margin: 0.5em 0;
+}
+
+#staticpage ol
+{
+    margin-left: 2em;
+}
+
+#staticpage li
+{
+    list-style: decimal;
+}
+
+
+/*
+ * CHECKS DESCRIPTIONS
+ */
+
+#staticpage.checks-descriptions code,
+#staticpage.checks-descriptions tt
+{
+    color: red;
+}
+
+#staticpage.checks-descriptions h3:target
+{
+    background-color: #ff9;
+    outline: 5px solid #ff9;
+    color: #880;
+}
+
 
 /*
  * PAGE SIDEBAR
@@ -948,78 +1019,6 @@ ul.errorlist
 {
     float: right;
     line-height: 2em;
-}
-
-
-/*
- * STATIC PAGES
- */
-
-#staticpage
-{
-    margin: 2em auto;
-    padding: 0 2em;
-    font-size: 120%;
-    max-width: 960px;
-}
-
-div.sidebar-group #staticpage
-{
-    margin: 0;
-    padding: 0;
-}
-
-#staticpage h1
-{
-    font-size: 2.2em;
-    line-height: 85%;
-    margin: 1em 0 0.5em;
-    margin-bottom: 1em;
-}
-
-#staticpage h2
-{
-    color: rgba(25, 15, 0, 0.5);
-    font-size: 1.8em;
-    margin: 1em 0 0.5em;
-}
-
-#staticpage h3
-{
-    margin: 1em 0 0.5em;
-}
-
-#staticpage p
-{
-    margin: 0.5em 0;
-}
-
-#staticpage ol
-{
-    margin-left: 2em;
-}
-
-#staticpage li
-{
-    list-style: decimal;
-}
-
-
-/*
- * CHECKS DESCRIPTIONS
- */
-
-#staticpage.checks-descriptions code,
-#staticpage.checks-descriptions tt
-{
-    color: red;
-}
-
-#staticpage.checks-descriptions h3:target
-{
-    background-color: #ff9;
-    outline: 5px solid #ff9;
-    color: #880;
 }
 
 
