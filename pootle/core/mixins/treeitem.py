@@ -263,7 +263,7 @@ class TreeItem(object):
             for item in self.children:
                 code = (self._get_code(item) if hasattr(self, '_get_code')
                                              else item.code)
-                result['children'][code] = item.get_stats(False)
+                result['children'][code] = item.get_stats(include_children=False)
 
         return result
 
@@ -371,7 +371,7 @@ class CachedTreeItem(TreeItem):
             for item in self.children:
                 code = (self._get_code(item) if hasattr(self, '_get_code')
                                              else item.code)
-                result['children'][code] = item.get_stats(False)
+                result['children'][code] = item.get_stats(include_children=False)
 
         return result
 
