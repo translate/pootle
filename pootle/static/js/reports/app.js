@@ -71,7 +71,7 @@ PTL.reports = {
     $(document).on('keyup paste change', '#id_amount', this.addPaidTaskValidate);
     $(document).on('blur', '#id_amount', this.roundAmount);
 
-    var taskType = parseInt($('#id_task_type').val());
+    var taskType = parseInt($('#id_task_type').val(), 10);
     this.refreshAmountMeasureUnits(taskType);
 
     $.history.init(function (hash) {
@@ -168,7 +168,7 @@ PTL.reports = {
   },
 
   onPaidTaskTypeChange: function (e) {
-    var taskType = parseInt($(this).val());
+    var taskType = parseInt($(this).val(), 10);
 
     PTL.reports.refreshAmountMeasureUnits(taskType);
     $('#id_paid_task_rate').val(PTL.reports.getRateByTaskType(taskType));
@@ -178,7 +178,7 @@ PTL.reports = {
   roundAmount: function (e) {
     var $this = $(this),
         amount = $this.val(),
-        taskType = parseInt($('#id_task_type').val());
+        taskType = parseInt($('#id_task_type').val(), 10);
 
     if (taskType === paidTaskTypes.translation ||
         taskType === paidTaskTypes.review ||
@@ -196,7 +196,7 @@ PTL.reports = {
     setTimeout(function () {
       var amount = $('#id_amount').val(),
           description = $('#id_description').val(),
-          taskType = parseInt($('#id_task_type').val());
+          taskType = parseInt($('#id_task_type').val(), 10);
 
       if (description === '' || amount <= 0 &&
           taskType !== paidTaskTypes.correction) {
@@ -274,8 +274,8 @@ PTL.reports = {
           },
         },
         xaxis: {
-            min: parseInt(PTL.reports.dailyData.min_ts) - 1000*60*60*12,
-            max: parseInt(PTL.reports.dailyData.max_ts) - 1000*60*60*12,
+            min: parseInt(PTL.reports.dailyData.min_ts, 10) - 1000*60*60*12,
+            max: parseInt(PTL.reports.dailyData.max_ts, 10) - 1000*60*60*12,
             minTickSize: [1, "day"],
             mode: "time",
             timeformat: "%b %d, %a",
@@ -330,7 +330,7 @@ PTL.reports = {
 
     for (var index in data.grouped) {
       var row = data.grouped[index],
-          floor = parseInt(row.translated);
+          floor = parseInt(row.translated, 10);
 
       row.remainder = row.translated - floor;
       translatedTotal += row.translated;
@@ -424,7 +424,7 @@ PTL.reports = {
           $('#id_review_rate').val(PTL.reports.user.review_rate);
           $('#id_hourly_rate').val(PTL.reports.user.hourly_rate);
 
-          var taskType = parseInt($('#id_task_type').val());
+          var taskType = parseInt($('#id_task_type').val(), 10);
           $('#id_paid_task_rate').val(PTL.reports.getRateByTaskType(taskType));
 
           if (PTL.reports.user.currency) {
