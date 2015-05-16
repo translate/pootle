@@ -405,7 +405,7 @@ PTL.editor = {
                                                             PTL.editor.filter;
         $('#js-filter-status').select2('val', filterValue);
 
-        if (PTL.editor.filter == "checks") {
+        if (PTL.editor.filter === "checks") {
           // if the checks selector is empty (i.e. the 'change' event was not fired
           // because the selection did not change), force the update to populate the selector
           if ($('#js-filter-checks').is(':hidden')) {
@@ -950,7 +950,7 @@ PTL.editor = {
   error: function (xhr, s) {
     var msg = "";
 
-    if (s == "abort") {
+    if (s === "abort") {
         return;
     }
 
@@ -1672,7 +1672,7 @@ PTL.editor = {
         isUserFilter = $selected.data('user'),
         $checksWrapper = $('.js-filter-checks-wrapper');
 
-    if (filterBy == "checks") {
+    if (filterBy === "checks") {
       PTL.editor.getCheckOptions({
         success: PTL.editor.appendChecks
       });
@@ -2042,7 +2042,7 @@ PTL.editor = {
       success: function (data) {
         var uid = this.callback.slice(6);
 
-        if (uid == unit.id && data.length) {
+        if (uid === unit.id && data.length) {
           var sourceText = unit.get('source')[0],
               filtered = PTL.editor.filterTMResults(data, sourceText),
               name = gettext("Similar translations"),
@@ -2174,7 +2174,7 @@ PTL.editor = {
   /* Checks whether the provided source is supported */
   isSupportedSource: function (pairs, source) {
     for (var i in pairs) {
-      if (source == pairs[i].source) {
+      if (source === pairs[i].source) {
         return true;
       }
     }
@@ -2185,7 +2185,7 @@ PTL.editor = {
   /* Checks whether the provided target is supported */
   isSupportedTarget: function (pairs, target) {
     for (var i in pairs) {
-      if (target == pairs[i].target) {
+      if (target === pairs[i].target) {
         return true;
       }
     }
@@ -2196,8 +2196,8 @@ PTL.editor = {
   /* Checks whether the provided source-target pair is supported */
   isSupportedPair: function (pairs, source, target) {
     for (var i in pairs) {
-      if (source == pairs[i].source &&
-          target == pairs[i].target) {
+      if (source === pairs[i].source &&
+          target === pairs[i].target) {
         return true;
       }
     }

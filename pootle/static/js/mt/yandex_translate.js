@@ -67,7 +67,7 @@
             }
           },
           error: function (dbg, textStatus) {
-            if(textStatus == "timeout")
+            if(textStatus === "timeout")
             {
               resultCallback({
                 msg: "Yandex.Translate: timeout"

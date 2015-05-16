@@ -53,7 +53,7 @@ var onSubmit = function (e) {
 
 
 var onError = function (xhr, errorFn) {
-  if (xhr.status == 402) {
+  if (xhr.status === 402) {
     display(xhr.responseText);
   } else {
     utils.executeFunctionByName(errorFn, window, xhr);

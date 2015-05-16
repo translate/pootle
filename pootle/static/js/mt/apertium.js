@@ -22,7 +22,7 @@
     init: function (apiKey) {
       var _this = PTL.editor.mt.apertium;
       /* Load Apertium library */
-      _this.url = apiKey == undefined ? _this.url : _this.url + '?key=' + apiKey;
+      _this.url = apiKey === undefined ? _this.url : _this.url + '?key=' + apiKey;
       $.getScript(_this.url, function () {
         /* Init variables */
         var _this = PTL.editor.mt.apertium;

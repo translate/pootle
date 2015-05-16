@@ -229,7 +229,7 @@ PTL.reports = {
   validate: function () {
     if (!!PTL.reports.userName) {
       // month should be defined correctly
-      return moment(PTL.reports.month).date() == 1;
+      return moment(PTL.reports.month).date() === 1;
     }
     return false;
   },
@@ -251,7 +251,7 @@ PTL.reports = {
 
     if (PTL.reports.loadedHashParams) {
       for (var p in params) {
-        result &= params[p] == PTL.reports.loadedHashParams[p];
+        result &= params[p] === PTL.reports.loadedHashParams[p];
       }
     } else {
       result = false;
@@ -464,9 +464,9 @@ PTL.reports = {
 
     showYear = showYear || true;
 
-    if (m1.year() == m2.year()) {
-      if (m1.month() == m2.month()) {
-        if (m1.date() == m2.date()) {
+    if (m1.year() === m2.year()) {
+      if (m1.month() === m2.month()) {
+        if (m1.date() === m2.date()) {
           return m1.format(showYear ? 'MMMM D, YYYY' : 'MMMM D');
         } else {
           return [
