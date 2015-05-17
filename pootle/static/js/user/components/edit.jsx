@@ -10,7 +10,6 @@
 
 import Backbone from 'backbone';
 import React from 'react';
-import _ from 'underscore';
 
 import { Dialog, Modal } from 'components/lightbox';
 
