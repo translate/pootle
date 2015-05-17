@@ -30,13 +30,13 @@ let UserProfileEdit = React.createClass({
   },
 
   setupRoutes(router) {
-    router.on('route:main', function (qs) {
+    router.on('route:main', (qs) => {
       this.setState({editing: false});
-    }.bind(this));
+    });
 
-    router.on('route:edit', function (id, qs) {
+    router.on('route:edit', (id, qs) => {
       this.setState({editing: true});
-    }.bind(this));
+    });
   },
 
   componentWillMount() {
