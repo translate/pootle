@@ -50,6 +50,69 @@ def admin_permissions(request, translation_project):
                        'translation_projects/admin/permissions.html', ctx)
 
 
+def get_sidebar_announcements_context(request, project_code, language_code):
+    announcements = []
+    new_cookie_data = {}
+    cookie_data = {}
+
+    if SIDEBAR_COOKIE_NAME in request.COOKIES:
+        json_str = unquote(request.COOKIES[SIDEBAR_COOKIE_NAME])
+        cookie_data = json.loads(json_str)
+
+    is_sidebar_open = cookie_data.get('isOpen', True)
+
+    def _get_announcement(language_code=None, project_code=None):
+        if language_code is None:
+            virtual_path = u'announcements/projects/%s' % project_code
+        else:
+            path = u'/'.join(filter(None, [language_code, project_code]))
+            virtual_path = u'announcements/%s' % path
+
+        try:
+            return StaticPage.objects.live(request.user).get(
+                virtual_path=virtual_path,
+            )
+        except StaticPage.DoesNotExist:
+            return None
+
+    args_list = [
+        (None, project_code),
+        (language_code, None),
+        (language_code, project_code),
+    ]
+
+    for args in args_list:
+        announcement = _get_announcement(*args)
+
+        if announcement is None:
+            continue
+
+        announcements.append(announcement)
+        # The virtual_path cannot be used as is for JSON.
+        ann_key = announcement.virtual_path.replace('/', '_')
+        ann_mtime = dateformat.format(announcement.modified_on, 'U')
+        stored_mtime = cookie_data.get(ann_key, None)
+
+        if ann_mtime != stored_mtime:
+            new_cookie_data[ann_key] = ann_mtime
+
+    if new_cookie_data:
+        # Some announcement has been changed or was never displayed before, so
+        # display sidebar and save the changed mtimes in the cookie to not
+        # display it next time unless it is necessary.
+        is_sidebar_open = True
+        cookie_data.update(new_cookie_data)
+        new_cookie_data = quote(json.dumps(cookie_data))
+
+    ctx = {
+        'announcements': announcements,
+        'is_sidebar_open': is_sidebar_open,
+        'has_sidebar': len(announcements) > 0,
+    }
+
+    return ctx, new_cookie_data
+
+
 @get_path_obj
 @permission_required('view')
 @get_resource
@@ -60,63 +123,9 @@ def overview(request, translation_project, dir_path, filename=None):
     directory = request.directory
     store = request.store
     is_admin = check_permission('administrate', request)
-    announcements = []
 
-    # TODO: cleanup and refactor, retrieve from cache
-    try:
-        ann_virtual_path = 'announcements/projects/' + project.code
-        announcement = StaticPage.objects.live(request.user).get(
-            virtual_path=ann_virtual_path,
-        )
-        announcements.append(announcement)
-    except StaticPage.DoesNotExist:
-        announcement = None
-
-    try:
-        ann_virtual_path = 'announcements/' + language.code
-        language_announcement = StaticPage.objects.live(request.user).get(
-            virtual_path=ann_virtual_path,
-        )
-        announcements.append(language_announcement)
-    except StaticPage.DoesNotExist:
-        pass
-
-    try:
-        ann_virtual_path = ('announcements/' + language.code + '/' +
-                            project.code)
-        tp_announcement = StaticPage.objects.live(request.user).get(
-            virtual_path=ann_virtual_path,
-        )
-        announcements.append(tp_announcement)
-    except StaticPage.DoesNotExist:
-        pass
-
-    is_sidebar_open = True
-    stored_mtime = None
-    new_mtime = None
-    cookie_data = {}
-
-    if SIDEBAR_COOKIE_NAME in request.COOKIES:
-        json_str = unquote(request.COOKIES[SIDEBAR_COOKIE_NAME])
-        cookie_data = json.loads(json_str)
-
-        if 'isOpen' in cookie_data:
-            is_sidebar_open = cookie_data['isOpen']
-
-        if project.code in cookie_data:
-            stored_mtime = cookie_data[project.code]
-
-    if announcement is not None:
-        ann_mtime = dateformat.format(announcement.modified_on, 'U')
-        if ann_mtime != stored_mtime:
-            is_sidebar_open = True
-            new_mtime = ann_mtime
-
-    ctx = {
-        'announcements': announcements,
-        'is_sidebar_open': is_sidebar_open,
-        'has_sidebar': len(announcements) > 0,
-    }
+    ctx, cookie_data = get_sidebar_announcements_context(request, project.code,
+                                                         language.code)
 
     ctx.update(get_overview_context(request))
 
@@ -180,9 +189,7 @@ def overview(request, translation_project, dir_path, filename=None):
 
     response = render(request, 'browser/overview.html', ctx)
 
-    if new_mtime is not None:
-        cookie_data[project.code] = new_mtime
-        cookie_data = quote(json.dumps(cookie_data))
+    if cookie_data:
         response.set_cookie(SIDEBAR_COOKIE_NAME, cookie_data)
 
     return response
