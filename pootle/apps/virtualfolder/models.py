@@ -313,14 +313,17 @@ class VirtualFolder(models.Model):
             'snippet': sub.get_submission_message()
         }
 
-    def get_translate_url(self, pootle_path, **kwargs):
-        # The provided pootle path must be converted to a path that includes
-        # the virtual folder name in the right place.
-        #
-        # For example a virtual folder named vfolder8, with a location
-        # /{LANG}/firefox/browser/ in a path
-        # /af/firefox/browser/chrome/overrides/ gets converted to
-        # /af/firefox/browser/vfolder8/chrome/overrides/
+    def get_adjusted_pootle_path(self, pootle_path):
+        """Adjust the given pootle path to this virtual folder.
+
+        The provided pootle path is converted to a path that includes the
+        virtual folder name in the right place.
+
+        For example a virtual folder named vfolder8, with a location
+        /{LANG}/firefox/browser/ in a path
+        /af/firefox/browser/chrome/overrides/ gets converted to
+        /af/firefox/browser/vfolder8/chrome/overrides/
+        """
         count = self.location.count('/')
 
         if pootle_path.count('/') < count:
@@ -335,15 +338,17 @@ class VirtualFolder(models.Model):
             # short, meaning that the returned translate URL will have the
             # virtual folder name as the project or language code.
             path_parts = pootle_path.split('/')
-            adjusted_path = '/'.join(path_parts[:3] + [self.name] +
-                                     path_parts[3:])
-        else:
-            # If the virtual folder location is as long as a TP pootle path and
-            # the provided pootle path isn't above the virtual folder location.
-            lead = self.get_adjusted_location(pootle_path)
-            trail = pootle_path.replace(lead, '').lstrip('/')
-            adjusted_path = '/'.join([lead, self.name, trail])
+            return '/'.join(path_parts[:3] + [self.name] + path_parts[3:])
 
+        # If the virtual folder location is as long as a TP pootle path and
+        # the provided pootle path isn't above the virtual folder location.
+        lead = self.get_adjusted_location(pootle_path)
+        trail = pootle_path.replace(lead, '').lstrip('/')
+        return '/'.join([lead, self.name, trail])
+
+    def get_translate_url(self, pootle_path, **kwargs):
+        """Get the translate URL for this virtual folder in the given path."""
+        adjusted_path = self.get_adjusted_pootle_path(pootle_path)
         lang, proj, dp, fn = split_pootle_path(adjusted_path)
 
         return u''.join([
