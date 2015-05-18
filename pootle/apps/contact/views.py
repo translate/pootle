@@ -34,11 +34,10 @@ class PootleContactFormView(AjaxResponseMixin, ContactFormView):
     def get_context_data(self, **kwargs):
         # Provide the form action URL to use in the template that renders the
         # contact dialog.
-        context = {
+        kwargs.update({
             'contact_form_url': reverse('pootle-contact'),
-        }
-        context.update(kwargs)
-        return super(PootleContactFormView, self).get_context_data(**context)
+        })
+        return super(PootleContactFormView, self).get_context_data(**kwargs)
 
     def get_initial(self):
         initial = super(PootleContactFormView, self).get_initial()
@@ -64,11 +63,10 @@ class PootleReportFormView(PootleContactFormView):
     def get_context_data(self, **kwargs):
         # Provide the form action URL to use in the template that renders the
         # contact dialog.
-        context = {
+        kwargs.update({
             'contact_form_url': reverse('pootle-contact-report-error'),
-        }
-        context.update(kwargs)
-        return super(PootleReportFormView, self).get_context_data(**context)
+        })
+        return super(PootleReportFormView, self).get_context_data(**kwargs)
 
     def get_initial(self):
         initial = super(PootleReportFormView, self).get_initial()
