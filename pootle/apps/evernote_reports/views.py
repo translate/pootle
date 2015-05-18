@@ -124,7 +124,7 @@ class PaidTaskFormView(AjaxResponseMixin, CreateView):
         return reverse('pootle-user-stats', kwargs=self.kwargs)
 
     def form_valid(self, form):
-        response = super(PaidTaskFormView, self).form_valid(form)
+        super(PaidTaskFormView, self).form_valid(form)
         # ignore redirect response
         log('%s\t%s\t%s' % (self.object.user.username, PAID_TASK_ADDED,
                             self.object))

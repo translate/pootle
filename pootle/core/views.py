@@ -89,7 +89,7 @@ class AjaxResponseMixin(object):
         return JsonResponseBadRequest(response)
 
     def form_valid(self, form):
-        response = super(AjaxResponseMixin, self).form_valid(form)
+        super(AjaxResponseMixin, self).form_valid(form)
         return JsonResponse({})
 
 
