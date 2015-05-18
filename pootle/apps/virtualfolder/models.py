@@ -19,7 +19,9 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
-from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle.core.mixins import CachedTreeItem
+from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
+                                     split_pootle_path)
 from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_misc.checks import get_qualitychecks_by_category
@@ -222,6 +224,8 @@ class VirtualFolder(models.Model):
         self.units.clear()
 
         # Recreate relationships between this vfolder and units.
+        vfolder_stores_set = set()
+
         for location in self.all_locations:
             for filename in self.filter_rules.split(","):
                 vf_file = "".join([location, filename])
@@ -230,6 +234,7 @@ class VirtualFolder(models.Model):
 
                 if qs.exists():
                     self.units.add(*qs[0].units.all())
+                    vfolder_stores_set.add(qs[0])
                 else:
                     if not vf_file.endswith("/"):
                         vf_file += "/"
@@ -240,6 +245,17 @@ class VirtualFolder(models.Model):
                             store__pootle_path__startswith=vf_file
                         )
                         self.units.add(*qs)
+                        vfolder_stores_set.update(Store.objects.filter(
+                            pootle_path__startswith=vf_file
+                        ))
+
+        # For each store create all VirtualFolderTreeItem tree structure up to
+        # its adjusted vfolder location.
+        for store in vfolder_stores_set:
+            VirtualFolderTreeItem.objects.get_or_create(
+                directory=store.parent,
+                vfolder=self,
+            )
 
         # Get the set of projects whose resources cache must be invalidated.
         # This includes the projects the projects it was previously related to
@@ -362,6 +378,78 @@ class VirtualFolder(models.Model):
                                       **kwargs)
 
 
+class VirtualFolderTreeItemManager(models.Manager):
+    use_for_related_fields = True
+
+    def get_queryset(self):
+        return super(VirtualFolderTreeItemManager, self) \
+            .get_queryset().select_related('vfolder')
+
+
+class VirtualFolderTreeItem(models.Model, CachedTreeItem):
+
+    directory = models.ForeignKey(
+        Directory,
+        related_name='vf_treeitems',
+        db_index=True,
+    )
+    vfolder = models.ForeignKey(
+        VirtualFolder,
+        related_name='vf_treeitems',
+        db_index=True,
+    )
+    parent = models.ForeignKey(
+        'VirtualFolderTreeItem',
+        related_name='child_vf_treeitems',
+        null=True,
+        db_index=True,
+    )
+    pootle_path = models.CharField(
+        max_length=255,
+        null=False,
+        unique=True,
+        db_index=True,
+        editable=False,
+    )
+    stores = models.ManyToManyField(
+        Store,
+        db_index=True,
+        related_name='parent_vf_treeitems',
+    )
+
+    objects = VirtualFolderTreeItemManager()
+
+    class Meta:
+        unique_together = ('directory', 'vfolder')
+
+    ############################ Methods ######################################
+
+    def __unicode__(self):
+        return self.pootle_path
+
+    def save(self, *args, **kwargs):
+        self.pootle_path = self.vfolder.get_adjusted_pootle_path(
+            self.directory.pootle_path
+        )
+
+        # Trigger the creation of the whole parent tree up to the vfolder
+        # adjusted location.
+        if self.directory.pootle_path.count('/') > self.vfolder.location.count('/'):
+            parent, created = VirtualFolderTreeItem.objects.get_or_create(
+                directory=self.directory.parent,
+                vfolder=self.vfolder,
+            )
+            self.parent = parent
+
+        super(VirtualFolderTreeItem, self).save(*args, **kwargs)
+
+        # Relate immediate child stores for this item's directory that have
+        # units in this item's vfolder.
+        self.stores = self.directory.child_stores.filter(
+            unit__vfolders=self.vfolder
+        ).distinct()
+
+
 @receiver(post_save, sender=Unit)
 def relate_unit(sender, instance, created=False, **kwargs):
     """Add newly created units to the virtual folders they belong, if any.
@@ -384,4 +472,12 @@ def relate_unit(sender, instance, created=False, **kwargs):
             for filename in vf.filter_rules.split(","):
                 if pootle_path == "".join([location, filename]):
                     vf.units.add(instance)
+
+                    # Create missing VirtualFolderTreeItem tree structure after
+                    # adding this new unit.
+                    vfolder_treeitem, created = VirtualFolderTreeItem.objects.get_or_create(
+                        directory=instance.store.parent,
+                        vfolder=vf,
+                    )
+
                     break
