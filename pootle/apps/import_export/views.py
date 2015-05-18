@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
 import os
 from io import BytesIO
 from zipfile import ZipFile, is_zipfile
@@ -51,7 +52,12 @@ def export(request):
     with BytesIO() as f:
         with ZipFile(f, "w") as zf:
             for store in stores:
-                zf.writestr(prefix + store.pootle_path, store.serialize())
+                try:
+                    data = store.serialize()
+                except Exception as e:
+                    logging.error("Could not serialize %r: %s", store.pootle_path, e)
+                    continue
+                zf.writestr(prefix + store.pootle_path, data)
 
         return download(f.getvalue(), "%s.zip" % (prefix), "application/zip")
 
