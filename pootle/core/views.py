@@ -22,8 +22,6 @@ from django.views.defaults import (permission_denied as django_403,
                                    server_error as django_500)
 from django.views.generic import View
 
-from pootle_misc.util import ajax_required
-
 from .http import JsonResponse, JsonResponseBadRequest
 from .utils.json import PootleJSONEncoder
 
@@ -86,10 +84,6 @@ class AjaxResponseMixin(object):
 
     This needs to be used with a `FormView`.
     """
-    @method_decorator(ajax_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AjaxResponseMixin, self).dispatch(*args, **kwargs)
-
     def form_invalid(self, form):
         response = super(AjaxResponseMixin, self).form_invalid(form)
         return JsonResponseBadRequest(response)
