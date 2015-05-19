@@ -53,6 +53,8 @@ class PaidTask(models.Model):
              PaidTask.get_task_type_title(self.task_type), self.amount, self.description)
 
     def clean(self):
-        if (timezone.now().month == self.datetime.month and
-            timezone.now().year == self.datetime.year):
-            self.datetime = timezone.now()
+        now = timezone.now()
+        if settings.USE_TZ:
+            now = timezone.localtime(now)
+        if now.month == self.datetime.month and now.year == self.datetime.year:
+            self.datetime = now
