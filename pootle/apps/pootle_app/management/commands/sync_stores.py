@@ -12,7 +12,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from optparse import make_option
 
 from pootle_app.management.commands import PootleCommand
-from pootle_translationproject.models import create_rq_job, sync_translation_project
+from pootle_translationproject.models import sync_translation_projects
 
 
 class Command(PootleCommand):
@@ -24,19 +24,12 @@ class Command(PootleCommand):
                     default=False, help="Ignore missing files on disk"),
         make_option('--force', action='store_true', dest='force',
                     default=False, help="Don't ignore stores synced after last change"),
+        make_option('--nowait', action='store_true', dest='nowait',
+                    default=False,
+                    help="Don't wait until all tasks created by this command "
+                         "are finished"),
         )
     help = "Save new translations to disk manually."
 
-    def handle_all_stores(self, translation_project, **options):
-        overwrite = options.get('overwrite', False)
-        skip_missing = options.get('skip_missing', False)
-        force = options.get('force', False)
-
-        create_rq_job(
-            translation_project.language,
-            translation_project.project,
-            sync_translation_project,
-            conservative=not overwrite,
-            skip_missing=skip_missing,
-            only_newer=not force
-        )
+    def handle_all(self, **options):
+        sync_translation_projects(self.languages, self.projects, **options)

@@ -26,6 +26,10 @@ class Command(PootleCommand):
         make_option('--force', action='store_true', dest='force', default=False,
                     help="Unconditionally process all files (even if they "
                          "appear unchanged)."),
+        make_option('--nowait', action='store_true', dest='nowait',
+                    default=False,
+                    help="Don't wait until all tasks created by this command "
+                         "are finished"),
         )
     help = "Update database stores from files."
 

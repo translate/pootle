@@ -9,6 +9,7 @@
 
 import logging
 import os
+import time
 
 from translate.misc.lru import LRUCachingDict
 from translate.storage.base import ParseError
@@ -65,8 +66,7 @@ def create_translation_project(language, project):
             return None
 
 
-def update_translation_project(language, project, overwrite=False,
-                               force=False):
+def update_translation_project(language, project, **kwargs):
     try:
         tp = TranslationProject.objects.get(language=language, project=project)
         if does_not_exist(tp.abs_real_path):
@@ -86,7 +86,7 @@ def update_translation_project(language, project, overwrite=False,
     if tp is not None:
         logging.info(u"Scanning for new files in %s", tp)
         tp.scan_files()
-        tp.update(overwrite=overwrite, only_newer=not force)
+        tp.update(**kwargs)
 
 
 def sync_translation_project(language, project, **kwargs):
@@ -94,9 +94,14 @@ def sync_translation_project(language, project, **kwargs):
     instance.sync(**kwargs)
 
 
-def scan_translation_projects(languages=None, projects=None, **options):
-    scan_disabled_projects = options.pop('scan_disabled_projects', False)
+def scan_translation_projects(languages=None, projects=None, **kwargs):
+    scan_disabled_projects = kwargs.get('scan_disabled_projects', False)
+    overwrite = kwargs.get('overwrite', False)
+    force = kwargs.get('force', False)
+    wait = not kwargs.get('nowait', False)
 
+    lang_codes = []
+    prj_codes = []
     if scan_disabled_projects:
         project_query = Project.objects.all()
     else:
@@ -106,6 +111,7 @@ def scan_translation_projects(languages=None, projects=None, **options):
         project_query = project_query.filter(code__in=projects)
 
     for project in project_query.iterator():
+        prj_codes.append(project.code)
         if does_not_exist(project.get_real_path()):
             logging.info(u"Disabling %s", project)
             project.disabled = True
@@ -119,7 +125,79 @@ def scan_translation_projects(languages=None, projects=None, **options):
             for language in lang_query.iterator():
                 logging.info(u"Add background job for (%s, %s) processing",
                              language, project)
-                create_rq_job(language, project, update_translation_project, **options)
+                lang_codes.append(language.code)
+                create_rq_job(language,
+                              project,
+                              update_translation_project,
+                              only_newer=not force,
+                              overwrite=overwrite)
+
+    if wait:
+        wait_for_free_translation_projects(lang_codes, prj_codes)
+
+
+def sync_translation_projects(languages=None, projects=None, **kwargs):
+    overwrite = kwargs.get('overwrite', False)
+    skip_missing = kwargs.get('skip_missing', False)
+    force = kwargs.get('force', False)
+    wait = not kwargs.get('nowait', False)
+
+    lang_codes = []
+    prj_codes = []
+    project_query = Project.objects.enabled()
+
+    if projects:
+        project_query = project_query.filter(code__in=projects)
+
+    for project in project_query.iterator():
+        prj_codes.append(project.code)
+        lang_query = Language.objects.all()
+
+        if languages:
+            lang_query = lang_query.filter(code__in=languages)
+
+        for language in lang_query.iterator():
+            logging.info(u"Add background job for (%s, %s) processing",
+                         language, project)
+
+            lang_codes.append(language.code)
+            create_rq_job(
+                language,
+                project,
+                sync_translation_project,
+                conservative=not overwrite,
+                skip_missing=skip_missing,
+                only_newer=not force,
+            )
+
+    if wait:
+        wait_for_free_translation_projects(lang_codes, prj_codes)
+
+
+def wait_for_free_translation_projects(lang_codes, prj_codes):
+    while True:
+        is_any_busy = False
+        for prj_code in prj_codes:
+            for lang_code in lang_codes:
+                is_any_busy |= is_translation_project_busy(lang_code, prj_code)
+
+        if not is_any_busy:
+            break
+
+        time.sleep(1)
+
+
+def is_translation_project_busy(lang_code, prj_code):
+        queue = get_queue()
+        conn = queue.connection
+        last_job_key = JobWrapper.get_last_job_key(lang_code, prj_code)
+        last_job_id = conn.get(last_job_key)
+        job = Job(id=last_job_id, connection=queue.connection)
+        status = job.get_status()
+
+        return (status is not None and
+                status in [JobStatus.QUEUED, JobStatus.STARTED,
+                           JobStatus.DEFERRED])
 
 
 class TranslationProjectManager(models.Manager):
@@ -469,7 +547,9 @@ def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:
         return
 
-    scan_translation_projects(projects=[instance.code], scan_disabled_projects=instance.disabled)
+    scan_translation_projects(projects=[instance.code],
+                              scan_disabled_projects=instance.disabled,
+                              nowait=True)
 
 
 @receiver(post_save, sender=Language)
@@ -477,7 +557,7 @@ def scan_projects(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw:
         return
 
-    scan_translation_projects(languages=[instance.code])
+    scan_translation_projects(languages=[instance.code], nowait=True)
 
 
 class JobWrapper(object):
@@ -518,19 +598,22 @@ class JobWrapper(object):
 
         return job_wrapper
 
-    def get_last_job_key(self):
+    @classmethod
+    def get_last_job_key(self, lang_code, prj_code):
         return "%s%s.%s" % (self.POOTLE_SYNC_LAST_JOB_PREFIX,
-                            self.language.code, self.project.code)
+                            lang_code, prj_code)
 
     def create_job(self, status=None, depends_on=None):
         """
         Creates Job object with given job ID.
         """
         args = (self.language, self.project)
-        return Job.create(self.func, args=args, kwargs=self.options,
-                          id=self.id, connection=self.connection,
-                          depends_on=depends_on, status=status,
-                          origin=self.origin)
+        self.job = Job.create(self.func, args=args, kwargs=self.options,
+                              id=self.id, connection=self.connection,
+                              depends_on=depends_on, status=status,
+                              origin=self.origin)
+
+        return self.job
 
     def save_enqueued(self, pipe):
         """
@@ -567,7 +650,7 @@ def create_rq_job(language, project, job_func, **options):
                                     origin=queue.name,
                                     timeout=queue.DEFAULT_TIMEOUT)
 
-    last_job_key = job_wrapper.get_last_job_key()
+    last_job_key = JobWrapper.get_last_job_key(language.code, project.code)
 
     with queue.connection.pipeline() as pipe:
         while True:
@@ -611,3 +694,5 @@ def create_rq_job(language, project, job_func, **options):
                 continue
     logging.debug('ENQUEUE %s (job_id=%s)', last_job_key, job_wrapper.id)
     queue.push_job_id(job_wrapper.id)
+
+    return job_wrapper.job
