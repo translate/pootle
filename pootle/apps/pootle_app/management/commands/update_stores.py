@@ -37,6 +37,14 @@ class Command(PootleCommand):
             help="Unconditionally process all files (even if they "
                  "appear unchanged).",
         )
+        parser.add_argument(
+            '--nowait',
+            action='store_true',
+            dest='nowait',
+            default=False,
+            help="Don't wait until all tasks created by this command "
+                 "are finished.",
+        )
 
     def handle_all(self, **options):
         scan_translation_projects(languages=self.languages,

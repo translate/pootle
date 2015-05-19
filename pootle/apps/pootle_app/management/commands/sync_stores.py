@@ -11,8 +11,7 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
-from pootle_translationproject.models import create_rq_job, sync_translation_project
-
+from pootle_translationproject.models import sync_translation_projects
 
 
 class Command(PootleCommand):
@@ -43,13 +42,14 @@ class Command(PootleCommand):
             default=False,
             help="Don't ignore stores synced after last change",
         )
-
-    def handle_all_stores(self, translation_project, **options):
-        create_rq_job(
-            translation_project.language,
-            translation_project.project,
-            sync_translation_project,
-            conservative=not options['overwrite'],
-            skip_missing=options['skip_missing'],
-            only_newer=not options['force']
+        parser.add_argument(
+            '--nowait',
+            action='store_true',
+            dest='nowait',
+            default=False,
+            help="Don't wait until all tasks created by this command "
+                 "are finished",
         )
+
+    def handle_all(self, **options):
+        sync_translation_projects(self.languages, self.projects, **options)
