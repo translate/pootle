@@ -117,8 +117,7 @@ var contact = {
   },
 
   onError: function (xhr) {
-    var errors = $.parseJSON(xhr.responseText);
-    this.displayErrors(errors);
+    this.displayErrors(xhr.responseJSON.errors);
   },
 
   /* Displays errors returned by the contact request */

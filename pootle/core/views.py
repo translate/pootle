@@ -85,8 +85,8 @@ class AjaxResponseMixin(object):
     This needs to be used with a `FormView`.
     """
     def form_invalid(self, form):
-        response = super(AjaxResponseMixin, self).form_invalid(form)
-        return JsonResponseBadRequest(response)
+        super(AjaxResponseMixin, self).form_invalid(form)
+        return JsonResponseBadRequest({'errors': form.errors})
 
     def form_valid(self, form):
         super(AjaxResponseMixin, self).form_valid(form)
