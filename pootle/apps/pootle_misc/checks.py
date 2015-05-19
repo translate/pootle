@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
 import re
 re._MAXCACHE = 2000
 
@@ -23,6 +24,9 @@ from pootle_misc.util import import_func
 category_names = {
     Category.CRITICAL: _("Critical"),
     Category.COSMETIC: _("Cosmetic"),
+    Category.FUNCTIONAL: _("Functional"),
+    Category.EXTRACTION: _("Extraction"),
+    Category.NO_CATEGORY: _("Other"),
 }
 
 
@@ -973,14 +977,30 @@ def run_given_filters(checker, unit, check_names=[]):
 
 
 def get_qualitychecks():
-    sc = ENChecker()
-    for filt in sc.defaultfilters:
-        if filt not in excluded_filters:
-            # don't use an empty string because of
-            # http://bugs.python.org/issue18190
-            getattr(sc, filt)(u'_', u'_')
+    available_checks = {}
 
-    return sc.categories
+    if settings.QUALITY_CHECKER:
+        checkers = [import_func(settings.QUALITY_CHECKER)()]
+    else:
+        checkers = [checker() for checker in checks.projectcheckers.values()]
+
+    for checker in checkers:
+        for filt in checker.defaultfilters:
+            if filt not in excluded_filters:
+                # don't use an empty string because of
+                # http://bugs.python.org/issue18190
+                try:
+                    getattr(checker, filt)(u'_', u'_')
+                except Exception as e:
+                    # FIXME there must be a better way to get a list of
+                    # available checks.  Some error because we're not actually
+                    # using them on real units.
+                    logging.error("Problem with check filter '%s': %s", filt, e)
+                    continue
+
+        available_checks.update(checker.categories)
+
+    return available_checks
 
 
 def get_qualitycheck_schema(path_obj=None):
