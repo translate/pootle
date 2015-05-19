@@ -994,6 +994,16 @@ div.sidebar-group #staticpage
     margin: 0.5em 0;
 }
 
+#staticpage ol
+{
+    margin-left: 2em;
+}
+
+#staticpage li
+{
+    list-style: decimal;
+}
+
 
 /*
  * CHECKS DESCRIPTIONS
