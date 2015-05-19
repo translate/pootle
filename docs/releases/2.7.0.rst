@@ -197,6 +197,8 @@ Sysadmins
   scripts instead.
 - Captcha implementation details have been refined.
 - Yandex.Translate is now available as a Machine Translation backend.
+- :setting:`QUALITY_CHECKER` can be used to point to a custom quality check
+  handler.
 
 
 Command changes

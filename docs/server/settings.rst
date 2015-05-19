@@ -404,6 +404,20 @@ Translation environment configuration settings.
   The directory where the translation files are kept.
 
 
+.. setting:: QUALITY_CHECKER
+
+``QUALITY_CHECKER``
+  Default: ``''``
+
+  The import path to a funtion that provides alternate quality checks to
+  Pootle.  If it is unset then the Translate Toolkit checking functions are
+  used and you can make adjustments in the project Admin page.  If set then the
+  quality checker function is used for all projects.
+
+  .. note:: If set, only the checker function defined here is used instead of
+     the Translate Toolkit counterparts. Both cannot be selectively applied.
+
+
 .. setting:: WORDCOUNT_FUNC
 
 ``WORDCOUNT_FUNC``
