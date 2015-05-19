@@ -228,9 +228,8 @@ percent_brace_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
 
 def get_checker(unit):
-    checker_class = getattr(settings, 'QUALITY_CHECKER', '')
-    if checker_class:
-        return import_func(checker_class)()
+    if settings.QUALITY_CHECKER:
+        return import_func(settings.QUALITY_CHECKER)()
     else:
         return unit.store.translation_project.checker
 
