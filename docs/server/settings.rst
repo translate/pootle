@@ -414,6 +414,21 @@ Translation environment configuration settings.
   The directory where the translation files are kept.
 
 
+.. setting:: WORDCOUNT_FUNC
+
+``WORDCOUNT_FUNC``
+  Default: ``translate.storage.statsdb.wordcount``
+
+  The import path to a function that provides wordcounts for Pootle.
+
+  Current options:
+
+  - Translate Toolkit (default) - translate.storage.statsdb.wordcount
+  - Pootle - pootle.core.utils.wordcount.wordcount
+
+  Adding a custom function allows you to alter how words are counted.
+
+
 .. _settings#deprecated:
 
 Deprecated Settings

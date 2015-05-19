@@ -152,10 +152,10 @@ Statistics calculations
   invalidated statistics.  On the frontend, stats are now loaded
   asynchronously, thus any pending calculations no longer block page loads.
   This results in a major usability improvement for Pootle users.
-- :setting:`WORDCOUNT_FUNC` allows a custom word counting method to be used.  A
-  new method has been incorporated (omits placeholders and words that shouldn't
-  be translated). Non-empty units with 0 words are immediately translated and
-  marked as fuzzy.
+- :setting:`WORDCOUNT_FUNC` allows a custom word counting method to be used.
+- A new counter ``pootle.core.utils.wordcount.wordcount`` has been incorporated
+  (it omits placeholders and words that shouldn't be translated). Non-empty
+  units with 0 words are immediately translated and marked as fuzzy.
 - Overview pages now report the last time a unit was added to a store/project.
   In the browsing tables a *Last Updated* column is displayed and in the
   extended stats *Created* and *Last Updated* dates.

@@ -197,8 +197,5 @@ EN_SSO_SECRET_KEY = ''
 # Cookie name
 EN_SSO_COOKIE = ''
 
-# path to word count fucntion
-WORDCOUNT_FUNC = 'translate.storage.statsdb.wordcount'
-
 # path to quality checker
 QUALITY_CHECKER = ''

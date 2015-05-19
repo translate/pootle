@@ -192,8 +192,7 @@ class Suggestion(models.Model, base.TranslationUnit):
 
 ############### Unit ####################
 
-f_path = getattr(settings, 'WORDCOUNT_FUNC', 'translate.storage.statsdb.wordcount')
-wordcount_f = import_func(f_path)
+wordcount_f = import_func(settings.WORDCOUNT_FUNC)
 
 def count_words(strings):
     wordcount = 0
