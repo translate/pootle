@@ -703,9 +703,14 @@ def save_comment(request, unit):
     if form.is_valid():
         form.save()
 
+        user = request.user
+        directory = unit.store.parent
+
         ctx = {
             'unit': unit,
             'language': language,
+            'cantranslate': check_user_permission(user, 'translate', directory),
+            'cansuggest': check_user_permission(user, 'suggest', directory),
         }
         t = loader.get_template('editor/units/xhr_comment.html')
         c = RequestContext(request, ctx)
