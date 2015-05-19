@@ -38,6 +38,7 @@ Performance tuning and managing the server
    :maxdepth: 2
 
    settings
+   logging
    optimization
    cache
    indexing
