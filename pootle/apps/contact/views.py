@@ -31,6 +31,13 @@ Your question or comment:
 class PootleContactFormView(AjaxResponseMixin, ContactFormView):
     form_class = PootleContactForm
 
+    def get_template_names(self):
+        # FIXME: we should move away from constructs like these
+        if self.request.is_ajax():
+            return ['contact_form/xhr_contact_form.html']
+
+        return [self.template_name]
+
     def get_context_data(self, **kwargs):
         # Provide the form action URL to use in the template that renders the
         # contact dialog.
