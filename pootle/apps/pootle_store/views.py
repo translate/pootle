@@ -703,12 +703,12 @@ def save_comment(request, unit):
     if form.is_valid():
         form.save()
 
-        context = {
+        ctx = {
             'unit': unit,
             'language': language,
         }
         t = loader.get_template('editor/units/xhr_comment.html')
-        c = RequestContext(request, context)
+        c = RequestContext(request, ctx)
 
         return JsonResponse({'comment': t.render(c)})
 
