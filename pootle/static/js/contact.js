@@ -43,16 +43,26 @@ var contact = {
   onClick: function (e) {
     e.preventDefault();
 
-    var contactUrl = this.url;
-    if (contactUrl === null) {
-      return false;
-    }
-
     var $el = $(e.target),
         sP = $el.data(sel.data.subjectPrefix),
         subjectPrefix = sP ? ['[', sP, '] '].join('') : sP,
         subject = $el.data(sel.data.subject),
         body = $el.data(sel.data.body);
+
+    this.open({
+      subjectPrefix: subjectPrefix,
+      subject: subject,
+      body: body,
+    });
+  },
+
+  open: function (opts) {
+    opts = opts || {};
+
+    var contactUrl = opts.url || this.url;
+    if (contactUrl === null) {
+      return false;
+    }
 
     $.magnificPopup.open({
       items: {
@@ -62,11 +72,11 @@ var contact = {
       callbacks: {
         ajaxContentAdded: function () {
           var newSubject = [];
-          subjectPrefix && newSubject.push(subjectPrefix);
-          subject && newSubject.push(subject);
+          opts.subjectPrefix && newSubject.push(opts.subjectPrefix);
+          opts.subject && newSubject.push(opts.subject);
 
           newSubject.length && $(sel.subject).val(newSubject.join(''));
-          body && $(sel.body).val(body);
+          opts.body && $(sel.body).val(opts.body);
         }
       },
       mainClass: 'popup-ajax'
