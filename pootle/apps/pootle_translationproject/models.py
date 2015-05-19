@@ -26,7 +26,7 @@ from pootle.core.mixins import CachedTreeItem, CachedMethods
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
-from pootle_misc.checks import excluded_filters, ENChecker
+from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
 from pootle_store.models import (Store, Unit, PARSED)
 from pootle_store.util import (absolute_real_path, relative_real_path,
@@ -192,7 +192,14 @@ class TranslationProject(models.Model, CachedTreeItem):
         from translate.filters import checks
         # We do not use default Translate Toolkit checkers; instead use
         # our own one
-        checkerclasses = [ENChecker]
+        if settings.QUALITY_CHECKER:
+            from pootle_misc.util import import_func
+            checkerclasses = [import_func(settings.QUALITY_CHECKER)]
+        else:
+            checkerclasses = [
+                checks.projectcheckers.get(self.project.checkstyle,
+                                           checks.StandardUnitChecker)
+            ]
 
         return checks.TeeChecker(checkerclasses=checkerclasses,
                                  excludefilters=excluded_filters,
