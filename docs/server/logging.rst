@@ -104,35 +104,42 @@ Action messages
 
 Various of the action groups have different message structures as outlined here:
 
-Translation:
-    ``date  user  action  lang    unit    path    translation``
-    ``[2015-05-19T14:11:18]   admin   C       af      2       /af/tutorial/stats-test.po      Twee``
-    ``[2015-05-19T14:12:17]   admin   A       af      3       /af/tutorial/stats-test.po      Drie``
-    ``[2015-05-19T14:13:05]   admin   D       af      1       /af/tutorial/stats-test.po``
+*Translation*::
 
-Unit:
-    ``date  user    action  language    unit    file    translation``
-    ``[2015-05-06T16:25:20]	system	UA	am	4109	/am/terminology/gnome/am.po	MSDOS``
-    ``[2015-05-06T16:37:05]	system	UA	cs	12043	/cs/terminology/gnome/cs.po	přepínač``
+  date  user  action  lang    unit    path    translation
+  [2015-05-19T14:11:18]   admin   C       af      2       /af/tutorial/stats-test.po      Twee
+  [2015-05-19T14:12:17]   admin   A       af      3       /af/tutorial/stats-test.po      Drie
+  [2015-05-19T14:13:05]   admin   D       af      1       /af/tutorial/stats-test.po
 
-Store:
-    ``date  user    action  path    store``
-    ``[2015-05-05T20:23:37]	system	SA	/templates/tutorial/tutorial.pot	1``
+*Unit*::
 
-Command:
-    ``date  user  action command``
-    ``[2015-05-06T11:24:28]	system	X	./manage.py update_stores --project=vfolders``
-    ``[2015-05-05T20:22:46]	system	X	./manage.py migrate``
+  date  user    action  language    unit    file    translation
+  [2015-05-06T16:25:20]	system	UA	am	4109	/am/terminology/gnome/am.po	MSDOS
+  [2015-05-06T16:37:05]	system	UA	cs	12043	/cs/terminology/gnome/cs.po	přepínač
 
-Quality check:
-    ``date  user    action  lang    unit    path    translation``
-    ``[2015-05-19T14:16:36]   admin   QM      af      855     /af/terminology/gnome-terminologie.po   lug``
-    ``[2015-05-19T14:17:44]   admin   QU      af      855     /af/terminology/gnome-terminologie.po   lug``
+*Store*::
 
-Score:
-    ``date  user    SC  score_delta  score_action    #unit  NS=wordcount    S=similarity   total``
-    ``[2015-05-19T14:19:11]   admin   SC      1.0     TA      #1      NS=1    S=0.0   (total: 2.28571428571)``
+  date  user    action  path    store
+  [2015-05-05T20:23:37]	system	SA	/templates/tutorial/tutorial.pot	1
 
-Paid Task:
-    ``date  user    action  Task: [id, user, date, type, amount, comment]``
-    ``[2015-05-19T14:35:34]   admin   PTA     Task: [id=1, user=admin, month=2015-05, type=Translation, amount=1000.0, comment=Translate UI]``
+*Command*::
+
+  date  user  action command
+  [2015-05-06T11:24:28]	system	X	./manage.py update_stores --project=vfolders
+  [2015-05-05T20:22:46]	system	X	./manage.py migrate
+
+*Quality check*::
+
+  date  user    action  lang    unit    path    translation
+  [2015-05-19T14:16:36]   admin   QM      af      855     /af/terminology/gnome-terminologie.po   lug
+  [2015-05-19T14:17:44]   admin   QU      af      855     /af/terminology/gnome-terminologie.po   lug
+
+*Score*::
+
+  date  user    SC  score_delta  score_action    #unit  NS=wordcount    S=similarity   total
+  [2015-05-19T14:19:11]   admin   SC      1.0     TA      #1      NS=1    S=0.0   (total: 2.28571428571)
+
+*Paid Task*::
+
+  date  user    action  Task: [id, user, date, type, amount, comment]
+  [2015-05-19T14:35:34]   admin   PTA     Task: [id=1, user=admin, month=2015-05, type=Translation, amount=1000.0, comment=Translate UI]
