@@ -196,6 +196,3 @@ EN_SSO_SERVER_ALIAS = ''
 EN_SSO_SECRET_KEY = ''
 # Cookie name
 EN_SSO_COOKIE = ''
-
-# path to quality checker
-QUALITY_CHECKER = ''
