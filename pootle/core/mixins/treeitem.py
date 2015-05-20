@@ -142,11 +142,10 @@ class TreeItem(object):
             self.initialize_children()
         return self._children
 
-    def _calc_sum(self, name, from_update):
+    def _calc_suggestion_count(self, from_update):
         self.initialize_children()
-        method = getattr(self, '_%s' % name)
-        return (method() +
-                sum([item.get_cached(name, from_update)
+        return (self._get_suggestion_count() +
+                sum([item.get_cached(CachedMethods.SUGGESTIONS, from_update)
                      for item in self.children]))
 
     def _calc_wordcount_stats(self, from_update):
@@ -203,7 +202,7 @@ class TreeItem(object):
         if name == CachedMethods.WORDCOUNT_STATS:
             return self._calc_wordcount_stats(from_update)
         elif name == CachedMethods.SUGGESTIONS:
-            return self._calc_sum(CachedMethods.SUGGESTIONS, from_update)
+            return self._calc_suggestion_count(from_update)
         elif name == CachedMethods.LAST_ACTION:
             return self._calc_last_action(from_update)
         elif name == CachedMethods.LAST_UPDATED:
