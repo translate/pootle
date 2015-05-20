@@ -224,6 +224,9 @@ class VirtualFolder(models.Model):
         elif self.location == "/":
             raise ValidationError(u'The "/" location is not allowed. Use '
                                   u'"/{LANG}/{PROJ}/" instead.')
+        elif self.location.startswith("/projects/"):
+            raise ValidationError(u'Locations starting with "/projects/" are '
+                                  u'not allowed. Use "/{LANG}/" instead.')
 
     def get_adjusted_location(self, pootle_path):
         """Return the virtual folder location adjusted to the given path.
@@ -264,11 +267,6 @@ class VirtualFolder(models.Model):
         present, then they get expanded to match all the existing languages and
         projects.
         """
-        # Locations like /project/<my_proj>/ are not handled correctly. So
-        # rewrite them.
-        if self.location.startswith("/projects/"):
-            self.location = self.location.replace("/projects/", "/{LANG}/")
-
         if "{LANG}" in self.location and "{PROJ}" in self.location:
             locations = []
             for lang in Language.objects.all():

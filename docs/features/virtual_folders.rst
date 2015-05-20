@@ -28,6 +28,11 @@ Virtual folders have several attributes:
 The location indicates the root place where the virtual folder applies. It can
 use placeholders for language (``{LANG}``) and project (``{PROJ}``).
 
+.. note:: The ``/`` location is not valid and must be replaced by
+    ``/{LANG}/{PROJ}/``. The locations starting with ``/projects/`` are also
+    not valid and must be changed so they instead start with ``/{LANG}/``.
+
+
 Each virtual folder must have a unique combination of name and location. This
 means that there can exist two different virtual folders with the same name if
 they have different locations.
