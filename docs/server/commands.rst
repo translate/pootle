@@ -524,53 +524,6 @@ Available options:
   The filename of the server's private key file.
 
 
-.. _commands#useful_django_commands:
-
-Useful Django commands
-----------------------
-
-
-.. _commands#changepassword:
-
-changepassword
-^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-    $ pootle changepassword <username>
-
-This can be used to change the password of any user from the command line.
-
-
-.. _commands#createsuperuser:
-
-createsuperuser
-^^^^^^^^^^^^^^^
-
-This creates a new admin user. It will prompt for username, password and email
-address.
-
-
-.. _commands#dbshell:
-
-dbshell
-^^^^^^^
-
-This opens a database command prompt with the Pootle database already loaded.
-It is useful if you know SQL.
-
-.. warning:: Try not to break anything.
-
-
-.. _commands#shell:
-
-shell
-^^^^^
-
-This opens a Python shell with the Django and Pootle environment already
-loaded. Useful if you know a bit of Python or the Django models syntax.
-
-
 .. _commands#running_in_cron:
 
 Running Commands in cron
