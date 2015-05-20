@@ -11,13 +11,14 @@ Action logger
 The action logger logs each activity related to translation, units changes,
 store changes, command execution and other activities.
 
-The log message is as follows:
+The generic log message is as follows (though some actions do produce slightly
+different log entries)::
 
-``[2015-05-04T15:06:39]   system  X   ./manage.py update_tmserver``
+  [2015-05-04T15:06:39]   system  X   ./manage.py update_tmserver
 
-That is:
+That is::
 
-``[date] user type message``
+  [date] user type message
 
 Action types
 ~~~~~~~~~~~~
