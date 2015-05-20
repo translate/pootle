@@ -7,7 +7,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import logging
 from itertools import groupby
 
 from django.contrib.auth import get_user_model
@@ -182,7 +181,6 @@ def get_search_exact_query(form, units_queryset):
 def get_search_step_query(form, units_queryset):
     """Narrows down units query to units matching search string."""
     if 'exact' in form.cleaned_data['soptions']:
-        logging.debug(u"Using exact database search")
         return get_search_exact_query(form, units_queryset)
 
     return get_search_query(form, units_queryset)
