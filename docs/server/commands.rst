@@ -20,63 +20,6 @@ will run:
   found in the root of the repository.
 
 
-.. _commands#running:
-
-Running WSGI servers
---------------------
-
-There are multiple ways to run Pootle, and some of them rely on running WSGI
-servers that can be reverse proxied to a proper HTTP web server such as nginx
-or lighttpd.
-
-The Translate Toolkit offers a bundled CherryPy server but there are many more
-options such as gunicorn, flup, paste, etc.
-
-
-.. _commands#run_cherrypy:
-
-run_cherrypy
-^^^^^^^^^^^^
-
-.. versionadded:: 2.5
-
-This command runs the CherryPy server bundled with the Translate Toolkit.
-
-Available options:
-
-``--host``
-  The hostname to listen on.
-
-  Default: ``127.0.0.1``.
-
-``--port``
-  The TCP port on which the server should listen for new connections.
-
-  Default: ``8080``.
-
-``--threads``
-  The number of working threads to create.
-
-  Default: ``1``.
-
-``--name``
-  The name of the worker process.
-
-  Default: :func:`socket.gethostname`.
-
-``--queue``
-  Specifies the maximum number of queued connections. This is the the
-  ``backlog`` argument to :func:`socket.listen`.
-
-  Default: ``5``.
-
-``--ssl_certificate``
-  The filename of the server SSL certificate.
-
-``--ssl_privatekey``
-  The filename of the server's private key file.
-
-
 .. _commands#managing_pootle_projects:
 
 Managing Pootle projects
@@ -522,6 +465,63 @@ include any 3rd party customizations.
 When the ``--dev`` flag is enabled, development builds will be created and
 the process will start a watchdog to track any client-side scripts for
 changes. Use this only when developing Pootle.
+
+
+.. _commands#running:
+
+Running WSGI servers
+--------------------
+
+There are multiple ways to run Pootle, and some of them rely on running WSGI
+servers that can be reverse proxied to a proper HTTP web server such as nginx
+or lighttpd.
+
+The Translate Toolkit offers a bundled CherryPy server but there are many more
+options such as gunicorn, flup, paste, etc.
+
+
+.. _commands#run_cherrypy:
+
+run_cherrypy
+^^^^^^^^^^^^
+
+.. versionadded:: 2.5
+
+This command runs the CherryPy server bundled with the Translate Toolkit.
+
+Available options:
+
+``--host``
+  The hostname to listen on.
+
+  Default: ``127.0.0.1``.
+
+``--port``
+  The TCP port on which the server should listen for new connections.
+
+  Default: ``8080``.
+
+``--threads``
+  The number of working threads to create.
+
+  Default: ``1``.
+
+``--name``
+  The name of the worker process.
+
+  Default: :func:`socket.gethostname`.
+
+``--queue``
+  Specifies the maximum number of queued connections. This is the the
+  ``backlog`` argument to :func:`socket.listen`.
+
+  Default: ``5``.
+
+``--ssl_certificate``
+  The filename of the server SSL certificate.
+
+``--ssl_privatekey``
+  The filename of the server's private key file.
 
 
 .. _commands#useful_django_commands:
