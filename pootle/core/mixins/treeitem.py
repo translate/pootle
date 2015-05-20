@@ -392,7 +392,6 @@ class CachedTreeItem(TreeItem):
 
     def get_error_unit_count(self):
         check_stats = self.get_cached(CachedMethods.CHECKS)
-
         return check_stats.get('unit_critical_error_count', 0)
 
     def is_dirty(self):
@@ -406,8 +405,7 @@ class CachedTreeItem(TreeItem):
 
     def mark_all_dirty(self):
         """Mark all cached method names for this TreeItem as dirty"""
-        all_cache_methods = CachedMethods.get_all()
-        self._dirty_cache = set(all_cache_methods)
+        self._dirty_cache = set(CachedMethods.get_all())
 
     def _clear_cache(self, keys, parents=True, children=False):
         itemkey = self.get_cachekey()
