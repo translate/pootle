@@ -144,3 +144,20 @@ Various of the action groups have different message structures as outlined here:
 
   date  user    action  Task: [id, user, date, type, amount, comment]
   [2015-05-19T14:35:34]   admin   PTA     Task: [id=1, user=admin, month=2015-05, type=Translation, amount=1000.0, comment=Translate UI]
+
+
+Sync and Update messages
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``sync_stores`` and ``update_stores`` commands will produce a number of
+logs to report any activity that results from those commands.
+
+*update_stores*::
+
+  [$date] [update] updated $number units in $store_path [revision: $revision]
+  [2015-05-19T21:06:24]   [update] updated 1 units in /an/libo_ui/dictionaries/pt_PT.po [revision: 58]
+
+*sync_stores*::
+
+  [$date]   [sync] File saved; updated $number units in $store_path [revision: $revision]
+  [2015-05-19T23:11:50]   [sync] File saved; updated 1 units in /an/libo_ui/avmedia/source/viewer.po [revision: 0]
