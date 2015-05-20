@@ -418,6 +418,9 @@ Translation environment configuration settings.
 
   Adding a custom function allows you to alter how words are counted.
 
+  .. warning:: Changing this function requires that you run ``refresh_stats
+     --calculate-wordcount`` to recalculate the associated wordcounts.
+
 
 .. _settings#deprecated:
 
