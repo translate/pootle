@@ -161,15 +161,13 @@ This command will save all translations currently in the database to the file
 system, thereby bringing the files under the :setting:`PODIRECTORY` directory
 in sync with the Pootle database.
 
-.. note:: For better performance Pootle only saves translations to disk on
-  demand (before file downloads and major file-level operations like
-  version control updates).
-
 .. note:: Disabled projects are skipped.
 
 You must run this command before taking backups or running scripts that modify
 the translation files directly on the file system, otherwise you might miss out
-on translations that are in the database but not yet saved to disk.
+on translations that are in the database but not yet saved to disk. In
+other words, **translations are saved to disk only when you explicitly do
+so** using this command.
 
 For every file being synced, the in-DB ``Store`` will be updated to
 reflect the latest revision across the units in the file at the time of
