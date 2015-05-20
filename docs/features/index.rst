@@ -13,7 +13,6 @@ Backends and storage
    :maxdepth: 2
 
    formats
-   hooks
    statistics
    templates
 
