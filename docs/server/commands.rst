@@ -365,7 +365,7 @@ line.
 add_vfolders
 ^^^^^^^^^^^^
 
-.. versionadded:: 2.7.0
+.. versionadded:: 2.7
 
 This command allows you to create :ref:`virtual folders <virtual_folders>` from
 a JSON file. If the specified virtual folders already exist then they are
