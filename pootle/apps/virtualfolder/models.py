@@ -185,7 +185,7 @@ class VirtualFolder(models.Model):
 
         # Recreate relationships between this vfolder and units.
         if self.filter_rules:
-            for location in self.get_all_pootle_paths():
+            for location in self.all_locations():
                 for filename in self.filter_rules.split(","):
                     vf_file = "".join([location, filename])
 
@@ -256,7 +256,7 @@ class VirtualFolder(models.Model):
 
         return "/".join(pootle_path.split("/")[:count])
 
-    def get_all_pootle_paths(self):
+    def all_locations(self):
         """Return a list with all the locations this virtual folder applies.
 
         If the virtual folder location has no {LANG} nor {PROJ} placeholders
@@ -280,7 +280,7 @@ class VirtualFolder(models.Model):
             try:
                 project = Project.objects.get(code=self.location.split("/")[2])
                 languages = project.languages.iterator()
-            except:
+            except Exception:
                 languages = Language.objects.iterator()
 
             return [self.location.replace("{LANG}", lang.code)
@@ -290,7 +290,7 @@ class VirtualFolder(models.Model):
                 projects = Project.objects.filter(
                     translationproject__language__code=self.location.split("/")[1]
                 ).iterator()
-            except:
+            except Exception:
                 projects = Project.objects.iterator()
 
             return [self.location.replace("{PROJ}", proj.code)
@@ -376,7 +376,7 @@ def relate_unit(sender, instance, created=False, **kwargs):
     pootle_path = instance.store.pootle_path
 
     for vf in VirtualFolder.objects.iterator():
-        for location in vf.get_all_pootle_paths():
+        for location in vf.all_locations():
             if not pootle_path.startswith(location):
                 continue
 
