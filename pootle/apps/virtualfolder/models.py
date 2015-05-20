@@ -88,6 +88,44 @@ class VirtualFolder(models.Model):
         """
         return '/'.join(self.location.strip('/').split('/')[2:] + [self.name, ''])
 
+    @property
+    def all_locations(self):
+        """Return a list with all the locations this virtual folder applies.
+
+        If the virtual folder location has no {LANG} nor {PROJ} placeholders
+        then the list only contains its location. If any of the placeholders is
+        present, then they get expanded to match all the existing languages and
+        projects.
+        """
+        if "{LANG}/{PROJ}" in self.location:
+            locations = []
+            for lang in Language.objects.all():
+                temp = self.location.replace("{LANG}", lang.code)
+                for proj in Project.objects.all():
+                    locations.append(temp.replace("{PROJ}", proj.code))
+            return locations
+        elif "{LANG}" in self.location:
+            try:
+                project = Project.objects.get(code=self.location.split("/")[2])
+                languages = project.languages.iterator()
+            except Exception:
+                languages = Language.objects.iterator()
+
+            return [self.location.replace("{LANG}", lang.code)
+                    for lang in languages]
+        elif "{PROJ}" in self.location:
+            try:
+                projects = Project.objects.filter(
+                    translationproject__language__code=self.location.split("/")[1]
+                ).iterator()
+            except Exception:
+                projects = Project.objects.iterator()
+
+            return [self.location.replace("{PROJ}", proj.code)
+                    for proj in projects]
+
+        return [self.location]
+
     @cached_property
     def code(self):
         return self.pk
@@ -185,7 +223,7 @@ class VirtualFolder(models.Model):
 
         # Recreate relationships between this vfolder and units.
         if self.filter_rules:
-            for location in self.all_locations():
+            for location in self.all_locations:
                 for filename in self.filter_rules.split(","):
                     vf_file = "".join([location, filename])
 
@@ -258,43 +296,6 @@ class VirtualFolder(models.Model):
             pass
 
         return "/".join(pootle_path.split("/")[:count])
-
-    def all_locations(self):
-        """Return a list with all the locations this virtual folder applies.
-
-        If the virtual folder location has no {LANG} nor {PROJ} placeholders
-        then the list only contains its location. If any of the placeholders is
-        present, then they get expanded to match all the existing languages and
-        projects.
-        """
-        if "{LANG}" in self.location and "{PROJ}" in self.location:
-            locations = []
-            for lang in Language.objects.all():
-                temp = self.location.replace("{LANG}", lang.code)
-                for proj in Project.objects.all():
-                    locations.append(temp.replace("{PROJ}", proj.code))
-            return locations
-        elif "{LANG}" in self.location:
-            try:
-                project = Project.objects.get(code=self.location.split("/")[2])
-                languages = project.languages.iterator()
-            except Exception:
-                languages = Language.objects.iterator()
-
-            return [self.location.replace("{LANG}", lang.code)
-                    for lang in languages]
-        elif "{PROJ}" in self.location:
-            try:
-                projects = Project.objects.filter(
-                    translationproject__language__code=self.location.split("/")[1]
-                ).iterator()
-            except Exception:
-                projects = Project.objects.iterator()
-
-            return [self.location.replace("{PROJ}", proj.code)
-                    for proj in projects]
-
-        return [self.location]
 
     def get_last_action_for(self, pootle_path):
         try:
@@ -374,7 +375,7 @@ def relate_unit(sender, instance, created=False, **kwargs):
     pootle_path = instance.store.pootle_path
 
     for vf in VirtualFolder.objects.iterator():
-        for location in vf.all_locations():
+        for location in vf.all_locations:
             if not pootle_path.startswith(location):
                 continue
 
