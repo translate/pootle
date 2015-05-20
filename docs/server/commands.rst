@@ -29,8 +29,6 @@ These commands will go through all existing projects performing maintenance
 tasks. The tasks are all available through the web interface but on a project
 by project or file by file basis.
 
-.. versionchanged:: 2.1.2
-
 The commands target can be limited in a more flexible way using the ``--project``
 ``--language`` command line options. They can be repeated to indicate multiple
 languages or projects. If you use both options together it will only match the
@@ -241,8 +239,6 @@ directly on the file system.
 list_languages
 ^^^^^^^^^^^^^^
 
-.. versionadded:: 2.5
-
 This command prints all the language codes on the server. This might be useful
 for automation.
 
@@ -251,8 +247,6 @@ for automation.
 
 list_projects
 ^^^^^^^^^^^^^
-
-.. versionadded:: 2.5
 
 This command prints all the project codes on the server. This might be useful
 for automation.
@@ -482,8 +476,6 @@ options such as gunicorn, flup, paste, etc.
 
 run_cherrypy
 ^^^^^^^^^^^^
-
-.. versionadded:: 2.5
 
 This command runs the CherryPy server bundled with the Translate Toolkit.
 

@@ -3,8 +3,6 @@
 Machine Translation
 ===================
 
-.. versionadded:: 2.1
-
 Pootle has the ability to use online Machine Translation (MT) Services to give
 suggestions to translators. This feature has to be enabled by the server
 administrators.

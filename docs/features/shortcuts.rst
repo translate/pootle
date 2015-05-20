@@ -3,8 +3,6 @@
 Keyboard shortcuts
 ******************
 
-.. versionadded:: 2.5
-
 
 .. _shortcuts#global:
 

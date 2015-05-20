@@ -28,8 +28,6 @@ documentation. You can also read the detailed descriptions of the
 Overriding Quality Checks
 -------------------------
 
-.. versionadded:: 2.1
-
 It is possible to override the quality check if the translation is correct.
 Reviewers are able to remove the check for a certain string to indicate that
 the string is correctly translated. This avoids having to recheck the same

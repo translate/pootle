@@ -25,9 +25,6 @@ in one file.
 
 - :ref:`XLIFF <toolkit:xliff>`
 
-
-.. versionadded:: 2.0.3
-
 - :ref:`Qt TS <toolkit:ts>`
 
 - :ref:`TBX <toolkit:tbx>`

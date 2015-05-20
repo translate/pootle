@@ -135,8 +135,6 @@ Configuration settings for applications used by Pootle.
 ``CUSTOM_TEMPLATE_CONTEXT``
   Default: ``{}``
 
-  .. versionadded:: 2.5
-
   Custom template context dictionary. The values will be available in the
   templates as ``{{ custom.<key> }}``.
 
@@ -186,8 +184,6 @@ Configuration settings for applications used by Pootle.
 ``FUZZY_MATCH_MAX_LENGTH``
   Default: ``70``
 
-  .. versionadded:: 2.5
-
   Maximum character length to consider when doing fuzzy matching. The default
   might not be enough for long texts. Please note this affects all fuzzy
   matching operations, so bear in mind this might affect performance.
@@ -198,8 +194,6 @@ Configuration settings for applications used by Pootle.
 ``FUZZY_MATCH_MIN_SIMILARITY``
   Default: ``75``
 
-  .. versionadded:: 2.5
-
   Minimum similarity to consider when doing fuzzy matching. Please note this
   affects all fuzzy matching operations, so bear in mind this might affect
   performance.
@@ -209,8 +203,6 @@ Configuration settings for applications used by Pootle.
 
 ``LEGALPAGE_NOCHECK_PREFIXES``
   Default: ``('/accounts', '/admin', '/contact', '/jsi18n', '/pages', )``
-
-  .. versionadded:: 2.5.1
 
   List of path prefixes where the ``LegalAgreementMiddleware`` will check
   if the current logged-in user has agreed all the legal documents defined
@@ -238,8 +230,6 @@ Configuration settings for applications used by Pootle.
 
 ``MARKUP_FILTER``
   Default: ``(None, {})``
-
-  .. versionadded:: 2.5
 
   Two-tuple defining the markup filter to apply in certain textareas.
 

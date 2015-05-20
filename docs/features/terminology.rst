@@ -66,8 +66,6 @@ your server abilities and the nature of what you are translating.
 Generating terminology
 ----------------------
 
-.. versionadded:: 2.1
-
 Project administrators can generate a list of frequently occurring terms from
 the *Terminology* tab in the Pootle interface, which can help to quickly
 standardize some frequently occurring terms.  It is also possible to add extra

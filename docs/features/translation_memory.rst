@@ -3,8 +3,6 @@
 Translation Memory
 ==================
 
-.. versionchanged:: 2.5
-
 Pootle provides suggested translations to the current string.  Translator can
 use these suggestions as their translation or to aid their translation.
 

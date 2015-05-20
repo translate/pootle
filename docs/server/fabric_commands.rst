@@ -3,8 +3,6 @@
 Available Fabric commands
 =========================
 
-.. versionadded:: 2.5
-
    Starting in this release, Pootle includes Fabric deployment scripts.
 
 The sample Fabric scripts provide several commands that you can use to easily
@@ -33,9 +31,7 @@ This command:
    or more likely the ``sudo`` password, which is the standard password for the
    remote user configured in the environment.
 
-.. note::
-   .. versionchanged:: 2.5.1 Added support for bootstrapping from a given
-      branch on Pootle repository.
+Optionally it can update code from a given Pootle repository branch.
 
 Available arguments:
 
@@ -72,8 +68,6 @@ Examples:
 
 create_db
 ---------
-
-.. versionadded:: 2.5.1
 
 This command:
 
@@ -113,9 +107,7 @@ This command:
    the ``sudo`` password (standard password for the remote user configured in
    the environment).
 
-.. note::
-   .. versionchanged:: 2.5.1 Added support for deploying from a given branch
-      on Pootle repository.
+Optionally it can update code from a given Pootle repository branch.
 
 Available arguments:
 
@@ -177,8 +169,6 @@ Examples:
 drop_db
 ---------
 
-.. versionadded:: 2.5.1
-
 This command:
 
 - Drops a database (losing all data!) using the settings provided to
@@ -201,8 +191,6 @@ Examples:
 
 dump_db
 -------
-
-.. versionadded:: 2.5.1
 
 This command:
 
@@ -261,8 +249,6 @@ Examples:
 initdb
 ------
 
-.. versionadded:: 2.5.1
-
 This command:
 
 - Runs :ref:`initdb <commands#initdb>` to initialize the database
@@ -299,8 +285,6 @@ Examples:
 
 load_db
 -------
-
-.. versionadded:: 2.5.1
 
 This command:
 
@@ -340,8 +324,6 @@ Examples:
 migratedb
 ---------
 
-.. versionadded:: 2.5.1
-
 This command:
 
 - Runs :ref:`migrate <commands#migrate>` to update the 2.5 or later database
@@ -358,8 +340,6 @@ Examples:
 
 mysql_conf
 ----------
-
-.. versionadded:: 2.5.1
 
 This command creates a :file:`.my.cnf` MySQL options file on the remote system
 with the password(s) for database access stored in them (the passwords are
@@ -403,8 +383,6 @@ environment for calling :command:`bootstrap` afterwards.
 setup_db
 --------
 
-.. versionadded:: 2.5.1
-
 This command:
 
 - Runs ``syncdb --noinput`` to create the database schema
@@ -423,8 +401,6 @@ Examples:
 
 stage_feature
 -------------
-
-.. versionadded:: 2.5.1
 
 This command:
 
@@ -499,8 +475,6 @@ for calling :command:`bootstrap` afterwards.
 syncdb
 ------
 
-.. versionadded:: 2.5.1
-
 This command:
 
 - Runs ``syncdb --noinput`` to create the database schema
@@ -532,8 +506,6 @@ Examples:
 
 unstage_feature
 ---------------
-
-.. versionadded:: 2.5.1
 
 This command:
 
@@ -582,9 +554,7 @@ This command:
 - Updates the deployment requirements as listed in :file:`requirements/`,
   including the base requirements as well
 
-.. note::
-   .. versionchanged:: 2.5.1 Added support for updating code from a given branch
-      on Pootle repository.
+Optionally it can update code from a given Pootle repository branch.
 
 Available arguments:
 
@@ -648,8 +618,6 @@ Examples:
 
 upgrade
 -------
-
-.. versionadded:: 2.5.1
 
 This command:
 
