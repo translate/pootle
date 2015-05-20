@@ -142,75 +142,75 @@ class TreeItem(object):
             self.initialize_children()
         return self._children
 
-    def _calc_suggestion_count(self, from_update):
+    def _calc_suggestion_count(self):
         self.initialize_children()
         return (self._get_suggestion_count() +
-                sum([item.get_cached(CachedMethods.SUGGESTIONS, from_update)
+                sum([item.get_cached(CachedMethods.SUGGESTIONS)
                      for item in self.children]))
 
-    def _calc_wordcount_stats(self, from_update):
+    def _calc_wordcount_stats(self):
         result = self._get_wordcount_stats()
         self.initialize_children()
         for item in self.children:
             result = dictsum(
                 result,
-                item.get_cached(CachedMethods.WORDCOUNT_STATS, from_update)
+                item.get_cached(CachedMethods.WORDCOUNT_STATS)
             )
 
         return result
 
-    def _calc_last_action(self, from_update):
+    def _calc_last_action(self):
         self.initialize_children()
 
         return max(
             [self._get_last_action()] +
-            [item.get_cached(CachedMethods.LAST_ACTION, from_update)
+            [item.get_cached(CachedMethods.LAST_ACTION)
              for item in self.children],
             key=lambda x: x['mtime'] if 'mtime' in x else 0
         )
 
-    def _calc_mtime(self, from_update):
+    def _calc_mtime(self):
         """get latest modification time"""
         self.initialize_children()
         return max(
             [self._get_mtime()] +
-            [item.get_cached(CachedMethods.MTIME, from_update)
+            [item.get_cached(CachedMethods.MTIME)
              for item in self.children]
         )
 
-    def _calc_last_updated(self, from_update):
+    def _calc_last_updated(self):
         """get last updated"""
         self.initialize_children()
         return max(
             [self._get_last_updated()] +
-            [item.get_cached(CachedMethods.LAST_UPDATED, from_update)
+            [item.get_cached(CachedMethods.LAST_UPDATED)
              for item in self.children],
             key=lambda x: x['creation_time'] if 'creation_time' in x else 0
         )
 
-    def _calc_checks(self, from_update):
+    def _calc_checks(self):
         result = self._get_checks()
         self.initialize_children()
         for item in self.children:
-            item_res = item.get_cached(CachedMethods.CHECKS, from_update)
+            item_res = item.get_cached(CachedMethods.CHECKS)
             result['checks'] = dictsum(result['checks'], item_res['checks'])
             result['unit_critical_error_count'] += item_res['unit_critical_error_count']
 
         return result
 
-    def _calc(self, name, from_update=False):
+    def _calc(self, name):
         if name == CachedMethods.WORDCOUNT_STATS:
-            return self._calc_wordcount_stats(from_update)
+            return self._calc_wordcount_stats()
         elif name == CachedMethods.SUGGESTIONS:
-            return self._calc_suggestion_count(from_update)
+            return self._calc_suggestion_count()
         elif name == CachedMethods.LAST_ACTION:
-            return self._calc_last_action(from_update)
+            return self._calc_last_action()
         elif name == CachedMethods.LAST_UPDATED:
-            return self._calc_last_updated(from_update)
+            return self._calc_last_updated()
         elif name == CachedMethods.CHECKS:
-            return self._calc_checks(from_update)
+            return self._calc_checks()
         elif name == CachedMethods.MTIME:
-            return self._calc_mtime(from_update)
+            return self._calc_mtime()
 
         return None
 
@@ -305,9 +305,9 @@ class CachedTreeItem(TreeItem):
     @statslog
     def update_cached(self, name):
         """calculate stat value and update cached value"""
-        self.set_cached_value(name, self._calc(name, from_update=True))
+        self.set_cached_value(name, self._calc(name))
 
-    def get_cached(self, name, from_update=False):
+    def get_cached(self, name):
         """get stat value from cache"""
         result = self.get_cached_value(name)
         if result is None:
