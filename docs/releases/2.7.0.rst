@@ -279,7 +279,7 @@ The following features are removed from Pootle since 2.5.1.1 and will be
 recovered at some time.  Where possible we provide alternate approaches that
 can be used.
 
-.. note: sysadmins should take note of these changes and determine if this
+.. note:: sysadmins should take note of these changes and determine if this
    prevents use of Pootle within their environment.  Essentially you will need
    to evaluate the use and need for each missing feature.
 
@@ -320,8 +320,8 @@ Legacy features
 We have dropped these features, some of which have been kept around to allow
 easy upgrades in the past:
 
-.. note: The removal of some of these feature required extensive changes to the
-   upgrading code, which means that upgrading directly from very old Pootle
+.. note:: The removal of some of these feature required extensive changes to
+   the upgrading code, which means that upgrading directly from very old Pootle
    versions is no longer possible. In case you are trying to upgrade from
    Pootle 2.1.0 or older you must first upgrade to 2.1.6 before continuing the
    upgrade process.

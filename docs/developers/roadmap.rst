@@ -9,5 +9,5 @@ numbers of future releases.
 
 Project specific milestones are tracked using ``mstone-$name`` milestones.
 
-.. note: Development partners may use their own systems to track their
+.. note:: Development partners may use their own systems to track their
    roadmaps.
