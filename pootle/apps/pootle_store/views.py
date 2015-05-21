@@ -32,7 +32,7 @@ from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_user_permission
-from pootle_misc.checks import check_names
+from pootle_misc.checks import category_ids, check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, to_int, get_date_interval
 from pootle_statistics.models import (Submission, SubmissionFields,
@@ -261,7 +261,12 @@ def get_step_query(request, units_queryset):
                             qualitycheck__name__in=checks,
                         ).distinct()
                 elif 'category' in request.GET:
-                    category = request.GET['category']
+                    category_name = request.GET['category']
+                    try:
+                        category = category_ids[category_name]
+                    except KeyError:
+                        raise Http404
+
                     match_queryset = units_queryset.filter(
                         qualitycheck__false_positive=False,
                         qualitycheck__category=category,

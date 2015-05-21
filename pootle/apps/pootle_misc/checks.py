@@ -19,9 +19,16 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_misc.util import import_func
 
+
 category_names = {
     Category.CRITICAL: _("Critical"),
     Category.COSMETIC: _("Cosmetic"),
+}
+
+
+category_ids = {
+    'critical': Category.CRITICAL,
+    'cosmetic': Category.COSMETIC,
 }
 
 

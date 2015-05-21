@@ -14,8 +14,6 @@ import logging
 from datetime import datetime
 from functools import wraps
 
-from translate.filters.decorators import Category
-
 from django.conf import settings
 from django.core.urlresolvers import set_script_prefix
 from django.utils.encoding import force_unicode, iri_to_uri
@@ -214,8 +212,7 @@ class TreeItem(object):
         return None
 
     def get_critical_url(self, **kwargs):
-        return self.get_translate_url(check_category=Category.CRITICAL,
-                                      **kwargs)
+        return self.get_translate_url(check_category='critical', **kwargs)
 
     def get_stats(self, include_children=True):
         """get stats for self and - optionally - for children"""
