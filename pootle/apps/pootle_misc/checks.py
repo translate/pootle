@@ -33,6 +33,9 @@ category_names = {
 category_ids = {
     'critical': Category.CRITICAL,
     'cosmetic': Category.COSMETIC,
+    'functional': Category.FUNCTIONAL,
+    'extraction': Category.EXTRACTION,
+    'other': Category.NO_CATEGORY,
 }
 
 
