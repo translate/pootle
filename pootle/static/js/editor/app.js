@@ -1316,10 +1316,10 @@ PTL.editor = {
         uid = currentUnit.id,
         editUrl = l(['/xhr/units/', uid, '/edit/'].join('')),
         widget = '',
-        ctx = {before: [], after: []},
-        reqData = {
-          vfolder: this.settings.vFolder
-        };
+        ctx = {before: [], after: []};
+
+    let reqData = {};
+    this.settings.vFolder && (reqData.vfolder = this.settings.vFolder);
 
     $.ajax({
       url: editUrl,
