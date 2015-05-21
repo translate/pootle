@@ -356,8 +356,8 @@ class VirtualFolder(models.Model):
         ])
 
     def get_critical_url(self, pootle_path, **kwargs):
-        critical = ','.join(get_qualitychecks_by_category(Category.CRITICAL))
-        return self.get_translate_url(pootle_path, check=critical, **kwargs)
+        return self.get_translate_url(pootle_path, check_category='critical',
+                                      **kwargs)
 
 
 @receiver(post_save, sender=Unit)
