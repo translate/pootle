@@ -29,10 +29,11 @@ These commands will go through all existing projects performing maintenance
 tasks. The tasks are all available through the web interface but on a project
 by project or file by file basis.
 
-The commands target can be limited in a more flexible way using the ``--project``
-``--language`` command line options. They can be repeated to indicate multiple
-languages or projects. If you use both options together it will only match the
-files that match both languages and projects selected.
+The commands target can be limited in a more flexible way using the
+:option:`--project` :option:`--language` command line options. They can be
+repeated to indicate multiple languages or projects. If you use both options
+together it will only match the files that match both languages and projects
+selected.
 
 For example, to *refresh_stats* for the tutorial project only, run:
 
@@ -73,7 +74,7 @@ number of translations you have in the database. If a user hits a page that
 needs to display stats but they haven't been calculated yet, a message will be
 displayed indicating that the stats are being recalculated.
 
-The ``--calculate-checks`` option ensures that all quality checks are
+The :option:`--calculate-checks` option ensures that all quality checks are
 recalculated for all existing units in the database.
 
 To only recalculate the ``date_format`` quality check, run:
@@ -82,7 +83,7 @@ To only recalculate the ``date_format`` quality check, run:
 
     $ pootle refresh_stats --calculate-checks --check=date_format
 
-When the ``--calculate-wordcount`` option is set, the source wordcount
+When the :option:`--calculate-wordcount` option is set, the source wordcount
 will be recalculated for all existing units in the database.
 
 
@@ -147,7 +148,7 @@ number of units you have in the database. If a user hits a page that needs to
 display stats but they haven't been calculated yet, then a message will be
 displayed indicating that the stats being calculated.
 
-Use the ``--check`` option to force calculaton of a specified check.  To
+Use the :option:`--check` option to force calculaton of a specified check.  To
 recalculate only the ``date_format`` quality checks, run:
 
 .. code-block:: bash
@@ -164,8 +165,8 @@ refresh_scores
 
 Recalculates the scores for all users.
 
-When the ``--reset`` option is used , all score log data is removed and `zero`
-score is set for all users.
+When the :option:`--reset` option is used , all score log data is removed and
+`zero` score is set for all users.
 
 
 .. pootle_command:: sync_stores
@@ -195,15 +196,15 @@ updating files, ignoring files that haven't change.
 The default behavior of :pc:`sync_stores` can be altered by specifying these
 parameters:
 
-``--force``
+:option:`--force`
   Synchronizes files even if nothing changed in the database.
 
-``--overwrite``
+:option:`--overwrite`
   Copies all units from database stores regardless if they have been
   modified since the last sync or not. This operation will (over)write
   existing on-disk files.
 
-``--skip-missing``
+:option:`--skip-missing`
   Ignores files missing on disk, and no new files will be created.
 
 
@@ -243,11 +244,11 @@ directly on the file system.
 
 :pc:`update_stores` accepts several options:
 
-``--force``
+:option:`--force`
   Updates in-DB translations even if the on-disk file hasn't been changed
   since the last sync operation.
 
-``--overwrite``
+:option:`--overwrite`
   Mirrors the on-disk contents of the file. If there have been changes in
   the database **since the last sync operation**, these will be
   overwritten.
@@ -289,7 +290,7 @@ been auto-translated also increment the unit revision.
 
 The revision counter is stored in the database but also in cache for faster
 retrieval. If for some reason the revision counter was removed or got
-corrupted, passing the ``--restore`` flag to the command will restore the
+corrupted, passing the :option:`--restore` flag to the command will restore the
 counter's value based on the revision data available on the relational DB
 backend. You shouldn't need to ever run this, but if for instance you deleted
 your cache you will need to restore the counter to ensure correct operation.
@@ -305,9 +306,9 @@ changed_languages
 Produces a comma-separated list of language codes that changed since the last
 sync operation.
 
-When ``--after-revision`` is specified with a revision number as an argument,
-it will print the language codes for languages that have changed since the
-specified revision.
+When :option:`--after-revision` is specified with a revision number as an
+argument, it will print the language codes for languages that have changed
+since the specified revision.
 
 
 .. pootle_command:: test_checks
@@ -321,14 +322,15 @@ Tests any given string pair or unit against all or certain checks from the
 command line. This is useful for debugging and developing new checks.
 
 String pairs can be specified by setting the values to be checked in the
-``--source=<"source_text">`` and ``--target="<target_text>"`` command-line
-arguments.
+:option:`--source=<"source_text">` and :option:`--target="<target_text>"`
+command-line arguments.
 
-Alternatively, ``--unit=<unit_id>`` can be used to reference an existing
+Alternatively, :option:`--unit=<unit_id>` can be used to reference an existing
 unit from the database.
 
 By default, :pc:`test_checks` tests all existing checks. When
-``--check=<checkname>`` is set, only specific checks will be tested against.
+:option:`--check=<checkname>` is set, only specific checks will be tested
+against.
 
 
 .. pootle_command:: regenerate-checks-descriptions
@@ -528,8 +530,8 @@ bundle JavaScript scripts, and this management command is a convenient
 wrapper that sets everything up ready for production and makes sure to
 include any 3rd party customizations.
 
-When the ``--dev`` flag is enabled, development builds will be created and
-the process will start a watchdog to track any client-side scripts for
+When the :option:`--dev` flag is enabled, development builds will be created
+and the process will start a watchdog to track any client-side scripts for
 changes. Use this only when developing Pootle.
 
 
@@ -555,36 +557,36 @@ Run the CherryPy server bundled with the Translate Toolkit.
 
 Available options:
 
-``--host``
+:option:`--host`
   The hostname to listen on.
 
   Default: ``127.0.0.1``.
 
-``--port``
+:option:`--port`
   The TCP port on which the server should listen for new connections.
 
   Default: ``8080``.
 
-``--threads``
+:option:`--threads`
   The number of working threads to create.
 
   Default: ``1``.
 
-``--name``
+:option:`--name`
   The name of the worker process.
 
   Default: :func:`socket.gethostname`.
 
-``--queue``
+:option:`--queue`
   Specifies the maximum number of queued connections. This is the the
   ``backlog`` argument to :func:`socket.listen`.
 
   Default: ``5``.
 
-``--ssl_certificate``
+:option:`--ssl_certificate`
   The filename of the server SSL certificate.
 
-``--ssl_privatekey``
+:option:`--ssl_privatekey`
   The filename of the server's private key file.
 
 
