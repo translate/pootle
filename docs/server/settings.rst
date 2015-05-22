@@ -425,6 +425,8 @@ Translation environment configuration settings.
 ``POOTLE_WORDCOUNT_FUNC``
   Default: ``translate.storage.statsdb.wordcount``
 
+  .. versionadded:: 2.7
+
   The import path to a function that provides wordcounts for Pootle.
 
   Current options:
