@@ -409,6 +409,8 @@ Translation environment configuration settings.
 ``QUALITY_CHECKER``
   Default: ``''``
 
+  .. versionadded:: 2.7
+
   The import path to a class that provides alternate quality checks to
   Pootle.  If it is unset then the Translate Toolkit checking functions are
   used and you can make adjustments in the project Admin page.  If set then the
