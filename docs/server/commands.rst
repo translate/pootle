@@ -314,10 +314,10 @@ regenerate_checks_descriptions
 
 .. versionadded:: 2.7
 
-This command regenerates the static page holding the quality checks
-descriptions. If new checks are added, or existing checks are updated or
-removed it is advisable to run this command in order to keep the descriptions
-updated.
+Regenerates the quality checks descriptions page.
+
+If new checks are added, or existing checks are updated or removed you should
+run this command in order to update the check descriptions.
 
 
 .. _commands#translation-memory:
