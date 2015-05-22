@@ -145,7 +145,7 @@ Other important changes
   on ``UTC``, unless you are using PostgreSQL. Users of PostgreSQL or Django
   1.4 or later are free to set the time zone as they prefer.  Also make sure to
   use the minimum required South version when performing database upgrades.
-- The ``update_from_templates`` management command has been renamed to
+- The :command:`update_from_templates` management command has been renamed to
   :command:`update_against_templates`.
 
 ...and of course, loads of bugs were fixed

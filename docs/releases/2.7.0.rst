@@ -188,7 +188,7 @@ Sysadmins
   implicit support for OpenID, OAuth, OAuth2 and Persona sign-in protocols.
 - Integrated ElasticSearch-based local TM server into Pootle. Unit submissions
   update the index instantly.  To configure adjust :setting:`POOTLE_TM_SERVER`
-  and to load the TM use the :command:`update_tmserver` management command.
+  and to load the TM use the :pc:`update_tmserver` management command.
 - The report target for reporting string errors has been dropped in favor of a
   report email address. The report is now sent using an automatically
   pre-filled  contact form. If the project doesn't have a report email then the
@@ -205,26 +205,26 @@ Sysadmins
 Command changes
 ---------------
 
-- In ``update_stores`` if a directory doesn't exist while running the command,
-  the project will be disabled. Thus the ``update_translation_projects``
-  command has been removed, it's functionality has been merged into
-  ``update_stores`` with this change.
-- Added the ``changed_languages`` management command.
+- In :pc:`update_stores` if a directory doesn't exist while running the
+  command, the project will be disabled. Thus the
+  ``update_translation_projects`` command has been removed, it's functionality
+  has been merged into :pc:`update_stores` with this change.
+- Added the :pc:`changed_languages` management command.
 - Individual quality checks can now be recalculated via the ``--check`` flag
-  passed to the ``refresh_stats`` management command.
-- Added ``--calculate-checks`` parameter to the ``refresh_stats`` command.
+  passed to the :pc:`refresh_stats` management command.
+- Added ``--calculate-checks`` parameter to the :pc:`refresh_stats` command.
 - Added a new ``system`` user to attribute changes done by the management
   commands.
 - Added command and store action logging.
-- Added ``test_checks`` management command.
-- Added ``regenerate_checks_descriptions`` command to recreate the checks
+- Added :pc:`test_checks` management command.
+- Added :pc:`regenerate_checks_descriptions` command to recreate the checks
   descriptions.
 - Removed ``--directory`` and ``--path-prefix`` parameters from management
   commands. ``--project`` and ``--language`` should be used instead to
   reduce the scope of commands.
 - Removed the ``--modified-since`` flag. Optimizations will automatically
   be done based on the latest sync revision.
-- New management commands: ``revision``, ``refresh_scores``.
+- New management commands: :pc:`revision`, :pc:`refresh_scores`.
 
 
 Internal changes
@@ -302,7 +302,7 @@ Major fatures
   channels of communication.
 - Offline translation: file uploads and downloads.
 - Update against templates - do template updates outside of Pootle and use
-  :command:`update_stores` to load the changed files.
+  :pc:`update_stores` to load the changed files.
 - Public API.
 
 Minor features
@@ -333,7 +333,7 @@ easy upgrades in the past:
   removed in Pootle 2.5.0.
 - Live translation: Rarely enabled, and its use was actively discouraged.
 - Autosync: It was recommended to never use it. The files can be synced using
-  :command:`sync_stores` instead.
+  :pc:`sync_stores` instead.
 - The voting feature for terminology suggestions has also been removed, due to
   its low popularity and high maintenance cost.
 - Removed the zoom feature. Users should use their browsers zooming features.

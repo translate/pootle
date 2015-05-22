@@ -48,7 +48,7 @@ project, run:
     $ pootle refresh_stats --project=tutorial --language=zu --language=eu
 
 
-.. _commands#refresh_stats:
+.. pootle_command:: refresh_stats
 
 refresh_stats
 ^^^^^^^^^^^^^
@@ -89,7 +89,7 @@ When the ``--calculate-wordcount`` option is set, the source wordcount
 will be recalculated for all existing units in the database.
 
 
-.. _commands#refresh_stats_rq:
+.. pootle_command:: refresh_stats_rq
 
 refresh_stats_rq
 ^^^^^^^^^^^^^^^^
@@ -102,14 +102,14 @@ finishes, it will create a new RQ job for its parent.
 
 .. note:: ``Store`` objects in disabled projects are processed.
 
-.. note:: :command:`refresh_stats` (the old command which works with a single
-  worker) is roughly twice as fast compared to this version of the command.
-  Your mileage might vary.
+.. note:: :pc:`refresh_stats` (the old command which works with a single
+   worker) is roughly twice as fast compared to this version of the command.
+   Your mileage might vary.
 
 This command was added to allow update stats while having multiple rqworkers.
 
 
-.. _commands#calculate_checks:
+.. pootle_command:: calculate_checks
 
 calculate_checks
 ^^^^^^^^^^^^^^^^
@@ -139,7 +139,7 @@ To only recalculate the ``date_format`` quality checks, run:
     $ pootle calculate_checks --check=date_format
 
 
-.. _commands#refresh_scores:
+.. pootle_command:: refresh_scores
 
 refresh_scores
 ^^^^^^^^^^^^^^
@@ -150,7 +150,7 @@ When the ``--reset`` option is set, all score log data is removed and
 `zero` score is set for all users.
 
 
-.. _commands#sync_stores:
+.. pootle_command:: sync_stores
 
 sync_stores
 ^^^^^^^^^^^
@@ -172,7 +172,7 @@ reflect the latest revision across the units in the file at the time of
 syncing. This allows Pootle to make optimizations when syncing and
 updating files, ignoring files that didn't change.
 
-The default behavior of ``sync_stores`` can be altered by specifying some
+The default behavior of :pc:`sync_stores` can be altered by specifying some
 parameters:
 
 ``--force``
@@ -187,14 +187,14 @@ parameters:
   Ignores files missing on disk, and no new files will be created.
 
 
-.. _commands#update_stores:
+.. pootle_command:: update_stores
 
 update_stores
 ^^^^^^^^^^^^^
 
-This command is the opposite of :ref:`commands#sync_stores`. It will
-update the strings in the database to reflect what is on disk, as Pootle
-will not detect changes in the file system on its own.
+This command is the opposite of :pc:`sync_stores`. It will update the strings
+in the database to reflect what is on disk, as Pootle will not detect changes
+in the file system on its own.
 
 .. note:: Disabled projects are skipped.
 
@@ -234,7 +234,7 @@ directly on the file system.
    deleted from the database. Handle with care!
 
 
-.. _commands#list_languages:
+.. pootle_command:: list_languages
 
 list_languages
 ^^^^^^^^^^^^^^
@@ -243,7 +243,7 @@ This command prints all the language codes on the server. This might be useful
 for automation.
 
 
-.. _commands#list_projects:
+.. pootle_command:: list_projects
 
 list_projects
 ^^^^^^^^^^^^^
@@ -252,7 +252,7 @@ This command prints all the project codes on the server. This might be useful
 for automation.
 
 
-.. _commands#revision:
+.. pootle_command:: revision
 
 revision
 ^^^^^^^^
@@ -270,7 +270,7 @@ counter's value based on the revision data available on the relational DB
 backend. You shouldn't have the need to ever run this, though.
 
 
-.. _commands#changed_languages:
+.. pootle_command:: changed_languages
 
 changed_languages
 ^^^^^^^^^^^^^^^^^
@@ -283,7 +283,7 @@ argument, it will print the language codes that changed since the
 specified revision.
 
 
-.. _commands#test_checks:
+.. pootle_command:: test_checks
 
 test_checks
 ^^^^^^^^^^^
@@ -298,12 +298,11 @@ arguments.
 Alternatively, ``--unit=<unit_id>`` can be used to reference an existing
 unit from the database.
 
-By default, :ref:`commands#test_checks` tests all existing checks. When
-``--check=<checkname>`` is set, only specific checks will be tested
-against.
+By default, :pc:`test_checks` tests all existing checks. When
+``--check=<checkname>`` is set, only specific checks will be tested against.
 
 
-.. _commands#regenerate-checks-descriptions:
+.. pootle_command:: regenerate-checks-descriptions
 
 regenerate_checks_descriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -324,7 +323,7 @@ Translation Memory
 These commands allow you to setup and manage :doc:`Translation Memory
 </features/translation_memory>`.
 
-.. _commands#update_tmserver:
+.. pootle_command:: update_tmserver
 
 update_tmserver
 ^^^^^^^^^^^^^^^
@@ -352,7 +351,7 @@ These commands allow you to perform tasks with virtual folders from the command
 line.
 
 
-.. _commands#add_vfolders:
+.. pootle_command:: add_vfolders
 
 add_vfolders
 ^^^^^^^^^^^^
@@ -402,7 +401,7 @@ This is Django's :djadmin:`django:migrate` command, which syncs the state
 of models with the DB and applies migrations for them.
 
 
-.. _commands#initdb:
+.. pootle_command:: initdb
 
 initdb
 ^^^^^^
@@ -411,11 +410,11 @@ This is Pootle's install process, it creates the default *admin* user, populates
 the language table with several languages with their correct fields, initializes
 several terminology projects, and creates the tutorial project.
 
-``initdb`` can only be run after :ref:`commands#migrate`.
+:pc:`initdb` can only be run after :ref:`commands#migrate`.
 
-.. note:: ``initdb`` will not import translations into the database, so the
-  first visit to Pootle after ``initdb`` will be very slow. **It is
-  best to run** :ref:`commands#refresh_stats` **immediately after initdb**.
+.. note:: :pc:`initdb` will not import translations into the database, so the
+  first visit to Pootle after :pc:`initdb` will be very slow. **It is best to
+  run** :pc:`refresh_stats` **immediately after initdb**.
 
 
 .. _commands#collectstatic:
@@ -442,7 +441,7 @@ to make these preparations using the command ``assets build``. This command is
 usually executed after the :ref:`collectstatic <commands#collectstatic>` one.
 
 
-.. _commands#webpack:
+.. pootle_command:: webpack
 
 webpack
 ^^^^^^^
@@ -472,7 +471,7 @@ The Translate Toolkit offers a bundled CherryPy server but there are many more
 options such as gunicorn, flup, paste, etc.
 
 
-.. _commands#run_cherrypy:
+.. pootle_command:: run_cherrypy
 
 run_cherrypy
 ^^^^^^^^^^^^
@@ -527,7 +526,7 @@ to have executed periodically without user intervention.
 
 For the full details on how to configure cron, read your platform documentation
 (for example ``man crontab``). Here is an example that runs the
-:ref:`commands#refresh_stats` command daily at 02:00 AM::
+:pc:`refresh_stats` command daily at 02:00 AM::
 
     00 02 * * * www-data /var/www/sites/pootle/manage.py refresh_stats
 
