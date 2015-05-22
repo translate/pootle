@@ -413,8 +413,8 @@ Translation environment configuration settings.
 
   The import path to a class that provides alternate quality checks to
   Pootle.  If it is unset then the Translate Toolkit checking functions are
-  used and you can make adjustments in the project Admin page.  If set then the
-  quality checker function is used for all projects.
+  used and you can make adjustments in the project's admin page.  If set
+  then the quality checker function is used for all projects.
 
   .. note:: If set, only the checker function defined here is used instead of
      the Translate Toolkit counterparts. Both cannot be selectively applied.
