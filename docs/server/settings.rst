@@ -420,9 +420,9 @@ Translation environment configuration settings.
      the Translate Toolkit counterparts. Both cannot be selectively applied.
 
 
-.. setting:: WORDCOUNT_FUNC
+.. setting:: POOTLE_WORDCOUNT_FUNC
 
-``WORDCOUNT_FUNC``
+``POOTLE_WORDCOUNT_FUNC``
   Default: ``translate.storage.statsdb.wordcount``
 
   The import path to a function that provides wordcounts for Pootle.
