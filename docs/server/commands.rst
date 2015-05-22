@@ -275,17 +275,20 @@ automation.
 revision
 ^^^^^^^^
 
-This command prints the number of the latest revision.
+.. versionadded:: 2.7
 
-The revision is a common system-wide counter for units, which is
-incremented with every translation action made from the browser. Zero
-length units that have been auto-translated also increment the unit
-revision.
+Print the latest revision number.
 
-If for some external reason the revision counter was removed or got
+The revision is a common system-wide counter for units. It is incremented with
+every translation action made from the browser. Zero length units that have
+been auto-translated also increment the unit revision.
+
+The revision counter is stored in the database but also in cache for faster
+retrieval. If for some reason the revision counter was removed or got
 corrupted, passing the ``--restore`` flag to the command will restore the
 counter's value based on the revision data available on the relational DB
-backend. You shouldn't have the need to ever run this, though.
+backend. You shouldn't need to ever run this, but if for instance you deleted
+your cache you will need to restore the counter to ensure correct operation.
 
 
 .. pootle_command:: changed_languages
