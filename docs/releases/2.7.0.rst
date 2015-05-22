@@ -213,6 +213,8 @@ Command changes and additions
 - Individual quality checks can now be recalculated via the ``--check`` flag
   passed to the :pc:`refresh_stats` management command.
 - Added ``--calculate-checks`` parameter to the :pc:`refresh_stats` command.
+- :pc:`refresh_stats_rq` was added to allow statistics to be refresh when
+  running with multiple RQ workers.
 - Added a new ``system`` user to attribute changes done by the management
   commands.
 - Added command and store action logging.

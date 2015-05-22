@@ -93,17 +93,20 @@ refresh_stats_rq
 
 .. versionadded:: 2.7
 
-This command will add a background job for every ``Store`` object to make sure
-calculated stats data is up to date. When a RQ job for a ``Store`` object
-finishes, it will create a new RQ job for its parent.
+Refreshes all calculated statistics ensuring that they are up-to-date.
 
-.. note:: ``Store`` objects in disabled projects are processed.
+A background process will create a task for every file to make sure calculated
+statistics data is up to date. When the task for a file completes then further
+tasks will be created for the files parents.
+
+.. note:: Files in disabled projects are processed.
 
 .. note:: :pc:`refresh_stats` (the old command which works with a single
    worker) is roughly twice as fast compared to this version of the command.
    Your mileage might vary.
 
-This command was added to allow update stats while having multiple rqworkers.
+This command was added to allow statistics to be updated when using multiple
+RQ workers.
 
 
 .. pootle_command:: calculate_checks
