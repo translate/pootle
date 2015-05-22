@@ -240,8 +240,8 @@ directly on the file system.
 list_languages
 ^^^^^^^^^^^^^^
 
-This command prints all the language codes on the server. This might be useful
-for automation.
+Lists all the language codes for languages hosted on the server. This can be
+useful for automation.
 
 
 .. pootle_command:: list_projects
