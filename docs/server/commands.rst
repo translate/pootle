@@ -276,11 +276,13 @@ backend. You shouldn't have the need to ever run this, though.
 changed_languages
 ^^^^^^^^^^^^^^^^^
 
-Lists a comma-separated list of language codes that changed since the last
+.. versionadded:: 2.7
+
+Produces a comma-separated list of language codes that changed since the last
 sync operation.
 
-When ``--after-revision`` is specified with a revision number as an
-argument, it will print the language codes that changed since the
+When ``--after-revision`` is specified with a revision number as an argument,
+it will print the language codes for languages that have changed since the
 specified revision.
 
 
