@@ -237,8 +237,8 @@ percent_brace_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 def get_checker(unit):
     if settings.POOTLE_QUALITY_CHECKER:
         return import_func(settings.POOTLE_QUALITY_CHECKER)()
-    else:
-        return unit.store.translation_project.checker
+
+    return unit.store.translation_project.checker
 
 
 class SkipCheck(Exception):
