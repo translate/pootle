@@ -249,8 +249,8 @@ useful for automation.
 list_projects
 ^^^^^^^^^^^^^
 
-This command prints all the project codes on the server. This might be useful
-for automation.
+Lists all the project codes on the server. This might can be useful for
+automation.
 
 
 .. pootle_command:: revision
