@@ -404,9 +404,9 @@ Translation environment configuration settings.
   The directory where the translation files are kept.
 
 
-.. setting:: QUALITY_CHECKER
+.. setting:: POOTLE_QUALITY_CHECKER
 
-``QUALITY_CHECKER``
+``POOTLE_QUALITY_CHECKER``
   Default: ``''``
 
   .. versionadded:: 2.7

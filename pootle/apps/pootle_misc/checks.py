@@ -235,8 +235,8 @@ percent_brace_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
 
 def get_checker(unit):
-    if settings.QUALITY_CHECKER:
-        return import_func(settings.QUALITY_CHECKER)()
+    if settings.POOTLE_QUALITY_CHECKER:
+        return import_func(settings.POOTLE_QUALITY_CHECKER)()
     else:
         return unit.store.translation_project.checker
 
@@ -982,8 +982,8 @@ def run_given_filters(checker, unit, check_names=[]):
 def get_qualitychecks():
     available_checks = {}
 
-    if settings.QUALITY_CHECKER:
-        checkers = [import_func(settings.QUALITY_CHECKER)()]
+    if settings.POOTLE_QUALITY_CHECKER:
+        checkers = [import_func(settings.POOTLE_QUALITY_CHECKER)()]
     else:
         checkers = [checker() for checker in checks.projectcheckers.values()]
 
