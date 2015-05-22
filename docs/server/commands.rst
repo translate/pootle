@@ -409,9 +409,12 @@ of models with the DB and applies migrations for them.
 initdb
 ^^^^^^
 
-This is Pootle's install process, it creates the default *admin* user, populates
-the language table with several languages with their correct fields, initializes
-several terminology projects, and creates the tutorial project.
+Initialises a new Pootle install.
+
+This is part an optional part of Pootle's install process, it creates the
+default *admin* user, populates the language table with several languages with
+their correct fields, initializes several terminology projects, and creates the
+tutorial project.
 
 :pc:`initdb` can only be run after :ref:`commands#migrate`.
 
