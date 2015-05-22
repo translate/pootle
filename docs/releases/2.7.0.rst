@@ -226,8 +226,8 @@ Command changes and additions
   reduce the scope of commands.
 - Removed the ``--modified-since`` flag. Optimizations will automatically
   be done based on the latest sync revision.
-- New management commands: :pc:`revision`, :pc:`refresh_scores` and
-  :pc:`calculate_checks`.
+- New management commands: :pc:`revision`, :pc:`refresh_scores`,
+  :pc:`retry_failed_jobs` and :pc:`calculate_checks`.
 
 
 Internal changes

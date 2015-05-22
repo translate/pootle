@@ -109,6 +109,21 @@ This command was added to allow statistics to be updated when using multiple
 RQ workers.
 
 
+.. pootle_command:: retry_failed_jobs
+
+retry_failed_jobs
+^^^^^^^^^^^^^^^^^
+
+.. versionadded:: 2.7
+
+Requeue failed RQ jobs.
+
+Backgorund RQ jobs can fail for various reasons.  To push them back into the
+queue you can run this command.
+
+Examine the RQ worker logs for tracebacks before trying to requeue your jobs.
+
+
 .. pootle_command:: calculate_checks
 
 calculate_checks
