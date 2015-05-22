@@ -53,33 +53,30 @@ project, run:
 refresh_stats
 ^^^^^^^^^^^^^
 
-This command will add a background job to go through all existing projects
-making sure calculated data is up to date.
+Refreshes all calculated statistics ensuring that they are up-to-date.
 
-The ``refresh_stats`` job will flush existing caches and update the
-statistics cache.
-
-This command will go through all existing projects making sure statistics are
-up to date.
+The refreshing of the statistics is done by a background job so that it doesn't
+impact the normal operation of the server.  It will flush existing cached
+statistics data and update the statistics cache.
 
 .. note:: Disabled projects are processed.
 
-.. note:: Don't run this command while having multiple workers running
-  simultaneously. It should be run with a single worker process.
+.. warning:: Do not run this command if you have multiple workers running
+   simultaneously. It should be run with a single worker process only.
 
 It's necessary to run this command after installing or upgrading Pootle. Also
 consider running this command when things might go out-of-sync: if you make
 changes directly in the database, if the cache backend has been restarted, etc.
 
 The time it takes to complete the whole process will vary depending on the
-amount of units you have in the database. If a user hits a page that needs
-to display stats but they haven't been calculated yet, a message will be
-displayed indicating that the stats are on its way.
+number of translations you have in the database. If a user hits a page that
+needs to display stats but they haven't been calculated yet, a message will be
+displayed indicating that the stats are being recalculated.
 
-When the ``--calculate-checks`` option is set, quality checks will be
+The ``--calculate-checks`` option ensures that all quality checks are
 recalculated for all existing units in the database.
 
-To only recalculate ``date_format`` quality checks, run:
+To only recalculate the ``date_format`` quality check, run:
 
 .. code-block:: bash
 
