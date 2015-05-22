@@ -313,6 +313,8 @@ specified revision.
 test_checks
 ^^^^^^^^^^^
 
+.. versionadded:: 2.7
+
 Tests any given string pair or unit against all or certain checks from the
 command line. This is useful for debugging and developing new checks.
 
