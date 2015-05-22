@@ -145,10 +145,12 @@ recalculate only the ``date_format`` quality checks, run:
 refresh_scores
 ^^^^^^^^^^^^^^
 
-This command will go through all users and recalculate user's score.
+.. versionadded:: 2.7
 
-When the ``--reset`` option is set, all score log data is removed and
-`zero` score is set for all users.
+Recalculates the scores for all users.
+
+When the ``--reset`` option is used , all score log data is removed and `zero`
+score is set for all users.
 
 
 .. pootle_command:: sync_stores
