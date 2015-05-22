@@ -212,9 +212,11 @@ parameters:
 update_stores
 ^^^^^^^^^^^^^
 
-This command is the opposite of :pc:`sync_stores`. It will update the strings
-in the database to reflect what is on disk, as Pootle will not detect changes
-in the file system on its own.
+.. versionchanged:: 2.7
+
+The opposite of :pc:`sync_stores`, this will update the strings in the database
+to reflect what is on disk, as Pootle will not detect changes in the file
+system on its own.
 
 .. note:: Disabled projects are skipped.
 
@@ -239,7 +241,7 @@ added on disk:
 You must run this command after running scripts that modify translation files
 directly on the file system.
 
-``update_stores`` accepts several parameters:
+:pc:`update_stores` accepts several options:
 
 ``--force``
   Updates in-DB translations even if the on-disk file hasn't been changed
