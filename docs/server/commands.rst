@@ -502,7 +502,7 @@ options such as gunicorn, flup, paste, etc.
 run_cherrypy
 ^^^^^^^^^^^^
 
-This command runs the CherryPy server bundled with the Translate Toolkit.
+Run the CherryPy server bundled with the Translate Toolkit.
 
 Available options:
 
