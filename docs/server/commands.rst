@@ -387,12 +387,11 @@ add_vfolders
 
 .. versionadded:: 2.7
 
-This command allows you to create :ref:`virtual folders <virtual_folders>` from
-a JSON file. If the specified virtual folders already exist then they are
-updated with the provided data, but only if the data differs.
+Creates :ref:`virtual folders <virtual_folders>` from a JSON file. If the
+specified virtual folders already exist then they are updated.
 
-Check the specs for the :ref:`JSON format <virtual_folders#json-format>` in
-order to know how to craft a JSON file that fits your needs.
+The :ref:`vfolder format <virtual_folders#json-format>` defines how to specify
+a virtual folder that fits your needs.
 
 This command requires a mandatory filename argument.
 
