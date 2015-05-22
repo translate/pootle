@@ -400,6 +400,50 @@ This command requires a mandatory filename argument.
     $ pootle add_vfolders virtual_folders.json
 
 
+.. _commands#import_export:
+
+Import and Export
+-----------------
+
+Export and Import translation files in Pootle.  The operation can be thought of
+best as offline operations to assist with offline translation, unlike
+:pc:`sync_stores` and :pc:`update_stores` the operations here are designed to
+cater for translators working outside of Pootle.
+
+The :pc:`import` and :pc:`export` commands are designed to mimic the operations
+of Download and Upload from the Pootle UI.
+
+export
+^^^^^^
+
+.. versionadded:: 2.7
+
+Download a file for offline translation.
+
+.. note:: This mimics the editor's download functionality and its primary
+   purpose is to test the operation of downloads from the command line.
+
+A file or a .zip of files is provided as output.  The file headers include a
+revision counter to assist Pootle to detetmine how to handle subsequent uploads
+of the file.
+
+import
+^^^^^^
+
+.. versionadded:: 2.7
+
+Upload a file that was altered offline.
+
+.. note:: This mimics the editor's upload functionality and its primary purpose
+   is to test the operation of uploads from the command line.
+
+A file or a .zip is submitted to Pootle and based on the revision counter of
+the ``Store`` on Pootle it will be uploaded or rejected.  If the revision
+counter is older than on Pootle, that is someone has translated while the file
+was offline, then it will be rejected.  Otherwise the translations in the file
+are accepted.
+
+
 .. _commands#manually_installing_pootle:
 
 Manually Installing Pootle
