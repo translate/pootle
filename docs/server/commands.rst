@@ -116,23 +116,24 @@ calculate_checks
 
 .. versionadded:: 2.7
 
-This command will add a background job to go through all units and to
+This command will create a background job to go through all units and
 recalculate quality checks.
 
 .. note:: Disabled projects are processed.
 
-The ``calculate_checks`` job will flush existing caches and update the
-quality checks cache.
+:pc:`calculate_checks` will flush existing caches and update the quality
+checks cache.
 
 It's necessary to run this command after upgrading Pootle if new quality
 checks are added.
 
 The time it takes to complete the whole process will vary depending on the
-amount of units you have in the database. If a user hits a page that needs
-to display stats but they haven't been calculated yet, a message will be
-displayed indicating that the stats are on its way.
+number of units you have in the database. If a user hits a page that needs to
+display stats but they haven't been calculated yet, then a message will be
+displayed indicating that the stats being calculated.
 
-To only recalculate the ``date_format`` quality checks, run:
+Use the ``--check`` option to force calculaton of a specified check.  To
+recalculate only the ``date_format`` quality checks, run:
 
 .. code-block:: bash
 

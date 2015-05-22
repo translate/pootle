@@ -202,8 +202,8 @@ Sysadmins
   quality check handler.
 
 
-Command changes
----------------
+Command changes and additions
+-----------------------------
 
 - In :pc:`update_stores` if a directory doesn't exist while running the
   command, the project will be disabled. Thus the
@@ -224,7 +224,8 @@ Command changes
   reduce the scope of commands.
 - Removed the ``--modified-since`` flag. Optimizations will automatically
   be done based on the latest sync revision.
-- New management commands: :pc:`revision`, :pc:`refresh_scores`.
+- New management commands: :pc:`revision`, :pc:`refresh_scores` and
+  :pc:`calculate_checks`.
 
 
 Internal changes
