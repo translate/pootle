@@ -173,9 +173,11 @@ score is set for all users.
 sync_stores
 ^^^^^^^^^^^
 
-This command will save all translations currently in the database to the file
-system, thereby bringing the files under the :setting:`PODIRECTORY` directory
-in sync with the Pootle database.
+.. versionchanged:: 2.7
+
+Save all translations currently in the database to the file system, thereby
+bringing the files under the :setting:`PODIRECTORY` directory in sync with the
+Pootle database.
 
 .. note:: Disabled projects are skipped.
 
@@ -188,9 +190,9 @@ so** using this command.
 For every file being synced, the in-DB ``Store`` will be updated to
 reflect the latest revision across the units in the file at the time of
 syncing. This allows Pootle to make optimizations when syncing and
-updating files, ignoring files that didn't change.
+updating files, ignoring files that haven't change.
 
-The default behavior of :pc:`sync_stores` can be altered by specifying some
+The default behavior of :pc:`sync_stores` can be altered by specifying these
 parameters:
 
 ``--force``
