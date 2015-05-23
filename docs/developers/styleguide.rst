@@ -241,6 +241,12 @@ For documenting several things, Pootle defines custom Sphinx roles.
   E.g. ``|icon:icon-google-translate|`` will insert this
   |icon:icon-google-translate| icon.
 
+- Pootle manage.py commands::
+
+    .. pootle_command:: sync_stores
+
+  To link to a command, use ``:pc:`sync_stores``
+
 
 JavaScript
 ----------
