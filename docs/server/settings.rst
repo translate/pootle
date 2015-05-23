@@ -116,7 +116,7 @@ Site-specific settings.
   have effect if :setting:`POOTLE_CONTACT_ENABLED` is set to ``True``.
 
 
-.. setting:: POOTLE_REPORT_STRING_ERRORS_EMAIL
+.. setting:: POOTLE_CONTACT_REPORT_EMAIL
 
 ``POOTLE_CONTACT_REPORT_EMAIL``
   Default: ``POOTLE_CONTACT_EMAIL``
