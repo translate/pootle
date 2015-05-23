@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}{{ settings.TITLE }}{% endblock title %}</title>
+    <title>{% block title %}{{ settings.POOTLE_TITLE }}{% endblock title %}</title>
     {% block meta %}
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="application-name" content="{{ settings.TITLE }}" />
+    <meta name="application-name" content="{{ settings.POOTLE_TITLE }}" />
     <link rel="icon" href="{% static 'images/app-32x32.png' %}" sizes="32x32" />
     <link rel="icon" href="{% static 'images/app-64x64.png' %}" sizes="64x64" />
     {% endblock meta %}
@@ -86,7 +86,7 @@
           <a href="#nav-main">{% trans 'skip to navigation' %}</a>
         </div>
         {% block logo %}
-        <h1 class="brand"><a href="{% url 'pootle-home' %}"><i class="icon-logo"></i><span class="site-title">{{ settings.TITLE }}</span></a></h1>
+        <h1 class="brand"><a href="{% url 'pootle-home' %}"><i class="icon-logo"></i><span class="site-title">{{ settings.POOTLE_TITLE }}</span></a></h1>
         {% endblock %}
         <a href="#nav-main" id="menu-toggle" class="js-toggle">&nbsp;</a>
         <ul id="nav-main">

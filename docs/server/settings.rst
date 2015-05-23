@@ -47,12 +47,6 @@ contained and ordered alphabetically.
 This file contains base configuration settings.
 
 
-.. setting:: TITLE
-
-``TITLE``
-  The name of the Pootle server.
-
-
 .. setting:: POOTLE_INSTANCE_ID
 
 ``POOTLE_INSTANCE_ID``
@@ -60,6 +54,14 @@ This file contains base configuration settings.
   of the same app (e.g. development, staging and production).
   By default this value is exposed as a global <html> class name
   to allow overriding CSS rules based on the instance type.
+
+
+.. setting:: POOTLE_TITLE
+
+``POOTLE_TITLE``
+  Default: ``'Pootle Translation Server'``
+
+  The name of the Pootle server.
 
 
 20-backends.conf

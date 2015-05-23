@@ -35,5 +35,5 @@ class BaseUrlMiddleware(object):
             from django.contrib.sites import models as sites_models
 
             new_site = sites_models.Site(settings.SITE_ID, request.get_host(),
-                                         settings.TITLE)
+                                         settings.POOTLE_TITLE)
             sites_models.SITE_CACHE[settings.SITE_ID] = new_site

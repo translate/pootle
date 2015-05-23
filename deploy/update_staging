@@ -97,7 +97,7 @@ fab staging upgrade
 #from pootle_misc import siteconfig
 #
 #c = siteconfig.load_site_config()
-#c.set("TITLE", u"Staging Pootle server ($R)")
+#c.set("POOTLE_TITLE", u"Staging Pootle server ($R)")
 #c.set("DESCRIPTION", u"""$DESC""")
 #c.save()
 #CONTENT

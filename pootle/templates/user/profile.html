@@ -26,7 +26,7 @@
     <h2 class="user-score-title">{% trans 'Score:' %}</h2>
     <h3 class="user-score">
       {% if user == object and object.public_score > 0 %}
-        <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.TITLE score=object.public_score|intcomma %}My current score at {{ server_title }} is {{ score }} {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">{{ object.public_score|intcomma }}</a>
+        <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.POOTLE_TITLE score=object.public_score|intcomma %}My current score at {{ server_title }} is {{ score }} {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">{{ object.public_score|intcomma }}</a>
       {% else %}
         {{ object.public_score|intcomma }}
       {% endif %}
@@ -38,7 +38,7 @@
       {% trans 'No contributions in the last month' %}
     {% else %}
       {% if user == object %}
-        <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.TITLE lang_name=lang.name url=lang.get_absolute_url %}I am #{{ pos }} contributor in {{ lang_name }} for this month at {{ server_title }}! {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">
+        <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.POOTLE_TITLE lang_name=lang.name url=lang.get_absolute_url %}I am #{{ pos }} contributor in {{ lang_name }} for this month at {{ server_title }}! {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">
           {% blocktrans with lang_name=lang.name trimmed %}
           #{{ pos }} contributor in {{ lang_name }} for this month
           {% endblocktrans %}

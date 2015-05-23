@@ -12,7 +12,6 @@ import glob
 
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
 
-
 def working_path(filename):
     """Return an absolute path for :param:`filename` by joining it to
     ``WORKING_DIR``."""

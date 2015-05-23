@@ -1,1 +1,1 @@
-[{{ settings.TITLE }}] {{ subject }}
+[{{ settings.POOTLE_TITLE }}] {{ subject }}

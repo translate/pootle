@@ -242,6 +242,19 @@ Command changes and additions
   :djadmin:`calculate_checks`.
 
 
+Deprecated settings
+-------------------
+
+POOTLE_ prefix renaming
+^^^^^^^^^^^^^^^^^^^^^^^
+
+- All Pootle specific settings have been renamed and prefixed with ``POOTLE_``.
+  The following settings are impacted and should be renamed accordingly in your
+  settings file:
+
+  - ``TITLE`` -> :setting:`POOTLE_TITLE`
+
+
 Internal changes
 ----------------
 

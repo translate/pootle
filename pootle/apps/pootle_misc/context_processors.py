@@ -34,7 +34,7 @@ def pootle_context(request):
     #FIXME: maybe we should expose relevant settings only?
     return {
         'settings': {
-            'TITLE': settings.TITLE,
+            'POOTLE_TITLE': settings.POOTLE_TITLE,
             'POOTLE_INSTANCE_ID': settings.POOTLE_INSTANCE_ID,
             'CAN_CONTACT': settings.CAN_CONTACT and settings.CONTACT_EMAIL,
             'SCRIPT_NAME': settings.SCRIPT_NAME,

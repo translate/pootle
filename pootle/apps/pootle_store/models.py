@@ -2197,7 +2197,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 headerupdates['Last_Translator'] = '%s <%s>' % \
                         (user.display_name, user.email)
             else:
-                #FIXME: maybe insert settings.TITLE or domain here?
+                #FIXME: maybe insert settings.POOTLE_TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'
             disk_store.updateheader(add=True, **headerupdates)
 

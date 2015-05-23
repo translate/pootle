@@ -13,8 +13,9 @@ from django.core import checks
 
 DEPRECATIONS = [
     # (old, new, deprecated_version, removed_version)
-    ('OLD', 'NEW', '2.7', '2.9'),
-    ('REMOVED', None, '2.7', '2.9'),
+    # ('OLD', 'NEW', '2.7', '2.9'),
+    # ('REMOVED', None, '2.7', '2.9'),
+    ('TITLE', 'POOTLE_TITLE', '2.7', '2.8'),
 ]
 
 

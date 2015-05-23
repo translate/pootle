@@ -15,7 +15,7 @@ need to change the extension of this file from ``.conf.sample`` to ``.conf``.
 #
 
 # Site title
-TITLE = 'Development Server'
+POOTLE_TITLE = 'Pootle Development Server'
 
 POOTLE_INSTANCE_ID = 'development'
 
