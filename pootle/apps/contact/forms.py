@@ -79,7 +79,7 @@ class PootleReportForm(PootleContactForm):
             return [self.cleaned_data['report_email']]
 
         report_email = getattr(settings, 'POOTLE_CONTACT_REPORT_EMAIL',
-                               settings.CONTACT_EMAIL)
+                               settings.POOTLE_CONTACT_EMAIL)
         return [report_email]
 
 # Alters form's field order. Use `self.field_order` when in Django 1.9+

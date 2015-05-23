@@ -104,12 +104,12 @@ Site-specific settings.
   Default: ``True``
 
   Controls whether users will be able to use the contact form. The address to
-  receive messages is controlled by :setting:`CONTACT_EMAIL`.
+  receive messages is controlled by :setting:`POOTLE_CONTACT_EMAIL`.
 
 
-.. setting:: CONTACT_EMAIL
+.. setting:: POOTLE_CONTACT_EMAIL
 
-``CONTACT_EMAIL``
+``POOTLE_CONTACT_EMAIL``
   Default: ``info@YOUR_DOMAIN.com``
 
   Address to receive messages sent through the contact form. This will only
@@ -119,7 +119,7 @@ Site-specific settings.
 .. setting:: POOTLE_REPORT_STRING_ERRORS_EMAIL
 
 ``POOTLE_CONTACT_REPORT_EMAIL``
-  Default: ``CONTACT_EMAIL``
+  Default: ``POOTLE_CONTACT_EMAIL``
 
   .. versionadded:: 2.7
 

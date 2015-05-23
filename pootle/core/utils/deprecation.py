@@ -17,6 +17,7 @@ DEPRECATIONS = [
     # ('REMOVED', None, '2.7', '2.9'),
     ('TITLE', 'POOTLE_TITLE', '2.7', '2.8'),
     ('CAN_CONTACT', 'POOTLE_CONTACT_ENABLED', '2.7', '2.8'),
+    ('CONTACT_EMAIL', 'POOTLE_CONTACT_EMAIL', '2.7', '2.8'),
 ]
 
 

@@ -176,20 +176,20 @@ def check_settings(app_configs=None, **kwargs):
             id="pootle.W007",
         ))
 
-    if not settings.CONTACT_EMAIL and settings.POOTLE_CONTACT_ENABLED:
+    if not settings.POOTLE_CONTACT_EMAIL and settings.POOTLE_CONTACT_ENABLED:
         errors.append(checks.Warning(
-            _("CONTACT_EMAIL is not set."),
-            hint=_("Set CONTACT_EMAIL to allow users to contact "
+            _("POOTLE_CONTACT_EMAIL is not set."),
+            hint=_("Set POOTLE_CONTACT_EMAIL to allow users to contact "
                    "administrators through the Pootle contact form."),
             id="pootle.W008",
         ))
 
-    if settings.CONTACT_EMAIL in ("info@YOUR_DOMAIN.com") \
+    if settings.POOTLE_CONTACT_EMAIL in ("info@YOUR_DOMAIN.com") \
        and settings.POOTLE_CONTACT_ENABLED:
         errors.append(checks.Warning(
-            _("CONTACT_EMAIL is using the following default "
-              "setting %r." % settings.CONTACT_EMAIL),
-            hint=_("CONTACT_EMAIL is the address that will receive "
+            _("POOTLE_CONTACT_EMAIL is using the following default "
+              "setting %r." % settings.POOTLE_CONTACT_EMAIL),
+            hint=_("POOTLE_CONTACT_EMAIL is the address that will receive "
                    "messages sent by the contact form."),
             id="pootle.W011",
         ))
