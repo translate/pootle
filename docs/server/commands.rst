@@ -333,7 +333,7 @@ By default, :pc:`test_checks` tests all existing checks. When
 against.
 
 
-.. pootle_command:: regenerate-checks-descriptions
+.. pootle_command:: regenerate_checks_descriptions
 
 regenerate_checks_descriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -415,6 +415,8 @@ cater for translators working outside of Pootle.
 The :pc:`import` and :pc:`export` commands are designed to mimic the operations
 of Download and Upload from the Pootle UI.
 
+.. pootle_command:: export
+
 export
 ^^^^^^
 
@@ -428,6 +430,8 @@ Download a file for offline translation.
 A file or a .zip of files is provided as output.  The file headers include a
 revision counter to assist Pootle to detetmine how to handle subsequent uploads
 of the file.
+
+.. pootle_command:: import
 
 import
 ^^^^^^
