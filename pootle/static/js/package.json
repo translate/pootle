@@ -21,6 +21,6 @@
     "md5": "^1.0.0",
     "object-assign": "^2.0.0",
     "react": "^0.13.3",
-    "react-select": "^0.4.0"
+    "react-select": "^0.4.9"
   }
 }
