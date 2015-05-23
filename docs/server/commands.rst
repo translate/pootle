@@ -322,14 +322,14 @@ Tests any given string pair or unit against all or certain checks from the
 command line. This is useful for debugging and developing new checks.
 
 String pairs can be specified by setting the values to be checked in the
-:option:`--source=<"source_text">` and :option:`--target="<target_text>"`
+``--source=<"source_text">`` and ``--target="<target_text>"``
 command-line arguments.
 
-Alternatively, :option:`--unit=<unit_id>` can be used to reference an existing
+Alternatively, ``--unit=<unit_id>`` can be used to reference an existing
 unit from the database.
 
 By default, :pc:`test_checks` tests all existing checks. When
-:option:`--check=<checkname>` is set, only specific checks will be tested
+``--check=<checkname>`` is set, only specific checks will be tested
 against.
 
 
