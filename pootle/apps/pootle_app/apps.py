@@ -13,9 +13,17 @@ See https://docs.djangoproject.com/en/1.7/ref/applications/
 """
 
 from django.apps import AppConfig
-from pootle import checks
+from django.core import checks
+
+from pootle import checks as pootle_checks
+from pootle.core.utils import deprecation
 
 
 class PootleConfig(AppConfig):
     name = "pootle_app"
     verbose_name = "Pootle"
+
+    def ready(self):
+        # FIXME In Django 1.8 this needs to change to
+        # register(settings.check_deprecated_settings, "settings")
+        checks.register("settings")(deprecation.check_deprecated_settings)
