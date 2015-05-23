@@ -113,7 +113,7 @@ DEFAULT_FROM_EMAIL = 'info@YOUR_DOMAIN.com'
 
 # Address to receive messages sent by contact form.
 CONTACT_EMAIL = 'info@YOUR_DOMAIN.com'
-CAN_CONTACT = True
+POOTLE_CONTACT_ENABLED = True
 
 # Email address to report string errors to, unless a report email was set for
 # the project for which the string error is being reported.

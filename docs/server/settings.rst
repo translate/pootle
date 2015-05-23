@@ -98,9 +98,9 @@ Backend and caching settings.
 Site-specific settings.
 
 
-.. setting:: CAN_CONTACT
+.. setting:: POOTLE_CONTACT_ENABLED
 
-``CAN_CONTACT``
+``POOTLE_CONTACT_ENABLED``
   Default: ``True``
 
   Controls whether users will be able to use the contact form. The address to
@@ -113,7 +113,7 @@ Site-specific settings.
   Default: ``info@YOUR_DOMAIN.com``
 
   Address to receive messages sent through the contact form. This will only
-  have effect if :setting:`CAN_CONTACT` is set to ``True``.
+  have effect if :setting:`POOTLE_CONTACT_ENABLED` is set to ``True``.
 
 
 .. setting:: POOTLE_REPORT_STRING_ERRORS_EMAIL

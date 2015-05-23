@@ -253,6 +253,7 @@ POOTLE_ prefix renaming
   settings file:
 
   - ``TITLE`` -> :setting:`POOTLE_TITLE`
+  - ``CAN_CONTACT`` -> :setting:`POOTLE_CONTACT_ENABLED`
 
 
 Internal changes

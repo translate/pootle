@@ -92,7 +92,7 @@
         <ul id="nav-main">
           {% block nav_items %}
           {% block nav_items_pre %}{% endblock %}
-          {% if settings.CAN_CONTACT %}
+          {% if settings.POOTLE_CONTACT_ENABLED %}
             <li><a class="js-popup-ajax" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
           {% endif %}
           {% if user.is_authenticated %}

@@ -36,7 +36,8 @@ def pootle_context(request):
         'settings': {
             'POOTLE_TITLE': settings.POOTLE_TITLE,
             'POOTLE_INSTANCE_ID': settings.POOTLE_INSTANCE_ID,
-            'CAN_CONTACT': settings.CAN_CONTACT and settings.CONTACT_EMAIL,
+            'POOTLE_CONTACT_ENABLED': (settings.POOTLE_CONTACT_ENABLED and
+                                       settings.CONTACT_EMAIL),
             'SCRIPT_NAME': settings.SCRIPT_NAME,
             'POOTLE_VERSION': __version__,
             'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
