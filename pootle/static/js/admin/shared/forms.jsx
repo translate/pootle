@@ -230,7 +230,7 @@ var ProjectForm = React.createClass({
         </div>
       {this.props.handleDelete &&
         <div>
-          <p className="divider"></p>
+          <p className="divider" />
           <div className="buttons">
             <ItemDelete item={model} handleDelete={this.props.handleDelete} />
           </div>
