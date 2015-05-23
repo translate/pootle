@@ -28,7 +28,8 @@ var UserProfileForm = React.createClass({
   mixins: [ModelFormMixin],
 
   propTypes: {
-    handleDirtyFlag: React.PropTypes.func.isRequired
+    onDirty: React.PropTypes.func.isRequired,
+    onSuccess: React.PropTypes.func.isRequired,
   },
 
   fields: ['full_name', 'twitter', 'linkedin', 'website', 'bio'],
@@ -38,7 +39,7 @@ var UserProfileForm = React.createClass({
 
   componentWillUpdate: function (nextProps, nextState) {
     if (nextState.isDirty !== this.state.isDirty) {
-      this.props.handleDirtyFlag(nextState.isDirty);
+      this.props.onDirty(nextState.isDirty);
     }
   },
 
@@ -46,7 +47,7 @@ var UserProfileForm = React.createClass({
   /* Handlers */
 
   handleSuccess: function (user) {
-    this.props.handleSuccess(user);
+    this.props.onSuccess(user);
   },
 
 

@@ -207,8 +207,8 @@ var Dialog = React.createClass({
   propTypes: {
     okLabel: React.PropTypes.string,
     cancelLabel: React.PropTypes.string,
-    handleOk: React.PropTypes.func.isRequired,
-    handleCancel: React.PropTypes.func.isRequired,
+    onAccept: React.PropTypes.func.isRequired,
+    onCancel: React.PropTypes.func.isRequired,
     header: React.PropTypes.func,
     footer: React.PropTypes.func,
   },
@@ -230,12 +230,12 @@ var Dialog = React.createClass({
     return (
       <ModalFooter>
         <button className="btn btn-primary"
-                onClick={this.props.handleOk}>
+                onClick={this.props.onAccept}>
           {this.props.okLabel}
         </button>
         <button className="btn"
                 autoFocus={true}
-                onClick={this.props.handleCancel}>
+                onClick={this.props.onCancel}>
           {this.props.cancelLabel}
         </button>
       </ModalFooter>

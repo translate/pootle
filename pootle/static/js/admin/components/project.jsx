@@ -22,14 +22,14 @@ var ProjectsAdmin = React.createClass({
       add: <ProjectAdd
               model={this.props.model}
               collection={this.props.items}
-              handleSuccess={this.props.handleSave}
-              handleCancel={this.props.handleCancel} />,
+              onSuccess={this.props.onSuccess}
+              onCancel={this.props.onCancel} />,
       edit: <ProjectEdit
               model={this.props.selectedItem}
               collection={this.props.items}
-              handleAdd={this.props.handleAdd}
-              handleSuccess={this.props.handleSave}
-              handleDelete={this.props.handleDelete} />
+              onAdd={this.props.onAdd}
+              onSuccess={this.props.onSuccess}
+              onDelete={this.props.onDelete} />
     };
 
     var args = {
@@ -55,8 +55,8 @@ var ProjectsAdmin = React.createClass({
         <div className="module first">
           <Search
             fields={fields}
-            handleSearch={this.props.handleSearch}
-            handleSelectItem={this.props.handleSelectItem}
+            onSearch={this.props.onSearch}
+            onSelectItem={this.props.onSelectItem}
             items={this.props.items}
             selectedItem={this.props.selectedItem}
             searchLabel={gettext('Search Projects')}
@@ -85,14 +85,14 @@ var ProjectAdd = React.createClass({
         <div className="hd">
           <h2>{gettext('Add Project')}</h2>
           <button
-            onClick={this.props.handleCancel}
+            onClick={this.props.onCancel}
             className="btn btn-primary">{gettext('Cancel')}</button>
         </div>
         <div className="bd">
           <ProjectForm
             model={new this.props.model()}
             collection={this.props.collection}
-            handleSuccess={this.props.handleSuccess} />
+            onSuccess={this.props.onSuccess} />
         </div>
       </div>
     );
@@ -111,7 +111,7 @@ var ProjectEdit = React.createClass({
         <div className="hd">
           <h2>{gettext('Edit Project')}</h2>
           <button
-            onClick={this.props.handleAdd}
+            onClick={this.props.onAdd}
             className="btn btn-primary">{gettext('Add Project')}</button>
         </div>
         <div className="bd">
@@ -121,8 +121,8 @@ var ProjectEdit = React.createClass({
             key={this.props.model.id}
             model={this.props.model}
             collection={this.props.collection}
-            handleSuccess={this.props.handleSuccess}
-            handleDelete={this.props.handleDelete} />
+            onSuccess={this.props.onSuccess}
+            onDelete={this.props.onDelete} />
         }
         </div>
       </div>

@@ -113,14 +113,14 @@ let UserProfileEdit = React.createClass({
           title={gettext('My Public Profile')}>
           <div id="user-edit">
             <UserProfileForm model={this.props.user}
-                             handleDirtyFlag={this.handleDirtyFlag}
-                             handleSuccess={this.handleSave} />
+                             onDirty={this.handleDirtyFlag}
+                             onSuccess={this.handleSave} />
           </div>
         </Modal>}
       {this.state.confirmClose &&
         <Dialog
-          handleOk={this.handleDlgOk}
-          handleCancel={this.handleDlgCancel}
+          onAccept={this.handleDlgOk}
+          onCancel={this.handleDlgCancel}
           onClose={this.handleDlgCancel}
           title={gettext('Discard changes.')}
           okLabel={gettext('Yes')}

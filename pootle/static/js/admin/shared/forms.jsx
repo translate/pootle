@@ -30,7 +30,7 @@ var LanguageForm = React.createClass({
     this.props.collection.unshift(model, {merge: true});
     this.props.collection.move(model, 0);
 
-    this.props.handleSuccess(model);
+    this.props.onSuccess(model);
   },
 
 
@@ -93,11 +93,11 @@ var LanguageForm = React.createClass({
             <li><a href={model.getPermissionsUrl()}>{gettext('Permissions')}</a></li>
           </ul>}
         </div>
-      {this.props.handleDelete &&
+      {this.props.onDelete &&
         <div>
           <p className="divider" />
           <div className="buttons">
-            <ItemDelete item={model} handleDelete={this.props.handleDelete} />
+            <ItemDelete item={model} onDelete={this.props.onDelete} />
           </div>
         </div>}
       </form>
@@ -125,7 +125,7 @@ var ProjectForm = React.createClass({
     this.props.collection.unshift(model, {merge: true});
     this.props.collection.move(model, 0);
 
-    this.props.handleSuccess(model);
+    this.props.onSuccess(model);
   },
 
 
@@ -228,11 +228,11 @@ var ProjectForm = React.createClass({
             <li><a href={model.getPermissionsUrl()}>{gettext('Permissions')}</a></li>
           </ul>}
         </div>
-      {this.props.handleDelete &&
+      {this.props.onDelete &&
         <div>
           <p className="divider" />
           <div className="buttons">
-            <ItemDelete item={model} handleDelete={this.props.handleDelete} />
+            <ItemDelete item={model} onDelete={this.props.onDelete} />
           </div>
         </div>}
       </form>
@@ -261,7 +261,7 @@ var UserForm = React.createClass({
     this.props.collection.unshift(model, {merge: true});
     this.props.collection.move(model, 0);
 
-    this.props.handleSuccess(model);
+    this.props.onSuccess(model);
   },
 
 
@@ -371,12 +371,15 @@ var UserForm = React.createClass({
             <li><a href={model.getReportsUrl()}>{gettext("Reports")}</a></li>
           </ul>}
         </div>
-      {(this.props.handleDelete && !model.isMeta()) &&
+      {(this.props.onDelete && !model.isMeta()) &&
         <div>
           <p className="divider" />
           <div className="buttons">
-            <ItemDelete item={model} handleDelete={this.props.handleDelete}
-                helpText={deleteHelpText} />
+            <ItemDelete
+              item={model}
+              onDelete={this.props.onDelete}
+              helpText={deleteHelpText}
+            />
           </div>
         </div>}
       </form>
@@ -390,7 +393,7 @@ var ItemDelete = React.createClass({
 
   propTypes: {
     item: React.PropTypes.object.isRequired,
-    handleDelete: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired,
     helpText: React.PropTypes.string,
   },
 
@@ -409,9 +412,9 @@ var ItemDelete = React.createClass({
     this.setState({buttonDisabled: !this.state.buttonDisabled});
   },
 
-  onClick: function (e) {
+  handleClick: function (e) {
     e.preventDefault();
-    this.props.item.destroy().then(this.props.handleDelete);
+    this.props.item.destroy().then(this.props.onDelete);
   },
 
   render: function () {
@@ -422,7 +425,7 @@ var ItemDelete = React.createClass({
                onChange={this.toggleButton} />
         <button className="btn btn-danger"
                 disabled={this.state.buttonDisabled}
-                onClick={this.onClick}>{gettext('Delete')}</button>
+                onClick={this.handleClick}>{gettext('Delete')}</button>
       {this.props.helpText &&
         <span className="helptext">{this.props.helpText}</span>}
       </div>

@@ -18,8 +18,8 @@ var Search = React.createClass({
 
   propTypes: {
     fields: React.PropTypes.array.isRequired,
-    handleSearch: React.PropTypes.func.isRequired,
-    handleSelectItem: React.PropTypes.func.isRequired,
+    onSearch: React.PropTypes.func.isRequired,
+    onSelectItem: React.PropTypes.func.isRequired,
     items: React.PropTypes.object.isRequired,
     selectedItem: React.PropTypes.object,
     searchLabel: React.PropTypes.string.isRequired,
@@ -41,7 +41,7 @@ var Search = React.createClass({
 
   fetchResults: function (query) {
     this.setState({isLoading: true});
-    this.props.handleSearch(query).then(this.onResultsFetched);
+    this.props.onSearch(query).then(this.onResultsFetched);
   },
 
   onResultsFetched: function (data) {
@@ -79,7 +79,7 @@ var Search = React.createClass({
         <div className="bd">
           <div className="search-box">
             <SearchBox
-              handleSearch={this.props.handleSearch}
+              onSearch={this.props.onSearch}
               placeholder={this.props.searchPlaceholder}
               searchQuery={this.props.searchQuery} />
           </div>
@@ -93,7 +93,7 @@ var Search = React.createClass({
                 resultsCaption={this.props.resultsCaption}
                 searchQuery={this.props.searchQuery}
                 selectedItem={this.props.selectedItem}
-                handleSelectItem={this.props.handleSelectItem} />
+                onSelectItem={this.props.onSelectItem} />
               {loadMoreBtn}
             </div>
           }
@@ -109,7 +109,7 @@ var Search = React.createClass({
 var SearchBox = React.createClass({
 
   propTypes: {
-    handleSearch: React.PropTypes.func,
+    onSearch: React.PropTypes.func,
     placeholder: React.PropTypes.string,
     searchQuery: React.PropTypes.string,
   },
@@ -130,7 +130,7 @@ var SearchBox = React.createClass({
 
   componentWillMount: function () {
     this.handleSearchDebounced = _.debounce(function () {
-      this.props.handleSearch.apply(this, [this.state.searchQuery]);
+      this.props.onSearch.apply(this, [this.state.searchQuery]);
     }, 300);
   },
 
@@ -177,7 +177,7 @@ var ItemTable = React.createClass({
     resultsCaption: React.PropTypes.string.isRequired,
     searchQuery: React.PropTypes.string.isRequired,
     selectedItem: React.PropTypes.object,
-    handleSelectItem: React.PropTypes.func.isRequired,
+    onSelectItem: React.PropTypes.func.isRequired,
   },
 
   render: function () {
@@ -189,7 +189,7 @@ var ItemTable = React.createClass({
           item={item}
           index={index}
           selectedItem={this.props.selectedItem}
-          handleSelectItem={this.props.handleSelectItem} />
+          onSelectItem={this.props.onSelectItem} />
         );
       };
 
@@ -213,7 +213,7 @@ var ItemTableRow = React.createClass({
     item: React.PropTypes.object.isRequired,
     index: React.PropTypes.number.isRequired,
     selectedItem: React.PropTypes.object,
-    handleSelectItem: React.PropTypes.func.isRequired,
+    onSelectItem: React.PropTypes.func.isRequired,
   },
 
   render: function () {
@@ -237,7 +237,7 @@ var ItemTableRow = React.createClass({
     return (
       <tr className={classNames}
           key={item.id}
-          onClick={this.props.handleSelectItem.bind(null, item)}>
+          onClick={this.props.onSelectItem.bind(null, item)}>
         {this.props.fields.map(createColumn)}
       </tr>
     );

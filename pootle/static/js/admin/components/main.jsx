@@ -143,12 +143,12 @@ var AdminApp = React.createClass({
       collection: this.props.adminModule.collection,
       model: model,
 
-      handleSearch: this.handleSearch,
-      handleSelectItem: this.handleSelectItem,
-      handleAdd: this.handleAdd,
-      handleCancel: this.handleCancel,
-      handleSave: this.handleSave,
-      handleDelete: this.handleDelete,
+      onSearch: this.handleSearch,
+      onSelectItem: this.handleSelectItem,
+      onAdd: this.handleAdd,
+      onCancel: this.handleCancel,
+      onSuccess: this.handleSave,
+      onDelete: this.handleDelete,
     };
 
     return (
