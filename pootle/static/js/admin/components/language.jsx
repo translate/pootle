@@ -10,10 +10,10 @@
 
 var React = require('react');
 
-var Search = require('./search');
 var models = require('models/language');
 
 import LanguageForm from './LanguageForm';
+import Search from './Search';
 
 
 var LanguagesAdmin = React.createClass({

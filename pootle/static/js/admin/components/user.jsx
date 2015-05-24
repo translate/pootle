@@ -10,10 +10,10 @@
 
 var React = require('react');
 
-var Search = require('./search');
 var models = require('models/user');
 
 import UserForm from './UserForm';
+import Search from './Search';
 
 var UsersAdmin = React.createClass({
 

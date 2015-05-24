@@ -10,10 +10,10 @@
 
 var React = require('react');
 
-var Search = require('./search');
 var models = require('models/project');
 
 import ProjectForm from './ProjectForm';
+import Search from './Search';
 
 
 var ProjectsAdmin = React.createClass({
