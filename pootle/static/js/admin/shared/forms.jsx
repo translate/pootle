@@ -8,15 +8,15 @@
 
 'use strict';
 
-var React = require('react/addons');
+import React from 'react';
 
-var FormElement = require('components/forms').FormElement;
-var ModelFormMixin = require('mixins/forms').ModelFormMixin;
+import { FormElement } from 'components/forms';
+import { ModelFormMixin } from 'mixins/forms';
 
 import ItemDelete from '../components/ItemDelete';
 
 
-var LanguageForm = React.createClass({
+let LanguageForm = React.createClass({
   mixins: [ModelFormMixin],
 
   propTypes: {
@@ -28,7 +28,7 @@ var LanguageForm = React.createClass({
 
   /* Handlers */
 
-  handleSuccess: function (model) {
+  handleSuccess(model) {
     // Add models at the beginning of the collection. When models exist,
     // we need to move them to the first position, as Backbone doesn't
     // honor the `at: <pos>` option in that scenario and there's
@@ -42,10 +42,10 @@ var LanguageForm = React.createClass({
 
   /* Layout */
 
-  render: function () {
-    var model = this.getResource();
-    var errors = this.state.errors;
-    var formData = this.state.formData;
+  render() {
+    let model = this.getResource();
+    let { errors } = this.state;
+    let { formData } = this.state;
 
     return (
       <form method="post"
@@ -113,7 +113,7 @@ var LanguageForm = React.createClass({
 });
 
 
-var ProjectForm = React.createClass({
+let ProjectForm = React.createClass({
   mixins: [ModelFormMixin],
 
   propTypes: {
@@ -127,7 +127,7 @@ var ProjectForm = React.createClass({
 
   /* Handlers */
 
-  handleSuccess: function (model) {
+  handleSuccess(model) {
     // Add models at the beginning of the collection. When models exist,
     // we need to move them to the first position, as Backbone doesn't
     // honor the `at: <pos>` option in that scenario and there's
@@ -141,10 +141,10 @@ var ProjectForm = React.createClass({
 
   /* Layout */
 
-  render: function () {
-    var model = this.getResource();
-    var errors = this.state.errors;
-    var formData = this.state.formData;
+  render() {
+    let model = this.getResource();
+    let { errors } = this.state;
+    let { formData } = this.state;
 
     return (
       <form method="post"
@@ -252,7 +252,7 @@ var ProjectForm = React.createClass({
 });
 
 
-var UserForm = React.createClass({
+let UserForm = React.createClass({
   mixins: [ModelFormMixin],
 
   propTypes: {
@@ -267,7 +267,7 @@ var UserForm = React.createClass({
 
   /* Handlers */
 
-  handleSuccess: function (model) {
+  handleSuccess(model) {
     // Add models at the beginning of the collection. When models exist,
     // we need to move them to the first position, as Backbone doesn't
     // honor the `at: <pos>` option in that scenario and there's
@@ -281,11 +281,11 @@ var UserForm = React.createClass({
 
   /* Layout */
 
-  render: function () {
-    var model = this.getResource();
-    var errors = this.state.errors;
-    var formData = this.state.formData;
-    var deleteHelpText = gettext('Note: deleting the user will make its suggestions and translations become attributed to an anonymous user (nobody).');
+  render() {
+    let model = this.getResource();
+    let { errors } = this.state;
+    let { formData } = this.state;
+    let deleteHelpText = gettext('Note: deleting the user will make its suggestions and translations become attributed to an anonymous user (nobody).');
 
     return (
       <form method="post"
@@ -403,8 +403,8 @@ var UserForm = React.createClass({
 });
 
 
-module.exports = {
-  LanguageForm: LanguageForm,
-  ProjectForm: ProjectForm,
-  UserForm: UserForm,
+export {
+  LanguageForm,
+  ProjectForm,
+  UserForm,
 };
