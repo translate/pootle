@@ -17,6 +17,17 @@ var models = require('models/project');
 
 var ProjectsAdmin = React.createClass({
 
+  propTypes: {
+    onAdd: React.PropTypes.func.isRequired,
+    onCancel: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired,
+    onSearch: React.PropTypes.func.isRequired,
+    onSelectItem: React.PropTypes.func.isRequired,
+    onSuccess: React.PropTypes.func.isRequired,
+    searchQuery: React.PropTypes.string.isRequired,
+    selectedItem: React.PropTypes.object,
+  },
+
   render: function () {
     var viewsMap = {
       add: <ProjectAdd
@@ -77,6 +88,11 @@ var ProjectsAdmin = React.createClass({
 
 var ProjectAdd = React.createClass({
 
+  propTypes: {
+    onCancel: React.PropTypes.func.isRequired,
+    onSuccess: React.PropTypes.func.isRequired,
+  },
+
   /* Layout */
 
   render: function () {
@@ -102,6 +118,12 @@ var ProjectAdd = React.createClass({
 
 
 var ProjectEdit = React.createClass({
+
+  propTypes: {
+    onAdd: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired,
+    onSuccess: React.PropTypes.func.isRequired,
+  },
 
   /* Layout */
 

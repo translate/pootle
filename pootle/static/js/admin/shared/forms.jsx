@@ -17,6 +17,10 @@ var ModelFormMixin = require('mixins/forms').ModelFormMixin;
 var LanguageForm = React.createClass({
   mixins: [ModelFormMixin],
 
+  propTypes: {
+    onSuccess: React.PropTypes.func.isRequired,
+  },
+
   fields: ['code', 'fullname', 'specialchars', 'nplurals', 'pluralequation'],
 
 
@@ -109,6 +113,10 @@ var LanguageForm = React.createClass({
 
 var ProjectForm = React.createClass({
   mixins: [ModelFormMixin],
+
+  propTypes: {
+    onSuccess: React.PropTypes.func.isRequired,
+  },
 
   fields: ['code', 'fullname', 'checkstyle', 'localfiletype', 'treestyle',
            'source_language', 'report_email', 'screenshot_search_prefix',
@@ -244,6 +252,10 @@ var ProjectForm = React.createClass({
 
 var UserForm = React.createClass({
   mixins: [ModelFormMixin],
+
+  propTypes: {
+    onSuccess: React.PropTypes.func.isRequired,
+  },
 
   fields: [
       'username', 'is_active', 'password', 'full_name', 'email',
@@ -393,8 +405,8 @@ var ItemDelete = React.createClass({
 
   propTypes: {
     item: React.PropTypes.object.isRequired,
-    onDelete: React.PropTypes.func.isRequired,
     helpText: React.PropTypes.string,
+    onDelete: React.PropTypes.func.isRequired,
   },
 
   /* Lifecycle */

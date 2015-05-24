@@ -17,6 +17,17 @@ var models = require('models/user');
 
 var UsersAdmin = React.createClass({
 
+  propTypes: {
+    onAdd: React.PropTypes.func.isRequired,
+    onCancel: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired,
+    onSearch: React.PropTypes.func.isRequired,
+    onSelectItem: React.PropTypes.func.isRequired,
+    onSuccess: React.PropTypes.func.isRequired,
+    searchQuery: React.PropTypes.string.isRequired,
+    selectedItem: React.PropTypes.object,
+  },
+
   render: function () {
     var viewsMap = {
       add: <UserAdd
@@ -77,6 +88,11 @@ var UsersAdmin = React.createClass({
 
 var UserAdd = React.createClass({
 
+  propTypes: {
+    onCancel: React.PropTypes.func.isRequired,
+    onSuccess: React.PropTypes.func.isRequired,
+  },
+
   /* Layout */
 
   render: function () {
@@ -102,6 +118,12 @@ var UserAdd = React.createClass({
 
 
 var UserEdit = React.createClass({
+
+  propTypes: {
+    onAdd: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired,
+    onSuccess: React.PropTypes.func.isRequired,
+  },
 
   /* Layout */
 
