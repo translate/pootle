@@ -9,12 +9,11 @@
 'use strict';
 
 import cx from 'classnames';
+import React from 'react';
+import _ from 'underscore';
 
-var React = require('react');
-var _ = require('underscore');
 
-
-var Search = React.createClass({
+let Search = React.createClass({
 
   propTypes: {
     fields: React.PropTypes.array.isRequired,
@@ -30,7 +29,7 @@ var Search = React.createClass({
 
   /* Lifecycle */
 
-  getInitialState: function () {
+  getInitialState() {
     return {
       isLoading: false,
     };
@@ -39,26 +38,26 @@ var Search = React.createClass({
 
   /* State-changing callbacks */
 
-  fetchResults: function (query) {
+  fetchResults(query) {
     this.setState({isLoading: true});
     this.props.onSearch(query).then(this.onResultsFetched);
   },
 
-  onResultsFetched: function (data) {
+  onResultsFetched(data) {
     this.setState({isLoading: false});
   },
 
-  loadMore: function () {
+  loadMore() {
     this.fetchResults(this.props.searchQuery);
   },
 
 
   /* Layout */
 
-  render: function () {
-    var isLoading = this.state.isLoading,
-        items = this.props.items,
-        loadMoreBtn;
+  render() {
+    let { isLoading } = this.state;
+    let { items } = this.props;
+    let loadMoreBtn;
 
     if (items.count > 0 && items.length < items.count) {
       loadMoreBtn = <button className="btn" onClick={this.loadMore}>
@@ -66,7 +65,7 @@ var Search = React.createClass({
                     </button>;
     }
 
-    var resultsClassNames = cx({
+    let resultsClassNames = cx({
       'search-results': true,
       'loading': isLoading
     });
@@ -105,7 +104,7 @@ var Search = React.createClass({
 });
 
 
-var SearchBox = React.createClass({
+let SearchBox = React.createClass({
 
   propTypes: {
     onSearch: React.PropTypes.func.isRequired,
@@ -115,39 +114,39 @@ var SearchBox = React.createClass({
 
   /* Lifecycle */
 
-  getInitialState: function () {
+  getInitialState() {
     return {
       searchQuery: this.props.searchQuery
     };
   },
 
-  componentWillReceiveProps: function (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.searchQuery !== this.state.searchQuery) {
       this.setState({searchQuery: nextProps.searchQuery});
     }
   },
 
-  componentWillMount: function () {
+  componentWillMount() {
     this.handleSearchDebounced = _.debounce(function () {
       this.props.onSearch.apply(this, [this.state.searchQuery]);
     }, 300);
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     React.findDOMNode(this.refs.input).focus();
   },
 
 
   /* Handlers */
 
-  handleKeyUp: function (e) {
-    var key = e.nativeEvent.keyCode;
+  handleKeyUp(e) {
+    let key = e.nativeEvent.keyCode;
     if (key === 27) {
       React.findDOMNode(this.refs.input).blur();
     }
   },
 
-  onChange: function () {
+  onChange() {
     this.setState({searchQuery: React.findDOMNode(this.refs.input).value});
     this.handleSearchDebounced();
   },
@@ -155,7 +154,7 @@ var SearchBox = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     return <input
              type="text"
              ref="input"
@@ -168,7 +167,7 @@ var SearchBox = React.createClass({
 });
 
 
-var ItemTable = React.createClass({
+let ItemTable = React.createClass({
 
   propTypes: {
     fields: React.PropTypes.array.isRequired,
@@ -178,8 +177,8 @@ var ItemTable = React.createClass({
     onSelectItem: React.PropTypes.func.isRequired,
   },
 
-  render: function () {
-    var createRow = function (item, index) {
+  render() {
+    let createRow = function (item, index) {
       return (
         <ItemTableRow
           fields={this.props.fields}
@@ -204,7 +203,7 @@ var ItemTable = React.createClass({
 });
 
 
-var ItemTableRow = React.createClass({
+let ItemTableRow = React.createClass({
 
   propTypes: {
     fields: React.PropTypes.array.isRequired,
@@ -214,18 +213,18 @@ var ItemTableRow = React.createClass({
     onSelectItem: React.PropTypes.func.isRequired,
   },
 
-  render: function () {
-    var item = this.props.item,
-        selectedItem = this.props.selectedItem,
-        index = this.props.index,
-        values = item.toJSON();
+  render() {
+    let { item } = this.props;
+    let { selectedItem } = this.props;
+    let { index } = this.props;
+    let values = item.toJSON();
 
     values.index = index + 1;
-    var createColumn = function (field, i) {
+    let createColumn = function (field, i) {
       return <td key={i}>{values[field]}</td>;
     };
 
-    var classNames = cx({
+    let classNames = cx({
       'is-selected': selectedItem && item.id === selectedItem.id,
       // FIXME: this is too coupled to certain item types
       'is-disabled': item.get('disabled'),
@@ -244,4 +243,4 @@ var ItemTableRow = React.createClass({
 });
 
 
-module.exports = Search;
+export default Search;
