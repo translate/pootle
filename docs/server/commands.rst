@@ -618,10 +618,10 @@ local mail, but it might also be useful to look at the logs in
 */var/log/cron/*, for example.
 
 If you are running Pootle from a virtualenv, or if you set any custom
-``PYTHONPATH`` or similar, you might need to run your management command from a
-bash script that creates the correct environment for your command to run from.
-Call this script then from cron. It shouldn't be necessary to specify the
-settings file for Pootle — it should automatically be detected.
+:envvar:`PYTHONPATH` or similar, you might need to run your management command
+from a bash script that creates the correct environment for your command to run
+from.  Call this script then from cron. It shouldn't be necessary to specify
+the settings file for Pootle — it should automatically be detected.
 
 .. _django-assets: http://elsdoerfer.name/docs/django-assets/
 

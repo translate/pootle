@@ -178,7 +178,7 @@ How to run commands
 
 In order to run Fabric commands for Pootle it is necessary that the directory
 containing the :file:`fabfile.py` file and the ``deploy`` subdirectory be
-included in the ``PYTHONPATH``.  If it is not, then add it using:
+included in the :envvar:`PYTHONPATH`.  If it is not, then add it using:
 
 .. code-block:: bash
 
