@@ -241,8 +241,8 @@ options file for the remote user:
     $ fab production mysql_conf  # Set up MySQL options file
 
 and then modifying the :file:`fabric.py` settings file to un-comment the
-alternate value for :setting:`db_password_opt` (and optionally
-:setting:`db_root_password_opt`, if :setting:`db_root_password` is configured).
+alternate value for ``db_password_opt`` (and optionally
+``db_root_password_opt``, if ``db_root_password`` is configured).
 
 
 .. _fabric-deployment#setting-up-the-database:
