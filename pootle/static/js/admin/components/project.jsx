@@ -11,8 +11,9 @@
 var React = require('react');
 
 var Search = require('./search');
-var ProjectForm = require('forms').ProjectForm;
 var models = require('models/project');
+
+import ProjectForm from './ProjectForm';
 
 
 var ProjectsAdmin = React.createClass({
