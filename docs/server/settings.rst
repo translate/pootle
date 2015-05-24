@@ -355,9 +355,9 @@ Translation environment configuration settings.
   <https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#fuzziness>`_.
 
 
-.. setting:: MT_BACKENDS
+.. setting:: POOTLE_MT_BACKENDS
 
-``MT_BACKENDS``
+``POOTLE_MT_BACKENDS``
   Default: ``[]`` (empty list)
 
   This setting enables translation suggestions through several online services.

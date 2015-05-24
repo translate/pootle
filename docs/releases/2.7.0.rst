@@ -255,6 +255,7 @@ Deprecated settings
   - ``PODIRECTORY`` -> :setting:`POOTLE_TRANSLATION_DIRECTORY`
   - ``MARKUP_FILTER`` -> :setting:`POOTLE_MARKUP_FILTER`
   - ``USE_CAPTCHA`` -> :setting:`POOTLE_CAPTCHA_ENABLED`
+  - ``MT_BACKENDS`` -> :setting:`POOTLE_MT_BACKENDS`
 
 - :setting:`POOTLE_TOP_STATS_CACHE_TIMEOUT` has been removed with the old top
   stats rendering and is replaced by the new overview UI.

@@ -107,7 +107,7 @@ def get_translation_context(request, is_terminology=False):
 
         'previous_url': get_previous_url(request),
 
-        'MT_BACKENDS': settings.MT_BACKENDS,
+        'POOTLE_MT_BACKENDS': settings.POOTLE_MT_BACKENDS,
         'AMAGAMA_URL': settings.AMAGAMA_URL,
     }
 

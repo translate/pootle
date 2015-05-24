@@ -27,7 +27,7 @@ $(function() {
   };
   {% if cansuggest or cantranslate %}
   options.mt = [];
-    {% for backend, apikey in MT_BACKENDS %}
+    {% for backend, apikey in POOTLE_MT_BACKENDS %}
     options.mt.push({name: "{{ backend|lower }}", key: "{{ apikey }}"});
     {% endfor %}
   {% endif %}

@@ -164,7 +164,7 @@ POOTLE_MARKUP_FILTER = (None, {})
 
 # Set the backends you want to use to enable translation suggestions through
 # several online services. To disable this feature completely just comment all
-# the lines to set an empty list [] to the MT_BACKENDS setting.
+# the lines to set an empty list [] to the POOTLE_MT_BACKENDS setting.
 #
 # The second parameter for each backend option is the API key, which will
 # be used in case the service supports using an API key.
@@ -178,7 +178,7 @@ POOTLE_MARKUP_FILTER = (None, {})
 #             Note that Google Translate API is a paid service
 #             See more at https://cloud.google.com/translate/v2/pricing
 #
-MT_BACKENDS = [
+POOTLE_MT_BACKENDS = [
 #        ('APERTIUM', ''),
 #        ('GOOGLE_TRANSLATE', ''),
 #        ('YANDEX_TRANSLATE', ''),

@@ -182,7 +182,7 @@ POOTLE_TRANSLATION_DIRECTORY = working_path('translations')
 POOTLE_MARKUP_FILTER = (None, {})
 
 # Suggestions through Machine Translation services (service name, API key).
-MT_BACKENDS = [
+POOTLE_MT_BACKENDS = [
 #        ('APERTIUM', ''),
 #        ('GOOGLE_TRANSLATE', ''),
 #        ('YANDEX_TRANSLATE', ''),

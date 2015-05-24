@@ -34,7 +34,7 @@ Enabling Machine Translations
 
 To enable a certain Machine Translation Service, edit :ref:`your configuration
 file <settings#customizing>` and add the desired service within the
-:setting:`MT_BACKENDS` setting.
+:setting:`POOTLE_MT_BACKENDS` setting.
 
 Each line is a tuple which has the name of the service and an optional API key.
 Some services may not require API keys but others do, so please take care of
