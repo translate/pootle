@@ -13,6 +13,8 @@ var React = require('react/addons');
 var FormElement = require('components/forms').FormElement;
 var ModelFormMixin = require('mixins/forms').ModelFormMixin;
 
+import ItemDelete from '../components/ItemDelete';
+
 
 var LanguageForm = React.createClass({
   mixins: [ModelFormMixin],
@@ -395,52 +397,6 @@ var UserForm = React.createClass({
           </div>
         </div>}
       </form>
-    );
-  }
-
-});
-
-
-var ItemDelete = React.createClass({
-
-  propTypes: {
-    item: React.PropTypes.object.isRequired,
-    helpText: React.PropTypes.string,
-    onDelete: React.PropTypes.func.isRequired,
-  },
-
-  /* Lifecycle */
-
-  getInitialState: function () {
-    return {
-      buttonDisabled: true
-    };
-  },
-
-
-  /* Handlers */
-
-  toggleButton: function () {
-    this.setState({buttonDisabled: !this.state.buttonDisabled});
-  },
-
-  handleClick: function (e) {
-    e.preventDefault();
-    this.props.item.destroy().then(this.props.onDelete);
-  },
-
-  render: function () {
-    return (
-      <div className="item-delete">
-        <input type="checkbox"
-               checked={!this.state.buttonDisabled}
-               onChange={this.toggleButton} />
-        <button className="btn btn-danger"
-                disabled={this.state.buttonDisabled}
-                onClick={this.handleClick}>{gettext('Delete')}</button>
-      {this.props.helpText &&
-        <span className="helptext">{this.props.helpText}</span>}
-      </div>
     );
   }
 
