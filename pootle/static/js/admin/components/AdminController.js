@@ -8,18 +8,18 @@
 
 'use strict';
 
-var React = require('react');
-var Backbone = require('backbone');
-var _ = require('underscore');
+import Backbone from 'backbone';
+import React from 'react';
+import _ from 'underscore';
 
-var msg = require('../../msg.js');
+import msg from '../../msg';
 
 
-var AdminApp = React.createClass({
+let AdminController = React.createClass({
 
   /* Lifecycle */
 
-  getInitialState: function () {
+  getInitialState() {
     return {
       items: new this.props.adminModule.collection(),
       selectedItem: null,
@@ -28,7 +28,7 @@ var AdminApp = React.createClass({
     };
   },
 
-  setupRoutes: function (router) {
+  setupRoutes(router) {
 
     router.on('route:main', function (qs) {
       var searchQuery = '';
@@ -43,19 +43,19 @@ var AdminApp = React.createClass({
     }.bind(this));
   },
 
-  componentWillMount: function () {
+  componentWillMount() {
     this.setupRoutes(this.props.router);
     Backbone.history.start({pushState: true, root: this.props.appRoot});
   },
 
-  componentWillUpdate: function (nextProps, nextState) {
+  componentWillUpdate(nextProps, nextState) {
     this.handleURL(nextState);
   },
 
 
   /* State-changing handlers */
 
-  handleSearch: function (query, extraState) {
+  handleSearch(query, extraState) {
     var newState = extraState || {};
 
     if (query !== this.state.searchQuery) {
@@ -69,7 +69,7 @@ var AdminApp = React.createClass({
     }.bind(this));
   },
 
-  handleSelectItem: function (item) {
+  handleSelectItem(item) {
     var newState = {selectedItem: item, view: 'edit'};
 
     if (this.state.items.contains(item)) {
@@ -81,15 +81,15 @@ var AdminApp = React.createClass({
     }
   },
 
-  handleAdd: function () {
+  handleAdd() {
     this.setState({selectedItem: null, view: 'add'});
   },
 
-  handleCancel: function () {
+  handleCancel() {
     this.setState({selectedItem: null, view: 'edit'});
   },
 
-  handleSave: function (item) {
+  handleSave(item) {
     this.handleSelectItem(item);
     msg.show({
       text: gettext('Saved successfully.'),
@@ -97,7 +97,7 @@ var AdminApp = React.createClass({
     });
   },
 
-  handleDelete: function () {
+  handleDelete() {
     this.setState({selectedItem: null});
     msg.show({
       text: gettext('Deleted successfully.'),
@@ -108,13 +108,13 @@ var AdminApp = React.createClass({
 
   /* Handlers */
 
-  handleURL: function (newState) {
-    var router = this.props.router,
-        query = newState.searchQuery,
-        newURL;
+  handleURL(newState) {
+    let { router } = this.props;
+    let query = newState.searchQuery;
+    let newURL;
 
     if (newState.selectedItem) {
-      newURL = ['', newState.selectedItem.id, ''].join('/');
+      newURL = `/${newState.selectedItem.id}/`;
     } else {
       var params = query === '' ? {} : {q: query};
       newURL = router.toFragment('', params);
@@ -126,7 +126,7 @@ var AdminApp = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     var model = this.props.adminModule.model;
 
     // Inject dynamic model form choices
@@ -161,4 +161,4 @@ var AdminApp = React.createClass({
 });
 
 
-module.exports = AdminApp;
+export default AdminController;

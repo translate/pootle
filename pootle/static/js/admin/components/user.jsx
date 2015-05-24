@@ -8,14 +8,14 @@
 
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-var models = require('models/user');
-
+import { User, UserSet } from 'models/user';
 import UserForm from './UserForm';
 import Search from './Search';
 
-var UsersAdmin = React.createClass({
+
+let UsersAdmin = React.createClass({
 
   propTypes: {
     onAdd: React.PropTypes.func.isRequired,
@@ -28,8 +28,8 @@ var UsersAdmin = React.createClass({
     selectedItem: React.PropTypes.object,
   },
 
-  render: function () {
-    var viewsMap = {
+  render() {
+    let viewsMap = {
       add: <UserAdd
               model={this.props.model}
               collection={this.props.items}
@@ -43,9 +43,10 @@ var UsersAdmin = React.createClass({
               onDelete={this.props.onDelete} />
     };
 
-    var args = {
+    let args = {
       count: this.props.items.count,
-    }, msg;
+    };
+    let msg;
 
     if (this.props.searchQuery) {
       msg = ngettext('%(count)s user matches your query.',
@@ -57,9 +58,9 @@ var UsersAdmin = React.createClass({
         args.count
       );
     }
-    var resultsCaption = interpolate(msg, args, true);
+    let resultsCaption = interpolate(msg, args, true);
 
-    var fields = ['index', 'full_name', 'username', 'email'];
+    let fields = ['index', 'full_name', 'username', 'email'];
 
     return (
       <div className="admin-app-users">
@@ -86,7 +87,7 @@ var UsersAdmin = React.createClass({
 });
 
 
-var UserAdd = React.createClass({
+let UserAdd = React.createClass({
 
   propTypes: {
     onCancel: React.PropTypes.func.isRequired,
@@ -95,7 +96,7 @@ var UserAdd = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     return (
       <div className="item-add">
         <div className="hd">
@@ -117,7 +118,7 @@ var UserAdd = React.createClass({
 });
 
 
-var UserEdit = React.createClass({
+let UserEdit = React.createClass({
 
   propTypes: {
     onAdd: React.PropTypes.func.isRequired,
@@ -127,7 +128,7 @@ var UserEdit = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     return (
       <div className="item-edit">
         <div className="hd">
@@ -154,8 +155,8 @@ var UserEdit = React.createClass({
 });
 
 
-module.exports = {
-  App: UsersAdmin,
-  model: models.User,
-  collection: models.UserSet,
+export {
+  UsersAdmin as App,
+  User as model,
+  UserSet as collection,
 };

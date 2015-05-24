@@ -8,15 +8,14 @@
 
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-var models = require('models/project');
-
+import { Project, ProjectSet } from 'models/project';
 import ProjectForm from './ProjectForm';
 import Search from './Search';
 
 
-var ProjectsAdmin = React.createClass({
+let ProjectsAdmin = React.createClass({
 
   propTypes: {
     onAdd: React.PropTypes.func.isRequired,
@@ -29,8 +28,8 @@ var ProjectsAdmin = React.createClass({
     selectedItem: React.PropTypes.object,
   },
 
-  render: function () {
-    var viewsMap = {
+  render() {
+    let viewsMap = {
       add: <ProjectAdd
               model={this.props.model}
               collection={this.props.items}
@@ -44,9 +43,10 @@ var ProjectsAdmin = React.createClass({
               onDelete={this.props.onDelete} />
     };
 
-    var args = {
+    let args = {
       count: this.props.items.count,
-    }, msg;
+    };
+    let msg;
 
     if (this.props.searchQuery) {
       msg = ngettext('%(count)s project matches your query.',
@@ -58,9 +58,9 @@ var ProjectsAdmin = React.createClass({
         args.count
       );
     }
-    var resultsCaption = interpolate(msg, args, true);
+    let resultsCaption = interpolate(msg, args, true);
 
-    var fields = ['index', 'code', 'fullname', 'disabled'];
+    let fields = ['index', 'code', 'fullname', 'disabled'];
 
     return (
       <div className="admin-app-projects">
@@ -87,7 +87,7 @@ var ProjectsAdmin = React.createClass({
 });
 
 
-var ProjectAdd = React.createClass({
+let ProjectAdd = React.createClass({
 
   propTypes: {
     onCancel: React.PropTypes.func.isRequired,
@@ -96,7 +96,7 @@ var ProjectAdd = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     return (
       <div className="item-add">
         <div className="hd">
@@ -118,7 +118,7 @@ var ProjectAdd = React.createClass({
 });
 
 
-var ProjectEdit = React.createClass({
+let ProjectEdit = React.createClass({
 
   propTypes: {
     onAdd: React.PropTypes.func.isRequired,
@@ -128,7 +128,7 @@ var ProjectEdit = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     return (
       <div className="item-edit">
         <div className="hd">
@@ -155,9 +155,8 @@ var ProjectEdit = React.createClass({
 });
 
 
-module.exports = {
-  App: ProjectsAdmin,
-  model: models.Project,
-  collection: models.ProjectSet,
+export {
+  ProjectsAdmin as App,
+  Project as model,
+  ProjectSet as collection,
 };
-

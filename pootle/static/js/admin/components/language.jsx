@@ -8,15 +8,14 @@
 
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-var models = require('models/language');
-
+import { Language, LanguageSet } from 'models/language';
 import LanguageForm from './LanguageForm';
 import Search from './Search';
 
 
-var LanguagesAdmin = React.createClass({
+let LanguagesAdmin = React.createClass({
 
   propTypes: {
     onAdd: React.PropTypes.func.isRequired,
@@ -29,8 +28,8 @@ var LanguagesAdmin = React.createClass({
     selectedItem: React.PropTypes.object,
   },
 
-  render: function () {
-    var viewsMap = {
+  render() {
+    let viewsMap = {
       add: <LanguageAdd
               model={this.props.model}
               collection={this.props.items}
@@ -44,9 +43,10 @@ var LanguagesAdmin = React.createClass({
               onDelete={this.props.onDelete} />
     };
 
-    var args = {
+    let args = {
       count: this.props.items.count,
-    }, msg;
+    };
+    let msg;
 
     if (this.props.searchQuery) {
       msg = ngettext('%(count)s language matches your query.',
@@ -58,9 +58,9 @@ var LanguagesAdmin = React.createClass({
         args.count
       );
     }
-    var resultsCaption = interpolate(msg, args, true);
+    let resultsCaption = interpolate(msg, args, true);
 
-    var fields = ['index', 'code', 'fullname'];
+    let fields = ['index', 'code', 'fullname'];
 
     return (
       <div className="admin-app-languages">
@@ -87,7 +87,7 @@ var LanguagesAdmin = React.createClass({
 });
 
 
-var LanguageAdd = React.createClass({
+let LanguageAdd = React.createClass({
 
   propTypes: {
     onCancel: React.PropTypes.func.isRequired,
@@ -96,7 +96,7 @@ var LanguageAdd = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     return (
       <div className="item-add">
         <div className="hd">
@@ -118,7 +118,7 @@ var LanguageAdd = React.createClass({
 });
 
 
-var LanguageEdit = React.createClass({
+let LanguageEdit = React.createClass({
 
   propTypes: {
     onAdd: React.PropTypes.func.isRequired,
@@ -128,7 +128,7 @@ var LanguageEdit = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     return (
       <div className="item-edit">
         <div className="hd">
@@ -155,8 +155,8 @@ var LanguageEdit = React.createClass({
 });
 
 
-module.exports = {
-  App: LanguagesAdmin,
-  model: models.Language,
-  collection: models.LanguageSet,
+export {
+  LanguagesAdmin as App,
+  Language as model,
+  LanguageSet as collection,
 };
