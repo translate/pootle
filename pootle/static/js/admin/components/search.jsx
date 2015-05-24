@@ -91,7 +91,6 @@ var Search = React.createClass({
                 fields={this.props.fields}
                 items={items}
                 resultsCaption={this.props.resultsCaption}
-                searchQuery={this.props.searchQuery}
                 selectedItem={this.props.selectedItem}
                 onSelectItem={this.props.onSelectItem} />
               {loadMoreBtn}
@@ -175,7 +174,6 @@ var ItemTable = React.createClass({
     fields: React.PropTypes.array.isRequired,
     items: React.PropTypes.object.isRequired,
     resultsCaption: React.PropTypes.string.isRequired,
-    searchQuery: React.PropTypes.string.isRequired,
     selectedItem: React.PropTypes.object,
     onSelectItem: React.PropTypes.func.isRequired,
   },
