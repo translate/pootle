@@ -146,7 +146,7 @@ let SearchBox = React.createClass({
     }
   },
 
-  onChange() {
+  handleChange() {
     this.setState({searchQuery: React.findDOMNode(this.refs.input).value});
     this.handleSearchDebounced();
   },
@@ -160,7 +160,7 @@ let SearchBox = React.createClass({
         type="text"
         ref="input"
         value={this.state.searchQuery}
-        onChange={this.onChange}
+        onChange={this.handleChange}
         onKeyUp={this.handleKeyUp}
         {...this.props}
       />
