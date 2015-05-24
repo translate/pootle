@@ -109,7 +109,7 @@ var Search = React.createClass({
 var SearchBox = React.createClass({
 
   propTypes: {
-    onSearch: React.PropTypes.func,
+    onSearch: React.PropTypes.func.isRequired,
     placeholder: React.PropTypes.string,
     searchQuery: React.PropTypes.string,
   },
