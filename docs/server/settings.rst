@@ -231,9 +231,9 @@ Configuration settings for applications used by Pootle.
   automatically extracted.
 
 
-.. setting:: MARKUP_FILTER
+.. setting:: POOTLE_MARKUP_FILTER
 
-``MARKUP_FILTER``
+``POOTLE_MARKUP_FILTER``
   Default: ``(None, {})``
 
   Two-tuple defining the markup filter to apply in certain textareas.
@@ -246,11 +246,11 @@ Configuration settings for applications used by Pootle.
 
   Examples::
 
-    MARKUP_FILTER = (None, {})
+    POOTLE_MARKUP_FILTER = (None, {})
 
-    MARKUP_FILTER = ('markdown', {'safe_mode': 'escape'})
+    POOTLE_MARKUP_FILTER = ('markdown', {'safe_mode': 'escape'})
 
-    MARKUP_FILTER = ('restructuredtext', {'settings_overrides': {
+    POOTLE_MARKUP_FILTER = ('restructuredtext', {'settings_overrides': {
                                              'report_level': 'quiet',
                                              }
                                          })

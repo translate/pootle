@@ -256,6 +256,7 @@ POOTLE_ prefix renaming
   - ``CAN_CONTACT`` -> :setting:`POOTLE_CONTACT_ENABLED`
   - ``CONTACT_EMAIL`` -> :setting:`POOTLE_CONTACT_EMAIL`
   - ``PODIRECTORY`` -> :setting:`POOTLE_TRANSLATION_DIRECTORY`
+  -  ``MARKUP_FILTER`` -> :setting:`POOTLE_MARKUP_FILTER`
 
 
 Internal changes

@@ -71,7 +71,7 @@ def get_markup_filter():
 
         * There is no markup filter set.
 
-        * The MARKUP_FILTER option is improperly set.
+        * The POOTLE_MARKUP_FILTER option is improperly set.
 
         * The markup filter name set can't be used because the required
           package isn't installed.
@@ -80,7 +80,7 @@ def get_markup_filter():
           filter names.
     """
     try:
-        markup_filter, markup_kwargs = settings.MARKUP_FILTER
+        markup_filter, markup_kwargs = settings.POOTLE_MARKUP_FILTER
         if markup_filter is None:
             return (None, "unset")
         elif markup_filter == 'textile':
@@ -92,17 +92,17 @@ def get_markup_filter():
         else:
             raise ValueError()
     except AttributeError:
-        logger.error("MARKUP_FILTER is missing. Falling back to HTML.")
+        logger.error("POOTLE_MARKUP_FILTER is missing. Falling back to HTML.")
         return (None, "missing")
     except IndexError:
-        logger.error("MARKUP_FILTER is misconfigured. Falling back to HTML.")
+        logger.error("POOTLE_MARKUP_FILTER is misconfigured. Falling back to HTML.")
         return (None, "misconfigured")
     except ImportError:
         logger.warning("Can't find the package which provides '%s' markup "
                         "support. Falling back to HTML.", markup_filter)
         return (None, "uninstalled")
     except ValueError:
-        logger.error("Invalid value '%s' in MARKUP_FILTER. Falling back to "
+        logger.error("Invalid value '%s' in POOTLE_MARKUP_FILTER. Falling back to "
                       "HTML." % markup_filter)
         return (None, "invalid")
 
@@ -114,7 +114,7 @@ def apply_markup_filter(text):
     returns the generated HTML.
 
     The function to use is derived from the value of the setting
-    ``MARKUP_FILTER``, which should be a 2-tuple:
+    ``POOTLE_MARKUP_FILTER``, which should be a 2-tuple:
 
         * The first element should be the name of a markup filter --
           e.g., "markdown" -- to apply. If no markup filter is desired,
@@ -129,7 +129,7 @@ def apply_markup_filter(text):
     So, for example, to use Markdown with safe mode turned on (safe
     mode removes raw HTML), put this in your settings file::
 
-        MARKUP_FILTER = ('markdown', { 'safe_mode': 'escape' })
+        POOTLE_MARKUP_FILTER = ('markdown', { 'safe_mode': 'escape' })
 
     Currently supports Textile, Markdown and reStructuredText, using
     names identical to the template filters found in

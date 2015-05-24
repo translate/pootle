@@ -21,4 +21,4 @@ There are three types of static pages:
    will be presented to users when next they visit the project.
 
 The static pages are by default formatted using HTML. But you can use Markdown
-or RestructuredText by setting :setting:`MARKUP_FILTER` correctly.
+or RestructuredText by setting :setting:`POOTLE_MARKUP_FILTER` correctly.

@@ -153,14 +153,14 @@ POOTLE_TRANSLATION_DIRECTORY = working_path('translations')
 # your own the required packages.
 #
 # Examples:
-#    MARKUP_FILTER = (None, {})
-#    MARKUP_FILTER = ('markdown', {'safe_mode': 'escape'})
-#    MARKUP_FILTER = ('restructuredtext', {
-#                         'settings_overrides': {
-#                             'report_level': 'quiet',
-#                         }
-#                     })
-MARKUP_FILTER = (None, {})
+#    POOTLE_MARKUP_FILTER = (None, {})
+#    POOTLE_MARKUP_FILTER = ('markdown', {'safe_mode': 'escape'})
+#    POOTLE_MARKUP_FILTER = ('restructuredtext', {
+#                                'settings_overrides': {
+#                                    'report_level': 'quiet',
+#                                }
+#                            })
+POOTLE_MARKUP_FILTER = (None, {})
 
 # Set the backends you want to use to enable translation suggestions through
 # several online services. To disable this feature completely just comment all
