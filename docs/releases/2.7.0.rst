@@ -245,9 +245,6 @@ Command changes and additions
 Deprecated settings
 -------------------
 
-POOTLE_ prefix renaming
-^^^^^^^^^^^^^^^^^^^^^^^
-
 - All Pootle specific settings have been renamed and prefixed with ``POOTLE_``.
   The following settings are impacted and should be renamed accordingly in your
   settings file:
@@ -258,6 +255,9 @@ POOTLE_ prefix renaming
   - ``PODIRECTORY`` -> :setting:`POOTLE_TRANSLATION_DIRECTORY`
   - ``MARKUP_FILTER`` -> :setting:`POOTLE_MARKUP_FILTER`
   - ``USE_CAPTCHA`` -> :setting:`POOTLE_CAPTCHA_ENABLED`
+
+- :setting:`POOTLE_TOP_STATS_CACHE_TIMEOUT` has been removed with the old top
+  stats rendering and is replaced by the new overview UI.
 
 
 Internal changes

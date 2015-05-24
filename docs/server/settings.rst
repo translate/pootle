@@ -463,3 +463,14 @@ Deprecated Settings
      when translating.
 
   Display alternate source languages in the translation interface.
+
+.. setting:: POOTLE_TOP_STATS_CACHE_TIMEOUT
+
+``POOTLE_TOP_STATS_CACHE_TIMEOUT``
+
+  .. deprecated: 2.7
+     The overview page statistics rewrite has removed these statistics and the
+     RQ based statistics has also removed the load of this type of data so this
+     setting has been removed.
+
+  Sets the timeout value for overview top statistics.
