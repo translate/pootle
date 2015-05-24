@@ -8,24 +8,24 @@
 
 'use strict';
 
-var React = require('react');
 
-var Backbone = require('backbone');
+import 'backbone-queryparams';
+import 'backbone-queryparams-shim';
+import 'imports?Backbone=>require("backbone")!backbone-move';
 
-require('backbone-queryparams');
-require('backbone-queryparams-shim');
-require('imports?Backbone=>require("backbone")!backbone-move');
+import Backbone from 'backbone';
+import React from 'react';
 
-var AdminAppClass = require('./components/main');
-var AdminRouter = require('./routers');
+import AdminController from './components/AdminController';
+import AdminRouter from './routers';
 
-var AdminApp = React.createFactory(AdminAppClass);
+let AdminApp = React.createFactory(AdminController);
 
 
 window.PTL = window.PTL || {};
 
 
-var itemTypes = {
+const itemTypes = {
   user: require('./components/user'),
   language: require('./components/language'),
   project: require('./components/project'),
@@ -34,15 +34,15 @@ var itemTypes = {
 
 PTL.admin = {
 
-  init: function (opts) {
-    var el = document.querySelector(opts.el || '.js-admin-app');
+  init(opts) {
+    let el = document.querySelector(opts.el || '.js-admin-app');
 
     if (!itemTypes.hasOwnProperty(opts.itemType)) {
       throw new Error('Invalid `itemType`.');
     }
 
-    var item = itemTypes[opts.itemType];
-    var main = new AdminApp({
+    let item = itemTypes[opts.itemType];
+    let main = new AdminApp({
       router: new AdminRouter(),
       appRoot: opts.appRoot,
       adminModule: item,
