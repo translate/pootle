@@ -401,12 +401,14 @@ Translation environment configuration settings.
   (per server process).
 
 
-.. setting:: PODIRECTORY
+.. setting:: POOTLE_TRANSLATION_DIRECTORY
 
-``PODIRECTORY``
-  Default: ``working_path('po')``
+``POOTLE_TRANSLATION_DIRECTORY``
+  Default: ``working_path('translations')``
 
-  The directory where the translation files are kept.
+  The directory where projects hosted on Pootle store their translation files.
+  :djadmin:`sync_stores` will write to this directory and
+  :djadmin:`update_stores` will read from this directory.
 
 
 .. setting:: POOTLE_QUALITY_CHECKER

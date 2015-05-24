@@ -16,10 +16,10 @@
 # /pootle/locale/*/LC_MESSAGES/
 /pootle/locale/*/LC_MESSAGES/
 
-# /pootle/po/
-/pootle/po/*/
-!/pootle/po/tutorial/
-!/pootle/po/templates/
+# /pootle/translations/
+/pootle/translations/*/
+!/pootle/translations/tutorial/
+!/pootle/translations/templates/
 
 # /pootle/repos/
 /pootle/repos/*

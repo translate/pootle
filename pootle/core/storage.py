@@ -22,6 +22,6 @@ class PootleFileSystemStorage(FileSystemStorage):
 
     def __init__(self, **kwargs):
         kwargs.update({
-            'location': settings.PODIRECTORY,
+            'location': settings.POOTLE_TRANSLATION_DIRECTORY,
         })
         super(PootleFileSystemStorage, self).__init__(**kwargs)

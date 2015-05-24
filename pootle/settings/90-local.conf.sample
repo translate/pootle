@@ -140,7 +140,7 @@ POOTLE_CONTACT_REPORT_EMAIL = 'string_errors_manager@YOUR_DOMAIN.com'
 #
 
 # The directory where the translation files are kept
-PODIRECTORY = working_path('po')
+POOTLE_TRANSLATION_DIRECTORY = working_path('translations')
 
 # Two-tuple defining the markup filter to apply in certain textareas.
 #

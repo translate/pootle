@@ -8,7 +8,7 @@ exclude docs/_themes/.gitignore
 recursive-include pootle/assets *
 recursive-include pootle/locale *
 prune pootle/locale/*/.translation_index
-recursive-include pootle/po *
+recursive-include pootle/translations *
 recursive-include pootle/settings *
 recursive-include pootle/static *
 recursive-include pootle/templates *

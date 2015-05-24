@@ -224,9 +224,9 @@ For documenting several things, Pootle defines custom Sphinx roles.
 
 - Settings::
 
-    .. setting:: PODIRECTORY
+    .. setting:: POOTLE_TITLE
 
-  To link to a setting, use ``:setting:`PODIRECTORY```.
+  To link to a setting, use ``:setting:`POOTLE_TITLE```.
 
 - Icons::
 

@@ -255,7 +255,7 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
 
 def to_podir_path(path):
     path = relative_real_path(path)
-    return os.path.join(settings.PODIRECTORY, path)
+    return os.path.join(settings.POOTLE_TRANSLATION_DIRECTORY, path)
 
 
 def find_lang_postfix(filename):

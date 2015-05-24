@@ -177,8 +177,8 @@ sync_stores
 .. versionchanged:: 2.7
 
 Save all translations currently in the database to the file system, thereby
-bringing the files under the :setting:`PODIRECTORY` directory in sync with the
-Pootle database.
+bringing the files under the :setting:`POOTLE_TRANSLATION_DIRECTORY` directory
+in sync with the Pootle database.
 
 .. note:: Disabled projects are skipped.
 

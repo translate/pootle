@@ -44,7 +44,7 @@ the number of users you expect to have. A moderate server with 1GB memory might
 set ``MaxClients`` to something like ``20``, for example.
 
 Make sure Apache has read access to all of Pootle's files and write access to
-the :setting:`PODIRECTORY` directory.
+the :setting:`POOTLE_TRANSLATION_DIRECTORY` directory.
 
 .. note:: Most of the paths present in the examples in this section are the
    result of deploying Pootle using a Python virtualenv as told in the

@@ -3,10 +3,10 @@
 # Exit cleanly on Ctrl-C
 trap 'exit 1' INT
 
-PODIRECTORY='/var/www/sites/pootle/translations/'
-PODIRECTORY_MOZ='/var/www/sites/mozilla/translations/'
+POOTLE_TRANSLATION_DIRECTORY='/var/www/sites/pootle/translations/'
+POOTLE_TRANSLATION_DIRECTORY_MOZ='/var/www/sites/mozilla/translations/'
 
-REMOTE_PODIRECTORY='/var/www/sites/pootle-staging/translations/'
+REMOTE_POOTLE_TRANSLATION_DIRECTORY='/var/www/sites/pootle-staging/translations/'
 
 SRC_DIR='/var/www/sites/pootle-staging/src'
 
@@ -58,15 +58,15 @@ bzcat /var/backups/pootle_`date +%A`.sql.bz2 |
 rm -f production.sql
 
 # Copy translation files
-ssh $REMOTE "cd $REMOTE_PODIRECTORY && rm -rf *"
+ssh $REMOTE "cd $REMOTE_POOTLE_TRANSLATION_DIRECTORY && rm -rf *"
 log "Copying Pootle translation files"
-scp -qpr $PODIRECTORY/* $REMOTE:$REMOTE_PODIRECTORY
+scp -qpr $POOTLE_TRANSLATION_DIRECTORY/* $REMOTE:$REMOTE_POOTLE_TRANSLATION_DIRECTORY
 
 # Copy Firefox project from moz_pootle
 log "Copying Firefox translation files"
-scp -qpr $PODIRECTORY_MOZ/firefox/ $REMOTE:$REMOTE_PODIRECTORY
+scp -qpr $POOTLE_TRANSLATION_DIRECTORY_MOZ/firefox/ $REMOTE:$REMOTE_POOTLE_TRANSLATON_DIRECTORY
 
-ssh $REMOTE "cd $REMOTE_PODIRECTORY &&
+ssh $REMOTE "cd $REMOTE_POOTLE_TRANSLATION_DIRECTORY &&
   { chgrp -R www-data .; chmod -R g=u .; }"
 
 # Update the database to the latest (even though updatedb is no longer needed,
@@ -132,7 +132,7 @@ ssh $REMOTE "cd $SRC_DIR/.. && source env/bin/activate && (
  podebug --errorlevel=traceback --rewrite=xxx locale/templates/ po/xxx
  podebug --errorlevel=traceback --rewrite=unicode locale/templates/ po/uni
 ) && (
- cd $REMOTE_PODIRECTORY/pootle
+ cd $REMOTE_POOTLE_TRANSLATION_DIRECTORY/pootle
  podebug --errorlevel=traceback --rewrite=xxx templates/ xxx
  podebug --errorlevel=traceback --rewrite=unicode templates/ uni
 ); sleep 10"

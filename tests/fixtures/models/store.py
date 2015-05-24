@@ -47,14 +47,14 @@ def po_directory(request):
 
     test_base_dir = tempfile.mkdtemp()
 
-    tutorial_dir = os.path.join(settings.PODIRECTORY, 'tutorial')
+    tutorial_dir = os.path.join(settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial')
     tutorial_test_dir = os.path.join(test_base_dir, 'tutorial')
 
     # Copy files over the temporal dir
     shutil.copytree(tutorial_dir, tutorial_test_dir)
 
     # Adjust locations
-    settings.PODIRECTORY = test_base_dir
+    settings.POOTLE_TRANSLATION_DIRECTORY = test_base_dir
     fs.location = test_base_dir
 
     def _cleanup():
@@ -67,33 +67,33 @@ def po_directory(request):
 @pytest.fixture
 def af_tutorial_po(settings, afrikaans_tutorial, system):
     """Require the /af/tutorial/tutorial.po store."""
-    po_directory = settings.PODIRECTORY
+    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
     return _require_store(afrikaans_tutorial, po_directory, 'tutorial.po')
 
 
 @pytest.fixture
 def af_tutorial_subdir_po(settings, afrikaans_tutorial, system):
     """Require the /af/tutorial/subdir/tutorial.po store."""
-    po_directory = settings.PODIRECTORY
+    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
     return _require_store(afrikaans_tutorial, po_directory, 'subdir/tutorial.po')
 
 
 @pytest.fixture
 def fr_tutorial_subdir_to_remove_po(settings, french_tutorial, system):
     """Require the /fr/tutorial/subdir_to_remove/tutorial.po store."""
-    po_directory = settings.PODIRECTORY
+    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
     return _require_store(french_tutorial, po_directory, 'subdir_to_remove/tutorial.po')
 
 
 @pytest.fixture
 def fr_tutorial_remove_sync_po(settings, french_tutorial, system):
     """Require the /fr/tutorial/remove_sync_tutorial.po store."""
-    po_directory = settings.PODIRECTORY
+    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
     return _require_store(french_tutorial, po_directory, 'remove_sync_tutorial.po')
 
 
 @pytest.fixture
 def es_tutorial_subdir_remove_po(settings, spanish_tutorial, system):
     """Require the /es/tutorial/subdir/remove_tutorial.po store."""
-    po_directory = settings.PODIRECTORY
+    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
     return _require_store(spanish_tutorial, po_directory, 'subdir/remove_tutorial.po')
