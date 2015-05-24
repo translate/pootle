@@ -193,9 +193,9 @@ Sysadmins
   report email address. The report is now sent using an automatically
   pre-filled  contact form. If the project doesn't have a report email then the
   reports are sent to :setting:`POOTLE_CONTACT_REPORT_EMAIL`.
-- Using the Django ``dumpdata`` and ``loaddata`` commands to move between
-  databases is no longer supported.  If you need to move, please use proper SQL
-  scripts instead.
+- Using the Django :djadmin:`dumpdata` and :djadmin:`loaddata` commands to move
+  between databases is no longer supported.  If you need to move, please use
+  proper SQL scripts instead.
 - Captcha implementation details have been refined.
 - Yandex.Translate is now available as a Machine Translation backend.
 - :setting:`POOTLE_QUALITY_CHECKER` can be used to point to a custom

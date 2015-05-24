@@ -180,7 +180,7 @@ Finally, just run the development server.
 
 Once all is done, you can start the development server anytime by enabling the
 virtual environment (using the :command:`workon` command) and running the
-:command:`manage.py runserver` command.
+:djadmin:`manage.py runserver <runserver>` command.
 
 Happy hacking!!
 

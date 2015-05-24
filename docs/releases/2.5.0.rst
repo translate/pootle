@@ -124,11 +124,11 @@ Infrastructure
 Other important changes
 -----------------------
 - Static files are now handled by the ``django.contrib.staticfiles`` module.
-  This means you will need to run the ``pootle collectstatic`` command on
-  production and serve the *pootle/assets/* directory from your webserver at
-  */assets/*. If you are upgrading from a previous version, you will need to
-  replace the occurrences of *static* with *assets* within your web server
-  configuration.
+  This means you will need to run the :djadmin:`pootle collectstatic
+  <collectstatic>` command on production and serve the *pootle/assets/*
+  directory from your webserver at */assets/*. If you are upgrading from a
+  previous version, you will need to replace the occurrences of *static* with
+  *assets* within your web server configuration.
 - Static files are bundled into assets by using `django-assets
   <http://elsdoerfer.name/docs/django-assets/>`_.
 - Several features from translation projects have been merged into the
