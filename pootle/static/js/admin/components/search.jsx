@@ -116,6 +116,7 @@ let SearchBox = React.createClass({
 
   getInitialState() {
     return {
+      // XXX: review, prop should be explicitly named `initialSearchQuery`
       searchQuery: this.props.searchQuery
     };
   },
