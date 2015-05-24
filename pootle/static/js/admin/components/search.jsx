@@ -155,13 +155,16 @@ let SearchBox = React.createClass({
   /* Layout */
 
   render() {
-    return <input
-             type="text"
-             ref="input"
-             value={this.state.searchQuery}
-             onKeyUp={this.handleKeyUp}
-             onChange={this.onChange}
-             {...this.props} />;
+    return (
+      <input
+        type="text"
+        ref="input"
+        value={this.state.searchQuery}
+        onChange={this.onChange}
+        onKeyUp={this.handleKeyUp}
+        {...this.props}
+      />
+    );
   }
 
 });
