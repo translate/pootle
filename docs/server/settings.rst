@@ -265,9 +265,9 @@ Configuration settings for applications used by Pootle.
   automatically extracted.
 
 
-.. setting:: USE_CAPTCHA
+.. setting:: POOTLE_CAPTCHA_ENABLED
 
-``USE_CAPTCHA``
+``POOTLE_CAPTCHA_ENABLED``
   Default: ``True``
 
   Enable spam prevention through a captcha.

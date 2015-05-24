@@ -31,7 +31,7 @@ class CaptchaMiddleware:
     are made by humans.
     """
     def process_request(self, request):
-        if (not settings.USE_CAPTCHA or not request.POST or
+        if (not settings.POOTLE_CAPTCHA_ENABLED or not request.POST or
             request.session.get('ishuman', False)):
             return
 

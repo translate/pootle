@@ -14,10 +14,10 @@ enabling :wp:`captchas <CAPTCHA>`.
 Configuration
 -------------
 
-If you have no need for captchas, e.g. at a translation sprint, you might
-want to remove captcha support. To disable it, set :setting:`USE_CAPTCHA` in
-your configuration file to ``False``.  Restart your server for the setting to
-take effect.
+If you have no need for captchas, e.g. at a translation sprint, you might want
+to remove captcha support. To disable it, set :setting:`POOTLE_CAPTCHA_ENABLED`
+in your configuration file to ``False``.  Restart your server for the setting
+to take effect.
 
 
 .. _captchas#customization:
