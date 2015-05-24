@@ -51,8 +51,8 @@ checklist.
   <installation#hardware_requirements>` for the newer version.
 
 * Always make backups of all your translation files (your whole
-  :setting:`PODIRECTORY`). Use the :pc:`sync_stores` command to synchronize to
-  disk all your translation files before making any backup.
+  :setting:`PODIRECTORY`). Use the :djadmin:`sync_stores` command to
+  synchronize to disk all your translation files before making any backup.
 
 * Also backup your settings, to avoid losing any settings customization.
 

@@ -251,7 +251,7 @@ initdb
 
 This command:
 
-- Runs :pc:`initdb` to initialize the database
+- Runs :djadmin:`initdb` to initialize the database
 
 Examples:
 
@@ -386,7 +386,7 @@ setup_db
 This command:
 
 - Runs ``syncdb --noinput`` to create the database schema
-- Runs :pc:`initdb` to populate the standard schema objects
+- Runs :djadmin:`initdb` to populate the standard schema objects
 - Runs :ref:`migrate <commands#migrate>` to bring the database schema
   up to the latest version
 

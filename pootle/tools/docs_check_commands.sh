@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Checks that all our ./manage.py commands have at last a pootle_command
+# Checks that all our ./manage.py commands have at last a django-admin
 # marker. Really a simple hack to see that they are documented.
 
 BASE_DIR=$(dirname $0)/../..
@@ -17,7 +17,7 @@ done)
 
 for command in $commands
 do
-        egrep -rq "^.. pootle_command:: $command" $DOCS_DIR
+        egrep -rq "^.. django-admin:: $command" $DOCS_DIR
         if [ $? -eq 1 ]; then
             echo "Missing docs for $command"
         fi

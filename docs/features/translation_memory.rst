@@ -53,7 +53,7 @@ Elasticsearch based local TM
 
 By default this is configured to operate if local TM is available.  To use it
 you will need to populate the initial translation memory using the
-:pc:`update_tmserver` command and install `Elasticsearch
+:djadmin:`update_tmserver` command and install `Elasticsearch
 <https://www.elastic.co/products/elasticsearch>`_.
 
 Local TM settings can be adjusted in :setting:`POOTLE_TM_SERVER`.

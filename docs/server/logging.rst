@@ -149,8 +149,8 @@ Various of the action groups have different message structures as outlined here:
 Sync and Update messages
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :pc:`sync_stores` and :pc:`update_stores` commands will produce a number of
-logs to report any activity that results from those commands.
+The :djadmin:`sync_stores` and :djadmin:`update_stores` commands will produce a
+number of logs to report any activity that results from those commands.
 
 *update_stores*::
 

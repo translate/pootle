@@ -49,7 +49,7 @@ project, run:
     $ pootle refresh_stats --project=tutorial --language=zu --language=eu
 
 
-.. pootle_command:: refresh_stats
+.. django-admin:: refresh_stats
 
 refresh_stats
 ^^^^^^^^^^^^^
@@ -87,7 +87,7 @@ When the :option:`--calculate-wordcount` option is set, the source wordcount
 will be recalculated for all existing units in the database.
 
 
-.. pootle_command:: refresh_stats_rq
+.. django-admin:: refresh_stats_rq
 
 refresh_stats_rq
 ^^^^^^^^^^^^^^^^
@@ -102,7 +102,7 @@ tasks will be created for the files parents.
 
 .. note:: Files in disabled projects are processed.
 
-.. note:: :pc:`refresh_stats` (the old command which works with a single
+.. note:: :djadmin:`refresh_stats` (the old command which works with a single
    worker) is roughly twice as fast compared to this version of the command.
    Your mileage might vary.
 
@@ -110,7 +110,7 @@ This command was added to allow statistics to be updated when using multiple
 RQ workers.
 
 
-.. pootle_command:: retry_failed_jobs
+.. django-admin:: retry_failed_jobs
 
 retry_failed_jobs
 ^^^^^^^^^^^^^^^^^
@@ -125,7 +125,7 @@ queue you can run this command.
 Examine the RQ worker logs for tracebacks before trying to requeue your jobs.
 
 
-.. pootle_command:: calculate_checks
+.. django-admin:: calculate_checks
 
 calculate_checks
 ^^^^^^^^^^^^^^^^
@@ -137,7 +137,7 @@ recalculate quality checks.
 
 .. note:: Disabled projects are processed.
 
-:pc:`calculate_checks` will flush existing caches and update the quality
+:djadmin:`calculate_checks` will flush existing caches and update the quality
 checks cache.
 
 It's necessary to run this command after upgrading Pootle if new quality
@@ -156,7 +156,7 @@ recalculate only the ``date_format`` quality checks, run:
     $ pootle calculate_checks --check=date_format
 
 
-.. pootle_command:: refresh_scores
+.. django-admin:: refresh_scores
 
 refresh_scores
 ^^^^^^^^^^^^^^
@@ -169,7 +169,7 @@ When the :option:`--reset` option is used , all score log data is removed and
 `zero` score is set for all users.
 
 
-.. pootle_command:: sync_stores
+.. django-admin:: sync_stores
 
 sync_stores
 ^^^^^^^^^^^
@@ -193,8 +193,8 @@ reflect the latest revision across the units in the file at the time of
 syncing. This allows Pootle to make optimizations when syncing and
 updating files, ignoring files that haven't change.
 
-The default behavior of :pc:`sync_stores` can be altered by specifying these
-parameters:
+The default behavior of :djadmin:`sync_stores` can be altered by specifying
+these parameters:
 
 :option:`--force`
   Synchronizes files even if nothing changed in the database.
@@ -208,16 +208,16 @@ parameters:
   Ignores files missing on disk, and no new files will be created.
 
 
-.. pootle_command:: update_stores
+.. django-admin:: update_stores
 
 update_stores
 ^^^^^^^^^^^^^
 
 .. versionchanged:: 2.7
 
-The opposite of :pc:`sync_stores`, this will update the strings in the database
-to reflect what is on disk, as Pootle will not detect changes in the file
-system on its own.
+The opposite of :djadmin:`sync_stores`, this will update the strings in the
+database to reflect what is on disk, as Pootle will not detect changes in the
+file system on its own.
 
 .. note:: Disabled projects are skipped.
 
@@ -242,7 +242,7 @@ added on disk:
 You must run this command after running scripts that modify translation files
 directly on the file system.
 
-:pc:`update_stores` accepts several options:
+:djadmin:`update_stores` accepts several options:
 
 :option:`--force`
   Updates in-DB translations even if the on-disk file hasn't been changed
@@ -257,7 +257,7 @@ directly on the file system.
    deleted from the database. Handle with care!
 
 
-.. pootle_command:: list_languages
+.. django-admin:: list_languages
 
 list_languages
 ^^^^^^^^^^^^^^
@@ -266,7 +266,7 @@ Lists all the language codes for languages hosted on the server. This can be
 useful for automation.
 
 
-.. pootle_command:: list_projects
+.. django-admin:: list_projects
 
 list_projects
 ^^^^^^^^^^^^^
@@ -275,7 +275,7 @@ Lists all the project codes on the server. This might can be useful for
 automation.
 
 
-.. pootle_command:: revision
+.. django-admin:: revision
 
 revision
 ^^^^^^^^
@@ -296,7 +296,7 @@ backend. You shouldn't need to ever run this, but if for instance you deleted
 your cache you will need to restore the counter to ensure correct operation.
 
 
-.. pootle_command:: changed_languages
+.. django-admin:: changed_languages
 
 changed_languages
 ^^^^^^^^^^^^^^^^^
@@ -311,7 +311,7 @@ argument, it will print the language codes for languages that have changed
 since the specified revision.
 
 
-.. pootle_command:: test_checks
+.. django-admin:: test_checks
 
 test_checks
 ^^^^^^^^^^^
@@ -328,12 +328,11 @@ command-line arguments.
 Alternatively, ``--unit=<unit_id>`` can be used to reference an existing
 unit from the database.
 
-By default, :pc:`test_checks` tests all existing checks. When
-``--check=<checkname>`` is set, only specific checks will be tested
-against.
+By default, :djadmin:`test_checks` tests all existing checks. When
+``--check=<checkname>`` is set, only specific checks will be tested against.
 
 
-.. pootle_command:: regenerate_checks_descriptions
+.. django-admin:: regenerate_checks_descriptions
 
 regenerate_checks_descriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -354,7 +353,7 @@ Translation Memory
 These commands allow you to setup and manage :doc:`Translation Memory
 </features/translation_memory>`.
 
-.. pootle_command:: update_tmserver
+.. django-admin:: update_tmserver
 
 update_tmserver
 ^^^^^^^^^^^^^^^
@@ -382,7 +381,7 @@ These commands allow you to perform tasks with virtual folders from the command
 line.
 
 
-.. pootle_command:: add_vfolders
+.. django-admin:: add_vfolders
 
 add_vfolders
 ^^^^^^^^^^^^
@@ -409,13 +408,13 @@ Import and Export
 
 Export and Import translation files in Pootle.  The operation can be thought of
 best as offline operations to assist with offline translation, unlike
-:pc:`sync_stores` and :pc:`update_stores` the operations here are designed to
-cater for translators working outside of Pootle.
+:djadmin:`sync_stores` and :djadmin:`update_stores` the operations here are
+designed to cater for translators working outside of Pootle.
 
-The :pc:`import` and :pc:`export` commands are designed to mimic the operations
-of Download and Upload from the Pootle UI.
+The :djadmin:`import` and :djadmin:`export` commands are designed to mimic the
+operations of Download and Upload from the Pootle UI.
 
-.. pootle_command:: export
+.. django-admin:: export
 
 export
 ^^^^^^
@@ -431,7 +430,7 @@ A file or a .zip of files is provided as output.  The file headers include a
 revision counter to assist Pootle to detetmine how to handle subsequent uploads
 of the file.
 
-.. pootle_command:: import
+.. django-admin:: import
 
 import
 ^^^^^^
@@ -475,11 +474,11 @@ migrate
   run the :command:`setup` management command in those scenarios.
 
 
-This is Django's :djadmin:`django:migrate` command, which syncs the state
-of models with the DB and applies migrations for them.
+This is Django's :djadmin:`django:migrate` command, which syncs the state of
+models with the DB and applies migrations for them.
 
 
-.. pootle_command:: initdb
+.. django-admin:: initdb
 
 initdb
 ^^^^^^
@@ -491,11 +490,11 @@ default *admin* user, populates the language table with several languages with
 their correct fields, initializes several terminology projects, and creates the
 tutorial project.
 
-:pc:`initdb` can only be run after :ref:`commands#migrate`.
+:djadmin:`initdb` can only be run after :ref:`commands#migrate`.
 
-.. note:: :pc:`initdb` will not import translations into the database, so the
-  first visit to Pootle after :pc:`initdb` will be very slow. **It is best to
-  run** :pc:`refresh_stats` **immediately after initdb**.
+.. note:: :djadmin:`initdb` will not import translations into the database, so
+   the first visit to Pootle after :djadmin:`initdb` will be very slow. **It is
+   best to run** :djadmin:`refresh_stats` **immediately after initdb**.
 
 
 .. _commands#collectstatic:
@@ -503,12 +502,12 @@ tutorial project.
 collectstatic
 ^^^^^^^^^^^^^
 
-Running the Django admin :djadmin:`django:collectstatic` command finds
-and extracts static content such as images, CSS and JavaScript files used by 
-the Pootle server, so that they can be served separately from a static
-webserver.  Typically, this is run with the :option:`--clear`
-:option:`--noinput` options, to flush any existing static data and use default
-answers for the content finders.
+Running the Django admin :djadmin:`django:collectstatic` command finds and
+extracts static content such as images, CSS and JavaScript files used by the
+Pootle server, so that they can be served separately from a static webserver.
+Typically, this is run with the :option:`--clear` :option:`--noinput` options,
+to flush any existing static data and use default answers for the content
+finders.
 
 
 .. _commands#assets:
@@ -522,7 +521,7 @@ to make these preparations using the command ``assets build``. This command is
 usually executed after the :ref:`collectstatic <commands#collectstatic>` one.
 
 
-.. pootle_command:: webpack
+.. django-admin:: webpack
 
 webpack
 ^^^^^^^
@@ -552,7 +551,7 @@ The Translate Toolkit offers a bundled CherryPy server but there are many more
 options such as gunicorn, flup, paste, etc.
 
 
-.. pootle_command:: run_cherrypy
+.. django-admin:: run_cherrypy
 
 run_cherrypy
 ^^^^^^^^^^^^
@@ -607,7 +606,7 @@ to have executed periodically without user intervention.
 
 For the full details on how to configure cron, read your platform documentation
 (for example ``man crontab``). Here is an example that runs the
-:pc:`refresh_stats` command daily at 02:00 AM::
+:djadmin:`refresh_stats` command daily at 02:00 AM::
 
     00 02 * * * www-data /var/www/sites/pootle/manage.py refresh_stats
 

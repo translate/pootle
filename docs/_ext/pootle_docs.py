@@ -17,15 +17,10 @@ def setup(app):
         rolename="setting",
         indextemplate="pair: %s; setting",
     )
-    app.add_crossref_type(
-        directivename="pootle_command",
-        rolename="pc",
-    )
     app.add_description_unit(
         directivename="django-admin",
         rolename="djadmin",
         indextemplate="pair: %s; django-admin command",
-        #parse_node=parse_django_admin_node,
     )
 
     return {"parallel_read_safe": True}

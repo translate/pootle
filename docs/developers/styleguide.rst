@@ -243,9 +243,9 @@ For documenting several things, Pootle defines custom Sphinx roles.
 
 - Pootle manage.py commands::
 
-    .. pootle_command:: sync_stores
+    .. django-admin:: sync_stores
 
-  To link to a command, use ``:pc:`sync_stores``
+  To link to a command, use ``:djadmin:`sync_stores``
 
 
 JavaScript
