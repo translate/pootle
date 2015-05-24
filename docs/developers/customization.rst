@@ -18,7 +18,7 @@ Customizing templates
 ---------------------
 
 In case you need to change a template, copy it into your custom
-``TEMPLATE_DIRS`` with the same path name as it had before.
+:setting:`TEMPLATE_DIRS` with the same path name as it had before.
 
 .. warning::
 
@@ -53,10 +53,10 @@ blocks differ.
 Customizing JavaScript
 ----------------------
 
-You can place any custom scripts in your custom ``STATICFILES_DIRS``
-directory and make them part of the default Pootle bundles by adding a
-very simple *manifest.json* file under the *js/* directory of your custom
-``STATICFILES_DIRS``.
+You can place any custom scripts in your custom :setting:`STATICFILES_DIRS`
+directory and make them part of the default Pootle bundles by adding a very
+simple *manifest.json* file under the *js/* directory of your custom
+:setting:`STATICFILES_DIRS`.
 
 This file must contain an object of key-values where the keys correspond
 to the entry points defined by Pootle and the values are arrays of module
@@ -94,7 +94,7 @@ template tag.
 Customizing CSS
 ---------------
 
-Create any needed files under your custom ``STATICFILES_DIRS`` and reference
+Create any needed files under your custom :setting:`STATICFILES_DIRS` and reference
 them from your custom templates using the ``{% static %}`` template tag. You
 can also inline styles in your templates as usual.
 
@@ -104,7 +104,7 @@ can also inline styles in your templates as usual.
 Customizing images
 ------------------
 
-You should put your custom images in your custom ``STATICFILES_DIRS``. From CSS
+You should put your custom images in your custom :setting:`STATICFILES_DIRS`. From CSS
 you would just reference them using a relative path.
 
 On the contrary, if you want to reference images from HTML code or inline CSS,
