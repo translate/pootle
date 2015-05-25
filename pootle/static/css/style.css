@@ -334,8 +334,21 @@ html[dir="rtl"] ul.icons
     vertical-align: middle;
 }
 
+/* Go to parent */
+
+.browser-parent
+{
+    margin: 1.5em 1em 1em;
+}
+
+.browser-parent i
+{
+    vertical-align: text-bottom;
+}
+
 /* Hack to avoid ugly underlines in the space between icons and text */
 
+.browser-parent a:hover,
 td.stats-name a:hover,
 .sidebar-action a:hover,
 .last-action > a:hover
@@ -343,6 +356,7 @@ td.stats-name a:hover,
     text-decoration: none;
 }
 
+.browser-parent a:hover > i + span,
 td.stats-name a:hover > i + span,
 .sidebar-action a:hover > i + span,
 .last-action > a:hover > img + span

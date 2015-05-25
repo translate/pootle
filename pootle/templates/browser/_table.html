@@ -12,13 +12,6 @@
       </th>
       {% endfor %}
     </tr>
-    {% if table.parent %}
-      <tr class="item">
-        <td colspan="6" class="stats-name {{ table.parent.icon }}">
-          <a href="{{ table.parent.href }}"><i class="icon-{{ table.parent.icon }}"></i> <span>{{ table.parent.title }}</span></a>
-        </td>
-      </tr>
-    {% endif %}
   </thead>
   <tbody class="stats">
     {% for item in table.items %}

@@ -123,12 +123,16 @@ def get_parent(path_obj):
     """
     parent_dir = path_obj.parent
 
-    if parent_dir.is_language() or parent_dir.is_project():
+    if parent_dir.is_project():
         return None
 
+    if parent_dir.is_language():
+        label = _('Back to language overview')
+    else:
+        label = _('Back to parent folder')
+
     return {
-        'icon': 'folder-parent',
-        'title': _("Back to parent folder"),
+        'title': label,
         'href': parent_dir.get_absolute_url()
     }
 

@@ -113,6 +113,12 @@
   <a href="#" class="js-stats-refresh">{% trans "Refresh now" %}</a>
 </div>
 
+{% if parent %}
+<div class="browser-parent" lang="{{ LANGUAGE_CODE }}">
+  <a href="{{ parent.href }}"><i class="icon-folder-parent"></i> <span>{{ parent.title }}</span></a>
+</div>
+{% endif %}
+
 {% if vfolders %}
 <div class="bd vfolders" lang="{{ LANGUAGE_CODE }}">
   {% display_table vfolders %}

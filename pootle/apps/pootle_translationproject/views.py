@@ -152,7 +152,6 @@ def overview(request, translation_project, dir_path, filename=None):
                 'id': 'tp',
                 'fields': table_fields,
                 'headings': get_table_headings(table_fields),
-                'parent': get_parent(directory),
                 'items': get_children(directory),
             }
         })
@@ -178,6 +177,7 @@ def overview(request, translation_project, dir_path, filename=None):
             )
 
     ctx.update({
+        'parent': get_parent(directory if store is None else store),
         'translation_project': translation_project,
         'project': project,
         'language': language,
