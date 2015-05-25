@@ -18,7 +18,6 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from optparse import make_option
 
-from pootle.core.utils.json import jsonify
 from pootle_app.management.commands import PootleCommand
 from pootle_app.models import Directory
 from pootle_project.models import Project
@@ -71,8 +70,6 @@ class Command(PootleCommand):
             res = {}
             self._dump_stats(tp.directory, res, stop_level=stop_level)
 
-            stats_dump = jsonify(res)
-            self.stdout.write(stats_dump)
         if data:
             self._dump_item(tp.directory, 0, stop_level=stop_level)
 
@@ -80,14 +77,6 @@ class Command(PootleCommand):
         res = {}
         for prj in Project.objects.all():
             self._dump_stats(prj, res, stop_level=stop_level)
-
-        for key, item in res.items():
-            out = u"%s  %s,%s,%s,%s,%s,%s,%s,%s" % \
-                  (key, item['total'], item['translated'], item['fuzzy'],
-                   item['suggestions'], item['critical'], item['is_dirty'],
-                   item['lastaction']['id'], item['lastupdated']['id'])
-
-            self.stdout.write(out)
 
     def _dump_stats(self, item, res, stop_level):
         key = item.get_cachekey()
@@ -101,6 +90,12 @@ class Command(PootleCommand):
                                  stop_level=stop_level)
 
         res[key] = (item.get_stats(include_children=False))
+        out = u"%s  %s,%s,%s,%s,%s,%s,%s,%s" % \
+              (key, res[key]['total'], res[key]['translated'], res[key]['fuzzy'],
+               res[key]['suggestions'], res[key]['critical'], res[key]['is_dirty'],
+               res[key]['lastaction']['id'], res[key]['lastupdated']['id'])
+
+        self.stdout.write(out)
 
     def dump_all(self, stop_level):
         root = Directory.objects.root
