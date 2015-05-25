@@ -1133,8 +1133,10 @@ class Unit(models.Model, base.TranslationUnit):
         return (suggestion, True)
 
     def accept_suggestion(self, suggestion, translation_project, reviewer):
+        # Save for later
         old_state = self.state
         old_target = self.target
+
         self.target = suggestion.target
 
         if suggestion.user_id is not None:
@@ -1150,9 +1152,7 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.save()
 
         create_subs = {}
-        # assume the target changed
         create_subs[SubmissionFields.TARGET] = [old_target, self.target]
-        # check if the state changed
         if old_state != self.state:
             create_subs[SubmissionFields.STATE] = [old_state, self.state]
 
@@ -1174,9 +1174,11 @@ class Unit(models.Model, base.TranslationUnit):
             sub = Submission(**kwargs)
             sub.save()
 
+        # FIXME: remove such a dependency on `ScoreLog`
         # Update current unit instance's attributes
         # important to set these attributes after saving Submission
-        # because we need to access the unit's state before it was saved
+        # because in the `ScoreLog` we need to access the unit's certain
+        # attributes before it was saved
         self.submitted_by = suggestion_user
         self.submitted_on = current_time
         self.reviewed_by = reviewer
