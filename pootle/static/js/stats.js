@@ -210,14 +210,14 @@ var stats = {
           code = name.replace(/[\.@]/g, '-');
           $td = $vfoldersTable.find('#total-words-' + code);
 
-          // Hide virtual folders that are completely translated.
-          if (!this.isAdmin && item.translated === item.total) {
+          // Display only the virtual folders that must be displayed.
+          if (this.isAdmin || item.translated < item.total) {
+            this.processTableItem(item, code, $vfoldersTable, $td, now);
+          } else {
             //FIXME vfolders might be added or removed since they can become
             // completely translated or stop being completely translated, so
             // they might be displayable after the initial load of the overview.
             $td.parent().hide();
-          } else {
-            this.processTableItem(item, code, $vfoldersTable, $td, now);
           }
         }
 
