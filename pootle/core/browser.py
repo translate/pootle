@@ -116,17 +116,21 @@ def make_store_item(store):
     return item
 
 
-def get_parent(directory):
-    parent_dir = directory.parent
+def get_parent(path_obj):
+    """Retrieves a representation of the parent object.
 
-    if not (parent_dir.is_language() or parent_dir.is_project()):
-        return {
-            'icon': 'folder-parent',
-            'title': _("Back to parent folder"),
-            'href': parent_dir.get_absolute_url()
-        }
-    else:
+    :param path_obj: either a `Directory` or Store` instance.
+    """
+    parent_dir = path_obj.parent
+
+    if parent_dir.is_language() or parent_dir.is_project():
         return None
+
+    return {
+        'icon': 'folder-parent',
+        'title': _("Back to parent folder"),
+        'href': parent_dir.get_absolute_url()
+    }
 
 
 def make_project_item(translation_project):
