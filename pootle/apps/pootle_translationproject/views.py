@@ -157,7 +157,7 @@ def overview(request, translation_project, dir_path, filename=None):
             }
         })
 
-        vfolders = get_vfolders(directory)
+        vfolders = get_vfolders(directory, all_vfolders=is_admin)
         if len(vfolders) > 0:
             table_fields = ['name', 'priority', 'progress', 'total',
                             'need-translation', 'suggestions', 'critical',
@@ -167,7 +167,7 @@ def overview(request, translation_project, dir_path, filename=None):
                     'id': 'vfolders',
                     'fields': table_fields,
                     'headings': get_table_headings(table_fields),
-                    'items': get_vfolders(directory, all_vfolders=is_admin),
+                    'items': vfolders,
                 },
             })
 
