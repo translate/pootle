@@ -9,6 +9,7 @@
 
 from itertools import groupby
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
@@ -844,11 +845,14 @@ def get_qualitycheck_stats(request, *args, **kwargs):
 def get_stats(request, *args, **kwargs):
     stats = request.resource_obj.get_stats()
 
-    if isinstance(request.resource_obj, Directory):
-        stats['vfolders'] = VirtualFolder.get_stats_for(
-            request.resource_obj.pootle_path,
-            request.user.is_superuser
-        )
+    if (isinstance(request.resource_obj, Directory) and
+        'virtualfolder' in settings.INSTALLED_APPS):
+        stats['vfolders'] = {}
+
+        for vfolder_treeitem in request.resource_obj.vf_treeitems.iterator():
+            if request.user.is_superuser or vfolder_treeitem.is_visible:
+                stats['vfolders'][vfolder_treeitem.code] = \
+                    vfolder_treeitem.get_stats(include_children=False)
 
     return JsonResponse(stats)
 

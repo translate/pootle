@@ -1367,6 +1367,13 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return self.name.startswith('pootle-terminology')
 
     @property
+    def parent_vfolder_treeitems(self):
+        if 'virtualfolder' in settings.INSTALLED_APPS:
+            return self.parent_vf_treeitems.all()
+
+        return []
+
+    @property
     def units(self):
         if hasattr(self, '_units'):
             return self._units
@@ -1426,6 +1433,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def delete(self, *args, **kwargs):
         parent = self.get_parent()
+        vfolder_treeitems = self.parent_vfolder_treeitems
 
         store_log(user='system', action=STORE_DELETED,
                   path=self.pootle_path, store=self.id)
@@ -1440,6 +1448,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         self.clear_all_cache(parents=False, children=False)
         if parent is not None:
             parent.update_all_cache()
+
+        for vfolder_treeitem in vfolder_treeitems:
+            vfolder_treeitem.update_all_cache()
 
     def makeobsolete(self):
         """Make this store and all its units obsolete."""
@@ -2139,6 +2150,17 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         """This TreeItem method is used on directories, translation projects,
         languages and projects. For stores do nothing"""
         return
+
+    def all_pootle_paths(self):
+        """Get cache_key for all parents (to the Language and Project)
+        of current TreeItem
+        """
+        pootle_paths = super(Store, self).all_pootle_paths()
+
+        for vfolder_treeitem in self.parent_vfolder_treeitems:
+            pootle_paths.extend(vfolder_treeitem.all_pootle_paths())
+
+        return pootle_paths
 
     ### /TreeItem
 

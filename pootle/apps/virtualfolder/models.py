@@ -15,7 +15,6 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import dateformat
-from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
@@ -75,7 +74,6 @@ class VirtualFolder(models.Model):
 
     class Meta:
         unique_together = ('name', 'location')
-        ordering = ['-priority', 'name']
 
     @property
     def tp_relative_path(self):
@@ -128,10 +126,6 @@ class VirtualFolder(models.Model):
 
         return [self.location]
 
-    @cached_property
-    def code(self):
-        return self.pk
-
     @classmethod
     def get_matching_for(cls, pootle_path):
         """Return the matching virtual folders in the given pootle path.
@@ -143,62 +137,6 @@ class VirtualFolder(models.Model):
         return VirtualFolder.objects.filter(
             units__store__pootle_path__startswith=pootle_path
         ).distinct()
-
-    @classmethod
-    def get_visible_for(cls, pootle_path):
-        """Return the visible virtual folders in the given pootle path.
-
-        Not all the applicable virtual folders have matching filtering rules.
-        This method further restricts the list of applicable virtual folders to
-        retrieve only those with filtering rules that actually match, and that
-        are visible.
-        """
-        return cls.get_matching_for(pootle_path).filter(is_browsable=True,
-                                                        priority__gte=1)
-
-    @classmethod
-    def get_stats_for(cls, pootle_path, all_vfolders=False):
-        """Get stats for all the virtual folders in the given path.
-
-        If ``all_vfolders`` is True then all virtual folders in the passed
-        pootle_path are returned, independently of their priority of
-        browsability.
-        """
-        stats = {}
-        if all_vfolders:
-            vfolders = cls.get_matching_for(pootle_path)
-        else:
-            vfolders = cls.get_visible_for(pootle_path)
-
-        for vf in vfolders:
-            units = vf.units.filter(store__pootle_path__startswith=pootle_path)
-            stores = Store.objects.filter(
-                pootle_path__startswith=pootle_path,
-                unit__vfolders=vf
-            ).distinct()
-
-            stats[vf.code] = {
-                'total': calc_total_wordcount(units),
-                'translated': calc_translated_wordcount(units),
-                'fuzzy': calc_fuzzy_wordcount(units),
-                'suggestions': Suggestion.objects.filter(
-                    unit__vfolders=vf,
-                    unit__store__pootle_path__startswith=pootle_path,
-                    unit__state__gt=OBSOLETE,
-                    state=SuggestionStates.PENDING,
-                ).count(),
-                'critical': QualityCheck.objects.filter(
-                    unit__vfolders=vf,
-                    unit__store__pootle_path__startswith=pootle_path,
-                    unit__state__gt=UNTRANSLATED,
-                    category=Category.CRITICAL,
-                    false_positive=False,
-                ).values('unit').distinct().count(),
-                'lastaction': vf.get_last_action_for(pootle_path),
-                'is_dirty': any(map(lambda x: x.is_dirty(), stores)),
-            }
-
-        return stats
 
     def __unicode__(self):
         return ": ".join([self.name, self.location])
@@ -315,21 +253,6 @@ class VirtualFolder(models.Model):
 
         return "/".join(pootle_path.split("/")[:count])
 
-    def get_last_action_for(self, pootle_path):
-        try:
-            sub = Submission.simple_objects.filter(
-                unit__vfolders=self,
-                unit__store__pootle_path__startswith=pootle_path,
-            ).latest()
-        except Submission.DoesNotExist:
-            return {'id': 0, 'mtime': 0, 'snippet': ''}
-
-        return {
-            'id': sub.unit.id,
-            'mtime': int(dateformat.format(sub.creation_time, 'U')),
-            'snippet': sub.get_submission_message()
-        }
-
     def get_adjusted_pootle_path(self, pootle_path):
         """Adjust the given pootle path to this virtual folder.
 
@@ -362,20 +285,6 @@ class VirtualFolder(models.Model):
         lead = self.get_adjusted_location(pootle_path)
         trail = pootle_path.replace(lead, '').lstrip('/')
         return '/'.join([lead, self.name, trail])
-
-    def get_translate_url(self, pootle_path, **kwargs):
-        """Get the translate URL for this virtual folder in the given path."""
-        adjusted_path = self.get_adjusted_pootle_path(pootle_path)
-        lang, proj, dp, fn = split_pootle_path(adjusted_path)
-
-        return u''.join([
-            reverse('pootle-tp-translate', args=[lang, proj, dp, fn]),
-            get_editor_filter(**kwargs),
-        ])
-
-    def get_critical_url(self, pootle_path, **kwargs):
-        return self.get_translate_url(pootle_path, check_category='critical',
-                                      **kwargs)
 
 
 class VirtualFolderTreeItemManager(models.Manager):
@@ -422,6 +331,16 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
     class Meta:
         unique_together = ('directory', 'vfolder')
 
+    ############################ Properties ###################################
+
+    @property
+    def is_visible(self):
+        return self.vfolder.is_browsable and self.vfolder.priority >= 1
+
+    @property
+    def code(self):
+        return self.pk
+
     ############################ Methods ######################################
 
     def __unicode__(self):
@@ -448,6 +367,47 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         self.stores = self.directory.child_stores.filter(
             unit__vfolders=self.vfolder
         ).distinct()
+
+    def delete(self, *args, **kwargs):
+        self.clear_all_cache(parents=False, children=False)
+
+        for vfolder_treeitem in self.child_vf_treeitems.iterator():
+            # Store children are deleted by the regular folders.
+            vfolder_treeitem.delete()
+
+        super(VirtualFolderTreeItem, self).delete(*args, **kwargs)
+
+    def get_translate_url(self, **kwargs):
+        lang, proj, dp, fn = split_pootle_path(self.pootle_path)
+        return u''.join([
+            reverse('pootle-tp-translate', args=[lang, proj, dp, fn]),
+            get_editor_filter(**kwargs),
+        ])
+
+    ### TreeItem
+
+    def get_cachekey(self):
+        return self.pootle_path
+
+    def get_parent(self):
+        return self.parent
+
+    def get_children(self):
+        result = [store for store in self.stores.iterator()]
+        result.extend([vfolder_treeitem for vfolder_treeitem
+                       in self.child_vf_treeitems.iterator()])
+        return result
+
+    def all_pootle_paths(self):
+        """Get cache_key for all parents up to virtual folder location.
+
+        We only return the paths for the VirtualFolderTreeItem tree since we
+        don't want to mess with regular CachedTreeItem stats.
+        """
+        return [p for p in get_all_pootle_paths(self.get_cachekey())
+                if p.count('/') > self.vfolder.location.count('/')]
+
+    ### /TreeItem
 
 
 @receiver(post_save, sender=Unit)
@@ -479,5 +439,10 @@ def relate_unit(sender, instance, created=False, **kwargs):
                         directory=instance.store.parent,
                         vfolder=vf,
                     )
+
+                    if not created:
+                        # The VirtualFolderTreeItem already existed, so
+                        # calculate again the stats up to the root.
+                        vfolder_treeitem.update_all_cache()
 
                     break

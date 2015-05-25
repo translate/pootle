@@ -191,19 +191,16 @@ def get_children(directory):
     return directories + stores
 
 
-def make_vfolder_item(virtual_folder, pootle_path):
+def make_vfolder_treeitem(vfolder_treeitem):
     return {
-        'href_all': virtual_folder.get_translate_url(pootle_path),
-        'href_todo': virtual_folder.get_translate_url(pootle_path,
-                                                      state='incomplete'),
-        'href_sugg': virtual_folder.get_translate_url(pootle_path,
-                                                      state='suggestions'),
-        'href_critical': virtual_folder.get_critical_url(pootle_path),
-        'title': virtual_folder.name,
-        'code': virtual_folder.code,
-        'priority': virtual_folder.priority,
-        'is_grayed': (not virtual_folder.is_browsable or
-                      virtual_folder.priority < 1),
+        'href_all': vfolder_treeitem.get_translate_url(),
+        'href_todo': vfolder_treeitem.get_translate_url(state='incomplete'),
+        'href_sugg': vfolder_treeitem.get_translate_url(state='suggestions'),
+        'href_critical': vfolder_treeitem.get_critical_url(),
+        'title': vfolder_treeitem.vfolder.name,
+        'code': vfolder_treeitem.code,
+        'priority': vfolder_treeitem.vfolder.priority,
+        'is_grayed': not vfolder_treeitem.is_visible,
         'icon': 'folder',
     }
 
@@ -217,9 +214,7 @@ def get_vfolders(directory, all_vfolders=False):
     If ``all_vfolders`` is True then all the virtual folders matching the
     provided directory are returned. If not only the visible ones are returned.
     """
-    if all_vfolders:
-        return [make_vfolder_item(vf, directory.pootle_path)
-            for vf in VirtualFolder.get_matching_for(directory.pootle_path)]
-
-    return [make_vfolder_item(vf, directory.pootle_path)
-            for vf in VirtualFolder.get_visible_for(directory.pootle_path)]
+    return [make_vfolder_treeitem(vfolder_treeitem)
+            for vfolder_treeitem
+            in directory.vf_treeitems.order_by('-vfolder__priority').iterator()
+            if all_vfolders or vfolder_treeitem.is_visible]

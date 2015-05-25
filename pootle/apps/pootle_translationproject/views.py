@@ -25,7 +25,6 @@ from pootle.core.utils.json import jsonify
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from staticpages.models import StaticPage
-from virtualfolder.models import VirtualFolder
 
 
 SIDEBAR_COOKIE_NAME = 'pootle-browser-sidebar'
@@ -156,25 +155,28 @@ def browse(request, translation_project, dir_path, filename=None):
             }
         })
 
-        vfolders = get_vfolders(directory, all_vfolders=is_admin)
-        if len(vfolders) > 0:
-            table_fields = ['name', 'priority', 'progress', 'total',
-                            'need-translation', 'suggestions', 'critical',
-                            'activity']
-            ctx.update({
-                'vfolders': {
-                    'id': 'vfolders',
-                    'fields': table_fields,
-                    'headings': get_table_headings(table_fields),
-                    'items': vfolders,
-                },
-            })
+        if 'virtualfolder' in settings.INSTALLED_APPS:
+            vfolders = get_vfolders(directory, all_vfolders=is_admin)
+            if len(vfolders) > 0:
+                table_fields = ['name', 'priority', 'progress', 'total',
+                                'need-translation', 'suggestions', 'critical',
+                                'activity']
+                ctx.update({
+                    'vfolders': {
+                        'id': 'vfolders',
+                        'fields': table_fields,
+                        'headings': get_table_headings(table_fields),
+                        'items': vfolders,
+                    },
+                })
 
-            #FIXME: set vfolders stats in the resource, don't inject them here.
-            stats['vfolders'] = VirtualFolder.get_stats_for(
-                directory.pootle_path,
-                all_vfolders=is_admin
-            )
+                #FIXME: set vfolders stats in the resource, don't inject them here.
+                stats['vfolders'] = {}
+
+                for vfolder_treeitem in directory.vf_treeitems.iterator():
+                    if request.user.is_superuser or vfolder_treeitem.is_visible:
+                        stats['vfolders'][vfolder_treeitem.code] = \
+                            vfolder_treeitem.get_stats(include_children=False)
 
     ctx.update({
         'parent': get_parent(directory if store is None else store),
