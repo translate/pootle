@@ -216,7 +216,7 @@ var stats = {
           $td = $vfoldersTable.find('#total-words-' + code);
 
           // Display only the virtual folders that must be displayed.
-          if (this.isAdmin || item.translated < item.total) {
+          if (this.isAdmin || item.isVisible) {
             this.processTableItem(item, code, $vfoldersTable, $td, now);
           } else {
             //FIXME vfolders might be added or removed since they can become

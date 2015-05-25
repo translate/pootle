@@ -18,7 +18,8 @@ from django.utils import dateformat
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
-from pootle.core.mixins import CachedTreeItem
+from pootle.core.mixins import CachedMethods, CachedTreeItem
+from pootle.core.mixins.treeitem import NoCachedStats
 from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
                                      split_pootle_path)
 from pootle_app.models import Directory
@@ -323,7 +324,25 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
 
     @property
     def is_visible(self):
-        return self.vfolder.is_browsable and self.vfolder.priority >= 1
+        return (self.vfolder.is_browsable and
+                (self.has_critical_errors or
+                 (self.vfolder.priority >= 1 and not self.is_fully_translated)))
+
+    @property
+    def has_critical_errors(self):
+        try:
+            return self.get_error_unit_count() > 0
+        except NoCachedStats:
+            return False
+
+    @property
+    def is_fully_translated(self):
+        try:
+            wordcount_stats = self.get_cached(CachedMethods.WORDCOUNT_STATS)
+        except NoCachedStats:
+            return False
+
+        return wordcount_stats['total'] == wordcount_stats['translated']
 
     @property
     def code(self):
@@ -384,6 +403,13 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         result = [store for store in self.stores.iterator()]
         result.extend([vfolder_treeitem for vfolder_treeitem
                        in self.child_vf_treeitems.iterator()])
+        return result
+
+    def get_stats(self, include_children=True):
+        result = super(VirtualFolderTreeItem, self).get_stats(
+            include_children=include_children
+        )
+        result['isVisible'] = self.is_visible
         return result
 
     def all_pootle_paths(self):
