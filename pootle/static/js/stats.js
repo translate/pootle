@@ -220,6 +220,15 @@ var stats = {
             this.processTableItem(item, code, $vfoldersTable, $td, now);
           }
         }
+
+        // If all vfolders have been hidden (only table header is shown), then
+        // also hide the whole table. Otherwise ensure the vfolders table is
+        // displayed.
+        if ($vfoldersTable.find('tr:visible').length === 1) {
+          $vfoldersTable.hide();
+        } else {
+          $vfoldersTable.show();
+        }
       }
 
       // Sort columns based on previously-made selections
