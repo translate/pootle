@@ -1433,7 +1433,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def delete(self, *args, **kwargs):
         parents = self.get_parents()
-        vfolder_treeitems = self.parent_vfolder_treeitems
 
         store_log(user='system', action=STORE_DELETED,
                   path=self.pootle_path, store=self.id)
@@ -1448,9 +1447,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         self.clear_all_cache(parents=False, children=False)
         for p in parents:
             p.update_all_cache()
-
-        for vfolder_treeitem in vfolder_treeitems:
-            vfolder_treeitem.update_all_cache()
 
     def makeobsolete(self):
         """Make this store and all its units obsolete."""
@@ -2047,9 +2043,13 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def get_parents(self):
         if self.parent.is_translationproject():
-            return [self.translation_project]
+            parents = [self.translation_project]
         else:
-            return [self.parent]
+            parents = [self.parent]
+
+        parents.extend(self.parent_vfolder_treeitems)
+
+        return parents
 
     def get_cachekey(self):
         return self.pootle_path
