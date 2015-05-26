@@ -24,28 +24,10 @@ logger = logging.getLogger('stats')
 class Command(PootleCommand):
     help = "Allow stats and text indices to be refreshed manually."
 
-    cached_methods = None
-    process_disabled_projects = True
-
     def handle_all_stores(self, translation_project, **options):
-        store_filter = {
-            'translation_project': translation_project,
-        }
-
-        self.process(store_filter=store_filter, **options)
-
-    def handle_store(self, store, **options):
-        store_filter = {
-            'pk': store.pk,
-        }
-
-        self.process(store_filter=store_filter, **options)
-
-    def process(self, store_filter=None, **options):
-        stores = Store.objects.live()
-        if store_filter:
-            stores = stores.filter(**store_filter)
-
+        stores = Store.objects.live().filter(
+            translation_project=translation_project
+        )
         for store in stores.iterator():
             logger.info('Add job to update stats for %s' % store.pootle_path)
             store.update_all_cache()
