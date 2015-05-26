@@ -38,12 +38,14 @@
 #top-scorers .user .gravatar,
 #top-scorers .user .properties
 {
+    display: inline-block;
     float: left;
 }
 
 #top-scorers .user .properties
 {
     margin: 5px 10px 0;
+    width: 300px;
 }
 
 #top-scorers .user .name
