@@ -427,8 +427,7 @@ class CachedTreeItem(TreeItem):
         self._dirty_cache = set()
 
     def clear_all_cache(self, children=True, parents=True):
-        all_cache_methods = CachedMethods.get_all()
-        self.mark_dirty(*all_cache_methods)
+        self.mark_all_dirty()
         self.clear_dirty_cache(children=children, parents=parents)
 
     ################ Update stats in Redis Queue Worker process ###############
