@@ -324,8 +324,8 @@ class TranslationProject(models.Model, CachedTreeItem):
     def get_cachekey(self):
         return self.directory.pootle_path
 
-    def get_parent(self):
-        return self.project
+    def get_parents(self):
+        return [self.project]
 
     ### /TreeItem
 

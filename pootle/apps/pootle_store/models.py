@@ -1432,7 +1432,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             self.update_dirty_cache()
 
     def delete(self, *args, **kwargs):
-        parent = self.get_parent()
+        parents = self.get_parents()
         vfolder_treeitems = self.parent_vfolder_treeitems
 
         store_log(user='system', action=STORE_DELETED,
@@ -1446,8 +1446,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         super(Store, self).delete(*args, **kwargs)
 
         self.clear_all_cache(parents=False, children=False)
-        if parent is not None:
-            parent.update_all_cache()
+        for p in parents:
+            p.update_all_cache()
 
         for vfolder_treeitem in vfolder_treeitems:
             vfolder_treeitem.update_all_cache()
@@ -2045,11 +2045,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def can_be_updated(self):
         return not self.obsolete
 
-    def get_parent(self):
+    def get_parents(self):
         if self.parent.is_translationproject():
-            return self.translation_project
+            return [self.translation_project]
         else:
-            return self.parent
+            return [self.parent]
 
     def get_cachekey(self):
         return self.pootle_path
