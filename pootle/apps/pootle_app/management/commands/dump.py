@@ -18,6 +18,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from optparse import make_option
 
+from django.core.management.base import CommandError
+
 from pootle_app.management.commands import PootleCommand
 from pootle_app.models import Directory
 from pootle_project.models import Project
@@ -55,10 +57,15 @@ class Command(PootleCommand):
             stats = options.get('stats', False)
             data = options.get('data', False)
             stop_level = int(options.get('stop_level', -1))
+
             if stats:
                 self.dump_stats(stop_level=stop_level)
+                return
             if data:
                 self.dump_all(stop_level=stop_level)
+                return
+
+            raise CommandError("Set --data or --stats option.")
         else:
             super(Command, self).handle_all(**options)
 
@@ -69,9 +76,13 @@ class Command(PootleCommand):
         if stats:
             res = {}
             self._dump_stats(tp.directory, res, stop_level=stop_level)
+            return
 
         if data:
             self._dump_item(tp.directory, 0, stop_level=stop_level)
+            return
+
+        raise CommandError("Set --data or --stats option.")
 
     def dump_stats(self, stop_level):
         res = {}
