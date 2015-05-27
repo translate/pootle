@@ -101,10 +101,22 @@ class Command(PootleCommand):
                                  stop_level=stop_level)
 
         res[key] = (item.get_stats(include_children=False))
+
+        if res[key]['lastaction']:
+            last_action_id = res[key]['lastaction']['id']
+        else:
+            last_action_id = None
+
+        if res[key]['lastupdated']:
+            last_updated_id = res[key]['lastupdated']['id']
+        else:
+            last_updated_id = None
+
         out = u"%s  %s,%s,%s,%s,%s,%s,%s,%s" % \
-              (key, res[key]['total'], res[key]['translated'], res[key]['fuzzy'],
-               res[key]['suggestions'], res[key]['critical'], res[key]['is_dirty'],
-               res[key]['lastaction']['id'], res[key]['lastupdated']['id'])
+              (key, res[key]['total'], res[key]['translated'],
+               res[key]['fuzzy'], res[key]['suggestions'],
+               res[key]['critical'], res[key]['is_dirty'],
+               last_action_id, last_updated_id)
 
         self.stdout.write(out)
 
