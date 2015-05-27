@@ -160,7 +160,7 @@ Setting Up the Database
 
 By default, Pootle will use SQLite as its database, which is good enough for
 testing purposes.  If you plan to deploy to a production environment then we
-highly recommend that you use MySQL or PostreSQL (MySQL has been most heavily
+highly recommend that you use MySQL or PostgreSQL (MySQL has been most heavily
 tested). If you have an existing install that you want to migrate to a
 supported database, take a look at our :doc:`database migration
 <database_migration>` tutorial.
