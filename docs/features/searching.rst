@@ -44,7 +44,7 @@ Fields that you can search in include:
 
 - Source Text -- the original reference text.
 - Target Text **(default)** -- the translations.
-- Commens -- any comments with the translation.
+- Comments -- any comments with the translation.
 - Location -- any location, key or ID value.
 
 Options:
