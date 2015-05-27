@@ -19,4 +19,5 @@ other way, make sure to read through this part.
    release
    glossary
    styleguide
+   deprecation
    releasing
