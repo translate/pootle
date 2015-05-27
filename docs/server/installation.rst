@@ -158,45 +158,61 @@ available settings<settings#available>`.
 Setting Up the Database
 -----------------------
 
-By default, Pootle uses SQLite as database, which is good enough for testing
-purposes.  If you plan to deploy your application in a production environment,
-we highly recommend that you use MySQL because it's has been heavily tested. If
-you already have data that you would like to migrate from, take a look at our
-:doc:`database migration <database_migration>` tutorial.
+By default, Pootle will use SQLite as its database, which is good enough for
+testing purposes.  If you plan to deploy to a production environment then we
+highly recommend that you use MySQL or PostreSQL (MySQL has been most heavily
+tested). If you have an existing install that you want to migrate to a
+supported database, take a look at our :doc:`database migration
+<database_migration>` tutorial.
 
-To use a MySQL database with Pootle, you need to create a new database and
-database user. This can be done several different ways (MySQL workbench,
-command line, etc.).
+If you are using SQLite you can skip to :ref:`Populating the Database
+<installation#populating_the_database>`.
+
+In the next section we are creating a database user for Pootle called
+``pootle`` with a password of ``secret`` and a Pootle dabatase named
+``pootledb``.
+
+.. warning:: **It is critical** that you set the character set or encoding to
+   UTF8 when creating your database because it is most likely that a target
+   language will require Unicode to represent the characters.  Pootle itself
+   assumes Unicode throughout.
 
 
-We'll show how to do this via command line:
+.. _installation#mysql:
+
+MySQL
+^^^^^
+
+Use the :command:`mysql` command to create the user and database:
 
 .. code-block:: bash
 
-  mysql -u root -p  #will ask for your root password to log in
-  > CREATE DATABASE pootle CHARACTER SET = 'utf8';
-  > GRANT ALL PRIVILEGES ON pootle.* TO pootle@localhost IDENTIFIED BY 'passwordhere';
-  > FLUSH PRIVILEGES;
+   $ mysql -u root -p  # You will be asked for the MySQL root password to log in
+
+.. code-block:: sql
+
+   > CREATE DATABASE pootledb CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+   > GRANT ALL PRIVILEGES ON pootle.* TO pootle@localhost IDENTIFIED BY 'secret';
+   > FLUSH PRIVILEGES;
 
 
-.. warning:: **it's highly important** that you set the ``CHARACTER SET`` when
-  creating your database. Doing so will eliminate several problems in the future.
+.. _installation#postgresql:
 
-Next step, you need to edit ``/home/user/.pootle/pootle.conf`` file and modify
-the  ``DATABASES`` dictionary to use your newly created database.
+PostgreSQL
+^^^^^^^^^^
+
+Use the :command:`psql` command to create a user and database:
 
 .. code-block:: bash
 
-	DATABASES = {
-	    'default': {
-	        'ENGINE': 'django.db.backends.mysql',  # Options are sqlite3, mysql, postgresql_psycopg2, oracle
-	        'NAME': 'pootle',                      # Or the name you gave to your instance
-	        'USER': 'pootle',                      # Or the username you gave when creating it
-	        'PASSWORD': 'passwordhere',            # Or the password you assigned when creating it
-	        'HOST': '',                            # Set to empty string for localhost
-	        'PORT': '',                            # Set to empty string for default
-	    }
-	}
+   $ sudo su postgres  # On Ubuntu, may be different on your system
+   postgres@ $ createuser -P pootle  # This will ask you to define the users password.
+   postgres@ $ createdb --encoding='utf-8' --locale=en_US.utf8 --template=template0 --owner=pootle pootledb
+
+
+Following the database creation, you need to modify the :setting:`DATABASES`
+setting appropriately in your custom settings file, ensuring that you are
+using the correct :setting:`ENGINE <DATABASE-ENGINE>` setting.
 
 
 .. _installation#populating_the_database:
