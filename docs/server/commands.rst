@@ -332,6 +332,34 @@ By default, :djadmin:`test_checks` tests all existing checks. When
 ``--check=<checkname>`` is set, only specific checks will be tested against.
 
 
+.. django-admin:: dump
+
+dump
+^^^^
+
+Prints data or stats data (depending on :option:`--data` or :option:`--stats` option)
+in specific format.
+
+*data*::
+
+  object_id:class_name
+  8276:Directory	name=android_evernote	parent=/uk/	pootle_path=/uk/android_evernote/
+  24394:Store	file=android_evernote/uk/strings.xml.po	translation_project=/uk/android_evernote/	pootle_path=/uk/android_evernote/strings.xml.po	name=strings.xml.pstate=2
+  806705:Unit	source=Create Account	target=Створити аккаунт	source_wordcount=2	target_wordcount=2	developer_comment=create_account	translator_commentlocations=File:\nstrings.xml\nID:\ne82a8ea14a0b9f92b1b67ebfde2c16e9	isobsolete=False	isfuzzy=False	istranslated=True
+  115654:Suggestion	target_f=Необхідна електронна адреса	user_id=104481
+
+*stats*::
+
+  pootle_path total,translated,fuzzy,suggestions,criticals,is_dirty,last_action_unit_id,last_updated_unit_id
+  /uk/android_evernote/strings.xml.po  11126,10597,383,231,0,False,4710214,4735242
+  /uk/android_evernote/widget/strings.xml.po  339,339,0,26,0,False,2277376,3738609
+  /uk/android_evernote/widget/  339,339,0,26,0,False,2277376,3738609
+  /uk/android_evernote/  11465,10936,383,257,0,False,4710214,4735242
+
+This command can be used by developers to check if all data kept after
+migrations or stats calculating algorithm was changed.
+
+
 .. django-admin:: regenerate_checks_descriptions
 
 regenerate_checks_descriptions
