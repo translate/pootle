@@ -8,7 +8,7 @@ requirements in a virtual environment.
 
 Before proceeding, consider installing these first:
 
-- At least Python 2.6
+- Python >= 2.7, < 3.0
 - `python-pip <http://www.pip-installer.org/>`_
 
 If you only want to have a sneak peek of Pootle, the default configuration and

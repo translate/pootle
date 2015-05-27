@@ -33,7 +33,7 @@ Installing required software on the remote server
 Before proceeding, install the following software (if absent) on the
 remote server:
 
-- Python 2.5, 2.6, or 2.7
+- Python 2.7
 - `python-pip <http://www.pip-installer.org/>`_
 - Git distributed version control system
 - Apache web server
