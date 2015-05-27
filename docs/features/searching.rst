@@ -3,10 +3,10 @@
 Searching in Pootle
 ===================
 
-Pootle provides a searching functionality that allows translators and reviewers
-to search through translations for some text. The search box is shown close to
-the top of the page. Searching can be used to find specific things you want to
-work on, see how issues were solved before, or to verify consistency in your
+Pootle provides search functionality that allows translators and reviewers to
+search through translations for some text. The search box is shown close to the
+top of the page. Searching can be used to find specific things you want to work
+on, see how issues were solved before, or to verify consistency in your
 translations.
 
 Search results are up to date, and will reflect the current translations in
@@ -21,8 +21,8 @@ Search domain
 It is important to realize that when a new search term is entered, **searching
 will take place inside the currently viewed domain**. If you are currently at
 the top level of your project, the whole project will be searched. If you are
-viewing a directory, only files in that directory will be searched. If you are
-already viewing/translating a file, only that file will be searched.
+viewing a directory, only files under that directory will be searched. If you
+are already viewing/translating a file, only that file will be searched.
 
 The first result will be shown in context in the file where it is found. When
 you click "Skip", "Suggest" or "Translate" it will provide the next match to
@@ -36,15 +36,18 @@ file, your new query will only search in that specific file.
 Advanced search
 ---------------
 
-The search function improved in Pootle 1.2. Next to the search textbox, there's
-an arrow icon that when clicked will toggle some options for the search to be
-done.
+When you enter a search box a dropdown will open allowing you to limit or
+expand your **search to specific fields**. Any combination of these fields and
+options is accepted.
 
-At this stage, the advanced search option allows **searching in specific
-fields**. It is possible to select to search for text in source and target
-texts as well as in comments and locations. Any combination of these options is
-accepted.
+Fields that you can search in include:
 
-As a default, it will search for source and target strings. If a non-default
-search is performed, the search widget will slightly change its background
-colour.
+- Source Text -- the original reference text.
+- Target Text **(default)** -- the translations.
+- Commens -- any comments with the translation.
+- Location -- any location, key or ID value.
+
+Options:
+
+- Exact Match **(default: off)** -- search in a case sensitive manner. With
+  this option on searching for "File" will not find "file".
