@@ -142,6 +142,11 @@ Miscellaneous
   collections that span multiple projects across languages, multiple languages
   across projects, or even the whole server.
 - Timeline tracks all changes done to units.
+- Uploads and downloads have been changed slightly.  There are no options to
+  overwrite or suggest.  Your files will be accepted if no changes have been
+  made online while you you translated offline.  If changes were made while
+  offline then the upload will be rejected.  In such case download a the file
+  again, use your offline tools or TM to retranslate and try another upload.
 
 
 Statistics calculations
@@ -231,7 +236,8 @@ Command changes and additions
 - Removed the ``--modified-since`` flag. Optimizations will automatically
   be done based on the latest sync revision.
 - New management commands: :djadmin:`revision`, :djadmin:`refresh_scores`,
-  :djadmin:`retry_failed_jobs` and :djadmin:`calculate_checks`.
+  :djadmin:`retry_failed_jobs`, :djadmin:`import`, :djadmin:`export` and
+  :djadmin:`calculate_checks`.
 
 
 Internal changes
@@ -307,7 +313,6 @@ Major fatures
   integration outside of Pootle.
 - News, notifications and RSS feeds - make use of announcement pages use other
   channels of communication.
-- Offline translation: file uploads and downloads.
 - Update against templates - do template updates outside of Pootle and use
   :djadmin:`update_stores` to load the changed files.
 - Public API.
