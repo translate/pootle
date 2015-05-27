@@ -327,6 +327,21 @@ class TranslationProject(models.Model, CachedTreeItem):
     def get_parents(self):
         return [self.project]
 
+    def clear_all_cache(self, children=True, parents=True):
+        super(TranslationProject, self).clear_all_cache(children=children,
+                                                        parents=parents)
+
+        if 'virtualfolder' in settings.INSTALLED_APPS:
+            # VirtualFolderTreeItem can only have VirtualFolderTreeItem parents
+            # so it is necessary to flush their cache by calling them one by
+            # one.
+            from virtualfolder.models import VirtualFolderTreeItem
+            tp_vfolder_treeitems = VirtualFolderTreeItem.objects.filter(
+                pootle_path__startswith=self.pootle_path
+            )
+            for vfolder_treeitem in tp_vfolder_treeitems.iterator():
+                vfolder_treeitem.clear_all_cache(children=False, parents=False)
+
     ### /TreeItem
 
     def directory_exists(self):
