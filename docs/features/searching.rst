@@ -48,19 +48,3 @@ accepted.
 As a default, it will search for source and target strings. If a non-default
 search is performed, the search widget will slightly change its background
 colour.
-
-
-.. _searching#=_backend:
-
-Backend
-^^^^^^^
-
-The basic searching uses :ref:`pogrep <toolkit:pogrep>` which will look for the
-substring in the source and target text. It supports Unicode normalization.
-Alternatively, a Pootle server might be installed with an :doc:`indexing engine
-<../server/indexing>` (PyLucene or Xapian) to speed up searching. Search
-results can differ slightly from the normal search, based on the indexing that
-engine uses.
-
-Some basic query in Lucene syntax is also possible. More information on `Lucene
-queries <http://lucene.apache.org/java/docs/queryparsersyntax.html>`_.

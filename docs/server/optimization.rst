@@ -28,29 +28,6 @@ Adjust the :setting:`DATABASES` setting accordingly.
   PostgreSQL adapter for Python.
 
 
-Indexing Engines
-^^^^^^^^^^^^^^^^
-
-Installing an :doc:`indexing engine <indexing>` will speed-up searches. Pootle
-will automatically pick one from any of the available engines.
-
-`Xapian <http://xapian.org/docs/bindings/python/>`_
-  Python bindings for Xapian [#f1]_.
-
-`PyLucene <https://lucene.apache.org/pylucene/>`_
-  Python bindings for Lucene.
-
-
-.. rubric:: Note
-
-.. [#f1] Xapian versions before 1.0.13 are incompatible with Apache; Pootle will
-  detect Xapian version and disable indexing when running under *mod_wsgi* if
-  needed.
-
-  Checking for Xapian relies on the `xapian-check` command, which is found in
-  the `xapian-tools` package in Debian-based systems.
-
-
 Web Servers
 ^^^^^^^^^^^
 
@@ -111,11 +88,6 @@ some tips for performance tuning on your Pootle installation.
 - Ensure that the ``zip`` and ``unzip`` commands are installed on your
   server.  These can improve the performance during upload and download
   of large ZIP files.
-
-- Ensure that you have an :doc:`indexing engine <indexing>` installed with its
-  Python bindings. This will improve the performance of searching in big
-  projects. PyLucene should perform better, although it might be harder to
-  install.
 
 - Ensure that you have python-levenshtein installed. This will improve the
   performance when updating against templates.

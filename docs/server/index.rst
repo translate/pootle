@@ -41,5 +41,4 @@ Performance tuning and managing the server
    logging
    optimization
    cache
-   indexing
    commands

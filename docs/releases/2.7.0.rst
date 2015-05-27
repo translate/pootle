@@ -200,6 +200,9 @@ Sysadmins
 - Yandex.Translate is now available as a Machine Translation backend.
 - :setting:`POOTLE_QUALITY_CHECKER` can be used to point to a custom
   quality check handler.
+- Xapian and Lucene are no longer required for searching and Pootle will not
+  make use of them.  You can safely remove supporting libraries and packages if
+  these services where used only for Pootle.
 
 
 Command changes and additions
