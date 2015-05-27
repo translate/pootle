@@ -8,9 +8,9 @@ your changes.
 This feature is ideal for teams who have poor connectivity or if you prefer to
 use an offline translation tool.
 
-To export, simply click on the "Download" link on the sidebar in Pootle's
-overview page.  To import simply click the "Upload" link and select the file
-you wish to upload.
+To export, simply click on the "Download for offline translation" link on the
+sidebar in Pootle's overview page.  To import simply click the "Upload
+translations" link and select the file you wish to upload.
 
 .. warning:: If there are any errors in the upload then Pootle will warn you
    and the file will be rejected.
