@@ -199,7 +199,7 @@ def check_settings(app_configs=None, **kwargs):
               "setting %r." % settings.DEFAULT_FROM_EMAIL),
             hint=_("DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
                    "Don't forget to review your mail server settings."),
-            id="pootle.W009",
+            id="pootle.W010",
         ))
 
     return errors
