@@ -474,3 +474,14 @@ Deprecated Settings
      setting has been removed.
 
   Sets the timeout value for overview top statistics.
+
+
+.. setting:: VCS_DIRECTORY
+
+``VCS_DIRECTORY``
+
+  .. deprecated: 2.7
+     Version Control Support has been removed from Pootle.  We feel we can
+     support version control better in future.  You can currently make use of
+     :djadmin:`sync_stores` and :djadmin:`update_stores` to automate your own
+     integration.

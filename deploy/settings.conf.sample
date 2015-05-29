@@ -46,6 +46,3 @@ DATABASES = {
 
 # The directory where the translation files are kept
 POOTLE_TRANSLATION_DIRECTORY = "%(translations_path)s"
-
-# The directory where version control clones/checkouts are kept
-VCS_DIRECTORY = "%(repos_path)s"

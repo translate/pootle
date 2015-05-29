@@ -76,8 +76,7 @@ In the overview page:
 Version Control
 ---------------
 - Update the whole project at once avoiding slow file by file updates
-- A separate `VCS_DIRECTORY
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/settings.html#std:setting-VCS_DIRECTORY>`_
+- A separate :setting:`VCS_DIRECTORY`
   for VCS checkout is where Pootle now does all VC related work -- this ensures
   that we can work well with DVCS like Git.
 - Detect new and removed files after a VCS update

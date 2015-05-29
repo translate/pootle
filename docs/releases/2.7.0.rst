@@ -259,6 +259,8 @@ Deprecated settings
 
 - :setting:`POOTLE_TOP_STATS_CACHE_TIMEOUT` has been removed with the old top
   stats rendering and is replaced by the new overview UI.
+- :setting:`VCS_DIRECTORY` is now deprecated as the intgrated Version Control
+  feature has been removed to come back at a later date.
 
 
 Internal changes
