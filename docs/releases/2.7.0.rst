@@ -357,10 +357,6 @@ Django 1.4 specifics, improved documentation and of course, loads of bugs were
 fixed.
 
 
-- Major cleanups and removed unused features. For more details check the
-  `<upstream-differences>`_ document.
-
-
 
 Credits
 =======
