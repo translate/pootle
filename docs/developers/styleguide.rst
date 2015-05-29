@@ -452,5 +452,5 @@ Naming
     ``.TM_results``.
 
 .. _1: http://javascript.crockford.com/code.html
-.. _2: https://drupal.org/node/172169
-.. _3: http://docs.jquery.com/JQuery_Core_Style_Guidelines
+.. _2: https://www.drupal.org/node/172169
+.. _3: http://contribute.jquery.org/style-guide/js/

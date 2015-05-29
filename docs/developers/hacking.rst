@@ -34,16 +34,16 @@ Setting up the development environment
 --------------------------------------
 
 The minimum software packages you need for setting up a development environment
-include `git <http://git-scm.org>`_ and a `Python interpreter
+include `git <http://git-scm.com/>`_ and a `Python interpreter
 <https://www.python.org>`_ along with the `pip installer
-<http://www.pip-installer.org/>`_. Consult the specifics for your operating
+<https://pip.pypa.io/en/stable/>`_. Consult the specifics for your operating
 system in order to get each package installed successfully.
 
 Once you have the basic requirements in place, you will need to install
 Pootle's dependencies, which come in shape of Python packages. Instead of
 installing them system-wide, we recommend using `virtualenv
-<http://www.virtualenv.org>`_ (and `virtualenvwrapper
-<http://www.doughellmann.com/projects/virtualenvwrapper/>`_ for easing the
+<https://virtualenv.pypa.io/en/latest/>`_ (and `virtualenvwrapper
+<https://bitbucket.org/dhellmann/virtualenvwrapper>`_ for easing the
 management of multiple virtualenvs). This way you can install all the
 dependencies at specific versions without interfering with system-wide
 packages. You can test on different Python/Django versions in parallel as well.

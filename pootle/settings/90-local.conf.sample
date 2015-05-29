@@ -176,7 +176,7 @@ MARKUP_FILTER = (None, {})
 # 'GOOGLE_TRANSLATE': Google Translate service.
 #             For this service you need to set the API key.
 #             Note that Google Translate API is a paid service
-#             See more at http://code.google.com/apis/language/translate/v2/pricing.html
+#             See more at https://cloud.google.com/translate/v2/pricing
 #
 MT_BACKENDS = [
 #        ('APERTIUM', ''),

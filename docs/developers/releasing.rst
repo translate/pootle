@@ -397,8 +397,8 @@ Publish on PyPI
 
 
 .. note:: You need a username and password on `Python Package Index (PyPI)
-   <https://pypi.python.org>`_ and have rights to the project before you can
-   proceed with this step.
+   <https://pypi.python.org/pypi>`_ and have rights to the project before you
+   can proceed with this step.
 
    These can be stored in :file:`$HOME/.pypirc` and will contain your username
    and password. A first run of:
@@ -433,7 +433,7 @@ Do the following to create the release:
 
 #. Draft a new release with the corresponding tag version
 #. Convert the major changes in the release notes to Markdown with `Pandoc
-   <http://johnmacfarlane.net/pandoc/>`_
+   <http://pandoc.org/>`_
 #. Add the converted major changes to the release description
 #. Include at the bottom of the release description a link to the full release
    notes at Read The Docs

@@ -34,7 +34,7 @@ Before proceeding, install the following software (if absent) on the
 remote server:
 
 - Python 2.7
-- `python-pip <http://www.pip-installer.org/>`_
+- `pip <https://pip.pypa.io/en/stable/>`_
 - Git distributed version control system
 - Apache web server
 - MySQL database server

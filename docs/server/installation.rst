@@ -9,7 +9,7 @@ requirements in a virtual environment.
 Before proceeding, consider installing these first:
 
 - Python >= 2.7, < 3.0
-- `python-pip <http://www.pip-installer.org/>`_
+- `pip <https://pip.pypa.io/en/stable/>`_
 
 If you only want to have a sneak peek of Pootle, the default configuration and
 the built-in server will suffice. But in case you want to deploy a real world

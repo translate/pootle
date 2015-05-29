@@ -2,7 +2,7 @@ Front-end Development
 =====================
 
 Parts of Pootle front-end development require a Node.js run-time and packages
-installed via `npm <https://www.npmjs.org/>`_.  This is only the case for
+installed via `npm <https://www.npmjs.com/>`_.  This is only the case for
 developing or building Pootle.
 
 

@@ -350,7 +350,7 @@ Translation environment configuration settings.
   so that Eslasticsearch will adjust the required score depending on the length
   of the string being translated. Elasticsearch documentation provides further
   details on `Fuzzy matching
-  <https://www.elasticsearch.org/guide/en/elasticsearch/reference/current/common-options.html#fuzziness>`_.
+  <https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#fuzziness>`_.
 
 
 .. setting:: MT_BACKENDS
@@ -372,7 +372,7 @@ Translation environment configuration settings.
   ``GOOGLE_TRANSLATE``: Google Translate service.
     For this service you need to set the API key. Note that Google Translate
     API is a paid service. See more at
-    https://developers.google.com/translate/v2/pricing
+    https://cloud.google.com/translate/v2/pricing
 
   ``YANDEX_TRANSLATE``: Yandex.Translate service.
     For this service you need to set the API key. Get your key at
