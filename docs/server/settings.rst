@@ -350,7 +350,7 @@ Translation environment configuration settings.
   so that Eslasticsearch will adjust the required score depending on the length
   of the string being translated. Elasticsearch documentation provides further
   details on `Fuzzy matching
-  <http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/common-options.html#fuzziness>`_.
+  <https://www.elasticsearch.org/guide/en/elasticsearch/reference/current/common-options.html#fuzziness>`_.
 
 
 .. setting:: MT_BACKENDS

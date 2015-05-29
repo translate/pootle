@@ -54,7 +54,7 @@ zip and unzip
 `python-Levenshtein <https://pypi.python.org/pypi/python-Levenshtein/>`_
   Provides speed-up when updating against templates.
 
-`iso-codes <http://packages.debian.org/unstable/source/iso-codes>`_
+`iso-codes <https://packages.debian.org/unstable/source/iso-codes>`_
   Enables translated language and country names.
 
 `raven <http://raven.readthedocs.org/>`_

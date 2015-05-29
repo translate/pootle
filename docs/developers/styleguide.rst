@@ -38,7 +38,7 @@ order:
 5) Django external apps imports
 6) Other Pootle apps imports
 7) Current package (or app) imports, using explicit relative imports (See `PEP
-   328 <http://www.python.org/dev/peps/pep-0328/#guido-s-decision>`_)
+   328 <https://www.python.org/dev/peps/pep-0328/#guido-s-decision>`_)
 
 Check :ref:`Python import conventions <toolkit:styleguide-imports>` in
 Translate styleguide for other conventions that the imports must follow.
@@ -452,5 +452,5 @@ Naming
     ``.TM_results``.
 
 .. _1: http://javascript.crockford.com/code.html
-.. _2: http://drupal.org/node/172169
+.. _2: https://drupal.org/node/172169
 .. _3: http://docs.jquery.com/JQuery_Core_Style_Guidelines

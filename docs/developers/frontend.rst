@@ -11,7 +11,7 @@ Setting Things Up
 
 In order to setup the front-end development enviroment, it's necessary to have
 Node.js installed. Please check the `installation instructions for your
-OS <http://nodejs.org/download/>`_.
+OS <https://nodejs.org/download/>`_.
 
 .. warning::
 

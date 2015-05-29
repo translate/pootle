@@ -35,7 +35,7 @@ Setting up the development environment
 
 The minimum software packages you need for setting up a development environment
 include `git <http://git-scm.org>`_ and a `Python interpreter
-<http://www.python.org>`_ along with the `pip installer
+<https://www.python.org>`_ along with the `pip installer
 <http://www.pip-installer.org/>`_. Consult the specifics for your operating
 system in order to get each package installed successfully.
 

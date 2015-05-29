@@ -47,10 +47,10 @@ the Redis cache settings by overriding the value of :setting:`CACHES` in your
 configuration file, an example exists in file:`90-local.conf.sample`.
 
 
-.. _Django's caching system: http://docs.djangoproject.com/en/dev/topics/cache/
+.. _Django's caching system: https://docs.djangoproject.com/en/dev/topics/cache/
 .. |Django's caching system| replace:: *Django's caching system*
 
-.. _multiple cache backends: http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
+.. _multiple cache backends: https://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
 .. |multiple cache backends| replace:: *multiple cache backends*
 
 .. we use | | here and above for italics like :ref: in normal links
