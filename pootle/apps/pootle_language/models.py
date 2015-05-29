@@ -155,6 +155,12 @@ class Language(models.Model, TreeItem):
             get_editor_filter(**kwargs),
         ])
 
+    def clean(self):
+        super(Language, self).clean()
+
+        if self.fullname:
+            self.fullname = self.fullname.strip()
+
     ### TreeItem
 
     def get_children(self):
