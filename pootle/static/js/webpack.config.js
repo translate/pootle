@@ -42,7 +42,6 @@ var resolve = {
     'backbone-queryparams-shim': __dirname + '/vendor/backbone/backbone.queryparams-1.1-shim.js',
     'backbone-relational': __dirname + '/vendor/backbone/backbone-relational.js',
 
-    'jquery-autosize': __dirname + '/vendor/jquery/jquery.autosize.js',
     'jquery-bidi': __dirname + '/vendor/jquery/jquery.bidi.js',
     'jquery-caret': __dirname + '/vendor/jquery/jquery.caret.js',
     'jquery-cookie': __dirname + '/vendor/jquery/jquery.cookie.js',

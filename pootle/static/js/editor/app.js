@@ -10,7 +10,6 @@ var $ = require('jquery');
 var _ = require('underscore');
 
 // jQuery plugins
-require('jquery-autosize');
 require('jquery-caret');
 require('jquery-cookie');
 require('jquery-easing');
@@ -21,6 +20,7 @@ require('jquery-serializeObject');
 require('jquery-utils');
 
 // Other plugins
+import autosize from 'autosize';
 // XXX: this weirdness is temporarily needed because the version of
 // diff-match-patch we bundle is not CommonJS-friendly
 require('imports?this=>window!diff-match-patch');
@@ -216,7 +216,7 @@ PTL.editor = {
       e.preventDefault();
       $('.js-translate-translation').toggleClass('raw');
       $('.js-toggle-raw').toggleClass('selected');
-      $('.js-translation-area').trigger('autosize.resizeIncludeStyle');
+      autosize.update(document.querySelector('.js-translation-area'));
     });
 
     /* Bind hotkeys */
@@ -453,9 +453,7 @@ PTL.editor = {
       PTL.editor.displayObsoleteMsg();
     }
 
-    $('textarea.expanding').autosize({
-      append : null
-    });
+    autosize(document.querySelector('textarea.expanding'));
 
     // set direction of the comment body
     $('.extra-item-comment').filter(':not([dir])').bidi();

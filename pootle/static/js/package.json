@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "autolinker": "^0.11.2",
+    "autosize": "^3.0.6",
     "classnames": "^1.2.0",
     "imports-loader": "^0.6.3",
     "md5": "^1.0.0",

@@ -260,11 +260,6 @@ Directory contents
 
         http://benalman.com/projects/jquery-misc-plugins/#serializeobject
 
-      - jquery.autosize.js :
-        jQuery plugin used in the translate page textareas.
-
-        http://www.jacklmoore.com/autosize/
-
       - jquery.tipsy.js :
         Facebook-style tooltips for jQuery.
 
