@@ -35,5 +35,5 @@ latest versions of Translate Toolkit.
 .. _Feature list: http://docs.translatehouse.org/projects/pootle/en/latest/features/index.html
 .. _Download: http://sourceforge.net/projects/translate/files/Pootle/2.1.4/
 .. _Installation instructions: http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html
-.. _Bugs: http://bugs.locamotion.org/
+.. _Bugs: https://github.com/translate/pootle/issues
 .. _More information: http://pootle.translatehouse.org

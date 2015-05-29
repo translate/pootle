@@ -270,8 +270,8 @@ Internal changes
 
 Infrastructure
 --------------
-- All bugs have moved from `Bugzilla <http://bugs.locamotion.org/>`_ to `Github
-  issues <https://github.com/translate/pootle/issues>`_.
+- All bugs have moved from Bugzilla to `Github issues
+  <https://github.com/translate/pootle/issues>`_.
 - The `Evernote Pootle fork <https://github.com/evernote/pootle>`_ and
   Translate Pootle are now merged into the same code base and being actively
   developed together.

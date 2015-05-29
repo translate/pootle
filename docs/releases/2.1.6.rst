@@ -36,5 +36,5 @@ and performance improvements in the latest versions.
 * `Feature list <http://docs.translatehouse.org/projects/pootle/en/latest/features/index.html>`_
 * `Download <http://sourceforge.net/projects/translate/files/Pootle/2.1.6/>`_
 * `Installation instructions <http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
-* `Bugs <http://bugs.locamotion.org/>`_
+* `Bugs <https://github.com/translate/pootle/issues>`_
 * `More information <http://pootle.translatehouse.org/>`_
