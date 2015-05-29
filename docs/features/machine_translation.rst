@@ -70,4 +70,4 @@ On the other hand, `Apertium`_ is best suited for
 close language pairs. Especially for those languages spoken in the Iberian
 Peninsula that are similar.
 
-.. _Apertium: http://www.apertium.org/?id=whatisapertium&lang=en
+.. _Apertium: https://www.apertium.org/index.eng.html?dir=oci-cat#translation

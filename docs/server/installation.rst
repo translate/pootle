@@ -281,9 +281,10 @@ serving both dynamic and static content, you can also setup such a scenario with
 Running Pootle as a Service
 ---------------------------
 
-If you plan to run Pootle as a system service, you can use whatever software you
-are familiar with for that purpose. For example  `Supervisor
-<http://supervisord.org/>`_, `Circus <http://circus.io>`_ or `daemontools
+If you plan to run Pootle as a system service, you can use whatever software
+you are familiar with for that purpose. For example  `Supervisor
+<http://supervisord.org/>`_, `Circus
+<http://circus.readthedocs.org/en/latest/>`_ or `daemontools
 <http://cr.yp.to/daemontools.html>`_ might fit your needs.
 
 

@@ -623,6 +623,6 @@ from a bash script that creates the correct environment for your command to run
 from.  Call this script then from cron. It shouldn't be necessary to specify
 the settings file for Pootle — it should automatically be detected.
 
-.. _django-assets: http://elsdoerfer.name/docs/django-assets/
+.. _django-assets: http://django-assets.readthedocs.org/en/latest/
 
 .. _webassets: http://elsdoerfer.name/docs/webassets/

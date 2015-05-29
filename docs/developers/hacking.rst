@@ -128,10 +128,11 @@ files that constitute Pootle's source code.
 
 Before running the development server, it's necessary to install the software
 dependencies/requirements by using pip. For this matter there are some `pip
-requirements files <http://www.pip-installer.org/en/latest/requirements.html>`_
-within the :file:`requirements` directory. We will install the requirements
-defined in :file:`requirements/dev.txt`, which apart from the minimum will pull
-in some extras that will ease the development process.
+requirements files
+<https://pip.pypa.io/en/stable/user_guide.html#requirements-files>`_ within the
+:file:`requirements` directory. We will install the requirements defined in
+:file:`requirements/dev.txt`, which apart from the minimum will pull in some
+extras that will ease the development process.
 
 .. code-block:: bash
 
