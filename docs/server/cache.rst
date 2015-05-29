@@ -40,18 +40,16 @@ performance.  You can then setup caching parameters for each cache separately.
 Cache Backends
 --------------
 
-Django supports |multiple cache backends|_ (methods of storing cache data).
-However, Redis is the only cache backend supported by Pootle.  We use some
-custom features of Redis so cannot support other backends. You can customise
-the Redis cache settings by overriding the value of :setting:`CACHES` in your
-configuration file, an example exists in file:`90-local.conf.sample`.
+Django supports :ref:`multiple cache backends <django:setting-up-the-cache>`
+(methods of storing cache data).  However, Redis is the only cache backend
+supported by Pootle.  We use some custom features of Redis so cannot support
+other backends. You can customise the Redis cache settings by overriding the
+value of :setting:`CACHES` in your configuration file, an example exists in
+file:`90-local.conf.sample`.
 
 
 .. _Django's caching system: https://docs.djangoproject.com/en/dev/topics/cache/
 .. |Django's caching system| replace:: *Django's caching system*
-
-.. _multiple cache backends: https://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
-.. |multiple cache backends| replace:: *multiple cache backends*
 
 .. we use | | here and above for italics like :ref: in normal links
    (Django intersphinx objects do not include section titles, must use frags)
