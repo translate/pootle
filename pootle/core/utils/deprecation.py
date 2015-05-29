@@ -25,6 +25,7 @@ DEPRECATIONS = [
     ('USE_CAPTCHA', 'POOTLE_CAPTCHA_ENABLED', '2.7', '2.8'),
     ('POOTLE_TOP_STATS_CACHE_TIMEOUT', None, '2.7', None),
     ('MT_BACKENDS', 'POOTLE_MT_BACKENDS', '2.7', '2.8'),
+    ('ENABLE_ALT_SRC', None, '2.5', None),
 ]
 
 
