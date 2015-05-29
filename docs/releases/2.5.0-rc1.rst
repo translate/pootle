@@ -86,20 +86,13 @@ Version Control
 
 Commands
 --------
-- `list_languages
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#list-languages>`_
-- `list_projects
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#list-projects>`_
-- `latest_change_id
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#latest-change-id>`_
-- --modified-since flag for `update_stores
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#update-stores>`_
-  and `sync_stores
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#sync-stores>`_
-- `commit_to_vcs
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#commit-to-vcs>`_
-- `update_from_vcs
-  <http://docs.translatehouse.org/projects/pootle/en/latest/server/commands.html#update-from-vcs>`_
+- :djadmin:`list_languages`
+- :djadmin:`list_projects`
+- :djadmin:`latest_change_id`
+- --modified-since flag for :djadmin:`update_stores`
+  and :djadmin:`sync_stores`
+- :djadmin:`commit_to_vcs`
+- :djadmin:`update_from_vcs`
 
 Infrastructure
 --------------
