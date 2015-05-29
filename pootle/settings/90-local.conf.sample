@@ -107,7 +107,8 @@ ADMINS = (
 
 # Mail settings
 
-# Address used for messages sent by Pootle.
+# Default email address to use for messages sent by Pootle.
+# https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = 'info@YOUR_DOMAIN.com'
 
 # Address to receive messages sent by contact form.
