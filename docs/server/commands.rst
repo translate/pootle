@@ -593,6 +593,48 @@ Available options:
   The filename of the server's private key file.
 
 
+.. _commands#deprecated:
+
+Deprecated commands
+-------------------
+
+The following are commands that have been removed or deprecated:
+
+
+.. django-admin:: last_change_id
+
+last_change_id
+^^^^^^^^^^^^^^
+
+.. deprecated:: 2.7
+
+With the change to revisions the command you will want to use is
+:djadmin:`revision`, though you are unlikely to know a specific revision
+number as you needed to in older versions of :djadmin:`update_stores`.
+
+
+.. django-admin:: commit_to_vcs
+
+commit_to_vcs
+^^^^^^^^^^^^^
+
+.. deprecated:: 2.7
+
+Version Control support has been removed from Pootle and will reappear in a
+later release.
+
+
+.. django-admin:: update_from_vcs
+
+update_from_vcs
+^^^^^^^^^^^^^^^
+
+.. deprecated:: 2.7
+
+Version Control support has been removed from Pootle and will reappear in a
+later release.
+
+
 .. _commands#running_in_cron:
 
 Running Commands in cron
