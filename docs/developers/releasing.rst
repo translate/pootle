@@ -242,7 +242,7 @@ Up version numbers
 
 Update the version number in:
 
-- :file:`pootle/__version__.py`
+- :file:`pootle/__init__.py::VERSION`
 - :file:`docs/conf.py`
 
 In :file:`pootle/__version__.py`, bump the build number if anybody used Pootle
@@ -255,18 +255,18 @@ For :file:`docs/conf.py` change ``version`` and ``release``.
    that we can update it in one place.
 
 
-The version string should follow the pattern::
+The version tuple should follow the pattern::
 
-    $MAJOR-$MINOR-$MICRO[-$EXTRA]
+    (major, minor, micro, candidate, extra)
 
 E.g. ::
 
-    1.10.0
-    0.9.1-rc1
+    (1, 10, 0, 'final', 0)
+    (2, 7, 0 'alpha', 1)
 
-``$EXTRA`` is optional but all the three others are required.  The first
-release of a ``$MINOR`` version will always have a ``$MICRO`` of ``.0``. So
-``2.6.0`` and never just ``2.6``.
+When in development we use 'alpha' with ``extra`` of 0.  The first release of a
+``minor`` version will always have a ``micro`` of ``.0``. So ``2.6.0`` and
+never just ``2.6``.
 
 
 Build the package
