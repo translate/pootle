@@ -244,10 +244,6 @@ Update the version number in:
 
 - :file:`pootle/__init__.py::VERSION`
 
-In :file:`pootle/__version__.py`, bump the build number if anybody used Pootle
-with the previous number, and there have been any changes to code touching
-stats or quality checks.
-
 The version tuple should follow the pattern::
 
     (major, minor, micro, candidate, extra)
