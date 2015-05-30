@@ -243,17 +243,10 @@ Up version numbers
 Update the version number in:
 
 - :file:`pootle/__init__.py::VERSION`
-- :file:`docs/conf.py`
 
 In :file:`pootle/__version__.py`, bump the build number if anybody used Pootle
 with the previous number, and there have been any changes to code touching
 stats or quality checks.
-
-For :file:`docs/conf.py` change ``version`` and ``release``.
-
-.. note:: FIXME -- We might want to automate the version and release info so
-   that we can update it in one place.
-
 
 The version tuple should follow the pattern::
 
