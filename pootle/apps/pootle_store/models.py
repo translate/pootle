@@ -2184,8 +2184,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
             po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + \
                                poheader.tzstring()
-            from pootle.__version__ import sver as pootle_version
-            x_generator = "Pootle %s" % pootle_version
+            from pootle.core.utils.version import get_major_minor_version
+            x_generator = "Pootle %s" % get_major_minor_version()
             headerupdates = {
                     'PO_Revision_Date': po_revision_date,
                     'X_Generator': x_generator,
