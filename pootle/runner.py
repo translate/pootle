@@ -147,7 +147,7 @@ def get_version():
     from django import get_version as django_version
 
     return ("Pootle %s (Django %s, Translate Toolkit %s)" %
-            (__version__.sver, django_version(), tt_version.sver))
+            (__version__, django_version(), tt_version.sver))
 
 
 def main():

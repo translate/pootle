@@ -10,7 +10,7 @@
 from django.conf import settings
 from django.utils import translation
 
-from pootle.__version__ import sver
+from pootle import __version__
 from pootle_language.models import Language
 from pootle_project.models import Project
 from staticpages.models import LegalPage
@@ -38,7 +38,7 @@ def pootle_context(request):
             'POOTLE_INSTANCE_ID': settings.POOTLE_INSTANCE_ID,
             'CAN_CONTACT': settings.CAN_CONTACT and settings.CONTACT_EMAIL,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
-            'POOTLE_VERSION': sver,
+            'POOTLE_VERSION': __version__,
             'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
             'POOTLE_CACHE_TIMEOUT': settings.POOTLE_CACHE_TIMEOUT,
             'DEBUG': settings.DEBUG,

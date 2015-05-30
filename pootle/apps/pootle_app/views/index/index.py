@@ -50,9 +50,9 @@ class AboutView(TemplateView):
 
     def get_context_data(self, **kwargs):
         from translate.__version__ import sver as toolkit_version
-        from pootle.__version__ import sver as pootle_version
+        from pootle import __version__
 
         return {
-            'pootle_version': pootle_version,
+            'pootle_version': __version__,
             'toolkit_version': toolkit_version,
         }

@@ -19,7 +19,7 @@ from distutils.errors import DistutilsOptionError
 from setuptools import find_packages, setup
 from setuptools.command.test import test as TestCommand
 
-from pootle.__version__ import sver as pootle_version
+from pootle import __version__
 
 
 def parse_requirements(file_name):
@@ -141,7 +141,7 @@ class PootleBuildMo(DistutilsBuild):
 
 setup(
     name="Pootle",
-    version=pootle_version,
+    version=__version__,
 
     description="An online collaborative localization tool.",
     long_description=open(
@@ -152,7 +152,7 @@ setup(
     author_email="dev@translate.org.za",
     license="GNU General Public License (GPL)",
     url="http://pootle.translatehouse.org",
-    download_url="http://sourceforge.net/projects/translate/files/Pootle/" + pootle_version,
+    download_url="http://sourceforge.net/projects/translate/files/Pootle/" + __version__,
 
     install_requires=parse_requirements('requirements/base.txt'),
     tests_require=parse_requirements('requirements/tests.txt'),
