@@ -17,7 +17,7 @@ POOTLE_JS_POT="$POT_DIR/pootle_js.pot"
 
 # Header settings
 PACKAGE="Pootle"
-VERSION=`egrep "^ver" $SRC_DIR/__version__.py | sed "s,.*(\(.*\)),\1,g" | sed "s,[ ],,g" | sed "s/,/./g"`
+VERSION=$(python -m pootle.core.utils.version main)
 MSGID_BUGS_TO="https://github.com/translate/pootle/issues/new"
 
 cd $SRC_DIR
