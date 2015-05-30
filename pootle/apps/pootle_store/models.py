@@ -1790,6 +1790,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def serialize(self):
         from django.core.cache import caches
+
+        if self.is_terminology:
+            raise NotImplementedError("Cannot serialize terminology stores")
+
         cache = caches["exports"]
         rev = self.get_max_unit_revision()
         path = self.pootle_path
