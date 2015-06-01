@@ -13,34 +13,37 @@ from django.utils import timezone
 
 
 class SubmissionFactory(factory.django.DjangoModelFactory):
-    FACTORY_FOR = 'pootle_statistics.Submission'
-
     creation_time = timezone.now()
+
+    class Meta:
+        model = 'pootle_statistics.Submission'
 
 
 class EvernoteAccountFactory(factory.django.DjangoModelFactory):
-    FACTORY_FOR = 'evernote_auth.EvernoteAccount'
+
+    class Meta:
+        model = 'evernote_auth.EvernoteAccount'
 
 
 class UserFactory(factory.django.DjangoModelFactory):
-    FACTORY_FOR = 'accounts.User'
-
     username = factory.Sequence(lambda n: 'foo%s' % n)
     email = factory.LazyAttribute(lambda o: '%s@example.org' % o.username)
 
+    class Meta:
+        model = 'accounts.User'
+
 
 class LegalPageFactory(factory.django.DjangoModelFactory):
-    FACTORY_FOR = 'staticpages.LegalPage'
-
     title = factory.Sequence(lambda n: 'title%s' % n)
     virtual_path = factory.Sequence(lambda n: '/foo/bar%s' % n)
 
     class Meta:
-        abstract = True
+        model = 'staticpages.LegalPage'
 
 
 class AgreementFactory(factory.django.DjangoModelFactory):
-    FACTORY_FOR = 'staticpages.Agreement'
-
     user = factory.SubFactory(UserFactory)
     document = factory.SubFactory(LegalPageFactory)
+
+    class Meta:
+        model = 'staticpages.Agreement'
