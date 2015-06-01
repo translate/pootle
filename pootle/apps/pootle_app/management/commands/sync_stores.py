@@ -36,11 +36,3 @@ class Command(PootleCommand):
                 skip_missing=skip_missing,
                 only_newer=not force
         )
-
-    def handle_store(self, store, **options):
-        overwrite = options.get('overwrite', False)
-        skip_missing = options.get('skip_missing', False)
-        force = options.get('force', False)
-
-        store.sync(conservative=not overwrite, update_structure=overwrite,
-                   skip_missing=skip_missing, only_newer=not force)

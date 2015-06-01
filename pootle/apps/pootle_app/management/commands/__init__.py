@@ -56,16 +56,6 @@ class PootleCommand(NoArgsCommand):
                 logging.exception(u"Failed to run %s over %s's files",
                                   self.name, tp)
                 return
-        elif hasattr(self, "handle_store"):
-            store_query = tp.stores.live()
-            for store in store_query.iterator():
-                logging.info(u"Running %s over %s",
-                             self.name, store.pootle_path)
-                try:
-                    self.handle_store(store, **options)
-                except Exception:
-                    logging.exception(u"Failed to run %s over %s",
-                                      self.name, store.pootle_path)
 
     def handle_noargs(self, **options):
         # adjust debug level to the verbosity option

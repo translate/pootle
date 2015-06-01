@@ -43,12 +43,6 @@ class Command(PootleCommand):
         translation_project.directory.makeobsolete()
         return False
 
-    def handle_store(self, store, **options):
-        overwrite = options.get('overwrite', False)
-        force = options.get('force', False)
-
-        store.update(overwrite=overwrite, only_newer=not force)
-
     def handle_all(self, **options):
         scan_translation_projects(languages=self.languages,
                                   projects=self.projects)
