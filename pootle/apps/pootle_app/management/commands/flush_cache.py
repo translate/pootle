@@ -20,9 +20,3 @@ class Command(PootleCommand):
 
     def handle_all_stores(self, translation_project, **options):
         translation_project.clear_all_cache()
-
-    def handle_language(self, lang, **options):
-        lang.clear_all_cache(children=False)
-
-    def handle_project(self, prj, **options):
-        prj.clear_all_cache(children=False)
