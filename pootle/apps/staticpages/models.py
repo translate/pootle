@@ -67,8 +67,7 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
 
     def save(self, **kwargs):
         # Update the `modified_on` timestamp only when specific fields change.
-        dirty_fields = self.get_dirty_fields()
-        if any(field in dirty_fields for field in ('title', 'body', 'url')):
+        if self.has_changes():
             self.modified_on = now()
 
         super(AbstractPage, self).save(**kwargs)
@@ -105,6 +104,10 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
                  for p in AbstractPage.__subclasses__()]
         if True in pages:
             raise ValidationError(_(u'Virtual path already in use.'))
+
+    def has_changes(self):
+        dirty_fields = self.get_dirty_fields()
+        return any(field in dirty_fields for field in ('title', 'body', 'url'))
 
 
 class LegalPage(AbstractPage):
