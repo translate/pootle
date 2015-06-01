@@ -15,12 +15,11 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Agreement
 
 
-def agreement_form_factory(pages, user, anchor_class=''):
+def agreement_form_factory(pages, user):
     """Factory that builds an agreement form.
 
     :param pages: Legal pages that need to be accepted by users.
     :param user: User bound to the agreement form.
-    :param anchor_class: Extra class(es) added to page links.
     :return: An `AgreementForm` class with `pages` as required checkboxes.
     """
     class AgreementForm(forms.Form):
@@ -54,7 +53,7 @@ def agreement_form_factory(pages, user, anchor_class=''):
                                                    args=[page.virtual_path])
             label_params = {
                 'url': url,
-                'classes': u''.join(['js-agreement-popup', ' ', anchor_class]),
+                'classes': 'js-agreement-popup',
                 'title': page.title,
             }
             label = mark_safe(_('I have read and accept: <a href="%(url)s" '
