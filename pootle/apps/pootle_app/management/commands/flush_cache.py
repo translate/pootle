@@ -21,9 +21,6 @@ class Command(PootleCommand):
     def handle_all_stores(self, translation_project, **options):
         translation_project.clear_all_cache()
 
-    def handle_store(self, store, **options):
-        store.clear_all_cache()
-
     def handle_language(self, lang, **options):
         lang.clear_all_cache(children=False)
 
