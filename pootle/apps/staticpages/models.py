@@ -50,7 +50,6 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
         help_text=_('If set, any references to this page will redirect to this'
                     ' URL'),
     )
-    # This will go away with bug 2830, but works fine for now.
     modified_on = models.DateTimeField(
         default=now,
         editable=False,
