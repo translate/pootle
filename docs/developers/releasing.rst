@@ -307,6 +307,7 @@ You can then proceed with other tests such as checking:
      $ rmvirtualenv test-pootle-release
 
 #. Documentation is available in the package
+#. Assets are available in the package
 #. Check that the instructions in the :doc:`Installation guide
    </server/installation>` are correct
 #. Check that the instructions in the :doc:`Upgrade guide </server/upgrading>`
