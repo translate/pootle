@@ -1,0 +1,36 @@
+=============================
+Pootle bugfix release 2.5.1.2
+=============================
+
+*Released on 2015-06-01*
+
+The 2.5.1.2 release is a bugfix release for the 2.5.1 branch. It is meant to
+provide a newer stable version until Pootle 2.7.0 is released.
+
+
+Installation and Upgrade
+========================
+- :doc:`Installation </server/installation>`
+- :doc:`Upgrade </server/upgrading>`
+
+
+Bugfixes
+========
+
+For a full list of changes, please check the `git log
+<https://github.com/translate/pootle/compare/2.5.1...2.5.1.2>`_.
+
+- Added support for ``xliff`` extension for XLIFF files
+- Fixed the missing assets issue with the provided package
+- Fixed submission of untrusted input from editor
+- Fixed upgrading from version 2.5.0
+- Fixed notification when saving units
+- Assorted documentation updates and fixes
+
+
+Credits
+=======
+The following people have made Pootle 2.5.1.2 possible:
+
+Dwayne Bailey, Leandro Regueiro, Miha Vrhovnik, Kevin KIN-FOO, Julen Ruiz
+Aizpuru.
