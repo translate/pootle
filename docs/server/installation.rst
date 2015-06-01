@@ -88,7 +88,7 @@ install Pootle by running:
 
 .. code-block:: bash
 
-  (env) $ pip install Pootle
+  (env) $ pip install "Pootle==2.5.1.2"
 
 
 This will fetch and install the minimum set of required dependencies as well.
@@ -102,14 +102,6 @@ This will fetch and install the minimum set of required dependencies as well.
 
   lxml also require the development packages of libxml2 and libxslt.
 
-.. note::
-   Older versions of pip may try installing pre-release versions of Pootle,
-   e.g. installing 2.5.1-rc1 instead of 2.5.1.  In that case run:
-
-   .. code-block:: bash
-
-      (env) $ pip install Pootle==2.5.1
-
 
 If everything went well, you will now be able to access the ``pootle`` command
 line tool within your environment.
@@ -117,7 +109,7 @@ line tool within your environment.
 .. code-block:: bash
 
   (env) $ pootle --version
-  Pootle 2.5.1
+  Pootle 2.5.1.2
   Translate Toolkit 1.10
   Django 1.4.10
 
