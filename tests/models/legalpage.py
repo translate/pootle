@@ -15,21 +15,19 @@ from staticpages.models import LegalPage
 from ..factories import AgreementFactory, LegalPageFactory, UserFactory
 
 
-@pytest.mark.xfail
 @pytest.mark.django_db()
 def test_pending_agreements():
     """Tests proper user pending agreements are returned."""
     foo_user = UserFactory.create(username='foo')
 
-    # XXX: for some obscure reason calling `LegalPageFactory.create()`
-    # twice to create two object instances has weird effects in Django's
-    # queryset caching: `len()`, and therefore `.count()`, always returns
-    # the same value. Using `.create_batch()` here as a workaround
-    privacy_policy, tos = LegalPageFactory.create_batch(2, active=True)
-    privacy_policy.modified_on = aware_datetime(2014, 01, 01)
-    privacy_policy.save()
-    tos.modified_on = aware_datetime(2015, 01, 01)
-    tos.save()
+    privacy_policy = LegalPageFactory.create(
+        active=True,
+        modified_on=aware_datetime(2014, 01, 01),
+    )
+    tos = LegalPageFactory.create(
+        active=True,
+        modified_on=aware_datetime(2015, 01, 01),
+    )
 
     # `foo_user` hasn't agreed any ToS yet
     pending = LegalPage.objects.pending_user_agreement(foo_user)
