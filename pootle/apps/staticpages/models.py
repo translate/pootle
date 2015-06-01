@@ -146,3 +146,6 @@ class Agreement(models.Model):
 
     class Meta:
         unique_together = ('user', 'document',)
+
+    def __unicode__(self):
+        return u'%s (%s@%s)' % (self.document, self.user, self.agreed_on)
