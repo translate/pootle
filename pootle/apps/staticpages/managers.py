@@ -24,12 +24,24 @@ class PageManager(Manager):
 
         return self.get_queryset().filter(active=True)
 
+    def has_pending_agreement(self, user):
+        agreements = self.pending_user_agreement(user)
+        return len(list(agreements)) > 0
+
     def pending_user_agreement(self, user, **kwargs):
         """Filters active pages where the given `user` has pending
         agreements.
         """
         # FIXME: This should be a method exclusive to a LegalPage manager
-        return self.live().exclude(
-            agreement__user=user,
-            modified_on__lt=F('agreement__agreed_on'),
-        ).distinct()
+        return self.raw('''
+            SELECT DISTINCT staticpages_legalpage.id
+            FROM staticpages_legalpage
+            WHERE (staticpages_legalpage.active = TRUE
+                   AND NOT (staticpages_legalpage.id IN
+                            (SELECT A.document_id
+                             FROM staticpages_legalpage AS LP
+                             INNER JOIN staticpages_agreement AS A
+                                        ON LP.id = A.document_id
+                             WHERE A.user_id = %s AND
+                             A.agreed_on > LP.modified_on)))
+        ''', [user.id])

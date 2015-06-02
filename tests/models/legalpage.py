@@ -26,7 +26,7 @@ def test_pending_agreements():
     )
 
     # `foo_user` hasn't agreed the privacy policy yet
-    pending = LegalPage.objects.pending_user_agreement(foo_user)
+    pending = list(LegalPage.objects.pending_user_agreement(foo_user))
     assert len(pending) == 1
     assert privacy_policy in pending
 
@@ -37,7 +37,7 @@ def test_pending_agreements():
         agreed_on=aware_datetime(2014, 02, 02),
     )
 
-    pending = LegalPage.objects.pending_user_agreement(foo_user)
+    pending = list(LegalPage.objects.pending_user_agreement(foo_user))
     assert len(pending) == 0
 
     # Let's add a new ToS
@@ -46,7 +46,7 @@ def test_pending_agreements():
         modified_on=aware_datetime(2015, 01, 01),
     )
 
-    pending = LegalPage.objects.pending_user_agreement(foo_user)
+    pending = list(LegalPage.objects.pending_user_agreement(foo_user))
     assert len(pending) == 1
     assert tos in pending
 
@@ -57,14 +57,14 @@ def test_pending_agreements():
         agreed_on=aware_datetime(2015, 02, 02),
     )
 
-    pending = LegalPage.objects.pending_user_agreement(foo_user)
+    pending = list(LegalPage.objects.pending_user_agreement(foo_user))
     assert len(pending) == 0
 
     # The ToS were modified, `foo_user` must agree it
     tos.modified_on = aware_datetime(2015, 03, 03)
     tos.save()
 
-    pending = LegalPage.objects.pending_user_agreement(foo_user)
+    pending = list(LegalPage.objects.pending_user_agreement(foo_user))
     assert len(pending) == 1
     assert tos in pending
 
@@ -72,7 +72,7 @@ def test_pending_agreements():
     privacy_policy.modified_on = aware_datetime(2015, 04, 04)
     privacy_policy.save()
 
-    pending = LegalPage.objects.pending_user_agreement(foo_user)
+    pending = list(LegalPage.objects.pending_user_agreement(foo_user))
     assert len(pending) == 2
     assert privacy_policy in pending
     assert tos in pending
@@ -81,6 +81,6 @@ def test_pending_agreements():
     tos.active = False
     tos.save()
 
-    pending = LegalPage.objects.pending_user_agreement(foo_user)
+    pending = list(LegalPage.objects.pending_user_agreement(foo_user))
     assert len(pending) == 1
     assert privacy_policy in pending

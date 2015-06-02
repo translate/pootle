@@ -23,7 +23,7 @@ def _agreement_context(request):
                      settings.LEGALPAGE_NOCHECK_PREFIXES)
 
     if (request.user.is_authenticated() and not nocheck and
-        LegalPage.objects.pending_user_agreement(request.user).exists()):
+        LegalPage.objects.has_pending_agreement(request.user)):
         return True
 
     return False
