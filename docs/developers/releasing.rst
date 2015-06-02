@@ -185,12 +185,6 @@ Update the translations from the `Pootle server
 Create release notes
 --------------------
 
-The release notes will be used in these places:
-
-- Pootle website -- `download page
-  <http://pootle.translatehouse.org/download.html>`_ (used in gh-pages)
-- Email announcements -- text version
-
 We create our release notes in reStructured Text, since we use that elsewhere
 and since it can be rendered well in some of our key sites.
 
@@ -242,7 +236,7 @@ Up version numbers
 
 Update the version number in:
 
-- :file:`pootle/__init__.py::VERSION`
+- :file:`pootle/__init__.py:VERSION`
 
 The version tuple should follow the pattern::
 
@@ -290,24 +284,77 @@ the new Pootle using:
 .. code-block:: bash
 
     $ mkvirtualenv test-pootle-release
-    (test-pootle-release)$ pip install $path_to_dist/Pootle-$version.tar.bz2
+    (test-pootle-release)$ pip install dist/Pootle-$version.tar.bz2
+    (test-pootle-release)$ pootle init
 
 
 You can then proceed with other tests such as checking:
 
-#. Quick installation check:
+#. Documentation is available in the package
+#. Assets are available in the package
+#. Quick SQLite installation check:
 
    .. code-block:: bash
 
-     (test-pootle-release)$ pootle init
      (test-pootle-release)$ pootle setup
      (test-pootle-release)$ pootle start
      (test-pootle-release)$  # Browse to localhost:8000
-     (test-pootle-release)$ deactivate
-     $ rmvirtualenv test-pootle-release
 
-#. Documentation is available in the package
-#. Assets are available in the package
+#. MySQL installation check:
+
+   #. Create a blank database on MySQL:
+
+      .. code-block:: bash
+
+        mysql -u $db_user -p$db_password -e 'CREATE DATABASE `test-mysql-pootle` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;'
+
+   #. Change the database settings in the settings file created by
+      :djadmin:`pootle init <init>` (by default :file:`~/.pootle/pootle.conf`)
+      to use this new MySQL database
+   #. Run the following:
+
+      .. code-block:: bash
+
+        (test-pootle-release)$ pootle setup
+        (test-pootle-release)$ pootle start
+        (test-pootle-release)$  # Browse to localhost:8000
+
+   #. Drop the MySQL database you have created:
+
+      .. code-block:: bash
+
+        mysql -u $db_user -p$db_password -e 'DROP DATABASE `test-mysql-pootle`;'
+
+#. MySQL upgrade check:
+
+   #. Download a database dump from `Pootle Test Data 
+      <https://github.com/translate/pootle-test-data>`_ repository
+   #. Create a blank database on MySQL:
+
+      .. code-block:: bash
+
+        mysql -u $db_user -p$db_password -e 'CREATE DATABASE `test-mysql-pootle` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;'
+
+   #. Import the database dump into the MySQL database:
+
+      .. code-block:: bash
+
+        mysql -u $db_user -p$db_password test-mysql-pootle < $db_dump_file
+
+   #. Run the following:
+
+      .. code-block:: bash
+
+        (test-pootle-release)$ pootle setup
+        (test-pootle-release)$ pootle start
+        (test-pootle-release)$  # Browse to localhost:8000
+
+   #. Drop the MySQL database you have created:
+
+      .. code-block:: bash
+
+        mysql -u $db_user -p$db_password -e 'DROP DATABASE `test-mysql-pootle`;'
+
 #. Check that the instructions in the :doc:`Installation guide
    </server/installation>` are correct
 #. Check that the instructions in the :doc:`Upgrade guide </server/upgrading>`
@@ -336,6 +383,13 @@ You can then proceed with other tests such as checking:
      $ ./setup.py --classifiers
 
    The actual long description is taken from :file:`/README.rst`.
+
+Finally clean your test environment:
+
+.. code-block:: bash
+
+    (test-pootle-release)$ deactivate
+    $ rmvirtualenv test-pootle-release
 
 
 Publish the new release
@@ -408,6 +462,8 @@ Run the following to publish the package on PyPI:
     $ make publish-pypi
 
 
+.. _releasing#create-github-release:
+
 Create a release on Github
 --------------------------
 
@@ -422,8 +478,9 @@ You will need:
 Do the following to create the release:
 
 #. Draft a new release with the corresponding tag version
-#. Convert the major changes in the release notes to Markdown with `Pandoc
-   <http://pandoc.org/>`_
+#. Convert the major changes (no more than five) in the release notes to
+   Markdown with `Pandoc <http://pandoc.org/>`_. Bugfix releases can replace
+   the major changes with *This is a bugfix release for the X.X.X branch.*
 #. Add the converted major changes to the release description
 #. Include at the bottom of the release description a link to the full release
    notes at Read The Docs
@@ -453,27 +510,14 @@ We use github pages for the website. First we need to checkout the pages:
    prerender just that page?
 
 
-Update Pootle dashboard
------------------------
-
-.. note:: Do not do this for release candidates, only for final releases.
-
-The dashboard used in Pootle's dashboard is updated in its own project:
-
-#. :command:`git clone git@github.com:translate/pootle-dashboard.git`
-#. Edit :file:`index.html` to contain the latest release info
-#. Add the same info in :file:`alerts.xml` pointing to the release in RTD
-   :file:`release/$version.html`
-
-Do a :command:`git pull` on the server to get the latest changes from the repo.
-
-
 Announce to the world
 ---------------------
 
 Let people know that there is a new version:
 
-#. Announce on mailing lists **using plain text** emails:
+#. Announce on mailing lists **using plain text** emails using the same text
+   (adjusting what needs to be adjusted) used for the :ref:`Create a release on
+   Github <releasing#create-github-release>` description:
 
    - translate-announce@lists.sourceforge.net
    - translate-pootle@lists.sourceforge.net
