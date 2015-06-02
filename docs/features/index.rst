@@ -46,5 +46,6 @@ Administrative features
 .. toctree::
    :maxdepth: 2
 
+   staticpages
    captcha
    permissions
