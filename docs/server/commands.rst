@@ -119,7 +119,7 @@ retry_failed_jobs
 
 Requeue failed RQ jobs.
 
-Backgorund RQ jobs can fail for various reasons.  To push them back into the
+Background RQ jobs can fail for various reasons.  To push them back into the
 queue you can run this command.
 
 Examine the RQ worker logs for tracebacks before trying to requeue your jobs.
