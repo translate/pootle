@@ -189,8 +189,10 @@ Sysadmins
 - Redis is now required for all caching, memcached and other alternatives will
   not work.
 - Registration and authentication is now handled by `django-allauth
-  <https://readthedocs.org/projects/django-allauth/>`_.  This gives Pootle
-  implicit support for OpenID, OAuth, OAuth2 and Persona sign-in protocols.
+  <https://readthedocs.org/projects/django-allauth/>`_.  gives Pootle
+  implicit support for OpenID, OAuth, OAuth2 and Persona sign-in
+  protocols. Check out the :ref:`documentation on users auth <auth>` for
+  further details.
 - Integrated ElasticSearch-based local TM server into Pootle. Unit submissions
   update the index instantly.  To configure adjust :setting:`POOTLE_TM_SERVER`
   and to load the TM use the :djadmin:`update_tmserver` management command.

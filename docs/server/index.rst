@@ -41,5 +41,6 @@ Performance tuning and managing the server
    logging
    optimization
    cache
+   auth
    commands
    rq
