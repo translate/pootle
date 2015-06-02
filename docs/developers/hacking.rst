@@ -145,6 +145,12 @@ extras that will ease the development process.
    system in order to complete the build process and the installation of the
    required packages.
 
+Also run the following so you can locally build the documentation:
+
+.. code-block:: bash
+
+    (env-name) $ pip install -e .
+
 
 With all the dependencies installed within the virtual environment, Pootle is
 almost ready to run. In development environments you will want to use settings
