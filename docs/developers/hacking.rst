@@ -178,7 +178,10 @@ schema and add initial data.
     (env-name) $ python manage.py initdb
 
 
-Finally, just run the development server.
+Now ensure that you have built the assets by following the instructions for
+:doc:`frontend development </development/frontend>`.
+
+Finally, run the development server.
 
 .. code-block:: bash
 
