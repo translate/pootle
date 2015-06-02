@@ -12,11 +12,10 @@ import os
 import time
 
 from translate.misc.lru import LRUCachingDict
-from translate.storage.base import ParseError
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.db import models, IntegrityError
+from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -330,7 +329,6 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     @property
     def units(self):
-        self.require_units()
         # FIXME: we rely on implicit ordering defined in the model. We might
         # want to consider pootle_path as well
         return Unit.objects.filter(store__translation_project=self,
@@ -414,18 +412,6 @@ class TranslationProject(models.Model, CachedTreeItem):
             store.sync(update_structure=not conservative,
                        conservative=conservative,
                        skip_missing=skip_missing, only_newer=only_newer)
-
-    def require_units(self):
-        """Makes sure all stores are parsed"""
-        for store in self.stores.live().filter(state__lt=PARSED).iterator():
-            try:
-                store.require_units()
-            except IntegrityError:
-                logging.info(u"Duplicate IDs in %s", store.abs_real_path)
-            except ParseError as e:
-                logging.info(u"Failed to parse %s\n%s", store.abs_real_path, e)
-            except (IOError, OSError) as e:
-                logging.info(u"Can't access %s\n%s", store.abs_real_path, e)
 
     ### TreeItem
     def get_children(self):

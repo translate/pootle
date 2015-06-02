@@ -23,6 +23,9 @@ def test_max_revision(af_tutorial_po):
     assert initial_max_revision == initial_revision
     assert initial_max_revision == 0
 
+    # Parse a store
+    af_tutorial_po.parse()
+
     # Let's make 10 translation updates, this must also update their
     # revision numbers
     for i in range(10):
@@ -42,6 +45,9 @@ def test_max_revision(af_tutorial_po):
 def test_revision_incr(af_tutorial_po):
     """Tests revision is incremented when units change."""
     previous_revision = Revision.get()
+    # Parse a store
+    af_tutorial_po.parse()
+
     db_unit = _update_translation(af_tutorial_po, 0, {'target': [u'Fleisch']},
                                   sync=False)
 

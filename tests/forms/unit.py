@@ -38,6 +38,9 @@ def _create_unit_form(request, language, unit):
 def test_submit_no_source(rf, default, default_ps, af_tutorial_po):
     """Tests that the source string cannot be modified."""
     language = af_tutorial_po.translation_project.language
+    # Parse a store
+    af_tutorial_po.parse()
+
     unit = af_tutorial_po.getitem(0)
     source_string = unit.source_f
     directory = unit.store.parent
@@ -63,6 +66,9 @@ def test_submit_fuzzy(rf, admin, default, default_ps,
                       afrikaans, af_tutorial_po):
     """Tests that non-admin users can't set the fuzzy flag."""
     language = afrikaans
+    # Parse a store
+    af_tutorial_po.parse()
+
     unit = af_tutorial_po.getitem(0)
     directory = unit.store.parent
     post_dict = {
@@ -85,6 +91,9 @@ def test_submit_fuzzy(rf, admin, default, default_ps,
 def test_submit_similarity(rf, default, default_ps, afrikaans, af_tutorial_po):
     """Tests that similarities are within a particular range."""
     language = afrikaans
+    # Parse a store
+    af_tutorial_po.parse()
+
     unit = af_tutorial_po.getitem(0)
     directory = unit.store.parent
     post_dict = {

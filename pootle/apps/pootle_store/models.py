@@ -1363,7 +1363,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if hasattr(self, '_units'):
             return self._units
 
-        self.require_units()
         return self.unit_set.filter(state__gt=OBSOLETE).order_by('index') \
                             .select_related('store__translation_project')
 
@@ -1459,11 +1458,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
             get_editor_filter(**kwargs),
         ])
-
-    def require_units(self):
-        """Make sure file is parsed and units are created."""
-        if self.state < PARSED and self.unit_set.count() == 0:
-            self.parse()
 
     def require_dbid_index(self, update=False, obsolete=False):
         """build a quick mapping index between unit ids and database ids"""

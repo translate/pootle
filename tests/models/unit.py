@@ -48,6 +48,9 @@ def test_getorig(af_tutorial_po):
     """Tests that the in-DB Store and on-disk Store match by checking that
     units match in order.
     """
+    # Parse a store
+    af_tutorial_po.parse()
+
     for db_unit in af_tutorial_po.units.iterator():
         store_unit = db_unit.getorig()
         assert db_unit.getid() == store_unit.getid()
@@ -56,6 +59,9 @@ def test_getorig(af_tutorial_po):
 @pytest.mark.django_db
 def test_convert(af_tutorial_po):
     """Tests that in-DB and on-disk units match after format conversion."""
+    # Parse a store
+    af_tutorial_po.parse()
+
     for db_unit in af_tutorial_po.units.iterator():
         if db_unit.hasplural() and not db_unit.istranslated():
             # Skip untranslated plural units, they will always look
@@ -71,6 +77,9 @@ def test_convert(af_tutorial_po):
 @pytest.mark.django_db
 def test_update_target(af_tutorial_po):
     """Tests that target changes are properly sync'ed to disk."""
+    # Parse a store
+    af_tutorial_po.parse()
+
     db_unit = _update_translation(af_tutorial_po, 0, {'target': u'samaka'})
     store_unit = db_unit.getorig()
 
@@ -84,6 +93,9 @@ def test_update_target(af_tutorial_po):
 @pytest.mark.django_db
 def test_empty_plural_target(af_tutorial_po):
     """Tests empty plural targets are not deleted."""
+    # Parse a store
+    af_tutorial_po.parse()
+
     db_unit = _update_translation(af_tutorial_po, 2, {'target': [u'samaka']})
     store_unit = db_unit.getorig()
     assert len(store_unit.target.strings) == 2
@@ -95,6 +107,9 @@ def test_empty_plural_target(af_tutorial_po):
 @pytest.mark.django_db
 def test_update_plural_target(af_tutorial_po):
     """Tests plural translations are stored and sync'ed."""
+    # Parse a store
+    af_tutorial_po.parse()
+
     db_unit = _update_translation(af_tutorial_po, 2,
                                  {'target': [u'samaka', u'samak']})
     store_unit = db_unit.getorig()
@@ -113,6 +128,9 @@ def test_update_plural_target(af_tutorial_po):
 @pytest.mark.django_db
 def test_update_plural_target_dict(af_tutorial_po):
     """Tests plural translations are stored and sync'ed (dict version)."""
+    # Parse a store
+    af_tutorial_po.parse()
+
     db_unit = _update_translation(af_tutorial_po, 2,
                                  {'target': {0: u'samaka', 1: u'samak'}})
     store_unit = db_unit.getorig()
@@ -131,6 +149,9 @@ def test_update_plural_target_dict(af_tutorial_po):
 @pytest.mark.django_db
 def test_update_fuzzy(af_tutorial_po):
     """Tests fuzzy state changes are stored and sync'ed."""
+    # Parse a store
+    af_tutorial_po.parse()
+
     db_unit = _update_translation(af_tutorial_po, 0,
                                  {'target': u'samaka', 'fuzzy': True})
     store_unit = db_unit.getorig()
@@ -154,6 +175,9 @@ def test_update_fuzzy(af_tutorial_po):
 @pytest.mark.django_db
 def test_update_comment(af_tutorial_po):
     """Tests translator comments are stored and sync'ed."""
+    # Parse a store
+    af_tutorial_po.parse()
+
     db_unit = _update_translation(af_tutorial_po, 0,
                                  {'translator_comment': u'7amada'})
     store_unit = db_unit.getorig()
@@ -170,6 +194,9 @@ def test_update_comment(af_tutorial_po):
 @pytest.mark.django_db
 def test_add_suggestion(af_tutorial_po, system):
     """Tests adding new suggestions to units."""
+    # Parse a store
+    af_tutorial_po.parse()
+
     untranslated_unit = af_tutorial_po.getitem(0)
     translated_unit = af_tutorial_po.getitem(1)
     suggestion_text = 'foo bar baz'
@@ -210,6 +237,9 @@ def test_add_suggestion(af_tutorial_po, system):
 @pytest.mark.django_db
 def test_accept_suggestion_changes_state(issue_2401_po, system):
     """Tests that accepting a suggestion will change the state of the unit."""
+    # Parse a store
+    issue_2401_po.parse()
+
     tp = issue_2401_po.translation_project
 
     # First test with an untranslated unit
@@ -242,14 +272,15 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     unit.accept_suggestion(suggestion, tp, system)
     assert unit.state == TRANSLATED
 
+
 @pytest.mark.django_db
 def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
     """Tests that accepting a suggestion for an untranslated unit will
     change the wordcount stats of the unit's store.
     """
 
-    # Parse store
-    it_tutorial_po.update(overwrite=False, only_newer=False)
+    # Parse a store
+    it_tutorial_po.parse()
 
     untranslated_unit = it_tutorial_po.getitem(0)
     suggestion_text = 'foo bar baz'
