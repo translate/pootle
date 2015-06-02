@@ -208,7 +208,7 @@ Sysadmins
 - Xapian and Lucene are no longer required for searching and Pootle will not
   make use of them.  You can safely remove supporting libraries and packages if
   these services where used only for Pootle.
-- :setting:`POOTLE_REPORTS_MARK_FUNC`` allows a site wide function to provide
+- :setting:`POOTLE_REPORTS_MARK_FUNC` allows a site wide function to provide
   marks to user graphs.
 
 
