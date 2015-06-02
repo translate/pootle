@@ -42,3 +42,4 @@ Performance tuning and managing the server
    optimization
    cache
    commands
+   rq
