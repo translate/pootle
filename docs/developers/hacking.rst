@@ -156,7 +156,7 @@ this file and rename it by removing the *.sample* extension:
 
 
 .. note:: To learn more about how settings work in Pootle read the
-   :doc:`settings <server/settings>` documentation.
+   :doc:`settings </server/settings>` documentation.
 
 
 Once the configuration is in place, you'll need to setup the database
@@ -169,7 +169,7 @@ schema and add initial data.
 
 
 Now ensure that you have built the assets by following the instructions for
-:doc:`frontend development </development/frontend>`.
+:doc:`frontend development </developers/frontend>`.
 
 Finally, run the development server.
 
