@@ -239,8 +239,8 @@ def drop_db():
 
     if confirm('\nDropping the %s DB loses ALL its data! Are you sure?'
                % (env['db_name']), default=False):
-        run("echo 'DROP DATABASE `%s`' | mysql -u %s %s" %
-            (env['db_name'], env['db_user'], env['db_password_opt']))
+        run("mysql -u %(db_user)s %(db_password_opt)s "
+            "-e 'DROP DATABASE `%(db_name)s`'" % env)
     else:
         abort('\nAborting.')
 
