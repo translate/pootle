@@ -279,7 +279,7 @@ Test install and other tests
 ----------------------------
 
 The easiest way to test is in a virtualenv. You can test the installation of
-the new Pootle using:
+the new release using:
 
 .. code-block:: bash
 
@@ -366,21 +366,21 @@ You can then proceed with other tests such as checking:
 
    .. code-block:: bash
 
-     $ ./setup.py --help
+       $ ./setup.py --help
 
    Now you can try some options like:
 
    .. code-block:: bash
 
-     $ ./setup.py --name
-     $ ./setup.py --version
-     $ ./setup.py --author
-     $ ./setup.py --author-email
-     $ ./setup.py --url
-     $ ./setup.py --license
-     $ ./setup.py --description
-     $ ./setup.py --long-description
-     $ ./setup.py --classifiers
+       $ ./setup.py --name
+       $ ./setup.py --version
+       $ ./setup.py --author
+       $ ./setup.py --author-email
+       $ ./setup.py --url
+       $ ./setup.py --license
+       $ ./setup.py --description
+       $ ./setup.py --long-description
+       $ ./setup.py --classifiers
 
    The actual long description is taken from :file:`/README.rst`.
 
@@ -408,10 +408,10 @@ before you tag.
 
 .. code-block:: bash
 
-  $ git checkout -b stable/2.6.0
-  $ git push origin stable/2.6.0
-  $ git tag -a 2.6.0 -m "Tag version 2.6.0"
-  $ git push --tags
+    $ git checkout -b stable/2.6.0
+    $ git push origin stable/2.6.0
+    $ git tag -a 2.6.0 -m "Tag version 2.6.0"
+    $ git push --tags
 
 
 Release documentation
