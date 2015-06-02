@@ -499,9 +499,9 @@ We use github pages for the website. First we need to checkout the pages:
     $ git checkout gh-pages
 
 
-#. In :file:`_posts/` add a new release posting.  This is in Markdown format
-   (for now), so we need to change the release notes .rst to .md, which mostly
-   means changing URL links from ```xxx <link>`_`` to ``[xxx](link)``.
+#. In :file:`_posts/` add a new release posting. Use the same text used for the
+   :ref:`Github release <releasing#create-github-release>` description,
+   including the link to the full release notes.
 #. Change ``$version`` as needed. See :file:`download.html`,
    :file:`_config.yml` and :command:`git grep $old_release`
 #. :command:`git commit` and :command:`git push` -- changes are quite quick so
@@ -517,8 +517,7 @@ Announce to the world
 Let people know that there is a new version:
 
 #. Announce on mailing lists **using plain text** emails using the same text
-   (adjusting what needs to be adjusted) used for the :ref:`Create a release on
-   Github <releasing#create-github-release>` description:
+   (adjusting what needs to be adjusted) used for the :ref:`Github release <releasing#create-github-release>` description:
 
    - translate-announce@lists.sourceforge.net
    - translate-pootle@lists.sourceforge.net
