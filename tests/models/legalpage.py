@@ -24,22 +24,26 @@ def test_pending_agreements():
         active=True,
         modified_on=aware_datetime(2014, 01, 01),
     )
-    tos = LegalPageFactory.create(
-        active=True,
-        modified_on=aware_datetime(2015, 01, 01),
-    )
 
-    # `foo_user` hasn't agreed any ToS yet
+    # `foo_user` hasn't agreed the privacy policy yet
     pending = LegalPage.objects.pending_user_agreement(foo_user)
-    assert len(pending) == 2
+    assert len(pending) == 1
     assert privacy_policy in pending
-    assert tos in pending
 
     # `foo_user` agreed the privacy policy
     AgreementFactory.create(
         user=foo_user,
         document=privacy_policy,
         agreed_on=aware_datetime(2014, 02, 02),
+    )
+
+    pending = LegalPage.objects.pending_user_agreement(foo_user)
+    assert len(pending) == 0
+
+    # Let's add a new ToS
+    tos = LegalPageFactory.create(
+        active=True,
+        modified_on=aware_datetime(2015, 01, 01),
     )
 
     pending = LegalPage.objects.pending_user_agreement(foo_user)
@@ -63,3 +67,20 @@ def test_pending_agreements():
     pending = LegalPage.objects.pending_user_agreement(foo_user)
     assert len(pending) == 1
     assert tos in pending
+
+    # Same with the privacy policy
+    privacy_policy.modified_on = aware_datetime(2015, 04, 04)
+    privacy_policy.save()
+
+    pending = LegalPage.objects.pending_user_agreement(foo_user)
+    assert len(pending) == 2
+    assert privacy_policy in pending
+    assert tos in pending
+
+    # Let's disable the ToS
+    tos.active = False
+    tos.save()
+
+    pending = LegalPage.objects.pending_user_agreement(foo_user)
+    assert len(pending) == 1
+    assert privacy_policy in pending
