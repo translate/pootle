@@ -179,5 +179,6 @@
     {% endblock scripts %}
     {% endblock body %}
     <div class="js-auth" />{# Mount point for auth views #}
+    <div style="display: none;">{% csrf_token %}</div>
   </body>
 </html>
