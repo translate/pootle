@@ -60,7 +60,7 @@ def check_deprecated_settings(app_configs=None, **kwargs):
         # - Fail hard if its too old
         if hasattr(settings, old) and not hasattr(settings, new):
             from pootle import VERSION
-            if VERSION >= tuple([int(x) for x in remove_ver.split(".")]):
+            if VERSION >= tuple(int(x) for x in remove_ver.split(".")):
                 errors.append(checks.Critical(
                     ("Setting %s is deprecated and was removed in Pootle %s." %
                      (old, remove_ver)),
