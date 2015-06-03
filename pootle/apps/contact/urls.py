@@ -9,13 +9,16 @@
 
 from django.conf.urls import patterns, url
 
-from .views import ContactFormView, ReportFormView
+from .views import ContactFormView, ContactFormTemplateView, ReportFormView
 
 
 urlpatterns = patterns('',
     url(r'^$',
-        ContactFormView.as_view(),
+        ContactFormTemplateView.as_view(),
         name='pootle-contact'),
+    url(r'^xhr/$',
+        ContactFormView.as_view(),
+        name='pootle-contact-xhr'),
     url(r'report/$',
         ReportFormView.as_view(),
         name='pootle-contact-report-error'),
