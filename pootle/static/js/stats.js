@@ -35,6 +35,11 @@ var onDataLoad = function () {
 };
 
 
+function cssId(id) {
+  return id.replace(/[\.@\+]/g, '-');
+}
+
+
 var stats = {
 
   init: function (options) {
@@ -198,7 +203,7 @@ var stats = {
 
       for (name in data.children) {
         item = data.children[name];
-        code = name.replace(/[\.@]/g, '-');
+        code = cssId(name);
         $td = $table.find('#total-words-' + code);
 
         this.processTableItem(item, code, $table, $td, now);
@@ -207,7 +212,7 @@ var stats = {
       if ($vfoldersTable.length) {
         for (name in data.vfolders) {
           item = data.vfolders[name];
-          code = name.replace(/[\.@]/g, '-');
+          code = cssId(name);
           $td = $vfoldersTable.find('#total-words-' + code);
 
           // Display only the virtual folders that must be displayed.
