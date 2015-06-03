@@ -102,7 +102,7 @@ you are creating. :command:`mkvirtualenv` accepts any options that
 
    To activate a virtual environment again simply run:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
       $ workon <env-name>
 
@@ -119,7 +119,7 @@ Time to clone Pootle's source code repository. The main repository lives under
 
 
 Next, install Pootle software dependencies using :command:`pip`.  The
-requirements are stored in the :file:`requiremenets` directory. The
+requirements are stored in the :file:`requirements` directory. The
 :file:`dev.txt` requirements will install some extra packages to aid
 development.
 
