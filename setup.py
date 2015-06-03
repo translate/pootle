@@ -152,7 +152,7 @@ setup(
     author_email="dev@translate.org.za",
     license="GNU General Public License (GPL)",
     url="http://pootle.translatehouse.org",
-    download_url="http://sourceforge.net/projects/translate/files/Pootle/" + __version__,
+    download_url="https://github.com/translate/pootle/releases/tag/" + __version__,
 
     install_requires=parse_requirements('requirements/base.txt'),
     tests_require=parse_requirements('requirements/tests.txt'),
