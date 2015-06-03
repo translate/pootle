@@ -88,7 +88,7 @@ install Pootle by running:
 
 .. code-block:: bash
 
-  (env) $ pip install "Pootle==2.5.1.2"
+  (env) $ pip install "Pootle==2.5.1.3"
 
 
 This will fetch and install the minimum set of required dependencies as well.
