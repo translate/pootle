@@ -9,11 +9,11 @@
 
 from django.core.urlresolvers import reverse
 
-from contact_form.views import ContactFormView
+from contact_form.views import ContactFormView as OriginalContactFormView
 
 from pootle.core.views import AjaxResponseMixin
 
-from .forms import PootleContactForm, PootleReportForm
+from .forms import ContactForm, ReportForm
 
 
 SUBJECT_TEMPLATE = 'Unit #%d (%s)'
@@ -28,8 +28,8 @@ Your question or comment:
 '''
 
 
-class PootleContactFormView(AjaxResponseMixin, ContactFormView):
-    form_class = PootleContactForm
+class ContactFormView(AjaxResponseMixin, OriginalContactFormView):
+    form_class = ContactForm
 
     def get_template_names(self):
         # FIXME: we should move away from constructs like these
@@ -44,10 +44,10 @@ class PootleContactFormView(AjaxResponseMixin, ContactFormView):
         kwargs.update({
             'contact_form_url': reverse('pootle-contact'),
         })
-        return super(PootleContactFormView, self).get_context_data(**kwargs)
+        return super(ContactFormView, self).get_context_data(**kwargs)
 
     def get_initial(self):
-        initial = super(PootleContactFormView, self).get_initial()
+        initial = super(ContactFormView, self).get_initial()
 
         user = self.request.user
         if user.is_authenticated():
@@ -64,8 +64,8 @@ class PootleContactFormView(AjaxResponseMixin, ContactFormView):
         return reverse('pootle-contact')
 
 
-class PootleReportFormView(PootleContactFormView):
-    form_class = PootleReportForm
+class ReportFormView(ContactFormView):
+    form_class = ReportForm
 
     def get_context_data(self, **kwargs):
         # Provide the form action URL to use in the template that renders the
@@ -73,10 +73,10 @@ class PootleReportFormView(PootleContactFormView):
         kwargs.update({
             'contact_form_url': reverse('pootle-contact-report-error'),
         })
-        return super(PootleReportFormView, self).get_context_data(**kwargs)
+        return super(ReportFormView, self).get_context_data(**kwargs)
 
     def get_initial(self):
-        initial = super(PootleReportFormView, self).get_initial()
+        initial = super(ReportFormView, self).get_initial()
 
         report = self.request.GET.get('report', False)
         if report:

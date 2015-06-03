@@ -13,12 +13,12 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-from contact_form.forms import ContactForm
+from contact_form.forms import ContactForm as OriginalContactForm
 
 from pootle.core.forms import MathCaptchaForm
 
 
-class PootleContactForm(MathCaptchaForm, ContactForm):
+class ContactForm(MathCaptchaForm, OriginalContactForm):
 
     subject = forms.CharField(
         max_length=100,
@@ -29,7 +29,7 @@ class PootleContactForm(MathCaptchaForm, ContactForm):
     )
 
     def __init__(self, *args, **kwargs):
-        super(PootleContactForm, self).__init__(*args, **kwargs)
+        super(ContactForm, self).__init__(*args, **kwargs)
 
         self.fields['name'].label = _(u'Name')
         name_placeholder = _('Please enter your name')
@@ -54,14 +54,14 @@ class PootleContactForm(MathCaptchaForm, ContactForm):
         )
 
 # Alters form's field order. Use `self.field_order` when in Django 1.9+
-PootleContactForm.base_fields = OrderedDict(
-    (f, PootleContactForm.base_fields[f])
+ContactForm.base_fields = OrderedDict(
+    (f, ContactForm.base_fields[f])
     for f in ['name', 'email', 'subject', 'body', 'captcha_answer',
               'captcha_token']
 )
 
 
-class PootleReportForm(PootleContactForm):
+class ReportForm(ContactForm):
     """Contact form used to report errors on strings."""
 
     report_email = forms.EmailField(
@@ -83,8 +83,8 @@ class PootleReportForm(PootleContactForm):
         return [report_email]
 
 # Alters form's field order. Use `self.field_order` when in Django 1.9+
-PootleReportForm.base_fields = OrderedDict(
-    (f, PootleReportForm.base_fields[f])
+ReportForm.base_fields = OrderedDict(
+    (f, ReportForm.base_fields[f])
     for f in ['name', 'email', 'subject', 'body', 'captcha_answer',
               'captcha_token', 'report_email']
 )

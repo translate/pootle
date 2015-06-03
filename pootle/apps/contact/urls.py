@@ -9,14 +9,14 @@
 
 from django.conf.urls import patterns, url
 
-from .views import PootleContactFormView, PootleReportFormView
+from .views import ContactFormView, ReportFormView
 
 
 urlpatterns = patterns('',
     url(r'^$',
-        PootleContactFormView.as_view(),
+        ContactFormView.as_view(),
         name='pootle-contact'),
     url(r'report/$',
-        PootleReportFormView.as_view(),
+        ReportFormView.as_view(),
         name='pootle-contact-report-error'),
 )
