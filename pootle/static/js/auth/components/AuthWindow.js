@@ -17,7 +17,7 @@ let AuthWindow = React.createClass({
 
   renderFooter() {
     return (
-      <a href={l('/contact/')} className="js-popup-ajax">
+      <a href="#" className="js-contact">
         {gettext('Contact Us')}
       </a>
     );
