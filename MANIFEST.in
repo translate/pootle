@@ -20,3 +20,4 @@ exclude pootle/assets/js/strings.js
 exclude pootle/settings/*-local.conf
 prune pootle/static/images/sprite/
 global-exclude *~
+global-exclude *.pyc
