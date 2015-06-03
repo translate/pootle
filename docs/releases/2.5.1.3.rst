@@ -1,0 +1,30 @@
+=============================
+Pootle bugfix release 2.5.1.3
+=============================
+
+*Released on 2015-06-03*
+
+The 2.5.1.3 release is a bugfix release for the 2.5.1 branch. It is meant to
+provide a newer stable version until Pootle 2.7.0 is released.
+
+
+Installation and Upgrade
+========================
+- :doc:`Installation </server/installation>`
+- :doc:`Upgrade </server/upgrading>`
+
+
+Bugfixes
+========
+
+For a full list of changes, please check the `git log
+<https://github.com/translate/pootle/compare/2.5.1...2.5.1.3>`_.
+
+- Fixed the missing assets issue with the provided package
+
+
+Credits
+=======
+The following people have made Pootle 2.5.1.3 possible:
+
+Leandro Regueiro.
