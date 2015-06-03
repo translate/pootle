@@ -21,6 +21,7 @@ var sel = {
     subject: 'subject',
     body: 'body'
   },
+  trigger: '.js-contact',
   wrapper: '#js-contact',
   form: '#js-contact form',
   formSent: '#js-sent',
@@ -36,6 +37,10 @@ var contact = {
   init: function (options) {
     options && $.extend(this, options);
 
+    $(document).on('click', sel.trigger, (e) => {
+      e.preventDefault();
+      this.open();
+    });
     $(document).on('click', sel.data.target, this.onClick.bind(this));
     $(document).on('submit', sel.form, this.onSubmit.bind(this));
   },
