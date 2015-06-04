@@ -221,10 +221,11 @@ Configuration settings for applications used by Pootle.
 
     POOTLE_MARKUP_FILTER = ('markdown', {'safe_mode': 'escape'})
 
-    POOTLE_MARKUP_FILTER = ('restructuredtext', {'settings_overrides': {
-                                             'report_level': 'quiet',
-                                             }
-                                         })
+    POOTLE_MARKUP_FILTER = ('restructuredtext', {
+                                'settings_overrides': {
+                                    'report_level': 'quiet',
+                                 }
+                            })
 
 
 .. setting:: MAX_AUTOTERMS
