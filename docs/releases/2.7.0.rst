@@ -14,6 +14,7 @@ Changes in Requirements
   1.12.0
 - Python >= 2.7, < 3.0
 - Redis - latest stable release.
+- Unix-based operating system.
 
 
 Major Changes
@@ -212,6 +213,11 @@ Sysadmins
   these services where used only for Pootle.
 - :setting:`POOTLE_REPORTS_MARK_FUNC` allows a site wide function to provide
   marks to user graphs.
+- Pootle no longer runs on Windows.  Pootle uses RQ which makes use of
+  ``fork()`` therefore Pootle will only run on systems that implement
+  ``fork()``.  Importantly that means that Pootle is no longer supported on
+  Windows.  It would be possible to run Pootle on Windows if the rqworkers are
+  run on a system that supports ``fork()``.
 
 
 Command changes and additions

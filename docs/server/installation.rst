@@ -42,6 +42,24 @@ Your disk space should always be enough to store your files and your Pootle
 database, with some extra space available.
 
 
+.. _installation#system_requirements:
+
+System Requirements
+-------------------
+
+To run Pootle you need a computer running:
+
+- Linux
+- Mac OS X
+
+Or, any other Unix-like system.
+
+.. note:: Pootle will not run on Windows since it uses RQ, whose workers cannot
+   run on `Windows <http://python-rq.org/docs/>`_.
+
+   Pootle should be able to run on any system that implements ``fork()``.
+
+
 .. _installation#setup_environment:
 
 Setting up the Environment
