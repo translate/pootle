@@ -111,7 +111,7 @@ def check_redis(app_configs=None, **kwargs):
             id="pootle.C001",
         ))
     else:
-        if not workers or workers[0].stopped:
+        if len(queue.connection.smembers(Worker.redis_workers_keys)) == 0:
             # We need to check we're not running manage.py rqworker right now..
             import sys
             if len(sys.argv) > 1 and sys.argv[1] in RQWORKER_WHITELIST:
