@@ -36,7 +36,7 @@ class PageManager(Manager):
         return self.raw('''
             SELECT DISTINCT staticpages_legalpage.id
             FROM staticpages_legalpage
-            WHERE (staticpages_legalpage.active = TRUE
+            WHERE (staticpages_legalpage.active = %s
                    AND NOT (staticpages_legalpage.id IN
                             (SELECT A.document_id
                              FROM staticpages_legalpage AS LP
@@ -44,4 +44,4 @@ class PageManager(Manager):
                                         ON LP.id = A.document_id
                              WHERE A.user_id = %s AND
                              A.agreed_on > LP.modified_on)))
-        ''', [user.id])
+        ''', [True, user.id])
