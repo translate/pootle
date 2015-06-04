@@ -33,7 +33,8 @@ REDIS_MINIMUM_REQUIRED_VERSION = (2, 8, 4)
 # Maybe tagging can improve this?
 RQWORKER_WHITELIST = [
     "start", "initdb", "revision", "sync_stores", "run_cherrypy",
-    "refresh_stats", "update_stores", "calculate_checks", "retry_failed_jobs"
+    "refresh_stats", "update_stores", "calculate_checks", "retry_failed_jobs",
+    "check", "runserver",
 ]
 
 
