@@ -272,7 +272,7 @@ Deprecated settings
   feature has been removed to come back at a later date.
 - :setting:`CONTRIBUTORS_EXCLUDED_PROJECT_NAMES` and
   :setting:`CONTRIBUTORS_EXCLUDED_NAMES` have been removed along with the
-  contributers' page.
+  contributors' page.
 
 
 Internal changes
