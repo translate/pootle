@@ -34,21 +34,18 @@ class UserDetailView(NoDefaultUserMixin, DetailView):
     template_name = 'user/profile.html'
 
 
-class UserUpdateView(LoginRequiredMixin, UpdateView):
+class UserSettingsView(LoginRequiredMixin, UpdateView):
     model = User
+    fields = ('unit_rows', 'alt_src_langs')
+    template_name = 'profiles/settings/profile.html'
 
     def get_object(self, queryset=None):
         return self.request.user
 
     def get_form_kwargs(self):
-        kwargs = super(UserUpdateView, self).get_form_kwargs()
+        kwargs = super(UserSettingsView, self).get_form_kwargs()
         kwargs.update({'label_suffix': ''})
         return kwargs
-
-
-class UserSettingsView(UserUpdateView):
-    fields = ('unit_rows', 'alt_src_langs')
-    template_name = 'profiles/settings/profile.html'
 
     def get_form(self, *args, **kwargs):
         form = super(UserSettingsView, self).get_form(*args, **kwargs)
