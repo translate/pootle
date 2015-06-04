@@ -438,8 +438,7 @@ Deprecated Settings
 .. setting:: POOTLE_TOP_STATS_CACHE_TIMEOUT
 
 ``POOTLE_TOP_STATS_CACHE_TIMEOUT``
-
-  .. deprecated: 2.7
+  .. deprecated:: 2.7
      The overview page statistics rewrite has removed these statistics and the
      RQ based statistics has also removed the load of this type of data so this
      setting has been removed.
@@ -450,8 +449,7 @@ Deprecated Settings
 .. setting:: VCS_DIRECTORY
 
 ``VCS_DIRECTORY``
-
-  .. deprecated: 2.7
+  .. deprecated:: 2.7
      Version Control Support has been removed from Pootle.  We feel we can
      support version control better in future.  You can currently make use of
      :djadmin:`sync_stores` and :djadmin:`update_stores` to automate your own
@@ -461,8 +459,7 @@ Deprecated Settings
 .. setting:: CONTRIBUTORS_EXCLUDED_NAMES
 
 ``CONTRIBUTORS_EXCLUDED_NAMES``
-
-  .. deprecated: 2.7
+  .. deprecated:: 2.7
      The contributors page has been removed and is being replaced with better
      user statistics.
 
@@ -470,7 +467,6 @@ Deprecated Settings
 .. setting:: CONTRIBUTORS_EXCLUDED_PROJECT_NAMES
 
 ``CONTRIBUTORS_EXCLUDED_PROJECT_NAMES``
-
-  .. deprecated: 2.7
+  .. deprecated:: 2.7
      The contributors page has been removed and is being replaced with better
      user statistics.
