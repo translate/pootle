@@ -270,6 +270,9 @@ Deprecated settings
   stats rendering and is replaced by the new overview UI.
 - :setting:`VCS_DIRECTORY` is now deprecated as the intgrated Version Control
   feature has been removed to come back at a later date.
+- :setting:`CONTRIBUTORS_EXCLUDED_PROJECT_NAMES` and
+  :setting:`CONTRIBUTORS_EXCLUDED_NAMES` have been removed along with the
+  contributers' page.
 
 
 Internal changes

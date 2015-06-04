@@ -28,6 +28,8 @@ DEPRECATIONS = [
     ('MT_BACKENDS', 'POOTLE_MT_BACKENDS', '2.7', '2.8'),
     ('ENABLE_ALT_SRC', None, '2.5', None),
     ('VCS_DIRECTORY', None, '2.7', None),
+    ('CONTRIBUTORS_EXCLUDED_NAMES', None, '2.7', None),
+    ('CONTRIBUTORS_EXCLUDED_PROJECT_NAMES', None, '2.7', None),
 ]
 
 

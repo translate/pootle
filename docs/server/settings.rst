@@ -456,3 +456,21 @@ Deprecated Settings
      support version control better in future.  You can currently make use of
      :djadmin:`sync_stores` and :djadmin:`update_stores` to automate your own
      integration.
+
+
+.. setting:: CONTRIBUTORS_EXCLUDED_NAMES
+
+``CONTRIBUTORS_EXCLUDED_NAMES``
+
+  .. deprecated: 2.7
+     The contributors page has been removed and is being replaced with better
+     user statistics.
+
+
+.. setting:: CONTRIBUTORS_EXCLUDED_PROJECT_NAMES
+
+``CONTRIBUTORS_EXCLUDED_PROJECT_NAMES``
+
+  .. deprecated: 2.7
+     The contributors page has been removed and is being replaced with better
+     user statistics.
