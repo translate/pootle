@@ -269,3 +269,11 @@ html[dir="rtl"] #user-edit .helptext
     width: 100%;
     clear: both;
 }
+
+
+/* USER SETTINGS */
+
+.user-settings h2
+{
+    margin-top: 1em;
+}

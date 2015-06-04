@@ -38,7 +38,7 @@ class UserSettingsView(TestUserFieldMixin, UpdateView):
     fields = ('unit_rows', 'alt_src_langs')
     slug_field = 'username'
     slug_url_kwarg = 'username'
-    template_name = 'profiles/settings/profile.html'
+    template_name = 'user/settings.html'
 
     def get_form_kwargs(self):
         kwargs = super(UserSettingsView, self).get_form_kwargs()

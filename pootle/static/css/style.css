@@ -1767,8 +1767,6 @@ html[dir="rtl"] #tabs li
     color: #c30 !important;
 }
 
-body#settings #tabs a.settings,
-body#password #tabs a.password,
 body#admindashboard #tabs a.admindashboard,
 body#adminusers #tabs a.adminusers,
 body#adminlanguages #tabs a.adminlanguages,
