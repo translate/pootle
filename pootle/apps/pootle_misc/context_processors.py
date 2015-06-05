@@ -10,6 +10,7 @@ from django.conf import settings
 from django.utils import translation
 
 from pootle.core.markup import get_markup_filter_name
+from pootle.core.utils.version import get_git_branch, get_git_hash
 from pootle_language.models import Language
 from pootle_project.models import Project
 from staticpages.models import LegalPage
@@ -51,6 +52,10 @@ def pootle_context(request):
             'SCRIPT_NAME': settings.SCRIPT_NAME,
             'POOTLE_CACHE_TIMEOUT': settings.POOTLE_CACHE_TIMEOUT,
             'DEBUG': settings.DEBUG,
+        },
+        'version': {
+            'hash': get_git_hash(),
+            'branch': get_git_branch(),
         },
         'custom': settings.POOTLE_CUSTOM_TEMPLATE_CONTEXT,
         'ALL_LANGUAGES': Language.live.cached_dict(translation.get_language(),
