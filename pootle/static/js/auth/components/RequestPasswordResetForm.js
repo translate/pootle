@@ -79,8 +79,8 @@ let RequestPasswordResetForm = React.createClass({
       return <RequestPasswordResetProgress email={this.state.formData.email} />;
     }
 
-    let errors = this.state.errors;
-    let data = this.state.formData;
+    let { errors } = this.state;
+    let { formData } = this.state;
 
     return (
       <AuthContent>
@@ -96,7 +96,7 @@ let RequestPasswordResetForm = React.createClass({
               help={gettext('Enter your email address, and we will send you a message with the special link to reset your password.')}
               autoFocus={true}
               handleChange={this.handleChange}
-              formData={data}
+              formData={formData}
               errors={errors}
             />
           </div>
