@@ -10,7 +10,6 @@
 from django.conf import settings
 from django.utils import translation
 
-from pootle import __version__
 from pootle.core.utils.json import jsonify
 from pootle_language.models import Language
 from pootle_project.models import Project
@@ -50,7 +49,6 @@ def pootle_context(request):
                                        settings.POOTLE_CONTACT_EMAIL),
             'POOTLE_SIGNUP_ENABLED': settings.POOTLE_SIGNUP_ENABLED,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
-            'POOTLE_VERSION': __version__,
             'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
             'POOTLE_CACHE_TIMEOUT': settings.POOTLE_CACHE_TIMEOUT,
             'DEBUG': settings.DEBUG,
