@@ -27,7 +27,9 @@ let RequestPasswordResetSent = React.createClass({
   /* Handlers */
 
   handleResendEmail() {
-    this.props.flux.getActions('auth').requestPasswordReset({email: this.props.resetEmail});
+    this.props.flux.getActions('auth').requestPasswordReset({
+      email: this.props.resetEmail,
+    });
   },
 
 
