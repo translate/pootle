@@ -22,7 +22,6 @@ let AuthContent = React.createClass({
         display: 'table',
         height: '22em',
         width: '100%',
-        textAlign: 'center',
       },
       inner: {
         display: 'table-cell',

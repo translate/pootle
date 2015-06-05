@@ -22,9 +22,12 @@ let AuthProgress = React.createClass({
   },
 
   render() {
+    let msgStyle = {
+      textAlign: 'center',
+    };
     return (
       <AuthContent>
-        <p>{this.props.msg}</p>
+        <p style={msgStyle}>{this.props.msg}</p>
       </AuthContent>
     );
   },
