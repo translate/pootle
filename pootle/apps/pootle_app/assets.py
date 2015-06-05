@@ -64,6 +64,7 @@ css_common = Bundle(
     'css/navbar.css',
     'css/odometer.css',
     'css/popup.css',
+    'css/ribbon.css',
     'css/react-select.css',
     'css/tipsy.css',
     'css/sprite.css',
