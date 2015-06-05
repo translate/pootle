@@ -36,7 +36,7 @@ module.exports = {
     // (`gettext()`, `l()`) are being used in these modules, so for the
     // time being we delay their import here (note they are CommonJS
     // requires).
-    // The actual fix is getting rid of those globals, and only them we'll
+    // The actual fix is getting rid of those globals, and only then we'll
     // be able to move these two imports to the top of the module.
     let Flux = require('./flux');
     let AuthController = require('./components/AuthController');
