@@ -27,7 +27,10 @@ let AuthController = React.createClass({
 
   propTypes: {
     // Optionally overrides state
+    initialAction: React.PropTypes.string,
+    initialActionData: React.PropTypes.object,
     initialScreen: React.PropTypes.string,
+
     onClose: React.PropTypes.func.isRequired,
     socialAuthProviders: React.PropTypes.array.isRequired,
     socialError: React.PropTypes.object,
@@ -36,6 +39,8 @@ let AuthController = React.createClass({
 
   getDefaultProps() {
     return {
+      initialAction: null,
+      initialActionData: {},
       initialScreen: 'signIn',
       tokenFailed: false,
     };
@@ -45,8 +50,12 @@ let AuthController = React.createClass({
   /* Lifecycle */
 
   componentWillMount() {
+    let authActions = this.props.flux.getActions('auth');
     if (this.props.initialScreen) {
-      this.props.flux.getActions('auth').gotoScreen(this.props.initialScreen);
+      authActions.gotoScreen(this.props.initialScreen);
+    }
+    if (this.props.initialAction) {
+      authActions[this.props.initialAction](this.props.initialActionData);
     }
   },
 

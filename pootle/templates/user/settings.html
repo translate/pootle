@@ -14,14 +14,18 @@
   <h2>{% trans 'User Account' %}</h2>
   <p>
   {% blocktrans trimmed %}
-  Do you want to change your password? Click the change password button to
-  start the process.
+  Do you want to change your password? Click the 'Reset Password' button
+  which will initiate the process of setting a new password.
   {% endblocktrans %}
   </p>
   <p>
-    <a href="{% url 'account_change_password' %}" class="btn">
-      {% trans 'Change Password' %}
-    </a>
+    <button class="btn" onclick="PTL.auth.open({
+        initialAction: 'requestPasswordReset',
+        initialActionData: { email: '{{ object.email }}' },
+      });"
+    >
+      {% trans 'Reset Password' %}
+    </button>
   </p>
   <h2>{% trans 'Translation' %}</h2>
   <form method="post" action="">
