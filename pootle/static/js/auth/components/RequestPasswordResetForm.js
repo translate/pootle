@@ -15,6 +15,7 @@ import { PureRenderMixin } from 'react/addons';
 import { FormElement } from 'components/forms';
 import { FormMixin } from 'mixins/forms';
 
+import AuthContent from './AuthContent';
 import RequestPasswordResetProgress from './RequestPasswordResetProgress';
 
 
@@ -82,45 +83,47 @@ let RequestPasswordResetForm = React.createClass({
     let data = this.state.formData;
 
     return (
-      <form
-        method="post"
-        onSubmit={this.handleFormSubmit}>
-        <div className="fields">
-          {this.renderAllFormErrors()}
-          <FormElement
-            type="email"
-            attribute="email"
-            label={gettext('Email Address')}
-            help={gettext('Enter your email address, and we will send you a message with the special link to reset your password.')}
-            autoFocus={true}
-            handleChange={this.handleChange}
-            formData={data}
-            errors={errors}
-          />
-        </div>
-        <div className="actions">
-          <div>
-            <a href="#" onClick={this.handleSignIn}>
-              {gettext('No, thanks')}
-            </a>
-          </div>
-          <div>
-            <input
-              type="submit"
-              className="btn btn-primary"
-              disabled={!this.hasData()}
-              value={gettext('Send Email')}
+      <AuthContent>
+        <form
+          method="post"
+          onSubmit={this.handleFormSubmit}>
+          <div className="fields">
+            {this.renderAllFormErrors()}
+            <FormElement
+              type="email"
+              attribute="email"
+              label={gettext('Email Address')}
+              help={gettext('Enter your email address, and we will send you a message with the special link to reset your password.')}
+              autoFocus={true}
+              handleChange={this.handleChange}
+              formData={data}
+              errors={errors}
             />
           </div>
-          {this.props.canRegister &&
+          <div className="actions">
             <div>
-              <a href="#" onClick={this.handleSignUp}>
-                {gettext('Sign up as a new user')}
+              <a href="#" onClick={this.handleSignIn}>
+                {gettext('No, thanks')}
               </a>
             </div>
-          }
-        </div>
-      </form>
+            <div>
+              <input
+                type="submit"
+                className="btn btn-primary"
+                disabled={!this.hasData()}
+                value={gettext('Send Email')}
+              />
+            </div>
+            {this.props.canRegister &&
+              <div>
+                <a href="#" onClick={this.handleSignUp}>
+                  {gettext('Sign up as a new user')}
+                </a>
+              </div>
+            }
+          </div>
+        </form>
+      </AuthContent>
     );
   }
 

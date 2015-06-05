@@ -11,6 +11,7 @@
 import React from 'react';
 import { PureRenderMixin } from 'react/addons';
 
+import AuthContent from './AuthContent';
 import RequestPasswordResetProgress from './RequestPasswordResetProgress';
 
 
@@ -45,20 +46,22 @@ let RequestPasswordResetSent = React.createClass({
     let resendMsg = gettext("Didn't receive an email? Check if it was accidentally filtered out as spam, or try getting another copy of the email.");
 
     return (
-      <div className="actions password-reset">
-        <p dangerouslySetInnerHTML={{__html: emailLinkMsg}} />
-        <p>{instructionsMsg}</p>
-        <hr />
-        <p>{resendMsg}</p>
-        <div>
-          <button
-            className="btn btn-primary"
-            onClick={this.handleResendEmail}
-          >
-            {gettext('Resend Email')}
-          </button>
+      <AuthContent>
+        <div className="actions password-reset">
+          <p dangerouslySetInnerHTML={{__html: emailLinkMsg}} />
+          <p>{instructionsMsg}</p>
+          <hr />
+          <p>{resendMsg}</p>
+          <div>
+            <button
+              className="btn btn-primary"
+              onClick={this.handleResendEmail}
+            >
+              {gettext('Resend Email')}
+            </button>
+          </div>
         </div>
-      </div>
+      </AuthContent>
     );
   }
 

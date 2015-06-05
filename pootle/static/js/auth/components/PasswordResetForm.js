@@ -15,6 +15,7 @@ import { PureRenderMixin } from 'react/addons';
 import { FormElement } from 'components/forms';
 import { FormMixin } from 'mixins/forms';
 
+import AuthContent from './AuthContent';
 import AuthProgress from './AuthProgress';
 
 
@@ -75,7 +76,7 @@ let PasswordResetForm = React.createClass({
 
   renderTokenFailed() {
     return (
-      <div>
+      <AuthContent>
         <p>{gettext('The password reset link was invalid, possibly because it has already been used. Please request a new password reset.')}</p>
         <div className="actions">
           <button
@@ -85,7 +86,7 @@ let PasswordResetForm = React.createClass({
             {gettext('Reset Password')}
           </button>
         </div>
-      </div>
+      </AuthContent>
     );
   },
 
@@ -101,43 +102,45 @@ let PasswordResetForm = React.createClass({
     let { formData } = this.state;
 
     return (
-      <form
-        method="post"
-        onSubmit={this.handleFormSubmit}>
-        <div className="fields">
-          <FormElement
-            type="password"
-            attribute="password1"
-            label={gettext('Password')}
-            autoFocus={true}
-            handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
-          />
-          <FormElement
-            type="password"
-            attribute="password2"
-            label={gettext('Repeat Password')}
-            handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
-          />
-        </div>
-        {this.renderAllFormErrors()}
-        <div className="actions">
-          <div>
-            <input
-              type="submit"
-              className="btn btn-primary"
-              disabled={!this.hasData() | this.props.isLoading}
-              value={gettext('Set New Password')}
+      <AuthContent>
+        <form
+          method="post"
+          onSubmit={this.handleFormSubmit}>
+          <div className="fields">
+            <FormElement
+              type="password"
+              attribute="password1"
+              label={gettext('Password')}
+              autoFocus={true}
+              handleChange={this.handleChange}
+              formData={formData}
+              errors={errors}
+            />
+            <FormElement
+              type="password"
+              attribute="password2"
+              label={gettext('Repeat Password')}
+              handleChange={this.handleChange}
+              formData={formData}
+              errors={errors}
             />
           </div>
-          <div>
-            <p>{gettext('After changing your password you will sign in automatically.')}</p>
+          {this.renderAllFormErrors()}
+          <div className="actions">
+            <div>
+              <input
+                type="submit"
+                className="btn btn-primary"
+                disabled={!this.hasData() | this.props.isLoading}
+                value={gettext('Set New Password')}
+              />
+            </div>
+            <div>
+              <p>{gettext('After changing your password you will sign in automatically.')}</p>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </AuthContent>
     );
   }
 
