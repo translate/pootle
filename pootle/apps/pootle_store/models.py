@@ -50,7 +50,6 @@ from .fields import (TranslationStoreField, MultiStringField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes
 from .util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED, get_change_str
-from .signals import translation_submitted
 
 
 #
@@ -1192,10 +1191,6 @@ class Unit(models.Model, base.TranslationUnit):
                               CachedMethods.LAST_ACTION)
         # Update timestamp
         self.save()
-
-        if suggestion_user:
-            translation_submitted.send(sender=translation_project,
-                                       unit=self, profile=suggestion_user)
 
     def reject_suggestion(self, suggestion, translation_project, reviewer):
         suggestion.state = SuggestionStates.REJECTED

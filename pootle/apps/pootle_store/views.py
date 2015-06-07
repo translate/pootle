@@ -45,7 +45,6 @@ from .fields import to_python
 from .forms import (unit_comment_form_factory, unit_form_factory,
                     highlight_whitespace)
 from .models import Unit, SuggestionStates
-from .signals import translation_submitted
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
@@ -908,11 +907,6 @@ def submit(request, unit):
             form.instance._log_user = request.profile
 
             form.save()
-            translation_submitted.send(
-                    sender=translation_project,
-                    unit=form.instance,
-                    profile=request.profile,
-            )
 
             json['checks'] = _get_critical_checks_snippet(request, unit)
 

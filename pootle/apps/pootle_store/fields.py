@@ -17,8 +17,6 @@ from django.db.models.fields.files import FieldFile, FileField
 
 from translate.misc.multistring import multistring
 
-from pootle_store.signals import translation_file_updated
-
 ################# String #############################
 
 SEPARATOR = "__%$%__%$%__%$%__"
@@ -175,15 +173,12 @@ class TranslationStoreFieldFile(FieldFile):
                                                self.realpath)
                 self._store_cache[self.path] = self._store_tuple
 
-                translation_file_updated.send(sender=self, path=self.path)
-
     def _touch_store_cache(self):
         """Update stored mod_info without reparsing file."""
         if hasattr(self, "_store_tuple"):
             mod_info = self.getpomtime()
             if self._store_tuple.mod_info != mod_info:
                 self._store_tuple.mod_info = mod_info
-                translation_file_updated.send(sender=self, path=self.path)
         else:
             #FIXME: do we really need that?
             self._update_store_cache()
@@ -199,8 +194,6 @@ class TranslationStoreFieldFile(FieldFile):
             del self._store_tuple
         except AttributeError:
             pass
-
-        translation_file_updated.send(sender=self, path=self.path)
 
     def exists(self):
         return os.path.exists(self.realpath)
