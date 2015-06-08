@@ -246,8 +246,8 @@ Command changes and additions
 - Removed the ``--modified-since`` flag. Optimizations will automatically
   be done based on the latest sync revision.
 - New management commands: :djadmin:`revision`, :djadmin:`refresh_scores`,
-  :djadmin:`retry_failed_jobs`, :djadmin:`import`, :djadmin:`export` and
-  :djadmin:`calculate_checks`.
+  :djadmin:`retry_failed_jobs`, :djadmin:`import`, :djadmin:`export`,
+  :djadmin:`dump` and :djadmin:`calculate_checks`.
 
 
 Deprecated settings

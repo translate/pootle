@@ -337,6 +337,8 @@ By default, :djadmin:`test_checks` tests all existing checks. When
 dump
 ^^^^
 
+.. versionadded:: 2.7
+
 Prints data or stats data (depending on :option:`--data` or :option:`--stats` option)
 in specific format.
 
