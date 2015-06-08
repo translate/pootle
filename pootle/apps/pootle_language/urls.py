@@ -12,8 +12,8 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('pootle_language.views',
     url(r'^(?P<language_code>[^/]*)/$',
-        'overview',
-        name='pootle-language-overview'),
+        'browse',
+        name='pootle-language-browse'),
 
     url(r'^(?P<language_code>[^/]*)/translate/$',
         'translate',

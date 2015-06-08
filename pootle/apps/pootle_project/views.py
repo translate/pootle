@@ -19,7 +19,7 @@ from pootle.core.browser import (make_language_item,
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context,
-                                 get_overview_context,
+                                 get_browser_context,
                                  get_translation_context)
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils.json import jsonify
@@ -32,8 +32,8 @@ from pootle_translationproject.models import TranslationProject
 @get_path_obj
 @permission_required('view')
 @get_resource
-def overview(request, project, dir_path, filename):
-    """Languages overview for a given project."""
+def browse(request, project, dir_path, filename):
+    """Languages browser for a given project."""
     item_func = (make_xlanguage_item if dir_path or filename
                                      else make_language_item)
     items = [item_func(item) for item in
@@ -49,7 +49,7 @@ def overview(request, project, dir_path, filename):
         'items': items,
     }
 
-    ctx = get_overview_context(request)
+    ctx = get_browser_context(request)
     ctx.update({
         'project': project,
         'table': table,
@@ -58,7 +58,7 @@ def overview(request, project, dir_path, filename):
         'browser_extends': 'projects/base.html',
     })
 
-    return render(request, 'browser/overview.html', ctx)
+    return render(request, 'browser/index.html', ctx)
 
 
 @get_path_obj
@@ -139,7 +139,7 @@ def project_admin_permissions(request, project):
 
 @get_path_obj
 @permission_required('view')
-def projects_overview(request, project_set):
+def projects_browse(request, project_set):
     """Page listing all projects"""
     items = [make_project_list_item(project)
              for project in project_set.children]
@@ -154,7 +154,7 @@ def projects_overview(request, project_set):
         'items': items,
     }
 
-    ctx = get_overview_context(request)
+    ctx = get_browser_context(request)
     ctx.update({
         'table': table,
         'stats': jsonify(request.resource_obj.get_stats()),
@@ -162,7 +162,7 @@ def projects_overview(request, project_set):
         'browser_extends': 'projects/all/base.html',
     })
 
-    response = render(request, 'browser/overview.html', ctx)
+    response = render(request, 'browser/index.html', ctx)
     response.set_cookie('pootle-language', 'projects')
 
     return response

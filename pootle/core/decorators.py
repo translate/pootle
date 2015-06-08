@@ -68,9 +68,9 @@ def get_path_obj(func):
                 user_choice = request.COOKIES.get('user-choice', None)
                 if user_choice and user_choice in ('language', 'project',):
                     url = {
-                        'language': reverse('pootle-language-overview',
+                        'language': reverse('pootle-language-browse',
                                             args=[language_code]),
-                        'project': reverse('pootle-project-overview',
+                        'project': reverse('pootle-project-browse',
                                            args=[project_code, '', '']),
                     }
                     response = redirect(url[user_choice])
@@ -162,7 +162,7 @@ def set_resource(request, path_obj, dir_path, filename):
         if not filename:
             dir_path = dir_path[:dir_path[:-1].rfind('/') + 1]
 
-        url = reverse('pootle-tp-overview',
+        url = reverse('pootle-tp-browse',
                       args=[language_code, project_code, dir_path])
         request.redirect_url = url
 
@@ -262,7 +262,7 @@ def get_resource(func):
                 elif user_choice in ('language', 'resource',):
                     project = (path_obj if isinstance(path_obj, Project)
                                         else path_obj.project)
-                    url = reverse('pootle-project-overview',
+                    url = reverse('pootle-project-browse',
                                   args=[project.code, dir_path, filename])
 
                 if url is not None:

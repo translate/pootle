@@ -1,8 +1,8 @@
 {% load i18n %}
 <option
-  value="overview"
-  data-href="{% url 'pootle-tp-overview' language.code project.code resource_path %}">
-  {% trans "Overview" %}
+  value="browse"
+  data-href="{% url 'pootle-tp-browse' language.code project.code resource_path %}">
+  {% trans "Browse" %}
 </option>
 <option
   value="translate"

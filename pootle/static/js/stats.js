@@ -221,7 +221,8 @@ var stats = {
           } else {
             //FIXME vfolders might be added or removed since they can become
             // completely translated or stop being completely translated, so
-            // they might be displayable after the initial load of the overview.
+            // they might be displayable after the initial load of the
+            // browser.
             $td.parent().hide();
           }
         }
@@ -288,7 +289,7 @@ var stats = {
   },
 
   load: function (callback) {
-    var url = l('/xhr/stats/overview/'),
+    var url = l('/xhr/stats/'),
         reqData = {
           path: this.pootlePath
         };

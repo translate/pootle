@@ -516,7 +516,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     def get_absolute_url(self):
         lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
-        return reverse('pootle-tp-overview', args=[lang, proj, dir, fn])
+        return reverse('pootle-tp-browse', args=[lang, proj, dir, fn])
 
     def get_translate_url(self):
         lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
@@ -1458,7 +1458,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def get_absolute_url(self):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
-        return reverse('pootle-tp-overview', args=[lang, proj, dir, fn])
+        return reverse('pootle-tp-browse', args=[lang, proj, dir, fn])
 
     def get_translate_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)

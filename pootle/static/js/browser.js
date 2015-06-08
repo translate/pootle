@@ -27,7 +27,7 @@ var sel = {
 
 
 var actionMap = {
-  'overview': '',
+  'browse': '',
   'translate': 'translate',
   'admin-permissions': 'admin/permissions',
   'admin-languages': 'admin/languages',

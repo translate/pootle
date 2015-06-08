@@ -13,8 +13,8 @@ from django.conf.urls import patterns, url
 urlpatterns = patterns('pootle_project.views',
     # All projects
     url(r'^$',
-        'projects_overview',
-        name='pootle-projects-overview'),
+        'projects_browse',
+        name='pootle-projects-browse'),
 
     url(r'^translate/$',
         'projects_translate',
@@ -45,6 +45,6 @@ urlpatterns = patterns('pootle_project.views',
 
     url(r'^(?P<project_code>[^/]*)/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'overview',
-        name='pootle-project-overview'),
+        'browse',
+        name='pootle-project-browse'),
 )

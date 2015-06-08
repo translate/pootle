@@ -113,10 +113,10 @@ class ProjectURLMixin(object):
         lang, proj, dir, fn = split_pootle_path(self.pootle_path)
 
         if proj is not None:
-            pattern_name = 'pootle-project-overview'
+            pattern_name = 'pootle-project-browse'
             pattern_args = [proj, '']
         else:
-            pattern_name = 'pootle-projects-overview'
+            pattern_name = 'pootle-projects-browse'
             pattern_args = []
 
         return reverse(pattern_name, args=pattern_args)

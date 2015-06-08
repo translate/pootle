@@ -841,7 +841,7 @@ def get_qualitycheck_stats(request, *args, **kwargs):
 @get_path_obj
 @permission_required('view')
 @get_resource
-def get_overview_stats(request, *args, **kwargs):
+def get_stats(request, *args, **kwargs):
     stats = request.resource_obj.get_stats()
 
     if isinstance(request.resource_obj, Directory):

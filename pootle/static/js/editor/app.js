@@ -981,7 +981,7 @@ PTL.editor = {
 
   displayObsoleteMsg: function () {
     var msgText = gettext('This unit no longer exists.'),
-        backMsg = gettext('Go back to overview'),
+        backMsg = gettext('Go back to browsing'),
         backLink = $('.js-back-to-browser').attr('href'),
         reloadMsg = gettext('Reload page'),
         html = [

@@ -147,7 +147,7 @@ class Language(models.Model, TreeItem):
         directory.delete()
 
     def get_absolute_url(self):
-        return reverse('pootle-language-overview', args=[self.code])
+        return reverse('pootle-language-browse', args=[self.code])
 
     def get_translate_url(self, **kwargs):
         return u''.join([

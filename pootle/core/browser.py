@@ -127,7 +127,7 @@ def get_parent(path_obj):
         return None
 
     if parent_dir.is_language():
-        label = _('Back to language overview')
+        label = _('Back to language')
     else:
         label = _('Back to parent folder')
 

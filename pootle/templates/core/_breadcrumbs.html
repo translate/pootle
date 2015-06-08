@@ -26,7 +26,7 @@
   </select>
 </li>
 {% if project %}
-{% if page == 'overview' or page == 'translate' %}
+{% if page == 'browse' or page == 'translate' %}
 <li id="js-breadcrumb-resource">
   <select id="js-select-resource"
     data-initial-code="{% if resource_path_parts %}ctx-{% endif %}{{ resource_path }}"

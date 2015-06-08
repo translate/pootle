@@ -29,9 +29,9 @@ urlpatterns = patterns('pootle_translationproject.views',
         'export_view',
         name='pootle-tp-export-view'),
 
-    # Overview
+    # Browser
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'overview',
-        name='pootle-tp-overview'),
+        'browse',
+        name='pootle-tp-browse'),
 )

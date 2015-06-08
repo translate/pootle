@@ -19,7 +19,7 @@ from pootle.core.browser import (get_children, get_table_headings, get_parent,
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context,
-                                 get_overview_context,
+                                 get_browser_context,
                                  get_translation_context)
 from pootle.core.utils.json import jsonify
 from pootle_app.models.permissions import check_permission
@@ -28,7 +28,7 @@ from staticpages.models import StaticPage
 from virtualfolder.models import VirtualFolder
 
 
-SIDEBAR_COOKIE_NAME = 'pootle-overview-sidebar'
+SIDEBAR_COOKIE_NAME = 'pootle-browser-sidebar'
 
 
 @get_path_obj
@@ -116,7 +116,7 @@ def get_sidebar_announcements_context(request, project_code, language_code):
 @get_path_obj
 @permission_required('view')
 @get_resource
-def overview(request, translation_project, dir_path, filename=None):
+def browse(request, translation_project, dir_path, filename=None):
     project = translation_project.project
     language = translation_project.language
 
@@ -127,7 +127,7 @@ def overview(request, translation_project, dir_path, filename=None):
     ctx, cookie_data = get_sidebar_announcements_context(request, project.code,
                                                          language.code)
 
-    ctx.update(get_overview_context(request))
+    ctx.update(get_browser_context(request))
 
     # TODO improve plugin logic
     if "import_export" in settings.INSTALLED_APPS and request.user.is_authenticated():
@@ -187,7 +187,7 @@ def overview(request, translation_project, dir_path, filename=None):
         'browser_extends': 'translation_projects/base.html',
     })
 
-    response = render(request, 'browser/overview.html', ctx)
+    response = render(request, 'browser/index.html', ctx)
 
     if cookie_data:
         response.set_cookie(SIDEBAR_COOKIE_NAME, cookie_data)

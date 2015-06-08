@@ -145,8 +145,8 @@ def get_export_view_context(request):
     return res
 
 
-def get_overview_context(request):
-    """Returns a common context for overview browser pages.
+def get_browser_context(request):
+    """Returns a common context for browser pages.
 
     :param request: a :cls:`django.http.HttpRequest` object.
     """
@@ -167,7 +167,7 @@ def get_overview_context(request):
     url_action_view_all = resource_obj.get_translate_url(state='all')
 
     return {
-        'page': 'overview',
+        'page': 'browse',
 
         'pootle_path': request.pootle_path,
         'resource_obj': resource_obj,

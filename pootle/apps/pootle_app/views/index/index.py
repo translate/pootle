@@ -33,9 +33,9 @@ def view(request):
         lang = get_lang_from_http_header(request, supported)
 
     if lang is not None and lang not in ('projects', ''):
-        url = reverse('pootle-language-overview', args=[lang])
+        url = reverse('pootle-language-browse', args=[lang])
     else:
-        url = reverse('pootle-projects-overview')
+        url = reverse('pootle-projects-browse')
 
     # Preserve query strings
     args = request.GET.urlencode()

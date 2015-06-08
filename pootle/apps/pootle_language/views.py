@@ -13,7 +13,7 @@ from pootle.core.browser import (make_project_item,
                                  get_table_headings)
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import (get_export_view_context,
-                                 get_overview_context,
+                                 get_browser_context,
                                  get_translation_context)
 from pootle.core.utils.json import jsonify
 from pootle.i18n.gettext import tr_lang
@@ -22,7 +22,7 @@ from pootle_app.views.admin.permissions import admin_permissions
 
 @get_path_obj
 @permission_required('view')
-def overview(request, language):
+def browse(request, language):
     translation_projects = language.children \
                                    .order_by('project__fullname')
     user_tps = filter(lambda x: x.is_accessible_by(request.user),
@@ -38,7 +38,7 @@ def overview(request, language):
         'items': items,
     }
 
-    ctx = get_overview_context(request)
+    ctx = get_browser_context(request)
     ctx.update({
         'language': {
           'code': language.code,
@@ -50,7 +50,7 @@ def overview(request, language):
         'browser_extends': 'languages/base.html',
     })
 
-    response = render(request, 'browser/overview.html', ctx)
+    response = render(request, 'browser/index.html', ctx)
     response.set_cookie('pootle-language', language.code)
 
     return response
