@@ -48,5 +48,10 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
 
-# Silence the RedisCache check as we use a dummy cache
-SILENCED_SYSTEM_CHECKS = ["pootle.C005"]
+
+SILENCED_SYSTEM_CHECKS = [
+    'pootle.C005', # Silence the RedisCache check as we use a dummy cache
+    'pootle.W005', # DEBUG = True
+    'pootle.W010', # python-levenshtein not installed
+    'pootle.W011', # POOTLE_CONTACT_EMAIL has default setting
+]
