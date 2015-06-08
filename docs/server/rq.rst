@@ -38,25 +38,32 @@ to manage jobs:
 
 .. code-block:: bash
 
-   $ redis-cli -n 2 keys '*' | grep rq:job
-   rq:job:03135097-00f8-46eb-b084-6f34a16d9940
-   rq:job:a07309b3-f056-47e7-856c-c608bda2f171
-   rq:job:3df6a559-2e3c-4c0c-b09c-1948b4bacda2
-   rq:job:60ed13df-0ce5-4b98-96f0-f8e0294ba421
-   rq:job:3240527f-58b9-40fe-b0c5-b8d3fcaa06b6
+   $ redis-cli -n 2 lrange rq:queue:default 0 -1
+   03135097-00f8-46eb-b084-6f34a16d9940
+   a07309b3-f056-47e7-856c-c608bda2f171
+   3df6a559-2e3c-4c0c-b09c-1948b4bacda2
 
-
-This will display the current jobs in the queue. We're using the cache number
-``2``, the default RQ queue on a standard Pootle install.
-
-To investigate a failed job simply use a command such as this:
+This will display all pending job IDs in the default queue. We're using
+the Redis DB number ``2``, the default RQ queue on a standard Pootle install.
 
 .. code-block:: bash
 
-   $ redis-cli -n 2 hgetall rq:job:5beee45b-e491-4e78-9471-e7910b2d2514 
+   $ redis-cli -n 2 lrange rq:queue:failed 0 -1
+   60ed13df-0ce5-4b98-96f0-f8e0294ba421
+   3240527f-58b9-40fe-b0c5-b8d3fcaa06b6
+
+
+This will display the failed job IDs.
+
+To investigate a failed job simply add ``rq:job:`` prefix to a job ID and
+use a command such as this:
+
+.. code-block:: bash
+
+   $ redis-cli -n 2 hgetall rq:job:60ed13df-0ce5-4b98-96f0-f8e0294ba421
 
 
 This will allow you to see any traceback and investigate and solve them.
 
 To push failed jobs back into the queue we simply run the
-:djadmin:`retry_failed_jobs` mmanagement command.
+:djadmin:`retry_failed_jobs` management command.
