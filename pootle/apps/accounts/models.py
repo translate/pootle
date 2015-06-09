@@ -34,8 +34,6 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_app.models import Directory
-from pootle_autonotices.signals import new_object
 from pootle_language.models import Language
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import SuggestionStates
@@ -280,16 +278,3 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         return 'https://secure.gravatar.com/avatar/%s?s=%d&d=mm' % \
             (self.email_hash, size)
-
-
-@receiver(post_save, sender=User)
-def new_user(sender, instance, created=False, raw=False, **kwargs):
-    if raw:
-        return
-
-    args = {
-        "url": instance.get_absolute_url(),
-        "user": instance,
-    }
-    message = 'New user <a href="%(url)s">%(user)s</a> registered.' % args
-    new_object(created, message, parent=Directory.objects.root)
