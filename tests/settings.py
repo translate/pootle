@@ -55,3 +55,10 @@ SILENCED_SYSTEM_CHECKS = [
     'pootle.W010',  # python-levenshtein not installed
     'pootle.W011',  # POOTLE_CONTACT_EMAIL has default setting
 ]
+
+
+# No need for actual context processors
+TEMPLATE_CONTEXT_PROCESSORS = (
+    # FIXME: this should go away; see django-allauth#949
+    'allauth.socialaccount.context_processors.socialaccount',
+)
