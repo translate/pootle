@@ -88,7 +88,7 @@ def test_apiview_get_single(rf):
     user = UserFactory.create(username='foo')
 
     request = _create_api_request(rf)
-    response = view(request, id='1')
+    response = view(request, id=user.id)
 
     # This should have been a valid request...
     assert response.status_code == 200
@@ -215,7 +215,7 @@ def test_apiview_put(rf):
 
     # Malformed request, only JSON-encoded data is understood
     request = _create_api_request(rf, 'put')
-    response = view(request, id='1')
+    response = view(request, id=user.id)
     response_data = json.loads(response.content)
 
     assert response.status_code == 400
@@ -233,7 +233,7 @@ def test_apiview_put(rf):
         view(request, id='11')
 
     # All fields must be submitted
-    response = view(request, id='1')
+    response = view(request, id=user.id)
     response_data = json.loads(response.content)
 
     assert response.status_code == 400
@@ -245,7 +245,7 @@ def test_apiview_put(rf):
     })
     request = _create_api_request(rf, 'put', data=update_data)
 
-    response = view(request, id='1')
+    response = view(request, id=user.id)
     response_data = json.loads(response.content)
 
     # Now all is ok
@@ -261,7 +261,7 @@ def test_apiview_put(rf):
     view = WriteableUserSettingsAPIView.as_view()
     request = _create_api_request(rf, 'put', data=update_data)
 
-    response = view(request, id='1')
+    response = view(request, id=user.id)
     response_data = json.loads(response.content)
     assert response.status_code == 200
     assert 'password' not in response_data
@@ -279,17 +279,17 @@ def test_apiview_delete(rf):
     response = view(request)
 
     assert response.status_code == 405
-    assert User.objects.filter(id=1).count() == 1
+    assert User.objects.filter(id=user.id).count() == 1
 
     # But it is supported for single items (specified by id):
-    response = view(request, id='1')
+    response = view(request, id=user.id)
 
     assert response.status_code == 200
-    assert User.objects.filter(id=1).count() == 0
+    assert User.objects.filter(id=user.id).count() == 0
 
     # Should raise 404 if we try to access a deleted resource again:
     with pytest.raises(Http404):
-        view(request, id='1')
+        view(request, id=user.id)
 
 
 @pytest.mark.django_db
