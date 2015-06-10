@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n locale %}
 {% if object_list %}
 <table class="staticpages">
   <thead>
@@ -26,7 +26,7 @@
       </td>
       <td>{% if page.url %}<a href="{{ page.url }}">{{ page.url }}</a>{% endif %}</td>
       <td>
-        <time class="js-relative-date" title="{{ page.modified_on }}"
+        <time class="js-relative-date" title="{{ page.modified_on|dateformat }}"
           datetime="{{ page.modified_on.isoformat }}">&nbsp;</time>
       </td>
     </tr>

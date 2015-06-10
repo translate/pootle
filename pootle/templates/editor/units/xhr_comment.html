@@ -19,7 +19,7 @@
       <span class="extra-item-comment">{{ unit.translator_comment }}</span>
     </div>
     {% if unit.commented_by and unit.commented_on %}
-    <time class="extra-item-meta js-relative-date" title="{{ unit.commented_on }}"
+    <time class="extra-item-meta js-relative-date" title="{{ unit.commented_on|dateformat }}"
       datetime="{{ unit.commented_on.isoformat }}">&nbsp;</time>
     {% endif %}
   </div>
