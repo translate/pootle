@@ -286,3 +286,6 @@ class ScoreLog(models.Model):
     score_delta = models.FloatField(null=False)
     action_code = models.IntegerField(null=False)
     submission = models.ForeignKey(Submission, null=False)
+
+    class Meta:
+        unique_together = ('submission', 'action_code')
