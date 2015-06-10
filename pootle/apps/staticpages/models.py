@@ -67,7 +67,6 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
     modified_on = models.DateTimeField(
         default=now,
         editable=False,
-        auto_now_add=True,
     )
 
     objects = PageManager()
@@ -150,9 +149,14 @@ class Agreement(models.Model):
     agreed_on = models.DateTimeField(
         default=now,
         editable=False,
-        auto_now_add=True,
-        auto_now=True,
     )
 
     class Meta:
         unique_together = ('user', 'document',)
+
+    def save(self, **kwargs):
+        # When updating always explicitly renew agreement date
+        if self.pk:
+            self.agreed_on = now()
+
+        super(Agreement, self).save(**kwargs)
