@@ -173,12 +173,6 @@ Update the translations from the `Pootle server
 Create release notes
 --------------------
 
-The release notes will be used in these places:
-
-- Pootle website -- `download page
-  <http://pootle.translatehouse.org/download.html>`_ (used in gh-pages)
-- Email announcements -- text version
-
 We create our release notes in reStructured Text, since we use that elsewhere
 and since it can be rendered well in some of our key sites.
 
@@ -222,6 +216,8 @@ We create a list of contributors using this command:
 
     $ git log 2.5.0..HEAD --format='%aN, ' | awk '{arr[$0]++} END{for (i in arr){print arr[i], i;}}' | sort -rn | cut -d\  -f2-
 
+
+.. _releasing#up-version-numbers:
 
 Up version numbers
 ------------------
@@ -282,28 +278,49 @@ Test install and other tests
 ----------------------------
 
 The easiest way to test is in a virtualenv. You can test the installation of
-the new Pootle using:
+the new release using:
 
 .. code-block:: bash
 
     $ mkvirtualenv test-pootle-release
-    (test-pootle-release)$ pip install $path_to_dist/Pootle-$version.tar.bz2
+    (test-pootle-release)$ pip install dist/Pootle-$version.tar.bz2
+    (test-pootle-release)$ pip install MySQL-python
+    (test-pootle-release)$ pootle init
 
 
 You can then proceed with other tests such as checking:
 
-#. Quick installation check:
-
-   .. code-block:: bash
-
-     (test-pootle-release)$ pootle init
-     (test-pootle-release)$ pootle setup
-     (test-pootle-release)$ pootle start
-     (test-pootle-release)$  # Browse to localhost:8000
-     (test-pootle-release)$ deactivate
-     $ rmvirtualenv test-pootle-release
-
 #. Documentation is available in the package
+#. MySQL upgrade check:
+
+   #. Download a database dump from `Pootle Test Data 
+      <https://github.com/translate/pootle-test-data>`_ repository
+   #. Create a blank database on MySQL:
+
+      .. code-block:: bash
+
+        mysql -u $db_user -p$db_password -e 'CREATE DATABASE `test-mysql-pootle` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;'
+
+   #. Import the database dump into the MySQL database:
+
+      .. code-block:: bash
+
+        mysql -u $db_user -p$db_password test-mysql-pootle < $db_dump_file
+
+   #. Run the following:
+
+      .. code-block:: bash
+
+        (test-pootle-release)$ pootle setup
+        (test-pootle-release)$ pootle start
+        (test-pootle-release)$  # Browse to localhost:8000
+
+   #. Drop the MySQL database you have created:
+
+      .. code-block:: bash
+
+        mysql -u $db_user -p$db_password -e 'DROP DATABASE `test-mysql-pootle`;'
+
 #. Check that the instructions in the :doc:`Installation guide
    </server/installation>` are correct
 #. Check that the instructions in the :doc:`Upgrade guide </server/upgrading>`
@@ -315,23 +332,30 @@ You can then proceed with other tests such as checking:
 
    .. code-block:: bash
 
-     $ ./setup.py --help
+       $ ./setup.py --help
 
    Now you can try some options like:
 
    .. code-block:: bash
 
-     $ ./setup.py --name
-     $ ./setup.py --version
-     $ ./setup.py --author
-     $ ./setup.py --author-email
-     $ ./setup.py --url
-     $ ./setup.py --license
-     $ ./setup.py --description
-     $ ./setup.py --long-description
-     $ ./setup.py --classifiers
+       $ ./setup.py --name
+       $ ./setup.py --version
+       $ ./setup.py --author
+       $ ./setup.py --author-email
+       $ ./setup.py --url
+       $ ./setup.py --license
+       $ ./setup.py --description
+       $ ./setup.py --long-description
+       $ ./setup.py --classifiers
 
    The actual long description is taken from :file:`/README.rst`.
+
+Finally clean your test environment:
+
+.. code-block:: bash
+
+    (test-pootle-release)$ deactivate
+    $ rmvirtualenv test-pootle-release
 
 
 Publish the new release
@@ -350,10 +374,10 @@ before you tag.
 
 .. code-block:: bash
 
-  $ git checkout -b stable/2.6.0
-  $ git push origin stable/2.6.0
-  $ git tag -a 2.6.0 -m "Tag version 2.6.0"
-  $ git push --tags
+    $ git checkout -b stable/2.6.0
+    $ git push origin stable/2.6.0
+    $ git tag -a 2.6.0 -m "Tag version 2.6.0"
+    $ git push --tags
 
 
 Release documentation
@@ -383,8 +407,8 @@ Publish on PyPI
 
 
 .. note:: You need a username and password on `Python Package Index (PyPI)
-   <https://pypi.python.org>`_ and have rights to the project before you can
-   proceed with this step.
+   <https://pypi.python.org/pypi>`_ and have rights to the project before you
+   can proceed with this step.
 
    These can be stored in :file:`$HOME/.pypirc` and will contain your username
    and password. A first run of:
@@ -404,6 +428,8 @@ Run the following to publish the package on PyPI:
     $ make publish-pypi
 
 
+.. _releasing#create-github-release:
+
 Create a release on Github
 --------------------------
 
@@ -418,8 +444,9 @@ You will need:
 Do the following to create the release:
 
 #. Draft a new release with the corresponding tag version
-#. Convert the major changes in the release notes to Markdown with `Pandoc
-   <http://johnmacfarlane.net/pandoc/>`_
+#. Convert the major changes (no more than five) in the release notes to
+   Markdown with `Pandoc <http://pandoc.org/>`_. Bugfix releases can replace
+   the major changes with *This is a bugfix release for the X.X.X branch.*
 #. Add the converted major changes to the release description
 #. Include at the bottom of the release description a link to the full release
    notes at Read The Docs
@@ -437,9 +464,9 @@ We use github pages for the website. First we need to checkout the pages:
     $ git checkout gh-pages
 
 
-#. In :file:`_posts/` add a new release posting.  This is in Markdown format
-   (for now), so we need to change the release notes .rst to .md, which mostly
-   means changing URL links from ```xxx <link>`_`` to ``[xxx](link)``.
+#. In :file:`_posts/` add a new release posting. Use the same text used for the
+   :ref:`Github release <releasing#create-github-release>` description,
+   including the link to the full release notes.
 #. Change ``$version`` as needed. See :file:`download.html`,
    :file:`_config.yml` and :command:`git grep $old_release`
 #. :command:`git commit` and :command:`git push` -- changes are quite quick so
@@ -449,32 +476,25 @@ We use github pages for the website. First we need to checkout the pages:
    prerender just that page?
 
 
-Update Pootle dashboard
------------------------
-
-.. note:: Do not do this for release candidates, only for final releases.
-
-The dashboard used in Pootle's dashboard is updated in its own project:
-
-#. :command:`git clone git@github.com:translate/pootle-dashboard.git`
-#. Edit :file:`index.html` to contain the latest release info
-#. Add the same info in :file:`alerts.xml` pointing to the release in RTD
-   :file:`release/$version.html`
-
-Do a :command:`git pull` on the server to get the latest changes from the repo.
-
-
 Announce to the world
 ---------------------
 
 Let people know that there is a new version:
 
-#. Announce on mailing lists:
+#. Announce on mailing lists **using plain text** emails using the same text
+   (adjusting what needs to be adjusted) used for the :ref:`Github release <releasing#create-github-release>` description:
 
    - translate-announce@lists.sourceforge.net
    - translate-pootle@lists.sourceforge.net
+   - translate-devel@lists.sourceforge.net
 
-#. Adjust the #pootle channel notice. Use ``/topic`` to change the topic.
+#. Adjust the #pootle channel notice. Use ``/topic [new topic]`` to change the
+   topic. It is easier if you copy the previous topic and adjust it.
+
+   .. note:: You might need to identify yourself by using
+      ``/msg nickserv identify [password]`` so the IRC server knows you in
+      order to check if you have enough permissions.
+
 #. Email important users
 #. Tweet about it
 #. Update `Pootle's Wikipedia page <http://en.wikipedia.org/wiki/Pootle>`_
@@ -490,10 +510,11 @@ nevertheless completely necessary.
 Bump version to N+1-alpha1
 --------------------------
 
-If this new release is a stable one bump the version in ``master`` to
-``{N+1}-alpha1``. This prevents anyone using ``master`` being confused with a
-stable release and we can easily check if they are using ``master`` or
-``stable``.
+If this new release is a stable one, bump the version in ``master`` to
+``{N+1}-alpha1``. The places to be changed are the same ones listed in
+:ref:`Up version numbers <releasing#up-version-numbers>`. This prevents anyone
+using ``master`` being confused with a stable release and we can easily check
+if they are using ``master`` or ``stable``.
 
 
 Add release notes for dev
