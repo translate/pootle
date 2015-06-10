@@ -19,7 +19,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models, transaction, IntegrityError
 from django.template.defaultfilters import escape, truncatechars
-from django.utils import dateformat, timezone
+from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
@@ -39,6 +39,7 @@ from pootle.core.models import Revision
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.search import SearchBroker
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle.core.utils import dateformat
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names, run_given_filters, get_checker
@@ -1275,7 +1276,7 @@ class Unit(models.Model, base.TranslationUnit):
                 unit
             ),
             "date": self.creation_time,
-            "isoformat_date": self.creation_time.isoformat(),
+            "isoformat_date": dateformat.format(self.creation_time),
         }
         return mark_safe(
             '<time class="extra-item-meta js-relative-date"'

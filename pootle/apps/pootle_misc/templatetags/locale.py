@@ -8,9 +8,10 @@
 # AUTHORS file for copyright and authorship information.
 
 from django import template
-from django.utils import dateformat
 from django.utils.formats import get_format
 from django.utils.translation import trans_real
+
+from pootle.core.utils import dateformat
 
 
 register = template.Library()
@@ -35,7 +36,7 @@ def locale_reverse_align():
 
 
 @register.filter(name='dateformat')
-def do_dateformat(value, format='DATETIME_FORMAT'):
+def do_dateformat(value, format='c'):
     """Formats a `value` date using `format`.
 
     :param value: a datetime object.

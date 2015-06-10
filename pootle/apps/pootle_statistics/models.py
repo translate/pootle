@@ -17,6 +17,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.log import log, SCORE_CHANGED
+from pootle.core.utils import dateformat
 from pootle_misc.checks import check_names
 from pootle_store.fields import to_python
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
@@ -197,7 +198,7 @@ class Submission(models.Model):
             "displayname": displayname,
             "username": displayuser.username,
             "date": self.creation_time,
-            "isoformat_date": self.creation_time.isoformat(),
+            "isoformat_date": dateformat.format(self.creation_time),
             "action": "",
         }
 
