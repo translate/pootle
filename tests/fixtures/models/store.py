@@ -34,7 +34,6 @@ def _require_store(tp, po_dir, name):
             name=name,
             translation_project=tp,
         )
-        store.save()
 
     return store
 
