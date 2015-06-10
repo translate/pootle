@@ -39,7 +39,7 @@ def nobody(db):
 
 
 @pytest.fixture
-def default(db):
+def default(transactional_db):
     """Require the default authenticated user."""
     return _require_user('default', 'any authenticated user',
                          password='')
@@ -52,7 +52,7 @@ def system(db):
 
 
 @pytest.fixture
-def admin(db):
+def admin(transactional_db):
     """Require the admin user."""
     return _require_user('admin', 'Administrator', password='admin',
                          is_superuser=True)

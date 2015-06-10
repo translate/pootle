@@ -15,7 +15,7 @@ from staticpages.models import LegalPage
 from ..factories import AgreementFactory, LegalPageFactory, UserFactory
 
 
-@pytest.mark.django_db()
+@pytest.mark.django_db(transaction=True)
 def test_pending_agreements():
     """Tests proper user pending agreements are returned."""
     foo_user = UserFactory.create(username='foo')
