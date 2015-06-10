@@ -55,7 +55,8 @@ class Directory(models.Model, TreeItem):
         null=True,
         db_index=True,
     )
-    pootle_path = models.CharField(max_length=255, null=False, db_index=True)
+    pootle_path = models.CharField(max_length=255, null=False, db_index=True,
+                                   unique=True)
     obsolete = models.BooleanField(default=False)
 
     is_dir = True
