@@ -30,7 +30,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from pootle_app.management.commands import PootleCommand
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_translationproject.models import create_or_enable_translation_project
+from pootle_translationproject.models import create_or_resurrect_translation_project
 
 
 def does_not_exist(path):
@@ -65,24 +65,26 @@ class Command(PootleCommand):
             return
 
         lang_query = Language.objects.exclude(
-                id__in=project.translationproject_set.enabled() \
+                id__in=project.translationproject_set.live() \
                               .values_list('language', flat=True)
             )
         for language in lang_query.iterator():
-            create_or_enable_translation_project(language, project)
+            create_or_resurrect_translation_project(language, project)
 
     def handle_language(self, language, **options):
         project_query = Project.objects.exclude(
-                id__in=language.translationproject_set.enabled() \
+                id__in=language.translationproject_set.live() \
                                .values_list('project', flat=True)
             )
-        create_or_enable_translation_project
+        for project in project_query.iterator():
+            create_or_resurrect_translation_project(language, project)
+
 
     def handle_translation_project(self, translation_project, **options):
         clean = options.get('clean', False)
         if not translation_project.disabled and \
                 clean and does_not_exist(translation_project.abs_real_path):
             logging.info(u"Disabling %s", translation_project)
-            translation_project.disabled = True
-            translation_project.save()
+            translation_project.directory.obsolete = True
+            translation_project.directory.save()
             translation_project.clear_all_cache(parents=True, children=False)

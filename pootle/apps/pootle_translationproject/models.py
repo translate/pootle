@@ -64,13 +64,13 @@ class TranslationProjectNonDBState(object):
         self.indexer = None
 
 
-def create_or_enable_translation_project(language, project):
+def create_or_resurrect_translation_project(language, project):
     tp = create_translation_project(language, project)
     if tp is not None:
-        if tp.disabled:
-            tp.disabled = False
-            tp.save()
-            logging.info(u"Enabled %s", tp)
+        if tp.directory.obsolete:
+            tp.directory.obsolete = False
+            tp.directory.save()
+            logging.info(u"Resurrected %s", tp)
         else:
             logging.info(u"Created %s", tp)
 
@@ -100,11 +100,15 @@ class TranslationProjectManager(RelatedManager):
     # disabled objects are hidden for related objects too
     use_for_related_fields = True
 
-    def enabled(self):
-        return self.filter(disabled=False, project__disabled=False)
+    def live(self):
+        """Filters translation projects that have non-obsolete directories
+        and they belong to enabled projects."""
+        return self.filter(directory__obsolete=False, project__disabled=False)
 
     def disabled(self):
-        return self.filter(Q(disabled=True) | Q(project__disabled=True))
+        """Filters translation projects that have obsolete directories or they
+        belong to disabled projects."""
+        return self.filter(Q(directory__obsolete=True) | Q(project__disabled=True))
 
 
 class TranslationProject(models.Model, TreeItem):
@@ -126,7 +130,6 @@ class TranslationProject(models.Model, TreeItem):
         editable=False,
         null=True,
     )
-    disabled = models.BooleanField(default=False)
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
                                          settings.PARSE_POOL_CULL_FREQUENCY)
@@ -244,16 +247,16 @@ class TranslationProject(models.Model, TreeItem):
 
     def save(self, *args, **kwargs):
         created = self.id is None
+
+        self.directory = self.language.directory \
+                                      .get_or_make_subdir(self.project.code)
+        self.pootle_path = self.directory.pootle_path
+
         project_dir = self.project.get_real_path()
-
-        if not self.disabled:
-            from pootle_app.project_tree import get_translation_project_dir
-            self.abs_real_path = get_translation_project_dir(self.language,
-                 project_dir, self.file_style, make_dirs=True)
-
-            self.directory = self.language.directory \
-                                          .get_or_make_subdir(self.project.code)
-            self.pootle_path = self.directory.pootle_path
+        from pootle_app.project_tree import get_translation_project_dir
+        self.abs_real_path = get_translation_project_dir(self.language,
+             project_dir, self.file_style,
+             make_dirs=not self.directory.obsolete)
 
         super(TranslationProject, self).save(*args, **kwargs)
 

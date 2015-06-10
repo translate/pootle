@@ -55,11 +55,12 @@ class Command(ModifiedSinceMixin, PootleCommand):
         """
         :return: flag if child stores should be updated
         """
-        if not translation_project.disabled:
+        if not translation_project.directory.obsolete:
             logging.info(u"Scanning for new files in %s", translation_project)
             translation_project.scan_files()
             return True
 
+        translation_project.directory.makeobsolete()
         return False
 
     def handle_store(self, store, **options):

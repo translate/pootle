@@ -60,7 +60,7 @@ def get_path_obj(func):
 
         if language_code and project_code:
             try:
-                path_obj = TranslationProject.objects.enabled().get(
+                path_obj = TranslationProject.objects.live().get(
                     language__code=language_code,
                     project__code=project_code,
                     project__disabled=False
