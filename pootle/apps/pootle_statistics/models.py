@@ -197,8 +197,8 @@ class Submission(models.Model):
             "gravatar_url": displayuser.gravatar_url(20),
             "displayname": displayname,
             "username": displayuser.username,
-            "date": self.creation_time,
-            "isoformat_date": dateformat.format(self.creation_time),
+            "display_datetime": dateformat.format(self.creation_time),
+            "iso_datetime": self.creation_time.isoformat(),
             "action": "",
         }
 
@@ -282,7 +282,7 @@ class Submission(models.Model):
             '  </a>'
             '  <span class="action-text">%(action)s</span>'
             '  <time class="extra-item-meta js-relative-date"'
-            '    title="%(date)s" datetime="%(isoformat_date)s">&nbsp;'
+            '    title="%(display_datetime)s" datetime="%(iso_datetime)s">&nbsp;'
             '  </time>'
             '</div>'
             % action_bundle)

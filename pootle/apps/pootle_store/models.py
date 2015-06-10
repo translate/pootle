@@ -1275,12 +1275,12 @@ class Unit(models.Model, base.TranslationUnit):
                 'added',
                 unit
             ),
-            "date": self.creation_time,
-            "isoformat_date": dateformat.format(self.creation_time),
+            "display_datetime": dateformat.format(self.creation_time),
+            "iso_datetime": self.creation_time.isoformat(),
         }
         return mark_safe(
             '<time class="extra-item-meta js-relative-date"'
-            '    title="%(date)s" datetime="%(isoformat_date)s">&nbsp;'
+            '    title="%(display_datetime)s" datetime="%(iso_datetime)s">&nbsp;'
             '</time>&nbsp;'
             u'<span class="action-text">%(action)s</span>'
             % action_bundle)
