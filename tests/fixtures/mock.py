@@ -9,12 +9,12 @@
 
 """Monkeypatching fixtures."""
 
+from _pytest.monkeypatch import monkeypatch
+
 
 # HACKISH: monkeypatching decorator here, should be cleaner to do it in a
 # fixture, but pytest's `monkeypatch` decorator is function-scoped, and by
 # the time it's run the decorators have already been applied to the
 # functions, therefore the patching has no effect
-from _pytest.monkeypatch import monkeypatch
-
 mp = monkeypatch()
 mp.setattr('django.utils.functional.cached_property', property)
