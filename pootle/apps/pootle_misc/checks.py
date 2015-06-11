@@ -21,15 +21,6 @@ from django.utils.translation import ugettext_lazy as _
 from .util import import_func
 
 
-category_names = {
-    Category.CRITICAL: _("Critical"),
-    Category.COSMETIC: _("Cosmetic"),
-    Category.FUNCTIONAL: _("Functional"),
-    Category.EXTRACTION: _("Extraction"),
-    Category.NO_CATEGORY: _("Other"),
-}
-
-
 category_ids = {
     'critical': Category.CRITICAL,
     'cosmetic': Category.COSMETIC,
@@ -1010,6 +1001,14 @@ def get_qualitychecks():
 def get_qualitycheck_schema(path_obj=None):
     d = {}
     checks = get_qualitychecks()
+
+    category_names = {
+        Category.CRITICAL: _("Critical"),
+        Category.COSMETIC: _("Cosmetic"),
+        Category.FUNCTIONAL: _("Functional"),
+        Category.EXTRACTION: _("Extraction"),
+        Category.NO_CATEGORY: _("Other"),
+    }
 
     for check, cat in checks.items():
         if cat not in d:
