@@ -5,9 +5,6 @@ from django.contrib.contenttypes.models import ContentType
 
 
 class Migration(DataMigration):
-    depends_on = (
-        ("staticpages", "0012_data__adjust_pks"),
-    )
 
     def forwards(self, orm):
         # Deleting remnants of model 'PootleProfile'
