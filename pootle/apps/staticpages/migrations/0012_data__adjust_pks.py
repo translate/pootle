@@ -28,7 +28,7 @@ class Migration(DataMigration):
                 JOIN pootle_app_pootleprofile AS PP
                   ON A.user_id = PP.id
                 JOIN accounts_user AS U
-                  ON PP.id = U.id
+                  ON PP.user_id = U.id
                 SET A.new_user_id = U.id;
             ''')
 
