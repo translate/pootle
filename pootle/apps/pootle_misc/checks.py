@@ -18,7 +18,7 @@ from translate.lang import data
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_misc.util import import_func
+from .util import import_func
 
 
 category_names = {
