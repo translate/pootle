@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 
+from django.utils import timezone
 from django.utils.dateformat import DateFormat as DjangoDateFormat
 
 
@@ -18,5 +19,5 @@ class DateFormat(DjangoDateFormat):
 
 
 def format(value, format_string='c'):
-    df = DateFormat(value)
+    df = DateFormat(timezone.localtime(value))
     return df.format(format_string)
