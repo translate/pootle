@@ -12,6 +12,11 @@ import datetime
 from django.conf import settings
 from django.utils import timezone
 
+# Timezone aware minimum for datetime (if appropriate) (bug 2567)
+datetime_min = datetime.datetime.min
+if settings.USE_TZ:
+    datetime_min = timezone.make_aware(datetime_min, timezone.utc)
+
 
 def make_aware(value):
     if getattr(settings, 'USE_TZ', False) and timezone.is_naive(value):

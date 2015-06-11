@@ -26,7 +26,7 @@ from django_rq import get_connection, job
 
 from pootle.core.cache import get_cache
 from pootle.core.mixins.treeitem import POOTLE_REFRESH_STATS
-from pootle_misc.util import datetime_min
+from pootle.core.utils.timezone import datetime_min
 from pootle_project.models import Project
 from pootle_statistics.models import Submission
 from pootle_store.models import (Store, Unit, QualityCheck,

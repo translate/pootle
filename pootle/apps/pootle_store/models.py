@@ -39,10 +39,10 @@ from pootle.core.models import Revision
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.search import SearchBroker
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
-from pootle.core.utils.timezone import make_aware
+from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names, run_given_filters, get_checker
-from pootle_misc.util import datetime_min, import_func
+from pootle_misc.util import import_func
 from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
 

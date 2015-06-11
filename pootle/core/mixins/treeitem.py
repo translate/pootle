@@ -27,7 +27,8 @@ from rq.utils import utcnow
 from pootle.core.cache import get_cache
 from pootle.core.log import log
 from pootle.core.url_helpers import get_all_pootle_paths, split_pootle_path
-from pootle_misc.util import datetime_min, dictsum
+from pootle.core.utils.timezone import datetime_min
+from pootle_misc.util import dictsum
 
 
 POOTLE_DIRTY_TREEITEMS = 'pootle:dirty:treeitems'

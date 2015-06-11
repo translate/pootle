@@ -15,11 +15,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponseBadRequest
 from django.utils import timezone
 
-# Timezone aware minimum for datetime (if appropriate) (bug 2567)
 from datetime import datetime, timedelta
-datetime_min = datetime.min
-if settings.USE_TZ:
-    datetime_min = timezone.make_aware(datetime_min, timezone.utc)
 
 
 def import_func(path):
