@@ -223,10 +223,10 @@ if __name__ == "__main__":
     from sys import argv
     if len(argv) == 2:
         if argv[1] == "main":
-            print get_main_version()
+            print(get_main_version())
         elif argv[1] == "major_minor":
-            print get_major_minor_version()
+            print(get_major_minor_version())
         elif argv[1] == "docs":
-            print get_docs_version()
+            print(get_docs_version())
     else:
-        print get_version()
+        print(get_version())
