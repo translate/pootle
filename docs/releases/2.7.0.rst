@@ -238,8 +238,6 @@ Command changes and additions
   commands.
 - Added command and store action logging.
 - Added :djadmin:`test_checks` management command.
-- Added :djadmin:`regenerate_checks_descriptions` command to recreate the
-  checks descriptions.
 - Removed ``--directory`` and ``--path-prefix`` parameters from management
   commands. ``--project`` and ``--language`` should be used instead to
   reduce the scope of commands.

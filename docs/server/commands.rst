@@ -362,19 +362,6 @@ This command can be used by developers to check if all data kept after
 migrations or stats calculating algorithm was changed.
 
 
-.. django-admin:: regenerate_checks_descriptions
-
-regenerate_checks_descriptions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. versionadded:: 2.7
-
-Regenerates the quality checks descriptions page.
-
-If new checks are added, or existing checks are updated or removed you should
-run this command in order to update the check descriptions.
-
-
 .. _commands#translation-memory:
 
 Translation Memory

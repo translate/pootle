@@ -31,7 +31,7 @@ script:
   #- make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
   - make assets
   - make mo
-  - ./manage.py regenerate_checks_descriptions
+  - DJANGO_SETTINGS_MODULE=pootle.settings ./setup.py build_checks_templates
   - ./manage.py migrate --noinput --traceback
   - ./manage.py initdb --traceback
   - ./manage.py runserver --traceback &

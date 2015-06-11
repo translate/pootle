@@ -148,7 +148,7 @@ quality checks.
 
 .. code-block:: bash
 
-    $ pootle regenerate_checks_descriptions
+    $ DJANGO_SETTINGS_MODULE=pootle.settings ./setup.py build_checks_templates
 
 
 Update translations
@@ -328,7 +328,7 @@ You can then proceed with other tests such as checking:
 
 #. MySQL upgrade check:
 
-   #. Download a database dump from `Pootle Test Data 
+   #. Download a database dump from `Pootle Test Data
       <https://github.com/translate/pootle-test-data>`_ repository
    #. Create a blank database on MySQL:
 
