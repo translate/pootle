@@ -46,7 +46,7 @@ var User = Backbone.Model.extend({
   urlRoot: l('/xhr/admin/users/'),
 
   getProfileUrl: function () {
-    return l(['', 'user', this.get('username'), ''].join('/'));
+    return l(`/user/${this.get('username')}/`);
   },
 
   getSettingsUrl: function () {
@@ -54,12 +54,11 @@ var User = Backbone.Model.extend({
   },
 
   getStatsUrl: function () {
-    return l(['', 'user', this.get('username'), 'stats', ''].join('/'));
+    return l(`/user/${this.get('username')}/stats/`);
   },
 
   getReportsUrl: function () {
-    return l(['', 'admin', 'reports',
-              '#username=' + this.get('username')].join('/'));
+    return l(`/admin/reports/#username=${this.get('username')}`);
   },
 
   gravatarUrl: function (size) {
