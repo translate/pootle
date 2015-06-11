@@ -49,6 +49,10 @@ var User = Backbone.Model.extend({
     return l(['', 'user', this.get('username'), ''].join('/'));
   },
 
+  getSettingsUrl: function () {
+    return l(`/user/${this.get('username')}/settings/`);
+  },
+
   getStatsUrl: function () {
     return l(['', 'user', this.get('username'), 'stats', ''].join('/'));
   },
