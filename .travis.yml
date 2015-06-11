@@ -5,27 +5,11 @@ python:
   - 2.7
 env:
   matrix:
-    # FIXME reenable backends when these are made to work once again
-    #- DJANGO_VERSION=1.7.8 DATABASE_BACKEND=sqlite
-    #- DJANGO_VERSION=1.7.8 DATABASE_BACKEND=postgres
-    - DJANGO_VERSION=1.7.8 DATABASE_BACKEND=mysql_myisam
-    #- DJANGO_VERSION=1.7.8 DATABASE_BACKEND=mysql_innodb
+    - DJANGO_VERSION=1.7.8 DATABASE_BACKEND=sqlite
+    - DJANGO_VERSION=1.7.8 DATABASE_BACKEND=postgres
+    - DJANGO_VERSION=1.7.8 DATABASE_BACKEND=mysql_innodb
   global:
     - PIP_DOWNLOAD_CACHE=".pip_download_cache"
-matrix:
-  exclude:
-    - python: 2.7
-      env: DJANGO_VERSION=1.7.8 DATABASE_BACKEND=sqlite
-    - python: 2.7
-      env: DJANGO_VERSION=1.7.8 DATABASE_BACKEND=mysql_innodb
-    - python: 2.7
-      env: DJANGO_VERSION=1.7.8 DATABASE_BACKEND=postgres
-  allow_failures:
-    # Disable alternate databases until we break away from being stuck on
-    # MyISAM
-    - env: DJANGO_VERSION=1.7.8 DATABASE_BACKEND=sqlite
-    - env: DJANGO_VERSION=1.7.8 DATABASE_BACKEND=postgres
-    - env: DJANGO_VERSION=1.7.8 DATABASE_BACKEND=mysql_innodb
 cache:
   apt: true
   directories:
@@ -39,7 +23,7 @@ install:
   - pip freeze  # Print all installed versions for reference.
 before_script:
   - if [[ $DATABASE_BACKEND == 'postgres' ]]; then psql -c 'create database pootle;' -U postgres; fi
-  - if [ $DATABASE_BACKEND == 'mysql_myisam' -o  $DATABASE_BACKEND == 'mysql_innodb' ]; then mysql -e 'create database pootle CHARACTER SET utf8 COLLATE utf8_general_ci;'; fi
+  - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e 'create database pootle CHARACTER SET utf8 COLLATE utf8_general_ci;'; fi
 script:
   - python -m compileall -q -f .
   - make docs
