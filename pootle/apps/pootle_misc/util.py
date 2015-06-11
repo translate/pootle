@@ -21,8 +21,6 @@ datetime_min = datetime.min
 if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
 
-from pootle.core.utils.timezone import make_aware
-
 
 def import_func(path):
     i = path.rfind('.')
@@ -88,6 +86,8 @@ def get_max_month_datetime(dt):
 
 
 def get_date_interval(month):
+    from pootle.core.utils.timezone import make_aware
+
     now = start = end = timezone.now()
     if month is None:
         month = start.strftime('%Y-%m')
