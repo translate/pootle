@@ -1071,24 +1071,6 @@ div.settings-container
     margin-bottom: 1em;
 }
 
-.settings-container input,
-.settings-container select,
-.settings-container textarea,
-#login input[type="text"],
-#login input[type="password"],
-#reset input[type="text"],
-#reset input[type="email"],
-#reset input[type="password"]
-{
-    display: block;
-}
-
-#login input,
-#reset input
-{
-    box-sizing: border-box;
-}
-
 .settings-container table
 {
     width: 100%;
