@@ -6,19 +6,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2013-11-12 17:08+0000\n"
+"PO-Revision-Date: 2015-03-06 10:41+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1384276110.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1425638502.000000\n"
 
 #: static/js/browser.js:154
 msgid "All Languages"
@@ -30,7 +30,7 @@ msgstr "Todos os proxectos"
 
 #: static/js/browser.js:160
 msgid "Entire Project"
-msgstr ""
+msgstr "Todo o proxecto"
 
 #: static/js/editor/app.js:236
 msgid ""
@@ -85,7 +85,7 @@ msgstr "Produciuse un erro ao conectar co servidor"
 
 #: static/js/editor/app.js:975
 msgid "Not found"
-msgstr ""
+msgstr "Non atopado"
 
 #: static/js/editor/app.js:977
 msgid "Server error"
@@ -101,23 +101,23 @@ msgstr "Erro descoñecido"
 
 #: static/js/editor/app.js:994
 msgid "This unit no longer exists."
-msgstr ""
+msgstr "Esta cadea xa non existe."
 
 #: static/js/editor/app.js:995
 msgid "Go back to overview"
-msgstr ""
+msgstr "Volver á vista xeral"
 
 #: static/js/editor/app.js:997
 msgid "Reload page"
-msgstr ""
+msgstr "Recargar a páxina"
 
 #: static/js/editor/app.js:2006
 msgid "some anonymous user"
-msgstr ""
+msgstr "algún usuario anónimo"
 
 #: static/js/editor/app.js:2008
 msgid "someone"
-msgstr ""
+msgstr "alguén"
 
 #: static/js/editor/app.js:2025 static/js/editor/app.js.c:2074
 msgid "Similar translations"
@@ -125,14 +125,14 @@ msgstr "Traducións semellantes"
 
 #: static/js/shared/models/project.js:57
 msgid "disabled"
-msgstr ""
+msgstr "desactivado"
 
 #: static/js/stats.js:231
 #, c-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s segundo"
+msgstr[1] "%s segundos"
 
 # resposta
 #: static/js/stats.js:263
@@ -199,40 +199,41 @@ msgstr[1] ""
 
 #: static/js/admin/components/language.jsx:60
 msgid "Search Languages"
-msgstr ""
+msgstr "Buscar idiomas"
 
 #: static/js/admin/components/language.jsx:61
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Buscar idioma por nome, código"
 
 #: static/js/admin/components/language.jsx:84
 #: static/js/admin/components/language.jsx:113
-#, fuzzy
 msgid "Add Language"
-msgstr "Todos os idiomas"
+msgstr "Engadir idioma"
 
 #: static/js/admin/components/language.jsx:87
 #: static/js/admin/components/project.jsx:87
 #: static/js/admin/components/user.jsx:87
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: static/js/admin/components/language.jsx:110
 msgid "Edit Language"
-msgstr ""
+msgstr "Editar idioma"
 
 #: static/js/admin/components/language.jsx:117
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Use o formulario de busca para atopar o idioma e despois prema nun idioma "
+"para editalo."
 
 #: static/js/admin/components/main.jsx:93
 msgid "Saved successfully."
-msgstr ""
+msgstr "Gardouse con éxito."
 
 #: static/js/admin/components/main.jsx:101
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Eliminouse con éxito."
 
 #: static/js/admin/components/project.jsx:38
 #, python-format
@@ -251,34 +252,35 @@ msgstr[1] ""
 
 #: static/js/admin/components/project.jsx:60
 msgid "Search Projects"
-msgstr ""
+msgstr "Buscar proxectos"
 
 #: static/js/admin/components/project.jsx:61
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Buscar proxecto por nome ou código"
 
 #: static/js/admin/components/project.jsx:84
 #: static/js/admin/components/project.jsx:113
-#, fuzzy
 msgid "Add Project"
-msgstr "Todos os proxectos"
+msgstr "Engadir proxecto"
 
 #: static/js/admin/components/project.jsx:110
 msgid "Edit Project"
-msgstr ""
+msgstr "Editar o proxecto"
 
 #: static/js/admin/components/project.jsx:117
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Use o formulario de busca para atopar o proxecto, despois prema nun proxecto "
+"para editalo."
 
 #: static/js/admin/components/search.jsx:63
 msgid "Load More"
-msgstr ""
+msgstr "Cargar máis"
 
 #: static/js/admin/components/search.jsx:86
 msgid "Loading..."
-msgstr ""
+msgstr "Cargando…"
 
 #: static/js/admin/components/user.jsx:38
 #, python-format
@@ -297,58 +299,60 @@ msgstr[1] ""
 
 #: static/js/admin/components/user.jsx:60
 msgid "Search Users"
-msgstr ""
+msgstr "Buscar usuarios"
 
 #: static/js/admin/components/user.jsx:61
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Buscar usuario por nome, correo-e, propiedades"
 
 #: static/js/admin/components/user.jsx:84
 #: static/js/admin/components/user.jsx:113
 msgid "Add User"
-msgstr ""
+msgstr "Engadir un usuario"
 
 #: static/js/admin/components/user.jsx:110
 msgid "Edit User"
-msgstr ""
+msgstr "Editar o usuario"
 
 #: static/js/admin/components/user.jsx:117
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"Use o formulario de busca para atopar o usuario e despois prema nun usuario "
+"para editalo."
 
 #: static/js/admin/shared/forms.jsx:50 static/js/admin/shared/forms.jsx:145
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #: static/js/admin/shared/forms.jsx:56 static/js/admin/shared/forms.jsx:151
 #: static/js/admin/shared/forms.jsx:309 static/js/user/forms.jsx:70
 msgid "Full Name"
-msgstr ""
+msgstr "Nome completo"
 
 #: static/js/admin/shared/forms.jsx:62
 msgid "Special Characters"
-msgstr ""
+msgstr "Caracteres especiais"
 
 #: static/js/admin/shared/forms.jsx:71
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Número de plurais"
 
 #: static/js/admin/shared/forms.jsx:77
 msgid "Plural Equation"
-msgstr ""
+msgstr "Ecuación dos plurais"
 
 #: static/js/admin/shared/forms.jsx:87 static/js/admin/shared/forms.jsx:221
 #: static/js/admin/shared/forms.jsx:364 static/js/user/forms.jsx:117
 msgid "Save"
-msgstr ""
+msgstr "Gardar"
 
 #: static/js/admin/shared/forms.jsx:90 static/js/admin/shared/forms.jsx:224
 msgid "Overview"
-msgstr ""
+msgstr "Vista xeral"
 
 #: static/js/admin/shared/forms.jsx:91 static/js/admin/shared/forms.jsx:226
 msgid "Permissions"
-msgstr ""
+msgstr "Permisos"
 
 #: static/js/admin/shared/forms.jsx:160
 msgid "Quality Checks"
@@ -356,7 +360,7 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:169
 msgid "File Type"
-msgstr ""
+msgstr "Tipo de ficheiro"
 
 #: static/js/admin/shared/forms.jsx:178
 msgid "Project Tree Style"
@@ -364,11 +368,11 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:187
 msgid "Source Language"
-msgstr ""
+msgstr "Idioma de orixe"
 
 #: static/js/admin/shared/forms.jsx:193
 msgid "Ignore Files"
-msgstr ""
+msgstr "Ficheiros ignorados"
 
 #: static/js/admin/shared/forms.jsx:200
 msgid "String Errors Contact"
@@ -380,11 +384,11 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:213
 msgid "Disabled"
-msgstr ""
+msgstr "Desactivado"
 
 #: static/js/admin/shared/forms.jsx:225
 msgid "Languages"
-msgstr ""
+msgstr "Idiomas"
 
 #: static/js/admin/shared/forms.jsx:272
 msgid ""
@@ -394,39 +398,39 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:284
 msgid "Username"
-msgstr ""
+msgstr "Nome de usuario"
 
 #: static/js/admin/shared/forms.jsx:293
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #: static/js/admin/shared/forms.jsx:300
 msgid "Password"
-msgstr ""
+msgstr "Contrasinal"
 
 #: static/js/admin/shared/forms.jsx:301
 msgid "Set a new password"
-msgstr ""
+msgstr "Definir un novo contrasinal"
 
 #: static/js/admin/shared/forms.jsx:315
 msgid "Email"
-msgstr ""
+msgstr "Correo electrónico"
 
 #: static/js/admin/shared/forms.jsx:324
 msgid "Administrator"
-msgstr ""
+msgstr "Administrador"
 
 #: static/js/admin/shared/forms.jsx:331 static/js/user/forms.jsx:85
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/shared/forms.jsx:333
 msgid "Twitter username"
-msgstr ""
+msgstr "Nome de usuario de Twitter"
 
 #: static/js/admin/shared/forms.jsx:339 static/js/user/forms.jsx:92
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/shared/forms.jsx:341
 msgid "LinkedIn profile URL"
@@ -446,67 +450,67 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:356
 msgid "Personal description"
-msgstr ""
+msgstr "Descrición persoal"
 
 #: static/js/admin/shared/forms.jsx:367
 msgid "Public Profile"
-msgstr ""
+msgstr "Perfil público"
 
 #: static/js/admin/shared/forms.jsx:368
 msgid "Statistics"
-msgstr ""
+msgstr "Estatísticas"
 
 #: static/js/admin/shared/forms.jsx:369
 msgid "Reports"
-msgstr ""
+msgstr "Informes"
 
 #: static/js/admin/shared/forms.jsx:423
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
 #: static/js/shared/components/forms.jsx:67
 msgid "Select..."
-msgstr ""
+msgstr "Seleccionar…"
 
 #: static/js/shared/components/forms.jsx:68
 msgid "No results found"
-msgstr ""
+msgstr "Non se atopou ningún resultado"
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Clear value"
-msgstr ""
+msgstr "Limpar o valor"
 
 #: static/js/shared/components/forms.jsx:70
 msgid "Clear all"
-msgstr ""
+msgstr "Limpar todo"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Type to search"
-msgstr ""
+msgstr "Escriba para buscar"
 
 #: static/js/user/components/edit.jsx:106
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "Editar o meu perfil público"
 
 #: static/js/user/components/edit.jsx:113
 msgid "My Public Profile"
-msgstr ""
+msgstr "O meu perfil público"
 
 #: static/js/user/components/edit.jsx:125
 msgid "Discard changes."
-msgstr ""
+msgstr "Desbotar os cambios."
 
 #: static/js/user/components/edit.jsx:126
 msgid "Yes"
-msgstr ""
+msgstr "Si"
 
 #: static/js/user/components/edit.jsx:127
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "Hai modificacións sen gardar. Desexa desbotalas?"
 
 #: static/js/user/forms.jsx:58
 #, python-format
@@ -517,19 +521,19 @@ msgstr ""
 
 #: static/js/user/forms.jsx:71
 msgid "Your Full Name"
-msgstr ""
+msgstr "O seu nome completo"
 
 #: static/js/user/forms.jsx:77
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #: static/js/user/forms.jsx:87
 msgid "Your Twitter username"
-msgstr ""
+msgstr "O seu nome de usuario en Twitter"
 
 #: static/js/user/forms.jsx:94
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "O URL do seu perfil en LinkedIn"
 
 #: static/js/user/forms.jsx:100
 msgid "Your Personal website/blog URL"
@@ -543,7 +547,7 @@ msgstr ""
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "Proxecto / Idioma"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Translated"
@@ -566,8 +570,8 @@ msgstr ""
 #: templates/admin/xhr_summary_report.html:35
 msgid "word"
 msgid_plural "words"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "palabra"
+msgstr[1] "palabras"
 
 #: templates/admin/xhr_language_user_activity.html:30
 msgid "No activity recorded in a given period"
@@ -575,11 +579,11 @@ msgstr ""
 
 #: templates/admin/xhr_language_user_activity.html:33
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Seleccione un usuario válido."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "Tarefas rexistradas"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
@@ -587,17 +591,17 @@ msgstr ""
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "Comentario"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Acción"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Cantidade"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
@@ -613,12 +617,12 @@ msgstr ""
 #: templates/admin/xhr_summary_report.html:32
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "hora"
+msgstr[1] "horas"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
-msgstr ""
+msgstr "Retirar a tarefa"
 
 #: templates/admin/xhr_paid_tasks_report.html:41
 msgid "Comment on it"
@@ -626,20 +630,20 @@ msgstr ""
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "Resumo"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "Período"
 
 #: templates/admin/xhr_summary_report.html:41
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(tarefas rexistradas)"
 
 #: templates/admin/xhr_summary_report.html:49
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "Total (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"

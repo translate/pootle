@@ -6,19 +6,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2014-02-18 06:46+0000\n"
-"Last-Translator: Bocar Amadou <bokarba@yahoo.fr>\n"
+"PO-Revision-Date: 2015-03-11 10:18+0000\n"
+"Last-Translator: Ibrahima SARR <ibrahima.sarr@pulaagu.com>\n"
 "Language-Team: FULA LOCALIZATION\n"
-"Language: \n"
+"Language: ff\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1392705965.000000\n"
+"X-POOTLE-MTIME: 1426069121.000000\n"
 
 #: static/js/browser.js:154
 msgid "All Languages"
@@ -30,13 +30,15 @@ msgstr "Eɓɓanɗe Fof"
 
 #: static/js/browser.js:160
 msgid "Entire Project"
-msgstr ""
+msgstr "Eɓɓannde ndee Fof"
 
 #: static/js/editor/app.js:236
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"Yah to ɓoggol dewngol (Ctrl+.)<br/><br/>Kadi:<br/>Hello aroowo: "
+"Ctrl+Maj+.<br/>Hello wattanngo: Ctrl+Maj+Fin"
 
 #: static/js/editor/app.js:240
 msgid ""

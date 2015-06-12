@@ -6,21 +6,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2013-11-12 19:13+0000\n"
-"Last-Translator: Rimas <rq@akl.lt>\n"
+"PO-Revision-Date: 2015-03-24 10:34+0000\n"
+"Last-Translator: Ernestas <bad.f.word@gmail.com>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
-"Language: \n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1384283617.0\n"
+"X-POOTLE-MTIME: 1427193272.000000\n"
 
 #: apps/contact/forms.py:23
 msgid "Summary"
@@ -36,7 +36,7 @@ msgstr "Pavadinimas"
 
 #: apps/contact/forms.py:33
 msgid "Please enter your name"
-msgstr ""
+msgstr "Prašom įvesti savo vardą"
 
 #: apps/contact/forms.py:36
 msgid "Email address"
@@ -44,7 +44,7 @@ msgstr "El. pašto adresas"
 
 #: apps/contact/forms.py:37
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Prašom įvesti savo el. pašto adresą"
 
 #: apps/contact/forms.py:40 apps/pootle_notifications/models.py:18
 msgid "Message"
@@ -52,25 +52,26 @@ msgstr "Pranešimas"
 
 #: apps/contact/forms.py:41
 msgid "Please enter your message"
-msgstr ""
+msgstr "Prašom įvesti savo žinutę"
 
 #: apps/evernote_auth/views.py:51
 msgid ""
 "Cannot link: your Evernote account is already linked with another Pootle "
 "account."
 msgstr ""
+"Neįmanoma susieti: Jūsų Evernote paskyra jau susieta su kitų Pootle vartotoju"
 
 #: apps/evernote_reports/forms.py:20 models/user.py:89
 msgid "Currency"
-msgstr ""
+msgstr "Valiuta"
 
 #: apps/evernote_reports/forms.py:26
 msgid "Translation Rate"
-msgstr ""
+msgstr "Vartimo greitis"
 
 #: apps/evernote_reports/forms.py:31 models/user.py:86
 msgid "Review Rate"
-msgstr ""
+msgstr "Peržiūros greitis"
 
 #: apps/evernote_reports/forms.py:36 models/user.py:87
 msgid "Hourly Rate"
@@ -103,7 +104,7 @@ msgstr ""
 
 #: apps/evernote_reports/models.py:40
 msgid "Amount"
-msgstr ""
+msgstr "Kiekis"
 
 #: apps/evernote_reports/models.py:42
 msgid "Date"
@@ -116,7 +117,7 @@ msgstr "Aprašas"
 #: apps/evernote_reports/views.py:297
 #, python-format
 msgid "User %s not found"
-msgstr ""
+msgstr "Vartotojas %s nerastas"
 
 #: apps/evernote_reports/views.py:382
 msgid "Invalid request method"

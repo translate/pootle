@@ -6,19 +6,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2014-11-07 23:12+0000\n"
+"PO-Revision-Date: 2015-05-30 22:37+0000\n"
 "Last-Translator: Jesper <jesper.hertel@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1415401966.000000\n"
+"X-POOTLE-MTIME: 1433025433.000000\n"
 
 #: static/js/browser.js:154
 msgid "All Languages"
@@ -30,19 +30,23 @@ msgstr "Alle projekter"
 
 #: static/js/browser.js:160
 msgid "Entire Project"
-msgstr ""
+msgstr "Hele projektet"
 
 #: static/js/editor/app.js:236
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"Gå til næste streng (Ctrl+.)<br/><br/>Også:<br/>Næste side: Ctrl+Skift+.<br/>"
+"Sidste side: Ctrl+Skift+End"
 
 #: static/js/editor/app.js:240
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"Gå til forrige streng (Ctrl+,)<br/><br/>Også:<br/>Forrige side: "
+"Ctrl+Skift+,<br/>Første side: Ctrl+Skift+Home"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:348
@@ -85,7 +89,7 @@ msgstr "Fejl ved tilslutning til server"
 
 #: static/js/editor/app.js:975
 msgid "Not found"
-msgstr ""
+msgstr "Ikke fundet"
 
 #: static/js/editor/app.js:977
 msgid "Server error"
@@ -101,23 +105,23 @@ msgstr "Ukendt fejl"
 
 #: static/js/editor/app.js:994
 msgid "This unit no longer exists."
-msgstr ""
+msgstr "Denne enhed findes ikke længere."
 
 #: static/js/editor/app.js:995
 msgid "Go back to overview"
-msgstr ""
+msgstr "Gå tilbage til oversigt"
 
 #: static/js/editor/app.js:997
 msgid "Reload page"
-msgstr ""
+msgstr "Genindlæs side"
 
 #: static/js/editor/app.js:2006
 msgid "some anonymous user"
-msgstr ""
+msgstr "en anonym bruger"
 
 #: static/js/editor/app.js:2008
 msgid "someone"
-msgstr ""
+msgstr "nogen"
 
 #: static/js/editor/app.js:2025 static/js/editor/app.js.c:2074
 msgid "Similar translations"
@@ -125,14 +129,14 @@ msgstr "Lignende oversættelser"
 
 #: static/js/shared/models/project.js:57
 msgid "disabled"
-msgstr ""
+msgstr "slået fra"
 
 #: static/js/stats.js:231
 #, c-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s sekund"
+msgstr[1] "%s sekunder"
 
 #: static/js/stats.js:263
 msgid "Expand details"
@@ -185,177 +189,181 @@ msgstr "Få sekunder siden"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s sprog svarer til din forespørgsel."
+msgstr[1] "%(count)s sprog svarer til din forespørgsel."
 
 #: static/js/admin/components/language.jsx:42
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Der er %(count)s sprog."
+msgstr[1] "Der er %(count)s sprog. Nedenfor er de nyligst tilføjede."
 
 #: static/js/admin/components/language.jsx:60
 msgid "Search Languages"
-msgstr ""
+msgstr "Søg efter sprog"
 
 #: static/js/admin/components/language.jsx:61
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Find sprog efter navn eller kode"
 
 #: static/js/admin/components/language.jsx:84
 #: static/js/admin/components/language.jsx:113
-#, fuzzy
 msgid "Add Language"
-msgstr "Alle sprog"
+msgstr "Tilføj sprog"
 
 #: static/js/admin/components/language.jsx:87
 #: static/js/admin/components/project.jsx:87
 #: static/js/admin/components/user.jsx:87
 msgid "Cancel"
-msgstr ""
+msgstr "Annuller"
 
 #: static/js/admin/components/language.jsx:110
 msgid "Edit Language"
-msgstr ""
+msgstr "Rediger sprog"
 
 #: static/js/admin/components/language.jsx:117
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Brug søgeformularen til at finde sproget, og klik derefter på et sprog for "
+"at redigere det."
 
 #: static/js/admin/components/main.jsx:93
 msgid "Saved successfully."
-msgstr ""
+msgstr "Gemt."
 
 #: static/js/admin/components/main.jsx:101
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Slettet."
 
 #: static/js/admin/components/project.jsx:38
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s projekt svarer til din forespørgsel."
+msgstr[1] "%(count)s projekter svarer til din forespørgsel."
 
 #: static/js/admin/components/project.jsx:42
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Der er %(count)s projekt."
+msgstr[1] "Der er %(count)s projekter. Nedenfor er de nyligst tilføjede."
 
 #: static/js/admin/components/project.jsx:60
 msgid "Search Projects"
-msgstr ""
+msgstr "Søg efter projekter"
 
 #: static/js/admin/components/project.jsx:61
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Find projekt efter navn eller kode"
 
 #: static/js/admin/components/project.jsx:84
 #: static/js/admin/components/project.jsx:113
-#, fuzzy
 msgid "Add Project"
-msgstr "Alle projekter"
+msgstr "Tilføj projekt"
 
 #: static/js/admin/components/project.jsx:110
 msgid "Edit Project"
-msgstr ""
+msgstr "Rediger projekt"
 
 #: static/js/admin/components/project.jsx:117
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Brug søgeformularen til at finde projektet, og klik derefter på et projekt "
+"for at redigere det."
 
 #: static/js/admin/components/search.jsx:63
 msgid "Load More"
-msgstr ""
+msgstr "Indlæs flere"
 
 #: static/js/admin/components/search.jsx:86
 msgid "Loading..."
-msgstr ""
+msgstr "Indlæser…"
 
 #: static/js/admin/components/user.jsx:38
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s bruger svarer til din forespørgsel."
+msgstr[1] "%(count)s brugere svarer til din forespørgsel."
 
 #: static/js/admin/components/user.jsx:42
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Der er %(count)s bruger."
+msgstr[1] "Der er %(count)s brugere. Nedenfor er de nyligst tilføjede."
 
 #: static/js/admin/components/user.jsx:60
 msgid "Search Users"
-msgstr ""
+msgstr "Søg efter brugere"
 
 #: static/js/admin/components/user.jsx:61
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Find bruger efter navn, e-mail eller egenskaber"
 
 #: static/js/admin/components/user.jsx:84
 #: static/js/admin/components/user.jsx:113
 msgid "Add User"
-msgstr ""
+msgstr "Tilføj bruger"
 
 #: static/js/admin/components/user.jsx:110
 msgid "Edit User"
-msgstr ""
+msgstr "Rediger bruger"
 
 #: static/js/admin/components/user.jsx:117
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"Brug søgeformularen til at finde brugeren, og klik derefter på brugeren for "
+"at redigere den."
 
 #: static/js/admin/shared/forms.jsx:50 static/js/admin/shared/forms.jsx:145
 msgid "Code"
-msgstr ""
+msgstr "Kode"
 
 #: static/js/admin/shared/forms.jsx:56 static/js/admin/shared/forms.jsx:151
 #: static/js/admin/shared/forms.jsx:309 static/js/user/forms.jsx:70
 msgid "Full Name"
-msgstr ""
+msgstr "Fuldt navn"
 
 #: static/js/admin/shared/forms.jsx:62
 msgid "Special Characters"
-msgstr ""
+msgstr "Specialtegn"
 
 #: static/js/admin/shared/forms.jsx:71
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Antal flertalsformer"
 
 #: static/js/admin/shared/forms.jsx:77
 msgid "Plural Equation"
-msgstr ""
+msgstr "Flertalsformel"
 
 #: static/js/admin/shared/forms.jsx:87 static/js/admin/shared/forms.jsx:221
 #: static/js/admin/shared/forms.jsx:364 static/js/user/forms.jsx:117
 msgid "Save"
-msgstr ""
+msgstr "Gem"
 
 #: static/js/admin/shared/forms.jsx:90 static/js/admin/shared/forms.jsx:224
 msgid "Overview"
-msgstr ""
+msgstr "Oversigt"
 
 #: static/js/admin/shared/forms.jsx:91 static/js/admin/shared/forms.jsx:226
 msgid "Permissions"
-msgstr ""
+msgstr "Tilladelser"
 
 #: static/js/admin/shared/forms.jsx:160
 msgid "Quality Checks"
-msgstr ""
+msgstr "Kvalitetstjek"
 
 #: static/js/admin/shared/forms.jsx:169
 msgid "File Type"
-msgstr ""
+msgstr "Filtype"
 
 #: static/js/admin/shared/forms.jsx:178
 msgid "Project Tree Style"

@@ -6,21 +6,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2013-10-29 06:08+0000\n"
-"Last-Translator: Vadim Kutchin <kutchin@gmail.com>\n"
+"PO-Revision-Date: 2015-04-24 15:08+0000\n"
+"Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1383026939.0\n"
+"X-POOTLE-MTIME: 1429888108.000000\n"
 
 #: apps/contact/forms.py:23
 msgid "Summary"
@@ -62,7 +62,7 @@ msgstr ""
 
 #: apps/evernote_reports/forms.py:20 models/user.py:89
 msgid "Currency"
-msgstr ""
+msgstr "Валюта"
 
 #: apps/evernote_reports/forms.py:26
 msgid "Translation Rate"
@@ -99,15 +99,15 @@ msgstr ""
 
 #: apps/evernote_reports/models.py:37
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: apps/evernote_reports/models.py:40
 msgid "Amount"
-msgstr ""
+msgstr "Количество"
 
 #: apps/evernote_reports/models.py:42
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: apps/evernote_reports/models.py:43
 msgid "Description"
@@ -116,7 +116,7 @@ msgstr "Описание"
 #: apps/evernote_reports/views.py:297
 #, python-format
 msgid "User %s not found"
-msgstr ""
+msgstr "Пользователь %s не найден"
 
 #: apps/evernote_reports/views.py:382
 msgid "Invalid request method"
@@ -623,7 +623,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:75
 msgid "Template format"
-msgstr ""
+msgstr "Формат шаблона"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Mustache placeholders"
@@ -696,11 +696,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:93
 msgid "Objective-C format"
-msgstr ""
+msgstr "формат Objective-C"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Android format"
-msgstr ""
+msgstr "формат Android"
 
 #: apps/pootle_misc/checks.py:96
 msgid "Tags differ"
@@ -854,7 +854,7 @@ msgstr ""
 #: apps/pootle_project/models.py:188
 #: apps/pootle_translationproject/models.py:151
 msgid "Disabled"
-msgstr ""
+msgstr "Отключено"
 
 #: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
 msgid "Source"
@@ -1154,7 +1154,7 @@ msgstr ""
 #: apps/staticpages/views.py:113
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "страница-%d"
 
 #: core/browser.py:22
 msgid "Project"
@@ -1166,7 +1166,6 @@ msgid "Progress"
 msgstr "Выполнено"
 
 #: core/browser.py:45 templates/browser/overview.html:39
-#, fuzzy
 msgid "Last updated"
 msgstr "Последнее изменение"
 
@@ -1345,15 +1344,15 @@ msgstr ""
 
 #: models/user.py:92
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: models/user.py:94
 msgid "Website"
-msgstr ""
+msgstr "Веб-сайт"
 
 #: models/user.py:95
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: models/user.py:96
 msgid "Short Bio"
@@ -1394,7 +1393,6 @@ msgid "About"
 msgstr "О сайте"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "Об этом сервере Pootle"
 
@@ -1415,12 +1413,13 @@ msgstr ""
 "i class=\"icon-external-link\"></i> сайте проекта Pootle</a>."
 
 #: templates/about.html:16
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
 msgstr ""
-"Pootle %(pootle_ver)s использует Translate Toolkit версии %(toolkit_ver)s"
+"Pootle %(pootle_version)s использует Translate Toolkit версии "
+"%(toolkit_version)s"
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
@@ -1468,7 +1467,7 @@ msgstr "Статические страницы"
 #: templates/admin/_tabs.html:9 templates/admin/reports.html:47
 #: templates/admin/reports.html.py:50
 msgid "Reports"
-msgstr ""
+msgstr "Отчеты"
 
 #: templates/admin/base.html:4 templates/admin/base.html.py:7
 msgid "Administration"
@@ -1535,16 +1534,16 @@ msgstr ""
 #: templates/admin/detailed_reports.html:133
 #: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
 msgid "Previous month"
-msgstr ""
+msgstr "Предыдущий месяц"
 
 #: templates/admin/detailed_reports.html:135
 #: templates/admin/reports/header.html:15 templates/user/detailed_stats.html:9
 msgid "Next month"
-msgstr ""
+msgstr "Следующий месяц"
 
 #: templates/admin/detailed_reports.html:142
 msgid "Local server time"
-msgstr ""
+msgstr "Локальный сервер времени"
 
 #: templates/admin/detailed_reports.html:143
 #, fuzzy
@@ -1566,7 +1565,7 @@ msgstr ""
 
 #: templates/admin/detailed_reports.html:147
 msgid "Words"
-msgstr ""
+msgstr "Слов"
 
 #: templates/admin/detailed_reports.html:150
 msgid "Subtotal"
@@ -1622,21 +1621,20 @@ msgid "Daily activity"
 msgstr ""
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "Пользователи"
+msgstr "Пользователь"
 
 #: templates/admin/reports/header.html:22
 msgid "Detailed Report"
-msgstr ""
+msgstr "Подробный отчет"
 
 #: templates/admin/reports/header.html:24
 msgid "Detailed Statistics"
-msgstr ""
+msgstr "Подробная статистика"
 
 #: templates/admin/reports/paid_task_form.html:5
 msgid "Add Task"
-msgstr ""
+msgstr "Добавить задачу"
 
 #: templates/admin/reports/paid_task_form.html:23
 msgid "words"
@@ -1810,11 +1808,11 @@ msgstr ""
 
 #: templates/contact_form/contact_form.html:15
 msgid "Send Message"
-msgstr ""
+msgstr "Отправить сообщение"
 
 #: templates/contact_form/contact_form.html:20
 msgid "Thanks!"
-msgstr ""
+msgstr "Спасибо!"
 
 #: templates/contact_form/contact_form.html:21
 msgid ""
@@ -1963,7 +1961,7 @@ msgstr "Расположение:"
 
 #: templates/editor/units/edit.html:71
 msgid "Screenshots..."
-msgstr ""
+msgstr "Снимки экрана..."
 
 #: templates/editor/units/edit.html:95 templates/editor/units/edit.html:121
 msgid "Copy into translation"
@@ -2140,7 +2138,7 @@ msgstr ""
 
 #: templates/errors/400.html:12
 msgid "Error 400"
-msgstr ""
+msgstr "Ошибка 400"
 
 #: templates/errors/400.html:14
 msgid "The operation is not permitted."
@@ -2253,7 +2251,7 @@ msgstr "Настройки"
 #: templates/layout.html:124 templates/user/stats.html:48
 #: templates/user/stats.html.py:53
 msgid "Statistics"
-msgstr ""
+msgstr "Статистика"
 
 #: templates/layout.html:126
 msgid "Admin"
@@ -2261,11 +2259,11 @@ msgstr "Администратор"
 
 #: templates/layout.html:129
 msgid "Sign Out"
-msgstr ""
+msgstr "Выйти"
 
 #: templates/layout.html:133 templates/welcome.html:18
 msgid "Sign In"
-msgstr ""
+msgstr "Войти"
 
 #: templates/login.html:4 templates/login.html.py:9
 msgid "Log In"
@@ -2518,7 +2516,7 @@ msgstr ""
 
 #: templates/staticpages/agreement.html:20
 msgid "Continue"
-msgstr ""
+msgstr "Продолжить"
 
 #: templates/translation_projects/_nav.html:26
 msgid "Terminology"
@@ -2600,9 +2598,8 @@ msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Вы можете установить или изменить свой аватар на сайте www.gravatar.com"
 
 #: templates/user/profile.html:17
-#, fuzzy
 msgid "Anonymous User"
-msgstr "аноним"
+msgstr "Анонимный пользователь"
 
 #: templates/user/profile.html:26
 msgid "Score:"
@@ -2640,13 +2637,12 @@ msgid ""
 msgstr ""
 
 #: templates/user/profile.html:54
-#, fuzzy
 msgid "Latest activity:"
-msgstr "Последняя активность"
+msgstr "Последняя активность:"
 
 #: templates/user/profile.html:66
 msgid "My Website"
-msgstr ""
+msgstr "Мой веб-сайт"
 
 #: templates/user/profile.html:72
 msgid "My LinkedIn Profile"
@@ -2676,7 +2672,7 @@ msgstr ""
 
 #: templates/user/reports/user_rates_widget.html:8
 msgid "Currency:"
-msgstr ""
+msgstr "Валюта:"
 
 #: templates/user/reports/user_rates_widget.html:18
 msgid "Translation Rate:"
@@ -2692,11 +2688,11 @@ msgstr ""
 
 #: templates/welcome.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "Добро пожаловать"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "Добро пожаловать в Pootle"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"

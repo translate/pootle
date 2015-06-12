@@ -6,23 +6,23 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2015-02-13 07:15+0000\n"
-"Last-Translator: stoyan <stoyan@gmx.com>\n"
+"PO-Revision-Date: 2015-05-30 09:29+0000\n"
+"Last-Translator: Mirosenpai <aq_fen@abv.bg>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1423811729.000000\n"
+"X-POOTLE-MTIME: 1432978160.000000\n"
 
 #: apps/contact/forms.py:23
 msgid "Summary"
-msgstr ""
+msgstr "Резюме"
 
 #: apps/contact/forms.py:25
 msgid "Please enter your message summary"
@@ -34,7 +34,7 @@ msgstr "Име"
 
 #: apps/contact/forms.py:33
 msgid "Please enter your name"
-msgstr ""
+msgstr "Моля въведете името си"
 
 #: apps/contact/forms.py:36
 msgid "Email address"
@@ -42,15 +42,15 @@ msgstr "Адрес на ел. поща"
 
 #: apps/contact/forms.py:37
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Моля въведете своя имейл адрес"
 
 #: apps/contact/forms.py:40 apps/pootle_notifications/models.py:18
 msgid "Message"
-msgstr ""
+msgstr "Съобщение"
 
 #: apps/contact/forms.py:41
 msgid "Please enter your message"
-msgstr ""
+msgstr "Моля въведете вашето съобщение"
 
 #: apps/evernote_auth/views.py:51
 msgid ""
@@ -60,15 +60,15 @@ msgstr ""
 
 #: apps/evernote_reports/forms.py:20 models/user.py:89
 msgid "Currency"
-msgstr ""
+msgstr "Валута"
 
 #: apps/evernote_reports/forms.py:26
 msgid "Translation Rate"
-msgstr ""
+msgstr "Скорост на превод"
 
 #: apps/evernote_reports/forms.py:31 models/user.py:86
 msgid "Review Rate"
-msgstr ""
+msgstr "Скорост на преглед"
 
 #: apps/evernote_reports/forms.py:36 models/user.py:87
 msgid "Hourly Rate"
@@ -94,19 +94,19 @@ msgstr ""
 
 #: apps/evernote_reports/models.py:34
 msgid "Correction"
-msgstr ""
+msgstr "Поправка"
 
 #: apps/evernote_reports/models.py:37
 msgid "Type"
-msgstr ""
+msgstr "Вид"
 
 #: apps/evernote_reports/models.py:40
 msgid "Amount"
-msgstr ""
+msgstr "Количество"
 
 #: apps/evernote_reports/models.py:42
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: apps/evernote_reports/models.py:43
 msgid "Description"
@@ -115,7 +115,7 @@ msgstr "Описание"
 #: apps/evernote_reports/views.py:297
 #, python-format
 msgid "User %s not found"
-msgstr ""
+msgstr "Потребителят %s не е намерен"
 
 #: apps/evernote_reports/views.py:382
 msgid "Invalid request method"
@@ -132,7 +132,7 @@ msgstr "Изходен език"
 #: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:373
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr "„%s“ не може да бъде използвано за ключ на проект"
+msgstr "„%s“ не може да е ключ на проект"
 
 #: apps/pootle_app/forms.py:98 templates/profiles/_tabs.html:5
 msgid "Password"
@@ -299,17 +299,16 @@ msgid ""
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:308
-#, fuzzy
 msgid "Files"
-msgstr "Файл"
+msgstr "Файлове"
 
 #: apps/pootle_app/views/admin/dashboard.py:309
 msgid "Active projects"
-msgstr ""
+msgstr "Активни проекти"
 
 #: apps/pootle_app/views/admin/dashboard.py:310
 msgid "Active languages"
-msgstr ""
+msgstr "Активни езици"
 
 #: apps/pootle_app/views/admin/dashboard.py:311
 msgid "Translated strings"
@@ -321,37 +320,36 @@ msgstr "Преведени думи"
 
 #: apps/pootle_app/views/admin/dashboard.py:313
 msgid "Active users"
-msgstr ""
+msgstr "Активни потребители"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "All Users"
-msgstr ""
+msgstr "Всички потребители"
 
 #: apps/pootle_app/views/admin/permissions.py:86 models/user.py:56
 msgid "Username"
 msgstr "Потребителско име"
 
 #: apps/pootle_app/views/admin/permissions.py:95
-#, fuzzy
 msgid "Add Permissions"
-msgstr "Права на потребителя"
+msgstr "Добавяне на права"
 
 #: apps/pootle_app/views/admin/permissions.py:100
 #: apps/pootle_app/views/admin/permissions.py:109
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Изберете едно или повече права"
 
 #: apps/pootle_app/views/admin/permissions.py:104
 msgid "Revoke Permissions"
-msgstr ""
+msgstr "Отмяна на правата"
 
 #: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
-msgstr ""
+msgstr "В този проект няма файлове."
 
 #: apps/pootle_app/views/admin/util.py:159
 msgid "There are errors in the form. Please review the problems below."
-msgstr ""
+msgstr "Има грешка във формуляра. Моля, разгледайте проблемите по-долу."
 
 #: apps/pootle_language/models.py:67
 msgid ""
@@ -367,7 +365,7 @@ msgstr "Код"
 #: apps/pootle_language/models.py:74 apps/pootle_project/models.py:147
 #: models/user.py:66
 msgid "Full Name"
-msgstr "Пълно име"
+msgstr "Цяло име"
 
 #: apps/pootle_language/models.py:76
 msgid "Enter any special characters that users might find difficult to type"
@@ -386,7 +384,7 @@ msgstr ""
 
 #: apps/pootle_language/models.py:87
 msgid "Unknown"
-msgstr ""
+msgstr "Неизвестни"
 
 #: apps/pootle_language/models.py:90
 msgid "Number of Plurals"
@@ -398,27 +396,27 @@ msgstr "Множествено Уравнение"
 
 #: apps/pootle_misc/checks.py:23 core/browser.py:61
 msgid "Critical"
-msgstr ""
+msgstr "Критични"
 
 #: apps/pootle_misc/checks.py:24
 msgid "Cosmetic"
-msgstr ""
+msgstr "Козметични"
 
 #: apps/pootle_misc/checks.py:29 apps/pootle_misc/checks.py:95
 msgid "Accelerators"
-msgstr ""
+msgstr "Клавишни комбинации"
 
 #: apps/pootle_misc/checks.py:30
 msgid "Acronyms"
-msgstr ""
+msgstr "Акроними"
 
 #: apps/pootle_misc/checks.py:31
 msgid "Blank"
-msgstr ""
+msgstr "Празни"
 
 #: apps/pootle_misc/checks.py:32
 msgid "Brackets"
-msgstr ""
+msgstr "Скоби"
 
 #: apps/pootle_misc/checks.py:33
 msgid "Compendium conflict"
@@ -502,7 +500,7 @@ msgstr "Настройки"
 
 #: apps/pootle_misc/checks.py:53
 msgid "printf()"
-msgstr ""
+msgstr "printf()"
 
 #: apps/pootle_misc/checks.py:54
 msgid "Punctuation spacing"
@@ -510,7 +508,7 @@ msgstr "Интервали около пунктуация"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Pure punctuation"
-msgstr ""
+msgstr "Изцяло пунктуация"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Number of sentences"
@@ -547,11 +545,11 @@ msgstr "Започващи с интервал"
 #. Translators: This refers to tabulation characters
 #: apps/pootle_misc/checks.py:65
 msgid "Tabs"
-msgstr ""
+msgstr "Табулатори"
 
 #: apps/pootle_misc/checks.py:66
 msgid "Unchanged"
-msgstr ""
+msgstr "Непроменени"
 
 #: apps/pootle_misc/checks.py:67 apps/pootle_misc/stats.py:27
 #: apps/pootle_store/util.py:30 core/helpers.py:55
@@ -561,19 +559,19 @@ msgstr "Непреведени"
 
 #: apps/pootle_misc/checks.py:68
 msgid "URLs"
-msgstr ""
+msgstr "Адреси"
 
 #: apps/pootle_misc/checks.py:69
 msgid "Valid characters"
-msgstr ""
+msgstr "Валидни символи"
 
 #: apps/pootle_misc/checks.py:70
 msgid "Placeholders"
-msgstr ""
+msgstr "Заместващи знаци"
 
 #: apps/pootle_misc/checks.py:71
 msgid "XML tags"
-msgstr ""
+msgstr "XML етикети"
 
 #: apps/pootle_misc/checks.py:73
 msgid "Broken HTML Entities"
@@ -613,7 +611,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:82
 msgid "Changed attributes"
-msgstr ""
+msgstr "Променени атрибути"
 
 #: apps/pootle_misc/checks.py:83
 msgid "Unescaped ampersands"
@@ -629,7 +627,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:86
 msgid "Date format"
-msgstr ""
+msgstr "Формат на датата"
 
 #: apps/pootle_misc/checks.py:87
 msgid "Uppercase placeholders"
@@ -665,11 +663,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:96
 msgid "Tags differ"
-msgstr ""
+msgstr "Различия в етикетите"
 
 #: apps/pootle_misc/checks.py:97
 msgid "Curly braces"
-msgstr ""
+msgstr "Кръгли скоби"
 
 #: apps/pootle_misc/checks.py:98
 msgid "Potential unwanted placeholders"
@@ -677,7 +675,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:100
 msgid "Double quotes in tags"
-msgstr ""
+msgstr "Двойни кавички в етикети"
 
 #: apps/pootle_misc/forms.py:91
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
@@ -685,7 +683,7 @@ msgstr ""
 
 #: apps/pootle_misc/forms.py:99
 msgid "Exact Match"
-msgstr ""
+msgstr "Точно съвпадение"
 
 #: apps/pootle_misc/forms.py:106
 msgid "Source Text"
@@ -713,7 +711,7 @@ msgstr "Целеви термин"
 
 #: apps/pootle_misc/forms.py:124
 msgid "Definitions"
-msgstr ""
+msgstr "Дефиниции"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
@@ -811,7 +809,7 @@ msgstr ""
 #: apps/pootle_project/models.py:188
 #: apps/pootle_translationproject/models.py:151
 msgid "Disabled"
-msgstr ""
+msgstr "Изключено"
 
 #: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
 msgid "Source"
@@ -851,7 +849,7 @@ msgstr ""
 
 #: apps/pootle_statistics/models.py:223
 msgid "uploaded a file"
-msgstr ""
+msgstr "качи файл"
 
 #: apps/pootle_statistics/models.py:226
 #, python-format
@@ -886,7 +884,7 @@ msgstr ""
 #: apps/pootle_statistics/models.py:267
 #, python-format
 msgid "reviewed %(source_string)s"
-msgstr ""
+msgstr "прегледани %(source_string)s"
 
 #: apps/pootle_statistics/models.py:268
 #, python-format
@@ -900,51 +898,51 @@ msgstr ""
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "Недостатъчни права за достъп до тази папка."
 
 #: apps/pootle_store/decorators.py:30
 msgid "Insufficient rights to access suggestion mode."
-msgstr ""
+msgstr "Недостатъчни права за достъп до режим на предложения."
 
 #: apps/pootle_store/decorators.py:31
 msgid "Insufficient rights to access translation mode."
-msgstr ""
+msgstr "Недостатъчни права за достъп до режим на превеждане."
 
 #: apps/pootle_store/decorators.py:32
 msgid "Insufficient rights to access review mode."
-msgstr ""
+msgstr "Недостатъчни права за достъп до режим на преглед."
 
 #: apps/pootle_store/filetypes.py:20
 msgid "Gettext PO"
-msgstr ""
+msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:24 apps/pootle_store/filetypes.py:25
 msgid "XLIFF"
-msgstr ""
+msgstr "XLIFF"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts"
 
 #: apps/pootle_store/filetypes.py:37
 msgid "TMX"
-msgstr ""
+msgstr "TMX"
 
 #: apps/pootle_store/filetypes.py:43
 msgid "TBX"
-msgstr ""
+msgstr "TBX"
 
 #: apps/pootle_store/filetypes.py:49
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkeys"
 
 #: apps/pootle_store/filetypes.py:55
 msgid "Excel CSV"
-msgstr ""
+msgstr "Excel CSV"
 
 #: apps/pootle_store/filetypes.py:61
 msgid "Mozilla .lang"
-msgstr ""
+msgstr "Mozilla .lang"
 
 #: apps/pootle_store/forms.py:88
 #: apps/pootle_store/templatetags/store_tags.py:146
@@ -996,7 +994,7 @@ msgstr ""
 
 #: apps/pootle_store/models.py:1337
 msgid "Path"
-msgstr ""
+msgstr "Пътека"
 
 #: apps/pootle_store/templatetags/store_tags.py:140
 #: apps/pootle_store/templatetags/store_tags.py:142
@@ -1014,7 +1012,7 @@ msgstr "Остарял"
 
 #: apps/pootle_store/views.py:408 core/decorators.py:45
 msgid "Arguments missing."
-msgstr ""
+msgstr "Липсва аргумент."
 
 #: apps/pootle_store/views.py:636
 msgid "Failed to remove comment."
@@ -1051,7 +1049,7 @@ msgstr "Включен"
 
 #: apps/staticpages/models.py:30
 msgid "Whether this page is active or not."
-msgstr ""
+msgstr "Дали тази страница е включена или не."
 
 #: apps/staticpages/models.py:33 templates/admin/staticpages/_table.html:7
 msgid "Virtual Path"
@@ -1090,11 +1088,11 @@ msgstr ""
 
 #: apps/staticpages/models.py:112
 msgid "Legal Page"
-msgstr ""
+msgstr "Страница с правна информация"
 
 #: apps/staticpages/models.py:123
 msgid "Regular Page"
-msgstr ""
+msgstr "Нормална страница"
 
 #: apps/staticpages/views.py:108 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
@@ -1103,7 +1101,7 @@ msgstr "Заглавие на страницата"
 #: apps/staticpages/views.py:113
 #, python-format
 msgid "page-%d"
-msgstr ""
+msgstr "страница-%d"
 
 #: core/browser.py:22
 msgid "Project"
@@ -1115,9 +1113,8 @@ msgid "Progress"
 msgstr "Развитие"
 
 #: core/browser.py:45 templates/browser/overview.html:39
-#, fuzzy
 msgid "Last updated"
-msgstr "Последна редакция"
+msgstr "Последна актуализация"
 
 #: core/browser.py:50
 msgid "Need Translation"
@@ -1134,11 +1131,11 @@ msgstr "Последна активност"
 
 #: core/browser.py:112
 msgid "Back to parent folder"
-msgstr ""
+msgstr "Назад към родителската папка"
 
 #: core/decorators.py:304
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Недостатъчни права за достъп до тази страница."
 
 #: core/decorators.py:317 core/views.py:33
 msgid "You do not have rights to administer Pootle."
@@ -1146,24 +1143,24 @@ msgstr "Нямате правата да управлявате Pootle."
 
 #: core/forms.py:114
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Времето за отговор изтече"
 
 #: core/forms.py:133
 msgid "Enter a number"
-msgstr ""
+msgstr "Въведете число"
 
 #: core/forms.py:148
 msgid "Incorrect"
-msgstr ""
+msgstr "Неправилно"
 
 #: core/helpers.py:41
 msgid "User missing"
-msgstr ""
+msgstr "Липсва потребител"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:53 templates/editor/_filters.html:6
 msgid "All"
-msgstr ""
+msgstr "Всички"
 
 #: core/helpers.py:57 templates/editor/_filters.html:8
 msgid "Incomplete"
@@ -1199,15 +1196,15 @@ msgstr ""
 
 #: core/initdb.py:110
 msgid "Can access a project"
-msgstr ""
+msgstr "Има достъп до проект"
 
 #: core/initdb.py:114
 msgid "Cannot access a project"
-msgstr ""
+msgstr "Няма достъп до проект"
 
 #: core/initdb.py:118
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "Може да прави предложение за превод"
 
 #: core/initdb.py:122
 msgid "Can submit a translation"
@@ -1215,20 +1212,22 @@ msgstr ""
 
 #: core/initdb.py:126
 msgid "Can review translations"
-msgstr ""
+msgstr "Може да преглежда преводи"
 
 #: core/initdb.py:130
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "Може да администрира преводен проект"
 
 #: core/views.py:65
 msgid "You cannot access this page."
-msgstr ""
+msgstr "Нямате права за достъп до тази страница."
 
 #: middleware/errorpages.py:66
 #, python-format
 msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
 msgstr ""
+"Трябва да се <a href=\"%(login_link)s\">впишете</a>, за да отворите тази "
+"страница."
 
 #: middleware/errorpages.py:105
 #, python-format
@@ -1242,7 +1241,7 @@ msgstr ""
 
 #: models/user.py:61
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Въведете валидно потребителско име."
 
 #: models/user.py:65 templates/registration/password_reset_form.html:19
 msgid "Email Address"
@@ -1266,7 +1265,7 @@ msgstr ""
 
 #: models/user.py:75
 msgid "date joined"
-msgstr ""
+msgstr "регистриран на"
 
 #: models/user.py:79
 msgid "Number of Rows"
@@ -1290,15 +1289,15 @@ msgstr ""
 
 #: models/user.py:92
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: models/user.py:94
 msgid "Website"
-msgstr ""
+msgstr "Страница"
 
 #: models/user.py:95
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: models/user.py:96
 msgid "Short Bio"
@@ -1312,7 +1311,7 @@ msgstr ""
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:37
 msgid "Legal"
-msgstr ""
+msgstr "Правна информация"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:39
@@ -1327,7 +1326,7 @@ msgstr ""
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:43
 msgid "Terms of Use"
-msgstr ""
+msgstr "Условия за употреба"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:45
@@ -1336,10 +1335,9 @@ msgstr "Условия за ползване"
 
 #: templates/about.html:7 templates/layout.html:178
 msgid "About"
-msgstr ""
+msgstr "Относно"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "Относно този Pootle сървър"
 
@@ -1359,6 +1357,8 @@ msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
 msgstr ""
+"Pootle %(pootle_version)s се изпълнява от Translate Toolkit "
+"%(toolkit_version)s."
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
@@ -1367,7 +1367,7 @@ msgstr "Запазване на промените"
 
 #: templates/admin/_tabs.html:3
 msgid "Info"
-msgstr ""
+msgstr "Информация"
 
 #: templates/admin/_tabs.html:4 templates/admin/dashboard.html:25
 #: templates/admin/users.html:4 templates/admin/users.html.py:9
@@ -1401,7 +1401,7 @@ msgstr "Права"
 #: templates/admin/_tabs.html:8 templates/admin/staticpages/base.html:4
 #: templates/admin/staticpages/base.html:10
 msgid "Static Pages"
-msgstr ""
+msgstr "Статични страници"
 
 #: templates/admin/_tabs.html:9 templates/admin/reports.html:47
 #: templates/admin/reports.html.py:50
@@ -1422,27 +1422,27 @@ msgstr "Чакащи предложения"
 
 #: templates/admin/dashboard.html:31
 msgid "More..."
-msgstr "Още"
+msgstr "Още…"
 
 #: templates/admin/dashboard.html:38
 msgid "Background Jobs"
-msgstr ""
+msgstr "Фонови задачи"
 
 #: templates/admin/dashboard.html:44
 msgid "Status"
-msgstr ""
+msgstr "Състояние"
 
 #: templates/admin/dashboard.html:45
 msgid "Running"
-msgstr ""
+msgstr "Работеща"
 
 #: templates/admin/dashboard.html:45
 msgid "Stopped"
-msgstr ""
+msgstr "Спряна"
 
 #: templates/admin/dashboard.html:48
 msgid "Pending jobs"
-msgstr ""
+msgstr "Висящи задачи"
 
 #: templates/admin/dashboard.html:51
 msgid "Failed jobs"
@@ -1473,30 +1473,28 @@ msgstr ""
 #: templates/admin/detailed_reports.html:133
 #: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
 msgid "Previous month"
-msgstr ""
+msgstr "Предишен месец"
 
 #: templates/admin/detailed_reports.html:135
 #: templates/admin/reports/header.html:15 templates/user/detailed_stats.html:9
 msgid "Next month"
-msgstr ""
+msgstr "Следващ месец"
 
 #: templates/admin/detailed_reports.html:142
 msgid "Local server time"
-msgstr ""
+msgstr "Местно време на сървъра"
 
 #: templates/admin/detailed_reports.html:143
-#, fuzzy
 msgid "Action"
-msgstr "Действия"
+msgstr "Действие"
 
 #: templates/admin/detailed_reports.html:144
 msgid "Unit"
 msgstr ""
 
 #: templates/admin/detailed_reports.html:145
-#, fuzzy
 msgid "Source words"
-msgstr "Изходен термин"
+msgstr "Изходни думи"
 
 #: templates/admin/detailed_reports.html:146
 msgid "Similarity"
@@ -1504,11 +1502,11 @@ msgstr ""
 
 #: templates/admin/detailed_reports.html:147
 msgid "Words"
-msgstr ""
+msgstr "Думи"
 
 #: templates/admin/detailed_reports.html:150
 msgid "Subtotal"
-msgstr ""
+msgstr "Междинна сума"
 
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:230
@@ -1521,11 +1519,11 @@ msgstr ""
 
 #: templates/admin/detailed_reports.html:205
 msgid "Translation (subtotal)"
-msgstr ""
+msgstr "Превод (междинна сума)"
 
 #: templates/admin/detailed_reports.html:216
 msgid "Review (subtotal)"
-msgstr ""
+msgstr "Преглед (междинна сума)"
 
 #: templates/admin/detailed_reports.html:248
 msgid "Please select a valid user."
@@ -1550,12 +1548,11 @@ msgstr ""
 
 #: templates/admin/reports.html:60 templates/user/stats.html:63
 msgid "Daily activity"
-msgstr ""
+msgstr "Дневна активност"
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "Потребители"
+msgstr "Потребител"
 
 #: templates/admin/reports/header.html:22
 msgid "Detailed Report"
@@ -1563,7 +1560,7 @@ msgstr ""
 
 #: templates/admin/reports/header.html:24
 msgid "Detailed Statistics"
-msgstr ""
+msgstr "Подробна статистика"
 
 #: templates/admin/reports/paid_task_form.html:5
 msgid "Add Task"
@@ -1571,11 +1568,11 @@ msgstr ""
 
 #: templates/admin/reports/paid_task_form.html:23
 msgid "words"
-msgstr ""
+msgstr "думи"
 
 #: templates/admin/reports/paid_task_form.html:24
 msgid "hours"
-msgstr ""
+msgstr "часове"
 
 #: templates/admin/reports/paid_task_form.html:35
 msgid "Add record"
@@ -1622,14 +1619,12 @@ msgid "No"
 msgstr "Не"
 
 #: templates/admin/staticpages/_table.html:19
-#, fuzzy
 msgid "edit"
-msgstr "Редактиране"
+msgstr "редактиране"
 
 #: templates/admin/staticpages/_table.html:24
-#, fuzzy
 msgid "view"
-msgstr "Изглед"
+msgstr "изглед"
 
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
@@ -1665,18 +1660,16 @@ msgid "Add Announcement"
 msgstr ""
 
 #: templates/browser/_actions.html:5
-#, fuzzy
 msgid "Continue translation"
-msgstr "Копиране като превод"
+msgstr "Продължете да преведжате"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Review suggestions"
-msgstr "Показване на предложенията"
+msgstr "Преглед на предложенията"
 
 #: templates/browser/_actions.html:17
 msgid "Fix critical errors"
-msgstr ""
+msgstr "Оправяне на критичните грешки"
 
 #: templates/browser/_actions.html:23
 msgid "View all"
@@ -1707,7 +1700,7 @@ msgstr "Състояние на превода"
 
 #: templates/browser/overview.html:43
 msgid "Last action"
-msgstr ""
+msgstr "Последно действие"
 
 #: templates/browser/overview.html:51
 msgid "Failing Checks"
@@ -1715,7 +1708,7 @@ msgstr "Неуспешни проверки"
 
 #: templates/browser/overview.html:90
 msgid "This project is disabled and visible to administrators only."
-msgstr ""
+msgstr "Този проект е изключен и е видим само за администраторите."
 
 #: templates/browser/overview.html:95
 msgid ""
@@ -1725,15 +1718,15 @@ msgstr ""
 
 #: templates/browser/overview.html:96
 msgid "Refresh now"
-msgstr ""
+msgstr "Презаредете сега"
 
 #: templates/browser/overview.html:119
 msgid "Congratulations! You have completed this task!"
-msgstr ""
+msgstr "Поздравления! Приключихте тази задачат!"
 
 #: templates/contact_form/contact_form.html:5
 msgid "Contact Us"
-msgstr ""
+msgstr "Връзка с нас"
 
 #: templates/contact_form/contact_form.html:7
 msgid "You have to fill all the fields, and please <b>write in English</b>."
@@ -1745,7 +1738,7 @@ msgstr ""
 
 #: templates/contact_form/contact_form.html:20
 msgid "Thanks!"
-msgstr ""
+msgstr "Благодаря!"
 
 #: templates/contact_form/contact_form.html:21
 msgid ""
@@ -1769,25 +1762,27 @@ msgstr ""
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
 msgid "Are You Human?"
-msgstr ""
+msgstr "Човек ли сте?"
 
 #: templates/core/xhr_captcha.html:9
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"За да предпазим сървъра от атаки трябва да сме сигурни, че преводите се "
+"правят от хора."
 
 #: templates/core/xhr_captcha.html:10
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Моля, отговорете на въпроса:"
 
 #: templates/core/xhr_captcha.html:13
 msgid "Confirm"
-msgstr ""
+msgstr "Потвърждение"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to overview"
-msgstr ""
+msgstr "Назад към обобщението"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -1799,33 +1794,35 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr ""
+msgstr "Стандартно подреждане"
 
 #: templates/editor/_toolbar.html:7
 msgid "Newest first"
-msgstr ""
+msgstr "Първо най-новите"
 
 #: templates/editor/_toolbar.html:8
 msgid "Oldest first"
-msgstr ""
+msgstr "Първо най-старите"
 
 #: templates/editor/_toolbar.html:14
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Към предишния низ (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:17
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Номер на текущия низ (Ctrl+Shift+U)<br/><br/>Въведете номер и натиснете "
+"Enter,<br/>за да отидете до друг низ"
 
 #: templates/editor/_toolbar.html:19
 msgid "Total strings"
-msgstr ""
+msgstr "Общо низове"
 
 #: templates/editor/_toolbar.html:22
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Към следващия низ (Ctrl+Down)"
 
 #: templates/editor/export_view.html:6 templates/languages/_nav.html:18
 #: templates/projects/_nav.html:18 templates/projects/all/_nav.html:18
@@ -1896,9 +1893,8 @@ msgid "Copy into translation"
 msgstr "Копиране като превод"
 
 #: templates/editor/units/edit.html:117
-#, fuzzy
 msgid "Report a problem with this string"
-msgstr "Докладване на проблем в изходния низ"
+msgstr "Докладване на проблем в този низ"
 
 #: templates/editor/units/edit.html:139 templates/editor/units/edit.html:150
 #: templates/editor/units/edit.html:243
@@ -2020,9 +2016,8 @@ msgid "Possible issues with the translation"
 msgstr "Вероятни проблеми с превода"
 
 #: templates/editor/units/xhr_checks.html:3
-#, fuzzy
 msgid "Failing checks:"
-msgstr "Неуспешни проверки"
+msgstr "Неуспешни проверки:"
 
 #: templates/editor/units/xhr_checks.html:9
 msgid "Mute quality check"
@@ -2073,7 +2068,6 @@ msgid "Permission Denied"
 msgstr ""
 
 #: templates/errors/403.html:13
-#, fuzzy
 msgid "You don't seem to have permissions to access this page."
 msgstr "Нямате правата да достъпвате тази страница."
 
@@ -2199,12 +2193,12 @@ msgstr "Забравихте паролата?"
 
 #: templates/notifications/_latest.html:9
 msgid "No news yet."
-msgstr ""
+msgstr "Още няма новини."
 
 #: templates/profiles/_tabs.html:6
 #: templates/profiles/settings/evernote_account.html:38
 msgid "Link with Evernote"
-msgstr ""
+msgstr "Свързване с Evernote"
 
 #: templates/profiles/base.html:4 templates/profiles/base.html.py:6
 msgid "My Account"
@@ -2213,7 +2207,7 @@ msgstr "Моят профил"
 #: templates/profiles/settings/evernote_account.html:4
 #: templates/profiles/settings/evernote_account.html:7
 msgid "Evernote account"
-msgstr ""
+msgstr "Evernote профил"
 
 #: templates/profiles/settings/evernote_account.html:14
 #, python-format
@@ -2234,12 +2228,12 @@ msgstr ""
 
 #: templates/profiles/settings/evernote_account.html:30
 msgid "Unlink from Evernote"
-msgstr ""
+msgstr "Разкачане от Evernote"
 
 #: templates/profiles/settings/personal.html:4
 #: templates/profiles/settings/personal.html:7
 msgid "Profile"
-msgstr ""
+msgstr "Профил"
 
 #: templates/profiles/settings/personal.html:13
 msgid ""
@@ -2251,7 +2245,7 @@ msgstr ""
 #: templates/profiles/settings/profile.html:4
 #: templates/profiles/settings/profile.html:7
 msgid "Translation Settings"
-msgstr ""
+msgstr "Настройки на превода"
 
 #: templates/profiles/settings/profile.html:12
 msgid ""
@@ -2270,7 +2264,7 @@ msgstr ""
 #: templates/registration/password_change_done.html:8
 #: templates/registration/password_change_done.html:13
 msgid "Password Changed"
-msgstr ""
+msgstr "Паролата е сменена"
 
 #: templates/registration/password_change_done.html:14
 msgid "Your password was changed successfully."
@@ -2279,7 +2273,7 @@ msgstr ""
 #: templates/registration/password_change_form.html:4
 #: templates/registration/password_change_form.html:7
 msgid "Change Password"
-msgstr ""
+msgstr "Смяна на паролата"
 
 #: templates/registration/password_change_form.html:12
 msgid ""
@@ -2289,11 +2283,11 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:21
 msgid "Old password"
-msgstr ""
+msgstr "Стара парола"
 
 #: templates/registration/password_change_form.html:26
 msgid "New password"
-msgstr ""
+msgstr "Нова парола"
 
 #: templates/registration/password_change_form.html:31
 msgid "Confirm password"
@@ -2301,7 +2295,7 @@ msgstr "Потвърдете паролата"
 
 #: templates/registration/password_change_form.html:36
 msgid "Change My Password"
-msgstr ""
+msgstr "Смяна на паролата"
 
 #: templates/registration/password_reset_complete.html:4
 #: templates/registration/password_reset_complete.html:7
@@ -2342,7 +2336,7 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:21
 msgid "New Password"
-msgstr ""
+msgstr "Нова парола"
 
 #: templates/registration/password_reset_confirm.html:26
 msgid "Confirm Password"
@@ -2404,7 +2398,7 @@ msgstr ""
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
-msgstr ""
+msgstr "Действие необходимо"
 
 #: templates/staticpages/agreement.html:4
 msgid "Before continuing, you must read and accept the following documents."
@@ -2416,12 +2410,11 @@ msgstr ""
 
 #: templates/staticpages/agreement.html:20
 msgid "Continue"
-msgstr ""
+msgstr "Продължаване"
 
 #: templates/translation_projects/_nav.html:26
-#, fuzzy
 msgid "Terminology"
-msgstr "Терминология:"
+msgstr "Терминология"
 
 #: templates/translation_projects/admin/permissions.html:11
 msgid ""
@@ -2431,11 +2424,11 @@ msgstr ""
 
 #: templates/translation_projects/terminology/_term_edit.html:11
 msgid "Description..."
-msgstr "Описание"
+msgstr "Описание…"
 
 #: templates/translation_projects/terminology/_term_edit.html:18
 msgid "Details..."
-msgstr "Подробности"
+msgstr "Подробности…"
 
 #: templates/translation_projects/terminology/_term_edit.html:31
 msgid "Translator Comments"
@@ -2443,7 +2436,7 @@ msgstr "Коментари на преводача"
 
 #: templates/translation_projects/terminology/base.html:4
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Управление на термините"
 
 #: templates/translation_projects/terminology/extract.html:6
 msgid "Regenerate Glossary"
@@ -2469,7 +2462,7 @@ msgstr "Термин"
 
 #: templates/translation_projects/terminology/manage.html:62
 msgid "Glossary is Empty"
-msgstr ""
+msgstr "Речникът е празен"
 
 #: templates/translation_projects/terminology/manage.html:63
 msgid "Generate Glossary"
@@ -2492,9 +2485,8 @@ msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
 
 #: templates/user/profile.html:17
-#, fuzzy
 msgid "Anonymous User"
-msgstr "анонимен потребител"
+msgstr "Анонимен потребител"
 
 #: templates/user/profile.html:26
 msgid "Score:"
@@ -2511,7 +2503,7 @@ msgstr ""
 
 #: templates/user/profile.html:38
 msgid "No contributions in the last month"
-msgstr ""
+msgstr "Няма сътрудници миналия месец"
 
 #: templates/user/profile.html:41
 #, python-format
@@ -2519,6 +2511,7 @@ msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
 "%(server_title)s! "
 msgstr ""
+"Аз съм #%(pos)s сътрудник на %(lang_name)s за този месец в %(server_title)s! "
 
 #: templates/user/profile.html:42
 #, python-format
@@ -2532,9 +2525,8 @@ msgid ""
 msgstr ""
 
 #: templates/user/profile.html:54
-#, fuzzy
 msgid "Latest activity:"
-msgstr "Последна активност"
+msgstr "Последна активност:"
 
 #: templates/user/profile.html:66
 msgid "My Website"
@@ -2542,7 +2534,7 @@ msgstr ""
 
 #: templates/user/profile.html:72
 msgid "My LinkedIn Profile"
-msgstr ""
+msgstr "Моят профил в LinkedIn"
 
 #: templates/user/profile.html:81
 msgid ""
@@ -2568,15 +2560,15 @@ msgstr ""
 
 #: templates/user/reports/user_rates_widget.html:8
 msgid "Currency:"
-msgstr ""
+msgstr "Валута:"
 
 #: templates/user/reports/user_rates_widget.html:18
 msgid "Translation Rate:"
-msgstr ""
+msgstr "Скорост на превод:"
 
 #: templates/user/reports/user_rates_widget.html:29
 msgid "Review Rate:"
-msgstr ""
+msgstr "Скорост на преглед:"
 
 #: templates/user/reports/user_rates_widget.html:41
 msgid "Hourly Rate:"
@@ -2584,19 +2576,19 @@ msgstr ""
 
 #: templates/welcome.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "Добре дошли"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "Добре дошли в Pootle"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
-msgstr ""
+msgstr "Присъединете се към нас!"
 
 #: templates/welcome.html:30
 msgid "Top Contributors This Month"
-msgstr ""
+msgstr "Заслужили преводачи този месец"
 
 #~ msgid ""
 #~ "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."

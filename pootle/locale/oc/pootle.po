@@ -6,19 +6,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2014-04-13 09:20+0000\n"
+"PO-Revision-Date: 2015-05-12 19:25+0000\n"
 "Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1397380846.000000\n"
+"X-POOTLE-MTIME: 1431458705.000000\n"
 
 #: apps/contact/forms.py:23
 msgid "Summary"
@@ -93,11 +93,11 @@ msgstr ""
 
 #: apps/evernote_reports/models.py:34
 msgid "Correction"
-msgstr ""
+msgstr "Correccion"
 
 #: apps/evernote_reports/models.py:37
 msgid "Type"
-msgstr ""
+msgstr "Tipe"
 
 #: apps/evernote_reports/models.py:40
 msgid "Amount"
@@ -105,7 +105,7 @@ msgstr ""
 
 #: apps/evernote_reports/models.py:42
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: apps/evernote_reports/models.py:43
 msgid "Description"
@@ -2232,7 +2232,7 @@ msgstr "passar dirèctament a la navigacion"
 
 #: templates/layout.html:122
 msgid "Public Profile"
-msgstr ""
+msgstr "Perfil public"
 
 #: templates/layout.html:123 templates/profiles/_tabs.html:4
 msgid "Settings"
@@ -2241,7 +2241,7 @@ msgstr "Reglatges"
 #: templates/layout.html:124 templates/user/stats.html:48
 #: templates/user/stats.html.py:53
 msgid "Statistics"
-msgstr ""
+msgstr "Estatisticas"
 
 #: templates/layout.html:126
 msgid "Admin"
@@ -2249,11 +2249,11 @@ msgstr "Gestion"
 
 #: templates/layout.html:129
 msgid "Sign Out"
-msgstr ""
+msgstr "Se desconnectar"
 
 #: templates/layout.html:133 templates/welcome.html:18
 msgid "Sign In"
-msgstr ""
+msgstr "Connexion"
 
 #: templates/login.html:4 templates/login.html.py:9
 msgid "Log In"
@@ -2398,7 +2398,7 @@ msgid "Password Reset Complete."
 msgstr "Reïnicializacion del senhal acabada."
 
 #: templates/registration/password_reset_complete.html:14
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">sign in</a> now."
@@ -2514,7 +2514,7 @@ msgstr ""
 
 #: templates/staticpages/agreement.html:20
 msgid "Continue"
-msgstr ""
+msgstr "Contunhar"
 
 #: templates/translation_projects/_nav.html:26
 msgid "Terminology"
@@ -2636,17 +2636,16 @@ msgid ""
 msgstr ""
 
 #: templates/user/profile.html:54
-#, fuzzy
 msgid "Latest activity:"
-msgstr "Darrièra activitat"
+msgstr "Darrièra activitat :"
 
 #: templates/user/profile.html:66
 msgid "My Website"
-msgstr ""
+msgstr "Mon site internet"
 
 #: templates/user/profile.html:72
 msgid "My LinkedIn Profile"
-msgstr ""
+msgstr "Mon perfil Linkedin"
 
 #: templates/user/profile.html:81
 msgid ""
@@ -2672,7 +2671,7 @@ msgstr ""
 
 #: templates/user/reports/user_rates_widget.html:8
 msgid "Currency:"
-msgstr ""
+msgstr "Moneda :"
 
 #: templates/user/reports/user_rates_widget.html:18
 msgid "Translation Rate:"
@@ -2688,7 +2687,7 @@ msgstr ""
 
 #: templates/welcome.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "Benvenguda"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"

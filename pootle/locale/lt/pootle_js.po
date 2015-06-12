@@ -6,20 +6,20 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2014-07-29 18:39+0000\n"
+"PO-Revision-Date: 2015-04-13 16:34+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1406659148.000000\n"
+"X-POOTLE-MTIME: 1428942847.000000\n"
 
 #: static/js/browser.js:154
 msgid "All Languages"
@@ -31,19 +31,23 @@ msgstr "Visi projektai"
 
 #: static/js/browser.js:160
 msgid "Entire Project"
-msgstr ""
+msgstr "Visas projektas"
 
 #: static/js/editor/app.js:236
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"Eiti į kitą eilutę (Vald+.)<br/><br/>Taip pat:<br/>Kitas puslapis – "
+"Vald+Lyg2+.<br/>Paskutinis puslapis – Vald+Lyg2+Pab"
 
 #: static/js/editor/app.js:240
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"Eiti į ankstesnę eilutę (Vald+,)<br/><br/>Taip pat:</br>Ankstesnis puslapis –"
+" Vald+Lyg2+,<br/>Pirmas puslapis – Vald+Lyg2+Prad"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:348
@@ -87,7 +91,7 @@ msgstr "Klaida jungiantis prie serverio"
 
 #: static/js/editor/app.js:975
 msgid "Not found"
-msgstr ""
+msgstr "Nerasta"
 
 #: static/js/editor/app.js:977
 msgid "Server error"
@@ -103,23 +107,23 @@ msgstr "Nežinoma klaida"
 
 #: static/js/editor/app.js:994
 msgid "This unit no longer exists."
-msgstr ""
+msgstr "Ši eilutė nebeegzistuoja."
 
 #: static/js/editor/app.js:995
 msgid "Go back to overview"
-msgstr ""
+msgstr "Grįžti į apžvalgą"
 
 #: static/js/editor/app.js:997
 msgid "Reload page"
-msgstr ""
+msgstr "Įkelti tinklalapį iš naujo"
 
 #: static/js/editor/app.js:2006
 msgid "some anonymous user"
-msgstr ""
+msgstr "anoniminis naudotojas"
 
 #: static/js/editor/app.js:2008
 msgid "someone"
-msgstr ""
+msgstr "kažkas"
 
 #: static/js/editor/app.js:2025 static/js/editor/app.js.c:2074
 msgid "Similar translations"
@@ -127,15 +131,15 @@ msgstr "Panašūs vertimai"
 
 #: static/js/shared/models/project.js:57
 msgid "disabled"
-msgstr ""
+msgstr "išjungta"
 
 #: static/js/stats.js:231
 #, c-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s sekundė"
+msgstr[1] "%s sekundės"
+msgstr[2] "%s sekundžių"
 
 #: static/js/stats.js:263
 msgid "Expand details"
@@ -193,18 +197,18 @@ msgstr "Prieš kelias sekundes"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Jūsų užklausą atitinka %(count)s kalba."
+msgstr[1] "Jūsų užklausą atitinka %(count)s kalbos."
+msgstr[2] "Jūsų užklausą atitinka %(count)s kalbų."
 
 #: static/js/admin/components/language.jsx:42
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Suskaičiuota %(count)s kalba. Žemiau – paskiausiai pridėtos."
+msgstr[1] "Suskaičiuota %(count)s kalbos. Žemiau – paskiausiai pridėtos."
+msgstr[2] "Suskaičiuota %(count)s kalbų. Žemiau – paskiausiai pridėtos."
 
 #: static/js/admin/components/language.jsx:60
 msgid "Search Languages"

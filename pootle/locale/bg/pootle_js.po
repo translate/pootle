@@ -6,19 +6,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2015-02-12 12:05+0000\n"
+"PO-Revision-Date: 2015-03-13 07:28+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1423742742.000000\n"
+"X-POOTLE-MTIME: 1426231710.000000\n"
 
 #: static/js/browser.js:154
 msgid "All Languages"
@@ -30,19 +30,23 @@ msgstr "Всички проекти"
 
 #: static/js/browser.js:160
 msgid "Entire Project"
-msgstr ""
+msgstr "Целият проект"
 
 #: static/js/editor/app.js:236
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"Към следващия низ (Ctrl+.)<br/><br/>Още:<br/>следваща страница: "
+"Ctrl+Shift+.<br/>последна страница: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:240
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"Към предишния низ (Ctrl+,)<br/><br/>Още:<br/>предишна страница: "
+"Ctrl+Shift+,<br/>първа страница: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:348
@@ -85,7 +89,7 @@ msgstr "Грешка при свързване към сървъра"
 
 #: static/js/editor/app.js:975
 msgid "Not found"
-msgstr ""
+msgstr "Няма съвпадения"
 
 #: static/js/editor/app.js:977
 msgid "Server error"
@@ -101,23 +105,23 @@ msgstr "Неизвестна грешка"
 
 #: static/js/editor/app.js:994
 msgid "This unit no longer exists."
-msgstr ""
+msgstr "Това вече не съществува."
 
 #: static/js/editor/app.js:995
 msgid "Go back to overview"
-msgstr ""
+msgstr "Назад към обобщението"
 
 #: static/js/editor/app.js:997
 msgid "Reload page"
-msgstr ""
+msgstr "Презареждане"
 
 #: static/js/editor/app.js:2006
 msgid "some anonymous user"
-msgstr ""
+msgstr "анонимен потребител"
 
 #: static/js/editor/app.js:2008
 msgid "someone"
-msgstr ""
+msgstr "някой"
 
 #: static/js/editor/app.js:2025 static/js/editor/app.js.c:2074
 msgid "Similar translations"
@@ -125,14 +129,14 @@ msgstr "Подобни преводи"
 
 #: static/js/shared/models/project.js:57
 msgid "disabled"
-msgstr ""
+msgstr "изключено"
 
 #: static/js/stats.js:231
 #, c-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s секунда"
+msgstr[1] "%s секунди"
 
 #: static/js/stats.js:263
 msgid "Expand details"
@@ -185,177 +189,181 @@ msgstr "Преди няколко секунди"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Намерен %(count)s език."
+msgstr[1] "Намерени %(count)s езика."
 
 #: static/js/admin/components/language.jsx:42
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Има %(count)s език."
+msgstr[1] "Има %(count)s езика. По-долу са последно добавените."
 
 #: static/js/admin/components/language.jsx:60
 msgid "Search Languages"
-msgstr ""
+msgstr "Търсене на езици"
 
 #: static/js/admin/components/language.jsx:61
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Намиране на език по име, код"
 
 #: static/js/admin/components/language.jsx:84
 #: static/js/admin/components/language.jsx:113
-#, fuzzy
 msgid "Add Language"
-msgstr "Всички езици"
+msgstr "Добавяне на език"
 
 #: static/js/admin/components/language.jsx:87
 #: static/js/admin/components/project.jsx:87
 #: static/js/admin/components/user.jsx:87
 msgid "Cancel"
-msgstr ""
+msgstr "Отказ"
 
 #: static/js/admin/components/language.jsx:110
 msgid "Edit Language"
-msgstr ""
+msgstr "Редактиране на език"
 
 #: static/js/admin/components/language.jsx:117
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"От полето за търсене намерете езика и щракнете върху него, за да го "
+"редактирате."
 
 #: static/js/admin/components/main.jsx:93
 msgid "Saved successfully."
-msgstr ""
+msgstr "Успешно запазен."
 
 #: static/js/admin/components/main.jsx:101
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Успешно изтрит."
 
 #: static/js/admin/components/project.jsx:38
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Намерен е %(count)s проект."
+msgstr[1] "Намерени са %(count)s проекта."
 
 #: static/js/admin/components/project.jsx:42
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Има %(count)s проект."
+msgstr[1] "Има %(count)s проекта. По-долу са последно добавените."
 
 #: static/js/admin/components/project.jsx:60
 msgid "Search Projects"
-msgstr ""
+msgstr "Търсене на проекти"
 
 #: static/js/admin/components/project.jsx:61
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Намиране на проект по име, код"
 
 #: static/js/admin/components/project.jsx:84
 #: static/js/admin/components/project.jsx:113
-#, fuzzy
 msgid "Add Project"
-msgstr "Всички проекти"
+msgstr "Добавяне на проект"
 
 #: static/js/admin/components/project.jsx:110
 msgid "Edit Project"
-msgstr ""
+msgstr "Редактиране на проект"
 
 #: static/js/admin/components/project.jsx:117
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"От полето за търсене намерете проекта и щракнете върху него, за да го "
+"редактирате."
 
 #: static/js/admin/components/search.jsx:63
 msgid "Load More"
-msgstr ""
+msgstr "Още"
 
 #: static/js/admin/components/search.jsx:86
 msgid "Loading..."
-msgstr ""
+msgstr "Зареждане…"
 
 #: static/js/admin/components/user.jsx:38
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Намерен е %(count)s потребител."
+msgstr[1] "Намерени са %(count)s потребителя."
 
 #: static/js/admin/components/user.jsx:42
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Има %(count)s потребител."
+msgstr[1] "Има %(count)s потребителя. По-долу са последно добавените."
 
 #: static/js/admin/components/user.jsx:60
 msgid "Search Users"
-msgstr ""
+msgstr "Търсене на потребители"
 
 #: static/js/admin/components/user.jsx:61
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Намиране на потребител по име, ел. поща, атрибути"
 
 #: static/js/admin/components/user.jsx:84
 #: static/js/admin/components/user.jsx:113
 msgid "Add User"
-msgstr ""
+msgstr "Добавяне на потребител"
 
 #: static/js/admin/components/user.jsx:110
 msgid "Edit User"
-msgstr ""
+msgstr "Редактиране на потребител"
 
 #: static/js/admin/components/user.jsx:117
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"От полето за търсене намерете потребителя и щракнете върху него, за да го "
+"редактирате."
 
 #: static/js/admin/shared/forms.jsx:50 static/js/admin/shared/forms.jsx:145
 msgid "Code"
-msgstr ""
+msgstr "Код"
 
 #: static/js/admin/shared/forms.jsx:56 static/js/admin/shared/forms.jsx:151
 #: static/js/admin/shared/forms.jsx:309 static/js/user/forms.jsx:70
 msgid "Full Name"
-msgstr ""
+msgstr "Цяло име"
 
 #: static/js/admin/shared/forms.jsx:62
 msgid "Special Characters"
-msgstr ""
+msgstr "Специални символи"
 
 #: static/js/admin/shared/forms.jsx:71
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Брой на множествените форми"
 
 #: static/js/admin/shared/forms.jsx:77
 msgid "Plural Equation"
-msgstr ""
+msgstr "Уравнение на мн. форма"
 
 #: static/js/admin/shared/forms.jsx:87 static/js/admin/shared/forms.jsx:221
 #: static/js/admin/shared/forms.jsx:364 static/js/user/forms.jsx:117
 msgid "Save"
-msgstr ""
+msgstr "Запазване"
 
 #: static/js/admin/shared/forms.jsx:90 static/js/admin/shared/forms.jsx:224
 msgid "Overview"
-msgstr ""
+msgstr "Обобщение"
 
 #: static/js/admin/shared/forms.jsx:91 static/js/admin/shared/forms.jsx:226
 msgid "Permissions"
-msgstr ""
+msgstr "Права"
 
 #: static/js/admin/shared/forms.jsx:160
 msgid "Quality Checks"
-msgstr ""
+msgstr "Критерии за качество"
 
 #: static/js/admin/shared/forms.jsx:169
 msgid "File Type"
-msgstr ""
+msgstr "Вид на файла"
 
 #: static/js/admin/shared/forms.jsx:178
 msgid "Project Tree Style"
@@ -363,7 +371,7 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:187
 msgid "Source Language"
-msgstr ""
+msgstr "Изходен език"
 
 #: static/js/admin/shared/forms.jsx:193
 msgid "Ignore Files"
@@ -379,69 +387,71 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:213
 msgid "Disabled"
-msgstr ""
+msgstr "Изключен"
 
 #: static/js/admin/shared/forms.jsx:225
 msgid "Languages"
-msgstr ""
+msgstr "Езици"
 
 #: static/js/admin/shared/forms.jsx:272
 msgid ""
 "Note: deleting the user will make its suggestions and translations become "
 "attributed to an anonymous user (nobody)."
 msgstr ""
+"Заб.: предложенията и преводите на изтритите потребители се зачисляват на "
+"анонимен потребител (nobody)."
 
 #: static/js/admin/shared/forms.jsx:284
 msgid "Username"
-msgstr ""
+msgstr "Потребителско име"
 
 #: static/js/admin/shared/forms.jsx:293
 msgid "Active"
-msgstr ""
+msgstr "Включен"
 
 #: static/js/admin/shared/forms.jsx:300
 msgid "Password"
-msgstr ""
+msgstr "Парола"
 
 #: static/js/admin/shared/forms.jsx:301
 msgid "Set a new password"
-msgstr ""
+msgstr "Задаване на парола"
 
 #: static/js/admin/shared/forms.jsx:315
 msgid "Email"
-msgstr ""
+msgstr "Ел. поща"
 
 #: static/js/admin/shared/forms.jsx:324
 msgid "Administrator"
-msgstr ""
+msgstr "Администратор"
 
 #: static/js/admin/shared/forms.jsx:331 static/js/user/forms.jsx:85
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/shared/forms.jsx:333
 msgid "Twitter username"
-msgstr ""
+msgstr "Twitter потребител"
 
 #: static/js/admin/shared/forms.jsx:339 static/js/user/forms.jsx:92
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/shared/forms.jsx:341
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "Адрес на профил в LinkedIn"
 
 #: static/js/admin/shared/forms.jsx:346 static/js/user/forms.jsx:98
 msgid "Website"
-msgstr ""
+msgstr "Страница"
 
 #: static/js/admin/shared/forms.jsx:348
 msgid "Personal website URL"
-msgstr ""
+msgstr "Лична страница"
 
 #: static/js/admin/shared/forms.jsx:354 static/js/user/forms.jsx:105
 msgid "Short Bio"
-msgstr ""
+msgstr "Кратки биографични данни"
 
 #: static/js/admin/shared/forms.jsx:356
 msgid "Personal description"
@@ -449,11 +459,11 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:367
 msgid "Public Profile"
-msgstr ""
+msgstr "Публичен профил"
 
 #: static/js/admin/shared/forms.jsx:368
 msgid "Statistics"
-msgstr ""
+msgstr "Статистика"
 
 #: static/js/admin/shared/forms.jsx:369
 msgid "Reports"
@@ -461,51 +471,51 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:423
 msgid "Delete"
-msgstr ""
+msgstr "Изтриване"
 
 #: static/js/shared/components/forms.jsx:67
 msgid "Select..."
-msgstr ""
+msgstr "Избиране…"
 
 #: static/js/shared/components/forms.jsx:68
 msgid "No results found"
-msgstr ""
+msgstr "Няма резултати"
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Clear value"
-msgstr ""
+msgstr "Изчистване на стойността"
 
 #: static/js/shared/components/forms.jsx:70
 msgid "Clear all"
-msgstr ""
+msgstr "Изчистване на всичко"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Type to search"
-msgstr ""
+msgstr "Въвеждайте за търсете"
 
 #: static/js/user/components/edit.jsx:106
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "Редактиране на публичния профил"
 
 #: static/js/user/components/edit.jsx:113
 msgid "My Public Profile"
-msgstr ""
+msgstr "Моят публичен профил"
 
 #: static/js/user/components/edit.jsx:125
 msgid "Discard changes."
-msgstr ""
+msgstr "Отказ от промените."
 
 #: static/js/user/components/edit.jsx:126
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: static/js/user/components/edit.jsx:127
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "Има незапазени промени. Желаете ли да се откажете от тях?"
 
 #: static/js/user/forms.jsx:58
 #, python-format
@@ -513,44 +523,46 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
+"За да добавите или промените аватар за вашата ел. поща (%(email)s), моля, "
+"посетете gravatar.com."
 
 #: static/js/user/forms.jsx:71
 msgid "Your Full Name"
-msgstr ""
+msgstr "Вашето цяло име"
 
 #: static/js/user/forms.jsx:77
 msgid "Avatar"
-msgstr ""
+msgstr "Аватар"
 
 #: static/js/user/forms.jsx:87
 msgid "Your Twitter username"
-msgstr ""
+msgstr "Потребителско име в Twitter"
 
 #: static/js/user/forms.jsx:94
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "Вашият профил в LinkedIn"
 
 #: static/js/user/forms.jsx:100
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "Адрес на лична страница/блог"
 
 #: static/js/user/forms.jsx:108
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
-msgstr ""
+msgstr "Защо участвате в този превод? Опишете себе си, вдъхновете другите!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "Проект / Език"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Translated"
-msgstr ""
+msgstr "Преведени"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Reviewed"
-msgstr ""
+msgstr "Прегледани"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Score Change"
@@ -565,16 +577,16 @@ msgstr ""
 #: templates/admin/xhr_summary_report.html:35
 msgid "word"
 msgid_plural "words"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "дума"
+msgstr[1] "думи"
 
 #: templates/admin/xhr_language_user_activity.html:30
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "В този период няма дейност"
 
 #: templates/admin/xhr_language_user_activity.html:33
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Моля, изберете потребител."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
@@ -582,21 +594,21 @@ msgstr ""
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
-msgstr ""
+msgstr "Дата и час"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "Коментар"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Действие"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Количество"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
@@ -606,14 +618,14 @@ msgstr ""
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "Междинна сума"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:32
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "час"
+msgstr[1] "часа"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
@@ -625,11 +637,11 @@ msgstr ""
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "Резюме"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "Период"
 
 #: templates/admin/xhr_summary_report.html:41
 msgid "(registered tasks)"
@@ -638,7 +650,7 @@ msgstr ""
 #: templates/admin/xhr_summary_report.html:49
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "Всичко (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -662,6 +674,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"Преведено от %(fullname)s в проекта &ldquo;<span title=\"%(path)s\""
+">%(project)s</span>&rdquo;"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "Сигурни ли сте, че искате да продължите?"

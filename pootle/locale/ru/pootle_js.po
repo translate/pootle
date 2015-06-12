@@ -6,20 +6,20 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2013-10-29 05:32+0000\n"
-"Last-Translator: Vadim Kutchin <kutchin@gmail.com>\n"
+"PO-Revision-Date: 2015-04-24 13:46+0000\n"
+"Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383024725.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1429883168.000000\n"
 
 #: static/js/browser.js:154
 msgid "All Languages"
@@ -31,7 +31,7 @@ msgstr "Все проекты"
 
 #: static/js/browser.js:160
 msgid "Entire Project"
-msgstr ""
+msgstr "Весь проект"
 
 #: static/js/editor/app.js:236
 msgid ""
@@ -65,8 +65,7 @@ msgstr "%s отклоненных предложений"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:357
-#, c-format
-#, c-format, fuzzy
+#, c-format, c-format
 msgid "%s's submissions"
 msgstr "Предложения %s"
 
@@ -88,7 +87,7 @@ msgstr "Ошибка при соединении с сервером"
 
 #: static/js/editor/app.js:975
 msgid "Not found"
-msgstr ""
+msgstr "Не найдено"
 
 #: static/js/editor/app.js:977
 msgid "Server error"
@@ -225,7 +224,7 @@ msgstr "Все языки"
 #: static/js/admin/components/project.jsx:87
 #: static/js/admin/components/user.jsx:87
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: static/js/admin/components/language.jsx:110
 msgid "Edit Language"
@@ -271,13 +270,12 @@ msgstr ""
 
 #: static/js/admin/components/project.jsx:84
 #: static/js/admin/components/project.jsx:113
-#, fuzzy
 msgid "Add Project"
-msgstr "Все проекты"
+msgstr "Добавить проект"
 
 #: static/js/admin/components/project.jsx:110
 msgid "Edit Project"
-msgstr ""
+msgstr "Редактировать проект"
 
 #: static/js/admin/components/project.jsx:117
 msgid ""
@@ -290,7 +288,7 @@ msgstr ""
 
 #: static/js/admin/components/search.jsx:86
 msgid "Loading..."
-msgstr ""
+msgstr "Загрузка…"
 
 #: static/js/admin/components/user.jsx:38
 #, python-format
@@ -320,11 +318,11 @@ msgstr ""
 #: static/js/admin/components/user.jsx:84
 #: static/js/admin/components/user.jsx:113
 msgid "Add User"
-msgstr ""
+msgstr "Добавить пользователя"
 
 #: static/js/admin/components/user.jsx:110
 msgid "Edit User"
-msgstr ""
+msgstr "Редактировать пользователя"
 
 #: static/js/admin/components/user.jsx:117
 msgid "Use the search form to find the user, then click on a user to edit."
@@ -337,11 +335,11 @@ msgstr ""
 #: static/js/admin/shared/forms.jsx:56 static/js/admin/shared/forms.jsx:151
 #: static/js/admin/shared/forms.jsx:309 static/js/user/forms.jsx:70
 msgid "Full Name"
-msgstr ""
+msgstr "Полное имя"
 
 #: static/js/admin/shared/forms.jsx:62
 msgid "Special Characters"
-msgstr ""
+msgstr "Специальные символы"
 
 #: static/js/admin/shared/forms.jsx:71
 msgid "Number of Plurals"
@@ -354,7 +352,7 @@ msgstr ""
 #: static/js/admin/shared/forms.jsx:87 static/js/admin/shared/forms.jsx:221
 #: static/js/admin/shared/forms.jsx:364 static/js/user/forms.jsx:117
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: static/js/admin/shared/forms.jsx:90 static/js/admin/shared/forms.jsx:224
 msgid "Overview"
@@ -370,7 +368,7 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:169
 msgid "File Type"
-msgstr ""
+msgstr "Тип файла"
 
 #: static/js/admin/shared/forms.jsx:178
 msgid "Project Tree Style"
@@ -378,7 +376,7 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:187
 msgid "Source Language"
-msgstr ""
+msgstr "Исходный язык"
 
 #: static/js/admin/shared/forms.jsx:193
 msgid "Ignore Files"
@@ -398,7 +396,7 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:225
 msgid "Languages"
-msgstr ""
+msgstr "Языки"
 
 #: static/js/admin/shared/forms.jsx:272
 msgid ""
@@ -408,7 +406,7 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:284
 msgid "Username"
-msgstr ""
+msgstr "Имя пользователя"
 
 #: static/js/admin/shared/forms.jsx:293
 msgid "Active"
@@ -416,7 +414,7 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:300
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 #: static/js/admin/shared/forms.jsx:301
 msgid "Set a new password"
@@ -428,11 +426,11 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:324
 msgid "Administrator"
-msgstr ""
+msgstr "Администратор"
 
 #: static/js/admin/shared/forms.jsx:331 static/js/user/forms.jsx:85
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/shared/forms.jsx:333
 msgid "Twitter username"
@@ -440,7 +438,7 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:339 static/js/user/forms.jsx:92
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/shared/forms.jsx:341
 msgid "LinkedIn profile URL"
@@ -448,7 +446,7 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:346 static/js/user/forms.jsx:98
 msgid "Website"
-msgstr ""
+msgstr "Веб-сайт"
 
 #: static/js/admin/shared/forms.jsx:348
 msgid "Personal website URL"
@@ -468,15 +466,15 @@ msgstr ""
 
 #: static/js/admin/shared/forms.jsx:368
 msgid "Statistics"
-msgstr ""
+msgstr "Статистика"
 
 #: static/js/admin/shared/forms.jsx:369
 msgid "Reports"
-msgstr ""
+msgstr "Отчеты"
 
 #: static/js/admin/shared/forms.jsx:423
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: static/js/shared/components/forms.jsx:67
 msgid "Select..."
@@ -492,7 +490,7 @@ msgstr ""
 
 #: static/js/shared/components/forms.jsx:70
 msgid "Clear all"
-msgstr ""
+msgstr "Очистить всё"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Type to search"
@@ -512,11 +510,11 @@ msgstr ""
 
 #: static/js/user/components/edit.jsx:126
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: static/js/user/components/edit.jsx:127
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
@@ -531,11 +529,11 @@ msgstr ""
 
 #: static/js/user/forms.jsx:71
 msgid "Your Full Name"
-msgstr ""
+msgstr "Ваше полное имя"
 
 #: static/js/user/forms.jsx:77
 msgid "Avatar"
-msgstr ""
+msgstr "Аватар"
 
 #: static/js/user/forms.jsx:87
 msgid "Your Twitter username"
@@ -561,11 +559,11 @@ msgstr ""
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Translated"
-msgstr ""
+msgstr "Переведено"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Reviewed"
-msgstr ""
+msgstr "Проверено"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Score Change"
@@ -612,7 +610,7 @@ msgstr ""
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Количество"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9

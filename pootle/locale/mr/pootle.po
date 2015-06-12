@@ -6,18 +6,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2010-08-03 01:09+0200\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2015-04-03 06:10+0000\n"
+"Last-Translator: pranav.bhokardankar <pranav.bhokardankar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1428041436.000000\n"
 
 #: apps/contact/forms.py:23
 msgid "Summary"
@@ -36,7 +37,6 @@ msgid "Please enter your name"
 msgstr ""
 
 #: apps/contact/forms.py:36
-#, fuzzy
 msgid "Email address"
 msgstr "ई-मेलचा पत्ता"
 
@@ -109,7 +109,7 @@ msgstr ""
 
 #: apps/evernote_reports/models.py:43
 msgid "Description"
-msgstr "तपशील"
+msgstr "वर्णन"
 
 #: apps/evernote_reports/views.py:297
 #, python-format
@@ -135,7 +135,7 @@ msgstr ""
 
 #: apps/pootle_app/forms.py:98 templates/profiles/_tabs.html:5
 msgid "Password"
-msgstr "परवलीचा शब्द "
+msgstr "गुप्तशब्द"
 
 #: apps/pootle_app/forms.py:133 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
@@ -328,10 +328,9 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/permissions.py:86 models/user.py:56
 msgid "Username"
-msgstr "युजरनेम"
+msgstr "वापरकर्तानाव"
 
 #: apps/pootle_app/views/admin/permissions.py:95
-#, fuzzy
 msgid "Add Permissions"
 msgstr "युजरची परवानगी"
 
@@ -390,7 +389,7 @@ msgstr ""
 
 #: apps/pootle_language/models.py:90
 msgid "Number of Plurals"
-msgstr "अनेकवचणी अंक"
+msgstr "असानाची संख्या"
 
 #: apps/pootle_language/models.py:92
 msgid "Plural Equation"
@@ -441,9 +440,8 @@ msgid "Repeated word"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:38
-#, fuzzy
 msgid "E-mail"
-msgstr "ईमेल"
+msgstr "ई-मेल"
 
 #: apps/pootle_misc/checks.py:39
 msgid "Ending punctuation"
@@ -499,7 +497,6 @@ msgid "Numbers"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:52
-#, fuzzy
 msgid "Options"
 msgstr "पर्याय"
 
@@ -559,7 +556,6 @@ msgstr ""
 #: apps/pootle_misc/checks.py:67 apps/pootle_misc/stats.py:27
 #: apps/pootle_store/util.py:30 core/helpers.py:55
 #: templates/editor/_filters.html:9
-#, fuzzy
 msgid "Untranslated"
 msgstr "भाषांतर केले"
 
@@ -1049,9 +1045,8 @@ msgstr ""
 
 #: apps/staticpages/models.py:28 models/user.py:68
 #: templates/admin/staticpages/_table.html:6
-#, fuzzy
 msgid "Active"
-msgstr "क्रियाशील करणे"
+msgstr "सक्रीय"
 
 #: apps/staticpages/models.py:30
 msgid "Whether this page is active or not."
@@ -1110,9 +1105,8 @@ msgid "page-%d"
 msgstr ""
 
 #: core/browser.py:22
-#, fuzzy
 msgid "Project"
-msgstr "प्रकल्प"
+msgstr "परियोजना"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:33
@@ -1129,9 +1123,8 @@ msgstr ""
 
 #. Translators: The number of suggestions pending review
 #: core/browser.py:56 templates/editor/_filters.html:11
-#, fuzzy
 msgid "Suggestions"
-msgstr "सल्ला:"
+msgstr "सल्ले"
 
 #: core/browser.py:66
 msgid "Last Activity"
@@ -1146,7 +1139,6 @@ msgid "Insufficient rights to access this page."
 msgstr ""
 
 #: core/decorators.py:317 core/views.py:33
-#, fuzzy
 msgid "You do not have rights to administer Pootle."
 msgstr "तुम्हाला  पूटल प्रशासन करण्याचा हक्क नाही."
 
@@ -1252,7 +1244,7 @@ msgstr ""
 
 #: models/user.py:65 templates/registration/password_reset_form.html:19
 msgid "Email Address"
-msgstr "ई-मेलचा पत्ता"
+msgstr "ई-मेल पत्ता"
 
 #: models/user.py:69
 msgid ""
@@ -1345,7 +1337,6 @@ msgid "About"
 msgstr ""
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "पुटल सरवर बाब्तीत"
 
@@ -1368,7 +1359,6 @@ msgstr ""
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
-#, fuzzy
 msgid "Save Changes"
 msgstr "बदल संचित करा"
 
@@ -1416,7 +1406,6 @@ msgid "Reports"
 msgstr ""
 
 #: templates/admin/base.html:4 templates/admin/base.html.py:7
-#, fuzzy
 msgid "Administration"
 msgstr "प्रशासन"
 
@@ -1461,7 +1450,6 @@ msgid "Dependency Checks"
 msgstr ""
 
 #: templates/admin/dashboard.html:69
-#, fuzzy
 msgid "Optional"
 msgstr "पर्याय"
 
@@ -1676,7 +1664,6 @@ msgid "Continue translation"
 msgstr ""
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Review suggestions"
 msgstr "सुचना परत पाहा"
 
@@ -1840,12 +1827,10 @@ msgid "Export View"
 msgstr ""
 
 #: templates/editor/export_view.html:7 templates/editor/export_view.html:98
-#, fuzzy
 msgid "All Projects"
-msgstr "सर्व प्रकल्प"
+msgstr "सर्व परियोजना"
 
 #: templates/editor/export_view.html:8 templates/editor/export_view.html:99
-#, fuzzy
 msgid "All Languages"
 msgstr "सर्व भाषा"
 
@@ -1864,7 +1849,7 @@ msgstr ""
 #: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
 #: templates/translation_projects/_nav.html:10
 msgid "Translate"
-msgstr "भाषांतर करा"
+msgstr "भाषांतरण"
 
 #: templates/editor/units/edit.html:12
 #, python-format
@@ -1910,7 +1895,7 @@ msgstr ""
 #: templates/editor/units/edit.html:139 templates/editor/units/edit.html:150
 #: templates/editor/units/edit.html:243
 msgid "Submit"
-msgstr "जमा करा"
+msgstr "सादर करा"
 
 #: templates/editor/units/edit.html:140
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
@@ -1994,7 +1979,6 @@ msgid "Insert this symbol into the editor"
 msgstr ""
 
 #: templates/editor/units/edit.html:263
-#, fuzzy
 msgid "User suggestions"
 msgstr "सुचना पाहा"
 
@@ -2184,9 +2168,8 @@ msgid "Sign In"
 msgstr ""
 
 #: templates/login.html:4 templates/login.html.py:9
-#, fuzzy
 msgid "Log In"
-msgstr "लॉग इन"
+msgstr "प्रवेश करा"
 
 #: templates/login.html:14
 msgid "Login to Pootle"
@@ -2198,7 +2181,7 @@ msgstr ""
 
 #: templates/login.html:26
 msgid "Login"
-msgstr "लॉगईन"
+msgstr "प्रवेश"
 
 #: templates/login.html:33
 msgid "Lost your Password?"
@@ -2214,9 +2197,8 @@ msgid "Link with Evernote"
 msgstr ""
 
 #: templates/profiles/base.html:4 templates/profiles/base.html.py:6
-#, fuzzy
 msgid "My Account"
-msgstr "माझ खात"
+msgstr "माझे खाते"
 
 #: templates/profiles/settings/evernote_account.html:4
 #: templates/profiles/settings/evernote_account.html:7
@@ -2305,7 +2287,7 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:31
 msgid "Confirm password"
-msgstr "परवलीचा शब्दाची खात्री करून घ्या"
+msgstr "गुप्तशब्द मंजूर करा"
 
 #: templates/registration/password_change_form.html:36
 msgid "Change My Password"
@@ -2353,9 +2335,8 @@ msgid "New Password"
 msgstr ""
 
 #: templates/registration/password_reset_confirm.html:26
-#, fuzzy
 msgid "Confirm Password"
-msgstr "परवलीचा शब्दाची खात्री करून घ्या"
+msgstr "पासवर्डची खात्री करा"
 
 #: templates/registration/password_reset_confirm.html:31
 #: templates/registration/password_reset_form.html:24
@@ -2438,16 +2419,14 @@ msgid ""
 msgstr ""
 
 #: templates/translation_projects/terminology/_term_edit.html:11
-#, fuzzy
 msgid "Description..."
-msgstr "तपशील"
+msgstr "वर्णन:"
 
 #: templates/translation_projects/terminology/_term_edit.html:18
 msgid "Details..."
 msgstr ""
 
 #: templates/translation_projects/terminology/_term_edit.html:31
-#, fuzzy
 msgid "Translator Comments"
 msgstr "दुभाष्याची टीका"
 

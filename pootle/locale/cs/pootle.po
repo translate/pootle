@@ -6,19 +6,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2013-11-12 17:35+0000\n"
+"PO-Revision-Date: 2015-04-16 16:22+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1384277752.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1429201358.000000\n"
 
 #: apps/contact/forms.py:23
 msgid "Summary"
@@ -26,7 +26,7 @@ msgstr "Souhrn"
 
 #: apps/contact/forms.py:25
 msgid "Please enter your message summary"
-msgstr ""
+msgstr "Zadejte shrnutí vaší zprávy"
 
 #: apps/contact/forms.py:32 core/browser.py:17
 msgid "Name"
@@ -34,7 +34,7 @@ msgstr "Název"
 
 #: apps/contact/forms.py:33
 msgid "Please enter your name"
-msgstr ""
+msgstr "Zadejte své jméno"
 
 #: apps/contact/forms.py:36
 msgid "Email address"
@@ -42,7 +42,7 @@ msgstr "E-mailová adresa"
 
 #: apps/contact/forms.py:37
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Zadejte svoji e-mailovou adresu"
 
 #: apps/contact/forms.py:40 apps/pootle_notifications/models.py:18
 msgid "Message"
@@ -50,33 +50,33 @@ msgstr "Zpráva"
 
 #: apps/contact/forms.py:41
 msgid "Please enter your message"
-msgstr ""
+msgstr "Zadejte vaši zprávu"
 
 #: apps/evernote_auth/views.py:51
 msgid ""
 "Cannot link: your Evernote account is already linked with another Pootle "
 "account."
-msgstr ""
+msgstr "Nelze propojit: váš Evernote účet je již propojen s jiným Pootle účtem."
 
 #: apps/evernote_reports/forms.py:20 models/user.py:89
 msgid "Currency"
-msgstr ""
+msgstr "Měna"
 
 #: apps/evernote_reports/forms.py:26
 msgid "Translation Rate"
-msgstr ""
+msgstr "Sazba za překlad"
 
 #: apps/evernote_reports/forms.py:31 models/user.py:86
 msgid "Review Rate"
-msgstr ""
+msgstr "Sazba za kontrolu"
 
 #: apps/evernote_reports/forms.py:36 models/user.py:87
 msgid "Hourly Rate"
-msgstr ""
+msgstr "Hodinová sazba"
 
 #: apps/evernote_reports/forms.py:41
 msgid "Effective from"
-msgstr ""
+msgstr "Platné od"
 
 #: apps/evernote_reports/models.py:31 templates/editor/export_view.html:106
 #: templates/translation_projects/terminology/manage.html:37
@@ -89,23 +89,23 @@ msgstr "Zkontrolovat"
 
 #: apps/evernote_reports/models.py:33
 msgid "Hourly Work"
-msgstr ""
+msgstr "Hodina práce"
 
 #: apps/evernote_reports/models.py:34
 msgid "Correction"
-msgstr ""
+msgstr "Opravy"
 
 #: apps/evernote_reports/models.py:37
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: apps/evernote_reports/models.py:40
 msgid "Amount"
-msgstr ""
+msgstr "Množství"
 
 #: apps/evernote_reports/models.py:42
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: apps/evernote_reports/models.py:43
 msgid "Description"
@@ -114,11 +114,11 @@ msgstr "Popis"
 #: apps/evernote_reports/views.py:297
 #, python-format
 msgid "User %s not found"
-msgstr ""
+msgstr "Uživatel %s nebyl nalezen"
 
 #: apps/evernote_reports/views.py:382
 msgid "Invalid request method"
-msgstr ""
+msgstr "Neplatný typ požadavku"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -139,7 +139,7 @@ msgstr "Heslo"
 
 #: apps/pootle_app/forms.py:133 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr ""
+msgstr "Zadejte platnou adresu uživatelského profilu LinkedIn."
 
 #: apps/pootle_app/views/admin/dashboard.py:39
 #, python-format
@@ -161,12 +161,12 @@ msgid "Django version %s is installed."
 msgstr "Je nainstalováno Django verze %s."
 
 #: apps/pootle_app/views/admin/dashboard.py:67
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Django version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
-"Je nainstalováno lxml verze %(installed)s. Pootle vyžaduje minimálně verzi "
+"Je nainstalováno Django verze %(installed)s. Pootle vyžaduje minimálně verzi "
 "%(required)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:79
@@ -190,47 +190,49 @@ msgstr "lxml není nainstalováno. Pootle vyžaduje lxml."
 #: apps/pootle_app/views/admin/dashboard.py:104
 #, python-format
 msgid "Redis server accepting connections on %(host)s:%(port)s."
-msgstr ""
+msgstr "Redis server přijímá požadavky na adrese %(host)s:%(port)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:113
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Redis server version %(installed)s installed. Pootle requires at least "
 "version %(required)s."
 msgstr ""
-"Je nainstalován Translate Toolkit verze %(installed)s. Pootle vyžaduje "
-"minimálně verzi %(required)s."
+"Je nainstalován Redis server verze %(installed)s. Pootle vyžaduje minimálně "
+"verzi %(required)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:117
 #, python-format
 msgid "Redis server is not available on %(host)s:%(port)s."
-msgstr ""
+msgstr "Redis server na adrese %(host)s:%(port)s není dostupný."
 
 #: apps/pootle_app/views/admin/dashboard.py:130
 #, python-format
 msgid "%(num)d RQ worker running."
 msgid_plural "%(num)d RQ workers running."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)d spuštěný pracovní RQ proces."
+msgstr[1] "%(num)d spuštěné pracovní RQ procesy."
+msgstr[2] "%(num)d spuštěných pracovních RQ procesů."
 
 #: apps/pootle_app/views/admin/dashboard.py:135
 msgid "No RQ workers are running."
-msgstr ""
+msgstr "Nejsou spuštěny žádné pracovní RQ procesy."
 
 #: apps/pootle_app/views/admin/dashboard.py:149
 msgid ""
 "Pootle is configured to use Redis as a caching backend, but can't connect to "
 "the cache."
 msgstr ""
+"Jako back-end mezipaměti je nastaven Redis, ale Pootle se nemůže k "
+"mezipaměti připojit."
 
 #: apps/pootle_app/views/admin/dashboard.py:156
 msgid "Caching configured and running."
-msgstr ""
+msgstr "Mezipaměť je nastavena a spuštěna."
 
 #: apps/pootle_app/views/admin/dashboard.py:162
 msgid "Redis is required as the caching backend."
-msgstr ""
+msgstr "Jako back-end pro mezipaměť je vyžadován Redis."
 
 #: apps/pootle_app/views/admin/dashboard.py:175
 msgid ""
@@ -313,7 +315,7 @@ msgid ""
 "contact the server administrators."
 msgstr ""
 "Není zadána kontaktní adresa. Kontaktní formulář umožní uživatelům "
-"kontaktovat administrátory serveru."
+"kontaktovat správce serveru."
 
 #: apps/pootle_app/views/admin/dashboard.py:251
 msgid ""
@@ -356,9 +358,8 @@ msgid "Username"
 msgstr "Uživatelské jméno"
 
 #: apps/pootle_app/views/admin/permissions.py:95
-#, fuzzy
 msgid "Add Permissions"
-msgstr "Uživatelská práva"
+msgstr "Přidat oprávnění"
 
 #: apps/pootle_app/views/admin/permissions.py:100
 #: apps/pootle_app/views/admin/permissions.py:109
@@ -367,7 +368,7 @@ msgstr "Vyberte jedno nebo více oprávnění"
 
 #: apps/pootle_app/views/admin/permissions.py:104
 msgid "Revoke Permissions"
-msgstr ""
+msgstr "Odebrat oprávnění"
 
 #: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
@@ -394,7 +395,7 @@ msgstr "Kód"
 #: apps/pootle_language/models.py:74 apps/pootle_project/models.py:147
 #: models/user.py:66
 msgid "Full Name"
-msgstr "Celé jméno"
+msgstr "Celý název"
 
 #: apps/pootle_language/models.py:76
 msgid "Enter any special characters that users might find difficult to type"
@@ -411,6 +412,9 @@ msgid ""
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
+"Pro podrobnější informace navštivte <a href=\""
+"http://docs.translatehouse.org/projects/localization-"
+"guide/en/latest/l10n/pluralforms.html\">naši stránku</a> o formách plurálu."
 
 #: apps/pootle_language/models.py:87
 msgid "Unknown"
@@ -605,108 +609,107 @@ msgstr "XML značky"
 
 #: apps/pootle_misc/checks.py:73
 msgid "Broken HTML Entities"
-msgstr ""
+msgstr "Chybné HTML entity"
 
 #: apps/pootle_misc/checks.py:74
 msgid "Java format"
-msgstr ""
+msgstr "Java formát"
 
 #: apps/pootle_misc/checks.py:75
 msgid "Template format"
-msgstr ""
+msgstr "Formát šablon"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Mustache placeholders"
-msgstr ""
+msgstr "Zástupné řetězce mustache"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Mustache placeholder pairs"
-msgstr ""
+msgstr "Dvojice zástupných řetězců mustache"
 
 #: apps/pootle_misc/checks.py:78
 msgid "Mustache like placeholder pairs"
-msgstr ""
+msgstr "Dvojice zástupných řetězců podobných mustache"
 
 #: apps/pootle_misc/checks.py:79
 msgid "C format placeholders"
-msgstr ""
+msgstr "Zástupné řetězce C formátu"
 
 #: apps/pootle_misc/checks.py:80
 msgid "Non printable"
-msgstr ""
+msgstr "Netisknutelné"
 
 #: apps/pootle_misc/checks.py:81
 msgid "Unbalanced tag braces"
-msgstr ""
+msgstr "Lichý počet závorek u značek"
 
 #: apps/pootle_misc/checks.py:82
 msgid "Changed attributes"
-msgstr ""
+msgstr "Změněné atributy"
 
 #: apps/pootle_misc/checks.py:83
 msgid "Unescaped ampersands"
-msgstr ""
+msgstr "Neescapované ampersandy"
 
 #: apps/pootle_misc/checks.py:84
 msgid "Incorrectly escaped ampersands"
-msgstr ""
+msgstr "Chybně escapované ampersandy"
 
 #: apps/pootle_misc/checks.py:85
 msgid "Whitespaces"
-msgstr ""
+msgstr "Mezery"
 
 #: apps/pootle_misc/checks.py:86
 msgid "Date format"
-msgstr ""
+msgstr "Formát data"
 
 #: apps/pootle_misc/checks.py:87
 msgid "Uppercase placeholders"
-msgstr ""
+msgstr "Zástupné řetězce velkými písmeny"
 
 #: apps/pootle_misc/checks.py:88
 msgid "Percent sign placeholders"
-msgstr ""
+msgstr "% zástupné řetězce"
 
 #: apps/pootle_misc/checks.py:89
 msgid "Percent sign closure placeholders"
-msgstr ""
+msgstr "% uzavřené zástupné řetězce"
 
 #: apps/pootle_misc/checks.py:90
-#, fuzzy
 msgid "$ placeholders"
-msgstr "Zástupné znaky"
+msgstr "$ zástupné řetězce"
 
 #: apps/pootle_misc/checks.py:91
 msgid "$ closure placeholders"
-msgstr ""
+msgstr "$ uzavřené zástupné řetězce"
 
 #: apps/pootle_misc/checks.py:92
 msgid "Java-encoded unicode"
-msgstr ""
+msgstr "Java kódovaný unicode"
 
 #: apps/pootle_misc/checks.py:93
 msgid "Objective-C format"
-msgstr ""
+msgstr "Objective-C formát"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Android format"
-msgstr ""
+msgstr "Android formát"
 
 #: apps/pootle_misc/checks.py:96
 msgid "Tags differ"
-msgstr ""
+msgstr "Rozdílné značky"
 
 #: apps/pootle_misc/checks.py:97
 msgid "Curly braces"
-msgstr ""
+msgstr "Složené závorky"
 
 #: apps/pootle_misc/checks.py:98
 msgid "Potential unwanted placeholders"
-msgstr ""
+msgstr "Potenciálně nechtěné zástupné řetězce"
 
 #: apps/pootle_misc/checks.py:100
 msgid "Double quotes in tags"
-msgstr ""
+msgstr "Dvojité uvozovky ve značkách"
 
 #: apps/pootle_misc/forms.py:91
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
@@ -830,23 +833,20 @@ msgstr "Ignorovat soubory"
 
 #: apps/pootle_project/models.py:178
 msgid "Errors Report Email"
-msgstr ""
+msgstr "E-mail pro oznamování chyb"
 
 #: apps/pootle_project/models.py:179
-#, fuzzy
 msgid "An email address where issues with the source text can be reported."
-msgstr ""
-"Adresa nebo e-mailová adresa na které je možné nahlásit chyby ve zdrojovém "
-"textu."
+msgstr "E-mailová adresa na které je možné nahlásit chyby ve zdrojovém textu."
 
 #: apps/pootle_project/models.py:183
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Předpona pro hledání snímků obrazovky"
 
 #: apps/pootle_project/models.py:188
 #: apps/pootle_translationproject/models.py:151
 msgid "Disabled"
-msgstr ""
+msgstr "Zakázáno"
 
 #: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
 msgid "Source"
@@ -867,22 +867,22 @@ msgstr "Komentář"
 #: apps/pootle_statistics/models.py:207
 #, python-format
 msgid "reverted translation for %(source_string)s"
-msgstr ""
+msgstr "obnovil původní překlad %(source_string)s"
 
 #: apps/pootle_statistics/models.py:211
 #, python-format
 msgid "accepted suggestion for %(source_string)s"
-msgstr ""
+msgstr "přijal návrh pro %(source_string)s"
 
 #: apps/pootle_statistics/models.py:215
 #, python-format
 msgid "added suggestion for %(source_string)s"
-msgstr ""
+msgstr "přidal návrh pro %(source_string)s"
 
 #: apps/pootle_statistics/models.py:219
 #, python-format
 msgid "rejected suggestion for %(source_string)s"
-msgstr ""
+msgstr "odmítl návrh pro %(source_string)s"
 
 #: apps/pootle_statistics/models.py:223
 msgid "uploaded a file"
@@ -891,47 +891,47 @@ msgstr "nahrál soubor"
 #: apps/pootle_statistics/models.py:226
 #, python-format
 msgid "muted %(check_name)s for %(source_string)s"
-msgstr ""
+msgstr "zakázal kontrolu %(check_name)s pro %(source_string)s"
 
 #: apps/pootle_statistics/models.py:230
 #, python-format
 msgid "unmmuted %(check_name)s for %(source_string)s"
-msgstr ""
+msgstr "povolil kontrolu %(check_name)s pro %(source_string)s"
 
 #: apps/pootle_statistics/models.py:250
 #, python-format
 msgid "translated %(source_string)s"
-msgstr ""
+msgstr "přeložil %(source_string)s"
 
 #: apps/pootle_statistics/models.py:252 apps/pootle_statistics/models.py:258
 #, python-format
 msgid "edited %(source_string)s"
-msgstr ""
+msgstr "upravil %(source_string)s"
 
 #: apps/pootle_statistics/models.py:255
 #, python-format
 msgid "pre-translated %(source_string)s"
-msgstr ""
+msgstr "předběžně přeložil %(source_string)s"
 
 #: apps/pootle_statistics/models.py:260
 #, python-format
 msgid "removed translation for %(source_string)s"
-msgstr ""
+msgstr "smazal překlad pro %(source_string)s"
 
 #: apps/pootle_statistics/models.py:267
 #, python-format
 msgid "reviewed %(source_string)s"
-msgstr ""
+msgstr "zkontroloval %(source_string)s"
 
 #: apps/pootle_statistics/models.py:268
 #, python-format
 msgid "marked as fuzzy %(source_string)s"
-msgstr ""
+msgstr "označil jako přibližný %(source_string)s"
 
 #: apps/pootle_statistics/models.py:271
 #, python-format
 msgid "unknown action %(source_string)s"
-msgstr ""
+msgstr "neznámá akce %(source_string)s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -939,17 +939,15 @@ msgstr "Pro přístup k adresáři nemáte dostatečná oprávnění."
 
 #: apps/pootle_store/decorators.py:30
 msgid "Insufficient rights to access suggestion mode."
-msgstr ""
+msgstr "Pro zadávání návrhů nemáte dostatečná oprávnění."
 
 #: apps/pootle_store/decorators.py:31
-#, fuzzy
 msgid "Insufficient rights to access translation mode."
-msgstr "Pro tento překladový projekt nemáte dostatečná oprávnění."
+msgstr "Pro zadávání překladů nemáte dostatečná oprávnění."
 
 #: apps/pootle_store/decorators.py:32
-#, fuzzy
 msgid "Insufficient rights to access review mode."
-msgstr "Pro přístup k této stránce nemáte dostatečná oprávnění."
+msgstr "Pro provádění kontrol nemáte dostatečná oprávnění."
 
 #: apps/pootle_store/filetypes.py:20
 msgid "Gettext PO"
@@ -1000,15 +998,15 @@ msgstr "Potřebuje upravit"
 
 #: apps/pootle_store/forms.py:247
 msgid "Fuzzy flag must be cleared"
-msgstr ""
+msgstr "Musí být zrušeno označení přibližného překladu"
 
 #: apps/pootle_store/forms.py:291
 msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr ""
+msgstr "Hodnota ‚similarity‘ by měla být v rozsahu [0..1]"
 
 #: apps/pootle_store/forms.py:301
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr ""
+msgstr "Hodnota ‚mt_similarity‘ by měla být v rozsahu [0..1]"
 
 # poznámky vývojáře
 #: apps/pootle_store/forms.py:326
@@ -1030,7 +1028,7 @@ msgstr "Odmítnuto"
 #: apps/pootle_store/models.py:1277
 #, python-format
 msgid "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;added"
-msgstr ""
+msgstr "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp; přidáno"
 
 #: apps/pootle_store/models.py:1337
 msgid "Path"
@@ -1056,7 +1054,7 @@ msgstr "Chybějící parametry."
 
 #: apps/pootle_store/views.py:636
 msgid "Failed to remove comment."
-msgstr ""
+msgstr "Odstranění komentáře se nezdařilo."
 
 #: apps/pootle_store/views.py:671
 msgid "Comment submission failed."
@@ -1157,9 +1155,8 @@ msgid "Progress"
 msgstr "Stav překladu"
 
 #: core/browser.py:45 templates/browser/overview.html:39
-#, fuzzy
 msgid "Last updated"
-msgstr "Naposledy změněno"
+msgstr "Naposledy aktualizováno"
 
 #: core/browser.py:50
 msgid "Need Translation"
@@ -1176,7 +1173,7 @@ msgstr "Poslední aktivita"
 
 #: core/browser.py:112
 msgid "Back to parent folder"
-msgstr ""
+msgstr "Zpět do nadřazeného adresáře"
 
 #: core/decorators.py:304
 msgid "Insufficient rights to access this page."
@@ -1241,11 +1238,11 @@ msgstr "Přepsané překlady"
 
 #: core/initdb.py:110
 msgid "Can access a project"
-msgstr ""
+msgstr "Má přístup k projektu"
 
 #: core/initdb.py:114
 msgid "Cannot access a project"
-msgstr ""
+msgstr "Nemá přístup k projektu"
 
 #: core/initdb.py:118
 msgid "Can make a suggestion for a translation"
@@ -1255,9 +1252,10 @@ msgstr "Může navrhnout překlad"
 msgid "Can submit a translation"
 msgstr "Může odeslat překlad"
 
+# ve zdrojovém textu chybně translations, má být suggestions, již opraveno
 #: core/initdb.py:126
 msgid "Can review translations"
-msgstr "Může kontrolovat překlady"
+msgstr "Může kontrolovat návrhy"
 
 #: core/initdb.py:130
 msgid "Can administrate a translation project"
@@ -1265,7 +1263,7 @@ msgstr "Může spravovat překladový projekt"
 
 #: core/views.py:65
 msgid "You cannot access this page."
-msgstr ""
+msgstr "K přístupu na tuto stránku nemáte dostatečná oprávnění."
 
 #: middleware/errorpages.py:66
 #, python-format
@@ -1284,11 +1282,11 @@ msgstr ""
 #: models/user.py:57
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
-msgstr ""
+msgstr "Vyžadováno. Maximálně 30 znaků. Písmena, čísla a znaky @/./+/-/_"
 
 #: models/user.py:61
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Zadejte platné uživatelské jméno."
 
 #: models/user.py:65 templates/registration/password_reset_form.html:19
 msgid "Email Address"
@@ -1299,25 +1297,28 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Určuje, zda má být uživatel brán jako aktivní. Používejte zrušení zaškrtnutí "
+"u této volby místo mazání uživatelských účtů."
 
 #: models/user.py:71
-#, fuzzy
 msgid "Superuser Status"
-msgstr "správce"
+msgstr "Správce"
 
 #: models/user.py:72
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
+"Přiřadí uživateli všechna oprávnění, aniž by je bylo nutné přiřadit je "
+"explicitně."
 
 #: models/user.py:75
 msgid "date joined"
-msgstr ""
+msgstr "účet vytvořen"
 
 #: models/user.py:79
 msgid "Number of Rows"
-msgstr "Počet řádek"
+msgstr "Počet řádků"
 
 #: models/user.py:82
 msgid "Alternative Source Languages"
@@ -1325,31 +1326,31 @@ msgstr "Alternativní zdrojové jazyky"
 
 #: models/user.py:85 templates/admin/detailed_reports.html:149
 msgid "Rate"
-msgstr ""
+msgstr "Sazba"
 
 #: models/user.py:88
 msgid "Score"
-msgstr ""
+msgstr "Hodnocení"
 
 #: models/user.py:91
 msgid "Is employee?"
-msgstr ""
+msgstr "Je zaměstnanec?"
 
 #: models/user.py:92
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: models/user.py:94
 msgid "Website"
-msgstr ""
+msgstr "Webová stránka"
 
 #: models/user.py:95
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: models/user.py:96
 msgid "Short Bio"
-msgstr ""
+msgstr "Stručný životopis"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:35
@@ -1386,7 +1387,6 @@ msgid "About"
 msgstr "Informace"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "O tomto Pootle serveru"
 
@@ -1407,11 +1407,12 @@ msgstr ""
 "stránce projektu</a>."
 
 #: templates/about.html:16
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
-msgstr "Pootle %(pootle_ver)s používá Translate Toolkit %(toolkit_ver)s"
+msgstr ""
+"Pootle %(pootle_version)s používá Translate Toolkit %(toolkit_version)s."
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
@@ -1459,7 +1460,7 @@ msgstr "Statické stránky"
 #: templates/admin/_tabs.html:9 templates/admin/reports.html:47
 #: templates/admin/reports.html.py:50
 msgid "Reports"
-msgstr ""
+msgstr "Sestavy"
 
 #: templates/admin/base.html:4 templates/admin/base.html.py:7
 msgid "Administration"
@@ -1479,27 +1480,27 @@ msgstr "Více..."
 
 #: templates/admin/dashboard.html:38
 msgid "Background Jobs"
-msgstr ""
+msgstr "Úlohy na pozadí"
 
 #: templates/admin/dashboard.html:44
 msgid "Status"
-msgstr ""
+msgstr "Stav"
 
 #: templates/admin/dashboard.html:45
 msgid "Running"
-msgstr ""
+msgstr "Spuštěno"
 
 #: templates/admin/dashboard.html:45
 msgid "Stopped"
-msgstr ""
+msgstr "Zastaveno"
 
 #: templates/admin/dashboard.html:48
 msgid "Pending jobs"
-msgstr ""
+msgstr "Nevyřízené úlohy"
 
 #: templates/admin/dashboard.html:51
 msgid "Failed jobs"
-msgstr ""
+msgstr "Neúspěšné úlohy"
 
 #: templates/admin/dashboard.html:60
 msgid "Dependency Checks"
@@ -1516,73 +1517,71 @@ msgstr "Optimalizace"
 #: templates/admin/detailed_reports.html:6
 #, python-format
 msgid "Report for %(user)s, "
-msgstr ""
+msgstr "Sestava pro %(user)s, "
 
 #: templates/admin/detailed_reports.html:129
 #, python-format
 msgid "Report for %(user)s"
-msgstr ""
+msgstr "Sestava pro %(user)s"
 
 #: templates/admin/detailed_reports.html:133
 #: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
 msgid "Previous month"
-msgstr ""
+msgstr "Předchozí měsíc"
 
 #: templates/admin/detailed_reports.html:135
 #: templates/admin/reports/header.html:15 templates/user/detailed_stats.html:9
 msgid "Next month"
-msgstr ""
+msgstr "Příští měsíc"
 
 #: templates/admin/detailed_reports.html:142
 msgid "Local server time"
-msgstr ""
+msgstr "Lokální čas serveru"
 
 #: templates/admin/detailed_reports.html:143
-#, fuzzy
 msgid "Action"
 msgstr "Akce"
 
 #: templates/admin/detailed_reports.html:144
 msgid "Unit"
-msgstr ""
+msgstr "Jednotka"
 
 #: templates/admin/detailed_reports.html:145
-#, fuzzy
 msgid "Source words"
-msgstr "Zdrojové výrazy"
+msgstr "Zdrojová slova"
 
 #: templates/admin/detailed_reports.html:146
 msgid "Similarity"
-msgstr ""
+msgstr "Podobnost"
 
 #: templates/admin/detailed_reports.html:147
 msgid "Words"
-msgstr ""
+msgstr "Slova"
 
 #: templates/admin/detailed_reports.html:150
 msgid "Subtotal"
-msgstr ""
+msgstr "Mezisoučet"
 
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:230
 msgid "registered tasks"
-msgstr ""
+msgstr "zaregistrované úlohy"
 
 #: templates/admin/detailed_reports.html:195
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "Ve vybraném období nebyla zaznamenána žádná aktivita"
 
 #: templates/admin/detailed_reports.html:205
 msgid "Translation (subtotal)"
-msgstr ""
+msgstr "Překlad (mezisoučet)"
 
 #: templates/admin/detailed_reports.html:216
 msgid "Review (subtotal)"
-msgstr ""
+msgstr "Kontrola (mezisoučet)"
 
 #: templates/admin/detailed_reports.html:248
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Vyberte existujícího uživatele."
 
 #: templates/admin/permissions.html:12
 msgid ""
@@ -1609,40 +1608,39 @@ msgstr ""
 
 #: templates/admin/reports.html:60 templates/user/stats.html:63
 msgid "Daily activity"
-msgstr ""
+msgstr "Denní aktivita"
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "Uživatelé"
+msgstr "Uživatel"
 
 #: templates/admin/reports/header.html:22
 msgid "Detailed Report"
-msgstr ""
+msgstr "Podrobná sestava"
 
 #: templates/admin/reports/header.html:24
 msgid "Detailed Statistics"
-msgstr ""
+msgstr "Podrobná statistika"
 
 #: templates/admin/reports/paid_task_form.html:5
 msgid "Add Task"
-msgstr ""
+msgstr "Přidat úlohu"
 
 #: templates/admin/reports/paid_task_form.html:23
 msgid "words"
-msgstr ""
+msgstr "slova"
 
 #: templates/admin/reports/paid_task_form.html:24
 msgid "hours"
-msgstr ""
+msgstr "hodiny"
 
 #: templates/admin/reports/paid_task_form.html:35
 msgid "Add record"
-msgstr ""
+msgstr "Přidat záznam"
 
 #: templates/admin/reports/user_rates_form.html:4
 msgid "Set Rates"
-msgstr ""
+msgstr "Nastavit sazby"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:24
@@ -1667,6 +1665,11 @@ msgid ""
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages.\n"
 msgstr ""
+"\n"
+"Pro zadávání odkazů mezi statickými stránkami používejte kód <code>&lt;a "
+"href=\"<strong>#/slug-stránky</strong>\"&gt;Text odkazu&lt;/a&gt;</code>. "
+"Takové odkazy budou vygenerovány s plnou cestou k odkazované statické "
+"stránce.\n"
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1681,14 +1684,12 @@ msgid "No"
 msgstr "Ne"
 
 #: templates/admin/staticpages/_table.html:19
-#, fuzzy
 msgid "edit"
-msgstr "Upravit"
+msgstr "upravit"
 
 #: templates/admin/staticpages/_table.html:24
-#, fuzzy
 msgid "view"
-msgstr "Zobrazit"
+msgstr "zobrazit"
 
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
@@ -1717,44 +1718,42 @@ msgstr "Přidat běžnou stránku"
 
 #: templates/admin/staticpages/page_list.html:21
 msgid "Announcements"
-msgstr ""
+msgstr "Oznámení"
 
 #: templates/admin/staticpages/page_list.html:25
 msgid "Add Announcement"
-msgstr ""
+msgstr "Přidat oznámení"
 
 #: templates/browser/_actions.html:5
-#, fuzzy
 msgid "Continue translation"
-msgstr "Kopírovat do překladu"
+msgstr "Pokračovat v překladu"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Review suggestions"
 msgstr "Zkontrolovat návrhy"
 
 #: templates/browser/_actions.html:17
 msgid "Fix critical errors"
-msgstr ""
+msgstr "Opravit kritické chyby"
 
 #: templates/browser/_actions.html:23
 msgid "View all"
-msgstr ""
+msgstr "Zobrazit vše"
 
 #: templates/browser/_progressbar.html:3
 #, python-format
 msgid "<span class='value translated'>0</span>%% translated"
-msgstr ""
+msgstr "Přeloženo <span class='value translated'>0</span>%%"
 
 #: templates/browser/_progressbar.html:4
 #, python-format
 msgid "<span class='value fuzzy'>0</span>%% fuzzy"
-msgstr ""
+msgstr "Přibližně přeloženo <span class='value fuzzy'>0</span>%%"
 
 #: templates/browser/_progressbar.html:5
 #, python-format
 msgid "<span class='value untranslated'>0</span>%% untranslated"
-msgstr ""
+msgstr "Nepřeloženo <span class='value untranslated'>0</span>%%"
 
 #: templates/browser/overview.html:13
 msgid "Expand details"
@@ -1766,7 +1765,7 @@ msgstr "Statistiky překladu"
 
 #: templates/browser/overview.html:43
 msgid "Last action"
-msgstr ""
+msgstr "Poslední akce"
 
 #: templates/browser/overview.html:51
 msgid "Failing Checks"
@@ -1774,21 +1773,23 @@ msgstr "Selhavší kontroly"
 
 #: templates/browser/overview.html:90
 msgid "This project is disabled and visible to administrators only."
-msgstr ""
+msgstr "Tento projekt je zakázaný a je viditelný pouze pro správce."
 
 #: templates/browser/overview.html:95
 msgid ""
 "Some data on this page is currently being calculated, and the page will be "
 "refreshed automatically in <strong>30 seconds</strong>."
 msgstr ""
+"Některé údaje uvedené na této stránce jsou právě přepočítávány a stránka "
+"bude po <strong>30 sekundách</strong> automaticky obnovena."
 
 #: templates/browser/overview.html:96
 msgid "Refresh now"
-msgstr ""
+msgstr "Obnovit"
 
 #: templates/browser/overview.html:119
 msgid "Congratulations! You have completed this task!"
-msgstr ""
+msgstr "Gratulujeme! Dokončili jste tuto úlohu!"
 
 #: templates/contact_form/contact_form.html:5
 msgid "Contact Us"
@@ -1796,34 +1797,36 @@ msgstr "Kontaktujte nás"
 
 #: templates/contact_form/contact_form.html:7
 msgid "You have to fill all the fields, and please <b>write in English</b>."
-msgstr ""
+msgstr "Musíte vyplnit všechny údaje a <b>pište prosím anglicky</b>."
 
 #: templates/contact_form/contact_form.html:15
 msgid "Send Message"
-msgstr ""
+msgstr "Odeslat zprávu"
 
 #: templates/contact_form/contact_form.html:20
 msgid "Thanks!"
-msgstr ""
+msgstr "Děkujeme!"
 
 #: templates/contact_form/contact_form.html:21
 msgid ""
 "We have received your message and will try to\n"
 "      respond as soon as possible."
 msgstr ""
+"Vaši zprávu jsme přijali a pokusíme se\n"
+"na ni odpovědět co nejdříve."
 
 #: templates/core/_top_scorers.html:8
 msgid "score"
-msgstr ""
+msgstr "hodnocení"
 
 #: templates/core/_top_scorers.html:14
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: templates/core/_top_scorers.html:30
 msgid "No user contributions yet."
-msgstr ""
+msgstr "Dosud nijak nepřispěl."
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -1848,7 +1851,7 @@ msgstr "Potvrdit"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to overview"
-msgstr ""
+msgstr "Zpět na přehled"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -1856,19 +1859,19 @@ msgstr "Mé návrhy"
 
 #: templates/editor/_filters.html:23
 msgid "Select type"
-msgstr ""
+msgstr "Vyberte typ"
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr ""
+msgstr "Výchozí pořadí"
 
 #: templates/editor/_toolbar.html:7
 msgid "Newest first"
-msgstr ""
+msgstr "Od nejnovějšího"
 
 #: templates/editor/_toolbar.html:8
 msgid "Oldest first"
-msgstr ""
+msgstr "Od nejstaršího"
 
 #: templates/editor/_toolbar.html:14
 msgid "Go to the previous string (Ctrl+Up)"
@@ -1914,6 +1917,8 @@ msgid ""
 "We displayed first %(count)s units out of %(total_count)s. Please refine "
 "your search."
 msgstr ""
+"Zobrazeno je prvních %(count)s položek ze %(total_count)s. Upřesněte rozsah "
+"hledání."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
 #: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
@@ -1922,9 +1927,9 @@ msgid "Translate"
 msgstr "Přeložit"
 
 #: templates/editor/units/edit.html:12
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
-msgstr "<a href=\"%(url)s\">Řetězec %(id)s</a>"
+msgstr "<a href=\"%(url)s\">Položka #%(id)s</a>"
 
 #: templates/editor/units/edit.html:19
 msgid "Context:"
@@ -1944,7 +1949,7 @@ msgstr "Komentáře:"
 
 #: templates/editor/units/edit.html:53
 msgid "Click to open the image in a popup"
-msgstr ""
+msgstr "Kliknutím otevřete obrázek ve vyskakovacím okně"
 
 #: templates/editor/units/edit.html:62
 msgid "Locations:"
@@ -1952,16 +1957,15 @@ msgstr "Umístění:"
 
 #: templates/editor/units/edit.html:71
 msgid "Screenshots..."
-msgstr ""
+msgstr "Snímky obrazovky..."
 
 #: templates/editor/units/edit.html:95 templates/editor/units/edit.html:121
 msgid "Copy into translation"
 msgstr "Kopírovat do překladu"
 
 #: templates/editor/units/edit.html:117
-#, fuzzy
 msgid "Report a problem with this string"
-msgstr "Nahlásit chybu ve zdrojovém řetězci"
+msgstr "Nahlásit chybu v řetězci"
 
 #: templates/editor/units/edit.html:139 templates/editor/units/edit.html:150
 #: templates/editor/units/edit.html:243
@@ -2002,7 +2006,7 @@ msgstr "Přidat komentář"
 
 #: templates/editor/units/edit.html:175
 msgid "Raw View"
-msgstr ""
+msgstr "Neformátované zobrazení"
 
 #: templates/editor/units/edit.html:185
 #, python-format
@@ -2067,7 +2071,7 @@ msgstr "Odstranit návrh"
 
 #: templates/editor/units/edit.html:307
 msgid "A long time ago"
-msgstr ""
+msgstr "Velmi dávno"
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
@@ -2087,22 +2091,20 @@ msgid "Failing checks:"
 msgstr "Selhavší kontroly:"
 
 #: templates/editor/units/xhr_checks.html:9
-#, fuzzy
 msgid "Mute quality check"
-msgstr "Odstranit kontrolu kvality"
+msgstr "Zakázat kontrolu kvality"
 
 #: templates/editor/units/xhr_checks.html:9
-#, fuzzy
 msgid "Unmute quality check"
-msgstr "Odstranit kontrolu kvality"
+msgstr "Povolit kontrolu kvality"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
-msgstr ""
+msgstr "Odstranit komentář"
 
 #: templates/editor/units/xhr_comment.html:18
 msgid "Last comment:"
-msgstr ""
+msgstr "Poslední komentář:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
@@ -2110,7 +2112,7 @@ msgstr "Časová osa"
 
 #: templates/editor/units/xhr_timeline.html:25
 msgid "Last comment removed"
-msgstr ""
+msgstr "Poslední komentář byl odstraněn"
 
 #: templates/editor/units/xhr_timeline.html:30
 msgid "check"
@@ -2118,26 +2120,25 @@ msgstr ""
 
 #: templates/editor/units/xhr_timeline.html:38
 msgid "Unit created"
-msgstr ""
+msgstr "Položka vytvořena"
 
 #: templates/errors/400.html:4 templates/errors/400.html.py:11
 msgid "Bad Request"
-msgstr ""
+msgstr "Chybný požadavek"
 
 #: templates/errors/400.html:12
 msgid "Error 400"
-msgstr ""
+msgstr "Chyba 400"
 
 #: templates/errors/400.html:14
 msgid "The operation is not permitted."
-msgstr ""
+msgstr "Tato operace není povolena."
 
 #: templates/errors/403.html:4 templates/errors/403.html.py:8
 msgid "Permission Denied"
 msgstr "Přístup zamítnut"
 
 #: templates/errors/403.html:13
-#, fuzzy
 msgid "You don't seem to have permissions to access this page."
 msgstr "Nemáte oprávnění pro přístup k této stránce."
 
@@ -2154,13 +2155,12 @@ msgid "Server Error"
 msgstr "Chyba na straně serveru"
 
 #: templates/errors/500.html:10
-#, fuzzy
 msgid "A server error has occurred. Thank you for your patience."
-msgstr "Vyskytla se chyba. Děkujeme za vaši trpělivost."
+msgstr "Vyskytla se chyba na straně serveru. Děkujeme za vaši trpělivost."
 
 #: templates/errors/500.html:16
 msgid "Exception:"
-msgstr ""
+msgstr "Výjimka:"
 
 #: templates/errors/500.html:20
 #, python-format
@@ -2197,7 +2197,7 @@ msgstr ""
 "Návod pro instalaci a aktualizaci naleznete v <a href=\"%(url)s\""
 ">Dokumentaci</a>.\n"
 "Pokud si myslíte, že tato zpráva byla zobrazena v důsledku chyby,\n"
-"kontaktujte administrátora serveru."
+"kontaktujte správce serveru."
 
 #: templates/errors/db.html:23
 msgid "The reported error was:"
@@ -2215,7 +2215,7 @@ msgstr "Zde můžete přidávat, upravovat a odstraňovat oprávnění pro tento
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"
-msgstr ""
+msgstr "Pootle vyžaduje JavaScript"
 
 #: templates/layout.html:89
 msgid ""
@@ -2228,7 +2228,7 @@ msgstr "přejít na navigaci"
 
 #: templates/layout.html:122
 msgid "Public Profile"
-msgstr ""
+msgstr "Veřejný profil"
 
 #: templates/layout.html:123 templates/profiles/_tabs.html:4
 msgid "Settings"
@@ -2237,7 +2237,7 @@ msgstr "Nastavení"
 #: templates/layout.html:124 templates/user/stats.html:48
 #: templates/user/stats.html.py:53
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: templates/layout.html:126
 msgid "Admin"
@@ -2245,11 +2245,11 @@ msgstr "Správce"
 
 #: templates/layout.html:129
 msgid "Sign Out"
-msgstr ""
+msgstr "Odhlásit se"
 
 #: templates/layout.html:133 templates/welcome.html:18
 msgid "Sign In"
-msgstr ""
+msgstr "Přihlásit se"
 
 #: templates/login.html:4 templates/login.html.py:9
 msgid "Log In"
@@ -2278,7 +2278,7 @@ msgstr "Zatím žádné novinky."
 #: templates/profiles/_tabs.html:6
 #: templates/profiles/settings/evernote_account.html:38
 msgid "Link with Evernote"
-msgstr ""
+msgstr "Propojit s Evernote"
 
 #: templates/profiles/base.html:4 templates/profiles/base.html.py:6
 msgid "My Account"
@@ -2287,7 +2287,7 @@ msgstr "Můj účet"
 #: templates/profiles/settings/evernote_account.html:4
 #: templates/profiles/settings/evernote_account.html:7
 msgid "Evernote account"
-msgstr ""
+msgstr "Evernote účet"
 
 #: templates/profiles/settings/evernote_account.html:14
 #, python-format
@@ -2295,20 +2295,24 @@ msgid ""
 "This Pootle account is linked with \"<strong>%(username)s</strong>\" "
 "Evernote account."
 msgstr ""
+"Tento Pootle účet je propojen s Evernote účtem uživatele "
+"„<strong>%(username)s</strong>“."
 
 #: templates/profiles/settings/evernote_account.html:16
 msgid ""
 "Here you can link this Pootle account with Evernote account — this will "
 "allow you to log in faster next time."
 msgstr ""
+"Zde můžete propojit tento Pootle účet s Evernote účtem — to vám příště "
+"umožní rychlejší přihlášení."
 
 #: templates/profiles/settings/evernote_account.html:24
 msgid "This Pootle account cannot be unlinked from Evernote."
-msgstr ""
+msgstr "Zrušení propojení s Evernote není u tohoto Pootle účtu možné."
 
 #: templates/profiles/settings/evernote_account.html:30
 msgid "Unlink from Evernote"
-msgstr ""
+msgstr "Zrušit propojení s Evernote"
 
 #: templates/profiles/settings/personal.html:4
 #: templates/profiles/settings/personal.html:7
@@ -2321,6 +2325,9 @@ msgid ""
 "you will be redirected to your public profile page to see your changes in "
 "action."
 msgstr ""
+"Zde můžete změnit své osobní údaje. Po kliknutí na tlačítko ‚Uložit‘ budete "
+"přesměrováni na stránku vašeho veřejného profilu a budete si tak moci "
+"prohlédnou výslednou podobu provedených změn."
 
 #: templates/profiles/settings/profile.html:4
 #: templates/profiles/settings/profile.html:7
@@ -2330,7 +2337,7 @@ msgstr "Nastavení překladů"
 #: templates/profiles/settings/profile.html:12
 msgid ""
 "Here you can configure the settings related to the translation interface."
-msgstr ""
+msgstr "Zde můžete provést změny nastavení týkajících se překladového rozhraní."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
@@ -2391,13 +2398,13 @@ msgid "Password Reset Complete."
 msgstr "Resetování hesla dokončeno."
 
 #: templates/registration/password_reset_complete.html:14
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
 "\">sign in</a> now."
 msgstr ""
-"Vaše heslo bylo nastaveno. Nyní se můžete <a href=\"%(login_url)s\">"
-"přihlásit </a>."
+"Vaše heslo bylo nastaveno. Nyní se můžete <a href=\"%(login_url)s\""
+">přihlásit</a>."
 
 #: templates/registration/password_reset_confirm.html:5
 #: templates/registration/password_reset_confirm.html:8
@@ -2486,13 +2493,13 @@ msgstr ""
 "instrukce pro nastavení nového."
 
 #: templates/staticpages/_body.html:6
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
-"Tato stránka je neaktivní a viditelná pouze pro administrátory. Můžete ji "
-"aktivovat <a href=\"%s\">upravením jejích vlastností</a>"
+"Tato statická stránka je neaktivní a viditelná pouze pro správce. Můžete ji "
+"aktivovat <a href=\"%(edit_url)s\">upravením jejích vlastností</a>"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
@@ -2520,7 +2527,7 @@ msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
-"Zde můžete přidávat, upravovat a mazat oprávnění pro tento překladový "
+"Zde můžete přidávat, upravovat a odstraňovat oprávnění pro tento překladový "
 "projekt."
 
 #: templates/translation_projects/terminology/_term_edit.html:11
@@ -2550,7 +2557,7 @@ msgid ""
 "their translations will be deleted."
 msgstr ""
 "Jste si jisti, že chcete slovník pojmů vytvořit znovu? Veškeré stávající "
-"termíny a jejich překlady budou smazány."
+"termíny a jejich překlady budou odstraněny."
 
 #: templates/translation_projects/terminology/extract.html:11
 msgid "Extract"
@@ -2582,33 +2589,33 @@ msgstr "Soubor"
 
 #: templates/translation_projects/terminology/stores.html:28
 msgid "Once you upload files, you will be able to add, edit and delete terms."
-msgstr "Po nahrání souborů budete moci přidávat, upravovat a mazat výrazy."
+msgstr ""
+"Po nahrání souborů budete moci přidávat, upravovat a odstraňovat výrazy."
 
 #: templates/user/profile.html:14
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Obrázek svého avatara můžete nastavit nebo změnit na www.gravatar.com"
 
 #: templates/user/profile.html:17
-#, fuzzy
 msgid "Anonymous User"
-msgstr "anonymní uživatel"
+msgstr "Anonymní uživatel"
 
 #: templates/user/profile.html:26
 msgid "Score:"
-msgstr ""
+msgstr "Hodnocení:"
 
 #: templates/user/profile.html:29
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
-msgstr ""
+msgstr "Mé aktuální hodnocení na %(server_title)s je %(score)s "
 
 #: templates/user/profile.html:29 templates/user/profile.html.py:41
 msgid "Tweet this!"
-msgstr ""
+msgstr "Tweetni to!"
 
 #: templates/user/profile.html:38
 msgid "No contributions in the last month"
-msgstr ""
+msgstr "Žádné příspěvky v posledním měsíci"
 
 #: templates/user/profile.html:41
 #, python-format
@@ -2616,84 +2623,93 @@ msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
 "%(server_title)s! "
 msgstr ""
+"V tomto měsíci jsem pro jazyk %(lang_name)s na serveru %(server_title)s "
+"přispěvatelem #%(pos)s! "
 
 #: templates/user/profile.html:42
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s for this month"
-msgstr ""
+msgstr "V tomto měsíci přispěvatel #%(pos)s pro jazyk %(lang_name)s"
 
 #: templates/user/profile.html:45
 #, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
 msgstr ""
+"V tomto měsíci přispěvatel #%(pos)s pro jazyk <a href=\"%(url)s\""
+">%(lang_name)s</a>"
 
 #: templates/user/profile.html:54
-#, fuzzy
 msgid "Latest activity:"
-msgstr "Poslední aktivita"
+msgstr "Poslední aktivita:"
 
 #: templates/user/profile.html:66
 msgid "My Website"
-msgstr ""
+msgstr "Mé webové stránky"
 
 #: templates/user/profile.html:72
 msgid "My LinkedIn Profile"
-msgstr ""
+msgstr "Můj LinkedIn profil"
 
 #: templates/user/profile.html:81
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
+"Ukažte ostatním kdo jste, řekněte jim něco o sobě<br/>a vytvořte si nádherný "
+"veřejný profil!"
 
 #: templates/user/profile.html:91
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
+"Některé překlady byly zadány anonymními dobrovolníky. Tyto příspěvky jsou "
+"zaregistrovány pod tímto speciálním účtem."
 
 #: templates/user/profile.html:93
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
+"Některé překlady byly naimportovány z externích souborů. Tyto příspěvky jsou "
+"zaregistrovány pod tímto speciálním účtem."
 
 #: templates/user/reports/user_rates_widget.html:4
 msgid "Rates"
-msgstr ""
+msgstr "Sazby"
 
 #: templates/user/reports/user_rates_widget.html:8
 msgid "Currency:"
-msgstr ""
+msgstr "Měna:"
 
 #: templates/user/reports/user_rates_widget.html:18
 msgid "Translation Rate:"
-msgstr ""
+msgstr "Sazba za překlad:"
 
 #: templates/user/reports/user_rates_widget.html:29
 msgid "Review Rate:"
-msgstr ""
+msgstr "Sazba za kontrolu:"
 
 #: templates/user/reports/user_rates_widget.html:41
 msgid "Hourly Rate:"
-msgstr ""
+msgstr "Sazba za hodinu:"
 
 #: templates/welcome.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "Vítejte"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "Vítá vás Pootle"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
-msgstr ""
+msgstr "Připojte se k nám!"
 
 #: templates/welcome.html:30
 msgid "Top Contributors This Month"
-msgstr ""
+msgstr "Největší přispěvatelé tento měsíc"
 
 #~ msgid ""
 #~ "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."

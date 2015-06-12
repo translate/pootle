@@ -6,541 +6,546 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2013-02-08 00:05+0000\n"
-"Last-Translator: chozekun <chozekun@naver.com>\n"
+"PO-Revision-Date: 2015-06-10 07:22+0000\n"
+"Last-Translator: SongHye <hungern95@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1360281940.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1433920940.000000\n"
 
 #: static/js/browser.js:154
 msgid "All Languages"
-msgstr ""
+msgstr "모든 언어"
 
 #: static/js/browser.js:157
 msgid "All Projects"
-msgstr ""
+msgstr "모든 프로젝트"
 
 #: static/js/browser.js:160
 msgid "Entire Project"
-msgstr ""
+msgstr "전체 프로젝트"
 
 #: static/js/editor/app.js:236
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"다음 문장으로 넘어가기(ctrl+)<br/><br/>또는:<br/>다음 페이지 "
+":Ctrl+Shift+<br/>마지막페이지:Ctrl+Shift+End"
 
 #: static/js/editor/app.js:240
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"이전의 문자열로 돌아가기(Ctrl+,)<br/><br/>또는:</br>이전 페이지: Ctrl+Shift+,<br/>첫 페이지: "
+"Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:348
 #, c-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "%s's 처리중인 제안"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:351
 #, c-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "%s의 받아들여진 제안"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:354
 #, c-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "%의 거절된 제안"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:357
 #, c-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "%s의 제안"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
 #: static/js/editor/app.js:361
 #, c-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "%s 덮여쓰여진 제출"
 
 #: static/js/editor/app.js:513 static/js/editor/app.js.c:1666
 msgid "No results."
-msgstr "결과가 없습니다."
+msgstr "결과 없음."
 
 #: static/js/editor/app.js:971
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "서버에 연결하는 도중 오류 발생"
 
 #: static/js/editor/app.js:975
 msgid "Not found"
-msgstr ""
+msgstr "찾지 못함"
 
 #: static/js/editor/app.js:977
 msgid "Server error"
-msgstr ""
+msgstr "서버 오류"
 
 #: static/js/editor/app.js:979
 msgid "The server seems down. Try again later."
-msgstr ""
+msgstr "서버가 다운됐습니다. 나중에 다시 시도하세요."
 
 #: static/js/editor/app.js:986
 msgid "Unknown error"
-msgstr ""
+msgstr "알려지지 않은 오류"
 
+# unit : 단위, 단일체, 장치, 학점, 부대, 교외전차, 편성 단위
 #: static/js/editor/app.js:994
 msgid "This unit no longer exists."
-msgstr ""
+msgstr "이 유닛은 더이상 존재하지 않습니다."
 
 #: static/js/editor/app.js:995
 msgid "Go back to overview"
-msgstr ""
+msgstr "전체 보기로 다시 돌아갑니다"
 
 #: static/js/editor/app.js:997
 msgid "Reload page"
-msgstr ""
+msgstr "페이지 다시 불러오기"
 
 #: static/js/editor/app.js:2006
 msgid "some anonymous user"
-msgstr ""
+msgstr "몇명의  익명 사용자"
 
 #: static/js/editor/app.js:2008
 msgid "someone"
-msgstr ""
+msgstr "누군가"
 
 #: static/js/editor/app.js:2025 static/js/editor/app.js.c:2074
 msgid "Similar translations"
-msgstr ""
+msgstr "유사한 번역"
 
 #: static/js/shared/models/project.js:57
 msgid "disabled"
-msgstr ""
+msgstr "사용 안 함"
 
 #: static/js/stats.js:231
 #, c-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
+msgstr[0] "%s 초"
 
 #: static/js/stats.js:263
 msgid "Expand details"
-msgstr ""
+msgstr "세부사항 보기"
 
 #: static/js/stats.js:263
 msgid "Collapse details"
-msgstr ""
+msgstr "세부사항 접기"
 
 #: static/js/utils.js:149
 #, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
+msgstr[0] "일년 전%s년 전"
 
 #: static/js/utils.js:152
 #, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
+msgstr[0] "1주 전%s 주 전"
 
 #: static/js/utils.js:155
 #, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
+msgstr[0] "어제%s일 전"
 
 #: static/js/utils.js:158
 #, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
+msgstr[0] "한 시간 전%s시간 전"
 
 #: static/js/utils.js:161
 #, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
+msgstr[0] "1분 전%s분 전"
 
 #: static/js/utils.js:169
 msgid "A few seconds ago"
-msgstr ""
+msgstr "몇초 전"
 
 #: static/js/admin/components/language.jsx:38
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
+msgstr[0] "%(count)개의 언어가 당신의 쿼리와 매치됩니다.%(count)개의 언어가 당신의 쿼리와 매치됩니다."
 
 #: static/js/admin/components/language.jsx:42
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "%(count)개의 언어가 있습니다.%(count)개의 언어가 존재합니다. 아래에 최근에 추가된 것들이 있습니다."
 
 #: static/js/admin/components/language.jsx:60
 msgid "Search Languages"
-msgstr ""
+msgstr "언어 검색"
 
 #: static/js/admin/components/language.jsx:61
 msgid "Find language by name, code"
-msgstr ""
+msgstr "이름과 코드로 언어 찾기"
 
 #: static/js/admin/components/language.jsx:84
 #: static/js/admin/components/language.jsx:113
 msgid "Add Language"
-msgstr ""
+msgstr "언어 추가"
 
 #: static/js/admin/components/language.jsx:87
 #: static/js/admin/components/project.jsx:87
 #: static/js/admin/components/user.jsx:87
 msgid "Cancel"
-msgstr ""
+msgstr "취소"
 
 #: static/js/admin/components/language.jsx:110
 msgid "Edit Language"
-msgstr ""
+msgstr "언어 편집"
 
 #: static/js/admin/components/language.jsx:117
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
-msgstr ""
+msgstr "언어를 찾기위해 검색창을 사용하고, 그리고 언어를 편집하기 위해 클릭한다. "
 
 #: static/js/admin/components/main.jsx:93
 msgid "Saved successfully."
-msgstr ""
+msgstr "성공적으로 저장했습니다."
 
 #: static/js/admin/components/main.jsx:101
 msgid "Deleted successfully."
-msgstr ""
+msgstr "성공적으로 삭제하였습니다."
 
 #: static/js/admin/components/project.jsx:38
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
+msgstr[0] "%(count)개의 프로젝트가 당신의 쿼리와 매치됩니다. %(count)개의 포르젝트들이 당신의 쿼리와 매치됩니다. "
 
 #: static/js/admin/components/project.jsx:42
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "%(count)개의 프로젝트가 존재합니다. %(count)개의 프로젝트가 존재합니다. 아래에 최근에 추가된 것들이 있습니다. "
 
 #: static/js/admin/components/project.jsx:60
 msgid "Search Projects"
-msgstr ""
+msgstr "프로젝트를 찾다. "
 
 #: static/js/admin/components/project.jsx:61
 msgid "Find project by name, code"
-msgstr ""
+msgstr "이름과 코드를 사용하여 프로젝트 찾기"
 
 #: static/js/admin/components/project.jsx:84
 #: static/js/admin/components/project.jsx:113
 msgid "Add Project"
-msgstr ""
+msgstr "프로젝트 추가"
 
 #: static/js/admin/components/project.jsx:110
 msgid "Edit Project"
-msgstr ""
+msgstr "프로젝트 편집"
 
 #: static/js/admin/components/project.jsx:117
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
-msgstr ""
+msgstr "프로젝트를 찾기위해 검색창을 사용하고, 편집하려면 해당 프로젝트를 클릭하세요."
 
 #: static/js/admin/components/search.jsx:63
 msgid "Load More"
-msgstr ""
+msgstr "더 불러오기"
 
 #: static/js/admin/components/search.jsx:86
 msgid "Loading..."
-msgstr ""
+msgstr "읽어들이는 중..."
 
 #: static/js/admin/components/user.jsx:38
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
+msgstr[0] "%(count)명의 사용자가 당신의 쿼리와 매치됩니다. %(count)명의 사용자들이 당신의 쿼리와 매치됩니다. "
 
 #: static/js/admin/components/user.jsx:42
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "%(count)개의 유저가 존재합니다.%(count)개의 유저들이 존재합니다. 아래에 최근에 추가된 것들이 있습니다. "
 
 #: static/js/admin/components/user.jsx:60
 msgid "Search Users"
-msgstr ""
+msgstr "사용자찾기."
 
 #: static/js/admin/components/user.jsx:61
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "이름, email, 속성값 이용 유저 찾기"
 
 #: static/js/admin/components/user.jsx:84
 #: static/js/admin/components/user.jsx:113
 msgid "Add User"
-msgstr ""
+msgstr "사용자 추가"
 
 #: static/js/admin/components/user.jsx:110
 msgid "Edit User"
-msgstr ""
+msgstr "사용자 편집"
 
 #: static/js/admin/components/user.jsx:117
 msgid "Use the search form to find the user, then click on a user to edit."
-msgstr ""
+msgstr "검색창을 이용해 사용자를 찾고, 해당 사용자를 클릭해 편집하세요."
 
 #: static/js/admin/shared/forms.jsx:50 static/js/admin/shared/forms.jsx:145
 msgid "Code"
-msgstr ""
+msgstr "코드"
 
 #: static/js/admin/shared/forms.jsx:56 static/js/admin/shared/forms.jsx:151
 #: static/js/admin/shared/forms.jsx:309 static/js/user/forms.jsx:70
 msgid "Full Name"
-msgstr ""
+msgstr "전체이름"
 
 #: static/js/admin/shared/forms.jsx:62
 msgid "Special Characters"
-msgstr ""
+msgstr "특수문자"
 
 #: static/js/admin/shared/forms.jsx:71
 msgid "Number of Plurals"
-msgstr ""
+msgstr "다수"
 
 #: static/js/admin/shared/forms.jsx:77
 msgid "Plural Equation"
-msgstr ""
+msgstr "다원 방정식"
 
 #: static/js/admin/shared/forms.jsx:87 static/js/admin/shared/forms.jsx:221
 #: static/js/admin/shared/forms.jsx:364 static/js/user/forms.jsx:117
 msgid "Save"
-msgstr ""
+msgstr "저장하기"
 
 #: static/js/admin/shared/forms.jsx:90 static/js/admin/shared/forms.jsx:224
 msgid "Overview"
-msgstr ""
+msgstr "개요"
 
 #: static/js/admin/shared/forms.jsx:91 static/js/admin/shared/forms.jsx:226
 msgid "Permissions"
-msgstr ""
+msgstr "허락"
 
 #: static/js/admin/shared/forms.jsx:160
 msgid "Quality Checks"
-msgstr ""
+msgstr "질 확인"
 
 #: static/js/admin/shared/forms.jsx:169
 msgid "File Type"
-msgstr ""
+msgstr "파일 형식"
 
 #: static/js/admin/shared/forms.jsx:178
 msgid "Project Tree Style"
-msgstr ""
+msgstr "프로젝트 트리 스타일"
 
 #: static/js/admin/shared/forms.jsx:187
 msgid "Source Language"
-msgstr ""
+msgstr "소스 언어"
 
 #: static/js/admin/shared/forms.jsx:193
 msgid "Ignore Files"
-msgstr ""
+msgstr "파일 무시"
 
 #: static/js/admin/shared/forms.jsx:200
 msgid "String Errors Contact"
-msgstr ""
+msgstr "문자열 에러 연결"
 
 #: static/js/admin/shared/forms.jsx:206
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "스크린샷 찾기용 접두어"
 
 #: static/js/admin/shared/forms.jsx:213
 msgid "Disabled"
-msgstr ""
+msgstr "사용 안 함"
 
 #: static/js/admin/shared/forms.jsx:225
 msgid "Languages"
-msgstr ""
+msgstr "언어"
 
 #: static/js/admin/shared/forms.jsx:272
 msgid ""
 "Note: deleting the user will make its suggestions and translations become "
 "attributed to an anonymous user (nobody)."
-msgstr ""
+msgstr "주의: 사용자를 삭제하면 그 제안과 번역을 익명의 사용자가 한 것으로 처리합니다."
 
 #: static/js/admin/shared/forms.jsx:284
 msgid "Username"
-msgstr ""
+msgstr "사용자 이름"
 
 #: static/js/admin/shared/forms.jsx:293
 msgid "Active"
-msgstr ""
+msgstr "활성화"
 
 #: static/js/admin/shared/forms.jsx:300
 msgid "Password"
-msgstr ""
+msgstr "비밀번호"
 
 #: static/js/admin/shared/forms.jsx:301
 msgid "Set a new password"
-msgstr ""
+msgstr "새 비밀번호 지정"
 
 #: static/js/admin/shared/forms.jsx:315
 msgid "Email"
-msgstr ""
+msgstr "전자 우편"
 
 #: static/js/admin/shared/forms.jsx:324
 msgid "Administrator"
-msgstr ""
+msgstr "관리자"
 
 #: static/js/admin/shared/forms.jsx:331 static/js/user/forms.jsx:85
 msgid "Twitter"
-msgstr ""
+msgstr "트위터"
 
 #: static/js/admin/shared/forms.jsx:333
 msgid "Twitter username"
-msgstr ""
+msgstr "트위터 사용자이름"
 
 #: static/js/admin/shared/forms.jsx:339 static/js/user/forms.jsx:92
 msgid "LinkedIn"
-msgstr ""
+msgstr "링크드인"
 
 #: static/js/admin/shared/forms.jsx:341
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "링크드인 프로파일 URL"
 
 #: static/js/admin/shared/forms.jsx:346 static/js/user/forms.jsx:98
 msgid "Website"
-msgstr ""
+msgstr "웹사이트"
 
 #: static/js/admin/shared/forms.jsx:348
 msgid "Personal website URL"
-msgstr ""
+msgstr "개인 웹사이트 URL"
 
 #: static/js/admin/shared/forms.jsx:354 static/js/user/forms.jsx:105
 msgid "Short Bio"
-msgstr ""
+msgstr "짧은 경력"
 
 #: static/js/admin/shared/forms.jsx:356
 msgid "Personal description"
-msgstr ""
+msgstr "인물 묘사"
 
 #: static/js/admin/shared/forms.jsx:367
 msgid "Public Profile"
-msgstr ""
+msgstr "공개 프로파일"
 
 #: static/js/admin/shared/forms.jsx:368
 msgid "Statistics"
-msgstr ""
+msgstr "통계학"
 
 #: static/js/admin/shared/forms.jsx:369
 msgid "Reports"
-msgstr ""
+msgstr "보고서"
 
 #: static/js/admin/shared/forms.jsx:423
 msgid "Delete"
-msgstr ""
+msgstr "제거"
 
 #: static/js/shared/components/forms.jsx:67
 msgid "Select..."
-msgstr ""
+msgstr "선택하기..."
 
 #: static/js/shared/components/forms.jsx:68
 msgid "No results found"
-msgstr ""
+msgstr "결과가 없습니다."
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Clear value"
-msgstr ""
+msgstr "값 지우기"
 
 #: static/js/shared/components/forms.jsx:70
 msgid "Clear all"
-msgstr ""
+msgstr "모두 지우기"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Type to search"
-msgstr ""
+msgstr "검색할 것을 입력하시오"
 
 #: static/js/user/components/edit.jsx:106
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "자신의 공개 프로파일 편집하기"
 
 #: static/js/user/components/edit.jsx:113
 msgid "My Public Profile"
-msgstr ""
+msgstr "나의 공개 프로파일"
 
 #: static/js/user/components/edit.jsx:125
 msgid "Discard changes."
-msgstr ""
+msgstr "변경 사항 무시하기"
 
 #: static/js/user/components/edit.jsx:126
 msgid "Yes"
-msgstr ""
+msgstr "네"
 
 #: static/js/user/components/edit.jsx:127
 msgid "No"
-msgstr ""
+msgstr "아니요"
 
 #: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "변경사항이 저장되지 않았습니다. 변경사항을 무시하시겠습니까?"
 
 #: static/js/user/forms.jsx:58
 #, python-format
 msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
-msgstr ""
+msgstr "email address(%(emails))에 아바트를 설정하거나 바꾸시려면, gravartar.com으로 이동해주세요"
 
 #: static/js/user/forms.jsx:71
 msgid "Your Full Name"
-msgstr ""
+msgstr "전체 이름"
 
 #: static/js/user/forms.jsx:77
 msgid "Avatar"
-msgstr ""
+msgstr "아바타"
 
 #: static/js/user/forms.jsx:87
 msgid "Your Twitter username"
-msgstr ""
+msgstr "트위터 사용자 이름"
 
 #: static/js/user/forms.jsx:94
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "링크드인 프로파일 URL"
 
 #: static/js/user/forms.jsx:100
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "개인 웹사이트/블로그 URL"
 
 #: static/js/user/forms.jsx:108
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
-msgstr ""
+msgstr "본 번역 프로젝트의 일원이 되려는 이유를 알려주시겠어요? 좀 더 여러분을 알려주시고, 다른 사람들에게 자극을 주세요!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "프로젝트 / 언어"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Translated"
-msgstr ""
+msgstr "번역됨"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Reviewed"
-msgstr ""
+msgstr "검토됨"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Score Change"
-msgstr ""
+msgstr "점수 변경"
 
 #: templates/admin/xhr_language_user_activity.html:16
 #: templates/admin/xhr_language_user_activity.html:17
@@ -551,94 +556,94 @@ msgstr ""
 #: templates/admin/xhr_summary_report.html:35
 msgid "word"
 msgid_plural "words"
-msgstr[0] ""
+msgstr[0] "워드단어"
 
 #: templates/admin/xhr_language_user_activity.html:30
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "주어진 기간에 기록된 활동 없음"
 
 #: templates/admin/xhr_language_user_activity.html:33
 msgid "Please select a valid user."
-msgstr ""
+msgstr "유효한 사용자를 선택하십시오."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "등록된 업무"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
-msgstr ""
+msgstr "날짜시간"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "댓글"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "행동"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "크기(양)"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "비율"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "소계"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:32
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
+msgstr[0] "시간시간"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
-msgstr ""
+msgstr "업무 삭제"
 
 #: templates/admin/xhr_paid_tasks_report.html:41
 msgid "Comment on it"
-msgstr ""
+msgstr "항목에 설명 달기"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "요약"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "기간"
 
 #: templates/admin/xhr_summary_report.html:41
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(등록된 일)"
 
 #: templates/admin/xhr_summary_report.html:49
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "전체(%(currency))"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
-msgstr ""
+msgstr "더욱"
 
 #: templates/editor/units/xhr_edit_ctx.html:5
 msgid "Hide"
-msgstr ""
+msgstr "숨기기"
 
 #: templates/editor/units/xhr_edit_ctx.html:6
 msgid "Less"
-msgstr ""
+msgstr "적게"
 
 #: templates/editor/units/xhr_edit_ctx.html:7
 msgid "Show"
-msgstr ""
+msgstr "보기"
 
 #: templates/editor/units/xhr_tm.html:13
 #, python-format
@@ -646,6 +651,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"&ldquo;<span title=\"%(path)s\"> 의 %(fullname)s %(project)s</span>&rdquo; "
+"프로젝트에 의해 번역됨"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "정말로 계속 하시겠습니까?"

@@ -6,19 +6,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.7.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-02-28 23:44+0000\n"
-"PO-Revision-Date: 2014-10-02 18:39+0000\n"
-"Last-Translator: maaru <pilvi99@hotmail.com>\n"
+"PO-Revision-Date: 2015-06-08 15:43+0000\n"
+"Last-Translator: Jussi <jta_l10n@saunalahti.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1412275172.000000\n"
+"X-POOTLE-MTIME: 1433778189.000000\n"
 
 #: apps/contact/forms.py:23
 msgid "Summary"
@@ -161,12 +161,12 @@ msgid "Django version %s is installed."
 msgstr "Djangon versio %s on asennettu."
 
 #: apps/pootle_app/views/admin/dashboard.py:67
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Django version %(installed)s is installed. Pootle requires at least version "
 "%(required)s."
 msgstr ""
-"lxml versio %(installed)s on asennettu. Pootle vaatii vähintään version "
+"Djangon versio %(installed)s on asennettuna. Pootle vaatii vähintään version "
 "%(required)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:79
@@ -194,13 +194,13 @@ msgid "Redis server accepting connections on %(host)s:%(port)s."
 msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:113
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Redis server version %(installed)s installed. Pootle requires at least "
 "version %(required)s."
 msgstr ""
-"Translate Toolkit versio %(installed)s asennettu. Pootle vaatii version "
-"%(required)s."
+"Redis-palvelimen versio %(installed)s on asennettuna. Pootle vaatii "
+"vähintään version %(required)s."
 
 #: apps/pootle_app/views/admin/dashboard.py:117
 #, python-format
@@ -250,11 +250,11 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:189
 msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER puuttuu. Palataan HTML -muotoon."
 
 #: apps/pootle_app/views/admin/dashboard.py:191
 msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
+msgstr "MARKUP_FILTER on väärin konfiguroitu. Palataan HTML -muotoon."
 
 #: apps/pootle_app/views/admin/dashboard.py:193
 #, python-format
@@ -543,7 +543,7 @@ msgstr "Pelkkä välimerkki"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Number of sentences"
-msgstr "Kappaleiden määrä"
+msgstr "Lauseiden määrä"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Short"
@@ -832,11 +832,9 @@ msgid "Errors Report Email"
 msgstr ""
 
 #: apps/pootle_project/models.py:179
-#, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
-"URL tai sähköpostiosoite, johon lähdetekstissä olevista ongelmista voi "
-"ilmoittaa."
+"Sähköpostiosoite, johon lähdetekstissä olevista ongelmista voi ilmoittaa."
 
 #: apps/pootle_project/models.py:183
 msgid "Screenshot Search Prefix"
@@ -1154,9 +1152,8 @@ msgid "Progress"
 msgstr "Tilanne"
 
 #: core/browser.py:45 templates/browser/overview.html:39
-#, fuzzy
 msgid "Last updated"
-msgstr "Muokattu viimeksi"
+msgstr "Viimeksi päivitetty"
 
 #: core/browser.py:50
 msgid "Need Translation"
@@ -1382,7 +1379,6 @@ msgid "About"
 msgstr "Tietoja"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "Tietoja tästä Pootle-palvelimesta"
 
@@ -1403,13 +1399,13 @@ msgstr ""
 "projektin www-sivustolta</a>."
 
 #: templates/about.html:16
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
 msgstr ""
-"Pootle %(pootle_ver)s-version voimanlähteenä toimii Translate Toolkit "
-"%(toolkit_ver)s"
+"Pootle %(pootle_version)s-version voimanlähteenä toimii Translate Toolkit "
+"%(toolkit_version)s."
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
@@ -1611,9 +1607,8 @@ msgid "Daily activity"
 msgstr ""
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "Käyttäjät"
+msgstr "Käyttäjä"
 
 #: templates/admin/reports/header.html:22
 msgid "Detailed Report"
@@ -2154,9 +2149,8 @@ msgid "Server Error"
 msgstr "Palvelinvirhe"
 
 #: templates/errors/500.html:10
-#, fuzzy
 msgid "A server error has occurred. Thank you for your patience."
-msgstr "Tapahtui virhe. Kiitos kärsivällisyydestäsi."
+msgstr "Palvelimella tapahtui virhe. Kiitos kärsivällisyydestäsi."
 
 #: templates/errors/500.html:16
 msgid "Exception:"
@@ -2174,16 +2168,13 @@ msgid "Database Error"
 msgstr "Tietokantavirhe"
 
 #: templates/errors/db.html:11
-#, fuzzy
 msgid ""
 "Pootle can't connect to the database, the database is not\n"
 "initialized yet, or a schema upgrade is needed before continuing."
 msgstr ""
-"\n"
-"  Pootle ei voi muodostaa yhteyttä tietokantaan, tietokantaa ei ole vielä "
+"Pootle ei voi muodostaa yhteyttä tietokantaan, tietokantaa ei ole vielä "
 "alustettu \n"
-"  tai schema on päivitettävä ennen kuin voidaan jatkaa.\n"
-"  "
+"tai schema on päivitettävä ennen kuin voidaan jatkaa.  "
 
 #: templates/errors/db.html:16
 #, fuzzy, python-format
@@ -2586,9 +2577,8 @@ msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Voit asettaa tai vaihtaa avatar-kuvasi osoitteessa www.gravatar.com"
 
 #: templates/user/profile.html:17
-#, fuzzy
 msgid "Anonymous User"
-msgstr "tunnistautumaton käyttäjä"
+msgstr "Tunnistautumaton käyttäjä"
 
 #: templates/user/profile.html:26
 msgid "Score:"
@@ -2626,9 +2616,8 @@ msgid ""
 msgstr ""
 
 #: templates/user/profile.html:54
-#, fuzzy
 msgid "Latest activity:"
-msgstr "Viimeisimmät tapahtumat"
+msgstr "Viimeisimmät tapahtumat:"
 
 #: templates/user/profile.html:66
 msgid "My Website"
