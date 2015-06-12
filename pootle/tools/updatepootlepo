@@ -5,5 +5,9 @@ L10N_DIR=pootle/locale
 cd $L10N_DIR
 for lang in $(find . -type d -mindepth 1 -maxdepth 1 | egrep -v "templates")
 do
-	pot2po --progress=none -t $lang templates $lang
+	#pot2po --progress=none -t $lang templates $lang
+    for pot in $(find templates -name "*.pot")
+    do
+        msgmerge --update $lang/$(basename $pot .pot).po $pot
+    done
 done
