@@ -8,7 +8,9 @@
 # AUTHORS file for copyright and authorship information.
 
 import datetime
+import difflib
 import logging
+import operator
 import os
 
 from hashlib import md5
@@ -18,6 +20,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models, transaction, IntegrityError
+from django.db.models import F
 from django.template.defaultfilters import escape, truncatechars
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -1577,6 +1580,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         return disk_mtime
 
+    def update_index(self, start, delta):
+        op = operator.add if delta > 0 else operator.sub
+        Unit.objects.filter(store_id=self.id, index__gte=start).update(
+            index=op(F('index'), delta)
+        )
+
     @transaction.atomic
     def update(self, overwrite=False, store=None, only_newer=False):
         """Update DB with units from file.
@@ -1627,38 +1636,87 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 'added': 0,
             }
 
-            # Force a rebuild of the unit ID <-> DB ID index and get IDs for
-            # in-DB (old) and on-disk (new) stores
-            self.require_dbid_index(update=True, obsolete=True)
-            old_ids = set(self.dbid_index.keys())
-            new_ids = set(store.getids())
+            old_unitid_list = []  # unitid list for comparing (DB)
+            old_unitids = {}  # unitids dict (DB)
+            old_unitid_set = set()
+            old_obsolete_unitid_set = set()  # obsolete unitids in DB
+            update_unitids = {}
 
-            # Remove old units or make them obsolete if they were already
-            # translated
-            obsolete_dbids = [self.dbid_index.get(uid)
-                              for uid in old_ids - new_ids]
+            for (unitid, state, dbid, index) in \
+                self.unit_set.order_by('index') \
+                    .values_list('unitid', 'state', 'id', 'index'):
+                if state == OBSOLETE:
+                    old_obsolete_unitid_set.add(unitid)
+                else:
+                    old_unitid_list.append(unitid)
+                old_unitids[unitid] = {'dbid': dbid, 'index': index}
+                old_unitid_set.add(unitid)
+
+            new_unitid_list = sorted(store.getids(), key=lambda x: store.findid(x).index)
+            new_unitid_set = set(new_unitid_list)
+
+            sm = difflib.SequenceMatcher(None, old_unitid_list, new_unitid_list)
+            User = get_user_model()
+            system = User.objects.get_system_user()
+
+            common_dbids = set()
+
+            def insert(i1, j1, j2):
+                # Add new units to the store
+                new_units = (store.findid(uid) for uid in new_unitid_list[j1:j2])
+                for index, unit in enumerate(new_units):
+                    new_unit_index = i1 + index + 1
+                    uid = unit.getid()
+                    if uid not in old_unitid_set:
+                        self.addunit(unit, new_unit_index, user=system)
+                        changes['added'] += 1
+                    else:
+                        update_unitids[uid] = {'dbid': old_unitids[uid]['dbid'],
+                                               'index': new_unit_index}
+
+            for (tag, i1, i2, j1, j2) in sm.get_opcodes():
+                if tag == 'delete':
+                    continue
+                elif tag == 'insert':
+                    previous_index = 0
+                    if i1 > 0:
+                        previous = old_unitids[old_unitid_list[i1 - 1]]
+                        previous_index = previous['index']
+                    if i1 < len(old_unitid_list):
+                        next = old_unitids[old_unitid_list[i1]]
+                        delta = j2 - j1
+                        if previous_index + delta >= next['index']:
+                            delta = next['index'] - previous_index + delta - 1
+                            self.update_index(start=next['index'], delta=delta)
+                    insert(previous_index, j1, j2)
+                elif tag == 'replace':
+                    i1_index = old_unitids[old_unitid_list[i1 - 1]]['index']
+                    i2_index = old_unitids[old_unitid_list[i2 - 1]]['index']
+                    delta = j2 - j1 - i2_index + i1_index
+                    if delta > 0:
+                        self.update_index(start=i2_index, delta=delta)
+                    insert(i1_index, j1, j2)
+                else:
+                    common_dbids.update(set(old_unitids[uid]['dbid']
+                                            for uid in old_unitid_list[i1:i2]))
+
+            update_dbids = set([x['dbid'] for x in update_unitids.values()])
+            common_dbids.update(update_dbids)
+
+            obsolete_dbids = [old_unitids[uid]['dbid']
+                              for uid in old_unitid_set -
+                                         old_obsolete_unitid_set -
+                                         new_unitid_set]
             for unit in self.findid_bulk(obsolete_dbids):
-                # Use the same (parent) object since units will accumulate
-                # the list of cache attributes to clear in the parent Store
-                # object
+                # Use the same (parent) object since units will
+                # accumulate the list of cache attributes to clear
+                # in the parent Store object
                 unit.store = self
                 if not unit.isobsolete():
                     unit.makeobsolete()
                     unit._from_update_stores = True
                     unit.save()
                     changes['obsolete'] += 1
-
-            User = get_user_model()
-            system = User.objects.get_system_user()
-
-            # Add new units to the store
-            new_units = (store.findid(uid) for uid in new_ids - old_ids)
-            for unit in new_units:
-                newunit = self.addunit(unit, unit.index, user=system)
-                changes['added'] += 1
-
-            common_dbids = set(self.dbid_index.get(uid)
-                               for uid in old_ids & new_ids)
 
             if not overwrite:
                 # Get units that were modified after last sync
@@ -1683,15 +1741,15 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 # the list of cache attributes to clear in the parent Store
                 # object
                 unit.store = self
-                newunit = store.findid(unit.getid())
+                uid = unit.getid()
+                newunit = store.findid(uid)
                 old_target_f = unit.target_f
                 old_unit_state = unit.state
 
                 changed = unit.update(newunit, user=system)
 
-                # Unit's index within the store might have changed
-                if unit.index != newunit.index:
-                    unit.index = newunit.index
+                if uid in update_unitids:
+                    unit.index = update_unitids[uid]['index']
                     changed = True
 
                 if changed:
@@ -1975,7 +2033,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         unitid_hash = md5(id.encode("utf-8")).hexdigest()
         try:
-            return self.units.get(unitid_hash=unitid_hash)
+            return self.unit_set.get(unitid_hash=unitid_hash)
         except Unit.DoesNotExist:
             return None
 
