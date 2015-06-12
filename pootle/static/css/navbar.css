@@ -51,6 +51,11 @@
     float: left;
     font-size: 23px;
     padding: 0 16px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 40%;
 }
 
 html[dir="rtl"] #navbar h1.brand
@@ -246,6 +251,11 @@ html[dir="rtl"] #nav-access
     .brand-name
     {
         display: none;
+    }
+
+    #navbar h1
+    {
+        max-width: 70%;
     }
 
     #navbar:after
