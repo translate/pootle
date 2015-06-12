@@ -651,7 +651,6 @@ def users(request):
     User = get_user_model()
     data = list(
         User.objects.hide_meta()
-                    .select_related('evernote_account')
                     .values('id', 'username', 'full_name')
     )
     return JsonResponse(data)
