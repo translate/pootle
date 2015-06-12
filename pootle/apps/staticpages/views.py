@@ -90,6 +90,7 @@ class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
 
         ctx = super(AdminTemplateView, self).get_context_data(**kwargs)
         ctx.update({
+            'page': 'admin-pages',
             'legalpages': legal_pages,
             'staticpages': static_pages,
             ANN_TYPE: announcements,

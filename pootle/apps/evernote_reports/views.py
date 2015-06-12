@@ -143,6 +143,7 @@ def evernote_reports(request):
     now = make_aware(datetime.now())
 
     ctx = {
+        'page': 'admin-reports',
         'users': jsonify(map(
             lambda x: {'id': x.username, 'text': escape(x.formatted_name)},
             User.objects.hide_meta()

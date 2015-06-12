@@ -1,10 +1,38 @@
 {% load i18n %}
 <ul id="tabs" class="admin">
-  <li><a href="{% url 'pootle-admin' %}" class="admindashboard">{% trans "Info" %}</a></li>
-  <li><a href="{% url 'pootle-admin-users' %}" class="adminusers">{% trans "Users" %}</a></li>
-  <li><a href="{% url 'pootle-admin-languages' %}" class="adminlanguages">{% trans "Languages" %}</a></li>
-  <li><a href="{% url 'pootle-admin-projects' %}" class="adminprojects">{% trans "Projects" %}</a></li>
-  <li><a href="{% url 'pootle-admin-permissions' %}" class="adminpermissions">{% trans "Permissions" %}</a>
-  <li><a href="{% url 'pootle-staticpages' %}" class="adminstaticpages">{% trans "Static Pages" %}</a></li>
-  <li><a href="{% url 'evernote-reports' %}" class="evernote_reports">{% trans "Reports" %}</a></li>
+  <li>
+    <a href="{% url 'pootle-admin' %}"
+       class="{% if page == 'admin-dashboard' %}active{% endif %}"
+       >{% trans "Info" %}</a>
+  </li>
+  <li>
+    <a href="{% url 'pootle-admin-users' %}"
+       class="{% if page == 'admin-users' %}active{% endif %}"
+       >{% trans "Users" %}</a>
+  </li>
+  <li>
+    <a href="{% url 'pootle-admin-languages' %}"
+       class="{% if page == 'admin-languages' %}active{% endif %}"
+       >{% trans "Languages" %}</a>
+  </li>
+  <li>
+    <a href="{% url 'pootle-admin-projects' %}"
+       class="{% if page == 'admin-projects' %}active{% endif %}"
+       >{% trans "Projects" %}</a>
+  </li>
+  <li>
+    <a href="{% url 'pootle-admin-permissions' %}"
+       class="{% if page == 'admin-permissions' %}active{% endif %}"
+       >{% trans "Permissions" %}</a>
+  </li>
+  <li>
+    <a href="{% url 'pootle-staticpages' %}"
+       class="{% if page == 'admin-pages' %}active{% endif %}"
+       >{% trans "Static Pages" %}</a>
+  </li>
+  <li>
+    <a href="{% url 'evernote-reports' %}"
+       class="{% if page == 'admin-reports' %}active{% endif %}"
+       >{% trans "Reports" %}</a>
+  </li>
 </ul>

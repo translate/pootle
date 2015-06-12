@@ -19,6 +19,11 @@ from pootle_app.forms import UserForm
 class UserAdminView(SuperuserRequiredMixin, TemplateView):
     template_name = 'admin/users.html'
 
+    def get_context_data(self, **kwargs):
+        return {
+            'page': 'admin-users',
+        }
+
 
 class UserAPIView(SuperuserRequiredMixin, APIView):
     model = get_user_model()

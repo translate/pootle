@@ -128,6 +128,7 @@ def checks():
 @admin_required
 def view(request):
     ctx = {
+        'page': 'admin-dashboard',
         'server_stats': server_stats(),
         'rq_stats': rq_stats(),
         'checks': checks(),

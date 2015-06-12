@@ -31,16 +31,18 @@ class ProjectAdminView(SuperuserRequiredMixin, TemplateView):
         except Language.DoesNotExist:
             default_language = languages[0].id
 
-        kwargs['form_choices'] = jsonify({
-            'checkstyle': Project.checker_choices,
-            'localfiletype': filetype_choices,
-            'source_language': language_choices,
-            'treestyle': Project.treestyle_choices,
-            'defaults': {
-                'source_language': default_language,
-            },
-        })
-        return kwargs
+        return {
+            'page': 'admin-projects',
+            'form_choices': jsonify({
+                'checkstyle': Project.checker_choices,
+                'localfiletype': filetype_choices,
+                'source_language': language_choices,
+                'treestyle': Project.treestyle_choices,
+                'defaults': {
+                    'source_language': default_language,
+                },
+            }),
+        }
 
 
 class ProjectAPIView(SuperuserRequiredMixin, APIView):

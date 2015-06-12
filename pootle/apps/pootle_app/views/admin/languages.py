@@ -19,6 +19,11 @@ from pootle_language.models import Language
 class LanguageAdminView(SuperuserRequiredMixin, TemplateView):
     template_name = 'admin/languages.html'
 
+    def get_context_data(self, **kwargs):
+        return {
+            'page': 'admin-languages',
+        }
+
 
 class LanguageAPIView(SuperuserRequiredMixin, APIView):
     model = Language
