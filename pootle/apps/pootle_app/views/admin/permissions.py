@@ -32,8 +32,8 @@ class PermissionFormField(forms.ModelMultipleChoiceField):
         return _(instance.name)
 
 
-def admin_permissions(request, current_directory, template, context):
-    language = context.get('language', None)
+def admin_permissions(request, current_directory, template, ctx):
+    language = ctx.get('language', None)
 
     negative_permissions_excl = list(PERMISSIONS['negative'])
     positive_permissions_excl = list(PERMISSIONS['positive'])
@@ -123,6 +123,6 @@ def admin_permissions(request, current_directory, template, context):
     directory_permissions = current_directory.permission_sets \
                                              .order_by('user').all()
 
-    return util.edit(request, template, PermissionSet, context, link,
+    return util.edit(request, template, PermissionSet, ctx, link,
                      linkfield='user', queryset=directory_permissions,
                      can_delete=True, form=PermissionSetForm)
