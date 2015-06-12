@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-02-28 23:44+0000\n"
+"POT-Creation-Date: 2015-06-12 17:37+0100\n"
 "PO-Revision-Date: 2015-01-05 11:46+0000\n"
 "Last-Translator: Piotr <strebski@o2.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,58 +22,146 @@ msgstr ""
 "Generated-By: pygettext.py 1.1\n"
 "X-POOTLE-MTIME: 1420458387.000000\n"
 
-#: apps/contact/forms.py:23
+#: apps/accounts/forms.py:43
+msgid ""
+"Your user seems to have disappeared. Please report this to the site owners."
+msgstr ""
+
+#: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
+msgid "Username"
+msgstr "Nazwa użytkownika"
+
+#: apps/accounts/models.py:61
+msgid ""
+"Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
+msgstr ""
+
+#: apps/accounts/models.py:65
+msgid "Enter a valid username."
+msgstr ""
+
+#: apps/accounts/models.py:69
+msgid "Email Address"
+msgstr "Adres e-mail"
+
+#: apps/accounts/models.py:70 apps/pootle_language/models.py:80
+#: apps/pootle_project/models.py:148
+msgid "Full Name"
+msgstr "Pełna nazwa"
+
+#: apps/accounts/models.py:72 apps/staticpages/models.py:28
+#: templates/admin/staticpages/_table.html:6
+msgid "Active"
+msgstr "Aktywne"
+
+#: apps/accounts/models.py:73
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: apps/accounts/models.py:75
+#, fuzzy
+msgid "Superuser Status"
+msgstr "stan administratora"
+
+#: apps/accounts/models.py:76
+msgid ""
+"Designates that this user has all permissions without explicitly assigning "
+"them."
+msgstr ""
+
+#: apps/accounts/models.py:79
+msgid "date joined"
+msgstr ""
+
+#: apps/accounts/models.py:83
+msgid "Number of Rows"
+msgstr "Liczba wierszy"
+
+#: apps/accounts/models.py:86
+msgid "Alternative Source Languages"
+msgstr "Dodatkowe języki źródłowe"
+
+#: apps/accounts/models.py:89 templates/admin/detailed_reports.html:149
+msgid "Rate"
+msgstr ""
+
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+msgid "Review Rate"
+msgstr ""
+
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+msgid "Hourly Rate"
+msgstr ""
+
+#: apps/accounts/models.py:92
+msgid "Score"
+msgstr ""
+
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+msgid "Currency"
+msgstr ""
+
+#: apps/accounts/models.py:95
+msgid "Is employee?"
+msgstr ""
+
+#: apps/accounts/models.py:96
+msgid "Twitter"
+msgstr ""
+
+#: apps/accounts/models.py:98
+msgid "Website"
+msgstr ""
+
+#: apps/accounts/models.py:99
+msgid "LinkedIn"
+msgstr ""
+
+#: apps/accounts/models.py:100
+msgid "Short Bio"
+msgstr ""
+
+#: apps/accounts/models.py:300
+#, fuzzy
+msgid "This email address already exists."
+msgstr "Ten termin już istnieje w tym pliku."
+
+#: apps/contact/forms.py:25
 msgid "Summary"
 msgstr "Podsumowanie"
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:27
 msgid "Please enter your message summary"
 msgstr ""
 
-#: apps/contact/forms.py:32 core/browser.py:17
+#: apps/contact/forms.py:34 apps/virtualfolder/models.py:37 core/browser.py:19
 msgid "Name"
 msgstr "Nazwa"
 
-#: apps/contact/forms.py:33
+#: apps/contact/forms.py:35
 msgid "Please enter your name"
 msgstr ""
 
-#: apps/contact/forms.py:36
+#: apps/contact/forms.py:38
 msgid "Email address"
 msgstr "Adres e-mail"
 
-#: apps/contact/forms.py:37
+#: apps/contact/forms.py:39
 msgid "Please enter your email address"
 msgstr ""
 
-#: apps/contact/forms.py:40 apps/pootle_notifications/models.py:18
+#: apps/contact/forms.py:42
 msgid "Message"
 msgstr "Komunikat"
 
-#: apps/contact/forms.py:41
+#: apps/contact/forms.py:43
 msgid "Please enter your message"
-msgstr ""
-
-#: apps/evernote_auth/views.py:51
-msgid ""
-"Cannot link: your Evernote account is already linked with another Pootle "
-"account."
-msgstr ""
-
-#: apps/evernote_reports/forms.py:20 models/user.py:89
-msgid "Currency"
 msgstr ""
 
 #: apps/evernote_reports/forms.py:26
 msgid "Translation Rate"
-msgstr ""
-
-#: apps/evernote_reports/forms.py:31 models/user.py:86
-msgid "Review Rate"
-msgstr ""
-
-#: apps/evernote_reports/forms.py:36 models/user.py:87
-msgid "Hourly Rate"
 msgstr ""
 
 #: apps/evernote_reports/forms.py:41
@@ -82,6 +170,7 @@ msgstr ""
 
 #: apps/evernote_reports/models.py:31 templates/editor/export_view.html:106
 #: templates/translation_projects/terminology/manage.html:37
+#: templates/user/settings.html:29
 msgid "Translation"
 msgstr "Tłumaczenie"
 
@@ -109,33 +198,73 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: apps/evernote_reports/models.py:43
+#: apps/evernote_reports/models.py:43 apps/virtualfolder/models.py:63
 msgid "Description"
 msgstr "Opis"
 
-#: apps/evernote_reports/views.py:297
+#: apps/evernote_reports/views.py:295
 #, python-format
 msgid "User %s not found"
 msgstr ""
 
-#: apps/evernote_reports/views.py:382
+#: apps/evernote_reports/views.py:372
 msgid "Invalid request method"
+msgstr ""
+
+#: apps/import_export/templates/browser/index.html:10
+#, fuzzy
+msgid "Download translation files for offline translation"
+msgstr "Pobiera plik XLIFF w celu tłumaczenia w trybie offline"
+
+#: apps/import_export/templates/browser/index.html:11
+#, fuzzy
+msgid "Download for offline translation"
+msgstr "Pobiera plik XLIFF w celu tłumaczenia w trybie offline"
+
+#: apps/import_export/templates/browser/index.html:19
+#, fuzzy
+msgid "Upload translation files or archives in .zip format"
+msgstr "Wszystkie tłumaczenia zostały zaimportowane."
+
+#: apps/import_export/templates/browser/index.html:20
+#, fuzzy
+msgid "Upload translations"
+msgstr "Eksportuj tłumaczenia"
+
+#: apps/import_export/utils.py:22
+#, python-format
+msgid "File %r missing X-Pootle-Path header\n"
+msgstr ""
+
+#: apps/import_export/utils.py:27
+#, python-format
+msgid "File %r missing or invalid X-Pootle-Revision header\n"
+msgstr ""
+
+#: apps/import_export/utils.py:37
+#, python-format
+msgid "File %r was rejected because its X-Pootle-Revision is too old."
+msgstr ""
+
+#: apps/import_export/utils.py:42
+#, python-format
+msgid "Could not create %r. Missing Project/Language? (%s)"
 msgstr ""
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
 msgstr "Kod języka jest niezgodny z normą ISO"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:170
+#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:171
 msgid "Source Language"
 msgstr "Język źródłowy"
 
-#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:373
+#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:387
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "\"%s\" nie może być użyte jako kod projektu"
 
-#: apps/pootle_app/forms.py:98 templates/profiles/_tabs.html:5
+#: apps/pootle_app/forms.py:98 custom/templates/profiles/_tabs.html:5
 msgid "Password"
 msgstr "Hasło"
 
@@ -143,227 +272,47 @@ msgstr "Hasło"
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:39
+#: apps/pootle_app/views/admin/dashboard.py:80
+msgid "Files"
+msgstr "Pliki"
+
+#: apps/pootle_app/views/admin/dashboard.py:81
+msgid "Active projects"
+msgstr "Aktywne projekty"
+
+#: apps/pootle_app/views/admin/dashboard.py:82
+msgid "Active languages"
+msgstr "Aktywne języki"
+
+#: apps/pootle_app/views/admin/dashboard.py:83
+msgid "Translated strings"
+msgstr "Przetłumaczone ciągi"
+
+#: apps/pootle_app/views/admin/dashboard.py:84
+msgid "Translated words"
+msgstr "Słowa przetłumaczone"
+
+#: apps/pootle_app/views/admin/dashboard.py:85
+msgid "Active users"
+msgstr "Aktywni użytkownicy"
+
+#. Translators: this refers to the status of the background job worker
+#: apps/pootle_app/views/admin/dashboard.py:106
 #, python-format
-msgid "Translate Toolkit version %s installed."
-msgstr "Zainstalowana jest wersja %s Translate Toolkit."
-
-#: apps/pootle_app/views/admin/dashboard.py:47
-#, fuzzy, python-format
-msgid ""
-"Translate Toolkit version %(installed)s installed. Pootle requires at least "
-"version %(required)s."
-msgstr ""
-"Zainstalowana jest wersja %(installed)s Translate Toolkit. Program Pootle "
-"wymaga wersji %(required)s."
-
-#: apps/pootle_app/views/admin/dashboard.py:59
-#, python-format
-msgid "Django version %s is installed."
-msgstr "Zainstalowana jest wersja %s biblioteki Django."
-
-#: apps/pootle_app/views/admin/dashboard.py:67
-#, fuzzy, python-format
-msgid ""
-"Django version %(installed)s is installed. Pootle requires at least version "
-"%(required)s."
-msgstr ""
-"Zainstalowana jest wersja %(installed)s lxml. Pootle wymaga przynajmniej "
-"wersji %(required)s."
-
-#: apps/pootle_app/views/admin/dashboard.py:79
-#, python-format
-#, python-format,
-msgid "lxml version %s is installed."
-msgstr "Zainstalowana jest wersja %s biblioteki lxml."
-
-#: apps/pootle_app/views/admin/dashboard.py:87
-#, python-format
-msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version "
-"%(required)s."
-msgstr ""
-"Zainstalowana jest wersja %(installed)s lxml. Pootle wymaga przynajmniej "
-"wersji %(required)s."
-
-#: apps/pootle_app/views/admin/dashboard.py:91
-msgid "lxml is not installed. Pootle requires lxml."
-msgstr "lxml jest niezainstalowany. Pootle wymaga lxml."
-
-#: apps/pootle_app/views/admin/dashboard.py:104
-#, python-format
-msgid "Redis server accepting connections on %(host)s:%(port)s."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:113
-#, fuzzy, python-format
-msgid ""
-"Redis server version %(installed)s installed. Pootle requires at least "
-"version %(required)s."
-msgstr ""
-"Zainstalowana jest wersja %(installed)s lxml. Pootle wymaga przynajmniej "
-"wersji %(required)s."
-
-#: apps/pootle_app/views/admin/dashboard.py:117
-#, python-format
-msgid "Redis server is not available on %(host)s:%(port)s."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:130
-#, python-format
-msgid "%(num)d RQ worker running."
-msgid_plural "%(num)d RQ workers running."
+msgid "Running (%d worker)"
+msgid_plural "Running (%d workers)"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: apps/pootle_app/views/admin/dashboard.py:135
-msgid "No RQ workers are running."
+#. Translators: this refers to the status of the background job worker
+#: apps/pootle_app/views/admin/dashboard.py:110
+msgid "Stopped"
 msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:149
-msgid ""
-"Pootle is configured to use Redis as a caching backend, but can't connect to "
-"the cache."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:156
-msgid "Caching configured and running."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:162
-msgid "Redis is required as the caching backend."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:175
-msgid ""
-"Can't find the ISO codes package. Pootle uses ISO codes to translate "
-"language names."
-msgstr ""
-"Nie można odnaleźć pakietu z kodami ISO. Program Pootle używa kodów ISO do "
-"tłumaczenia nazw języków."
-
-#: apps/pootle_app/views/admin/dashboard.py:181
-#, fuzzy
-msgid ""
-"Can't find python-levenshtein package. Updating against templates is faster "
-"with python-levenshtein."
-msgstr ""
-"Nie można odnaleźć pakietu python-levenshtein. Aktualizowanie tłumaczeń z "
-"szablonów jest szybsze z tym pakietem."
-
-#: apps/pootle_app/views/admin/dashboard.py:189
-msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:191
-msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:193
-#, python-format
-msgid ""
-"Can't find the package which provides '%s' markup support. Falling back to "
-"HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:197
-#, python-format
-msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:214
-msgid ""
-"Using the default sqlite3 database engine. SQLite is only suitable for small "
-"installations with a small number of users. Pootle will perform better with "
-"the MySQL database engine."
-msgstr ""
-"Korzystanie z silnika baz danych sqlite3. SQLite nadaje się dla małych "
-"instalacji, z mała liczbą użytkowników. Program Pootle działa lepiej z "
-"silnikiem baz danych MySQL."
-
-#: apps/pootle_app/views/admin/dashboard.py:219
-msgid ""
-"Using the default sqlite3 database engine. SQLite is only suitable for small "
-"installations with a small number of users. Pootle will perform better with "
-"the MySQL database engine, but you need to install python-MySQLdb first."
-msgstr ""
-"Korzystanie z silnika baz danych sqlite3. SQLite nadaje się dla małych "
-"instalacji, z mała liczbą użytkowników. Program Pootle działa lepiej z "
-"silnikiem baz danych MySQL, jednakże należy wcześniej zainstalować pakiet "
-"python-MySQLdb."
-
-#: apps/pootle_app/views/admin/dashboard.py:227
-msgid ""
-"For optimal performance, use django.contrib.sessions.backends.cached_db as "
-"the session engine."
-msgstr ""
-"Dla największej wydajności, należy korzystać z "
-"django.contrib.sessions.backends.cached_db jako silnika sesji."
-
-#: apps/pootle_app/views/admin/dashboard.py:234
-msgid "For optimal performance, use Apache as the webserver."
-msgstr ""
-"Dla największej wydajności należy z korzystać z programu Apache jako serwera "
-"internetowego."
-
-#: apps/pootle_app/views/admin/dashboard.py:239
-msgid ""
-"The \"from\" address used to send registration emails is not specified. Also "
-"review the mail server settings."
-msgstr ""
-"Nie ustawiono adresu \"od\" używanego do przesyłania e-maili "
-"rejestracyjnych. Przejrzyj także ustawienia serwera pocztowego."
-
-#: apps/pootle_app/views/admin/dashboard.py:245
-msgid ""
-"No contact address is specified. The contact form will allow users to "
-"contact the server administrators."
-msgstr ""
-"Nie podano adresu kontaktowego. Formularz kontaktowy pozwala użytkownikom na "
-"kontakt z administratorami."
-
-# s/debugowania/????/g
-#: apps/pootle_app/views/admin/dashboard.py:251
-msgid ""
-"Running in debug mode. Debug mode is only needed when developing Pootle. For "
-"optimal performance, disable debugging mode."
-msgstr ""
-"Uruchomiono w trybie debugowania. Tryb debugowania jest wymagany tylko przy "
-"rozwijaniu programu Pootle. Dla największej wydajności, należy wyłączyć tryb "
-"debugowania."
-
-#: apps/pootle_app/views/admin/dashboard.py:308
-msgid "Files"
-msgstr "Pliki"
-
-#: apps/pootle_app/views/admin/dashboard.py:309
-msgid "Active projects"
-msgstr "Aktywne projekty"
-
-#: apps/pootle_app/views/admin/dashboard.py:310
-msgid "Active languages"
-msgstr "Aktywne języki"
-
-#: apps/pootle_app/views/admin/dashboard.py:311
-msgid "Translated strings"
-msgstr "Przetłumaczone ciągi"
-
-#: apps/pootle_app/views/admin/dashboard.py:312
-msgid "Translated words"
-msgstr "Słowa przetłumaczone"
-
-#: apps/pootle_app/views/admin/dashboard.py:313
-msgid "Active users"
-msgstr "Aktywni użytkownicy"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "All Users"
 msgstr "Wszyscy użytkownicy"
-
-#: apps/pootle_app/views/admin/permissions.py:86 models/user.py:56
-msgid "Username"
-msgstr "Nazwa użytkownika"
 
 #: apps/pootle_app/views/admin/permissions.py:95
 #, fuzzy
@@ -388,338 +337,363 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr ""
 "Wystąpiły błędy w formularzu. Proszę zapoznać się z poniższymi problemami."
 
-#: apps/pootle_language/models.py:67
+#: apps/pootle_language/models.py:73
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
 "Kod językowy zgodny z normą ISO 639, zakończony znakiem podkreślenia (_) i "
-"kodem kraju zgodnie z ISO 3166. <a href=\""
-"http://www.w3.org/International/articles/language-tags/\">Więcej "
-"informacji</a>"
+"kodem kraju zgodnie z ISO 3166. <a href=\"http://www.w3.org/International/"
+"articles/language-tags/\">Więcej informacji</a>"
 
-#: apps/pootle_language/models.py:72 apps/pootle_project/models.py:144
+#: apps/pootle_language/models.py:78 apps/pootle_project/models.py:145
 msgid "Code"
 msgstr "Kod"
 
-#: apps/pootle_language/models.py:74 apps/pootle_project/models.py:147
-#: models/user.py:66
-msgid "Full Name"
-msgstr "Pełna nazwa"
-
-#: apps/pootle_language/models.py:76
+#: apps/pootle_language/models.py:82
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 "Proszę wprowadzić wszelkie znaki specjalne, które mogą być trudne do "
 "wpisania przez użytkowników"
 
-#: apps/pootle_language/models.py:79
+#: apps/pootle_language/models.py:85
 msgid "Special Characters"
 msgstr "Znaki specjalne"
 
-#: apps/pootle_language/models.py:82
+#: apps/pootle_language/models.py:88
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
 
-#: apps/pootle_language/models.py:87
+#: apps/pootle_language/models.py:93
 msgid "Unknown"
 msgstr "Nieznane"
 
-#: apps/pootle_language/models.py:90
+#: apps/pootle_language/models.py:96
 msgid "Number of Plurals"
 msgstr "Ilość form liczby mnogej"
 
-#: apps/pootle_language/models.py:92
+#: apps/pootle_language/models.py:98
 msgid "Plural Equation"
 msgstr "Równanie dla liczby mnogiej"
 
-#: apps/pootle_misc/checks.py:23 core/browser.py:61
-msgid "Critical"
-msgstr "Krytyczny"
-
-#: apps/pootle_misc/checks.py:24
-msgid "Cosmetic"
-msgstr "Kosmetyczny"
-
-#: apps/pootle_misc/checks.py:29 apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:34 apps/pootle_misc/checks.py:102
 msgid "Accelerators"
 msgstr "Skróty klawiszowe"
 
-#: apps/pootle_misc/checks.py:30
+#: apps/pootle_misc/checks.py:35
 msgid "Acronyms"
 msgstr "Akronimy"
 
-#: apps/pootle_misc/checks.py:31
+#: apps/pootle_misc/checks.py:36
 msgid "Blank"
 msgstr "Pusty"
 
-#: apps/pootle_misc/checks.py:32
+#: apps/pootle_misc/checks.py:37
 msgid "Brackets"
 msgstr "Nawiasy"
 
-#: apps/pootle_misc/checks.py:33
+#: apps/pootle_misc/checks.py:38
 msgid "Compendium conflict"
 msgstr "Konflikt kompendium"
 
-#: apps/pootle_misc/checks.py:34
+#: apps/pootle_misc/checks.py:39
 msgid "Translator credits"
 msgstr "Zasługi tłumaczy"
 
-#: apps/pootle_misc/checks.py:35 apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:40 apps/pootle_misc/checks.py:106
 msgid "Double quotes"
 msgstr "Podwójny cudzysłów"
 
-#: apps/pootle_misc/checks.py:36
+#: apps/pootle_misc/checks.py:41
 msgid "Double spaces"
 msgstr "Podwójna spacja"
 
-#: apps/pootle_misc/checks.py:37
+#: apps/pootle_misc/checks.py:42
 msgid "Repeated word"
 msgstr "Powtórzone słowo"
 
-#: apps/pootle_misc/checks.py:38
+#: apps/pootle_misc/checks.py:43
 msgid "E-mail"
 msgstr "Adres e-mail"
 
-#: apps/pootle_misc/checks.py:39
+#: apps/pootle_misc/checks.py:44
 msgid "Ending punctuation"
 msgstr "Interpunkcja końcowa"
 
-#: apps/pootle_misc/checks.py:40
+#: apps/pootle_misc/checks.py:45
 msgid "Ending whitespace"
 msgstr "Końcowe spacje"
 
-#: apps/pootle_misc/checks.py:41
+#: apps/pootle_misc/checks.py:46
 msgid "Escapes"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:42
+#: apps/pootle_misc/checks.py:47
 msgid "File paths"
 msgstr "Ścieżki do plików"
 
-#: apps/pootle_misc/checks.py:43
+#: apps/pootle_misc/checks.py:48
 msgid "Functions"
 msgstr "Funkcje"
 
-#: apps/pootle_misc/checks.py:44
+#: apps/pootle_misc/checks.py:49
 msgid "GConf values"
 msgstr "Wartości GConf"
 
-#: apps/pootle_misc/checks.py:45
+#: apps/pootle_misc/checks.py:50
 msgid "Old KDE comment"
 msgstr "Stary komentarz KDE"
 
-#: apps/pootle_misc/checks.py:46
+#: apps/pootle_misc/checks.py:51
 msgid "Long"
 msgstr "Długi"
 
-#: apps/pootle_misc/checks.py:47
+#: apps/pootle_misc/checks.py:52
 msgid "Must translate words"
 msgstr "Słowa, które muszą zostać przetłumaczone"
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:53
 msgid "Newlines"
 msgstr "Nowy wiersz"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:54
 msgid "Number of plurals"
 msgstr "Ilość form liczby mnogiej"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:55
 msgid "Don't translate words"
 msgstr "Nie tłumacz słów"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:56
 msgid "Numbers"
 msgstr "Liczby"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:57
 msgid "Options"
 msgstr "Opcje"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:58
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:59
 msgid "Punctuation spacing"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:60
 msgid "Pure punctuation"
 msgstr "Czysta interpunkcja"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:61
+#, fuzzy
+msgid "Python brace placeholders"
+msgstr "Symbole zastępcze"
+
+#: apps/pootle_misc/checks.py:62
 msgid "Number of sentences"
 msgstr "Ilość zdań"
 
-#: apps/pootle_misc/checks.py:57
+#: apps/pootle_misc/checks.py:63
 msgid "Short"
 msgstr "Krótki"
 
-#: apps/pootle_misc/checks.py:58
+#: apps/pootle_misc/checks.py:64
 msgid "Simple capitalization"
 msgstr "Zwykłe użycie wielkich liter"
 
-#: apps/pootle_misc/checks.py:59
+#: apps/pootle_misc/checks.py:65
 msgid "Simple plural(s)"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:66
 msgid "Single quotes"
 msgstr "Apostrofy"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:67
 msgid "Starting capitalization"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:68
 msgid "Starting punctuation"
 msgstr "Kapitalizacja na początku zdania"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:69
 msgid "Starting whitespace"
 msgstr "Spacje na początku"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:71
 msgid "Tabs"
 msgstr "Tabulatory"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:72
 msgid "Unchanged"
 msgstr "Niezmienione"
 
-#: apps/pootle_misc/checks.py:67 apps/pootle_misc/stats.py:27
-#: apps/pootle_store/util.py:30 core/helpers.py:55
+#: apps/pootle_misc/checks.py:73 apps/pootle_misc/stats.py:27
+#: apps/pootle_store/util.py:30 core/helpers.py:56
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Nieprzetłumaczone"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:74
 msgid "URLs"
 msgstr "Adresy URL"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:75
 msgid "Valid characters"
 msgstr "Prawidłowe znaki"
 
-#: apps/pootle_misc/checks.py:70
+#: apps/pootle_misc/checks.py:76
 msgid "Placeholders"
 msgstr "Symbole zastępcze"
 
-#: apps/pootle_misc/checks.py:71
-msgid "XML tags"
-msgstr "Znaczniki XML"
-
-#: apps/pootle_misc/checks.py:73
-msgid "Broken HTML Entities"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:74
-msgid "Java format"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:75
-msgid "Template format"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:76
-msgid "Mustache placeholders"
-msgstr ""
-
 #: apps/pootle_misc/checks.py:77
-msgid "Mustache placeholder pairs"
+msgid "Invalid XML"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:78
-msgid "Mustache like placeholder pairs"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:79
-msgid "C format placeholders"
-msgstr ""
+msgid "XML tags"
+msgstr "Znaczniki XML"
 
 #: apps/pootle_misc/checks.py:80
-msgid "Non printable"
+msgid "Broken HTML Entities"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:81
-msgid "Unbalanced tag braces"
+msgid "Java format"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:82
-msgid "Changed attributes"
+msgid "Template format"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:83
-msgid "Unescaped ampersands"
+msgid "Mustache placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:84
-msgid "Incorrectly escaped ampersands"
+msgid "Mustache placeholder pairs"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:85
-msgid "Whitespaces"
+msgid "Mustache like placeholder pairs"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:86
-msgid "Date format"
+msgid "C format placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:87
-msgid "Uppercase placeholders"
+msgid "Non printable"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:88
-msgid "Percent sign placeholders"
+msgid "Unbalanced tag braces"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:89
-msgid "Percent sign closure placeholders"
+msgid "Changed attributes"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:90
+msgid "Unescaped ampersands"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:91
+msgid "Incorrectly escaped ampersands"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:92
+msgid "Whitespaces"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:93
+msgid "Date format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:94
+msgid "Uppercase placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:95
+msgid "Percent sign placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:96
+msgid "Percent sign closure placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:97
 #, fuzzy
 msgid "$ placeholders"
 msgstr "Symbole zastępcze"
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:98
 msgid "$ closure placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:99
 msgid "Java-encoded unicode"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:100
 msgid "Objective-C format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:101
 msgid "Android format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:103
 msgid "Tags differ"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:104
 msgid "Curly braces"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:105
 msgid "Potential unwanted placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:107
 msgid "Double quotes in tags"
 msgstr ""
+
+#: apps/pootle_misc/checks.py:108
+#, fuzzy
+msgid "Percent brace placeholders"
+msgstr "Symbole zastępcze"
+
+#: apps/pootle_misc/checks.py:1006 core/browser.py:68
+msgid "Critical"
+msgstr "Krytyczny"
+
+#: apps/pootle_misc/checks.py:1007
+msgid "Cosmetic"
+msgstr "Kosmetyczny"
+
+#: apps/pootle_misc/checks.py:1008
+msgid "Functional"
+msgstr "Funkcjonalny"
+
+#: apps/pootle_misc/checks.py:1009
+msgid "Extraction"
+msgstr "Rozpakowywanie"
+
+#: apps/pootle_misc/checks.py:1010
+msgid "Other"
+msgstr ""
+
+#. Translators: This is the name of a filter
+#: apps/pootle_misc/forms.py:90 core/helpers.py:60
+msgid "Search"
+msgstr "Szukaj"
 
 #: apps/pootle_misc/forms.py:91
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
@@ -759,13 +733,13 @@ msgstr "Definicje"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
-#: apps/pootle_misc/stats.py:24 core/browser.py:40
+#: apps/pootle_misc/stats.py:24 core/browser.py:47
 #: templates/admin/detailed_reports.html:240
 msgid "Total"
 msgstr "Razem"
 
 #: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32
-#: core/helpers.py:54 templates/editor/_filters.html:7
+#: core/helpers.py:55 templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Przetłumaczone"
 
@@ -790,20 +764,15 @@ msgstr "Następny"
 msgid "Last (%d)"
 msgstr "Ostatnia (%d)"
 
-#. Translators: The date that the news item was written
-#: apps/pootle_notifications/models.py:21
-msgid "Added"
-msgstr "Dodano"
-
-#: apps/pootle_profile/views.py:65
+#: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
 msgstr "Wybierz jeden lub więcej języków"
 
-#: apps/pootle_project/forms.py:29 core/browser.py:27
+#: apps/pootle_project/forms.py:29 core/browser.py:34
 msgid "Language"
 msgstr "Język"
 
-#: apps/pootle_project/models.py:141
+#: apps/pootle_project/models.py:142
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -811,64 +780,63 @@ msgstr ""
 "Krótka nazwa kodowa dla projektu. Może zawierać jedynie znaki z tablicy "
 "ASCII, cyfry i znak podkreślenia (_)."
 
-#: apps/pootle_project/models.py:155
+#: apps/pootle_project/models.py:156
 msgid "Quality Checks"
 msgstr "Testy jakości"
 
-#: apps/pootle_project/models.py:158
+#: apps/pootle_project/models.py:159
 msgid "File Type"
 msgstr "Typ pliku"
 
-#: apps/pootle_project/models.py:162
+#: apps/pootle_project/models.py:163
 msgid "Automatic detection (slower)"
 msgstr "Automtyczne wykrywanie (wolne)"
 
-#: apps/pootle_project/models.py:163
+#: apps/pootle_project/models.py:164
 msgid "GNU style: files named by language code"
 msgstr "Styl GNU: pliki nazwane według kodu języka"
 
-#: apps/pootle_project/models.py:164
+#: apps/pootle_project/models.py:165
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Nie w stylu GNU: każdy język posiada odrębny katalog"
 
-#: apps/pootle_project/models.py:167
+#: apps/pootle_project/models.py:168
 msgid "Project Tree Style"
 msgstr "Styl drzewa projektu"
 
-#: apps/pootle_project/models.py:173
+#: apps/pootle_project/models.py:174
 msgid "Ignore Files"
 msgstr "Ignorowanie plików"
 
-#: apps/pootle_project/models.py:178
+#: apps/pootle_project/models.py:179
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:179
+#: apps/pootle_project/models.py:180
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 
-#: apps/pootle_project/models.py:183
+#: apps/pootle_project/models.py:184
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:188
-#: apps/pootle_translationproject/models.py:151
+#: apps/pootle_project/models.py:189
 msgid "Disabled"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
 msgstr "Źródło"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:65
 msgid "Target"
 msgstr "Cel"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "State"
 msgstr "Stan"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:67
 msgid "Comment"
 msgstr "Komentarz"
 
@@ -991,17 +959,17 @@ msgid "Mozilla .lang"
 msgstr "Plik .lang Mozilli"
 
 #: apps/pootle_store/forms.py:88
-#: apps/pootle_store/templatetags/store_tags.py:146
-#: apps/pootle_store/templatetags/store_tags.py:162
-#: apps/pootle_store/templatetags/store_tags.py:169
-#: apps/pootle_store/templatetags/store_tags.py:181
-#: apps/pootle_store/templatetags/store_tags.py:183
+#: apps/pootle_store/templatetags/store_tags.py:147
+#: apps/pootle_store/templatetags/store_tags.py:163
+#: apps/pootle_store/templatetags/store_tags.py:170
+#: apps/pootle_store/templatetags/store_tags.py:182
+#: apps/pootle_store/templatetags/store_tags.py:184
 #, python-format
 msgid "Plural Form %d"
 msgstr "Forma %d liczby mnogiej"
 
 #: apps/pootle_store/forms.py:211 apps/pootle_store/util.py:31
-#: core/helpers.py:56 templates/editor/_filters.html:10
+#: core/helpers.py:57 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Wymaga pracy"
 
@@ -1009,46 +977,46 @@ msgstr "Wymaga pracy"
 msgid "Fuzzy flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:291
+#: apps/pootle_store/forms.py:290
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:301
+#: apps/pootle_store/forms.py:300
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:325
 msgid "Translator comment"
 msgstr "Komentarz tłumacza"
 
-#: apps/pootle_store/models.py:147
+#: apps/pootle_store/models.py:143
 msgid "Pending"
 msgstr "Oczekujące"
 
-#: apps/pootle_store/models.py:148
+#: apps/pootle_store/models.py:144
 msgid "Accepted"
 msgstr "Zatwierdzone"
 
-#: apps/pootle_store/models.py:149
+#: apps/pootle_store/models.py:145
 msgid "Rejected"
 msgstr "Odrzucone"
 
-#: apps/pootle_store/models.py:1277
+#: apps/pootle_store/models.py:1274
 #, python-format
 msgid "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;added"
 msgstr ""
 
-#: apps/pootle_store/models.py:1337
+#: apps/pootle_store/models.py:1329
 msgid "Path"
 msgstr "Ścieżka"
 
-#: apps/pootle_store/templatetags/store_tags.py:140
-#: apps/pootle_store/templatetags/store_tags.py:142
+#: apps/pootle_store/templatetags/store_tags.py:141
+#: apps/pootle_store/templatetags/store_tags.py:143
 msgid "Singular"
 msgstr "liczba pojedyncza"
 
-#: apps/pootle_store/templatetags/store_tags.py:140
-#: apps/pootle_store/templatetags/store_tags.py:142
+#: apps/pootle_store/templatetags/store_tags.py:141
+#: apps/pootle_store/templatetags/store_tags.py:143
 msgid "Plural"
 msgstr "liczba mnoga"
 
@@ -1056,23 +1024,23 @@ msgstr "liczba mnoga"
 msgid "Obsolete"
 msgstr "Przestarzały"
 
-#: apps/pootle_store/views.py:408 core/decorators.py:45
+#: apps/pootle_store/views.py:466 core/decorators.py:46
 msgid "Arguments missing."
 msgstr "Brakuje argumentów."
 
-#: apps/pootle_store/views.py:636
+#: apps/pootle_store/views.py:695
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:671
+#: apps/pootle_store/views.py:729
 msgid "Comment submission failed."
 msgstr "Wystąpił błąd przesyłania komentarza."
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:917
 msgid "Failed to process submission."
 msgstr "Wystąpił błąd w trakcie przesyłania."
 
-#: apps/pootle_store/views.py:913
+#: apps/pootle_store/views.py:958
 msgid "Failed to process suggestion."
 msgstr "Przetworzenie sugestii się nie powiodło."
 
@@ -1080,19 +1048,14 @@ msgstr "Przetworzenie sugestii się nie powiodło."
 msgid "This term already exists in this file."
 msgstr "Ten termin już istnieje w tym pliku."
 
-#: apps/staticpages/forms.py:60
+#: apps/staticpages/forms.py:59
 #, python-format
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
-"Przeczytałem i akceptuję: <a href=\"%(url)s\" class=\"%(classes)s\""
-">%(title)s</a>"
-
-#: apps/staticpages/models.py:28 models/user.py:68
-#: templates/admin/staticpages/_table.html:6
-msgid "Active"
-msgstr "Aktywne"
+"Przeczytałem i akceptuję: <a href=\"%(url)s\" class=\"%(classes)s\">"
+"%(title)s</a>"
 
 #: apps/staticpages/models.py:30
 msgid "Whether this page is active or not."
@@ -1125,67 +1088,268 @@ msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:99
+#: apps/staticpages/models.py:96
 msgid "URL or content must be provided."
 msgstr "Należy podać adres URL lub zawartość."
 
-#: apps/staticpages/models.py:107
+#: apps/staticpages/models.py:104
 msgid "Virtual path already in use."
 msgstr "Ścieżka wirtualna jest obecnie w użyciu."
 
-#: apps/staticpages/models.py:112
+#: apps/staticpages/models.py:113
 msgid "Legal Page"
 msgstr "Strona prawna"
 
-#: apps/staticpages/models.py:123
+#: apps/staticpages/models.py:124
 msgid "Regular Page"
 msgstr "Zwykła strona"
 
-#: apps/staticpages/views.py:108 templates/admin/staticpages/_table.html:8
+#: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "Tytuł strony"
 
-#: apps/staticpages/views.py:113
+#: apps/staticpages/views.py:116
 #, python-format
 msgid "page-%d"
 msgstr "strona-%d"
 
-#: core/browser.py:22
+#. Translators: 'projects' must not be translated.
+#: apps/staticpages/views.py:128
+msgid ""
+"projects/<project_code> or <language_code> or <language_code>/<project_code>"
+msgstr ""
+
+#: apps/virtualfolder/models.py:39
+#, fuzzy
+msgid "Location"
+msgstr "Miejsca"
+
+#: apps/virtualfolder/models.py:42
+msgid "Root path where this virtual folder is applied."
+msgstr ""
+
+#. Translators: This is a noun.
+#: apps/virtualfolder/models.py:46
+#, fuzzy
+msgid "Filter"
+msgstr "Filtr"
+
+#: apps/virtualfolder/models.py:48
+msgid "Filtering rules that tell which stores this virtual folder comprises."
+msgstr ""
+
+#: apps/virtualfolder/models.py:52 core/browser.py:24
+msgid "Priority"
+msgstr "Priorytet"
+
+#: apps/virtualfolder/models.py:54
+msgid ""
+"Number specifying importance. Greater priority means it is more important."
+msgstr ""
+
+#: apps/virtualfolder/models.py:58
+msgid "Is browsable?"
+msgstr ""
+
+#: apps/virtualfolder/models.py:60
+#, fuzzy
+msgid "Whether this virtual folder is active or not."
+msgstr "Obojętnie, czy ta strona jest aktywna czy nie."
+
+#: apps/virtualfolder/models.py:65
+#, python-format
+msgid ""
+"Use this to provide more information or instructions. Allowed markup: %s"
+msgstr ""
+
+#: checks.py:57
+msgid "Your version of Django is too old."
+msgstr ""
+
+#: checks.py:58
+#, python-format
+msgid "Try pip install --upgrade 'Django==%s'"
+msgstr ""
+
+#: checks.py:65
+msgid "Your version of lxml is too old."
+msgstr ""
+
+#: checks.py:66
+msgid "Try pip install --upgrade lxml"
+msgstr ""
+
+#: checks.py:72
+msgid "Your version of Translate Toolkit is too old."
+msgstr ""
+
+#: checks.py:73
+msgid "Try pip install --upgrade translate-toolkit"
+msgstr ""
+
+#: checks.py:88
+#, fuzzy
+msgid ""
+"Can't find python-levenshtein package. Updating against templates is faster "
+"with python-levenshtein."
+msgstr ""
+"Nie można odnaleźć pakietu python-levenshtein. Aktualizowanie tłumaczeń z "
+"szablonów jest szybsze z tym pakietem."
+
+#: checks.py:90
+msgid "Try pip install python-levenshtein"
+msgstr ""
+
+#: checks.py:109
+#, python-format
+msgid "Could not connect to Redis (%s)"
+msgstr ""
+
+#: checks.py:110
+#, python-format
+msgid "Make sure Redis is running on %(host)s:%(port)s"
+msgstr ""
+
+#: checks.py:119
+msgid "No RQ Worker running."
+msgstr ""
+
+#: checks.py:120
+msgid "Run new workers with manage.py rqworker"
+msgstr ""
+
+#: checks.py:127
+#, fuzzy
+msgid "Your version of Redis is too old."
+msgstr "Zainstalowana jest wersja %s biblioteki Django."
+
+#: checks.py:128
+msgid "Update your system's Redis server package"
+msgstr ""
+
+#: checks.py:143
+msgid "Cache backend is not set to Redis."
+msgstr ""
+
+#: checks.py:144
+#, python-format
+msgid ""
+"Set default cache backend to django_redis.cache.RedisCache\n"
+"Current settings: %r"
+msgstr ""
+
+#: checks.py:153
+msgid "Could not initiate a Redis cache connection"
+msgstr ""
+
+#: checks.py:154
+msgid "Double-check your CACHES settings"
+msgstr ""
+
+#: checks.py:160
+msgid "DEBUG mode is on. Do not do this in production!"
+msgstr ""
+
+#: checks.py:161
+msgid "Set DEBUG = False in Pootle settings"
+msgstr ""
+
+#: checks.py:167
+msgid "The sqlite database backend is unsupported"
+msgstr ""
+
+#: checks.py:168
+msgid "Set your default database engine to postgresql_psycopg2 or mysql"
+msgstr ""
+
+#: checks.py:174
+msgid "Not using cached_db as session engine"
+msgstr ""
+
+#: checks.py:175
+#, python-format
+msgid ""
+"Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
+"Current settings: %r"
+msgstr ""
+
+#: checks.py:182
+msgid "POOTLE_CONTACT_EMAIL is not set."
+msgstr ""
+
+#: checks.py:183
+msgid ""
+"Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
+"the Pootle contact form."
+msgstr ""
+
+#: checks.py:191
+#, python-format
+msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
+msgstr ""
+
+#: checks.py:193
+msgid ""
+"POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
+"contact form."
+msgstr ""
+
+#: checks.py:200
+msgid "settings.DEFAULT_FROM_EMAIL is not set."
+msgstr ""
+
+#: checks.py:201 checks.py:211
+msgid ""
+"DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
+"Don't forget to review your mail server settings."
+msgstr ""
+
+#: checks.py:209
+#, python-format
+msgid "settings.DEFAULT_FROM_EMAIL is using the following default setting %r."
+msgstr ""
+
+#: core/browser.py:29
 msgid "Project"
 msgstr "Projekt"
 
 #. Translators: noun. The graphical representation of translation status
-#: core/browser.py:33
+#: core/browser.py:40
 msgid "Progress"
 msgstr "Postęp"
 
-#: core/browser.py:45 templates/browser/overview.html:39
+#: core/browser.py:52 templates/browser/index.html:39
 #, fuzzy
 msgid "Last updated"
 msgstr "Ostatnio zmieniane"
 
-#: core/browser.py:50
+#: core/browser.py:57
 msgid "Need Translation"
 msgstr "Wymaga tłumaczenia"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:56 templates/editor/_filters.html:11
+#: core/browser.py:63 templates/editor/_filters.html:11
 msgid "Suggestions"
 msgstr "Sugestie"
 
-#: core/browser.py:66
+#: core/browser.py:73
 msgid "Last Activity"
 msgstr "Ostatnia aktywność"
 
-#: core/browser.py:112
+#: core/browser.py:130
+#, fuzzy
+msgid "Back to language"
+msgstr "Wróć do strony głównej"
+
+#: core/browser.py:132
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:304
+#: core/decorators.py:313
 msgid "Insufficient rights to access this page."
 msgstr "Niedostateczne uprawnienia, aby uzyskać dostęp do tej strony."
 
-#: core/decorators.py:317 core/views.py:33
+#: core/decorators.py:326 core/views.py:34
 msgid "You do not have rights to administer Pootle."
 msgstr "Użytkownik nie posiada praw administracyjnych na serwerze Pootle."
 
@@ -1201,158 +1365,100 @@ msgstr ""
 msgid "Incorrect"
 msgstr ""
 
-#: core/helpers.py:41
+#: core/helpers.py:42
 msgid "User missing"
 msgstr "Brakujący użytkownik"
 
 #. Translators: This refers to "All strings"
-#: core/helpers.py:53 templates/editor/_filters.html:6
+#: core/helpers.py:54 templates/editor/_filters.html:6
 msgid "All"
 msgstr "Wszystko"
 
-#: core/helpers.py:57 templates/editor/_filters.html:8
+#: core/helpers.py:58 templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Nieukończony"
 
-#. Translators: This is the name of a filter
-#: core/helpers.py:59 templates/core/search.html:5
-msgid "Search"
-msgstr "Szukaj"
-
-#: core/helpers.py:60 templates/editor/_filters.html:18
+#: core/helpers.py:61 templates/editor/_filters.html:18
 msgid "Checks"
 msgstr "Sprawdzanie"
 
-#: core/helpers.py:61 templates/editor/_filters.html:13
+#: core/helpers.py:62 templates/editor/_filters.html:13
 msgid "My submissions"
 msgstr "Moje zgłoszenia"
 
-#: core/helpers.py:62 templates/admin/dashboard.html:19
+#: core/helpers.py:63 templates/admin/dashboard.html:13
 msgid "Submissions"
 msgstr "Zatwierdzenia"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
-#: core/helpers.py:63 templates/editor/_filters.html:17
+#: core/helpers.py:64 templates/editor/_filters.html:17
 msgid "My overwritten submissions"
 msgstr "Moje nadpisane zgłoszenia"
 
-#: core/helpers.py:64
+#: core/helpers.py:65
 msgid "Overwritten submissions"
 msgstr "Nadpisane zgłoszenia"
 
-#: core/initdb.py:110
+#: core/initdb.py:109
 msgid "Can access a project"
 msgstr ""
 
-#: core/initdb.py:114
+#: core/initdb.py:113
 msgid "Cannot access a project"
 msgstr ""
 
-#: core/initdb.py:118
+#: core/initdb.py:117
 msgid "Can make a suggestion for a translation"
 msgstr "Może dodawać sugestię do tłumaczenia"
 
-#: core/initdb.py:122
+#: core/initdb.py:121
 msgid "Can submit a translation"
 msgstr "Może przesyłać tłumaczenia"
 
-#: core/initdb.py:126
-msgid "Can review translations"
-msgstr "Może recenzować tłumaczenia"
+#: core/initdb.py:125
+#, fuzzy
+msgid "Can review suggestions"
+msgstr "Przejrzyj sugestie"
 
-#: core/initdb.py:130
+#: core/initdb.py:129
 msgid "Can administrate a translation project"
 msgstr "Może administrować projektem tłumaczeń"
 
-#: core/views.py:65
+#: core/views.py:66
 msgid "You cannot access this page."
 msgstr ""
 
-#: middleware/errorpages.py:66
-#, python-format
-msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
+#: custom/templates/layout.html:11
+msgid "Getting Started"
+msgstr ""
+
+#: custom/templates/layout.html:15
+#, fuzzy
+msgid "License Terms"
+msgstr "Licencja"
+
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:116
+#: templates/user/settings.html:4 templates/user/settings.html.py:7
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: middleware/errorpages.py:57
+#, fuzzy, python-format
+msgid ""
+"You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
+"access this page."
 msgstr ""
 "Należy się <a href=\"%(login_link)s\">zalogować</a>, w celu uzyskania "
 "dostępu do tej strony."
 
-#: middleware/errorpages.py:105
+#: middleware/errorpages.py:97
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "Błąd dostępu do pliku %(filename)s, system plików zwrócił komunikat: "
 "%(errormsg)s"
-
-#: models/user.py:57
-msgid ""
-"Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
-msgstr ""
-
-#: models/user.py:61
-msgid "Enter a valid username."
-msgstr ""
-
-#: models/user.py:65 templates/registration/password_reset_form.html:19
-msgid "Email Address"
-msgstr "Adres e-mail"
-
-#: models/user.py:69
-msgid ""
-"Designates whether this user should be treated as active. Unselect this "
-"instead of deleting accounts."
-msgstr ""
-
-#: models/user.py:71
-#, fuzzy
-msgid "Superuser Status"
-msgstr "stan administratora"
-
-#: models/user.py:72
-msgid ""
-"Designates that this user has all permissions without explicitly assigning "
-"them."
-msgstr ""
-
-#: models/user.py:75
-msgid "date joined"
-msgstr ""
-
-#: models/user.py:79
-msgid "Number of Rows"
-msgstr "Liczba wierszy"
-
-#: models/user.py:82
-msgid "Alternative Source Languages"
-msgstr "Dodatkowe języki źródłowe"
-
-#: models/user.py:85 templates/admin/detailed_reports.html:149
-msgid "Rate"
-msgstr ""
-
-#: models/user.py:88
-msgid "Score"
-msgstr ""
-
-#: models/user.py:91
-msgid "Is employee?"
-msgstr ""
-
-#: models/user.py:92
-msgid "Twitter"
-msgstr ""
-
-#: models/user.py:94
-msgid "Website"
-msgstr ""
-
-#: models/user.py:95
-msgid "LinkedIn"
-msgstr ""
-
-#: models/user.py:96
-msgid "Short Bio"
-msgstr ""
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:35
@@ -1384,7 +1490,7 @@ msgstr "Warunki użytkowania"
 msgid "Terms of Service"
 msgstr "Warunki świadczenia usług"
 
-#: templates/about.html:7 templates/layout.html:178
+#: templates/about.html:7 templates/layout.html:171
 msgid "About"
 msgstr "Informacje o"
 
@@ -1393,8 +1499,7 @@ msgstr "Informacje o"
 msgid "About This Pootle Server"
 msgstr "Informacje o serwerze Pootle"
 
-#. Translators: For better readability, make sure to leave an space after the closing </i> tag
-#: templates/about.html:15
+#: templates/about.html:16
 #, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
@@ -1407,10 +1512,10 @@ msgstr ""
 "oprogramowanie internetowe pozwalające zespołom na tłumaczenie i zarządzanie "
 "tłumaczeniami projektów. Narzędzie to jest Wolnym Oprogramowaniem i każdy "
 "zespół może go używać oraz rozwijać społęczność programu Pootle. Więcej "
-"informacji znajduje się na <a href=\"http://translate.sourceforge.net/\">"
-"stronie projektu</a>."
+"informacji znajduje się na <a href=\"http://translate.sourceforge.net/"
+"\">stronie projektu</a>."
 
-#: templates/about.html:16
+#: templates/about.html:26
 #, fuzzy, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
@@ -1418,36 +1523,67 @@ msgid ""
 msgstr ""
 "Pootle %(pootle_ver)s jest napędzane przez Translate Toolkit %(toolkit_ver)s"
 
+#: templates/account/email/email_confirmation_message.txt:2
+msgid "A Pootle account has been created for you using this email address."
+msgstr "Twoje Konto Pootle zostało utworzone przy użyciu tego adresu e-mail."
+
+#: templates/account/email/email_confirmation_message.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Aby aktywować swoje konto, należy kliknąć następujący odnośnik:"
+
+#: templates/account/email/email_confirmation_message.txt:6
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message."
+msgstr ""
+"Ta wiadomość została wysłana, aby sprawdzić czy podany adres e-mail jest "
+"poprawny. Jeśli nie chcesz rejestrować konta, zignoruj tę wiadomość."
+
+#: templates/account/email/email_confirmation_subject.txt:2
+#, fuzzy
+msgid "Pootle e-mail confirmation"
+msgstr "Rejestracja Pootle"
+
+#: templates/account/signup_closed.html:5
+#: templates/account/signup_closed.html:8
+#: templates/account/signup_closed.html:13
+#, fuzzy
+msgid "Registration Disabled"
+msgstr "profil rejestracji"
+
+#: templates/account/signup_closed.html:14
+msgid "Registration is currently disabled. Please try again later."
+msgstr ""
+
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
 msgid "Save Changes"
 msgstr "Zapisz zmiany"
 
-#: templates/admin/_tabs.html:3
+#: templates/admin/_tabs.html:6
 msgid "Info"
 msgstr "Informacje"
 
-#: templates/admin/_tabs.html:4 templates/admin/dashboard.html:25
-#: templates/admin/users.html:4 templates/admin/users.html.py:9
-#: templates/user/base.html:4 templates/user/base.html.py:6
-#: templates/user/stats.html:51
+#: templates/admin/_tabs.html:11 templates/admin/dashboard.html:21
+#: templates/admin/users.html:4 templates/admin/users.html.py:7
+#: templates/user/base.html:4
 msgid "Users"
 msgstr "Użytkownicy"
 
-#: templates/admin/_tabs.html:5 templates/admin/languages.html:4
-#: templates/admin/languages.html.py:9 templates/projects/_nav.html:26
+#: templates/admin/_tabs.html:16 templates/admin/languages.html:4
+#: templates/admin/languages.html.py:7 templates/projects/_nav.html:26
 #: templates/projects/admin/languages.html:7
 #: templates/projects/all/_nav.html:26
 msgid "Languages"
 msgstr "Języki"
 
-#: templates/admin/_tabs.html:6 templates/admin/projects.html:4
-#: templates/admin/projects.html.py:9 templates/projects/base.html:5
+#: templates/admin/_tabs.html:21 templates/admin/projects.html:4
+#: templates/admin/projects.html.py:7 templates/projects/base.html:5
 msgid "Projects"
 msgstr "Projekty"
 
-#: templates/admin/_tabs.html:7 templates/admin/permissions.html:4
-#: templates/admin/permissions.html.py:9 templates/languages/_nav.html:26
+#: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
+#: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
 #: templates/languages/admin/permissions.html:5
 #: templates/projects/_nav.html:31 templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:31
@@ -1456,13 +1592,13 @@ msgstr "Projekty"
 msgid "Permissions"
 msgstr "Uprawnienia"
 
-#: templates/admin/_tabs.html:8 templates/admin/staticpages/base.html:4
-#: templates/admin/staticpages/base.html:10
+#: templates/admin/_tabs.html:31 templates/admin/staticpages/base.html:4
+#: templates/admin/staticpages/base.html:8
 msgid "Static Pages"
 msgstr "Strony statyczne"
 
-#: templates/admin/_tabs.html:9 templates/admin/reports.html:47
-#: templates/admin/reports.html.py:50
+#: templates/admin/_tabs.html:36 templates/admin/reports.html:45
+#: templates/admin/reports.html.py:48
 msgid "Reports"
 msgstr ""
 
@@ -1470,53 +1606,42 @@ msgstr ""
 msgid "Administration"
 msgstr "Zarządzanie"
 
-#: templates/admin/dashboard.html:13
+#: templates/admin/dashboard.html:7
 msgid "Server Statistics"
 msgstr "Statystyki serwera"
 
-#: templates/admin/dashboard.html:22
+#: templates/admin/dashboard.html:17
 msgid "Pending suggestions"
 msgstr "Zaległe sugestie"
 
-#: templates/admin/dashboard.html:31
+#: templates/admin/dashboard.html:29
 msgid "More..."
 msgstr "Więcej..."
 
-#: templates/admin/dashboard.html:38
+#: templates/admin/dashboard.html:37
 msgid "Background Jobs"
 msgstr ""
 
-#: templates/admin/dashboard.html:44
+#: templates/admin/dashboard.html:43
 msgid "Status"
 msgstr ""
 
-#: templates/admin/dashboard.html:45
-msgid "Running"
-msgstr ""
-
-#: templates/admin/dashboard.html:45
-msgid "Stopped"
-msgstr ""
-
-#: templates/admin/dashboard.html:48
+#: templates/admin/dashboard.html:50
 msgid "Pending jobs"
 msgstr ""
 
-#: templates/admin/dashboard.html:51
+#: templates/admin/dashboard.html:54
 msgid "Failed jobs"
 msgstr ""
 
-#: templates/admin/dashboard.html:60
-msgid "Dependency Checks"
-msgstr "Testy zależności"
+#: templates/admin/dashboard.html:64
+#, fuzzy
+msgid "System Checks"
+msgstr "Pokaż testy"
 
-#: templates/admin/dashboard.html:69
-msgid "Optional"
-msgstr "Opcjonalne"
-
-#: templates/admin/dashboard.html:77
-msgid "Optimizations"
-msgstr "Optymizacje"
+#: templates/admin/dashboard.html:74
+msgid "No issues have been detected. All is good!"
+msgstr ""
 
 #: templates/admin/detailed_reports.html:6
 #, python-format
@@ -1589,7 +1714,7 @@ msgstr ""
 msgid "Please select a valid user."
 msgstr ""
 
-#: templates/admin/permissions.html:12
+#: templates/admin/permissions.html:10
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
@@ -1597,10 +1722,10 @@ msgstr ""
 "W tym miejscu można dodawać, edytować oraz usuwać domyślne uprawnienia dla "
 "tego serwera Pootle."
 
-#: templates/admin/permissions.html:16
+#: templates/admin/permissions.html:14
 #: templates/languages/admin/permissions.html:11
 #: templates/projects/admin/permissions.html:13
-#: templates/translation_projects/admin/permissions.html:13
+#: templates/translation_projects/admin/permissions.html:11
 msgid ""
 "The user “nobody” refers to any user that is not logged in (an anonymous, "
 "unidentified user). The user “default” refers to the rights that all logged "
@@ -1608,7 +1733,7 @@ msgid ""
 "them."
 msgstr ""
 
-#: templates/admin/reports.html:60 templates/user/stats.html:63
+#: templates/admin/reports.html:58 templates/user/stats.html:60
 msgid "Daily activity"
 msgstr ""
 
@@ -1646,9 +1771,7 @@ msgid "Set Rates"
 msgstr ""
 
 #: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:24
-#: templates/profiles/settings/personal.html:21
-#: templates/profiles/settings/profile.html:25
+#: templates/admin/staticpages/_form.html:24 templates/user/settings.html:40
 msgid "Save"
 msgstr "Zapisz"
 
@@ -1663,10 +1786,9 @@ msgstr "lub"
 
 #: templates/admin/staticpages/_form.html:30
 msgid ""
-"\n"
 "Use <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/a&gt;"
 "</code> code to provide links between static pages. Such links will be "
-"rewritten with full paths to static pages.\n"
+"rewritten with full paths to static pages."
 msgstr ""
 
 #: templates/admin/staticpages/_table.html:10
@@ -1757,60 +1879,59 @@ msgstr ""
 msgid "<span class='value untranslated'>0</span>%% untranslated"
 msgstr ""
 
-#: templates/browser/overview.html:13
+#: templates/browser/index.html:13
 msgid "Expand details"
 msgstr "Rozwiń szczegóły"
 
-#: templates/browser/overview.html:20
+#: templates/browser/index.html:20
 msgid "Translation Statistics"
 msgstr "Statystyki tłumaczenia"
 
-#: templates/browser/overview.html:43
+#: templates/browser/index.html:43
 msgid "Last action"
 msgstr ""
 
-#: templates/browser/overview.html:51
+#: templates/browser/index.html:51
 msgid "Failing Checks"
 msgstr "Sprawdzanie błędów"
 
-#: templates/browser/overview.html:90
+#: templates/browser/index.html:104
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
-#: templates/browser/overview.html:95
+#: templates/browser/index.html:109
 msgid ""
 "Some data on this page is currently being calculated, and the page will be "
 "refreshed automatically in <strong>30 seconds</strong>."
 msgstr ""
 
-#: templates/browser/overview.html:96
+#: templates/browser/index.html:113
 msgid "Refresh now"
 msgstr ""
 
-#: templates/browser/overview.html:119
+#: templates/browser/index.html:149
 msgid "Congratulations! You have completed this task!"
 msgstr ""
 
-#: templates/contact_form/contact_form.html:5
+#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:104
 msgid "Contact Us"
 msgstr "Skontaktuj się z nami"
 
-#: templates/contact_form/contact_form.html:7
-msgid "You have to fill all the fields, and please <b>write in English</b>."
+#: templates/contact_form/xhr_contact_form.html:8
+msgid "Please fill in all the fields."
 msgstr ""
 
-#: templates/contact_form/contact_form.html:15
+#: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
 msgstr ""
 
-#: templates/contact_form/contact_form.html:20
+#: templates/contact_form/xhr_contact_form.html:24
 msgid "Thanks!"
 msgstr ""
 
-#: templates/contact_form/contact_form.html:21
+#: templates/contact_form/xhr_contact_form.html:26
 msgid ""
-"We have received your message and will try to\n"
-"      respond as soon as possible."
+"We have received your message and will try to respond as soon as possible."
 msgstr ""
 
 #: templates/core/_top_scorers.html:8
@@ -1848,7 +1969,7 @@ msgid "Confirm"
 msgstr "Potwierdź"
 
 #: templates/editor/_actions.html:5
-msgid "Go back to overview"
+msgid "Go back to browsing"
 msgstr ""
 
 #: templates/editor/_filters.html:12
@@ -1863,31 +1984,35 @@ msgstr ""
 msgid "Default order"
 msgstr ""
 
-#: templates/editor/_toolbar.html:7
+#: templates/editor/_toolbar.html:8
+msgid "Important first"
+msgstr ""
+
+#: templates/editor/_toolbar.html:10
 msgid "Newest first"
 msgstr ""
 
-#: templates/editor/_toolbar.html:8
+#: templates/editor/_toolbar.html:11
 msgid "Oldest first"
 msgstr ""
 
-#: templates/editor/_toolbar.html:14
+#: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
 msgstr "Przejdź do poprzedniego ciągu (Ctrl+Up)"
 
-#: templates/editor/_toolbar.html:17
+#: templates/editor/_toolbar.html:20
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
-"Numer obecnego ciągu (Ctrl+Shift+U)<br/><br/>Podaj numer i naciśnij "
-"Enter,<br/>aby przejść do dowolnego położenia"
+"Numer obecnego ciągu (Ctrl+Shift+U)<br/><br/>Podaj numer i naciśnij Enter,"
+"<br/>aby przejść do dowolnego położenia"
 
-#: templates/editor/_toolbar.html:19
+#: templates/editor/_toolbar.html:22
 msgid "Total strings"
 msgstr "Łącznie ciągów"
 
-#: templates/editor/_toolbar.html:22
+#: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
 msgstr "Przejdź do następnego ciągu (Ctrl+Down)"
 
@@ -1909,7 +2034,7 @@ msgstr "Wszystkie języki"
 msgid "No strings."
 msgstr "Brak ciągów."
 
-#: templates/editor/export_view.html:148
+#: templates/editor/export_view.html:149
 #, python-format
 msgid ""
 "We displayed first %(count)s units out of %(total_count)s. Please refine "
@@ -1928,146 +2053,151 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr ""
 
 #: templates/editor/units/edit.html:19
+#, fuzzy
+msgid "Priority:"
+msgstr "Priorytet"
+
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr "Kontekst:"
 
-#: templates/editor/units/edit.html:30
-msgid "Terminology:"
-msgstr "Terminologia:"
-
-#: templates/editor/units/edit.html:33
-msgid "Insert the translated term into the editor"
-msgstr "Wpisz przetłumaczony termin w edytorze"
-
-#: templates/editor/units/edit.html:44
-msgid "Comments:"
-msgstr "Komentarze:"
-
-#: templates/editor/units/edit.html:53
-msgid "Click to open the image in a popup"
-msgstr ""
-
-#: templates/editor/units/edit.html:62
+#: templates/editor/units/edit.html:36
 msgid "Locations:"
 msgstr "Położenia:"
 
-#: templates/editor/units/edit.html:71
+#: templates/editor/units/edit.html:46
+msgid "Terminology:"
+msgstr "Terminologia:"
+
+#: templates/editor/units/edit.html:49
+msgid "Insert the translated term into the editor"
+msgstr "Wpisz przetłumaczony termin w edytorze"
+
+#: templates/editor/units/edit.html:62
+msgid "Comments:"
+msgstr "Komentarze:"
+
+#: templates/editor/units/edit.html:70
+msgid "Click to open the image in a popup"
+msgstr ""
+
+#: templates/editor/units/edit.html:84
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:95 templates/editor/units/edit.html:121
+#: templates/editor/units/edit.html:108 templates/editor/units/edit.html:134
 msgid "Copy into translation"
 msgstr "Skopiuj do tłumaczenia"
 
-#: templates/editor/units/edit.html:117
+#: templates/editor/units/edit.html:130
 #, fuzzy
 msgid "Report a problem with this string"
 msgstr "Zgłoś problem z tekstem źródłowym"
 
-#: templates/editor/units/edit.html:139 templates/editor/units/edit.html:150
-#: templates/editor/units/edit.html:243
+#: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:256
 msgid "Submit"
 msgstr "Zatwierdź"
 
-#: templates/editor/units/edit.html:140
+#: templates/editor/units/edit.html:153
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Zapisz tłumaczenie i przejdź do kolejnego segmentu (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:145 templates/editor/units/edit.html:151
+#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
 msgid "Suggest"
 msgstr "Proponuj"
 
-#: templates/editor/units/edit.html:146
+#: templates/editor/units/edit.html:159
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 "Zgłoś sugestię tłumaczenia i przejdź do następnego segmentu (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:150
+#: templates/editor/units/edit.html:163
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Przełącz do trybu tłumaczenia (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:151
+#: templates/editor/units/edit.html:164
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Przełącz do trybu sugestii (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:156
+#: templates/editor/units/edit.html:169
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Oznacz ten ciąg jako wymagający dalszej pracy (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:171
+#: templates/editor/units/edit.html:184
 msgid "Show Timeline"
 msgstr "Pokaż oś czasu"
 
-#: templates/editor/units/edit.html:173
+#: templates/editor/units/edit.html:186
 msgid "Add Comment"
 msgstr "Dodaj komentarz"
 
-#: templates/editor/units/edit.html:175
+#: templates/editor/units/edit.html:188
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:185
+#: templates/editor/units/edit.html:198
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "sprawdzone przez <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:195
+#: templates/editor/units/edit.html:208
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:198
+#: templates/editor/units/edit.html:211
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:201
+#: templates/editor/units/edit.html:214
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:204
+#: templates/editor/units/edit.html:217
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:207
+#: templates/editor/units/edit.html:220
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:210
+#: templates/editor/units/edit.html:223
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:213
+#: templates/editor/units/edit.html:226
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:216
+#: templates/editor/units/edit.html:229
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:219
+#: templates/editor/units/edit.html:232
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:226
+#: templates/editor/units/edit.html:239
 msgid "Insert this symbol into the editor"
 msgstr "Wstaw ten symbol w edytorze"
 
-#: templates/editor/units/edit.html:263
+#: templates/editor/units/edit.html:276
 msgid "User suggestions"
 msgstr "Sugestie użytkownika"
 
-#: templates/editor/units/edit.html:280
+#: templates/editor/units/edit.html:293
 msgid "Accept suggestion"
 msgstr "Zaakceptuj sugestię"
 
-#: templates/editor/units/edit.html:285
+#: templates/editor/units/edit.html:298
 msgid "Reject suggestion"
 msgstr "Odrzuć sugestię"
 
-#: templates/editor/units/edit.html:292
+#: templates/editor/units/edit.html:305
 msgid "Remove suggestion"
 msgstr "Usuń sugestię"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:320
 msgid "A long time ago"
 msgstr ""
 
@@ -2088,12 +2218,12 @@ msgstr "Potencjalne problemy z tłumaczeniem"
 msgid "Failing checks:"
 msgstr "Sprawdzenie błędów:"
 
-#: templates/editor/units/xhr_checks.html:9
+#: templates/editor/units/xhr_checks.html:10
 #, fuzzy
 msgid "Mute quality check"
 msgstr "Usuń sprawdzenie poprawności"
 
-#: templates/editor/units/xhr_checks.html:9
+#: templates/editor/units/xhr_checks.html:11
 #, fuzzy
 msgid "Unmute quality check"
 msgstr "Usuń sprawdzenie poprawności"
@@ -2164,7 +2294,7 @@ msgstr "Wystąpił błąd. Dziękujemy za cierpliwość."
 msgid "Exception:"
 msgstr ""
 
-#: templates/errors/500.html:20
+#: templates/errors/500.html:21
 #, python-format
 msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
@@ -2177,154 +2307,66 @@ msgstr "Błąd bazy danych"
 
 #: templates/errors/db.html:11
 msgid ""
-"Pootle can't connect to the database, the database is not\n"
-"initialized yet, or a schema upgrade is needed before continuing."
+"Pootle can't connect to the database, the database is not initialized yet, "
+"or a schema upgrade is needed before continuing."
 msgstr ""
 
-#: templates/errors/db.html:16
+#: templates/errors/db.html:18
 #, python-format
 msgid ""
-"\n"
 "Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
-"installation\n"
-"and upgrade instructions. Contact the server administrator if you feel this "
-"is\n"
-"a mistake."
+"installation and upgrade instructions. Contact the server administrator if "
+"you feel this is a mistake."
 msgstr ""
 
-#: templates/errors/db.html:23
+#: templates/errors/db.html:26
 msgid "The reported error was:"
 msgstr "Zgłoszony błąd to:"
 
 #: templates/languages/_nav.html:5 templates/projects/_nav.html:5
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:5
-msgid "Overview"
-msgstr "Przegląd"
+msgid "Browse"
+msgstr ""
 
 #: templates/languages/admin/permissions.html:9
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr "Poniżej można dodawać, edytować oraz usuwać uprawnienia dla języka."
 
-#: templates/layout.html:88
+#: templates/layout.html:78
 msgid "Pootle requires JavaScript"
 msgstr ""
 
-#: templates/layout.html:89
+#: templates/layout.html:79
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 "Włącz obsługę aktywnych skryptów JavaScript w opcjach przeglądarki i odśwież "
 "stronę."
 
-#: templates/layout.html:104
+#: templates/layout.html:94
 msgid "skip to navigation"
 msgstr "przeskocz do nawigacji"
 
-#: templates/layout.html:122
+#: templates/layout.html:115
 msgid "Public Profile"
 msgstr ""
 
-#: templates/layout.html:123 templates/profiles/_tabs.html:4
-msgid "Settings"
-msgstr "Ustawienia"
-
-#: templates/layout.html:124 templates/user/stats.html:48
-#: templates/user/stats.html.py:53
+#: templates/layout.html:117 templates/user/stats.html:46
+#: templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr ""
 
-#: templates/layout.html:126
+#: templates/layout.html:119
 msgid "Admin"
 msgstr "Administracja"
 
-#: templates/layout.html:129
-msgid "Sign Out"
+#: templates/layout.html:122
+msgid "Sign out"
 msgstr ""
 
-#: templates/layout.html:133 templates/welcome.html:18
+#: templates/layout.html:126
 msgid "Sign In"
-msgstr ""
-
-#: templates/login.html:4 templates/login.html.py:9
-msgid "Log In"
-msgstr "Zaloguj się"
-
-#: templates/login.html:14
-msgid "Login to Pootle"
-msgstr "Zaloguj się do Pootle"
-
-#: templates/login.html:20
-msgid "Your username and password didn't match. Please try again."
-msgstr "Nazwa użytkownika lub hasło niepoprawne. Proszę spróbować ponownie."
-
-#: templates/login.html:26
-msgid "Login"
-msgstr "Zaloguj"
-
-#: templates/login.html:33
-msgid "Lost your Password?"
-msgstr "Zagubione hasło?"
-
-#: templates/notifications/_latest.html:9
-msgid "No news yet."
-msgstr "Brak komunikatów."
-
-#: templates/profiles/_tabs.html:6
-#: templates/profiles/settings/evernote_account.html:38
-msgid "Link with Evernote"
-msgstr ""
-
-#: templates/profiles/base.html:4 templates/profiles/base.html.py:6
-msgid "My Account"
-msgstr "Moje konto"
-
-#: templates/profiles/settings/evernote_account.html:4
-#: templates/profiles/settings/evernote_account.html:7
-msgid "Evernote account"
-msgstr ""
-
-#: templates/profiles/settings/evernote_account.html:14
-#, python-format
-msgid ""
-"This Pootle account is linked with \"<strong>%(username)s</strong>\" "
-"Evernote account."
-msgstr ""
-
-#: templates/profiles/settings/evernote_account.html:16
-msgid ""
-"Here you can link this Pootle account with Evernote account — this will "
-"allow you to log in faster next time."
-msgstr ""
-
-#: templates/profiles/settings/evernote_account.html:24
-msgid "This Pootle account cannot be unlinked from Evernote."
-msgstr ""
-
-#: templates/profiles/settings/evernote_account.html:30
-msgid "Unlink from Evernote"
-msgstr ""
-
-#: templates/profiles/settings/personal.html:4
-#: templates/profiles/settings/personal.html:7
-msgid "Profile"
-msgstr "Profil"
-
-#: templates/profiles/settings/personal.html:13
-msgid ""
-"Here you can change your personal details. After clicking the 'Save' button "
-"you will be redirected to your public profile page to see your changes in "
-"action."
-msgstr ""
-
-#: templates/profiles/settings/profile.html:4
-#: templates/profiles/settings/profile.html:7
-msgid "Translation Settings"
-msgstr "Ustawienia tłumaczeń"
-
-#: templates/profiles/settings/profile.html:12
-msgid ""
-"Here you can configure the settings related to the translation interface."
 msgstr ""
 
 #: templates/projects/admin/languages.html:11
@@ -2338,150 +2380,7 @@ msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
 "Poniżej można dodawać, edytować oraz usuwać uprawnienia dla tego projektu."
 
-#: templates/registration/password_change_done.html:5
-#: templates/registration/password_change_done.html:8
-#: templates/registration/password_change_done.html:13
-msgid "Password Changed"
-msgstr "Hasło zostało zmienione"
-
-#: templates/registration/password_change_done.html:14
-msgid "Your password was changed successfully."
-msgstr "Zmiana hasła została przeprowadzona poprawnie."
-
-#: templates/registration/password_change_form.html:4
-#: templates/registration/password_change_form.html:7
-msgid "Change Password"
-msgstr "Zmiana hasła"
-
-#: templates/registration/password_change_form.html:12
-msgid ""
-"Please enter your old password, for security's sake, and then enter your new "
-"password twice so we can verify you typed it in correctly."
-msgstr ""
-"Ze względów bezpieczeństwa proszę podać swoje stare hasło, a następnie "
-"dwukrotnie nowe hasło, by zweryfikować czy zostało poprawnie wpisane."
-
-#: templates/registration/password_change_form.html:21
-msgid "Old password"
-msgstr "Stare hasło"
-
-#: templates/registration/password_change_form.html:26
-msgid "New password"
-msgstr "Nowe hasło"
-
-#: templates/registration/password_change_form.html:31
-msgid "Confirm password"
-msgstr "Powtórz hasło"
-
-#: templates/registration/password_change_form.html:36
-msgid "Change My Password"
-msgstr "Zmień hasło"
-
-#: templates/registration/password_reset_complete.html:4
-#: templates/registration/password_reset_complete.html:7
-msgid "Password Reset"
-msgstr "Przywracanie hasła"
-
-#: templates/registration/password_reset_complete.html:12
-msgid "Password Reset Complete."
-msgstr "Przywracanie hasła zakończyło się powodzeniem."
-
-#: templates/registration/password_reset_complete.html:14
-#, fuzzy, python-format
-msgid ""
-"Your password has been set. You may go ahead and <a href=\"%(login_url)s"
-"\">sign in</a> now."
-msgstr ""
-"Hasło zostało ustawione. Można przejść do <a href=\"%(login_url)s\">strony "
-"logowania</a>."
-
-#: templates/registration/password_reset_confirm.html:5
-#: templates/registration/password_reset_confirm.html:8
-#: templates/registration/password_reset_done.html:5
-#: templates/registration/password_reset_done.html:8
-#: templates/registration/password_reset_done.html:13
-#: templates/registration/password_reset_form.html:4
-#: templates/registration/password_reset_form.html:7
-#: templates/registration/password_reset_form.html:12
-msgid "Reset Password"
-msgstr "Przywróć hasło"
-
-#: templates/registration/password_reset_confirm.html:14
-msgid "Enter New Password."
-msgstr "Proszę wprowadzić nowe hasło."
-
-#: templates/registration/password_reset_confirm.html:16
-msgid ""
-"Please enter your new password twice so we can verify you typed it in "
-"correctly."
-msgstr ""
-"Proszę dwukrotnie podać nowe hasło, w celu weryfikacji jego poprawnego "
-"wprowadzenia."
-
-#: templates/registration/password_reset_confirm.html:21
-msgid "New Password"
-msgstr "Nowe hasło"
-
-#: templates/registration/password_reset_confirm.html:26
-msgid "Confirm Password"
-msgstr "Powtórz hasło"
-
-#: templates/registration/password_reset_confirm.html:31
-#: templates/registration/password_reset_form.html:24
-msgid "Reset My Password"
-msgstr "Przywróć moje hasło"
-
-#: templates/registration/password_reset_confirm.html:35
-msgid "Password Reset Failed."
-msgstr "Przywracanie hasła zakończone niepowodzeniem."
-
-#: templates/registration/password_reset_confirm.html:37
-msgid ""
-"The password reset link was invalid, possibly because it has already been "
-"used. Please request a new password reset."
-msgstr ""
-"Odnośnik do przywracania hasła był nieprawidłowy, prawdopodobnie był już "
-"wcześniej wykorzystany. Prosimy ponownie poprosić o przywrócenie hasła."
-
-#: templates/registration/password_reset_done.html:15
-msgid ""
-"We've e-mailed you instructions for setting your password to the e-mail "
-"address you submitted. You should receive it shortly."
-msgstr ""
-"Instrukcje przywracania hasła zostały wysłane na podany adres e-mail. "
-"Powinny niedługo dotrzeć."
-
-#: templates/registration/password_reset_email.html:2
-#, python-format
-msgid ""
-"You're receiving this e-mail because you requested a password reset for your "
-"user account at %(site_name)s."
-msgstr ""
-"Otrzymujesz tą wiadomość, ponieważ zostało zarządane przywrócenie hasła dla "
-"konta na serwerze %(site_name)s."
-
-#: templates/registration/password_reset_email.html:4
-msgid "Please go to the following page and choose a new password:"
-msgstr "Proszę przejść na następującą stronę i wybrać nowe hasło:"
-
-#: templates/registration/password_reset_email.html:8
-#, python-format
-msgid "Your username is %(user)s."
-msgstr "Twoja nazwa użytkownika to %(user)s."
-
-#: templates/registration/password_reset_email.html:10
-msgid "Thank you for using Pootle!"
-msgstr "Dziękujemy za korzystanie z programu Pootle!"
-
-#: templates/registration/password_reset_form.html:14
-msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll e-mail "
-"instructions for setting a new one."
-msgstr ""
-"Zapomniane hasło? Proszę podać swój adres e-mail poniżej, a zostaną na niego "
-"przesłane informacje o tym jak ustawić nowe."
-
-#: templates/staticpages/_body.html:6
+#: templates/staticpages/_body.html:5
 #, python-format
 msgid ""
 "This static page is inactive and visible to administrators only. You can "
@@ -2499,7 +2398,8 @@ msgstr ""
 "dokumenty."
 
 #: templates/staticpages/agreement.html:17
-msgid "No thanks. Log out"
+#, fuzzy
+msgid "No thanks. Sign out"
 msgstr "Nie, dziękuję. Wyloguj"
 
 #: templates/staticpages/agreement.html:20
@@ -2510,7 +2410,7 @@ msgstr "Kontynuuj"
 msgid "Terminology"
 msgstr "Terminologia"
 
-#: templates/translation_projects/admin/permissions.html:11
+#: templates/translation_projects/admin/permissions.html:9
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
@@ -2576,76 +2476,76 @@ msgstr "Plik"
 msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
 
-#: templates/user/profile.html:14
+#: templates/user/profile.html:13
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Możesz ustawić lub zmienić obraz swojego awatara na www.gravatar.com"
 
-#: templates/user/profile.html:17
+#: templates/user/profile.html:16
 #, fuzzy
 msgid "Anonymous User"
 msgstr "Użytkownik anonimowy"
 
-#: templates/user/profile.html:26
+#: templates/user/profile.html:25
 msgid "Score:"
 msgstr ""
 
-#: templates/user/profile.html:29
+#: templates/user/profile.html:28
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
 msgstr ""
 
-#: templates/user/profile.html:29 templates/user/profile.html.py:41
+#: templates/user/profile.html:28 templates/user/profile.html.py:40
 msgid "Tweet this!"
 msgstr ""
 
-#: templates/user/profile.html:38
+#: templates/user/profile.html:37
 msgid "No contributions in the last month"
 msgstr ""
 
-#: templates/user/profile.html:41
+#: templates/user/profile.html:40
 #, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
 "%(server_title)s! "
 msgstr ""
 
-#: templates/user/profile.html:42
+#: templates/user/profile.html:41
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s for this month"
 msgstr ""
 
-#: templates/user/profile.html:45
+#: templates/user/profile.html:46
 #, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
 msgstr ""
 
-#: templates/user/profile.html:54
+#: templates/user/profile.html:57
 #, fuzzy
 msgid "Latest activity:"
 msgstr "Ostatnia aktywność"
 
-#: templates/user/profile.html:66
+#: templates/user/profile.html:69
 msgid "My Website"
 msgstr ""
 
-#: templates/user/profile.html:72
+#: templates/user/profile.html:75
 msgid "My LinkedIn Profile"
 msgstr ""
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:84
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:91
+#: templates/user/profile.html:94
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/profile.html:93
+#: templates/user/profile.html:96
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -2671,6 +2571,21 @@ msgstr ""
 msgid "Hourly Rate:"
 msgstr ""
 
+#: templates/user/settings.html:12
+#, fuzzy
+msgid "User Account"
+msgstr "Rejestruj Konto"
+
+#: templates/user/settings.html:14
+msgid ""
+"Do you want to change your password? Click the 'Reset Password' button which "
+"will initiate the process of setting a new password."
+msgstr ""
+
+#: templates/user/settings.html:26
+msgid "Reset Password"
+msgstr "Przywróć hasło"
+
 #: templates/welcome.html:4
 msgid "Welcome"
 msgstr ""
@@ -2683,9 +2598,262 @@ msgstr ""
 msgid "Come and join us!"
 msgstr ""
 
-#: templates/welcome.html:30
+#: templates/welcome.html:19
+#, fuzzy
+msgid "Sign in"
+msgstr "przydzielenie akcji"
+
+#: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr ""
+
+#~ msgid "Translate Toolkit version %s installed."
+#~ msgstr "Zainstalowana jest wersja %s Translate Toolkit."
+
+#, fuzzy
+#~ msgid ""
+#~ "Translate Toolkit version %(installed)s installed. Pootle requires at "
+#~ "least version %(required)s."
+#~ msgstr ""
+#~ "Zainstalowana jest wersja %(installed)s Translate Toolkit. Program Pootle "
+#~ "wymaga wersji %(required)s."
+
+#, fuzzy
+#~ msgid ""
+#~ "Django version %(installed)s is installed. Pootle requires at least "
+#~ "version %(required)s."
+#~ msgstr ""
+#~ "Zainstalowana jest wersja %(installed)s lxml. Pootle wymaga przynajmniej "
+#~ "wersji %(required)s."
+
+#~ msgid "lxml version %s is installed."
+#~ msgstr "Zainstalowana jest wersja %s biblioteki lxml."
+
+#~ msgid ""
+#~ "lxml version %(installed)s is installed. Pootle requires at least version "
+#~ "%(required)s."
+#~ msgstr ""
+#~ "Zainstalowana jest wersja %(installed)s lxml. Pootle wymaga przynajmniej "
+#~ "wersji %(required)s."
+
+#~ msgid "lxml is not installed. Pootle requires lxml."
+#~ msgstr "lxml jest niezainstalowany. Pootle wymaga lxml."
+
+#, fuzzy
+#~ msgid ""
+#~ "Redis server version %(installed)s installed. Pootle requires at least "
+#~ "version %(required)s."
+#~ msgstr ""
+#~ "Zainstalowana jest wersja %(installed)s lxml. Pootle wymaga przynajmniej "
+#~ "wersji %(required)s."
+
+#~ msgid ""
+#~ "Can't find the ISO codes package. Pootle uses ISO codes to translate "
+#~ "language names."
+#~ msgstr ""
+#~ "Nie można odnaleźć pakietu z kodami ISO. Program Pootle używa kodów ISO "
+#~ "do tłumaczenia nazw języków."
+
+#~ msgid ""
+#~ "Using the default sqlite3 database engine. SQLite is only suitable for "
+#~ "small installations with a small number of users. Pootle will perform "
+#~ "better with the MySQL database engine."
+#~ msgstr ""
+#~ "Korzystanie z silnika baz danych sqlite3. SQLite nadaje się dla małych "
+#~ "instalacji, z mała liczbą użytkowników. Program Pootle działa lepiej z "
+#~ "silnikiem baz danych MySQL."
+
+#~ msgid ""
+#~ "Using the default sqlite3 database engine. SQLite is only suitable for "
+#~ "small installations with a small number of users. Pootle will perform "
+#~ "better with the MySQL database engine, but you need to install python-"
+#~ "MySQLdb first."
+#~ msgstr ""
+#~ "Korzystanie z silnika baz danych sqlite3. SQLite nadaje się dla małych "
+#~ "instalacji, z mała liczbą użytkowników. Program Pootle działa lepiej z "
+#~ "silnikiem baz danych MySQL, jednakże należy wcześniej zainstalować pakiet "
+#~ "python-MySQLdb."
+
+#~ msgid ""
+#~ "For optimal performance, use django.contrib.sessions.backends.cached_db "
+#~ "as the session engine."
+#~ msgstr ""
+#~ "Dla największej wydajności, należy korzystać z django.contrib.sessions."
+#~ "backends.cached_db jako silnika sesji."
+
+#~ msgid "For optimal performance, use Apache as the webserver."
+#~ msgstr ""
+#~ "Dla największej wydajności należy z korzystać z programu Apache jako "
+#~ "serwera internetowego."
+
+#~ msgid ""
+#~ "The \"from\" address used to send registration emails is not specified. "
+#~ "Also review the mail server settings."
+#~ msgstr ""
+#~ "Nie ustawiono adresu \"od\" używanego do przesyłania e-maili "
+#~ "rejestracyjnych. Przejrzyj także ustawienia serwera pocztowego."
+
+#~ msgid ""
+#~ "No contact address is specified. The contact form will allow users to "
+#~ "contact the server administrators."
+#~ msgstr ""
+#~ "Nie podano adresu kontaktowego. Formularz kontaktowy pozwala użytkownikom "
+#~ "na kontakt z administratorami."
+
+# s/debugowania/????/g
+#~ msgid ""
+#~ "Running in debug mode. Debug mode is only needed when developing Pootle. "
+#~ "For optimal performance, disable debugging mode."
+#~ msgstr ""
+#~ "Uruchomiono w trybie debugowania. Tryb debugowania jest wymagany tylko "
+#~ "przy rozwijaniu programu Pootle. Dla największej wydajności, należy "
+#~ "wyłączyć tryb debugowania."
+
+#~ msgid "Added"
+#~ msgstr "Dodano"
+
+#~ msgid "Can review translations"
+#~ msgstr "Może recenzować tłumaczenia"
+
+#~ msgid "Dependency Checks"
+#~ msgstr "Testy zależności"
+
+#~ msgid "Optional"
+#~ msgstr "Opcjonalne"
+
+#~ msgid "Optimizations"
+#~ msgstr "Optymizacje"
+
+#~ msgid "Overview"
+#~ msgstr "Przegląd"
+
+#~ msgid "Log In"
+#~ msgstr "Zaloguj się"
+
+#~ msgid "Login to Pootle"
+#~ msgstr "Zaloguj się do Pootle"
+
+#~ msgid "Your username and password didn't match. Please try again."
+#~ msgstr "Nazwa użytkownika lub hasło niepoprawne. Proszę spróbować ponownie."
+
+#~ msgid "Login"
+#~ msgstr "Zaloguj"
+
+#~ msgid "Lost your Password?"
+#~ msgstr "Zagubione hasło?"
+
+#~ msgid "No news yet."
+#~ msgstr "Brak komunikatów."
+
+#~ msgid "My Account"
+#~ msgstr "Moje konto"
+
+#~ msgid "Profile"
+#~ msgstr "Profil"
+
+#~ msgid "Translation Settings"
+#~ msgstr "Ustawienia tłumaczeń"
+
+#~ msgid "Password Changed"
+#~ msgstr "Hasło zostało zmienione"
+
+#~ msgid "Your password was changed successfully."
+#~ msgstr "Zmiana hasła została przeprowadzona poprawnie."
+
+#~ msgid "Change Password"
+#~ msgstr "Zmiana hasła"
+
+#~ msgid ""
+#~ "Please enter your old password, for security's sake, and then enter your "
+#~ "new password twice so we can verify you typed it in correctly."
+#~ msgstr ""
+#~ "Ze względów bezpieczeństwa proszę podać swoje stare hasło, a następnie "
+#~ "dwukrotnie nowe hasło, by zweryfikować czy zostało poprawnie wpisane."
+
+#~ msgid "Old password"
+#~ msgstr "Stare hasło"
+
+#~ msgid "New password"
+#~ msgstr "Nowe hasło"
+
+#~ msgid "Confirm password"
+#~ msgstr "Powtórz hasło"
+
+#~ msgid "Change My Password"
+#~ msgstr "Zmień hasło"
+
+#~ msgid "Password Reset"
+#~ msgstr "Przywracanie hasła"
+
+#~ msgid "Password Reset Complete."
+#~ msgstr "Przywracanie hasła zakończyło się powodzeniem."
+
+#, fuzzy
+#~ msgid ""
+#~ "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
+#~ "\">sign in</a> now."
+#~ msgstr ""
+#~ "Hasło zostało ustawione. Można przejść do <a href=\"%(login_url)s"
+#~ "\">strony logowania</a>."
+
+#~ msgid "Enter New Password."
+#~ msgstr "Proszę wprowadzić nowe hasło."
+
+#~ msgid ""
+#~ "Please enter your new password twice so we can verify you typed it in "
+#~ "correctly."
+#~ msgstr ""
+#~ "Proszę dwukrotnie podać nowe hasło, w celu weryfikacji jego poprawnego "
+#~ "wprowadzenia."
+
+#~ msgid "New Password"
+#~ msgstr "Nowe hasło"
+
+#~ msgid "Confirm Password"
+#~ msgstr "Powtórz hasło"
+
+#~ msgid "Reset My Password"
+#~ msgstr "Przywróć moje hasło"
+
+#~ msgid "Password Reset Failed."
+#~ msgstr "Przywracanie hasła zakończone niepowodzeniem."
+
+#~ msgid ""
+#~ "The password reset link was invalid, possibly because it has already been "
+#~ "used. Please request a new password reset."
+#~ msgstr ""
+#~ "Odnośnik do przywracania hasła był nieprawidłowy, prawdopodobnie był już "
+#~ "wcześniej wykorzystany. Prosimy ponownie poprosić o przywrócenie hasła."
+
+#~ msgid ""
+#~ "We've e-mailed you instructions for setting your password to the e-mail "
+#~ "address you submitted. You should receive it shortly."
+#~ msgstr ""
+#~ "Instrukcje przywracania hasła zostały wysłane na podany adres e-mail. "
+#~ "Powinny niedługo dotrzeć."
+
+#~ msgid ""
+#~ "You're receiving this e-mail because you requested a password reset for "
+#~ "your user account at %(site_name)s."
+#~ msgstr ""
+#~ "Otrzymujesz tą wiadomość, ponieważ zostało zarządane przywrócenie hasła "
+#~ "dla konta na serwerze %(site_name)s."
+
+#~ msgid "Please go to the following page and choose a new password:"
+#~ msgstr "Proszę przejść na następującą stronę i wybrać nowe hasło:"
+
+#~ msgid "Your username is %(user)s."
+#~ msgstr "Twoja nazwa użytkownika to %(user)s."
+
+#~ msgid "Thank you for using Pootle!"
+#~ msgstr "Dziękujemy za korzystanie z programu Pootle!"
+
+#~ msgid ""
+#~ "Forgotten your password? Enter your e-mail address below, and we'll e-"
+#~ "mail instructions for setting a new one."
+#~ msgstr ""
+#~ "Zapomniane hasło? Proszę podać swój adres e-mail poniżej, a zostaną na "
+#~ "niego przesłane informacje o tym jak ustawić nowe."
 
 #~ msgid ""
 #~ "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
@@ -2706,8 +2874,8 @@ msgstr ""
 #~ msgid "This field is required."
 #~ msgstr "To pole jest wymagane."
 
-#, python-format
-#~ msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
+#~ msgid ""
+#~ "Ensure this value has at most %(max)d characters (it has %(length)d)."
 #~ msgstr ""
 #~ "Należy się upewnić, że podana wartość zawiera co najwyżej %(max)d znaków "
 #~ "(obecnie zawiera %(length)d)."
@@ -2722,15 +2890,14 @@ msgstr ""
 #~ msgstr "Zmień"
 
 #~ msgid ""
-#~ "Please enter a correct username and password. Note that both fields are case-"
-#~ "sensitive."
-#~ msgstr "Wpisz poprawną nazwę użytkownika i hasło. Wielkość znaków ma znaczenie."
+#~ "Please enter a correct username and password. Note that both fields are "
+#~ "case-sensitive."
+#~ msgstr ""
+#~ "Wpisz poprawną nazwę użytkownika i hasło. Wielkość znaków ma znaczenie."
 
-#, python-format
 #~ msgid "Password reset on %s"
 #~ msgstr "Reset hasła na %s"
 
-#, python-format
 #~ msgid "Add %(name)s"
 #~ msgstr "Dodaj %(name)s"
 
@@ -2775,7 +2942,8 @@ msgstr ""
 #~ msgstr "Ustawienia zostały zapisane."
 
 #~ msgid "Project code may only contain letters, numbers and _"
-#~ msgstr "Kod projektu może zawierać tylko litery, cyfry i znak podkreślenia _"
+#~ msgstr ""
+#~ "Kod projektu może zawierać tylko litery, cyfry i znak podkreślenia _"
 
 #~ msgid "Advanced Options"
 #~ msgstr "Ustawienia zaawansowane"
@@ -2784,8 +2952,8 @@ msgstr ""
 #~ msgstr "Nazwa tego serwera Pootle"
 
 #~ msgid ""
-#~ "The description and instructions shown on the front page and about page. Be "
-#~ "sure to use valid HTML."
+#~ "The description and instructions shown on the front page and about page. "
+#~ "Be sure to use valid HTML."
 #~ msgstr ""
 #~ "Opis oraz instrukcje wyświetlone na stronie głównej oraz na stronie "
 #~ "informacyjnej. Proszę używać poprawnej składni języka HTML."
@@ -2804,15 +2972,15 @@ msgstr ""
 #~ "Here you can add, edit, and delete all the available languages in this "
 #~ "Pootle server."
 #~ msgstr ""
-#~ "W tym miejscu można dodawać, edytować oraz usuwać dostępne języki dla tego "
-#~ "serwera Pootle."
+#~ "W tym miejscu można dodawać, edytować oraz usuwać dostępne języki dla "
+#~ "tego serwera Pootle."
 
 #~ msgid ""
-#~ "Here you can add, edit, and delete all the available projects in this Pootle "
-#~ "server."
+#~ "Here you can add, edit, and delete all the available projects in this "
+#~ "Pootle server."
 #~ msgstr ""
-#~ "W tym miejscu można dodawać, edytować oraz usuwać dostępne projekty dla tego "
-#~ "serwera Pootle."
+#~ "W tym miejscu można dodawać, edytować oraz usuwać dostępne projekty dla "
+#~ "tego serwera Pootle."
 
 #~ msgid "General Settings"
 #~ msgstr "Ogólne ustawienia"
@@ -2824,8 +2992,8 @@ msgstr ""
 #~ "Here you can add, edit, and delete all the available users in this Pootle "
 #~ "server."
 #~ msgstr ""
-#~ "W tym miejscu można dodawać, edytować oraz usuwać użytkowników dostępnych na "
-#~ "tym serwerze Pootle."
+#~ "W tym miejscu można dodawać, edytować oraz usuwać użytkowników dostępnych "
+#~ "na tym serwerze Pootle."
 
 #~ msgid "Support"
 #~ msgstr "Wsparcie"
@@ -2836,8 +3004,8 @@ msgstr ""
 #~ "its full potential."
 #~ msgstr ""
 #~ "Program Pootle jest rozwijany przez Translate.org.za oraz społeczność "
-#~ "pasjonatów lokalizacji. Pragniemy, aby z pomocą programu Pootle Twoja praca "
-#~ "lokalizacyjna osiągnęła swój pełny potencjał."
+#~ "pasjonatów lokalizacji. Pragniemy, aby z pomocą programu Pootle Twoja "
+#~ "praca lokalizacyjna osiągnęła swój pełny potencjał."
 
 #~ msgid "You will find the following helpful for support:"
 #~ msgstr "W celu uzyskania pomocy, polecamy skorzystać z:"
@@ -2872,54 +3040,54 @@ msgstr ""
 #~ msgid "Register."
 #~ msgstr "Zarejestruj się."
 
-#, python-format
 #~ msgid ""
-#~ "Django version %s is installed, but a higher version is highly recommended."
+#~ "Django version %s is installed, but a higher version is highly "
+#~ "recommended."
 #~ msgstr ""
 #~ "Zainstalowano środowisko Django w wersji %s, jednakże zaleca się "
 #~ "skorzystanie z jego nowszej wersji."
 
 #~ msgid ""
-#~ "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
-#~ "available."
+#~ "Can't find the unzip command. Uploading archives is faster if \"unzip\" "
+#~ "is available."
 #~ msgstr ""
-#~ "Nie można odnaleźć polecenia unzip. Przesyłanie archiwów jest szybsze, gdy \""
-#~ "unzip\" jest dostępny."
+#~ "Nie można odnaleźć polecenia unzip. Przesyłanie archiwów jest szybsze, "
+#~ "gdy \"unzip\" jest dostępny."
 
 #~ msgid ""
-#~ "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
-#~ "subtitle formats."
+#~ "Can't find the aeidon package. Pootle requires Gaupol or aeidon to "
+#~ "support subtitle formats."
 #~ msgstr ""
-#~ "Nie można znaleźć pakietu aeidon. Program Pootle wymaga pakietów Gaupol lub "
-#~ "aeidon do obsługi napisów dla filmów."
+#~ "Nie można znaleźć pakietu aeidon. Program Pootle wymaga pakietów Gaupol "
+#~ "lub aeidon do obsługi napisów dla filmów."
 
 #~ msgid ""
 #~ "No text indexing engine found. Searching is faster if an indexing engine "
 #~ "like Xapian or Lucene is installed."
 #~ msgstr ""
-#~ "Nie znaleziono silnika indeksującego tekst. Wyszukiwanie jest szybsze, gdy "
-#~ "zainstalowany jest silnik indeksujący, taki jak Xapian lub Lucene."
+#~ "Nie znaleziono silnika indeksującego tekst. Wyszukiwanie jest szybsze, "
+#~ "gdy zainstalowany jest silnik indeksujący, taki jak Xapian lub Lucene."
 
 #~ msgid ""
 #~ "Pootle is configured to use memcached as a caching backend, but can't "
 #~ "connect to the memcached server. Caching is currently disabled."
 #~ msgstr ""
-#~ "Program Pootle jest skonfigurowany do korzystania z memcached jako pamięci "
-#~ "podręcznej, jednakże nie można się połączyć z serwerem memcached. Pamięć "
-#~ "podręczna została wyłączona."
+#~ "Program Pootle jest skonfigurowany do korzystania z memcached jako "
+#~ "pamięci podręcznej, jednakże nie można się połączyć z serwerem memcached. "
+#~ "Pamięć podręczna została wyłączona."
 
 #~ msgid ""
-#~ "Pootle is configured to use memcached as caching backend, but Python support "
-#~ "for memcached is not installed. Caching is currently disabled."
+#~ "Pootle is configured to use memcached as caching backend, but Python "
+#~ "support for memcached is not installed. Caching is currently disabled."
 #~ msgstr ""
-#~ "Program Pootle jest skonfigurowany do korzystania z memcached jako pamięci "
-#~ "podręcznej, jednakże nie zainstalowano wsparcia dla języka Python. Pamięć "
-#~ "podręczna została wyłączona."
+#~ "Program Pootle jest skonfigurowany do korzystania z memcached jako "
+#~ "pamięci podręcznej, jednakże nie zainstalowano wsparcia dla języka "
+#~ "Python. Pamięć podręczna została wyłączona."
 
 #~ msgid "For optimal performance, use memcached as the caching backend."
 #~ msgstr ""
-#~ "Dla największej wydajności należy korzystać z memcached jako silnika pamięci "
-#~ "podręcznej."
+#~ "Dla największej wydajności należy korzystać z memcached jako silnika "
+#~ "pamięci podręcznej."
 
 #~ msgid ""
 #~ "Running in live translation mode. Live translation is useful as a tool to "
@@ -2938,27 +3106,23 @@ msgstr ""
 #~ msgid "Language Contributors"
 #~ msgstr "Współtwórcy językowi"
 
-#, python-format
 #~ msgid "%(percentage)d%% complete"
 #~ msgstr "%(percentage)d%% ukończone"
 
 #~ msgid ""
-#~ "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
-#~ "l10n/pluralforms\">our wiki page</a> on plural forms."
+#~ "For more information, visit <a href=\"http://translate.sourceforge.net/"
+#~ "wiki/l10n/pluralforms\">our wiki page</a> on plural forms."
 #~ msgstr ""
 #~ "W celu otrzymania dodatkowych informacji o formach liczby mnogiej, proszę "
-#~ "skorzystać ze <a "
-#~ "href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">strony "
-#~ "wiki</a>."
+#~ "skorzystać ze <a href=\"http://translate.sourceforge.net/wiki/l10n/"
+#~ "pluralforms\">strony wiki</a>."
 
-#, python-format
 #~ msgid "Error reading %d file"
 #~ msgid_plural "Error reading %d files"
 #~ msgstr[0] "Wystąpił błąd podczas odczytu %d pliku"
 #~ msgstr[1] "Wystąpił błąd podczas odczytu %d plików"
 #~ msgstr[2] "Wystąpił błąd podczas odczytu %d plików"
 
-#, python-format
 #~ msgid "%(projects)d project, %(average)d%% translated"
 #~ msgid_plural "%(projects)d projects, %(average)d%% translated"
 #~ msgstr[0] "%(projects)d projekt, %(average)d%% przetłumaczono"
@@ -2968,38 +3132,26 @@ msgstr ""
 #~ msgid "No description yet."
 #~ msgstr "Brak jeszcze opisu."
 
-#~ msgid "Priority"
-#~ msgstr "Priorytet"
-
-#~ msgid "Functional"
-#~ msgstr "Funkcjonalny"
-
-#~ msgid "Extraction"
-#~ msgstr "Rozpakowywanie"
-
 #~ msgid "No category"
 #~ msgstr "Brak kategorii"
 
-#, python-format
 #~ msgid "<a href=\"%(url)s\">%(num)d word</a>"
 #~ msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
 #~ msgstr[0] "<a href=\"%(url)s\">%(num)d słowo</a>"
 #~ msgstr[1] "<a href=\"%(url)s\">%(num)d słowa</a>"
 #~ msgstr[2] "<a href=\"%(url)s\">%(num)d słów</a>"
 
-#, python-format
 #~ msgid "%(num)d%%"
 #~ msgstr "%(num)d%%"
 
-#, python-format
 #~ msgid "(%(num)d string)"
 #~ msgid_plural "(%(num)d strings)"
 #~ msgstr[0] "(%(num)d ciąg)"
 #~ msgstr[1] "(%(num)d ciągi)"
 #~ msgstr[2] "(%(num)d ciągów)"
 
-#, python-format
-#~ msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
+#~ msgid ""
+#~ "This folder has %(num)d word, %(percentage)d%% of which is translated."
 #~ msgid_plural ""
 #~ "This folder has %(num)d words, %(percentage)d%% of which are translated."
 #~ msgstr[0] ""
@@ -3011,24 +3163,24 @@ msgstr ""
 #~ "Ten katalog zawiera %(num)d słów, %(percentage)d%% z nich jest "
 #~ "przetłumaczone."
 
-#, python-format
 #~ msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 #~ msgid_plural ""
 #~ "This file has %(num)d words, %(percentage)d%% of which are translated."
-#~ msgstr[0] "Ten plik zawiera %(num)d słowo, %(percentage)d%% jest przetłumaczone."
+#~ msgstr[0] ""
+#~ "Ten plik zawiera %(num)d słowo, %(percentage)d%% jest przetłumaczone."
 #~ msgstr[1] ""
-#~ "Ten plik zawiera %(num)d słowa, %(percentage)d%% z nich jest przetłumaczone."
+#~ "Ten plik zawiera %(num)d słowa, %(percentage)d%% z nich jest "
+#~ "przetłumaczone."
 #~ msgstr[2] ""
-#~ "Ten plik zawiera %(num)d słów, %(percentage)d%% z nich jest przetłumaczone."
+#~ "Ten plik zawiera %(num)d słów, %(percentage)d%% z nich jest "
+#~ "przetłumaczone."
 
-#, python-format
 #~ msgid "Continue translation (%(num)d word left)"
 #~ msgid_plural "Continue translation (%(num)d words left)"
 #~ msgstr[0] "Kontynuuj tłumaczenie (%(num)d słowo pozostało)"
 #~ msgstr[1] "Kontynuuj tłumaczenie (%(num)d słowa pozostały)"
 #~ msgstr[2] "Kontynuuj tłumaczenie (%(num)d słów pozostało)"
 
-#, python-format
 #~ msgid "Next most important goal (%(num)d word left)"
 #~ msgid_plural "Next most important goal (%(num)d words left)"
 #~ msgstr[0] "Następny najważniejszy cel (%(num)d słowo pozostało)"
@@ -3038,14 +3190,12 @@ msgstr ""
 #~ msgid "Translation is complete"
 #~ msgstr "Tłumaczenie jest ukończone"
 
-#, python-format
 #~ msgid "Review suggestion (%(num)d left)"
 #~ msgid_plural "Review suggestions (%(num)d left)"
 #~ msgstr[0] "Przejrzyj sugestie (%(num)d pozostała)"
 #~ msgstr[1] "Przejrzyj sugestie (%(num)d pozostały)"
 #~ msgstr[2] "Przejrzyj sugestie (%(num)d pozostało)"
 
-#, python-format
 #~ msgid ""
 #~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
 #~ "review)."
@@ -3056,34 +3206,30 @@ msgstr ""
 #~ "%(type)s: %(translated)d z %(total)d tłumaczonego ciągu (%(fuzzy)d wymaga "
 #~ "przeglądu)."
 #~ msgstr[1] ""
-#~ "%(type)s: %(translated)d z %(total)d tłumaczonych ciągów (%(fuzzy)d wymaga "
-#~ "przeglądu)."
+#~ "%(type)s: %(translated)d z %(total)d tłumaczonych ciągów (%(fuzzy)d "
+#~ "wymaga przeglądu)."
 #~ msgstr[2] ""
-#~ "%(type)s: %(translated)d z %(total)d tłumaczonych ciągów (%(fuzzy)d wymaga "
-#~ "przeglądu)."
+#~ "%(type)s: %(translated)d z %(total)d tłumaczonych ciągów (%(fuzzy)d "
+#~ "wymaga przeglądu)."
 
-#, python-format
 #~ msgid "%d word needs attention"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "%d słowo wymaga uwagi"
 #~ msgstr[1] "%d słowa wymagają uwagi"
 #~ msgstr[2] "%d słów wymaga uwagi"
 
-#, python-format
 #~ msgid "%d word untranslated"
 #~ msgid_plural "%d words untranslated"
 #~ msgstr[0] "%d słowo nieprzetłumaczone"
 #~ msgstr[1] "%d słowa nieprzetłumaczone"
 #~ msgstr[2] "%d słów nieprzetłumaczonych"
 
-#, python-format
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"
 #~ msgstr[0] "%d słowo wymaga przeglądu"
 #~ msgstr[1] "%d słowa wymagają przeglądu"
 #~ msgstr[2] "%d słów wymaga przeglądu"
 
-#, python-format, python-format
 #~ msgid "%(percent)s%% complete"
 #~ msgstr "%(percent)s%% ukończono"
 
@@ -3105,19 +3251,15 @@ msgstr ""
 #~ msgid "Language Selection"
 #~ msgstr "Wybór języka"
 
-#, python-format
 #~ msgid "News for %(language)s"
 #~ msgstr "Komunikaty dla języka %(language)s"
 
-#, python-format
 #~ msgid "News for %(project)s"
 #~ msgstr "Wiadomości dla %(project)s"
 
-#, python-format
 #~ msgid "News for the %(project)s project in %(language)s"
 #~ msgstr "Komunikaty projektu %(project)s dla języka %(language)s"
 
-#, python-format
 #~ msgid "News for %(path)s"
 #~ msgstr "Komunikaty dla %(path)s"
 
@@ -3148,7 +3290,6 @@ msgstr ""
 #~ msgid "Report Target"
 #~ msgstr "Cel raportu"
 
-#, python-format
 #~ msgid "%(languages)d language, %(average)d%% translated"
 #~ msgid_plural "%(languages)d languages, %(average)d%% translated"
 #~ msgstr[0] "%(languages)d język, %(average)d%% przetłumaczone"
@@ -3167,10 +3308,6 @@ msgstr ""
 #~ msgid "Filter using one or more tags"
 #~ msgstr "Filtruj wykorzystując jeden lub więcej znaczników"
 
-#~ msgctxt "verb"
-#~ msgid "Filter"
-#~ msgstr "Filtr"
-
 #~ msgid "Filter using the selected tags"
 #~ msgstr "Filtruj wykorzystując zaznaczone znaczniki"
 
@@ -3180,41 +3317,36 @@ msgstr ""
 #~ msgid "Administrate"
 #~ msgstr "Zarządzaj"
 
-#, python-format
 #~ msgid ""
-#~ "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
-#~ "a></i>"
+#~ "%(user)s reverted translation for string <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
 #~ msgstr ""
-#~ "%(user)s wycofał tłumaczenie dla ciągu <i><a href=\"%(url)s\""
-#~ ">%(source)s</a></i>"
+#~ "%(user)s wycofał tłumaczenie dla ciągu <i><a href=\"%(url)s\">%(source)s</"
+#~ "a></i>"
 
-#, python-format
 #~ msgid ""
-#~ "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
-#~ "a></i>"
+#~ "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
 #~ msgstr ""
-#~ "%(user)s zaakceptował sugestię dla ciągu <i><a href=\"%(url)s\""
-#~ ">%(source)s</a></i>"
+#~ "%(user)s zaakceptował sugestię dla ciągu <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
 
-#, python-format
 #~ msgid "%(user)s uploaded a file"
 #~ msgstr "%(user)s przesłał plik"
 
-#, python-format
 #~ msgid ""
-#~ "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
-#~ "a></i>"
+#~ "%(user)s submitted translation for string <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
 #~ msgstr ""
-#~ "%(user)s przesłał tłumaczenie dla ciągu <i><a href=\"%(url)s\""
-#~ ">%(source)s</a></i>"
+#~ "%(user)s przesłał tłumaczenie dla ciągu <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
 
-#, python-format
 #~ msgid ""
-#~ "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
-#~ "\">%(source)s</a></i>"
+#~ "%(user)s submitted \"needs work\" translation for string <i><a href="
+#~ "\"%(url)s\">%(source)s</a></i>"
 #~ msgstr ""
-#~ "%(user)s przesłał tłumaczenie \"wymagające pracy\" dla ciągu <i><a href=\""
-#~ "%(url)s\">%(source)s</a></i>"
+#~ "%(user)s przesłał tłumaczenie \"wymagające pracy\" dla ciągu <i><a href="
+#~ "\"%(url)s\">%(source)s</a></i>"
 
 #~ msgid "File does not exist."
 #~ msgstr "Plik nie istnieje."
@@ -3273,7 +3405,6 @@ msgstr ""
 #~ msgid "Comment:"
 #~ msgstr "Komentarz:"
 
-#, python-format
 #~ msgid "String %(id)s"
 #~ msgstr "Ciąg %(id)s"
 
@@ -3313,17 +3444,11 @@ msgstr ""
 #~ msgid "Export"
 #~ msgstr "Eksportuj"
 
-#~ msgid "Export translations"
-#~ msgstr "Eksportuj tłumaczenia"
-
 #~ msgid "Download"
 #~ msgstr "Pobierz"
 
 #~ msgid "Download file"
 #~ msgstr "Pobierz plik"
-
-#~ msgid "Download XLIFF file for offline translation"
-#~ msgstr "Pobiera plik XLIFF w celu tłumaczenia w trybie offline"
 
 #~ msgid "Upload"
 #~ msgstr "Wyślij"
@@ -3365,11 +3490,9 @@ msgstr ""
 #~ msgid "Upload to"
 #~ msgstr "Wyślij do"
 
-#, python-format
 #~ msgid "Failed to update from version control: %(error)s"
 #~ msgstr "Wystąpił błąd aktualizacji z kontroli wersji: %(error)s"
 
-#, python-format
 #~ msgid "Updated project <em>%(project)s</em> from version control"
 #~ msgstr "Zaktualizowano projekt <em>%(project)s</em> z kontroli wersji"
 
@@ -3382,14 +3505,14 @@ msgstr ""
 #~ msgid "Merged copy"
 #~ msgstr "Połączona kopia"
 
-#, python-format
 #~ msgid "Updated file <em>%(filename)s</em> from version control"
 #~ msgstr "Zaktualizowano plik <em>%(filename)s</em> z kontroli wersji"
 
-#, python-format
-#~ msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
+#~ msgid ""
+#~ "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 #~ msgstr ""
-#~ "Wystąpił błąd aktualizacji <em>%(filename)s</em> z kontroli wersji: %(error)s"
+#~ "Wystąpił błąd aktualizacji <em>%(filename)s</em> z kontroli wersji: "
+#~ "%(error)s"
 
 #~ msgid "Symbolic link hasn't been removed from the filesystem."
 #~ msgstr "Odnośniki symboliczne nie zostały usunięte z systemu plików."
@@ -3406,25 +3529,21 @@ msgstr ""
 #~ msgid "Error while trying to delete file."
 #~ msgstr "Wystąpił błąd przy próbie usunięcia pliku."
 
-#, python-format
 #~ msgid "Unable to find '%(action)s' in '%(extdir)s'"
 #~ msgstr "Nie udało się odnaleźć '%(action)s' w '%(extdir)s'"
 
-#, python-format
 #~ msgid "Error while running '%s' extension action"
 #~ msgstr "Wystąpił błąd przy uruchomieniu działania rozszerzenia '%s'"
 
-#, python-format
 #~ msgid "Invalid/insecure file name: %s"
 #~ msgstr "Niepoprawna/niebezpieczna nazwa pliku: %s"
 
-#, python-format
 #~ msgid ""
-#~ "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
-#~ "%(filetype)s'."
+#~ "Invalid GNU-style file name: %(local_filename)s. It must match "
+#~ "'%(langcode)s.%(filetype)s'."
 #~ msgstr ""
-#~ "Niepoprawna nazwa pliku w stylu GNU: %(local_filename)s. Powinna odpowiadać "
-#~ "wzorcowi '%(langcode)s.%(filetype)s'."
+#~ "Niepoprawna nazwa pliku w stylu GNU: %(local_filename)s. Powinna "
+#~ "odpowiadać wzorcowi '%(langcode)s.%(filetype)s'."
 
 #~ msgid "Error while extracting archive"
 #~ msgstr "Wystąpił błąd w trakcie rozpakowywania archiwum"
@@ -3447,11 +3566,9 @@ msgstr ""
 #~ msgid "Administrate your project goals"
 #~ msgstr "Zarządzanie Twoimi celami projektu"
 
-#, python-format
 #~ msgid "%(project)s project information"
 #~ msgstr "Informacje o projekcie %(project)s"
 
-#, python-format
 #~ msgid "%(language)s language information"
 #~ msgstr "Informacje o języku %(language)s"
 
@@ -3485,7 +3602,8 @@ msgstr ""
 #~ msgid ""
 #~ "This email address is already in use. Please supply a different email "
 #~ "address."
-#~ msgstr "Podany adres e-mail jest już w użyciu. Proszę podać inny adres e-mail."
+#~ msgstr ""
+#~ "Podany adres e-mail jest już w użyciu. Proszę podać inny adres e-mail."
 
 #~ msgid ""
 #~ "Registration using free email addresses is prohibited. Please supply a "
@@ -3499,9 +3617,6 @@ msgstr ""
 
 #~ msgid "activation key"
 #~ msgstr "klucz aktywacyjny"
-
-#~ msgid "registration profile"
-#~ msgstr "profil rejestracji"
 
 #~ msgid "registration profiles"
 #~ msgstr "profile rejestracji"
@@ -3647,7 +3762,6 @@ msgstr ""
 #~ msgid "Thank you for your feedback."
 #~ msgstr "Dziękujemy za Twoją informację zwrotną."
 
-#, python-format
 #~ msgid " message by %(name)s"
 #~ msgstr " wiadomość od %(name)s"
 
@@ -3658,8 +3772,8 @@ msgstr ""
 #~ msgstr "Filtruj po:"
 
 #~ msgid ""
-#~ "Here you can change your personal details. This information will be used in "
-#~ "the header of the translation files."
+#~ "Here you can change your personal details. This information will be used "
+#~ "in the header of the translation files."
 #~ msgstr ""
 #~ "W tym miejscu można zmienić informacje osobiste. Będą one wykorzystane w "
 #~ "nagłówku pliku tłumaczeń."
@@ -3671,8 +3785,8 @@ msgstr ""
 #~ msgstr "Nazwisko"
 
 #~ msgid ""
-#~ "Here you can configure the settings related to the translation interface as "
-#~ "well as your language preferences."
+#~ "Here you can configure the settings related to the translation interface "
+#~ "as well as your language preferences."
 #~ msgstr ""
 #~ "W tym miejscu można skonfigurować ustawienia interfejsu tłumaczeń, jak i "
 #~ "ustawienia językowe."
@@ -3703,42 +3817,24 @@ msgstr ""
 #~ msgstr "Konto zostało aktywowane"
 
 # ew. można przejść do strony logowania, ale w tym momencie użytkownik by oczekiwał linka...
-#, python-format
 #~ msgid ""
 #~ "The account has been activated for username \"%(account)s\". You can now "
 #~ "proceed to log in."
 #~ msgstr ""
-#~ "Konto zostało aktywowane dla nazwy użytkownika \"%(account)s\". Można się już "
-#~ "zalogować."
+#~ "Konto zostało aktywowane dla nazwy użytkownika \"%(account)s\". Można się "
+#~ "już zalogować."
 
 #~ msgid "Pootle Account Created!"
 #~ msgstr "Utworzono konto Pootle!"
 
-#~ msgid "A Pootle account has been created for you using this email address."
-#~ msgstr "Twoje Konto Pootle zostało utworzone przy użyciu tego adresu e-mail."
-
-#~ msgid "To activate your account, follow this link:"
-#~ msgstr "Aby aktywować swoje konto, należy kliknąć następujący odnośnik:"
-
 #~ msgid "Activate my Pootle account"
 #~ msgstr "Aktywuj moje konto Pootle"
 
-#, python-format
 #~ msgid "Your activation code is: <code>%(activation_key)s</code>"
 #~ msgstr "Twój kod aktywacyjny to: <code>%(activation_key)s</code>"
 
-#~ msgid ""
-#~ "This message is sent to verify that the email address is in fact correct. If "
-#~ "you did not want to register an account, you may simply ignore the message."
-#~ msgstr ""
-#~ "Ta wiadomość została wysłana, aby sprawdzić czy podany adres e-mail jest "
-#~ "poprawny. Jeśli nie chcesz rejestrować konta, zignoruj tę wiadomość."
-
 #~ msgid "Your activation code is:"
 #~ msgstr "Twój kod aktywacyjny to:"
-
-#~ msgid "Pootle registration"
-#~ msgstr "Rejestracja Pootle"
 
 #~ msgid "Registration Complete"
 #~ msgstr "Rejestracja zakończona"
@@ -3772,7 +3868,6 @@ msgstr ""
 #~ msgid "Language Members"
 #~ msgstr "Członkowie języka"
 
-#, python-format
 #~ msgid "You do not have rights to administer %s."
 #~ msgstr "Użytkownik nie posiada praw administracyjnych dla %s."
 
@@ -3791,7 +3886,6 @@ msgstr ""
 #~ msgid "Pootle: Install"
 #~ msgstr "Program Pootle: Instalacja"
 
-#, python-format
 #~ msgid ""
 #~ "Error: \"%s\" while attempting to access the Pootle database, will try to "
 #~ "initialize database."
@@ -3803,16 +3897,15 @@ msgstr ""
 #~ msgstr "Tworzenie tabel bazy danych..."
 
 #~ msgid "Creating default languages, projects and admin user"
-#~ msgstr "Tworzenie domyślnych języków, projektów i użytkownika zarządzającego"
+#~ msgstr ""
+#~ "Tworzenie domyślnych języków, projektów i użytkownika zarządzającego"
 
 #~ msgid "Calculating translation statistics, this will take a few minutes"
 #~ msgstr "Obliczanie statystyk tłumaczeń, może to potrwać kilka minut"
 
-#, python-format
 #~ msgid "%(language)s is %(percent)d%% complete"
 #~ msgstr "%(language)s jest w %(percent)d%% ukończony"
 
-#, python-format
 #~ msgid "Project %(project)s is %(percent)d%% complete"
 #~ msgstr "Projekt %(project)s jest %(percent)d%% ukończony"
 
@@ -3820,15 +3913,15 @@ msgstr ""
 #~ msgstr "Zakończono obliczanie statystyk dla domyślnych języków i projektów"
 
 #~ msgid ""
-#~ "Initialized database, you will be redirected to the front page in 10 seconds"
+#~ "Initialized database, you will be redirected to the front page in 10 "
+#~ "seconds"
 #~ msgstr ""
-#~ "Zainicjalizowano bazę danych, za 10 sekund nastąpi przekierowanie do strony "
-#~ "głównej"
+#~ "Zainicjalizowano bazę danych, za 10 sekund nastąpi przekierowanie do "
+#~ "strony głównej"
 
 #~ msgid "Pootle: Update"
 #~ msgstr "Pootle: aktualizacja"
 
-#, python-format
 #~ msgid ""
 #~ "Database tables are currently at build version %d. Pootle will now update "
 #~ "the database."
@@ -3846,30 +3939,25 @@ msgstr ""
 #~ msgstr "Aktualizowanie istniejących tabeli…"
 
 #~ msgid ""
-#~ "Pootle will now import all the translations into the database. It could take "
-#~ "a long time."
+#~ "Pootle will now import all the translations into the database. It could "
+#~ "take a long time."
 #~ msgstr ""
-#~ "Program Pootle zaimportuje teraz wszystkie tłumaczenia do bazy danych. Może "
-#~ "to zająć dłuższy czas."
+#~ "Program Pootle zaimportuje teraz wszystkie tłumaczenia do bazy danych. "
+#~ "Może to zająć dłuższy czas."
 
-#, python-format
 #~ msgid "Failed to import suggestions from %s"
 #~ msgstr "Nie można zaimportować podpowiedzi z %s"
 
-#, python-format
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "Failed to import strings from %s"
 #~ msgstr "Nie udało się zaimportowac jednostek z %s"
 
-#~ msgid "All translations are now imported."
-#~ msgstr "Wszystkie tłumaczenia zostały zaimportowane."
-
 #~ msgid ""
-#~ "Pootle initialized the database. You will be redirected to the front page in "
-#~ "10 seconds."
+#~ "Pootle initialized the database. You will be redirected to the front page "
+#~ "in 10 seconds."
 #~ msgstr ""
-#~ "Zakończono inicjalizację bazy danych, za 10 sekund nastąpi przekierowanie do "
-#~ "strony głównej."
+#~ "Zakończono inicjalizację bazy danych, za 10 sekund nastąpi przekierowanie "
+#~ "do strony głównej."
 
 #, fuzzy
 #~ msgid "Advanced search"
@@ -3906,7 +3994,8 @@ msgstr ""
 
 #~ msgid "No languages or projects selected. Choose yours now."
 #~ msgstr ""
-#~ "Nie wybrano żadnych projektów lub języków. Proszę wybrać przynajmniej jeden."
+#~ "Nie wybrano żadnych projektów lub języków. Proszę wybrać przynajmniej "
+#~ "jeden."
 
 #~ msgid "This user has not selected languages or projects yet."
 #~ msgstr "Ten użytkownik nie wybrał żadnych projektów ani języków."
@@ -3921,34 +4010,32 @@ msgstr ""
 #~ msgid "Overall Completion"
 #~ msgstr "Ukończono"
 
-#, python-format
 #~ msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-#~ msgstr "%(translated)d/%(total)d słów (%(translatedpercent)d%%) przetłumaczone"
+#~ msgstr ""
+#~ "%(translated)d/%(total)d słów (%(translatedpercent)d%%) przetłumaczone"
 
-#, python-format
 #~ msgid "%(translated)d/%(total)d strings"
 #~ msgstr "%(translated)d/%(total)d ciągów"
 
-#, python-format
 #~ msgid "%d file"
 #~ msgid_plural "%d files"
 #~ msgstr[0] "%d plik"
 #~ msgstr[1] "%d pliki"
 #~ msgstr[2] "%d plików"
 
-#, fuzzy, python-format
+#, fuzzy
 #~ msgid "%(translated)d/%(total)d terms"
 #~ msgstr "%(translated)d/%(total)d ciągów"
 
 #~ msgid "Toggle suggest mode (Ctrl+Shift+Space)"
 #~ msgstr "Przełącz na tryb sugestii (Ctrl+Shift+Space)"
 
-#, python-format
 #~ msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
-#~ msgstr "Przetłumaczono słów: %(translated)d/%(total)d - %(translatedpercent)d%%"
+#~ msgstr ""
+#~ "Przetłumaczono słów: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
-#, python-format
-#~ msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
+#~ msgid ""
+#~ "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 #~ msgstr ""
 #~ "Przetłumaczono ciągów: %(translated)d/%(total)d - %(translatedpercent)d%%"
 
@@ -3979,7 +4066,6 @@ msgstr ""
 #~ msgid "Total Words"
 #~ msgstr "Łącznie słów"
 
-#, python-format
 #~ msgid "Failed to import units from %s"
 #~ msgstr "Nie udało się zaimportowac jednostek z %s"
 
@@ -4003,10 +4089,9 @@ msgstr ""
 #~ msgid "Complete"
 #~ msgstr "Zakończone"
 
-#, python-format
 #~ msgid ""
-#~ "lxml version %(installed)s is installed. Pootle requires version %(required)"
-#~ "s for XML format support."
+#~ "lxml version %(installed)s is installed. Pootle requires version "
+#~ "%(required)s for XML format support."
 #~ msgstr ""
 #~ "Zainstalowana jest wersja %(installed)s biblioteki lxml. Program Pootle "
 #~ "wymaga przynajmniej wersji %(required)s, do obsługi formatu XML."
@@ -4017,16 +4102,15 @@ msgstr ""
 #~ "lxml dla obsługi formatu XML."
 
 #~ msgid ""
-#~ "For optimal performance, use django.contrib.sessions.backends.cache as the "
-#~ "session engine."
+#~ "For optimal performance, use django.contrib.sessions.backends.cache as "
+#~ "the session engine."
 #~ msgstr ""
-#~ "Dla największej wydajności, należy korzystać z "
-#~ "django.contrib.sessions.backends.cached jako silnika sesji."
+#~ "Dla największej wydajności, należy korzystać z django.contrib.sessions."
+#~ "backends.cached jako silnika sesji."
 
 #~ msgid "Home"
 #~ msgstr "Strona główna"
 
-#, python-format
 #~ msgid "%(checks)d string (%(checkspercent)d%%) failed"
 #~ msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 #~ msgstr[0] "%(checks)d ciąg (%(checkspercent)d%%) niepoprawny"
@@ -4055,8 +4139,8 @@ msgstr ""
 #~ "A description of this project. This is useful to give more information or "
 #~ "instructions. This field should be valid HTML."
 #~ msgstr ""
-#~ "Opis projektu. Warto podać tutaj dodatkowe informacje lub instrukcje. Pole "
-#~ "to powinno zawierać poprawną składnię języka HTML."
+#~ "Opis projektu. Warto podać tutaj dodatkowe informacje lub instrukcje. "
+#~ "Pole to powinno zawierać poprawną składnię języka HTML."
 
 #~ msgid "Initialize"
 #~ msgstr "Zainicjalizuj"
@@ -4073,7 +4157,6 @@ msgstr ""
 #~ msgid "No matching strings to translate."
 #~ msgstr "Nie znaleziono ciągów do przetłumaczenia."
 
-#, python-format
 #~ msgid "checking %s"
 #~ msgstr "sprawdzanie %s"
 
@@ -4089,23 +4172,18 @@ msgstr ""
 #~ msgid "Go to the next unit"
 #~ msgstr "Przechodzi do nastepnego ciągu"
 
-#, python-format, 
 #~ msgid "Suggestion %(i)d by %(user)s:"
 #~ msgstr "Sugestia %(i)d od %(user)s:"
 
-#, python-format
 #~ msgid "Suggestion by %(user)s"
 #~ msgstr "Sugestia od %(user)s"
 
-#, python-format, 
 #~ msgid "Updated project \"%s\" from version control"
 #~ msgstr "Projekt %s został zaktualizowany z systemu kontroli wersji"
 
-#, python-format
 #~ msgid "Updated file %s from version control"
 #~ msgstr "Plik %s został zaktualizowany z systemu kontroli wersji"
 
-#, python-format
 #~ msgid "Failed to update %s from version control"
 #~ msgstr "Nie udało się zaktualizować %s z systemu kontroli wersji"
 
@@ -4116,20 +4194,20 @@ msgstr ""
 #~ msgid ""
 #~ "<div dir=\"ltr\" lang=\"en\">\n"
 #~ "<h2 class=\"title\">This is a demo installation of Pootle.</h2>\n"
-#~ "<p class=\"about\">You can also visit the official <a href=\"http://pootle."
-#~ "locamotion.org\">Pootle server</a>. The server administrator has not "
-#~ "provided contact information or a description of this server. If you are the "
-#~ "administrator for this server, edit this description in your preference file "
-#~ "or in the administration interface.</p>\n"
+#~ "<p class=\"about\">You can also visit the official <a href=\"http://"
+#~ "pootle.locamotion.org\">Pootle server</a>. The server administrator has "
+#~ "not provided contact information or a description of this server. If you "
+#~ "are the administrator for this server, edit this description in your "
+#~ "preference file or in the administration interface.</p>\n"
 #~ "</div>"
 #~ msgstr ""
 #~ "<div dir=\"ltr\" lang=\"pl\">\n"
 #~ "<h2 class=\"title\">To jest przykładowa instalacja programu Pootle.</h2>\n"
-#~ "<p class=\"about\">Można również odwiedzić oficjalny<a "
-#~ "href=\"http://pootle.locamotion.org\">serwer Pootle</a>. Administrator tego "
-#~ "serwera nie podał informacji kontaktowych ani opisu tego serwera. Jeśli "
-#~ "jesteś administratorem tego serwera, prosimy o podanie opisu w pliku "
-#~ "ustawień lub za pomocą interfejsu administracyjnego.</p>\n"
+#~ "<p class=\"about\">Można również odwiedzić oficjalny<a href=\"http://"
+#~ "pootle.locamotion.org\">serwer Pootle</a>. Administrator tego serwera nie "
+#~ "podał informacji kontaktowych ani opisu tego serwera. Jeśli jesteś "
+#~ "administratorem tego serwera, prosimy o podanie opisu w pliku ustawień "
+#~ "lub za pomocą interfejsu administracyjnego.</p>\n"
 #~ "</div>"
 
 #~ msgid "Quality checks and review suggestions"
@@ -4151,7 +4229,6 @@ msgstr ""
 #~ msgstr "Nie masz praw do przeglądu propozycji"
 
 # plural forms!!!
-#, python-format
 #~ msgid "Updated %s files from version control"
 #~ msgstr "Zaktualizowano %s plików z systemu kontroli wersji"
 
@@ -4162,13 +4239,13 @@ msgstr ""
 #~ msgstr "Aktualizuj uprawnienia"
 
 #~ msgid ""
-#~ "Here you can delete the available files in this translation project. You may "
-#~ "also want to <a href=\"?scan_files=1\">rescan the project files</a> or <a "
-#~ "href=\"?template_update=1\">update the files from templates</a>."
+#~ "Here you can delete the available files in this translation project. You "
+#~ "may also want to <a href=\"?scan_files=1\">rescan the project files</a> "
+#~ "or <a href=\"?template_update=1\">update the files from templates</a>."
 #~ msgstr ""
 #~ "W tym miejscu można usunąć pliki dostępne dla projektu. Można również <a "
-#~ "href=\"?scan_files=1\">przeskanować ponownie projekt</a> lub <a "
-#~ "href=\"?template_update=1\">zaktualizować pliki z szablonów</a>."
+#~ "href=\"?scan_files=1\">przeskanować ponownie projekt</a> lub <a href=\"?"
+#~ "template_update=1\">zaktualizować pliki z szablonów</a>."
 
 #~ msgid "Copy"
 #~ msgstr "Kopiuj"
@@ -4182,16 +4259,17 @@ msgstr ""
 #~ msgid "SQLite is installed."
 #~ msgstr "SQLite jest zainstalowane."
 
-#~ msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
+#~ msgid ""
+#~ "SQLite is missing. Pootle requires SQLite for translation statistics."
 #~ msgstr ""
 #~ "Brak biblioteki SQLite. Program Pootle wymaga SQLite do prowadzenia "
 #~ "statystyk tłumaczeń."
 
-#, python-format
-#~ msgid "Django version %s is installed. Pootle only works with the 1.x series."
+#~ msgid ""
+#~ "Django version %s is installed. Pootle only works with the 1.x series."
 #~ msgstr ""
-#~ "Zainstalowana jest wersja %s biblioteki Django. Program Pootle współpracuje "
-#~ "tylko z serią 1.x."
+#~ "Zainstalowana jest wersja %s biblioteki Django. Program Pootle "
+#~ "współpracuje tylko z serią 1.x."
 
 #~ msgid ""
 #~ "Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news "
@@ -4206,7 +4284,8 @@ msgstr ""
 
 #~ msgid "This is a standard style project (one directory per language)."
 #~ msgstr ""
-#~ "To jest projekt w stylu standardowym (oddzielny folder dla każdego języka)."
+#~ "To jest projekt w stylu standardowym (oddzielny folder dla każdego "
+#~ "języka)."
 
 #~ msgid "(select to add user)"
 #~ msgstr "(wybierz, aby dodać użytkownika)"
@@ -4217,15 +4296,12 @@ msgstr ""
 #~ msgid "Start"
 #~ msgstr "Start"
 
-#, python-format
 #~ msgid "Previous %d"
 #~ msgstr "Poprzednie %d"
 
-#, python-format
 #~ msgid "Items %(first)d to %(last)d of %(total)d"
 #~ msgstr "Pozycje %(first)d do %(last)d z %(total)d"
 
-#, python-format
 #~ msgid "Next %d"
 #~ msgstr "Następne %d"
 
@@ -4233,27 +4309,24 @@ msgstr ""
 #~ msgstr "Koniec"
 
 #~ msgid ""
-#~ "Translation not possible because plural information for your language is not "
-#~ "available. Please contact the site administrator."
+#~ "Translation not possible because plural information for your language is "
+#~ "not available. Please contact the site administrator."
 #~ msgstr ""
-#~ "Tłumaczenie nie jest możliwe, ponieważ definicja liczby mnogiej dla Twojego "
-#~ "języka jest niedostępna. Skontaktuj się z administratorem."
+#~ "Tłumaczenie nie jest możliwe, ponieważ definicja liczby mnogiej dla "
+#~ "Twojego języka jest niedostępna. Skontaktuj się z administratorem."
 
 #~ msgid "Current Translation:"
 #~ msgstr "Aktualne tłumaczenie:"
 
-#, python-format
 #~ msgid "Suggestion %d:"
 #~ msgstr "Sugestia %d:"
 
-#, python-format
 #~ msgid "Suggestion by %s:"
 #~ msgstr "Sugestia od %s:"
 
 #~ msgid "Suggestion:"
 #~ msgstr "Sugestia:"
 
-#, python-format
 #~ msgid "%d suggestion"
 #~ msgid_plural "%d suggestions"
 #~ msgstr[0] "%d sugestia"
@@ -4344,7 +4417,6 @@ msgstr ""
 #~ msgid "Remove Language"
 #~ msgstr "Usuń język"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "Usuń %s"
 
@@ -4396,31 +4468,27 @@ msgstr ""
 #~ msgid "Remove User"
 #~ msgstr "Usuń użytkownika"
 
-#~ msgid "Back to main page"
-#~ msgstr "Wróć do strony głównej"
-
 #~ msgid "Existing languages"
 #~ msgstr "Istniejące języki"
 
 #~ msgid "Update Languages"
 #~ msgstr "Uaktualnij języki"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Administrator Pootle: %s %S"
 
 #~ msgid "Add Language"
 #~ msgstr "Dodaj język"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Administrator Pootle: %s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
-#~ msgstr "Nie można ustalić praw dla użytkownika %s  - nie ma takiego użytkownika"
+#~ msgstr ""
+#~ "Nie można ustalić praw dla użytkownika %s  - nie ma takiego użytkownika"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
 #~ msgstr ""
 #~ "To jest projekt w stylu GNU (tylko jeden folder, nazwy plików według nazw "
 #~ "języka)."
@@ -4433,48 +4501,46 @@ msgstr ""
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
 #~ "<strong>Pootle</strong> to prosty portal internetowy, który pozwoli Ci "
 #~ "<strong>tłumaczyć</strong>! Pootle jest<strong>oprogramowaniem "
-#~ "wolnodostępnym</strong>, i dlatego możesz go pobrać i zainstalować w swoim "
-#~ "systemie. Możesz także na różne sposoby pomagać w jego rozwijaniu (nie "
-#~ "musisz do tego umieć programować)."
+#~ "wolnodostępnym</strong>, i dlatego możesz go pobrać i zainstalować w "
+#~ "swoim systemie. Możesz także na różne sposoby pomagać w jego rozwijaniu "
+#~ "(nie musisz do tego umieć programować)."
 
 #~ msgid ""
 #~ "The Pootle project itself is hosted at <a href=\"http://translate."
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "Projekt Pootle znajdziesz na <a "
-#~ "href=\"http://translate.sourceforge.net/\">translate.sourceforge.net</a> wraz "
-#~ "ze szczegółami kodu źródłowego, listami dyskusyjnymi itd."
+#~ "Projekt Pootle znajdziesz na <a href=\"http://translate.sourceforge.net/"
+#~ "\">translate.sourceforge.net</a> wraz ze szczegółami kodu źródłowego, "
+#~ "listami dyskusyjnymi itd."
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
-#~ "Nazwa tej aplikacji pochodzi od angielskiego rozszerzenia: <b>PO</b>-based "
-#~ "<b>O</b>nline <b>T</b>ranslation / <b>L</b>ocalization <b>E</b>ngine. Więcej "
-#~ "informacji znajdziesz na <a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">to</a>."
+#~ "Nazwa tej aplikacji pochodzi od angielskiego rozszerzenia: <b>PO</b>-"
+#~ "based <b>O</b>nline <b>T</b>ranslation / <b>L</b>ocalization <b>E</"
+#~ "b>ngine. Więcej informacji znajdziesz na <a href=\"http://www.thechestnut."
+#~ "com/flumps.htm\">to</a>."
 
 #~ msgid "Versions"
 #~ msgstr "Wersje"
 
-#, python-format
 #~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 #~ msgstr ""
 #~ "Ta strona używa:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
 #~ "%s<br />Python %s (na %s/%s)"
 
-#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "Strona Użytkownika dla: %s"
 
@@ -4484,17 +4550,16 @@ msgstr ""
 #~ msgid "Admin page"
 #~ msgstr "Strona administracji"
 
-#~ msgid "Please click on 'Change options' and select some languages and projects"
+#~ msgid ""
+#~ "Please click on 'Change options' and select some languages and projects"
 #~ msgstr "Kliknij na 'Zmień opcje' i wybierz języki oraz projekty"
 
-#, python-format
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
 #~ msgstr[0] "%d projekt, średnio %d%% przetłumaczono"
 #~ msgstr[1] "%d projekty, średnio %d%% przetłumaczono"
 #~ msgstr[2] "%d projektów, średnio %d%% przetłumaczono"
 
-#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s %s"
 
@@ -4504,14 +4569,12 @@ msgstr ""
 #~ msgid "Language Name"
 #~ msgstr "Nazwa języka"
 
-#, python-format
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
 #~ msgstr[0] "%d język, średnio %d%% przetłumaczono"
 #~ msgstr[1] "%d języki, średnio %d%% przetłumaczono"
 #~ msgstr[2] "%d języków, średnio %d%% przetłumaczono"
 
-#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "Pootle: projekt %s, język %s"
 
@@ -4519,13 +4582,11 @@ msgstr ""
 #~ msgstr "Nie można przesłać pliku - nie ma załącznika"
 
 #~ msgid "Can only upload PO files and zips of PO files"
-#~ msgstr "Możesz przesłać jedynie pliki .po albo pliki .zip zawierające pliki .po"
+#~ msgstr ""
+#~ "Możesz przesłać jedynie pliki .po albo pliki .zip zawierające pliki .po"
 
 #~ msgid "Assign Strings"
 #~ msgstr "przydzielenie stringów"
-
-#~ msgid "Assign Action"
-#~ msgstr "przydzielenie akcji"
 
 #~ msgid "Assign to User"
 #~ msgstr "przydzielenie dla użytkownika"
@@ -4605,9 +4666,6 @@ msgstr ""
 #~ msgid "Hide Tracks"
 #~ msgstr "Ukryj ślady"
 
-#~ msgid "Show Checks"
-#~ msgstr "Pokaż testy"
-
 #~ msgid "Hide Checks"
 #~ msgstr "Ukryj testy"
 
@@ -4623,7 +4681,6 @@ msgstr ""
 #~ msgid "Hide Assigns"
 #~ msgstr "Ukryj przydziały"
 
-#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "Wszystkie cele: %s"
 
@@ -4651,22 +4708,18 @@ msgstr ""
 #~ msgid "Generate SDF"
 #~ msgstr "Wygeneruj SDF"
 
-#, python-format
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d napis (%d%%) błędny"
 #~ msgstr[1] "%d napisy (%d%%) błędne"
 #~ msgstr[2] "%d napisów (%d%%) błędnych"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d słów (%d%%) przydzielone"
 
-#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d/%d napisów]"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d słów (%d%%) przetłumaczono"
 
@@ -4691,11 +4744,9 @@ msgstr ""
 #~ msgid "All goals"
 #~ msgstr "Wszystkie cele"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "%d/%d pliki"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "[%d/%d napisów]"
 
@@ -4738,7 +4789,6 @@ msgstr ""
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "Nie masz praw do zmian przydziałów"
 
-#, python-format
 #~ msgid ""
 #~ "%d/%d translated\n"
 #~ "(%d untranslated, %d fuzzy)"
@@ -4746,7 +4796,6 @@ msgstr ""
 #~ "%d/%d przetłumaczonych\n"
 #~ "(%d nie przetłumaczonych, %d niepewnych)"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "%s: tłumaczenie %s na %s: %s"
 
@@ -4762,11 +4811,9 @@ msgstr ""
 #~ msgid "Click here to return to the index"
 #~ msgstr "Kliknij tu aby wrócić do indeksu"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "Pozycje od %d do %d z %d ogółem"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "Brak jest pozycji dla warunków wyszukiwania: ('%s')"
 
@@ -4779,11 +4826,9 @@ msgstr ""
 #~ msgid "Shrink"
 #~ msgstr "Zminiejsz"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "Sugestie %d od %s:"
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "Musisz podać poprawne hasło nie krótsze niż %d znaków."
 
@@ -4815,10 +4860,8 @@ msgstr ""
 #~ msgstr "Twoje hasło"
 
 #~ msgid "Type your password again to ensure it is entered correctly"
-#~ msgstr "Wpisz hasło jeszcze raz aby upewnić się, że wprowadziłeś je poprawnie."
-
-#~ msgid "Register Account"
-#~ msgstr "Rejestruj Konto"
+#~ msgstr ""
+#~ "Wpisz hasło jeszcze raz aby upewnić się, że wprowadziłeś je poprawnie."
 
 #~ msgid "Please enter your activation details"
 #~ msgstr "Wprowadź dane aktywacyjne"
@@ -4835,7 +4878,6 @@ msgstr ""
 #~ msgid "Activate Account"
 #~ msgstr "Aktywuj Konto"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "Opcje dla: %s"
 
@@ -4870,63 +4912,67 @@ msgstr ""
 #~ msgstr "Muszisz być administratorem strony, aby zmienić użytkownika"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
 #~ msgstr ""
-#~ "Nazwa użytkownika może zawierać tylko litery i cyfry oraz musi zaczynać się "
-#~ "od litery."
+#~ "Nazwa użytkownika może zawierać tylko litery i cyfry oraz musi zaczynać "
+#~ "się od litery."
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
-#~ msgstr "Ty (lub ktoś inny) próbował zarejestrować konto z Twoją nazwą użytkownika.\n"
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
+#~ msgstr ""
+#~ "Ty (lub ktoś inny) próbował zarejestrować konto z Twoją nazwą "
+#~ "użytkownika.\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
 #~ msgstr "Nie zapisujemy Twojego hasła w całości, a jedynie jego skrót.\n"
 
-#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr "Jeśli masz problem z rejestracją skontaktuj się z %s.\n"
 
 #~ msgid ""
 #~ "If you have a problem with registration, please contact the site "
 #~ "administrator.\n"
-#~ msgstr "Jeśli masz problem z rejestracją skontaktuj się z administratorem serwisu.\n"
+#~ msgstr ""
+#~ "Jeśli masz problem z rejestracją skontaktuj się z administratorem "
+#~ "serwisu.\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
-#~ msgstr "Ta nazwa użytkownika już istnieje. E-mail zostanie wysłany na zarejestrowany "
-#~ "adres.\n"
+#~ "That username already exists. An email will be sent to the registered "
+#~ "email address.\n"
+#~ msgstr ""
+#~ "Ta nazwa użytkownika już istnieje. E-mail zostanie wysłany na "
+#~ "zarejestrowany adres.\n"
 
-#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "Przejście do <a href='%s'>logowania</a>\n"
 
 #~ msgid ""
 #~ "If you are unable to follow the link, please enter the above code at the "
 #~ "activation page.\n"
-#~ msgstr "Jeśli nie możesz kliknąć linka wpisz powyższy kod na stronie aktywacyjnej.\n"
-
-#, python-format
-#~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
 #~ msgstr ""
-#~ "Konto zostało utworzone. Otrzymasz e-mail ze szczegółami logowania i kodem "
-#~ "aktywacyjnym. Wpisz swój kod aktywacyjny na <a href='%s'>stronie "
+#~ "Jeśli nie możesz kliknąć linka wpisz powyższy kod na stronie "
+#~ "aktywacyjnej.\n"
+
+#~ msgid ""
+#~ "Account created. You will be emailed login details and an activation "
+#~ "code. Please enter your activation code on the <a href='%s'>activation "
+#~ "page</a>."
+#~ msgstr ""
+#~ "Konto zostało utworzone. Otrzymasz e-mail ze szczegółami logowania i "
+#~ "kodem aktywacyjnym. Wpisz swój kod aktywacyjny na <a href='%s'>stronie "
 #~ "aktywacyjnej</a>."
 
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "(lub kliknij w link aktywacyjny w e-mailu)"
 
-#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "Twoja nazwa użytkownika: %s\n"
 
-#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "Twoje hasło: %s\n"
 
-#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "Twój zarejestrowany adres e-mail to: %s\n"
 

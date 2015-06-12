@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-02-28 23:44+0000\n"
+"POT-Creation-Date: 2015-06-12 17:37+0100\n"
 "PO-Revision-Date: 2010-08-05 17:16+0200\n"
 "Last-Translator: Pheledi <pheledi@mosekolatranslation.co.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,58 +19,146 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.1.0-beta2\n"
 
-#: apps/contact/forms.py:23
+#: apps/accounts/forms.py:43
+msgid ""
+"Your user seems to have disappeared. Please report this to the site owners."
+msgstr ""
+
+#: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
+msgid "Username"
+msgstr "Leina la modiriši"
+
+#: apps/accounts/models.py:61
+msgid ""
+"Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
+msgstr ""
+
+#: apps/accounts/models.py:65
+msgid "Enter a valid username."
+msgstr ""
+
+#: apps/accounts/models.py:69
+msgid "Email Address"
+msgstr "Aterese ya imeile"
+
+#: apps/accounts/models.py:70 apps/pootle_language/models.py:80
+#: apps/pootle_project/models.py:148
+msgid "Full Name"
+msgstr "Leina ka botlalo"
+
+#: apps/accounts/models.py:72 apps/staticpages/models.py:28
+#: templates/admin/staticpages/_table.html:6
+#, fuzzy
+msgid "Active"
+msgstr "dirago"
+
+#: apps/accounts/models.py:73
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: apps/accounts/models.py:75
+#, fuzzy
+msgid "Superuser Status"
+msgstr "Molaodi"
+
+#: apps/accounts/models.py:76
+msgid ""
+"Designates that this user has all permissions without explicitly assigning "
+"them."
+msgstr ""
+
+#: apps/accounts/models.py:79
+msgid "date joined"
+msgstr ""
+
+#: apps/accounts/models.py:83
+msgid "Number of Rows"
+msgstr "Palo ya methalo"
+
+#: apps/accounts/models.py:86
+msgid "Alternative Source Languages"
+msgstr "Maleme a mangwe a mothopo"
+
+#: apps/accounts/models.py:89 templates/admin/detailed_reports.html:149
+msgid "Rate"
+msgstr ""
+
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+msgid "Review Rate"
+msgstr ""
+
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+msgid "Hourly Rate"
+msgstr ""
+
+#: apps/accounts/models.py:92
+msgid "Score"
+msgstr ""
+
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+msgid "Currency"
+msgstr ""
+
+#: apps/accounts/models.py:95
+msgid "Is employee?"
+msgstr ""
+
+#: apps/accounts/models.py:96
+msgid "Twitter"
+msgstr ""
+
+#: apps/accounts/models.py:98
+msgid "Website"
+msgstr ""
+
+#: apps/accounts/models.py:99
+msgid "LinkedIn"
+msgstr ""
+
+#: apps/accounts/models.py:100
+msgid "Short Bio"
+msgstr ""
+
+#: apps/accounts/models.py:300
+msgid "This email address already exists."
+msgstr ""
+
+#: apps/contact/forms.py:25
 msgid "Summary"
 msgstr "Kakaretšo"
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:27
 msgid "Please enter your message summary"
 msgstr ""
 
-#: apps/contact/forms.py:32 core/browser.py:17
+#: apps/contact/forms.py:34 apps/virtualfolder/models.py:37 core/browser.py:19
 msgid "Name"
 msgstr "Leina"
 
-#: apps/contact/forms.py:33
+#: apps/contact/forms.py:35
 msgid "Please enter your name"
 msgstr ""
 
-#: apps/contact/forms.py:36
+#: apps/contact/forms.py:38
 msgid "Email address"
 msgstr "Aterese ya imeile"
 
-#: apps/contact/forms.py:37
+#: apps/contact/forms.py:39
 msgid "Please enter your email address"
 msgstr ""
 
-#: apps/contact/forms.py:40 apps/pootle_notifications/models.py:18
+#: apps/contact/forms.py:42
 msgid "Message"
 msgstr "Molaetša"
 
-#: apps/contact/forms.py:41
+#: apps/contact/forms.py:43
 msgid "Please enter your message"
-msgstr ""
-
-#: apps/evernote_auth/views.py:51
-msgid ""
-"Cannot link: your Evernote account is already linked with another Pootle "
-"account."
-msgstr ""
-
-#: apps/evernote_reports/forms.py:20 models/user.py:89
-msgid "Currency"
 msgstr ""
 
 #: apps/evernote_reports/forms.py:26
 msgid "Translation Rate"
-msgstr ""
-
-#: apps/evernote_reports/forms.py:31 models/user.py:86
-msgid "Review Rate"
-msgstr ""
-
-#: apps/evernote_reports/forms.py:36 models/user.py:87
-msgid "Hourly Rate"
 msgstr ""
 
 #: apps/evernote_reports/forms.py:41
@@ -79,6 +167,7 @@ msgstr ""
 
 #: apps/evernote_reports/models.py:31 templates/editor/export_view.html:106
 #: templates/translation_projects/terminology/manage.html:37
+#: templates/user/settings.html:29
 msgid "Translation"
 msgstr "Phetolelo"
 
@@ -106,33 +195,73 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: apps/evernote_reports/models.py:43
+#: apps/evernote_reports/models.py:43 apps/virtualfolder/models.py:63
 msgid "Description"
 msgstr "Tlhaloso"
 
-#: apps/evernote_reports/views.py:297
+#: apps/evernote_reports/views.py:295
 #, python-format
 msgid "User %s not found"
 msgstr ""
 
-#: apps/evernote_reports/views.py:382
+#: apps/evernote_reports/views.py:372
 msgid "Invalid request method"
+msgstr ""
+
+#: apps/import_export/templates/browser/index.html:10
+#, fuzzy
+msgid "Download translation files for offline translation"
+msgstr "Laolla faele ya XLIFF gore o e fetolele o se inthaneteng"
+
+#: apps/import_export/templates/browser/index.html:11
+#, fuzzy
+msgid "Download for offline translation"
+msgstr "Laolla faele ya XLIFF gore o e fetolele o se inthaneteng"
+
+#: apps/import_export/templates/browser/index.html:19
+#, fuzzy
+msgid "Upload translation files or archives in .zip format"
+msgstr "Diphetolelo tšohle bjale di amogetšwe."
+
+#: apps/import_export/templates/browser/index.html:20
+#, fuzzy
+msgid "Upload translations"
+msgstr "Romela diphetolelo"
+
+#: apps/import_export/utils.py:22
+#, python-format
+msgid "File %r missing X-Pootle-Path header\n"
+msgstr ""
+
+#: apps/import_export/utils.py:27
+#, python-format
+msgid "File %r missing or invalid X-Pootle-Revision header\n"
+msgstr ""
+
+#: apps/import_export/utils.py:37
+#, python-format
+msgid "File %r was rejected because its X-Pootle-Revision is too old."
+msgstr ""
+
+#: apps/import_export/utils.py:42
+#, python-format
+msgid "Could not create %r. Missing Project/Language? (%s)"
 msgstr ""
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
 msgstr "Khoutu ya leleme ga e latele phetolelo ya ISO"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:170
+#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:171
 msgid "Source Language"
 msgstr "Leleme la motheo"
 
-#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:373
+#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:387
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr ""
 
-#: apps/pootle_app/forms.py:98 templates/profiles/_tabs.html:5
+#: apps/pootle_app/forms.py:98 custom/templates/profiles/_tabs.html:5
 msgid "Password"
 msgstr "Lentšuphetišo"
 
@@ -140,217 +269,46 @@ msgstr "Lentšuphetišo"
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:39
-#, python-format
-msgid "Translate Toolkit version %s installed."
-msgstr "Go loketšwe tokollo ya %s ya Translate Toolkit."
-
-#: apps/pootle_app/views/admin/dashboard.py:47
-#, fuzzy, python-format
-msgid ""
-"Translate Toolkit version %(installed)s installed. Pootle requires at least "
-"version %(required)s."
-msgstr ""
-"Go loketšwe tokollo ya %(installed)s ya Translate Toolkit. Pootle e nyaka "
-"tokollo ya %(required)s."
-
-#: apps/pootle_app/views/admin/dashboard.py:59
-#, python-format
-msgid "Django version %s is installed."
-msgstr "Go loketšwe tokollo ya %s ya Django."
-
-#: apps/pootle_app/views/admin/dashboard.py:67
-#, python-format
-msgid ""
-"Django version %(installed)s is installed. Pootle requires at least version "
-"%(required)s."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:79
-#, python-format
-#, python-format,
-msgid "lxml version %s is installed."
-msgstr "Go loketšwe tokollo ya %s ya lxml."
-
-#: apps/pootle_app/views/admin/dashboard.py:87
-#, python-format
-msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version "
-"%(required)s."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:91
-msgid "lxml is not installed. Pootle requires lxml."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:104
-#, python-format
-msgid "Redis server accepting connections on %(host)s:%(port)s."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:113
-#, python-format
-msgid ""
-"Redis server version %(installed)s installed. Pootle requires at least "
-"version %(required)s."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:117
-#, python-format
-msgid "Redis server is not available on %(host)s:%(port)s."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:130
-#, python-format
-msgid "%(num)d RQ worker running."
-msgid_plural "%(num)d RQ workers running."
-msgstr[0] ""
-msgstr[1] ""
-
-#: apps/pootle_app/views/admin/dashboard.py:135
-msgid "No RQ workers are running."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:149
-msgid ""
-"Pootle is configured to use Redis as a caching backend, but can't connect to "
-"the cache."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:156
-msgid "Caching configured and running."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:162
-msgid "Redis is required as the caching backend."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:175
-msgid ""
-"Can't find the ISO codes package. Pootle uses ISO codes to translate "
-"language names."
-msgstr ""
-"Ga e kgone go hwetša sephuthelwana sa dikhoutu tša ISO. Pootle e diriša "
-"dikhoutu tša ISO go fetolela maina a maleme."
-
-#: apps/pootle_app/views/admin/dashboard.py:181
-#, fuzzy
-msgid ""
-"Can't find python-levenshtein package. Updating against templates is faster "
-"with python-levenshtein."
-msgstr ""
-"Ga e kgone go hwetša sephuthelwana sa python-levenshtein. Go mpshafatša go "
-"tšwa dithempoleiting go direga ka lebelo ka python-levenshtein."
-
-#: apps/pootle_app/views/admin/dashboard.py:189
-msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:191
-msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:193
-#, python-format
-msgid ""
-"Can't find the package which provides '%s' markup support. Falling back to "
-"HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:197
-#, python-format
-msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr ""
-
-#: apps/pootle_app/views/admin/dashboard.py:214
-msgid ""
-"Using the default sqlite3 database engine. SQLite is only suitable for small "
-"installations with a small number of users. Pootle will perform better with "
-"the MySQL database engine."
-msgstr ""
-"Go dirišwa ga entšene ya dathapeisi ya tirelwa ya sqlite3. SQLite e swanela "
-"feela go lokela go gonyenyane mo go nago le palo e nyenyane ya badiriši. "
-"Pootle e tla šoma gakaone ka entšene ya dathapeisi ya MySQL."
-
-#: apps/pootle_app/views/admin/dashboard.py:219
-msgid ""
-"Using the default sqlite3 database engine. SQLite is only suitable for small "
-"installations with a small number of users. Pootle will perform better with "
-"the MySQL database engine, but you need to install python-MySQLdb first."
-msgstr ""
-"Go dirišwa ga entšene ya dathapeisi ya tirelwa ya sqlite3. SQLite e swanela "
-"feela go lokela go gonyenyane mo go nago le palo e nyenyane ya badiriši. "
-"Pootle e tla šoma gakaone ka entšene ya dathapeisi ya MySQL, eupša o "
-"swanetše go thoma ka go lokela python-MySQLdb."
-
-#: apps/pootle_app/views/admin/dashboard.py:227
-msgid ""
-"For optimal performance, use django.contrib.sessions.backends.cached_db as "
-"the session engine."
-msgstr ""
-"Bakeng sa go šoma ka botlalo, diriša "
-"django.contrib.sessions.backends.cached_db bjalo ka entšene ya sešene."
-
-#: apps/pootle_app/views/admin/dashboard.py:234
-msgid "For optimal performance, use Apache as the webserver."
-msgstr "Bakeng sa go šoma ka botlalo, diriša Apache bjalo ka seabi sa wepe."
-
-#: apps/pootle_app/views/admin/dashboard.py:239
-msgid ""
-"The \"from\" address used to send registration emails is not specified. Also "
-"review the mail server settings."
-msgstr ""
-"Aterese ya \"go tšwa go\" yeo e dirišitšwego go romela diimeile tša go "
-"ingwadiša ga ya laetšwa. Gape boeletša dipeakanyo tša seabi tša mangwalo."
-
-#: apps/pootle_app/views/admin/dashboard.py:245
-msgid ""
-"No contact address is specified. The contact form will allow users to "
-"contact the server administrators."
-msgstr ""
-"Ga go a laetšwa aterese ya go ikgokaganya. Foromo ya go ikgokaganya e tla "
-"dumelela badiriši go ikgokaganya le balaodi ba seabi."
-
-#: apps/pootle_app/views/admin/dashboard.py:251
-msgid ""
-"Running in debug mode. Debug mode is only needed when developing Pootle. For "
-"optimal performance, disable debugging mode."
-msgstr ""
-"E šoma ka mokgwa wa go ntšha diphošo. Mokgwa wa go ntšha diphošo o hlokega "
-"feela ge o tlhabolla Pootle. Bakeng sa go šoma ka botlalo, šitiša mokgwa wa "
-"go ntšha diphošo."
-
-#: apps/pootle_app/views/admin/dashboard.py:308
+#: apps/pootle_app/views/admin/dashboard.py:80
 msgid "Files"
 msgstr "Difaele"
 
-#: apps/pootle_app/views/admin/dashboard.py:309
+#: apps/pootle_app/views/admin/dashboard.py:81
 msgid "Active projects"
 msgstr "Diprojeke tše šomago"
 
-#: apps/pootle_app/views/admin/dashboard.py:310
+#: apps/pootle_app/views/admin/dashboard.py:82
 msgid "Active languages"
 msgstr "Maleme a šomago"
 
-#: apps/pootle_app/views/admin/dashboard.py:311
+#: apps/pootle_app/views/admin/dashboard.py:83
 msgid "Translated strings"
 msgstr "Methaladi e fetoletšwego"
 
-#: apps/pootle_app/views/admin/dashboard.py:312
+#: apps/pootle_app/views/admin/dashboard.py:84
 msgid "Translated words"
 msgstr "Mantšu ao a fetoletšwego"
 
-#: apps/pootle_app/views/admin/dashboard.py:313
+#: apps/pootle_app/views/admin/dashboard.py:85
 msgid "Active users"
 msgstr "Badiriši ba šomago"
+
+#. Translators: this refers to the status of the background job worker
+#: apps/pootle_app/views/admin/dashboard.py:106
+#, python-format
+msgid "Running (%d worker)"
+msgid_plural "Running (%d workers)"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: this refers to the status of the background job worker
+#: apps/pootle_app/views/admin/dashboard.py:110
+msgid "Stopped"
+msgstr ""
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "All Users"
 msgstr "Badiriši bohle"
-
-#: apps/pootle_app/views/admin/permissions.py:86 models/user.py:56
-msgid "Username"
-msgstr "Leina la modiriši"
 
 #: apps/pootle_app/views/admin/permissions.py:95
 #, fuzzy
@@ -374,339 +332,364 @@ msgstr "Ga go na difaele projekeng ye."
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Go na le diphošo foromong. Hle boeletša mathata ao a lego ka mo tlase."
 
-#: apps/pootle_language/models.py:67
+#: apps/pootle_language/models.py:73
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"Khoutu ya leleme ya ISO 639 ya leleme, mohlomongwe e latelwe ke mothaladi (_)"
-" le khoutu ya naga ya ISO 3166. <a href=\""
-"http://www.w3.org/International/articles/language-tags/\">Tshedimošo e "
-"oketšegilego</a>"
+"Khoutu ya leleme ya ISO 639 ya leleme, mohlomongwe e latelwe ke mothaladi "
+"(_) le khoutu ya naga ya ISO 3166. <a href=\"http://www.w3.org/International/"
+"articles/language-tags/\">Tshedimošo e oketšegilego</a>"
 
-#: apps/pootle_language/models.py:72 apps/pootle_project/models.py:144
+#: apps/pootle_language/models.py:78 apps/pootle_project/models.py:145
 msgid "Code"
 msgstr "Khoutu"
 
-#: apps/pootle_language/models.py:74 apps/pootle_project/models.py:147
-#: models/user.py:66
-msgid "Full Name"
-msgstr "Leina ka botlalo"
-
-#: apps/pootle_language/models.py:76
+#: apps/pootle_language/models.py:82
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 "Tsenya ditlhaka dife goba dife tšeo di kgethegilego tšeo badiriši ba ka "
 "hwetšago go le thata go di tlanya"
 
-#: apps/pootle_language/models.py:79
+#: apps/pootle_language/models.py:85
 msgid "Special Characters"
 msgstr "Ditlhaka tše kgethegilego"
 
-#: apps/pootle_language/models.py:82
+#: apps/pootle_language/models.py:88
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
 
-#: apps/pootle_language/models.py:87
+#: apps/pootle_language/models.py:93
 msgid "Unknown"
 msgstr "Sa tsebjwego"
 
-#: apps/pootle_language/models.py:90
+#: apps/pootle_language/models.py:96
 msgid "Number of Plurals"
 msgstr "Palo ya tše dintši"
 
-#: apps/pootle_language/models.py:92
+#: apps/pootle_language/models.py:98
 msgid "Plural Equation"
 msgstr "Tekanyetšo ya tše dintši"
 
-#: apps/pootle_misc/checks.py:23 core/browser.py:61
-msgid "Critical"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:24
-msgid "Cosmetic"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:29 apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:34 apps/pootle_misc/checks.py:102
 msgid "Accelerators"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:30
+#: apps/pootle_misc/checks.py:35
 msgid "Acronyms"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:31
+#: apps/pootle_misc/checks.py:36
 msgid "Blank"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:32
+#: apps/pootle_misc/checks.py:37
 msgid "Brackets"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:33
+#: apps/pootle_misc/checks.py:38
 msgid "Compendium conflict"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:34
+#: apps/pootle_misc/checks.py:39
 msgid "Translator credits"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:35 apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:40 apps/pootle_misc/checks.py:106
 msgid "Double quotes"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:36
+#: apps/pootle_misc/checks.py:41
 msgid "Double spaces"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:37
+#: apps/pootle_misc/checks.py:42
 msgid "Repeated word"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:38
+#: apps/pootle_misc/checks.py:43
 msgid "E-mail"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:39
+#: apps/pootle_misc/checks.py:44
 msgid "Ending punctuation"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:40
+#: apps/pootle_misc/checks.py:45
 msgid "Ending whitespace"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:41
+#: apps/pootle_misc/checks.py:46
 msgid "Escapes"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:42
+#: apps/pootle_misc/checks.py:47
 msgid "File paths"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:43
+#: apps/pootle_misc/checks.py:48
 msgid "Functions"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:44
+#: apps/pootle_misc/checks.py:49
 msgid "GConf values"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:45
+#: apps/pootle_misc/checks.py:50
 msgid "Old KDE comment"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:46
+#: apps/pootle_misc/checks.py:51
 msgid "Long"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:47
+#: apps/pootle_misc/checks.py:52
 msgid "Must translate words"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:53
 msgid "Newlines"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:54
 #, fuzzy
 msgid "Number of plurals"
 msgstr "Palo ya tše dintši"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:55
 msgid "Don't translate words"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:56
 msgid "Numbers"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:57
 #, fuzzy
 msgid "Options"
 msgstr "Boikgethelo"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:58
 msgid "printf()"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:59
 msgid "Punctuation spacing"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:60
 msgid "Pure punctuation"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:56
-msgid "Number of sentences"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:57
-msgid "Short"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:58
-msgid "Simple capitalization"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:59
-msgid "Simple plural(s)"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:60
-msgid "Single quotes"
-msgstr ""
-
 #: apps/pootle_misc/checks.py:61
-msgid "Starting capitalization"
+msgid "Python brace placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:62
-msgid "Starting punctuation"
+msgid "Number of sentences"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:63
+msgid "Short"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:64
+msgid "Simple capitalization"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:65
+msgid "Simple plural(s)"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:66
+msgid "Single quotes"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:67
+msgid "Starting capitalization"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:68
+msgid "Starting punctuation"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:69
 msgid "Starting whitespace"
 msgstr ""
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:71
 msgid "Tabs"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:72
 msgid "Unchanged"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:67 apps/pootle_misc/stats.py:27
-#: apps/pootle_store/util.py:30 core/helpers.py:55
+#: apps/pootle_misc/checks.py:73 apps/pootle_misc/stats.py:27
+#: apps/pootle_store/util.py:30 core/helpers.py:56
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Tše sa fetolelwago"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:74
 msgid "URLs"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:75
 msgid "Valid characters"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:70
+#: apps/pootle_misc/checks.py:76
 msgid "Placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:71
-msgid "XML tags"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:73
-msgid "Broken HTML Entities"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:74
-msgid "Java format"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:75
-msgid "Template format"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:76
-msgid "Mustache placeholders"
-msgstr ""
-
 #: apps/pootle_misc/checks.py:77
-msgid "Mustache placeholder pairs"
+msgid "Invalid XML"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:78
-msgid "Mustache like placeholder pairs"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:79
-msgid "C format placeholders"
+msgid "XML tags"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:80
-msgid "Non printable"
+msgid "Broken HTML Entities"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:81
-msgid "Unbalanced tag braces"
+msgid "Java format"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:82
-msgid "Changed attributes"
+msgid "Template format"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:83
-msgid "Unescaped ampersands"
+msgid "Mustache placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:84
-msgid "Incorrectly escaped ampersands"
+msgid "Mustache placeholder pairs"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:85
-msgid "Whitespaces"
+msgid "Mustache like placeholder pairs"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:86
-msgid "Date format"
+msgid "C format placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:87
-msgid "Uppercase placeholders"
+msgid "Non printable"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:88
-msgid "Percent sign placeholders"
+msgid "Unbalanced tag braces"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:89
-msgid "Percent sign closure placeholders"
+msgid "Changed attributes"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:90
-msgid "$ placeholders"
+msgid "Unescaped ampersands"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:91
-msgid "$ closure placeholders"
+msgid "Incorrectly escaped ampersands"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:92
-msgid "Java-encoded unicode"
+msgid "Whitespaces"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:93
-msgid "Objective-C format"
+msgid "Date format"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:94
-msgid "Android format"
+msgid "Uppercase placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:95
+msgid "Percent sign placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:96
-msgid "Tags differ"
+msgid "Percent sign closure placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:97
-msgid "Curly braces"
+msgid "$ placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:98
-msgid "Potential unwanted placeholders"
+msgid "$ closure placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:99
+msgid "Java-encoded unicode"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:100
+msgid "Objective-C format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:101
+msgid "Android format"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:103
+msgid "Tags differ"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:104
+msgid "Curly braces"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:105
+msgid "Potential unwanted placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:107
 msgid "Double quotes in tags"
 msgstr ""
+
+#: apps/pootle_misc/checks.py:108
+msgid "Percent brace placeholders"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:1006 core/browser.py:68
+msgid "Critical"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:1007
+msgid "Cosmetic"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:1008
+#, fuzzy
+msgid "Functional"
+msgstr "Boikgethelo"
+
+#: apps/pootle_misc/checks.py:1009
+#, fuzzy
+msgid "Extraction"
+msgstr "Hlahlamolla"
+
+#: apps/pootle_misc/checks.py:1010
+msgid "Other"
+msgstr ""
+
+#. Translators: This is the name of a filter
+#: apps/pootle_misc/forms.py:90 core/helpers.py:60
+msgid "Search"
+msgstr "Nyaka"
 
 #: apps/pootle_misc/forms.py:91
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
@@ -748,13 +731,13 @@ msgstr ""
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
-#: apps/pootle_misc/stats.py:24 core/browser.py:40
+#: apps/pootle_misc/stats.py:24 core/browser.py:47
 #: templates/admin/detailed_reports.html:240
 msgid "Total"
 msgstr "Palomoka"
 
 #: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32
-#: core/helpers.py:54 templates/editor/_filters.html:7
+#: core/helpers.py:55 templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Fetoletšwego"
 
@@ -779,20 +762,15 @@ msgstr "Latelago"
 msgid "Last (%d)"
 msgstr "(%d) ya mafelelo"
 
-#. Translators: The date that the news item was written
-#: apps/pootle_notifications/models.py:21
-msgid "Added"
-msgstr "Okeditšwego"
-
-#: apps/pootle_profile/views.py:65
+#: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
 msgstr ""
 
-#: apps/pootle_project/forms.py:29 core/browser.py:27
+#: apps/pootle_project/forms.py:29 core/browser.py:34
 msgid "Language"
 msgstr "Leleme"
 
-#: apps/pootle_project/models.py:141
+#: apps/pootle_project/models.py:142
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -800,64 +778,63 @@ msgstr ""
 "Khoutu e kopana ya projeke. Ye e swanetše go ba le ditlhaka tša ASCII, "
 "dinomoro, le mothaladi wa tlase (_) feela."
 
-#: apps/pootle_project/models.py:155
+#: apps/pootle_project/models.py:156
 msgid "Quality Checks"
 msgstr "Tekolo ya boleng"
 
-#: apps/pootle_project/models.py:158
+#: apps/pootle_project/models.py:159
 msgid "File Type"
 msgstr "Mohuta wa faele"
 
-#: apps/pootle_project/models.py:162
+#: apps/pootle_project/models.py:163
 msgid "Automatic detection (slower)"
 msgstr "Kutollo e itiragalelago (e a nanya)"
 
-#: apps/pootle_project/models.py:163
+#: apps/pootle_project/models.py:164
 msgid "GNU style: files named by language code"
 msgstr "Setaele sa GNU: difaele tšeo di reeletšwego ka khoutu ya leleme"
 
-#: apps/pootle_project/models.py:164
+#: apps/pootle_project/models.py:165
 msgid "Non-GNU: Each language in its own directory"
 msgstr "E sego GNU: Leleme le lengwe le le lengwe tšhupetšong ya lona"
 
-#: apps/pootle_project/models.py:167
+#: apps/pootle_project/models.py:168
 msgid "Project Tree Style"
 msgstr "Setaele sa mohlare sa projeke"
 
-#: apps/pootle_project/models.py:173
+#: apps/pootle_project/models.py:174
 msgid "Ignore Files"
 msgstr "Hlokomologa difaele"
 
-#: apps/pootle_project/models.py:178
+#: apps/pootle_project/models.py:179
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:179
+#: apps/pootle_project/models.py:180
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 
-#: apps/pootle_project/models.py:183
+#: apps/pootle_project/models.py:184
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:188
-#: apps/pootle_translationproject/models.py:151
+#: apps/pootle_project/models.py:189
 msgid "Disabled"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:65
 msgid "Target"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "State"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:67
 #, fuzzy
 msgid "Comment"
 msgstr "Ditshwaotshwao"
@@ -980,17 +957,17 @@ msgid "Mozilla .lang"
 msgstr ""
 
 #: apps/pootle_store/forms.py:88
-#: apps/pootle_store/templatetags/store_tags.py:146
-#: apps/pootle_store/templatetags/store_tags.py:162
-#: apps/pootle_store/templatetags/store_tags.py:169
-#: apps/pootle_store/templatetags/store_tags.py:181
-#: apps/pootle_store/templatetags/store_tags.py:183
+#: apps/pootle_store/templatetags/store_tags.py:147
+#: apps/pootle_store/templatetags/store_tags.py:163
+#: apps/pootle_store/templatetags/store_tags.py:170
+#: apps/pootle_store/templatetags/store_tags.py:182
+#: apps/pootle_store/templatetags/store_tags.py:184
 #, python-format
 msgid "Plural Form %d"
 msgstr "Sebopego sa bontši sa %d"
 
 #: apps/pootle_store/forms.py:211 apps/pootle_store/util.py:31
-#: core/helpers.py:56 templates/editor/_filters.html:10
+#: core/helpers.py:57 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr ""
 
@@ -998,46 +975,46 @@ msgstr ""
 msgid "Fuzzy flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:291
+#: apps/pootle_store/forms.py:290
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:301
+#: apps/pootle_store/forms.py:300
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:325
 msgid "Translator comment"
 msgstr "Tshwaotshwao ya mofetoledi"
 
-#: apps/pootle_store/models.py:147
+#: apps/pootle_store/models.py:143
 msgid "Pending"
 msgstr "Letetšwe"
 
-#: apps/pootle_store/models.py:148
+#: apps/pootle_store/models.py:144
 msgid "Accepted"
 msgstr "Amogetšwe"
 
-#: apps/pootle_store/models.py:149
+#: apps/pootle_store/models.py:145
 msgid "Rejected"
 msgstr "Gannwe"
 
-#: apps/pootle_store/models.py:1277
+#: apps/pootle_store/models.py:1274
 #, python-format
 msgid "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;added"
 msgstr ""
 
-#: apps/pootle_store/models.py:1337
+#: apps/pootle_store/models.py:1329
 msgid "Path"
 msgstr "Tsejana"
 
-#: apps/pootle_store/templatetags/store_tags.py:140
-#: apps/pootle_store/templatetags/store_tags.py:142
+#: apps/pootle_store/templatetags/store_tags.py:141
+#: apps/pootle_store/templatetags/store_tags.py:143
 msgid "Singular"
 msgstr "Botee"
 
-#: apps/pootle_store/templatetags/store_tags.py:140
-#: apps/pootle_store/templatetags/store_tags.py:142
+#: apps/pootle_store/templatetags/store_tags.py:141
+#: apps/pootle_store/templatetags/store_tags.py:143
 msgid "Plural"
 msgstr "Bontši"
 
@@ -1045,23 +1022,23 @@ msgstr "Bontši"
 msgid "Obsolete"
 msgstr ""
 
-#: apps/pootle_store/views.py:408 core/decorators.py:45
+#: apps/pootle_store/views.py:466 core/decorators.py:46
 msgid "Arguments missing."
 msgstr ""
 
-#: apps/pootle_store/views.py:636
+#: apps/pootle_store/views.py:695
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:671
+#: apps/pootle_store/views.py:729
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:917
 msgid "Failed to process submission."
 msgstr ""
 
-#: apps/pootle_store/views.py:913
+#: apps/pootle_store/views.py:958
 msgid "Failed to process suggestion."
 msgstr ""
 
@@ -1069,18 +1046,12 @@ msgstr ""
 msgid "This term already exists in this file."
 msgstr ""
 
-#: apps/staticpages/forms.py:60
+#: apps/staticpages/forms.py:59
 #, python-format
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
-
-#: apps/staticpages/models.py:28 models/user.py:68
-#: templates/admin/staticpages/_table.html:6
-#, fuzzy
-msgid "Active"
-msgstr "dirago"
 
 #: apps/staticpages/models.py:30
 msgid "Whether this page is active or not."
@@ -1113,66 +1084,265 @@ msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:99
+#: apps/staticpages/models.py:96
 msgid "URL or content must be provided."
 msgstr ""
 
-#: apps/staticpages/models.py:107
+#: apps/staticpages/models.py:104
 msgid "Virtual path already in use."
 msgstr ""
 
-#: apps/staticpages/models.py:112
+#: apps/staticpages/models.py:113
 msgid "Legal Page"
 msgstr ""
 
-#: apps/staticpages/models.py:123
+#: apps/staticpages/models.py:124
 msgid "Regular Page"
 msgstr ""
 
-#: apps/staticpages/views.py:108 templates/admin/staticpages/_table.html:8
+#: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr ""
 
-#: apps/staticpages/views.py:113
+#: apps/staticpages/views.py:116
 #, python-format
 msgid "page-%d"
 msgstr ""
 
-#: core/browser.py:22
+#. Translators: 'projects' must not be translated.
+#: apps/staticpages/views.py:128
+msgid ""
+"projects/<project_code> or <language_code> or <language_code>/<project_code>"
+msgstr ""
+
+#: apps/virtualfolder/models.py:39
+#, fuzzy
+msgid "Location"
+msgstr "Mafelo"
+
+#: apps/virtualfolder/models.py:42
+msgid "Root path where this virtual folder is applied."
+msgstr ""
+
+#. Translators: This is a noun.
+#: apps/virtualfolder/models.py:46
+msgid "Filter"
+msgstr ""
+
+#: apps/virtualfolder/models.py:48
+msgid "Filtering rules that tell which stores this virtual folder comprises."
+msgstr ""
+
+#: apps/virtualfolder/models.py:52 core/browser.py:24
+msgid "Priority"
+msgstr ""
+
+#: apps/virtualfolder/models.py:54
+msgid ""
+"Number specifying importance. Greater priority means it is more important."
+msgstr ""
+
+#: apps/virtualfolder/models.py:58
+msgid "Is browsable?"
+msgstr ""
+
+#: apps/virtualfolder/models.py:60
+msgid "Whether this virtual folder is active or not."
+msgstr ""
+
+#: apps/virtualfolder/models.py:65
+#, python-format
+msgid ""
+"Use this to provide more information or instructions. Allowed markup: %s"
+msgstr ""
+
+#: checks.py:57
+msgid "Your version of Django is too old."
+msgstr ""
+
+#: checks.py:58
+#, python-format
+msgid "Try pip install --upgrade 'Django==%s'"
+msgstr ""
+
+#: checks.py:65
+msgid "Your version of lxml is too old."
+msgstr ""
+
+#: checks.py:66
+msgid "Try pip install --upgrade lxml"
+msgstr ""
+
+#: checks.py:72
+msgid "Your version of Translate Toolkit is too old."
+msgstr ""
+
+#: checks.py:73
+msgid "Try pip install --upgrade translate-toolkit"
+msgstr ""
+
+#: checks.py:88
+#, fuzzy
+msgid ""
+"Can't find python-levenshtein package. Updating against templates is faster "
+"with python-levenshtein."
+msgstr ""
+"Ga e kgone go hwetša sephuthelwana sa python-levenshtein. Go mpshafatša go "
+"tšwa dithempoleiting go direga ka lebelo ka python-levenshtein."
+
+#: checks.py:90
+msgid "Try pip install python-levenshtein"
+msgstr ""
+
+#: checks.py:109
+#, python-format
+msgid "Could not connect to Redis (%s)"
+msgstr ""
+
+#: checks.py:110
+#, python-format
+msgid "Make sure Redis is running on %(host)s:%(port)s"
+msgstr ""
+
+#: checks.py:119
+msgid "No RQ Worker running."
+msgstr ""
+
+#: checks.py:120
+msgid "Run new workers with manage.py rqworker"
+msgstr ""
+
+#: checks.py:127
+#, fuzzy
+msgid "Your version of Redis is too old."
+msgstr "Go loketšwe tokollo ya %s ya Django."
+
+#: checks.py:128
+msgid "Update your system's Redis server package"
+msgstr ""
+
+#: checks.py:143
+msgid "Cache backend is not set to Redis."
+msgstr ""
+
+#: checks.py:144
+#, python-format
+msgid ""
+"Set default cache backend to django_redis.cache.RedisCache\n"
+"Current settings: %r"
+msgstr ""
+
+#: checks.py:153
+msgid "Could not initiate a Redis cache connection"
+msgstr ""
+
+#: checks.py:154
+msgid "Double-check your CACHES settings"
+msgstr ""
+
+#: checks.py:160
+msgid "DEBUG mode is on. Do not do this in production!"
+msgstr ""
+
+#: checks.py:161
+msgid "Set DEBUG = False in Pootle settings"
+msgstr ""
+
+#: checks.py:167
+msgid "The sqlite database backend is unsupported"
+msgstr ""
+
+#: checks.py:168
+msgid "Set your default database engine to postgresql_psycopg2 or mysql"
+msgstr ""
+
+#: checks.py:174
+msgid "Not using cached_db as session engine"
+msgstr ""
+
+#: checks.py:175
+#, python-format
+msgid ""
+"Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
+"Current settings: %r"
+msgstr ""
+
+#: checks.py:182
+msgid "POOTLE_CONTACT_EMAIL is not set."
+msgstr ""
+
+#: checks.py:183
+msgid ""
+"Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
+"the Pootle contact form."
+msgstr ""
+
+#: checks.py:191
+#, python-format
+msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
+msgstr ""
+
+#: checks.py:193
+msgid ""
+"POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
+"contact form."
+msgstr ""
+
+#: checks.py:200
+msgid "settings.DEFAULT_FROM_EMAIL is not set."
+msgstr ""
+
+#: checks.py:201 checks.py:211
+msgid ""
+"DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
+"Don't forget to review your mail server settings."
+msgstr ""
+
+#: checks.py:209
+#, python-format
+msgid "settings.DEFAULT_FROM_EMAIL is using the following default setting %r."
+msgstr ""
+
+#: core/browser.py:29
 msgid "Project"
 msgstr "Projeke"
 
 #. Translators: noun. The graphical representation of translation status
-#: core/browser.py:33
+#: core/browser.py:40
 msgid "Progress"
 msgstr "Kgatelopele"
 
-#: core/browser.py:45 templates/browser/overview.html:39
+#: core/browser.py:52 templates/browser/index.html:39
 msgid "Last updated"
 msgstr ""
 
-#: core/browser.py:50
+#: core/browser.py:57
 msgid "Need Translation"
 msgstr ""
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:56 templates/editor/_filters.html:11
+#: core/browser.py:63 templates/editor/_filters.html:11
 msgid "Suggestions"
 msgstr "Ditšhišinyo"
 
-#: core/browser.py:66
+#: core/browser.py:73
 msgid "Last Activity"
 msgstr "Tiragalo ya mafelelo"
 
-#: core/browser.py:112
+#: core/browser.py:130
+#, fuzzy
+msgid "Back to language"
+msgstr "Morago letlakaleng le legolo"
+
+#: core/browser.py:132
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:304
+#: core/decorators.py:313
 msgid "Insufficient rights to access this page."
 msgstr ""
 
-#: core/decorators.py:317 core/views.py:33
+#: core/decorators.py:326 core/views.py:34
 msgid "You do not have rights to administer Pootle."
 msgstr "Ga o na ditokelo tša go laola Pootle."
 
@@ -1188,158 +1358,100 @@ msgstr "Tsenya nomoro"
 msgid "Incorrect"
 msgstr "Fošagetše"
 
-#: core/helpers.py:41
+#: core/helpers.py:42
 msgid "User missing"
 msgstr ""
 
 #. Translators: This refers to "All strings"
-#: core/helpers.py:53 templates/editor/_filters.html:6
+#: core/helpers.py:54 templates/editor/_filters.html:6
 msgid "All"
 msgstr ""
 
-#: core/helpers.py:57 templates/editor/_filters.html:8
+#: core/helpers.py:58 templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr ""
 
-#. Translators: This is the name of a filter
-#: core/helpers.py:59 templates/core/search.html:5
-msgid "Search"
-msgstr "Nyaka"
-
-#: core/helpers.py:60 templates/editor/_filters.html:18
+#: core/helpers.py:61 templates/editor/_filters.html:18
 msgid "Checks"
 msgstr ""
 
-#: core/helpers.py:61 templates/editor/_filters.html:13
+#: core/helpers.py:62 templates/editor/_filters.html:13
 msgid "My submissions"
 msgstr ""
 
-#: core/helpers.py:62 templates/admin/dashboard.html:19
+#: core/helpers.py:63 templates/admin/dashboard.html:13
 msgid "Submissions"
 msgstr "Tše rometšwego"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
-#: core/helpers.py:63 templates/editor/_filters.html:17
+#: core/helpers.py:64 templates/editor/_filters.html:17
 msgid "My overwritten submissions"
 msgstr ""
 
-#: core/helpers.py:64
+#: core/helpers.py:65
 msgid "Overwritten submissions"
 msgstr ""
 
-#: core/initdb.py:110
+#: core/initdb.py:109
 msgid "Can access a project"
 msgstr ""
 
-#: core/initdb.py:114
+#: core/initdb.py:113
 msgid "Cannot access a project"
 msgstr ""
 
-#: core/initdb.py:118
+#: core/initdb.py:117
 msgid "Can make a suggestion for a translation"
 msgstr "O ka dira tšhišinyo ka ga phetolelo"
 
-#: core/initdb.py:122
+#: core/initdb.py:121
 msgid "Can submit a translation"
 msgstr "O ka romela phetolelo"
 
-#: core/initdb.py:126
-msgid "Can review translations"
-msgstr "O ka boeletša diphetolelo"
+#: core/initdb.py:125
+#, fuzzy
+msgid "Can review suggestions"
+msgstr "Boeletša ditšhišinyo"
 
-#: core/initdb.py:130
+#: core/initdb.py:129
 msgid "Can administrate a translation project"
 msgstr "O ka laola projeke ya phetolelo"
 
-#: core/views.py:65
+#: core/views.py:66
 msgid "You cannot access this page."
 msgstr ""
 
-#: middleware/errorpages.py:66
-#, python-format
-msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
+#: custom/templates/layout.html:11
+msgid "Getting Started"
+msgstr ""
+
+#: custom/templates/layout.html:15
+#, fuzzy
+msgid "License Terms"
+msgstr "Sengwalwa sa mothopo"
+
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:116
+#: templates/user/settings.html:4 templates/user/settings.html.py:7
+msgid "Settings"
+msgstr "Dipeakanyo"
+
+#: middleware/errorpages.py:57
+#, fuzzy, python-format
+msgid ""
+"You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
+"access this page."
 msgstr ""
 "O swanetše go tsena go <a href=\"%(login_link)s\"></a> gore o tsene "
 "letlakaleng le."
 
-#: middleware/errorpages.py:105
+#: middleware/errorpages.py:97
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "Phošo ya go tsena go %(filename)s, Phošo yeo e rometšwego ya tshepedišo ya "
 "difaele: %(errormsg)s"
-
-#: models/user.py:57
-msgid ""
-"Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
-msgstr ""
-
-#: models/user.py:61
-msgid "Enter a valid username."
-msgstr ""
-
-#: models/user.py:65 templates/registration/password_reset_form.html:19
-msgid "Email Address"
-msgstr "Aterese ya imeile"
-
-#: models/user.py:69
-msgid ""
-"Designates whether this user should be treated as active. Unselect this "
-"instead of deleting accounts."
-msgstr ""
-
-#: models/user.py:71
-#, fuzzy
-msgid "Superuser Status"
-msgstr "Molaodi"
-
-#: models/user.py:72
-msgid ""
-"Designates that this user has all permissions without explicitly assigning "
-"them."
-msgstr ""
-
-#: models/user.py:75
-msgid "date joined"
-msgstr ""
-
-#: models/user.py:79
-msgid "Number of Rows"
-msgstr "Palo ya methalo"
-
-#: models/user.py:82
-msgid "Alternative Source Languages"
-msgstr "Maleme a mangwe a mothopo"
-
-#: models/user.py:85 templates/admin/detailed_reports.html:149
-msgid "Rate"
-msgstr ""
-
-#: models/user.py:88
-msgid "Score"
-msgstr ""
-
-#: models/user.py:91
-msgid "Is employee?"
-msgstr ""
-
-#: models/user.py:92
-msgid "Twitter"
-msgstr ""
-
-#: models/user.py:94
-msgid "Website"
-msgstr ""
-
-#: models/user.py:95
-msgid "LinkedIn"
-msgstr ""
-
-#: models/user.py:96
-msgid "Short Bio"
-msgstr ""
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:35
@@ -1371,7 +1483,7 @@ msgstr ""
 msgid "Terms of Service"
 msgstr ""
 
-#: templates/about.html:7 templates/layout.html:178
+#: templates/about.html:7 templates/layout.html:171
 msgid "About"
 msgstr "Ka ga"
 
@@ -1380,8 +1492,7 @@ msgstr "Ka ga"
 msgid "About This Pootle Server"
 msgstr "Ka ga seabi se sa Pootle"
 
-#. Translators: For better readability, make sure to leave an space after the closing </i> tag
-#: templates/about.html:15
+#: templates/about.html:16
 #, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
@@ -1394,10 +1505,10 @@ msgstr ""
 "wepeng bakeng sa go matlafatša dihlopha gore di dire diphetolelo le go di "
 "laola. Thulusi ye ya setšhaba ke Lenaneotirišo la Bolokologi, gomme sehlopha "
 "se sengwe le se sengwe se ka e diriša le go tsenya letsogo go setšhaba sa "
-"Pootle. Bala ka mo go oketšegilego go wepesaete ya projeke go <a href=\""
-"http://translate.sourceforge.net/\"></a>."
+"Pootle. Bala ka mo go oketšegilego go wepesaete ya projeke go <a href="
+"\"http://translate.sourceforge.net/\"></a>."
 
-#: templates/about.html:16
+#: templates/about.html:26
 #, fuzzy, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
@@ -1405,36 +1516,68 @@ msgid ""
 msgstr ""
 "Pootle %(pootle_ver)s e matlafaditšwe ke Translate Toolkit %(toolkit_ver)s"
 
+#: templates/account/email/email_confirmation_message.txt:2
+msgid "A Pootle account has been created for you using this email address."
+msgstr "O hlametšwe akhaonto ya Pootle go dirišwa aterese ye ya imeile."
+
+#: templates/account/email/email_confirmation_message.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "Gore o diragatše akhaonto ya gago, latelela lomaganyo ye:"
+
+#: templates/account/email/email_confirmation_message.txt:6
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message."
+msgstr ""
+"Molaetša wo o rometšwe go kgonthišetša gore ruri aterese ya imeile e "
+"nepagetše. Ge e ba o be o sa nyake go ngwadiša akhaonto, o ka fo hlokomologa "
+"molaetša wo."
+
+#: templates/account/email/email_confirmation_subject.txt:2
+#, fuzzy
+msgid "Pootle e-mail confirmation"
+msgstr "Ngwadišo ya Pootle"
+
+#: templates/account/signup_closed.html:5
+#: templates/account/signup_closed.html:8
+#: templates/account/signup_closed.html:13
+#, fuzzy
+msgid "Registration Disabled"
+msgstr "profaele ya ngwadišo"
+
+#: templates/account/signup_closed.html:14
+msgid "Registration is currently disabled. Please try again later."
+msgstr ""
+
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
 msgid "Save Changes"
 msgstr "Boloka diphetošo"
 
-#: templates/admin/_tabs.html:3
+#: templates/admin/_tabs.html:6
 msgid "Info"
 msgstr "Tshedimošo"
 
-#: templates/admin/_tabs.html:4 templates/admin/dashboard.html:25
-#: templates/admin/users.html:4 templates/admin/users.html.py:9
-#: templates/user/base.html:4 templates/user/base.html.py:6
-#: templates/user/stats.html:51
+#: templates/admin/_tabs.html:11 templates/admin/dashboard.html:21
+#: templates/admin/users.html:4 templates/admin/users.html.py:7
+#: templates/user/base.html:4
 msgid "Users"
 msgstr "Badiriši"
 
-#: templates/admin/_tabs.html:5 templates/admin/languages.html:4
-#: templates/admin/languages.html.py:9 templates/projects/_nav.html:26
+#: templates/admin/_tabs.html:16 templates/admin/languages.html:4
+#: templates/admin/languages.html.py:7 templates/projects/_nav.html:26
 #: templates/projects/admin/languages.html:7
 #: templates/projects/all/_nav.html:26
 msgid "Languages"
 msgstr "Maleme"
 
-#: templates/admin/_tabs.html:6 templates/admin/projects.html:4
-#: templates/admin/projects.html.py:9 templates/projects/base.html:5
+#: templates/admin/_tabs.html:21 templates/admin/projects.html:4
+#: templates/admin/projects.html.py:7 templates/projects/base.html:5
 msgid "Projects"
 msgstr "Diprojeke"
 
-#: templates/admin/_tabs.html:7 templates/admin/permissions.html:4
-#: templates/admin/permissions.html.py:9 templates/languages/_nav.html:26
+#: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
+#: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
 #: templates/languages/admin/permissions.html:5
 #: templates/projects/_nav.html:31 templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:31
@@ -1443,13 +1586,13 @@ msgstr "Diprojeke"
 msgid "Permissions"
 msgstr "Ditumelelo"
 
-#: templates/admin/_tabs.html:8 templates/admin/staticpages/base.html:4
-#: templates/admin/staticpages/base.html:10
+#: templates/admin/_tabs.html:31 templates/admin/staticpages/base.html:4
+#: templates/admin/staticpages/base.html:8
 msgid "Static Pages"
 msgstr ""
 
-#: templates/admin/_tabs.html:9 templates/admin/reports.html:47
-#: templates/admin/reports.html.py:50
+#: templates/admin/_tabs.html:36 templates/admin/reports.html:45
+#: templates/admin/reports.html.py:48
 msgid "Reports"
 msgstr ""
 
@@ -1457,53 +1600,41 @@ msgstr ""
 msgid "Administration"
 msgstr "Taolo"
 
-#: templates/admin/dashboard.html:13
+#: templates/admin/dashboard.html:7
 msgid "Server Statistics"
 msgstr "Dipalopalo tša modiriši"
 
-#: templates/admin/dashboard.html:22
+#: templates/admin/dashboard.html:17
 msgid "Pending suggestions"
 msgstr "Ditšhišinyo tše letetšwego"
 
-#: templates/admin/dashboard.html:31
+#: templates/admin/dashboard.html:29
 msgid "More..."
 msgstr "... tše oketšegilego"
 
-#: templates/admin/dashboard.html:38
+#: templates/admin/dashboard.html:37
 msgid "Background Jobs"
 msgstr ""
 
-#: templates/admin/dashboard.html:44
+#: templates/admin/dashboard.html:43
 msgid "Status"
 msgstr ""
 
-#: templates/admin/dashboard.html:45
-msgid "Running"
-msgstr ""
-
-#: templates/admin/dashboard.html:45
-msgid "Stopped"
-msgstr ""
-
-#: templates/admin/dashboard.html:48
+#: templates/admin/dashboard.html:50
 msgid "Pending jobs"
 msgstr ""
 
-#: templates/admin/dashboard.html:51
+#: templates/admin/dashboard.html:54
 msgid "Failed jobs"
 msgstr ""
 
-#: templates/admin/dashboard.html:60
-msgid "Dependency Checks"
-msgstr "Ditekolo tša go ithekga"
+#: templates/admin/dashboard.html:64
+msgid "System Checks"
+msgstr ""
 
-#: templates/admin/dashboard.html:69
-msgid "Optional"
-msgstr "Boikgethelo"
-
-#: templates/admin/dashboard.html:77
-msgid "Optimizations"
-msgstr "Ditirišotlalo"
+#: templates/admin/dashboard.html:74
+msgid "No issues have been detected. All is good!"
+msgstr ""
 
 #: templates/admin/detailed_reports.html:6
 #, python-format
@@ -1574,7 +1705,7 @@ msgstr ""
 msgid "Please select a valid user."
 msgstr ""
 
-#: templates/admin/permissions.html:12
+#: templates/admin/permissions.html:10
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
@@ -1582,23 +1713,23 @@ msgstr ""
 "Mo o ka oketša, lokiša le go phumola ditumelelo ka moka tša tirelwa go seabi "
 "se sa Pootle."
 
-#: templates/admin/permissions.html:16
+#: templates/admin/permissions.html:14
 #: templates/languages/admin/permissions.html:11
 #: templates/projects/admin/permissions.html:13
-#: templates/translation_projects/admin/permissions.html:13
+#: templates/translation_projects/admin/permissions.html:11
 msgid ""
 "The user “nobody” refers to any user that is not logged in (an anonymous, "
 "unidentified user). The user “default” refers to the rights that all logged "
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"Lediriši la \"nobody\" le bolela ka modiriši ofe goba ofe yo a sa tsenago ("
-"modiriši yo a sa tsebjwego, a sa ipolelwago ka leina). Lediriši la \""
-"default\" le bolela ka ditokelo tšeo badiriši bohle bao ba ingwadišitšego ba "
-"tla bago le tšona ka tirelwa, ka ntle le ge ba filwe ditokelo tše dingwe ka "
-"go lebanya."
+"Lediriši la \"nobody\" le bolela ka modiriši ofe goba ofe yo a sa tsenago "
+"(modiriši yo a sa tsebjwego, a sa ipolelwago ka leina). Lediriši la \"default"
+"\" le bolela ka ditokelo tšeo badiriši bohle bao ba ingwadišitšego ba tla "
+"bago le tšona ka tirelwa, ka ntle le ge ba filwe ditokelo tše dingwe ka go "
+"lebanya."
 
-#: templates/admin/reports.html:60 templates/user/stats.html:63
+#: templates/admin/reports.html:58 templates/user/stats.html:60
 msgid "Daily activity"
 msgstr ""
 
@@ -1636,9 +1767,7 @@ msgid "Set Rates"
 msgstr ""
 
 #: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:24
-#: templates/profiles/settings/personal.html:21
-#: templates/profiles/settings/profile.html:25
+#: templates/admin/staticpages/_form.html:24 templates/user/settings.html:40
 msgid "Save"
 msgstr "Boloka"
 
@@ -1653,10 +1782,9 @@ msgstr ""
 
 #: templates/admin/staticpages/_form.html:30
 msgid ""
-"\n"
 "Use <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/a&gt;"
 "</code> code to provide links between static pages. Such links will be "
-"rewritten with full paths to static pages.\n"
+"rewritten with full paths to static pages."
 msgstr ""
 
 #: templates/admin/staticpages/_table.html:10
@@ -1747,60 +1875,59 @@ msgstr ""
 msgid "<span class='value untranslated'>0</span>%% untranslated"
 msgstr ""
 
-#: templates/browser/overview.html:13
+#: templates/browser/index.html:13
 msgid "Expand details"
 msgstr ""
 
-#: templates/browser/overview.html:20
+#: templates/browser/index.html:20
 msgid "Translation Statistics"
 msgstr ""
 
-#: templates/browser/overview.html:43
+#: templates/browser/index.html:43
 msgid "Last action"
 msgstr ""
 
-#: templates/browser/overview.html:51
+#: templates/browser/index.html:51
 msgid "Failing Checks"
 msgstr "Ditekolo tšeo di palelwago"
 
-#: templates/browser/overview.html:90
+#: templates/browser/index.html:104
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
-#: templates/browser/overview.html:95
+#: templates/browser/index.html:109
 msgid ""
 "Some data on this page is currently being calculated, and the page will be "
 "refreshed automatically in <strong>30 seconds</strong>."
 msgstr ""
 
-#: templates/browser/overview.html:96
+#: templates/browser/index.html:113
 msgid "Refresh now"
 msgstr ""
 
-#: templates/browser/overview.html:119
+#: templates/browser/index.html:149
 msgid "Congratulations! You have completed this task!"
 msgstr ""
 
-#: templates/contact_form/contact_form.html:5
+#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:104
 msgid "Contact Us"
 msgstr "Ikgokaganye le rena"
 
-#: templates/contact_form/contact_form.html:7
-msgid "You have to fill all the fields, and please <b>write in English</b>."
+#: templates/contact_form/xhr_contact_form.html:8
+msgid "Please fill in all the fields."
 msgstr ""
 
-#: templates/contact_form/contact_form.html:15
+#: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
 msgstr ""
 
-#: templates/contact_form/contact_form.html:20
+#: templates/contact_form/xhr_contact_form.html:24
 msgid "Thanks!"
 msgstr ""
 
-#: templates/contact_form/contact_form.html:21
+#: templates/contact_form/xhr_contact_form.html:26
 msgid ""
-"We have received your message and will try to\n"
-"      respond as soon as possible."
+"We have received your message and will try to respond as soon as possible."
 msgstr ""
 
 #: templates/core/_top_scorers.html:8
@@ -1838,7 +1965,7 @@ msgid "Confirm"
 msgstr "Netefatša"
 
 #: templates/editor/_actions.html:5
-msgid "Go back to overview"
+msgid "Go back to browsing"
 msgstr ""
 
 #: templates/editor/_filters.html:12
@@ -1854,29 +1981,33 @@ msgstr ""
 msgid "Default order"
 msgstr ""
 
-#: templates/editor/_toolbar.html:7
+#: templates/editor/_toolbar.html:8
+msgid "Important first"
+msgstr ""
+
+#: templates/editor/_toolbar.html:10
 msgid "Newest first"
 msgstr ""
 
-#: templates/editor/_toolbar.html:8
+#: templates/editor/_toolbar.html:11
 msgid "Oldest first"
 msgstr ""
 
-#: templates/editor/_toolbar.html:14
+#: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
 msgstr ""
 
-#: templates/editor/_toolbar.html:17
+#: templates/editor/_toolbar.html:20
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
 
-#: templates/editor/_toolbar.html:19
+#: templates/editor/_toolbar.html:22
 msgid "Total strings"
 msgstr ""
 
-#: templates/editor/_toolbar.html:22
+#: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
 msgstr ""
 
@@ -1900,7 +2031,7 @@ msgstr "Maleme ka moka"
 msgid "No strings."
 msgstr ""
 
-#: templates/editor/export_view.html:148
+#: templates/editor/export_view.html:149
 #, python-format
 msgid ""
 "We displayed first %(count)s units out of %(total_count)s. Please refine "
@@ -1919,148 +2050,152 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr ""
 
 #: templates/editor/units/edit.html:19
+msgid "Priority:"
+msgstr ""
+
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr ""
 
-#: templates/editor/units/edit.html:30
-#, fuzzy
-msgid "Terminology:"
-msgstr "Mareo"
-
-#: templates/editor/units/edit.html:33
-msgid "Insert the translated term into the editor"
-msgstr ""
-
-#: templates/editor/units/edit.html:44
-#, fuzzy
-msgid "Comments:"
-msgstr "Ditshwaotshwao"
-
-#: templates/editor/units/edit.html:53
-msgid "Click to open the image in a popup"
-msgstr ""
-
-#: templates/editor/units/edit.html:62
+#: templates/editor/units/edit.html:36
 #, fuzzy
 msgid "Locations:"
 msgstr "Mafelo"
 
-#: templates/editor/units/edit.html:71
+#: templates/editor/units/edit.html:46
+#, fuzzy
+msgid "Terminology:"
+msgstr "Mareo"
+
+#: templates/editor/units/edit.html:49
+msgid "Insert the translated term into the editor"
+msgstr ""
+
+#: templates/editor/units/edit.html:62
+#, fuzzy
+msgid "Comments:"
+msgstr "Ditshwaotshwao"
+
+#: templates/editor/units/edit.html:70
+msgid "Click to open the image in a popup"
+msgstr ""
+
+#: templates/editor/units/edit.html:84
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:95 templates/editor/units/edit.html:121
+#: templates/editor/units/edit.html:108 templates/editor/units/edit.html:134
 msgid "Copy into translation"
 msgstr "Kopišetša phetolelong"
 
-#: templates/editor/units/edit.html:117
+#: templates/editor/units/edit.html:130
 msgid "Report a problem with this string"
 msgstr ""
 
-#: templates/editor/units/edit.html:139 templates/editor/units/edit.html:150
-#: templates/editor/units/edit.html:243
+#: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:256
 msgid "Submit"
 msgstr "Romela"
 
-#: templates/editor/units/edit.html:140
+#: templates/editor/units/edit.html:153
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 
-#: templates/editor/units/edit.html:145 templates/editor/units/edit.html:151
+#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
 msgid "Suggest"
 msgstr "Šišinya"
 
-#: templates/editor/units/edit.html:146
+#: templates/editor/units/edit.html:159
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 
-#: templates/editor/units/edit.html:150
+#: templates/editor/units/edit.html:163
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:151
+#: templates/editor/units/edit.html:164
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:156
+#: templates/editor/units/edit.html:169
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:171
+#: templates/editor/units/edit.html:184
 msgid "Show Timeline"
 msgstr ""
 
-#: templates/editor/units/edit.html:173
+#: templates/editor/units/edit.html:186
 msgid "Add Comment"
 msgstr "Tsenya tshwaotshwao"
 
-#: templates/editor/units/edit.html:175
+#: templates/editor/units/edit.html:188
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:185
+#: templates/editor/units/edit.html:198
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
-#: templates/editor/units/edit.html:195
+#: templates/editor/units/edit.html:208
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:198
+#: templates/editor/units/edit.html:211
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:201
+#: templates/editor/units/edit.html:214
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:204
+#: templates/editor/units/edit.html:217
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:207
+#: templates/editor/units/edit.html:220
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:210
+#: templates/editor/units/edit.html:223
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:213
+#: templates/editor/units/edit.html:226
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:216
+#: templates/editor/units/edit.html:229
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:219
+#: templates/editor/units/edit.html:232
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:226
+#: templates/editor/units/edit.html:239
 msgid "Insert this symbol into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:263
+#: templates/editor/units/edit.html:276
 #, fuzzy
 msgid "User suggestions"
 msgstr "Lebelela ditšhišinyo"
 
-#: templates/editor/units/edit.html:280
+#: templates/editor/units/edit.html:293
 msgid "Accept suggestion"
 msgstr "Amogela tšhišinyo"
 
-#: templates/editor/units/edit.html:285
+#: templates/editor/units/edit.html:298
 msgid "Reject suggestion"
 msgstr "Gana tšhišinyo"
 
-#: templates/editor/units/edit.html:292
+#: templates/editor/units/edit.html:305
 msgid "Remove suggestion"
 msgstr "Tloša tšhišinyo"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:320
 msgid "A long time ago"
 msgstr ""
 
@@ -2083,12 +2218,12 @@ msgstr "Kgonagalo ya mathata a phetolelo"
 msgid "Failing checks:"
 msgstr "Ditekolo tšeo di palelwago"
 
-#: templates/editor/units/xhr_checks.html:9
+#: templates/editor/units/xhr_checks.html:10
 #, fuzzy
 msgid "Mute quality check"
 msgstr "Tloša tekolo ya khwaliti"
 
-#: templates/editor/units/xhr_checks.html:9
+#: templates/editor/units/xhr_checks.html:11
 #, fuzzy
 msgid "Unmute quality check"
 msgstr "Tloša tekolo ya khwaliti"
@@ -2159,7 +2294,7 @@ msgstr "Go tšweletše phošo. Re leboga go se fele pelo ga gago."
 msgid "Exception:"
 msgstr ""
 
-#: templates/errors/500.html:20
+#: templates/errors/500.html:21
 #, python-format
 msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
@@ -2172,153 +2307,65 @@ msgstr ""
 
 #: templates/errors/db.html:11
 msgid ""
-"Pootle can't connect to the database, the database is not\n"
-"initialized yet, or a schema upgrade is needed before continuing."
+"Pootle can't connect to the database, the database is not initialized yet, "
+"or a schema upgrade is needed before continuing."
 msgstr ""
 
-#: templates/errors/db.html:16
+#: templates/errors/db.html:18
 #, python-format
 msgid ""
-"\n"
 "Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
-"installation\n"
-"and upgrade instructions. Contact the server administrator if you feel this "
-"is\n"
-"a mistake."
+"installation and upgrade instructions. Contact the server administrator if "
+"you feel this is a mistake."
 msgstr ""
 
-#: templates/errors/db.html:23
+#: templates/errors/db.html:26
 msgid "The reported error was:"
 msgstr ""
 
 #: templates/languages/_nav.html:5 templates/projects/_nav.html:5
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:5
-msgid "Overview"
-msgstr "Kakaretšo"
+msgid "Browse"
+msgstr ""
 
 #: templates/languages/admin/permissions.html:9
 msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr "Ka mo tlase o ka oketša, lokiša le go phumola ditumelelo tša leleme le."
+msgstr ""
+"Ka mo tlase o ka oketša, lokiša le go phumola ditumelelo tša leleme le."
 
-#: templates/layout.html:88
+#: templates/layout.html:78
 msgid "Pootle requires JavaScript"
 msgstr ""
 
-#: templates/layout.html:89
+#: templates/layout.html:79
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 
-#: templates/layout.html:104
+#: templates/layout.html:94
 msgid "skip to navigation"
 msgstr "tabogela go tshepelatshepelo"
 
-#: templates/layout.html:122
+#: templates/layout.html:115
 msgid "Public Profile"
 msgstr ""
 
-#: templates/layout.html:123 templates/profiles/_tabs.html:4
-msgid "Settings"
-msgstr "Dipeakanyo"
-
-#: templates/layout.html:124 templates/user/stats.html:48
-#: templates/user/stats.html.py:53
+#: templates/layout.html:117 templates/user/stats.html:46
+#: templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr ""
 
-#: templates/layout.html:126
+#: templates/layout.html:119
 msgid "Admin"
 msgstr "Taolo"
 
-#: templates/layout.html:129
-msgid "Sign Out"
+#: templates/layout.html:122
+msgid "Sign out"
 msgstr ""
 
-#: templates/layout.html:133 templates/welcome.html:18
+#: templates/layout.html:126
 msgid "Sign In"
-msgstr ""
-
-#: templates/login.html:4 templates/login.html.py:9
-msgid "Log In"
-msgstr "Tsena"
-
-#: templates/login.html:14
-msgid "Login to Pootle"
-msgstr "Tsena go Pootle"
-
-#: templates/login.html:20
-msgid "Your username and password didn't match. Please try again."
-msgstr ""
-"Leina la modiriši le lentšuphetišo tša gago di be di sa swane. Hle leka gape."
-
-#: templates/login.html:26
-msgid "Login"
-msgstr "Tsena"
-
-#: templates/login.html:33
-msgid "Lost your Password?"
-msgstr "O lebetše lentšuphetišo la gago?"
-
-#: templates/notifications/_latest.html:9
-msgid "No news yet."
-msgstr "Ga go sešo gwa ba le ditaba."
-
-#: templates/profiles/_tabs.html:6
-#: templates/profiles/settings/evernote_account.html:38
-msgid "Link with Evernote"
-msgstr ""
-
-#: templates/profiles/base.html:4 templates/profiles/base.html.py:6
-msgid "My Account"
-msgstr "Akhaonto ya-ka"
-
-#: templates/profiles/settings/evernote_account.html:4
-#: templates/profiles/settings/evernote_account.html:7
-msgid "Evernote account"
-msgstr ""
-
-#: templates/profiles/settings/evernote_account.html:14
-#, python-format
-msgid ""
-"This Pootle account is linked with \"<strong>%(username)s</strong>\" "
-"Evernote account."
-msgstr ""
-
-#: templates/profiles/settings/evernote_account.html:16
-msgid ""
-"Here you can link this Pootle account with Evernote account — this will "
-"allow you to log in faster next time."
-msgstr ""
-
-#: templates/profiles/settings/evernote_account.html:24
-msgid "This Pootle account cannot be unlinked from Evernote."
-msgstr ""
-
-#: templates/profiles/settings/evernote_account.html:30
-msgid "Unlink from Evernote"
-msgstr ""
-
-#: templates/profiles/settings/personal.html:4
-#: templates/profiles/settings/personal.html:7
-msgid "Profile"
-msgstr "Profaele"
-
-#: templates/profiles/settings/personal.html:13
-msgid ""
-"Here you can change your personal details. After clicking the 'Save' button "
-"you will be redirected to your public profile page to see your changes in "
-"action."
-msgstr ""
-
-#: templates/profiles/settings/profile.html:4
-#: templates/profiles/settings/profile.html:7
-msgid "Translation Settings"
-msgstr "Dipeakanyo tša phetolelo"
-
-#: templates/profiles/settings/profile.html:12
-msgid ""
-"Here you can configure the settings related to the translation interface."
 msgstr ""
 
 #: templates/projects/admin/languages.html:11
@@ -2330,153 +2377,7 @@ msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
 "Ka mo tlase o ka oketša, lokiša le go phumola ditumelelo tša projeke ye."
 
-#: templates/registration/password_change_done.html:5
-#: templates/registration/password_change_done.html:8
-#: templates/registration/password_change_done.html:13
-msgid "Password Changed"
-msgstr "Lentšuphetišo le fetotšwe"
-
-#: templates/registration/password_change_done.html:14
-msgid "Your password was changed successfully."
-msgstr "Lentšuphetišo la gago le fetotšwe ka katlego."
-
-#: templates/registration/password_change_form.html:4
-#: templates/registration/password_change_form.html:7
-msgid "Change Password"
-msgstr "Fetoša lentšuphetišo"
-
-#: templates/registration/password_change_form.html:12
-msgid ""
-"Please enter your old password, for security's sake, and then enter your new "
-"password twice so we can verify you typed it in correctly."
-msgstr ""
-"Hle tsenya lentšuphetišo la gago la kgale, feela bakeng sa tšhireletšego, ke "
-"moka o tsenye lentšuphetišo la gago le leswa gabedi gore re kgonthišetše "
-"gore o le ngwadile ka mo go nepagetšego."
-
-#: templates/registration/password_change_form.html:21
-msgid "Old password"
-msgstr "Lentšuphetišo la kgale"
-
-#: templates/registration/password_change_form.html:26
-msgid "New password"
-msgstr "Lentšuphetišo le leswa"
-
-#: templates/registration/password_change_form.html:31
-msgid "Confirm password"
-msgstr "Netefatša lentšuphetišo"
-
-#: templates/registration/password_change_form.html:36
-msgid "Change My Password"
-msgstr "Fetoša lentšuphetišo la-ka"
-
-#: templates/registration/password_reset_complete.html:4
-#: templates/registration/password_reset_complete.html:7
-msgid "Password Reset"
-msgstr "Peakanyoleswa ya lentšuphetišo"
-
-#: templates/registration/password_reset_complete.html:12
-msgid "Password Reset Complete."
-msgstr "Peakanyoleswa ya lentšuphetišo e phethilwe."
-
-#: templates/registration/password_reset_complete.html:14
-#, fuzzy, python-format
-msgid ""
-"Your password has been set. You may go ahead and <a href=\"%(login_url)s"
-"\">sign in</a> now."
-msgstr ""
-"Lentšuphetišo la gago le beakantšwe. O ka tšwela pele gomme wa tsena <a href="
-"\"%(login_url)s\"></a> gona bjale."
-
-#: templates/registration/password_reset_confirm.html:5
-#: templates/registration/password_reset_confirm.html:8
-#: templates/registration/password_reset_done.html:5
-#: templates/registration/password_reset_done.html:8
-#: templates/registration/password_reset_done.html:13
-#: templates/registration/password_reset_form.html:4
-#: templates/registration/password_reset_form.html:7
-#: templates/registration/password_reset_form.html:12
-msgid "Reset Password"
-msgstr "Beakanya lentšuphetišo ka leswa"
-
-#: templates/registration/password_reset_confirm.html:14
-msgid "Enter New Password."
-msgstr "Tsenya lentšuphetišo le leswa."
-
-#: templates/registration/password_reset_confirm.html:16
-msgid ""
-"Please enter your new password twice so we can verify you typed it in "
-"correctly."
-msgstr ""
-"Hle tsenya lentšuphetišo la gago le leswa gabedi gore re kgonthišetše gore o "
-"le ngwadile ka mo go nepagetšego."
-
-#: templates/registration/password_reset_confirm.html:21
-msgid "New Password"
-msgstr "Lentšuphetišo le leswa"
-
-#: templates/registration/password_reset_confirm.html:26
-msgid "Confirm Password"
-msgstr "Netefatša lentšuphetišo"
-
-#: templates/registration/password_reset_confirm.html:31
-#: templates/registration/password_reset_form.html:24
-msgid "Reset My Password"
-msgstr "Beakanya lentšuphetišo la-ka ka leswa"
-
-#: templates/registration/password_reset_confirm.html:35
-msgid "Password Reset Failed."
-msgstr "Peakanyoleswa ya lentšuphetišo e padile."
-
-#: templates/registration/password_reset_confirm.html:37
-msgid ""
-"The password reset link was invalid, possibly because it has already been "
-"used. Please request a new password reset."
-msgstr ""
-"Lomaganyo ya peakanyoleswa ya lentšuphetišo e be e sa šome, mohlomongwe ka "
-"gobane e šetše e dirišitšwe. Hle kgopela peakanyoleswa ya lentšuphetišo e "
-"mpsha."
-
-#: templates/registration/password_reset_done.html:15
-msgid ""
-"We've e-mailed you instructions for setting your password to the e-mail "
-"address you submitted. You should receive it shortly."
-msgstr ""
-"Re go rometše ditaelo tša go beakanya lentšuphetišo la gago go aterese ya "
-"imeile yeo o e rometšego. O tla e amogela kgauswinyane."
-
-#: templates/registration/password_reset_email.html:2
-#, python-format
-msgid ""
-"You're receiving this e-mail because you requested a password reset for your "
-"user account at %(site_name)s."
-msgstr ""
-"O amogela imeile ye ka gobane o kgopetše peakanyoleswa ya lentšuphetišo "
-"bakeng sa akhaonto ya gago ya modiriši go %(site_name)s."
-
-#: templates/registration/password_reset_email.html:4
-msgid "Please go to the following page and choose a new password:"
-msgstr ""
-"Hle e-ya letlakaleng leo le latelago gomme o kgethe lentšuphetišo le leswa:"
-
-#: templates/registration/password_reset_email.html:8
-#, python-format
-msgid "Your username is %(user)s."
-msgstr "Leina la gago la modiriši ke %(user)s."
-
-#: templates/registration/password_reset_email.html:10
-msgid "Thank you for using Pootle!"
-msgstr "Re leboga gore o dirišitše Pootle!"
-
-#: templates/registration/password_reset_form.html:14
-msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll e-mail "
-"instructions for setting a new one."
-msgstr ""
-"O lebetše lentšuphetišo la gago? Tsenya aterese ya gago ya imeile ka mo "
-"tlase, gomme re tla go romelela ka imeile ditaelo tša go beakanya e mpsha."
-
-#: templates/staticpages/_body.html:6
+#: templates/staticpages/_body.html:5
 #, python-format
 msgid ""
 "This static page is inactive and visible to administrators only. You can "
@@ -2492,7 +2393,7 @@ msgid "Before continuing, you must read and accept the following documents."
 msgstr ""
 
 #: templates/staticpages/agreement.html:17
-msgid "No thanks. Log out"
+msgid "No thanks. Sign out"
 msgstr ""
 
 #: templates/staticpages/agreement.html:20
@@ -2503,7 +2404,7 @@ msgstr ""
 msgid "Terminology"
 msgstr "Mareo"
 
-#: templates/translation_projects/admin/permissions.html:11
+#: templates/translation_projects/admin/permissions.html:9
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
@@ -2571,75 +2472,75 @@ msgstr "Faele"
 msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
 
-#: templates/user/profile.html:14
+#: templates/user/profile.html:13
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
 
-#: templates/user/profile.html:17
+#: templates/user/profile.html:16
 msgid "Anonymous User"
 msgstr ""
 
-#: templates/user/profile.html:26
+#: templates/user/profile.html:25
 msgid "Score:"
 msgstr ""
 
-#: templates/user/profile.html:29
+#: templates/user/profile.html:28
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
 msgstr ""
 
-#: templates/user/profile.html:29 templates/user/profile.html.py:41
+#: templates/user/profile.html:28 templates/user/profile.html.py:40
 msgid "Tweet this!"
 msgstr ""
 
-#: templates/user/profile.html:38
+#: templates/user/profile.html:37
 msgid "No contributions in the last month"
 msgstr ""
 
-#: templates/user/profile.html:41
+#: templates/user/profile.html:40
 #, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
 "%(server_title)s! "
 msgstr ""
 
-#: templates/user/profile.html:42
+#: templates/user/profile.html:41
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s for this month"
 msgstr ""
 
-#: templates/user/profile.html:45
+#: templates/user/profile.html:46
 #, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
 msgstr ""
 
-#: templates/user/profile.html:54
+#: templates/user/profile.html:57
 #, fuzzy
 msgid "Latest activity:"
 msgstr "Tiragalo ya mafelelo"
 
-#: templates/user/profile.html:66
+#: templates/user/profile.html:69
 msgid "My Website"
 msgstr ""
 
-#: templates/user/profile.html:72
+#: templates/user/profile.html:75
 msgid "My LinkedIn Profile"
 msgstr ""
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:84
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:91
+#: templates/user/profile.html:94
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/profile.html:93
+#: templates/user/profile.html:96
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -2665,6 +2566,21 @@ msgstr ""
 msgid "Hourly Rate:"
 msgstr ""
 
+#: templates/user/settings.html:12
+#, fuzzy
+msgid "User Account"
+msgstr "Akhaonto ya-ka"
+
+#: templates/user/settings.html:14
+msgid ""
+"Do you want to change your password? Click the 'Reset Password' button which "
+"will initiate the process of setting a new password."
+msgstr ""
+
+#: templates/user/settings.html:26
+msgid "Reset Password"
+msgstr "Beakanya lentšuphetišo ka leswa"
+
 #: templates/welcome.html:4
 msgid "Welcome"
 msgstr ""
@@ -2677,15 +2593,239 @@ msgstr ""
 msgid "Come and join us!"
 msgstr ""
 
-#: templates/welcome.html:30
+#: templates/welcome.html:19
+#, fuzzy
+msgid "Sign in"
+msgstr "Aba Tiro"
+
+#: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr ""
+
+#~ msgid "Translate Toolkit version %s installed."
+#~ msgstr "Go loketšwe tokollo ya %s ya Translate Toolkit."
+
+#, fuzzy
+#~ msgid ""
+#~ "Translate Toolkit version %(installed)s installed. Pootle requires at "
+#~ "least version %(required)s."
+#~ msgstr ""
+#~ "Go loketšwe tokollo ya %(installed)s ya Translate Toolkit. Pootle e nyaka "
+#~ "tokollo ya %(required)s."
+
+#~ msgid "lxml version %s is installed."
+#~ msgstr "Go loketšwe tokollo ya %s ya lxml."
+
+#~ msgid ""
+#~ "Can't find the ISO codes package. Pootle uses ISO codes to translate "
+#~ "language names."
+#~ msgstr ""
+#~ "Ga e kgone go hwetša sephuthelwana sa dikhoutu tša ISO. Pootle e diriša "
+#~ "dikhoutu tša ISO go fetolela maina a maleme."
+
+#~ msgid ""
+#~ "Using the default sqlite3 database engine. SQLite is only suitable for "
+#~ "small installations with a small number of users. Pootle will perform "
+#~ "better with the MySQL database engine."
+#~ msgstr ""
+#~ "Go dirišwa ga entšene ya dathapeisi ya tirelwa ya sqlite3. SQLite e "
+#~ "swanela feela go lokela go gonyenyane mo go nago le palo e nyenyane ya "
+#~ "badiriši. Pootle e tla šoma gakaone ka entšene ya dathapeisi ya MySQL."
+
+#~ msgid ""
+#~ "Using the default sqlite3 database engine. SQLite is only suitable for "
+#~ "small installations with a small number of users. Pootle will perform "
+#~ "better with the MySQL database engine, but you need to install python-"
+#~ "MySQLdb first."
+#~ msgstr ""
+#~ "Go dirišwa ga entšene ya dathapeisi ya tirelwa ya sqlite3. SQLite e "
+#~ "swanela feela go lokela go gonyenyane mo go nago le palo e nyenyane ya "
+#~ "badiriši. Pootle e tla šoma gakaone ka entšene ya dathapeisi ya MySQL, "
+#~ "eupša o swanetše go thoma ka go lokela python-MySQLdb."
+
+#~ msgid ""
+#~ "For optimal performance, use django.contrib.sessions.backends.cached_db "
+#~ "as the session engine."
+#~ msgstr ""
+#~ "Bakeng sa go šoma ka botlalo, diriša django.contrib.sessions.backends."
+#~ "cached_db bjalo ka entšene ya sešene."
+
+#~ msgid "For optimal performance, use Apache as the webserver."
+#~ msgstr "Bakeng sa go šoma ka botlalo, diriša Apache bjalo ka seabi sa wepe."
+
+#~ msgid ""
+#~ "The \"from\" address used to send registration emails is not specified. "
+#~ "Also review the mail server settings."
+#~ msgstr ""
+#~ "Aterese ya \"go tšwa go\" yeo e dirišitšwego go romela diimeile tša go "
+#~ "ingwadiša ga ya laetšwa. Gape boeletša dipeakanyo tša seabi tša mangwalo."
+
+#~ msgid ""
+#~ "No contact address is specified. The contact form will allow users to "
+#~ "contact the server administrators."
+#~ msgstr ""
+#~ "Ga go a laetšwa aterese ya go ikgokaganya. Foromo ya go ikgokaganya e tla "
+#~ "dumelela badiriši go ikgokaganya le balaodi ba seabi."
+
+#~ msgid ""
+#~ "Running in debug mode. Debug mode is only needed when developing Pootle. "
+#~ "For optimal performance, disable debugging mode."
+#~ msgstr ""
+#~ "E šoma ka mokgwa wa go ntšha diphošo. Mokgwa wa go ntšha diphošo o "
+#~ "hlokega feela ge o tlhabolla Pootle. Bakeng sa go šoma ka botlalo, šitiša "
+#~ "mokgwa wa go ntšha diphošo."
+
+#~ msgid "Added"
+#~ msgstr "Okeditšwego"
+
+#~ msgid "Can review translations"
+#~ msgstr "O ka boeletša diphetolelo"
+
+#~ msgid "Dependency Checks"
+#~ msgstr "Ditekolo tša go ithekga"
+
+#~ msgid "Optimizations"
+#~ msgstr "Ditirišotlalo"
+
+#~ msgid "Overview"
+#~ msgstr "Kakaretšo"
+
+#~ msgid "Log In"
+#~ msgstr "Tsena"
+
+#~ msgid "Login to Pootle"
+#~ msgstr "Tsena go Pootle"
+
+#~ msgid "Your username and password didn't match. Please try again."
+#~ msgstr ""
+#~ "Leina la modiriši le lentšuphetišo tša gago di be di sa swane. Hle leka "
+#~ "gape."
+
+#~ msgid "Login"
+#~ msgstr "Tsena"
+
+#~ msgid "Lost your Password?"
+#~ msgstr "O lebetše lentšuphetišo la gago?"
+
+#~ msgid "No news yet."
+#~ msgstr "Ga go sešo gwa ba le ditaba."
+
+#~ msgid "Profile"
+#~ msgstr "Profaele"
+
+#~ msgid "Translation Settings"
+#~ msgstr "Dipeakanyo tša phetolelo"
+
+#~ msgid "Password Changed"
+#~ msgstr "Lentšuphetišo le fetotšwe"
+
+#~ msgid "Your password was changed successfully."
+#~ msgstr "Lentšuphetišo la gago le fetotšwe ka katlego."
+
+#~ msgid "Change Password"
+#~ msgstr "Fetoša lentšuphetišo"
+
+#~ msgid ""
+#~ "Please enter your old password, for security's sake, and then enter your "
+#~ "new password twice so we can verify you typed it in correctly."
+#~ msgstr ""
+#~ "Hle tsenya lentšuphetišo la gago la kgale, feela bakeng sa tšhireletšego, "
+#~ "ke moka o tsenye lentšuphetišo la gago le leswa gabedi gore re "
+#~ "kgonthišetše gore o le ngwadile ka mo go nepagetšego."
+
+#~ msgid "Old password"
+#~ msgstr "Lentšuphetišo la kgale"
+
+#~ msgid "New password"
+#~ msgstr "Lentšuphetišo le leswa"
+
+#~ msgid "Confirm password"
+#~ msgstr "Netefatša lentšuphetišo"
+
+#~ msgid "Change My Password"
+#~ msgstr "Fetoša lentšuphetišo la-ka"
+
+#~ msgid "Password Reset"
+#~ msgstr "Peakanyoleswa ya lentšuphetišo"
+
+#~ msgid "Password Reset Complete."
+#~ msgstr "Peakanyoleswa ya lentšuphetišo e phethilwe."
+
+#, fuzzy
+#~ msgid ""
+#~ "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
+#~ "\">sign in</a> now."
+#~ msgstr ""
+#~ "Lentšuphetišo la gago le beakantšwe. O ka tšwela pele gomme wa tsena <a "
+#~ "href=\"%(login_url)s\"></a> gona bjale."
+
+#~ msgid "Enter New Password."
+#~ msgstr "Tsenya lentšuphetišo le leswa."
+
+#~ msgid ""
+#~ "Please enter your new password twice so we can verify you typed it in "
+#~ "correctly."
+#~ msgstr ""
+#~ "Hle tsenya lentšuphetišo la gago le leswa gabedi gore re kgonthišetše "
+#~ "gore o le ngwadile ka mo go nepagetšego."
+
+#~ msgid "New Password"
+#~ msgstr "Lentšuphetišo le leswa"
+
+#~ msgid "Confirm Password"
+#~ msgstr "Netefatša lentšuphetišo"
+
+#~ msgid "Reset My Password"
+#~ msgstr "Beakanya lentšuphetišo la-ka ka leswa"
+
+#~ msgid "Password Reset Failed."
+#~ msgstr "Peakanyoleswa ya lentšuphetišo e padile."
+
+#~ msgid ""
+#~ "The password reset link was invalid, possibly because it has already been "
+#~ "used. Please request a new password reset."
+#~ msgstr ""
+#~ "Lomaganyo ya peakanyoleswa ya lentšuphetišo e be e sa šome, mohlomongwe "
+#~ "ka gobane e šetše e dirišitšwe. Hle kgopela peakanyoleswa ya "
+#~ "lentšuphetišo e mpsha."
+
+#~ msgid ""
+#~ "We've e-mailed you instructions for setting your password to the e-mail "
+#~ "address you submitted. You should receive it shortly."
+#~ msgstr ""
+#~ "Re go rometše ditaelo tša go beakanya lentšuphetišo la gago go aterese ya "
+#~ "imeile yeo o e rometšego. O tla e amogela kgauswinyane."
+
+#~ msgid ""
+#~ "You're receiving this e-mail because you requested a password reset for "
+#~ "your user account at %(site_name)s."
+#~ msgstr ""
+#~ "O amogela imeile ye ka gobane o kgopetše peakanyoleswa ya lentšuphetišo "
+#~ "bakeng sa akhaonto ya gago ya modiriši go %(site_name)s."
+
+#~ msgid "Please go to the following page and choose a new password:"
+#~ msgstr ""
+#~ "Hle e-ya letlakaleng leo le latelago gomme o kgethe lentšuphetišo le "
+#~ "leswa:"
+
+#~ msgid "Your username is %(user)s."
+#~ msgstr "Leina la gago la modiriši ke %(user)s."
+
+#~ msgid "Thank you for using Pootle!"
+#~ msgstr "Re leboga gore o dirišitše Pootle!"
+
+#~ msgid ""
+#~ "Forgotten your password? Enter your e-mail address below, and we'll e-"
+#~ "mail instructions for setting a new one."
+#~ msgstr ""
+#~ "O lebetše lentšuphetišo la gago? Tsenya aterese ya gago ya imeile ka mo "
+#~ "tlase, gomme re tla go romelela ka imeile ditaelo tša go beakanya e mpsha."
 
 #~ msgid ""
 #~ "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
 #~ msgstr ""
-#~ "Gatelela \"Control\", goba khii ya \"Taelo\" go Mac, gore o kgethe e fetago e "
-#~ "tee."
+#~ "Gatelela \"Control\", goba khii ya \"Taelo\" go Mac, gore o kgethe e "
+#~ "fetago e tee."
 
 #~ msgid "Enter a valid e-mail address."
 #~ msgstr "Tsenya aterese yeo e šomago ya imeile."
@@ -2694,17 +2834,17 @@ msgstr ""
 #~ "That e-mail address doesn't have an associated user account. Are you sure "
 #~ "you've registered?"
 #~ msgstr ""
-#~ "Aterese yeo ya imeile ga e na akhaonto ya modiriši yeo e tswalanago le yona. "
-#~ "Na o kgodišegile gore o ingwadišitše?"
+#~ "Aterese yeo ya imeile ga e na akhaonto ya modiriši yeo e tswalanago le "
+#~ "yona. Na o kgodišegile gore o ingwadišitše?"
 
 #~ msgid "This field is required."
 #~ msgstr "Lebala le le a nyakega."
 
-#, python-format
-#~ msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
+#~ msgid ""
+#~ "Ensure this value has at most %(max)d characters (it has %(length)d)."
 #~ msgstr ""
-#~ "Netefatša gore boleng bjo bo na le bontši bja ditlhaka tše %(max)d (bo na le "
-#~ "%(length)d)."
+#~ "Netefatša gore boleng bjo bo na le bontši bja ditlhaka tše %(max)d (bo na "
+#~ "le %(length)d)."
 
 #~ msgid "Save and add another"
 #~ msgstr "Boloka gomme o oketše ka e nngwe"
@@ -2715,7 +2855,6 @@ msgstr ""
 #~ msgid "Change"
 #~ msgstr "Fetoša"
 
-#, python-format
 #~ msgid "Add %(name)s"
 #~ msgstr "Oketša %(name)s"
 
@@ -2761,8 +2900,8 @@ msgstr ""
 #~ msgstr "Leina la seabi se sa Pootle"
 
 #~ msgid ""
-#~ "The description and instructions shown on the front page and about page. Be "
-#~ "sure to use valid HTML."
+#~ "The description and instructions shown on the front page and about page. "
+#~ "Be sure to use valid HTML."
 #~ msgstr ""
 #~ "Tlhaloso le ditaelo tšeo di laeditšwego letlakaleng la pele le la ka ga. "
 #~ "Netefatša go diriša HTML yeo e šomago."
@@ -2781,11 +2920,11 @@ msgstr ""
 #~ "seabi se sa Pootle."
 
 #~ msgid ""
-#~ "Here you can add, edit, and delete all the available projects in this Pootle "
-#~ "server."
+#~ "Here you can add, edit, and delete all the available projects in this "
+#~ "Pootle server."
 #~ msgstr ""
-#~ "Mo o ka oketša, lokiša le go phumola diprojeke tšohle tšeo di hwetšagalago "
-#~ "go seabi se sa Pootle."
+#~ "Mo o ka oketša, lokiša le go phumola diprojeke tšohle tšeo di "
+#~ "hwetšagalago go seabi se sa Pootle."
 
 #~ msgid "General Settings"
 #~ msgstr "Dipeakanyo-kakaretšo"
@@ -2797,8 +2936,8 @@ msgstr ""
 #~ "Here you can add, edit, and delete all the available users in this Pootle "
 #~ "server."
 #~ msgstr ""
-#~ "Mo o ka oketša, lokiša le go phumola badiriši bohle bao ba hwetšagalago go "
-#~ "seabi se sa Pootle."
+#~ "Mo o ka oketša, lokiša le go phumola badiriši bohle bao ba hwetšagalago "
+#~ "go seabi se sa Pootle."
 
 #~ msgid "Support"
 #~ msgstr "Thekgo"
@@ -2809,8 +2948,8 @@ msgstr ""
 #~ "its full potential."
 #~ msgstr ""
 #~ "Pootle e tšweleditšwe ke Translate.org.za le sehlopha sa ditsebi tša go "
-#~ "gaefatša tšeo di nago le lerato. Re nyaka gore Pootle e thuše mošomo wa gago "
-#~ "wa go gaefatša gore e be o tšwilego matsogo."
+#~ "gaefatša tšeo di nago le lerato. Re nyaka gore Pootle e thuše mošomo wa "
+#~ "gago wa go gaefatša gore e be o tšwilego matsogo."
 
 #~ msgid "You will find the following helpful for support:"
 #~ msgstr "O tla hwetša tše latelago e le thekgo e thušago:"
@@ -2839,23 +2978,23 @@ msgstr ""
 #~ msgid "Register."
 #~ msgstr "Ingwadiše."
 
-#, python-format
 #~ msgid ""
-#~ "Django version %s is installed, but a higher version is highly recommended."
+#~ "Django version %s is installed, but a higher version is highly "
+#~ "recommended."
 #~ msgstr ""
 #~ "Go loketšwe tokollo ya %s ya Django, eupša go eletšwa tokollo e phagamego "
 #~ "kudu."
 
 #~ msgid ""
-#~ "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
-#~ "available."
+#~ "Can't find the unzip command. Uploading archives is faster if \"unzip\" "
+#~ "is available."
 #~ msgstr ""
-#~ "Ga e kgone go hwetša taelo ya unzip. Go hlahlela dilotwa go direga ka lebelo "
-#~ "ge e ba \"unzip\" e le gona."
+#~ "Ga e kgone go hwetša taelo ya unzip. Go hlahlela dilotwa go direga ka "
+#~ "lebelo ge e ba \"unzip\" e le gona."
 
 #~ msgid ""
-#~ "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
-#~ "subtitle formats."
+#~ "Can't find the aeidon package. Pootle requires Gaupol or aeidon to "
+#~ "support subtitle formats."
 #~ msgstr ""
 #~ "Ga e kgone go hwetša sephuthelwana sa aeidon. Pootle e nyaka Gaupol goba "
 #~ "aeidon go thekga difomate tša dihlogwana."
@@ -2865,8 +3004,8 @@ msgstr ""
 #~ "like Xapian or Lucene is installed."
 #~ msgstr ""
 #~ "Ga go a hwetšwa entšene ya go latelanya dingwalwa. Go nyaka go direga ka "
-#~ "lebelo ge e ba go loketšwe entšene ya go latelanya e swanago le Xapian goba "
-#~ "Lucene."
+#~ "lebelo ge e ba go loketšwe entšene ya go latelanya e swanago le Xapian "
+#~ "goba Lucene."
 
 #~ msgid ""
 #~ "Pootle is configured to use memcached as a caching backend, but can't "
@@ -2877,12 +3016,12 @@ msgstr ""
 #~ "tsebišo e šitišitšwe gabjale."
 
 #~ msgid ""
-#~ "Pootle is configured to use memcached as caching backend, but Python support "
-#~ "for memcached is not installed. Caching is currently disabled."
+#~ "Pootle is configured to use memcached as caching backend, but Python "
+#~ "support for memcached is not installed. Caching is currently disabled."
 #~ msgstr ""
 #~ "Pootle e beakantšwe go diriša memcached bjalo ka thušo-tirišo ya polokelo-"
-#~ "tsebišo, eupša thekgo ya Python bakeng sa memcached ga ya lokelwa. Polokelo-"
-#~ "tsebišo e šitišitšwe gabjale."
+#~ "tsebišo, eupša thekgo ya Python bakeng sa memcached ga ya lokelwa. "
+#~ "Polokelo-tsebišo e šitišitšwe gabjale."
 
 #~ msgid "For optimal performance, use memcached as the caching backend."
 #~ msgstr ""
@@ -2893,65 +3032,55 @@ msgstr ""
 #~ "Running in live translation mode. Live translation is useful as a tool to "
 #~ "learn about Pootle and localization, but has high impact on performance."
 #~ msgstr ""
-#~ "Go šoma ka mokgwa wa phetolelo ya thwii. Phetolelo ya thwii e na le mohola "
-#~ "bjalo ka thulusi ya go ithuta ka Pootle le go gaefatša, eupša e ama tsela ya "
-#~ "go šoma kudu."
+#~ "Go šoma ka mokgwa wa phetolelo ya thwii. Phetolelo ya thwii e na le "
+#~ "mohola bjalo ka thulusi ya go ithuta ka Pootle le go gaefatša, eupša e "
+#~ "ama tsela ya go šoma kudu."
 
-#, python-format
 #~ msgid "%(percentage)d%% complete"
 #~ msgstr "%(percentage)d%% e phethilwe"
 
 #~ msgid ""
-#~ "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
-#~ "l10n/pluralforms\">our wiki page</a> on plural forms."
+#~ "For more information, visit <a href=\"http://translate.sourceforge.net/"
+#~ "wiki/l10n/pluralforms\">our wiki page</a> on plural forms."
 #~ msgstr ""
-#~ "Bakeng sa tshedimošo e oketšegilego, etela <a "
-#~ "href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\">letlakala la "
-#~ "rena la wiki</a> ka dibopego tša bontši."
+#~ "Bakeng sa tshedimošo e oketšegilego, etela <a href=\"http://translate."
+#~ "sourceforge.net/wiki/l10n/pluralforms\">letlakala la rena la wiki</a> ka "
+#~ "dibopego tša bontši."
 
-#, python-format
 #~ msgid "Error reading %d file"
 #~ msgid_plural "Error reading %d files"
 #~ msgstr[0] "Phošo ya go bala faele e %d"
 #~ msgstr[1] "Phošo ya go bala difaele tše %d"
 
-#, python-format
 #~ msgid "%(projects)d project, %(average)d%% translated"
 #~ msgid_plural "%(projects)d projects, %(average)d%% translated"
 #~ msgstr[0] "Projeke e %(projects)d, %(average)d%% e fetoletšwego"
 #~ msgstr[1] "Diprojeke tše %(projects)d, %(average)d%% tše fetoletšwego"
 
-#, python-format
 #~ msgid "%d word needs attention"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "Lentšu le %d le hloka šedi"
 #~ msgstr[1] "Mantšu a %d a hloka šedi"
 
-#, python-format
 #~ msgid "%d word untranslated"
 #~ msgid_plural "%d words untranslated"
 #~ msgstr[0] "Lentšu le %d le sa fetolelwago"
 #~ msgstr[1] "Mantšu a %d a sa fetolelwago"
 
-#, python-format
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"
 #~ msgstr[0] "Lentšu le %d le hloka go boeletšwa"
 #~ msgstr[1] "Mantšu a %d a hloka go boeletšwa"
 
-#, python-format
 #~ msgid "News for %(language)s"
 #~ msgstr "Ditaba tša %(language)s"
 
-#, python-format
 #~ msgid "News for %(project)s"
 #~ msgstr "Ditaba tša %(project)s"
 
-#, python-format
 #~ msgid "News for the %(project)s project in %(language)s"
 #~ msgstr "Ditaba tša projeke ya %(project)s go %(language)s"
 
-#, python-format
 #~ msgid "News for %(path)s"
 #~ msgstr "Ditaba tša %(path)s"
 
@@ -2970,7 +3099,6 @@ msgstr ""
 #~ msgid "Interface Language"
 #~ msgstr "Leleme la poledišano"
 
-#, python-format
 #~ msgid "%(languages)d language, %(average)d%% translated"
 #~ msgid_plural "%(languages)d languages, %(average)d%% translated"
 #~ msgstr[0] "Leleme la %(languages)d, %(average)d%% e fetoletšwego"
@@ -3012,17 +3140,11 @@ msgstr ""
 #~ msgid "Export"
 #~ msgstr "Romela"
 
-#~ msgid "Export translations"
-#~ msgstr "Romela diphetolelo"
-
 #~ msgid "Download"
 #~ msgstr "Laolla"
 
 #~ msgid "Download file"
 #~ msgstr "Laolla faele"
-
-#~ msgid "Download XLIFF file for offline translation"
-#~ msgstr "Laolla faele ya XLIFF gore o e fetolele o se inthaneteng"
 
 #~ msgid "Upload"
 #~ msgstr "Hlahlela"
@@ -3061,14 +3183,12 @@ msgstr ""
 #~ "Ka boikgethelo kgetha faele yeo o nyakago go kopanya le yona. Ge e sa "
 #~ "laetšwa, go dirišwa leina la faele yeo e hlahletšwego."
 
-#, python-format
 #~ msgid "Invalid/insecure file name: %s"
 #~ msgstr "Leina la faele le sa šomego/sa šireletšegago: %s"
 
-#, python-format
 #~ msgid ""
-#~ "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
-#~ "%(filetype)s'."
+#~ "Invalid GNU-style file name: %(local_filename)s. It must match "
+#~ "'%(langcode)s.%(filetype)s'."
 #~ msgstr ""
 #~ "Leina la faele la setaele sa GNU leo le sa šomego: %(local_filename)s. Le "
 #~ "swanetše go swana le '%(langcode)s.%(filetype)s'."
@@ -3118,17 +3238,14 @@ msgstr ""
 #~ "Registration using free email addresses is prohibited. Please supply a "
 #~ "different email address."
 #~ msgstr ""
-#~ "Ngwadišo go dirišwa diaterese tša imeile tšeo di sa lefelelwego e ileditšwe. "
-#~ "Hle fana ka e nngwe."
+#~ "Ngwadišo go dirišwa diaterese tša imeile tšeo di sa lefelelwego e "
+#~ "ileditšwe. Hle fana ka e nngwe."
 
 #~ msgid "user"
 #~ msgstr "modiriši"
 
 #~ msgid "activation key"
 #~ msgstr "khii ya tiragatšo"
-
-#~ msgid "registration profile"
-#~ msgstr "profaele ya ngwadišo"
 
 #~ msgid "registration profiles"
 #~ msgstr "diprofaele tša ngwadišo"
@@ -3229,13 +3346,12 @@ msgstr ""
 #~ msgid "Message Sent"
 #~ msgstr "Molaetša o rometšwe"
 
-#, python-format
 #~ msgid " message by %(name)s"
 #~ msgstr "Molaetša ka %(name)s"
 
 #~ msgid ""
-#~ "Here you can change your personal details. This information will be used in "
-#~ "the header of the translation files."
+#~ "Here you can change your personal details. This information will be used "
+#~ "in the header of the translation files."
 #~ msgstr ""
 #~ "Mo o ka fetoša dintlha tša gago tša botho. Tshedimošo ye e tla dirišwa "
 #~ "hlogwaneng ya godimo ya difaele tša phetolelo."
@@ -3247,11 +3363,11 @@ msgstr ""
 #~ msgstr "Sefane"
 
 #~ msgid ""
-#~ "Here you can configure the settings related to the translation interface as "
-#~ "well as your language preferences."
+#~ "Here you can configure the settings related to the translation interface "
+#~ "as well as your language preferences."
 #~ msgstr ""
-#~ "Mo o ka dira dipeakanyo tšeo di tswalanago le poledišano ya phetolelo gotee "
-#~ "le dikganyogo tša gago tša leleme."
+#~ "Mo o ka dira dipeakanyo tšeo di tswalanago le poledišano ya phetolelo "
+#~ "gotee le dikganyogo tša gago tša leleme."
 
 #~ msgid "Suggestions Pending"
 #~ msgstr "Ditšhišinyo tše sa letetšwego"
@@ -3268,33 +3384,15 @@ msgstr ""
 #~ msgid "Account Activated"
 #~ msgstr "Akhaonto e diragaditšwe"
 
-#, python-format
 #~ msgid ""
 #~ "The account has been activated for username \"%(account)s\". You can now "
 #~ "proceed to log in."
 #~ msgstr ""
-#~ "Akhaonto e diragaditšwe bakeng sa leina la modiriši la \"%(account)s\". O ka "
-#~ "tšwela pele ka go tsena."
-
-#~ msgid "A Pootle account has been created for you using this email address."
-#~ msgstr "O hlametšwe akhaonto ya Pootle go dirišwa aterese ye ya imeile."
-
-#~ msgid "To activate your account, follow this link:"
-#~ msgstr "Gore o diragatše akhaonto ya gago, latelela lomaganyo ye:"
-
-#~ msgid ""
-#~ "This message is sent to verify that the email address is in fact correct. If "
-#~ "you did not want to register an account, you may simply ignore the message."
-#~ msgstr ""
-#~ "Molaetša wo o rometšwe go kgonthišetša gore ruri aterese ya imeile e "
-#~ "nepagetše. Ge e ba o be o sa nyake go ngwadiša akhaonto, o ka fo hlokomologa "
-#~ "molaetša wo."
+#~ "Akhaonto e diragaditšwe bakeng sa leina la modiriši la \"%(account)s\". O "
+#~ "ka tšwela pele ka go tsena."
 
 #~ msgid "Your activation code is:"
 #~ msgstr "Khoutu ya gago ya go diragatša ke:"
-
-#~ msgid "Pootle registration"
-#~ msgstr "Ngwadišo ya Pootle"
 
 #~ msgid "Registration Complete"
 #~ msgstr "Ngwadišo e phethilwe"
@@ -3323,7 +3421,6 @@ msgstr ""
 #~ msgid "Language Members"
 #~ msgstr "Maloko a leleme"
 
-#, python-format
 #~ msgid "You do not have rights to administer %s."
 #~ msgstr "Ga o na ditokelo tša go laola %s."
 
@@ -3342,13 +3439,12 @@ msgstr ""
 #~ msgid "Pootle: Install"
 #~ msgstr "Pootle: Lokela"
 
-#, python-format
 #~ msgid ""
 #~ "Error: \"%s\" while attempting to access the Pootle database, will try to "
 #~ "initialize database."
 #~ msgstr ""
-#~ "Phošo: \"%s\" ge go be go lekwa go tsena go dathapeisi ya Pootle, re tla leka "
-#~ "go thomološa dathapeisi."
+#~ "Phošo: \"%s\" ge go be go lekwa go tsena go dathapeisi ya Pootle, re tla "
+#~ "leka go thomološa dathapeisi."
 
 #~ msgid "Creating database tables..."
 #~ msgstr "Go hlama mananeo a dathapeisi..."
@@ -3360,19 +3456,19 @@ msgstr ""
 #~ msgstr ""
 #~ "Go hlakantšha dipalopalo tša phetolelo, se se tla tšea metsotso e mmalwa"
 
-#, python-format
 #~ msgid "%(language)s is %(percent)d%% complete"
 #~ msgstr "%(language)s se phethilwe ka %(percent)d%%"
 
-#, python-format
 #~ msgid "Project %(project)s is %(percent)d%% complete"
 #~ msgstr "Projeke ya %(project)s e phethilwe ka %(percent)d%%"
 
 #~ msgid "Done calculating statistics for default languages and projects"
-#~ msgstr "E feditše go hlakantšha dipalopalo tša maleme a tirelwa le diprojeke"
+#~ msgstr ""
+#~ "E feditše go hlakantšha dipalopalo tša maleme a tirelwa le diprojeke"
 
 #~ msgid ""
-#~ "Initialized database, you will be redirected to the front page in 10 seconds"
+#~ "Initialized database, you will be redirected to the front page in 10 "
+#~ "seconds"
 #~ msgstr ""
 #~ "Dathapeisi e thomološitšwe, o tla lebišwa gape go letlakala la pele ka "
 #~ "metsotswana e 10"
@@ -3380,13 +3476,12 @@ msgstr ""
 #~ msgid "Pootle: Update"
 #~ msgstr "Pootle: Mpshafatšo"
 
-#, python-format
 #~ msgid ""
 #~ "Database tables are currently at build version %d. Pootle will now update "
 #~ "the database."
 #~ msgstr ""
-#~ "Mananeo a dathapeisi gonabjale a go tokollo ya go aga ya %d. Pootle bjale e "
-#~ "tla mpshafatša dathapeisi."
+#~ "Mananeo a dathapeisi gonabjale a go tokollo ya go aga ya %d. Pootle bjale "
+#~ "e tla mpshafatša dathapeisi."
 
 #~ msgid "Creating missing database tables..."
 #~ msgstr "Go hlama mananeo a dathapeisi ao a sego gona..."
@@ -3398,31 +3493,26 @@ msgstr ""
 #~ msgstr "Go mpshafatša mananeo a dathapeisi ao a šetšego a le gona..."
 
 #~ msgid ""
-#~ "Pootle will now import all the translations into the database. It could take "
-#~ "a long time."
+#~ "Pootle will now import all the translations into the database. It could "
+#~ "take a long time."
 #~ msgstr ""
-#~ "Pootle bjale e tla amogela diphetolelo tšohle dathapeising. Go ka tšea nako "
-#~ "e telele."
+#~ "Pootle bjale e tla amogela diphetolelo tšohle dathapeising. Go ka tšea "
+#~ "nako e telele."
 
-#, python-format
 #~ msgid "Imported %(count)d suggestion from %(store)s"
 #~ msgid_plural "Imported %(count)d suggestions from %(store)s"
 #~ msgstr[0] "Amogetše tšhišinyo e %(count)d go tšwa go %(store)s"
 #~ msgstr[1] "Amogetše ditšhišinyo tše %(count)d go tšwa go %(store)s"
 
-#, python-format
 #~ msgid "Failed to import suggestions from %s"
 #~ msgstr "Paletšwe ke go amogela ditšhišinyo go tšwa go %s"
 
-#~ msgid "All translations are now imported."
-#~ msgstr "Diphetolelo tšohle bjale di amogetšwe."
-
 #~ msgid ""
-#~ "Pootle initialized the database. You will be redirected to the front page in "
-#~ "10 seconds."
+#~ "Pootle initialized the database. You will be redirected to the front page "
+#~ "in 10 seconds."
 #~ msgstr ""
-#~ "Pootle e thomološitše dathapeisi. O tla lebišwa gape go letlakala la pele ka "
-#~ "metsotswana e 10."
+#~ "Pootle e thomološitše dathapeisi. O tla lebišwa gape go letlakala la pele "
+#~ "ka metsotswana e 10."
 
 #~ msgid "Advanced search"
 #~ msgstr "Nyako e gatetšego pele"
@@ -3462,30 +3552,28 @@ msgstr ""
 #~ msgid "Overall Completion"
 #~ msgstr "Phetho-kakaretšo"
 
-#, python-format
 #~ msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 #~ msgstr ""
 #~ "Mantšu a %(translated)d/%(total)d A fetoletšwego (%(translatedpercent)d%%)"
 
-#, python-format
 #~ msgid "%(translated)d/%(total)d strings"
 #~ msgstr "Methaladi e %(translated)d/%(total)d"
 
-#, python-format
 #~ msgid "%d file"
 #~ msgid_plural "%d files"
 #~ msgstr[0] "Faele e %d"
 #~ msgstr[1] "Difaele tše %d"
 
-#, python-format
 #~ msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 #~ msgstr ""
-#~ "Mantšu ao a fetoletšwego: %(translated)d/%(total)d - %(translatedpercent)d%%"
+#~ "Mantšu ao a fetoletšwego: %(translated)d/%(total)d - %(translatedpercent)d"
+#~ "%%"
 
-#, python-format
-#~ msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
+#~ msgid ""
+#~ "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 #~ msgstr ""
-#~ "Methaladi e fetoletšwego: %(translated)d/%(total)d - %(translatedpercent)d%%"
+#~ "Methaladi e fetoletšwego: %(translated)d/%(total)d - %(translatedpercent)d"
+#~ "%%"
 
 #~ msgid "Needs review"
 #~ msgstr "Di hloka go boeletšwa"
@@ -3514,13 +3602,11 @@ msgstr ""
 #~ msgid "Total Words"
 #~ msgstr "Palomoka ya mantšu"
 
-#, python-format
 #~ msgid "Imported %(count)d unit from %(store)s"
 #~ msgid_plural "Imported %(count)d units from %(store)s"
 #~ msgstr[0] "Amogetše yuniti e %(count)d go tšwa go %(store)s"
 #~ msgstr[1] "Amogetše diyuniti tše %(count)d go tšwa go %(store)s"
 
-#, python-format
 #~ msgid "Failed to import units from %s"
 #~ msgstr "Paletšwe ke go amogela diyuniti go tšwa go %s"
 
@@ -3542,29 +3628,27 @@ msgstr ""
 #~ msgid "Complete"
 #~ msgstr "Phethilwe"
 
-#, python-format
 #~ msgid ""
-#~ "lxml version %(installed)s is installed. Pootle requires version %(required)"
-#~ "s for XML format support."
+#~ "lxml version %(installed)s is installed. Pootle requires version "
+#~ "%(required)s for XML format support."
 #~ msgstr ""
-#~ "Go loketšwe tokollo ya %(installed)s ya lxml. Pootle e nyaka tokollo ya %"
-#~ "(required)s bakeng sa thekgo ya fomate ya XML."
+#~ "Go loketšwe tokollo ya %(installed)s ya lxml. Pootle e nyaka tokollo ya "
+#~ "%(required)s bakeng sa thekgo ya fomate ya XML."
 
 #~ msgid "lxml is not installed. Pootle requires lxml for XML format support."
 #~ msgstr ""
 #~ "lxml ga ya lokelwa. Pootle e nyaka lxml bakeng sa thekgo ya fomate ya XML."
 
 #~ msgid ""
-#~ "For optimal performance, use django.contrib.sessions.backends.cache as the "
-#~ "session engine."
+#~ "For optimal performance, use django.contrib.sessions.backends.cache as "
+#~ "the session engine."
 #~ msgstr ""
-#~ "Bakeng sa go šoma ka botlalo, diriša django.contrib.sessions.backends.cache "
-#~ "bjalo ka entšene ya sešene."
+#~ "Bakeng sa go šoma ka botlalo, diriša django.contrib.sessions.backends."
+#~ "cache bjalo ka entšene ya sešene."
 
 #~ msgid "Home"
 #~ msgstr "Letlakala la pele"
 
-#, python-format
 #~ msgid "%(checks)d string (%(checkspercent)d%%) failed"
 #~ msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 #~ msgstr[0] "Mothaladi o %(checks)d wa (%(checkspercent)d%%) o paletšwe"
@@ -3589,8 +3673,8 @@ msgstr ""
 #~ "A description of this project. This is useful to give more information or "
 #~ "instructions. This field should be valid HTML."
 #~ msgstr ""
-#~ "Tlhaloso ya projeke ye. Ye e thuša go fana ka tshedimošo e oketšegilego goba "
-#~ "ditaelo. Lebala le le swanetše go ba HTML yeo e šomago."
+#~ "Tlhaloso ya projeke ye. Ye e thuša go fana ka tshedimošo e oketšegilego "
+#~ "goba ditaelo. Lebala le le swanetše go ba HTML yeo e šomago."
 
 #~ msgid "Initialize"
 #~ msgstr "Thomološa"
@@ -3607,7 +3691,6 @@ msgstr ""
 #~ msgid "No matching strings to translate."
 #~ msgstr "Ga go na methaladi e swanago yeo e tla fetolelwago."
 
-#, python-format
 #~ msgid "checking %s"
 #~ msgstr "go lekola %s"
 
@@ -3623,23 +3706,18 @@ msgstr ""
 #~ msgid "Go to the next unit"
 #~ msgstr "E-ya yuniting e latelago"
 
-#, python-format, 
 #~ msgid "Suggestion %(i)d by %(user)s:"
 #~ msgstr "Tšhišinyo ya %(i)d ka %(user)s:"
 
-#, python-format
 #~ msgid "Suggestion by %(user)s"
 #~ msgstr "Tšhišinyo ka %(user)s"
 
-#, python-format, 
 #~ msgid "Updated project \"%s\" from version control"
 #~ msgstr "Mpshafaditše projeke ya \"%s\" go tšwa go taolo ya tokollo"
 
-#, python-format
 #~ msgid "Updated file %s from version control"
 #~ msgstr "Mpshafaditše faele ya %s go tšwa go taolo ya kgatišo"
 
-#, python-format
 #~ msgid "Failed to update %s from version control"
 #~ msgstr "Paletšwe ke go mpshafatša %s go tšwa go taolo ya kgatišo"
 
@@ -3652,20 +3730,20 @@ msgstr ""
 #~ msgid ""
 #~ "<div dir=\"ltr\" lang=\"en\">\n"
 #~ "<h2 class=\"title\">This is a demo installation of Pootle.</h2>\n"
-#~ "<p class=\"about\">You can also visit the official <a href=\"http://pootle."
-#~ "locamotion.org\">Pootle server</a>. The server administrator has not "
-#~ "provided contact information or a description of this server. If you are the "
-#~ "administrator for this server, edit this description in your preference file "
-#~ "or in the administration interface.</p>\n"
+#~ "<p class=\"about\">You can also visit the official <a href=\"http://"
+#~ "pootle.locamotion.org\">Pootle server</a>. The server administrator has "
+#~ "not provided contact information or a description of this server. If you "
+#~ "are the administrator for this server, edit this description in your "
+#~ "preference file or in the administration interface.</p>\n"
 #~ "</div>"
 #~ msgstr ""
 #~ "<div dir=\"ltr\" lang=\"en\">\n"
 #~ "<h2 class=\"title\">Se ke go lokelwa ga pontšho ya Pootle.</h2>\n"
-#~ "<p class=\"about\">Gape o ka etela <a "
-#~ "href=\"http://pootle.locamotion.org\">seabi sa Pootle sa semmušo</a>. Molaodi "
-#~ "wa seabi ga a fana ka tshedimošo ya go ikgokaganya goba tlhaloso ya seabi "
-#~ "se. Ge e ba o le molaodi wa seabi se, lokiša tlhaloso ye faeleng ya gago ka "
-#~ "dikganyogo goba poledišanong ya taolo.</p>\n"
+#~ "<p class=\"about\">Gape o ka etela <a href=\"http://pootle.locamotion.org"
+#~ "\">seabi sa Pootle sa semmušo</a>. Molaodi wa seabi ga a fana ka "
+#~ "tshedimošo ya go ikgokaganya goba tlhaloso ya seabi se. Ge e ba o le "
+#~ "molaodi wa seabi se, lokiša tlhaloso ye faeleng ya gago ka dikganyogo "
+#~ "goba poledišanong ya taolo.</p>\n"
 #~ "</div>"
 
 #~ msgid "Quality checks and review suggestions"
@@ -3686,7 +3764,6 @@ msgstr ""
 #~ msgid "You do not have rights to review suggestions here"
 #~ msgstr "Ga o na ditokelo tša go boeletša ditšhišinyo"
 
-#, python-format
 #~ msgid "Updated %s files from version control"
 #~ msgstr "Mpshafaditše difaele tše %s go tšwa go taolo ya kgatišo"
 
@@ -3697,13 +3774,13 @@ msgstr ""
 #~ msgstr "Mpshafatša ditumelelo"
 
 #~ msgid ""
-#~ "Here you can delete the available files in this translation project. You may "
-#~ "also want to <a href=\"?scan_files=1\">rescan the project files</a> or <a "
-#~ "href=\"?template_update=1\">update the files from templates</a>."
+#~ "Here you can delete the available files in this translation project. You "
+#~ "may also want to <a href=\"?scan_files=1\">rescan the project files</a> "
+#~ "or <a href=\"?template_update=1\">update the files from templates</a>."
 #~ msgstr ""
-#~ "Mo o ka phumola difaele tšeo di lego gona projekeng ye ya phetolelo. Gape o "
-#~ "ka rata go <a href=\"?scan_files=1\">sekena gape difaele tša projeke</a> goba "
-#~ "<a href=\"?template_update=1\">o mpshafatše difaele go tšwa "
+#~ "Mo o ka phumola difaele tšeo di lego gona projekeng ye ya phetolelo. Gape "
+#~ "o ka rata go <a href=\"?scan_files=1\">sekena gape difaele tša projeke</"
+#~ "a> goba <a href=\"?template_update=1\">o mpshafatše difaele go tšwa "
 #~ "dithempoleiting</a>."
 
 #~ msgid "Copy"
@@ -3718,22 +3795,25 @@ msgstr ""
 #~ msgid "SQLite is installed."
 #~ msgstr "Go loketšwe SQLite."
 
-#~ msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
+#~ msgid ""
+#~ "SQLite is missing. Pootle requires SQLite for translation statistics."
 #~ msgstr ""
-#~ "SQLite ga e gona. Pootle e nyaka SQLite bakeng sa dipalopalo tša phetolelo."
+#~ "SQLite ga e gona. Pootle e nyaka SQLite bakeng sa dipalopalo tša "
+#~ "phetolelo."
 
-#, python-format
-#~ msgid "Django version %s is installed. Pootle only works with the 1.x series."
+#~ msgid ""
+#~ "Django version %s is installed. Pootle only works with the 1.x series."
 #~ msgstr ""
-#~ "Go loketšwe tokollo ya %s ya Django. Pootle e šoma feela ka tatelano ya 1.x."
+#~ "Go loketšwe tokollo ya %s ya Django. Pootle e šoma feela ka tatelano ya 1."
+#~ "x."
 
 #~ msgid ""
 #~ "Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news "
 #~ "items are safe and correct."
 #~ msgstr ""
 #~ "Ga e kgone go hwetša lxml. Pootle e diriša lxml go netefatatša gore "
-#~ "ditshwayo tša HTML tšeo di tsentšhitšwego dilong tša ditaba di bolokegile e "
-#~ "bile di nepagetše."
+#~ "ditshwayo tša HTML tšeo di tsentšhitšwego dilong tša ditaba di bolokegile "
+#~ "e bile di nepagetše."
 
 #~ msgid "This is a GNU-style project (files named per language code)."
 #~ msgstr ""
@@ -3741,7 +3821,8 @@ msgstr ""
 #~ "leleme)."
 
 #~ msgid "This is a standard style project (one directory per language)."
-#~ msgstr "Ye ke projeke ya setaele sa motheo (tšhupetšo e tee go ya ka leleme)."
+#~ msgstr ""
+#~ "Ye ke projeke ya setaele sa motheo (tšhupetšo e tee go ya ka leleme)."
 
 #~ msgid "(select to add user)"
 #~ msgstr "(kgetha gore o oketše modiriši)"
@@ -3752,15 +3833,12 @@ msgstr ""
 #~ msgid "Start"
 #~ msgstr "Mathomo"
 
-#, python-format
 #~ msgid "Previous %d"
 #~ msgstr "%d e fetilego"
 
-#, python-format
 #~ msgid "Items %(first)d to %(last)d of %(total)d"
 #~ msgstr "Diaetheme tše %(first)d go ya go %(last)d tša %(total)d"
 
-#, python-format
 #~ msgid "Next %d"
 #~ msgstr "%d e latelago"
 
@@ -3768,8 +3846,8 @@ msgstr ""
 #~ msgstr "Bofelo"
 
 #~ msgid ""
-#~ "Translation not possible because plural information for your language is not "
-#~ "available. Please contact the site administrator."
+#~ "Translation not possible because plural information for your language is "
+#~ "not available. Please contact the site administrator."
 #~ msgstr ""
 #~ "Phetolelo ga e kgonege ka gobane tshedimošo ya bontši ga e hwetšagale ka "
 #~ "leleme la gago. Hle ikgokaganye le molaodi wa saete."
@@ -3777,11 +3855,9 @@ msgstr ""
 #~ msgid "Current Translation:"
 #~ msgstr "Phetolelo ya bjale:"
 
-#, python-format
 #~ msgid "Suggestion %d:"
 #~ msgstr "Tšhišinyo ya %d:"
 
-#, python-format
 #~ msgid "Suggestion by %s:"
 #~ msgstr "Tšhišinyo ka %s:"
 
@@ -3872,7 +3948,6 @@ msgstr ""
 #~ msgid "Remove Language"
 #~ msgstr "Tloša leleme"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "Tloša %s"
 
@@ -3924,32 +3999,27 @@ msgstr ""
 #~ msgid "Remove User"
 #~ msgstr "Tloša modiriši"
 
-#~ msgid "Back to main page"
-#~ msgstr "Morago letlakaleng le legolo"
-
 #~ msgid "Existing languages"
 #~ msgstr "Maleme ao a lego gona"
 
 #~ msgid "Update Languages"
 #~ msgstr "Mpshafatša maleme"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Taolo ya Pootle: %s"
 
 #~ msgid "Add Language"
 #~ msgstr "Tsenya leleme"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Taolo ya Pootle: %s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr ""
 #~ "E ka se beakanye ditokelo tša leina la modiriši la %s - modiriši ga a gona"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
 #~ msgstr ""
 #~ "Ye ke projeke ya setaele sa GNU (tšhupetšo e tee, difaele tšeo di "
 #~ "reeletšwego go ya ka leleme)"
@@ -3963,9 +4033,6 @@ msgstr ""
 #~ msgid "Assign Strings"
 #~ msgstr "Aba Methaladi"
 
-#~ msgid "Assign Action"
-#~ msgstr "Aba Tiro"
-
 #~ msgid "Assign to User"
 #~ msgstr "Abela Modiriši"
 
@@ -3975,7 +4042,6 @@ msgstr ""
 #~ msgid "Commit"
 #~ msgstr "Itlame"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "mantšu a %d/%d (%d%%) ao a fetoletšwego"
 
@@ -3991,11 +4057,9 @@ msgstr ""
 #~ msgid "All goals"
 #~ msgstr "Dipakane ka moka"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "difaele tše %d/%d"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "methaladi e %d/%d"
 
@@ -4020,7 +4084,6 @@ msgstr ""
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "Ga o na ditokelo tša go lokiša dikabelo mo"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "%s: e fetolela %s go %s: %s"
 
@@ -4030,11 +4093,9 @@ msgstr ""
 #~ msgid "Click here to return to the index"
 #~ msgstr "Kgotla mo gore o boele go tšhupaditeng"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "Dilo tše %d go ya go %d tša %d"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "Ga go na dilo tšeo di swanago le nyako yeo ('%s')"
 
@@ -4047,11 +4108,9 @@ msgstr ""
 #~ msgid "Shrink"
 #~ msgstr "Hunyetša"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "Tšhišinyo ya bo-%d ka %s:"
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "O swanetše go fana ka lentšuphetišo la bonyenyane ditlhaka tše %d."
 

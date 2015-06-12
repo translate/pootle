@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-02-28 23:44+0000\n"
+"POT-Creation-Date: 2015-06-12 17:37+0100\n"
 "PO-Revision-Date: 2015-05-30 22:23+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,59 +20,147 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1433024618.000000\n"
 
-#: apps/contact/forms.py:23
+#: apps/accounts/forms.py:43
+msgid ""
+"Your user seems to have disappeared. Please report this to the site owners."
+msgstr ""
+
+#: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
+msgid "Username"
+msgstr "用户名"
+
+#: apps/accounts/models.py:61
+msgid ""
+"Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
+msgstr "必需。30个字符或更少。字母、数字和 @/./+/-/_ 字符"
+
+#: apps/accounts/models.py:65
+msgid "Enter a valid username."
+msgstr "请输入一个有效的用户名。"
+
+#: apps/accounts/models.py:69
+msgid "Email Address"
+msgstr "电子邮件地址"
+
+#: apps/accounts/models.py:70 apps/pootle_language/models.py:80
+#: apps/pootle_project/models.py:148
+msgid "Full Name"
+msgstr "全名"
+
+#: apps/accounts/models.py:72 apps/staticpages/models.py:28
+#: templates/admin/staticpages/_table.html:6
+msgid "Active"
+msgstr "活动"
+
+#: apps/accounts/models.py:73
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr "标识此用户是否应被视为活动。取消选中此项而不必删除账号。"
+
+#: apps/accounts/models.py:75
+msgid "Superuser Status"
+msgstr "超级用户状态"
+
+#: apps/accounts/models.py:76
+msgid ""
+"Designates that this user has all permissions without explicitly assigning "
+"them."
+msgstr "标识此用户是否具有所有权限而无需明确分配。"
+
+#: apps/accounts/models.py:79
+msgid "date joined"
+msgstr "加入时间"
+
+#: apps/accounts/models.py:83
+msgid "Number of Rows"
+msgstr "行数"
+
+#: apps/accounts/models.py:86
+msgid "Alternative Source Languages"
+msgstr "可选源语言"
+
+#: apps/accounts/models.py:89 templates/admin/detailed_reports.html:149
+#, fuzzy
+msgid "Rate"
+msgstr "比率"
+
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+msgid "Review Rate"
+msgstr "评论率"
+
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+msgid "Hourly Rate"
+msgstr "小时频率"
+
+#: apps/accounts/models.py:92
+msgid "Score"
+msgstr "得分"
+
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+msgid "Currency"
+msgstr "货币"
+
+#: apps/accounts/models.py:95
+msgid "Is employee?"
+msgstr "是员工？"
+
+#: apps/accounts/models.py:96
+msgid "Twitter"
+msgstr "Twitter"
+
+#: apps/accounts/models.py:98
+msgid "Website"
+msgstr "网站"
+
+#: apps/accounts/models.py:99
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: apps/accounts/models.py:100
+msgid "Short Bio"
+msgstr "个人简介"
+
+#: apps/accounts/models.py:300
+#, fuzzy
+msgid "This email address already exists."
+msgstr "此术语已存在于文件中。"
+
+#: apps/contact/forms.py:25
 msgid "Summary"
 msgstr "概览"
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:27
 msgid "Please enter your message summary"
 msgstr "请输入您的消息摘要"
 
-#: apps/contact/forms.py:32 core/browser.py:17
+#: apps/contact/forms.py:34 apps/virtualfolder/models.py:37 core/browser.py:19
 msgid "Name"
 msgstr "名称"
 
-#: apps/contact/forms.py:33
+#: apps/contact/forms.py:35
 msgid "Please enter your name"
 msgstr "请输入您的名字"
 
-#: apps/contact/forms.py:36
+#: apps/contact/forms.py:38
 msgid "Email address"
 msgstr "电子邮件地址"
 
-#: apps/contact/forms.py:37
+#: apps/contact/forms.py:39
 msgid "Please enter your email address"
 msgstr "请输入您的电子邮件地址"
 
-#: apps/contact/forms.py:40 apps/pootle_notifications/models.py:18
+#: apps/contact/forms.py:42
 msgid "Message"
 msgstr "消息"
 
-#: apps/contact/forms.py:41
+#: apps/contact/forms.py:43
 msgid "Please enter your message"
 msgstr "请输入您的消息"
-
-#: apps/evernote_auth/views.py:51
-msgid ""
-"Cannot link: your Evernote account is already linked with another Pootle "
-"account."
-msgstr "无法链接：您的 Evernote 帐号已经连接到另外一个 Pootle 帐号。"
-
-#: apps/evernote_reports/forms.py:20 models/user.py:89
-msgid "Currency"
-msgstr "货币"
 
 #: apps/evernote_reports/forms.py:26
 msgid "Translation Rate"
 msgstr "翻译率"
-
-#: apps/evernote_reports/forms.py:31 models/user.py:86
-msgid "Review Rate"
-msgstr "评论率"
-
-#: apps/evernote_reports/forms.py:36 models/user.py:87
-msgid "Hourly Rate"
-msgstr "小时频率"
 
 #: apps/evernote_reports/forms.py:41
 msgid "Effective from"
@@ -80,6 +168,7 @@ msgstr "生效自"
 
 #: apps/evernote_reports/models.py:31 templates/editor/export_view.html:106
 #: templates/translation_projects/terminology/manage.html:37
+#: templates/user/settings.html:29
 msgid "Translation"
 msgstr "译文"
 
@@ -107,33 +196,72 @@ msgstr "数量"
 msgid "Date"
 msgstr "日期"
 
-#: apps/evernote_reports/models.py:43
+#: apps/evernote_reports/models.py:43 apps/virtualfolder/models.py:63
 msgid "Description"
 msgstr "描述"
 
-#: apps/evernote_reports/views.py:297
+#: apps/evernote_reports/views.py:295
 #, python-format
 msgid "User %s not found"
 msgstr "用户 %s 没有找到"
 
-#: apps/evernote_reports/views.py:382
+#: apps/evernote_reports/views.py:372
 msgid "Invalid request method"
 msgstr "无效的请求方法"
+
+#: apps/import_export/templates/browser/index.html:10
+#, fuzzy
+msgid "Download translation files for offline translation"
+msgstr "下载 XLIFF 文件进行离线翻译"
+
+#: apps/import_export/templates/browser/index.html:11
+#, fuzzy
+msgid "Download for offline translation"
+msgstr "下载 XLIFF 文件进行离线翻译"
+
+#: apps/import_export/templates/browser/index.html:19
+msgid "Upload translation files or archives in .zip format"
+msgstr "上传翻译文件或 .zip 格式的归档"
+
+#: apps/import_export/templates/browser/index.html:20
+#, fuzzy
+msgid "Upload translations"
+msgstr "导出翻译"
+
+#: apps/import_export/utils.py:22
+#, python-format
+msgid "File %r missing X-Pootle-Path header\n"
+msgstr ""
+
+#: apps/import_export/utils.py:27
+#, python-format
+msgid "File %r missing or invalid X-Pootle-Revision header\n"
+msgstr ""
+
+#: apps/import_export/utils.py:37
+#, python-format
+msgid "File %r was rejected because its X-Pootle-Revision is too old."
+msgstr ""
+
+#: apps/import_export/utils.py:42
+#, python-format
+msgid "Could not create %r. Missing Project/Language? (%s)"
+msgstr ""
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
 msgstr "语言代码不符合 ISO 标准"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:170
+#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:171
 msgid "Source Language"
 msgstr "源语言"
 
-#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:373
+#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:387
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "“%s”不能用作项目代码"
 
-#: apps/pootle_app/forms.py:98 templates/profiles/_tabs.html:5
+#: apps/pootle_app/forms.py:98 custom/templates/profiles/_tabs.html:5
 msgid "Password"
 msgstr "密码"
 
@@ -141,195 +269,45 @@ msgstr "密码"
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr "请输入有效的 LinkedIn 用户个人资料网址。"
 
-#: apps/pootle_app/views/admin/dashboard.py:39
-#, python-format
-msgid "Translate Toolkit version %s installed."
-msgstr "Translate Toolkit 的 %s 版本已经安装。"
-
-#: apps/pootle_app/views/admin/dashboard.py:47
-#, python-format
-msgid ""
-"Translate Toolkit version %(installed)s installed. Pootle requires at least "
-"version %(required)s."
-msgstr "Translate Toolkit 的 %(installed)s 版本已经安装。Pootle 需要的最低版本为 %(required)s。"
-
-#: apps/pootle_app/views/admin/dashboard.py:59
-#, python-format
-msgid "Django version %s is installed."
-msgstr "Django 的 %s 版本已经安装。"
-
-#: apps/pootle_app/views/admin/dashboard.py:67
-#, python-format
-msgid ""
-"Django version %(installed)s is installed. Pootle requires at least version "
-"%(required)s."
-msgstr "Django 的 %(installed)s 版本已经安装。Pootle 需要的最低版本为 %(required)s。"
-
-#: apps/pootle_app/views/admin/dashboard.py:79
-#, python-format
-#, python-format, python-format
-msgid "lxml version %s is installed."
-msgstr "lxml 的 %s 版本已经安装。"
-
-#: apps/pootle_app/views/admin/dashboard.py:87
-#, python-format
-msgid ""
-"lxml version %(installed)s is installed. Pootle requires at least version "
-"%(required)s."
-msgstr "lxml 的 %(installed)s 版本已经安装。Pootle 需要的最低版本为 %(required)s。"
-
-#: apps/pootle_app/views/admin/dashboard.py:91
-msgid "lxml is not installed. Pootle requires lxml."
-msgstr "lxml 尚未安装。Pootle 需要 lxml。"
-
-#: apps/pootle_app/views/admin/dashboard.py:104
-#, python-format
-msgid "Redis server accepting connections on %(host)s:%(port)s."
-msgstr "Redis 服务器尝试连接 %(host)s:%(port)s。"
-
-#: apps/pootle_app/views/admin/dashboard.py:113
-#, python-format
-msgid ""
-"Redis server version %(installed)s installed. Pootle requires at least "
-"version %(required)s."
-msgstr "Redis 的 %(installed)s 版本已经安装。Pootle 需要的最低版本为 %(required)s。"
-
-#: apps/pootle_app/views/admin/dashboard.py:117
-#, python-format
-msgid "Redis server is not available on %(host)s:%(port)s."
-msgstr "Redis 服务器未在 %(host)s:%(port)s 上可用。"
-
-#: apps/pootle_app/views/admin/dashboard.py:130
-#, python-format
-msgid "%(num)d RQ worker running."
-msgid_plural "%(num)d RQ workers running."
-msgstr[0] "%(num)d 个 RQ worker 正在运行。"
-
-#: apps/pootle_app/views/admin/dashboard.py:135
-msgid "No RQ workers are running."
-msgstr "没有 RQ worker 正在运行。"
-
-#: apps/pootle_app/views/admin/dashboard.py:149
-msgid ""
-"Pootle is configured to use Redis as a caching backend, but can't connect to "
-"the cache."
-msgstr "Pootle 已配置为使用 Redis 作为缓存后端，但现在无法连接到该缓存。"
-
-#: apps/pootle_app/views/admin/dashboard.py:156
-msgid "Caching configured and running."
-msgstr "缓存已配置并正在运行。"
-
-#: apps/pootle_app/views/admin/dashboard.py:162
-msgid "Redis is required as the caching backend."
-msgstr "Redis 作为缓存后端是必须的。"
-
-#: apps/pootle_app/views/admin/dashboard.py:175
-msgid ""
-"Can't find the ISO codes package. Pootle uses ISO codes to translate "
-"language names."
-msgstr "无法找到 ISO 代码包。Pootle 使用 ISO 代码来翻译语言名。"
-
-#: apps/pootle_app/views/admin/dashboard.py:181
-msgid ""
-"Can't find python-levenshtein package. Updating against templates is faster "
-"with python-levenshtein."
-msgstr "无法找到 python-levenshtein 软件包。通过 python-levenshtein 软件包进行模版更新会更快。"
-
-#: apps/pootle_app/views/admin/dashboard.py:189
-msgid "MARKUP_FILTER is missing. Falling back to HTML."
-msgstr "MARKUP_FILTER 丢失。将退回 HTML。"
-
-#: apps/pootle_app/views/admin/dashboard.py:191
-msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
-msgstr "MARKUP_FILTER 配置错误。将退回 HTML。"
-
-#: apps/pootle_app/views/admin/dashboard.py:193
-#, python-format
-msgid ""
-"Can't find the package which provides '%s' markup support. Falling back to "
-"HTML."
-msgstr "无法找到提供“%s”标记支持的包。将退回 HTML。"
-
-#: apps/pootle_app/views/admin/dashboard.py:197
-#, python-format
-msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-msgstr "MARKUP_FILTER 中的值“%s”无效。将退回 HTML。"
-
-#: apps/pootle_app/views/admin/dashboard.py:214
-msgid ""
-"Using the default sqlite3 database engine. SQLite is only suitable for small "
-"installations with a small number of users. Pootle will perform better with "
-"the MySQL database engine."
-msgstr "使用默认的 sqlite3 数据库引擎。SQLite 只适用于少量用户的小型安装。Pootle 在使用 MySQL 数据库引擎时性能更佳。"
-
-#: apps/pootle_app/views/admin/dashboard.py:219
-msgid ""
-"Using the default sqlite3 database engine. SQLite is only suitable for small "
-"installations with a small number of users. Pootle will perform better with "
-"the MySQL database engine, but you need to install python-MySQLdb first."
-msgstr ""
-"使用默认的 sqlite3 数据库引擎。SQLite 只适用于少量用户的小型安装。Pootle 在使用 MySQL 数据库引擎时性能更佳，但您需要先安装 "
-"python-MySQLdb。"
-
-#: apps/pootle_app/views/admin/dashboard.py:227
-msgid ""
-"For optimal performance, use django.contrib.sessions.backends.cached_db as "
-"the session engine."
-msgstr "为优化性能，请使用 django.contrib.sessions.backends.cached_db 作为会话引擎。"
-
-#: apps/pootle_app/views/admin/dashboard.py:234
-msgid "For optimal performance, use Apache as the webserver."
-msgstr "为优化性能，使用 Apache 作为 Web 服务器。"
-
-#: apps/pootle_app/views/admin/dashboard.py:239
-msgid ""
-"The \"from\" address used to send registration emails is not specified. Also "
-"review the mail server settings."
-msgstr "用于发送注册邮件的“from”地址尚未指定。也请检查邮件服务器设置。"
-
-#: apps/pootle_app/views/admin/dashboard.py:245
-msgid ""
-"No contact address is specified. The contact form will allow users to "
-"contact the server administrators."
-msgstr "联系地址尚未指定。联系表单将允许用户联系服务器管理员。"
-
-#: apps/pootle_app/views/admin/dashboard.py:251
-msgid ""
-"Running in debug mode. Debug mode is only needed when developing Pootle. For "
-"optimal performance, disable debugging mode."
-msgstr "以调试模式运行。只有在开发 Pootle 时才需要进入调试模式。为优化性能，请禁用调试模式。"
-
-#: apps/pootle_app/views/admin/dashboard.py:308
+#: apps/pootle_app/views/admin/dashboard.py:80
 msgid "Files"
 msgstr "文件"
 
-#: apps/pootle_app/views/admin/dashboard.py:309
+#: apps/pootle_app/views/admin/dashboard.py:81
 msgid "Active projects"
 msgstr "活动的项目"
 
-#: apps/pootle_app/views/admin/dashboard.py:310
+#: apps/pootle_app/views/admin/dashboard.py:82
 msgid "Active languages"
 msgstr "活动的语言"
 
-#: apps/pootle_app/views/admin/dashboard.py:311
+#: apps/pootle_app/views/admin/dashboard.py:83
 msgid "Translated strings"
 msgstr "已翻译的字符串"
 
-#: apps/pootle_app/views/admin/dashboard.py:312
+#: apps/pootle_app/views/admin/dashboard.py:84
 msgid "Translated words"
 msgstr "已翻译的字词"
 
-#: apps/pootle_app/views/admin/dashboard.py:313
+#: apps/pootle_app/views/admin/dashboard.py:85
 msgid "Active users"
 msgstr "活动的用户"
+
+#. Translators: this refers to the status of the background job worker
+#: apps/pootle_app/views/admin/dashboard.py:106
+#, python-format
+msgid "Running (%d worker)"
+msgid_plural "Running (%d workers)"
+msgstr[0] ""
+
+#. Translators: this refers to the status of the background job worker
+#: apps/pootle_app/views/admin/dashboard.py:110
+msgid "Stopped"
+msgstr "已停止"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "All Users"
 msgstr "所有用户"
-
-#: apps/pootle_app/views/admin/permissions.py:86 models/user.py:56
-msgid "Username"
-msgstr "用户名"
 
 #: apps/pootle_app/views/admin/permissions.py:95
 msgid "Add Permissions"
@@ -352,336 +330,362 @@ msgstr "这个项目里没有文件。"
 msgid "There are errors in the form. Please review the problems below."
 msgstr "这个表单中存在问题。请审阅下列错误。"
 
-#: apps/pootle_language/models.py:67
+#: apps/pootle_language/models.py:73
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"语言的 ISO 639 语言代码，可带有一个下划线 (_) 和一个 ISO 3166 国家代码。<a href=\""
-"http://www.w3.org/International/articles/language-tags/\">更多信息</a>"
+"语言的 ISO 639 语言代码，可带有一个下划线 (_) 和一个 ISO 3166 国家代码。<a "
+"href=\"http://www.w3.org/International/articles/language-tags/\">更多信息</a>"
 
-#: apps/pootle_language/models.py:72 apps/pootle_project/models.py:144
+#: apps/pootle_language/models.py:78 apps/pootle_project/models.py:145
 msgid "Code"
 msgstr "代码"
 
-#: apps/pootle_language/models.py:74 apps/pootle_project/models.py:147
-#: models/user.py:66
-msgid "Full Name"
-msgstr "全名"
-
-#: apps/pootle_language/models.py:76
+#: apps/pootle_language/models.py:82
 msgid "Enter any special characters that users might find difficult to type"
 msgstr "请输入任何用户可能难以键入的特殊字符"
 
-#: apps/pootle_language/models.py:79
+#: apps/pootle_language/models.py:85
 msgid "Special Characters"
 msgstr "特殊字符"
 
-#: apps/pootle_language/models.py:82
+#: apps/pootle_language/models.py:88
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
-"更多信息请访问我们<a href=\"http://docs.translatehouse.org/projects/localization-"
-"guide/en/latest/l10n/pluralforms.html\">有关复数形式的页面</a>。"
+"更多信息请访问我们<a href=\"http://docs.translatehouse.org/projects/"
+"localization-guide/en/latest/l10n/pluralforms.html\">有关复数形式的页面</a>。"
 
-#: apps/pootle_language/models.py:87
+#: apps/pootle_language/models.py:93
 msgid "Unknown"
 msgstr "未知"
 
-#: apps/pootle_language/models.py:90
+#: apps/pootle_language/models.py:96
 msgid "Number of Plurals"
 msgstr "复数型个数"
 
-#: apps/pootle_language/models.py:92
+#: apps/pootle_language/models.py:98
 msgid "Plural Equation"
 msgstr "同义复数型"
 
-#: apps/pootle_misc/checks.py:23 core/browser.py:61
-msgid "Critical"
-msgstr "关键"
-
-#: apps/pootle_misc/checks.py:24
-msgid "Cosmetic"
-msgstr "装饰"
-
-#: apps/pootle_misc/checks.py:29 apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:34 apps/pootle_misc/checks.py:102
 msgid "Accelerators"
 msgstr "快捷键"
 
-#: apps/pootle_misc/checks.py:30
+#: apps/pootle_misc/checks.py:35
 msgid "Acronyms"
 msgstr "缩写"
 
-#: apps/pootle_misc/checks.py:31
+#: apps/pootle_misc/checks.py:36
 msgid "Blank"
 msgstr "空白"
 
-#: apps/pootle_misc/checks.py:32
+#: apps/pootle_misc/checks.py:37
 msgid "Brackets"
 msgstr "括号"
 
-#: apps/pootle_misc/checks.py:33
+#: apps/pootle_misc/checks.py:38
 msgid "Compendium conflict"
 msgstr "摘要冲突"
 
-#: apps/pootle_misc/checks.py:34
+#: apps/pootle_misc/checks.py:39
 msgid "Translator credits"
 msgstr "翻译者致谢"
 
-#: apps/pootle_misc/checks.py:35 apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:40 apps/pootle_misc/checks.py:106
 msgid "Double quotes"
 msgstr "双引号"
 
-#: apps/pootle_misc/checks.py:36
+#: apps/pootle_misc/checks.py:41
 msgid "Double spaces"
 msgstr "双空格"
 
-#: apps/pootle_misc/checks.py:37
+#: apps/pootle_misc/checks.py:42
 msgid "Repeated word"
 msgstr "重复的字词"
 
-#: apps/pootle_misc/checks.py:38
+#: apps/pootle_misc/checks.py:43
 msgid "E-mail"
 msgstr "电子邮件"
 
-#: apps/pootle_misc/checks.py:39
+#: apps/pootle_misc/checks.py:44
 msgid "Ending punctuation"
 msgstr "末尾标点符号"
 
-#: apps/pootle_misc/checks.py:40
+#: apps/pootle_misc/checks.py:45
 msgid "Ending whitespace"
 msgstr "末尾空白"
 
-#: apps/pootle_misc/checks.py:41
+#: apps/pootle_misc/checks.py:46
 msgid "Escapes"
 msgstr "转码"
 
-#: apps/pootle_misc/checks.py:42
+#: apps/pootle_misc/checks.py:47
 msgid "File paths"
 msgstr "文件路径"
 
-#: apps/pootle_misc/checks.py:43
+#: apps/pootle_misc/checks.py:48
 msgid "Functions"
 msgstr "功能"
 
-#: apps/pootle_misc/checks.py:44
+#: apps/pootle_misc/checks.py:49
 msgid "GConf values"
 msgstr "GConf 值"
 
-#: apps/pootle_misc/checks.py:45
+#: apps/pootle_misc/checks.py:50
 msgid "Old KDE comment"
 msgstr "旧的 KDE 注释"
 
-#: apps/pootle_misc/checks.py:46
+#: apps/pootle_misc/checks.py:51
 msgid "Long"
 msgstr "长"
 
-#: apps/pootle_misc/checks.py:47
+#: apps/pootle_misc/checks.py:52
 msgid "Must translate words"
 msgstr "必须翻译的字词"
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:53
 msgid "Newlines"
 msgstr "换行"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:54
 msgid "Number of plurals"
 msgstr "复数形式个数"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:55
 msgid "Don't translate words"
 msgstr "不要翻译的字词"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:56
 msgid "Numbers"
 msgstr "数字"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:57
 msgid "Options"
 msgstr "选项"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:58
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:59
 msgid "Punctuation spacing"
 msgstr "标点空格"
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:60
 msgid "Pure punctuation"
 msgstr "单纯标点"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:61
+#, fuzzy
+msgid "Python brace placeholders"
+msgstr "Mustache 占位符"
+
+#: apps/pootle_misc/checks.py:62
 msgid "Number of sentences"
 msgstr "句数"
 
-#: apps/pootle_misc/checks.py:57
+#: apps/pootle_misc/checks.py:63
 msgid "Short"
 msgstr "短"
 
-#: apps/pootle_misc/checks.py:58
+#: apps/pootle_misc/checks.py:64
 msgid "Simple capitalization"
 msgstr "简单大小写"
 
-#: apps/pootle_misc/checks.py:59
+#: apps/pootle_misc/checks.py:65
 msgid "Simple plural(s)"
 msgstr "简单复数形式"
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:66
 msgid "Single quotes"
 msgstr "单个引号"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:67
 msgid "Starting capitalization"
 msgstr "开头的大小写"
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:68
 msgid "Starting punctuation"
 msgstr "开头的标点"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:69
 msgid "Starting whitespace"
 msgstr "开头的空格"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:71
 msgid "Tabs"
 msgstr "制表符"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:72
 msgid "Unchanged"
 msgstr "未改变"
 
-#: apps/pootle_misc/checks.py:67 apps/pootle_misc/stats.py:27
-#: apps/pootle_store/util.py:30 core/helpers.py:55
+#: apps/pootle_misc/checks.py:73 apps/pootle_misc/stats.py:27
+#: apps/pootle_store/util.py:30 core/helpers.py:56
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "未翻译"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:74
 msgid "URLs"
 msgstr "URL"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:75
 msgid "Valid characters"
 msgstr "有效字符"
 
-#: apps/pootle_misc/checks.py:70
+#: apps/pootle_misc/checks.py:76
 msgid "Placeholders"
 msgstr "占位符号"
 
-#: apps/pootle_misc/checks.py:71
+#: apps/pootle_misc/checks.py:77
+msgid "Invalid XML"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:78
 msgid "XML tags"
 msgstr "XML 标签"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:80
 msgid "Broken HTML Entities"
 msgstr "损坏的 HTML 项"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:81
 msgid "Java format"
 msgstr "Java 格式"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:82
 msgid "Template format"
 msgstr "模板格式"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:83
 msgid "Mustache placeholders"
 msgstr "Mustache 占位符"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:84
 msgid "Mustache placeholder pairs"
 msgstr "Mustache 占位符对"
 
-#: apps/pootle_misc/checks.py:78
+#: apps/pootle_misc/checks.py:85
 msgid "Mustache like placeholder pairs"
 msgstr "Mustache 类似占位符对"
 
-#: apps/pootle_misc/checks.py:79
+#: apps/pootle_misc/checks.py:86
 msgid "C format placeholders"
 msgstr "C 格式占位符"
 
-#: apps/pootle_misc/checks.py:80
+#: apps/pootle_misc/checks.py:87
 msgid "Non printable"
 msgstr "非可打印"
 
-#: apps/pootle_misc/checks.py:81
+#: apps/pootle_misc/checks.py:88
 msgid "Unbalanced tag braces"
 msgstr "非对称括号标记"
 
-#: apps/pootle_misc/checks.py:82
+#: apps/pootle_misc/checks.py:89
 msgid "Changed attributes"
 msgstr "变更的属性"
 
-#: apps/pootle_misc/checks.py:83
+#: apps/pootle_misc/checks.py:90
 msgid "Unescaped ampersands"
 msgstr "转义的&符号"
 
-#: apps/pootle_misc/checks.py:84
+#: apps/pootle_misc/checks.py:91
 #, fuzzy
 msgid "Incorrectly escaped ampersands"
 msgstr "不正确的转义&符号"
 
-#: apps/pootle_misc/checks.py:85
+#: apps/pootle_misc/checks.py:92
 msgid "Whitespaces"
 msgstr "空白字符"
 
-#: apps/pootle_misc/checks.py:86
+#: apps/pootle_misc/checks.py:93
 msgid "Date format"
 msgstr "日期格式"
 
-#: apps/pootle_misc/checks.py:87
+#: apps/pootle_misc/checks.py:94
 msgid "Uppercase placeholders"
 msgstr "大写的占位符"
 
-#: apps/pootle_misc/checks.py:88
+#: apps/pootle_misc/checks.py:95
 msgid "Percent sign placeholders"
 msgstr "百分比占位符"
 
-#: apps/pootle_misc/checks.py:89
+#: apps/pootle_misc/checks.py:96
 msgid "Percent sign closure placeholders"
 msgstr "百分比封闭的占位符"
 
-#: apps/pootle_misc/checks.py:90
+#: apps/pootle_misc/checks.py:97
 msgid "$ placeholders"
 msgstr "$ 占位符"
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:98
 msgid "$ closure placeholders"
 msgstr "$ 封闭的占位符"
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:99
 msgid "Java-encoded unicode"
 msgstr "Java 编码的 unicode"
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:100
 msgid "Objective-C format"
 msgstr "Objective-C 格式"
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:101
 msgid "Android format"
 msgstr "Android 格式"
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:103
 msgid "Tags differ"
 msgstr "标签不同"
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:104
 msgid "Curly braces"
 msgstr "大括号"
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:105
 msgid "Potential unwanted placeholders"
 msgstr "潜在的不必要的占位符"
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:107
 msgid "Double quotes in tags"
 msgstr "标签中的双引号"
+
+#: apps/pootle_misc/checks.py:108
+#, fuzzy
+msgid "Percent brace placeholders"
+msgstr "百分比占位符"
+
+#: apps/pootle_misc/checks.py:1006 core/browser.py:68
+msgid "Critical"
+msgstr "关键"
+
+#: apps/pootle_misc/checks.py:1007
+msgid "Cosmetic"
+msgstr "装饰"
+
+#: apps/pootle_misc/checks.py:1008
+msgid "Functional"
+msgstr "功能"
+
+#: apps/pootle_misc/checks.py:1009
+msgid "Extraction"
+msgstr "淬炼"
+
+#: apps/pootle_misc/checks.py:1010
+msgid "Other"
+msgstr ""
+
+#. Translators: This is the name of a filter
+#: apps/pootle_misc/forms.py:90 core/helpers.py:60
+msgid "Search"
+msgstr "搜索"
 
 #: apps/pootle_misc/forms.py:91
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
@@ -721,13 +725,13 @@ msgstr "定义"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
-#: apps/pootle_misc/stats.py:24 core/browser.py:40
+#: apps/pootle_misc/stats.py:24 core/browser.py:47
 #: templates/admin/detailed_reports.html:240
 msgid "Total"
 msgstr "总数"
 
 #: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32
-#: core/helpers.py:54 templates/editor/_filters.html:7
+#: core/helpers.py:55 templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "已翻译"
 
@@ -752,83 +756,77 @@ msgstr "下一项"
 msgid "Last (%d)"
 msgstr "最后一项 (%d)"
 
-#. Translators: The date that the news item was written
-#: apps/pootle_notifications/models.py:21
-msgid "Added"
-msgstr "已添加"
-
-#: apps/pootle_profile/views.py:65
+#: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
 msgstr "选择一种或多种语言"
 
-#: apps/pootle_project/forms.py:29 core/browser.py:27
+#: apps/pootle_project/forms.py:29 core/browser.py:34
 msgid "Language"
 msgstr "语言"
 
-#: apps/pootle_project/models.py:141
+#: apps/pootle_project/models.py:142
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr "项目的短代码。只允许包含 ASCII 字符、数字和下划线(_)。"
 
-#: apps/pootle_project/models.py:155
+#: apps/pootle_project/models.py:156
 msgid "Quality Checks"
 msgstr "质量检查"
 
-#: apps/pootle_project/models.py:158
+#: apps/pootle_project/models.py:159
 msgid "File Type"
 msgstr "文件类型"
 
-#: apps/pootle_project/models.py:162
+#: apps/pootle_project/models.py:163
 msgid "Automatic detection (slower)"
 msgstr "自动检测（较慢）"
 
-#: apps/pootle_project/models.py:163
+#: apps/pootle_project/models.py:164
 msgid "GNU style: files named by language code"
 msgstr "GNU 风格：文件以语言代码命名"
 
-#: apps/pootle_project/models.py:164
+#: apps/pootle_project/models.py:165
 msgid "Non-GNU: Each language in its own directory"
 msgstr "非 GNU：每个语言有单独目录"
 
-#: apps/pootle_project/models.py:167
+#: apps/pootle_project/models.py:168
 msgid "Project Tree Style"
 msgstr "项目树风格"
 
-#: apps/pootle_project/models.py:173
+#: apps/pootle_project/models.py:174
 msgid "Ignore Files"
 msgstr "忽略文件"
 
-#: apps/pootle_project/models.py:178
+#: apps/pootle_project/models.py:179
 msgid "Errors Report Email"
 msgstr "错误报告邮件"
 
-#: apps/pootle_project/models.py:179
+#: apps/pootle_project/models.py:180
 msgid "An email address where issues with the source text can be reported."
 msgstr "用于报告源文本问题的一个电子邮件地址。"
 
-#: apps/pootle_project/models.py:183
+#: apps/pootle_project/models.py:184
 msgid "Screenshot Search Prefix"
 msgstr "屏幕截图搜索前缀"
 
-#: apps/pootle_project/models.py:188
-#: apps/pootle_translationproject/models.py:151
+#: apps/pootle_project/models.py:189
 msgid "Disabled"
 msgstr "已禁用"
 
-#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
 msgstr "源"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:65
 msgid "Target"
 msgstr "目标"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "State"
 msgstr "状态"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:67
 msgid "Comment"
 msgstr "注释"
 
@@ -950,17 +948,17 @@ msgid "Mozilla .lang"
 msgstr "Mozilla .lang"
 
 #: apps/pootle_store/forms.py:88
-#: apps/pootle_store/templatetags/store_tags.py:146
-#: apps/pootle_store/templatetags/store_tags.py:162
-#: apps/pootle_store/templatetags/store_tags.py:169
-#: apps/pootle_store/templatetags/store_tags.py:181
-#: apps/pootle_store/templatetags/store_tags.py:183
+#: apps/pootle_store/templatetags/store_tags.py:147
+#: apps/pootle_store/templatetags/store_tags.py:163
+#: apps/pootle_store/templatetags/store_tags.py:170
+#: apps/pootle_store/templatetags/store_tags.py:182
+#: apps/pootle_store/templatetags/store_tags.py:184
 #, python-format
 msgid "Plural Form %d"
 msgstr "复数形式 %d"
 
 #: apps/pootle_store/forms.py:211 apps/pootle_store/util.py:31
-#: core/helpers.py:56 templates/editor/_filters.html:10
+#: core/helpers.py:57 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "尚需完善"
 
@@ -968,46 +966,46 @@ msgstr "尚需完善"
 msgid "Fuzzy flag must be cleared"
 msgstr "必须清除模糊翻译标志"
 
-#: apps/pootle_store/forms.py:291
+#: apps/pootle_store/forms.py:290
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr "similarity 的值应该在 [0..1] 的范围内"
 
-#: apps/pootle_store/forms.py:301
+#: apps/pootle_store/forms.py:300
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr "`mt_similarity` 的值应该在 [0..1] 的范围内"
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:325
 msgid "Translator comment"
 msgstr "译者注释"
 
-#: apps/pootle_store/models.py:147
+#: apps/pootle_store/models.py:143
 msgid "Pending"
 msgstr "待审"
 
-#: apps/pootle_store/models.py:148
+#: apps/pootle_store/models.py:144
 msgid "Accepted"
 msgstr "已接受"
 
-#: apps/pootle_store/models.py:149
+#: apps/pootle_store/models.py:145
 msgid "Rejected"
 msgstr "已拒绝"
 
-#: apps/pootle_store/models.py:1277
+#: apps/pootle_store/models.py:1274
 #, python-format
 msgid "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;added"
 msgstr "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;已添加"
 
-#: apps/pootle_store/models.py:1337
+#: apps/pootle_store/models.py:1329
 msgid "Path"
 msgstr "路径"
 
-#: apps/pootle_store/templatetags/store_tags.py:140
-#: apps/pootle_store/templatetags/store_tags.py:142
+#: apps/pootle_store/templatetags/store_tags.py:141
+#: apps/pootle_store/templatetags/store_tags.py:143
 msgid "Singular"
 msgstr "单数"
 
-#: apps/pootle_store/templatetags/store_tags.py:140
-#: apps/pootle_store/templatetags/store_tags.py:142
+#: apps/pootle_store/templatetags/store_tags.py:141
+#: apps/pootle_store/templatetags/store_tags.py:143
 msgid "Plural"
 msgstr "复数"
 
@@ -1015,23 +1013,23 @@ msgstr "复数"
 msgid "Obsolete"
 msgstr "已过时"
 
-#: apps/pootle_store/views.py:408 core/decorators.py:45
+#: apps/pootle_store/views.py:466 core/decorators.py:46
 msgid "Arguments missing."
 msgstr "缺少参数。"
 
-#: apps/pootle_store/views.py:636
+#: apps/pootle_store/views.py:695
 msgid "Failed to remove comment."
 msgstr "移除注释失败。"
 
-#: apps/pootle_store/views.py:671
+#: apps/pootle_store/views.py:729
 msgid "Comment submission failed."
 msgstr "提交注释失败。"
 
-#: apps/pootle_store/views.py:866
+#: apps/pootle_store/views.py:917
 msgid "Failed to process submission."
 msgstr "处理提交失败。"
 
-#: apps/pootle_store/views.py:913
+#: apps/pootle_store/views.py:958
 msgid "Failed to process suggestion."
 msgstr "处理建议失败。"
 
@@ -1039,17 +1037,13 @@ msgstr "处理建议失败。"
 msgid "This term already exists in this file."
 msgstr "此术语已存在于文件中。"
 
-#: apps/staticpages/forms.py:60
+#: apps/staticpages/forms.py:59
 #, python-format
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
-msgstr "我已经阅读并接受：<a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
-
-#: apps/staticpages/models.py:28 models/user.py:68
-#: templates/admin/staticpages/_table.html:6
-msgid "Active"
-msgstr "活动"
+msgstr ""
+"我已经阅读并接受：<a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:30
 msgid "Whether this page is active or not."
@@ -1082,66 +1076,268 @@ msgid "If set, any references to this page will redirect to this URL"
 msgstr "如果设置，则任何对此页面的引用都将会重定向到此 URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:99
+#: apps/staticpages/models.py:96
 msgid "URL or content must be provided."
 msgstr "必须提供 URL 或内容。"
 
-#: apps/staticpages/models.py:107
+#: apps/staticpages/models.py:104
 msgid "Virtual path already in use."
 msgstr "虚拟路径已在使用中。"
 
-#: apps/staticpages/models.py:112
+#: apps/staticpages/models.py:113
 msgid "Legal Page"
 msgstr "法律页面"
 
-#: apps/staticpages/models.py:123
+#: apps/staticpages/models.py:124
 msgid "Regular Page"
 msgstr "常规页面"
 
-#: apps/staticpages/views.py:108 templates/admin/staticpages/_table.html:8
+#: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "页面标题"
 
-#: apps/staticpages/views.py:113
+#: apps/staticpages/views.py:116
 #, python-format
 msgid "page-%d"
 msgstr "第 %d 页"
 
-#: core/browser.py:22
+#. Translators: 'projects' must not be translated.
+#: apps/staticpages/views.py:128
+msgid ""
+"projects/<project_code> or <language_code> or <language_code>/<project_code>"
+msgstr ""
+
+#: apps/virtualfolder/models.py:39
+#, fuzzy
+msgid "Location"
+msgstr "位置"
+
+#: apps/virtualfolder/models.py:42
+msgid "Root path where this virtual folder is applied."
+msgstr ""
+
+#. Translators: This is a noun.
+#: apps/virtualfolder/models.py:46
+#, fuzzy
+msgid "Filter"
+msgstr "过滤"
+
+#: apps/virtualfolder/models.py:48
+msgid "Filtering rules that tell which stores this virtual folder comprises."
+msgstr ""
+
+#: apps/virtualfolder/models.py:52 core/browser.py:24
+msgid "Priority"
+msgstr "优先级"
+
+#: apps/virtualfolder/models.py:54
+msgid ""
+"Number specifying importance. Greater priority means it is more important."
+msgstr ""
+
+#: apps/virtualfolder/models.py:58
+msgid "Is browsable?"
+msgstr ""
+
+#: apps/virtualfolder/models.py:60
+#, fuzzy
+msgid "Whether this virtual folder is active or not."
+msgstr "这个页面是否活动。"
+
+#: apps/virtualfolder/models.py:65
+#, fuzzy, python-format
+msgid ""
+"Use this to provide more information or instructions. Allowed markup: %s"
+msgstr ""
+"一个关于这个目标的描述。这对于提供更多的信息和介绍是有用的。允许的标记：%s"
+
+#: checks.py:57
+msgid "Your version of Django is too old."
+msgstr ""
+
+#: checks.py:58
+#, python-format
+msgid "Try pip install --upgrade 'Django==%s'"
+msgstr ""
+
+#: checks.py:65
+msgid "Your version of lxml is too old."
+msgstr ""
+
+#: checks.py:66
+msgid "Try pip install --upgrade lxml"
+msgstr ""
+
+#: checks.py:72
+msgid "Your version of Translate Toolkit is too old."
+msgstr ""
+
+#: checks.py:73
+msgid "Try pip install --upgrade translate-toolkit"
+msgstr ""
+
+#: checks.py:88
+msgid ""
+"Can't find python-levenshtein package. Updating against templates is faster "
+"with python-levenshtein."
+msgstr ""
+"无法找到 python-levenshtein 软件包。通过 python-levenshtein 软件包进行模版更"
+"新会更快。"
+
+#: checks.py:90
+msgid "Try pip install python-levenshtein"
+msgstr ""
+
+#: checks.py:109
+#, python-format
+msgid "Could not connect to Redis (%s)"
+msgstr ""
+
+#: checks.py:110
+#, fuzzy, python-format
+msgid "Make sure Redis is running on %(host)s:%(port)s"
+msgstr "Redis 服务器尝试连接 %(host)s:%(port)s。"
+
+#: checks.py:119
+#, fuzzy
+msgid "No RQ Worker running."
+msgstr "没有 RQ worker 正在运行。"
+
+#: checks.py:120
+msgid "Run new workers with manage.py rqworker"
+msgstr ""
+
+#: checks.py:127
+#, fuzzy
+msgid "Your version of Redis is too old."
+msgstr "Django 的 %s 版本已经安装。"
+
+#: checks.py:128
+msgid "Update your system's Redis server package"
+msgstr ""
+
+#: checks.py:143
+msgid "Cache backend is not set to Redis."
+msgstr ""
+
+#: checks.py:144
+#, python-format
+msgid ""
+"Set default cache backend to django_redis.cache.RedisCache\n"
+"Current settings: %r"
+msgstr ""
+
+#: checks.py:153
+msgid "Could not initiate a Redis cache connection"
+msgstr ""
+
+#: checks.py:154
+msgid "Double-check your CACHES settings"
+msgstr ""
+
+#: checks.py:160
+msgid "DEBUG mode is on. Do not do this in production!"
+msgstr ""
+
+#: checks.py:161
+msgid "Set DEBUG = False in Pootle settings"
+msgstr ""
+
+#: checks.py:167
+msgid "The sqlite database backend is unsupported"
+msgstr ""
+
+#: checks.py:168
+msgid "Set your default database engine to postgresql_psycopg2 or mysql"
+msgstr ""
+
+#: checks.py:174
+msgid "Not using cached_db as session engine"
+msgstr ""
+
+#: checks.py:175
+#, python-format
+msgid ""
+"Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
+"Current settings: %r"
+msgstr ""
+
+#: checks.py:182
+msgid "POOTLE_CONTACT_EMAIL is not set."
+msgstr ""
+
+#: checks.py:183
+msgid ""
+"Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
+"the Pootle contact form."
+msgstr ""
+
+#: checks.py:191
+#, python-format
+msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
+msgstr ""
+
+#: checks.py:193
+msgid ""
+"POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
+"contact form."
+msgstr ""
+
+#: checks.py:200
+msgid "settings.DEFAULT_FROM_EMAIL is not set."
+msgstr ""
+
+#: checks.py:201 checks.py:211
+msgid ""
+"DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
+"Don't forget to review your mail server settings."
+msgstr ""
+
+#: checks.py:209
+#, python-format
+msgid "settings.DEFAULT_FROM_EMAIL is using the following default setting %r."
+msgstr ""
+
+#: core/browser.py:29
 msgid "Project"
 msgstr "项目"
 
 #. Translators: noun. The graphical representation of translation status
-#: core/browser.py:33
+#: core/browser.py:40
 msgid "Progress"
 msgstr "进度"
 
-#: core/browser.py:45 templates/browser/overview.html:39
+#: core/browser.py:52 templates/browser/index.html:39
 msgid "Last updated"
 msgstr "上次更新"
 
-#: core/browser.py:50
+#: core/browser.py:57
 msgid "Need Translation"
 msgstr "需要翻译"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:56 templates/editor/_filters.html:11
+#: core/browser.py:63 templates/editor/_filters.html:11
 msgid "Suggestions"
 msgstr "建议"
 
-#: core/browser.py:66
+#: core/browser.py:73
 msgid "Last Activity"
 msgstr "最后操作"
 
-#: core/browser.py:112
+#: core/browser.py:130
+#, fuzzy
+msgid "Back to language"
+msgstr "回到主页"
+
+#: core/browser.py:132
 msgid "Back to parent folder"
 msgstr "返回父文件夹"
 
-#: core/decorators.py:304
+#: core/decorators.py:313
 msgid "Insufficient rights to access this page."
 msgstr "访问此页面的权限不足。"
 
-#: core/decorators.py:317 core/views.py:33
+#: core/decorators.py:326 core/views.py:34
 msgid "You do not have rights to administer Pootle."
 msgstr "您没有管理 Pootle 的权限。"
 
@@ -1157,154 +1353,96 @@ msgstr "请输入一个数字"
 msgid "Incorrect"
 msgstr "不正确"
 
-#: core/helpers.py:41
+#: core/helpers.py:42
 msgid "User missing"
 msgstr "请填写用户"
 
 #. Translators: This refers to "All strings"
-#: core/helpers.py:53 templates/editor/_filters.html:6
+#: core/helpers.py:54 templates/editor/_filters.html:6
 msgid "All"
 msgstr "所有"
 
-#: core/helpers.py:57 templates/editor/_filters.html:8
+#: core/helpers.py:58 templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "未完成"
 
-#. Translators: This is the name of a filter
-#: core/helpers.py:59 templates/core/search.html:5
-msgid "Search"
-msgstr "搜索"
-
-#: core/helpers.py:60 templates/editor/_filters.html:18
+#: core/helpers.py:61 templates/editor/_filters.html:18
 msgid "Checks"
 msgstr "检查"
 
-#: core/helpers.py:61 templates/editor/_filters.html:13
+#: core/helpers.py:62 templates/editor/_filters.html:13
 msgid "My submissions"
 msgstr "我的提交"
 
-#: core/helpers.py:62 templates/admin/dashboard.html:19
+#: core/helpers.py:63 templates/admin/dashboard.html:13
 msgid "Submissions"
 msgstr "提交"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
-#: core/helpers.py:63 templates/editor/_filters.html:17
+#: core/helpers.py:64 templates/editor/_filters.html:17
 msgid "My overwritten submissions"
 msgstr "我被覆盖的提交"
 
-#: core/helpers.py:64
+#: core/helpers.py:65
 msgid "Overwritten submissions"
 msgstr "被覆盖的提交"
 
-#: core/initdb.py:110
+#: core/initdb.py:109
 msgid "Can access a project"
 msgstr "可以访问项目"
 
-#: core/initdb.py:114
+#: core/initdb.py:113
 msgid "Cannot access a project"
 msgstr "不能访问项目"
 
-#: core/initdb.py:118
+#: core/initdb.py:117
 msgid "Can make a suggestion for a translation"
 msgstr "可以对一个翻译提出建议"
 
-#: core/initdb.py:122
+#: core/initdb.py:121
 msgid "Can submit a translation"
 msgstr "可以提交一个翻译"
 
-#: core/initdb.py:126
-msgid "Can review translations"
-msgstr "可以审阅翻译"
+#: core/initdb.py:125
+#, fuzzy
+msgid "Can review suggestions"
+msgstr "审阅建议"
 
-#: core/initdb.py:130
+#: core/initdb.py:129
 msgid "Can administrate a translation project"
 msgstr "可以管理一个翻译项目"
 
-#: core/views.py:65
+#: core/views.py:66
 msgid "You cannot access this page."
 msgstr "您不能访问此页面。"
 
-#: middleware/errorpages.py:66
-#, python-format
-msgid "You need to <a href=\"%(login_link)s\">login</a> to access this page."
+#: custom/templates/layout.html:11
+msgid "Getting Started"
+msgstr ""
+
+#: custom/templates/layout.html:15
+#, fuzzy
+msgid "License Terms"
+msgstr "许可"
+
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:116
+#: templates/user/settings.html:4 templates/user/settings.html.py:7
+msgid "Settings"
+msgstr "设置"
+
+#: middleware/errorpages.py:57
+#, fuzzy, python-format
+msgid ""
+"You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
+"access this page."
 msgstr "您需要<a href=\"%(login_link)s\">登录</a>以访问本页。"
 
-#: middleware/errorpages.py:105
+#: middleware/errorpages.py:97
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr "访问 %(filename)s 出错，文件系统返回错误：%(errormsg)s"
-
-#: models/user.py:57
-msgid ""
-"Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
-msgstr "必需。30个字符或更少。字母、数字和 @/./+/-/_ 字符"
-
-#: models/user.py:61
-msgid "Enter a valid username."
-msgstr "请输入一个有效的用户名。"
-
-#: models/user.py:65 templates/registration/password_reset_form.html:19
-msgid "Email Address"
-msgstr "电子邮件地址"
-
-#: models/user.py:69
-msgid ""
-"Designates whether this user should be treated as active. Unselect this "
-"instead of deleting accounts."
-msgstr "标识此用户是否应被视为活动。取消选中此项而不必删除账号。"
-
-#: models/user.py:71
-msgid "Superuser Status"
-msgstr "超级用户状态"
-
-#: models/user.py:72
-msgid ""
-"Designates that this user has all permissions without explicitly assigning "
-"them."
-msgstr "标识此用户是否具有所有权限而无需明确分配。"
-
-#: models/user.py:75
-msgid "date joined"
-msgstr "加入时间"
-
-#: models/user.py:79
-msgid "Number of Rows"
-msgstr "行数"
-
-#: models/user.py:82
-msgid "Alternative Source Languages"
-msgstr "可选源语言"
-
-#: models/user.py:85 templates/admin/detailed_reports.html:149
-#, fuzzy
-msgid "Rate"
-msgstr "比率"
-
-#: models/user.py:88
-msgid "Score"
-msgstr "得分"
-
-#: models/user.py:91
-msgid "Is employee?"
-msgstr "是员工？"
-
-#: models/user.py:92
-msgid "Twitter"
-msgstr "Twitter"
-
-#: models/user.py:94
-msgid "Website"
-msgstr "网站"
-
-#: models/user.py:95
-msgid "LinkedIn"
-msgstr "LinkedIn"
-
-#: models/user.py:96
-msgid "Short Bio"
-msgstr "个人简介"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:35
@@ -1336,7 +1474,7 @@ msgstr "使用条款"
 msgid "Terms of Service"
 msgstr "服务条款"
 
-#: templates/about.html:7 templates/layout.html:178
+#: templates/about.html:7 templates/layout.html:171
 msgid "About"
 msgstr "关于"
 
@@ -1344,8 +1482,7 @@ msgstr "关于"
 msgid "About This Pootle Server"
 msgstr "关于此 Pootle 服务器"
 
-#. Translators: For better readability, make sure to leave an space after the closing </i> tag
-#: templates/about.html:15
+#: templates/about.html:16
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1353,47 +1490,80 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
-"本站运行 Pootle &mdash; 强大的团队协同翻译及翻译管理网络软件。该社区工具为自由软件，任何团队均可使用它并向 Pootle "
-"社区作贡献。更多信息，见 <a href=\"http://pootle.translatehouse.org/\"><i class=\"icon-"
-"external-link\"></i> 项目网站</a>。"
+"本站运行 Pootle &mdash; 强大的团队协同翻译及翻译管理网络软件。该社区工具为自"
+"由软件，任何团队均可使用它并向 Pootle 社区作贡献。更多信息，见 <a href="
+"\"http://pootle.translatehouse.org/\"><i class=\"icon-external-link\"></i> 项"
+"目网站</a>。"
 
-#: templates/about.html:16
+#: templates/about.html:26
 #, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
-msgstr "Pootle %(pootle_version)s 以 Translate Toolkit %(toolkit_version)s 为基础。"
+msgstr ""
+"Pootle %(pootle_version)s 以 Translate Toolkit %(toolkit_version)s 为基础。"
+
+#: templates/account/email/email_confirmation_message.txt:2
+msgid "A Pootle account has been created for you using this email address."
+msgstr "已经使用这个电子邮件地址为您创建了一个 Pootle 帐户。"
+
+#: templates/account/email/email_confirmation_message.txt:3
+msgid "To activate your account, follow this link:"
+msgstr "要激活您的帐户，请点击这个链接："
+
+#: templates/account/email/email_confirmation_message.txt:6
+msgid ""
+"This message is sent to verify that the email address is in fact correct. If "
+"you did not want to register an account, you may simply ignore the message."
+msgstr ""
+"发送本信息是为了验证电子邮件地址是否确切。如果您不想注册帐号，只需简单忽略本"
+"信息即可。"
+
+#: templates/account/email/email_confirmation_subject.txt:2
+#, fuzzy
+msgid "Pootle e-mail confirmation"
+msgstr "Pootle 注册"
+
+#: templates/account/signup_closed.html:5
+#: templates/account/signup_closed.html:8
+#: templates/account/signup_closed.html:13
+#, fuzzy
+msgid "Registration Disabled"
+msgstr "注册个人信息"
+
+#: templates/account/signup_closed.html:14
+msgid "Registration is currently disabled. Please try again later."
+msgstr ""
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
 msgid "Save Changes"
 msgstr "保存更改"
 
-#: templates/admin/_tabs.html:3
+#: templates/admin/_tabs.html:6
 msgid "Info"
 msgstr "信息"
 
-#: templates/admin/_tabs.html:4 templates/admin/dashboard.html:25
-#: templates/admin/users.html:4 templates/admin/users.html.py:9
-#: templates/user/base.html:4 templates/user/base.html.py:6
-#: templates/user/stats.html:51
+#: templates/admin/_tabs.html:11 templates/admin/dashboard.html:21
+#: templates/admin/users.html:4 templates/admin/users.html.py:7
+#: templates/user/base.html:4
 msgid "Users"
 msgstr "用户"
 
-#: templates/admin/_tabs.html:5 templates/admin/languages.html:4
-#: templates/admin/languages.html.py:9 templates/projects/_nav.html:26
+#: templates/admin/_tabs.html:16 templates/admin/languages.html:4
+#: templates/admin/languages.html.py:7 templates/projects/_nav.html:26
 #: templates/projects/admin/languages.html:7
 #: templates/projects/all/_nav.html:26
 msgid "Languages"
 msgstr "语言"
 
-#: templates/admin/_tabs.html:6 templates/admin/projects.html:4
-#: templates/admin/projects.html.py:9 templates/projects/base.html:5
+#: templates/admin/_tabs.html:21 templates/admin/projects.html:4
+#: templates/admin/projects.html.py:7 templates/projects/base.html:5
 msgid "Projects"
 msgstr "项目"
 
-#: templates/admin/_tabs.html:7 templates/admin/permissions.html:4
-#: templates/admin/permissions.html.py:9 templates/languages/_nav.html:26
+#: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
+#: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
 #: templates/languages/admin/permissions.html:5
 #: templates/projects/_nav.html:31 templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:31
@@ -1402,13 +1572,13 @@ msgstr "项目"
 msgid "Permissions"
 msgstr "权限"
 
-#: templates/admin/_tabs.html:8 templates/admin/staticpages/base.html:4
-#: templates/admin/staticpages/base.html:10
+#: templates/admin/_tabs.html:31 templates/admin/staticpages/base.html:4
+#: templates/admin/staticpages/base.html:8
 msgid "Static Pages"
 msgstr "静态页面"
 
-#: templates/admin/_tabs.html:9 templates/admin/reports.html:47
-#: templates/admin/reports.html.py:50
+#: templates/admin/_tabs.html:36 templates/admin/reports.html:45
+#: templates/admin/reports.html.py:48
 msgid "Reports"
 msgstr "报告"
 
@@ -1416,53 +1586,42 @@ msgstr "报告"
 msgid "Administration"
 msgstr "管理"
 
-#: templates/admin/dashboard.html:13
+#: templates/admin/dashboard.html:7
 msgid "Server Statistics"
 msgstr "服务器统计"
 
-#: templates/admin/dashboard.html:22
+#: templates/admin/dashboard.html:17
 msgid "Pending suggestions"
 msgstr "待审阅的建议"
 
-#: templates/admin/dashboard.html:31
+#: templates/admin/dashboard.html:29
 msgid "More..."
 msgstr "更多..."
 
-#: templates/admin/dashboard.html:38
+#: templates/admin/dashboard.html:37
 msgid "Background Jobs"
 msgstr "后台任务"
 
-#: templates/admin/dashboard.html:44
+#: templates/admin/dashboard.html:43
 msgid "Status"
 msgstr "状态"
 
-#: templates/admin/dashboard.html:45
-msgid "Running"
-msgstr "正在运行"
-
-#: templates/admin/dashboard.html:45
-msgid "Stopped"
-msgstr "已停止"
-
-#: templates/admin/dashboard.html:48
+#: templates/admin/dashboard.html:50
 msgid "Pending jobs"
 msgstr "待办任务"
 
-#: templates/admin/dashboard.html:51
+#: templates/admin/dashboard.html:54
 msgid "Failed jobs"
 msgstr "失败任务"
 
-#: templates/admin/dashboard.html:60
-msgid "Dependency Checks"
-msgstr "依赖检查"
+#: templates/admin/dashboard.html:64
+#, fuzzy
+msgid "System Checks"
+msgstr "显示检查"
 
-#: templates/admin/dashboard.html:69
-msgid "Optional"
-msgstr "可选项"
-
-#: templates/admin/dashboard.html:77
-msgid "Optimizations"
-msgstr "优化"
+#: templates/admin/dashboard.html:74
+msgid "No issues have been detected. All is good!"
+msgstr ""
 
 #: templates/admin/detailed_reports.html:6
 #, python-format
@@ -1533,25 +1692,26 @@ msgstr "审核 (小计)"
 msgid "Please select a valid user."
 msgstr "请选择一个有效的用户。"
 
-#: templates/admin/permissions.html:12
+#: templates/admin/permissions.html:10
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr "您可以在这个 Pootle 服务器上增加、编辑和删除默认权限。"
 
-#: templates/admin/permissions.html:16
+#: templates/admin/permissions.html:14
 #: templates/languages/admin/permissions.html:11
 #: templates/projects/admin/permissions.html:13
-#: templates/translation_projects/admin/permissions.html:13
+#: templates/translation_projects/admin/permissions.html:11
 msgid ""
 "The user “nobody” refers to any user that is not logged in (an anonymous, "
 "unidentified user). The user “default” refers to the rights that all logged "
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"“nobody”帐户表示没有登录的用户（匿名、未定义的用户）。“default”帐户表示所有登录的用户都默认拥有的权限，除非他们被指派有其他特定权限。"
+"“nobody”帐户表示没有登录的用户（匿名、未定义的用户）。“default”帐户表示所有登"
+"录的用户都默认拥有的权限，除非他们被指派有其他特定权限。"
 
-#: templates/admin/reports.html:60 templates/user/stats.html:63
+#: templates/admin/reports.html:58 templates/user/stats.html:60
 msgid "Daily activity"
 msgstr "每日动态"
 
@@ -1588,9 +1748,7 @@ msgid "Set Rates"
 msgstr ""
 
 #: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:24
-#: templates/profiles/settings/personal.html:21
-#: templates/profiles/settings/profile.html:25
+#: templates/admin/staticpages/_form.html:24 templates/user/settings.html:40
 msgid "Save"
 msgstr "保存"
 
@@ -1605,10 +1763,9 @@ msgstr "或"
 
 #: templates/admin/staticpages/_form.html:30
 msgid ""
-"\n"
 "Use <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/a&gt;"
 "</code> code to provide links between static pages. Such links will be "
-"rewritten with full paths to static pages.\n"
+"rewritten with full paths to static pages."
 msgstr ""
 
 #: templates/admin/staticpages/_table.html:10
@@ -1695,60 +1852,59 @@ msgstr "<span class='value fuzzy'>0</span>%% 模糊翻译"
 msgid "<span class='value untranslated'>0</span>%% untranslated"
 msgstr "<span class='value untranslated'>0</span>%% 未翻译"
 
-#: templates/browser/overview.html:13
+#: templates/browser/index.html:13
 msgid "Expand details"
 msgstr "展开详情"
 
-#: templates/browser/overview.html:20
+#: templates/browser/index.html:20
 msgid "Translation Statistics"
 msgstr "翻译统计"
 
-#: templates/browser/overview.html:43
+#: templates/browser/index.html:43
 msgid "Last action"
 msgstr "最后操作"
 
-#: templates/browser/overview.html:51
+#: templates/browser/index.html:51
 msgid "Failing Checks"
 msgstr "失败点检查"
 
-#: templates/browser/overview.html:90
+#: templates/browser/index.html:104
 msgid "This project is disabled and visible to administrators only."
 msgstr "此项目已被禁用并且只有管理员可见。"
 
-#: templates/browser/overview.html:95
+#: templates/browser/index.html:109
 msgid ""
 "Some data on this page is currently being calculated, and the page will be "
 "refreshed automatically in <strong>30 seconds</strong>."
 msgstr ""
 
-#: templates/browser/overview.html:96
+#: templates/browser/index.html:113
 msgid "Refresh now"
 msgstr "立即刷新"
 
-#: templates/browser/overview.html:119
+#: templates/browser/index.html:149
 msgid "Congratulations! You have completed this task!"
 msgstr "恭喜！您已完成此任务！"
 
-#: templates/contact_form/contact_form.html:5
+#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:104
 msgid "Contact Us"
 msgstr "联系我们"
 
-#: templates/contact_form/contact_form.html:7
-msgid "You have to fill all the fields, and please <b>write in English</b>."
+#: templates/contact_form/xhr_contact_form.html:8
+msgid "Please fill in all the fields."
 msgstr ""
 
-#: templates/contact_form/contact_form.html:15
+#: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
 msgstr ""
 
-#: templates/contact_form/contact_form.html:20
+#: templates/contact_form/xhr_contact_form.html:24
 msgid "Thanks!"
 msgstr ""
 
-#: templates/contact_form/contact_form.html:21
+#: templates/contact_form/xhr_contact_form.html:26
 msgid ""
-"We have received your message and will try to\n"
-"      respond as soon as possible."
+"We have received your message and will try to respond as soon as possible."
 msgstr ""
 
 #: templates/core/_top_scorers.html:8
@@ -1784,7 +1940,8 @@ msgid "Confirm"
 msgstr "确认"
 
 #: templates/editor/_actions.html:5
-msgid "Go back to overview"
+#, fuzzy
+msgid "Go back to browsing"
 msgstr "返回概览"
 
 #: templates/editor/_filters.html:12
@@ -1799,29 +1956,35 @@ msgstr ""
 msgid "Default order"
 msgstr ""
 
-#: templates/editor/_toolbar.html:7
+#: templates/editor/_toolbar.html:8
+msgid "Important first"
+msgstr ""
+
+#: templates/editor/_toolbar.html:10
 msgid "Newest first"
 msgstr ""
 
-#: templates/editor/_toolbar.html:8
+#: templates/editor/_toolbar.html:11
 msgid "Oldest first"
 msgstr ""
 
-#: templates/editor/_toolbar.html:14
+#: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
 msgstr "转到上一个字符串 (Ctrl+↑)"
 
-#: templates/editor/_toolbar.html:17
+#: templates/editor/_toolbar.html:20
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
-msgstr "当前字符串编号 (Ctrl+Shift+U)<br/><br/>请输入编号并按下回车键<br/>以到达任意位置"
+msgstr ""
+"当前字符串编号 (Ctrl+Shift+U)<br/><br/>请输入编号并按下回车键<br/>以到达任意"
+"位置"
 
-#: templates/editor/_toolbar.html:19
+#: templates/editor/_toolbar.html:22
 msgid "Total strings"
 msgstr "全部字符串"
 
-#: templates/editor/_toolbar.html:22
+#: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
 msgstr "转到下一个字符串 (Ctrl+↓)"
 
@@ -1843,7 +2006,7 @@ msgstr "所有语言"
 msgid "No strings."
 msgstr "无字符串。"
 
-#: templates/editor/export_view.html:148
+#: templates/editor/export_view.html:149
 #, python-format
 msgid ""
 "We displayed first %(count)s units out of %(total_count)s. Please refine "
@@ -1862,144 +2025,149 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">字符串 %(id)s</a>"
 
 #: templates/editor/units/edit.html:19
+#, fuzzy
+msgid "Priority:"
+msgstr "优先级"
+
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr "上下文："
 
-#: templates/editor/units/edit.html:30
-msgid "Terminology:"
-msgstr "术语："
-
-#: templates/editor/units/edit.html:33
-msgid "Insert the translated term into the editor"
-msgstr "将翻译的术语插入编辑器中"
-
-#: templates/editor/units/edit.html:44
-msgid "Comments:"
-msgstr "注释："
-
-#: templates/editor/units/edit.html:53
-msgid "Click to open the image in a popup"
-msgstr ""
-
-#: templates/editor/units/edit.html:62
+#: templates/editor/units/edit.html:36
 msgid "Locations:"
 msgstr "位置："
 
-#: templates/editor/units/edit.html:71
+#: templates/editor/units/edit.html:46
+msgid "Terminology:"
+msgstr "术语："
+
+#: templates/editor/units/edit.html:49
+msgid "Insert the translated term into the editor"
+msgstr "将翻译的术语插入编辑器中"
+
+#: templates/editor/units/edit.html:62
+msgid "Comments:"
+msgstr "注释："
+
+#: templates/editor/units/edit.html:70
+msgid "Click to open the image in a popup"
+msgstr ""
+
+#: templates/editor/units/edit.html:84
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:95 templates/editor/units/edit.html:121
+#: templates/editor/units/edit.html:108 templates/editor/units/edit.html:134
 msgid "Copy into translation"
 msgstr "复制到翻译框"
 
-#: templates/editor/units/edit.html:117
+#: templates/editor/units/edit.html:130
 msgid "Report a problem with this string"
 msgstr "报告此字符串的一个问题"
 
-#: templates/editor/units/edit.html:139 templates/editor/units/edit.html:150
-#: templates/editor/units/edit.html:243
+#: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:256
 msgid "Submit"
 msgstr "提交"
 
-#: templates/editor/units/edit.html:140
+#: templates/editor/units/edit.html:153
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "提交翻译并转到下一条字符串(Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:145 templates/editor/units/edit.html:151
+#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
 msgid "Suggest"
 msgstr "建议"
 
-#: templates/editor/units/edit.html:146
+#: templates/editor/units/edit.html:159
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "提交建议并转到下一条字符串(Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:150
+#: templates/editor/units/edit.html:163
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "切换到翻译模式(Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:151
+#: templates/editor/units/edit.html:164
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "切换到建议模式(Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:156
+#: templates/editor/units/edit.html:169
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "将此字符串标记为尚需完善(Ctrl+Space)"
 
-#: templates/editor/units/edit.html:171
+#: templates/editor/units/edit.html:184
 msgid "Show Timeline"
 msgstr "显示时间线"
 
-#: templates/editor/units/edit.html:173
+#: templates/editor/units/edit.html:186
 msgid "Add Comment"
 msgstr "添加注释"
 
-#: templates/editor/units/edit.html:175
+#: templates/editor/units/edit.html:188
 msgid "Raw View"
 msgstr "原始视图"
 
-#: templates/editor/units/edit.html:185
+#: templates/editor/units/edit.html:198
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "经 <a href=\"%(profile_url)s\">%(reviewer)s</a> 审核"
 
-#: templates/editor/units/edit.html:195
+#: templates/editor/units/edit.html:208
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "将 RLM (Right-To-Left Mark) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:198
+#: templates/editor/units/edit.html:211
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "将 LRM (Left-To-Right Mark) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:201
+#: templates/editor/units/edit.html:214
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "将 RLE (Right-To-Left Embedding) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:204
+#: templates/editor/units/edit.html:217
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "半 LRE (Left-To-Right Embedding) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:207
+#: templates/editor/units/edit.html:220
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "将 RLO (Right-To-Left Override) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:210
+#: templates/editor/units/edit.html:223
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "将 LRO (Left-To-Right Override) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:213
+#: templates/editor/units/edit.html:226
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "将 PDF (Pop Directional Format ) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:216
+#: templates/editor/units/edit.html:229
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "将 ZWJ (Zero Width Joiner) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:219
+#: templates/editor/units/edit.html:232
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "将 ZWNJ (Zero Width Non Joiner) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:226
+#: templates/editor/units/edit.html:239
 msgid "Insert this symbol into the editor"
 msgstr "将此符号插入编辑器"
 
-#: templates/editor/units/edit.html:263
+#: templates/editor/units/edit.html:276
 msgid "User suggestions"
 msgstr "用户建议"
 
-#: templates/editor/units/edit.html:280
+#: templates/editor/units/edit.html:293
 msgid "Accept suggestion"
 msgstr "接受建议"
 
-#: templates/editor/units/edit.html:285
+#: templates/editor/units/edit.html:298
 msgid "Reject suggestion"
 msgstr "拒绝建议"
 
-#: templates/editor/units/edit.html:292
+#: templates/editor/units/edit.html:305
 msgid "Remove suggestion"
 msgstr "移除建议"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:320
 msgid "A long time ago"
 msgstr "很久以前"
 
@@ -2020,11 +2188,11 @@ msgstr "翻译中潜在的问题"
 msgid "Failing checks:"
 msgstr "失败点检查："
 
-#: templates/editor/units/xhr_checks.html:9
+#: templates/editor/units/xhr_checks.html:10
 msgid "Mute quality check"
 msgstr "消除质量检查"
 
-#: templates/editor/units/xhr_checks.html:9
+#: templates/editor/units/xhr_checks.html:11
 msgid "Unmute quality check"
 msgstr "移除质量检查"
 
@@ -2092,7 +2260,7 @@ msgstr "发生了一个服务器错误。谢谢您的耐心。"
 msgid "Exception:"
 msgstr "例外："
 
-#: templates/errors/500.html:20
+#: templates/errors/500.html:21
 #, python-format
 msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
@@ -2104,160 +2272,74 @@ msgid "Database Error"
 msgstr "数据库错误"
 
 #: templates/errors/db.html:11
+#, fuzzy
 msgid ""
-"Pootle can't connect to the database, the database is not\n"
-"initialized yet, or a schema upgrade is needed before continuing."
+"Pootle can't connect to the database, the database is not initialized yet, "
+"or a schema upgrade is needed before continuing."
 msgstr ""
 "Pootle 无法连接到数据库，数据库还没有\n"
 "被初始化，或者在继续前需要进行一次架构升级。"
 
-#: templates/errors/db.html:16
-#, python-format
+#: templates/errors/db.html:18
+#, fuzzy, python-format
 msgid ""
-"\n"
 "Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
-"installation\n"
-"and upgrade instructions. Contact the server administrator if you feel this "
-"is\n"
-"a mistake."
+"installation and upgrade instructions. Contact the server administrator if "
+"you feel this is a mistake."
 msgstr ""
 "\n"
 "请您阅读 <a href=\"%(url)s\">Pootle 文档</a>以获取安装\n"
 "和升级介绍。若您觉得这是一个错误，请联系\n"
 "服务器管理员。"
 
-#: templates/errors/db.html:23
+#: templates/errors/db.html:26
 msgid "The reported error was:"
 msgstr "报告的错误是："
 
 #: templates/languages/_nav.html:5 templates/projects/_nav.html:5
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:5
-msgid "Overview"
-msgstr "概览"
+msgid "Browse"
+msgstr ""
 
 #: templates/languages/admin/permissions.html:9
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr "在下面您可以为这个语言增加、编辑和删除相关权限。"
 
-#: templates/layout.html:88
+#: templates/layout.html:78
 msgid "Pootle requires JavaScript"
 msgstr "Pootle 需要 JavaScript"
 
-#: templates/layout.html:89
+#: templates/layout.html:79
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr "请在您的浏览器设置中启用 JavaScript，并重新加载当前页面。"
 
-#: templates/layout.html:104
+#: templates/layout.html:94
 msgid "skip to navigation"
 msgstr "跳转到导航"
 
-#: templates/layout.html:122
+#: templates/layout.html:115
 msgid "Public Profile"
 msgstr "公开个人资料"
 
-#: templates/layout.html:123 templates/profiles/_tabs.html:4
-msgid "Settings"
-msgstr "设置"
-
-#: templates/layout.html:124 templates/user/stats.html:48
-#: templates/user/stats.html.py:53
+#: templates/layout.html:117 templates/user/stats.html:46
+#: templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr "统计"
 
-#: templates/layout.html:126
+#: templates/layout.html:119
 msgid "Admin"
 msgstr "管理"
 
-#: templates/layout.html:129
-msgid "Sign Out"
+#: templates/layout.html:122
+#, fuzzy
+msgid "Sign out"
 msgstr "退出"
 
-#: templates/layout.html:133 templates/welcome.html:18
+#: templates/layout.html:126
 msgid "Sign In"
 msgstr "登录"
-
-#: templates/login.html:4 templates/login.html.py:9
-msgid "Log In"
-msgstr "登录"
-
-#: templates/login.html:14
-msgid "Login to Pootle"
-msgstr "登录到 Pootle"
-
-#: templates/login.html:20
-msgid "Your username and password didn't match. Please try again."
-msgstr "您的用户名和密码不匹配。请重试。"
-
-#: templates/login.html:26
-msgid "Login"
-msgstr "登录"
-
-#: templates/login.html:33
-msgid "Lost your Password?"
-msgstr "忘记您的密码了？"
-
-#: templates/notifications/_latest.html:9
-msgid "No news yet."
-msgstr "当前没有新闻。"
-
-#: templates/profiles/_tabs.html:6
-#: templates/profiles/settings/evernote_account.html:38
-msgid "Link with Evernote"
-msgstr "与 Evernote 连接"
-
-#: templates/profiles/base.html:4 templates/profiles/base.html.py:6
-msgid "My Account"
-msgstr "我的帐户"
-
-#: templates/profiles/settings/evernote_account.html:4
-#: templates/profiles/settings/evernote_account.html:7
-msgid "Evernote account"
-msgstr "Evernote 账号"
-
-#: templates/profiles/settings/evernote_account.html:14
-#, python-format
-msgid ""
-"This Pootle account is linked with \"<strong>%(username)s</strong>\" "
-"Evernote account."
-msgstr "此 Pootle 账号已与 Evernote 账号“<strong>%(username)s</strong>”连接。"
-
-#: templates/profiles/settings/evernote_account.html:16
-msgid ""
-"Here you can link this Pootle account with Evernote account — this will "
-"allow you to log in faster next time."
-msgstr ""
-
-#: templates/profiles/settings/evernote_account.html:24
-msgid "This Pootle account cannot be unlinked from Evernote."
-msgstr ""
-
-#: templates/profiles/settings/evernote_account.html:30
-msgid "Unlink from Evernote"
-msgstr ""
-
-#: templates/profiles/settings/personal.html:4
-#: templates/profiles/settings/personal.html:7
-msgid "Profile"
-msgstr "个人资料"
-
-#: templates/profiles/settings/personal.html:13
-msgid ""
-"Here you can change your personal details. After clicking the 'Save' button "
-"you will be redirected to your public profile page to see your changes in "
-"action."
-msgstr ""
-
-#: templates/profiles/settings/profile.html:4
-#: templates/profiles/settings/profile.html:7
-msgid "Translation Settings"
-msgstr "翻译设置"
-
-#: templates/profiles/settings/profile.html:12
-msgid ""
-"Here you can configure the settings related to the translation interface."
-msgstr ""
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
@@ -2267,141 +2349,14 @@ msgstr "您可以在这里为这个项目增加、编辑和删除语言。"
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr "您可以在下方为这个项目增加、编辑和删除相关权限。"
 
-#: templates/registration/password_change_done.html:5
-#: templates/registration/password_change_done.html:8
-#: templates/registration/password_change_done.html:13
-msgid "Password Changed"
-msgstr "密码已更改"
-
-#: templates/registration/password_change_done.html:14
-msgid "Your password was changed successfully."
-msgstr "您的密码更改成功。"
-
-#: templates/registration/password_change_form.html:4
-#: templates/registration/password_change_form.html:7
-msgid "Change Password"
-msgstr "更改密码"
-
-#: templates/registration/password_change_form.html:12
-msgid ""
-"Please enter your old password, for security's sake, and then enter your new "
-"password twice so we can verify you typed it in correctly."
-msgstr "请输入您的旧密码，以此确保安全性，然后请输入您的新密码两次，以确保您的输入是正确的。"
-
-#: templates/registration/password_change_form.html:21
-msgid "Old password"
-msgstr "旧密码"
-
-#: templates/registration/password_change_form.html:26
-msgid "New password"
-msgstr "新密码"
-
-#: templates/registration/password_change_form.html:31
-msgid "Confirm password"
-msgstr "确认密码"
-
-#: templates/registration/password_change_form.html:36
-msgid "Change My Password"
-msgstr "更改我的密码"
-
-#: templates/registration/password_reset_complete.html:4
-#: templates/registration/password_reset_complete.html:7
-msgid "Password Reset"
-msgstr "密码重设"
-
-#: templates/registration/password_reset_complete.html:12
-msgid "Password Reset Complete."
-msgstr "密码重设完成。"
-
-#: templates/registration/password_reset_complete.html:14
-#, fuzzy, python-format
-msgid ""
-"Your password has been set. You may go ahead and <a href=\"%(login_url)s"
-"\">sign in</a> now."
-msgstr "您的密码已设定。您现在可以去<a href=\"%(login_url)s\">登录</a>。"
-
-#: templates/registration/password_reset_confirm.html:5
-#: templates/registration/password_reset_confirm.html:8
-#: templates/registration/password_reset_done.html:5
-#: templates/registration/password_reset_done.html:8
-#: templates/registration/password_reset_done.html:13
-#: templates/registration/password_reset_form.html:4
-#: templates/registration/password_reset_form.html:7
-#: templates/registration/password_reset_form.html:12
-msgid "Reset Password"
-msgstr "重设密码"
-
-#: templates/registration/password_reset_confirm.html:14
-msgid "Enter New Password."
-msgstr "输入新密码。"
-
-#: templates/registration/password_reset_confirm.html:16
-msgid ""
-"Please enter your new password twice so we can verify you typed it in "
-"correctly."
-msgstr "请输入新密码两次，以确保您的输入是正确的。"
-
-#: templates/registration/password_reset_confirm.html:21
-msgid "New Password"
-msgstr "新密码"
-
-#: templates/registration/password_reset_confirm.html:26
-msgid "Confirm Password"
-msgstr "确认密码"
-
-#: templates/registration/password_reset_confirm.html:31
-#: templates/registration/password_reset_form.html:24
-msgid "Reset My Password"
-msgstr "重设我的密码"
-
-#: templates/registration/password_reset_confirm.html:35
-msgid "Password Reset Failed."
-msgstr "密码重设失败。"
-
-#: templates/registration/password_reset_confirm.html:37
-msgid ""
-"The password reset link was invalid, possibly because it has already been "
-"used. Please request a new password reset."
-msgstr "这个密码重设链接已失效，可能是已经被使用过了。请您发起一个新的密码重设请求。"
-
-#: templates/registration/password_reset_done.html:15
-msgid ""
-"We've e-mailed you instructions for setting your password to the e-mail "
-"address you submitted. You should receive it shortly."
-msgstr "我们将向您提交的电子邮件地址发送设定密码的介绍。您将很快收到这封邮件。"
-
-#: templates/registration/password_reset_email.html:2
-#, python-format
-msgid ""
-"You're receiving this e-mail because you requested a password reset for your "
-"user account at %(site_name)s."
-msgstr "您收到此邮件的原因是您请求重设您在站点 %(site_name)s 的帐号的密码。"
-
-#: templates/registration/password_reset_email.html:4
-msgid "Please go to the following page and choose a new password:"
-msgstr "请至下列页面选择新密码："
-
-#: templates/registration/password_reset_email.html:8
-#, python-format
-msgid "Your username is %(user)s."
-msgstr "您的用户名是 %(user)s。"
-
-#: templates/registration/password_reset_email.html:10
-msgid "Thank you for using Pootle!"
-msgstr "感谢您使用 Pootle！"
-
-#: templates/registration/password_reset_form.html:14
-msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll e-mail "
-"instructions for setting a new one."
-msgstr "忘记了您的密码？请输入您的电子邮件地址，我们将会发送电子邮件指导您如何设定一个新密码。"
-
-#: templates/staticpages/_body.html:6
+#: templates/staticpages/_body.html:5
 #, fuzzy, python-format
 msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
-msgstr "这个页面是未激活且只有管理员可见的。您可以通过<a href=\"%s\">编辑属性</a>来激活它"
+msgstr ""
+"这个页面是未激活且只有管理员可见的。您可以通过<a href=\"%s\">编辑属性</a>来激"
+"活它"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
@@ -2412,7 +2367,8 @@ msgid "Before continuing, you must read and accept the following documents."
 msgstr "在继续之前，您必须阅读并接受以下文档。"
 
 #: templates/staticpages/agreement.html:17
-msgid "No thanks. Log out"
+#, fuzzy
+msgid "No thanks. Sign out"
 msgstr "不了。注销"
 
 #: templates/staticpages/agreement.html:20
@@ -2423,7 +2379,7 @@ msgstr "继续"
 msgid "Terminology"
 msgstr "术语"
 
-#: templates/translation_projects/admin/permissions.html:11
+#: templates/translation_projects/admin/permissions.html:9
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
@@ -2487,76 +2443,76 @@ msgstr "文件"
 msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr "一旦上传了文件，您就可以添加、编辑和删除术语。"
 
-#: templates/user/profile.html:14
+#: templates/user/profile.html:13
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "您可以在 www.gravatar.com 设置或更改您的头像"
 
-#: templates/user/profile.html:17
+#: templates/user/profile.html:16
 #, fuzzy
 msgid "Anonymous User"
 msgstr "匿名用户"
 
-#: templates/user/profile.html:26
+#: templates/user/profile.html:25
 msgid "Score:"
 msgstr ""
 
-#: templates/user/profile.html:29
+#: templates/user/profile.html:28
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
 msgstr ""
 
-#: templates/user/profile.html:29 templates/user/profile.html.py:41
+#: templates/user/profile.html:28 templates/user/profile.html.py:40
 msgid "Tweet this!"
 msgstr ""
 
-#: templates/user/profile.html:38
+#: templates/user/profile.html:37
 msgid "No contributions in the last month"
 msgstr ""
 
-#: templates/user/profile.html:41
+#: templates/user/profile.html:40
 #, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
 "%(server_title)s! "
 msgstr ""
 
-#: templates/user/profile.html:42
+#: templates/user/profile.html:41
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s for this month"
 msgstr ""
 
-#: templates/user/profile.html:45
+#: templates/user/profile.html:46
 #, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
 msgstr ""
 
-#: templates/user/profile.html:54
+#: templates/user/profile.html:57
 #, fuzzy
 msgid "Latest activity:"
 msgstr "最后操作"
 
-#: templates/user/profile.html:66
+#: templates/user/profile.html:69
 msgid "My Website"
 msgstr ""
 
-#: templates/user/profile.html:72
+#: templates/user/profile.html:75
 msgid "My LinkedIn Profile"
 msgstr "我的 LinkedIn 个人资料"
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:84
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:91
+#: templates/user/profile.html:94
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/profile.html:93
+#: templates/user/profile.html:96
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -2582,6 +2538,21 @@ msgstr ""
 msgid "Hourly Rate:"
 msgstr ""
 
+#: templates/user/settings.html:12
+#, fuzzy
+msgid "User Account"
+msgstr "注册帐户"
+
+#: templates/user/settings.html:14
+msgid ""
+"Do you want to change your password? Click the 'Reset Password' button which "
+"will initiate the process of setting a new password."
+msgstr ""
+
+#: templates/user/settings.html:26
+msgid "Reset Password"
+msgstr "重设密码"
+
 #: templates/welcome.html:4
 msgid "Welcome"
 msgstr ""
@@ -2594,13 +2565,295 @@ msgstr ""
 msgid "Come and join us!"
 msgstr ""
 
-#: templates/welcome.html:30
+#: templates/welcome.html:19
+#, fuzzy
+msgid "Sign in"
+msgstr "登录"
+
+#: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr ""
 
 #~ msgid ""
+#~ "Cannot link: your Evernote account is already linked with another Pootle "
+#~ "account."
+#~ msgstr "无法链接：您的 Evernote 帐号已经连接到另外一个 Pootle 帐号。"
+
+#~ msgid "Translate Toolkit version %s installed."
+#~ msgstr "Translate Toolkit 的 %s 版本已经安装。"
+
+#~ msgid ""
+#~ "Translate Toolkit version %(installed)s installed. Pootle requires at "
+#~ "least version %(required)s."
+#~ msgstr ""
+#~ "Translate Toolkit 的 %(installed)s 版本已经安装。Pootle 需要的最低版本为 "
+#~ "%(required)s。"
+
+#~ msgid ""
+#~ "Django version %(installed)s is installed. Pootle requires at least "
+#~ "version %(required)s."
+#~ msgstr ""
+#~ "Django 的 %(installed)s 版本已经安装。Pootle 需要的最低版本为 "
+#~ "%(required)s。"
+
+#~ msgid "lxml version %s is installed."
+#~ msgstr "lxml 的 %s 版本已经安装。"
+
+#~ msgid ""
+#~ "lxml version %(installed)s is installed. Pootle requires at least version "
+#~ "%(required)s."
+#~ msgstr ""
+#~ "lxml 的 %(installed)s 版本已经安装。Pootle 需要的最低版本为 %(required)s。"
+
+#~ msgid "lxml is not installed. Pootle requires lxml."
+#~ msgstr "lxml 尚未安装。Pootle 需要 lxml。"
+
+#~ msgid ""
+#~ "Redis server version %(installed)s installed. Pootle requires at least "
+#~ "version %(required)s."
+#~ msgstr ""
+#~ "Redis 的 %(installed)s 版本已经安装。Pootle 需要的最低版本为 "
+#~ "%(required)s。"
+
+#~ msgid "Redis server is not available on %(host)s:%(port)s."
+#~ msgstr "Redis 服务器未在 %(host)s:%(port)s 上可用。"
+
+#~ msgid "%(num)d RQ worker running."
+#~ msgid_plural "%(num)d RQ workers running."
+#~ msgstr[0] "%(num)d 个 RQ worker 正在运行。"
+
+#~ msgid ""
+#~ "Pootle is configured to use Redis as a caching backend, but can't connect "
+#~ "to the cache."
+#~ msgstr "Pootle 已配置为使用 Redis 作为缓存后端，但现在无法连接到该缓存。"
+
+#~ msgid "Caching configured and running."
+#~ msgstr "缓存已配置并正在运行。"
+
+#~ msgid "Redis is required as the caching backend."
+#~ msgstr "Redis 作为缓存后端是必须的。"
+
+#~ msgid ""
+#~ "Can't find the ISO codes package. Pootle uses ISO codes to translate "
+#~ "language names."
+#~ msgstr "无法找到 ISO 代码包。Pootle 使用 ISO 代码来翻译语言名。"
+
+#~ msgid "MARKUP_FILTER is missing. Falling back to HTML."
+#~ msgstr "MARKUP_FILTER 丢失。将退回 HTML。"
+
+#~ msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
+#~ msgstr "MARKUP_FILTER 配置错误。将退回 HTML。"
+
+#~ msgid ""
+#~ "Can't find the package which provides '%s' markup support. Falling back "
+#~ "to HTML."
+#~ msgstr "无法找到提供“%s”标记支持的包。将退回 HTML。"
+
+#~ msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
+#~ msgstr "MARKUP_FILTER 中的值“%s”无效。将退回 HTML。"
+
+#~ msgid ""
+#~ "Using the default sqlite3 database engine. SQLite is only suitable for "
+#~ "small installations with a small number of users. Pootle will perform "
+#~ "better with the MySQL database engine."
+#~ msgstr ""
+#~ "使用默认的 sqlite3 数据库引擎。SQLite 只适用于少量用户的小型安装。Pootle "
+#~ "在使用 MySQL 数据库引擎时性能更佳。"
+
+#~ msgid ""
+#~ "Using the default sqlite3 database engine. SQLite is only suitable for "
+#~ "small installations with a small number of users. Pootle will perform "
+#~ "better with the MySQL database engine, but you need to install python-"
+#~ "MySQLdb first."
+#~ msgstr ""
+#~ "使用默认的 sqlite3 数据库引擎。SQLite 只适用于少量用户的小型安装。Pootle "
+#~ "在使用 MySQL 数据库引擎时性能更佳，但您需要先安装 python-MySQLdb。"
+
+#~ msgid ""
+#~ "For optimal performance, use django.contrib.sessions.backends.cached_db "
+#~ "as the session engine."
+#~ msgstr ""
+#~ "为优化性能，请使用 django.contrib.sessions.backends.cached_db 作为会话引"
+#~ "擎。"
+
+#~ msgid "For optimal performance, use Apache as the webserver."
+#~ msgstr "为优化性能，使用 Apache 作为 Web 服务器。"
+
+#~ msgid ""
+#~ "The \"from\" address used to send registration emails is not specified. "
+#~ "Also review the mail server settings."
+#~ msgstr "用于发送注册邮件的“from”地址尚未指定。也请检查邮件服务器设置。"
+
+#~ msgid ""
+#~ "No contact address is specified. The contact form will allow users to "
+#~ "contact the server administrators."
+#~ msgstr "联系地址尚未指定。联系表单将允许用户联系服务器管理员。"
+
+#~ msgid ""
+#~ "Running in debug mode. Debug mode is only needed when developing Pootle. "
+#~ "For optimal performance, disable debugging mode."
+#~ msgstr ""
+#~ "以调试模式运行。只有在开发 Pootle 时才需要进入调试模式。为优化性能，请禁用"
+#~ "调试模式。"
+
+#~ msgid "Added"
+#~ msgstr "已添加"
+
+#~ msgid "Can review translations"
+#~ msgstr "可以审阅翻译"
+
+#~ msgid "Running"
+#~ msgstr "正在运行"
+
+#~ msgid "Dependency Checks"
+#~ msgstr "依赖检查"
+
+#~ msgid "Optional"
+#~ msgstr "可选项"
+
+#~ msgid "Optimizations"
+#~ msgstr "优化"
+
+#~ msgid "Overview"
+#~ msgstr "概览"
+
+#~ msgid "Log In"
+#~ msgstr "登录"
+
+#~ msgid "Login to Pootle"
+#~ msgstr "登录到 Pootle"
+
+#~ msgid "Your username and password didn't match. Please try again."
+#~ msgstr "您的用户名和密码不匹配。请重试。"
+
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#~ msgid "Lost your Password?"
+#~ msgstr "忘记您的密码了？"
+
+#~ msgid "No news yet."
+#~ msgstr "当前没有新闻。"
+
+#~ msgid "Link with Evernote"
+#~ msgstr "与 Evernote 连接"
+
+#~ msgid "My Account"
+#~ msgstr "我的帐户"
+
+#~ msgid "Evernote account"
+#~ msgstr "Evernote 账号"
+
+#~ msgid ""
+#~ "This Pootle account is linked with \"<strong>%(username)s</strong>\" "
+#~ "Evernote account."
+#~ msgstr ""
+#~ "此 Pootle 账号已与 Evernote 账号“<strong>%(username)s</strong>”连接。"
+
+#~ msgid "Profile"
+#~ msgstr "个人资料"
+
+#~ msgid "Translation Settings"
+#~ msgstr "翻译设置"
+
+#~ msgid "Password Changed"
+#~ msgstr "密码已更改"
+
+#~ msgid "Your password was changed successfully."
+#~ msgstr "您的密码更改成功。"
+
+#~ msgid "Change Password"
+#~ msgstr "更改密码"
+
+#~ msgid ""
+#~ "Please enter your old password, for security's sake, and then enter your "
+#~ "new password twice so we can verify you typed it in correctly."
+#~ msgstr ""
+#~ "请输入您的旧密码，以此确保安全性，然后请输入您的新密码两次，以确保您的输入"
+#~ "是正确的。"
+
+#~ msgid "Old password"
+#~ msgstr "旧密码"
+
+#~ msgid "New password"
+#~ msgstr "新密码"
+
+#~ msgid "Confirm password"
+#~ msgstr "确认密码"
+
+#~ msgid "Change My Password"
+#~ msgstr "更改我的密码"
+
+#~ msgid "Password Reset"
+#~ msgstr "密码重设"
+
+#~ msgid "Password Reset Complete."
+#~ msgstr "密码重设完成。"
+
+#, fuzzy
+#~ msgid ""
+#~ "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
+#~ "\">sign in</a> now."
+#~ msgstr "您的密码已设定。您现在可以去<a href=\"%(login_url)s\">登录</a>。"
+
+#~ msgid "Enter New Password."
+#~ msgstr "输入新密码。"
+
+#~ msgid ""
+#~ "Please enter your new password twice so we can verify you typed it in "
+#~ "correctly."
+#~ msgstr "请输入新密码两次，以确保您的输入是正确的。"
+
+#~ msgid "New Password"
+#~ msgstr "新密码"
+
+#~ msgid "Confirm Password"
+#~ msgstr "确认密码"
+
+#~ msgid "Reset My Password"
+#~ msgstr "重设我的密码"
+
+#~ msgid "Password Reset Failed."
+#~ msgstr "密码重设失败。"
+
+#~ msgid ""
+#~ "The password reset link was invalid, possibly because it has already been "
+#~ "used. Please request a new password reset."
+#~ msgstr ""
+#~ "这个密码重设链接已失效，可能是已经被使用过了。请您发起一个新的密码重设请"
+#~ "求。"
+
+#~ msgid ""
+#~ "We've e-mailed you instructions for setting your password to the e-mail "
+#~ "address you submitted. You should receive it shortly."
+#~ msgstr ""
+#~ "我们将向您提交的电子邮件地址发送设定密码的介绍。您将很快收到这封邮件。"
+
+#~ msgid ""
+#~ "You're receiving this e-mail because you requested a password reset for "
+#~ "your user account at %(site_name)s."
+#~ msgstr "您收到此邮件的原因是您请求重设您在站点 %(site_name)s 的帐号的密码。"
+
+#~ msgid "Please go to the following page and choose a new password:"
+#~ msgstr "请至下列页面选择新密码："
+
+#~ msgid "Your username is %(user)s."
+#~ msgstr "您的用户名是 %(user)s。"
+
+#~ msgid "Thank you for using Pootle!"
+#~ msgstr "感谢您使用 Pootle！"
+
+#~ msgid ""
+#~ "Forgotten your password? Enter your e-mail address below, and we'll e-"
+#~ "mail instructions for setting a new one."
+#~ msgstr ""
+#~ "忘记了您的密码？请输入您的电子邮件地址，我们将会发送电子邮件指导您如何设定"
+#~ "一个新密码。"
+
+#~ msgid ""
 #~ "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-#~ msgstr "按住 Control（Ctrl）键，或者 Mac 上的 Command 键，可以一次选择多个项目。"
+#~ msgstr ""
+#~ "按住 Control（Ctrl）键，或者 Mac 上的 Command 键，可以一次选择多个项目。"
 
 #~ msgid "Enter a valid e-mail address."
 #~ msgstr "请输入一个有效的电子邮件地址。"
@@ -2613,8 +2866,8 @@ msgstr ""
 #~ msgid "This field is required."
 #~ msgstr "此字段为必填项。"
 
-#, python-format
-#~ msgid "Ensure this value has at most %(max)d characters (it has %(length)d)."
+#~ msgid ""
+#~ "Ensure this value has at most %(max)d characters (it has %(length)d)."
 #~ msgstr "请确保这个值最多包含 %(max)d 个字符 (它有 %(length)d 个字符)。"
 
 #~ msgid "Save and add another"
@@ -2627,15 +2880,13 @@ msgstr ""
 #~ msgstr "更改"
 
 #~ msgid ""
-#~ "Please enter a correct username and password. Note that both fields are case-"
-#~ "sensitive."
+#~ "Please enter a correct username and password. Note that both fields are "
+#~ "case-sensitive."
 #~ msgstr "请输入一个正确的账户和密码。请注意两个区域都是大小写敏感的。"
 
-#, python-format
 #~ msgid "Password reset on %s"
 #~ msgstr "%s 密码重设"
 
-#, python-format
 #~ msgid "Add %(name)s"
 #~ msgstr "添加 %(name)s"
 
@@ -2686,8 +2937,8 @@ msgstr ""
 #~ msgstr "此 Pootle 服务器的名称"
 
 #~ msgid ""
-#~ "The description and instructions shown on the front page and about page. Be "
-#~ "sure to use valid HTML."
+#~ "The description and instructions shown on the front page and about page. "
+#~ "Be sure to use valid HTML."
 #~ msgstr "显示在首页和关于页面上的描述和说明。请确认使用有效的 HTML。"
 
 #~ msgid "Top Contributors"
@@ -2705,8 +2956,8 @@ msgstr ""
 #~ msgstr "您可以在这个 Pootle 服务器上增加、编辑和删除所有的可用语言。"
 
 #~ msgid ""
-#~ "Here you can add, edit, and delete all the available projects in this Pootle "
-#~ "server."
+#~ "Here you can add, edit, and delete all the available projects in this "
+#~ "Pootle server."
 #~ msgstr "您可以在这个 Pootle 服务器上增加、编辑和删除所有的可用项目。"
 
 #~ msgid "General Settings"
@@ -2728,7 +2979,8 @@ msgstr ""
 #~ "localization experts. We want Pootle to help your localization work reach "
 #~ "its full potential."
 #~ msgstr ""
-#~ "Pootle 是由 Translate.org.za 和一个热情的本地化专家社区开发的。我们希望 Pootle 能帮助您的本地化工作发挥出最大潜能。"
+#~ "Pootle 是由 Translate.org.za 和一个热情的本地化专家社区开发的。我们希望 "
+#~ "Pootle 能帮助您的本地化工作发挥出最大潜能。"
 
 #~ msgid "You will find the following helpful for support:"
 #~ msgstr "您将获得如下有帮助的支持："
@@ -2763,35 +3015,42 @@ msgstr ""
 #~ msgid "Register."
 #~ msgstr "注册。"
 
-#, python-format
 #~ msgid ""
-#~ "Django version %s is installed, but a higher version is highly recommended."
+#~ "Django version %s is installed, but a higher version is highly "
+#~ "recommended."
 #~ msgstr "Django 的 %s 版本已经安装，但我们强烈推荐安装更高的版本。"
 
 #~ msgid ""
-#~ "Can't find the unzip command. Uploading archives is faster if \"unzip\" is "
-#~ "available."
+#~ "Can't find the unzip command. Uploading archives is faster if \"unzip\" "
+#~ "is available."
 #~ msgstr "无法找到 unzip 命令。如果“unzip”可用则上传档案会更快。"
 
 #~ msgid ""
-#~ "Can't find the aeidon package. Pootle requires Gaupol or aeidon to support "
-#~ "subtitle formats."
-#~ msgstr "无法找到 aeidon 软件包。Pootle 需要使用 Gaupol 或者 aeidon 来支持字幕格式。"
+#~ "Can't find the aeidon package. Pootle requires Gaupol or aeidon to "
+#~ "support subtitle formats."
+#~ msgstr ""
+#~ "无法找到 aeidon 软件包。Pootle 需要使用 Gaupol 或者 aeidon 来支持字幕格"
+#~ "式。"
 
 #~ msgid ""
 #~ "No text indexing engine found. Searching is faster if an indexing engine "
 #~ "like Xapian or Lucene is installed."
-#~ msgstr "未发现文本索引引擎。安装 Xapian 或 Lucene 这样的索引引擎可以加快搜索。"
+#~ msgstr ""
+#~ "未发现文本索引引擎。安装 Xapian 或 Lucene 这样的索引引擎可以加快搜索。"
 
 #~ msgid ""
 #~ "Pootle is configured to use memcached as a caching backend, but can't "
 #~ "connect to the memcached server. Caching is currently disabled."
-#~ msgstr "Pootle 被配置为使用 memcached 作为缓存后端，但是无法连接到 memcached 服务器。因此缓存当前已禁用。"
+#~ msgstr ""
+#~ "Pootle 被配置为使用 memcached 作为缓存后端，但是无法连接到 memcached 服务"
+#~ "器。因此缓存当前已禁用。"
 
 #~ msgid ""
-#~ "Pootle is configured to use memcached as caching backend, but Python support "
-#~ "for memcached is not installed. Caching is currently disabled."
-#~ msgstr "Pootle 被配置为使用 memcached 作为缓存后端，但是 memcached 的 Python 支持没有安装。因此缓存当前已禁用。"
+#~ "Pootle is configured to use memcached as caching backend, but Python "
+#~ "support for memcached is not installed. Caching is currently disabled."
+#~ msgstr ""
+#~ "Pootle 被配置为使用 memcached 作为缓存后端，但是 memcached 的 Python 支持"
+#~ "没有安装。因此缓存当前已禁用。"
 
 #~ msgid "For optimal performance, use memcached as the caching backend."
 #~ msgstr "为优化性能，使用 memcached 作为缓存后端。"
@@ -2799,7 +3058,9 @@ msgstr ""
 #~ msgid ""
 #~ "Running in live translation mode. Live translation is useful as a tool to "
 #~ "learn about Pootle and localization, but has high impact on performance."
-#~ msgstr "以即时翻译模式运行。即时翻译模式是学习 Pootle 和本地化的一个很好的工具，但是对性能有很大影响。"
+#~ msgstr ""
+#~ "以即时翻译模式运行。即时翻译模式是学习 Pootle 和本地化的一个很好的工具，但"
+#~ "是对性能有很大影响。"
 
 #~ msgid "Translation Project Contributors"
 #~ msgstr "翻译项目贡献者"
@@ -2810,29 +3071,26 @@ msgstr ""
 #~ msgid "Language Contributors"
 #~ msgstr "语言贡献者"
 
-#, python-format
 #~ msgid "%(percentage)d%% complete"
 #~ msgstr "%(percentage)d%% 已完成"
 
-#, python-format
 #~ msgid ""
-#~ "A description of this language. This is useful to give more information or "
-#~ "instructions. Allowed markup: %s"
-#~ msgstr "对这种语言的一个描述。这对于提供更多信息和介绍是有用的。允许的标记：%s"
-
-#~ msgid ""
-#~ "For more information, visit <a href=\"http://translate.sourceforge.net/wiki/"
-#~ "l10n/pluralforms\">our wiki page</a> on plural forms."
+#~ "A description of this language. This is useful to give more information "
+#~ "or instructions. Allowed markup: %s"
 #~ msgstr ""
-#~ "若需求更多信息，请访问<a href=\"http://translate.sourceforge.net/wiki/l10n/pluralforms\""
-#~ ">我们的维基页面</a>了解复数形式。"
+#~ "对这种语言的一个描述。这对于提供更多信息和介绍是有用的。允许的标记：%s"
 
-#, python-format
+#~ msgid ""
+#~ "For more information, visit <a href=\"http://translate.sourceforge.net/"
+#~ "wiki/l10n/pluralforms\">our wiki page</a> on plural forms."
+#~ msgstr ""
+#~ "若需求更多信息，请访问<a href=\"http://translate.sourceforge.net/wiki/"
+#~ "l10n/pluralforms\">我们的维基页面</a>了解复数形式。"
+
 #~ msgid "Error reading %d file"
 #~ msgid_plural "Error reading %d files"
 #~ msgstr[0] "读取 %d 个文件出错"
 
-#, python-format
 #~ msgid "%(projects)d project, %(average)d%% translated"
 #~ msgid_plural "%(projects)d projects, %(average)d%% translated"
 #~ msgstr[0] "%(projects)d 个项目，%(average)d%% 已翻译"
@@ -2840,50 +3098,35 @@ msgstr ""
 #~ msgid "No description yet."
 #~ msgstr "尚无描述。"
 
-#~ msgid "Priority"
-#~ msgstr "优先级"
-
-#~ msgid "Functional"
-#~ msgstr "功能"
-
-#~ msgid "Extraction"
-#~ msgstr "淬炼"
-
 #~ msgid "No category"
 #~ msgstr "无类别"
 
-#, python-format
 #~ msgid "<a href=\"%(url)s\">%(num)d word</a>"
 #~ msgid_plural "<a href=\"%(url)s\">%(num)d words</a>"
 #~ msgstr[0] "<a href=\"%(url)s\">%(num)d 个词</a>"
 
-#, python-format
 #~ msgid "%(num)d%%"
 #~ msgstr "%(num)d%%"
 
-#, python-format
 #~ msgid "(%(num)d string)"
 #~ msgid_plural "(%(num)d strings)"
 #~ msgstr[0] "(%(num)d 条字符串)"
 
-#, python-format
-#~ msgid "This folder has %(num)d word, %(percentage)d%% of which is translated."
+#~ msgid ""
+#~ "This folder has %(num)d word, %(percentage)d%% of which is translated."
 #~ msgid_plural ""
 #~ "This folder has %(num)d words, %(percentage)d%% of which are translated."
 #~ msgstr[0] "这个文件夹有 %(num)d 个字词，%(percentage)d%% 已翻译。"
 
-#, python-format
 #~ msgid "This file has %(num)d word, %(percentage)d%% of which is translated."
 #~ msgid_plural ""
 #~ "This file has %(num)d words, %(percentage)d%% of which are translated."
 #~ msgstr[0] "这个文件有 %(num)d 个字词，%(percentage)d%% 已翻译。"
 
-#, python-format
 #~ msgid "Continue translation (%(num)d word left)"
 #~ msgid_plural "Continue translation (%(num)d words left)"
 #~ msgstr[0] "继续翻译 (剩余 %(num)d 个词)"
 
-#, python-format
 #~ msgid "Next most important goal (%(num)d word left)"
 #~ msgid_plural "Next most important goal (%(num)d words left)"
 #~ msgstr[0] "下一个最重要的目标 (剩余 %(num)d 个词)"
@@ -2891,37 +3134,32 @@ msgstr ""
 #~ msgid "Translation is complete"
 #~ msgstr "翻译已完成"
 
-#, python-format
 #~ msgid "Review suggestion (%(num)d left)"
 #~ msgid_plural "Review suggestions (%(num)d left)"
 #~ msgstr[0] "审阅建议 (%(num)d 剩余)"
 
-#, python-format
 #~ msgid ""
 #~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d need "
 #~ "review)."
 #~ msgid_plural ""
 #~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d need "
 #~ "review)."
-#~ msgstr[0] "%(type)s: %(total)d 中的 %(translated)d 个字符串已翻译 (%(fuzzy)d 个需要审阅)。"
+#~ msgstr[0] ""
+#~ "%(type)s: %(total)d 中的 %(translated)d 个字符串已翻译 (%(fuzzy)d 个需要审"
+#~ "阅)。"
 
-#, python-format
 #~ msgid "%d word needs attention"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "%d 个字词需要关注"
 
-#, python-format
 #~ msgid "%d word untranslated"
 #~ msgid_plural "%d words untranslated"
 #~ msgstr[0] "%d 个字词未翻译"
 
-#, python-format
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"
 #~ msgstr[0] "%d 个字词需要审阅"
 
-#, python-format
-#, python-format, python-format
 #~ msgid "%(percent)s%% complete"
 #~ msgstr "%(percent)s%% 已完成"
 
@@ -2943,19 +3181,15 @@ msgstr ""
 #~ msgid "Language Selection"
 #~ msgstr "选择语言"
 
-#, python-format
 #~ msgid "News for %(language)s"
 #~ msgstr "%(language)s 的新闻"
 
-#, python-format
 #~ msgid "News for %(project)s"
 #~ msgstr "%(project)s 项目新闻"
 
-#, python-format
 #~ msgid "News for the %(project)s project in %(language)s"
 #~ msgstr "%(project)s 项目在 %(language)s 的新闻"
 
-#, python-format
 #~ msgid "News for %(path)s"
 #~ msgstr "%(path)s 的新闻"
 
@@ -2983,7 +3217,6 @@ msgstr ""
 #~ msgid "This account is inactive."
 #~ msgstr "此帐户不活跃。"
 
-#, python-format
 #~ msgid ""
 #~ "A description of this project. This is useful to give more information or "
 #~ "instructions. Allowed markup: %s"
@@ -2992,7 +3225,6 @@ msgstr ""
 #~ msgid "Report Target"
 #~ msgstr "报告目标"
 
-#, python-format
 #~ msgid "%(languages)d language, %(average)d%% translated"
 #~ msgid_plural "%(languages)d languages, %(average)d%% translated"
 #~ msgstr[0] "%(languages)d 种语言，%(average)d%% 已翻译"
@@ -3009,10 +3241,6 @@ msgstr ""
 #~ msgid "Filter using one or more tags"
 #~ msgstr "使用一个或多个标签的过滤器"
 
-#~ msgctxt "verb"
-#~ msgid "Filter"
-#~ msgstr "过滤"
-
 #~ msgid "Filter using the selected tags"
 #~ msgstr "使用选定标签的过滤器"
 
@@ -3022,39 +3250,39 @@ msgstr ""
 #~ msgid "Administrate"
 #~ msgstr "管理"
 
-#, python-format
 #~ msgid ""
-#~ "%(user)s reverted translation for string <i><a href=\"%(url)s\">%(source)s</"
-#~ "a></i>"
-#~ msgstr "%(user)s 还原了字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的翻译"
+#~ "%(user)s reverted translation for string <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
+#~ msgstr ""
+#~ "%(user)s 还原了字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的翻译"
 
-#, python-format
 #~ msgid ""
-#~ "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">%(source)s</"
-#~ "a></i>"
-#~ msgstr "%(user)s 接受了对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的建议"
+#~ "%(user)s accepted suggestion for string <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
+#~ msgstr ""
+#~ "%(user)s 接受了对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的建议"
 
-#, python-format
 #~ msgid "%(user)s uploaded a file"
 #~ msgstr "%(user)s 上传了一个文件"
 
-#, python-format
 #~ msgid ""
-#~ "%(user)s submitted translation for string <i><a href=\"%(url)s\">%(source)s</"
-#~ "a></i>"
-#~ msgstr "%(user)s 提交了对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的翻译"
+#~ "%(user)s submitted translation for string <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
+#~ msgstr ""
+#~ "%(user)s 提交了对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的翻译"
 
-#, python-format
 #~ msgid ""
-#~ "%(user)s submitted \"needs work\" translation for string <i><a href=\"%(url)s"
-#~ "\">%(source)s</a></i>"
-#~ msgstr "%(user)s 提交了对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的“尚需完善”的翻译"
+#~ "%(user)s submitted \"needs work\" translation for string <i><a href="
+#~ "\"%(url)s\">%(source)s</a></i>"
+#~ msgstr ""
+#~ "%(user)s 提交了对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的“尚需"
+#~ "完善”的翻译"
 
-#, python-format
 #~ msgid ""
-#~ "%(user)s removed translation for string <i><a href=\"%(url)s\">%(source)s</"
-#~ "a></i>"
-#~ msgstr "%(user)s 移除了对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的翻译"
+#~ "%(user)s removed translation for string <i><a href=\"%(url)s\">"
+#~ "%(source)s</a></i>"
+#~ msgstr ""
+#~ "%(user)s 移除了对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的翻译"
 
 #~ msgid "File does not exist."
 #~ msgstr "文件不存在。"
@@ -3113,7 +3341,6 @@ msgstr ""
 #~ msgid "Comment:"
 #~ msgstr "注释："
 
-#, python-format
 #~ msgid "String %(id)s"
 #~ msgstr "字符串 %(id)s"
 
@@ -3130,58 +3357,60 @@ msgstr ""
 #~ msgstr "没有结果。"
 
 #~ msgid ""
-#~ "Tag names cannot have leading nor trailing spaces, colons (:), hyphens (-), "
-#~ "underscores (_), slashes (/) or periods (.)!"
-#~ msgstr "标签名前后都不能有空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号(.)！"
+#~ "Tag names cannot have leading nor trailing spaces, colons (:), hyphens "
+#~ "(-), underscores (_), slashes (/) or periods (.)!"
+#~ msgstr ""
+#~ "标签名前后都不能有空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号"
+#~ "(.)！"
 
 #~ msgid ""
 #~ "Tag names cannot contain two or more consecutive: spaces, colons (:), "
 #~ "hyphens (-), underscores (_), slashes (/) or periods (.)!"
-#~ msgstr "标签名不能包含两个或两个以上连续的：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号(.)！"
+#~ msgstr ""
+#~ "标签名不能包含两个或两个以上连续的：空格、冒号(:)、连字符(-)、下划线(_)、"
+#~ "斜杠(/)或者句号(.)！"
 
 #~ msgid ""
 #~ "Tag names must be an alphanumeric lowercase string with no trailing nor "
 #~ "leading (but yes on the middle): spaces, colons (:), hyphens (-), "
 #~ "underscores (_), slashes (/) or periods (.)!"
 #~ msgstr ""
-#~ "标签名必须是一个小写字母和数字组成的字符串，并且不能以如下字符开始或结束(但可以在中间)：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号"
-#~ "(.)！"
+#~ "标签名必须是一个小写字母和数字组成的字符串，并且不能以如下字符开始或结束"
+#~ "(但可以在中间)：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号(.)！"
 
 #~ msgid ""
 #~ "Name cannot contain just after 'goal:' any of these characters: spaces, "
 #~ "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)"
-#~ msgstr "在 'goal:' 之后的名称不能包含任何如下字符：空格、冒号(:)、连字符(-)、下划线(_)、斜杠(/)或者句号(.)"
+#~ msgstr ""
+#~ "在 'goal:' 之后的名称不能包含任何如下字符：空格、冒号(:)、连字符(-)、下划"
+#~ "线(_)、斜杠(/)或者句号(.)"
 
 #~ msgid "A goal with that name already exists. Please pick another name."
 #~ msgstr "已经存在使用该名称的目标。请挑选一个新名称。"
 
 #~ msgid ""
 #~ "Tag slugs must be equal to the tag name, but replacing with a hyphen the "
-#~ "single or multiple occurrences of the following characters: spaces, colons "
-#~ "(:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
+#~ "single or multiple occurrences of the following characters: spaces, "
+#~ "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 #~ msgstr ""
-#~ "标签缩略名必须与标签相同，同时应用连字符替换如下一次或多次出现的字符：空格，冒号 (:)，连字符(-)，下划线(_)，反斜线(/)或句号 (.)！"
+#~ "标签缩略名必须与标签相同，同时应用连字符替换如下一次或多次出现的字符：空"
+#~ "格，冒号 (:)，连字符(-)，下划线(_)，反斜线(/)或句号 (.)！"
 
 #~ msgid "A goal with this slug already exists."
 #~ msgstr "已经存在一个含有这个缩略名的目标。"
 
 #~ msgid ""
-#~ "Warning: Changing the name also changes the slug, so it won't be possible to "
-#~ "view this goal on this page!"
-#~ msgstr "警告：改变名字的同时也会改变缩略名，所以将无法在这个页面看到这个目标！"
-
-#, python-format
-#~ msgid ""
-#~ "A description of this goal. This is useful to give more information or "
-#~ "instructions. Allowed markup: %s"
-#~ msgstr "一个关于这个目标的描述。这对于提供更多的信息和介绍是有用的。允许的标记：%s"
+#~ "Warning: Changing the name also changes the slug, so it won't be possible "
+#~ "to view this goal on this page!"
+#~ msgstr ""
+#~ "警告：改变名字的同时也会改变缩略名，所以将无法在这个页面看到这个目标！"
 
 #~ msgid "The priority for this goal."
 #~ msgstr "该目标的优先级。"
 
 #~ msgid ""
-#~ "Designates that this is a project goal (shared across all languages in the "
-#~ "project)."
+#~ "Designates that this is a project goal (shared across all languages in "
+#~ "the project)."
 #~ msgstr "指定此项为一个项目目标（在该项目的所有语言中共享）。"
 
 #~ msgid "Project goal?"
@@ -3202,23 +3431,14 @@ msgstr ""
 #~ msgid "Export"
 #~ msgstr "导出"
 
-#~ msgid "Export translations"
-#~ msgstr "导出翻译"
-
 #~ msgid "Download"
 #~ msgstr "下载"
 
 #~ msgid "Download file"
 #~ msgstr "下载文件"
 
-#~ msgid "Download XLIFF file for offline translation"
-#~ msgstr "下载 XLIFF 文件进行离线翻译"
-
 #~ msgid "Upload"
 #~ msgstr "上传"
-
-#~ msgid "Upload translation files or archives in .zip format"
-#~ msgstr "上传翻译文件或 .zip 格式的归档"
 
 #~ msgid "Update from VCS"
 #~ msgstr "从版本控制系统更新"
@@ -3265,18 +3485,14 @@ msgstr ""
 #~ "uploaded file's name is used."
 #~ msgstr "选择要合并的文件。若不指定，将使用上传文件的文件名。"
 
-#, python-format
 #~ msgid ""
 #~ "A description of this translation project. This is useful to give more "
 #~ "information or instructions. Allowed markup: %s"
 #~ msgstr "此翻译项目的描述。用于给出更多信息或说明。允许的标记：%s"
 
-#, python-format
-#, python-format, python-format
 #~ msgid "Failed to update from version control: %(error)s"
 #~ msgstr "从版本控制系统更新失败：%(error)s"
 
-#, python-format
 #~ msgid "Updated project <em>%(project)s</em> from version control"
 #~ msgstr "已从版本控制系统更新了项目 <em>%(project)s</em>"
 
@@ -3289,28 +3505,22 @@ msgstr ""
 #~ msgid "Merged copy"
 #~ msgstr "合并的副本"
 
-#, python-format
-#, python-format, python-format
 #~ msgid "Updated file <em>%(filename)s</em> from version control"
 #~ msgstr "已从版本控制系统更新了文件 <em>%(filename)s</em>"
 
-#, python-format
-#~ msgid "Failed to update <em>%(filename)s</em> from version control: %(error)s"
+#~ msgid ""
+#~ "Failed to update <em>%(filename)s</em> from version control: %(error)s"
 #~ msgstr "从版本控制系统更新 <em>%(filename)s</em> 失败：%(error)s"
 
-#, python-format
 #~ msgid "Committed all files under <em>%(path)s</em> to version control"
 #~ msgstr "已将 <em>%(path)s</em> 下的所有文件提交到版本控制系统"
 
-#, python-format
 #~ msgid "Failed to commit to version control: %(error)s"
 #~ msgstr "提交到版本控制失败：%(error)s"
 
-#, python-format
 #~ msgid "Committed file <em>%(filename)s</em> to version control"
 #~ msgstr "已将文件 <em>%(filename)s</em> 提交到版本控制"
 
-#, python-format
 #~ msgid "Failed to commit <em>%(filename)s</em> to version control: %(error)s"
 #~ msgstr "将 <em>%(filename)s</em> 提交到版本控制系统失败：%(error)s"
 
@@ -3341,23 +3551,21 @@ msgstr ""
 #~ msgid "Error while trying to delete file."
 #~ msgstr "删除文件时出错。"
 
-#, python-format
 #~ msgid "Unable to find '%(action)s' in '%(extdir)s'"
 #~ msgstr "无法在“%(extdir)s”中找到“%(action)s”"
 
-#, python-format
 #~ msgid "Error while running '%s' extension action"
 #~ msgstr "在运行“%s”扩展动作时出错"
 
-#, python-format
 #~ msgid "Invalid/insecure file name: %s"
 #~ msgstr "无效/不安全的文件名：%s"
 
-#, python-format
 #~ msgid ""
-#~ "Invalid GNU-style file name: %(local_filename)s. It must match '%(langcode)s."
-#~ "%(filetype)s'."
-#~ msgstr "无效的 GNU 风格文件名：%(local_filename)s。它必须符合“%(langcode)s.%(filetype)s”。"
+#~ "Invalid GNU-style file name: %(local_filename)s. It must match "
+#~ "'%(langcode)s.%(filetype)s'."
+#~ msgstr ""
+#~ "无效的 GNU 风格文件名：%(local_filename)s。它必须符合“%(langcode)s."
+#~ "%(filetype)s”。"
 
 #~ msgid "Error while extracting archive"
 #~ msgstr "解压档案时发生错误"
@@ -3380,11 +3588,9 @@ msgstr ""
 #~ msgid "Administrate your project goals"
 #~ msgstr "管理您的项目目标"
 
-#, python-format
 #~ msgid "%(project)s project information"
 #~ msgstr "%(project)s 项目信息"
 
-#, python-format
 #~ msgid "%(language)s language information"
 #~ msgstr "%(language)s 语言信息"
 
@@ -3423,16 +3629,14 @@ msgstr ""
 #~ msgid ""
 #~ "Registration using free email addresses is prohibited. Please supply a "
 #~ "different email address."
-#~ msgstr "已经禁止使用免费的电子邮件地址进行注册。请提供一个不同的电子邮件地址。"
+#~ msgstr ""
+#~ "已经禁止使用免费的电子邮件地址进行注册。请提供一个不同的电子邮件地址。"
 
 #~ msgid "user"
 #~ msgstr "用户"
 
 #~ msgid "activation key"
 #~ msgstr "激活码"
-
-#~ msgid "registration profile"
-#~ msgstr "注册个人信息"
 
 #~ msgid "registration profiles"
 #~ msgstr "注册个人信息"
@@ -3452,13 +3656,12 @@ msgstr ""
 #~ msgid "Can commit to version control"
 #~ msgstr "可以向版本控制系统提交"
 
-#, python-format
 #~ msgid "Failed to copy download file to export directory %s"
 #~ msgstr "将已下载的文件拷贝到导出目录 %s 时失败"
 
 #~ msgid ""
-#~ "Finished building the language pack, click on the download link to download "
-#~ "it."
+#~ "Finished building the language pack, click on the download link to "
+#~ "download it."
 #~ msgstr "语言包构建完成，请点击下载链接进行下载。"
 
 #~ msgid "Main page"
@@ -3584,7 +3787,6 @@ msgstr ""
 #~ msgid "Thank you for your feedback."
 #~ msgstr "感谢您的反馈。"
 
-#, python-format
 #~ msgid " message by %(name)s"
 #~ msgstr " %(name)s 的消息"
 
@@ -3595,8 +3797,8 @@ msgstr ""
 #~ msgstr "过滤条件："
 
 #~ msgid ""
-#~ "Here you can change your personal details. This information will be used in "
-#~ "the header of the translation files."
+#~ "Here you can change your personal details. This information will be used "
+#~ "in the header of the translation files."
 #~ msgstr "您可以在这里更改您的个人明细。这些信息将用于翻译文件的头部。"
 
 #~ msgid "First Name"
@@ -3606,8 +3808,8 @@ msgstr ""
 #~ msgstr "姓氏"
 
 #~ msgid ""
-#~ "Here you can configure the settings related to the translation interface as "
-#~ "well as your language preferences."
+#~ "Here you can configure the settings related to the translation interface "
+#~ "as well as your language preferences."
 #~ msgstr "您可以像设置翻译偏好一样在这里配置与翻译界面相关的设置。"
 
 #~ msgid "Contributions"
@@ -3634,7 +3836,6 @@ msgstr ""
 #~ msgid "Account Activated"
 #~ msgstr "帐号已激活"
 
-#, python-format
 #~ msgid ""
 #~ "The account has been activated for username \"%(account)s\". You can now "
 #~ "proceed to log in."
@@ -3643,29 +3844,14 @@ msgstr ""
 #~ msgid "Pootle Account Created!"
 #~ msgstr "Pootle 帐户已创建！"
 
-#~ msgid "A Pootle account has been created for you using this email address."
-#~ msgstr "已经使用这个电子邮件地址为您创建了一个 Pootle 帐户。"
-
-#~ msgid "To activate your account, follow this link:"
-#~ msgstr "要激活您的帐户，请点击这个链接："
-
 #~ msgid "Activate my Pootle account"
 #~ msgstr "激活我的 Pootle 帐户"
 
-#, python-format
 #~ msgid "Your activation code is: <code>%(activation_key)s</code>"
 #~ msgstr "您的激活码是: <code>%(activation_key)s</code>"
 
-#~ msgid ""
-#~ "This message is sent to verify that the email address is in fact correct. If "
-#~ "you did not want to register an account, you may simply ignore the message."
-#~ msgstr "发送本信息是为了验证电子邮件地址是否确切。如果您不想注册帐号，只需简单忽略本信息即可。"
-
 #~ msgid "Your activation code is:"
 #~ msgstr "您的激活代是:"
-
-#~ msgid "Pootle registration"
-#~ msgstr "Pootle 注册"
 
 #~ msgid "Registration Complete"
 #~ msgstr "注册完成"
@@ -3688,12 +3874,13 @@ msgstr ""
 #~ msgid "Log In."
 #~ msgstr "登录。"
 
-#, python-format
 #~ msgid ""
 #~ "%(type)s: %(translated)d of %(total)d string translated (%(fuzzy)d fuzzy)."
 #~ msgid_plural ""
-#~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d fuzzy)."
-#~ msgstr[0] "%(type)s: %(translated)d 于 %(total)d 字符串已翻译 (%(fuzzy)d 模糊)。"
+#~ "%(type)s: %(translated)d of %(total)d strings translated (%(fuzzy)d "
+#~ "fuzzy)."
+#~ msgstr[0] ""
+#~ "%(type)s: %(translated)d 于 %(total)d 字符串已翻译 (%(fuzzy)d 模糊)。"
 
 #~ msgid "Select one or more tags to use as filter"
 #~ msgstr "选择用于过滤的一个或多个标签"
@@ -3740,7 +3927,6 @@ msgstr ""
 #~ msgid "Language Members"
 #~ msgstr "语言成员"
 
-#, python-format
 #~ msgid "You do not have rights to administer %s."
 #~ msgstr "您没有管理 %s 的权限。"
 
@@ -3759,7 +3945,6 @@ msgstr ""
 #~ msgid "Pootle: Install"
 #~ msgstr "Pootle：安装"
 
-#, python-format
 #~ msgid ""
 #~ "Error: \"%s\" while attempting to access the Pootle database, will try to "
 #~ "initialize database."
@@ -3774,11 +3959,9 @@ msgstr ""
 #~ msgid "Calculating translation statistics, this will take a few minutes"
 #~ msgstr "正在计算翻译统计信息，这将需要几分钟时间"
 
-#, python-format
 #~ msgid "%(language)s is %(percent)d%% complete"
 #~ msgstr "%(language)s 已完成 %(percent)d%%"
 
-#, python-format
 #~ msgid "Project %(project)s is %(percent)d%% complete"
 #~ msgstr "项目 %(project)s 已完成 %(percent)d%%"
 
@@ -3786,13 +3969,13 @@ msgstr ""
 #~ msgstr "已完成缺省语言和项目的统计信息计算"
 
 #~ msgid ""
-#~ "Initialized database, you will be redirected to the front page in 10 seconds"
+#~ "Initialized database, you will be redirected to the front page in 10 "
+#~ "seconds"
 #~ msgstr "已初始化数据库，您将在 10 秒钟内被重定向到首页"
 
 #~ msgid "Pootle: Update"
 #~ msgstr "Pootle：更新"
 
-#, python-format
 #~ msgid ""
 #~ "Database tables are currently at build version %d. Pootle will now update "
 #~ "the database."
@@ -3817,26 +4000,21 @@ msgstr ""
 #~ msgstr "正在移除质量检测结果，将按需重新计算..."
 
 #~ msgid ""
-#~ "Pootle will now import all the translations into the database. It could take "
-#~ "a long time."
+#~ "Pootle will now import all the translations into the database. It could "
+#~ "take a long time."
 #~ msgstr "Pootle 现在要将所有翻译导入数据库。这可能要很长时间。"
 
-#, python-format
 #~ msgid "Imported %(count)d suggestion from %(store)s"
 #~ msgid_plural "Imported %(count)d suggestions from %(store)s"
 #~ msgstr[0] "已从 %(store)s 中导入 %(count)d 项建议"
 
-#, python-format
 #~ msgid "Failed to import suggestions from %s"
 #~ msgstr "未能从 %s 中导入建议"
 
-#, python-format
-#, python-format, python-format
 #~ msgid "Imported %(count)d string from %(store)s"
 #~ msgid_plural "Imported %(count)d strings from %(store)s"
 #~ msgstr[0] "已从 %(store)s 中导入 %(count)d 项字符串"
 
-#, python-format
 #~ msgid "Failed to import strings from %s"
 #~ msgstr "未能从 %s 导入字符串"
 
@@ -3844,8 +4022,8 @@ msgstr ""
 #~ msgstr "现在已导入所有翻译。"
 
 #~ msgid ""
-#~ "Pootle initialized the database. You will be redirected to the front page in "
-#~ "10 seconds."
+#~ "Pootle initialized the database. You will be redirected to the front page "
+#~ "in 10 seconds."
 #~ msgstr "Pootle 已初始化数据库。您将在 10 秒钟内被重定向到首页。"
 
 #~ msgid "Advanced search"
@@ -3870,13 +4048,14 @@ msgstr ""
 #~ "Go to the previous string (Ctrl+Up)<br/><br/>Also:<br/>Previous page: Ctrl"
 #~ "+Shift+Page&nbsp;Up<br/>First page: Ctrl+Shift+Home"
 #~ msgstr ""
-#~ "跳到上一字符串(Ctrl+Up)<br/><br/>另外：<br/>上一页：Ctrl+Shift+Page&nbsp;Up<br/>首页：Ctrl+Sh"
-#~ "ift+Home"
+#~ "跳到上一字符串(Ctrl+Up)<br/><br/>另外：<br/>上一页：Ctrl+Shift+Page&nbsp;"
+#~ "Up<br/>首页：Ctrl+Shift+Home"
 
 #~ msgid ""
 #~ "Current page number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 #~ "Enter<br/>to go to any position"
-#~ msgstr "当前页码(Ctrl+Shift+U)<br/><br/>键入数字并按回车<br/>来跳转到任意位置"
+#~ msgstr ""
+#~ "当前页码(Ctrl+Shift+U)<br/><br/>键入数字并按回车<br/>来跳转到任意位置"
 
 #~ msgid "Total pages"
 #~ msgstr "整个页面"
@@ -3888,8 +4067,8 @@ msgstr ""
 #~ "Go to the next string (Ctrl+Down)<br/><br/>Also:<br/>Next page: Ctrl+Shift"
 #~ "+Page&nbsp;Down<br/>Last page: Ctrl+Shift+End"
 #~ msgstr ""
-#~ "跳到下一字符串(Ctrl+Down)<br/><br/>另外：<br/>下一页：Ctrl+Shift+Page&nbsp;Down<br/>末页：Ctr"
-#~ "l+Shift+End"
+#~ "跳到下一字符串(Ctrl+Down)<br/><br/>另外：<br/>下一页：Ctrl+Shift"
+#~ "+Page&nbsp;Down<br/>末页：Ctrl+Shift+End"
 
 #~ msgid "File:"
 #~ msgstr "文件："
@@ -3922,8 +4101,9 @@ msgstr ""
 #~ msgstr ""
 #~ "<div dir=\"ltr\" lang=\"zh-cn\">\n"
 #~ "<h2>这是 Pootle 的演示安装。</h2>\n"
-#~ "<p>您也可以访问官方 <a href=\"http://pootle.locamotion.org\">Pootle "
-#~ "服务器</a>。服务器管理员没有提供联系方式和服务器描述。 如果您是此服务器的管理员，请在您的偏好设置文件或管理界面中编辑描述。</p>\n"
+#~ "<p>您也可以访问官方 <a href=\"http://pootle.locamotion.org\">Pootle 服务器"
+#~ "</a>。服务器管理员没有提供联系方式和服务器描述。 如果您是此服务器的管理"
+#~ "员，请在您的偏好设置文件或管理界面中编辑描述。</p>\n"
 #~ "</div>\n"
 
 #~ msgid "Manage Legal Pages"
@@ -3950,29 +4130,24 @@ msgstr ""
 #~ msgid "Overall Completion"
 #~ msgstr "整体进度"
 
-#, python-format
 #~ msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
 #~ msgstr "%(translated)d/%(total)d 个单词 (%(translatedpercent)d%%) 已翻译"
 
-#, python-format
 #~ msgid "%(translated)d/%(total)d strings"
 #~ msgstr "%(translated)d/%(total)d 个字符串"
 
-#, python-format
 #~ msgid "%d file"
 #~ msgid_plural "%d files"
 #~ msgstr[0] "%d 个文件"
 
-#, python-format
 #~ msgid "%(translated)d/%(total)d terms"
 #~ msgstr "%(translated)d/%(total)d 术语"
 
-#, python-format
 #~ msgid "Words Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 #~ msgstr "已翻译单词： %(translated)d/%(total)d - %(translatedpercent)d%%"
 
-#, python-format
-#~ msgid "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
+#~ msgid ""
+#~ "Strings Translated: %(translated)d/%(total)d - %(translatedpercent)d%%"
 #~ msgstr "已翻译字符串：%(translated)d/%(total)d - %(translatedpercent)d%%"
 
 #~ msgid "Needs review"
@@ -3981,7 +4156,9 @@ msgstr ""
 #~ msgid ""
 #~ "Can't find python-levenshtein package. Updating from templates is faster "
 #~ "with python-levenshtein."
-#~ msgstr "无法找到 python-levenshtein 软件包。使用 python-levenshtein 从模板更新会更快。"
+#~ msgstr ""
+#~ "无法找到 python-levenshtein 软件包。使用 python-levenshtein 从模板更新会更"
+#~ "快。"
 
 #~ msgid "Translations are complete"
 #~ msgstr "翻译已完成"
@@ -4020,14 +4197,15 @@ msgstr ""
 #~ msgstr "关于 Pootle"
 
 #~ msgid ""
-#~ "This site is running Pootle &mdash; powerful web software to empower teams "
-#~ "to do translation and translation management. This community tool is Free "
-#~ "Software, and any team can use it and contribute to the Pootle community. "
-#~ "Read more on the <a href=\"http://translate.sourceforge.net/\">project "
-#~ "website</a>."
+#~ "This site is running Pootle &mdash; powerful web software to empower "
+#~ "teams to do translation and translation management. This community tool "
+#~ "is Free Software, and any team can use it and contribute to the Pootle "
+#~ "community. Read more on the <a href=\"http://translate.sourceforge.net/"
+#~ "\">project website</a>."
 #~ msgstr ""
-#~ "这个站点正在运行 Pootle ---这个强大的 web 软件可以帮助团队进行翻译和翻译管理。本社区工具是自由软件，任何团队皆可以自由使用并回馈于 "
-#~ "Pootle 社区。请在<a href=\"http://translate.sourceforge.net/\">项目站点</a>阅读更多。"
+#~ "这个站点正在运行 Pootle ---这个强大的 web 软件可以帮助团队进行翻译和翻译管"
+#~ "理。本社区工具是自由软件，任何团队皆可以自由使用并回馈于 Pootle 社区。请在"
+#~ "<a href=\"http://translate.sourceforge.net/\">项目站点</a>阅读更多。"
 
 #~ msgid "Error"
 #~ msgstr "错误"
@@ -4035,21 +4213,22 @@ msgstr ""
 #~ msgid "Complete"
 #~ msgstr "完成"
 
-#, python-format
 #~ msgid ""
-#~ "Translate Toolkit version %(installed)s installed. Pootle requires version %"
-#~ "(required)s."
-#~ msgstr "版本 %(installed)s 的 Translate Toolkit 已经安装。Pootle 要求版本 %(required)s。"
+#~ "Translate Toolkit version %(installed)s installed. Pootle requires "
+#~ "version %(required)s."
+#~ msgstr ""
+#~ "版本 %(installed)s 的 Translate Toolkit 已经安装。Pootle 要求版本 "
+#~ "%(required)s。"
 
 #~ msgid ""
-#~ "For optimal performance, use django.contrib.sessions.backends.cache as the "
-#~ "session engine."
-#~ msgstr "为优化性能，请使用 django.contrib.sessions.backends.cache 作为会话引擎。"
+#~ "For optimal performance, use django.contrib.sessions.backends.cache as "
+#~ "the session engine."
+#~ msgstr ""
+#~ "为优化性能，请使用 django.contrib.sessions.backends.cache 作为会话引擎。"
 
 #~ msgid "Home"
 #~ msgstr "首页"
 
-#, python-format
 #~ msgid "%(checks)d string (%(checkspercent)d%%) failed"
 #~ msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
 #~ msgstr[0] "%(checks)d 个字符串 (%(checkspercent)d%%) 错误"
@@ -4077,7 +4256,6 @@ msgstr ""
 #~ msgid "Initialize"
 #~ msgstr "初始化"
 
-#, python-format
 #~ msgid "checking %s"
 #~ msgstr "正在检查 %s"
 
@@ -4087,19 +4265,17 @@ msgstr ""
 #~ msgid "Edit translation"
 #~ msgstr "编辑翻译"
 
-#, python-format, fuzzy
+#, fuzzy
 #~ msgid "Suggestion %(i)d by %(user)s:"
 #~ msgstr "建议 %(suggid)d 由 %(user)s："
 
-#, python-format, fuzzy
+#, fuzzy
 #~ msgid "Updated project \"%s\" from version control"
 #~ msgstr "已从版本控制树更新 %s 文件"
 
-#, python-format
 #~ msgid "Updated file %s from version control"
 #~ msgstr "已从版本控制树更新 %s 文件"
 
-#, python-format
 #~ msgid "Failed to update %s from version control"
 #~ msgstr "从版本控制树更新 %s 失败"
 
@@ -4110,17 +4286,19 @@ msgstr ""
 #~ msgid ""
 #~ "<div dir=\"ltr\" lang=\"en\">\n"
 #~ "<h2 class=\"title\">This is a demo installation of Pootle.</h2>\n"
-#~ "<p class=\"about\">You can also visit the official <a href=\"http://pootle."
-#~ "locamotion.org\">Pootle server</a>. The server administrator has not "
-#~ "provided contact information or a description of this server. If you are the "
-#~ "administrator for this server, edit this description in your preference file "
-#~ "or in the administration interface.</p>\n"
+#~ "<p class=\"about\">You can also visit the official <a href=\"http://"
+#~ "pootle.locamotion.org\">Pootle server</a>. The server administrator has "
+#~ "not provided contact information or a description of this server. If you "
+#~ "are the administrator for this server, edit this description in your "
+#~ "preference file or in the administration interface.</p>\n"
 #~ "</div>"
 #~ msgstr ""
 #~ "<div dir=\"ltr\" lang=\"en\">\n"
 #~ "<h2 class=\"title\">这是一个 Pootle 的安装演示。</h2>\n"
-#~ "<p class=\"about\">您也可以访问官方<a href=\"http://pootle.locamotion.org\">Pootle "
-#~ "服务器</a>。服务器管理员没有提供关于本服务器的介绍和联系信息。如果您是本服务器的管理员， 请在偏好设置文件或者管理界面里面编辑这个介绍信息。</p>\n"
+#~ "<p class=\"about\">您也可以访问官方<a href=\"http://pootle.locamotion.org"
+#~ "\">Pootle 服务器</a>。服务器管理员没有提供关于本服务器的介绍和联系信息。如"
+#~ "果您是本服务器的管理员， 请在偏好设置文件或者管理界面里面编辑这个介绍信"
+#~ "息。</p>\n"
 #~ "</div>"
 
 #~ msgid "Quality checks and review suggestions"
@@ -4141,7 +4319,6 @@ msgstr ""
 #~ msgid "You do not have rights to review suggestions here"
 #~ msgstr "你没有在此审阅建议的权限"
 
-#, python-format
 #~ msgid "Updated %s files from version control"
 #~ msgstr "已从版本控制树更新 %s 个文件"
 
@@ -4152,12 +4329,12 @@ msgstr ""
 #~ msgstr "更新权限"
 
 #~ msgid ""
-#~ "Here you can delete the available files in this translation project. You may "
-#~ "also want to <a href=\"?scan_files=1\">rescan the project files</a> or <a "
-#~ "href=\"?template_update=1\">update the files from templates</a>."
+#~ "Here you can delete the available files in this translation project. You "
+#~ "may also want to <a href=\"?scan_files=1\">rescan the project files</a> "
+#~ "or <a href=\"?template_update=1\">update the files from templates</a>."
 #~ msgstr ""
-#~ "您可以删除这个翻译项目的可用文件。您可能也想<a href=\"?scan_files=1\">重新扫描项目文件</a>或者<a "
-#~ "href=\"?template_update=1\">从模板更新文件</a>。"
+#~ "您可以删除这个翻译项目的可用文件。您可能也想<a href=\"?scan_files=1\">重新"
+#~ "扫描项目文件</a>或者<a href=\"?template_update=1\">从模板更新文件</a>。"
 
 #~ msgid "Copy"
 #~ msgstr "复制"
@@ -4171,17 +4348,20 @@ msgstr ""
 #~ msgid "SQLite is installed."
 #~ msgstr "SQLite 已经安装。"
 
-#~ msgid "SQLite is missing. Pootle requires SQLite for translation statistics."
+#~ msgid ""
+#~ "SQLite is missing. Pootle requires SQLite for translation statistics."
 #~ msgstr "SQLite 丢失。Pootle 需要 SQLite 来进行翻译统计。"
 
-#, python-format
-#~ msgid "Django version %s is installed. Pootle only works with the 1.x series."
+#~ msgid ""
+#~ "Django version %s is installed. Pootle only works with the 1.x series."
 #~ msgstr "版本 %s 的 Django 已经安装。Pootle 只能与版本 1.x 系列协同工作。"
 
 #~ msgid ""
 #~ "Can't find lxml. Pootle uses lxml to make sure HTML tags inserted in news "
 #~ "items are safe and correct."
-#~ msgstr "无法找到 lxml。Pootle 使用 lxml 来保证新闻条目中插入的 HTML 标记的安全性与正确性。"
+#~ msgstr ""
+#~ "无法找到 lxml。Pootle 使用 lxml 来保证新闻条目中插入的 HTML 标记的安全性与"
+#~ "正确性。"
 
 #~ msgid "This is a GNU-style project (files named per language code)."
 #~ msgstr "这是一个 GNU 风格的项目(文件以语言代码命名)。"
@@ -4198,15 +4378,12 @@ msgstr ""
 #~ msgid "Start"
 #~ msgstr "开始"
 
-#, python-format
 #~ msgid "Previous %d"
 #~ msgstr "前 %d 条"
 
-#, python-format
 #~ msgid "Items %(first)d to %(last)d of %(total)d"
 #~ msgstr "条目第 %(first)d条 到第 %(last)d 条于全部 %(total)d 条"
 
-#, python-format
 #~ msgid "Next %d"
 #~ msgstr "后 %d条"
 
@@ -4214,25 +4391,22 @@ msgstr ""
 #~ msgstr "结尾"
 
 #~ msgid ""
-#~ "Translation not possible because plural information for your language is not "
-#~ "available. Please contact the site administrator."
+#~ "Translation not possible because plural information for your language is "
+#~ "not available. Please contact the site administrator."
 #~ msgstr "由于您所用语言的不存在复数，因而译文不合理。请联系站点管理员。"
 
 #~ msgid "Current Translation:"
 #~ msgstr "当前翻译："
 
-#, python-format
 #~ msgid "Suggestion %d:"
 #~ msgstr "建议 %d："
 
-#, python-format
 #~ msgid "Suggestion by %s:"
 #~ msgstr "建议由 %s ："
 
 #~ msgid "Suggestion:"
 #~ msgstr "建议："
 
-#, python-format
 #~ msgid "%d suggestion"
 #~ msgid_plural "%d suggestions"
 #~ msgstr[0] "%d 个建议"
@@ -4321,7 +4495,6 @@ msgstr ""
 #~ msgid "Remove Language"
 #~ msgstr "移除语言"
 
-#, python-format
 #~ msgid "Remove %s"
 #~ msgstr "移除%s"
 
@@ -4373,31 +4546,26 @@ msgstr ""
 #~ msgid "Remove User"
 #~ msgstr "移除用户"
 
-#~ msgid "Back to main page"
-#~ msgstr "回到主页"
-
 #~ msgid "Existing languages"
 #~ msgstr "已有语言"
 
 #~ msgid "Update Languages"
 #~ msgstr "更新语言"
 
-#, python-format
 #~ msgid "Pootle Admin: %s"
 #~ msgstr "Pootle管理员：%s"
 
 #~ msgid "Add Language"
 #~ msgstr "添加语言"
 
-#, python-format
 #~ msgid "Pootle Admin: %s %s"
 #~ msgstr "Pootle管理员：%s %s"
 
-#, python-format
 #~ msgid "Cannot set rights for username %s - user does not exist"
 #~ msgstr "不能为用户%s设置权限——该用户不存在"
 
-#~ msgid "This is a GNU-style project (one directory, files named per language)."
+#~ msgid ""
+#~ "This is a GNU-style project (one directory, files named per language)."
 #~ msgstr "这是一个GNU风格的项目(每种语言对应一个目录，一个文件)"
 
 #~ msgid "Rights"
@@ -4408,43 +4576,42 @@ msgstr ""
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</strong>, "
-#~ "you can download it and run your own copy if you like. You can also help "
-#~ "participate in the development in many ways (you don't have to be able to "
-#~ "program)."
+#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
+#~ "strong>, you can download it and run your own copy if you like. You can "
+#~ "also help participate in the development in many ways (you don't have to "
+#~ "be able to program)."
 #~ msgstr ""
-#~ "<strong>Pootle</strong>是一个简单的web portal，它可以帮助你<strong>翻译</strong>！因为Pootle是<"
-#~ "strong>自由软件</strong>，所以如果你愿意，你可以下载它并运行你自己的副本。你也可以以多种方式帮忙参与开发(你不需要会编程)。"
+#~ "<strong>Pootle</strong>是一个简单的web portal，它可以帮助你<strong>翻译</"
+#~ "strong>！因为Pootle是<strong>自由软件</strong>，所以如果你愿意，你可以下载"
+#~ "它并运行你自己的副本。你也可以以多种方式帮忙参与开发(你不需要会编程)。"
 
 #~ msgid ""
 #~ "The Pootle project itself is hosted at <a href=\"http://translate."
 #~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
 #~ "details about source code, mailing lists etc."
 #~ msgstr ""
-#~ "Pootle项目本身位于<a href=\"http://translate.sourceforge.net/\">translate.sourceforg"
-#~ "e.net</a>，你可以在那里找到有关源代码，邮件列表等的详细信息。"
+#~ "Pootle项目本身位于<a href=\"http://translate.sourceforge.net/\">translate."
+#~ "sourceforge.net</a>，你可以在那里找到有关源代码，邮件列表等的详细信息。"
 
 #~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / <b>L</"
-#~ "b>ocalization <b>E</b>ngine, but you may need to read <a href=\"http://www."
-#~ "thechestnut.com/flumps.htm\">this</a>."
+#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
+#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
+#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
 #~ msgstr ""
 #~ "项目的名字代表的是<b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
-#~ "<b>L</b>ocalization <b>E</b>ngine，但是你或许需要读一读<a "
-#~ "href=\"http://www.thechestnut.com/flumps.htm\">这个</a>。"
+#~ "<b>L</b>ocalization <b>E</b>ngine，但是你或许需要读一读<a href=\"http://"
+#~ "www.thechestnut.com/flumps.htm\">这个</a>。"
 
 #~ msgid "Versions"
 #~ msgstr "版本"
 
-#, python-format
 #~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit "
-#~ "%s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 #~ msgstr ""
-#~ "这个网站运行着的是：<br />Pootle %s<br />Translate Toolkit %s<br />jToolkit %s<br "
-#~ "/>Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
+#~ "这个网站运行着的是：<br />Pootle %s<br />Translate Toolkit %s<br /"
+#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
 
-#, python-format
 #~ msgid "User Page for: %s"
 #~ msgstr "%s的用户页："
 
@@ -4454,15 +4621,14 @@ msgstr ""
 #~ msgid "Admin page"
 #~ msgstr "管理页面"
 
-#~ msgid "Please click on 'Change options' and select some languages and projects"
+#~ msgid ""
+#~ "Please click on 'Change options' and select some languages and projects"
 #~ msgstr "请点击“更改选项”并选择一些语言和项目"
 
-#, python-format
 #~ msgid "%d project, average %d%% translated"
 #~ msgid_plural "%d projects, average %d%% translated"
 #~ msgstr[0] "%d个项目，平均%d%%已经翻译"
 
-#, python-format
 #~ msgid "%s: %s"
 #~ msgstr "%s：%s"
 
@@ -4472,12 +4638,10 @@ msgstr ""
 #~ msgid "Language Name"
 #~ msgstr "语言名称"
 
-#, python-format
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
 #~ msgstr[0] "%d种语言，平均%d%%已经翻译"
 
-#, python-format
 #~ msgid "%s: Project %s, Language %s"
 #~ msgstr "%s：项目 %s，语言 %s"
 
@@ -4571,9 +4735,6 @@ msgstr ""
 #~ msgid "Hide Tracks"
 #~ msgstr "隐藏跟踪"
 
-#~ msgid "Show Checks"
-#~ msgstr "显示检查"
-
 #~ msgid "Hide Checks"
 #~ msgstr "隐藏检查"
 
@@ -4589,7 +4750,6 @@ msgstr ""
 #~ msgid "Hide Assigns"
 #~ msgstr "隐藏分配"
 
-#, python-format
 #~ msgid "All Goals: %s"
 #~ msgstr "所有目标：%s"
 
@@ -4617,20 +4777,16 @@ msgstr ""
 #~ msgid "Generate SDF"
 #~ msgstr "生成SDF"
 
-#, python-format
 #~ msgid "%d string (%d%%) failed"
 #~ msgid_plural "%d strings (%d%%) failed"
 #~ msgstr[0] "%d字符串(%d%%)失败"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) assigned"
 #~ msgstr "%d/%d单词(%d%%)已分配"
 
-#, python-format
 #~ msgid "[%d/%d strings]"
 #~ msgstr "[%d/%d条字符串]"
 
-#, python-format
 #~ msgid "%d/%d words (%d%%) translated"
 #~ msgstr "%d/%d个单词(%d%%)已经翻译"
 
@@ -4652,11 +4808,9 @@ msgstr ""
 #~ msgid "All goals"
 #~ msgstr "所有目标"
 
-#, python-format
 #~ msgid "%d/%d files"
 #~ msgstr "%d/%d个文件"
 
-#, python-format
 #~ msgid "%d/%d strings"
 #~ msgstr "%d/%d个字符串"
 
@@ -4700,7 +4854,6 @@ msgstr ""
 #~ msgid "You do not have rights to alter assignments here"
 #~ msgstr "你没有在此改变任务分配的权限"
 
-#, python-format
 #~ msgid ""
 #~ "%d/%d translated\n"
 #~ "(%d untranslated, %d fuzzy)"
@@ -4708,7 +4861,6 @@ msgstr ""
 #~ "%d/%d已经翻译\n"
 #~ "(%d条未译，%d条模糊)"
 
-#, python-format
 #~ msgid "%s: translating %s into %s: %s"
 #~ msgstr "%s：将%s翻译为%s：%s"
 
@@ -4724,11 +4876,9 @@ msgstr ""
 #~ msgid "Click here to return to the index"
 #~ msgstr "点击这里返回索引页"
 
-#, python-format
 #~ msgid "Items %d to %d of %d"
 #~ msgstr "第%d至%d条 共%d条"
 
-#, python-format
 #~ msgid "There are no items matching that search ('%s')"
 #~ msgstr "没有与('%s')相匹配的条目"
 
@@ -4741,11 +4891,9 @@ msgstr ""
 #~ msgid "Shrink"
 #~ msgstr "缩小译文区"
 
-#, python-format
 #~ msgid "Suggestion %d by %s:"
 #~ msgstr "建议%d，来自%s："
 
-#, python-format
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "你必须提供一个至少含有%d个字符的有效密码。"
 
@@ -4779,9 +4927,6 @@ msgstr ""
 #~ msgid "Type your password again to ensure it is entered correctly"
 #~ msgstr "请再次输入密码以确保输入正确"
 
-#~ msgid "Register Account"
-#~ msgstr "注册帐户"
-
 #~ msgid "Please enter your activation details"
 #~ msgstr "请输入你的激活信息"
 
@@ -4797,7 +4942,6 @@ msgstr ""
 #~ msgid "Activate Account"
 #~ msgstr "激活帐户"
 
-#, python-format
 #~ msgid "Options for: %s"
 #~ msgstr "%s的选项："
 
@@ -4832,17 +4976,18 @@ msgstr ""
 #~ msgstr "你需要成为网站管理员才能更改用户"
 
 #~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic character."
+#~ "Username must be alphanumeric, and must start with an alphabetic "
+#~ "character."
 #~ msgstr "用户名只能包含字母和数字，且必须以字母开头"
 
 #~ msgid ""
-#~ "You (or someone else) attempted to register an account with your username.\n"
+#~ "You (or someone else) attempted to register an account with your "
+#~ "username.\n"
 #~ msgstr "你（或者其他人）尝试使用你的用户名注册帐户。\n"
 
 #~ msgid "We don't store your actual password but only a hash of it.\n"
 #~ msgstr "我们并未保存你的实际密码，而只是它的hash值。\n"
 
-#, python-format
 #~ msgid "If you have a problem with registration, please contact %s.\n"
 #~ msgstr "如果你在注册时遇到了问题，请联系%s。\n"
 
@@ -4852,11 +4997,10 @@ msgstr ""
 #~ msgstr "如果你在注册时遇到了问题，请联系站点管理员。\n"
 
 #~ msgid ""
-#~ "That username already exists. An email will be sent to the registered email "
-#~ "address.\n"
+#~ "That username already exists. An email will be sent to the registered "
+#~ "email address.\n"
 #~ msgstr "这个用户名已经存在。已经给相应的注册email地址发了一封email。\n"
 
-#, python-format
 #~ msgid "Proceeding to <a href='%s'>login</a>\n"
 #~ msgstr "下面开始<a href='%s'>登录</a>"
 
@@ -4865,24 +5009,23 @@ msgstr ""
 #~ "activation page.\n"
 #~ msgstr "如果你打不开这个链接，请在激活页面输入上面的代码。\n"
 
-#, python-format
 #~ msgid ""
-#~ "Account created. You will be emailed login details and an activation code. "
-#~ "Please enter your activation code on the <a href='%s'>activation page</a>."
-#~ msgstr "帐户已经创立。登录详细信息和激活代码将会通过email发送给你。请在<a href='%s'>激活页面</a>上输入你的激活代码。"
+#~ "Account created. You will be emailed login details and an activation "
+#~ "code. Please enter your activation code on the <a href='%s'>activation "
+#~ "page</a>."
+#~ msgstr ""
+#~ "帐户已经创立。登录详细信息和激活代码将会通过email发送给你。请在<a "
+#~ "href='%s'>激活页面</a>上输入你的激活代码。"
 
 #~ msgid "(Or simply click on the activation link in the email)"
 #~ msgstr "（或者点击email里的激活连接）"
 
-#, python-format
 #~ msgid "Your user name is: %s\n"
 #~ msgstr "您的用户名是：%s\n"
 
-#, python-format
 #~ msgid "Your password is: %s\n"
 #~ msgstr "您的密码是：%s\n"
 
-#, python-format
 #~ msgid "Your registered email address is: %s\n"
 #~ msgstr "您注册的email地址是：%s\n"
 
