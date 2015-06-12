@@ -2,16 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
-    # Django uses this attribute to recognize squashed migrations, but we are
-    # abusing it to tell Django that this migration replaces a migration
-    # already run and recorded with a different app name.
-    replaces = [(b'evernote_reports', '0001_initial')]
-
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -24,6 +21,7 @@ class Migration(migrations.Migration):
                 ('rate', models.FloatField(default=0)),
                 ('datetime', models.DateTimeField(verbose_name='Date', db_index=True)),
                 ('description', models.TextField(null=True, verbose_name='Description')),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },

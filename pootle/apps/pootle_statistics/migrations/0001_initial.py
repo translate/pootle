@@ -67,4 +67,8 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),
+        migrations.AlterUniqueTogether(
+            name='scorelog',
+            unique_together=set([('submission', 'action_code')]),
+        ),
     ]

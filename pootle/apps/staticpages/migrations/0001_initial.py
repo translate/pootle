@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=100, verbose_name='Title')),
                 ('body', pootle.core.markup.fields.MarkupField(help_text='Allowed markup: HTML', verbose_name='Display Content', blank=True)),
                 ('url', models.URLField(help_text='If set, any references to this page will redirect to this URL', verbose_name='Redirect to URL', blank=True)),
-                ('modified_on', models.DateTimeField(default=django.utils.timezone.now, auto_now_add=True)),
+                ('modified_on', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
             ],
             options={
                 'abstract': False,
@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=100, verbose_name='Title')),
                 ('body', pootle.core.markup.fields.MarkupField(help_text='Allowed markup: HTML', verbose_name='Display Content', blank=True)),
                 ('url', models.URLField(help_text='If set, any references to this page will redirect to this URL', verbose_name='Redirect to URL', blank=True)),
-                ('modified_on', models.DateTimeField(default=django.utils.timezone.now, auto_now_add=True)),
+                ('modified_on', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
             ],
             options={
                 'abstract': False,
@@ -72,5 +72,11 @@ class Migration(migrations.Migration):
         migrations.AlterUniqueTogether(
             name='agreement',
             unique_together=set([('user', 'document')]),
+        ),
+        migrations.AlterField(
+            model_name='agreement',
+            name='agreed_on',
+            field=models.DateTimeField(default=django.utils.timezone.now, editable=False),
+            preserve_default=True,
         ),
     ]
