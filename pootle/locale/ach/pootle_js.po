@@ -23,11 +23,11 @@ msgstr ""
 # all
 #: static/js/browser.js:154
 msgid "All Languages"
-msgstr "mornig"
+msgstr ""
 
 #: static/js/browser.js:157
 msgid "All Projects"
-msgstr "Si todavía no reservó su"
+msgstr ""
 
 #: static/js/browser.js:160
 msgid "Entire Project"
@@ -208,9 +208,8 @@ msgstr ""
 # all
 #: static/js/admin/components/language.jsx:84
 #: static/js/admin/components/language.jsx:113
-#, fuzzy
 msgid "Add Language"
-msgstr "mornig"
+msgstr ""
 
 #: static/js/admin/components/language.jsx:87
 #: static/js/admin/components/project.jsx:87
@@ -260,9 +259,8 @@ msgstr ""
 
 #: static/js/admin/components/project.jsx:84
 #: static/js/admin/components/project.jsx:113
-#, fuzzy
 msgid "Add Project"
-msgstr "Si todavía no reservó su"
+msgstr ""
 
 #: static/js/admin/components/project.jsx:110
 msgid "Edit Project"
@@ -664,12 +662,3 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-
-#~ msgid "Are you sure you want to continue?"
-#~ msgstr "Продолжить?"
-
-#~ msgid "This operation cannot be undone."
-#~ msgstr "Tic ma eni ni pe kitwero weko labongo timo ne."
-
-#~ msgid "Hide filtering"
-#~ msgstr "Скрыть фильтр"
