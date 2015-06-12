@@ -703,7 +703,7 @@ def save_comment(request, unit):
     """
     # Update current unit instance's attributes
     unit.commented_by = request.profile
-    unit.commented_on = timezone.now()
+    unit.commented_on = timezone.now().replace(microsecond=0)
 
     language = request.translation_project.language
     form = unit_comment_form_factory(language)(request.POST, instance=unit,
