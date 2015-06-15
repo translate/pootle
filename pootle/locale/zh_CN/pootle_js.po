@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
+"POT-Creation-Date: 2015-06-15 11:37+0100\n"
 "PO-Revision-Date: 2015-05-26 23:37+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,54 +28,92 @@ msgstr "保存成功。"
 msgid "Deleted successfully."
 msgstr "删除成功。"
 
+#: static/js/admin/components/ItemDelete.js:51
+msgid "Delete"
+msgstr "删除"
+
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
 msgstr "代码"
 
 #: static/js/admin/components/LanguageForm.js:64
+#: static/js/admin/components/ProjectForm.js:67
+#: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
+msgid "Full Name"
+msgstr "全名"
+
+#: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
 msgstr "特殊字符"
 
-#: static/js/admin/components/LanguageForm.js:70
+#: static/js/admin/components/LanguageForm.js:79
+msgid "Number of Plurals"
+msgstr "复数形式数量"
+
+#: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
 msgstr "复数表达式"
 
-#: static/js/admin/components/LanguageForm.js:79 static/js/user/forms.jsx:120
+#: static/js/admin/components/LanguageForm.js:95
+#: static/js/admin/components/ProjectForm.js:137
+#: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
 msgid "Save"
 msgstr "保存"
 
-#: static/js/admin/components/ProjectForm.js:70
-msgid "Quality Checks"
-msgstr "质量检查"
-
-#: static/js/admin/components/ProjectForm.js:79
-msgid "Project Tree Style"
-msgstr "项目树样式"
-
-#: static/js/admin/components/ProjectForm.js:85
-msgid "Ignore Files"
-msgstr "忽略文件"
-
-#: static/js/admin/components/ProjectForm.js:91
-msgid "Screenshot Search Prefix"
-msgstr "屏幕截图搜索前缀"
-
-#: static/js/admin/components/ProjectForm.js:98
+#: static/js/admin/components/LanguageForm.js:98
+#: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
 msgstr "概览"
 
-#: static/js/admin/components/ProjectForm.js:99
-msgid "Languages"
-msgstr "语言"
-
-#: static/js/admin/components/ProjectForm.js:100
+#: static/js/admin/components/LanguageForm.js:99
+#: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
 msgstr "权限"
+
+#: static/js/admin/components/ProjectForm.js:76
+msgid "Quality Checks"
+msgstr "质量检查"
+
+#: static/js/admin/components/ProjectForm.js:85
+msgid "File Type"
+msgstr "文件类型"
+
+#: static/js/admin/components/ProjectForm.js:94
+msgid "Project Tree Style"
+msgstr "项目树样式"
+
+#: static/js/admin/components/ProjectForm.js:103
+msgid "Source Language"
+msgstr "源语言"
+
+#: static/js/admin/components/ProjectForm.js:109
+msgid "Ignore Files"
+msgstr "忽略文件"
+
+#: static/js/admin/components/ProjectForm.js:116
+msgid "String Errors Contact"
+msgstr ""
+
+#: static/js/admin/components/ProjectForm.js:122
+msgid "Screenshot Search Prefix"
+msgstr "屏幕截图搜索前缀"
+
+#: static/js/admin/components/ProjectForm.js:129
+msgid "Disabled"
+msgstr "已禁用"
+
+#: static/js/admin/components/ProjectForm.js:141
+msgid "Languages"
+msgstr "语言"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
 msgstr "加载更多"
+
+#: static/js/admin/components/Search.js:89
+msgid "Loading..."
+msgstr "正在加载..."
 
 #: static/js/admin/components/UserForm.js:52
 msgid ""
@@ -84,78 +122,92 @@ msgid ""
 msgstr "注意：删除用户将使其建议和翻译贡献归入匿名用户。"
 
 #: static/js/admin/components/UserForm.js:64
-#: static/js/auth/components/SignInForm.js:94
+#: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
 msgstr "用户名"
 
-#: static/js/admin/components/UserForm.js:71
-#: static/js/auth/components/SignUpForm.js:93
-#: static/js/auth/components/SocialVerification.js:87
+#: static/js/admin/components/UserForm.js:73
+msgid "Active"
+msgstr "活跃"
+
+#: static/js/admin/components/UserForm.js:80
+#: static/js/auth/components/SignInForm.js:104
+#: static/js/auth/components/SignUpForm.js:100
+#: static/js/auth/components/SocialVerification.js:94
 msgid "Password"
 msgstr "密码"
 
-#: static/js/admin/components/UserForm.js:72
+#: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
 msgstr "设置新密码"
 
-#: static/js/admin/components/UserForm.js:79 static/js/user/forms.jsx:73
-msgid "Full Name"
-msgstr "全名"
+#: static/js/admin/components/UserForm.js:95
+#: static/js/auth/components/SignUpForm.js:92
+msgid "Email"
+msgstr "电子邮件地址"
 
-#: static/js/admin/components/UserForm.js:88
+#: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
 msgstr "管理员"
 
-#: static/js/admin/components/UserForm.js:94 static/js/user/forms.jsx:88
+#: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
 msgid "Twitter"
 msgstr "Twitter"
 
-#: static/js/admin/components/UserForm.js:96
+#: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
 msgstr "Twitter 用户名"
 
-#: static/js/admin/components/UserForm.js:102 static/js/user/forms.jsx:95
+#: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: static/js/admin/components/UserForm.js:104
+#: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
 msgstr "LinkedIn 个人资料网址"
 
-#: static/js/admin/components/UserForm.js:110 static/js/user/forms.jsx:108
+#: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
+msgid "Website"
+msgstr "网站"
+
+#: static/js/admin/components/UserForm.js:128
+msgid "Personal website URL"
+msgstr "个人网站网址"
+
+#: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
 msgid "Short Bio"
 msgstr "个人简介"
 
-#: static/js/admin/components/UserForm.js:112
+#: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
 msgstr "个人介绍"
 
-#: static/js/admin/components/UserForm.js:118
+#: static/js/admin/components/UserForm.js:147
 msgid "Public Profile"
 msgstr "公开个人资料"
 
-#: static/js/admin/components/UserForm.js:119
+#: static/js/admin/components/UserForm.js:148
 msgid "Settings"
 msgstr ""
 
-#: static/js/admin/components/UserForm.js:120
+#: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
 msgstr "统计"
 
-#: static/js/admin/components/UserForm.js:121
+#: static/js/admin/components/UserForm.js:150
 msgid "Reports"
 msgstr "报告"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, c-format
-msgid "We have sent an email to <span>%s</span> containing the special link."
+#, javascript-format
+msgid "We have sent an email containing the special link to <span>%s</span>."
 msgstr ""
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
-"We have sent an email to the address you used to register this account "
-"containing the special link."
+"We have sent an email containing the special link to the address used to "
+"register this account."
 msgstr ""
 
 #: static/js/auth/components/AccountActivation.js:42
@@ -164,6 +216,11 @@ msgstr ""
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
+msgstr ""
+
+#: static/js/auth/components/AccountActivation.js:56
+#: static/js/auth/components/AccountInactive.js:36
+msgid "Close"
 msgstr ""
 
 #: static/js/auth/components/AccountInactive.js:30
@@ -175,6 +232,8 @@ msgid "Sign In With..."
 msgstr ""
 
 #: static/js/auth/components/AuthController.js:82
+#: static/js/auth/components/SignInForm.js:122
+#: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
 msgstr ""
 
@@ -183,6 +242,7 @@ msgid "Account Inactive"
 msgstr ""
 
 #: static/js/auth/components/AuthController.js:96
+#: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
 msgstr ""
 
@@ -215,47 +275,55 @@ msgid ""
 "used. Please request a new password reset."
 msgstr ""
 
-#: static/js/auth/components/PasswordResetForm.js:90
+#: static/js/auth/components/PasswordResetForm.js:86
+#, fuzzy
+msgid "Reset Password"
+msgstr "密码"
+
+#: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
 msgstr ""
 
-#: static/js/auth/components/PasswordResetForm.js:94
+#: static/js/auth/components/PasswordResetForm.js:122
+#: static/js/auth/components/SignUpForm.js:108
 #, fuzzy
 msgid "Repeat Password"
 msgstr "密码"
 
-#: static/js/auth/components/PasswordResetForm.js:106
+#: static/js/auth/components/PasswordResetForm.js:135
 #, fuzzy
 msgid "Set New Password"
 msgstr "设置新密码"
 
-#: static/js/auth/components/PasswordResetForm.js:109
+#: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
 msgstr ""
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
-#, c-format
+#, javascript-format
 msgid "Sending email to %s..."
 msgstr ""
 
-#: static/js/auth/components/RequestPasswordResetSent.js:43
+#: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
 
-#: static/js/auth/components/RequestPasswordResetSent.js:58
-msgid "Resend Email"
+#: static/js/auth/components/RequestPasswordResetSent.js:48
+msgid ""
+"Didn't receive an email? Check if it was accidentally filtered out as spam, "
+"or try requesting another copy of the email."
 msgstr ""
 
-#: static/js/auth/components/RequestPasswordResetSent.js:44
-msgid "Didn"
+#: static/js/auth/components/RequestPasswordResetSent.js:62
+msgid "Resend Email"
 msgstr ""
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
 msgstr ""
 
-#: static/js/auth/components/SignInForm.js:102
-#: static/js/auth/components/SocialVerification.js:94
+#: static/js/auth/components/SignInForm.js:111
+#: static/js/auth/components/SocialVerification.js:101
 msgid "I forgot my password"
 msgstr ""
 
@@ -264,18 +332,22 @@ msgstr ""
 msgid "Signed in. Redirecting..."
 msgstr ""
 
-#: static/js/auth/components/SignInPanel.js:57
+#: static/js/auth/components/SignInPanel.js:62
 #, fuzzy
 msgid "Social Services"
 msgstr "特殊字符"
 
-#: static/js/auth/components/SignInPanel.js:59
+#: static/js/auth/components/SignInPanel.js:65
 #, fuzzy
 msgid "Login / Password"
 msgstr "密码"
 
+#: static/js/auth/components/SignUpForm.js:126
+msgid "Sign in as an existing user"
+msgstr ""
+
 #: static/js/auth/components/SocialAuthError.js:31
-#, c-format
+#, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
 msgstr ""
 
@@ -283,13 +355,19 @@ msgstr ""
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
 
+#: static/js/auth/components/SocialAuthError.js:51
+msgid "Try again"
+msgstr ""
+
 #: static/js/auth/components/SocialSignInForm.js:40
-#, c-format
+#, javascript-format
 msgid "Sign In With %s"
 msgstr ""
 
-#: static/js/auth/components/SocialVerification.js:105
-msgid "Sign In')}REGEX"
+#: static/js/auth/components/SocialSignInForm.js:46
+msgid ""
+"Signing in with an external service for the first time will automatically "
+"create an account for you."
 msgstr ""
 
 #: static/js/browser.js:156
@@ -320,38 +398,32 @@ msgstr ""
 "转到上一个字符串 (Ctrl+.)<br/><br/>也可以：<br/>上一页：Ctrl+Shift+,<br/>第一"
 "页：Ctrl+Shift+Home"
 
-#. Translators: '%s' is a username
 #: static/js/editor/app.js:359
-#, c-format
+#, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s 的待审建议"
 
-#. Translators: '%s' is a username
 #: static/js/editor/app.js:362
-#, c-format
+#, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s 的获准建议"
 
-#. Translators: '%s' is a username
 #: static/js/editor/app.js:365
-#, c-format
+#, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s 的被拒建议"
 
-#. Translators: '%s' is a username
 #: static/js/editor/app.js:368
-#, c-format
+#, javascript-format
 msgid "%s's submissions"
 msgstr "%s 的提交"
 
-#. Translators: '%s' is a username, meaning "submissions by %s,
-#. that were overwritten"
 #: static/js/editor/app.js:372
-#, c-format
+#, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s 的被覆盖的提交"
 
-#: static/js/editor/app.js:501 static/js/editor/app.js.c:1650
+#: static/js/editor/app.js:501 static/js/editor/app.js:1650
 msgid "No results."
 msgstr "没有结果。"
 
@@ -396,7 +468,7 @@ msgstr "一些匿名用户"
 msgid "someone"
 msgstr "某人"
 
-#: static/js/editor/app.js:2005 static/js/editor/app.js.c:2054
+#: static/js/editor/app.js:2005 static/js/editor/app.js:2054
 msgid "Similar translations"
 msgstr "类似的翻译"
 
@@ -405,7 +477,7 @@ msgid "disabled"
 msgstr "已禁用"
 
 #: static/js/stats.js:286
-#, c-format
+#, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s 秒"
@@ -419,31 +491,31 @@ msgid "Collapse details"
 msgstr "收起细节"
 
 #: static/js/utils.js:151
-#, c-format
+#, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "%s 年前"
 
 #: static/js/utils.js:154
-#, c-format
+#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "%s 周前"
 
 #: static/js/utils.js:157
-#, c-format
+#, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "%s 天前"
 
 #: static/js/utils.js:160
-#, c-format
+#, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "%s 小时前"
 
 #: static/js/utils.js:163
-#, c-format
+#, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "%s 分钟前"
@@ -631,10 +703,6 @@ msgstr "您的 Twitter 用户名"
 msgid "Your LinkedIn profile URL"
 msgstr "您的 LinkedIn 个人资料网址"
 
-#: static/js/user/forms.jsx:101
-msgid "Website"
-msgstr "网站"
-
 #: static/js/user/forms.jsx:103
 msgid "Your Personal website/blog URL"
 msgstr "您的个人网站/博客网址"
@@ -767,33 +835,6 @@ msgid ""
 msgstr ""
 "已被 %(fullname)s 在 &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; 项目中翻译"
-
-#~ msgid "Loading..."
-#~ msgstr "正在加载..."
-
-#~ msgid "Number of Plurals"
-#~ msgstr "复数形式数量"
-
-#~ msgid "File Type"
-#~ msgstr "文件类型"
-
-#~ msgid "Source Language"
-#~ msgstr "源语言"
-
-#~ msgid "Disabled"
-#~ msgstr "已禁用"
-
-#~ msgid "Active"
-#~ msgstr "活跃"
-
-#~ msgid "Email"
-#~ msgstr "电子邮件地址"
-
-#~ msgid "Personal website URL"
-#~ msgstr "个人网站网址"
-
-#~ msgid "Delete"
-#~ msgstr "删除"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "您确定要继续吗？"

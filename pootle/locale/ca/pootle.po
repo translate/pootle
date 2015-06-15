@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
+"POT-Creation-Date: 2015-06-15 11:30+0100\n"
 "PO-Revision-Date: 2013-12-23 10:46+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Softcatalà\n"
@@ -86,11 +86,11 @@ msgstr "Llengües d'origen alternatives"
 msgid "Rate"
 msgstr ""
 
-#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
 msgstr ""
 
-#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
 msgstr ""
 
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Score"
 msgstr ""
 
-#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
 msgstr ""
 
@@ -159,11 +159,11 @@ msgstr "Missatge"
 msgid "Please enter your message"
 msgstr ""
 
-#: apps/evernote_reports/forms.py:26
+#: apps/evernote_reports/forms.py:27
 msgid "Translation Rate"
 msgstr ""
 
-#: apps/evernote_reports/forms.py:41
+#: apps/evernote_reports/forms.py:42
 msgid "Effective from"
 msgstr ""
 
@@ -1107,11 +1107,6 @@ msgstr "Pàgina normal"
 #: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "Títol de la pàgina"
-
-#: apps/staticpages/views.py:116
-#, python-format
-msgid "page-%d"
-msgstr "pàgina-%d"
 
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:128
@@ -2624,6 +2619,9 @@ msgstr "Assigna una acció"
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr ""
+
+#~ msgid "page-%d"
+#~ msgstr "pàgina-%d"
 
 #~ msgid "Translate Toolkit version %s installed."
 #~ msgstr "La versió %s del Translate Toolkit està instal·lada."

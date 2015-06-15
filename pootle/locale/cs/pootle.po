@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
-"PO-Revision-Date: 2015-04-16 16:22+0000\n"
+"POT-Creation-Date: 2015-06-15 11:30+0100\n"
+"PO-Revision-Date: 2015-06-13 15:06+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,12 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1429201358.000000\n"
+"X-POOTLE-MTIME: 1434208012.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Zdá se, že váš uživatelský účet se ztratil. Kontaktujte správce těchto "
+"stránek."
 
 #: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
@@ -88,11 +90,11 @@ msgstr "Alternativní zdrojové jazyky"
 msgid "Rate"
 msgstr "Sazba"
 
-#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
 msgstr "Sazba za kontrolu"
 
-#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
 msgstr "Hodinová sazba"
 
@@ -100,7 +102,7 @@ msgstr "Hodinová sazba"
 msgid "Score"
 msgstr "Hodnocení"
 
-#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
 msgstr "Měna"
 
@@ -125,9 +127,8 @@ msgid "Short Bio"
 msgstr "Stručný životopis"
 
 #: apps/accounts/models.py:300
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Tento výraz již v aktuálním souboru existuje."
+msgstr "Tato e-mailová adresa již existuje."
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -161,11 +162,11 @@ msgstr "Zpráva"
 msgid "Please enter your message"
 msgstr "Zadejte vaši zprávu"
 
-#: apps/evernote_reports/forms.py:26
+#: apps/evernote_reports/forms.py:27
 msgid "Translation Rate"
 msgstr "Sazba za překlad"
 
-#: apps/evernote_reports/forms.py:41
+#: apps/evernote_reports/forms.py:42
 msgid "Effective from"
 msgstr "Platné od"
 
@@ -213,43 +214,44 @@ msgid "Invalid request method"
 msgstr "Neplatný typ požadavku"
 
 #: apps/import_export/templates/browser/index.html:10
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "Stáhnout XLIFF soubor pro offline překlad"
+msgstr "Stáhnout soubory překladu pro offline překlad"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "Stáhnout XLIFF soubor pro offline překlad"
+msgstr "Stáhnout pro offline překlad"
 
 #: apps/import_export/templates/browser/index.html:19
 msgid "Upload translation files or archives in .zip format"
 msgstr "Nahrát jednotlivé soubory nebo archivy ve formátu ZIP"
 
 #: apps/import_export/templates/browser/index.html:20
-#, fuzzy
 msgid "Upload translations"
-msgstr "Exportovat překlady"
+msgstr "Nahrát překlady"
 
 #: apps/import_export/utils.py:22
 #, python-format
 msgid "File %r missing X-Pootle-Path header\n"
-msgstr ""
+msgstr "Soubor %r nemá nastavenu položku hlavičky X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:27
 #, python-format
 msgid "File %r missing or invalid X-Pootle-Revision header\n"
 msgstr ""
+"Soubor %r nemá nastavenu, nebo má chybně nastavenu položku hlavičky X-Pootle-"
+"Revision\n"
 
 #: apps/import_export/utils.py:37
 #, python-format
 msgid "File %r was rejected because its X-Pootle-Revision is too old."
 msgstr ""
+"Soubor %r byl odmítnut, protože hodnota jeho X-Pootle-Revision je příliš "
+"stará."
 
 #: apps/import_export/utils.py:42
 #, python-format
 msgid "Could not create %r. Missing Project/Language? (%s)"
-msgstr ""
+msgstr "Vytvoření %r se nezdařilo. Chybějící projekt/jazyk? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -301,9 +303,9 @@ msgstr "Aktivní uživatelé"
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Spuštěno (%d pracovní proces)"
+msgstr[1] "Spuštěno (%d pracovní procesy)"
+msgstr[2] "Spuštěno (%d pracovních procesů)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:110
@@ -489,9 +491,8 @@ msgid "Pure punctuation"
 msgstr "Pouze interpunkce"
 
 #: apps/pootle_misc/checks.py:61
-#, fuzzy
 msgid "Python brace placeholders"
-msgstr "Zástupné řetězce mustache"
+msgstr "Závorkové zástupné řetězce Pythonu"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Number of sentences"
@@ -554,7 +555,7 @@ msgstr "Zástupné znaky"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Invalid XML"
-msgstr ""
+msgstr "Neplatné XML"
 
 #: apps/pootle_misc/checks.py:78
 msgid "XML tags"
@@ -665,9 +666,8 @@ msgid "Double quotes in tags"
 msgstr "Dvojité uvozovky ve značkách"
 
 #: apps/pootle_misc/checks.py:108
-#, fuzzy
 msgid "Percent brace placeholders"
-msgstr "% zástupné řetězce"
+msgstr "Závorkové % zástupné řetězce"
 
 #: apps/pootle_misc/checks.py:1006 core/browser.py:68
 msgid "Critical"
@@ -687,12 +687,12 @@ msgstr "Extrakce"
 
 #: apps/pootle_misc/checks.py:1010
 msgid "Other"
-msgstr ""
+msgstr "Ostatní"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:60
 msgid "Search"
-msgstr "Vyhledat"
+msgstr "Hledání"
 
 #: apps/pootle_misc/forms.py:91
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
@@ -1072,7 +1072,7 @@ msgstr "Název"
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:43
 msgid "Display Content"
-msgstr "Zobrazit obsah"
+msgstr "Zobrazovaný obsah"
 
 #: apps/staticpages/models.py:45
 #, python-format
@@ -1110,36 +1110,32 @@ msgstr "Běžná stránka"
 msgid "Page Title"
 msgstr "Nadpis stránky"
 
-# podle použití ve zdrojovém kódu to vypadá, že by tohle mělo zůstat nepřeložené, nahlášeno jako chyba
-#: apps/staticpages/views.py:116
-#, python-format
-msgid "page-%d"
-msgstr "page-%d"
-
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:128
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
+"projects/<project_code> nebo <language_code> nebo <language_code>/"
+"<project_code>"
 
 #: apps/virtualfolder/models.py:39
-#, fuzzy
 msgid "Location"
 msgstr "Umístění"
 
 #: apps/virtualfolder/models.py:42
 msgid "Root path where this virtual folder is applied."
-msgstr ""
+msgstr "Základní cesta pro tento virtuální adresář."
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:46
-#, fuzzy
 msgid "Filter"
 msgstr "Filtr"
 
 #: apps/virtualfolder/models.py:48
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
+"Filtrovací pravidla která určují ze kterých úložišť se skládá tento "
+"virtuální adresář."
 
 #: apps/virtualfolder/models.py:52 core/browser.py:24
 msgid "Priority"
@@ -1148,49 +1144,48 @@ msgstr "Priorita"
 #: apps/virtualfolder/models.py:54
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
-msgstr ""
+msgstr "Číslo určující důležitost. Vyšší priorita znamená vyšší důležitost."
 
 #: apps/virtualfolder/models.py:58
 msgid "Is browsable?"
-msgstr ""
+msgstr "Lze procházet?"
 
 #: apps/virtualfolder/models.py:60
-#, fuzzy
 msgid "Whether this virtual folder is active or not."
-msgstr "Zda je tato stránka aktivní nebo ne."
+msgstr "Zda je tento virtuální adresář aktivní nebo ne."
 
 #: apps/virtualfolder/models.py:65
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
 msgstr ""
-"Popis cíle. Užitečné pro zadání podrobnějších informací nebo instrukcí. "
-"Povolené značky: %s"
+"Užitečné pro zadání podrobnějších informací nebo instrukcí. Povolené značky: "
+"%s"
 
 #: checks.py:57
 msgid "Your version of Django is too old."
-msgstr ""
+msgstr "Vaše verze Django je příliš stará."
 
 #: checks.py:58
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
-msgstr ""
+msgstr "Zkuste spustit pip install --upgrade 'Django==%s'"
 
 #: checks.py:65
 msgid "Your version of lxml is too old."
-msgstr ""
+msgstr "Vaše verze lxml je příliš stará."
 
 #: checks.py:66
 msgid "Try pip install --upgrade lxml"
-msgstr ""
+msgstr "Zkuste spustit pip install --upgrade lxml"
 
 #: checks.py:72
 msgid "Your version of Translate Toolkit is too old."
-msgstr ""
+msgstr "Vaše verze Translate Toolkit je příliš stará."
 
 #: checks.py:73
 msgid "Try pip install --upgrade translate-toolkit"
-msgstr ""
+msgstr "Zkuste spustit pip install --upgrade translate-toolkit"
 
 #: checks.py:88
 msgid ""
@@ -1202,39 +1197,39 @@ msgstr ""
 
 #: checks.py:90
 msgid "Try pip install python-levenshtein"
-msgstr ""
+msgstr "Zkuste spustit pip install python-levenshtein"
 
 #: checks.py:109
 #, python-format
 msgid "Could not connect to Redis (%s)"
-msgstr ""
+msgstr "Nepodařilo se navázat spojení s Redis (%s)"
 
 #: checks.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
-msgstr "Redis server přijímá požadavky na adrese %(host)s:%(port)s."
+msgstr "Ujistěte se, že je Redis spuštěn na %(host)s:%(port)s."
 
 #: checks.py:119
-#, fuzzy
 msgid "No RQ Worker running."
 msgstr "Nejsou spuštěny žádné pracovní RQ procesy."
 
 #: checks.py:120
 msgid "Run new workers with manage.py rqworker"
-msgstr ""
+msgstr "Nové pracovní procesy můžete spouštět pomocí manage.py rqworker"
 
 #: checks.py:127
-#, fuzzy
 msgid "Your version of Redis is too old."
-msgstr "Je nainstalováno Django verze %s."
+msgstr "Vaše verze Redis je příliš stará."
 
 #: checks.py:128
 msgid "Update your system's Redis server package"
 msgstr ""
+"Aktualizujte Redis server prostřednictvím odpovídajícího balíčku pro váš "
+"systém"
 
 #: checks.py:143
 msgid "Cache backend is not set to Redis."
-msgstr ""
+msgstr "Back-end mezipaměti není nastaven na Redis."
 
 #: checks.py:144
 #, python-format
@@ -1242,34 +1237,36 @@ msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
+"Nastavte výchozí back-end mezipaměti na django_redis.cache.RedisCache\n"
+"Aktuální nastavení: %r"
 
 #: checks.py:153
 msgid "Could not initiate a Redis cache connection"
-msgstr ""
+msgstr "Nepodařilo se navázat spojení s Redis mezipamětí"
 
 #: checks.py:154
 msgid "Double-check your CACHES settings"
-msgstr ""
+msgstr "Zkontrolujte nastavení CACHES"
 
 #: checks.py:160
 msgid "DEBUG mode is on. Do not do this in production!"
-msgstr ""
+msgstr "Je aktivní DEBUG režim. Nepoužívejte v ostrém provozu!"
 
 #: checks.py:161
 msgid "Set DEBUG = False in Pootle settings"
-msgstr ""
+msgstr "V nastavení Pootle serveru nastavte DEBUG = False"
 
 #: checks.py:167
 msgid "The sqlite database backend is unsupported"
-msgstr ""
+msgstr "Databázový back-end sqlite není podporován"
 
 #: checks.py:168
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
-msgstr ""
+msgstr "Nastavte výchozí databázový modul na postgresql_psycopg2 nebo mysql"
 
 #: checks.py:174
 msgid "Not using cached_db as session engine"
-msgstr ""
+msgstr "Jako modul pro relace není použit chached_db"
 
 #: checks.py:175
 #, python-format
@@ -1277,42 +1274,51 @@ msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
+"Nastavte SSSION_ENGINE na django.contrib.sessions.backend.cached_db\n"
+"Aktuální nastavení: %r"
 
 #: checks.py:182
 msgid "POOTLE_CONTACT_EMAIL is not set."
-msgstr ""
+msgstr "Není nastaveno POOTLE_CONTACT_EMAIL."
 
 #: checks.py:183
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
+"Nastavte POOTLE_CONTACT_EMAIL aby mohli uživatelé kontaktovat administrátory "
+"prostřednictvím kontaktního formuláře Pootle serveru."
 
 #: checks.py:191
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL používá následující výchozí nastavení %r."
 
 #: checks.py:193
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
+"POOTLE_CONTACT_EMAIL určuje adresu na kterou budou doručovány zprávy zaslané "
+"prostřednictvím kontaktního formuláře."
 
 #: checks.py:200
 msgid "settings.DEFAULT_FROM_EMAIL is not set."
-msgstr ""
+msgstr "Není nastaveno settings.DEFAULT_FROM_EMAIL."
 
 #: checks.py:201 checks.py:211
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
+"DEFAULT_FROM_EMAIL je používán ve všech odchozích e-mailech z Pootle "
+"serveru.\n"
+"Nezapomeňte zkontrolovat nastavení vašeho e-mail serveru."
 
 #: checks.py:209
 #, python-format
 msgid "settings.DEFAULT_FROM_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "settings.DEFAULT_FROM_EMAIL používá následující výchozí nastavení %r."
 
 #: core/browser.py:29
 msgid "Project"
@@ -1341,9 +1347,8 @@ msgid "Last Activity"
 msgstr "Poslední aktivita"
 
 #: core/browser.py:130
-#, fuzzy
 msgid "Back to language"
-msgstr "Návrat na hlavní stránku"
+msgstr "Zpět na stránku jazyka"
 
 #: core/browser.py:132
 msgid "Back to parent folder"
@@ -1422,9 +1427,8 @@ msgid "Can submit a translation"
 msgstr "Může odeslat překlad"
 
 #: core/initdb.py:125
-#, fuzzy
 msgid "Can review suggestions"
-msgstr "Zkontrolovat návrhy"
+msgstr "Může kontrolovat návrhy"
 
 #: core/initdb.py:129
 msgid "Can administrate a translation project"
@@ -1436,12 +1440,11 @@ msgstr "K přístupu na tuto stránku nemáte dostatečná oprávnění."
 
 #: custom/templates/layout.html:11
 msgid "Getting Started"
-msgstr ""
+msgstr "Začínáme"
 
 #: custom/templates/layout.html:15
-#, fuzzy
 msgid "License Terms"
-msgstr "Licence"
+msgstr "Licenční podmínky"
 
 #: custom/templates/profiles/_tabs.html:4 templates/layout.html:116
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
@@ -1449,13 +1452,13 @@ msgid "Settings"
 msgstr "Nastavení"
 
 #: middleware/errorpages.py:57
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
-"Pro přístup na tuto stránku se musíte <a href=\"%(login_link)s\">přihlásit</"
-"a>."
+"Pro přístup na tuto stránku se musíte <a class=\"js-login\" href="
+"\"%(login_link)s\">přihlásit</a>."
 
 #: middleware/errorpages.py:97
 #, python-format
@@ -1544,20 +1547,18 @@ msgstr ""
 "ignorovat."
 
 #: templates/account/email/email_confirmation_subject.txt:2
-#, fuzzy
 msgid "Pootle e-mail confirmation"
-msgstr "Registrace do Pootle"
+msgstr "Pootle - potvrzení e-mailu"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
-#, fuzzy
 msgid "Registration Disabled"
-msgstr "registrační profil"
+msgstr "Registrace je zakázána"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
-msgstr ""
+msgstr "Registrace je aktuálně zakázána. Zkuste se zaregistrovat později."
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
@@ -1639,13 +1640,12 @@ msgid "Failed jobs"
 msgstr "Neúspěšné úlohy"
 
 #: templates/admin/dashboard.html:64
-#, fuzzy
 msgid "System Checks"
-msgstr "Ukázat kontroly"
+msgstr "Systémové kontroly"
 
 #: templates/admin/dashboard.html:74
 msgid "No issues have been detected. All is good!"
-msgstr ""
+msgstr "Nebyly zjištěny žádné problémy. Vše je v pořádku!"
 
 #: templates/admin/detailed_reports.html:6
 #, python-format
@@ -1790,17 +1790,15 @@ msgid "or"
 msgstr "nebo"
 
 #: templates/admin/staticpages/_form.html:30
-#, fuzzy
 msgid ""
 "Use <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/a&gt;"
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
-"\n"
 "Pro zadávání odkazů mezi statickými stránkami používejte kód <code>&lt;a "
 "href=\"<strong>#/slug-stránky</strong>\"&gt;Text odkazu&lt;/a&gt;</code>. "
 "Takové odkazy budou vygenerovány s plnou cestou k odkazované statické "
-"stránce.\n"
+"stránce."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1928,7 +1926,7 @@ msgstr "Kontaktujte nás"
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
-msgstr ""
+msgstr "Vyplňte prosím všechna pole."
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
@@ -1939,12 +1937,9 @@ msgid "Thanks!"
 msgstr "Děkujeme!"
 
 #: templates/contact_form/xhr_contact_form.html:26
-#, fuzzy
 msgid ""
 "We have received your message and will try to respond as soon as possible."
-msgstr ""
-"Vaši zprávu jsme přijali a pokusíme se\n"
-"na ni odpovědět co nejdříve."
+msgstr "Vaši zprávu jsme přijali a pokusíme se na ni odpovědět co nejdříve."
 
 #: templates/core/_top_scorers.html:8
 msgid "score"
@@ -1981,9 +1976,8 @@ msgid "Confirm"
 msgstr "Potvrdit"
 
 #: templates/editor/_actions.html:5
-#, fuzzy
 msgid "Go back to browsing"
-msgstr "Zpět na přehled"
+msgstr "Zpět na procházení"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -1999,7 +1993,7 @@ msgstr "Výchozí pořadí"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
-msgstr ""
+msgstr "Od nejdůležitějšího"
 
 #: templates/editor/_toolbar.html:10
 msgid "Newest first"
@@ -2068,9 +2062,8 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">Položka #%(id)s</a>"
 
 #: templates/editor/units/edit.html:19
-#, fuzzy
 msgid "Priority:"
-msgstr "Priorita"
+msgstr "Priorita:"
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
@@ -2317,26 +2310,23 @@ msgid "Database Error"
 msgstr "Chyba databáze"
 
 #: templates/errors/db.html:11
-#, fuzzy
 msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
-"Připojení k databázi se nezdařilo. Databáze ještě nebyla inicializována,\n"
+"Připojení k databázi se nezdařilo. Databáze ještě nebyla inicializována, "
 "nebo je před pokračováním třeba provést aktualizaci schéma databáze."
 
 #: templates/errors/db.html:18
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
 "installation and upgrade instructions. Contact the server administrator if "
 "you feel this is a mistake."
 msgstr ""
-"\n"
 "Návod pro instalaci a aktualizaci naleznete v <a href=\"%(url)s"
-"\">Dokumentaci</a>.\n"
-"Pokud si myslíte, že tato zpráva byla zobrazena v důsledku chyby,\n"
-"kontaktujte správce serveru."
+"\">Dokumentaci</a>. Pokud si myslíte, že tato zpráva byla zobrazena v "
+"důsledku chyby, kontaktujte správce serveru."
 
 #: templates/errors/db.html:26
 msgid "The reported error was:"
@@ -2346,7 +2336,7 @@ msgstr "Nahlášena byla chyba:"
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:5
 msgid "Browse"
-msgstr ""
+msgstr "Procházet"
 
 #: templates/languages/admin/permissions.html:9
 msgid "Below you can add, edit, and delete the permissions for this language."
@@ -2380,7 +2370,6 @@ msgid "Admin"
 msgstr "Správce"
 
 #: templates/layout.html:122
-#, fuzzy
 msgid "Sign out"
 msgstr "Odhlásit se"
 
@@ -2417,7 +2406,6 @@ msgstr ""
 "Než budete pokračovat, musíte si přečíst a přijmout následující dokumenty."
 
 #: templates/staticpages/agreement.html:17
-#, fuzzy
 msgid "No thanks. Sign out"
 msgstr "Děkuji, ne. Odhlásit"
 
@@ -2603,19 +2591,20 @@ msgid "Hourly Rate:"
 msgstr "Sazba za hodinu:"
 
 #: templates/user/settings.html:12
-#, fuzzy
 msgid "User Account"
-msgstr "Vytvořit účet"
+msgstr "Uživatelský účet"
 
 #: templates/user/settings.html:14
 msgid ""
 "Do you want to change your password? Click the 'Reset Password' button which "
 "will initiate the process of setting a new password."
 msgstr ""
+"Chcete změnit své heslo? Pro spuštění procesu pro nastavení nového hesla "
+"klikněte na tlačítko ‚Změnit heslo‘."
 
 #: templates/user/settings.html:26
 msgid "Reset Password"
-msgstr "Změna hesla"
+msgstr "Změnit heslo"
 
 #: templates/welcome.html:4
 msgid "Welcome"
@@ -2630,13 +2619,16 @@ msgid "Come and join us!"
 msgstr "Připojte se k nám!"
 
 #: templates/welcome.html:19
-#, fuzzy
 msgid "Sign in"
 msgstr "Přihlásit se"
 
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr "Největší přispěvatelé tento měsíc"
+
+# podle použití ve zdrojovém kódu to vypadá, že by tohle mělo zůstat nepřeložené, nahlášeno jako chyba
+#~ msgid "page-%d"
+#~ msgstr "page-%d"
 
 #~ msgid ""
 #~ "Cannot link: your Evernote account is already linked with another Pootle "
@@ -3283,8 +3275,8 @@ msgstr "Největší přispěvatelé tento měsíc"
 #~ "Tento soubor obsahuje %(num)d slova ze kterých je přeloženo %(percentage)d"
 #~ "%%."
 #~ msgstr[2] ""
-#~ "Tento soubor obsahuje %(num)d slov ze kterých je přeloženo %(percentage)d"
-#~ "%%."
+#~ "Tento soubor obsahuje %(num)d slov ze kterých je přeloženo %(percentage)d%"
+#~ "%."
 
 #~ msgid "Continue translation (%(num)d word left)"
 #~ msgid_plural "Continue translation (%(num)d words left)"

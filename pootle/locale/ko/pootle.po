@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
+"POT-Creation-Date: 2015-06-15 11:30+0100\n"
 "PO-Revision-Date: 2015-06-10 14:36+0000\n"
 "Last-Translator: wonjin <dnjs0309@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,11 +88,11 @@ msgstr "근본 언어 대안"
 msgid "Rate"
 msgstr "비율"
 
-#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
 msgstr "평가율"
 
-#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
 msgstr "시간당"
 
@@ -100,7 +100,7 @@ msgstr "시간당"
 msgid "Score"
 msgstr "점수"
 
-#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
 msgstr "화폐 단위"
 
@@ -161,11 +161,11 @@ msgstr "메시지"
 msgid "Please enter your message"
 msgstr "사용자 메세지를 입력해 주십시오."
 
-#: apps/evernote_reports/forms.py:26
+#: apps/evernote_reports/forms.py:27
 msgid "Translation Rate"
 msgstr "번역률"
 
-#: apps/evernote_reports/forms.py:41
+#: apps/evernote_reports/forms.py:42
 msgid "Effective from"
 msgstr "효과적으로"
 
@@ -1104,11 +1104,6 @@ msgstr "정규 페이지"
 #: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "페이지 제목"
-
-#: apps/staticpages/views.py:116
-#, python-format
-msgid "page-%d"
-msgstr "페이지-%d"
 
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:128
@@ -2602,6 +2597,9 @@ msgstr "로그인"
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr "이 달의 기여자 순위"
+
+#~ msgid "page-%d"
+#~ msgstr "페이지-%d"
 
 #~ msgid ""
 #~ "Cannot link: your Evernote account is already linked with another Pootle "

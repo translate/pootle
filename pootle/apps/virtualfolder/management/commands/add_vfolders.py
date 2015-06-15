@@ -37,9 +37,9 @@ class Command(BaseCommand):
             raise CommandError(e)
         except ValueError as e:
             raise CommandError("Please check if the JSON file is malformed. "
-                               "Original error:\n%s" %e)
+                               "Original error:\n%s" % e)
 
-        logging.info("Importing virtual folders...")
+        self.stdout.write("Importing virtual folders...")
 
         added_count = 0
         updated_count = 0
@@ -68,13 +68,16 @@ class Command(BaseCommand):
             except VirtualFolder.DoesNotExist:
                 # If the virtual folder doesn't exist yet then create it.
                 try:
+                    self.stdout.write(u'Adding new virtual folder %s...' %
+                                      vfolder_item['name'])
                     vfolder = VirtualFolder(**vfolder_item)
                     vfolder.save()
                 except ValidationError as e:
                     errored_count += 1
-                    logging.error(e.message)
+                    self.stdout.write('FAILED')
+                    self.stderr.write(e.message)
                 else:
-                    logging.info("Added new virtual folder %s", vfolder.name)
+                    self.stdout.write('DONE')
                     added_count += 1
             else:
                 # Update the already existing virtual folder.
@@ -113,14 +116,17 @@ class Command(BaseCommand):
 
                 if changed:
                     try:
+                        self.stdout.write(u'Updating virtual folder %s...' %
+                                          vfolder_item['name'])
                         vfolder.save()
                     except ValidationError as e:
                         errored_count += 1
-                        logging.error(e.message)
+                        self.stdout.write('FAILED')
+                        self.stderr.write(e.message)
                     else:
-                        logging.info("Updated virtual folder %s", vfolder.name)
+                        self.stdout.write('DONE')
                         updated_count += 1
 
-        logging.info("\nErrored: %d\nAdded: %d\nUpdated: %d\nUnchanged: %d",
-                     errored_count, added_count, updated_count,
-                     len(vfolders)-errored_count-added_count-updated_count)
+        self.stdout.write("\nErrored: %d\nAdded: %d\nUpdated: %d\nUnchanged: %d" %
+                          (errored_count, added_count, updated_count,
+                           len(vfolders)-errored_count-added_count-updated_count))

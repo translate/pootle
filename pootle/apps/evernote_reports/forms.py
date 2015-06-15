@@ -11,7 +11,8 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from accounts.models import CURRENCIES
-from evernote_reports.models import PaidTask, PaidTaskTypes
+
+from .models import PaidTask, PaidTaskTypes
 
 
 class UserRatesForm(forms.Form):

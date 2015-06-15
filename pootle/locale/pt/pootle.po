@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
+"POT-Creation-Date: 2015-06-15 11:30+0100\n"
 "PO-Revision-Date: 2015-06-09 13:48+0000\n"
 "Last-Translator: smarquespt <smarquespt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,11 +101,11 @@ msgstr "Idioma original alternativo"
 msgid "Rate"
 msgstr "Taxa"
 
-#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
 msgstr "Taxa de revisão"
 
-#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
 msgstr "Taxa horária"
 
@@ -113,7 +113,7 @@ msgstr "Taxa horária"
 msgid "Score"
 msgstr "Pontuação"
 
-#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
 msgstr "Moeda"
 
@@ -174,11 +174,11 @@ msgstr "Mensagem"
 msgid "Please enter your message"
 msgstr "Por favor digite a sua mensagem"
 
-#: apps/evernote_reports/forms.py:26
+#: apps/evernote_reports/forms.py:27
 msgid "Translation Rate"
 msgstr "Taxa de tradução"
 
-#: apps/evernote_reports/forms.py:41
+#: apps/evernote_reports/forms.py:42
 msgid "Effective from"
 msgstr "Em vigor desde"
 
@@ -1120,11 +1120,6 @@ msgstr "Página normal"
 #: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "Título da página"
-
-#: apps/staticpages/views.py:116
-#, python-format
-msgid "page-%d"
-msgstr "página %d"
 
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:128
@@ -2644,6 +2639,9 @@ msgstr "Iniciar sessão"
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr "Maiores colaboradores deste mês"
+
+#~ msgid "page-%d"
+#~ msgstr "página %d"
 
 #~ msgid ""
 #~ "Cannot link: your Evernote account is already linked with another Pootle "

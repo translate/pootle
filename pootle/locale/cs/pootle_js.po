@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
-"PO-Revision-Date: 2015-03-03 16:14+0000\n"
+"POT-Creation-Date: 2015-06-15 11:37+0100\n"
+"PO-Revision-Date: 2015-06-13 14:35+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1425399281.000000\n"
+"X-POOTLE-MTIME: 1434206110.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -28,54 +28,92 @@ msgstr "Úspěšně uloženo."
 msgid "Deleted successfully."
 msgstr "Úspěšně odstraněno."
 
+#: static/js/admin/components/ItemDelete.js:51
+msgid "Delete"
+msgstr "Odstranit"
+
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
 msgstr "Kód"
 
 #: static/js/admin/components/LanguageForm.js:64
+#: static/js/admin/components/ProjectForm.js:67
+#: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
+msgid "Full Name"
+msgstr "Celý název"
+
+#: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
 msgstr "Speciální znaky"
 
-#: static/js/admin/components/LanguageForm.js:70
+#: static/js/admin/components/LanguageForm.js:79
+msgid "Number of Plurals"
+msgstr "Počet forem plurálu"
+
+#: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
 msgstr "Podmínky použití forem plurálu"
 
-#: static/js/admin/components/LanguageForm.js:79 static/js/user/forms.jsx:120
+#: static/js/admin/components/LanguageForm.js:95
+#: static/js/admin/components/ProjectForm.js:137
+#: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
 msgid "Save"
 msgstr "Uložit"
 
-#: static/js/admin/components/ProjectForm.js:70
-msgid "Quality Checks"
-msgstr "Kontroly kvality"
-
-#: static/js/admin/components/ProjectForm.js:79
-msgid "Project Tree Style"
-msgstr "Adresářová struktura projektu"
-
-#: static/js/admin/components/ProjectForm.js:85
-msgid "Ignore Files"
-msgstr "Ignorovat soubory"
-
-#: static/js/admin/components/ProjectForm.js:91
-msgid "Screenshot Search Prefix"
-msgstr "Předpona pro hledání snímků obrazovky"
-
-#: static/js/admin/components/ProjectForm.js:98
+#: static/js/admin/components/LanguageForm.js:98
+#: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
 msgstr "Přehled"
 
-#: static/js/admin/components/ProjectForm.js:99
-msgid "Languages"
-msgstr "Jazyky"
-
-#: static/js/admin/components/ProjectForm.js:100
+#: static/js/admin/components/LanguageForm.js:99
+#: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
 msgstr "Oprávnění"
+
+#: static/js/admin/components/ProjectForm.js:76
+msgid "Quality Checks"
+msgstr "Kontroly kvality"
+
+#: static/js/admin/components/ProjectForm.js:85
+msgid "File Type"
+msgstr "Typ souboru"
+
+#: static/js/admin/components/ProjectForm.js:94
+msgid "Project Tree Style"
+msgstr "Adresářová struktura projektu"
+
+#: static/js/admin/components/ProjectForm.js:103
+msgid "Source Language"
+msgstr "Zdrojový jazyk"
+
+#: static/js/admin/components/ProjectForm.js:109
+msgid "Ignore Files"
+msgstr "Ignorovat soubory"
+
+#: static/js/admin/components/ProjectForm.js:116
+msgid "String Errors Contact"
+msgstr "Kontakt pro nahlášení chyb v řetězcích"
+
+#: static/js/admin/components/ProjectForm.js:122
+msgid "Screenshot Search Prefix"
+msgstr "Předpona pro hledání snímků obrazovky"
+
+#: static/js/admin/components/ProjectForm.js:129
+msgid "Disabled"
+msgstr "Zakázáno"
+
+#: static/js/admin/components/ProjectForm.js:141
+msgid "Languages"
+msgstr "Jazyky"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
 msgstr "Načíst další"
+
+#: static/js/admin/components/Search.js:89
+msgid "Loading..."
+msgstr "Načítání..."
 
 #: static/js/admin/components/UserForm.js:52
 msgid ""
@@ -86,118 +124,145 @@ msgstr ""
 "anonymnímu uživateli (nobody)."
 
 #: static/js/admin/components/UserForm.js:64
-#: static/js/auth/components/SignInForm.js:94
+#: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
 msgstr "Uživatelské jméno"
 
-#: static/js/admin/components/UserForm.js:71
-#: static/js/auth/components/SignUpForm.js:93
-#: static/js/auth/components/SocialVerification.js:87
+#: static/js/admin/components/UserForm.js:73
+msgid "Active"
+msgstr "Aktivní"
+
+#: static/js/admin/components/UserForm.js:80
+#: static/js/auth/components/SignInForm.js:104
+#: static/js/auth/components/SignUpForm.js:100
+#: static/js/auth/components/SocialVerification.js:94
 msgid "Password"
 msgstr "Heslo"
 
-#: static/js/admin/components/UserForm.js:72
+#: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
 msgstr "Nastavit nové heslo"
 
-#: static/js/admin/components/UserForm.js:79 static/js/user/forms.jsx:73
-msgid "Full Name"
-msgstr "Celý název"
+#: static/js/admin/components/UserForm.js:95
+#: static/js/auth/components/SignUpForm.js:92
+msgid "Email"
+msgstr "E-mail"
 
-#: static/js/admin/components/UserForm.js:88
+#: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
 msgstr "Správce"
 
-#: static/js/admin/components/UserForm.js:94 static/js/user/forms.jsx:88
+#: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
 msgid "Twitter"
 msgstr "Twitter"
 
-#: static/js/admin/components/UserForm.js:96
+#: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
 msgstr "Uživatelské jméno pro Twitter"
 
-#: static/js/admin/components/UserForm.js:102 static/js/user/forms.jsx:95
+#: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: static/js/admin/components/UserForm.js:104
+#: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
 msgstr "Adresa profilu LinkedIn"
 
-#: static/js/admin/components/UserForm.js:110 static/js/user/forms.jsx:108
+#: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
+msgid "Website"
+msgstr "Webová stránka"
+
+#: static/js/admin/components/UserForm.js:128
+msgid "Personal website URL"
+msgstr "Adresa osobní webové stránky"
+
+#: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
 msgid "Short Bio"
 msgstr "Stručný životopis"
 
-#: static/js/admin/components/UserForm.js:112
+#: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
 msgstr "Osobní popis"
 
-#: static/js/admin/components/UserForm.js:118
+#: static/js/admin/components/UserForm.js:147
 msgid "Public Profile"
 msgstr "Veřejný profil"
 
-#: static/js/admin/components/UserForm.js:119
+#: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "Nastavení"
 
-#: static/js/admin/components/UserForm.js:120
+#: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
 msgstr "Statistika"
 
-#: static/js/admin/components/UserForm.js:121
+#: static/js/admin/components/UserForm.js:150
 msgid "Reports"
 msgstr "Sestavy"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, c-format
-msgid "We have sent an email to <span>%s</span> containing the special link."
+#, fuzzy, javascript-format
+msgid "We have sent an email containing the special link to <span>%s</span>."
 msgstr ""
+"Odeslali jsme e-mail obsahující tento speciální odkaz na adresu <span>%s</"
+"span>."
 
 #: static/js/auth/components/AccountActivation.js:38
+#, fuzzy
 msgid ""
-"We have sent an email to the address you used to register this account "
-"containing the special link."
+"We have sent an email containing the special link to the address used to "
+"register this account."
 msgstr ""
+"Odeslali jsme e-mail obsahující tento speciální odkaz na adresu použitou při "
+"registraci vašeho účtu."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Váš účet vyžaduje aktivaci."
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
+msgstr "Pro pokračování v procesu založení účtu klikněte na zadaný odkaz."
+
+#: static/js/auth/components/AccountActivation.js:56
+#: static/js/auth/components/AccountInactive.js:36
+msgid "Close"
 msgstr ""
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "Váš účet je neaktivní, protože byl deaktivován administrátorem."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In With..."
-msgstr ""
+msgstr "Přihlaste se prostřednictvím..."
 
 #: static/js/auth/components/AuthController.js:82
+#: static/js/auth/components/SignInForm.js:122
+#: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "Přihlásit se"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
-msgstr ""
+msgstr "Účet neaktivní"
 
 #: static/js/auth/components/AuthController.js:96
+#: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
-msgstr ""
+msgstr "Zaregistrovat se"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
 msgid "Account Activation"
-msgstr ""
+msgstr "Aktivace účtu"
 
 #: static/js/auth/components/AuthController.js:117
 #: static/js/auth/components/AuthController.js:124
 #: static/js/auth/components/AuthController.js:131
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Změnit heslo"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
@@ -205,93 +270,111 @@ msgstr ""
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
-msgstr ""
+msgstr "Sociální ověření"
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontaktujte nás"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Odkaz na změnu hesla byl neplatný, patrně kvůli tomu, že už byl jednou "
+"použit. Požádejte prosím o změnu hesla znovu."
 
-#: static/js/auth/components/PasswordResetForm.js:90
+#: static/js/auth/components/PasswordResetForm.js:86
+#, fuzzy
+msgid "Reset Password"
+msgstr "Zopakujte heslo"
+
+#: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Heslo bylo změněno, prosím přihlaste se..."
 
-#: static/js/auth/components/PasswordResetForm.js:94
-#, fuzzy
+#: static/js/auth/components/PasswordResetForm.js:122
+#: static/js/auth/components/SignUpForm.js:108
 msgid "Repeat Password"
-msgstr "Heslo"
+msgstr "Zopakujte heslo"
 
-#: static/js/auth/components/PasswordResetForm.js:106
-#, fuzzy
+#: static/js/auth/components/PasswordResetForm.js:135
 msgid "Set New Password"
 msgstr "Nastavit nové heslo"
 
-#: static/js/auth/components/PasswordResetForm.js:109
+#: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "Po změně hesla budete automaticky přihlášeni."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
-#, c-format
+#, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Odesílání e-mailu na adresu %s..."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:43
+#: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
+msgstr "Pro pokračování v procesu změny hesla klikněte na zadaný odkaz."
+
+#: static/js/auth/components/RequestPasswordResetSent.js:48
+msgid ""
+"Didn't receive an email? Check if it was accidentally filtered out as spam, "
+"or try requesting another copy of the email."
 msgstr ""
 
-#: static/js/auth/components/RequestPasswordResetSent.js:58
+#: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
-msgstr ""
-
-#: static/js/auth/components/RequestPasswordResetSent.js:44
-msgid "Didn"
-msgstr ""
+msgstr "Znovu odeslat e-mail"
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Zaregistrovat se jako nový uživatel"
 
-#: static/js/auth/components/SignInForm.js:102
-#: static/js/auth/components/SocialVerification.js:94
+#: static/js/auth/components/SignInForm.js:111
+#: static/js/auth/components/SocialVerification.js:101
 msgid "I forgot my password"
-msgstr ""
+msgstr "Zapomněl jsem heslo"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Jste přihlášeni. Probíhá přesměrování..."
 
-#: static/js/auth/components/SignInPanel.js:57
-#, fuzzy
+#: static/js/auth/components/SignInPanel.js:62
 msgid "Social Services"
-msgstr "Speciální znaky"
+msgstr "Sociální služby"
 
-#: static/js/auth/components/SignInPanel.js:59
-#, fuzzy
+#: static/js/auth/components/SignInPanel.js:65
 msgid "Login / Password"
-msgstr "Heslo"
+msgstr "Uživatelské jméno / Heslo"
+
+#: static/js/auth/components/SignUpForm.js:126
+#, fuzzy
+msgid "Sign in as an existing user"
+msgstr "Zaregistrovat se jako nový uživatel"
 
 #: static/js/auth/components/SocialAuthError.js:31
-#, c-format
+#, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "Při pokusu o přihlášení prostřednictvím %s došlo k chybě."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
+"Při pokusu o přihlášení prostřednictvím vašeho sociálního účtu došlo k chybě."
 
-#: static/js/auth/components/SocialSignInForm.js:40
-#, c-format
-msgid "Sign In With %s"
+#: static/js/auth/components/SocialAuthError.js:51
+msgid "Try again"
 msgstr ""
 
-#: static/js/auth/components/SocialVerification.js:105
-msgid "Sign In')}REGEX"
+#: static/js/auth/components/SocialSignInForm.js:40
+#, javascript-format
+msgid "Sign In With %s"
+msgstr "Přihlásit se prostřednictvím %s"
+
+#: static/js/auth/components/SocialSignInForm.js:46
+msgid ""
+"Signing in with an external service for the first time will automatically "
+"create an account for you."
 msgstr ""
 
 #: static/js/browser.js:156
@@ -322,38 +405,32 @@ msgstr ""
 "Přejít na předchozí řetězec (Ctrl+,)<br/><br/>Také:<br/>Předchozí stránka: "
 "Ctrl+Shift+,<br/>První stránka: Ctrl+Shift+Home"
 
-#. Translators: '%s' is a username
 #: static/js/editor/app.js:359
-#, c-format
+#, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Nevyřízené návrhy uživatele %s"
 
-#. Translators: '%s' is a username
 #: static/js/editor/app.js:362
-#, c-format
+#, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Přijaté návrhy uživatele %s"
 
-#. Translators: '%s' is a username
 #: static/js/editor/app.js:365
-#, c-format
+#, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Odmítnuté návrhy uživatele %s"
 
-#. Translators: '%s' is a username
 #: static/js/editor/app.js:368
-#, c-format
+#, javascript-format
 msgid "%s's submissions"
 msgstr "Překlady uživatele %s"
 
-#. Translators: '%s' is a username, meaning "submissions by %s,
-#. that were overwritten"
 #: static/js/editor/app.js:372
-#, c-format
+#, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Přepsané překlady uživatele %s"
 
-#: static/js/editor/app.js:501 static/js/editor/app.js.c:1650
+#: static/js/editor/app.js:501 static/js/editor/app.js:1650
 msgid "No results."
 msgstr "Žádné výsledky."
 
@@ -382,9 +459,8 @@ msgid "This unit no longer exists."
 msgstr "Tato položka již neexistuje."
 
 #: static/js/editor/app.js:984
-#, fuzzy
 msgid "Go back to browsing"
-msgstr "Zpět na přehled"
+msgstr "Zpět na procházení"
 
 #: static/js/editor/app.js:986
 msgid "Reload page"
@@ -398,7 +474,7 @@ msgstr "anonymní uživatel"
 msgid "someone"
 msgstr "uživatel"
 
-#: static/js/editor/app.js:2005 static/js/editor/app.js.c:2054
+#: static/js/editor/app.js:2005 static/js/editor/app.js:2054
 msgid "Similar translations"
 msgstr "Obdobné překlady"
 
@@ -407,7 +483,7 @@ msgid "disabled"
 msgstr "zakázáno"
 
 #: static/js/stats.js:286
-#, c-format
+#, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s sekunda"
@@ -423,7 +499,7 @@ msgid "Collapse details"
 msgstr "Sbalit podrobnosti"
 
 #: static/js/utils.js:151
-#, c-format
+#, fuzzy, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Před rokem"
@@ -431,7 +507,7 @@ msgstr[1] "Před %s roky"
 msgstr[2] "Před %s roky"
 
 #: static/js/utils.js:154
-#, c-format
+#, fuzzy, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Před týdnem"
@@ -439,7 +515,7 @@ msgstr[1] "Před %s týdny"
 msgstr[2] "Před %s týdny"
 
 #: static/js/utils.js:157
-#, c-format
+#, fuzzy, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Včera"
@@ -447,7 +523,7 @@ msgstr[1] "Před %s dny"
 msgstr[2] "Před %s dny"
 
 #: static/js/utils.js:160
-#, c-format
+#, fuzzy, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Před hodinou"
@@ -455,7 +531,7 @@ msgstr[1] "Před %s hodinami"
 msgstr[2] "Před %s hodinami"
 
 #: static/js/utils.js:163
-#, c-format
+#, fuzzy, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Před minutou"
@@ -663,10 +739,6 @@ msgstr "Vaše uživatelské jméno pro Twitter"
 msgid "Your LinkedIn profile URL"
 msgstr "Adresa vašeho profilu LinkedIn"
 
-#: static/js/user/forms.jsx:101
-msgid "Website"
-msgstr "Webová stránka"
-
 #: static/js/user/forms.jsx:103
 msgid "Your Personal website/blog URL"
 msgstr "Adresa vaší osobní webové stránky nebo blogu"
@@ -806,35 +878,8 @@ msgstr ""
 "Přeložil %(fullname)s v projektu &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
 
-#~ msgid "Loading..."
-#~ msgstr "Načítání..."
-
-#~ msgid "Number of Plurals"
-#~ msgstr "Počet forem plurálu"
-
-#~ msgid "File Type"
-#~ msgstr "Typ souboru"
-
-#~ msgid "Source Language"
-#~ msgstr "Zdrojový jazyk"
-
-#~ msgid "String Errors Contact"
-#~ msgstr "Kontakt pro nahlášení chyb v řetězcích"
-
-#~ msgid "Disabled"
-#~ msgstr "Zakázáno"
-
-#~ msgid "Active"
-#~ msgstr "Aktivní"
-
-#~ msgid "Email"
-#~ msgstr "E-mail"
-
-#~ msgid "Personal website URL"
-#~ msgstr "Adresa osobní webové stránky"
-
-#~ msgid "Delete"
-#~ msgstr "Odstranit"
+#~ msgid "Sign In')}REGEX"
+#~ msgstr "Přihlásit se"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "Opravdu chcete pokračovat?"
