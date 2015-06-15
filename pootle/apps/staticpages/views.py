@@ -113,7 +113,7 @@ class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
 
         if self.page_type != ANN_TYPE:
             next_page_number = AbstractPage.max_pk() + 1
-            initial_args['virtual_path'] = _('page-%d', next_page_number)
+            initial_args['virtual_path'] = 'page-%d' % next_page_number
 
         initial.update(initial_args)
 
