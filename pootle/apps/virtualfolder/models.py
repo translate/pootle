@@ -222,25 +222,24 @@ class VirtualFolder(models.Model):
         self.units.clear()
 
         # Recreate relationships between this vfolder and units.
-        if self.filter_rules:
-            for location in self.all_locations:
-                for filename in self.filter_rules.split(","):
-                    vf_file = "".join([location, filename])
+        for location in self.all_locations:
+            for filename in self.filter_rules.split(","):
+                vf_file = "".join([location, filename])
 
-                    qs = Store.objects.live().filter(pootle_path=vf_file)
+                qs = Store.objects.live().filter(pootle_path=vf_file)
 
-                    if qs.exists():
-                        self.units.add(*qs[0].units.all())
-                    else:
-                        if not vf_file.endswith("/"):
-                            vf_file += "/"
+                if qs.exists():
+                    self.units.add(*qs[0].units.all())
+                else:
+                    if not vf_file.endswith("/"):
+                        vf_file += "/"
 
-                        if Directory.objects.filter(pootle_path=vf_file).exists():
-                            qs = Unit.objects.filter(
-                                state__gt=OBSOLETE,
-                                store__pootle_path__startswith=vf_file
-                            )
-                            self.units.add(*qs)
+                    if Directory.objects.filter(pootle_path=vf_file).exists():
+                        qs = Unit.objects.filter(
+                            state__gt=OBSOLETE,
+                            store__pootle_path__startswith=vf_file
+                        )
+                        self.units.add(*qs)
 
         # Get the set of projects whose resources cache must be invalidated.
         # This includes the projects the projects it was previously related to
@@ -265,6 +264,9 @@ class VirtualFolder(models.Model):
         elif self.location.startswith("/projects/"):
             raise ValidationError(u'Locations starting with "/projects/" are '
                                   u'not allowed. Use "/{LANG}/" instead.')
+
+        if not self.filter_rules:
+            raise ValidationError(u'Some filtering rule must be specified.')
 
     def get_adjusted_location(self, pootle_path):
         """Return the virtual folder location adjusted to the given path.

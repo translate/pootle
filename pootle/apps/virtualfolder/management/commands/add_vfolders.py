@@ -53,7 +53,16 @@ class Command(BaseCommand):
             try:
                 vfolder_item['filter_rules'] = ','.join(vfolder_item['filters']['files'])
             except KeyError:
-                vfolder_item['filter_rules'] = ''
+                errored_count += 1
+                self.stderr.write("Skipping virtual folder '%s' with no "
+                                  "filtering rules." % vfolder_item['name'])
+                continue
+
+            if not vfolder_item['filter_rules']:
+                errored_count += 1
+                self.stderr.write("Skipping virtual folder '%s' with no "
+                                  "filtering rules." % vfolder_item['name'])
+                continue
 
             if 'filters' in vfolder_item:
                 del vfolder_item['filters']

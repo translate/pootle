@@ -57,7 +57,13 @@
     },
     {
         "name": "default",
-        "location": "/{LANG}/{PROJ}/",
+        "location": "/{LANG}/{PROJ}",
+        "description": "All files in all projects for all languages.",
+        "filters": {
+            "files": [
+                "/"
+            ]
+        }
     },
     {
         "name": "other",

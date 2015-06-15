@@ -51,8 +51,7 @@ might be handy when using the virtual folders as goals.
 The filtering rules specify which translation units are included within a
 virtual folder. Currently the only supported filtering rule consists of a list
 of file or directory paths relative to the virtual folder location. Note
-that it is required to set some filtering rule, otherwise no units will be
-selected at all.
+that it is required to set some filtering rule.
 
 
 .. _virtual_folders#apply:
