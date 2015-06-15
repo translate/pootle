@@ -45,7 +45,7 @@ let RequestPasswordResetSent = React.createClass({
       [this.props.resetEmail]
     );
     let instructionsMsg = gettext('Please follow that link to continue the password reset procedure.');
-    let resendMsg = gettext("Didn't receive an email? Check if it was accidentally filtered out as spam, or try getting another copy of the email.");
+    let resendMsg = gettext("Didn't receive an email? Check if it was accidentally filtered out as spam, or try requesting another copy of the email.");
 
     return (
       <AuthContent>
