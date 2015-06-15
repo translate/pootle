@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
+"POT-Creation-Date: 2015-06-15 11:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,13 +148,13 @@ msgstr ""
 
 #: static/js/auth/components/AccountActivation.js:33
 #, c-format
-msgid "We have sent an email to <span>%s</span> containing the special link."
+msgid "We have sent an email containing the special link to <span>%s</span>."
 msgstr ""
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
-"We have sent an email to the address you used to register this account "
-"containing the special link."
+"We have sent an email containing the special link to the address used to "
+"register this account."
 msgstr ""
 
 #: static/js/auth/components/AccountActivation.js:42
