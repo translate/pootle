@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-12 17:37+0100\n"
-"PO-Revision-Date: 2015-03-08 08:50+0000\n"
+"PO-Revision-Date: 2015-06-13 08:50+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1425804627.000000\n"
+"X-POOTLE-MTIME: 1434185458.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -139,7 +139,7 @@ msgstr "Ortak Profil"
 
 #: static/js/admin/components/UserForm.js:119
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: static/js/admin/components/UserForm.js:120
 msgid "Statistics"
@@ -152,147 +152,150 @@ msgstr "Raporlar"
 #: static/js/auth/components/AccountActivation.js:33
 #, c-format
 msgid "We have sent an email to <span>%s</span> containing the special link."
-msgstr ""
+msgstr "Özel bağlantıyı içeren bir epostayı <span>%s</span> adresine gönderdik."
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email to the address you used to register this account "
 "containing the special link."
 msgstr ""
+"Özel bağlantıyı içeren bir epostayı bu hesaba kayıt olmak için kullandığınız "
+"adrese gönderdik."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Hesabınızın etkinleştirilmesi gerekiyor."
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Hesap oluşturmaya devam etmek için lütfen şu bağlantıyı takip edin."
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "Hesabınız devre dışı çünkü bir yönetici devre dışı bırakmış."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In With..."
-msgstr ""
+msgstr "Şununla Giriş Yapın..."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In"
-msgstr ""
+msgstr "Giriş Yap"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
-msgstr ""
+msgstr "Hesap Devre Dışı"
 
 #: static/js/auth/components/AuthController.js:96
 msgid "Sign Up"
-msgstr ""
+msgstr "Kaydol"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
 msgid "Account Activation"
-msgstr ""
+msgstr "Hesap Etkinleştirmesi"
 
 #: static/js/auth/components/AuthController.js:117
 #: static/js/auth/components/AuthController.js:124
 #: static/js/auth/components/AuthController.js:131
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Parolanızı Sıfırlayın"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
-msgstr ""
+msgstr "Tüh..."
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
-msgstr ""
+msgstr "Sosyal Doğrulama"
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
-msgstr ""
+msgstr "Bize Ulaşın"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Parola sıfırlama bağlantısı geçersiz oldu, muhtemelen zaten kullanıldığı "
+"içindir. Lütfen yeni bir parola sıfırlaması isteyin."
 
 #: static/js/auth/components/PasswordResetForm.js:90
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Parola değiştirildi, giriş yapılıyor..."
 
 #: static/js/auth/components/PasswordResetForm.js:94
-#, fuzzy
 msgid "Repeat Password"
-msgstr "Parola"
+msgstr "Parolayı Tekrarla"
 
 #: static/js/auth/components/PasswordResetForm.js:106
-#, fuzzy
 msgid "Set New Password"
-msgstr "Yeni bir parola ayarlayın"
+msgstr "Yeni Parola Ayarla"
 
 #: static/js/auth/components/PasswordResetForm.js:109
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "Parolanız değiştikten sonra otomatik olarak giriş yapacaksınız."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, c-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "%s adresine eposta gönderiliyor..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:43
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
+"Parola sıfırlama işlemine devam etmek için lütfen şu bağlantıyı takip edin."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:58
 msgid "Resend Email"
-msgstr ""
+msgstr "Epostayı Yeniden Gönder"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:44
 msgid "Didn"
-msgstr ""
+msgstr "Didn"
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Yeni bir kullanıcı olarak kaydol"
 
 #: static/js/auth/components/SignInForm.js:102
 #: static/js/auth/components/SocialVerification.js:94
 msgid "I forgot my password"
-msgstr ""
+msgstr "Parolamı unuttum"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Giriş yapıldı. Yönlendiriliyor..."
 
 #: static/js/auth/components/SignInPanel.js:57
-#, fuzzy
 msgid "Social Services"
-msgstr "Özel Karakterler"
+msgstr "Sosyal Hizmetler"
 
 #: static/js/auth/components/SignInPanel.js:59
-#, fuzzy
 msgid "Login / Password"
-msgstr "Parola"
+msgstr "Oturum aç / Parola"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, c-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "%s aracılığıyla giriş yapmaya çalışırken bir hata meydana geldi."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
+"Sosyal hesabınız aracılığıyla giriş yapmaya çalışırken bir hata meydana "
+"geldi."
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, c-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "%s ile Giriş Yapın"
 
 #: static/js/auth/components/SocialVerification.js:105
 msgid "Sign In')}REGEX"
-msgstr ""
+msgstr "Giriş Yap')}REGEX"
 
 #: static/js/browser.js:156
 msgid "All Languages"
@@ -382,9 +385,8 @@ msgid "This unit no longer exists."
 msgstr "Bu birim artık mevcut değil."
 
 #: static/js/editor/app.js:984
-#, fuzzy
 msgid "Go back to browsing"
-msgstr "Genel bakışa geri dön"
+msgstr "Gözatmaya geri dön"
 
 #: static/js/editor/app.js:986
 msgid "Reload page"

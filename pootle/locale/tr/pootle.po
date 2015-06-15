@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-12 17:37+0100\n"
-"PO-Revision-Date: 2015-03-05 18:55+0000\n"
+"PO-Revision-Date: 2015-06-13 15:34+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,12 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1425581742.000000\n"
+"X-POOTLE-MTIME: 1434209682.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Kullanıcınız kaybolmuş görünüyor. Lütfen bunu site sahiplerine bildirin."
 
 #: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
@@ -126,9 +127,8 @@ msgid "Short Bio"
 msgstr "Kısa Özgeçmiş"
 
 #: apps/accounts/models.py:300
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Bu terim zaten bu dosyada mevcut."
+msgstr "Bu eposta adresi zaten var."
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -214,43 +214,40 @@ msgid "Invalid request method"
 msgstr "Geçersiz istek yöntemi"
 
 #: apps/import_export/templates/browser/index.html:10
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "Çevrimdışı çeviri için XLIFF dosyasını indir"
+msgstr "Çevrimdışı çeviri için çeviri dosyalarını indirin"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "Çevrimdışı çeviri için XLIFF dosyasını indir"
+msgstr "Çevrimdışı çeviri için indirin"
 
 #: apps/import_export/templates/browser/index.html:19
 msgid "Upload translation files or archives in .zip format"
 msgstr "Çeviri dosyalarını veya arşivleri .zip biçiminde gönder"
 
 #: apps/import_export/templates/browser/index.html:20
-#, fuzzy
 msgid "Upload translations"
-msgstr "Çevirileri dışa aktar"
+msgstr "Çevirileri gönder"
 
 #: apps/import_export/utils.py:22
 #, python-format
 msgid "File %r missing X-Pootle-Path header\n"
-msgstr ""
+msgstr "Dosya %r eksik X-Pootle-Path header\n"
 
 #: apps/import_export/utils.py:27
 #, python-format
 msgid "File %r missing or invalid X-Pootle-Revision header\n"
-msgstr ""
+msgstr "Dosya %r eksik ya da geçersiz X-Pootle-Revision header\n"
 
 #: apps/import_export/utils.py:37
 #, python-format
 msgid "File %r was rejected because its X-Pootle-Revision is too old."
-msgstr ""
+msgstr "Dosya %r reddedildi çünkü X-Pootle-Revision çok eski."
 
 #: apps/import_export/utils.py:42
 #, python-format
 msgid "Could not create %r. Missing Project/Language? (%s)"
-msgstr ""
+msgstr "%r oluşturulamadı. Proje/Dil eksik mi? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -302,7 +299,7 @@ msgstr "Aktif kullanıcılar"
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] ""
+msgstr[0] "Çalışıyor (%d işleyici)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:110
@@ -487,9 +484,8 @@ msgid "Pure punctuation"
 msgstr "Sade noktalama"
 
 #: apps/pootle_misc/checks.py:61
-#, fuzzy
 msgid "Python brace placeholders"
-msgstr "Küme parantezi yer tutucuları"
+msgstr "Python ayraç yer tutucuları"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Number of sentences"
@@ -552,7 +548,7 @@ msgstr "Yer tutucular"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Invalid XML"
-msgstr ""
+msgstr "Geçersiz XML"
 
 #: apps/pootle_misc/checks.py:78
 msgid "XML tags"
@@ -592,7 +588,7 @@ msgstr "Yazdırılabilir olmayan"
 
 #: apps/pootle_misc/checks.py:88
 msgid "Unbalanced tag braces"
-msgstr "Dengesiz etiket bağları"
+msgstr "Dengesiz etiket ayraçları"
 
 #: apps/pootle_misc/checks.py:89
 msgid "Changed attributes"
@@ -663,9 +659,8 @@ msgid "Double quotes in tags"
 msgstr "Etiketlerdeki çift tırnaklar"
 
 #: apps/pootle_misc/checks.py:108
-#, fuzzy
 msgid "Percent brace placeholders"
-msgstr "Yüzde işareti yer tutucuları"
+msgstr "Yüzde ayraç yer tutucuları"
 
 #: apps/pootle_misc/checks.py:1006 core/browser.py:68
 msgid "Critical"
@@ -685,7 +680,7 @@ msgstr "Çıkartma"
 
 #: apps/pootle_misc/checks.py:1010
 msgid "Other"
-msgstr ""
+msgstr "Diğer"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:60
@@ -1116,25 +1111,26 @@ msgstr "sayfa-%d"
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
+"projects/<project_code> veya <language_code> veya "
+"<language_code>/<project_code>"
 
 #: apps/virtualfolder/models.py:39
-#, fuzzy
 msgid "Location"
-msgstr "Yerleri"
+msgstr "Konum"
 
 #: apps/virtualfolder/models.py:42
 msgid "Root path where this virtual folder is applied."
-msgstr ""
+msgstr "Bu sanal klasörün uygulandığı yerdeki kök yol."
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:46
-#, fuzzy
 msgid "Filter"
 msgstr "Süzgeç"
 
 #: apps/virtualfolder/models.py:48
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
+"Bu sanal klasörün içerdiklerinin depolanmasını söyleyen süzme kuralları."
 
 #: apps/virtualfolder/models.py:52 core/browser.py:24
 msgid "Priority"
@@ -1144,48 +1140,48 @@ msgstr "Öncelik"
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
+"Önemi belirten sayı. Büyük olan öncelik çok önemli olduğu anlamına gelir."
 
 #: apps/virtualfolder/models.py:58
 msgid "Is browsable?"
-msgstr ""
+msgstr "Gözatılabilir mi?"
 
 #: apps/virtualfolder/models.py:60
-#, fuzzy
 msgid "Whether this virtual folder is active or not."
-msgstr "Bu sayfanın aktif olup olmayacağı."
+msgstr "Bu sanal klasörün aktif olup olmadığı."
 
 #: apps/virtualfolder/models.py:65
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
 msgstr ""
-"Bu hedefin açıklaması. Bu, daha fazla bilgi ve talimat vermek için "
-"faydalıdır. İzin verilen biçimleme: %s"
+"Bunu daha fazla bilgi ve talimat vermek için kullanın. İzin verilen "
+"biçimleme: %s"
 
 #: checks.py:57
 msgid "Your version of Django is too old."
-msgstr ""
+msgstr "Django sürümünüz çok eski."
 
 #: checks.py:58
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
-msgstr ""
+msgstr "Pip yüklemesini deneyin --upgrade 'Django==%s'"
 
 #: checks.py:65
 msgid "Your version of lxml is too old."
-msgstr ""
+msgstr "Lxml sürümünüz çok eski."
 
 #: checks.py:66
 msgid "Try pip install --upgrade lxml"
-msgstr ""
+msgstr "Pip yüklemesini deneyin --upgrade lxml"
 
 #: checks.py:72
 msgid "Your version of Translate Toolkit is too old."
-msgstr ""
+msgstr "Translate Toolkit sürümünüz çok eski."
 
 #: checks.py:73
 msgid "Try pip install --upgrade translate-toolkit"
-msgstr ""
+msgstr "Pip yüklemesini deneyin --upgrade translate-toolkit"
 
 #: checks.py:88
 msgid ""
@@ -1197,39 +1193,37 @@ msgstr ""
 
 #: checks.py:90
 msgid "Try pip install python-levenshtein"
-msgstr ""
+msgstr "Pip yüklemesini deneyin python-levenshtein"
 
 #: checks.py:109
 #, python-format
 msgid "Could not connect to Redis (%s)"
-msgstr ""
+msgstr "Redis'e bağlanılamadı (%s)"
 
 #: checks.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
-msgstr "Redis sunucusu %(host)s:%(port)s üzerinde bağlantıları kabul ediyor."
+msgstr "%(host)s:%(port)s üzerinde Redis çalıştığından emin olun"
 
 #: checks.py:119
-#, fuzzy
 msgid "No RQ Worker running."
-msgstr "Çalışan RQ işleyicileri yok."
+msgstr "Çalışan RQ İşleyicileri yok."
 
 #: checks.py:120
 msgid "Run new workers with manage.py rqworker"
-msgstr ""
+msgstr "Yeni işleyicileri manage.py rqworker ile çalıştır"
 
 #: checks.py:127
-#, fuzzy
 msgid "Your version of Redis is too old."
-msgstr "Django sürümü %s yüklü."
+msgstr "Redis sürümünüz çok eski."
 
 #: checks.py:128
 msgid "Update your system's Redis server package"
-msgstr ""
+msgstr "Sisteminizin Redis sunucu paketini güncelleyin"
 
 #: checks.py:143
 msgid "Cache backend is not set to Redis."
-msgstr ""
+msgstr "Önbellek arka ucu Redis için ayarlı değil."
 
 #: checks.py:144
 #, python-format
@@ -1237,34 +1231,39 @@ msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
+"Varsayılan önbellek arka ucunu django_redis.cache.RedisCache olarak "
+"ayarlayın\n"
+"Şu anki ayarlar: %r"
 
 #: checks.py:153
 msgid "Could not initiate a Redis cache connection"
-msgstr ""
+msgstr "Redis önbellek bağlantısı başlatılamadı"
 
 #: checks.py:154
 msgid "Double-check your CACHES settings"
-msgstr ""
+msgstr "CACHES ayarlarınızı iki defa kontrol edin"
 
 #: checks.py:160
 msgid "DEBUG mode is on. Do not do this in production!"
-msgstr ""
+msgstr "DEBUG kipi açık. Bunu üretimdeyken yapmayın!"
 
 #: checks.py:161
 msgid "Set DEBUG = False in Pootle settings"
-msgstr ""
+msgstr "Pootle ayarlarında DEBUG = False olarak ayarlayın"
 
 #: checks.py:167
 msgid "The sqlite database backend is unsupported"
-msgstr ""
+msgstr "Sqlite veritabanı arka ucu desteklenmiyor"
 
 #: checks.py:168
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
 msgstr ""
+"Varsayılan veritabanı motorunuzu postgresql_psycopg2 ya da mysql olarak "
+"ayarlayın"
 
 #: checks.py:174
 msgid "Not using cached_db as session engine"
-msgstr ""
+msgstr "Oturum motoru olarak cached_db kullanılmıyor"
 
 #: checks.py:175
 #, python-format
@@ -1272,42 +1271,55 @@ msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
+"SESSION_ENGINE parametresini django.contrib.sessions.backend.cached_db "
+"olarak ayarlayın\n"
+"Şu anki ayarlar: %r"
 
 #: checks.py:182
 msgid "POOTLE_CONTACT_EMAIL is not set."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL ayarlı değil."
 
 #: checks.py:183
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
+"Kullanıcılara yöneticilerle Pootle iletişim formu üzerinden irtibata "
+"geçmelerine izin vermek için POOTLE_CONTACT_EMAIL parametresini ayarlayın."
 
 #: checks.py:191
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
+"POOTLE_CONTACT_EMAIL parametresi şurada belritilen varsayılan ayarı "
+"kullanıyor %r."
 
 #: checks.py:193
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
+"POOTLE_CONTACT_EMAIL parametresi, iletişim formu tarafından gönderilen "
+"iletileri alacak adrestir."
 
 #: checks.py:200
 msgid "settings.DEFAULT_FROM_EMAIL is not set."
-msgstr ""
+msgstr "settings.DEFAULT_FROM_EMAIL ayarlı değil."
 
 #: checks.py:201 checks.py:211
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
+"DEFAULT_FROM_EMAIL parametresi tüm giden Pootle epostasında kullanılır.\n"
+"Posta sunucunuzun ayarlarını gözden geçirmeyi unutmayın."
 
 #: checks.py:209
 #, python-format
 msgid "settings.DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
+"settings.DEFAULT_FROM_EMAIL parametresi şurada belritilen varsayılan ayarı "
+"kullanıyor %r."
 
 #: core/browser.py:29
 msgid "Project"
@@ -1336,9 +1348,8 @@ msgid "Last Activity"
 msgstr "Son Etkinlik"
 
 #: core/browser.py:130
-#, fuzzy
 msgid "Back to language"
-msgstr "Ana sayfa'ya dön"
+msgstr "Dile geri dön"
 
 #: core/browser.py:132
 msgid "Back to parent folder"
@@ -1417,9 +1428,8 @@ msgid "Can submit a translation"
 msgstr "Çeviri gönderilebilir"
 
 #: core/initdb.py:125
-#, fuzzy
 msgid "Can review suggestions"
-msgstr "Önerileri incele"
+msgstr "Önerileri inceleyebilir"
 
 #: core/initdb.py:129
 msgid "Can administrate a translation project"
@@ -1431,12 +1441,11 @@ msgstr "Bu sayfaya erişemezsiniz."
 
 #: custom/templates/layout.html:11
 msgid "Getting Started"
-msgstr ""
+msgstr "Başlarken"
 
 #: custom/templates/layout.html:15
-#, fuzzy
 msgid "License Terms"
-msgstr "Lisans"
+msgstr "Lisans Şartları"
 
 #: custom/templates/profiles/_tabs.html:4 templates/layout.html:116
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
@@ -1444,13 +1453,13 @@ msgid "Settings"
 msgstr "Ayarlar"
 
 #: middleware/errorpages.py:57
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
-"Bu sayfaya erişmek için <a href=\"%(login_link)s\">oturum açmanız</a> "
-"gerekli."
+"Bu sayfaya erişmek için <a class=\"js-login\" href=\"%(login_link)s\">oturum "
+"açmanız</a> gerekli."
 
 #: middleware/errorpages.py:97
 #, python-format
@@ -1539,20 +1548,19 @@ msgstr ""
 "almayabilirsiniz."
 
 #: templates/account/email/email_confirmation_subject.txt:2
-#, fuzzy
 msgid "Pootle e-mail confirmation"
-msgstr "Pootle kayıt"
+msgstr "Pootle e-posta onaylama"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
-#, fuzzy
 msgid "Registration Disabled"
-msgstr "kayıt profili"
+msgstr "Kayıt Etkisizleştirildi"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
 msgstr ""
+"Kayıt olma şu anda etkisizleştirildi . Lütfen daha sonra tekrar deneyin."
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
@@ -1634,13 +1642,12 @@ msgid "Failed jobs"
 msgstr "Başarısız işler"
 
 #: templates/admin/dashboard.html:64
-#, fuzzy
 msgid "System Checks"
-msgstr "Denetlemeleri Göster"
+msgstr "Sistem Kontrolleri"
 
 #: templates/admin/dashboard.html:74
 msgid "No issues have been detected. All is good!"
-msgstr ""
+msgstr "Hiç sorun algılanmadı. Herşey iyi!"
 
 #: templates/admin/detailed_reports.html:6
 #, python-format
@@ -1785,16 +1792,14 @@ msgid "or"
 msgstr "veya"
 
 #: templates/admin/staticpages/_form.html:30
-#, fuzzy
 msgid ""
 "Use <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/a&gt;"
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
-"\n"
-"Sabit sayfalar arasında bağlantı vermek için <code>&lt;a href=\"<strong>#/"
-"page-slug</strong>\"&gt;Bağlantı metni&lt;/a&gt;</code> kodunu kullanın. "
-"Böyle bağlantılar tam yolları ile sabit sayfalara yeniden yazılacaktır.\n"
+"Sabit sayfalar arasında bağlantı vermek için <code>&lt;a href=\"<strong"
+">#/page-slug</strong>\"&gt;Bağlantı metni&lt;/a&gt;</code> kodunu kullanın. "
+"Böyle bağlantılar tam yolları ile sabit sayfalara yeniden yazılacaktır."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1922,7 +1927,7 @@ msgstr "Bize Ulaşın"
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
-msgstr ""
+msgstr "Lütfen tüm alanları doldurun."
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
@@ -1933,12 +1938,9 @@ msgid "Thanks!"
 msgstr "Teşekkürler!"
 
 #: templates/contact_form/xhr_contact_form.html:26
-#, fuzzy
 msgid ""
 "We have received your message and will try to respond as soon as possible."
-msgstr ""
-"İletinizi aldık ve en kısa sürede\n"
-"      yanıtlamaya çalışacağız."
+msgstr "İletinizi aldık ve en kısa sürede yanıtlamaya çalışacağız."
 
 #: templates/core/_top_scorers.html:8
 msgid "score"
@@ -1975,9 +1977,8 @@ msgid "Confirm"
 msgstr "Onayla"
 
 #: templates/editor/_actions.html:5
-#, fuzzy
 msgid "Go back to browsing"
-msgstr "Genel bakışa geri dön"
+msgstr "Gözatmaya geri dön"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -1993,7 +1994,7 @@ msgstr "Varsayılan sıra"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
-msgstr ""
+msgstr "Önce önemlisi"
 
 #: templates/editor/_toolbar.html:10
 msgid "Newest first"
@@ -2062,9 +2063,8 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">Birim #%(id)s</a>"
 
 #: templates/editor/units/edit.html:19
-#, fuzzy
 msgid "Priority:"
-msgstr "Öncelik"
+msgstr "Öncelik:"
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
@@ -2312,26 +2312,23 @@ msgid "Database Error"
 msgstr "Veritabanı Hatası"
 
 #: templates/errors/db.html:11
-#, fuzzy
 msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
-"Pootle veritabanına bağlanamıyor, veritabanı henüz\n"
-"başlatılamadı ya da devam etmeden önce şema yükseltilmesine ihtiyacı var."
+"Pootle, veritabanına bağlanamıyor, veritabanı henüz başlatılamadı ya da "
+"devam etmeden önce şema yükseltilmesi gerekli."
 
 #: templates/errors/db.html:18
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
 "installation and upgrade instructions. Contact the server administrator if "
 "you feel this is a mistake."
 msgstr ""
-"\n"
 "Lütfen kurulum ve yükseltme talimatları için <a href=\"%(url)s\">Pootle "
-"belgelerini</a>\n"
-"okuyun. Eğer bunun bir hata olduğunu düşünüyorsanız sunucu yöneticisi ile\n"
-"irtibata geçin."
+"belgelerini</a> okuyun. Eğer bunda bir yanlışlık olduğunu düşünüyorsanız "
+"sunucu yöneticisi ile irtibata geçin."
 
 #: templates/errors/db.html:26
 msgid "The reported error was:"
@@ -2341,7 +2338,7 @@ msgstr "Bildirilen hata:"
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:5
 msgid "Browse"
-msgstr ""
+msgstr "Gözat"
 
 #: templates/languages/admin/permissions.html:9
 msgid "Below you can add, edit, and delete the permissions for this language."
@@ -2377,9 +2374,8 @@ msgid "Admin"
 msgstr "Yönetici"
 
 #: templates/layout.html:122
-#, fuzzy
 msgid "Sign out"
-msgstr "Çıkış Yap"
+msgstr "Çıkış yap"
 
 #: templates/layout.html:126
 msgid "Sign In"
@@ -2416,9 +2412,8 @@ msgstr ""
 "Devam etmeden önce, aşağıdaki belgeleri okumak ve kabul etmek zorundasınız."
 
 #: templates/staticpages/agreement.html:17
-#, fuzzy
 msgid "No thanks. Sign out"
-msgstr "Hayır teşekkürler. Oturumu kapat"
+msgstr "Hayır teşekkürler. Çıkış yap"
 
 #: templates/staticpages/agreement.html:20
 msgid "Continue"
@@ -2603,15 +2598,16 @@ msgid "Hourly Rate:"
 msgstr "Saatlik Oran:"
 
 #: templates/user/settings.html:12
-#, fuzzy
 msgid "User Account"
-msgstr "Hesap Aç"
+msgstr "Kullanıcı Hesabı"
 
 #: templates/user/settings.html:14
 msgid ""
 "Do you want to change your password? Click the 'Reset Password' button which "
 "will initiate the process of setting a new password."
 msgstr ""
+"Parolanızı değiştirmek istiyor musunuz? Yeni bir parolayı ayarlama işlemini "
+"başlatacak olan 'Parolayı Sıfırla' düğmesine tıklayın."
 
 #: templates/user/settings.html:26
 msgid "Reset Password"
@@ -2630,9 +2626,8 @@ msgid "Come and join us!"
 msgstr "Gelin ve bize katılın!"
 
 #: templates/welcome.html:19
-#, fuzzy
 msgid "Sign in"
-msgstr "Giriş Yap"
+msgstr "Giriş yap"
 
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"

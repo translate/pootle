@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-12 17:37+0100\n"
-"PO-Revision-Date: 2015-03-03 16:14+0000\n"
+"PO-Revision-Date: 2015-06-13 14:35+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1425399281.000000\n"
+"X-POOTLE-MTIME: 1434206110.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -139,7 +139,7 @@ msgstr "Veřejný profil"
 
 #: static/js/admin/components/UserForm.js:119
 msgid "Settings"
-msgstr ""
+msgstr "Nastavení"
 
 #: static/js/admin/components/UserForm.js:120
 msgid "Statistics"
@@ -153,51 +153,55 @@ msgstr "Sestavy"
 #, c-format
 msgid "We have sent an email to <span>%s</span> containing the special link."
 msgstr ""
+"Odeslali jsme e-mail obsahující tento speciální odkaz na adresu "
+"<span>%s</span>."
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email to the address you used to register this account "
 "containing the special link."
 msgstr ""
+"Odeslali jsme e-mail obsahující tento speciální odkaz na adresu použitou při "
+"registraci vašeho účtu."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Váš účet vyžaduje aktivaci."
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Pro pokračování v procesu založení účtu klikněte na zadaný odkaz."
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "Váš účet je neaktivní, protože byl deaktivován administrátorem."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In With..."
-msgstr ""
+msgstr "Přihlaste se prostřednictvím..."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In"
-msgstr ""
+msgstr "Přihlásit se"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
-msgstr ""
+msgstr "Účet neaktivní"
 
 #: static/js/auth/components/AuthController.js:96
 msgid "Sign Up"
-msgstr ""
+msgstr "Zaregistrovat se"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
 msgid "Account Activation"
-msgstr ""
+msgstr "Aktivace účtu"
 
 #: static/js/auth/components/AuthController.js:117
 #: static/js/auth/components/AuthController.js:124
 #: static/js/auth/components/AuthController.js:131
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Změnit heslo"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
@@ -205,48 +209,48 @@ msgstr ""
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
-msgstr ""
+msgstr "Sociální ověření"
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontaktujte nás"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Odkaz na změnu hesla byl neplatný, patrně kvůli tomu, že už byl jednou "
+"použit. Požádejte prosím o změnu hesla znovu."
 
 #: static/js/auth/components/PasswordResetForm.js:90
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Heslo bylo změněno, prosím přihlaste se..."
 
 #: static/js/auth/components/PasswordResetForm.js:94
-#, fuzzy
 msgid "Repeat Password"
-msgstr "Heslo"
+msgstr "Zopakujte heslo"
 
 #: static/js/auth/components/PasswordResetForm.js:106
-#, fuzzy
 msgid "Set New Password"
 msgstr "Nastavit nové heslo"
 
 #: static/js/auth/components/PasswordResetForm.js:109
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "Po změně hesla budete automaticky přihlášeni."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, c-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Odesílání e-mailu na adresu %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:43
 msgid "Please follow that link to continue the password reset procedure."
-msgstr ""
+msgstr "Pro pokračování v procesu změny hesla klikněte na zadaný odkaz."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:58
 msgid "Resend Email"
-msgstr ""
+msgstr "Znovu odeslat e-mail"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:44
 msgid "Didn"
@@ -254,45 +258,44 @@ msgstr ""
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Zaregistrovat se jako nový uživatel"
 
 #: static/js/auth/components/SignInForm.js:102
 #: static/js/auth/components/SocialVerification.js:94
 msgid "I forgot my password"
-msgstr ""
+msgstr "Zapomněl jsem heslo"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Jste přihlášeni. Probíhá přesměrování..."
 
 #: static/js/auth/components/SignInPanel.js:57
-#, fuzzy
 msgid "Social Services"
-msgstr "Speciální znaky"
+msgstr "Sociální služby"
 
 #: static/js/auth/components/SignInPanel.js:59
-#, fuzzy
 msgid "Login / Password"
-msgstr "Heslo"
+msgstr "Uživatelské jméno / Heslo"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, c-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "Při pokusu o přihlášení prostřednictvím %s došlo k chybě."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
+"Při pokusu o přihlášení prostřednictvím vašeho sociálního účtu došlo k chybě."
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, c-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Přihlásit se prostřednictvím %s"
 
 #: static/js/auth/components/SocialVerification.js:105
 msgid "Sign In')}REGEX"
-msgstr ""
+msgstr "Přihlásit se"
 
 #: static/js/browser.js:156
 msgid "All Languages"
@@ -382,9 +385,8 @@ msgid "This unit no longer exists."
 msgstr "Tato položka již neexistuje."
 
 #: static/js/editor/app.js:984
-#, fuzzy
 msgid "Go back to browsing"
-msgstr "Zpět na přehled"
+msgstr "Zpět na procházení"
 
 #: static/js/editor/app.js:986
 msgid "Reload page"
