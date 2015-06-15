@@ -37,12 +37,17 @@ ignore="\
 
 django-admin.py makemessages -v $VERBOSITY $ignore --ignore static/js -e py,txt,html,conf -l templates
 
-# JavaScript extraction - makemessages is rubbish at this so use xgettext
+# JavaScript extraction
 
+# makemessages is rubbish at this so use xgettext directly
 xgettext --output=$DJANGO_JS_POT --language=JavaScript --from-code=utf-8 $(find static/js -name "*.js" | \
     egrep -v "(node_modules|\.bundle\.js)")
 sed -i"" -e "s/charset=CHARSET/charset=UTF-8/" $DJANGO_JS_POT
+
+# For .jsx we use Python so that variables are at least marked.
 xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find static/js -name "*.jsx")
+
+# Extract localisable content from HTML pages used by JS
 xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find templates -name "*.html")
 
 # Copyright header replacement
