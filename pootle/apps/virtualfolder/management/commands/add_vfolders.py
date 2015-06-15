@@ -37,7 +37,7 @@ class Command(BaseCommand):
             raise CommandError(e)
         except ValueError as e:
             raise CommandError("Please check if the JSON file is malformed. "
-                               "Original error:\n%s" %e)
+                               "Original error:\n%s" % e)
 
         self.stdout.write("Importing virtual folders...")
 
