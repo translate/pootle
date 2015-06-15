@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
+"POT-Creation-Date: 2015-06-15 11:30+0100\n"
 "PO-Revision-Date: 2015-06-13 15:34+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,11 +90,11 @@ msgstr "Alternatif Kaynak Diller"
 msgid "Rate"
 msgstr "Oran"
 
-#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
 msgstr "İnceleme Oranı"
 
-#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
 msgstr "Saatlik Oran"
 
@@ -102,7 +102,7 @@ msgstr "Saatlik Oran"
 msgid "Score"
 msgstr "Skor"
 
-#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
 msgstr "Para Birimi"
 
@@ -162,11 +162,11 @@ msgstr "İleti"
 msgid "Please enter your message"
 msgstr "Lütfen iletinizi girin"
 
-#: apps/evernote_reports/forms.py:26
+#: apps/evernote_reports/forms.py:27
 msgid "Translation Rate"
 msgstr "Çeviri Oranı"
 
-#: apps/evernote_reports/forms.py:41
+#: apps/evernote_reports/forms.py:42
 msgid "Effective from"
 msgstr "Etkin olma"
 
@@ -1101,18 +1101,13 @@ msgstr "Normal Sayfa"
 msgid "Page Title"
 msgstr "Sayfa Başlığı"
 
-#: apps/staticpages/views.py:116
-#, python-format
-msgid "page-%d"
-msgstr "sayfa-%d"
-
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:128
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
-"projects/<project_code> veya <language_code> veya "
-"<language_code>/<project_code>"
+"projects/<project_code> veya <language_code> veya <language_code>/"
+"<project_code>"
 
 #: apps/virtualfolder/models.py:39
 msgid "Location"
@@ -1797,8 +1792,8 @@ msgid ""
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
-"Sabit sayfalar arasında bağlantı vermek için <code>&lt;a href=\"<strong"
-">#/page-slug</strong>\"&gt;Bağlantı metni&lt;/a&gt;</code> kodunu kullanın. "
+"Sabit sayfalar arasında bağlantı vermek için <code>&lt;a href=\"<strong>#/"
+"page-slug</strong>\"&gt;Bağlantı metni&lt;/a&gt;</code> kodunu kullanın. "
 "Böyle bağlantılar tam yolları ile sabit sayfalara yeniden yazılacaktır."
 
 #: templates/admin/staticpages/_table.html:10
@@ -2632,6 +2627,9 @@ msgstr "Giriş yap"
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr "Bu Ayın İlk Katılımcıları"
+
+#~ msgid "page-%d"
+#~ msgstr "sayfa-%d"
 
 #~ msgid ""
 #~ "Cannot link: your Evernote account is already linked with another Pootle "

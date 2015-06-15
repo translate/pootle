@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
+"POT-Creation-Date: 2015-06-15 11:30+0100\n"
 "PO-Revision-Date: 2015-05-30 09:29+0000\n"
 "Last-Translator: Mirosenpai <aq_fen@abv.bg>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,11 +85,11 @@ msgstr "Алтернативни езици"
 msgid "Rate"
 msgstr ""
 
-#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
 msgstr "Скорост на преглед"
 
-#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Score"
 msgstr ""
 
-#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
 msgstr "Валута"
 
@@ -157,11 +157,11 @@ msgstr "Съобщение"
 msgid "Please enter your message"
 msgstr "Моля въведете вашето съобщение"
 
-#: apps/evernote_reports/forms.py:26
+#: apps/evernote_reports/forms.py:27
 msgid "Translation Rate"
 msgstr "Скорост на превод"
 
-#: apps/evernote_reports/forms.py:41
+#: apps/evernote_reports/forms.py:42
 msgid "Effective from"
 msgstr ""
 
@@ -1093,11 +1093,6 @@ msgstr "Нормална страница"
 #: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "Заглавие на страницата"
-
-#: apps/staticpages/views.py:116
-#, python-format
-msgid "page-%d"
-msgstr "страница-%d"
 
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:128
@@ -2550,6 +2545,9 @@ msgstr "Приписване на действие"
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr "Заслужили преводачи този месец"
+
+#~ msgid "page-%d"
+#~ msgstr "страница-%d"
 
 #~ msgid "Translate Toolkit version %s installed."
 #~ msgstr "Инсталиран е Translate Toolkit версия %s."

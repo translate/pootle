@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
+"POT-Creation-Date: 2015-06-15 11:30+0100\n"
 "PO-Revision-Date: 2015-05-30 22:23+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,11 +85,11 @@ msgstr "可选源语言"
 msgid "Rate"
 msgstr "比率"
 
-#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
 msgstr "评论率"
 
-#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
 msgstr "小时频率"
 
@@ -97,7 +97,7 @@ msgstr "小时频率"
 msgid "Score"
 msgstr "得分"
 
-#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
 msgstr "货币"
 
@@ -158,11 +158,11 @@ msgstr "消息"
 msgid "Please enter your message"
 msgstr "请输入您的消息"
 
-#: apps/evernote_reports/forms.py:26
+#: apps/evernote_reports/forms.py:27
 msgid "Translation Rate"
 msgstr "翻译率"
 
-#: apps/evernote_reports/forms.py:41
+#: apps/evernote_reports/forms.py:42
 msgid "Effective from"
 msgstr "生效自"
 
@@ -1095,11 +1095,6 @@ msgstr "常规页面"
 #: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "页面标题"
-
-#: apps/staticpages/views.py:116
-#, python-format
-msgid "page-%d"
-msgstr "第 %d 页"
 
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:128
@@ -2573,6 +2568,9 @@ msgstr "登录"
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr ""
+
+#~ msgid "page-%d"
+#~ msgstr "第 %d 页"
 
 #~ msgid ""
 #~ "Cannot link: your Evernote account is already linked with another Pootle "

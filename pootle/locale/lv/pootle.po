@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-12 17:37+0100\n"
+"POT-Creation-Date: 2015-06-15 11:30+0100\n"
 "PO-Revision-Date: 2013-10-30 16:29+0000\n"
 "Last-Translator: Tranzistors <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,11 +86,11 @@ msgstr "Alternatīvās avota valodas"
 msgid "Rate"
 msgstr ""
 
-#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:31
+#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
 msgstr ""
 
-#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:36
+#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
 msgstr ""
 
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Score"
 msgstr ""
 
-#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:20
+#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
 msgstr ""
 
@@ -159,11 +159,11 @@ msgstr "Vēstule"
 msgid "Please enter your message"
 msgstr ""
 
-#: apps/evernote_reports/forms.py:26
+#: apps/evernote_reports/forms.py:27
 msgid "Translation Rate"
 msgstr ""
 
-#: apps/evernote_reports/forms.py:41
+#: apps/evernote_reports/forms.py:42
 msgid "Effective from"
 msgstr ""
 
@@ -1105,11 +1105,6 @@ msgstr "Parasta lapa"
 #: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "Lapas virsraksts"
-
-#: apps/staticpages/views.py:116
-#, python-format
-msgid "page-%d"
-msgstr "lapa-%d"
 
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:128
@@ -2615,6 +2610,9 @@ msgstr "Piešķirt darbības"
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr ""
+
+#~ msgid "page-%d"
+#~ msgstr "lapa-%d"
 
 #~ msgid "Translate Toolkit version %s installed."
 #~ msgstr "Ir instalēta Translate Toolkit versija %s."
