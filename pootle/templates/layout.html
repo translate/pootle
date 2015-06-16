@@ -73,6 +73,7 @@
   <body id="{% block body_id %}pootle-body-base{% endblock %}" class="preload {% block body_class %}{% endblock %}">
     {% block body %}
     <div id="wrapper">
+      {% block wrapper %}
       <noscript>
         <div id="noscript" class="alert alert-danger affix">
           <h1>{% trans "Pootle requires JavaScript" %}</h1>
@@ -163,6 +164,7 @@
         {% block post_content %}{% endblock %}
       </div>
 
+      {% endblock %}
     </div>
     {% block footer %}
     <div id="footer">
