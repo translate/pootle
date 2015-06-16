@@ -67,3 +67,17 @@ This will allow you to see any traceback and investigate and solve them.
 
 To push failed jobs back into the queue we simply run the
 :djadmin:`retry_failed_jobs` management command.
+
+
+Dirty statistics
+----------------
+
+When we count stats with :djadmin:`refresh_stats_rq` Pootle will track a dirty
+count so that it knows when the counts for that part of the tree is complete.
+
+When debugging a situation where the counts aren't completeing it is helpful to
+see the dirty counts.  To retrieve these use:
+
+.. code-block:: bash
+
+   $ redis-cli zrank "pootle:dirty:treeitems" "/project/libo_ui"
