@@ -155,13 +155,13 @@
       {% endblock %}
     {% endblock %}
 
-    <div id="body">
-      {% block pre_content %}{% endblock %}
-      <div id="content">
-        {% block content %}{% endblock %}
+      <div id="body">
+        {% block pre_content %}{% endblock %}
+        <div id="content">
+          {% block content %}{% endblock %}
+        </div>
+        {% block post_content %}{% endblock %}
       </div>
-      {% block post_content %}{% endblock %}
-    </div>
 
     </div>
     {% block footer %}
