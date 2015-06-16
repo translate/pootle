@@ -74,7 +74,7 @@ check_names = {
     'urls': _(u"URLs"),
     'validchars': _(u"Valid characters"),
     'variables': _(u"Placeholders"),
-    'validxml': _(u"Invalid XML"),
+    'validxml': _(u"Valid XML"),
     'xmltags': _(u"XML tags"),
     # Evernote checks
     'broken_entities': _(u"Broken HTML Entities"),
