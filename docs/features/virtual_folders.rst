@@ -68,6 +68,24 @@ the specs for the :ref:`JSON format <virtual_folders#json-format>` in order to
 know how to craft a JSON file that fits your needs.
 
 
+.. _virtual_folders#stats:
+
+Calculating virtual folders stats
+---------------------------------
+
+To calculate the translation stats of virtual folders use the
+:djadmin:`refresh_stats_rq` management command. Virtual folder stats will be
+calculated along regular directories and files stats.
+
+.. warning:: Note that the :djadmin:`refresh_stats` management command will not
+    trigger virtual folder stats calculation.
+
+After the initial calculation no extra runs will be required unless files are
+changed by a run of the :djadmin:`update_stores` management command. Changes
+introduced due to translation through the editor will automatically refresh the
+stats without intervention.
+
+
 .. _virtual_folders#translate:
 
 Translating virtual folders
