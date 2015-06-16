@@ -50,6 +50,7 @@ class PageModelMixin(object):
         ctx = super(PageModelMixin, self).get_context_data(**kwargs)
         ctx.update({
             'has_page_model': True,
+            'page_display_name': self.model.display_name,
         })
         return ctx
 
