@@ -186,7 +186,7 @@ def get_git_changeset():
     '20150530132219'
     """
     timestamp = _shell_command(
-        ['git', 'log', '--pretty=format:%ct', '--quiet', '-1', 'HEAD']
+        ['/usr/bin/git', 'log', '--pretty=format:%ct', '--quiet', '-1', 'HEAD']
     )
     try:
         timestamp = datetime.datetime.utcfromtimestamp(int(timestamp))
@@ -202,7 +202,7 @@ def get_git_branch():
     >>> get_git_branch()
     'feature/proper_version'
     """
-    branch = _shell_command(['git', 'symbolic-ref', '-q', 'HEAD']).strip()
+    branch = _shell_command(['/usr/bin/git', 'symbolic-ref', '-q', 'HEAD']).strip()
     if not branch:
         return None
     return "/".join(branch.split("/")[2:])
@@ -216,7 +216,7 @@ def get_git_hash():
     'ad768e8'
     """
     return _shell_command(
-        ['git', 'rev-parse', '--verify', '--short', 'HEAD']
+        ['/usr/bin/git', 'rev-parse', '--verify', '--short', 'HEAD']
     ).strip()
 
 if __name__ == "__main__":
