@@ -15,8 +15,7 @@ import sys
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from elasticsearch import Elasticsearch
-from elasticsearch import helpers
+from elasticsearch import helpers, Elasticsearch
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
