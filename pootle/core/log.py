@@ -47,10 +47,9 @@ def action_log(*args, **kwargs):
     tr = tr.replace("\n", "\\\n")
     d['translation'] = tr
 
-    message = "%(user)s\t%(action)s\t%(lang)s\t%(unit)s\t%(path)s\t" \
-              "%(translation)s" % d
+    msg = u"%(user)s\t%(action)s\t%(lang)s\t%(unit)s\t%(path)s\t%(translation)s" % d
 
-    logger.info(message)
+    logger.info(msg)
 
 
 def cmd_log(*args, **kwargs):
