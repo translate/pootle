@@ -39,6 +39,17 @@ class Command(BaseCommand):
             raise CommandError("Please check if the JSON file is malformed. "
                                "Original error:\n%s" % e)
 
+        for vfolder_item in vfolders:
+            try:
+                temp = ','.join(vfolder_item['filters']['files'])
+            except KeyError:
+                raise CommandError("Virtual folder '%s' has no filtering "
+                                   "rules." % vfolder_item['name'])
+            else:
+                if not temp:
+                    raise CommandError("Virtual folder '%s' has no filtering "
+                                       "rules." % vfolder_item['name'])
+
         self.stdout.write("Importing virtual folders...")
 
         added_count = 0
@@ -50,15 +61,7 @@ class Command(BaseCommand):
 
             # Put all the files for each virtual folder as a list and save it
             # as its filter rules.
-            try:
-                vfolder_item['filter_rules'] = ','.join(vfolder_item['filters']['files'])
-            except KeyError:
-                raise CommandError("Virtual folder '%s' has no filtering "
-                                   "rules." % vfolder_item['name'])
-
-            if not vfolder_item['filter_rules']:
-                raise CommandError("Virtual folder '%s' has no filtering "
-                                   "rules." % vfolder_item['name'])
+            vfolder_item['filter_rules'] = ','.join(vfolder_item['filters']['files'])
 
             if 'filters' in vfolder_item:
                 del vfolder_item['filters']
