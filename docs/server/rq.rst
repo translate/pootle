@@ -75,7 +75,7 @@ Dirty statistics
 When we count stats with :djadmin:`refresh_stats_rq` Pootle will track a dirty
 count so that it knows when the counts for that part of the tree is complete.
 
-When debugging a situation where the counts aren't completeing it is helpful to
+When debugging a situation where the counts aren't completing it is helpful to
 see the dirty counts.  To retrieve these use:
 
 .. code-block:: bash
