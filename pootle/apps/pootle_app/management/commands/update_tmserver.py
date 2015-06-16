@@ -16,6 +16,7 @@ import sys
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from elasticsearch import Elasticsearch
+from elasticsearch import helpers
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -50,50 +51,12 @@ class Command(BaseCommand):
                          'and quit'),
     )
 
-    def handle(self, *args, **options):
-        if not getattr(settings, 'POOTLE_TM_SERVER', False):
-            raise CommandError("POOTLE_TM_SERVER is missing from your settings.")
-
-        INDEX_NAME = settings.POOTLE_TM_SERVER['default']['INDEX_NAME']
-        es = Elasticsearch([{
-            'host': settings.POOTLE_TM_SERVER['default']['HOST'],
-            'port': settings.POOTLE_TM_SERVER['default']['PORT']
-        },
-        ])
-
-        last_indexed_revision = -1
-
-        if options['rebuild'] and not options['dry_run']:
-            if es.indices.exists(INDEX_NAME):
-                es.indices.delete(index=INDEX_NAME)
-
-        if (not options['rebuild'] and
-            not options['overwrite'] and
-            es.indices.exists(INDEX_NAME)):
-            result = es.search(
-                index=INDEX_NAME,
-                body={
-                    'query': {
-                        'match_all': {}
-                    },
-                    'facets': {
-                        'stat1': {
-                            'statistical': {
-                                'field': 'revision'
-                            }
-                        }
-                    }
-                }
-            )
-            last_indexed_revision = result['facets']['stat1']['max']
-
-        self.stdout.write("Last indexed revision = %s" % last_indexed_revision)
-
+    def _parse_translations(self, **options):
 
         units_qs = Unit.simple_objects \
             .exclude(target_f__isnull=True) \
             .exclude(target_f__exact='') \
-            .filter(revision__gt=last_indexed_revision) \
+            .filter(revision__gt=self.last_indexed_revision) \
             .select_related(
                 'submitted_by',
                 'store',
@@ -123,6 +86,8 @@ class Command(BaseCommand):
         if options['dry_run']:
             sys.exit()
 
+        self.stdout.write("")
+
         for i, unit in enumerate(units_qs.iterator(), start=1):
             fullname = (unit['submitted_by__full_name'] or
                         unit['submitted_by__username'])
@@ -132,28 +97,67 @@ class Command(BaseCommand):
             if unit['submitted_by__email']:
                 email_md5 = md5(unit['submitted_by__email']).hexdigest()
 
-            es.index(
-                index=INDEX_NAME,
-                doc_type=unit['store__translation_project__language__code'],
-                id=unit['id'],
-                body={
-                    'revision': int(unit['revision']),
-                    'project': project,
-                    'path': unit['store__pootle_path'],
-                    'username': unit['submitted_by__username'],
-                    'fullname': fullname,
-                    'email_md5': email_md5,
-                    'source': unit['source_f'],
-                    'target': unit['target_f'],
-                }
-            )
-
             if (i % 1000 == 0) or (i == total):
                 percent = "%.1f" % (i * 100.0 / total)
                 self.stdout.write("%s (%s%%)" % (i, percent), ending='\r')
                 self.stdout.flush()
 
-        self.stdout.write("")
+            yield {
+                "_index": self.INDEX_NAME,
+                "_type": unit['store__translation_project__language__code'],
+                "_id": unit['id'],
+                'revision': int(unit['revision']),
+                'project': project,
+                'path': unit['store__pootle_path'],
+                'username': unit['submitted_by__username'],
+                'fullname': fullname,
+                'email_md5': email_md5,
+                'source': unit['source_f'],
+                'target': unit['target_f'],
+            }
 
         if i != total:
             self.stdout.write("Expected %d, loaded %d." % (total, i))
+
+
+    def handle(self, *args, **options):
+        if not getattr(settings, 'POOTLE_TM_SERVER', False):
+            raise CommandError("POOTLE_TM_SERVER is missing from your settings.")
+
+        self.INDEX_NAME = settings.POOTLE_TM_SERVER['default']['INDEX_NAME']
+        es = Elasticsearch([{
+                'host': settings.POOTLE_TM_SERVER['default']['HOST'],
+                'port': settings.POOTLE_TM_SERVER['default']['PORT']
+            }],
+            retry_on_timeout=True
+        )
+
+        self.last_indexed_revision = -1
+
+        if options['rebuild'] and not options['dry_run']:
+            if es.indices.exists(self.INDEX_NAME):
+                es.indices.delete(index=self.INDEX_NAME)
+
+        if (not options['rebuild'] and
+            not options['overwrite'] and
+            es.indices.exists(self.INDEX_NAME)):
+            result = es.search(
+                index=self.INDEX_NAME,
+                body={
+                    'query': {
+                        'match_all': {}
+                    },
+                    'facets': {
+                        'stat1': {
+                            'statistical': {
+                                'field': 'revision'
+                            }
+                        }
+                    }
+                }
+            )
+            self.last_indexed_revision = result['facets']['stat1']['max']
+
+        self.stdout.write("Last indexed revision = %s" % self.last_indexed_revision)
+
+        success, _ = helpers.bulk(es, self._parse_translations(**options))
