@@ -75,7 +75,17 @@ class PageModelMixin(object):
         return super(PageModelMixin, self).form_valid(form)
 
 
-class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
+class AdminCtxMixin(object):
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AdminCtxMixin, self).get_context_data(**kwargs)
+        ctx.update({
+            'page': 'admin-pages',
+        })
+        return ctx
+
+
+class AdminTemplateView(SuperuserRequiredMixin, AdminCtxMixin, TemplateView):
 
     template_name = 'admin/staticpages/page_list.html'
 
@@ -90,7 +100,6 @@ class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
 
         ctx = super(AdminTemplateView, self).get_context_data(**kwargs)
         ctx.update({
-            'page': 'admin-pages',
             'legalpages': legal_pages,
             'staticpages': static_pages,
             ANN_TYPE: announcements,
@@ -98,7 +107,7 @@ class AdminTemplateView(SuperuserRequiredMixin, TemplateView):
         return ctx
 
 
-class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
+class PageCreateView(SuperuserRequiredMixin, AdminCtxMixin, PageModelMixin, CreateView):
     fields = ('title', 'virtual_path', 'active', 'url', 'body')
 
     success_url = reverse_lazy('pootle-staticpages')
@@ -133,7 +142,7 @@ class PageCreateView(SuperuserRequiredMixin, PageModelMixin, CreateView):
         return form
 
 
-class PageUpdateView(SuperuserRequiredMixin, PageModelMixin, UpdateView):
+class PageUpdateView(SuperuserRequiredMixin, AdminCtxMixin, PageModelMixin, UpdateView):
     fields = ('title', 'virtual_path', 'active', 'url', 'body')
 
     success_url = reverse_lazy('pootle-staticpages')
