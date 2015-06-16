@@ -27,6 +27,7 @@
     width: auto !important;
     max-width: 920px !important;
     display: inline-block;
+    margin: 1em 0;
 }
 
 .popup-ajax .popup-form,
