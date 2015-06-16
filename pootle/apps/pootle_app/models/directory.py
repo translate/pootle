@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
@@ -63,6 +64,11 @@ class Directory(models.Model, CachedTreeItem):
         from pootle_store.models import Store
         return Store.objects.live() \
                             .filter(pootle_path__startswith=self.pootle_path)
+
+    @property
+    def has_vfolders(self):
+        return ('virtualfolder' in settings.INSTALLED_APPS and
+                self.vf_treeitems.count() > 0)
 
     @property
     def is_template_project(self):

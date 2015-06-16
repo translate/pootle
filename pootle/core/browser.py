@@ -9,8 +9,6 @@
 
 from django.utils.translation import ugettext_lazy as _
 
-from virtualfolder.models import VirtualFolder
-
 
 HEADING_CHOICES = [
     {
@@ -97,7 +95,7 @@ def make_generic_item(path_obj, **kwargs):
 def make_directory_item(directory):
     filters = {}
 
-    if VirtualFolder.get_matching_for(directory.pootle_path).count():
+    if directory.has_vfolders:
         # The directory has virtual folders, so append priority sorting to URL.
         filters['sort'] = 'priority'
 
