@@ -84,9 +84,7 @@
     {% if announcements %}
     <div class="sidebar-group">
       {% for announcement in announcements %}
-      <div class="staticpage-on-sidebar">
         {% include "staticpages/_body.html" with page=announcement %}
-      </div>
       {% endfor %}
     </div>
     {% endif %}

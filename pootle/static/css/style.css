@@ -434,8 +434,7 @@ td.stats-name a:hover > i + span,
  * STATIC PAGES
  */
 
-div.staticpage-on-sidebar,
-#staticpage
+.staticpage
 {
     margin: 2em auto;
     padding: 0 2em;
@@ -443,8 +442,7 @@ div.staticpage-on-sidebar,
     max-width: 960px;
 }
 
-div.staticpage-on-sidebar h1,
-#staticpage h1
+.staticpage h1
 {
     font-size: 2.2em;
     line-height: 85%;
@@ -452,34 +450,29 @@ div.staticpage-on-sidebar h1,
     margin-bottom: 1em;
 }
 
-div.staticpage-on-sidebar h2,
-#staticpage h2
+.staticpage h2
 {
     color: rgba(25, 15, 0, 0.5);
     font-size: 1.8em;
     margin: 1em 0 0.5em;
 }
 
-div.staticpage-on-sidebar h3,
-#staticpage h3
+.staticpage h3
 {
     margin: 1em 0 0.5em;
 }
 
-div.staticpage-on-sidebar p,
-#staticpage p
+.staticpage p
 {
     margin: 0.5em 0;
 }
 
-div.staticpage-on-sidebar ol,
-#staticpage ol
+.staticpage ol
 {
     margin-left: 2em;
 }
 
-div.staticpage-on-sidebar li,
-#staticpage li
+.staticpage li
 {
     list-style: decimal;
 }
@@ -489,13 +482,13 @@ div.staticpage-on-sidebar li,
  * CHECKS DESCRIPTIONS
  */
 
-#staticpage.checks-descriptions code,
-#staticpage.checks-descriptions tt
+.staticpage.checks-descriptions code,
+.staticpage.checks-descriptions tt
 {
     color: red;
 }
 
-#staticpage.checks-descriptions h3:target
+.staticpage.checks-descriptions h3:target
 {
     background-color: #ff9;
     outline: 5px solid #ff9;
@@ -589,8 +582,8 @@ html[dir="rtl"] #sidebar-toggle
     border-radius: 0 2px 2px 0;
 }
 
-div.staticpage-on-sidebar,
-div.sidebar-group
+.sidebar-group,
+.sidebar-group .staticpage
 {
     margin: 0;
     padding: 0;
@@ -598,8 +591,8 @@ div.sidebar-group
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-div.staticpage-on-sidebar:last-child,
-div.sidebar-group:last-child
+.sidebar-group:last-child,
+.sidebar-group .staticpage:last-child
 {
     padding: 0;
     border-bottom: none;
