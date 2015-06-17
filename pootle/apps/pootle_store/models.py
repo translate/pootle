@@ -2044,7 +2044,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return self.pootle_path
       
     def _get_total_wordcount(self):
-        pass
+        return self._get_wordcount_stats()['total']
 
     def _get_wordcount_stats(self):
         """calculate full wordcount statistics"""
