@@ -11,6 +11,16 @@ import os
 
 import pytest
 
+from pootle_store.models import Store, Unit
+
+
+@pytest.mark.django_db
+def test_total_wordcount(af_tutorial_subdir_po):
+    tp = af_tutorial_subdir_po.translation_project
+    pootle_path = af_tutorial_subdir_po.pootle_path
+    store = tp.stores.first()
+    store._get_total_wordcount()
+
 
 @pytest.mark.django_db
 def test_delete_mark_obsolete(af_tutorial_subdir_po):
@@ -19,7 +29,6 @@ def test_delete_mark_obsolete(af_tutorial_subdir_po):
 
     Refs. #269.
     """
-    from pootle_store.models import Store, Unit
 
     tp = af_tutorial_subdir_po.translation_project
     pootle_path = af_tutorial_subdir_po.pootle_path
