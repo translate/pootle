@@ -16,7 +16,15 @@ import datetime
 import os
 import subprocess
 
-from django.utils.lru_cache import lru_cache
+try:
+    from django.utils.lru_cache import lru_cache
+except ImportError:
+    # Required for Python 2.7 support and when backported Django version is
+    # unavailable
+    def lru_cache():
+        def fake(func):
+            return func
+        return fake
 
 
 CANDIDATE_MARKERS = ('alpha', 'beta', 'rc', 'final')
