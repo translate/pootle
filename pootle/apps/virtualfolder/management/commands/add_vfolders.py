@@ -42,13 +42,11 @@ class Command(BaseCommand):
         for vfolder_item in vfolders:
             try:
                 temp = ','.join(vfolder_item['filters']['files'])
-            except KeyError:
+                if not temp:
+                    raise ValueError
+            except (KeyError, ValueError):
                 raise CommandError("Virtual folder '%s' has no filtering "
                                    "rules." % vfolder_item['name'])
-            else:
-                if not temp:
-                    raise CommandError("Virtual folder '%s' has no filtering "
-                                       "rules." % vfolder_item['name'])
 
         self.stdout.write("Importing virtual folders...")
 
