@@ -44,19 +44,21 @@ let AccountActivation = React.createClass({
 
     return (
       <AuthContent>
-        <p>{activationWarningMsg}</p>
-        <p dangerouslySetInnerHTML={{__html: emailLinkMsg}} />
-        <p>{instructionsMsg}</p>
-        {this.props.signUpEmail &&
-          <div>
-            <button
-              className="btn btn-primary"
-              onClick={this.props.onClose}
-            >
-              {gettext('Close')}
-            </button>
-          </div>
-        }
+        <div className="actions sign-up">
+          <p>{activationWarningMsg}</p>
+          <p dangerouslySetInnerHTML={{__html: emailLinkMsg}} />
+          <p>{instructionsMsg}</p>
+          {this.props.signUpEmail &&
+            <div>
+              <button
+                className="btn btn-primary"
+                onClick={this.props.onClose}
+              >
+                {gettext('Close')}
+              </button>
+            </div>
+          }
+        </div>
       </AuthContent>
     );
   }
