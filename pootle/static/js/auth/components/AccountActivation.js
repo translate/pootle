@@ -30,7 +30,7 @@ let AccountActivation = React.createClass({
 
     if (this.props.signUpEmail) {
       emailLinkMsg = interpolate(
-        gettext('We have sent an email containing the special link to <span>%s</span>.'),
+        gettext('We have sent an email containing the special link to <span>%s</span>'),
         [this.props.signUpEmail]
       );
     } else {

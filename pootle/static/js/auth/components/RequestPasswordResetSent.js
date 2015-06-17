@@ -41,7 +41,7 @@ let RequestPasswordResetSent = React.createClass({
     }
 
     let emailLinkMsg = interpolate(
-      gettext('We have sent an email containing the special link to <span>%s</span>.'),
+      gettext('We have sent an email containing the special link to <span>%s</span>'),
       [this.props.resetEmail]
     );
     let instructionsMsg = gettext('Please follow that link to continue the password reset procedure.');
