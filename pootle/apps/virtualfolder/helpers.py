@@ -26,7 +26,7 @@ def extract_vfolder_from_path(pootle_path):
     The path /gl/firefox/browser/vfolder/chrome/file.po with the vfolder
     virtual folder on it will be converted to
     /gl/firefox/browser/chrome/file.po if the virtual folder exists and is
-    browsable.
+    public.
 
     Have in mind that several virtual folders with the same name might apply in
     the same path (as long as they have different locations this is possible)
@@ -55,7 +55,7 @@ def extract_vfolder_from_path(pootle_path):
 
         vfolders = VirtualFolder.objects.filter(
             name=vfolder_name,
-            is_browsable=True
+            is_public=True
         ).order_by('-priority')
 
         vfolder = None
@@ -73,7 +73,7 @@ def extract_vfolder_from_path(pootle_path):
             break
 
         if vfolder is None:
-            # The virtual folder does not exist or is not browsable or doesn't
+            # The virtual folder does not exist or is not public or doesn't
             # apply in this location, so this is an invalid path.
             break
 
@@ -82,6 +82,6 @@ def extract_vfolder_from_path(pootle_path):
 
         return vfolder, adjusted_path
 
-    # There is no virtual folder (or is not browsable) and the provided path
+    # There is no virtual folder (or is not public) and the provided path
     # doesn't exist, so let the calling code to deal with this.
     return None, pootle_path

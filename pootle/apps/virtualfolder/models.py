@@ -56,10 +56,10 @@ class VirtualFolder(models.Model):
         help_text=_('Number specifying importance. Greater priority means it '
                     'is more important.'),
     )
-    is_browsable = models.BooleanField(
-        _('Is browsable?'),
+    is_public = models.BooleanField(
+        _('Is public?'),
         default=True,
-        help_text=_('Whether this virtual folder is active or not.'),
+        help_text=_('Whether this virtual folder is public or not.'),
     )
     description = MarkupField(
         _('Description'),
@@ -324,7 +324,7 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
 
     @property
     def is_visible(self):
-        return (self.vfolder.is_browsable and
+        return (self.vfolder.is_public and
                 (self.has_critical_errors or
                  (self.vfolder.priority >= 1 and not self.is_fully_translated)))
 

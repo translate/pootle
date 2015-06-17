@@ -3,7 +3,7 @@
         "name": "user1",
         "location": "/{LANG}/firefox/browser/",
         "priority": 999.99,
-        "is_browsable": true,
+        "is_public": true,
         "description": "Most visible strings for the user.",
         "filters": {
             "files": [
@@ -16,7 +16,7 @@
         "name": "user2",
         "location": "/gl/firefox/",
         "priority": 7.5,
-        "is_browsable": false,
+        "is_public": false,
         "filters": {
             "files": [
                 "browser/chrome/browser/aboutSessionRestore.dtd.po",
@@ -68,7 +68,7 @@
     {
         "name": "other",
         "location": "/af/firefox/",
-        "is_browsable": true,
+        "is_public": true,
         "filters": {
             "files": [
                 "browser/chrome/browser/aboutCertError.dtd.po"
@@ -91,7 +91,7 @@
         "name": "install",
         "location": "/ru/{PROJ}/",
         "priority": 5,
-        "is_browsable": true,
+        "is_public": true,
         "description": "Installation related strings.",
         "filters": {
             "files": [

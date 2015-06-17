@@ -104,12 +104,12 @@ class Command(BaseCommand):
                                   "changed to %f.", vfolder.name,
                                   vfolder.priority)
 
-                if ('is_browsable' in vfolder_item and
-                    vfolder.is_browsable != vfolder_item['is_browsable']):
+                if ('is_public' in vfolder_item and
+                    vfolder.is_public != vfolder_item['is_public']):
 
-                    vfolder.is_browsable = vfolder_item['is_browsable']
+                    vfolder.is_public = vfolder_item['is_public']
                     changed = True
-                    logging.debug("is_browsable status for virtual folder "
+                    logging.debug("is_public status for virtual folder "
                                   "'%s' will be changed.", vfolder.name)
 
                 if ('description' in vfolder_item and

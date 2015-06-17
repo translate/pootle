@@ -286,14 +286,14 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     @property
     def vfolders(self):
-        """Return the browsable virtual folders for this project."""
+        """Return the public virtual folders for this project."""
         # This import must be here to avoid circular import issues.
         from virtualfolder.models import VirtualFolder
 
         return [vf.tp_relative_path
                 for vf in VirtualFolder.objects.filter(
                     units__store__translation_project__project__code=self.code,
-                    is_browsable=True
+                    is_public=True
                 ).distinct()]
 
     @cached_property

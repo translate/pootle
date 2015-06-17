@@ -33,8 +33,8 @@ priorities = {
     'notnb': 0.3,
     'never': 0.1,
 }
-# If a goal should be marked as unbrowsable
-unbrowsables = [
+# If a goal should be marked as not public
+not_public = [
     'notnb',
     'never',
 ]
@@ -55,14 +55,14 @@ with open(phaselistfile) as phaselist:
             priority = 1.0
             if goal in priorities:
                 priority = priorities[goal]
-            browsable = True
-            if goal in unbrowsables:
-                browsable = False
+            public = True
+            if goal in not_public:
+                public = False
             vfolders.append({
                 'name': goal,
                 'location': '/{LANG}/%s/' % project,
                 'priority': priority,
-                'is_browsable': browsable,
+                'is_public': public,
                 'filters': {
                     'files': [
                         pofile,

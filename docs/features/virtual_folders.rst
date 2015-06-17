@@ -21,7 +21,7 @@ Virtual folders have several attributes:
 - A mandatory lowercase name,
 - A mandatory location,
 - An optional priority,
-- An optional browsability flag,
+- An optional publicness flag,
 - An optional description,
 - A field accepting several optional filtering rules.
 
@@ -41,8 +41,8 @@ The priority defaults to ``1`` and accepts any value greater than ``0``,
 including numbers with decimals, like ``0.75``. Higher numbers means higher
 priority.
 
-By default virtual folders can be browsed. If they are not browsable then they
-won't be displayed, but they are still used for sorting.
+By default virtual folders are public. If they are not public then they won't
+be displayed, but they are still used for sorting.
 
 Also the virtual folders can have a description which might be useful to
 explain the contents of the folder or provide additional instructions. This
@@ -95,7 +95,7 @@ If a virtual folder applies in the current location, then clicking on the links
 on the overview page will provide the units in priority order when translating
 in the editor. The priority sorting on the translation editor is calculated
 taking into account all the applicable virtual folders in the current location,
-including the not browsable ones.
+including the not public ones.
 
 
 .. _virtual_folders#json-format:
