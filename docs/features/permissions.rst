@@ -79,21 +79,10 @@ translate
   The right to supply a translation for a specific string or to replace the
   existing one. This implies the right to upload files using the merge method.
 
-archive
-  The right to download archives (ZIP files) of a project or directory.
-
-overwrite
-  The right to entirely overwrite a file at the time of upload (instead of the
-  default behaviour of merging translations)
-
 administrate
   The right to administrate the project or language including administer
   permissions and delegating rights to users (this is not the same as the site
   administrator)
-
-commit
-  The right to update or commit a file to the version control system (if the
-  files are configured for version_control integration)
 
 
 .. _permissions#permissions_interface:
