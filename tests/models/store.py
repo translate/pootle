@@ -11,6 +11,8 @@ import os
 
 import pytest
 
+from django.db import models
+
 from pootle_store.models import Store, Unit
 
 
