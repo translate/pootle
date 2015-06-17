@@ -138,14 +138,14 @@ class Command(BaseCommand):
             from django.db import connection
             from south.db import db
 
+            ContentType.objects.filter(app_label='pootle_app', model='pootleconfig').delete()
             if u'pootle_app_pootleconfig' in connection.introspection.table_names():
                 # Deleting 'PootleConfig' table.
-                ContentType.objects.filter(app_label='pootle_app', model='pootleconfig').delete()
                 db.delete_table(u'pootle_app_pootleconfig')
 
+            ContentType.objects.filter(app_label='siteconfig', model='siteconfiguration').delete()
             if u'siteconfig_siteconfiguration' in connection.introspection.table_names():
                 # Deleting 'SiteConfiguration' table.
-                ContentType.objects.filter(app_label='siteconfig', model='siteconfiguration').delete()
                 db.delete_table(u'siteconfig_siteconfiguration')
 
             # Perform the option related actions.
