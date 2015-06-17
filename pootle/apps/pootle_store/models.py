@@ -971,6 +971,7 @@ class Unit(models.Model, base.TranslationUnit):
             self._save_action = UNIT_OBSOLETE
 
             self.state = OBSOLETE
+            self.index = 0
 
     def resurrect(self, is_fuzzy=False):
         if self.state > OBSOLETE:
@@ -1461,7 +1462,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         for unit_id in unit_ids:
             action_log(user='system', action=UNIT_OBSOLETE, lang=lang,
                        unit=unit_id, translation='', path=self.pootle_path)
-        unit_query.update(state=OBSOLETE)
+        unit_query.update(state=OBSOLETE, index=0)
         self.obsolete = True
         self.save()
         self.clear_all_cache(parents=False, children=False)
