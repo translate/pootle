@@ -244,7 +244,7 @@ def unit_form_factory(language, snplurals=None, request=None):
             if (self.request is not None and
                 not check_permission('administrate', self.request) and
                 is_fuzzy):
-                raise forms.ValidationError(_('Fuzzy flag must be cleared'))
+                raise forms.ValidationError(_('Needs work flag must be cleared'))
 
             if new_target:
                 if old_state == UNTRANSLATED:

@@ -265,7 +265,7 @@ class Submission(models.Model):
                     # field is TARGET
                     msg = {
                         TRANSLATED: _('reviewed %(source_string)s', source),
-                        FUZZY: _('marked as fuzzy %(source_string)s', source)
+                        FUZZY: _('marked as needs work %(source_string)s', source)
                     }.get(int(to_python(self.new_value)), '')
                 else:
                     msg = _('unknown action %(source_string)s', source)

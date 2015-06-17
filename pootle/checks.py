@@ -197,7 +197,7 @@ def check_settings(app_configs=None, **kwargs):
 
     if not settings.DEFAULT_FROM_EMAIL:
         errors.append(checks.Warning(
-            _("settings.DEFAULT_FROM_EMAIL is not set."),
+            _("DEFAULT_FROM_EMAIL is not set."),
             hint=_("DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
                    "Don't forget to review your mail server settings."),
             id="pootle.W009",
@@ -206,7 +206,7 @@ def check_settings(app_configs=None, **kwargs):
     if settings.DEFAULT_FROM_EMAIL in ("info@YOUR_DOMAIN.com",
                                        "webmaster@localhost"):
         errors.append(checks.Warning(
-            _("settings.DEFAULT_FROM_EMAIL is using the following default "
+            _("DEFAULT_FROM_EMAIL is using the following default "
               "setting %r." % settings.DEFAULT_FROM_EMAIL),
             hint=_("DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
                    "Don't forget to review your mail server settings."),
