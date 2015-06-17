@@ -20,7 +20,7 @@ def test_total_wordcount(af_tutorial_subdir_po):
     pootle_path = af_tutorial_subdir_po.pootle_path
     store = tp.stores.first()
     units = store.units.values('state').annotate(wordcount=models.Sum('source_wordcount'))
-    wordcount = sum([u['wordcount'] for u in units)
+    wordcount = sum([u['wordcount'] for u in units])
     assert store._get_total_wordcount() == wordcount
 
 
