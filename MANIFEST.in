@@ -1,5 +1,6 @@
 include CREDITS INSTALL LICENSE README.rst
 include requirements/base.txt
+include requirements/tests.txt
 include pootle/dbs/README
 include pootle/repos/README
 recursive-include docs *
