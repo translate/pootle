@@ -19,7 +19,7 @@ def test_total_wordcount(af_tutorial_subdir_po):
     tp = af_tutorial_subdir_po.translation_project
     pootle_path = af_tutorial_subdir_po.pootle_path
     store = tp.stores.first()
-    store._get_total_wordcount()
+    assert store._get_total_wordcount()
 
 
 @pytest.mark.django_db
