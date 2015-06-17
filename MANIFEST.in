@@ -3,7 +3,6 @@ include requirements/base.txt
 include requirements/tests.txt
 include pootle/dbs/README
 include pootle/log/README
-include pootle/repos/README
 recursive-include docs *
 recursive-exclude docs/_themes/.git *
 exclude docs/_themes/.gitignore
