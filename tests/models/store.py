@@ -19,7 +19,9 @@ def test_total_wordcount(af_tutorial_subdir_po):
     tp = af_tutorial_subdir_po.translation_project
     pootle_path = af_tutorial_subdir_po.pootle_path
     store = tp.stores.first()
-    assert store._get_total_wordcount()
+    units = store.units.values('state').annotate(wordcount=models.Sum('source_wordcount'))
+    wordcount = sum([u['wordcount'] for u in units)
+    assert store._get_total_wordcount() == wordcount
 
 
 @pytest.mark.django_db
