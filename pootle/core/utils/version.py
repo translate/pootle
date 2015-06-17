@@ -64,6 +64,8 @@ def get_version(version=None):
         git_changeset = get_git_changeset()
         if git_changeset:
             sub = '.dev%s' % git_changeset
+        else:
+            sub = '.dev0'
 
     elif candidate != 'final':
         mapping = {'alpha': 'a', 'beta': 'b', 'rc': 'rc'}
