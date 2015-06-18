@@ -46,15 +46,28 @@ translations of an extensive collection of Opensource software.
 If you want to setup and connect to your own TM server then the
 :setting:`AMAGAMA_URL` will allow you to point to a private TM server.
 
+
+.. _translation_memory#local_translation_memory:
+
 Elasticsearch based local TM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. versionadded:: 2.7
 
 By default this is configured to operate if local TM is available.  To use it
-you will need to populate the initial translation memory using the
-:djadmin:`update_tmserver` command and install `Elasticsearch
-<https://www.elastic.co/products/elasticsearch>`_.
+you will need to install `Elasticsearch 
+<https://www.elastic.co/products/elasticsearch>`_ and populate the initial
+translation memory using the :djadmin:`update_tmserver` command:
+
+.. code-block:: bash
+
+   (env) $ pootle update_tmserver
+
+
+Once populated Pootle will keep Local TM up-to-date.
+
+.. note:: Note that Elasticsearch depends on Java.
+
 
 Local TM settings can be adjusted in :setting:`POOTLE_TM_SERVER`.
 
