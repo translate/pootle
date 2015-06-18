@@ -410,14 +410,11 @@ Deprecated Settings
 .. setting:: ENABLE_ALT_SRC
 
 ``ENABLE_ALT_SRC``
-  Default: ``True``
-
   .. deprecated:: 2.5
      Alternate source languages are now on by default. This ensures
      that translators have access to as much useful information as possible
      when translating.
 
-  Display alternate source languages in the translation interface.
 
 .. setting:: POOTLE_TOP_STATS_CACHE_TIMEOUT
 
@@ -426,8 +423,6 @@ Deprecated Settings
      The overview page statistics rewrite has removed these statistics and the
      RQ based statistics has also removed the load of this type of data so this
      setting has been removed.
-
-  Sets the timeout value for overview top statistics.
 
 
 .. setting:: VCS_DIRECTORY
