@@ -2,20 +2,21 @@ Pootle is a full featured online tool with several possible methods for
 installation. This file gives a few brief instructions to get started, but more
 complete documentation exists online at:
 
-  http://docs.translatehouse.org/projects/pootle/en/latest/server/index.html
+  http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html
 
 Pootle depends on a few Python packages, and can optionally use several others
 for an optimal feature set and performance. Although a minimal installation
-might be enough for initial experimentation, this might not provide the best
+might be enough for initial experimentation, this won't provide the best
 security, features or performance.
 
 For the impatients with a working Python 2 installation with pip and
-virtualenv, this is a good start:
+virtualenvwrappers, this is a good start:
 
   $ mkvirtualenv pootleenv
   (pootleenv)$ pip install Pootle-......tar.gz
   (pootleenv)$ pootle init
-  (pootleenv)$ pootle setup
+  (pootleenv)$ pootle migrate
+  (pootleenv)$ pootle initdb
   (pootleenv)$ pootle collectstatic --noinput
   (pootleenv)$ pootle assets build
   (pootleenv)$ pootle start
@@ -26,9 +27,9 @@ For a more thorough explanation, visit the address mentioned above.
 
 Security note
 -------------
-The simple method shown above for running Pootle does not use a web server that
-is considered safe, flexible or to have a good performance for production
-purposes. More information:
+The simple method shown above for running Pootle does not use a dedicated web
+server thus it is not considered safe, flexible or to have a good performance
+for production purposes. For further information:
 
   http://docs.translatehouse.org/projects/pootle/en/latest/server/web.html
 
