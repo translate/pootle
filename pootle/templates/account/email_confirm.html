@@ -1,0 +1,13 @@
+{% extends 'welcome.html' %}
+
+{% block scripts_extra %}
+{% if not confirmation %}
+<script type="text/javascript">
+  $(function () {
+    PTL.auth.open({
+      initialScreen: 'emailConfirmation',
+    });
+  });
+</script>
+{% endif %}
+{% endblock %}
