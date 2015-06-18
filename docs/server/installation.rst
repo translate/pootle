@@ -118,7 +118,7 @@ Now create a virtual environment on your location of choice by issuing the
   $ virtualenv env
 
 
-To activate the virtual environment run the ``activate`` script:
+To activate the virtual environment run the :command:`activate` script:
 
 .. code-block:: bash
 
@@ -158,8 +158,8 @@ This will also fetch and install a minimum set of dependencies.
   For example, `lxml <http://lxml.de/installation.html>`_ needs a C compiler.
 
   lxml also require the development packages of libxml2 and libxslt.
-  Dependinging on your system these may be the ``libxml2-dev`` and
-  ``libxslt-dev`` packages.
+  Depending on your system these may be the ``libxml2-dev`` and ``libxslt-dev``
+  packages.
 
 
 To verify that everything installed correctly, you should be able to access the
@@ -244,8 +244,8 @@ testing purposes.
 If you are using SQLite then skip to :ref:`Populating the Database
 <installation#populating_the_database>`.
 
-If you have an existing install that you want to migrate to a supported
-database, then use the :doc:`database migration <database_migration>` tutorial.
+If you want to migrate to a supported database, then read the
+:doc:`database migration <database_migration>` tutorial.
 
 If you plan to deploy to a production environment then we highly recommend that
 you use MySQL or PostgreSQL (MySQL has been most heavily tested).
@@ -302,7 +302,7 @@ database backend.
 Populating the Database
 -----------------------
 
-Before your run Pootle for the first time, you need to create the schema for
+Before you run Pootle for the first time, you need to create the schema for
 the database and populate it with initial data. This is done by executing the
 :djadmin:`migrate` and :djadmin:`initdb` management commands:
 
@@ -347,33 +347,12 @@ Background processes
 --------------------
 
 Statistics counting and various other background processes are managed by `RQ
-<http://python-rq.org/>`_.  The :djadmin:`rqworker` command needs to be run to
-process the background job, this is run continuously.
+<http://python-rq.org/>`_.  The :djadmin:`rqworker` command needs to be run
+continuously in the background in order to process the jobs.
 
 .. code-block:: bash
 
    (env) $ pootle rqworker
-
-
-.. _installation#localtm:
-
-Local Translation Memory (optional)
------------------------------------
-
-Local Translation Memory (TM) is provided using `Elasticsearch
-<https://www.elastic.co/products/elasticsearch>`_, Pootle will run fine without
-this.  If you want to install Elasticsearch be aware that it depends on Java.
-
-Install Elasticsearch as required for your operating system or distribution.
-
-Once installed you can load your translation into the Local TM using
-:djadmin:`update_tmserver`:
-
-.. code-block:: bash
-
-   (env) $ pootle update_tmserver
-
-Once updated Pootle will keep Local TM up-to-date.
 
 
 .. _installation#running_pootle:
@@ -438,3 +417,6 @@ configuration <settings>` to better suit your specific needs.
 For additional scripting and improved management, Pootle also provides a set of
 :ref:`management commands <commands>` to ease the automation of common
 administration tasks.
+
+You might also want to create a :ref:`Local Translation Memory
+<translation_memory#local_translation_memory>`.
