@@ -13,6 +13,14 @@ The RQ queue is managed by Redis and it is setup in the `RQ_QUEUES
 settings.
 
 
+Running job workers
+-------------------
+
+The queue is processed by Workers.  Any number of workers may be started and
+will process jobs in the default queue.  The :djadmin:`rqworker` command is
+used to start a Worker.
+
+
 Monitoring the queue
 --------------------
 
