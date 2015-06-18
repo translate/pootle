@@ -25,37 +25,6 @@ import logging
 from django.utils.translation import ugettext_noop as _
 
 
-def upgrade_to_21060():
-    """Post-upgrade actions for upgrades to 21060."""
-    from pootle_misc.util import deletefromcache
-    from pootle_store.models import OBSOLETE
-    from pootle_translationproject.models import TranslationProject
-
-    logging.info('Flushing cached stats')
-
-    for tp in TranslationProject.objects.filter(stores__unit__state=OBSOLETE) \
-                                        .distinct().iterator():
-        deletefromcache(tp, ["getquickstats", "getcompletestats", "get_mtime",
-                             "has_suggestions"])
-
-
-def upgrade_to_22000():
-    """Post-upgrade actions for upgrades to 22000."""
-    from django.core.cache import cache
-    from django.utils.encoding import iri_to_uri
-
-    from pootle_store.models import Store
-
-    # In previous versions, we cached the sync times, so let's see if we can
-    # recover some.
-    for store in Store.objects.iterator():
-        key = iri_to_uri("%s:sync" % store.pootle_path)
-        last_sync = cache.get(key)
-        if last_sync:
-            store.sync_time = last_sync
-            store.save()
-
-
 def upgrade_to_25201():
     """New semantics for the `view` permission."""
     from django.contrib.auth import get_user_model
@@ -97,12 +66,6 @@ def upgrade_to_25201():
         directory=root,
     )
     permission_set.positive_permissions.add(view)
-
-
-def upgrade_to_25202():
-    from pootle.core.initdb import create_system_user
-
-    create_system_user()
 
 
 def upgrade_to_25203():
