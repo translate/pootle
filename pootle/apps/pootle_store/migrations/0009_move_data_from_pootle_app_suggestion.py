@@ -5,6 +5,7 @@ from hashlib import md5
 from itertools import groupby
 
 from south.db import db
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import connection
 from django.db.utils import IntegrityError
 
@@ -40,6 +41,18 @@ class Migration(DataMigration):
         # units with suggestions
         units = orm['pootle_store.Unit'].objects.filter(suggestion__isnull=False).distinct()
         for unit in units:
+            for ss in unit.suggestion_set.filter(user__isnull=False):
+                # Remove the user for suggestions referring to non-existing
+                # users. This can only happen if constraints are not enforced,
+                # for example when using MyISAM.
+                # Note that this suggestions will be assigned to 'nobody' on
+                # migration 0022.
+                try:
+                    orm['accounts.User'].objects.get(id=ss.user_id)
+                except ObjectDoesNotExist:
+                    ss.user = None
+                    ss.save()
+
             store_suggestions = unit.suggestion_set.filter(user__isnull=False).order_by('user')
             for user_id, ss in groupby(store_suggestions, lambda x: x.user.id):
                 ss = list(ss)
