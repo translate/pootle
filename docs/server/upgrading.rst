@@ -3,69 +3,60 @@
 Upgrading
 =========
 
-Here are some points to take into account while performing Pootle
-upgrades.
+These are the instructions for upgrading Pootle from an older version to a new
+release.
 
 .. warning::
 
-  Upgrading Pootle to a newer version can be a dangerous endeavour, so please:
+  When upgrading please ensure that you:
 
-  - **Carefully read this entire page** before proceeding with any further
-    steps
-  - Do all the recommended **backups**
-  - Try to **follow these instructions** as must as possible
-
-
-This page is divided in three sections. The first one lists some previous tasks
-that should be performed before upgrading. The second section includes a
-detailed list of steps to actually perform the upgrade. The third one suggests
-some possible tasks to fine tune the setup after upgrading.
+  - **Carefully read this page** before proceeding
+  - Make all the recommended **backups**
+  - Try to **follow these instructions** as closely as possible
 
 
-.. _upgrading#previous-tasks:
+This page is divided in three sections:
 
-Previous tasks
---------------
+1. Preparatory tasks that should be performed before upgrading.
+2. Detailed steps to actually perform the upgrade.
+3. Suggested tasks to fine tune the setup after upgrading.
 
-.. note::
 
-  If you perform all the steps in this section you will:
+.. _upgrading#preparatory-tasks:
 
-  - Avoid losing any data or Pootle customizations,
-  - Ensure a thorough and successful upgrade,
-  - Prevent headaches for you and the support team.
-
+Preparatory tasks
+-----------------
 
 Before upgrading Pootle to a newer version, make sure to go through this
 checklist.
 
 * Familiarize yourself with :doc:`important changes </releases/index>` in
-  Pootle over the versions.
+  Pootle.
 
 * If you want to change the database backend then have a look at the
   :doc:`database migration <database_migration>` page first. We discourage
   using SQLite, so if you are using it please migrate to a real database
   server.
 
-* Ensure that you meet all the :ref:`hardware requirements
+* Ensure that you meet the :ref:`hardware requirements
   <installation#hardware_requirements>` for the newer version.
 
 * Always make backups of all your translation files (your whole
   :setting:`POOTLE_TRANSLATION_DIRECTORY`). Use the :djadmin:`sync_stores`
-  command to synchronize to disk all your translation files before making any
+  command to synchronize all your translation files to disk before making any
   backup.
 
-* Also backup your settings, to avoid losing any settings customization.
+* Also backup your settings, to avoid losing any settings customizations.
 
 * Make a backup of your complete database using the appropriate *dump*
   command for your database system. For example :command:`mysqldump` for MySQL,
   or :command:`pg_dump` for PostgreSQL.
 
 * And don't forget to backup any code, templates or styling customization that
-  you have done to your Pootle.
+  you have done to your installation.
 
-* You might want to look for any new :ref:`available settings
-  <settings#available>` in the new version that you might want to configure.
+* Familiarize yourself with any new :ref:`settings <settings#available>` that
+  have been introduced.
 
 
 .. _upgrading#upgrading:
@@ -73,93 +64,96 @@ checklist.
 Upgrading
 ---------
 
-Here is the list of steps to upgrade a Pootle install using the :command:`pip`
-tool.
+Upgrading Pootle using the :command:`pip`.
 
-.. note::
-
-  Since these instructions don't take into account other possible installation
-  methods, like using a checkout from git, you will have to do the appropriate
-  adjustments in this list if you didn't install Pootle using :command:`pip`.
+.. note:: You will need to adjust these instructions if you installed Pootle
+   using another method, such as directly from a Git checkout.
 
 .. warning::
 
-  Always backup the following before upgrading:
+   Always backup the following before upgrading:
 
-  - the entire **database**
-  - all the **settings**
-  - all your **translation files**
-  - any **code customizations**
-  - any **templates customizations**
-  - any **styling customizations**
+   - the entire **database**
+   - all the **settings**
+   - all your **translation files**
+   - any **code customizations**
+   - any **templates customizations**
+   - any **styling customizations**
 
 
 To perform the upgrade follow the next steps:
 
 * If you are upgrading from a version older than Pootle 2.7.0, then you must
-  `upgrade first to Pootle 2.6.0
-  <http://docs.translatehouse.org/projects/pootle/en/stable-2.6.0/server/upgrading.html>`_
-  before continuing with this upgrade.
+  first upgrade to Pootle 2.6.0.
+
+  .. code-block::bash
+
+     (env) $ pip install Pootle==2.6.0
+     (env) $ pootle migrate
+
+  Then continue with the upgrade process.
+
+  .. note:: Upgrading from version before 2.5.0 may require additional upgrade
+     steps, please read their specific upgrade instructions.
 
 * If you want to perform a :doc:`database migration <database_migration>` then
-  do it right now.
+  do it first.
 
-* It is highly recommended to use a virtualenv, so if you don't use it please
-  :ref:`set up a virtualenv <installation#setup_environment>`.
+* We highly recommended that you use a virtual environment. If your install
+  currently does use one then please :ref:`set up a virtualenv
+  <installation#setup_environment>`.
 
 * Upgrade the Pootle package:
 
   .. code-block:: bash
 
-    (env)$ pip install --upgrade Pootle
+     (env) $ pip install --upgrade Pootle
 
 
   .. note::
 
-    If you weren't using a virtualenv before upgrading, instead of upgrading
-    you will be just doing a fresh install of Pootle in a blank virtualenv:
+     If you weren't using a virtualenv before upgrading, instead of upgrading
+     you will be just doing a fresh install of Pootle in a blank virtualenv:
 
-    .. code-block:: bash
+     .. code-block:: bash
 
-      (env)$ pip install Pootle
+       (env) $ pip install Pootle
 
 
-* Update Pootle settings to include new useful settings and updating existing
-  ones, while keeping the necessary data from the old install. Deleting now
-  unused settings is also advisable. Check the :ref:`available settings
-  <settings#available>`.
+* Update your custom Pootle settings to adjust for any changes and to include
+  any new settings. Delete any obsolete settings. Check the :ref:`available
+  settings <settings#available>` as needed.
 
-  .. note::
+  .. note:: Running :djadmin:`pootle check` is helpful to highlight settings
+     that have been obsoleted or renamed.
 
-    If you are upgrading from a version of Pootle that uses
-    :file:`localsettings.py` then you must :ref:`move your custom settings
-    <settings#customizing>` to a new location in order to ensure that Pootle
-    uses them.
-
+  .. note:: If you are upgrading from a version of Pootle that uses
+     :file:`localsettings.py` then you must :ref:`move your custom settings
+     <settings#customizing>` to a new location in order to ensure that Pootle
+     uses them.
 
 * Perform the database schema and data upgrade by running:
 
   .. code-block:: bash
 
-    (env)$ pootle setup
+     (env) $ pootle migrate
 
 
-* Reapply your custom changes to Pootle code, templates or styling. Check about
-  the :doc:`customization of style sheets and templates
-  </developers/customization>` to move your customizations to the right
-  locations in order to reduce the pain in future upgrades.
+* Reapply your custom changes to Pootle code, templates or styling. Read about
+  :doc:`customization of style sheets and templates
+  </developers/customization>` to adjust your customizations to the correct
+  locations and approach in the new release.
 
-* Run the :ref:`collectstatic <commands#collectstatic>` and :ref:`assets build
-  <commands#assets>` commands to update the static assets:
+* Run the :djadmin:`collectstatic` and :djadmin:`assets build <assets>`
+  commands to update the static assets:
 
   .. code-block:: bash
 
-    (env)$ pootle collectstatic --clear --noinput
-    (env)$ pootle assets build
+     (env)$ pootle collectstatic --clear --noinput
+     (env)$ pootle assets build
 
 
-* Finally clear your cache. For users of :command:`memcached` it is enough to
-  restart it.
+* Finally, restart your server.
 
 
 .. _upgrading#post-upgrade:
@@ -167,15 +161,7 @@ To perform the upgrade follow the next steps:
 Post-upgrade adjustments
 ------------------------
 
-After a succesful upgrade you can now consider :doc:`making some optimizations
-to your setup <optimization>`, like for example using a proper web server.
+After a succesful upgrade you can now consider:
 
-.. note::
-
-  If you are already using some optimizations you might need to find out if you
-  need to perform any adjustment or reload any server.
-
-
-Also you might want to create a local Translation Memory. Have in mind that
-this can take a lot of time depending on how many translations you have in your
-Pootle database.
+* Implementing some :doc:`optimizations <optimization>` to your setup.
+* Creating a Local Translation Memory.
