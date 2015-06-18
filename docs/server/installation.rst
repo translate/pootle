@@ -312,7 +312,7 @@ the database and populate it with initial data. This is done by executing the
   (env) $ pootle initdb
 
 
-.. _installation#running_pootle:
+.. _installation#admin_user:
 
 Creating an admin user
 ----------------------
@@ -367,7 +367,7 @@ this.  If you want to install Elasticsearch be aware that it depends on Java.
 Install Elasticsearch as required for your operating system or distribution.
 
 Once installed you can load your translation into the Local TM using
-:djadmn:`update_tmserver`:
+:djadmin:`update_tmserver`:
 
 .. code-block:: bash
 
@@ -391,7 +391,7 @@ software. To run it, just issue:
 
 
 And the server will start listening on port 8000. This can be accessed from
-your web browser at `http://localhost:8000/`_.
+your web browser at `localhost:8000 <http://localhost:8000/>`_.
 
 
 .. _installation#reverse_proxy:
