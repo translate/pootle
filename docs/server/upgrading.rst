@@ -83,24 +83,21 @@ Upgrading Pootle using the :command:`pip`.
 
 To perform the upgrade follow the next steps:
 
-* If you are upgrading from a version older than Pootle 2.7.0, then you must
-  first upgrade to Pootle 2.6.0.
-
-  .. code-block::bash
-
-     (env) $ pip install Pootle==2.6.0
-     (env) $ pootle migrate
-
-  Then continue with the upgrade process.
-
-  .. note:: Upgrading from version before 2.5.0 may require additional upgrade
-     steps, please read their specific upgrade instructions.
-
 * If you want to perform a :doc:`database migration <database_migration>` then
   do it first.
 
+* If you are upgrading from a version older than Pootle 2.7.0, then you must
+  first upgrade to Pootle 2.6.0.
+
+  .. code-block:: bash
+
+     (env) $ pip install Pootle==2.6.0
+     (env) $ pootle setup
+
+  Then continue with the upgrade process.
+
 * We highly recommended that you use a virtual environment. If your install
-  currently does use one then please :ref:`set up a virtualenv
+  currently doesn't use one then please :ref:`set up a virtualenv
   <installation#setup_environment>`.
 
 * Upgrade the Pootle package:
@@ -164,4 +161,5 @@ Post-upgrade adjustments
 After a succesful upgrade you can now consider:
 
 * Implementing some :doc:`optimizations <optimization>` to your setup.
-* Creating a Local Translation Memory.
+* Creating a :ref:`Local Translation Memory
+  <translation_memory#local_translation_memory>`.
