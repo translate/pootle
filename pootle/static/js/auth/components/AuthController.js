@@ -14,6 +14,7 @@ import FluxComponent from 'flummox/component';
 import AccountActivation from './AccountActivation';
 import AccountInactive from './AccountInactive';
 import AuthWindow from './AuthWindow';
+import EmailConfirmation from './EmailConfirmation';
 import RequestPasswordResetForm from './RequestPasswordResetForm';
 import RequestPasswordResetSent from './RequestPasswordResetSent';
 import PasswordResetForm from './PasswordResetForm';
@@ -105,10 +106,10 @@ let AuthController = React.createClass({
         };
         break;
 
-      case 'activation':
+      case 'emailConfirmation':
         return {
-          title: gettext('Account Activation'),
-          content: AccountActivation,
+          title: gettext('Email Confirmation'),
+          content: EmailConfirmation,
         };
         break;
 
