@@ -30,6 +30,8 @@ DEPRECATIONS = [
     ('VCS_DIRECTORY', None, '2.7', None),
     ('CONTRIBUTORS_EXCLUDED_NAMES', None, '2.7', None),
     ('CONTRIBUTORS_EXCLUDED_PROJECT_NAMES', None, '2.7', None),
+    ('MIN_AUTOTERMS', None, '2.7', None),
+    ('MAX_AUTOTERMS', None, '2.7', None),
 ]
 
 
