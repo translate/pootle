@@ -59,15 +59,3 @@ Since the terminology matching is performed in real-time, you might want to
 keep an eye on the size of your terminology project to ensure that performance
 is not affected too much by having too many terms. This is highly dependent on
 your server abilities and the nature of what you are translating.
-
-
-.. _terminology#generating:
-
-Generating terminology
-----------------------
-
-Project administrators can generate a list of frequently occurring terms from
-the *Terminology* tab in the Pootle interface, which can help to quickly
-standardize some frequently occurring terms.  It is also possible to add extra
-entries.  This is based on the :ref:`poterminology <toolkit:poterminology>`
-tool from the Translate Toolkit.

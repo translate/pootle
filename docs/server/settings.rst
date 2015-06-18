@@ -193,15 +193,6 @@ Configuration settings for applications used by Pootle.
   and won't track scores.
 
 
-.. setting:: MIN_AUTOTERMS
-
-``MIN_AUTOTERMS``
-  Default: ``60``
-
-  When building the terminology, the minimum number of terms that will be
-  automatically extracted.
-
-
 .. setting:: POOTLE_MARKUP_FILTER
 
 ``POOTLE_MARKUP_FILTER``
@@ -226,15 +217,6 @@ Configuration settings for applications used by Pootle.
                                     'report_level': 'quiet',
                                  }
                             })
-
-
-.. setting:: MAX_AUTOTERMS
-
-``MAX_AUTOTERMS``
-  Default: ``600``
-
-  When building the terminology, the maximum number of terms that will be
-  automatically extracted.
 
 
 .. setting:: POOTLE_CAPTCHA_ENABLED
@@ -472,3 +454,17 @@ Deprecated Settings
   .. deprecated:: 2.7
      The contributors page has been removed and is being replaced with better
      user statistics.
+
+
+.. setting:: MIN_AUTOTERMS
+
+``MIN_AUTOTERMS``
+  .. deprecated:: 2.7
+     Terminology auto-extraction feature has been removed.
+
+
+.. setting:: MAX_AUTOTERMS
+
+``MAX_AUTOTERMS``
+  .. deprecated:: 2.7
+     Terminology auto-extraction feature has been removed.

@@ -383,6 +383,8 @@ easy upgrades in the past:
   its low popularity and high maintenance cost.
 - Removed the zoom feature. Users should use their browsers zooming features.
 - Hooks.
+- Automatic terminology extraction. It's encouraged to use an external tool to
+  generate any glossaries, then load them up on Pootle.
 
 
 ...and lots of refactoring, upgrades of upstream code, cleanups to remove

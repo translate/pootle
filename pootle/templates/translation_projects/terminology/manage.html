@@ -18,10 +18,8 @@
 {% endblock scripts_extra %}
 
 {% block content %}
-{% if formset %}
 <div class="settings-container centered">
-  <p class="message"><a href="{% url 'pootle-terminology-extract' language.code project.code %}">{% trans "You can regenerate the glossary from scratch." %}</a></p>
-
+{% if formset %}
   <div class="pagination-control">
   {{ objects|render_pager }}
   </div>
@@ -56,11 +54,14 @@
   <div class="pagination-control">
   {{ objects|render_pager }}
   </div>
-</div>
 {% else %}
-<div class="form message" lang="{{ LANGUAGE_CODE }}">
-  <h2>{% trans "Glossary is Empty" %}</h2>
-  <p><a href="{% url 'pootle-terminology-extract' language.code project.code %}">{% trans "Generate Glossary" %}</a></p>
-</div>
+  <h2>{% trans 'No terminology file has been found' %}</h2>
+  <p>
+  {% blocktrans trimmed %}
+  In order to use the terminology feature, make sure to add to your translation
+  project a "pootle-terminology" file named after your project's extension.
+  {% endblocktrans %}
+  </p>
 {% endif %}
+</div>
 {% endblock %}
