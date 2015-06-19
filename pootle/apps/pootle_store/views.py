@@ -292,7 +292,7 @@ def get_search_step_query(request, form, units_queryset):
                           u" using database search")
             return get_non_indexed_search_step_query(form, units_queryset)
         else:
-            alldbids = []
+            alldbids = [-1]
             for translation_project in translation_projects:
                 logging.debug(u"Found %s indexer for %s, using indexed search",
                               translation_project.indexer.INDEX_DIRECTORY_NAME,
