@@ -13,12 +13,18 @@ Pootle administrators should indicate the correct project type (GNOME, KDE,
 Mozilla, etc.) in the administration pages. This will improve the accuracy of
 the quality checks.
 
-To review the quality checks you need to have translation rights for the
-project. To find the results, click on the "Review" tab. Clicking on the name
-of a test will step you through the translations that fail the test.
+Critical checks are prominently displayed through the browsing UI. Any
+extra failing checks can be accessed by clicking the ``+`` button located
+right below the navigation breadcrumbs. Clicking on the name of a test
+will step you through the translations that fail the test.
 
-To understand the meaning of each test, Pootle displays the failing tests on
-the top-right corner of the translation page with a link to the online
+While in the translation editor, submissions resulting in critical failing
+checks will be immediately reported, preventing you from automatically
+continuing until the issues have been resolved or disregarded as false
+positives.
+
+To understand the meaning of each test, Pootle displays the failing tests
+right on top of the submission button, with a link to the online
 documentation. You can also read the detailed descriptions of the
 :ref:`pofilter tests <toolkit:test_description>`.
 
