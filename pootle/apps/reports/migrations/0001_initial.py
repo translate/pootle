@@ -6,6 +6,11 @@ from django.db import models, migrations
 
 class Migration(migrations.Migration):
 
+    # Django uses this attribute to recognize squashed migrations, but we are
+    # abusing it to tell Django that this migration replaces a migration
+    # already run and recorded with a different app name.
+    replaces = [(b'evernote_reports', '0001_initial')]
+
     dependencies = [
     ]
 

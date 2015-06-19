@@ -21,9 +21,9 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('accounts.urls')),
     url(r'^accounts/', include('allauth.urls')),
 
-    # URLs added by Evernote
-    url(r'^admin/reports/', include('evernote_reports.urls')),
-    url(r'', include('evernote_reports.profile_urls')),
+    # Reports
+    url(r'^admin/reports/', include('reports.urls')),
+    url(r'', include('reports.profile_urls')),
 )
 
 # XXX should be autodiscovered

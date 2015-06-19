@@ -29,11 +29,11 @@
   $(function () {
     PTL.reports.init({
       users: {{ users|safe }},
-      updateUserRatesUrl: "{% url 'evernote-update-user-rates' %}",
-      addPaidTaskUrl: "{% url 'evernote-add-paid-task' %}",
-      removePaidTaskUrl: "{% url 'evernote-remove-paid-task' %}",
+      updateUserRatesUrl: "{% url 'update-user-rates' %}",
+      addPaidTaskUrl: "{% url 'add-paid-task' %}",
+      removePaidTaskUrl: "{% url 'remove-paid-task' %}",
       serverTime: "{{ now }}",
-      detailedUrl: "{% url 'evernote-reports-detailed' %}",
+      detailedUrl: "{% url 'reports-detailed' %}",
       adminReport: true,
       freeUserReport: false,
     });

@@ -138,7 +138,7 @@ class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin, PaidTaskFormVi
 
 
 @admin_required
-def evernote_reports(request):
+def reports(request):
     User = get_user_model()
     now = make_aware(datetime.now())
 
@@ -261,7 +261,7 @@ def get_detailed_report_context(user, month):
 
 
 @admin_required
-def evernote_reports_detailed(request):
+def reports_detailed(request):
     username = request.GET.get('username', None)
     month = request.GET.get('month', None)
     User = get_user_model()
@@ -404,7 +404,7 @@ def get_activity_data(request, user, month):
         'start': start.strftime('%Y-%m-%d'),
         'end': end.strftime('%Y-%m-%d'),
         'utc_offset': start.strftime("%z"),
-        'admin_permalink': request.build_absolute_uri(reverse('evernote-reports')),
+        'admin_permalink': request.build_absolute_uri(reverse('reports')),
     }
 
     if user != '':
