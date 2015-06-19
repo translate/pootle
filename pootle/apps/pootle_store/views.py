@@ -336,6 +336,8 @@ def get_search_step_query(request, form, units_queryset):
 
                 alldbids.extend(dbids)
 
+            if not alldbids:
+                return units_queryset
             return units_queryset.filter(id__in=alldbids)
 
 
