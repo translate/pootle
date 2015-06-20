@@ -32,6 +32,7 @@ DEPRECATIONS = [
     ('CONTRIBUTORS_EXCLUDED_PROJECT_NAMES', None, '2.7', None),
     ('MIN_AUTOTERMS', None, '2.7', None),
     ('MAX_AUTOTERMS', None, '2.7', None),
+    ('DESCRIPTION', None, '2.7', None),
 ]
 
 

@@ -463,3 +463,14 @@ Deprecated Settings
 ``MAX_AUTOTERMS``
   .. deprecated:: 2.7
      Terminology auto-extraction feature has been removed.
+
+
+.. setting:: DESCRIPTION
+
+``DESCRIPTION``
+  .. deprecated:: 2.7
+     Pootle no longer displays site description on the landing page, but rather
+     makes use of static pages to convey information to users in the sidebar.
+     Use :doc:`static pages </features/staticpages>` and :doc:`customization
+     </developers/customization>` if you want to give users information about
+     the Pootle site.
