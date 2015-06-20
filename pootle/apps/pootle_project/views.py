@@ -115,7 +115,7 @@ def project_admin(request, current_project):
     def generate_link(tp):
         path_args = split_pootle_path(tp.pootle_path)[:2]
         perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
-        return '<a href="%s">%s</a>' % (perms_url, tp.language)
+        return u'<a href="%s">%s</a>' % (perms_url, tp.language)
 
     return util.edit(request, 'projects/admin/languages.html',
                      TranslationProject, ctx, generate_link,
