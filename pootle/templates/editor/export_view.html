@@ -146,8 +146,10 @@
     {% if unit_total_count %}
       <tr class="empty">
         <td colspan="2">
-          {% blocktrans with count=displayed_unit_count total_count=unit_total_count trimmed %}
-          We displayed first {{count}} units out of {{total_count}}. Please refine your search.
+          {% blocktrans with unit_count=displayed_unit_count count total_count=unit_total_count trimmed %}
+          We displayed the first unit out of {{total_count}}. Please refine your search.
+          {% plural %}
+          We displayed first {{unit_count}} units out of {{total_count}}. Please refine your search.
           {% endblocktrans %}
         </td>
       </tr>
