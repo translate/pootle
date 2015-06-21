@@ -7,8 +7,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import logging
-
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -18,9 +16,6 @@ from lxml.html import rewrite_links
 __all__ = (
     'get_markup_filter_name', 'get_markup_filter', 'apply_markup_filter',
 )
-
-
-logger = logging.getLogger('pootle.markup')
 
 
 def rewrite_internal_link(link):
@@ -66,18 +61,7 @@ def get_markup_filter_name():
 def get_markup_filter():
     """Returns the configured filter as a tuple with name and args.
 
-    In the following case this function returns (None, message) instead,
-    where message tells the reason why not a markup filter is returned:
-
-        * There is no markup filter set.
-
-        * The POOTLE_MARKUP_FILTER option is improperly set.
-
-        * The markup filter name set can't be used because the required
-          package isn't installed.
-
-        * The markup filter name set is not one of the acceptable markup
-          filter names.
+    If there is any problem it returns (None, '').
     """
     try:
         markup_filter, markup_kwargs = settings.POOTLE_MARKUP_FILTER
@@ -90,21 +74,9 @@ def get_markup_filter():
         elif markup_filter == 'restructuredtext':
             import docutils
         else:
-            raise ValueError()
-    except AttributeError:
-        logger.error("POOTLE_MARKUP_FILTER is missing. Falling back to HTML.")
-        return (None, "missing")
-    except IndexError:
-        logger.error("POOTLE_MARKUP_FILTER is misconfigured. Falling back to HTML.")
-        return (None, "misconfigured")
-    except ImportError:
-        logger.warning("Can't find the package which provides '%s' markup "
-                        "support. Falling back to HTML.", markup_filter)
-        return (None, "uninstalled")
-    except ValueError:
-        logger.error("Invalid value '%s' in POOTLE_MARKUP_FILTER. Falling back to "
-                      "HTML." % markup_filter)
-        return (None, "invalid")
+            return (None, '')
+    except Exception:
+        return (None, '')
 
     return (markup_filter, markup_kwargs)
 
