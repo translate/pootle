@@ -197,6 +197,7 @@ AMAGAMA_URL = 'https://amagama-live.translatehouse.org/api/v1/'
 
 # Silence the DEBUG check on dev servers
 SILENCED_SYSTEM_CHECKS = [
+    'pootle.W004',
     'pootle.W005',
     'pootle.W010',
     'pootle.W011',

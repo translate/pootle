@@ -88,7 +88,7 @@ def check_optional_dependencies(app_configs=None, **kwargs):
             _("Can't find python-levenshtein package. "
               "Updating against templates is faster with python-levenshtein."),
             hint=_("Try pip install python-levenshtein"),
-            id="pootle.W010",
+            id="pootle.W004",
         ))
 
     return errors
