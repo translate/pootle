@@ -283,6 +283,10 @@ class VirtualFolderTreeItemManager(models.Manager):
         return super(VirtualFolderTreeItemManager, self) \
             .get_queryset().select_related('vfolder')
 
+    def live(self):
+        """Filter VirtualFolderTreeItems with non-obsolete directories."""
+        return self.filter(directory__obsolete=False)
+
 
 class VirtualFolderTreeItem(models.Model, CachedTreeItem):
 
@@ -393,6 +397,9 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
 
     ### TreeItem
 
+    def can_be_updated(self):
+        return not self.directory.obsolete
+
     def get_cachekey(self):
         return self.pootle_path
 
@@ -403,9 +410,9 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         return []
 
     def get_children(self):
-        result = [store for store in self.stores.iterator()]
+        result = [store for store in self.stores.live().iterator()]
         result.extend([vfolder_treeitem for vfolder_treeitem
-                       in self.child_vf_treeitems.iterator()])
+                       in self.child_vf_treeitems.live().iterator()])
         return result
 
     def get_stats(self, include_children=True):
