@@ -135,19 +135,20 @@ def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
     return files, dirs
 
 
-def add_items(fs_items, db_items, create_or_resurrect_db_item, parent):
+def add_items(fs_items_set, db_items, create_or_resurrect_db_item, parent):
     """Add/make obsolete the database items to correspond to the filesystem.
 
-    :param fs_items: entries currently in the filesystem
-    :param db_items: entries currently in the database
+    :param fs_items_set: items (dirs, files) currently in the filesystem
+    :param db_items: dict (name, item) of items (dirs, stores) currently in the
+        database
     :create_or_resurrect_db_item: callable that will create a new db item
         or resurrect an obsolete db item with a given name and parent.
+    :parent: parent db directory for the items
     :return: list of all items, list of newly added items
     :rtype: tuple
     """
     items = []
     new_items = []
-    fs_items_set = set(fs_items)
     db_items_set = set(db_items)
 
     items_to_delete = db_items_set - fs_items_set
