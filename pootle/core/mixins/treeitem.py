@@ -496,7 +496,7 @@ class CachedTreeItem(TreeItem):
         if _dirty:
             self._dirty_cache = set()
             self.register_all_dirty()
-            create_update_cache_job(self, _dirty)
+            create_update_cache_job_wrapper(self, _dirty)
 
     def update_all_cache(self):
         """Add a RQ job which updates all cached stats of current TreeItem
@@ -522,7 +522,7 @@ class CachedTreeItem(TreeItem):
 
             if keys_for_parent:
                 for p in self.get_parents():
-                    create_update_cache_job(p, keys_for_parent, decrement)
+                    create_update_cache_job_wrapper(p, keys_for_parent, decrement)
                 self.unregister_dirty(decrement)
             else:
                 self.unregister_all_dirty(decrement)
@@ -538,7 +538,7 @@ class CachedTreeItem(TreeItem):
         all_cache_methods = set(CachedMethods.get_all())
         for p in self.get_parents():
             p.register_all_dirty()
-            create_update_cache_job(p, all_cache_methods)
+            create_update_cache_job_wrapper(p, all_cache_methods)
 
 
 class JobWrapper():
@@ -644,6 +644,7 @@ class JobWrapper():
         if job.timeout is None:
             job.timeout = self.timeout
         job.save(pipeline=pipe)
+        self.job = job
 
     def save_deferred(self, depends_on, pipe):
         """
@@ -674,8 +675,15 @@ def update_cache_job(instance):
     job_wrapper.clear_job_params()
 
 
-def create_update_cache_job(instance, keys, decrement=1):
+def create_update_cache_job_wrapper(instance, keys, decrement=1):
     queue = get_queue('default')
+    if queue._async:
+        create_update_cache_job(queue, instance, keys, decrement=decrement)
+    else:
+        instance._update_cache_job(keys, decrement=decrement)
+
+
+def create_update_cache_job(queue, instance, keys, decrement=1):
     queue.connection.sadd(queue.redis_queues_keys, queue.key)
     job_wrapper = JobWrapper.create(update_cache_job,
                                     instance=instance,
@@ -741,4 +749,5 @@ def create_update_cache_job(instance, keys, decrement=1):
                 logger.debug('RETRY after WatchError for %s' % last_job_key)
                 continue
     logger.debug('ENQUEUE %s (job_id=%s)' % (last_job_key, job_wrapper.id))
+
     queue.push_job_id(job_wrapper.id)

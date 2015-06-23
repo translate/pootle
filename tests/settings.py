@@ -38,6 +38,14 @@ CACHES = {
     },
 }
 
+# Using synchronous mode for testing
+RQ_QUEUES = {
+    'default': {
+        'USE_REDIS_CACHE': 'redis',
+        'DEFAULT_TIMEOUT': 360,
+        'ASYNC': False,
+    },
+}
 
 # Mail server settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

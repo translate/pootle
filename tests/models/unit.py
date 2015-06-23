@@ -14,6 +14,7 @@ from translate.storage import factory
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
+from pootle.core.mixins.treeitem import CachedMethods
 from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
 
 
@@ -240,3 +241,25 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
 
     unit.accept_suggestion(suggestion, tp, system)
     assert unit.state == TRANSLATED
+
+@pytest.mark.django_db
+def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
+    """Tests that accepting a suggestion for an untranslated unit will
+    change the wordcount stats of the unit's store.
+    """
+
+    untranslated_unit = it_tutorial_po.getitem(0)
+    suggestion_text = 'foo bar baz'
+
+    sugg, added = untranslated_unit.add_suggestion(suggestion_text)
+    assert sugg is not None
+    assert added
+    assert len(untranslated_unit.get_suggestions()) == 1
+    assert it_tutorial_po.get_cached(CachedMethods.SUGGESTIONS) == 1
+    assert it_tutorial_po.get_cached(CachedMethods.WORDCOUNT_STATS)['translated'] == 1
+    assert untranslated_unit.state == UNTRANSLATED
+    untranslated_unit.accept_suggestion(sugg,
+                                        it_tutorial_po.translation_project,
+                                        system)
+    assert untranslated_unit.state == TRANSLATED
+    assert it_tutorial_po.get_cached(CachedMethods.WORDCOUNT_STATS)['translated'] == 2

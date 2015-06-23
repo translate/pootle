@@ -18,3 +18,10 @@ from _pytest.monkeypatch import monkeypatch
 # functions, therefore the patching has no effect
 mp = monkeypatch()
 mp.setattr('django.utils.functional.cached_property', property)
+
+
+class FakeJob(object):
+    id = 'FAKE_JOB_ID'
+
+
+mp.setattr('rq.get_current_job', lambda: FakeJob())

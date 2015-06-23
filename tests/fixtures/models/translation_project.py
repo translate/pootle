@@ -47,5 +47,11 @@ def french_tutorial(french, tutorial):
 
 @pytest.fixture
 def spanish_tutorial(spanish, tutorial):
-    """Require French Tutorial."""
+    """Require Spanish Tutorial."""
     return _require_tp(spanish, tutorial)
+
+
+@pytest.fixture
+def italian_tutorial(italian, tutorial):
+    """Require Italian Tutorial."""
+    return _require_tp(italian, tutorial)
