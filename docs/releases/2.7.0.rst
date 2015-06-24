@@ -189,6 +189,9 @@ Sysadmins
   releases first upgrade to 2.6.0
 - Redis is now required for all caching, memcached and other alternatives will
   not work.
+- Exports no longer work if they are directly served by the web server. Apache
+  users can refer to :ref:`Apache and mod_wsgi <apache#mod_wsgi>` for a
+  suggested configuration.
 - Registration and authentication is now handled by `django-allauth
   <https://readthedocs.org/projects/django-allauth/>`_.  gives Pootle
   implicit support for OpenID, OAuth, OAuth2 and Persona sign-in
