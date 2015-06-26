@@ -195,8 +195,7 @@ assets:
 
    (env) $ cd pootle/static/js
    (env) $ npm install
-   (env) $ pootle collectstatic --noinput
-   (env) $ pootle assets build
+   (env) $ make assets
 
 
 Now install Pootle:
