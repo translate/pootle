@@ -11,7 +11,7 @@ Changes in Requirements
 =======================
 - Django >= 1.7, < 1.8
 - `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
-  1.12.0
+  1.13.0
 - Python >= 2.7, < 3.0
 - Redis - latest stable release.
 - Unix-based operating system.
