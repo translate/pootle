@@ -141,13 +141,22 @@ To perform the upgrade follow the next steps:
   </developers/customization>` to adjust your customizations to the correct
   locations and approach in the new release.
 
-* Run the :djadmin:`collectstatic` and :djadmin:`assets build <assets>`
-  commands to update the static assets:
+  .. note:: If you have customized the CSS styling or the JavaScript code you
+     will have to run the following commands to update the static assets:
 
-  .. code-block:: bash
+     .. code-block:: bash
 
-     (env)$ pootle collectstatic --clear --noinput
-     (env)$ pootle assets build
+       (env) $ cd $pootle_dir/pootle/static/js/
+       (env) $ npm install
+       (env) $ npm update
+       (env) $ pootle webpack
+       (env) $ pootle collectstatic --noinput --clear -i node_modules -i *.jsx
+       (env) $ pootle assets build
+
+
+     ``$pootle_dir`` is the directory where :command:`pip` installed Pootle. Its
+     location depends on your settings for :command:`pip`, but by default it
+     should be :file:`~/.virtualenvs/env/lib/python2.7/site-packages/`.
 
 
 * Finally, restart your server.
