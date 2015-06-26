@@ -9,724 +9,773 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2015-06-24 11:37+0100\n"
+"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
+"Language-Team: Irish <ga@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :(n>6 "
+"&& n<11) ? 3 : 4;;\n"
 "X-Generator: Translate Toolkit 1.9.1-pre\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "Sábháladh."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Scriosadh."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "Scrios"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "Cód"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
 msgid "Full Name"
-msgstr ""
+msgstr "Ainm Iomlán"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "Carachtair Speisialta"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Líon na hIolraí"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "Cothromóid Iolrach"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
 msgid "Save"
-msgstr ""
+msgstr "Sábháil"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "Foramharc"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "Ceadanna"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "Seiceálacha Cáilíochta"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "Cineál Comhaid"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Stíl Chrainn an Tionscadail"
 
 #: static/js/admin/components/ProjectForm.js:103
 msgid "Source Language"
-msgstr ""
+msgstr "Bunteanga"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "Déan Neamhaird de Chomhaid"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
-msgstr ""
+msgstr "Teagmhálaí d'Earráidí sa Bhunteanga"
 
 #: static/js/admin/components/ProjectForm.js:122
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Réimír Chuardaigh do Phictiúir"
 
 #: static/js/admin/components/ProjectForm.js:129
 msgid "Disabled"
-msgstr ""
+msgstr "Díchumasaithe"
 
 #: static/js/admin/components/ProjectForm.js:141
 msgid "Languages"
-msgstr ""
+msgstr "Teangacha"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
-msgstr ""
+msgstr "Luchtaigh Tuilleadh"
 
 #: static/js/admin/components/Search.js:89
 msgid "Loading..."
-msgstr ""
+msgstr "Á Luchtú..."
 
 #: static/js/admin/components/UserForm.js:52
 msgid ""
 "Note: deleting the user will make its suggestions and translations become "
 "attributed to an anonymous user (nobody)."
 msgstr ""
+"Nóta: má scriosann tú an t-úsáideoir, cuirfear a c(h)uid moltaí agus "
+"aistriúchán i leith úsáideora gan ainm (nobody)."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "Ainm úsáideora"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "Gníomhach"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:100
 #: static/js/auth/components/SocialVerification.js:94
 msgid "Password"
-msgstr ""
+msgstr "Focal Faire"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "Roghnaigh focal faire nua"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "Ríomhphost"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "Riarthóir"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
-msgstr ""
+msgstr "Leasainm Twitter"
 
 #: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "URL próifíl LinkedIn"
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
 msgid "Website"
-msgstr ""
+msgstr "Suíomh Gréasáin"
 
 #: static/js/admin/components/UserForm.js:128
 msgid "Personal website URL"
-msgstr ""
+msgstr "URL suímh phearsanta"
 
 #: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
 msgid "Short Bio"
-msgstr ""
+msgstr "Beathaisnéisín"
 
 #: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
-msgstr ""
+msgstr "Cur síos pearsanta"
 
 #: static/js/admin/components/UserForm.js:147
 msgid "Public Profile"
-msgstr ""
+msgstr "Próifíl Phoiblí"
 
 #: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "Socruithe"
 
 #: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
-msgstr ""
+msgstr "Staitisticí"
 
 #: static/js/admin/components/UserForm.js:150
 msgid "Reports"
-msgstr ""
+msgstr "Tuairiscí"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>."
-msgstr ""
+msgstr "Sheolamar ríomhphost leis an nasc speisialta chuig <span>%s</span>."
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"Sheolamar ríomhphost leis an nasc speisialta chuig an seoladh ríomhphoist atá "
+"ceangailte leis an gcuntas seo."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Ní mór duit do chuntas a ghníomhachtú."
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Cliceáil an nasc sin chun an cuntas a chruthú."
 
 #: static/js/auth/components/AccountActivation.js:56
 #: static/js/auth/components/AccountInactive.js:36
 msgid "Close"
-msgstr ""
+msgstr "Dún"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "Níl do chuntas ar fáil toisc gur chuir riarthóir ó fheidhm é."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In With..."
-msgstr ""
+msgstr "Logáil Isteach Trí..."
 
 #: static/js/auth/components/AuthController.js:82
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "Logáil Isteach"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
-msgstr ""
+msgstr "Cuntas Neamhghníomhach"
 
 #: static/js/auth/components/AuthController.js:96
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
-msgstr ""
+msgstr "Cláraigh"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
 msgid "Account Activation"
-msgstr ""
+msgstr "Gníomhachtú Cuntais"
 
 #: static/js/auth/components/AuthController.js:117
 #: static/js/auth/components/AuthController.js:124
 #: static/js/auth/components/AuthController.js:131
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Athshocraigh d'fhocal faire"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
-msgstr ""
+msgstr "Úps..."
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
-msgstr ""
+msgstr "Deimhniú Sóisialta"
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
-msgstr ""
+msgstr "Déan Teagmháil Linn"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Níorbh fhéidir an focal faire a athshocrú leis an nasc; b'fhéidir gur "
+"baineadh úsáid as cheana.  Ba chóir duit nasc nua a iarraidh."
 
 #: static/js/auth/components/PasswordResetForm.js:86
 msgid "Reset Password"
-msgstr ""
+msgstr "Athshocraigh an Focal Faire"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Athraíodh an focal faire, do do logáil isteach..."
 
 #: static/js/auth/components/PasswordResetForm.js:122
 #: static/js/auth/components/SignUpForm.js:108
 msgid "Repeat Password"
-msgstr ""
+msgstr "An focal faire arís"
 
 #: static/js/auth/components/PasswordResetForm.js:135
 msgid "Set New Password"
-msgstr ""
+msgstr "Roghnaigh Focal Faire Nua"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
 msgstr ""
+"Tar éis duit an focal faire a athrú, beidh tú logáilte isteach go "
+"huathoibríoch."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
-#, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Ríomhphost á sheoladh chuig %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
+"Cliceáil an nasc sin chun dul ar aghaidh le hathshocrú an fhocail fhaire."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Nach bhfuair tú an ríomhphost? Féach an bhfuil sé i d'fhillteán dramhphoist, "
+"nó iarr cóip nua den teachtaireacht."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
-msgstr ""
+msgstr "Seol an Ríomhphost Arís"
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Cláraigh mar úsáideoir nua"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:101
 msgid "I forgot my password"
-msgstr ""
+msgstr "Ní cuimhin liom m'fhocal faire"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Logáilte isteach. Do d'athdhíriú..."
 
 #: static/js/auth/components/SignInPanel.js:62
 msgid "Social Services"
-msgstr ""
+msgstr "Seirbhísí Sóisialta"
 
 #: static/js/auth/components/SignInPanel.js:65
 msgid "Login / Password"
-msgstr ""
+msgstr "Ainm / Focal Faire"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "Logáil isteach mar úsáideoir atá ann"
 
 #: static/js/auth/components/SocialAuthError.js:31
-#, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "Tharla earráid le linn logála isteach trí %s."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
-msgstr ""
+msgstr "Tharla earráid le linn logála isteach trí do chuntas sóisialta."
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "Bain triail eile as"
 
 #: static/js/auth/components/SocialSignInForm.js:40
-#, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Logáil Isteach Trí %s"
 
 #: static/js/auth/components/SocialSignInForm.js:46
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"An chéad uair a logálann tú isteach trí sheirbhís sheachtrach, cruthófar "
+"cuntas nua ar do shon."
 
 #: static/js/browser.js:156
 msgid "All Languages"
-msgstr ""
+msgstr "Gach Teanga"
 
 #: static/js/browser.js:159
 msgid "All Projects"
-msgstr ""
+msgstr "Gach Tionscadal"
 
 #: static/js/browser.js:162
 msgid "Entire Project"
-msgstr ""
+msgstr "An Tionscadal Ar Fad"
 
 #: static/js/editor/app.js:243
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"An chéad teaghrán eile (Ctrl+.)<br/><br/>Nó:<br/>An chéad leathanach eile: "
+"Ctrl+Shift+.<br/>An leathanach roimhe seo: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:247
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"An teaghrán roimhe seo (Ctrl+,)<br/><br/>Nó:</br>An leathanach roimhe seo: "
+"Ctrl+Shift+,<br/>An chéad leathanach: Ctrl+Shift+Home"
 
 #: static/js/editor/app.js:359
-#, javascript-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "Moltaí ó %s ar feitheamh"
 
 #: static/js/editor/app.js:362
-#, javascript-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "Moltaí glactha ó %s"
 
 #: static/js/editor/app.js:365
-#, javascript-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "Moltaí diúltaithe ó %s"
 
 #: static/js/editor/app.js:368
-#, javascript-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "Aistriúcháin de chuid %s"
 
 #: static/js/editor/app.js:372
-#, javascript-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "Aistriúcháin fhorscríofa de chuid %s"
 
 #: static/js/editor/app.js:501 static/js/editor/app.js:1650
 msgid "No results."
-msgstr ""
+msgstr "Gan torthaí."
 
 #: static/js/editor/app.js:960
 msgid "Error while connecting to the server"
-msgstr ""
+msgstr "Earráid agus ceangal á bhunú leis an bhfreastalaí"
 
 #: static/js/editor/app.js:964
 msgid "Not found"
-msgstr ""
+msgstr "Gan aimsiú"
 
 #: static/js/editor/app.js:966
 msgid "Server error"
-msgstr ""
+msgstr "Earráid fhreastalaí"
 
 #: static/js/editor/app.js:968
 msgid "The server seems down. Try again later."
 msgstr ""
+"Dealraíonn sé go bhfuil an freastalaí as feidhm. Déan iarracht eile ar ball."
 
 #: static/js/editor/app.js:975
 msgid "Unknown error"
-msgstr ""
+msgstr "Earráid anaithnid"
 
 #: static/js/editor/app.js:983
 msgid "This unit no longer exists."
-msgstr ""
+msgstr "Níl an t-aonad seo ann a thuilleadh."
 
 #: static/js/editor/app.js:984
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Brabhsáil"
 
 #: static/js/editor/app.js:986
 msgid "Reload page"
-msgstr ""
+msgstr "Athluchtaigh an leathanach"
 
 #: static/js/editor/app.js:1986
 msgid "some anonymous user"
-msgstr ""
+msgstr "úsáideoir éigin gan ainm"
 
 #: static/js/editor/app.js:1988
 msgid "someone"
-msgstr ""
+msgstr "duine éigin"
 
 #: static/js/editor/app.js:2005 static/js/editor/app.js:2054
 msgid "Similar translations"
-msgstr ""
+msgstr "Aistriúcháin cosúil leis seo"
 
 #: static/js/shared/models/project.js:59
 msgid "disabled"
-msgstr ""
+msgstr "díchumasaithe"
 
 #: static/js/stats.js:286
-#, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s soicind"
+msgstr[1] "%s shoicind"
+msgstr[2] "%s shoicind"
+msgstr[3] "%s soicind"
+msgstr[4] "%s soicind"
 
 #: static/js/stats.js:318
 msgid "Expand details"
-msgstr ""
+msgstr "Taispeáin mionsonraí"
 
 #: static/js/stats.js:318
 msgid "Collapse details"
-msgstr ""
+msgstr "Folaigh mionsonraí"
 
 #: static/js/utils.js:151
-#, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bliain amháin ó shin"
+msgstr[1] "%s bhliain ó shin"
+msgstr[2] "%s bliana ó shin"
+msgstr[3] "%s mbliana ó shin"
+msgstr[4] "%s bliain ó shin"
 
 #: static/js/utils.js:154
-#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Seachtain amháin ó shin"
+msgstr[1] "%s sheachtain ó shin"
+msgstr[2] "%s seachtaine ó shin"
+msgstr[3] "%s seachtaine ó shin"
+msgstr[4] "%s seachtain ó shin"
 
 #: static/js/utils.js:157
-#, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Inné"
+msgstr[1] "%s lá ó shin"
+msgstr[2] "%s lá ó shin"
+msgstr[3] "%s lá ó shin"
+msgstr[4] "%s lá ó shin"
 
 #: static/js/utils.js:160
-#, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uair an chloig ó shin"
+msgstr[1] "%s uair an chloig ó shin"
+msgstr[2] "%s huaire an chloig ó shin"
+msgstr[3] "%s n-uaire an chloig ó shin"
+msgstr[4] "%s uair an chloig ó shin"
 
 #: static/js/utils.js:163
-#, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nóiméad amháin ó shin"
+msgstr[1] "%s nóiméad ó shin"
+msgstr[2] "%s nóiméad ó shin"
+msgstr[3] "%s nóiméad ó shin"
+msgstr[4] "%s nóiméad ó shin"
 
 #: static/js/utils.js:171
 msgid "A few seconds ago"
-msgstr ""
+msgstr "Cúpla soicind ó shin"
 
 #: static/js/admin/components/language.jsx:52
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s teanga a mheaitseálann."
+msgstr[1] "%(count)s theanga a mheaitseálann."
+msgstr[2] "%(count)s theanga a mheaitseálann."
+msgstr[3] "%(count)s dteanga a mheaitseálann."
+msgstr[4] "%(count)s teanga a mheaitseálann."
 
 #: static/js/admin/components/language.jsx:56
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tá %(count)s teanga ann."
+msgstr[1] "Tá %(count)s theanga ann. Seo iad na cinn is déanaí."
+msgstr[2] "Tá %(count)s theanga ann. Seo iad na cinn is déanaí."
+msgstr[3] "Tá %(count)s dteanga ann. Seo iad na cinn is déanaí."
+msgstr[4] "Tá %(count)s teanga ann. Seo iad na cinn is déanaí."
 
 #: static/js/admin/components/language.jsx:74
 msgid "Search Languages"
-msgstr ""
+msgstr "Cuardaigh Teangacha"
 
 #: static/js/admin/components/language.jsx:75
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Aimsigh teanga trí ainm nó cód"
 
 #: static/js/admin/components/language.jsx:103
 #: static/js/admin/components/language.jsx:138
 msgid "Add Language"
-msgstr ""
+msgstr "Teanga Nua"
 
 #: static/js/admin/components/language.jsx:106
 #: static/js/admin/components/project.jsx:106
 #: static/js/admin/components/user.jsx:106
 msgid "Cancel"
-msgstr ""
+msgstr "Cealaigh"
 
 #: static/js/admin/components/language.jsx:135
 msgid "Edit Language"
-msgstr ""
+msgstr "Cuir Teanga in Eagar"
 
 #: static/js/admin/components/language.jsx:142
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Úsáid an fhoirm le teacht ar an teanga, ansin cliceáil uirthi chun cur in "
+"eagar."
 
 #: static/js/admin/components/project.jsx:52
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s tionscadal a mheaitseálann."
+msgstr[1] "%(count)s thionscadal a mheaitseálann."
+msgstr[2] "%(count)s thionscadal a mheaitseálann."
+msgstr[3] "%(count)s dtionscadal a mheaitseálann."
+msgstr[4] "%(count)s tionscadal a mheaitseálann."
 
 #: static/js/admin/components/project.jsx:56
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tá %(count)s tionscadal ann."
+msgstr[1] "Tá %(count)s thionscadal ann. Seo iad na cinn is déanaí."
+msgstr[2] "Tá %(count)s thionscadal ann. Seo iad na cinn is déanaí."
+msgstr[3] "Tá %(count)s dtionscadal ann. Seo iad na cinn is déanaí."
+msgstr[4] "Tá %(count)s tionscadal ann. Seo iad na cinn is déanaí."
 
 #: static/js/admin/components/project.jsx:74
 msgid "Search Projects"
-msgstr ""
+msgstr "Cuardaigh Tionscadail"
 
 #: static/js/admin/components/project.jsx:75
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Aimsigh tionscadal trí ainm nó cód"
 
 #: static/js/admin/components/project.jsx:103
 #: static/js/admin/components/project.jsx:138
 msgid "Add Project"
-msgstr ""
+msgstr "Tionscadal Nua"
 
 #: static/js/admin/components/project.jsx:135
 msgid "Edit Project"
-msgstr ""
+msgstr "Cuir Tionscadal in Eagar"
 
 #: static/js/admin/components/project.jsx:142
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Úsáid an fhoirm le teacht ar an tionscadal, ansin cliceáil air le cur in "
+"eagar."
 
 #: static/js/admin/components/user.jsx:52
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s úsáideoir a mheaitseálann."
+msgstr[1] "%(count)s úsáideoir a mheaitseálann."
+msgstr[2] "%(count)s úsáideoir a mheaitseálann."
+msgstr[3] "%(count)s úsáideoir a mheaitseálann."
+msgstr[4] "%(count)s úsáideoir a mheaitseálann."
 
 #: static/js/admin/components/user.jsx:56
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tá %(count)s úsáideoir ann."
+msgstr[1] "Tá %(count)s úsáideoir ann. Seo iad na cinn is déanaí."
+msgstr[2] "Tá %(count)s úsáideoir ann. Seo iad na cinn is déanaí."
+msgstr[3] "Tá %(count)s n-úsáideoir ann. Seo iad na cinn is déanaí."
+msgstr[4] "Tá %(count)s úsáideoir ann. Seo iad na cinn is déanaí."
 
 #: static/js/admin/components/user.jsx:74
 msgid "Search Users"
-msgstr ""
+msgstr "Cuardaigh Úsáideoirí"
 
 #: static/js/admin/components/user.jsx:75
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Aimsigh úsáideoir trí ainm, seoladh ríomhphoist, airíonna"
 
 #: static/js/admin/components/user.jsx:103
 #: static/js/admin/components/user.jsx:138
 msgid "Add User"
-msgstr ""
+msgstr "Úsáideoir Nua"
 
 #: static/js/admin/components/user.jsx:135
 msgid "Edit User"
-msgstr ""
+msgstr "Cuir Úsáideoir in Eagar"
 
 #: static/js/admin/components/user.jsx:142
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"Úsáid an fhoirm le teacht ar an úsáideoir, ansin cliceáil air le cur in eagar."
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
-msgstr ""
+msgstr "Roghnaigh..."
 
 #: static/js/shared/components/forms.jsx:70
 msgid "No results found"
-msgstr ""
+msgstr "Gan torthaí"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Clear value"
-msgstr ""
+msgstr "Bánaigh an luach"
 
 #: static/js/shared/components/forms.jsx:72
 msgid "Clear all"
-msgstr ""
+msgstr "Bánaigh uile"
 
 #: static/js/shared/components/forms.jsx:73
 msgid "Type to search"
-msgstr ""
+msgstr "Clóscríobh le cuardach"
 
 #: static/js/user/components/edit.jsx:106
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "Cuir Mo Phróifíl Phoiblí in Eagar"
 
 #: static/js/user/components/edit.jsx:113
 msgid "My Public Profile"
-msgstr ""
+msgstr "Mo Phróifíl Phoiblí"
 
 #: static/js/user/components/edit.jsx:125
 msgid "Discard changes."
-msgstr ""
+msgstr "Ná sábháil na hathruithe."
 
 #: static/js/user/components/edit.jsx:126
 msgid "Yes"
-msgstr ""
+msgstr "Tá"
 
 #: static/js/user/components/edit.jsx:127
 msgid "No"
-msgstr ""
+msgstr "Níl"
 
 #: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "Athruithe gan sábháil. An bhfuil fonn ort iad a shábháil?"
 
 #: static/js/user/forms.jsx:61
 #, python-format
 msgid ""
-"To set or change your avatar for your email address (%(email)s), please go "
-"to gravatar.com."
+"To set or change your avatar for your email address (%(email)s), please go to "
+"gravatar.com."
 msgstr ""
+"Tabhair cuairt ar gravatar.com chun grianghraf nua a cheangal le do sheoladh "
+"ríomhphoist (%(email)s)."
 
 #: static/js/user/forms.jsx:74
 msgid "Your Full Name"
-msgstr ""
+msgstr "D'ainm iomlán"
 
 #: static/js/user/forms.jsx:80
 msgid "Avatar"
-msgstr ""
+msgstr "Abhatár"
 
 #: static/js/user/forms.jsx:90
 msgid "Your Twitter username"
-msgstr ""
+msgstr "Do leasainm Twitter"
 
 #: static/js/user/forms.jsx:97
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "URL do phróifíle LinkedIn"
 
 #: static/js/user/forms.jsx:103
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "URL do shuímh/bhlag phearsanta"
 
 #: static/js/user/forms.jsx:111
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"Cén fáth a nglacann tú páirt sa tionscadal seo? Abair linn, agus spreag "
+"daoine eile!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "Tionscadal / Teanga"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Translated"
-msgstr ""
+msgstr "Aistrithe"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Reviewed"
-msgstr ""
+msgstr "Athbhreithnithe"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Score Change"
-msgstr ""
+msgstr "Athrú Scóir"
 
 #: templates/admin/xhr_language_user_activity.html:16
 #: templates/admin/xhr_language_user_activity.html:17
@@ -737,96 +786,102 @@ msgstr ""
 #: templates/admin/xhr_summary_report.html:35
 msgid "word"
 msgid_plural "words"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "focal"
+msgstr[1] "fhocal"
+msgstr[2] "fhocal"
+msgstr[3] "bhfocal"
+msgstr[4] "focal"
 
 #: templates/admin/xhr_language_user_activity.html:30
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "Níl aon ghníomhaíocht sa tréimhse roghnaithe"
 
 #: templates/admin/xhr_language_user_activity.html:33
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Roghnaigh úsáideoir bailí."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "Tascanna Cláraithe"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
-msgstr ""
+msgstr "Dáta agus Am"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "Nóta Tráchta"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Gníomh"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Méid"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Ráta"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "Fo-iomlán"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:32
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "uair an chloig"
+msgstr[1] "uair an chloig"
+msgstr[2] "huaire an chloig"
+msgstr[3] "n-uaire an chloig"
+msgstr[4] "uair an chloig"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
-msgstr ""
+msgstr "Bain an tasc"
 
 #: templates/admin/xhr_paid_tasks_report.html:41
 msgid "Comment on it"
-msgstr ""
+msgstr "Déan trácht air"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "Achoimre"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "Tréimhse"
 
 #: templates/admin/xhr_summary_report.html:41
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(tascanna cláraithe)"
 
 #: templates/admin/xhr_summary_report.html:49
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "Iomlán (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
-msgstr ""
+msgstr "Tuilleadh"
 
 #: templates/editor/units/xhr_edit_ctx.html:5
 msgid "Hide"
-msgstr ""
+msgstr "Folaigh"
 
 #: templates/editor/units/xhr_edit_ctx.html:6
 msgid "Less"
-msgstr ""
+msgstr "Níos Lú"
 
 #: templates/editor/units/xhr_edit_ctx.html:7
 msgid "Show"
-msgstr ""
+msgstr "Taispeáin"
 
 #: templates/editor/units/xhr_tm.html:13
 #, python-format
@@ -834,3 +889,5 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo;"
