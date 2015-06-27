@@ -195,6 +195,7 @@ assets:
 
    (env) $ cd pootle/static/js
    (env) $ npm install
+   (env) $ cd ../../..
    (env) $ make assets
 
 
