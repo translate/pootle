@@ -86,19 +86,31 @@ To perform the upgrade follow the next steps:
 * If you want to perform a :doc:`database migration <database_migration>` then
   do it first.
 
+* We highly recommended that you use a virtual environment. If your install
+  currently doesn't use one then please :ref:`set up a virtualenv
+  <installation#setup_environment>`.
+
 * If you are upgrading from a version older than Pootle 2.7.0, then you must
   first upgrade to Pootle 2.6.0.
 
   .. code-block:: bash
 
-     (env) $ pip install Pootle==2.6.0
+     (env) $ pip install --upgrade Pootle==2.6.0
      (env) $ pootle setup
 
-  Then continue with the upgrade process.
 
-* We highly recommended that you use a virtual environment. If your install
-  currently doesn't use one then please :ref:`set up a virtualenv
-  <installation#setup_environment>`.
+  .. note::
+
+     If you weren't using a virtualenv before upgrading, instead of upgrading
+     you will be just doing a fresh install of Pootle in a blank virtualenv:
+
+     .. code-block:: bash
+
+       (env) $ pip install Pootle==2.6.0
+       (env) $ pootle setup
+
+
+  Then continue with the upgrade process.
 
 * Upgrade the Pootle package:
 
