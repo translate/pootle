@@ -48,9 +48,6 @@ alternative WSGI servers that might better suit your environment.
 Speed-ups and Extras
 ^^^^^^^^^^^^^^^^^^^^
 
-zip and unzip
-  Fast (un)compression of file archives.
-
 `python-Levenshtein <https://pypi.python.org/pypi/python-Levenshtein/>`_
   Provides speed-up when updating against templates.
 
@@ -84,10 +81,6 @@ some tips for performance tuning on your Pootle installation.
   versions of Pootle easily.
 
 - Ensure :setting:`DEBUG` mode is disabled.
-
-- Ensure that the ``zip`` and ``unzip`` commands are installed on your
-  server.  These can improve the performance during upload and download
-  of large ZIP files.
 
 - Ensure that you have python-levenshtein installed. This will improve the
   performance when updating against templates.
