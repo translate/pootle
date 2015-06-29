@@ -4,21 +4,21 @@
 # - docs/server/installation.rst
 # - release notes in docs/releases/$next
 # when bumping Django versions and dependencies.
-Django>=1.6.5,<1.7
+Django>=1.6.11,<1.7
 
 # Django apps
 django-allauth==0.16.1
-django-assets>=0.10
+django-assets==0.10
 django-contact-form==1.0
 django-taggit>=0.10,<0.11.2
-South>=1.0
+South>=1.0.2
 
 # Required by webassets, isn't shipped in Python < 2.7
 argparse
 
 # Libraries
-cssmin>=0.2.0
-diff-match-patch>=20121119
+cssmin==0.2.0
+diff-match-patch==20121119
 lxml>=2.3.6
 
 # For providing API
