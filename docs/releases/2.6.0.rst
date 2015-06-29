@@ -2,10 +2,10 @@
 Welcome to the Pootle 2.6.0 Interim
 ===================================
 
-*Not yet released*
+*Released on 29 June 2015*
 
 The 2.6.0 release is an interim release. It is used to migrate from Pootle
-2.1.1 or newer to Pootle 2.7.0.
+2.5.0 or newer to Pootle 2.7.0.
 
 .. warning::
 
@@ -15,33 +15,29 @@ The 2.6.0 release is an interim release. It is used to migrate from Pootle
 Changes in Requirements
 =======================
 - Django >= 1.6.5 < 1.7
-- `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
-  1.12.0
-- Python >= 2.6
+- Translate Toolkit >= 1.12.0
+- Python >= 2.6 < 3.0
 
 
 Major Changes
 =============
 
-- Upgrade:
+Direct upgrade is now only possible from 2.5.0 and later.
 
-  - Direct upgrade is now only possible from 2.1.1 and later.
-  - Fixed direct upgrade from 2.1.6 and older that required an intermediate
-    upgrade to 2.5.0.
-
-- Using dumpdata and loaddata to move between databases is no longer supported.
-  If you need to move, please use proper SQL scripts instead.
-
-
-Removed features
-================
-
-We have dropped some legacy upgrade features.  The removal of some of these
+We have dropped some legacy upgrade features. The removal of some of these
 feature means that upgrading directly from ancient Pootle versions is no longer
 possible.
 
-If you are upgrading from Pootle 2.1.0 or older you must first upgrade to 2.1.6
-before upgrading to this version.
+.. warning::
+
+  If you are upgrading from Pootle 2.1.0 or older you must first upgrade to
+  2.1.6 before upgrading to this version.
+
+
+.. warning::
+
+  If you are upgrading from Pootle older than 2.5.0 you must first upgrade to
+  2.5.1.3 before upgrading to this version.
 
 
 Credits
@@ -49,6 +45,9 @@ Credits
 
 This release was made possible by the following people:
 
-%CONTRIBUTORS%
+Leandro Regueiro, Julen Ruiz Aizpuru, Jerome Leclanche, Igor Afanasyev, Taras
+Semenenko, Dwayne Bailey, Khaled Hosny, Arky, Peter Bengtsson, அருண் குமார்,
+Sebastian Silva, ricordisamoa, Miha Vrhovnik, Kevin KIN-FOO, Henrik Saari, Greg
+Slepak, Folkert van Heusden, Clement Wong, Alexandre Segura, afan.
 
 And to all our bug finders, testers and translators, a Very BIG Thank You.
