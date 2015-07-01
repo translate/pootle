@@ -53,6 +53,9 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
             self.cleaned_data['email']
         )
 
+    def recipient_list(self):
+        return [settings.POOTLE_CONTACT_EMAIL]
+
 # Alters form's field order. Use `self.field_order` when in Django 1.9+
 ContactForm.base_fields = OrderedDict(
     (f, ContactForm.base_fields[f])
