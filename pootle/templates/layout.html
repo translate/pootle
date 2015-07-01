@@ -102,7 +102,7 @@
           {% block nav_items %}
           {% block nav_items_pre %}{% endblock %}
           {% if settings.POOTLE_CONTACT_ENABLED %}
-            <li><a class="js-contact" href="{% url 'pootle-contact' %}">{% trans "Contact Us" %}</a></li>
+            <li><a class="js-contact" href="{% url 'pootle-contact-xhr' %}">{% trans "Contact Us" %}</a></li>
           {% endif %}
           {% if user.is_authenticated %}
           <li id="user" class="js-navbar-dropdown">
