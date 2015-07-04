@@ -10,12 +10,20 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
+from optparse import make_option
+
 from django.core.management.base import NoArgsCommand
 
 from pootle_project.models import Project
 
 
 class Command(NoArgsCommand):
+    option_list = NoArgsCommand.option_list + (
+        make_option("--modified-since",
+            action="store", dest="modified_since", type=int,
+            help="Only process translations newer than specified revision"
+        ),
+    )
 
     def handle_noargs(self, **options):
         self.list_projects(**options)
@@ -23,5 +31,15 @@ class Command(NoArgsCommand):
     def list_projects(self, **options):
         """List all projects on the server."""
 
-        for project in Project.objects.all():
-            self.stdout.write(project.code)
+        revision = options.get("modified_since", 0)
+        if revision:
+            from pootle_translationproject.models import TranslationProject
+            tps = TranslationProject.objects.filter(submission__id__gt=revision) \
+                .distinct().values("project__code")
+
+            for tp in tps:
+                self.stdout.write(tp["project__code"])
+
+        else:
+            for project in Project.objects.all():
+                self.stdout.write(project.code)

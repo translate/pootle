@@ -265,6 +265,9 @@ list_languages
 Lists all the language codes for languages hosted on the server. This can be
 useful for automation.
 
+Accepts the :option:`--modified-since` parameter to list only those languages
+modified since the revision given by :djadmin:`revision`.
+
 
 .. django-admin:: list_projects
 
@@ -273,6 +276,9 @@ list_projects
 
 Lists all the project codes on the server. This might can be useful for
 automation.
+
+Accepts the :option:`--modified-since` parameter to list only those projects
+modified since the revision given by :djadmin:`revision`.
 
 
 .. django-admin:: revision

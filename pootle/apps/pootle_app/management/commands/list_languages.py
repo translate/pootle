@@ -19,6 +19,9 @@ class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
             make_option('--project', action='append', dest='projects',
                         help='Limit to PROJECTS'),
+            make_option("--modified-since", action="store", dest="modified_since",
+                        type=int,
+                        help="Only process translations newer than specified revision"),
     )
     help = "List language codes."
 
@@ -32,6 +35,10 @@ class Command(NoArgsCommand):
         from pootle_translationproject.models import TranslationProject
         tps = TranslationProject.objects.distinct()
         tps = tps.exclude(language__code='templates').order_by('language__code')
+
+        revision = options.get("modified_since", 0)
+        if revision:
+            tps = tps.filter(submission__id__gt=revision)
 
         if projects:
             tps = tps.filter(project__code__in=projects)
