@@ -62,12 +62,13 @@ class ReportFormView(ContactFormView):
     form_class = ReportForm
 
     def get_context_data(self, **kwargs):
+        ctx = super(ReportFormView, self).get_context_data(**kwargs)
         # Provide the form action URL to use in the template that renders the
         # contact dialog.
-        kwargs.update({
+        ctx.update({
             'contact_form_url': reverse('pootle-contact-report-error'),
         })
-        return super(ReportFormView, self).get_context_data(**kwargs)
+        return ctx
 
     def get_initial(self):
         initial = super(ReportFormView, self).get_initial()
