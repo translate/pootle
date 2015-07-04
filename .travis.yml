@@ -5,9 +5,10 @@ python:
   - 2.7
 env:
   matrix:
-    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=sqlite
-    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=postgres
-    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=mysql_innodb
+    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=sqlite META=
+    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=postgres META=
+    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=mysql_innodb META=
+    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=sqlite META=yes
 cache:
   apt: true
   directories:
@@ -28,24 +29,22 @@ before_script:
   - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e 'create database pootle CHARACTER SET utf8 COLLATE utf8_general_ci;'; fi
   - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e "SET GLOBAL wait_timeout = 36000;"; fi
 script:
-  - make docs
-  # FIXME revert breakdown of 'make build' after core merge
-  #- make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
-  - make assets
-  - make mo
-  - DJANGO_SETTINGS_MODULE=pootle.settings ./setup.py build_checks_templates
-  - ./manage.py migrate --noinput --traceback
-  - ./manage.py migrate | (egrep "Your models have changes" && exit 1 || exit 0)
-  - ./manage.py initdb --traceback --no-projects
-  - ./manage.py runserver --traceback &
-  - TESTPID=$!
-  - sleep 10
-  - kill -2 $TESTPID
+  - if [[ $META ]]; then make docs; fi
+  - if [[ $META ]]; then make mo; fi
+  - if [[ $META ]]; then make pep8; fi
+  # - if [[ $META ]]; then pep257; fi
+  - if [[ ! $META ]]; then make assets; fi
+  - if [[ ! $META ]]; then DJANGO_SETTINGS_MODULE=pootle.settings ./setup.py build_checks_templates; fi
+  - if [[ ! $META ]]; then ./manage.py migrate --noinput --traceback; fi
+  - if [[ ! $META ]]; then ./manage.py migrate | (egrep "Your models have changes" && exit 1 || exit 0); fi
+  - if [[ ! $META ]]; then ./manage.py initdb --traceback --no-projects; fi
+  - if [[ ! $META ]]; then ./manage.py runserver --traceback; fi &
+  - if [[ ! $META ]]; then TESTPID=$!; fi
+  - if [[ ! $META ]]; then sleep 10; fi
+  - if [[ ! $META ]]; then kill -2 $TESTPID; fi
   # FIXME reenable migration testing
   #- tests/version-migration/migrate.sh
-  - make pep8
-  # - pep257
-  - py.test --cov=. -vv
+  - if [[ ! $META ]]; then py.test --cov=. -vv; fi
 notifications:
   email:
     on_failure: always
@@ -62,4 +61,4 @@ notifications:
 services:
   - redis-server
 after_success:
-  coveralls
+  - if [[ ! $META ]]; then coveralls; fi
