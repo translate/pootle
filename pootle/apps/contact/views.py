@@ -33,12 +33,13 @@ class ContactFormView(AjaxResponseMixin, OriginalContactFormView):
     template_name = 'contact_form/xhr_contact_form.html'
 
     def get_context_data(self, **kwargs):
+        ctx = super(ContactFormView, self).get_context_data(**kwargs)
         # Provide the form action URL to use in the template that renders the
         # contact dialog.
-        kwargs.update({
+        ctx.update({
             'contact_form_url': reverse('pootle-contact-xhr'),
         })
-        return super(ContactFormView, self).get_context_data(**kwargs)
+        return ctx
 
     def get_initial(self):
         initial = super(ContactFormView, self).get_initial()
