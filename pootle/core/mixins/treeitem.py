@@ -678,12 +678,12 @@ def create_update_cache_job(instance, keys, decrement=1):
     queue = get_queue('default')
     queue.connection.sadd(queue.redis_queues_keys, queue.key)
     job_wrapper = JobWrapper.create(update_cache_job,
-                                               instance=instance,
-                                               keys=keys,
-                                               decrement=decrement,
-                                               connection=queue.connection,
-                                               origin=queue.name,
-                                               timeout=queue.DEFAULT_TIMEOUT)
+                                    instance=instance,
+                                    keys=keys,
+                                    decrement=decrement,
+                                    connection=queue.connection,
+                                    origin=queue.name,
+                                    timeout=queue.DEFAULT_TIMEOUT)
     last_job_key = instance.get_last_job_key()
 
     with queue.connection.pipeline() as pipe:
