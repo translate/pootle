@@ -33,6 +33,8 @@ DEPRECATIONS = [
     ('MIN_AUTOTERMS', None, '2.7', None),
     ('MAX_AUTOTERMS', None, '2.7', None),
     ('DESCRIPTION', None, '2.7', None),
+    ('FUZZY_MATCH_MAX_LENGTH', None, '2.7', None),
+    ('FUZZY_MATCH_MIN_SIMILARITY', None, '2.7', None),
 ]
 
 

@@ -152,26 +152,6 @@ Configuration settings for applications used by Pootle.
   templates as ``{{ custom.<key> }}``.
 
 
-.. setting:: FUZZY_MATCH_MAX_LENGTH
-
-``FUZZY_MATCH_MAX_LENGTH``
-  Default: ``70``
-
-  Maximum character length to consider when doing fuzzy matching. The default
-  might not be enough for long texts. Please note this affects all fuzzy
-  matching operations, so bear in mind this might affect performance.
-
-
-.. setting:: FUZZY_MATCH_MIN_SIMILARITY
-
-``FUZZY_MATCH_MIN_SIMILARITY``
-  Default: ``75``
-
-  Minimum similarity to consider when doing fuzzy matching. Please note this
-  affects all fuzzy matching operations, so bear in mind this might affect
-  performance.
-
-
 .. setting:: LEGALPAGE_NOCHECK_PREFIXES
 
 ``LEGALPAGE_NOCHECK_PREFIXES``
@@ -474,3 +454,17 @@ Deprecated Settings
      Use :doc:`static pages </features/staticpages>` and :doc:`customization
      </developers/customization>` if you want to give users information about
      the Pootle site.
+
+
+.. setting:: FUZZY_MATCH_MAX_LENGTH
+
+``FUZZY_MATCH_MAX_LENGTH``
+  .. deprecated:: 2.7
+     Update against templates feature has been removed.
+
+
+.. setting:: FUZZY_MATCH_MIN_SIMILARITY
+
+``FUZZY_MATCH_MIN_SIMILARITY``
+  .. deprecated:: 2.7
+     Update against templates feature has been removed.

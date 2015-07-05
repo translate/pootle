@@ -1495,21 +1495,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             for unit in units.iterator():
                 yield unit
 
-    def get_matcher(self):
-        """builds a TM matcher from current translations and obsolete units"""
-        from translate.search import match
-        #FIXME: should we cache this?
-        matcher = match.matcher(
-            self,
-            max_candidates=1,
-            max_length=settings.FUZZY_MATCH_MAX_LENGTH,
-            min_similarity=settings.FUZZY_MATCH_MIN_SIMILARITY,
-            usefuzzy=True
-        )
-        matcher.extendtm(self.unit_set.filter(state=OBSOLETE))
-        matcher.addpercentage = False
-        return matcher
-
     def clean_stale_lock(self):
         if self.state != LOCKED:
             return
@@ -1581,14 +1566,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             self.save()
             return
 
-    def _remove_obsolete(self, source):
-        """Removes an obsolete unit from the DB. This will usually be used
-        after fuzzy matching.
-        """
-        obsolete_unit = self.findunit(source, obsolete=True)
-        if obsolete_unit:
-            obsolete_unit.delete()
-
     def get_file_mtime(self):
         disk_mtime = datetime.datetime \
                      .fromtimestamp(self.file.getpomtime()[0])
@@ -1598,15 +1575,13 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return disk_mtime
 
     @transaction.atomic
-    def update(self, overwrite=False, store=None, fuzzy=False,
-               only_newer=False):
+    def update(self, overwrite=False, store=None, only_newer=False):
         """Update DB with units from file.
 
         :param overwrite: Whether to update all existing translations or
             keep safe units that updated after the last sync.
         :param store: The target :class:`~pootle_store.models.Store`. If unset,
             the current file will be used as a target.
-        :param fuzzy: Whether to perform fuzzy matching or not.
         :param only_newer: Whether to update only the files that changed on
             disk after the last sync.
         """
@@ -1649,9 +1624,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 'added': 0,
             }
 
-            if fuzzy:
-                matcher = self.get_matcher()
-
             # Force a rebuild of the unit ID <-> DB ID index and get IDs for
             # in-DB (old) and on-disk (new) stores
             self.require_dbid_index(update=True, obsolete=True)
@@ -1681,14 +1653,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             for unit in new_units:
                 newunit = self.addunit(unit, unit.index, user=system)
                 changes['added'] += 1
-
-                # Fuzzy match non-empty target strings
-                if fuzzy and not filter(None, newunit.target.strings):
-                    match_unit = newunit.fuzzy_translate(matcher)
-                    if match_unit:
-                        newunit._from_update_stores = True
-                        newunit.save()
-                        self._remove_obsolete(match_unit.source)
 
             common_dbids = set(self.dbid_index.get(uid)
                                for uid in old_ids & new_ids)
@@ -1726,13 +1690,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 if unit.index != newunit.index:
                     unit.index = newunit.index
                     changed = True
-
-                # Fuzzy match non-empty target strings
-                if fuzzy and not filter(None, unit.target.strings):
-                    match_unit = unit.fuzzy_translate(matcher)
-                    if match_unit:
-                        changed = True
-                        self._remove_obsolete(match_unit.source)
 
                 if changed:
                     changes['updated'] += 1
