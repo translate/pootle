@@ -1,0 +1,10 @@
+{% extends 'welcome.html' %}
+
+{% block scripts_extra %}
+{{ block.super }}
+<script type="text/javascript">
+  $(function () {
+    PTL.contact.open({url: '{% url "pootle-contact-xhr" %}'});
+  });
+</script>
+{% endblock %}

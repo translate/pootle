@@ -25,6 +25,7 @@ CAPTCHA_EXEMPT_URLPATTERNS = (
     'account_reset_password',
     'account_reset_password_from_key',
     'pootle-social-verify',
+    'pootle-contact',
 )
 
 
