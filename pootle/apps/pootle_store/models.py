@@ -1819,7 +1819,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         last_revision = self.get_max_unit_revision()
 
         #TODO only_newer -> not force
-        if (only_newer and
+        if (only_newer and self.file.exists() and
             self.last_sync_revision >= last_revision):
             logging.info(u"[sync] No updates for %s after [revision: %d]" %
                 (self.pootle_path, self.last_sync_revision))
