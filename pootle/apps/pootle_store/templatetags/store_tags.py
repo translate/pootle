@@ -10,7 +10,6 @@
 import re
 
 from diff_match_patch import diff_match_patch
-from translate.misc.multistring import multistring
 from translate.storage.placeables import general
 
 from django import template
@@ -19,8 +18,8 @@ from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
+from pootle.compat.misc import multistring
 from pootle.core.utils.templates import get_template_source
-
 from pootle_store.fields import list_empty
 
 

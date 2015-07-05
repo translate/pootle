@@ -14,8 +14,7 @@ from django import forms
 from django.utils import timezone
 from django.utils.translation import get_language, ugettext as _
 
-from translate.misc.multistring import multistring
-
+from pootle.compat.misc import multistring
 from pootle.core.log import (TRANSLATION_ADDED,
                              TRANSLATION_CHANGED, TRANSLATION_DELETED)
 from pootle.core.mixins import CachedMethods

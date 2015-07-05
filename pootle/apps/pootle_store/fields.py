@@ -15,7 +15,8 @@ import os
 from django.db import models
 from django.db.models.fields.files import FieldFile, FileField
 
-from translate.misc.multistring import multistring
+from pootle.compat.misc import multistring
+
 
 ################# String #############################
 
