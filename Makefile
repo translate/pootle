@@ -10,7 +10,7 @@ SPRITE_DIR = ${IMAGES_DIR}/sprite
 FORMATS=--formats=bztar
 TEST_ENV_NAME = pootle_test_env
 
-.PHONY: all build clean sprite test pot mo mo-all help docs assets pep8
+.PHONY: all build clean sprite test pot mo mo-all requirements help docs assets pep8
 
 all: help
 
@@ -52,6 +52,10 @@ test: clean assets
 pot:
 	@${SRC_DIR}/tools/createpootlepot
 
+get-translations:
+	ssh pootletranslations ". /var/www/sites/pootle/env/bin/activate; python /var/www/sites/pootle/src/manage.py sync_stores --verbosity=3 --project=pootle"
+	rsync -az --delete --exclude="LINGUAS" --exclude=".translation_index" --exclude=pootle-terminology.po pootletranslations:/var/www/sites/pootle/translations/pootle/ ${SRC_DIR}/locale
+
 mo:
 	python setup.py build_mo ${TAIL}
 
@@ -77,6 +81,60 @@ help:
 	@echo "  test - run test suite"
 	@echo "  pep8 - run pep8 checks"
 	@echo "  pot - update the POT translations templates"
+	@echo "  get-translations - retrieve Pootle translations from server (requires ssh config for pootletranslations)"
 	@echo "  mo - build MO files for languages listed in 'pootle/locale/LINGUAS'"
 	@echo "  mo-all - build MO files for all languages (only use for testing)"
+	@echo "  requirements - (re)generate pinned and minimum requirements"
 	@echo "  publish-pypi - publish on PyPI"
+
+# Perform forced build using -W for the (.PHONY) requirements target
+requirements:
+	$(MAKE) -W $(REQFILE) requirements-pinned.txt requirements/min-versions.txt
+
+REQS=.reqs
+REQFILE=requirements/base.txt
+
+requirements-pinned.txt: requirements-pinned.txt.in $(REQFILE)
+	@echo "# Automatically generated: DO NOT EDIT" > $@
+	@echo "# Regenerate using 'make requirements'" >> $@
+	@echo >> $@
+	@cat $< >> $@
+	@set -e;							\
+	 case `pip --version` in					\
+	   "pip 0"*|"pip 1.[012]"*)					\
+	     virtualenv --no-site-packages --clear $(REQS);		\
+	     source $(REQS)/bin/activate;				\
+	     echo starting clean install of requirements from PyPI;	\
+	     pip install --use-mirrors -r $(REQFILE);			\
+	     : trap removes partial/empty target on failure;		\
+	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
+	     pip freeze | grep -v '^wsgiref==' | sort -f >> $@ ;;		\
+	   *)								\
+	     : only pip 1.3.1+ processes --download recursively;	\
+	     rm -rf $(REQS); mkdir $(REQS);				\
+	     echo starting download of requirements from PyPI;		\
+	     pip install --download $(REQS) -r $(REQFILE);		\
+	     : trap removes partial/empty target on failure;		\
+	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
+	     (cd $(REQS) && ls *.tar* *.whl |					\
+	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') >> $@;	\
+	 esac;
+
+requirements/min-versions.txt: requirements/*.txt
+	@if grep -q '>[0-9]' $^; then				\
+	   echo "Use '>=' not '>' for requirements"; exit 1;	\
+	 fi
+	@echo "creating $@"
+	@echo "# Automatically generated: DO NOT EDIT" > $@
+	@echo "# Regenerate using 'make requirements'" >> $@
+	@echo "# ====================================" >> $@
+	@echo "# Minimum Requirements" >> $@
+	@echo "# ====================================" >> $@
+	@echo "#" >> $@
+	@echo "# These are the minimum versions of dependencies that the Pootle developers" >> $@
+	@echo "# claim will work with Pootle." >> $@
+	@echo "#" >> $@
+	@echo "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $@
+	@echo "#" >> $@
+	@echo >> $@
+	@cat $^ | sed -n '/=/{s/>=/==/;s/,<.*//;p;}' >> $@
