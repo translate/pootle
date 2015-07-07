@@ -56,6 +56,9 @@ get-translations:
 	ssh pootletranslations ". /var/www/sites/pootle/env/bin/activate; python /var/www/sites/pootle/src/manage.py sync_stores --verbosity=3 --project=pootle"
 	rsync -az --delete --exclude="LINGUAS" --exclude=".translation_index" --exclude=pootle-terminology.po pootletranslations:/var/www/sites/pootle/translations/pootle/ ${SRC_DIR}/locale
 
+linguas:
+	@${SRC_DIR}/tools/make-LINGUAS.sh 80 > ${SRC_DIR}/locale/LINGUAS
+
 mo:
 	python setup.py build_mo ${TAIL}
 
@@ -82,6 +85,7 @@ help:
 	@echo "  pep8 - run pep8 checks"
 	@echo "  pot - update the POT translations templates"
 	@echo "  get-translations - retrieve Pootle translations from server (requires ssh config for pootletranslations)"
+	@echo "  linguas - update the LINGUAS file with languages over 80% complete"
 	@echo "  mo - build MO files for languages listed in 'pootle/locale/LINGUAS'"
 	@echo "  mo-all - build MO files for all languages (only use for testing)"
 	@echo "  requirements - (re)generate pinned and minimum requirements"
