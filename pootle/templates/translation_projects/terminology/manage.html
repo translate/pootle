@@ -28,7 +28,7 @@
     <form action="" method="post">
       {% csrf_token %}
       {{ formset.management_form }}
-      <table cellpadding="0" cellspacing="0" dir="{% locale_dir %}">
+      <table dir="{% locale_dir %}">
       <thead>
       <tr lang="{{ LANGUAGE_CODE }}">
         <th colspan="1" rowspan="1" class="translate-table-title translate-original">{% trans "Term" %}</th>
