@@ -1158,6 +1158,7 @@ class Unit(models.Model, base.TranslationUnit):
         create_subs[SubmissionFields.TARGET] = [old_target, self.target]
         if old_state != self.state:
             create_subs[SubmissionFields.STATE] = [old_state, self.state]
+            self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
 
         for field in create_subs:
             kwargs = {
