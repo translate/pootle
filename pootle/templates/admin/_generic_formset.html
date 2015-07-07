@@ -1,20 +1,20 @@
 {% load i18n render_pager %}
 <div class="pagination-control">
-    {{ objects|render_pager }}
+  {{ objects|render_pager }}
 </div>
 <form action="" method="post">
-    {% csrf_token %}
-    {% if error_msg %}
-        <div class="error">{% trans error_msg %}</div>
-    {% endif %}
-    {{ formset.management_form }}
-    <table cellpadding="1" cellspacing="1" class="sortable">
-            {{ formset_text }}
-    </table>
-    <p class="admin-buttons-block">
-      <input type="submit" class="btn" value="{% trans 'Save Changes' %}" />
-    </p>
+  {% csrf_token %}
+  {% if error_msg %}
+      <div class="error">{% trans error_msg %}</div>
+  {% endif %}
+  {{ formset.management_form }}
+  <table cellpadding="1" cellspacing="1" class="sortable">
+    {{ formset_text }}
+  </table>
+  <p class="admin-buttons-block">
+    <input type="submit" class="btn" value="{% trans 'Save Changes' %}" />
+  </p>
 </form>
 <div class="pagination-control">
-    {{ objects|render_pager }}
+  {{ objects|render_pager }}
 </div>
