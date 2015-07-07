@@ -404,7 +404,7 @@ def get_activity_data(request, user, month):
         'start': start.strftime('%Y-%m-%d'),
         'end': end.strftime('%Y-%m-%d'),
         'utc_offset': start.strftime("%z"),
-        'admin_permalink': request.build_absolute_uri(reverse('reports')),
+        'admin_permalink': request.build_absolute_uri(reverse('pootle-reports')),
     }
 
     if user != '':

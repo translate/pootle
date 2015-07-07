@@ -130,9 +130,9 @@
       <div class="dates">
         {% block dates %}
         <ul>
-          <li class="previous"><a href="{% url 'reports-detailed' %}?username={{object.username}}&amp;month={{previous|date:'Y-m'}}"><span class="arrow">&larr;</span> {% trans "Previous month" %}</a></li>
+          <li class="previous"><a href="{% url 'pootle-reports-detailed' %}?username={{object.username}}&amp;month={{previous|date:'Y-m'}}"><span class="arrow">&larr;</span> {% trans "Previous month" %}</a></li>
           <li class="selected">{{start|date:'E, Y'}}</li>
-          <li class="next"><a href="{% url 'reports-detailed' %}?username={{object.username}}&amp;month={{next|date:'Y-m'}}">{% trans "Next month" %} <span class="arrow">&rarr;</span></a></li>
+          <li class="next"><a href="{% url 'pootle-reports-detailed' %}?username={{object.username}}&amp;month={{next|date:'Y-m'}}">{% trans "Next month" %} <span class="arrow">&rarr;</span></a></li>
         </ul>
         {% endblock dates %}
       </div>
