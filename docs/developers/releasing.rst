@@ -255,18 +255,43 @@ never just ``2.6``.
 Build the package
 -----------------
 
-Building is the first step to testing that things work. From your clean
-checkout run:
+Building is the first step to testing that things work. First create
+:file:`~/.pootle/pootle_build.conf` with the following content:
+
+.. code-block:: python
+
+    #!/usr/bin/env python
+    # -*- coding: utf-8 -*-
+
+    """Configuration file to build Pootle.
+
+    Must be placed in ~/.pootle/pootle_build.conf
+    """
+
+    # Django now requires to set some secret key to be set.
+    SECRET_KEY = '__BuildingPootle_1234567890__'
+
+    # Silence some checks so the build output is cleaner.
+    SILENCED_SYSTEM_CHECKS = [
+        'pootle.W006',  # sqlite database backend is unsupported
+        'pootle.W010',  # DEFAULT_FROM_EMAIL has default setting
+        'pootle.W011',  # POOTLE_CONTACT_EMAIL has default setting
+    ]
+
+
+Now from your clean checkout run:
 
 .. code-block:: bash
 
     $ mkvirtualenv build-pootle-release
     (build-pootle-release)$ pip install -r requirements/build.txt
     (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
+    (build-pootle-release)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
     (build-pootle-release)$ cd pootle/static/js && npm install && cd ../../../
     (build-pootle-release)$ make mo-all  # If we are shipping an RC
     (build-pootle-release)$ make build
     (build-pootle-release)$ deactivate
+    $ unset POOTLE_SETTINGS
     $ rmvirtualenv build-pootle-release
 
 
