@@ -262,6 +262,8 @@ checkout run:
 
     $ mkvirtualenv build-pootle-release
     (build-pootle-release)$ pip install -r requirements/build.txt
+    (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
+    (build-pootle-release)$ cd pootle/static/js && npm install && cd ../../../
     (build-pootle-release)$ make mo-all  # If we are shipping an RC
     (build-pootle-release)$ make build
     (build-pootle-release)$ deactivate
@@ -297,7 +299,8 @@ You can then proceed with other tests such as checking:
 
    .. code-block:: bash
 
-     (test-pootle-release)$ pootle setup
+     (test-pootle-release)$ pootle migrate
+     (test-pootle-release)$ pootle initdb
      (test-pootle-release)$ pootle start
      (test-pootle-release)$  # Browse to localhost:8000
 
@@ -316,7 +319,8 @@ You can then proceed with other tests such as checking:
 
       .. code-block:: bash
 
-        (test-pootle-release)$ pootle setup
+        (test-pootle-release)$ pootle migrate
+        (test-pootle-release)$ pootle initdb
         (test-pootle-release)$ pootle start
         (test-pootle-release)$  # Browse to localhost:8000
 
@@ -346,7 +350,7 @@ You can then proceed with other tests such as checking:
 
       .. code-block:: bash
 
-        (test-pootle-release)$ pootle setup
+        (test-pootle-release)$ pootle migrate
         (test-pootle-release)$ pootle start
         (test-pootle-release)$  # Browse to localhost:8000
 
