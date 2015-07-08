@@ -306,6 +306,7 @@ intersphinx_mapping = {
 
 extlinks = {
     # :role: (URL, prefix)
+    'issue': ('https://github.com/translate/pootle/issues/%s', 'issue '),
     'man': ('http://linux.die.net/man/1/%s', ''),
     'wiki': ('http://translate.sourceforge.net/wiki/%s', ''),
     'wp': ('https://en.wikipedia.org/wiki/%s', ''),
