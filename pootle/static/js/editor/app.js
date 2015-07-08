@@ -164,9 +164,7 @@ PTL.editor = {
     $(document).on('click', '.js-editor-copytext', this.copyText.bind(this));
 
     /* Copy original translation */
-    $(document).on('click', '.js-copyoriginal', function () {
-      PTL.editor.copyOriginal($(this).parents('.source-language').find('.translation-text'));
-    });
+    $(document).on('click', '.js-copyoriginal', () => this.copyOriginal());
 
     /* Editor navigation/submission */
     $(document).on('editor_ready', 'table.translate-table', this.ready);
@@ -586,19 +584,16 @@ PTL.editor = {
 
 
   /* Copies source text(s) into the target textarea(s)*/
-  copyOriginal: function (sources) {
-    var cleanSources = [];
-    $.each(sources, function (i) {
-      cleanSources[i] = $(this).text();
-    });
+  copyOriginal: function () {
+    const sources = this.units.getCurrent().get('source');
 
     var targets = $('.js-translation-area');
     if (targets.length) {
       var active,
-          max = cleanSources.length - 1;
+          max = sources.length - 1;
 
       for (let i=0; i<targets.length; i++) {
-        var newval = cleanSources[i] || cleanSources[max];
+        var newval = sources[i] || sources[max];
         $(targets.get(i)).val(newval).trigger('input');
       }
 
