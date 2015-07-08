@@ -148,6 +148,7 @@ def get_search_query(form, units_queryset):
 
     return result
 
+
 def get_search_exact_query(form, units_queryset):
     phrase = form.cleaned_data['search']
     result = units_queryset.none()
