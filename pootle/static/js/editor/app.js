@@ -580,6 +580,7 @@ PTL.editor = {
     }
 
     $target.caret(start, start);
+    autosize.update(this.focused);
   },
 
 
@@ -600,6 +601,7 @@ PTL.editor = {
       // Focus on the first textarea
       active = $(targets)[0];
       active.focus();
+      autosize.update(active);
       // Make this fuzzy
       PTL.editor.goFuzzy();
       // Place cursor at start of target text
@@ -2291,6 +2293,7 @@ PTL.editor = {
       providerCallback(sourceText, langFrom, langTo, function (opts) {
         var translation = opts.translation,
             msg = opts.msg,
+            area = $areas[j],
             $area = $areas.eq(j),
             i, value;
 
@@ -2322,6 +2325,7 @@ PTL.editor = {
         }
 
         $area.val($('<div />').html(translation).text());
+        autosize.update(area);
 
         // Save a copy of the resulting text in the DOM for further
         // similarity comparisons
