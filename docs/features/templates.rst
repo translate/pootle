@@ -38,25 +38,3 @@ When adding a new language to a project, Pootle will first scan the file system
 and look for translation files for that language. If none are present a fresh
 copy will be generated based on the templates files (in a manner similar to
 :ref:`pot2po <toolkit:pot2po>`).
-
-
-.. _templates#updating_against_templates:
-
-Updating against templates
---------------------------
-
-When the document or software being translated is updated, Pootle helps you
-retain old translation through the translation templates feature.
-
-The templates files should be replaced with new versions (i.e. upload the new
-versions to the templates language). Users with admin permission in the project
-can use the *Update against templates* checkbox in the project admin page to
-update languages to the newer version.
-
-Users with admin permissions over a language can update this single language
-from the files tab for the translation project.
-
-This will update both the files and the database retaining old translations and
-using fuzzy matching to match translations when the source text had minor
-changes (in a manner similar to pot2po). Fuzzy matched strings will be marked
-as fuzzy.
