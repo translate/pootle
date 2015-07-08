@@ -51,7 +51,6 @@ PASSWORD_HASHERS = (
 
 SILENCED_SYSTEM_CHECKS = [
     'pootle.C005',  # Silence the RedisCache check as we use a dummy cache
-    'pootle.W004',  # python-levenshtein not installed
     'pootle.W005',  # DEBUG = True
     'pootle.W011',  # POOTLE_CONTACT_EMAIL has default setting
 ]

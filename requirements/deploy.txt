@@ -5,8 +5,5 @@ MySQL-python
 # Uncomment for PostgreSQL
 # psycopg2
 
-# Libraries
-python-levenshtein
-
 # Logging
 raven

@@ -48,9 +48,6 @@ alternative WSGI servers that might better suit your environment.
 Speed-ups and Extras
 ^^^^^^^^^^^^^^^^^^^^
 
-`python-Levenshtein <https://pypi.python.org/pypi/python-Levenshtein/>`_
-  Provides speed-up when updating against templates.
-
 `iso-codes <https://packages.debian.org/unstable/source/iso-codes>`_
   Enables translated language and country names.
 
@@ -81,9 +78,6 @@ some tips for performance tuning on your Pootle installation.
   versions of Pootle easily.
 
 - Ensure :setting:`DEBUG` mode is disabled.
-
-- Ensure that you have python-levenshtein installed. This will improve the
-  performance when updating against templates.
 
 - Increase the cache timeout for users who are not logged in.
 
