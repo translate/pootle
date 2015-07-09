@@ -38,8 +38,6 @@ from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, to_int, get_date_interval
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from virtualfolder.helpers import extract_vfolder_from_path
-from virtualfolder.models import VirtualFolder
 
 from .decorators import get_unit_context
 from .fields import to_python
@@ -470,8 +468,12 @@ def get_units(request):
     User = get_user_model()
     request.profile = User.get(request.user)
     limit = request.profile.get_unit_rows()
+    vfolder = None
 
-    vfolder, pootle_path = extract_vfolder_from_path(pootle_path)
+    if 'virtualfolder' in settings.INSTALLED_APPS:
+        from virtualfolder.helpers import extract_vfolder_from_path
+
+        vfolder, pootle_path = extract_vfolder_from_path(pootle_path)
 
     units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
 
@@ -764,20 +766,28 @@ def get_edit_unit(request, unit):
     project = translation_project.project
 
     priority = None
-    vfolder_pk = request.GET.get('vfolder', '')
 
-    if vfolder_pk:
-        try:
-            # If we are translating a virtual folder, then display its priority.
-            # Note that the passed virtual folder pk might be invalid.
-            priority = VirtualFolder.objects.get(pk=vfolder_pk).priority
-        except VirtualFolder.DoesNotExist:
-            pass
+    if 'virtualfolder' in settings.INSTALLED_APPS:
+        vfolder_pk = request.GET.get('vfolder', '')
 
-    if priority is None:
-        # Retrieve the unit top priority, if any. This can happen if we are not
-        # in a virtual folder or if the passed virtual folder pk is invalid.
-        priority = unit.vfolders.aggregate(priority=Max('priority'))['priority']
+        if vfolder_pk:
+            from virtualfolder.models import VirtualFolder
+
+            try:
+                # If we are translating a virtual folder, then display its
+                # priority.
+                # Note that the passed virtual folder pk might be invalid.
+                priority = VirtualFolder.objects.get(pk=vfolder_pk).priority
+            except VirtualFolder.DoesNotExist:
+                pass
+
+        if priority is None:
+            # Retrieve the unit top priority, if any. This can happen if we are
+            # not in a virtual folder or if the passed virtual folder pk is
+            # invalid.
+            priority = unit.vfolders.aggregate(
+                priority=Max('priority')
+            )['priority']
 
     template_vars = {
         'unit': unit,
