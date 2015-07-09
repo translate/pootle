@@ -30,6 +30,31 @@ from pootle.core.http import (JsonResponseBadRequest, JsonResponseForbidden,
                               JsonResponseNotFound, JsonResponseServerError)
 
 
+def log_exception(request, exception):
+    if sentry_exception_handler is None:
+        # Send email to admins with details about exception
+        ip_type = (request.META.get('REMOTE_ADDR') in
+                   settings.INTERNAL_IPS and 'internal' or
+                   'EXTERNAL')
+        msg_args = {
+            'ip_type': ip_type,
+            'path': request.path,
+        }
+        subject = 'Error (%(ip_type)s IP): %(path)s' % msg_args
+
+        try:
+            request_repr = repr(request)
+        except:
+            request_repr = "Request repr() unavailable"
+
+        msg_args = (unicode(exception.args[0]), tb,
+                    request_repr)
+        message = "%s\n\n%s\n\n%s" % msg_args
+        mail_admins(subject, message, fail_silently=True)
+    else:
+        sentry_exception_handler(request=request)
+
+
 class ErrorPagesMiddleware(object):
     """Friendlier error pages."""
 
@@ -98,28 +123,7 @@ class ErrorPagesMiddleware(object):
                                 'sent error: %(errormsg)s', msg_args)
                         ctx['fserror'] = msg
 
-                    if sentry_exception_handler is None:
-                        # Send email to admins with details about exception
-                        ip_type = (request.META.get('REMOTE_ADDR') in
-                                   settings.INTERNAL_IPS and 'internal' or
-                                   'EXTERNAL')
-                        msg_args = {
-                            'ip_type': ip_type,
-                            'path': request.path,
-                        }
-                        subject = 'Error (%(ip_type)s IP): %(path)s' % msg_args
-
-                        try:
-                            request_repr = repr(request)
-                        except:
-                            request_repr = "Request repr() unavailable"
-
-                        msg_args = (unicode(exception.args[0]), tb,
-                                    request_repr)
-                        message = "%s\n\n%s\n\n%s" % msg_args
-                        mail_admins(subject, message, fail_silently=True)
-                    else:
-                        sentry_exception_handler(request=request)
+                    log_exception(request, exception)
 
                     if request.is_ajax():
                         return JsonResponseServerError({'msg': msg})
