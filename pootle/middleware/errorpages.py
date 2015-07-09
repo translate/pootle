@@ -45,7 +45,7 @@ class ErrorPagesMiddleware(object):
             if request.is_ajax():
                 return JsonResponseForbidden({'msg': msg})
 
-            templatevars = {
+            ctx = {
                 'permission_error': msg,
             }
 
@@ -57,10 +57,10 @@ class ErrorPagesMiddleware(object):
                     'You need to <a class="js-login" href="%(login_link)s">login</a> '
                     'to access this page.', msg_args
                 )
-                templatevars["login_message"] = login_msg
+                ctx["login_message"] = login_msg
 
             return HttpResponseForbidden(
-                    render_to_string('errors/403.html', templatevars,
+                    render_to_string('errors/403.html', ctx,
                                      RequestContext(request))
                 )
         elif (exception.__class__.__name__ in
@@ -86,7 +86,7 @@ class ErrorPagesMiddleware(object):
 
             if not settings.DEBUG:
                 try:
-                    templatevars = {
+                    ctx = {
                         'exception': msg,
                     }
                     if hasattr(exception, 'filename'):
@@ -96,7 +96,7 @@ class ErrorPagesMiddleware(object):
                         }
                         msg = _('Error accessing %(filename)s, Filesystem '
                                 'sent error: %(errormsg)s', msg_args)
-                        templatevars['fserror'] = msg
+                        ctx['fserror'] = msg
 
                     if sentry_exception_handler is None:
                         # Send email to admins with details about exception
@@ -125,7 +125,7 @@ class ErrorPagesMiddleware(object):
                         return JsonResponseServerError({'msg': msg})
 
                     return HttpResponseServerError(
-                        render_to_string('errors/500.html', templatevars,
+                        render_to_string('errors/500.html', ctx,
                                          RequestContext(request)))
                 except:
                     # Let's not confuse things by throwing an exception here
