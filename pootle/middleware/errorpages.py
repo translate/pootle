@@ -55,6 +55,43 @@ def log_exception(request, exception):
         sentry_exception_handler(request=request)
 
 
+def handle_exception(request, exception, template_name):
+    # XXX: remove this? exceptions are already displayed in debug mode
+    tb = traceback.format_exc()
+    print >> sys.stderr, tb
+
+    if settings.DEBUG:
+        return None
+
+    try:
+        log_exception(request, exception)
+
+        msg = force_unicode(exception)
+
+        if request.is_ajax():
+            return JsonResponseServerError({'msg': msg})
+
+        ctx = {
+            'exception': msg,
+        }
+        if hasattr(exception, 'filename'):
+            msg_args = {
+                'filename': exception.filename,
+                'errormsg': exception.strerror,
+            }
+            msg = _('Error accessing %(filename)s, Filesystem '
+                    'sent error: %(errormsg)s', msg_args)
+            ctx['fserror'] = msg
+
+        return HttpResponseServerError(
+            render_to_string(template_name, ctx,
+                             RequestContext(request))
+        )
+    except:
+        # Let's not confuse things by throwing an exception here
+        pass
+
+
 class ErrorPagesMiddleware(object):
     """Friendlier error pages."""
 
@@ -95,48 +132,6 @@ class ErrorPagesMiddleware(object):
             # check the class name instead. Since python uses duck typing
             # I will call this
             # poking-the-duck-until-it-quacks-like-a-duck-test
-
-            tb = traceback.format_exc()
-            print >> sys.stderr, tb
-
-            if not settings.DEBUG:
-                log_exception(request, exception)
-
-                if request.is_ajax():
-                    return JsonResponseServerError({'msg': msg})
-
-                return HttpResponseServerError(
-                        render_to_string('errors/db.html', {'exception': msg},
-                                         RequestContext(request))
-                    )
-
+            return handle_exception(request, exception, 'errors/db.html')
         else:
-            #FIXME: implement better 500
-            tb = traceback.format_exc()
-            print >> sys.stderr, tb
-
-            if not settings.DEBUG:
-                try:
-                    ctx = {
-                        'exception': msg,
-                    }
-                    if hasattr(exception, 'filename'):
-                        msg_args = {
-                            'filename': exception.filename,
-                            'errormsg': exception.strerror,
-                        }
-                        msg = _('Error accessing %(filename)s, Filesystem '
-                                'sent error: %(errormsg)s', msg_args)
-                        ctx['fserror'] = msg
-
-                    log_exception(request, exception)
-
-                    if request.is_ajax():
-                        return JsonResponseServerError({'msg': msg})
-
-                    return HttpResponseServerError(
-                        render_to_string('errors/500.html', ctx,
-                                         RequestContext(request)))
-                except:
-                    # Let's not confuse things by throwing an exception here
-                    pass
+            return handle_exception(request, exception, 'errors/500.html')
