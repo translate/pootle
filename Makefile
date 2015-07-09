@@ -7,9 +7,6 @@ JS_DIR = ${STATIC_DIR}/js
 CSS_DIR = ${STATIC_DIR}/css
 IMAGES_DIR = ${STATIC_DIR}/images
 SPRITE_DIR = ${IMAGES_DIR}/sprite
-VERSION=$(shell python setup.py --version)
-FULLNAME=$(shell python setup.py --fullname)
-SFUSERNAME=$(shell egrep -A5 sourceforge ~/.ssh/config | egrep -m1 User | cut -d" " -f2)
 FORMATS=--formats=bztar
 TEST_ENV_NAME = pootle_test_env
 
@@ -67,17 +64,6 @@ pep8:
 publish-pypi:
 	python setup.py sdist ${FORMATS} upload
 
-test-publish-pypi:
-	 python setup.py sdist ${FORMATS} upload -r https://testpypi.python.org/pypi
-
-#scp -p dist/translate-toolkit-1.10.0.tar.bz2 jsmith@frs.sourceforge.net:/home/frs/project/translate/Translate\ Toolkit/1.10.0/
-publish-sourceforge:
-	@echo "We don't trust automation that much.  The following is the command you need to run"
-	@echo 'scp -p dist/${FULLNAME}.tar.bz2 ${SFUSERNAME}@frs.sourceforge.net:"/home/frs/project/translate/Pootle/${VERSION}/"'
-	@echo 'scp -p docs/releases/${VERSION}.rst ${SFUSERNAME}@frs.sourceforge.net:"/home/frs/project/translate/Pootle/${VERSION}/README.rst"'
-
-publish: publish-pypi publish-sourceforge
-
 help:
 	@echo "Help"
 	@echo "----"
@@ -94,6 +80,3 @@ help:
 	@echo "  mo - build MO files for languages listed in 'pootle/locale/LINGUAS'"
 	@echo "  mo-all - build MO files for all languages (only use for testing)"
 	@echo "  publish-pypi - publish on PyPI"
-	@echo "  test-publish-pypi - publish on PyPI testing platform"
-	@echo "  publish-sourceforge - publish on sourceforge"
-	@echo "  publish - publish on PyPI and sourceforge"
