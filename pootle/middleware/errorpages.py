@@ -102,13 +102,13 @@ class ErrorPagesMiddleware(object):
             if not settings.DEBUG:
                 log_exception(request, exception)
 
-            if request.is_ajax():
-                return JsonResponseServerError({'msg': msg})
+                if request.is_ajax():
+                    return JsonResponseServerError({'msg': msg})
 
-            return HttpResponseServerError(
-                    render_to_string('errors/db.html', {'exception': msg},
-                                     RequestContext(request))
-                )
+                return HttpResponseServerError(
+                        render_to_string('errors/db.html', {'exception': msg},
+                                         RequestContext(request))
+                    )
 
         else:
             #FIXME: implement better 500
