@@ -96,6 +96,9 @@ class ErrorPagesMiddleware(object):
             # I will call this
             # poking-the-duck-until-it-quacks-like-a-duck-test
 
+            tb = traceback.format_exc()
+            print >> sys.stderr, tb
+
             if not settings.DEBUG:
                 log_exception(request, exception)
 
