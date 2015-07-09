@@ -96,6 +96,9 @@ class ErrorPagesMiddleware(object):
             # I will call this
             # poking-the-duck-until-it-quacks-like-a-duck-test
 
+            if not settings.DEBUG:
+                log_exception(request, exception)
+
             if request.is_ajax():
                 return JsonResponseServerError({'msg': msg})
 
