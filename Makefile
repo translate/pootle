@@ -10,7 +10,7 @@ SPRITE_DIR = ${IMAGES_DIR}/sprite
 FORMATS=--formats=bztar
 TEST_ENV_NAME = pootle_test_env
 
-.PHONY: all build clean sprite test pot mo mo-all requirements help docs assets pep8
+.PHONY: all build clean sprite test pot mo mo-all help docs assets pep8
 
 all: help
 
@@ -88,12 +88,7 @@ help:
 	@echo "  linguas - update the LINGUAS file with languages over 80% complete"
 	@echo "  mo - build MO files for languages listed in 'pootle/locale/LINGUAS'"
 	@echo "  mo-all - build MO files for all languages (only use for testing)"
-	@echo "  requirements - (re)generate pinned and minimum requirements"
 	@echo "  publish-pypi - publish on PyPI"
-
-# Perform forced build using -W for the (.PHONY) requirements target
-requirements:
-	$(MAKE) -W $(REQFILE) requirements-pinned.txt requirements/min-versions.txt
 
 REQS=.reqs
 REQFILE=requirements/base.txt
@@ -123,22 +118,3 @@ requirements-pinned.txt: requirements-pinned.txt.in $(REQFILE)
 	     (cd $(REQS) && ls *.tar* *.whl |					\
 	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') >> $@;	\
 	 esac;
-
-requirements/min-versions.txt: requirements/*.txt
-	@if grep -q '>[0-9]' $^; then				\
-	   echo "Use '>=' not '>' for requirements"; exit 1;	\
-	 fi
-	@echo "creating $@"
-	@echo "# Automatically generated: DO NOT EDIT" > $@
-	@echo "# Regenerate using 'make requirements'" >> $@
-	@echo "# ====================================" >> $@
-	@echo "# Minimum Requirements" >> $@
-	@echo "# ====================================" >> $@
-	@echo "#" >> $@
-	@echo "# These are the minimum versions of dependencies that the Pootle developers" >> $@
-	@echo "# claim will work with Pootle." >> $@
-	@echo "#" >> $@
-	@echo "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $@
-	@echo "#" >> $@
-	@echo >> $@
-	@cat $^ | sed -n '/=/{s/>=/==/;s/,<.*//;p;}' >> $@
