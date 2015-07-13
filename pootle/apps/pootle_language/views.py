@@ -31,12 +31,6 @@ def browse(request, language):
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
                     'suggestions', 'critical', 'last-updated', 'activity']
-    table = {
-        'id': 'language',
-        'fields': table_fields,
-        'headings': get_table_headings(table_fields),
-        'items': items,
-    }
 
     ctx = get_browser_context(request)
     ctx.update({
@@ -44,7 +38,12 @@ def browse(request, language):
           'code': language.code,
           'name': tr_lang(language.fullname),
         },
-        'table': table,
+        'table': {
+            'id': 'language',
+            'fields': table_fields,
+            'headings': get_table_headings(table_fields),
+            'items': items,
+        },
         'stats': jsonify(request.resource_obj.get_stats()),
 
         'browser_extends': 'languages/base.html',
