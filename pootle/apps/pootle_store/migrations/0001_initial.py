@@ -21,19 +21,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='QualityCheck',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=64, db_index=True)),
-                ('category', models.IntegerField(default=0)),
-                ('message', models.TextField()),
-                ('false_positive', models.BooleanField(default=False, db_index=True)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
             name='Store',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -52,22 +39,6 @@ class Migration(migrations.Migration):
                 'ordering': ['pootle_path'],
             },
             bases=(models.Model, pootle.core.mixins.treeitem.CachedTreeItem, translate.storage.base.TranslationStore),
-        ),
-        migrations.CreateModel(
-            name='Suggestion',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('target_f', pootle_store.fields.MultiStringField()),
-                ('target_hash', models.CharField(max_length=32, db_index=True)),
-                ('translator_comment_f', models.TextField(null=True, blank=True)),
-                ('state', models.CharField(default=b'pending', max_length=16, db_index=True, choices=[(b'pending', 'Pending'), (b'accepted', 'Accepted'), (b'rejected', 'Rejected')])),
-                ('creation_time', models.DateTimeField(null=True, db_index=True)),
-                ('review_time', models.DateTimeField(null=True, db_index=True)),
-                ('reviewer', models.ForeignKey(related_name='reviews', to=settings.AUTH_USER_MODEL, null=True)),
-            ],
-            options={
-            },
-            bases=(models.Model, translate.storage.base.TranslationUnit),
         ),
         migrations.CreateModel(
             name='Unit',
@@ -105,30 +76,44 @@ class Migration(migrations.Migration):
             },
             bases=(models.Model, translate.storage.base.TranslationUnit),
         ),
+        migrations.CreateModel(
+            name='Suggestion',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('target_f', pootle_store.fields.MultiStringField()),
+                ('target_hash', models.CharField(max_length=32, db_index=True)),
+                ('translator_comment_f', models.TextField(null=True, blank=True)),
+                ('state', models.CharField(default=b'pending', max_length=16, db_index=True, choices=[(b'pending', 'Pending'), (b'accepted', 'Accepted'), (b'rejected', 'Rejected')])),
+                ('creation_time', models.DateTimeField(null=True, db_index=True)),
+                ('review_time', models.DateTimeField(null=True, db_index=True)),
+                ('unit', models.ForeignKey(to='pootle_store.Unit')),
+                ('reviewer', models.ForeignKey(related_name='reviews', to=settings.AUTH_USER_MODEL, null=True)),
+                ('user', models.ForeignKey(related_name='suggestions', to=settings.AUTH_USER_MODEL, null=True)),
+            ],
+            options={
+            },
+            bases=(models.Model, translate.storage.base.TranslationUnit),
+        ),
+        migrations.CreateModel(
+            name='QualityCheck',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=64, db_index=True)),
+                ('category', models.IntegerField(default=0)),
+                ('message', models.TextField()),
+                ('false_positive', models.BooleanField(default=False, db_index=True)),
+                ('unit', models.ForeignKey(to='pootle_store.Unit')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
         migrations.AlterUniqueTogether(
             name='unit',
             unique_together=set([('store', 'unitid_hash')]),
         ),
-        migrations.AddField(
-            model_name='suggestion',
-            name='unit',
-            field=models.ForeignKey(to='pootle_store.Unit'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='suggestion',
-            name='user',
-            field=models.ForeignKey(related_name='suggestions', to=settings.AUTH_USER_MODEL, null=True),
-            preserve_default=True,
-        ),
         migrations.AlterUniqueTogether(
             name='store',
             unique_together=set([('parent', 'name')]),
-        ),
-        migrations.AddField(
-            model_name='qualitycheck',
-            name='unit',
-            field=models.ForeignKey(to='pootle_store.Unit'),
-            preserve_default=True,
         ),
     ]

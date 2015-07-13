@@ -15,22 +15,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='ScoreLog',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('creation_time', models.DateTimeField(db_index=True)),
-                ('rate', models.FloatField(default=0)),
-                ('review_rate', models.FloatField(default=0)),
-                ('wordcount', models.PositiveIntegerField()),
-                ('similarity', models.FloatField()),
-                ('score_delta', models.FloatField()),
-                ('action_code', models.IntegerField()),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
             name='Submission',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -55,17 +39,23 @@ class Migration(migrations.Migration):
             },
             bases=(models.Model,),
         ),
-        migrations.AddField(
-            model_name='scorelog',
-            name='submission',
-            field=models.ForeignKey(to='pootle_statistics.Submission'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='scorelog',
-            name='user',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
-            preserve_default=True,
+        migrations.CreateModel(
+            name='ScoreLog',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('creation_time', models.DateTimeField(db_index=True)),
+                ('rate', models.FloatField(default=0)),
+                ('review_rate', models.FloatField(default=0)),
+                ('wordcount', models.PositiveIntegerField()),
+                ('similarity', models.FloatField()),
+                ('score_delta', models.FloatField()),
+                ('action_code', models.IntegerField()),
+                ('submission', models.ForeignKey(to='pootle_statistics.Submission')),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.AlterUniqueTogether(
             name='scorelog',
