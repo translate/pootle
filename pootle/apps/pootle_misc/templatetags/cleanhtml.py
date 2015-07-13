@@ -11,13 +11,15 @@ import random
 import re
 
 from lxml.etree import ParserError
-from lxml.html import fromstring, rewrite_links, tostring
+from lxml.html import fromstring, tostring
 from lxml.html.clean import clean_html
 
 from django import template
 from django.template.defaultfilters import stringfilter
 from django.utils.html import escape, simple_email_re as email_re
 from django.utils.safestring import mark_safe
+
+from pootle.core.utils.html import rewrite_links
 
 
 register = template.Library()

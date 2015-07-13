@@ -10,7 +10,7 @@
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
-from lxml.html import rewrite_links
+from ..utils.html import rewrite_links
 
 
 __all__ = (
