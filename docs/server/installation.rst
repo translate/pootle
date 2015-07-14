@@ -173,8 +173,8 @@ To verify that everything installed correctly, you should be able to access the
 
 .. _installation#github:
 
-Installationn from Github checkout
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Installation from Github Checkout
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An alternative to installing from a package is to install directly from Github.
 This is useful if you are developing Pootle or if you want to have a fine
