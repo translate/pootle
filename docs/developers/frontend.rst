@@ -16,8 +16,8 @@ OS <https://nodejs.org/download/>`_.
 .. warning::
 
    If you are using versions provided by you system then you need at least *npm
-   >= v1.4.3* for installation to work correctly.  ``npm upgrade -g npm`` may
-   work.
+   >= v1.4.3* for installation to work correctly. To upgrade, use ``[sudo]
+   npm install npm@latest -g``.
 
 Once Node.js is available, Pootle dependencies need to be installed.
 
