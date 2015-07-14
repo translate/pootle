@@ -67,7 +67,9 @@ Or, any other Unix-like system.
 Software requirements
 ^^^^^^^^^^^^^^^^^^^^^
 
-You need the following system services for a working Pootle:
+**Python 2.7 is required**. 2.6 won't work, and 3.x is not supported.
+
+You will also need the following system services for a working Pootle:
 
 - Redis - all caching and managing of workers uses Redis
 - Database - MySQL or PostgreSQL (although for testing SQLite is fine)
