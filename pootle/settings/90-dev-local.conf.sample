@@ -19,6 +19,9 @@ POOTLE_TITLE = 'Pootle Development Server'
 
 POOTLE_INSTANCE_ID = 'development'
 
+# Some dummy secret key fine for dev
+SECRET_KEY = '__P00TL3d3vS3CR3T__'
+
 # General Django debugging settings
 
 # Enable Django debug mode
