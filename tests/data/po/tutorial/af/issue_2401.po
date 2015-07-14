@@ -1,0 +1,12 @@
+#: fish.c
+msgid "fish"
+msgstr ""
+
+#: test.c
+msgid "test"
+msgstr "rest"
+
+#: test.c
+#, fuzzy
+msgid "ffuuzzyy"
+msgstr "ddiizzyy"

@@ -14,6 +14,8 @@ from translate.storage import factory
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
+from pootle_store.util import UNTRANSLATED, FUZZY, TRANSLATED
+
 
 User = get_user_model()
 
@@ -202,3 +204,39 @@ def test_add_suggestion(af_tutorial_po, system):
     assert sugg is not None
     assert added
     assert len(untranslated_unit.get_suggestions()) == 1
+
+
+@pytest.mark.django_db
+def test_accept_suggestion_changes_state(issue_2401_po, system):
+    """Tests that accepting a suggestion will change the state of the unit."""
+    tp = issue_2401_po.translation_project
+
+    # First test with an untranslated unit
+    unit = issue_2401_po.getitem(0)
+    assert unit.state == UNTRANSLATED
+
+    suggestion, created = unit.add_suggestion('foo')
+    assert unit.state == UNTRANSLATED
+
+    unit.accept_suggestion(suggestion, tp, system)
+    assert unit.state == TRANSLATED
+
+    # Let's try with a translated unit now
+    unit = issue_2401_po.getitem(1)
+    assert unit.state == TRANSLATED
+
+    suggestion, created = unit.add_suggestion('bar')
+    assert unit.state == TRANSLATED
+
+    unit.accept_suggestion(suggestion, tp, system)
+    assert unit.state == TRANSLATED
+
+    # And finally a fuzzy unit
+    unit = issue_2401_po.getitem(2)
+    assert unit.state == FUZZY
+
+    suggestion, created = unit.add_suggestion('baz')
+    assert unit.state == FUZZY
+
+    unit.accept_suggestion(suggestion, tp, system)
+    assert unit.state == TRANSLATED
