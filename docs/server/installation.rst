@@ -186,23 +186,6 @@ Checkout and install the Pootle source code:
 
    (env) $ git clone https://github.com/translate/pootle.git
    (env) $ cd pootle
-
-
-If you are installing directly from the code then you must also build the
-assets:
-
-.. code-block:: bash
-
-   (env) $ cd pootle/static/js
-   (env) $ npm install
-   (env) $ cd ../../..
-   (env) $ make assets
-
-
-Now install Pootle:
-
-.. code-block:: bash
-
    (env) $ pip install .
 
 .. note:: If you want your install to be live use ``pip install -e .`` in this
@@ -323,6 +306,24 @@ Pootle needs at least one user with superuser rights which we create with the
 .. code-block:: bash
 
   (env) $ pootle createsuperuser
+
+
+.. _installation#static_assets:
+
+Static Assets
+-------------
+
+If you are installing Pootle via pip you can skip this step.
+
+In case you are using a git clone, then you must also build the static
+assets (note you need Node.js and npm for this):
+
+.. code-block:: bash
+
+   (env) $ cd pootle/static/js
+   (env) $ npm install
+   (env) $ cd ../../..
+   (env) $ make assets
 
 
 .. _installation#background_services:
