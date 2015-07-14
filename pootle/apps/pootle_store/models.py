@@ -2019,7 +2019,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             'translated': 0,
             'fuzzy': 0
         }
-        res = self.units.values('state') \
+        res = self.units.order_by().values('state') \
                         .annotate(wordcount=models.Sum('source_wordcount'))
         for item in res:
             ret['total'] += item['wordcount']
