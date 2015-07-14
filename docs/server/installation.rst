@@ -188,8 +188,9 @@ Checkout and install the Pootle source code:
    (env) $ cd pootle
    (env) $ pip install .
 
-.. note:: If you want your install to be live use ``pip install -e .`` in this
-   case any changes your make in the checkout will be available to Pootle.
+Alternatively, if you want your install to be live use ``pip install -e
+.``. In this case any changes your make in the repository will be
+available to Pootle.
 
 
 .. _installation#initializing_the_configuration:
