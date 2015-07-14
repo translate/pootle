@@ -171,12 +171,12 @@ To verify that everything installed correctly, you should be able to access the
   Pootle 2.7.0 (Django 1.7.8, Translate Toolkit 1.13.0)
 
 
-.. _installation#github:
+.. _installation#git:
 
-Installation from Github Checkout
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Installation from a Git Checkout
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-An alternative to installing from a package is to install directly from Github.
+An alternative to installing from a package is to install directly from Git.
 This is useful if you are developing Pootle or if you want to have a fine
 control when updating a server.
 
