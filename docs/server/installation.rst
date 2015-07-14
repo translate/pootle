@@ -91,7 +91,9 @@ We've made some assumptions in these instructions, adjust as needed:
    TM.
 #. This is a test installation.  We're not setting up a server for hosting or
    optimising in any way.
-#. We're installing using :command:`pip` and not using Github directly.
+#. We're installing using :command:`pip`. There are also
+   :ref:`instructions for setting up Pootle using a git checkout
+   <installation#git>`.
 
 
 .. _installation#setup_environment:
