@@ -28,12 +28,12 @@ CACHES = {
     # check in place that will abort everything otherwise
     'redis': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'LOCATION': 'redis://127.0.0.1:6379/15',
         'TIMEOUT': None,
     },
     'stats': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'LOCATION': 'redis://127.0.0.1:6379/15',
         'TIMEOUT': None,
     },
 }
