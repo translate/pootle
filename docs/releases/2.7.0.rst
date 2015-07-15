@@ -21,6 +21,9 @@ Major Changes
 =============
 
 - Switched license from GPLv2 to GPLv3.
+- The `Evernote Pootle fork <https://github.com/evernote/>`_ and Translate
+  Pootle are now merged into the same code base and are being actively
+  developed together.
 - Major UI revamp - browsing pages are consistent across all views.  Navigation
   is now much easier, more consistent and more powerful.  The editor is cleaner
   and works to prevent errors early.
@@ -310,9 +313,6 @@ Infrastructure
 --------------
 - All bugs have moved from Bugzilla to `Github issues
   <https://github.com/translate/pootle/issues>`_.
-- The `Evernote Pootle fork <https://github.com/evernote/>`_ and Translate
-  Pootle are now merged into the same code base and being actively developed
-  together.
 
 
 .. _270-removed-features:
