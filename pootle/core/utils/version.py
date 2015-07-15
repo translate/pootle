@@ -160,7 +160,6 @@ def get_docs_version(version=None, positions=2):
     '1.2'
     """
     version = get_complete_version(version)
-    candidate = _get_candidate(version)
     candidate_pos = _get_candidate_pos(version)
     if positions > candidate_pos:
         positions = candidate_pos
