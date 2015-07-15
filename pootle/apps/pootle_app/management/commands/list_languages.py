@@ -21,7 +21,8 @@ class Command(NoArgsCommand):
                         help='Limit to PROJECTS'),
             make_option("--modified-since", action="store", dest="modified_since",
                         type=int,
-                        help="Only process translations newer than specified revision"),
+                        help="Only process translations newer than specified "
+                             "revision"),
     )
     help = "List language codes."
 

@@ -47,7 +47,8 @@ def init_settings(settings_filepath, template_filename):
 
     output = open(template_filename).read()
     # We can't use regular python string formatting here.
-    output = output.replace("${default_key}", b64encode(os.urandom(KEY_LENGTH)).decode("utf-8"))
+    output = output.replace("${default_key}",
+                            b64encode(os.urandom(KEY_LENGTH)).decode("utf-8"))
     fp.write(output)
     fp.close()
 
