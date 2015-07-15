@@ -30,7 +30,7 @@ from pootle.core.http import (JsonResponseBadRequest, JsonResponseForbidden,
                               JsonResponseNotFound, JsonResponseServerError)
 
 
-def log_exception(request, exception):
+def log_exception(request, exception, tb):
     if sentry_exception_handler is None:
         # Send email to admins with details about exception
         ip_type = (request.META.get('REMOTE_ADDR') in
@@ -64,7 +64,7 @@ def handle_exception(request, exception, template_name):
         return None
 
     try:
-        log_exception(request, exception)
+        log_exception(request, exception, tb)
 
         msg = force_unicode(exception)
 
