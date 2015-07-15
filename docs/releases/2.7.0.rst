@@ -21,7 +21,7 @@ Major Changes
 =============
 
 - Switched license from GPLv2 to GPLv3.
-- Major UI revamp - overview pages are consistent across all views.  Navigation
+- Major UI revamp - browsing pages are consistent across all views.  Navigation
   is now much easier, more consistent and more powerful.  The editor is cleaner
   and works to prevent errors early.
 - Backgrounding statistics calculations - so Pootle and its users are never
@@ -42,16 +42,16 @@ Details of changes
 Major user interface revamp
 ---------------------------
 
-Overview
+Browsing
 ~~~~~~~~
 
-- Pootle overview pages now has a single column and wide stats table that shows
+- Pootle browsing pages now have a single column and wide stats table that shows
   the same data in the different views. This create a consistent look while
   browsing through languages and projects.
 - No home page. Users are redirected to their preferred language pages
   instead, falling back to the project listings page.
 - Critical errors and pending suggestions are prominently displayed on the
-  overview page and not hidden.
+  browsing page and not hidden.
 - New navigation scheme:
 
   + All directories/files for a project are displayed in a new drop-down.
@@ -59,13 +59,13 @@ Overview
     in a project.
   + Tabs have been replaced in favor of drop-down menus.
   + The editor search box is now displayed in the action links section, keeping
-    its positioning consistent with the overview page.
-  + A new action link in the editor, *Go back to overview*, allows users to go
+    its positioning consistent with the browsing page.
+  + A new action link in the editor, *Go back to browsing*, allows users to go
     back to the same place they entered translation mode from.
 
-- When there are failing checks, overview tables now display the number of
+- When there are failing checks, browsing tables now display the number of
   units which have failing checks, not the total number of failing checks.
-- Table sorting is now remembered across overview pages, and not separately in
+- Table sorting is now remembered across browsing pages, and not separately in
   project, language and translation project pages.
 - User actionable items in the navbar have been moved to a drop-down.
 - When selecting languages, redirect logic is now smarter.
@@ -93,7 +93,7 @@ Editor
 
   - The editor now displays the numbering for units, not pages.
   - When going through all units in the translation editor, users will be
-    automatically redirected back to overview.
+    automatically redirected back to browsing.
   - If the currently-submitted unit has failing checks then the editor won't
     advance to the next unit and it will be updated displaying the unresolved
     checks. The same behavior applies when a suggestion is accepted.
@@ -163,7 +163,7 @@ Statistics calculations
 - A new counter ``pootle.core.utils.wordcount.wordcount`` has been incorporated
   (it omits placeholders and words that shouldn't be translated). Non-empty
   units with 0 words are immediately translated and marked as fuzzy.
-- Overview pages now report the last time a unit was added to a store/project.
+- Browsing pages now report the last time a unit was added to a store/project.
   In the browsing tables a *Last Updated* column is displayed and in the
   extended stats *Created* and *Last Updated* dates.
 - Statistics are also available for the *All Projects* view.
@@ -268,7 +268,7 @@ Deprecated settings
   - ``MT_BACKENDS`` -> :setting:`POOTLE_MT_BACKENDS`
 
 - :setting:`POOTLE_TOP_STATS_CACHE_TIMEOUT` has been removed with the old top
-  stats rendering and is replaced by the new overview UI.
+  stats rendering and is replaced by the new browsing UI.
 - :setting:`VCS_DIRECTORY` is now deprecated as the integrated Version Control
   feature has been removed to come back at a later date.
 - :setting:`CONTRIBUTORS_EXCLUDED_PROJECT_NAMES` and
