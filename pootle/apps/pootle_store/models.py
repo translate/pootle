@@ -1140,7 +1140,8 @@ class Unit(models.Model, base.TranslationUnit):
         # Update some basic attributes so we can create submissions. Note
         # these do not conflict with `ScoreLog`'s interests, so it's safe
         self.target = suggestion.target
-        self.state = TRANSLATED
+        if self.state == FUZZY:
+            self.state = TRANSLATED
 
         if suggestion.user_id is not None:
             suggestion_user = suggestion.user
