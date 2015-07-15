@@ -1581,8 +1581,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         :param overwrite: Whether to update all existing translations or
             keep safe units that updated after the last sync.
-        :param store: The target :class:`~pootle_store.models.Store`. If unset,
-            the current file will be used as a target.
+        :param store: an optional source `Store` instance from TTK. If unset,
+            the current DB store's FS store will be used as a source.
         :param only_newer: Whether to update only the files that changed on
             disk after the last sync.
         """
