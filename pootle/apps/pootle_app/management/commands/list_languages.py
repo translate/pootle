@@ -39,7 +39,7 @@ class Command(NoArgsCommand):
 
         revision = options.get("modified_since", 0)
         if revision:
-            tps = tps.filter(submission__id__gt=revision)
+            tps = tps.filter(submission__unit__revision__gt=revision)
 
         if projects:
             tps = tps.filter(project__code__in=projects)
