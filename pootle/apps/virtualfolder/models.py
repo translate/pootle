@@ -7,14 +7,11 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from translate.filters.decorators import Category
-
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.utils import dateformat
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import get_markup_filter_name, MarkupField
@@ -24,13 +21,9 @@ from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
                                      split_pootle_path)
 from pootle_app.models import Directory
 from pootle_language.models import Language
-from pootle_misc.checks import get_qualitychecks_by_category
 from pootle_project.models import Project
-from pootle_statistics.models import Submission
-from pootle_store.models import (QualityCheck, Store, Suggestion,
-                                 SuggestionStates, Unit)
-from pootle_store.util import (calc_total_wordcount, calc_translated_wordcount,
-                               calc_fuzzy_wordcount, OBSOLETE, UNTRANSLATED)
+from pootle_store.models import Store, Unit
+from pootle_store.util import OBSOLETE
 from .signals import vfolder_post_save
 
 

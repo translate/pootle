@@ -7,7 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.db.models import F, Manager
+from django.db.models import Manager
 
 
 class PageManager(Manager):
