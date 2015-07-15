@@ -35,11 +35,10 @@ class Command(NoArgsCommand):
         if revision:
             from pootle_translationproject.models import TranslationProject
             tps = TranslationProject.objects.filter(submission__id__gt=revision) \
-                .distinct().values("project__code")
+                                            .distinct().values("project__code")
 
             for tp in tps:
                 self.stdout.write(tp["project__code"])
-
         else:
             for project in Project.objects.all():
                 self.stdout.write(project.code)
