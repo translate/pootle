@@ -13,9 +13,10 @@
         <div class="timeline-entry">
           {% for entry in entry_group.entries %}
           <div class="timeline-field-{{ entry.field }}
-            {% if entry.field == 2 %} js-editor-copytext{% endif %}"
-            {% if entry.field == 2 %}data-action="overwrite"
-            data-string="{{ entry.new_value }}"{% endif %}>
+            {% if entry.field == 4 %}js-editor-copy-comment{% endif %}
+            {% if entry.field == 2 %}js-editor-copytext{% endif %}"
+            {% if entry.field == 2 %} data-action="overwrite"{% endif %}
+            data-string="{{ entry.new_value }}">
             {% if entry.field != 2 and entry.field != 0 %}
               {% if entry.field == 4 and entry.new_value != '' %}
               <span class="sidetitle">{{ entry.field_name }}:</span>

@@ -1183,6 +1183,7 @@ div.translation-text-headers[dir="rtl"] div.translate-toolbar a
 }
 
 .translate-toolbar a,
+.js-editor-copy-comment,
 .js-editor-copytext
 {
     cursor: pointer;

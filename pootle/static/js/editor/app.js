@@ -163,6 +163,12 @@ PTL.editor = {
     /* Write TM results, special chars... into the currently focused element */
     $(document).on('click', '.js-editor-copytext', this.copyText.bind(this));
 
+    /* Copy translator comment */
+    $(document).on('click', '.js-editor-copy-comment', (e) => {
+      const text = e.currentTarget.dataset.string;
+      this.copyComment(text);
+    });
+
     /* Copy original translation */
     $(document).on('click', '.js-copyoriginal', () => this.copyOriginal());
 
@@ -611,6 +617,19 @@ PTL.editor = {
       $(active).caret(i, i);
       PTL.editor.cpRE.lastIndex = 0;
     }
+  },
+
+  copyComment: function (text) {
+    const comment = document.querySelector('.js-editor-comment');
+    const commentForm = document.querySelector('.js-editor-comment-form');
+    const commentInput = document.querySelector('#id_translator_comment');
+
+    if (!comment.classList.contains('selected')) {
+      commentForm.style.display = 'inline-block';
+    }
+
+    commentInput.focus();
+    commentInput.value = text;
   },
 
 
