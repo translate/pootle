@@ -196,8 +196,9 @@ PTL.editor = {
     $(document).on('click', '.js-editor-comment', function (e) {
       e.preventDefault();
       var elem = $('.js-editor-comment-form');
-      $('.js-editor-comment').toggleClass('selected');
-      if ($('.js-editor-comment').hasClass('selected')) {
+      const $comment = $('.js-editor-comment');
+      $comment.toggleClass('selected');
+      if ($comment.hasClass('selected')) {
         elem.css('display','inline-block');
         $('#id_translator_comment').focus();
       } else {
