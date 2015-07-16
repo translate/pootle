@@ -195,14 +195,14 @@ PTL.editor = {
     /* Commenting */
     $(document).on('click', '.js-editor-comment', function (e) {
       e.preventDefault();
-      var elem = $('.js-editor-comment-form');
+      const $elem = $('.js-editor-comment-form');
       const $comment = $('.js-editor-comment');
       $comment.toggleClass('selected');
       if ($comment.hasClass('selected')) {
-        elem.css('display','inline-block');
+        $elem.css('display', 'inline-block');
         $('#id_translator_comment').focus();
       } else {
-        elem.css('display','none');
+        $elem.css('display', 'none');
       }
     });
     $(document).on('submit', '#js-comment-form', this.comment);
