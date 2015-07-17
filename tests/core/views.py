@@ -108,7 +108,7 @@ def test_apiview_get_single(rf):
 def test_apiview_get_multiple(rf):
     """Tests retrieving multiple objects using the API."""
     view = UserAPIView.as_view()
-    user = UserFactory.create(username='foo')
+    UserFactory.create(username='foo')
 
     request = _create_api_request(rf)
 
@@ -123,7 +123,7 @@ def test_apiview_get_multiple(rf):
     assert len(response_data['models']) == 1
 
     # Let's add more users
-    users = UserFactory.create_batch(5)
+    UserFactory.create_batch(5)
 
     response = view(request)
     response_data = json.loads(response.content)
@@ -135,7 +135,7 @@ def test_apiview_get_multiple(rf):
     assert len(response_data['models']) == 6
 
     # Let's add even more users to test pagination
-    users = UserFactory.create_batch(5)
+    UserFactory.create_batch(5)
 
     response = view(request)
     response_data = json.loads(response.content)
