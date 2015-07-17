@@ -168,9 +168,6 @@ def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
     store_name = 'tutorial.po'
     subdir_name = 'subdir/'
 
-    subdir_name_fake = 'fake_subdir/'
-    store_name_fake = 'fake_store.po'
-
     request = rf.get('/')
     request.user = default
 
