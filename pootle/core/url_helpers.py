@@ -60,10 +60,11 @@ def to_tp_relative_path(pootle_path):
 
 def get_all_pootle_paths(pootle_path):
     """Get list of `pootle_path` for all parents."""
-    res = []
-    res.append(pootle_path)
+    res = [pootle_path]
+
     if pootle_path == '' or pootle_path[-1] != u'/':
         pootle_path += u'/'
+
     while True:
         chunks = pootle_path.rsplit(u'/', 2)
         slash_count = chunks[0].count(u'/')
