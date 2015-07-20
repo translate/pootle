@@ -1607,6 +1607,84 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         return obsoleted
 
+    def remove_modified_units(self, unit_ids):
+        """Returns a list of UIDs excluding those which have been modified since
+        the last sync.
+
+        :param unit_ids: set of UIDs for this store.
+        :return: set of UIDs.
+        """
+        # Get units that were modified after last sync
+        filter_by = {'store': self}
+        if self.last_sync_revision is not None:
+            filter_by.update({'revision__gt': self.last_sync_revision})
+
+        # If a dbunit is obsolete then the dbunit should be resurrected in any
+        # case
+        modified_units = set(
+            Unit.objects.filter(**filter_by).exclude(state=OBSOLETE)
+                        .values_list('id', flat=True).distinct()
+        )
+
+        # If some units have been modified since last sync keep them safe
+        unit_ids -= modified_units
+
+        return unit_ids
+
+    def update_units(self, store, uids_to_update, update_unitids, user,
+                     apply_optimizations=True):
+        """Updates existing units in the store.
+
+        :param uids_to_update: UIDs of the units to be updated.
+        :param update_unitids: dictionary of DB ID to index mappings.
+        :param user: attribute specific changes to this user.
+        :return: The number of units that were actually updated.
+        """
+        updated = 0
+
+        uids_to_update = list(uids_to_update)
+        for unit in self.findid_bulk(uids_to_update):
+            # Use the same (parent) object since units will accumulate
+            # the list of cache attributes to clear in the parent Store
+            # object
+            unit.store = self
+            uid = unit.getid()
+            newunit = store.findid(uid)
+
+            # FIXME: `old_unit = copy.copy(unit)?`
+            old_target = unit.target_f
+            old_state = unit.state
+
+            changed = unit.update(newunit, user=user)
+
+            if uid in update_unitids:
+                unit.index = update_unitids[uid]['index']
+                changed = True
+
+            if changed:
+                updated += 1
+                current_time = timezone.now()
+
+                self.record_submissions(unit, old_target, old_state,
+                                        current_time, user)
+
+                # FIXME: extreme implicit hazard
+                if unit._comment_updated:
+                    unit.commented_by = user
+                    unit.commented_on = current_time
+
+                # Set unit fields if target was updated
+                # FIXME: extreme implicit hazard
+                if unit._target_updated:
+                    unit.submitted_by = user
+                    unit.submitted_on = current_time
+                    unit.reviewed_on = None
+                    unit.reviewed_by = None
+
+                unit.save()
+
+        return updated
+
     def record_submissions(self, unit, old_target, old_state, current_time, user):
         """Records all applicable submissions for `unit`.
 
@@ -1780,59 +1858,16 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                          new_unitid_set]
             changes['obsolete'] = self.mark_units_obsolete(obsolete_dbids)
 
+
+            # Step N: update existing units
+
+            # Optimization: only go through unchanged units since the last sync
             if not overwrite:
-                # Get units that were modified after last sync
-                filter_by = {'store': self}
-                if self.last_sync_revision is not None:
-                    filter_by.update({'revision__gt': self.last_sync_revision})
+                common_dbids = self.remove_modified_units(common_dbids)
 
-                # If a dbunit is obsolete
-                # then the dbunit should be resurrected in any case
-                modified_units = set(
-                    Unit.objects.filter(**filter_by).exclude(state=OBSOLETE)
-                                .values_list('id', flat=True).distinct()
-                )
+            changes['updated'] = self.update_units(store, common_dbids,
+                                                   update_unitids, system)
 
-                # If some units have been modified since last sync
-                # keep them safe
-                common_dbids -= modified_units
-
-            common_dbids = list(common_dbids)
-            for unit in self.findid_bulk(common_dbids):
-                # Use the same (parent) object since units will accumulate
-                # the list of cache attributes to clear in the parent Store
-                # object
-                unit.store = self
-                uid = unit.getid()
-                newunit = store.findid(uid)
-                old_target_f = unit.target_f
-                old_unit_state = unit.state
-
-                changed = unit.update(newunit, user=system)
-
-                if uid in update_unitids:
-                    unit.index = update_unitids[uid]['index']
-                    changed = True
-
-                if changed:
-                    changes['updated'] += 1
-                    current_time = timezone.now()
-
-                    self.record_submissions(unit, old_target, old_state,
-                                            current_time, user)
-
-                    if unit._comment_updated:
-                        unit.commented_by = system
-                        unit.commented_on = current_time
-
-                    # Set unit fields if target was updated
-                    if unit._target_updated:
-                        unit.submitted_by = system
-                        unit.submitted_on = current_time
-                        unit.reviewed_on = None
-                        unit.reviewed_by = None
-
-                    unit.save()
 
             self.file_mtime = disk_mtime
 
