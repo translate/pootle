@@ -19,12 +19,12 @@ def import_file(file):
     header = f.parseheader()
     pootle_path = header.get("X-Pootle-Path")
     if not pootle_path:
-        raise ValueError(_("File %r missing X-Pootle-Path header\n") % (file.name))
+        raise ValueError(_("File '%s' missing X-Pootle-Path header\n") % (file.name))
 
     rev = header.get("X-Pootle-Revision")
     if not rev or not rev.isdigit():
         raise ValueError(
-            _("File %r missing or invalid X-Pootle-Revision header\n") % (file.name)
+            _("File '%s' missing or invalid X-Pootle-Revision header\n") % (file.name)
         )
     rev = int(rev)
 
@@ -34,12 +34,12 @@ def import_file(file):
             # TODO we could potentially check at the unit level and only reject
             # units older than most recent. But that's in store.update().
             raise ValueError(
-                _("File %r was rejected because its X-Pootle-Revision is too old.")
+                _("File '%s' was rejected because its X-Pootle-Revision is too old.")
                 % (file.name)
             )
     except Exception as e:
         raise ValueError(
-            _("Could not create %r. Missing Project/Language? (%s)")
+            _("Could not create '%s'. Missing Project/Language? (%s)")
             % (file.name, e)
         )
 
