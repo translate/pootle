@@ -1796,7 +1796,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                         sub.save()
 
                     # Set unit fields if target was updated
-                    if SubmissionFields.TARGET in create_subs:
+                    if unit._target_updated:
                         unit.submitted_by = system
                         unit.submitted_on = current_time
                         unit.reviewed_on = None
