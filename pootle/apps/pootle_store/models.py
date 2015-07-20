@@ -1654,7 +1654,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             new_unitid_list = sorted(store.getids(), key=lambda x: store.findid(x).index)
             new_unitid_set = set(new_unitid_list)
 
-            sm = difflib.SequenceMatcher(None, old_unitid_list, new_unitid_list)
             User = get_user_model()
             system = User.objects.get_system_user()
 
@@ -1673,6 +1672,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                         update_unitids[uid] = {'dbid': old_unitids[uid]['dbid'],
                                                'index': new_unit_index}
 
+            sm = difflib.SequenceMatcher(None, old_unitid_list, new_unitid_list)
             for (tag, i1, i2, j1, j2) in sm.get_opcodes():
                 if tag == 'delete':
                     continue
