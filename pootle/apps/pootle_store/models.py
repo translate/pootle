@@ -1651,7 +1651,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 old_unitids[unitid] = {'dbid': dbid, 'index': index}
                 old_unitid_set.add(unitid)
 
-            new_unitid_list = sorted(store.getids(), key=lambda x: store.findid(x).index)
+            new_unitid_list = sorted(store.getids(),
+                                     key=lambda x: store.findid(x).index)
             new_unitid_set = set(new_unitid_list)
 
             User = get_user_model()
