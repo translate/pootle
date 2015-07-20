@@ -1586,6 +1586,27 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             index=op(F('index'), delta)
         )
 
+    def mark_units_obsolete(self, uids_to_obsolete):
+        """Marks a bulk of units as obsolete.
+
+        :param uids_to_obsolete: UIDs of the units to be marked as obsolete.
+        :return: The number of units marked as obsolete.
+        """
+        obsoleted = 0
+        for unit in self.findid_bulk(uids_to_obsolete):
+            # Use the same (parent) object since units will
+            # accumulate the list of cache attributes to clear
+            # in the parent Store object
+            unit.store = self
+            if not unit.isobsolete():
+                unit.makeobsolete()
+                # FIXME: extreme implicit hazard
+                unit._from_update_stores = True
+                unit.save()
+                obsoleted += 1
+
+        return obsoleted
+
     def record_submissions(self, unit, old_target, old_state, current_time, user):
         """Records all applicable submissions for `unit`.
 
@@ -1751,20 +1772,13 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             update_dbids = set([x['dbid'] for x in update_unitids.values()])
             common_dbids.update(update_dbids)
 
+            # Step N-1: mark obsolete units as such
+
             obsolete_dbids = [old_unitids[uid]['dbid']
                               for uid in old_unitid_set -
                                          old_obsolete_unitid_set -
                                          new_unitid_set]
-            for unit in self.findid_bulk(obsolete_dbids):
-                # Use the same (parent) object since units will
-                # accumulate the list of cache attributes to clear
-                # in the parent Store object
-                unit.store = self
-                if not unit.isobsolete():
-                    unit.makeobsolete()
-                    unit._from_update_stores = True
-                    unit.save()
-                    changes['obsolete'] += 1
+            changes['obsolete'] = self.mark_units_obsolete(obsolete_dbids)
 
             if not overwrite:
                 # Get units that were modified after last sync
