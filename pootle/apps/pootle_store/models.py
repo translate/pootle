@@ -1586,6 +1586,53 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             index=op(F('index'), delta)
         )
 
+    def record_submissions(self, unit, old_target, old_state, current_time, user):
+        """Records all applicable submissions for `unit`.
+
+        EXTREME HAZARD: this relies on implicit `._<field>_updated` members
+        being available in `unit`. Let's look into replacing such members with
+        something saner (#3895).
+        """
+        create_subs = {}
+
+        # FIXME: extreme implicit hazard
+        if unit._target_updated:
+            create_subs[SubmissionFields.TARGET] = [
+                old_target,
+                unit.target_f,
+            ]
+
+        # FIXME: extreme implicit hazard
+        if unit._state_updated:
+            create_subs[SubmissionFields.STATE] = [
+                old_state,
+                unit.state,
+            ]
+
+        # FIXME: extreme implicit hazard
+        if unit._comment_updated:
+            create_subs[SubmissionFields.COMMENT] = [
+                '',
+                unit.translator_comment or '',
+            ]
+
+        # Create Submission after unit saved
+        for field in create_subs:
+            sub = Submission(
+                creation_time=current_time,
+                translation_project=self.translation_project,
+                submitter=user,
+                unit=unit,
+                store=unit.store,
+                field=field,
+                type=SubmissionTypes.SYSTEM,
+                old_value=create_subs[field][0],
+                new_value=create_subs[field][1]
+            )
+            # FIXME: we can store these objects in a list and
+            # `bulk_create()` them in a single go
+            sub.save()
+
     def update(self, overwrite=False, store=None, only_newer=False):
         """Update DB with units from file.
 
@@ -1755,45 +1802,14 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
                 if changed:
                     changes['updated'] += 1
-                    create_subs = {}
                     current_time = timezone.now()
 
-                    if unit._target_updated:
-                        create_subs[SubmissionFields.TARGET] = [
-                            old_target_f,
-                            unit.target_f,
-                        ]
-
-                    if unit._state_updated:
-                        create_subs[SubmissionFields.STATE] = [
-                            old_unit_state,
-                            unit.state,
-                        ]
+                    self.record_submissions(unit, old_target, old_state,
+                                            current_time, user)
 
                     if unit._comment_updated:
                         unit.commented_by = system
                         unit.commented_on = current_time
-                        create_subs[SubmissionFields.COMMENT] = [
-                            '',
-                            unit.translator_comment or '',
-                        ]
-
-                    # Create Submission after unit saved
-                    for field in create_subs:
-                        sub = Submission(
-                            creation_time=current_time,
-                            translation_project=self.translation_project,
-                            submitter=system,
-                            unit=unit,
-                            store=unit.store,
-                            field=field,
-                            type=SubmissionTypes.SYSTEM,
-                            old_value=create_subs[field][0],
-                            new_value=create_subs[field][1]
-                        )
-                        # FIXME: we can store these objects in a list and
-                        # `bulk_create()` them in a single go
-                        sub.save()
 
                     # Set unit fields if target was updated
                     if unit._target_updated:
