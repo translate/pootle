@@ -88,7 +88,7 @@ see the dirty counts.  To retrieve these use:
 
 .. code-block:: bash
 
-   $ redis-cli zrank "pootle:dirty:treeitems" "/project/libo_ui"
+   $ redis-cli -n 2 zrank "pootle:dirty:treeitems" "/projects/terminology/"
 
 Or to get a complete list for the server, including the scores:
 
