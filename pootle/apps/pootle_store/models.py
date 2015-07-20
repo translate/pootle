@@ -1641,9 +1641,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             old_obsolete_unitid_set = set()  # obsolete unitids in DB
             update_unitids = {}
 
-            for (unitid, state, dbid, index) in \
-                self.unit_set.order_by('index') \
-                    .values_list('unitid', 'state', 'id', 'index'):
+            unit_values = self.unit_set.order_by('index').values_list(
+                'unitid', 'state', 'id', 'index',
+            )
+            for (unitid, state, dbid, index) in unit_values:
                 if state == OBSOLETE:
                     old_obsolete_unitid_set.add(unitid)
                 else:
@@ -1758,18 +1759,24 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     current_time = timezone.now()
 
                     if unit._target_updated:
-                        create_subs[SubmissionFields.TARGET] = \
-                            [old_target_f, unit.target_f]
+                        create_subs[SubmissionFields.TARGET] = [
+                            old_target_f,
+                            unit.target_f,
+                        ]
 
                     if unit._state_updated:
-                        create_subs[SubmissionFields.STATE] = \
-                            [old_unit_state, unit.state]
+                        create_subs[SubmissionFields.STATE] = [
+                            old_unit_state,
+                            unit.state,
+                        ]
 
                     if unit._comment_updated:
                         unit.commented_by = system
                         unit.commented_on = current_time
-                        create_subs[SubmissionFields.COMMENT] = \
-                            ['', unit.translator_comment or '']
+                        create_subs[SubmissionFields.COMMENT] = [
+                            '',
+                            unit.translator_comment or '',
+                        ]
 
                     # Create Submission after unit saved
                     for field in create_subs:
