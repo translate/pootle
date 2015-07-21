@@ -1858,7 +1858,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
             self.file_mtime = disk_mtime
 
-            if filter(lambda x: changes[x] > 0, changes):
+            if (filter(lambda x: changes[x] > 0, changes) and
+                store == self.file.store):
+                if self.last_sync_revision is not None:
+                    changes['unsynced'] = \
+                        self.increment_unsynced_unit_revision(update_revision)
+
                 self.last_sync_revision = update_revision
 
         finally:
@@ -1870,6 +1875,20 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     get_change_str(changes), self.pootle_path,
                     self.get_max_unit_revision())
                 )
+
+    def increment_unsynced_unit_revision(self, update_revision):
+        filter_by = {
+            'store': self,
+            'revision__gt': self.last_sync_revision,
+            'revision__lt': update_revision,
+            'state__gt': OBSOLETE,
+        }
+        count = 0
+        for unit in Unit.simple_objects.filter(**filter_by):
+            unit.save(revision=Revision.incr())
+            count += 1
+
+        return count
 
     def serialize(self):
         from django.core.cache import caches
