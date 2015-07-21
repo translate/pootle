@@ -66,3 +66,31 @@ def test_sync(fr_tutorial_remove_sync_po):
     assert not store.file.exists()
     store.sync()
     assert store.file.exists()
+
+
+@pytest.mark.django_db
+def test_update(ru_tutorial_po):
+    """Tests unit order after a specific update.
+    """
+
+    tp = ru_tutorial_po.translation_project
+    pootle_path = ru_tutorial_po.pootle_path
+
+    # Parse stores
+    ru_tutorial_po.update(overwrite=False, only_newer=False)
+
+    print ru_tutorial_po.file
+    assert ru_tutorial_po.file.exists()
+
+    # check if initial indexing is correct
+    old_unit_order = {'first': 1, 'second': 2, 'third': 3}
+    for unit in ru_tutorial_po.units:
+        assert old_unit_order[unit.unitid] == unit.index
+
+    ru_tutorial_po.file = 'tutorial/ru/tutorial_updated.po'
+    ru_tutorial_po.update(overwrite=False, only_newer=False)
+
+    # check if updated indexing is correct
+    new_unit_order = {'before first': 1, 'first': 2, 'third': 4}
+    for unit in ru_tutorial_po.units:
+        assert new_unit_order[unit.unitid] == unit.index

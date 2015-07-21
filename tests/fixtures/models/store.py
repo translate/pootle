@@ -110,3 +110,10 @@ def es_tutorial_subdir_remove_po(settings, spanish_tutorial, system):
     """Require the /es/tutorial/subdir/remove_tutorial.po store."""
     po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
     return _require_store(spanish_tutorial, po_directory, 'subdir/remove_tutorial.po')
+
+
+@pytest.fixture
+def ru_tutorial_po(settings, russian_tutorial, system):
+    """Require the /ru/tutorial/tutorial.po store."""
+    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
+    return _require_store(russian_tutorial, po_directory, 'tutorial.po')
