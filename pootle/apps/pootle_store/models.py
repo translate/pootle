@@ -1586,7 +1586,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             index=op(F('index'), delta)
         )
 
-    @transaction.atomic
     def update(self, overwrite=False, store=None, only_newer=False):
         """Update DB with units from file.
 
