@@ -70,7 +70,7 @@ def create_translation_project(language, project):
 def scan_translation_projects(languages=None, projects=None):
     project_query = Project.objects.enabled()
 
-    if projects:
+    if projects is not None:
         project_query = project_query.filter(code__in=projects)
 
     for project in project_query.iterator():
@@ -83,7 +83,7 @@ def scan_translation_projects(languages=None, projects=None):
                     id__in=project.translationproject_set.live() \
                                   .values_list('language', flat=True)
                 )
-            if languages:
+            if languages is not None:
                 lang_query = lang_query.filter(code__in=languages)
 
             for language in lang_query.iterator():
