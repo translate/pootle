@@ -313,6 +313,26 @@ def translation_project_should_exist(language, project):
     return False
 
 
+def init_store_from_template(translation_project, template_store):
+    """Initialize a new file for `translation_project` using `template_store`.
+    """
+    if translation_project.file_style == 'gnu':
+        target_pootle_path, target_path = get_translated_name_gnu(translation_project,
+                                                                  template_store)
+    else:
+        target_pootle_path, target_path = get_translated_name(translation_project,
+                                                              template_store)
+
+    # Create the missing directories for the new TP.
+    target_dir = os.path.dirname(target_path)
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+
+    output_file = template_store.file.store
+    output_file.settargetlanguage(translation_project.language.code)
+    output_file.savefile(target_path)
+
+
 def get_translated_name_gnu(translation_project, store):
     """Given a template :param:`store` and a :param:`translation_project` return
     target filename.

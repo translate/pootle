@@ -245,6 +245,19 @@ class TranslationProject(models.Model, CachedTreeItem):
     def save(self, *args, **kwargs):
         created = self.id is None
 
+        if created:
+            from pootle_app.project_tree import translation_project_should_exist
+
+            template_tp = self.project.get_template_translationproject()
+            initialize_from_templates = False
+
+            if (not self.is_template_project and
+                template_tp is not None and
+                not translation_project_should_exist(self.language,
+                                                     self.project)):
+
+                initialize_from_templates = True
+
         self.directory = self.language.directory \
                                       .get_or_make_subdir(self.project.code)
         self.pootle_path = self.directory.pootle_path
@@ -258,7 +271,21 @@ class TranslationProject(models.Model, CachedTreeItem):
         super(TranslationProject, self).save(*args, **kwargs)
 
         if created:
+            if initialize_from_templates:
+                # We are adding a new TP and there are no files to import from
+                # disk, so initialize the TP files using the templates TP ones.
+                from pootle_app.project_tree import init_store_from_template
+
+                for template_store in template_tp.stores.iterator():
+                    init_store_from_template(self, template_store)
+
             self.scan_files()
+
+            if initialize_from_templates:
+                # Trigger stats refresh for TP added from UI.
+                # FIXME: This won't be necessary once #3547 is fixed.
+                for store in self.stores.live().iterator():
+                    store.update()
 
     def delete(self, *args, **kwargs):
         directory = self.directory
