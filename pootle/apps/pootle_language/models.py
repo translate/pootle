@@ -63,7 +63,7 @@ class LiveLanguageManager(models.Manager):
                         cmp=locale.strcoll,
                         key=lambda x: x[1])
             )
-            cache.set(key, languages, settings.OBJECT_CACHE_TIMEOUT)
+            cache.set(key, languages, settings.POOTLE_CACHE_TIMEOUT)
 
         return languages
 

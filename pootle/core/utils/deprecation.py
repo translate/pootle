@@ -35,6 +35,7 @@ DEPRECATIONS = [
     ('DESCRIPTION', None, '2.7', None),
     ('FUZZY_MATCH_MAX_LENGTH', None, '2.7', None),
     ('FUZZY_MATCH_MIN_SIMILARITY', None, '2.7', None),
+    ('OBJECT_CACHE_TIMEOUT', 'POOTLE_CACHE_TIMEOUT', '2.7', None),
 ]
 
 

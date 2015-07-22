@@ -75,7 +75,7 @@ def get_permissions_by_username(username, directory):
         else:
             permissions_cache[pootle_path] = None
 
-        cache.set(key, permissions_cache, settings.OBJECT_CACHE_TIMEOUT)
+        cache.set(key, permissions_cache, settings.POOTLE_CACHE_TIMEOUT)
 
     return permissions_cache[pootle_path]
 

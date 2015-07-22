@@ -71,12 +71,19 @@ This file contains base configuration settings.
 Backend and caching settings.
 
 
-.. setting:: OBJECT_CACHE_TIMEOUT
+.. setting:: POOTLE_CACHE_TIMEOUT
 
-``OBJECT_CACHE_TIMEOUT``
-  Default: ``2500000``
+``POOTLE_CACHE_TIMEOUT``
+  Default: ``604800`` (a week)
 
-  Time in seconds the Pootle's statistics cache will last.
+  .. versionadded:: 2.7
+
+  Time in seconds to keep certain objects cached in memory (template fragments,
+  language and project lists, permissions, etc.).
+
+  Note that for anonymous users Pootle also uses `Django's caching middleware
+  <https://docs.djangoproject.com/en/1.7/topics/cache/#the-per-site-cache>`_,
+  and its settings can be configured separately.
 
 
 25-logging.conf

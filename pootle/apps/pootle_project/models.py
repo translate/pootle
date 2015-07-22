@@ -66,7 +66,7 @@ class ProjectManager(models.Manager):
                 self.for_user(user).order_by('fullname')
                                    .values_list('code', 'fullname')
             )
-            cache.set(cache_key, projects, settings.OBJECT_CACHE_TIMEOUT)
+            cache.set(cache_key, projects, settings.POOTLE_CACHE_TIMEOUT)
 
         return projects
 
@@ -264,7 +264,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                 (user_projects.union(allow_projects)).difference(forbid_projects)
 
         user_projects = list(user_projects)
-        cache.set(key, user_projects, settings.OBJECT_CACHE_TIMEOUT)
+        cache.set(key, user_projects, settings.POOTLE_CACHE_TIMEOUT)
 
         return user_projects
 
@@ -343,7 +343,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         resources = sorted(resources_set | set(self.vfolders),
                            key=get_path_sortkey)
 
-        cache.set(cache_key, resources, settings.OBJECT_CACHE_TIMEOUT)
+        cache.set(cache_key, resources, settings.POOTLE_CACHE_TIMEOUT)
 
         return resources
 

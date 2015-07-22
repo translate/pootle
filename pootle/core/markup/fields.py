@@ -51,7 +51,7 @@ class Markup(object):
             logger.debug(u'Caching rendered output of %r', self.cache_key)
             rendered = apply_markup_filter(self.raw)
             cache.set(self.cache_key, rendered,
-                      settings.OBJECT_CACHE_TIMEOUT)
+                      settings.POOTLE_CACHE_TIMEOUT)
 
         return rendered
 
