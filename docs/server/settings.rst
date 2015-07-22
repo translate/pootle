@@ -179,6 +179,8 @@ Configuration settings for applications used by Pootle.
 ``POOTLE_META_USERS``
   Default: ``()``
 
+  .. versionadded:: 2.7
+
   Additional meta, or non-human, accounts. Pootle already manages the 'system'
   and 'nobody' users who own system updates to translations and submissions by
   anonymous users.  These meta accounts have their own simple public profiles
@@ -223,6 +225,8 @@ Configuration settings for applications used by Pootle.
 
 ``POOTLE_REPORTS_MARK_FUNC``
   Default: ``''`` (empty string)
+
+  .. versionadded:: 2.7
 
   The graph of a user's activity, within reports, can be `marked
   <https://code.google.com/p/flot-marks/>`_  to indicate events by using
