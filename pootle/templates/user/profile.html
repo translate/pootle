@@ -110,14 +110,12 @@
 {% assets 'js_user_app' %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
-{% endif %}
 <script type="text/javascript">
 $(function() {
-  {% if user == object %}
   PTL.user.init({el: '.js-user-profile-edit',
                  userData: {{ user.as_json|safe }},
                  appRoot: '{{ user.get_absolute_url }}'});
-  {% endif %}
 });
 </script>
+{% endif %}
 {% endblock %}
