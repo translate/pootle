@@ -49,7 +49,6 @@ def pootle_context(request):
                                        settings.POOTLE_CONTACT_EMAIL),
             'POOTLE_SIGNUP_ENABLED': settings.POOTLE_SIGNUP_ENABLED,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
-            'CACHE_TIMEOUT': settings.CACHE_MIDDLEWARE_SECONDS,
             'POOTLE_CACHE_TIMEOUT': settings.POOTLE_CACHE_TIMEOUT,
             'DEBUG': settings.DEBUG,
         },
