@@ -1799,8 +1799,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     if SubmissionFields.TARGET in create_subs:
                         unit.submitted_by = system
                         unit.submitted_on = current_time
-                        self.reviewed_on = None
-                        self.reviewed_by = None
+                        unit.reviewed_on = None
+                        unit.reviewed_by = None
 
                     unit.save()
 
