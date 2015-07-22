@@ -267,16 +267,6 @@ Translation environment configuration settings.
   the trailing slash.
 
 
-.. setting:: EXPORTED_DIRECTORY_MODE
-
-``EXPORTED_DIRECTORY_MODE``
-  Default: ``0755``
-
-  On POSIX systems, exported directories will be assigned this permission. Use
-  ``0755`` for publically-readable directories or ``0700`` if you want only the
-  Pootle user to be able to read them.
-
-
 .. setting:: EXPORTED_FILE_MODE
 
 ``EXPORTED_FILE_MODE``
@@ -484,3 +474,10 @@ Deprecated Settings
 ``FUZZY_MATCH_MIN_SIMILARITY``
   .. deprecated:: 2.7
      Update against templates feature has been removed.
+
+
+.. setting:: EXPORTED_DIRECTORY_MODE
+
+``EXPORTED_DIRECTORY_MODE``
+  .. deprecated:: 2.7
+     Offline translation support was rewritten and the setting was unused.
