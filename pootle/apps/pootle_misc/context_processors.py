@@ -20,7 +20,7 @@ def _agreement_context(request):
     """Returns whether the agreement box should be displayed or not."""
     request_path = request.META['PATH_INFO']
     nocheck = filter(lambda x: request_path.startswith(x),
-                     settings.LEGALPAGE_NOCHECK_PREFIXES)
+                     settings.POOTLE_LEGALPAGE_NOCHECK_PREFIXES)
 
     if (request.user.is_authenticated() and not nocheck and
         LegalPage.objects.has_pending_agreement(request.user)):
@@ -52,7 +52,7 @@ def pootle_context(request):
             'POOTLE_CACHE_TIMEOUT': settings.POOTLE_CACHE_TIMEOUT,
             'DEBUG': settings.DEBUG,
         },
-        'custom': settings.CUSTOM_TEMPLATE_CONTEXT,
+        'custom': settings.POOTLE_CUSTOM_TEMPLATE_CONTEXT,
         'ALL_LANGUAGES': Language.live.cached_dict(translation.get_language()),
         'ALL_PROJECTS': Project.objects.cached_dict(request.user),
         'SOCIAL_AUTH_PROVIDERS': jsonify(_get_social_auth_providers(request)),

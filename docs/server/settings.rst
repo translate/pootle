@@ -151,19 +151,23 @@ Configuration settings for applications used by Pootle.
   administrators will still be able to create new user accounts.
 
 
-.. setting:: CUSTOM_TEMPLATE_CONTEXT
+.. setting:: POOTLE_CUSTOM_TEMPLATE_CONTEXT
 
-``CUSTOM_TEMPLATE_CONTEXT``
+``POOTLE_CUSTOM_TEMPLATE_CONTEXT``
   Default: ``{}``
+
+  .. versionchanged:: 2.7
 
   Custom template context dictionary. The values will be available in the
   templates as ``{{ custom.<key> }}``.
 
 
-.. setting:: LEGALPAGE_NOCHECK_PREFIXES
+.. setting:: POOTLE_LEGALPAGE_NOCHECK_PREFIXES
 
-``LEGALPAGE_NOCHECK_PREFIXES``
-  Default: ``('/accounts', '/admin', '/contact', '/jsi18n', '/pages', )``
+``POOTLE_LEGALPAGE_NOCHECK_PREFIXES``
+  Default: ``('/about', '/accounts', '/admin', '/contact', '/jsi18n', '/pages', )``
+
+  .. versionchanged:: 2.7
 
   List of path prefixes where the ``LegalAgreementMiddleware`` will check
   if the current logged-in user has agreed all the legal documents defined
