@@ -81,12 +81,6 @@
         </div>
       </noscript>
       <div id="alerts" class="affix js-alerts">
-        {% for message in messages %}
-        <div class="alert alert-block alert-{{ message.tags }} fade in" lang="{{ LANGUAGE_CODE }}">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          {{ message|safe }}
-        </div>
-        {% endfor %}
       </div>
 
       <nav id="navbar">
