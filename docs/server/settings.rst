@@ -81,9 +81,9 @@ Backend and caching settings.
   Time in seconds to keep certain objects cached in memory (template fragments,
   language and project lists, permissions, etc.).
 
-  Note that for anonymous users Pootle also uses `Django's caching middleware
-  <https://docs.djangoproject.com/en/1.7/topics/cache/#the-per-site-cache>`_,
-  and its settings can be configured separately.
+  Note that for anonymous users Pootle also uses :ref:`Django's caching
+  middleware <django:the-per-site-cache>`, and its settings can be configured
+  separately.
 
 
 25-logging.conf
