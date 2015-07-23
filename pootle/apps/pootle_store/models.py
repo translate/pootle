@@ -1825,8 +1825,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     common_dbids.update(set(old_unitids[uid]['dbid']
                                             for uid in old_unitid_list[i1:i2]))
 
-            update_dbids = set([x['dbid'] for x in update_unitids.values()])
-            common_dbids.update(update_dbids)
 
             # Step N-1: mark obsolete units as such
 
@@ -1838,6 +1836,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
 
             # Step N: update existing units
+
+            update_dbids = set([x['dbid'] for x in update_unitids.values()])
+            common_dbids.update(update_dbids)
 
             # Optimization: only go through unchanged units since the last sync
             if not overwrite:
