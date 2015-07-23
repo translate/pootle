@@ -1610,11 +1610,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         return unit_ids
 
-    def update_units(self, store, uids_to_update, update_unitids, user):
+    def update_units(self, store, uids_to_update, uid_index_map, user):
         """Updates existing units in the store.
 
         :param uids_to_update: UIDs of the units to be updated.
-        :param update_unitids: dictionary of DB ID to index mappings.
+        :param uid_index_map: dictionary of DB ID to index mappings.
         :param user: attribute specific changes to this user.
         :return: The number of units that were actually updated.
         """
@@ -1635,8 +1635,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
             changed = unit.update(newunit, user=user)
 
-            if uid in update_unitids:
-                unit.index = update_unitids[uid]['index']
+            if uid in uid_index_map:
+                unit.index = uid_index_map[uid]['index']
                 changed = True
 
             if changed:
