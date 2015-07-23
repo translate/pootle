@@ -589,11 +589,6 @@ class Unit(models.Model, base.TranslationUnit):
         newunit.setid(self.getid())
         newunit.setcontext(self.getcontext())
 
-        if hasattr(newunit, "addalttrans"):
-            for suggestion in self.get_suggestions().iterator():
-                newunit.addalttrans(suggestion.target,
-                                    origin=unicode(suggestion.user))
-
         if self.isobsolete():
             newunit.makeobsolete()
 
@@ -738,13 +733,6 @@ class Unit(models.Model, base.TranslationUnit):
             self.unitid = unicode(unit.getid()) or unicode(unit.source)
             self.unitid_hash = md5(self.unitid.encode("utf-8")).hexdigest()
             changed = True
-
-        if hasattr(unit, 'getalttrans'):
-            for suggestion in unit.getalttrans():
-                if suggestion.source == self.source:
-                    self.add_suggestion(suggestion.target, user=user, touch=False)
-
-                changed = True
 
         if changed:
             #TODO: check that Store.update() is in the traceback
@@ -1004,15 +992,6 @@ class Unit(models.Model, base.TranslationUnit):
         newunit = cls()
         newunit.update(unit)
         return newunit
-
-    def addalttrans(self, txt, origin=None):
-        self.add_suggestion(txt, user=origin)
-
-    def getalttrans(self):
-        return self.get_suggestions()
-
-    def delalttrans(self, alternative):
-        alternative.delete()
 
     def fuzzy_translate(self, matcher):
         candidates = matcher.matches(self.source)
