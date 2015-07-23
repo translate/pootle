@@ -626,6 +626,7 @@ PTL.editor = {
 
     if (!comment.classList.contains('selected')) {
       commentForm.style.display = 'inline-block';
+      comment.classList.add('selected');
     }
 
     commentInput.focus();
