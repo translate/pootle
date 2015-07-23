@@ -267,13 +267,15 @@ Translation environment configuration settings.
   the trailing slash.
 
 
-.. setting:: EXPORTED_FILE_MODE
+.. setting:: POOTLE_SYNC_FILE_MODE
 
-``EXPORTED_FILE_MODE``
+``POOTLE_SYNC_FILE_MODE``
   Default: ``0644``
 
-  On POSIX systems, exported files will be assigned this permission. Use
-  ``0644`` for publically-readable files or ``0600`` if you want only the
+  .. versionchanged:: 2.7
+
+  On POSIX systems, files synchronized to disk will be assigned this permission.
+  Use ``0644`` for publically-readable files or ``0600`` if you want only the
   Pootle user to be able to read them.
 
 
