@@ -1671,13 +1671,14 @@ PTL.editor = {
   },
 
   filterSort: function () {
-    var filterBy = $('#js-filter-status').val(),
-        // #104: Since multiple values can't be selected in the select
-        // element, we also need to check for `this.checks`.
-        filterChecks = $('#js-filter-checks').val() || this.checks.join(','),
-        sortBy = $('#js-filter-sort').val(),
-        user = this.user || null,
-        newHash = { filter: filterBy };
+    const filterBy = $('#js-filter-status').val();
+    // #104: Since multiple values can't be selected in the select
+    // element, we also need to check for `this.checks`.
+    const filterChecks = $('#js-filter-checks').val() || this.checks.join(',');
+    const sortBy = $('#js-filter-sort').val();
+    const user = this.user || null;
+
+    let newHash = { filter: filterBy };
 
     filterChecks !== 'none' && (newHash.checks = filterChecks);
     sortBy !== 'default' && (newHash.sort = sortBy);
