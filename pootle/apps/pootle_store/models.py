@@ -1610,8 +1610,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         return unit_ids
 
-    def update_units(self, store, uids_to_update, update_unitids, user,
-                     apply_optimizations=True):
+    def update_units(self, store, uids_to_update, update_unitids, user):
         """Updates existing units in the store.
 
         :param uids_to_update: UIDs of the units to be updated.
