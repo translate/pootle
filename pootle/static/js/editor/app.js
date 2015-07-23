@@ -1680,7 +1680,12 @@ PTL.editor = {
 
     let newHash = { filter: filterBy };
 
-    filterChecks !== 'none' && (newHash.checks = filterChecks);
+    if (this.category.length) {
+      newHash.category = this.category;
+    } else if (filterChecks !== 'none') {
+      newHash.checks = filterChecks;
+    }
+
     sortBy !== 'default' && (newHash.sort = sortBy);
     user !== null && (newHash.user = user);
 
