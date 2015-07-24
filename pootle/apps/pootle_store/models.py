@@ -1785,11 +1785,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
             common_dbids = set()
 
-            def insert(i1, j1, j2):
+            def insert(i1, j1, j2, offset):
                 # Add new units to the store
                 new_units = (store.findid(uid) for uid in new_unitid_list[j1:j2])
                 for index, unit in enumerate(new_units):
-                    new_unit_index = i1 + index + 1
+                    new_unit_index = i1 + index + 1 + offset
                     uid = unit.getid()
                     if uid not in old_unitid_set:
                         self.addunit(unit, new_unit_index, user=system)
@@ -1799,7 +1799,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                                'index': new_unit_index}
 
             sm = difflib.SequenceMatcher(None, old_unitid_list, new_unitid_list)
+            offset = 0
             for (tag, i1, i2, j1, j2) in sm.get_opcodes():
+                current_offset = offset
                 if tag == 'delete':
                     continue
                 elif tag == 'insert':
@@ -1812,15 +1814,17 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                         delta = j2 - j1
                         if previous_index + delta >= next['index']:
                             delta = next['index'] - previous_index + delta - 1
-                            self.update_index(start=next['index'], delta=delta)
-                    insert(previous_index, j1, j2)
+                            self.update_index(start=next['index'] + current_offset, delta=delta)
+                            offset += delta
+                    insert(previous_index, j1, j2, current_offset)
                 elif tag == 'replace':
                     i1_index = old_unitids[old_unitid_list[i1 - 1]]['index']
                     i2_index = old_unitids[old_unitid_list[i2 - 1]]['index']
                     delta = j2 - j1 - i2_index + i1_index
                     if delta > 0:
-                        self.update_index(start=i2_index, delta=delta)
-                    insert(i1_index, j1, j2)
+                        self.update_index(start=i2_index + current_offset, delta=delta)
+                        offset += delta
+                    insert(i1_index, j1, j2, current_offset)
                 else:
                     common_dbids.update(set(old_unitids[uid]['dbid']
                                             for uid in old_unitid_list[i1:i2]))
