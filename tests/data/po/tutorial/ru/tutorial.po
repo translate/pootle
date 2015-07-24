@@ -8,13 +8,17 @@ msgstr ""
 "X-Generator: Pootle Tests\n"
 
 #: first
-msgid "first"
+msgid "1->2"
 msgstr ""
 
 #: test.c
-msgid "second"
+msgid "2->4"
 msgstr ""
 
 #: fish.c
-msgid "third"
+msgid "3->3"
+msgstr ""
+
+#: fish.c
+msgid "4->5"
 msgstr ""

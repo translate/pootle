@@ -69,28 +69,29 @@ def test_sync(fr_tutorial_remove_sync_po):
 
 
 @pytest.mark.django_db
-def test_update(ru_tutorial_po):
+def test_update_unit_order(ru_tutorial_po):
     """Tests unit order after a specific update.
     """
 
-    tp = ru_tutorial_po.translation_project
-    pootle_path = ru_tutorial_po.pootle_path
-
     # Parse stores
     ru_tutorial_po.update(overwrite=False, only_newer=False)
+    # Set last sync revision
+    ru_tutorial_po.sync()
 
     print ru_tutorial_po.file
     assert ru_tutorial_po.file.exists()
 
-    # check if initial indexing is correct
-    old_unit_order = {'first': 1, 'second': 2, 'third': 3}
-    for unit in ru_tutorial_po.units:
-        assert old_unit_order[unit.unitid] == unit.index
+    old_unit_list = ['1->2', '2->4', '3->3', '4->5']
+    updated_unit_list = list(
+        [unit.unitid for unit in ru_tutorial_po.units]
+    )
+    assert old_unit_list == updated_unit_list
 
     ru_tutorial_po.file = 'tutorial/ru/tutorial_updated.po'
     ru_tutorial_po.update(overwrite=False, only_newer=False)
 
-    # check if updated indexing is correct
-    new_unit_order = {'before first': 1, 'first': 2, 'third': 4}
-    for unit in ru_tutorial_po.units:
-        assert new_unit_order[unit.unitid] == unit.index
+    old_unit_list = ['X->1', '1->2', '3->3', '2->4', '4->5', 'X->6', 'X->7', 'X->8']
+    updated_unit_list = list(
+        [unit.unitid for unit in ru_tutorial_po.units]
+    )
+    assert old_unit_list == updated_unit_list
