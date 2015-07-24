@@ -37,6 +37,8 @@ var score = require('../score.js');
 var search = require('../search.js');
 var utils = require('../utils.js');
 
+import linkHashtags from 'utils/linkHashtags';
+
 
 var filterSelectOpts = {
       dropdownAutoWidth: true,
@@ -474,6 +476,9 @@ PTL.editor = {
     PTL.editor.settings.targetLang = PTL.editor.normalizeCode(
       $('.js-translation-area').attr('lang')
     );
+
+    const $devComments = $('.js-developer-comments');
+    $devComments.html(linkHashtags($devComments.html()));
 
     PTL.editor.hlSearch();
 
