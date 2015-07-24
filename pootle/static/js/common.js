@@ -113,10 +113,6 @@ PTL.common = {
       width: "resolve"
     });
 
-    // Hide the help messages for the Select2 multiple selects.
-    // FIXME: this needs to go away
-    $("select[multiple].js-select2").siblings("span.help_text").hide();
-
     // Set CSRF token for XHR requests (jQuery-specific)
     $.ajaxSetup({
       traditional: true,

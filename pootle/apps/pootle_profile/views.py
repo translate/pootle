@@ -48,6 +48,7 @@ class UserSettingsView(TestUserFieldMixin, UpdateView):
     def get_form(self, *args, **kwargs):
         form = super(UserSettingsView, self).get_form(*args, **kwargs)
 
+        form.fields['alt_src_langs'].help_text = None
         form.fields['alt_src_langs'].widget.attrs['class'] = \
             'js-select2 select2-multiple'
         form.fields['alt_src_langs'].widget.attrs['data-placeholder'] = \
