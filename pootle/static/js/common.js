@@ -27,10 +27,6 @@ require('jquery-tipsy');
 // Backbone plugins
 require('backbone-safesync');
 
-// Bootstrap (possibly fine to get rid of it)
-require('bootstrap-alert');
-require('bootstrap-transition');
-
 // Other plugins
 var Spinner = require('spin');
 

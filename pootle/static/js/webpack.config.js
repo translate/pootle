@@ -59,9 +59,6 @@ var resolve = {
     'jquery-tipsy': __dirname + '/vendor/jquery/jquery.tipsy.js',
     'jquery-utils': __dirname + '/vendor/jquery/jquery.utils.js',
 
-    'bootstrap-alert': __dirname + '/vendor/bootstrap/bootstrap-alert.js',
-    'bootstrap-transition': __dirname + '/vendor/bootstrap/bootstrap-transition.js',
-
     'diff-match-patch': __dirname + '/vendor/diff_match_patch.js', // FIXME: use npm module
     iso8601: __dirname + '/vendor/iso8601.js', // FIXME: use npm module
     levenshtein: __dirname + '/vendor/levenshtein.js', // FIXME: use npm module
