@@ -184,28 +184,6 @@ Unicode ranges is supported, and that they all look the same */
     margin: 0 0.5em;
 }
 
-.toolbar-message
-{
-    position: fixed;
-    bottom: 46px; /* #toolbar height */
-    left: 50%;
-    width: 400px;
-    margin-left: -200px;
-    z-index: 101;
-    text-align: center;
-}
-
-.toolbar-message > div
-{
-    border-radius: 5px 5px 0 0;
-    border: 1px solid #d9d9d9;
-    border-bottom: 0px;
-    background-color: #f8f8f8;
-    padding: 0.5em 1em;
-    display: table;
-    margin: 0 auto;
-}
-
 
 /* TRANSLATE TABLE */
 
@@ -225,11 +203,6 @@ th.translate-original,
 th.translate-translation
 {
     width: 50%;
-}
-
-tr.edit-row
-{
-    /*background-color: #f1f7f8;*/
 }
 
 tr.edit-row.with-ctx
