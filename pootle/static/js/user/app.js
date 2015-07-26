@@ -33,13 +33,18 @@ PTL.user = {
     });
     React.render(userProfileEdit, el);
 
-    $(document).on("click", ".js-popup-tweet", function(e) {
-      var width = 500;
-      var height = 260;
-      var left = (screen.width / 2) - (width / 2);
-      var top = (screen.height / 2) - (height / 2);
-      window.open(e.currentTarget.href, "_blank", "width="+width+",height="+height+",left="+left+",top="+top);
-      return false;
+    const popupBtns = document.querySelectorAll('.js-popup-tweet');
+    [...popupBtns].map((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const width = 500;
+        const height = 260;
+        const left = (screen.width / 2) - (width / 2);
+        const top = (screen.height / 2) - (height / 2);
+        window.open(e.currentTarget.href, '_blank',
+                    `width=${width},height=${height},left=${left},top=${top}`);
+      });
     });
   }
 
