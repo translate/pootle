@@ -32,6 +32,15 @@ PTL.user = {
       user: user
     });
     React.render(userProfileEdit, el);
+
+    $(document).on("click", ".js-popup-tweet", function(e) {
+      var width = 500;
+      var height = 260;
+      var left = (screen.width / 2) - (width / 2);
+      var top = (screen.height / 2) - (height / 2);
+      window.open(e.currentTarget.href, "_blank", "width="+width+",height="+height+",left="+left+",top="+top);
+      return false;
+    });
   }
 
 };
