@@ -2183,8 +2183,8 @@ PTL.editor = {
   toggleCheck: function () {
     var check = $(this).parent(),
         checkId = $(this).data("check-id"),
-        uid = $('.translate-container #id_id').val(),
-        url = l(['/xhr/units/', uid, '/checks/', checkId, '/toggle/'].join('')),
+        uId = PTL.editor.units.getCurrent().id,
+        url = l(['/xhr/units/', uId, '/checks/', checkId, '/toggle/'].join('')),
         falsePositive = !check.hasClass('false-positive'), // toggled value
         post = {},
         error;
