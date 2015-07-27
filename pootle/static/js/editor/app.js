@@ -1932,8 +1932,9 @@ PTL.editor = {
   /* Get the timeline data */
   showTimeline: function () {
     // The results might already be there from earlier:
-    if ($("#timeline-results").length) {
-      $("#timeline-results").slideDown(1000, 'easeOutQuad');
+    $results = $('#timeline-results');
+    if ($results.length) {
+      $results.slideDown(1000, 'easeOutQuad');
       return;
     }
 
@@ -1980,8 +1981,9 @@ PTL.editor = {
  /* Hide the timeline panel */
   toggleTimeline: function (e) {
     e.preventDefault();
-    $("#js-toggle-timeline").toggleClass('selected');
-    if ($("#js-toggle-timeline").hasClass('selected')) {
+    $timelineToggle = ('#js-toggle-timeline');
+    $timelineToggle.toggleClass('selected');
+    if ($timelineToggle.hasClass('selected')) {
       PTL.editor.showTimeline();
     } else {
       $("#timeline-results").slideUp(1000, 'easeOutQuad');
