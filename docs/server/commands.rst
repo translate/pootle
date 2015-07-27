@@ -200,9 +200,9 @@ these parameters:
   Synchronizes files even if nothing changed in the database.
 
 :option:`--overwrite`
-  Copies all units from database stores regardless if they have been
-  modified since the last sync or not. This operation will (over)write
-  existing on-disk files.
+  Copies the current state of the DB stores (not only translations, but also
+  metadata) regardless if they have been modified since the last sync or
+  not. This operation will (over)write existing on-disk files.
 
 :option:`--skip-missing`
   Ignores files missing on disk, and no new files will be created.
