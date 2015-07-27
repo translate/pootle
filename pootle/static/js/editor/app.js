@@ -1932,7 +1932,7 @@ PTL.editor = {
   /* Get the timeline data */
   showTimeline: function () {
     // The results might already be there from earlier:
-    $results = $('#timeline-results');
+    const $results = $('#timeline-results');
     if ($results.length) {
       $results.slideDown(1000, 'easeOutQuad');
       return;
@@ -1981,7 +1981,7 @@ PTL.editor = {
  /* Hide the timeline panel */
   toggleTimeline: function (e) {
     e.preventDefault();
-    $timelineToggle = ('#js-toggle-timeline');
+    const $timelineToggle = $('#js-toggle-timeline');
     $timelineToggle.toggleClass('selected');
     if ($timelineToggle.hasClass('selected')) {
       PTL.editor.showTimeline();
