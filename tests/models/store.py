@@ -12,6 +12,10 @@ import time
 
 import pytest
 
+from pootle.core.models import Revision
+
+from .unit import _update_translation
+
 
 @pytest.mark.django_db
 def test_delete_mark_obsolete(af_tutorial_subdir_po):
@@ -121,3 +125,48 @@ def test_update_save_changed_units(ru_update_save_changed_units_po):
         if unit.target == updated_unit.target:
             assert unit.revision == updated_unit.revision
             assert unit.mtime == updated_unit.mtime
+
+
+@pytest.mark.django_db
+def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
+    """Tests setting last_sync_revision after store creation.
+    """
+    store = ru_update_set_last_sync_revision_po
+
+    # Parse a store during first update
+    # store.last_sync_revision is set to the next global revision
+    next_revision = Revision.get() + 1
+    store.update(overwrite=False, only_newer=False)
+    assert store.last_sync_revision == next_revision
+    assert store.get_max_unit_revision() == next_revision
+
+    # store.last_sync_revision is not changed after empty update
+    store.update(overwrite=False, only_newer=False)
+    assert store.last_sync_revision == next_revision
+
+    # any non-empty update sets last_sync_revision to next global revision
+    store.file = 'tutorial/ru/update_set_last_sync_revision_updated.po'
+    next_revision = Revision.get() + 1
+    store.update(overwrite=False, only_newer=False)
+    assert store.last_sync_revision == next_revision
+
+    # store.last_sync_revision is not changed after empty update
+    # (even if it has unsynced units)
+    item_index = 0
+    next_unit_revision = Revision.get() + 1
+    dbunit = _update_translation(store, item_index, {'target': u'first'},
+                                 sync=False)
+    assert dbunit.revision == next_unit_revision
+    store.update(overwrite=False, only_newer=False)
+    assert store.last_sync_revision == next_revision
+
+    # Non-empty update sets store.last_sync_revision to next global revision
+    # (even the store has unsynced units)
+    # There is only one unsynced unit in this case so its revision should be set
+    # next to store.last_sync_revision
+    next_revision = Revision.get() + 1
+    store.file = 'tutorial/ru/update_set_last_sync_revision.po'
+    store.update(overwrite=False, only_newer=False)
+    assert store.last_sync_revision == next_revision
+    unit = store.getitem(item_index)
+    assert unit.revision == store.last_sync_revision + 1
