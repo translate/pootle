@@ -47,6 +47,7 @@ check_names = {
     'filepaths': _(u"File paths"),
     'functions': _(u"Functions"),
     'gconf': _(u"GConf values"),
+    'isfuzzy': _(u"Fuzzy"),
     'kdecomments': _(u"Old KDE comment"),
     'long': _(u"Long"),
     'musttranslatewords': _(u"Must translate words"),
