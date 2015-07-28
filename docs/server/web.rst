@@ -8,6 +8,10 @@ flexibility, and might be better for security. It is strongly recommended to
 run Pootle under Apache, Nginx, or a similar web server.
 
 
+.. note:: Note that translation files must be served directly by the web
+   server. These files are in the location indicated by the Pootle
+   :setting:`PODIRECTORY` setting.
+
 .. _apache:
 
 Running under Apache
@@ -278,6 +282,12 @@ and the dynamic content will be produced by the app server.
           access_log off;
       }
 
+      location /export {
+          alias /path/to/pootle/env/lib/python2.6/site-packages/pootle/po/;
+          expires 14d;
+          access_log off;
+      }
+
       location / {
         proxy_pass         http://localhost:8000;
         proxy_redirect     off;
@@ -312,6 +322,10 @@ And add the following lines to your Nginx config file:
       # Change the values above to the appropriate values
 
       location ^~ /assets/ {
+          root /path/to/pootle/;
+      }
+
+      location ^~ /export/ {
           root /path/to/pootle/;
       }
 
