@@ -169,7 +169,7 @@ class Submission(models.Model):
                 check_name = self.quality_check.name
                 unit.update({
                     'check_name': check_name,
-                    'check_display_name': check_names[check_name],
+                    'check_display_name': check_names.get(check_name, _("Unknown check")),
                     'checks_url': reverse('pootle-checks-descriptions'),
                 })
                 source.update({
