@@ -275,6 +275,9 @@ class Command(PootleCommand):
         if unit_filter:
             units = units.filter(**unit_filter)
 
+        # exclude template files from wordcount
+        units = units.exclude(store__file__endswith="pot")
+
         res = units.values('store', 'state') \
                    .annotate(wordcount=Sum('source_wordcount')) \
                    .order_by('store', 'state')
