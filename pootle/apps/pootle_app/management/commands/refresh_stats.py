@@ -275,7 +275,10 @@ class Command(PootleCommand):
         if unit_filter:
             units = units.filter(**unit_filter)
 
-        res = units.values('store', 'state') \
+        local_filetype = 'store__translation_project__project__localfiletype'
+        res = units.values('store', 'state',
+                           local_filetype,
+                           'store__file') \
                    .annotate(wordcount=Sum('source_wordcount')) \
                    .order_by('store', 'state')
 
@@ -285,6 +288,13 @@ class Command(PootleCommand):
         key = None
 
         for item in res.iterator():
+            # only include files with ext matching project ext
+            file_ext = os.path.splitext(item['store__file'])[1][1:]
+            proj_ext = item[
+                'store__translation_project__project__localfiletype']
+            if not file_ext == proj_ext:
+                continue
+
             if saved_id != item['store']:
                 try:
                     key = Store.objects.live().get(id=item['store']) \
