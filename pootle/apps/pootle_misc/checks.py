@@ -1031,11 +1031,6 @@ def get_qualitycheck_schema(path_obj=None):
     return result
 
 
-def get_qualitychecks_by_category(category):
-    checks = get_qualitychecks()
-    return filter(lambda x: checks[x] == category, checks)
-
-
 def _generic_check(str1, str2, regex, message):
     def get_fingerprint(str, is_source=False, translation=''):
         chunks = regex.split(str)
