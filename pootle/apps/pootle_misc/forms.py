@@ -59,12 +59,10 @@ class LiberalModelChoiceField(forms.ModelChoiceField):
 
 def make_search_form(*args, **kwargs):
     """Factory that instantiates one of the search forms below."""
-    terminology = kwargs.pop('terminology', False)
     request = kwargs.pop('request', None)
 
     if request is not None:
-        env = terminology and "terminology" or "editor"
-        sparams_cookie = request.COOKIES.get("search-%s" % env)
+        sparams_cookie = request.COOKIES.get('pootle-search')
 
         if sparams_cookie:
             import json
@@ -75,9 +73,6 @@ def make_search_form(*args, **kwargs):
                 kwargs.update({
                     'initial': initial_sparams,
                 })
-
-    if terminology:
-        return TermSearchForm(*args, **kwargs)
 
     return SearchForm(*args, **kwargs)
 
@@ -107,21 +102,6 @@ class SearchForm(forms.Form):
             ('target', _('Target Text')),
             ('notes', _('Comments')),
             ('locations', _('Locations'))
-        ),
-        initial=['source', 'target'],
-    )
-
-
-class TermSearchForm(SearchForm):
-    """Search form for terminology projects and pootle-terminology files."""
-    # Mostly the same as SearchForm, but defining it this way seemed easiest.
-    sfields = forms.ChoiceField(
-        required=False,
-        widget=forms.CheckboxSelectMultiple,
-        choices=(
-            ('source', _('Source Terms')),
-            ('target', _('Target Terms')),
-            ('notes', _('Definitions')),
         ),
         initial=['source', 'target'],
     )

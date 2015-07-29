@@ -70,12 +70,10 @@ def get_filter_name(GET):
     return (filter_name, extra)
 
 
-def get_translation_context(request, is_terminology=False):
+def get_translation_context(request):
     """Returns a common context for translation views.
 
     :param request: a :cls:`django.http.HttpRequest` object.
-    :param is_terminology: boolean indicating if the translation context
-        is relevant to a terminology project.
     """
     resource_path = getattr(request, 'resource_path', '')
     vfolder_pk = getattr(request, 'current_vfolder', '')
@@ -104,8 +102,7 @@ def get_translation_context(request, is_terminology=False):
 
         'check_categories': get_qualitycheck_schema(),
 
-        'search_form': make_search_form(request=request,
-                                        terminology=is_terminology),
+        'search_form': make_search_form(request=request),
 
         'previous_url': get_previous_url(request),
 

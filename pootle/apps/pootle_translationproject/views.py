@@ -203,9 +203,7 @@ def browse(request, translation_project, dir_path, filename=None):
 def translate(request, translation_project, dir_path, filename):
     project = translation_project.project
 
-    is_terminology = (project.is_terminology or request.store and
-                                                request.store.is_terminology)
-    ctx = get_translation_context(request, is_terminology=is_terminology)
+    ctx = get_translation_context(request)
 
     ctx.update({
         'language': translation_project.language,

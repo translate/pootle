@@ -115,7 +115,7 @@ let search = {
 
     if (searchFields.length || searchOptions.length) {
       // Remember field selection in a cookie
-      var cookieName = 'search-editor',
+      var cookieName = 'pootle-search',
           cookieData = {};
       if (searchFields.length) {
         cookieData.sfields = searchFields;

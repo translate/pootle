@@ -16,24 +16,10 @@ register = template.Library()
 
 
 @register.inclusion_tag('core/search.html', takes_context=True)
-def render_search(context, form=None, action=None):
+def render_search(context):
     request = context['request']
 
-    if form is None:
-        is_terminology = False
-        tp = context.get('translation_project', None)
-
-        if tp is not None:
-            is_terminology = tp.project.is_terminology
-
-        form = make_search_form(request=request, terminology=is_terminology)
-
-    if action is None:
-        action = request.resource_obj.get_translate_url()
-
-    template_vars = {
-        'search_form': form,
-        'search_action': action,
+    return {
+        'search_form': make_search_form(request=request),
+        'search_action': request.resource_obj.get_translate_url(),
     }
-
-    return template_vars
