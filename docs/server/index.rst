@@ -12,8 +12,6 @@ Installation
    :maxdepth: 2
 
    installation
-   fabric_deployment
-   fabric_commands
    web
 
 

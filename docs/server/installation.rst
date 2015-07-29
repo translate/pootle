@@ -12,12 +12,8 @@ world server, :ref:`installing optional packages
 <optimization#optional_software>`, using a real database and :doc:`a proper web
 server <web>` is highly recommended.
 
-
-.. note::
-
-  The easiest way to test and install Pootle is by using pip. However,
-  installations can be done straight from git sources or be automated by using
-  :ref:`fabric deployment scripts <fabric-deployment>`.
+The easiest way to test and install Pootle is by using pip, however,
+installating it straight from git sources is another viable approach.
 
 
 .. _installation#requirements:
