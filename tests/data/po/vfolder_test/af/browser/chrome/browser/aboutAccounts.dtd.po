@@ -1,0 +1,37 @@
+#. extracted from ./browser/chrome/browser/aboutAccounts.dtd
+msgid ""
+msgstr ""
+"Project-Id-Version: l 10n\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-18 12:21+0100\n"
+"PO-Revision-Date: 2014-03-17 10:12+0000\n"
+"Last-Translator: F Wolff <friedel@translate.org.za>\n"
+"Language-Team: none\n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Translate Toolkit 1.12.0-alpha1\n"
+"X-Accelerator-Marker: &\n"
+"X-Merge-On: location\n"
+"X-POOTLE-MTIME: 1395051136.000000\n"
+
+#. This Source Code Form is subject to the terms of the Mozilla Public
+#. - License, v. 2.0. If a copy of the MPL was not distributed with this
+#. - file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#: aboutAccounts.welcome
+msgid "Welcome to &syncBrand.shortName.label;"
+msgstr "Welkom by &syncBrand.shortName.label;"
+
+#: aboutAccountsConfig.startButton.label
+msgid "Get started"
+msgstr "Begin"
+
+#: aboutAccountsConfig.useOldSync.label
+msgid "Using an older version of Sync?"
+msgstr "Gebruiker u 'n ouer weergawe van Sync?"
+
+#: aboutAccountsConfig.manage.label
+msgid "Manage"
+msgstr "Bestuur"

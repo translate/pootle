@@ -51,3 +51,9 @@ def project_foo(projects, english):
 def project_bar(projects, english):
     """Require `bar` test project."""
     return _require_project('bar', 'Bar Project', english)
+
+
+@pytest.fixture
+def vfolder_test(projects, english):
+    """Require `vfolder_test` test project."""
+    return _require_project('vfolder_test', 'Virtual Folder Test', english)

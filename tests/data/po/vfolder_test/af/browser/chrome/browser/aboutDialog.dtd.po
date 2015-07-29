@@ -1,0 +1,239 @@
+# F Wolff <friedel@translate.org.za>, 2012.
+#. extracted from ./browser/chrome/browser/aboutDialog.dtd
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-10 14:41+0100\n"
+"PO-Revision-Date: 2014-02-18 07:24+0000\n"
+"Last-Translator: F Wolff <friedel@translate.org.za>\n"
+"Language-Team: translate-discuss-af@lists.sourceforge.net\n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-Accelerator-Marker: &\n"
+"X-Merge-On: location\n"
+"X-Project-Style: mozilla\n"
+"X-POOTLE-MTIME: 1392708271.000000\n"
+
+#. This Source Code Form is subject to the terms of the Mozilla Public
+#. - License, v. 2.0. If a copy of the MPL was not distributed with this
+#. - file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#: aboutDialog.title
+msgid "About &brandFullName;"
+msgstr "Aangaande &brandFullName;"
+
+#. LOCALIZATION NOTE (update.checkForUpdatesButton.*, update.updateButton.*, update.applyButtonBillboard.*):
+#. # Only one button is present at a time.
+#. # The button when displayed is located directly under the Firefox version in
+#. # the about dialog (see bug 596813 for screenshots).
+#: update.checkForUpdatesButton.label update.checkForUpdatesButton.accesskey
+msgid "&Check for updates"
+msgstr "&Kontroleer vir bywerkings"
+
+#: update.updateButton.label update.updateButton.accesskey
+msgid "&Restart to Update"
+msgstr "He&rbegin om by te werk"
+
+#: update.applyButtonBillboard.label update.applyButtonBillboard.accesskey
+msgid "&Apply Update…"
+msgstr "P&as bywerking toe…"
+
+#. This is a warning about the experimental nature of Nightly and Aurora builds. It is only shown in those versions.
+#: warningDesc.version
+msgid "&brandShortName; is experimental and may be unstable."
+msgstr "&brandShortName; is eksperimenteel en moontlik onstabiel."
+
+#. This is a notification that Nightly/Aurora builds automatically send Telemetry data back to Mozilla. It is only shown in those versions. "It" refers to brandShortName.
+#: warningDesc.telemetryDesc
+msgid ""
+"It automatically sends information about performance, hardware, usage and "
+"customizations back to &vendorShortName; to help make &brandShortName; "
+"better."
+msgstr ""
+"Dit stuur outomaties inligting oor werkverrigting, hardeware, gebruik en "
+"pasmakings terug na &vendorShortName; om te help om &brandShortName; beter "
+"te maak."
+
+#. LOCALIZATION NOTE (community.exp.*) This paragraph is shown in "experimental" builds, i.e. Nightly and Aurora builds, instead of the other "community.*" strings below.
+#: community.exp.start
+msgctxt "community.exp.start"
+msgid ""
+msgstr ""
+
+#. This is a link title that links to http://www.mozilla.org/.
+#: community.exp.mozillaLink
+msgctxt "community.exp.mozillaLink"
+msgid "&vendorShortName;"
+msgstr "&vendorShortName;"
+
+#: community.exp.middle
+msgid " is a "
+msgstr " is 'n "
+
+#. LOCALIZATION NOTE (community.exp.creditslink): This is a link title that links to about:credits.
+#: community.exp.creditsLink
+msgctxt "community.exp.creditsLink"
+msgid "global community"
+msgstr "wêreldwye gemeenskap"
+
+#: community.exp.end
+msgctxt "community.exp.end"
+msgid " working together to keep the Web open, public and accessible to all."
+msgstr " wat saamwerk om die Web oop, publiek en toeganklik vir almal te hou."
+
+#: community.start2
+msgid "&brandShortName; is designed by "
+msgstr "&brandShortName; word ontwerp deur "
+
+#. This is a link title that links to http://www.mozilla.org/.
+#: community.mozillaLink
+msgctxt "community.mozillaLink"
+msgid "&vendorShortName;"
+msgstr "&vendorShortName;"
+
+#: community.middle2
+msgid ", a "
+msgstr ", 'n "
+
+#. This is a link title that links to about:credits.
+#: community.creditsLink
+msgctxt "community.creditsLink"
+msgid "global community"
+msgstr "wêreldwye gemeenskap"
+
+#: community.end3
+msgctxt "community.end3"
+msgid " working together to keep the Web open, public and accessible to all."
+msgstr " wat saamwerk om die Web oop, publiek en toeganklik vir almal te hou."
+
+#: contribute.start
+msgid "Sound interesting? "
+msgstr "Stel jy belang? "
+
+#. This is a link title that links to http://www.mozilla.org/contribute/.
+#: contribute.getInvolvedLink
+msgid "Get involved!"
+msgstr "Raak betrokke!"
+
+#: contribute.end
+msgctxt "contribute.end"
+msgid ""
+msgstr ""
+
+#. This is a link title that links to about:license.
+#: bottomLinks.license
+msgid "Licensing Information"
+msgstr "Lisensiëringinligting"
+
+#. This is a link title that links to about:rights.
+#: bottomLinks.rights
+msgid "End-User Rights"
+msgstr "Eindgebruikerregte"
+
+#. This is a link title that links to https://www.mozilla.org/legal/privacy/.
+#: bottomLinks.privacy
+msgid "Privacy Policy"
+msgstr "Privaatheidbeleid"
+
+#. try to make the localized text short (see bug 596813 for screenshots).
+#: update.checkingForUpdates
+msgid "Checking for updates…"
+msgstr "Kontroleer vir bywerkings…"
+
+#. try to make the localized text short (see bug 596813 for screenshots).
+#: update.noUpdatesFound
+msgid "&brandShortName; is up to date"
+msgstr "&brandShortName; is op datum"
+
+#. try to make the localized text short (see bug 596813 for screenshots).
+#: update.adminDisabled
+msgid "Updates disabled by your system administrator"
+msgstr "Bywerking deur die stelseladministrateur gedeaktiveer"
+
+#. try to make the localized text short
+#: update.otherInstanceHandlingUpdates
+msgid "&brandShortName; is being updated by another instance"
+msgstr "&brandShortName; word tans bygewerk deur 'n ander programkopie"
+
+#. LOCALIZATION NOTE (update.failed.start,update.failed.linkText,update.failed.end):
+#. update.failed.start, update.failed.linkText, and update.failed.end all go into
+#. one line with linkText being wrapped in an anchor that links to a site to download
+#. the latest version of Firefox (e.g. http://www.firefox.com). As this is all in
+#. one line, try to make the localized text short (see bug 596813 for screenshots).
+#: update.failed.start
+msgid "Update failed. "
+msgstr "Bywerking het misluk. "
+
+#: update.failed.linkText
+msgid "Download the latest version"
+msgstr "Laai die jongste weergawe af"
+
+#: update.failed.end
+msgctxt "update.failed.end"
+msgid ""
+msgstr ""
+
+#. LOCALIZATION NOTE (update.manual.start,update.manual.end): update.manual.start and update.manual.end
+#. all go into one line and have an anchor in between with text that is the same as the link to a site
+#. to download the latest version of Firefox (e.g. http://www.firefox.com). As this is all in one line,
+#. try to make the localized text short (see bug 596813 for screenshots).
+#: update.manual.start
+msgid "Updates available at "
+msgstr "Bywerkings beskikbaar by "
+
+#: update.manual.end
+msgctxt "update.manual.end"
+msgid ""
+msgstr ""
+
+#. LOCALIZATION NOTE (update.unsupported.start,update.unsupported.linkText,update.unsupported.end):
+#. update.unsupported.start, update.unsupported.linkText, and
+#. update.unsupported.end all go into one line with linkText being wrapped in
+#. an anchor that links to a site to provide additional information regarding
+#. why the system is no longer supported. As this is all in one line, try to
+#. make the localized text short (see bug 843497 for screenshots).
+#: update.unsupported.start
+msgid "You can not perform further updates on this system. "
+msgstr "U kan nie verdere bywerkings op dié stelsel doen nie. "
+
+#: update.unsupported.linkText
+msgid "Learn more"
+msgstr "Meer inligting"
+
+#: update.unsupported.end
+msgctxt "update.unsupported.end"
+msgid ""
+msgstr ""
+
+#. LOCALIZATION NOTE (update.downloading.start,update.downloading.end): update.downloading.start and
+#. update.downloading.end all go into one line, with the amount downloaded inserted in between. As this
+#. is all in one line, try to make the localized text short (see bug 596813 for screenshots). The — is
+#. the "em dash" (long dash).
+#. example: Downloading update — 111 KB of 13 MB
+#: update.downloading.start
+msgid "Downloading update — "
+msgstr "Aflaai van bywerking — "
+
+#: update.downloading.end
+msgctxt "update.downloading.end"
+msgid ""
+msgstr ""
+
+#: update.applying
+msgid "Applying update…"
+msgstr "Pas tans bywerking toe…"
+
+#. LOCALIZATION NOTE (channel.description.start,channel.description.end): channel.description.start and
+#. channel.description.end create one sentence, with the current channel label inserted in between.
+#. example: You are currently on the _Stable_ update channel.
+#: channel.description.start
+msgid "You are currently on the "
+msgstr "U is tans op die "
+
+#: channel.description.end
+msgid " update channel. "
+msgstr "-bywerkkanaal. "

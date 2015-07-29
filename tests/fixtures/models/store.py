@@ -142,3 +142,12 @@ def ru_update_set_last_sync_revision_po(settings, russian_tutorial, system):
     return _require_store(russian_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
                           'update_set_last_sync_revision.po')
+
+
+@pytest.fixture
+def af_vfolder_test_browser_defines_po(settings, afrikaans_vfolder_test,
+                                       system):
+    """Require the /af/vfolder_test/browser/defines.po store."""
+    return _require_store(afrikaans_vfolder_test,
+                          settings.POOTLE_TRANSLATION_DIRECTORY,
+                          'browser/defines.po')

@@ -1,0 +1,35 @@
+#. # converted from #defines file
+#. # This Source Code Form is subject to the terms of the Mozilla Public
+#. # License, v. 2.0. If a copy of the MPL was not distributed with this
+#. # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#. #filter emptyLines
+#. extracted from 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-04 07:22-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Translate Toolkit 1.9.1-prexxx\n"
+"X-Accelerator-Marker: &\n"
+"X-Merge-On: location\n"
+
+#: MOZ_LANGPACK_CREATOR
+msgid "mozilla.org"
+msgstr "Translate.org.za"
+
+#. # If non-English locales wish to credit multiple contributors, uncomment this
+#. # variable definition and use the format specified.
+#: MOZ_LANGPACK_CONTRIBUTORS
+msgid ""
+"<em:contributor>Joe Solon</em:contributor> <em:contributor>Suzy Solon</em:"
+"contributor>"
+msgstr ""
+""

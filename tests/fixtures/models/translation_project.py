@@ -61,3 +61,9 @@ def italian_tutorial(italian, tutorial):
 def russian_tutorial(russian, tutorial):
     """Require Russian Tutorial."""
     return _require_tp(russian, tutorial)
+
+
+@pytest.fixture
+def afrikaans_vfolder_test(afrikaans, vfolder_test):
+    """Require Afrikaans Virtual Folder Test."""
+    return _require_tp(afrikaans, vfolder_test)
