@@ -107,12 +107,14 @@
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
                   <span class="js-toolbar-buttons">
-                    <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                    <a class="icon-copy js-copyoriginal" data-uid="{{ altunit.id }}"
+                       title="{% trans 'Copy into translation' %}" accesskey="c"></a>
                   </span>
                 </div>
                 {% endif %}
               </div>
-              <div id="unit-{{ altunit.id }}" class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
+              <div id="js-unit-{{ altunit.id }}"
+                   class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
                 {% for i, target, title in altunit|pluralize_target %}
                 <div class="translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
                 {% endfor %}
@@ -133,12 +135,14 @@
                     </a>
                   </span>
                   <span class="js-toolbar-buttons">
-                    <a class="icon-copy js-copyoriginal" title="{% trans 'Copy into translation' %}" accesskey="c"></a>
+                    <a class="icon-copy js-copyoriginal" data-uid="{{ unit.id }}"
+                       title="{% trans 'Copy into translation' %}" accesskey="c"></a>
                   </span>
                 </div>
                 {% endif %}
               </div>
-              <div class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
+              <div id="js-unit-{{ unit.id }}"
+                   class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
                 {% for i, source, title in unit|pluralize_source %}
                 <div class="translation-text" lang="{{ source_language.code }}" dir="{{ source_language.direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ source|fancy_highlight }}</div>
                 {% endfor %}

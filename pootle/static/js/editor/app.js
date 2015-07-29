@@ -172,7 +172,13 @@ PTL.editor = {
     });
 
     /* Copy original translation */
-    $(document).on('click', '.js-copyoriginal', () => this.copyOriginal());
+    $(document).on('click', '.js-copyoriginal', (e) => {
+      const uId = e.currentTarget.dataset.uid;
+      const sources = [
+        ...document.querySelectorAll(`#js-unit-${uId} .translation-text`)
+      ].map((el) => el.textContent);
+      this.copyOriginal(sources);
+    });
 
     /* Editor navigation/submission */
     $(document).on('editor_ready', 'table.translate-table', this.ready);
@@ -597,9 +603,7 @@ PTL.editor = {
 
 
   /* Copies source text(s) into the target textarea(s)*/
-  copyOriginal: function () {
-    const sources = this.units.getCurrent().get('source');
-
+  copyOriginal: function (sources) {
     var targets = $('.js-translation-area');
     if (targets.length) {
       var active,
