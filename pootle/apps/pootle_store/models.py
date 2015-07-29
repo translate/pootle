@@ -375,7 +375,6 @@ class Unit(models.Model, base.TranslationUnit):
         self._target_updated = False
         self._state_updated = False
         self._comment_updated = False
-        self._from_update_stores = False
         self._auto_translated = False
         self._encoding = 'UTF-8'
 
@@ -449,12 +448,14 @@ class Unit(models.Model, base.TranslationUnit):
                     self.state = UNTRANSLATED
                     self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
 
-        # Updating unit from the .po file should not change its revision property,
+        # Updating unit from the .po file set its revision property to
+        # a new value (the same for all units during its store updated)
         # since that change doesn't require further sync but note that
         # auto_translated units require further sync
-        if ((not self._from_update_stores or self._auto_translated) and
-            (self._target_updated or self._state_updated
-             or self._comment_updated)):
+        revision = kwargs.pop('revision', None)
+        if revision is not None and not self._auto_translated:
+            self.revision = revision
+        elif self._target_updated or self._state_updated or self._comment_updated:
             self.revision = Revision.incr()
 
         if self.id and hasattr(self, '_save_action'):
@@ -510,7 +511,6 @@ class Unit(models.Model, base.TranslationUnit):
         self._target_updated = False
         self._state_updated = False
         self._comment_updated = False
-        self._from_update_stores = False
         self._auto_translated = False
 
         # update cache only if we are updating a single unit
@@ -733,10 +733,6 @@ class Unit(models.Model, base.TranslationUnit):
             self.unitid = unicode(unit.getid()) or unicode(unit.source)
             self.unitid_hash = md5(self.unitid.encode("utf-8")).hexdigest()
             changed = True
-
-        if changed:
-            #TODO: check that Store.update() is in the traceback
-            self._from_update_stores = True
 
         return changed
 
@@ -1408,10 +1404,13 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         if hasattr(self, '_units'):
             index = self.max_index() + 1
+            revision = None
+            if created:
+                revision = Revision.incr()
             for i, unit in enumerate(self._units):
                 unit.store = self
                 unit.index = index + i
-                unit.save()
+                unit.save(revision=revision)
 
         if self.state >= PARSED:
             self.update_dirty_cache()
@@ -1530,10 +1529,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             self.state = LOCKED
             self.save()
             try:
+                revision = Revision.incr()
                 for index, unit in enumerate(store.units):
                     if unit.istranslatable():
                         try:
-                            self.addunit(unit, index)
+                            self.addunit(unit, index, revision=revision)
                         except IntegrityError as e:
                             logging.warning(u'Data integrity error while '
                                             u'importing unit %s:\n%s',
@@ -1547,6 +1547,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 raise
 
             self.state = PARSED
+            self.last_sync_revision = revision
             self.mark_all_dirty()
             self.save()
             return
@@ -1565,7 +1566,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             index=op(F('index'), delta)
         )
 
-    def mark_units_obsolete(self, uids_to_obsolete):
+    def mark_units_obsolete(self, uids_to_obsolete, revision=None):
         """Marks a bulk of units as obsolete.
 
         :param uids_to_obsolete: UIDs of the units to be marked as obsolete.
@@ -1579,9 +1580,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             unit.store = self
             if not unit.isobsolete():
                 unit.makeobsolete()
-                # FIXME: extreme implicit hazard
-                unit._from_update_stores = True
-                unit.save()
+                unit.save(revision=revision)
                 obsoleted += 1
 
         return obsoleted
@@ -1610,12 +1609,14 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         return unit_ids
 
-    def update_units(self, store, uids_to_update, uid_index_map, user):
+    def update_units(self, store, uids_to_update, uid_index_map, user,
+                     revision=None):
         """Updates existing units in the store.
 
         :param uids_to_update: UIDs of the units to be updated.
         :param uid_index_map: dictionary of DB ID to index mappings.
         :param user: attribute specific changes to this user.
+        :param revision: set updated unit revision to this value.
         :return: The number of units that were actually updated.
         """
         updated = 0
@@ -1659,7 +1660,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     unit.reviewed_on = None
                     unit.reviewed_by = None
 
-                unit.save()
+                unit.save(revision=revision)
 
         return updated
 
@@ -1752,6 +1753,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         self.state = LOCKED
         self.save()
 
+        update_revision = Revision.incr()
         try:
             changes = {
                 'obsolete': 0,
@@ -1792,7 +1794,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     new_unit_index = i1 + index + 1 + offset
                     uid = unit.getid()
                     if uid not in old_unitid_set:
-                        self.addunit(unit, new_unit_index, user=system)
+                        self.addunit(unit, new_unit_index, user=system,
+                                     revision=update_revision)
                         changes['added'] += 1
                     else:
                         update_unitids[uid] = {'dbid': old_unitids[uid]['dbid'],
@@ -1829,14 +1832,15 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     common_dbids.update(set(old_unitids[uid]['dbid']
                                             for uid in old_unitid_list[i1:i2]))
 
-
             # Step N-1: mark obsolete units as such
 
             obsolete_dbids = [old_unitids[uid]['dbid']
                               for uid in old_unitid_set -
                                          old_obsolete_unitid_set -
                                          new_unitid_set]
-            changes['obsolete'] = self.mark_units_obsolete(obsolete_dbids)
+            changes['obsolete'] = \
+                self.mark_units_obsolete(obsolete_dbids,
+                                         revision=update_revision)
 
 
             # Step N: update existing units
@@ -1849,10 +1853,13 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 common_dbids = self.remove_modified_units(common_dbids)
 
             changes['updated'] = self.update_units(store, common_dbids,
-                                                   update_unitids, system)
-
+                                                   update_unitids, system,
+                                                   revision=update_revision)
 
             self.file_mtime = disk_mtime
+
+            if filter(lambda x: changes[x] > 0, changes):
+                self.last_sync_revision = update_revision
 
         finally:
             # Unlock store
@@ -2041,7 +2048,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         """Largest unit index"""
         return max_column(self.unit_set.all(), 'index', -1)
 
-    def addunit(self, unit, index=None, user=None):
+    def addunit(self, unit, index=None, user=None, revision=None):
         if index is None:
             index = self.max_index() + 1
 
@@ -2052,7 +2059,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             newunit.submitted_on = timezone.now()
 
         if self.id:
-            newunit.save()
+            newunit.save(revision=revision)
         else:
             # We can't save the unit if the store is not in the
             # database already, so let's keep it in temporary list

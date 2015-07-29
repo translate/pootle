@@ -18,10 +18,14 @@ from .unit import _update_translation
 @pytest.mark.django_db
 def test_max_revision(af_tutorial_po):
     """Tests `max_revision()` gets the latest revision."""
+
+    # update a store first, initial_revision = 1 after this update
+    af_tutorial_po.update(overwrite=False, only_newer=False)
+
     initial_max_revision = Unit.max_revision()
     initial_revision = Revision.get()
     assert initial_max_revision == initial_revision
-    assert initial_max_revision == 0
+    assert initial_max_revision == 1
 
     # Let's make 10 translation updates, this must also update their
     # revision numbers
@@ -35,7 +39,7 @@ def test_max_revision(af_tutorial_po):
     assert end_max_revision != initial_max_revision
 
     assert end_revision != initial_revision
-    assert end_revision == 10
+    assert end_revision == 10 + initial_revision
 
 
 @pytest.mark.django_db

@@ -32,6 +32,7 @@ def _update_translation(store, item, new_values, sync=True):
 
     if 'translator_comment' in new_values:
         unit.translator_comment = new_values['translator_comment']
+        unit._comment_updated = True
 
     unit.submitted_on = timezone.now()
     unit.submitted_by = User.objects.get_system_user()
