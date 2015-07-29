@@ -14,10 +14,12 @@
         <tr class="item">
           <td><a href="<%= row.tp_translate_url %>"><%= row.translation_project %></a></td>
           <td class="number<% if (row.translated == 0) { %> zero<% } %>">
-            <%= row.translated %> <%= ngettext("word", "words", row.translated) %>
+            <%= interpolate(ngettext('%s word', '%s words', row.translated),
+                            [row.translated]) %>
           </td>
           <td class="number<% if (row.reviewed == 0) { %> zero<% } %>">
-            <%= row.reviewed %> <%= ngettext("word", "words", row.reviewed) %>
+            <%= interpolate(ngettext('%s word', '%s words', row.reviewed),
+                            [row.reviewed]) %>
           </td>
           <td class="number<% if (row.score_delta == 0) { %> zero<% } %>">
             <% if (row.score_delta > 0) { %>+<% } %><%= row.score_delta.toFixed(2) %>
@@ -27,10 +29,12 @@
         <tr class="total">
           <td>&nbsp;</td>
           <td class="number<% if (groupedTranslatedTotal == 0) { %> zero<% } %>">
-            <%= groupedTranslatedTotal %> <%= ngettext("word", "words", groupedTranslatedTotal) %>
+            <%= interpolate(ngettext('%s word', '%s words', groupedTranslatedTotal),
+                            [groupedTranslatedTotal]) %>
           </td>
           <td class="number<% if (groupedReviewedTotal == 0) { %> zero<% } %>">
-            <%= groupedReviewedTotal %> <%= ngettext("word", "words", groupedReviewedTotal) %>
+            <%= interpolate(ngettext('%s word', '%s words', groupedReviewedTotal),
+                            [groupedReviewedTotal]) %>
           </td>
           <td class="number<% if (groupedScoreDeltaTotal == 0) { %> zero<% } %>">
             <% if (groupedScoreDeltaTotal > 0) { %>+<% } %><%= groupedScoreDeltaTotal.toFixed(2) %>
