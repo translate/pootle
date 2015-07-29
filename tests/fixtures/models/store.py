@@ -117,3 +117,11 @@ def ru_tutorial_po(settings, russian_tutorial, system):
     """Require the /ru/tutorial/tutorial.po store."""
     po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
     return _require_store(russian_tutorial, po_directory, 'tutorial.po')
+
+
+@pytest.fixture
+def ru_update_save_changed_units_po(settings, russian_tutorial, system):
+    """Require the /ru/tutorial/tutorial.po store."""
+    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
+    return _require_store(russian_tutorial, po_directory,
+                          'update_save_changed_units.po')

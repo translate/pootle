@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import time
 
 import pytest
 
@@ -95,3 +96,28 @@ def test_update_unit_order(ru_tutorial_po):
         [unit.unitid for unit in ru_tutorial_po.units]
     )
     assert old_unit_list == updated_unit_list
+
+
+@pytest.mark.django_db
+def test_update_save_changed_units(ru_update_save_changed_units_po):
+    """Tests that any update saves changed units only.
+    """
+    store = ru_update_save_changed_units_po
+
+    store.update(overwrite=False, only_newer=False)
+    unit_list = list(store.units)
+    # Set last sync revision
+    store.sync()
+
+    # delay for 1 sec, we'll compare mtimes
+    time.sleep(1)
+    store.file = 'tutorial/ru/update_save_changed_units_updated.po'
+    store.update(overwrite=False, only_newer=False)
+    updated_unit_list = list(store.units)
+
+    for index in range(0, len(unit_list)):
+        unit = unit_list[index]
+        updated_unit = updated_unit_list[index]
+        if unit.target == updated_unit.target:
+            assert unit.revision == updated_unit.revision
+            assert unit.mtime == updated_unit.mtime
