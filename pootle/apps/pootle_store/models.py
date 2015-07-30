@@ -1902,13 +1902,15 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         ret = cache.get(path, version=rev)
         if not ret:
-            if hasattr(self.file.store, "updateheader"):
+            storeclass = self.get_file_class()
+            store = self.convert(storeclass)
+            if hasattr(store, "updateheader"):
                 # FIXME We need those headers on import
                 # However some formats just don't support setting metadata
-                self.file.store.updateheader(add=True, X_Pootle_Path=path)
-                self.file.store.updateheader(add=True, X_Pootle_Revision=rev)
+                store.updateheader(add=True, X_Pootle_Path=path)
+                store.updateheader(add=True, X_Pootle_Revision=rev)
 
-            ret = str(self.file.store)
+            ret = str(store)
             cache.set(path, ret, version=rev)
 
         return ret
