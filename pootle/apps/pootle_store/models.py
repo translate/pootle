@@ -667,7 +667,7 @@ class Unit(models.Model, base.TranslationUnit):
         """
         changed = False
 
-        if user is not None:
+        if user is None:
             User = get_user_model()
             user = User.objects.get_system_user()
 
