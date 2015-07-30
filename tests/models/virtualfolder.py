@@ -72,3 +72,28 @@ def test_vfolder_priority_not_greater_than_zero(af_vfolder_test_browser_defines_
         vfolder.save()
 
     assert u'Priority must be greater than zero.' in str(excinfo.value)
+
+
+@pytest.mark.django_db
+def test_vfolder_root_location(af_vfolder_test_browser_defines_po):
+    """Tests that the creation of a virtual folder fails if it uses location /
+    instead of /{LANG}/{PROJ}/.
+    """
+    from django.core.exceptions import ValidationError
+
+    from virtualfolder.models import VirtualFolder
+
+    vfolder_item = {
+        'name': "whatever",
+        'location': "/",
+        'priority': 4,
+        'is_public': True,
+        'filter_rules': "browser/defines.po",
+    }
+    vfolder = VirtualFolder(**vfolder_item)
+
+    with pytest.raises(ValidationError) as excinfo:
+        vfolder.save()
+
+    assert (u'The "/" location is not allowed. Use "/{LANG}/{PROJ}/" instead.'
+            in str(excinfo.value))
