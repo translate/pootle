@@ -97,3 +97,39 @@ def test_vfolder_root_location(af_vfolder_test_browser_defines_po):
 
     assert (u'The "/" location is not allowed. Use "/{LANG}/{PROJ}/" instead.'
             in str(excinfo.value))
+
+
+@pytest.mark.django_db
+def test_vfolder_location_starts_with_projects(af_vfolder_test_browser_defines_po):
+    """Tests that the creation of a virtual folder fails if it uses a location
+    that starts with /projects/.
+    """
+    from django.core.exceptions import ValidationError
+
+    from virtualfolder.models import VirtualFolder
+
+    # Test just /projects/ location.
+    vfolder_item = {
+        'name': "whatever",
+        'location': "/projects/",
+        'priority': 4,
+        'is_public': True,
+        'filter_rules': "browser/defines.po",
+    }
+    vfolder = VirtualFolder(**vfolder_item)
+
+    with pytest.raises(ValidationError) as excinfo:
+        vfolder.save()
+
+    assert (u'Locations starting with "/projects/" are not allowed. Use '
+            u'"/{LANG}/" instead.') in str(excinfo.value)
+
+    # Test /projects/tutorial/ location.
+    vfolder_item['location'] = "/projects/tutorial/"
+    vfolder = VirtualFolder(**vfolder_item)
+
+    with pytest.raises(ValidationError) as excinfo:
+        vfolder.save()
+
+    assert (u'Locations starting with "/projects/" are not allowed. Use '
+            u'"/{LANG}/" instead.') in str(excinfo.value)
