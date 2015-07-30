@@ -29,7 +29,7 @@ forwarding requests and configure it accordingly.
 
     ProxyPass / http://localhost:8000/
     ProxyPassReverse / http://localhost:8000/
-    ProxyPreserverHost On
+    ProxyPreserveHost On
 
 
 .. _apache#mod_wsgi:
