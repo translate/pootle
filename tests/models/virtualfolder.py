@@ -133,3 +133,27 @@ def test_vfolder_location_starts_with_projects(af_vfolder_test_browser_defines_p
 
     assert (u'Locations starting with "/projects/" are not allowed. Use '
             u'"/{LANG}/" instead.') in str(excinfo.value)
+
+
+@pytest.mark.django_db
+def test_vfolder_with_no_filter_rules(af_vfolder_test_browser_defines_po):
+    """Tests that the creation of a virtual folder fails if it doesn't have any
+    filter rules.
+    """
+    from django.core.exceptions import ValidationError
+
+    from virtualfolder.models import VirtualFolder
+
+    vfolder_item = {
+        'name': "whatever",
+        'location': "/af/vfolder_test/",
+        'priority': 4,
+        'is_public': True,
+        'filter_rules': "",
+    }
+    vfolder = VirtualFolder(**vfolder_item)
+
+    with pytest.raises(ValidationError) as excinfo:
+        vfolder.save()
+
+    assert u'Some filtering rule must be specified.' in str(excinfo.value)
