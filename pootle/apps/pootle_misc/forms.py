@@ -68,11 +68,16 @@ def make_search_form(*args, **kwargs):
             import json
             import urllib
 
-            initial_sparams = json.loads(urllib.unquote(sparams_cookie))
-            if isinstance(initial_sparams, dict) and 'sfields' in initial_sparams:
-                kwargs.update({
-                    'initial': initial_sparams,
-                })
+            try:
+                initial_sparams = json.loads(urllib.unquote(sparams_cookie))
+            except ValueError:
+                pass
+            else:
+                if (isinstance(initial_sparams, dict) and
+                    'sfields' in initial_sparams):
+                    kwargs.update({
+                        'initial': initial_sparams,
+                    })
 
     return SearchForm(*args, **kwargs)
 
