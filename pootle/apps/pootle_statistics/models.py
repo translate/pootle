@@ -190,12 +190,10 @@ class Submission(models.Model):
                 User = get_user_model()
                 displayuser = User.objects.get_nobody_user()
 
-        displayname = displayuser.display_name
-
         action_bundle = {
             "profile_url": displayuser.get_absolute_url(),
             "gravatar_url": displayuser.gravatar_url(20),
-            "displayname": displayname,
+            "displayname": escape(displayuser.display_name),
             "username": displayuser.username,
             "display_datetime": dateformat.format(self.creation_time),
             "iso_datetime": self.creation_time.isoformat(),
