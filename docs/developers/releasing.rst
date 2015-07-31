@@ -109,6 +109,32 @@ that needs fixing.
     $ git grep 2013  # Should pick up anything that should be examined
 
 
+Set build settings
+------------------
+
+Create :file:`~/.pootle/pootle_build.conf` with the following content:
+
+.. code-block:: python
+
+    #!/usr/bin/env python
+    # -*- coding: utf-8 -*-
+
+    """Configuration file to build Pootle.
+
+    Must be placed in ~/.pootle/pootle_build.conf
+    """
+
+    # Django now requires to set some secret key to be set.
+    SECRET_KEY = '__BuildingPootle_1234567890__'
+
+    # Silence some checks so the build output is cleaner.
+    SILENCED_SYSTEM_CHECKS = [
+        'pootle.W006',  # sqlite database backend is unsupported
+        'pootle.W010',  # DEFAULT_FROM_EMAIL has default setting
+        'pootle.W011',  # POOTLE_CONTACT_EMAIL has default setting
+    ]
+
+
 Update checks descriptions
 --------------------------
 
@@ -118,7 +144,13 @@ quality checks.
 
 .. code-block:: bash
 
-    $ DJANGO_SETTINGS_MODULE=pootle.settings ./setup.py build_checks_templates
+    $ mkvirtualenv build-checks-templates
+    (build-checks-templates)$ pip install -r requirements/build.txt
+    (build-checks-templates)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
+    (build-checks-templates)$ DJANGO_SETTINGS_MODULE=pootle.settings ./setup.py build_checks_templates
+    (build-checks-templates)$ deactivate
+    $ unset POOTLE_SETTINGS
+    $ rmvirtualenv build-checks-templates
 
 
 Update translations
@@ -225,31 +257,8 @@ never just ``2.6``.
 Build the package
 -----------------
 
-Building is the first step to testing that things work. First create
-:file:`~/.pootle/pootle_build.conf` with the following content:
-
-.. code-block:: python
-
-    #!/usr/bin/env python
-    # -*- coding: utf-8 -*-
-
-    """Configuration file to build Pootle.
-
-    Must be placed in ~/.pootle/pootle_build.conf
-    """
-
-    # Django now requires to set some secret key to be set.
-    SECRET_KEY = '__BuildingPootle_1234567890__'
-
-    # Silence some checks so the build output is cleaner.
-    SILENCED_SYSTEM_CHECKS = [
-        'pootle.W006',  # sqlite database backend is unsupported
-        'pootle.W010',  # DEFAULT_FROM_EMAIL has default setting
-        'pootle.W011',  # POOTLE_CONTACT_EMAIL has default setting
-    ]
-
-
-Now from your clean checkout run:
+Building is the first step to testing that things work. From your clean
+checkout run:
 
 .. code-block:: bash
 
