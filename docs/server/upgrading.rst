@@ -98,18 +98,6 @@ To perform the upgrade follow the next steps:
      (env) $ pip install --upgrade "Pootle>=2.6,<2.7"
      (env) $ pootle setup
 
-
-  .. note::
-
-     If you weren't using a virtualenv before upgrading, instead of upgrading
-     you will be just doing a fresh install of Pootle in a blank virtualenv:
-
-     .. code-block:: bash
-
-       (env) $ pip install "Pootle>=2.6,<2.7"
-       (env) $ pootle setup
-
-
   Then continue with the upgrade process.
 
 * Upgrade the Pootle package:
@@ -117,17 +105,6 @@ To perform the upgrade follow the next steps:
   .. code-block:: bash
 
      (env) $ pip install --upgrade Pootle
-
-
-  .. note::
-
-     If you weren't using a virtualenv before upgrading, instead of upgrading
-     you will be just doing a fresh install of Pootle in a blank virtualenv:
-
-     .. code-block:: bash
-
-       (env) $ pip install Pootle
-
 
 * Update your custom Pootle settings to adjust for any changes and to include
   any new settings. Delete any obsolete settings. Check the :ref:`available
