@@ -25,3 +25,5 @@ class Command(NoArgsCommand):
         self.stdout.write('Populating the database.')
         initdb()
         self.stdout.write('Successfully populated the database.')
+        self.stdout.write("To create an admin user, use the `pootle "
+                          "createsuperuser` command.")
