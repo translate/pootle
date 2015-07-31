@@ -134,10 +134,9 @@ def browse(request, translation_project, dir_path, filename=None):
 
         ctx.update(handle_upload_form(request))
 
-        has_download = (check_permission('translate', request) or
-                        check_permission('suggest', request))
-        if translation_project.is_terminology_project:
-            has_download = False
+        has_download = (not translation_project.is_terminology_project and
+                        (check_permission('translate', request) or
+                         check_permission('suggest', request)))
         ctx.update({
             'display_download': has_download,
             'has_sidebar': True,
