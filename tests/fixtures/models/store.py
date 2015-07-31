@@ -66,70 +66,75 @@ def po_directory(request):
 @pytest.fixture
 def af_tutorial_po(settings, afrikaans_tutorial, system):
     """Require the /af/tutorial/tutorial.po store."""
-    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
-    return _require_store(afrikaans_tutorial, po_directory, 'tutorial.po')
+    return _require_store(afrikaans_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
 def it_tutorial_po(settings, italian_tutorial, system):
     """Require the /it/tutorial/tutorial.po store."""
-    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
-    return _require_store(italian_tutorial, po_directory, 'tutorial.po')
+    return _require_store(italian_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
 def af_tutorial_subdir_po(settings, afrikaans_tutorial, system):
     """Require the /af/tutorial/subdir/tutorial.po store."""
-    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
-    return _require_store(afrikaans_tutorial, po_directory, 'subdir/tutorial.po')
+    return _require_store(afrikaans_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY,
+                          'subdir/tutorial.po')
 
 
 @pytest.fixture
 def issue_2401_po(settings, afrikaans_tutorial, system):
     """Require the /af/tutorial/tutorial.po store."""
-    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
-    return _require_store(afrikaans_tutorial, po_directory, 'issue_2401.po')
+    return _require_store(afrikaans_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY,
+                          'issue_2401.po')
 
 
 @pytest.fixture
 def fr_tutorial_subdir_to_remove_po(settings, french_tutorial, system):
     """Require the /fr/tutorial/subdir_to_remove/tutorial.po store."""
-    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
-    return _require_store(french_tutorial, po_directory, 'subdir_to_remove/tutorial.po')
+    return _require_store(french_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY,
+                          'subdir_to_remove/tutorial.po')
 
 
 @pytest.fixture
 def fr_tutorial_remove_sync_po(settings, french_tutorial, system):
     """Require the /fr/tutorial/remove_sync_tutorial.po store."""
-    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
-    return _require_store(french_tutorial, po_directory, 'remove_sync_tutorial.po')
+    return _require_store(french_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY,
+                          'remove_sync_tutorial.po')
 
 
 @pytest.fixture
 def es_tutorial_subdir_remove_po(settings, spanish_tutorial, system):
     """Require the /es/tutorial/subdir/remove_tutorial.po store."""
-    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
-    return _require_store(spanish_tutorial, po_directory, 'subdir/remove_tutorial.po')
+    return _require_store(spanish_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY,
+                          'subdir/remove_tutorial.po')
 
 
 @pytest.fixture
 def ru_tutorial_po(settings, russian_tutorial, system):
     """Require the /ru/tutorial/tutorial.po store."""
-    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
-    return _require_store(russian_tutorial, po_directory, 'tutorial.po')
+    return _require_store(russian_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
 def ru_update_save_changed_units_po(settings, russian_tutorial, system):
     """Require the /ru/tutorial/tutorial.po store."""
-    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
-    return _require_store(russian_tutorial, po_directory,
+    return _require_store(russian_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY,
                           'update_save_changed_units.po')
 
 
 @pytest.fixture
 def ru_update_set_last_sync_revision_po(settings, russian_tutorial, system):
     """Require the /ru/tutorial/tutorial.po store."""
-    po_directory = settings.POOTLE_TRANSLATION_DIRECTORY
-    return _require_store(russian_tutorial, po_directory,
+    return _require_store(russian_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY,
                           'update_set_last_sync_revision.po')
