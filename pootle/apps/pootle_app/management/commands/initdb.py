@@ -22,6 +22,6 @@ class Command(NoArgsCommand):
     help = 'Populates the database with initial values: users, projects, ...'
 
     def handle_noargs(self, **options):
-        logging.info('Populating the database.')
+        self.stdout.write('Populating the database.')
         initdb()
-        logging.info('Successfully populated the database.')
+        self.stdout.write('Successfully populated the database.')
