@@ -98,18 +98,6 @@ Update the minimum version number for the requirements in:
 - :file:`pootle/checks.py`
 
 
-Adjust the roadmap
-------------------
-
-The roadmap file needs to be updated.  Remove things that are part of this
-release.  Adjust any version numbering if for example we're moving to Django
-1.6 we need to change the proposed release numbers.
-
-Look at the actual roadmap commitments and change if needed. These will remain
-during the lifetime of this version so it is good to adjust them before we
-branch.
-
-
 Check copyright dates
 ---------------------
 
