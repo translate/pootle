@@ -98,24 +98,6 @@ Update the minimum version number for the requirements in:
 - :file:`pootle/checks.py`
 
 
-Update the requirements files:
-
-.. code-block:: bash
-
-    $ make requirements-pinned.txt
-
-
-.. note:: This creates the following files:
-
-       - :file:`requirements-pinned.txt` - the maximum available version when
-         we released.  Chances are we've tested with these and they are good.
-         Using this would prevent a person from installing something newer but
-         untested.
-
-.. FIXME check that these are actually packaged next time we build as they are
-   files for release.
-
-
 Adjust the roadmap
 ------------------
 

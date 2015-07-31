@@ -89,32 +89,3 @@ help:
 	@echo "  mo - build MO files for languages listed in 'pootle/locale/LINGUAS'"
 	@echo "  mo-all - build MO files for all languages (only use for testing)"
 	@echo "  publish-pypi - publish on PyPI"
-
-REQS=.reqs
-REQFILE=requirements/base.txt
-
-requirements-pinned.txt: requirements-pinned.txt.in $(REQFILE)
-	@echo "# Automatically generated: DO NOT EDIT" > $@
-	@echo "# Regenerate using 'make requirements'" >> $@
-	@echo >> $@
-	@cat $< >> $@
-	@set -e;							\
-	 case `pip --version` in					\
-	   "pip 0"*|"pip 1.[012]"*)					\
-	     virtualenv --no-site-packages --clear $(REQS);		\
-	     source $(REQS)/bin/activate;				\
-	     echo starting clean install of requirements from PyPI;	\
-	     pip install --use-mirrors -r $(REQFILE);			\
-	     : trap removes partial/empty target on failure;		\
-	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
-	     pip freeze | grep -v '^wsgiref==' | sort -f >> $@ ;;		\
-	   *)								\
-	     : only pip 1.3.1+ processes --download recursively;	\
-	     rm -rf $(REQS); mkdir $(REQS);				\
-	     echo starting download of requirements from PyPI;		\
-	     pip install --download $(REQS) -r $(REQFILE);		\
-	     : trap removes partial/empty target on failure;		\
-	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
-	     (cd $(REQS) && ls *.tar* *.whl |					\
-	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') >> $@;	\
-	 esac;
