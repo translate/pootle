@@ -95,7 +95,7 @@ To perform the upgrade follow the next steps:
 
   .. code-block:: bash
 
-     (env) $ pip install --upgrade Pootle==2.6.0
+     (env) $ pip install --upgrade Pootle>=2.6,<2.7
      (env) $ pootle setup
 
 
@@ -106,7 +106,7 @@ To perform the upgrade follow the next steps:
 
      .. code-block:: bash
 
-       (env) $ pip install Pootle==2.6.0
+       (env) $ pip install Pootle>=2.6,<2.7
        (env) $ pootle setup
 
 
