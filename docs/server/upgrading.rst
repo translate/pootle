@@ -156,9 +156,9 @@ To perform the upgrade follow the next steps:
 Post-upgrade adjustments
 ------------------------
 
-* Check that you can login as an admin user.  If your existing adin user has no
-  email address then you will not be able to login.  In order the fix this use
-  :djadmin:`createsuperuser` to create a new superuser, or to create a
+* Check that you can login as an admin user.  If your existing admin user has
+  no email address then you will not be able to login.  In order the fix this
+  use :djadmin:`createsuperuser` to create a new superuser, or to create a
   temporary superuser to fix your existing one.
 
   .. code-block:: bash
