@@ -80,6 +80,9 @@ dist/
 build/
 Pootle.egg-info/
 
+# Requirements
+.reqs/
+
 # PyDev (Intellij) local configuration folder
 .idea
 
