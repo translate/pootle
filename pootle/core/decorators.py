@@ -49,6 +49,13 @@ def get_path_obj(func):
                 split_pootle_path(pootle_path)
             kwargs['dir_path'] = dir_path
             kwargs['filename'] = filename
+
+            # Remove potentially present but unwanted args
+            try:
+                del kwargs['language_code']
+                del kwargs['project_code']
+            except KeyError:
+                pass
         else:
             language_code = kwargs.pop('language_code', None)
             project_code = kwargs.pop('project_code', None)
