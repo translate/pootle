@@ -227,7 +227,7 @@ class Submission(models.Model):
                 source
             ),
             SubmissionTypes.UNMUTE_CHECK: _(
-                'unmmuted %(check_name)s for %(source_string)s',
+                'unmuted %(check_name)s for %(source_string)s',
                 source
             ),
         }.get(self.type, None)
