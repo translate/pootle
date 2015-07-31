@@ -110,8 +110,8 @@ To perform the upgrade follow the next steps:
   any new settings. Delete any obsolete settings. Check the :ref:`available
   settings <settings#available>` as needed.
 
-  .. note:: Running :djadmin:`pootle check` is helpful to highlight settings
-     that have been obsoleted or renamed.
+  .. note:: Running :djadmin:`pootle check` will highlight settings that have
+     been made obsolete or renamed.
 
   .. note:: If you are upgrading from a version of Pootle that uses
      :file:`localsettings.py` then you must :ref:`move your custom settings
