@@ -1,0 +1,11 @@
+# ====================================
+# Pinned Requirements at Release
+# ====================================
+#
+# These are the latest versions of dependencies at the time of release of
+# Pootle.  These are the versions against which Pootle has been tested.  Since
+# reqirements/*.txt have open upper requirements they can possibly break
+# released versions of Pootle.
+#
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
