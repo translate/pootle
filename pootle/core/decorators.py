@@ -62,21 +62,22 @@ def get_path_obj(func):
             except TranslationProject.DoesNotExist:
                 path_obj = None
 
-            if path_obj is None and not request.is_ajax():
-                # Explicit selection via the UI: redirect either to
-                # ``/language_code/`` or ``/projects/project_code/``
-                user_choice = request.COOKIES.get('user-choice', None)
-                if user_choice and user_choice in ('language', 'project',):
-                    url = {
-                        'language': reverse('pootle-language-browse',
-                                            args=[language_code]),
-                        'project': reverse('pootle-project-browse',
-                                           args=[project_code, '', '']),
-                    }
-                    response = redirect(url[user_choice])
-                    response.delete_cookie('user-choice')
+            if path_obj is None:
+                if not request.is_ajax():
+                    # Explicit selection via the UI: redirect either to
+                    # ``/language_code/`` or ``/projects/project_code/``
+                    user_choice = request.COOKIES.get('user-choice', None)
+                    if user_choice and user_choice in ('language', 'project',):
+                        url = {
+                            'language': reverse('pootle-language-browse',
+                                                args=[language_code]),
+                            'project': reverse('pootle-project-browse',
+                                               args=[project_code, '', '']),
+                        }
+                        response = redirect(url[user_choice])
+                        response.delete_cookie('user-choice')
 
-                    return response
+                        return response
 
                 raise Http404
         elif language_code:
