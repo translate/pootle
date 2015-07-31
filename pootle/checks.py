@@ -235,3 +235,28 @@ def check_settings(app_configs=None, **kwargs):
                 ))
 
     return errors
+
+
+@checks.register()
+def check_users(app_configs=None, **kwargs):
+    from django.contrib.auth import get_user_model
+    from django.db import ProgrammingError
+    from django.db.utils import OperationalError
+
+    errors = []
+
+    User = get_user_model()
+    try:
+        admin_user = User.objects.get(username='admin')
+    except (User.DoesNotExist, OperationalError, ProgrammingError):
+        pass
+    else:
+        if admin_user.check_password('admin'):
+            errors.append(checks.Warning(
+                _("The default 'admin' user still has a password set to "
+                  "'admin'."),
+                hint=_("Remove the 'admin' user or change its password."),
+                id="pootle.W016",
+            ))
+
+    return errors
