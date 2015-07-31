@@ -34,7 +34,6 @@ def initdb():
     create_pootle_permission_sets()
     create_default_projects()
     create_default_languages()
-    create_default_admin()
 
 
 def create_revision():
@@ -293,23 +292,3 @@ def create_default_languages():
             lang, created = Language.objects.get_or_create(**criteria)
         except:
             pass
-
-
-def create_default_admin():
-    """Create the default admin user for Pootle.
-
-    You definitely want to change the admin account so that your default
-    install is not accessible with the default credentials. The users 'noboby'
-    and 'default' should be left as is.
-    """
-    User = get_user_model()
-
-    criteria = {
-        'username': u"admin",
-        'full_name': u"Administrator",
-        'is_active': True,
-        'is_superuser': True,
-    }
-    admin = User(**criteria)
-    admin.set_password("admin")
-    admin.save()
