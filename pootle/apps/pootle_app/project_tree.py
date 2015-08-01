@@ -67,7 +67,7 @@ def match_template_filename(project, filename):
 
     #FIXME: is the test for matching extension redundant?
     if ext == os.path.extsep + project.get_template_filetype():
-        if ext != os.path.extsep + project.localfiletype:
+        if ext != os.path.extsep + project.get_file_extension():
             # Template extension is distinct, surely file is a template
             return True
         elif not find_lang_postfix(filename):
@@ -346,7 +346,7 @@ def get_extension(language, project):
     """File extension used for this project, returns pot if it's a po project
     and language is templates.
     """
-    ext = project.localfiletype
+    ext = project.get_file_extension()
     if language.code == 'templates' and ext == 'po':
         return 'pot'
     else:
@@ -378,10 +378,10 @@ def convert_template(translation_project, template_store, target_pootle_path,
         template_file = template_store.file.store
     else:
         template_file = template_store
-
+    template_file.settargetlanguage(translation_project.language.code)
+    template_file.setsourcelanguage(translation_project.project.source_language.code)
     try:
         store = Store.objects.get(pootle_path=target_pootle_path)
-
         if monolingual and store.state < PARSED:
             #HACKISH: exploiting update from templates to parse monolingual files
             store.update(store=template_file)
@@ -406,6 +406,7 @@ def convert_template(translation_project, template_store, target_pootle_path,
             store.update(update_structure=True, update_translation=True,
                          store=output_file, fuzzy=True)
         output_file.settargetlanguage(translation_project.language.code)
+        output_file.setsourcelanguage(translation_project.project.source_language.code)
         output_file.savefile(target_path)
     elif store:
         store.mergefile(output_file, None, allownewstrings=True,
@@ -436,7 +437,7 @@ def get_translated_name_gnu(translation_project, store):
         pootle_path = pootle_path + '/'
 
     suffix = translation_project.language.code + os.extsep + \
-             translation_project.project.localfiletype
+             translation_project.project.get_file_extension()
     # try loading file first
     try:
         target_store = translation_project.stores.get(
@@ -454,7 +455,7 @@ def get_translated_name_gnu(translation_project, store):
     if not use_prefix:
         # let's make sure
         for tp in translation_project.project.translationproject_set.exclude(language__code='templates').iterator():
-            temp_suffix = tp.language.code + os.extsep + translation_project.project.localfiletype
+            temp_suffix = tp.language.code + os.extsep + translation_project.project.get_file_extension()
             if tp.stores.exclude(name__iexact=temp_suffix).exclude(file="").count():
                 use_prefix = True
                 break
@@ -516,9 +517,9 @@ def get_translated_name(translation_project, store):
     pootle_path_parts[1] = translation_project.language.code
 
     # Replace extension
-    path_parts[-1] = name + '.' + translation_project.project.localfiletype
+    path_parts[-1] = name + '.' + translation_project.project.get_file_extension()
     pootle_path_parts[-1] = name + '.' + \
-                            translation_project.project.localfiletype
+                            translation_project.project.get_file_extension()
 
     return ('/'.join(pootle_path_parts),
             absolute_real_path(os.sep.join(path_parts)))

@@ -806,7 +806,7 @@ def get_upload_path(translation_project, relative_root_dir, local_filename):
 
 def get_local_filename(translation_project, upload_filename):
     base, ext = os.path.splitext(upload_filename)
-    new_ext = translation_project.project.localfiletype
+    new_ext = translation_project.project.get_file_extension()
 
     if new_ext == 'po' and translation_project.is_template_project:
         new_ext = 'pot'
@@ -829,7 +829,7 @@ def get_local_filename(translation_project, upload_filename):
             invalid_dict = {
                 'local_filename': local_filename,
                 'langcode': translation_project.language.code,
-                'filetype': translation_project.project.localfiletype,
+                'filetype': translation_project.project.get_file_extension(),
             }
             raise ValueError(_("Invalid GNU-style file name: "
                                "%(local_filename)s. It must match "

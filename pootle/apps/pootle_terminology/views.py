@@ -60,7 +60,7 @@ def get_terminology_filename(translation_project):
         # Terminology is a virtual store, so extension is not really important
         # but to avoid confusion we will not use monolingual extensions.
         return 'pootle-terminology.po'
-    return 'pootle-terminology.' + translation_project.project.localfiletype
+    return 'pootle-terminology.' + translation_project.project.get_file_extension()
 
 
 @commit_on_success
