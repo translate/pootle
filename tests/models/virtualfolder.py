@@ -58,7 +58,7 @@ def test_vfolder_priority_not_greater_than_zero():
     vfolder = VirtualFolder(**vfolder_item)
 
     with pytest.raises(ValidationError) as excinfo:
-        vfolder.save()
+        vfolder.clean_fields()
 
     assert u'Priority must be greater than zero.' in str(excinfo.value)
 
@@ -67,7 +67,7 @@ def test_vfolder_priority_not_greater_than_zero():
     vfolder = VirtualFolder(**vfolder_item)
 
     with pytest.raises(ValidationError) as excinfo:
-        vfolder.save()
+        vfolder.clean_fields()
 
     assert u'Priority must be greater than zero.' in str(excinfo.value)
 
@@ -90,7 +90,7 @@ def test_vfolder_root_location():
     vfolder = VirtualFolder(**vfolder_item)
 
     with pytest.raises(ValidationError) as excinfo:
-        vfolder.save()
+        vfolder.clean_fields()
 
     assert (u'The "/" location is not allowed. Use "/{LANG}/{PROJ}/" instead.'
             in str(excinfo.value))
@@ -115,7 +115,7 @@ def test_vfolder_location_starts_with_projects():
     vfolder = VirtualFolder(**vfolder_item)
 
     with pytest.raises(ValidationError) as excinfo:
-        vfolder.save()
+        vfolder.clean_fields()
 
     assert (u'Locations starting with "/projects/" are not allowed. Use '
             u'"/{LANG}/" instead.') in str(excinfo.value)
@@ -125,7 +125,7 @@ def test_vfolder_location_starts_with_projects():
     vfolder = VirtualFolder(**vfolder_item)
 
     with pytest.raises(ValidationError) as excinfo:
-        vfolder.save()
+        vfolder.clean_fields()
 
     assert (u'Locations starting with "/projects/" are not allowed. Use '
             u'"/{LANG}/" instead.') in str(excinfo.value)
@@ -149,6 +149,6 @@ def test_vfolder_with_no_filter_rules():
     vfolder = VirtualFolder(**vfolder_item)
 
     with pytest.raises(ValidationError) as excinfo:
-        vfolder.save()
+        vfolder.clean_fields()
 
     assert u'Some filtering rule must be specified.' in str(excinfo.value)
