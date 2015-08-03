@@ -12,7 +12,6 @@ from __future__ import absolute_import
 import pytest
 
 
-@pytest.mark.django_db
 def test_vfolder_directory_clash(af_vfolder_test_browser_defines_po):
     """Tests that the creation of a virtual folder fails if it clashes with
     some already existing directory.
@@ -40,7 +39,6 @@ def test_vfolder_directory_clash(af_vfolder_test_browser_defines_po):
             u"Directory /af/vfolder_test/browser/") in str(excinfo.value)
 
 
-@pytest.mark.django_db
 def test_vfolder_priority_not_greater_than_zero(af_vfolder_test_browser_defines_po):
     """Tests that the creation of a virtual folder fails if the provided
     priority is not greater than zero.
@@ -74,7 +72,6 @@ def test_vfolder_priority_not_greater_than_zero(af_vfolder_test_browser_defines_
     assert u'Priority must be greater than zero.' in str(excinfo.value)
 
 
-@pytest.mark.django_db
 def test_vfolder_root_location(af_vfolder_test_browser_defines_po):
     """Tests that the creation of a virtual folder fails if it uses location /
     instead of /{LANG}/{PROJ}/.
@@ -99,7 +96,6 @@ def test_vfolder_root_location(af_vfolder_test_browser_defines_po):
             in str(excinfo.value))
 
 
-@pytest.mark.django_db
 def test_vfolder_location_starts_with_projects(af_vfolder_test_browser_defines_po):
     """Tests that the creation of a virtual folder fails if it uses a location
     that starts with /projects/.
@@ -135,7 +131,6 @@ def test_vfolder_location_starts_with_projects(af_vfolder_test_browser_defines_p
             u'"/{LANG}/" instead.') in str(excinfo.value)
 
 
-@pytest.mark.django_db
 def test_vfolder_with_no_filter_rules(af_vfolder_test_browser_defines_po):
     """Tests that the creation of a virtual folder fails if it doesn't have any
     filter rules.
