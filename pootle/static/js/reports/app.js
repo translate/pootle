@@ -383,7 +383,7 @@ PTL.reports = {
         PTL.reports.setData(data);
         $('#reports-results').empty();
         $('#reports-results').html(PTL.reports.tmpl.results(PTL.reports.data)).show();
-        $("#js-breadcrumb-user").html(data.meta.user.formatted_name).show();
+        $("#js-breadcrumb-user").text(data.meta.user.formatted_name).show();
         var showChart = data.daily !== undefined && data.daily.nonempty;
         $('#reports-activity').toggle(showChart);
         if (showChart) {

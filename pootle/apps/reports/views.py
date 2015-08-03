@@ -145,7 +145,7 @@ def reports(request):
     ctx = {
         'page': 'admin-reports',
         'users': jsonify(map(
-            lambda x: {'id': x.username, 'text': escape(x.formatted_name)},
+            lambda x: {'id': x.username, 'text': x.formatted_name},
             User.objects.hide_meta()
         )),
         'user_rates_form': UserRatesForm(),
