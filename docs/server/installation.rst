@@ -257,7 +257,7 @@ Use the :command:`mysql` command to create the user and database:
 .. code-block:: sql
 
    > CREATE DATABASE pootledb CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-   > GRANT ALL PRIVILEGES ON pootle.* TO pootle@localhost IDENTIFIED BY 'secret';
+   > GRANT ALL PRIVILEGES ON pootledb.* TO pootle@localhost IDENTIFIED BY 'secret';
    > FLUSH PRIVILEGES;
 
 
