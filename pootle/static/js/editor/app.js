@@ -2022,6 +2022,7 @@ PTL.editor = {
       } else if (!results[i].fullname) {
         results[i].fullname = gettext('someone');
       }
+      results[i].fullname = _.escape(results[i].fullname);
 
       filtered.push(results[i]);
     }
