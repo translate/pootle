@@ -227,6 +227,10 @@ class TranslationProject(models.Model, CachedTreeItem):
                                    state__gt=OBSOLETE).select_related('store')
 
     @property
+    def disabled(self):
+        return self.directory.obsolete or self.project.disabled
+
+    @property
     def is_terminology_project(self):
         return self.project.checkstyle == 'terminology'
 
