@@ -130,7 +130,7 @@ environment for Python libraries. Note that the virtual environment name will
 be prepended to the shell prompt.
 
 Lastly, we want to make sure that we are using the latest version of
-command:`pip`:
+:command:`pip`:
 
 .. code-block:: bash
 
