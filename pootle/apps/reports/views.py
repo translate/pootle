@@ -165,6 +165,7 @@ def get_detailed_report_context(user, month):
     totals = {'translated': {}, 'reviewed': {}, 'total': 0,
               'paid_tasks': {},
               'all': 0}
+    items = []
 
     if user and start and end:
         scores = ScoreLog.objects \
