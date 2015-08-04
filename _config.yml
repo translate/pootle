@@ -2,7 +2,7 @@ auto: true
 
 name: Pootle
 description: Online translation tool.
-latest_version: 2.5.1.3
+latest_version: 2.6.0
 author: Translate House
 
 about_url: http://translatehouse.org/about.html
