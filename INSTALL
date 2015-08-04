@@ -9,35 +9,20 @@ for an optimal feature set and performance. Although a minimal installation
 might be enough for initial experimentation, this won't provide the best
 security, features or performance.
 
-For the impatients with a working Python 2 installation with pip and
-virtualenvwrappers, this is a good start:
-
-  $ mkvirtualenv pootleenv
-  (pootleenv)$ pip install Pootle-......tar.gz
-  (pootleenv)$ pootle init
-  (pootleenv)$ pootle migrate
-  (pootleenv)$ pootle initdb
-  (pootleenv)$ pootle collectstatic --noinput
-  (pootleenv)$ pootle assets build
-  (pootleenv)$ pootle start
-
-
-For a more thorough explanation, visit the address mentioned above.
-
 
 Security note
 -------------
-The simple method shown above for running Pootle does not use a dedicated web
-server thus it is not considered safe, flexible or to have a good performance
-for production purposes. For further information:
+The simple method shown in the link above for running Pootle does not use a
+dedicated web server thus it is not considered safe, flexible or to have a good
+performance for production purposes. For further information:
 
   http://docs.translatehouse.org/projects/pootle/en/latest/server/web.html
 
 
 Performance note
 ----------------
-The simple method shown above for running Pootle does not configure it for
-optimal performance. More information:
+The simple method shown in the link above for running Pootle does not configure
+it for optimal performance. More information:
 
   http://docs.translatehouse.org/projects/pootle/en/latest/server/optimization.html
 
