@@ -179,6 +179,7 @@ def edit(request, template, model_class, ctx=None,
         'formset': formset,
         'objects': objects,
         'error_msg': msg,
+        'can_add': kwargs.get('extra', 1) != 0,
     })
 
     return render(request, template, ctx)

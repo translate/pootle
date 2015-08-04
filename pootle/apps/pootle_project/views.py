@@ -117,10 +117,13 @@ def project_admin(request, current_project):
         perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
         return u'<a href="%s">%s</a>' % (perms_url, tp.language)
 
+    extra = (1 if current_project.get_template_translationproject() is not None
+               else 0)
+
     return util.edit(request, 'projects/admin/languages.html',
                      TranslationProject, ctx, generate_link,
                      linkfield="language", queryset=queryset,
-                     can_delete=True, form=tp_form_class)
+                     can_delete=True, extra=extra, form=tp_form_class)
 
 
 @get_path_obj

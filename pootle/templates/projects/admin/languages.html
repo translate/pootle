@@ -9,6 +9,11 @@
 {% block content %}
 <div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
   <p>{% trans "Here you can add, edit, or delete the languages for this project." %}</p>
+  {% if not can_add %}
+  <div class="alert alert-info">
+    {% trans 'There are no templates for this project, so adding new languages from this screen is disabled.' %}
+  </div>
+  {% endif %}
   {% include "admin/_generic_formset.html" %}
 </div>
 {% endblock %}
