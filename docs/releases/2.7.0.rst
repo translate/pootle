@@ -1,8 +1,8 @@
 =====================================
-Welcome to the new Pootle 2.7.0 alpha
+Welcome to the new Pootle 2.7.0 final
 =====================================
 
-*Released on 3 August 2015*
+*Released on 4 August 2015*
 
 This is the first release of Pootle that combines the work of Evernote and
 Translate.
