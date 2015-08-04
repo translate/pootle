@@ -476,16 +476,9 @@ Run the following to publish the package on PyPI:
 Create a release on Github
 --------------------------
 
-- https://github.com/translate/pootle/releases/new
-
-You will need:
-
-- Tarball of the release
-- Release notes in Markdown
-
-
 Do the following to create the release:
 
+#. Go to https://github.com/translate/pootle/releases/new
 #. Draft a new release with the corresponding tag version
 #. Convert the major changes (no more than five) in the release notes to
    Markdown with `Pandoc <http://pandoc.org/>`_. Bugfix releases can replace
@@ -510,13 +503,10 @@ We use github pages for the website. First we need to checkout the pages:
 #. In :file:`_posts/` add a new release posting. Use the same text used for the
    :ref:`Github release <releasing#create-github-release>` description,
    including the link to the full release notes.
-#. Change ``$version`` as needed. See :file:`download.html`,
-   :file:`_config.yml` and :command:`git grep $old_release`
+#. Change ``$version`` as needed. See :file:`_config.yml` and
+   :command:`git grep $old_release`
 #. :command:`git commit` and :command:`git push` -- changes are quite quick so
    easy to review.
-
-.. note:: FIXME it would be great if gh-pages accepted .rst, maybe it can if we
-   prerender just that page?
 
 
 Announce to the world
