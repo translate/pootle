@@ -85,10 +85,17 @@ def get_date_interval(month):
     from pootle.core.utils.timezone import make_aware
 
     now = start = end = timezone.now()
-    if month is None:
-        month = start.strftime('%Y-%m')
+    default_month = start.strftime('%Y-%m')
 
-    start = make_aware(datetime.strptime(month, '%Y-%m'))
+    if month is None:
+        month = default_month
+
+    try:
+        month_datetime = datetime.strptime(month, '%Y-%m')
+    except ValueError:
+        month_datetime = datetime.strptime(default_month, '%Y-%m')
+
+    start = make_aware(month_datetime)
 
     if start < now:
         if start.month != now.month or start.year != now.year:
