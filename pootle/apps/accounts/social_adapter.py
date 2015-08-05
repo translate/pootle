@@ -77,7 +77,7 @@ class PootleSocialAccountAdapter(DefaultSocialAccountAdapter):
                 'error': error,
                 'exception': {
                     'name': exception.__class__.__name__,
-                    'msg': exception.message,
+                    'msg': unicode(exception),
                 },
                 'provider': provider.name,
                 'retry_url': retry_url,
