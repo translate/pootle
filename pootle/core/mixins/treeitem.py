@@ -113,7 +113,7 @@ class TreeItem(object):
     @classmethod
     def _get_last_action(self):
         """This method will be overridden in descendants"""
-        return {'id': 0, 'mtime': 0, 'snippet': ''}
+        return {'mtime': 0}
 
     @classmethod
     def _get_mtime(self):
@@ -123,7 +123,7 @@ class TreeItem(object):
     @classmethod
     def _get_last_updated(self):
         """This method will be overridden in descendants"""
-        return {'id': 0, 'creation_time': 0, 'snippet': ''}
+        return {'creation_time': 0}
 
     def is_dirty(self):
         """Checks if any of children is registered as dirty"""

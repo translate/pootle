@@ -11,9 +11,8 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.template.defaultfilters import escape, truncatechars
+from django.template.defaultfilters import truncatechars
 from django.utils.functional import cached_property
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.log import log, SCORE_CHANGED
@@ -66,6 +65,15 @@ class SubmissionFields(object):
         STATE: _("State"),
         COMMENT: _("Comment"),
     }
+
+
+class TranslationActionTypes(object):
+    TRANSLATED = 0
+    EDITED = 1
+    PRE_TRANSLATED = 2
+    REMOVED = 3
+    REVIEWED = 4
+    NEEDS_WORK = 5
 
 
 class SubmissionManager(models.Manager):
@@ -142,23 +150,20 @@ class Submission(models.Model):
 
         return True
 
-    def get_submission_message(self):
-        """Returns a message describing the submission.
+    def get_submission_info(self):
+        """Returns a dictionary describing the submission.
 
-        The message includes the user (with link to profile and gravatar), a
-        message describing the action performed, and when it was performed.
+        The dict includes the user (with link to profile and gravatar),
+        a type and translation_action_type describing the action performed,
+        and when it was performed.
         """
         unit = {}
-        source = {}
 
         if self.unit is not None:
             unit = {
-                'source': escape(truncatechars(self.unit, 50)),
+                'source': truncatechars(self.unit, 50),
                 'url': self.unit.get_translate_url(),
-            }
-            source = {
-                'source_string': '<i><a href="%(url)s">%(source)s</a></i>' %
-                    unit,
+                'state': self.unit.state,
             }
 
             if self.quality_check is not None:
@@ -167,10 +172,6 @@ class Submission(models.Model):
                     'check_name': check_name,
                     'check_display_name': check_names.get(check_name, check_name),
                     'checks_url': reverse('pootle-checks-descriptions'),
-                })
-                source.update({
-                    'check_name': '<a href="%(checks_url)s#%(check_name)s">'
-                                  '%(check_display_name)s</a>' % unit,
                 })
 
         if (self.suggestion and
@@ -186,53 +187,23 @@ class Submission(models.Model):
                 User = get_user_model()
                 displayuser = User.objects.get_nobody_user()
 
-        action_bundle = {
+        result = {
             "profile_url": displayuser.get_absolute_url(),
             "gravatar_url": displayuser.gravatar_url(20),
-            "displayname": escape(displayuser.display_name),
+            "displayname": displayuser.display_name,
             "username": displayuser.username,
             "display_datetime": dateformat.format(self.creation_time),
             "iso_datetime": self.creation_time.isoformat(),
-            "action": "",
+            "unit": unit,
+            "type": self.type,
+            "mtime": int(dateformat.format(self.creation_time, 'U')),
         }
 
-        msg = {
-            SubmissionTypes.REVERT: _(
-                'reverted translation for %(source_string)s',
-                source
-            ),
-            SubmissionTypes.SUGG_ACCEPT: _(
-                'accepted suggestion for %(source_string)s',
-                source
-            ),
-            SubmissionTypes.SUGG_ADD: _(
-                'added suggestion for %(source_string)s',
-                source
-            ),
-            SubmissionTypes.SUGG_REJECT: _(
-                'rejected suggestion for %(source_string)s',
-                source
-            ),
-            SubmissionTypes.UPLOAD: _(
-                'uploaded a file'
-            ),
-            SubmissionTypes.MUTE_CHECK: _(
-                'muted %(check_name)s for %(source_string)s',
-                source
-            ),
-            SubmissionTypes.UNMUTE_CHECK: _(
-                'unmuted %(check_name)s for %(source_string)s',
-                source
-            ),
-        }.get(self.type, None)
+        #TODO Fix bug 3011 and remove the following code related
+        # to TranslationActionTypes.
 
-        #TODO Look how to detect submissions for "sent suggestion", "rejected
-        # suggestion"...
-
-        #TODO Fix bug 3011 and replace the following code with the appropiate
-        # one in the dictionary above.
-
-        if msg is None:
+        if self.type in SubmissionTypes.EDIT_TYPES:
+            translation_action_type = None
             try:
                 if self.field == SubmissionFields.TARGET:
                     if self.new_value != '':
@@ -240,46 +211,38 @@ class Submission(models.Model):
                         # if this submission is not last unit state
                         # can be changed
                         if self.unit.state == TRANSLATED:
+
                             if self.old_value == '':
-                                msg = _('translated %(source_string)s', source)
+                                translation_action_type = \
+                                    TranslationActionTypes.TRANSLATED
                             else:
-                                msg = _('edited %(source_string)s', source)
+                                translation_action_type = \
+                                    TranslationActionTypes.EDITED
                         elif self.unit.state == FUZZY:
                             if self.old_value == '':
-                                msg = _('pre-translated %(source_string)s',
-                                        source)
+                                translation_action_type = \
+                                    TranslationActionTypes.PRE_TRANSLATED
                             else:
-                                msg = _('edited %(source_string)s', source)
+                                translation_action_type = \
+                                    TranslationActionTypes.EDITED
                     else:
-                        msg = _('removed translation for %(source_string)s',
-                                source)
+                        translation_action_type = TranslationActionTypes.REMOVED
                 elif self.field == SubmissionFields.STATE:
                     # Note that a submission where field is STATE
                     # should be created before a submission where
                     # field is TARGET
-                    msg = {
-                        TRANSLATED: _('reviewed %(source_string)s', source),
-                        FUZZY: _('marked as needs work %(source_string)s', source)
-                    }.get(int(to_python(self.new_value)), '')
-                else:
-                    msg = _('unknown action %(source_string)s', source)
+
+                    translation_action_type = {
+                        TRANSLATED: TranslationActionTypes.REVIEWED,
+                        FUZZY: TranslationActionTypes.NEEDS_WORK
+                    }.get(int(to_python(self.new_value)), None)
+
             except AttributeError:
-                return ''
+                return result
 
-        action_bundle['action'] = msg
+            result['translation_action_type'] = translation_action_type
 
-        return mark_safe(
-            u'<div class="last-action">'
-            '  <a href="%(profile_url)s">'
-            '    <img src="%(gravatar_url)s" />'
-            '    <span title="%(username)s">%(displayname)s</span>'
-            '  </a>'
-            '  <span class="action-text">%(action)s</span>'
-            '  <time class="extra-item-meta js-relative-date"'
-            '    title="%(display_datetime)s" datetime="%(iso_datetime)s">&nbsp;'
-            '  </time>'
-            '</div>'
-            % action_bundle)
+        return result
 
     def save(self, *args, **kwargs):
         super(Submission, self).save(*args, **kwargs)

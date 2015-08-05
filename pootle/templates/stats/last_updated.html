@@ -1,0 +1,9 @@
+<time class="extra-item-meta js-relative-date"
+      title="<%= display_datetime %>" datetime="<%= iso_datetime %>">&nbsp;'
+</time>&nbsp;
+<span class="action-text">
+  <%
+    var unit_tag = interpolate('<i><a href="%(url)s">%(source)s</a></i>', {url: unit.url, source: _.escape(unit.source)}, true);
+  %>
+  <%= interpolate(gettext('%(unit)s&nbsp;added'), {unit: unit_tag}, true) %>
+</span>

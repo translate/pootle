@@ -1,0 +1,66 @@
+<div class="last-action">
+  <a href="<%= profile_url %>">
+    <img src="<%= gravatar_url %>" />
+    <span title="<%= username %>"><%= _.escape(displayname) %></span>
+  </a>
+  <span class="action-text">
+    <%
+      /* types:
+      NORMAL = 1  # Interactive web editing
+      REVERT = 2  # Revert action on the web
+      SUGG_ACCEPT = 3  # Accepting a suggestion
+      UPLOAD = 4  # Uploading an offline file
+      SYSTEM = 5  # Batch actions performed offline
+      MUTE_CHECK = 6  # Mute QualityCheck
+      UNMUTE_CHECK = 7  # Unmute QualityCheck
+      SUGG_ADD = 8  # Add new Suggestion
+      SUGG_REJECT = 9  # Reject Suggestion
+
+      translation action types:
+      TRANSLATED = 0
+      EDITED = 1
+      PRE_TRANSLATED = 2
+      REMOVED = 3
+      REVIEWED = 4
+      NEEDS_WORK = 5
+      */
+      var unitTag = interpolate('<i><a href="%(url)s">%(source)s</a></i>', {url: unit.url, source: _.escape(unit.source)}, true);
+      var checkTag;
+      if (type === 6 || type === 7) {
+        checkTag = interpolate('<a href="%(url)s#%(name)s">%(display_name)s</a>', {url: checks_url, name: check_name, display_name: check_display_name}, true);
+      }
+    %>
+    <% if (type === 2) { %>
+      <%= interpolate(gettext('reverted translation for %(unit)s'), {unit: unitTag}, true) %>
+    <% } else if (type === 3) {  %>
+      <%= interpolate(gettext('accepted suggestion for %(unit)s'), {unit: unitTag}, true) %>
+    <% } else if (type === 4) {  %>
+      <%= gettext('uploaded a file') %>
+    <% } else if (type === 6) {  %>
+      <%= interpolate(gettext('muted %(check)s for %(unit)s'), {check: checkTag, unit: unitTag}, true) %>
+    <% } else if (type === 7) {  %>
+      <%= interpolate(gettext('unmuted %(check)s for %(unit)s'), {check: checkTag, unit: unitTag}, true) %>
+    <% } else if (type === 8) {  %>
+      <%= interpolate(gettext('added suggestion for %(unit)s'), {unit: unitTag}, true) %>
+    <% } else if (type === 9) {  %>
+      <%= interpolate(gettext('rejected suggestion for %(unit)s'), {unit: unitTag}, true) %>
+    <% } else if (type === 1 || type === 5) {  %>
+      <% if ( translation_action_type === 0 ) {  %>
+        <%= interpolate(gettext('translated %(unit)s'), {unit: unitTag}, true) %>
+      <% } else if (translation_action_type === 1 ) {  %>
+        <%= interpolate(gettext('edited %(unit)s'), {unit: unitTag}, true) %>
+      <% } else if (translation_action_type === 2 ) {  %>
+        <%= interpolate(gettext('pre-translated %(unit)s'), {unit: unitTag}, true) %>
+      <% } else if (translation_action_type === 3 ) {  %>
+        <%= interpolate(gettext('removed translation for %(unit)s'), {unit: unitTag}, true) %>
+      <% } else if (translation_action_type === 4 ) {  %>
+        <%= interpolate(gettext('reviewed %(unit)s'), {unit: unitTag}, true) %>
+      <% } else if (translation_action_type === 5 ) {  %>
+        <%= interpolate(gettext('marked as needs work %(unit)s'), {unit: unitTag}, true) %>
+      <% } %>
+    <% } %>
+  </span>
+  <time class="extra-item-meta js-relative-date" title="<%= display_datetime %>" datetime="<%= iso_datetime %>">
+    &nbsp;
+  </time>
+</div>

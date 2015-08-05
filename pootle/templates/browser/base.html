@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% load search %}
+{% load search store_tags %}
 
 {% block body_class %}browser{% endblock %}
 
@@ -13,4 +13,14 @@
   <div id="translate-actions">{% block actions %}{% endblock %}</div>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block scripts_extra %}
+  {{ block.super }}
+  <script id="last_action" type="text/template">
+    {% include_raw "stats/last_action.html" %}
+  </script>
+  <script id="last_updated" type="text/template">
+    {% include_raw "stats/last_updated.html" %}
+  </script>
 {% endblock %}

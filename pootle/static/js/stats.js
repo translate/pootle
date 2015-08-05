@@ -7,6 +7,7 @@
  */
 
 import $ from 'jquery';
+import _ from 'underscore';
 
 import 'jquery-bidi';
 import 'jquery-utils';
@@ -49,6 +50,11 @@ const stats = {
 
     this.$extraDetails = $('#js-path-summary-more');
     this.$expandIcon = $('#js-expand-icon');
+
+    this.tmpl = {
+      lastAction: _.template($('#last_action').html()),
+      lastUpdated: _.template($('#last_updated').html()),
+    };
 
     $('td.stats-name').filter(':not([dir])').bidi();
 
@@ -133,18 +139,22 @@ const stats = {
     }
   },
 
+  getLastActionSnippet(data) {
+    return this.tmpl.lastAction(data);
+  },
+
+  getLastUpdatedSnippet(data) {
+    return this.tmpl.lastUpdated(data);
+  },
+
   updateLastUpdates(stats) {
     if (stats.lastupdated) {
-      $('#js-last-updated').toggle(stats.lastupdated.snippet !== '');
-      if (stats.lastupdated.snippet) {
-        $('#js-last-updated .last-updated').html(stats.lastupdated.snippet);
-      }
+      $('#js-last-updated').show();
+      $('#js-last-updated .last-updated').html(this.getLastUpdatedSnippet(stats.lastupdated));
     }
     if (stats.lastaction) {
-      $('#js-last-action').toggle(stats.lastaction.snippet !== '');
-      if (stats.lastaction.snippet) {
-        $('#js-last-action .last-action').html(stats.lastaction.snippet);
-      }
+      $('#js-last-action').show();
+      $('#js-last-action .last-action').html(this.getLastActionSnippet(stats.lastaction));
     }
   },
 
@@ -170,7 +180,7 @@ const stats = {
     if (item.lastaction) {
       $td = $table.find('#last-activity-' + code);
       $td.removeClass('not-inited');
-      $td.html(item.lastaction.snippet);
+      $td.html(this.getLastActionSnippet(item.lastaction));
       $td.attr('sorttable_customkey', now - item.lastaction.mtime);
     }
 
@@ -180,7 +190,7 @@ const stats = {
     if (item.lastupdated) {
       $td = $table.find('#last-updated-' + code);
       $td.removeClass('not-inited');
-      $td.html(item.lastupdated.snippet);
+      $td.html(this.getLastUpdatedSnippet(item.lastupdated));
       $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
     }
   },

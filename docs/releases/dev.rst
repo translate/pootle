@@ -30,6 +30,10 @@ for complete information.
 Details of changes
 ==================
 
+- Last activity snippets for stats are not kept in the cache anymore. The markup
+  is now built on the client. This requires refreshing all server stats using
+  the :djadmin:`refresh_stats_rq` command (:issue:`3835`).
+
 - Pulled latest translations.
 
 

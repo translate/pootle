@@ -1244,27 +1244,19 @@ class Unit(models.Model, base.TranslationUnit):
             result = []
         return result
 
-    def get_last_updated_message(self):
+    def get_last_updated_info(self):
         unit = {
-            'source': escape(truncatechars(self, 50)),
+            'source': truncatechars(self, 50),
             'url': self.get_translate_url(),
+            'id': self.id,
         }
 
-        action_bundle = {
-            'action': _(
-                '<i><a href="%(url)s">%(source)s</a></i>&nbsp;'
-                'added',
-                unit
-            ),
+        return {
             "display_datetime": dateformat.format(self.creation_time),
             "iso_datetime": self.creation_time.isoformat(),
+            "creation_time": int(dateformat.format(self.creation_time, 'U')),
+            "unit": unit,
         }
-        return mark_safe(
-            '<time class="extra-item-meta js-relative-date"'
-            '    title="%(display_datetime)s" datetime="%(iso_datetime)s">&nbsp;'
-            '</time>&nbsp;'
-            u'<span class="action-text">%(action)s</span>'
-            % action_bundle)
 
 
 ###################### Store ###########################
@@ -2222,11 +2214,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if max_unit is not None:
             max_time = max_unit.creation_time
             if max_time:
-                return {
-                    'id': max_unit.id,
-                    'creation_time': int(dateformat.format(max_time, 'U')),
-                    'snippet': max_unit.get_last_updated_message()
-                }
+                return max_unit.get_last_updated_info()
 
         return CachedTreeItem._get_last_updated()
 
@@ -2241,11 +2229,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         else:
             sub = submission
 
-        return {
-            'id': sub.unit.id,
-            'mtime': int(dateformat.format(sub.creation_time, 'U')),
-            'snippet': sub.get_submission_message()
-        }
+        return sub.get_submission_info()
 
     def _get_suggestion_count(self):
         """Check if any unit in the store has suggestions"""
