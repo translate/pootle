@@ -142,10 +142,6 @@ class Submission(models.Model):
 
         return True
 
-
-    def as_html(self):
-        return self.get_submission_message()
-
     def get_submission_message(self):
         """Returns a message describing the submission.
 
