@@ -87,9 +87,9 @@ Editor
 
 - New features:
 
-  - Added screenshot prefix URL for projects, which allow integrating
-    screenshots for units. The images are retrieved from public Evernote
-    notebooks.
+  - Added context search URL prefix for projects, which allow integrating
+    screenshots for units. This is the ability to provide a search URL (link to
+    a search engine) where to look up the text of the current unit in.
   - Translation similarities are calculated in the client and sent to the
     server to calculate the user's score. The score changes are logged over
     time. Along with this, the best matches are highlighted in the editor.
