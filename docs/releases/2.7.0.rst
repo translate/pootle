@@ -424,7 +424,7 @@ Credits
 This release was made possible by the following people:
 
 Julen Ruiz Aizpuru, Taras Semenenko, Dwayne Bailey, Leandro Regueiro, Igor
-Afanasyev, Jerome Leclanche, afan, Khaled Hosny, pfennig59, Zahim Anass,
+Afanasyev, Jerome Leclanche, Khaled Hosny, pfennig59, Zahim Anass,
 Trejkaz (pen name), safaalfulaij, Peter Bengtsson, msaad, Mikhail Paulyshka,
 Miha Vrhovnik, Kevin Scannell, Edmund Huber, Dídac Rios, Andras Timar.
 
