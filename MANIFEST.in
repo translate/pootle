@@ -14,11 +14,13 @@ recursive-include pootle/settings *
 recursive-include pootle/static *
 recursive-include pootle/templates *
 recursive-include pootle/apps/*/templates *
+recursive-exclude pootle/assets/.webassets-cache *
 global-exclude tests.py
 exclude pootle/strings.py
 exclude pootle/static/js/strings.js
 exclude pootle/assets/js/strings.js
 exclude pootle/settings/*-local.conf
 prune pootle/static/images/sprite/
+prune pootle/static/js/node_modules/*
 global-exclude *~
 global-exclude *.pyc
