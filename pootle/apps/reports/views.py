@@ -19,7 +19,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import timezone
 from django.utils.decorators import method_decorator
-from django.utils.html import escape
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import View, CreateView
 from django.views.generic.detail import SingleObjectMixin
