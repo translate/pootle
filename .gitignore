@@ -1,8 +1,3 @@
-# /deploy/*/
-/deploy/*/fabric.py
-/deploy/*/settings.conf
-/deploy/*/virtualhost.conf
-
 # /docs/
 /docs/_build/
 /docs/icons.rst.inc
@@ -21,19 +16,11 @@
 !/pootle/translations/tutorial/
 !/pootle/translations/templates/
 
-# /pootle/repos/
-/pootle/repos/*
-!/pootle/repos/README
-
 # /pootle/settings/
 /pootle/settings/*-local.conf
 
 # TTK checks descriptions template
 /pootle/templates/help/_ttk_quality_checks.html
-
-# Possible customizations
-/pootle/templates/custom
-/pootle/static/*/custom
 
 # General
 *.bak
