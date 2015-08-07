@@ -303,6 +303,7 @@ PTL.reports = {
   setData: function (data) {
     var translatedTotal = 0,
         reviewedTotal = 0,
+        suggestedTotal = 0,
         scoreDeltaTotal = 0,
         translatedFloorTotal = 0,
         remainders, delta, i;
@@ -335,6 +336,7 @@ PTL.reports = {
       row.remainder = row.translated - floor;
       translatedTotal += row.translated;
       reviewedTotal += row.reviewed;
+      suggestedTotal += row.suggested;
       scoreDeltaTotal += row.score_delta;
       translatedFloorTotal += floor;
       row.translated = floor;
@@ -342,6 +344,7 @@ PTL.reports = {
 
     translatedTotal = Math.round(translatedTotal);
     scoreDeltaTotal = Math.round(scoreDeltaTotal*100)/100;
+    data.groupedSuggestedTotal = suggestedTotal;
     data.groupedTranslatedTotal = translatedTotal;
     data.groupedReviewedTotal = reviewedTotal;
     data.groupedScoreDeltaTotal = scoreDeltaTotal;

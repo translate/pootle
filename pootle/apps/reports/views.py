@@ -161,7 +161,7 @@ def reports(request):
 def get_detailed_report_context(user, month):
     [start, end] = get_date_interval(month)
 
-    totals = {'translated': {}, 'reviewed': {}, 'total': 0,
+    totals = {'translated': {}, 'reviewed': {}, 'suggested': 0, 'total': 0,
               'paid_tasks': {},
               'all': 0}
     items = []
@@ -203,6 +203,12 @@ def get_detailed_report_context(user, month):
                     totals['reviewed'][score.review_rate]['words'] += reviewed
                 else:
                     totals['reviewed'][score.review_rate] = {'words': reviewed}
+
+            suggested = score.get_suggested_wordcount()
+            if suggested is not None:
+                score.action = _('Suggestion')
+                score.words = suggested
+                totals['suggested'] += suggested
 
             score.similarity = score.get_similarity() * 100
 
@@ -410,7 +416,7 @@ def get_activity_data(request, user, month):
     if user != '':
         scores = get_scores(user, start, end)
         scores = list(scores.order_by(SCORE_TRANSLATION_PROJECT))
-        json['grouped'] = get_grouped_paid_words(scores, user, month)
+        json['grouped'] = get_grouped_word_stats(scores, user, month)
         scores.sort(key=lambda x: x.creation_time)
         json['daily'] = get_daily_activity(user, scores, start, end)
         json['summary'] = get_summary(scores, start, end)
@@ -535,7 +541,7 @@ def get_paid_tasks(user, start, end):
     return result
 
 
-def get_grouped_paid_words(scores, user=None, month=None):
+def get_grouped_word_stats(scores, user=None, month=None):
     result = []
     tp = None
     for score in scores:
@@ -548,6 +554,7 @@ def get_grouped_paid_words(scores, user=None, month=None):
                 'score_delta': 0,
                 'translated': 0,
                 'reviewed': 0,
+                'suggested': 0,
             }
             if user is not None:
                 editor_filter = {
@@ -567,6 +574,10 @@ def get_grouped_paid_words(scores, user=None, month=None):
         if reviewed_words:
             row['reviewed'] += reviewed_words
         row['score_delta'] += score.score_delta
+
+        suggested_words = score.get_suggested_wordcount()
+        if suggested_words:
+            row['suggested'] += suggested_words
 
     return sorted(result, key=lambda x: x['translation_project'])
 

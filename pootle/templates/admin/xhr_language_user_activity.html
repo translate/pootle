@@ -4,6 +4,7 @@
       <thead>
       <tr>
         <th><%= gettext('Project / Language') %></th>
+        <th class="number"><%= gettext('Suggested') %></th>
         <th class="number"><%= gettext('Translated') %></th>
         <th class="number"><%= gettext('Reviewed') %></th>
         <th class="number"><%= gettext('Score Change') %></th>
@@ -13,6 +14,10 @@
       <% _.each(grouped, function (row) { %>
         <tr class="item">
           <td><a href="<%= row.tp_translate_url %>"><%= row.translation_project %></a></td>
+          <td class="number<% if (row.suggested == 0) { %> zero<% } %>">
+            <%= interpolate(ngettext('%s word', '%s words', row.suggested),
+                            [row.suggested]) %>
+          </td>
           <td class="number<% if (row.translated == 0) { %> zero<% } %>">
             <%= interpolate(ngettext('%s word', '%s words', row.translated),
                             [row.translated]) %>
@@ -28,6 +33,10 @@
       <% }); %>
         <tr class="total">
           <td>&nbsp;</td>
+          <td class="number<% if (groupedSuggestedTotal == 0) { %> zero<% } %>">
+            <%= interpolate(ngettext('%s word', '%s words', groupedSuggestedTotal),
+                            [groupedSuggestedTotal]) %>
+          </td>
           <td class="number<% if (groupedTranslatedTotal == 0) { %> zero<% } %>">
             <%= interpolate(ngettext('%s word', '%s words', groupedTranslatedTotal),
                             [groupedTranslatedTotal]) %>

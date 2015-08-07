@@ -551,6 +551,13 @@ class ScoreLog(models.Model):
     def is_similarity_taken_from_mt(self):
         return self.submission.similarity < self.submission.mt_similarity
 
+    def get_suggested_wordcount(self):
+        """Returns the suggested wordcount in the current action."""
+        if self.action_code == TranslationActionCodes.SUGG_ADDED:
+            return self.wordcount
+
+        return None
+
     def get_paid_words(self):
         """Returns the translated and reviewed words in the current action."""
         ns = self.wordcount

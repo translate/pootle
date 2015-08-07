@@ -167,11 +167,11 @@
               {% endif %}
             </td>
             <td class="number">{{ score.wordcount }}</td>
-            <td class="number">{% if score.is_similarity_taken_from_mt %}<sup>MT</sup>{% endif %}{% if score.action == 'Review' %}&mdash;{% elif score.action == 'Translation' %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
+            <td class="number">{% if score.is_similarity_taken_from_mt %}<sup>MT</sup>{% endif %}{% if score.action == 'Review' %}&mdash;{% elif score.action == 'Translation' or score.action == 'Suggestion' %}{% if score.similarity == 0 %}&lt; 50{% else %}{{ score.similarity|floatformat }}{% endif %}%{% endif %}</td>
             <td class="number">{{ score.words|floatformat:2 }}</td>
             {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
-              <td class="number">{% if score.action == 'Review' %}{{ score.review_rate }}{% elif score.action = 'Translation' %}{{ score.rate }}{% endif %} {{ object.currency }}</td>
-              <td class="number">{{ score.subtotal|floatformat:4 }} {{ object.currency }}</td>
+              <td class="number">{% if score.action != 'Suggestion' %}{% if score.action == 'Review' %}{{ score.review_rate }}{% elif score.action = 'Translation' %}{{ score.rate }}{% endif %} {{ object.currency }} {% else %}&mdash;{% endif %}</td>
+              <td class="number">{% if score.action != 'Suggestion' %}{{ score.subtotal|floatformat:4 }} {{ object.currency }}{% else %}&mdash;{% endif %}</td>
             {% endif %}
           </tr>
           {% endif %}
@@ -198,6 +198,15 @@
     {% if items %}
     <tr class="separator">
         <th colspan="8"></th>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan="4">{% trans "Suggestion (subtotal)" %}</td>
+      <td class="number">{% if totals.suggested > 0 %}{{ totals.suggested }}{% else %}&mdash;{% endif %}</td>
+      {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
+        <td class="number">&mdash;</td>
+        <td class="number">&mdash;</td>
+      {% endif %}
     </tr>
     {% for rate, item in totals.translated.items %}
       <tr>
