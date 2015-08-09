@@ -474,7 +474,7 @@ td.stats-name a:hover > i + span,
 
 .staticpage li
 {
-    list-style: decimal;
+    list-style: inherit;
 }
 
 
