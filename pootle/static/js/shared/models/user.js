@@ -10,7 +10,6 @@
 
 var _ = require('underscore');
 var Backbone = require('backbone');
-var md5 = require('md5').digest_s;
 
 var AdminAPIMixin = require('mixins/admin_api');
 
@@ -59,14 +58,6 @@ var User = Backbone.Model.extend({
 
   getReportsUrl: function () {
     return l(`/admin/reports/#username=${this.get('username')}`);
-  },
-
-  gravatarUrl: function (size) {
-    size = size || '48';
-    return [
-      'https://secure.gravatar.com/avatar/', md5(this.get('email')),
-      '?s=', size, '&d=mm'
-    ].join('');
   },
 
   isMeta: function () {

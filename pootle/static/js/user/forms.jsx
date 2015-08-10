@@ -15,6 +15,8 @@ var link = require('autolinker').link;
 var FormElement = require('components/forms').FormElement;
 var ModelFormMixin = require('mixins/forms').ModelFormMixin;
 
+import Avatar from 'components/Avatar';
+
 
 // XXX: should probably live somewhere else
 var linkify = function (input) {
@@ -78,8 +80,7 @@ var UserProfileForm = React.createClass({
                        errors={errors} />
           <p>
             <label>{gettext('Avatar')}</label>
-            <img className="gravatar" height="48" width="48"
-                 src={model.gravatarUrl()} />
+            <Avatar email={model.get('email')} size={48} />
             <span className="helptext"
                   dangerouslySetInnerHTML={linkify(avatarHelp)} />
           </p>
