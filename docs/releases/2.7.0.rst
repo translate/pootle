@@ -358,8 +358,6 @@ can be used.
    prevents use of Pootle within their environment.  Essentially you will need
    to evaluate the use and need for each missing feature.
 
-Major features
-~~~~~~~~~~~~~~
 
 - Extension actions.
 - Tags and Goals.
@@ -375,10 +373,6 @@ Major features
 - Update against templates - do template updates outside of Pootle and use
   :djadmin:`update_stores` to load the changed files.
 - Public API.
-
-Minor features
-~~~~~~~~~~~~~~
-
 - The Wikipedia lookup backend
 - No *Top Contributors* tables - user scores likely provide the information you
   are looking for.
