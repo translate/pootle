@@ -65,6 +65,9 @@ statistics data and update the statistics cache.
 .. warning:: Do not run this command if you have multiple workers running
    simultaneously. It should be run with a single worker process only.
 
+.. warning:: Please note that the actual translations **must be in Pootle**
+   before running this command. :djadmin:`update_stores` will pull them in.
+
 It's necessary to run this command after installing or upgrading Pootle. Also
 consider running this command when things might go out-of-sync: if you make
 changes directly in the database, if the cache backend has been restarted, etc.
@@ -108,6 +111,9 @@ tasks will be created for the files parents.
 
 This command was added to allow statistics to be updated when using multiple
 RQ workers.
+
+.. warning:: Please note that the actual translations **must be in Pootle**
+   before running this command. :djadmin:`update_stores` will pull them in.
 
 
 .. django-admin:: retry_failed_jobs
