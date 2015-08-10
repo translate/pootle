@@ -51,7 +51,7 @@ const Avatar = React.createClass({
 
     if (username !== undefined) {
       return (
-        <a href={`/user/${username}/`}>
+        <a href={l(`/user/${username}/`)}>
           {icon}
           {label && ' '}
           {label &&
