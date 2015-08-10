@@ -53,6 +53,7 @@ const Avatar = React.createClass({
       return (
         <a href={`/user/${username}/`}>
           {icon}
+          {label && ' '}
           {label &&
             <span className="user-name" title={username}>{label}</span>
           }
