@@ -557,14 +557,23 @@ def get_grouped_word_stats(scores, user=None, month=None):
                 'suggested': 0,
             }
             if user is not None:
-                editor_filter = {
+                submissions_filter = {
                     'state': 'user-submissions',
                     'user': user.username,
                 }
+                suggestions_filter = {
+                    'state': 'user-suggestions',
+                    'user': user.username,
+                }
                 if month is not None:
-                    editor_filter['month'] = month
+                    submissions_filter['month'] = month
+                    suggestions_filter['month'] = month
 
-                row['tp_translate_url'] = tp.get_translate_url(**editor_filter)
+                row['tp_browse_url'] = tp.get_absolute_url()
+                row['tp_submissions_translate_url'] = \
+                    tp.get_translate_url(**submissions_filter)
+                row['tp_suggestions_translate_url'] = \
+                    tp.get_translate_url(**suggestions_filter)
 
             result.append(row)
 
