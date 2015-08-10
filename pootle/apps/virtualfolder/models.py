@@ -330,12 +330,20 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
     def is_visible(self):
         return (self.vfolder.is_public and
                 (self.has_critical_errors or
+                 self.has_suggestions or
                  (self.vfolder.priority >= 1 and not self.is_fully_translated)))
 
     @property
     def has_critical_errors(self):
         try:
             return self.get_error_unit_count() > 0
+        except NoCachedStats:
+            return False
+
+    @property
+    def has_suggestions(self):
+        try:
+            return self.get_cached(CachedMethods.SUGGESTIONS) > 0
         except NoCachedStats:
             return False
 
