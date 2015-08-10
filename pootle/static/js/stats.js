@@ -7,13 +7,15 @@
  */
 
 import $ from 'jquery';
-import _ from 'underscore';
+import React from 'react';
 
 import 'jquery-bidi';
 import 'jquery-utils';
 import assign from 'object-assign';
 import 'sorttable';
 
+import LastUpdate from 'components/LastUpdate';
+import UserEvent from 'components/UserEvent';
 import helpers from './helpers';
 
 
@@ -50,11 +52,6 @@ const stats = {
 
     this.$extraDetails = $('#js-path-summary-more');
     this.$expandIcon = $('#js-expand-icon');
-
-    this.tmpl = {
-      lastAction: _.template($('#last_action').html()),
-      lastUpdated: _.template($('#last_updated').html()),
-    };
 
     $('td.stats-name').filter(':not([dir])').bidi();
 
@@ -139,22 +136,51 @@ const stats = {
     }
   },
 
-  getLastActionSnippet(data) {
-    return this.tmpl.lastAction(data);
+  renderLastEvent(el, data) {
+    if (data.mtime === 0) {
+      return false;
+    }
+
+    const props = {
+      checkName: data.check_name,
+      checkDisplayName: data.check_display_name,
+      displayName: data.displayname,
+      //email: data.email,
+      // FIXME: get rid of this in favor of `email`
+      avatarSrc: data.gravatar_url,
+      displayDatetime: data.display_datetime,
+      isoDatetime: data.iso_datetime,
+      type: data.type,
+      translationActionType: data.translation_action_type,
+      unitSource: data.unit.source,
+      unitUrl: data.unit.url,
+      username: data.username,
+    };
+    React.render(<UserEvent {...props} />, el);
   },
 
-  getLastUpdatedSnippet(data) {
-    return this.tmpl.lastUpdated(data);
+  renderLastUpdate(el, data) {
+    if (data.creation_time === 0) {
+      return false;
+    }
+
+    const props = {
+      displayDatetime: data.display_datetime,
+      isoDatetime: data.iso_datetime,
+      unitSource: data.unit.source,
+      unitUrl: data.unit.url,
+    };
+    React.render(<LastUpdate {...props} />, el);
   },
 
   updateLastUpdates(stats) {
     if (stats.lastupdated) {
-      $('#js-last-updated').show();
-      $('#js-last-updated .last-updated').html(this.getLastUpdatedSnippet(stats.lastupdated));
+      const lastUpdated = document.querySelector('#js-last-updated .last-updated');
+      this.renderLastUpdate(lastUpdated, stats.lastupdated);
     }
     if (stats.lastaction) {
-      $('#js-last-action').show();
-      $('#js-last-action .last-action').html(this.getLastActionSnippet(stats.lastaction));
+      const lastAction = document.querySelector('#js-last-action .last-action');
+      this.renderLastEvent(lastAction, stats.lastaction);
     }
   },
 
@@ -180,7 +206,7 @@ const stats = {
     if (item.lastaction) {
       $td = $table.find('#last-activity-' + code);
       $td.removeClass('not-inited');
-      $td.html(this.getLastActionSnippet(item.lastaction));
+      this.renderLastEvent($td[0], item.lastaction);
       $td.attr('sorttable_customkey', now - item.lastaction.mtime);
     }
 
@@ -190,7 +216,7 @@ const stats = {
     if (item.lastupdated) {
       $td = $table.find('#last-updated-' + code);
       $td.removeClass('not-inited');
-      $td.html(this.getLastUpdatedSnippet(item.lastupdated));
+      this.renderLastUpdate($td[0], item.lastupdated);
       $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
     }
   },
@@ -284,7 +310,6 @@ const stats = {
       }
     }
 
-    helpers.updateRelativeDates();
   },
 
   updateDirty() {

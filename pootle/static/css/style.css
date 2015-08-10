@@ -359,7 +359,7 @@ td.stats-name a:hover,
 .browser-parent a:hover > i + span,
 td.stats-name a:hover > i + span,
 .sidebar-action a:hover > i + span,
-.last-action > a:hover > img + span
+.last-action > a:hover > .user-name
 {
     text-decoration: underline;
 }
