@@ -787,11 +787,6 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
-table.stats .last-updated .action-text
-{
-    display: none;
-}
-
 
 /* When browser size is 1440px or less, show the smaller version of the
  * last action message */

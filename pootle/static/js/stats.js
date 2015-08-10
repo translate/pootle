@@ -15,6 +15,7 @@ import assign from 'object-assign';
 import 'sorttable';
 
 import LastUpdate from 'components/LastUpdate';
+import TimeSince from 'components/TimeSince';
 import UserEvent from 'components/UserEvent';
 import helpers from './helpers';
 
@@ -173,6 +174,18 @@ const stats = {
     React.render(<LastUpdate {...props} />, el);
   },
 
+  renderLastUpdatedTime(el, data) {
+    if (data.creation_time === 0) {
+      return false;
+    }
+
+    const props = {
+      title: data.display_datetime,
+      dateTime: data.iso_datetime,
+    };
+    React.render(<TimeSince {...props} />, el);
+  },
+
   updateLastUpdates(stats) {
     if (stats.lastupdated) {
       const lastUpdated = document.querySelector('#js-last-updated .last-updated');
@@ -216,7 +229,7 @@ const stats = {
     if (item.lastupdated) {
       $td = $table.find('#last-updated-' + code);
       $td.removeClass('not-inited');
-      this.renderLastUpdate($td[0], item.lastupdated);
+      this.renderLastUpdatedTime($td[0], item.lastupdated);
       $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
     }
   },
