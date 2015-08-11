@@ -487,7 +487,7 @@ def get_daily_activity(user, scores, start, end):
         date = score_time.date()
 
         translated, reviewed = score.get_paid_wordcounts()
-        if translated or reviewed:
+        if translated is not None or reviewed is not None:
             translated = 0 if translated is None else translated
             reviewed = 0 if reviewed is None else reviewed
 
@@ -578,14 +578,14 @@ def get_grouped_word_stats(scores, user=None, month=None):
             result.append(row)
 
         translated_words, reviewed_words = score.get_paid_wordcounts()
-        if translated_words:
+        if translated_words is not None:
             row['translated'] += translated_words
-        if reviewed_words:
+        if reviewed_words is not None:
             row['reviewed'] += reviewed_words
         row['score_delta'] += score.score_delta
 
         suggested_words = score.get_suggested_wordcount()
-        if suggested_words:
+        if suggested_words is not None:
             row['suggested'] += suggested_words
 
     return sorted(result, key=lambda x: x['translation_project'])
@@ -634,10 +634,10 @@ def get_summary(scores, start, end):
 
         translated_words, reviewed_words = score.get_paid_wordcounts()
 
-        if translated_words > 0:
+        if translated_words is not None:
             translated_row['end'] = score_time
             translated_row['amount'] += translated_words
-        elif reviewed_words > 0:
+        elif reviewed_words is not None:
             reviewed_row['end'] = score_time
             reviewed_row['amount'] += reviewed_words
 
