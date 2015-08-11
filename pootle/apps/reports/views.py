@@ -38,7 +38,7 @@ from pootle_profile.views import (NoDefaultUserMixin, TestUserFieldMixin,
 from pootle_statistics.models import ScoreLog
 
 from .forms import UserRatesForm, PaidTaskForm
-from .models import PaidTask, PaidTaskTypes
+from .models import PaidTask, PaidTaskTypes, ReportActionTypes
 
 
 # Django field query aliases
@@ -180,15 +180,18 @@ def get_detailed_report_context(user, month):
                         datetime__lte=end) \
                 .order_by('datetime')
 
-        scores = list(scores)
-        tasks = list(tasks)
+        items = []
 
-        for score in scores:
+        for score in scores.iterator():
+            action = None
+            subtotal = None
+            wordcount = None
+
             translated, reviewed = score.get_paid_wordcounts()
             if translated is not None:
-                score.action = PaidTask.get_task_type_title(PaidTaskTypes.TRANSLATION)
-                score.subtotal = score.rate * translated
-                score.words = translated
+                action = ReportActionTypes.TRANSLATION
+                subtotal = score.rate * translated
+                wordcount = translated
 
                 if score.rate in totals['translated']:
                     totals['translated'][score.rate]['words'] += translated
@@ -196,9 +199,10 @@ def get_detailed_report_context(user, month):
                     totals['translated'][score.rate] = {'words': translated}
 
             elif reviewed is not None:
-                score.action = PaidTask.get_task_type_title(PaidTaskTypes.REVIEW)
-                score.subtotal = score.review_rate * reviewed
-                score.words = score.wordcount
+                action = ReportActionTypes.REVIEW
+                subtotal = score.review_rate * reviewed
+                wordcount = reviewed
+
                 if score.review_rate in totals['reviewed']:
                     totals['reviewed'][score.review_rate]['words'] += reviewed
                 else:
@@ -206,32 +210,49 @@ def get_detailed_report_context(user, month):
 
             suggested = score.get_suggested_wordcount()
             if suggested is not None:
-                score.action = _('Suggestion')
-                score.words = suggested
+                action = ReportActionTypes.SUGGESTION
+                wordcount = suggested
+
                 totals['suggested'] += suggested
 
-            score.similarity = score.get_similarity() * 100
+            if action is not None:
+                items.append({
+                    'score': score,
+                    'action': action,
+                    'action_name': ReportActionTypes.NAMES_MAP[action],
+                    'similarity': score.get_similarity() * 100,
+                    'subtotal': subtotal,
+                    'wordcount': wordcount,
+                    'creation_time': score.creation_time,
+                })
 
         paid_tasks = totals['paid_tasks']
-        for task in tasks:
-            task.action = PaidTask.get_task_type_title(task.task_type)
-            task.subtotal = task.amount * task.rate
-            totals['all'] += task.subtotal
+        for task in tasks.iterator():
+            subtotal = task.amount * task.rate
+            items.append({
+                'action': task.task_type,
+                'action_name': PaidTask.get_task_type_title(task.task_type),
+                'subtotal': subtotal,
+                'task': task,
+                'creation_time': task.datetime,
+            })
+
+            totals['all'] += subtotal
 
             if task.task_type not in paid_tasks:
                 paid_tasks[task.task_type] = {
                     'rates': {},
-                    'action': task.action
+                    'action': PaidTask.get_task_type_title(task.task_type),
                 }
 
             if task.rate in paid_tasks[task.task_type]['rates']:
                 current = paid_tasks[task.task_type]['rates'][task.rate]
                 current['amount'] += task.amount
-                current['subtotal'] += task.subtotal
+                current['subtotal'] += subtotal
             else:
                 paid_tasks[task.task_type]['rates'][task.rate] = {
                     'amount': task.amount,
-                    'subtotal': task.subtotal,
+                    'subtotal': subtotal,
                 }
 
         for rate, words in totals['translated'].items():
@@ -246,9 +267,6 @@ def get_detailed_report_context(user, month):
 
         totals['all'] = totals['all']
 
-        items = [{'score': x, 'creation_time': x.creation_time} for x in scores] + \
-                [{'task': x, 'creation_time': x.datetime}
-                 for x in tasks]
         items = sorted(items, key=lambda x: x['creation_time'])
 
     if user != '' and user.currency is None:
@@ -263,6 +281,7 @@ def get_detailed_report_context(user, month):
         'previous': start.replace(day=1) - timedelta(days=1),
         'totals': totals,
         'utc_offset': start.strftime("%z"),
+        'action_types': ReportActionTypes(),
     }
 
 

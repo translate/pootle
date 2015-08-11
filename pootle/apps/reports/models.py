@@ -22,6 +22,18 @@ class PaidTaskTypes(object):
     CORRECTION = 3
 
 
+class ReportActionTypes(object):
+    TRANSLATION = 0
+    REVIEW = 1
+    SUGGESTION = 2
+
+    NAMES_MAP = {
+        TRANSLATION: _('Translation'),
+        REVIEW: _('Review'),
+        SUGGESTION: _('Suggestion'),
+    }
+
+
 class PaidTask(models.Model):
     """The Paid Task.
 
