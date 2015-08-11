@@ -48,9 +48,14 @@ class Command(PootleCommand):
         self.list_contributions(contribs)
 
     def list_contributions(self, contribs):
+        out = []
         for id, count in contribs.items():
             user = User.objects.get(id=id)
             name = user.display_name
             if user.email:
                 name += " <%s>" % (user.email)
-            self.stdout.write("%s (%i contributions)" % (name, count))
+            out.append("%s (%i contributions)" % (name, count))
+
+        # Sort users alphabetically
+        for line in sorted(out):
+            self.stdout.write(line)
