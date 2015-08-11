@@ -183,6 +183,29 @@ def _shell_command(command):
     return command_subprocess.communicate()[0]
 
 
+def _is_executable_file(path):
+    return os.path.isfile(path) and os.access(path, os.X_OK)
+
+
+def _git_binary():
+    """
+    Tries to find the path to the `git` program.
+    Can be overridden by setting POOTLE_GIT_PATH environment variable.
+    See #3876.
+    """
+    setting = os.environ.get("POOTLE_GIT_PATH")
+    if setting:
+        return setting
+
+    for path in os.environ["PATH"].split(os.pathsep):
+        path = path.strip('"')
+        trypath = os.path.join(path, "git")
+        if _is_executable_file(trypath):
+            return trypath
+
+    return "/usr/bin/git"
+
+
 @lru_cache()
 def get_git_changeset():
     """Returns a numeric identifier of the latest git changeset.
@@ -195,7 +218,7 @@ def get_git_changeset():
     '20150530132219'
     """
     timestamp = _shell_command(
-        ['/usr/bin/git', 'log', '--pretty=format:%ct', '--quiet', '-1', 'HEAD']
+        [_git_binary(), 'log', '--pretty=format:%ct', '--quiet', '-1', 'HEAD']
     )
     try:
         timestamp = datetime.datetime.utcfromtimestamp(int(timestamp))
@@ -211,7 +234,7 @@ def get_git_branch():
     >>> get_git_branch()
     'feature/proper_version'
     """
-    branch = _shell_command(['/usr/bin/git', 'symbolic-ref', '-q', 'HEAD']).strip()
+    branch = _shell_command([_git_binary(), 'symbolic-ref', '-q', 'HEAD']).strip()
     if not branch:
         return None
     return "/".join(branch.split("/")[2:])
@@ -225,8 +248,9 @@ def get_git_hash():
     'ad768e8'
     """
     return _shell_command(
-        ['/usr/bin/git', 'rev-parse', '--verify', '--short', 'HEAD']
+        [_git_binary(), 'rev-parse', '--verify', '--short', 'HEAD']
     ).strip()
+
 
 if __name__ == "__main__":
     from sys import argv
