@@ -184,7 +184,7 @@ def get_detailed_report_context(user, month):
         tasks = list(tasks)
 
         for score in scores:
-            translated, reviewed = score.get_paid_words()
+            translated, reviewed = score.get_paid_wordcounts()
             if translated is not None:
                 score.action = PaidTask.get_task_type_title(PaidTaskTypes.TRANSLATION)
                 score.subtotal = score.rate * translated
@@ -486,7 +486,7 @@ def get_daily_activity(user, scores, start, end):
         score_time = make_naive(score.creation_time)
         date = score_time.date()
 
-        translated, reviewed = score.get_paid_words()
+        translated, reviewed = score.get_paid_wordcounts()
         if translated or reviewed:
             translated = 0 if translated is None else translated
             reviewed = 0 if reviewed is None else reviewed
@@ -577,7 +577,7 @@ def get_grouped_word_stats(scores, user=None, month=None):
 
             result.append(row)
 
-        translated_words, reviewed_words = score.get_paid_words()
+        translated_words, reviewed_words = score.get_paid_wordcounts()
         if translated_words:
             row['translated'] += translated_words
         if reviewed_words:
@@ -632,7 +632,7 @@ def get_summary(scores, start, end):
             }
             reviews.append(reviewed_row)
 
-        translated_words, reviewed_words = score.get_paid_words()
+        translated_words, reviewed_words = score.get_paid_wordcounts()
 
         if translated_words > 0:
             translated_row['end'] = score_time

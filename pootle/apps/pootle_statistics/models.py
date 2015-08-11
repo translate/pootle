@@ -558,8 +558,10 @@ class ScoreLog(models.Model):
 
         return None
 
-    def get_paid_words(self):
-        """Returns the translated and reviewed words in the current action."""
+    def get_paid_wordcounts(self):
+        """Returns the translated and reviewed wordcount in the current
+        action.
+        """
         ns = self.wordcount
         s = self.get_similarity()
         translated_words = ns * (1 - s)
