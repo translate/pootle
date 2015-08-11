@@ -109,7 +109,7 @@ check_names = {
     'percent_brace_placeholders': _(u"Percent brace placeholders"),
 }
 
-excluded_filters = ['hassuggestion', 'spellcheck', 'isfuzzy', 'untranslated']
+excluded_filters = ['hassuggestion', 'spellcheck', 'isfuzzy', 'isreview', 'untranslated']
 
 # pre-compile all regexps
 
