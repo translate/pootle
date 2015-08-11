@@ -251,134 +251,45 @@ For documenting several things, Pootle defines custom Sphinx roles.
 JavaScript
 ----------
 
-There are no "official" coding style guidelines for JavaScript, so based
-on several recommendations (`1`_, `2`_, `3`_) we try to stick to our
-preferences.
+Follow the great `Airbnb JavaScript Style Guide
+<https://github.com/airbnb/javascript/blob/master/README.md>`_. Go check it out
+for all the details.
 
-Indenting
-  - We currently use 2-space indentation. Don't use tabs.
+As a summary, that includes:
 
-  - Avoid lines longer than 80 characters. When a statement will not fit
-    on a single line, it may be necessary to break it. Place the break
-    after an operator, ideally after a comma.
+* 2-space indent.
+* Single quotes.
+* ``pascalCase`` variable naming.
 
-Whitespace
-  - If a function literal is anonymous, there should be one space between
-    the word ``function`` and the ``(`` (left parenthesis).
+In addition to that:
 
-  - In function calls, don't use any space before the ``(`` (left parenthesis).
+* Try to be in the 80 (+4) soft character limit, but be wise to know when to
+  make exceptions.
+* `Use ES2015 <http://babeljs.io/docs/learn-es2015/>`_.
+* `Avoid jQuery <http://youmightnotneedjquery.com/>`_.
 
-  - Control statements should have one space between the control keyword
-    and opening parenthesis, to distinguish them from function calls.
+When dealing with existing or legacy code, also keep in mind to:
 
-  - Each ``;`` (semicolon) in the control part of a ``for`` statement should
-    be followed with a space.
+* Prefix with ``$`` Variables holding jQuery objects.
+* Use ``js-`` to prefix selectors for elements queried via JavaScript.
 
-  - Whitespace should follow every ``,`` (comma).
 
-Naming
-  - Variable and function names should always start by a lowercase letter
-    and consequent words should be CamelCased. Never use underscores.
+React + JSX
+^^^^^^^^^^^
 
-  - If a variable holds a jQuery object, prefix it by a dollar sign ``$``. For
-    example:
+For React + JSX code also follow the `Airbnb React/JSX Style Guide
+<https://github.com/airbnb/javascript/blob/master/react/README.md>`_, with the
+following exceptions:
 
-    .. code-block:: javascript
+* Naming extensions: Use ``.js`` extension for React components (not ``.jsx``).
+* Use ``React.createClass({})`` over extending ``React.Component``.
 
-      var $fields = $('.js-search-fields');
+Also bear in mind the following:
 
-Selectors
-  - Prefix selectors that deal with JavaScript with ``js-``. This way it's
-    clear the separation between class selectors that deal with presentation
-    (CSS) and functionality (JavaScript).
+* Event handler naming: ``handle*()`` for methods, ``on*()`` for props.
+* ``propTypes``: sort them alphabetically, but also group them to place
+  ``isRequired`` types first.
 
-  - Use the same naming criterion as with CSS selector names, ie, lowercase and
-    consequent words separated by dashes.
-
-Control statements
-  Control statements such as ``if``, ``for``, or ``switch`` should follow
-  these rules:
-
-  - The enclosed statements should be indented.
-
-  - The ``{`` (left curly brace) should be at the end of the line that
-    begins the compound statement.
-
-  - The ``}`` (right curly brace) should begin a line and be indented
-    to align with the beginning of the line containing the matching
-    ``{`` (left curly brace).
-
-  - Braces should be used around all statements, even single statements,
-    when they are part of a control structure, such as an ``if`` or ``for``
-    statement. This makes it easier to add statements without accidentally
-    introducing bugs.
-
-  - Should have one space between the control keyword and opening
-    parenthesis, to distinguish them from function calls.
-
-String
-  - A string literal should be wrapped in single quotes.
-
-  - ``join`` should be used to concatenate pieces instead of ``+`` because
-    it is usually faster to put the pieces into an array and join them.
-
-Number
-  - ``radix`` should be specified in the ``parseInt`` function to
-    eliminate reader confusion and to guarantee predictable behavior.
-
-Examples
-  - ``if`` statements
-
-    .. code-block:: javascript
-
-      if (condition) {
-        statements
-      }
-
-      if (condition) {
-        statements
-      } else {
-        statements
-      }
-
-      if (condition) {
-        statements
-      } else if (condition) {
-        statements
-      } else {
-        statements
-      }
-
-  - ``for`` statements
-
-    .. code-block:: javascript
-
-      for (initialization; condition; update) {
-        statements;
-      }
-
-      for (variable in object) {
-        if (condition) {
-          statements
-        }
-      }
-
-  - ``switch`` statements
-
-    .. code-block:: javascript
-
-      switch (condition) {
-        case 1:
-          statements
-          break;
-
-        case 2:
-          statements
-          break;
-
-        default:
-          statements
-      }
 
 HTML
 ----
@@ -450,7 +361,3 @@ Naming
   - Selectors should all be in lowercase and consequent words should be
     separated using dashes. As an example, rather use ``.tm-results`` and not
     ``.TM_results``.
-
-.. _1: http://javascript.crockford.com/code.html
-.. _2: https://www.drupal.org/node/172169
-.. _3: http://contribute.jquery.org/style-guide/js/
