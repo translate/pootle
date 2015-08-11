@@ -37,10 +37,17 @@ var helpers = {
         bodyPadding = parseInt($body.css('padding-bottom'), 10),
         contentAreaHeight = $('#wrapper').height() - $body.offset().top -
                             bodyPadding,
-        sidebarHeight = $('#sidebar #sidebar-content').height() +
-                        $('#footer').height() + bodyPadding,
-        newHeight = Math.max(contentAreaHeight, sidebarHeight);
+        sidebarHeight,
+        newHeight;
 
+    // Set sidebar width before measuring height of content
+    $('#sidebar').css('width', '30%');
+    sidebarHeight = $('#sidebar #sidebar-content').height() +
+                    $('#footer').height() + bodyPadding;
+    newHeight = Math.max(contentAreaHeight, sidebarHeight);
+
+    // Remove sidebar width setting - allow CSS to set width
+    $('#sidebar').css('width', '');
     if (bodyHeight < newHeight) {
       $body.css('height', newHeight);
     }
