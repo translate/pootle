@@ -153,8 +153,8 @@ const stats = {
       isoDatetime: data.iso_datetime,
       type: data.type,
       translationActionType: data.translation_action_type,
-      unitSource: data.unit.source,
-      unitUrl: data.unit.url,
+      unitSource: data.unit_source,
+      unitUrl: data.unit_url,
       username: data.username,
     };
     React.render(<UserEvent {...props} />, el);
@@ -168,8 +168,8 @@ const stats = {
     const props = {
       displayDatetime: data.display_datetime,
       isoDatetime: data.iso_datetime,
-      unitSource: data.unit.source,
-      unitUrl: data.unit.url,
+      unitSource: data.unit_source,
+      unitUrl: data.unit_url,
     };
     React.render(<LastUpdate {...props} />, el);
   },

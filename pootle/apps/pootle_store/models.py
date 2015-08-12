@@ -1245,16 +1245,12 @@ class Unit(models.Model, base.TranslationUnit):
         return result
 
     def get_last_updated_info(self):
-        unit = {
-            'source': truncatechars(self, 50),
-            'url': self.get_translate_url(),
-        }
-
         return {
             "display_datetime": dateformat.format(self.creation_time),
             "iso_datetime": self.creation_time.isoformat(),
             "creation_time": int(dateformat.format(self.creation_time, 'U')),
-            "unit": unit,
+            "unit_source": truncatechars(self, 50),
+            "unit_url": self.get_translate_url(),
         }
 
 

@@ -157,17 +157,17 @@ class Submission(models.Model):
         a type and translation_action_type describing the action performed,
         and when it was performed.
         """
-        unit = {}
+        result = {}
 
         if self.unit is not None:
-            unit = {
-                'source': truncatechars(self.unit, 50),
-                'url': self.unit.get_translate_url(),
-            }
+            result.update({
+                'unit_source': truncatechars(self.unit, 50),
+                'unit_url': self.unit.get_translate_url(),
+            })
 
             if self.quality_check is not None:
                 check_name = self.quality_check.name
-                unit.update({
+                result.update({
                     'check_name': check_name,
                     'check_display_name': check_names.get(check_name, check_name),
                     'checks_url': reverse('pootle-checks-descriptions'),
@@ -186,17 +186,16 @@ class Submission(models.Model):
                 User = get_user_model()
                 displayuser = User.objects.get_nobody_user()
 
-        result = {
+        result.update({
             "profile_url": displayuser.get_absolute_url(),
             "gravatar_url": displayuser.gravatar_url(20),
             "displayname": displayuser.display_name,
             "username": displayuser.username,
             "display_datetime": dateformat.format(self.creation_time),
             "iso_datetime": self.creation_time.isoformat(),
-            "unit": unit,
             "type": self.type,
             "mtime": int(dateformat.format(self.creation_time, 'U')),
-        }
+        })
 
         #TODO Fix bug 3011 and remove the following code related
         # to TranslationActionTypes.
