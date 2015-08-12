@@ -1248,7 +1248,6 @@ class Unit(models.Model, base.TranslationUnit):
         unit = {
             'source': truncatechars(self, 50),
             'url': self.get_translate_url(),
-            'id': self.id,
         }
 
         return {
