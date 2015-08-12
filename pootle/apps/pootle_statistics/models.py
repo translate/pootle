@@ -163,7 +163,6 @@ class Submission(models.Model):
             unit = {
                 'source': truncatechars(self.unit, 50),
                 'url': self.unit.get_translate_url(),
-                'state': self.unit.state,
             }
 
             if self.quality_check is not None:
