@@ -10,7 +10,9 @@
 
 import React from 'react';
 
+import UserEvent from 'components/UserEvent';
 import { User } from 'models/user';
+
 import UserProfileEdit from './components/UserProfileEdit';
 import UserProfileRouter from './routers';
 
@@ -21,31 +23,51 @@ window.PTL = window.PTL || {};
 PTL.user = {
 
   init: function (opts) {
-    const editButton = document.querySelector('.js-user-profile-edit');
+    if (opts.userData !== undefined) {
+      const editButton = document.querySelector('.js-user-profile-edit');
 
-    var user = new User(opts.userData, {urlRoot: l('/xhr/users/')});
-    const props = {
-      router: new UserProfileRouter(),
-      appRoot: opts.appRoot,
-      user: user
-    };
-    React.render(<UserProfileEdit {...props} />, editButton);
+      var user = new User(opts.userData, {urlRoot: l('/xhr/users/')});
+      const props = {
+        router: new UserProfileRouter(),
+        appRoot: opts.appRoot,
+        user: user
+      };
+      React.render(<UserProfileEdit {...props} />, editButton);
 
-    // FIXME: let's make the whole profile page a component, so a lot of the
-    // boilerplate here is rendered redundant
-    const popupBtns = document.querySelectorAll('.js-popup-tweet');
-    [...popupBtns].map((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
+      // FIXME: let's make the whole profile page a component, so a lot of the
+      // boilerplate here is rendered redundant
+      const popupBtns = document.querySelectorAll('.js-popup-tweet');
+      [...popupBtns].map((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
 
-        const width = 500;
-        const height = 260;
-        const left = (screen.width / 2) - (width / 2);
-        const top = (screen.height / 2) - (height / 2);
-        window.open(e.currentTarget.href, '_blank',
-                    `width=${width},height=${height},left=${left},top=${top}`);
+          const width = 500;
+          const height = 260;
+          const left = (screen.width / 2) - (width / 2);
+          const top = (screen.height / 2) - (height / 2);
+          window.open(e.currentTarget.href, '_blank',
+                      `width=${width},height=${height},left=${left},top=${top}`);
+        });
       });
-    });
-  }
+    }
 
+    const lastActivity = document.querySelector('.js-last-action');
+    const data = opts.lastEvent;
+    const props = {
+      checkName: data.check_name,
+      checkDisplayName: data.check_display_name,
+      displayName: data.displayname,
+      //email: data.email,
+      // FIXME: get rid of this in favor of `email`
+      avatarSrc: data.gravatar_url,
+      displayDatetime: data.display_datetime,
+      isoDatetime: data.iso_datetime,
+      type: data.type,
+      translationActionType: data.translation_action_type,
+      unitSource: data.unit_source,
+      unitUrl: data.unit_url,
+      username: data.username,
+    };
+    React.render(<UserEvent {...props} />, lastActivity);
+  }
 };

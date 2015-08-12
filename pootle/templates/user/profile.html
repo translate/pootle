@@ -58,7 +58,7 @@
     {% if last_event %}
     <div class="user-last-activity">
       <div class="label">{% trans 'Latest activity:' %}</div>
-      {{ last_event.get_submission_message }}
+      <div class="last-action js-last-action"></div>
     </div>
     {% endif %}
     {% endwith %}
@@ -109,15 +109,18 @@
 
 {% block scripts_extra %}
 {{ block.super }}
-{% if user == object %}
 {% assets 'js_user_app' %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
 <script type="text/javascript">
 $(function() {
-  PTL.user.init({userData: {{ user.as_json|safe }},
-                 appRoot: '{{ user.get_absolute_url }}'});
+  PTL.user.init({
+    {% if user == object %}
+    userData: {{ user.as_json|safe }},
+    appRoot: '{{ user.get_absolute_url }}',
+    {% endif %}
+    lastEvent: {{ object.last_event.as_json|safe }}
+  });
 });
 </script>
-{% endif %}
 {% endblock %}
