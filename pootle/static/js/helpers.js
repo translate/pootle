@@ -41,7 +41,7 @@ var helpers = {
                         $('#footer').height() + bodyPadding,
         newHeight = Math.max(contentAreaHeight, sidebarHeight);
 
-    if (bodyHeight < contentAreaHeight) {
+    if (bodyHeight < newHeight) {
       $body.css('height', newHeight);
     }
   },
