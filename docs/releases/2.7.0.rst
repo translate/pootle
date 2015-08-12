@@ -13,7 +13,7 @@ Changes in Requirements
 - `Translate Toolkit <http://toolkit.translatehouse.org/download.html>`_ >=
   1.13.0
 - Python >= 2.7, < 3.0
-- Redis >= 2.8.4
+- Redis >= 2.8
 - Unix-based operating system.
 
 
