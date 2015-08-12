@@ -9,7 +9,14 @@
   {% endblocktrans %}
   </div>
   {% endif %}
-  <h1 class="title">{{ page.title }}</h1>
+  <h1 class="title">
+    {{ page.title }}
+    {% if user.is_superuser %}
+    <span class="edit-link">
+      [<a href="{{ page.get_edit_url }}">edit</a>]
+    </span>
+    {% endif %}
+  </h1>
   {% with language_code=language.code %}
   {{ page.body|rewrite_language_links:language_code }}
   {% endwith %}
