@@ -292,6 +292,8 @@ modified since the revision given by :djadmin:`revision`.
 contributors
 ^^^^^^^^^^^^
 
+.. versionadded:: 2.7.1
+
 Lists the contributors to a language, project or overall and the amount
 of contributions they have.
 
