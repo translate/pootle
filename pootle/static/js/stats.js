@@ -52,6 +52,11 @@ var stats = {
 
     $(document).on('click', '#js-path-summary', this.toggleChecks.bind(this));
     $(document).on('click', '.js-stats-refresh', this.refreshStats.bind(this));
+
+    $(document).on('click',
+		   '#js-path-summary-more a',
+		   this.appendDetailsOpenHash.bind(this));
+    this.reopenDetails();
   },
 
   refreshStats: function (e) {
@@ -318,6 +323,7 @@ var stats = {
       var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
       $iconNode.attr('class', newClass);
       $iconNode.attr('title', newText);
+      window.location.hash = data.collapsed ? "": "details=open";
       $node.slideToggle('slow', 'easeOutQuad');
     }
 
@@ -363,8 +369,48 @@ var stats = {
         complete: onDataLoad
       });
     }
+  },
+
+  /* Re-open the path summary on page load if details=open present
+     in location hash */
+  reopenDetails: function () {
+    var urlHash = window.location.hash.substring(1),
+        details = urlHash.substr(urlhash.indexOf('details='))
+                         .split('&')[0]
+                         .split('=')[1];
+    if (details === "open") {
+      $('#js-path-summary').trigger('click');
+    }
+  },
+
+  /* If details=open present in location hash append to href of
+     clicked element */
+  appendDetailsOpenHash: function (e) {
+    var targetUrl = $(e.currentTarget).attr('href'),
+        targetHash,
+        urlHash = window.location.hash.substring(1),
+        details = urlHash.substr(urlHash.indexOf('details='))
+                         .split('&')[0]
+                         .split('=')[1];
+
+    if (details === 'open') {
+      if (targetUrl.indexOf('#') === -1) {
+        targetHash = '';
+      } else {
+        targetHash = targetUrl.substring(targetUrl.indexOf('#') + 1);
+        targetUrl = targetUrl.substring(0, targetUrl.indexOf('#'));
+      }
+
+      if (targetHash === '') {
+        targetHash = 'details=open';
+      } else if (targetHash.indexOf('details=') === -1) {
+        targetHash = targetHash + '&details=open';
+      }
+      targetUrl = targetUrl + '#' + targetHash;
+    }
+    $(e.currentTarget).attr('href', targetUrl);
+    return true;
   }
 };
-
 
 module.exports = stats;

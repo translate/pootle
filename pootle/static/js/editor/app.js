@@ -194,6 +194,7 @@ PTL.editor = {
     $(document).on('click', '.js-suggestion-accept', this.acceptSuggestion);
     $(document).on('click', '#js-toggle-timeline', this.toggleTimeline);
     $(document).on('click', '.js-toggle-check', this.toggleCheck);
+    $(document).on('click', '.js-back-to-browser', this.toggleDetailsOpen);
 
     /* Filtering */
     $(document).on('change', '#js-filter-status', this.filterStatus);
@@ -2378,6 +2379,33 @@ PTL.editor = {
 
     PTL.editor.goFuzzy();
     return false;
-  }
+  },
 
+  /* If details=open present in location hash append to return href */
+  toggleDetailsOpen: function (e) {
+    var returnUrl = $(e.currentTarget).attr('href'),
+        returnHash,
+        urlHash = window.location.hash.substring(1),
+        details = urlHash.substr(urlHash.indexOf('details='))
+                          .split('&')[0]
+                          .split('=')[1];
+
+    if (details === 'open') {
+      if (returnUrl.indexOf('#') === -1) {
+        returnHash = '';
+      } else {
+        returnHash = returnUrl.substring(returnUrl.indexOf('#') + 1);
+        returnUrl = returnUrl.substring(0, returnUrl.indexOf("#"));
+      }
+
+      if (returnHash === '') {
+        returnHash = 'details=open';
+      } else if (returnHash.indexOf('details=') === -1) {
+        returnHash = returnHash + '&details=open';
+      }
+      returnUrl = returnUrl + '#'  + returnHash;
+    }
+    $(e.currentTarget).attr('href', returnUrl);
+    return true
+  },
 };
