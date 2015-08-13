@@ -33,6 +33,13 @@ Details of changes
 - Pulled latest translations.
 
 
+Command changes and additions
+-----------------------------
+
+- Added a :djadmin:`contributors` command to get the list of contributors
+  (:issue:`3867`).
+
+
 ...and lots of refactoring, cleanups to remove old Django versions specifics,
 improved documentation and of course, loads of bugs were fixed.
 
