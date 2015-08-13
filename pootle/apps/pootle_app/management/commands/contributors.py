@@ -8,13 +8,16 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
-os.environ["DJANGO_SETTINGS_MODULE"] = "pootle.settings"
-
 from collections import Counter
 from optparse import make_option
+
+os.environ["DJANGO_SETTINGS_MODULE"] = "pootle.settings"
+
 from django.contrib.auth import get_user_model
-from pootle_app.management.commands import PootleCommand
+
 from pootle_store.models import Unit
+
+from . import PootleCommand
 
 
 User = get_user_model()
@@ -30,16 +33,21 @@ class Command(PootleCommand):
 
     def handle_all(self, **options):
         system_user = User.objects.get_system_user()
-        units = Unit.objects.exclude(submitted_by=system_user).exclude(submitted_by=None)
+        units = Unit.objects.exclude(submitted_by=system_user) \
+                            .exclude(submitted_by=None)
 
         if options["revision"]:
             units = units.filter(revision__gte=options["revision"])
 
         if self.projects:
-            units = units.filter(store__translation_project__project__code__in=self.projects)
+            units = units.filter(
+                store__translation_project__project__code__in=self.projects,
+            )
 
         if self.languages:
-            units = units.filter(store__translation_project__language__code__in=self.languages)
+            units = units.filter(
+                store__translation_project__language__code__in=self.languages,
+            )
 
         contribs = Counter()
         for v in units.values("submitted_by"):
