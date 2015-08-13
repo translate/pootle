@@ -12,6 +12,7 @@ from translate.storage.factory import getclass
 from django.utils.translation import ugettext as _
 
 from pootle_store.models import Store
+from pootle_statistics.models import SubmissionTypes
 
 
 def import_file(file, user=None):
@@ -43,4 +44,5 @@ def import_file(file, user=None):
             % (file.name, e)
         )
 
-    store.update(overwrite=True, store=f, user=user)
+    store.update(overwrite=True, store=f, user=user,
+                 submission_type=SubmissionTypes.UPLOAD)

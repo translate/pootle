@@ -1606,13 +1606,14 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return unit_ids
 
     def update_units(self, store, uids_to_update, uid_index_map, user,
-                     revision=None):
+                     revision=None, submission_type=None):
         """Updates existing units in the store.
 
         :param uids_to_update: UIDs of the units to be updated.
         :param uid_index_map: dictionary of DB ID to index mappings.
         :param user: attribute specific changes to this user.
         :param revision: set updated unit revision to this value.
+        :param submission_type: set submission type for update.
         :return: The number of units that were actually updated.
         """
         updated = 0
@@ -1639,9 +1640,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             if changed:
                 updated += 1
                 current_time = timezone.now()
-
                 self.record_submissions(unit, old_target, old_state,
-                                        current_time, user)
+                                        current_time, user, submission_type)
 
                 # FIXME: extreme implicit hazard
                 if unit._comment_updated:
@@ -1660,7 +1660,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         return updated
 
-    def record_submissions(self, unit, old_target, old_state, current_time, user):
+    def record_submissions(self, unit, old_target, old_state, current_time, user,
+                           submission_type=None):
         """Records all applicable submissions for `unit`.
 
         EXTREME HAZARD: this relies on implicit `._<field>_updated` members
@@ -1690,6 +1691,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 unit.translator_comment or '',
             ]
 
+        if submission_type is None:
+            submission_type = SubmissionTypes.SYSTEM
+
         # Create Submission after unit saved
         for field in create_subs:
             sub = Submission(
@@ -1699,7 +1703,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 unit=unit,
                 store=unit.store,
                 field=field,
-                type=SubmissionTypes.SYSTEM,
+                type=submission_type,
                 old_value=create_subs[field][0],
                 new_value=create_subs[field][1]
             )
@@ -1707,7 +1711,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             # `bulk_create()` them in a single go
             sub.save()
 
-    def update(self, overwrite=False, store=None, only_newer=False, user=None):
+    def update(self, overwrite=False, store=None, only_newer=False, user=None,
+               submission_type=None):
         """Update DB with units from file.
 
         :param overwrite: Whether to update all existing translations or
@@ -1717,6 +1722,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         :param only_newer: Whether to update only the files that changed on
             disk after the last sync.
         :param user: User to attribute updates to.
+        :param submission_type: Submission type of saved updates.
         """
         self.clean_stale_lock()
 
@@ -1852,7 +1858,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
             changes['updated'] = self.update_units(store, common_dbids,
                                                    update_unitids, user,
-                                                   revision=update_revision)
+                                                   revision=update_revision,
+                                                   submission_type=submission_type)
 
             self.file_mtime = disk_mtime
 
