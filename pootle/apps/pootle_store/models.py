@@ -1707,7 +1707,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             # `bulk_create()` them in a single go
             sub.save()
 
-    def update(self, overwrite=False, store=None, only_newer=False):
+    def update(self, overwrite=False, store=None, only_newer=False, user=None):
         """Update DB with units from file.
 
         :param overwrite: Whether to update all existing translations or
@@ -1716,6 +1716,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             the current DB store's FS store will be used as a source.
         :param only_newer: Whether to update only the files that changed on
             disk after the last sync.
+        :param user: User to attribute updates to.
         """
         self.clean_stale_lock()
 
@@ -1778,8 +1779,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                      key=lambda x: store.findid(x).index)
             new_unitid_set = set(new_unitid_list)
 
-            User = get_user_model()
-            system = User.objects.get_system_user()
+            if user is None:
+                User = get_user_model()
+                user = User.objects.get_system_user()
 
             common_dbids = set()
 
@@ -1790,7 +1792,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     new_unit_index = i1 + index + 1 + offset
                     uid = unit.getid()
                     if uid not in old_unitid_set:
-                        self.addunit(unit, new_unit_index, user=system,
+                        self.addunit(unit, new_unit_index, user=user,
                                      revision=update_revision)
                         changes['added'] += 1
                     else:
@@ -1849,7 +1851,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 common_dbids = self.remove_modified_units(common_dbids)
 
             changes['updated'] = self.update_units(store, common_dbids,
-                                                   update_unitids, system,
+                                                   update_unitids, user,
                                                    revision=update_revision)
 
             self.file_mtime = disk_mtime

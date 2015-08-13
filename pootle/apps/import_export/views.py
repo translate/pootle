@@ -79,12 +79,12 @@ def handle_upload_form(request):
                                 # is a directory
                                 continue
                             with zf.open(path, "r") as f:
-                                import_file(f)
+                                import_file(f, user=request.user)
                 else:
                     # It is necessary to seek to the beginning because
                     # is_zipfile fucks the file, and thus cannot be read.
                     django_file.seek(0)
-                    import_file(django_file)
+                    import_file(django_file, user=request.user)
             except Exception as e:
                 upload_form.add_error("file", e.message)
                 return {

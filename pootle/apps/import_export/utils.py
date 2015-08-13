@@ -14,7 +14,7 @@ from django.utils.translation import ugettext as _
 from pootle_store.models import Store
 
 
-def import_file(file):
+def import_file(file, user=None):
     f = getclass(file)(file.read())
     header = f.parseheader()
     pootle_path = header.get("X-Pootle-Path")
@@ -43,4 +43,4 @@ def import_file(file):
             % (file.name, e)
         )
 
-    store.update(overwrite=True, store=f)
+    store.update(overwrite=True, store=f, user=user)
