@@ -11,10 +11,9 @@
 var React = require('react');
 
 var User = require('models/user').User;
-var UserProfileEditClass = require('./components/edit');
 var UserProfileRouter = require('./routers');
 
-var UserProfileEdit = React.createFactory(UserProfileEditClass);
+import UserProfileEdit from './components/UserProfileEdit';
 
 
 window.PTL = window.PTL || {};
@@ -26,12 +25,12 @@ PTL.user = {
     const el = document.querySelector(opts.el);
 
     var user = new User(opts.userData, {urlRoot: l('/xhr/users/')});
-    var userProfileEdit = new UserProfileEdit({
+    const props = {
       router: new UserProfileRouter(),
       appRoot: opts.appRoot,
       user: user
-    });
-    React.render(userProfileEdit, el);
+    };
+    React.render(<UserProfileEdit {...props} />, el);
 
     // FIXME: let's make the whole profile page a component, so a lot of the
     // boilerplate here is rendered redundant
