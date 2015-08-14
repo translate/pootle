@@ -115,8 +115,7 @@
 {% endassets %}
 <script type="text/javascript">
 $(function() {
-  PTL.user.init({el: '.js-user-profile-edit',
-                 userData: {{ user.as_json|safe }},
+  PTL.user.init({userData: {{ user.as_json|safe }},
                  appRoot: '{{ user.get_absolute_url }}'});
 });
 </script>

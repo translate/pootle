@@ -21,7 +21,7 @@ window.PTL = window.PTL || {};
 PTL.user = {
 
   init: function (opts) {
-    const el = document.querySelector(opts.el);
+    const editButton = document.querySelector('.js-user-profile-edit');
 
     var user = new User(opts.userData, {urlRoot: l('/xhr/users/')});
     const props = {
@@ -29,7 +29,7 @@ PTL.user = {
       appRoot: opts.appRoot,
       user: user
     };
-    React.render(<UserProfileEdit {...props} />, el);
+    React.render(<UserProfileEdit {...props} />, editButton);
 
     // FIXME: let's make the whole profile page a component, so a lot of the
     // boilerplate here is rendered redundant
