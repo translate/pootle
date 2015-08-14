@@ -52,7 +52,8 @@ from pootle_statistics.models import (SubmissionFields,
 from .fields import (TranslationStoreField, MultiStringField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes
-from .util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED, get_change_str
+from .util import (OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED, get_change_str,
+                   parse_pootle_revision)
 
 
 #
@@ -1614,10 +1615,14 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         :param user: attribute specific changes to this user.
         :param revision: set updated unit revision to this value.
         :param submission_type: set submission type for update.
-        :return: The number of units that were actually updated.
+        :return: a tuple ``(updated, suggested)`` where ``updated`` is the
+            the number of units that were actually updated, and ``suggested``
+            is the number of suggestions added due to revision conflicts.
         """
         updated = 0
+        suggested = 0
 
+        store_revision = parse_pootle_revision(store)
         uids_to_update = list(uids_to_update)
         for unit in self.findid_bulk(uids_to_update):
             # Use the same (parent) object since units will accumulate
@@ -1626,6 +1631,17 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             unit.store = self
             uid = unit.getid()
             newunit = store.findid(uid)
+
+            # If the unit's revision is greater than the store's add a
+            # suggestion instead
+            conflict_found = (isinstance(store_revision, int)
+                              and store_revision < unit.revision
+                              and unit.target != newunit.target)
+            if conflict_found:
+                suggestion, created = unit.add_suggestion(newunit.target, user)
+                if created:
+                    suggested += 1
+                continue
 
             # FIXME: `old_unit = copy.copy(unit)?`
             old_target = unit.target_f
@@ -1658,7 +1674,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
                 unit.save(revision=revision)
 
-        return updated
+        return updated, suggested
 
     def record_submissions(self, unit, old_target, old_state, current_time, user,
                            submission_type=None):
@@ -1756,6 +1772,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         self.state = LOCKED
         self.save()
 
+        store_revision = parse_pootle_revision(store)
+        max_unit_revision = self.get_max_unit_revision()
         update_revision = Revision.incr()
         try:
             changes = {
@@ -1798,9 +1816,14 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     new_unit_index = i1 + index + 1 + offset
                     uid = unit.getid()
                     if uid not in old_unitid_set:
-                        self.addunit(unit, new_unit_index, user=user,
-                                     revision=update_revision)
-                        changes['added'] += 1
+                        # Don't add unit if store revision is set and is less
+                        # than max unit revision
+                        if (not isinstance(store_revision, int)
+                            or max_unit_revision <= store_revision):
+
+                            self.addunit(unit, new_unit_index, user=user,
+                                         revision=update_revision)
+                            changes['added'] += 1
                     else:
                         update_unitids[uid] = {'dbid': old_unitids[uid]['dbid'],
                                                'index': new_unit_index}
@@ -1856,11 +1879,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             if not overwrite:
                 common_dbids = self.remove_modified_units(common_dbids)
 
-            changes['updated'] = self.update_units(store, common_dbids,
-                                                   update_unitids, user,
-                                                   revision=update_revision,
-                                                   submission_type=submission_type)
-
+            (changes['updated'],
+             changes['suggested']) = self.update_units(store, common_dbids,
+                                                       update_unitids, user,
+                                                       revision=update_revision,
+                                                       submission_type=submission_type)
             self.file_mtime = disk_mtime
 
             if (filter(lambda x: changes[x] > 0, changes) and

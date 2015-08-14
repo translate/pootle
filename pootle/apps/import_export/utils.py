@@ -31,13 +31,6 @@ def import_file(file, user=None):
 
     try:
         store, created = Store.objects.get_or_create(pootle_path=pootle_path)
-        if rev < store.get_max_unit_revision():
-            # TODO we could potentially check at the unit level and only reject
-            # units older than most recent. But that's in store.update().
-            raise ValueError(
-                _("File '%s' was rejected because its X-Pootle-Revision is too old.")
-                % (file.name)
-            )
     except Exception as e:
         raise ValueError(
             _("Could not create '%s'. Missing Project/Language? (%s)")

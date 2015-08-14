@@ -118,3 +118,11 @@ def get_change_str(changes):
         return ", ".join(res)
 
     return "no changed"
+
+
+def parse_pootle_revision(store):
+    if hasattr(store, "parseheader"):
+        pootle_revision = store.parseheader().get("X-Pootle-Revision",
+                                                  None)
+        if pootle_revision is not None:
+            return int(pootle_revision)
