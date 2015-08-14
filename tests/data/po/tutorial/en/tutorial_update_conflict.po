@@ -9,7 +9,6 @@ msgstr ""
 "X-Pootle-Path: /en/tutorial/tutorial.po\n"
 "X-Pootle-Revision: 0\n"
 
-
 #: Hello, world
 msgid "Hello, world"
-msgstr ""
+msgstr "Hello, world CONFLICT"

@@ -7,9 +7,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Pootle Tests\n"
 "X-Pootle-Path: /en/tutorial/tutorial.po\n"
-"X-Pootle-Revision: 0\n"
-
+"X-Pootle-Revision: 1\n"
 
 #: Hello, world
 msgid "Hello, world"
-msgstr ""
+msgstr "Hello, world UPDATED"
