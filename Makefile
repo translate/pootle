@@ -25,7 +25,7 @@ assets:
 	mkdir -p ${ASSETS_DIR}
 	python manage.py collectstatic --noinput --clear -i node_modules -i *.jsx ${TAIL}
 	python manage.py assets build ${TAIL}
-	chmod 664 ${ASSETS_DIR}/.webassets-cache/*
+	chmod 664 ${ASSETS_DIR}.webassets-cache/*
 
 docs:
 	# Make sure that the submodule with docs theme is pulled and up-to-date.
