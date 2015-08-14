@@ -8,12 +8,11 @@
 
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-var User = require('models/user').User;
-var UserProfileRouter = require('./routers');
-
+import { User } from 'models/user';
 import UserProfileEdit from './components/UserProfileEdit';
+import UserProfileRouter from './routers';
 
 
 window.PTL = window.PTL || {};
