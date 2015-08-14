@@ -281,7 +281,7 @@ def get_detailed_report_context(user, month):
         'previous': start.replace(day=1) - timedelta(days=1),
         'totals': totals,
         'utc_offset': start.strftime("%z"),
-        'action_types': ReportActionTypes(),
+        'action_types': ReportActionTypes,
     }
 
 
