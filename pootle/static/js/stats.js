@@ -146,9 +146,7 @@ const stats = {
       checkName: data.check_name,
       checkDisplayName: data.check_display_name,
       displayName: data.displayname,
-      //email: data.email,
-      // FIXME: get rid of this in favor of `email`
-      avatarSrc: data.gravatar_url,
+      email: data.email,
       displayDatetime: data.display_datetime,
       isoDatetime: data.iso_datetime,
       type: data.type,

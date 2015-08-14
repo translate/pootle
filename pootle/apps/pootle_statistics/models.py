@@ -193,7 +193,7 @@ class Submission(models.Model):
 
         result.update({
             "profile_url": displayuser.get_absolute_url(),
-            "gravatar_url": displayuser.gravatar_url(20),
+            "email": displayuser.email_hash,
             "displayname": displayuser.display_name,
             "username": displayuser.username,
             "display_datetime": dateformat.format(self.creation_time),

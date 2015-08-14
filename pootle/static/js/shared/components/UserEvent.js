@@ -20,14 +20,12 @@ const UserEvent = React.createClass({
   propTypes: {
     displayDatetime: PropTypes.string.isRequired,
     displayName: PropTypes.string.isRequired,
-    //email: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     isoDatetime: PropTypes.string.isRequired,
     type: PropTypes.number.isRequired,
     unitSource: PropTypes.string.isRequired,
     unitUrl: PropTypes.string.isRequired,
 
-    // FIXME: get rid of this, `email` replaces it altogether
-    avatarSrc: PropTypes.string,
     checkName: PropTypes.string,
     checkDisplayName: PropTypes.string,
     translationActionType: PropTypes.number,
@@ -115,7 +113,6 @@ const UserEvent = React.createClass({
           email={this.props.email}
           label={this.props.displayName}
           size={20}
-          src={this.props.avatarSrc}
           username={this.props.username}
         />{' '}
         <span
