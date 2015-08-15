@@ -126,3 +126,4 @@ def parse_pootle_revision(store):
                                                   None)
         if pootle_revision is not None:
             return int(pootle_revision)
+    return None

@@ -658,6 +658,7 @@ class Unit(models.Model, base.TranslationUnit):
         return changed
 
     def update(self, unit, user=None):
+
         """Update in-DB translation from the given :param:`unit`.
 
         :param user: User to attribute updates to.
@@ -1633,7 +1634,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             newunit = store.findid(uid)
 
             # If the unit's revision is greater than the store's add a
-            # suggestion instead
+            # suggestion instead.
             conflict_found = (isinstance(store_revision, int)
                               and store_revision < unit.revision
                               and unit.target != newunit.target)
@@ -1817,7 +1818,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     uid = unit.getid()
                     if uid not in old_unitid_set:
                         # Don't add unit if store revision is set and is less
-                        # than max unit revision
+                        # than max unit revision.
                         if (not isinstance(store_revision, int)
                             or max_unit_revision <= store_revision):
 

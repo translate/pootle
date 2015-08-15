@@ -14,28 +14,30 @@ from django.utils.translation import ugettext as _
 from pootle_store.models import Store
 from pootle_statistics.models import SubmissionTypes
 
+from .exceptions import (ERR_UNSUPPORTED_FILETYPE, ERR_MISSING_POOTLE_PATH,
+                         ERR_MISSING_POOTLE_REV, ERR_FILE_IMPORT,
+                         UnsupportedFiletypeError, MissingPootlePathError,
+                         MissingPootleRevError, FileImportError)
+
 
 def import_file(file, user=None):
     f = getclass(file)(file.read())
+    if not hasattr(f, "parseheader"):
+        raise UnsupportedFiletypeError(_(ERR_UNSUPPORTED_FILETYPE) % file.name)
     header = f.parseheader()
     pootle_path = header.get("X-Pootle-Path")
     if not pootle_path:
-        raise ValueError(_("File '%s' missing X-Pootle-Path header\n") % (file.name))
+        raise MissingPootlePathError(_(ERR_MISSING_POOTLE_PATH) % file.name)
 
     rev = header.get("X-Pootle-Revision")
     if not rev or not rev.isdigit():
-        raise ValueError(
-            _("File '%s' missing or invalid X-Pootle-Revision header\n") % (file.name)
-        )
+        raise MissingPootleRevError(_(ERR_MISSING_POOTLE_REV) % file.name)
     rev = int(rev)
 
     try:
         store, created = Store.objects.get_or_create(pootle_path=pootle_path)
     except Exception as e:
-        raise ValueError(
-            _("Could not create '%s'. Missing Project/Language? (%s)")
-            % (file.name, e)
-        )
+        raise FileImportError(_(ERR_FILE_IMPORT) % (file.name, e))
 
     store.update(overwrite=True, store=f, user=user,
                  submission_type=SubmissionTypes.UPLOAD)
