@@ -12,31 +12,26 @@ import pytest
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from pootle_store.models import Unit
 from import_export.utils import import_file
 
-TEST_DATA_DIR = "tests/data/po/tutorial/en"
+TEST_PO_DIR = "tests/data/po/tutorial/en"
 IMPORT_SUCCESS = "headers_correct.po"
-IMPORT_FAILURE = [(u"revision_header_missing.po",
-                   u"File '%s' missing or invalid X-Pootle-Revision header\n"),
-                  (u"revision_header_invalid.po",
-                   u"File '%s' missing or invalid X-Pootle-Revision header\n"),
-                  ("path_header_missing.po",
-                   u"File '%s' missing X-Pootle-Path header\n"),
-                  ("path_header_invalid.po",
-                   u"Could not create '%s'. Missing Project/Language? (Store has no parent.)")]
+IMPORT_UNSUPP_FILE = "tutorial.ts"
+IMPORT_UNSUPP_ERROR_MSG = ("Unsupported filetype '%s', only po files are "
+                           + "supported at this time\n")
 
 
-def _import_file(file_name, content_type="text/x-gettext-translation"):
-    with open(os.path.join(TEST_DATA_DIR, file_name), "r") as pofile:
+def _import_file(file_name, file_dir=TEST_PO_DIR,
+                 content_type="text/x-gettext-translation"):
+    with open(os.path.join(file_dir, file_name), "r") as f:
         import_file(SimpleUploadedFile(file_name,
-                                       pofile.read(),
-                                       content_type=content_type))
+                                       f.read(),
+                                       content_type))
 
 
-@pytest.fixture(params=IMPORT_FAILURE)
-def file_import_failure(request):
-    return request.param
+@pytest.mark.django_db
+def test_import_success(en_tutorial_po):
+    _import_file(IMPORT_SUCCESS)
 
 
 @pytest.mark.django_db
@@ -48,5 +43,9 @@ def test_import_failure(file_import_failure, en_tutorial_po):
 
 
 @pytest.mark.django_db
-def test_import_success(en_tutorial_po):
-    _import_file(IMPORT_SUCCESS)
+def test_import_unsupported(en_tutorial_ts, ts_directory):
+    with pytest.raises(ValueError) as e:
+        _import_file(IMPORT_UNSUPP_FILE,
+                     file_dir=os.path.join(ts_directory, "tutorial/en"),
+                     content_type="text/vnd.trolltech.linguist")
+    assert e.value.message == IMPORT_UNSUPP_ERROR_MSG % IMPORT_UNSUPP_FILE
