@@ -44,9 +44,14 @@ var stats = {
 
   init: function (options) {
     this.retries = 0;
+    this.isCollapsed = true;
+    this.hasChecksData = false;
     this.pootlePath = options.pootlePath;
     this.isAdmin = options.isAdmin;
     this.processLoadedData(options.data, undefined, true);
+
+    this.$extraDetails = $('#js-path-summary-more');
+    this.$expandIcon = $('#js-expand-icon');
 
     $('td.stats-name').filter(':not([dir])').bidi();
 
@@ -253,7 +258,7 @@ var stats = {
     } else {
       // this is a single store stats, let's expand its details
       // only on first page load, and unless it is already expanded
-      if (firstPageLoad && $('#js-path-summary-more').data('collapsed')) {
+      if (firstPageLoad && this.isCollapsed) {
         setTimeout(function () {
           $('#js-path-summary').click();
         }, 1);
@@ -307,63 +312,71 @@ var stats = {
   /* Path summary */
   toggleChecks: function (e) {
     e.preventDefault();
-    var $el = $(e.currentTarget),
-        $node = $("#" + $el.data('target')),
-        $iconNode = $el.find("#js-expand-icon"),
-        data = $node.data();
 
-    function hideShow() {
-      $node.data('collapsed', !data.collapsed);
-      var newClass = data.collapsed ? 'icon-expand-stats' : 'icon-collapse-stats';
-      var newText = data.collapsed ? gettext('Expand details') : gettext('Collapse details');
-      $iconNode.attr('class', newClass);
-      $iconNode.attr('title', newText);
-      $node.slideToggle('slow', 'easeOutQuad');
-    }
-
-    if (data.loaded) {
-      hideShow();
+    if (this.hasChecksData) {
+      this.toggleChecksVisibility();
     } else {
-      $('body').spin();
-      var url = l('/xhr/stats/checks/'),
-          reqData = {
-            path: this.pootlePath
-          };
-      $.ajax({
-        url: url,
-        data: reqData,
-        success: function (data) {
-          $node.hide();
-          if (data !== null && Object.keys(data).length) {
-            $node.find('.js-checks').each(function (e) {
-              var empty = true,
-                  $cat = $(this);
-
-              $cat.find('.js-check').each(function (e) {
-                var $check = $(this),
-                    code = $(this).data('code');
-                if (code in data) {
-                  empty = false;
-                  $check.show();
-                  $check.find('.check-count a').html(data[code]);
-                } else {
-                  $check.hide();
-                }
-              });
-
-              $cat.toggle(!empty);
-            });
-
-            $('#js-stats-checks').show();
-          }
-
-          $node.data('loaded', true);
-          hideShow();
-        },
-        complete: onDataLoad
-      });
+      this.loadChecks();
     }
+  },
+
+  toggleChecksVisibility: function () {
+    const isCollapsed = this.isCollapsed;
+
+    const newClass = isCollapsed ? 'icon-expand-stats' : 'icon-collapse-stats';
+    const newText = isCollapsed ? gettext('Expand details') : gettext('Collapse details');
+
+    this.$expandIcon.attr('class', newClass);
+    this.$expandIcon.attr('title', newText);
+
+    this.isCollapsed = !isCollapsed;
+
+    this.$extraDetails.slideToggle('slow', 'easeOutQuad');
+  },
+
+  loadChecks: function () {
+    $('body').spin();
+    var url = l('/xhr/stats/checks/'),
+        reqData = {
+          path: this.pootlePath
+        };
+    $.ajax({
+      url: url,
+      data: reqData,
+      success: (data) => this.onChecksLoaded(data),
+      complete: onDataLoad
+    });
+  },
+
+  onChecksLoaded: function (data) {
+    this.$extraDetails.hide();
+    if (data !== null && Object.keys(data).length) {
+      this.$extraDetails.find('.js-checks').each(function (e) {
+        var empty = true,
+            $cat = $(this);
+
+        $cat.find('.js-check').each(function (e) {
+          var $check = $(this),
+              code = $(this).data('code');
+          if (code in data) {
+            empty = false;
+            $check.show();
+            $check.find('.check-count a').html(data[code]);
+          } else {
+            $check.hide();
+          }
+        });
+
+        $cat.toggle(!empty);
+      });
+
+      $('#js-stats-checks').show();
+    }
+
+    this.hasChecksData = true;
+    this.toggleChecksVisibility();
   }
+
 };
 
 
