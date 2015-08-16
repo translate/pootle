@@ -7,6 +7,7 @@ django-contact-form==1.0
 django-overextends>=0.3.2
 django-redis
 django-rq
+django-transaction-hooks
 
 # Libraries
 cssmin

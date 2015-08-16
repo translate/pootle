@@ -275,11 +275,26 @@ Use the :command:`psql` command to create a user and database:
    postgres@ $ createdb --encoding='utf-8' --locale=en_US.utf8 --template=template0 --owner=pootle pootledb
 
 
+.. _installation#database_backends:
+
+Database backends
+-----------------
+
+.. warning:: Pootle now requires django-transaction-hooks.
+   **You should update your database backend if migrating from a version older than 2.7.1**
+
+
 Following the database creation, you need to modify the :setting:`DATABASES`
 setting appropriately in your custom settings file, ensuring that you are using
 the correct :setting:`ENGINE <DATABASE-ENGINE>` setting for your chosen
 database backend.
 
+Pootle requires `django-transaction-hooks <https://pypi.python.org/pypi/django-transaction-hooks/>`_
+to connect to the database. The following database backends are supported:
+
+- sqlite: transaction_hooks.backends.sqlite3
+- mysql: transaction_hooks.backends.mysql
+- postgres: transaction_hooks.backends.postgresql_psycopg2
 
 .. _installation#populating_the_database:
 

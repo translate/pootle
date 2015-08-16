@@ -16,6 +16,7 @@ from functools import wraps
 
 from django.conf import settings
 from django.core.urlresolvers import set_script_prefix
+from django.db import connection
 from django.utils.encoding import force_unicode, iri_to_uri
 
 from django_rq.queues import get_queue, get_connection
@@ -678,7 +679,10 @@ def update_cache_job(instance):
 def create_update_cache_job_wrapper(instance, keys, decrement=1):
     queue = get_queue('default')
     if queue._async:
-        create_update_cache_job(queue, instance, keys, decrement=decrement)
+
+        def _create_update_cache_job():
+            create_update_cache_job(queue, instance, keys, decrement=decrement)
+        connection.on_commit(_create_update_cache_job)
     else:
         instance._update_cache_job(keys, decrement=decrement)
 

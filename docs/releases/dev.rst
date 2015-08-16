@@ -13,6 +13,7 @@ Changes in Requirements
 - Translate Toolkit >= 1.13.0
 - Python >= 2.7, < 3.0
 - Redis >= 2.8
+- Django transaction hooks
 - Unix-based operating system.
 
 
@@ -20,6 +21,7 @@ Major Changes
 =============
 
 - Updated translations.
+- Added django-transaction-hooks
 
 
 Below we provide much more detail. These are by no means exhaustive, view the
@@ -35,6 +37,21 @@ Details of changes
   the :djadmin:`refresh_stats_rq` command (:issue:`3835`).
 
 - Pulled latest translations.
+
+
+Django transaction hooks
+------------------------
+
+- To ensure async jobs are scheduled at the correct time
+  `django-transaction-hooks <https://pypi.python.org/pypi/django-transaction-hooks/>`_
+  is now required. This will become unnecessary once we move to Django 1.9.
+
+- You must update your database connection to use one of the
+  django-transaction-hooks backends:
+
+  - sqlite: transaction_hooks.backends.sqlite3
+  - mysql: transaction_hooks.backends.mysql
+  - postgres: transaction_hooks.backends.postgresql_psycopg2
 
 
 Command changes and additions
