@@ -46,12 +46,13 @@ const stats = {
     this.state = {
       isExpanded: false,
       hasChecksData: false,
+      data: options.initialData,
     };
 
     this.pootlePath = options.pootlePath;
     this.isAdmin = options.isAdmin;
 
-    this.processLoadedData(options.data, undefined, true);
+    this.processLoadedData(undefined, true);
 
     this.$extraDetails = $('#js-path-summary-more');
     this.$expandIcon = $('#js-expand-icon');
@@ -178,7 +179,9 @@ const stats = {
     }
   },
 
-  processLoadedData(data, callback, firstPageLoad) {
+  processLoadedData(callback, firstPageLoad) {
+    const { data } = this.state;
+
     var $table = $('#content table.stats'),
         $vfoldersTable = $('#content .vfolders table.stats'),
         dirtySelector = '#top-stats, #translate-actions, #autorefresh-notice',
@@ -307,7 +310,8 @@ const stats = {
       },
       dataType: 'json',
       success: (data) => {
-        return this.processLoadedData(data, callback);
+        this.state.data = data;
+        return this.processLoadedData(callback);
       }
     });
   },

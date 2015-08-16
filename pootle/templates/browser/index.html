@@ -139,7 +139,7 @@ $(function () {
   PTL.stats.init({
     pootlePath: "{{ pootle_path }}",
     isAdmin: {{ is_admin|yesno:"true,false" }},
-    data: {{ stats|safe }}
+    initialData: {{ stats|safe }},
   });
 
   {% if 'finished' in request.GET %}
