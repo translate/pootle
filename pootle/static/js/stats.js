@@ -67,7 +67,7 @@ const stats = {
       this.refreshStats();
     });
 
-    this.processLoadedData(undefined);
+    this.updateUI({});
   },
 
   setState(newState) {
@@ -186,7 +186,7 @@ const stats = {
     }
   },
 
-  processLoadedData(callback) {
+  updateStatsUI() {
     const { data } = this.state;
 
     var $table = $('#content table.stats'),
@@ -276,10 +276,6 @@ const stats = {
     }
 
     helpers.updateRelativeDates();
-
-    if (callback) {
-      callback(data);
-    }
   },
 
   updateDirty() {
@@ -312,7 +308,7 @@ const stats = {
       dataType: 'json',
       success: (data) => {
         this.setState({data: data});
-        return this.processLoadedData(callback);
+        callback(data);
       }
     });
   },
@@ -381,6 +377,7 @@ const stats = {
   updateUI(oldState) {
     this.updateChecksToggleUI();
     this.updateChecksUI();
+    this.updateStatsUI();
   }
 
 };
