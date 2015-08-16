@@ -16,8 +16,8 @@ import 'sorttable';
 import helpers from './helpers';
 
 
-var nicePercentage = function (part, total, noTotalDefault) {
-  var percentage = total ? part / total * 100 : noTotalDefault;
+const nicePercentage = function (part, total, noTotalDefault) {
+  const percentage = total ? part / total * 100 : noTotalDefault;
   if (99 < percentage && percentage < 100) {
     return 99;
   }
@@ -28,7 +28,7 @@ var nicePercentage = function (part, total, noTotalDefault) {
 };
 
 
-var onDataLoad = function () {
+const onDataLoad = function () {
   $('body').spin(false);
 };
 
@@ -38,9 +38,9 @@ function cssId(id) {
 }
 
 
-var stats = {
+const stats = {
 
-  init: function (options) {
+  init(options) {
     this.retries = 0;
     this.isExpanded = false;
     this.hasChecksData = false;
@@ -60,13 +60,13 @@ var stats = {
     $(document).on('click', '.js-stats-refresh', this.refreshStats.bind(this));
   },
 
-  refreshStats: function (e) {
+  refreshStats(e) {
     e.preventDefault();
     this.dirtyBackoff = 1;
     this.updateDirty();
   },
 
-  updateProgressbar: function ($td, item) {
+  updateProgressbar($td, item) {
     var translated = nicePercentage(item.translated, item.total, 100),
         fuzzy = nicePercentage(item.fuzzy, item.total, 0),
         untranslated = 100 - translated - fuzzy,
@@ -88,7 +88,7 @@ var stats = {
     setTdWidth($td.find('td.untranslated'), untranslated);
   },
 
-  updateTranslationStats: function ($tr, total, value, noTotalDefault) {
+  updateTranslationStats($tr, total, value, noTotalDefault) {
     $tr.find('.stats-number a').html(value);
     $tr.find('.stats-percentage span').html(
       nicePercentage(value, total, noTotalDefault)
@@ -96,12 +96,12 @@ var stats = {
     $tr.find('.stats-percentage').show();
   },
 
-  updateAction: function ($action, count) {
+  updateAction($action, count) {
     $action.toggleClass('non-zero', !(count === 0));
     $action.find('.counter').text(count !== null ? count : '—');
   },
 
-  updateItemStats: function ($td, count) {
+  updateItemStats($td, count) {
     if (count) {
       $td.removeClass('zero');
       $td.removeClass('not-inited');
@@ -119,7 +119,7 @@ var stats = {
     }
   },
 
-  updateLastUpdates: function (stats) {
+  updateLastUpdates(stats) {
     if (stats.lastupdated) {
       $('#js-last-updated').toggle(stats.lastupdated.snippet !== '');
       if (stats.lastupdated.snippet) {
@@ -134,7 +134,7 @@ var stats = {
     }
   },
 
-  processTableItem: function (item, code, $table, $td, now) {
+  processTableItem(item, code, $table, $td, now) {
     $td.parent().toggleClass('dirty', item.is_dirty);
     this.updateItemStats($td, item.total);
 
@@ -171,7 +171,7 @@ var stats = {
     }
   },
 
-  processLoadedData: function (data, callback, firstPageLoad) {
+  processLoadedData(data, callback, firstPageLoad) {
     var $table = $('#content table.stats'),
         $vfoldersTable = $('#content .vfolders table.stats'),
         dirtySelector = '#top-stats, #translate-actions, #autorefresh-notice',
@@ -271,7 +271,7 @@ var stats = {
     }
   },
 
-  updateDirty: function () {
+  updateDirty() {
     if (--this.dirtyBackoff === 0) {
       $('body').spin();
       $('.js-stats-refresh').hide();
@@ -286,13 +286,13 @@ var stats = {
     this.updateDirtyBackoffCounter();
   },
 
-  updateDirtyBackoffCounter: function () {
+  updateDirtyBackoffCounter() {
     var noticeStr = ngettext('%s second', '%s seconds', this.dirtyBackoff);
     noticeStr = interpolate(noticeStr, [this.dirtyBackoff], false);
     $('#autorefresh-notice strong').text(noticeStr);
   },
 
-  load: function (callback) {
+  load(callback) {
     var url = l('/xhr/stats/'),
         reqData = {
           path: this.pootlePath
@@ -309,7 +309,7 @@ var stats = {
   },
 
   /* Path summary */
-  toggleChecks: function () {
+  toggleChecks() {
     if (this.hasChecksData) {
       this.toggleChecksVisibility();
     } else {
@@ -317,7 +317,7 @@ var stats = {
     }
   },
 
-  toggleChecksVisibility: function () {
+  toggleChecksVisibility() {
     this.isExpanded = !this.isExpanded;
 
     const { isExpanded } = this;
@@ -331,7 +331,7 @@ var stats = {
     this.$extraDetails.slideToggle('slow', 'easeOutQuad');
   },
 
-  loadChecks: function () {
+  loadChecks() {
     $('body').spin();
     var url = l('/xhr/stats/checks/'),
         reqData = {
@@ -345,7 +345,7 @@ var stats = {
     });
   },
 
-  onChecksLoaded: function (data) {
+  onChecksLoaded(data) {
     this.$extraDetails.hide();
     if (data !== null && Object.keys(data).length) {
       this.$extraDetails.find('.js-checks').each(function (e) {
