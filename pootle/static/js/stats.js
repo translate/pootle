@@ -55,7 +55,10 @@ var stats = {
 
     $('td.stats-name').filter(':not([dir])').bidi();
 
-    $(document).on('click', '#js-path-summary', this.toggleChecks.bind(this));
+    $(document).on('click', '#js-path-summary', (e) => {
+      e.preventDefault();
+      this.toggleChecks();
+    });
     $(document).on('click', '.js-stats-refresh', this.refreshStats.bind(this));
   },
 
@@ -259,9 +262,7 @@ var stats = {
       // this is a single store stats, let's expand its details
       // only on first page load, and unless it is already expanded
       if (firstPageLoad && !this.isExpanded) {
-        setTimeout(function () {
-          $('#js-path-summary').click();
-        }, 1);
+        this.toggleChecks();
       }
 
     }
@@ -310,9 +311,7 @@ var stats = {
   },
 
   /* Path summary */
-  toggleChecks: function (e) {
-    e.preventDefault();
-
+  toggleChecks: function () {
     if (this.hasChecksData) {
       this.toggleChecksVisibility();
     } else {
