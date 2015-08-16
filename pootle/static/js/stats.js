@@ -324,10 +324,10 @@ var stats = {
 
     const { isExpanded } = this;
 
-    const newClass = isExpanded ? 'icon-collapse-stats' : 'icon-expand-stats';
+    const newClass = isExpanded ? 'collapse' : 'expand';
     const newText = isExpanded ? gettext('Collapse details') : gettext('Expand details');
 
-    this.$expandIcon.attr('class', newClass);
+    this.$expandIcon.attr('class', `icon-${newClass}-stats`);
     this.$expandIcon.attr('title', newText);
 
     this.$extraDetails.slideToggle('slow', 'easeOutQuad');
