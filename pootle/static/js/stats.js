@@ -6,16 +6,14 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
+import $ from 'jquery';
 
-var $ = require('jquery');
+import 'jquery-bidi';
+import 'jquery-easing';
+import 'jquery-utils';
+import 'sorttable';
 
-require('jquery-bidi');
-require('jquery-easing');
-require('jquery-utils');
-require('sorttable');
-
-var helpers = require('./helpers.js');
+import helpers from './helpers';
 
 
 var nicePercentage = function (part, total, noTotalDefault) {
@@ -379,4 +377,4 @@ var stats = {
 };
 
 
-module.exports = stats;
+export default stats;
