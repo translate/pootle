@@ -7,12 +7,15 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-ERR_MISSING_POOTLE_PATH = "File '%s' missing X-Pootle-Path header\n"
-ERR_UNSUPPORTED_FILETYPE = ("Unsupported filetype '%s', only PO files are "
-                            "supported at this time\n")
-ERR_MISSING_POOTLE_REV = ("File '%s' missing or invalid X-Pootle-Revision "
+from django.utils.translation import ugettext as _
+
+
+ERR_MISSING_POOTLE_PATH = _("File '%s' missing X-Pootle-Path header\n")
+ERR_UNSUPPORTED_FILETYPE = _("Unsupported filetype '%s', only PO files are "
+                             "supported at this time\n")
+ERR_MISSING_POOTLE_REV = _("File '%s' missing or invalid X-Pootle-Revision "
                           "header\n")
-ERR_FILE_IMPORT = "Could not create '%s'. Missing Project/Language? (%s)"
+ERR_FILE_IMPORT = _("Could not create '%s'. Missing Project/Language? (%s)")
 
 
 class UnsupportedFiletypeError(ValueError):

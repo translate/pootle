@@ -56,3 +56,9 @@ def admin(transactional_db):
     """Require the admin user."""
     return _require_user('admin', 'Administrator', password='admin',
                          is_superuser=True)
+
+
+@pytest.fixture
+def member(db):
+    """Require a member user."""
+    return _require_user('member', 'Member')

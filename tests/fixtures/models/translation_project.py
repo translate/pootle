@@ -40,6 +40,12 @@ def arabic_tutorial_obsolete(arabic, tutorial):
 
 
 @pytest.fixture
+def english_tutorial(english, tutorial):
+    """Require English Tutorial."""
+    return _require_tp(english, tutorial)
+
+
+@pytest.fixture
 def french_tutorial(french, tutorial):
     """Require French Tutorial."""
     return _require_tp(french, tutorial)

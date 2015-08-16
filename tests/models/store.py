@@ -12,9 +12,26 @@ import time
 
 import pytest
 
+from django.core.files.uploadedfile import SimpleUploadedFile
+
+from translate.storage.factory import getclass
 from pootle.core.models import Revision
+from pootle_statistics.models import SubmissionTypes
 
 from .unit import _update_translation
+
+
+def _update_from_upload_file(tutorial, update_file,
+                             content_type="text/x-gettext-translation",
+                             user=None, submission_type=None):
+    with open(update_file, "r") as f:
+        upload = SimpleUploadedFile(os.path.basename(update_file),
+                                    f.read(),
+                                    content_type)
+    test_store = getclass(upload)(upload.read())
+    tutorial.update(overwrite=False, only_newer=False)
+    tutorial.update(overwrite=True, store=test_store,
+                    user=user, submission_type=submission_type)
 
 
 @pytest.mark.django_db
@@ -170,3 +187,77 @@ def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     assert store.last_sync_revision == next_revision
     unit = store.getitem(item_index)
     assert unit.revision == store.last_sync_revision + 1
+
+
+@pytest.mark.django_db
+def test_update_upload_defaults(en_tutorial_po, system):
+    _update_from_upload_file(en_tutorial_po,
+                             "tests/data/po/tutorial/en/tutorial_update.po")
+    assert en_tutorial_po.units[0].submitted_by == system
+    assert (en_tutorial_po.units[0].submission_set.first().type
+            == SubmissionTypes.SYSTEM)
+
+
+@pytest.mark.django_db
+def test_update_upload_member_user(en_tutorial_po, member):
+    _update_from_upload_file(en_tutorial_po,
+                             "tests/data/po/tutorial/en/tutorial_update.po",
+                             user=member)
+    assert en_tutorial_po.units[0].submitted_by == member
+
+
+@pytest.mark.django_db
+def test_update_upload_submission_type(en_tutorial_po):
+    _update_from_upload_file(en_tutorial_po,
+                             "tests/data/po/tutorial/en/tutorial_update.po",
+                             submission_type=SubmissionTypes.UPLOAD)
+    assert (en_tutorial_po.units[0].submission_set.first().type
+            == SubmissionTypes.UPLOAD)
+
+
+@pytest.mark.django_db
+def test_update_upload_new_revision(en_tutorial_po):
+    _update_from_upload_file(en_tutorial_po,
+                             "tests/data/po/tutorial/en/tutorial_update.po",
+                             submission_type=SubmissionTypes.UPLOAD)
+    assert en_tutorial_po.units[0].target == "Hello, world UPDATED"
+
+
+@pytest.mark.django_db
+def test_update_upload_old_revision_unit_conflict(en_tutorial_po):
+    _update_from_upload_file(en_tutorial_po,
+                             "tests/data/po/tutorial/en/tutorial_update.po")
+
+    # load update with expired revision and conflicting unit
+    file_name = "tests/data/po/tutorial/en/tutorial_update_conflict.po"
+    _update_from_upload_file(en_tutorial_po, file_name)
+
+    # unit target is not updated
+    assert en_tutorial_po.units[0].target == "Hello, world UPDATED"
+
+    # but suggestion is added
+    suggestion = en_tutorial_po.units[0].get_suggestions()[0].target
+    assert suggestion == "Hello, world CONFLICT"
+
+
+@pytest.mark.django_db
+def test_update_upload_new_revision_new_unit(en_tutorial_po):
+    file_name = "tests/data/po/tutorial/en/tutorial_update_new_unit.po"
+    _update_from_upload_file(en_tutorial_po, file_name)
+
+    # the new unit has been added
+    assert en_tutorial_po.units[1].target == 'Goodbye, world'
+
+
+@pytest.mark.django_db
+def test_update_upload_old_revision_new_unit(en_tutorial_po):
+    # load initial update
+    _update_from_upload_file(en_tutorial_po,
+                             "tests/data/po/tutorial/en/tutorial_update.po")
+
+    # load old revision with new unit
+    file_name = "tests/data/po/tutorial/en/tutorial_update_old_unit.po"
+    _update_from_upload_file(en_tutorial_po, file_name)
+
+    # the new unit has not been added
+    assert len(en_tutorial_po.units) == 1
