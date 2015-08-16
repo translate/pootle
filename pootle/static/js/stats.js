@@ -332,13 +332,11 @@ const stats = {
 
   loadChecks() {
     $('body').spin();
-    var url = l('/xhr/stats/checks/'),
-        reqData = {
-          path: this.pootlePath
-        };
     $.ajax({
-      url: url,
-      data: reqData,
+      url: l('/xhr/stats/checks/'),
+      data: {
+        path: this.pootlePath
+      },
       success: (data) => this.onChecksLoaded(data),
       complete: onDataLoad
     });
