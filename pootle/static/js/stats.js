@@ -57,11 +57,13 @@ const stats = {
       e.preventDefault();
       this.toggleChecks();
     });
-    $(document).on('click', '.js-stats-refresh', this.refreshStats.bind(this));
+    $(document).on('click', '.js-stats-refresh', (e) => {
+      e.preventDefault();
+      this.refreshStats();
+    });
   },
 
-  refreshStats(e) {
-    e.preventDefault();
+  refreshStats() {
     this.dirtyBackoff = 1;
     this.updateDirty();
   },
@@ -182,7 +184,7 @@ const stats = {
       this.dirtyBackoff = Math.pow(2, this.retries);
       this.updateDirtyBackoffCounter();
       $('.js-stats-refresh').show();
-      this.dirtyBackoffId = setInterval(this.updateDirty.bind(this), 1000);
+      this.dirtyBackoffId = setInterval(() => this.updateDirty(), 1000);
     }
 
     this.updateProgressbar($('#progressbar'), data);
@@ -276,12 +278,12 @@ const stats = {
       $('body').spin();
       $('.js-stats-refresh').hide();
       clearInterval(this.dirtyBackoffId);
-      setTimeout(function () {
+      setTimeout(() => {
         if (this.retries < 5) {
           this.retries++;
         }
         this.load(onDataLoad);
-      }.bind(this), 250);
+      }, 250);
     }
     this.updateDirtyBackoffCounter();
   },
@@ -299,9 +301,9 @@ const stats = {
         path: this.pootlePath
       },
       dataType: 'json',
-      success: function (data) {
+      success: (data) => {
         return this.processLoadedData(data, callback);
-      }.bind(this)
+      }
     });
   },
 
