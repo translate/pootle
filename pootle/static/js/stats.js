@@ -42,10 +42,15 @@ const stats = {
 
   init(options) {
     this.retries = 0;
-    this.isExpanded = false;
-    this.hasChecksData = false;
+
+    this.state = {
+      isExpanded: false,
+      hasChecksData: false,
+    };
+
     this.pootlePath = options.pootlePath;
     this.isAdmin = options.isAdmin;
+
     this.processLoadedData(options.data, undefined, true);
 
     this.$extraDetails = $('#js-path-summary-more');
@@ -261,7 +266,7 @@ const stats = {
     } else {
       // this is a single store stats, let's expand its details
       // only on first page load, and unless it is already expanded
-      if (firstPageLoad && !this.isExpanded) {
+      if (firstPageLoad && !this.state.isExpanded) {
         this.toggleChecks();
       }
 
@@ -309,7 +314,7 @@ const stats = {
 
   /* Path summary */
   toggleChecks() {
-    if (this.hasChecksData) {
+    if (this.state.hasChecksData) {
       this.toggleChecksVisibility();
     } else {
       this.loadChecks();
@@ -317,9 +322,9 @@ const stats = {
   },
 
   toggleChecksVisibility() {
-    this.isExpanded = !this.isExpanded;
+    this.state.isExpanded = !this.state.isExpanded;
 
-    const { isExpanded } = this;
+    const { isExpanded } = this.state;
 
     const newClass = isExpanded ? 'collapse' : 'expand';
     const newText = isExpanded ? gettext('Collapse details') : gettext('Expand details');
@@ -367,7 +372,7 @@ const stats = {
       $('#js-stats-checks').show();
     }
 
-    this.hasChecksData = true;
+    this.state.hasChecksData = true;
     this.toggleChecksVisibility();
   }
 
