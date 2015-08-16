@@ -46,14 +46,12 @@ const stats = {
 
     this.state = {
       isExpanded: false,
-      hasChecksData: false,
+      checksData: null,
       data: options.initialData,
     };
 
     this.pootlePath = options.pootlePath;
     this.isAdmin = options.isAdmin;
-
-    this.processLoadedData(undefined, true);
 
     this.$extraDetails = $('#js-path-summary-more');
     this.$expandIcon = $('#js-expand-icon');
@@ -68,6 +66,8 @@ const stats = {
       e.preventDefault();
       this.refreshStats();
     });
+
+    this.processLoadedData(undefined, true);
   },
 
   setState(newState) {
@@ -325,7 +325,7 @@ const stats = {
 
   /* Path summary */
   toggleChecks() {
-    if (this.state.hasChecksData) {
+    if (this.state.checksData) {
       this.setState({isExpanded: !this.state.isExpanded});
     } else {
       this.loadChecks();
@@ -351,12 +351,14 @@ const stats = {
       data: {
         path: this.pootlePath
       },
-      success: (data) => this.onChecksLoaded(data),
+      success: (data) => this.setState({isExpanded: true, checksData: data}),
       complete: onDataLoad
     });
   },
 
-  onChecksLoaded(data) {
+  updateChecksUI() {
+    const data = this.state.checksData;
+
     this.$extraDetails.hide();
     if (data !== null && Object.keys(data).length) {
       this.$extraDetails.find('.js-checks').each(function (e) {
@@ -380,13 +382,11 @@ const stats = {
 
       $('#js-stats-checks').show();
     }
-
-    this.setState({hasChecksData: true});
-    this.updateChecksToggleUI();
   },
 
   updateUI(oldState) {
     this.updateChecksToggleUI();
+    this.updateChecksUI();
   }
 
 };
