@@ -9,7 +9,6 @@
 import $ from 'jquery';
 
 import 'jquery-bidi';
-import 'jquery-easing';
 import 'jquery-utils';
 import assign from 'object-assign';
 import 'sorttable';
@@ -67,7 +66,12 @@ const stats = {
       this.refreshStats();
     });
 
-    this.updateUI({});
+    // Retrieve async data if needed
+    if (options.isInitiallyExpanded) {
+      this.loadChecks();
+    } else {
+      this.updateUI({});
+    }
   },
 
   setState(newState) {
@@ -331,7 +335,7 @@ const stats = {
     this.$expandIcon.attr('class', `icon-${newClass}-stats`);
     this.$expandIcon.attr('title', newText);
 
-    this.$extraDetails.slideToggle('slow', 'easeOutQuad');
+    this.$extraDetails.toggle(isExpanded);
   },
 
   loadChecks() {
@@ -349,7 +353,6 @@ const stats = {
   updateChecksUI() {
     const data = this.state.checksData;
 
-    this.$extraDetails.hide();
     if (data !== null && Object.keys(data).length) {
       this.$extraDetails.find('.js-checks').each(function (e) {
         var empty = true,
