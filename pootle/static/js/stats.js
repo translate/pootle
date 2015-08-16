@@ -45,7 +45,7 @@ const stats = {
     this.retries = 0;
 
     this.state = {
-      isExpanded: false,
+      isExpanded: options.isInitiallyExpanded,
       checksData: null,
       data: options.initialData,
     };
@@ -67,7 +67,7 @@ const stats = {
       this.refreshStats();
     });
 
-    this.processLoadedData(undefined, true);
+    this.processLoadedData(undefined);
   },
 
   setState(newState) {
@@ -186,7 +186,7 @@ const stats = {
     }
   },
 
-  processLoadedData(callback, firstPageLoad) {
+  processLoadedData(callback) {
     const { data } = this.state;
 
     var $table = $('#content table.stats'),
@@ -273,14 +273,8 @@ const stats = {
           }
         }, 1);
       }
-    } else {
-      // this is a single store stats, let's expand its details
-      // only on first page load, and unless it is already expanded
-      if (firstPageLoad && !this.state.isExpanded) {
-        this.toggleChecks();
-      }
-
     }
+
     helpers.updateRelativeDates();
 
     if (callback) {

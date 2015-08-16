@@ -186,6 +186,7 @@ def browse(request, translation_project, dir_path, filename=None):
         'language': language,
         'stats': jsonify(stats),
         'is_admin': is_admin,
+        'is_store': store is not None,
 
         'browser_extends': 'translation_projects/base.html',
     })

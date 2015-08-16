@@ -139,6 +139,7 @@ $(function () {
   PTL.stats.init({
     pootlePath: "{{ pootle_path }}",
     isAdmin: {{ is_admin|yesno:"true,false" }},
+    isInitiallyExpanded: {{ is_store|yesno:"true,false" }},
     initialData: {{ stats|safe }},
   });
 
