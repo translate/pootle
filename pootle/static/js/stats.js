@@ -293,14 +293,11 @@ const stats = {
   },
 
   load(callback) {
-    var url = l('/xhr/stats/'),
-        reqData = {
-          path: this.pootlePath
-        };
-
     $.ajax({
-      url: url,
-      data: reqData,
+      url: l('/xhr/stats/'),
+      data: {
+        path: this.pootlePath
+      },
       dataType: 'json',
       success: function (data) {
         return this.processLoadedData(data, callback);
