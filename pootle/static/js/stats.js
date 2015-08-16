@@ -44,7 +44,7 @@ var stats = {
 
   init: function (options) {
     this.retries = 0;
-    this.isCollapsed = true;
+    this.isExpanded = false;
     this.hasChecksData = false;
     this.pootlePath = options.pootlePath;
     this.isAdmin = options.isAdmin;
@@ -258,7 +258,7 @@ var stats = {
     } else {
       // this is a single store stats, let's expand its details
       // only on first page load, and unless it is already expanded
-      if (firstPageLoad && this.isCollapsed) {
+      if (firstPageLoad && !this.isExpanded) {
         setTimeout(function () {
           $('#js-path-summary').click();
         }, 1);
@@ -321,15 +321,15 @@ var stats = {
   },
 
   toggleChecksVisibility: function () {
-    const isCollapsed = this.isCollapsed;
+    this.isExpanded = !this.isExpanded;
 
-    const newClass = isCollapsed ? 'icon-expand-stats' : 'icon-collapse-stats';
-    const newText = isCollapsed ? gettext('Expand details') : gettext('Collapse details');
+    const { isExpanded } = this;
+
+    const newClass = isExpanded ? 'icon-collapse-stats' : 'icon-expand-stats';
+    const newText = isExpanded ? gettext('Collapse details') : gettext('Expand details');
 
     this.$expandIcon.attr('class', newClass);
     this.$expandIcon.attr('title', newText);
-
-    this.isCollapsed = !isCollapsed;
 
     this.$extraDetails.slideToggle('slow', 'easeOutQuad');
   },
