@@ -11,6 +11,7 @@ import $ from 'jquery';
 import 'jquery-bidi';
 import 'jquery-easing';
 import 'jquery-utils';
+import assign from 'object-assign';
 import 'sorttable';
 
 import helpers from './helpers';
@@ -67,6 +68,12 @@ const stats = {
       e.preventDefault();
       this.refreshStats();
     });
+  },
+
+  setState(newState) {
+    const oldState = assign({}, this.state);
+    this.state = assign({}, this.state, newState);
+    this.updateUI(oldState);
   },
 
   refreshStats() {
@@ -310,7 +317,7 @@ const stats = {
       },
       dataType: 'json',
       success: (data) => {
-        this.state.data = data;
+        this.setState({data: data});
         return this.processLoadedData(callback);
       }
     });
@@ -319,15 +326,13 @@ const stats = {
   /* Path summary */
   toggleChecks() {
     if (this.state.hasChecksData) {
-      this.toggleChecksVisibility();
+      this.setState({isExpanded: !this.state.isExpanded});
     } else {
       this.loadChecks();
     }
   },
 
-  toggleChecksVisibility() {
-    this.state.isExpanded = !this.state.isExpanded;
-
+  updateChecksToggleUI() {
     const { isExpanded } = this.state;
 
     const newClass = isExpanded ? 'collapse' : 'expand';
@@ -376,8 +381,12 @@ const stats = {
       $('#js-stats-checks').show();
     }
 
-    this.state.hasChecksData = true;
-    this.toggleChecksVisibility();
+    this.setState({hasChecksData: true});
+    this.updateChecksToggleUI();
+  },
+
+  updateUI(oldState) {
+    this.updateChecksToggleUI();
   }
 
 };
