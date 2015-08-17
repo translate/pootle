@@ -291,7 +291,7 @@ const stats = {
         if (this.retries < 5) {
           this.retries++;
         }
-        this.load(onDataLoad);
+        this.loadStats(onDataLoad);
       }, 250);
     }
     this.updateDirtyBackoffCounter();
@@ -303,7 +303,7 @@ const stats = {
     $('#autorefresh-notice strong').text(noticeStr);
   },
 
-  load(callback) {
+  loadStats(callback) {
     $.ajax({
       url: l('/xhr/stats/'),
       data: {
