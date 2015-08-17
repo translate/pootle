@@ -28,11 +28,6 @@ const nicePercentage = function (part, total, noTotalDefault) {
 };
 
 
-const onDataLoad = function () {
-  $('body').spin(false);
-};
-
-
 function cssId(id) {
   return id.replace(/[\.@\+]/g, '-');
 }
@@ -284,14 +279,13 @@ const stats = {
 
   updateDirty() {
     if (--this.dirtyBackoff === 0) {
-      $('body').spin();
       $('.js-stats-refresh').hide();
       clearInterval(this.dirtyBackoffId);
       setTimeout(() => {
         if (this.retries < 5) {
           this.retries++;
         }
-        this.loadStats(onDataLoad);
+        this.loadStats();
       }, 250);
     }
     this.updateDirtyBackoffCounter();
@@ -303,18 +297,25 @@ const stats = {
     $('#autorefresh-notice strong').text(noticeStr);
   },
 
-  loadStats(callback) {
-    $.ajax({
-      url: l('/xhr/stats/'),
-      data: {
-        path: this.pootlePath
-      },
-      dataType: 'json',
-      success: (data) => {
-        this.setState({data: data});
-        callback(data);
-      }
-    });
+  load(url, data) {
+    $('body').spin();
+    return (
+      $.ajax({
+        url,
+        data,
+        dataType: 'json',
+      }).always(() => $('body').spin(false))
+    );
+  },
+
+  loadStats() {
+    this.load(l('/xhr/stats/'), {path: this.pootlePath})
+        .done((data) => this.setState({data}));
+  },
+
+  loadChecks() {
+    this.load(l('/xhr/stats/checks'), {path: this.pootlePath})
+        .done((data) => this.setState({isExpanded: true, checksData: data}));
   },
 
   /* Path summary */
@@ -336,18 +337,6 @@ const stats = {
     this.$expandIcon.attr('title', newText);
 
     this.$extraDetails.toggle(isExpanded);
-  },
-
-  loadChecks() {
-    $('body').spin();
-    $.ajax({
-      url: l('/xhr/stats/checks/'),
-      data: {
-        path: this.pootlePath
-      },
-      success: (data) => this.setState({isExpanded: true, checksData: data}),
-      complete: onDataLoad
-    });
   },
 
   updateChecksUI() {
