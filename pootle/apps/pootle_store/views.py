@@ -843,7 +843,7 @@ def permalink_redirect(request, unit):
 @get_resource
 def get_qualitycheck_stats(request, *args, **kwargs):
     failing_checks = request.resource_obj.get_checks()
-    return JsonResponse(failing_checks)
+    return JsonResponse(failing_checks if failing_checks is not None else {})
 
 
 @ajax_required
