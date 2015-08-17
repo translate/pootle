@@ -29,12 +29,12 @@ const TimeSince = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.dateTime !== this.props.dateTime) {
-      cleanup();
+      this.cleanup();
     }
   },
 
   componentWillUnMount() {
-    cleanup();
+    this.cleanup();
   },
 
   cleanup() {
