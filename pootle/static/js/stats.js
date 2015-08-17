@@ -61,6 +61,8 @@ const stats = {
       e.preventDefault();
       this.refreshStats();
     });
+
+    this.reopenChecks();
   },
 
   refreshStats() {
@@ -261,7 +263,7 @@ const stats = {
     } else {
       // this is a single store stats, let's expand its details
       // only on first page load, and unless it is already expanded
-      if (firstPageLoad && !this.isExpanded) {
+      if (firstPageLoad && !this.checksStateIsOpen()) {
         this.toggleChecks();
       }
 
@@ -328,6 +330,8 @@ const stats = {
     this.$expandIcon.attr('title', newText);
 
     this.$extraDetails.slideToggle('slow', 'easeOutQuad');
+
+    this.checksStatePush();
   },
 
   loadChecks() {
@@ -366,11 +370,37 @@ const stats = {
 
       $('#js-stats-checks').show();
     }
-
     this.hasChecksData = true;
     this.toggleChecksVisibility();
-  }
+  },
 
+  checksStateIsOpen() {
+    return (window.location.search === '?details');
+  },
+
+  checksStatePush() {
+    if (window.history && window.history.pushState) {
+      if (!this.isExpanded) {
+	window.history.pushState("", "", this.pootlePath);
+      } else {
+	window.history.pushState("", "", "?details");
+      }
+    }
+  },
+
+  reopenChecks() {
+    var self = this;
+    if (this.checksStateIsOpen() && !this.isExpanded) {
+      this.toggleChecks();
+    }
+    window.onpopstate = function (e) {
+      if (self.checksStateIsOpen() && !self.isExpanded) {
+        self.toggleChecks();
+      } else if (!self.checksStateIsOpen() && self.isExpanded) {
+        self.toggleChecks();
+      }
+    }
+  }
 };
 
 

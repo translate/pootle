@@ -172,6 +172,10 @@ def get_previous_url(request):
             if '?' in referer_url:
                 referer_url = referer_url[:referer_url.index('?')]
 
+                # But append ?details if present
+                if parsed_referer.query == "details":
+                    referer_url = referer_url + "?details"
+
             return referer_url
 
     return reverse('pootle-home')
