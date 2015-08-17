@@ -16,6 +16,9 @@ from pootle_store.models import Store
 
 def import_file(file):
     f = getclass(file)(file.read())
+    if not hasattr(f, "parseheader"):
+        raise ValueError(_("Unsupported filetype '%s', only po files " % (file.name)
+                           + "are supported at this time\n"))
     header = f.parseheader()
     pootle_path = header.get("X-Pootle-Path")
     if not pootle_path:
