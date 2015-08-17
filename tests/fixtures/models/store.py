@@ -75,6 +75,13 @@ def af_tutorial_po(settings, afrikaans_tutorial, system):
 
 
 @pytest.fixture
+def en_tutorial_po(settings, english_tutorial, system):
+    """Require the /en/tutorial/tutorial.po store."""
+    return _require_store(english_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
+
+
+@pytest.fixture
 def it_tutorial_po(settings, italian_tutorial, system):
     """Require the /it/tutorial/tutorial.po store."""
     return _require_store(italian_tutorial,
