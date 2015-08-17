@@ -477,6 +477,11 @@ td.stats-name a:hover > i + span,
     list-style: inherit;
 }
 
+.staticpage .edit-link
+{
+    font-size: small;
+}
+
 
 /*
  * CHECKS DESCRIPTIONS
