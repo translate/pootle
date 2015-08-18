@@ -161,7 +161,7 @@ def browse(request, translation_project, dir_path, filename=None):
             if len(vfolders) > 0:
                 table_fields = ['name', 'priority', 'progress', 'total',
                                 'need-translation', 'suggestions', 'critical',
-                                'activity']
+                                'last-updated', 'activity']
                 ctx.update({
                     'vfolders': {
                         'id': 'vfolders',
