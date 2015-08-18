@@ -949,6 +949,11 @@ html[dir="rtl"] #editor-comment textarea
 
 /* CHECKS */
 
+.unit-checks
+{
+    clear: both;
+}
+
 ul.checks
 {
     display: inline;

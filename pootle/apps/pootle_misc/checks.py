@@ -21,14 +21,21 @@ from django.utils.translation import ugettext_lazy as _
 from .util import import_func
 
 
-category_ids = {
+CATEGORY_IDS = {
     'critical': Category.CRITICAL,
     'cosmetic': Category.COSMETIC,
     'functional': Category.FUNCTIONAL,
     'extraction': Category.EXTRACTION,
     'other': Category.NO_CATEGORY,
 }
-
+CATEGORY_CODES = {v: k for k, v in CATEGORY_IDS.iteritems()}
+CATEGORY_NAMES = {
+    Category.CRITICAL: _("Critical"),
+    Category.COSMETIC: _("Cosmetic"),
+    Category.FUNCTIONAL: _("Functional"),
+    Category.EXTRACTION: _("Extraction"),
+    Category.NO_CATEGORY: _("Other"),
+}
 
 check_names = {
     'accelerators': _(u"Accelerators"),  # fixme duplicated
@@ -232,6 +239,18 @@ def get_checker(unit):
         return import_func(settings.POOTLE_QUALITY_CHECKER)()
 
     return unit.store.translation_project.checker
+
+
+def get_category_id(code):
+    return CATEGORY_IDS.get(code)
+
+
+def get_category_code(cid):
+    return CATEGORY_CODES.get(cid)
+
+
+def get_category_name(code):
+    return unicode(CATEGORY_NAMES.get(code))
 
 
 class SkipCheck(Exception):
@@ -1000,22 +1019,17 @@ def get_qualitychecks():
 
 
 def get_qualitycheck_schema(path_obj=None):
+    # TODO: add tests
+
     d = {}
     checks = get_qualitychecks()
-
-    category_names = {
-        Category.CRITICAL: _("Critical"),
-        Category.COSMETIC: _("Cosmetic"),
-        Category.FUNCTIONAL: _("Functional"),
-        Category.EXTRACTION: _("Extraction"),
-        Category.NO_CATEGORY: _("Other"),
-    }
 
     for check, cat in checks.items():
         if cat not in d:
             d[cat] = {
                 'code': cat,
-                'title': u"%s" % category_names[cat],
+                'name': get_category_code(cat),
+                'title': get_category_name(cat),
                 'checks': []
             }
         d[cat]['checks'].append({

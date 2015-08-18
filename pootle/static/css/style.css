@@ -1229,6 +1229,12 @@ html[dir="rtl"] td.stats-name,
 
 .checks a
 {
+    color: #444;
+}
+
+#check-critical a,
+.checks-critical a
+{
     color: #c00;
 }
 

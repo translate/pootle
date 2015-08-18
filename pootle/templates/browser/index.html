@@ -52,7 +52,7 @@
       </div>
       <div class="bd">
       {% for item in check_categories %}
-        <div id="check-{{ item.code }}" class="checks js-checks">
+        <div id="check-{{ item.name }}" class="checks js-checks">
           <h4 class="clear">{{ item.title }}</h4>
           {% for check in item.checks %}
           <div class="check js-check" data-code="{{ check.code }}">

@@ -832,6 +832,15 @@ class Unit(models.Model, base.TranslationUnit):
     def get_qualitychecks(self):
         return self.qualitycheck_set.all()
 
+    def get_critical_qualitychecks(self):
+        return self.get_qualitychecks().filter(category=Category.CRITICAL)
+
+    def get_active_critical_qualitychecks(self):
+        return self.get_active_qualitychecks().filter(category=Category.CRITICAL)
+
+    def get_warning_qualitychecks(self):
+        return self.get_qualitychecks().exclude(category=Category.CRITICAL)
+
     def get_active_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
 

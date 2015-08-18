@@ -34,11 +34,11 @@ from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_user_permission
-from pootle_misc.checks import category_ids, check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, to_int, get_date_interval
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
+from pootle_misc import checks
 
 from .decorators import get_unit_context
 from .fields import to_python
@@ -263,7 +263,7 @@ def get_step_query(request, units_queryset):
                 elif 'category' in request.GET:
                     category_name = request.GET['category']
                     try:
-                        category = category_ids[category_name]
+                        category = checks.get_category_id(category_name)
                     except KeyError:
                         raise Http404
 
@@ -636,7 +636,7 @@ def timeline(request, unit):
                 check_name = item.quality_check.name
                 entry.update({
                     'check_name': check_name,
-                    'check_display_name': check_names[check_name],
+                    'check_display_name': checks.check_names[check_name],
                     'checks_url': reverse('pootle-checks-descriptions'),
                     'action': {
                                 SubmissionTypes.MUTE_CHECK: 'Muted',
