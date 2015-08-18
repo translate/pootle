@@ -1728,15 +1728,15 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             # `bulk_create()` them in a single go
             sub.save()
 
-    def get_compare_results(self, new_unitid_list, old_unitid_list, old_unitids):
-        """Compares old list of units with a new one and provides results.
+    def get_insert_points(self, opcodes, new_unitid_list, old_unitid_list,
+                          old_unitids):
+        """Returns a list of insert points with update index info.
 
+        :param opcodes: result of new and old unitid lists matching.
         :param new_unitid_list: new list of UIDs.
         :param old_unitid_list: old list of UIDs.
         :param old_unitids: dictionary {'dbid': dbid, 'index': index}
-        :return: a tuple ``(update_dbids, inserts)`` where ``update_dbids`` is a
-            set of DB ids and
-            ``inserts`` is a list of tuples
+        :return: a list of tuples
             ``(insert_at, uids_to_add, next_index, update_index_delta)`` where
             ``insert_at`` is the point for inserting
             ``uids_to_add`` are the units to be inserted
@@ -1745,10 +1745,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             ``update_index_delta`` should be applied.
         """
 
-        sm = difflib.SequenceMatcher(None, old_unitid_list, new_unitid_list)
-        update_dbids = set()
         inserts = []
-        for (tag, i1, i2, j1, j2) in sm.get_opcodes():
+        for (tag, i1, i2, j1, j2) in opcodes:
             if tag == 'delete':
                 continue
             elif tag == 'insert':
@@ -1777,12 +1775,24 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                 new_unitid_list[j1:j2],
                                 i2_index,
                                 update_index_delta))
+        return inserts
 
-            else:
+    def get_common_dbids(self, opcodes, old_unitid_list, old_unitids):
+        """Returns a set of unit DB ids to be updated.
+
+        :param opcodes: result of new and old unitid lists matching.
+        :param old_unitid_list: old list of UIDs.
+        :param old_unitids: dictionary {'dbid': dbid, 'index': index}
+        :return: a set of unit DB ids to be updated.
+        """
+        update_dbids = set()
+
+        for (tag, i1, i2, j1, j2) in opcodes:
+            if tag == 'equal':
                 update_dbids.update(set(old_unitids[uid]['dbid']
                                         for uid in old_unitid_list[i1:i2]))
 
-        return update_dbids, inserts
+        return update_dbids
 
     def update(self, overwrite=False, store=None, only_newer=False, user=None,
                submission_type=None):
@@ -1864,8 +1874,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 User = get_user_model()
                 user = User.objects.get_system_user()
 
-            common_dbids, inserts = self.get_compare_results(
-                new_unitid_list, old_unitid_list, old_unitids)
+            sm = difflib.SequenceMatcher(None, old_unitid_list, new_unitid_list)
+            opcodes = sm.get_opcodes()
+            common_dbids = self.get_common_dbids(opcodes, old_unitid_list,
+                                                 old_unitids)
+            inserts = self.get_insert_points(opcodes, new_unitid_list,
+                                             old_unitid_list, old_unitids)
 
             # Step 1:
             # insert new units
