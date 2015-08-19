@@ -21,11 +21,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models, transaction, IntegrityError
 from django.db.models import F
-from django.template.defaultfilters import escape, truncatechars
+from django.template.defaultfilters import truncatechars
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from translate.filters.decorators import Category
