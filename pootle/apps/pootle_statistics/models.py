@@ -11,6 +11,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import F
 from django.template.defaultfilters import truncatechars
 from django.utils.functional import cached_property
 from django.utils.html import format_html
@@ -419,8 +420,10 @@ class ScoreLog(models.Model):
 
         super(ScoreLog, self).save(*args, **kwargs)
 
-        self.user.score += self.score_delta
-        self.user.save()
+        User = get_user_model()
+        User.objects.filter(id=self.user.id).update(
+            score=F('score') + self.score_delta
+        )
         self.log()
 
     def log(self):
