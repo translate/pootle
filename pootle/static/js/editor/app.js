@@ -851,8 +851,16 @@ PTL.editor = {
   checkSimilarTranslations: function () {
     var dataSelector = 'translation-aid',
         dataSelectorMT = 'translation-aid-mt',
-        $aidElements = $(['[data-', dataSelector, ']'].join('')),
         $aidElementsMT = $(['[data-', dataSelectorMT, ']'].join(''));
+
+    let aidElementsSelector = `[data-${dataSelector}]`;
+
+    // Exclude own suggestions for non-anonymous users
+    if (!this.settings.isAnonymous) {
+      aidElementsSelector += `[data-suggestor-id!=${this.settings.userId}]`;
+    }
+
+    const $aidElements = $(aidElementsSelector);
 
     if (!$aidElements.length && !$aidElementsMT.length) {
       return false;

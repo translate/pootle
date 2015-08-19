@@ -23,7 +23,9 @@ $(function() {
     ctxPath: '{{ ctx_path }}',
     resourcePath: '{{ resource_path }}',
     chunkSize: {{ request.profile.get_unit_rows }},
-    isAdmin: {{ is_admin|yesno:"true,false" }}
+    isAdmin: {{ is_admin|yesno:"true,false" }},
+    isAnonymous: {{ request.profile.is_anonymous|yesno:"true,false" }},
+    userId: {{ request.profile.id }},
   };
   {% if cansuggest or cantranslate %}
   options.mt = [];
