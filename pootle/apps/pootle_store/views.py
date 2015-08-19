@@ -17,6 +17,7 @@ from django.db.models import Max, Q
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template import loader, RequestContext
+from django.utils.safestring import mark_safe
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import timezone
@@ -579,10 +580,15 @@ def timeline(request, unit):
     """Returns a JSON-encoded string including the changes to the unit
     rendered in HTML.
     """
-    timeline = Submission.objects.filter(unit=unit, field__in=[
-        SubmissionFields.TARGET, SubmissionFields.STATE,
-        SubmissionFields.COMMENT, SubmissionFields.NONE
-    ]).exclude(
+    timeline = Submission.objects.filter(
+        unit=unit,
+    ).filter(
+        Q(field__in=[
+            SubmissionFields.TARGET, SubmissionFields.STATE,
+            SubmissionFields.COMMENT, SubmissionFields.NONE
+        ]) |
+        Q(type__in=SubmissionTypes.SUGGESTION_TYPES)
+    ).exclude(
         field=SubmissionFields.COMMENT,
         creation_time=unit.commented_on
     ).order_by("id")
@@ -614,12 +620,18 @@ def timeline(request, unit):
 
             entry = {
                 'field': item.field,
-                'field_name': SubmissionFields.NAMES_MAP[item.field],
+                'field_name': SubmissionFields.NAMES_MAP.get(item.field, None),
+                'type': item.type,
             }
 
             if item.field == SubmissionFields.STATE:
                 entry['old_value'] = STATES_MAP[int(to_python(item.old_value))]
                 entry['new_value'] = STATES_MAP[int(to_python(item.new_value))]
+            elif item.suggestion:
+                entry.update({
+                    'suggestion_text': item.suggestion.target,
+                    'suggestion_description': mark_safe(item.get_suggestion_description()),
+                })
             elif item.quality_check:
                 check_name = item.quality_check.name
                 entry.update({

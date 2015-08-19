@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import truncatechars
 from django.utils.functional import cached_property
+from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.log import log, SCORE_CHANGED
@@ -49,6 +50,7 @@ class SubmissionTypes(object):
     # types that are stored in the DB
     EDIT_TYPES = [NORMAL, SYSTEM]
     CONTRIBUTION_TYPES = [NORMAL, SYSTEM, SUGG_ADD]
+    SUGGESTION_TYPES = [SUGG_ACCEPT, SUGG_ADD, SUGG_REJECT]
 
 
 #: Values for the 'field' field of Submission
@@ -246,6 +248,24 @@ class Submission(models.Model):
             result['translation_action_type'] = translation_action_type
 
         return result
+
+    def get_suggestion_description(self):
+        """Returns a suggestion-related descriptive message for the submission.
+
+        If there's no suggestion activity linked with the submission, `None` is
+        returned instead.
+        """
+        if self.type not in SubmissionTypes.SUGGESTION_TYPES:
+            return None
+
+        sugg_user = self.suggestion.user
+        author = format_html('<a href="{}">{}</a>', sugg_user.get_absolute_url(),
+                                                    sugg_user.display_name)
+        return {
+            SubmissionTypes.SUGG_ADD: _('Added suggestion'),
+            SubmissionTypes.SUGG_ACCEPT: _('Accepted suggestion from %s' % author),
+            SubmissionTypes.SUGG_REJECT: _('Rejected suggestion from %s' % author),
+        }.get(self.type, None)
 
     def save(self, *args, **kwargs):
         super(Submission, self).save(*args, **kwargs)
