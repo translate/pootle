@@ -60,6 +60,7 @@ register('css_reports', css_reports)
 css_common = Bundle(
     'css/style.css',
     'css/actions.css',
+    'css/breadcrumbs.css',
     'css/buttons.css',
     'css/contact.css',
     'css/error.css',

@@ -1,0 +1,151 @@
+/* Breadcrumbs */
+
+.breadcrumb
+{
+    font-size: 1.5em;
+    font-weight: normal;
+    font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+    visibility: hidden;
+    margin-left: -5px;
+    padding: 5px 0;
+    height: 2em;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.browser .breadcrumb
+{
+    padding: 5px 0 0 0;
+}
+
+/* By default (on small screens), place resource dropdown on the second line */
+#js-breadcrumb-resource
+{
+    display: block;
+}
+
+/* When browser window is wide enough, force breadcrumbs to be on the single line */
+@media screen and (min-width: 1350px)
+{
+    .breadcrumb
+    {
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    #js-breadcrumb-resource
+    {
+        display: inline-block;
+    }
+}
+
+.breadcrumb li
+{
+    display: inline-block;
+    float: left;
+    margin-left: 0.3em;
+}
+
+.breadcrumb li.hide
+{
+    display: none;
+}
+
+.breadcrumb li::before
+{
+    content: " / ";
+}
+
+.breadcrumb li:first-child:before,
+.translate .breadcrumb li::before,
+.browser .breadcrumb li::before
+{
+    margin-left: 0;
+    content: normal;
+}
+
+/* select2 dropdown widgets in breadcrumbs */
+
+.breadcrumb .select2-container .select2-choice,
+.unit-sort .select2-container .select2-choice
+{
+    height: auto;
+    padding: 0 0 0 4px;
+}
+
+.breadcrumb .select2-container .select2-choice
+{
+    line-height: 44px;
+}
+
+.breadcrumb .navigation .select2-choice,
+.unit-sort .navigation .select2-choice
+{
+    color: #0489b7;
+}
+
+.breadcrumb .select2-container .select2-choice div
+{
+    top: 8px;
+}
+
+.breadcrumb .select2-container .select2-choice abbr
+{
+    top: 15px;
+    right: 22px;
+}
+
+/* HACK: display background as a thin line */
+.breadcrumb-dropdown .select2-result-unselectable
+{
+    height: 1px;
+    margin: 0.5em;
+}
+
+.breadcrumb-dropdown .select2-result-unselectable .select2-result-label
+{
+    cursor: default;
+}
+/* END HACK */
+
+.select2-results .folder
+{
+    font-weight: bold;
+}
+
+.select2-result-label .text
+{
+    margin-left: 0.3em;
+}
+
+.select2-result-label
+{
+    white-space: nowrap;
+}
+
+.select2-result-label .file
+{
+    margin-left: 1.5em;
+}
+
+.select2-resource-root .file
+{
+    margin-left: auto;
+}
+
+.select2-match
+{
+    color: #000;
+    background-color: rgba(255, 255, 0, 0.5);
+}
+
+.select2-results .select2-result.admin
+{
+    color: #c30;
+}
+
+.select2-results .select2-highlighted.admin
+{
+    background-color: #c30;
+    color: #fff;
+}
