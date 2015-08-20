@@ -8,13 +8,11 @@ env:
     - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=sqlite
     - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=postgres
     - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=mysql_innodb
-  global:
-    - PIP_DOWNLOAD_CACHE=".pip_download_cache"
 cache:
   apt: true
   directories:
     - pootle/assets/js/node_modules
-    - .pip_download_cache
+    - $HOME/.cache/pip
     - docs/_build
 install:
   - CFLAGS="-O0" travis_retry pip install -r requirements/travis.txt --timeout=240
