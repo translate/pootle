@@ -134,6 +134,13 @@ var formatResource = function (path, container, query) {
 };
 
 
+function formatProject(path, container, query) {
+  const state = path.element[0].dataset.state;
+
+  return `<span class="text project-${state}">${path.text}</span>`;
+};
+
+
 var removeCtxEntries = function (results, container, query) {
   if (query.term) {
     return _.filter(results, function (result) {
@@ -156,7 +163,8 @@ var browser = {
       placeholder: gettext("All Languages")
     });
     makeNavDropdown(sel.project, {
-      placeholder: gettext("All Projects")
+      placeholder: gettext("All Projects"),
+      formatResult: formatProject,
     });
     makeNavDropdown(sel.resource, {
       placeholder: gettext("Entire Project"),

@@ -62,9 +62,11 @@ class ProjectManager(models.Manager):
         projects = cache.get(cache_key)
         if not projects:
             logging.debug('Cache miss for %s', cache_key)
+            projects_dict = self.for_user(user).order_by('fullname') \
+                                               .values('code', 'fullname',
+                                                       'disabled')
             projects = OrderedDict(
-                self.for_user(user).order_by('fullname')
-                                   .values_list('code', 'fullname')
+                (project.pop('code'), project) for project in projects_dict
             )
             cache.set(cache_key, projects, settings.POOTLE_CACHE_TIMEOUT)
 

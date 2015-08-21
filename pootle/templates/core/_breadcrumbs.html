@@ -20,8 +20,12 @@
   <select id="js-select-project" data-initial-code="{{ project.code }}"
     style="visibility: hidden;">
     <option value=""></option>
-    {% for proj_code, proj_name in ALL_PROJECTS.items %}
-    <option value="{{ proj_code }}">{{ proj_name }}</option>
+    {% for proj_code, proj in ALL_PROJECTS.items %}
+    <option
+      value="{{ proj_code }}"
+      data-state="{{ proj.disabled|yesno:'disabled,enabled' }}">
+      {{ proj.fullname }}
+    </option>
     {% endfor %}
   </select>
 </li>

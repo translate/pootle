@@ -36,6 +36,16 @@ Details of changes
   is now built on the client. This requires refreshing all server stats using
   the :djadmin:`refresh_stats_rq` command (:issue:`3835`).
 
+- Disabled projects are visually differentiated in the projects drop-down
+  (:issue:`3996`).
+  Since the in-cache data structure supporting this changed, it's necessary to
+  clear the cache. Assuming your ``default`` cache lives in the DB number ``1``,
+  you can clear it as follows:
+
+  .. code-block:: bash
+
+    $ redis-cli -n 1 KEYS "*method-cache:Project:cached_dict:*" | xargs redis-cli -n 1 DEL
+
 - Pulled latest translations.
 
 

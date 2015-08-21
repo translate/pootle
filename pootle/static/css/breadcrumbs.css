@@ -108,6 +108,12 @@
 }
 /* END HACK */
 
+.select2-results .project-disabled
+{
+    font-style: italic;
+    opacity: 0.5;
+}
+
 .select2-results .folder
 {
     font-weight: bold;
