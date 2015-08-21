@@ -659,6 +659,7 @@ class Unit(models.Model, base.TranslationUnit):
     def update(self, unit, user=None):
         """Update in-DB translation from the given :param:`unit`.
 
+        :param user: User to attribute updates to.
         :rtype: bool
         :return: True if the new :param:`unit` differs from the current unit.
             Two units differ when any of the fields differ (source, target,
