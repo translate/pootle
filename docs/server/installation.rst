@@ -292,7 +292,6 @@ database backend.
 Pootle requires `django-transaction-hooks <https://pypi.python.org/pypi/django-transaction-hooks/>`_
 to connect to the database. The following database backends are supported:
 
-- sqlite: transaction_hooks.backends.sqlite3
 - mysql: transaction_hooks.backends.mysql
 - postgres: transaction_hooks.backends.postgresql_psycopg2
 

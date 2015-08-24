@@ -49,7 +49,6 @@ Django transaction hooks
 - You must update your database connection to use one of the
   django-transaction-hooks backends:
 
-  - sqlite: transaction_hooks.backends.sqlite3
   - mysql: transaction_hooks.backends.mysql
   - postgres: transaction_hooks.backends.postgresql_psycopg2
 
