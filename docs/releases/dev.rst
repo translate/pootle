@@ -43,8 +43,10 @@ Django transaction hooks
 ------------------------
 
 - To ensure async jobs are scheduled at the correct time
-  `django-transaction-hooks <https://pypi.python.org/pypi/django-transaction-hooks/>`_
-  is now required. This will become unnecessary once we move to Django 1.9.
+  `django-transaction-hooks
+  <https://pypi.python.org/pypi/django-transaction-hooks/>`_ is now required.
+  This dependency will be unnecessary once Django 1.9 becomes Pootle's minimum
+  requirement.
 
 - You must update your database connection to use one of the
   django-transaction-hooks backends:
