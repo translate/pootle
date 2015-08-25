@@ -137,8 +137,13 @@ def run_app(project, default_settings_path, settings_template,
                   django_settings_module=django_settings_module,
                   runner_name=runner_name)
 
-    management.execute_from_command_line([runner_name] + remainder)
+    command = [runner_name] + remainder
 
+    # Respect the noinput flag
+    if args.noinput:
+        command += ["--noinput"]
+
+    management.execute_from_command_line(command)
     sys.exit(0)
 
 
