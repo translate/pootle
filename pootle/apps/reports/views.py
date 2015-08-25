@@ -468,18 +468,20 @@ def user_date_prj_activity(request):
 
 def get_daily_activity(user, scores, start, end):
     result_translated = {
-        'label': PaidTask.get_task_type_title(
-            PaidTaskTypes.TRANSLATION),
+        'label': ReportActionTypes.NAMES_MAP[ReportActionTypes.TRANSLATION],
         'data': [],
     }
     result_reviewed = {
-        'label': PaidTask.get_task_type_title(
-            PaidTaskTypes.REVIEW),
+        'label': ReportActionTypes.NAMES_MAP[ReportActionTypes.REVIEW],
+        'data': [],
+    }
+    result_suggested = {
+        'label': ReportActionTypes.NAMES_MAP[ReportActionTypes.SUGGESTION],
         'data': [],
     }
 
     result = {
-        'data': [result_translated, result_reviewed],
+        'data': [result_translated, result_reviewed, result_suggested],
         'max_day_score': 10,
         'min_ts': "%d" % (calendar.timegm(start.timetuple()) * 1000),
         'max_ts': "%d" % (calendar.timegm(end.timetuple()) * 1000),
@@ -501,38 +503,43 @@ def get_daily_activity(user, scores, start, end):
     current_day_score = 0
     translated_group = {}
     reviewed_group = {}
+    suggested_group = {}
     for score in scores:
         score_time = make_naive(score.creation_time)
         date = score_time.date()
 
         translated, reviewed = score.get_paid_wordcounts()
-        if translated is not None or reviewed is not None:
+        suggested = score.get_suggested_wordcount()
+
+        if any(map(lambda x: x is not None, [translated, reviewed, suggested])):
             translated = 0 if translated is None else translated
             reviewed = 0 if reviewed is None else reviewed
+            suggested = 0 if suggested is None else suggested
 
             if saved_date != date:
                 saved_date = date
                 reviewed_group[date] = 0
                 translated_group[date] = 0
+                suggested_group[date] = 0
                 if result['max_day_score'] < current_day_score:
                     result['max_day_score'] = current_day_score
                 current_day_score = 0
-            current_day_score += int(reviewed + translated)
+            current_day_score += int(reviewed + translated + suggested)
             result['nonempty'] |= current_day_score > 0
 
             translated_group[date] += translated
             reviewed_group[date] += reviewed
+            suggested_group[date] += suggested
 
     if result['max_day_score'] < current_day_score:
         result['max_day_score'] = current_day_score
 
-    for date, item in sorted(translated_group.items(), key=lambda x: x[0]):
-        ts = int(calendar.timegm(date.timetuple()) * 1000)
-        result_translated['data'].append((ts, item))
-
-    for date, item in sorted(reviewed_group.items(), key=lambda x: x[0]):
-        ts = int(calendar.timegm(date.timetuple()) * 1000)
-        result_reviewed['data'].append((ts, item))
+    for group, res in [(translated_group, result_translated),
+                       (reviewed_group, result_reviewed),
+                       (suggested_group, result_suggested)]:
+        for date, item in sorted(group.items(), key=lambda x: x[0]):
+            ts = int(calendar.timegm(date.timetuple()) * 1000)
+            res['data'].append((ts, item))
 
     return result
 
