@@ -135,7 +135,7 @@ class Suggestion(models.Model, base.TranslationUnit):
     target_f = MultiStringField()
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
                              related_name='suggestions', db_index=True)
     reviewer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
                                  related_name='reviews', db_index=True)
