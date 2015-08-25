@@ -282,7 +282,8 @@ PTL.reports = {
         },
         yaxis: {
             max: PTL.reports.dailyData.max_day_score
-        }
+        },
+        colors: ['#66bb66', '#99ccff', '#ffcc33'],
       }
     );
   },
