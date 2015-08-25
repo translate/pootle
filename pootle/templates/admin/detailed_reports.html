@@ -178,9 +178,9 @@
             {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
               <td class="number">
                 {% if item.action != action_types.SUGGESTION %}
-                  {% if item.action != action_types.REVIEW %}
+                  {% if item.action == action_types.REVIEW %}
                     {{ score.review_rate }}
-                  {% elif item.action != action_types.TRANSLATION %}
+                  {% elif item.action == action_types.TRANSLATION %}
                     {{ score.rate }}
                   {% endif %}
                     {{ object.currency }}
