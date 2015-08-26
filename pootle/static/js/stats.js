@@ -42,8 +42,10 @@ const stats = {
   init(options) {
     this.retries = 0;
 
+    const isExpanded = (options.isInitiallyExpanded ||
+                        window.location.search.indexOf('?details') !== -1);
     this.state = {
-      isExpanded: options.isInitiallyExpanded,
+      isExpanded: isExpanded,
       checksData: null,
       data: options.initialData,
     };
@@ -65,8 +67,15 @@ const stats = {
       this.refreshStats();
     });
 
+    window.addEventListener('popstate', (e) => {
+      const state = e.state;
+      if (state) {
+        this.setState({isExpanded: state.isExpanded});
+      }
+    });
+
     // Retrieve async data if needed
-    if (options.isInitiallyExpanded) {
+    if (isExpanded) {
       this.loadChecks();
     } else {
       this.updateUI({});
@@ -371,8 +380,9 @@ const stats = {
   toggleChecks() {
     if (this.state.checksData) {
       this.setState({isExpanded: !this.state.isExpanded});
+      this.navigate();
     } else {
-      this.loadChecks();
+      this.loadChecks().done(() => this.navigate());
     }
   },
 
@@ -419,7 +429,17 @@ const stats = {
     this.updateChecksToggleUI();
     this.updateChecksUI();
     this.updateStatsUI();
-  }
+  },
+
+  navigate() {
+    const { isExpanded } = this.state;
+    const currentURL = `${window.location.pathname}${window.location.search}`;
+    const path = l(this.pootlePath);
+    const newURL = isExpanded ? `${path}?details` : path;
+    if (currentURL !== newURL) {
+      window.history.pushState({isExpanded}, '', newURL);
+    }
+  },
 
 };
 

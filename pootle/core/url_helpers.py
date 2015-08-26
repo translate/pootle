@@ -165,12 +165,17 @@ def get_previous_url(request):
         parsed_referer = urlparse.urlparse(referer_url)
         referer_host = parsed_referer.netloc
         referer_path = parsed_referer.path
+        referer_query = parsed_referer.query
         server_host = request.get_host()
 
         if referer_host == server_host and '/translate/' not in referer_path:
             # Remove query string if present
-            if '?' in referer_url:
+            if referer_query:
                 referer_url = referer_url[:referer_url.index('?')]
+
+            # But ensure `?details` is not missed out
+            if 'details' in referer_query:
+                referer_url = '%s?details' % referer_url
 
             return referer_url
 
