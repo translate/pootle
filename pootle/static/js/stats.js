@@ -74,9 +74,8 @@ const stats = {
   },
 
   setState(newState) {
-    const oldState = assign({}, this.state);
     this.state = assign({}, this.state, newState);
-    this.updateUI(oldState);
+    this.updateUI();
   },
 
   refreshStats() {
@@ -416,7 +415,7 @@ const stats = {
     }
   },
 
-  updateUI(oldState) {
+  updateUI() {
     this.updateChecksToggleUI();
     this.updateChecksUI();
     this.updateStatsUI();
