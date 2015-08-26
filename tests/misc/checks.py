@@ -227,3 +227,30 @@ def test_broken_entities():
     ]
 
     do_test(check, tests)
+
+
+def test_date_format():
+    check = checker.date_format
+    tests = [
+        (u"EEE, MMM d h:mm a", u"EEE, MMM d HH:mm", True),
+        (u"EEE, MMM", u"EEEMMM", False),
+        (u"yyyy.MM.dd G 'at' HH:mm:ss z", u"yyyy.MM.dd G 'в' HH:mm:ss z", True),
+        (u"EEE, MMM d, ''yy", u"dd-MM-yy", True),
+        (u"h:mm a", u"dd-MM-yy", True),
+        (u"hh 'o''clock' a, zzzz", u"dd-MM-yy", True),
+        (u"K:mm a, z", u"dd-MM-yy", True),
+        (u"yyyyy.MMMMM.dd GGG hh:mm aaa", u"dd-MM-yy", True),
+        (u"EEE, d MMM yyyy HH:mm:ss Z", u"dd-MM-yy", True),
+        (u"yyyy-MM-dd'T'HH:mm:ss.SSSZ", u"dd-MM-yy", True),
+        (u"yyyy-MM-dd'T'HH:mm:ss.SSSXXX", u"dd-MM-yy", True),
+        (u"YYYY-'W'ww-u", u"dd-MM-yy", True),
+
+        # if a string isn't a date_format string the check should be skipped
+        (u"yyMMddHHmmssZ", u"what ever 345", True),
+        (u"F", u"what ever 345", True),
+        (u"M", u"what ever 345", True),
+        (u"S", u"what ever 345", True),
+        (u"W", u"what ever 345", True),
+    ]
+
+    do_test(check, tests)

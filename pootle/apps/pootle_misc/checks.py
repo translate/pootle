@@ -165,15 +165,17 @@ mustache_placeholder_pairs_regex = re.compile(u"(%s)" % fmt, re.U)
 fmt = u"\{{2}[\/]?[^\}]+\}{2}"
 mustache_like_placeholder_pairs_regex = re.compile(u"(%s)" % fmt, re.U)
 
-date_format_regex_0 = re.compile(u"^([GyMwWDdFEaHkKhmsSzZ]+[^\w]*)+$", re.U)
-date_format_regex_1 = re.compile(u"^(Day|Days|May|SMS|M|S|W|F|add|ads)$", re.I|re.U)
-date_format_regex_2 = re.compile(u"^(h:mm a|h:mm aa|hh:mm a|hh:mm aa)$", re.U)
-date_format_regex_3 = re.compile(u"^(H:mm|HH:mm)$", re.U)
-date_format_regex_4 = re.compile(u"^EEEE, MMMM d yyyy, (h:mm a|h:mm aa|hh:mm a|hh:mm aa)$", re.U)
-date_format_regex_5 = re.compile(u"^(EEEE, MMMM d yyyy|EEEE, d MMMM yyyy), (H:mm|HH:mm)$", re.U)
-date_format_regex_6 = re.compile(u"^MMMM yyyy$", re.U)
-date_format_regex_7 = re.compile(u"^yyyy'年'MMMM$", re.U)
-date_format_regex_8 = re.compile(u"[^\w]+", re.U)
+# date_format
+df_blocks = u"|".join(map(lambda x: '%s+' % x, 'GyYMwWDdFEuaHkKhmsSzZX')) + u"|\'[\w]+\'"
+df_glued_blocks = u"X+|Z+|\'[\w]*\'"
+df_delimiter = u"[^\w']+|\'[\w]*\'"
+df_regex_str = u"^(%(blocks)s)(%(glued_blocks)s)?((%(delimiter)s)+(%(blocks)s))*$" % {
+    'blocks': df_blocks,
+    'glued_blocks': df_glued_blocks,
+    'delimiter': df_delimiter,
+}
+date_format_regex = re.compile(df_regex_str, re.U)
+date_format_exception_regex = re.compile(u"^(M|S|W|F)$", re.I|re.U)
 
 fmt = u"^\s+|\s+$"
 whitespace_regex = re.compile(u"(%s)" % fmt, re.U)
@@ -417,30 +419,16 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def date_format(self, str1, str2):
         def get_fingerprint(str, is_source=False, translation=''):
+            is_date_format = bool(date_format_regex.match(str))
             if is_source:
-                if not date_format_regex_0.match(str):
+                if not is_date_format:
                     raise SkipCheck()
 
                 # filter out specific English strings which are not dates
-                if date_format_regex_1.match(str):
+                if date_format_exception_regex.match(str):
                     raise SkipCheck()
 
-                # filter out specific translation pairs
-                if date_format_regex_2.match(str):
-                    if date_format_regex_3.match(translation):
-                        raise SkipCheck()
-
-                if date_format_regex_4.match(str):
-                    if date_format_regex_5.match(translation):
-                        raise SkipCheck()
-
-                if date_format_regex_6.match(str):
-                    if date_format_regex_7.match(translation):
-                        raise SkipCheck()
-
-            fingerprint = u"\001".join(sorted(date_format_regex_8.split(str)))
-
-            return fingerprint
+            return is_date_format
 
         if check_translation(get_fingerprint, str1, str2):
             return True
