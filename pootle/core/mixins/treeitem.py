@@ -471,8 +471,12 @@ class CachedTreeItem(TreeItem):
         r_con = get_connection()
         job = get_current_job()
         for p in self.all_pootle_paths():
-            logger.debug('UNREGISTER %s (-%s) where job_id=%s' %
-                         (p, decrement, job.id))
+            if job:
+                logger.debug('UNREGISTER %s (-%s) where job_id=%s' %
+                             (p, decrement, job.id))
+            else:
+                logger.debug('UNREGISTER %s (-%s)' %
+                             (p, decrement))
             r_con.zincrby(POOTLE_DIRTY_TREEITEMS, p, 0 - decrement)
 
     def unregister_dirty(self, decrement=1):
@@ -481,8 +485,12 @@ class CachedTreeItem(TreeItem):
         """
         r_con = get_connection()
         job = get_current_job()
-        logger.debug('UNREGISTER %s (-%s) where job_id=%s' %
-                     (self.get_cachekey(), decrement, job.id))
+        if job:
+            logger.debug('UNREGISTER %s (-%s) where job_id=%s' %
+                         (self.get_cachekey(), decrement, job.id))
+        else:
+            logger.debug('UNREGISTER %s (-%s)' %
+                         (self.get_cachekey(), decrement))
         r_con.zincrby(POOTLE_DIRTY_TREEITEMS, self.get_cachekey(), 0 - decrement)
 
     def get_dirty_score(self):
