@@ -414,6 +414,7 @@ class Unit(models.Model, base.TranslationUnit):
         if not hasattr(self, '_log_user'):
             User = get_user_model()
             self._log_user = User.objects.get_system_user()
+        user = kwargs.pop("user", self._log_user)
 
         if not self.id:
             self._save_action = UNIT_ADDED
@@ -499,7 +500,7 @@ class Unit(models.Model, base.TranslationUnit):
                 path=self.store.pootle_path
             )
 
-            self.add_initial_submission()
+            self.add_initial_submission(user=user)
 
         if self._source_updated or self._target_updated:
             self.update_qualitychecks()
@@ -554,12 +555,12 @@ class Unit(models.Model, base.TranslationUnit):
         user_projects = Project.accessible_by_user(user)
         return self.store.translation_project.project.code in user_projects
 
-    def add_initial_submission(self):
+    def add_initial_submission(self, user=None):
         if self.istranslated() or self.isfuzzy():
             Submission.objects.create(
                 creation_time=self.creation_time,
                 translation_project=self.store.translation_project,
-                submitter=self._log_user,
+                submitter=user or self._log_user,
                 unit=self,
                 store=self.store,
                 type=SubmissionTypes.UNIT_CREATE,
@@ -2158,7 +2159,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             newunit.submitted_on = timezone.now()
 
         if self.id:
-            newunit.save(revision=revision)
+            newunit.save(revision=revision, user=user)
         else:
             # We can't save the unit if the store is not in the
             # database already, so let's keep it in temporary list
