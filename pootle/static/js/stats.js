@@ -355,13 +355,17 @@ const stats = {
   },
 
   loadStats() {
-    this.load(l('/xhr/stats/'), {path: this.pootlePath})
-        .done((data) => this.setState({data}));
+    return (
+      this.load(l('/xhr/stats/'), {path: this.pootlePath})
+          .done((data) => this.setState({data}))
+    );
   },
 
   loadChecks() {
-    this.load(l('/xhr/stats/checks'), {path: this.pootlePath})
-        .done((data) => this.setState({isExpanded: true, checksData: data}));
+    return (
+      this.load(l('/xhr/stats/checks'), {path: this.pootlePath})
+          .done((data) => this.setState({isExpanded: true, checksData: data}))
+    );
   },
 
   /* Path summary */
