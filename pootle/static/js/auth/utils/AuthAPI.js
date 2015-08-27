@@ -15,40 +15,32 @@ const AuthAPI = {
 
   apiRoot: l('/accounts/'),
 
-  signIn(reqData, nextURL) {
-    const url = `${this.apiRoot}login/?next=${encodeURIComponent(nextURL)}`;
-
+  request(url, data) {
     return Promise.resolve(
       $.ajax(url, {
         type: 'POST',
-        data: reqData,
+        data: data,
         dataType: 'json',
       })
     );
+  },
+
+  signIn(reqData, nextURL) {
+    const url = `${this.apiRoot}login/?next=${encodeURIComponent(nextURL)}`;
+
+    return this.request(url, reqData);
   },
 
   signUp(reqData) {
     const url = `${this.apiRoot}signup/`;
 
-    return Promise.resolve(
-      $.ajax(url, {
-        type: 'POST',
-        data: reqData,
-        dataType: 'json',
-      })
-    );
+    return this.request(url, reqData);
   },
 
   requestPasswordReset(reqData) {
     const url = `${this.apiRoot}password/reset/`;
 
-    return Promise.resolve(
-      $.ajax(url, {
-        type: 'POST',
-        data: reqData,
-        dataType: 'json',
-      })
-    );
+    return this.request(url, reqData);
   },
 
   passwordReset(reqData, url) {
@@ -58,25 +50,13 @@ const AuthAPI = {
       url = `${this.apiRoot}password/reset/key/${uidb36}-${key}/`;
     }
 
-    return Promise.resolve(
-      $.ajax(url, {
-        type: 'POST',
-        data: reqData,
-        dataType: 'json',
-      })
-    );
+    return this.request(url, reqData);
   },
 
   verifySocial(reqData) {
     const url = `${this.apiRoot}social/verify/`;
 
-    return Promise.resolve(
-      $.ajax(url, {
-        type: 'POST',
-        data: reqData,
-        dataType: 'json',
-      })
-    );
+    return this.request(url, reqData);
   },
 
 };
