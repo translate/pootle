@@ -13,6 +13,26 @@ import { Actions } from 'flummox';
 import AuthAPI from '../utils/AuthAPI';
 
 
+/*
+ * Takes care of creating an object which contains errors related to
+ * authentication and unhandled exceptions.
+ */
+function handleErrors(jsonRespone) {
+  let errors = {};
+
+  if ('errors' in jsonRespone) {
+    errors = jsonRespone.errors;
+  }
+  if ('msg' in jsonRespone) {
+    errors = {
+      '__all__': [jsonRespone.msg],
+    };
+  }
+
+  return errors;
+}
+
+
 export default class AuthActions extends Actions {
 
   gotoScreen(screenName) {
@@ -23,7 +43,7 @@ export default class AuthActions extends Actions {
     return AuthAPI.signIn(reqData, nextURL)
                   .then(
                     (value) => Promise.resolve(value.location),
-                    (reason) => Promise.reject(reason.responseJSON.errors)
+                    (reason) => Promise.reject(handleErrors(reason.responseJSON))
                   );
   }
 
@@ -31,7 +51,7 @@ export default class AuthActions extends Actions {
     return AuthAPI.signUp(reqData)
                   .then(
                     (value) => Promise.resolve(value),
-                    (reason) => Promise.reject(reason.responseJSON.errors)
+                    (reason) => Promise.reject(handleErrors(reason.responseJSON))
                   );
   }
 
@@ -39,7 +59,7 @@ export default class AuthActions extends Actions {
     return AuthAPI.requestPasswordReset(reqData)
                   .then(
                     (value) => Promise.resolve(value),
-                    (reason) => Promise.reject(reason.responseJSON.errors)
+                    (reason) => Promise.reject(handleErrors(reason.responseJSON))
                   );
   }
 
@@ -49,7 +69,7 @@ export default class AuthActions extends Actions {
     return AuthAPI.passwordReset(reqData, url)
                   .then(
                     (value) => Promise.resolve(value),
-                    (reason) => Promise.reject(reason.responseJSON.errors)
+                    (reason) => Promise.reject(handleErrors(reason.responseJSON))
                   );
   }
 
@@ -57,7 +77,7 @@ export default class AuthActions extends Actions {
     return AuthAPI.verifySocial(reqData)
                   .then(
                     (value) => Promise.resolve(value.location),
-                    (reason) => Promise.reject(reason.responseJSON.errors)
+                    (reason) => Promise.reject(handleErrors(reason.responseJSON))
                   );
   }
 
