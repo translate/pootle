@@ -30,7 +30,7 @@ if sys.version_info[0] < 3:
     input = raw_input
 
 
-def init_settings(settings_filepath, template_filename):
+def init_settings(settings_filepath, template_filename, db="sqlite"):
     """Initializes a sample settings file for new installations.
 
     :param settings_filepath: The target file path where the initial settings
@@ -49,6 +49,20 @@ def init_settings(settings_filepath, template_filename):
     # We can't use regular python string formatting here.
     output = output.replace("${default_key}",
                             b64encode(os.urandom(KEY_LENGTH)).decode("utf-8"))
+
+    db_module = {
+        'sqlite': 'sqlite3',
+        'mysql': 'mysql',
+        'postgresql': 'postgresql_psycopg2',
+        }[db]
+
+    output = output.replace("'ENGINE': 'transaction_hooks.backends.sqlite3'",
+                            "'ENGINE': 'transaction_hooks.backends.%s'" % db_module)
+
+    if db != "sqlite":
+        output = output.replace("'NAME': working_path('dbs/pootle.db')",
+                                "'NAME': ''")
+
     fp.write(output)
     fp.close()
 
@@ -106,6 +120,8 @@ def run_app(project, default_settings_path, settings_template,
     parser.add_argument("--noinput", action="store_true", default=False,
                         help=u"Never prompt for input")
     parser.add_argument("--version", action="version", version=get_version())
+    parser.add_argument("--db", default="sqlite",
+                        help=u"Use the specified database backend")
 
     args, remainder = parser.parse_known_args(sys.argv[1:])
 
@@ -124,13 +140,22 @@ def run_app(project, default_settings_path, settings_template,
                 print("File already exists, not overwriting.")
                 exit(2)
 
+        if args.db not in ["mysql", "postgresql", "sqlite"]:
+            raise management.CommandError("Unrecognised database '%s': should "
+                                          "be one of 'sqlite', 'mysql' or "
+                                          "'postgresql'" % args.db)
+
         try:
-            init_settings(config_path, settings_template)
+            init_settings(config_path, settings_template, args.db)
         except (IOError, OSError) as e:
             raise e.__class__('Unable to write default settings file to %r'
                 % config_path)
 
-        print("Configuration file created at %r" % config_path)
+        if args.db in ["mysql", "postgresql"]:
+            print("Configuration file created at %r: you must now update "
+                  "the settings for %s database" % (config_path, args.db))
+        else:
+            print("Configuration file created at %r" % config_path)
         exit(0)
 
     configure_app(project=project, config_path=args.config,
