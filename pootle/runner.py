@@ -36,6 +36,8 @@ def init_settings(settings_filepath, template_filename, db="sqlite"):
     :param settings_filepath: The target file path where the initial settings
         will be written to.
     :param template_filename: Template file used to initialize settings from.
+    :param db: Database engine to use
+        (default=sqlite, choices=[mysql, postgresql]).
     """
     from base64 import b64encode
 
