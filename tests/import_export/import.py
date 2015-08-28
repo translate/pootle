@@ -13,8 +13,7 @@ import pytest
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 from import_export.utils import import_file
-from import_export.exceptions import (UnsupportedFiletypeError,
-                                     ERR_UNSUPPORTED_FILETYPE)
+from import_export.exceptions import UnsupportedFiletypeError
 
 TEST_PO_DIR = "tests/data/po/tutorial/en"
 IMPORT_SUCCESS = "headers_correct.po"
@@ -36,16 +35,14 @@ def test_import_success(en_tutorial_po):
 
 @pytest.mark.django_db
 def test_import_failure(file_import_failure, en_tutorial_po):
-    filename, exception, msg = file_import_failure
-    with pytest.raises(exception) as e:
+    filename, exception = file_import_failure
+    with pytest.raises(exception):
         _import_file(filename)
-    assert e.value.message == msg % filename
 
 
 @pytest.mark.django_db
 def test_import_unsupported(en_tutorial_ts, ts_directory):
-    with pytest.raises(UnsupportedFiletypeError) as e:
+    with pytest.raises(UnsupportedFiletypeError):
         _import_file(IMPORT_UNSUPP_FILE,
                      file_dir=os.path.join(ts_directory, "tutorial/en"),
                      content_type="text/vnd.trolltech.linguist")
-    assert e.value.message == ERR_UNSUPPORTED_FILETYPE % IMPORT_UNSUPP_FILE

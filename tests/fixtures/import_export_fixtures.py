@@ -22,23 +22,16 @@ def pytest_generate_tests(metafunc):
         return
     from import_export.exceptions import (MissingPootlePathError,
                                           MissingPootleRevError,
-                                          FileImportError,
-                                          ERR_MISSING_POOTLE_PATH,
-                                          ERR_MISSING_POOTLE_REV,
-                                          ERR_FILE_IMPORT)
+                                          FileImportError)
     metafunc.parametrize("file_import_failure",
                          [(u"revision_header_missing.po",
-                           MissingPootleRevError,
-                           ERR_MISSING_POOTLE_REV),
+                           MissingPootleRevError),
                           (u"revision_header_invalid.po",
-                           MissingPootleRevError,
-                           ERR_MISSING_POOTLE_REV),
+                           MissingPootleRevError),
                           ("path_header_missing.po",
-                           MissingPootlePathError,
-                           ERR_MISSING_POOTLE_PATH),
+                           MissingPootlePathError),
                           ("path_header_invalid.po",
-                           FileImportError,
-                           ERR_FILE_IMPORT % ("%s", "Store has no parent."))])
+                           FileImportError)])
 
 
 @pytest.fixture
