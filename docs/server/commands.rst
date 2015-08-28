@@ -500,6 +500,67 @@ Manually Installing Pootle
 These commands expose the database installation and upgrade process from the
 command line.
 
+.. django-admin:: init
+
+init
+^^^^
+
+Create the initial configuration for Pootle.
+
+Available options:
+
+:option:`--config`
+  The configuration file to write to.
+
+  Default: ``~/.pootle/pootle.conf``.
+
+:option:`--db`
+
+.. versionadded:: 2.7.1
+
+  The database backend that you are using
+
+  Default: ``sqlite``.
+  Available options: ``sqlite``, ``mysql``, ``postgresql``.
+
+:option:`--db-name`
+
+.. versionadded:: 2.7.1
+
+  The database name or path to database file if you are using sqlite.
+
+  Default for sqlite: ``dbs/pootle.db``.
+  Default for mysql/postgresql: ``pootledb``.
+
+:option:`--db-user`
+
+.. versionadded:: 2.7.1
+
+  Name of the database user. Not used with sqlite.
+
+  Default: ``pootle``.
+
+:option:`--db-password`
+
+.. versionadded:: 2.7.1
+
+  Database user's password. Not used with sqlite.
+
+:option:`--db-host`
+
+.. versionadded:: 2.7.1
+
+  Database host to connect to. Not used with sqlite.
+
+  Default: ``localhost``.
+
+:option:`--db-port`
+
+.. versionadded:: 2.7.1
+
+  Port to connect to database on. Defaults to database backend's default port.
+  Not used with sqlite.
+
 
 .. _commands#migrate:
 

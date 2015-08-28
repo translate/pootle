@@ -212,6 +212,10 @@ an alternative path as an argument if required.
 .. warning:: This default configuration is enough to experiment with Pootle.
    **Don't use this configuration in a production environment**.
 
+You can specify the parameters to set up your database if you don't want to use
+the default setup, see the :djadmin:`init command <init>` for the
+available options.
+
 The initial configuration includes the settings that you're most likely to
 change. For further customization, see the :ref:`full list of available
 settings <settings#available>`.

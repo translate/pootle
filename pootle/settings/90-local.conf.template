@@ -26,7 +26,7 @@ POOTLE_TITLE = 'Pootle Translation Server'
 TIME_ZONE = 'UTC'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '${default_key}'
+SECRET_KEY = %(default_key)s
 
 # A list of strings representing the host/domain names that this Pootle server
 # can serve. This is a Django's security measure. More details at
@@ -46,17 +46,17 @@ ALLOWED_HOSTS = [
 DATABASES = {
     'default': {
         # Replace 'sqlite3' with 'postgresql_psycopg2' or 'mysql'.
-        'ENGINE': 'transaction_hooks.backends.sqlite3',
+        'ENGINE': %(db_engine)s,
         # Database name or path to database file if using sqlite3.
-        'NAME': working_path('dbs/pootle.db'),
+        'NAME': %(db_name)s,
         # Not used with sqlite3.
-        'USER': '',
+        'USER': %(db_user)s,
         # Not used with sqlite3.
-        'PASSWORD': '',
+        'PASSWORD': %(db_password)s,
         # Set to empty string for localhost. Not used with sqlite3.
-        'HOST': '',
+        'HOST': %(db_host)s,
         # Set to empty string for default. Not used with sqlite3.
-        'PORT': '',
+        'PORT': %(db_port)s,
         # See https://docs.djangoproject.com/en/1.6/topics/db/transactions/
         # required for Django 1.6 + sqlite
         'ATOMIC_REQUESTS': True,
