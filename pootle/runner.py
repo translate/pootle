@@ -9,7 +9,7 @@
 
 import os
 import sys
-from argparse import ArgumentParser
+from argparse import ArgumentParser, SUPPRESS
 
 from django.core import management
 
@@ -28,6 +28,13 @@ SETTINGS_TEMPLATE_FILENAME = 'settings/90-local.conf.template'
 # Python 2+3 support for input()
 if sys.version_info[0] < 3:
     input = raw_input
+
+
+def add_help_to_parser(parser):
+    parser.add_help = True
+    parser.add_argument("-h", "--help",
+                        action="help", default=SUPPRESS,
+                        help="Show this help message and exit")
 
 
 def init_settings(settings_filepath, template_filename,
@@ -86,6 +93,69 @@ def init_settings(settings_filepath, template_filename,
             settings.write(template.read() % context)
 
 
+def init_command(parser, settings_template, args):
+    """Parse and run the `pootle init` command
+
+    :param parser: `argparse.ArgumentParser` instance to use for parsing
+    :param settings_template: Template file for initializing settings from.
+    :param args: Arguments to call init command with.
+    """
+
+    src_dir = os.path.abspath(os.path.dirname(__file__))
+    add_help_to_parser(parser)
+    parser.add_argument("--db", default="sqlite",
+                        help=(u"Use the specified database backend (default: "
+                              u"'sqlite'; other options: 'mysql', "
+                              u"'postgresql')."))
+    parser.add_argument("--db-name", default="",
+                        help=(u"Database name (default: 'pootledb') or path "
+                              u"to database file if using sqlite (default: "
+                              u"'%s/dbs/pootle.db')" % src_dir))
+    parser.add_argument("--db-user", default="",
+                        help=(u"Name of the database user. Not used with "
+                              u"sqlite."))
+    parser.add_argument("--db-host", default="",
+                        help=(u"Database host. Defaults to localhost. Not "
+                              u"used with sqlite."))
+    parser.add_argument("--db-port", default="",
+                        help=(u"Database port. Defaults to backend default. "
+                              u"Not used with sqlite."))
+
+    args, remainder = parser.parse_known_args(args)
+    config_path = os.path.expanduser(args.config)
+
+    if os.path.exists(config_path):
+        resp = None
+        if args.noinput:
+            resp = 'n'
+        else:
+            resp = input("File already exists at %r, overwrite? [Ny] "
+                         % config_path).lower()
+        if resp not in ("y", "yes"):
+            print("File already exists, not overwriting.")
+            exit(2)
+
+    if args.db not in ["mysql", "postgresql", "sqlite"]:
+        raise management.CommandError("Unrecognised database '%s': should "
+                                      "be one of 'sqlite', 'mysql' or "
+                                      "'postgresql'" % args.db)
+
+    try:
+        init_settings(config_path, settings_template,
+                      db=args.db, db_name=args.db_name, db_user=args.db_user,
+                      db_host=args.db_host, db_port=args.db_port)
+    except (IOError, OSError) as e:
+        raise e.__class__('Unable to write default settings file to %r'
+                          % config_path)
+
+    if args.db in ['mysql', 'postgresql']:
+        print("Configuration file created at %r. Your database password is "
+              "not currently set . You may want to update the database "
+              "settings now" % config_path)
+    else:
+        print("Configuration file created at %r" % config_path)
+
+
 def configure_app(project, config_path, django_settings_module, runner_name):
     """Determines which settings file to use and sets environment variables
     accordingly.
@@ -130,77 +200,40 @@ def run_app(project, default_settings_path, settings_template,
         will be set to.
     """
     runner_name = os.path.basename(sys.argv[0])
-    src_dir = os.path.abspath(os.path.dirname(__file__))
 
-    parser = ArgumentParser()
+    # This parser should ignore the --help flag, unless there is no subcommand
+    parser = ArgumentParser(add_help=False)
+    parser.add_argument("--version", action="version",
+                        version=get_version())
 
+    # Print version and exit if --version present
+    args, remainder = parser.parse_known_args(sys.argv[1:])
+
+    # Add pootle args
     parser.add_argument("--config",
                         default=default_settings_path,
                         help=u"Use the specified configuration file.")
     parser.add_argument("--noinput", action="store_true", default=False,
                         help=u"Never prompt for input")
-    parser.add_argument("--version", action="version", version=get_version())
 
-    parser.add_argument("--db", default="sqlite",
-                        help=(u"Use the specified database backend (default: "
-                              "'sqlite'; other options: 'mysql', "
-                              "'postgresql')."))
-    parser.add_argument("--db-name", default="",
-                        help=(u"Database name (default: 'pootledb') or path "
-                              "to database file if using sqlite (default: "
-                              "'%s/dbs/pootle.db')" % src_dir))
-    parser.add_argument("--db-user", default="",
-                        help=(u"Name of the database user. Not used with "
-                              "sqlite."))
-    parser.add_argument("--db-host", default="",
-                        help=(u"Database host. Defaults to localhost. Not "
-                              "used with sqlite."))
-    parser.add_argument("--db-port", default="",
-                        help=(u"Database port. Defaults to backend default. "
-                              "Not used with sqlite."))
+    # Parse the init command by hand to prevent raising a SystemExit while
+    # parsing
+    args_provided = [c for c in sys.argv[1:] if not c.startswith("-")]
+    if args_provided and args_provided[0] == "init":
+        init_command(parser, settings_template, sys.argv[1:])
+        sys.exit(0)
 
     args, remainder = parser.parse_known_args(sys.argv[1:])
 
-    # bit hacky
-    if "init" in remainder:
-        config_path = os.path.expanduser(args.config)
-
-        if os.path.exists(config_path):
-            resp = None
-            if args.noinput:
-                resp = 'n'
-            else:
-                resp = input("File already exists at %r, overwrite? [Ny] "
-                             % config_path).lower()
-            if resp not in ("y", "yes"):
-                print("File already exists, not overwriting.")
-                exit(2)
-
-        if args.db not in ["mysql", "postgresql", "sqlite"]:
-            raise management.CommandError("Unrecognised database '%s': should "
-                                          "be one of 'sqlite', 'mysql' or "
-                                          "'postgresql'" % args.db)
-
-        try:
-            init_settings(config_path, settings_template,
-                          db=args.db, db_name=args.db_name,
-                          db_user=args.db_user, db_host=args.db_host,
-                          db_port=args.db_port)
-        except (IOError, OSError) as e:
-            raise e.__class__('Unable to write default settings file to %r'
-                % config_path)
-
-        if args.db in ['mysql', 'postgresql']:
-            print("Configuration file created at %r. Your database password "
-                  "is currently unset. You may want to update the database "
-                  "settings now" % config_path)
-        else:
-            print("Configuration file created at %r" % config_path)
-        exit(0)
-
+    # Configure settings from args.config path
     configure_app(project=project, config_path=args.config,
                   django_settings_module=django_settings_module,
                   runner_name=runner_name)
+
+    # Print the help message for "pootle --help"
+    if len(remainder) == 1 and remainder[0] in ["-h", "--help"]:
+        add_help_to_parser(parser)
+        parser.parse_known_args(sys.argv[1:])
 
     command = [runner_name] + remainder
 
