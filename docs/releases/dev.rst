@@ -92,6 +92,8 @@ Command changes and additions
   any submissions, comments and reviews that they have made. This is useful to
   revert spam or a malicious user.
 
+- Added a :djadmin:`verify_user` command to automatically verify a user account
+
 ...and lots of refactoring, cleanups to remove old Django versions specifics,
 improved documentation and of course, loads of bugs were fixed.
 

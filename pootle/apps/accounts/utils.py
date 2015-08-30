@@ -14,6 +14,7 @@ import sys
 from django.contrib.auth import get_user_model
 
 from allauth.account.models import EmailAddress
+from allauth.account.utils import sync_user_email_addresses
 
 from pootle_store.models import SuggestionStates
 from pootle_store.util import FUZZY, UNTRANSLATED
@@ -349,3 +350,36 @@ class UserPurger(object):
                 unit.save()
                 logger.debug("Unit state reverted: %s"
                              % (repr(unit)))
+
+
+def verify_user(user):
+    """Verify a user account without email confirmation
+
+    If the user has an existing primary allauth.EmailAddress set then this is
+    verified.
+
+    Otherwise, an allauth.EmailAddress is created using email set for
+    User.email.
+
+    If the user is already verified raises a ValueError
+
+    :param user: `User` to verify
+    """
+    # already has primary?
+    existing_primary = EmailAddress.objects.filter(user=user, primary=True)
+    if existing_primary.exists():
+        existing_primary = existing_primary.first()
+        if not existing_primary.verified:
+            existing_primary.verified = True
+            existing_primary.save()
+            return
+        else:
+            # already verified
+            raise ValueError("User '%s' is already verified" % user.username)
+    sync_user_email_addresses(user)
+    email_address = (EmailAddress.objects
+                     .filter(user=user, email__iexact=user.email)
+                     .order_by("primary")).first()
+    email_address.verified = True
+    email_address.primary = True
+    email_address.save()

@@ -682,6 +682,31 @@ username for a user of your site.
     $ pootle purge_user username
 
 
+.. django-admin:: verify_user
+
+verify_user
+^^^^^^^^^^^
+
+.. versionadded:: 2.7.1
+
+Verify a user without the user having to go through email verification process.
+
+This is useful if you are migrating users that have already been verified, or
+if you want to create a superuser that can log in immediately.
+
+This command requires either a mandatory ``username`` argument, which should be a
+valid username for a user of your site, or the :option:`--all` flag if you wish to
+verify all users of your site.
+
+.. code-block:: bash
+
+    $ pootle verify_user username
+
+
+:option:`--all`
+  Verify all users of the site
+
+
 .. _commands#running:
 
 Running WSGI servers

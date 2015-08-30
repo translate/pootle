@@ -71,6 +71,21 @@ def member(db):
 
 
 @pytest.fixture
+def trans_member(transactional_db):
+    """Require a member user."""
+    return _require_user('trans_member', 'Transactional member')
+
+
+@pytest.fixture
+def member_with_email(transactional_db):
+    """Require a member user."""
+    user = _require_user('member_with_email', 'Member with email')
+    user.email = "member_with_email@this.test"
+    user.save()
+    return user
+
+
+@pytest.fixture
 def member2(db):
     """Require a member2 user."""
     return _require_user('member2', 'Member2')

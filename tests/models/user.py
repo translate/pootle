@@ -7,7 +7,11 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.contrib.auth import get_user_model
+
 import pytest
+
+from allauth.account.models import EmailAddress
 
 import accounts
 from pootle_store.util import FUZZY, TRANSLATED
@@ -179,3 +183,89 @@ def test_delete_purge_user(en_tutorial_po_member_updated,
     _test_user_purging(en_tutorial_po_member_updated,
                        member, evil_member,
                        lambda m: m.delete(purge=True))
+
+
+@pytest.mark.django_db
+def test_verify_user(member_with_email):
+    """Test verifying user using `verify_user` function"""
+
+    # Member is not currently verified
+    with pytest.raises(EmailAddress.DoesNotExist):
+        EmailAddress.objects.get(user=member_with_email, verified=True)
+
+    # Verify user
+    accounts.utils.verify_user(member_with_email)
+
+    # Get the verified email object
+    EmailAddress.objects.get(user=member_with_email,
+                             email="member_with_email@this.test",
+                             primary=True, verified=True)
+
+
+@pytest.mark.django_db
+def test_verify_user_without_existing_email(trans_member):
+    """Test verifying user using `verify_user` function"""
+
+    member = trans_member
+
+    # Member has no allauth.EmailAddress object
+    with pytest.raises(EmailAddress.DoesNotExist):
+        EmailAddress.objects.get(user=member)
+
+    # Give member an email - but don't save, as this would trigger
+    # allauth.EmailAddress creation
+    member.email = "member@this.test"
+
+    # Verify user
+    accounts.utils.verify_user(member)
+
+    # Get the verified email object
+    EmailAddress.objects.get(user=member, email="member@this.test",
+                             primary=True, verified=True)
+
+    # This does not update the member object!
+    assert get_user_model().objects.get(pk=member.pk).email == ""
+
+
+@pytest.mark.django_db
+def test_verify_user_with_primary_and_non_primary_email_object(trans_member):
+    """Test verifying user using `verify_user` function that has an
+    allauth.EmailAddress object but is not yet verified
+    """
+    member = trans_member
+
+    # Give member an email
+    member.email = "member@this.test"
+
+    # Create the unverified non-primary email object
+    EmailAddress.objects.create(user=member, email=member.email,
+                                primary=False, verified=False)
+
+    # Create unverified primary email object
+    EmailAddress.objects.create(user=member, email="otheremail@this.test",
+                                primary=True, verified=False)
+
+    # Verify user
+    accounts.utils.verify_user(member)
+
+    # Get the verified email object - the primary address is used
+    EmailAddress.objects.get(user=member, email="otheremail@this.test",
+                             primary=True, verified=True)
+
+
+@pytest.mark.django_db
+def test_verify_user_already_verified(member_with_email):
+    """Test verifying user using `verify_user` function that has an
+    allauth.EmailAddress object but is not yet verified
+    """
+    # Verify user
+    accounts.utils.verify_user(member_with_email)
+
+    # Verify user again - raises ValueError
+    with pytest.raises(ValueError):
+        accounts.utils.verify_user(member_with_email)
+
+    # Get the verified email object
+    EmailAddress.objects.get(user=member_with_email,
+                             email=member_with_email.email,
+                             primary=True, verified=True)
