@@ -152,9 +152,6 @@ def run_app(project, default_settings_path, settings_template,
     parser.add_argument("--db-user", default="",
                         help=(u"Name of the database user. Not used with "
                               "sqlite."))
-    parser.add_argument("--db-password", default="",
-                        help=(u"Password for the database user. Not used with "
-                              "sqlite."))
     parser.add_argument("--db-host", default="",
                         help=(u"Database host. Defaults to localhost. Not "
                               "used with sqlite."))
@@ -186,16 +183,17 @@ def run_app(project, default_settings_path, settings_template,
 
         try:
             init_settings(config_path, settings_template,
-                          args.db, args.db_name, args.db_user,
-                          args.db_password, args.db_host, args.db_port)
+                          db=args.db, db_name=args.db_name,
+                          db_user=args.db_user, db_host=args.db_host,
+                          db_port=args.db_port)
         except (IOError, OSError) as e:
             raise e.__class__('Unable to write default settings file to %r'
                 % config_path)
 
-        if args.db in ['mysql', 'postgresql'] and not args.db_password:
-            print("Configuration file created at %r. You have not specified a "
-                  "password for your database. You may want to update the "
-                  "database settings now" % config_path)
+        if args.db in ['mysql', 'postgresql']:
+            print("Configuration file created at %r. Your database password "
+                  "is currently unset. You may want to update the database "
+                  "settings now" % config_path)
         else:
             print("Configuration file created at %r" % config_path)
         exit(0)

@@ -540,12 +540,6 @@ Available options:
 
   Default: ``pootle``.
 
-:option:`--db-password`
-
-.. versionadded:: 2.7.1
-
-  Database user's password. Not used with sqlite.
-
 :option:`--db-host`
 
 .. versionadded:: 2.7.1
