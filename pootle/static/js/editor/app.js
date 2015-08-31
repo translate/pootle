@@ -182,7 +182,6 @@ PTL.editor = {
 
     /* Editor navigation/submission */
     $(document).on('editor_ready', 'table.translate-table', this.ready);
-    $(document).on('noResults', 'table.translate-table', this.noResults);
     $(document).on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
     $(document).on('keypress', '.js-unit-index', this.gotoIndex.bind(this));
     $(document).on('dblclick click', '.js-unit-index', this.unitIndex);
@@ -1322,7 +1321,7 @@ PTL.editor = {
             opts.success();
           }
         } else {
-          $("table.translate-table").trigger("noResults");
+          PTL.editor.noResults();
         }
       },
       error: PTL.editor.error
