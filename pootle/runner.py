@@ -11,9 +11,12 @@ import os
 import sys
 from argparse import ArgumentParser, SUPPRESS
 
+from django.conf import settings
 from django.core import management
 
 import syspath_override
+
+from core.utils.redis_rq import rq_workers_are_running
 
 
 #: Length for the generated :setting:`SECRET_KEY`
@@ -156,6 +159,28 @@ def init_command(parser, settings_template, args):
         print("Configuration file created at %r" % config_path)
 
 
+def set_sync_mode(noinput=False):
+    """Sets ASYNC = False on all redis worker queues
+    """
+    if rq_workers_are_running():
+        redis_warning = ("\nYou currently have RQ workers running.\n\n"
+                         "Running in synchronous mode may conflict with jobs "
+                         "that are dispatched to your workers.\n\n"
+                         "It is safer to stop any workers before using synchronous "
+                         "commands.\n\n")
+        if noinput:
+            print("Warning: %s" % redis_warning)
+        else:
+            resp = input("%sDo you wish to proceed? [Ny] " % redis_warning)
+            if resp not in ("y", "yes"):
+                print("RQ workers running, not proceeding.")
+                exit(2)
+
+    # Update settings to set queues to ASYNC = False.
+    for q in settings.RQ_QUEUES.itervalues():
+        q['ASYNC'] = False
+
+
 def configure_app(project, config_path, django_settings_module, runner_name):
     """Determines which settings file to use and sets environment variables
     accordingly.
@@ -215,6 +240,9 @@ def run_app(project, default_settings_path, settings_template,
                         help=u"Use the specified configuration file.")
     parser.add_argument("--noinput", action="store_true", default=False,
                         help=u"Never prompt for input")
+    parser.add_argument("--no-rq", action="store_true", default=False,
+                        help=(u"Run all jobs in a single process, without "
+                              "using rq workers"))
 
     # Parse the init command by hand to prevent raising a SystemExit while
     # parsing
@@ -229,6 +257,10 @@ def run_app(project, default_settings_path, settings_template,
     configure_app(project=project, config_path=args.config,
                   django_settings_module=django_settings_module,
                   runner_name=runner_name)
+
+    # Set synchronous mode
+    if args.no_rq:
+        set_sync_mode(args.noinput)
 
     # Print the help message for "pootle --help"
     if len(remainder) == 1 and remainder[0] in ["-h", "--help"]:
