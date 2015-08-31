@@ -33,13 +33,6 @@ def get_permission_message(permission_code):
     }.get(permission_code, default_message)
 
 
-def _common_context(request, translation_project, permission_codes):
-    """Adds common context to request object and checks permissions."""
-    request.translation_project = translation_project
-    _check_permissions(request, translation_project.directory,
-                       permission_codes)
-
-
 def _check_permissions(request, directory, permission_code):
     """Checks if the current user has enough permissions defined by
     `permission_code` in the current`directory`.
@@ -67,8 +60,11 @@ def get_unit_context(permission_codes):
                                                 "store__parent"),
                     id=uid,
             )
-            _common_context(request, unit.store.translation_project,
-                            permission_codes)
+
+            request.translation_project = unit.store.translation_project
+            _check_permissions(request, translation_project.directory,
+                               permission_codes)
+
             request.unit = unit
             request.store = unit.store
             request.directory = unit.store.parent
