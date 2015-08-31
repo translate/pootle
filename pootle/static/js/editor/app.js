@@ -2119,7 +2119,7 @@ PTL.editor = {
         url = l(['/xhr/units/', unit.id,
                  '/suggestions/', suggId, '/reject/'].join(''));
 
-    $.post(url, {'reject': 1},
+    $.post(url, {},
       function (data) {
         if (data.user_score) {
           score.set(data.user_score);
@@ -2148,7 +2148,7 @@ PTL.editor = {
         skipToNext = skipToNext || false,
         translations;
 
-    $.post(url, {'accept': 1},
+    $.post(url, {},
       function (data) {
         // Update target textareas
         $.each(data.newtargets, function (i, target) {

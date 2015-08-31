@@ -22,7 +22,7 @@ from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import timezone
 from django.views.decorators.cache import never_cache
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_http_methods, require_POST
 
 from translate.filters.decorators import Category
 from translate.lang import data
@@ -983,6 +983,7 @@ def suggest(request, unit):
 
 
 @ajax_required
+@require_POST
 @get_unit_context('review')
 def reject_suggestion(request, unit, suggid):
     json = {
@@ -990,21 +991,21 @@ def reject_suggestion(request, unit, suggid):
         'sugid': suggid,
     }
 
-    if request.POST.get('reject'):
-        try:
-            sugg = unit.suggestion_set.get(id=suggid)
-        except ObjectDoesNotExist:
-            raise Http404
+    try:
+        sugg = unit.suggestion_set.get(id=suggid)
+    except ObjectDoesNotExist:
+        raise Http404
 
-        unit.reject_suggestion(sugg, request.translation_project,
-                               request.profile)
+    unit.reject_suggestion(sugg, request.translation_project,
+                           request.profile)
 
-        json['user_score'] = request.profile.public_score
+    json['user_score'] = request.profile.public_score
 
     return JsonResponse(json)
 
 
 @ajax_required
+@require_POST
 @get_unit_context('review')
 def accept_suggestion(request, unit, suggid):
     json = {
@@ -1012,25 +1013,24 @@ def accept_suggestion(request, unit, suggid):
         'sugid': suggid,
     }
 
-    if request.POST.get('accept'):
-        try:
-            suggestion = unit.suggestion_set.get(id=suggid)
-        except ObjectDoesNotExist:
-            raise Http404
+    try:
+        suggestion = unit.suggestion_set.get(id=suggid)
+    except ObjectDoesNotExist:
+        raise Http404
 
-        unit.accept_suggestion(suggestion, request.translation_project,
-                               request.profile)
+    unit.accept_suggestion(suggestion, request.translation_project,
+                           request.profile)
 
-        json['user_score'] = request.profile.public_score
-        json['newtargets'] = [highlight_whitespace(target)
-                              for target in unit.target.strings]
-        json['newdiffs'] = {}
-        for sugg in unit.get_suggestions():
-            json['newdiffs'][sugg.id] = \
-                    [highlight_diffs(unit.target.strings[i], target)
-                     for i, target in enumerate(sugg.target.strings)]
+    json['user_score'] = request.profile.public_score
+    json['newtargets'] = [highlight_whitespace(target)
+                          for target in unit.target.strings]
+    json['newdiffs'] = {}
+    for sugg in unit.get_suggestions():
+        json['newdiffs'][sugg.id] = \
+                [highlight_diffs(unit.target.strings[i], target)
+                 for i, target in enumerate(sugg.target.strings)]
 
-        json['checks'] = _get_critical_checks_snippet(request, unit)
+    json['checks'] = _get_critical_checks_snippet(request, unit)
 
     return JsonResponse(json)
 
