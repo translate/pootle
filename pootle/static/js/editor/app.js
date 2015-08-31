@@ -2117,7 +2117,7 @@ PTL.editor = {
         element = $("#suggestion-" + suggId),
         unit = PTL.editor.units.getCurrent();
 
-    const url = `/xhr/units/${unit.id}/suggestions/${suggId}/`;
+    const url = l(`/xhr/units/${unit.id}/suggestions/${suggId}/`);
 
     $.ajax({
       url: url,
@@ -2151,7 +2151,7 @@ PTL.editor = {
         skipToNext = skipToNext || false,
         translations;
 
-    const url = `/xhr/units/${unit.id}/suggestions/${suggId}/`;
+    const url = l(`/xhr/units/${unit.id}/suggestions/${suggId}/`);
 
     $.ajax({
       url: url,
