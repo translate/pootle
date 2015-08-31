@@ -2137,6 +2137,7 @@ PTL.editor = {
         });
         $('.js-comment-first').fadeOut(200);
       },
+      error: PTL.editor.error,
     });
   },
 
@@ -2196,6 +2197,7 @@ PTL.editor = {
           }
         });
       },
+      error: PTL.editor.error,
     });
 
   },
