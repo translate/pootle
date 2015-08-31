@@ -22,7 +22,7 @@ from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import timezone
 from django.views.decorators.cache import never_cache
-from django.views.decorators.http import require_http_methods, require_POST
+from django.views.decorators.http import require_http_methods
 
 from translate.filters.decorators import Category
 from translate.lang import data
@@ -983,8 +983,16 @@ def suggest(request, unit):
 
 
 @ajax_required
-@require_POST
+@require_http_methods(['POST', 'DELETE'])
 @get_unit_context('review')
+def manage_suggestion(request, unit, sugg_id):
+    """Dispatches the suggestion action according to the HTTP verb."""
+    if request.method == 'DELETE':
+        return reject_suggestion(request, unit, sugg_id)
+    elif request.method == 'POST':
+        return accept_suggestion(request, unit, sugg_id)
+
+
 def reject_suggestion(request, unit, suggid):
     json = {
         'udbid': unit.id,
@@ -1004,9 +1012,6 @@ def reject_suggestion(request, unit, suggid):
     return JsonResponse(json)
 
 
-@ajax_required
-@require_POST
-@get_unit_context('review')
 def accept_suggestion(request, unit, suggid):
     json = {
         'udbid': unit.id,

@@ -2115,12 +2115,14 @@ PTL.editor = {
     e.stopPropagation(); //we don't want to trigger a click on the text below
     var suggId = $(this).data("sugg-id"),
         element = $("#suggestion-" + suggId),
-        unit = PTL.editor.units.getCurrent(),
-        url = l(['/xhr/units/', unit.id,
-                 '/suggestions/', suggId, '/reject/'].join(''));
+        unit = PTL.editor.units.getCurrent();
 
-    $.post(url, {},
-      function (data) {
+    const url = `/xhr/units/${unit.id}/suggestions/${suggId}/`;
+
+    $.ajax({
+      url: url,
+      type: 'DELETE',
+      success: (data) => {
         if (data.user_score) {
           score.set(data.user_score);
         }
@@ -2133,7 +2135,9 @@ PTL.editor = {
             PTL.editor.gotoNext();
           }
         });
-      }, "json");
+        $('.js-comment-first').fadeOut(200);
+      },
+    });
   },
 
 
@@ -2143,13 +2147,15 @@ PTL.editor = {
     var suggId = $(this).data("sugg-id"),
         element = $("#suggestion-" + suggId),
         unit = PTL.editor.units.getCurrent(),
-        url = l(['/xhr/units/', unit.id,
-                 '/suggestions/', suggId, '/accept/'].join('')),
         skipToNext = skipToNext || false,
         translations;
 
-    $.post(url, {},
-      function (data) {
+    const url = `/xhr/units/${unit.id}/suggestions/${suggId}/`;
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      success: (data) => {
         // Update target textareas
         $.each(data.newtargets, function (i, target) {
           $("#id_target_f_" + i).val(target).focus();
@@ -2189,7 +2195,9 @@ PTL.editor = {
             PTL.editor.gotoNext();
           }
         });
-      }, "json");
+      },
+    });
+
   },
 
   /* Mutes or unmutes a quality check marking it as false positive or not */
