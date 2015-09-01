@@ -33,7 +33,7 @@ from pootle.core.decorators import (get_path_obj, get_resource,
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import check_user_permission
+from pootle_app.models.permissions import check_permission, check_user_permission
 from pootle_misc.checks import get_category_id, check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, to_int, get_date_interval
@@ -984,15 +984,15 @@ def suggest(request, unit):
 
 @ajax_required
 @require_http_methods(['POST', 'DELETE'])
-@get_unit_context('review')
-def manage_suggestion(request, unit, sugg_id):
+def manage_suggestion(request, uid, sugg_id):
     """Dispatches the suggestion action according to the HTTP verb."""
     if request.method == 'DELETE':
-        return reject_suggestion(request, unit, sugg_id)
+        return reject_suggestion(request, uid, sugg_id)
     elif request.method == 'POST':
-        return accept_suggestion(request, unit, sugg_id)
+        return accept_suggestion(request, uid, sugg_id)
 
 
+@get_unit_context()
 def reject_suggestion(request, unit, suggid):
     json = {
         'udbid': unit.id,
@@ -1004,6 +1004,13 @@ def reject_suggestion(request, unit, suggid):
     except ObjectDoesNotExist:
         raise Http404
 
+    # In order to be able to reject a suggestion, users have to either:
+    # 1. Have `review` rights, or
+    # 2. Be the author of the suggestion being rejected
+    if (not check_permission('review', request) and
+        (request.user.is_anonymous() or request.user != sugg.user)):
+        raise PermissionDenied(_('Insufficient rights to access review mode.'))
+
     unit.reject_suggestion(sugg, request.translation_project,
                            request.profile)
 
@@ -1012,6 +1019,7 @@ def reject_suggestion(request, unit, suggid):
     return JsonResponse(json)
 
 
+@get_unit_context('review')
 def accept_suggestion(request, unit, suggid):
     json = {
         'udbid': unit.id,
