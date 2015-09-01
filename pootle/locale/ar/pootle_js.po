@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-15 11:37+0100\n"
+"POT-Creation-Date: 2015-09-01 11:11+0100\n"
 "PO-Revision-Date: 2015-06-26 11:57+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && n<="
-"10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
+"n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1435319838.000000\n"
 
@@ -40,7 +40,7 @@ msgstr "الرّمز"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
-#: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
+#: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:75
 msgid "Full Name"
 msgstr "الاسم الكامل"
 
@@ -58,7 +58,7 @@ msgstr "معادلة الجموع"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
-#: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
+#: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "احفظ"
 
@@ -153,7 +153,7 @@ msgstr "البريد الإلكترونيّ"
 msgid "Administrator"
 msgstr "المدير"
 
-#: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
+#: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:89
 msgid "Twitter"
 msgstr "تويتر"
 
@@ -161,7 +161,7 @@ msgstr "تويتر"
 msgid "Twitter username"
 msgstr "اسم مستخدم تويتر"
 
-#: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
+#: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:96
 msgid "LinkedIn"
 msgstr "لِنكدإن"
 
@@ -169,7 +169,7 @@ msgstr "لِنكدإن"
 msgid "LinkedIn profile URL"
 msgstr "عنوان ملفّ لِنكدإن الشّخصيّ"
 
-#: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
+#: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:102
 msgid "Website"
 msgstr "موقع الوِبّ"
 
@@ -177,7 +177,7 @@ msgstr "موقع الوِبّ"
 msgid "Personal website URL"
 msgstr "عنوان موقع الوِبّ الشّخصيّ"
 
-#: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
+#: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "السّيرة مختصرةً"
 
@@ -202,8 +202,8 @@ msgid "Reports"
 msgstr "التّقارير"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, javascript-format
-msgid "We have sent an email containing the special link to <span>%s</span>."
+#, fuzzy, javascript-format
+msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr "لقد أرسلنا بريدًا يحوي وصلة خاصّة إلى <span>%s</span>."
 
 #: static/js/auth/components/AccountActivation.js:38
@@ -221,8 +221,9 @@ msgstr "حسابك يحتاج تنشيطًا."
 msgid "Please follow that link to continue the account creation."
 msgstr "فضلًا اتّبع الوصلة للمتابعة إلى إنشاء الحساب."
 
-#: static/js/auth/components/AccountActivation.js:56
+#: static/js/auth/components/AccountActivation.js:57
 #: static/js/auth/components/AccountInactive.js:36
+#: static/js/auth/components/EmailConfirmation.js:36
 msgid "Close"
 msgstr "أغلق"
 
@@ -230,41 +231,44 @@ msgstr "أغلق"
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr "حسابك غير نشط لأنّ أحد المدراء عطّله."
 
-#: static/js/auth/components/AuthController.js:82
+#: static/js/auth/components/AuthController.js:83
 msgid "Sign In With..."
 msgstr "لِج بِـ..."
 
-#: static/js/auth/components/AuthController.js:82
+#: static/js/auth/components/AuthController.js:83
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
 msgstr "لِج"
 
-#: static/js/auth/components/AuthController.js:89
+#: static/js/auth/components/AuthController.js:90
 msgid "Account Inactive"
 msgstr "الحساب غير نشط"
 
-#: static/js/auth/components/AuthController.js:96
+#: static/js/auth/components/AuthController.js:97
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
 msgstr "سجّل"
 
-#: static/js/auth/components/AuthController.js:103
-#: static/js/auth/components/AuthController.js:110
+#: static/js/auth/components/AuthController.js:104
 msgid "Account Activation"
 msgstr "تنشيط الحساب"
 
-#: static/js/auth/components/AuthController.js:117
-#: static/js/auth/components/AuthController.js:124
-#: static/js/auth/components/AuthController.js:131
+#: static/js/auth/components/AuthController.js:111
+msgid "Email Confirmation"
+msgstr ""
+
+#: static/js/auth/components/AuthController.js:118
+#: static/js/auth/components/AuthController.js:125
+#: static/js/auth/components/AuthController.js:132
 msgid "Reset Your Password"
 msgstr "صفّر كلمة مرورك"
 
-#: static/js/auth/components/AuthController.js:138
+#: static/js/auth/components/AuthController.js:139
 msgid "Oops..."
 msgstr "آخ..."
 
-#: static/js/auth/components/AuthController.js:145
+#: static/js/auth/components/AuthController.js:146
 msgid "Social Verification"
 msgstr "التّحقّق الاجتماعيّ"
 
@@ -272,13 +276,17 @@ msgstr "التّحقّق الاجتماعيّ"
 msgid "Contact Us"
 msgstr "اتّصل بنا"
 
+#: static/js/auth/components/EmailConfirmation.js:30
+msgid "This email confirmation link expired or is invalid."
+msgstr ""
+
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"وصلة تصفير كلمة المرور غير صالحة، لربمّا لأنّها استُخدمت بالفعل. فضلًا اطلب "
-"طلبًا جديدًا لتصفير كلمة المرور."
+"وصلة تصفير كلمة المرور غير صالحة، لربمّا لأنّها استُخدمت بالفعل. فضلًا اطلب طلبًا "
+"جديدًا لتصفير كلمة المرور."
 
 #: static/js/auth/components/PasswordResetForm.js:86
 msgid "Reset Password"
@@ -315,8 +323,7 @@ msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
-"لم تستقبل الرّسالة؟ تحقّق إن لم تُرشّح بالخطأ كسخام، أو جرّب طلب نسخة أخرى "
-"منها."
+"لم تستقبل الرّسالة؟ تحقّق إن لم تُرشّح بالخطأ كسخام، أو جرّب طلب نسخة أخرى منها."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
@@ -372,104 +379,92 @@ msgid ""
 "create an account for you."
 msgstr "الولوج بخدمة خارجيّة لأوّل مرّة ستنشئ حسابًا لك آليًّا."
 
-#: static/js/browser.js:156
-msgid "All Languages"
-msgstr "كلّ اللغات"
-
-#: static/js/browser.js:159
-msgid "All Projects"
-msgstr "كلّ المشاريع"
-
-#: static/js/browser.js:162
-msgid "Entire Project"
-msgstr "المشروع بالكامل"
-
-#: static/js/editor/app.js:243
+#: static/js/editor/app.js:255
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
-"اذهب إلى المقطع التّالي (Ctrl+.)<br/><br/>أيضًا:<br/>الصّفحة التّالية: "
-"Ctrl+Shift+.<br/>الصّفحة الأخيرة: Ctrl+Shift+End"
+"اذهب إلى المقطع التّالي (Ctrl+.)<br/><br/>أيضًا:<br/>الصّفحة التّالية: Ctrl+Shift"
+"+.<br/>الصّفحة الأخيرة: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:247
+#: static/js/editor/app.js:259
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"اذهب إلى المقطع السّابق (Ctrl+,)<br/><br/>أيضًا:</br>الصّفحة السّابقة: "
-"Ctrl+Shift+,<br/>الصّفحة الأولى: Ctrl+Shift+Home"
+"اذهب إلى المقطع السّابق (Ctrl+,)<br/><br/>أيضًا:</br>الصّفحة السّابقة: Ctrl+Shift"
+"+,<br/>الصّفحة الأولى: Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:371
 #, javascript-format
 msgid "%s's pending suggestions"
 msgstr "اقتراحات %s المعلّقة"
 
-#: static/js/editor/app.js:362
+#: static/js/editor/app.js:374
 #, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "اقتراحات %s المقبولة"
 
-#: static/js/editor/app.js:365
+#: static/js/editor/app.js:377
 #, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "اقتراحات %s المرفوضة"
 
-#: static/js/editor/app.js:368
+#: static/js/editor/app.js:380
 #, javascript-format
 msgid "%s's submissions"
 msgstr "مساهمات %s"
 
-#: static/js/editor/app.js:372
+#: static/js/editor/app.js:384
 #, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "مساهمات %s المُستبدَلة"
 
-#: static/js/editor/app.js:501 static/js/editor/app.js:1650
+#: static/js/editor/app.js:516 static/js/editor/app.js:1684
 msgid "No results."
 msgstr "لا نتائج."
 
-#: static/js/editor/app.js:960
+#: static/js/editor/app.js:994
 msgid "Error while connecting to the server"
 msgstr "خطأ أثناء الاتّصال بالخادوم"
 
-#: static/js/editor/app.js:964
+#: static/js/editor/app.js:998
 msgid "Not found"
 msgstr "لم يُعثر عليها"
 
-#: static/js/editor/app.js:966
+#: static/js/editor/app.js:1000
 msgid "Server error"
 msgstr "خطأ في الخادوم"
 
-#: static/js/editor/app.js:968
+#: static/js/editor/app.js:1002
 msgid "The server seems down. Try again later."
 msgstr "تعذّر الوصول إلى الخادوم. جرّب مجدّدًا لاحقًا."
 
-#: static/js/editor/app.js:975
+#: static/js/editor/app.js:1009
 msgid "Unknown error"
 msgstr "خطأ مجهول"
 
-#: static/js/editor/app.js:983
+#: static/js/editor/app.js:1017
 msgid "This unit no longer exists."
 msgstr "لم تعد الوحدة موجودة."
 
-#: static/js/editor/app.js:984
+#: static/js/editor/app.js:1018
 msgid "Go back to browsing"
 msgstr "ارجع إلى التّصفّح"
 
-#: static/js/editor/app.js:986
+#: static/js/editor/app.js:1020
 msgid "Reload page"
 msgstr "أعد تحميل الصّفحة"
 
-#: static/js/editor/app.js:1986
+#: static/js/editor/app.js:2028
 msgid "some anonymous user"
 msgstr "مستخدم ما مجهول"
 
-#: static/js/editor/app.js:1988
+#: static/js/editor/app.js:2030
 msgid "someone"
 msgstr "أحدهم"
 
-#: static/js/editor/app.js:2005 static/js/editor/app.js:2054
+#: static/js/editor/app.js:2048 static/js/editor/app.js:2097
 msgid "Similar translations"
 msgstr "التّرجمات المشابهة"
 
@@ -477,7 +472,7 @@ msgstr "التّرجمات المشابهة"
 msgid "disabled"
 msgstr "معطّل"
 
-#: static/js/stats.js:286
+#: static/js/stats.js:349
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
@@ -488,13 +483,37 @@ msgstr[3] "%s ثوانٍ"
 msgstr[4] "%s ثانيةً"
 msgstr[5] "%s ثانية"
 
-#: static/js/stats.js:318
+#: static/js/stats.js:393
+msgid "Collapse details"
+msgstr "أخفِ التّفاصيل"
+
+#: static/js/stats.js:393
 msgid "Expand details"
 msgstr "اعرض التّفاصيل"
 
-#: static/js/stats.js:318
-msgid "Collapse details"
-msgstr "أخفِ التّفاصيل"
+#: static/js/user/components/UserProfileEdit.js:106
+msgid "Edit My Public Profile"
+msgstr "حرّر ملفّي الشّخصيّ العامّ"
+
+#: static/js/user/components/UserProfileEdit.js:113
+msgid "My Public Profile"
+msgstr "ملفّي الشّخصيّ العامّ"
+
+#: static/js/user/components/UserProfileEdit.js:125
+msgid "Discard changes."
+msgstr "ارفض التّغييرات."
+
+#: static/js/user/components/UserProfileEdit.js:126
+msgid "Yes"
+msgstr "نعم"
+
+#: static/js/user/components/UserProfileEdit.js:127
+msgid "No"
+msgstr "لا"
+
+#: static/js/user/components/UserProfileEdit.js:128
+msgid "There are unsaved changes. Do you want to discard them?"
+msgstr "توجد تغييرات غير محفوظة. أتريد رفضها؟"
 
 #: static/js/utils.js:151
 #, javascript-format
@@ -715,31 +734,7 @@ msgstr "امحُ الكلّ"
 msgid "Type to search"
 msgstr "اطبع للبحث"
 
-#: static/js/user/components/edit.jsx:106
-msgid "Edit My Public Profile"
-msgstr "حرّر ملفّي الشّخصيّ العامّ"
-
-#: static/js/user/components/edit.jsx:113
-msgid "My Public Profile"
-msgstr "ملفّي الشّخصيّ العامّ"
-
-#: static/js/user/components/edit.jsx:125
-msgid "Discard changes."
-msgstr "ارفض التّغييرات."
-
-#: static/js/user/components/edit.jsx:126
-msgid "Yes"
-msgstr "نعم"
-
-#: static/js/user/components/edit.jsx:127
-msgid "No"
-msgstr "لا"
-
-#: static/js/user/components/edit.jsx:128
-msgid "There are unsaved changes. Do you want to discard them?"
-msgstr "توجد تغييرات غير محفوظة. أتريد رفضها؟"
-
-#: static/js/user/forms.jsx:61
+#: static/js/user/forms.jsx:63
 #, python-format
 msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
@@ -748,27 +743,27 @@ msgstr ""
 "لتعيين أيقونتك أو تغييرها من بريدك الإلكترونيّ (%(email)s)، فضلًا اذهب إلى "
 "gravatar.com."
 
-#: static/js/user/forms.jsx:74
+#: static/js/user/forms.jsx:76
 msgid "Your Full Name"
 msgstr "اسمك الكامل"
 
-#: static/js/user/forms.jsx:80
+#: static/js/user/forms.jsx:82
 msgid "Avatar"
 msgstr "الأيقونة"
 
-#: static/js/user/forms.jsx:90
+#: static/js/user/forms.jsx:91
 msgid "Your Twitter username"
 msgstr "اسم مستخدمك على تويتر"
 
-#: static/js/user/forms.jsx:97
+#: static/js/user/forms.jsx:98
 msgid "Your LinkedIn profile URL"
 msgstr "عنوان ملفّ لِنكدإن الشّخصيّ"
 
-#: static/js/user/forms.jsx:103
+#: static/js/user/forms.jsx:104
 msgid "Your Personal website/blog URL"
 msgstr "عنوان موقع الوِب أو المدوّنة"
 
-#: static/js/user/forms.jsx:111
+#: static/js/user/forms.jsx:112
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
@@ -779,38 +774,44 @@ msgid "Project / Language"
 msgstr "المشروع/اللغة"
 
 #: templates/admin/xhr_language_user_activity.html:7
+msgid "Suggested"
+msgstr ""
+
+#: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
 msgstr "المترجمة"
 
-#: templates/admin/xhr_language_user_activity.html:8
+#: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
 msgstr "المراجعة"
 
-#: templates/admin/xhr_language_user_activity.html:9
+#: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
 msgstr "تغيّر النّتيجة"
 
-#: templates/admin/xhr_language_user_activity.html:16
-#: templates/admin/xhr_language_user_activity.html:17
-#: templates/admin/xhr_language_user_activity.html:23
+#: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:21
-#: templates/admin/xhr_summary_report.html:35
-msgid "word"
-msgid_plural "words"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+#: templates/admin/xhr_language_user_activity.html:31
+#: templates/admin/xhr_language_user_activity.html:35
+#: templates/admin/xhr_language_user_activity.html:40
+#: templates/admin/xhr_language_user_activity.html:51
+#: templates/admin/xhr_language_user_activity.html:55
+#: templates/admin/xhr_language_user_activity.html:59
+#, fuzzy, python-format
+msgid "%s word"
+msgid_plural "%s words"
+msgstr[0] "كلمة المرور"
+msgstr[1] "كلمة المرور"
+msgstr[2] "كلمة المرور"
+msgstr[3] "كلمة المرور"
+msgstr[4] "كلمة المرور"
+msgstr[5] "كلمة المرور"
 
-#: templates/admin/xhr_language_user_activity.html:30
+#: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
 msgstr "لا نشاط مسجّل في الفترة المعطاة"
 
-#: templates/admin/xhr_language_user_activity.html:33
+#: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "فضلًا اختر مستخدمًا صالحًا."
 
@@ -850,6 +851,18 @@ msgstr "المجموع الفرعيّ"
 #: templates/admin/xhr_summary_report.html:32
 msgid "hour"
 msgid_plural "hours"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: templates/admin/xhr_paid_tasks_report.html:24
+#: templates/admin/xhr_summary_report.html:21
+#: templates/admin/xhr_summary_report.html:35
+msgid "word"
+msgid_plural "words"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -904,8 +917,17 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-"ترجمها %(fullname)s في مشروع &ldquo;<span title=\"%(path)s\""
-">%(project)s</span>&rdquo;"
+"ترجمها %(fullname)s في مشروع &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo;"
+
+#~ msgid "All Languages"
+#~ msgstr "كلّ اللغات"
+
+#~ msgid "All Projects"
+#~ msgstr "كلّ المشاريع"
+
+#~ msgid "Entire Project"
+#~ msgstr "المشروع بالكامل"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "أمتأكّد من المتابعة؟"

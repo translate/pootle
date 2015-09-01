@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-15 11:30+0100\n"
+"POT-Creation-Date: 2015-09-01 11:11+0100\n"
 "PO-Revision-Date: 2015-07-12 15:59+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 "X-POOTLE-MTIME: 1436716741.000000\n"
@@ -37,8 +37,8 @@ msgstr "Naudotojo vardas"
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
-"Privalomas. Ilgis iki 30 simbolių. Raidės, skaitmenys ir šie simboliai: @ . +"
-" - _."
+"Privalomas. Ilgis iki 30 simbolių. Raidės, skaitmenys ir šie simboliai: @ . "
+"+ - _."
 
 #: apps/accounts/models.py:65
 msgid "Enter a valid username."
@@ -49,7 +49,7 @@ msgid "Email Address"
 msgstr "El. pašto adresas"
 
 #: apps/accounts/models.py:70 apps/pootle_language/models.py:80
-#: apps/pootle_project/models.py:148
+#: apps/pootle_project/models.py:149
 msgid "Full Name"
 msgstr "Vardas, Pavardė"
 
@@ -94,11 +94,11 @@ msgstr "Alternatyvios pradinės kalbos"
 msgid "Rate"
 msgstr "Įkainis"
 
-#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
+#: apps/accounts/models.py:90 apps/reports/forms.py:32
 msgid "Review Rate"
 msgstr "Peržiūros įkainis"
 
-#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
+#: apps/accounts/models.py:91 apps/reports/forms.py:37
 msgid "Hourly Rate"
 msgstr "Valandinis įkainis"
 
@@ -106,7 +106,7 @@ msgstr "Valandinis įkainis"
 msgid "Score"
 msgstr "Taškai"
 
-#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
+#: apps/accounts/models.py:93 apps/reports/forms.py:21
 msgid "Currency"
 msgstr "Valiuta"
 
@@ -142,7 +142,7 @@ msgstr "Santrauka"
 msgid "Please enter your message summary"
 msgstr "Įrašykite savo pranešimo santrauką"
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:37 core/browser.py:19
+#: apps/contact/forms.py:34 apps/virtualfolder/models.py:32 core/browser.py:17
 msgid "Name"
 msgstr "Pavadinimas"
 
@@ -166,57 +166,6 @@ msgstr "Pranešimas"
 msgid "Please enter your message"
 msgstr "Prašom įvesti savo žinutę"
 
-#: apps/evernote_reports/forms.py:27
-msgid "Translation Rate"
-msgstr "Vartimo greitis"
-
-#: apps/evernote_reports/forms.py:42
-msgid "Effective from"
-msgstr "Galioja nuo"
-
-#: apps/evernote_reports/models.py:31 templates/editor/export_view.html:106
-#: templates/translation_projects/terminology/manage.html:37
-#: templates/user/settings.html:29
-msgid "Translation"
-msgstr "Vertimas"
-
-#: apps/evernote_reports/models.py:32
-msgid "Review"
-msgstr "Peržiūra"
-
-#: apps/evernote_reports/models.py:33
-msgid "Hourly Work"
-msgstr "Valandinis darbas"
-
-#: apps/evernote_reports/models.py:34
-msgid "Correction"
-msgstr "Pataisymas"
-
-#: apps/evernote_reports/models.py:37
-msgid "Type"
-msgstr "Tipas"
-
-#: apps/evernote_reports/models.py:40
-msgid "Amount"
-msgstr "Kiekis"
-
-#: apps/evernote_reports/models.py:42
-msgid "Date"
-msgstr "Data"
-
-#: apps/evernote_reports/models.py:43 apps/virtualfolder/models.py:63
-msgid "Description"
-msgstr "Aprašas"
-
-#: apps/evernote_reports/views.py:295
-#, python-format
-msgid "User %s not found"
-msgstr "Vartotojas %s nerastas"
-
-#: apps/evernote_reports/views.py:372
-msgid "Invalid request method"
-msgstr "Netinkamas užklausos metodas"
-
 #: apps/import_export/templates/browser/index.html:10
 msgid "Download translation files for offline translation"
 msgstr "Parsisiųsti vertimo failus darbui neprisijungus prie tinklo"
@@ -233,35 +182,35 @@ msgstr "Įkelti vertimo failus arba .zip formato archyvus"
 msgid "Upload translations"
 msgstr "Įkelti vertimus"
 
-#: apps/import_export/utils.py:22
+#: apps/import_export/utils.py:24
 #, python-format
-msgid "File %r missing X-Pootle-Path header\n"
+msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
+msgstr ""
+
+#: apps/import_export/utils.py:30
+#, fuzzy, python-format
+msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "Faile „%r“ trūksta „X-Pootle-Path“ antraštės\n"
 
-#: apps/import_export/utils.py:27
-#, python-format
-msgid "File %r missing or invalid X-Pootle-Revision header\n"
+#: apps/import_export/utils.py:35
+#, fuzzy, python-format
+msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr "Faile „%r“ trūksta „X-Pootle-Revision“ antraštės\n"
 
-#: apps/import_export/utils.py:37
-#, python-format
-msgid "File %r was rejected because its X-Pootle-Revision is too old."
-msgstr "Failas „%r“ nepriimtas, nes jo „X-Pootle-Revision“ antraštė per sena."
-
-#: apps/import_export/utils.py:42
-#, python-format
-msgid "Could not create %r. Missing Project/Language? (%s)"
+#: apps/import_export/utils.py:43
+#, fuzzy, python-format
+msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Sukurti „%r“ nepavyko. Gal nenurodytas projektas arba kalba? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
 msgstr "Šis kalbos kodas neatitinka ISO standarto"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:171
+#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:172
 msgid "Source Language"
 msgstr "Originalo kalba"
 
-#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:387
+#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:391
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "Žodis „%s“ negali būti naudojamas kaip projekto kodas"
@@ -347,7 +296,7 @@ msgstr ""
 "kodas. <a href=\"http://www.w3.org/International/articles/language-tags/"
 "\">Papildoma informacija</a>"
 
-#: apps/pootle_language/models.py:78 apps/pootle_project/models.py:145
+#: apps/pootle_language/models.py:78 apps/pootle_project/models.py:146
 msgid "Code"
 msgstr "Kodas"
 
@@ -367,9 +316,9 @@ msgid ""
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
-"Daugiau informacijos rasite <a href=\"http://docs.translatehouse.org/projects"
-"/localization-guide/en/latest/l10n/pluralforms.html\">mūsų tinklalapyje</a> "
-"apie daugiskaitos formas."
+"Daugiau informacijos rasite <a href=\"http://docs.translatehouse.org/"
+"projects/localization-guide/en/latest/l10n/pluralforms.html\">mūsų "
+"tinklalapyje</a> apie daugiskaitos formas."
 
 #: apps/pootle_language/models.py:93
 msgid "Unknown"
@@ -383,315 +332,320 @@ msgstr "Daugiskaitinių formų skaičius"
 msgid "Plural Equation"
 msgstr "Daugiskaitos lygtis"
 
-#: apps/pootle_misc/checks.py:34 apps/pootle_misc/checks.py:102
+#: apps/pootle_misc/checks.py:33 core/browser.py:66
+msgid "Critical"
+msgstr "Kritinės"
+
+#: apps/pootle_misc/checks.py:34
+msgid "Cosmetic"
+msgstr "Kosmetiniai"
+
+#: apps/pootle_misc/checks.py:35
+msgid "Functional"
+msgstr "Funkciniai"
+
+#: apps/pootle_misc/checks.py:36
+msgid "Extraction"
+msgstr "Išskyrimas"
+
+#: apps/pootle_misc/checks.py:37
+msgid "Other"
+msgstr "Kita"
+
+#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:110
 msgid "Accelerators"
 msgstr "Prieigos klavišai"
 
-#: apps/pootle_misc/checks.py:35
+#: apps/pootle_misc/checks.py:42
 msgid "Acronyms"
 msgstr "Santrumpos"
 
-#: apps/pootle_misc/checks.py:36
+#: apps/pootle_misc/checks.py:43
 msgid "Blank"
 msgstr "Tuštia eilutė"
 
-#: apps/pootle_misc/checks.py:37
+#: apps/pootle_misc/checks.py:44
 msgid "Brackets"
 msgstr "Skliaustai"
 
-#: apps/pootle_misc/checks.py:38
+#: apps/pootle_misc/checks.py:45
 msgid "Compendium conflict"
 msgstr "Rinkinio neatitikimas"
 
-#: apps/pootle_misc/checks.py:39
+#: apps/pootle_misc/checks.py:46
 msgid "Translator credits"
 msgstr "Padėkos vertėjams"
 
-#: apps/pootle_misc/checks.py:40 apps/pootle_misc/checks.py:106
+#: apps/pootle_misc/checks.py:47 apps/pootle_misc/checks.py:114
 msgid "Double quotes"
 msgstr "Dvigubos kabutės"
 
-#: apps/pootle_misc/checks.py:41
+#: apps/pootle_misc/checks.py:48
 msgid "Double spaces"
 msgstr "Dvigubi tarpai"
 
-#: apps/pootle_misc/checks.py:42
+#: apps/pootle_misc/checks.py:49
 msgid "Repeated word"
 msgstr "Kartojasi žodis"
 
-#: apps/pootle_misc/checks.py:43
+#: apps/pootle_misc/checks.py:50
 msgid "E-mail"
 msgstr "El. paštas"
 
-#: apps/pootle_misc/checks.py:44
+#: apps/pootle_misc/checks.py:51
 msgid "Ending punctuation"
 msgstr "Skyrybos ženklai pabaigoje"
 
-#: apps/pootle_misc/checks.py:45
+#: apps/pootle_misc/checks.py:52
 msgid "Ending whitespace"
 msgstr "Tarpai pabaigoje"
 
-#: apps/pootle_misc/checks.py:46
+#: apps/pootle_misc/checks.py:53
 msgid "Escapes"
 msgstr "Kaitos ženklai"
 
-#: apps/pootle_misc/checks.py:47
+#: apps/pootle_misc/checks.py:54
 msgid "File paths"
 msgstr "Failų keliai"
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:55
 msgid "Functions"
 msgstr "Funkcijos"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:56
 msgid "GConf values"
 msgstr "„GConf“ reikšmės"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:57 apps/pootle_misc/stats.py:26
+msgid "Fuzzy"
+msgstr "Neaiškus"
+
+#: apps/pootle_misc/checks.py:58
 msgid "Old KDE comment"
 msgstr "Seni KDE komentarai"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:59
 msgid "Long"
 msgstr "Ilgos eilutės"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:60
 msgid "Must translate words"
 msgstr "Būtinai verstini žodžiai"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:61
 msgid "Newlines"
 msgstr "Eilučių lūžiai"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:62
 msgid "Number of plurals"
 msgstr "Daugiskaitinių formų skaičius"
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:63
 msgid "Don't translate words"
 msgstr "Neverstini žodžiai"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:64
 msgid "Numbers"
 msgstr "Skaičiai"
 
-#: apps/pootle_misc/checks.py:57
+#: apps/pootle_misc/checks.py:65
 msgid "Options"
 msgstr "Parinktys"
 
-#: apps/pootle_misc/checks.py:58
+#: apps/pootle_misc/checks.py:66
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:59
+#: apps/pootle_misc/checks.py:67
 msgid "Punctuation spacing"
 msgstr "Tarpai aplink skyrybos ženklus"
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:68
 msgid "Pure punctuation"
 msgstr "Tik skyrybos ženklai"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:69
 msgid "Python brace placeholders"
 msgstr "„Python“ vietaženkliai su skliausteliais"
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:70
 msgid "Number of sentences"
 msgstr "Sakinių skaičius"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:71
 msgid "Short"
 msgstr "Trumpos eilutės"
 
-#: apps/pootle_misc/checks.py:64
+#: apps/pootle_misc/checks.py:72
 msgid "Simple capitalization"
 msgstr "Raidžių registras"
 
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:73
 msgid "Simple plural(s)"
 msgstr "Paprasta daugiskaita"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:74
 msgid "Single quotes"
 msgstr "Viengubos kabutės"
 
-#: apps/pootle_misc/checks.py:67
+#: apps/pootle_misc/checks.py:75
 msgid "Starting capitalization"
 msgstr "Raidžių registras pradžioje"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:76
 msgid "Starting punctuation"
 msgstr "Skyrybos ženklai pradžioje"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:77
 msgid "Starting whitespace"
 msgstr "Tarpai pradžioje"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:71
+#: apps/pootle_misc/checks.py:79
 msgid "Tabs"
 msgstr "Tabuliacijos"
 
-#: apps/pootle_misc/checks.py:72
+#: apps/pootle_misc/checks.py:80
 msgid "Unchanged"
 msgstr "Nepakeista"
 
-#: apps/pootle_misc/checks.py:73 apps/pootle_misc/stats.py:27
-#: apps/pootle_store/util.py:30 core/helpers.py:56
+#: apps/pootle_misc/checks.py:81 apps/pootle_misc/stats.py:27
+#: apps/pootle_store/util.py:30 core/helpers.py:58
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Neišversta"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:82
 msgid "URLs"
 msgstr "URL adresai"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:83
 msgid "Valid characters"
 msgstr "Leistini simboliai"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:84
 msgid "Placeholders"
 msgstr "Vietaženkliai"
 
-#: apps/pootle_misc/checks.py:77
-msgid "Invalid XML"
+#: apps/pootle_misc/checks.py:85
+#, fuzzy
+msgid "Valid XML"
 msgstr "Neteisingas XML"
 
-#: apps/pootle_misc/checks.py:78
+#: apps/pootle_misc/checks.py:86
 msgid "XML tags"
 msgstr "XML gairės"
 
-#: apps/pootle_misc/checks.py:80
+#: apps/pootle_misc/checks.py:88
 msgid "Broken HTML Entities"
 msgstr "Netinkami HTML kodai"
 
-#: apps/pootle_misc/checks.py:81
+#: apps/pootle_misc/checks.py:89
 msgid "Java format"
 msgstr "„Javos“ formatas"
 
-#: apps/pootle_misc/checks.py:82
+#: apps/pootle_misc/checks.py:90
 msgid "Template format"
 msgstr "Šablono formatas"
 
-#: apps/pootle_misc/checks.py:83
+#: apps/pootle_misc/checks.py:91
 msgid "Mustache placeholders"
 msgstr "„Mustache“ vietaženkliai"
 
-#: apps/pootle_misc/checks.py:84
+#: apps/pootle_misc/checks.py:92
 msgid "Mustache placeholder pairs"
 msgstr "„Mustache“ vietaženklių poros"
 
-#: apps/pootle_misc/checks.py:85
+#: apps/pootle_misc/checks.py:93
 msgid "Mustache like placeholder pairs"
 msgstr "Į „Mustache“ panašios vietaženklių poros"
 
-#: apps/pootle_misc/checks.py:86
+#: apps/pootle_misc/checks.py:94
 msgid "C format placeholders"
 msgstr "C formatų vietaženkliai"
 
-#: apps/pootle_misc/checks.py:87
+#: apps/pootle_misc/checks.py:95
 msgid "Non printable"
 msgstr "Nespausdinamieji simboliai"
 
-#: apps/pootle_misc/checks.py:88
+#: apps/pootle_misc/checks.py:96
 msgid "Unbalanced tag braces"
 msgstr "Nesubalansuoti gairių skliaustai"
 
-#: apps/pootle_misc/checks.py:89
+#: apps/pootle_misc/checks.py:97
 msgid "Changed attributes"
 msgstr "Pakitę požymiai"
 
-#: apps/pootle_misc/checks.py:90
+#: apps/pootle_misc/checks.py:98
 msgid "Unescaped ampersands"
 msgstr "Ampersendai be kaitos sekų"
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:99
 msgid "Incorrectly escaped ampersands"
 msgstr "Neteisingai pakeisti ampersendai"
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:100
 msgid "Whitespaces"
 msgstr "Tarpai"
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:101
 msgid "Date format"
 msgstr "Datos formatas"
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:102
 msgid "Uppercase placeholders"
 msgstr "Vietaženkliai didžiosiomis raidėmis"
 
-#: apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:103
 msgid "Percent sign placeholders"
 msgstr "Vietaženkliai su procento ženklu"
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:104
 msgid "Percent sign closure placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:105
 msgid "$ placeholders"
 msgstr "Vietaženkliai su dolerio ženklu"
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:106
 msgid "$ closure placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:107
 msgid "Java-encoded unicode"
 msgstr "„Javai“ užkoduotos unikodo sekos"
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:108
 msgid "Objective-C format"
 msgstr "„Objective-C“ formatas"
 
-#: apps/pootle_misc/checks.py:101
+#: apps/pootle_misc/checks.py:109
 msgid "Android format"
 msgstr "„Android“ formatas"
 
-#: apps/pootle_misc/checks.py:103
+#: apps/pootle_misc/checks.py:111
 msgid "Tags differ"
 msgstr "Nesutampančios gairės"
 
-#: apps/pootle_misc/checks.py:104
+#: apps/pootle_misc/checks.py:112
 msgid "Curly braces"
 msgstr "Riestiniai skliaustai"
 
-#: apps/pootle_misc/checks.py:105
+#: apps/pootle_misc/checks.py:113
 msgid "Potential unwanted placeholders"
 msgstr "Galimai nepageidaujami vietaženkliai"
 
-#: apps/pootle_misc/checks.py:107
+#: apps/pootle_misc/checks.py:115
 msgid "Double quotes in tags"
 msgstr "Dvigubos kabutės gairėse"
 
-#: apps/pootle_misc/checks.py:108
+#: apps/pootle_misc/checks.py:116
 msgid "Percent brace placeholders"
 msgstr "Vietaženkliai su procento ženklu ir skliaustais"
 
-#: apps/pootle_misc/checks.py:1006 core/browser.py:68
-msgid "Critical"
-msgstr "Kritinės"
-
-#: apps/pootle_misc/checks.py:1007
-msgid "Cosmetic"
-msgstr "Kosmetiniai"
-
-#: apps/pootle_misc/checks.py:1008
-msgid "Functional"
-msgstr "Funkciniai"
-
-#: apps/pootle_misc/checks.py:1009
-msgid "Extraction"
-msgstr "Išskyrimas"
-
-#: apps/pootle_misc/checks.py:1010
-msgid "Other"
-msgstr "Kita"
-
 #. Translators: This is the name of a filter
-#: apps/pootle_misc/forms.py:90 core/helpers.py:60
+#: apps/pootle_misc/forms.py:90 core/helpers.py:62
 msgid "Search"
 msgstr "Ieškoti"
 
@@ -719,33 +673,17 @@ msgstr "Pastabos"
 msgid "Locations"
 msgstr "Vietos"
 
-#: apps/pootle_misc/forms.py:122
-msgid "Source Terms"
-msgstr "Terminai originalo kalba"
-
-#: apps/pootle_misc/forms.py:123
-msgid "Target Terms"
-msgstr "Terminai paskirties kalba"
-
-#: apps/pootle_misc/forms.py:124
-msgid "Definitions"
-msgstr "Apibrėžtys"
-
 #. Translators: Heading representing the total number of words of a file
 #. or directory
-#: apps/pootle_misc/stats.py:24 core/browser.py:47
-#: templates/admin/detailed_reports.html:240
+#: apps/pootle_misc/stats.py:24 core/browser.py:45
+#: templates/admin/detailed_reports.html:275
 msgid "Total"
 msgstr "Viso"
 
 #: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32
-#: core/helpers.py:55 templates/editor/_filters.html:7
+#: core/helpers.py:57 templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Išversta"
-
-#: apps/pootle_misc/stats.py:26
-msgid "Fuzzy"
-msgstr "Neaiškus"
 
 #: apps/pootle_misc/templatetags/render_pager.py:22
 msgid "First"
@@ -764,15 +702,15 @@ msgstr "Kitas"
 msgid "Last (%d)"
 msgstr "Paskutinis (%d)"
 
-#: apps/pootle_profile/views.py:54
+#: apps/pootle_profile/views.py:55
 msgid "Select one or more languages"
 msgstr "Pasirinkite vieną ar daugiau kalbų"
 
-#: apps/pootle_project/forms.py:29 core/browser.py:34
+#: apps/pootle_project/forms.py:29 core/browser.py:32
 msgid "Language"
 msgstr "Kalba"
 
-#: apps/pootle_project/models.py:142
+#: apps/pootle_project/models.py:143
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -780,137 +718,83 @@ msgstr ""
 "Trumpas projekto kodinis pavadinimas. Jį gali sudaryti tik lotyniškos raidės "
 "be diakritinių ženklų, skaičiai ir simbolis „_“."
 
-#: apps/pootle_project/models.py:156
+#: apps/pootle_project/models.py:157
 msgid "Quality Checks"
 msgstr "Kokybės patikra"
 
-#: apps/pootle_project/models.py:159
+#: apps/pootle_project/models.py:160
 msgid "File Type"
 msgstr "Failo tipas"
 
-#: apps/pootle_project/models.py:163
+#: apps/pootle_project/models.py:164
 msgid "Automatic detection (slower)"
 msgstr "Automatiškai aptikti (užtruks ilgiau)"
 
-#: apps/pootle_project/models.py:164
+#: apps/pootle_project/models.py:165
 msgid "GNU style: files named by language code"
 msgstr "GNU stilius: failo vardas atitinka kalbos kodą"
 
-#: apps/pootle_project/models.py:165
+#: apps/pootle_project/models.py:166
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Ne GNU: kiekvienas failas atskirame aplanke"
 
-#: apps/pootle_project/models.py:168
+#: apps/pootle_project/models.py:169
 msgid "Project Tree Style"
 msgstr "Vertimo failų išdėstymo būdas projekte"
 
-#: apps/pootle_project/models.py:174
+#: apps/pootle_project/models.py:175
 msgid "Ignore Files"
 msgstr "Nepaisomi failai"
 
-#: apps/pootle_project/models.py:179
+#: apps/pootle_project/models.py:180
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:180
+#: apps/pootle_project/models.py:181
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "URL adresas arba el. paštas, kuriuo galima pranešti apie problemas "
 "originaliame tekste."
 
-#: apps/pootle_project/models.py:184
+#: apps/pootle_project/models.py:185
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:189
+#: apps/pootle_project/models.py:190
 msgid "Disabled"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:67 templates/editor/export_view.html:105
 msgid "Source"
 msgstr "Originalas"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:68
 msgid "Target"
 msgstr "Vertimas"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:69
 msgid "State"
 msgstr "Būsena"
 
-#: apps/pootle_statistics/models.py:67
+#: apps/pootle_statistics/models.py:70
 msgid "Comment"
 msgstr "Pastabos"
 
-#: apps/pootle_statistics/models.py:207
-#, python-format
-msgid "reverted translation for %(source_string)s"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:211
-#, python-format
-msgid "accepted suggestion for %(source_string)s"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:215
-#, python-format
-msgid "added suggestion for %(source_string)s"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:219
-#, python-format
-msgid "rejected suggestion for %(source_string)s"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:223
-msgid "uploaded a file"
-msgstr "įkeltas failas"
-
-#: apps/pootle_statistics/models.py:226
-#, python-format
-msgid "muted %(check_name)s for %(source_string)s"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:230
-#, python-format
-msgid "unmmuted %(check_name)s for %(source_string)s"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:250
-#, python-format
-msgid "translated %(source_string)s"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:252 apps/pootle_statistics/models.py:258
-#, python-format
-msgid "edited %(source_string)s"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:255
-#, python-format
-msgid "pre-translated %(source_string)s"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:260
-#, python-format
-msgid "removed translation for %(source_string)s"
-msgstr ""
+#: apps/pootle_statistics/models.py:266
+#, fuzzy
+msgid "Added suggestion"
+msgstr "%d pasiūlymas"
 
 #: apps/pootle_statistics/models.py:267
-#, python-format
-msgid "reviewed %(source_string)s"
-msgstr ""
+#, fuzzy, python-format
+msgid "Accepted suggestion from %s"
+msgstr "Priimti pasiūlymą"
 
 #: apps/pootle_statistics/models.py:268
-#, python-format
-msgid "marked as fuzzy %(source_string)s"
-msgstr ""
-
-#: apps/pootle_statistics/models.py:271
-#, python-format
-msgid "unknown action %(source_string)s"
-msgstr ""
+#, fuzzy, python-format
+msgid "Rejected suggestion from %s"
+msgstr "Atmesti pasiūlymą"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -934,9 +818,14 @@ msgstr "Nepakanka teisių šiam tinklalapiui pasiekti."
 msgid "Gettext PO"
 msgstr "Gettext PO"
 
-#: apps/pootle_store/filetypes.py:24 apps/pootle_store/filetypes.py:25
-msgid "XLIFF"
-msgstr "XLIFF"
+#: apps/pootle_store/filetypes.py:24
+#, fuzzy
+msgid "XLIFF (.xlf)"
+msgstr "XLIFF rinkmena"
+
+#: apps/pootle_store/filetypes.py:25
+msgid "XLIFF (.xliff)"
+msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -973,12 +862,12 @@ msgid "Plural Form %d"
 msgstr "Daugiskaitos forma %d"
 
 #: apps/pootle_store/forms.py:211 apps/pootle_store/util.py:31
-#: core/helpers.py:57 templates/editor/_filters.html:10
+#: core/helpers.py:59 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Tikslintina"
 
 #: apps/pootle_store/forms.py:247
-msgid "Fuzzy flag must be cleared"
+msgid "Needs work flag must be cleared"
 msgstr ""
 
 #: apps/pootle_store/forms.py:290
@@ -993,24 +882,19 @@ msgstr ""
 msgid "Translator comment"
 msgstr "Vertėjo pastaba"
 
-#: apps/pootle_store/models.py:143
+#: apps/pootle_store/models.py:146
 msgid "Pending"
 msgstr "Nepatvirtintas"
 
-#: apps/pootle_store/models.py:144
+#: apps/pootle_store/models.py:147
 msgid "Accepted"
 msgstr "Patvirtintas"
 
-#: apps/pootle_store/models.py:145
+#: apps/pootle_store/models.py:148
 msgid "Rejected"
 msgstr "Atmestas"
 
-#: apps/pootle_store/models.py:1274
-#, python-format
-msgid "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;added"
-msgstr ""
-
-#: apps/pootle_store/models.py:1329
+#: apps/pootle_store/models.py:1309
 msgid "Path"
 msgstr "Kelias"
 
@@ -1028,29 +912,86 @@ msgstr "Daugiskaita"
 msgid "Obsolete"
 msgstr "Pasenęs"
 
-#: apps/pootle_store/views.py:466 core/decorators.py:46
+#: apps/pootle_store/views.py:467 core/decorators.py:46
 msgid "Arguments missing."
 msgstr "Trūksta argumentų."
 
-#: apps/pootle_store/views.py:695
+#: apps/pootle_store/views.py:708
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:729
+#: apps/pootle_store/views.py:742
 msgid "Comment submission failed."
 msgstr "Nepavyko pateikti pastabos."
 
-#: apps/pootle_store/views.py:917
+#: apps/pootle_store/views.py:941
 msgid "Failed to process submission."
 msgstr "Nepavyko apdoroti pateikto vertimo."
 
-#: apps/pootle_store/views.py:958
+#: apps/pootle_store/views.py:982
 msgid "Failed to process suggestion."
 msgstr "Nepavyko apdoroti pasiūlymo."
 
 #: apps/pootle_terminology/forms.py:48
 msgid "This term already exists in this file."
 msgstr "Šis terminas šiame faile jau yra."
+
+#: apps/reports/forms.py:27
+msgid "Translation Rate"
+msgstr "Vartimo greitis"
+
+#: apps/reports/forms.py:42
+msgid "Effective from"
+msgstr "Galioja nuo"
+
+#: apps/reports/models.py:31 apps/reports/models.py:43
+#: templates/editor/export_view.html:106
+#: templates/translation_projects/terminology/manage.html:35
+#: templates/user/settings.html:29
+msgid "Translation"
+msgstr "Vertimas"
+
+#: apps/reports/models.py:32 apps/reports/models.py:44
+msgid "Review"
+msgstr "Peržiūra"
+
+#: apps/reports/models.py:33
+#, fuzzy
+msgid "Suggestion"
+msgstr "Pateikti pasiūlymai"
+
+#: apps/reports/models.py:45
+msgid "Hourly Work"
+msgstr "Valandinis darbas"
+
+#: apps/reports/models.py:46
+msgid "Correction"
+msgstr "Pataisymas"
+
+#: apps/reports/models.py:49
+msgid "Type"
+msgstr "Tipas"
+
+#: apps/reports/models.py:52
+msgid "Amount"
+msgstr "Kiekis"
+
+#: apps/reports/models.py:54
+msgid "Date"
+msgstr "Data"
+
+#: apps/reports/models.py:55 apps/virtualfolder/models.py:58
+msgid "Description"
+msgstr "Aprašas"
+
+#: apps/reports/views.py:320
+#, python-format
+msgid "User %s not found"
+msgstr "Vartotojas %s nerastas"
+
+#: apps/reports/views.py:397
+msgid "Invalid request method"
+msgstr "Netinkamas užklausos metodas"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1109,54 +1050,54 @@ msgstr "Tinklalapis su teisine informacija"
 msgid "Regular Page"
 msgstr "Paprastas tinklalapis"
 
-#: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
+#: apps/staticpages/views.py:121 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "Tinklalapio antraštė"
 
 #. Translators: 'projects' must not be translated.
-#: apps/staticpages/views.py:128
+#: apps/staticpages/views.py:138
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
 
-#: apps/virtualfolder/models.py:39
+#: apps/virtualfolder/models.py:34
 #, fuzzy
 msgid "Location"
 msgstr "Vietos"
 
-#: apps/virtualfolder/models.py:42
+#: apps/virtualfolder/models.py:37
 msgid "Root path where this virtual folder is applied."
 msgstr ""
 
 #. Translators: This is a noun.
-#: apps/virtualfolder/models.py:46
+#: apps/virtualfolder/models.py:41
 #, fuzzy
 msgid "Filter"
 msgstr "Filtruoti"
 
-#: apps/virtualfolder/models.py:48
+#: apps/virtualfolder/models.py:43
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
 
-#: apps/virtualfolder/models.py:52 core/browser.py:24
+#: apps/virtualfolder/models.py:47 core/browser.py:22
 msgid "Priority"
 msgstr "Prioritetas"
 
-#: apps/virtualfolder/models.py:54
+#: apps/virtualfolder/models.py:49
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
 
-#: apps/virtualfolder/models.py:58
-msgid "Is browsable?"
+#: apps/virtualfolder/models.py:53
+msgid "Is public?"
 msgstr ""
 
-#: apps/virtualfolder/models.py:60
+#: apps/virtualfolder/models.py:55
 #, fuzzy
-msgid "Whether this virtual folder is active or not."
+msgid "Whether this virtual folder is public or not."
 msgstr "Ar aktyvus šis tinklalapis."
 
-#: apps/virtualfolder/models.py:65
+#: apps/virtualfolder/models.py:60
 #, fuzzy, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
@@ -1189,168 +1130,211 @@ msgstr ""
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr ""
 
-#: checks.py:88
-msgid ""
-"Can't find python-levenshtein package. Updating against templates is faster "
-"with python-levenshtein."
-msgstr ""
-"Nerastas „python-levenshtein“ paketas. Sinchronizavimas su šablonais vyktų "
-"greičiau, jeigu „python-levenshtein“ būtų įdiegtas."
-
-#: checks.py:90
-msgid "Try pip install python-levenshtein"
-msgstr ""
-
-#: checks.py:109
+#: checks.py:92
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr ""
 
-#: checks.py:110
+#: checks.py:93
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr ""
 
-#: checks.py:119
+#: checks.py:102
 msgid "No RQ Worker running."
 msgstr ""
 
-#: checks.py:120
+#: checks.py:103
 msgid "Run new workers with manage.py rqworker"
 msgstr ""
 
-#: checks.py:127
+#: checks.py:110
 #, fuzzy
 msgid "Your version of Redis is too old."
 msgstr "Įdiegta „Django“ %s laida."
 
-#: checks.py:128
+#: checks.py:111
 msgid "Update your system's Redis server package"
 msgstr ""
 
-#: checks.py:143
+#: checks.py:126
 msgid "Cache backend is not set to Redis."
 msgstr ""
 
-#: checks.py:144
+#: checks.py:127
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
 
-#: checks.py:153
+#: checks.py:136
 msgid "Could not initiate a Redis cache connection"
 msgstr ""
 
-#: checks.py:154
+#: checks.py:137
 msgid "Double-check your CACHES settings"
 msgstr ""
 
-#: checks.py:160
+#: checks.py:143
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr ""
 
-#: checks.py:161
+#: checks.py:144
 msgid "Set DEBUG = False in Pootle settings"
 msgstr ""
 
-#: checks.py:167
+#: checks.py:150
 msgid "The sqlite database backend is unsupported"
 msgstr ""
 
-#: checks.py:168
+#: checks.py:151
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
 msgstr ""
 
-#: checks.py:174
+#: checks.py:157
 msgid "Not using cached_db as session engine"
 msgstr ""
 
-#: checks.py:175
+#: checks.py:158
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
 
-#: checks.py:182
+#: checks.py:165
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr ""
 
-#: checks.py:183
+#: checks.py:166
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
 
-#: checks.py:191
+#: checks.py:174
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: checks.py:193
+#: checks.py:176
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
 
-#: checks.py:200
-msgid "settings.DEFAULT_FROM_EMAIL is not set."
+#: checks.py:183
+msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr ""
 
-#: checks.py:201 checks.py:211
+#: checks.py:184 checks.py:194
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
 
-#: checks.py:209
+#: checks.py:192
 #, python-format
-msgid "settings.DEFAULT_FROM_EMAIL is using the following default setting %r."
+msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: core/browser.py:29
+#: checks.py:203
+#, fuzzy
+msgid "POOTLE_MARKUP_FILTER is missing."
+msgstr "Nerastas MARKUP_FILTER. Grįžtama prie HTML."
+
+#: checks.py:204
+msgid "Set POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:209
+#, fuzzy
+msgid "Invalid value in POOTLE_MARKUP_FILTER."
+msgstr "Nežinoma MARKUP_FILTER reikšmė – „%s“. Grįžtama prie HTML."
+
+#: checks.py:210
+msgid "Set a valid value for POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:224
+msgid "Invalid markup in POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:225
+msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:230
+#, python-format
+msgid ""
+"POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
+"can't be found."
+msgstr ""
+
+#: checks.py:232
+msgid "Install the package or change POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:256
+msgid "The default 'admin' user still has a password set to 'admin'."
+msgstr ""
+
+#: checks.py:258
+msgid "Remove the 'admin' user or change its password."
+msgstr ""
+
+#: checks.py:273
+msgid "Database connection does not implement on_commit."
+msgstr ""
+
+#: checks.py:274
+msgid ""
+"Set the DATABASES['default']['ENGINE'] to use a backend from "
+"transaction_hooks.backends."
+msgstr ""
+
+#: core/browser.py:27
 msgid "Project"
 msgstr "Projektas"
 
 #. Translators: noun. The graphical representation of translation status
-#: core/browser.py:40
+#: core/browser.py:38
 msgid "Progress"
 msgstr "Progresas"
 
-#: core/browser.py:52 templates/browser/index.html:39
+#: core/browser.py:50 templates/browser/index.html:39
 #, fuzzy
 msgid "Last updated"
 msgstr "Paskiausiai redaguota"
 
-#: core/browser.py:57
+#: core/browser.py:55
 msgid "Need Translation"
 msgstr "Neišversta"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:63 templates/editor/_filters.html:11
+#: core/browser.py:61 templates/editor/_filters.html:11
 msgid "Suggestions"
 msgstr "Pateikti pasiūlymai"
 
-#: core/browser.py:73
+#: core/browser.py:71
 msgid "Last Activity"
 msgstr "Paskiausias pakeitimas"
 
-#: core/browser.py:130
+#: core/browser.py:128
 #, fuzzy
 msgid "Back to language"
 msgstr "Grįžti į pagrindinį puslapį"
 
-#: core/browser.py:132
+#: core/browser.py:130
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:313
+#: core/decorators.py:321
 msgid "Insufficient rights to access this page."
 msgstr "Nepakanka teisių šiam tinklalapiui pasiekti."
 
-#: core/decorators.py:326 core/views.py:34
+#: core/decorators.py:334 core/views.py:34
 msgid "You do not have rights to administer Pootle."
 msgstr "Jums nesuteiktos teisės administruoti „Pootle“."
 
@@ -1366,64 +1350,64 @@ msgstr "Įveskite skaičių"
 msgid "Incorrect"
 msgstr "Atsakymas neteisingas"
 
-#: core/helpers.py:42
+#: core/helpers.py:44
 msgid "User missing"
 msgstr "Naudotojas nerastas"
 
 #. Translators: This refers to "All strings"
-#: core/helpers.py:54 templates/editor/_filters.html:6
+#: core/helpers.py:56 templates/editor/_filters.html:6
 msgid "All"
 msgstr "Visos"
 
-#: core/helpers.py:58 templates/editor/_filters.html:8
+#: core/helpers.py:60 templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Neužbaigta"
 
-#: core/helpers.py:61 templates/editor/_filters.html:18
+#: core/helpers.py:63 templates/editor/_filters.html:18
 msgid "Checks"
 msgstr "Testai"
 
-#: core/helpers.py:62 templates/editor/_filters.html:13
+#: core/helpers.py:64 templates/editor/_filters.html:13
 msgid "My submissions"
 msgstr "Mano pateikti vertimai"
 
-#: core/helpers.py:63 templates/admin/dashboard.html:13
+#: core/helpers.py:65 templates/admin/dashboard.html:13
 msgid "Submissions"
 msgstr "Pateikti vertimai"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
-#: core/helpers.py:64 templates/editor/_filters.html:17
+#: core/helpers.py:66 templates/editor/_filters.html:17
 msgid "My overwritten submissions"
 msgstr "Perrašyti mano vertimai"
 
-#: core/helpers.py:65
+#: core/helpers.py:67
 msgid "Overwritten submissions"
 msgstr "Perrašyti vertimai"
 
-#: core/initdb.py:109
+#: core/initdb.py:108
 msgid "Can access a project"
 msgstr ""
 
-#: core/initdb.py:113
+#: core/initdb.py:112
 msgid "Cannot access a project"
 msgstr ""
 
-#: core/initdb.py:117
+#: core/initdb.py:116
 msgid "Can make a suggestion for a translation"
 msgstr "Gali siūlyti vertimus"
 
-#: core/initdb.py:121
+#: core/initdb.py:120
 msgid "Can submit a translation"
 msgstr "Gali pateikti vertimus"
 
-#: core/initdb.py:125
+#: core/initdb.py:124
 #, fuzzy
 msgid "Can review suggestions"
 msgstr "Siūlymų peržiūra"
 
-#: core/initdb.py:129
+#: core/initdb.py:128
 msgid "Can administrate a translation project"
 msgstr "Gali administruoti projektus"
 
@@ -1440,12 +1424,18 @@ msgstr ""
 msgid "License Terms"
 msgstr "Licencija"
 
-#: custom/templates/profiles/_tabs.html:4 templates/layout.html:116
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:111
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
 msgid "Settings"
 msgstr "Nuostatos"
 
-#: middleware/errorpages.py:57
+#: middleware/errorpages.py:82
+#, python-format
+msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
+msgstr ""
+"Nepavyko pasiekti failo %(filename)s. Failų sistemos klaida: %(errormsg)s"
+
+#: middleware/errorpages.py:119
 #, fuzzy, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -1453,12 +1443,6 @@ msgid ""
 msgstr ""
 "Turite <a href=\"%(login_link)s\">prisijungti</a>, kad galėtumėte prieiti "
 "prie šio tinklalapio."
-
-#: middleware/errorpages.py:97
-#, python-format
-msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
-msgstr ""
-"Nepavyko pasiekti failo %(filename)s. Failų sistemos klaida: %(errormsg)s"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:35
@@ -1490,7 +1474,7 @@ msgstr "Naudojimosi sąlygos"
 msgid "Terms of Service"
 msgstr "Paslaugos teikimo sąlygos"
 
-#: templates/about.html:7 templates/layout.html:171
+#: templates/about.html:7 templates/layout.html:167
 msgid "About"
 msgstr "Apie"
 
@@ -1557,7 +1541,7 @@ msgid "Registration is currently disabled. Please try again later."
 msgstr ""
 
 #: templates/admin/_generic_formset.html:15
-#: templates/translation_projects/terminology/manage.html:51
+#: templates/translation_projects/terminology/manage.html:49
 msgid "Save Changes"
 msgstr "Įrašyti pakeitimus"
 
@@ -1694,24 +1678,29 @@ msgstr ""
 msgid "Subtotal"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:184
-#: templates/admin/detailed_reports.html:230
+#: templates/admin/detailed_reports.html:206
+#: templates/admin/detailed_reports.html:265
 msgid "registered tasks"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:195
+#: templates/admin/detailed_reports.html:217
 msgid "No activity recorded in a given period"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:205
+#: templates/admin/detailed_reports.html:226
+#, fuzzy
+msgid "Suggestion (subtotal)"
+msgstr "Pateikti pasiūlymai"
+
+#: templates/admin/detailed_reports.html:236
 msgid "Translation (subtotal)"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:216
+#: templates/admin/detailed_reports.html:251
 msgid "Review (subtotal)"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:248
+#: templates/admin/detailed_reports.html:283
 msgid "Please select a valid user."
 msgstr ""
 
@@ -1781,7 +1770,7 @@ msgid "Save"
 msgstr "Įrašyti"
 
 #: templates/admin/staticpages/_form.html:6
-#: templates/translation_projects/terminology/manage.html:38
+#: templates/translation_projects/terminology/manage.html:36
 msgid "Delete"
 msgstr "Šalinti"
 
@@ -1794,6 +1783,12 @@ msgid ""
 "Use <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/a&gt;"
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
+msgstr ""
+
+#: templates/admin/staticpages/_form.html:37
+msgid ""
+"In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
+"a dynamic language code."
 msgstr ""
 
 #: templates/admin/staticpages/_table.html:10
@@ -1809,6 +1804,7 @@ msgid "No"
 msgstr "Ne"
 
 #: templates/admin/staticpages/_table.html:19
+#: templates/staticpages/_body.html:16
 #, fuzzy
 msgid "edit"
 msgstr "Taisyti"
@@ -1823,7 +1819,6 @@ msgid "No pages yet."
 msgstr "Tinklalapių nėra."
 
 #: templates/admin/staticpages/page_create.html:4
-#: templates/admin/staticpages/page_create.html:7
 msgid "Add"
 msgstr "Pridėti"
 
@@ -1871,17 +1866,17 @@ msgstr ""
 
 #: templates/browser/_progressbar.html:3
 #, python-format
-msgid "<span class='value translated'>0</span>%% translated"
+msgid "<span class=\"value translated\">0</span>%% translated"
 msgstr ""
 
 #: templates/browser/_progressbar.html:4
 #, python-format
-msgid "<span class='value fuzzy'>0</span>%% fuzzy"
+msgid "<span class=\"value fuzzy\">0</span>%% needs work"
 msgstr ""
 
 #: templates/browser/_progressbar.html:5
 #, python-format
-msgid "<span class='value untranslated'>0</span>%% untranslated"
+msgid "<span class=\"value untranslated\">0</span>%% untranslated"
 msgstr ""
 
 #: templates/browser/index.html:13
@@ -1900,25 +1895,25 @@ msgstr ""
 msgid "Failing Checks"
 msgstr "Galimos problemos"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:102
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
-#: templates/browser/index.html:109
+#: templates/browser/index.html:107
 msgid ""
 "Some data on this page is currently being calculated, and the page will be "
 "refreshed automatically in <strong>30 seconds</strong>."
 msgstr ""
 
-#: templates/browser/index.html:113
+#: templates/browser/index.html:111
 msgid "Refresh now"
 msgstr ""
 
-#: templates/browser/index.html:149
+#: templates/browser/index.html:148
 msgid "Congratulations! You have completed this task!"
 msgstr ""
 
-#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:104
+#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:99
 msgid "Contact Us"
 msgstr "Susisiekite su mumis"
 
@@ -2042,9 +2037,14 @@ msgstr "Eilučių nėra."
 #: templates/editor/export_view.html:149
 #, python-format
 msgid ""
-"We displayed first %(count)s units out of %(total_count)s. Please refine "
-"your search."
-msgstr ""
+"We displayed the first unit out of %(total_count)s. Please refine your "
+"search."
+msgid_plural ""
+"We displayed the first %(unit_count)s units out of %(total_count)s. Please "
+"refine your search."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
 #: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
@@ -2082,126 +2082,126 @@ msgstr "Įterpti šio termino vertimą į teksto lauką"
 msgid "Comments:"
 msgstr "Pastabos:"
 
-#: templates/editor/units/edit.html:70
+#: templates/editor/units/edit.html:72
 msgid "Click to open the image in a popup"
 msgstr ""
 
-#: templates/editor/units/edit.html:84
+#: templates/editor/units/edit.html:86
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:108 templates/editor/units/edit.html:134
+#: templates/editor/units/edit.html:111 templates/editor/units/edit.html:139
 msgid "Copy into translation"
 msgstr "Kopijuoti į vertimo lauką"
 
-#: templates/editor/units/edit.html:130
+#: templates/editor/units/edit.html:134
 #, fuzzy
 msgid "Report a problem with this string"
 msgstr "Pranešti apie problemą originalioje eilutėje"
 
-#: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
-#: templates/editor/units/edit.html:256
+#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:169
+#: templates/editor/units/edit.html:262
 msgid "Submit"
 msgstr "Pateikti"
 
-#: templates/editor/units/edit.html:153
+#: templates/editor/units/edit.html:159
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Įrašyti vertimą ir eiti į kitą eilutę (Vald+Įvesti)"
 
-#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
+#: templates/editor/units/edit.html:164 templates/editor/units/edit.html:170
 msgid "Suggest"
 msgstr "Pasiūlyti"
 
-#: templates/editor/units/edit.html:159
+#: templates/editor/units/edit.html:165
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Pasiūlyti vertimą ir eiti į kitą eilutę (Vald+Įvesti)"
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:169
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Įjungti vertimo veikseną (Vald+Lyg2+Tarpas)"
 
-#: templates/editor/units/edit.html:164
+#: templates/editor/units/edit.html:170
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Įjungti siūlymo veikseną (Vald+Lyg2+Tarpas)"
 
-#: templates/editor/units/edit.html:169
+#: templates/editor/units/edit.html:175
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Pažymėti šią eilutę kaip reikalaujančią papildomo darbo (Vald+Tarpas)"
 
-#: templates/editor/units/edit.html:184
+#: templates/editor/units/edit.html:190
 msgid "Show Timeline"
 msgstr "Rodyti laiko juostą"
 
-#: templates/editor/units/edit.html:186
+#: templates/editor/units/edit.html:192
 msgid "Add Comment"
 msgstr "Pridėti pastabą"
 
-#: templates/editor/units/edit.html:188
+#: templates/editor/units/edit.html:194
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:198
+#: templates/editor/units/edit.html:204
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "peržiūrėjo <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:208
+#: templates/editor/units/edit.html:214
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "Įterpti krypties iš dešinės į kairę simbolį (RLM) į redaktorių"
 
-#: templates/editor/units/edit.html:211
+#: templates/editor/units/edit.html:217
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "Įterpti krypties iš kairės į dešinę simbolį (LRM) į redaktorių"
 
-#: templates/editor/units/edit.html:214
+#: templates/editor/units/edit.html:220
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "Įterpti įterpimo iš dešinės į kairę ženklą (RLE) į redaktorių"
 
-#: templates/editor/units/edit.html:217
+#: templates/editor/units/edit.html:223
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "Įterpti įterpimo iš kairės į dešinę ženklą (LRE) į redaktorių"
 
-#: templates/editor/units/edit.html:220
+#: templates/editor/units/edit.html:226
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "Įterpti perdengimo iš dešinės į kairę ženklą (RLO) į redaktorių"
 
-#: templates/editor/units/edit.html:223
+#: templates/editor/units/edit.html:229
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "Įterpti perdengimo iš kairės į dešinę ženklą (LRO) į redaktorių"
 
-#: templates/editor/units/edit.html:226
+#: templates/editor/units/edit.html:232
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "Įterpti ankstesnio lygmens krypties ženklą (PDF) į redaktorių"
 
-#: templates/editor/units/edit.html:229
+#: templates/editor/units/edit.html:235
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "Įterpti nulinio pločio jungimo ženklą (ZWJ) į redaktorių"
 
-#: templates/editor/units/edit.html:232
+#: templates/editor/units/edit.html:238
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "Įterpti nulinio pločio skėlimo ženklą (ZWNJ) į redaktorių"
 
-#: templates/editor/units/edit.html:239
+#: templates/editor/units/edit.html:245
 msgid "Insert this symbol into the editor"
 msgstr "Įterpti šį simbolį į teksto lauką"
 
-#: templates/editor/units/edit.html:276
+#: templates/editor/units/edit.html:282
 msgid "User suggestions"
 msgstr "Naudotojų pasiūlymai"
 
-#: templates/editor/units/edit.html:293
+#: templates/editor/units/edit.html:300
 msgid "Accept suggestion"
 msgstr "Priimti pasiūlymą"
 
-#: templates/editor/units/edit.html:298
+#: templates/editor/units/edit.html:305
 msgid "Reject suggestion"
 msgstr "Atmesti pasiūlymą"
 
-#: templates/editor/units/edit.html:305
+#: templates/editor/units/edit.html:312
 msgid "Remove suggestion"
 msgstr "Pašalinti pasiūlymą"
 
-#: templates/editor/units/edit.html:320
+#: templates/editor/units/edit.html:327
 msgid "A long time ago"
 msgstr ""
 
@@ -2209,28 +2209,33 @@ msgstr ""
 msgid "Comment: "
 msgstr "Pastaba: "
 
-#: templates/editor/units/timeline.html:4
-#: templates/editor/units/timeline.html:14
-msgid "Previous Work"
-msgstr "Ankstesni vertimai"
-
-#: templates/editor/units/xhr_checks.html:3
-msgid "Possible issues with the translation"
+#: templates/editor/units/xhr_checks.html:5
+#, fuzzy
+msgid "Critical issues with the translation"
 msgstr "Galimos vertimo problemos"
 
-#: templates/editor/units/xhr_checks.html:3
-msgid "Failing checks:"
-msgstr "Nesėkmingi testai:"
+#: templates/editor/units/xhr_checks.html:5
+#, fuzzy
+msgid "Critical errors:"
+msgstr "Kritinės"
 
-#: templates/editor/units/xhr_checks.html:10
+#: templates/editor/units/xhr_checks.html:12
 #, fuzzy
 msgid "Mute quality check"
 msgstr "Nesėkmingi testai:"
 
-#: templates/editor/units/xhr_checks.html:11
+#: templates/editor/units/xhr_checks.html:13
 #, fuzzy
 msgid "Unmute quality check"
 msgstr "Nesėkmingi testai:"
+
+#: templates/editor/units/xhr_checks.html:25
+msgid "Possible issues with the translation"
+msgstr "Galimos vertimo problemos"
+
+#: templates/editor/units/xhr_checks.html:25
+msgid "Watch out for:"
+msgstr ""
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
@@ -2244,15 +2249,15 @@ msgstr ""
 msgid "Timeline"
 msgstr "Laiko juosta"
 
-#: templates/editor/units/xhr_timeline.html:25
+#: templates/editor/units/xhr_timeline.html:32
 msgid "Last comment removed"
 msgstr ""
 
-#: templates/editor/units/xhr_timeline.html:30
+#: templates/editor/units/xhr_timeline.html:37
 msgid "check"
 msgstr ""
 
-#: templates/editor/units/xhr_timeline.html:38
+#: templates/editor/units/xhr_timeline.html:46
 msgid "Unit created"
 msgstr ""
 
@@ -2347,39 +2352,39 @@ msgstr ""
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr "Žemiau galite pridėti, keisti ir šalinti teises šiai kalbai."
 
-#: templates/layout.html:78
+#: templates/layout.html:79
 msgid "Pootle requires JavaScript"
 msgstr ""
 
-#: templates/layout.html:79
+#: templates/layout.html:80
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 "Įjunkite „JavaScript“ savo naršyklės nuostatose ir įkelkite šį tinklalapį iš "
 "naujo."
 
-#: templates/layout.html:94
+#: templates/layout.html:89
 msgid "skip to navigation"
 msgstr "šokti į navigaciją"
 
-#: templates/layout.html:115
+#: templates/layout.html:110
 msgid "Public Profile"
 msgstr ""
 
-#: templates/layout.html:117 templates/user/stats.html:46
+#: templates/layout.html:112 templates/user/stats.html:46
 #: templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr ""
 
-#: templates/layout.html:119
+#: templates/layout.html:114
 msgid "Admin"
 msgstr "Administratorius"
 
-#: templates/layout.html:122
+#: templates/layout.html:117
 msgid "Sign out"
 msgstr ""
 
-#: templates/layout.html:126
+#: templates/layout.html:121
 msgid "Sign In"
 msgstr ""
 
@@ -2387,11 +2392,17 @@ msgstr ""
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "Čia galite pridėti, keisti ir šalinti šio projekto kalbas."
 
+#: templates/projects/admin/languages.html:14
+msgid ""
+"There are no templates for this project, so adding new languages from this "
+"screen is disabled."
+msgstr ""
+
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr "Žemiau galite pridėti, keisti ir šalinti teises šio projekto ribose."
 
-#: templates/staticpages/_body.html:5
+#: templates/staticpages/_body.html:6
 #, fuzzy, python-format
 msgid ""
 "This static page is inactive and visible to administrators only. You can "
@@ -2444,37 +2455,20 @@ msgstr "Vertėjų pastabos"
 msgid "Manage Terminology"
 msgstr "Terminų žodyno tvarkymas"
 
-#: templates/translation_projects/terminology/extract.html:6
-msgid "Regenerate Glossary"
-msgstr "Terminų žodyno pergeneravimas"
-
-#: templates/translation_projects/terminology/extract.html:7
-msgid ""
-"Are you sure you want to regenerate the glossary? Any existing terms and "
-"their translations will be deleted."
-msgstr ""
-"Ar tikrai norite naujai generuoti terminų žodyną? Visi jame jau esantys "
-"terminai ir vertimai bus pašalinti."
-
-#: templates/translation_projects/terminology/extract.html:11
-msgid "Extract"
-msgstr "Generuoti"
-
-#: templates/translation_projects/terminology/manage.html:23
-msgid "You can regenerate the glossary from scratch."
-msgstr "Jūs galite naujai sugeneruoti terminų žodyną nuo nulio."
-
-#: templates/translation_projects/terminology/manage.html:36
+#: templates/translation_projects/terminology/manage.html:34
 msgid "Term"
 msgstr "Terminas"
 
-#: templates/translation_projects/terminology/manage.html:62
-msgid "Glossary is Empty"
-msgstr "Terminų žodynas šiuo metu tuščias"
+#: templates/translation_projects/terminology/manage.html:58
+msgid "No terminology file has been found"
+msgstr ""
 
-#: templates/translation_projects/terminology/manage.html:63
-msgid "Generate Glossary"
-msgstr "Generuoti terminų žodyną"
+#: templates/translation_projects/terminology/manage.html:60
+msgid ""
+"In order to use the terminology feature, make sure to add to your "
+"translation project a \"pootle-terminology\" file named after your project's "
+"extension."
+msgstr ""
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
@@ -2498,67 +2492,67 @@ msgstr ""
 msgid "Anonymous User"
 msgstr "anoniminis naudotojas"
 
-#: templates/user/profile.html:25
+#: templates/user/profile.html:28
 msgid "Score:"
 msgstr ""
 
-#: templates/user/profile.html:28
+#: templates/user/profile.html:31
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
 msgstr ""
 
-#: templates/user/profile.html:28 templates/user/profile.html.py:40
+#: templates/user/profile.html:31 templates/user/profile.html.py:43
 msgid "Tweet this!"
 msgstr ""
 
-#: templates/user/profile.html:37
+#: templates/user/profile.html:40
 msgid "No contributions in the last month"
 msgstr ""
 
-#: templates/user/profile.html:40
+#: templates/user/profile.html:43
 #, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
 "%(server_title)s! "
 msgstr ""
 
-#: templates/user/profile.html:41
+#: templates/user/profile.html:44
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s for this month"
 msgstr ""
 
-#: templates/user/profile.html:46
+#: templates/user/profile.html:49
 #, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
 msgstr ""
 
-#: templates/user/profile.html:57
+#: templates/user/profile.html:60
 #, fuzzy
 msgid "Latest activity:"
 msgstr "Paskiausias pakeitimas"
 
-#: templates/user/profile.html:69
+#: templates/user/profile.html:72
 msgid "My Website"
 msgstr ""
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:78
 msgid "My LinkedIn Profile"
 msgstr ""
 
-#: templates/user/profile.html:84
+#: templates/user/profile.html:87
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:94
+#: templates/user/profile.html:97
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/profile.html:96
+#: templates/user/profile.html:99
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -2620,6 +2614,60 @@ msgstr "Priskirti veiksmą"
 msgid "Top Contributors This Month"
 msgstr ""
 
+#~ msgid "File %r was rejected because its X-Pootle-Revision is too old."
+#~ msgstr ""
+#~ "Failas „%r“ nepriimtas, nes jo „X-Pootle-Revision“ antraštė per sena."
+
+#~ msgid "Source Terms"
+#~ msgstr "Terminai originalo kalba"
+
+#~ msgid "Target Terms"
+#~ msgstr "Terminai paskirties kalba"
+
+#~ msgid "Definitions"
+#~ msgstr "Apibrėžtys"
+
+#~ msgid "uploaded a file"
+#~ msgstr "įkeltas failas"
+
+#~ msgid "XLIFF"
+#~ msgstr "XLIFF"
+
+#~ msgid ""
+#~ "Can't find python-levenshtein package. Updating against templates is "
+#~ "faster with python-levenshtein."
+#~ msgstr ""
+#~ "Nerastas „python-levenshtein“ paketas. Sinchronizavimas su šablonais "
+#~ "vyktų greičiau, jeigu „python-levenshtein“ būtų įdiegtas."
+
+#~ msgid "Previous Work"
+#~ msgstr "Ankstesni vertimai"
+
+#~ msgid "Failing checks:"
+#~ msgstr "Nesėkmingi testai:"
+
+#~ msgid "Regenerate Glossary"
+#~ msgstr "Terminų žodyno pergeneravimas"
+
+#~ msgid ""
+#~ "Are you sure you want to regenerate the glossary? Any existing terms and "
+#~ "their translations will be deleted."
+#~ msgstr ""
+#~ "Ar tikrai norite naujai generuoti terminų žodyną? Visi jame jau esantys "
+#~ "terminai ir vertimai bus pašalinti."
+
+#~ msgid "Extract"
+#~ msgstr "Generuoti"
+
+#~ msgid "You can regenerate the glossary from scratch."
+#~ msgstr "Jūs galite naujai sugeneruoti terminų žodyną nuo nulio."
+
+#~ msgid "Glossary is Empty"
+#~ msgstr "Terminų žodynas šiuo metu tuščias"
+
+#~ msgid "Generate Glossary"
+#~ msgstr "Generuoti terminų žodyną"
+
 #~ msgid "page-%d"
 #~ msgstr "%d-tinklalapis"
 
@@ -2676,9 +2724,6 @@ msgstr ""
 #~ "Neaptiktas „ISO codes“ paketas. „Pootle“ naudoja „ISO codes“ duomenis "
 #~ "kalbų pavadinimams versti."
 
-#~ msgid "MARKUP_FILTER is missing. Falling back to HTML."
-#~ msgstr "Nerastas MARKUP_FILTER. Grįžtama prie HTML."
-
 #~ msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
 #~ msgstr "Neteisingai sukonfigūruotas MARKUP_FILTER. Grįžtama prie HTML."
 
@@ -2688,9 +2733,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Nepavyko rasti paketo, įgalinančio „%s“ žymėjimo palaikymą. Grįžtama prie "
 #~ "HTML."
-
-#~ msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-#~ msgstr "Nežinoma MARKUP_FILTER reikšmė – „%s“. Grįžtama prie HTML."
 
 #~ msgid ""
 #~ "Using the default sqlite3 database engine. SQLite is only suitable for "
@@ -4698,12 +4740,6 @@ msgstr ""
 #~ msgid "Suggestion:"
 #~ msgstr "Pasiūlymas:"
 
-#~ msgid "%d suggestion"
-#~ msgid_plural "%d suggestions"
-#~ msgstr[0] "%d pasiūlymas"
-#~ msgstr[1] "%d pasiūlymai"
-#~ msgstr[2] "%d pasiūlymų"
-
 #~ msgid "End of Quick Translate."
 #~ msgstr "Sparčiojo vertimo pabaiga."
 
@@ -5077,9 +5113,6 @@ msgstr ""
 
 #~ msgid "PO file"
 #~ msgstr "PO rinkmena"
-
-#~ msgid "XLIFF file"
-#~ msgstr "XLIFF rinkmena"
 
 #~ msgid "Qt .ts file"
 #~ msgstr "Qt .ts rinkmena"

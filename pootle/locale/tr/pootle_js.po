@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-15 11:37+0100\n"
+"POT-Creation-Date: 2015-09-01 11:11+0100\n"
 "PO-Revision-Date: 2015-06-16 05:41+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,7 +39,7 @@ msgstr "Kod"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
-#: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
+#: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:75
 msgid "Full Name"
 msgstr "Tam Adı"
 
@@ -57,7 +57,7 @@ msgstr "Çoğul Eşitliği"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
-#: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
+#: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "Kaydet"
 
@@ -153,7 +153,7 @@ msgstr "Eposta"
 msgid "Administrator"
 msgstr "Yönetici"
 
-#: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
+#: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:89
 msgid "Twitter"
 msgstr "Twitter"
 
@@ -161,7 +161,7 @@ msgstr "Twitter"
 msgid "Twitter username"
 msgstr "Twitter kullanıcı adı"
 
-#: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
+#: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:96
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
@@ -169,7 +169,7 @@ msgstr "LinkedIn"
 msgid "LinkedIn profile URL"
 msgstr "LinkedIn profil URL'si"
 
-#: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
+#: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:102
 msgid "Website"
 msgstr "Web sitesi"
 
@@ -177,7 +177,7 @@ msgstr "Web sitesi"
 msgid "Personal website URL"
 msgstr "Kişisel web sitesi URL'si"
 
-#: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
+#: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "Kısa Özgeçmiş"
 
@@ -202,8 +202,8 @@ msgid "Reports"
 msgstr "Raporlar"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, javascript-format
-msgid "We have sent an email containing the special link to <span>%s</span>."
+#, fuzzy, javascript-format
+msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
 "Özel bağlantıyı içeren bir epostayı <span>%s</span> adresine gönderdik."
 
@@ -223,8 +223,9 @@ msgstr "Hesabınızın etkinleştirilmesi gerekiyor."
 msgid "Please follow that link to continue the account creation."
 msgstr "Hesap oluşturmaya devam etmek için lütfen şu bağlantıyı takip edin."
 
-#: static/js/auth/components/AccountActivation.js:56
+#: static/js/auth/components/AccountActivation.js:57
 #: static/js/auth/components/AccountInactive.js:36
+#: static/js/auth/components/EmailConfirmation.js:36
 msgid "Close"
 msgstr "Kapat"
 
@@ -232,47 +233,54 @@ msgstr "Kapat"
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr "Hesabınız devre dışı çünkü bir yönetici devre dışı bırakmış."
 
-#: static/js/auth/components/AuthController.js:82
+#: static/js/auth/components/AuthController.js:83
 msgid "Sign In With..."
 msgstr "Şununla Giriş Yapın..."
 
-#: static/js/auth/components/AuthController.js:82
+#: static/js/auth/components/AuthController.js:83
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
 msgstr "Giriş Yap"
 
-#: static/js/auth/components/AuthController.js:89
+#: static/js/auth/components/AuthController.js:90
 msgid "Account Inactive"
 msgstr "Hesap Devre Dışı"
 
-#: static/js/auth/components/AuthController.js:96
+#: static/js/auth/components/AuthController.js:97
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
 msgstr "Kaydol"
 
-#: static/js/auth/components/AuthController.js:103
-#: static/js/auth/components/AuthController.js:110
+#: static/js/auth/components/AuthController.js:104
 msgid "Account Activation"
 msgstr "Hesap Etkinleştirmesi"
 
-#: static/js/auth/components/AuthController.js:117
-#: static/js/auth/components/AuthController.js:124
-#: static/js/auth/components/AuthController.js:131
+#: static/js/auth/components/AuthController.js:111
+msgid "Email Confirmation"
+msgstr ""
+
+#: static/js/auth/components/AuthController.js:118
+#: static/js/auth/components/AuthController.js:125
+#: static/js/auth/components/AuthController.js:132
 msgid "Reset Your Password"
 msgstr "Parolanızı Sıfırlayın"
 
-#: static/js/auth/components/AuthController.js:138
+#: static/js/auth/components/AuthController.js:139
 msgid "Oops..."
 msgstr "Tüh..."
 
-#: static/js/auth/components/AuthController.js:145
+#: static/js/auth/components/AuthController.js:146
 msgid "Social Verification"
 msgstr "Sosyal Doğrulama"
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
 msgstr "Bize Ulaşın"
+
+#: static/js/auth/components/EmailConfirmation.js:30
+msgid "This email confirmation link expired or is invalid."
+msgstr ""
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
@@ -379,19 +387,7 @@ msgstr ""
 "İlk defa harici bir hizmet ile giriş yapmak otomatik olarak sizin için bir "
 "hesap oluşturacak."
 
-#: static/js/browser.js:156
-msgid "All Languages"
-msgstr "Tüm Diller"
-
-#: static/js/browser.js:159
-msgid "All Projects"
-msgstr "Tüm Projeler"
-
-#: static/js/browser.js:162
-msgid "Entire Project"
-msgstr "Bütün Proje"
-
-#: static/js/editor/app.js:243
+#: static/js/editor/app.js:255
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -399,7 +395,7 @@ msgstr ""
 "Sonraki satıra git (Ctrl+.)<br/><br/>Ayrıca:<br/>Sonraki sayfa: Ctrl+Shift+."
 "<br/>Son sayfa: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:247
+#: static/js/editor/app.js:259
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -407,76 +403,76 @@ msgstr ""
 "Önceki satıra git (Ctrl+,)<br/><br/>Ayrıca:</br>Önceki sayfa: Ctrl+Shift+,"
 "<br/>İlk sayfa: Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:371
 #, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s kullanıcısının bekleyen önerileri"
 
-#: static/js/editor/app.js:362
+#: static/js/editor/app.js:374
 #, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s kullanıcısının kabul edilen önerileri"
 
-#: static/js/editor/app.js:365
+#: static/js/editor/app.js:377
 #, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s kullanıcısının reddedilen önerileri"
 
-#: static/js/editor/app.js:368
+#: static/js/editor/app.js:380
 #, javascript-format
 msgid "%s's submissions"
 msgstr "%s kullanıcısının sunuşları"
 
-#: static/js/editor/app.js:372
+#: static/js/editor/app.js:384
 #, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s kullanıcısının üzerine yazılan sunuşları"
 
-#: static/js/editor/app.js:501 static/js/editor/app.js:1650
+#: static/js/editor/app.js:516 static/js/editor/app.js:1684
 msgid "No results."
 msgstr "Sonuç yok."
 
-#: static/js/editor/app.js:960
+#: static/js/editor/app.js:994
 msgid "Error while connecting to the server"
 msgstr "Sunucuya bağlanırken hata oldu"
 
-#: static/js/editor/app.js:964
+#: static/js/editor/app.js:998
 msgid "Not found"
 msgstr "Bulunamadı"
 
-#: static/js/editor/app.js:966
+#: static/js/editor/app.js:1000
 msgid "Server error"
 msgstr "Sunucu hatası"
 
-#: static/js/editor/app.js:968
+#: static/js/editor/app.js:1002
 msgid "The server seems down. Try again later."
 msgstr "Sunucu kapalı görünüyor. Daha sonra tekrar deneyin."
 
-#: static/js/editor/app.js:975
+#: static/js/editor/app.js:1009
 msgid "Unknown error"
 msgstr "Bilinmeyen hata"
 
-#: static/js/editor/app.js:983
+#: static/js/editor/app.js:1017
 msgid "This unit no longer exists."
 msgstr "Bu birim artık mevcut değil."
 
-#: static/js/editor/app.js:984
+#: static/js/editor/app.js:1018
 msgid "Go back to browsing"
 msgstr "Gözatmaya geri dön"
 
-#: static/js/editor/app.js:986
+#: static/js/editor/app.js:1020
 msgid "Reload page"
 msgstr "Sayfayı yeniden yükle"
 
-#: static/js/editor/app.js:1986
+#: static/js/editor/app.js:2028
 msgid "some anonymous user"
 msgstr "bazı isimsiz kullanıcılar"
 
-#: static/js/editor/app.js:1988
+#: static/js/editor/app.js:2030
 msgid "someone"
 msgstr "birisi"
 
-#: static/js/editor/app.js:2005 static/js/editor/app.js:2054
+#: static/js/editor/app.js:2048 static/js/editor/app.js:2097
 msgid "Similar translations"
 msgstr "Benzer çeviriler"
 
@@ -484,19 +480,43 @@ msgstr "Benzer çeviriler"
 msgid "disabled"
 msgstr "etkisizleştirildi"
 
-#: static/js/stats.js:286
+#: static/js/stats.js:349
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s saniye"
 
-#: static/js/stats.js:318
+#: static/js/stats.js:393
+msgid "Collapse details"
+msgstr "Ayrıntıları daralt"
+
+#: static/js/stats.js:393
 msgid "Expand details"
 msgstr "Ayrıntıları genişlet"
 
-#: static/js/stats.js:318
-msgid "Collapse details"
-msgstr "Ayrıntıları daralt"
+#: static/js/user/components/UserProfileEdit.js:106
+msgid "Edit My Public Profile"
+msgstr "Ortak Profilimi Düzenle"
+
+#: static/js/user/components/UserProfileEdit.js:113
+msgid "My Public Profile"
+msgstr "Ortak Profilim"
+
+#: static/js/user/components/UserProfileEdit.js:125
+msgid "Discard changes."
+msgstr "Değişikliklerden vazgeç."
+
+#: static/js/user/components/UserProfileEdit.js:126
+msgid "Yes"
+msgstr "Evet"
+
+#: static/js/user/components/UserProfileEdit.js:127
+msgid "No"
+msgstr "Hayır"
+
+#: static/js/user/components/UserProfileEdit.js:128
+msgid "There are unsaved changes. Do you want to discard them?"
+msgstr "Kaydedilmemiş değişiklikler var. Bunlardan vazgeçmek istiyor musunuz?"
 
 #: static/js/utils.js:151
 #, javascript-format
@@ -672,31 +692,7 @@ msgstr "Tümünü temizle"
 msgid "Type to search"
 msgstr "Arananı yazın"
 
-#: static/js/user/components/edit.jsx:106
-msgid "Edit My Public Profile"
-msgstr "Ortak Profilimi Düzenle"
-
-#: static/js/user/components/edit.jsx:113
-msgid "My Public Profile"
-msgstr "Ortak Profilim"
-
-#: static/js/user/components/edit.jsx:125
-msgid "Discard changes."
-msgstr "Değişikliklerden vazgeç."
-
-#: static/js/user/components/edit.jsx:126
-msgid "Yes"
-msgstr "Evet"
-
-#: static/js/user/components/edit.jsx:127
-msgid "No"
-msgstr "Hayır"
-
-#: static/js/user/components/edit.jsx:128
-msgid "There are unsaved changes. Do you want to discard them?"
-msgstr "Kaydedilmemiş değişiklikler var. Bunlardan vazgeçmek istiyor musunuz?"
-
-#: static/js/user/forms.jsx:61
+#: static/js/user/forms.jsx:63
 #, python-format
 msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
@@ -705,27 +701,27 @@ msgstr ""
 "Eposta adresinizdeki (%(email)s) avatar'ınızı ayarlamak ya da değiştirmek "
 "için lütfen gravatar.com adresine gidin."
 
-#: static/js/user/forms.jsx:74
+#: static/js/user/forms.jsx:76
 msgid "Your Full Name"
 msgstr "Tam Adınız"
 
-#: static/js/user/forms.jsx:80
+#: static/js/user/forms.jsx:82
 msgid "Avatar"
 msgstr "Avatar"
 
-#: static/js/user/forms.jsx:90
+#: static/js/user/forms.jsx:91
 msgid "Your Twitter username"
 msgstr "Twitter kullanıcı adınız"
 
-#: static/js/user/forms.jsx:97
+#: static/js/user/forms.jsx:98
 msgid "Your LinkedIn profile URL"
 msgstr "LinkedIn profil URL'niz"
 
-#: static/js/user/forms.jsx:103
+#: static/js/user/forms.jsx:104
 msgid "Your Personal website/blog URL"
 msgstr "Kişisel web sitesi/blog URL'si"
 
-#: static/js/user/forms.jsx:111
+#: static/js/user/forms.jsx:112
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
@@ -738,33 +734,39 @@ msgid "Project / Language"
 msgstr "Proje / Dil"
 
 #: templates/admin/xhr_language_user_activity.html:7
+msgid "Suggested"
+msgstr ""
+
+#: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
 msgstr "Çevrilmiş"
 
-#: templates/admin/xhr_language_user_activity.html:8
+#: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
 msgstr "İncelenmiş"
 
-#: templates/admin/xhr_language_user_activity.html:9
+#: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
 msgstr "Skor Değişikliği"
 
-#: templates/admin/xhr_language_user_activity.html:16
-#: templates/admin/xhr_language_user_activity.html:17
-#: templates/admin/xhr_language_user_activity.html:23
+#: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:21
-#: templates/admin/xhr_summary_report.html:35
-msgid "word"
-msgid_plural "words"
+#: templates/admin/xhr_language_user_activity.html:31
+#: templates/admin/xhr_language_user_activity.html:35
+#: templates/admin/xhr_language_user_activity.html:40
+#: templates/admin/xhr_language_user_activity.html:51
+#: templates/admin/xhr_language_user_activity.html:55
+#: templates/admin/xhr_language_user_activity.html:59
+#, fuzzy, python-format
+msgid "%s word"
+msgid_plural "%s words"
 msgstr[0] "kelime"
 
-#: templates/admin/xhr_language_user_activity.html:30
+#: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
 msgstr "Verilen süre içerisinde kaydedilmiş etkinlik yok"
 
-#: templates/admin/xhr_language_user_activity.html:33
+#: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Lütfen geçerli bir kullanıcı seçin."
 
@@ -805,6 +807,13 @@ msgstr "Alt toplam"
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "saat"
+
+#: templates/admin/xhr_paid_tasks_report.html:24
+#: templates/admin/xhr_summary_report.html:21
+#: templates/admin/xhr_summary_report.html:35
+msgid "word"
+msgid_plural "words"
+msgstr[0] "kelime"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
@@ -855,6 +864,15 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; projesinde "
 "%(fullname)s tarafından çevrilmiş"
+
+#~ msgid "All Languages"
+#~ msgstr "Tüm Diller"
+
+#~ msgid "All Projects"
+#~ msgstr "Tüm Projeler"
+
+#~ msgid "Entire Project"
+#~ msgstr "Bütün Proje"
 
 #~ msgid "Didn"
 #~ msgstr "Didn"

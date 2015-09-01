@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-15 11:37+0100\n"
+"POT-Creation-Date: 2015-09-01 11:11+0100\n"
 "PO-Revision-Date: 2015-05-19 17:40+0000\n"
 "Last-Translator: David <david.ducassou@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,7 +39,7 @@ msgstr "Code"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
-#: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
+#: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:75
 msgid "Full Name"
 msgstr "Nom complet"
 
@@ -57,7 +57,7 @@ msgstr ""
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
-#: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
+#: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "Sauvegarder"
 
@@ -154,7 +154,7 @@ msgstr ""
 msgid "Administrator"
 msgstr ""
 
-#: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
+#: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:89
 msgid "Twitter"
 msgstr "Twitter"
 
@@ -162,7 +162,7 @@ msgstr "Twitter"
 msgid "Twitter username"
 msgstr "Nom d'utilisateur Twitter"
 
-#: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
+#: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:96
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
@@ -170,7 +170,7 @@ msgstr "LinkedIn"
 msgid "LinkedIn profile URL"
 msgstr "URL de profil LinkedIn"
 
-#: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
+#: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:102
 msgid "Website"
 msgstr ""
 
@@ -179,7 +179,7 @@ msgstr ""
 msgid "Personal website URL"
 msgstr "Votre URL de blog/site web personnel"
 
-#: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
+#: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "Brève bio"
 
@@ -205,7 +205,7 @@ msgstr "Rapports"
 
 #: static/js/auth/components/AccountActivation.js:33
 #, javascript-format
-msgid "We have sent an email containing the special link to <span>%s</span>."
+msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
 
 #: static/js/auth/components/AccountActivation.js:38
@@ -222,8 +222,9 @@ msgstr ""
 msgid "Please follow that link to continue the account creation."
 msgstr ""
 
-#: static/js/auth/components/AccountActivation.js:56
+#: static/js/auth/components/AccountActivation.js:57
 #: static/js/auth/components/AccountInactive.js:36
+#: static/js/auth/components/EmailConfirmation.js:36
 msgid "Close"
 msgstr ""
 
@@ -231,46 +232,53 @@ msgstr ""
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:82
+#: static/js/auth/components/AuthController.js:83
 msgid "Sign In With..."
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:82
+#: static/js/auth/components/AuthController.js:83
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:89
+#: static/js/auth/components/AuthController.js:90
 msgid "Account Inactive"
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:96
+#: static/js/auth/components/AuthController.js:97
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:103
-#: static/js/auth/components/AuthController.js:110
+#: static/js/auth/components/AuthController.js:104
 msgid "Account Activation"
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:117
-#: static/js/auth/components/AuthController.js:124
-#: static/js/auth/components/AuthController.js:131
+#: static/js/auth/components/AuthController.js:111
+msgid "Email Confirmation"
+msgstr ""
+
+#: static/js/auth/components/AuthController.js:118
+#: static/js/auth/components/AuthController.js:125
+#: static/js/auth/components/AuthController.js:132
 msgid "Reset Your Password"
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:138
+#: static/js/auth/components/AuthController.js:139
 msgid "Oops..."
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:145
+#: static/js/auth/components/AuthController.js:146
 msgid "Social Verification"
 msgstr ""
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
+msgstr ""
+
+#: static/js/auth/components/EmailConfirmation.js:30
+msgid "This email confirmation link expired or is invalid."
 msgstr ""
 
 #: static/js/auth/components/PasswordResetForm.js:80
@@ -374,19 +382,7 @@ msgid ""
 "create an account for you."
 msgstr ""
 
-#: static/js/browser.js:156
-msgid "All Languages"
-msgstr "Toutes les langues"
-
-#: static/js/browser.js:159
-msgid "All Projects"
-msgstr "Tous les projets"
-
-#: static/js/browser.js:162
-msgid "Entire Project"
-msgstr "Projet entier"
-
-#: static/js/editor/app.js:243
+#: static/js/editor/app.js:255
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -394,7 +390,7 @@ msgstr ""
 "Aller à la chaîne suivante (Ctrl+.)<br/><br/>Et aussi :<br/>Page suivante : "
 "Ctrl+Shift+.<br/>Dernière page: Ctrl+Shift+Fin"
 
-#: static/js/editor/app.js:247
+#: static/js/editor/app.js:259
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -402,77 +398,77 @@ msgstr ""
 "Aller à la page précédente (Ctrl+,)<br/><br/>Et aussi :</br>Page "
 "précédente : Ctrl+Shift+,<br/>Première page : Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:371
 #, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Suggestions de %s en attente"
 
-#: static/js/editor/app.js:362
+#: static/js/editor/app.js:374
 #, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Suggestions de %s acceptées"
 
-#: static/js/editor/app.js:365
+#: static/js/editor/app.js:377
 #, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Suggestions de %s rejetées"
 
-#: static/js/editor/app.js:368
+#: static/js/editor/app.js:380
 #, javascript-format
 msgid "%s's submissions"
 msgstr "Contributions de %s"
 
-#: static/js/editor/app.js:372
+#: static/js/editor/app.js:384
 #, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Contributions de %s écrasées"
 
-#: static/js/editor/app.js:501 static/js/editor/app.js:1650
+#: static/js/editor/app.js:516 static/js/editor/app.js:1684
 msgid "No results."
 msgstr "Aucun résultat."
 
-#: static/js/editor/app.js:960
+#: static/js/editor/app.js:994
 msgid "Error while connecting to the server"
 msgstr "Erreur lors de la connexion au serveur"
 
-#: static/js/editor/app.js:964
+#: static/js/editor/app.js:998
 msgid "Not found"
 msgstr "Pas trouvé"
 
-#: static/js/editor/app.js:966
+#: static/js/editor/app.js:1000
 msgid "Server error"
 msgstr "Erreur de serveur"
 
-#: static/js/editor/app.js:968
+#: static/js/editor/app.js:1002
 msgid "The server seems down. Try again later."
 msgstr "Le serveur semble hors service. Essayez plus tard."
 
-#: static/js/editor/app.js:975
+#: static/js/editor/app.js:1009
 msgid "Unknown error"
 msgstr "Erreur inconnue"
 
-#: static/js/editor/app.js:983
+#: static/js/editor/app.js:1017
 msgid "This unit no longer exists."
 msgstr "Cette unité n'existe plus."
 
-#: static/js/editor/app.js:984
+#: static/js/editor/app.js:1018
 #, fuzzy
 msgid "Go back to browsing"
 msgstr "Revenir à la vue d'ensemble"
 
-#: static/js/editor/app.js:986
+#: static/js/editor/app.js:1020
 msgid "Reload page"
 msgstr "Recharger la page"
 
-#: static/js/editor/app.js:1986
+#: static/js/editor/app.js:2028
 msgid "some anonymous user"
 msgstr "un certain utilisateur anonyme"
 
-#: static/js/editor/app.js:1988
+#: static/js/editor/app.js:2030
 msgid "someone"
 msgstr "quelqu'un"
 
-#: static/js/editor/app.js:2005 static/js/editor/app.js:2054
+#: static/js/editor/app.js:2048 static/js/editor/app.js:2097
 msgid "Similar translations"
 msgstr "Traductions similaires"
 
@@ -480,20 +476,45 @@ msgstr "Traductions similaires"
 msgid "disabled"
 msgstr "désactivé"
 
-#: static/js/stats.js:286
+#: static/js/stats.js:349
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s seconde"
 msgstr[1] "%s secondes"
 
-#: static/js/stats.js:318
+#: static/js/stats.js:393
+msgid "Collapse details"
+msgstr "Masquer les détails"
+
+#: static/js/stats.js:393
 msgid "Expand details"
 msgstr "Montrer les détails"
 
-#: static/js/stats.js:318
-msgid "Collapse details"
-msgstr "Masquer les détails"
+#: static/js/user/components/UserProfileEdit.js:106
+msgid "Edit My Public Profile"
+msgstr "Éditer mon profil public"
+
+#: static/js/user/components/UserProfileEdit.js:113
+msgid "My Public Profile"
+msgstr "Mon profil public"
+
+#: static/js/user/components/UserProfileEdit.js:125
+msgid "Discard changes."
+msgstr "Abandonner les modifications."
+
+#: static/js/user/components/UserProfileEdit.js:126
+msgid "Yes"
+msgstr "Oui"
+
+#: static/js/user/components/UserProfileEdit.js:127
+msgid "No"
+msgstr "Non"
+
+#: static/js/user/components/UserProfileEdit.js:128
+msgid "There are unsaved changes. Do you want to discard them?"
+msgstr ""
+"Il y a changements qui ne sont pas sauvegardés. Voulez-vous les annuler ?"
 
 #: static/js/utils.js:151
 #, fuzzy, javascript-format
@@ -682,32 +703,7 @@ msgstr ""
 msgid "Type to search"
 msgstr ""
 
-#: static/js/user/components/edit.jsx:106
-msgid "Edit My Public Profile"
-msgstr "Éditer mon profil public"
-
-#: static/js/user/components/edit.jsx:113
-msgid "My Public Profile"
-msgstr "Mon profil public"
-
-#: static/js/user/components/edit.jsx:125
-msgid "Discard changes."
-msgstr "Abandonner les modifications."
-
-#: static/js/user/components/edit.jsx:126
-msgid "Yes"
-msgstr "Oui"
-
-#: static/js/user/components/edit.jsx:127
-msgid "No"
-msgstr "Non"
-
-#: static/js/user/components/edit.jsx:128
-msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
-"Il y a changements qui ne sont pas sauvegardés. Voulez-vous les annuler ?"
-
-#: static/js/user/forms.jsx:61
+#: static/js/user/forms.jsx:63
 #, python-format
 msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
@@ -716,27 +712,27 @@ msgstr ""
 "Pour mettre ou modifier votre avatar pour votre adresse email (%(email)s), "
 "veuillez aller à gravatar.com."
 
-#: static/js/user/forms.jsx:74
+#: static/js/user/forms.jsx:76
 msgid "Your Full Name"
 msgstr "Votre nom complet"
 
-#: static/js/user/forms.jsx:80
+#: static/js/user/forms.jsx:82
 msgid "Avatar"
 msgstr "Avatar"
 
-#: static/js/user/forms.jsx:90
+#: static/js/user/forms.jsx:91
 msgid "Your Twitter username"
 msgstr "Votre nom d'utilisateur Twitter"
 
-#: static/js/user/forms.jsx:97
+#: static/js/user/forms.jsx:98
 msgid "Your LinkedIn profile URL"
 msgstr "Votre URL de profil LinkedIn"
 
-#: static/js/user/forms.jsx:103
+#: static/js/user/forms.jsx:104
 msgid "Your Personal website/blog URL"
 msgstr "Votre URL de blog/site web personnel"
 
-#: static/js/user/forms.jsx:111
+#: static/js/user/forms.jsx:112
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
@@ -749,34 +745,40 @@ msgid "Project / Language"
 msgstr "Projet / Langue"
 
 #: templates/admin/xhr_language_user_activity.html:7
+msgid "Suggested"
+msgstr ""
+
+#: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
 msgstr "Traduit"
 
-#: templates/admin/xhr_language_user_activity.html:8
+#: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
 msgstr "Relus"
 
-#: templates/admin/xhr_language_user_activity.html:9
+#: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
 msgstr ""
 
-#: templates/admin/xhr_language_user_activity.html:16
-#: templates/admin/xhr_language_user_activity.html:17
-#: templates/admin/xhr_language_user_activity.html:23
+#: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:21
-#: templates/admin/xhr_summary_report.html:35
-msgid "word"
-msgid_plural "words"
+#: templates/admin/xhr_language_user_activity.html:31
+#: templates/admin/xhr_language_user_activity.html:35
+#: templates/admin/xhr_language_user_activity.html:40
+#: templates/admin/xhr_language_user_activity.html:51
+#: templates/admin/xhr_language_user_activity.html:55
+#: templates/admin/xhr_language_user_activity.html:59
+#, fuzzy, python-format
+msgid "%s word"
+msgid_plural "%s words"
 msgstr[0] "mot"
 msgstr[1] "mots"
 
-#: templates/admin/xhr_language_user_activity.html:30
+#: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
 msgstr ""
 
-#: templates/admin/xhr_language_user_activity.html:33
+#: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr ""
 
@@ -818,6 +820,14 @@ msgid "hour"
 msgid_plural "hours"
 msgstr[0] "heure"
 msgstr[1] "heures"
+
+#: templates/admin/xhr_paid_tasks_report.html:24
+#: templates/admin/xhr_summary_report.html:21
+#: templates/admin/xhr_summary_report.html:35
+msgid "word"
+msgid_plural "words"
+msgstr[0] "mot"
+msgstr[1] "mots"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
@@ -868,6 +878,15 @@ msgid ""
 msgstr ""
 "Traduit par by %(fullname)s en &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; projet"
+
+#~ msgid "All Languages"
+#~ msgstr "Toutes les langues"
+
+#~ msgid "All Projects"
+#~ msgstr "Tous les projets"
+
+#~ msgid "Entire Project"
+#~ msgstr "Projet entier"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "Voulez-vous vraiment continuer ?"

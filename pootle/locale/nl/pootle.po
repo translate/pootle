@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-06-15 11:30+0100\n"
+"POT-Creation-Date: 2015-09-01 11:11+0100\n"
 "PO-Revision-Date: 2015-08-05 11:33+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
@@ -46,7 +46,7 @@ msgid "Email Address"
 msgstr "E-mailadres"
 
 #: apps/accounts/models.py:70 apps/pootle_language/models.py:80
-#: apps/pootle_project/models.py:148
+#: apps/pootle_project/models.py:149
 msgid "Full Name"
 msgstr "Volledige naam"
 
@@ -91,11 +91,11 @@ msgstr "Alternatieve brontalen"
 msgid "Rate"
 msgstr "Tarief"
 
-#: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
+#: apps/accounts/models.py:90 apps/reports/forms.py:32
 msgid "Review Rate"
 msgstr "Controletarief"
 
-#: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
+#: apps/accounts/models.py:91 apps/reports/forms.py:37
 msgid "Hourly Rate"
 msgstr "Uurtarief"
 
@@ -103,7 +103,7 @@ msgstr "Uurtarief"
 msgid "Score"
 msgstr "Score"
 
-#: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
+#: apps/accounts/models.py:93 apps/reports/forms.py:21
 msgid "Currency"
 msgstr "Valuta"
 
@@ -139,7 +139,7 @@ msgstr "Samenvatting"
 msgid "Please enter your message summary"
 msgstr "Voer uw berichtsamenvatting in"
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:37 core/browser.py:19
+#: apps/contact/forms.py:34 apps/virtualfolder/models.py:32 core/browser.py:17
 msgid "Name"
 msgstr "Naam"
 
@@ -163,57 +163,6 @@ msgstr "Bericht"
 msgid "Please enter your message"
 msgstr "Voer uw bericht in"
 
-#: apps/evernote_reports/forms.py:27
-msgid "Translation Rate"
-msgstr "Vertaaltarief"
-
-#: apps/evernote_reports/forms.py:42
-msgid "Effective from"
-msgstr "Met ingang van"
-
-#: apps/evernote_reports/models.py:31 templates/editor/export_view.html:106
-#: templates/translation_projects/terminology/manage.html:37
-#: templates/user/settings.html:29
-msgid "Translation"
-msgstr "Vertaling"
-
-#: apps/evernote_reports/models.py:32
-msgid "Review"
-msgstr "Nakijken"
-
-#: apps/evernote_reports/models.py:33
-msgid "Hourly Work"
-msgstr "Werk per uur"
-
-#: apps/evernote_reports/models.py:34
-msgid "Correction"
-msgstr "Correctie"
-
-#: apps/evernote_reports/models.py:37
-msgid "Type"
-msgstr "Type"
-
-#: apps/evernote_reports/models.py:40
-msgid "Amount"
-msgstr "Bedrag"
-
-#: apps/evernote_reports/models.py:42
-msgid "Date"
-msgstr "Datum"
-
-#: apps/evernote_reports/models.py:43 apps/virtualfolder/models.py:63
-msgid "Description"
-msgstr "Beschrijving"
-
-#: apps/evernote_reports/views.py:295
-#, python-format
-msgid "User %s not found"
-msgstr "Gebruiker %s niet gevonden"
-
-#: apps/evernote_reports/views.py:372
-msgid "Invalid request method"
-msgstr "Ongeldige aanvraagmethode"
-
 #: apps/import_export/templates/browser/index.html:10
 msgid "Download translation files for offline translation"
 msgstr "Vertaalbestanden downloaden voor offline-vertaling"
@@ -230,36 +179,35 @@ msgstr "Vertaalde bestanden of archieven in .zip-indeling uploaden"
 msgid "Upload translations"
 msgstr "Vertalingen uploaden"
 
-#: apps/import_export/utils.py:22
+#: apps/import_export/utils.py:24
 #, python-format
-msgid "File %r missing X-Pootle-Path header\n"
+msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
+msgstr ""
+
+#: apps/import_export/utils.py:30
+#, fuzzy, python-format
+msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "Bestand %r mist header X-Pootle-Path\n"
 
-#: apps/import_export/utils.py:27
-#, python-format
-msgid "File %r missing or invalid X-Pootle-Revision header\n"
+#: apps/import_export/utils.py:35
+#, fuzzy, python-format
+msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr "Bestand %r mist of heeft ongeldige header X-Pootle-Revision\n"
 
-#: apps/import_export/utils.py:37
-#, python-format
-msgid "File %r was rejected because its X-Pootle-Revision is too old."
-msgstr ""
-"Bestand %r is geweigerd, omdat de header X-Pootle-Revision ervan te oud is."
-
-#: apps/import_export/utils.py:42
-#, python-format
-msgid "Could not create %r. Missing Project/Language? (%s)"
+#: apps/import_export/utils.py:43
+#, fuzzy, python-format
+msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Kon %r niet aanmaken. Project/taal ontbreekt? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
 msgstr "Taalcode volgt de ISO-richtlijn niet"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:171
+#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:172
 msgid "Source Language"
 msgstr "Brontaal"
 
-#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:387
+#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:391
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "'%s' kan niet als een projectcode worden gebruikt"
@@ -344,7 +292,7 @@ msgstr ""
 "(_) en een ISO 3166-landcode. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">Meer informatie</a>"
 
-#: apps/pootle_language/models.py:78 apps/pootle_project/models.py:145
+#: apps/pootle_language/models.py:78 apps/pootle_project/models.py:146
 msgid "Code"
 msgstr "Code"
 
@@ -380,315 +328,323 @@ msgstr "Aantal meervouden"
 msgid "Plural Equation"
 msgstr "Meervoudsvergelijking"
 
-#: apps/pootle_misc/checks.py:34 apps/pootle_misc/checks.py:102
+#: apps/pootle_misc/checks.py:33 core/browser.py:66
+msgid "Critical"
+msgstr "Kritiek"
+
+#: apps/pootle_misc/checks.py:34
+msgid "Cosmetic"
+msgstr "Cosmetisch"
+
+#: apps/pootle_misc/checks.py:35
+msgid "Functional"
+msgstr "Functioneel"
+
+#: apps/pootle_misc/checks.py:36
+msgid "Extraction"
+msgstr "Extractie"
+
+#: apps/pootle_misc/checks.py:37
+msgid "Other"
+msgstr "Anders"
+
+#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:110
 msgid "Accelerators"
 msgstr "Sneltoetsen"
 
-#: apps/pootle_misc/checks.py:35
+#: apps/pootle_misc/checks.py:42
 msgid "Acronyms"
 msgstr "Acroniemen"
 
-#: apps/pootle_misc/checks.py:36
+#: apps/pootle_misc/checks.py:43
 msgid "Blank"
 msgstr "Leeg"
 
-#: apps/pootle_misc/checks.py:37
+#: apps/pootle_misc/checks.py:44
 msgid "Brackets"
 msgstr "Haakjes"
 
-#: apps/pootle_misc/checks.py:38
+#: apps/pootle_misc/checks.py:45
 msgid "Compendium conflict"
 msgstr "Conflict in compendium"
 
-#: apps/pootle_misc/checks.py:39
+#: apps/pootle_misc/checks.py:46
 msgid "Translator credits"
 msgstr "Dank aan vertaler"
 
-#: apps/pootle_misc/checks.py:40 apps/pootle_misc/checks.py:106
+#: apps/pootle_misc/checks.py:47 apps/pootle_misc/checks.py:114
 msgid "Double quotes"
 msgstr "Dubbele aanhalingstekens"
 
-#: apps/pootle_misc/checks.py:41
+#: apps/pootle_misc/checks.py:48
 msgid "Double spaces"
 msgstr "Dubbele spaties"
 
-#: apps/pootle_misc/checks.py:42
+#: apps/pootle_misc/checks.py:49
 msgid "Repeated word"
 msgstr "Herhaald woord"
 
-#: apps/pootle_misc/checks.py:43
+#: apps/pootle_misc/checks.py:50
 msgid "E-mail"
 msgstr "E-mailadressen"
 
-#: apps/pootle_misc/checks.py:44
+#: apps/pootle_misc/checks.py:51
 msgid "Ending punctuation"
 msgstr "Eindinterpunctie"
 
-#: apps/pootle_misc/checks.py:45
+#: apps/pootle_misc/checks.py:52
 msgid "Ending whitespace"
 msgstr "Eind-witruimte"
 
-#: apps/pootle_misc/checks.py:46
+#: apps/pootle_misc/checks.py:53
 msgid "Escapes"
 msgstr "Escapes"
 
-#: apps/pootle_misc/checks.py:47
+#: apps/pootle_misc/checks.py:54
 msgid "File paths"
 msgstr "Bestandspaden"
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:55
 msgid "Functions"
 msgstr "Functies"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:56
 msgid "GConf values"
 msgstr "GConf-waarden"
 
-#: apps/pootle_misc/checks.py:50
+# I am aware that 'fuzzy' is usually translated to 'fuzzy', 'onzeker' or 'vaag'.
+# I opted for 'wazig', because I think it best expresses the word's true meaning and could also be used in the case of 'fuzzy match', for example.
+# I don't like 'onzeker', because 'fuzzy' does not always imply that the translator is uncertain of his translation. It might also mean that one of the strings has changed somehow.
+#: apps/pootle_misc/checks.py:57 apps/pootle_misc/stats.py:26
+msgid "Fuzzy"
+msgstr "Wazig"
+
+#: apps/pootle_misc/checks.py:58
 msgid "Old KDE comment"
 msgstr "Oude KDE-opmerking"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:59
 msgid "Long"
 msgstr "Te lang"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:60
 msgid "Must translate words"
 msgstr "Moet woorden vertalen"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:61
 msgid "Newlines"
 msgstr "Nieuwe regels"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:62
 msgid "Number of plurals"
 msgstr "Aantal meervouden"
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:63
 msgid "Don't translate words"
 msgstr "Woorden niet vertalen"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:64
 msgid "Numbers"
 msgstr "Getallen"
 
-#: apps/pootle_misc/checks.py:57
+#: apps/pootle_misc/checks.py:65
 msgid "Options"
 msgstr "Opties"
 
-#: apps/pootle_misc/checks.py:58
+#: apps/pootle_misc/checks.py:66
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:59
+#: apps/pootle_misc/checks.py:67
 msgid "Punctuation spacing"
 msgstr "Interpunctiespatiëring"
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:68
 msgid "Pure punctuation"
 msgstr "Zuivere interpunctie"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:69
 msgid "Python brace placeholders"
 msgstr "Python-brace-plaatshouders"
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:70
 msgid "Number of sentences"
 msgstr "Aantal zinnen"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:71
 msgid "Short"
 msgstr "Kort"
 
-#: apps/pootle_misc/checks.py:64
+#: apps/pootle_misc/checks.py:72
 msgid "Simple capitalization"
 msgstr "Eenvoudig hoofdlettergebruik"
 
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:73
 msgid "Simple plural(s)"
 msgstr "Eenvoudig(e) meervoud(en)"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:74
 msgid "Single quotes"
 msgstr "Enkele aanhalingstekens"
 
-#: apps/pootle_misc/checks.py:67
+#: apps/pootle_misc/checks.py:75
 msgid "Starting capitalization"
 msgstr "Hoofdletters aan begin"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:76
 msgid "Starting punctuation"
 msgstr "Begin-interpunctie"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:77
 msgid "Starting whitespace"
 msgstr "Witruimte aan begin"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:71
+#: apps/pootle_misc/checks.py:79
 msgid "Tabs"
 msgstr "Tabs"
 
-#: apps/pootle_misc/checks.py:72
+#: apps/pootle_misc/checks.py:80
 msgid "Unchanged"
 msgstr "Ongewijzigd"
 
-#: apps/pootle_misc/checks.py:73 apps/pootle_misc/stats.py:27
-#: apps/pootle_store/util.py:30 core/helpers.py:56
+#: apps/pootle_misc/checks.py:81 apps/pootle_misc/stats.py:27
+#: apps/pootle_store/util.py:30 core/helpers.py:58
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Onvertaald"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:82
 msgid "URLs"
 msgstr "URL's"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:83
 msgid "Valid characters"
 msgstr "Geldige tekens"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:84
 msgid "Placeholders"
 msgstr "Plaatshouders"
 
-#: apps/pootle_misc/checks.py:77
-msgid "Invalid XML"
+#: apps/pootle_misc/checks.py:85
+#, fuzzy
+msgid "Valid XML"
 msgstr "Ongeldige XML"
 
-#: apps/pootle_misc/checks.py:78
+#: apps/pootle_misc/checks.py:86
 msgid "XML tags"
 msgstr "XML-labels"
 
-#: apps/pootle_misc/checks.py:80
+#: apps/pootle_misc/checks.py:88
 msgid "Broken HTML Entities"
 msgstr "Ongeldige HTML-entiteiten"
 
-#: apps/pootle_misc/checks.py:81
+#: apps/pootle_misc/checks.py:89
 msgid "Java format"
 msgstr "Java-indeling"
 
-#: apps/pootle_misc/checks.py:82
+#: apps/pootle_misc/checks.py:90
 msgid "Template format"
 msgstr "Sjabloonindeling"
 
-#: apps/pootle_misc/checks.py:83
+#: apps/pootle_misc/checks.py:91
 msgid "Mustache placeholders"
 msgstr "Mustache-plaatshouders"
 
-#: apps/pootle_misc/checks.py:84
+#: apps/pootle_misc/checks.py:92
 msgid "Mustache placeholder pairs"
 msgstr "Mustache-plaatshouderparen"
 
-#: apps/pootle_misc/checks.py:85
+#: apps/pootle_misc/checks.py:93
 msgid "Mustache like placeholder pairs"
 msgstr "Mustache-achtige plaatshouderparen"
 
-#: apps/pootle_misc/checks.py:86
+#: apps/pootle_misc/checks.py:94
 msgid "C format placeholders"
 msgstr "Plaatshouders voor C-indeling"
 
-#: apps/pootle_misc/checks.py:87
+#: apps/pootle_misc/checks.py:95
 msgid "Non printable"
 msgstr "Niet afdrukbaar"
 
-#: apps/pootle_misc/checks.py:88
+#: apps/pootle_misc/checks.py:96
 msgid "Unbalanced tag braces"
 msgstr "Ongelijk aantal label-accolades"
 
-#: apps/pootle_misc/checks.py:89
+#: apps/pootle_misc/checks.py:97
 msgid "Changed attributes"
 msgstr "Gewijzigde kenmerken"
 
-#: apps/pootle_misc/checks.py:90
+#: apps/pootle_misc/checks.py:98
 msgid "Unescaped ampersands"
 msgstr "En-tekens zonder escape"
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:99
 msgid "Incorrectly escaped ampersands"
 msgstr "En-tekens met onjuiste escape"
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:100
 msgid "Whitespaces"
 msgstr "Spaties"
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:101
 msgid "Date format"
 msgstr "Datumnotatie"
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:102
 msgid "Uppercase placeholders"
 msgstr "Plaatshouders met hoofdletters"
 
-#: apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:103
 msgid "Percent sign placeholders"
 msgstr "Plaatshouders voor procenttekens"
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:104
 msgid "Percent sign closure placeholders"
 msgstr "Plaatshouders voor procentteken-afsluiting"
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:105
 msgid "$ placeholders"
 msgstr "$-plaatshouders"
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:106
 msgid "$ closure placeholders"
 msgstr "Plaatshouders voor $-afsluiting"
 
-#: apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:107
 msgid "Java-encoded unicode"
 msgstr "Java-gecodeerde unicode"
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:108
 msgid "Objective-C format"
 msgstr "Objective-C-indeling"
 
-#: apps/pootle_misc/checks.py:101
+#: apps/pootle_misc/checks.py:109
 msgid "Android format"
 msgstr "Android-indeling"
 
-#: apps/pootle_misc/checks.py:103
+#: apps/pootle_misc/checks.py:111
 msgid "Tags differ"
 msgstr "Labels verschillen"
 
-#: apps/pootle_misc/checks.py:104
+#: apps/pootle_misc/checks.py:112
 msgid "Curly braces"
 msgstr "Accolades"
 
-#: apps/pootle_misc/checks.py:105
+#: apps/pootle_misc/checks.py:113
 msgid "Potential unwanted placeholders"
 msgstr "Mogelijk ongewilde plaatshouders"
 
-#: apps/pootle_misc/checks.py:107
+#: apps/pootle_misc/checks.py:115
 msgid "Double quotes in tags"
 msgstr "Dubbele aanhalingstekens in labels"
 
-#: apps/pootle_misc/checks.py:108
+#: apps/pootle_misc/checks.py:116
 msgid "Percent brace placeholders"
 msgstr "Procent-haakje-plaatshouders"
 
-#: apps/pootle_misc/checks.py:1006 core/browser.py:68
-msgid "Critical"
-msgstr "Kritiek"
-
-#: apps/pootle_misc/checks.py:1007
-msgid "Cosmetic"
-msgstr "Cosmetisch"
-
-#: apps/pootle_misc/checks.py:1008
-msgid "Functional"
-msgstr "Functioneel"
-
-#: apps/pootle_misc/checks.py:1009
-msgid "Extraction"
-msgstr "Extractie"
-
-#: apps/pootle_misc/checks.py:1010
-msgid "Other"
-msgstr "Anders"
-
 #. Translators: This is the name of a filter
-#: apps/pootle_misc/forms.py:90 core/helpers.py:60
+#: apps/pootle_misc/forms.py:90 core/helpers.py:62
 msgid "Search"
 msgstr "Zoeken"
 
@@ -716,36 +672,17 @@ msgstr "Opmerkingen"
 msgid "Locations"
 msgstr "Locaties"
 
-#: apps/pootle_misc/forms.py:122
-msgid "Source Terms"
-msgstr "Brontermen"
-
-#: apps/pootle_misc/forms.py:123
-msgid "Target Terms"
-msgstr "Doeltermen"
-
-#: apps/pootle_misc/forms.py:124
-msgid "Definitions"
-msgstr "Definities"
-
 #. Translators: Heading representing the total number of words of a file
 #. or directory
-#: apps/pootle_misc/stats.py:24 core/browser.py:47
-#: templates/admin/detailed_reports.html:240
+#: apps/pootle_misc/stats.py:24 core/browser.py:45
+#: templates/admin/detailed_reports.html:275
 msgid "Total"
 msgstr "Totaal"
 
 #: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32
-#: core/helpers.py:55 templates/editor/_filters.html:7
+#: core/helpers.py:57 templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Vertaald"
-
-# I am aware that 'fuzzy' is usually translated to 'fuzzy', 'onzeker' or 'vaag'.
-# I opted for 'wazig', because I think it best expresses the word's true meaning and could also be used in the case of 'fuzzy match', for example.
-# I don't like 'onzeker', because 'fuzzy' does not always imply that the translator is uncertain of his translation. It might also mean that one of the strings has changed somehow.
-#: apps/pootle_misc/stats.py:26
-msgid "Fuzzy"
-msgstr "Wazig"
 
 #: apps/pootle_misc/templatetags/render_pager.py:22
 msgid "First"
@@ -764,15 +701,15 @@ msgstr "Volgende"
 msgid "Last (%d)"
 msgstr "Laatste (%d)"
 
-#: apps/pootle_profile/views.py:54
+#: apps/pootle_profile/views.py:55
 msgid "Select one or more languages"
 msgstr "Selecteer een of meer talen"
 
-#: apps/pootle_project/forms.py:29 core/browser.py:34
+#: apps/pootle_project/forms.py:29 core/browser.py:32
 msgid "Language"
 msgstr "Taal"
 
-#: apps/pootle_project/models.py:142
+#: apps/pootle_project/models.py:143
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -780,134 +717,80 @@ msgstr ""
 "Een korte code voor het project. Deze mag alleen ASCII-tekens, cijfers en "
 "het liggend streepje (_) bevatten."
 
-#: apps/pootle_project/models.py:156
+#: apps/pootle_project/models.py:157
 msgid "Quality Checks"
 msgstr "Kwaliteitscontroles"
 
-#: apps/pootle_project/models.py:159
+#: apps/pootle_project/models.py:160
 msgid "File Type"
 msgstr "Bestandstype"
 
-#: apps/pootle_project/models.py:163
+#: apps/pootle_project/models.py:164
 msgid "Automatic detection (slower)"
 msgstr "Automatische detectie (trager)"
 
-#: apps/pootle_project/models.py:164
+#: apps/pootle_project/models.py:165
 msgid "GNU style: files named by language code"
 msgstr "GNU-stijl: bestanden benoemd op taalcode"
 
-#: apps/pootle_project/models.py:165
+#: apps/pootle_project/models.py:166
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Niet-GNU: elke taal in een eigen map"
 
-#: apps/pootle_project/models.py:168
+#: apps/pootle_project/models.py:169
 msgid "Project Tree Style"
 msgstr "Stijl van projectstructuur"
 
-#: apps/pootle_project/models.py:174
+#: apps/pootle_project/models.py:175
 msgid "Ignore Files"
 msgstr "Bestanden negeren"
 
-#: apps/pootle_project/models.py:179
+#: apps/pootle_project/models.py:180
 msgid "Errors Report Email"
 msgstr "E-mailadres voor fouten"
 
-#: apps/pootle_project/models.py:180
+#: apps/pootle_project/models.py:181
 msgid "An email address where issues with the source text can be reported."
 msgstr "Een e-mailadres waar problemen met de brontekst kunnen worden gemeld."
 
-#: apps/pootle_project/models.py:184
+#: apps/pootle_project/models.py:185
 msgid "Screenshot Search Prefix"
 msgstr "Voorvoegsel voor zoeken naar schermafbeeldingen"
 
-#: apps/pootle_project/models.py:189
+#: apps/pootle_project/models.py:190
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
-#: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:67 templates/editor/export_view.html:105
 msgid "Source"
 msgstr "Bron"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:68
 msgid "Target"
 msgstr "Doel"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:69
 msgid "State"
 msgstr "Status"
 
-#: apps/pootle_statistics/models.py:67
+#: apps/pootle_statistics/models.py:70
 msgid "Comment"
 msgstr "Opmerking"
 
-#: apps/pootle_statistics/models.py:207
-#, python-format
-msgid "reverted translation for %(source_string)s"
-msgstr "heeft vertaling voor %(source_string)s teruggezet"
-
-#: apps/pootle_statistics/models.py:211
-#, python-format
-msgid "accepted suggestion for %(source_string)s"
-msgstr "heeft suggestie voor %(source_string)s geaccepteerd"
-
-#: apps/pootle_statistics/models.py:215
-#, python-format
-msgid "added suggestion for %(source_string)s"
-msgstr "heeft suggestie voor %(source_string)s toegevoegd"
-
-#: apps/pootle_statistics/models.py:219
-#, python-format
-msgid "rejected suggestion for %(source_string)s"
-msgstr "heeft suggestie voor %(source_string)s afgewezen"
-
-#: apps/pootle_statistics/models.py:223
-msgid "uploaded a file"
-msgstr "een bestand geüpload"
-
-#: apps/pootle_statistics/models.py:226
-#, python-format
-msgid "muted %(check_name)s for %(source_string)s"
-msgstr "heeft %(check_name)s voor %(source_string)s gedempt"
-
-#: apps/pootle_statistics/models.py:230
-#, python-format
-msgid "unmmuted %(check_name)s for %(source_string)s"
-msgstr "heeft demping van %(check_name)s voor %(source_string)s opgeheven"
-
-#: apps/pootle_statistics/models.py:250
-#, python-format
-msgid "translated %(source_string)s"
-msgstr "heeft %(source_string)s vertaald"
-
-#: apps/pootle_statistics/models.py:252 apps/pootle_statistics/models.py:258
-#, python-format
-msgid "edited %(source_string)s"
-msgstr "heeft %(source_string)s bewerkt"
-
-#: apps/pootle_statistics/models.py:255
-#, python-format
-msgid "pre-translated %(source_string)s"
-msgstr "heeft %(source_string)s voorvertaald"
-
-#: apps/pootle_statistics/models.py:260
-#, python-format
-msgid "removed translation for %(source_string)s"
-msgstr "heeft vertaling voor %(source_string)s verwijderd"
+#: apps/pootle_statistics/models.py:266
+#, fuzzy
+msgid "Added suggestion"
+msgstr "%d suggestie"
 
 #: apps/pootle_statistics/models.py:267
-#, python-format
-msgid "reviewed %(source_string)s"
-msgstr "heeft %(source_string)s gecontroleerd"
+#, fuzzy, python-format
+msgid "Accepted suggestion from %s"
+msgstr "Suggestie accepteren"
 
 #: apps/pootle_statistics/models.py:268
-#, python-format
-msgid "marked as fuzzy %(source_string)s"
-msgstr "heeft %(source_string)s als wazig gemarkeerd"
-
-#: apps/pootle_statistics/models.py:271
-#, python-format
-msgid "unknown action %(source_string)s"
-msgstr "onbekende actie %(source_string)s"
+#, fuzzy, python-format
+msgid "Rejected suggestion from %s"
+msgstr "Suggestie afwijzen"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -929,9 +812,14 @@ msgstr "Onvoldoende rechten voor toegang tot controlemodus."
 msgid "Gettext PO"
 msgstr "Gettext PO"
 
-#: apps/pootle_store/filetypes.py:24 apps/pootle_store/filetypes.py:25
-msgid "XLIFF"
-msgstr "XLIFF"
+#: apps/pootle_store/filetypes.py:24
+#, fuzzy
+msgid "XLIFF (.xlf)"
+msgstr "XLIFF-bestand"
+
+#: apps/pootle_store/filetypes.py:25
+msgid "XLIFF (.xliff)"
+msgstr ""
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -968,12 +856,13 @@ msgid "Plural Form %d"
 msgstr "Meervoudsvorm %d"
 
 #: apps/pootle_store/forms.py:211 apps/pootle_store/util.py:31
-#: core/helpers.py:57 templates/editor/_filters.html:10
+#: core/helpers.py:59 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Werk vereist"
 
 #: apps/pootle_store/forms.py:247
-msgid "Fuzzy flag must be cleared"
+#, fuzzy
+msgid "Needs work flag must be cleared"
 msgstr "Wazig-vlag moet worden gewist"
 
 #: apps/pootle_store/forms.py:290
@@ -988,24 +877,19 @@ msgstr "Waarde van `mt_similarity` moet binnen het bereik [0..1] vallen"
 msgid "Translator comment"
 msgstr "Opmerking van de vertaler"
 
-#: apps/pootle_store/models.py:143
+#: apps/pootle_store/models.py:146
 msgid "Pending"
 msgstr "Openstaand"
 
-#: apps/pootle_store/models.py:144
+#: apps/pootle_store/models.py:147
 msgid "Accepted"
 msgstr "Geaccepteerd"
 
-#: apps/pootle_store/models.py:145
+#: apps/pootle_store/models.py:148
 msgid "Rejected"
 msgstr "Afgewezen"
 
-#: apps/pootle_store/models.py:1274
-#, python-format
-msgid "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;added"
-msgstr "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;toegevoegd"
-
-#: apps/pootle_store/models.py:1329
+#: apps/pootle_store/models.py:1309
 msgid "Path"
 msgstr "Pad"
 
@@ -1023,29 +907,86 @@ msgstr "Meervoud"
 msgid "Obsolete"
 msgstr "Verouderd"
 
-#: apps/pootle_store/views.py:466 core/decorators.py:46
+#: apps/pootle_store/views.py:467 core/decorators.py:46
 msgid "Arguments missing."
 msgstr "Argumenten ontbreken."
 
-#: apps/pootle_store/views.py:695
+#: apps/pootle_store/views.py:708
 msgid "Failed to remove comment."
 msgstr "Verwijderen van opmerking mislukt."
 
-#: apps/pootle_store/views.py:729
+#: apps/pootle_store/views.py:742
 msgid "Comment submission failed."
 msgstr "Indienen van opmerking mislukt."
 
-#: apps/pootle_store/views.py:917
+#: apps/pootle_store/views.py:941
 msgid "Failed to process submission."
 msgstr "Verwerken van indiening mislukt."
 
-#: apps/pootle_store/views.py:958
+#: apps/pootle_store/views.py:982
 msgid "Failed to process suggestion."
 msgstr "Verwerken van suggestie mislukt."
 
 #: apps/pootle_terminology/forms.py:48
 msgid "This term already exists in this file."
 msgstr "Deze term bestaat al in dit bestand."
+
+#: apps/reports/forms.py:27
+msgid "Translation Rate"
+msgstr "Vertaaltarief"
+
+#: apps/reports/forms.py:42
+msgid "Effective from"
+msgstr "Met ingang van"
+
+#: apps/reports/models.py:31 apps/reports/models.py:43
+#: templates/editor/export_view.html:106
+#: templates/translation_projects/terminology/manage.html:35
+#: templates/user/settings.html:29
+msgid "Translation"
+msgstr "Vertaling"
+
+#: apps/reports/models.py:32 apps/reports/models.py:44
+msgid "Review"
+msgstr "Nakijken"
+
+#: apps/reports/models.py:33
+#, fuzzy
+msgid "Suggestion"
+msgstr "Suggesties"
+
+#: apps/reports/models.py:45
+msgid "Hourly Work"
+msgstr "Werk per uur"
+
+#: apps/reports/models.py:46
+msgid "Correction"
+msgstr "Correctie"
+
+#: apps/reports/models.py:49
+msgid "Type"
+msgstr "Type"
+
+#: apps/reports/models.py:52
+msgid "Amount"
+msgstr "Bedrag"
+
+#: apps/reports/models.py:54
+msgid "Date"
+msgstr "Datum"
+
+#: apps/reports/models.py:55 apps/virtualfolder/models.py:58
+msgid "Description"
+msgstr "Beschrijving"
+
+#: apps/reports/views.py:320
+#, python-format
+msgid "User %s not found"
+msgstr "Gebruiker %s niet gevonden"
+
+#: apps/reports/views.py:397
+msgid "Invalid request method"
+msgstr "Ongeldige aanvraagmethode"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1106,54 +1047,55 @@ msgstr "Juridische pagina"
 msgid "Regular Page"
 msgstr "Normale pagina"
 
-#: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
+#: apps/staticpages/views.py:121 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "Paginatitel"
 
 #. Translators: 'projects' must not be translated.
-#: apps/staticpages/views.py:128
+#: apps/staticpages/views.py:138
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
 "projects/<project_code> of <language_code> of <language_code>/<project_code>"
 
-#: apps/virtualfolder/models.py:39
+#: apps/virtualfolder/models.py:34
 msgid "Location"
 msgstr "Locatie"
 
-#: apps/virtualfolder/models.py:42
+#: apps/virtualfolder/models.py:37
 msgid "Root path where this virtual folder is applied."
 msgstr "Pad naar hoofdmap waar deze virtuele map wordt toegepast."
 
 #. Translators: This is a noun.
-#: apps/virtualfolder/models.py:46
+#: apps/virtualfolder/models.py:41
 msgid "Filter"
 msgstr "Filter"
 
-#: apps/virtualfolder/models.py:48
+#: apps/virtualfolder/models.py:43
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr "Filterregels die vertellen welke archieven deze virtuele map vormt."
 
-#: apps/virtualfolder/models.py:52 core/browser.py:24
+#: apps/virtualfolder/models.py:47 core/browser.py:22
 msgid "Priority"
 msgstr "Prioriteit"
 
-#: apps/virtualfolder/models.py:54
+#: apps/virtualfolder/models.py:49
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
 "Aantal dat urgentie aangeeft. Hogere prioriteit betekent dat het "
 "belangrijker is."
 
-#: apps/virtualfolder/models.py:58
-msgid "Is browsable?"
-msgstr "Bladeren mogelijk?"
+#: apps/virtualfolder/models.py:53
+msgid "Is public?"
+msgstr ""
 
-#: apps/virtualfolder/models.py:60
-msgid "Whether this virtual folder is active or not."
+#: apps/virtualfolder/models.py:55
+#, fuzzy
+msgid "Whether this virtual folder is public or not."
 msgstr "Of deze virtuele map actief is of niet."
 
-#: apps/virtualfolder/models.py:65
+#: apps/virtualfolder/models.py:60
 #, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
@@ -1186,49 +1128,37 @@ msgstr "Uw versie van Translate Toolkit is te oud."
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Probeer pip install --upgrade translate-toolkit"
 
-#: checks.py:88
-msgid ""
-"Can't find python-levenshtein package. Updating against templates is faster "
-"with python-levenshtein."
-msgstr ""
-"Kan het pakket python-levenshtein niet vinden. Bijwerken vanuit sjablonen "
-"gaat sneller met python-levenshtein."
-
-#: checks.py:90
-msgid "Try pip install python-levenshtein"
-msgstr "Probeer pip install python-levenshtein"
-
-#: checks.py:109
+#: checks.py:92
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Kon geen verbinding maken met Redis (%s)"
 
-#: checks.py:110
+#: checks.py:93
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Zorg ervoor dat Redis actief is op %(host)s:%(port)s"
 
-#: checks.py:119
+#: checks.py:102
 msgid "No RQ Worker running."
 msgstr "Er zijn geen RQ workers actief."
 
-#: checks.py:120
+#: checks.py:103
 msgid "Run new workers with manage.py rqworker"
 msgstr "Voer nieuwe workers uit met manage.py rqworker"
 
-#: checks.py:127
+#: checks.py:110
 msgid "Your version of Redis is too old."
 msgstr "Uw versie van Redis is te oud."
 
-#: checks.py:128
+#: checks.py:111
 msgid "Update your system's Redis server package"
 msgstr "Werk het Redis-server-pakket van uw systeem bij"
 
-#: checks.py:143
+#: checks.py:126
 msgid "Cache backend is not set to Redis."
 msgstr "Cache-backend is niet ingesteld op Redis."
 
-#: checks.py:144
+#: checks.py:127
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1237,35 +1167,35 @@ msgstr ""
 "Stel standaard cache-backend in op django_redis.cache.RedisCache\n"
 "Huidige instellingen: %r"
 
-#: checks.py:153
+#: checks.py:136
 msgid "Could not initiate a Redis cache connection"
 msgstr "Kon geen verbinding met Redis-cache tot stand brengen"
 
-#: checks.py:154
+#: checks.py:137
 msgid "Double-check your CACHES settings"
 msgstr "Controleer uw CACHES-instellingen"
 
-#: checks.py:160
+#: checks.py:143
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "DEBUGmodus staat aan. Doe dit niet in productie!"
 
-#: checks.py:161
+#: checks.py:144
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Stel DEBUG = False in in de Pootle-instellingen"
 
-#: checks.py:167
+#: checks.py:150
 msgid "The sqlite database backend is unsupported"
 msgstr "De sqlite-database-backend wordt niet ondersteund"
 
-#: checks.py:168
+#: checks.py:151
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
 msgstr "Stel uw standaard database-engine in op postgresql_psycopg2 of mysql"
 
-#: checks.py:174
+#: checks.py:157
 msgid "Not using cached_db as session engine"
 msgstr "Cached_db wordt niet als sessie-engine gebruikt"
 
-#: checks.py:175
+#: checks.py:158
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1274,11 +1204,11 @@ msgstr ""
 "Stel SESSION_ENGINE in op django.contrib.sessions.backend.cached_db\n"
 "Huidige instellingen: %r"
 
-#: checks.py:182
+#: checks.py:165
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL is niet ingesteld."
 
-#: checks.py:183
+#: checks.py:166
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1286,12 +1216,12 @@ msgstr ""
 "Stel POOTLE_CONTACT_EMAIL in om gebruikers contact te kunnen laten opnemen "
 "met beheerders via het Pootle-contactformulier."
 
-#: checks.py:191
+#: checks.py:174
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL gebruikt de volgende standaardinstelling %r."
 
-#: checks.py:193
+#: checks.py:176
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1299,11 +1229,12 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL is het adres dat berichten zal ontvangen die via het "
 "contactformulier zijn verzonden."
 
-#: checks.py:200
-msgid "settings.DEFAULT_FROM_EMAIL is not set."
+#: checks.py:183
+#, fuzzy
+msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "settings.DEFAULT_FROM_EMAIL is niet ingesteld."
 
-#: checks.py:201 checks.py:211
+#: checks.py:184 checks.py:194
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1311,51 +1242,106 @@ msgstr ""
 "DEFAULT_FROM_EMAIL wordt in alle uitgaande e-mail van Pootle gebruikt.\n"
 "Vergeet niet de instellingen voor uw mailserver te controleren."
 
-#: checks.py:209
-#, python-format
-msgid "settings.DEFAULT_FROM_EMAIL is using the following default setting %r."
+#: checks.py:192
+#, fuzzy, python-format
+msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 "settings.DEFAULT_FROM_EMAIL gebruikt de volgende standaardinstelling %r."
 
-#: core/browser.py:29
+#: checks.py:203
+#, fuzzy
+msgid "POOTLE_MARKUP_FILTER is missing."
+msgstr "MARKUP_FILTER ontbreekt. Teruggekeerd naar HTML."
+
+#: checks.py:204
+msgid "Set POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:209
+#, fuzzy
+msgid "Invalid value in POOTLE_MARKUP_FILTER."
+msgstr "Ongeldige waarde '%s' in MARKUP_FILTER. Teruggekeerd naar HTML."
+
+#: checks.py:210
+msgid "Set a valid value for POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:224
+msgid "Invalid markup in POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:225
+msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:230
+#, python-format
+msgid ""
+"POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
+"can't be found."
+msgstr ""
+
+#: checks.py:232
+msgid "Install the package or change POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:256
+msgid "The default 'admin' user still has a password set to 'admin'."
+msgstr ""
+
+#: checks.py:258
+msgid "Remove the 'admin' user or change its password."
+msgstr ""
+
+#: checks.py:273
+msgid "Database connection does not implement on_commit."
+msgstr ""
+
+#: checks.py:274
+msgid ""
+"Set the DATABASES['default']['ENGINE'] to use a backend from "
+"transaction_hooks.backends."
+msgstr ""
+
+#: core/browser.py:27
 msgid "Project"
 msgstr "Project"
 
 #. Translators: noun. The graphical representation of translation status
-#: core/browser.py:40
+#: core/browser.py:38
 msgid "Progress"
 msgstr "Voortgang"
 
-#: core/browser.py:52 templates/browser/index.html:39
+#: core/browser.py:50 templates/browser/index.html:39
 msgid "Last updated"
 msgstr "Laatst bijgewerkt"
 
-#: core/browser.py:57
+#: core/browser.py:55
 msgid "Need Translation"
 msgstr "Vertaling nodig"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:63 templates/editor/_filters.html:11
+#: core/browser.py:61 templates/editor/_filters.html:11
 msgid "Suggestions"
 msgstr "Suggesties"
 
-#: core/browser.py:73
+#: core/browser.py:71
 msgid "Last Activity"
 msgstr "Laatste activiteit"
 
-#: core/browser.py:130
+#: core/browser.py:128
 msgid "Back to language"
 msgstr "Terug naar taal"
 
-#: core/browser.py:132
+#: core/browser.py:130
 msgid "Back to parent folder"
 msgstr "Terug naar bovenliggende map"
 
-#: core/decorators.py:313
+#: core/decorators.py:321
 msgid "Insufficient rights to access this page."
 msgstr "Onvoldoende rechten voor toegang tot deze pagina."
 
-#: core/decorators.py:326 core/views.py:34
+#: core/decorators.py:334 core/views.py:34
 msgid "You do not have rights to administer Pootle."
 msgstr "U hebt geen rechten om Pootle te beheren."
 
@@ -1371,63 +1357,63 @@ msgstr "Voer een getal in"
 msgid "Incorrect"
 msgstr "Onjuist"
 
-#: core/helpers.py:42
+#: core/helpers.py:44
 msgid "User missing"
 msgstr "Gebruiker ontbreekt"
 
 #. Translators: This refers to "All strings"
-#: core/helpers.py:54 templates/editor/_filters.html:6
+#: core/helpers.py:56 templates/editor/_filters.html:6
 msgid "All"
 msgstr "Alles"
 
-#: core/helpers.py:58 templates/editor/_filters.html:8
+#: core/helpers.py:60 templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Onvolledig"
 
-#: core/helpers.py:61 templates/editor/_filters.html:18
+#: core/helpers.py:63 templates/editor/_filters.html:18
 msgid "Checks"
 msgstr "Controles"
 
-#: core/helpers.py:62 templates/editor/_filters.html:13
+#: core/helpers.py:64 templates/editor/_filters.html:13
 msgid "My submissions"
 msgstr "Mijn bijdragen"
 
-#: core/helpers.py:63 templates/admin/dashboard.html:13
+#: core/helpers.py:65 templates/admin/dashboard.html:13
 msgid "Submissions"
 msgstr "Opgeslagen"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
-#: core/helpers.py:64 templates/editor/_filters.html:17
+#: core/helpers.py:66 templates/editor/_filters.html:17
 msgid "My overwritten submissions"
 msgstr "Mijn overschreven bijdragen"
 
-#: core/helpers.py:65
+#: core/helpers.py:67
 msgid "Overwritten submissions"
 msgstr "Overschreven bijdragen"
 
-#: core/initdb.py:109
+#: core/initdb.py:108
 msgid "Can access a project"
 msgstr "Heeft toegang tot een project"
 
-#: core/initdb.py:113
+#: core/initdb.py:112
 msgid "Cannot access a project"
 msgstr "Heeft geen toegang tot een project"
 
-#: core/initdb.py:117
+#: core/initdb.py:116
 msgid "Can make a suggestion for a translation"
 msgstr "Kan een suggestie voor een vertaling doen"
 
-#: core/initdb.py:121
+#: core/initdb.py:120
 msgid "Can submit a translation"
 msgstr "Kan een vertaling invoeren"
 
-#: core/initdb.py:125
+#: core/initdb.py:124
 msgid "Can review suggestions"
 msgstr "Kan suggesties nakijken"
 
-#: core/initdb.py:129
+#: core/initdb.py:128
 msgid "Can administrate a translation project"
 msgstr "Kan een vertaalproject beheren"
 
@@ -1443,12 +1429,19 @@ msgstr "Aan de slag"
 msgid "License Terms"
 msgstr "Licentievoorwaarden"
 
-#: custom/templates/profiles/_tabs.html:4 templates/layout.html:116
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:111
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
 msgid "Settings"
 msgstr "Instellingen"
 
-#: middleware/errorpages.py:57
+#: middleware/errorpages.py:82
+#, python-format
+msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
+msgstr ""
+"Fout bij toegang tot %(filename)s, bestandssysteem stuurde foutmelding: "
+"%(errormsg)s"
+
+#: middleware/errorpages.py:119
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -1456,13 +1449,6 @@ msgid ""
 msgstr ""
 "U moet zich <a class=\"js-login\" href=\"%(login_link)s\">aanmelden</a> om "
 "deze pagina te bekijken."
-
-#: middleware/errorpages.py:97
-#, python-format
-msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
-msgstr ""
-"Fout bij toegang tot %(filename)s, bestandssysteem stuurde foutmelding: "
-"%(errormsg)s"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:35
@@ -1494,7 +1480,7 @@ msgstr "Gebruiksvoorwaarden"
 msgid "Terms of Service"
 msgstr "Servicevoorwaarden"
 
-#: templates/about.html:7 templates/layout.html:171
+#: templates/about.html:7 templates/layout.html:167
 msgid "About"
 msgstr "Info"
 
@@ -1557,7 +1543,7 @@ msgid "Registration is currently disabled. Please try again later."
 msgstr "Registratie is momenteel uitgeschakeld. Probeer het later nog eens."
 
 #: templates/admin/_generic_formset.html:15
-#: templates/translation_projects/terminology/manage.html:51
+#: templates/translation_projects/terminology/manage.html:49
 msgid "Save Changes"
 msgstr "Wijzigingen opslaan"
 
@@ -1691,24 +1677,29 @@ msgstr "Woorden"
 msgid "Subtotal"
 msgstr "Subtotaal"
 
-#: templates/admin/detailed_reports.html:184
-#: templates/admin/detailed_reports.html:230
+#: templates/admin/detailed_reports.html:206
+#: templates/admin/detailed_reports.html:265
 msgid "registered tasks"
 msgstr "geregistreerde taken"
 
-#: templates/admin/detailed_reports.html:195
+#: templates/admin/detailed_reports.html:217
 msgid "No activity recorded in a given period"
 msgstr "Geen activiteit geregistreerd in een gegeven periode"
 
-#: templates/admin/detailed_reports.html:205
+#: templates/admin/detailed_reports.html:226
+#, fuzzy
+msgid "Suggestion (subtotal)"
+msgstr "Vertaling (subtotaal)"
+
+#: templates/admin/detailed_reports.html:236
 msgid "Translation (subtotal)"
 msgstr "Vertaling (subtotaal)"
 
-#: templates/admin/detailed_reports.html:216
+#: templates/admin/detailed_reports.html:251
 msgid "Review (subtotal)"
 msgstr "Controle (subtotaal)"
 
-#: templates/admin/detailed_reports.html:248
+#: templates/admin/detailed_reports.html:283
 msgid "Please select a valid user."
 msgstr "Selecteer een geldige gebruiker."
 
@@ -1731,8 +1722,8 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"De gebruiker ‘niemand’ verwijst naar een gebruiker die niet is aangemeld ("
-"een anonieme, niet-geïdentificeerde gebruiker). De gebruiker ‘standaard’ "
+"De gebruiker ‘niemand’ verwijst naar een gebruiker die niet is aangemeld "
+"(een anonieme, niet-geïdentificeerde gebruiker). De gebruiker ‘standaard’ "
 "verwijst naar de rechten die alle aangemelde gebruikers standaard hebben, "
 "tenzij aan hen andere specifieke rechten zijn toegekend."
 
@@ -1778,7 +1769,7 @@ msgid "Save"
 msgstr "Opslaan"
 
 #: templates/admin/staticpages/_form.html:6
-#: templates/translation_projects/terminology/manage.html:38
+#: templates/translation_projects/terminology/manage.html:36
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -1792,10 +1783,16 @@ msgid ""
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
-"Gebruik <code>&lt;a href=\"<strong>#/paginaslug</strong>\""
-"&gt;Koppelingstekst&lt;/a&gt;</code>-code om koppelingen tussen statische "
+"Gebruik <code>&lt;a href=\"<strong>#/paginaslug</strong>\"&gt;"
+"Koppelingstekst&lt;/a&gt;</code>-code om koppelingen tussen statische "
 "pagina's op te geven. Dergelijke koppelingen zullen door volledige paden "
 "naar statische pagina's worden overschreven."
+
+#: templates/admin/staticpages/_form.html:37
+msgid ""
+"In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
+"a dynamic language code."
+msgstr ""
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1810,6 +1807,7 @@ msgid "No"
 msgstr "Nee"
 
 #: templates/admin/staticpages/_table.html:19
+#: templates/staticpages/_body.html:16
 msgid "edit"
 msgstr "bewerken"
 
@@ -1822,7 +1820,6 @@ msgid "No pages yet."
 msgstr "Nog geen pagina's."
 
 #: templates/admin/staticpages/page_create.html:4
-#: templates/admin/staticpages/page_create.html:7
 msgid "Add"
 msgstr "Toevoegen"
 
@@ -1867,18 +1864,18 @@ msgid "View all"
 msgstr "Alles weergeven"
 
 #: templates/browser/_progressbar.html:3
-#, python-format
-msgid "<span class='value translated'>0</span>%% translated"
+#, fuzzy, python-format
+msgid "<span class=\"value translated\">0</span>%% translated"
 msgstr "<span class='value translated'>0</span>%% vertaald"
 
 #: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>0</span>%% fuzzy"
+#, fuzzy, python-format
+msgid "<span class=\"value fuzzy\">0</span>%% needs work"
 msgstr "<span class='value fuzzy'>0</span>%% wazig"
 
 #: templates/browser/_progressbar.html:5
-#, python-format
-msgid "<span class='value untranslated'>0</span>%% untranslated"
+#, fuzzy, python-format
+msgid "<span class=\"value untranslated\">0</span>%% untranslated"
 msgstr "<span class='value untranslated'>0</span>%% onvertaald"
 
 #: templates/browser/index.html:13
@@ -1897,11 +1894,11 @@ msgstr "Laatste actie"
 msgid "Failing Checks"
 msgstr "Mislukte controles"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:102
 msgid "This project is disabled and visible to administrators only."
 msgstr "Dit project is uitgeschakeld en alleen zichtbaar voor beheerders."
 
-#: templates/browser/index.html:109
+#: templates/browser/index.html:107
 msgid ""
 "Some data on this page is currently being calculated, and the page will be "
 "refreshed automatically in <strong>30 seconds</strong>."
@@ -1909,15 +1906,15 @@ msgstr ""
 "Sommige gegevens op deze pagina worden momenteel berekend, en de pagina zal "
 "over <strong>30 seconden</strong> worden vernieuwd."
 
-#: templates/browser/index.html:113
+#: templates/browser/index.html:111
 msgid "Refresh now"
 msgstr "Nu vernieuwen"
 
-#: templates/browser/index.html:149
+#: templates/browser/index.html:148
 msgid "Congratulations! You have completed this task!"
 msgstr "Gefeliciteerd! U hebt deze taak voltooid!"
 
-#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:104
+#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:99
 msgid "Contact Us"
 msgstr "Contact"
 
@@ -2041,11 +2038,17 @@ msgid "No strings."
 msgstr "Geen tekenreeksen."
 
 #: templates/editor/export_view.html:149
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"We displayed first %(count)s units out of %(total_count)s. Please refine "
-"your search."
-msgstr ""
+"We displayed the first unit out of %(total_count)s. Please refine your "
+"search."
+msgid_plural ""
+"We displayed the first %(unit_count)s units out of %(total_count)s. Please "
+"refine your search."
+msgstr[0] ""
+"De eerste %(count)s van %(total_count)s eenheden zijn weergegeven. Verfijn "
+"uw zoekopdracht."
+msgstr[1] ""
 "De eerste %(count)s van %(total_count)s eenheden zijn weergegeven. Verfijn "
 "uw zoekopdracht."
 
@@ -2084,125 +2087,125 @@ msgstr "De vertaalde term in de editor invoegen"
 msgid "Comments:"
 msgstr "Opmerkingen:"
 
-#: templates/editor/units/edit.html:70
+#: templates/editor/units/edit.html:72
 msgid "Click to open the image in a popup"
 msgstr "Klik om de afbeelding in een pop-up te openen"
 
-#: templates/editor/units/edit.html:84
+#: templates/editor/units/edit.html:86
 msgid "Screenshots..."
 msgstr "Schermafbeeldingen..."
 
-#: templates/editor/units/edit.html:108 templates/editor/units/edit.html:134
+#: templates/editor/units/edit.html:111 templates/editor/units/edit.html:139
 msgid "Copy into translation"
 msgstr "Kopiëren naar vertaling"
 
-#: templates/editor/units/edit.html:130
+#: templates/editor/units/edit.html:134
 msgid "Report a problem with this string"
 msgstr "Een probleem met deze tekenreeks melden"
 
-#: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
-#: templates/editor/units/edit.html:256
+#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:169
+#: templates/editor/units/edit.html:262
 msgid "Submit"
 msgstr "Opslaan"
 
-#: templates/editor/units/edit.html:153
+#: templates/editor/units/edit.html:159
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Vertaling opslaan en naar de volgende tekenreeks gaan (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
+#: templates/editor/units/edit.html:164 templates/editor/units/edit.html:170
 msgid "Suggest"
 msgstr "Voorstellen"
 
-#: templates/editor/units/edit.html:159
+#: templates/editor/units/edit.html:165
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Vertaling voorstellen en naar de volgende tekenreeks gaan (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:169
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Omschakelen naar vertaalmodus (Ctrl+Shift+Spatie)"
 
-#: templates/editor/units/edit.html:164
+#: templates/editor/units/edit.html:170
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Omschakelen naar suggestiemodus (Ctrl+Shift+Spatie)"
 
-#: templates/editor/units/edit.html:169
+#: templates/editor/units/edit.html:175
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Deze tekenreeks markeren als meer werk nodig te hebben (Ctrl+Spatie)"
 
-#: templates/editor/units/edit.html:184
+#: templates/editor/units/edit.html:190
 msgid "Show Timeline"
 msgstr "Tijdlijn tonen"
 
-#: templates/editor/units/edit.html:186
+#: templates/editor/units/edit.html:192
 msgid "Add Comment"
 msgstr "Opmerking toevoegen"
 
-#: templates/editor/units/edit.html:188
+#: templates/editor/units/edit.html:194
 msgid "Raw View"
 msgstr "Onbewerkte weergave"
 
-#: templates/editor/units/edit.html:198
+#: templates/editor/units/edit.html:204
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "gecontroleerd door <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:208
+#: templates/editor/units/edit.html:214
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "RLM (van-rechts-naar-links-markering) in de editor invoegen"
 
-#: templates/editor/units/edit.html:211
+#: templates/editor/units/edit.html:217
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "LRM (van-links-naar-rechts-markering) in de editor invoegen"
 
-#: templates/editor/units/edit.html:214
+#: templates/editor/units/edit.html:220
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "RLE (van-rechts-naar-links inbedden) in de editor invoegen"
 
-#: templates/editor/units/edit.html:217
+#: templates/editor/units/edit.html:223
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "LRE (van-links-naar-rechts inbedden) in de editor invoegen"
 
-#: templates/editor/units/edit.html:220
+#: templates/editor/units/edit.html:226
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "RLO (van-rechts-naar-links overschrijven) in de editor invoegen"
 
-#: templates/editor/units/edit.html:223
+#: templates/editor/units/edit.html:229
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "LRO (van-links-naar-rechts overschrijven) in de editor invoegen"
 
-#: templates/editor/units/edit.html:226
+#: templates/editor/units/edit.html:232
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "PDF (Pop Directional Format) in de editor invoegen"
 
-#: templates/editor/units/edit.html:229
+#: templates/editor/units/edit.html:235
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "ZWJ (Zero Width Joiner) in de editor invoegen"
 
-#: templates/editor/units/edit.html:232
+#: templates/editor/units/edit.html:238
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "ZWNJ (Zero Width Non Joiner) in de editor invoegen"
 
-#: templates/editor/units/edit.html:239
+#: templates/editor/units/edit.html:245
 msgid "Insert this symbol into the editor"
 msgstr "Dit symbool in de editor invoegen"
 
-#: templates/editor/units/edit.html:276
+#: templates/editor/units/edit.html:282
 msgid "User suggestions"
 msgstr "Suggesties van gebruiker"
 
-#: templates/editor/units/edit.html:293
+#: templates/editor/units/edit.html:300
 msgid "Accept suggestion"
 msgstr "Suggestie accepteren"
 
-#: templates/editor/units/edit.html:298
+#: templates/editor/units/edit.html:305
 msgid "Reject suggestion"
 msgstr "Suggestie afwijzen"
 
-#: templates/editor/units/edit.html:305
+#: templates/editor/units/edit.html:312
 msgid "Remove suggestion"
 msgstr "Suggestie verwijderen"
 
-#: templates/editor/units/edit.html:320
+#: templates/editor/units/edit.html:327
 msgid "A long time ago"
 msgstr "Heel lang geleden"
 
@@ -2210,26 +2213,31 @@ msgstr "Heel lang geleden"
 msgid "Comment: "
 msgstr "Opmerking: "
 
-#: templates/editor/units/timeline.html:4
-#: templates/editor/units/timeline.html:14
-msgid "Previous Work"
-msgstr "Eerder werk"
-
-#: templates/editor/units/xhr_checks.html:3
-msgid "Possible issues with the translation"
+#: templates/editor/units/xhr_checks.html:5
+#, fuzzy
+msgid "Critical issues with the translation"
 msgstr "Mogelijke problemen met de vertaling"
 
-#: templates/editor/units/xhr_checks.html:3
-msgid "Failing checks:"
-msgstr "Mislukte controles:"
+#: templates/editor/units/xhr_checks.html:5
+#, fuzzy
+msgid "Critical errors:"
+msgstr "Kritieke fouten herstellen"
 
-#: templates/editor/units/xhr_checks.html:10
+#: templates/editor/units/xhr_checks.html:12
 msgid "Mute quality check"
 msgstr "Kwaliteitscontrole dempen"
 
-#: templates/editor/units/xhr_checks.html:11
+#: templates/editor/units/xhr_checks.html:13
 msgid "Unmute quality check"
 msgstr "Kwaliteitscontrole tonen"
+
+#: templates/editor/units/xhr_checks.html:25
+msgid "Possible issues with the translation"
+msgstr "Mogelijke problemen met de vertaling"
+
+#: templates/editor/units/xhr_checks.html:25
+msgid "Watch out for:"
+msgstr ""
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
@@ -2243,15 +2251,15 @@ msgstr "Laatste opmerking:"
 msgid "Timeline"
 msgstr "Tijdlijn"
 
-#: templates/editor/units/xhr_timeline.html:25
+#: templates/editor/units/xhr_timeline.html:32
 msgid "Last comment removed"
 msgstr "Laatste opmerking verwijderd"
 
-#: templates/editor/units/xhr_timeline.html:30
+#: templates/editor/units/xhr_timeline.html:37
 msgid "check"
 msgstr "controle"
 
-#: templates/editor/units/xhr_timeline.html:38
+#: templates/editor/units/xhr_timeline.html:46
 msgid "Unit created"
 msgstr "Eenheid aangemaakt"
 
@@ -2344,39 +2352,39 @@ msgstr ""
 "Hieronder kunt u de rechten voor deze taal toevoegen, bewerken en "
 "verwijderen."
 
-#: templates/layout.html:78
+#: templates/layout.html:79
 msgid "Pootle requires JavaScript"
 msgstr "Pootle vereist JavaScript"
 
-#: templates/layout.html:79
+#: templates/layout.html:80
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 "Schakel JavaScript in de voorkeuren van uw browser in en herlaad de pagina."
 
-#: templates/layout.html:94
+#: templates/layout.html:89
 msgid "skip to navigation"
 msgstr "naar navigatie"
 
-#: templates/layout.html:115
+#: templates/layout.html:110
 msgid "Public Profile"
 msgstr "Openbaar profiel"
 
-#: templates/layout.html:117 templates/user/stats.html:46
+#: templates/layout.html:112 templates/user/stats.html:46
 #: templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr "Statistieken"
 
 # again: person or action?
-#: templates/layout.html:119
+#: templates/layout.html:114
 msgid "Admin"
 msgstr "Beheerder"
 
-#: templates/layout.html:122
+#: templates/layout.html:117
 msgid "Sign out"
 msgstr "Afmelden"
 
-#: templates/layout.html:126
+#: templates/layout.html:121
 msgid "Sign In"
 msgstr "Aanmelden"
 
@@ -2384,13 +2392,19 @@ msgstr "Aanmelden"
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "Hier kunt u talen voor dit project toevoegen, bewerken en verwijderen."
 
+#: templates/projects/admin/languages.html:14
+msgid ""
+"There are no templates for this project, so adding new languages from this "
+"screen is disabled."
+msgstr ""
+
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
 "Hieronder kunt u de toegangsrechten voor dit project toevoegen, bewerken en "
 "verwijderen."
 
-#: templates/staticpages/_body.html:5
+#: templates/staticpages/_body.html:6
 #, python-format
 msgid ""
 "This static page is inactive and visible to administrators only. You can "
@@ -2444,37 +2458,20 @@ msgstr "Opmerkingen van de vertaler"
 msgid "Manage Terminology"
 msgstr "Terminologie beheren"
 
-#: templates/translation_projects/terminology/extract.html:6
-msgid "Regenerate Glossary"
-msgstr "Woordenlijst opnieuw genereren"
-
-#: templates/translation_projects/terminology/extract.html:7
-msgid ""
-"Are you sure you want to regenerate the glossary? Any existing terms and "
-"their translations will be deleted."
-msgstr ""
-"Weet u zeker dat u de woordenlijst opnieuw wilt genereren? Alle bestaande "
-"termen en hun vertalingen zullen worden verwijderd."
-
-#: templates/translation_projects/terminology/extract.html:11
-msgid "Extract"
-msgstr "Filteren"
-
-#: templates/translation_projects/terminology/manage.html:23
-msgid "You can regenerate the glossary from scratch."
-msgstr "U kunt de woordenlijst vanaf nul opnieuw genereren."
-
-#: templates/translation_projects/terminology/manage.html:36
+#: templates/translation_projects/terminology/manage.html:34
 msgid "Term"
 msgstr "Term"
 
-#: templates/translation_projects/terminology/manage.html:62
-msgid "Glossary is Empty"
-msgstr "Woordenlijst is leeg"
+#: templates/translation_projects/terminology/manage.html:58
+msgid "No terminology file has been found"
+msgstr ""
 
-#: templates/translation_projects/terminology/manage.html:63
-msgid "Generate Glossary"
-msgstr "Woordenlijst genereren"
+#: templates/translation_projects/terminology/manage.html:60
+msgid ""
+"In order to use the terminology feature, make sure to add to your "
+"translation project a \"pootle-terminology\" file named after your project's "
+"extension."
+msgstr ""
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
@@ -2499,24 +2496,24 @@ msgstr ""
 msgid "Anonymous User"
 msgstr "Anonieme gebruiker"
 
-#: templates/user/profile.html:25
+#: templates/user/profile.html:28
 msgid "Score:"
 msgstr "Score:"
 
-#: templates/user/profile.html:28
+#: templates/user/profile.html:31
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
 msgstr "Mijn huidige score op %(server_title)s is %(score)s "
 
-#: templates/user/profile.html:28 templates/user/profile.html.py:40
+#: templates/user/profile.html:31 templates/user/profile.html.py:43
 msgid "Tweet this!"
 msgstr "Dit tweeten!"
 
-#: templates/user/profile.html:37
+#: templates/user/profile.html:40
 msgid "No contributions in the last month"
 msgstr "Geen bijdragen in de afgelopen maand"
 
-#: templates/user/profile.html:40
+#: templates/user/profile.html:43
 #, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
@@ -2525,12 +2522,12 @@ msgstr ""
 "Ik ben de #%(pos)s medewerker in het %(lang_name)s van deze maand op "
 "%(server_title)s! "
 
-#: templates/user/profile.html:41
+#: templates/user/profile.html:44
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s for this month"
 msgstr "#%(pos)s medewerker in het %(lang_name)s van deze maand"
 
-#: templates/user/profile.html:46
+#: templates/user/profile.html:49
 #, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
@@ -2538,19 +2535,19 @@ msgstr ""
 "#%(pos)s medewerker in het <a href=\"%(url)s\">%(lang_name)s</a> van deze "
 "maand"
 
-#: templates/user/profile.html:57
+#: templates/user/profile.html:60
 msgid "Latest activity:"
 msgstr "Laatste activiteit:"
 
-#: templates/user/profile.html:69
+#: templates/user/profile.html:72
 msgid "My Website"
 msgstr "Mijn website"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:78
 msgid "My LinkedIn Profile"
 msgstr "Mijn LinkedIn-profiel"
 
-#: templates/user/profile.html:84
+#: templates/user/profile.html:87
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -2558,7 +2555,7 @@ msgstr ""
 "Toon anderen wie u bent, vertel iets over uzelf<br/>en laat uw openbare "
 "profiel er prachtig uitzien!"
 
-#: templates/user/profile.html:94
+#: templates/user/profile.html:97
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -2566,7 +2563,7 @@ msgstr ""
 "Sommige vertalingen worden door anonieme vrijwilligers aangeleverd. Die "
 "vertalingen worden onder deze speciale meta-account geregistreerd."
 
-#: templates/user/profile.html:96
+#: templates/user/profile.html:99
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -2630,6 +2627,109 @@ msgstr "Aanmelden"
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr "Topmedewerkers deze maand"
+
+#~ msgid "File %r was rejected because its X-Pootle-Revision is too old."
+#~ msgstr ""
+#~ "Bestand %r is geweigerd, omdat de header X-Pootle-Revision ervan te oud "
+#~ "is."
+
+#~ msgid "Source Terms"
+#~ msgstr "Brontermen"
+
+#~ msgid "Target Terms"
+#~ msgstr "Doeltermen"
+
+#~ msgid "Definitions"
+#~ msgstr "Definities"
+
+#~ msgid "reverted translation for %(source_string)s"
+#~ msgstr "heeft vertaling voor %(source_string)s teruggezet"
+
+#~ msgid "accepted suggestion for %(source_string)s"
+#~ msgstr "heeft suggestie voor %(source_string)s geaccepteerd"
+
+#~ msgid "added suggestion for %(source_string)s"
+#~ msgstr "heeft suggestie voor %(source_string)s toegevoegd"
+
+#~ msgid "rejected suggestion for %(source_string)s"
+#~ msgstr "heeft suggestie voor %(source_string)s afgewezen"
+
+#~ msgid "uploaded a file"
+#~ msgstr "een bestand geüpload"
+
+#~ msgid "muted %(check_name)s for %(source_string)s"
+#~ msgstr "heeft %(check_name)s voor %(source_string)s gedempt"
+
+#~ msgid "unmmuted %(check_name)s for %(source_string)s"
+#~ msgstr "heeft demping van %(check_name)s voor %(source_string)s opgeheven"
+
+#~ msgid "translated %(source_string)s"
+#~ msgstr "heeft %(source_string)s vertaald"
+
+#~ msgid "edited %(source_string)s"
+#~ msgstr "heeft %(source_string)s bewerkt"
+
+#~ msgid "pre-translated %(source_string)s"
+#~ msgstr "heeft %(source_string)s voorvertaald"
+
+#~ msgid "removed translation for %(source_string)s"
+#~ msgstr "heeft vertaling voor %(source_string)s verwijderd"
+
+#~ msgid "reviewed %(source_string)s"
+#~ msgstr "heeft %(source_string)s gecontroleerd"
+
+#~ msgid "marked as fuzzy %(source_string)s"
+#~ msgstr "heeft %(source_string)s als wazig gemarkeerd"
+
+#~ msgid "unknown action %(source_string)s"
+#~ msgstr "onbekende actie %(source_string)s"
+
+#~ msgid "XLIFF"
+#~ msgstr "XLIFF"
+
+#~ msgid "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;added"
+#~ msgstr "<i><a href=\"%(url)s\">%(source)s</a></i>&nbsp;toegevoegd"
+
+#~ msgid "Is browsable?"
+#~ msgstr "Bladeren mogelijk?"
+
+#~ msgid ""
+#~ "Can't find python-levenshtein package. Updating against templates is "
+#~ "faster with python-levenshtein."
+#~ msgstr ""
+#~ "Kan het pakket python-levenshtein niet vinden. Bijwerken vanuit sjablonen "
+#~ "gaat sneller met python-levenshtein."
+
+#~ msgid "Try pip install python-levenshtein"
+#~ msgstr "Probeer pip install python-levenshtein"
+
+#~ msgid "Previous Work"
+#~ msgstr "Eerder werk"
+
+#~ msgid "Failing checks:"
+#~ msgstr "Mislukte controles:"
+
+#~ msgid "Regenerate Glossary"
+#~ msgstr "Woordenlijst opnieuw genereren"
+
+#~ msgid ""
+#~ "Are you sure you want to regenerate the glossary? Any existing terms and "
+#~ "their translations will be deleted."
+#~ msgstr ""
+#~ "Weet u zeker dat u de woordenlijst opnieuw wilt genereren? Alle bestaande "
+#~ "termen en hun vertalingen zullen worden verwijderd."
+
+#~ msgid "Extract"
+#~ msgstr "Filteren"
+
+#~ msgid "You can regenerate the glossary from scratch."
+#~ msgstr "U kunt de woordenlijst vanaf nul opnieuw genereren."
+
+#~ msgid "Glossary is Empty"
+#~ msgstr "Woordenlijst is leeg"
+
+#~ msgid "Generate Glossary"
+#~ msgstr "Woordenlijst genereren"
 
 #~ msgid "page-%d"
 #~ msgstr "pagina-%d"
@@ -2706,9 +2806,6 @@ msgstr "Topmedewerkers deze maand"
 #~ "Kan het pakket ISO-codes niet vinden. Pootle gebruikt ISO-codes om "
 #~ "taalnamen te vertalen."
 
-#~ msgid "MARKUP_FILTER is missing. Falling back to HTML."
-#~ msgstr "MARKUP_FILTER ontbreekt. Teruggekeerd naar HTML."
-
 #~ msgid "MARKUP_FILTER is misconfigured. Falling back to HTML."
 #~ msgstr "MARKUP_FILTER is niet goed geconfigureerd. Teruggekeerd naar HTML."
 
@@ -2718,9 +2815,6 @@ msgstr "Topmedewerkers deze maand"
 #~ msgstr ""
 #~ "Kan het pakket dat ondersteuning voor '%s'-opmaak biedt niet vinden. "
 #~ "Teruggekeerd naar HTML."
-
-#~ msgid "Invalid value '%s' in MARKUP_FILTER. Falling back to HTML."
-#~ msgstr "Ongeldige waarde '%s' in MARKUP_FILTER. Teruggekeerd naar HTML."
 
 #~ msgid ""
 #~ "Using the default sqlite3 database engine. SQLite is only suitable for "
@@ -4933,11 +5027,6 @@ msgstr "Topmedewerkers deze maand"
 #~ msgid "Suggestion:"
 #~ msgstr "Suggestie:"
 
-#~ msgid "%d suggestion"
-#~ msgid_plural "%d suggestions"
-#~ msgstr[0] "%d suggestie"
-#~ msgstr[1] "%d suggesties"
-
 #~ msgid "End of Quick Translate."
 #~ msgstr "Einde van Snel vertalen."
 
@@ -5338,9 +5427,6 @@ msgstr "Topmedewerkers deze maand"
 
 #~ msgid "PO file"
 #~ msgstr "PO-bestand"
-
-#~ msgid "XLIFF file"
-#~ msgstr "XLIFF-bestand"
 
 #~ msgid "Qt .ts file"
 #~ msgstr "Qt .ts-bestand"
