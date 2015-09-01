@@ -9,364 +9,375 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2015-04-13 16:34+0000\n"
+"PO-Revision-Date: 2015-07-11 20:06+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1428942847.000000\n"
+"X-POOTLE-MTIME: 1436645186.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "Sėkmingai įrašyta."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Sėkmingai pašalinta."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "Šalinti"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "Kodas"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
 msgid "Full Name"
-msgstr ""
+msgstr "Pavadinimas"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "Specialieji simboliai"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Daugiskaitos formų skaičius"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "Daugiskaitos formos parinkimo formulė"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
 msgid "Save"
-msgstr ""
+msgstr "Įrašyti"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "Apžvalga"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "Teisės"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "Kokybės testai"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "Failų tipas"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Projekto failų išdėstymo būdas"
 
 #: static/js/admin/components/ProjectForm.js:103
-#, fuzzy
 msgid "Source Language"
-msgstr "Visos kalbos"
+msgstr "Šaltinio kalba"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "Nepaisomi failai"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
-msgstr ""
+msgstr "Adresas klaidoms pranešti"
 
 #: static/js/admin/components/ProjectForm.js:122
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Ekranvaizdžio failų prefiksas"
 
 #: static/js/admin/components/ProjectForm.js:129
-#, fuzzy
 msgid "Disabled"
-msgstr "išjungta"
+msgstr "Išjungta"
 
 #: static/js/admin/components/ProjectForm.js:141
 msgid "Languages"
-msgstr ""
+msgstr "Kalbos"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
-msgstr ""
+msgstr "Įkelti daugiau"
 
 #: static/js/admin/components/Search.js:89
 msgid "Loading..."
-msgstr ""
+msgstr "Įkeliama…"
 
 #: static/js/admin/components/UserForm.js:52
 msgid ""
 "Note: deleting the user will make its suggestions and translations become "
 "attributed to an anonymous user (nobody)."
 msgstr ""
+"Pastaba: pašalinus naudotoją, jo (jos) pasiūlymai ir vertimai bus priskirti "
+"anoniminiam naudotojui (nobody)."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "Naudotojo vardas"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "Aktyvus"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:100
 #: static/js/auth/components/SocialVerification.js:94
 msgid "Password"
-msgstr ""
+msgstr "Slaptažodis"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "Įveskite naują slaptažodį"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "Elektroninis paštas"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "Administratorius"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
 msgid "Twitter"
-msgstr ""
+msgstr "„Twitter“"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
-msgstr ""
+msgstr "„Twitter“ paskyra"
 
 #: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
 msgid "LinkedIn"
-msgstr ""
+msgstr "„LinkedIn“"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "„LinkedIn“ profilio adresas"
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
 msgid "Website"
-msgstr ""
+msgstr "Svetainė"
 
 #: static/js/admin/components/UserForm.js:128
 msgid "Personal website URL"
-msgstr ""
+msgstr "Asmeninės svetainės adresas"
 
 #: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
 msgid "Short Bio"
-msgstr ""
+msgstr "Trumpa biografija"
 
 #: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
-msgstr ""
+msgstr "Asmeninis prisistatymas"
 
 #: static/js/admin/components/UserForm.js:147
 msgid "Public Profile"
-msgstr ""
+msgstr "Viešasis profilis"
 
 #: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "Nuostatos"
 
 #: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: static/js/admin/components/UserForm.js:150
 msgid "Reports"
-msgstr ""
+msgstr "Ataskaitos"
 
 #: static/js/auth/components/AccountActivation.js:33
 #, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>."
 msgstr ""
+"Adresu <span>%s</span> išsiųstas elektroninis laiškas su specialiu saitu."
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"Adresu, naudotu registruojant šią paskyrą, išsiųstas elektroninis laiškas su "
+"specialiu saitu."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Jūsų paskyrą būtina aktyvinti."
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Paskyros kūrimui pratęsti turėsite tą saitą spustelėti."
 
 #: static/js/auth/components/AccountActivation.js:56
 #: static/js/auth/components/AccountInactive.js:36
 msgid "Close"
-msgstr ""
+msgstr "Užverti"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "Jūsų paskyra neaktyvi – šią būseną parinko administratorius."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In With..."
-msgstr ""
+msgstr "Prisijungti, naudojant…"
 
 #: static/js/auth/components/AuthController.js:82
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "Prisijungti"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
-msgstr ""
+msgstr "Paskyra neaktyvi"
 
 #: static/js/auth/components/AuthController.js:96
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
-msgstr ""
+msgstr "Užsiregistruoti"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
 msgid "Account Activation"
-msgstr ""
+msgstr "Paskyros aktyvinimas"
 
 #: static/js/auth/components/AuthController.js:117
 #: static/js/auth/components/AuthController.js:124
 #: static/js/auth/components/AuthController.js:131
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Slaptažodžio atkūrimas"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
-msgstr ""
+msgstr "Oi…"
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
-msgstr ""
+msgstr "Socialinio tinklo paskyros patvirtinimas"
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
-msgstr ""
+msgstr "Susisiekite su mumis"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Slaptažodžio atkūrimo saitas negalioja – galbūt juo jau buvo pasinaudota. "
+"Jeigu norite atkurti savo slaptažodį, pakartokite šį veiksmą nuo pradžių."
 
 #: static/js/auth/components/PasswordResetForm.js:86
 msgid "Reset Password"
-msgstr ""
+msgstr "Atkurti slaptažodį"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Slaptažodis pakeistas, prisijungiama…"
 
 #: static/js/auth/components/PasswordResetForm.js:122
 #: static/js/auth/components/SignUpForm.js:108
 msgid "Repeat Password"
-msgstr ""
+msgstr "Pakartokite slaptažodį"
 
 #: static/js/auth/components/PasswordResetForm.js:135
 msgid "Set New Password"
-msgstr ""
+msgstr "Keisti slaptažodį"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "Pakeitus slaptažodį, būsite automatiškai prijungti prie sistemos."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Adresu %s siunčiamas laiškas…"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
+"Spustelėkite gautąjį saitą, jei norite tęsti slaptažodžio atkūrimo procedūrą."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Negavote laiško? Patikrinkite, ar jis nebuvo per klaidą perkeltas į šlamšto "
+"aplanką, arba užsisakykite laiško kopiją."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
-msgstr ""
+msgstr "Pakartotinai išsiųsti laišką"
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Registruoti naują naudotojo paskyrą"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:101
 msgid "I forgot my password"
-msgstr ""
+msgstr "Pamiršote slaptažodį?"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Prisijungta. Nukreipiama…"
 
 #: static/js/auth/components/SignInPanel.js:62
 msgid "Social Services"
-msgstr ""
+msgstr "Socialiniai tinklai"
 
 #: static/js/auth/components/SignInPanel.js:65
 msgid "Login / Password"
-msgstr ""
+msgstr "Naudotojo vardas / Slaptažodis"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "Prisijungti esama naudotojo paskyra"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "Bandant prisijungti naudojantis „%s“, įvyko klaida."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
+"Bandant prisijungti naudojantis jūsų socialinio tinklo paskyra, įvyko klaida."
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "Bandykite dar kartą"
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Prisijungti naudojantis „%s“"
 
 #: static/js/auth/components/SocialSignInForm.js:46
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"Pirmąkart prisijungus naudojantis išorine tarnyba, paskyra jums bus sukurta "
+"automatiškai."
 
 #: static/js/browser.js:156
 msgid "All Languages"
@@ -450,7 +461,6 @@ msgid "This unit no longer exists."
 msgstr "Ši eilutė nebeegzistuoja."
 
 #: static/js/editor/app.js:984
-#, fuzzy
 msgid "Go back to browsing"
 msgstr "Grįžti į apžvalgą"
 
@@ -553,154 +563,159 @@ msgstr[2] "Suskaičiuota %(count)s kalbų. Žemiau – paskiausiai pridėtos."
 
 #: static/js/admin/components/language.jsx:74
 msgid "Search Languages"
-msgstr ""
+msgstr "Kalbų paieška"
 
 #: static/js/admin/components/language.jsx:75
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Ieškoti kalbos pagal pavadinimą ar kodą"
 
 #: static/js/admin/components/language.jsx:103
 #: static/js/admin/components/language.jsx:138
-#, fuzzy
 msgid "Add Language"
-msgstr "Visos kalbos"
+msgstr "Pridėti kalbą"
 
 #: static/js/admin/components/language.jsx:106
 #: static/js/admin/components/project.jsx:106
 #: static/js/admin/components/user.jsx:106
 msgid "Cancel"
-msgstr ""
+msgstr "Atsisakyti"
 
 #: static/js/admin/components/language.jsx:135
 msgid "Edit Language"
-msgstr ""
+msgstr "Kalbos taisa"
 
 #: static/js/admin/components/language.jsx:142
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Pasinaudokite paieškos forma norimai kalbai rasti, tada spustelėkite ją, jei "
+"norite redaguoti."
 
 #: static/js/admin/components/project.jsx:52
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Jūsų užklausą atitinka %(count)s projektas."
+msgstr[1] "Jūsų užklausą atitinka %(count)s projektai."
+msgstr[2] "Jūsų užklausą atitinka %(count)s projektų."
 
 #: static/js/admin/components/project.jsx:56
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Suskaičiuotas %(count)s projektas. Žemiau – paskiausiai pridėti."
+msgstr[1] "Suskaičiuoti %(count)s projektai. Žemiau – paskiausiai pridėti."
+msgstr[2] "Suskaičiuota %(count)s projektų. Žemiau – paskiausiai pridėti."
 
 #: static/js/admin/components/project.jsx:74
 msgid "Search Projects"
-msgstr ""
+msgstr "Projektų paieška"
 
 #: static/js/admin/components/project.jsx:75
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Ieškoti projekto pagal pavadinimą ar kodą"
 
 #: static/js/admin/components/project.jsx:103
 #: static/js/admin/components/project.jsx:138
-#, fuzzy
 msgid "Add Project"
-msgstr "Visi projektai"
+msgstr "Pridėti projektą"
 
 #: static/js/admin/components/project.jsx:135
 msgid "Edit Project"
-msgstr ""
+msgstr "Projekto taisa"
 
 #: static/js/admin/components/project.jsx:142
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Pasinaudokite paieškos forma norimam projektui rasti, tada spustelėkite jį, "
+"jei norite redaguoti."
 
 #: static/js/admin/components/user.jsx:52
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Jūsų užklausą atitinka %(count) naudotojas."
+msgstr[1] "Jūsų užklausą atitinka %(count) naudotojai."
+msgstr[2] "Jūsų užklausą atitinka %(count) naudotojų."
 
 #: static/js/admin/components/user.jsx:56
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Suskaičiuotas %(count)s naudotojas. Žemiau – paskiausiai pridėti."
+msgstr[1] "Suskaičiuoti %(count)s naudotojai. Žemiau – paskiausiai pridėti."
+msgstr[2] "Suskaičiuota %(count)s naudotojų. Žemiau – paskiausiai pridėti."
 
 #: static/js/admin/components/user.jsx:74
 msgid "Search Users"
-msgstr ""
+msgstr "Naudotojų paieška"
 
 #: static/js/admin/components/user.jsx:75
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Ieškoti naudotojų pagal vardą, el. paštą ar kitas savybes"
 
 #: static/js/admin/components/user.jsx:103
 #: static/js/admin/components/user.jsx:138
 msgid "Add User"
-msgstr ""
+msgstr "Pridėti naudotoją"
 
 #: static/js/admin/components/user.jsx:135
 msgid "Edit User"
-msgstr ""
+msgstr "Naudotojo taisa"
 
 #: static/js/admin/components/user.jsx:142
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"Pasinaudokite paieškos forma norimam naudotojui rasti, tada spustelėkite jį, "
+"jei norite redaguoti."
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
-msgstr ""
+msgstr "Parinkti…"
 
 #: static/js/shared/components/forms.jsx:70
 msgid "No results found"
-msgstr ""
+msgstr "Rezultatų nerasta"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Clear value"
-msgstr ""
+msgstr "Išvalyti reikšmę"
 
 #: static/js/shared/components/forms.jsx:72
 msgid "Clear all"
-msgstr ""
+msgstr "Išvalyti viską"
 
 #: static/js/shared/components/forms.jsx:73
+#, fuzzy
 msgid "Type to search"
-msgstr ""
+msgstr "Rašykite paieškai"
 
 #: static/js/user/components/edit.jsx:106
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "Taisyti viešąjį profilį"
 
 #: static/js/user/components/edit.jsx:113
 msgid "My Public Profile"
-msgstr ""
+msgstr "Jūsų viešasis profilis"
 
 #: static/js/user/components/edit.jsx:125
 msgid "Discard changes."
-msgstr ""
+msgstr "Yra pakeitimų"
 
 #: static/js/user/components/edit.jsx:126
 msgid "Yes"
-msgstr ""
+msgstr "Taip"
 
 #: static/js/user/components/edit.jsx:127
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "Yra neįrašytų pakeitimų. Ar tikrai norite juos atmesti?"
 
 #: static/js/user/forms.jsx:61
 #, python-format
@@ -708,48 +723,52 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
+"Pasirinkti ar susikurti pseudoportretą savo el. pašto adresui (%(email)s) "
+"galite adresu gravatar.com."
 
 #: static/js/user/forms.jsx:74
 msgid "Your Full Name"
-msgstr ""
+msgstr "Jūsų pilnas vardas"
 
 #: static/js/user/forms.jsx:80
 msgid "Avatar"
-msgstr ""
+msgstr "Pseudoportretas"
 
 #: static/js/user/forms.jsx:90
 msgid "Your Twitter username"
-msgstr ""
+msgstr "Jūsų „Twitter“ naudotojo vardas"
 
 #: static/js/user/forms.jsx:97
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "Jūsų „LinkedIn“ profilio adresas"
 
 #: static/js/user/forms.jsx:103
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "Jūsų asmeninės svetainės ar tinklaraščio adresas"
 
 #: static/js/user/forms.jsx:111
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"Kodėl nusprendėte dalyvauti šiame vertimo projekte? Papasakokite apie save, "
+"įkvėpkite kitus!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "Projektas / Kalba"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Translated"
-msgstr ""
+msgstr "Išversta"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Reviewed"
-msgstr ""
+msgstr "Peržiūrėta"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Score Change"
-msgstr ""
+msgstr "Taškų pokytis"
 
 #: templates/admin/xhr_language_user_activity.html:16
 #: templates/admin/xhr_language_user_activity.html:17
@@ -760,82 +779,83 @@ msgstr ""
 #: templates/admin/xhr_summary_report.html:35
 msgid "word"
 msgid_plural "words"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "žodis"
+msgstr[1] "žodžiai"
+msgstr[2] "žodžių"
 
 #: templates/admin/xhr_language_user_activity.html:30
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "Pasirinktuoju periodu neužfiksuota jokia veikla"
 
 #: templates/admin/xhr_language_user_activity.html:33
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Pasirinkite egzistuojantį naudotoją."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "Registruotos užduotys"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
-msgstr ""
+msgstr "Data ir laikas"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "Komentaras"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Veiksmas"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Kiekis"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Įkainis"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "Tarpinė suma"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:32
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "valanda"
+msgstr[1] "valandos"
+msgstr[2] "valandų"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
-msgstr ""
+msgstr "Pašalinti užduotį"
 
 #: templates/admin/xhr_paid_tasks_report.html:41
 msgid "Comment on it"
-msgstr ""
+msgstr "Pakomentuoti"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "Santrauka"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "Periodas"
 
 #: templates/admin/xhr_summary_report.html:41
+#, fuzzy
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(registruotos užduotys)"
 
 #: templates/admin/xhr_summary_report.html:49
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "Iš viso (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -859,6 +879,7 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"Išvertė %(fullname)s projekte „<span title=\"%(path)s\">%(project)s</span>“"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "Ar tikrai norite tęsti?"

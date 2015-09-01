@@ -9,362 +9,382 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2014-02-13 22:21+0000\n"
+"PO-Revision-Date: 2015-08-02 18:40+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1392330100.000000\n"
+"X-POOTLE-MTIME: 1438540807.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "Αποθηκεύτηκε επιτυχώς."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Διαγράφηκε επιτυχώς."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "Διαγραφή"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "Κωδικός"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
 msgid "Full Name"
-msgstr ""
+msgstr "Πλήρες όνομα"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "Ειδικοί χαρακτήρες"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Αριθμός πληθυντικών"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "Εξίσωση πληθυντικού"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
 msgid "Save"
-msgstr ""
+msgstr "Αποθήκευση"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "Επισκόπηση"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "Δικαιώματα"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "Έλεγχοι ποιότητας"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "Τύπος αρχείου"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Τεχνοτροπία δένδρου έργου"
 
 #: static/js/admin/components/ProjectForm.js:103
-#, fuzzy
 msgid "Source Language"
-msgstr "Όλες οι γλώσσες"
+msgstr "Γλώσσα προορισμού"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "Παράβλεψη αρχείων"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
-msgstr ""
+msgstr "Επαφή για σφάλματα συμβολοσειράς"
 
 #: static/js/admin/components/ProjectForm.js:122
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Πρόθημα αναζήτησης στιγμιοτύπου"
 
 #: static/js/admin/components/ProjectForm.js:129
 msgid "Disabled"
-msgstr ""
+msgstr "Απενεργοποιημένο"
 
 #: static/js/admin/components/ProjectForm.js:141
 msgid "Languages"
-msgstr ""
+msgstr "Γλώσσες"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
-msgstr ""
+msgstr "Φόρτωση περισσοτέρων"
 
 #: static/js/admin/components/Search.js:89
 msgid "Loading..."
-msgstr ""
+msgstr "Φορτώνει..."
 
 #: static/js/admin/components/UserForm.js:52
 msgid ""
 "Note: deleting the user will make its suggestions and translations become "
 "attributed to an anonymous user (nobody)."
 msgstr ""
+"Σημείωση: η διαγραφή του χρήστη θα κάνει τις προτάσεις του και τις "
+"μεταφράσεις του να αποδίδονται σε έναν ανώνυμο χρήστη (κανένα)."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "Όνομα χρήστη"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "Ενεργό"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:100
 #: static/js/auth/components/SocialVerification.js:94
 msgid "Password"
-msgstr ""
+msgstr "Κωδικός πρόσβασης"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "Ορισμός νέου κωδικού πρόσβασης"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "Ηλ. διεύθυνση"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "Διαχειριστής"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
-msgstr ""
+msgstr "Όνομα χρήστη Twitter"
 
 #: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "URL κατατομής LinkedIn"
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
 msgid "Website"
-msgstr ""
+msgstr "Ιστότοπος"
 
 #: static/js/admin/components/UserForm.js:128
 msgid "Personal website URL"
-msgstr ""
+msgstr "URL προσωπικού ιστότοπου"
 
 #: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
 msgid "Short Bio"
-msgstr ""
+msgstr "Σύντομο βιογραφικό"
 
 #: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
-msgstr ""
+msgstr "Προσωπική περιγραφή"
 
 #: static/js/admin/components/UserForm.js:147
 msgid "Public Profile"
-msgstr ""
+msgstr "Δημόσια κατατομή"
 
 #: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "Ρυθμίσεις"
 
 #: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
-msgstr ""
+msgstr "Στατιστικά"
 
 #: static/js/admin/components/UserForm.js:150
 msgid "Reports"
-msgstr ""
+msgstr "Αναφορές"
 
 #: static/js/auth/components/AccountActivation.js:33
 #, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>."
 msgstr ""
+"Έχουμε στείλει ένα μήνυμα που περιέχει τον ειδικό σύνδεσμο προς το "
+"<span></span>."
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"Έχουμε στείλει ένα μήνυμα που περιέχει τον ειδικό σύνδεσμο προς τη διεύθυνση "
+"που χρησιμοποιήθηκε για την καταχώριση αυτού του λογαριασμού."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Ο λογαριασμός χρειάζεται ενεργοποίηση."
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
 msgstr ""
+"Παρακαλούμε ακολουθήστε αυτόν τον σύνδεσμο για να συνεχίσετε με τη "
+"δημιουργία του λογαριασμού."
 
 #: static/js/auth/components/AccountActivation.js:56
 #: static/js/auth/components/AccountInactive.js:36
 msgid "Close"
-msgstr ""
+msgstr "Κλείσιμο"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr ""
+"Ο λογαριασμός σας είναι ανενεργός, επειδή ένας διαχειριστής τον "
+"απενεργοποίησε."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In With..."
-msgstr ""
+msgstr "Είσοδος με..."
 
 #: static/js/auth/components/AuthController.js:82
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "Είσοδος"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
-msgstr ""
+msgstr "Ανενεργός λογαριασμός"
 
 #: static/js/auth/components/AuthController.js:96
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
-msgstr ""
+msgstr "Εγγραφή"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
 msgid "Account Activation"
-msgstr ""
+msgstr "Ενεργοποίηση λογαριασμού"
 
 #: static/js/auth/components/AuthController.js:117
 #: static/js/auth/components/AuthController.js:124
 #: static/js/auth/components/AuthController.js:131
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Επαναφορά του κωδικού πρόσβασής σας"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
-msgstr ""
+msgstr "Όπα..."
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
-msgstr ""
+msgstr "Κοινωνική επαλήθευση"
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
-msgstr ""
+msgstr "Επικοινωνήστε μαζί μας"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Ο σύνδεσμος για την επαναφορά του κωδικού πρόσβασης ήταν άκυρος, πιθανόν "
+"επειδή έχει ήδη χρησιμοποιηθεί. Παρακαλούμε υποβάλετε μια νέα επαναφορά "
+"κωδικού πρόσβασης."
 
 #: static/js/auth/components/PasswordResetForm.js:86
 msgid "Reset Password"
-msgstr ""
+msgstr "Επαναφορά κωδικού πρόσβασης"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Ο κωδικός πρόσβασης άλλαξε, πραγματοποιείται είσοδος..."
 
 #: static/js/auth/components/PasswordResetForm.js:122
 #: static/js/auth/components/SignUpForm.js:108
 msgid "Repeat Password"
-msgstr ""
+msgstr "Επανάληψη κωδικού πρόσβασης"
 
 #: static/js/auth/components/PasswordResetForm.js:135
 msgid "Set New Password"
-msgstr ""
+msgstr "Ορισμός νέου κωδικού πρόσβασης"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "Μετά την αλλαγή του κωδικού πρόσβασής σας θα συνδεθείτε αυτόματα."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Αποστέλλεται μήνυμα στο %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
+"Παρακαλούμε ακολουθήστε αυτόν τον σύνδεσμο για να συνεχίσετε τη διαδικασία "
+"επαναφοράς του κωδικού πρόσβασης."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Δεν λάβατε ένα μήνυμα; Ελέγξτε αν φιλτραρίστηκε τυχαία ως όχληση, ή "
+"προσπαθήστε να ζητήσετε ένα άλλο αντίγραφο του μηνύματος."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
-msgstr ""
+msgstr "Επαναποστολή μηνύματος"
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Εγγραφείτε ως νέος χρήστης"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:101
 msgid "I forgot my password"
-msgstr ""
+msgstr "Ξέχασα τον κωδικό πρόσβασής μου"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Συνδεθήκατε. Γίνεται ανακατεύθυνση..."
 
 #: static/js/auth/components/SignInPanel.js:62
 msgid "Social Services"
-msgstr ""
+msgstr "Κοινωνικές υπηρεσίες"
 
 #: static/js/auth/components/SignInPanel.js:65
 msgid "Login / Password"
-msgstr ""
+msgstr "Σύνδεση / Κωδικός πρόσβασης"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "Είσοδος ως υπάρχων χρήστης"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "Παρουσιάστηκε σφάλμα κατά την προσπάθεια σύνδεσης μέσω του %s."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
+"Παρουσιάστηκε σφάλμα κατά την προσπάθεια σύνδεσης μέσω του αριθμού "
+"κοινωνικής σας δικτύωσης."
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "Προσπαθήστε ξανά"
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Σύνδεση με το %s"
 
 #: static/js/auth/components/SocialSignInForm.js:46
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"Η σύνδεση με μια εξωτερική υπηρεσία για πρώτη φορά θα δημιουργήσει αυτόματα "
+"έναν λογαριασμό για σας."
 
 #: static/js/browser.js:156
 msgid "All Languages"
@@ -376,19 +396,23 @@ msgstr "Όλα τα έργα"
 
 #: static/js/browser.js:162
 msgid "Entire Project"
-msgstr ""
+msgstr "Το συνολικό έργο"
 
 #: static/js/editor/app.js:243
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"Μετάβαση στην επόμενη συμβολοσειρά (Ctrl+.)<br/><br/>Επίσης:<br/>Επόμενη "
+"σελίδα:Ctrl+Shift+.<br/>Τελευταία σελίδα:Last page: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:247
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"Μετάβαση στην προηγούμενη συμβολοσειρά (Ctrl+,)<br/><br/>Επίσης:</br>"
+"Προηγούμενη σελίδα:Ctrl+Shift+,<br/>Πρώτη σελίδα: Ctrl+Shift+Home"
 
 #: static/js/editor/app.js:359
 #, javascript-format
@@ -425,7 +449,7 @@ msgstr "Σφάλμα κατά την σύνδεση με τον εξυπηρετ
 
 #: static/js/editor/app.js:964
 msgid "Not found"
-msgstr ""
+msgstr "Δε βρέθηκε"
 
 #: static/js/editor/app.js:966
 msgid "Server error"
@@ -441,23 +465,23 @@ msgstr "Άγνωστο σφάλμα"
 
 #: static/js/editor/app.js:983
 msgid "This unit no longer exists."
-msgstr ""
+msgstr "Αυτή η μονάδα δεν υπάρχει πια."
 
 #: static/js/editor/app.js:984
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Επιστροφή στην περιήγηση"
 
 #: static/js/editor/app.js:986
 msgid "Reload page"
-msgstr ""
+msgstr "Επαναφόρτωση της σελίδας"
 
 #: static/js/editor/app.js:1986
 msgid "some anonymous user"
-msgstr ""
+msgstr "κάποιος ανώνυμος χρήστης"
 
 #: static/js/editor/app.js:1988
 msgid "someone"
-msgstr ""
+msgstr "κάποιος"
 
 #: static/js/editor/app.js:2005 static/js/editor/app.js:2054
 msgid "Similar translations"
@@ -465,14 +489,14 @@ msgstr "Παρόμοιες μεταφράσεις"
 
 #: static/js/shared/models/project.js:59
 msgid "disabled"
-msgstr ""
+msgstr "ανενεργό"
 
 #: static/js/stats.js:286
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s δευτερόλεπτο"
+msgstr[1] "%s δευτερόλεπτα"
 
 #: static/js/stats.js:318
 msgid "Expand details"
@@ -483,35 +507,35 @@ msgid "Collapse details"
 msgstr "Σύμπτυξη λεπτομερειών"
 
 #: static/js/utils.js:151
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Ένα χρόνο πριν"
 msgstr[1] "%s χρόνια πριν"
 
 #: static/js/utils.js:154
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Μια βδομάδα πριν"
 msgstr[1] "%s βδομάδες πριν"
 
 #: static/js/utils.js:157
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Χθες"
 msgstr[1] "%s ημέρες πριν"
 
 #: static/js/utils.js:160
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Μια ώρα πριν"
 msgstr[1] "%s ώρες πριν"
 
 #: static/js/utils.js:163
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Ένα λεπτό πριν"
@@ -525,163 +549,172 @@ msgstr "Λίγα δευτερόλεπτα πριν"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s"
+msgstr[1] "%(count)s γλώσσες ταιριάζουν με το ερώτημά σας."
 
 #: static/js/admin/components/language.jsx:56
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "Υπάρχει %(count)s γλώσσα."
 msgstr[1] ""
+"Υπάρχουν %(count)s γλώσσες. Παρακάτω βρίσκονται αυτές που προστέθηκαν πιο "
+"πρόσφατα."
 
 #: static/js/admin/components/language.jsx:74
 msgid "Search Languages"
-msgstr ""
+msgstr "Αναζήτηση γλωσσών"
 
 #: static/js/admin/components/language.jsx:75
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Εύρεση γλώσσας κατά όνομα, κωδικό"
 
 #: static/js/admin/components/language.jsx:103
 #: static/js/admin/components/language.jsx:138
-#, fuzzy
 msgid "Add Language"
-msgstr "Όλες οι γλώσσες"
+msgstr "Προσθήκη γλώσσας"
 
 #: static/js/admin/components/language.jsx:106
 #: static/js/admin/components/project.jsx:106
 #: static/js/admin/components/user.jsx:106
 msgid "Cancel"
-msgstr ""
+msgstr "Άκυρο"
 
 #: static/js/admin/components/language.jsx:135
 msgid "Edit Language"
-msgstr ""
+msgstr "Επεξεργασία γλωσσας"
 
 #: static/js/admin/components/language.jsx:142
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Χρησιμοποιήστε τη μορφή αναζήτησης για να βρείτε τη γλώσσα, έπειτα πατήστε "
+"σε μια γλώσσα για να την επεξεργαστείτε."
 
 #: static/js/admin/components/project.jsx:52
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s έργο ταιριάζει με το ερώτημά σας."
+msgstr[1] "%(count)s έργα ταιριάζουν με το ερώτημά σας."
 
 #: static/js/admin/components/project.jsx:56
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "Υπάρχει %(count)s έργο."
 msgstr[1] ""
+"Υπάρχουν %(count)s έργα. Παρακάτω είναι τα πιο πρόσφατα προστεθέντα έργα."
 
 #: static/js/admin/components/project.jsx:74
 msgid "Search Projects"
-msgstr ""
+msgstr "Αναζήτηση έργων"
 
 #: static/js/admin/components/project.jsx:75
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Εύρεση έργων κατά όνομα, κωδικό"
 
 #: static/js/admin/components/project.jsx:103
 #: static/js/admin/components/project.jsx:138
-#, fuzzy
 msgid "Add Project"
-msgstr "Όλα τα έργα"
+msgstr "Προσθήκη έργου"
 
 #: static/js/admin/components/project.jsx:135
 msgid "Edit Project"
-msgstr ""
+msgstr "Επεξεργασία έργου"
 
 #: static/js/admin/components/project.jsx:142
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Χρησιμοποιήστε τη μορφή αναζήτησης για να βρείτε το έργο, έπειτα πατήστε σε "
+"ένα έργο για να το επεξεργαστείτε."
 
 #: static/js/admin/components/user.jsx:52
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s χρήστης ταιριάζει στο ερώτημά σας."
+msgstr[1] "%(count)s χρήστες ταιριάζουν στο ερώτημά σας."
 
 #: static/js/admin/components/user.jsx:56
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "Υπάρχει %(count)s χρήστης."
 msgstr[1] ""
+"Υπάρχουν %(count)s χρήστες. Παρακάτω είναι αυτοί που προστέθηκαν πιο "
+"πρόσφατα."
 
 #: static/js/admin/components/user.jsx:74
 msgid "Search Users"
-msgstr ""
+msgstr "Αναζήτηση χρηστών"
 
 #: static/js/admin/components/user.jsx:75
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Εύρεση χρήστη κατά όνομα, ηλ. διεύθυνση, ιδιότητες"
 
 #: static/js/admin/components/user.jsx:103
 #: static/js/admin/components/user.jsx:138
 msgid "Add User"
-msgstr ""
+msgstr "Προσθήκη χρήστη"
 
 #: static/js/admin/components/user.jsx:135
 msgid "Edit User"
-msgstr ""
+msgstr "Επεξεργασία χρήστη"
 
 #: static/js/admin/components/user.jsx:142
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"Χρήση της μορφής αναζήτησης για την εύρεση του χρήστη, έπειτα πατήστε σε "
+"έναν χρήστη για επεξεργασία."
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
-msgstr ""
+msgstr "Επιλογή..."
 
 #: static/js/shared/components/forms.jsx:70
 msgid "No results found"
-msgstr ""
+msgstr "Δεν βρέθηκαν αποτελέσματα"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Clear value"
-msgstr ""
+msgstr "Καθαρισμός τιμής"
 
 #: static/js/shared/components/forms.jsx:72
 msgid "Clear all"
-msgstr ""
+msgstr "Καθαρισμός όλων"
 
 #: static/js/shared/components/forms.jsx:73
 msgid "Type to search"
-msgstr ""
+msgstr "Πληκτρολογήστε για αναζήτηση"
 
 #: static/js/user/components/edit.jsx:106
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "Επεξεργασία της δημόσιας κατατομής μου"
 
 #: static/js/user/components/edit.jsx:113
 msgid "My Public Profile"
-msgstr ""
+msgstr "Η δημόσια κατατομή μου"
 
 #: static/js/user/components/edit.jsx:125
 msgid "Discard changes."
-msgstr ""
+msgstr "Απόρριψη αλλαγών."
 
 #: static/js/user/components/edit.jsx:126
 msgid "Yes"
-msgstr ""
+msgstr "Ναι"
 
 #: static/js/user/components/edit.jsx:127
 msgid "No"
-msgstr ""
+msgstr "Όχι"
 
 #: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "Υπάρχουν μη αποθηκευμένες αλλαγές. Θέλετε να τις απορρίψετε;"
 
 #: static/js/user/forms.jsx:61
 #, python-format
@@ -689,48 +722,52 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
+"Για να ορίσετε ή να αλλάξετε την εικόνα σας για την διεύθυνση αλληλογραφίας "
+"σας (%(email)s),  παρακαλούμε μεταβείτε στο gravatar.com."
 
 #: static/js/user/forms.jsx:74
 msgid "Your Full Name"
-msgstr ""
+msgstr "Το πλήρες όνομά σας"
 
 #: static/js/user/forms.jsx:80
 msgid "Avatar"
-msgstr ""
+msgstr "Εικόνα (αβατάρ)"
 
 #: static/js/user/forms.jsx:90
 msgid "Your Twitter username"
-msgstr ""
+msgstr "Το όνομα χρήστη σας στο Twitter"
 
 #: static/js/user/forms.jsx:97
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "Το URL της κατατομής LinkedIn σας "
 
 #: static/js/user/forms.jsx:103
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "Το URL του προσωπικού σας ιστότοπου/ιστολογίου"
 
 #: static/js/user/forms.jsx:111
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"Γιατί είσαστε μέλος του έργου της μετάφρασής μας; Περιγράψτε τον εαυτό σας, "
+"εμπνεύστε τους άλλους!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "Έργο / Γλώσσα"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Translated"
-msgstr ""
+msgstr "Μεταφρασμένο"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Reviewed"
-msgstr ""
+msgstr "Ελεγμένο"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Score Change"
-msgstr ""
+msgstr "Αλλαγή αποτελέσματος"
 
 #: templates/admin/xhr_language_user_activity.html:16
 #: templates/admin/xhr_language_user_activity.html:17
@@ -741,80 +778,80 @@ msgstr ""
 #: templates/admin/xhr_summary_report.html:35
 msgid "word"
 msgid_plural "words"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "λέξη"
+msgstr[1] "λέξεις"
 
 #: templates/admin/xhr_language_user_activity.html:30
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "Δεν καταγράφηκε καμία δραστηριότητα σε μια δεδομένη περίοδο"
 
 #: templates/admin/xhr_language_user_activity.html:33
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Παρακαλούμε επιλέξτε έναν έγκυρο χρήστη."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "Καταχωρισμένες εργασίες"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
-msgstr ""
+msgstr "Ημερομηνία και ώρα"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "Σχόλιο"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Ενέργεια"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Ποσότητα"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Ρυθμός"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "Μερικό σύνολο"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:32
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ώρα"
+msgstr[1] "ώρες"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
-msgstr ""
+msgstr "Αφαίρεση εργασίας"
 
 #: templates/admin/xhr_paid_tasks_report.html:41
 msgid "Comment on it"
-msgstr ""
+msgstr "Σχολιασμός του"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "Περίληψη"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "Περίοδος"
 
 #: templates/admin/xhr_summary_report.html:41
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(καταχωρισμένες εργασίες)"
 
 #: templates/admin/xhr_summary_report.html:49
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "Σύνολο (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -838,6 +875,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"Μεταφράστηκε από τον %(fullname)s στα &ldquo;<span title=\"%(path)s\""
+">%(project)s</span>&rdquo; έργο"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "Είστε σίγουρος ότι θέλετε να συνεχίσετε;"

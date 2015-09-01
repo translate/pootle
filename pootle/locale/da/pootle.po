@@ -9,22 +9,24 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:30+0100\n"
-"PO-Revision-Date: 2014-11-11 23:39+0000\n"
+"PO-Revision-Date: 2015-06-22 18:31+0000\n"
 "Last-Translator: Jesper <jesper.hertel@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1415749142.000000\n"
+"X-POOTLE-MTIME: 1434997881.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Din brugerkonto synes at være forsvundet. Rapporter venligst dette til "
+"ejerne af webstedet."
 
 #: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
@@ -33,11 +35,11 @@ msgstr "Brugernavn"
 #: apps/accounts/models.py:61
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
-msgstr ""
+msgstr "Påkrævet. Højst 30 tegn. Bogstaver, cifre samt tegnene @/./+/-/_"
 
 #: apps/accounts/models.py:65
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Angiv et gyldigt brugernavn."
 
 #: apps/accounts/models.py:69
 msgid "Email Address"
@@ -58,11 +60,12 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Angiver hvorvidt denne bruger skal betragtes som aktiv. Slå denne "
+"indstilling fra i stedet for at slette konti."
 
 #: apps/accounts/models.py:75
-#, fuzzy
 msgid "Superuser Status"
-msgstr "administratorstatus"
+msgstr "Administratorstatus"
 
 #: apps/accounts/models.py:76
 msgid ""
@@ -585,31 +588,31 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:87
 msgid "Non printable"
-msgstr ""
+msgstr "Kan ikke skrives"
 
 #: apps/pootle_misc/checks.py:88
 msgid "Unbalanced tag braces"
-msgstr ""
+msgstr "Ubalancerede paranteser omkring mærke (tag)"
 
 #: apps/pootle_misc/checks.py:89
 msgid "Changed attributes"
-msgstr ""
+msgstr "Ændrede attributter"
 
 #: apps/pootle_misc/checks.py:90
 msgid "Unescaped ampersands"
-msgstr ""
+msgstr "&-tegn (ampersander), der ikke er escapet"
 
 #: apps/pootle_misc/checks.py:91
 msgid "Incorrectly escaped ampersands"
-msgstr ""
+msgstr "&-tegn (ampersander), der ikke er korrekt escapet"
 
 #: apps/pootle_misc/checks.py:92
 msgid "Whitespaces"
-msgstr ""
+msgstr "Blanktegn"
 
 #: apps/pootle_misc/checks.py:93
 msgid "Date format"
-msgstr ""
+msgstr "Datoformat"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Uppercase placeholders"

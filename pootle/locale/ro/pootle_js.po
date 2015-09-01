@@ -9,44 +9,44 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2015-02-05 22:25+0000\n"
-"Last-Translator: lexoyo <a.hoyau@silexlabs.org>\n"
+"PO-Revision-Date: 2015-07-28 13:08+0000\n"
+"Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1423175159.000000\n"
+"X-POOTLE-MTIME: 1438088923.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "Salvat cu succes."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Șters cu succes."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "Șterge"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "Cod"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
 msgid "Full Name"
-msgstr ""
+msgstr "Nume complet"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "Caractere speciale"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
@@ -60,17 +60,17 @@ msgstr ""
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
 msgid "Save"
-msgstr ""
+msgstr "Salvează"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "Vedere de ansamblu"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "Permisiuni"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
@@ -78,7 +78,7 @@ msgstr ""
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "Tip fișier"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"

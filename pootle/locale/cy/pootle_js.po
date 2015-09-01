@@ -1,15 +1,13 @@
-# Copyright (C) Pootle contributors.
-#
-# This file is a part of the Pootle project. It is distributed under the GPL3
-# or later license. See the LICENSE file for a copy of the license and the
-# AUTHORS file for copyright and authorship information.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2012 Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the PACKAGE package.
+# Rhoslyn Prys <post@meddal.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2015-04-21 08:23+0000\n"
+"PO-Revision-Date: 2015-07-10 15:27+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -18,355 +16,363 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1429604586.000000\n"
+"X-POOTLE-MTIME: 1436542064.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "Cadwyd yn llwyddiannus."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Dilëwyd yn llwyddiannus"
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "Dileu"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "Cod"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
 msgid "Full Name"
-msgstr ""
+msgstr "Enw Llawn"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "Nodau Arbennig"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Nifer y Lluosogion"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "Hafaliad Lluosog"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
 msgid "Save"
-msgstr ""
+msgstr "Cadw"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "Trosolwg"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "Caniatâd"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "Gwiriad Ansawdd"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "Math o Ffeil"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Arddull Coeden y Project"
 
 #: static/js/admin/components/ProjectForm.js:103
-#, fuzzy
 msgid "Source Language"
-msgstr "Pob Iaith"
+msgstr "Iaith Ffynhonnell"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "Anwybyddu Ffeiliau"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
-msgstr ""
+msgstr "Cyswllt Gwallau Llinyn"
 
 #: static/js/admin/components/ProjectForm.js:122
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Rhagosodiad Chwilio Llun Sgrin"
 
 #: static/js/admin/components/ProjectForm.js:129
 msgid "Disabled"
-msgstr ""
+msgstr "Analluogwyd"
 
 #: static/js/admin/components/ProjectForm.js:141
-#, fuzzy
 msgid "Languages"
-msgstr "Pob Iaith"
+msgstr "Ieithoedd"
 
 #: static/js/admin/components/Search.js:66
-#, fuzzy
 msgid "Load More"
-msgstr "Rhagor"
+msgstr "Llwytho Rhagor"
 
 #: static/js/admin/components/Search.js:89
 msgid "Loading..."
-msgstr ""
+msgstr "Llwytho..."
 
 #: static/js/admin/components/UserForm.js:52
 msgid ""
 "Note: deleting the user will make its suggestions and translations become "
 "attributed to an anonymous user (nobody)."
 msgstr ""
+"Sylw: bydd dileu defnyddiwr yn symud ei awgrymiadau a chyfieithiadau i'w "
+"tadogi i ddefnyddiwr anhysbys (neb)."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "Enw Defnyddiwr"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "Gweithredol"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:100
 #: static/js/auth/components/SocialVerification.js:94
 msgid "Password"
-msgstr ""
+msgstr "Cyfrinair"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "Gosod cyfrinair newydd"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "E-bost"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "Gweinyddwr"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
-msgstr ""
+msgstr "Enw defnyddiwr Twitter"
 
 #: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "URL proffil LinkedIn"
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
 msgid "Website"
-msgstr ""
+msgstr "Gwefan"
 
 #: static/js/admin/components/UserForm.js:128
 msgid "Personal website URL"
-msgstr ""
+msgstr "URL gwefan bersonol"
 
 #: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
 msgid "Short Bio"
-msgstr ""
+msgstr "Hanes byr"
 
 #: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
-msgstr ""
+msgstr "Disgrifiad personol"
 
 #: static/js/admin/components/UserForm.js:147
 msgid "Public Profile"
-msgstr ""
+msgstr "Proffil Cyhoeddus"
 
 #: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "Gosodiadau"
 
 #: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
-msgstr ""
+msgstr "Ystadegau"
 
 #: static/js/admin/components/UserForm.js:150
 msgid "Reports"
-msgstr ""
+msgstr "Adroddiadau"
 
 #: static/js/auth/components/AccountActivation.js:33
 #, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>."
-msgstr ""
+msgstr "Rydym wedi anfon e-bost sy'n cynnwys dolen arbennig at <span>%s</span>."
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"Rydym wedi anfon e-bost yn cynnwys dolen arbennig at y cyfeiriad defnyddiwyd "
+"i gofrestru'r cyfrif hwn."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Mae eich cyfrif angen ei weithredu."
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Dilynwch y ddolen i barhau i greu'r cyfrif."
 
 #: static/js/auth/components/AccountActivation.js:56
 #: static/js/auth/components/AccountInactive.js:36
 msgid "Close"
-msgstr ""
+msgstr "Cau"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr ""
+"Mae eich cyfrif yn anweithredol gan fod gweinyddwr wedi ei ddadweithredu."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In With..."
-msgstr ""
+msgstr "Mewngofnodwch gyda..."
 
 #: static/js/auth/components/AuthController.js:82
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "Mewngofnodwch"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
-msgstr ""
+msgstr "Cyfrif Anweithredol"
 
 #: static/js/auth/components/AuthController.js:96
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
-msgstr ""
+msgstr "Ymuno"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
 msgid "Account Activation"
-msgstr ""
+msgstr "Gweithredu Cyfrif"
 
 #: static/js/auth/components/AuthController.js:117
 #: static/js/auth/components/AuthController.js:124
 #: static/js/auth/components/AuthController.js:131
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Ailosod eich Cyfrinair"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
-msgstr ""
+msgstr "Wps..."
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
-msgstr ""
+msgstr "Dilysiad Cymdeithasol"
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
-msgstr ""
+msgstr "Cysylltu â ni"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Mae'r ddolen ailosod cyfrinair yn annilys o bosib am ei fod eisoes wedi ei "
+"ddefnyddio. Gofynnwch i'r cyfrinair gael ei ailosod."
 
 #: static/js/auth/components/PasswordResetForm.js:86
 msgid "Reset Password"
-msgstr ""
+msgstr "Ailosod y Cyfrinair"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Mae'r cyfrinair wedi ei newid, mewngofnodi..."
 
 #: static/js/auth/components/PasswordResetForm.js:122
 #: static/js/auth/components/SignUpForm.js:108
 msgid "Repeat Password"
-msgstr ""
+msgstr "Ailadrodd y Cyfrinair"
 
 #: static/js/auth/components/PasswordResetForm.js:135
 msgid "Set New Password"
-msgstr ""
+msgstr "Gosod Cyfrinair Newydd"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "Wedi newid eich cyfrinair byddwch yn mewngofndi'n awtomatig."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Anfon e-bost at %s"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
-msgstr ""
+msgstr "Dilynwch y ddolen i barhau'r broses o ailosod y cyfrinair."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Heb dderbyn yr e-bost? Gwiriwch os cafodd ei hidlo ar ddamwain fel sbam neu "
+"gofynnwch am gopi arall o'r e-bost."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
-msgstr ""
+msgstr "Ail anfon E-bost"
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Ymuno fel defnyddiwr newydd"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:101
 msgid "I forgot my password"
-msgstr ""
+msgstr "Wedi anghofio fy nghyfrinair"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Wedi mewngofnodi. Ailgyfeirio..."
 
 #: static/js/auth/components/SignInPanel.js:62
 msgid "Social Services"
-msgstr ""
+msgstr "Gwasanaethau Cymdeithasol"
 
 #: static/js/auth/components/SignInPanel.js:65
 msgid "Login / Password"
-msgstr ""
+msgstr "Mewngofnodi / Cyfrinair"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "Mewngofnodi fel defnyddiwr cyfredol"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "Digwyddodd gwall wrth geisio mewngofnodi drwy %s."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
-msgstr ""
+msgstr "Digwyddodd gwall wrth geisio mewngofnodi drwy eich cyfrif cymdeithasol."
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "Ceisiwch eto"
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Mewngofnodi Gyda %s"
 
 #: static/js/auth/components/SocialSignInForm.js:46
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"Bydd mewngofnodi drwy wasanaeth allanol am y tro cyntaf y creu cyfrif yn "
+"awtomatig ar eich cyfer."
 
 #: static/js/browser.js:156
 msgid "All Languages"
@@ -377,44 +383,52 @@ msgid "All Projects"
 msgstr "Pob Project"
 
 #: static/js/browser.js:162
-#, fuzzy
 msgid "Entire Project"
-msgstr "Pob Project"
+msgstr "Y Project Cyfan"
 
 #: static/js/editor/app.js:243
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"Ewch i'r llinyn nesaf  (Ctrl+.)<br/><br/>Hefyd:<br/>Tudalen nesaf: "
+"Ctrl+Shift+.<br/>Tudalen olaf: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:247
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"Ewch i'r llinyn blaenorol (Ctrl+,)<br/><br/>Hefyd:</br>Tudalen flaenorol: "
+"Ctrl+Shift+,<br/>Tudalen gyntaf: Ctrl+Shift+Home"
 
 #: static/js/editor/app.js:359
 #, javascript-format
+#, c-format
 msgid "%s's pending suggestions"
 msgstr "Awgrymiadau %s yn disgwyl cymeradwyaeth"
 
 #: static/js/editor/app.js:362
 #, javascript-format
+#, c-format
 msgid "%s's accepted suggestions"
 msgstr "Awgrymiadau %s wedi eu derbyn"
 
 #: static/js/editor/app.js:365
 #, javascript-format
+#, c-format
 msgid "%s's rejected suggestions"
 msgstr "Awgrymiadau %s wedi eu gwrthod"
 
 #: static/js/editor/app.js:368
 #, javascript-format
+#, c-format
 msgid "%s's submissions"
 msgstr "Awgrymiadau %s"
 
 #: static/js/editor/app.js:372
 #, javascript-format
+#, c-format
 msgid "%s's overwritten submissions"
 msgstr "Awgrymiadau %s wedi eu trosysgrifennu"
 
@@ -428,7 +442,7 @@ msgstr "Gwall wrth gysylltu â'r gweinydd"
 
 #: static/js/editor/app.js:964
 msgid "Not found"
-msgstr ""
+msgstr "Heb ei ganfod"
 
 #: static/js/editor/app.js:966
 msgid "Server error"
@@ -444,23 +458,23 @@ msgstr "Gwall anhysbys"
 
 #: static/js/editor/app.js:983
 msgid "This unit no longer exists."
-msgstr ""
+msgstr "Nid yw'r uned hon yn bodoli."
 
 #: static/js/editor/app.js:984
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Nôl i bori"
 
 #: static/js/editor/app.js:986
 msgid "Reload page"
-msgstr ""
+msgstr "Ail lwytho tudalen"
 
 #: static/js/editor/app.js:1986
 msgid "some anonymous user"
-msgstr ""
+msgstr "rhyw ddefnyddiwr anhysbys"
 
 #: static/js/editor/app.js:1988
 msgid "someone"
-msgstr ""
+msgstr "rhywun"
 
 #: static/js/editor/app.js:2005 static/js/editor/app.js:2054
 msgid "Similar translations"
@@ -468,14 +482,14 @@ msgstr "Cyfieithiadau tebyg"
 
 #: static/js/shared/models/project.js:59
 msgid "disabled"
-msgstr ""
+msgstr "analluogwyd"
 
 #: static/js/stats.js:286
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s eiliad"
+msgstr[1] "%s eiliad"
 
 #: static/js/stats.js:318
 msgid "Expand details"
@@ -486,35 +500,40 @@ msgid "Collapse details"
 msgstr "Lleihau'r manylion"
 
 #: static/js/utils.js:151
-#, fuzzy, javascript-format
+#, javascript-format
+#, c-format, c-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Blwyddyn yn ôl"
 msgstr[1] "%s blwyddyn yn ôl"
 
 #: static/js/utils.js:154
-#, fuzzy, javascript-format
+#, javascript-format
+#, c-format, c-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Wythnos yn ôl"
 msgstr[1] "%s wythnos yn ôl"
 
 #: static/js/utils.js:157
-#, fuzzy, javascript-format
+#, javascript-format
+#, c-format, c-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Ddoe"
 msgstr[1] "%s diwrnod yn ôl"
 
 #: static/js/utils.js:160
-#, fuzzy, javascript-format
+#, javascript-format
+#, c-format, c-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Awr yn ôl"
 msgstr[1] "%s awr yn ôl"
 
 #: static/js/utils.js:163
-#, fuzzy, javascript-format
+#, javascript-format
+#, c-format, c-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Munud yn ôl"
@@ -528,168 +547,169 @@ msgstr "Ychydig eiliadau yn ôl"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s iaith yn cydweddu â'ch ymholiad."
+msgstr[1] "%(count)s iaith yn cydweddu â'ch ymholiad."
 
 #: static/js/admin/components/language.jsx:56
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "Mae yna %(count)s iaith."
 msgstr[1] ""
+"Mae yna %(count)s iaith. Isod y mae'r ieithoedd ychwanegwyd yn fwyaf "
+"diweddar."
 
 #: static/js/admin/components/language.jsx:74
-#, fuzzy
 msgid "Search Languages"
-msgstr "Pob Iaith"
+msgstr "Chwilio drwy'r Ieithoedd"
 
 #: static/js/admin/components/language.jsx:75
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Canfod iaith yn ôl enw, cod"
 
 #: static/js/admin/components/language.jsx:103
 #: static/js/admin/components/language.jsx:138
-#, fuzzy
 msgid "Add Language"
-msgstr "Pob Iaith"
+msgstr "Ychwanegu Iaith"
 
 #: static/js/admin/components/language.jsx:106
 #: static/js/admin/components/project.jsx:106
 #: static/js/admin/components/user.jsx:106
 msgid "Cancel"
-msgstr ""
+msgstr "Diddymu"
 
 #: static/js/admin/components/language.jsx:135
-#, fuzzy
 msgid "Edit Language"
-msgstr "Pob Iaith"
+msgstr "Golygu Iaith"
 
 #: static/js/admin/components/language.jsx:142
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Defnyddiwch y ffurflen chwilio i ganfod iaith ac yna glicio ar iaith i'w "
+"golygu."
 
 #: static/js/admin/components/project.jsx:52
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s project yn cydweddu â'ch ymholiad."
+msgstr[1] "%(count)s project yn cydweddu â'ch ymholiad."
 
 #: static/js/admin/components/project.jsx:56
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Mae yna %(count)s project."
+msgstr[1] "Mae yna %(count)s project. Isod mae'r rhai diweddaraf i'w hychwanegu."
 
 #: static/js/admin/components/project.jsx:74
-#, fuzzy
 msgid "Search Projects"
-msgstr "Pob Project"
+msgstr "Chwilio Drwy'r Projectau"
 
 #: static/js/admin/components/project.jsx:75
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Canfod project yn ôl enw, cod"
 
 #: static/js/admin/components/project.jsx:103
 #: static/js/admin/components/project.jsx:138
-#, fuzzy
 msgid "Add Project"
-msgstr "Pob Project"
+msgstr "Ychwanegu Project"
 
 #: static/js/admin/components/project.jsx:135
-#, fuzzy
 msgid "Edit Project"
-msgstr "Pob Project"
+msgstr "Golygu Project"
 
 #: static/js/admin/components/project.jsx:142
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Defnyddiwch y ffurflen chwilio i ganfod project ac yna clicio ar y project "
+"i'w olygu."
 
 #: static/js/admin/components/user.jsx:52
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s defnyddiwr yn cyfateb i'ch ymholiad."
+msgstr[1] "%(count)s defnyddiwr yn cyfateb i'ch ymholiad."
 
 #: static/js/admin/components/user.jsx:56
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Mae %(count)s defnyddwyr."
+msgstr[1] "Mae %(count)s defnyddwyr. Isod mae'r rhai diweddaraf i'w hychwanegu."
 
 #: static/js/admin/components/user.jsx:74
 msgid "Search Users"
-msgstr ""
+msgstr "Chwilio'r Defnyddwyr"
 
 #: static/js/admin/components/user.jsx:75
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Canfod defnyddiwr yn ôl enw, e-bost, priodweddau"
 
 #: static/js/admin/components/user.jsx:103
 #: static/js/admin/components/user.jsx:138
 msgid "Add User"
-msgstr ""
+msgstr "Ychwanegu Defnyddiwr"
 
 #: static/js/admin/components/user.jsx:135
 msgid "Edit User"
-msgstr ""
+msgstr "Golygu Defnyddiwr"
 
 #: static/js/admin/components/user.jsx:142
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"Defnyddiwch y ffurflen chwilio i ganfod defnyddiwr, yna cliciwch ar "
+"ddefnyddiwr i'w olygu."
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
-msgstr ""
+msgstr "Dewis..."
 
 #: static/js/shared/components/forms.jsx:70
-#, fuzzy
 msgid "No results found"
-msgstr "Dim canlyniadau."
+msgstr "Heb ganfod canlyniadau"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Clear value"
-msgstr ""
+msgstr "Clirio'r gwerth"
 
 #: static/js/shared/components/forms.jsx:72
 msgid "Clear all"
-msgstr ""
+msgstr "Clirio popeth"
 
 #: static/js/shared/components/forms.jsx:73
 msgid "Type to search"
-msgstr ""
+msgstr "Teipiwch i chwilio"
 
 #: static/js/user/components/edit.jsx:106
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "Golygu fy Mrhoffil Cyhoeddus"
 
 #: static/js/user/components/edit.jsx:113
 msgid "My Public Profile"
-msgstr ""
+msgstr "Fy Mrhoffil Cyhoeddus"
 
 #: static/js/user/components/edit.jsx:125
 msgid "Discard changes."
-msgstr ""
+msgstr "Hepgor y newidiadau."
 
 #: static/js/user/components/edit.jsx:126
 msgid "Yes"
-msgstr ""
+msgstr "Iawn"
 
 #: static/js/user/components/edit.jsx:127
 msgid "No"
-msgstr ""
+msgstr "Na"
 
 #: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "Mae yna newidiadau sydd heb eu cadw. Hoffech chi eu hepgor?"
 
 #: static/js/user/forms.jsx:61
 #, python-format
@@ -697,48 +717,52 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
+"I osod neu newid avatar eich cyfeiriad e-bost (%(email)s), ewch i "
+"gravatar.com."
 
 #: static/js/user/forms.jsx:74
 msgid "Your Full Name"
-msgstr ""
+msgstr "Eich Enw Llawn"
 
 #: static/js/user/forms.jsx:80
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #: static/js/user/forms.jsx:90
 msgid "Your Twitter username"
-msgstr ""
+msgstr "Eich enw defnyddiwr Twitter"
 
 #: static/js/user/forms.jsx:97
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "URL eich proffil LinkedIn"
 
 #: static/js/user/forms.jsx:103
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "URL eich gwefan/blog personol"
 
 #: static/js/user/forms.jsx:111
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"Pam ydych chi'n rhan o'n prosiect cyfieithu? Disgrifiwch eich hun, "
+"ysbrydolwch eraill!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "Prosiect / Iaith"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Translated"
-msgstr ""
+msgstr "Cyfieithwyd"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Reviewed"
-msgstr ""
+msgstr "Adolygwyd"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Score Change"
-msgstr ""
+msgstr "Newid Sgôr"
 
 #: templates/admin/xhr_language_user_activity.html:16
 #: templates/admin/xhr_language_user_activity.html:17
@@ -749,80 +773,80 @@ msgstr ""
 #: templates/admin/xhr_summary_report.html:35
 msgid "word"
 msgid_plural "words"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "gair"
+msgstr[1] "gair"
 
 #: templates/admin/xhr_language_user_activity.html:30
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "Dim gweithgaredd o fewn amser penodol"
 
 #: templates/admin/xhr_language_user_activity.html:33
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Dewiswch ddefnyddiwr dilys"
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "Tasgau wedi eu Cofrestru"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
-msgstr ""
+msgstr "Dyddiad ac Amser"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "Sylw"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Gweithred"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Swm"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Cyfradd"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "Is gyfanswm"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:32
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "awr"
+msgstr[1] "awr"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
-msgstr ""
+msgstr "Tynnu tasg"
 
 #: templates/admin/xhr_paid_tasks_report.html:41
 msgid "Comment on it"
-msgstr ""
+msgstr "Rhowch sylwadau arno"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "Crynodeb"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "Cyfnod"
 
 #: templates/admin/xhr_summary_report.html:41
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(tasgau cofrestredig)"
 
 #: templates/admin/xhr_summary_report.html:49
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "Cyfanswm (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -846,6 +870,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"Cyfieithiwyd gan %(fullname)s yn &ldquo;<span title=\"%(path)s\""
+">%(project)s</span>&rdquo; project"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "Ydych chi'n siŵr eich bod am barhau?"
@@ -883,15 +909,18 @@ msgstr ""
 #~ msgid "Return to the overview page."
 #~ msgstr "Nôl i'r dudalen trosolwg."
 
+#, c-format, c-format
 #~ msgid "%s% match"
 #~ msgstr "%s% cydweddiad"
 
+#, c-format
 #~ msgid "<a href=\"%s\">String %s</a>"
 #~ msgstr "<a href=\"%s\">Řetězec %s</a>"
 
 #~ msgid "Congratulations, you walked through all strings."
 #~ msgstr "Gratulujeme, prošli jste všechny položky."
 
+#, c-format
 #~ msgid "<a href=\"%s\">Unit %s</a>"
 #~ msgstr "<a href=\"%s\">Jednotka %s</a>"
 

@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:30+0100\n"
-"PO-Revision-Date: 2014-09-05 14:15+0000\n"
-"Last-Translator: Kristján Bjarni <kristjanbjarni@gmail.com>\n"
+"PO-Revision-Date: 2015-08-25 21:28+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1409926546.000000\n"
+"X-POOTLE-MTIME: 1440538105.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -28,16 +28,17 @@ msgstr ""
 
 #: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
-msgstr "Notandi"
+msgstr "Notandanafn"
 
 #: apps/accounts/models.py:61
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
+"Nauðsynlegt. 30 stafir eða færri. Bókstafir, tölustafir og @/./+/-/_ tákn"
 
 #: apps/accounts/models.py:65
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Skráðu inn gilt notandanafn."
 
 #: apps/accounts/models.py:69
 msgid "Email Address"
@@ -60,9 +61,8 @@ msgid ""
 msgstr ""
 
 #: apps/accounts/models.py:75
-#, fuzzy
 msgid "Superuser Status"
-msgstr "kerfisstjórnandi"
+msgstr "Staða kerfisstjórnanda"
 
 #: apps/accounts/models.py:76
 msgid ""
@@ -72,7 +72,7 @@ msgstr ""
 
 #: apps/accounts/models.py:79
 msgid "date joined"
-msgstr ""
+msgstr "skráði sig þann"
 
 #: apps/accounts/models.py:83
 msgid "Number of Rows"
@@ -100,7 +100,7 @@ msgstr ""
 
 #: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
-msgstr ""
+msgstr "Gjaldmiðill"
 
 #: apps/accounts/models.py:95
 msgid "Is employee?"
@@ -108,23 +108,23 @@ msgstr ""
 
 #: apps/accounts/models.py:96
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:98
 msgid "Website"
-msgstr ""
+msgstr "Vefsvæði"
 
 #: apps/accounts/models.py:99
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:100
 msgid "Short Bio"
-msgstr ""
+msgstr "Stutt æviágrip"
 
 #: apps/accounts/models.py:300
 msgid "This email address already exists."
-msgstr ""
+msgstr "Tölvupóstfangið er nú þegar til staðar."
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -140,7 +140,7 @@ msgstr "Nafn"
 
 #: apps/contact/forms.py:35
 msgid "Please enter your name"
-msgstr ""
+msgstr "Settu inn nafnið þitt"
 
 #: apps/contact/forms.py:38
 msgid "Email address"
@@ -148,15 +148,15 @@ msgstr "Tölvupóstfang"
 
 #: apps/contact/forms.py:39
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Settu inn tölvupóstfangið þitt"
 
 #: apps/contact/forms.py:42
 msgid "Message"
-msgstr "Póstur"
+msgstr "Skilaboð"
 
 #: apps/contact/forms.py:43
 msgid "Please enter your message"
-msgstr ""
+msgstr "Settu inn skilaboðin þín"
 
 #: apps/evernote_reports/forms.py:27
 msgid "Translation Rate"
@@ -182,19 +182,19 @@ msgstr ""
 
 #: apps/evernote_reports/models.py:34
 msgid "Correction"
-msgstr ""
+msgstr "Leiðrétting"
 
 #: apps/evernote_reports/models.py:37
 msgid "Type"
-msgstr ""
+msgstr "Tegund"
 
 #: apps/evernote_reports/models.py:40
 msgid "Amount"
-msgstr ""
+msgstr "Magn"
 
 #: apps/evernote_reports/models.py:42
 msgid "Date"
-msgstr ""
+msgstr "Dagsetning"
 
 #: apps/evernote_reports/models.py:43 apps/virtualfolder/models.py:63
 msgid "Description"
@@ -203,28 +203,25 @@ msgstr "Lýsing"
 #: apps/evernote_reports/views.py:295
 #, python-format
 msgid "User %s not found"
-msgstr ""
+msgstr "Notandinn %s finnst ekki."
 
 #: apps/evernote_reports/views.py:372
 msgid "Invalid request method"
 msgstr ""
 
 #: apps/import_export/templates/browser/index.html:10
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "Ná í XLIFF skrá til að þýða ótengdur"
+msgstr "Ná í þýðingaskrár til að þýða ótengdur"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "Ná í XLIFF skrá til að þýða ótengdur"
+msgstr "Sækja til að þýða ótengdur"
 
 #: apps/import_export/templates/browser/index.html:19
 msgid "Upload translation files or archives in .zip format"
 msgstr "Senda inn þýðingaskrár eða safnskrár á in .zip skráasniði"
 
 #: apps/import_export/templates/browser/index.html:20
-#, fuzzy
 msgid "Upload translations"
 msgstr "Flytja út þýðingar"
 
@@ -304,16 +301,15 @@ msgstr[1] ""
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:110
 msgid "Stopped"
-msgstr ""
+msgstr "Stöðvað"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "All Users"
 msgstr "Allir notendur"
 
 #: apps/pootle_app/views/admin/permissions.py:95
-#, fuzzy
 msgid "Add Permissions"
-msgstr "Notendaréttindi"
+msgstr "Bæta við aðgangsheimildum"
 
 #: apps/pootle_app/views/admin/permissions.py:100
 #: apps/pootle_app/views/admin/permissions.py:109
@@ -322,7 +318,7 @@ msgstr "Veldu eina eða fleiri heimild"
 
 #: apps/pootle_app/views/admin/permissions.py:104
 msgid "Revoke Permissions"
-msgstr ""
+msgstr "Afturkalla aðgangsheimildir"
 
 #: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
@@ -361,6 +357,9 @@ msgid ""
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
+"Til að sjá frekari upplýsingar, farðu á síðuna okkar um <a href=\""
+"http://docs.translatehouse.org/projects/localization-"
+"guide/en/latest/l10n/pluralforms.html\">fleirtöluform</a>."
 
 #: apps/pootle_language/models.py:93
 msgid "Unknown"
@@ -431,9 +430,8 @@ msgid "File paths"
 msgstr "Skráaslóðir"
 
 #: apps/pootle_misc/checks.py:48
-#, fuzzy
 msgid "Functions"
-msgstr "Virkar"
+msgstr "Föll"
 
 #: apps/pootle_misc/checks.py:49
 msgid "GConf values"
@@ -476,19 +474,16 @@ msgid "printf()"
 msgstr "printf()"
 
 #: apps/pootle_misc/checks.py:59
-#, fuzzy
 msgid "Punctuation spacing"
 msgstr "Bil í greinarmerkjasetningu"
 
 #: apps/pootle_misc/checks.py:60
-#, fuzzy
 msgid "Pure punctuation"
 msgstr "Hrein greinarmerkjasetning"
 
 #: apps/pootle_misc/checks.py:61
-#, fuzzy
 msgid "Python brace placeholders"
-msgstr "Innskotsbreytur"
+msgstr "Python slaufusvigabreytur"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Number of sentences"
@@ -499,7 +494,6 @@ msgid "Short"
 msgstr "Stutt"
 
 #: apps/pootle_misc/checks.py:64
-#, fuzzy
 msgid "Simple capitalization"
 msgstr "Einföld hástöfun"
 
@@ -548,11 +542,11 @@ msgstr "Löglegir stafir"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Placeholders"
-msgstr "Innskotsbreytur"
+msgstr "Ígildisbreytur"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Invalid XML"
-msgstr ""
+msgstr "Ógilt XML"
 
 #: apps/pootle_misc/checks.py:78
 msgid "XML tags"
@@ -560,11 +554,11 @@ msgstr "XML merki"
 
 #: apps/pootle_misc/checks.py:80
 msgid "Broken HTML Entities"
-msgstr ""
+msgstr "Skemmdar HTML-merkingar"
 
 #: apps/pootle_misc/checks.py:81
 msgid "Java format"
-msgstr ""
+msgstr "Java snið"
 
 #: apps/pootle_misc/checks.py:82
 msgid "Template format"
@@ -588,7 +582,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:87
 msgid "Non printable"
-msgstr ""
+msgstr "Óprentanlegt"
 
 #: apps/pootle_misc/checks.py:88
 msgid "Unbalanced tag braces"
@@ -612,7 +606,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:93
 msgid "Date format"
-msgstr ""
+msgstr "Dagsetningasnið"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Uppercase placeholders"
@@ -627,9 +621,8 @@ msgid "Percent sign closure placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:97
-#, fuzzy
 msgid "$ placeholders"
-msgstr "Innskotsbreytur"
+msgstr "$ ígildisbreytur"
 
 #: apps/pootle_misc/checks.py:98
 msgid "$ closure placeholders"
@@ -641,11 +634,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:100
 msgid "Objective-C format"
-msgstr ""
+msgstr "Objective-C snið"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Android format"
-msgstr ""
+msgstr "Android snið"
 
 #: apps/pootle_misc/checks.py:103
 msgid "Tags differ"
@@ -653,7 +646,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:104
 msgid "Curly braces"
-msgstr ""
+msgstr "Slaufusvigar"
 
 #: apps/pootle_misc/checks.py:105
 msgid "Potential unwanted placeholders"
@@ -664,9 +657,8 @@ msgid "Double quotes in tags"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:108
-#, fuzzy
 msgid "Percent brace placeholders"
-msgstr "Innskotsbreytur"
+msgstr "Slaufusvigabreytur fyrir prósentur"
 
 #: apps/pootle_misc/checks.py:1006 core/browser.py:68
 msgid "Critical"
@@ -686,7 +678,7 @@ msgstr "Afþjöppun"
 
 #: apps/pootle_misc/checks.py:1010
 msgid "Other"
-msgstr ""
+msgstr "Annað"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:60
@@ -764,7 +756,7 @@ msgstr "Seinasta (%d)"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Veldu eitt eða fleiri tungumál"
 
 #: apps/pootle_project/forms.py:29 core/browser.py:34
 msgid "Language"
@@ -811,11 +803,8 @@ msgid "Errors Report Email"
 msgstr ""
 
 #: apps/pootle_project/models.py:180
-#, fuzzy
 msgid "An email address where issues with the source text can be reported."
-msgstr ""
-"Slóð (URL) eða tölvupóstfang sem hægt er að tilkynna um vandamál með "
-"frumtexta."
+msgstr "Tölvupóstfang þar sem hægt er að tilkynna um vandamál með frumtexta."
 
 #: apps/pootle_project/models.py:184
 msgid "Screenshot Search Prefix"
@@ -823,7 +812,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:189
 msgid "Disabled"
-msgstr ""
+msgstr "Óvirkt"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -863,7 +852,7 @@ msgstr ""
 
 #: apps/pootle_statistics/models.py:223
 msgid "uploaded a file"
-msgstr ""
+msgstr "sendi inn skrá"
 
 #: apps/pootle_statistics/models.py:226
 #, python-format
@@ -878,37 +867,37 @@ msgstr ""
 #: apps/pootle_statistics/models.py:250
 #, python-format
 msgid "translated %(source_string)s"
-msgstr ""
+msgstr "þýddi %(source_string)s"
 
 #: apps/pootle_statistics/models.py:252 apps/pootle_statistics/models.py:258
 #, python-format
 msgid "edited %(source_string)s"
-msgstr ""
+msgstr "breytti %(source_string)s"
 
 #: apps/pootle_statistics/models.py:255
 #, python-format
 msgid "pre-translated %(source_string)s"
-msgstr ""
+msgstr "for-þýddi %(source_string)s"
 
 #: apps/pootle_statistics/models.py:260
 #, python-format
 msgid "removed translation for %(source_string)s"
-msgstr ""
+msgstr "fjarlægði þýðingu fyrir %(source_string)s"
 
 #: apps/pootle_statistics/models.py:267
 #, python-format
 msgid "reviewed %(source_string)s"
-msgstr ""
+msgstr "yfirfór %(source_string)s"
 
 #: apps/pootle_statistics/models.py:268
 #, python-format
 msgid "marked as fuzzy %(source_string)s"
-msgstr ""
+msgstr "merkti sem loðið %(source_string)s"
 
 #: apps/pootle_statistics/models.py:271
 #, python-format
 msgid "unknown action %(source_string)s"
-msgstr ""
+msgstr "óþekkt aðgerð %(source_string)s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -919,9 +908,8 @@ msgid "Insufficient rights to access suggestion mode."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:31
-#, fuzzy
 msgid "Insufficient rights to access translation mode."
-msgstr "Ekki næg réttindi að þessu þýðingarverkefni."
+msgstr "Ekki næg réttindi fyrir aðgang að þýðingarham."
 
 #: apps/pootle_store/decorators.py:32
 msgid "Insufficient rights to access review mode."
@@ -1031,14 +1019,13 @@ msgstr ""
 
 #: apps/pootle_store/views.py:695
 msgid "Failed to remove comment."
-msgstr ""
+msgstr "Tókst ekki að fjarlægja athugasemd."
 
 #: apps/pootle_store/views.py:729
 msgid "Comment submission failed."
 msgstr "Ekki tókst að setja inn athugasemd."
 
 #: apps/pootle_store/views.py:917
-#, fuzzy
 msgid "Failed to process submission."
 msgstr "Ekki tókst að vinna úr innsendingu."
 
@@ -1056,10 +1043,11 @@ msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
+"Ég hef lesið og samþykkt: <a href=\"%(url)s\" class=\"%(classes)s\""
+">%(title)s</a>"
 
 # Vantar samhengi, gæti verið "Hvort sem þessi síða er virk eða ekki."
 #: apps/staticpages/models.py:30
-#, fuzzy
 msgid "Whether this page is active or not."
 msgstr "Hvort þessi síða er virk eða ekki."
 
@@ -1077,20 +1065,19 @@ msgid "Display Content"
 msgstr ""
 
 #: apps/staticpages/models.py:45
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed markup: %s"
 msgstr "Leyfðar merkingar: %s"
 
 #: apps/staticpages/models.py:48 templates/admin/staticpages/_table.html:9
 msgid "Redirect to URL"
-msgstr ""
+msgstr "Endurbeina á slóð"
 
 #: apps/staticpages/models.py:50
-#, fuzzy
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
-"Ef eitthvað er tilgreint munu allar tilvísanir í þessa síðu verða "
-"áframsendar á þessa slóð (URL)"
+"Ef eitthvað er tilgreint mun öllum tilvísunum í þessa síðu verða endurbeint "
+"á þessa slóð (URL)"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:96
@@ -1102,29 +1089,28 @@ msgid "Virtual path already in use."
 msgstr ""
 
 #: apps/staticpages/models.py:113
-#, fuzzy
 msgid "Legal Page"
-msgstr "Lagalegar síður"
+msgstr "Lögfræðileg síða"
 
 #: apps/staticpages/models.py:124
-#, fuzzy
 msgid "Regular Page"
-msgstr "Breyta lagalegri síðu."
+msgstr "Venjuleg síða"
 
 #: apps/staticpages/views.py:111 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
-msgstr ""
+msgstr "Síðutitill"
 
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:128
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
+"verkefni/<project_code> eða <language_code> eða "
+"<language_code>/<project_code>"
 
 #: apps/virtualfolder/models.py:39
-#, fuzzy
 msgid "Location"
-msgstr "Staðsetningar"
+msgstr "Staðsetning"
 
 #: apps/virtualfolder/models.py:42
 msgid "Root path where this virtual folder is applied."
@@ -1132,7 +1118,6 @@ msgstr ""
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:46
-#, fuzzy
 msgid "Filter"
 msgstr "Sía"
 
@@ -1155,9 +1140,8 @@ msgstr ""
 
 # Vantar samhengi, gæti verið "Hvort sem þessi síða er virk eða ekki."
 #: apps/virtualfolder/models.py:60
-#, fuzzy
 msgid "Whether this virtual folder is active or not."
-msgstr "Hvort þessi síða er virk eða ekki."
+msgstr "Hvort þessi sýndarmappa er virk eða ekki."
 
 #: apps/virtualfolder/models.py:65
 #, fuzzy, python-format
@@ -1169,7 +1153,7 @@ msgstr ""
 
 #: checks.py:57
 msgid "Your version of Django is too old."
-msgstr ""
+msgstr "Django útgáfan þín er of gömul."
 
 #: checks.py:58
 #, python-format
@@ -1223,9 +1207,8 @@ msgid "Run new workers with manage.py rqworker"
 msgstr ""
 
 #: checks.py:127
-#, fuzzy
 msgid "Your version of Redis is too old."
-msgstr "Django útgáfa %s er uppsett."
+msgstr "Redis útgáfan þín er of gömul."
 
 #: checks.py:128
 msgid "Update your system's Redis server package"
@@ -1323,9 +1306,8 @@ msgid "Progress"
 msgstr "Framvinda"
 
 #: core/browser.py:52 templates/browser/index.html:39
-#, fuzzy
 msgid "Last updated"
-msgstr "Síðast breytt"
+msgstr "Síðast uppfært"
 
 #: core/browser.py:57
 msgid "Need Translation"
@@ -1341,17 +1323,16 @@ msgid "Last Activity"
 msgstr "Seinasta virkni"
 
 #: core/browser.py:130
-#, fuzzy
 msgid "Back to language"
-msgstr "Aftur á aðalsíðu"
+msgstr "Aftur á síðu tungumáls"
 
 #: core/browser.py:132
 msgid "Back to parent folder"
-msgstr ""
+msgstr "Til baka í yfirmöppu"
 
 #: core/decorators.py:313
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Ónógar heimildir til að fá aðgang að þessari síðu."
 
 #: core/decorators.py:326 core/views.py:34
 msgid "You do not have rights to administer Pootle."
@@ -1371,7 +1352,7 @@ msgstr "Rangt"
 
 #: core/helpers.py:42
 msgid "User missing"
-msgstr ""
+msgstr "Notanda vantar"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:54 templates/editor/_filters.html:6
@@ -1399,19 +1380,19 @@ msgstr "Sent inn"
 #. in time but have been overwritten by other users.
 #: core/helpers.py:64 templates/editor/_filters.html:17
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Yfirskrifaðar tillögur sem ég hef sent inn"
 
 #: core/helpers.py:65
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Yfirskrifaðar tillögur"
 
 #: core/initdb.py:109
 msgid "Can access a project"
-msgstr ""
+msgstr "Hefur aðgang að verkefni"
 
 #: core/initdb.py:113
 msgid "Cannot access a project"
-msgstr ""
+msgstr "Fær ekki aðgang að verkefni"
 
 #: core/initdb.py:117
 msgid "Can make a suggestion for a translation"
@@ -1422,9 +1403,8 @@ msgid "Can submit a translation"
 msgstr "Getur sent inn þýðingu"
 
 #: core/initdb.py:125
-#, fuzzy
 msgid "Can review suggestions"
-msgstr "Skoða tillögur"
+msgstr "Getur yfirfarið tillögur"
 
 #: core/initdb.py:129
 msgid "Can administrate a translation project"
@@ -1432,16 +1412,15 @@ msgstr "Getur stjórnað þýðingarverkefni"
 
 #: core/views.py:66
 msgid "You cannot access this page."
-msgstr ""
+msgstr "Þú hefur ekki aðgang að þessari síðu."
 
 #: custom/templates/layout.html:11
 msgid "Getting Started"
-msgstr ""
+msgstr "Til að komast í gang"
 
 #: custom/templates/layout.html:15
-#, fuzzy
 msgid "License Terms"
-msgstr "Leyfi"
+msgstr "Skilyrði notkunarleyfis"
 
 #: custom/templates/profiles/_tabs.html:4 templates/layout.html:116
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
@@ -1449,13 +1428,13 @@ msgid "Settings"
 msgstr "Stillingar"
 
 #: middleware/errorpages.py:57
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
-"Þú verður að <a href=\"%(login_link)s\">skrá þig inn</a> til að fá aðgang að "
-"þessarri síðu."
+"Þú verður að <a class=\"js-login\" href=\"%(login_link)s\">skrá þig inn</a> "
+"til að fá aðgang að þessarri síðu."
 
 #: middleware/errorpages.py:97
 #, python-format
@@ -1476,7 +1455,7 @@ msgstr "Lögfræðileg atriði"
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:39
 msgid "License"
-msgstr "Leyfi"
+msgstr "Notkunarleyfi"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:41
@@ -1498,7 +1477,6 @@ msgid "About"
 msgstr "Um"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "Um þennan Pootle þjón"
 
@@ -1517,7 +1495,7 @@ msgstr ""
 "external-link\"></i>vef verkefnisins</a>."
 
 #: templates/about.html:26
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
@@ -1540,20 +1518,18 @@ msgstr ""
 "vildir ekki skrá aðgang, getur þú hunsað þessi skilaboð."
 
 #: templates/account/email/email_confirmation_subject.txt:2
-#, fuzzy
 msgid "Pootle e-mail confirmation"
-msgstr "Skráning í Pootle"
+msgstr "Staðfesting í tölvupósti frá Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
-#, fuzzy
 msgid "Registration Disabled"
-msgstr "skráning"
+msgstr "Skráning óvirk"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
-msgstr ""
+msgstr "Skráning er óvirk í augnablikinu. Reyndu aftur síðar."
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
@@ -1600,7 +1576,7 @@ msgstr ""
 #: templates/admin/_tabs.html:36 templates/admin/reports.html:45
 #: templates/admin/reports.html.py:48
 msgid "Reports"
-msgstr ""
+msgstr "Skýrslur"
 
 #: templates/admin/base.html:4 templates/admin/base.html.py:7
 msgid "Administration"
@@ -1620,24 +1596,23 @@ msgstr "Meira..."
 
 #: templates/admin/dashboard.html:37
 msgid "Background Jobs"
-msgstr ""
+msgstr "Bakgrunnsvinnsla"
 
 #: templates/admin/dashboard.html:43
 msgid "Status"
-msgstr ""
+msgstr "Staða"
 
 #: templates/admin/dashboard.html:50
 msgid "Pending jobs"
-msgstr ""
+msgstr "Verk sem bíða"
 
 #: templates/admin/dashboard.html:54
 msgid "Failed jobs"
-msgstr ""
+msgstr "Verk sem hafa mistekist"
 
 #: templates/admin/dashboard.html:64
-#, fuzzy
 msgid "System Checks"
-msgstr "Sýna athuganir"
+msgstr "Kerfisprófanir"
 
 #: templates/admin/dashboard.html:74
 msgid "No issues have been detected. All is good!"
@@ -1656,38 +1631,36 @@ msgstr ""
 #: templates/admin/detailed_reports.html:133
 #: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
 msgid "Previous month"
-msgstr ""
+msgstr "Í fyrri mánuði"
 
 #: templates/admin/detailed_reports.html:135
 #: templates/admin/reports/header.html:15 templates/user/detailed_stats.html:9
 msgid "Next month"
-msgstr ""
+msgstr "Í næsta mánuði"
 
 #: templates/admin/detailed_reports.html:142
 msgid "Local server time"
-msgstr ""
+msgstr "Staðartími þjóns"
 
 #: templates/admin/detailed_reports.html:143
-#, fuzzy
 msgid "Action"
-msgstr "Aðgerðir"
+msgstr "Aðgerð"
 
 #: templates/admin/detailed_reports.html:144
 msgid "Unit"
-msgstr ""
+msgstr "Eining"
 
 #: templates/admin/detailed_reports.html:145
-#, fuzzy
 msgid "Source words"
-msgstr "Frumtexti"
+msgstr "Orð í upprunatexta"
 
 #: templates/admin/detailed_reports.html:146
 msgid "Similarity"
-msgstr ""
+msgstr "Líkindi"
 
 #: templates/admin/detailed_reports.html:147
 msgid "Words"
-msgstr ""
+msgstr "Orð"
 
 #: templates/admin/detailed_reports.html:150
 msgid "Subtotal"
@@ -1742,9 +1715,8 @@ msgid "Daily activity"
 msgstr ""
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "Notendur"
+msgstr "Notandi"
 
 #: templates/admin/reports/header.html:22
 msgid "Detailed Report"
@@ -1760,11 +1732,11 @@ msgstr ""
 
 #: templates/admin/reports/paid_task_form.html:23
 msgid "words"
-msgstr ""
+msgstr "orð"
 
 #: templates/admin/reports/paid_task_form.html:24
 msgid "hours"
-msgstr ""
+msgstr "klukkustundir"
 
 #: templates/admin/reports/paid_task_form.html:35
 msgid "Add record"
@@ -1808,14 +1780,12 @@ msgid "No"
 msgstr "Nei"
 
 #: templates/admin/staticpages/_table.html:19
-#, fuzzy
 msgid "edit"
-msgstr "Breyta"
+msgstr "breyta"
 
 #: templates/admin/staticpages/_table.html:24
-#, fuzzy
 msgid "view"
-msgstr "Sýn"
+msgstr "skoða"
 
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
@@ -1827,65 +1797,59 @@ msgid "Add"
 msgstr "Bæta við"
 
 #: templates/admin/staticpages/page_list.html:7
-#, fuzzy
 msgid "Legal Pages"
-msgstr "Lagalegar síður"
+msgstr "Lögfræðilegar síður"
 
 #: templates/admin/staticpages/page_list.html:11
-#, fuzzy
 msgid "Add Legal Page"
-msgstr "Breyta lagalegri síðu."
+msgstr "Breyta lögfræðilegri síðu"
 
 #: templates/admin/staticpages/page_list.html:14
-#, fuzzy
 msgid "Regular Pages"
-msgstr "Breyta lagalegri síðu."
+msgstr "Venjulegar síður"
 
 #: templates/admin/staticpages/page_list.html:18
-#, fuzzy
 msgid "Add Regular Page"
-msgstr "Breyta lagalegri síðu."
+msgstr "Bæta við venjulegri síðu"
 
 #: templates/admin/staticpages/page_list.html:21
 msgid "Announcements"
-msgstr ""
+msgstr "Tilkynningar"
 
 #: templates/admin/staticpages/page_list.html:25
 msgid "Add Announcement"
-msgstr ""
+msgstr "Bæta við tilkynningu"
 
 #: templates/browser/_actions.html:5
-#, fuzzy
 msgid "Continue translation"
-msgstr "Afrita yfir í þýðingu"
+msgstr "Halda áfram með þýðingu"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Review suggestions"
-msgstr "Skoða tillögur"
+msgstr "Yfirfara tillögur"
 
 #: templates/browser/_actions.html:17
 msgid "Fix critical errors"
-msgstr ""
+msgstr "Laga alvarlegar villur"
 
 #: templates/browser/_actions.html:23
 msgid "View all"
-msgstr ""
+msgstr "Skoða allt"
 
 #: templates/browser/_progressbar.html:3
 #, python-format
 msgid "<span class='value translated'>0</span>%% translated"
-msgstr ""
+msgstr "<span class='value translated'>0</span>%% þýtt"
 
 #: templates/browser/_progressbar.html:4
 #, python-format
 msgid "<span class='value fuzzy'>0</span>%% fuzzy"
-msgstr ""
+msgstr "<span class='value fuzzy'>0</span>%% loðið"
 
 #: templates/browser/_progressbar.html:5
 #, python-format
 msgid "<span class='value untranslated'>0</span>%% untranslated"
-msgstr ""
+msgstr "<span class='value untranslated'>0</span>%% óþýtt"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
@@ -1897,7 +1861,7 @@ msgstr "Þýðingartölfræði"
 
 #: templates/browser/index.html:43
 msgid "Last action"
-msgstr ""
+msgstr "Síðasta aðgerð"
 
 #: templates/browser/index.html:51
 msgid "Failing Checks"
@@ -1912,14 +1876,16 @@ msgid ""
 "Some data on this page is currently being calculated, and the page will be "
 "refreshed automatically in <strong>30 seconds</strong>."
 msgstr ""
+"Verið er að reikna út sum gögn á þessari síðu, og verður því síðan "
+"endurlesin sjálfkrafa eftir <strong>30 sekúndur</strong>."
 
 #: templates/browser/index.html:113
 msgid "Refresh now"
-msgstr ""
+msgstr "Endurlesa núna"
 
 #: templates/browser/index.html:149
 msgid "Congratulations! You have completed this task!"
-msgstr ""
+msgstr "Til hamingju! Þú hefur lokið þessum verkþætti!"
 
 #: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:104
 msgid "Contact Us"
@@ -1931,11 +1897,11 @@ msgstr ""
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
-msgstr ""
+msgstr "Senda skilaboð"
 
 #: templates/contact_form/xhr_contact_form.html:24
 msgid "Thanks!"
-msgstr ""
+msgstr "Takk fyrir!"
 
 #: templates/contact_form/xhr_contact_form.html:26
 msgid ""
@@ -1978,7 +1944,7 @@ msgstr "Staðfesta"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Fara til baka í yfirlit"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -1986,27 +1952,27 @@ msgstr "Mínar uppástungur"
 
 #: templates/editor/_filters.html:23
 msgid "Select type"
-msgstr ""
+msgstr "Veldu tegund"
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr ""
+msgstr "Sjálfgefin röðun"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
-msgstr ""
+msgstr "Mikilvægt fyrst"
 
 #: templates/editor/_toolbar.html:10
 msgid "Newest first"
-msgstr ""
+msgstr "Nýjast fyrst"
 
 #: templates/editor/_toolbar.html:11
 msgid "Oldest first"
-msgstr ""
+msgstr "Elsta fyrst"
 
 #: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Fara á fyrri streng (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:20
 msgid ""
@@ -2016,11 +1982,11 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:22
 msgid "Total strings"
-msgstr ""
+msgstr "Strengir alls"
 
 #: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Fara á næsta streng (Ctrl+Down)"
 
 #: templates/editor/export_view.html:6 templates/languages/_nav.html:18
 #: templates/projects/_nav.html:18 templates/projects/all/_nav.html:18
@@ -2038,7 +2004,7 @@ msgstr "Öll tungumál"
 
 #: templates/editor/export_view.html:143
 msgid "No strings."
-msgstr ""
+msgstr "Engir strengir."
 
 #: templates/editor/export_view.html:149
 #, python-format
@@ -2059,9 +2025,8 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr ""
 
 #: templates/editor/units/edit.html:19
-#, fuzzy
 msgid "Priority:"
-msgstr "Forgangur"
+msgstr "Forgangur:"
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
@@ -2085,11 +2050,11 @@ msgstr "Athugasemdir:"
 
 #: templates/editor/units/edit.html:70
 msgid "Click to open the image in a popup"
-msgstr ""
+msgstr "Smelltu til að opna myndina í sprettglugga"
 
 #: templates/editor/units/edit.html:84
 msgid "Screenshots..."
-msgstr ""
+msgstr "Skjámyndir..."
 
 #: templates/editor/units/edit.html:108 templates/editor/units/edit.html:134
 msgid "Copy into translation"
@@ -2097,7 +2062,7 @@ msgstr "Afrita yfir í þýðingu"
 
 #: templates/editor/units/edit.html:130
 msgid "Report a problem with this string"
-msgstr ""
+msgstr "Tilkynna um vandamál með þennan streng"
 
 #: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
 #: templates/editor/units/edit.html:256
@@ -2106,7 +2071,7 @@ msgstr "Senda"
 
 #: templates/editor/units/edit.html:153
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "Senda inn þýðingu og fara á næsta streng (Ctrl+Enter)"
 
 #: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
 msgid "Suggest"
@@ -2114,7 +2079,7 @@ msgstr "Stinga uppá"
 
 #: templates/editor/units/edit.html:159
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "Stinga upp á þýðingu og fara á næsta streng (Ctrl+Enter)"
 
 #: templates/editor/units/edit.html:163
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
@@ -2126,7 +2091,7 @@ msgstr "Skipta yfir í tillöguham (Ctrl+Shift+Space)"
 
 #: templates/editor/units/edit.html:169
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "Merkja þennan streng sem ófullgerðan (Ctrl+Space)"
 
 #: templates/editor/units/edit.html:184
 msgid "Show Timeline"
@@ -2203,7 +2168,7 @@ msgstr "Fjarlægja tillögu"
 
 #: templates/editor/units/edit.html:320
 msgid "A long time ago"
-msgstr ""
+msgstr "Fyrir langalöngu"
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
@@ -2223,22 +2188,20 @@ msgid "Failing checks:"
 msgstr "Fell á prófi:"
 
 #: templates/editor/units/xhr_checks.html:10
-#, fuzzy
 msgid "Mute quality check"
-msgstr "Fjarlægja gæðaprófun"
+msgstr "Þagga niður í gæðaprófun"
 
 #: templates/editor/units/xhr_checks.html:11
-#, fuzzy
 msgid "Unmute quality check"
-msgstr "Fjarlægja gæðaprófun"
+msgstr "Virkja gæðaprófun"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
-msgstr ""
+msgstr "Fjarlægja athugasemd"
 
 #: templates/editor/units/xhr_comment.html:18
 msgid "Last comment:"
-msgstr ""
+msgstr "Síðasta athugasemd:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
@@ -2266,14 +2229,13 @@ msgstr ""
 
 #: templates/errors/400.html:14
 msgid "The operation is not permitted."
-msgstr ""
+msgstr "Þessi aðgerð er ekki leyfileg."
 
 #: templates/errors/403.html:4 templates/errors/403.html.py:8
 msgid "Permission Denied"
 msgstr "Heimild hafnað"
 
 #: templates/errors/403.html:13
-#, fuzzy
 msgid "You don't seem to have permissions to access this page."
 msgstr "Þú hefur ekki aðgangsheimildir til að skoða þessa síðu."
 
@@ -2290,13 +2252,12 @@ msgid "Server Error"
 msgstr "Villa í netþjóni"
 
 #: templates/errors/500.html:10
-#, fuzzy
 msgid "A server error has occurred. Thank you for your patience."
-msgstr "Villa kom upp. Með þökk fyrir biðlund."
+msgstr "Villa kom upp í netþjóni. Takk fyrir biðlundina."
 
 #: templates/errors/500.html:16
 msgid "Exception:"
-msgstr ""
+msgstr "Undantekning:"
 
 #: templates/errors/500.html:21
 #, python-format
@@ -2331,7 +2292,7 @@ msgstr ""
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:5
 msgid "Browse"
-msgstr ""
+msgstr "Vafra"
 
 #: templates/languages/admin/permissions.html:9
 msgid "Below you can add, edit, and delete the permissions for this language."
@@ -2360,7 +2321,7 @@ msgstr ""
 #: templates/layout.html:117 templates/user/stats.html:46
 #: templates/user/stats.html.py:50
 msgid "Statistics"
-msgstr ""
+msgstr "Tölfræði"
 
 #: templates/layout.html:119
 msgid "Admin"
@@ -2368,11 +2329,11 @@ msgstr "Stjórnandi"
 
 #: templates/layout.html:122
 msgid "Sign out"
-msgstr ""
+msgstr "Skrá út"
 
 #: templates/layout.html:126
 msgid "Sign In"
-msgstr ""
+msgstr "Skrá inn"
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
@@ -2401,7 +2362,6 @@ msgid "Before continuing, you must read and accept the following documents."
 msgstr ""
 
 #: templates/staticpages/agreement.html:17
-#, fuzzy
 msgid "No thanks. Sign out"
 msgstr "Nei takk. Skrá út"
 
@@ -2486,9 +2446,8 @@ msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Þú getur stillt kennimynd þína á www.gravatar.com"
 
 #: templates/user/profile.html:16
-#, fuzzy
 msgid "Anonymous User"
-msgstr "nafnlaus notandi"
+msgstr "Nafnlaus notandi"
 
 #: templates/user/profile.html:25
 msgid "Score:"
@@ -2505,7 +2464,7 @@ msgstr ""
 
 #: templates/user/profile.html:37
 msgid "No contributions in the last month"
-msgstr ""
+msgstr "Engin framlög síðasta mánuðinn"
 
 #: templates/user/profile.html:40
 #, python-format
@@ -2526,13 +2485,12 @@ msgid ""
 msgstr ""
 
 #: templates/user/profile.html:57
-#, fuzzy
 msgid "Latest activity:"
-msgstr "Seinasta virkni"
+msgstr "Seinasta virkni:"
 
 #: templates/user/profile.html:69
 msgid "My Website"
-msgstr ""
+msgstr "Vefsvæðið mitt"
 
 #: templates/user/profile.html:75
 msgid "My LinkedIn Profile"
@@ -2562,7 +2520,7 @@ msgstr ""
 
 #: templates/user/reports/user_rates_widget.html:8
 msgid "Currency:"
-msgstr ""
+msgstr "Gjaldmiðill:"
 
 #: templates/user/reports/user_rates_widget.html:18
 msgid "Translation Rate:"
@@ -2577,9 +2535,8 @@ msgid "Hourly Rate:"
 msgstr ""
 
 #: templates/user/settings.html:12
-#, fuzzy
 msgid "User Account"
-msgstr "Virkja aðgang"
+msgstr "Notandaaðgangur"
 
 #: templates/user/settings.html:14
 msgid ""
@@ -2593,24 +2550,23 @@ msgstr "Endurstilla lykilorð"
 
 #: templates/welcome.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "Velkomin(n)"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "Velkomin í Pootle"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
-msgstr ""
+msgstr "Gakktu til liðs við okkur!"
 
 #: templates/welcome.html:19
-#, fuzzy
 msgid "Sign in"
-msgstr "Úthluta aðgerð"
+msgstr "Skrá inn"
 
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
-msgstr ""
+msgstr "Afkastamestu þátttakendur í þessum mánuði"
 
 #~ msgid "Translate Toolkit version %s installed."
 #~ msgstr "Translate Toolkit útgáfa %s uppsett."

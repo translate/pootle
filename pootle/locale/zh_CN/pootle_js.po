@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2015-05-26 23:37+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2015-08-04 08:45+0000\n"
+"Last-Translator: Heyang <qysnn1@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1432683429.000000\n"
+"X-POOTLE-MTIME: 1438677916.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -189,7 +189,7 @@ msgstr "公开个人资料"
 
 #: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
@@ -202,64 +202,64 @@ msgstr "报告"
 #: static/js/auth/components/AccountActivation.js:33
 #, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>."
-msgstr ""
+msgstr "我们已经发送了一封电子邮件，该邮件中包含了<span>%s</span>的链接。"
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
-msgstr ""
+msgstr "我们已经发送了一封电子邮件，该邮件中含有用于注册该帐号的链接。"
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "您的帐号需要激活。"
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "请点击这个链接继续创建帐号。"
 
 #: static/js/auth/components/AccountActivation.js:56
 #: static/js/auth/components/AccountInactive.js:36
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "您的帐号已被管理员停用。"
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In With..."
-msgstr ""
+msgstr "通过其他方式登录"
 
 #: static/js/auth/components/AuthController.js:82
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "登录"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
-msgstr ""
+msgstr "账号已停用"
 
 #: static/js/auth/components/AuthController.js:96
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
-msgstr ""
+msgstr "注册"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
 msgid "Account Activation"
-msgstr ""
+msgstr "帐号激活"
 
 #: static/js/auth/components/AuthController.js:117
 #: static/js/auth/components/AuthController.js:124
 #: static/js/auth/components/AuthController.js:131
 msgid "Reset Your Password"
-msgstr ""
+msgstr "重设您的密码"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
-msgstr ""
+msgstr "Oops..."
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
@@ -267,28 +267,26 @@ msgstr ""
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
-msgstr ""
+msgstr "联系我们"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
-msgstr ""
+msgstr "密码重置链接无效，可能是因为它已经被使用了。请重新重置密码。"
 
 #: static/js/auth/components/PasswordResetForm.js:86
-#, fuzzy
 msgid "Reset Password"
-msgstr "密码"
+msgstr "重设密码"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "密码已更改，正在登录..."
 
 #: static/js/auth/components/PasswordResetForm.js:122
 #: static/js/auth/components/SignUpForm.js:108
-#, fuzzy
 msgid "Repeat Password"
-msgstr "密码"
+msgstr "重复密码"
 
 #: static/js/auth/components/PasswordResetForm.js:135
 #, fuzzy
@@ -297,16 +295,16 @@ msgstr "设置新密码"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "更改您的密码后，您将自动登录。"
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "正在向 %s 发送电子邮件"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
-msgstr ""
+msgstr "请点击该链接继续密码重置过程。"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid ""
@@ -333,18 +331,16 @@ msgid "Signed in. Redirecting..."
 msgstr ""
 
 #: static/js/auth/components/SignInPanel.js:62
-#, fuzzy
 msgid "Social Services"
-msgstr "特殊字符"
+msgstr "社交服务"
 
 #: static/js/auth/components/SignInPanel.js:65
-#, fuzzy
 msgid "Login / Password"
-msgstr "密码"
+msgstr "登录/密码"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "以现有用户登录"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, javascript-format
@@ -357,7 +353,7 @@ msgstr ""
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "重试"
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, javascript-format

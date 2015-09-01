@@ -9,22 +9,24 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:30+0100\n"
-"PO-Revision-Date: 2014-02-25 14:40+0000\n"
+"PO-Revision-Date: 2015-08-03 13:00+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1393339207.000000\n"
+"X-POOTLE-MTIME: 1438606830.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Badirudi zure erabiltzailea desagertu egin dela. Mesedez eman arazo honen "
+"berri gunearen jabeei."
 
 #: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
@@ -34,10 +36,12 @@ msgstr "Erabiltzaile-izena"
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
+"Beharrezkoa. 30 karaktere edo gutxiago. Hizkiak, zenbakiak eta @/./+/-/_ "
+"karaktereak onartzen dira"
 
 #: apps/accounts/models.py:65
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Idatzi baliozko erabiltzaile-izena."
 
 #: apps/accounts/models.py:69
 msgid "Email Address"
@@ -60,9 +64,8 @@ msgid ""
 msgstr ""
 
 #: apps/accounts/models.py:75
-#, fuzzy
 msgid "Superuser Status"
-msgstr "kudeatzailea"
+msgstr "Kudeatzaile egoera"
 
 #: apps/accounts/models.py:76
 msgid ""
@@ -88,15 +91,15 @@ msgstr ""
 
 #: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
-msgstr ""
+msgstr "Berrikuspen-tasa"
 
 #: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
-msgstr ""
+msgstr "Orduko tasa"
 
 #: apps/accounts/models.py:92
 msgid "Score"
-msgstr ""
+msgstr "Puntuazioa"
 
 #: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
@@ -108,24 +111,23 @@ msgstr ""
 
 #: apps/accounts/models.py:96
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:98
 msgid "Website"
-msgstr ""
+msgstr "Webgunea"
 
 #: apps/accounts/models.py:99
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:100
 msgid "Short Bio"
-msgstr ""
+msgstr "Biografia laburra"
 
 #: apps/accounts/models.py:300
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Termino hau badago lehendik fitxategi honetan."
+msgstr "Helbide elektroniko hau badago lehendik."
 
 #: apps/contact/forms.py:25
 msgid "Summary"

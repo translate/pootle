@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2015-06-13 14:35+0000\n"
-"Last-Translator: Jindřich <khagaroth@gmail.com>\n"
+"PO-Revision-Date: 2015-08-11 05:11+0000\n"
+"Last-Translator: jui <appukonrad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1434206110.000000\n"
+"X-POOTLE-MTIME: 1439269865.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -202,14 +202,13 @@ msgid "Reports"
 msgstr "Sestavy"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>."
 msgstr ""
 "Odeslali jsme e-mail obsahující tento speciální odkaz na adresu <span>%s</"
 "span>."
 
 #: static/js/auth/components/AccountActivation.js:38
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
@@ -228,7 +227,7 @@ msgstr "Pro pokračování v procesu založení účtu klikněte na zadaný odka
 #: static/js/auth/components/AccountActivation.js:56
 #: static/js/auth/components/AccountInactive.js:36
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
@@ -266,7 +265,7 @@ msgstr "Změnit heslo"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
-msgstr ""
+msgstr "Jejda..."
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
@@ -285,9 +284,8 @@ msgstr ""
 "použit. Požádejte prosím o změnu hesla znovu."
 
 #: static/js/auth/components/PasswordResetForm.js:86
-#, fuzzy
 msgid "Reset Password"
-msgstr "Zopakujte heslo"
+msgstr "Změnit heslo"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
@@ -320,6 +318,8 @@ msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Neobdrželi jste žádný e-mail? Zkontrolujte, zda nebyl omylem označen jako "
+"spam, nebo zkuste požádat o opětovné zaslání e-mailu."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
@@ -348,9 +348,8 @@ msgid "Login / Password"
 msgstr "Uživatelské jméno / Heslo"
 
 #: static/js/auth/components/SignUpForm.js:126
-#, fuzzy
 msgid "Sign in as an existing user"
-msgstr "Zaregistrovat se jako nový uživatel"
+msgstr "Přihlásit se jako existující uživatel"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, javascript-format
@@ -364,7 +363,7 @@ msgstr ""
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "Zkusit znovu"
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, javascript-format
@@ -376,6 +375,8 @@ msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"První přihlášení prostřednictvím externí služby automaticky vytvoří "
+"uživatelský účet."
 
 #: static/js/browser.js:156
 msgid "All Languages"
@@ -499,7 +500,7 @@ msgid "Collapse details"
 msgstr "Sbalit podrobnosti"
 
 #: static/js/utils.js:151
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Před rokem"
@@ -507,7 +508,7 @@ msgstr[1] "Před %s roky"
 msgstr[2] "Před %s roky"
 
 #: static/js/utils.js:154
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Před týdnem"
@@ -515,7 +516,7 @@ msgstr[1] "Před %s týdny"
 msgstr[2] "Před %s týdny"
 
 #: static/js/utils.js:157
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Včera"
@@ -523,7 +524,7 @@ msgstr[1] "Před %s dny"
 msgstr[2] "Před %s dny"
 
 #: static/js/utils.js:160
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Před hodinou"
@@ -531,7 +532,7 @@ msgstr[1] "Před %s hodinami"
 msgstr[2] "Před %s hodinami"
 
 #: static/js/utils.js:163
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Před minutou"

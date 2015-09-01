@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2015-06-13 08:50+0000\n"
+"PO-Revision-Date: 2015-06-16 05:41+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1434185458.000000\n"
+"X-POOTLE-MTIME: 1434433281.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -202,13 +202,12 @@ msgid "Reports"
 msgstr "Raporlar"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>."
 msgstr ""
 "Özel bağlantıyı içeren bir epostayı <span>%s</span> adresine gönderdik."
 
 #: static/js/auth/components/AccountActivation.js:38
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
@@ -227,7 +226,7 @@ msgstr "Hesap oluşturmaya devam etmek için lütfen şu bağlantıyı takip edi
 #: static/js/auth/components/AccountActivation.js:56
 #: static/js/auth/components/AccountInactive.js:36
 msgid "Close"
-msgstr ""
+msgstr "Kapat"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
@@ -284,9 +283,8 @@ msgstr ""
 "içindir. Lütfen yeni bir parola sıfırlaması isteyin."
 
 #: static/js/auth/components/PasswordResetForm.js:86
-#, fuzzy
 msgid "Reset Password"
-msgstr "Parolayı Tekrarla"
+msgstr "Parolayı Sıfırla"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
@@ -320,6 +318,8 @@ msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Bir eposta almadınız mı? Kazara istenmeyen ileti olarak süzüldüyse kontrol "
+"edin ya da epostanın başka bir kopyasını istemeye çalışın."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
@@ -348,9 +348,8 @@ msgid "Login / Password"
 msgstr "Oturum aç / Parola"
 
 #: static/js/auth/components/SignUpForm.js:126
-#, fuzzy
 msgid "Sign in as an existing user"
-msgstr "Yeni bir kullanıcı olarak kaydol"
+msgstr "Varolan bir kullanıcı olarak giriş yapın"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, javascript-format
@@ -365,7 +364,7 @@ msgstr ""
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "Tekrar deneyin"
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, javascript-format
@@ -377,6 +376,8 @@ msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"İlk defa harici bir hizmet ile giriş yapmak otomatik olarak sizin için bir "
+"hesap oluşturacak."
 
 #: static/js/browser.js:156
 msgid "All Languages"

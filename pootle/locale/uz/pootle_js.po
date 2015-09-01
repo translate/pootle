@@ -9,47 +9,47 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2014-05-17 14:37+0000\n"
+"PO-Revision-Date: 2015-06-15 20:26+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: uz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1400337458.000000\n"
+"X-POOTLE-MTIME: 1434399968.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "Muvaffaqiyatli ravishda saqlandi."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Muvaffaqiyatli ravishda o‘chirildi."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "O‘chirish"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
 msgid "Full Name"
-msgstr ""
+msgstr "To‘liq ismi"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "Maxsus belgilar"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Ko‘plik soni"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
@@ -59,38 +59,37 @@ msgstr ""
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
 msgid "Save"
-msgstr ""
+msgstr "Saqlash"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "Umumiy ko‘rinishi"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "Huquqlar"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "Sifatini tekshirish"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "Fayl turi"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Loyiha daraxt uslubi"
 
 #: static/js/admin/components/ProjectForm.js:103
-#, fuzzy
 msgid "Source Language"
-msgstr "Hamma tillar"
+msgstr "Manba til"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "Fayllarni e’tiborsiz qoldirish"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
@@ -102,79 +101,81 @@ msgstr ""
 
 #: static/js/admin/components/ProjectForm.js:129
 msgid "Disabled"
-msgstr ""
+msgstr "O‘chirilgan"
 
 #: static/js/admin/components/ProjectForm.js:141
 msgid "Languages"
-msgstr ""
+msgstr "Tillar"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
-msgstr ""
+msgstr "Ko‘proq yuklash"
 
 #: static/js/admin/components/Search.js:89
 msgid "Loading..."
-msgstr ""
+msgstr "Yuklanmoqda..."
 
 #: static/js/admin/components/UserForm.js:52
 msgid ""
 "Note: deleting the user will make its suggestions and translations become "
 "attributed to an anonymous user (nobody)."
 msgstr ""
+"Diqqat: foydalanuvchini o‘chirsangiz, uning tavsiyalari va tarjimalari noma’"
+"lum foydalanuvchi (hech kim) tegishli deb ko‘rsatiladi."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "Foydalanuvchi"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "Faol"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:100
 #: static/js/auth/components/SocialVerification.js:94
 msgid "Password"
-msgstr ""
+msgstr "Parol"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "Yangi parol o‘rnatish"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "E-pochta"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "Administrator"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
-msgstr ""
+msgstr "Twitter tarmog‘idagi nomi"
 
 #: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "LinkedIn profil URL manzili"
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
 msgid "Website"
-msgstr ""
+msgstr "Veb sayt"
 
 #: static/js/admin/components/UserForm.js:128
 msgid "Personal website URL"
-msgstr ""
+msgstr "Shaxsiy veb sayt URL manzili"
 
 #: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
 msgid "Short Bio"
@@ -182,28 +183,28 @@ msgstr ""
 
 #: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
-msgstr ""
+msgstr "Shaxsiy ta’rifi"
 
 #: static/js/admin/components/UserForm.js:147
 msgid "Public Profile"
-msgstr ""
+msgstr "Hammaga ko‘rinadigan profil"
 
 #: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "Moslamalar"
 
 #: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: static/js/admin/components/UserForm.js:150
 msgid "Reports"
-msgstr ""
+msgstr "Hisobotlar"
 
 #: static/js/auth/components/AccountActivation.js:33
 #, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>."
-msgstr ""
+msgstr "Biz<span>%s</span>ga maxsus havola berilgan xatni sizga jo‘natdik."
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
@@ -472,7 +473,6 @@ msgstr ""
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/stats.js:318
 msgid "Expand details"
@@ -521,7 +521,6 @@ msgstr "Bir necha soniy oldin"
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/admin/components/language.jsx:56
 #, python-format
@@ -529,7 +528,6 @@ msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/admin/components/language.jsx:74
 msgid "Search Languages"
@@ -565,7 +563,6 @@ msgstr ""
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/admin/components/project.jsx:56
 #, python-format
@@ -573,7 +570,6 @@ msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/admin/components/project.jsx:74
 msgid "Search Projects"
@@ -603,7 +599,6 @@ msgstr ""
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/admin/components/user.jsx:56
 #, python-format
@@ -611,7 +606,6 @@ msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/admin/components/user.jsx:74
 msgid "Search Users"
@@ -737,7 +731,6 @@ msgstr ""
 msgid "word"
 msgid_plural "words"
 msgstr[0] ""
-msgstr[1] ""
 
 #: templates/admin/xhr_language_user_activity.html:30
 msgid "No activity recorded in a given period"
@@ -784,7 +777,6 @@ msgstr ""
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] ""
-msgstr[1] ""
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"

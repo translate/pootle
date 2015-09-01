@@ -9,22 +9,24 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:30+0100\n"
-"PO-Revision-Date: 2013-12-23 10:46+0000\n"
-"Last-Translator: Toni <toniher@softcatala.org>\n"
+"PO-Revision-Date: 2015-06-26 09:43+0000\n"
+"Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
-"Language: \n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1387795583.000000\n"
+"X-POOTLE-MTIME: 1435311831.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Sembla que ha desaparegut el vostre usuari. Informeu-ne als propietaris del "
+"lloc."
 
 #: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
@@ -34,10 +36,11 @@ msgstr "Nom d'usuari"
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
+"Requerit. 30 caràcters o menys. Lletres, xifres i els caràcters @/./+/-/_"
 
 #: apps/accounts/models.py:65
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Introduïu un nom d'usuari vàlid."
 
 #: apps/accounts/models.py:69
 msgid "Email Address"
@@ -60,9 +63,8 @@ msgid ""
 msgstr ""
 
 #: apps/accounts/models.py:75
-#, fuzzy
 msgid "Superuser Status"
-msgstr "estat de superusuari"
+msgstr "Estat del superusuari"
 
 #: apps/accounts/models.py:76
 msgid ""
@@ -108,24 +110,23 @@ msgstr ""
 
 #: apps/accounts/models.py:96
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:98
 msgid "Website"
-msgstr ""
+msgstr "Lloc web"
 
 #: apps/accounts/models.py:99
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:100
 msgid "Short Bio"
-msgstr ""
+msgstr "Biografia resumida"
 
 #: apps/accounts/models.py:300
-#, fuzzy
 msgid "This email address already exists."
-msgstr "El terme ja existeix al fitxer."
+msgstr "Aquesta adreça electrònica ja existeix."
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -141,7 +142,7 @@ msgstr "Nom"
 
 #: apps/contact/forms.py:35
 msgid "Please enter your name"
-msgstr ""
+msgstr "Introduïu el vostre nom"
 
 #: apps/contact/forms.py:38
 msgid "Email address"
@@ -149,7 +150,7 @@ msgstr "Adreça electrònica"
 
 #: apps/contact/forms.py:39
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Introduïu la vostra adreça electrònica de correu"
 
 #: apps/contact/forms.py:42
 msgid "Message"
@@ -157,7 +158,7 @@ msgstr "Missatge"
 
 #: apps/contact/forms.py:43
 msgid "Please enter your message"
-msgstr ""
+msgstr "Introduïu el vostre missatge"
 
 #: apps/evernote_reports/forms.py:27
 msgid "Translation Rate"
@@ -183,19 +184,19 @@ msgstr ""
 
 #: apps/evernote_reports/models.py:34
 msgid "Correction"
-msgstr ""
+msgstr "Correcció"
 
 #: apps/evernote_reports/models.py:37
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #: apps/evernote_reports/models.py:40
 msgid "Amount"
-msgstr ""
+msgstr "Quantitat"
 
 #: apps/evernote_reports/models.py:42
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: apps/evernote_reports/models.py:43 apps/virtualfolder/models.py:63
 msgid "Description"
@@ -204,11 +205,11 @@ msgstr "Descripció"
 #: apps/evernote_reports/views.py:295
 #, python-format
 msgid "User %s not found"
-msgstr ""
+msgstr "No s'ha trobat l'usuari %s"
 
 #: apps/evernote_reports/views.py:372
 msgid "Invalid request method"
-msgstr ""
+msgstr "El mètode de la sol·licitud no és vàlid"
 
 #: apps/import_export/templates/browser/index.html:10
 #, fuzzy
@@ -268,7 +269,7 @@ msgstr "Contrasenya"
 
 #: apps/pootle_app/forms.py:133 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr ""
+msgstr "Introduïu un URL de perfil d'usuari a LinkedIn vàlid."
 
 #: apps/pootle_app/views/admin/dashboard.py:80
 msgid "Files"
@@ -312,9 +313,8 @@ msgid "All Users"
 msgstr "Tots els usuaris"
 
 #: apps/pootle_app/views/admin/permissions.py:95
-#, fuzzy
 msgid "Add Permissions"
-msgstr "Permisos d'usuari"
+msgstr "Afegeix permisos"
 
 #: apps/pootle_app/views/admin/permissions.py:100
 #: apps/pootle_app/views/admin/permissions.py:109
@@ -323,7 +323,7 @@ msgstr "Seleccioneu un o més permisos"
 
 #: apps/pootle_app/views/admin/permissions.py:104
 msgid "Revoke Permissions"
-msgstr ""
+msgstr "Revoca permisos"
 
 #: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
@@ -550,7 +550,7 @@ msgstr "Textos variables"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Invalid XML"
-msgstr ""
+msgstr "XML invàlid"
 
 #: apps/pootle_misc/checks.py:78
 msgid "XML tags"
@@ -562,11 +562,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:81
 msgid "Java format"
-msgstr ""
+msgstr "Format de Java"
 
 #: apps/pootle_misc/checks.py:82
 msgid "Template format"
-msgstr ""
+msgstr "Format de la plantilla"
 
 #: apps/pootle_misc/checks.py:83
 msgid "Mustache placeholders"
@@ -586,7 +586,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:87
 msgid "Non printable"
-msgstr ""
+msgstr "No imprimible"
 
 #: apps/pootle_misc/checks.py:88
 msgid "Unbalanced tag braces"
@@ -594,7 +594,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:89
 msgid "Changed attributes"
-msgstr ""
+msgstr "Atributs canviats"
 
 #: apps/pootle_misc/checks.py:90
 msgid "Unescaped ampersands"
@@ -606,11 +606,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:92
 msgid "Whitespaces"
-msgstr ""
+msgstr "Espais en blanc"
 
 #: apps/pootle_misc/checks.py:93
 msgid "Date format"
-msgstr ""
+msgstr "Format de la data"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Uppercase placeholders"
@@ -639,11 +639,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:100
 msgid "Objective-C format"
-msgstr ""
+msgstr "Format de l'Objective-C"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Android format"
-msgstr ""
+msgstr "Format de l'Android"
 
 #: apps/pootle_misc/checks.py:103
 msgid "Tags differ"
@@ -684,7 +684,7 @@ msgstr "Extracció"
 
 #: apps/pootle_misc/checks.py:1010
 msgid "Other"
-msgstr ""
+msgstr "Altres"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:60
@@ -910,7 +910,7 @@ msgstr ""
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
-msgstr "No tens prou permisos per accedir a aquest directori."
+msgstr "No teniu prou permisos per accedir a aquest directori."
 
 #: apps/pootle_store/decorators.py:30
 msgid "Insufficient rights to access suggestion mode."
@@ -1030,7 +1030,7 @@ msgstr "Hi manquen arguments."
 
 #: apps/pootle_store/views.py:695
 msgid "Failed to remove comment."
-msgstr ""
+msgstr "S'ha produït un error en suprimir el comentari."
 
 #: apps/pootle_store/views.py:729
 msgid "Comment submission failed."
@@ -1071,7 +1071,7 @@ msgstr "Títol"
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:43
 msgid "Display Content"
-msgstr "Mostrar contingut"
+msgstr "Mostra el contingut"
 
 #: apps/staticpages/models.py:45
 #, python-format
@@ -1080,12 +1080,12 @@ msgstr "Etiquetatge permès: %s"
 
 #: apps/staticpages/models.py:48 templates/admin/staticpages/_table.html:9
 msgid "Redirect to URL"
-msgstr "Redireccionar a la URL"
+msgstr "Redirecciona a l'URL"
 
 #: apps/staticpages/models.py:50
 msgid "If set, any references to this page will redirect to this URL"
 msgstr ""
-"Si es defineix, tota referència a aquesta pàgina es redirigirà a aquesta URL"
+"Si es defineix, tota referència a aquesta pàgina es redirigirà a aquest URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:96
@@ -1115,9 +1115,8 @@ msgid ""
 msgstr ""
 
 #: apps/virtualfolder/models.py:39
-#, fuzzy
 msgid "Location"
-msgstr "Ubicacions"
+msgstr "Ubicació"
 
 #: apps/virtualfolder/models.py:42
 msgid "Root path where this virtual folder is applied."
@@ -1144,7 +1143,7 @@ msgstr ""
 
 #: apps/virtualfolder/models.py:58
 msgid "Is browsable?"
-msgstr ""
+msgstr "És navegable?"
 
 #: apps/virtualfolder/models.py:60
 #, fuzzy
@@ -1315,7 +1314,6 @@ msgid "Progress"
 msgstr "Progrés"
 
 #: core/browser.py:52 templates/browser/index.html:39
-#, fuzzy
 msgid "Last updated"
 msgstr "Darrera modificació"
 
@@ -1333,9 +1331,8 @@ msgid "Last Activity"
 msgstr "Darrera activitat"
 
 #: core/browser.py:130
-#, fuzzy
 msgid "Back to language"
-msgstr "Torna a la pàgina principal"
+msgstr "Torna a la llengua"
 
 #: core/browser.py:132
 msgid "Back to parent folder"
@@ -1414,9 +1411,8 @@ msgid "Can submit a translation"
 msgstr "Pot enviar una traducció"
 
 #: core/initdb.py:125
-#, fuzzy
 msgid "Can review suggestions"
-msgstr "Repassa els suggeriments"
+msgstr "Pot repassar els suggeriments"
 
 #: core/initdb.py:129
 msgid "Can administrate a translation project"
@@ -1431,9 +1427,8 @@ msgid "Getting Started"
 msgstr ""
 
 #: custom/templates/layout.html:15
-#, fuzzy
 msgid "License Terms"
-msgstr "Llicència"
+msgstr "Termes de la llicència"
 
 #: custom/templates/profiles/_tabs.html:4 templates/layout.html:116
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
@@ -1441,13 +1436,13 @@ msgid "Settings"
 msgstr "Configuració"
 
 #: middleware/errorpages.py:57
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
-"Cal que <a href=\"%(login_link)s\">inicieu una sessió</a> per accedir a "
-"aquesta pàgina."
+"Cal que <a class=\"js-login\" href=\"%(login_link)s\">inicieu una sessió</a> "
+"per accedir a aquesta pàgina."
 
 #: middleware/errorpages.py:97
 #, python-format
@@ -1491,7 +1486,6 @@ msgid "About"
 msgstr "Quant a"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "Quant a aquest servidor Pootle"
 
@@ -1511,13 +1505,13 @@ msgstr ""
 "del projecte</a>."
 
 #: templates/about.html:26
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
 msgstr ""
-"El Pootle %(pootle_ver)s funciona gràcies al Translate Toolkit "
-"%(toolkit_ver)s"
+"El Pootle %(pootle_version)s funciona gràcies al Translate Toolkit "
+"%(toolkit_ver)s."
 
 #: templates/account/email/email_confirmation_message.txt:2
 msgid "A Pootle account has been created for you using this email address."
@@ -1572,7 +1566,7 @@ msgstr "Usuaris"
 #: templates/projects/admin/languages.html:7
 #: templates/projects/all/_nav.html:26
 msgid "Languages"
-msgstr "Idiomes"
+msgstr "Llengües"
 
 #: templates/admin/_tabs.html:21 templates/admin/projects.html:4
 #: templates/admin/projects.html.py:7 templates/projects/base.html:5
@@ -1597,7 +1591,7 @@ msgstr "Pàgines estàtiques"
 #: templates/admin/_tabs.html:36 templates/admin/reports.html:45
 #: templates/admin/reports.html.py:48
 msgid "Reports"
-msgstr ""
+msgstr "Informes"
 
 #: templates/admin/base.html:4 templates/admin/base.html.py:7
 msgid "Administration"
@@ -1621,11 +1615,11 @@ msgstr ""
 
 #: templates/admin/dashboard.html:43
 msgid "Status"
-msgstr ""
+msgstr "Estat"
 
 #: templates/admin/dashboard.html:50
 msgid "Pending jobs"
-msgstr ""
+msgstr "Tasques pendents"
 
 #: templates/admin/dashboard.html:54
 msgid "Failed jobs"
@@ -1665,13 +1659,12 @@ msgid "Local server time"
 msgstr ""
 
 #: templates/admin/detailed_reports.html:143
-#, fuzzy
 msgid "Action"
-msgstr "Accions"
+msgstr "Acció"
 
 #: templates/admin/detailed_reports.html:144
 msgid "Unit"
-msgstr ""
+msgstr "Unitat"
 
 #: templates/admin/detailed_reports.html:145
 #, fuzzy
@@ -1684,11 +1677,11 @@ msgstr ""
 
 #: templates/admin/detailed_reports.html:147
 msgid "Words"
-msgstr ""
+msgstr "Paraules"
 
 #: templates/admin/detailed_reports.html:150
 msgid "Subtotal"
-msgstr ""
+msgstr "Subtotal"
 
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:230
@@ -1739,9 +1732,8 @@ msgid "Daily activity"
 msgstr ""
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "Usuaris"
+msgstr "Usuari"
 
 #: templates/admin/reports/header.html:22
 msgid "Detailed Report"
@@ -1757,15 +1749,15 @@ msgstr ""
 
 #: templates/admin/reports/paid_task_form.html:23
 msgid "words"
-msgstr ""
+msgstr "paraules"
 
 #: templates/admin/reports/paid_task_form.html:24
 msgid "hours"
-msgstr ""
+msgstr "hores"
 
 #: templates/admin/reports/paid_task_form.html:35
 msgid "Add record"
-msgstr ""
+msgstr "Afegeix un registre"
 
 #: templates/admin/reports/user_rates_form.html:4
 msgid "Set Rates"
@@ -1848,14 +1840,12 @@ msgid "Add Announcement"
 msgstr ""
 
 #: templates/browser/_actions.html:5
-#, fuzzy
 msgid "Continue translation"
-msgstr "Copia a la traducció"
+msgstr "Continua amb la traducció"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Review suggestions"
-msgstr "Repassa els suggeriments"
+msgstr "Revisa els suggeriments"
 
 #: templates/browser/_actions.html:17
 msgid "Fix critical errors"
@@ -1863,7 +1853,7 @@ msgstr ""
 
 #: templates/browser/_actions.html:23
 msgid "View all"
-msgstr ""
+msgstr "Mostra-ho tot"
 
 #: templates/browser/_progressbar.html:3
 #, python-format
@@ -1908,7 +1898,7 @@ msgstr ""
 
 #: templates/browser/index.html:113
 msgid "Refresh now"
-msgstr ""
+msgstr "Actualitza ara"
 
 #: templates/browser/index.html:149
 msgid "Congratulations! You have completed this task!"
@@ -1916,11 +1906,11 @@ msgstr ""
 
 #: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:104
 msgid "Contact Us"
-msgstr "Contacteu-nos"
+msgstr "Contacteu amb nosaltres"
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
-msgstr ""
+msgstr "Ompliu tot els camps."
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
@@ -1928,7 +1918,7 @@ msgstr ""
 
 #: templates/contact_form/xhr_contact_form.html:24
 msgid "Thanks!"
-msgstr ""
+msgstr "Gràcies!"
 
 #: templates/contact_form/xhr_contact_form.html:26
 msgid ""
@@ -2054,9 +2044,8 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr ""
 
 #: templates/editor/units/edit.html:19
-#, fuzzy
 msgid "Priority:"
-msgstr "Prioritat"
+msgstr "Prioritat:"
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
@@ -2091,9 +2080,8 @@ msgid "Copy into translation"
 msgstr "Copia a la traducció"
 
 #: templates/editor/units/edit.html:130
-#, fuzzy
 msgid "Report a problem with this string"
-msgstr "Informa d'un problema amb la cadena d'origen"
+msgstr "Informa d'un problema amb aquesta cadena"
 
 #: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
 #: templates/editor/units/edit.html:256
@@ -2219,22 +2207,20 @@ msgid "Failing checks:"
 msgstr "Comprovacions que han fallat:"
 
 #: templates/editor/units/xhr_checks.html:10
-#, fuzzy
 msgid "Mute quality check"
-msgstr "Suprimeix les comprovacions de qualitat"
+msgstr "Amaga les comprovacions de qualitat"
 
 #: templates/editor/units/xhr_checks.html:11
-#, fuzzy
 msgid "Unmute quality check"
-msgstr "Suprimeix les comprovacions de qualitat"
+msgstr "Mostra les comprovacions de qualitat"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
-msgstr ""
+msgstr "Suprimeix el comentari"
 
 #: templates/editor/units/xhr_comment.html:18
 msgid "Last comment:"
-msgstr ""
+msgstr "Últim comentari:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
@@ -2258,7 +2244,7 @@ msgstr ""
 
 #: templates/errors/400.html:12
 msgid "Error 400"
-msgstr ""
+msgstr "Error 400"
 
 #: templates/errors/400.html:14
 msgid "The operation is not permitted."
@@ -2275,7 +2261,7 @@ msgstr "No teniu permisos per accedir a la pàgina."
 
 #: templates/errors/404.html:4 templates/errors/404.html.py:8
 msgid "Page Not Found"
-msgstr "Pàgina no trobada"
+msgstr "No s'ha trobat la pàgina"
 
 #: templates/errors/404.html:10
 msgid "We're sorry, but the requested page could not be found."
@@ -2286,13 +2272,12 @@ msgid "Server Error"
 msgstr "Error del servidor"
 
 #: templates/errors/500.html:10
-#, fuzzy
 msgid "A server error has occurred. Thank you for your patience."
-msgstr "S'ha produït un error. Gràcies per la vostra paciència."
+msgstr "S'ha produït un error al servidor. Gràcies per la vostra paciència."
 
 #: templates/errors/500.html:16
 msgid "Exception:"
-msgstr ""
+msgstr "Excepció:"
 
 #: templates/errors/500.html:21
 #, python-format
@@ -2308,14 +2293,12 @@ msgid "Database Error"
 msgstr "Error de la base de dades"
 
 #: templates/errors/db.html:11
-#, fuzzy
 msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
-"El Pootle no es pot connectar a la base de dades, la base de dades no està\n"
-"inicialitzada encara, o cal una actualització de l'esquema abans de "
-"continuar."
+"El Pootle no es pot connectar a la base de dades, la base de dades encara no "
+"està inicialitzada, o cal una actualització de l'esquema abans de continuar."
 
 #: templates/errors/db.html:18
 #, fuzzy, python-format
@@ -2324,7 +2307,6 @@ msgid ""
 "installation and upgrade instructions. Contact the server administrator if "
 "you feel this is a mistake."
 msgstr ""
-"\n"
 "Llegiu la <a href=\"%(url)s\">documentació del Pootle</a> per a les "
 "instruccions\n"
 "d'instal·lació i actualització. Contacteu amb l'administrador del servidor "
@@ -2339,7 +2321,7 @@ msgstr "S'ha informat de l'error:"
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:5
 msgid "Browse"
-msgstr ""
+msgstr "Navega"
 
 #: templates/languages/admin/permissions.html:9
 msgid "Below you can add, edit, and delete the permissions for this language."
@@ -2363,12 +2345,12 @@ msgstr "salta a la navegació"
 
 #: templates/layout.html:115
 msgid "Public Profile"
-msgstr ""
+msgstr "Perfil públic"
 
 #: templates/layout.html:117 templates/user/stats.html:46
 #: templates/user/stats.html.py:50
 msgid "Statistics"
-msgstr ""
+msgstr "Estadístiques"
 
 #: templates/layout.html:119
 msgid "Admin"
@@ -2376,11 +2358,11 @@ msgstr "Administrador"
 
 #: templates/layout.html:122
 msgid "Sign out"
-msgstr ""
+msgstr "Surt"
 
 #: templates/layout.html:126
 msgid "Sign In"
-msgstr ""
+msgstr "Inicia la sessió"
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
@@ -2392,13 +2374,13 @@ msgstr ""
 "A continuació podeu afegir, editar i suprimir els permisos d'aquest projecte."
 
 #: templates/staticpages/_body.html:5
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
-"Aquesta pàgina és inactiva i visible només per als administradors. Podeu "
-"activar-la  <a href=\"%s\">editant-ne les propietats</a>."
+"Aquesta pàgina és inactiva i només és visible per als administradors. Podeu "
+"activar-la  <a href=\"%(edit_url)s\">editant-ne les propietats</a>."
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
@@ -2409,13 +2391,12 @@ msgid "Before continuing, you must read and accept the following documents."
 msgstr "Abans de continuar, cal que llegiu i accepteu els documents següents."
 
 #: templates/staticpages/agreement.html:17
-#, fuzzy
 msgid "No thanks. Sign out"
-msgstr "No, gràcies.Surt"
+msgstr "No, gràcies. Surt"
 
 #: templates/staticpages/agreement.html:20
 msgid "Continue"
-msgstr "Continuar"
+msgstr "Continua"
 
 #: templates/translation_projects/_nav.html:26
 msgid "Terminology"
@@ -2483,7 +2464,7 @@ msgstr "Des d'aquí podeu gestionar els termes dels fitxers de terminologia."
 
 #: templates/translation_projects/terminology/stores.html:14
 msgid "File"
-msgstr "Arxiu"
+msgstr "Fitxer"
 
 #: templates/translation_projects/terminology/stores.html:28
 msgid "Once you upload files, you will be able to add, edit and delete terms."
@@ -2494,9 +2475,8 @@ msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Podeu definir o canviar la vostra imatge avatar a www.gravatar.com"
 
 #: templates/user/profile.html:16
-#, fuzzy
 msgid "Anonymous User"
-msgstr "usuari anònim"
+msgstr "Usuari anònim"
 
 #: templates/user/profile.html:25
 msgid "Score:"
@@ -2509,7 +2489,7 @@ msgstr ""
 
 #: templates/user/profile.html:28 templates/user/profile.html.py:40
 msgid "Tweet this!"
-msgstr ""
+msgstr "Piula això!"
 
 #: templates/user/profile.html:37
 msgid "No contributions in the last month"
@@ -2534,17 +2514,16 @@ msgid ""
 msgstr ""
 
 #: templates/user/profile.html:57
-#, fuzzy
 msgid "Latest activity:"
-msgstr "Darrera activitat"
+msgstr "Darrera activitat:"
 
 #: templates/user/profile.html:69
 msgid "My Website"
-msgstr ""
+msgstr "Lloc web"
 
 #: templates/user/profile.html:75
 msgid "My LinkedIn Profile"
-msgstr ""
+msgstr "Perfil del LinkedIn"
 
 #: templates/user/profile.html:84
 msgid ""
@@ -2585,9 +2564,8 @@ msgid "Hourly Rate:"
 msgstr ""
 
 #: templates/user/settings.html:12
-#, fuzzy
 msgid "User Account"
-msgstr "Activa el compte"
+msgstr "Compte d'usuari"
 
 #: templates/user/settings.html:14
 msgid ""
@@ -2601,24 +2579,23 @@ msgstr "Reinicia la contrasenya"
 
 #: templates/welcome.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "Us donem la benvinguda"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "Benvingut al Pootle"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
 msgstr ""
 
 #: templates/welcome.html:19
-#, fuzzy
 msgid "Sign in"
-msgstr "Assigna una acció"
+msgstr "Inicia la sessió"
 
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
-msgstr ""
+msgstr "Col·laboradors més actius d'aquest mes"
 
 #~ msgid "page-%d"
 #~ msgstr "pàgina-%d"

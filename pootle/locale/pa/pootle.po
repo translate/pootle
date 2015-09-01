@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:30+0100\n"
-"PO-Revision-Date: 2014-09-26 15:24+0000\n"
+"PO-Revision-Date: 2015-08-01 21:40+0000\n"
 "Last-Translator: A S <apreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1411745063.000000\n"
+"X-POOTLE-MTIME: 1438465212.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -28,7 +28,7 @@ msgstr ""
 
 #: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
-msgstr "ਯੂਜ਼ਰ ਨਾਂ"
+msgstr "ਵਰਤੋਂਕਾਰ ਨਾਂ"
 
 #: apps/accounts/models.py:61
 msgid ""
@@ -37,7 +37,7 @@ msgstr ""
 
 #: apps/accounts/models.py:65
 msgid "Enter a valid username."
-msgstr ""
+msgstr "ਜਾਇਜ਼ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦਿਉ।"
 
 #: apps/accounts/models.py:69
 msgid "Email Address"
@@ -79,15 +79,15 @@ msgstr "ਕਤਾਰਾਂ ਦੀ ਗਿਣਤੀ"
 
 #: apps/accounts/models.py:86
 msgid "Alternative Source Languages"
-msgstr "ਬਦਲਵੀ ਸਰੋਤ ਭਾਸ਼ਾ"
+msgstr "ਬਦਲਵੀਆਂ ਸਰੋਤ ਬੋਲੀਆਂ"
 
 #: apps/accounts/models.py:89 templates/admin/detailed_reports.html:149
 msgid "Rate"
-msgstr ""
+msgstr "ਦਰ"
 
 #: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
-msgstr ""
+msgstr "ਪੜਤਾਲ ਦਰ"
 
 #: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
@@ -107,11 +107,11 @@ msgstr ""
 
 #: apps/accounts/models.py:96
 msgid "Twitter"
-msgstr ""
+msgstr "ਟਵਿੱਟਰ"
 
 #: apps/accounts/models.py:98
 msgid "Website"
-msgstr ""
+msgstr "ਵੈੱਬਸਾਈਟ"
 
 #: apps/accounts/models.py:99
 msgid "LinkedIn"
@@ -203,7 +203,7 @@ msgstr "ਵੇਰਵਾ"
 #: apps/evernote_reports/views.py:295
 #, python-format
 msgid "User %s not found"
-msgstr ""
+msgstr "ਵਰਤੋਂਕਾਰ %s ਨਹੀਂ ਲੱਭਿਆ"
 
 #: apps/evernote_reports/views.py:372
 msgid "Invalid request method"
@@ -254,7 +254,7 @@ msgstr "ਭਾਸ਼ਾ ਕੋਡ ਆਈਸੋ (ISO) ਸਮਝੌਤੇ ਮੁਤ�
 
 #: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:171
 msgid "Source Language"
-msgstr "ਸਰੋਤ ਭਾਸ਼ਾ"
+msgstr "ਸਰੋਤ ਬੋਲੀ"
 
 #: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:387
 #, python-format
@@ -279,7 +279,7 @@ msgstr "ਸਰਗਰਮ ਪਰੋਜੈਕਟ"
 
 #: apps/pootle_app/views/admin/dashboard.py:82
 msgid "Active languages"
-msgstr "ਸਰਗਰਮ ਭਾਸ਼ਾਵਾਂ"
+msgstr "ਸਰਗਰਮ ਬੋਲੀਆਂ"
 
 #: apps/pootle_app/views/admin/dashboard.py:83
 msgid "Translated strings"
@@ -291,7 +291,7 @@ msgstr "ਅਨੁਵਾਦ ਹੋਏ ਸ਼ਬਦ"
 
 #: apps/pootle_app/views/admin/dashboard.py:85
 msgid "Active users"
-msgstr "ਸਰਗਰਮ ਯੂਜ਼ਰ"
+msgstr "ਸਰਗਰਮ ਵਰਤੋਂਕਾਰ"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:106
@@ -308,7 +308,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "All Users"
-msgstr "ਸਭ ਯੂਜ਼ਰ"
+msgstr "ਸਭ ਵਰਤੋਂਕਾਰ"
 
 #: apps/pootle_app/views/admin/permissions.py:95
 #, fuzzy
@@ -762,7 +762,7 @@ msgstr ""
 
 #: apps/pootle_project/forms.py:29 core/browser.py:34
 msgid "Language"
-msgstr "ਭਾਸ਼ਾ"
+msgstr "ਬੋਲੀ"
 
 #: apps/pootle_project/models.py:142
 msgid ""
@@ -1314,9 +1314,8 @@ msgid "Last Activity"
 msgstr "ਆਖਰੀ ਸਰਗਰਮੀ"
 
 #: core/browser.py:130
-#, fuzzy
 msgid "Back to language"
-msgstr "ਸਰਗਰਮ ਭਾਸ਼ਾਵਾਂ"
+msgstr "ਬੋਲੀ ਲਈ ਵਾਪਸ"
 
 #: core/browser.py:132
 msgid "Back to parent folder"
@@ -1531,14 +1530,14 @@ msgstr "ਜਾਣਕਾਰੀ"
 #: templates/admin/users.html:4 templates/admin/users.html.py:7
 #: templates/user/base.html:4
 msgid "Users"
-msgstr "ਯੂਜ਼ਰ"
+msgstr "ਵਰਤੋਂਕਾਰ"
 
 #: templates/admin/_tabs.html:16 templates/admin/languages.html:4
 #: templates/admin/languages.html.py:7 templates/projects/_nav.html:26
 #: templates/projects/admin/languages.html:7
 #: templates/projects/all/_nav.html:26
 msgid "Languages"
-msgstr "ਭਾਸ਼ਾਵਾਂ"
+msgstr "ਬੋਲੀਆਂ"
 
 #: templates/admin/_tabs.html:21 templates/admin/projects.html:4
 #: templates/admin/projects.html.py:7 templates/projects/base.html:5
@@ -1699,9 +1698,8 @@ msgid "Daily activity"
 msgstr ""
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "ਯੂਜ਼ਰ"
+msgstr "ਵਰਤੋਂਕਾਰ"
 
 #: templates/admin/reports/header.html:22
 msgid "Detailed Report"
@@ -1909,7 +1907,7 @@ msgstr ""
 
 #: templates/core/_top_scorers.html:30
 msgid "No user contributions yet."
-msgstr ""
+msgstr "ਹਾਲੇ ਕੋਈ ਵਰਤੋਂਕਾਰ ਯੋਗਦਾਨ ਨਹੀਂ ਹੈ।"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -1988,7 +1986,7 @@ msgstr "ਸਭ ਪ੍ਰੋਜੈਕਟ"
 
 #: templates/editor/export_view.html:8 templates/editor/export_view.html:99
 msgid "All Languages"
-msgstr "ਸਭ ਭਾਸ਼ਾਵਾਂ"
+msgstr "ਸਭ ਬੋਲੀਆਂ"
 
 #: templates/editor/export_view.html:143
 msgid "No strings."
@@ -2141,7 +2139,7 @@ msgstr ""
 
 #: templates/editor/units/edit.html:276
 msgid "User suggestions"
-msgstr "ਯੂਜ਼ਰ ਸੁਝਾਅ"
+msgstr "ਵਰਤੋਂਕਾਰ ਸੁਝਾਅ"
 
 #: templates/editor/units/edit.html:293
 msgid "Accept suggestion"
@@ -2287,7 +2285,7 @@ msgstr ""
 
 #: templates/languages/admin/permissions.html:9
 msgid "Below you can add, edit, and delete the permissions for this language."
-msgstr "ਹੇਠਾਂ ਤੁਹਾਨੂੰ ਇਹ ਭਾਸ਼ਾ ਲਈ ਸ਼ਾਮਿਲ ਕਰਨ, ਸੋਧਣ, ਅਤੇ ਹਟਾਉਣ ਅਧਿਕਾਰ ਹਨ।"
+msgstr "ਹੇਠਾਂ ਤੁਹਾਨੂੰ ਇਹ ਬੋਲੀ ਲਈ ਸ਼ਾਮਿਲ ਕਰਨ, ਸੋਧਣ, ਅਤੇ ਹਟਾਉਣ ਅਧਿਕਾਰ ਹਨ।"
 
 #: templates/layout.html:78
 msgid "Pootle requires JavaScript"
@@ -2431,9 +2429,8 @@ msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
 
 #: templates/user/profile.html:16
-#, fuzzy
 msgid "Anonymous User"
-msgstr "ਅਗਿਆਤ ਯੂਜ਼ਰ"
+msgstr "ਅਣਪਛਾਤਾ ਵਰਤੋਂਕਾਰ"
 
 #: templates/user/profile.html:25
 msgid "Score:"
@@ -2522,9 +2519,8 @@ msgid "Hourly Rate:"
 msgstr ""
 
 #: templates/user/settings.html:12
-#, fuzzy
 msgid "User Account"
-msgstr "ਮੇਰਾ ਅਕਾਊਂਟ"
+msgstr "ਵਰਤੋਂਕਾਰ ਖਾਤਾ"
 
 #: templates/user/settings.html:14
 msgid ""

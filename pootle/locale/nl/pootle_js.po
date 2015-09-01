@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2015-04-16 11:28+0000\n"
+"PO-Revision-Date: 2015-06-20 17:40+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1429183702.000000\n"
+"X-POOTLE-MTIME: 1434822032.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -191,7 +191,7 @@ msgstr "Openbaar profiel"
 
 #: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
@@ -205,172 +205,180 @@ msgstr "Rapporten"
 #, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>."
 msgstr ""
+"We hebben een e-mailbericht dat de speciale koppeling bevat verzonden naar "
+"<span>%s</span>."
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"We hebben een e-mailbericht dat de speciale koppeling bevat verzonden naar "
+"het adres dat voor registratie van deze account is gebruikt."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Uw account heeft activering nodig."
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Klik op die koppeling om het aanmaken van uw account te vervolgen."
 
 #: static/js/auth/components/AccountActivation.js:56
 #: static/js/auth/components/AccountInactive.js:36
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "Uw account is inactief, omdat een beheerder deze heeft gedeactiveerd."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In With..."
-msgstr ""
+msgstr "Aanmelden met..."
 
 #: static/js/auth/components/AuthController.js:82
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "Aanmelden"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
-msgstr ""
+msgstr "Account inactief"
 
 #: static/js/auth/components/AuthController.js:96
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
-msgstr ""
+msgstr "Registreren"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
 msgid "Account Activation"
-msgstr ""
+msgstr "Accountactivering"
 
 #: static/js/auth/components/AuthController.js:117
 #: static/js/auth/components/AuthController.js:124
 #: static/js/auth/components/AuthController.js:131
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Uw wachtwoord opnieuw instellen"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
-msgstr ""
+msgstr "Oeps..."
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
-msgstr ""
+msgstr "Sociale verificatie"
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
-msgstr ""
+msgstr "Contact opnemen"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"De koppeling voor het opnieuw instellen van uw wachtwoord was ongeldig, "
+"mogelijk omdat deze al is gebruikt. Dien opnieuw een aanvraag voor het "
+"instellen van een nieuw wachtwoord in."
 
 #: static/js/auth/components/PasswordResetForm.js:86
-#, fuzzy
 msgid "Reset Password"
-msgstr "Wachtwoord"
+msgstr "Wachtwoord opnieuw instellen"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Wachtwoord gewijzigd, aanmelden..."
 
 #: static/js/auth/components/PasswordResetForm.js:122
 #: static/js/auth/components/SignUpForm.js:108
-#, fuzzy
 msgid "Repeat Password"
-msgstr "Wachtwoord"
+msgstr "Herhaal wachtwoord"
 
 #: static/js/auth/components/PasswordResetForm.js:135
-#, fuzzy
 msgid "Set New Password"
 msgstr "Nieuw wachtwoord: instellen"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "Nadat uw wachtwoord is gewijzigd, wordt u automatisch aangemeld."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "E-mailbericht verzenden naar %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
+"Volg die koppeling om de procedure voor opnieuw instellen van uw wachtwoord "
+"te vervolgen."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Geen e-mailbericht ontvangen? Controleer of het per ongeluk is uitgefilterd "
+"als spam, of probeer een ander exemplaar van het e-mailbericht op te vragen."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
-msgstr ""
+msgstr "E-mailbericht opnieuw verzenden"
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Registreren als nieuwe gebruiker"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:101
 msgid "I forgot my password"
-msgstr ""
+msgstr "Ik ben mijn wachtwoord vergeten"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Aangemeld. Omleiden..."
 
 #: static/js/auth/components/SignInPanel.js:62
-#, fuzzy
 msgid "Social Services"
-msgstr "Speciale tekens"
+msgstr "Sociale services"
 
 #: static/js/auth/components/SignInPanel.js:65
-#, fuzzy
 msgid "Login / Password"
-msgstr "Wachtwoord"
+msgstr "Aanmelding / Wachtwoord"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "Aanmelden als bestaande gebruiker"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "Er is een fout opgetreden tijdens het aanmelden via %s."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
-msgstr ""
+msgstr "Er is een fout opgetreden tijdens het aanmelden via uw sociale account."
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "Opnieuw proberen"
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Aanmelden met %s"
 
 #: static/js/auth/components/SocialSignInForm.js:46
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"Het voor de eerste keer aanmelden met een externe service zal automatisch "
+"een account voor u aanmaken."
 
 #: static/js/browser.js:156
 msgid "All Languages"
@@ -454,9 +462,8 @@ msgid "This unit no longer exists."
 msgstr "Deze eenheid bestaat niet meer."
 
 #: static/js/editor/app.js:984
-#, fuzzy
 msgid "Go back to browsing"
-msgstr "Terug naar overzicht"
+msgstr "Terug naar bladeren"
 
 #: static/js/editor/app.js:986
 msgid "Reload page"
@@ -494,35 +501,35 @@ msgid "Collapse details"
 msgstr "Details samenvouwen"
 
 #: static/js/utils.js:151
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Een jaar geleden"
 msgstr[1] "%s jaar geleden"
 
 #: static/js/utils.js:154
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Een week geleden"
 msgstr[1] "%s weken geleden"
 
 #: static/js/utils.js:157
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Gisteren"
 msgstr[1] "%s dagen geleden"
 
 #: static/js/utils.js:160
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Een uur geleden"
 msgstr[1] "%s uur geleden"
 
 #: static/js/utils.js:163
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Een minuut geleden"

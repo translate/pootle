@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2015-03-13 07:28+0000\n"
+"PO-Revision-Date: 2015-06-17 07:10+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bg\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1426231710.000000\n"
+"X-POOTLE-MTIME: 1434525006.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -237,7 +237,7 @@ msgstr ""
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "Вписване"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
@@ -246,7 +246,7 @@ msgstr ""
 #: static/js/auth/components/AuthController.js:96
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
-msgstr ""
+msgstr "Регистриране"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
@@ -293,13 +293,12 @@ msgid "Repeat Password"
 msgstr "Парола"
 
 #: static/js/auth/components/PasswordResetForm.js:135
-#, fuzzy
 msgid "Set New Password"
-msgstr "Задаване на парола"
+msgstr "Смяна на парола"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "След смяна на паролата ще бъдете вписани автоматично."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, javascript-format
@@ -335,9 +334,8 @@ msgid "Signed in. Redirecting..."
 msgstr ""
 
 #: static/js/auth/components/SignInPanel.js:62
-#, fuzzy
 msgid "Social Services"
-msgstr "Специални символи"
+msgstr "Социални услуги"
 
 #: static/js/auth/components/SignInPanel.js:65
 #, fuzzy

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:30+0100\n"
-"PO-Revision-Date: 2015-05-30 09:29+0000\n"
-"Last-Translator: Mirosenpai <aq_fen@abv.bg>\n"
+"PO-Revision-Date: 2015-06-17 07:07+0000\n"
+"Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1432978160.000000\n"
+"X-POOTLE-MTIME: 1434524834.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -207,7 +207,7 @@ msgstr "Потребителят %s не е намерен"
 
 #: apps/evernote_reports/views.py:372
 msgid "Invalid request method"
-msgstr ""
+msgstr "Невалиден метод за подаване на заявка"
 
 #: apps/import_export/templates/browser/index.html:10
 #, fuzzy

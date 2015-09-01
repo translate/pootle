@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:30+0100\n"
-"PO-Revision-Date: 2013-10-05 11:38+0000\n"
-"Last-Translator: ashimnb87 <ashimnb87@yahoo.com>\n"
+"PO-Revision-Date: 2015-06-25 19:43+0000\n"
+"Last-Translator: AbhyudayaChatterjee <chatterjeeabhyudaya@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: bn_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1380973137.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1435261435.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -981,7 +981,7 @@ msgstr "অনুবাদকের টীকা"
 
 #: apps/pootle_store/models.py:143
 msgid "Pending"
-msgstr "বাকি রয়েছে"
+msgstr "অসমাপ্ত"
 
 #: apps/pootle_store/models.py:144
 msgid "Accepted"
@@ -1292,7 +1292,7 @@ msgstr ""
 
 #: core/browser.py:29
 msgid "Project"
-msgstr "প্রোকেক্ট"
+msgstr "প্রজেক্ট"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:40
@@ -1569,16 +1569,15 @@ msgstr ""
 
 #: templates/admin/base.html:4 templates/admin/base.html.py:7
 msgid "Administration"
-msgstr "অ্যাডমিনিস্ট্রেশান"
+msgstr "প্রশাসন"
 
 #: templates/admin/dashboard.html:7
-#, fuzzy
 msgid "Server Statistics"
-msgstr "ব্যবহারকারীর পরিসংখ্যান তথ্য"
+msgstr "সার্ভার পরিসংখ্যান"
 
 #: templates/admin/dashboard.html:17
 msgid "Pending suggestions"
-msgstr ""
+msgstr "অমীমাংসিত প্রস্তাবগুলি"
 
 #: templates/admin/dashboard.html:29
 msgid "More..."
@@ -1586,15 +1585,15 @@ msgstr "আরও..."
 
 #: templates/admin/dashboard.html:37
 msgid "Background Jobs"
-msgstr ""
+msgstr "ব্যাকগ্রাউন্ডের কাজগুলি"
 
 #: templates/admin/dashboard.html:43
 msgid "Status"
-msgstr ""
+msgstr "স্ট্যাটাস"
 
 #: templates/admin/dashboard.html:50
 msgid "Pending jobs"
-msgstr ""
+msgstr "অমীমাংসিত কাজগুলি"
 
 #: templates/admin/dashboard.html:54
 msgid "Failed jobs"

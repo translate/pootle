@@ -9,88 +9,87 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2014-03-17 16:52+0000\n"
+"PO-Revision-Date: 2015-08-01 21:45+0000\n"
 "Last-Translator: A S <apreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1395075138.000000\n"
+"X-POOTLE-MTIME: 1438465516.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "ਕਾਮਯਾਬੀ ਨਾਲ ਸੰਭਾਲਿਆ।"
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "ਕਾਮਯਾਬੀ ਨਾਲ ਹਟਾਇਆ।"
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "ਹਟਾਓ"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "ਕੋਡ"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:73
 msgid "Full Name"
-msgstr ""
+msgstr "ਪੂਰਾ ਨਾਂ"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "ਖਾਸ ਅੱਖਰ"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "ਬਹੁਵਚਨਾਂ ਦੀ ਗਿਣਤੀ"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "ਬਹੁਵਚਨ ਸਮੀਕਰਨ"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:120
 msgid "Save"
-msgstr ""
+msgstr "ਸੰਭਾਲੋ"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "ਸੰਖੇਪ"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "ਅਧਿਕਾਰ"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "ਕੁਆਲਟੀ ਜਾਂਚ"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "ਫਾਇਲ ਕਿਸਮ"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "ਪਰੋਜੈਕਟ ਲੜੀ ਕਿਸਮ"
 
 #: static/js/admin/components/ProjectForm.js:103
-#, fuzzy
 msgid "Source Language"
-msgstr "ਸਭ ਭਾਸ਼ਾਵਾਂ"
+msgstr "ਸਰੋਤ ਬੋਲੀ"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "ਫਾਇਲਾਂ ਅਣਡਿੱਠੀਆਂ ਕਰੋ"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
@@ -102,19 +101,19 @@ msgstr ""
 
 #: static/js/admin/components/ProjectForm.js:129
 msgid "Disabled"
-msgstr ""
+msgstr "ਅਸਮਰੱਥ ਹੈ"
 
 #: static/js/admin/components/ProjectForm.js:141
 msgid "Languages"
-msgstr ""
+msgstr "ਬੋਲੀਆਂ"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
-msgstr ""
+msgstr "ਹੋਰ ਲੋਡ ਕਰੋ"
 
 #: static/js/admin/components/Search.js:89
 msgid "Loading..."
-msgstr ""
+msgstr "...ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ"
 
 #: static/js/admin/components/UserForm.js:52
 msgid ""
@@ -126,35 +125,35 @@ msgstr ""
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "ਵਰਤੋਂਕਾਰ ਨਾਂ"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "ਸਰਗਰਮ"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:100
 #: static/js/auth/components/SocialVerification.js:94
 msgid "Password"
-msgstr ""
+msgstr "ਪਾਸਵਰਡ"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "ਨਵਾਂ ਪਾਸਵਰਡ ਸੈਟ ਕਰੋ"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "ਈਮੇਲ"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "ਪਰਸ਼ਾਸ਼ਕ"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:88
 msgid "Twitter"
-msgstr ""
+msgstr "ਟਵਿੱਟਰ"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
@@ -190,11 +189,11 @@ msgstr ""
 
 #: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "ਸੈਟਿੰਗਾਂ"
 
 #: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
-msgstr ""
+msgstr "ਅੰਕੜੇ"
 
 #: static/js/admin/components/UserForm.js:150
 msgid "Reports"
@@ -287,11 +286,11 @@ msgstr ""
 #: static/js/auth/components/PasswordResetForm.js:122
 #: static/js/auth/components/SignUpForm.js:108
 msgid "Repeat Password"
-msgstr ""
+msgstr "ਪਾਸਵਰਡ ਦੁਹਰਾਉ"
 
 #: static/js/auth/components/PasswordResetForm.js:135
 msgid "Set New Password"
-msgstr ""
+msgstr "ਨਵਾਂ ਪਾਸਵਰਡ ਦਿਓ"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
@@ -336,11 +335,11 @@ msgstr ""
 
 #: static/js/auth/components/SignInPanel.js:65
 msgid "Login / Password"
-msgstr ""
+msgstr "ਲਾਗਇਨ / ਪਾਸਵਰਡ"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "ਮੌਜੂਦਾ ਵਰਤੋਂਕਾਰ ਵਜੋਂ ਸਾਇਨ ਇਨ ਕਰੋ"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, javascript-format
@@ -538,7 +537,7 @@ msgstr[1] ""
 
 #: static/js/admin/components/language.jsx:74
 msgid "Search Languages"
-msgstr ""
+msgstr "ਬੋਲੀਆਂ ਖੋਜੋ"
 
 #: static/js/admin/components/language.jsx:75
 msgid "Find language by name, code"
@@ -546,19 +545,18 @@ msgstr ""
 
 #: static/js/admin/components/language.jsx:103
 #: static/js/admin/components/language.jsx:138
-#, fuzzy
 msgid "Add Language"
-msgstr "ਸਭ ਭਾਸ਼ਾਵਾਂ"
+msgstr "ਬੋਲੀ ਜੋੜੋ"
 
 #: static/js/admin/components/language.jsx:106
 #: static/js/admin/components/project.jsx:106
 #: static/js/admin/components/user.jsx:106
 msgid "Cancel"
-msgstr ""
+msgstr "ਰੱਦ ਕਰੋ"
 
 #: static/js/admin/components/language.jsx:135
 msgid "Edit Language"
-msgstr ""
+msgstr "ਬੋਲੀ ਸੋਧੋ"
 
 #: static/js/admin/components/language.jsx:142
 msgid ""
@@ -582,7 +580,7 @@ msgstr[1] ""
 
 #: static/js/admin/components/project.jsx:74
 msgid "Search Projects"
-msgstr ""
+msgstr "ਪਰੋਜੈਕਟ ਲੱਭੋ"
 
 #: static/js/admin/components/project.jsx:75
 msgid "Find project by name, code"
@@ -590,13 +588,12 @@ msgstr ""
 
 #: static/js/admin/components/project.jsx:103
 #: static/js/admin/components/project.jsx:138
-#, fuzzy
 msgid "Add Project"
-msgstr "ਸਭ ਪਰੋਜੈਕਟ"
+msgstr "ਪਰੋਜੈਕਟ ਜੋੜੋ"
 
 #: static/js/admin/components/project.jsx:135
 msgid "Edit Project"
-msgstr ""
+msgstr "ਪਰੋਜੈਕਟ ਸੋਧੋ"
 
 #: static/js/admin/components/project.jsx:142
 msgid ""
@@ -629,11 +626,11 @@ msgstr ""
 #: static/js/admin/components/user.jsx:103
 #: static/js/admin/components/user.jsx:138
 msgid "Add User"
-msgstr ""
+msgstr "ਵਰਤੋਂਕਾਰ ਜੋੜੋ"
 
 #: static/js/admin/components/user.jsx:135
 msgid "Edit User"
-msgstr ""
+msgstr "ਵਰਤੋਂਕਾਰ ਸੋਧੋ"
 
 #: static/js/admin/components/user.jsx:142
 msgid "Use the search form to find the user, then click on a user to edit."
@@ -641,15 +638,15 @@ msgstr ""
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
-msgstr ""
+msgstr "...ਚੁਣੋ"
 
 #: static/js/shared/components/forms.jsx:70
 msgid "No results found"
-msgstr ""
+msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭਿਆ"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Clear value"
-msgstr ""
+msgstr "ਮੁੱਲ ਸਾਫ਼ ਕਰੋ"
 
 #: static/js/shared/components/forms.jsx:72
 msgid "Clear all"
@@ -673,11 +670,11 @@ msgstr ""
 
 #: static/js/user/components/edit.jsx:126
 msgid "Yes"
-msgstr ""
+msgstr "ਹਾਂ"
 
 #: static/js/user/components/edit.jsx:127
 msgid "No"
-msgstr ""
+msgstr "ਨਹੀਂ"
 
 #: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
@@ -692,11 +689,11 @@ msgstr ""
 
 #: static/js/user/forms.jsx:74
 msgid "Your Full Name"
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਪੂਰਾ ਨਾਂ"
 
 #: static/js/user/forms.jsx:80
 msgid "Avatar"
-msgstr ""
+msgstr "ਅਵਤਾਰ"
 
 #: static/js/user/forms.jsx:90
 msgid "Your Twitter username"

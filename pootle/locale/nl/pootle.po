@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:30+0100\n"
-"PO-Revision-Date: 2015-05-16 08:10+0000\n"
+"PO-Revision-Date: 2015-08-05 11:33+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,12 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1431763838.000000\n"
+"X-POOTLE-MTIME: 1438774389.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Uw gebruiker lijkt te zijn verdwenen. Meld dit bij de eigenaren van de "
+"website."
 
 #: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
@@ -90,7 +92,6 @@ msgid "Rate"
 msgstr "Tarief"
 
 #: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
-#, fuzzy
 msgid "Review Rate"
 msgstr "Controletarief"
 
@@ -127,9 +128,8 @@ msgid "Short Bio"
 msgstr "Korte biografie"
 
 #: apps/accounts/models.py:300
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Deze term bestaat al in dit bestand."
+msgstr "Dit e-mailadres bestaat al."
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -182,7 +182,6 @@ msgid "Review"
 msgstr "Nakijken"
 
 #: apps/evernote_reports/models.py:33
-#, fuzzy
 msgid "Hourly Work"
 msgstr "Werk per uur"
 
@@ -216,43 +215,41 @@ msgid "Invalid request method"
 msgstr "Ongeldige aanvraagmethode"
 
 #: apps/import_export/templates/browser/index.html:10
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "XLIFF-bestand downloaden voor offline-vertaling"
+msgstr "Vertaalbestanden downloaden voor offline-vertaling"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "XLIFF-bestand downloaden voor offline-vertaling"
+msgstr "Downloaden voor offline-vertaling"
 
 #: apps/import_export/templates/browser/index.html:19
 msgid "Upload translation files or archives in .zip format"
 msgstr "Vertaalde bestanden of archieven in .zip-indeling uploaden"
 
 #: apps/import_export/templates/browser/index.html:20
-#, fuzzy
 msgid "Upload translations"
-msgstr "Vertalingen exporteren"
+msgstr "Vertalingen uploaden"
 
 #: apps/import_export/utils.py:22
 #, python-format
 msgid "File %r missing X-Pootle-Path header\n"
-msgstr ""
+msgstr "Bestand %r mist header X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:27
 #, python-format
 msgid "File %r missing or invalid X-Pootle-Revision header\n"
-msgstr ""
+msgstr "Bestand %r mist of heeft ongeldige header X-Pootle-Revision\n"
 
 #: apps/import_export/utils.py:37
 #, python-format
 msgid "File %r was rejected because its X-Pootle-Revision is too old."
 msgstr ""
+"Bestand %r is geweigerd, omdat de header X-Pootle-Revision ervan te oud is."
 
 #: apps/import_export/utils.py:42
 #, python-format
 msgid "Could not create %r. Missing Project/Language? (%s)"
-msgstr ""
+msgstr "Kon %r niet aanmaken. Project/taal ontbreekt? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -304,8 +301,8 @@ msgstr "Actieve gebruikers"
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Actief (%d worker)"
+msgstr[1] "Actief (%d workers)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:110
@@ -492,9 +489,8 @@ msgid "Pure punctuation"
 msgstr "Zuivere interpunctie"
 
 #: apps/pootle_misc/checks.py:61
-#, fuzzy
 msgid "Python brace placeholders"
-msgstr "Mustache-plaatshouders"
+msgstr "Python-brace-plaatshouders"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Number of sentences"
@@ -557,7 +553,7 @@ msgstr "Plaatshouders"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Invalid XML"
-msgstr ""
+msgstr "Ongeldige XML"
 
 #: apps/pootle_misc/checks.py:78
 msgid "XML tags"
@@ -568,7 +564,6 @@ msgid "Broken HTML Entities"
 msgstr "Ongeldige HTML-entiteiten"
 
 #: apps/pootle_misc/checks.py:81
-#, fuzzy
 msgid "Java format"
 msgstr "Java-indeling"
 
@@ -669,9 +664,8 @@ msgid "Double quotes in tags"
 msgstr "Dubbele aanhalingstekens in labels"
 
 #: apps/pootle_misc/checks.py:108
-#, fuzzy
 msgid "Percent brace placeholders"
-msgstr "Plaatshouders voor procenttekens"
+msgstr "Procent-haakje-plaatshouders"
 
 #: apps/pootle_misc/checks.py:1006 core/browser.py:68
 msgid "Critical"
@@ -691,7 +685,7 @@ msgstr "Extractie"
 
 #: apps/pootle_misc/checks.py:1010
 msgid "Other"
-msgstr ""
+msgstr "Anders"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:60
@@ -823,9 +817,8 @@ msgid "An email address where issues with the source text can be reported."
 msgstr "Een e-mailadres waar problemen met de brontekst kunnen worden gemeld."
 
 #: apps/pootle_project/models.py:184
-#, fuzzy
 msgid "Screenshot Search Prefix"
-msgstr "Zoekprefix voor schermafbeeldingen"
+msgstr "Voorvoegsel voor zoeken naar schermafbeeldingen"
 
 #: apps/pootle_project/models.py:189
 msgid "Disabled"
@@ -1122,25 +1115,24 @@ msgstr "Paginatitel"
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
+"projects/<project_code> of <language_code> of <language_code>/<project_code>"
 
 #: apps/virtualfolder/models.py:39
-#, fuzzy
 msgid "Location"
-msgstr "Locaties"
+msgstr "Locatie"
 
 #: apps/virtualfolder/models.py:42
 msgid "Root path where this virtual folder is applied."
-msgstr ""
+msgstr "Pad naar hoofdmap waar deze virtuele map wordt toegepast."
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:46
-#, fuzzy
 msgid "Filter"
-msgstr "Filteren"
+msgstr "Filter"
 
 #: apps/virtualfolder/models.py:48
 msgid "Filtering rules that tell which stores this virtual folder comprises."
-msgstr ""
+msgstr "Filterregels die vertellen welke archieven deze virtuele map vormt."
 
 #: apps/virtualfolder/models.py:52 core/browser.py:24
 msgid "Priority"
@@ -1150,48 +1142,49 @@ msgstr "Prioriteit"
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
+"Aantal dat urgentie aangeeft. Hogere prioriteit betekent dat het "
+"belangrijker is."
 
 #: apps/virtualfolder/models.py:58
 msgid "Is browsable?"
-msgstr ""
+msgstr "Bladeren mogelijk?"
 
 #: apps/virtualfolder/models.py:60
-#, fuzzy
 msgid "Whether this virtual folder is active or not."
-msgstr "Of deze pagina actief is of niet."
+msgstr "Of deze virtuele map actief is of niet."
 
 #: apps/virtualfolder/models.py:65
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
 msgstr ""
-"Een beschrijving van dit doel. Dit is handig om meer informatie of "
-"instructies te verschaffen. Toegestane opmaak: %s"
+"Gebruik dit om meer informatie of instructies te verschaffen. Toegestane "
+"opmaak: %s"
 
 #: checks.py:57
 msgid "Your version of Django is too old."
-msgstr ""
+msgstr "Uw versie van Django is te oud."
 
 #: checks.py:58
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
-msgstr ""
+msgstr "Probeer pip install --upgrade 'Django==%s'"
 
 #: checks.py:65
 msgid "Your version of lxml is too old."
-msgstr ""
+msgstr "Uw versie van lxml is te oud."
 
 #: checks.py:66
 msgid "Try pip install --upgrade lxml"
-msgstr ""
+msgstr "Probeer pip install --upgrade lxml"
 
 #: checks.py:72
 msgid "Your version of Translate Toolkit is too old."
-msgstr ""
+msgstr "Uw versie van Translate Toolkit is te oud."
 
 #: checks.py:73
 msgid "Try pip install --upgrade translate-toolkit"
-msgstr ""
+msgstr "Probeer pip install --upgrade translate-toolkit"
 
 #: checks.py:88
 msgid ""
@@ -1203,39 +1196,37 @@ msgstr ""
 
 #: checks.py:90
 msgid "Try pip install python-levenshtein"
-msgstr ""
+msgstr "Probeer pip install python-levenshtein"
 
 #: checks.py:109
 #, python-format
 msgid "Could not connect to Redis (%s)"
-msgstr ""
+msgstr "Kon geen verbinding maken met Redis (%s)"
 
 #: checks.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
-msgstr "Redis-server accepteert verbindingen op %(host)s:%(port)s."
+msgstr "Zorg ervoor dat Redis actief is op %(host)s:%(port)s"
 
 #: checks.py:119
-#, fuzzy
 msgid "No RQ Worker running."
 msgstr "Er zijn geen RQ workers actief."
 
 #: checks.py:120
 msgid "Run new workers with manage.py rqworker"
-msgstr ""
+msgstr "Voer nieuwe workers uit met manage.py rqworker"
 
 #: checks.py:127
-#, fuzzy
 msgid "Your version of Redis is too old."
-msgstr "Django versie %s is geïnstalleerd."
+msgstr "Uw versie van Redis is te oud."
 
 #: checks.py:128
 msgid "Update your system's Redis server package"
-msgstr ""
+msgstr "Werk het Redis-server-pakket van uw systeem bij"
 
 #: checks.py:143
 msgid "Cache backend is not set to Redis."
-msgstr ""
+msgstr "Cache-backend is niet ingesteld op Redis."
 
 #: checks.py:144
 #, python-format
@@ -1243,34 +1234,36 @@ msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
+"Stel standaard cache-backend in op django_redis.cache.RedisCache\n"
+"Huidige instellingen: %r"
 
 #: checks.py:153
 msgid "Could not initiate a Redis cache connection"
-msgstr ""
+msgstr "Kon geen verbinding met Redis-cache tot stand brengen"
 
 #: checks.py:154
 msgid "Double-check your CACHES settings"
-msgstr ""
+msgstr "Controleer uw CACHES-instellingen"
 
 #: checks.py:160
 msgid "DEBUG mode is on. Do not do this in production!"
-msgstr ""
+msgstr "DEBUGmodus staat aan. Doe dit niet in productie!"
 
 #: checks.py:161
 msgid "Set DEBUG = False in Pootle settings"
-msgstr ""
+msgstr "Stel DEBUG = False in in de Pootle-instellingen"
 
 #: checks.py:167
 msgid "The sqlite database backend is unsupported"
-msgstr ""
+msgstr "De sqlite-database-backend wordt niet ondersteund"
 
 #: checks.py:168
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
-msgstr ""
+msgstr "Stel uw standaard database-engine in op postgresql_psycopg2 of mysql"
 
 #: checks.py:174
 msgid "Not using cached_db as session engine"
-msgstr ""
+msgstr "Cached_db wordt niet als sessie-engine gebruikt"
 
 #: checks.py:175
 #, python-format
@@ -1278,42 +1271,51 @@ msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
+"Stel SESSION_ENGINE in op django.contrib.sessions.backend.cached_db\n"
+"Huidige instellingen: %r"
 
 #: checks.py:182
 msgid "POOTLE_CONTACT_EMAIL is not set."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL is niet ingesteld."
 
 #: checks.py:183
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
+"Stel POOTLE_CONTACT_EMAIL in om gebruikers contact te kunnen laten opnemen "
+"met beheerders via het Pootle-contactformulier."
 
 #: checks.py:191
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL gebruikt de volgende standaardinstelling %r."
 
 #: checks.py:193
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
+"POOTLE_CONTACT_EMAIL is het adres dat berichten zal ontvangen die via het "
+"contactformulier zijn verzonden."
 
 #: checks.py:200
 msgid "settings.DEFAULT_FROM_EMAIL is not set."
-msgstr ""
+msgstr "settings.DEFAULT_FROM_EMAIL is niet ingesteld."
 
 #: checks.py:201 checks.py:211
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
+"DEFAULT_FROM_EMAIL wordt in alle uitgaande e-mail van Pootle gebruikt.\n"
+"Vergeet niet de instellingen voor uw mailserver te controleren."
 
 #: checks.py:209
 #, python-format
 msgid "settings.DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
+"settings.DEFAULT_FROM_EMAIL gebruikt de volgende standaardinstelling %r."
 
 #: core/browser.py:29
 msgid "Project"
@@ -1342,9 +1344,8 @@ msgid "Last Activity"
 msgstr "Laatste activiteit"
 
 #: core/browser.py:130
-#, fuzzy
 msgid "Back to language"
-msgstr "Terug naar de hoofdpagina"
+msgstr "Terug naar taal"
 
 #: core/browser.py:132
 msgid "Back to parent folder"
@@ -1423,9 +1424,8 @@ msgid "Can submit a translation"
 msgstr "Kan een vertaling invoeren"
 
 #: core/initdb.py:125
-#, fuzzy
 msgid "Can review suggestions"
-msgstr "Suggesties nakijken"
+msgstr "Kan suggesties nakijken"
 
 #: core/initdb.py:129
 msgid "Can administrate a translation project"
@@ -1437,12 +1437,11 @@ msgstr "U hebt geen toegang tot deze pagina."
 
 #: custom/templates/layout.html:11
 msgid "Getting Started"
-msgstr ""
+msgstr "Aan de slag"
 
 #: custom/templates/layout.html:15
-#, fuzzy
 msgid "License Terms"
-msgstr "Licentie"
+msgstr "Licentievoorwaarden"
 
 #: custom/templates/profiles/_tabs.html:4 templates/layout.html:116
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
@@ -1450,13 +1449,13 @@ msgid "Settings"
 msgstr "Instellingen"
 
 #: middleware/errorpages.py:57
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
-"U moet zich <a href=\"%(login_link)s\">aanmelden</a> om deze pagina te "
-"bekijken."
+"U moet zich <a class=\"js-login\" href=\"%(login_link)s\">aanmelden</a> om "
+"deze pagina te bekijken."
 
 #: middleware/errorpages.py:97
 #, python-format
@@ -1544,20 +1543,18 @@ msgstr ""
 "u geen account wilde registreren, kunt u het bericht gewoon negeren."
 
 #: templates/account/email/email_confirmation_subject.txt:2
-#, fuzzy
 msgid "Pootle e-mail confirmation"
-msgstr "Pootle-registratie"
+msgstr "E-mailbevestiging van Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
-#, fuzzy
 msgid "Registration Disabled"
-msgstr "registratieprofiel"
+msgstr "Registratie uitgeschakeld"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
-msgstr ""
+msgstr "Registratie is momenteel uitgeschakeld. Probeer het later nog eens."
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:51
@@ -1639,13 +1636,12 @@ msgid "Failed jobs"
 msgstr "Mislukte taken"
 
 #: templates/admin/dashboard.html:64
-#, fuzzy
 msgid "System Checks"
-msgstr "Controles tonen"
+msgstr "Systeemcontroles"
 
 #: templates/admin/dashboard.html:74
 msgid "No issues have been detected. All is good!"
-msgstr ""
+msgstr "Geen problemen vastgesteld. Alles in orde!"
 
 #: templates/admin/detailed_reports.html:6
 #, python-format
@@ -1735,8 +1731,8 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"De gebruiker “niemand” verwijst naar een gebruiker die niet is aangemeld "
-"(een anonieme, niet-geïdentificeerde gebruiker). De gebruiker “standaard” "
+"De gebruiker ‘niemand’ verwijst naar een gebruiker die niet is aangemeld ("
+"een anonieme, niet-geïdentificeerde gebruiker). De gebruiker ‘standaard’ "
 "verwijst naar de rechten die alle aangemelde gebruikers standaard hebben, "
 "tenzij aan hen andere specifieke rechten zijn toegekend."
 
@@ -1791,17 +1787,15 @@ msgid "or"
 msgstr "of"
 
 #: templates/admin/staticpages/_form.html:30
-#, fuzzy
 msgid ""
 "Use <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/a&gt;"
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
-"\n"
-"Gebruik <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;"
-"Koppelingstekst&lt;/a&gt;</code>-code om koppelingen tussen statische "
+"Gebruik <code>&lt;a href=\"<strong>#/paginaslug</strong>\""
+"&gt;Koppelingstekst&lt;/a&gt;</code>-code om koppelingen tussen statische "
 "pagina's op te geven. Dergelijke koppelingen zullen door volledige paden "
-"naar statische pagina's worden overschreven.\n"
+"naar statische pagina's worden overschreven."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1929,7 +1923,7 @@ msgstr "Contact"
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
-msgstr ""
+msgstr "Vul alle velden in."
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
@@ -1940,12 +1934,11 @@ msgid "Thanks!"
 msgstr "Bedankt!"
 
 #: templates/contact_form/xhr_contact_form.html:26
-#, fuzzy
 msgid ""
 "We have received your message and will try to respond as soon as possible."
 msgstr ""
-"We hebben uw bericht ontvangen en zullen proberen\n"
-"      zo snel mogelijk te reageren."
+"We hebben uw bericht ontvangen en zullen proberen zo snel mogelijk te "
+"reageren."
 
 #: templates/core/_top_scorers.html:8
 msgid "score"
@@ -1982,9 +1975,8 @@ msgid "Confirm"
 msgstr "Bevestigen"
 
 #: templates/editor/_actions.html:5
-#, fuzzy
 msgid "Go back to browsing"
-msgstr "Terug naar overzicht"
+msgstr "Terug naar bladeren"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -2000,7 +1992,7 @@ msgstr "Standaardvolgorde"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
-msgstr ""
+msgstr "Belangrijke eerst"
 
 #: templates/editor/_toolbar.html:10
 msgid "Newest first"
@@ -2069,9 +2061,8 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">Eenheid #%(id)s</a>"
 
 #: templates/editor/units/edit.html:19
-#, fuzzy
 msgid "Priority:"
-msgstr "Prioriteit"
+msgstr "Prioriteit:"
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
@@ -2257,7 +2248,6 @@ msgid "Last comment removed"
 msgstr "Laatste opmerking verwijderd"
 
 #: templates/editor/units/xhr_timeline.html:30
-#, fuzzy
 msgid "check"
 msgstr "controle"
 
@@ -2319,26 +2309,24 @@ msgid "Database Error"
 msgstr "Databasefout"
 
 #: templates/errors/db.html:11
-#, fuzzy
 msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
-"Pootle kan niet verbinden met de database, de database is nog niet\n"
+"Pootle kan geen verbinding maken met de database; de database is nog niet "
 "geïnitialiseerd, of er is een schema-upgrade nodig voordat kan worden "
 "doorgegaan."
 
 #: templates/errors/db.html:18
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
 "installation and upgrade instructions. Contact the server administrator if "
 "you feel this is a mistake."
 msgstr ""
-"\n"
-"Lees de <a href=\"%(url)s\">Pootle-documentatie</a> voor installatie-\n"
-"en upgrade-instructies. Neem contact op met de beheerder van de server\n"
-"als u denkt dat dit een vergissing is."
+"Lees de <a href=\"%(url)s\">Pootle-documentatie</a> voor installatie- en "
+"upgrade-instructies. Neem contact op met de serverbeheerder als u denkt dat "
+"dit een vergissing is ."
 
 #: templates/errors/db.html:26
 msgid "The reported error was:"
@@ -2348,7 +2336,7 @@ msgstr "De gemelde fout was:"
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:5
 msgid "Browse"
-msgstr ""
+msgstr "Bladeren"
 
 #: templates/languages/admin/permissions.html:9
 msgid "Below you can add, edit, and delete the permissions for this language."
@@ -2385,7 +2373,6 @@ msgid "Admin"
 msgstr "Beheerder"
 
 #: templates/layout.html:122
-#, fuzzy
 msgid "Sign out"
 msgstr "Afmelden"
 
@@ -2422,7 +2409,6 @@ msgid "Before continuing, you must read and accept the following documents."
 msgstr "Voordat u doorgaat moet u de volgende documenten lezen en accepteren."
 
 #: templates/staticpages/agreement.html:17
-#, fuzzy
 msgid "No thanks. Sign out"
 msgstr "Nee bedankt. Afmelden"
 
@@ -2601,7 +2587,6 @@ msgid "Translation Rate:"
 msgstr "Vertaaltarief:"
 
 #: templates/user/reports/user_rates_widget.html:29
-#, fuzzy
 msgid "Review Rate:"
 msgstr "Controletarief:"
 
@@ -2610,15 +2595,17 @@ msgid "Hourly Rate:"
 msgstr "Uurtarief:"
 
 #: templates/user/settings.html:12
-#, fuzzy
 msgid "User Account"
-msgstr "Account registreren"
+msgstr "Gebruikersaccount"
 
 #: templates/user/settings.html:14
 msgid ""
 "Do you want to change your password? Click the 'Reset Password' button which "
 "will initiate the process of setting a new password."
 msgstr ""
+"Wilt u uw wachtwoord wijzigen? Klik op de knop 'Wachtwoord opnieuw "
+"instellen', die het proces voor het instellen van een nieuw wachtwoord zal "
+"starten."
 
 #: templates/user/settings.html:26
 msgid "Reset Password"
@@ -2637,7 +2624,6 @@ msgid "Come and join us!"
 msgstr "Kom en doe mee!"
 
 #: templates/welcome.html:19
-#, fuzzy
 msgid "Sign in"
 msgstr "Aanmelden"
 

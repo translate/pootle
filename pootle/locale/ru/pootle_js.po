@@ -9,25 +9,25 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:37+0100\n"
-"PO-Revision-Date: 2015-04-24 13:46+0000\n"
+"PO-Revision-Date: 2015-07-18 23:47+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1429883168.000000\n"
+"X-POOTLE-MTIME: 1437263247.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "Сохранение выполнено успешно."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Удаление выполнено успешно."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
@@ -36,7 +36,7 @@ msgstr "Удалить"
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "Код"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
@@ -50,11 +50,11 @@ msgstr "Специальные символы"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Номер множественного числа"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "Уравнение множественного числа"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
@@ -65,16 +65,16 @@ msgstr "Сохранить"
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "Общая информация"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "Права доступа"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "Проверки качества"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
@@ -82,7 +82,7 @@ msgstr "Тип файла"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Структура каталогов проекта"
 
 #: static/js/admin/components/ProjectForm.js:103
 msgid "Source Language"
@@ -90,19 +90,19 @@ msgstr "Исходный язык"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "Игнорировать файлы"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
-msgstr ""
+msgstr "Контакт для ошибок в строках"
 
 #: static/js/admin/components/ProjectForm.js:122
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Префикс для поиска снимков экрана"
 
 #: static/js/admin/components/ProjectForm.js:129
 msgid "Disabled"
-msgstr ""
+msgstr "Выключено"
 
 #: static/js/admin/components/ProjectForm.js:141
 msgid "Languages"
@@ -110,7 +110,7 @@ msgstr "Языки"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
-msgstr ""
+msgstr "Загрузить ещё"
 
 #: static/js/admin/components/Search.js:89
 msgid "Loading..."
@@ -121,6 +121,8 @@ msgid ""
 "Note: deleting the user will make its suggestions and translations become "
 "attributed to an anonymous user (nobody)."
 msgstr ""
+"Замечание: удаление пользователя присвоит все его правки анонимному "
+"пользователю (nobody)."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
@@ -130,7 +132,7 @@ msgstr "Имя пользователя"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "Активно"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
@@ -141,12 +143,12 @@ msgstr "Пароль"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "Установить новый пароль"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "Электронная почта"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
@@ -158,7 +160,7 @@ msgstr "Twitter"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
-msgstr ""
+msgstr "Имя пользователя в Twitter"
 
 #: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:95
 msgid "LinkedIn"
@@ -166,7 +168,7 @@ msgstr "LinkedIn"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "профиль в LinkedIn"
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:101
 msgid "Website"
@@ -174,23 +176,23 @@ msgstr "Веб-сайт"
 
 #: static/js/admin/components/UserForm.js:128
 msgid "Personal website URL"
-msgstr ""
+msgstr "Адрес персонального веб-сайта"
 
 #: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:108
 msgid "Short Bio"
-msgstr ""
+msgstr "Короткая биография"
 
 #: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
-msgstr ""
+msgstr "Персональное описание"
 
 #: static/js/admin/components/UserForm.js:147
 msgid "Public Profile"
-msgstr ""
+msgstr "Публичный профиль"
 
 #: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
@@ -203,173 +205,178 @@ msgstr "Отчеты"
 #: static/js/auth/components/AccountActivation.js:33
 #, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>."
-msgstr ""
+msgstr "Мы отправили письмо, содержащее специальную ссылку, на <span>%s</span>."
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"Мы отправили письмо, содержащее специальную ссылку, на адрес, который "
+"использовался при регистрации учетной записи."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Ваша учетная запись требует активации."
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Пожалуйста, проследуйте по этой ссылке для создания учетной записи."
 
 #: static/js/auth/components/AccountActivation.js:56
 #: static/js/auth/components/AccountInactive.js:36
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr ""
+"Ваша учетная запись неактивна потому, что администратор деактивировал ее."
 
 #: static/js/auth/components/AuthController.js:82
 msgid "Sign In With..."
-msgstr ""
+msgstr "Войти с помощью..."
 
 #: static/js/auth/components/AuthController.js:82
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "Войти"
 
 #: static/js/auth/components/AuthController.js:89
 msgid "Account Inactive"
-msgstr ""
+msgstr "Учетная запись неактивна"
 
 #: static/js/auth/components/AuthController.js:96
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
-msgstr ""
+msgstr "Зарегистрироваться"
 
 #: static/js/auth/components/AuthController.js:103
 #: static/js/auth/components/AuthController.js:110
 msgid "Account Activation"
-msgstr ""
+msgstr "Активация учётной записи"
 
 #: static/js/auth/components/AuthController.js:117
 #: static/js/auth/components/AuthController.js:124
 #: static/js/auth/components/AuthController.js:131
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Сбросить пароль"
 
 #: static/js/auth/components/AuthController.js:138
 msgid "Oops..."
-msgstr ""
+msgstr "Ой..."
 
 #: static/js/auth/components/AuthController.js:145
 msgid "Social Verification"
-msgstr ""
+msgstr "Социальная верификация"
 
 #: static/js/auth/components/AuthWindow.js:21
 msgid "Contact Us"
-msgstr ""
+msgstr "Связаться с нами"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Неправильная ссылка сброса пароля, возможно из-за того, что ее уже "
+"использовали. Запросите повторный сброс пароля."
 
 #: static/js/auth/components/PasswordResetForm.js:86
-#, fuzzy
 msgid "Reset Password"
-msgstr "Пароль"
+msgstr "Сбросить пароль"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Пароль изменился, входим..."
 
 #: static/js/auth/components/PasswordResetForm.js:122
 #: static/js/auth/components/SignUpForm.js:108
-#, fuzzy
 msgid "Repeat Password"
-msgstr "Пароль"
+msgstr "Повторите пароль"
 
 #: static/js/auth/components/PasswordResetForm.js:135
-#, fuzzy
 msgid "Set New Password"
-msgstr "Пароль"
+msgstr "Установить новый пароль"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "После смены пароля, вход будет произведен автоматически."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Отправка электронного письма к %1..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
+"Пожалуйста, проследуйте по ссылке для продолжения процедуры сброса пароля."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Не получили письмо? Проверьте, вдруг оно попало в спам, или попробуйте "
+"запросить еще одно письмо."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
-msgstr ""
+msgstr "Отправить Email снова"
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Зарегистрироваться как новый пользователь"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:101
 msgid "I forgot my password"
-msgstr ""
+msgstr "Я забыл свой пароль"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Вход выполнен. Перенаправление..."
 
 #: static/js/auth/components/SignInPanel.js:62
-#, fuzzy
 msgid "Social Services"
-msgstr "Специальные символы"
+msgstr "Социальные сервисы"
 
 #: static/js/auth/components/SignInPanel.js:65
-#, fuzzy
 msgid "Login / Password"
-msgstr "Пароль"
+msgstr "Логин / Пароль"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "Войти как существующий пользователь"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "Произошла ошибка при входе через %s"
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
-msgstr ""
+msgstr "Произошла ошибка при входе через учетную запись социального сервиса."
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "Попытаться снова"
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Войти с помощью %s"
 
 #: static/js/auth/components/SocialSignInForm.js:46
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"Вход через внешний сервис в первый раз автоматически создаст учетную запись "
+"для вас."
 
 #: static/js/browser.js:156
 msgid "All Languages"
@@ -388,12 +395,16 @@ msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"Перейти к следующей строке (Ctrl+.)<br/><br/>Также:<br/>Следующая страница: "
+"Ctrl+Shift+.<br/>Последняя страница: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:247
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"Перейти к предыдущей строке (Ctrl+,)<br/><br/>Также:</br>Предыдущая страница:"
+" Ctrl+Shift+,<br/>Первая страница: Ctrl+Shift+Home"
 
 #: static/js/editor/app.js:359
 #, javascript-format
@@ -416,9 +427,9 @@ msgid "%s's submissions"
 msgstr "Предложения %s"
 
 #: static/js/editor/app.js:372
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "%s's overwritten submissions"
-msgstr "Изменённые предложения %s"
+msgstr "Измененные предложения %s"
 
 #: static/js/editor/app.js:501 static/js/editor/app.js:1650
 msgid "No results."
@@ -446,23 +457,23 @@ msgstr "Неизвестная ошибка"
 
 #: static/js/editor/app.js:983
 msgid "This unit no longer exists."
-msgstr ""
+msgstr "Этот сегмент больше не существует."
 
 #: static/js/editor/app.js:984
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Вернуться к просмотру"
 
 #: static/js/editor/app.js:986
 msgid "Reload page"
-msgstr ""
+msgstr "Перезагрузить страницу"
 
 #: static/js/editor/app.js:1986
 msgid "some anonymous user"
-msgstr ""
+msgstr "анонимный пользователь"
 
 #: static/js/editor/app.js:1988
 msgid "someone"
-msgstr ""
+msgstr "кто-то"
 
 #: static/js/editor/app.js:2005 static/js/editor/app.js:2054
 msgid "Similar translations"
@@ -470,15 +481,15 @@ msgstr "Похожие переводы"
 
 #: static/js/shared/models/project.js:59
 msgid "disabled"
-msgstr ""
+msgstr "выключено"
 
 #: static/js/stats.js:286
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s секунда"
+msgstr[1] "%s секунды"
+msgstr[2] "%s секунд"
 
 #: static/js/stats.js:318
 msgid "Expand details"
@@ -489,15 +500,15 @@ msgid "Collapse details"
 msgstr "Свернуть подробности"
 
 #: static/js/utils.js:151
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Год назад"
-msgstr[1] "%1 года назад"
-msgstr[2] "%1 лет назад"
+msgstr[1] "%s года назад"
+msgstr[2] "%s лет назад"
 
 #: static/js/utils.js:154
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Неделю назад"
@@ -505,7 +516,7 @@ msgstr[1] "%s недели назад"
 msgstr[2] "%s недель назад"
 
 #: static/js/utils.js:157
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Вчера"
@@ -513,7 +524,7 @@ msgstr[1] "%s дня назад"
 msgstr[2] "%s дней назад"
 
 #: static/js/utils.js:160
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Час назад"
@@ -521,7 +532,7 @@ msgstr[1] "%s часа назад"
 msgstr[2] "%s часов назад"
 
 #: static/js/utils.js:163
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Минуту назад"
@@ -536,32 +547,31 @@ msgstr "Несколько секунд назад"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(count)s язык отвечают вашему запросу."
+msgstr[1] "%(count)s языка отвечают вашему запросу."
+msgstr[2] "%(count)s языков отвечают вашему запросу."
 
 #: static/js/admin/components/language.jsx:56
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Всего %(count)s язык."
+msgstr[1] "Всего %(count)s языка. Внизу отображены самые последние."
+msgstr[2] "Всего %(count)s языков. Внизу отображены самые последние."
 
 #: static/js/admin/components/language.jsx:74
 msgid "Search Languages"
-msgstr ""
+msgstr "Искать языки"
 
 #: static/js/admin/components/language.jsx:75
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Найти язык по названию, коду"
 
 #: static/js/admin/components/language.jsx:103
 #: static/js/admin/components/language.jsx:138
-#, fuzzy
 msgid "Add Language"
-msgstr "Все языки"
+msgstr "Добавить язык"
 
 #: static/js/admin/components/language.jsx:106
 #: static/js/admin/components/project.jsx:106
@@ -571,37 +581,39 @@ msgstr "Отмена"
 
 #: static/js/admin/components/language.jsx:135
 msgid "Edit Language"
-msgstr ""
+msgstr "Редактировать язык"
 
 #: static/js/admin/components/language.jsx:142
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Используйте форму поиска, чтобы найти язык, затем кликнете по нему, чтобы "
+"отредактировать его."
 
 #: static/js/admin/components/project.jsx:52
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(count)s проект отвечают вашему запросу."
+msgstr[1] "%(count)s проекта отвечают вашему запросу."
+msgstr[2] "%(count)s проектов отвечают вашему запросу."
 
 #: static/js/admin/components/project.jsx:56
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Всего %(count)s проект."
+msgstr[1] "Всего %(count)s проекта. Внизу отображены самые последние."
+msgstr[2] "Всего %(count)s проектов. Внизу отображены самые последние."
 
 #: static/js/admin/components/project.jsx:74
 msgid "Search Projects"
-msgstr ""
+msgstr "Искать проекты"
 
 #: static/js/admin/components/project.jsx:75
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Найти проект по названию, коду"
 
 #: static/js/admin/components/project.jsx:103
 #: static/js/admin/components/project.jsx:138
@@ -616,31 +628,33 @@ msgstr "Редактировать проект"
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Используйте форму поиска, чтобы найти проекта, затем кликнете по нему, чтобы "
+"отредактировать его."
 
 #: static/js/admin/components/user.jsx:52
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(count)s пользователь отвечает вашему запросу."
+msgstr[1] "%(count)s пользователя отвечают вашему запросу."
+msgstr[2] "%(count)s пользователей отвечают вашему запросу."
 
 #: static/js/admin/components/user.jsx:56
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Всего %(count)s пользователь."
+msgstr[1] "Всего %(count)s пользователя. Внизу отображены самые последние."
+msgstr[2] "Всего %(count)s пользователей. Внизу отображены самые последние."
 
 #: static/js/admin/components/user.jsx:74
 msgid "Search Users"
-msgstr ""
+msgstr "Искать пользователей"
 
 #: static/js/admin/components/user.jsx:75
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Найти пользователя по имени, email, свойствам"
 
 #: static/js/admin/components/user.jsx:103
 #: static/js/admin/components/user.jsx:138
@@ -654,18 +668,20 @@ msgstr "Редактировать пользователя"
 #: static/js/admin/components/user.jsx:142
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"Используйте форму поиска, чтобы найти пользователя, затем кликнете по нему, "
+"чтобы отредактировать его."
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
-msgstr ""
+msgstr "Выбрать..."
 
 #: static/js/shared/components/forms.jsx:70
 msgid "No results found"
-msgstr ""
+msgstr "Ничего не найдено"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Clear value"
-msgstr ""
+msgstr "Очистить значение"
 
 #: static/js/shared/components/forms.jsx:72
 msgid "Clear all"
@@ -673,19 +689,19 @@ msgstr "Очистить всё"
 
 #: static/js/shared/components/forms.jsx:73
 msgid "Type to search"
-msgstr ""
+msgstr "Введите поисковый запрос"
 
 #: static/js/user/components/edit.jsx:106
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "Редактировать свой публичный профиль"
 
 #: static/js/user/components/edit.jsx:113
 msgid "My Public Profile"
-msgstr ""
+msgstr "Мой публичный профиль"
 
 #: static/js/user/components/edit.jsx:125
 msgid "Discard changes."
-msgstr ""
+msgstr "Отменить изменения."
 
 #: static/js/user/components/edit.jsx:126
 msgid "Yes"
@@ -697,7 +713,7 @@ msgstr "Нет"
 
 #: static/js/user/components/edit.jsx:128
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "Обнаружены несохраненные изменения. Вы хотите отменить их?"
 
 #: static/js/user/forms.jsx:61
 #, python-format
@@ -705,6 +721,8 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
+"Чтобы установить или изменить аватар для своего почтового адреса (%(email)s)"
+", посетите gravatar.com."
 
 #: static/js/user/forms.jsx:74
 msgid "Your Full Name"
@@ -716,25 +734,27 @@ msgstr "Аватар"
 
 #: static/js/user/forms.jsx:90
 msgid "Your Twitter username"
-msgstr ""
+msgstr "Ваше имя пользователя в Twitter"
 
 #: static/js/user/forms.jsx:97
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "Ваш профиль в LinkedIn"
 
 #: static/js/user/forms.jsx:103
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "Адрес вашего персонального сайта или блога"
 
 #: static/js/user/forms.jsx:111
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"Почему вы являетесь частью нашего проекта по переводу? Расскажите о себе, "
+"вдохновите других!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "Проект / Язык"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Translated"
@@ -746,7 +766,7 @@ msgstr "Проверено"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Score Change"
-msgstr ""
+msgstr "Изменение счета"
 
 #: templates/admin/xhr_language_user_activity.html:16
 #: templates/admin/xhr_language_user_activity.html:17
@@ -757,34 +777,34 @@ msgstr ""
 #: templates/admin/xhr_summary_report.html:35
 msgid "word"
 msgid_plural "words"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "слово"
+msgstr[1] "слова"
+msgstr[2] "слов"
 
 #: templates/admin/xhr_language_user_activity.html:30
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "Нет зарегистрированной активности в данный период"
 
 #: templates/admin/xhr_language_user_activity.html:33
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Пожалуйста, выберите пользователя."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "Зарегистрированные задачи"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
-msgstr ""
+msgstr "Дата и время"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "Комментарий"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Действие"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
@@ -794,45 +814,45 @@ msgstr "Количество"
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Тариф"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "Промежуточный итог"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:32
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "час"
+msgstr[1] "часа"
+msgstr[2] "часов"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
-msgstr ""
+msgstr "Удалить задачу"
 
 #: templates/admin/xhr_paid_tasks_report.html:41
 msgid "Comment on it"
-msgstr ""
+msgstr "Комментировать"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "Сводка"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "Период"
 
 #: templates/admin/xhr_summary_report.html:41
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(зарегистрированные задачи)"
 
 #: templates/admin/xhr_summary_report.html:49
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "Всего (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -856,6 +876,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"Переведено %(fullname)s в проекте &ldquo;<span title=\"%(path)s\""
+">%(project)s</span>&rdquo;"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "Желаете продолжить?"

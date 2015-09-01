@@ -9,23 +9,25 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-06-15 11:30+0100\n"
-"PO-Revision-Date: 2015-03-24 10:34+0000\n"
-"Last-Translator: Ernestas <bad.f.word@gmail.com>\n"
+"PO-Revision-Date: 2015-07-12 15:59+0000\n"
+"Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1427193272.000000\n"
+"X-POOTLE-MTIME: 1436716741.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Panašu, kad jūsų naudotojo paskyra dingo. Praneškite apie tai šios svetainės "
+"valdytojams."
 
 #: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
@@ -35,10 +37,12 @@ msgstr "Naudotojo vardas"
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
+"Privalomas. Ilgis iki 30 simbolių. Raidės, skaitmenys ir šie simboliai: @ . +"
+" - _."
 
 #: apps/accounts/models.py:65
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Įveskite leistiną naudotojo vardą."
 
 #: apps/accounts/models.py:69
 msgid "Email Address"
@@ -59,9 +63,10 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Nurodo, ar šis naudotojas laikytinas aktyviu. Jei norite šalinti šią "
+"paskyrą, geriau nuimkite šio laukelio žymėjimą."
 
 #: apps/accounts/models.py:75
-#, fuzzy
 msgid "Superuser Status"
 msgstr "Administratorius"
 
@@ -70,10 +75,12 @@ msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
+"Suteikia šiam naudotojui visas galimas teises, nenurodant kiekvienos jų "
+"atskirai."
 
 #: apps/accounts/models.py:79
 msgid "date joined"
-msgstr ""
+msgstr "registravimosi data"
 
 #: apps/accounts/models.py:83
 msgid "Number of Rows"
@@ -85,19 +92,19 @@ msgstr "Alternatyvios pradinės kalbos"
 
 #: apps/accounts/models.py:89 templates/admin/detailed_reports.html:149
 msgid "Rate"
-msgstr ""
+msgstr "Įkainis"
 
 #: apps/accounts/models.py:90 apps/evernote_reports/forms.py:32
 msgid "Review Rate"
-msgstr "Peržiūros greitis"
+msgstr "Peržiūros įkainis"
 
 #: apps/accounts/models.py:91 apps/evernote_reports/forms.py:37
 msgid "Hourly Rate"
-msgstr ""
+msgstr "Valandinis įkainis"
 
 #: apps/accounts/models.py:92
 msgid "Score"
-msgstr ""
+msgstr "Taškai"
 
 #: apps/accounts/models.py:93 apps/evernote_reports/forms.py:21
 msgid "Currency"
@@ -105,28 +112,27 @@ msgstr "Valiuta"
 
 #: apps/accounts/models.py:95
 msgid "Is employee?"
-msgstr ""
+msgstr "Yra darbuotojas?"
 
 #: apps/accounts/models.py:96
 msgid "Twitter"
-msgstr ""
+msgstr "„Twitter“"
 
 #: apps/accounts/models.py:98
 msgid "Website"
-msgstr ""
+msgstr "Svetainė"
 
 #: apps/accounts/models.py:99
 msgid "LinkedIn"
-msgstr ""
+msgstr "„LinkedIn“"
 
 #: apps/accounts/models.py:100
 msgid "Short Bio"
-msgstr ""
+msgstr "Trumpa biografija"
 
 #: apps/accounts/models.py:300
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Šis terminas šiame faile jau yra."
+msgstr "Šis elektroninio pašto adresas jau yra registruotas."
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -134,7 +140,7 @@ msgstr "Santrauka"
 
 #: apps/contact/forms.py:27
 msgid "Please enter your message summary"
-msgstr ""
+msgstr "Įrašykite savo pranešimo santrauką"
 
 #: apps/contact/forms.py:34 apps/virtualfolder/models.py:37 core/browser.py:19
 msgid "Name"
@@ -166,7 +172,7 @@ msgstr "Vartimo greitis"
 
 #: apps/evernote_reports/forms.py:42
 msgid "Effective from"
-msgstr ""
+msgstr "Galioja nuo"
 
 #: apps/evernote_reports/models.py:31 templates/editor/export_view.html:106
 #: templates/translation_projects/terminology/manage.html:37
@@ -180,15 +186,15 @@ msgstr "Peržiūra"
 
 #: apps/evernote_reports/models.py:33
 msgid "Hourly Work"
-msgstr ""
+msgstr "Valandinis darbas"
 
 #: apps/evernote_reports/models.py:34
 msgid "Correction"
-msgstr ""
+msgstr "Pataisymas"
 
 #: apps/evernote_reports/models.py:37
 msgid "Type"
-msgstr ""
+msgstr "Tipas"
 
 #: apps/evernote_reports/models.py:40
 msgid "Amount"
@@ -196,7 +202,7 @@ msgstr "Kiekis"
 
 #: apps/evernote_reports/models.py:42
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: apps/evernote_reports/models.py:43 apps/virtualfolder/models.py:63
 msgid "Description"
@@ -209,46 +215,43 @@ msgstr "Vartotojas %s nerastas"
 
 #: apps/evernote_reports/views.py:372
 msgid "Invalid request method"
-msgstr ""
+msgstr "Netinkamas užklausos metodas"
 
 #: apps/import_export/templates/browser/index.html:10
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "Parsisiųsti XLIFF failą vertimui neprisijungus prie tinklo"
+msgstr "Parsisiųsti vertimo failus darbui neprisijungus prie tinklo"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "Parsisiųsti XLIFF failą vertimui neprisijungus prie tinklo"
+msgstr "Parsisiųsti vertimui neprisijungus prie tinklo"
 
 #: apps/import_export/templates/browser/index.html:19
 msgid "Upload translation files or archives in .zip format"
 msgstr "Įkelti vertimo failus arba .zip formato archyvus"
 
 #: apps/import_export/templates/browser/index.html:20
-#, fuzzy
 msgid "Upload translations"
-msgstr "Eksportuoti vertimus"
+msgstr "Įkelti vertimus"
 
 #: apps/import_export/utils.py:22
 #, python-format
 msgid "File %r missing X-Pootle-Path header\n"
-msgstr ""
+msgstr "Faile „%r“ trūksta „X-Pootle-Path“ antraštės\n"
 
 #: apps/import_export/utils.py:27
 #, python-format
 msgid "File %r missing or invalid X-Pootle-Revision header\n"
-msgstr ""
+msgstr "Faile „%r“ trūksta „X-Pootle-Revision“ antraštės\n"
 
 #: apps/import_export/utils.py:37
 #, python-format
 msgid "File %r was rejected because its X-Pootle-Revision is too old."
-msgstr ""
+msgstr "Failas „%r“ nepriimtas, nes jo „X-Pootle-Revision“ antraštė per sena."
 
 #: apps/import_export/utils.py:42
 #, python-format
 msgid "Could not create %r. Missing Project/Language? (%s)"
-msgstr ""
+msgstr "Sukurti „%r“ nepavyko. Gal nenurodytas projektas arba kalba? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -269,7 +272,7 @@ msgstr "Slaptažodis"
 
 #: apps/pootle_app/forms.py:133 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr ""
+msgstr "Įveskite galiojantį „LinkedIn“ profilio adresą."
 
 #: apps/pootle_app/views/admin/dashboard.py:80
 msgid "Files"
@@ -300,23 +303,22 @@ msgstr "Aktyvūs naudotojai"
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Vykdoma (%d procesas)"
+msgstr[1] "Vykdoma (%d procesai)"
+msgstr[2] "Vykdoma (%d procesų)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:110
 msgid "Stopped"
-msgstr ""
+msgstr "Sustojo"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "All Users"
 msgstr "Visi naudotojai"
 
 #: apps/pootle_app/views/admin/permissions.py:95
-#, fuzzy
 msgid "Add Permissions"
-msgstr "Naudotojo teisės"
+msgstr "Suteikti teises"
 
 #: apps/pootle_app/views/admin/permissions.py:100
 #: apps/pootle_app/views/admin/permissions.py:109
@@ -325,7 +327,7 @@ msgstr "Parinkite vieną ar daugiau leidimų"
 
 #: apps/pootle_app/views/admin/permissions.py:104
 msgid "Revoke Permissions"
-msgstr ""
+msgstr "Atimti teises"
 
 #: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
@@ -365,6 +367,9 @@ msgid ""
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
+"Daugiau informacijos rasite <a href=\"http://docs.translatehouse.org/projects"
+"/localization-guide/en/latest/l10n/pluralforms.html\">mūsų tinklalapyje</a> "
+"apie daugiskaitos formas."
 
 #: apps/pootle_language/models.py:93
 msgid "Unknown"
@@ -487,9 +492,8 @@ msgid "Pure punctuation"
 msgstr "Tik skyrybos ženklai"
 
 #: apps/pootle_misc/checks.py:61
-#, fuzzy
 msgid "Python brace placeholders"
-msgstr "Vietaženkliai"
+msgstr "„Python“ vietaženkliai su skliausteliais"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Number of sentences"
@@ -552,7 +556,7 @@ msgstr "Vietaženkliai"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Invalid XML"
-msgstr ""
+msgstr "Neteisingas XML"
 
 #: apps/pootle_misc/checks.py:78
 msgid "XML tags"
@@ -560,76 +564,75 @@ msgstr "XML gairės"
 
 #: apps/pootle_misc/checks.py:80
 msgid "Broken HTML Entities"
-msgstr ""
+msgstr "Netinkami HTML kodai"
 
 #: apps/pootle_misc/checks.py:81
 msgid "Java format"
-msgstr ""
+msgstr "„Javos“ formatas"
 
 #: apps/pootle_misc/checks.py:82
 msgid "Template format"
-msgstr ""
+msgstr "Šablono formatas"
 
 #: apps/pootle_misc/checks.py:83
 msgid "Mustache placeholders"
-msgstr ""
+msgstr "„Mustache“ vietaženkliai"
 
 #: apps/pootle_misc/checks.py:84
 msgid "Mustache placeholder pairs"
-msgstr ""
+msgstr "„Mustache“ vietaženklių poros"
 
 #: apps/pootle_misc/checks.py:85
 msgid "Mustache like placeholder pairs"
-msgstr ""
+msgstr "Į „Mustache“ panašios vietaženklių poros"
 
 #: apps/pootle_misc/checks.py:86
 msgid "C format placeholders"
-msgstr ""
+msgstr "C formatų vietaženkliai"
 
 #: apps/pootle_misc/checks.py:87
 msgid "Non printable"
-msgstr ""
+msgstr "Nespausdinamieji simboliai"
 
 #: apps/pootle_misc/checks.py:88
 msgid "Unbalanced tag braces"
-msgstr ""
+msgstr "Nesubalansuoti gairių skliaustai"
 
 #: apps/pootle_misc/checks.py:89
 msgid "Changed attributes"
-msgstr ""
+msgstr "Pakitę požymiai"
 
 #: apps/pootle_misc/checks.py:90
 msgid "Unescaped ampersands"
-msgstr ""
+msgstr "Ampersendai be kaitos sekų"
 
 #: apps/pootle_misc/checks.py:91
 msgid "Incorrectly escaped ampersands"
-msgstr ""
+msgstr "Neteisingai pakeisti ampersendai"
 
 #: apps/pootle_misc/checks.py:92
 msgid "Whitespaces"
-msgstr ""
+msgstr "Tarpai"
 
 #: apps/pootle_misc/checks.py:93
 msgid "Date format"
-msgstr ""
+msgstr "Datos formatas"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Uppercase placeholders"
-msgstr ""
+msgstr "Vietaženkliai didžiosiomis raidėmis"
 
 #: apps/pootle_misc/checks.py:95
 msgid "Percent sign placeholders"
-msgstr ""
+msgstr "Vietaženkliai su procento ženklu"
 
 #: apps/pootle_misc/checks.py:96
 msgid "Percent sign closure placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:97
-#, fuzzy
 msgid "$ placeholders"
-msgstr "Vietaženkliai"
+msgstr "Vietaženkliai su dolerio ženklu"
 
 #: apps/pootle_misc/checks.py:98
 msgid "$ closure placeholders"
@@ -637,36 +640,35 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:99
 msgid "Java-encoded unicode"
-msgstr ""
+msgstr "„Javai“ užkoduotos unikodo sekos"
 
 #: apps/pootle_misc/checks.py:100
 msgid "Objective-C format"
-msgstr ""
+msgstr "„Objective-C“ formatas"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Android format"
-msgstr ""
+msgstr "„Android“ formatas"
 
 #: apps/pootle_misc/checks.py:103
 msgid "Tags differ"
-msgstr ""
+msgstr "Nesutampančios gairės"
 
 #: apps/pootle_misc/checks.py:104
 msgid "Curly braces"
-msgstr ""
+msgstr "Riestiniai skliaustai"
 
 #: apps/pootle_misc/checks.py:105
 msgid "Potential unwanted placeholders"
-msgstr ""
+msgstr "Galimai nepageidaujami vietaženkliai"
 
 #: apps/pootle_misc/checks.py:107
 msgid "Double quotes in tags"
-msgstr ""
+msgstr "Dvigubos kabutės gairėse"
 
 #: apps/pootle_misc/checks.py:108
-#, fuzzy
 msgid "Percent brace placeholders"
-msgstr "Vietaženkliai"
+msgstr "Vietaženkliai su procento ženklu ir skliaustais"
 
 #: apps/pootle_misc/checks.py:1006 core/browser.py:68
 msgid "Critical"
@@ -686,7 +688,7 @@ msgstr "Išskyrimas"
 
 #: apps/pootle_misc/checks.py:1010
 msgid "Other"
-msgstr ""
+msgstr "Kita"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:60
