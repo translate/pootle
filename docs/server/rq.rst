@@ -95,3 +95,11 @@ Or to get a complete list for the server, including the scores:
 .. code-block:: bash
 
    $ redis-cli -n 2 zrange "pootle:dirty:treeitems" 0 -1 withscores
+
+The banner that shows that stats are being calculated is displayed when
+``pootle:refresh:stats`` is present.  Only remove this if you are confident
+that all else is good and that the stats are fine or to be generated again.
+
+.. code-block:: bash
+
+   $ redis-cli -n 2 del pootle:refresh:stats
