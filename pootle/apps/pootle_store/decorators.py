@@ -33,23 +33,7 @@ def get_permission_message(permission_code):
     }.get(permission_code, default_message)
 
 
-def _check_permissions(request, directory, permission_code):
-    """Checks if the current user has enough permissions defined by
-    `permission_code` in the current`directory`.
-    """
-    User = get_user_model()
-    request.profile = User.get(request.user)
-    request.permissions = get_matching_permissions(request.profile,
-                                                   directory)
-
-    if not permission_code:
-        return
-
-    if not check_permission(permission_code, request):
-        raise PermissionDenied(get_permission_message(permission_code))
-
-
-def get_unit_context(permission_codes):
+def get_unit_context(permission_code=None):
 
     def wrap_f(f):
 
@@ -61,9 +45,19 @@ def get_unit_context(permission_codes):
                     id=uid,
             )
 
-            request.translation_project = unit.store.translation_project
-            _check_permissions(request, translation_project.directory,
-                               permission_codes)
+            tp = unit.store.translation_project
+            request.translation_project = tp
+
+            User = get_user_model()
+            current_user = User.get(request.user)
+            request.profile = current_user
+
+            request.permissions = get_matching_permissions(current_user,
+                                                           tp.directory)
+
+            if (permission_code is not None and
+                not check_permission(permission_code, request)):
+                raise PermissionDenied(get_permission_message(permission_code))
 
             request.unit = unit
             request.store = unit.store
