@@ -101,7 +101,7 @@ def get_matching_permissions(user, directory, check_default=True):
 
 def check_user_permission(user, permission_codename, directory,
                           check_default=True):
-    """Checks if the current user has the permission the perform
+    """Checks if the current user has the permission to perform
     ``permission_codename``."""
     if user.is_superuser:
         return True
