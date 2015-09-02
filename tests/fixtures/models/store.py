@@ -11,7 +11,13 @@ import os
 import shutil
 import tempfile
 
+from django.utils import timezone
+
 import pytest
+
+
+TEST_UPDATE_PO = "tests/data/po/tutorial/en/tutorial_update.po"
+TEST_EVIL_UPDATE_PO = "tests/data/po/tutorial/en/tutorial_update_evil.po"
 
 
 def _require_store(tp, po_dir, name):
@@ -36,6 +42,71 @@ def _require_store(tp, po_dir, name):
         )
 
     return store
+
+
+def _create_submission_and_suggestion(store, user,
+                                      filename=TEST_UPDATE_PO,
+                                      suggestion="SUGGESTION"):
+
+    from tests.models.store import _update_from_upload_file
+
+    # Update store as user
+    _update_from_upload_file(store, filename, user=user)
+
+    # Add a suggestion
+    unit = store.units[0]
+    unit.add_suggestion(suggestion, user=user)
+    return unit
+
+
+def _create_comment_on_unit(unit, user, comment):
+    from pootle_statistics.models import (SubmissionFields,
+                                          SubmissionTypes, Submission)
+
+    unit.translator_comment = comment
+    unit.commented_on = timezone.now()
+    unit.commented_by = user
+    sub = Submission(
+        creation_time=unit.commented_on,
+        translation_project=unit.store.translation_project,
+        submitter=user,
+        unit=unit,
+        store=unit.store,
+        field=SubmissionFields.COMMENT,
+        type=SubmissionTypes.NORMAL,
+        new_value=comment,
+    )
+    sub.save()
+    unit._comment_updated = True
+    unit.save()
+
+
+def _mark_unit_fuzzy(unit, user):
+    from pootle_store.util import FUZZY
+    from pootle_statistics.models import (SubmissionFields,
+                                          SubmissionTypes, Submission)
+    sub = Submission(
+        creation_time=unit.commented_on,
+        translation_project=unit.store.translation_project,
+        submitter=user,
+        unit=unit,
+        store=unit.store,
+        field=SubmissionFields.STATE,
+        type=SubmissionTypes.NORMAL,
+        old_value=unit.state,
+        new_value=FUZZY,
+    )
+    sub.save()
+    unit.markfuzzy()
+    unit._state_updated = True
+    unit.save()
+
+
+def _make_member_updates(store, member):
+    # Member updates first unit, adding a suggestion, and marking unit as fuzzy
+    _create_submission_and_suggestion(store, member)
+    _create_comment_on_unit(store.units[0], member, "NICE COMMENT")
+    _mark_unit_fuzzy(store.units[0], member)
 
 
 @pytest.fixture(scope='session')
@@ -79,6 +150,17 @@ def en_tutorial_po(settings, english_tutorial, system):
     """Require the /en/tutorial/tutorial.po store."""
     return _require_store(english_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
+
+
+@pytest.fixture
+def en_tutorial_po_member_updated(settings, english_tutorial,
+                                  system, member):
+    """Require the /en/tutorial/tutorial.po store."""
+    store = _require_store(english_tutorial,
+                           settings.POOTLE_TRANSLATION_DIRECTORY,
+                           'tutorial.po')
+    _make_member_updates(store, member)
+    return store
 
 
 @pytest.fixture
