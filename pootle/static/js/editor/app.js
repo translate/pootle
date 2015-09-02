@@ -1193,8 +1193,7 @@ PTL.editor = {
 
   /* reDraws the translate table rows */
   reDraw: function (newTbody) {
-    const $tTable = $('table.translate-table');
-    const $where = $tTable.find('tbody');
+    const $where = $('.js-editor-body');
     const $oldRows = $where.find('tr');
 
     $oldRows.remove();
