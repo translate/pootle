@@ -475,9 +475,6 @@ PTL.editor = {
       PTL.editor.displayObsoleteMsg();
     }
 
-    // Restore dirty flag
-    this.isUnitDirty = false;
-
     autosize(document.querySelector('textarea.expanding'));
 
     // set direction of the comment body
@@ -766,6 +763,16 @@ PTL.editor = {
     // `blur()` prevents a double-click effect if the checkbox was
     // previously clicked using the mouse
     $('input.fuzzycheck').blur().click();
+  },
+
+  /* Updates unit textarea and input's `default*` values. */
+  updateUnitDefaultProperties: function () {
+    $('.js-translation-area').each(function () {
+      this.defaultValue = this.value;
+    });
+    var checkbox = $('#id_state')[0];
+    checkbox.defaultChecked = checkbox.checked;
+    this.handleTranslationChange();
   },
 
   handleTranslationChange: function () {
@@ -1468,12 +1475,7 @@ PTL.editor = {
 
     el.disabled = true;
 
-    // Update default value properties
-    $('.js-translation-area').each(function () {
-      this.defaultValue = this.value;
-    });
-    var checkbox = $('#id_state')[0];
-    checkbox.defaultChecked = checkbox.checked;
+    PTL.editor.updateUnitDefaultProperties();
 
     $.ajax({
       url: submitUrl,
@@ -1520,6 +1522,8 @@ PTL.editor = {
           sfn: 'PTL.editor.processSuggestion',
           efn: 'PTL.editor.error'
         };
+
+    PTL.editor.updateUnitDefaultProperties();
 
     // in suggest mode, do not send the fuzzy state flag
     // even if it is set in the form internally
