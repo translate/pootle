@@ -636,6 +636,52 @@ and the process will start a watchdog to track any client-side scripts for
 changes. Use this only when developing Pootle.
 
 
+.. _commands#user-management:
+
+Managing users
+--------------
+
+
+.. django-admin:: merge_user
+
+merge_user
+^^^^^^^^^^
+
+.. versionadded:: 2.7.1
+
+This can be used if you have a user with two accounts and need to merge one
+account into another. This will re-assign all submissions, units and
+suggestions, but not any of the user's profile data.
+
+This command requires 2 mandatory arguments, ``src_username`` and
+``target_username``, both should be valid usernames for users of your site.
+Submissions from the first are re-assigned to the second. The users' profile
+data is not merged.
+
+.. code-block:: bash
+
+    $ pootle merge_user src_username target_username
+
+
+.. django-admin:: purge_user
+
+purge_user
+^^^^^^^^^^
+
+.. versionadded:: 2.7.1
+
+This command can be used if you wish to permanently remove a user and revert
+the edits, comments and reviews that the user has made. This is useful for
+removing a spam account or other malicious user.
+
+This command requires a mandatory ``username`` argument, which should be a valid
+username for a user of your site.
+
+.. code-block:: bash
+
+    $ pootle purge_user username
+
+
 .. _commands#running:
 
 Running WSGI servers

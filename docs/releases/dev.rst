@@ -22,6 +22,7 @@ Major Changes
 
 - Updated translations.
 - Added django-transaction-hooks
+- Changed user delete behaviour
 
 
 Below we provide much more detail. These are by no means exhaustive, view the
@@ -65,12 +66,31 @@ Django transaction hooks
   - postgres: transaction_hooks.backends.postgresql_psycopg2
 
 
+Changed user delete behaviour
+-----------------------------
+
+On deleting a user account their submissions, suggestions and reviews are now
+re-assigned to the "nobody" user.
+
+If you wish to remove the user's contributions also, you can use the
+:djadmin:`purge_user` command, or call ``user.delete(purge=True)`` to delete the
+user programatically.
+
+
 Command changes and additions
 -----------------------------
 
 - Added a :djadmin:`contributors` command to get the list of contributors
   (:issue:`3867`).
 
+- Added a :djadmin:`merge_user` command to get merge submissions, comments and
+  reviews from one user account to another. This is useful for fixing users
+  that have multiple accounts and want them to be combined. No profile data
+  is merged.
+
+- Added a :djadmin:`purge_user` command to purge a user from the site and revert
+  any submissions, comments and reviews that they have made. This is useful to
+  revert spam or a malicious user.
 
 ...and lots of refactoring, cleanups to remove old Django versions specifics,
 improved documentation and of course, loads of bugs were fixed.
