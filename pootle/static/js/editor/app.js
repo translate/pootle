@@ -1194,17 +1194,17 @@ PTL.editor = {
 
   /* reDraws the translate table rows */
   reDraw: function (newTbody) {
-    var tTable = $("table.translate-table"),
-        where = $("tbody", tTable),
-        oldRows = $("tr", where);
+    const $tTable = $('table.translate-table');
+    const $where = $tTable.find('tbody');
+    const $oldRows = $where.find('tr');
 
-    oldRows.remove();
+    $oldRows.remove();
 
     if (newTbody !== false) {
-      where.append(newTbody);
+      $where.append(newTbody);
 
       // We are ready, call the ready handlers
-      $(tTable).trigger("editor_ready");
+      $tTable.trigger("editor_ready");
     }
   },
 
