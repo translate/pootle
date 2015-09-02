@@ -181,7 +181,6 @@ PTL.editor = {
     });
 
     /* Editor navigation/submission */
-    $(document).on('editor_ready', 'table.translate-table', this.ready);
     $(document).on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
     $(document).on('keypress', '.js-unit-index', this.gotoIndex.bind(this));
     $(document).on('dblclick click', '.js-unit-index', this.unitIndex);
@@ -1203,8 +1202,8 @@ PTL.editor = {
     if (newTbody !== false) {
       $where.append(newTbody);
 
-      // We are ready, call the ready handlers
-      $tTable.trigger("editor_ready");
+      // Call the post-render handlers
+      this.ready();
     }
   },
 
