@@ -89,6 +89,8 @@ PTL.editor = {
     this.ctxStep= 1;
     this.preventNavigation = false;
 
+    this.isUnitDirty = false;
+
     this.isLoading = true;
     this.showActivity();
 
@@ -228,6 +230,15 @@ PTL.editor = {
       $('.js-translate-translation').toggleClass('raw');
       $('.js-toggle-raw').toggleClass('selected');
       autosize.update(document.querySelector('.js-translation-area'));
+    });
+
+    /* */
+    window.addEventListener('beforeunload', (e) => {
+      if (PTL.editor.isUnitDirty) {
+        e.returnValue = gettext(
+          'You have unsaved changes in this unit. Navigating away will discard those changes.'
+        );
+      }
     });
 
     /* Bind hotkeys */
@@ -464,6 +475,9 @@ PTL.editor = {
       PTL.editor.displayObsoleteMsg();
     }
 
+    // Restore dirty flag
+    this.isUnitDirty = false;
+
     autosize(document.querySelector('textarea.expanding'));
 
     // set direction of the comment body
@@ -514,6 +528,18 @@ PTL.editor = {
   noResults: function () {
     PTL.editor.displayMsg({body: gettext("No results.")});
     PTL.editor.reDraw();
+  },
+
+  canNavigate: function() {
+    if (this.isUnitDirty) {
+      return window.confirm(
+        gettext(
+          'You have unsaved changes in this unit. Navigating away will discard those changes.'
+        )
+      );
+    }
+
+    return true;
   },
 
 
@@ -772,6 +798,9 @@ PTL.editor = {
         suggestionExists = suggestions.indexOf(area.value) !== -1;
       }
     }
+
+    // Store dirty state for the current unit
+    this.isUnitDirty = areaChanged || checkbox.checked === true;
 
     if (submit !== undefined) {
       submit.disabled = !(stateChanged || areaChanged) || needsReview;
@@ -1520,6 +1549,10 @@ PTL.editor = {
 
   /* Loads the previous unit */
   gotoPrev: function () {
+    if (!this.canNavigate()) {
+      return false;
+    }
+
     var newUnit = this.units.prev();
     if (newUnit) {
       var newHash = utils.updateHashPart('unit', newUnit.id);
@@ -1529,6 +1562,10 @@ PTL.editor = {
 
   /* Loads the next unit */
   gotoNext: function (isSubmission) {
+    if (!this.canNavigate()) {
+      return false;
+    }
+
     if (isSubmission === undefined) {
       isSubmission = true;
     }
@@ -1547,6 +1584,10 @@ PTL.editor = {
   /* Loads the editor with a specific unit */
   gotoUnit: function (e) {
     e.preventDefault();
+
+    if (!PTL.editor.canNavigate()) {
+      return false;
+    }
 
     // Ctrl + click / Alt + click / Cmd + click / Middle click opens a new tab
     if (e.ctrlKey || e.altKey || e.metaKey || e.which === 2) {
@@ -1634,6 +1675,10 @@ PTL.editor = {
     if (PTL.editor.preventNavigation) {
       return;
     }
+    if (!PTL.editor.canNavigate()) {
+      return false;
+    }
+
     var filterChecks = $('#js-filter-checks').val();
 
     if (filterChecks !== 'none') {
@@ -1709,6 +1754,10 @@ PTL.editor = {
 
   /* Loads units based on filtering */
   filterStatus: function () {
+    if (!PTL.editor.canNavigate()) {
+      return false;
+    }
+
     // this function can be executed in different contexts,
     // so using the full selector here
     var $selected = $('#js-filter-status option:selected'),
@@ -1870,6 +1919,10 @@ PTL.editor = {
 
   /* Loads the search view */
   onSearch: function (searchText) {
+    if (!PTL.editor.canNavigate()) {
+      return false;
+    }
+
     var newHash;
 
     if (searchText) {
