@@ -255,8 +255,8 @@ PTL.editor = {
     shortcut.add('ctrl+up', () => this.gotoPrev());
     shortcut.add('ctrl+,', () => this.gotoPrev());
 
-    shortcut.add('ctrl+down', () => this.gotoNext(false));
-    shortcut.add('ctrl+.', () => this.gotoNext(false));
+    shortcut.add('ctrl+down', () => this.gotoNext({isSubmission: false}));
+    shortcut.add('ctrl+.', () => this.gotoNext({isSubmission: false}));
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
@@ -1561,20 +1561,16 @@ PTL.editor = {
   },
 
   /* Loads the next unit */
-  gotoNext: function (isSubmission) {
+  gotoNext: function (opts={isSubmission: true}) {
     if (!this.canNavigate()) {
       return false;
-    }
-
-    if (isSubmission === undefined) {
-      isSubmission = true;
     }
 
     var newUnit = this.units.next();
     if (newUnit) {
       var newHash = utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
-    } else if (isSubmission) {
+    } else if (opts.isSubmission) {
       var backLink = $('.js-back-to-browser').attr('href');
       window.location.href = [backLink, 'finished'].join('?');
     }
