@@ -513,7 +513,7 @@ PTL.editor = {
   /* Things to do when no results are returned */
   noResults: function () {
     PTL.editor.displayMsg({body: gettext("No results.")});
-    PTL.editor.reDraw(false);
+    PTL.editor.reDraw();
   },
 
 
@@ -1198,7 +1198,7 @@ PTL.editor = {
 
     $oldRows.remove();
 
-    if (newTbody !== false) {
+    if (newTbody !== undefined) {
       $where.append(newTbody);
 
       // Call the post-render handlers
