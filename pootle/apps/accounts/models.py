@@ -35,7 +35,7 @@ from pootle.core.cache import make_method_key
 from pootle.core.utils.json import jsonify
 from pootle_language.models import Language
 from pootle_statistics.models import Submission, SubmissionTypes
-from pootle_store.models import SuggestionStates
+from pootle_store.models import SuggestionStates, Unit
 
 from .managers import UserManager
 
@@ -320,8 +320,23 @@ class User(AbstractBaseUser):
         return 'https://secure.gravatar.com/avatar/%s?s=%d&d=mm' % \
             (self.email_hash, size)
 
+    def get_suggestion_reviews(self):
+        return self.submission_set.get_unit_suggestion_reviews()
+
     def get_unit_rows(self):
         return min(max(self.unit_rows, 5), 49)
+
+    def get_unit_states_changed(self):
+        return self.submission_set.get_unit_state_changes()
+
+    def get_units_created(self):
+        """Units that were created by this user.
+
+        :return: Queryset of `Unit`s that were created by this user.
+        """
+        return (Unit.objects
+                    .filter(pk__in=(self.submission_set.get_unit_creates()
+                                        .values_list("unit", flat=True))))
 
     def pending_suggestion_count(self, tp):
         """Returns the number of pending suggestions for the user in the given

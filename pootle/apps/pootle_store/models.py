@@ -847,6 +847,20 @@ class Unit(models.Model, base.TranslationUnit):
     def get_active_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
 
+##################### Related Submissions ########################
+
+    def get_edits(self):
+        return self.submission_set.get_unit_edits()
+
+    def get_comments(self):
+        return self.submission_set.get_unit_comments()
+
+    def get_state_changes(self):
+        return self.submission_set.get_unit_state_changes()
+
+    def get_suggestion_reviews(self):
+        return self.submission_set.get_unit_suggestion_reviews()
+
 ##################### TranslationUnit ############################
 
     def update_tmserver(self):

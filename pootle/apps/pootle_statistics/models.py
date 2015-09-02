@@ -52,6 +52,8 @@ class SubmissionTypes(object):
     EDIT_TYPES = [NORMAL, SYSTEM]
     CONTRIBUTION_TYPES = [NORMAL, SYSTEM, SUGG_ADD]
     SUGGESTION_TYPES = [SUGG_ACCEPT, SUGG_ADD, SUGG_REJECT]
+    REVIEW_TYPES = [SUGG_ACCEPT, SUGG_REJECT]
+    EDITING_TYPES = [NORMAL, SYSTEM, UNIT_CREATE, UPLOAD]
 
 
 #: Values for the 'field' field of Submission
@@ -61,6 +63,8 @@ class SubmissionFields(object):
     TARGET = 2  # pootle_store.models.Unit.target
     STATE = 3  # pootle_store.models.Unit.state
     COMMENT = 4  # pootle_store.models.Unit.translator_comment
+
+    TRANSLATION_FIELDS = [TARGET]
 
     NAMES_MAP = {
         NONE: "",
@@ -90,6 +94,53 @@ class SubmissionManager(models.Manager):
                 'quality_check', 'store',
             )
         )
+
+    def get_unit_comments(self):
+        """Submissions that change a `Unit`'s comment.
+
+        :return: Queryset of `Submissions`s that change a `Unit`'s comment.
+        """
+        return self.get_queryset().filter(field=SubmissionFields.COMMENT)
+
+    def get_unit_creates(self):
+        """`Submission`s that create a `Unit`.
+
+        :return: Queryset of `Submissions`s that create a `Unit`'s.
+        """
+        return (self.get_queryset()
+                    .filter(type=SubmissionTypes.UNIT_CREATE))
+
+    def get_unit_edits(self):
+        """`Submission`s that change a `Unit`'s `target`.
+
+        :return: Queryset of `Submissions`s that change a `Unit`'s target.
+        """
+        return (self.get_queryset()
+                    .exclude(new_value__isnull=True)
+                    .filter(field__in=SubmissionFields.TRANSLATION_FIELDS)
+                    .filter(type__in=SubmissionTypes.EDITING_TYPES))
+
+    def get_unit_state_changes(self):
+        """Submissions that change a unit's STATE.
+
+        :return: Queryset of `Submissions`s change a `Unit`'s `STATE`
+            - ie FUZZY/TRANSLATED/UNTRANSLATED.
+        """
+        return (self.get_queryset()
+                    .filter(field=SubmissionFields.STATE))
+
+    def get_unit_suggestion_reviews(self):
+        """Submissions that review (reject/accept) `Unit` suggestions.
+
+        :return: Queryset of `Submissions`s that `REJECT`/`ACCEPT`
+            `Suggestion`s.
+        """
+        # reject_suggestion does not set field so we must exclude STATE reviews
+        # and it seems there are submissions that use STATE and are in
+        # REVIEW_TYPES
+        return (self.get_queryset()
+                    .exclude(field=SubmissionFields.STATE)
+                    .filter(type__in=SubmissionTypes.REVIEW_TYPES))
 
 
 class Submission(models.Model):
