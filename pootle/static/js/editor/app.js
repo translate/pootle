@@ -143,15 +143,15 @@ PTL.editor = {
 
     /* State changes */
     $(document).on('input', '.js-translation-area',
-                   this.onTextareaChange.bind(this));
+                   (e) => this.onTextareaChange(e));
     $(document).on('change', 'input.fuzzycheck',
-                   this.onStateChange.bind(this));
+                   () => this.onStateChange());
     $(document).on('click', 'input.fuzzycheck',
-                   this.onStateClick.bind(this));
+                   () => this.onStateClick());
 
     /* Suggest / submit */
     $(document).on('click', '.switch-suggest-mode a',
-                   this.toggleSuggestMode.bind(this));
+                   (e) => this.toggleSuggestMode(e));
 
     /* Update focus when appropriate */
     $(document).on('focus', '.focusthis', function (e) {
@@ -165,7 +165,7 @@ PTL.editor = {
     });
 
     /* Write TM results, special chars... into the currently focused element */
-    $(document).on('click', '.js-editor-copytext', this.copyText.bind(this));
+    $(document).on('click', '.js-editor-copytext', (e) => this.copyText(e));
 
     /* Copy translator comment */
     $(document).on('click', '.js-editor-copy-comment', (e) => {
@@ -184,12 +184,12 @@ PTL.editor = {
 
     /* Editor navigation/submission */
     $(document).on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
-    $(document).on('keypress', '.js-unit-index', this.gotoIndex.bind(this));
+    $(document).on('keypress', '.js-unit-index', (e) => this.gotoIndex(e));
     $(document).on('dblclick click', '.js-unit-index', this.unitIndex);
     $(document).on('click', 'input.submit', this.submit);
     $(document).on('click', 'input.suggest', this.suggest);
-    $(document).on('click', '#js-nav-prev', this.gotoPrev.bind(this));
-    $(document).on('click', '#js-nav-next', this.gotoNext.bind(this));
+    $(document).on('click', '#js-nav-prev', () => this.gotoPrev());
+    $(document).on('click', '#js-nav-next', () => this.gotoNext());
     $(document).on('click', '.js-suggestion-reject', this.rejectSuggestion);
     $(document).on('click', '.js-suggestion-accept', this.acceptSuggestion);
     $(document).on('click', '#js-toggle-timeline', this.toggleTimeline);
@@ -198,7 +198,7 @@ PTL.editor = {
     /* Filtering */
     $(document).on('change', '#js-filter-status', this.filterStatus);
     $(document).on('change', '#js-filter-checks', this.filterChecks);
-    $(document).on('change', '#js-filter-sort', this.filterSort.bind(this));
+    $(document).on('change', '#js-filter-sort', () => this.filterSort());
     $(document).on('click', '.js-more-ctx', function () {
       PTL.editor.moreContext(false);
     });
@@ -249,14 +249,14 @@ PTL.editor = {
         $('input.submit').trigger('click');
       }
     });
-    shortcut.add('ctrl+space', this.toggleState.bind(this));
-    shortcut.add('ctrl+shift+space', this.toggleSuggestMode.bind(this));
+    shortcut.add('ctrl+space', () => this.toggleState());
+    shortcut.add('ctrl+shift+space', (e) => this.toggleSuggestMode(e));
 
-    shortcut.add('ctrl+up', this.gotoPrev.bind(this));
-    shortcut.add('ctrl+,', this.gotoPrev.bind(this));
+    shortcut.add('ctrl+up', () => this.gotoPrev());
+    shortcut.add('ctrl+,', () => this.gotoPrev());
 
-    shortcut.add('ctrl+down', this.gotoNext.bind(this, false));
-    shortcut.add('ctrl+.', this.gotoNext.bind(this, false));
+    shortcut.add('ctrl+down', () => this.gotoNext(false));
+    shortcut.add('ctrl+.', () => this.gotoNext(false));
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
