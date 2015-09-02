@@ -17,7 +17,7 @@
             <div class="timeline-field-body">{{ entry.suggestion_text }}</div>
             <div class="sidetitle">{{ entry.suggestion_description }}</div>
           </div>
-          {% elif entry.field %}
+          {% elif entry.field > -1 %}
           <div class="timeline-field-{{ entry.field }}
             {% if entry.field == 4 %}js-editor-copy-comment{% endif %}
             {% if entry.field == 2 %}js-editor-copytext{% endif %}"
