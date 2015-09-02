@@ -148,6 +148,8 @@ PTL.editor = {
                    () => this.onStateChange());
     $(document).on('click', 'input.fuzzycheck',
                    () => this.onStateClick());
+    $(document).on('input', '#id_translator_comment',
+                   () => this.handleTranslationChange());
 
     /* Suggest / submit */
     $(document).on('click', '.switch-suggest-mode a',
@@ -775,7 +777,17 @@ PTL.editor = {
     this.handleTranslationChange();
   },
 
+  /* Updates comment area's `defaultValue` value. */
+  updateCommentDefaultProperties: function () {
+    const comment = document.querySelector('#id_translator_comment');
+    comment.defaultValue = comment.value;
+    this.handleTranslationChange();
+  },
+
   handleTranslationChange: function () {
+    const comment = document.querySelector('#id_translator_comment');
+    const commentChanged = comment.value !== comment.defaultValue;
+
     var submit = $('.js-submit')[0],
         suggest = $('.js-suggest')[0],
         translations = $('.js-translation-area').get(),
@@ -807,7 +819,7 @@ PTL.editor = {
     }
 
     // Store dirty state for the current unit
-    this.isUnitDirty = areaChanged || checkbox.checked === true;
+    this.isUnitDirty = areaChanged || checkbox.checked === true || commentChanged;
 
     if (submit !== undefined) {
       submit.disabled = !(stateChanged || areaChanged) || needsReview;
@@ -1940,6 +1952,8 @@ PTL.editor = {
    */
   comment: function (e) {
     e.preventDefault();
+
+    PTL.editor.updateCommentDefaultProperties();
 
     var url = $(this).attr('action'),
         reqData = $(this).serializeObject();
