@@ -472,9 +472,9 @@ PTL.editor = {
 
   /* Stuff to be done when the editor is ready  */
   ready: function () {
-    var currentUnit = PTL.editor.units.getCurrent();
+    var currentUnit = this.units.getCurrent();
     if (currentUnit.get('isObsolete')) {
-      PTL.editor.displayObsoleteMsg();
+      this.displayObsoleteMsg();
     }
 
     autosize(document.querySelector('textarea.expanding'));
@@ -490,21 +490,21 @@ PTL.editor = {
       firstArea.focus();
     }
 
-    PTL.editor.settings.targetLang = PTL.editor.normalizeCode(
+    this.settings.targetLang = PTL.editor.normalizeCode(
       $('.js-translation-area').attr('lang')
     );
 
     const $devComments = $('.js-developer-comments');
     $devComments.html(linkHashtags($devComments.html()));
 
-    PTL.editor.hlSearch();
+    this.hlSearch();
 
-    if (PTL.editor.settings.tmUrl !== '') {
-      PTL.editor.getTMUnits();
+    if (this.settings.tmUrl !== '') {
+      this.getTMUnits();
     }
 
-    if (PTL.editor.tmData !== null) {
-      var tmContent = PTL.editor.getTMUnitsContent(PTL.editor.tmData);
+    if (this.tmData !== null) {
+      var tmContent = this.getTMUnitsContent(PTL.editor.tmData);
       $('#extras-container').append(tmContent);
     }
 
@@ -512,16 +512,16 @@ PTL.editor = {
     $("table.translate-table").trigger("mt_ready");
 
     this.isUnitDirty = false;
-    PTL.editor.keepState = false;
-    PTL.editor.isLoading = false;
-    PTL.editor.hideActivity();
-    PTL.editor.updateExportLink();
+    this.keepState = false;
+    this.isLoading = false;
+    this.hideActivity();
+    this.updateExportLink();
     helpers.updateRelativeDates();
 
     // clear any pending 'Loading...' indicator timer
     // as ajaxStop() is not fired in IE properly
     // at initial page load (?!)
-    clearTimeout(PTL.editor.delayedActivityTimer);
+    clearTimeout(this.delayedActivityTimer);
   },
 
   /* Things to do when no results are returned */
