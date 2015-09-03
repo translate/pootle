@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-01 11:11+0100\n"
-"PO-Revision-Date: 2015-08-11 05:15+0000\n"
-"Last-Translator: jui <appukonrad@gmail.com>\n"
+"PO-Revision-Date: 2015-09-02 04:27+0000\n"
+"Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1439270106.000000\n"
+"X-POOTLE-MTIME: 1441168056.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -182,23 +182,25 @@ msgstr "Nahrát překlady"
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
+"Nepodporovaný typ souboru ‚%s‘, v současnosti jsou podporovány jen soubory "
+"PO\n"
 
 #: apps/import_export/utils.py:30
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "Soubor %r nemá nastavenu položku hlavičky X-Pootle-Path\n"
+msgstr "Soubor ‚%s‘ nemá nastavenu položku hlavičky X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
-"Soubor %r nemá nastavenu, nebo má chybně nastavenu položku hlavičky X-Pootle-"
-"Revision\n"
+"Soubor ‚%s‘ nemá nastavenu, nebo má chybně nastavenu položku hlavičky X"
+"-Pootle-Revision\n"
 
 #: apps/import_export/utils.py:43
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr "Vytvoření %r se nezdařilo. Chybějící projekt/jazyk? (%s)"
+msgstr "Vytvoření ‚%s‘ se nezdařilo. Chybějící projekt/jazyk? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -525,9 +527,8 @@ msgid "Placeholders"
 msgstr "Zástupné znaky"
 
 #: apps/pootle_misc/checks.py:85
-#, fuzzy
 msgid "Valid XML"
-msgstr "Neplatné XML"
+msgstr "Platné XML"
 
 #: apps/pootle_misc/checks.py:86
 msgid "XML tags"
@@ -778,19 +779,18 @@ msgid "Comment"
 msgstr "Komentář"
 
 #: apps/pootle_statistics/models.py:266
-#, fuzzy
 msgid "Added suggestion"
-msgstr "%d návrh"
+msgstr "Přidal návrh"
 
 #: apps/pootle_statistics/models.py:267
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Přijmout návrh"
+msgstr "Přijal návrh uživatele %s"
 
 #: apps/pootle_statistics/models.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Odmítnout návrh"
+msgstr "Zamítl návrh uživatele %s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -813,13 +813,12 @@ msgid "Gettext PO"
 msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:24
-#, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "XLIFF soubor"
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -861,9 +860,8 @@ msgid "Needs work"
 msgstr "Potřebuje upravit"
 
 #: apps/pootle_store/forms.py:247
-#, fuzzy
 msgid "Needs work flag must be cleared"
-msgstr "Musí být zrušeno označení přibližného překladu"
+msgstr "Musí být zrušeno označení Potřebuje upravit"
 
 #: apps/pootle_store/forms.py:290
 msgid "Value of `similarity` should be in in the [0..1] range"
@@ -952,9 +950,8 @@ msgid "Review"
 msgstr "Zkontrolovat"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
-msgstr "Návrhy"
+msgstr "Návrh"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1088,12 +1085,11 @@ msgstr "Číslo určující důležitost. Vyšší priorita znamená vyšší d�
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
-msgstr ""
+msgstr "Veřejný?"
 
 #: apps/virtualfolder/models.py:55
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "Zda je tento virtuální adresář aktivní nebo ne."
+msgstr "Zda je tento virtuální adresář veřejný nebo ne."
 
 #: apps/virtualfolder/models.py:60
 #, python-format
@@ -1136,7 +1132,7 @@ msgstr "Nepodařilo se navázat spojení s Redis (%s)"
 #: checks.py:93
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
-msgstr "Ujistěte se, že je Redis spuštěn na %(host)s:%(port)s."
+msgstr "Ujistěte se, že je Redis spuštěn na %(host)s:%(port)s"
 
 #: checks.py:102
 msgid "No RQ Worker running."
@@ -1203,7 +1199,7 @@ msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
-"Nastavte SSSION_ENGINE na django.contrib.sessions.backend.cached_db\n"
+"Nastavte SESSION_ENGINE na django.contrib.sessions.backend.cached_db\n"
 "Aktuální nastavení: %r"
 
 #: checks.py:165
@@ -1232,9 +1228,8 @@ msgstr ""
 "prostřednictvím kontaktního formuláře."
 
 #: checks.py:183
-#, fuzzy
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr "Není nastaveno settings.DEFAULT_FROM_EMAIL."
+msgstr "Není nastaveno DEFAULT_FROM_EMAIL."
 
 #: checks.py:184 checks.py:194
 msgid ""
@@ -1246,35 +1241,33 @@ msgstr ""
 "Nezapomeňte zkontrolovat nastavení vašeho e-mail serveru."
 
 #: checks.py:192
-#, fuzzy, python-format
+#, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
-msgstr "settings.DEFAULT_FROM_EMAIL používá následující výchozí nastavení %r."
+msgstr "DEFAULT_FROM_EMAIL používá následující výchozí nastavení %r."
 
 #: checks.py:203
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "MARKUP_FILTER nenalezen. Bude použito HTML."
+msgstr "POOTLE_MARKUP_FILTER nebyl nalezen."
 
 #: checks.py:204
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Nastavte POOTLE_MARKUP_FILTER."
 
 #: checks.py:209
-#, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "MARKUP_FILTER obsahuje neplatnou hodnotu '%s'. Bude použito HTML."
+msgstr "POOTLE_MARKUP_FILTER obsahuje neplatnou hodnotu."
 
 #: checks.py:210
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Nastavte platnou hodnotu POOTLE_MARKUP_FILTER."
 
 #: checks.py:224
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER obsahuje neplatné značky."
 
 #: checks.py:225
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Nastavte platné značky pro POOTLE_MARKUP_FILTER."
 
 #: checks.py:230
 #, python-format
@@ -1282,28 +1275,32 @@ msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"POOTLE_MARKUP_FILTER má nastavenu značku ‚%s‘, ale balíček který ji "
+"poskytuje nebyl nalezen."
 
 #: checks.py:232
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Nainstalujte tento balíček, nebo upravte POOTLE_MARKUP_FILTER."
 
 #: checks.py:256
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "Výchozí ‚admin‘ uživatel má stále nastaveno výchozí heslo ‚admin‘."
 
 #: checks.py:258
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Odstraňte uživatele ‚admin‘, nebo změňte jeho heslo."
 
 #: checks.py:273
 msgid "Database connection does not implement on_commit."
-msgstr ""
+msgstr "Databázové spojení nepodporuje on_commit."
 
 #: checks.py:274
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
+"Nastavte DATABASES['default']['ENGINE'] pro použití back-endu z "
+"transaction_hooks.backends."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1690,9 +1687,8 @@ msgid "No activity recorded in a given period"
 msgstr "Ve vybraném období nebyla zaznamenána žádná aktivita"
 
 #: templates/admin/detailed_reports.html:226
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "Překlad (mezisoučet)"
+msgstr "Návrh (mezisoučet)"
 
 #: templates/admin/detailed_reports.html:236
 msgid "Translation (subtotal)"
@@ -1795,6 +1791,8 @@ msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"Pro vložení dynamického kódu jazyka v odkazech na stránkách Oznámení "
+"použijte <code><strong>/xx/<strong></code>."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1866,19 +1864,19 @@ msgid "View all"
 msgstr "Zobrazit vše"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
-msgstr "Přeloženo <span class='value translated'>0</span>%%"
+msgstr "Přeloženo <span class=\"value translated\">0</span>%%"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr "Přibližně přeloženo <span class='value fuzzy'>0</span>%%"
+msgstr "Přibližně přeloženo <span class=\"value fuzzy\">0</span>%%"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr "Nepřeloženo <span class='value untranslated'>0</span>%%"
+msgstr "Nepřeloženo <span class=\"value untranslated\">0</span>%%"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
@@ -2038,7 +2036,7 @@ msgid "No strings."
 msgstr "Žádné řetězce."
 
 #: templates/editor/export_view.html:149
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We displayed the first unit out of %(total_count)s. Please refine your "
 "search."
@@ -2046,14 +2044,13 @@ msgid_plural ""
 "We displayed the first %(unit_count)s units out of %(total_count)s. Please "
 "refine your search."
 msgstr[0] ""
-"Zobrazeno je prvních %(count)s položek ze %(total_count)s. Upřesněte rozsah "
-"hledání."
+"Zobrazena je první položka z(e) %(total_count)s. Upřesněte rozsah hledání."
 msgstr[1] ""
-"Zobrazeno je prvních %(count)s položek ze %(total_count)s. Upřesněte rozsah "
-"hledání."
+"Zobrazeny jsou první %(count)s položky z(e) %(total_count)s. Upřesněte "
+"rozsah hledání."
 msgstr[2] ""
-"Zobrazeno je prvních %(count)s položek ze %(total_count)s. Upřesněte rozsah "
-"hledání."
+"Zobrazeno je prvních %(count)s položek z(e) %(total_count)s. Upřesněte "
+"rozsah hledání."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
 #: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
@@ -2217,14 +2214,12 @@ msgid "Comment: "
 msgstr "Komentář: "
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "Možné problémy s překladem"
+msgstr "Kritické problémy s překladem"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "Opravit kritické chyby"
+msgstr "Kritické chyby:"
 
 #: templates/editor/units/xhr_checks.html:12
 msgid "Mute quality check"
@@ -2240,7 +2235,7 @@ msgstr "Možné problémy s překladem"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "Dejte si pozor na:"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
@@ -2397,6 +2392,8 @@ msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
+"Pro tento projekt neexistují žádné šablony, takže přidávání nových jazyků z "
+"této obrazovky je zakázáno."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -2464,7 +2461,7 @@ msgstr "Termín"
 
 #: templates/translation_projects/terminology/manage.html:58
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "Nebyl nalezen soubor terminologie"
 
 #: templates/translation_projects/terminology/manage.html:60
 msgid ""

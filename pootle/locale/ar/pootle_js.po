@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-01 11:11+0100\n"
-"PO-Revision-Date: 2015-06-26 11:57+0000\n"
-"Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
+"PO-Revision-Date: 2015-09-01 13:10+0000\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
-"n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && n<="
+"10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1435319838.000000\n"
+"X-POOTLE-MTIME: 1441113040.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -202,9 +202,9 @@ msgid "Reports"
 msgstr "التّقارير"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr "لقد أرسلنا بريدًا يحوي وصلة خاصّة إلى <span>%s</span>."
+msgstr "لقد أرسلنا بريدًا يحوي الوصلة الخاصّة إلى <span>%s</span>"
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
@@ -256,7 +256,7 @@ msgstr "تنشيط الحساب"
 
 #: static/js/auth/components/AuthController.js:111
 msgid "Email Confirmation"
-msgstr ""
+msgstr "تأكيد البريد"
 
 #: static/js/auth/components/AuthController.js:118
 #: static/js/auth/components/AuthController.js:125
@@ -278,7 +278,7 @@ msgstr "اتّصل بنا"
 
 #: static/js/auth/components/EmailConfirmation.js:30
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "انتهت صلاحية وصلة تأكيد البريد، أو ربما ليست صحيحة."
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
@@ -716,7 +716,7 @@ msgstr "استخدم استمارة البحث للعثور على مستخدم�
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
-msgstr ""
+msgstr "اختر..."
 
 #: static/js/shared/components/forms.jsx:70
 msgid "No results found"
@@ -775,15 +775,15 @@ msgstr "المشروع/اللغة"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "مُقترح"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
-msgstr "المترجمة"
+msgstr "مُتَرجَم"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
-msgstr "المراجعة"
+msgstr "مُراجَع"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
@@ -797,15 +797,15 @@ msgstr "تغيّر النّتيجة"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#, fuzzy, python-format
+#, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] "كلمة المرور"
-msgstr[1] "كلمة المرور"
-msgstr[2] "كلمة المرور"
-msgstr[3] "كلمة المرور"
-msgstr[4] "كلمة المرور"
-msgstr[5] "كلمة المرور"
+msgstr[0] "لا كلمات"
+msgstr[1] "كلمة"
+msgstr[2] "كلمتين"
+msgstr[3] "%s كلمات"
+msgstr[4] "%s كلمة"
+msgstr[5] "%s كلمة"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
@@ -825,7 +825,7 @@ msgstr "التّاريخ والوقت"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr "التّعليق"
+msgstr "التعليق"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7

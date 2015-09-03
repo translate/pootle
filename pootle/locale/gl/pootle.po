@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-01 11:11+0100\n"
-"PO-Revision-Date: 2015-08-03 11:38+0000\n"
+"PO-Revision-Date: 2015-09-02 09:02+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1438601909.000000\n"
+"X-POOTLE-MTIME: 1441184544.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -182,21 +182,22 @@ msgstr "Enviar traducións"
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
+"Tipo de ficheiro '%s' non compatíbel, por agora só se admiten ficheiros PO\n"
 
 #: apps/import_export/utils.py:30
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "Ao ficheiro %r fáltalle a cabeceira X-Pootle-Path\n"
+msgstr "Ao ficheiro '%s' fáltalle a cabeceira X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr "Ao ficheiro %r fáltalle a cabeceira X-Pootle-Revision\n"
+msgstr "Ao ficheiro '%s' fáltalle a cabeceira X-Pootle-Revision\n"
 
 #: apps/import_export/utils.py:43
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr "Non foi posíbel crear %r. Falta o proxecto ou o idioma? (%s)"
+msgstr "Non foi posíbel crear '%s'. Falta o proxecto ou o idioma? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -523,9 +524,8 @@ msgid "Placeholders"
 msgstr "Marcadores de posición"
 
 #: apps/pootle_misc/checks.py:85
-#, fuzzy
 msgid "Valid XML"
-msgstr "XML non válido"
+msgstr "XML válido"
 
 #: apps/pootle_misc/checks.py:86
 msgid "XML tags"
@@ -776,19 +776,18 @@ msgid "Comment"
 msgstr "Comentario"
 
 #: apps/pootle_statistics/models.py:266
-#, fuzzy
 msgid "Added suggestion"
-msgstr "%d suxestión"
+msgstr "Engadiu unha suxestión"
 
 #: apps/pootle_statistics/models.py:267
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Aceptar suxestión"
+msgstr "Aceptou unha suxestión de %s"
 
 #: apps/pootle_statistics/models.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Rexeitar suxestión"
+msgstr "Rexeitou unha suxestión de %s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -811,17 +810,16 @@ msgid "Gettext PO"
 msgstr "PO de Gettext"
 
 #: apps/pootle_store/filetypes.py:24
-#, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "Ficheiro XLIFF"
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
-msgstr "Qt ts"
+msgstr "ts de Qt"
 
 #: apps/pootle_store/filetypes.py:37
 msgid "TMX"
@@ -859,7 +857,6 @@ msgid "Needs work"
 msgstr "Precisa mellorar"
 
 #: apps/pootle_store/forms.py:247
-#, fuzzy
 msgid "Needs work flag must be cleared"
 msgstr "Débese eliminar a marca 'precisa traballo'"
 
@@ -949,9 +946,8 @@ msgid "Review"
 msgstr "Revisar"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
-msgstr "Suxestións"
+msgstr "Suxestión"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1086,12 +1082,11 @@ msgstr ""
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
-msgstr ""
+msgstr "É público?"
 
 #: apps/virtualfolder/models.py:55
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "Indica se este cartafol virtual está activo ou non."
+msgstr "Indica se este cartafol virtual é público ou non."
 
 #: apps/virtualfolder/models.py:60
 #, python-format
@@ -1230,7 +1225,6 @@ msgstr ""
 "formulario de contacto."
 
 #: checks.py:183
-#, fuzzy
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "A opción DEFAULT_FROM_EMAIL non está definida."
 
@@ -1243,35 +1237,33 @@ msgstr ""
 "Non esqueza revisar a configuración do servidor de correo electrónico."
 
 #: checks.py:192
-#, fuzzy, python-format
+#, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL está usando a opción predefinida %r."
 
 #: checks.py:203
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "Falta MARKUP_FILTER. Empregarase HTML."
+msgstr "Falta POOTLE_MARKUP_FILTER."
 
 #: checks.py:204
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Defina POOTLE_MARKUP_FILTER."
 
 #: checks.py:209
-#, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "Valor «%s» non válido en MARKUP_FILTER. Empregarase HTML."
+msgstr "Valor non válido en POOTLE_MARKUP_FILTER."
 
 #: checks.py:210
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Defina un valor válido para POOTLE_MARKUP_FILTER."
 
 #: checks.py:224
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Marcación non válida en POOTLE_MARKUP_FILTER."
 
 #: checks.py:225
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Defina unha marcación válida para POOTLE_MARKUP_FILTER."
 
 #: checks.py:230
 #, python-format
@@ -1279,28 +1271,33 @@ msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"POOTLE_MARKUP_FILTER indica que se debe empregar a marcación '%s', pero non "
+"é posíbel atopar o paquete a fornece."
 
 #: checks.py:232
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Instale o paquete ou cambie POOTLE_MARKUP_FILTER."
 
 #: checks.py:256
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
+"O usuario predefinido 'admin' aínda usa o contrasinal predefinido 'admin'."
 
 #: checks.py:258
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Retire o usuario 'admin' ou cambie o seu contrasinal."
 
 #: checks.py:273
 msgid "Database connection does not implement on_commit."
-msgstr ""
+msgstr "A conexión á base de datos non implementa on_commit."
 
 #: checks.py:274
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
+"Indique en DATABASES['default']['ENGINE'] un dos motores de base de datos de "
+"transaction_hooks.backends."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1498,8 +1495,9 @@ msgstr ""
 "Este sitio funciona con Pootle &mdash; un potente software web que lle "
 "permite a equipos facer traducións e xestionar as mesmas. Esta ferramenta "
 "comunitaria é Software Libre, e calquera equipo pode empregala e contribuír "
-"á comunidade de Pootle. Lea máis no <a href=\"http://pootle.translatehouse."
-"org/\">sitio web do proxecto</a>."
+"á comunidade de Pootle. Lea máis no <a href=\""
+"http://pootle.translatehouse.org/\"><i class=\"icon-external-link\"></i>"
+"sitio web do proxecto</a>."
 
 #: templates/about.html:26
 #, python-format
@@ -1548,7 +1546,7 @@ msgstr "Gardar os cambios"
 
 #: templates/admin/_tabs.html:6
 msgid "Info"
-msgstr "Info"
+msgstr "Información"
 
 #: templates/admin/_tabs.html:11 templates/admin/dashboard.html:21
 #: templates/admin/users.html:4 templates/admin/users.html.py:7
@@ -1686,9 +1684,8 @@ msgid "No activity recorded in a given period"
 msgstr "Non se rexistrou ningunha actividade no período especificado"
 
 #: templates/admin/detailed_reports.html:226
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "Tradución (subtotal)"
+msgstr "Suxestión (subtotal)"
 
 #: templates/admin/detailed_reports.html:236
 msgid "Translation (subtotal)"
@@ -1791,6 +1788,8 @@ msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"Empregue <code><strong>/xx/</strong></code> nos URLs que empregue nas "
+"páxinas de Anuncios para obter un código de idioma dinámico."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1862,19 +1861,19 @@ msgid "View all"
 msgstr "Ver todo"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
-msgstr "<span class='value translated'>0</span>%% traducido"
+msgstr "<span class=\"value translated\">0</span>%% traducido"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr "<span class='value fuzzy'>0</span>%% precisan traballo"
+msgstr "<span class=\"value fuzzy\">0</span>%% precisan traballo"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr "<span class='value untranslated'>0</span>%% sen traducir"
+msgstr "<span class=\"value untranslated\">0</span>%% sen traducir"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
@@ -2036,17 +2035,17 @@ msgid "No strings."
 msgstr "Non hai cadeas."
 
 #: templates/editor/export_view.html:149
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We displayed the first unit out of %(total_count)s. Please refine your "
 "search."
 msgid_plural ""
 "We displayed the first %(unit_count)s units out of %(total_count)s. Please "
 "refine your search."
-msgstr[0] ""
-"Móstranse as primeiras %(count)s unidades de %(total_count)s. Refine a busca."
+msgstr[0] "Móstrase a primeira unidade de %(total_count)s. Refine a busca."
 msgstr[1] ""
-"Móstranse as primeiras %(count)s unidades de %(total_count)s. Refine a busca."
+"Móstranse as primeiras %(unit_count)s unidades de %(total_count)s. Refine a "
+"busca."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
 #: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
@@ -2118,11 +2117,11 @@ msgstr "Suxerir a tradución e ir á seguinte cadea (Ctrl+Intro)"
 
 #: templates/editor/units/edit.html:169
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr "Cambiar a modo tradución  (Ctrl+Shift+Space)"
+msgstr "Cambiar a modo tradución (Ctrl+Maiús+Espazo)"
 
 #: templates/editor/units/edit.html:170
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr "Cambiar a modo suxestión  (Ctrl+Shift+Space)"
+msgstr "Cambiar a modo suxestión (Ctrl+Maiús+Espazo)"
 
 #: templates/editor/units/edit.html:175
 msgid "Mark this string as needing further work (Ctrl+Space)"
@@ -2207,17 +2206,15 @@ msgstr "Hai moito tempo"
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
-msgstr "Comentario:"
+msgstr "Comentario: "
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "Posíbeis incidencias coa tradución"
+msgstr "Erros críticos na tradución"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "Arranxar os erros críticos"
+msgstr "Erros críticos:"
 
 #: templates/editor/units/xhr_checks.html:12
 msgid "Mute quality check"
@@ -2233,7 +2230,7 @@ msgstr "Posíbeis incidencias coa tradución"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "Atención con:"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
@@ -2390,6 +2387,8 @@ msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
+"Non hai idioma modelo (templates) para este proxecto, así que se desactivou "
+"a adición de novos idiomas desde esta pantalla."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -2454,7 +2453,7 @@ msgstr "Termo"
 
 #: templates/translation_projects/terminology/manage.html:58
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "Non se atopou ningún ficheiro de terminoloxía"
 
 #: templates/translation_projects/terminology/manage.html:60
 msgid ""
@@ -2462,6 +2461,9 @@ msgid ""
 "translation project a \"pootle-terminology\" file named after your project's "
 "extension."
 msgstr ""
+"Para poder usar a terminoloxía asegúrese de engadir ao seu proxecto de "
+"tradución un ficheiro cuxo nome sexa «pootle-terminology» seguido da "
+"extensión do seu proxecto (p.ex. «pootle-terminology.po»)."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

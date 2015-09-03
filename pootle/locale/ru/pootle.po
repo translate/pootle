@@ -9,18 +9,18 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-01 11:11+0100\n"
-"PO-Revision-Date: 2015-07-18 23:20+0000\n"
+"PO-Revision-Date: 2015-09-01 20:06+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1437261651.000000\n"
+"X-POOTLE-MTIME: 1441138009.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -184,22 +184,22 @@ msgstr "Загрузить переводы"
 #: apps/import_export/utils.py:24
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
-msgstr ""
+msgstr "Неподдерживаемый тип файла '%s'. Сейчас поддерживается только PO\n"
 
 #: apps/import_export/utils.py:30
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "В файле %r пропущен заголовок X-Pootle-Path\n"
+msgstr "В файле '%s' пропущен заголовок X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr "В файле %r пропущен или некорректен заголовок X-Pootle-Revision\n"
+msgstr "В файле '%s' пропущен или некорректен заголовок X-Pootle-Revision\n"
 
 #: apps/import_export/utils.py:43
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr "Не могу создать %r. Отсутствует Проект/Язык? (%s)"
+msgstr "Невозможно создать '%s'. Отсутствует Проект/Язык? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -527,9 +527,8 @@ msgid "Placeholders"
 msgstr "Местозаполнители"
 
 #: apps/pootle_misc/checks.py:85
-#, fuzzy
 msgid "Valid XML"
-msgstr "Некорректный XML"
+msgstr "Корректность XML"
 
 #: apps/pootle_misc/checks.py:86
 msgid "XML tags"
@@ -779,19 +778,18 @@ msgid "Comment"
 msgstr "Комментарий"
 
 #: apps/pootle_statistics/models.py:266
-#, fuzzy
 msgid "Added suggestion"
-msgstr "%d предложение перевода"
+msgstr "Добавить предложение"
 
 #: apps/pootle_statistics/models.py:267
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Принять предложение"
+msgstr "Принято предложение от %s"
 
 #: apps/pootle_statistics/models.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Отклонить предложение"
+msgstr "Отклонено предложение от %s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -814,13 +812,12 @@ msgid "Gettext PO"
 msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:24
-#, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "Файл XLIFF"
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -862,7 +859,6 @@ msgid "Needs work"
 msgstr "Необходима доработка"
 
 #: apps/pootle_store/forms.py:247
-#, fuzzy
 msgid "Needs work flag must be cleared"
 msgstr "Флаг неточного перевода должен быть снят"
 
@@ -952,9 +948,8 @@ msgid "Review"
 msgstr "Проверка"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
-msgstr "Предложений переводов"
+msgstr "Предложение"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1087,12 +1082,11 @@ msgstr "Число обозначает важность. Чем больше п
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
-msgstr ""
+msgstr "Публичный?"
 
 #: apps/virtualfolder/models.py:55
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "Активен виртуальный каталог или нет."
+msgstr "Виден виртуальный каталог для всех или нет."
 
 #: apps/virtualfolder/models.py:60
 #, python-format
@@ -1230,9 +1224,8 @@ msgstr ""
 "приходить сообщения от формы обратной связи."
 
 #: checks.py:183
-#, fuzzy
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr "Переменная settings.DEFAULT_FROM_EMAIL не задана."
+msgstr "Переменная DEFAULT_FROM_EMAIL не задана."
 
 #: checks.py:184 checks.py:194
 msgid ""
@@ -1243,36 +1236,33 @@ msgstr ""
 "Не забудьте проверить настройки почтового сервера."
 
 #: checks.py:192
-#, fuzzy, python-format
+#, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
-msgstr ""
-"settings.DEFAULT_FROM_EMAIL использует следующее значение по умолчанию: %r."
+msgstr "DEFAULT_FROM_EMAIL использует следующее значение по умолчанию: %r."
 
 #: checks.py:203
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "MARKUP_FILTER отсутствует. Возвращаемся к HTML."
+msgstr "POOTLE_MARKUP_FILTER  отсутствует."
 
 #: checks.py:204
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Установите POOTLE_MARKUP_FILTER."
 
 #: checks.py:209
-#, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "Неверное значение '%s' в MARKUP_FILTER. Возвращаемся к HTML."
+msgstr "Неверное значение для POOTLE_MARKUP_FILTER."
 
 #: checks.py:210
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Установите корректное значение для POOTLE_MARKUP_FILTER."
 
 #: checks.py:224
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Некорректная разметка в POOTLE_MARKUP_FILTER."
 
 #: checks.py:225
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Установите корректную разметку для  POOTLE_MARKUP_FILTER. "
 
 #: checks.py:230
 #, python-format
@@ -1280,28 +1270,32 @@ msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"POOTLE_MARKUP_FILTER установлен в значение '%s' , однако пакет, который "
+"предоставляет эту функциональность, не найден."
 
 #: checks.py:232
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Установите пакет или измените значение POOTLE_MARKUP_FILTER."
 
 #: checks.py:256
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "У пользователя 'admin' пароль до сих пор 'admin'."
 
 #: checks.py:258
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Удалите пользователя 'admin' или смените ему пароль."
 
 #: checks.py:273
 msgid "Database connection does not implement on_commit."
-msgstr ""
+msgstr "Соединение с БД не реализует вызов on_commit."
 
 #: checks.py:274
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
+"Установите DATABASES['default']['ENGINE'] на использование бэкэнда из "
+"transaction_hooks.backends."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1688,9 +1682,8 @@ msgid "No activity recorded in a given period"
 msgstr "Нет зарегистрированной активности в данный период"
 
 #: templates/admin/detailed_reports.html:226
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "Перевод (предварительный итог)"
+msgstr "Предложения перевода (предварительный итог)"
 
 #: templates/admin/detailed_reports.html:236
 msgid "Translation (subtotal)"
@@ -1794,6 +1787,8 @@ msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"На страницах анонсов используйте <code><strong>/xx/</strong></code>, чтобы "
+"автоматически подставлять язык проекта в ссылку."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1865,17 +1860,17 @@ msgid "View all"
 msgstr "Показать все"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
 msgstr "<span class='value translated'>0</span>%% переведено"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
 msgstr "<span class='value fuzzy'>0</span>%% неточных"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
 msgstr "<span class='value untranslated'>0</span>%% не переведено"
 
@@ -2038,7 +2033,7 @@ msgid "No strings."
 msgstr "Нет строк."
 
 #: templates/editor/export_view.html:149
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We displayed the first unit out of %(total_count)s. Please refine your "
 "search."
@@ -2046,13 +2041,13 @@ msgid_plural ""
 "We displayed the first %(unit_count)s units out of %(total_count)s. Please "
 "refine your search."
 msgstr[0] ""
-"Отображены первые %(count)s сегментов из %(total_count)s. Пожалуйста, "
-"уточните критерии поиска."
+"Отображен первый сегмент из %(total_count)s. Пожалуйста, уточните критерии "
+"поиска."
 msgstr[1] ""
-"Отображены первые %(count)s сегментов из %(total_count)s. Пожалуйста, "
+"Отображены первые %(unit_count)s сегмента из %(total_count)s. Пожалуйста, "
 "уточните критерии поиска."
 msgstr[2] ""
-"Отображены первые %(count)s сегментов из %(total_count)s. Пожалуйста, "
+"Отображены первые %(unit_count)s сегментов из %(total_count)s. Пожалуйста, "
 "уточните критерии поиска."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
@@ -2221,14 +2216,12 @@ msgid "Comment: "
 msgstr "Комментарий: "
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "Возможные проблемы с переводом"
+msgstr "Критические ошибки в этом переводе"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "Исправить критические ошибки"
+msgstr "Критические ошибки:"
 
 #: templates/editor/units/xhr_checks.html:12
 msgid "Mute quality check"
@@ -2244,7 +2237,7 @@ msgstr "Возможные проблемы с переводом"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "Берегись:"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
@@ -2404,6 +2397,8 @@ msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
+"Для это проекта нет шаблонов, поэтому возможность добавления нового языка из "
+"этого меню заблокирована."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -2472,7 +2467,7 @@ msgstr "Термин"
 
 #: templates/translation_projects/terminology/manage.html:58
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "Не найдены файлы терминологии"
 
 #: templates/translation_projects/terminology/manage.html:60
 msgid ""
@@ -2480,6 +2475,8 @@ msgid ""
 "translation project a \"pootle-terminology\" file named after your project's "
 "extension."
 msgstr ""
+"Чтобы использовать терминологию, убедитесь, что вы добавили в проект файл \""
+"pootle-terminlogy\" с расширением, как у всех остальных файлов в проекте."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

@@ -1,15 +1,13 @@
 # Copyright (C) Pootle contributors.
-#
 # This file is a part of the Pootle project. It is distributed under the GPL3
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-01 11:11+0100\n"
-"PO-Revision-Date: 2015-07-10 15:24+0000\n"
+"PO-Revision-Date: 2015-09-01 12:42+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -18,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1436541866.000000\n"
+"X-POOTLE-MTIME: 1441111357.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -180,21 +178,23 @@ msgstr "Llwytho cyfieithiadau"
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
+"Nid yw ffeliau '%s' yn cael eu cynnal, dim ond ffeiliau PO sy'n cael eu "
+"cynnal ar hyn o bryd\n"
 
 #: apps/import_export/utils.py:30
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "Nid yw ffeil %r yn cynnwys pennyn X-Pootle-Path\n"
+msgstr "Nid yw ffeil '%s' yn cynnwys pennyn X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr "Ffeil %r coll neu bennyn X-Pootle-Revision annilys\n"
+msgstr "Ffeil '%s' coll neu bennyn X-Pootle-Revision annilys\n"
 
 #: apps/import_export/utils.py:43
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr "Heb lwyddo i greu %r. Project/Iaith goll? (%s)"
+msgstr "Heb lwyddo i greu '%s'. Project/Iaith goll? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -520,7 +520,6 @@ msgid "Placeholders"
 msgstr "Dalfannau"
 
 #: apps/pootle_misc/checks.py:85
-#, fuzzy
 msgid "Valid XML"
 msgstr "XML annilys"
 
@@ -773,19 +772,18 @@ msgid "Comment"
 msgstr "Sylw"
 
 #: apps/pootle_statistics/models.py:266
-#, fuzzy
 msgid "Added suggestion"
-msgstr "Derbyn yr awgrym"
+msgstr "Awgrym wedi ei ychwanegu"
 
 #: apps/pootle_statistics/models.py:267
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Derbyn yr awgrym"
+msgstr "Derbyn yr awgrym gan %s"
 
 #: apps/pootle_statistics/models.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Gwrthod yr awgrym"
+msgstr "Gwrthod yr awgrym gan %s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -809,11 +807,11 @@ msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:24
 msgid "XLIFF (.xlf)"
-msgstr ""
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -855,9 +853,8 @@ msgid "Needs work"
 msgstr "Angen gwaith"
 
 #: apps/pootle_store/forms.py:247
-#, fuzzy
 msgid "Needs work flag must be cleared"
-msgstr "Rhaid i'r faner bras gael ei chlirio"
+msgstr "Rhaid i'r faner angen gwaith gael ei chlirio"
 
 #: apps/pootle_store/forms.py:290
 msgid "Value of `similarity` should be in in the [0..1] range"
@@ -945,9 +942,8 @@ msgid "Review"
 msgstr "Adolygu"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
-msgstr "Awgrymiadau"
+msgstr "Awgrymiad"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1083,12 +1079,11 @@ msgstr ""
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
-msgstr ""
+msgstr "Yn gyhoeddus?"
 
 #: apps/virtualfolder/models.py:55
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "P'un ai a yw'r dudalen yn weithredol ai peidio."
+msgstr "P'un ai a yw'r rhith ffolder yn weithredol ai peidio."
 
 #: apps/virtualfolder/models.py:60
 #, python-format
@@ -1227,9 +1222,8 @@ msgstr ""
 "ffurflen gyswllt."
 
 #: checks.py:183
-#, fuzzy
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr "Nid yw settings.DEFAULT_FROM_EMAIL wedi ei osod eto."
+msgstr "Nid yw DEFAULT_FROM_EMAIL wedi ei osod eto."
 
 #: checks.py:184 checks.py:194
 msgid ""
@@ -1241,37 +1235,34 @@ msgstr ""
 "Peidiwch ag anghofio i adolygu eich gosodiadau post gweinydd."
 
 #: checks.py:192
-#, fuzzy, python-format
+#, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
-"Mae settings.DEFAULT_FROM_EMAIL yn defnyddio'r gosodiadau rhagosodedig "
-"canlynol %r."
+"Mae DEFAULT_FROM_EMAIL yn defnyddio'r gosodiadau rhagosodedig canlynol %r."
 
 #: checks.py:203
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "Mae MARKUP_FILTER ar goll. Disgyn nôl i HTML."
+msgstr "Mae POOTLE_MARKUP_FILTER ar goll."
 
 #: checks.py:204
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Gosod POOTLE_MARKUP_FILTER."
 
 #: checks.py:209
-#, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "Gwerth annilys '%s' yn MARKUP_FILTER. Disgyn nôl i HTML."
+msgstr "Gwerth annilys yn POOTLE_MARKUP_FILTER."
 
 #: checks.py:210
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Gosod gwerth dilys ar gyfer POOTLE_MARKUP_FILTER."
 
 #: checks.py:224
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Tagio annilys yn POOTLE_MARKUP_FILTER."
 
 #: checks.py:225
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Gosod tagio dilys yn POOTLE_MARKUP_FILTER."
 
 #: checks.py:230
 #, python-format
@@ -1279,28 +1270,32 @@ msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"Mae POOTLE_MARKUP_FILTER wedi ei osod fel tagio '%s', ond nid oes modd "
+"canfod y pecyn mae'n ei ddarparu."
 
 #: checks.py:232
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Gosod pecyn neu newid POOTLE_MARKUP_FILTER."
 
 #: checks.py:256
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "Mae cyfrinair yr 'admin' rhagosodedig wedi ei osod i 'admin'."
 
 #: checks.py:258
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Tynnu'r defnyddiwr 'admin' neu newid ei gyfrinair."
 
 #: checks.py:273
 msgid "Database connection does not implement on_commit."
-msgstr ""
+msgstr "Nid yw'r cysylltiad a'r gronfa ddata yn cychwyn on_commit."
 
 #: checks.py:274
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
+"Gosod y DATABASES['default']['ENGINE'] i ddefnyddio cefn o "
+"transaction_hooks.backends."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1689,9 +1684,8 @@ msgid "No activity recorded in a given period"
 msgstr "Dim gweithgaredd o fewn amser penodol"
 
 #: templates/admin/detailed_reports.html:226
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "Cyfieithiad (is gyfanswm)"
+msgstr "Awgrym (is gyfanswm)"
 
 #: templates/admin/detailed_reports.html:236
 msgid "Translation (subtotal)"
@@ -1793,6 +1787,8 @@ msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"Yn y tudalennau Cyhoeddi defnyddiwch <code><strong>/xx/</strong></code> o "
+"fewn URLau ar gyfer cod iaith dynamig."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1864,19 +1860,19 @@ msgid "View all"
 msgstr "Gweld y cyfan"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
-msgstr "<span class='value translated'>0</span>%% wedi ei gyfieithu"
+msgstr "<span class=\"value translated\">0</span>%% wedi ei gyfieithu"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr "<span class='value fuzzy'>0</span>%% bras"
+msgstr "<span class=\"value fuzzy\">0</span>%% bras"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr "<span class='value untranslated'>0</span>%% heb eu cyfieithu"
+msgstr "<span class=\"value untranslated\">0</span>%% heb eu cyfieithu"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
@@ -2039,7 +2035,7 @@ msgid "No strings."
 msgstr "Dim llinynnau."
 
 #: templates/editor/export_view.html:149
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We displayed the first unit out of %(total_count)s. Please refine your "
 "search."
@@ -2047,10 +2043,10 @@ msgid_plural ""
 "We displayed the first %(unit_count)s units out of %(total_count)s. Please "
 "refine your search."
 msgstr[0] ""
-"Rydym yn dangos y %(count)s uned gyntaf allan o %(total_count)s. Ail "
-"ddiffiniwch eich chwilio."
+"Rydym yn dangos yr uned gyntaf allan o %(total_count)s. Ail ddiffiniwch eich "
+"chwilio."
 msgstr[1] ""
-"Rydym yn dangos y %(count)s uned gyntaf allan o %(total_count)s. Ail "
+"Rydym yn dangos y %(unit_count)s uned gyntaf allan o %(total_count)s. Ail "
 "ddiffiniwch eich chwilio."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
@@ -2215,14 +2211,12 @@ msgid "Comment: "
 msgstr "Sylw: "
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "Anawsterau posib gyda'r cyfieithiad"
+msgstr "Anawsterau gyda'r cyfieithiad"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "Trwsio gwallau critigol"
+msgstr "Gwallau critigol:"
 
 #: templates/editor/units/xhr_checks.html:12
 msgid "Mute quality check"
@@ -2238,7 +2232,7 @@ msgstr "Anawsterau posib gyda'r cyfieithiad"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "Gwyliwch am:"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
@@ -2397,6 +2391,8 @@ msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
+"Nid oes temledi ar gyfer y project hwn, felly mae ychwanegu iaith newydd o'r "
+"sgrin wedi ei analluogi."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -2464,7 +2460,7 @@ msgstr "Term"
 
 #: templates/translation_projects/terminology/manage.html:58
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "Heb ganfod ffeiliau terminolegol"
 
 #: templates/translation_projects/terminology/manage.html:60
 msgid ""
@@ -2472,6 +2468,9 @@ msgid ""
 "translation project a \"pootle-terminology\" file named after your project's "
 "extension."
 msgstr ""
+"Er mwyn defnyddio'r nodweddion terminolegol, gwnewch yn siŵr eich bod yn "
+"ychwanegu ffeil \"pootle-terminology\" sydd wedi ei enwi ar ôl eich "
+"estyniad, yn eich project."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

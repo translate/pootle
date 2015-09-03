@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-01 11:11+0100\n"
-"PO-Revision-Date: 2015-06-13 15:34+0000\n"
+"PO-Revision-Date: 2015-09-02 17:50+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1434209682.000000\n"
+"X-POOTLE-MTIME: 1441216212.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -182,21 +182,22 @@ msgstr "Çevirileri gönder"
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
+"Desteklenmeyen dosya türü '%s', bu aralar sadece PO dosyaları desteklenir\n"
 
 #: apps/import_export/utils.py:30
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "Dosya %r eksik X-Pootle-Path header\n"
+msgstr "Dosya '%s' eksik X-Pootle-Path header\n"
 
 #: apps/import_export/utils.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr "Dosya %r eksik ya da geçersiz X-Pootle-Revision header\n"
+msgstr "Dosya '%s' eksik ya da geçersiz X-Pootle-Revision header\n"
 
 #: apps/import_export/utils.py:43
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr "%r oluşturulamadı. Proje/Dil eksik mi? (%s)"
+msgstr "'%s' oluşturulamadı. Proje/Dil eksik mi? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -520,9 +521,8 @@ msgid "Placeholders"
 msgstr "Yer tutucular"
 
 #: apps/pootle_misc/checks.py:85
-#, fuzzy
 msgid "Valid XML"
-msgstr "Geçersiz XML"
+msgstr "Geçerli XML"
 
 #: apps/pootle_misc/checks.py:86
 msgid "XML tags"
@@ -771,19 +771,18 @@ msgid "Comment"
 msgstr "Yorum"
 
 #: apps/pootle_statistics/models.py:266
-#, fuzzy
 msgid "Added suggestion"
-msgstr "%d öneri"
+msgstr "Öneri eklendi"
 
 #: apps/pootle_statistics/models.py:267
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Öneriyi kabul et"
+msgstr "%s kullanıcısından gelen öneriyi kabul et"
 
 #: apps/pootle_statistics/models.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Öneriyi reddet"
+msgstr "%s kullanıcısından gelen öneriyi reddet"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -806,13 +805,12 @@ msgid "Gettext PO"
 msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:24
-#, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "XLIFF dosyası"
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -854,9 +852,8 @@ msgid "Needs work"
 msgstr "Çalışma gerekli"
 
 #: apps/pootle_store/forms.py:247
-#, fuzzy
 msgid "Needs work flag must be cleared"
-msgstr "Belirsiz işareti temizlenmek zorundadır"
+msgstr "Çalışma gerekli işareti temizlenmek zorundadır"
 
 #: apps/pootle_store/forms.py:290
 msgid "Value of `similarity` should be in in the [0..1] range"
@@ -944,9 +941,8 @@ msgid "Review"
 msgstr "İncele"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
-msgstr "Öneriler"
+msgstr "Öneri"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1081,12 +1077,11 @@ msgstr ""
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
-msgstr ""
+msgstr "Ortak mı?"
 
 #: apps/virtualfolder/models.py:55
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "Bu sanal klasörün aktif olup olmadığı."
+msgstr "Bu sanal klasörün ortak olup olmadığı."
 
 #: apps/virtualfolder/models.py:60
 #, python-format
@@ -1229,9 +1224,8 @@ msgstr ""
 "iletileri alacak adrestir."
 
 #: checks.py:183
-#, fuzzy
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr "settings.DEFAULT_FROM_EMAIL ayarlı değil."
+msgstr "DEFAULT_FROM_EMAIL ayarlı değil."
 
 #: checks.py:184 checks.py:194
 msgid ""
@@ -1242,37 +1236,35 @@ msgstr ""
 "Posta sunucunuzun ayarlarını gözden geçirmeyi unutmayın."
 
 #: checks.py:192
-#, fuzzy, python-format
+#, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
-"settings.DEFAULT_FROM_EMAIL parametresi şurada belritilen varsayılan ayarı "
-"kullanıyor %r."
+"DEFAULT_FROM_EMAIL parametresi şurada belritilen varsayılan ayarı kullanıyor "
+"%r."
 
 #: checks.py:203
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "MARKUP_FILTER eksik. HTML'e geri çekiliyor."
+msgstr "POOTLE_MARKUP_FILTER eksik."
 
 #: checks.py:204
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER ayarlayın."
 
 #: checks.py:209
-#, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "MARKUP_FILTER içinde geçersiz '%s' değeri. HTML'e geri çekiliyor."
+msgstr "POOTLE_MARKUP_FILTER içinde geçersiz değer."
 
 #: checks.py:210
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER için geçerli bir değer ayarlayın."
 
 #: checks.py:224
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER içinde geçersiz biçimleme."
 
 #: checks.py:225
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER için geçerli bir biçimleme ayarlayın."
 
 #: checks.py:230
 #, python-format
@@ -1280,28 +1272,33 @@ msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"POOTLE_MARKUP_FILTER, '%s' biçimlemesine ayarlı, ancak verilen paket "
+"bulunamıyor."
 
 #: checks.py:232
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Paketi yükleyin ya da POOTLE_MARKUP_FILTER parametresini değiştirin."
 
 #: checks.py:256
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
+"Varsayılan 'admin' kullanıcısı hala 'admin' olarak ayarlı bir parolaya sahip."
 
 #: checks.py:258
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "'admin' kullanıcısını kaldırın ya da parolasını değiştirin."
 
 #: checks.py:273
 msgid "Database connection does not implement on_commit."
-msgstr ""
+msgstr "Veritabanı bağlantısı on_commit üzerine uygulanmaz."
 
 #: checks.py:274
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
+"transaction_hooks.backends olarak gelen bir arka ucu kullanmak için "
+"DATABASES['default']['ENGINE'] parametresini ayarlayın."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1689,9 +1686,8 @@ msgid "No activity recorded in a given period"
 msgstr "Verilen süre içerisinde kaydedilmiş etkinlik yok"
 
 #: templates/admin/detailed_reports.html:226
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "Çeviri (alt toplam)"
+msgstr "Öneri (alt toplam)"
 
 #: templates/admin/detailed_reports.html:236
 msgid "Translation (subtotal)"
@@ -1793,6 +1789,8 @@ msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"Duyuru sayfalarında değişken bir dil kodu için URL'lerin içerisinde "
+"<code><strong>/xx/</strong></code> kullanın."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1864,19 +1862,19 @@ msgid "View all"
 msgstr "Tümünü göster"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
-msgstr "%%<span class='value translated'>0</span> çevrildi"
+msgstr "%%<span class=\"value translated\">0</span> çevrildi"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr "%%<span class='value fuzzy'>0</span> belirsiz"
+msgstr "%%<span class=\"value fuzzy\">0</span> belirsiz"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr "%%<span class='value untranslated'>0</span> çevrilmedi"
+msgstr "%%<span class=\"value untranslated\">0</span> çevrilmedi"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
@@ -2036,7 +2034,7 @@ msgid "No strings."
 msgstr "Satırlar yok."
 
 #: templates/editor/export_view.html:149
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We displayed the first unit out of %(total_count)s. Please refine your "
 "search."
@@ -2044,8 +2042,8 @@ msgid_plural ""
 "We displayed the first %(unit_count)s units out of %(total_count)s. Please "
 "refine your search."
 msgstr[0] ""
-"Toplam %(total_count)s birimin ilk %(count)s birimini görüntüledik. Lütfen "
-"aradığınızı daraltın."
+"Toplam %(total_count)s birimin ilk %(unit_count)s birimini görüntüledik. "
+"Lütfen aradığınızı daraltın."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
 #: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
@@ -2210,14 +2208,12 @@ msgid "Comment: "
 msgstr "Yorum: "
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "Çeviriyle ilgili olası sorunlar"
+msgstr "Çeviriyle ilgili önemli sorunlar"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "Önemli hataları düzelt"
+msgstr "Önemli hatalar:"
 
 #: templates/editor/units/xhr_checks.html:12
 msgid "Mute quality check"
@@ -2233,7 +2229,7 @@ msgstr "Çeviriyle ilgili olası sorunlar"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "Dikkat edilen:"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
@@ -2393,6 +2389,8 @@ msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
+"Bu proje için hiç şablon yok, bu yüzden bu ekrandan yeni dilleri ekleme "
+"etkisizleştirildi."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -2460,7 +2458,7 @@ msgstr "Terim"
 
 #: templates/translation_projects/terminology/manage.html:58
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "Bulunan hiç terminoloji yok"
 
 #: templates/translation_projects/terminology/manage.html:60
 msgid ""
@@ -2468,6 +2466,9 @@ msgid ""
 "translation project a \"pootle-terminology\" file named after your project's "
 "extension."
 msgstr ""
+"Terminoloji özelliğini kullanmak için çeviri projenize projenizin "
+"uzantısından sonrasına \"pootle-terminology\" olarak adlandırılmış bir dosya "
+"eklediğinizden emin olun."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

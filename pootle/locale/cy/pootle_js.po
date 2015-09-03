@@ -1,15 +1,13 @@
-# Copyright (C) Pootle contributors.
-#
-# This file is a part of the Pootle project. It is distributed under the GPL3
-# or later license. See the LICENSE file for a copy of the license and the
-# AUTHORS file for copyright and authorship information.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2012 Zuza Software Foundation (Translate.org.za)
+# This file is distributed under the same license as the PACKAGE package.
+# Rhoslyn Prys <post@meddal.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-01 11:11+0100\n"
-"PO-Revision-Date: 2015-07-10 15:27+0000\n"
+"PO-Revision-Date: 2015-09-01 12:42+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -18,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1436542064.000000\n"
+"X-POOTLE-MTIME: 1441111357.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -26,7 +24,7 @@ msgstr "Cadwyd yn llwyddiannus."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr "Dilëwyd yn llwyddiannus"
+msgstr "Dilëwyd yn llwyddiannus."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
@@ -202,10 +200,9 @@ msgid "Reports"
 msgstr "Adroddiadau"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr ""
-"Rydym wedi anfon e-bost sy'n cynnwys dolen arbennig at <span>%s</span>."
+msgstr "Rydym wedi anfon e-bost sy'n cynnwys dolen arbennig at <span>%s</span>"
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
@@ -259,7 +256,7 @@ msgstr "Gweithredu Cyfrif"
 
 #: static/js/auth/components/AuthController.js:111
 msgid "Email Confirmation"
-msgstr ""
+msgstr "E-bost Cadarnhad"
 
 #: static/js/auth/components/AuthController.js:118
 #: static/js/auth/components/AuthController.js:125
@@ -281,7 +278,7 @@ msgstr "Cysylltu â ni"
 
 #: static/js/auth/components/EmailConfirmation.js:30
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "Mae'r e-bost dolen cadarnhad wedi dod i ben neu yn annilys."
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
@@ -315,7 +312,7 @@ msgstr "Wedi newid eich cyfrinair byddwch yn mewngofndi'n awtomatig."
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, javascript-format
 msgid "Sending email to %s..."
-msgstr "Anfon e-bost at %s"
+msgstr "Anfon e-bost at %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
@@ -391,8 +388,8 @@ msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
-"Ewch i'r llinyn nesaf  (Ctrl+.)<br/><br/>Hefyd:<br/>Tudalen nesaf: Ctrl+Shift"
-"+.<br/>Tudalen olaf: Ctrl+Shift+End"
+"Ewch i'r llinyn nesaf (Ctrl+.)<br/><br/>Hefyd:<br/>Tudalen nesaf: "
+"Ctrl+Shift+.<br/>Tudalen olaf: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:259
 msgid ""
@@ -519,35 +516,35 @@ msgid "There are unsaved changes. Do you want to discard them?"
 msgstr "Mae yna newidiadau sydd heb eu cadw. Hoffech chi eu hepgor?"
 
 #: static/js/utils.js:151
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Blwyddyn yn ôl"
 msgstr[1] "%s blwyddyn yn ôl"
 
 #: static/js/utils.js:154
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Wythnos yn ôl"
 msgstr[1] "%s wythnos yn ôl"
 
 #: static/js/utils.js:157
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Ddoe"
 msgstr[1] "%s diwrnod yn ôl"
 
 #: static/js/utils.js:160
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Awr yn ôl"
 msgstr[1] "%s awr yn ôl"
 
 #: static/js/utils.js:163
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Munud yn ôl"
@@ -746,7 +743,7 @@ msgstr "Prosiect / Iaith"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "Awgrymwyd"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
@@ -768,11 +765,11 @@ msgstr "Newid Sgôr"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#, fuzzy, python-format
+#, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] "gair"
-msgstr[1] "gair"
+msgstr[0] "%s gair"
+msgstr[1] "%s gair"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
@@ -780,7 +777,7 @@ msgstr "Dim gweithgaredd o fewn amser penodol"
 
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
-msgstr "Dewiswch ddefnyddiwr dilys"
+msgstr "Dewiswch ddefnyddiwr dilys."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"

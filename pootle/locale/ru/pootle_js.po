@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-01 11:11+0100\n"
-"PO-Revision-Date: 2015-07-18 23:47+0000\n"
+"PO-Revision-Date: 2015-09-01 19:51+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1437263247.000000\n"
+"X-POOTLE-MTIME: 1441137098.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -168,7 +168,7 @@ msgstr "LinkedIn"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
-msgstr "профиль в LinkedIn"
+msgstr "Профиль в LinkedIn"
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:102
 msgid "Website"
@@ -203,10 +203,9 @@ msgid "Reports"
 msgstr "Отчеты"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr ""
-"Мы отправили письмо, содержащее специальную ссылку, на <span>%s</span>."
+msgstr "Мы отправили письмо, содержащее специальную ссылку, на <span>%s</span>"
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
@@ -260,7 +259,7 @@ msgstr "Активация учётной записи"
 
 #: static/js/auth/components/AuthController.js:111
 msgid "Email Confirmation"
-msgstr ""
+msgstr "Подтверждение по Email"
 
 #: static/js/auth/components/AuthController.js:118
 #: static/js/auth/components/AuthController.js:125
@@ -283,6 +282,7 @@ msgstr "Связаться с нами"
 #: static/js/auth/components/EmailConfirmation.js:30
 msgid "This email confirmation link expired or is invalid."
 msgstr ""
+"Ссылка для подтверждения по Email некорректна, или ее срок действия истек."
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
@@ -316,7 +316,7 @@ msgstr "После смены пароля, вход будет произвед
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, javascript-format
 msgid "Sending email to %s..."
-msgstr "Отправка электронного письма к %1..."
+msgstr "Отправка Email на %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
@@ -755,7 +755,7 @@ msgstr "Проект / Язык"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "Предложено"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
@@ -777,12 +777,12 @@ msgstr "Изменение счета"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#, fuzzy, python-format
+#, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] "слово"
-msgstr[1] "слова"
-msgstr[2] "слов"
+msgstr[0] "%s слово"
+msgstr[1] "%s слова"
+msgstr[2] "%s слов"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
