@@ -39,6 +39,12 @@ def nobody(db):
 
 
 @pytest.fixture
+def trans_nobody(transactional_db):
+    """Require the default anonymous user for use in a transactional test."""
+    return _require_user('nobody', 'any anonymous user')
+
+
+@pytest.fixture
 def default(transactional_db):
     """Require the default authenticated user."""
     return _require_user('default', 'any authenticated user',
