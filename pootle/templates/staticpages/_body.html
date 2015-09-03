@@ -13,7 +13,7 @@
     {{ page.title }}
     {% if user.is_superuser %}
     <span class="edit-link">
-      [<a href="{{ page.get_edit_url }}">{% trans "edit" %}</a>]
+      <a href="{{ page.get_edit_url }}">{% trans "edit" %}</a>
     </span>
     {% endif %}
   </h1>
