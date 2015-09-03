@@ -511,6 +511,7 @@ PTL.editor = {
     // All is ready, let's call the ready functions of the MT backends
     $("table.translate-table").trigger("mt_ready");
 
+    this.isUnitDirty = false;
     PTL.editor.keepState = false;
     PTL.editor.isLoading = false;
     PTL.editor.hideActivity();
