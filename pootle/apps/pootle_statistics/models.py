@@ -84,7 +84,41 @@ class TranslationActionTypes(object):
     NEEDS_WORK = 5
 
 
-class SubmissionManager(models.Manager):
+class SubmissionQuerySet(models.QuerySet):
+
+    def _earliest_or_latest(self, field_name=None, direction="-"):
+        """
+        Overrides QuerySet._earliest_or_latest to add pk for secondary ordering
+        """
+        order_by = field_name or getattr(self.model._meta, 'get_latest_by')
+        assert bool(order_by), "earliest() and latest() require either a "\
+            "field_name parameter or 'get_latest_by' in the model"
+        assert self.query.can_filter(), \
+            "Cannot change a query once a slice has been taken."
+        obj = self._clone()
+        obj.query.set_limits(high=1)
+        obj.query.clear_ordering(force_empty=True)
+        # add pk as secondary ordering for Submissions
+        obj.query.add_ordering('%s%s' % (direction, order_by),
+                               '%s%s' % (direction, "pk"))
+        return obj.get()
+
+    def earliest(self, field_name=None):
+        return self._earliest_or_latest(field_name=field_name, direction="")
+
+    def latest(self, field_name=None):
+        return self._earliest_or_latest(field_name=field_name, direction="-")
+
+
+class BaseSubmissionManager(models.Manager):
+
+    def get_queryset(self):
+        return SubmissionQuerySet(self.model, using=self._db)
+
+
+class SubmissionManager(BaseSubmissionManager):
+
+    use_for_related_fields = True
 
     def get_queryset(self):
         """Mimics `select_related(depth=1)` behavior. Pending review."""
@@ -145,12 +179,12 @@ class SubmissionManager(models.Manager):
 
 class Submission(models.Model):
     class Meta:
-        ordering = ["creation_time"]
+        ordering = ["creation_time", "pk"]
         get_latest_by = "creation_time"
         db_table = 'pootle_app_submission'
 
     objects = SubmissionManager()
-    simple_objects = models.Manager()
+    simple_objects = BaseSubmissionManager()
 
     creation_time = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey(

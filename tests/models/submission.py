@@ -7,10 +7,63 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle_statistics.models import SubmissionTypes, SubmissionFields
+import pytest
+
+from django.utils import timezone
+
+from pootle_statistics.models import (Submission,
+                                      SubmissionTypes, SubmissionFields)
 from pootle_store.util import TRANSLATED, UNTRANSLATED
 
 from ..factories import SubmissionFactory
+
+
+def _create_comment_submission(unit, user, creation_time, comment):
+    sub = Submission(
+        creation_time=creation_time,
+        translation_project=unit.store.translation_project,
+        submitter=user,
+        unit=unit,
+        store=unit.store,
+        field=SubmissionFields.COMMENT,
+        type=SubmissionTypes.NORMAL,
+        new_value=comment,
+    )
+    sub.save()
+    return sub
+
+
+@pytest.mark.django_db
+def test_submission_ordering(en_tutorial_po, member):
+    """Submissions with same creation_time should order by pk
+    """
+    at_time = timezone.now()
+    unit = en_tutorial_po.units[0]
+    _create_comment_submission(unit, member, at_time, "Comment 3")
+    _create_comment_submission(unit, member, at_time, "Comment 2")
+    _create_comment_submission(unit, member, at_time, "Comment 1")
+    unit = en_tutorial_po.units[0]
+
+    # Object manager test
+    assert Submission.objects.count() == 3
+    assert (Submission.objects.first().creation_time
+            == Submission.objects.last().creation_time)
+    assert (Submission.objects.latest().pk
+            > Submission.objects.earliest().pk)
+
+    # Related manager test
+    assert (unit.submission_set.latest().pk
+            > unit.submission_set.earliest().pk)
+
+    # Passing field_name test
+    assert (unit.submission_set.earliest("new_value").new_value
+            == "Comment 1")
+    assert (unit.submission_set.latest("new_value").new_value
+            == "Comment 3")
+    assert (unit.submission_set.earliest("pk").new_value
+            == "Comment 3")
+    assert (unit.submission_set.latest("pk").new_value
+            == "Comment 1")
 
 
 def test_max_similarity():
