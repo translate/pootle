@@ -202,9 +202,9 @@ msgid "Reports"
 msgstr "Tuairiscí"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr "Sheolamar ríomhphost leis an nasc speisialta chuig <span>%s</span>."
+msgstr "Táimid tar éis ríomhphost leis an nasc speisialta a sheoladh chuig <span>%s</span>"
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
@@ -257,7 +257,7 @@ msgstr "Gníomhachtú Cuntais"
 
 #: static/js/auth/components/AuthController.js:111
 msgid "Email Confirmation"
-msgstr ""
+msgstr "Deimhniú Ríomhphoist"
 
 #: static/js/auth/components/AuthController.js:118
 #: static/js/auth/components/AuthController.js:125
@@ -279,7 +279,7 @@ msgstr "Déan Teagmháil Linn"
 
 #: static/js/auth/components/EmailConfirmation.js:30
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "Tá an nasc deimhnithe imithe in éag, nó tá sé neamhbhailí."
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
@@ -523,7 +523,7 @@ msgid "There are unsaved changes. Do you want to discard them?"
 msgstr "Athruithe gan sábháil. An bhfuil fonn ort iad a shábháil?"
 
 #: static/js/utils.js:151
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Bliain amháin ó shin"
@@ -533,7 +533,7 @@ msgstr[3] "%s mbliana ó shin"
 msgstr[4] "%s bliain ó shin"
 
 #: static/js/utils.js:154
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Seachtain amháin ó shin"
@@ -543,7 +543,7 @@ msgstr[3] "%s seachtaine ó shin"
 msgstr[4] "%s seachtain ó shin"
 
 #: static/js/utils.js:157
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Inné"
@@ -553,7 +553,7 @@ msgstr[3] "%s lá ó shin"
 msgstr[4] "%s lá ó shin"
 
 #: static/js/utils.js:160
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Uair an chloig ó shin"
@@ -563,7 +563,7 @@ msgstr[3] "%s n-uaire an chloig ó shin"
 msgstr[4] "%s uair an chloig ó shin"
 
 #: static/js/utils.js:163
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Nóiméad amháin ó shin"
@@ -779,7 +779,7 @@ msgstr "Tionscadal / Teanga"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "Molta"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
@@ -801,14 +801,14 @@ msgstr "Athrú Scóir"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#, fuzzy, python-format
+#, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] "focal"
-msgstr[1] "fhocal"
-msgstr[2] "fhocal"
-msgstr[3] "bhfocal"
-msgstr[4] "focal"
+msgstr[0] "%s fhocal"
+msgstr[1] "%s fhocal"
+msgstr[2] "%s fhocal"
+msgstr[3] "%s bhfocal"
+msgstr[4] "%s focal"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"

@@ -183,22 +183,22 @@ msgstr "Uasluchtaigh aistriúcháin"
 #: apps/import_export/utils.py:24
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
-msgstr ""
+msgstr "Cineál comhaid gan tacaíocht '%s', ní thacaítear ach le comhaid PO\n"
 
 #: apps/import_export/utils.py:30
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "Ceanntásc X-Pootle-Path ar iarraidh ó chomhad %r\n"
+msgstr "Ceanntásc X-Pootle-Path ar iarraidh ó chomhad '%s'\n"
 
 #: apps/import_export/utils.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr "Ceanntásc X-Pootle-Revision ar iarraidh ó chomhad %r\n"
+msgstr "Ceanntásc X-Pootle-Revision ar iarraidh ó chomhad '%s'\n"
 
 #: apps/import_export/utils.py:43
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr "Níorbh fhéidir %r a chruthú. Tionscadal/Teanga ar iarraidh? (%s)"
+msgstr "Níorbh fhéidir '%s' a chruthú. Tionscadal/Teanga ar iarraidh? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -526,9 +526,8 @@ msgid "Placeholders"
 msgstr "Ionadchoinneálaithe"
 
 #: apps/pootle_misc/checks.py:85
-#, fuzzy
 msgid "Valid XML"
-msgstr "XML neamhbhailí"
+msgstr "XML bailí"
 
 #: apps/pootle_misc/checks.py:86
 msgid "XML tags"
@@ -778,19 +777,18 @@ msgid "Comment"
 msgstr "Nóta Tráchta"
 
 #: apps/pootle_statistics/models.py:266
-#, fuzzy
 msgid "Added suggestion"
-msgstr "Glac leis an moladh"
+msgstr "Cuir moladh leis"
 
 #: apps/pootle_statistics/models.py:267
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Glac leis an moladh"
+msgstr "Glacadh le moladh ó %s"
 
 #: apps/pootle_statistics/models.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Ná glac leis an moladh"
+msgstr "Diúltaíodh moladh ó %s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -813,13 +811,12 @@ msgid "Gettext PO"
 msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:24
-#, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "Comhad XLIFF"
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -861,7 +858,6 @@ msgid "Needs work"
 msgstr "Is gá é a fheabhsú"
 
 #: apps/pootle_store/forms.py:247
-#, fuzzy
 msgid "Needs work flag must be cleared"
 msgstr "Is gá an bhratach Le Deimhniú a ghlanadh"
 
@@ -951,9 +947,8 @@ msgid "Review"
 msgstr "Aithbhreithnigh"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
-msgstr "Moltaí"
+msgstr "Moladh"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1087,12 +1082,11 @@ msgstr "Uimhir a léiríonn an tábhacht. Tosaíocht níos mó = níos tábhacht
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
-msgstr ""
+msgstr "Poiblí?"
 
 #: apps/virtualfolder/models.py:55
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "An bhfuil an fillteán fíorúil seo gníomhach?"
+msgstr "An bhfuil an fillteán fíorúil seo poiblí?"
 
 #: apps/virtualfolder/models.py:60
 #, python-format
@@ -1232,9 +1226,8 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL."
 
 #: checks.py:183
-#, fuzzy
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr "settings.DEFAULT_FROM_EMAIL gan sonrú."
+msgstr "DEFAULT_FROM_EMAIL gan sonrú."
 
 #: checks.py:184 checks.py:194
 msgid ""
@@ -1245,63 +1238,63 @@ msgstr ""
 "Ná déan dearmad socruithe do fhreastalaí ríomhphoist a athbhreithniú."
 
 #: checks.py:192
-#, fuzzy, python-format
+#, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
-"Baineann settings.DEFAULT_FROM_EMAIL úsáid as an luach réamhshocraithe %r."
+"Baineann DEFAULT_FROM_EMAIL úsáid as an luach réamhshocraithe %r."
 
 #: checks.py:203
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER ar iarraidh."
 
 #: checks.py:204
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Socraigh POOTLE_MARKUP_FILTER."
 
 #: checks.py:209
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER neamhbhailí."
 
 #: checks.py:210
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Socraigh POOTLE_MARKUP_FILTER."
 
 #: checks.py:224
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Marcáil neamhbhailí in POOTLE_MARKUP_FILTER."
 
 #: checks.py:225
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Socraigh marcáil bhailí do POOTLE_MARKUP_FILTER."
 
 #: checks.py:230
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
-msgstr ""
+msgstr "Is é '%s' an POOTLE_MARKUP_FILTER, ach níor aimsíodh an pacáiste a sholáthraíonn sin."
 
 #: checks.py:232
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Suiteáil an pacáiste nó athraigh POOTLE_MARKUP_FILTER."
 
 #: checks.py:256
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "Is é 'admin' an focal faire don chuntas réamhshocraithe 'admin' fós."
 
 #: checks.py:258
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Scrios úsáideoir 'admin' nó athraigh an focal faire."
 
 #: checks.py:273
 msgid "Database connection does not implement on_commit."
-msgstr ""
+msgstr "Ní chuireann an ceangal bunachair sonraí on_commit ar fáil."
 
 #: checks.py:274
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
-msgstr ""
+msgstr "Socraigh DATABASES['default']['ENGINE'] chun inneall ó transaction_hooks.backends a úsáid."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1688,9 +1681,8 @@ msgid "No activity recorded in a given period"
 msgstr "Níl aon ghníomhaíocht sa tréimhse roghnaithe"
 
 #: templates/admin/detailed_reports.html:226
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "Aistriúchán (fo-iomlán)"
+msgstr "Moladh (fo-iomlán)"
 
 #: templates/admin/detailed_reports.html:236
 msgid "Translation (subtotal)"
@@ -1791,7 +1783,7 @@ msgstr ""
 msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
-msgstr ""
+msgstr "I bhfógraí, is féidir <code><strong>/xx/</strong></code> a úsáid in URLanna mar chód teanga dinimiciúil."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1863,19 +1855,19 @@ msgid "View all"
 msgstr "Taispeáin uile"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
-msgstr "<span class='value translated'>0</span>%% aistrithe"
+msgstr "<span class=\"value translated\">0</span>%% aistrithe"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr "<span class='value fuzzy'>0</span>%% le deimhniú"
+msgstr "<span class=\"value fuzzy\">0</span>%% le deimhniú"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr "<span class='value untranslated'>0</span>%% gan aistriú"
+msgstr "<span class=\"value untranslated\">0</span>%% gan aistriú"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
@@ -2039,7 +2031,7 @@ msgid "No strings."
 msgstr "Gan teaghráin."
 
 #: templates/editor/export_view.html:149
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We displayed the first unit out of %(total_count)s. Please refine your "
 "search."
@@ -2047,19 +2039,19 @@ msgid_plural ""
 "We displayed the first %(unit_count)s units out of %(total_count)s. Please "
 "refine your search."
 msgstr[0] ""
-"An chéad %(count)s aonad as %(total_count)s á dtaispeáint. Cúngaigh do "
+"An chéad aonad as %(total_count)s á dtaispeáint. Cúngaigh do "
 "chuardach."
 msgstr[1] ""
-"An chéad %(count)s aonad as %(total_count)s á dtaispeáint. Cúngaigh do "
+"An chéad %(unit_count)s aonad as %(total_count)s á dtaispeáint. Cúngaigh do "
 "chuardach."
 msgstr[2] ""
-"An chéad %(count)s aonad as %(total_count)s á dtaispeáint. Cúngaigh do "
+"An chéad %(unit_count)s aonad as %(total_count)s á dtaispeáint. Cúngaigh do "
 "chuardach."
 msgstr[3] ""
-"An chéad %(count)s aonad as %(total_count)s á dtaispeáint. Cúngaigh do "
+"An chéad %(unit_count)s n-aonad as %(total_count)s á dtaispeáint. Cúngaigh do "
 "chuardach."
 msgstr[4] ""
-"An chéad %(count)s aonad as %(total_count)s á dtaispeáint. Cúngaigh do "
+"An chéad %(unit_count)s aonad as %(total_count)s á dtaispeáint. Cúngaigh do "
 "chuardach."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
@@ -2226,14 +2218,12 @@ msgid "Comment: "
 msgstr "Nóta Tráchta: "
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "Fadhbanna a d'fhéadfadh a bheith ann san aistriúchán"
+msgstr "Fadhbanna criticiúla leis an aistriúchán"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "Ceartaigh earráidí criticiúla"
+msgstr "Earráidí criticiúla:"
 
 #: templates/editor/units/xhr_checks.html:12
 msgid "Mute quality check"
@@ -2249,7 +2239,7 @@ msgstr "Fadhbanna a d'fhéadfadh a bheith ann san aistriúchán"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "Bí ar d'aire ar:"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
@@ -2411,7 +2401,7 @@ msgstr ""
 msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
-msgstr ""
+msgstr "Ní féidir teangacha nua a chur leis an tionscadal seo toisc nach bhfuil aon teimpléid ann."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -2479,14 +2469,14 @@ msgstr "Téarma"
 
 #: templates/translation_projects/terminology/manage.html:58
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "Níor aimsíodh aon chomhad téarmaíochta"
 
 #: templates/translation_projects/terminology/manage.html:60
 msgid ""
 "In order to use the terminology feature, make sure to add to your "
 "translation project a \"pootle-terminology\" file named after your project's "
 "extension."
-msgstr ""
+msgstr "Le húsáid a bhaint as an ngné téarmaíochta, cuir comhad \"pootle-terminology\" le do thionscadal, ainmnithe as iarmhír an tionscadail."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
