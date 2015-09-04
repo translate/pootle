@@ -62,9 +62,10 @@ def get_path_obj(func):
 
         if language_code and project_code:
             try:
-                path_obj = TranslationProject.objects.live().get(
-                    language__code=language_code,
-                    project__code=project_code,
+                path_obj = TranslationProject.objects.get_for_user(
+                    user=request.user,
+                    language_code=language_code,
+                    project_code=project_code,
                 )
             except TranslationProject.DoesNotExist:
                 path_obj = None

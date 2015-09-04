@@ -115,12 +115,11 @@ class TranslationProjectManager(models.Manager):
                         project__checkstyle='terminology')
 
     def live(self):
-        """Filters translation projects that have non-obsolete directories
-        and they belong to enabled projects."""
-        return self.filter(directory__obsolete=False, project__disabled=False)
+        """Filters translation projects that have non-obsolete directories."""
+        return self.filter(directory__obsolete=False)
 
     def disabled(self):
-        """Filters translation projects belong to disabled projects."""
+        """Filters translation projects that belong to disabled projects."""
         return self.filter(project__disabled=True)
 
     def for_user(self, user):
@@ -134,9 +133,28 @@ class TranslationProjectManager(models.Manager):
         :return: A filtered queryset with `TranslationProject`s for `user`.
         """
         if user.is_superuser:
-            return self.all()
+            return self.live()
 
-        return self.live()
+        return self.live().filter(project__disabled=False)
+
+    def get_for_user(self, user, project_code, language_code):
+        """Gets a `language_code`/`project_code` translation project
+        for a specific `user`.
+
+        - Admins can get the translation project even
+            if its project is disabled.
+        - Regular users only get a translation project
+            if its project isn't disabled.
+
+        :param user: The user for whom the translation project needs
+            to be retrieved.
+        :param project_code: The code of a project for the TP to retrieve.
+        :param language_code: The code of the language fro the TP to retrieve.
+        :return: The `TranslationProject` matching the params, raises otherwise.
+        """
+        return self.for_user(user).get(project__code=project_code,
+                                       language__code=language_code)
+
 
 
 class TranslationProject(models.Model, CachedTreeItem):
