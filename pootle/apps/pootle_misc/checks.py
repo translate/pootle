@@ -923,7 +923,7 @@ class ENChecker(checks.TranslationChecker):
         raise checks.FilterFailure(u"Double quotes in tags mismatch")
 
 
-def run_given_filters(checker, unit, check_names=[]):
+def run_given_filters(checker, unit, check_names=None):
     """Run all the tests in this suite.
 
     :rtype: Dictionary
@@ -934,6 +934,9 @@ def run_given_filters(checker, unit, check_names=[]):
     Do some optimisation by caching some data of the unit for the
     benefit of :meth:`~TranslationChecker.run_test`.
     """
+    if check_names is None:
+        check_names = []
+
     checker.str1 = data.normalized_unicode(unit.source) or u""
     checker.str2 = data.normalized_unicode(unit.target) or u""
     checker.hasplural = unit.hasplural()
