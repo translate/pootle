@@ -120,9 +120,8 @@ class TranslationProjectManager(models.Manager):
         return self.filter(directory__obsolete=False, project__disabled=False)
 
     def disabled(self):
-        """Filters translation projects that have obsolete directories or they
-        belong to disabled projects."""
-        return self.filter(Q(directory__obsolete=True) | Q(project__disabled=True))
+        """Filters translation projects belong to disabled projects."""
+        return self.filter(project__disabled=True)
 
     def for_user(self, user):
         """Filters translation projects for a specific user.
@@ -228,7 +227,7 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     @property
     def disabled(self):
-        return self.directory.obsolete or self.project.disabled
+        return self.project.disabled
 
     @property
     def is_terminology_project(self):
