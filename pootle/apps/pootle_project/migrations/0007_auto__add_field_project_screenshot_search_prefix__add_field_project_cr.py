@@ -7,6 +7,12 @@ from django.db import models
 
 class Migration(SchemaMigration):
 
+    depends_on = (
+        ("accounts", "0003_auto__inherit_from_permissionsmixin"),
+        ("staticpages", "0010_auto__add_agreement__add_unique_agreement_user_document__add_field_sta"),
+        ("pootle_app", "0007_del_suggestion_ctype"),
+    )
+
     def forwards(self, orm):
         # Adding field 'Project.screenshot_search_prefix'
         db.add_column('pootle_app_project', 'screenshot_search_prefix',

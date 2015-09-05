@@ -9,6 +9,7 @@ from django.contrib.contenttypes.models import ContentType
 class Migration(SchemaMigration):
     depends_on = (
         ("accounts", "0003_auto__inherit_from_permissionsmixin"),
+        ("pootle_store", "0010_populate_translation_project_field"),
     )
 
     def forwards(self, orm):

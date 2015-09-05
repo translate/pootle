@@ -6,6 +6,8 @@ from django.db import models
 
 class Migration(DataMigration):
     depends_on = (
+        ("accounts", "0003_auto__inherit_from_permissionsmixin"),
+        ("pootle_project", "0007_auto__add_field_project_screenshot_search_prefix__add_field_project_cr"),
         ("staticpages", "0013_alter_project_announcements_virtual_path"),
     )
 
