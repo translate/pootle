@@ -820,7 +820,7 @@ PTL.editor = {
     }
 
     // Store dirty state for the current unit
-    this.isUnitDirty = areaChanged || checkbox.checked === true || commentChanged;
+    this.isUnitDirty = areaChanged || stateChanged || commentChanged;
 
     if (submit !== undefined) {
       submit.disabled = !(stateChanged || areaChanged) || needsReview;
