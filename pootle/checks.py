@@ -94,6 +94,17 @@ def check_redis(app_configs=None, **kwargs):
             id="pootle.C001",
         ))
     else:
+        redis_version = tuple(int(x) for x
+                              in (queue.connection
+                                       .info()["redis_version"].split(".")))
+        if redis_version < REDIS_MINIMUM_REQUIRED_VERSION:
+            errors.append(checks.Critical(
+                _("Your version of Redis is too old."),
+                hint=_("Update your system's Redis server package to at least "
+                       "version %s" % str(REDIS_MINIMUM_REQUIRED_VERSION)),
+                id="pootle.C007",
+            ))
+
         if len(queue.connection.smembers(Worker.redis_workers_keys)) == 0:
             # We need to check we're not running manage.py rqworker right now..
             import sys
@@ -103,14 +114,6 @@ def check_redis(app_configs=None, **kwargs):
                     hint=_("Run new workers with manage.py rqworker"),
                     id="pootle.W001",
                 ))
-
-        redis_version = queue.connection.info()["redis_version"].split(".")
-        if tuple(int(x) for x in redis_version) < REDIS_MINIMUM_REQUIRED_VERSION:
-            errors.append(checks.Warning(
-                _("Your version of Redis is too old."),
-                hint=_("Update your system's Redis server package"),
-                id="pootle.W002",
-            ))
 
     return errors
 
