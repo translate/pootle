@@ -11,7 +11,9 @@ import functools
 import logging
 import sys
 
+from django.db.models import Count
 from django.contrib.auth import get_user_model
+from django.core.validators import validate_email, ValidationError
 
 from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
@@ -383,3 +385,35 @@ def verify_user(user):
     email_address.verified = True
     email_address.primary = True
     email_address.save()
+
+
+def get_duplicate_emails():
+    """Get a list of emails that occur more than once in user accounts.
+    """
+    return (get_user_model().objects.values('email')
+                            .annotate(Count('email'))
+                            .filter(email__count__gt=1)
+                            .values_list("email", flat=True))
+
+
+def validate_email_unique(email):
+    """Validates an email to ensure it does not already exist in the system.
+
+    :param email: Email address to validate for uniqueness.
+    """
+    existing_accounts = get_user_model().objects.filter(email=email)
+    existing_email_addresses = EmailAddress.objects.filter(email=email)
+    if existing_accounts.exists() or existing_email_addresses.exists():
+        raise ValidationError("A user with that email address already exists")
+
+
+def update_user_email(user, new_email):
+    """Updates a user's email with new_email.
+
+    :param user: `User` to update email for.
+    :param new_email: Email address to update with.
+    """
+    validate_email_unique(new_email)
+    validate_email(new_email)
+    user.email = new_email
+    user.save()
