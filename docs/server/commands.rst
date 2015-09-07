@@ -642,6 +642,23 @@ Managing users
 --------------
 
 
+.. django-admin:: find_duplicate_emails
+
+find_duplicate_emails
+^^^^^^^^^^^^^^^^^^^^^
+
+.. versionadded:: 2.7.1
+
+As of Pootle version 2.8, it will no longer be possible to have users with
+duplicate emails. This command will find any user accounts that have duplicate
+emails. It also shows the last login time for each affected user and indicates
+if they are superusers of the site.
+
+.. code-block:: bash
+
+    $ pootle find_duplicate_emails
+
+
 .. django-admin:: merge_user
 
 merge_user
@@ -680,6 +697,26 @@ username for a user of your site.
 .. code-block:: bash
 
     $ pootle purge_user username
+
+
+.. django-admin:: update_user_email
+
+update_user_email
+^^^^^^^^^^^^^^^^^
+
+.. versionadded:: 2.7.1
+
+
+.. code-block:: bash
+
+    $ pootle update_user_email username email
+
+This command can be used if you wish to update a user's email address. This
+might be useful if you have users with duplicate email addresses.
+
+This command requires a mandatory ``username`` argument, which should be a valid
+username for a user of your site, and a mandatory ``email`` argument which
+should to update a valid email address.
 
 
 .. django-admin:: verify_user

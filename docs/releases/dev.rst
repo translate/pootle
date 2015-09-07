@@ -83,6 +83,8 @@ Command changes and additions
 - Added a :djadmin:`contributors` command to get the list of contributors
   (:issue:`3867`).
 
+- Added a :djadmin:`find_duplicate_emails` command to find duplicate emails.
+
 - Added a :djadmin:`merge_user` command to get merge submissions, comments and
   reviews from one user account to another. This is useful for fixing users
   that have multiple accounts and want them to be combined. No profile data
@@ -93,6 +95,9 @@ Command changes and additions
   revert spam or a malicious user.
 
 - Added a :djadmin:`verify_user` command to automatically verify a user account
+
+- Added a :djadmin:`update_user_email` command to update a user's email
+  address.
 
 ...and lots of refactoring, cleanups to remove old Django versions specifics,
 improved documentation and of course, loads of bugs were fixed.
