@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-01 11:11+0100\n"
+"POT-Creation-Date: 2015-09-07 16:55+0100\n"
 "PO-Revision-Date: 2015-09-01 12:42+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -114,9 +114,10 @@ msgid "Loading..."
 msgstr "Llwytho..."
 
 #: static/js/admin/components/UserForm.js:52
+#, fuzzy
 msgid ""
-"Note: deleting the user will make its suggestions and translations become "
-"attributed to an anonymous user (nobody)."
+"Note: when deleting a user their contributions to the site, eg comments, "
+"suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
 "Sylw: bydd dileu defnyddiwr yn symud ei awgrymiadau a chyfieithiadau i'w "
 "tadogi i ddefnyddiwr anhysbys (neb)."
@@ -383,15 +384,21 @@ msgstr ""
 "Bydd mewngofnodi drwy wasanaeth allanol am y tro cyntaf y creu cyfrif yn "
 "awtomatig ar eich cyfer."
 
-#: static/js/editor/app.js:255
+#: static/js/editor/app.js:241 static/js/editor/app.js:537
+msgid ""
+"You have unsaved changes in this unit. Navigating away will discard those "
+"changes."
+msgstr ""
+
+#: static/js/editor/app.js:267
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
-"Ewch i'r llinyn nesaf (Ctrl+.)<br/><br/>Hefyd:<br/>Tudalen nesaf: "
-"Ctrl+Shift+.<br/>Tudalen olaf: Ctrl+Shift+End"
+"Ewch i'r llinyn nesaf (Ctrl+.)<br/><br/>Hefyd:<br/>Tudalen nesaf: Ctrl+Shift"
+"+.<br/>Tudalen olaf: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:259
+#: static/js/editor/app.js:271
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -399,76 +406,76 @@ msgstr ""
 "Ewch i'r llinyn blaenorol (Ctrl+,)<br/><br/>Hefyd:</br>Tudalen flaenorol: "
 "Ctrl+Shift+,<br/>Tudalen gyntaf: Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:371
+#: static/js/editor/app.js:383
 #, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Awgrymiadau %s yn disgwyl cymeradwyaeth"
 
-#: static/js/editor/app.js:374
+#: static/js/editor/app.js:386
 #, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Awgrymiadau %s wedi eu derbyn"
 
-#: static/js/editor/app.js:377
+#: static/js/editor/app.js:389
 #, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Awgrymiadau %s wedi eu gwrthod"
 
-#: static/js/editor/app.js:380
+#: static/js/editor/app.js:392
 #, javascript-format
 msgid "%s's submissions"
 msgstr "Awgrymiadau %s"
 
-#: static/js/editor/app.js:384
+#: static/js/editor/app.js:396
 #, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Awgrymiadau %s wedi eu trosysgrifennu"
 
-#: static/js/editor/app.js:516 static/js/editor/app.js:1684
+#: static/js/editor/app.js:529 static/js/editor/app.js:1740
 msgid "No results."
 msgstr "Dim canlyniadau."
 
-#: static/js/editor/app.js:994
+#: static/js/editor/app.js:1042
 msgid "Error while connecting to the server"
 msgstr "Gwall wrth gysylltu â'r gweinydd"
 
-#: static/js/editor/app.js:998
+#: static/js/editor/app.js:1046
 msgid "Not found"
 msgstr "Heb ei ganfod"
 
-#: static/js/editor/app.js:1000
+#: static/js/editor/app.js:1048
 msgid "Server error"
 msgstr "Gwall gweinydd"
 
-#: static/js/editor/app.js:1002
+#: static/js/editor/app.js:1050
 msgid "The server seems down. Try again later."
 msgstr "Mae'r gweinydd i weld wedi torri. Ceisiwch rhywbryd eto."
 
-#: static/js/editor/app.js:1009
+#: static/js/editor/app.js:1057
 msgid "Unknown error"
 msgstr "Gwall anhysbys"
 
-#: static/js/editor/app.js:1017
+#: static/js/editor/app.js:1065
 msgid "This unit no longer exists."
 msgstr "Nid yw'r uned hon yn bodoli."
 
-#: static/js/editor/app.js:1018
+#: static/js/editor/app.js:1066
 msgid "Go back to browsing"
 msgstr "Nôl i bori"
 
-#: static/js/editor/app.js:1020
+#: static/js/editor/app.js:1068
 msgid "Reload page"
 msgstr "Ail lwytho tudalen"
 
-#: static/js/editor/app.js:2028
+#: static/js/editor/app.js:2094
 msgid "some anonymous user"
 msgstr "rhyw ddefnyddiwr anhysbys"
 
-#: static/js/editor/app.js:2030
+#: static/js/editor/app.js:2096
 msgid "someone"
 msgstr "rhywun"
 
-#: static/js/editor/app.js:2048 static/js/editor/app.js:2097
+#: static/js/editor/app.js:2114 static/js/editor/app.js:2163
 msgid "Similar translations"
 msgstr "Cyfieithiadau tebyg"
 

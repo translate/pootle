@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-01 11:11+0100\n"
+"POT-Creation-Date: 2015-09-07 16:55+0100\n"
 "PO-Revision-Date: 2015-09-01 13:10+0000\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && n<="
-"10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
+"n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1441113040.000000\n"
 
@@ -117,9 +117,10 @@ msgid "Loading..."
 msgstr "يحمّل..."
 
 #: static/js/admin/components/UserForm.js:52
+#, fuzzy
 msgid ""
-"Note: deleting the user will make its suggestions and translations become "
-"attributed to an anonymous user (nobody)."
+"Note: when deleting a user their contributions to the site, eg comments, "
+"suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
 "لاحظ: حذف المستخدم سيرحّل اقتراحاته وترجماته إلى المستخدم المجهول (nobody)."
 
@@ -379,7 +380,13 @@ msgid ""
 "create an account for you."
 msgstr "الولوج بخدمة خارجيّة لأوّل مرّة ستنشئ حسابًا لك آليًّا."
 
-#: static/js/editor/app.js:255
+#: static/js/editor/app.js:241 static/js/editor/app.js:537
+msgid ""
+"You have unsaved changes in this unit. Navigating away will discard those "
+"changes."
+msgstr ""
+
+#: static/js/editor/app.js:267
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -387,7 +394,7 @@ msgstr ""
 "اذهب إلى المقطع التّالي (Ctrl+.)<br/><br/>أيضًا:<br/>الصّفحة التّالية: Ctrl+Shift"
 "+.<br/>الصّفحة الأخيرة: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:259
+#: static/js/editor/app.js:271
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -395,76 +402,76 @@ msgstr ""
 "اذهب إلى المقطع السّابق (Ctrl+,)<br/><br/>أيضًا:</br>الصّفحة السّابقة: Ctrl+Shift"
 "+,<br/>الصّفحة الأولى: Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:371
+#: static/js/editor/app.js:383
 #, javascript-format
 msgid "%s's pending suggestions"
 msgstr "اقتراحات %s المعلّقة"
 
-#: static/js/editor/app.js:374
+#: static/js/editor/app.js:386
 #, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "اقتراحات %s المقبولة"
 
-#: static/js/editor/app.js:377
+#: static/js/editor/app.js:389
 #, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "اقتراحات %s المرفوضة"
 
-#: static/js/editor/app.js:380
+#: static/js/editor/app.js:392
 #, javascript-format
 msgid "%s's submissions"
 msgstr "مساهمات %s"
 
-#: static/js/editor/app.js:384
+#: static/js/editor/app.js:396
 #, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "مساهمات %s المُستبدَلة"
 
-#: static/js/editor/app.js:516 static/js/editor/app.js:1684
+#: static/js/editor/app.js:529 static/js/editor/app.js:1740
 msgid "No results."
 msgstr "لا نتائج."
 
-#: static/js/editor/app.js:994
+#: static/js/editor/app.js:1042
 msgid "Error while connecting to the server"
 msgstr "خطأ أثناء الاتّصال بالخادوم"
 
-#: static/js/editor/app.js:998
+#: static/js/editor/app.js:1046
 msgid "Not found"
 msgstr "لم يُعثر عليها"
 
-#: static/js/editor/app.js:1000
+#: static/js/editor/app.js:1048
 msgid "Server error"
 msgstr "خطأ في الخادوم"
 
-#: static/js/editor/app.js:1002
+#: static/js/editor/app.js:1050
 msgid "The server seems down. Try again later."
 msgstr "تعذّر الوصول إلى الخادوم. جرّب مجدّدًا لاحقًا."
 
-#: static/js/editor/app.js:1009
+#: static/js/editor/app.js:1057
 msgid "Unknown error"
 msgstr "خطأ مجهول"
 
-#: static/js/editor/app.js:1017
+#: static/js/editor/app.js:1065
 msgid "This unit no longer exists."
 msgstr "لم تعد الوحدة موجودة."
 
-#: static/js/editor/app.js:1018
+#: static/js/editor/app.js:1066
 msgid "Go back to browsing"
 msgstr "ارجع إلى التّصفّح"
 
-#: static/js/editor/app.js:1020
+#: static/js/editor/app.js:1068
 msgid "Reload page"
 msgstr "أعد تحميل الصّفحة"
 
-#: static/js/editor/app.js:2028
+#: static/js/editor/app.js:2094
 msgid "some anonymous user"
 msgstr "مستخدم ما مجهول"
 
-#: static/js/editor/app.js:2030
+#: static/js/editor/app.js:2096
 msgid "someone"
 msgstr "أحدهم"
 
-#: static/js/editor/app.js:2048 static/js/editor/app.js:2097
+#: static/js/editor/app.js:2114 static/js/editor/app.js:2163
 msgid "Similar translations"
 msgstr "التّرجمات المشابهة"
 

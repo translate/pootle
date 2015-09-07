@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-01 11:11+0100\n"
+"POT-Creation-Date: 2015-09-07 16:55+0100\n"
 "PO-Revision-Date: 2015-06-24 11:37+0100\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -116,9 +116,10 @@ msgid "Loading..."
 msgstr "Á Luchtú..."
 
 #: static/js/admin/components/UserForm.js:52
+#, fuzzy
 msgid ""
-"Note: deleting the user will make its suggestions and translations become "
-"attributed to an anonymous user (nobody)."
+"Note: when deleting a user their contributions to the site, eg comments, "
+"suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
 "Nóta: má scriosann tú an t-úsáideoir, cuirfear a c(h)uid moltaí agus "
 "aistriúchán i leith úsáideora gan ainm (nobody)."
@@ -204,7 +205,9 @@ msgstr "Tuairiscí"
 #: static/js/auth/components/AccountActivation.js:33
 #, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr "Táimid tar éis ríomhphost leis an nasc speisialta a sheoladh chuig <span>%s</span>"
+msgstr ""
+"Táimid tar éis ríomhphost leis an nasc speisialta a sheoladh chuig <span>%s</"
+"span>"
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
@@ -386,7 +389,13 @@ msgstr ""
 "An chéad uair a logálann tú isteach trí sheirbhís sheachtrach, cruthófar "
 "cuntas nua ar do shon."
 
-#: static/js/editor/app.js:255
+#: static/js/editor/app.js:241 static/js/editor/app.js:537
+msgid ""
+"You have unsaved changes in this unit. Navigating away will discard those "
+"changes."
+msgstr ""
+
+#: static/js/editor/app.js:267
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -394,7 +403,7 @@ msgstr ""
 "An chéad teaghrán eile (Ctrl+.)<br/><br/>Nó:<br/>An chéad leathanach eile: "
 "Ctrl+Shift+.<br/>An leathanach roimhe seo: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:259
+#: static/js/editor/app.js:271
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -402,77 +411,77 @@ msgstr ""
 "An teaghrán roimhe seo (Ctrl+,)<br/><br/>Nó:</br>An leathanach roimhe seo: "
 "Ctrl+Shift+,<br/>An chéad leathanach: Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:371
+#: static/js/editor/app.js:383
 #, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Moltaí ó %s ar feitheamh"
 
-#: static/js/editor/app.js:374
+#: static/js/editor/app.js:386
 #, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Moltaí glactha ó %s"
 
-#: static/js/editor/app.js:377
+#: static/js/editor/app.js:389
 #, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Moltaí diúltaithe ó %s"
 
-#: static/js/editor/app.js:380
+#: static/js/editor/app.js:392
 #, javascript-format
 msgid "%s's submissions"
 msgstr "Aistriúcháin de chuid %s"
 
-#: static/js/editor/app.js:384
+#: static/js/editor/app.js:396
 #, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Aistriúcháin fhorscríofa de chuid %s"
 
-#: static/js/editor/app.js:516 static/js/editor/app.js:1684
+#: static/js/editor/app.js:529 static/js/editor/app.js:1740
 msgid "No results."
 msgstr "Gan torthaí."
 
-#: static/js/editor/app.js:994
+#: static/js/editor/app.js:1042
 msgid "Error while connecting to the server"
 msgstr "Earráid agus ceangal á bhunú leis an bhfreastalaí"
 
-#: static/js/editor/app.js:998
+#: static/js/editor/app.js:1046
 msgid "Not found"
 msgstr "Gan aimsiú"
 
-#: static/js/editor/app.js:1000
+#: static/js/editor/app.js:1048
 msgid "Server error"
 msgstr "Earráid fhreastalaí"
 
-#: static/js/editor/app.js:1002
+#: static/js/editor/app.js:1050
 msgid "The server seems down. Try again later."
 msgstr ""
 "Dealraíonn sé go bhfuil an freastalaí as feidhm. Déan iarracht eile ar ball."
 
-#: static/js/editor/app.js:1009
+#: static/js/editor/app.js:1057
 msgid "Unknown error"
 msgstr "Earráid anaithnid"
 
-#: static/js/editor/app.js:1017
+#: static/js/editor/app.js:1065
 msgid "This unit no longer exists."
 msgstr "Níl an t-aonad seo ann a thuilleadh."
 
-#: static/js/editor/app.js:1018
+#: static/js/editor/app.js:1066
 msgid "Go back to browsing"
 msgstr "Brabhsáil"
 
-#: static/js/editor/app.js:1020
+#: static/js/editor/app.js:1068
 msgid "Reload page"
 msgstr "Athluchtaigh an leathanach"
 
-#: static/js/editor/app.js:2028
+#: static/js/editor/app.js:2094
 msgid "some anonymous user"
 msgstr "úsáideoir éigin gan ainm"
 
-#: static/js/editor/app.js:2030
+#: static/js/editor/app.js:2096
 msgid "someone"
 msgstr "duine éigin"
 
-#: static/js/editor/app.js:2048 static/js/editor/app.js:2097
+#: static/js/editor/app.js:2114 static/js/editor/app.js:2163
 msgid "Similar translations"
 msgstr "Aistriúcháin cosúil leis seo"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-01 11:11+0100\n"
+"POT-Creation-Date: 2015-09-07 16:55+0100\n"
 "PO-Revision-Date: 2015-09-01 20:06+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 "X-POOTLE-MTIME: 1441138009.000000\n"
@@ -29,36 +29,36 @@ msgstr ""
 "Похоже, что ваша учетная запись исчезла. Пожалуйста, сообщите об этом "
 "администратору сайта. "
 
-#: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
+#: apps/accounts/models.py:61 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: apps/accounts/models.py:61
+#: apps/accounts/models.py:62
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 "Необходимо. Не более 30 символов. Можно использовать буквы, цифры, символы "
 "@/./+/-/_"
 
-#: apps/accounts/models.py:65
+#: apps/accounts/models.py:66
 msgid "Enter a valid username."
 msgstr "Введите корректное имя пользователя."
 
-#: apps/accounts/models.py:69
+#: apps/accounts/models.py:70
 msgid "Email Address"
 msgstr "Адрес электронной почты"
 
-#: apps/accounts/models.py:70 apps/pootle_language/models.py:80
+#: apps/accounts/models.py:71 apps/pootle_language/models.py:80
 #: apps/pootle_project/models.py:149
 msgid "Full Name"
 msgstr "Имя и фамилия"
 
-#: apps/accounts/models.py:72 apps/staticpages/models.py:28
+#: apps/accounts/models.py:73 apps/staticpages/models.py:28
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Активно"
 
-#: apps/accounts/models.py:73
+#: apps/accounts/models.py:74
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -66,70 +66,70 @@ msgstr ""
 "Определяет, является ли пользователь активным. Снимите этот флаг вместо "
 "удаления пользователя."
 
-#: apps/accounts/models.py:75
+#: apps/accounts/models.py:76
 msgid "Superuser Status"
 msgstr "Статус суперпользователя"
 
-#: apps/accounts/models.py:76
+#: apps/accounts/models.py:77
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
 "Определяет, что этот пользователь имеет все права без явного их назначения."
 
-#: apps/accounts/models.py:79
+#: apps/accounts/models.py:80
 msgid "date joined"
 msgstr "дата присоединения"
 
-#: apps/accounts/models.py:83
+#: apps/accounts/models.py:84
 msgid "Number of Rows"
 msgstr "Число рядов"
 
-#: apps/accounts/models.py:86
+#: apps/accounts/models.py:87
 msgid "Alternative Source Languages"
 msgstr "Альтернативный язык исходников"
 
-#: apps/accounts/models.py:89 templates/admin/detailed_reports.html:149
+#: apps/accounts/models.py:90 templates/admin/detailed_reports.html:149
 msgid "Rate"
 msgstr "Тариф"
 
-#: apps/accounts/models.py:90 apps/reports/forms.py:32
+#: apps/accounts/models.py:91 apps/reports/forms.py:32
 msgid "Review Rate"
 msgstr "Тариф на рецензию"
 
-#: apps/accounts/models.py:91 apps/reports/forms.py:37
+#: apps/accounts/models.py:92 apps/reports/forms.py:37
 msgid "Hourly Rate"
 msgstr "Почасовой тариф"
 
-#: apps/accounts/models.py:92
+#: apps/accounts/models.py:93
 msgid "Score"
 msgstr "Счет"
 
-#: apps/accounts/models.py:93 apps/reports/forms.py:21
+#: apps/accounts/models.py:94 apps/reports/forms.py:21
 msgid "Currency"
 msgstr "Валюта"
 
-#: apps/accounts/models.py:95
+#: apps/accounts/models.py:96
 msgid "Is employee?"
 msgstr "Работник?"
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:97
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:99
 msgid "Website"
 msgstr "Веб-сайт"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:100
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:101
 msgid "Short Bio"
 msgstr "Короткая биография"
 
-#: apps/accounts/models.py:300
+#: apps/accounts/models.py:308
 msgid "This email address already exists."
 msgstr "Этот адрес электронной почты уже используется."
 
@@ -761,32 +761,32 @@ msgstr "Префикс для поиска снимков экрана"
 msgid "Disabled"
 msgstr "Отключено"
 
-#: apps/pootle_statistics/models.py:67 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:71 templates/editor/export_view.html:105
 msgid "Source"
 msgstr "Источник"
 
-#: apps/pootle_statistics/models.py:68
+#: apps/pootle_statistics/models.py:72
 msgid "Target"
 msgstr "Цель"
 
-#: apps/pootle_statistics/models.py:69
+#: apps/pootle_statistics/models.py:73
 msgid "State"
 msgstr "Состояние"
 
-#: apps/pootle_statistics/models.py:70
+#: apps/pootle_statistics/models.py:74
 msgid "Comment"
 msgstr "Комментарий"
 
-#: apps/pootle_statistics/models.py:266
+#: apps/pootle_statistics/models.py:317
 msgid "Added suggestion"
 msgstr "Добавить предложение"
 
-#: apps/pootle_statistics/models.py:267
+#: apps/pootle_statistics/models.py:318
 #, python-format
 msgid "Accepted suggestion from %s"
 msgstr "Принято предложение от %s"
 
-#: apps/pootle_statistics/models.py:268
+#: apps/pootle_statistics/models.py:319
 #, python-format
 msgid "Rejected suggestion from %s"
 msgstr "Отклонено предложение от %s"
@@ -803,7 +803,7 @@ msgstr "Недостаточно прав для доступа к режиму 
 msgid "Insufficient rights to access translation mode."
 msgstr "Недостаточно прав для доступа к режиму перевода."
 
-#: apps/pootle_store/decorators.py:32
+#: apps/pootle_store/decorators.py:32 apps/pootle_store/views.py:1012
 msgid "Insufficient rights to access review mode."
 msgstr "Недостаточно прав для доступа к режиму одобрения предложений."
 
@@ -886,7 +886,7 @@ msgstr "Принято"
 msgid "Rejected"
 msgstr "Отказано"
 
-#: apps/pootle_store/models.py:1309
+#: apps/pootle_store/models.py:1323
 msgid "Path"
 msgstr "Путь"
 
@@ -1132,26 +1132,27 @@ msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Убедитесь, что Redis запущен на %(host)s:%(port)s"
 
 #: checks.py:102
-msgid "No RQ Worker running."
-msgstr "Отсутствуют запущенные RQ обработчики."
-
-#: checks.py:103
-msgid "Run new workers with manage.py rqworker"
-msgstr "Запустите новые обработчики с помощью manage.py rqworker"
-
-#: checks.py:110
 msgid "Your version of Redis is too old."
 msgstr "Установленная версия Redis слишком старая."
 
-#: checks.py:111
-msgid "Update your system's Redis server package"
+#: checks.py:103
+#, fuzzy, python-format
+msgid "Update your system's Redis server package to at least version %s"
 msgstr "Обновите пакет Redis в вашей системе"
 
-#: checks.py:126
+#: checks.py:113
+msgid "No RQ Worker running."
+msgstr "Отсутствуют запущенные RQ обработчики."
+
+#: checks.py:114
+msgid "Run new workers with manage.py rqworker"
+msgstr "Запустите новые обработчики с помощью manage.py rqworker"
+
+#: checks.py:129
 msgid "Cache backend is not set to Redis."
 msgstr "Кэширующий бэкенд не установлен как Redis"
 
-#: checks.py:127
+#: checks.py:130
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1160,35 +1161,35 @@ msgstr ""
 "Установите кэширующий бэкенд в значение django_redis.cache.RedisCache\n"
 "Текущее значение: %r"
 
-#: checks.py:136
+#: checks.py:139
 msgid "Could not initiate a Redis cache connection"
 msgstr "Не удалось инициализировать соединение с кэшем Redis"
 
-#: checks.py:137
+#: checks.py:140
 msgid "Double-check your CACHES settings"
 msgstr "Перепроверьте настройки переменной CACHES"
 
-#: checks.py:143
+#: checks.py:146
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "Режим DEBUG включен. Используйте этот режим только для тестирования!"
 
-#: checks.py:144
+#: checks.py:147
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Установите DEBUG = Falst в настройках Pootle"
 
-#: checks.py:150
+#: checks.py:153
 msgid "The sqlite database backend is unsupported"
 msgstr "База данных sqlite не поддерживается"
 
-#: checks.py:151
+#: checks.py:154
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
 msgstr "Установите движок базы данных в значение postgresql_psycopg2 или mysql"
 
-#: checks.py:157
+#: checks.py:160
 msgid "Not using cached_db as session engine"
 msgstr "Не использую cached_db как движок сессии"
 
-#: checks.py:158
+#: checks.py:161
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1198,11 +1199,11 @@ msgstr ""
 "cached_db\n"
 "Текущее значение: %r"
 
-#: checks.py:165
+#: checks.py:168
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "Переменная POOTLE_CONTACT_EMAIL не задана."
 
-#: checks.py:166
+#: checks.py:169
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1210,12 +1211,12 @@ msgstr ""
 "Переменная POOTLE_CONTACT_EMAIL позволяет пользователям связываться с "
 "администрацией через форму обратной связи."
 
-#: checks.py:174
+#: checks.py:177
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL использует следующую настройку по умолчанию: %r."
 
-#: checks.py:176
+#: checks.py:179
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1223,11 +1224,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL будет использоваться как адрес, на который будут "
 "приходить сообщения от формы обратной связи."
 
-#: checks.py:183
+#: checks.py:186
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "Переменная DEFAULT_FROM_EMAIL не задана."
 
-#: checks.py:184 checks.py:194
+#: checks.py:187 checks.py:197
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1235,36 +1236,36 @@ msgstr ""
 "DEFAULT_FROM_EMAIL используется для всех исходящих писем.\n"
 "Не забудьте проверить настройки почтового сервера."
 
-#: checks.py:192
+#: checks.py:195
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL использует следующее значение по умолчанию: %r."
 
-#: checks.py:203
+#: checks.py:206
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER  отсутствует."
 
-#: checks.py:204
+#: checks.py:207
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Установите POOTLE_MARKUP_FILTER."
 
-#: checks.py:209
+#: checks.py:212
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Неверное значение для POOTLE_MARKUP_FILTER."
 
-#: checks.py:210
+#: checks.py:213
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Установите корректное значение для POOTLE_MARKUP_FILTER."
 
-#: checks.py:224
+#: checks.py:227
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Некорректная разметка в POOTLE_MARKUP_FILTER."
 
-#: checks.py:225
+#: checks.py:228
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Установите корректную разметку для  POOTLE_MARKUP_FILTER. "
 
-#: checks.py:230
+#: checks.py:233
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1273,23 +1274,23 @@ msgstr ""
 "POOTLE_MARKUP_FILTER установлен в значение '%s' , однако пакет, который "
 "предоставляет эту функциональность, не найден."
 
-#: checks.py:232
+#: checks.py:235
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Установите пакет или измените значение POOTLE_MARKUP_FILTER."
 
-#: checks.py:256
+#: checks.py:259
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "У пользователя 'admin' пароль до сих пор 'admin'."
 
-#: checks.py:258
+#: checks.py:261
 msgid "Remove the 'admin' user or change its password."
 msgstr "Удалите пользователя 'admin' или смените ему пароль."
 
-#: checks.py:273
+#: checks.py:276
 msgid "Database connection does not implement on_commit."
 msgstr "Соединение с БД не реализует вызов on_commit."
 
-#: checks.py:274
+#: checks.py:277
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
@@ -2475,8 +2476,8 @@ msgid ""
 "translation project a \"pootle-terminology\" file named after your project's "
 "extension."
 msgstr ""
-"Чтобы использовать терминологию, убедитесь, что вы добавили в проект файл \""
-"pootle-terminlogy\" с расширением, как у всех остальных файлов в проекте."
+"Чтобы использовать терминологию, убедитесь, что вы добавили в проект файл "
+"\"pootle-terminlogy\" с расширением, как у всех остальных файлов в проекте."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

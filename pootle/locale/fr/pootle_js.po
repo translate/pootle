@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-01 11:11+0100\n"
+"POT-Creation-Date: 2015-09-07 16:55+0100\n"
 "PO-Revision-Date: 2015-05-19 17:40+0000\n"
 "Last-Translator: David <david.ducassou@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,9 +117,10 @@ msgid "Loading..."
 msgstr "Chargement..."
 
 #: static/js/admin/components/UserForm.js:52
+#, fuzzy
 msgid ""
-"Note: deleting the user will make its suggestions and translations become "
-"attributed to an anonymous user (nobody)."
+"Note: when deleting a user their contributions to the site, eg comments, "
+"suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
 "Notez : supprimer l'utilisateur fera que ses suggestions et ses traductions "
 "deviendront attribuées à un utilisateur anonyme (personne)."
@@ -382,7 +383,13 @@ msgid ""
 "create an account for you."
 msgstr ""
 
-#: static/js/editor/app.js:255
+#: static/js/editor/app.js:241 static/js/editor/app.js:537
+msgid ""
+"You have unsaved changes in this unit. Navigating away will discard those "
+"changes."
+msgstr ""
+
+#: static/js/editor/app.js:267
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -390,7 +397,7 @@ msgstr ""
 "Aller à la chaîne suivante (Ctrl+.)<br/><br/>Et aussi :<br/>Page suivante : "
 "Ctrl+Shift+.<br/>Dernière page: Ctrl+Shift+Fin"
 
-#: static/js/editor/app.js:259
+#: static/js/editor/app.js:271
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -398,77 +405,77 @@ msgstr ""
 "Aller à la page précédente (Ctrl+,)<br/><br/>Et aussi :</br>Page "
 "précédente : Ctrl+Shift+,<br/>Première page : Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:371
+#: static/js/editor/app.js:383
 #, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Suggestions de %s en attente"
 
-#: static/js/editor/app.js:374
+#: static/js/editor/app.js:386
 #, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Suggestions de %s acceptées"
 
-#: static/js/editor/app.js:377
+#: static/js/editor/app.js:389
 #, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Suggestions de %s rejetées"
 
-#: static/js/editor/app.js:380
+#: static/js/editor/app.js:392
 #, javascript-format
 msgid "%s's submissions"
 msgstr "Contributions de %s"
 
-#: static/js/editor/app.js:384
+#: static/js/editor/app.js:396
 #, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Contributions de %s écrasées"
 
-#: static/js/editor/app.js:516 static/js/editor/app.js:1684
+#: static/js/editor/app.js:529 static/js/editor/app.js:1740
 msgid "No results."
 msgstr "Aucun résultat."
 
-#: static/js/editor/app.js:994
+#: static/js/editor/app.js:1042
 msgid "Error while connecting to the server"
 msgstr "Erreur lors de la connexion au serveur"
 
-#: static/js/editor/app.js:998
+#: static/js/editor/app.js:1046
 msgid "Not found"
 msgstr "Pas trouvé"
 
-#: static/js/editor/app.js:1000
+#: static/js/editor/app.js:1048
 msgid "Server error"
 msgstr "Erreur de serveur"
 
-#: static/js/editor/app.js:1002
+#: static/js/editor/app.js:1050
 msgid "The server seems down. Try again later."
 msgstr "Le serveur semble hors service. Essayez plus tard."
 
-#: static/js/editor/app.js:1009
+#: static/js/editor/app.js:1057
 msgid "Unknown error"
 msgstr "Erreur inconnue"
 
-#: static/js/editor/app.js:1017
+#: static/js/editor/app.js:1065
 msgid "This unit no longer exists."
 msgstr "Cette unité n'existe plus."
 
-#: static/js/editor/app.js:1018
+#: static/js/editor/app.js:1066
 #, fuzzy
 msgid "Go back to browsing"
 msgstr "Revenir à la vue d'ensemble"
 
-#: static/js/editor/app.js:1020
+#: static/js/editor/app.js:1068
 msgid "Reload page"
 msgstr "Recharger la page"
 
-#: static/js/editor/app.js:2028
+#: static/js/editor/app.js:2094
 msgid "some anonymous user"
 msgstr "un certain utilisateur anonyme"
 
-#: static/js/editor/app.js:2030
+#: static/js/editor/app.js:2096
 msgid "someone"
 msgstr "quelqu'un"
 
-#: static/js/editor/app.js:2048 static/js/editor/app.js:2097
+#: static/js/editor/app.js:2114 static/js/editor/app.js:2163
 msgid "Similar translations"
 msgstr "Traductions similaires"
 

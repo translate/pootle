@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-01 11:11+0100\n"
+"POT-Creation-Date: 2015-09-07 16:55+0100\n"
 "PO-Revision-Date: 2015-06-21 16:16+0000\n"
 "Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,103 +25,103 @@ msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
 
-#: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:86
+#: apps/accounts/models.py:61 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
 msgstr "用户名"
 
-#: apps/accounts/models.py:61
+#: apps/accounts/models.py:62
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr "必需。30个字符或更少。字母、数字和 @/./+/-/_ 字符"
 
-#: apps/accounts/models.py:65
+#: apps/accounts/models.py:66
 msgid "Enter a valid username."
 msgstr "请输入一个有效的用户名。"
 
-#: apps/accounts/models.py:69
+#: apps/accounts/models.py:70
 msgid "Email Address"
 msgstr "电子邮件地址"
 
-#: apps/accounts/models.py:70 apps/pootle_language/models.py:80
+#: apps/accounts/models.py:71 apps/pootle_language/models.py:80
 #: apps/pootle_project/models.py:149
 msgid "Full Name"
 msgstr "全名"
 
-#: apps/accounts/models.py:72 apps/staticpages/models.py:28
+#: apps/accounts/models.py:73 apps/staticpages/models.py:28
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "活动"
 
-#: apps/accounts/models.py:73
+#: apps/accounts/models.py:74
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr "标识此用户是否应被视为活动。取消选中此项而不必删除账号。"
 
-#: apps/accounts/models.py:75
+#: apps/accounts/models.py:76
 msgid "Superuser Status"
 msgstr "超级用户状态"
 
-#: apps/accounts/models.py:76
+#: apps/accounts/models.py:77
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr "标识此用户是否具有所有权限而无需明确分配。"
 
-#: apps/accounts/models.py:79
+#: apps/accounts/models.py:80
 msgid "date joined"
 msgstr "加入时间"
 
-#: apps/accounts/models.py:83
+#: apps/accounts/models.py:84
 msgid "Number of Rows"
 msgstr "行数"
 
-#: apps/accounts/models.py:86
+#: apps/accounts/models.py:87
 msgid "Alternative Source Languages"
 msgstr "可选源语言"
 
-#: apps/accounts/models.py:89 templates/admin/detailed_reports.html:149
+#: apps/accounts/models.py:90 templates/admin/detailed_reports.html:149
 #, fuzzy
 msgid "Rate"
 msgstr "比率"
 
-#: apps/accounts/models.py:90 apps/reports/forms.py:32
+#: apps/accounts/models.py:91 apps/reports/forms.py:32
 msgid "Review Rate"
 msgstr "评论率"
 
-#: apps/accounts/models.py:91 apps/reports/forms.py:37
+#: apps/accounts/models.py:92 apps/reports/forms.py:37
 msgid "Hourly Rate"
 msgstr "小时频率"
 
-#: apps/accounts/models.py:92
+#: apps/accounts/models.py:93
 msgid "Score"
 msgstr "得分"
 
-#: apps/accounts/models.py:93 apps/reports/forms.py:21
+#: apps/accounts/models.py:94 apps/reports/forms.py:21
 msgid "Currency"
 msgstr "货币"
 
-#: apps/accounts/models.py:95
+#: apps/accounts/models.py:96
 msgid "Is employee?"
 msgstr "是员工？"
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:97
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:99
 msgid "Website"
 msgstr "网站"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:100
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:101
 msgid "Short Bio"
 msgstr "个人简介"
 
-#: apps/accounts/models.py:300
+#: apps/accounts/models.py:308
 #, fuzzy
 msgid "This email address already exists."
 msgstr "此术语已存在于文件中。"
@@ -751,33 +751,33 @@ msgstr "屏幕截图搜索前缀"
 msgid "Disabled"
 msgstr "已禁用"
 
-#: apps/pootle_statistics/models.py:67 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:71 templates/editor/export_view.html:105
 msgid "Source"
 msgstr "源"
 
-#: apps/pootle_statistics/models.py:68
+#: apps/pootle_statistics/models.py:72
 msgid "Target"
 msgstr "目标"
 
-#: apps/pootle_statistics/models.py:69
+#: apps/pootle_statistics/models.py:73
 msgid "State"
 msgstr "状态"
 
-#: apps/pootle_statistics/models.py:70
+#: apps/pootle_statistics/models.py:74
 msgid "Comment"
 msgstr "注释"
 
-#: apps/pootle_statistics/models.py:266
+#: apps/pootle_statistics/models.py:317
 #, fuzzy
 msgid "Added suggestion"
 msgstr "%d 个建议"
 
-#: apps/pootle_statistics/models.py:267
+#: apps/pootle_statistics/models.py:318
 #, fuzzy, python-format
 msgid "Accepted suggestion from %s"
 msgstr "接受建议"
 
-#: apps/pootle_statistics/models.py:268
+#: apps/pootle_statistics/models.py:319
 #, fuzzy, python-format
 msgid "Rejected suggestion from %s"
 msgstr "拒绝建议"
@@ -794,7 +794,7 @@ msgstr "访问建议模式的权限不足。"
 msgid "Insufficient rights to access translation mode."
 msgstr "访问翻译模式的权限不足。"
 
-#: apps/pootle_store/decorators.py:32
+#: apps/pootle_store/decorators.py:32 apps/pootle_store/views.py:1012
 msgid "Insufficient rights to access review mode."
 msgstr "访问审核模式的权限不足。"
 
@@ -879,7 +879,7 @@ msgstr "已接受"
 msgid "Rejected"
 msgstr "已拒绝"
 
-#: apps/pootle_store/models.py:1309
+#: apps/pootle_store/models.py:1323
 msgid "Path"
 msgstr "路径"
 
@@ -1123,154 +1123,155 @@ msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Redis 服务器尝试连接 %(host)s:%(port)s。"
 
 #: checks.py:102
+msgid "Your version of Redis is too old."
+msgstr "您的 Redis 版本过于老旧。"
+
+#: checks.py:103
+#, python-format
+msgid "Update your system's Redis server package to at least version %s"
+msgstr ""
+
+#: checks.py:113
 #, fuzzy
 msgid "No RQ Worker running."
 msgstr "没有 RQ worker 正在运行。"
 
-#: checks.py:103
+#: checks.py:114
 msgid "Run new workers with manage.py rqworker"
 msgstr ""
 
-#: checks.py:110
-msgid "Your version of Redis is too old."
-msgstr "您的 Redis 版本过于老旧。"
-
-#: checks.py:111
-msgid "Update your system's Redis server package"
-msgstr ""
-
-#: checks.py:126
+#: checks.py:129
 msgid "Cache backend is not set to Redis."
 msgstr ""
 
-#: checks.py:127
+#: checks.py:130
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
 
-#: checks.py:136
+#: checks.py:139
 msgid "Could not initiate a Redis cache connection"
 msgstr ""
 
-#: checks.py:137
+#: checks.py:140
 msgid "Double-check your CACHES settings"
 msgstr ""
 
-#: checks.py:143
+#: checks.py:146
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr ""
 
-#: checks.py:144
+#: checks.py:147
 msgid "Set DEBUG = False in Pootle settings"
 msgstr ""
 
-#: checks.py:150
+#: checks.py:153
 msgid "The sqlite database backend is unsupported"
 msgstr ""
 
-#: checks.py:151
+#: checks.py:154
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
 msgstr ""
 
-#: checks.py:157
+#: checks.py:160
 msgid "Not using cached_db as session engine"
 msgstr ""
 
-#: checks.py:158
+#: checks.py:161
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
 
-#: checks.py:165
+#: checks.py:168
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr ""
 
-#: checks.py:166
+#: checks.py:169
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
 
-#: checks.py:174
+#: checks.py:177
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: checks.py:176
+#: checks.py:179
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
 
-#: checks.py:183
+#: checks.py:186
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr ""
 
-#: checks.py:184 checks.py:194
+#: checks.py:187 checks.py:197
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
 
-#: checks.py:192
+#: checks.py:195
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: checks.py:203
+#: checks.py:206
 #, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "MARKUP_FILTER 丢失。将退回 HTML。"
 
-#: checks.py:204
+#: checks.py:207
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:209
+#: checks.py:212
 #, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "MARKUP_FILTER 中的值“%s”无效。将退回 HTML。"
 
-#: checks.py:210
+#: checks.py:213
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:224
+#: checks.py:227
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:225
+#: checks.py:228
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:230
+#: checks.py:233
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
 
-#: checks.py:232
+#: checks.py:235
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:256
+#: checks.py:259
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 
-#: checks.py:258
+#: checks.py:261
 msgid "Remove the 'admin' user or change its password."
 msgstr ""
 
-#: checks.py:273
+#: checks.py:276
 msgid "Database connection does not implement on_commit."
 msgstr ""
 
-#: checks.py:274
+#: checks.py:277
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."

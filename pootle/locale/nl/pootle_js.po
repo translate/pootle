@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-01 11:11+0100\n"
+"POT-Creation-Date: 2015-09-07 16:55+0100\n"
 "PO-Revision-Date: 2015-06-20 17:40+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,9 +116,10 @@ msgid "Loading..."
 msgstr "Laden..."
 
 #: static/js/admin/components/UserForm.js:52
+#, fuzzy
 msgid ""
-"Note: deleting the user will make its suggestions and translations become "
-"attributed to an anonymous user (nobody)."
+"Note: when deleting a user their contributions to the site, eg comments, "
+"suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
 "Opmerking: verwijderen van de gebruiker zorgt ervoor dat suggesties en "
 "vertalingen ervan aan een anonieme gebruiker worden toegeschreven (nobody)."
@@ -389,7 +390,13 @@ msgstr ""
 "Het voor de eerste keer aanmelden met een externe service zal automatisch "
 "een account voor u aanmaken."
 
-#: static/js/editor/app.js:255
+#: static/js/editor/app.js:241 static/js/editor/app.js:537
+msgid ""
+"You have unsaved changes in this unit. Navigating away will discard those "
+"changes."
+msgstr ""
+
+#: static/js/editor/app.js:267
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -397,7 +404,7 @@ msgstr ""
 "Naar de volgende tekenreeks (Ctrl+.)<br/><br/>Ook:<br/>Volgende pagina: Ctrl"
 "+Shift+.<br/>Vorige pagina: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:259
+#: static/js/editor/app.js:271
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -405,76 +412,76 @@ msgstr ""
 "Naar de vorige tekenreeks (Ctrl+,)<br/><br/>Ook:</br>Vorige pagina: Ctrl"
 "+Shift+,<br/>Eerste pagina: Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:371
+#: static/js/editor/app.js:383
 #, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Openstaande suggesties van %s"
 
-#: static/js/editor/app.js:374
+#: static/js/editor/app.js:386
 #, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Geaccepteerde suggesties van %s"
 
-#: static/js/editor/app.js:377
+#: static/js/editor/app.js:389
 #, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Afgewezen suggesties van %s"
 
-#: static/js/editor/app.js:380
+#: static/js/editor/app.js:392
 #, javascript-format
 msgid "%s's submissions"
 msgstr "Bijdragen van %s"
 
-#: static/js/editor/app.js:384
+#: static/js/editor/app.js:396
 #, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Overschreven bijdragen van %s"
 
-#: static/js/editor/app.js:516 static/js/editor/app.js:1684
+#: static/js/editor/app.js:529 static/js/editor/app.js:1740
 msgid "No results."
 msgstr "Geen resultaten."
 
-#: static/js/editor/app.js:994
+#: static/js/editor/app.js:1042
 msgid "Error while connecting to the server"
 msgstr "Fout tijdens verbinden met de server"
 
-#: static/js/editor/app.js:998
+#: static/js/editor/app.js:1046
 msgid "Not found"
 msgstr "Niet gevonden"
 
-#: static/js/editor/app.js:1000
+#: static/js/editor/app.js:1048
 msgid "Server error"
 msgstr "Serverfout"
 
-#: static/js/editor/app.js:1002
+#: static/js/editor/app.js:1050
 msgid "The server seems down. Try again later."
 msgstr "De server lijkt niet beschikbaar. Probeer het later nog eens."
 
-#: static/js/editor/app.js:1009
+#: static/js/editor/app.js:1057
 msgid "Unknown error"
 msgstr "Onbekende fout"
 
-#: static/js/editor/app.js:1017
+#: static/js/editor/app.js:1065
 msgid "This unit no longer exists."
 msgstr "Deze eenheid bestaat niet meer."
 
-#: static/js/editor/app.js:1018
+#: static/js/editor/app.js:1066
 msgid "Go back to browsing"
 msgstr "Terug naar bladeren"
 
-#: static/js/editor/app.js:1020
+#: static/js/editor/app.js:1068
 msgid "Reload page"
 msgstr "Pagina herladen"
 
-#: static/js/editor/app.js:2028
+#: static/js/editor/app.js:2094
 msgid "some anonymous user"
 msgstr "een anonieme server"
 
-#: static/js/editor/app.js:2030
+#: static/js/editor/app.js:2096
 msgid "someone"
 msgstr "iemand"
 
-#: static/js/editor/app.js:2048 static/js/editor/app.js:2097
+#: static/js/editor/app.js:2114 static/js/editor/app.js:2163
 msgid "Similar translations"
 msgstr "Soortgelijke vertalingen"
 
