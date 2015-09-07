@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.contrib.auth import get_user_model
+from django.core.validators import ValidationError
 
 import pytest
 
@@ -269,3 +270,102 @@ def test_verify_user_already_verified(member_with_email):
     EmailAddress.objects.get(user=member_with_email,
                              email=member_with_email.email,
                              primary=True, verified=True)
+
+
+@pytest.mark.django_db
+def test_update_user_email_without_existing_email(trans_member):
+    """Test updating user email using `update_user_email` function"""
+    assert trans_member.email == ""
+
+    # Trans_Member has no EmailAddress object
+    with pytest.raises(EmailAddress.DoesNotExist):
+        EmailAddress.objects.get(user=trans_member)
+
+    accounts.utils.update_user_email(trans_member, "trans_member@this.test")
+
+    # User.email has been set
+    assert trans_member.email == "trans_member@this.test"
+
+    # member still has no EmailAddress object
+    with pytest.raises(EmailAddress.DoesNotExist):
+        EmailAddress.objects.get(user=trans_member)
+
+
+@pytest.mark.django_db
+def test_update_user_email_with_unverified_acc(member_with_email):
+    """Test updating user email using `update_user_email` function"""
+
+    # Create an unverified primary email object
+    EmailAddress.objects.create(user=member_with_email,
+                                email=member_with_email.email,
+                                primary=True, verified=False).save()
+
+    accounts.utils.update_user_email(member_with_email,
+                                     "new_email_address@this.test")
+
+    # Both User.email and EmailAddress.email should be updated for user
+    email_address = EmailAddress.objects.get(user=member_with_email)
+    assert member_with_email.email == "new_email_address@this.test"
+    assert email_address.email == "new_email_address@this.test"
+
+    # Doesnt affect verification
+    assert email_address.verified is False
+
+
+@pytest.mark.django_db
+def test_update_user_email_with_multiple_email_addresses(member_with_email):
+    """Test updating user email using `update_user_email` function"""
+
+    # Create primary/secondary email addresses
+    EmailAddress.objects.create(user=member_with_email,
+                                email=member_with_email.email,
+                                primary=True, verified=True).save()
+    EmailAddress.objects.create(user=member_with_email,
+                                email="alt_email@this.test",
+                                primary=False, verified=False).save()
+
+    accounts.utils.update_user_email(member_with_email,
+                                     "new_email@this.test")
+
+    # Both User.email and EmailAddress.email should be updated for user
+    email_address = EmailAddress.objects.get(user=member_with_email,
+                                             primary=True)
+    assert member_with_email.email == "new_email@this.test"
+    assert email_address.email == "new_email@this.test"
+
+    # Doesnt affect other email address tho
+    alt_email_address = EmailAddress.objects.get(user=member_with_email,
+                                                 primary=False)
+    assert alt_email_address.email == "alt_email@this.test"
+
+
+@pytest.mark.django_db
+def test_update_user_email_bad_invalid_email(member_with_email):
+    with pytest.raises(ValidationError):
+        accounts.utils.update_user_email(member_with_email,
+                                         "NOT_AN_EMAIL_ADDRESS")
+
+
+@pytest.mark.django_db
+def test_update_user_email_bad_invalid_duplicate(member_with_email, member2):
+
+    # Create 2 emails for member2
+    member2.email = "member2@this.test"
+    member2.save()
+    (EmailAddress.objects
+                 .create(user=member2,
+                         email=member2.email,
+                         primary=True, verified=True)).save()
+    (EmailAddress.objects
+                 .create(user=member2,
+                         email="alt_email@this.test",
+                         primary=False,
+                         verified=False)).save()
+
+    # Member cannot update with either of member2's emails
+    with pytest.raises(ValidationError):
+        accounts.utils.update_user_email(member_with_email,
+                                         member2.email)
+    with pytest.raises(ValidationError):
+        accounts.utils.update_user_email(member_with_email,
+                                         "alt_email@this.test")
