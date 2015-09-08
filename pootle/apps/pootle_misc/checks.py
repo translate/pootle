@@ -44,6 +44,7 @@ check_names = {
     'brackets': _(u"Brackets"),
     'compendiumconflicts': _(u"Compendium conflict"),
     'credits': _(u"Translator credits"),
+    'dialogsizes': _(u"Dialog sizes"),
     'doublequoting': _(u"Double quotes"),  # fixme duplicated
     'doublespacing': _(u"Double spaces"),
     'doublewords': _(u"Repeated word"),
