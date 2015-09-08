@@ -238,7 +238,7 @@ PTL.editor = {
     window.addEventListener('beforeunload', (e) => {
       if (PTL.editor.isUnitDirty) {
         e.returnValue = gettext(
-          'You have unsaved changes in this string. Navigating away will discard those changes.'
+          'You have unsaved changes in this unit. Navigating away will discard those changes.'
         );
       }
     });
@@ -534,7 +534,7 @@ PTL.editor = {
     if (this.isUnitDirty) {
       return window.confirm(
         gettext(
-          'You have unsaved changes in this string. Navigating away will discard those changes.'
+          'You have unsaved changes in this unit. Navigating away will discard those changes.'
         )
       );
     }
@@ -1062,7 +1062,7 @@ PTL.editor = {
   },
 
   displayObsoleteMsg: function () {
-    var msgText = gettext('This string no longer exists.'),
+    var msgText = gettext('This unit no longer exists.'),
         backMsg = gettext('Go back to browsing'),
         backLink = $('.js-back-to-browser').attr('href'),
         reloadMsg = gettext('Reload page'),
