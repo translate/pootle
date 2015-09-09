@@ -304,3 +304,26 @@ def check_db_transaction_on_commit(app_configs=None, **kwargs):
             id="pootle.C006",
         ))
     return errors
+
+
+@checks.register()
+def check_email_server_is_alive(app_configs=None, **kwargs):
+    from django.conf import settings
+
+    errors = []
+    if settings.POOTLE_SIGNUP_ENABLED or settings.POOTLE_CONTACT_ENABLED:
+        from django.core.mail import get_connection
+
+        connection = get_connection()
+        try:
+            connection.open()
+        except Exception:
+            errors.append(checks.Warning(
+                _("Email server is not available."),
+                hint=_("Review your email settings and make sure your email "
+                       "server is working."),
+                id="pootle.W004",
+            ))
+        else:
+            connection.close()
+    return errors
