@@ -7,10 +7,16 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
+
 from django.conf import settings
 from django.http import JsonResponse
+from django.utils.translation import ugettext_lazy as _
 
 from allauth.account.adapter import DefaultAccountAdapter
+
+
+logger = logging.getLogger('action')
 
 
 class PootleAccountAdapter(DefaultAccountAdapter):
@@ -47,3 +53,14 @@ class PootleAccountAdapter(DefaultAccountAdapter):
     def add_message(self, request, level, message_template, *args, **kwargs):
         """Silence messages altogether."""
         pass
+
+    def send_confirmation_mail(self, *args, **kwargs):
+        try:
+            super(PootleAccountAdapter, self).send_confirmation_mail(*args,
+                                                                     **kwargs)
+        except Exception:
+            logger.exception("ERROR: Sign up failed. Couldn't sent "
+                             "confirmation email.")
+            raise RuntimeError(_('Some problem happened when tried to send '
+                                 'the confirmation email. Please try again '
+                                 'later.'))
