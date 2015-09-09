@@ -49,6 +49,38 @@ project, run:
     $ pootle refresh_stats --project=tutorial --language=zu --language=eu
 
 
+Running commands with --no-rq option
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. versionadded:: 2.7.1
+
+Some of the commands work asynchronously and will schedule jobs to RQ workers,
+rather than running them in the command process. You can change this behaviour
+using the :option:`--no-rq` command line option.
+
+This can be useful for running pootle commands in bash scripts or automating
+installation/upgrade/migration. It can also be useful for debugging otherwise
+asynchronous jobs.
+
+For example, to run :djadmin:`refresh_stats` in the command process and wait
+for the process to terminate:
+
+.. code-block:: bash
+
+    $ pootle refresh_stats --no-rq
+
+.. warning:: Do not ``pootle runserver --no-rq`` on a production server as this
+    will result in very poor performance.
+
+It is *not* generally safe to run commands in this mode if you have RQ workers
+active at the same time, as there is a risk that they conflict with other jobs
+dispatched to the workers.
+
+If there are RQ workers running, the command will ask for confirmation before
+proceeding. This can be overridden using the :option:`--noinput` flag, in
+which case the command will run even if there are.
+
+
 .. django-admin:: refresh_stats
 
 refresh_stats

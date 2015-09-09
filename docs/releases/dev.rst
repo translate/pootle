@@ -99,6 +99,9 @@ Command changes and additions
 - Added a :djadmin:`update_user_email` command to update a user's email
   address.
 
+- Added a :option:`--no-rq` option to run commands in a single process without
+  using RQ workers.
+
 ...and lots of refactoring, cleanups to remove old Django versions specifics,
 improved documentation and of course, loads of bugs were fixed.
 
