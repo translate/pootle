@@ -367,6 +367,20 @@ def verify_user(user):
 
     :param user: `User` to verify
     """
+    if not user.email:
+        raise ValidationError("You cannot verify an account with no email "
+                              "set. You can set this user's email with "
+                              "'pootle update_user_email %s EMAIL'"
+                              % user.username)
+
+    # Ensure this user's email address is unique
+    try:
+        validate_email_unique(user.email, user)
+    except ValidationError:
+        raise ValidationError("This user's email is not unique. You can find "
+                              "duplicate emails with 'pootle "
+                              "find_duplicate_emails'")
+
     # already has primary?
     existing_primary = EmailAddress.objects.filter(user=user, primary=True)
     if existing_primary.exists():
@@ -378,6 +392,7 @@ def verify_user(user):
         else:
             # already verified
             raise ValueError("User '%s' is already verified" % user.username)
+
     sync_user_email_addresses(user)
     email_address = (EmailAddress.objects
                      .filter(user=user, email__iexact=user.email)
@@ -396,14 +411,19 @@ def get_duplicate_emails():
                             .values_list("email", flat=True))
 
 
-def validate_email_unique(email):
+def validate_email_unique(email, for_user=None):
     """Validates an email to ensure it does not already exist in the system.
 
     :param email: Email address to validate for uniqueness.
+    :param for_user: Optionally check an email address is unique to this user
     """
     existing_accounts = get_user_model().objects.filter(email=email)
-    existing_email_addresses = EmailAddress.objects.filter(email=email)
-    if existing_accounts.exists() or existing_email_addresses.exists():
+    existing_email = EmailAddress.objects.filter(email=email)
+    if for_user is not None:
+        existing_accounts = existing_accounts.exclude(pk=for_user.pk)
+        existing_email = existing_email.exclude(user=for_user)
+
+    if existing_accounts.exists() or existing_email.exists():
         raise ValidationError("A user with that email address already exists")
 
 
