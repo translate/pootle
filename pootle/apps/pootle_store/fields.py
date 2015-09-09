@@ -42,7 +42,12 @@ def to_db(value):
         if list_empty(value.strings):
             return ''
         else:
-            return SEPARATOR.join(value.strings)
+            if getattr(value, "plural", False):
+                strings = value.strings[:]
+                strings.append(PLURAL_PLACEHOLDER)
+                return SEPARATOR.join(strings)
+            else:
+                return SEPARATOR.join(value.strings)
     elif isinstance(value, list):
         if list_empty(value):
             return ''
