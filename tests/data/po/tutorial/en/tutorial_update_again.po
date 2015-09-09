@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle Tests\n"
+"X-Pootle-Path: /en/tutorial/tutorial.po\n"
+"X-Pootle-Revision: 2\n"
+
+#: Hello, world
+msgid "Hello, world"
+msgstr "Hello, world UPDATED AGAIN"

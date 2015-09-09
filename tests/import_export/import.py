@@ -14,6 +14,8 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 from import_export.utils import import_file
 from import_export.exceptions import UnsupportedFiletypeError
+from pootle_store.models import NEW, PARSED, Store
+
 
 TEST_PO_DIR = "tests/data/po/tutorial/en"
 IMPORT_SUCCESS = "headers_correct.po"
@@ -30,7 +32,10 @@ def _import_file(file_name, file_dir=TEST_PO_DIR,
 
 @pytest.mark.django_db
 def test_import_success(en_tutorial_po):
+    assert en_tutorial_po.state == NEW
     _import_file(IMPORT_SUCCESS)
+    store = Store.objects.get(pk=en_tutorial_po.pk)
+    assert store.state == PARSED
 
 
 @pytest.mark.django_db

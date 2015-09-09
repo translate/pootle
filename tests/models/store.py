@@ -17,6 +17,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from translate.storage.factory import getclass
 from pootle.core.models import Revision
 from pootle_statistics.models import SubmissionTypes
+from pootle_store.models import NEW, PARSED, Store
 
 from .unit import _update_translation
 
@@ -221,6 +222,23 @@ def test_update_upload_new_revision(en_tutorial_po):
                              "tests/data/po/tutorial/en/tutorial_update.po",
                              submission_type=SubmissionTypes.UPLOAD)
     assert en_tutorial_po.units[0].target == "Hello, world UPDATED"
+
+
+@pytest.mark.django_db
+def test_update_upload_again_new_revision(en_tutorial_po):
+    assert en_tutorial_po.state == NEW
+    _update_from_upload_file(en_tutorial_po,
+                             "tests/data/po/tutorial/en/tutorial_update.po",
+                             submission_type=SubmissionTypes.UPLOAD)
+    store = Store.objects.get(pk=en_tutorial_po.pk)
+    assert store.state == PARSED
+    assert store.units[0].target == "Hello, world UPDATED"
+    _update_from_upload_file(store,
+                             "tests/data/po/tutorial/en/tutorial_update_again.po",
+                             submission_type=SubmissionTypes.UPLOAD)
+    store = Store.objects.get(pk=en_tutorial_po.pk)
+    assert store.state == PARSED
+    assert store.units[0].target == "Hello, world UPDATED AGAIN"
 
 
 @pytest.mark.django_db
