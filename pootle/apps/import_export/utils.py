@@ -7,6 +7,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
+
 from django.utils.translation import ugettext as _
 
 from translate.storage.factory import getclass
@@ -16,6 +18,9 @@ from pootle_statistics.models import SubmissionTypes
 
 from .exceptions import (UnsupportedFiletypeError, MissingPootlePathError,
                          MissingPootleRevError, FileImportError)
+
+
+logger = logging.getLogger(__name__)
 
 
 def import_file(file, user=None):
@@ -43,5 +48,10 @@ def import_file(file, user=None):
         raise FileImportError(_("Could not create '%s'. Missing "
                                 "Project/Language? (%s)") % (file.name, e))
 
-    store.update(overwrite=True, store=f, user=user,
-                 submission_type=SubmissionTypes.UPLOAD)
+    try:
+        store.update(overwrite=True, store=f, user=user,
+                     submission_type=SubmissionTypes.UPLOAD)
+    except Exception as e:
+        # This should not happen!
+        logger.error("Error importing file: %s" % str(e))
+        raise FileImportError(_("There was an error uploading your file"))
