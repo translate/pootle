@@ -14,6 +14,7 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand, NoArgsCommand
 
+from pootle.runner import set_sync_mode
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 
@@ -25,6 +26,11 @@ class PootleCommand(NoArgsCommand):
                     help='Project to refresh'),
         make_option('--language', action='append', dest='languages',
                     help='Language to refresh'),
+        make_option("--noinput", action="store_true", default=False,
+                    help=u"Never prompt for input"),
+        make_option("--no-rq", action="store_true", default=False,
+                    help=(u"Run all jobs in a single process, without "
+                          "using rq workers")),
         )
     option_list = NoArgsCommand.option_list + shared_option_list
     process_disabled_projects = False
@@ -101,6 +107,9 @@ class PootleCommand(NoArgsCommand):
         logging.info('All done for %s in %s', self.name, end - start)
 
     def handle_all(self, **options):
+        if options.get("no_rq", False):
+            set_sync_mode(options.get('noinput', False))
+
         if self.process_disabled_projects:
             project_query = Project.objects.all()
         else:
