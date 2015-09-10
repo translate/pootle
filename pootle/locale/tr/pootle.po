@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-09-02 17:50+0000\n"
+"PO-Revision-Date: 2015-09-08 17:53+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1441216212.000000\n"
+"X-POOTLE-MTIME: 1441734810.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -1131,9 +1131,9 @@ msgid "Your version of Redis is too old."
 msgstr "Redis sürümünüz çok eski."
 
 #: checks.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr "Sisteminizin Redis sunucu paketini güncelleyin"
+msgstr "Sisteminizin Redis sunucu paketini en az %s sürümüne güncelleyin"
 
 #: checks.py:113
 msgid "No RQ Worker running."

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-09-02 09:02+0000\n"
+"PO-Revision-Date: 2015-09-07 16:37+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441184544.000000\n"
+"X-POOTLE-MTIME: 1441643871.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -116,13 +116,12 @@ msgid "Loading..."
 msgstr "Cargando…"
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, eg comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Nota: eliminar o usuario fará que as súas suxestións e traducións se lle "
-"atribúan a un usuario anónimo (nobody)."
+"Nota: eliminar un usuario fará que as súas contribucións (comentarios, "
+"suxestións e traducións) se lle atribúan ao usuario anónimo (nobody)."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
@@ -393,6 +392,8 @@ msgid ""
 "You have unsaved changes in this unit. Navigating away will discard those "
 "changes."
 msgstr ""
+"Ten cambios sen gardar nesta cadea. Continuar sen gardalos fará que se "
+"desboten."
 
 #: static/js/editor/app.js:267
 msgid ""

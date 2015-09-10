@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-09-02 16:38+0000\n"
+"PO-Revision-Date: 2015-09-08 18:02+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441211939.000000\n"
+"X-POOTLE-MTIME: 1441735343.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -116,13 +116,12 @@ msgid "Loading..."
 msgstr "Yükleniyor..."
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, eg comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Not: kullanıcıyı silmek, önerilerinin ve çevirilerinin isimsiz bir kullanıcı "
-"(nobody) tarafından yapılmış gibi olmasına sebep olacaktır."
+"Not: bir kullanıcı silindiğinde siteye yaptığı katkılar, örneğin yorumlar, "
+"öneriler ve çeviriler, isimsiz kullanıcıya (nobody) dönüşür."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
@@ -392,6 +391,8 @@ msgid ""
 "You have unsaved changes in this unit. Navigating away will discard those "
 "changes."
 msgstr ""
+"Bu birimde kaydedilmemiş değişiklikleriniz var. Buradan ayrılmak bu "
+"değişiklikleri yoksayacak."
 
 #: static/js/editor/app.js:267
 msgid ""

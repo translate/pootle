@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-06-24 17:59+0000\n"
-"Last-Translator: pfennig59 <kt.at.pootle@sk-lab.de>\n"
+"PO-Revision-Date: 2015-09-10 10:01+0000\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1435168794.000000\n"
+"X-POOTLE-MTIME: 1441879270.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -90,7 +90,7 @@ msgstr "Alternative Quellsprachen"
 
 #: apps/accounts/models.py:90 templates/admin/detailed_reports.html:149
 msgid "Rate"
-msgstr ""
+msgstr "Rate"
 
 #: apps/accounts/models.py:91 apps/reports/forms.py:32
 msgid "Review Rate"
@@ -196,9 +196,9 @@ msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
 
 #: apps/import_export/utils.py:43
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr "%r konnte nicht erzeugt werden. Fehlt das Projekt/die Sprache? (%s)"
+msgstr "'%s' konnte nicht erzeugt werden. Fehlt das Projekt/die Sprache? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -250,8 +250,8 @@ msgstr "Aktive Benutzer"
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ausführung läuft (%d Job)"
+msgstr[1] "Ausführung läuft (%d Jobs)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:110
@@ -527,7 +527,6 @@ msgid "Placeholders"
 msgstr "Platzhalter"
 
 #: apps/pootle_misc/checks.py:85
-#, fuzzy
 msgid "Valid XML"
 msgstr "Ungültiges XML"
 
@@ -568,8 +567,9 @@ msgid "Non printable"
 msgstr "Nicht druckbar"
 
 #: apps/pootle_misc/checks.py:96
+#, fuzzy
 msgid "Unbalanced tag braces"
-msgstr ""
+msgstr "Nicht geschlossene Tags"
 
 #: apps/pootle_misc/checks.py:97
 msgid "Changed attributes"
