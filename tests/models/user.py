@@ -204,6 +204,66 @@ def test_verify_user(member_with_email):
 
 
 @pytest.mark.django_db
+def test_verify_user_empty_email(trans_member):
+    """Test verifying user using `verify_user` function"""
+
+    # Member has no EmailAddress set
+    with pytest.raises(EmailAddress.DoesNotExist):
+        EmailAddress.objects.get(user=trans_member)
+
+    # Email is not set on User either
+    assert trans_member.email == ''
+
+    # Verify user - raises ValidationError
+    with pytest.raises(ValidationError):
+        accounts.utils.verify_user(trans_member)
+
+    # User still has no email
+    with pytest.raises(EmailAddress.DoesNotExist):
+        EmailAddress.objects.get(user=trans_member)
+
+
+@pytest.mark.django_db
+def test_verify_user_after_update_email(trans_member):
+    """Test verifying user using `verify_user` function"""
+
+    # Member has no EmailAddress set
+    with pytest.raises(EmailAddress.DoesNotExist):
+        EmailAddress.objects.get(user=trans_member)
+
+    # Email is not set on User either
+    assert trans_member.email == ''
+
+    # Use util to set email
+    accounts.utils.update_user_email(trans_member,
+                                     "trans_member@this.test")
+
+    # Verify user
+    accounts.utils.verify_user(trans_member)
+
+    # Email verified
+    EmailAddress.objects.get(user=trans_member,
+                             primary=True, verified=True)
+
+
+@pytest.mark.django_db
+def test_verify_user_duplicate_email(trans_member, member_with_email):
+    """Test verifying user using `verify_user` function"""
+
+    # trans_member steals member_with_email's email
+    trans_member.email = member_with_email.email
+
+    # And can't verify with it
+    with pytest.raises(ValidationError):
+        accounts.utils.verify_user(trans_member)
+
+    # Email not verified
+    with pytest.raises(EmailAddress.DoesNotExist):
+        EmailAddress.objects.get(user=trans_member,
+                                 primary=True, verified=True)
+
+
+@pytest.mark.django_db
 def test_verify_user_without_existing_email(trans_member):
     """Test verifying user using `verify_user` function"""
 
