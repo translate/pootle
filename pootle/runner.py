@@ -258,6 +258,19 @@ def run_app(project, default_settings_path, settings_template,
                   django_settings_module=django_settings_module,
                   runner_name=runner_name)
 
+    # If no CACHES backend set tell user and exit. This prevents raising
+    # ImproperlyConfigured error on trying to run any pootle commands
+    # NB: it may be possible to remove this when #4006 is fixed
+    from django.conf import settings
+    caches = settings.CACHES.keys()
+    if "stats" not in caches or "redis" not in caches:
+        sys.stdout.write("\nYou need to configure the CACHES setting, "
+                         "or to use the defaults remove CACHES from %s\n\n"
+                         "Once you have fixed the CACHES setting you should "
+                         "run 'pootle check' again\n\n"
+                         % args.config)
+        sys.exit(2)
+
     # Set synchronous mode
     if args.no_rq:
         set_sync_mode(args.noinput)
