@@ -26,11 +26,12 @@ def display_table(context, table):
 @register.filter
 @template.defaultfilters.stringfilter
 def cssid(value):
-    """Replaces all '.', '+' and '@' with '-'.
+    """Replaces all '.', '+', ' ' and '@' with '-'.
 
     Used to create valid CSS identifiers from tree item codes.
     """
-    return value.replace(u'.', u'-').replace(u'@', u'-').replace(u'+', u'-')
+    return value.replace(u'.', u'-').replace(u'@', u'-') \
+                .replace(u'+', u'-').replace(u' ', u'-')
 
 
 @register.filter

@@ -33,7 +33,7 @@ const nicePercentage = function (part, total, noTotalDefault) {
 
 
 function cssId(id) {
-  return id.replace(/[\.@\+]/g, '-');
+  return id.replace(/[\.@\+\s]/g, '-');
 }
 
 
