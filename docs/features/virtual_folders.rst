@@ -74,7 +74,7 @@ Calculating virtual folders stats
 ---------------------------------
 
 To calculate the translation stats of virtual folders use the
-:djadmin:`refresh_stats_rq` management command. Virtual folder stats will be
+:djadmin:`refresh_stats` management command. Virtual folder stats will be
 calculated along regular directories and files stats.
 
 .. warning:: Note that the :djadmin:`refresh_stats` management command will not

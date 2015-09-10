@@ -35,7 +35,7 @@ Details of changes
 
 - Last activity snippets for stats are not kept in the cache anymore. The markup
   is now built on the client. This requires refreshing all server stats using
-  the :djadmin:`refresh_stats_rq` command (:issue:`3835`).
+  the :djadmin:`refresh_stats` command (:issue:`3835`).
 
 - Disabled projects are visually differentiated in the projects drop-down
   (:issue:`3996`).
@@ -95,6 +95,9 @@ Command changes and additions
   revert spam or a malicious user.
 
 - Added a :djadmin:`verify_user` command to automatically verify a user account
+
+- Renamed ``refresh_stats_rq`` command to :djadmin:`refresh_stats`, replacing the
+  old command of the same name.
 
 - Added a :djadmin:`update_user_email` command to update a user's email
   address.

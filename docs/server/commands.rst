@@ -88,61 +88,13 @@ refresh_stats
 
 Refreshes all calculated statistics ensuring that they are up-to-date.
 
-The refreshing of the statistics is done by a background job so that it doesn't
-impact the normal operation of the server.  It will flush existing cached
-statistics data and update the statistics cache.
-
-.. note:: Disabled projects are processed.
-
-.. warning:: Do not run this command if you have multiple workers running
-   simultaneously. It should be run with a single worker process only.
-
-.. warning:: Please note that the actual translations **must be in Pootle**
-   before running this command. :djadmin:`update_stores` will pull them in.
-
-It's necessary to run this command after installing or upgrading Pootle. Also
-consider running this command when things might go out-of-sync: if you make
-changes directly in the database, if the cache backend has been restarted, etc.
-
-The time it takes to complete the whole process will vary depending on the
-number of translations you have in the database. If a user hits a page that
-needs to display stats but they haven't been calculated yet, a message will be
-displayed indicating that the stats are being recalculated.
-
-The :option:`--calculate-checks` option ensures that all quality checks are
-recalculated for all existing units in the database.
-
-To only recalculate the ``date_format`` quality check, run:
-
-.. code-block:: bash
-
-    $ pootle refresh_stats --calculate-checks --check=date_format
-
-When the :option:`--calculate-wordcount` option is set, the source wordcount
-will be recalculated for all existing units in the database.
-
-
-.. django-admin:: refresh_stats_rq
-
-refresh_stats_rq
-^^^^^^^^^^^^^^^^
-
-.. versionadded:: 2.7
-
-Refreshes all calculated statistics ensuring that they are up-to-date.
-
 A background process will create a task for every file to make sure calculated
 statistics data is up to date. When the task for a file completes then further
 tasks will be created for the files parents.
 
 .. note:: Files in disabled projects are processed.
 
-.. note:: :djadmin:`refresh_stats` (the old command which works with a single
-   worker) is roughly twice as fast compared to this version of the command.
-   Your mileage might vary.
-
-This command was added to allow statistics to be updated when using multiple
-RQ workers.
+This command allows statistics to be updated when using multiple RQ workers.
 
 .. warning:: Please note that the actual translations **must be in Pootle**
    before running this command. :djadmin:`update_stores` will pull them in.

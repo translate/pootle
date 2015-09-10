@@ -80,7 +80,7 @@ To push failed jobs back into the queue we simply run the
 Dirty statistics
 ----------------
 
-When we count stats with :djadmin:`refresh_stats_rq` Pootle will track a dirty
+When we count stats with :djadmin:`refresh_stats` Pootle will track a dirty
 count so that it knows when the counts for that part of the tree is complete.
 
 When debugging a situation where the counts aren't completing it is helpful to
