@@ -25,7 +25,7 @@ class Command(BaseCommand):
             return
 
         for email in duplicates:
-            users = User.objects.filter(email=email)
+            users = User.objects.filter(email=email).order_by("-last_login")
             if email:
                 self.stdout.write("The following users have the email: %s\n"
                                   % email)
