@@ -10,10 +10,14 @@
 from django.conf.urls import patterns, url
 
 
-from .views import SocialVerificationView
+from .views import PootleLoginView, SocialVerificationView
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
+    url(r"^login/$",
+        PootleLoginView.as_view(),
+        name="account_login"),
     url(r'^social/verify/$',
         SocialVerificationView.as_view(),
         name='pootle-social-verify'),
