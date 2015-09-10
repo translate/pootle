@@ -11,6 +11,7 @@ from optparse import make_option
 
 from django.contrib.auth import get_user_model
 from django.core.management.base import CommandError
+from django.core.validators import ValidationError
 
 from . import UserCommand
 import accounts
@@ -42,11 +43,11 @@ class Command(UserCommand):
                 try:
                     accounts.utils.verify_user(user)
                     print("Verified user '%s'" % user.username)
-                except ValueError as e:
+                except (ValueError, ValidationError) as e:
                     print(e.message)
         else:
             try:
                 accounts.utils.verify_user(self.get_user(args[0]))
                 print("User '%s' has been verified" % args[0])
-            except ValueError as e:
+            except (ValueError, ValidationError) as e:
                 raise CommandError(e.message)
