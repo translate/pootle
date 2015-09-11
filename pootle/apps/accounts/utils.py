@@ -97,62 +97,43 @@ class UserMerger(object):
     def merge_commented(self):
         """Merge commented_by attribute on units
         """
-        for unit in self.src_user.commented.iterator():
-            unit.commented_by = self.target_user
-            unit.save()
-            logger.debug("Unit commented_by updated: %s" % repr(unit))
+        self.src_user.commented.update(commented_by=self.target_user)
 
     @write_stdout(" * Merging units reviewed: "
                   "%(src_user)s --> %(target_user)s... ")
     def merge_reviewed(self):
         """Merge reviewed_by attribute on units
         """
-        # Update submitted_by, commented_by and reviewed_by on units
-        for unit in self.src_user.reviewed.iterator():
-            unit.reviewed_by = self.target_user
-            unit.save()
-            logger.debug("Unit reviewed_by updated: %s" % repr(unit))
+        self.src_user.reviewed.update(reviewed_by=self.target_user)
 
     @write_stdout(" * Merging suggestion reviews: "
                   "%(src_user)s --> %(target_user)s... ")
     def merge_reviews(self):
         """Merge reviewer attribute on suggestions
         """
-        for suggestion in self.src_user.reviews.iterator():
-            suggestion.reviewer = self.target_user
-            suggestion.save()
-            logger.debug("Suggestion reviewer updated: %s" % suggestion)
+        self.src_user.reviews.update(reviewer=self.target_user)
 
     @write_stdout(" * Merging remaining submissions: "
                   "%(src_user)s --> %(target_user)s... ")
     def merge_submissions(self):
         """Merge submitter attribute on submissions
         """
-
         # Delete orphaned submissions.
         self.src_user.submission_set.filter(unit__isnull=True).delete()
 
-        # Update submitter on submissions
-        for submission in self.src_user.submission_set.iterator():
-            submission.submitter = self.target_user
+        # Before we can save we first have to remove existing score_logs
+        # for src_user - they will be recreated on save for target_user
+        self.src_user.scorelog_set.all().delete()
 
-            # Before we can save we first have to remove existing score_logs
-            # for this submission - they will be recreated on save with correct
-            # user.
-            for score_log in submission.scorelog_set.iterator():
-                score_log.delete()
-            submission.save()
-            logger.debug("Submission submitter updated: %s" % submission)
+        # Update submitter on submissions
+        self.src_user.submission_set.update(submitter=self.target_user)
 
     @write_stdout(" * Merging units submitted_by: "
                   "%(src_user)s --> %(target_user)s... ")
     def merge_submitted(self):
         """Merge submitted_by attribute on units
         """
-        for unit in self.src_user.submitted.iterator():
-            unit.submitted_by = self.target_user
-            unit.save()
-            logger.debug("Unit submitted_by updated: %s" % repr(unit))
+        self.src_user.submitted.update(submitted_by=self.target_user)
 
     @write_stdout(" * Merging suggestions: "
                   "%(src_user)s --> %(target_user)s... ")
@@ -160,10 +141,7 @@ class UserMerger(object):
         """Merge user attribute on suggestions
         """
         # Update user and reviewer on suggestions
-        for suggestion in self.src_user.suggestions.iterator():
-            suggestion.user = self.target_user
-            suggestion.save()
-            logger.debug("Suggestion user updated: %s" % suggestion)
+        self.src_user.suggestions.update(user=self.target_user)
 
 
 class UserPurger(object):
@@ -195,14 +173,12 @@ class UserPurger(object):
         self.revert_units_state_changed()
 
         # Delete remaining submissions.
-        for submission in self.user.submission_set.iterator():
-            submission.delete()
-            logger.debug("Submission deleted: %s" % submission)
+        logger.debug("Deleting remaining submissions for: %s" % self.user)
+        self.user.submission_set.all().delete()
 
         # Delete remaining suggestions.
-        for suggestion in self.user.suggestions.iterator():
-            suggestion.delete()
-            logger.debug("Suggestion deleted: %s" % suggestion)
+        logger.debug("Deleting remaining suggestions for: %s" % self.user)
+        self.user.suggestions.all().delete()
 
     @write_stdout(" * Removing units created by: %(user)s... ")
     def remove_units_created(self):
