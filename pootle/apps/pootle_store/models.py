@@ -1541,16 +1541,18 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             old_state = self.state
             self.state = LOCKED
             self.save()
+            keys = []
             try:
                 revision = Revision.incr()
                 for index, unit in enumerate(store.units):
+                    # Dont add duplicates
+                    if unit.getid() in keys:
+                        logging.warning(u'Unable to add duplicate unit: %s'
+                                        % unit.getid())
+                        continue
+                    keys.append(unit.getid())
                     if unit.istranslatable():
-                        try:
-                            self.addunit(unit, index, revision=revision)
-                        except IntegrityError as e:
-                            logging.warning(u'Data integrity error while '
-                                            u'importing unit %s:\n%s',
-                                            unit.getid(), e)
+                        self.addunit(unit, index, revision=revision)
             except:
                 # Something broke, delete any units that got created
                 # and return store state to its original value
