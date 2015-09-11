@@ -128,6 +128,10 @@ class UserMerger(object):
     def merge_submissions(self):
         """Merge submitter attribute on submissions
         """
+
+        # Delete orphaned submissions.
+        self.src_user.submission_set.filter(unit__isnull=True).delete()
+
         # Update submitter on submissions
         for submission in self.src_user.submission_set.iterator():
             submission.submitter = self.target_user
@@ -324,6 +328,10 @@ class UserPurger(object):
     def revert_units_state_changed(self):
         """Revert unit edits made by a user to previous edit.
         """
+
+        # Delete orphaned submissions.
+        self.user.submission_set.filter(unit__isnull=True).delete()
+
         for submission in self.user.get_unit_states_changed().iterator():
             unit = submission.unit
 
