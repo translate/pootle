@@ -56,6 +56,7 @@ def write_stdout(start_msg, end_msg="DONE\n", fail_msg="FAILED\n"):
                 f(self, *args, **kwargs)
             except Exception as e:
                 sys.stdout.write(fail_msg % self.__dict__)
+                logger.exception(e)
                 raise e
             sys.stdout.write(end_msg % self.__dict__)
         return method_wrapper
