@@ -31,14 +31,10 @@ Warning
 
 **Pootle 2.6.x is not meant to be installed for new deployments. Pootle 2.6.x
 is provided only to be used as an intermediate step for upgrading older Pootle
-deployments to newer Pootle releases like 2.7.x or later (which might not be
-yet released).**
+deployments to newer Pootle releases like 2.7.x or later.**
 
-**Please install the latest stable release instead. Note that the latest stable
-version might still be 2.5.1.1.**
+**Please install the latest stable release instead.**
 
-**Do not upgrade to Pootle 2.6.x unless you are sure there are some newer
-stable version, like for example 2.7.x.**
 
 
 Resources
