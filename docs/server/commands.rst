@@ -659,6 +659,9 @@ This command requires 2 mandatory arguments, ``src_username`` and
 Submissions from the first are re-assigned to the second. The users' profile
 data is not merged.
 
+By default ``src_username`` will be deleted after the contributions have been
+merged. You can prevent this by using the :option:`--no-delete` option.
+
 .. code-block:: bash
 
     $ pootle merge_user src_username target_username
