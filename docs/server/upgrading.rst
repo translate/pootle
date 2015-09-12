@@ -5,9 +5,9 @@ Upgrading
 
 .. warning::
 
-  **Pootle 2.6.0 is just an intermediate upgrade step towards newer releases.**
+  **Pootle 2.6.1 is just an intermediate upgrade step towards newer releases.**
 
-  Pootle 2.6.0 is meant to be only used as an intermediate step for upgrading
+  Pootle 2.6.1 is meant to be only used as an intermediate step for upgrading
   older Pootle deployments to the newer Pootle releases.
 
 
@@ -27,7 +27,7 @@ upgrades.
 This page is divided in three sections. The first one lists some previous tasks
 that should be performed before upgrading. The second section includes a
 detailed list of steps to actually perform the upgrade. The third one tells you
-how to continue with the upgrade to the next version, since Pootle 2.6.0 is
+how to continue with the upgrade to the next version, since Pootle 2.6.1 is
 only an intermediate upgrade step.
 
 
@@ -115,7 +115,7 @@ To perform the upgrade follow the next steps:
 
   .. code-block:: bash
 
-    (env)$ pip install --upgrade Pootle==2.6.0
+    (env)$ pip install --upgrade Pootle==2.6.1
 
 
   .. note::
@@ -125,7 +125,7 @@ To perform the upgrade follow the next steps:
 
     .. code-block:: bash
 
-      (env)$ pip install Pootle==2.6.0
+      (env)$ pip install Pootle==2.6.1
 
 
 * Update Pootle settings to include new useful settings and updating existing
@@ -153,7 +153,7 @@ To perform the upgrade follow the next steps:
 Continue the upgrade to a newer version
 ---------------------------------------
 
-Since Pootle 2.6.0 is intended to be an intermediate upgrade step towards newer
+Since Pootle 2.6.1 is intended to be an intermediate upgrade step towards newer
 Pootle releases you will have to upgrade again to the desired version. In order
 to do that just follow the upgrade instructions for that version.
 
