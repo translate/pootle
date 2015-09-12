@@ -14,6 +14,7 @@ If you are upgrading Pootle, you might want to see some tips to ensure your
 .. toctree::
    :maxdepth: 1
 
+   2.6.1 <2.6.1>
    2.6.0 <2.6.0>
    2.6.0-rc2 <2.6.0-rc2>
    2.6.0-rc1 <2.6.0-rc1>
