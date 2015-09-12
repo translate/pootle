@@ -41,14 +41,14 @@ class Command(NoArgsCommand):
         current_buildversion = get_pootle_build()
 
         if not current_buildversion:
-            raise CommandError('Pootle 2.6.0 is not meant to be used in real '
+            raise CommandError('Pootle 2.6.1 is not meant to be used in real '
                                'world deployments.'
                                '\n\n'
                                'If you want to install a fresh Pootle then '
                                'install Pootle 2.7.0 or later.'
                                '\n\n'
                                'Otherwise you are upgrading Pootle and you '
-                               'already have have upgraded up to the 2.6.0 '
+                               'already have have upgraded up to the 2.6.1 '
                                'stage, so you must now proceed now with the '
                                'final upgrade to Pootle 2.7.0 or later.')
         elif current_buildversion < 22000:
@@ -77,7 +77,7 @@ class Command(NoArgsCommand):
             call_command('migrate', interactive=False)
             call_command('upgrade')
 
-            logging.warning('\n\n\n    Warning: Pootle 2.6.0 is an interim '
+            logging.warning('\n\n\n    Warning: Pootle 2.6.1 is an interim '
                             'release (a migration step to Pootle'
-                            '\n             2.7.0). Do not use Pootle 2.6.0 '
+                            '\n             2.7.0). Do not use Pootle 2.6.1 '
                             'for any deployment.\n\n')

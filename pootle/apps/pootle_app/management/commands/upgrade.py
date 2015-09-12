@@ -70,7 +70,7 @@ class Command(BaseCommand):
                 upgrade('ttk', db_tt_buildversion, CODE_TTK_BUILDVERSION)
 
             # Dirty hack to drop PootleConfig and SiteConfiguration tables
-            # after upgrading up to Pootle 2.6.0.
+            # after upgrading up to Pootle 2.6.1.
             from django.contrib.contenttypes.models import ContentType
             from django.db import connection
             from south.db import db

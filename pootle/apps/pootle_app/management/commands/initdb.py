@@ -31,7 +31,7 @@ class Command(NoArgsCommand):
     help = 'Populates the database with initial values: users, projects, ...'
 
     def handle_noargs(self, **options):
-        logging.warning("\n\n\n    Warning: Pootle 2.6.0 is an interim "
+        logging.warning("\n\n\n    Warning: Pootle 2.6.1 is an interim "
                         "release (a migration step to Pootle"
                         "\n             2.7.0), so it can't be installed.\n\n"
                         "No change has been done.\n\n")
