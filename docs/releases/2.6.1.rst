@@ -36,6 +36,6 @@ Credits
 
 This release was made possible by the following people:
 
-Ryan Northey
+Ryan Northey, Leandro Regueiro
 
 And to all our bug finders, testers and translators, a Very BIG Thank You.

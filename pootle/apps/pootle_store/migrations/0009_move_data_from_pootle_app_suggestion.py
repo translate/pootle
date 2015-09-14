@@ -96,6 +96,8 @@ class Migration(DataMigration):
 
         # all pootle_app_suggestions corresponding to pootle_store_suggestions have been already deleted
 
+        existing_keys = list(orm['pootle_store.Suggestion'].objects.values_list('unit_id', 'target_hash'))
+
         for pas in orm['pootle_app.Suggestion'].objects.all():
             try:
                 # unit isn't deleted
@@ -106,8 +108,18 @@ class Migration(DataMigration):
                         # to restore suggestion by submission
                         sub = orm['pootle_statistics.Submission'].objects.get(unit=unit, from_suggestion=pas)
                         target = u"%s" % sub.new_value
+
+                        target_hash = md5(target.encode("utf-8")).hexdigest()
+                        if (unit.pk, target_hash) in existing_keys:
+                            # Do not insert duplicate suggestions.
+                            logging.debug("failed to create duplicated suggestion from pas %d and sub %d" % (pas.id, sub.id))
+                            sub.delete()
+                            stats['DUPLICATED_SUG'] += 1
+                            continue
+                        existing_keys.append((unit.pk, target_hash))
+
                         sugg = {
-                            "target_hash": md5(target.encode("utf-8")).hexdigest(),
+                            "target_hash": target_hash,
                             "target_f": target,
                             "creation_time": pas.creation_time,
                             "review_time": sub.creation_time,
