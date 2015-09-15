@@ -787,7 +787,8 @@ PTL.editor = {
 
   handleTranslationChange: function () {
     const comment = document.querySelector('#id_translator_comment');
-    const commentChanged = comment.value !== comment.defaultValue;
+    const commentChanged = comment !== null ?
+                           comment.value !== comment.defaultValue : false;
 
     var submit = $('.js-submit')[0],
         suggest = $('.js-suggest')[0],
