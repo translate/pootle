@@ -2,7 +2,7 @@
 Welcome to the Pootle 2.6.1 Interim
 ===================================
 
-*Released on 14 September 2015*
+*Released on 15 September 2015*
 
 The 2.6.1 release is an interim release. It is used to migrate from Pootle
 2.5.0 or newer to Pootle 2.7.x or newer releases.
