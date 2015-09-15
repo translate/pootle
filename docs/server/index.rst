@@ -13,6 +13,8 @@ Installation
 
    requirements
    installation
+   mysql_installation
+   postgresql_installation
    web
 
 
