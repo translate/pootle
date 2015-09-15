@@ -3,170 +3,259 @@
 Upgrading
 =========
 
-These are the instructions for upgrading Pootle from an older version to a new
-release.
-
-.. warning::
-
-  When upgrading please ensure that you:
-
-  - **Carefully read this page** before proceeding
-  - Make all the recommended **backups**
-  - Try to **follow these instructions** as closely as possible
+These are the instructions for upgrading Pootle from an older version to the
+current release.
 
 
-This page is divided in three sections:
+.. _upgrading#stop-pootle:
 
-1. Preparatory tasks that should be performed before upgrading.
-2. Detailed steps to actually perform the upgrade.
-3. Suggested tasks to fine tune the setup after upgrading.
-
-
-.. _upgrading#preparatory-tasks:
-
-Preparatory tasks
------------------
-
-Before upgrading Pootle to a newer version, make sure to go through this
-checklist.
-
-* Familiarize yourself with :doc:`important changes </releases/index>` in
-  Pootle.
-
-* If you want to change the database backend then have a look at the
-  :doc:`database migration <database_migration>` page first. We discourage
-  using SQLite, so if you are using it please migrate to a real database
-  server.
-
-* Ensure that you meet the :ref:`hardware requirements
-  <installation#hardware_requirements>` for the newer version.
-
-* Always make backups of all your translation files (your whole
-  :setting:`POOTLE_TRANSLATION_DIRECTORY`). Use the :djadmin:`sync_stores`
-  command to synchronize all your translation files to disk before making any
-  backup.
-
-* Also backup your settings, to avoid losing any settings customizations.
-
-* Make a backup of your complete database using the appropriate *dump*
-  command for your database system. For example :command:`mysqldump` for MySQL,
-  or :command:`pg_dump` for PostgreSQL.
-
-* And don't forget to backup any code, templates or styling customization that
-  you have done to your installation.
-
-* Familiarize yourself with any new :ref:`settings <settings#available>` that
-  have been introduced.
-
-
-.. _upgrading#upgrading:
-
-Upgrading
----------
-
-Upgrading Pootle using the :command:`pip`.
-
-.. note:: You will need to adjust these instructions if you installed Pootle
-   using another method, such as directly from a Git checkout.
-
-.. warning::
-
-   Always backup the following before upgrading:
-
-   - the entire **database**
-   - all the **settings**
-   - all your **translation files**
-   - any **code customizations**
-   - any **templates customizations**
-   - any **styling customizations**
-
-
-To perform the upgrade follow the next steps:
-
-* If you want to perform a :doc:`database migration <database_migration>` then
-  do it first.
-
-* We highly recommended that you use a virtual environment. If your install
-  currently doesn't use one then please :ref:`set up a virtualenv
-  <installation#setup_environment>`.
-
-* If you are upgrading from a version older than Pootle 2.7.0, then you must
-  first upgrade to Pootle 2.6.0.
-
-  .. code-block:: bash
-
-     (env) $ pip install --upgrade "Pootle>=2.6,<2.7"
-     (env) $ pootle setup
-
-  Then continue with the upgrade process.
-
-* Upgrade the Pootle package:
-
-  .. code-block:: bash
-
-     (env) $ pip install --upgrade Pootle
-
-* Update your custom Pootle settings to adjust for any changes and to include
-  any new settings. Delete any obsolete settings. Check the :ref:`available
-  settings <settings#available>` as needed.
-
-  .. note:: Running :djadmin:`pootle check` will highlight settings that have
-     been made obsolete or renamed.
-
-  .. note:: If you are upgrading from a version of Pootle that uses
-     :file:`localsettings.py` then you must :ref:`move your custom settings
-     <settings#customizing>` to a new location in order to ensure that Pootle
-     uses them.
-
-* Perform the database schema and data upgrade by running:
-
-  .. code-block:: bash
-
-     (env) $ pootle migrate
-
-
-* Reapply your custom changes to Pootle code, templates or styling. Read about
-  :doc:`customization of style sheets and templates
-  </developers/customization>` to adjust your customizations to the correct
-  locations and approach in the new release.
-
-  .. note:: If you have customized the CSS styling or the JavaScript code you
-     will have to run the following commands to update the static assets:
-
-     .. code-block:: bash
-
-       (env) $ cd $pootle_dir/pootle/static/js/
-       (env) $ npm install
-       (env) $ npm update
-       (env) $ pootle webpack
-       (env) $ pootle collectstatic --noinput --clear -i node_modules -i *.jsx
-       (env) $ pootle assets build
-
-
-     ``$pootle_dir`` is the directory where :command:`pip` installed Pootle. Its
-     location depends on your settings for :command:`pip`, but by default it
-     should be :file:`~/.virtualenvs/env/lib/python2.7/site-packages/`.
-
-
-* Finally, restart your server.
-
-
-.. _upgrading#post-upgrade:
-
-Post-upgrade adjustments
+Stop your running Pootle
 ------------------------
 
-* Check that you can login as an admin user.  If your existing admin user has
-  no email address then you will not be able to login.  In order the fix this
-  use :djadmin:`createsuperuser` to create a new superuser, or to create a
-  temporary superuser to fix your existing one.
+You may want to stop your running Pootle while you upgrade to prevent updates
+to your data during the migration process. If you have RQ workers running you
+may want to stop those also.
 
-  .. code-block:: bash
 
-     (env) $ pootle createsuperuser
+.. _upgrading#system-backup:
 
-After a succesful upgrade you can now consider:
+Backup your system
+------------------
 
-* Implementing some :doc:`optimizations <optimization>` to your setup.
-* Creating a :ref:`Local Translation Memory
-  <translation_memory#local_translation_memory>`.
+
+.. warning::
+
+   Before upgrading we **strongly** recommend that you
+   :ref:`backup your current system <backup>`.
+
+
+.. _upgrading#db-migration:
+
+Migrate your database
+---------------------
+
+If you are currently using SQLite for your database you will need to 
+:doc:`migrate to either MySQL or PostgreSQL <database_migration>`
+before you upgrade.
+
+
+.. _upgrading#latest-changes:
+
+Latest changes
+--------------
+
+Before upgrading Pootle familiarize yourself with :doc:`important changes
+</releases/index>` since the version that you are upgrading from.
+
+
+.. _upgrading#requirements:
+
+Check Pootle requirements
+-------------------------
+
+You should check that you have all of the necessary :ref:`Pootle requirements
+<requirements>` and have installed all required :ref:`system packages
+<requirements#packages>`.
+
+.. warning::
+
+   Pootle 2.7.0 or newer requires **Python 2.7**
+
+   If you are upgrading from a virtual environment using an earlier Python
+   version, you **must** upgrade or rebuild your virtual environment first.
+
+
+.. _upgrading#activte-virtualenv:
+
+Activate virtualenv
+-------------------
+
+These instructions assume that you are using ``virtualenv`` and you have
+activated a virtual environment named ``env``.
+
+
+.. _upgrading#update-pip:
+
+Update pip
+----------
+
+You should now upgrade Pip to the latest version:
+
+.. code-block:: bash
+
+   (env) $ pip install --upgrade pip
+
+
+.. _upgrading#upgrading-2.6:
+
+Upgrading from a version older than 2.6
+---------------------------------------
+
+If you are upgrading from a version older than 2.6 you will need to first
+upgrade to the latest 2.6.x version and then you will be able to upgrade to the
+latest version.
+
+.. code-block:: bash
+
+   (env) $ pip install --upgrade "Pootle>=2.6,<2.7"
+   (env) $ pootle setup
+
+.. warning::
+   The 2.6.x releases are meant only as a migration step.
+
+   You must upgrade immediately to the latest version once setup has
+   completed.
+
+
+.. _upgrading#clean-bytecode:
+
+Clean up stale Python bytecode
+------------------------------
+
+You should remove any stale Python bytecode files before upgrading.
+
+Assuming you are in the root of your virtualenv folder you can run:
+
+.. code-block:: bash
+
+   (env) $ pyclean .
+
+
+.. _upgrading#upgrading-latest:
+
+Upgrading from version 2.6.x
+----------------------------
+
+Upgrade to the latest Pootle version:
+
+.. code-block:: bash
+
+   (env) $ pip install --upgrade Pootle
+
+
+.. _upgrading#check-settings:
+
+Update and check your settings
+------------------------------
+
+You should now update your custom Pootle settings to add, remove or adjust any
+settings that have changed. You may want to view the latest 
+:ref:`available settings <settings#available>`.
+
+You can check to see if there are any issues with your configuration
+settings that need to be resolved:
+
+.. code-block:: bash
+
+   (env) $ pootle check
+
+.. note:: If you are upgrading from a version of Pootle that uses
+   :file:`localsettings.py` then you may want to merge your old custom settings
+   with your :ref:`settings conf file <settings#customizing>` (default location
+   :file:`~/.pootle/pootle.conf`).
+
+
+.. _upgrading#start-rq:
+
+Start an RQ Worker
+------------------
+
+Statistics tracking and various other background processes are managed by `RQ
+<http://python-rq.org/>`_.  The :djadmin:`rqworker` command needs to be run
+continuously in order to process the jobs.
+
+If you have not already done so you should
+:ref:`install and start a Redis server <requirements#packages>`.
+
+You can start the worker in the background with the following command:
+
+.. code-block:: bash
+
+   (env) $ pootle rqworker &
+
+In a production environment you may want to :ref:`run RQ workers as services
+<pootle#running_as_a_service>`.
+
+See here for :ref:`further information about RQ jobs in Pootle <rq>`.
+
+
+.. _upgrading#schema-migration:
+
+Migrate your database schema
+----------------------------
+
+Once you have updated your settings you can perform the database schema and
+data upgrade by running. This needs to be done in a few steps:
+
+.. code-block:: bash
+
+   (env) $ pootle migrate accounts 0002 --fake
+   (env) $ pootle migrate pootle_translationproject 0002 --fake
+   (env) $ pootle migrate
+
+
+.. _upgrading#refresh-stats:
+
+Refreshing checks and stats
+---------------------------
+
+You must now update the translation checks and populate the Redis cache with
+statistical data. You will need to have an :ref:`RQ worker running 
+<installation#running-rqworker>` to complete this.
+
+.. code-block:: bash
+
+   (env) $ pootle calculate_checks
+   (env) $ pootle refresh_stats
+
+This command will dispatch jobs to the RQ worker and may take some time.
+
+If you wish to run ``calculate_checks`` and ``refresh_stats`` in the foreground
+without using the RQ worker you can use the :option:`--no-rq` option.
+
+
+.. _upgrading#setup-users:
+
+Set up users
+------------
+
+Any accounts that do not have an email address registered will not be able to
+log in. You can set the email for a user using the :djadmin:`update_user_email`
+command.
+
+For example to set the email for user ``admin`` to ``admin@example.com``: 
+
+.. code-block:: bash
+
+   (env) $ pootle update_user_email admin admin@example.com
+
+
+As of Pootle 2.7 users must now verify their email before they can log in.
+
+You can use the :djadmin:`verify_user` command to bypass email verification for
+a specific user.
+
+For example to automatically verify the admin user:
+
+.. code-block:: bash
+
+   (env) $ pootle verify_user admin
+
+If you wish to verify all of your existing users please see the
+:djadmin:`verify_user` command for further options.
+
+
+.. _upgrading#next-steps:
+
+Next steps
+----------
+
+Now that you have Pootle up and running you may want to consider some of the
+following in order to build a production environment.
+
+- :ref:`Run Pootle and RQ workers as a service <pootle#running_as_a_service>`
+- :ref:`Re-apply customisations <customization>`
+- :doc:`Optimize your setup <optimization>`
+- :ref:`Set up a Translation Memory Server <translation_memory>`
+- :ref:`Check out any new settings <settings#available>`
+- :ref:`Check out Pootle management commands <commands>`
