@@ -1,0 +1,41 @@
+===================================
+Welcome to the Pootle 2.6.1 Interim
+===================================
+
+*Released on 15 September 2015*
+
+The 2.6.1 release is an interim release. It is used to migrate from Pootle
+2.5.0 or newer to Pootle 2.7.x or newer releases.
+
+.. warning::
+
+  Do not run a Pootle instance using this version.
+
+
+
+Major Changes
+=============
+
+This release fixes issues that some users experienced upgrading via 2.6.0
+
+
+.. warning::
+
+  If you are upgrading from Pootle 2.1.0 or older you must first upgrade to
+  2.1.6 before upgrading to this version.
+
+
+.. warning::
+
+  If you are upgrading from Pootle older than 2.5.0 you must first upgrade to
+  2.5.1.3 before upgrading to this version.
+
+
+Credits
+=======
+
+This release was made possible by the following people:
+
+Ryan Northey, Leandro Regueiro
+
+And to all our bug finders, testers and translators, a Very BIG Thank You.

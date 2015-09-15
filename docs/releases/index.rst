@@ -15,6 +15,7 @@ If you are upgrading Pootle, you might want to see some tips to ensure your
    :maxdepth: 1
 
    2.7.0 <2.7.0>
+   2.6.1 <2.6.1>
    2.6.0 <2.6.0>
    2.5.1.3 <2.5.1.3>
    2.5.1.2 <2.5.1.2>
