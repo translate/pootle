@@ -49,7 +49,7 @@ the :setting:`POOTLE_TRANSLATION_DIRECTORY` directory.
 
 .. note:: Most of the paths present in the examples in this section are the
    result of deploying Pootle using a Python virtualenv as told in the
-   :ref:`Setting up the Environment <installation#setup_environment>` section
+   :ref:`Setting up the Environment <installation#setup-environment>` section
    from the :ref:`Quickstart installation <installation>` instructions.
 
    If for any reason you have different paths, you will have to adjust the
