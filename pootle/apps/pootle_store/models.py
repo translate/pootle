@@ -1020,6 +1020,7 @@ class Unit(models.Model, base.TranslationUnit):
             self.state = UNTRANSLATED
 
         self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
+        self.update_qualitychecks(keep_false_positives=True)
         self._state_updated = True
         self._save_action = UNIT_RESURRECTED
 
@@ -1351,6 +1352,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     obsolete = models.BooleanField(default=False)
 
     objects = StoreManager()
+    simple_objects = models.Manager()
 
     class Meta:
         ordering = ['pootle_path']
