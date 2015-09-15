@@ -1,0 +1,195 @@
+=====================================
+Welcome to the new Pootle 2.7.1 final
+=====================================
+
+*Released on 18 September 2015*
+
+Bugfix release for 2.7.0.
+
+
+Changes in Requirements
+=======================
+- Django >= 1.7.10, < 1.8
+- Translate Toolkit >= 1.13.0
+- Python >= 2.7, < 3.0
+- Redis >= 2.8.4
+- Django transaction hooks
+- Unix-based operating system.
+
+
+Major Changes
+=============
+
+- Updated translations.
+- Added django-transaction-hooks
+- Changed user delete behaviour
+- Lots of command changes and additions
+- Improved upload
+
+
+Below we provide much more detail. These are by no means exhaustive, view the
+`git log <https://github.com/translate/pootle/compare/stable/2.7.0...master>`_
+for complete information.
+
+
+Details of changes
+==================
+
+Translation statistics
+----------------------
+
+- Last activity snippets for stats are not kept in the cache anymore. The markup
+  is now built on the client. This requires refreshing all server stats using
+  the :djadmin:`refresh_stats` command (:issue:`3835`).
+
+- Renamed ``refresh_stats_rq`` command to :djadmin:`refresh_stats`. The
+  old ``refresh_stats`` command is now gone.
+
+- POT files are no longer included in the translations stats. This allows to
+  achieve a 100% translation status for a project if all the languages are
+  completely translated.
+
+- Fixed issue with empty directories preventing stats from being fully
+  calculated.
+
+- Public virtual folders with pending suggestions are now always displayed.
+
+
+Django transaction hooks
+------------------------
+
+- To ensure async jobs are scheduled at the correct time
+  `django-transaction-hooks
+  <https://pypi.python.org/pypi/django-transaction-hooks/>`_ is now required.
+  This dependency will be unnecessary once Django 1.9 becomes Pootle's minimum
+  requirement.
+
+- You must update your database connection to use one of the
+  django-transaction-hooks backends:
+
+  - mysql: transaction_hooks.backends.mysql
+  - postgres: transaction_hooks.backends.postgresql_psycopg2
+
+
+Changed user delete behaviour
+-----------------------------
+
+On deleting a user account their submissions, suggestions and reviews are now
+re-assigned to the "nobody" user.
+
+If you wish to remove the user's contributions also, you can use the
+:djadmin:`purge_user` command, or call ``user.delete(purge=True)`` to delete the
+user programatically.
+
+
+File uploads
+------------
+
+- The uploading user now receives the credit for the upload.
+
+- Handling of upload errors have been improved, displaying more useful messages
+  now.
+
+- In case of upload conflict the new translations are turned into suggestions.
+
+
+Command changes and additions
+-----------------------------
+
+- Added a :djadmin:`contributors` command to get the list of contributors
+  (:issue:`3867`).
+
+- Added a :djadmin:`find_duplicate_emails` command to find duplicate emails.
+
+- Added a :djadmin:`merge_user` command to get merge submissions, comments and
+  reviews from one user account to another. This is useful for fixing users
+  that have multiple accounts and want them to be combined. No profile data
+  is merged. By default it removes the original user account after successful
+  merge.
+
+- Added a :djadmin:`purge_user` command to purge a user from the site and revert
+  any submissions, comments and reviews that they have made. This is useful to
+  revert spam or a malicious user.
+
+- Added a :djadmin:`verify_user` command to automatically verify a user account
+
+- Renamed ``refresh_stats_rq`` command to :djadmin:`refresh_stats`, replacing
+  the old command of the same name. :djadmin:`refresh_stats` is able to
+  calculate the stats for disabled projects (old ``refresh_stats_rq`` was
+  unable to do it).
+
+- Added a :djadmin:`update_user_email` command to update a user's email
+  address.
+
+- Added a :option:`--no-rq` option to run commands in a single process without
+  using RQ workers.
+
+- Now it is possible specify the parameters to set up your database directly
+  through :djadmin:`init command <init>`.
+
+
+Editor
+------
+
+- Editor now request confirmation before navigating away from modified units in
+  order to prevent data loss. This also includes non-saved comments. Going to
+  the previous, next, and a specific unit will trigger the prompt, as well as
+  changing filters or searching. It is also triggered by typing a different
+  URL, reloading the page or closing the browser window.
+
+- Fixed issue that didn't allow users with only just suggestion rights to send
+  suggestions.
+
+- Suggestion related events are now displayed on the timeline.
+
+- Critical and not critical failing checks are now displayed separately in the
+  editor.
+
+- Potential errors when managing the suggestions are now displayed to users.
+
+- Fixed a regression that prevented users from rejecting their own suggestions
+  even if they don't have enough permissions to reject suggestions.
+
+
+Misc changes
+------------
+
+- Disabled projects are visually differentiated in the projects drop-down
+  (:issue:`3996`).
+  Since the in-cache data structure supporting this changed, it's necessary to
+  clear the cache. Assuming your ``default`` cache lives in the DB number ``1``,
+  you can clear it as follows:
+
+  .. code-block:: bash
+
+    $ redis-cli -n 1 KEYS "*method-cache:Project:cached_dict:*" | xargs redis-cli -n 1 DEL
+
+- Admins can now always see and navigate disabled projects.
+
+- Pulled latest translations.
+
+- Scores now include suggestions.
+
+- A link is now displayed on the sidebar so admin users can quickly edit the
+  announcements.
+
+- Now previously hidden errors during login and sign up are displayed to the
+  user.
+
+- Improved usage of system checks so sysadmins get better feedback on whether
+  something is wrong with Pootle.
+
+
+...and lots of refactoring, new tests, cleanups, improved documentation and of
+course, loads of bugs were fixed.
+
+
+Credits
+=======
+
+This release was made possible by the following people:
+
+Julen Ruiz Aizpuru, Ryan Northey, Taras Semenenko, Leandro Regueiro, Dwayne
+Bailey, Jerome Leclanche, Kevin Scannell, Daniel Widerin.
+
+And to all our bug finders, testers and translators, a Very BIG Thank You.
