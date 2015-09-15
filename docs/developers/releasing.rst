@@ -195,7 +195,7 @@ like this:
 
 .. code-block:: bash
 
-    $ git log $previous_version..HEAD > docs/release/$version.rst
+    $ git log $previous_version..HEAD > docs/releases/$version.rst
 
 
 Or a more specific example:
