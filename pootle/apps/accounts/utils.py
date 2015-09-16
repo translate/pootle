@@ -11,9 +11,9 @@ import functools
 import logging
 import sys
 
-from django.db.models import Count
 from django.contrib.auth import get_user_model
 from django.core.validators import validate_email, ValidationError
+from django.db.models import Count
 
 from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
