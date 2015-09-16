@@ -342,9 +342,9 @@ class User(AbstractBaseUser):
 
         :return: Queryset of `Unit`s that were created by this user.
         """
-        return (Unit.objects
-                    .filter(pk__in=(self.submission_set.get_unit_creates()
-                                        .values_list("unit", flat=True))))
+        created_unit_pks = self.submission_set.get_unit_creates() \
+                                              .values_list("unit", flat=True)
+        return Unit.objects.filter(pk__in=created_unit_pks)
 
     def pending_suggestion_count(self, tp):
         """Returns the number of pending suggestions for the user in the given

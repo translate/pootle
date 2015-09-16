@@ -141,18 +141,20 @@ class SubmissionManager(BaseSubmissionManager):
 
         :return: Queryset of `Submissions`s that create a `Unit`'s.
         """
-        return (self.get_queryset()
-                    .filter(type=SubmissionTypes.UNIT_CREATE))
+        return self.get_queryset().filter(type=SubmissionTypes.UNIT_CREATE)
 
     def get_unit_edits(self):
         """`Submission`s that change a `Unit`'s `target`.
 
         :return: Queryset of `Submissions`s that change a `Unit`'s target.
         """
-        return (self.get_queryset()
-                    .exclude(new_value__isnull=True)
-                    .filter(field__in=SubmissionFields.TRANSLATION_FIELDS)
-                    .filter(type__in=SubmissionTypes.EDITING_TYPES))
+        return (
+            self.get_queryset().exclude(new_value__isnull=True)
+                               .filter(
+                                    field__in=SubmissionFields.TRANSLATION_FIELDS,
+                                    type__in=SubmissionTypes.EDITING_TYPES,
+                               )
+        )
 
     def get_unit_state_changes(self):
         """Submissions that change a unit's STATE.
@@ -160,8 +162,7 @@ class SubmissionManager(BaseSubmissionManager):
         :return: Queryset of `Submissions`s change a `Unit`'s `STATE`
             - ie FUZZY/TRANSLATED/UNTRANSLATED.
         """
-        return (self.get_queryset()
-                    .filter(field=SubmissionFields.STATE))
+        return self.get_queryset().filter(field=SubmissionFields.STATE)
 
     def get_unit_suggestion_reviews(self):
         """Submissions that review (reject/accept) `Unit` suggestions.
@@ -172,9 +173,8 @@ class SubmissionManager(BaseSubmissionManager):
         # reject_suggestion does not set field so we must exclude STATE reviews
         # and it seems there are submissions that use STATE and are in
         # REVIEW_TYPES
-        return (self.get_queryset()
-                    .exclude(field=SubmissionFields.STATE)
-                    .filter(type__in=SubmissionTypes.REVIEW_TYPES))
+        return (self.get_queryset().exclude(field=SubmissionFields.STATE)
+                                   .filter(type__in=SubmissionTypes.REVIEW_TYPES))
 
 
 class Submission(models.Model):
