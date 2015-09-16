@@ -69,9 +69,6 @@ for the process to terminate:
 
     $ pootle refresh_stats --no-rq
 
-.. warning:: Do not ``pootle runserver --no-rq`` on a production server as this
-    will result in very poor performance.
-
 It is *not* generally safe to run commands in this mode if you have RQ workers
 active at the same time, as there is a risk that they conflict with other jobs
 dispatched to the workers.
