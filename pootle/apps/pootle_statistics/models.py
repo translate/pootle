@@ -312,7 +312,7 @@ class Submission(models.Model):
 
         sugg_user = self.suggestion.user
         author = format_html(u'<a href="{}">{}</a>', sugg_user.get_absolute_url(),
-                                                    sugg_user.display_name)
+                                                     sugg_user.display_name)
         return {
             SubmissionTypes.SUGG_ADD: _(u'Added suggestion'),
             SubmissionTypes.SUGG_ACCEPT: _(u'Accepted suggestion from %s' % author),
