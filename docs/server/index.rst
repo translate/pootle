@@ -45,3 +45,4 @@ Performance tuning and managing the server
    auth
    commands
    rq
+   backup
