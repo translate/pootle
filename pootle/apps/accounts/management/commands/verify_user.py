@@ -14,7 +14,7 @@ from django.core.management.base import CommandError
 from django.core.validators import ValidationError
 
 from . import UserCommand
-import accounts
+from ... import utils
 
 
 class Command(UserCommand):
@@ -41,13 +41,13 @@ class Command(UserCommand):
         if verify_all:
             for user in get_user_model().objects.hide_meta():
                 try:
-                    accounts.utils.verify_user(user)
+                    utils.verify_user(user)
                     print("Verified user '%s'" % user.username)
                 except (ValueError, ValidationError) as e:
                     print(e.message)
         else:
             try:
-                accounts.utils.verify_user(self.get_user(args[0]))
+                utils.verify_user(self.get_user(args[0]))
                 print("User '%s' has been verified" % args[0])
             except (ValueError, ValidationError) as e:
                 raise CommandError(e.message)

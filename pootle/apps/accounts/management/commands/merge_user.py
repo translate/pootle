@@ -9,9 +9,8 @@
 
 from optparse import make_option
 
-import accounts
-
 from . import UserCommand
+from ... import utils
 
 
 class Command(UserCommand):
@@ -29,7 +28,7 @@ class Command(UserCommand):
     def handle(self, *args, **kwargs):
         super(Command, self).handle(*args, **kwargs)
         src_user = self.get_user(username=args[0])
-        accounts.utils.UserMerger(src_user,
+        utils.UserMerger(src_user,
                                   self.get_user(username=args[1])).merge()
 
         if kwargs.get("delete"):

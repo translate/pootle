@@ -12,7 +12,7 @@ __all__ = ('UserManager', )
 from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
 
-import accounts
+from . import utils
 
 
 class UserManager(BaseUserManager):
@@ -38,7 +38,7 @@ class UserManager(BaseUserManager):
             raise ValueError('The given username must be set')
 
         email = self.normalize_email(email)
-        accounts.utils.validate_email_unique(email)
+        utils.validate_email_unique(email)
         user = self.model(username=username, email=email,
                           is_active=True, is_superuser=is_superuser,
                           last_login=now, date_joined=now, **extra_fields)

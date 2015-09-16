@@ -16,7 +16,7 @@ from django.core import management
 
 import syspath_override
 
-from core.utils.redis_rq import rq_workers_are_running
+from .core.utils.redis_rq import rq_workers_are_running
 
 
 #: Length for the generated :setting:`SECRET_KEY`
