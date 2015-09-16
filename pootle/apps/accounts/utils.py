@@ -390,10 +390,11 @@ def verify_user(user):
 def get_duplicate_emails():
     """Get a list of emails that occur more than once in user accounts.
     """
-    return (get_user_model().objects.values('email')
-                            .annotate(Count('email'))
-                            .filter(email__count__gt=1)
-                            .values_list("email", flat=True))
+    return (get_user_model().objects.hide_meta()
+                                    .values('email')
+                                    .annotate(Count('email'))
+                                    .filter(email__count__gt=1)
+                                    .values_list("email", flat=True))
 
 
 def validate_email_unique(email, for_user=None):
