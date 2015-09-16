@@ -111,16 +111,43 @@ On the contrary, if you want to reference images from HTML code or inline CSS,
 you should use the ``{% static %}`` template tag.
 
 
-.. _customization#building:
+.. _customization#install-node-libs:
+
+Installing JS build libraries
+-----------------------------
+
+Before you can rebuild your static assets with any CSS or JavaScript
+customisations, you will need to install some Node.js libraries.
+
+Before proceeding please make sure you have
+:ref:`node and npm installed in your system <requirements#customize-static>`.
+
+.. code-block:: bash
+
+   (env) $ cd $pootle_dir
+   (env) $ cd pootle/static/js/
+   (env) $ npm install
+
+``$pootle_dir`` is the directory where Pootle is installed.
+
+
+.. _customization#assets:
 
 Rebuilding assets after customization
 -------------------------------------
 
+Before rebuilding your assets for the first time you must :ref:`install the 
+JavaScript build libraries <customization#install-node-libs>`.
+
 After doing any customizations, you will need to regenerate any modified
 bundles and gather all the static assets in a single place for public
-consumption. Use the convenience ``make assets`` command for that (be sure
-to enable your virtualenv).
+consumption.
+
+You will need to activate your virtual environment before running these
+commands.
 
 .. code-block:: bash
 
-  (env) $ make assets
+   (env) $ pootle webpack
+   (env) $ pootle collectstatic --noinput --clear -i node_modules -i *.jsx
+   (env) $ pootle assets build
