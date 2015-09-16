@@ -531,6 +531,7 @@ td.stats-name a:hover > i + span,
     bottom: 0;
     right: 0;
     width: 0;
+    z-index: 1;
 
     background-color: #fff;
 
