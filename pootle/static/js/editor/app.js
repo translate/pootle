@@ -1463,6 +1463,8 @@ PTL.editor = {
           efn: 'PTL.editor.error'
         };
 
+    PTL.editor.updateUnitDefaultProperties();
+
     // Check if the string being submitted is already in the set of
     // suggestions
     // FIXME: this is LAME, I wanna die: we need to use proper models!!
@@ -1488,8 +1490,6 @@ PTL.editor = {
              captchaCallbacks);
 
     el.disabled = true;
-
-    PTL.editor.updateUnitDefaultProperties();
 
     $.ajax({
       url: submitUrl,
