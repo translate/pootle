@@ -3,9 +3,21 @@
 Running under a Web Server
 ==========================
 
-Running Pootle under a proper web server will improve performance, give you more
-flexibility, and might be better for security. It is strongly recommended to
-run Pootle under Apache, Nginx, or a similar web server.
+Running Pootle with a front end web server will improve performance, give you
+more flexibility, and might be better for security. It is strongly recommended
+to run Pootle under Apache, Nginx, or a similar web server.
+
+
+.. _pootle#running_as_a_service:
+
+Running Pootle and RQ workers as a Service
+------------------------------------------
+
+If you plan to run Pootle and/or RQ workers as system services, you can use
+whatever software you are familiar with for that purpose. For example
+`Supervisor <http://supervisord.org/>`_, `Circus
+<http://circus.readthedocs.org/en/latest/>`_ or `daemontools
+<http://cr.yp.to/daemontools.html>`_ might fit your needs.
 
 
 .. _apache:
