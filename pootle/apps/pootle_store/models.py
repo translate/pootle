@@ -225,6 +225,28 @@ class UnitManager(models.Manager):
             )
         )
 
+    def live(self):
+        """Filters non-obsolete units."""
+        return self.filter(state__gt=OBSOLETE)
+
+    def get_for_user(self, user):
+        """Filters units for a specific user.
+
+        - Admins always get all non-obsolete units
+        - Regular users only get units from enabled projects.
+
+        NOTE: This doesn't do any permission checking.
+
+        :param user: The user for whom units need to be retrieved for.
+        :return: A filtered queryset with `Unit`s for `user`.
+        """
+        if user.is_superuser:
+            return self.live()
+
+        return self.live() \
+                   .filter(store__translation_project__project__disabled=False)
+
+
     def get_for_path(self, pootle_path, user):
         """Returns units that fall below the `pootle_path` umbrella.
 
@@ -233,10 +255,7 @@ class UnitManager(models.Manager):
         """
         lang, proj, dir_path, filename = split_pootle_path(pootle_path)
 
-        units_qs = super(UnitManager, self).get_queryset().filter(
-            state__gt=OBSOLETE,
-            store__translation_project__project__disabled=False,
-        )
+        units_qs = self.get_for_user(user)
 
         # /projects/<project_code>/translate/*
         if lang is None and proj is not None:
