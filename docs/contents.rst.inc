@@ -8,6 +8,12 @@ perspectives, server administrator's, and developer's view.
    :maxdepth: 2
 
    features/index
+
+.. toctree::
+   :maxdepth: 1
+
+   server/installation
+   server/upgrading
    server/index
    developers/index
 
