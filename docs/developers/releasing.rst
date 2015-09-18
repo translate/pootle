@@ -129,6 +129,7 @@ Create :file:`~/.pootle/pootle_build.conf` with the following content:
 
     # Silence some checks so the build output is cleaner.
     SILENCED_SYSTEM_CHECKS = [
+        'pootle.W004',  # Pootle requires a working mail server
         'pootle.W006',  # sqlite database backend is unsupported
         'pootle.W010',  # DEFAULT_FROM_EMAIL has default setting
         'pootle.W011',  # POOTLE_CONTACT_EMAIL has default setting
