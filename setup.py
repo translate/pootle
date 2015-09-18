@@ -232,7 +232,7 @@ setup(
         "Intended Audience :: Developers",
         "Intended Audience :: End Users/Desktop",
         "Intended Audience :: Information Technology",
-        "License :: OSI Approved :: GNU General Public License (GPL)",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: Unix",
