@@ -28,7 +28,7 @@ Major Changes
 
 
 Below we provide much more detail. These are by no means exhaustive, view the
-`git log <https://github.com/translate/pootle/compare/stable/2.7.1...master>`_
+`git log <https://github.com/translate/pootle/compare/stable/2.7.0...2.7.1>`_
 for complete information.
 
 
