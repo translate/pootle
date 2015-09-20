@@ -26,6 +26,7 @@
     <script type="text/javascript">
     window.PTL = window.PTL || {};
     PTL.settings = {
+      CONTACT_ENABLED: {{ settings.POOTLE_CONTACT_ENABLED|yesno:'true, false' }},
       SIGNUP_ENABLED: {{ settings.POOTLE_SIGNUP_ENABLED|yesno:'true, false' }},
       SOCIAL_AUTH_PROVIDERS: {{ SOCIAL_AUTH_PROVIDERS|safe }},
     };

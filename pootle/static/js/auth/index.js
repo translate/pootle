@@ -16,6 +16,7 @@ import React from 'react';
 
 const mountNodeSelector = '.js-auth';
 const commonProps = {
+  canContact: PTL.settings.CONTACT_ENABLED,
   canRegister: PTL.settings.SIGNUP_ENABLED,
   socialAuthProviders: PTL.settings.SOCIAL_AUTH_PROVIDERS,
 };

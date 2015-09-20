@@ -32,6 +32,7 @@ let AuthController = React.createClass({
     initialActionData: React.PropTypes.object,
     initialScreen: React.PropTypes.string,
 
+    canContact: React.PropTypes.bool.isRequired,
     canRegister: React.PropTypes.bool.isRequired,
     onClose: React.PropTypes.func.isRequired,
     socialAuthProviders: React.PropTypes.array.isRequired,
@@ -157,6 +158,7 @@ let AuthController = React.createClass({
 
     return (
       <AuthWindow
+        canContact={this.props.canContact}
         title={currentScreen.title}
         onClose={this.props.onClose}
       >

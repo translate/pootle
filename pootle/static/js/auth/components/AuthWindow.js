@@ -14,8 +14,16 @@ import { Modal } from 'components/lightbox';
 
 
 let AuthWindow = React.createClass({
+  propTypes: {
+    canContact: React.PropTypes.bool.isRequired,
+  },
+
 
   renderFooter() {
+    if (!this.props.canContact) {
+      return null;
+    }
+
     return (
       <a href="#" className="js-contact">
         {gettext('Contact Us')}
