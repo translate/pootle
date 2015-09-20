@@ -32,6 +32,7 @@ let AuthController = React.createClass({
     initialActionData: React.PropTypes.object,
     initialScreen: React.PropTypes.string,
 
+    canRegister: React.PropTypes.bool.isRequired,
     onClose: React.PropTypes.func.isRequired,
     socialAuthProviders: React.PropTypes.array.isRequired,
     socialError: React.PropTypes.object,
