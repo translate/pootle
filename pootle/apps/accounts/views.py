@@ -11,6 +11,7 @@ import logging
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
+from django.utils.translation import ugettext_lazy as _
 
 from allauth.account.views import LoginView
 from allauth.exceptions import ImmediateHttpResponse
@@ -33,8 +34,8 @@ class PootleLoginView(LoginView):
             return e.response
         except Exception as e:
             logger.exception("%s %s" % (e.__class__.__name__, e))
-            raise RuntimeError("An error occurred logging you in. Please "
-                               "contact your system administrator")
+            raise RuntimeError(_("An error occurred logging you in. Please "
+                                 "contact your system administrator"))
 
 
 class SocialVerificationView(LoginView):
