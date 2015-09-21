@@ -204,6 +204,10 @@ const stats = {
   },
 
   processTableItem(item, code, $table, $td, now) {
+    if (!$td.length) {
+      return null;
+    }
+
     $td.parent().toggleClass('dirty', item.is_dirty);
     this.updateItemStats($td, item.total);
 
