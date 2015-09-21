@@ -53,7 +53,7 @@ def browse(request, project, dir_path, filename):
     ctx.update({
         'project': project,
         'table': table,
-        'stats': jsonify(request.resource_obj.get_stats()),
+        'stats': jsonify(request.resource_obj.get_stats_for_user(request.user)),
 
         'browser_extends': 'projects/base.html',
     })

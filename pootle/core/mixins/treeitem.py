@@ -87,6 +87,7 @@ class TreeItem(object):
 
     def set_children(self, children):
         self._children = children
+        self.initialized = True
 
     def get_parents(self):
         """This method will be overridden in descendants"""

@@ -23,10 +23,7 @@ from pootle_app.views.admin.permissions import admin_permissions
 @get_path_obj
 @permission_required('view')
 def browse(request, language):
-    translation_projects = language.children \
-                                   .order_by('project__fullname')
-    user_tps = filter(lambda x: x.is_accessible_by(request.user),
-                      translation_projects)
+    user_tps = language.get_children_for_user(request.user)
     items = (make_project_item(tp) for tp in user_tps)
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
@@ -44,7 +41,7 @@ def browse(request, language):
             'headings': get_table_headings(table_fields),
             'items': items,
         },
-        'stats': jsonify(request.resource_obj.get_stats()),
+        'stats': jsonify(request.resource_obj.get_stats_for_user(request.user)),
 
         'browser_extends': 'languages/base.html',
     })

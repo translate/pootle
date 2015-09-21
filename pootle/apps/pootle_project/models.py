@@ -401,6 +401,10 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     ### /TreeItem
 
+    def get_stats_for_user(self, user):
+        self.set_children(self.get_children_for_user(user))
+        return self.get_stats()
+
     def get_children_for_user(self, user):
         """Returns children translation projects for a specific `user`."""
         return self.translationproject_set.for_user(user)
@@ -512,6 +516,9 @@ class ProjectResource(VirtualResource, ProjectURLMixin):
 
     def get_children_for_user(self, user):
         return self.children
+
+    def get_stats_for_user(self, user):
+        return self.get_stats()
 
 
 class ProjectSet(VirtualResource, ProjectURLMixin):

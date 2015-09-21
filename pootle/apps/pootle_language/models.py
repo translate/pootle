@@ -171,6 +171,20 @@ class Language(models.Model, TreeItem):
 
     ### /TreeItem
 
+    def get_stats_for_user(self, user):
+        self.set_children(self.get_children_for_user(user))
+
+        return self.get_stats()
+
+    def get_children_for_user(self, user):
+        translation_projects = self.translationproject_set \
+                                   .for_user(user) \
+                                   .order_by('project__fullname')
+        user_tps = filter(lambda x: x.is_accessible_by(user),
+                          translation_projects)
+
+        return user_tps
+
 
 @receiver([post_delete, post_save])
 def invalidate_language_list_cache(sender, instance, **kwargs):
