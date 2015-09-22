@@ -13,6 +13,7 @@ __all__ = ('ElasticSearchBackend',)
 
 try:
     from elasticsearch import Elasticsearch
+    from elasticsearch.exceptions import ConnectionError
 except:
     Elasticsearch = None
 
@@ -26,7 +27,12 @@ class ElasticSearchBackend(SearchBackend):
         self._create_index_if_missing()
 
     def _server_setup_and_alive(self):
-        return self._es is not None and self._es.ping()
+        if self._es is None:
+            return False
+        try:
+            return self._es.ping()
+        except ConnectionError:
+            return False
 
     def _get_es_server(self):
         if self._settings is None or Elasticsearch is None:
