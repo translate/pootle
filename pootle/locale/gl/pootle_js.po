@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2015-09-22 15:14+0000\n"
+"PO-Revision-Date: 2015-09-22 15:28+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1442934873.000000\n"
+"X-POOTLE-MTIME: 1442935705.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -621,12 +621,12 @@ msgstr "Todo o proxecto"
 #: static/js/shared/components/UserEvent.js:94
 #, python-brace-format
 msgid "removed translation for ${sourceString}"
-msgstr ""
+msgstr "retirou a tradución para ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:75
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "accepted suggestion for ${sourceString}"
-msgstr "Suxestións aceptadas de %s"
+msgstr "aceptou unha suxestión para ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
@@ -635,47 +635,47 @@ msgstr "ficheiro enviado"
 #: static/js/shared/components/UserEvent.js:79
 #, python-brace-format
 msgid "muted ${check} for ${sourceString}"
-msgstr ""
+msgstr "silenciou ${check} para ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:81
 #, python-brace-format
 msgid "unmuted ${check} for ${sourceString}"
-msgstr ""
+msgstr "reactivou ${check} para ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:83
 #, python-brace-format
 msgid "added suggestion for ${sourceString}"
-msgstr ""
+msgstr "suxeriu para ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:85
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "rejected suggestion for ${sourceString}"
-msgstr "Suxestións rexeitadas de %s"
+msgstr "rexeitou unha suxestión para ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:88
 #, python-brace-format
 msgid "translated ${sourceString}"
-msgstr ""
+msgstr "traduciu ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:90
 #, python-brace-format
 msgid "edited ${sourceString}"
-msgstr ""
+msgstr "editou ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:92
 #, python-brace-format
 msgid "pre-translated ${sourceString}"
-msgstr ""
+msgstr "pretraduciu ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:96
 #, python-brace-format
 msgid "reviewed ${sourceString}"
-msgstr ""
+msgstr "revisou ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:98
 #, python-brace-format
 msgid "marked as needs work ${sourceString}"
-msgstr ""
+msgstr "marcou como que precisa máis traballo ${sourceString}"
 
 #: static/js/admin/components/language.jsx:52
 #, python-format
