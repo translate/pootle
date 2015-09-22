@@ -217,7 +217,7 @@ setup(
 
     author="Translate",
     author_email="dev@translate.org.za",
-    license="GNU General Public License (GPL)",
+    license="GNU General Public License 3 or later (GPLv3+)",
     url="http://pootle.translatehouse.org",
     download_url="https://github.com/translate/pootle/releases/tag/" + __version__,
 
