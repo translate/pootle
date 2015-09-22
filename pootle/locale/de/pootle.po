@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-09-10 10:01+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2015-09-19 09:45+0000\n"
+"Last-Translator: pfennig59 <kt.at.pootle@sk-lab.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441879270.000000\n"
+"X-POOTLE-MTIME: 1442655945.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -188,7 +188,7 @@ msgstr ""
 #: apps/import_export/utils.py:30
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr ""
+msgstr "X-Pootle-Path Header fehlt in Datei '%s'\n"
 
 #: apps/import_export/utils.py:35
 #, python-format
@@ -1439,7 +1439,7 @@ msgstr ""
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:35
 msgid "Privacy Policy"
-msgstr "Datenschutzrichtlinie"
+msgstr "Datenschutz"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:37
@@ -1499,11 +1499,11 @@ msgstr ""
 
 #: templates/account/email/email_confirmation_message.txt:2
 msgid "A Pootle account has been created for you using this email address."
-msgstr "Es wurde ein Pootle-Account mit dieser E-Mail-Adresse erstellt."
+msgstr "Ihr Pootle-Benutzerkonto wurde mit dieser E-Mail-Adresse erstellt."
 
 #: templates/account/email/email_confirmation_message.txt:3
 msgid "To activate your account, follow this link:"
-msgstr "Um Ihren Account zu aktivieren, folgen Sie diesem Link:"
+msgstr "Folgen Sie diesem Link, um Ihr Benutzerkonto zu aktivieren:"
 
 #: templates/account/email/email_confirmation_message.txt:6
 msgid ""
@@ -1869,7 +1869,7 @@ msgstr "Details erweitern"
 
 #: templates/browser/index.html:20
 msgid "Translation Statistics"
-msgstr "Übertragungsstatistik"
+msgstr "Übersetzungsstatistik"
 
 #: templates/browser/index.html:43
 msgid "Last action"
@@ -2274,9 +2274,7 @@ msgstr "Seite nicht gefunden"
 
 #: templates/errors/404.html:10
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
-"Wir entschuldigen uns, aber die angefragte Seite konnte nicht gefunden "
-"werden."
+msgstr "Es tut uns leid. Die angefragte Seite konnte nicht gefunden werden."
 
 #: templates/errors/500.html:4 templates/errors/500.html.py:8
 msgid "Server Error"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-08-05 11:33+0000\n"
+"PO-Revision-Date: 2015-09-17 13:22+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1438774389.000000\n"
+"X-POOTLE-MTIME: 1442496135.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -183,21 +183,23 @@ msgstr "Vertalingen uploaden"
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
+"Niet-ondersteund bestandstype '%s', alleen PO-bestanden worden momenteel "
+"ondersteund\n"
 
 #: apps/import_export/utils.py:30
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "Bestand %r mist header X-Pootle-Path\n"
+msgstr "Bestand '%s' mist header X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr "Bestand %r mist of heeft ongeldige header X-Pootle-Revision\n"
+msgstr "Bestand '%s' mist of heeft ongeldige header X-Pootle-Revision\n"
 
 #: apps/import_export/utils.py:43
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr "Kon %r niet aanmaken. Project/taal ontbreekt? (%s)"
+msgstr "Kon '%s' niet aanmaken. Project/taal ontbreekt? (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -527,9 +529,8 @@ msgid "Placeholders"
 msgstr "Plaatshouders"
 
 #: apps/pootle_misc/checks.py:85
-#, fuzzy
 msgid "Valid XML"
-msgstr "Ongeldige XML"
+msgstr "Geldige XML"
 
 #: apps/pootle_misc/checks.py:86
 msgid "XML tags"
@@ -778,19 +779,18 @@ msgid "Comment"
 msgstr "Opmerking"
 
 #: apps/pootle_statistics/models.py:317
-#, fuzzy
 msgid "Added suggestion"
-msgstr "%d suggestie"
+msgstr "Toegevoegde suggestie"
 
 #: apps/pootle_statistics/models.py:318
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Suggestie accepteren"
+msgstr "Geaccepteerde suggestie van %s"
 
 #: apps/pootle_statistics/models.py:319
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Suggestie afwijzen"
+msgstr "Geweigerde suggestie van %s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -813,13 +813,12 @@ msgid "Gettext PO"
 msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:24
-#, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "XLIFF-bestand"
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -861,9 +860,8 @@ msgid "Needs work"
 msgstr "Werk vereist"
 
 #: apps/pootle_store/forms.py:247
-#, fuzzy
 msgid "Needs work flag must be cleared"
-msgstr "Wazig-vlag moet worden gewist"
+msgstr "Vlag Werk vereist moet worden gewist"
 
 #: apps/pootle_store/forms.py:290
 msgid "Value of `similarity` should be in in the [0..1] range"
@@ -951,9 +949,8 @@ msgid "Review"
 msgstr "Nakijken"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
-msgstr "Suggesties"
+msgstr "Suggestie"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1088,12 +1085,11 @@ msgstr ""
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
-msgstr ""
+msgstr "Is openbaar?"
 
 #: apps/virtualfolder/models.py:55
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "Of deze virtuele map actief is of niet."
+msgstr "Of deze virtuele map openbaar is of niet."
 
 #: apps/virtualfolder/models.py:60
 #, python-format
@@ -1143,9 +1139,10 @@ msgid "Your version of Redis is too old."
 msgstr "Uw versie van Redis is te oud."
 
 #: checks.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr "Werk het Redis-server-pakket van uw systeem bij"
+msgstr ""
+"Werk het Redis-server-pakket van uw systeem bij naar minstens versie %s"
 
 #: checks.py:113
 msgid "No RQ Worker running."
@@ -1231,9 +1228,8 @@ msgstr ""
 "contactformulier zijn verzonden."
 
 #: checks.py:186
-#, fuzzy
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr "settings.DEFAULT_FROM_EMAIL is niet ingesteld."
+msgstr "DEFAULT_FROM_EMAIL is niet ingesteld."
 
 #: checks.py:187 checks.py:197
 msgid ""
@@ -1244,65 +1240,68 @@ msgstr ""
 "Vergeet niet de instellingen voor uw mailserver te controleren."
 
 #: checks.py:195
-#, fuzzy, python-format
+#, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
-msgstr ""
-"settings.DEFAULT_FROM_EMAIL gebruikt de volgende standaardinstelling %r."
+msgstr "DEFAULT_FROM_EMAIL gebruikt de volgende standaardinstelling %r."
 
 #: checks.py:206
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "MARKUP_FILTER ontbreekt. Teruggekeerd naar HTML."
+msgstr "POOTLE_MARKUP_FILTER ontbreekt."
 
 #: checks.py:207
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Stel POOTLE_MARKUP_FILTER in."
 
 #: checks.py:212
-#, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "Ongeldige waarde '%s' in MARKUP_FILTER. Teruggekeerd naar HTML."
+msgstr "Ongeldige waarde in POOTLE_MARKUP_FILTER."
 
 #: checks.py:213
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Stel een geldige waarde in voor POOTLE_MARKUP_FILTER."
 
 #: checks.py:227
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Ongeldige opmaak in POOTLE_MARKUP_FILTER."
 
 #: checks.py:228
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Stel een geldige opmaak in voor POOTLE_MARKUP_FILTER."
 
+# that provides _what_? (it, i.e. the markup?)
 #: checks.py:233
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"POOTLE_MARKUP_FILTER is ingesteld op '%s'-opmaak, maar het pakket dat dit "
+"levert kan niet worden gevonden."
 
 #: checks.py:235
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Installeer het pakket of wijzig POOTLE_MARKUP_FILTER."
 
 #: checks.py:259
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
+"De standaardgebruiker 'admin' heeft nog een wachtwoord ingesteld op 'admin'."
 
 #: checks.py:261
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Verwijder de gebruiker 'admin' of wijzig het wachtwoord ervan."
 
 #: checks.py:276
 msgid "Database connection does not implement on_commit."
-msgstr ""
+msgstr "Databaseverbinding implementeert geen on_commit."
 
 #: checks.py:277
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
+"Stel de DATABASES['default']['ENGINE'] in om een backend van "
+"transaction_hooks.backends te gebruiken."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1688,9 +1687,8 @@ msgid "No activity recorded in a given period"
 msgstr "Geen activiteit geregistreerd in een gegeven periode"
 
 #: templates/admin/detailed_reports.html:226
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "Vertaling (subtotaal)"
+msgstr "Suggestie (subtotaal)"
 
 #: templates/admin/detailed_reports.html:236
 msgid "Translation (subtotal)"
@@ -1794,6 +1792,8 @@ msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"Gebruik <code><strong>/xx/</strong></code> binnen URL's in "
+"mededelingenpagina's voor een dynamische taalcode."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1865,19 +1865,19 @@ msgid "View all"
 msgstr "Alles weergeven"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
-msgstr "<span class='value translated'>0</span>%% vertaald"
+msgstr "<span class=\"value translated\">0</span>%% vertaald"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr "<span class='value fuzzy'>0</span>%% wazig"
+msgstr "<span class='value fuzzy'>0</span>%% werk vereist"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr "<span class='value untranslated'>0</span>%% onvertaald"
+msgstr "<span class=\"value untranslated\">0</span>%% onvertaald"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
@@ -2039,7 +2039,7 @@ msgid "No strings."
 msgstr "Geen tekenreeksen."
 
 #: templates/editor/export_view.html:149
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We displayed the first unit out of %(total_count)s. Please refine your "
 "search."
@@ -2047,11 +2047,11 @@ msgid_plural ""
 "We displayed the first %(unit_count)s units out of %(total_count)s. Please "
 "refine your search."
 msgstr[0] ""
-"De eerste %(count)s van %(total_count)s eenheden zijn weergegeven. Verfijn "
-"uw zoekopdracht."
+"De eerste van %(total_count)s eenheden is weergegeven. Verfijn uw "
+"zoekopdracht."
 msgstr[1] ""
-"De eerste %(count)s van %(total_count)s eenheden zijn weergegeven. Verfijn "
-"uw zoekopdracht."
+"De eerste %(unit_count)s van %(total_count)s eenheden zijn weergegeven. "
+"Verfijn uw zoekopdracht."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
 #: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
@@ -2215,14 +2215,12 @@ msgid "Comment: "
 msgstr "Opmerking: "
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "Mogelijke problemen met de vertaling"
+msgstr "Kritieke zaken in de vertaling"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "Kritieke fouten herstellen"
+msgstr "Kritieke fouten:"
 
 #: templates/editor/units/xhr_checks.html:12
 msgid "Mute quality check"
@@ -2238,7 +2236,7 @@ msgstr "Mogelijke problemen met de vertaling"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "Oppassen voor:"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
@@ -2398,6 +2396,8 @@ msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
+"Er zijn geen sjablonen voor dit project, dus het toevoegen van nieuwe talen "
+"vanaf dit scherm is uitgeschakeld."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -2465,7 +2465,7 @@ msgstr "Term"
 
 #: templates/translation_projects/terminology/manage.html:58
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "Geen terminologieënbestand gevonden"
 
 #: templates/translation_projects/terminology/manage.html:60
 msgid ""
@@ -2473,6 +2473,9 @@ msgid ""
 "translation project a \"pootle-terminology\" file named after your project's "
 "extension."
 msgstr ""
+"Zorg ervoor dat u een 'pootle-terminology'-bestand aan uw vertaalproject "
+"toevoegt dat naar de extensie van uw project is vernoemd om de "
+"terminologieënfunctie te gebruiken."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-05-19 17:40+0000\n"
-"Last-Translator: David <david.ducassou@gmail.com>\n"
+"PO-Revision-Date: 2015-09-16 06:48+0000\n"
+"Last-Translator: stephane <stephane@simple-different.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1432057222.000000\n"
+"X-POOTLE-MTIME: 1442386125.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -49,11 +49,11 @@ msgstr "Caractères spéciaux"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Nombre de pluriels"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "Équation du pluriel"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
@@ -69,7 +69,7 @@ msgstr "Vue d'ensemble"
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "Permissions"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
@@ -93,16 +93,16 @@ msgstr "Ignorer fichiers"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
-msgstr ""
+msgstr "Contact pour les erreurs dans les chaînes de caractères"
 
+# Je ne suis pas sûr de moi !!
 #: static/js/admin/components/ProjectForm.js:122
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Préfixe de recherche des copies d'écran"
 
 #: static/js/admin/components/ProjectForm.js:129
-#, fuzzy
 msgid "Disabled"
-msgstr "désactivé"
+msgstr "Désactivé"
 
 #: static/js/admin/components/ProjectForm.js:141
 msgid "Languages"
@@ -149,7 +149,7 @@ msgstr ""
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "Courriel"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"

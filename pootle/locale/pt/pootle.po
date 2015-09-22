@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-06-17 11:18+0000\n"
-"Last-Translator: smarquespt <smarquespt@gmail.com>\n"
+"PO-Revision-Date: 2015-09-21 00:08+0000\n"
+"Last-Translator: goncalomatos <goncalo.matos@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1434539889.000000\n"
+"X-POOTLE-MTIME: 1442794137.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -177,11 +177,11 @@ msgstr "Por favor digite a sua mensagem"
 
 #: apps/import_export/templates/browser/index.html:10
 msgid "Download translation files for offline translation"
-msgstr "Transferir ficheiros de tradução para edição offline"
+msgstr "Descarregar ficheiros de tradução para edição offline"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download for offline translation"
-msgstr "Transferir para edição offline"
+msgstr "Descarregar para edição offline"
 
 #: apps/import_export/templates/browser/index.html:19
 msgid "Upload translation files or archives in .zip format"
@@ -195,6 +195,8 @@ msgstr "Enviar traduções"
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
+"Tipo de ficheiro %s não suportado. Neste momento, apenas são suportados "
+"ficheiros PO\n"
 
 #: apps/import_export/utils.py:30
 #, fuzzy, python-format
@@ -536,9 +538,8 @@ msgid "Placeholders"
 msgstr "Marcadores de posição"
 
 #: apps/pootle_misc/checks.py:85
-#, fuzzy
 msgid "Valid XML"
-msgstr "XML inválido"
+msgstr "XML válido"
 
 #: apps/pootle_misc/checks.py:86
 msgid "XML tags"
@@ -788,19 +789,18 @@ msgid "Comment"
 msgstr "Comentário"
 
 #: apps/pootle_statistics/models.py:317
-#, fuzzy
 msgid "Added suggestion"
-msgstr "%d sugestão"
+msgstr "Adicionou uma sugestão"
 
 #: apps/pootle_statistics/models.py:318
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Aceitar sugestão"
+msgstr "Aceitou a sugestão de %s"
 
 #: apps/pootle_statistics/models.py:319
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Recusar sugestão"
+msgstr "Recusou uma sugestão de %s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -823,13 +823,12 @@ msgid "Gettext PO"
 msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:24
-#, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "Ficheiro XLIFF"
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -871,7 +870,6 @@ msgid "Needs work"
 msgstr "Deve ser revista"
 
 #: apps/pootle_store/forms.py:247
-#, fuzzy
 msgid "Needs work flag must be cleared"
 msgstr "Deve remover a marca de imprecisão"
 
@@ -961,9 +959,8 @@ msgid "Review"
 msgstr "Revisão"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
-msgstr "Sugestões"
+msgstr "Sugestão"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1097,12 +1094,11 @@ msgstr ""
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
-msgstr ""
+msgstr "É pública?"
 
 #: apps/virtualfolder/models.py:55
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "Se esta pasta virtual está ou não ativa."
+msgstr "Se esta pasta virtual é ou não pública."
 
 #: apps/virtualfolder/models.py:60
 #, python-format
@@ -1152,9 +1148,9 @@ msgid "Your version of Redis is too old."
 msgstr "A sua versão Redis é muito antiga."
 
 #: checks.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr "Atualize o pacote do servidor Redis"
+msgstr "Atualize o pacote do servidor Redis para, pelo menos, a versão %s"
 
 #: checks.py:113
 msgid "No RQ Worker running."
@@ -1240,9 +1236,8 @@ msgstr ""
 "do formulário de contacto."
 
 #: checks.py:186
-#, fuzzy
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr "settings.DEFAULT_FROM_EMAIL não definido."
+msgstr "DEFAULT_FROM_EMAIL não definido."
 
 #: checks.py:187 checks.py:197
 msgid ""
@@ -1253,35 +1248,33 @@ msgstr ""
 "Não se esqueça de verificar as definições do servidor de correio."
 
 #: checks.py:195
-#, fuzzy, python-format
+#, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
-msgstr "settings.DEFAULT_FROM_EMAIL está a utilizar a definição %r."
+msgstr "DEFAULT_FROM_EMAIL está a utilizar a definição %r."
 
 #: checks.py:206
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "MARKUP_FILTER em falta. A utilizar HTML."
+msgstr "POOTLE_MARKUP_FILTER inexistente."
 
 #: checks.py:207
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Definir POOTLE_MARKUP_FILTER."
 
 #: checks.py:212
-#, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "Valor inválido '%s' em MARKUP_FILTER. A utilizar HTML."
+msgstr "Valor inválido em POOTLE_MARKUP_FILTER."
 
 #: checks.py:213
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Definir um valor válido para POOTLE_MARKUP_FILTER."
 
 #: checks.py:227
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Marcação inválida em POOTLE_MARKUP_FILTER."
 
 #: checks.py:228
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Definir uma marcação válida para POOTLE_MARKUP_FILTER."
 
 #: checks.py:233
 #, python-format
@@ -1289,18 +1282,20 @@ msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"POOTLE_MARKUP_FILTER definido para a marcação %s, mas o pacote que a "
+"disponibiliza não está disponível."
 
 #: checks.py:235
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Instale o pacote ou altere POOTLE_MARKUP_FILTER."
 
 #: checks.py:259
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "O utilizador 'admin' ainda possui a palavra-passe 'admin'."
 
 #: checks.py:261
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Remova o utilizador 'admin' ou altere a palavra-passe."
 
 #: checks.py:276
 msgid "Database connection does not implement on_commit."
@@ -1696,9 +1691,8 @@ msgid "No activity recorded in a given period"
 msgstr "Nenhuma atividade registada neste período."
 
 #: templates/admin/detailed_reports.html:226
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "Tradução (subtotal)"
+msgstr "Sugestão (subtotal)"
 
 #: templates/admin/detailed_reports.html:236
 msgid "Translation (subtotal)"
@@ -1801,6 +1795,8 @@ msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"Na página de anúncios, utilize <code><strong>/xx/</strong></code> nos URL "
+"para um código dinâmico de linguagem."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -1872,19 +1868,19 @@ msgid "View all"
 msgstr "Ver tudo"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
-msgstr "<span class='value translated'>0</span>%% traduzido"
+msgstr "<span class=\"value translated\">0</span>%% traduzido"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr "<span class='value fuzzy'>0</span>%% impreciso"
+msgstr "<span class=\"value fuzzy\">0</span>%% impreciso"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr "<span class='value untranslated'>0</span>%% não traduzido"
+msgstr "<span class=\"value untranslated\">0</span>%% não traduzido"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
@@ -2044,7 +2040,7 @@ msgid "No strings."
 msgstr "Nenhuma linha."
 
 #: templates/editor/export_view.html:149
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We displayed the first unit out of %(total_count)s. Please refine your "
 "search."
@@ -2052,11 +2048,11 @@ msgid_plural ""
 "We displayed the first %(unit_count)s units out of %(total_count)s. Please "
 "refine your search."
 msgstr[0] ""
-"Mostrámos as primeiras %(count)s unidades de um total de %(total_count)s. "
-"Por favor ajuste a sua procura."
+"Mostrámos a primeiras unidade de um total de %(total_count)s. Por favor "
+"refine a sua pesquisa."
 msgstr[1] ""
-"Mostrámos as primeiras %(count)s unidades de um total de %(total_count)s. "
-"Por favor ajuste a sua procura."
+"Mostrámos as primeiras %(unit_count)s unidades de um total de "
+"%(total_count)s. Por favor refine a sua pesquisa."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
 #: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
@@ -2220,14 +2216,12 @@ msgid "Comment: "
 msgstr "Comentário: "
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "Erros potenciais da tradução"
+msgstr "Erros críticos na tradução"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "Corrigir erros críticos"
+msgstr "Erros críticos:"
 
 #: templates/editor/units/xhr_checks.html:12
 msgid "Mute quality check"

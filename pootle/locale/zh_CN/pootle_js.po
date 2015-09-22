@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-08-04 08:45+0000\n"
+"PO-Revision-Date: 2015-09-20 11:55+0000\n"
 "Last-Translator: Heyang <qysnn1@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1438677916.000000\n"
+"X-POOTLE-MTIME: 1442750154.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -116,11 +116,10 @@ msgid "Loading..."
 msgstr "正在加载..."
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, eg comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
-msgstr "注意：删除用户将使其建议和翻译贡献归入匿名用户。"
+msgstr "注意：删除用户将使其的贡献如评论、建议和翻译归于匿名用户。"
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
@@ -201,7 +200,7 @@ msgid "Reports"
 msgstr "报告"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr "我们已经发送了一封电子邮件，该邮件中包含了<span>%s</span>的链接。"
 
@@ -254,7 +253,7 @@ msgstr "帐号激活"
 
 #: static/js/auth/components/AuthController.js:111
 msgid "Email Confirmation"
-msgstr ""
+msgstr "电子邮件确认"
 
 #: static/js/auth/components/AuthController.js:118
 #: static/js/auth/components/AuthController.js:125
@@ -276,7 +275,7 @@ msgstr "联系我们"
 
 #: static/js/auth/components/EmailConfirmation.js:30
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "这个确认链接已失效或是无效的"
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
@@ -298,7 +297,6 @@ msgid "Repeat Password"
 msgstr "重复密码"
 
 #: static/js/auth/components/PasswordResetForm.js:135
-#, fuzzy
 msgid "Set New Password"
 msgstr "设置新密码"
 
@@ -319,25 +317,25 @@ msgstr "请点击该链接继续密码重置过程。"
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
-msgstr ""
+msgstr "没有收到邮件？请检查是不是被归类为垃圾邮件，或者请求再次发送"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
-msgstr ""
+msgstr "重发电子邮件"
 
 #: static/js/auth/components/SignInForm.js:83
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "注册新账户"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:101
 msgid "I forgot my password"
-msgstr ""
+msgstr "我忘记了密码"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "已登录。正在跳转..."
 
 #: static/js/auth/components/SignInPanel.js:62
 msgid "Social Services"
@@ -354,11 +352,11 @@ msgstr "以现有用户登录"
 #: static/js/auth/components/SocialAuthError.js:31
 #, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "试图通过%s登陆时发生了错误。"
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
-msgstr ""
+msgstr "试图通过您的社交网络账户登陆时发生了错误。"
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
@@ -367,19 +365,19 @@ msgstr "重试"
 #: static/js/auth/components/SocialSignInForm.js:40
 #, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "使用%s登陆"
 
 #: static/js/auth/components/SocialSignInForm.js:46
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
-msgstr ""
+msgstr "使用外部账户第一次登陆时会自动为您创建一个账户"
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
 msgid ""
 "You have unsaved changes in this unit. Navigating away will discard those "
 "changes."
-msgstr ""
+msgstr "你在这个单元有未保存的数据。离开会丢失这些数据。"
 
 #: static/js/editor/app.js:267
 msgid ""
@@ -554,11 +552,11 @@ msgid_plural "%(count)s languages match your query."
 msgstr[0] "%(count)s 种语言匹配您的查询。"
 
 #: static/js/admin/components/language.jsx:56
-#, fuzzy, python-format
+#, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] "这里有 %(count)s 种语言。"
+msgstr[0] "这里有 %(count)s 种语言。下面是最近添加的。"
 
 #: static/js/admin/components/language.jsx:74
 msgid "Search Languages"
@@ -621,20 +619,23 @@ msgstr "编辑项目"
 #: static/js/admin/components/project.jsx:142
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
-msgstr "使用搜索表单查找项目，然后点击一个项目以编辑。"
+msgstr "使用搜索表格来查找项目，然后点击一个项目以编辑。"
 
 #: static/js/admin/components/user.jsx:52
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] "%(count)s 个用户匹配您的查询。"
+msgstr[0] ""
+"共有%(count)s 个用户符合您的查询条件。%(count)s 个用户符合您的查询条件。"
 
 #: static/js/admin/components/user.jsx:56
-#, fuzzy, python-format
+#, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] "这里有 %(count)s 个用户。"
+msgstr[0] ""
+"这里有 %(count)s 个用户。这里有 %(count)s 个用户。下面显示的是最近注册的用"
+"户。"
 
 #: static/js/admin/components/user.jsx:74
 msgid "Search Users"
@@ -718,7 +719,7 @@ msgstr "项目 / 语言"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "建议的"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-09-01 12:42+0000\n"
+"PO-Revision-Date: 2015-09-21 12:38+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441111357.000000\n"
+"X-POOTLE-MTIME: 1442839083.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -164,7 +164,7 @@ msgstr "Llwytho ffeil cyfieithu i lawr ar gyfer cyfieithu all-lein"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download for offline translation"
-msgstr "Llwytho i lawr ar gyfer cyfieithu all-lein"
+msgstr "Llwytho i lawr er mwyn cyfieithu all-lein"
 
 #: apps/import_export/templates/browser/index.html:19
 msgid "Upload translation files or archives in .zip format"
@@ -674,7 +674,7 @@ msgstr "Cyfanswm"
 #: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32
 #: core/helpers.py:57 templates/editor/_filters.html:7
 msgid "Translated"
-msgstr "Cyfieithwyd"
+msgstr "Cyfieithu"
 
 #: apps/pootle_misc/templatetags/render_pager.py:22
 msgid "First"
@@ -935,7 +935,7 @@ msgstr "Yn effeithiol o"
 #: templates/translation_projects/terminology/manage.html:35
 #: templates/user/settings.html:29
 msgid "Translation"
-msgstr "Cyfieithiad"
+msgstr "Cyfieithu"
 
 #: apps/reports/models.py:32 apps/reports/models.py:44
 msgid "Review"
@@ -943,7 +943,7 @@ msgstr "Adolygu"
 
 #: apps/reports/models.py:33
 msgid "Suggestion"
-msgstr "Awgrymiad"
+msgstr "Awgrymu"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1133,9 +1133,9 @@ msgid "Your version of Redis is too old."
 msgstr "Mae eich fersiwn o Redis yn rhy hen."
 
 #: checks.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr "Diweddarwch becyn Redis gweinydd eich system"
+msgstr "Diweddarwch becyn Redis gweinydd eich system i o leiaf fersiwn %s"
 
 #: checks.py:113
 msgid "No RQ Worker running."
@@ -1630,12 +1630,12 @@ msgstr "Dim anawsterau wedi'u canfod. Mae popeth yn dda!"
 #: templates/admin/detailed_reports.html:6
 #, python-format
 msgid "Report for %(user)s, "
-msgstr "Adroddiad ar gyfer %(user)s, "
+msgstr "Adroddiad ar %(user)s, "
 
 #: templates/admin/detailed_reports.html:129
 #, python-format
 msgid "Report for %(user)s"
-msgstr "Adroddiad ar gyfer %(user)s"
+msgstr "Adroddiad ar %(user)s"
 
 #: templates/admin/detailed_reports.html:133
 #: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
@@ -2379,7 +2379,7 @@ msgstr "Allgofnodi"
 
 #: templates/layout.html:121
 msgid "Sign In"
-msgstr "Mewngofnodwch"
+msgstr "Mewngofnodi"
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."

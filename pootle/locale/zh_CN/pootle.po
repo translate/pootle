@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-06-21 16:16+0000\n"
-"Last-Translator: Wei <contact@huwei.name>\n"
+"PO-Revision-Date: 2015-09-20 12:02+0000\n"
+"Last-Translator: Heyang <qysnn1@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1434903417.000000\n"
+"X-POOTLE-MTIME: 1442750566.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
-msgstr ""
+msgstr "您的账户似乎消失了。请与网站管理员联系。"
 
 #: apps/accounts/models.py:61 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
@@ -122,9 +122,8 @@ msgid "Short Bio"
 msgstr "个人简介"
 
 #: apps/accounts/models.py:308
-#, fuzzy
 msgid "This email address already exists."
-msgstr "此术语已存在于文件中。"
+msgstr "此电子邮件地址已经存在。"
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -180,7 +179,7 @@ msgstr "导出翻译"
 #: apps/import_export/utils.py:24
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
-msgstr ""
+msgstr "不支持的文件类型'%s'，暂时只支持PO文件"
 
 #: apps/import_export/utils.py:30
 #, python-format
@@ -519,7 +518,7 @@ msgstr "占位符号"
 
 #: apps/pootle_misc/checks.py:85
 msgid "Valid XML"
-msgstr ""
+msgstr "有效的XML"
 
 #: apps/pootle_misc/checks.py:86
 msgid "XML tags"
@@ -1069,11 +1068,11 @@ msgstr "优先级"
 #: apps/virtualfolder/models.py:49
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
-msgstr ""
+msgstr "数字代表重要程度。优先级数字越大代表越重要。"
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
-msgstr ""
+msgstr "公开吗？"
 
 #: apps/virtualfolder/models.py:55
 #, fuzzy
@@ -1089,7 +1088,7 @@ msgstr ""
 
 #: checks.py:57
 msgid "Your version of Django is too old."
-msgstr ""
+msgstr "您的Django版本太旧。"
 
 #: checks.py:58
 #, python-format
@@ -1098,7 +1097,7 @@ msgstr ""
 
 #: checks.py:65
 msgid "Your version of lxml is too old."
-msgstr ""
+msgstr "您的lxml版本太旧。"
 
 #: checks.py:66
 msgid "Try pip install --upgrade lxml"
@@ -1106,7 +1105,7 @@ msgstr ""
 
 #: checks.py:72
 msgid "Your version of Translate Toolkit is too old."
-msgstr ""
+msgstr "您的Translate Toolkit版本太旧。"
 
 #: checks.py:73
 msgid "Try pip install --upgrade translate-toolkit"
@@ -1115,7 +1114,7 @@ msgstr ""
 #: checks.py:92
 #, python-format
 msgid "Could not connect to Redis (%s)"
-msgstr ""
+msgstr "不能连接到Redis (%s)"
 
 #: checks.py:93
 #, fuzzy, python-format
@@ -1165,7 +1164,7 @@ msgstr ""
 
 #: checks.py:147
 msgid "Set DEBUG = False in Pootle settings"
-msgstr ""
+msgstr "在Pootle设置中设置DEBUG = False"
 
 #: checks.py:153
 msgid "The sqlite database backend is unsupported"
@@ -1199,7 +1198,7 @@ msgstr ""
 #: checks.py:177
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL现在使用的是如下的默认设置 %r 。"
 
 #: checks.py:179
 msgid ""

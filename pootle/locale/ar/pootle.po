@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-06-26 13:23+0000\n"
+"PO-Revision-Date: 2015-09-19 06:48+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1435325011.000000\n"
+"X-POOTLE-MTIME: 1442645290.000000\n"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -179,12 +179,12 @@ msgstr "ارفع ترجمات"
 #: apps/import_export/utils.py:24
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
-msgstr ""
+msgstr "نوع الملفّات '%s' غير مدعوم، ملفّات PO هي فقط المدعومة حاليًّا\n"
 
 #: apps/import_export/utils.py:30
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "الملفّ %r ينقصه ترويسة X-Pootle-Path\n"
+msgstr "ينقصه الملفّ '%s' ترويسة X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:35
 #, fuzzy, python-format
@@ -192,9 +192,9 @@ msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr "الملفّ %r إمّا أنّه ينقصه ترويسة X-Pootle-Revision أو أنّها غير صالحة\n"
 
 #: apps/import_export/utils.py:43
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr "تعذّر إنشاء %r. مشروع/لغة ناقصة؟ (%s)"
+msgstr "تعذّر إنشاء '%s'. لربّما المشروع أو اللغة ناقصة؟ (%s)"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -774,19 +774,18 @@ msgid "Comment"
 msgstr "التّعليق"
 
 #: apps/pootle_statistics/models.py:317
-#, fuzzy
 msgid "Added suggestion"
-msgstr "%d اقتراح"
+msgstr "أضاف اقتراحًا"
 
 #: apps/pootle_statistics/models.py:318
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "اقبل الاقتراح"
+msgstr "قبل اقتراح %s"
 
 #: apps/pootle_statistics/models.py:319
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "ارفض الاقتراح"
+msgstr "رفض اقتراح %s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -809,13 +808,12 @@ msgid "Gettext PO"
 msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:24
-#, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "ملف XLIFF "
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -943,12 +941,11 @@ msgstr "الترجمة"
 
 #: apps/reports/models.py:32 apps/reports/models.py:44
 msgid "Review"
-msgstr "مراجعة"
+msgstr "المراجعة"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
-msgstr "المقترحات"
+msgstr "الاقتراحات"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1077,12 +1074,11 @@ msgstr ""
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
-msgstr ""
+msgstr "أهو عامّ؟"
 
 #: apps/virtualfolder/models.py:55
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "فيما إذا كان المجلّد الوهميّ هذا مفعّلًا أم لا."
+msgstr "فيما إذا كان المجلّد الوهميّ هذا عامًّا أم لا."
 
 #: apps/virtualfolder/models.py:60
 #, fuzzy, python-format
@@ -1238,18 +1234,16 @@ msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "‏settings.DEFAULT_FROM_EMAIL يستخدم الإعداد الافتراضيّ الآتي %r."
 
 #: checks.py:206
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "لم أجد MARKUP_FILTER. سأستخدم HTML."
+msgstr "POOTLE_MARKUP_FILTER ناقص."
 
 #: checks.py:207
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "أعدّ POOTLE_MARKUP_FILTER."
 
 #: checks.py:212
-#, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "قيمة غير صحيحة '%s' في MARKUP_FILTER. سأستخدم HTML."
+msgstr "قيمة POOTLE_MARKUP_FILTER غير صالحة."
 
 #: checks.py:213
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
@@ -1276,11 +1270,11 @@ msgstr ""
 
 #: checks.py:259
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "ما زالت كلمة مرور المستخدم الافتراضيّ 'admin' هي 'admin'."
 
 #: checks.py:261
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "أزل المستخدم 'admin' أو غيّر كلمة مروره."
 
 #: checks.py:276
 msgid "Database connection does not implement on_commit."
@@ -2024,12 +2018,18 @@ msgid ""
 msgid_plural ""
 "We displayed the first %(unit_count)s units out of %(total_count)s. Please "
 "refine your search."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "لم نعرض أيّ وحدة. من فضلك حسّن عبارة البحث."
+msgstr[1] "عرضنا أوّل وحدة من أصل %(total_count)s. من فضلك حسّن عبارة البحث."
+msgstr[2] "عرضنا أوّل وحدتين من أصل %(total_count)s. من فضلك حسّن عبارة البحث."
 msgstr[3] ""
+"عرضنا أوّل  %(unit_count)s وحدات من أصل %(total_count)s. من فضلك حسّن عبارة "
+"البحث."
 msgstr[4] ""
+"عرضنا أوّل  %(unit_count)s وحدة من أصل %(total_count)s. من فضلك حسّن عبارة "
+"البحث."
 msgstr[5] ""
+"عرضنا أوّل  %(unit_count)s وحدة من أصل %(total_count)s. من فضلك حسّن عبارة "
+"البحث."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10
 #: templates/projects/_nav.html:10 templates/projects/all/_nav.html:10
@@ -2193,14 +2193,12 @@ msgid "Comment: "
 msgstr "تعليق: "
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "مشاكل محتملة بالتّرجمة"
+msgstr "في التّرجمة أخطاء حرجة"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "أصلح الأخطاء الحرجة"
+msgstr "الأخطاء الحرجة:"
 
 #: templates/editor/units/xhr_checks.html:12
 msgid "Mute quality check"
@@ -2216,7 +2214,7 @@ msgstr "مشاكل محتملة بالتّرجمة"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "انتبه من:"
 
 #: templates/editor/units/xhr_comment.html:15
 msgid "Remove comment"
@@ -2370,7 +2368,7 @@ msgstr "يمكنك هنا إضافة الصّلاحيّات أو تحريرها 
 msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
-msgstr ""
+msgstr "لا قوالب لهذا المشروع، لذا إضافة لغات أخرى من هذه الشّاشة معطّل."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."

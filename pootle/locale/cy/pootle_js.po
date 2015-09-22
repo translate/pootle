@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-07 16:55+0100\n"
-"PO-Revision-Date: 2015-09-01 12:42+0000\n"
+"PO-Revision-Date: 2015-09-21 12:41+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441111357.000000\n"
+"X-POOTLE-MTIME: 1442839294.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -114,13 +114,12 @@ msgid "Loading..."
 msgstr "Llwytho..."
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, eg comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Sylw: bydd dileu defnyddiwr yn symud ei awgrymiadau a chyfieithiadau i'w "
-"tadogi i ddefnyddiwr anhysbys (neb)."
+"Sylw: wrth ddileu defnyddiwr bydd eu cyfraniad i'r wefan, e.e. sylwadau, "
+"awgrymiadau a chyfieithiadau yn cael eu tadogi i ddefnyddiwr anhysbys (neb)."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
@@ -234,13 +233,13 @@ msgstr ""
 
 #: static/js/auth/components/AuthController.js:83
 msgid "Sign In With..."
-msgstr "Mewngofnodwch gyda..."
+msgstr "Mewngofnodi gyda..."
 
 #: static/js/auth/components/AuthController.js:83
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr "Mewngofnodwch"
+msgstr "Mewngofnodi"
 
 #: static/js/auth/components/AuthController.js:90
 msgid "Account Inactive"
@@ -389,6 +388,8 @@ msgid ""
 "You have unsaved changes in this unit. Navigating away will discard those "
 "changes."
 msgstr ""
+"Mae gennych newidiadau heb eu cadw yn yr uned hon. Bydd symud i ffwrdd yn "
+"golygu colli'r newidiadau hyn"
 
 #: static/js/editor/app.js:267
 msgid ""
@@ -433,7 +434,7 @@ msgstr "Awgrymiadau %s wedi eu trosysgrifennu"
 
 #: static/js/editor/app.js:529 static/js/editor/app.js:1740
 msgid "No results."
-msgstr "Dim canlyniadau."
+msgstr "Dim canlyniad."
 
 #: static/js/editor/app.js:1042
 msgid "Error while connecting to the server"
@@ -750,15 +751,15 @@ msgstr "Prosiect / Iaith"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr "Awgrymwyd"
+msgstr "Awgrymu"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
-msgstr "Cyfieithwyd"
+msgstr "Cyfieithu"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
-msgstr "Adolygwyd"
+msgstr "Adolygu"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
