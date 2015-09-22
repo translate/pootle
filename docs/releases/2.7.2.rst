@@ -1,0 +1,56 @@
+=====================================
+Welcome to the new Pootle 2.7.2 final
+=====================================
+
+*Released on 22 September 2015*
+
+Bugfix release for 2.7.1.
+
+
+Changes in Requirements
+=======================
+- Django >= 1.7.10, < 1.8
+- Translate Toolkit >= 1.13.0
+- Python >= 2.7, < 3.0
+- Redis >= 2.8.4
+- Django transaction hooks
+- Unix-based operating system.
+
+
+Major Changes
+=============
+
+- Bugfixes for some important issues.
+- Pulled latest translations.
+
+
+Below we provide much more detail. These are by no means exhaustive, view the
+`git log <https://github.com/translate/pootle/compare/stable/2.7.1...2.7.2>`_
+for complete information.
+
+
+Details of changes
+==================
+
+- Prevent local TM from crashing if elasticsearch is unavailable. elasticsearch
+  version must now be 1.6.0 at most.
+- Prevent regular users from seeing disabled projects translation stats.
+- If disabled, do not the display contact form on sign in and sign up.
+- Fixed regression for admin users on export view.
+- Fixed issue with translatable extraction tools that prevented several texts
+  from being translated.
+- Pulled latest translations.
+
+
+...and cleanups, improved documentation.
+
+
+Credits
+=======
+
+This release was made possible by the following people:
+
+Dwayne Bailey, Leandro Regueiro, Julen Ruiz Aizpuru, Ryan Northey, Taras
+Semenenko.
+
+And to all our bug finders, testers and translators, a Very BIG Thank You.
