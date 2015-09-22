@@ -32,8 +32,8 @@ for complete information.
 Details of changes
 ==================
 
-- Prevent local TM from crashing if elasticsearch is unavailable. elasticsearch
-  version must now be 1.6.0 at most.
+- Prevent local TM from crashing if ``elasticsearch`` is unavailable.
+  ``elasticsearch`` version must now be 1.6.0 at most.
 - Prevent regular users from seeing disabled projects translation stats.
 - If disabled, do not the display contact form on sign in and sign up.
 - Fixed regression for admin users on export view.
