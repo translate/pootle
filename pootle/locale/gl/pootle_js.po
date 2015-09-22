@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 15:53+0100\n"
-"PO-Revision-Date: 2015-09-22 14:50+0000\n"
+"PO-Revision-Date: 2015-09-22 15:14+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1442933448.000000\n"
+"X-POOTLE-MTIME: 1442934873.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -572,26 +572,27 @@ msgstr "Hai uns segundos"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
-msgstr ""
+msgstr "Enderezo de correo-e"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"Introduza o seu enderezo de correo-e e enviaráselle unha mensaxe cunha "
+"ligazón especial para restabelecer o seu contrasinal."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
-msgstr ""
+msgstr "Non, grazas"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:114
-#, fuzzy
 msgid "Send Email"
-msgstr "Volver enviar mensaxe de correo electrónico"
+msgstr "Enviar mensaxe de correo electrónico"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "A creación de novas contas de usuario está prohibida."
 
 #: static/js/auth/components/SocialVerification.js:79
 #, python-format
@@ -600,6 +601,9 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"Atopouse un usuario neste sistema co correo-e <span>%s</span>. Forneza o "
+"contrasinal para rematar o inicio de sesión. Este procedemento realizarase "
+"unha única vez e asociará as súas contas de Pootle e %s."
 
 #: static/js/browser.js:163
 msgid "All Languages"
@@ -615,7 +619,7 @@ msgstr "Todo o proxecto"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "ficheiro enviado"
 
 #: static/js/admin/components/language.jsx:52
 #, python-format
