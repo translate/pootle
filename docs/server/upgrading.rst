@@ -123,8 +123,8 @@ Assuming you are in the root of your virtualenv folder you can run:
 
 .. _upgrading#upgrading-latest:
 
-Upgrading from version 2.6.x
-----------------------------
+Upgrading from version 2.6.x or later
+-------------------------------------
 
 Upgrade to the latest Pootle version:
 
@@ -210,8 +210,9 @@ statistical data. You will need to have an :ref:`RQ worker running
 
 This command will dispatch jobs to the RQ worker and may take some time.
 
-If you wish to run ``calculate_checks`` and ``refresh_stats`` in the foreground
-without using the RQ worker you can use the :option:`--no-rq` option.
+If you wish to run :djadmin:`calculate_checks` and :djadmin:`refresh_stats` in
+the foreground without using the RQ worker you can use the :option:`--no-rq`
+option.
 
 
 .. _upgrading#setup-users:
