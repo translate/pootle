@@ -3,11 +3,12 @@
 deploy
 docs
 pootle
+tests
 dist
 Pootle.egg-info
 
 # LESS
-assets/less/bootstrap
+assets
 
 # Jekyll-generated
 _site
