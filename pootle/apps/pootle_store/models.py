@@ -1947,7 +1947,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                         update_unitids[uid] = {'dbid': old_unitids[uid]['dbid'],
                                                'index': new_unit_index}
 
-            # Step N-1: mark obsolete units as such
+            # Step 2: mark obsolete units as such
 
             obsolete_dbids = [old_unitids[uid]['dbid']
                               for uid in old_unitid_set -
@@ -1958,7 +1958,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                          revision=update_revision)
 
 
-            # Step N: update existing units
+            # Step 3: update existing units
 
             update_dbids = set([x['dbid'] for x in update_unitids.values()])
             common_dbids.update(update_dbids)
