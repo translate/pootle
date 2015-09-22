@@ -12,7 +12,7 @@ django-transaction-hooks
 # Libraries
 cssmin
 diff-match-patch>=20121119
-elasticsearch
+elasticsearch<1.7
 lxml>=2.2.0
 rq>=0.5.0
 
