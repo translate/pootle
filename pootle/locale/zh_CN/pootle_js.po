@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-22 10:49+0100\n"
+"POT-Creation-Date: 2015-09-22 15:53+0100\n"
 "PO-Revision-Date: 2015-09-20 11:55+0000\n"
 "Last-Translator: Heyang <qysnn1@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,6 +136,7 @@ msgstr "活跃"
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:100
 #: static/js/auth/components/SocialVerification.js:94
+#: static/js/auth/components/PasswordResetForm.js:113
 msgid "Password"
 msgstr "密码"
 
@@ -201,7 +202,8 @@ msgid "Reports"
 msgstr "报告"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, javascript-format
+#: static/js/auth/components/RequestPasswordResetSent.js:44
+#, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr "我们已经发送了一封电子邮件，该邮件中包含了<span>%s</span>的链接。"
 
@@ -306,7 +308,7 @@ msgid "After changing your password you will sign in automatically."
 msgstr "更改您的密码后，您将自动登录。"
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
-#, javascript-format
+#, python-format, javascript-format
 msgid "Sending email to %s..."
 msgstr "正在向 %s 发送电子邮件"
 
@@ -325,6 +327,7 @@ msgid "Resend Email"
 msgstr "重发电子邮件"
 
 #: static/js/auth/components/SignInForm.js:83
+#: static/js/auth/components/RequestPasswordResetForm.js:120
 msgid "Sign up as a new user"
 msgstr "注册新账户"
 
@@ -351,7 +354,7 @@ msgid "Sign in as an existing user"
 msgstr "以现有用户登录"
 
 #: static/js/auth/components/SocialAuthError.js:31
-#, javascript-format
+#, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
 msgstr "试图通过%s登陆时发生了错误。"
 
@@ -364,7 +367,7 @@ msgid "Try again"
 msgstr "重试"
 
 #: static/js/auth/components/SocialSignInForm.js:40
-#, javascript-format
+#, python-format, javascript-format
 msgid "Sign In With %s"
 msgstr "使用%s登陆"
 
@@ -398,27 +401,27 @@ msgstr ""
 "页：Ctrl+Shift+Home"
 
 #: static/js/editor/app.js:383
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s 的待审建议"
 
 #: static/js/editor/app.js:386
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s 的获准建议"
 
 #: static/js/editor/app.js:389
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s 的被拒建议"
 
 #: static/js/editor/app.js:392
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s 的提交"
 
 #: static/js/editor/app.js:396
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s 的被覆盖的提交"
 
@@ -477,7 +480,7 @@ msgid "disabled"
 msgstr "已禁用"
 
 #: static/js/stats.js:353
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s 秒"
@@ -547,6 +550,53 @@ msgstr[0] "%s 分钟前"
 #: static/js/utils.js:171
 msgid "A few seconds ago"
 msgstr "几秒钟前"
+
+#: static/js/auth/components/RequestPasswordResetForm.js:95
+msgid "Email Address"
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:96
+msgid ""
+"Enter your email address, and we will send you a message with the special "
+"link to reset your password."
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:106
+msgid "No, thanks"
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:114
+#, fuzzy
+msgid "Send Email"
+msgstr "重发电子邮件"
+
+#: static/js/auth/components/SignInForm.js:85
+msgid "Creating new user accounts is prohibited."
+msgstr ""
+
+#: static/js/auth/components/SocialVerification.js:79
+#, python-format
+msgid ""
+"We found a user with <span>%s</span> email in our system. Please provide the "
+"password to finish the sign in procedure. This is a one-off procedure, which "
+"will establish a link between your Pootle and %s accounts."
+msgstr ""
+
+#: static/js/browser.js:163
+msgid "All Languages"
+msgstr "所有语言"
+
+#: static/js/browser.js:166
+msgid "All Projects"
+msgstr "所有项目"
+
+#: static/js/browser.js:170
+msgid "Entire Project"
+msgstr "整个项目"
+
+#: static/js/shared/components/UserEvent.js:77
+msgid "uploaded file"
+msgstr ""
 
 #: static/js/admin/components/language.jsx:52
 #, python-format
@@ -851,15 +901,6 @@ msgid ""
 msgstr ""
 "已被 %(fullname)s 在 &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; 项目中翻译"
-
-#~ msgid "All Languages"
-#~ msgstr "所有语言"
-
-#~ msgid "All Projects"
-#~ msgstr "所有项目"
-
-#~ msgid "Entire Project"
-#~ msgstr "整个项目"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "您确定要继续吗？"

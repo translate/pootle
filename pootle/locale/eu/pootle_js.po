@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-22 10:49+0100\n"
+"POT-Creation-Date: 2015-09-22 15:53+0100\n"
 "PO-Revision-Date: 2015-08-03 12:59+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -138,6 +138,7 @@ msgstr "Aktibo"
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:100
 #: static/js/auth/components/SocialVerification.js:94
+#: static/js/auth/components/PasswordResetForm.js:113
 msgid "Password"
 msgstr "Pasahitza"
 
@@ -203,7 +204,8 @@ msgid "Reports"
 msgstr "Txostenak"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, javascript-format
+#: static/js/auth/components/RequestPasswordResetSent.js:44
+#, fuzzy, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
 "Esteka berezia daukan mezu elektroniko bat bidali dugu <span>%s</span> "
@@ -315,7 +317,7 @@ msgid "After changing your password you will sign in automatically."
 msgstr "Pasahitza aldatu ondoren saioa hasiko duzu automatikoki."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
-#, javascript-format
+#, python-format, javascript-format
 msgid "Sending email to %s..."
 msgstr "Mezua %s helbidera bidaltzen..."
 
@@ -337,6 +339,7 @@ msgid "Resend Email"
 msgstr "Birbidali mezua"
 
 #: static/js/auth/components/SignInForm.js:83
+#: static/js/auth/components/RequestPasswordResetForm.js:120
 msgid "Sign up as a new user"
 msgstr "Eman izena erabiltzaile berri gisa"
 
@@ -363,7 +366,7 @@ msgid "Sign in as an existing user"
 msgstr "Hasi saioa badagoen erabiltzaile gisa"
 
 #: static/js/auth/components/SocialAuthError.js:31
-#, javascript-format
+#, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
 msgstr "Errorea gertatu da %s bidez saioa hasten saiatzean."
 
@@ -376,7 +379,7 @@ msgid "Try again"
 msgstr "Saiatu berriro"
 
 #: static/js/auth/components/SocialSignInForm.js:40
-#, javascript-format
+#, python-format, javascript-format
 msgid "Sign In With %s"
 msgstr "Hasi saioa %s erabiliz"
 
@@ -411,27 +414,27 @@ msgstr ""
 "+Shift+,<br/>Lehen orria: Ktrl+Shift+Hasi"
 
 #: static/js/editor/app.js:383
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s erabiltzaileak zain dituen gomendioak"
 
 #: static/js/editor/app.js:386
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s erabiltzaileari onartutako gomendioak"
 
 #: static/js/editor/app.js:389
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s erabiltzaileari baztertutako gomendioak"
 
 #: static/js/editor/app.js:392
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s erabiltzailearen bidalketak"
 
 #: static/js/editor/app.js:396
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s erabiltzaileari gainidatzitako bidalketak"
 
@@ -489,7 +492,7 @@ msgid "disabled"
 msgstr "desgaituta"
 
 #: static/js/stats.js:353
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "Segundo %s"
@@ -565,6 +568,53 @@ msgstr[1] "Duela %s minutu"
 #: static/js/utils.js:171
 msgid "A few seconds ago"
 msgstr "Duela segundo batzuk"
+
+#: static/js/auth/components/RequestPasswordResetForm.js:95
+msgid "Email Address"
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:96
+msgid ""
+"Enter your email address, and we will send you a message with the special "
+"link to reset your password."
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:106
+msgid "No, thanks"
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:114
+#, fuzzy
+msgid "Send Email"
+msgstr "Birbidali mezua"
+
+#: static/js/auth/components/SignInForm.js:85
+msgid "Creating new user accounts is prohibited."
+msgstr ""
+
+#: static/js/auth/components/SocialVerification.js:79
+#, python-format
+msgid ""
+"We found a user with <span>%s</span> email in our system. Please provide the "
+"password to finish the sign in procedure. This is a one-off procedure, which "
+"will establish a link between your Pootle and %s accounts."
+msgstr ""
+
+#: static/js/browser.js:163
+msgid "All Languages"
+msgstr "Hizkuntza guztiak"
+
+#: static/js/browser.js:166
+msgid "All Projects"
+msgstr "Proiektu guztiak"
+
+#: static/js/browser.js:170
+msgid "Entire Project"
+msgstr "Proiektu guztia"
+
+#: static/js/shared/components/UserEvent.js:77
+msgid "uploaded file"
+msgstr ""
 
 #: static/js/admin/components/language.jsx:52
 #, python-format
@@ -879,15 +929,6 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-
-#~ msgid "All Languages"
-#~ msgstr "Hizkuntza guztiak"
-
-#~ msgid "All Projects"
-#~ msgstr "Proiektu guztiak"
-
-#~ msgid "Entire Project"
-#~ msgstr "Proiektu guztia"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "Ziur zaude jarraitu nahi duzula?"

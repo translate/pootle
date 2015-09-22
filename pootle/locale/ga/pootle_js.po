@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-22 10:49+0100\n"
+"POT-Creation-Date: 2015-09-22 15:53+0100\n"
 "PO-Revision-Date: 2015-06-24 11:37+0100\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -138,6 +138,7 @@ msgstr "Gníomhach"
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:100
 #: static/js/auth/components/SocialVerification.js:94
+#: static/js/auth/components/PasswordResetForm.js:113
 msgid "Password"
 msgstr "Focal Faire"
 
@@ -203,7 +204,8 @@ msgid "Reports"
 msgstr "Tuairiscí"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, javascript-format
+#: static/js/auth/components/RequestPasswordResetSent.js:44
+#, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
 "Táimid tar éis ríomhphost leis an nasc speisialta a sheoladh chuig <span>%s</"
@@ -316,7 +318,7 @@ msgstr ""
 "huathoibríoch."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
-#, javascript-format
+#, python-format, javascript-format
 msgid "Sending email to %s..."
 msgstr "Ríomhphost á sheoladh chuig %s..."
 
@@ -338,6 +340,7 @@ msgid "Resend Email"
 msgstr "Seol an Ríomhphost Arís"
 
 #: static/js/auth/components/SignInForm.js:83
+#: static/js/auth/components/RequestPasswordResetForm.js:120
 msgid "Sign up as a new user"
 msgstr "Cláraigh mar úsáideoir nua"
 
@@ -364,7 +367,7 @@ msgid "Sign in as an existing user"
 msgstr "Logáil isteach mar úsáideoir atá ann"
 
 #: static/js/auth/components/SocialAuthError.js:31
-#, javascript-format
+#, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
 msgstr "Tharla earráid le linn logála isteach trí %s."
 
@@ -377,7 +380,7 @@ msgid "Try again"
 msgstr "Bain triail eile as"
 
 #: static/js/auth/components/SocialSignInForm.js:40
-#, javascript-format
+#, python-format, javascript-format
 msgid "Sign In With %s"
 msgstr "Logáil Isteach Trí %s"
 
@@ -412,27 +415,27 @@ msgstr ""
 "Ctrl+Shift+,<br/>An chéad leathanach: Ctrl+Shift+Home"
 
 #: static/js/editor/app.js:383
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Moltaí ó %s ar feitheamh"
 
 #: static/js/editor/app.js:386
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Moltaí glactha ó %s"
 
 #: static/js/editor/app.js:389
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Moltaí diúltaithe ó %s"
 
 #: static/js/editor/app.js:392
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Aistriúcháin de chuid %s"
 
 #: static/js/editor/app.js:396
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Aistriúcháin fhorscríofa de chuid %s"
 
@@ -491,7 +494,7 @@ msgid "disabled"
 msgstr "díchumasaithe"
 
 #: static/js/stats.js:353
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s soicind"
@@ -585,6 +588,53 @@ msgstr[4] "%s nóiméad ó shin"
 #: static/js/utils.js:171
 msgid "A few seconds ago"
 msgstr "Cúpla soicind ó shin"
+
+#: static/js/auth/components/RequestPasswordResetForm.js:95
+msgid "Email Address"
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:96
+msgid ""
+"Enter your email address, and we will send you a message with the special "
+"link to reset your password."
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:106
+msgid "No, thanks"
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:114
+#, fuzzy
+msgid "Send Email"
+msgstr "Seol an Ríomhphost Arís"
+
+#: static/js/auth/components/SignInForm.js:85
+msgid "Creating new user accounts is prohibited."
+msgstr ""
+
+#: static/js/auth/components/SocialVerification.js:79
+#, python-format
+msgid ""
+"We found a user with <span>%s</span> email in our system. Please provide the "
+"password to finish the sign in procedure. This is a one-off procedure, which "
+"will establish a link between your Pootle and %s accounts."
+msgstr ""
+
+#: static/js/browser.js:163
+msgid "All Languages"
+msgstr "Gach Teanga"
+
+#: static/js/browser.js:166
+msgid "All Projects"
+msgstr "Gach Tionscadal"
+
+#: static/js/browser.js:170
+msgid "Entire Project"
+msgstr "An Tionscadal Ar Fad"
+
+#: static/js/shared/components/UserEvent.js:77
+msgid "uploaded file"
+msgstr ""
 
 #: static/js/admin/components/language.jsx:52
 #, python-format
@@ -930,12 +980,3 @@ msgid ""
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
-
-#~ msgid "All Languages"
-#~ msgstr "Gach Teanga"
-
-#~ msgid "All Projects"
-#~ msgstr "Gach Tionscadal"
-
-#~ msgid "Entire Project"
-#~ msgstr "An Tionscadal Ar Fad"

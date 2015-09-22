@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-22 10:49+0100\n"
+"POT-Creation-Date: 2015-09-22 15:53+0100\n"
 "PO-Revision-Date: 2015-07-31 05:25+0000\n"
 "Last-Translator: inhee <this.inhee@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -138,6 +138,7 @@ msgstr "활성화"
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:100
 #: static/js/auth/components/SocialVerification.js:94
+#: static/js/auth/components/PasswordResetForm.js:113
 msgid "Password"
 msgstr "비밀번호"
 
@@ -203,7 +204,8 @@ msgid "Reports"
 msgstr "보고서"
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, javascript-format
+#: static/js/auth/components/RequestPasswordResetSent.js:44
+#, fuzzy, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr "<span>%s</span>로 특별한 링크가 포함된 이메일을 보냈습니다."
 
@@ -314,7 +316,7 @@ msgid "After changing your password you will sign in automatically."
 msgstr "비밀번호 변경 후 자동으로 접속하게 됩니다."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
-#, javascript-format
+#, python-format, javascript-format
 msgid "Sending email to %s..."
 msgstr "%s에게 이메일 전송 중..."
 
@@ -333,6 +335,7 @@ msgid "Resend Email"
 msgstr ""
 
 #: static/js/auth/components/SignInForm.js:83
+#: static/js/auth/components/RequestPasswordResetForm.js:120
 msgid "Sign up as a new user"
 msgstr ""
 
@@ -361,7 +364,7 @@ msgid "Sign in as an existing user"
 msgstr "기존 사용자로 접속하기"
 
 #: static/js/auth/components/SocialAuthError.js:31
-#, fuzzy, javascript-format
+#, fuzzy, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
 msgstr "%s 로 접속 시도하는 중 오류 발생."
 
@@ -374,7 +377,7 @@ msgid "Try again"
 msgstr "다시 시도"
 
 #: static/js/auth/components/SocialSignInForm.js:40
-#, javascript-format
+#, python-format, javascript-format
 msgid "Sign In With %s"
 msgstr "%s 로 접속하기"
 
@@ -407,27 +410,27 @@ msgstr ""
 "<br/>첫 페이지: Ctrl+Shift+Home"
 
 #: static/js/editor/app.js:383
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s's 처리중인 제안"
 
 #: static/js/editor/app.js:386
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s의 받아들여진 제안"
 
 #: static/js/editor/app.js:389
-#, fuzzy, javascript-format
+#, fuzzy, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s의 거절된 제안"
 
 #: static/js/editor/app.js:392
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s의 제안"
 
 #: static/js/editor/app.js:396
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s 덮여쓰여진 제출"
 
@@ -486,7 +489,7 @@ msgid "disabled"
 msgstr "사용 안 함"
 
 #: static/js/stats.js:353
-#, javascript-format
+#, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s 초"
@@ -556,6 +559,53 @@ msgstr[0] "1분 전%s분 전"
 #: static/js/utils.js:171
 msgid "A few seconds ago"
 msgstr "몇초 전"
+
+#: static/js/auth/components/RequestPasswordResetForm.js:95
+msgid "Email Address"
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:96
+msgid ""
+"Enter your email address, and we will send you a message with the special "
+"link to reset your password."
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:106
+msgid "No, thanks"
+msgstr ""
+
+#: static/js/auth/components/RequestPasswordResetForm.js:114
+#, fuzzy
+msgid "Send Email"
+msgstr "전자 우편"
+
+#: static/js/auth/components/SignInForm.js:85
+msgid "Creating new user accounts is prohibited."
+msgstr ""
+
+#: static/js/auth/components/SocialVerification.js:79
+#, python-format
+msgid ""
+"We found a user with <span>%s</span> email in our system. Please provide the "
+"password to finish the sign in procedure. This is a one-off procedure, which "
+"will establish a link between your Pootle and %s accounts."
+msgstr ""
+
+#: static/js/browser.js:163
+msgid "All Languages"
+msgstr "모든 언어"
+
+#: static/js/browser.js:166
+msgid "All Projects"
+msgstr "모든 프로젝트"
+
+#: static/js/browser.js:170
+msgid "Entire Project"
+msgstr "전체 프로젝트"
+
+#: static/js/shared/components/UserEvent.js:77
+msgid "uploaded file"
+msgstr ""
 
 #: static/js/admin/components/language.jsx:52
 #, python-format
@@ -873,15 +923,6 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\"> 의 %(fullname)s %(project)s</span>&rdquo; 프"
 "로젝트에 의해 번역됨"
-
-#~ msgid "All Languages"
-#~ msgstr "모든 언어"
-
-#~ msgid "All Projects"
-#~ msgstr "모든 프로젝트"
-
-#~ msgid "Entire Project"
-#~ msgstr "전체 프로젝트"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "정말로 계속 하시겠습니까?"
