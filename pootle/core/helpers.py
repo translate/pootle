@@ -122,7 +122,7 @@ def get_export_view_context(request):
     units_qs = Unit.objects.get_for_path(request.pootle_path,
                                          request.profile)
     units = get_step_query(request, units_qs)
-    unit_total_count = units.count()
+    unit_total_count = units.annotate().count()
 
     units = units.select_related('store')
     if unit_total_count > EXPORT_VIEW_QUERY_LIMIT:
