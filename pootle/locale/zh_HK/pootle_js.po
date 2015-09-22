@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-22 15:53+0100\n"
+"POT-Creation-Date: 2015-09-22 16:16+0100\n"
 "PO-Revision-Date: 2012-12-11 03:07+0000\n"
 "Last-Translator: hkahleong <hkahleong@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -585,8 +585,64 @@ msgstr ""
 msgid "Entire Project"
 msgstr ""
 
+#: static/js/shared/components/UserEvent.js:73
+#: static/js/shared/components/UserEvent.js:94
+#, python-brace-format
+msgid "removed translation for ${sourceString}"
+msgstr ""
+
+#: static/js/shared/components/UserEvent.js:75
+#, python-brace-format
+msgid "accepted suggestion for ${sourceString}"
+msgstr ""
+
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
+msgstr ""
+
+#: static/js/shared/components/UserEvent.js:79
+#, python-brace-format
+msgid "muted ${check} for ${sourceString}"
+msgstr ""
+
+#: static/js/shared/components/UserEvent.js:81
+#, python-brace-format
+msgid "unmuted ${check} for ${sourceString}"
+msgstr ""
+
+#: static/js/shared/components/UserEvent.js:83
+#, python-brace-format
+msgid "added suggestion for ${sourceString}"
+msgstr ""
+
+#: static/js/shared/components/UserEvent.js:85
+#, python-brace-format
+msgid "rejected suggestion for ${sourceString}"
+msgstr ""
+
+#: static/js/shared/components/UserEvent.js:88
+#, python-brace-format
+msgid "translated ${sourceString}"
+msgstr ""
+
+#: static/js/shared/components/UserEvent.js:90
+#, python-brace-format
+msgid "edited ${sourceString}"
+msgstr ""
+
+#: static/js/shared/components/UserEvent.js:92
+#, python-brace-format
+msgid "pre-translated ${sourceString}"
+msgstr ""
+
+#: static/js/shared/components/UserEvent.js:96
+#, python-brace-format
+msgid "reviewed ${sourceString}"
+msgstr ""
+
+#: static/js/shared/components/UserEvent.js:98
+#, python-brace-format
+msgid "marked as needs work ${sourceString}"
 msgstr ""
 
 #: static/js/admin/components/language.jsx:52
