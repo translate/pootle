@@ -27,26 +27,26 @@ def import_file(file, user=None):
     f = getclass(file)(file.read())
     if not hasattr(f, "parseheader"):
         raise UnsupportedFiletypeError(_("Unsupported filetype '%s', only PO "
-                                         "files are supported at this time\n")
-                                       % file.name)
+                                         "files are supported at this time\n",
+                                         file.name))
     header = f.parseheader()
     pootle_path = header.get("X-Pootle-Path")
     if not pootle_path:
         raise MissingPootlePathError(_("File '%s' missing X-Pootle-Path "
-                                       "header\n") % file.name)
+                                       "header\n", file.name))
 
     rev = header.get("X-Pootle-Revision")
     if not rev or not rev.isdigit():
         raise MissingPootleRevError(_("File '%s' missing or invalid "
-                                      "X-Pootle-Revision header\n")
-                                    % file.name)
+                                      "X-Pootle-Revision header\n",
+                                      file.name))
     rev = int(rev)
 
     try:
         store, created = Store.objects.get_or_create(pootle_path=pootle_path)
     except Exception as e:
         raise FileImportError(_("Could not create '%s'. Missing "
-                                "Project/Language? (%s)") % (file.name, e))
+                                "Project/Language? (%s)", (file.name, e)))
 
     try:
         store.update(overwrite=True, store=f, user=user,

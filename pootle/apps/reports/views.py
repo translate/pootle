@@ -317,7 +317,7 @@ def update_user_rates(request):
             User = get_user_model()
             user = User.objects.get(username=form.cleaned_data['username'])
         except User.DoesNotExist:
-            error_text = _("User %s not found" % form.cleaned_data['username'])
+            error_text = _("User %s not found", form.cleaned_data['username'])
             return JsonResponseNotFound({'msg': error_text})
 
         user.currency = form.cleaned_data['currency']

@@ -349,8 +349,8 @@ class Submission(models.Model):
                                                      sugg_user.display_name)
         return {
             SubmissionTypes.SUGG_ADD: _(u'Added suggestion'),
-            SubmissionTypes.SUGG_ACCEPT: _(u'Accepted suggestion from %s' % author),
-            SubmissionTypes.SUGG_REJECT: _(u'Rejected suggestion from %s' % author),
+            SubmissionTypes.SUGG_ACCEPT: _(u'Accepted suggestion from %s', author),
+            SubmissionTypes.SUGG_REJECT: _(u'Rejected suggestion from %s', author),
         }.get(self.type, None)
 
     def save(self, *args, **kwargs):

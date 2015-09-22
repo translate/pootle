@@ -388,7 +388,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     def clean(self):
         if self.code in RESERVED_PROJECT_CODES:
             raise ValidationError(
-                _('"%s" cannot be used as a project code' % (self.code,))
+                _('"%s" cannot be used as a project code', self.code)
             )
 
     ### TreeItem

@@ -80,7 +80,7 @@ def check_library_versions(app_configs=None, **kwargs):
     if django_version < DJANGO_MINIMUM_REQUIRED_VERSION:
         errors.append(checks.Critical(
             _("Your version of Django is too old."),
-            hint=_("Try pip install --upgrade 'Django==%s'" %
+            hint=_("Try pip install --upgrade 'Django==%s'",
                    _version_to_string(DJANGO_MINIMUM_REQUIRED_VERSION)),
             id="pootle.C002",
         ))
@@ -114,8 +114,8 @@ def check_redis(app_configs=None, **kwargs):
         workers = Worker.all(queue.connection)
     except Exception as e:
         conn_settings = queue.connection.connection_pool.connection_kwargs
-        errors.append(checks.Critical(_("Could not connect to Redis (%s)") % (e),
-            hint=_("Make sure Redis is running on %(host)s:%(port)s") % (conn_settings),
+        errors.append(checks.Critical(_("Could not connect to Redis (%s)", e),
+            hint=_("Make sure Redis is running on %(host)s:%(port)s") % conn_settings,
             id="pootle.C001",
         ))
     else:
@@ -126,7 +126,7 @@ def check_redis(app_configs=None, **kwargs):
             errors.append(checks.Critical(
                 _("Your version of Redis is too old."),
                 hint=_("Update your system's Redis server package to at least "
-                       "version %s" % str(REDIS_MINIMUM_REQUIRED_VERSION)),
+                       "version %s", str(REDIS_MINIMUM_REQUIRED_VERSION)),
                 id="pootle.C007",
             ))
 
@@ -256,7 +256,7 @@ def check_settings(app_configs=None, **kwargs):
             except ImportError:
                 errors.append(checks.Warning(
                     _("POOTLE_MARKUP_FILTER is set to '%s' markup, but the "
-                      "package that provides can't be found." % markup_filter),
+                      "package that provides can't be found.", markup_filter),
                     hint=_("Install the package or change "
                            "POOTLE_MARKUP_FILTER."),
                     id="pootle.W015",

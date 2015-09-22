@@ -88,7 +88,7 @@ class ProjectForm(forms.ModelForm):
             value = self.cleaned_data['code']
             if value in RESERVED_PROJECT_CODES:
                 raise forms.ValidationError(
-                    _('"%s" cannot be used as a project code' % value)
+                    _('"%s" cannot be used as a project code', value)
                 )
             return value
 
