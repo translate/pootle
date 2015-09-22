@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-07 16:55+0100\n"
+"POT-Creation-Date: 2015-09-22 10:49+0100\n"
 "PO-Revision-Date: 2015-09-20 11:55+0000\n"
 "Last-Translator: Heyang <qysnn1@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,8 +116,9 @@ msgid "Loading..."
 msgstr "正在加载..."
 
 #: static/js/admin/components/UserForm.js:52
+#, fuzzy
 msgid ""
-"Note: when deleting a user their contributions to the site, eg comments, "
+"Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr "注意：删除用户将使其的贡献如评论、建议和翻译归于匿名用户。"
 
@@ -228,48 +229,48 @@ msgstr "关闭"
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr "您的帐号已被管理员停用。"
 
-#: static/js/auth/components/AuthController.js:83
+#: static/js/auth/components/AuthController.js:85
 msgid "Sign In With..."
 msgstr "通过其他方式登录"
 
-#: static/js/auth/components/AuthController.js:83
+#: static/js/auth/components/AuthController.js:85
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
 msgstr "登录"
 
-#: static/js/auth/components/AuthController.js:90
+#: static/js/auth/components/AuthController.js:92
 msgid "Account Inactive"
 msgstr "账号已停用"
 
-#: static/js/auth/components/AuthController.js:97
+#: static/js/auth/components/AuthController.js:99
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
 msgstr "注册"
 
-#: static/js/auth/components/AuthController.js:104
+#: static/js/auth/components/AuthController.js:106
 msgid "Account Activation"
 msgstr "帐号激活"
 
-#: static/js/auth/components/AuthController.js:111
+#: static/js/auth/components/AuthController.js:113
 msgid "Email Confirmation"
 msgstr "电子邮件确认"
 
-#: static/js/auth/components/AuthController.js:118
-#: static/js/auth/components/AuthController.js:125
-#: static/js/auth/components/AuthController.js:132
+#: static/js/auth/components/AuthController.js:120
+#: static/js/auth/components/AuthController.js:127
+#: static/js/auth/components/AuthController.js:134
 msgid "Reset Your Password"
 msgstr "重设您的密码"
 
-#: static/js/auth/components/AuthController.js:139
+#: static/js/auth/components/AuthController.js:141
 msgid "Oops..."
 msgstr "Oops..."
 
-#: static/js/auth/components/AuthController.js:146
+#: static/js/auth/components/AuthController.js:148
 msgid "Social Verification"
 msgstr ""
 
-#: static/js/auth/components/AuthWindow.js:21
+#: static/js/auth/components/AuthWindow.js:29
 msgid "Contact Us"
 msgstr "联系我们"
 
@@ -374,8 +375,9 @@ msgid ""
 msgstr "使用外部账户第一次登陆时会自动为您创建一个账户"
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
+#, fuzzy
 msgid ""
-"You have unsaved changes in this unit. Navigating away will discard those "
+"You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr "你在这个单元有未保存的数据。离开会丢失这些数据。"
 
@@ -420,52 +422,53 @@ msgstr "%s 的提交"
 msgid "%s's overwritten submissions"
 msgstr "%s 的被覆盖的提交"
 
-#: static/js/editor/app.js:529 static/js/editor/app.js:1740
+#: static/js/editor/app.js:529 static/js/editor/app.js:1741
 msgid "No results."
 msgstr "没有结果。"
 
-#: static/js/editor/app.js:1042
+#: static/js/editor/app.js:1043
 msgid "Error while connecting to the server"
 msgstr "连接到服务器时出错"
 
-#: static/js/editor/app.js:1046
+#: static/js/editor/app.js:1047
 msgid "Not found"
 msgstr "未找到"
 
-#: static/js/editor/app.js:1048
+#: static/js/editor/app.js:1049
 msgid "Server error"
 msgstr "服务器错误"
 
-#: static/js/editor/app.js:1050
+#: static/js/editor/app.js:1051
 msgid "The server seems down. Try again later."
 msgstr "服务器似乎宕机了。请您稍后重试。"
 
-#: static/js/editor/app.js:1057
+#: static/js/editor/app.js:1058
 msgid "Unknown error"
 msgstr "未知错误"
 
-#: static/js/editor/app.js:1065
-msgid "This unit no longer exists."
+#: static/js/editor/app.js:1066
+#, fuzzy
+msgid "This string no longer exists."
 msgstr "此单位已不存在。"
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1067
 #, fuzzy
 msgid "Go back to browsing"
 msgstr "返回概览"
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1069
 msgid "Reload page"
 msgstr "重新载入页面"
 
-#: static/js/editor/app.js:2094
+#: static/js/editor/app.js:2095
 msgid "some anonymous user"
 msgstr "一些匿名用户"
 
-#: static/js/editor/app.js:2096
+#: static/js/editor/app.js:2097
 msgid "someone"
 msgstr "某人"
 
-#: static/js/editor/app.js:2114 static/js/editor/app.js:2163
+#: static/js/editor/app.js:2115 static/js/editor/app.js:2164
 msgid "Similar translations"
 msgstr "类似的翻译"
 
@@ -473,17 +476,17 @@ msgstr "类似的翻译"
 msgid "disabled"
 msgstr "已禁用"
 
-#: static/js/stats.js:349
+#: static/js/stats.js:353
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s 秒"
 
-#: static/js/stats.js:393
+#: static/js/stats.js:397
 msgid "Collapse details"
 msgstr "收起细节"
 
-#: static/js/stats.js:393
+#: static/js/stats.js:397
 msgid "Expand details"
 msgstr "展开细节"
 

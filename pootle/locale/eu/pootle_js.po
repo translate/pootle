@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-07 16:55+0100\n"
+"POT-Creation-Date: 2015-09-22 10:49+0100\n"
 "PO-Revision-Date: 2015-08-03 12:59+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -118,7 +118,7 @@ msgstr "Kargatzen..."
 #: static/js/admin/components/UserForm.js:52
 #, fuzzy
 msgid ""
-"Note: when deleting a user their contributions to the site, eg comments, "
+"Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
 "Oharra: erabiltzailea ezabatzerakoan, bere gomendioak eta itzulpenak "
@@ -236,48 +236,48 @@ msgstr "Itxi"
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr "Zure kontua desaktibatuta dago kudeatzaile batek desaktibatu duelako."
 
-#: static/js/auth/components/AuthController.js:83
+#: static/js/auth/components/AuthController.js:85
 msgid "Sign In With..."
 msgstr "Hasi saioa honekin..."
 
-#: static/js/auth/components/AuthController.js:83
+#: static/js/auth/components/AuthController.js:85
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
 msgstr "Hasi saioa"
 
-#: static/js/auth/components/AuthController.js:90
+#: static/js/auth/components/AuthController.js:92
 msgid "Account Inactive"
 msgstr "Kontua inaktibo"
 
-#: static/js/auth/components/AuthController.js:97
+#: static/js/auth/components/AuthController.js:99
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
 msgstr "Eman izena"
 
-#: static/js/auth/components/AuthController.js:104
+#: static/js/auth/components/AuthController.js:106
 msgid "Account Activation"
 msgstr "Kontuaren aktibazioa"
 
-#: static/js/auth/components/AuthController.js:111
+#: static/js/auth/components/AuthController.js:113
 msgid "Email Confirmation"
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:118
-#: static/js/auth/components/AuthController.js:125
-#: static/js/auth/components/AuthController.js:132
+#: static/js/auth/components/AuthController.js:120
+#: static/js/auth/components/AuthController.js:127
+#: static/js/auth/components/AuthController.js:134
 msgid "Reset Your Password"
 msgstr "Berrezarri pasahitza"
 
-#: static/js/auth/components/AuthController.js:139
+#: static/js/auth/components/AuthController.js:141
 msgid "Oops..."
 msgstr "Ene..."
 
-#: static/js/auth/components/AuthController.js:146
+#: static/js/auth/components/AuthController.js:148
 msgid "Social Verification"
 msgstr "Egiaztapen soziala"
 
-#: static/js/auth/components/AuthWindow.js:21
+#: static/js/auth/components/AuthWindow.js:29
 msgid "Contact Us"
 msgstr "Kontaktua"
 
@@ -390,7 +390,7 @@ msgstr ""
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
 msgid ""
-"You have unsaved changes in this unit. Navigating away will discard those "
+"You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
@@ -435,51 +435,52 @@ msgstr "%s erabiltzailearen bidalketak"
 msgid "%s's overwritten submissions"
 msgstr "%s erabiltzaileari gainidatzitako bidalketak"
 
-#: static/js/editor/app.js:529 static/js/editor/app.js:1740
+#: static/js/editor/app.js:529 static/js/editor/app.js:1741
 msgid "No results."
 msgstr "Emaitzarik ez."
 
-#: static/js/editor/app.js:1042
+#: static/js/editor/app.js:1043
 msgid "Error while connecting to the server"
 msgstr "Errorea zerbitzariarekin konektatzerakoan"
 
-#: static/js/editor/app.js:1046
+#: static/js/editor/app.js:1047
 msgid "Not found"
 msgstr "Ez da aurkitu"
 
-#: static/js/editor/app.js:1048
+#: static/js/editor/app.js:1049
 msgid "Server error"
 msgstr "Zerbitzariaren errorea"
 
-#: static/js/editor/app.js:1050
+#: static/js/editor/app.js:1051
 msgid "The server seems down. Try again later."
 msgstr "Zerbitzariak lineaz kanpo dirudi. Saiatu berriro beranduago."
 
-#: static/js/editor/app.js:1057
+#: static/js/editor/app.js:1058
 msgid "Unknown error"
 msgstr "Errore ezezaguna"
 
-#: static/js/editor/app.js:1065
-msgid "This unit no longer exists."
+#: static/js/editor/app.js:1066
+#, fuzzy
+msgid "This string no longer exists."
 msgstr "Unitate hau ez dago jada."
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1067
 msgid "Go back to browsing"
 msgstr "Itzuli nabigaziora"
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1069
 msgid "Reload page"
 msgstr "Berritu orria"
 
-#: static/js/editor/app.js:2094
+#: static/js/editor/app.js:2095
 msgid "some anonymous user"
 msgstr "erabiltzaile anonimoa"
 
-#: static/js/editor/app.js:2096
+#: static/js/editor/app.js:2097
 msgid "someone"
 msgstr "norbait"
 
-#: static/js/editor/app.js:2114 static/js/editor/app.js:2163
+#: static/js/editor/app.js:2115 static/js/editor/app.js:2164
 msgid "Similar translations"
 msgstr "Antzeko itzulpenak"
 
@@ -487,18 +488,18 @@ msgstr "Antzeko itzulpenak"
 msgid "disabled"
 msgstr "desgaituta"
 
-#: static/js/stats.js:349
+#: static/js/stats.js:353
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "Segundo %s"
 msgstr[1] "%s segundo"
 
-#: static/js/stats.js:393
+#: static/js/stats.js:397
 msgid "Collapse details"
 msgstr "Tolestu xehetasunak"
 
-#: static/js/stats.js:393
+#: static/js/stats.js:397
 msgid "Expand details"
 msgstr "Zabaldu xehetasunak"
 

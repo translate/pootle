@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-07 16:55+0100\n"
+"POT-Creation-Date: 2015-09-22 10:49+0100\n"
 "PO-Revision-Date: 2015-06-16 04:09+0000\n"
 "Last-Translator: pfennig59 <kt.at.pootle@sk-lab.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,7 +118,7 @@ msgstr "Lade..."
 #: static/js/admin/components/UserForm.js:52
 #, fuzzy
 msgid ""
-"Note: when deleting a user their contributions to the site, eg comments, "
+"Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
 "Hinweis: Das Löschen des Benutzers wird seine Vorschläge und Übersetzungen "
@@ -234,48 +234,48 @@ msgstr "Schließen"
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr "Ihr Konto ist inaktiv, weil es ein Administrator deaktiviert hat."
 
-#: static/js/auth/components/AuthController.js:83
+#: static/js/auth/components/AuthController.js:85
 msgid "Sign In With..."
 msgstr "Anmelden mit..."
 
-#: static/js/auth/components/AuthController.js:83
+#: static/js/auth/components/AuthController.js:85
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
 msgstr "Anmelden"
 
-#: static/js/auth/components/AuthController.js:90
+#: static/js/auth/components/AuthController.js:92
 msgid "Account Inactive"
 msgstr "Konto ist inaktiv"
 
-#: static/js/auth/components/AuthController.js:97
+#: static/js/auth/components/AuthController.js:99
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
 msgstr "Registrieren"
 
-#: static/js/auth/components/AuthController.js:104
+#: static/js/auth/components/AuthController.js:106
 msgid "Account Activation"
 msgstr "Konten-Aktivierung"
 
-#: static/js/auth/components/AuthController.js:111
+#: static/js/auth/components/AuthController.js:113
 msgid "Email Confirmation"
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:118
-#: static/js/auth/components/AuthController.js:125
-#: static/js/auth/components/AuthController.js:132
+#: static/js/auth/components/AuthController.js:120
+#: static/js/auth/components/AuthController.js:127
+#: static/js/auth/components/AuthController.js:134
 msgid "Reset Your Password"
 msgstr "Passwort zurücksetzen"
 
-#: static/js/auth/components/AuthController.js:139
+#: static/js/auth/components/AuthController.js:141
 msgid "Oops..."
 msgstr "Hoppla..."
 
-#: static/js/auth/components/AuthController.js:146
+#: static/js/auth/components/AuthController.js:148
 msgid "Social Verification"
 msgstr ""
 
-#: static/js/auth/components/AuthWindow.js:21
+#: static/js/auth/components/AuthWindow.js:29
 msgid "Contact Us"
 msgstr "Kontaktiere uns"
 
@@ -391,7 +391,7 @@ msgstr ""
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
 msgid ""
-"You have unsaved changes in this unit. Navigating away will discard those "
+"You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
@@ -436,53 +436,54 @@ msgstr "%ss Einreichungen"
 msgid "%s's overwritten submissions"
 msgstr "%ss geänderte Einreichungen"
 
-#: static/js/editor/app.js:529 static/js/editor/app.js:1740
+#: static/js/editor/app.js:529 static/js/editor/app.js:1741
 msgid "No results."
 msgstr "Keine Ergebnisse."
 
-#: static/js/editor/app.js:1042
+#: static/js/editor/app.js:1043
 msgid "Error while connecting to the server"
 msgstr "Fehler beim Verbinden mit dem Server"
 
-#: static/js/editor/app.js:1046
+#: static/js/editor/app.js:1047
 msgid "Not found"
 msgstr "Nicht gefunden"
 
-#: static/js/editor/app.js:1048
+#: static/js/editor/app.js:1049
 msgid "Server error"
 msgstr "Serverfehler"
 
-#: static/js/editor/app.js:1050
+#: static/js/editor/app.js:1051
 msgid "The server seems down. Try again later."
 msgstr ""
 "Der Server scheint nicht erreichbar zu sein. Versuchen Sie es später "
 "nochmals."
 
-#: static/js/editor/app.js:1057
+#: static/js/editor/app.js:1058
 msgid "Unknown error"
 msgstr "Unbekannter Fehler"
 
-#: static/js/editor/app.js:1065
-msgid "This unit no longer exists."
+#: static/js/editor/app.js:1066
+#, fuzzy
+msgid "This string no longer exists."
 msgstr "Diese Unit existiert nicht mehr."
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1067
 msgid "Go back to browsing"
 msgstr "Schauen Sie sich weiter um"
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1069
 msgid "Reload page"
 msgstr "Seite neu laden"
 
-#: static/js/editor/app.js:2094
+#: static/js/editor/app.js:2095
 msgid "some anonymous user"
 msgstr "ein anonymer Benutzer"
 
-#: static/js/editor/app.js:2096
+#: static/js/editor/app.js:2097
 msgid "someone"
 msgstr "jemand"
 
-#: static/js/editor/app.js:2114 static/js/editor/app.js:2163
+#: static/js/editor/app.js:2115 static/js/editor/app.js:2164
 msgid "Similar translations"
 msgstr "Ähnliche Übersetzungen"
 
@@ -490,18 +491,18 @@ msgstr "Ähnliche Übersetzungen"
 msgid "disabled"
 msgstr "deaktiviert"
 
-#: static/js/stats.js:349
+#: static/js/stats.js:353
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s Sekunde"
 msgstr[1] "%s Sekunden"
 
-#: static/js/stats.js:393
+#: static/js/stats.js:397
 msgid "Collapse details"
 msgstr "Details verbergen"
 
-#: static/js/stats.js:393
+#: static/js/stats.js:397
 msgid "Expand details"
 msgstr "Details erweitern"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-07 16:55+0100\n"
+"POT-Creation-Date: 2015-09-22 10:49+0100\n"
 "PO-Revision-Date: 2015-06-24 11:37+0100\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -118,7 +118,7 @@ msgstr "Á Luchtú..."
 #: static/js/admin/components/UserForm.js:52
 #, fuzzy
 msgid ""
-"Note: when deleting a user their contributions to the site, eg comments, "
+"Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
 "Nóta: má scriosann tú an t-úsáideoir, cuirfear a c(h)uid moltaí agus "
@@ -235,48 +235,48 @@ msgstr "Dún"
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr "Níl do chuntas ar fáil toisc gur chuir riarthóir ó fheidhm é."
 
-#: static/js/auth/components/AuthController.js:83
+#: static/js/auth/components/AuthController.js:85
 msgid "Sign In With..."
 msgstr "Logáil Isteach Trí..."
 
-#: static/js/auth/components/AuthController.js:83
+#: static/js/auth/components/AuthController.js:85
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
 msgstr "Logáil Isteach"
 
-#: static/js/auth/components/AuthController.js:90
+#: static/js/auth/components/AuthController.js:92
 msgid "Account Inactive"
 msgstr "Cuntas Neamhghníomhach"
 
-#: static/js/auth/components/AuthController.js:97
+#: static/js/auth/components/AuthController.js:99
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
 msgstr "Cláraigh"
 
-#: static/js/auth/components/AuthController.js:104
+#: static/js/auth/components/AuthController.js:106
 msgid "Account Activation"
 msgstr "Gníomhachtú Cuntais"
 
-#: static/js/auth/components/AuthController.js:111
+#: static/js/auth/components/AuthController.js:113
 msgid "Email Confirmation"
 msgstr "Deimhniú Ríomhphoist"
 
-#: static/js/auth/components/AuthController.js:118
-#: static/js/auth/components/AuthController.js:125
-#: static/js/auth/components/AuthController.js:132
+#: static/js/auth/components/AuthController.js:120
+#: static/js/auth/components/AuthController.js:127
+#: static/js/auth/components/AuthController.js:134
 msgid "Reset Your Password"
 msgstr "Athshocraigh d'fhocal faire"
 
-#: static/js/auth/components/AuthController.js:139
+#: static/js/auth/components/AuthController.js:141
 msgid "Oops..."
 msgstr "Úps..."
 
-#: static/js/auth/components/AuthController.js:146
+#: static/js/auth/components/AuthController.js:148
 msgid "Social Verification"
 msgstr "Deimhniú Sóisialta"
 
-#: static/js/auth/components/AuthWindow.js:21
+#: static/js/auth/components/AuthWindow.js:29
 msgid "Contact Us"
 msgstr "Déan Teagmháil Linn"
 
@@ -391,7 +391,7 @@ msgstr ""
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
 msgid ""
-"You have unsaved changes in this unit. Navigating away will discard those "
+"You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
@@ -436,52 +436,53 @@ msgstr "Aistriúcháin de chuid %s"
 msgid "%s's overwritten submissions"
 msgstr "Aistriúcháin fhorscríofa de chuid %s"
 
-#: static/js/editor/app.js:529 static/js/editor/app.js:1740
+#: static/js/editor/app.js:529 static/js/editor/app.js:1741
 msgid "No results."
 msgstr "Gan torthaí."
 
-#: static/js/editor/app.js:1042
+#: static/js/editor/app.js:1043
 msgid "Error while connecting to the server"
 msgstr "Earráid agus ceangal á bhunú leis an bhfreastalaí"
 
-#: static/js/editor/app.js:1046
+#: static/js/editor/app.js:1047
 msgid "Not found"
 msgstr "Gan aimsiú"
 
-#: static/js/editor/app.js:1048
+#: static/js/editor/app.js:1049
 msgid "Server error"
 msgstr "Earráid fhreastalaí"
 
-#: static/js/editor/app.js:1050
+#: static/js/editor/app.js:1051
 msgid "The server seems down. Try again later."
 msgstr ""
 "Dealraíonn sé go bhfuil an freastalaí as feidhm. Déan iarracht eile ar ball."
 
-#: static/js/editor/app.js:1057
+#: static/js/editor/app.js:1058
 msgid "Unknown error"
 msgstr "Earráid anaithnid"
 
-#: static/js/editor/app.js:1065
-msgid "This unit no longer exists."
+#: static/js/editor/app.js:1066
+#, fuzzy
+msgid "This string no longer exists."
 msgstr "Níl an t-aonad seo ann a thuilleadh."
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1067
 msgid "Go back to browsing"
 msgstr "Brabhsáil"
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1069
 msgid "Reload page"
 msgstr "Athluchtaigh an leathanach"
 
-#: static/js/editor/app.js:2094
+#: static/js/editor/app.js:2095
 msgid "some anonymous user"
 msgstr "úsáideoir éigin gan ainm"
 
-#: static/js/editor/app.js:2096
+#: static/js/editor/app.js:2097
 msgid "someone"
 msgstr "duine éigin"
 
-#: static/js/editor/app.js:2114 static/js/editor/app.js:2163
+#: static/js/editor/app.js:2115 static/js/editor/app.js:2164
 msgid "Similar translations"
 msgstr "Aistriúcháin cosúil leis seo"
 
@@ -489,7 +490,7 @@ msgstr "Aistriúcháin cosúil leis seo"
 msgid "disabled"
 msgstr "díchumasaithe"
 
-#: static/js/stats.js:349
+#: static/js/stats.js:353
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
@@ -499,11 +500,11 @@ msgstr[2] "%s shoicind"
 msgstr[3] "%s soicind"
 msgstr[4] "%s soicind"
 
-#: static/js/stats.js:393
+#: static/js/stats.js:397
 msgid "Collapse details"
 msgstr "Folaigh mionsonraí"
 
-#: static/js/stats.js:393
+#: static/js/stats.js:397
 msgid "Expand details"
 msgstr "Taispeáin mionsonraí"
 

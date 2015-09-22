@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-07 16:55+0100\n"
+"POT-Creation-Date: 2015-09-22 10:49+0100\n"
 "PO-Revision-Date: 2015-07-31 05:25+0000\n"
 "Last-Translator: inhee <this.inhee@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,7 +118,7 @@ msgstr "읽어들이는 중..."
 #: static/js/admin/components/UserForm.js:52
 #, fuzzy
 msgid ""
-"Note: when deleting a user their contributions to the site, eg comments, "
+"Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
 "주의: 사용자를 삭제하면 그 제안과 번역을 익명의 사용자가 한 것으로 처리합니"
@@ -233,48 +233,48 @@ msgstr "닫기"
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr "관리자에 의해 계정이 비활성화 되었습니다."
 
-#: static/js/auth/components/AuthController.js:83
+#: static/js/auth/components/AuthController.js:85
 msgid "Sign In With..."
 msgstr "접속할 계정은..."
 
-#: static/js/auth/components/AuthController.js:83
+#: static/js/auth/components/AuthController.js:85
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
 msgstr "접속하기"
 
-#: static/js/auth/components/AuthController.js:90
+#: static/js/auth/components/AuthController.js:92
 msgid "Account Inactive"
 msgstr "계정 비활성화"
 
-#: static/js/auth/components/AuthController.js:97
+#: static/js/auth/components/AuthController.js:99
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
 msgstr "가입하기"
 
-#: static/js/auth/components/AuthController.js:104
+#: static/js/auth/components/AuthController.js:106
 msgid "Account Activation"
 msgstr "계정 활성화"
 
-#: static/js/auth/components/AuthController.js:111
+#: static/js/auth/components/AuthController.js:113
 msgid "Email Confirmation"
 msgstr ""
 
-#: static/js/auth/components/AuthController.js:118
-#: static/js/auth/components/AuthController.js:125
-#: static/js/auth/components/AuthController.js:132
+#: static/js/auth/components/AuthController.js:120
+#: static/js/auth/components/AuthController.js:127
+#: static/js/auth/components/AuthController.js:134
 msgid "Reset Your Password"
 msgstr "비밀번호 재설정"
 
-#: static/js/auth/components/AuthController.js:139
+#: static/js/auth/components/AuthController.js:141
 msgid "Oops..."
 msgstr "이런..."
 
-#: static/js/auth/components/AuthController.js:146
+#: static/js/auth/components/AuthController.js:148
 msgid "Social Verification"
 msgstr "사회관계망 인증"
 
-#: static/js/auth/components/AuthWindow.js:21
+#: static/js/auth/components/AuthWindow.js:29
 msgid "Contact Us"
 msgstr "연락하기"
 
@@ -386,7 +386,7 @@ msgstr "외부 서비스로 최초 접속시 자동으로 계정이 생성됩니
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
 msgid ""
-"You have unsaved changes in this unit. Navigating away will discard those "
+"You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
@@ -431,52 +431,53 @@ msgstr "%s의 제안"
 msgid "%s's overwritten submissions"
 msgstr "%s 덮여쓰여진 제출"
 
-#: static/js/editor/app.js:529 static/js/editor/app.js:1740
+#: static/js/editor/app.js:529 static/js/editor/app.js:1741
 msgid "No results."
 msgstr "결과 없음."
 
-#: static/js/editor/app.js:1042
+#: static/js/editor/app.js:1043
 msgid "Error while connecting to the server"
 msgstr "서버에 연결하는 도중 오류 발생"
 
-#: static/js/editor/app.js:1046
+#: static/js/editor/app.js:1047
 msgid "Not found"
 msgstr "찾지 못함"
 
-#: static/js/editor/app.js:1048
+#: static/js/editor/app.js:1049
 msgid "Server error"
 msgstr "서버 오류"
 
-#: static/js/editor/app.js:1050
+#: static/js/editor/app.js:1051
 msgid "The server seems down. Try again later."
 msgstr "서버가 다운됐습니다. 나중에 다시 시도하세요."
 
-#: static/js/editor/app.js:1057
+#: static/js/editor/app.js:1058
 msgid "Unknown error"
 msgstr "알려지지 않은 오류"
 
 # unit : 단위, 단일체, 장치, 학점, 부대, 교외전차, 편성 단위
-#: static/js/editor/app.js:1065
-msgid "This unit no longer exists."
+#: static/js/editor/app.js:1066
+#, fuzzy
+msgid "This string no longer exists."
 msgstr "이 유닛은 더이상 존재하지 않습니다."
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1067
 msgid "Go back to browsing"
 msgstr "검색하기로 돌아가기"
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1069
 msgid "Reload page"
 msgstr "페이지 다시 불러오기"
 
-#: static/js/editor/app.js:2094
+#: static/js/editor/app.js:2095
 msgid "some anonymous user"
 msgstr "몇명의  익명 사용자"
 
-#: static/js/editor/app.js:2096
+#: static/js/editor/app.js:2097
 msgid "someone"
 msgstr "누군가"
 
-#: static/js/editor/app.js:2114 static/js/editor/app.js:2163
+#: static/js/editor/app.js:2115 static/js/editor/app.js:2164
 msgid "Similar translations"
 msgstr "유사한 번역"
 
@@ -484,17 +485,17 @@ msgstr "유사한 번역"
 msgid "disabled"
 msgstr "사용 안 함"
 
-#: static/js/stats.js:349
+#: static/js/stats.js:353
 #, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s 초"
 
-#: static/js/stats.js:393
+#: static/js/stats.js:397
 msgid "Collapse details"
 msgstr "세부사항 접기"
 
-#: static/js/stats.js:393
+#: static/js/stats.js:397
 msgid "Expand details"
 msgstr "세부사항 보기"
 

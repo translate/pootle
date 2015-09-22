@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-07 16:55+0100\n"
+"POT-Creation-Date: 2015-09-22 10:48+0100\n"
 "PO-Revision-Date: 2015-09-08 17:53+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,12 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 "X-POOTLE-MTIME: 1441734810.000000\n"
+
+#: apps/accounts/adapter.py:64
+msgid ""
+"Some problem happened when tried to send the confirmation email. Please try "
+"again later."
+msgstr ""
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -130,6 +136,11 @@ msgstr "Kısa Özgeçmiş"
 msgid "This email address already exists."
 msgstr "Bu eposta adresi zaten var."
 
+#: apps/accounts/views.py:37
+msgid ""
+"An error occurred logging you in. Please contact your system administrator"
+msgstr ""
+
 #: apps/contact/forms.py:25
 msgid "Summary"
 msgstr "Özet"
@@ -178,26 +189,31 @@ msgstr "Çeviri dosyalarını veya arşivleri .zip biçiminde gönder"
 msgid "Upload translations"
 msgstr "Çevirileri gönder"
 
-#: apps/import_export/utils.py:24
+#: apps/import_export/utils.py:29
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 "Desteklenmeyen dosya türü '%s', bu aralar sadece PO dosyaları desteklenir\n"
 
-#: apps/import_export/utils.py:30
+#: apps/import_export/utils.py:35
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "Dosya '%s' eksik X-Pootle-Path header\n"
 
-#: apps/import_export/utils.py:35
+#: apps/import_export/utils.py:40
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr "Dosya '%s' eksik ya da geçersiz X-Pootle-Revision header\n"
 
-#: apps/import_export/utils.py:43
+#: apps/import_export/utils.py:48
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "'%s' oluşturulamadı. Proje/Dil eksik mi? (%s)"
+
+#: apps/import_export/utils.py:57
+#, fuzzy
+msgid "There was an error uploading your file"
+msgstr "Gönderilen dosyalar üzerine çeviriler yazılabilir"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -345,7 +361,7 @@ msgstr "Çıkartma"
 msgid "Other"
 msgstr "Diğer"
 
-#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:110
+#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:111
 msgid "Accelerators"
 msgstr "Hızlandırıcılar"
 
@@ -369,270 +385,274 @@ msgstr "Kısaltma çakışması"
 msgid "Translator credits"
 msgstr "Çevirenler"
 
-#: apps/pootle_misc/checks.py:47 apps/pootle_misc/checks.py:114
+#: apps/pootle_misc/checks.py:47
+msgid "Dialog sizes"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
 msgstr "Çift tırnak"
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:49
 msgid "Double spaces"
 msgstr "Çift boşluk"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:50
 msgid "Repeated word"
 msgstr "Tekrarlayan kelime"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:51
 msgid "E-mail"
 msgstr "E-posta"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:52
 msgid "Ending punctuation"
 msgstr "Sondaki noktalama işareti"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:53
 msgid "Ending whitespace"
 msgstr "Sondaki boşluk"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:54
 msgid "Escapes"
 msgstr "Atlatma"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:55
 msgid "File paths"
 msgstr "Dosya yolları"
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:56
 msgid "Functions"
 msgstr "İşlevler"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:57
 msgid "GConf values"
 msgstr "GConf değerleri"
 
-#: apps/pootle_misc/checks.py:57 apps/pootle_misc/stats.py:26
+#: apps/pootle_misc/checks.py:58 apps/pootle_misc/stats.py:26
 msgid "Fuzzy"
 msgstr "Belirsiz"
 
-#: apps/pootle_misc/checks.py:58
+#: apps/pootle_misc/checks.py:59
 msgid "Old KDE comment"
 msgstr "Eski KDE yorumu"
 
-#: apps/pootle_misc/checks.py:59
+#: apps/pootle_misc/checks.py:60
 msgid "Long"
 msgstr "Uzun"
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:61
 msgid "Must translate words"
 msgstr "Kelimeleri çevirmek zorundasınız"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:62
 msgid "Newlines"
 msgstr "Satır başı"
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:63
 msgid "Number of plurals"
 msgstr "Çoğulların sayısı"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:64
 msgid "Don't translate words"
 msgstr "Kelimeleri çevirmeyin"
 
-#: apps/pootle_misc/checks.py:64
+#: apps/pootle_misc/checks.py:65
 msgid "Numbers"
 msgstr "Sayı"
 
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:66
 msgid "Options"
 msgstr "Seçenekler"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:67
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:67
+#: apps/pootle_misc/checks.py:68
 msgid "Punctuation spacing"
 msgstr "Noktalama aralığı"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:69
 msgid "Pure punctuation"
 msgstr "Sade noktalama"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:70
 msgid "Python brace placeholders"
 msgstr "Python ayraç yer tutucuları"
 
-#: apps/pootle_misc/checks.py:70
+#: apps/pootle_misc/checks.py:71
 msgid "Number of sentences"
 msgstr "Cümle sayısı"
 
-#: apps/pootle_misc/checks.py:71
+#: apps/pootle_misc/checks.py:72
 msgid "Short"
 msgstr "Kısa"
 
-#: apps/pootle_misc/checks.py:72
+#: apps/pootle_misc/checks.py:73
 msgid "Simple capitalization"
 msgstr "Basitçe büyük ilk harf kullanımı"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Simple plural(s)"
 msgstr "Basit çoğul(lar)"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "Single quotes"
 msgstr "Tek tırnak"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Starting capitalization"
 msgstr "İlk harfi büyük başlama"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Starting punctuation"
 msgstr "Noktalama işaretiyle başlama"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "Starting whitespace"
 msgstr "Boşlukla başlama"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:79
+#: apps/pootle_misc/checks.py:80
 msgid "Tabs"
 msgstr "Tab'lar"
 
-#: apps/pootle_misc/checks.py:80
+#: apps/pootle_misc/checks.py:81
 msgid "Unchanged"
 msgstr "Değiştirilmemiş"
 
-#: apps/pootle_misc/checks.py:81 apps/pootle_misc/stats.py:27
+#: apps/pootle_misc/checks.py:82 apps/pootle_misc/stats.py:27
 #: apps/pootle_store/util.py:30 core/helpers.py:58
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Çevrilmemiş"
 
-#: apps/pootle_misc/checks.py:82
+#: apps/pootle_misc/checks.py:83
 msgid "URLs"
 msgstr "URL'ler"
 
-#: apps/pootle_misc/checks.py:83
+#: apps/pootle_misc/checks.py:84
 msgid "Valid characters"
 msgstr "Geçerli karakterler"
 
-#: apps/pootle_misc/checks.py:84
+#: apps/pootle_misc/checks.py:85
 msgid "Placeholders"
 msgstr "Yer tutucular"
 
-#: apps/pootle_misc/checks.py:85
+#: apps/pootle_misc/checks.py:86
 msgid "Valid XML"
 msgstr "Geçerli XML"
 
-#: apps/pootle_misc/checks.py:86
+#: apps/pootle_misc/checks.py:87
 msgid "XML tags"
 msgstr "XML etiketleri"
 
-#: apps/pootle_misc/checks.py:88
+#: apps/pootle_misc/checks.py:89
 msgid "Broken HTML Entities"
 msgstr "Bozuk HTML Varlıkları"
 
-#: apps/pootle_misc/checks.py:89
+#: apps/pootle_misc/checks.py:90
 msgid "Java format"
 msgstr "Java biçimi"
 
-#: apps/pootle_misc/checks.py:90
+#: apps/pootle_misc/checks.py:91
 msgid "Template format"
 msgstr "Şablon biçimi"
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:92
 msgid "Mustache placeholders"
 msgstr "Küme parantezi yer tutucuları"
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:93
 msgid "Mustache placeholder pairs"
 msgstr "Küme parantezi yer tutucusu çifti"
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:94
 msgid "Mustache like placeholder pairs"
 msgstr "Küme parantezi gibi yer tutucusu çifti"
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:95
 msgid "C format placeholders"
 msgstr "C biçimi yer tutucuları"
 
-#: apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:96
 msgid "Non printable"
 msgstr "Yazdırılabilir olmayan"
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:97
 msgid "Unbalanced tag braces"
 msgstr "Dengesiz etiket ayraçları"
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:98
 msgid "Changed attributes"
 msgstr "Değişmiş öznitelikler"
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:99
 msgid "Unescaped ampersands"
 msgstr "Atlatılamaz VE işaretleri"
 
-#: apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:100
 msgid "Incorrectly escaped ampersands"
 msgstr "Yanlışlıkla atlatılmış VE işaretleri"
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:101
 msgid "Whitespaces"
 msgstr "Boşluklar"
 
-#: apps/pootle_misc/checks.py:101
+#: apps/pootle_misc/checks.py:102
 msgid "Date format"
 msgstr "Tarih biçimi"
 
-#: apps/pootle_misc/checks.py:102
+#: apps/pootle_misc/checks.py:103
 msgid "Uppercase placeholders"
 msgstr "Büyük harf yer tutucuları"
 
-#: apps/pootle_misc/checks.py:103
+#: apps/pootle_misc/checks.py:104
 msgid "Percent sign placeholders"
 msgstr "Yüzde işareti yer tutucuları"
 
-#: apps/pootle_misc/checks.py:104
+#: apps/pootle_misc/checks.py:105
 msgid "Percent sign closure placeholders"
 msgstr "Yüzde işaretiyle kapalı yer tutucular"
 
-#: apps/pootle_misc/checks.py:105
+#: apps/pootle_misc/checks.py:106
 msgid "$ placeholders"
 msgstr "$ yer tutucular"
 
-#: apps/pootle_misc/checks.py:106
+#: apps/pootle_misc/checks.py:107
 msgid "$ closure placeholders"
 msgstr "$ kapalı yer tutucular"
 
-#: apps/pootle_misc/checks.py:107
+#: apps/pootle_misc/checks.py:108
 msgid "Java-encoded unicode"
 msgstr "Java-kodlamalı evrensel kod"
 
-#: apps/pootle_misc/checks.py:108
+#: apps/pootle_misc/checks.py:109
 msgid "Objective-C format"
 msgstr "Objective-C biçimi"
 
-#: apps/pootle_misc/checks.py:109
+#: apps/pootle_misc/checks.py:110
 msgid "Android format"
 msgstr "Android biçimi"
 
-#: apps/pootle_misc/checks.py:111
+#: apps/pootle_misc/checks.py:112
 msgid "Tags differ"
 msgstr "Etiketler farkı"
 
-#: apps/pootle_misc/checks.py:112
+#: apps/pootle_misc/checks.py:113
 msgid "Curly braces"
 msgstr "Küme parantezi"
 
-#: apps/pootle_misc/checks.py:113
+#: apps/pootle_misc/checks.py:114
 msgid "Potential unwanted placeholders"
 msgstr "Olası istenmeyen yer tutucuları"
 
-#: apps/pootle_misc/checks.py:115
+#: apps/pootle_misc/checks.py:116
 msgid "Double quotes in tags"
 msgstr "Etiketlerdeki çift tırnaklar"
 
-#: apps/pootle_misc/checks.py:116
+#: apps/pootle_misc/checks.py:117
 msgid "Percent brace placeholders"
 msgstr "Yüzde ayraç yer tutucuları"
 
@@ -770,16 +790,16 @@ msgstr "Durum"
 msgid "Comment"
 msgstr "Yorum"
 
-#: apps/pootle_statistics/models.py:317
+#: apps/pootle_statistics/models.py:351
 msgid "Added suggestion"
 msgstr "Öneri eklendi"
 
-#: apps/pootle_statistics/models.py:318
+#: apps/pootle_statistics/models.py:352
 #, python-format
 msgid "Accepted suggestion from %s"
 msgstr "%s kullanıcısından gelen öneriyi kabul et"
 
-#: apps/pootle_statistics/models.py:319
+#: apps/pootle_statistics/models.py:353
 #, python-format
 msgid "Rejected suggestion from %s"
 msgstr "%s kullanıcısından gelen öneriyi reddet"
@@ -879,7 +899,7 @@ msgstr "Kabul Edildi"
 msgid "Rejected"
 msgstr "Reddedildi"
 
-#: apps/pootle_store/models.py:1323
+#: apps/pootle_store/models.py:1343
 msgid "Path"
 msgstr "Yol"
 
@@ -1091,63 +1111,76 @@ msgstr ""
 "Bunu daha fazla bilgi ve talimat vermek için kullanın. İzin verilen "
 "biçimleme: %s"
 
-#: checks.py:57
+#: checks.py:56
+msgid ""
+"There are user accounts with duplicate emails. This will not be allowed in "
+"Pootle 2.8."
+msgstr ""
+
+#: checks.py:58
+msgid ""
+"Try using 'pootle find_duplicate_emails', and then update user emails with "
+"'pootle update_user_email username email'. You might also want to consider "
+"using pootle merge_user or purge_user commands"
+msgstr ""
+
+#: checks.py:82
 msgid "Your version of Django is too old."
 msgstr "Django sürümünüz çok eski."
 
-#: checks.py:58
+#: checks.py:83
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "Pip yüklemesini deneyin --upgrade 'Django==%s'"
 
-#: checks.py:65
+#: checks.py:90
 msgid "Your version of lxml is too old."
 msgstr "Lxml sürümünüz çok eski."
 
-#: checks.py:66
+#: checks.py:91
 msgid "Try pip install --upgrade lxml"
 msgstr "Pip yüklemesini deneyin --upgrade lxml"
 
-#: checks.py:72
+#: checks.py:97
 msgid "Your version of Translate Toolkit is too old."
 msgstr "Translate Toolkit sürümünüz çok eski."
 
-#: checks.py:73
+#: checks.py:98
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Pip yüklemesini deneyin --upgrade translate-toolkit"
 
-#: checks.py:92
+#: checks.py:117
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Redis'e bağlanılamadı (%s)"
 
-#: checks.py:93
+#: checks.py:118
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "%(host)s:%(port)s üzerinde Redis çalıştığından emin olun"
 
-#: checks.py:102
+#: checks.py:127
 msgid "Your version of Redis is too old."
 msgstr "Redis sürümünüz çok eski."
 
-#: checks.py:103
+#: checks.py:128
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Sisteminizin Redis sunucu paketini en az %s sürümüne güncelleyin"
 
-#: checks.py:113
+#: checks.py:138
 msgid "No RQ Worker running."
 msgstr "Çalışan RQ İşleyicileri yok."
 
-#: checks.py:114
+#: checks.py:139
 msgid "Run new workers with manage.py rqworker"
 msgstr "Yeni işleyicileri manage.py rqworker ile çalıştır"
 
-#: checks.py:129
+#: checks.py:154
 msgid "Cache backend is not set to Redis."
 msgstr "Önbellek arka ucu Redis için ayarlı değil."
 
-#: checks.py:130
+#: checks.py:155
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1157,37 +1190,37 @@ msgstr ""
 "ayarlayın\n"
 "Şu anki ayarlar: %r"
 
-#: checks.py:139
+#: checks.py:164
 msgid "Could not initiate a Redis cache connection"
 msgstr "Redis önbellek bağlantısı başlatılamadı"
 
-#: checks.py:140
+#: checks.py:165
 msgid "Double-check your CACHES settings"
 msgstr "CACHES ayarlarınızı iki defa kontrol edin"
 
-#: checks.py:146
+#: checks.py:171
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "DEBUG kipi açık. Bunu üretimdeyken yapmayın!"
 
-#: checks.py:147
+#: checks.py:172
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Pootle ayarlarında DEBUG = False olarak ayarlayın"
 
-#: checks.py:153
+#: checks.py:178
 msgid "The sqlite database backend is unsupported"
 msgstr "Sqlite veritabanı arka ucu desteklenmiyor"
 
-#: checks.py:154
+#: checks.py:179
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
 msgstr ""
 "Varsayılan veritabanı motorunuzu postgresql_psycopg2 ya da mysql olarak "
 "ayarlayın"
 
-#: checks.py:160
+#: checks.py:185
 msgid "Not using cached_db as session engine"
 msgstr "Oturum motoru olarak cached_db kullanılmıyor"
 
-#: checks.py:161
+#: checks.py:186
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1197,11 +1230,11 @@ msgstr ""
 "olarak ayarlayın\n"
 "Şu anki ayarlar: %r"
 
-#: checks.py:168
+#: checks.py:193
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL ayarlı değil."
 
-#: checks.py:169
+#: checks.py:194
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1209,14 +1242,14 @@ msgstr ""
 "Kullanıcılara yöneticilerle Pootle iletişim formu üzerinden irtibata "
 "geçmelerine izin vermek için POOTLE_CONTACT_EMAIL parametresini ayarlayın."
 
-#: checks.py:177
+#: checks.py:202
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
 "POOTLE_CONTACT_EMAIL parametresi şurada belritilen varsayılan ayarı "
 "kullanıyor %r."
 
-#: checks.py:179
+#: checks.py:204
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1224,11 +1257,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL parametresi, iletişim formu tarafından gönderilen "
 "iletileri alacak adrestir."
 
-#: checks.py:186
+#: checks.py:211
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL ayarlı değil."
 
-#: checks.py:187 checks.py:197
+#: checks.py:212 checks.py:222
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1236,38 +1269,38 @@ msgstr ""
 "DEFAULT_FROM_EMAIL parametresi tüm giden Pootle epostasında kullanılır.\n"
 "Posta sunucunuzun ayarlarını gözden geçirmeyi unutmayın."
 
-#: checks.py:195
+#: checks.py:220
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 "DEFAULT_FROM_EMAIL parametresi şurada belritilen varsayılan ayarı kullanıyor "
 "%r."
 
-#: checks.py:206
+#: checks.py:231
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER eksik."
 
-#: checks.py:207
+#: checks.py:232
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER ayarlayın."
 
-#: checks.py:212
+#: checks.py:237
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER içinde geçersiz değer."
 
-#: checks.py:213
+#: checks.py:238
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER için geçerli bir değer ayarlayın."
 
-#: checks.py:227
+#: checks.py:252
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER içinde geçersiz biçimleme."
 
-#: checks.py:228
+#: checks.py:253
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER için geçerli bir biçimleme ayarlayın."
 
-#: checks.py:233
+#: checks.py:258
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1276,30 +1309,39 @@ msgstr ""
 "POOTLE_MARKUP_FILTER, '%s' biçimlemesine ayarlı, ancak verilen paket "
 "bulunamıyor."
 
-#: checks.py:235
+#: checks.py:260
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Paketi yükleyin ya da POOTLE_MARKUP_FILTER parametresini değiştirin."
 
-#: checks.py:259
+#: checks.py:284
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 "Varsayılan 'admin' kullanıcısı hala 'admin' olarak ayarlı bir parolaya sahip."
 
-#: checks.py:261
+#: checks.py:286
 msgid "Remove the 'admin' user or change its password."
 msgstr "'admin' kullanıcısını kaldırın ya da parolasını değiştirin."
 
-#: checks.py:276
+#: checks.py:301
 msgid "Database connection does not implement on_commit."
 msgstr "Veritabanı bağlantısı on_commit üzerine uygulanmaz."
 
-#: checks.py:277
+#: checks.py:302
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
 "transaction_hooks.backends olarak gelen bir arka ucu kullanmak için "
 "DATABASES['default']['ENGINE'] parametresini ayarlayın."
+
+#: checks.py:322
+#, fuzzy
+msgid "Email server is not available."
+msgstr "Redis sunucusu %(host)s:%(port)s üzerinde kullanılabilir değil."
+
+#: checks.py:323
+msgid "Review your email settings and make sure your email server is working."
+msgstr ""
 
 #: core/browser.py:27
 msgid "Project"
@@ -1335,11 +1377,11 @@ msgstr "Dile geri dön"
 msgid "Back to parent folder"
 msgstr "Ana klasöre geri git"
 
-#: core/decorators.py:321
+#: core/decorators.py:322
 msgid "Insufficient rights to access this page."
 msgstr "Bu sayfaya erişmek için yetersiz haklar."
 
-#: core/decorators.py:334 core/views.py:34
+#: core/decorators.py:335 core/views.py:34
 msgid "You do not have rights to administer Pootle."
 msgstr "Pootle'ı yönetme haklarına sahip değilsiniz."
 
@@ -1427,7 +1469,7 @@ msgstr "Başlarken"
 msgid "License Terms"
 msgstr "Lisans Şartları"
 
-#: custom/templates/profiles/_tabs.html:4 templates/layout.html:111
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:112
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
 msgid "Settings"
 msgstr "Ayarlar"
@@ -1478,7 +1520,7 @@ msgstr "Kullanım Şartları"
 msgid "Terms of Service"
 msgstr "Hizmet Şartları"
 
-#: templates/about.html:7 templates/layout.html:167
+#: templates/about.html:7 templates/layout.html:168
 msgid "About"
 msgstr "Hakkında"
 
@@ -1913,7 +1955,7 @@ msgstr "Şimdi yenile"
 msgid "Congratulations! You have completed this task!"
 msgstr "Tebrikler! Bu görevi tamamladınız!"
 
-#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:99
+#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:100
 msgid "Contact Us"
 msgstr "Bize Ulaşın"
 
@@ -2343,39 +2385,39 @@ msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
 "Aşağıdan bu dil için izinleri ekleyebilir, düzenleyebilir ve silebilirsiniz."
 
-#: templates/layout.html:79
+#: templates/layout.html:80
 msgid "Pootle requires JavaScript"
 msgstr "Pootle, JavaScript gerektirir"
 
-#: templates/layout.html:80
+#: templates/layout.html:81
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 "Lütfen tarayıcı tercihlerinizde JavaScript'i etkinleştirin ve sayfayı "
 "yeniden yükleyin."
 
-#: templates/layout.html:89
+#: templates/layout.html:90
 msgid "skip to navigation"
 msgstr "rehbere atla"
 
-#: templates/layout.html:110
+#: templates/layout.html:111
 msgid "Public Profile"
 msgstr "Ortak Profil"
 
-#: templates/layout.html:112 templates/user/stats.html:46
+#: templates/layout.html:113 templates/user/stats.html:46
 #: templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr "İstatistikler"
 
-#: templates/layout.html:114
+#: templates/layout.html:115
 msgid "Admin"
 msgstr "Yönetici"
 
-#: templates/layout.html:117
+#: templates/layout.html:118
 msgid "Sign out"
 msgstr "Çıkış yap"
 
-#: templates/layout.html:121
+#: templates/layout.html:122
 msgid "Sign In"
 msgstr "Giriş Yap"
 
@@ -2772,9 +2814,6 @@ msgstr "Bu Ayın İlk Katılımcıları"
 #~ msgstr ""
 #~ "Redis sunucusu sürümü %(installed)s yüklü. Pootle en az %(required)s "
 #~ "sürümünü gerektirir."
-
-#~ msgid "Redis server is not available on %(host)s:%(port)s."
-#~ msgstr "Redis sunucusu %(host)s:%(port)s üzerinde kullanılabilir değil."
 
 #~ msgid "%(num)d RQ worker running."
 #~ msgid_plural "%(num)d RQ workers running."
@@ -3901,9 +3940,6 @@ msgstr "Bu Ayın İlk Katılımcıları"
 
 #~ msgid "Can view a translation project"
 #~ msgstr "Çeviri projesi görülebilir"
-
-#~ msgid "Can overwrite translations on uploading files"
-#~ msgstr "Gönderilen dosyalar üzerine çeviriler yazılabilir"
 
 #~ msgid "Can download archives of translation projects"
 #~ msgstr "Çeviri projelerinin arşiv dosyaları indirilebilir"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-07 16:55+0100\n"
+"POT-Creation-Date: 2015-09-22 10:48+0100\n"
 "PO-Revision-Date: 2015-09-11 15:36+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1441985816.000000\n"
+
+#: apps/accounts/adapter.py:64
+msgid ""
+"Some problem happened when tried to send the confirmation email. Please try "
+"again later."
+msgstr ""
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -130,6 +136,11 @@ msgstr "Stručný životopis"
 msgid "This email address already exists."
 msgstr "Tato e-mailová adresa již existuje."
 
+#: apps/accounts/views.py:37
+msgid ""
+"An error occurred logging you in. Please contact your system administrator"
+msgstr ""
+
 #: apps/contact/forms.py:25
 msgid "Summary"
 msgstr "Souhrn"
@@ -178,29 +189,34 @@ msgstr "Nahrát jednotlivé soubory nebo archivy ve formátu ZIP"
 msgid "Upload translations"
 msgstr "Nahrát překlady"
 
-#: apps/import_export/utils.py:24
+#: apps/import_export/utils.py:29
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 "Nepodporovaný typ souboru ‚%s‘, v současnosti jsou podporovány jen soubory "
 "PO\n"
 
-#: apps/import_export/utils.py:30
+#: apps/import_export/utils.py:35
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "Soubor ‚%s‘ nemá nastavenu položku hlavičky X-Pootle-Path\n"
 
-#: apps/import_export/utils.py:35
+#: apps/import_export/utils.py:40
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
 "Soubor ‚%s‘ nemá nastavenu, nebo má chybně nastavenu položku hlavičky X-"
 "Pootle-Revision\n"
 
-#: apps/import_export/utils.py:43
+#: apps/import_export/utils.py:48
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Vytvoření ‚%s‘ se nezdařilo. Chybějící projekt/jazyk? (%s)"
+
+#: apps/import_export/utils.py:57
+#, fuzzy
+msgid "There was an error uploading your file"
+msgstr "Může při nahrání souborů přepsat překlady"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -351,7 +367,7 @@ msgstr "Extrakce"
 msgid "Other"
 msgstr "Ostatní"
 
-#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:110
+#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:111
 msgid "Accelerators"
 msgstr "Klávesové zkratky"
 
@@ -375,270 +391,274 @@ msgstr "Slučovací konflikty"
 msgid "Translator credits"
 msgstr "Seznam překladatelů"
 
-#: apps/pootle_misc/checks.py:47 apps/pootle_misc/checks.py:114
+#: apps/pootle_misc/checks.py:47
+msgid "Dialog sizes"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
 msgstr "Dvojité uvozovky"
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:49
 msgid "Double spaces"
 msgstr "Opakované mezery"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:50
 msgid "Repeated word"
 msgstr "Opakované slovo"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:51
 msgid "E-mail"
 msgstr "E-mail"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:52
 msgid "Ending punctuation"
 msgstr "Interpunkce na konci"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:53
 msgid "Ending whitespace"
 msgstr "Mezery na konci"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:54
 msgid "Escapes"
 msgstr "Řídící znaky"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:55
 msgid "File paths"
 msgstr "Cesty"
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:56
 msgid "Functions"
 msgstr "Funkce"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:57
 msgid "GConf values"
 msgstr "GConf"
 
-#: apps/pootle_misc/checks.py:57 apps/pootle_misc/stats.py:26
+#: apps/pootle_misc/checks.py:58 apps/pootle_misc/stats.py:26
 msgid "Fuzzy"
 msgstr "Přibližné"
 
-#: apps/pootle_misc/checks.py:58
+#: apps/pootle_misc/checks.py:59
 msgid "Old KDE comment"
 msgstr "Staré komentáře KDE"
 
-#: apps/pootle_misc/checks.py:59
+#: apps/pootle_misc/checks.py:60
 msgid "Long"
 msgstr "Podezřele dlouhé"
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:61
 msgid "Must translate words"
 msgstr "Musí být přeloženo"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:62
 msgid "Newlines"
 msgstr "Počet řádek"
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:63
 msgid "Number of plurals"
 msgstr "Počet forem plurálu"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:64
 msgid "Don't translate words"
 msgstr "Nepřekládat"
 
-#: apps/pootle_misc/checks.py:64
+#: apps/pootle_misc/checks.py:65
 msgid "Numbers"
 msgstr "Čísla"
 
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:66
 msgid "Options"
 msgstr "Parametry"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:67
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:67
+#: apps/pootle_misc/checks.py:68
 msgid "Punctuation spacing"
 msgstr "Mezery kolem interpunkce"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:69
 msgid "Pure punctuation"
 msgstr "Pouze interpunkce"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:70
 msgid "Python brace placeholders"
 msgstr "Závorkové zástupné řetězce Pythonu"
 
-#: apps/pootle_misc/checks.py:70
+#: apps/pootle_misc/checks.py:71
 msgid "Number of sentences"
 msgstr "Počet vět"
 
-#: apps/pootle_misc/checks.py:71
+#: apps/pootle_misc/checks.py:72
 msgid "Short"
 msgstr "Podezřele krátké"
 
-#: apps/pootle_misc/checks.py:72
+#: apps/pootle_misc/checks.py:73
 msgid "Simple capitalization"
 msgstr "Velikost písmen"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Simple plural(s)"
 msgstr "Plurály"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "Single quotes"
 msgstr "Jednoduché uvozovky"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Starting capitalization"
 msgstr "Velikost písmen na začátku"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Starting punctuation"
 msgstr "Interpunkce na začátku"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "Starting whitespace"
 msgstr "Mezery na začátku"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:79
+#: apps/pootle_misc/checks.py:80
 msgid "Tabs"
 msgstr "Tabulátory"
 
-#: apps/pootle_misc/checks.py:80
+#: apps/pootle_misc/checks.py:81
 msgid "Unchanged"
 msgstr "Nezměněno"
 
-#: apps/pootle_misc/checks.py:81 apps/pootle_misc/stats.py:27
+#: apps/pootle_misc/checks.py:82 apps/pootle_misc/stats.py:27
 #: apps/pootle_store/util.py:30 core/helpers.py:58
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Nepřeloženo"
 
-#: apps/pootle_misc/checks.py:82
+#: apps/pootle_misc/checks.py:83
 msgid "URLs"
 msgstr "Adresy"
 
-#: apps/pootle_misc/checks.py:83
+#: apps/pootle_misc/checks.py:84
 msgid "Valid characters"
 msgstr "Povolené znaky"
 
-#: apps/pootle_misc/checks.py:84
+#: apps/pootle_misc/checks.py:85
 msgid "Placeholders"
 msgstr "Zástupné znaky"
 
-#: apps/pootle_misc/checks.py:85
+#: apps/pootle_misc/checks.py:86
 msgid "Valid XML"
 msgstr "Platné XML"
 
-#: apps/pootle_misc/checks.py:86
+#: apps/pootle_misc/checks.py:87
 msgid "XML tags"
 msgstr "XML značky"
 
-#: apps/pootle_misc/checks.py:88
+#: apps/pootle_misc/checks.py:89
 msgid "Broken HTML Entities"
 msgstr "Chybné HTML entity"
 
-#: apps/pootle_misc/checks.py:89
+#: apps/pootle_misc/checks.py:90
 msgid "Java format"
 msgstr "Java formát"
 
-#: apps/pootle_misc/checks.py:90
+#: apps/pootle_misc/checks.py:91
 msgid "Template format"
 msgstr "Formát šablon"
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:92
 msgid "Mustache placeholders"
 msgstr "Zástupné řetězce mustache"
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:93
 msgid "Mustache placeholder pairs"
 msgstr "Dvojice zástupných řetězců mustache"
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:94
 msgid "Mustache like placeholder pairs"
 msgstr "Dvojice zástupných řetězců podobných mustache"
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:95
 msgid "C format placeholders"
 msgstr "Zástupné řetězce C formátu"
 
-#: apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:96
 msgid "Non printable"
 msgstr "Netisknutelné"
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:97
 msgid "Unbalanced tag braces"
 msgstr "Lichý počet závorek u značek"
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:98
 msgid "Changed attributes"
 msgstr "Změněné atributy"
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:99
 msgid "Unescaped ampersands"
 msgstr "Neescapované ampersandy"
 
-#: apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:100
 msgid "Incorrectly escaped ampersands"
 msgstr "Chybně escapované ampersandy"
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:101
 msgid "Whitespaces"
 msgstr "Mezery"
 
-#: apps/pootle_misc/checks.py:101
+#: apps/pootle_misc/checks.py:102
 msgid "Date format"
 msgstr "Formát data"
 
-#: apps/pootle_misc/checks.py:102
+#: apps/pootle_misc/checks.py:103
 msgid "Uppercase placeholders"
 msgstr "Zástupné řetězce velkými písmeny"
 
-#: apps/pootle_misc/checks.py:103
+#: apps/pootle_misc/checks.py:104
 msgid "Percent sign placeholders"
 msgstr "% zástupné řetězce"
 
-#: apps/pootle_misc/checks.py:104
+#: apps/pootle_misc/checks.py:105
 msgid "Percent sign closure placeholders"
 msgstr "% uzavřené zástupné řetězce"
 
-#: apps/pootle_misc/checks.py:105
+#: apps/pootle_misc/checks.py:106
 msgid "$ placeholders"
 msgstr "$ zástupné řetězce"
 
-#: apps/pootle_misc/checks.py:106
+#: apps/pootle_misc/checks.py:107
 msgid "$ closure placeholders"
 msgstr "$ uzavřené zástupné řetězce"
 
-#: apps/pootle_misc/checks.py:107
+#: apps/pootle_misc/checks.py:108
 msgid "Java-encoded unicode"
 msgstr "Java kódovaný unicode"
 
-#: apps/pootle_misc/checks.py:108
+#: apps/pootle_misc/checks.py:109
 msgid "Objective-C format"
 msgstr "Objective-C formát"
 
-#: apps/pootle_misc/checks.py:109
+#: apps/pootle_misc/checks.py:110
 msgid "Android format"
 msgstr "Android formát"
 
-#: apps/pootle_misc/checks.py:111
+#: apps/pootle_misc/checks.py:112
 msgid "Tags differ"
 msgstr "Rozdílné značky"
 
-#: apps/pootle_misc/checks.py:112
+#: apps/pootle_misc/checks.py:113
 msgid "Curly braces"
 msgstr "Složené závorky"
 
-#: apps/pootle_misc/checks.py:113
+#: apps/pootle_misc/checks.py:114
 msgid "Potential unwanted placeholders"
 msgstr "Potenciálně nechtěné zástupné řetězce"
 
-#: apps/pootle_misc/checks.py:115
+#: apps/pootle_misc/checks.py:116
 msgid "Double quotes in tags"
 msgstr "Dvojité uvozovky ve značkách"
 
-#: apps/pootle_misc/checks.py:116
+#: apps/pootle_misc/checks.py:117
 msgid "Percent brace placeholders"
 msgstr "Závorkové % zástupné řetězce"
 
@@ -778,16 +798,16 @@ msgstr "Stav"
 msgid "Comment"
 msgstr "Komentář"
 
-#: apps/pootle_statistics/models.py:317
+#: apps/pootle_statistics/models.py:351
 msgid "Added suggestion"
 msgstr "Přidal návrh"
 
-#: apps/pootle_statistics/models.py:318
+#: apps/pootle_statistics/models.py:352
 #, python-format
 msgid "Accepted suggestion from %s"
 msgstr "Přijal návrh uživatele %s"
 
-#: apps/pootle_statistics/models.py:319
+#: apps/pootle_statistics/models.py:353
 #, python-format
 msgid "Rejected suggestion from %s"
 msgstr "Zamítl návrh uživatele %s"
@@ -888,7 +908,7 @@ msgstr "Přijato"
 msgid "Rejected"
 msgstr "Odmítnuto"
 
-#: apps/pootle_store/models.py:1323
+#: apps/pootle_store/models.py:1343
 msgid "Path"
 msgstr "Cesta"
 
@@ -1099,63 +1119,76 @@ msgstr ""
 "Užitečné pro zadání podrobnějších informací nebo instrukcí. Povolené značky: "
 "%s"
 
-#: checks.py:57
+#: checks.py:56
+msgid ""
+"There are user accounts with duplicate emails. This will not be allowed in "
+"Pootle 2.8."
+msgstr ""
+
+#: checks.py:58
+msgid ""
+"Try using 'pootle find_duplicate_emails', and then update user emails with "
+"'pootle update_user_email username email'. You might also want to consider "
+"using pootle merge_user or purge_user commands"
+msgstr ""
+
+#: checks.py:82
 msgid "Your version of Django is too old."
 msgstr "Vaše verze Django je příliš stará."
 
-#: checks.py:58
+#: checks.py:83
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "Zkuste spustit pip install --upgrade 'Django==%s'"
 
-#: checks.py:65
+#: checks.py:90
 msgid "Your version of lxml is too old."
 msgstr "Vaše verze lxml je příliš stará."
 
-#: checks.py:66
+#: checks.py:91
 msgid "Try pip install --upgrade lxml"
 msgstr "Zkuste spustit pip install --upgrade lxml"
 
-#: checks.py:72
+#: checks.py:97
 msgid "Your version of Translate Toolkit is too old."
 msgstr "Vaše verze Translate Toolkit je příliš stará."
 
-#: checks.py:73
+#: checks.py:98
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Zkuste spustit pip install --upgrade translate-toolkit"
 
-#: checks.py:92
+#: checks.py:117
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Nepodařilo se navázat spojení s Redis (%s)"
 
-#: checks.py:93
+#: checks.py:118
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Ujistěte se, že je Redis spuštěn na %(host)s:%(port)s"
 
-#: checks.py:102
+#: checks.py:127
 msgid "Your version of Redis is too old."
 msgstr "Vaše verze Redis je příliš stará."
 
-#: checks.py:103
+#: checks.py:128
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Aktualizujte balíček systémového Redis serveru alespoň na verzi %s"
 
-#: checks.py:113
+#: checks.py:138
 msgid "No RQ Worker running."
 msgstr "Nejsou spuštěny žádné pracovní RQ procesy."
 
-#: checks.py:114
+#: checks.py:139
 msgid "Run new workers with manage.py rqworker"
 msgstr "Nové pracovní procesy můžete spouštět pomocí manage.py rqworker"
 
-#: checks.py:129
+#: checks.py:154
 msgid "Cache backend is not set to Redis."
 msgstr "Back-end mezipaměti není nastaven na Redis."
 
-#: checks.py:130
+#: checks.py:155
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1164,35 +1197,35 @@ msgstr ""
 "Nastavte výchozí back-end mezipaměti na django_redis.cache.RedisCache\n"
 "Aktuální nastavení: %r"
 
-#: checks.py:139
+#: checks.py:164
 msgid "Could not initiate a Redis cache connection"
 msgstr "Nepodařilo se navázat spojení s Redis mezipamětí"
 
-#: checks.py:140
+#: checks.py:165
 msgid "Double-check your CACHES settings"
 msgstr "Zkontrolujte nastavení CACHES"
 
-#: checks.py:146
+#: checks.py:171
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "Je aktivní DEBUG režim. Nepoužívejte v ostrém provozu!"
 
-#: checks.py:147
+#: checks.py:172
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "V nastavení Pootle serveru nastavte DEBUG = False"
 
-#: checks.py:153
+#: checks.py:178
 msgid "The sqlite database backend is unsupported"
 msgstr "Databázový back-end sqlite není podporován"
 
-#: checks.py:154
+#: checks.py:179
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
 msgstr "Nastavte výchozí databázový modul na postgresql_psycopg2 nebo mysql"
 
-#: checks.py:160
+#: checks.py:185
 msgid "Not using cached_db as session engine"
 msgstr "Jako modul pro relace není použit chached_db"
 
-#: checks.py:161
+#: checks.py:186
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1201,11 +1234,11 @@ msgstr ""
 "Nastavte SESSION_ENGINE na django.contrib.sessions.backend.cached_db\n"
 "Aktuální nastavení: %r"
 
-#: checks.py:168
+#: checks.py:193
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "Není nastaveno POOTLE_CONTACT_EMAIL."
 
-#: checks.py:169
+#: checks.py:194
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1213,12 +1246,12 @@ msgstr ""
 "Nastavte POOTLE_CONTACT_EMAIL aby mohli uživatelé kontaktovat administrátory "
 "prostřednictvím kontaktního formuláře Pootle serveru."
 
-#: checks.py:177
+#: checks.py:202
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL používá následující výchozí nastavení %r."
 
-#: checks.py:179
+#: checks.py:204
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1226,11 +1259,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL určuje adresu na kterou budou doručovány zprávy zaslané "
 "prostřednictvím kontaktního formuláře."
 
-#: checks.py:186
+#: checks.py:211
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "Není nastaveno DEFAULT_FROM_EMAIL."
 
-#: checks.py:187 checks.py:197
+#: checks.py:212 checks.py:222
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1239,36 +1272,36 @@ msgstr ""
 "serveru.\n"
 "Nezapomeňte zkontrolovat nastavení vašeho e-mail serveru."
 
-#: checks.py:195
+#: checks.py:220
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL používá následující výchozí nastavení %r."
 
-#: checks.py:206
+#: checks.py:231
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER nebyl nalezen."
 
-#: checks.py:207
+#: checks.py:232
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Nastavte POOTLE_MARKUP_FILTER."
 
-#: checks.py:212
+#: checks.py:237
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER obsahuje neplatnou hodnotu."
 
-#: checks.py:213
+#: checks.py:238
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Nastavte platnou hodnotu POOTLE_MARKUP_FILTER."
 
-#: checks.py:227
+#: checks.py:252
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER obsahuje neplatné značky."
 
-#: checks.py:228
+#: checks.py:253
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Nastavte platné značky pro POOTLE_MARKUP_FILTER."
 
-#: checks.py:233
+#: checks.py:258
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1277,29 +1310,38 @@ msgstr ""
 "POOTLE_MARKUP_FILTER má nastavenu značku ‚%s‘, ale balíček který ji "
 "poskytuje nebyl nalezen."
 
-#: checks.py:235
+#: checks.py:260
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Nainstalujte tento balíček, nebo upravte POOTLE_MARKUP_FILTER."
 
-#: checks.py:259
+#: checks.py:284
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "Výchozí ‚admin‘ uživatel má stále nastaveno výchozí heslo ‚admin‘."
 
-#: checks.py:261
+#: checks.py:286
 msgid "Remove the 'admin' user or change its password."
 msgstr "Odstraňte uživatele ‚admin‘, nebo změňte jeho heslo."
 
-#: checks.py:276
+#: checks.py:301
 msgid "Database connection does not implement on_commit."
 msgstr "Databázové spojení nepodporuje on_commit."
 
-#: checks.py:277
+#: checks.py:302
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
 "Nastavte DATABASES['default']['ENGINE'] pro použití back-endu z "
 "transaction_hooks.backends."
+
+#: checks.py:322
+#, fuzzy
+msgid "Email server is not available."
+msgstr "Redis server na adrese %(host)s:%(port)s není dostupný."
+
+#: checks.py:323
+msgid "Review your email settings and make sure your email server is working."
+msgstr ""
 
 #: core/browser.py:27
 msgid "Project"
@@ -1335,11 +1377,11 @@ msgstr "Zpět na stránku jazyka"
 msgid "Back to parent folder"
 msgstr "Zpět do nadřazeného adresáře"
 
-#: core/decorators.py:321
+#: core/decorators.py:322
 msgid "Insufficient rights to access this page."
 msgstr "Pro přístup k této stránce nemáte dostatečná oprávnění."
 
-#: core/decorators.py:334 core/views.py:34
+#: core/decorators.py:335 core/views.py:34
 msgid "You do not have rights to administer Pootle."
 msgstr "Nemáte oprávnění pro spravování Pootle."
 
@@ -1427,7 +1469,7 @@ msgstr "Začínáme"
 msgid "License Terms"
 msgstr "Licenční podmínky"
 
-#: custom/templates/profiles/_tabs.html:4 templates/layout.html:111
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:112
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
 msgid "Settings"
 msgstr "Nastavení"
@@ -1478,7 +1520,7 @@ msgstr "Podmínky použití"
 msgid "Terms of Service"
 msgstr "Podmínky služby"
 
-#: templates/about.html:7 templates/layout.html:167
+#: templates/about.html:7 templates/layout.html:168
 msgid "About"
 msgstr "Informace"
 
@@ -1913,7 +1955,7 @@ msgstr "Obnovit"
 msgid "Congratulations! You have completed this task!"
 msgstr "Gratulujeme! Dokončili jste tuto úlohu!"
 
-#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:99
+#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:100
 msgid "Contact Us"
 msgstr "Kontaktujte nás"
 
@@ -2347,37 +2389,37 @@ msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
 "Zde můžete přidávat, upravovat a odstraňovat oprávnění pro tento jazyk."
 
-#: templates/layout.html:79
+#: templates/layout.html:80
 msgid "Pootle requires JavaScript"
 msgstr "Pootle vyžaduje JavaScript"
 
-#: templates/layout.html:80
+#: templates/layout.html:81
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr "Povolte v nastavení prohlížeče JavaScript a znovu načtěte stránku."
 
-#: templates/layout.html:89
+#: templates/layout.html:90
 msgid "skip to navigation"
 msgstr "přejít na navigaci"
 
-#: templates/layout.html:110
+#: templates/layout.html:111
 msgid "Public Profile"
 msgstr "Veřejný profil"
 
-#: templates/layout.html:112 templates/user/stats.html:46
+#: templates/layout.html:113 templates/user/stats.html:46
 #: templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr "Statistika"
 
-#: templates/layout.html:114
+#: templates/layout.html:115
 msgid "Admin"
 msgstr "Správce"
 
-#: templates/layout.html:117
+#: templates/layout.html:118
 msgid "Sign out"
 msgstr "Odhlásit se"
 
-#: templates/layout.html:121
+#: templates/layout.html:122
 msgid "Sign In"
 msgstr "Přihlásit se"
 
@@ -2770,9 +2812,6 @@ msgstr "Největší přispěvatelé tento měsíc"
 #~ msgstr ""
 #~ "Je nainstalován Redis server verze %(installed)s. Pootle vyžaduje "
 #~ "minimálně verzi %(required)s."
-
-#~ msgid "Redis server is not available on %(host)s:%(port)s."
-#~ msgstr "Redis server na adrese %(host)s:%(port)s není dostupný."
 
 #~ msgid "%(num)d RQ worker running."
 #~ msgid_plural "%(num)d RQ workers running."
@@ -3932,9 +3971,6 @@ msgstr "Největší přispěvatelé tento měsíc"
 
 #~ msgid "Can view a translation project"
 #~ msgstr "Může si prohlížet překladový projekt"
-
-#~ msgid "Can overwrite translations on uploading files"
-#~ msgstr "Může při nahrání souborů přepsat překlady"
 
 #~ msgid "Can download archives of translation projects"
 #~ msgstr "Může stahovat archivy překladových projektů"

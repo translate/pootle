@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-07 16:55+0100\n"
+"POT-Creation-Date: 2015-09-22 10:48+0100\n"
 "PO-Revision-Date: 2015-09-17 13:22+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
@@ -20,6 +20,12 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
 "X-POOTLE-MTIME: 1442496135.000000\n"
+
+#: apps/accounts/adapter.py:64
+msgid ""
+"Some problem happened when tried to send the confirmation email. Please try "
+"again later."
+msgstr ""
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -131,6 +137,11 @@ msgstr "Korte biografie"
 msgid "This email address already exists."
 msgstr "Dit e-mailadres bestaat al."
 
+#: apps/accounts/views.py:37
+msgid ""
+"An error occurred logging you in. Please contact your system administrator"
+msgstr ""
+
 #: apps/contact/forms.py:25
 msgid "Summary"
 msgstr "Samenvatting"
@@ -179,27 +190,32 @@ msgstr "Vertaalde bestanden of archieven in .zip-indeling uploaden"
 msgid "Upload translations"
 msgstr "Vertalingen uploaden"
 
-#: apps/import_export/utils.py:24
+#: apps/import_export/utils.py:29
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 "Niet-ondersteund bestandstype '%s', alleen PO-bestanden worden momenteel "
 "ondersteund\n"
 
-#: apps/import_export/utils.py:30
+#: apps/import_export/utils.py:35
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "Bestand '%s' mist header X-Pootle-Path\n"
 
-#: apps/import_export/utils.py:35
+#: apps/import_export/utils.py:40
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr "Bestand '%s' mist of heeft ongeldige header X-Pootle-Revision\n"
 
-#: apps/import_export/utils.py:43
+#: apps/import_export/utils.py:48
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Kon '%s' niet aanmaken. Project/taal ontbreekt? (%s)"
+
+#: apps/import_export/utils.py:57
+#, fuzzy
+msgid "There was an error uploading your file"
+msgstr "Kan vertalingen overschrijven bij het uploaden van bestanden"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -350,7 +366,7 @@ msgstr "Extractie"
 msgid "Other"
 msgstr "Anders"
 
-#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:110
+#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:111
 msgid "Accelerators"
 msgstr "Sneltoetsen"
 
@@ -374,273 +390,277 @@ msgstr "Conflict in compendium"
 msgid "Translator credits"
 msgstr "Dank aan vertaler"
 
-#: apps/pootle_misc/checks.py:47 apps/pootle_misc/checks.py:114
+#: apps/pootle_misc/checks.py:47
+msgid "Dialog sizes"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
 msgstr "Dubbele aanhalingstekens"
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:49
 msgid "Double spaces"
 msgstr "Dubbele spaties"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:50
 msgid "Repeated word"
 msgstr "Herhaald woord"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:51
 msgid "E-mail"
 msgstr "E-mailadressen"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:52
 msgid "Ending punctuation"
 msgstr "Eindinterpunctie"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:53
 msgid "Ending whitespace"
 msgstr "Eind-witruimte"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:54
 msgid "Escapes"
 msgstr "Escapes"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:55
 msgid "File paths"
 msgstr "Bestandspaden"
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:56
 msgid "Functions"
 msgstr "Functies"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:57
 msgid "GConf values"
 msgstr "GConf-waarden"
 
 # I am aware that 'fuzzy' is usually translated to 'fuzzy', 'onzeker' or 'vaag'.
 # I opted for 'wazig', because I think it best expresses the word's true meaning and could also be used in the case of 'fuzzy match', for example.
 # I don't like 'onzeker', because 'fuzzy' does not always imply that the translator is uncertain of his translation. It might also mean that one of the strings has changed somehow.
-#: apps/pootle_misc/checks.py:57 apps/pootle_misc/stats.py:26
+#: apps/pootle_misc/checks.py:58 apps/pootle_misc/stats.py:26
 msgid "Fuzzy"
 msgstr "Wazig"
 
-#: apps/pootle_misc/checks.py:58
+#: apps/pootle_misc/checks.py:59
 msgid "Old KDE comment"
 msgstr "Oude KDE-opmerking"
 
-#: apps/pootle_misc/checks.py:59
+#: apps/pootle_misc/checks.py:60
 msgid "Long"
 msgstr "Te lang"
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:61
 msgid "Must translate words"
 msgstr "Moet woorden vertalen"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:62
 msgid "Newlines"
 msgstr "Nieuwe regels"
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:63
 msgid "Number of plurals"
 msgstr "Aantal meervouden"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:64
 msgid "Don't translate words"
 msgstr "Woorden niet vertalen"
 
-#: apps/pootle_misc/checks.py:64
+#: apps/pootle_misc/checks.py:65
 msgid "Numbers"
 msgstr "Getallen"
 
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:66
 msgid "Options"
 msgstr "Opties"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:67
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:67
+#: apps/pootle_misc/checks.py:68
 msgid "Punctuation spacing"
 msgstr "Interpunctiespatiëring"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:69
 msgid "Pure punctuation"
 msgstr "Zuivere interpunctie"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:70
 msgid "Python brace placeholders"
 msgstr "Python-brace-plaatshouders"
 
-#: apps/pootle_misc/checks.py:70
+#: apps/pootle_misc/checks.py:71
 msgid "Number of sentences"
 msgstr "Aantal zinnen"
 
-#: apps/pootle_misc/checks.py:71
+#: apps/pootle_misc/checks.py:72
 msgid "Short"
 msgstr "Kort"
 
-#: apps/pootle_misc/checks.py:72
+#: apps/pootle_misc/checks.py:73
 msgid "Simple capitalization"
 msgstr "Eenvoudig hoofdlettergebruik"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Simple plural(s)"
 msgstr "Eenvoudig(e) meervoud(en)"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "Single quotes"
 msgstr "Enkele aanhalingstekens"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Starting capitalization"
 msgstr "Hoofdletters aan begin"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Starting punctuation"
 msgstr "Begin-interpunctie"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "Starting whitespace"
 msgstr "Witruimte aan begin"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:79
+#: apps/pootle_misc/checks.py:80
 msgid "Tabs"
 msgstr "Tabs"
 
-#: apps/pootle_misc/checks.py:80
+#: apps/pootle_misc/checks.py:81
 msgid "Unchanged"
 msgstr "Ongewijzigd"
 
-#: apps/pootle_misc/checks.py:81 apps/pootle_misc/stats.py:27
+#: apps/pootle_misc/checks.py:82 apps/pootle_misc/stats.py:27
 #: apps/pootle_store/util.py:30 core/helpers.py:58
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Onvertaald"
 
-#: apps/pootle_misc/checks.py:82
+#: apps/pootle_misc/checks.py:83
 msgid "URLs"
 msgstr "URL's"
 
-#: apps/pootle_misc/checks.py:83
+#: apps/pootle_misc/checks.py:84
 msgid "Valid characters"
 msgstr "Geldige tekens"
 
-#: apps/pootle_misc/checks.py:84
+#: apps/pootle_misc/checks.py:85
 msgid "Placeholders"
 msgstr "Plaatshouders"
 
-#: apps/pootle_misc/checks.py:85
+#: apps/pootle_misc/checks.py:86
 msgid "Valid XML"
 msgstr "Geldige XML"
 
-#: apps/pootle_misc/checks.py:86
+#: apps/pootle_misc/checks.py:87
 msgid "XML tags"
 msgstr "XML-labels"
 
-#: apps/pootle_misc/checks.py:88
+#: apps/pootle_misc/checks.py:89
 msgid "Broken HTML Entities"
 msgstr "Ongeldige HTML-entiteiten"
 
-#: apps/pootle_misc/checks.py:89
+#: apps/pootle_misc/checks.py:90
 msgid "Java format"
 msgstr "Java-indeling"
 
-#: apps/pootle_misc/checks.py:90
+#: apps/pootle_misc/checks.py:91
 msgid "Template format"
 msgstr "Sjabloonindeling"
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:92
 msgid "Mustache placeholders"
 msgstr "Mustache-plaatshouders"
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:93
 msgid "Mustache placeholder pairs"
 msgstr "Mustache-plaatshouderparen"
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:94
 msgid "Mustache like placeholder pairs"
 msgstr "Mustache-achtige plaatshouderparen"
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:95
 msgid "C format placeholders"
 msgstr "Plaatshouders voor C-indeling"
 
-#: apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:96
 msgid "Non printable"
 msgstr "Niet afdrukbaar"
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:97
 msgid "Unbalanced tag braces"
 msgstr "Ongelijk aantal label-accolades"
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:98
 msgid "Changed attributes"
 msgstr "Gewijzigde kenmerken"
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:99
 msgid "Unescaped ampersands"
 msgstr "En-tekens zonder escape"
 
-#: apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:100
 msgid "Incorrectly escaped ampersands"
 msgstr "En-tekens met onjuiste escape"
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:101
 msgid "Whitespaces"
 msgstr "Spaties"
 
-#: apps/pootle_misc/checks.py:101
+#: apps/pootle_misc/checks.py:102
 msgid "Date format"
 msgstr "Datumnotatie"
 
-#: apps/pootle_misc/checks.py:102
+#: apps/pootle_misc/checks.py:103
 msgid "Uppercase placeholders"
 msgstr "Plaatshouders met hoofdletters"
 
-#: apps/pootle_misc/checks.py:103
+#: apps/pootle_misc/checks.py:104
 msgid "Percent sign placeholders"
 msgstr "Plaatshouders voor procenttekens"
 
-#: apps/pootle_misc/checks.py:104
+#: apps/pootle_misc/checks.py:105
 msgid "Percent sign closure placeholders"
 msgstr "Plaatshouders voor procentteken-afsluiting"
 
-#: apps/pootle_misc/checks.py:105
+#: apps/pootle_misc/checks.py:106
 msgid "$ placeholders"
 msgstr "$-plaatshouders"
 
-#: apps/pootle_misc/checks.py:106
+#: apps/pootle_misc/checks.py:107
 msgid "$ closure placeholders"
 msgstr "Plaatshouders voor $-afsluiting"
 
-#: apps/pootle_misc/checks.py:107
+#: apps/pootle_misc/checks.py:108
 msgid "Java-encoded unicode"
 msgstr "Java-gecodeerde unicode"
 
-#: apps/pootle_misc/checks.py:108
+#: apps/pootle_misc/checks.py:109
 msgid "Objective-C format"
 msgstr "Objective-C-indeling"
 
-#: apps/pootle_misc/checks.py:109
+#: apps/pootle_misc/checks.py:110
 msgid "Android format"
 msgstr "Android-indeling"
 
-#: apps/pootle_misc/checks.py:111
+#: apps/pootle_misc/checks.py:112
 msgid "Tags differ"
 msgstr "Labels verschillen"
 
-#: apps/pootle_misc/checks.py:112
+#: apps/pootle_misc/checks.py:113
 msgid "Curly braces"
 msgstr "Accolades"
 
-#: apps/pootle_misc/checks.py:113
+#: apps/pootle_misc/checks.py:114
 msgid "Potential unwanted placeholders"
 msgstr "Mogelijk ongewilde plaatshouders"
 
-#: apps/pootle_misc/checks.py:115
+#: apps/pootle_misc/checks.py:116
 msgid "Double quotes in tags"
 msgstr "Dubbele aanhalingstekens in labels"
 
-#: apps/pootle_misc/checks.py:116
+#: apps/pootle_misc/checks.py:117
 msgid "Percent brace placeholders"
 msgstr "Procent-haakje-plaatshouders"
 
@@ -778,16 +798,16 @@ msgstr "Status"
 msgid "Comment"
 msgstr "Opmerking"
 
-#: apps/pootle_statistics/models.py:317
+#: apps/pootle_statistics/models.py:351
 msgid "Added suggestion"
 msgstr "Toegevoegde suggestie"
 
-#: apps/pootle_statistics/models.py:318
+#: apps/pootle_statistics/models.py:352
 #, python-format
 msgid "Accepted suggestion from %s"
 msgstr "Geaccepteerde suggestie van %s"
 
-#: apps/pootle_statistics/models.py:319
+#: apps/pootle_statistics/models.py:353
 #, python-format
 msgid "Rejected suggestion from %s"
 msgstr "Geweigerde suggestie van %s"
@@ -887,7 +907,7 @@ msgstr "Geaccepteerd"
 msgid "Rejected"
 msgstr "Afgewezen"
 
-#: apps/pootle_store/models.py:1323
+#: apps/pootle_store/models.py:1343
 msgid "Path"
 msgstr "Pad"
 
@@ -1099,64 +1119,77 @@ msgstr ""
 "Gebruik dit om meer informatie of instructies te verschaffen. Toegestane "
 "opmaak: %s"
 
-#: checks.py:57
+#: checks.py:56
+msgid ""
+"There are user accounts with duplicate emails. This will not be allowed in "
+"Pootle 2.8."
+msgstr ""
+
+#: checks.py:58
+msgid ""
+"Try using 'pootle find_duplicate_emails', and then update user emails with "
+"'pootle update_user_email username email'. You might also want to consider "
+"using pootle merge_user or purge_user commands"
+msgstr ""
+
+#: checks.py:82
 msgid "Your version of Django is too old."
 msgstr "Uw versie van Django is te oud."
 
-#: checks.py:58
+#: checks.py:83
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "Probeer pip install --upgrade 'Django==%s'"
 
-#: checks.py:65
+#: checks.py:90
 msgid "Your version of lxml is too old."
 msgstr "Uw versie van lxml is te oud."
 
-#: checks.py:66
+#: checks.py:91
 msgid "Try pip install --upgrade lxml"
 msgstr "Probeer pip install --upgrade lxml"
 
-#: checks.py:72
+#: checks.py:97
 msgid "Your version of Translate Toolkit is too old."
 msgstr "Uw versie van Translate Toolkit is te oud."
 
-#: checks.py:73
+#: checks.py:98
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Probeer pip install --upgrade translate-toolkit"
 
-#: checks.py:92
+#: checks.py:117
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Kon geen verbinding maken met Redis (%s)"
 
-#: checks.py:93
+#: checks.py:118
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Zorg ervoor dat Redis actief is op %(host)s:%(port)s"
 
-#: checks.py:102
+#: checks.py:127
 msgid "Your version of Redis is too old."
 msgstr "Uw versie van Redis is te oud."
 
-#: checks.py:103
+#: checks.py:128
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr ""
 "Werk het Redis-server-pakket van uw systeem bij naar minstens versie %s"
 
-#: checks.py:113
+#: checks.py:138
 msgid "No RQ Worker running."
 msgstr "Er zijn geen RQ workers actief."
 
-#: checks.py:114
+#: checks.py:139
 msgid "Run new workers with manage.py rqworker"
 msgstr "Voer nieuwe workers uit met manage.py rqworker"
 
-#: checks.py:129
+#: checks.py:154
 msgid "Cache backend is not set to Redis."
 msgstr "Cache-backend is niet ingesteld op Redis."
 
-#: checks.py:130
+#: checks.py:155
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1165,35 +1198,35 @@ msgstr ""
 "Stel standaard cache-backend in op django_redis.cache.RedisCache\n"
 "Huidige instellingen: %r"
 
-#: checks.py:139
+#: checks.py:164
 msgid "Could not initiate a Redis cache connection"
 msgstr "Kon geen verbinding met Redis-cache tot stand brengen"
 
-#: checks.py:140
+#: checks.py:165
 msgid "Double-check your CACHES settings"
 msgstr "Controleer uw CACHES-instellingen"
 
-#: checks.py:146
+#: checks.py:171
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "DEBUGmodus staat aan. Doe dit niet in productie!"
 
-#: checks.py:147
+#: checks.py:172
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Stel DEBUG = False in in de Pootle-instellingen"
 
-#: checks.py:153
+#: checks.py:178
 msgid "The sqlite database backend is unsupported"
 msgstr "De sqlite-database-backend wordt niet ondersteund"
 
-#: checks.py:154
+#: checks.py:179
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
 msgstr "Stel uw standaard database-engine in op postgresql_psycopg2 of mysql"
 
-#: checks.py:160
+#: checks.py:185
 msgid "Not using cached_db as session engine"
 msgstr "Cached_db wordt niet als sessie-engine gebruikt"
 
-#: checks.py:161
+#: checks.py:186
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1202,11 +1235,11 @@ msgstr ""
 "Stel SESSION_ENGINE in op django.contrib.sessions.backend.cached_db\n"
 "Huidige instellingen: %r"
 
-#: checks.py:168
+#: checks.py:193
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL is niet ingesteld."
 
-#: checks.py:169
+#: checks.py:194
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1214,12 +1247,12 @@ msgstr ""
 "Stel POOTLE_CONTACT_EMAIL in om gebruikers contact te kunnen laten opnemen "
 "met beheerders via het Pootle-contactformulier."
 
-#: checks.py:177
+#: checks.py:202
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL gebruikt de volgende standaardinstelling %r."
 
-#: checks.py:179
+#: checks.py:204
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1227,11 +1260,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL is het adres dat berichten zal ontvangen die via het "
 "contactformulier zijn verzonden."
 
-#: checks.py:186
+#: checks.py:211
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL is niet ingesteld."
 
-#: checks.py:187 checks.py:197
+#: checks.py:212 checks.py:222
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1239,37 +1272,37 @@ msgstr ""
 "DEFAULT_FROM_EMAIL wordt in alle uitgaande e-mail van Pootle gebruikt.\n"
 "Vergeet niet de instellingen voor uw mailserver te controleren."
 
-#: checks.py:195
+#: checks.py:220
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL gebruikt de volgende standaardinstelling %r."
 
-#: checks.py:206
+#: checks.py:231
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER ontbreekt."
 
-#: checks.py:207
+#: checks.py:232
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Stel POOTLE_MARKUP_FILTER in."
 
-#: checks.py:212
+#: checks.py:237
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Ongeldige waarde in POOTLE_MARKUP_FILTER."
 
-#: checks.py:213
+#: checks.py:238
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Stel een geldige waarde in voor POOTLE_MARKUP_FILTER."
 
-#: checks.py:227
+#: checks.py:252
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Ongeldige opmaak in POOTLE_MARKUP_FILTER."
 
-#: checks.py:228
+#: checks.py:253
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Stel een geldige opmaak in voor POOTLE_MARKUP_FILTER."
 
 # that provides _what_? (it, i.e. the markup?)
-#: checks.py:233
+#: checks.py:258
 #, fuzzy, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1278,30 +1311,39 @@ msgstr ""
 "POOTLE_MARKUP_FILTER is ingesteld op '%s'-opmaak, maar het pakket dat dit "
 "levert kan niet worden gevonden."
 
-#: checks.py:235
+#: checks.py:260
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Installeer het pakket of wijzig POOTLE_MARKUP_FILTER."
 
-#: checks.py:259
+#: checks.py:284
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 "De standaardgebruiker 'admin' heeft nog een wachtwoord ingesteld op 'admin'."
 
-#: checks.py:261
+#: checks.py:286
 msgid "Remove the 'admin' user or change its password."
 msgstr "Verwijder de gebruiker 'admin' of wijzig het wachtwoord ervan."
 
-#: checks.py:276
+#: checks.py:301
 msgid "Database connection does not implement on_commit."
 msgstr "Databaseverbinding implementeert geen on_commit."
 
-#: checks.py:277
+#: checks.py:302
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
 "Stel de DATABASES['default']['ENGINE'] in om een backend van "
 "transaction_hooks.backends te gebruiken."
+
+#: checks.py:322
+#, fuzzy
+msgid "Email server is not available."
+msgstr "Redis-server is niet beschikbaar op %(host)s:%(port)s."
+
+#: checks.py:323
+msgid "Review your email settings and make sure your email server is working."
+msgstr ""
 
 #: core/browser.py:27
 msgid "Project"
@@ -1337,11 +1379,11 @@ msgstr "Terug naar taal"
 msgid "Back to parent folder"
 msgstr "Terug naar bovenliggende map"
 
-#: core/decorators.py:321
+#: core/decorators.py:322
 msgid "Insufficient rights to access this page."
 msgstr "Onvoldoende rechten voor toegang tot deze pagina."
 
-#: core/decorators.py:334 core/views.py:34
+#: core/decorators.py:335 core/views.py:34
 msgid "You do not have rights to administer Pootle."
 msgstr "U hebt geen rechten om Pootle te beheren."
 
@@ -1429,7 +1471,7 @@ msgstr "Aan de slag"
 msgid "License Terms"
 msgstr "Licentievoorwaarden"
 
-#: custom/templates/profiles/_tabs.html:4 templates/layout.html:111
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:112
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
 msgid "Settings"
 msgstr "Instellingen"
@@ -1480,7 +1522,7 @@ msgstr "Gebruiksvoorwaarden"
 msgid "Terms of Service"
 msgstr "Servicevoorwaarden"
 
-#: templates/about.html:7 templates/layout.html:167
+#: templates/about.html:7 templates/layout.html:168
 msgid "About"
 msgstr "Info"
 
@@ -1915,7 +1957,7 @@ msgstr "Nu vernieuwen"
 msgid "Congratulations! You have completed this task!"
 msgstr "Gefeliciteerd! U hebt deze taak voltooid!"
 
-#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:99
+#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:100
 msgid "Contact Us"
 msgstr "Contact"
 
@@ -2351,39 +2393,39 @@ msgstr ""
 "Hieronder kunt u de rechten voor deze taal toevoegen, bewerken en "
 "verwijderen."
 
-#: templates/layout.html:79
+#: templates/layout.html:80
 msgid "Pootle requires JavaScript"
 msgstr "Pootle vereist JavaScript"
 
-#: templates/layout.html:80
+#: templates/layout.html:81
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 "Schakel JavaScript in de voorkeuren van uw browser in en herlaad de pagina."
 
-#: templates/layout.html:89
+#: templates/layout.html:90
 msgid "skip to navigation"
 msgstr "naar navigatie"
 
-#: templates/layout.html:110
+#: templates/layout.html:111
 msgid "Public Profile"
 msgstr "Openbaar profiel"
 
-#: templates/layout.html:112 templates/user/stats.html:46
+#: templates/layout.html:113 templates/user/stats.html:46
 #: templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr "Statistieken"
 
 # again: person or action?
-#: templates/layout.html:114
+#: templates/layout.html:115
 msgid "Admin"
 msgstr "Beheerder"
 
-#: templates/layout.html:117
+#: templates/layout.html:118
 msgid "Sign out"
 msgstr "Afmelden"
 
-#: templates/layout.html:121
+#: templates/layout.html:122
 msgid "Sign In"
 msgstr "Aanmelden"
 
@@ -2781,9 +2823,6 @@ msgstr "Topmedewerkers deze maand"
 #~ msgstr ""
 #~ "Translate Toolkit versie %(installed)s is geïnstalleerd. Pootle vereist "
 #~ "minstens versie %(required)s."
-
-#~ msgid "Redis server is not available on %(host)s:%(port)s."
-#~ msgstr "Redis-server is niet beschikbaar op %(host)s:%(port)s."
 
 #~ msgid "%(num)d RQ worker running."
 #~ msgid_plural "%(num)d RQ workers running."
@@ -3940,9 +3979,6 @@ msgstr "Topmedewerkers deze maand"
 
 #~ msgid "Can view a translation project"
 #~ msgstr "Kan een vertaalproject bekijken"
-
-#~ msgid "Can overwrite translations on uploading files"
-#~ msgstr "Kan vertalingen overschrijven bij het uploaden van bestanden"
 
 #~ msgid "Can download archives of translation projects"
 #~ msgstr "Kan archieven van vertaalprojecten downloaden"

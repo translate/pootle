@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-07 16:55+0100\n"
+"POT-Creation-Date: 2015-09-22 10:48+0100\n"
 "PO-Revision-Date: 2015-06-22 18:31+0000\n"
 "Last-Translator: Jesper <jesper.hertel@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,12 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.5\n"
 "X-POOTLE-MTIME: 1434997881.000000\n"
+
+#: apps/accounts/adapter.py:64
+msgid ""
+"Some problem happened when tried to send the confirmation email. Please try "
+"again later."
+msgstr ""
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -130,6 +136,11 @@ msgstr ""
 msgid "This email address already exists."
 msgstr "Denne term findes allerede i denne fil."
 
+#: apps/accounts/views.py:37
+msgid ""
+"An error occurred logging you in. Please contact your system administrator"
+msgstr ""
+
 #: apps/contact/forms.py:25
 msgid "Summary"
 msgstr "Opsummering"
@@ -181,25 +192,30 @@ msgstr "Overfør oversættelsefiler eller arkiver i .zip-format"
 msgid "Upload translations"
 msgstr "Eksportér oversættelser"
 
-#: apps/import_export/utils.py:24
+#: apps/import_export/utils.py:29
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 
-#: apps/import_export/utils.py:30
+#: apps/import_export/utils.py:35
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr ""
 
-#: apps/import_export/utils.py:35
+#: apps/import_export/utils.py:40
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
 
-#: apps/import_export/utils.py:43
+#: apps/import_export/utils.py:48
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr ""
+
+#: apps/import_export/utils.py:57
+#, fuzzy
+msgid "There was an error uploading your file"
+msgstr "Kan overskrive oversættelser ved indsendelse af filer"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -346,7 +362,7 @@ msgstr "Udpakning"
 msgid "Other"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:110
+#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:111
 msgid "Accelerators"
 msgstr "Genvejstaster"
 
@@ -371,272 +387,276 @@ msgstr "Compendium-konflikt"
 msgid "Translator credits"
 msgstr "Bidragsydere til oversættelsen"
 
-#: apps/pootle_misc/checks.py:47 apps/pootle_misc/checks.py:114
+#: apps/pootle_misc/checks.py:47
+msgid "Dialog sizes"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
 msgstr "Dobbelte anførselstegn"
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:49
 msgid "Double spaces"
 msgstr "Dobbelte mellemrum"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:50
 msgid "Repeated word"
 msgstr "Gentagne ord"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:51
 msgid "E-mail"
 msgstr "E-post"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:52
 msgid "Ending punctuation"
 msgstr "Afsluttende punkttegn"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:53
 msgid "Ending whitespace"
 msgstr "Afsluttende blanktegn"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:54
 msgid "Escapes"
 msgstr "Escape-tegn"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:55
 msgid "File paths"
 msgstr "Filstier"
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:56
 msgid "Functions"
 msgstr "Funktioner"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:57
 msgid "GConf values"
 msgstr "GConf-værdier"
 
-#: apps/pootle_misc/checks.py:57 apps/pootle_misc/stats.py:26
+#: apps/pootle_misc/checks.py:58 apps/pootle_misc/stats.py:26
 msgid "Fuzzy"
 msgstr "Uklar"
 
-#: apps/pootle_misc/checks.py:58
+#: apps/pootle_misc/checks.py:59
 msgid "Old KDE comment"
 msgstr "Gammel KDE-kommentar"
 
-#: apps/pootle_misc/checks.py:59
+#: apps/pootle_misc/checks.py:60
 msgid "Long"
 msgstr "Lang"
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:61
 msgid "Must translate words"
 msgstr "Ord skal oversættes"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:62
 msgid "Newlines"
 msgstr "Lineskift"
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:63
 msgid "Number of plurals"
 msgstr "Antallet af flertalsformer"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:64
 msgid "Don't translate words"
 msgstr "Ord må ikke oversættes"
 
-#: apps/pootle_misc/checks.py:64
+#: apps/pootle_misc/checks.py:65
 msgid "Numbers"
 msgstr "Tal"
 
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:66
 msgid "Options"
 msgstr "Indstillinger"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:67
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:67
+#: apps/pootle_misc/checks.py:68
 msgid "Punctuation spacing"
 msgstr "Mellemrum omkring tegnsætning"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:69
 msgid "Pure punctuation"
 msgstr "Ren tegnsætning"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:70
 #, fuzzy
 msgid "Python brace placeholders"
 msgstr "Pladsholdere"
 
-#: apps/pootle_misc/checks.py:70
+#: apps/pootle_misc/checks.py:71
 msgid "Number of sentences"
 msgstr "Antallet af sætninger"
 
-#: apps/pootle_misc/checks.py:71
+#: apps/pootle_misc/checks.py:72
 msgid "Short"
 msgstr "Kort"
 
-#: apps/pootle_misc/checks.py:72
+#: apps/pootle_misc/checks.py:73
 msgid "Simple capitalization"
 msgstr "Enkel anvendelse af store/små bogstaver"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Simple plural(s)"
 msgstr "Simpel/simple flertalsform(er)"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "Single quotes"
 msgstr "Enkelt-anførselstegn"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Starting capitalization"
 msgstr "Indledende stort bogstav"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Starting punctuation"
 msgstr "Indledende tegnsætning"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "Starting whitespace"
 msgstr "Indledende blanktegn"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:79
+#: apps/pootle_misc/checks.py:80
 msgid "Tabs"
 msgstr "Tabulatortegn"
 
-#: apps/pootle_misc/checks.py:80
+#: apps/pootle_misc/checks.py:81
 msgid "Unchanged"
 msgstr "Uændret"
 
-#: apps/pootle_misc/checks.py:81 apps/pootle_misc/stats.py:27
+#: apps/pootle_misc/checks.py:82 apps/pootle_misc/stats.py:27
 #: apps/pootle_store/util.py:30 core/helpers.py:58
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Ikke oversat"
 
-#: apps/pootle_misc/checks.py:82
+#: apps/pootle_misc/checks.py:83
 msgid "URLs"
 msgstr "URL'er"
 
-#: apps/pootle_misc/checks.py:83
+#: apps/pootle_misc/checks.py:84
 msgid "Valid characters"
 msgstr "Gyldige tegn"
 
-#: apps/pootle_misc/checks.py:84
+#: apps/pootle_misc/checks.py:85
 msgid "Placeholders"
 msgstr "Pladsholdere"
 
-#: apps/pootle_misc/checks.py:85
+#: apps/pootle_misc/checks.py:86
 msgid "Valid XML"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:86
+#: apps/pootle_misc/checks.py:87
 msgid "XML tags"
 msgstr "XML-mærker"
 
-#: apps/pootle_misc/checks.py:88
+#: apps/pootle_misc/checks.py:89
 msgid "Broken HTML Entities"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:89
+#: apps/pootle_misc/checks.py:90
 msgid "Java format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:90
+#: apps/pootle_misc/checks.py:91
 msgid "Template format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:92
 msgid "Mustache placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:93
 msgid "Mustache placeholder pairs"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:94
 msgid "Mustache like placeholder pairs"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:95
 msgid "C format placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:96
 msgid "Non printable"
 msgstr "Kan ikke skrives"
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:97
 msgid "Unbalanced tag braces"
 msgstr "Ubalancerede paranteser omkring mærke (tag)"
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:98
 msgid "Changed attributes"
 msgstr "Ændrede attributter"
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:99
 msgid "Unescaped ampersands"
 msgstr "&-tegn (ampersander), der ikke er escapet"
 
-#: apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:100
 msgid "Incorrectly escaped ampersands"
 msgstr "&-tegn (ampersander), der ikke er korrekt escapet"
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:101
 msgid "Whitespaces"
 msgstr "Blanktegn"
 
-#: apps/pootle_misc/checks.py:101
+#: apps/pootle_misc/checks.py:102
 msgid "Date format"
 msgstr "Datoformat"
 
-#: apps/pootle_misc/checks.py:102
+#: apps/pootle_misc/checks.py:103
 msgid "Uppercase placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:103
+#: apps/pootle_misc/checks.py:104
 msgid "Percent sign placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:104
+#: apps/pootle_misc/checks.py:105
 msgid "Percent sign closure placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:105
+#: apps/pootle_misc/checks.py:106
 #, fuzzy
 msgid "$ placeholders"
 msgstr "Pladsholdere"
 
-#: apps/pootle_misc/checks.py:106
+#: apps/pootle_misc/checks.py:107
 msgid "$ closure placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:107
+#: apps/pootle_misc/checks.py:108
 msgid "Java-encoded unicode"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:108
+#: apps/pootle_misc/checks.py:109
 msgid "Objective-C format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:109
+#: apps/pootle_misc/checks.py:110
 msgid "Android format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:111
+#: apps/pootle_misc/checks.py:112
 msgid "Tags differ"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:112
+#: apps/pootle_misc/checks.py:113
 msgid "Curly braces"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:113
+#: apps/pootle_misc/checks.py:114
 msgid "Potential unwanted placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:115
+#: apps/pootle_misc/checks.py:116
 msgid "Double quotes in tags"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:116
+#: apps/pootle_misc/checks.py:117
 #, fuzzy
 msgid "Percent brace placeholders"
 msgstr "Pladsholdere"
@@ -778,17 +798,17 @@ msgstr "Tilstand"
 msgid "Comment"
 msgstr "Kommentar"
 
-#: apps/pootle_statistics/models.py:317
+#: apps/pootle_statistics/models.py:351
 #, fuzzy
 msgid "Added suggestion"
 msgstr "Godkend forslag"
 
-#: apps/pootle_statistics/models.py:318
+#: apps/pootle_statistics/models.py:352
 #, fuzzy, python-format
 msgid "Accepted suggestion from %s"
 msgstr "Godkend forslag"
 
-#: apps/pootle_statistics/models.py:319
+#: apps/pootle_statistics/models.py:353
 #, fuzzy, python-format
 msgid "Rejected suggestion from %s"
 msgstr "Afvis forslag"
@@ -892,7 +912,7 @@ msgstr "Godkendt"
 msgid "Rejected"
 msgstr "Afvist"
 
-#: apps/pootle_store/models.py:1323
+#: apps/pootle_store/models.py:1343
 msgid "Path"
 msgstr "Sti"
 
@@ -1104,194 +1124,215 @@ msgstr ""
 "En beskrivelse af dette mål. En beskrivelse er nyttig til at give yderligere "
 "information eller instruktioner. Tilladt opmærkning: %s"
 
-#: checks.py:57
-msgid "Your version of Django is too old."
+#: checks.py:56
+msgid ""
+"There are user accounts with duplicate emails. This will not be allowed in "
+"Pootle 2.8."
 msgstr ""
 
 #: checks.py:58
+msgid ""
+"Try using 'pootle find_duplicate_emails', and then update user emails with "
+"'pootle update_user_email username email'. You might also want to consider "
+"using pootle merge_user or purge_user commands"
+msgstr ""
+
+#: checks.py:82
+msgid "Your version of Django is too old."
+msgstr ""
+
+#: checks.py:83
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr ""
 
-#: checks.py:65
+#: checks.py:90
 msgid "Your version of lxml is too old."
 msgstr ""
 
-#: checks.py:66
+#: checks.py:91
 msgid "Try pip install --upgrade lxml"
 msgstr ""
 
-#: checks.py:72
+#: checks.py:97
 msgid "Your version of Translate Toolkit is too old."
 msgstr ""
 
-#: checks.py:73
+#: checks.py:98
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr ""
 
-#: checks.py:92
+#: checks.py:117
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr ""
 
-#: checks.py:93
+#: checks.py:118
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr ""
 
-#: checks.py:102
+#: checks.py:127
 #, fuzzy
 msgid "Your version of Redis is too old."
 msgstr "Django version %s er installeret."
 
-#: checks.py:103
+#: checks.py:128
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr ""
 
-#: checks.py:113
+#: checks.py:138
 msgid "No RQ Worker running."
 msgstr ""
 
-#: checks.py:114
+#: checks.py:139
 msgid "Run new workers with manage.py rqworker"
 msgstr ""
 
-#: checks.py:129
+#: checks.py:154
 msgid "Cache backend is not set to Redis."
 msgstr ""
 
-#: checks.py:130
+#: checks.py:155
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
 
-#: checks.py:139
+#: checks.py:164
 msgid "Could not initiate a Redis cache connection"
 msgstr ""
 
-#: checks.py:140
+#: checks.py:165
 msgid "Double-check your CACHES settings"
 msgstr ""
 
-#: checks.py:146
+#: checks.py:171
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr ""
 
-#: checks.py:147
+#: checks.py:172
 msgid "Set DEBUG = False in Pootle settings"
 msgstr ""
 
-#: checks.py:153
+#: checks.py:178
 msgid "The sqlite database backend is unsupported"
 msgstr ""
 
-#: checks.py:154
+#: checks.py:179
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
 msgstr ""
 
-#: checks.py:160
+#: checks.py:185
 msgid "Not using cached_db as session engine"
 msgstr ""
 
-#: checks.py:161
+#: checks.py:186
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
 
-#: checks.py:168
+#: checks.py:193
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr ""
 
-#: checks.py:169
+#: checks.py:194
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
 
-#: checks.py:177
+#: checks.py:202
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: checks.py:179
+#: checks.py:204
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
 
-#: checks.py:186
+#: checks.py:211
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr ""
 
-#: checks.py:187 checks.py:197
+#: checks.py:212 checks.py:222
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
 
-#: checks.py:195
+#: checks.py:220
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: checks.py:206
+#: checks.py:231
 #, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "MARKUP_FILTER mangler. Bruger i stedet HTML."
 
-#: checks.py:207
+#: checks.py:232
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:212
+#: checks.py:237
 #, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Ugyldig værdi '%s' i MARKUP_FILTER. Bruger i stedet HTML."
 
-#: checks.py:213
+#: checks.py:238
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:227
+#: checks.py:252
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:228
+#: checks.py:253
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:233
+#: checks.py:258
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
 
-#: checks.py:235
+#: checks.py:260
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:259
+#: checks.py:284
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 
-#: checks.py:261
+#: checks.py:286
 msgid "Remove the 'admin' user or change its password."
 msgstr ""
 
-#: checks.py:276
+#: checks.py:301
 msgid "Database connection does not implement on_commit."
 msgstr ""
 
-#: checks.py:277
+#: checks.py:302
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
+msgstr ""
+
+#: checks.py:322
+msgid "Email server is not available."
+msgstr ""
+
+#: checks.py:323
+msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 
 #: core/browser.py:27
@@ -1330,11 +1371,11 @@ msgstr "Tilbage til forside"
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:321
+#: core/decorators.py:322
 msgid "Insufficient rights to access this page."
 msgstr "Utilstrækkelige rettigheder til at tilgå denne side."
 
-#: core/decorators.py:334 core/views.py:34
+#: core/decorators.py:335 core/views.py:34
 msgid "You do not have rights to administer Pootle."
 msgstr "Du har ikke rettigheder til at administrere Pootle."
 
@@ -1424,7 +1465,7 @@ msgstr ""
 msgid "License Terms"
 msgstr "Licens"
 
-#: custom/templates/profiles/_tabs.html:4 templates/layout.html:111
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:112
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
 msgid "Settings"
 msgstr "Indstillinger"
@@ -1474,7 +1515,7 @@ msgstr "Brugsbetingelser"
 msgid "Terms of Service"
 msgstr "Betingelser for tjenesten"
 
-#: templates/about.html:7 templates/layout.html:167
+#: templates/about.html:7 templates/layout.html:168
 msgid "About"
 msgstr "Om"
 
@@ -1909,7 +1950,7 @@ msgstr ""
 msgid "Congratulations! You have completed this task!"
 msgstr ""
 
-#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:99
+#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:100
 msgid "Contact Us"
 msgstr "Kontakt os"
 
@@ -2358,38 +2399,38 @@ msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
 "Herunder kan du tilføje, redigere og slette tilladelser for dette sprog."
 
-#: templates/layout.html:79
+#: templates/layout.html:80
 msgid "Pootle requires JavaScript"
 msgstr ""
 
-#: templates/layout.html:80
+#: templates/layout.html:81
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 "Slå venligst JavaScript til i din browsers indstillinger og genindlæs siden."
 
-#: templates/layout.html:89
+#: templates/layout.html:90
 msgid "skip to navigation"
 msgstr "spring til navigation"
 
-#: templates/layout.html:110
+#: templates/layout.html:111
 msgid "Public Profile"
 msgstr ""
 
-#: templates/layout.html:112 templates/user/stats.html:46
+#: templates/layout.html:113 templates/user/stats.html:46
 #: templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr ""
 
-#: templates/layout.html:114
+#: templates/layout.html:115
 msgid "Admin"
 msgstr "Admin"
 
-#: templates/layout.html:117
+#: templates/layout.html:118
 msgid "Sign out"
 msgstr ""
 
-#: templates/layout.html:121
+#: templates/layout.html:122
 msgid "Sign In"
 msgstr ""
 
@@ -3804,9 +3845,6 @@ msgstr ""
 
 #~ msgid "Can view a translation project"
 #~ msgstr "Kan se et oversættelsesprojekt"
-
-#~ msgid "Can overwrite translations on uploading files"
-#~ msgstr "Kan overskrive oversættelser ved indsendelse af filer"
 
 #~ msgid "Can download archives of translation projects"
 #~ msgstr "Kan hente arkiver af oversættelsesprojekter"
