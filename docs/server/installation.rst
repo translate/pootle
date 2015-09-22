@@ -188,7 +188,7 @@ database. You will need to have an :ref:`RQ worker running
 
 This command will dispatch jobs to the RQ worker and may take some time.
 
-If you wish to run ``refresh_stats`` in the foreground without using the RQ
+If you wish to run :djadmin:`refresh_stats` in the foreground without using the RQ
 worker you can use the :option:`--no-rq` option.
 
 

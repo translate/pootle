@@ -73,8 +73,8 @@ you can specify params to set up your database, e.g.:
   (env) $ pootle init --db mysql --db-name pootledb --db-user pootle
 
 This will create a configuration file to connect to a MySQL database named
-``pootledb`` hosted on localhost as the user ``pootle``. Please see the init
-command for all of the available options.
+``pootledb`` hosted on localhost as the user ``pootle``. Please see the
+:djadmin:`init` command for all of the available options.
 
 You will most likely want to edit your Pootle configuration (default location:
 :file:`~/.pootle/pootle.conf`) to set your password.

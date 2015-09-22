@@ -120,7 +120,7 @@ Before you can rebuild your static assets with any CSS or JavaScript
 customisations, you will need to install some Node.js libraries.
 
 Before proceeding please make sure you have
-:ref:`node and npm installed in your system <requirements#customize-static>`.
+:ref:`Node.js and npm installed in your system <requirements#customize-static>`.
 
 .. code-block:: bash
 
