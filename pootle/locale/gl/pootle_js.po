@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 10:49+0100\n"
-"PO-Revision-Date: 2015-09-07 16:37+0000\n"
+"PO-Revision-Date: 2015-09-22 14:50+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441643871.000000\n"
+"X-POOTLE-MTIME: 1442933448.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -116,7 +116,6 @@ msgid "Loading..."
 msgstr "Cargando…"
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
@@ -389,7 +388,6 @@ msgstr ""
 "conta para vostede."
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
-#, fuzzy
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -463,7 +461,6 @@ msgid "Unknown error"
 msgstr "Erro descoñecido"
 
 #: static/js/editor/app.js:1066
-#, fuzzy
 msgid "This string no longer exists."
 msgstr "Esta cadea xa non existe."
 

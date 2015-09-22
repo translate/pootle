@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 10:48+0100\n"
-"PO-Revision-Date: 2015-09-07 16:35+0000\n"
+"PO-Revision-Date: 2015-09-22 14:55+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,13 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441643759.000000\n"
+"X-POOTLE-MTIME: 1442933748.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Produciuse algún erro ao intentar enviar a mensaxe de confirmación por "
+"correo-e. Probe de novo máis tarde."
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -140,6 +142,8 @@ msgstr "Este enderezo de correo electrónico xa existe."
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
+"Produciuse un erro ao iniciar a súa sesión. Contacte co administrador do "
+"sistema."
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -211,9 +215,8 @@ msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Non foi posíbel crear '%s'. Falta o proxecto ou o idioma? (%s)"
 
 #: apps/import_export/utils.py:57
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "Pode sobreescribir traducións ao cargar ficheiros"
+msgstr "Produciuse un erro ao enviar o ficheiro"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -390,7 +393,7 @@ msgstr "Créditos de tradución"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Dialog sizes"
-msgstr ""
+msgstr "Tamaño dos diálogos"
 
 #: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
@@ -1121,6 +1124,8 @@ msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
+"Hai contas de usuario con correos-e duplicados. Isto non se aceptará en "
+"Pootle 2.8."
 
 #: checks.py:58
 msgid ""
@@ -1337,11 +1342,13 @@ msgstr ""
 
 #: checks.py:322
 msgid "Email server is not available."
-msgstr ""
+msgstr "O servidor de correo-e non está dispoñíbel."
 
 #: checks.py:323
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
+"Revise a configuración de correo-e e asegúrese de que o servidor de correo-e "
+"está funcionando."
 
 #: core/browser.py:27
 msgid "Project"
@@ -2519,7 +2526,7 @@ msgstr "Ficheiro"
 #: templates/translation_projects/terminology/stores.html:28
 msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
-"Unha vez que cargue os ficheiros poderá engadir, editar e eliminar termos."
+"Unha vez que envíe os ficheiros poderá engadir, editar e eliminar termos."
 
 #: templates/user/profile.html:13
 msgid "You can set or change your avatar image at www.gravatar.com"
