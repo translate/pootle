@@ -22,7 +22,6 @@ MSGID_BUGS_TO="https://github.com/translate/pootle/issues/new"
 
 cd $SRC_DIR
 
-
 # Common folders to ignore when extracting
 ignore="\
 	--ignore assets \
@@ -40,9 +39,11 @@ django-admin.py makemessages -v $VERBOSITY $ignore --ignore static/js -e py,txt,
 # JavaScript extraction
 
 # makemessages is rubbish at this so use xgettext directly
-xgettext --output=$DJANGO_JS_POT --language=JavaScript --from-code=utf-8 $(find static/js -name "*.js" | \
-    egrep -v "(node_modules|\.bundle\.js)")
+# Until xgettext properly supports JavaScript extraction we use Python, but
+# first we extract using JavaScript just to get the ones that do actually work.
+find static/js -name "*.js" |  egrep -v "(node_modules|\.bundle\.js)" | xargs xgettext --output=$DJANGO_JS_POT --language=JavaScript --from-code=utf-8
 sed -i"" -e "s/charset=CHARSET/charset=UTF-8/" $DJANGO_JS_POT
+find static/js -name "*.js" |  egrep -v "(node_modules|\.bundle\.js)" | xargs xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8
 
 # For .jsx we use Python so that variables are at least marked.
 xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 $(find static/js -name "*.jsx")
