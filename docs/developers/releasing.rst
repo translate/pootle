@@ -442,6 +442,8 @@ version as apposed to the latest version.
 
 .. FIXME we should do this with a config variable to be honest!
 
+Deactivate documentation that is no longer applicable.
+
 
 Publish on PyPI
 ---------------
