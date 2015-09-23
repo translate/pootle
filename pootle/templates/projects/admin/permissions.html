@@ -1,6 +1,6 @@
 {% extends "projects/admin/base.html" %}
 
-{% load i18n %}
+{% load i18n assets %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -15,4 +15,15 @@
 
   {% include "admin/_generic_formset.html" %}
 </div>
+{% endblock %}
+
+{% block scripts_extra %}
+{% assets 'js_admin_general_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+<script type="text/javascript">
+  $(function () {
+    PTL.commonAdmin.init({page: 'permissions'});
+  });
+</script>
 {% endblock %}

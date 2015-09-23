@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-{% load i18n locale %}
+{% load i18n locale assets %}
 
 {% block section_body %}
 <div id="serverstats" class="module first" lang="{{ LANGUAGE_CODE }}">
@@ -76,4 +76,15 @@
     </ul>
   </div>
 </div>
+{% endblock %}
+
+{% block scripts_extra %}
+{% assets 'js_admin_general_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+<script type="text/javascript">
+  $(function () {
+    PTL.commonAdmin.init({page: 'dashboard'});
+  });
+</script>
 {% endblock %}

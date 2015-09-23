@@ -1,6 +1,6 @@
 {% extends "translation_projects/admin/base.html" %}
 
-{% load i18n %}
+{% load i18n assets %}
 
 {% block title %}{% trans "Permissions" %} | {{ block.super }}{% endblock %}
 
@@ -12,4 +12,16 @@
   </p>
   {% include "admin/_generic_formset.html" %}
 </div>
+{% endblock %}
+
+{% block scripts_extra %}
+{{ block.super }}
+{% assets 'js_admin_general_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+<script type="text/javascript">
+  $(function () {
+    PTL.commonAdmin.init({page: 'permissions'});
+  });
+</script>
 {% endblock %}

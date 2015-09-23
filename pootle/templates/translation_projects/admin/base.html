@@ -18,10 +18,3 @@
   {% block section_body %}{% endblock %}
 </div>
 {% endblock %}
-
-{% block scripts_extra %}
-{{ block.super }}
-{% assets 'js_admin_general_app' %}
-<script type="text/javascript" src="{{ ASSET_URL }}"></script>
-{% endassets %}
-{% endblock %}

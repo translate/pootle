@@ -6,86 +6,21 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
+import dashboard from './dashboard';
+import permissions from './permissions';
 
-var $ = require('jquery');
-
-require('jquery-utils');
+window.PTL = window.PTL || {};
 
 
-/* Sliding table within admin dashboard */
-var slideTable = function (event) {
-  event.preventDefault();
-  var node = $("#" + $(event.target).data('target'));
+PTL.commonAdmin = {
 
-  $.ajax({
-    url: l('/admin/more-stats/'),
-    dataType: 'json',
-    success: function (data) {
-      var newstats = '';
-      $(data).each(function () {
-        newstats += '<tr><th scope="row">' + this[0] + '</th>'
-                    + '<td class="stats-number">' + this[1] + '</td></tr>';
-      });
-      node.append(newstats);
-      node.slideDown("fast");
-      node.next("tbody").remove();
-    },
-    beforeSend: function () {
-      $(document).off("click", ".slide", slideTable);
-      node.spin();
-    },
-    complete: function () {
-      node.spin(false);
-    },
-    error: function () {
-      $(document).on("click", ".slide", slideTable);
+  init(opts) {
+    switch (opts.page) {
+      case 'dashboard':
+        dashboard.init();
+      case 'permissions':
+        permissions.init();
     }
-  });
-};
-
-/* Sets background color to table rows when checking delete selects */
-var setDeleteBg = function (e) {
-  $(this).parents("tr").toggleClass("delete-selected",
-                                    $(e.target).is(":checked"));
-};
-
-
-/* Sets background color to table rows when checking standard selects */
-var setSelectedBg = function (e) {
-  if (!$(this).parent().siblings("td[class!=DELETE]")
-                       .find("input[type=checkbox][checked]").length) {
-    $(this).parents("tr").toggleClass("other-selected",
-                                      $(e.target).is(":checked"));
-  }
-};
-
-
-
-/* Selects all checkboxes */
-var selectAll = function (e) {
-  var className = e.target.id.split('-').reverse()[0];
-  $("td." + className + " input").prop("checked",
-                                       $(e.target).is(":checked"));
-  $("td." + className + " input").change();
-};
-
-
-var commonAdmin = {
-
-  init: function () {
-    $(document).on('click', '.slide', slideTable);
-
-    $(document).on('change', 'td.DELETE input[type=checkbox]', setDeleteBg);
-    $(document).on('change', 'td[class!=DELETE] input[type=checkbox]',
-                   setSelectedBg);
-
-    $(document).on('click', 'th input', selectAll);
-  }
+  },
 
 };
-
-
-$(function () {
-  commonAdmin.init();
-});
