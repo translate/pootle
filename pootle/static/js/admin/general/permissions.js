@@ -30,9 +30,8 @@ function setSelectedBg(e) {
 /* Selects all checkboxes */
 function selectAll(e) {
   var className = e.target.id.split('-').reverse()[0];
-  $('td.' + className + ' input').prop('checked',
-                                       $(e.target).is(':checked'));
-  $('td.' + className + ' input').change();
+  $(`td.${className} input`).prop('checked', $(e.target).is(':checked'));
+  $(`td.${className} input`).change();
 };
 
 
