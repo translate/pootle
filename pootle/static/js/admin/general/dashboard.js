@@ -13,7 +13,7 @@ import 'jquery-utils';
 /* Sliding table within admin dashboard */
 function slideTable(event) {
   event.preventDefault();
-  var node = $('#' + $(event.target).data('target'));
+  const node = $('.js-server-extra-stats');
 
   $.ajax({
     url: l('/admin/more-stats/'),
