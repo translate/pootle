@@ -284,7 +284,19 @@ Translation environment configuration settings.
 .. versionadded:: 2.7
 
 ``POOTLE_TM_SERVER``
-  Default: Set to ``http://localhost:9200/translations``
+  Default:
+
+  .. code-block:: python
+
+    {
+        'default': {
+            'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
+            'HOST': 'localhost',
+            'PORT': 9200,
+            'INDEX_NAME': 'translations',
+            'MIN_SCORE': 'AUTO',
+        },
+    }
 
   This is configured to access a standard Elasticsearch setup.  Change the
   settings for any non-standard setup.  Change ``HOST`` and ``PORT`` settings
