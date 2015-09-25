@@ -533,7 +533,7 @@ Let people know that there is a new version:
 
 #. Email important users
 #. Tweet about it
-#. Update `Pootle's Wikipedia page <http://en.wikipedia.org/wiki/Pootle>`_
+#. Update `Pootle's Wikipedia page <https://en.wikipedia.org/wiki/Pootle>`_
 
 
 Post-Releasing Tasks
