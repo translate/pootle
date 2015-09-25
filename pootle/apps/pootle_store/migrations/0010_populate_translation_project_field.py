@@ -10,8 +10,15 @@ class Migration(DataMigration):
         broken_suggestions = orm['pootle_store.Suggestion'].objects.filter(translation_project__isnull=True)
 
         for bs in broken_suggestions:
-            bs.translation_project = bs.unit.store.translation_project
-            bs.save()
+            try:
+                unit = getattr(bs, "unit", None)
+            except orm['pootle_store.Unit'].DoesNotExist:
+                unit = None
+            if unit is None:
+                bs.delete()
+            else:
+                bs.translation_project = unit.store.translation_project
+                bs.save()
 
     def backwards(self, orm):
         pass
