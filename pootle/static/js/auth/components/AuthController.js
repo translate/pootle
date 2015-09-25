@@ -9,7 +9,6 @@
 'use strict';
 
 import React from 'react';
-import FluxComponent from 'flummox/component';
 
 import AccountActivation from './AccountActivation';
 import AccountInactive from './AccountInactive';
