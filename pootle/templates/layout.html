@@ -28,6 +28,7 @@
     PTL.settings = {
       CONTACT_ENABLED: {{ settings.POOTLE_CONTACT_ENABLED|yesno:'true, false' }},
       SIGNUP_ENABLED: {{ settings.POOTLE_SIGNUP_ENABLED|yesno:'true, false' }},
+      MARKUP_FILTER: '{{ settings.POOTLE_MARKUP_FILTER }}',
       SOCIAL_AUTH_PROVIDERS: {{ SOCIAL_AUTH_PROVIDERS|safe }},
     };
     </script>
