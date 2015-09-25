@@ -14,7 +14,7 @@ from ..utils.html import rewrite_links
 
 
 __all__ = (
-    'get_markup_filter_display_name',
+    'get_markup_filter_name', 'get_markup_filter_display_name',
     'get_markup_filter', 'apply_markup_filter',
 )
 
@@ -49,9 +49,15 @@ def rewrite_internal_link(link):
     return url
 
 
+def get_markup_filter_name():
+    """Returns the current markup filter's name."""
+    name, args = get_markup_filter()
+    return 'html' if name is None else name
+
+
 def get_markup_filter_display_name():
     """Returns a nice version for the current markup filter's name."""
-    name, args = get_markup_filter()
+    name = get_markup_filter_name()
     return {
         'textile': u'Textile',
         'markdown': u'Markdown',
