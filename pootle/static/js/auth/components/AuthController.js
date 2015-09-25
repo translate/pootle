@@ -43,7 +43,6 @@ let AuthController = React.createClass({
     return {
       initialAction: null,
       initialActionData: {},
-      initialScreen: 'signIn',
       tokenFailed: false,
     };
   },
