@@ -16,7 +16,7 @@ from django.core.urlresolvers import reverse
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.markup import get_markup_filter_display_name, MarkupField
 from pootle.core.mixins import DirtyFieldsMixin
 
 from .managers import PageManager
@@ -42,7 +42,7 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
         # Translators: Content that will be used to display this static page
         _("Display Content"),
         blank=True,
-        help_text=_('Allowed markup: %s', get_markup_filter_name()),
+        help_text=_('Allowed markup: %s', get_markup_filter_display_name()),
     )
     url = models.URLField(
         _("Redirect to URL"),

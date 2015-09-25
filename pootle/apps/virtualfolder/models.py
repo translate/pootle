@@ -14,7 +14,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.markup import get_markup_filter_name, MarkupField
+from pootle.core.markup import get_markup_filter_display_name, MarkupField
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.mixins.treeitem import NoCachedStats
 from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
@@ -58,7 +58,7 @@ class VirtualFolder(models.Model):
         _('Description'),
         blank=True,
         help_text=_('Use this to provide more information or instructions. '
-                    'Allowed markup: %s', get_markup_filter_name()),
+                    'Allowed markup: %s', get_markup_filter_display_name()),
     )
     units = models.ManyToManyField(
         Unit,
