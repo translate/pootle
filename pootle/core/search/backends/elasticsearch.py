@@ -25,6 +25,9 @@ class ElasticSearchBackend(SearchBackend):
         super(ElasticSearchBackend, self).__init__(config_name)
         self._es = self._get_es_server()
         self._create_index_if_missing()
+        if self._es is not None:
+            self.weight = min(max(self._settings.get('WEIGHT', self.weight),
+                                  0.0), 1.0)
 
     def _server_setup_and_alive(self):
         if self._es is None:
@@ -86,6 +89,7 @@ class ElasticSearchBackend(SearchBackend):
                         'username': hit['_source']['username'],
                         'fullname': hit['_source']['fullname'],
                         'email_md5': hit['_source']['email_md5'],
+                        'score': hit['_score'] * self.weight,
                     })
                 else:
                     counter[translation_pair] += 1

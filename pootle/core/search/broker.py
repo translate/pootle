@@ -59,8 +59,14 @@ class SearchBroker(SearchBackend):
         for item in results:
             item['count'] = counter[item['source']+item['target']]
 
+        # Results are in the order of the TM servers, so they must be sorted by
+        # score so the better matches are presented to the user.
+        results = sorted(results, reverse=True,
+                         key=lambda item: item['score'])
+
         return results
 
     def update(self, language, obj):
         for server in self._servers:
-            self._servers[server].update(language, obj)
+            if self._servers[server].is_auto_updatable:
+                self._servers[server].update(language, obj)

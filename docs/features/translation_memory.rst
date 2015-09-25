@@ -31,10 +31,14 @@ Configuring Translation Memory
 ------------------------------
 
 Translation Memory will work out of the box with a default Pootle installation.
-There are two methods of getting Translation Memory.
+There are three methods of getting Translation Memory.
 
 1. Amagama - for remote Translation Memory
 2. Elasticsearch - for local Translation Memory
+3. Elasticsearch - for external Translation Memory
+
+
+.. _translation_memory#amagama:
 
 Amagama based remote TM
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,17 +51,49 @@ If you want to setup and connect to your own TM server then the
 :setting:`AMAGAMA_URL` will allow you to point to a private TM server.
 
 
-.. _translation_memory#local_translation_memory:
+.. _translation_memory#elasticsearch_based_tms:
 
-Elasticsearch based local TM
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Elasticsearch-based TMs
+~~~~~~~~~~~~~~~~~~~~~~~
 
 .. versionadded:: 2.7
 
-By default this is configured to operate if local TM is available.  To use it
-you will need to install `Elasticsearch 
-<https://www.elastic.co/products/elasticsearch>`_ and populate the initial
-translation memory using the :djadmin:`update_tmserver` command:
+Pootle can also retrieve TM matches stored on Elasticsearch-based TM servers.
+These TM servers require
+`Elasticsearch <https://www.elastic.co/products/elasticsearch>`_ to be
+installed and running.
+
+.. note:: Elasticsearch depends on Java. Note that some systems may ship with
+  OpenJDK, however `elasticsearch recommends using Oracle JDK
+  <https://www.elastic.co/guide/en/elasticsearch/reference/1.6/setup-service.html#_installing_the_oracle_jdk>`_.
+
+
+Pootle supports two types of Elasticsearch-based TMs:
+
+- **Local TM**: (just one, named ``local``) is populated using translations
+  stored in Pootle database and every new translation gets automatically
+  imported to it.
+
+- **External TMs**: (several) are populated from translation files specifically
+  provided by the server admins, and are not automatically updated.
+
+
+Both local and external TM settings can be adjusted in
+:setting:`POOTLE_TM_SERVER`.
+
+You may want to disable Amagama by setting :setting:`AMAGAMA_URL` to ``''`` if
+you are using Elasticsearch-based TMs, though both can operate together.
+
+
+.. _translation_memory#local_translation_memory:
+
+Elasticsearch-based local TM
+++++++++++++++++++++++++++++
+
+.. versionadded:: 2.7
+
+To use it, the ``local`` TM must be enabled on :setting:`POOTLE_TM_SERVER` and
+will need to be populated using the :djadmin:`update_tmserver` command:
 
 .. code-block:: bash
 
@@ -66,12 +102,68 @@ translation memory using the :djadmin:`update_tmserver` command:
 
 Once populated Pootle will keep Local TM up-to-date.
 
-.. note:: Elasticsearch depends on Java. Note that some systems may ship with
-  OpenJDK, however `elasticsearch recommends using Oracle JDK
-  <https://www.elastic.co/guide/en/elasticsearch/reference/1.6/setup-service.html#_installing_the_oracle_jdk>`_.
+
+.. _translation_memory#external_translation_memories:
+
+Elasticsearch-based external TMs
+++++++++++++++++++++++++++++++++
+
+.. versionadded:: 2.7.3
+
+In order to use them they must be enabled on :setting:`POOTLE_TM_SERVER` and
+you will need to populate them using the :djadmin:`update_tmserver` command
+specifying the TM to use with :option:`--tm` and the project with
+:option:`--project`:
+
+.. code-block:: bash
+
+   (env) $ pootle update_tmserver --tm=external --project=Pidgin af.po gl.tmx
 
 
-Local TM settings can be adjusted in :setting:`POOTLE_TM_SERVER`.
+A given TM can host translations for several projects. Just specify them with
+:option:`--project`:
 
-You may want to disable Amagama by setting :setting:`AMAGAMA_URL` to ``''`` if
-you are using Elasticsearch local TM, though the two will operate together.
+.. code-block:: bash
+
+   (env) $ pootle update_tmserver --tm=external --project=GNOME pt.tmx eu.po xh.po
+
+
+It is possible to have several Elasticsearch-based external TM servers working
+at once, along with the Elasticsearch-based local TM server. In order to do so
+just add new entries to :setting:`POOTLE_TM_SERVER`:
+
+.. code-block:: python
+
+    POOTLE_TM_SERVER = {
+
+        ...
+
+        'libreoffice': {
+            'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
+            'HOST': 'localhost',
+            'PORT': 9200,
+            'INDEX_NAME': 'whatever',
+            'WEIGHT': 0.9,
+            'MIN_SCORE': 'AUTO',
+        },
+    }
+
+Make sure :setting:`INDEX_NAME <POOTLE_TM_SERVER-INDEX_NAME>` is unique. You
+might also want to tweak :setting:`WEIGHT <POOTLE_TM_SERVER-WEIGHT>` to change
+the score of the TM results in relation to other TM servers (valid values are
+between ``0.0`` and ``1.0``).
+
+To use these additional external TMs you will need to populate them using the
+:djadmin:`update_tmserver` command specifying the TM server with
+:option:`--tm`:
+
+.. code-block:: bash
+
+   (env) $ pootle update_tmserver --tm=libreoffice --project=LibreOffice af.po gl.tmx
+
+
+Check :djadmin:`update_tmserver` for more options.
+
+Note that Pootle will not push new translations to these TM servers unless you
+explicitly use the :djadmin:`update_tmserver` command, giving you full control
+of which translations make into them.

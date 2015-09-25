@@ -21,6 +21,7 @@ Major Changes
 =============
 
 - Pulled latest translations.
+- Added support for Elasticsearch-based external Translation Memory servers.
 
 
 Below we provide much more detail. These are by no means exhaustive, view the
@@ -34,8 +35,21 @@ Details of changes
 - The editor for static pages now highlights the content's markup
   (:issue:`3346`).
 - Pulled latest translations.
-- :djadmin:`update_tmserver`: renamed :option:`--overwrite` to
-  :option:`--refresh`.
+- :djadmin:`update_tmserver`:
+
+  - Renamed :option:`--overwrite` to :option:`--refresh`.
+  - Added support for Elasticsearch-based external Translation Memory servers,
+    which can be populated from translation files. This effectively brings the
+    ability to display TM results from different TM servers, sorting them by
+    their score.
+
+- :setting:`POOTLE_TM_SERVER`:
+
+  - The ``default`` TM server on  has been renamed to ``local``. Make sure to
+    adjust your settings.
+  - Added a new :setting:`WEIGHT <POOTLE_TM_SERVER-WEIGHT>` option to raise or
+    lower the TM results score for each specific TM server.
+
 - The Apertium MT backend has been dropped.
 
 

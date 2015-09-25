@@ -403,8 +403,10 @@ update_tmserver
 .. versionadded:: 2.7
 
 .. versionchanged:: 2.7.3 Renamed :option:`--overwrite` to :option:`--refresh`.
+   Now it is also possible to import translations from files.
 
-Updates the ``default`` server in :setting:`POOTLE_TM_SERVER`.  The command
+
+Updates the ``local`` server in :setting:`POOTLE_TM_SERVER`.  The command
 reads translations from the current Pootle install and builds the TM resources
 in the TM server.
 
@@ -412,6 +414,10 @@ If no options are provided, the command will only add new translations to the
 server. Use :option:`--refresh` to also update existing translations that have
 been changed, besides adding any new translation. To completely remove the TM
 and rebuild it adding all existing translations use :option:`--rebuild`.
+
+If no specific TM server is specified using :option:`--tm`, then the default
+``local`` TM will be used. If the specified TM server doesn't exist it will
+be automatically created for you.
 
 To see how many units will be loaded into the server use :option:`--dry-run`,
 no actual data will be loaded or deleted (the TM will be left unchanged):
@@ -421,6 +427,55 @@ no actual data will be loaded or deleted (the TM will be left unchanged):
     $ pootle update_tmserver --dry-run
     $ pootle update_tmserver --refresh --dry-run
     $ pootle update_tmserver --rebuild --dry-run
+
+
+This command also allows to read translations from files and build the TM
+resources in the external TM server. In order to do so it is mandatory to
+provide the :option:`--tm` and :option:`--project` options, along with some
+filename argument to import translations from. The provided project name will
+be displayed on TM matches in the translation editor:
+
+.. code-block:: bash
+
+   (env) $ pootle update_tmserver --tm=libreoffice --project="LibreOffice 4.3 UI" TM_LibreOffice_4.3.gl.tmx
+
+
+By default the command will only add new translations to the server. To rebuild
+the server from scratch use :option:`--rebuild` to completely remove the TM and
+rebuild it before importing the translations:
+
+.. code-block:: bash
+
+   (env) $ pootle update_tmserver --rebuild --tm=mozilla --project="Foo 1.7" foo.po
+
+
+Option :option:`--refresh` doesn't apply when adding translations from files
+on disk.
+
+To see how many units will be loaded into the server use :option:`--dry-run`,
+no actual data will be loaded:
+
+.. code-block:: bash
+
+   (env) $ pootle update_tmserver --dry-run --tm=mozilla --project="Foo 1.7" foo.po
+   175045 translations to index
+
+
+This command is capable of importing translations from several files in
+different formats at once:
+
+.. code-block:: bash
+
+   (env) $ pootle update_tmserver --tm=mozilla --project="Foo 1.7" foo.po bar.tmx eggs.xliff bacon.ts
+
+
+Use :option:`--target-language` to specify the target language ISO code for the
+imported translations in case it is not possible to guess it from the
+translation files or if the code is incorrect:
+
+.. code-block:: bash
+
+   (env) $ pootle update_tmserver --target-language=af --tm=mozilla --project="Foo 1.7" foo.po bar.tmx
 
 
 .. _commands#vfolders:
