@@ -322,17 +322,17 @@ Translation environment configuration settings.
   Available options are:
 
   ``APERTIUM``: Apertium service.
-    For this service you need to set the API key. Get your key at
-    http://api.apertium.org/register.jsp
+    For this service you need to `obtain an API key
+    <http://api.apertium.org/register.jsp>`_.
+
 
   ``GOOGLE_TRANSLATE``: Google Translate service.
-    For this service you need to set the API key. Note that Google Translate
-    API is a paid service. See more at
-    https://cloud.google.com/translate/v2/pricing
+    For this service you need to obtain an API key. Note that Google Translate
+    API is a `paid service <https://cloud.google.com/translate/v2/pricing>`_.
 
   ``YANDEX_TRANSLATE``: Yandex.Translate service.
-    For this service you need to set the API key. Get your key at
-    https://tech.yandex.com/keys/get/?service=trnsl
+    For this service you need to `obtain a Yandex API key
+    <https://tech.yandex.com/keys/get/?service=trnsl>`_.
 
 .. setting:: PARSE_POOL_CULL_FREQUENCY
 
