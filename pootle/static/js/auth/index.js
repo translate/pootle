@@ -43,7 +43,7 @@ module.exports = {
     let AuthController = require('./components/AuthController');
 
     let flux = new Flux();
-    let newProps = assign({}, commonProps, props);
+    const newProps = assign({}, commonProps, props);
 
     let AuthApp = (
       <FluxComponent flux={flux} connectToStores={['auth']}>
