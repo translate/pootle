@@ -108,8 +108,8 @@ Running under Nginx
 -------------------
 
 Running Pootle under a web server such as Nginx will improve performance. For
-more information about Nginx and WSGI, visit `Nginx's WSGI page
-<http://wiki.nginx.org/NginxNgxWSGIModule>`_
+more information about Nginx and WSGI, visit `Nginx's WSGI module page
+<http://nginx.org/en/docs/http/ngx_http_uwsgi_module.html>`_
 
 A Pootle server is made up of static and dynamic content. By default Pootle
 serves all content, and for low-latency purposes it is better to get other

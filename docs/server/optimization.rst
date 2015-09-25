@@ -90,8 +90,9 @@ some tips for performance tuning on your Pootle installation.
   degrade the user experience.
 
 - Ensure gzip compression is enabled on your web server. For Apache,
-  `mod_deflate <https://httpd.apache.org/docs/2.4/mod/mod_deflate.html>`_
-  handles this. Also see `nginx wiki <http://wiki.nginx.org/HttpGzipModule>`_.
+  `mod_deflate <https://httpd.apache.org/docs/2.4/mod/mod_deflate.html>`_ and
+  for Nginx, `ngx_http_gzip_module
+  <http://nginx.org/en/docs/http/ngx_http_gzip_module.html>`_.
 
 
 .. _optimization#apache:
