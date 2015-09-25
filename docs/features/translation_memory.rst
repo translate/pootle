@@ -66,7 +66,9 @@ translation memory using the :djadmin:`update_tmserver` command:
 
 Once populated Pootle will keep Local TM up-to-date.
 
-.. note:: Note that Elasticsearch depends on Java.
+.. note:: Elasticsearch depends on Java. Note that some systems may ship with
+  OpenJDK, however `elasticsearch recommends using Oracle JDK
+  <https://www.elastic.co/guide/en/elasticsearch/reference/1.6/setup-service.html#_installing_the_oracle_jdk>`_.
 
 
 Local TM settings can be adjusted in :setting:`POOTLE_TM_SERVER`.
