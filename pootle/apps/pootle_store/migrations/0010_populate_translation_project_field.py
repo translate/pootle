@@ -2,6 +2,7 @@
 from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import DataMigration
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 class Migration(DataMigration):
@@ -11,13 +12,14 @@ class Migration(DataMigration):
 
         for bs in broken_suggestions:
             try:
-                unit = getattr(bs, "unit", None)
-            except orm['pootle_store.Unit'].DoesNotExist:
-                unit = None
-            if unit is None:
+                suggestion_tp = bs.unit.store.translation_project
+            except ObjectDoesNotExist:
+                # There is something wrong with the suggestion, e.g. the unit
+                # it references doesn't exist, or the store, so just delete the
+                # completely broken suggestion. See issue #4101.
                 bs.delete()
             else:
-                bs.translation_project = unit.store.translation_project
+                bs.translation_project = suggestion_tp
                 bs.save()
 
     def backwards(self, orm):
