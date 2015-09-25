@@ -1,0 +1,16 @@
+# This file maintains name/email mappings for git-shortlog use
+# For more information on the use of this file see: man git-shortlog
+# Mail to name mapping: email at the right is mapped to name at the left
+
+Igor Afanasyev                  <afan@evernote.com>
+Friedel Wolff                   <friedel@translate.org.za>
+
+# Name to name mapping: the name in the right column will be mapped to the name in the left
+
+Igor Afanasyev                  afan
+
+# Mail to mail mapping: the email addy in the right column will be mapped to the email addy in the left
+
+<afan@evernote.com>          <igor.afanasyev@gmail.com>
+<stuart@nanonanonano.net>    <stuart+debian@nanonanonano.net>
+<jerome@leclan.ch>           <adys.wh@gmail.com>
