@@ -48,3 +48,18 @@ languages from the Pootle command line.  When using :djadmin:`update_stores`
 new languages will be initialised if they are present on the filesystem. You
 are responsible for initialisation of these new languages from template files
 as required.
+
+
+.. _templates#updating_translations:
+
+Updating existing translations
+------------------------------
+
+Pootle will not update existing translations if new template files are added
+to Pootle. Updating of translations is managed outside of Pootle.  You can
+update your translations as follows:
+
+#. Use :djadmin:`sync_stores` to sync all translations to the filesystem.
+   These files will now contain the latest translations from Pootle users.
+#. Use :ref:`pot2po <toolkit:pot2po>` or similar to update the translations.
+#. Use :djadmin:`update_stores` to push the updated translations to Pootle.
