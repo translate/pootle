@@ -18,8 +18,10 @@ PTL.commonAdmin = {
     switch (opts.page) {
       case 'dashboard':
         dashboard.init();
+        break;
       case 'permissions':
         permissions.init();
+        break;
     }
   },
 
