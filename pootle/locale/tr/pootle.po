@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 10:48+0100\n"
-"PO-Revision-Date: 2015-09-08 17:53+0000\n"
+"PO-Revision-Date: 2015-09-23 18:59+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,13 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1441734810.000000\n"
+"X-POOTLE-MTIME: 1443034788.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Onaylama epostası göndermeye çalışırken bazı sorunlar oldu. Lütfen daha "
+"sonra tekrar deneyin."
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -140,6 +142,8 @@ msgstr "Bu eposta adresi zaten var."
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
+"Oturum açarken bir hata meydana geldi. Lütfen sistem yöneticinizle irtibata "
+"geçin"
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -211,9 +215,8 @@ msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "'%s' oluşturulamadı. Proje/Dil eksik mi? (%s)"
 
 #: apps/import_export/utils.py:57
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "Gönderilen dosyalar üzerine çeviriler yazılabilir"
+msgstr "Dosyanız gönderilirken bir hata oldu"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -387,7 +390,7 @@ msgstr "Çevirenler"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Dialog sizes"
-msgstr ""
+msgstr "İleti boyutları"
 
 #: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
@@ -1116,6 +1119,8 @@ msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
+"Kopya epostaları olan kullanıcı hesapları var. Buna Pootle 2.8 sürümünde "
+"izin verilmeyecektir."
 
 #: checks.py:58
 msgid ""
@@ -1123,6 +1128,10 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
+"'pootle find_duplicate_emails' kullanılmayı deneyin ve ondan sonra 'pootle "
+"update_user_email kullanıcıadı eposta' ile kullanıcı epostalarını "
+"güncelleyin. Ayrıca merge_user veya purge_user komutlarını kullanmayı "
+"dikkate almak isteyebilirsiniz"
 
 #: checks.py:82
 msgid "Your version of Django is too old."
@@ -1335,13 +1344,14 @@ msgstr ""
 "DATABASES['default']['ENGINE'] parametresini ayarlayın."
 
 #: checks.py:322
-#, fuzzy
 msgid "Email server is not available."
-msgstr "Redis sunucusu %(host)s:%(port)s üzerinde kullanılabilir değil."
+msgstr "ePosta sunucusu kullanılabilir değil."
 
 #: checks.py:323
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
+"ePosta ayarlarınızı gözden geçirin ve eposta sunucunuzun çalıştığından emin "
+"olun."
 
 #: core/browser.py:27
 msgid "Project"

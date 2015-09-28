@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 10:48+0100\n"
-"PO-Revision-Date: 2015-09-11 15:36+0000\n"
+"PO-Revision-Date: 2015-09-27 13:18+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,13 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441985816.000000\n"
+"X-POOTLE-MTIME: 1443359883.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Při odesílání potvrzujícího e-mailu došlo k chybě. Zkuste odeslání zopakovat "
+"později."
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -139,7 +141,7 @@ msgstr "Tato e-mailová adresa již existuje."
 #: apps/accounts/views.py:37
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
-msgstr ""
+msgstr "Při přihlašování došlo k chybě. Kontaktujte prosím správce systému"
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -214,9 +216,8 @@ msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Vytvoření ‚%s‘ se nezdařilo. Chybějící projekt/jazyk? (%s)"
 
 #: apps/import_export/utils.py:57
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "Může při nahrání souborů přepsat překlady"
+msgstr "Při nahrávání souboru došlo k chybě"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -393,7 +394,7 @@ msgstr "Seznam překladatelů"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Dialog sizes"
-msgstr ""
+msgstr "Velikosti dialogu"
 
 #: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
@@ -1124,6 +1125,8 @@ msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
+"Existují uživatelské účty s duplicitními e-maily. To již nebude od Pootlu "
+"verze 2.8 povoleno."
 
 #: checks.py:58
 msgid ""
@@ -1131,6 +1134,9 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
+"Zkuste použít ‚pootle find_duplicate_emails‘ a poté aktualizujte uživatelské "
+"e-maily pomocí ‚pootle update_user_email uzivatelske_jmeno e-mail‘. Zvažte "
+"také použití příkazů pootle merge_user nebo purge_user"
 
 #: checks.py:82
 msgid "Your version of Django is too old."
@@ -1335,13 +1341,14 @@ msgstr ""
 "transaction_hooks.backends."
 
 #: checks.py:322
-#, fuzzy
 msgid "Email server is not available."
-msgstr "Redis server na adrese %(host)s:%(port)s není dostupný."
+msgstr "E-mail server není dostupný."
 
 #: checks.py:323
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
+"Zkontrolujte nastavení e-mailu a ujistěte se, že je váš e-mailový server "
+"spuštěn a funkční."
 
 #: core/browser.py:27
 msgid "Project"
@@ -2510,6 +2517,9 @@ msgid ""
 "translation project a \"pootle-terminology\" file named after your project's "
 "extension."
 msgstr ""
+"Pokud chcete používat terminologii, nezapomeňte do projektu přidat soubor "
+"terminologie. Soubor se musí jmenovat \"pootle-terminology\" a používat "
+"stejnou příponu souboru (formát) jako ostatní soubory projektu."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

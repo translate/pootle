@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2015-07-28 13:08+0000\n"
-"Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
+"PO-Revision-Date: 2015-09-27 09:47+0000\n"
+"Last-Translator: Ravior <rapiteanu.catalin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1438088923.000000\n"
+"X-POOTLE-MTIME: 1443347249.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -74,7 +74,7 @@ msgstr "Permisiuni"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "Verificarea calității"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
@@ -85,9 +85,8 @@ msgid "Project Tree Style"
 msgstr ""
 
 #: static/js/admin/components/ProjectForm.js:103
-#, fuzzy
 msgid "Source Language"
-msgstr "Toate Limbile"
+msgstr "Limba sursă"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
@@ -107,7 +106,7 @@ msgstr ""
 
 #: static/js/admin/components/ProjectForm.js:141
 msgid "Languages"
-msgstr ""
+msgstr "Limbi"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
@@ -127,11 +126,11 @@ msgstr ""
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "Nume utilizator"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "Activ"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
@@ -139,24 +138,24 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:94
 #: static/js/auth/components/PasswordResetForm.js:113
 msgid "Password"
-msgstr ""
+msgstr "Parolă"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "Stabilește o parolă nouă"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "Administrator"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:89
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
@@ -164,7 +163,7 @@ msgstr ""
 
 #: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:96
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
@@ -172,7 +171,7 @@ msgstr ""
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:102
 msgid "Website"
-msgstr ""
+msgstr "Pagină web"
 
 #: static/js/admin/components/UserForm.js:128
 msgid "Personal website URL"
@@ -180,11 +179,11 @@ msgstr ""
 
 #: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:109
 msgid "Short Bio"
-msgstr ""
+msgstr "Scurtă biografie"
 
 #: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
-msgstr ""
+msgstr "Descriere personală"
 
 #: static/js/admin/components/UserForm.js:147
 msgid "Public Profile"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 10:48+0100\n"
-"PO-Revision-Date: 2015-09-07 21:13+0000\n"
+"PO-Revision-Date: 2015-09-22 19:14+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,13 +20,15 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1441660403.000000\n"
+"X-POOTLE-MTIME: 1442949263.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Возникла проблема при отправке письма с подтверждением. Пожалуйста, "
+"повторите позднее."
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -142,7 +144,7 @@ msgstr "Этот адрес электронной почты уже испол�
 #: apps/accounts/views.py:37
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
-msgstr ""
+msgstr "Произошла ошибка при входе. Пожалуйста, свяжитесь с администратором"
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -213,9 +215,8 @@ msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Невозможно создать '%s'. Отсутствует Проект/Язык? (%s)"
 
 #: apps/import_export/utils.py:57
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "Может перезаписывать переводы при загрузке локального файла на сервер"
+msgstr "Произошла ошибка при загрузке файла"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -393,7 +394,7 @@ msgstr "Благодарности переводчикам"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Dialog sizes"
-msgstr ""
+msgstr "Размеры диалогов"
 
 #: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
@@ -1121,6 +1122,8 @@ msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
+"Существуют учетные записи с одинаковыми адресами электронной почты. Это "
+"будет запрещено в Pootle 2.8."
 
 #: checks.py:58
 msgid ""
@@ -1128,6 +1131,10 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
+"Попробуйте 'pootle find_duplicate_emails', и затем обновите адреса "
+"электронной почты через 'pootle update_user_email имя_пользователя "
+"адрес_почты'. Вы также, возможно, захотите ознакомиться с командами "
+"merge_user и purge_user"
 
 #: checks.py:82
 msgid "Your version of Django is too old."
@@ -1333,11 +1340,13 @@ msgstr ""
 
 #: checks.py:322
 msgid "Email server is not available."
-msgstr ""
+msgstr "Сервер электронной почты недоступен."
 
 #: checks.py:323
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
+"Проверьте настройки электронной почты и убедитесь, что сервер электронной "
+"почты работает."
 
 #: core/browser.py:27
 msgid "Project"

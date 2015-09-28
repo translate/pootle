@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2015-09-08 18:02+0000\n"
+"PO-Revision-Date: 2015-09-23 18:47+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441735343.000000\n"
+"X-POOTLE-MTIME: 1443034033.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -116,7 +116,6 @@ msgid "Loading..."
 msgstr "Yükleniyor..."
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
@@ -391,12 +390,11 @@ msgstr ""
 "hesap oluşturacak."
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
-#, fuzzy
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
-"Bu birimde kaydedilmemiş değişiklikleriniz var. Buradan ayrılmak bu "
+"Bu satırda kaydedilmemiş değişiklikleriniz var. Buradan ayrılmak bu "
 "değişiklikleri yoksayacak."
 
 #: static/js/editor/app.js:267
@@ -465,9 +463,8 @@ msgid "Unknown error"
 msgstr "Bilinmeyen hata"
 
 #: static/js/editor/app.js:1066
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "Bu birim artık mevcut değil."
+msgstr "Bu satır artık mevcut değil."
 
 #: static/js/editor/app.js:1067
 msgid "Go back to browsing"
@@ -567,26 +564,27 @@ msgstr "Birkaç saniye önce"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
-msgstr ""
+msgstr "ePosta Adresi"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"ePosta adresinizi girin ve parolanızı sıfırlamanız için özel bağlantı içeren "
+"bir iletiyi size gönderelim."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
-msgstr ""
+msgstr "Hayır, teşekkürler"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:114
-#, fuzzy
 msgid "Send Email"
-msgstr "Epostayı Yeniden Gönder"
+msgstr "ePosta Gönder"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Yeni kullanıcı hesapları oluşturma yasaklanmıştır."
 
 #: static/js/auth/components/SocialVerification.js:79
 #, python-format
@@ -595,6 +593,9 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"Sistemimizde <span>%s</span> epostası ile bir kullanıcı bulduk. Lütfen giriş "
+"yapma işlemini tamamlamak için parola girin. Bu, Pootle ve %s hesaplarınız "
+"arasında bir bağlantı kuracak olan tek seferlik bir işlemdir."
 
 #: static/js/browser.js:163
 msgid "All Languages"
@@ -612,61 +613,61 @@ msgstr "Bütün Proje"
 #: static/js/shared/components/UserEvent.js:94
 #, python-brace-format
 msgid "removed translation for ${sourceString}"
-msgstr ""
+msgstr "${sourceString} için kaldırılan çeviri"
 
 #: static/js/shared/components/UserEvent.js:75
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "accepted suggestion for ${sourceString}"
-msgstr "%s kullanıcısının kabul edilen önerileri"
+msgstr "${sourceString} için kabul edilen öneri"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "gönderilen dosya"
 
 #: static/js/shared/components/UserEvent.js:79
 #, python-brace-format
 msgid "muted ${check} for ${sourceString}"
-msgstr ""
+msgstr "${sourceString} için sessizleştirilen ${check}"
 
 #: static/js/shared/components/UserEvent.js:81
 #, python-brace-format
 msgid "unmuted ${check} for ${sourceString}"
-msgstr ""
+msgstr "${sourceString} için sessizliği kaldırılan ${check}"
 
 #: static/js/shared/components/UserEvent.js:83
 #, python-brace-format
 msgid "added suggestion for ${sourceString}"
-msgstr ""
+msgstr "${sourceString} için eklenen öneri"
 
 #: static/js/shared/components/UserEvent.js:85
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "rejected suggestion for ${sourceString}"
-msgstr "%s kullanıcısının reddedilen önerileri"
+msgstr "${sourceString} için reddedilen öneri"
 
 #: static/js/shared/components/UserEvent.js:88
 #, python-brace-format
 msgid "translated ${sourceString}"
-msgstr ""
+msgstr "çevrilen ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:90
 #, python-brace-format
 msgid "edited ${sourceString}"
-msgstr ""
+msgstr "düzenlenen ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:92
 #, python-brace-format
 msgid "pre-translated ${sourceString}"
-msgstr ""
+msgstr "ön çevirisi yapılan ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:96
 #, python-brace-format
 msgid "reviewed ${sourceString}"
-msgstr ""
+msgstr "incelenen ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:98
 #, python-brace-format
 msgid "marked as needs work ${sourceString}"
-msgstr ""
+msgstr "çalışma gerekli olarak işaretlenen ${sourceString}"
 
 #: static/js/admin/components/language.jsx:52
 #, python-format

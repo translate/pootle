@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 10:48+0100\n"
-"PO-Revision-Date: 2015-09-20 12:02+0000\n"
+"PO-Revision-Date: 2015-09-26 07:55+0000\n"
 "Last-Translator: Heyang <qysnn1@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1442750566.000000\n"
+"X-POOTLE-MTIME: 1443254103.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
-msgstr ""
+msgstr "在发送确认邮件时发生了一些错误。请稍后再试。"
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -134,7 +134,7 @@ msgstr "此电子邮件地址已经存在。"
 #: apps/accounts/views.py:37
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
-msgstr ""
+msgstr "在登录时发生了错误。请联系您的系统管理员。"
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -169,9 +169,8 @@ msgid "Please enter your message"
 msgstr "请输入您的消息"
 
 #: apps/import_export/templates/browser/index.html:10
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "下载 XLIFF 文件进行离线翻译"
+msgstr "下载翻译文件进行离线翻译"
 
 #: apps/import_export/templates/browser/index.html:11
 #, fuzzy
@@ -203,14 +202,13 @@ msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
 
 #: apps/import_export/utils.py:48
-#, python-format
+#, fuzzy, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr ""
+msgstr "不能创建'%s'。缺少了项目/语言？(%s)"
 
 #: apps/import_export/utils.py:57
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "可以覆盖上传文件中的翻译"
+msgstr "上传你的文件时发生了错误。"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -381,8 +379,9 @@ msgid "Translator credits"
 msgstr "翻译者致谢"
 
 #: apps/pootle_misc/checks.py:47
+#, fuzzy
 msgid "Dialog sizes"
-msgstr ""
+msgstr "对话框大小"
 
 #: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
@@ -589,9 +588,8 @@ msgid "Unescaped ampersands"
 msgstr "转义的&符号"
 
 #: apps/pootle_misc/checks.py:100
-#, fuzzy
 msgid "Incorrectly escaped ampersands"
-msgstr "不正确的转义&符号"
+msgstr "不正确的转义符号"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Whitespaces"
@@ -787,14 +785,13 @@ msgid "Comment"
 msgstr "注释"
 
 #: apps/pootle_statistics/models.py:351
-#, fuzzy
 msgid "Added suggestion"
-msgstr "%d 个建议"
+msgstr "添加了建议"
 
 #: apps/pootle_statistics/models.py:352
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "接受建议"
+msgstr "接受了来自于%s的建议"
 
 #: apps/pootle_statistics/models.py:353
 #, fuzzy, python-format
@@ -870,9 +867,8 @@ msgid "Needs work"
 msgstr "尚需完善"
 
 #: apps/pootle_store/forms.py:247
-#, fuzzy
 msgid "Needs work flag must be cleared"
-msgstr "必须清除模糊翻译标志"
+msgstr "必须清除“尚需完善”标志"
 
 #: apps/pootle_store/forms.py:290
 msgid "Value of `similarity` should be in in the [0..1] range"
@@ -960,7 +956,6 @@ msgid "Review"
 msgstr "审阅"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
 msgstr "建议"
 
@@ -1061,6 +1056,7 @@ msgstr "页面标题"
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
+"projects/<project_code> 或 <language_code> 或 <language_code>/<project_code>"
 
 #: apps/virtualfolder/models.py:34
 #, fuzzy
@@ -1097,14 +1093,13 @@ msgstr "公开吗？"
 #: apps/virtualfolder/models.py:55
 #, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "这个页面是否活动。"
+msgstr "这个虚拟文件夹是否是公开的（public）。"
 
 #: apps/virtualfolder/models.py:60
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
-msgstr ""
-"一个关于这个目标的描述。这对于提供更多的信息和介绍是有用的。允许的标记：%s"
+msgstr "使用这个来提供更多有用的信息和介绍。允许使用标记：%s"
 
 #: checks.py:56
 msgid ""
@@ -1150,18 +1145,18 @@ msgid "Could not connect to Redis (%s)"
 msgstr "不能连接到Redis (%s)"
 
 #: checks.py:118
-#, fuzzy, python-format
+#, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
-msgstr "Redis 服务器尝试连接 %(host)s:%(port)s。"
+msgstr "确保Redis服务器运行于%(host)s:%(port)s"
 
 #: checks.py:127
 msgid "Your version of Redis is too old."
 msgstr "您的 Redis 版本过于老旧。"
 
 #: checks.py:128
-#, python-format
+#, fuzzy, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr ""
+msgstr "请将你系统上的Redis server package升级到%s版或以上"
 
 #: checks.py:138
 #, fuzzy
@@ -1193,7 +1188,7 @@ msgstr ""
 
 #: checks.py:171
 msgid "DEBUG mode is on. Do not do this in production!"
-msgstr ""
+msgstr "调试模式已打开。请不要在生产环境中这么做。"
 
 #: checks.py:172
 msgid "Set DEBUG = False in Pootle settings"
@@ -1220,13 +1215,13 @@ msgstr ""
 
 #: checks.py:193
 msgid "POOTLE_CONTACT_EMAIL is not set."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL没有被设置。"
 
 #: checks.py:194
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
-msgstr ""
+msgstr "设置POOTLE_CONTACT_EMAIL将会允许用户通过Pootle联系表与管理员联系。"
 
 #: checks.py:202
 #, python-format
@@ -1234,39 +1229,40 @@ msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL现在使用的是如下的默认设置 %r 。"
 
 #: checks.py:204
+#, fuzzy
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL是用于接受联系表信息的电子邮件地址。"
 
 #: checks.py:211
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr ""
+msgstr "DEFAULT_FROM_EMAIL没有设置。"
 
 #: checks.py:212 checks.py:222
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
+"DEFAULT_FROM_EMAIL被用于使Pootle向外发送所有邮件。\n"
+"不要忘记检查一下你的电子邮件服务器设置。"
 
 #: checks.py:220
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "DEFAULT_FROM_EMAIL正在使用如下的默认设置%r。"
 
 #: checks.py:231
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "MARKUP_FILTER 丢失。将退回 HTML。"
+msgstr ""
 
 #: checks.py:232
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "设置POOTLE_MARKUP_FILTER。"
 
 #: checks.py:237
-#, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "MARKUP_FILTER 中的值“%s”无效。将退回 HTML。"
+msgstr "POOTLE_MARKUP_FILTER中的值无效。"
 
 #: checks.py:238
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."

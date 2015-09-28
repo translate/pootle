@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2015-09-11 15:35+0000\n"
+"PO-Revision-Date: 2015-09-26 09:46+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441985706.000000\n"
+"X-POOTLE-MTIME: 1443260791.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -116,7 +116,6 @@ msgid "Loading..."
 msgstr "Načítání..."
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
@@ -391,12 +390,11 @@ msgstr ""
 "uživatelský účet."
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
-#, fuzzy
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
-"Pro tuto položku existují neuložené změny. Při přechodu na jinou položku "
+"Pro tento řetězec existují neuložené změny. Při přechodu na jiný řetězec "
 "budou tyto změny zahozeny."
 
 #: static/js/editor/app.js:267
@@ -465,9 +463,8 @@ msgid "Unknown error"
 msgstr "Neznámá chyba"
 
 #: static/js/editor/app.js:1066
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "Tato položka již neexistuje."
+msgstr "Tento řetězec již neexistuje."
 
 #: static/js/editor/app.js:1067
 msgid "Go back to browsing"
@@ -579,26 +576,27 @@ msgstr "Před pár sekundami"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
-msgstr ""
+msgstr "E-mailová adresa"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"Zadejte svou e-mailovou adresu a my vám zašleme speciální odkaz na změnu "
+"hesla."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
-msgstr ""
+msgstr "Ne, děkuji"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:114
-#, fuzzy
 msgid "Send Email"
-msgstr "Znovu odeslat e-mail"
+msgstr "Odeslat e-mail"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Vytváření nových uživatelských účtů je zakázáno."
 
 #: static/js/auth/components/SocialVerification.js:79
 #, python-format
@@ -607,6 +605,10 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"Nalezli jsme v našem systému uživatele s e-mailem <span>%s</span>. Pro "
+"dokončení procesu přihlášení zadejte jeho heslo. Toto je jednorázový "
+"požadavek, který vytvoří propojení mezi vaším účtem na Pootle serveru a %s "
+"účtem."
 
 #: static/js/browser.js:163
 msgid "All Languages"
@@ -624,61 +626,61 @@ msgstr "Celý projekt"
 #: static/js/shared/components/UserEvent.js:94
 #, python-brace-format
 msgid "removed translation for ${sourceString}"
-msgstr ""
+msgstr "odstranil překlad pro ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:75
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "accepted suggestion for ${sourceString}"
-msgstr "Přijaté návrhy uživatele %s"
+msgstr "přijal návrh pro ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "nahrál soubor"
 
 #: static/js/shared/components/UserEvent.js:79
 #, python-brace-format
 msgid "muted ${check} for ${sourceString}"
-msgstr ""
+msgstr "potlačil kontrolu ${check} pro ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:81
 #, python-brace-format
 msgid "unmuted ${check} for ${sourceString}"
-msgstr ""
+msgstr "obnovil kontrolu ${check} pro ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:83
 #, python-brace-format
 msgid "added suggestion for ${sourceString}"
-msgstr ""
+msgstr "přidal návrh pro ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:85
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "rejected suggestion for ${sourceString}"
-msgstr "Odmítnuté návrhy uživatele %s"
+msgstr "odmítl návrh pro ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:88
 #, python-brace-format
 msgid "translated ${sourceString}"
-msgstr ""
+msgstr "přeložil ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:90
 #, python-brace-format
 msgid "edited ${sourceString}"
-msgstr ""
+msgstr "upravil ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:92
 #, python-brace-format
 msgid "pre-translated ${sourceString}"
-msgstr ""
+msgstr "předběžně přeložil ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:96
 #, python-brace-format
 msgid "reviewed ${sourceString}"
-msgstr ""
+msgstr "zkontroloval ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:98
 #, python-brace-format
 msgid "marked as needs work ${sourceString}"
-msgstr ""
+msgstr "označil jako vyžadující úpravu ${sourceString}"
 
 #: static/js/admin/components/language.jsx:52
 #, python-format

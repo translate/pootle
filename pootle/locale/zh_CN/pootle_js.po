@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2015-09-20 11:55+0000\n"
+"PO-Revision-Date: 2015-09-26 07:11+0000\n"
 "Last-Translator: Heyang <qysnn1@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1442750154.000000\n"
+"X-POOTLE-MTIME: 1443251508.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -116,11 +116,10 @@ msgid "Loading..."
 msgstr "正在加载..."
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
-msgstr "注意：删除用户将使其的贡献如评论、建议和翻译归于匿名用户。"
+msgstr "注意：删除用户将使其的贡献，如评论、建议和翻译归于匿名用户。"
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
@@ -378,7 +377,6 @@ msgid ""
 msgstr "使用外部账户第一次登陆时会自动为您创建一个账户"
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
-#, fuzzy
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -450,9 +448,8 @@ msgid "Unknown error"
 msgstr "未知错误"
 
 #: static/js/editor/app.js:1066
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "此单位已不存在。"
+msgstr "这个字符串已不存在。"
 
 #: static/js/editor/app.js:1067
 #, fuzzy
@@ -553,17 +550,18 @@ msgstr "几秒钟前"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
-msgstr ""
+msgstr "电子邮件地址"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"请输入你的电子邮件地址，我们会把一封包含密码重置链接的邮件发送到你的邮箱里。"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
-msgstr ""
+msgstr "不，谢了"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:114
 #, fuzzy
@@ -572,7 +570,7 @@ msgstr "重发电子邮件"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "不允许注册新用户。"
 
 #: static/js/auth/components/SocialVerification.js:79
 #, python-format
@@ -598,16 +596,16 @@ msgstr "整个项目"
 #: static/js/shared/components/UserEvent.js:94
 #, python-brace-format
 msgid "removed translation for ${sourceString}"
-msgstr ""
+msgstr "移除了${sourceString}的翻译"
 
 #: static/js/shared/components/UserEvent.js:75
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "accepted suggestion for ${sourceString}"
-msgstr "%s 的获准建议"
+msgstr "接受了关于${sourceString}的建议"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "上传了文件"
 
 #: static/js/shared/components/UserEvent.js:79
 #, python-brace-format
@@ -622,22 +620,22 @@ msgstr ""
 #: static/js/shared/components/UserEvent.js:83
 #, python-brace-format
 msgid "added suggestion for ${sourceString}"
-msgstr ""
+msgstr "提出了关于${sourceString}的建议"
 
 #: static/js/shared/components/UserEvent.js:85
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "rejected suggestion for ${sourceString}"
-msgstr "%s 的被拒建议"
+msgstr "拒绝了关于${sourceString}的建议"
 
 #: static/js/shared/components/UserEvent.js:88
 #, python-brace-format
 msgid "translated ${sourceString}"
-msgstr ""
+msgstr "翻译了${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:90
 #, python-brace-format
 msgid "edited ${sourceString}"
-msgstr ""
+msgstr "编辑了${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:92
 #, python-brace-format
@@ -647,12 +645,12 @@ msgstr ""
 #: static/js/shared/components/UserEvent.js:96
 #, python-brace-format
 msgid "reviewed ${sourceString}"
-msgstr ""
+msgstr "审阅了${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:98
 #, python-brace-format
 msgid "marked as needs work ${sourceString}"
-msgstr ""
+msgstr "把${sourceString}标记为尚需完善"
 
 #: static/js/admin/components/language.jsx:52
 #, python-format
@@ -853,7 +851,7 @@ msgstr "得分变化"
 #, fuzzy, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] "词"
+msgstr[0] "%s词"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"

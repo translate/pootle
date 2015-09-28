@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2015-09-01 13:10+0000\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"PO-Revision-Date: 2015-09-27 07:23+0000\n"
+"Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441113040.000000\n"
+"X-POOTLE-MTIME: 1443338589.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -117,12 +117,12 @@ msgid "Loading..."
 msgstr "يحمّل..."
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"لاحظ: حذف المستخدم سيرحّل اقتراحاته وترجماته إلى المستخدم المجهول (nobody)."
+"لاحظ: عند حذف مستخدم، ستُنسب مساهماته في الموقع (كالتّعليقات، والاقتراحات "
+"والتّرجمات) إلى المستخدم المجهول (nobody)."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
@@ -388,6 +388,7 @@ msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
+"لديك تعديلات غير محفوظة في المقطع. التّنقل إلى غيره سيتجاهل هذه التّعديلات."
 
 #: static/js/editor/app.js:267
 msgid ""
@@ -455,9 +456,8 @@ msgid "Unknown error"
 msgstr "خطأ مجهول"
 
 #: static/js/editor/app.js:1066
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "لم تعد الوحدة موجودة."
+msgstr "لم يعد هذا المقطع موجودًا."
 
 #: static/js/editor/app.js:1067
 msgid "Go back to browsing"
@@ -484,7 +484,7 @@ msgid "disabled"
 msgstr "معطّل"
 
 #: static/js/stats.js:353
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "أقلّ من ثانية"
@@ -587,26 +587,26 @@ msgstr "منذ بضعة ثوان"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
-msgstr ""
+msgstr "عنوان البريد الالكترونيّ"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"أدخل عنوان البريد الإلكترونيّ، سنرسل إليك رسالة بوصلة خاصّة لتصفير كلمة المرور."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
-msgstr ""
+msgstr "لا شكرًا"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:114
-#, fuzzy
 msgid "Send Email"
-msgstr "أعد إرسال الرّسالة"
+msgstr "أرسل البريد"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "إنشاء حسابات مستخدمين جدد ممنوع."
 
 #: static/js/auth/components/SocialVerification.js:79
 #, python-format
@@ -632,61 +632,61 @@ msgstr "المشروع بالكامل"
 #: static/js/shared/components/UserEvent.js:94
 #, python-brace-format
 msgid "removed translation for ${sourceString}"
-msgstr ""
+msgstr "أزال ترجمة ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:75
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "accepted suggestion for ${sourceString}"
-msgstr "اقتراحات %s المقبولة"
+msgstr "قبل اقتراحًا لِـ ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "رفع ملفًّا"
 
 #: static/js/shared/components/UserEvent.js:79
 #, python-brace-format
 msgid "muted ${check} for ${sourceString}"
-msgstr ""
+msgstr "كتم ${check}لِـ ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:81
 #, python-brace-format
 msgid "unmuted ${check} for ${sourceString}"
-msgstr ""
+msgstr "أطلق ${check}لِـ ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:83
 #, python-brace-format
 msgid "added suggestion for ${sourceString}"
-msgstr ""
+msgstr "أضاف اقتراحًا لِـ ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:85
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "rejected suggestion for ${sourceString}"
-msgstr "اقتراحات %s المرفوضة"
+msgstr "رفض اقتراحًا لِـ ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:88
 #, python-brace-format
 msgid "translated ${sourceString}"
-msgstr ""
+msgstr "ترجم ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:90
 #, python-brace-format
 msgid "edited ${sourceString}"
-msgstr ""
+msgstr "حرّر ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:92
 #, python-brace-format
 msgid "pre-translated ${sourceString}"
-msgstr ""
+msgstr "ترجم ${sourceString} مسبقًا"
 
 #: static/js/shared/components/UserEvent.js:96
 #, python-brace-format
 msgid "reviewed ${sourceString}"
-msgstr ""
+msgstr "راجع ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:98
 #, python-brace-format
 msgid "marked as needs work ${sourceString}"
-msgstr ""
+msgstr "علّم ${sourceString} على أنّها تحتاج للعمل"
 
 #: static/js/admin/components/language.jsx:52
 #, python-format

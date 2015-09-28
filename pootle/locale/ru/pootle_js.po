@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2015-09-07 21:14+0000\n"
+"PO-Revision-Date: 2015-09-22 19:20+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441660496.000000\n"
+"X-POOTLE-MTIME: 1442949643.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -117,7 +117,6 @@ msgid "Loading..."
 msgstr "Загрузка…"
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
@@ -392,13 +391,12 @@ msgstr ""
 "для вас."
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
-#, fuzzy
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
-"У вас есть несохраненные изменения в этом сегменте. Если перейдете в любое "
-"друго место, то все ваши изменения будут отменены."
+"У вас есть несохраненные изменения в этой строке. Если вы перейдете в любое "
+"другое место, то все ваши изменения будут отменены."
 
 #: static/js/editor/app.js:267
 msgid ""
@@ -466,9 +464,8 @@ msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
 #: static/js/editor/app.js:1066
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "Этот сегмент больше не существует."
+msgstr "Эта строка больше не существует."
 
 #: static/js/editor/app.js:1067
 msgid "Go back to browsing"
@@ -580,26 +577,27 @@ msgstr "Несколько секунд назад"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
-msgstr ""
+msgstr "Адрес эл. почты"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"Введите свой адрес электронной почты, и мы отправим вам письмо со ссылкой "
+"для сброса пароля."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
-msgstr ""
+msgstr "Нет, спасибо"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:114
-#, fuzzy
 msgid "Send Email"
-msgstr "Отправить Email снова"
+msgstr "Отправить Email"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Создание новых учетных записей отключено."
 
 #: static/js/auth/components/SocialVerification.js:79
 #, python-format
@@ -608,6 +606,9 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"Мы нашли пользователя с электронной почтой <span>%s</span> в нашей системе. "
+"Пожалуйста, введите пароль, чтобы завершить процедуру входа. Эта процедура "
+"свяжет учетную запись в Pootle и %s."
 
 #: static/js/browser.js:163
 msgid "All Languages"
@@ -625,61 +626,61 @@ msgstr "Весь проект"
 #: static/js/shared/components/UserEvent.js:94
 #, python-brace-format
 msgid "removed translation for ${sourceString}"
-msgstr ""
+msgstr "удалил перевод для ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:75
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "accepted suggestion for ${sourceString}"
-msgstr "%s подтвержденных предложений"
+msgstr "принял предложение для ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "загрузил файл"
 
 #: static/js/shared/components/UserEvent.js:79
 #, python-brace-format
 msgid "muted ${check} for ${sourceString}"
-msgstr ""
+msgstr "заглушил ${check} для ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:81
 #, python-brace-format
 msgid "unmuted ${check} for ${sourceString}"
-msgstr ""
+msgstr "включил ${check} для ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:83
 #, python-brace-format
 msgid "added suggestion for ${sourceString}"
-msgstr ""
+msgstr "добавил предложение для ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:85
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "rejected suggestion for ${sourceString}"
-msgstr "%s отклоненных предложений"
+msgstr "отклонил предложение для ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:88
 #, python-brace-format
 msgid "translated ${sourceString}"
-msgstr ""
+msgstr "перевел ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:90
 #, python-brace-format
 msgid "edited ${sourceString}"
-msgstr ""
+msgstr "отредактировал ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:92
 #, python-brace-format
 msgid "pre-translated ${sourceString}"
-msgstr ""
+msgstr "предварительно перевел ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:96
 #, python-brace-format
 msgid "reviewed ${sourceString}"
-msgstr ""
+msgstr "отрецензировал ${sourceString}"
 
 #: static/js/shared/components/UserEvent.js:98
 #, python-brace-format
 msgid "marked as needs work ${sourceString}"
-msgstr ""
+msgstr "отметил как неточную ${sourceString}"
 
 #: static/js/admin/components/language.jsx:52
 #, python-format
