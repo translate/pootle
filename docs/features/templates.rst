@@ -4,10 +4,6 @@
 Translation templates
 =====================
 
-.. warning:: The whole concept around *templates* has been redefined in
-  version 2.7, and what's described in this page doesn't work as expected
-  for the time being.  The related work is tracked in :issue:`3877`.
-
 Translation templates are translation files that contain only the source text
 (original text). These files are used as a template to create target files for
 each language.
