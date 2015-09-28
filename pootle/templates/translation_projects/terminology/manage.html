@@ -57,9 +57,14 @@
 {% else %}
   <h2>{% trans 'No terminology file has been found' %}</h2>
   <p>
+  {% comment %}Translators: 'pootle-terminology' and 'Terminology' are not
+  translated{% endcomment %}
   {% blocktrans trimmed %}
-  In order to use the terminology feature, make sure to add to your translation
-  project a "pootle-terminology" file named after your project's extension.
+  In order to use the terminology feature, make sure to add a terminology file
+  to your translation project. The terminology file must be named
+  'pootle-terminology' and use the same file extension (format) as the rest of
+  the project files.  This custom terminology will be used in addition to any
+  terminology suggestions provided by the 'Terminology' project.
   {% endblocktrans %}
   </p>
 {% endif %}
