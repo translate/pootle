@@ -31,6 +31,8 @@ complete information.
 Details of changes
 ==================
 
+- The editor for static pages now highlights the content's markup
+  (:issue:`3346`).
 - Pulled latest translations.
 
 

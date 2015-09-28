@@ -10,3 +10,20 @@
   </div>
 </div>
 {% endblock %}
+
+{% block scripts_extra %}
+{% assets 'js_admin_general_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+<script type="text/javascript">
+  $(function () {
+    PTL.commonAdmin.init({
+      page: 'staticpages',
+      opts: {
+        el: '.js-staticpage-editor',
+        markup: PTL.settings.MARKUP_FILTER,
+      }
+    });
+  });
+</script>
+{% endblock %}

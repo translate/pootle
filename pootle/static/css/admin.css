@@ -45,6 +45,12 @@ textarea#id_DESCRIPTION
 
 /* STATIC PAGES */
 
+.CodeMirror
+{
+    border: 1px solid #dadada;
+    font-size: 1.25em;
+}
+
 .staticpages-form textarea
 {
     width: 100%;

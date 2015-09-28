@@ -117,6 +117,10 @@ plugins.push.apply(plugins, [
     'process.env': {NODE_ENV: JSON.stringify(env)}
   }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+  new webpack.ContextReplacementPlugin(
+    /codemirror[\/\\]mode$/,
+    /htmlmixed|markdown|rst|textile/
+  ),
   new webpack.ProvidePlugin({
     'window.Backbone': 'backbone',
   }),
@@ -131,6 +135,8 @@ var config = {
   entry: entries,
   output: {
     path: __dirname,
+    // FIXME: this should take the deployment app's script name into account
+    publicPath: DEBUG ? '/static/js/' : '/assets/js/',
     filename: './[name]/app.bundle.js'
   },
   module: {

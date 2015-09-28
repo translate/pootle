@@ -8,6 +8,7 @@
 
 import dashboard from './dashboard';
 import permissions from './permissions';
+import staticpages from './staticpages';
 
 window.PTL = window.PTL || {};
 
@@ -21,6 +22,9 @@ PTL.commonAdmin = {
         break;
       case 'permissions':
         permissions.init();
+        break;
+      case 'staticpages':
+        staticpages.init(opts.opts);
         break;
     }
   },
