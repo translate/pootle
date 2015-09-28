@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-22 10:48+0100\n"
+"POT-Creation-Date: 2015-09-28 10:08+0100\n"
 "PO-Revision-Date: 2015-09-22 19:14+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -2520,14 +2520,16 @@ msgstr "Термин"
 msgid "No terminology file has been found"
 msgstr "Не найдены файлы терминологии"
 
-#: templates/translation_projects/terminology/manage.html:60
+#. Translators: 'pootle-terminology' and 'Terminology' are not
+#. translated
+#: templates/translation_projects/terminology/manage.html:62
 msgid ""
-"In order to use the terminology feature, make sure to add to your "
-"translation project a \"pootle-terminology\" file named after your project's "
-"extension."
+"In order to use the terminology feature, make sure to add a terminology file "
+"to your translation project. The terminology file must be named 'pootle-"
+"terminology' and use the same file extension (format) as the rest of the "
+"project files.  This custom terminology will be used in addition to any "
+"terminology suggestions provided by the 'Terminology' project."
 msgstr ""
-"Чтобы использовать терминологию, убедитесь, что вы добавили в проект файл "
-"\"pootle-terminlogy\" с расширением, как у всех остальных файлов в проекте."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
@@ -2679,6 +2681,15 @@ msgstr "Войти"
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr "Лучшие участники этого месяца"
+
+#~ msgid ""
+#~ "In order to use the terminology feature, make sure to add to your "
+#~ "translation project a \"pootle-terminology\" file named after your "
+#~ "project's extension."
+#~ msgstr ""
+#~ "Чтобы использовать терминологию, убедитесь, что вы добавили в проект файл "
+#~ "\"pootle-terminlogy\" с расширением, как у всех остальных файлов в "
+#~ "проекте."
 
 #~ msgid "File %r was rejected because its X-Pootle-Revision is too old."
 #~ msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-22 10:48+0100\n"
+"POT-Creation-Date: 2015-09-28 10:08+0100\n"
 "PO-Revision-Date: 2013-05-21 10:23+0000\n"
 "Last-Translator: chingiz <translatorky@lavabit.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2445,11 +2445,15 @@ msgstr ""
 msgid "No terminology file has been found"
 msgstr ""
 
-#: templates/translation_projects/terminology/manage.html:60
+#. Translators: 'pootle-terminology' and 'Terminology' are not
+#. translated
+#: templates/translation_projects/terminology/manage.html:62
 msgid ""
-"In order to use the terminology feature, make sure to add to your "
-"translation project a \"pootle-terminology\" file named after your project's "
-"extension."
+"In order to use the terminology feature, make sure to add a terminology file "
+"to your translation project. The terminology file must be named 'pootle-"
+"terminology' and use the same file extension (format) as the rest of the "
+"project files.  This custom terminology will be used in addition to any "
+"terminology suggestions provided by the 'Terminology' project."
 msgstr ""
 
 #: templates/translation_projects/terminology/stores.html:7

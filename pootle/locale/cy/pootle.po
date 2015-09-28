@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-22 10:48+0100\n"
+"POT-Creation-Date: 2015-09-28 10:08+0100\n"
 "PO-Revision-Date: 2015-09-21 12:38+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -2504,15 +2504,16 @@ msgstr "Term"
 msgid "No terminology file has been found"
 msgstr "Heb ganfod ffeiliau terminolegol"
 
-#: templates/translation_projects/terminology/manage.html:60
+#. Translators: 'pootle-terminology' and 'Terminology' are not
+#. translated
+#: templates/translation_projects/terminology/manage.html:62
 msgid ""
-"In order to use the terminology feature, make sure to add to your "
-"translation project a \"pootle-terminology\" file named after your project's "
-"extension."
+"In order to use the terminology feature, make sure to add a terminology file "
+"to your translation project. The terminology file must be named 'pootle-"
+"terminology' and use the same file extension (format) as the rest of the "
+"project files.  This custom terminology will be used in addition to any "
+"terminology suggestions provided by the 'Terminology' project."
 msgstr ""
-"Er mwyn defnyddio'r nodweddion terminolegol, gwnewch yn siŵr eich bod yn "
-"ychwanegu ffeil \"pootle-terminology\" sydd wedi ei enwi ar ôl eich "
-"estyniad, yn eich project."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
@@ -2664,6 +2665,15 @@ msgstr "Mewngofnodi"
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
 msgstr "Prif Gyfrannwr y Mis"
+
+#~ msgid ""
+#~ "In order to use the terminology feature, make sure to add to your "
+#~ "translation project a \"pootle-terminology\" file named after your "
+#~ "project's extension."
+#~ msgstr ""
+#~ "Er mwyn defnyddio'r nodweddion terminolegol, gwnewch yn siŵr eich bod yn "
+#~ "ychwanegu ffeil \"pootle-terminology\" sydd wedi ei enwi ar ôl eich "
+#~ "estyniad, yn eich project."
 
 #~ msgid "File %r was rejected because its X-Pootle-Revision is too old."
 #~ msgstr "Cafodd ffeil %r ei gwrthod gan fod ei X-Pootle-Revision yn rhy hen."
