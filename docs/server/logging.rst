@@ -5,6 +5,12 @@ Pootle's default logging has configurations for all important aspects of the
 server that we want to log.  Pootle also logs to the 'action' logger that will
 log every user, system and command action executed on the server.
 
+Log directory
+-------------
+
+You can override the default logging directory by specifying the
+:setting:`POOTLE_LOG_DIRECTORY` setting.
+
 Action logger
 -------------
 
