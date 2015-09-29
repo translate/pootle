@@ -16,7 +16,8 @@ The 2.6.2 release is an interim release. It is used to migrate from Pootle
 Major Changes
 =============
 
-This release fixes issues that some users experienced upgrading via 2.6.1
+This release fixes issue :issue:`4101` that some users experienced upgrading
+via 2.6.1.
 
 
 .. warning::
