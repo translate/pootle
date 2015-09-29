@@ -87,8 +87,8 @@ Database backend
 
 Please note that Pootle uses `django-transaction-hooks
 <https://pypi.python.org/pypi/django-transaction-hooks/>`_ backends for
-connecting to the database. For MySQL the correct ``ENGINE`` to set for the
-backend is:
+connecting to the database. For MySQL the correct :setting:`ENGINE
+<django:DATABASE-ENGINE>` to set for the backend is:
 
 .. code-block:: python
 
