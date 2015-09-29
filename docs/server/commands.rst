@@ -143,6 +143,23 @@ recalculate only the ``date_format`` quality checks, run:
     $ pootle calculate_checks --check=date_format
 
 
+.. django-admin:: clear_stats
+
+clear_stats
+^^^^^^^^^^^
+
+.. versionadded:: 2.7
+
+Clear stats cache data.
+
+Make use of :djadmin:`clear_stats` in cases where you want to remove all stats
+data.  Such as case may be where you want to recalculate stats after a change
+to checks or wordcount calculations.  While it should be fine to run
+:djadmin:`refresh_stats` or :djadmin:`calculate_checks`, by first running
+:djadmin:`clear_stats` you can be sure that the stats are calculated from
+scratch.
+
+
 .. django-admin:: refresh_scores
 
 refresh_scores
