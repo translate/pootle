@@ -9,6 +9,8 @@
 
 """Random utilities for tests."""
 
+import json
+
 
 def formset_dict(data):
     """Convert human readable POST dictionary into brain dead django
