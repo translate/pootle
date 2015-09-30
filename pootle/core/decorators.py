@@ -208,16 +208,17 @@ def set_project_resource(request, path_obj, dir_path, filename):
     resource_path = dir_path
     pootle_path = ctx_path + dir_path
 
-    # List of disabled TP paths
-    disabled_tps = TranslationProject.objects.disabled().filter(
+    # List of TP paths available for user
+    user_tps = TranslationProject.objects.for_user(request.user)
+    user_tps = user_tps.filter(
         project__code=path_obj.code,
     ).values_list('pootle_path', flat=True)
-    disabled_tps = list(disabled_tps)
-    disabled_tps.append('/templates/')
-    disabled_tps_regex = '^%s' % u'|'.join(disabled_tps)
-    sql_not_regex = 'NOT REGEXP'
+    user_tps = list(path for path in user_tps
+                    if not path.startswith('/templates/'))
+    user_tps_regex = '^%s' % u'|'.join(user_tps)
+    sql_regex = 'REGEXP'
     if connection.vendor == 'postgresql':
-        sql_not_regex = '!~'
+        sql_regex = '~'
 
     if filename:
         query_pootle_path = query_pootle_path + filename
@@ -227,15 +228,15 @@ def set_project_resource(request, path_obj, dir_path, filename):
         resources = Store.objects.live().extra(
             where=[
                 'pootle_store_store.pootle_path LIKE %s',
-                'pootle_store_store.pootle_path ' + sql_not_regex + ' %s',
-            ], params=[query_pootle_path, disabled_tps_regex]
+                'pootle_store_store.pootle_path ' + sql_regex + ' %s',
+            ], params=[query_pootle_path, user_tps_regex]
         ).select_related('translation_project__language')
     else:
         resources = Directory.objects.live().extra(
             where=[
                 'pootle_app_directory.pootle_path LIKE %s',
-                'pootle_app_directory.pootle_path ' + sql_not_regex + ' %s',
-            ], params=[query_pootle_path, disabled_tps_regex]
+                'pootle_app_directory.pootle_path ' + sql_regex + ' %s',
+            ], params=[query_pootle_path, user_tps_regex]
         ).select_related('parent')
 
     if not resources.exists():
