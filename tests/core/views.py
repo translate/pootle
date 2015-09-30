@@ -53,7 +53,7 @@ class WriteableUserSettingsAPIView(APIView):
 
 
 def _create_api_request(rf, method='get', url='/', data=''):
-    """Convenience function to create and setup fake POST requests."""
+    """Convenience function to create and setup fake requests."""
     if data:
         data = json.dumps(data)
 
