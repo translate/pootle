@@ -180,7 +180,7 @@ def af_tutorial_subdir_po(settings, afrikaans_tutorial, system):
 
 @pytest.fixture
 def issue_2401_po(settings, afrikaans_tutorial, system):
-    """Require the /af/tutorial/tutorial.po store."""
+    """Require the /af/tutorial/issue_2401.po store."""
     return _require_store(afrikaans_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
                           'issue_2401.po')
