@@ -36,7 +36,7 @@ def items_equal(left, right):
         return False
 
 
-def create_api_request(rf, method='get', url='/', data=''):
+def create_api_request(rf, method='get', url='/', data='', user=None):
     """Convenience function to create and setup fake requests."""
     if data:
         data = json.dumps(data)
@@ -44,5 +44,8 @@ def create_api_request(rf, method='get', url='/', data=''):
     request_method = getattr(rf, method)
     request = request_method(url, data=data, content_type='application/json')
     request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
+
+    if user is not None:
+        request.user = user
 
     return request
