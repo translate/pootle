@@ -34,3 +34,15 @@ def items_equal(left, right):
         return sorted(left) == sorted(right)
     except TypeError:  # non-iterable
         return False
+
+
+def create_api_request(rf, method='get', url='/', data=''):
+    """Convenience function to create and setup fake requests."""
+    if data:
+        data = json.dumps(data)
+
+    request_method = getattr(rf, method)
+    request = request_method(url, data=data, content_type='application/json')
+    request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
+
+    return request

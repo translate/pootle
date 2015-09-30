@@ -18,6 +18,7 @@ from pootle.core.views import APIView
 from accounts.models import User
 
 from ..factories import UserFactory
+from ..utils import create_api_request
 
 
 class UserAPIView(APIView):
@@ -52,31 +53,19 @@ class WriteableUserSettingsAPIView(APIView):
     edit_form_class = UserSettingsForm
 
 
-def _create_api_request(rf, method='get', url='/', data=''):
-    """Convenience function to create and setup fake requests."""
-    if data:
-        data = json.dumps(data)
-
-    request_method = getattr(rf, method)
-    request = request_method(url, data=data, content_type='application/json')
-    request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
-
-    return request
-
-
 def test_apiview_invalid_method(rf):
     """Tests for invalid methods."""
     view = UserAPIView.as_view()
 
     # Forbidden method
-    request = _create_api_request(rf, 'post')
+    request = create_api_request(rf, 'post')
     response = view(request)
 
     # "Method not allowed" if the method is not within the restricted list
     assert response.status_code == 405
 
     # Non-existent method
-    request = _create_api_request(rf, 'patch')
+    request = create_api_request(rf, 'patch')
     response = view(request)
     assert response.status_code == 405
 
@@ -87,7 +76,7 @@ def test_apiview_get_single(rf):
     view = UserAPIView.as_view()
     user = UserFactory.create(username='foo')
 
-    request = _create_api_request(rf)
+    request = create_api_request(rf)
     response = view(request, id=user.id)
 
     # This should have been a valid request...
@@ -110,7 +99,7 @@ def test_apiview_get_multiple(rf):
     view = UserAPIView.as_view()
     UserFactory.create(username='foo')
 
-    request = _create_api_request(rf)
+    request = create_api_request(rf)
 
     response = view(request)
     response_data = json.loads(response.content)
@@ -147,7 +136,7 @@ def test_apiview_get_multiple(rf):
     assert 'models' in response_data
     assert len(response_data['models']) == 10
 
-    request = _create_api_request(rf, url='/?p=2')
+    request = create_api_request(rf, url='/?p=2')
     response = view(request)
     response_data = json.loads(response.content)
 
@@ -165,7 +154,7 @@ def test_apiview_post(rf):
     view = WriteableUserAPIView.as_view()
 
     # Malformed request, only JSON-encoded data is understood
-    request = _create_api_request(rf, 'post')
+    request = create_api_request(rf, 'post')
     response = view(request)
     response_data = json.loads(response.content)
 
@@ -177,7 +166,7 @@ def test_apiview_post(rf):
     missing_data = {
         'not_a_field': 'not a value',
     }
-    request = _create_api_request(rf, 'post', data=missing_data)
+    request = create_api_request(rf, 'post', data=missing_data)
     response = view(request)
     response_data = json.loads(response.content)
 
@@ -189,7 +178,7 @@ def test_apiview_post(rf):
         'username': 'foo',
         'email': 'foo@bar.tld',
     }
-    request = _create_api_request(rf, 'post', data=data)
+    request = create_api_request(rf, 'post', data=data)
     response = view(request)
     response_data = json.loads(response.content)
 
@@ -214,7 +203,7 @@ def test_apiview_put(rf):
     user = UserFactory.create(username='foo')
 
     # Malformed request, only JSON-encoded data is understood
-    request = _create_api_request(rf, 'put')
+    request = create_api_request(rf, 'put')
     response = view(request, id=user.id)
     response_data = json.loads(response.content)
 
@@ -226,7 +215,7 @@ def test_apiview_put(rf):
     update_data = {
         'username': new_username,
     }
-    request = _create_api_request(rf, 'put', data=update_data)
+    request = create_api_request(rf, 'put', data=update_data)
 
     # Requesting unknown resources is a 404
     with pytest.raises(Http404):
@@ -243,7 +232,7 @@ def test_apiview_put(rf):
     update_data.update({
         'email': user.email,
     })
-    request = _create_api_request(rf, 'put', data=update_data)
+    request = create_api_request(rf, 'put', data=update_data)
 
     response = view(request, id=user.id)
     response_data = json.loads(response.content)
@@ -259,7 +248,7 @@ def test_apiview_put(rf):
         'password': 'd34db33f',
     })
     view = WriteableUserSettingsAPIView.as_view()
-    request = _create_api_request(rf, 'put', data=update_data)
+    request = create_api_request(rf, 'put', data=update_data)
 
     response = view(request, id=user.id)
     response_data = json.loads(response.content)
@@ -275,7 +264,7 @@ def test_apiview_delete(rf, trans_nobody):
     user = UserFactory.create(username='foo')
 
     # Delete is not supported for collections
-    request = _create_api_request(rf, 'delete')
+    request = create_api_request(rf, 'delete')
     response = view(request)
 
     assert response.status_code == 405
@@ -305,7 +294,7 @@ def test_apiview_search(rf):
     UserFactory.create(username='foobarbaz', full_name='Foo Bar')
 
     # `q=bar` should match 3 users (full names match)
-    request = _create_api_request(rf, url='/?q=bar')
+    request = create_api_request(rf, url='/?q=bar')
     response = view(request)
     response_data = json.loads(response.content)
 
@@ -313,7 +302,7 @@ def test_apiview_search(rf):
     assert len(response_data['models']) == 3
 
     # `q=baz` should match 1 user
-    request = _create_api_request(rf, url='/?q=baz')
+    request = create_api_request(rf, url='/?q=baz')
     response = view(request)
     response_data = json.loads(response.content)
 
@@ -321,7 +310,7 @@ def test_apiview_search(rf):
     assert len(response_data['models']) == 1
 
     # Searches are case insensitive; `q=BaZ` should match 1 user
-    request = _create_api_request(rf, url='/?q=BaZ')
+    request = create_api_request(rf, url='/?q=BaZ')
     response = view(request)
     response_data = json.loads(response.content)
 
