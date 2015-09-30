@@ -30,3 +30,23 @@ def test_get_units(rf, default):
     request = create_api_request(rf, url='/?path=foo', user=default)
     response = view(request)
     assert response.status_code == 200
+
+
+@pytest.mark.xfail
+@pytest.mark.django_db
+def test_get_units_ordered(rf, default, admin, test_get_units_po):
+    """Tests units can be retrieved while applying order filters."""
+    view = get_units
+
+    # Load up stores
+    test_get_units_po.require_units()
+
+    url = '/?path=/af/tutorial/&filter=incomplete&sort=newest&initial=true'
+
+    request = create_api_request(rf, url=url, user=default)
+    response = view(request)
+    assert response.status_code == 200
+
+    request = create_api_request(rf, url=url, user=admin)
+    response = view(request)
+    assert response.status_code == 200

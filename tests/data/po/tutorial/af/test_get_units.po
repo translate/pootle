@@ -1,0 +1,11 @@
+msgid "one"
+msgstr ""
+
+msgid "two"
+msgstr "translated"
+
+msgid "three"
+msgstr ""
+
+msgid "four"
+msgstr ""

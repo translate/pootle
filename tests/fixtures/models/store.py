@@ -187,6 +187,14 @@ def issue_2401_po(settings, afrikaans_tutorial, system):
 
 
 @pytest.fixture
+def test_get_units_po(settings, afrikaans_tutorial, system):
+    """Require the /af/tutorial/test_get_units.po store."""
+    return _require_store(afrikaans_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY,
+                          'test_get_units.po')
+
+
+@pytest.fixture
 def fr_tutorial_subdir_to_remove_po(settings, french_tutorial, system):
     """Require the /fr/tutorial/subdir_to_remove/tutorial.po store."""
     return _require_store(french_tutorial,
