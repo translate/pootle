@@ -508,7 +508,11 @@ def get_units(request):
                 break
 
         if sort_by_field is None or sort_on == 'units':
-            uid_list = list(step_queryset.values_list('id', flat=True))
+            # Since `extra()` has been used before, it's necessary to explicitly
+            # request the `store__pootle_path` field. This is a subtetly in
+            # Django's ORM.
+            uid_list = [u['id'] for u in step_queryset.values('id',
+                                                              'store__pootle_path')]
         else:
             # Not using `values_list()` here because it doesn't know about all
             # existing relations when `extra()` has been used before in the
@@ -519,7 +523,9 @@ def get_units(request):
             # `values('sort_by_field', 'id')` with `id` otherwise
             # Django looks for `sort_by_field` field in the initial table.
             # https://code.djangoproject.com/ticket/19434
-            uid_list = [u['id'] for u in step_queryset.values('id', 'sort_by_field')]
+            uid_list = [u['id'] for u in step_queryset.values('id',
+                                                              'sort_by_field',
+                                                              'store__pootle_path')]
 
         if len(uids) == 1:
             try:

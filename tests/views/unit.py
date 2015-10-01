@@ -32,7 +32,6 @@ def test_get_units(rf, default):
     assert response.status_code == 200
 
 
-@pytest.mark.xfail
 @pytest.mark.django_db
 def test_get_units_ordered(rf, default, admin, test_get_units_po):
     """Tests units can be retrieved while applying order filters."""
