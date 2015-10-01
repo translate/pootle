@@ -17,6 +17,8 @@ from optparse import make_option
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
+from pootle_misc.baseurl import l
+
 
 class Command(BaseCommand):
     help = 'Builds and bundles static assets using webpack'
@@ -48,6 +50,10 @@ class Command(BaseCommand):
             args.append('--watch')
         else:
             os.environ['NODE_ENV'] = 'production'
+
+        static_base = l(settings.STATIC_URL)
+        suffix = 'js/' if static_base.endswith('/') else '/js/'
+        os.environ['WEBPACK_PUBLIC_PATH'] = static_base + suffix
 
         if custom_static_dirs:
             # XXX: review this for css

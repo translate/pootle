@@ -135,8 +135,7 @@ var config = {
   entry: entries,
   output: {
     path: __dirname,
-    // FIXME: this should take the deployment app's script name into account
-    publicPath: DEBUG ? '/static/js/' : '/assets/js/',
+    publicPath: process.env.WEBPACK_PUBLIC_PATH,
     filename: './[name]/app.bundle.js'
   },
   module: {
