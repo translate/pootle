@@ -11,6 +11,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { gotoScreen } from '../actions';
 
 import AccountActivation from '../components/AccountActivation';
 import AccountInactive from '../components/AccountInactive';
@@ -53,10 +54,10 @@ const Auth = React.createClass({
   /* Lifecycle */
 
   componentWillMount() {
-    let authActions = this.props.flux.getActions('auth');
     if (this.props.initialScreen) {
-      authActions.gotoScreen(this.props.initialScreen);
+      this.props.dispatch(gotoScreen(this.props.initialScreen));
     }
+    // TODO: convert this into a static 'initPasswordReset' prop
     if (this.props.initialAction) {
       authActions[this.props.initialAction](this.props.initialActionData);
     }

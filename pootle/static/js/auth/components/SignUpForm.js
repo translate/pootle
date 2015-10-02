@@ -12,6 +12,7 @@ import React from 'react';
 import assign from 'object-assign';
 import { PureRenderMixin } from 'react/addons';
 
+import { gotoScreen, signUp } from '../actions';
 import { FormElement } from 'components/forms';
 import { FormMixin } from 'mixins/forms';
 
@@ -50,12 +51,12 @@ let SignUpForm = React.createClass({
 
   handleSignUp(e) {
     e.preventDefault();
-    this.props.flux.getActions('auth').gotoScreen('signIn');
+    this.props.dispatch(gotoScreen('signIn'));
   },
 
   handleFormSubmit(e) {
     e.preventDefault();
-    this.props.flux.getActions('auth').signUp(this.state.formData);
+    this.props.dispatch(signUp(this.state.formData));
   },
 
 

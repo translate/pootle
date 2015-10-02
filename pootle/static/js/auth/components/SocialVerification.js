@@ -14,6 +14,7 @@ import React from 'react';
 import { FormElement } from 'components/forms';
 import { FormMixin } from 'mixins/forms';
 
+import { gotoScreen, verifySocial } from '../actions';
 import AuthProgress from './AuthProgress';
 
 
@@ -49,12 +50,12 @@ let SocialVerification = React.createClass({
 
   handleRequestPasswordReset(e) {
     e.preventDefault();
-    this.props.flux.getActions('auth').gotoScreen('requestPasswordReset');
+    this.props.dispatch(gotoScreen('requestPasswordReset'));
   },
 
   handleFormSubmit(e) {
     e.preventDefault();
-    this.props.flux.getActions('auth').verifySocial(this.state.formData);
+    this.props.dispatch(verifySocial(this.state.formData));
   },
 
 

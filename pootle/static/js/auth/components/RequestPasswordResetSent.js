@@ -11,6 +11,7 @@
 import React from 'react';
 import { PureRenderMixin } from 'react/addons';
 
+import { requestPasswordReset } from '../actions';
 import AuthContent from './AuthContent';
 import RequestPasswordResetProgress from './RequestPasswordResetProgress';
 
@@ -27,9 +28,9 @@ let RequestPasswordResetSent = React.createClass({
   /* Handlers */
 
   handleResendEmail() {
-    this.props.flux.getActions('auth').requestPasswordReset({
+    this.props.dispatch(requestPasswordReset({
       email: this.props.resetEmail,
-    });
+    }));
   },
 
 
