@@ -213,6 +213,15 @@ export const VERIFY_SOCIAL_FAILURE = 'VERIFY_SOCIAL_FAILURE';
 
 
 export function verifySocial(formData) {
+  return dispatch => {
+    dispatch(verifySocialRequest());
+
+    return AuthAPI.verifySocial(formData)
+                  .then(
+                    (data) => dispatch(verifySocialSuccess(data.location)),
+                    (data) => dispatch(verifySocialFailure(data.responseJSON))
+                  );
+  }
 }
 
 
