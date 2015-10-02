@@ -87,12 +87,22 @@ export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 
 
 export function signUp(formData, nextURL) {
+  return dispatch => {
+    dispatch(signUpRequest(formData.email));
+
+    return AuthAPI.signUp(formData, nextURL)
+                  .then(
+                    (data) => dispatch(signUpSuccess(data.location)),
+                    (data) => dispatch(signUpFailure(data.responseJSON))
+                  );
+  }
 }
 
 
 function signUpRequest(email, nextURL) {
   return {
     type: SIGNUP_REQUEST,
+    email,
   }
 }
 

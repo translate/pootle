@@ -35,6 +35,9 @@ function screen(state='signIn', action) {
       }
       return state;
 
+    case SIGNUP_SUCCESS:
+      return 'activation';
+
     default:
       return state;
   }
@@ -44,10 +47,13 @@ function screen(state='signIn', action) {
 function isLoading(state=false, action) {
   switch (action.type) {
     case SIGNIN_REQUEST:
+    case SIGNUP_REQUEST:
       return true;
 
     case SIGNIN_SUCCESS:
     case SIGNIN_FAILURE:
+    case SIGNUP_SUCCESS:
+    case SIGNUP_FAILURE:
       return false;
 
     default:
@@ -82,6 +88,9 @@ function resetEmail(state=null, action) {
 
 function signUpEmail(state=null, action) {
   switch (action.type) {
+    case SIGNUP_REQUEST:
+      return action.email;
+
     default:
       return state;
   }
@@ -91,10 +100,13 @@ function signUpEmail(state=null, action) {
 function formErrors(state={}, action) {
   switch (action.type) {
     case SIGNIN_FAILURE:
+    case SIGNUP_FAILURE:
       return action.errors;
 
     case SIGNIN_REQUEST:
     case SIGNIN_SUCCESS:
+    case SIGNUP_REQUEST:
+    case SIGNUP_SUCCESS:
       return {};
 
     default:

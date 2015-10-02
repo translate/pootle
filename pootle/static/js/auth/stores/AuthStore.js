@@ -19,9 +19,6 @@ export default class AuthStore extends Store {
 
     let authActions = flux.getActions('auth');
 
-    this.registerAsync(authActions.signUp, this.handleSignUpBegin,
-                                           this.handleSignUpSuccess,
-                                           this.handleSignUpError);
     this.registerAsync(authActions.requestPasswordReset,
                        this.handleRequestPasswordResetBegin,
                        this.handleRequestPasswordResetSuccess,
@@ -39,38 +36,11 @@ export default class AuthStore extends Store {
 
       redirectTo: null,
       resetEmail: null,
-      signUpEmail: null,
 
       // FIXME: check if isLoading is actually needed everywhere
       isLoading: false, // Should be part of some generic 'request' store?
       formErrors: {}, // Should be part of some generic 'error' store?
     };
-  }
-
-
-  /* Sign Up */
-
-  handleSignUpBegin(reqData) {
-    this.setState({
-      formErrors: {},
-      isLoading: true,
-      signUpEmail: reqData.email,
-    });
-  }
-
-  handleSignUpSuccess() {
-    this.setState({
-      screen: 'activation',
-      isLoading: false,
-      formErrors: {},
-    });
-  }
-
-  handleSignUpError(errors) {
-    this.setState({
-      isLoading: false,
-      formErrors: errors,
-    });
   }
 
 
