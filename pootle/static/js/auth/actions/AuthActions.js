@@ -35,10 +35,6 @@ function handleErrors(jsonRespone) {
 
 export default class AuthActions extends Actions {
 
-  gotoScreen(screenName) {
-    return screenName;
-  }
-
   signIn(reqData, nextURL) {
     return AuthAPI.signIn(reqData, nextURL)
                   .then(

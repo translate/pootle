@@ -19,9 +19,6 @@ export default class AuthStore extends Store {
 
     let authActions = flux.getActions('auth');
 
-    // TODO: review if each of these can go in its own store
-    this.register(authActions.gotoScreen, this.handleGotoScreen);
-
     this.registerAsync(authActions.signIn, this.handleSignInBegin,
                                            this.handleSignInSuccess,
                                            this.handleSignInError);
@@ -51,13 +48,6 @@ export default class AuthStore extends Store {
       isLoading: false, // Should be part of some generic 'request' store?
       formErrors: {}, // Should be part of some generic 'error' store?
     };
-  }
-
-
-  /* Screen */
-
-  handleGotoScreen(screenName) {
-    this.setState({screen: screenName});
   }
 
 

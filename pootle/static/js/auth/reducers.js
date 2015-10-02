@@ -20,6 +20,9 @@ import {
 
 function screen(state='signIn', action) {
   switch (action.type) {
+    case GOTO_SCREEN:
+      return action.screen;
+
     default:
       return state;
   }
