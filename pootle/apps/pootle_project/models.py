@@ -157,7 +157,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             verbose_name=_('Quality Checks'))
 
     localfiletype = models.CharField(max_length=50, default="po",
-            choices=filetype_choices, verbose_name=_('File Type'))
+                                     verbose_name=_('File Type'))
 
     treestyle_choices = (
             # TODO: check that the None is stored and handled correctly

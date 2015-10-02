@@ -16,6 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_language.models import Language
 from pootle_project.models import Project, RESERVED_PROJECT_CODES
+from pootle_store.filetypes import filetype_choices
 from pootle_store.models import Store
 
 
@@ -76,6 +77,11 @@ class ProjectForm(forms.ModelForm):
             value = self.cleaned_data.get('localfiletype', None)
             if not value:
                 value = self.instance.localfiletype
+            filetypes = [x[0] for x in filetype_choices]
+            if value not in filetypes:
+                raise forms.ValidationError(
+                    "Unrecognised project filetype: %s" % value
+                )
             return value
 
         def clean_treestyle(self):
