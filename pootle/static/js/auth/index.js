@@ -14,7 +14,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import AuthController from './components/AuthController';
+import Auth from './containers/Auth';
 import authReducer from './reducers';
 
 
@@ -43,7 +43,7 @@ module.exports = {
 
     React.render(
       <Provider store={store}>
-        {() => <AuthController onClose={this.close} {...newProps} />}
+        {() => <Auth onClose={this.close} {...newProps} />}
       </Provider>,
       document.querySelector(mountNodeSelector)
     );

@@ -11,20 +11,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import AccountActivation from './AccountActivation';
-import AccountInactive from './AccountInactive';
-import AuthWindow from './AuthWindow';
-import EmailConfirmation from './EmailConfirmation';
-import RequestPasswordResetForm from './RequestPasswordResetForm';
-import RequestPasswordResetSent from './RequestPasswordResetSent';
-import PasswordResetForm from './PasswordResetForm';
-import SignInPanel from './SignInPanel';
-import SignUpForm from './SignUpForm';
-import SocialAuthError from './SocialAuthError';
-import SocialVerification from './SocialVerification';
+
+import AccountActivation from '../components/AccountActivation';
+import AccountInactive from '../components/AccountInactive';
+import AuthWindow from '../components/AuthWindow';
+import EmailConfirmation from '../components/EmailConfirmation';
+import RequestPasswordResetForm from '../components/RequestPasswordResetForm';
+import RequestPasswordResetSent from '../components/RequestPasswordResetSent';
+import PasswordResetForm from '../components/PasswordResetForm';
+import SignInPanel from '../components/SignInPanel';
+import SignUpForm from '../components/SignUpForm';
+import SocialAuthError from '../components/SocialAuthError';
+import SocialVerification from '../components/SocialVerification';
 
 
-let AuthController = React.createClass({
+const Auth = React.createClass({
 
   propTypes: {
     // Optionally overrides state
@@ -176,4 +177,4 @@ let AuthController = React.createClass({
 });
 
 
-export default connect(state => state)(AuthController);
+export default connect(state => state)(Auth);
