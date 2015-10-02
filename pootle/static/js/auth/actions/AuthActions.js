@@ -35,14 +35,6 @@ function handleErrors(jsonRespone) {
 
 export default class AuthActions extends Actions {
 
-  signIn(reqData, nextURL) {
-    return AuthAPI.signIn(reqData, nextURL)
-                  .then(
-                    (value) => Promise.resolve(value.location),
-                    (reason) => Promise.reject(handleErrors(reason.responseJSON))
-                  );
-  }
-
   signUp(reqData) {
     return AuthAPI.signUp(reqData)
                   .then(

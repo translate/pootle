@@ -19,9 +19,6 @@ export default class AuthStore extends Store {
 
     let authActions = flux.getActions('auth');
 
-    this.registerAsync(authActions.signIn, this.handleSignInBegin,
-                                           this.handleSignInSuccess,
-                                           this.handleSignInError);
     this.registerAsync(authActions.signUp, this.handleSignUpBegin,
                                            this.handleSignUpSuccess,
                                            this.handleSignUpError);
@@ -48,51 +45,6 @@ export default class AuthStore extends Store {
       isLoading: false, // Should be part of some generic 'request' store?
       formErrors: {}, // Should be part of some generic 'error' store?
     };
-  }
-
-
-  /* Sign In */
-
-  handleSignInBegin(reqData, nextURL) {
-    this.setState({
-      formErrors: {},
-      isLoading: true,
-    });
-  }
-
-  handleSignInSuccess(newLocation) {
-    let newState = {
-      isLoading: false,
-      formErrors: {},
-    };
-
-    // HACKISH: allauth's XHR responses are not very informative, so
-    // it's necessary to do some guesswork around URLs in order to know
-    // what the actual response is supposed to mean
-    if (newLocation.indexOf('confirm-email') !== -1) {
-      assign(newState, {
-        screen: 'activation',
-        email: null,
-      });
-    } else if (newLocation.indexOf('inactive') !== -1) {
-      assign(newState, {
-        screen: 'inactive',
-        email: null,
-      });
-    } else {
-      assign(newState, {
-        redirectTo: newLocation,
-      });
-    }
-
-    this.setState(newState);
-  }
-
-  handleSignInError(errors) {
-    this.setState({
-      isLoading: false,
-      formErrors: errors,
-    });
   }
 
 

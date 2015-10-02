@@ -6,6 +6,9 @@
  * AUTHORS file for copyright and authorship information.
  */
 
+import AuthAPI from './utils/AuthAPI';
+
+
 export const GOTO_SCREEN = 'GOTO_SCREEN';
 
 
@@ -43,6 +46,15 @@ export const SIGNIN_FAILURE = 'SIGNIN_FAILURE';
 
 
 export function signIn(formData, nextURL) {
+  return dispatch => {
+    dispatch(signInRequest());
+
+    return AuthAPI.signIn(formData, nextURL)
+                  .then(
+                    (data) => dispatch(signInSuccess(data.location)),
+                    (data) => dispatch(signInFailure(data.responseJSON))
+                  );
+  }
 }
 
 

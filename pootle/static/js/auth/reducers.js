@@ -23,6 +23,18 @@ function screen(state='signIn', action) {
     case GOTO_SCREEN:
       return action.screen;
 
+    case SIGNIN_SUCCESS:
+      const { nextURL } = action;
+      // HACKISH: allauth's XHR responses are not very informative, so
+      // it's necessary to do some guesswork around URLs in order to know
+      // what the actual response is supposed to mean
+      if (nextURL.indexOf('confirm-email') !== -1) {
+        return 'activation';
+      } else if (nextURL.indexOf('inactive') !== -1) {
+        return 'inactive';
+      }
+      return state;
+
     default:
       return state;
   }
@@ -46,6 +58,14 @@ function isLoading(state=false, action) {
 
 function redirectTo(state=null, action) {
   switch (action.type) {
+    case SIGNIN_SUCCESS:
+      const { nextURL } = action;
+      if (nextURL.indexOf('confirm-email') !== -1 ||
+          nextURL.indexOf('inactive') !== -1) {
+        return state;
+      }
+      return nextURL;
+
     default:
       return state;
   }
@@ -70,6 +90,13 @@ function signUpEmail(state=null, action) {
 
 function formErrors(state={}, action) {
   switch (action.type) {
+    case SIGNIN_FAILURE:
+      return action.errors;
+
+    case SIGNIN_REQUEST:
+    case SIGNIN_SUCCESS:
+      return {};
+
     default:
       return state;
   }
