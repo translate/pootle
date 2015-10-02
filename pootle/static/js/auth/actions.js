@@ -129,6 +129,15 @@ export const REQ_PW_RESET_FAILURE = 'REQ_PW_RESET_FAILURE';
 
 
 export function requestPasswordReset(formData) {
+  return dispatch => {
+    dispatch(requestPasswordResetRequest(formData.email));
+
+    return AuthAPI.requestPasswordReset(formData)
+                  .then(
+                    (data) => dispatch(requestPasswordResetSuccess(data.location)),
+                    (data) => dispatch(requestPasswordResetFailure(data.responseJSON))
+                  );
+  }
 }
 
 

@@ -19,10 +19,6 @@ export default class AuthStore extends Store {
 
     let authActions = flux.getActions('auth');
 
-    this.registerAsync(authActions.requestPasswordReset,
-                       this.handleRequestPasswordResetBegin,
-                       this.handleRequestPasswordResetSuccess,
-                       this.handleRequestPasswordResetError);
     this.registerAsync(authActions.passwordReset, this.handlePasswordResetBegin,
                                                   this.handlePasswordResetSuccess,
                                                   this.handlePasswordResetError);
@@ -41,32 +37,6 @@ export default class AuthStore extends Store {
       isLoading: false, // Should be part of some generic 'request' store?
       formErrors: {}, // Should be part of some generic 'error' store?
     };
-  }
-
-
-  /* Request Password Reset */
-
-  handleRequestPasswordResetBegin(reqData) {
-    this.setState({
-      formErrors: {},
-      isLoading: true,
-      resetEmail: reqData.email,
-    });
-  }
-
-  handleRequestPasswordResetSuccess() {
-    this.setState({
-      screen: 'requestPasswordResetSent',
-      formErrors: {},
-      isLoading: false,
-    });
-  }
-
-  handleRequestPasswordResetError(errors) {
-    this.setState({
-      isLoading: false,
-      formErrors: errors,
-    });
   }
 
 

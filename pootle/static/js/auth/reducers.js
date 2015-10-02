@@ -38,6 +38,9 @@ function screen(state='signIn', action) {
     case SIGNUP_SUCCESS:
       return 'activation';
 
+    case REQ_PW_RESET_SUCCESS:
+      return 'requestPasswordResetSent';
+
     default:
       return state;
   }
@@ -48,12 +51,15 @@ function isLoading(state=false, action) {
   switch (action.type) {
     case SIGNIN_REQUEST:
     case SIGNUP_REQUEST:
+    case REQ_PW_RESET_REQUEST:
       return true;
 
     case SIGNIN_SUCCESS:
     case SIGNIN_FAILURE:
     case SIGNUP_SUCCESS:
     case SIGNUP_FAILURE:
+    case REQ_PW_RESET_SUCCESS:
+    case REQ_PW_RESET_FAILURE:
       return false;
 
     default:
@@ -80,6 +86,9 @@ function redirectTo(state=null, action) {
 
 function resetEmail(state=null, action) {
   switch (action.type) {
+    case REQ_PW_RESET_REQUEST:
+      return action.email;
+
     default:
       return state;
   }
@@ -101,12 +110,15 @@ function formErrors(state={}, action) {
   switch (action.type) {
     case SIGNIN_FAILURE:
     case SIGNUP_FAILURE:
+    case REQ_PW_RESET_FAILURE:
       return action.errors;
 
     case SIGNIN_REQUEST:
     case SIGNIN_SUCCESS:
     case SIGNUP_REQUEST:
     case SIGNUP_SUCCESS:
+    case REQ_PW_RESET_REQUEST:
+    case REQ_PW_RESET_SUCCESS:
       return {};
 
     default:
