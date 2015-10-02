@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2015-08-02 18:40+0000\n"
+"PO-Revision-Date: 2015-09-29 13:42+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: el\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1438540807.000000\n"
+"X-POOTLE-MTIME: 1443534155.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -116,13 +116,13 @@ msgid "Loading..."
 msgstr "Φορτώνει..."
 
 #: static/js/admin/components/UserForm.js:52
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Σημείωση: η διαγραφή του χρήστη θα κάνει τις προτάσεις του και τις "
-"μεταφράσεις του να αποδίδονται σε έναν ανώνυμο χρήστη (κανένα)."
+"Σημείωση: κατά τη διαγραφή ενός χρήστη οι συνεισφορές του στον ιστότοπο, π."
+"χ. σχόλια, προτάσεις και μεταφράσεις αποδίδονται στον ανώνυμο χρήστη "
+"(κανένα)."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
@@ -205,11 +205,11 @@ msgstr "Αναφορές"
 
 #: static/js/auth/components/AccountActivation.js:33
 #: static/js/auth/components/RequestPasswordResetSent.js:44
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
-"Έχουμε στείλει ένα μήνυμα που περιέχει τον ειδικό σύνδεσμο προς το <span></"
-"span>."
+"Έχουμε στείλει ένα μήνυμα που περιέχει τον ειδικό σύνδεσμο προς το <span>%s</"
+"span>"
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
@@ -266,7 +266,7 @@ msgstr "Ενεργοποίηση λογαριασμού"
 
 #: static/js/auth/components/AuthController.js:113
 msgid "Email Confirmation"
-msgstr ""
+msgstr "Επιβεβαίωση ηλ. διεύθυνσης"
 
 #: static/js/auth/components/AuthController.js:120
 #: static/js/auth/components/AuthController.js:127
@@ -289,6 +289,7 @@ msgstr "Επικοινωνήστε μαζί μας"
 #: static/js/auth/components/EmailConfirmation.js:30
 msgid "This email confirmation link expired or is invalid."
 msgstr ""
+"Αυτός ο σύνδεσμος επιβεβαίωσης ηλ. διεύθυνσης έχει λήξει ή είναι άκυρος."
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
@@ -403,6 +404,8 @@ msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
+"Έχετε μη αποθηκευμένες αλλαγές σε αυτήν τη συμβολοσειρά. Η περιήγηση εκτός "
+"αυτής θα απορρίψει αυτές τις αλλαγές."
 
 #: static/js/editor/app.js:267
 msgid ""
@@ -470,9 +473,8 @@ msgid "Unknown error"
 msgstr "Άγνωστο σφάλμα"
 
 #: static/js/editor/app.js:1066
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "Αυτή η μονάδα δεν υπάρχει πια."
+msgstr "Αυτή η συμβολοσειρά δεν υπάρχει πια."
 
 #: static/js/editor/app.js:1067
 msgid "Go back to browsing"
@@ -578,26 +580,27 @@ msgstr "Λίγα δευτερόλεπτα πριν"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
-msgstr ""
+msgstr "Διεύθυνση ηλ. αλληλογραφίας"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"Εισάγετε τη διεύθυνση της ηλ. αλληλογραφίας σας και θα σας στείλουμε ένα "
+"μήνυμα με τον ειδικό σύνδεσμο για επαναφορά του κωδικού πρόσβασής σας."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
-msgstr ""
+msgstr "Όχι, ευχαριστώ."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:114
-#, fuzzy
 msgid "Send Email"
-msgstr "Επαναποστολή μηνύματος"
+msgstr "Αποστολή μηνύματος"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Η δημιουργία νέων λογαριασμών χρήστη απαγορεύεται."
 
 #: static/js/auth/components/SocialVerification.js:79
 #, python-format
@@ -606,6 +609,10 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"Βρέθηκε ένας χρήστης με διεύθυνση αλληλογραφίας <span>%s</span> στο σύστημά "
+"μας. Παρακαλούμε, δώστε τον κωδικό πρόσβασης για να ολοκληρώσετε τη "
+"διαδικασία σύνδεσης. Αυτή είναι μια διεργασία μια κι έξω, που θα "
+"δημιουργήσει έναν σύνδεσμο μεταξύ του Pootle σας και των %s λογαριασμών."
 
 #: static/js/browser.js:163
 msgid "All Languages"
@@ -623,31 +630,31 @@ msgstr "Το συνολικό έργο"
 #: static/js/shared/components/UserEvent.js:94
 #, python-brace-format
 msgid "removed translation for ${sourceString}"
-msgstr ""
+msgstr "αφαιρεμένη μετάφραση για τη ${συμβολοσειρά προέλευσης}"
 
 #: static/js/shared/components/UserEvent.js:75
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "accepted suggestion for ${sourceString}"
-msgstr "Αποδεκτές προτάσεις του %s"
+msgstr "αποδεκτές προτάσεις για τη ${συμβολοσειρά προέλευσης}"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "μεταφορτωμένο αρχείο"
 
 #: static/js/shared/components/UserEvent.js:79
 #, python-brace-format
 msgid "muted ${check} for ${sourceString}"
-msgstr ""
+msgstr "σίγαση ${ελέγχου} για τη $ (συμβολοσειρά προέλευσης}"
 
 #: static/js/shared/components/UserEvent.js:81
 #, python-brace-format
 msgid "unmuted ${check} for ${sourceString}"
-msgstr ""
+msgstr "παύση σίγασης ${ελέγχου} για τη ${συμβολοσειρά ελέγχου}"
 
 #: static/js/shared/components/UserEvent.js:83
 #, python-brace-format
 msgid "added suggestion for ${sourceString}"
-msgstr ""
+msgstr "προστέθηκε πρόταση για τη ${συμβολοσειρά προέλευσης}"
 
 #: static/js/shared/components/UserEvent.js:85
 #, fuzzy, python-brace-format
