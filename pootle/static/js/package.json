@@ -20,7 +20,6 @@
     "autosize": "^3.0.6",
     "classnames": "^1.2.0",
     "codemirror": "^5.7.0",
-    "flummox": "^3.5.1",
     "imports-loader": "^0.6.3",
     "md5": "^2.0.0",
     "object-assign": "^2.0.0",
