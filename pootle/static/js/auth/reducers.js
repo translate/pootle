@@ -52,6 +52,7 @@ function isLoading(state=false, action) {
     case SIGNIN_REQUEST:
     case SIGNUP_REQUEST:
     case REQ_PW_RESET_REQUEST:
+    case PW_RESET_REQUEST:
       return true;
 
     case SIGNIN_SUCCESS:
@@ -60,6 +61,8 @@ function isLoading(state=false, action) {
     case SIGNUP_FAILURE:
     case REQ_PW_RESET_SUCCESS:
     case REQ_PW_RESET_FAILURE:
+    case PW_RESET_SUCCESS:
+    case PW_RESET_FAILURE:
       return false;
 
     default:
@@ -77,6 +80,10 @@ function redirectTo(state=null, action) {
         return state;
       }
       return nextURL;
+
+    case PW_RESET_SUCCESS:
+      // FIXME: hard-coding redirect path because of django-allauth#735
+      return l('/');
 
     default:
       return state;
@@ -111,6 +118,7 @@ function formErrors(state={}, action) {
     case SIGNIN_FAILURE:
     case SIGNUP_FAILURE:
     case REQ_PW_RESET_FAILURE:
+    case PW_RESET_FAILURE:
       return action.errors;
 
     case SIGNIN_REQUEST:
@@ -119,6 +127,8 @@ function formErrors(state={}, action) {
     case SIGNUP_SUCCESS:
     case REQ_PW_RESET_REQUEST:
     case REQ_PW_RESET_SUCCESS:
+    case PW_RESET_REQUEST:
+    case PW_RESET_SUCCESS:
       return {};
 
     default:

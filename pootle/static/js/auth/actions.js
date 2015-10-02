@@ -171,6 +171,17 @@ export const PW_RESET_FAILURE = 'PW_RESET_FAILURE';
 
 
 export function passwordReset(formData, url) {
+  return dispatch => {
+    dispatch(passwordResetRequest());
+
+    // FIXME: ideally we shouldn't be passing in the full URL, but only
+    // the necessary bits to construct it
+    return AuthAPI.passwordReset(formData, url)
+                  .then(
+                    (data) => dispatch(passwordResetSuccess()),
+                    (data) => dispatch(passwordResetFailure(data.responseJSON))
+                  );
+  }
 }
 
 

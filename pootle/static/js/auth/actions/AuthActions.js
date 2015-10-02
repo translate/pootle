@@ -35,16 +35,6 @@ function handleErrors(jsonRespone) {
 
 export default class AuthActions extends Actions {
 
-  passwordReset(reqData, url) {
-    // FIXME: ideally we shouldn't be passing in the full URL, but only
-    // the necessary bits to construct it
-    return AuthAPI.passwordReset(reqData, url)
-                  .then(
-                    (value) => Promise.resolve(value),
-                    (reason) => Promise.reject(handleErrors(reason.responseJSON))
-                  );
-  }
-
   verifySocial(reqData) {
     return AuthAPI.verifySocial(reqData)
                   .then(

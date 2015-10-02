@@ -19,50 +19,17 @@ export default class AuthStore extends Store {
 
     let authActions = flux.getActions('auth');
 
-    this.registerAsync(authActions.passwordReset, this.handlePasswordResetBegin,
-                                                  this.handlePasswordResetSuccess,
-                                                  this.handlePasswordResetError);
-
     this.registerAsync(authActions.verifySocial, this.handleVerifySocialBegin,
                                                  this.handleVerifySocialSuccess,
                                                  this.handleVerifySocialError);
 
     this.state = {
-      screen: 'signIn',
-
       redirectTo: null,
-      resetEmail: null,
 
       // FIXME: check if isLoading is actually needed everywhere
       isLoading: false, // Should be part of some generic 'request' store?
       formErrors: {}, // Should be part of some generic 'error' store?
     };
-  }
-
-
-  /* Password Reset */
-
-  handlePasswordResetBegin(reqData, url) {
-    this.setState({
-      formErrors: {},
-      isLoading: true,
-    });
-  }
-
-  handlePasswordResetSuccess(response) {
-    this.setState({
-      formErrors: {},
-      isLoading: false,
-      // FIXME: hard-coding redirect path because of django-allauth#735
-      redirectTo: l('/'),
-    });
-  }
-
-  handlePasswordResetError(errors) {
-    this.setState({
-      isLoading: false,
-      formErrors: errors,
-    });
   }
 
 
