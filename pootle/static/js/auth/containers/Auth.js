@@ -11,7 +11,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { gotoScreen } from '../actions';
+import { gotoScreen, requestPasswordReset } from '../actions';
 
 import AccountActivation from '../components/AccountActivation';
 import AccountInactive from '../components/AccountInactive';
@@ -30,8 +30,7 @@ const Auth = React.createClass({
 
   propTypes: {
     // Optionally overrides state
-    initialAction: React.PropTypes.string,
-    initialActionData: React.PropTypes.object,
+    initPasswordReset: React.PropTypes.object,
     initialScreen: React.PropTypes.string,
 
     canContact: React.PropTypes.bool.isRequired,
@@ -44,8 +43,7 @@ const Auth = React.createClass({
 
   getDefaultProps() {
     return {
-      initialAction: null,
-      initialActionData: {},
+      initPasswordReset: null,
       tokenFailed: false,
     };
   },
@@ -57,9 +55,8 @@ const Auth = React.createClass({
     if (this.props.initialScreen) {
       this.props.dispatch(gotoScreen(this.props.initialScreen));
     }
-    // TODO: convert this into a static 'initPasswordReset' prop
-    if (this.props.initialAction) {
-      authActions[this.props.initialAction](this.props.initialActionData);
+    if (this.props.initPasswordReset) {
+      this.props.dispatch(requestPasswordReset(this.props.initPasswordReset));
     }
   },
 

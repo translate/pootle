@@ -18,9 +18,8 @@
   </p>
   <p>
     <button class="btn" onclick="PTL.auth.open({
-        initialAction: 'requestPasswordReset',
-        initialActionData: { email: '{{ object.email }}' },
         initialScreen: 'requestPasswordReset',
+        initPasswordReset: { email: '{{ object.email }}' },
       });"
     >
       {% trans 'Reset Password' %}
