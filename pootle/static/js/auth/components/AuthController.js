@@ -9,6 +9,7 @@
 'use strict';
 
 import React from 'react';
+import { connect } from 'react-redux';
 
 import AccountActivation from './AccountActivation';
 import AccountInactive from './AccountInactive';
@@ -175,4 +176,4 @@ let AuthController = React.createClass({
 });
 
 
-export default AuthController;
+export default connect(state => state)(AuthController);

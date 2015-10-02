@@ -8,10 +8,14 @@
 
 'use strict';
 
-import FluxComponent from 'flummox/component';
 import $ from 'jquery';
 import assign from 'object-assign';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+import AuthController from './components/AuthController';
+import authReducer from './reducers';
 
 
 const mountNodeSelector = '.js-auth';
@@ -33,25 +37,16 @@ module.exports = {
   },
 
   open(props) {
-    // FIXME: ugly workaround to avoid crashing: some globals
-    // (`gettext()`, `l()`) are being used in these modules, so for the
-    // time being we delay their import here (note they are CommonJS
-    // requires).
-    // The actual fix is getting rid of those globals, and only then we'll
-    // be able to move these two imports to the top of the module.
-    let Flux = require('./flux');
-    let AuthController = require('./components/AuthController');
-
-    let flux = new Flux();
     const newProps = assign({}, commonProps, props);
 
-    let AuthApp = (
-      <FluxComponent flux={flux} connectToStores={['auth']}>
-        <AuthController onClose={this.close} {...newProps} />
-      </FluxComponent>
-    );
+    let store = createStore(authReducer);
 
-    React.render(AuthApp, document.querySelector(mountNodeSelector));
+    React.render(
+      <Provider store={store}>
+        {() => <AuthController onClose={this.close} {...newProps} />}
+      </Provider>,
+      document.querySelector(mountNodeSelector)
+    );
   },
 
   close() {

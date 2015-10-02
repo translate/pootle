@@ -11,6 +11,11 @@
 import $ from 'jquery';
 
 
+// XXX: this is to emulate the global `l()` function. It's needed because at the
+// time this module is imported, the function is not available yet.
+const l = x => x;
+
+
 const AuthAPI = {
 
   apiRoot: l('/accounts/'),

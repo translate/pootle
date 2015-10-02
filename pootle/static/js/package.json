@@ -25,6 +25,7 @@
     "md5": "^2.0.0",
     "object-assign": "^2.0.0",
     "react": "^0.13.3",
+    "react-redux": "^3.0.0",
     "react-select": "^0.4.9",
     "redux": "^3.0.0"
   }
