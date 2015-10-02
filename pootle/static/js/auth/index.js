@@ -12,7 +12,8 @@ import $ from 'jquery';
 import assign from 'object-assign';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 
 import Auth from './containers/Auth';
 import authReducer from './reducers';
@@ -39,7 +40,10 @@ module.exports = {
   open(props) {
     const newProps = assign({}, commonProps, props);
 
-    let store = createStore(authReducer);
+    const createStoreWithMiddleware = applyMiddleware(
+      thunkMiddleware
+    )(createStore);
+    let store = createStoreWithMiddleware(authReducer);
 
     React.render(
       <Provider store={store}>
