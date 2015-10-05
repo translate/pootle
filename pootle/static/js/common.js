@@ -8,9 +8,6 @@
 
 'use strict';
 
-// Required for `Promise` support
-import 'babel-core/polyfill';
-
 import cookie from 'utils/cookie';
 
 // Aliased non-commonJS modules

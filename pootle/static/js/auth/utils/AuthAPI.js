@@ -21,13 +21,11 @@ const AuthAPI = {
   apiRoot: l('/accounts/'),
 
   request(url, data) {
-    return Promise.resolve(
-      $.ajax(url, {
-        type: 'POST',
-        data: data,
-        dataType: 'json',
-      })
-    );
+    return $.ajax(url, {
+      type: 'POST',
+      data: data,
+      dataType: 'json',
+    });
   },
 
   signIn(reqData, nextURL) {
