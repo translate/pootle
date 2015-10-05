@@ -262,6 +262,43 @@ def check_settings(app_configs=None, **kwargs):
                     id="pootle.W015",
                 ))
 
+    if settings.POOTLE_TM_SERVER:
+        tm_indexes = []
+
+        for server in settings.POOTLE_TM_SERVER:
+            if 'INDEX_NAME' not in settings.POOTLE_TM_SERVER[server]:
+                errors.append(checks.Critical(
+                    _("POOTLE_TM_SERVER['%s'] has no INDEX_NAME.", server),
+                    hint=_("Set an INDEX_NAME for POOTLE_TM_SERVER['%s'].",
+                           server),
+                    id="pootle.C008",
+                ))
+            elif settings.POOTLE_TM_SERVER[server]['INDEX_NAME'] in tm_indexes:
+                errors.append(checks.Warning(
+                    _("Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER.",
+                      settings.POOTLE_TM_SERVER[server]['INDEX_NAME']),
+                    hint=_("Set different INDEX_NAME for all servers in "
+                           "POOTLE_TM_SERVER."),
+                    id="pootle.W018",
+                ))
+            else:
+                tm_indexes.append(settings.POOTLE_TM_SERVER[server]['INDEX_NAME'])
+
+            if 'WEIGHT' not in settings.POOTLE_TM_SERVER[server]:
+                errors.append(checks.Warning(
+                    _("POOTLE_TM_SERVER['%s'] has no WEIGHT.", server),
+                    hint=_("Set a WEIGHT for POOTLE_TM_SERVER['%s'].", server),
+                    id="pootle.W019",
+                ))
+            elif not (0.0 <= settings.POOTLE_TM_SERVER[server]['WEIGHT'] <= 1.0):
+                errors.append(checks.Warning(
+                    _("POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or "
+                      "greater than 1.0", server),
+                    hint=_("Set a WEIGHT between 0.0 and 1.0 (both included) "
+                           "for POOTLE_TM_SERVER['%s'].", server),
+                    id="pootle.W020",
+                ))
+
     return errors
 
 
