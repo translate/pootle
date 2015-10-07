@@ -19,7 +19,7 @@ build: docs mo assets
 
 assets:
 	cd ${JS_DIR} && \
-	npm update && \
+	npm install && \
 	cd ${CWD}
 	python manage.py webpack
 	mkdir -p ${ASSETS_DIR}
