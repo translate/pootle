@@ -9,16 +9,7 @@
 import CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 
-
-/**
- * Maps markup module names from settings to CodeMirror mode names
- */
-function getMode(markup) {
-  return {
-    html: 'htmlmixed',
-    restructuredtext: 'rst',
-  }[markup] || markup;
-}
+import { getMode } from 'utils/markup';
 
 
 const staticpages = {
