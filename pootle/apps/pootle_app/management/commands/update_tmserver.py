@@ -137,6 +137,9 @@ class Command(BaseCommand):
             if es.indices.exists(self.INDEX_NAME):
                 es.indices.delete(index=self.INDEX_NAME)
 
+        if not options['dry_run'] and not es.indices.exists(self.INDEX_NAME):
+            es.indices.create(index=self.INDEX_NAME)
+
         if (not options['rebuild'] and
             not options['overwrite'] and
             es.indices.exists(self.INDEX_NAME)):

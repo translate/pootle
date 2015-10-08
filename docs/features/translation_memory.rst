@@ -61,7 +61,7 @@ translation memory using the :djadmin:`update_tmserver` command:
 
 .. code-block:: bash
 
-   (env) $ pootle update_tmserver --rebuild
+   (env) $ pootle update_tmserver
 
 
 Once populated Pootle will keep Local TM up-to-date.
