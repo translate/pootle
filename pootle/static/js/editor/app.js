@@ -1389,17 +1389,15 @@ PTL.editor = {
 
   /* Loads the edit unit for the current active unit */
   getEditUnit: function () {
-    var eClass = 'edit-row',
-        currentUnit = this.units.getCurrent(),
-        uid = currentUnit.id,
-        editUrl = l(['/xhr/units/', uid, '/edit/'].join('')),
-        widget = '';
+    let eClass = 'edit-row';
+    let currentUnit = this.units.getCurrent();
+    let widget = '';
 
     let reqData = {};
     this.settings.vFolder && (reqData.vfolder = this.settings.vFolder);
 
     $.ajax({
-      url: editUrl,
+      url: l(`/xhr/units/${currentUnit.id}/edit/`),
       async: false,
       data: reqData,
       dataType: 'json',
@@ -1421,7 +1419,7 @@ PTL.editor = {
 
     return (
       (PTL.editor.filter !== 'all' ? ctxRowBefore : '') +
-      `<tr id="row${uid}" class="${eClass}">` +
+      `<tr id="row${currentUnit.id}" class="${eClass}">` +
         widget +
       '</tr>' +
       (PTL.editor.filter !== 'all' ? ctxRowAfter : '')
