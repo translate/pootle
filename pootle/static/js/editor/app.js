@@ -97,8 +97,8 @@ PTL.editor = {
     /* Regular expressions */
     this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
 
-    /* Timeline requests handler */
-    this.timelineReq = null;
+    /* Ongoing requests */
+    this.requests = {};
 
     /* TM requests handler */
     this.tmReq = null;
@@ -2017,11 +2017,12 @@ PTL.editor = {
 
     // Always abort previous requests so we only get results for the
     // current unit
-    if (PTL.editor.timelineReq !== null) {
-      PTL.editor.timelineReq.abort();
+    const request = this.requests.timeline;
+    if (request && request !== null) {
+      request.abort();
     }
 
-    PTL.editor.timelineReq = $.ajax({
+    this.requests.timeline = $.ajax({
       url: timelineUrl,
       dataType: 'json',
       success: function (data) {
