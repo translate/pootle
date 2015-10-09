@@ -40,6 +40,9 @@ var utils = require('../utils.js');
 import linkHashtags from 'utils/linkHashtags';
 
 
+const CTX_STEP = 1;
+
+
 var filterSelectOpts = {
       dropdownAutoWidth: true,
       width: 'off'
@@ -86,7 +89,6 @@ PTL.editor = {
     this.user = null;
     this.ctxGap = 0;
     this.ctxQty = parseInt($.cookie('ctxQty'), 10) || 1;
-    this.ctxStep= 1;
     this.preventNavigation = false;
 
     this.isUnitDirty = false;
@@ -1863,7 +1865,7 @@ PTL.editor = {
   },
 
   /* Gets more context units */
-  moreContext: function (amount=1) {
+  moreContext: function (amount=CTX_STEP) {
     const uId = this.units.getCurrent().id;
 
     return (
@@ -1885,14 +1887,14 @@ PTL.editor = {
     // removing any context rows
     if (before.length || after.length) {
       if (before.length === this.ctxGap) {
-        before.slice(0, this.ctxStep).remove();
+        before.slice(0, CTX_STEP).remove();
       }
 
       if (after.length === this.ctxGap) {
-        after.slice(-this.ctxStep).remove();
+        after.slice(-CTX_STEP).remove();
       }
 
-      this.ctxGap -= this.ctxStep;
+      this.ctxGap -= CTX_STEP;
 
       if (this.ctxGap >= 0) {
         if (this.ctxGap === 0) {
