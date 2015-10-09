@@ -1123,11 +1123,11 @@ PTL.editor = {
 
   /* Renders a single row */
   renderRow: function (unit) {
-    return [
-      '<tr id="row', unit.id, '" class="view-row">',
-        this.tmpl.vUnit({unit: unit.toJSON()}),
+    return (
+      `<tr id="row${unit.id}" class="view-row">` +
+        this.tmpl.vUnit({unit: unit.toJSON()}) +
       '</tr>'
-    ].join('');
+    );
   },
 
   /* Renders the editor rows */
@@ -1140,11 +1140,11 @@ PTL.editor = {
     _.each(unitGroups, function (unitGroup) {
       // Don't display a delimiter row if all units have the same origin
       if (unitGroups.length !== 1) {
-        rows.push([
-          '<tr class="delimiter-row"><td colspan="2">',
-            '<div class="hd"><h2>', unitGroup.path, '</h2></div>',
+        rows.push(
+          '<tr class="delimiter-row"><td colspan="2">' +
+            `<div class="hd"><h2>${unitGroup.path}</h2></div>` +
           '</td></tr>'
-        ].join(''));
+        );
       }
 
       for (i=0; i<unitGroup.units.length; i++) {
@@ -1172,7 +1172,7 @@ PTL.editor = {
       let unit = units[i];
       unit = $.extend({}, currentUnit.toJSON(), unit);
 
-      rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls + '">';
+      rows += `<tr id="ctx${unit.id}" class="ctx-row ${extraCls}">`;
       rows += this.tmpl.vUnit({unit: unit});
       rows += '</tr>';
     }
@@ -1430,7 +1430,7 @@ PTL.editor = {
 
     editUnit = (PTL.editor.filter !== 'all' ?
               ctxRowBefore + this.renderCtxRows(ctx.before, 'before') : '') +
-             '<tr id="row' + uid + '" class="' + eClass + '">' +
+             `<tr id="row${uid}" class="${eClass}">` +
              widget + '</tr>' +
              (PTL.editor.filter !== 'all' ?
               this.renderCtxRows(ctx.after, 'after') + ctxRowAfter : '');
