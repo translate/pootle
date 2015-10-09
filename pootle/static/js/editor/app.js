@@ -1897,10 +1897,8 @@ PTL.editor = {
 
   /* Shows context rows */
   showContext: function () {
-
-    var editCtxRowBefore, editCtxRowAfter,
-        before = $(".ctx-row.before"),
-        after = $(".ctx-row.after");
+    const before = $('.ctx-row.before');
+    const after = $('.ctx-row.after');
 
     if (before.length || after.length) {
       before.show();
@@ -1915,10 +1913,8 @@ PTL.editor = {
 
   /* Hides context rows */
   hideContext: function () {
-
-    var editCtxRowBefore, editCtxRowAfter,
-        before = $(".ctx-row.before"),
-        after = $(".ctx-row.after");
+    const before = $('.ctx-row.before');
+    const after = $('.ctx-row.after');
 
     before.hide();
     after.hide();
