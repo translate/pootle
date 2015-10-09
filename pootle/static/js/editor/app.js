@@ -201,12 +201,10 @@ PTL.editor = {
     $(document).on('change', '#js-filter-status', this.filterStatus);
     $(document).on('change', '#js-filter-checks', this.filterChecks);
     $(document).on('change', '#js-filter-sort', () => this.filterSort());
-    $(document).on('click', '.js-more-ctx', function () {
-      PTL.editor.moreContext(false);
-    });
-    $(document).on('click', '.js-less-ctx', this.lessContext);
-    $(document).on('click', '.js-show-ctx', this.showContext);
-    $(document).on('click', '.js-hide-ctx', this.hideContext);
+    $(document).on('click', '.js-more-ctx', () => this.moreContext(false));
+    $(document).on('click', '.js-less-ctx', () => this.lessContext());
+    $(document).on('click', '.js-show-ctx', () => this.showContext());
+    $(document).on('click', '.js-hide-ctx', () => this.hideContext());
 
     /* Commenting */
     $(document).on('click', '.js-editor-comment', function (e) {
@@ -1808,11 +1806,11 @@ PTL.editor = {
     var defaults = {hasData: false, replace: false};
     opts = $.extend({}, defaults, opts);
 
-    var editCtxRowBefore = PTL.editor.tmpl.editCtx({
+    var editCtxRowBefore = this.tmpl.editCtx({
       hasData: opts.hasData,
       extraCls: 'before'
     });
-    var editCtxRowAfter = PTL.editor.tmpl.editCtx({
+    var editCtxRowAfter = this.tmpl.editCtx({
       hasData: opts.hasData,
       extraCls: 'after'
     });
@@ -1827,10 +1825,10 @@ PTL.editor = {
 
   /* Gets more context units */
   moreContext: function (initial) {
-    var ctxUrl = l(['/xhr/units/', PTL.editor.units.getCurrent().id, '/context/'].join('')),
-        reqData = {gap: PTL.editor.ctxGap};
+    var ctxUrl = l(['/xhr/units/', this.units.getCurrent().id, '/context/'].join('')),
+        reqData = {gap: this.ctxGap};
 
-    reqData.qty = initial ? PTL.editor.ctxQty : PTL.editor.ctxStep;
+    reqData.qty = initial ? this.ctxQty : this.ctxStep;
 
     // Don't waste a request if nothing is expected initially
     if (initial && reqData.qty === 0) {
@@ -1877,23 +1875,23 @@ PTL.editor = {
     // Make sure there are context rows before decreasing the gap and
     // removing any context rows
     if (before.length || after.length) {
-      if (before.length === PTL.editor.ctxGap) {
-        before.slice(0, PTL.editor.ctxStep).remove();
+      if (before.length === this.ctxGap) {
+        before.slice(0, this.ctxStep).remove();
       }
 
-      if (after.length === PTL.editor.ctxGap) {
-        after.slice(-PTL.editor.ctxStep).remove();
+      if (after.length === this.ctxGap) {
+        after.slice(-this.ctxStep).remove();
       }
 
-      PTL.editor.ctxGap -= PTL.editor.ctxStep;
+      this.ctxGap -= this.ctxStep;
 
-      if (PTL.editor.ctxGap >= 0) {
-        if (PTL.editor.ctxGap === 0) {
-          PTL.editor.editCtxUI({hasData: false, replace: true});
+      if (this.ctxGap >= 0) {
+        if (this.ctxGap === 0) {
+          this.editCtxUI({hasData: false, replace: true});
           $.cookie('ctxShow', false, {path: '/'});
         }
 
-        $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
+        $.cookie('ctxQty', this.ctxGap, {path: '/'});
       }
     }
   },
@@ -1909,10 +1907,10 @@ PTL.editor = {
       before.show();
       after.show();
     } else {
-      PTL.editor.moreContext(true);
+      this.moreContext(true);
     }
 
-    PTL.editor.editCtxUI({hasData: true, replace: true});
+    this.editCtxUI({hasData: true, replace: true});
     $.cookie('ctxShow', true, {path: '/'});
   },
 
@@ -1926,7 +1924,7 @@ PTL.editor = {
     before.hide();
     after.hide();
 
-    PTL.editor.editCtxUI({hasData: false, replace: true});
+    this.editCtxUI({hasData: false, replace: true});
     $.cookie('ctxShow', false, {path: '/'});
   },
 
