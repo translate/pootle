@@ -1388,7 +1388,7 @@ PTL.editor = {
 
   /* Loads the edit unit for the current active unit */
   getEditUnit: function () {
-    var editUnit, editCtxRowBefore, editCtxRowAfter, editCtxWidgets, hasData,
+    var editUnit, hasData,
         eClass = "edit-row",
         currentUnit = this.units.getCurrent(),
         uid = currentUnit.id,
@@ -1427,9 +1427,7 @@ PTL.editor = {
     eClass += PTL.editor.filter !== 'all' ? " with-ctx" : "";
 
     hasData = ctx.before.length || ctx.after.length;
-    editCtxWidgets = this.editCtxUI({hasData: hasData});
-    editCtxRowBefore = editCtxWidgets[0];
-    editCtxRowAfter = editCtxWidgets[1];
+    const [editCtxRowBefore, editCtxRowAfter] = this.editCtxUI({ hasData: hasData });
 
     editUnit = (PTL.editor.filter !== 'all' ?
               editCtxRowBefore + this.buildCtxRows(ctx.before, "before") : '') +
