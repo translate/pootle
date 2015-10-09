@@ -1164,13 +1164,12 @@ PTL.editor = {
 
   /* Renders context rows for units passed as 'units' */
   renderCtxRows: function (units, extraCls) {
-    var i, unit,
-        currentUnit = this.units.getCurrent(),
-        rows = '';
+    const currentUnit = this.units.getCurrent();
+    let rows = '';
 
-    for (i=0; i<units.length; i++) {
+    for (let i=0; i<units.length; i++) {
       // FIXME: Please let's use proper models for context units
-      unit = units[i];
+      let unit = units[i];
       unit = $.extend({}, currentUnit.toJSON(), unit);
 
       rows += '<tr id="ctx' + unit.id + '" class="ctx-row ' + extraCls + '">';
