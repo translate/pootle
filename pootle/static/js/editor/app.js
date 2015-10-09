@@ -1389,8 +1389,7 @@ PTL.editor = {
 
   /* Loads the edit unit for the current active unit */
   getEditUnit: function () {
-    var editUnit,
-        eClass = "edit-row",
+    var eClass = 'edit-row',
         currentUnit = this.units.getCurrent(),
         uid = currentUnit.id,
         editUrl = l(['/xhr/units/', uid, '/edit/'].join('')),
@@ -1420,12 +1419,13 @@ PTL.editor = {
 
     const [ctxRowBefore, ctxRowAfter] = this.renderCtxControls({ hasData: false });
 
-    editUnit = (PTL.editor.filter !== 'all' ? ctxRowBefore : '') +
-             `<tr id="row${uid}" class="${eClass}">` +
-             widget + '</tr>' +
-             (PTL.editor.filter !== 'all' ? ctxRowAfter : '');
-
-    return editUnit;
+    return (
+      (PTL.editor.filter !== 'all' ? ctxRowBefore : '') +
+      `<tr id="row${uid}" class="${eClass}">` +
+        widget +
+      '</tr>' +
+      (PTL.editor.filter !== 'all' ? ctxRowAfter : '')
+    );
   },
 
   /* Pushes translation submissions and moves to the next unit */
