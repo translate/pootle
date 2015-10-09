@@ -201,7 +201,7 @@ PTL.editor = {
     $(document).on('change', '#js-filter-status', this.filterStatus);
     $(document).on('change', '#js-filter-checks', this.filterChecks);
     $(document).on('change', '#js-filter-sort', () => this.filterSort());
-    $(document).on('click', '.js-more-ctx', () => this.moreContext(false));
+    $(document).on('click', '.js-more-ctx', () => this.moreContext());
     $(document).on('click', '.js-less-ctx', () => this.lessContext());
     $(document).on('click', '.js-show-ctx', () => this.showContext());
     $(document).on('click', '.js-hide-ctx', () => this.hideContext());
@@ -1822,47 +1822,57 @@ PTL.editor = {
     $('tr.edit-ctx.after').replaceWith(ctxRowAfter);
   },
 
-  /* Gets more context units */
-  moreContext: function (initial) {
-    var ctxUrl = l(['/xhr/units/', this.units.getCurrent().id, '/context/'].join('')),
-        reqData = {gap: this.ctxGap};
-
-    reqData.qty = initial ? this.ctxQty : this.ctxStep;
-
-    // Don't waste a request if nothing is expected initially
-    if (initial && reqData.qty === 0) {
-      return;
+  loadContext: function (unitId, amount) {
+    const request = this.requests.ctx;
+    if (request && request !== null) {
+      request.abort();
     }
 
-    $.ajax({
-      url: ctxUrl,
-      async: false,
+    const reqData = {
+      gap: this.ctxGap,
+      qty: amount,
+    };
+
+    this.requests.ctx = $.ajax({
+      url: l(`/xhr/units/${unitId}/context/`),
       dataType: 'json',
       data: reqData,
-      success: function (data) {
-        if (data.ctx.before.length || data.ctx.after.length) {
-          // As we now have got more context rows, increase its gap
-          if (initial) {
-            PTL.editor.ctxGap = Math.max(data.ctx.before.length,
-                                         data.ctx.after.length);
-          } else {
-            PTL.editor.ctxGap += Math.max(data.ctx.before.length,
-                                          data.ctx.after.length);
-          }
-          $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
-
-          // Create context rows HTML
-          const before = PTL.editor.renderCtxRows(data.ctx.before, 'before');
-          const after = PTL.editor.renderCtxRows(data.ctx.after, 'after');
-
-          // Append context rows to their respective places
-          var editCtxRows = $("tr.edit-ctx");
-          editCtxRows.first().after(before);
-          editCtxRows.last().before(after);
-        }
-      },
-      error: PTL.editor.error
     });
+
+    return this.requests.ctx;
+  },
+
+  handleContextSuccess: function (data) {
+    if (!data.ctx.before.length && !data.ctx.after.length) {
+      return undefined;
+    }
+
+    // As we now have got more context rows, increase its gap
+    this.ctxGap += Math.max(data.ctx.before.length,
+                            data.ctx.after.length);
+    $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
+
+    // Create context rows HTML
+    const before = PTL.editor.renderCtxRows(data.ctx.before, 'before');
+    const after = PTL.editor.renderCtxRows(data.ctx.after, 'after');
+
+    // Append context rows to their respective places
+    var editCtxRows = $("tr.edit-ctx");
+    editCtxRows.first().after(before);
+    editCtxRows.last().before(after);
+  },
+
+  /* Gets more context units */
+  moreContext: function (amount=1) {
+    const uId = this.units.getCurrent().id;
+
+    return (
+      this.loadContext(uId, amount)
+          .then(
+            (data) => this.handleContextSuccess(data),
+            this.error
+          )
+    );
   },
 
   /* Shrinks context lines */
@@ -1903,11 +1913,15 @@ PTL.editor = {
     if (before.length || after.length) {
       before.show();
       after.show();
-    } else {
-      this.moreContext(true);
+      this.replaceCtxControls(this.renderCtxControls({ hasData: true }))
+    } else if (this.ctxQty > 0) {
+      // This is an initial request for context, reset `ctxGap`
+      this.ctxGap = 0;
+      this.moreContext(this.ctxQty)
+          .then(() => {
+            this.replaceCtxControls(this.renderCtxControls({ hasData: true }))
+          });
     }
-
-    this.replaceCtxControls(this.renderCtxControls({ hasData: true }));
     $.cookie('ctxShow', true, {path: '/'});
   },
 
