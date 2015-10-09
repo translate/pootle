@@ -1121,8 +1121,8 @@ PTL.editor = {
    */
 
 
-  /* Builds a single row */
-  buildRow: function (unit) {
+  /* Renders a single row */
+  renderRow: function (unit) {
     return [
       '<tr id="row', unit.id, '" class="view-row">',
         this.tmpl.vUnit({unit: unit.toJSON()}),
@@ -1130,8 +1130,8 @@ PTL.editor = {
     ].join('');
   },
 
-  /* Builds the editor rows */
-  buildRows: function () {
+  /* Renders the editor rows */
+  renderRows: function () {
     var unitGroups = this.getUnitGroups(),
         currentUnit = this.units.getCurrent(),
         rows = [],
@@ -1153,7 +1153,7 @@ PTL.editor = {
         if (unit.id === currentUnit.id) {
           rows.push(this.getEditUnit());
         } else {
-          rows.push(this.buildRow(unit));
+          rows.push(this.renderRow(unit));
         }
       }
     }, this);
@@ -1162,8 +1162,8 @@ PTL.editor = {
   },
 
 
-  /* Builds context rows for units passed as 'units' */
-  buildCtxRows: function (units, extraCls) {
+  /* Renders context rows for units passed as 'units' */
+  renderCtxRows: function (units, extraCls) {
     var i, unit,
         currentUnit = this.units.getCurrent(),
         rows = '';
@@ -1232,7 +1232,7 @@ PTL.editor = {
       // Hide any visible message
       this.hideMsg();
 
-      this.reDraw(this.buildRows());
+      this.reDraw(this.renderRows());
 
       this.updateNavButtons();
     }
@@ -1427,14 +1427,14 @@ PTL.editor = {
     eClass += PTL.editor.filter !== 'all' ? " with-ctx" : "";
 
     hasData = ctx.before.length || ctx.after.length;
-    const [ctxRowBefore, ctxRowAfter] = this.editCtxUI({ hasData: hasData });
+    const [ctxRowBefore, ctxRowAfter] = this.renderCtxControls({ hasData: hasData });
 
     editUnit = (PTL.editor.filter !== 'all' ?
-              ctxRowBefore + this.buildCtxRows(ctx.before, "before") : '') +
+              ctxRowBefore + this.renderCtxRows(ctx.before, 'before') : '') +
              '<tr id="row' + uid + '" class="' + eClass + '">' +
              widget + '</tr>' +
              (PTL.editor.filter !== 'all' ?
-              this.buildCtxRows(ctx.after, "after") + ctxRowAfter : '');
+              this.renderCtxRows(ctx.after, 'after') + ctxRowAfter : '');
 
     return editUnit;
   },
@@ -1800,7 +1800,7 @@ PTL.editor = {
   },
 
   /* Generates the edit context rows' UI */
-  editCtxUI: function (opts) {
+  renderCtxControls: function (opts) {
     var defaults = { hasData: false };
     opts = $.extend({}, defaults, opts);
 
@@ -1816,7 +1816,7 @@ PTL.editor = {
     return [ctxRowBefore, ctxRowAfter];
   },
 
-  replaceCtx: function (ctx) {
+  replaceCtxControls: function (ctx) {
     const [ctxRowBefore, ctxRowAfter] = ctx;
 
     $('tr.edit-ctx.before').replaceWith(ctxRowBefore);
@@ -1853,8 +1853,8 @@ PTL.editor = {
           $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
 
           // Create context rows HTML
-          var before = PTL.editor.buildCtxRows(data.ctx.before, "before"),
-              after = PTL.editor.buildCtxRows(data.ctx.after, "after");
+          const before = PTL.editor.renderCtxRows(data.ctx.before, 'before');
+          const after = PTL.editor.renderCtxRows(data.ctx.after, 'after');
 
           // Append context rows to their respective places
           var editCtxRows = $("tr.edit-ctx");
@@ -1887,7 +1887,7 @@ PTL.editor = {
 
       if (this.ctxGap >= 0) {
         if (this.ctxGap === 0) {
-          this.replaceCtx(this.editCtxUI({ hasData: false }));
+          this.replaceCtxControls(this.renderCtxControls({ hasData: false }));
           $.cookie('ctxShow', false, {path: '/'});
         }
 
@@ -1910,7 +1910,7 @@ PTL.editor = {
       this.moreContext(true);
     }
 
-    this.replaceCtx(this.editCtxUI({ hasData: true }));
+    this.replaceCtxControls(this.renderCtxControls({ hasData: true }));
     $.cookie('ctxShow', true, {path: '/'});
   },
 
@@ -1924,7 +1924,7 @@ PTL.editor = {
     before.hide();
     after.hide();
 
-    this.replaceCtx(this.editCtxUI({ hasData: false }));
+    this.replaceCtxControls(this.renderCtxControls({ hasData: false }));
     $.cookie('ctxShow', false, {path: '/'});
   },
 
