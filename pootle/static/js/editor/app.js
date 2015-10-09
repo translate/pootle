@@ -1801,7 +1801,7 @@ PTL.editor = {
 
   /* Generates the edit context rows' UI */
   editCtxUI: function (opts) {
-    var defaults = {hasData: false, replace: false};
+    var defaults = { hasData: false };
     opts = $.extend({}, defaults, opts);
 
     const ctxRowBefore = this.tmpl.editCtx({
@@ -1813,12 +1813,14 @@ PTL.editor = {
       extraCls: 'after'
     });
 
-    if (opts.replace) {
-      $("tr.edit-ctx.before").replaceWith(ctxRowBefore);
-      $("tr.edit-ctx.after").replaceWith(ctxRowAfter);
-    }
-
     return [ctxRowBefore, ctxRowAfter];
+  },
+
+  replaceCtx: function (ctx) {
+    const [ctxRowBefore, ctxRowAfter] = ctx;
+
+    $('tr.edit-ctx.before').replaceWith(ctxRowBefore);
+    $('tr.edit-ctx.after').replaceWith(ctxRowAfter);
   },
 
   /* Gets more context units */
@@ -1885,7 +1887,7 @@ PTL.editor = {
 
       if (this.ctxGap >= 0) {
         if (this.ctxGap === 0) {
-          this.editCtxUI({hasData: false, replace: true});
+          this.replaceCtx(this.editCtxUI({ hasData: false }));
           $.cookie('ctxShow', false, {path: '/'});
         }
 
@@ -1908,7 +1910,7 @@ PTL.editor = {
       this.moreContext(true);
     }
 
-    this.editCtxUI({hasData: true, replace: true});
+    this.replaceCtx(this.editCtxUI({ hasData: true }));
     $.cookie('ctxShow', true, {path: '/'});
   },
 
@@ -1922,7 +1924,7 @@ PTL.editor = {
     before.hide();
     after.hide();
 
-    this.editCtxUI({hasData: false, replace: true});
+    this.replaceCtx(this.editCtxUI({ hasData: false }));
     $.cookie('ctxShow', false, {path: '/'});
   },
 
