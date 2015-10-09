@@ -556,13 +556,6 @@ def get_units(request):
     return JsonResponse(response)
 
 
-def _is_filtered(request):
-    """Checks if unit list is filtered."""
-    return ('filter' in request.GET or 'checks' in request.GET or
-            'user' in request.GET or
-            ('search' in request.GET and 'sfields' in request.GET))
-
-
 @ajax_required
 @get_unit_context('view')
 def get_more_context(request, unit):
@@ -832,20 +825,6 @@ def get_edit_unit(request, unit):
     json['editor'] = t.render(c)
     json['tm_suggestions'] = unit.get_tm_suggestions()
     json['is_obsolete'] = unit.isobsolete()
-
-    # Return context rows if filtering is applied but
-    # don't return any if the user has asked not to have it
-    current_filter = request.GET.get('filter', 'all')
-    show_ctx = request.COOKIES.get('ctxShow', 'true')
-
-    if ((_is_filtered(request) or current_filter not in ('all',)) and
-        show_ctx == 'true'):
-        # TODO: review if this first 'if' branch makes sense
-        if translation_project.project.is_terminology or store.is_terminology:
-            json['ctx'] = _filter_ctx_units(store.units, unit, 0)
-        else:
-            ctx_qty = int(request.COOKIES.get('ctxQty', 1))
-            json['ctx'] = _filter_ctx_units(store.units, unit, ctx_qty)
 
     return JsonResponse(json)
 

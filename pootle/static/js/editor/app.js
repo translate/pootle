@@ -1389,13 +1389,12 @@ PTL.editor = {
 
   /* Loads the edit unit for the current active unit */
   getEditUnit: function () {
-    var editUnit, hasData,
+    var editUnit,
         eClass = "edit-row",
         currentUnit = this.units.getCurrent(),
         uid = currentUnit.id,
         editUrl = l(['/xhr/units/', uid, '/edit/'].join('')),
-        widget = '',
-        ctx = {before: [], after: []};
+        widget = '';
 
     let reqData = {};
     this.settings.vFolder && (reqData.vfolder = this.settings.vFolder);
@@ -1412,14 +1411,6 @@ PTL.editor = {
         PTL.editor.updateNav();
 
         currentUnit.set('isObsolete', data.is_obsolete);
-
-        if (data.ctx) {
-          // Initialize context gap to the maximum context rows available
-          PTL.editor.ctxGap = Math.max(data.ctx.before.length,
-                                       data.ctx.after.length);
-          ctx.before = data.ctx.before;
-          ctx.after = data.ctx.after;
-        }
       },
       error: PTL.editor.error
     });
@@ -1427,15 +1418,12 @@ PTL.editor = {
     eClass += currentUnit.get('isfuzzy') ? " fuzzy-unit" : "";
     eClass += PTL.editor.filter !== 'all' ? " with-ctx" : "";
 
-    hasData = ctx.before.length || ctx.after.length;
-    const [ctxRowBefore, ctxRowAfter] = this.renderCtxControls({ hasData: hasData });
+    const [ctxRowBefore, ctxRowAfter] = this.renderCtxControls({ hasData: false });
 
-    editUnit = (PTL.editor.filter !== 'all' ?
-              ctxRowBefore + this.renderCtxRows(ctx.before, 'before') : '') +
+    editUnit = (PTL.editor.filter !== 'all' ? ctxRowBefore : '') +
              `<tr id="row${uid}" class="${eClass}">` +
              widget + '</tr>' +
-             (PTL.editor.filter !== 'all' ?
-              this.renderCtxRows(ctx.after, 'after') + ctxRowAfter : '');
+             (PTL.editor.filter !== 'all' ? ctxRowAfter : '');
 
     return editUnit;
   },
@@ -1899,7 +1887,6 @@ PTL.editor = {
       if (this.ctxGap >= 0) {
         if (this.ctxGap === 0) {
           this.replaceCtxControls(this.renderCtxControls({ hasData: false }));
-          $.cookie('ctxShow', false, {path: '/'});
         }
 
         $.cookie('ctxQty', this.ctxGap, {path: '/'});
@@ -1924,7 +1911,6 @@ PTL.editor = {
             this.replaceCtxControls(this.renderCtxControls({ hasData: true }))
           });
     }
-    $.cookie('ctxShow', true, {path: '/'});
   },
 
   /* Hides context rows */
@@ -1936,7 +1922,6 @@ PTL.editor = {
     after.hide();
 
     this.replaceCtxControls(this.renderCtxControls({ hasData: false }));
-    $.cookie('ctxShow', false, {path: '/'});
   },
 
 
