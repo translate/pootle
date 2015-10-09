@@ -1427,14 +1427,14 @@ PTL.editor = {
     eClass += PTL.editor.filter !== 'all' ? " with-ctx" : "";
 
     hasData = ctx.before.length || ctx.after.length;
-    const [editCtxRowBefore, editCtxRowAfter] = this.editCtxUI({ hasData: hasData });
+    const [ctxRowBefore, ctxRowAfter] = this.editCtxUI({ hasData: hasData });
 
     editUnit = (PTL.editor.filter !== 'all' ?
-              editCtxRowBefore + this.buildCtxRows(ctx.before, "before") : '') +
+              ctxRowBefore + this.buildCtxRows(ctx.before, "before") : '') +
              '<tr id="row' + uid + '" class="' + eClass + '">' +
              widget + '</tr>' +
              (PTL.editor.filter !== 'all' ?
-              this.buildCtxRows(ctx.after, "after") + editCtxRowAfter : '');
+              this.buildCtxRows(ctx.after, "after") + ctxRowAfter : '');
 
     return editUnit;
   },
@@ -1804,21 +1804,21 @@ PTL.editor = {
     var defaults = {hasData: false, replace: false};
     opts = $.extend({}, defaults, opts);
 
-    var editCtxRowBefore = this.tmpl.editCtx({
+    const ctxRowBefore = this.tmpl.editCtx({
       hasData: opts.hasData,
       extraCls: 'before'
     });
-    var editCtxRowAfter = this.tmpl.editCtx({
+    const ctxRowAfter = this.tmpl.editCtx({
       hasData: opts.hasData,
       extraCls: 'after'
     });
 
     if (opts.replace) {
-      $("tr.edit-ctx.before").replaceWith(editCtxRowBefore);
-      $("tr.edit-ctx.after").replaceWith(editCtxRowAfter);
+      $("tr.edit-ctx.before").replaceWith(ctxRowBefore);
+      $("tr.edit-ctx.after").replaceWith(ctxRowAfter);
     }
 
-    return [editCtxRowBefore, editCtxRowAfter];
+    return [ctxRowBefore, ctxRowAfter];
   },
 
   /* Gets more context units */
