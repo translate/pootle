@@ -25,7 +25,7 @@ class Command(BaseRunCommand):
             dest='threads',
             default=5,
             type=int,
-            help='Number of working threads. Default: 5',
+            help='Number of working threads. Default: %default',
         ),
         make_option(
             '--name',
