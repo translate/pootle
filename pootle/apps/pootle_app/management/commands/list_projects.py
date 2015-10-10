@@ -24,6 +24,7 @@ class Command(NoArgsCommand):
             action="store",
             dest="modified_since",
             type=int,
+            default=0,
             help="Only process translations newer than specified revision",
         ),
     )
@@ -34,10 +35,9 @@ class Command(NoArgsCommand):
     def list_projects(self, **options):
         """List all projects on the server."""
 
-        revision = options.get("modified_since", 0)
-        if revision:
+        if options['modified_since'] > 0:
             from pootle_translationproject.models import TranslationProject
-            tps = TranslationProject.objects.filter(submission__id__gt=revision) \
+            tps = TranslationProject.objects.filter(submission__id__gt=options['modified_since']) \
                                             .distinct().values("project__code")
 
             for tp in tps:

@@ -27,6 +27,7 @@ class Command(NoArgsCommand):
                 action="store",
                 dest="modified_since",
                 type=int,
+                default=0,
                 help="Only process translations newer than specified "
                      "revision"),
     )
@@ -43,9 +44,8 @@ class Command(NoArgsCommand):
         tps = TranslationProject.objects.distinct()
         tps = tps.exclude(language__code='templates').order_by('language__code')
 
-        revision = options.get("modified_since", 0)
-        if revision:
-            tps = tps.filter(submission__unit__revision__gt=revision)
+        if options['modified_since'] > 0:
+            tps = tps.filter(submission__unit__revision__gt=options['modified_since'])
 
         if projects:
             tps = tps.filter(project__code__in=projects)

@@ -47,12 +47,14 @@ class Command(PootleCommand):
             '--stats',
             action='store_true',
             dest='stats',
+            default=False,
             help='Dump stats',
         ),
         make_option(
             '--data',
             action='store_true',
             dest='data',
+            default=False,
             help='Data all data',
         ),
         make_option(
@@ -60,21 +62,19 @@ class Command(PootleCommand):
             action='store',
             dest='stop_level',
             default=-1,
+            type=int,
         ),
         )
     option_list = PootleCommand.option_list + shared_option_list
 
     def handle_all(self, **options):
         if not self.projects and not self.languages:
-            stats = options.get('stats', False)
-            data = options.get('data', False)
-            stop_level = int(options.get('stop_level', -1))
 
-            if stats:
-                self.dump_stats(stop_level=stop_level)
+            if options['stats']:
+                self.dump_stats(stop_level=options['stop_level'])
                 return
-            if data:
-                self.dump_all(stop_level=stop_level)
+            if options['data']:
+                self.dump_all(stop_level=options['stop_level'])
                 return
 
             raise CommandError("Set --data or --stats option.")
@@ -82,16 +82,13 @@ class Command(PootleCommand):
             super(Command, self).handle_all(**options)
 
     def handle_translation_project(self, tp, **options):
-        stats = options.get('stats', False)
-        data = options.get('data', False)
-        stop_level = int(options.get('stop_level', -1))
-        if stats:
+        if options['stats']:
             res = {}
-            self._dump_stats(tp.directory, res, stop_level=stop_level)
+            self._dump_stats(tp.directory, res, stop_level=options['stop_level'])
             return
 
-        if data:
-            self._dump_item(tp.directory, 0, stop_level=stop_level)
+        if options['data']:
+            self._dump_item(tp.directory, 0, stop_level=options['stop_level'])
             return
 
         raise CommandError("Set --data or --stats option.")

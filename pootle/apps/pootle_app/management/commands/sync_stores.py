@@ -41,21 +41,16 @@ class Command(PootleCommand):
     help = "Save new translations to disk manually."
 
     def handle_all_stores(self, translation_project, **options):
-        overwrite = options.get('overwrite', False)
-        skip_missing = options.get('skip_missing', False)
-        force = options.get('force', False)
-
-
         translation_project.sync(
-                conservative=not overwrite,
-                skip_missing=skip_missing,
-                only_newer=not force
+                conservative=not options['overwrite'],
+                skip_missing=options['skip_missing'],
+                only_newer=not options['force']
         )
 
     def handle_store(self, store, **options):
-        overwrite = options.get('overwrite', False)
-        skip_missing = options.get('skip_missing', False)
-        force = options.get('force', False)
-
-        store.sync(conservative=not overwrite, update_structure=overwrite,
-                   skip_missing=skip_missing, only_newer=not force)
+        store.sync(
+            conservative=not options['overwrite'],
+            update_structure=options['overwrite'],
+            skip_missing=options['skip_missing'],
+            only_newer=not options['force']
+        )

@@ -47,9 +47,8 @@ class Command(PootleCommand):
         if self.projects:
             project_query = project_query.filter(code__in=self.projects)
 
-        path = options.get("pootle_path")
-        if path:
-            return self.handle_path(path, **options)
+        if options['pootle_path'] is not None:
+            return self.handle_path(options['pootle_path'], **options)
 
         # support exporting an entire project
         if self.projects and not self.languages:

@@ -32,7 +32,7 @@ class Command(NoArgsCommand):
     help = "Print the number of the current revision."
 
     def handle_noargs(self, **options):
-        if options.get('restore'):
+        if options['restore']:
             from pootle_store.models import Unit
             Revision.set(Unit.max_revision())
 

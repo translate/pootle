@@ -31,6 +31,7 @@ class Command(PootleCommand):
             '--check',
             action='append',
             dest='check_names',
+            default=None,
             help='Check to recalculate'
         ),
     )
@@ -39,20 +40,17 @@ class Command(PootleCommand):
     process_disabled_projects = True
 
     def handle_all_stores(self, translation_project, **options):
-        check_names = options.get('check_names', None)
-        calculate_checks(check_names=check_names,
+        calculate_checks(check_names=options['check_names'],
                          translation_project=translation_project)
 
     def handle_all(self, **options):
         if not self.projects and not self.languages:
             logging.info(u"Running %s (noargs)", self.name)
 
-            check_names = options.get('check_names', None)
-            translation_project = options.get('translation_project', None)
             try:
 
-                calculate_checks(check_names=check_names,
-                                 translation_project=translation_project)
+                calculate_checks(check_names=options['check_names'],
+                                 translation_project=options['translation_project'])
             except Exception:
                 logging.exception(u"Failed to run %s", self.name)
         else:

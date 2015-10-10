@@ -27,6 +27,7 @@ class Command(NoArgsCommand):
             '--reset',
             action='store_true',
             dest='reset',
+            default=False,
             help='Reset all scores to zero',
         ),
     )
@@ -34,9 +35,8 @@ class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + shared_option_list
 
     def handle_noargs(self, **options):
-        reset = options.get('reset', False)
 
-        if reset:
+        if options['reset']:
             User = get_user_model()
             User.objects.all().update(score=0)
             ScoreLog.objects.all().delete()
