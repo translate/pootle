@@ -17,11 +17,13 @@ class Command(UserCommand):
     args = "user other_user"
     help = "Merge user to other_user"
     shared_option_list = (
-        make_option("--no-delete",
-                    dest='delete',
-                    action="store_false",
-                    default=True,
-                    help="Don't delete user after merging."),
+        make_option(
+            "--no-delete",
+            dest='delete',
+            action="store_false",
+            default=True,
+            help="Don't delete user after merging.",
+        ),
     )
     option_list = UserCommand.option_list + shared_option_list
 

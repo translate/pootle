@@ -27,9 +27,13 @@ class Command(NoArgsCommand):
     help = "List languages that were changed since last synchronization"
 
     option_list = BaseRunCommand.option_list + (
-        make_option('--after-revision', action='store', dest='after_revision',
-                    type=int,
-                    help='Show languages changed after any arbitrary revision'),
+        make_option(
+            '--after-revision',
+            action='store',
+            dest='after_revision',
+            type=int,
+            help='Show languages changed after any arbitrary revision',
+        ),
     )
 
     def handle_noargs(self, **options):

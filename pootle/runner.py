@@ -235,14 +235,24 @@ def run_app(project, default_settings_path, settings_template,
     args, remainder = parser.parse_known_args(sys.argv[1:])
 
     # Add pootle args
-    parser.add_argument("--config",
-                        default=default_settings_path,
-                        help=u"Use the specified configuration file.")
-    parser.add_argument("--noinput", action="store_true", default=False,
-                        help=u"Never prompt for input")
-    parser.add_argument("--no-rq", action="store_true", default=False,
-                        help=(u"Run all jobs in a single process, without "
-                              "using rq workers"))
+    parser.add_argument(
+        "--config",
+        default=default_settings_path,
+        help=u"Use the specified configuration file.",
+    )
+    parser.add_argument(
+        "--noinput",
+        action="store_true",
+        default=False,
+        help=u"Never prompt for input",
+    )
+    parser.add_argument(
+        "--no-rq",
+        action="store_true",
+        default=False,
+        help=(u"Run all jobs in a single process, without "
+              "using rq workers"),
+    )
 
     # Parse the init command by hand to prevent raising a SystemExit while
     # parsing

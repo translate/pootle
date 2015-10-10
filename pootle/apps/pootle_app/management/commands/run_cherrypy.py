@@ -19,20 +19,43 @@ class Command(BaseRunCommand):
     help = "Runs Pootle with the CherryPy server."
 
     option_list = BaseRunCommand.option_list + (
-        make_option('--threads', action='store', dest='threads', default=5,
+        make_option(
+            '--threads',
+            action='store',
+            dest='threads',
+            default=5,
             type=int,
-            help='Number of working threads. Default: 5'),
-        make_option('--name', action='store', dest='server_name', default='',
-            help='Name of the worker process.'),
-        make_option('--queue', action='store', dest='request_queue_size',
-            default=5, type=int,
-            help='Maximum number of queued connections.'),
-        make_option('--ssl_certificate', action='store',
-            dest='ssl_certificate', default='',
-            help='Path to the server\'s SSL certificate.'),
-        make_option('--ssl_private_key', action='store',
-            dest='ssl_private_key', default='',
-            help='Path to the server\'s SSL private key.'),
+            help='Number of working threads. Default: 5',
+        ),
+        make_option(
+            '--name',
+            action='store',
+            dest='server_name',
+            default='',
+            help='Name of the worker process.',
+        ),
+        make_option(
+            '--queue',
+            action='store',
+            dest='request_queue_size',
+            default=5,
+            type=int,
+            help='Maximum number of queued connections.',
+        ),
+        make_option(
+            '--ssl_certificate',
+            action='store',
+            dest='ssl_certificate',
+            default='',
+            help='Path to the server\'s SSL certificate.',
+        ),
+        make_option(
+            '--ssl_private_key',
+            action='store',
+            dest='ssl_private_key',
+            default='',
+            help='Path to the server\'s SSL private key.',
+        ),
     )
 
     def serve_forever(self, *args, **options):

@@ -22,9 +22,13 @@ from pootle_store.models import Store
 
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
-        make_option("--path", action="store", dest="pootle_path",
-                    help="Export a single file"),
-        )
+        make_option(
+            "--path",
+            action="store",
+            dest="pootle_path",
+            help="Export a single file",
+        ),
+    )
     help = "Export a Project, Translation Project, or path. " \
            "Multiple files will be zipped."
 

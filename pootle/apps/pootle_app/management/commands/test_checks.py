@@ -25,13 +25,28 @@ class Command(NoArgsCommand):
     help = "Tests quality checks against string pairs."
 
     shared_option_list = (
-        make_option('--check', action='append', dest='checks',
-                    help='Check name to check for'),
-        make_option('--source', dest='source', help='Source string'),
-        make_option('--unit', dest='unit', help='Unit id'),
-        make_option('--target', dest='target',
-                    help='Translation string'),
-        )
+        make_option(
+            '--check',
+            action='append',
+            dest='checks',
+            help='Check name to check for',
+        ),
+        make_option(
+            '--source',
+            dest='source',
+            help='Source string',
+        ),
+        make_option(
+            '--unit',
+            dest='unit',
+            help='Unit id',
+        ),
+        make_option(
+            '--target',
+            dest='target',
+            help='Translation string',
+        ),
+    )
     option_list = NoArgsCommand.option_list + shared_option_list
 
     def handle_noargs(self, **options):

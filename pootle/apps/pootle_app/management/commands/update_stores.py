@@ -20,15 +20,22 @@ from pootle_translationproject.models import scan_translation_projects
 
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
-        make_option('--overwrite', action='store_true', dest='overwrite',
-                    default=False,
-                    help="Don't just update untranslated units "
-                         "and add new units, but overwrite database "
-                         "translations to reflect state in files."),
-        make_option('--force', action='store_true', dest='force', default=False,
-                    help="Unconditionally process all files (even if they "
-                         "appear unchanged)."),
-        )
+        make_option(
+            '--overwrite',
+            action='store_true',
+            dest='overwrite',
+            default=False,
+            help="Don't just update untranslated units "
+                 "and add new units, but overwrite database "
+                 "translations to reflect state in files."),
+        make_option(
+            '--force',
+            action='store_true',
+            dest='force',
+            default=False,
+            help="Unconditionally process all files (even if they "
+                 "appear unchanged)."),
+    )
     help = "Update database stores from files."
 
     def handle_translation_project(self, translation_project, **options):

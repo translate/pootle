@@ -25,8 +25,13 @@ User = get_user_model()
 
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
-        make_option("--from-revision", type=int, default=0, dest="revision",
-                    help="Only count contributions newer than this revision"),
+        make_option(
+            "--from-revision",
+            type=int,
+            default=0,
+            dest="revision",
+            help="Only count contributions newer than this revision",
+        ),
     )
 
     help = "Print a list of contributors."

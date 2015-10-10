@@ -19,9 +19,12 @@ from pootle_project.models import Project
 
 class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
-        make_option("--modified-since",
-            action="store", dest="modified_since", type=int,
-            help="Only process translations newer than specified revision"
+        make_option(
+            "--modified-since",
+            action="store",
+            dest="modified_since",
+            type=int,
+            help="Only process translations newer than specified revision",
         ),
     )
 

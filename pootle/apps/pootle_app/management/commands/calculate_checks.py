@@ -27,8 +27,12 @@ class Command(PootleCommand):
     help = "Allow checks to be recalculated manually."
 
     shared_option_list = (
-        make_option('--check', action='append', dest='check_names',
-                    help='Check to recalculate'),
+        make_option(
+            '--check',
+            action='append',
+            dest='check_names',
+            help='Check to recalculate'
+        ),
     )
 
     cached_methods = [CachedMethods.CHECKS]

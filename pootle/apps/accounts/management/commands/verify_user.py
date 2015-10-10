@@ -21,8 +21,12 @@ class Command(UserCommand):
     args = "[user]"
     help = "Verify a user of the system without requiring email verification"
     shared_option_list = (
-        make_option('--all', dest='all', action="store_true",
-                    help='Verify all users'),
+        make_option(
+            '--all',
+            dest='all',
+            action="store_true",
+            help='Verify all users',
+        ),
     )
     option_list = UserCommand.option_list + shared_option_list
 

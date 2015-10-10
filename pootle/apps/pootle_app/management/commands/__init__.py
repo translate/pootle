@@ -22,16 +22,32 @@ from pootle_translationproject.models import TranslationProject
 class PootleCommand(NoArgsCommand):
     """Base class for handling recursive pootle store management commands."""
     shared_option_list = (
-        make_option('--project', action='append', dest='projects',
-                    help='Project to refresh'),
-        make_option('--language', action='append', dest='languages',
-                    help='Language to refresh'),
-        make_option("--noinput", action="store_true", default=False,
-                    help=u"Never prompt for input"),
-        make_option("--no-rq", action="store_true", default=False,
-                    help=(u"Run all jobs in a single process, without "
-                          "using rq workers")),
-        )
+        make_option(
+            '--project',
+            action='append',
+            dest='projects',
+            help='Project to refresh',
+        ),
+        make_option(
+            '--language',
+            action='append',
+            dest='languages',
+            help='Language to refresh',
+        ),
+        make_option(
+            "--noinput",
+            action="store_true",
+            default=False,
+            help=u"Never prompt for input",
+        ),
+        make_option(
+            "--no-rq",
+            action="store_true",
+            default=False,
+            help=(u"Run all jobs in a single process, without "
+                  "using rq workers"),
+        ),
+    )
     option_list = NoArgsCommand.option_list + shared_option_list
     process_disabled_projects = False
 
@@ -135,10 +151,21 @@ class BaseRunCommand(BaseCommand):
     Based on code from `django-shoes
     <https://bitbucket.org/mlzboy/django-shoes/>`_."""
     hostport_option_list = (
-        make_option('--host', action='store', dest='host', default='127.0.0.1',
-            help='Hostname to listen on.'),
-        make_option('--port', action='store', dest='port', default=8000,
-            type=int, help='The TCP port to listen on.'),
+        make_option(
+            '--host',
+            action='store',
+            dest='host',
+            default='127.0.0.1',
+            help='Hostname to listen on.',
+        ),
+        make_option(
+            '--port',
+            action='store',
+            dest='port',
+            default=8000,
+            type=int,
+            help='The TCP port to listen on.',
+        ),
     )
 
     option_list = BaseCommand.option_list + hostport_option_list

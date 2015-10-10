@@ -24,12 +24,14 @@ class Command(BaseCommand):
     help = 'Builds and bundles static assets using webpack'
 
     option_list = BaseCommand.option_list + (
-        make_option('--dev',
+        make_option(
+            '--dev',
             action='store_true',
             dest='dev',
             default=False,
-            help='Enable development builds and watch for changes.'),
-        )
+            help='Enable development builds and watch for changes.',
+        ),
+    )
 
     def handle(self, *args, **options):
         default_static_dir = os.path.join(settings.WORKING_DIR, 'static')

@@ -23,8 +23,12 @@ class Command(NoArgsCommand):
     help = "Refresh score"
 
     shared_option_list = (
-        make_option('--reset', action='store_true', dest='reset',
-                    help='Reset all scores to zero'),
+        make_option(
+            '--reset',
+            action='store_true',
+            dest='reset',
+            help='Reset all scores to zero',
+        ),
     )
 
     option_list = NoArgsCommand.option_list + shared_option_list

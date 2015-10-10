@@ -43,12 +43,24 @@ class Command(PootleCommand):
     help = "Dump data."
 
     shared_option_list = (
-        make_option('--stats', action='store_true', dest='stats',
-                    help='Dump stats'),
-        make_option('--data', action='store_true', dest='data',
-                    help='Data all data'),
-        make_option('--stop-level', action='store', dest='stop_level',
-                    default=-1),
+        make_option(
+            '--stats',
+            action='store_true',
+            dest='stats',
+            help='Dump stats',
+        ),
+        make_option(
+            '--data',
+            action='store_true',
+            dest='data',
+            help='Data all data',
+        ),
+        make_option(
+            '--stop-level',
+            action='store',
+            dest='stop_level',
+            default=-1,
+        ),
         )
     option_list = PootleCommand.option_list + shared_option_list
 
