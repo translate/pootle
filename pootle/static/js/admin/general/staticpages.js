@@ -6,26 +6,22 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import CodeMirror from 'codemirror';
-import 'codemirror/lib/codemirror.css';
+import React from 'react';
 
-import { getMode } from 'utils/markup';
+import CodeMirror from 'components/CodeMirror';
 
 
 const staticpages = {
 
   init(opts) {
-    const element = document.querySelector(opts.el);
-    const mode = getMode(opts.markup);
-
-    // Using webpack's `bundle` loader so each mode goes into a separate chunk
-    const bundledResult = require(`bundle!codemirror/mode/${mode}/${mode}.js`);
-    bundledResult(() => {
-      CodeMirror.fromTextArea(element, {
-        mode: mode,
-        lineWrapping: true,
-      });
-    });
+    React.render(
+      <CodeMirror
+        markup={opts.markup}
+        name={opts.htmlName}
+        value={opts.initialValue}
+      />,
+      document.querySelector('.js-staticpage-editor')
+    );
   },
 
 }

@@ -18,7 +18,15 @@
       <span class="help_text">{% trans "or" %}</span>
     </div>
     {% endif %}
-    {% include 'admin/staticpages/_field.html' with field=form.body %}
+
+    <div class="control-group">
+      {{ form.body.label_tag }}
+      <div class="controls">
+        <div class="js-staticpage-editor"></div>
+        {{ form.body.help_text }}
+      </div>
+    </div>
+
     <div class="control-group">
       <div class="controls">
         <input type="submit" class="btn" value="{% trans 'Save' %}" />

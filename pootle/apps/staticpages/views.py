@@ -65,8 +65,6 @@ class PageModelMixin(object):
         if self.page_type == ANN_TYPE:
             form.fields['virtual_path'].help_text = u'/pages/' + ANN_VPATH
 
-        form.fields['body'].widget.attrs['class'] = 'js-staticpage-editor'
-
         return form
 
     def form_valid(self, form):

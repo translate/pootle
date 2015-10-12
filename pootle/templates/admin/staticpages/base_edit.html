@@ -20,7 +20,8 @@
     PTL.commonAdmin.init({
       page: 'staticpages',
       opts: {
-        el: '.js-staticpage-editor',
+        htmlName: '{{ form.body.html_name }}',
+        initialValue: '{{ form.initial.body.raw|escapejs }}',
         markup: PTL.settings.MARKUP_FILTER,
       }
     });
