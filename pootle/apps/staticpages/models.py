@@ -47,8 +47,7 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
     url = models.URLField(
         _("Redirect to URL"),
         blank=True,
-        help_text=_('If set, any references to this page will redirect to this'
-                    ' URL'),
+        help_text=_('If set, this page will redirect to this URL'),
     )
     modified_on = models.DateTimeField(
         default=now,
