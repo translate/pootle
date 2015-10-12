@@ -67,7 +67,7 @@ class Command(PootleCommand):
                 tp_query = tp_query.filter(language__code__in=self.languages)
 
             for tp in tp_query.iterator():
-                self.do_translation_project(tp, self.path, **options)
+                self.do_translation_project(tp, **options)
 
     def handle_translation_project(self, translation_project, **options):
         stores = translation_project.stores.live()
