@@ -430,12 +430,14 @@ class Unit(models.Model, base.TranslationUnit):
         super(Unit, self).delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
+        created = self.id is None
+
         if not hasattr(self, '_log_user'):
             User = get_user_model()
             self._log_user = User.objects.get_system_user()
         user = kwargs.pop("user", self._log_user)
 
-        if not self.id:
+        if created:
             self._save_action = UNIT_ADDED
             self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS,
                                   CachedMethods.LAST_UPDATED)
@@ -478,7 +480,7 @@ class Unit(models.Model, base.TranslationUnit):
         elif self._target_updated or self._state_updated or self._comment_updated:
             self.revision = Revision.incr()
 
-        if self.id and hasattr(self, '_save_action'):
+        if not created and hasattr(self, '_save_action'):
             action_log(user=self._log_user, action=self._save_action,
                 lang=self.store.translation_project.language.code,
                 unit=self.id,
@@ -522,7 +524,8 @@ class Unit(models.Model, base.TranslationUnit):
             self.add_initial_submission(user=user)
 
         if self._source_updated or self._target_updated:
-            self.update_qualitychecks()
+            if not (created and self.state == UNTRANSLATED):
+                self.update_qualitychecks()
             if self.istranslated():
                 self.update_tmserver()
 
