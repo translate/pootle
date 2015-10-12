@@ -34,6 +34,8 @@ Details of changes
 - The editor for static pages now highlights the content's markup
   (:issue:`3346`).
 - Pulled latest translations.
+- :djadmin:`update_tmserver`: renamed :option:`--overwrite` to
+  :option:`--refresh`.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of

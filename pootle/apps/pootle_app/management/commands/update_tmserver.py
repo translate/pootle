@@ -29,13 +29,12 @@ BULK_CHUNK_SIZE = 5000
 class Command(BaseCommand):
     help = "Load Local Translation Memory"
     option_list = BaseCommand.option_list + (
-        make_option('--overwrite',
+        make_option('--refresh',
                     action="store_true",
-                    dest='overwrite',
+                    dest='refresh',
                     default=False,
-                    help='Process all items, not just the new ones (useful to '
-                         'overwrite properties while keeping the index in a '
-                         'working condition)'),
+                    help='Process all items, not just the new ones, so '
+                         'existing translations are refreshed'),
         make_option('--rebuild',
                     action="store_true",
                     dest='rebuild',
@@ -141,7 +140,7 @@ class Command(BaseCommand):
             es.indices.create(index=self.INDEX_NAME)
 
         if (not options['rebuild'] and
-            not options['overwrite'] and
+            not options['refresh'] and
             es.indices.exists(self.INDEX_NAME)):
             result = es.search(
                 index=self.INDEX_NAME,

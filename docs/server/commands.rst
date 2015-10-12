@@ -394,6 +394,7 @@ Translation Memory
 These commands allow you to setup and manage :doc:`Translation Memory
 </features/translation_memory>`.
 
+
 .. django-admin:: update_tmserver
 
 update_tmserver
@@ -401,17 +402,26 @@ update_tmserver
 
 .. versionadded:: 2.7
 
+.. versionchanged:: 2.7.3 Renamed :option:`--overwrite` to :option:`--refresh`.
+
 Updates the ``default`` server in :setting:`POOTLE_TM_SERVER`.  The command
 reads translations from the current Pootle install and builds the TM resources
 in the TM server.
 
-By default the command will only add new translations to the server.  To
-rebuild the server from scratch use :option:`--rebuild`, this will completely
-remove the TM and rebuild it.  To ensure that the TM server remains available
-when you rebuild you can add :option:`--overwrite`.
+If no options are provided, the command will only add new translations to the
+server. Use :option:`--refresh` to also update existing translations that have
+been changed, besides adding any new translation. To completely remove the TM
+and rebuild it adding all existing translations use :option:`--rebuild`.
 
 To see how many units will be loaded into the server use :option:`--dry-run`,
-no actual data will be loaded.
+no actual data will be loaded or deleted (the TM will be left unchanged):
+
+.. code-block:: bash
+
+    $ pootle update_tmserver --dry-run
+    $ pootle update_tmserver --refresh --dry-run
+    $ pootle update_tmserver --rebuild --dry-run
+
 
 .. _commands#vfolders:
 
