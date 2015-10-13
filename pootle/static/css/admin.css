@@ -36,12 +36,6 @@ div#depchecks ul li.error
     color: #d54e21;
 }
 
-/* ADMIN GENERAL SETTINGS */
-
-textarea#id_DESCRIPTION
-{
-    width: 100%;
-}
 
 /* STATIC PAGES */
 
