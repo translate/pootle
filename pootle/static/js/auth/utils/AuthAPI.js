@@ -21,7 +21,8 @@ const AuthAPI = {
   apiRoot: l('/accounts/'),
 
   request(url, data) {
-    return $.ajax(url, {
+    return $.ajax({
+      url: url,
       type: 'POST',
       data: data,
       dataType: 'json',
