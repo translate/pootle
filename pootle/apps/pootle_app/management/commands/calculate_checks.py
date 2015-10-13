@@ -49,9 +49,7 @@ class Command(PootleCommand):
             logging.info(u"Running %s (noargs)", self.name)
 
             try:
-
-                calculate_checks(check_names=options['check_names'],
-                                 translation_project=options['translation_project'])
+                calculate_checks(check_names=options['check_names'])
             except Exception:
                 logging.exception(u"Failed to run %s", self.name)
         else:
