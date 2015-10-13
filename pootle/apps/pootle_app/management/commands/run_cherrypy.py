@@ -47,14 +47,14 @@ class Command(BaseRunCommand):
             action='store',
             dest='ssl_certificate',
             default='',
-            help='Path to the server\'s SSL certificate.',
+            help="Path to the server's SSL certificate.",
         ),
         make_option(
             '--ssl_private_key',
             action='store',
             dest='ssl_private_key',
             default='',
-            help='Path to the server\'s SSL private key.',
+            help="Path to the server's SSL private key.",
         ),
     )
 
