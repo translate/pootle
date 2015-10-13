@@ -6,45 +6,29 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
-import $ from 'jquery';
-
-
-// XXX: this is to emulate the global `l()` function. It's needed because at the
-// time this module is imported, the function is not available yet.
-const l = x => x;
+import fetch from 'utils/xhr';
 
 
 const AuthAPI = {
 
-  apiRoot: l('/accounts/'),
-
-  request(url, data) {
-    return $.ajax({
-      url: url,
-      type: 'POST',
-      data: data,
-      dataType: 'json',
-    });
-  },
+  apiRoot: '/accounts/',
 
   signIn(reqData, nextURL) {
     const url = `${this.apiRoot}login/?next=${encodeURIComponent(nextURL)}`;
 
-    return this.request(url, reqData);
+    return fetch({ url, body: reqData });
   },
 
   signUp(reqData) {
     const url = `${this.apiRoot}signup/`;
 
-    return this.request(url, reqData);
+    return fetch({ url, body: reqData });
   },
 
   requestPasswordReset(reqData) {
     const url = `${this.apiRoot}password/reset/`;
 
-    return this.request(url, reqData);
+    return fetch({ url, body: reqData });
   },
 
   passwordReset(reqData, url) {
@@ -54,13 +38,13 @@ const AuthAPI = {
       url = `${this.apiRoot}password/reset/key/${uidb36}-${key}/`;
     }
 
-    return this.request(url, reqData);
+    return fetch({ url, body: reqData });
   },
 
   verifySocial(reqData) {
     const url = `${this.apiRoot}social/verify/`;
 
-    return this.request(url, reqData);
+    return fetch({ url, body: reqData });
   },
 
 };
