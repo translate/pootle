@@ -136,10 +136,11 @@ html[dir="rtl"] .control-group-separator
 
 td.code input
 {
-   width: 5em;
+    width: 5em;
 }
 
-td.fullname {
+td.fullname
+{
     width: 20%;
 }
 
