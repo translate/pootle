@@ -16,9 +16,7 @@
   </a>
 
   <div class="path-summary-more" id="js-path-summary-more">
-    <div class="hd">
-      <h3><span>{% trans "Translation Statistics" %}</span></h3>
-    </div>
+    <h3>{% trans "Translation Statistics" %}</h3>
     <div class="bd">
       <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
         <tbody>
@@ -47,9 +45,7 @@
       </table>
     </div>
     <div id="js-stats-checks" class="hide stats-checks">
-      <div class="hd">
-        <h3><span>{% trans "Failing Checks" %}</span></h3>
-      </div>
+      <h3>{% trans "Failing Checks" %}</h3>
       <div class="bd">
       {% for item in check_categories %}
         <div id="check-{{ item.name }}" class="checks js-checks">
