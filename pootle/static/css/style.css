@@ -752,8 +752,7 @@ button.close
 
 /* TABLES */
 
-.module table,
-.module-primary table
+.module table
 {
     width: 100%;
 }
@@ -1060,7 +1059,6 @@ div.settings-container
 
 .settings-container h2,
 .module .hd h2,
-.module-primary .hd h2,
 .hd h2
 {
     font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
