@@ -217,6 +217,10 @@ class Command(BaseCommand):
 
         # If files to import have been provided.
         if len(args):
+            if self.is_local_tm:
+                raise CommandError('You cannot add translations from files to '
+                                   'a local TM.')
+
             self.target_language = options.pop('target_language')
             self.project = options.pop('project')
 
@@ -226,6 +230,9 @@ class Command(BaseCommand):
             self.parser = FileParser(index=self.INDEX_NAME,
                                      language=self.target_language,
                                      project=self.project)
+        elif not self.is_local_tm:
+            raise CommandError('You cannot add translations from database to '
+                               'an external TM.')
         else:
             self.parser = DBParser(index=self.INDEX_NAME)
 
