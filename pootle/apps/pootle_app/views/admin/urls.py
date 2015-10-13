@@ -20,6 +20,7 @@ urlpatterns = patterns('pootle_app.views.admin',
         'dashboard.view',
         name='pootle-admin'),
 
+    # FIXME: remove ad-hoc inclusion, make this pluggable
     url(r'^/pages/',
         include(staticpages.urls.admin_patterns)),
 
