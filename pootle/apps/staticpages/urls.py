@@ -7,13 +7,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import include, patterns, url
 
 from .views import (AdminTemplateView, PageCreateView, PageDeleteView,
                     PageUpdateView)
 
 
-urlpatterns = patterns('',
+page_patterns = patterns('',
     url(r'^legal/agreement/$',
         'staticpages.views.legal_agreement',
         name='pootle-staticpages-legal-agreement'),
@@ -36,4 +36,10 @@ admin_patterns = patterns('',
     url(r'^(?P<page_type>[^/]+)/(?P<pk>\d+)/delete/?$',
         PageDeleteView.as_view(),
         name='pootle-staticpages-delete'),
+)
+
+
+urlpatterns = patterns('',
+    url(r'^pages/',
+        include(page_patterns)),
 )
