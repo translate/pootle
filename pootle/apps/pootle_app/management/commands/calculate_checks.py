@@ -35,6 +35,7 @@ class Command(PootleCommand):
             help='Check to recalculate'
         ),
     )
+    option_list = PootleCommand.option_list + shared_option_list
 
     cached_methods = [CachedMethods.CHECKS]
     process_disabled_projects = True
