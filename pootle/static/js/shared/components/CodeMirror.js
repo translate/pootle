@@ -13,6 +13,8 @@ import 'codemirror/lib/codemirror.css';
 
 import { getMode } from 'utils/markup';
 
+import './CodeMirror.css';
+
 
 const CodeMirror = React.createClass({
 
