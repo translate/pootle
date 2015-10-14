@@ -6,7 +6,7 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import fetch from 'utils/xhr';
+import fetch from 'utils/fetch';
 
 
 const AuthAPI = {

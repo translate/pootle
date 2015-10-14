@@ -12,7 +12,7 @@ import $ from 'jquery';
 let requests = {};
 
 
-export default function fetch({url, body, method='POST', dataType='json'}) {
+function fetch({url, body, method='POST', dataType='json'}) {
   if (requests[url]) {
     requests[url].abort();
   }
@@ -28,3 +28,6 @@ export default function fetch({url, body, method='POST', dataType='json'}) {
 
   return requests[url];
 }
+
+
+export default fetch;
