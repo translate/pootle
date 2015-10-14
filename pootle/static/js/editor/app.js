@@ -1011,12 +1011,12 @@ PTL.editor = {
   },
 
   /* Displays an informative message */
-  displayMsg: function (opts) {
-    _.defaults(opts, {showClose: true});
-
+  displayMsg: function ({ showClose=true, body=null }) {
     this.hideActivity();
     helpers.fixSidebarHeight();
-    $('#js-editor-msg-overlay').html(this.tmpl.msg({opts: opts})).fadeIn(300);
+    $('#js-editor-msg-overlay').html(
+      this.tmpl.msg({ showClose, body })
+    ).fadeIn(300);
   },
 
   hideMsg: function () {
@@ -1283,29 +1283,23 @@ PTL.editor = {
 
 
   /* Fetches more units in case they're needed */
-  fetchUnits: function (opts) {
-    var defaults = {
-          initial: false,
-          uId: 0
-        },
-        reqData = {
-          path: this.settings.pootlePath
-        };
+  fetchUnits: function ({ initial=false, uId=0, success=null } = {}) {
+    let reqData = {
+      path: this.settings.pootlePath,
+    };
 
-    opts = assign({}, defaults, opts);
+    if (initial) {
+      reqData.initial = initial;
 
-    if (opts.initial) {
-      reqData.initial = opts.initial;
-
-      if (opts.uId > 0) {
-        reqData.uids = opts.uId;
+      if (uId > 0) {
+        reqData.uids = uId;
       }
     } else {
       // Only fetch units limited to an offset, and omit units that have
       // already been fetched
       var fetchedIds = this.units.fetchedIds(),
           offset = this.units.chunkSize,
-          curUId = opts.uId > 0 ? opts.uId : this.units.getCurrent().id,
+          curUId = uId > 0 ? uId : this.units.getCurrent().id,
           uIndex = this.units.uIds.indexOf(curUId),
           uIds, begin, end;
 
@@ -1313,7 +1307,7 @@ PTL.editor = {
       end = Math.min(uIndex + offset + 1, this.units.total);
 
       // Ensure we retrieve chunks of the right size
-      if (opts.uId === 0) {
+      if (uId === 0) {
         if (fetchedIds.indexOf(this.units.uIds[begin]) === -1) {
           begin = Math.max(begin - offset, 0);
         }
@@ -1362,8 +1356,8 @@ PTL.editor = {
             });
           }
 
-          if (opts.success && $.isFunction(opts.success)) {
-            opts.success();
+          if (success && $.isFunction(success)) {
+            success();
           }
         } else {
           PTL.editor.noResults();
@@ -1785,16 +1779,13 @@ PTL.editor = {
   },
 
   /* Generates the edit context rows' UI */
-  renderCtxControls: function (opts) {
-    var defaults = { hasData: false };
-    opts = assign({}, defaults, opts);
-
+  renderCtxControls: function ({ hasData=false }) {
     const ctxRowBefore = this.tmpl.editCtx({
-      hasData: opts.hasData,
+      hasData,
       extraCls: 'before'
     });
     const ctxRowAfter = this.tmpl.editCtx({
-      hasData: opts.hasData,
+      hasData,
       extraCls: 'after'
     });
 
