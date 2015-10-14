@@ -1288,7 +1288,6 @@ PTL.editor = {
           initial: false,
           uId: 0
         },
-        viewUrl = l('/xhr/units/'),
         reqData = {
           path: this.settings.pootlePath
         };
@@ -1336,7 +1335,7 @@ PTL.editor = {
     $.extend(reqData, this.getReqData());
 
     $.ajax({
-      url: viewUrl,
+      url: l('/xhr/units/'),
       data: reqData,
       dataType: 'json',
       cache: false,
