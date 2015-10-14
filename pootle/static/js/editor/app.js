@@ -455,14 +455,17 @@ PTL.editor = {
         PTL.editor.fetchUnits({
           initial: isInitial,
           uId: uId,
-          success: function () {
-            if (uId > 0) {
-              PTL.editor.units.setCurrent(uId);
-            } else {
-              PTL.editor.units.setFirstAsCurrent();
-            }
-            PTL.editor.displayEditUnit();
+        }).then((hasResults) => {
+          if (!hasResults) {
+            return;
           }
+
+          if (uId > 0) {
+            PTL.editor.units.setCurrent(uId);
+          } else {
+            PTL.editor.units.setFirstAsCurrent();
+          }
+          PTL.editor.displayEditUnit();
         });
 
       }, {'unescape': true});
@@ -1282,8 +1285,8 @@ PTL.editor = {
   },
 
 
-  /* Fetches more units in case they're needed */
-  fetchUnits: function ({ initial=false, uId=0, success=null } = {}) {
+  /* Fetches more units in case they are needed */
+  fetchUnits: function ({ initial=false, uId=0 } = {}) {
     let reqData = {
       path: this.settings.pootlePath,
     };
@@ -1328,43 +1331,44 @@ PTL.editor = {
 
     assign(reqData, this.getReqData());
 
-    $.ajax({
+    return $.ajax({
       url: l('/xhr/units/'),
       data: reqData,
       dataType: 'json',
       cache: false,
-      success: function (data) {
-        if (data.uIds) {
-          // Clear old data and add new results
-          PTL.editor.units.reset();
+    }).then(
+      (data) => this.storeUnitData(data),
+      this.error
+    );
+  },
 
-          PTL.editor.units.uIds = data.uIds;
-          PTL.editor.units.total = data.uIds.length;
-        }
+  storeUnitData: function (data) {
+    if (data.uIds) {
+      // Clear old data and add new results
+      this.units.reset();
 
-        // Store view units in the client
-        if (data.unitGroups.length) {
-          var i, unitGroup;
-          for (i=0; i<data.unitGroups.length; i++) {
-            unitGroup = data.unitGroups[i];
-            $.each(unitGroup, function (pootlePath, group) {
-              var storeData = assign({pootlePath: pootlePath}, group.meta),
-                  units = _.map(group.units, function (unit) {
-                    return assign(unit, {store: storeData});
-                  });
-              PTL.editor.units.set(units, {remove: false});
+      this.units.uIds = data.uIds;
+      this.units.total = data.uIds.length;
+    }
+
+    const { unitGroups } = data;
+    if (!unitGroups.length) {
+      this.noResults();
+      return false;
+    }
+
+    for (let i=0; i<unitGroups.length; i++) {
+      let unitGroup = unitGroups[i];
+      $.each(unitGroup, function (pootlePath, group) {
+        var storeData = assign({pootlePath: pootlePath}, group.meta),
+            units = _.map(group.units, function (unit) {
+              return assign(unit, {store: storeData});
             });
-          }
+        PTL.editor.units.set(units, {remove: false});
+      });
+    }
 
-          if (success && $.isFunction(success)) {
-            success();
-          }
-        } else {
-          PTL.editor.noResults();
-        }
-      },
-      error: PTL.editor.error
-    });
+    return true;
   },
 
   /* Updates the navigation controls */
