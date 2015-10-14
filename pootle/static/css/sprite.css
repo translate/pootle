@@ -1,4 +1,4 @@
-﻿/* glue: 0.9.4 hash: 4cb498d832 */
+﻿/* glue: 0.9.4 hash: c16726098f */
         .icon-user-website,
 .icon-user-twitter,
 .icon-user-linkedin,
@@ -31,7 +31,6 @@
 .icon-block-muted,
 .icon-arrow-up,
 .icon-arrow-down,
-.icon-apertium,
 .icon-accept,
 .icon-upload,
 .icon-download,
@@ -233,26 +232,20 @@
             height: 16px;
         }
         
-        .icon-apertium {
+        .icon-accept {
             background-position: -9px -96px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-accept {
-            background-position: -25px -96px;
-            width: 16px;
-            height: 16px;
-        }
-        
         .icon-upload {
-            background-position: -41px -96px;
+            background-position: -25px -96px;
             width: 14px;
             height: 14px;
         }
         
         .icon-download {
-            background-position: -55px -96px;
+            background-position: -39px -96px;
             width: 14px;
             height: 14px;
         }
@@ -264,7 +257,7 @@
         }
         
         .icon-external-link {
-            background-position: -69px -96px;
+            background-position: -53px -96px;
             width: 12px;
             height: 12px;
         }
@@ -302,7 +295,6 @@
     .icon-block-muted,
     .icon-arrow-up,
     .icon-arrow-down,
-    .icon-apertium,
     .icon-accept,
     .icon-upload,
     .icon-download,

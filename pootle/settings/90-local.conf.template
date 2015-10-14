@@ -174,16 +174,12 @@ POOTLE_MARKUP_FILTER = (None, {})
 # be used in case the service supports using an API key.
 #
 # Available options are:
-# 'APERTIUM': Apertium service.
-#             For this service you need to set the API key.
-#             Get your key at http://api.apertium.org/register.jsp
 # 'GOOGLE_TRANSLATE': Google Translate service.
 #             For this service you need to set the API key.
 #             Note that Google Translate API is a paid service
 #             See more at https://cloud.google.com/translate/v2/pricing
 #
 POOTLE_MT_BACKENDS = [
-#        ('APERTIUM', ''),
 #        ('GOOGLE_TRANSLATE', ''),
 #        ('YANDEX_TRANSLATE', ''),
 ]

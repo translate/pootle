@@ -321,11 +321,6 @@ Translation environment configuration settings.
 
   Available options are:
 
-  ``APERTIUM``: Apertium service.
-    For this service you need to `obtain an API key
-    <http://api.apertium.org/register.jsp>`_.
-
-
   ``GOOGLE_TRANSLATE``: Google Translate service.
     For this service you need to obtain an API key. Note that Google Translate
     API is a `paid service <https://cloud.google.com/translate/v2/pricing>`_.

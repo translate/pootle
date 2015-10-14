@@ -36,6 +36,7 @@ Details of changes
 - Pulled latest translations.
 - :djadmin:`update_tmserver`: renamed :option:`--overwrite` to
   :option:`--refresh`.
+- The Apertium MT backend has been dropped.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of

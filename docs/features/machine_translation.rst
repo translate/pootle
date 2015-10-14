@@ -52,8 +52,6 @@ Supported Services:
 
 |icon:icon-yandex-translate| Yandex.Translate
 
-|icon:icon-apertium| Apertium
-
 .. versionadded:: 2.7 Yandex.Translate
 
 Google Translate is widely used and supports a number of `languages`_.
@@ -65,9 +63,3 @@ It is a `paid service`_ requiring an account and API key.
 `Yandex.Translate`_ is the free alternative to Google.
 
 .. _Yandex.Translate: https://tech.yandex.com/translate/
-
-On the other hand, `Apertium`_ is best suited for
-close language pairs. Especially for those languages spoken in the Iberian
-Peninsula that are similar.
-
-.. _Apertium: https://www.apertium.org/index.eng.html?dir=oci-cat#translation

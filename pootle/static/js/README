@@ -52,9 +52,6 @@ Directory contents
 
   + mt/
 
-    - apertium.js :
-      Script to load translation suggestions using the Apertium service.
-
     - google-translate.js :
       Script to load translation suggestions using the Google Translate service.
 
