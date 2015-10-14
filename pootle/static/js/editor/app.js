@@ -6,38 +6,37 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var $ = require('jquery');
-var _ = require('underscore');
+import $ from 'jquery';
+import _ from 'underscore';
 
 // jQuery plugins
-require('jquery-caret');
-require('jquery-cookie');
-require('jquery-easing');
-require('jquery-highlightRegex');
-require('jquery-history');
-require('jquery-jsonp');
-require('jquery-serializeObject');
-require('jquery-utils');
+import 'jquery-caret';
+import 'jquery-cookie';
+import 'jquery-easing';
+import 'jquery-highlightRegex';
+import 'jquery-history';
+import 'jquery-jsonp';
+import 'jquery-serializeObject';
+import 'jquery-utils';
 
 // Other plugins
 import autosize from 'autosize';
 // XXX: this weirdness is temporarily needed because the version of
 // diff-match-patch we bundle is not CommonJS-friendly
 require('imports?this=>window!diff-match-patch');
-require('iso8601');
-require('shortcut');
-var Levenshtein = require('levenshtein');
-
-var UnitSet = require('../collections').UnitSet;
-
-var captcha = require('../captcha.js');
-var helpers = require('../helpers.js');
-var msg = require('../msg.js');
-var score = require('../score.js');
-var search = require('../search.js');
-var utils = require('../utils.js');
+import 'iso8601';
+import Levenshtein from 'levenshtein';
+import 'shortcut';
 
 import linkHashtags from 'utils/linkHashtags';
+
+import captcha from '../captcha';
+import { UnitSet } from '../collections';
+import helpers from '../helpers';
+import msg from '../msg';
+import score from '../score';
+import search from '../search';
+import utils from '../utils';
 
 
 const CTX_STEP = 1;
