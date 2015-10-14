@@ -178,6 +178,9 @@ POOTLE_MARKUP_FILTER = (None, {})
 #             For this service you need to set the API key.
 #             Note that Google Translate API is a paid service
 #             See more at https://cloud.google.com/translate/v2/pricing
+# 'YANDEX_TRANSLATE': Yandex Translate service.
+#             For this service you need to set the API key.
+#             See more at https://tech.yandex.com/translate/
 #
 POOTLE_MT_BACKENDS = [
 #        ('GOOGLE_TRANSLATE', ''),
