@@ -1895,7 +1895,7 @@ PTL.editor = {
     const $before = $('.ctx-row.before');
     const $after = $('.ctx-row.after');
 
-    if (before.length || after.length) {
+    if ($before.length || $after.length) {
       $before.show();
       $after.show();
       this.replaceCtxControls(this.renderCtxControls({ hasData: true }))
