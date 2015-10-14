@@ -1284,7 +1284,6 @@ PTL.editor = {
 
   /* Fetches more units in case they're needed */
   fetchUnits: function (opts) {
-    // TODO: move logic into UnitSet
     var defaults = {
           initial: false,
           uId: 0
