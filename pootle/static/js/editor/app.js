@@ -26,6 +26,7 @@ import autosize from 'autosize';
 require('imports?this=>window!diff-match-patch');
 import 'iso8601';
 import Levenshtein from 'levenshtein';
+import assign from 'object-assign';
 import 'shortcut';
 
 import linkHashtags from 'utils/linkHashtags';
@@ -46,7 +47,7 @@ const filterSelectOpts = {
   dropdownAutoWidth: true,
   width: 'off'
 };
-const sortSelectOpts = _.extend({
+const sortSelectOpts = assign({
   minimumResultsForSearch: -1
 }, filterSelectOpts);
 
@@ -74,7 +75,7 @@ PTL.editor = {
       mt: []
     };
 
-    options && $.extend(this.settings, options);
+    options && assign(this.settings, options);
 
     /* Initialize variables */
     this.units = new UnitSet([], {
@@ -1171,7 +1172,7 @@ PTL.editor = {
     for (let i=0; i<units.length; i++) {
       // FIXME: Please let's use proper models for context units
       let unit = units[i];
-      unit = $.extend({}, currentUnit.toJSON(), unit);
+      unit = assign({}, currentUnit.toJSON(), unit);
 
       rows += `<tr id="ctx${unit.id}" class="ctx-row ${extraCls}">`;
       rows += this.tmpl.vUnit({unit: unit});
@@ -1291,7 +1292,7 @@ PTL.editor = {
           path: this.settings.pootlePath
         };
 
-    opts = $.extend({}, defaults, opts);
+    opts = assign({}, defaults, opts);
 
     if (opts.initial) {
       reqData.initial = opts.initial;
@@ -1331,7 +1332,7 @@ PTL.editor = {
       reqData.uids = uIds.join(',');
     }
 
-    $.extend(reqData, this.getReqData());
+    assign(reqData, this.getReqData());
 
     $.ajax({
       url: l('/xhr/units/'),
@@ -1353,9 +1354,9 @@ PTL.editor = {
           for (i=0; i<data.unitGroups.length; i++) {
             unitGroup = data.unitGroups[i];
             $.each(unitGroup, function (pootlePath, group) {
-              var storeData = $.extend({pootlePath: pootlePath}, group.meta),
+              var storeData = assign({pootlePath: pootlePath}, group.meta),
                   units = _.map(group.units, function (unit) {
-                    return $.extend(unit, {store: storeData});
+                    return assign(unit, {store: storeData});
                   });
               PTL.editor.units.set(units, {remove: false});
             });
@@ -1466,8 +1467,8 @@ PTL.editor = {
       PTL.editor.checkSimilarTranslations();
     }
 
-    $.extend(reqData, PTL.editor.getReqData(), PTL.editor.getSimilarityData(),
-             captchaCallbacks);
+    assign(reqData, PTL.editor.getReqData(), PTL.editor.getSimilarityData(),
+           captchaCallbacks);
 
     el.disabled = true;
 
@@ -1523,8 +1524,8 @@ PTL.editor = {
     // even if it is set in the form internally
     delete reqData.state;
 
-    $.extend(reqData, PTL.editor.getReqData(), PTL.editor.getSimilarityData(),
-             captchaCallbacks);
+    assign(reqData, PTL.editor.getReqData(), PTL.editor.getSimilarityData(),
+           captchaCallbacks);
 
     $.ajax({
       url: suggestUrl,
@@ -1786,7 +1787,7 @@ PTL.editor = {
   /* Generates the edit context rows' UI */
   renderCtxControls: function (opts) {
     var defaults = { hasData: false };
-    opts = $.extend({}, defaults, opts);
+    opts = assign({}, defaults, opts);
 
     const ctxRowBefore = this.tmpl.editCtx({
       hasData: opts.hasData,
