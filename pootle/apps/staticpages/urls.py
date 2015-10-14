@@ -39,7 +39,16 @@ admin_patterns = patterns('',
 )
 
 
+xhr_patterns = patterns('',
+    url(r'^preview/?$',
+        'staticpages.views.preview_content',
+        name='pootle-xhr-preview'),
+)
+
+
 urlpatterns = patterns('',
     url(r'^pages/',
         include(page_patterns)),
+    url(r'^xhr/',
+        include(xhr_patterns)),
 )

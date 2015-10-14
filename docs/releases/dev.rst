@@ -32,8 +32,8 @@ complete information.
 Details of changes
 ==================
 
-- The editor for static pages now highlights the content's markup
-  (:issue:`3346`).
+- The editor for static pages now highlights the content's markup and displays a
+  live preview of the rendered contents (:issue:`3346`, :issue:`3766`).
 - Pulled latest translations.
 - :djadmin:`update_tmserver`:
 

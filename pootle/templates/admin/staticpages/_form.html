@@ -14,7 +14,7 @@
     {% include 'admin/staticpages/_field.html' with field=form.active %}
     {% if form.url %}
     {% include 'admin/staticpages/_field.html' with field=form.url %}
-    <div class="control-group-separator">
+    <div class="control-group-separator js-staticpage-non-content">
       <span class="help_text">{% trans "or" %}</span>
     </div>
     {% endif %}
@@ -23,11 +23,10 @@
       {{ form.body.label_tag }}
       <div class="controls">
         <div class="js-staticpage-editor"></div>
-        {{ form.body.help_text }}
       </div>
     </div>
 
-    <div class="control-group">
+    <div class="control-group js-staticpage-non-content">
       <div class="controls controls-btn">
         <input type="submit" class="btn" value="{% trans 'Save' %}" />
         <ul>

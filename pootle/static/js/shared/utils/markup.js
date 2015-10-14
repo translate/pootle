@@ -16,3 +16,16 @@ export function getMode(markup) {
     restructuredtext: 'rst',
   }[markup] || markup;
 }
+
+
+/**
+ * Returns a human-readable name for the markup module
+ */
+export function getName(markup) {
+  return {
+    html: 'HTML',
+    markdown: 'Markdown',
+    restructuredtext: 'reStructuredText',
+    textile: 'Textile',
+  }[markup] || markup;
+}

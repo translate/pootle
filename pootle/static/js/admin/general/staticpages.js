@@ -8,17 +8,17 @@
 
 import React from 'react';
 
-import CodeMirror from 'components/CodeMirror';
+import LiveEditor from './components/LiveEditor';
 
 
 const staticpages = {
 
   init(opts) {
     React.render(
-      <CodeMirror
+      <LiveEditor
+        initialValue={opts.initialValue}
         markup={opts.markup}
         name={opts.htmlName}
-        value={opts.initialValue}
       />,
       document.querySelector('.js-staticpage-editor')
     );

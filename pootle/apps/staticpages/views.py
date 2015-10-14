@@ -17,6 +17,7 @@ from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
+from pootle.core.markup.filters import apply_markup_filter
 from pootle.core.views import SuperuserRequiredMixin
 from pootle_misc.util import ajax_required
 
@@ -223,3 +224,16 @@ def legal_agreement(request):
 
     rendered_form = _get_rendered_agreement(request, form_class())
     return JsonResponse({'form': rendered_form})
+
+
+@ajax_required
+def preview_content(request):
+    """Returns content rendered based on the configured markup settings."""
+    if 'text' not in request.POST:
+        return JsonResponseBadRequest({
+            'msg': _('Text is missing'),
+        })
+
+    return JsonResponse({
+        'rendered': apply_markup_filter(request.POST['text']),
+    })
