@@ -42,18 +42,18 @@ import utils from '../utils';
 const CTX_STEP = 1;
 
 
-var filterSelectOpts = {
-      dropdownAutoWidth: true,
-      width: 'off'
-    },
-    sortSelectOpts = _.extend({
-      minimumResultsForSearch: -1
-    }, filterSelectOpts);
+const filterSelectOpts = {
+  dropdownAutoWidth: true,
+  width: 'off'
+};
+const sortSelectOpts = _.extend({
+  minimumResultsForSearch: -1
+}, filterSelectOpts);
 
 
 function _refreshChecksSnippet(newChecks) {
-  let $checks = $('.js-unit-checks');
-  let focusedArea = $('.focusthis')[0];
+  const $checks = $('.js-unit-checks');
+  const focusedArea = $('.focusthis')[0];
 
   $checks.html(newChecks).show();
   utils.blinkClass($checks, 'blink', 4, 200);
