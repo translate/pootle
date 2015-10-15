@@ -9,7 +9,7 @@ Pootle should not only work correctly, but it should also look great in
 *Firefox, Chrome and Safari*.
 
 *Internet Explorer* is an exception, where we support the latest two
-stable versions (as of today, IE10+). Here Pootle should work well, but
+stable versions (as of today, IE11+). Here Pootle should work well, but
 might look imperfect.
 
 Older browser versions might work properly too, but we are not committed
