@@ -9,6 +9,7 @@
 import React from 'react';
 
 import * as CM from 'codemirror';
+import 'codemirror/addon/display/placeholder';
 import 'codemirror/lib/codemirror.css';
 
 import { getMode } from 'utils/markup';
@@ -23,6 +24,7 @@ const CodeMirror = React.createClass({
     // Temporarily needed to support submitting forms not controlled by JS
     name: React.PropTypes.string,
     onChange: React.PropTypes.func,
+    placeholder: React.PropTypes.string,
     value: React.PropTypes.string,
   },
 
@@ -61,8 +63,9 @@ const CodeMirror = React.createClass({
 
     return (
       <textarea
-        ref="editor"
         defaultValue={this.props.value}
+        placeholder={this.props.placeholder}
+        ref="editor"
         {...extraProps}
       />
     );
