@@ -290,7 +290,7 @@ PTL.editor = {
     /* Load MT backends */
     this.settings.mt.forEach((backend) => {
       $.ajax({
-        url: s(['js/editor/mt/', backend.name, '.js'].join('')),
+        url: s(`js/editor/mt/${backend.name}.js`),
         async: false,
         dataType: 'script',
         success: function () {
