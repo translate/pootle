@@ -309,7 +309,7 @@ PTL.editor = {
     setInterval(helpers.updateRelativeDates, 6e4);
 
     /* History support */
-    $.history.init(function (hash) {
+    $.history.init((hash) => {
       var params = utils.getParsedHash(hash),
           isInitial = true,
           uId = 0;
@@ -320,59 +320,59 @@ PTL.editor = {
         var uIdParam = parseInt(params.unit, 10);
 
         if (uIdParam && !isNaN(uIdParam)) {
-          var current = PTL.editor.units.getCurrent(),
-              newUnit = PTL.editor.units.get(uIdParam);
+          var current = this.units.getCurrent(),
+              newUnit = this.units.get(uIdParam);
           if (newUnit && newUnit !== current) {
-            PTL.editor.units.setCurrent(newUnit);
-            PTL.editor.displayEditUnit();
+            this.units.setCurrent(newUnit);
+            this.displayEditUnit();
             return;
           } else {
             uId = uIdParam;
             // Don't retrieve initial data if there are existing results
-            isInitial = !PTL.editor.units.length;
+            isInitial = !this.units.length;
           }
         }
       }
 
       // Reset to defaults
-      PTL.editor.filter = 'all';
-      PTL.editor.checks = [];
-      PTL.editor.category = [];
-      PTL.editor.sortBy = 'default';
+      this.filter = 'all';
+      this.checks = [];
+      this.category = [];
+      this.sortBy = 'default';
 
       if ('filter' in params) {
         var filterName = params.filter;
 
         // Set current state
-        PTL.editor.filter = filterName;
+        this.filter = filterName;
 
         if (filterName === 'checks' && 'checks' in params) {
-          PTL.editor.checks = params.checks.split(',');
+          this.checks = params.checks.split(',');
         }
         if (filterName === 'checks' && 'category' in params) {
-          PTL.editor.category = params.category;
+          this.category = params.category;
         }
         if ('sort' in params) {
-          PTL.editor.sortBy = params.sort;
+          this.sortBy = params.sort;
         }
       }
 
       if ('modified-since' in params) {
-        PTL.editor.modifiedSince = params['modified-since'];
+        this.modifiedSince = params['modified-since'];
       } else {
-        PTL.editor.modifiedSince = null;
+        this.modifiedSince = null;
       }
 
       if ('month' in params) {
-        PTL.editor.month = params.month;
+        this.month = params.month;
       } else {
-        PTL.editor.month = null;
+        this.month = null;
       }
 
       // Only accept the user parameter for 'user-*' filters
-      if ('user' in params && PTL.editor.filter.indexOf('user-') === 0) {
+      if ('user' in params && this.filter.indexOf('user-') === 0) {
         var user;
-        PTL.editor.user = user = encodeURIComponent(params.user);
+        this.user = user = encodeURIComponent(params.user);
 
         var newOpts = [],
             values = {
@@ -406,7 +406,7 @@ PTL.editor = {
       if ('search' in params) {
         // Note that currently the search, if provided along with the other
         // filters, would override them
-        PTL.editor.filter = "search";
+        this.filter = 'search';
 
         let newState = {
           searchText: params.search,
@@ -425,32 +425,31 @@ PTL.editor = {
       // Update the filter UI to match the current filter
 
       // disable navigation on UI toolbar events to prevent data reload
-      PTL.editor.preventNavigation = true;
+      this.preventNavigation = true;
 
-      var filterValue = PTL.editor.filter === 'search' ? 'all' :
-                                                          PTL.editor.filter;
+      var filterValue = this.filter === 'search' ? 'all' : this.filter;
       $('#js-filter-status').select2('val', filterValue);
 
-      if (PTL.editor.filter === "checks") {
+      if (this.filter === 'checks') {
         // if the checks selector is empty (i.e. the 'change' event was not fired
         // because the selection did not change), force the update to populate the selector
         if ($('#js-filter-checks').is(':hidden')) {
-          PTL.editor.getCheckOptions({
-            success: PTL.editor.appendChecks
+          this.getCheckOptions({
+            success: this.appendChecks
           });
         }
       }
 
-      $('#js-filter-sort').select2('val', PTL.editor.sortBy);
+      $('#js-filter-sort').select2('val', this.sortBy);
 
-      if (PTL.editor.filter === 'search') {
+      if (this.filter === 'search') {
         $('.js-filter-checks-wrapper').hide();
       }
 
       // re-enable normal event handling
-      PTL.editor.preventNavigation = false;
+      this.preventNavigation = false;
 
-      PTL.editor.fetchUnits({
+      this.fetchUnits({
         initial: isInitial,
         uId: uId,
       }).then((hasResults) => {
@@ -459,11 +458,11 @@ PTL.editor = {
         }
 
         if (uId > 0) {
-          PTL.editor.units.setCurrent(uId);
+          this.units.setCurrent(uId);
         } else {
-          PTL.editor.units.setFirstAsCurrent();
+          this.units.setFirstAsCurrent();
         }
-        PTL.editor.displayEditUnit();
+        this.displayEditUnit();
       });
 
     }, {'unescape': true});
@@ -504,7 +503,7 @@ PTL.editor = {
     }
 
     if (this.tmData !== null) {
-      var tmContent = this.getTMUnitsContent(PTL.editor.tmData);
+      var tmContent = this.getTMUnitsContent(this.tmData);
       $('#extras-container').append(tmContent);
     }
 
