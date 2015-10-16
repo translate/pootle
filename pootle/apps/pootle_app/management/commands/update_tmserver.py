@@ -30,7 +30,7 @@ BULK_CHUNK_SIZE = 5000
 class DBParser(object):
 
     def __init__(self, *args, **kwargs):
-        super(DBParser, self).__init__(*args, **kwargs)
+        super(DBParser, self).__init__()
         self.INDEX_NAME = kwargs.pop('index', None)
 
     def get_units(self, *filenames):
@@ -86,7 +86,7 @@ class DBParser(object):
 class FileParser(object):
 
     def __init__(self, *args, **kwargs):
-        super(FileParser, self).__init__(*args, **kwargs)
+        super(FileParser, self).__init__()
         self.INDEX_NAME = kwargs.pop('index', None)
         self.target_language = kwargs.pop('language', None)
         self.project = kwargs.pop('project', None)
