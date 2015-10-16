@@ -19,8 +19,8 @@ function fetch({url, body, method='POST', dataType='json'}) {
 
   requests[url] = (
     $.ajax({
+      method,
       url: l(url),
-      type: method,
       data: body,
       dataType: dataType,
     })
