@@ -525,8 +525,8 @@ PTL.editor = {
 
   /* Things to do when no results are returned */
   noResults: function () {
-    PTL.editor.displayMsg({body: gettext("No results.")});
-    PTL.editor.reDraw();
+    this.displayMsg({body: gettext("No results.")});
+    this.reDraw();
   },
 
   canNavigate: function() {
@@ -1226,7 +1226,7 @@ PTL.editor = {
 
   /* Sets the edit view for the current active unit */
   displayEditUnit: function () {
-    if (PTL.editor.units.length) {
+    if (this.units.length) {
       this.fetchUnits();
 
       this.hideMsg();
@@ -1367,7 +1367,7 @@ PTL.editor = {
   updateNav: function () {
     $("#items-count").text(this.units.total);
 
-    var currentUnit = PTL.editor.units.getCurrent();
+    var currentUnit = this.units.getCurrent();
     if (currentUnit !== undefined) {
       var uIndex = this.units.uIds.indexOf(currentUnit.id) + 1;
       $('.js-unit-index').text(uIndex);
@@ -1805,11 +1805,11 @@ PTL.editor = {
     // As we now have got more context rows, increase its gap
     this.ctxGap += Math.max(data.ctx.before.length,
                             data.ctx.after.length);
-    $.cookie('ctxQty', PTL.editor.ctxGap, {path: '/'});
+    $.cookie('ctxQty', this.ctxGap, {path: '/'});
 
     // Create context rows HTML
-    const before = PTL.editor.renderCtxRows(data.ctx.before, 'before');
-    const after = PTL.editor.renderCtxRows(data.ctx.after, 'after');
+    const before = this.renderCtxRows(data.ctx.before, 'before');
+    const after = this.renderCtxRows(data.ctx.after, 'after');
 
     // Append context rows to their respective places
     var editCtxRows = $("tr.edit-ctx");
@@ -2059,14 +2059,16 @@ PTL.editor = {
         src = store.get('source_lang'),
         tgt = store.get('target_lang'),
         sourceText = unit.get('source')[0],
-        filtered = PTL.editor.filterTMResults(data, sourceText),
+        filtered = this.filterTMResults(data, sourceText),
         name = gettext("Similar translations");
 
     if (filtered.length) {
-      return PTL.editor.tmpl.tm({store: store.toJSON(),
-                                 unit: unit.toJSON(),
-                                 suggs: filtered,
-                                 name: name});
+      return this.tmpl.tm({
+        store: store.toJSON(),
+        unit: unit.toJSON(),
+        suggs: filtered,
+        name: name,
+      });
     }
 
     return '';
