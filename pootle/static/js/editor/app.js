@@ -1420,7 +1420,6 @@ PTL.editor = {
   /* Pushes translation submissions and moves to the next unit */
   handleSubmit: function () {
     const el = document.querySelector('input.submit');
-    const submitUrl = l(`/xhr/units/${this.units.getCurrent().id}`);
     const newTranslation = $('.js-translation-area')[0].value;
     const suggestions = $('.js-user-suggestion').map(function () {
       return {
@@ -1433,7 +1432,7 @@ PTL.editor = {
       efn: 'PTL.editor.error',
     };
 
-    let reqData = $('#translate').serializeObject();
+    let body = $('#translate').serializeObject();
 
     this.updateUnitDefaultProperties();
 
@@ -1458,15 +1457,14 @@ PTL.editor = {
       this.checkSimilarTranslations();
     }
 
-    assign(reqData, this.getReqData(), this.getSimilarityData(), captchaCallbacks);
+    assign(body, this.getReqData(), this.getSimilarityData(), captchaCallbacks);
 
     el.disabled = true;
 
-    $.ajax({
-      url: submitUrl,
-      type: 'POST',
-      data: reqData,
-      dataType: 'json',
+    fetch({
+      body,
+      url: `/xhr/units/${this.units.getCurrent().id}`,
+      method: 'POST',
     }).then(
       (data) => this.processSubmission(data),
       this.error
@@ -1499,27 +1497,25 @@ PTL.editor = {
 
   /* Pushes translation suggestions and moves to the next unit */
   handleSuggest: function () {
-    const suggestUrl = l(`/xhr/units/${this.units.getCurrent().id}/suggestions/`),
     const captchaCallbacks = {
       sfn: 'PTL.editor.processSuggestion',
       efn: 'PTL.editor.error'
     };
 
-    let reqData = $('#translate').serializeObject();
+    let body = $('#translate').serializeObject();
 
     this.updateUnitDefaultProperties();
 
     // in suggest mode, do not send the fuzzy state flag
     // even if it is set in the form internally
-    delete reqData.state;
+    delete body.state;
 
-    assign(reqData, this.getReqData(), this.getSimilarityData(), captchaCallbacks);
+    assign(body, this.getReqData(), this.getSimilarityData(), captchaCallbacks);
 
-    $.ajax({
-      url: suggestUrl,
-      type: 'POST',
-      data: reqData,
-      dataType: 'json',
+    fetch({
+      body,
+      url: `/xhr/units/${this.units.getCurrent().id}/suggestions/`,
+      method: 'POST',
     }).then(
       (data) => this.processSuggestion(data),
       this.error
