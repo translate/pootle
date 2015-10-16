@@ -20,3 +20,36 @@ export function normalizeCode(locale) {
   }
   return clean;
 }
+
+
+/*
+ * Escape unsafe regular expression symbols:
+ * ! $ & ( ) * + - . : < = > ? [ \ ] ^ { | }
+ *
+ * Special characters can be written as
+ * Regular Expression class:
+ * [!$&(-+\-.:<-?\[-^{-}]
+ */
+export function escapeUnsafeRegexSymbols(s) {
+  // Replace doesn't modify original variable and it recreates a
+  // new string with special characters escaped.
+  return s.replace(/[!$&(-+\-.:<-?\[-^{-}]/g, '\\$&');
+}
+
+
+/*
+ * Make regular expression using every word in input string.
+ *
+ * This function has these steps:
+ *  1) escape unsafe regular expression symbols;
+ *  2) trim ' ' (whitespaces) to avoid multiple '|' at the beginning
+ *    and at the end;
+ *  3) replace ' ' (one or more whitespaces) with '|'. In this way every word
+ *    can be searched by regular expression;
+ *  4) add brackets.
+ */
+export function makeRegexForMultipleWords(s) {
+  return [
+    '(', escapeUnsafeRegexSymbols(s).trim().replace(/ +/g, '|'), ')'
+  ].join('');
+}

@@ -39,7 +39,9 @@ import msg from '../msg';
 import score from '../score';
 import search from '../search';
 import utils from '../utils';
-import { normalizeCode } from './utils';
+import {
+  escapeUnsafeRegexSymbols, makeRegexForMultipleWords, normalizeCode
+} from './utils';
 
 
 const CTX_STEP = 1;
@@ -546,34 +548,6 @@ PTL.editor = {
    * Text utils
    */
 
-  /* Escape unsafe regular expression symbols:
-   * ! $ & ( ) * + - . : < = > ? [ \ ] ^ { | }
-   *
-   * Special characters can be written as
-   * Regular Expression class:
-   * [!$&(-+\-.:<-?\[-^{-}]
-   */
-  escapeUnsafeRegexSymbols: function (s) {
-    // Replace doesn't modify original variable and it recreates a
-    // new string with special characters escaped.
-    return s.replace(/[!$&(-+\-.:<-?\[-^{-}]/g, '\\$&');
-  },
-
-  /* Make regular expression using every word
-   * in input string
-   */
-  makeRegexForMultipleWords: function (s) {
-    // This function has these steps:
-    // 1) escape unsafe regular expression symbols;
-    // 2) trim ' ' (whitespaces) to avoid multiple
-    //    '|' at the beginning and at the end;
-    // 3) replace ' ' (one or more whitespaces) with '|'. In this
-    //    way every word can be searched by regular expression;
-    // 4) add brackets.
-    return ['(', PTL.editor.escapeUnsafeRegexSymbols(s).trim().replace(/ +/g,
-      '|'), ')'].join('');
-  },
-
   /* Highlights search results */
   hlSearch: function () {
     let {searchText, searchFields, searchOptions} = search.state;
@@ -595,10 +569,10 @@ PTL.editor = {
 
     if (searchOptions.indexOf('exact') >= 0 ) {
       hlRegex = new RegExp([
-          '(', PTL.editor.escapeUnsafeRegexSymbols(hl), ')'
+          '(', escapeUnsafeRegexSymbols(hl), ')'
         ].join(''));
     } else {
-      hlRegex = new RegExp(PTL.editor.makeRegexForMultipleWords(hl), "i");
+      hlRegex = new RegExp(makeRegexForMultipleWords(hl), 'i');
     }
     $(sel.join(", ")).highlightRegex(hlRegex);
   },
