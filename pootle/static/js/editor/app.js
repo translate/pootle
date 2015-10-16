@@ -192,8 +192,14 @@ PTL.editor = {
     $(document).on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
     $(document).on('keypress', '.js-unit-index', (e) => this.gotoIndex(e));
     $(document).on('dblclick click', '.js-unit-index', this.unitIndex);
-    $(document).on('click', 'input.submit', this.submit);
-    $(document).on('click', 'input.suggest', this.suggest);
+    $(document).on('click', 'input.submit', (e) => {
+      e.preventDefault();
+      this.handleSubmit();
+    });
+    $(document).on('click', 'input.suggest', (e) => {
+      e.preventDefault();
+      this.handleSuggest();
+    });
     $(document).on('click', '#js-nav-prev', () => this.gotoPrev());
     $(document).on('click', '#js-nav-next', () => this.gotoNext());
     $(document).on('click', '.js-suggestion-reject', this.rejectSuggestion);
@@ -248,9 +254,9 @@ PTL.editor = {
     /* Bind hotkeys */
     shortcut.add('ctrl+return', () => {
       if (this.isSuggestMode()) {
-        $('input.suggest').trigger('click');
+        this.handleSuggest();
       } else {
-        $('input.submit').trigger('click');
+        this.handleSubmit();
       }
     });
     shortcut.add('ctrl+space', () => this.toggleState());
@@ -1412,11 +1418,9 @@ PTL.editor = {
   },
 
   /* Pushes translation submissions and moves to the next unit */
-  submit: function (e) {
-    e.preventDefault();
-
-    var el = e.target,
-        uId = PTL.editor.units.getCurrent().id,
+  handleSubmit: function () {
+    const el = document.querySelector('input.submit');
+    var uId = PTL.editor.units.getCurrent().id,
         submitUrl = l(['/xhr/units/', uId].join('')),
         reqData = $('#translate').serializeObject(),
         newTranslation = $('.js-translation-area')[0].value,
@@ -1494,9 +1498,7 @@ PTL.editor = {
   },
 
   /* Pushes translation suggestions and moves to the next unit */
-  suggest: function (e) {
-    e.preventDefault();
-
+  handleSuggest: function () {
     var uId = PTL.editor.units.getCurrent().id,
         suggestUrl = l(['/xhr/units/', uId, '/suggestions/'].join('')),
         reqData = $('#translate').serializeObject(),
