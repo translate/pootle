@@ -54,6 +54,9 @@ const sortSelectOpts = assign({
 }, filterSelectOpts);
 
 
+let mtBackends = [];
+
+
 function _refreshChecksSnippet(newChecks) {
   const $checks = $('.js-unit-checks');
   const focusedArea = $('.focusthis')[0];
@@ -291,7 +294,8 @@ PTL.editor = {
     this.settings.mt.forEach((backend) => {
       require.ensure([], () => {
         module = require('./mt/' + backend.name);
-        PTL.editor.mt[backend.name].init(backend.key);
+        module.init(backend.key);
+        mtBackends.push(module);
       });
     });
 
@@ -501,7 +505,7 @@ PTL.editor = {
     }
 
     // All is ready, let's call the ready functions of the MT backends
-    this.settings.mt.forEach((backend) => this.mt[backend.name].ready());
+    mtBackends.forEach((backend) => backend.ready());
 
     this.isUnitDirty = false;
     this.keepState = false;
