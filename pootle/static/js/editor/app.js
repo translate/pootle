@@ -289,13 +289,9 @@ PTL.editor = {
 
     /* Load MT backends */
     this.settings.mt.forEach((backend) => {
-      $.ajax({
-        url: s(`js/editor/mt/${backend.name}.js`),
-        async: false,
-        dataType: 'script',
-        success: function () {
-          PTL.editor.mt[backend.name].init(backend.key);
-        }
+      require.ensure([], () => {
+        module = require('./mt/' + backend.name);
+        PTL.editor.mt[backend.name].init(backend.key);
       });
     });
 
