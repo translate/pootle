@@ -292,7 +292,7 @@ PTL.editor = {
       var backend = this.name, key = this.key;
 
       $.ajax({
-        url: s(['js/mt/', backend, '.js'].join('')),
+        url: s(['js/editor/mt/', backend, '.js'].join('')),
         async: false,
         dataType: 'script',
         success: function () {
