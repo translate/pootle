@@ -1355,14 +1355,13 @@ PTL.editor = {
     }
 
     for (let i=0; i<unitGroups.length; i++) {
-      let unitGroup = unitGroups[i];
-      $.each(unitGroup, function (pootlePath, group) {
-        var storeData = assign({pootlePath: pootlePath}, group.meta),
-            units = _.map(group.units, function (unit) {
-              return assign(unit, {store: storeData});
-            });
-        PTL.editor.units.set(units, {remove: false});
-      });
+      const unitGroup = unitGroups[i];
+      for (let pootlePath in unitGroup) {
+        const group = unitGroup[pootlePath];
+        const store = assign({ pootlePath: pootlePath }, group.meta);
+        const units = group.units.map((unit) => assign(unit, { store }));
+        this.units.set(units, { remove: false });
+      }
     }
 
     return true;
