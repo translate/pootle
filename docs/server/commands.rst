@@ -403,7 +403,8 @@ update_tmserver
 .. versionadded:: 2.7
 
 .. versionchanged:: 2.7.3 Renamed :option:`--overwrite` to :option:`--refresh`.
-   Now it is also possible to import translations from files.
+   Disabled projects' translations are no longer added by default. It is also
+   possible to import translations from files.
 
 
 Updates the ``local`` server in :setting:`POOTLE_TM_SERVER`.  The command
@@ -418,6 +419,9 @@ and rebuild it adding all existing translations use :option:`--rebuild`.
 If no specific TM server is specified using :option:`--tm`, then the default
 ``local`` TM will be used. If the specified TM server doesn't exist it will
 be automatically created for you.
+
+By default translations from disabled projects are not added to the TM, but
+this can be changed by specifying :option:`--include-disabled-projects`.
 
 To see how many units will be loaded into the server use :option:`--dry-run`,
 no actual data will be loaded or deleted (the TM will be left unchanged):

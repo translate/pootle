@@ -32,6 +32,7 @@ class DBParser(object):
     def __init__(self, *args, **kwargs):
         self.stdout = kwargs.pop('stdout')
         self.INDEX_NAME = kwargs.pop('index', None)
+        self.exclude_disabled_projects = not kwargs.pop('disabled_projects')
 
     def get_units(self, *filenames):
         """Gets the units to import and its total count."""
@@ -44,7 +45,14 @@ class DBParser(object):
                 'store',
                 'store__translation_project__project',
                 'store__translation_project__language'
-            ).values(
+            )
+
+        if self.exclude_disabled_projects:
+            units_qs = units_qs.exclude(
+                store__translation_project__project__disabled=True
+            )
+
+        units_qs = units_qs.values(
                 'id',
                 'revision',
                 'source_f',
@@ -169,6 +177,12 @@ class Command(BaseCommand):
                     dest='dry_run',
                     default=False,
                     help='Report the number of translations to index and quit'),
+        # Local TM specific options.
+        make_option('--include-disabled-projects',
+                    action='store_true',
+                    dest='disabled_projects',
+                    default=False,
+                    help='Add translations from disabled projects'),
         # External TM specific options.
         make_option('--tm',
                     action='store',
@@ -256,7 +270,8 @@ class Command(BaseCommand):
             raise CommandError('You cannot add translations from database to '
                                'an external TM.')
         else:
-            self.parser = DBParser(stdout=self.stdout, index=self.INDEX_NAME)
+            self.parser = DBParser(stdout=self.stdout, index=self.INDEX_NAME,
+                                   disabled_projects=options.pop('disabled_projects'))
 
     def _set_latest_indexed_revision(self, **options):
         self.last_indexed_revision = -1
