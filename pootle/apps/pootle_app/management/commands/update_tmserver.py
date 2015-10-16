@@ -150,6 +150,7 @@ class FileParser(object):
 
 class Command(BaseCommand):
     help = "Load Translation Memory with translations"
+    args = "[files]"
     option_list = BaseCommand.option_list + (
         make_option('--refresh',
                     action='store_true',
