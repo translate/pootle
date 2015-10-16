@@ -1988,7 +1988,6 @@ PTL.editor = {
 
   /* Get the timeline data */
   showTimeline: function () {
-    // The results might already be there from earlier:
     const $results = $('#timeline-results');
     if ($results.length) {
       $results.slideDown(1000, 'easeOutQuad');
@@ -2036,7 +2035,7 @@ PTL.editor = {
     });
   },
 
- /* Hide the timeline panel */
+  /* Hide the timeline panel */
   toggleTimeline: function (e) {
     e.preventDefault();
     const $timelineToggle = $('#js-toggle-timeline');
