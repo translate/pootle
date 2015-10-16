@@ -53,6 +53,7 @@ Details of changes
     lower the TM results score for each specific TM server.
 
 - The Apertium MT backend has been dropped.
+- Report string errors form subject and body can be overriden.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of

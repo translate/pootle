@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.core.urlresolvers import reverse
+from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 
 from contact_form.views import ContactFormView as OriginalContactFormView
@@ -15,18 +16,6 @@ from contact_form.views import ContactFormView as OriginalContactFormView
 from pootle.core.views import AjaxResponseMixin
 
 from .forms import ContactForm, ReportForm
-
-
-SUBJECT_TEMPLATE = 'Unit #%d (%s)'
-BODY_TEMPLATE = '''
-Unit: %s
-
-Source: %s
-
-Current translation: %s
-
-Your question or comment:
-'''
 
 
 class ContactFormTemplateView(TemplateView):
@@ -93,15 +82,18 @@ class ReportFormView(ContactFormView):
                                 unit.get_translate_url()
                             )
                         initial.update({
-                            'subject': SUBJECT_TEMPLATE % (
-                                unit.id,
-                                unit.store.translation_project.language.code
-                            ),
-                            'body': BODY_TEMPLATE % (
-                                unit_absolute_url,
-                                unit.source,
-                                unit.target
-                            ),
+                            'subject': render_to_string(
+                                'contact_form/report_form_subject.txt', {
+                                    'unit': unit,
+                                    'language': unit.store \
+                                                    .translation_project \
+                                                    .language.code,
+                            }),
+                            'body': render_to_string(
+                                'contact_form/report_form_body.txt', {
+                                    'unit': unit,
+                                    'unit_absolute_url': unit_absolute_url,
+                            }),
                             'report_email': unit.store.translation_project \
                                                       .project.report_email,
                         })
