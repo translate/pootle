@@ -1298,14 +1298,13 @@ PTL.editor = {
     } else {
       // Only fetch units limited to an offset, and omit units that have
       // already been fetched
-      var fetchedIds = this.units.fetchedIds(),
-          offset = this.units.chunkSize,
-          curUId = uId > 0 ? uId : this.units.getCurrent().id,
-          uIndex = this.units.uIds.indexOf(curUId),
-          uIds, begin, end;
+      const fetchedIds = this.units.fetchedIds();
+      const offset = this.units.chunkSize;
+      const curUId = uId > 0 ? uId : this.units.getCurrent().id;
+      const uIndex = this.units.uIds.indexOf(curUId);
 
-      begin = Math.max(uIndex - offset, 0);
-      end = Math.min(uIndex + offset + 1, this.units.total);
+      let begin = Math.max(uIndex - offset, 0);
+      let end = Math.min(uIndex + offset + 1, this.units.total);
 
       // Ensure we retrieve chunks of the right size
       if (uId === 0) {
@@ -1317,7 +1316,7 @@ PTL.editor = {
         }
       }
 
-      uIds = this.units.uIds.slice(begin, end);
+      let uIds = this.units.uIds.slice(begin, end);
       uIds = _.difference(uIds, fetchedIds);
 
       if (!uIds.length) {
