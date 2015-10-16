@@ -296,9 +296,7 @@ PTL.editor = {
         async: false,
         dataType: 'script',
         success: function () {
-          setTimeout(function () {
-            PTL.editor.mt[backend].init(key);
-          }, 0);
+          PTL.editor.mt[backend].init(key);
           $(document).on('mt_ready', 'table.translate-table',
                          PTL.editor.mt[backend].ready);
         }
