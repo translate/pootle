@@ -1112,7 +1112,7 @@ PTL.editor = {
         rows = [],
         i, unit;
 
-    _.each(unitGroups, function (unitGroup) {
+    unitGroups.forEach((unitGroup) => {
       // Don't display a delimiter row if all units have the same origin
       if (unitGroups.length !== 1) {
         rows.push(
@@ -1131,7 +1131,7 @@ PTL.editor = {
           rows.push(this.renderRow(unit));
         }
       }
-    }, this);
+    });
 
     return rows.join('');
   },
