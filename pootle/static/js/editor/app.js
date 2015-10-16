@@ -29,6 +29,7 @@ import Levenshtein from 'levenshtein';
 import assign from 'object-assign';
 import 'shortcut';
 
+import fetch from 'utils/fetch';
 import linkHashtags from 'utils/linkHashtags';
 
 import captcha from '../captcha';
@@ -98,9 +99,6 @@ PTL.editor = {
 
     /* Regular expressions */
     this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
-
-    /* Ongoing requests */
-    this.requests = {};
 
     /* TM requests handler */
     this.tmReq = null;
@@ -1798,23 +1796,15 @@ PTL.editor = {
   },
 
   loadContext: function (unitId, amount) {
-    const request = this.requests.ctx;
-    if (request && request !== null) {
-      request.abort();
-    }
-
-    const reqData = {
-      gap: this.ctxGap,
-      qty: amount,
-    };
-
-    this.requests.ctx = $.ajax({
-      url: l(`/xhr/units/${unitId}/context/`),
-      dataType: 'json',
-      data: reqData,
-    });
-
-    return this.requests.ctx;
+    return (
+      fetch({
+        url: l(`/xhr/units/${unitId}/context/`),
+        body: {
+          gap: this.ctxGap,
+          qty: amount,
+        },
+      })
+    );
   },
 
   handleContextSuccess: function (data) {
@@ -1994,45 +1984,34 @@ PTL.editor = {
       return;
     }
 
-    var uid = PTL.editor.units.getCurrent().id,
-        node = $(".translate-container"),
-        timelineUrl = l(['/xhr/units/', uid, '/timeline/'].join(''));
+    const $node = $('.translate-container');
+    $node.spin();
 
-    node.spin();
+    fetch({
+      url: `/xhr/units/${this.units.getCurrent().id}/timeline/`,
+    }).then(
+      (data) => this.renderTimeline(data),
+      this.error
+    ).always(() => $node.spin(false));
+  },
 
-    // Always abort previous requests so we only get results for the
-    // current unit
-    const request = this.requests.timeline;
-    if (request && request !== null) {
-      request.abort();
+  renderTimeline: function (data) {
+    const uid = data.uid;
+
+    if (data.timeline && uid === PTL.editor.units.getCurrent().id) {
+      if ($("#translator-comment").length) {
+        $(data.timeline).hide().insertAfter("#translator-comment")
+                        .slideDown(1000, 'easeOutQuad');
+      } else {
+        $(data.timeline).hide().prependTo("#extras-container")
+                        .slideDown(1000, 'easeOutQuad');
+      }
+
+      helpers.updateRelativeDates();
+
+      $('.timeline-field-body').filter(':not([dir])').bidi();
+      $("#js-show-timeline").addClass('selected');
     }
-
-    this.requests.timeline = $.ajax({
-      url: timelineUrl,
-      dataType: 'json',
-      success: function (data) {
-        var uid = data.uid;
-
-        if (data.timeline && uid === PTL.editor.units.getCurrent().id) {
-          if ($("#translator-comment").length) {
-            $(data.timeline).hide().insertAfter("#translator-comment")
-                            .slideDown(1000, 'easeOutQuad');
-          } else {
-            $(data.timeline).hide().prependTo("#extras-container")
-                            .slideDown(1000, 'easeOutQuad');
-          }
-
-          helpers.updateRelativeDates();
-
-          $('.timeline-field-body').filter(':not([dir])').bidi();
-          $("#js-show-timeline").addClass('selected');
-        }
-      },
-      complete: function () {
-        node.spin(false);
-      },
-      error: PTL.editor.error
-    });
   },
 
   /* Hide the timeline panel */
