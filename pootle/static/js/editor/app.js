@@ -1467,9 +1467,10 @@ PTL.editor = {
       type: 'POST',
       data: reqData,
       dataType: 'json',
-      success: PTL.editor.processSubmission,
-      error: PTL.editor.error
-    });
+    }).then(
+      (data) => this.processSubmission(data),
+      this.error
+    );
   },
 
   processSubmission: function (data) {
@@ -1478,9 +1479,9 @@ PTL.editor = {
       return $(el).val();
     }).get();
 
-    var unit = PTL.editor.units.getCurrent();
+    var unit = this.units.getCurrent();
     unit.setTranslation(translations);
-    unit.set('isfuzzy', PTL.editor.isFuzzy());
+    unit.set('isfuzzy', this.isFuzzy());
 
     let hasCriticalChecks = !!data.checks;
     $('.translate-container').toggleClass('error', hasCriticalChecks);
@@ -1492,7 +1493,7 @@ PTL.editor = {
     if (hasCriticalChecks) {
       _refreshChecksSnippet(data.checks);
     } else {
-      PTL.editor.gotoNext();
+      this.gotoNext();
     }
   },
 
@@ -1519,9 +1520,10 @@ PTL.editor = {
       type: 'POST',
       data: reqData,
       dataType: 'json',
-      success: PTL.editor.processSuggestion,
-      error: PTL.editor.error
-    });
+    }).then(
+      (data) => this.processSuggestion(data),
+      this.error
+    );
   },
 
   processSuggestion: function (data) {
@@ -1529,7 +1531,7 @@ PTL.editor = {
       score.set(data.user_score);
     }
 
-    PTL.editor.gotoNext();
+    this.gotoNext();
   },
 
 
