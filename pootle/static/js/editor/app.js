@@ -246,8 +246,8 @@ PTL.editor = {
     });
 
     /* Bind hotkeys */
-    shortcut.add('ctrl+return', function () {
-      if (PTL.editor.isSuggestMode()) {
+    shortcut.add('ctrl+return', () => {
+      if (this.isSuggestMode()) {
         $('input.suggest').trigger('click');
       } else {
         $('input.submit').trigger('click');
