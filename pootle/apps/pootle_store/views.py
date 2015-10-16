@@ -636,11 +636,9 @@ def timeline(request, unit):
                 entry.update({
                     'check_name': check_name,
                     'check_display_name': check_names[check_name],
-                    'checks_url': reverse('pootle-checks-descriptions'),
-                    'action': {
-                                SubmissionTypes.MUTE_CHECK: 'Muted',
-                                SubmissionTypes.UNMUTE_CHECK: 'Unmuted'
-                              }.get(item.type, '')
+                    'checks_url': u''.join([
+                        reverse('pootle-checks-descriptions'), '#', check_name,
+                    ]),
                 })
             else:
                 entry['new_value'] = to_python(item.new_value)

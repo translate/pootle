@@ -34,7 +34,15 @@
               <span class="timeline-field-body" lang="{{ language.code }}">{{ entry.new_value }}</span>
             {% elif entry.field == 0 %}
               {% if entry.check_name %}
-                {{ entry.action }} <a href="{{ entry.checks_url }}#{{ entry.check_name }}">{{ entry.check_display_name}}</a> {% trans "check" %}
+                {% if entry.type == 6 %}
+                {% blocktrans with check_url=entry.checks_url check_name=entry.check_display_name trimmed %}
+                  Muted <a href="{{ check_url }}">{{ check_name }}</a> check
+                  {% endblocktrans %}
+                {% elif entry.type == 7 %}
+                  {% blocktrans with check_url=entry.checks_url check_name=entry.check_display_name trimmed %}
+                  Unmuted <a href="{{ check_url }}">{{ check_name }}</a> check
+                  {% endblocktrans %}
+                {% endif %}
               {% endif %}
             {% else %}
               {{ entry.old_value }} <span class="timeline-arrow"></span> {{ entry.new_value }}
