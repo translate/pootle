@@ -12,7 +12,7 @@ import $ from 'jquery';
 let requests = {};
 
 
-function fetch({url, body, method='POST', dataType='json'}) {
+function fetch({url, body, method='GET', dataType='json'}) {
   if (requests[url]) {
     requests[url].abort();
   }
