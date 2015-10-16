@@ -39,6 +39,7 @@ import msg from '../msg';
 import score from '../score';
 import search from '../search';
 import utils from '../utils';
+import { normalizeCode } from './utils';
 
 
 const CTX_STEP = 1;
@@ -491,7 +492,7 @@ PTL.editor = {
       firstArea.focus();
     }
 
-    this.settings.targetLang = PTL.editor.normalizeCode(
+    this.settings.targetLang = normalizeCode(
       $('.js-translation-area').attr('lang')
     );
 
@@ -2305,7 +2306,9 @@ PTL.editor = {
           ok;
 
       $sources.each(function () {
-        var source = that.normalizeCode($(this).parents('.source-language').find('.translation-text').attr("lang"));
+        var source = normalizeCode(
+          $(this).parents('.source-language').find('.translation-text').attr('lang')
+        );
 
         if (provider.validatePairs) {
           ok = that.isSupportedPair(provider.pairs, source, PTL.editor.settings.targetLang);
@@ -2322,19 +2325,6 @@ PTL.editor = {
     }
   },
 
-  /* Normalizes language codes in order to use them in MT services */
-  normalizeCode: function (locale) {
-    if (locale) {
-      var clean = locale.replace('_', '-');
-      var atIndex = locale.indexOf('@');
-      if (atIndex !== -1) {
-        clean = clean.slice(0, atIndex);
-      }
-      return clean;
-    }
-    return locale;
-  },
-
   collectArguments: function (s) {
     this.argSubs[this.argPos] = s;
     return "[" + (this.argPos++) + "]";
@@ -2344,8 +2334,8 @@ PTL.editor = {
     var that = this,
         $areas = $('.js-translation-area'),
         $sources = $(linkObject).parents('.source-language').find('.translation-text'),
-        langFrom = PTL.editor.normalizeCode($sources[0].lang),
-        langTo = PTL.editor.normalizeCode($areas[0].lang);
+        langFrom = normalizeCode($sources[0].lang),
+        langTo = normalizeCode($areas[0].lang);
 
     var htmlPat = /<[\/]?\w+.*?>/g,
     // The printf regex based on http://phpjs.org/functions/sprintf:522
