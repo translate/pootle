@@ -295,8 +295,6 @@ PTL.editor = {
         dataType: 'script',
         success: function () {
           PTL.editor.mt[backend.name].init(backend.key);
-          $(document).on('mt_ready', 'table.translate-table',
-                         PTL.editor.mt[backend.name].ready);
         }
       });
     });
@@ -507,7 +505,7 @@ PTL.editor = {
     }
 
     // All is ready, let's call the ready functions of the MT backends
-    $("table.translate-table").trigger("mt_ready");
+    this.settings.mt.forEach((backend) => this.mt[backend.name].ready());
 
     this.isUnitDirty = false;
     this.keepState = false;
