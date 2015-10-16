@@ -13,7 +13,6 @@ const yandex_translate = {
 
   buttonClassName: "yandex-translate",
   hint: "Yandex.Translate",
-  validatePair: false,
 
   /* using Yandex.Tanslate API v1.5 */
   url: "https://translate.yandex.net/api/v1.5/tr.json/translate",

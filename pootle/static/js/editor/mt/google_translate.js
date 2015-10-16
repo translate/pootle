@@ -13,7 +13,6 @@ const google_translate = {
 
   buttonClassName: "google-translate",
   hint: "Google Translate",
-  validatePair: false,
 
   /* using Google Translate API v2 */
   url: "https://www.googleapis.com/language/translate/v2",

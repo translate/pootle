@@ -2271,18 +2271,6 @@ PTL.editor = {
   },
 
 
-  /* Checks whether the provided source-target pair is supported */
-  isSupportedPair: function (pairs, source, target) {
-    for (var i in pairs) {
-      if (source === pairs[i].source &&
-          target === pairs[i].target) {
-        return true;
-      }
-    }
-    return false;
-  },
-
-
   /* Adds a new MT service button in the editor toolbar */
   addMTButton: function (container, aClass, tooltip) {
       var btn = '<a class="translate-mt ' + aClass + '">';
@@ -2296,21 +2284,14 @@ PTL.editor = {
   addMTButtons: function (provider) {
     if (this.isSupportedTarget(provider.pairs, PTL.editor.settings.targetLang)) {
       var that = this,
-          $sources = $(".translate-toolbar"),
-          ok;
+          $sources = $(".translate-toolbar");
 
       $sources.each(function () {
         var source = normalizeCode(
           $(this).parents('.source-language').find('.translation-text').attr('lang')
         );
 
-        if (provider.validatePairs) {
-          ok = that.isSupportedPair(provider.pairs, source, PTL.editor.settings.targetLang);
-        } else {
-          ok = that.isSupportedSource(provider.pairs, source);
-        }
-
-        if (ok) {
+        if (that.isSupportedSource(provider.pairs, source)) {
           that.addMTButton($(this).find('.js-toolbar-buttons'),
             provider.buttonClassName,
             provider.hint + ' (' + source.toUpperCase() + '&rarr;' + PTL.editor.settings.targetLang.toUpperCase() + ')');
