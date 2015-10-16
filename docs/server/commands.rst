@@ -431,13 +431,18 @@ no actual data will be loaded or deleted (the TM will be left unchanged):
 
 This command also allows to read translations from files and build the TM
 resources in the external TM server. In order to do so it is mandatory to
-provide the :option:`--tm` and :option:`--project` options, along with some
-filename argument to import translations from. The provided project name will
-be displayed on TM matches in the translation editor:
+provide the :option:`--tm` and :option:`--display-name` options, along with
+some files to import.
+
+The display name is a label used to group translations within a TM. A given TM
+can host translations for several display names. The display name can be used
+to specify the name of the project from which the translations originate. The
+display name will be shown on TM matches in the translation editor. To specify
+a name use :option:`--display-name`:
 
 .. code-block:: bash
 
-   (env) $ pootle update_tmserver --tm=libreoffice --project="LibreOffice 4.3 UI" TM_LibreOffice_4.3.gl.tmx
+   (env) $ pootle update_tmserver --tm=libreoffice --display-name="LibreOffice 4.3 UI" TM_LibreOffice_4.3.gl.tmx
 
 
 By default the command will only add new translations to the server. To rebuild
@@ -446,7 +451,7 @@ rebuild it before importing the translations:
 
 .. code-block:: bash
 
-   (env) $ pootle update_tmserver --rebuild --tm=mozilla --project="Foo 1.7" foo.po
+   (env) $ pootle update_tmserver --rebuild --tm=mozilla --display-name="Foo 1.7" foo.po
 
 
 Option :option:`--refresh` doesn't apply when adding translations from files
@@ -457,7 +462,7 @@ no actual data will be loaded:
 
 .. code-block:: bash
 
-   (env) $ pootle update_tmserver --dry-run --tm=mozilla --project="Foo 1.7" foo.po
+   (env) $ pootle update_tmserver --dry-run --tm=mozilla --display-name="Foo 1.7" foo.po
    175045 translations to index
 
 
@@ -466,7 +471,7 @@ several files and directories at once:
 
 .. code-block:: bash
 
-   (env) $ pootle update_tmserver --tm=mozilla --project="Foo 1.7" bar.tmx foo.xliff fr/
+   (env) $ pootle update_tmserver --tm=mozilla --display-name="Foo 1.7" bar.tmx foo.xliff fr/
 
 
 Use :option:`--target-language` to specify the target language ISO code for the
@@ -475,7 +480,7 @@ translation files or if the code is incorrect:
 
 .. code-block:: bash
 
-   (env) $ pootle update_tmserver --target-language=af --tm=mozilla --project="Foo 1.7" foo.po bar.tmx
+   (env) $ pootle update_tmserver --target-language=af --tm=mozilla --display-name="Foo 1.7" foo.po bar.tmx
 
 
 .. _commands#vfolders:

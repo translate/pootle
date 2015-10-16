@@ -112,20 +112,21 @@ Elasticsearch-based external TMs
 
 In order to use them they must be enabled on :setting:`POOTLE_TM_SERVER` and
 you will need to populate them using the :djadmin:`update_tmserver` command
-specifying the TM to use with :option:`--tm` and the project with
-:option:`--project`:
+specifying the TM to use with :option:`--tm` and the display name with
+:option:`--display-name`:
 
 .. code-block:: bash
 
-   (env) $ pootle update_tmserver --tm=external --project=Pidgin af.po gl.tmx
+   (env) $ pootle update_tmserver --tm=external --display-name=Pidgin af.po gl.tmx
 
 
-A given TM can host translations for several projects. Just specify them with
-:option:`--project`:
+A display name is a label used to group translations within a TM. A given TM
+can host translations for several labels. Just specify them with
+:option:`--display-name`:
 
 .. code-block:: bash
 
-   (env) $ pootle update_tmserver --tm=external --project=GNOME pt.tmx eu.po xh.po
+   (env) $ pootle update_tmserver --tm=external --display-name=GNOME pt.tmx eu.po xh.po
 
 
 It is possible to have several Elasticsearch-based external TM servers working
@@ -159,7 +160,7 @@ To use these additional external TMs you will need to populate them using the
 
 .. code-block:: bash
 
-   (env) $ pootle update_tmserver --tm=libreoffice --project=LibreOffice af.po gl.tmx
+   (env) $ pootle update_tmserver --tm=libreoffice --display-name=LibreOffice af.po gl.tmx
 
 
 Check :djadmin:`update_tmserver` for more options.

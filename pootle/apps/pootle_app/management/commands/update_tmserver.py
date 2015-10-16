@@ -182,11 +182,11 @@ class Command(BaseCommand):
                     default='',
                     help="Target language to fallback to use in case it can't "
                          "be guessed for any of the input files."),
-        make_option('--project',
+        make_option('--display-name',
                     action='store',
                     dest='project',
                     default='',
-                    help='Project to use when displaying TM matches for this '
+                    help='Name used when displaying TM matches for these '
                          'translations.'),
     )
 
