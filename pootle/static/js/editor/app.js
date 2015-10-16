@@ -288,17 +288,15 @@ PTL.editor = {
     });
 
     /* Load MT backends */
-    $.each(this.settings.mt, function () {
-      var backend = this.name, key = this.key;
-
+    this.settings.mt.forEach((backend) => {
       $.ajax({
-        url: s(['js/editor/mt/', backend, '.js'].join('')),
+        url: s(['js/editor/mt/', backend.name, '.js'].join('')),
         async: false,
         dataType: 'script',
         success: function () {
-          PTL.editor.mt[backend].init(key);
+          PTL.editor.mt[backend.name].init(backend.key);
           $(document).on('mt_ready', 'table.translate-table',
-                         PTL.editor.mt[backend].ready);
+                         PTL.editor.mt[backend.name].ready);
         }
       });
     });
