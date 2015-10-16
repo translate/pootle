@@ -1420,29 +1420,29 @@ PTL.editor = {
   /* Pushes translation submissions and moves to the next unit */
   handleSubmit: function () {
     const el = document.querySelector('input.submit');
-    var uId = PTL.editor.units.getCurrent().id,
-        submitUrl = l(['/xhr/units/', uId].join('')),
-        reqData = $('#translate').serializeObject(),
-        newTranslation = $('.js-translation-area')[0].value,
-        suggestions = $('.js-user-suggestion').map(function () {
-            return {
-              text: $(this).data('translation-aid'),
-              id: this.id
-            };
-          }).get(),
-        captchaCallbacks = {
-          sfn: 'PTL.editor.processSubmission',
-          efn: 'PTL.editor.error'
-        };
+    const submitUrl = l(`/xhr/units/${this.units.getCurrent().id}`);
+    const newTranslation = $('.js-translation-area')[0].value;
+    const suggestions = $('.js-user-suggestion').map(function () {
+      return {
+        text: $(this).data('translation-aid'),
+        id: this.id
+      };
+    }).get();
+    const captchaCallbacks = {
+      sfn: 'PTL.editor.processSubmission',
+      efn: 'PTL.editor.error',
+    };
+
+    let reqData = $('#translate').serializeObject();
 
     PTL.editor.updateUnitDefaultProperties();
 
     // Check if the string being submitted is already in the set of
     // suggestions
     // FIXME: this is LAME, I wanna die: we need to use proper models!!
-    var suggestionIds = _.pluck(suggestions, 'id'),
-        suggestionTexts = _.pluck(suggestions, 'text'),
-        suggestionIndex = suggestionTexts.indexOf(newTranslation);
+    const suggestionIds = _.pluck(suggestions, 'id');
+    const suggestionTexts = _.pluck(suggestions, 'text');
+    const suggestionIndex = suggestionTexts.indexOf(newTranslation);
 
     if (suggestionIndex !== -1 && !PTL.editor.isFuzzy()) {
       $(['#', suggestionIds[suggestionIndex]].join(''))
@@ -1499,13 +1499,13 @@ PTL.editor = {
 
   /* Pushes translation suggestions and moves to the next unit */
   handleSuggest: function () {
-    var uId = PTL.editor.units.getCurrent().id,
-        suggestUrl = l(['/xhr/units/', uId, '/suggestions/'].join('')),
-        reqData = $('#translate').serializeObject(),
-        captchaCallbacks = {
-          sfn: 'PTL.editor.processSuggestion',
-          efn: 'PTL.editor.error'
-        };
+    const suggestUrl = l(`/xhr/units/${this.units.getCurrent().id}/suggestions/`),
+    const captchaCallbacks = {
+      sfn: 'PTL.editor.processSuggestion',
+      efn: 'PTL.editor.error'
+    };
+
+    let reqData = $('#translate').serializeObject();
 
     PTL.editor.updateUnitDefaultProperties();
 
