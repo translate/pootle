@@ -1233,7 +1233,6 @@ PTL.editor = {
     if (PTL.editor.units.length) {
       this.fetchUnits();
 
-      // Hide any visible message
       this.hideMsg();
 
       this.reDraw(this.renderRows());
@@ -1253,7 +1252,6 @@ PTL.editor = {
     if (newTbody !== undefined) {
       $where.append(newTbody);
 
-      // Call the post-render handlers
       this.ready();
     }
   },
@@ -1611,8 +1609,6 @@ PTL.editor = {
       $.history.load(newHash);
     }
   },
-
-  /* FIXME: `unitIndex` and `gotoIndex` should part of a view on its own */
 
   /* Selects the element's contents and sets the focus */
   unitIndex: function (e) {
@@ -2122,7 +2118,6 @@ PTL.editor = {
           "/unit/?source=" + encodeURIComponent(sText) + "&jsoncallback=?";
 
     if (!sText.length) {
-        // No use in looking up an empty string
         return;
     }
 
