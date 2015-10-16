@@ -1435,7 +1435,7 @@ PTL.editor = {
 
     let reqData = $('#translate').serializeObject();
 
-    PTL.editor.updateUnitDefaultProperties();
+    this.updateUnitDefaultProperties();
 
     // Check if the string being submitted is already in the set of
     // suggestions
@@ -1444,7 +1444,7 @@ PTL.editor = {
     const suggestionTexts = _.pluck(suggestions, 'text');
     const suggestionIndex = suggestionTexts.indexOf(newTranslation);
 
-    if (suggestionIndex !== -1 && !PTL.editor.isFuzzy()) {
+    if (suggestionIndex !== -1 && !this.isFuzzy()) {
       $(['#', suggestionIds[suggestionIndex]].join(''))
         .find('.js-suggestion-accept').trigger('click', [true]);
       return;
@@ -1453,13 +1453,12 @@ PTL.editor = {
     // If similarities were in the process of being calculated by the time
     // the submit button was clicked, clear the timer and calculate them
     // straight away
-    if (PTL.editor.similarityTimer !== null) {
-      clearTimeout(PTL.editor.similarityTimer);
-      PTL.editor.checkSimilarTranslations();
+    if (this.similarityTimer !== null) {
+      clearTimeout(this.similarityTimer);
+      this.checkSimilarTranslations();
     }
 
-    assign(reqData, PTL.editor.getReqData(), PTL.editor.getSimilarityData(),
-           captchaCallbacks);
+    assign(reqData, this.getReqData(), this.getSimilarityData(), captchaCallbacks);
 
     el.disabled = true;
 
@@ -1507,14 +1506,13 @@ PTL.editor = {
 
     let reqData = $('#translate').serializeObject();
 
-    PTL.editor.updateUnitDefaultProperties();
+    this.updateUnitDefaultProperties();
 
     // in suggest mode, do not send the fuzzy state flag
     // even if it is set in the form internally
     delete reqData.state;
 
-    assign(reqData, PTL.editor.getReqData(), PTL.editor.getSimilarityData(),
-           captchaCallbacks);
+    assign(reqData, this.getReqData(), this.getSimilarityData(), captchaCallbacks);
 
     $.ajax({
       url: suggestUrl,
