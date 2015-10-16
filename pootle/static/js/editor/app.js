@@ -309,166 +309,164 @@ PTL.editor = {
     setInterval(helpers.updateRelativeDates, 6e4);
 
     /* History support */
-    setTimeout(function () {
-      $.history.init(function (hash) {
-        var params = utils.getParsedHash(hash),
-            isInitial = true,
-            uId = 0;
+    $.history.init(function (hash) {
+      var params = utils.getParsedHash(hash),
+          isInitial = true,
+          uId = 0;
 
-        // Walk through known filtering criterias and apply them to the editor object
+      // Walk through known filtering criterias and apply them to the editor object
 
-        if (params.unit) {
-          var uIdParam = parseInt(params.unit, 10);
+      if (params.unit) {
+        var uIdParam = parseInt(params.unit, 10);
 
-          if (uIdParam && !isNaN(uIdParam)) {
-            var current = PTL.editor.units.getCurrent(),
-                newUnit = PTL.editor.units.get(uIdParam);
-            if (newUnit && newUnit !== current) {
-              PTL.editor.units.setCurrent(newUnit);
-              PTL.editor.displayEditUnit();
-              return;
-            } else {
-              uId = uIdParam;
-              // Don't retrieve initial data if there are existing results
-              isInitial = !PTL.editor.units.length;
-            }
-          }
-        }
-
-        // Reset to defaults
-        PTL.editor.filter = 'all';
-        PTL.editor.checks = [];
-        PTL.editor.category = [];
-        PTL.editor.sortBy = 'default';
-
-        if ('filter' in params) {
-          var filterName = params.filter;
-
-          // Set current state
-          PTL.editor.filter = filterName;
-
-          if (filterName === 'checks' && 'checks' in params) {
-            PTL.editor.checks = params.checks.split(',');
-          }
-          if (filterName === 'checks' && 'category' in params) {
-            PTL.editor.category = params.category;
-          }
-          if ('sort' in params) {
-            PTL.editor.sortBy = params.sort;
-          }
-        }
-
-        if ('modified-since' in params) {
-          PTL.editor.modifiedSince = params['modified-since'];
-        } else {
-          PTL.editor.modifiedSince = null;
-        }
-
-        if ('month' in params) {
-          PTL.editor.month = params.month;
-        } else {
-          PTL.editor.month = null;
-        }
-
-        // Only accept the user parameter for 'user-*' filters
-        if ('user' in params && PTL.editor.filter.indexOf('user-') === 0) {
-          var user;
-          PTL.editor.user = user = encodeURIComponent(params.user);
-
-          var newOpts = [],
-              values = {
-            'user-suggestions':
-              // Translators: '%s' is a username
-              interpolate(gettext("%s's pending suggestions"), [user]),
-            'user-suggestions-accepted':
-              // Translators: '%s' is a username
-              interpolate(gettext("%s's accepted suggestions"), [user]),
-            'user-suggestions-rejected':
-              // Translators: '%s' is a username
-              interpolate(gettext("%s's rejected suggestions"), [user]),
-            'user-submissions':
-              // Translators: '%s' is a username
-              interpolate(gettext("%s's submissions"), [user]),
-            'user-submissions-overwritten':
-              // Translators: '%s' is a username, meaning "submissions by %s,
-              // that were overwritten"
-              interpolate(gettext("%s's overwritten submissions"), [user]),
-          };
-          for (var key in values) {
-            newOpts.push([
-              '<option value="', key, '" data-user="', user, '" class="',
-              'js-user-filter' ,'">', values[key], '</option>'
-            ].join(''));
-          }
-          $(".js-user-filter").remove();
-          $('#js-filter-status').append(newOpts.join(''));
-        }
-
-        if ('search' in params) {
-          // Note that currently the search, if provided along with the other
-          // filters, would override them
-          PTL.editor.filter = "search";
-
-          let newState = {
-            searchText: params.search,
-          };
-
-          if ('sfields' in params) {
-            newState.searchFields = params.sfields.split(',');
-          }
-          if ('soptions' in params) {
-            newState.searchOptions = params.soptions.split(',');
-          }
-
-          search.setState(newState);
-        }
-
-        // Update the filter UI to match the current filter
-
-        // disable navigation on UI toolbar events to prevent data reload
-        PTL.editor.preventNavigation = true;
-
-        var filterValue = PTL.editor.filter === 'search' ? 'all' :
-                                                            PTL.editor.filter;
-        $('#js-filter-status').select2('val', filterValue);
-
-        if (PTL.editor.filter === "checks") {
-          // if the checks selector is empty (i.e. the 'change' event was not fired
-          // because the selection did not change), force the update to populate the selector
-          if ($('#js-filter-checks').is(':hidden')) {
-            PTL.editor.getCheckOptions({
-              success: PTL.editor.appendChecks
-            });
-          }
-        }
-
-        $('#js-filter-sort').select2('val', PTL.editor.sortBy);
-
-        if (PTL.editor.filter === 'search') {
-          $('.js-filter-checks-wrapper').hide();
-        }
-
-        // re-enable normal event handling
-        PTL.editor.preventNavigation = false;
-
-        PTL.editor.fetchUnits({
-          initial: isInitial,
-          uId: uId,
-        }).then((hasResults) => {
-          if (!hasResults) {
+        if (uIdParam && !isNaN(uIdParam)) {
+          var current = PTL.editor.units.getCurrent(),
+              newUnit = PTL.editor.units.get(uIdParam);
+          if (newUnit && newUnit !== current) {
+            PTL.editor.units.setCurrent(newUnit);
+            PTL.editor.displayEditUnit();
             return;
-          }
-
-          if (uId > 0) {
-            PTL.editor.units.setCurrent(uId);
           } else {
-            PTL.editor.units.setFirstAsCurrent();
+            uId = uIdParam;
+            // Don't retrieve initial data if there are existing results
+            isInitial = !PTL.editor.units.length;
           }
-          PTL.editor.displayEditUnit();
-        });
+        }
+      }
 
-      }, {'unescape': true});
-    }, 1); // not sure why we had a 1000ms timeout here
+      // Reset to defaults
+      PTL.editor.filter = 'all';
+      PTL.editor.checks = [];
+      PTL.editor.category = [];
+      PTL.editor.sortBy = 'default';
+
+      if ('filter' in params) {
+        var filterName = params.filter;
+
+        // Set current state
+        PTL.editor.filter = filterName;
+
+        if (filterName === 'checks' && 'checks' in params) {
+          PTL.editor.checks = params.checks.split(',');
+        }
+        if (filterName === 'checks' && 'category' in params) {
+          PTL.editor.category = params.category;
+        }
+        if ('sort' in params) {
+          PTL.editor.sortBy = params.sort;
+        }
+      }
+
+      if ('modified-since' in params) {
+        PTL.editor.modifiedSince = params['modified-since'];
+      } else {
+        PTL.editor.modifiedSince = null;
+      }
+
+      if ('month' in params) {
+        PTL.editor.month = params.month;
+      } else {
+        PTL.editor.month = null;
+      }
+
+      // Only accept the user parameter for 'user-*' filters
+      if ('user' in params && PTL.editor.filter.indexOf('user-') === 0) {
+        var user;
+        PTL.editor.user = user = encodeURIComponent(params.user);
+
+        var newOpts = [],
+            values = {
+          'user-suggestions':
+            // Translators: '%s' is a username
+            interpolate(gettext("%s's pending suggestions"), [user]),
+          'user-suggestions-accepted':
+            // Translators: '%s' is a username
+            interpolate(gettext("%s's accepted suggestions"), [user]),
+          'user-suggestions-rejected':
+            // Translators: '%s' is a username
+            interpolate(gettext("%s's rejected suggestions"), [user]),
+          'user-submissions':
+            // Translators: '%s' is a username
+            interpolate(gettext("%s's submissions"), [user]),
+          'user-submissions-overwritten':
+            // Translators: '%s' is a username, meaning "submissions by %s,
+            // that were overwritten"
+            interpolate(gettext("%s's overwritten submissions"), [user]),
+        };
+        for (var key in values) {
+          newOpts.push([
+            '<option value="', key, '" data-user="', user, '" class="',
+            'js-user-filter' ,'">', values[key], '</option>'
+          ].join(''));
+        }
+        $(".js-user-filter").remove();
+        $('#js-filter-status').append(newOpts.join(''));
+      }
+
+      if ('search' in params) {
+        // Note that currently the search, if provided along with the other
+        // filters, would override them
+        PTL.editor.filter = "search";
+
+        let newState = {
+          searchText: params.search,
+        };
+
+        if ('sfields' in params) {
+          newState.searchFields = params.sfields.split(',');
+        }
+        if ('soptions' in params) {
+          newState.searchOptions = params.soptions.split(',');
+        }
+
+        search.setState(newState);
+      }
+
+      // Update the filter UI to match the current filter
+
+      // disable navigation on UI toolbar events to prevent data reload
+      PTL.editor.preventNavigation = true;
+
+      var filterValue = PTL.editor.filter === 'search' ? 'all' :
+                                                          PTL.editor.filter;
+      $('#js-filter-status').select2('val', filterValue);
+
+      if (PTL.editor.filter === "checks") {
+        // if the checks selector is empty (i.e. the 'change' event was not fired
+        // because the selection did not change), force the update to populate the selector
+        if ($('#js-filter-checks').is(':hidden')) {
+          PTL.editor.getCheckOptions({
+            success: PTL.editor.appendChecks
+          });
+        }
+      }
+
+      $('#js-filter-sort').select2('val', PTL.editor.sortBy);
+
+      if (PTL.editor.filter === 'search') {
+        $('.js-filter-checks-wrapper').hide();
+      }
+
+      // re-enable normal event handling
+      PTL.editor.preventNavigation = false;
+
+      PTL.editor.fetchUnits({
+        initial: isInitial,
+        uId: uId,
+      }).then((hasResults) => {
+        if (!hasResults) {
+          return;
+        }
+
+        if (uId > 0) {
+          PTL.editor.units.setCurrent(uId);
+        } else {
+          PTL.editor.units.setFirstAsCurrent();
+        }
+        PTL.editor.displayEditUnit();
+      });
+
+    }, {'unescape': true});
 
   },
 
