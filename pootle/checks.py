@@ -284,19 +284,15 @@ def check_settings(app_configs=None, **kwargs):
             else:
                 tm_indexes.append(settings.POOTLE_TM_SERVER[server]['INDEX_NAME'])
 
-            if 'WEIGHT' not in settings.POOTLE_TM_SERVER[server]:
-                errors.append(checks.Warning(
-                    _("POOTLE_TM_SERVER['%s'] has no WEIGHT.", server),
-                    hint=_("Set a WEIGHT for POOTLE_TM_SERVER['%s'].", server),
-                    id="pootle.W019",
-                ))
-            elif not (0.0 <= settings.POOTLE_TM_SERVER[server]['WEIGHT'] <= 1.0):
+            if ('WEIGHT' in settings.POOTLE_TM_SERVER[server] and
+                not (0.0 <= settings.POOTLE_TM_SERVER[server]['WEIGHT'] <= 1.0)):
+
                 errors.append(checks.Warning(
                     _("POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or "
                       "greater than 1.0", server),
                     hint=_("Set a WEIGHT between 0.0 and 1.0 (both included) "
                            "for POOTLE_TM_SERVER['%s'].", server),
-                    id="pootle.W020",
+                    id="pootle.W019",
                 ))
 
     return errors
