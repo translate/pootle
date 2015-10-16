@@ -221,8 +221,10 @@ class Command(BaseCommand):
         try:
             self.tm_settings = settings.POOTLE_TM_SERVER[options.get('tm')]
         except KeyError:
-            raise CommandError('Specified Translation Memory is not defined '
-                               'in POOTLE_TM_SERVER.')
+            raise CommandError("Translation Memory '%s' is not defined in the "
+                               "POOTLE_TM_SERVER setting. Please ensure it "
+                               "exists and double-check you typed it "
+                               "correctly." % options.get('tm'))
 
         self.INDEX_NAME = self.tm_settings['INDEX_NAME']
         self.is_local_tm = options.get('tm') == 'local'
