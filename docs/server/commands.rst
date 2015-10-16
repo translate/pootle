@@ -461,12 +461,12 @@ no actual data will be loaded:
    175045 translations to index
 
 
-This command is capable of importing translations from several files in
-different formats at once:
+This command is capable of importing translations in multiple formats from
+several files and directories at once:
 
 .. code-block:: bash
 
-   (env) $ pootle update_tmserver --tm=mozilla --project="Foo 1.7" foo.po bar.tmx eggs.xliff bacon.ts
+   (env) $ pootle update_tmserver --tm=mozilla --project="Foo 1.7" bar.tmx foo.xliff fr/
 
 
 Use :option:`--target-language` to specify the target language ISO code for the

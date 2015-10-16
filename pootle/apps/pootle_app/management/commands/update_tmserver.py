@@ -30,6 +30,7 @@ BULK_CHUNK_SIZE = 5000
 class DBParser(object):
 
     def __init__(self, *args, **kwargs):
+        self.stdout = kwargs.pop('stdout')
         self.INDEX_NAME = kwargs.pop('index', None)
 
     def get_units(self, *filenames):
@@ -85,6 +86,7 @@ class DBParser(object):
 class FileParser(object):
 
     def __init__(self, *args, **kwargs):
+        self.stdout = kwargs.pop('stdout')
         self.INDEX_NAME = kwargs.pop('index', None)
         self.target_language = kwargs.pop('language', None)
         self.project = kwargs.pop('project', None)
@@ -92,8 +94,27 @@ class FileParser(object):
     def get_units(self, *filenames):
         """Gets the units to import and its total count."""
         units = []
+        all_filenames = set()
 
         for filename in filenames:
+            if not os.path.exists(filename):
+                self.stdout.write("File %s doesn't exist. Skipping it." %
+                                  filename)
+                continue
+
+            if os.path.isdir(filename):
+                for dirpath, dirs, fnames in os.walk(filename):
+                    if (os.path.basename(dirpath) in
+                        ["CVS", ".svn", "_darcs", ".git", ".hg", ".bzr"]):
+
+                        continue
+
+                    for f in fnames:
+                        all_filenames.add(os.path.join(dirpath, f))
+            else:
+                all_filenames.add(filename)
+
+        for filename in all_filenames:
             store = factory.getobject(filename)
             if not store.gettargetlanguage() and not self.target_language:
                 raise CommandError("Unable to determine target language for "
@@ -225,14 +246,14 @@ class Command(BaseCommand):
             if not self.project:
                 raise CommandError('You must specify a project with '
                                    '--project.')
-            self.parser = FileParser(index=self.INDEX_NAME,
+            self.parser = FileParser(stdout=self.stdout, index=self.INDEX_NAME,
                                      language=self.target_language,
                                      project=self.project)
         elif not self.is_local_tm:
             raise CommandError('You cannot add translations from database to '
                                'an external TM.')
         else:
-            self.parser = DBParser(index=self.INDEX_NAME)
+            self.parser = DBParser(stdout=self.stdout, index=self.INDEX_NAME)
 
     def _set_latest_indexed_revision(self, **options):
         self.last_indexed_revision = -1
