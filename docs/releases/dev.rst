@@ -47,7 +47,7 @@ Details of changes
 
 - :setting:`POOTLE_TM_SERVER`:
 
-  - The ``default`` TM server on  has been renamed to ``local``. Make sure to
+  - The ``default`` TM server has been renamed to ``local``. Make sure to
     adjust your settings.
   - Added a new :setting:`WEIGHT <POOTLE_TM_SERVER-WEIGHT>` option to raise or
     lower the TM results score for each specific TM server.
