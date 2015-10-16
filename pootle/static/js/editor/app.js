@@ -234,7 +234,7 @@ PTL.editor = {
       autosize.update(document.querySelector('.js-translation-area'));
     });
 
-    /* */
+    /* Confirmation prompt */
     window.addEventListener('beforeunload', (e) => {
       if (PTL.editor.isUnitDirty) {
         e.returnValue = gettext(
