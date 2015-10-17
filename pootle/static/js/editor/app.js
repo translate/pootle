@@ -436,9 +436,9 @@ PTL.editor = {
         // if the checks selector is empty (i.e. the 'change' event was not fired
         // because the selection did not change), force the update to populate the selector
         if ($('#js-filter-checks').is(':hidden')) {
-           this.getCheckOptions({
-             success: this.appendChecks
-           });
+          this.getCheckOptions()
+              .then((data) => this.appendChecks(data),
+                    this.error);
         }
       }
 
@@ -1604,19 +1604,15 @@ PTL.editor = {
    */
 
   /* Gets the failing check options for the current query */
-  getCheckOptions: function (options) {
-    var checksUrl = l('/xhr/stats/checks/'),
-        reqData = {
-          path: this.settings.pootlePath
-        };
-
-    $.ajax({
-      url: checksUrl,
-      data: reqData,
-      dataType: 'json',
-      success: options.success,
-      error: PTL.editor.error
-    });
+  getCheckOptions: function () {
+    return (
+      fetch({
+        url: '/xhr/stats/checks/',
+        body: {
+          path: this.settings.pootlePath,
+        },
+      })
+    );
   },
 
   /* Loads units based on checks filtering */
@@ -1715,9 +1711,9 @@ PTL.editor = {
         $checksWrapper = $('.js-filter-checks-wrapper');
 
     if (filterBy === "checks") {
-      this.getCheckOptions({
-        success: this.appendChecks
-      });
+      this.getCheckOptions()
+          .then((data) => this.appendChecks(data),
+                this.error);
     } else { // Normal filtering options (untranslated, fuzzy...)
       $checksWrapper.hide();
 
