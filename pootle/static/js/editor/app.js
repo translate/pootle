@@ -285,16 +285,16 @@ PTL.editor = {
     shortcut.add('ctrl+shift+n', this.unitIndex);
 
     /* XHR activity indicator */
-    $(document).ajaxStart(function () {
-      clearTimeout(PTL.editor.delayedActivityTimer);
-      PTL.editor.delayedActivityTimer = setTimeout(function () {
-        PTL.editor.showActivity();
+    $(document).ajaxStart(() => {
+      clearTimeout(this.delayedActivityTimer);
+      this.delayedActivityTimer = setTimeout(() => {
+        this.showActivity();
       }, 3000);
     });
-    $(document).ajaxStop(function () {
-      clearTimeout(PTL.editor.delayedActivityTimer);
-      if (!PTL.editor.isLoading) {
-        PTL.editor.hideActivity();
+    $(document).ajaxStop(() => {
+      clearTimeout(this.delayedActivityTimer);
+      if (!this.isLoading) {
+        this.hideActivity();
       }
     });
 
