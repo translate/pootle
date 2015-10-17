@@ -1107,10 +1107,10 @@ PTL.editor = {
 
   /* Renders the editor rows */
   renderRows: function () {
-    var unitGroups = this.getUnitGroups(),
-        currentUnit = this.units.getCurrent(),
-        rows = [],
-        i, unit;
+    const unitGroups = this.getUnitGroups();
+    const currentUnit = this.units.getCurrent();
+
+    let rows = [];
 
     unitGroups.forEach((unitGroup) => {
       // Don't display a delimiter row if all units have the same origin
@@ -1122,8 +1122,8 @@ PTL.editor = {
         );
       }
 
-      for (i=0; i<unitGroup.units.length; i++) {
-        unit = unitGroup.units[i];
+      for (let i=0; i<unitGroup.units.length; i++) {
+        let unit = unitGroup.units[i];
 
         if (unit.id === currentUnit.id) {
           rows.push(this.getEditUnit());
