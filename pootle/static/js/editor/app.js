@@ -210,8 +210,8 @@ PTL.editor = {
     $(document).on('click', '.js-toggle-check', this.toggleCheck);
 
     /* Filtering */
-    $(document).on('change', '#js-filter-status', this.filterStatus);
-    $(document).on('change', '#js-filter-checks', this.filterChecks);
+    $(document).on('change', '#js-filter-status', () => this.filterStatus());
+    $(document).on('change', '#js-filter-checks', () => this.filterChecks());
     $(document).on('change', '#js-filter-sort', () => this.filterSort());
     $(document).on('click', '.js-more-ctx', () => this.moreContext());
     $(document).on('click', '.js-less-ctx', () => this.lessContext());
@@ -436,9 +436,9 @@ PTL.editor = {
         // if the checks selector is empty (i.e. the 'change' event was not fired
         // because the selection did not change), force the update to populate the selector
         if ($('#js-filter-checks').is(':hidden')) {
-          this.getCheckOptions({
-            success: this.appendChecks
-          });
+           this.getCheckOptions({
+             success: this.appendChecks
+           });
         }
       }
 
@@ -1621,10 +1621,10 @@ PTL.editor = {
 
   /* Loads units based on checks filtering */
   filterChecks: function () {
-    if (PTL.editor.preventNavigation) {
+    if (this.preventNavigation) {
       return;
     }
-    if (!PTL.editor.canNavigate()) {
+    if (!this.canNavigate()) {
       return false;
     }
 
@@ -1647,7 +1647,7 @@ PTL.editor = {
   appendChecks: function (checks) {
     if (Object.keys(checks).length) {
       var $checks = $('#js-filter-checks'),
-          selectedValue = PTL.editor.checks[0] || 'none';
+          selectedValue = this.checks[0] || 'none';
 
       $checks.find('optgroup').each(function (e) {
         var empty = true,
@@ -1673,7 +1673,7 @@ PTL.editor = {
       $checks.select2(filterSelectOpts).select2('val', selectedValue);
       $('.js-filter-checks-wrapper').css('display', 'inline-block');
     } else { // No results
-      PTL.editor.displayMsg({body: gettext("No results.")});
+      this.displayMsg({ body: gettext('No results.') });
       $('#js-filter-status').select2('val', PTL.editor.filter);
     }
   },
@@ -1703,7 +1703,7 @@ PTL.editor = {
 
   /* Loads units based on filtering */
   filterStatus: function () {
-    if (!PTL.editor.canNavigate()) {
+    if (!this.canNavigate()) {
       return false;
     }
 
@@ -1715,22 +1715,22 @@ PTL.editor = {
         $checksWrapper = $('.js-filter-checks-wrapper');
 
     if (filterBy === "checks") {
-      PTL.editor.getCheckOptions({
-        success: PTL.editor.appendChecks
+      this.getCheckOptions({
+        success: this.appendChecks
       });
     } else { // Normal filtering options (untranslated, fuzzy...)
       $checksWrapper.hide();
 
-      if (!PTL.editor.preventNavigation) {
+      if (!this.preventNavigation) {
         var newHash = {filter: filterBy};
 
-        if (PTL.editor.user && isUserFilter) {
-          newHash.user = PTL.editor.user;
+        if (this.user && isUserFilter) {
+          newHash.user = this.user;
         } else {
-          PTL.editor.user = null;
+          this.user = null;
           $(".js-user-filter").remove();
 
-          PTL.editor.sortBy !== 'default' && (newHash.sort = PTL.editor.sortBy);
+          this.sortBy !== 'default' && (newHash.sort = this.sortBy);
         }
 
         $.history.load($.param(newHash));
