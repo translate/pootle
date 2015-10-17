@@ -1762,7 +1762,7 @@ PTL.editor = {
   loadContext: function (unitId, amount) {
     return (
       fetch({
-        url: l(`/xhr/units/${unitId}/context/`),
+        url: `/xhr/units/${unitId}/context/`,
         body: {
           gap: this.ctxGap,
           qty: amount,
