@@ -14,7 +14,7 @@ import Backbone from 'backbone';
 import React from 'react';
 
 import AdminController from './components/AdminController';
-import AdminRouter from './routers';
+import AdminRouter from './AdminRouter';
 
 
 window.PTL = window.PTL || {};

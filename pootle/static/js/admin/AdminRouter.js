@@ -6,12 +6,10 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
-var Backbone = require('backbone');
+import Backbone from 'backbone';
 
 
-var AdminRouter = Backbone.Router.extend({
+const AdminRouter = Backbone.Router.extend({
 
   routes: {
     '': 'main',
@@ -21,4 +19,4 @@ var AdminRouter = Backbone.Router.extend({
 });
 
 
-module.exports = AdminRouter;
+export default AdminRouter;
