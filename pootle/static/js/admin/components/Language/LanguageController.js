@@ -6,16 +6,15 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
 import React from 'react';
 
-import { Language, LanguageSet } from 'models/language';
-import LanguageForm from './LanguageForm';
-import Search from './Search';
+import Search from '../Search';
+
+import LanguageAdd from './LanguageAdd';
+import LanguageEdit from './LanguageEdit';
 
 
-let LanguagesAdmin = React.createClass({
+const LanguageController = React.createClass({
 
   propTypes: {
     onAdd: React.PropTypes.func.isRequired,
@@ -29,7 +28,7 @@ let LanguagesAdmin = React.createClass({
   },
 
   render() {
-    let viewsMap = {
+    const viewsMap = {
       add: <LanguageAdd
               model={this.props.model}
               collection={this.props.items}
@@ -42,12 +41,11 @@ let LanguagesAdmin = React.createClass({
               onSuccess={this.props.onSuccess}
               onDelete={this.props.onDelete} />
     };
-
-    let args = {
+    const args = {
       count: this.props.items.count,
     };
-    let msg;
 
+    let msg;
     if (this.props.searchQuery) {
       msg = ngettext('%(count)s language matches your query.',
                      '%(count)s languages match your query.', args.count);
@@ -58,15 +56,13 @@ let LanguagesAdmin = React.createClass({
         args.count
       );
     }
-    let resultsCaption = interpolate(msg, args, true);
-
-    let fields = ['index', 'code', 'fullname'];
+    const resultsCaption = interpolate(msg, args, true);
 
     return (
       <div className="admin-app-languages">
         <div className="module first">
           <Search
-            fields={fields}
+            fields={['index', 'code', 'fullname']}
             onSearch={this.props.onSearch}
             onSelectItem={this.props.onSelectItem}
             items={this.props.items}
@@ -74,7 +70,8 @@ let LanguagesAdmin = React.createClass({
             searchLabel={gettext('Search Languages')}
             searchPlaceholder={gettext('Find language by name, code')}
             resultsCaption={resultsCaption}
-            searchQuery={this.props.searchQuery} />
+            searchQuery={this.props.searchQuery}
+          />
         </div>
 
         <div className="module admin-content">
@@ -87,76 +84,4 @@ let LanguagesAdmin = React.createClass({
 });
 
 
-let LanguageAdd = React.createClass({
-
-  propTypes: {
-    onCancel: React.PropTypes.func.isRequired,
-    onSuccess: React.PropTypes.func.isRequired,
-  },
-
-  /* Layout */
-
-  render() {
-    return (
-      <div className="item-add">
-        <div className="hd">
-          <h2>{gettext('Add Language')}</h2>
-          <button
-            onClick={this.props.onCancel}
-            className="btn btn-primary">{gettext('Cancel')}</button>
-        </div>
-        <div className="bd">
-          <LanguageForm
-            model={new this.props.model()}
-            collection={this.props.collection}
-            onSuccess={this.props.onSuccess} />
-        </div>
-      </div>
-    );
-  }
-
-});
-
-
-let LanguageEdit = React.createClass({
-
-  propTypes: {
-    onAdd: React.PropTypes.func.isRequired,
-    onDelete: React.PropTypes.func.isRequired,
-    onSuccess: React.PropTypes.func.isRequired,
-  },
-
-  /* Layout */
-
-  render() {
-    return (
-      <div className="item-edit">
-        <div className="hd">
-          <h2>{gettext('Edit Language')}</h2>
-          <button
-            onClick={this.props.onAdd}
-            className="btn btn-primary">{gettext('Add Language')}</button>
-        </div>
-        <div className="bd">
-        {!this.props.model ?
-          <p>{gettext('Use the search form to find the language, then click on a language to edit.')}</p> :
-          <LanguageForm
-            key={this.props.model.id}
-            model={this.props.model}
-            collection={this.props.collection}
-            onSuccess={this.props.onSuccess}
-            onDelete={this.props.onDelete} />
-        }
-        </div>
-      </div>
-    );
-  }
-
-});
-
-
-export {
-  LanguagesAdmin as App,
-  Language as model,
-  LanguageSet as collection,
-};
+export default LanguageController;

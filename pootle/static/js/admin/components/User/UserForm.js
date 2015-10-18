@@ -13,7 +13,7 @@ import React from 'react';
 import { FormElement } from 'components/forms';
 import { ModelFormMixin } from 'mixins/forms';
 
-import ItemDelete from './ItemDelete';
+import ItemDelete from '../ItemDelete';
 
 
 let UserForm = React.createClass({

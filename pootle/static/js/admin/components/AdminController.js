@@ -153,7 +153,7 @@ let AdminController = React.createClass({
 
     return (
       <div className="admin-app">
-        <this.props.adminModule.App {...props} />
+        <this.props.adminModule.Controller {...props} />
       </div>
     );
   }

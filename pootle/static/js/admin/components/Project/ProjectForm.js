@@ -13,17 +13,19 @@ import React from 'react';
 import { FormElement } from 'components/forms';
 import { ModelFormMixin } from 'mixins/forms';
 
-import ItemDelete from './ItemDelete';
+import ItemDelete from '../ItemDelete';
 
 
-let LanguageForm = React.createClass({
+let ProjectForm = React.createClass({
   mixins: [ModelFormMixin],
 
   propTypes: {
     onSuccess: React.PropTypes.func.isRequired,
   },
 
-  fields: ['code', 'fullname', 'specialchars', 'nplurals', 'pluralequation'],
+  fields: ['code', 'fullname', 'checkstyle', 'localfiletype', 'treestyle',
+           'source_language', 'report_email', 'screenshot_search_prefix',
+           'disabled'],
 
 
   /* Handlers */
@@ -55,6 +57,7 @@ let LanguageForm = React.createClass({
           <FormElement
             autoFocus={true}
             attribute="code"
+            disabled={model.hasOwnProperty('id')}
             label={gettext('Code')}
             handleChange={this.handleChange}
             formData={formData}
@@ -66,36 +69,76 @@ let LanguageForm = React.createClass({
             formData={formData}
             errors={errors} />
           <FormElement
-            attribute="specialchars"
-            label={gettext('Special Characters')}
+            type="select"
+            clearable={false}
+            attribute="checkstyle"
+            options={model.getFieldChoices('checkstyle')}
+            label={gettext('Quality Checks')}
             handleChange={this.handleChange}
             formData={formData}
             errors={errors} />
           <FormElement
             type="select"
             clearable={false}
-            attribute="nplurals"
-            options={model.getFieldChoices('nplurals')}
-            label={gettext('Number of Plurals')}
+            attribute="localfiletype"
+            options={model.getFieldChoices('localfiletype')}
+            label={gettext('File Type')}
             handleChange={this.handleChange}
             formData={formData}
             errors={errors} />
           <FormElement
-            attribute="pluralequation"
-            label={gettext('Plural Equation')}
+            type="select"
+            clearable={false}
+            attribute="treestyle"
+            options={model.getFieldChoices('treestyle')}
+            label={gettext('Project Tree Style')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors} />
+          <FormElement
+            type="select"
+            clearable={false}
+            attribute="source_language"
+            options={model.getFieldChoices('source_language')}
+            label={gettext('Source Language')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors} />
+          <FormElement
+            attribute="ignoredfiles"
+            label={gettext('Ignore Files')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors} />
+          <FormElement
+            type="email"
+            attribute="report_email"
+            label={gettext('String Errors Contact')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors} />
+          <FormElement
+            attribute="screenshot_search_prefix"
+            label={gettext('Screenshot Search Prefix')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors} />
+          <FormElement
+            type="checkbox"
+            attribute="disabled"
+            label={gettext('Disabled')}
             handleChange={this.handleChange}
             formData={formData}
             errors={errors} />
         </div>
         <div className="buttons">
-          <input
-            type="submit"
-            className="btn btn-primary"
-            disabled={!this.state.isDirty}
-            value={gettext('Save')} />
+          <input type="submit" className="btn btn-primary"
+                 disabled={!this.state.isDirty}
+                 value={gettext('Save')} />
         {model.id &&
           <ul className="action-links">
             <li><a href={model.getAbsoluteUrl()}>{gettext('Overview')}</a></li>
+            <li><a href={model.getLanguagesUrl()}>{gettext('Languages')}</a></li>
             <li><a href={model.getPermissionsUrl()}>{gettext('Permissions')}</a></li>
           </ul>}
         </div>
@@ -113,4 +156,4 @@ let LanguageForm = React.createClass({
 });
 
 
-export default LanguageForm;
+export default ProjectForm;

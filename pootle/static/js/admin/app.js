@@ -24,9 +24,9 @@ window.PTL = window.PTL || {};
 
 
 const itemTypes = {
-  user: require('./components/user'),
-  language: require('./components/language'),
-  project: require('./components/project'),
+  user: require('./components/User'),
+  language: require('./components/Language'),
+  project: require('./components/Project'),
 };
 
 

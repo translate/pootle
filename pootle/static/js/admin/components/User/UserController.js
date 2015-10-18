@@ -6,16 +6,15 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
 import React from 'react';
 
-import { User, UserSet } from 'models/user';
-import UserForm from './UserForm';
-import Search from './Search';
+import Search from '../Search';
+
+import UserAdd from './UserAdd';
+import UserEdit from './UserEdit';
 
 
-let UsersAdmin = React.createClass({
+const UserController = React.createClass({
 
   propTypes: {
     onAdd: React.PropTypes.func.isRequired,
@@ -29,7 +28,7 @@ let UsersAdmin = React.createClass({
   },
 
   render() {
-    let viewsMap = {
+    const viewsMap = {
       add: <UserAdd
               model={this.props.model}
               collection={this.props.items}
@@ -42,12 +41,11 @@ let UsersAdmin = React.createClass({
               onSuccess={this.props.onSuccess}
               onDelete={this.props.onDelete} />
     };
-
-    let args = {
+    const args = {
       count: this.props.items.count,
     };
-    let msg;
 
+    let msg;
     if (this.props.searchQuery) {
       msg = ngettext('%(count)s user matches your query.',
                      '%(count)s users match your query.', args.count);
@@ -58,15 +56,13 @@ let UsersAdmin = React.createClass({
         args.count
       );
     }
-    let resultsCaption = interpolate(msg, args, true);
-
-    let fields = ['index', 'full_name', 'username', 'email'];
+    const resultsCaption = interpolate(msg, args, true);
 
     return (
       <div className="admin-app-users">
         <div className="module first">
           <Search
-            fields={fields}
+            fields={['index', 'full_name', 'username', 'email']}
             onSearch={this.props.onSearch}
             onSelectItem={this.props.onSelectItem}
             items={this.props.items}
@@ -74,7 +70,8 @@ let UsersAdmin = React.createClass({
             searchLabel={gettext('Search Users')}
             searchPlaceholder={gettext('Find user by name, email, properties')}
             resultsCaption={resultsCaption}
-            searchQuery={this.props.searchQuery} />
+            searchQuery={this.props.searchQuery}
+          />
         </div>
 
         <div className="module admin-content">
@@ -87,76 +84,4 @@ let UsersAdmin = React.createClass({
 });
 
 
-let UserAdd = React.createClass({
-
-  propTypes: {
-    onCancel: React.PropTypes.func.isRequired,
-    onSuccess: React.PropTypes.func.isRequired,
-  },
-
-  /* Layout */
-
-  render() {
-    return (
-      <div className="item-add">
-        <div className="hd">
-          <h2>{gettext('Add User')}</h2>
-          <button
-            onClick={this.props.onCancel}
-            className="btn btn-primary">{gettext('Cancel')}</button>
-        </div>
-        <div className="bd">
-          <UserForm
-            model={new this.props.model()}
-            collection={this.props.collection}
-            onSuccess={this.props.onSuccess} />
-        </div>
-      </div>
-    );
-  }
-
-});
-
-
-let UserEdit = React.createClass({
-
-  propTypes: {
-    onAdd: React.PropTypes.func.isRequired,
-    onDelete: React.PropTypes.func.isRequired,
-    onSuccess: React.PropTypes.func.isRequired,
-  },
-
-  /* Layout */
-
-  render() {
-    return (
-      <div className="item-edit">
-        <div className="hd">
-          <h2>{gettext('Edit User')}</h2>
-          <button
-            onClick={this.props.onAdd}
-            className="btn btn-primary">{gettext('Add User')}</button>
-        </div>
-        <div className="bd">
-        {!this.props.model ?
-          <p>{gettext('Use the search form to find the user, then click on a user to edit.')}</p> :
-          <UserForm
-            key={this.props.model.id}
-            model={this.props.model}
-            collection={this.props.collection}
-            onSuccess={this.props.onSuccess}
-            onDelete={this.props.onDelete} />
-        }
-        </div>
-      </div>
-    );
-  }
-
-});
-
-
-export {
-  UsersAdmin as App,
-  User as model,
-  UserSet as collection,
-};
+export default UserController;
