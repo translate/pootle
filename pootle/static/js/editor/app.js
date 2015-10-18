@@ -498,7 +498,9 @@ PTL.editor = {
     const $devComments = $('.js-developer-comments');
     $devComments.html(linkHashtags($devComments.html()));
 
-    this.hlSearch();
+    if (this.filter === 'search') {
+      this.hlSearch();
+    }
 
     if (this.settings.tmUrl !== '') {
       this.getTMUnits();
