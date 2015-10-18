@@ -548,8 +548,7 @@ PTL.editor = {
   /* Highlights search results */
   hlSearch: function () {
     let {searchText, searchFields, searchOptions} = search.state;
-    let hl = PTL.editor.filter === 'search' ? searchText : '',
-        sel = [],
+    let sel = [],
         selMap = {
           notes: 'div.developer-comments',
           locations: 'div.translate-locations',
@@ -566,10 +565,10 @@ PTL.editor = {
 
     if (searchOptions.indexOf('exact') >= 0 ) {
       hlRegex = new RegExp([
-          '(', escapeUnsafeRegexSymbols(hl), ')'
+          '(', escapeUnsafeRegexSymbols(searchText), ')'
         ].join(''));
     } else {
-      hlRegex = new RegExp(makeRegexForMultipleWords(hl), 'i');
+      hlRegex = new RegExp(makeRegexForMultipleWords(searchText), 'i');
     }
     $(sel.join(", ")).highlightRegex(hlRegex);
   },
