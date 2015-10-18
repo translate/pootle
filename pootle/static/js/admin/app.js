@@ -6,9 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
-
 import 'backbone-queryparams';
 import 'backbone-queryparams-shim';
 import 'imports?Backbone=>require("backbone")!backbone-move';
