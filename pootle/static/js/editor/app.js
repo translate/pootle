@@ -560,8 +560,8 @@ PTL.editor = {
 
     // Build highlighting selector based on chosen search fields
     $.each(searchFields, function (i, field) {
-      sel.push("tr.edit-row " + selMap[field]);
-      sel.push("tr.view-row " + selMap[field]);
+      sel.push(`tr.edit-row ${selMap[field]}`);
+      sel.push(`tr.view-row ${selMap[field]}`);
     });
 
     if (searchOptions.indexOf('exact') >= 0 ) {
