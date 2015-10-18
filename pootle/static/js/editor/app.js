@@ -547,15 +547,16 @@ PTL.editor = {
 
   /* Highlights search results */
   hlSearch: function () {
-    let {searchText, searchFields, searchOptions} = search.state;
-    let sel = [],
-        selMap = {
-          notes: 'div.developer-comments',
-          locations: 'div.translate-locations',
-          source: 'td.translate-original, div.original div.translation-text',
-          target: 'td.translate-translation'
-        },
-        hlRegex;
+    const { searchText, searchFields, searchOptions } = search.state;
+    const selMap = {
+      notes: 'div.developer-comments',
+      locations: 'div.translate-locations',
+      source: 'td.translate-original, div.original div.translation-text',
+      target: 'td.translate-translation'
+    };
+
+    let sel = [];
+    let hlRegex;
 
     // Build highlighting selector based on chosen search fields
     $.each(searchFields, function (i, field) {
