@@ -133,14 +133,6 @@ Directory contents
 
         http://backbonerelational.org
 
-      - backbone.queryparameters.js :
-        Proper support for routing using query parameters.
-
-        Using 12e9f46c from git along with the shim required for Backbone
-        1.1.
-
-        https://github.com/jhudson8/backbone-query-parameters
-
       - backbone.safesync.js :
         Prevents duplicated fetches in models and collections.
 

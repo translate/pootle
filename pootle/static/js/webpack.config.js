@@ -37,9 +37,6 @@ var resolve = {
 
     'backbone-move': __dirname + '/vendor/backbone/backbone.move.js',
     'backbone-safesync': __dirname + '/vendor/backbone/backbone.safesync.js',
-    // FIXME: get rid of bb-router
-    'backbone-queryparams': __dirname + '/vendor/backbone/backbone.queryparams.js',
-    'backbone-queryparams-shim': __dirname + '/vendor/backbone/backbone.queryparams-1.1-shim.js',
     'backbone-relational': __dirname + '/vendor/backbone/backbone-relational.js',
 
     'jquery-bidi': __dirname + '/vendor/jquery/jquery.bidi.js',

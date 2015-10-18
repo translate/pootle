@@ -28,9 +28,10 @@ let AdminController = React.createClass({
 
   setupRoutes(router) {
 
-    router.on('route:main', (qs) => {
-      var searchQuery = '';
-      qs !== undefined && (searchQuery = qs.q);
+    router.on('route:main', (searchQuery) => {
+      if (searchQuery === undefined || searchQuery === null) {
+        searchQuery = '';
+      }
       this.handleSearch(searchQuery);
     });
 
@@ -47,7 +48,10 @@ let AdminController = React.createClass({
   },
 
   componentWillUpdate(nextProps, nextState) {
-    this.handleURL(nextState);
+    if (nextState.searchQuery !== this.state.searchQuery ||
+        nextState.selectedItem !== this.state.selectedItem) {
+      this.handleURL(nextState);
+    }
   },
 
 
@@ -114,8 +118,7 @@ let AdminController = React.createClass({
     if (newState.selectedItem) {
       newURL = `/${newState.selectedItem.id}/`;
     } else {
-      var params = query === '' ? {} : {q: query};
-      newURL = router.toFragment('', params);
+      newURL = query === '' ? '/' : `?q=${encodeURIComponent(query)}`;
     }
 
     router.navigate(newURL);
