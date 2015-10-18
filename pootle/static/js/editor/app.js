@@ -518,11 +518,6 @@ PTL.editor = {
     this.hideActivity();
     this.updateExportLink();
     helpers.updateRelativeDates();
-
-    // clear any pending 'Loading...' indicator timer
-    // as ajaxStop() is not fired in IE properly
-    // at initial page load (?!)
-    clearTimeout(this.delayedActivityTimer);
   },
 
   /* Things to do when no results are returned */
