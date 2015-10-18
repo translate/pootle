@@ -19,8 +19,6 @@ import React from 'react';
 import AdminController from './components/AdminController';
 import AdminRouter from './routers';
 
-let AdminApp = React.createFactory(AdminController);
-
 
 window.PTL = window.PTL || {};
 
@@ -35,20 +33,19 @@ const itemTypes = {
 PTL.admin = {
 
   init(opts) {
-    let el = document.querySelector(opts.el || '.js-admin-app');
-
     if (!itemTypes.hasOwnProperty(opts.itemType)) {
       throw new Error('Invalid `itemType`.');
     }
 
-    let item = itemTypes[opts.itemType];
-    let main = new AdminApp({
-      router: new AdminRouter(),
-      appRoot: opts.appRoot,
-      adminModule: item,
-      formChoices: opts.formChoices || {},
-    });
-    React.render(main, el);
+    React.render(
+      <AdminController
+        adminModule={itemTypes[opts.itemType]}
+        appRoot={opts.appRoot}
+        formChoices={opts.formChoices || {}}
+        router={new AdminRouter()}
+      />,
+      document.querySelector(opts.el || '.js-admin-app')
+    );
   }
 
 };
