@@ -41,7 +41,7 @@ PTL.admin = {
         formChoices={opts.formChoices || {}}
         router={new AdminRouter()}
       />,
-      document.querySelector(opts.el || '.js-admin-app')
+      document.querySelector('.js-admin-app')
     );
   }
 
