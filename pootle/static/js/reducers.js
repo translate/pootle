@@ -6,14 +6,27 @@
  * AUTHORS file for copyright and authorship information.
  */
 
+import assign from 'object-assign';
 import { combineReducers } from 'redux';
 
 import auth from './auth/reducers';
 
 
-const rootReducer = combineReducers({
-  auth,
-});
+let asyncReducers = {};
 
 
-export default rootReducer;
+export function registerReducers(newReducers) {
+  asyncReducers = assign({}, asyncReducers, newReducers);
+}
+
+
+function createReducer() {
+  return combineReducers(assign(
+    {},
+    { auth },
+    asyncReducers
+  ));
+}
+
+
+export default createReducer;

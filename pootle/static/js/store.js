@@ -9,7 +9,8 @@
 import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
-import rootReducer from './reducers';
+import createReducer from './reducers';
+
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware
@@ -17,7 +18,7 @@ const createStoreWithMiddleware = applyMiddleware(
 
 
 function configureStore() {
-  return createStoreWithMiddleware(rootReducer);
+  return createStoreWithMiddleware(createReducer());
 }
 
 
