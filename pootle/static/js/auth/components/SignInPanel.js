@@ -6,8 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
 import 'jquery-cookie';
 import assign from 'object-assign';
 import React from 'react';
