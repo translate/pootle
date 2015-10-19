@@ -173,4 +173,4 @@ const Auth = React.createClass({
 });
 
 
-export default connect(state => state)(Auth);
+export default connect(state => state.auth)(Auth);

@@ -10,6 +10,8 @@
 
 import cookie from 'utils/cookie';
 
+import configureStore from './store';
+
 // Aliased non-commonJS modules
 
 // Major libraries
@@ -71,6 +73,9 @@ PTL.utils = require('./utils.js');
 
 var helpers = require('./helpers.js');
 var utils = require('./utils.js');
+
+
+PTL.store = configureStore();
 
 
 PTL.common = {

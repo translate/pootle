@@ -10,11 +10,8 @@ import $ from 'jquery';
 import assign from 'object-assign';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import thunkMiddleware from 'redux-thunk';
 
 import Auth from './containers/Auth';
-import authReducer from './reducers';
 
 
 const mountNodeSelector = '.js-auth';
@@ -38,13 +35,8 @@ module.exports = {
   open(props) {
     const newProps = assign({}, commonProps, props);
 
-    const createStoreWithMiddleware = applyMiddleware(
-      thunkMiddleware
-    )(createStore);
-    let store = createStoreWithMiddleware(authReducer);
-
     React.render(
-      <Provider store={store}>
+      <Provider store={PTL.store}>
         {() => <Auth onClose={this.close} {...newProps} />}
       </Provider>,
       document.querySelector(mountNodeSelector)
