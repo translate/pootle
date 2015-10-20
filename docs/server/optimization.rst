@@ -114,13 +114,7 @@ with values between 10 and 80.
 MySQL
 ^^^^^
 
-Using MySQL is well tested and recommended. You can :doc:`migrate your current
+Using MySQL with `InnoDB backend
+<https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html>`_ is well
+tested. MyISAM is no longer supported. You can :doc:`migrate your current
 database <database_migration>` if you already have data you don't want to lose.
-
-If using MySQL backend, for smaller installations it is suggested to go with
-`MyISAM backend
-<https://dev.mysql.com/doc/refman/5.6/en/myisam-storage-engine.html>`_ (which
-might result in smaller memory usage and better performance). If high
-concurrency is expected, `InnoDB
-<https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html>`_ is
-suggested to avoid locking issues.
