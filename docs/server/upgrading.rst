@@ -35,7 +35,7 @@ Migrate your database
 ---------------------
 
 If you are currently using SQLite for your database you will need to 
-:doc:`migrate to either MySQL or PostgreSQL <database_migration>`
+:doc:`migrate to either MySQL (InnoDB) or PostgreSQL <database_migration>`
 before you upgrade.
 
 

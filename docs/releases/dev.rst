@@ -54,6 +54,9 @@ Details of changes
 
 - The Apertium MT backend has been dropped.
 - Report string errors form subject and body can be overriden.
+- `InnoDB <https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html>`_
+  is the only accepted MySQL backend. Deployments using MyISAM must
+  :doc:`migrate to either MySQL (InnoDB) or PostgreSQL </server/database_migration>`.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of
