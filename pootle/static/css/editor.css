@@ -1000,6 +1000,16 @@ li.check
     border-radius: 4px;
 }
 
+li.check-warning
+{
+    height: 16px;
+}
+
+li.check-warning a
+{
+    vertical-align: middle;
+}
+
 #translate-checks-block.blink li.check
 {
     background-color: #900;
@@ -1020,6 +1030,7 @@ li.check > a
     cursor: help;
 }
 
+li.check-warning.false-positive > a,
 li.check.false-positive > a
 {
     color: rgba(0, 0, 0, 0.5);
@@ -1031,19 +1042,25 @@ li.check.false-positive > a
     vertical-align: middle;
 }
 
-.check .unmute-check
+.mute-check,
+.unmute-check
 {
     display: none;
 }
 
-.check.false-positive .mute-check
-{
-    display: none;
-}
-
-.check.false-positive .unmute-check
+.check .mute-check,
+.check.false-positive .unmute-check,
+.check-warning:hover .mute-check,
+.check-warning.false-positive:hover .unmute-check
 {
     display: inline-block;
+}
+
+.false-positive .mute-check,
+.check-warning:hover .unmute-check,
+.check-warning.false-positive:hover .mute-check
+{
+    display: none;
 }
 
 /* CONTROLS */
