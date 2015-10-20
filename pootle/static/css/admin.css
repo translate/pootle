@@ -109,6 +109,21 @@ html[dir="rtl"] .control-group .controls .radio-pre
     display: inline-block;
 }
 
+.controls-btn
+{
+    display: flex;
+}
+
+.controls-btn input
+{
+    align-self: center;
+}
+
+.controls-btn ul
+{
+    margin: 0 1.5em;
+}
+
 .control-group-separator
 {
     margin-left: 2em;
