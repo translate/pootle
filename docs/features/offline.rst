@@ -12,9 +12,11 @@ To export, simply click on the "Download for offline translation" link on the
 sidebar in Pootle's overview page.  To import simply click the "Upload
 translations" link and select the file you wish to upload.
 
-.. warning:: If there are any errors in the upload then Pootle will warn you
-   and the file will be rejected.
+.. versionchanged:: 2.7.1
 
-   The most likely reason would be someone translating online while you are
-   working offline.  So be sure to communicate with your team if you will be
-   working offline.
+If a string has been translated on Pootle and changed in your uploaded file
+then your change will still be uploaded but it will be converted into a
+suggestion which you can resolve in Pootle.
+
+.. note:: If there are any errors in the upload then Pootle will warn you and
+   the file will be rejected.
