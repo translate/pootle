@@ -46,6 +46,18 @@ div#depchecks ul li.error
     position: relative;
 }
 
+.staticpages-delete
+{
+    position: absolute;
+    right: 0;
+}
+
+html[dir="rtl"] .staticpages-edit
+{
+    right: auto;
+    left: 0;
+}
+
 .staticpages-form textarea
 {
     width: 100%;

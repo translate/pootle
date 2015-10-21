@@ -1,7 +1,7 @@
-{% load i18n locale %}
+{% load i18n %}
 {% if show_delete %}
 <form action="{% url 'pootle-staticpages-delete' page_type object.pk %}"
-  method="post" class="pull-{% locale_reverse_align %}">
+  method="post" class="staticpages-delete">
   {% csrf_token %}
   <input type="submit" class="btn btn-danger" value="{% trans 'Delete' %}" />
 </form>
