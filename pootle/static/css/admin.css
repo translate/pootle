@@ -40,6 +40,12 @@ div#depchecks ul li.error
 /* STATIC PAGES */
 
 
+.staticpages-edit
+{
+    margin: 1.5em 1em 0;
+    position: relative;
+}
+
 .staticpages-form textarea
 {
     width: 100%;
