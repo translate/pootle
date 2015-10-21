@@ -182,7 +182,9 @@
             </div>
             {% endif %}
 
+            {% block target_field %}
             {{ form.target_f }}
+            {% endblock %}
 
             <div class="extras-bar">
               <a id="js-toggle-timeline" href="{% url 'pootle-xhr-units-timeline' unit.id %}"><i class="icon-timeline" title="{% trans 'Show Timeline' %}"></i></a>
