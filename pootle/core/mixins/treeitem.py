@@ -681,7 +681,14 @@ def update_cache_job(instance):
     job = get_current_job()
     job_wrapper = JobWrapper(job.id, job.connection)
     keys, decrement = job_wrapper.get_job_params()
+
+    # close unusable and obsolete connections before and after the job
+    # Note: setting CONN_MAX_AGE parameter can have negative side-effects
+    # CONN_MAX_AGE value should be lower than DB wait_timeout
+    connection.close_if_unusable_or_obsolete()
     instance._update_cache_job(keys, decrement)
+    connection.close_if_unusable_or_obsolete()
+
     job_wrapper.clear_job_params()
 
 
