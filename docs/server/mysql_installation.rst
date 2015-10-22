@@ -99,3 +99,20 @@ connecting to the database. For MySQL the correct :setting:`ENGINE
        }
    }
 
+
+Please note that MySQL terminates idle connections after `wait_timeout`.
+Thus setting `:setting:CONN_MAX_AGE<django:DATABASE-CONN_MAX_AGE>` to lower
+value will be fine. Default value is `0`.
+Persistent connections where `:setting:CONN_MAX_AGE<django:DATABASE-CONN_MAX_AGE>`
+is `None` can't be used with MySQL.
+See https://docs.djangoproject.com/en/1.7/ref/databases/#connection-management
+
+
+.. code-block:: python
+
+   DATABASES = {
+       'default': {
+           'CONN_MAX_AGE': 0,
+           ...
+       }
+   }
