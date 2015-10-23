@@ -341,10 +341,7 @@ PTL.editor = {
           var current = this.units.getCurrent(),
               newUnit = this.units.get(uIdParam);
           if (newUnit && newUnit !== current) {
-            this.units.setCurrent(newUnit);
-            this.fetchUnit(uIdParam).then(
-              () => this.renderUnit()
-            );
+            this.setUnit(newUnit);
             return;
           } else {
             uId = uIdParam;
@@ -477,12 +474,7 @@ PTL.editor = {
         if (!hasResults) {
           return;
         }
-
-        this.units.setCurrent(uId);
-
-        this.fetchUnit(this.units.getCurrent().id).then(
-          () => this.renderUnit()
-        );
+        this.setUnit(uId);
       });
 
     }, {'unescape': true});
@@ -1275,7 +1267,6 @@ PTL.editor = {
     this.updateNavButton(this.$navNext, !this.units.hasNext());
   },
 
-
   /* Fetches more units in case they are needed */
   fetchUnits: function ({ initial=false, uId=0 } = {}) {
     let reqData = {
@@ -1386,6 +1377,15 @@ PTL.editor = {
     // XXX: should probably go somewhere else?
     // Anytime before `.fetchUnit` for perceived responsiveness
     this.updateNav();
+  },
+
+  /* Sets a new unit as the current one, rendering it as well */
+  setUnit: function (unit) {
+    const newUnit = this.units.setCurrent(unit);
+
+    this.fetchUnit(newUnit.id).then(
+      () => this.renderUnit()
+    );
   },
 
   /* Updates the navigation controls */
