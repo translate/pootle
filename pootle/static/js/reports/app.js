@@ -378,7 +378,6 @@ PTL.reports = {
       url: 'activity',
       data: reqData,
       dataType: 'json',
-      async: true,
       success: function (data) {
         PTL.reports.serverTime = data.meta.now;
         PTL.reports.now = moment(data.meta.now, 'YYYY-MM-DD HH:mm:ss');
