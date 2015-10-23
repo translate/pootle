@@ -1587,7 +1587,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             self.save()
             keys = []
             try:
-                revision = Revision.incr()
+                update_revision = Revision.incr()
                 for index, unit in enumerate(store.units):
                     # Dont add duplicates
                     if unit.getid() in keys:
@@ -1596,7 +1596,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                         continue
                     keys.append(unit.getid())
                     if unit.istranslatable():
-                        self.addunit(unit, index, revision=revision)
+                        self.addunit(unit, index,
+                                     update_revision=update_revision)
             except:
                 # Something broke, delete any units that got created
                 # and return store state to its original value
@@ -1606,7 +1607,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 raise
 
             self.state = PARSED
-            self.last_sync_revision = revision
+            self.last_sync_revision = update_revision
             self.mark_all_dirty()
             self.save()
             return
@@ -1624,7 +1625,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             index=operator.add(F('index'), delta)
         )
 
-    def mark_units_obsolete(self, uids_to_obsolete, revision=None):
+    def mark_units_obsolete(self, uids_to_obsolete, update_revision=None):
         """Marks a bulk of units as obsolete.
 
         :param uids_to_obsolete: UIDs of the units to be marked as obsolete.
@@ -1638,7 +1639,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             unit.store = self
             if not unit.isobsolete():
                 unit.makeobsolete()
-                unit.save(revision=revision)
+                unit.save(revision=update_revision)
                 obsoleted += 1
 
         return obsoleted
@@ -1668,7 +1669,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return unit_ids
 
     def update_units(self, store, uids_to_update, uid_index_map, user,
-                     revision=None, submission_type=None):
+                     update_revision=None, submission_type=None):
         """Updates existing units in the store.
 
         :param uids_to_update: UIDs of the units to be updated.
@@ -1733,7 +1734,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     unit.reviewed_on = None
                     unit.reviewed_by = None
 
-                unit.save(revision=revision)
+                unit.save(revision=update_revision)
 
         return updated, suggested
 
@@ -1855,7 +1856,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return update_dbids
 
     def update(self, overwrite=False, store=None, only_newer=False, user=None,
-               submission_type=None):
+               store_revision=None, submission_type=None):
         """Update DB with units from file.
 
         :param overwrite: Whether to update all existing translations or
@@ -1899,7 +1900,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         self.state = LOCKED
         self.save()
 
-        store_revision = parse_pootle_revision(store)
+        if store_revision is None:
+            store_revision = parse_pootle_revision(store)
         max_unit_revision = self.get_max_unit_revision()
         update_revision = Revision.incr()
         try:
@@ -1963,7 +1965,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                             or max_unit_revision <= store_revision):
 
                             self.addunit(unit, new_unit_index, user=user,
-                                         revision=update_revision)
+                                         update_revision=update_revision)
                             changes['added'] += 1
                     else:
                         update_unitids[uid] = {'dbid': old_unitids[uid]['dbid'],
@@ -1977,7 +1979,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                          new_unitid_set]
             changes['obsolete'] = \
                 self.mark_units_obsolete(obsolete_dbids,
-                                         revision=update_revision)
+                                         update_revision=update_revision)
 
 
             # Step 3: update existing units
@@ -1992,7 +1994,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             (changes['updated'],
              changes['suggested']) = self.update_units(store, common_dbids,
                                                        update_unitids, user,
-                                                       revision=update_revision,
+                                                       update_revision=update_revision,
                                                        submission_type=submission_type)
             self.file_mtime = disk_mtime
 
@@ -2207,7 +2209,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         """Largest unit index"""
         return max_column(self.unit_set.all(), 'index', -1)
 
-    def addunit(self, unit, index=None, user=None, revision=None):
+    def addunit(self, unit, index=None, user=None, update_revision=None):
         if index is None:
             index = self.max_index() + 1
 
@@ -2218,7 +2220,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             newunit.submitted_on = timezone.now()
 
         if self.id:
-            newunit.save(revision=revision, user=user)
+            newunit.save(revision=update_revision, user=user)
         else:
             # We can't save the unit if the store is not in the
             # database already, so let's keep it in temporary list
