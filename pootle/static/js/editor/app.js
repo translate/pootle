@@ -21,6 +21,7 @@ import 'jquery-utils';
 
 // Other plugins
 import autosize from 'autosize';
+import cx from 'classnames';
 // XXX: this weirdness is temporarily needed because the version of
 // diff-match-patch we bundle is not CommonJS-friendly
 require('imports?this=>window!diff-match-patch');
@@ -1108,9 +1109,10 @@ PTL.editor = {
   },
 
   renderEditorRow: function (unit) {
-    let eClass = 'edit-row';
-    eClass += unit.get('isfuzzy') ? ' fuzzy-unit' : '';
-    eClass += this.filter !== 'all' ? ' with-ctx' : '';
+    const eClass = cx('edit-row', {
+      'fuzzy-unit': unit.get('isfuzzy'),
+      'with-ctx': this.filter !== 'all',
+    });
 
     const [ctxRowBefore, ctxRowAfter] = this.renderCtxControls({ hasData: false });
 
