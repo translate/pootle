@@ -570,15 +570,13 @@ PTL.editor = {
       target: 'td.translate-translation'
     };
 
-    let sel = [];
-    let hlRegex;
-
     // Build highlighting selector based on chosen search fields
-    $.each(searchFields, function (i, field) {
-      sel.push(`tr.edit-row ${selMap[field]}`);
-      sel.push(`tr.view-row ${selMap[field]}`);
-    });
+    const sel = searchFields.map((fieldName) => [
+      `tr.edit-row ${selMap[fieldName]}`,
+      `tr.view-row ${selMap[fieldName]}`
+    ]).reduce((a, b) => a.concat(b), []);
 
+    let hlRegex;
     if (searchOptions.indexOf('exact') >= 0 ) {
       hlRegex = new RegExp([
           '(', escapeUnsafeRegexSymbols(searchText), ')'
