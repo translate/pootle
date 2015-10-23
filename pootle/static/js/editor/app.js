@@ -84,6 +84,21 @@ PTL.editor = {
 
     options && assign(this.settings, options);
 
+    /* Cached elements */
+    this.backToBrowserEl = document.querySelector('.js-back-to-browser');
+    this.$editorActivity = $('#js-editor-act');
+    this.$editorBody = $('.js-editor-body');
+    this.editorTableEl = document.querySelector('.js-editor-table');
+    this.$filterStatus = $('#js-filter-status');
+    this.$filterChecks = $('#js-filter-checks');
+    this.$filterChecksWrapper = $('.js-filter-checks-wrapper');
+    this.$filterSortBy = $('#js-filter-sort');
+    this.$msgOverlay = $('#js-editor-msg-overlay');
+    this.$navNext = $('#js-nav-next');
+    this.$navPrev = $('#js-nav-prev');
+    this.unitCountEl = document.querySelector('.js-unit-count');
+    this.unitIndexEl = document.querySelector('.js-unit-index');
+
     /* Initialize variables */
     this.units = new UnitSet([], {
       chunkSize: this.settings.chunkSize
@@ -128,8 +143,8 @@ PTL.editor = {
     });
 
     /* Select2 */
-    $('#js-filter-status').select2(filterSelectOpts);
-    $('#js-filter-sort').select2(sortSelectOpts);
+    this.$filterStatus.select2(filterSelectOpts);
+    this.$filterSortBy.select2(sortSelectOpts);
 
     /* Screenshot images */
     $(document).on('click', '.js-dev-img', function (e) {
@@ -193,7 +208,7 @@ PTL.editor = {
     /* Editor navigation/submission */
     $(document).on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
     $(document).on('keypress', '.js-unit-index', (e) => this.gotoIndex(e));
-    $(document).on('dblclick click', '.js-unit-index', this.unitIndex);
+    $(document).on('dblclick click', '.js-unit-index', (e) => this.unitIndex(e));
     $(document).on('click', 'input.submit', (e) => {
       e.preventDefault();
       this.handleSubmit();
@@ -235,7 +250,7 @@ PTL.editor = {
     $(document).on('click', '.js-comment-remove', this.removeComment);
 
     /* Misc */
-    $(document).on('click', '.js-editor-msg-hide', this.hideMsg);
+    $(document).on('click', '.js-editor-msg-hide', () => this.hideMsg());
 
     $(document).on('click', '.js-toggle-raw', function (e) {
       e.preventDefault();
@@ -272,17 +287,17 @@ PTL.editor = {
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
-      $('#js-nav-next')
+      this.$navNext
         .attr('title',
               gettext('Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/>Last page: Ctrl+Shift+End')
       );
-      $('#js-nav-prev')
+      this.$navPrev
         .attr('title',
               gettext('Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl+Shift+,<br/>First page: Ctrl+Shift+Home')
       );
     }
 
-    shortcut.add('ctrl+shift+n', this.unitIndex);
+    shortcut.add('ctrl+shift+n', (e) => this.unitIndex(e));
 
     /* XHR activity indicator */
     $(document).ajaxStart(() => {
@@ -402,7 +417,7 @@ PTL.editor = {
           ].join(''));
         }
         $(".js-user-filter").remove();
-        $('#js-filter-status').append(newOpts.join(''));
+        this.$filterStatus.append(newOpts.join(''));
       }
 
       if ('search' in params) {
@@ -430,22 +445,22 @@ PTL.editor = {
       this.preventNavigation = true;
 
       var filterValue = this.filter === 'search' ? 'all' : this.filter;
-      $('#js-filter-status').select2('val', filterValue);
+      this.$filterStatus.select2('val', filterValue);
 
       if (this.filter === 'checks') {
         // if the checks selector is empty (i.e. the 'change' event was not fired
         // because the selection did not change), force the update to populate the selector
-        if ($('#js-filter-checks').is(':hidden')) {
+        if (this.$filterChecks.is(':hidden')) {
           this.getCheckOptions()
               .then((data) => this.appendChecks(data),
                     this.error);
         }
       }
 
-      $('#js-filter-sort').select2('val', this.sortBy);
+      this.$filterSortBy.select2('val', this.sortBy);
 
       if (this.filter === 'search') {
-        $('.js-filter-checks-wrapper').hide();
+        this.$filterChecksWrapper.hide();
       }
 
       // re-enable normal event handling
@@ -932,19 +947,19 @@ PTL.editor = {
 
   /* Changes the editor into suggest mode */
   doSuggestMode: function () {
-    $("table.translate-table").addClass("suggest-mode");
+    this.editorTableEl.classList.add('suggest-mode');
   },
 
 
   /* Changes the editor into submit mode */
   undoSuggestMode: function () {
-    $("table.translate-table").removeClass("suggest-mode");
+    this.editorTableEl.classList.remove('suggest-mode');
   },
 
 
   /* Returns true if the editor is in suggest mode */
   isSuggestMode: function () {
-    return $("table.translate-table").hasClass("suggest-mode");
+    return this.editorTableEl.classList.contains('suggest-mode');
   },
 
 
@@ -973,25 +988,24 @@ PTL.editor = {
 
   showActivity: function (force) {
     this.hideMsg();
-    $("#js-editor-act").spin().fadeIn(300);
+    this.$editorActivity.spin().fadeIn(300);
   },
 
   hideActivity: function () {
-    $("#js-editor-act").spin(false).fadeOut(300);
+    this.$editorActivity.spin(false).fadeOut(300);
   },
 
   /* Displays an informative message */
   displayMsg: function ({ showClose=true, body=null }) {
     this.hideActivity();
     helpers.fixSidebarHeight();
-    $('#js-editor-msg-overlay').html(
+    this.$msgOverlay.html(
       this.tmpl.msg({ showClose, body })
     ).fadeIn(300);
   },
 
   hideMsg: function () {
-    var $wrapper = $('#js-editor-msg-overlay');
-    $wrapper.length && $wrapper.fadeOut(300);
+    this.$msgOverlay.length && this.$msgOverlay.fadeOut(300);
   },
 
   /* Displays error messages on top of the toolbar */
@@ -1035,7 +1049,7 @@ PTL.editor = {
   displayObsoleteMsg: function () {
     var msgText = gettext('This string no longer exists.'),
         backMsg = gettext('Go back to browsing'),
-        backLink = $('.js-back-to-browser').attr('href'),
+        backLink = this.backToBrowserEl.getAttribute('href'),
         reloadMsg = gettext('Reload page'),
         html = [
           '<div>', msgText, '</div>',
@@ -1211,13 +1225,12 @@ PTL.editor = {
 
   /* reDraws the translate table rows */
   reDraw: function (newTbody) {
-    const $where = $('.js-editor-body');
-    const $oldRows = $where.find('tr');
+    const $oldRows = this.$editorBody.find('tr');
 
     $oldRows.remove();
 
     if (newTbody !== undefined) {
-      $where.append(newTbody);
+      this.$editorBody.append(newTbody);
 
       this.ready();
     }
@@ -1225,28 +1238,26 @@ PTL.editor = {
 
 
   /* Updates a button in `selector` to the `disable` state */
-  updateNavButton: function (selector, disable) {
-    var $el = $(selector);
-
+  updateNavButton: function ($button, disable) {
     // Avoid unnecessary actions
-    if ($el.is(':disabled') && disable || $el.is(':enabled') && !disable) {
+    if ($button.is(':disabled') && disable || $button.is(':enabled') && !disable) {
       return;
     }
 
     if (disable) {
-      $el.data('title', $el.attr('title'));
-      $el.removeAttr('title');
+      $button.data('title', $button.attr('title'));
+      $button.removeAttr('title');
     } else {
-      $el.attr('title', $el.data('title'));
+      $button.attr('title', $button.data('title'));
     }
-    $el.prop('disabled', disable);
+    $button.prop('disabled', disable);
   },
 
 
   /* Updates previous/next navigation button states */
   updateNavButtons: function () {
-    this.updateNavButton('#js-nav-prev', !this.units.hasPrev());
-    this.updateNavButton('#js-nav-next', !this.units.hasNext());
+    this.updateNavButton(this.$navPrev, !this.units.hasPrev());
+    this.updateNavButton(this.$navNext, !this.units.hasNext());
   },
 
 
@@ -1336,12 +1347,11 @@ PTL.editor = {
 
   /* Updates the navigation controls */
   updateNav: function () {
-    $("#items-count").text(this.units.total);
+    this.unitCountEl.textContent = this.units.total;
 
     var currentUnit = this.units.getCurrent();
     if (currentUnit !== undefined) {
-      var uIndex = this.units.uIds.indexOf(currentUnit.id) + 1;
-      $('.js-unit-index').text(uIndex);
+      this.unitIndexEl.textContent = this.units.uIds.indexOf(currentUnit.id) + 1;
     }
 
   },
@@ -1523,8 +1533,7 @@ PTL.editor = {
       var newHash = utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
     } else if (opts.isSubmission) {
-      var backLink = $('.js-back-to-browser').attr('href');
-      window.location.href = [backLink, 'finished'].join('?');
+      window.location.href = `${this.backToBrowserEl.getAttribute('href')}?finished`;
     }
   },
 
@@ -1571,21 +1580,20 @@ PTL.editor = {
   unitIndex: function (e) {
     e.preventDefault();
 
-    var el = $('.js-unit-index')[0],
-        selection = window.getSelection(),
+    var selection = window.getSelection(),
         range = document.createRange();
 
-    range.selectNodeContents(el);
+    range.selectNodeContents(this.unitIndexEl);
     selection.removeAllRanges();
     selection.addRange(range);
-    el.focus();
+    this.unitIndexEl.focus();
   },
 
   /* Loads the editor on a index */
   gotoIndex: function (e) {
     if (e.which === 13) { // Enter key
       e.preventDefault();
-      var index = parseInt($('.js-unit-index').text(), 10);
+      var index = parseInt(this.unitIndexEl.textContent, 10);
 
       if (index && !isNaN(index) && index > 0 &&
           index <= this.units.total) {
@@ -1621,10 +1629,10 @@ PTL.editor = {
       return false;
     }
 
-    var filterChecks = $('#js-filter-checks').val();
+    var filterChecks = this.$filterChecks.val();
 
     if (filterChecks !== 'none') {
-      var sortBy = $('#js-filter-sort').val(),
+      var sortBy = this.$filterSortBy.val(),
           newHash = {
             filter: 'checks',
             checks: filterChecks
@@ -1639,7 +1647,7 @@ PTL.editor = {
   /* Adds the failing checks to the UI */
   appendChecks: function (checks) {
     if (Object.keys(checks).length) {
-      var $checks = $('#js-filter-checks'),
+      var $checks = this.$filterChecks,
           selectedValue = this.checks[0] || 'none';
 
       $checks.find('optgroup').each(function (e) {
@@ -1664,19 +1672,19 @@ PTL.editor = {
       });
 
       $checks.select2(filterSelectOpts).select2('val', selectedValue);
-      $('.js-filter-checks-wrapper').css('display', 'inline-block');
+      this.$filterChecksWrapper.css('display', 'inline-block');
     } else { // No results
       this.displayMsg({ body: gettext('No results.') });
-      $('#js-filter-status').select2('val', PTL.editor.filter);
+      this.$filterStatus.select2('val', PTL.editor.filter);
     }
   },
 
   filterSort: function () {
-    const filterBy = $('#js-filter-status').val();
+    const filterBy = this.$filterStatus.val();
     // #104: Since multiple values can't be selected in the select
     // element, we also need to check for `this.checks`.
-    const filterChecks = $('#js-filter-checks').val() || this.checks.join(',');
-    const sortBy = $('#js-filter-sort').val();
+    const filterChecks = this.$filterChecks.val() || this.checks.join(',');
+    const sortBy = this.$filterSortBy.val();
     const user = this.user || null;
 
     let newHash = { filter: filterBy };
@@ -1702,17 +1710,16 @@ PTL.editor = {
 
     // this function can be executed in different contexts,
     // so using the full selector here
-    var $selected = $('#js-filter-status option:selected'),
+    var $selected = this.$filterStatus.find('option:selected'),
         filterBy = $selected.val(),
-        isUserFilter = $selected.data('user'),
-        $checksWrapper = $('.js-filter-checks-wrapper');
+        isUserFilter = $selected.data('user');
 
     if (filterBy === "checks") {
       this.getCheckOptions()
           .then((data) => this.appendChecks(data),
                 this.error);
     } else { // Normal filtering options (untranslated, fuzzy...)
-      $checksWrapper.hide();
+      this.$filterChecksWrapper.hide();
 
       if (!this.preventNavigation) {
         var newHash = {filter: filterBy};
