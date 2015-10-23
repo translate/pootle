@@ -411,10 +411,11 @@ PTL.editor = {
             interpolate(gettext("%s's overwritten submissions"), [user]),
         };
         for (var key in values) {
-          newOpts.push([
-            '<option value="', key, '" data-user="', user, '" class="',
-            'js-user-filter' ,'">', values[key], '</option>'
-          ].join(''));
+          newOpts.push(
+            `<option value="${key}" data-user="${user}" class="js-user-filter">` +
+              values[key] +
+            '</option>'
+          );
         }
         $(".js-user-filter").remove();
         this.$filterStatus.append(newOpts.join(''));
@@ -578,9 +579,7 @@ PTL.editor = {
 
     let hlRegex;
     if (searchOptions.indexOf('exact') >= 0 ) {
-      hlRegex = new RegExp([
-          '(', escapeUnsafeRegexSymbols(searchText), ')'
-        ].join(''));
+      hlRegex = new RegExp(`(${escapeUnsafeRegexSymbols(searchText)})`);
     } else {
       hlRegex = new RegExp(makeRegexForMultipleWords(searchText), 'i');
     }
@@ -662,9 +661,9 @@ PTL.editor = {
       op = diff[i][0];
       text = utils.fancyEscape(diff[i][1]);
       if (op === DIFF_INSERT) {
-        html[i] = ['<span class="diff-insert">', text, '</span>'].join('');
+        html[i] = `<span class="diff-insert">${text}</span>`;
       } else if (op === DIFF_DELETE) {
-        html[i] = ['<span class="diff-delete">', text, '</span>'].join('');
+        html[i] = `<span class="diff-delete">${text}</span>`;
       } else if (op === DIFF_EQUAL) {
         html[i] = text;
       }
@@ -882,7 +881,7 @@ PTL.editor = {
   checkSimilarTranslations: function () {
     var dataSelector = 'translation-aid',
         dataSelectorMT = 'translation-aid-mt',
-        $aidElementsMT = $(['[data-', dataSelectorMT, ']'].join(''));
+        $aidElementsMT = $(`[data-${dataSelectorMT}]`);
 
     let aidElementsSelector = `[data-${dataSelector}]`;
 
@@ -926,8 +925,8 @@ PTL.editor = {
     var bestMatchCls = 'best-match',
         exactMatchCls = 'exact-match';
 
-    $('.translate-table').find(['.', bestMatchCls].join(''))
-                         .removeClass([bestMatchCls, exactMatchCls].join(' '));
+    $('.translate-table').find(`.${bestMatchCls}`)
+                         .removeClass(`${bestMatchCls} ${exactMatchCls}`);
 
     if (boxId === null) {
       return false;
@@ -975,7 +974,7 @@ PTL.editor = {
     var $exportOpt = $('.js-export-view'),
         baseUrl = $exportOpt.data('export-url'),
         hash = utils.getHash().replace(/&?unit=\d+/, ''),
-        exportLink = hash ? [baseUrl, hash].join('?') : baseUrl;
+        exportLink = hash ? `${baseUrl}?${hash}` : baseUrl;
 
     $exportOpt.data('href', exportLink);
   },
@@ -1420,7 +1419,7 @@ PTL.editor = {
     const suggestionIndex = suggestionTexts.indexOf(newTranslation);
 
     if (suggestionIndex !== -1 && !this.isFuzzy()) {
-      $(['#', suggestionIds[suggestionIndex]].join(''))
+      $(`#${suggestionIds[suggestionIndex]}`)
         .find('.js-suggestion-accept').trigger('click', [true]);
       return;
     }
@@ -1568,7 +1567,7 @@ PTL.editor = {
       if (type === 'row') {
         newHash = utils.updateHashPart("unit", uid);
       } else {
-        newHash = ['unit=', encodeURIComponent(uid)].join('');
+        newHash = `unit=${encodeURIComponent(uid)}`;
       }
       $.history.load(newHash);
     }
@@ -2194,7 +2193,7 @@ PTL.editor = {
     var check = $(this).parent(),
         checkId = $(this).data("check-id"),
         uId = PTL.editor.units.getCurrent().id,
-        url = l(['/xhr/units/', uId, '/checks/', checkId, '/toggle/'].join('')),
+        url = l(`/xhr/units/${uId}/checks/${checkId}/toggle/`),
         falsePositive = !check.hasClass('false-positive'), // toggled value
         post = {},
         error;
