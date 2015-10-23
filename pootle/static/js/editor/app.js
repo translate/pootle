@@ -1221,8 +1221,6 @@ PTL.editor = {
   /* Sets the edit view for the current active unit */
   renderUnit: function () {
     if (this.units.length) {
-      this.fetchUnits();
-
       this.hideMsg();
 
       this.reDraw(this.renderRows());
@@ -1387,6 +1385,8 @@ PTL.editor = {
     const newUnit = this.units.setCurrent(unit);
 
     this.updateNavigation();
+
+    this.fetchUnits();
 
     this.fetchUnit(newUnit.id).then(
       () => this.renderUnit()
