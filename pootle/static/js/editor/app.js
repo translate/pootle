@@ -1373,15 +1373,13 @@ PTL.editor = {
 
     this.tmData = data.tm_suggestions || null;
     this.editorRow = data.editor;
-
-    // XXX: should probably go somewhere else?
-    // Anytime before `.fetchUnit` for perceived responsiveness
-    this.updateNav();
   },
 
   /* Sets a new unit as the current one, rendering it as well */
   setUnit: function (unit) {
     const newUnit = this.units.setCurrent(unit);
+
+    this.updateNav();
 
     this.fetchUnit(newUnit.id).then(
       () => this.renderUnit()
