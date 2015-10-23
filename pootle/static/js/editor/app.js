@@ -103,6 +103,7 @@ PTL.editor = {
     this.units = new UnitSet([], {
       chunkSize: this.settings.chunkSize
     });
+    this.editorRow = null;
 
     this.filter = 'all';
     this.checks = [];
@@ -341,7 +342,9 @@ PTL.editor = {
               newUnit = this.units.get(uIdParam);
           if (newUnit && newUnit !== current) {
             this.units.setCurrent(newUnit);
-            this.renderUnit();
+            this.fetchUnit(uIdParam).then(
+              () => this.renderUnit()
+            );
             return;
           } else {
             uId = uIdParam;
@@ -480,7 +483,10 @@ PTL.editor = {
         } else {
           this.units.setFirstAsCurrent();
         }
-        this.renderUnit();
+
+        this.fetchUnit(this.units.getCurrent().id).then(
+          () => this.renderUnit()
+        );
       });
 
     }, {'unescape': true});
@@ -1113,6 +1119,22 @@ PTL.editor = {
     );
   },
 
+  renderEditorRow: function (unit) {
+    let eClass = 'edit-row';
+    eClass += unit.get('isfuzzy') ? ' fuzzy-unit' : '';
+    eClass += this.filter !== 'all' ? ' with-ctx' : '';
+
+    const [ctxRowBefore, ctxRowAfter] = this.renderCtxControls({ hasData: false });
+
+    return (
+      (this.filter !== 'all' ? ctxRowBefore : '') +
+      `<tr id="row${unit.id}" class="${eClass}">` +
+        this.editorRow +
+      '</tr>' +
+      (this.filter !== 'all' ? ctxRowAfter : '')
+    );
+  },
+
   /* Renders the editor rows */
   renderRows: function () {
     const unitGroups = this.getUnitGroups();
@@ -1134,7 +1156,7 @@ PTL.editor = {
         let unit = unitGroup.units[i];
 
         if (unit.id === currentUnit.id) {
-          rows.push(this.getEditUnit());
+          rows.push(this.renderEditorRow(unit));
         } else {
           rows.push(this.renderRow(unit));
         }
@@ -1342,6 +1364,34 @@ PTL.editor = {
     return true;
   },
 
+  /* Fetches the HTML widget for a specific unit */
+  fetchUnit: function (uId) {
+    let body = {};
+    this.settings.vFolder && (body.vfolder = this.settings.vFolder);
+
+    return fetch({
+      body,
+      queue: 'unitWidget',
+      url: `/xhr/units/${uId}/edit/`,
+    }).then(
+      (data) => this.setEditUnit(data),
+      this.error
+    );
+  },
+
+  /* Stores editor data for the current unit */
+  setEditUnit: function (data) {
+    const currentUnit = this.units.getCurrent();
+    currentUnit.set('isObsolete', data.is_obsolete);
+
+    this.tmData = data.tm_suggestions || null;
+    this.editorRow = data.editor;
+
+    // XXX: should probably go somewhere else?
+    // Anytime before `.fetchUnit` for perceived responsiveness
+    this.updateNav();
+  },
+
   /* Updates the navigation controls */
   updateNav: function () {
     this.unitCountEl.textContent = this.units.total;
@@ -1351,45 +1401,6 @@ PTL.editor = {
       this.unitIndexEl.textContent = this.units.uIds.indexOf(currentUnit.id) + 1;
     }
 
-  },
-
-  /* Loads the edit unit for the current active unit */
-  getEditUnit: function () {
-    let eClass = 'edit-row';
-    let currentUnit = this.units.getCurrent();
-    let widget = '';
-
-    let reqData = {};
-    this.settings.vFolder && (reqData.vfolder = this.settings.vFolder);
-
-    $.ajax({
-      url: l(`/xhr/units/${currentUnit.id}/edit/`),
-      async: false,
-      data: reqData,
-      dataType: 'json',
-      success: function (data) {
-        PTL.editor.tmData = data.tm_suggestions || null;
-        widget = data.editor;
-
-        PTL.editor.updateNav();
-
-        currentUnit.set('isObsolete', data.is_obsolete);
-      },
-      error: PTL.editor.error
-    });
-
-    eClass += currentUnit.get('isfuzzy') ? " fuzzy-unit" : "";
-    eClass += PTL.editor.filter !== 'all' ? " with-ctx" : "";
-
-    const [ctxRowBefore, ctxRowAfter] = this.renderCtxControls({ hasData: false });
-
-    return (
-      (PTL.editor.filter !== 'all' ? ctxRowBefore : '') +
-      `<tr id="row${currentUnit.id}" class="${eClass}">` +
-        widget +
-      '</tr>' +
-      (PTL.editor.filter !== 'all' ? ctxRowAfter : '')
-    );
   },
 
   /* Pushes translation submissions and moves to the next unit */
