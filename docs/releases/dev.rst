@@ -57,6 +57,8 @@ Details of changes
 - `InnoDB <https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html>`_
   is the only accepted MySQL backend. Deployments using MyISAM must
   :doc:`migrate to either MySQL (InnoDB) or PostgreSQL </server/database_migration>`.
+- Close a database connection before and after each rqworker job once it exceeds
+  the maximum age to imitate Django's request/response cycle.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of
