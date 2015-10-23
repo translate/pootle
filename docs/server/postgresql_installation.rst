@@ -96,18 +96,26 @@ connecting to the database. For PostgreSQL the correct :setting:`ENGINE
        }
    }
 
-Please note that default value for `:setting:CONN_MAX_AGE
-<django:DATABASE-CONN_MAX_AGE>` is `0`. It means that Django creates a connection
-before every request and closes it in the end. PostgreSQL supports persistent
-connections. It will be fine to set `:setting:CONN_MAX_AGE
-<django:DATABASE-CONN_MAX_AGE>` to `None`.
-See https://docs.djangoproject.com/en/1.7/ref/databases/#connection-management
 
+.. _postgresql_installation#persistent-connections:
+
+A Note on Persistent Connections
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The default value for :setting:`CONN_MAX_AGE <django:DATABASE-CONN_MAX_AGE>` is
+``0``. It means that Django creates a connection before every request and closes
+it at the end. PostgreSQL supports persistent connections, and it will be fine
+to set :setting:`CONN_MAX_AGE <django:DATABASE-CONN_MAX_AGE>` to ``None``.
+
+To learn more please check `Django's docs on persistent connections and
+connection management
+<https://docs.djangoproject.com/en/1.7/ref/databases/#connection-management>`_.
 
 .. code-block:: python
 
    DATABASES = {
        'default': {
+           ...
            'CONN_MAX_AGE': None,
            ...
        }
