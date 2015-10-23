@@ -1226,8 +1226,6 @@ PTL.editor = {
       this.hideMsg();
 
       this.reDraw(this.renderRows());
-
-      this.updateNavButtons();
     }
   },
 
@@ -1263,10 +1261,17 @@ PTL.editor = {
   },
 
 
-  /* Updates previous/next navigation button states */
-  updateNavButtons: function () {
+  /* Updates the navigation widget */
+  updateNavigation: function () {
     this.updateNavButton(this.$navPrev, !this.units.hasPrev());
     this.updateNavButton(this.$navNext, !this.units.hasNext());
+
+    this.unitCountEl.textContent = this.units.total;
+
+    var currentUnit = this.units.getCurrent();
+    if (currentUnit !== undefined) {
+      this.unitIndexEl.textContent = this.units.uIds.indexOf(currentUnit.id) + 1;
+    }
   },
 
   /* Fetches more units in case they are needed */
@@ -1381,22 +1386,11 @@ PTL.editor = {
   setUnit: function (unit) {
     const newUnit = this.units.setCurrent(unit);
 
-    this.updateNav();
+    this.updateNavigation();
 
     this.fetchUnit(newUnit.id).then(
       () => this.renderUnit()
     );
-  },
-
-  /* Updates the navigation controls */
-  updateNav: function () {
-    this.unitCountEl.textContent = this.units.total;
-
-    var currentUnit = this.units.getCurrent();
-    if (currentUnit !== undefined) {
-      this.unitIndexEl.textContent = this.units.uIds.indexOf(currentUnit.id) + 1;
-    }
-
   },
 
   /* Pushes translation submissions and moves to the next unit */
