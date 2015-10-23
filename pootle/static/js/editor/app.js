@@ -478,11 +478,7 @@ PTL.editor = {
           return;
         }
 
-        if (uId > 0) {
-          this.units.setCurrent(uId);
-        } else {
-          this.units.setFirstAsCurrent();
-        }
+        this.units.setCurrent(uId);
 
         this.fetchUnit(this.units.getCurrent().id).then(
           () => this.renderUnit()
