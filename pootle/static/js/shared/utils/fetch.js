@@ -12,12 +12,14 @@ import $ from 'jquery';
 let requests = {};
 
 
-function fetch({url, body, method='GET', dataType='json'}) {
-  if (requests[url]) {
-    requests[url].abort();
+function fetch({url, body, method='GET', dataType='json', queue=null}) {
+  queue = queue || url;
+
+  if (requests[queue]) {
+    requests[queue].abort();
   }
 
-  requests[url] = (
+  requests[queue] = (
     $.ajax({
       method,
       url: l(url),
@@ -26,7 +28,7 @@ function fetch({url, body, method='GET', dataType='json'}) {
     })
   );
 
-  return requests[url];
+  return requests[queue];
 }
 
 
