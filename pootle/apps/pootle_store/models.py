@@ -1669,7 +1669,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return unit_ids
 
     def update_units(self, store, uids_to_update, uid_index_map, user,
-                     update_revision=None, submission_type=None):
+                     store_revision, update_revision, submission_type=None):
         """Updates existing units in the store.
 
         :param uids_to_update: UIDs of the units to be updated.
@@ -1684,7 +1684,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         updated = 0
         suggested = 0
 
-        store_revision = parse_pootle_revision(store)
         uids_to_update = list(uids_to_update)
         for unit in self.findid_bulk(uids_to_update):
             # Use the same (parent) object since units will accumulate
@@ -1994,7 +1993,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             (changes['updated'],
              changes['suggested']) = self.update_units(store, common_dbids,
                                                        update_unitids, user,
-                                                       update_revision=update_revision,
+                                                       store_revision, update_revision,
                                                        submission_type=submission_type)
             self.file_mtime = disk_mtime
 
