@@ -40,6 +40,7 @@ collections.UnitSet = Backbone.Collection.extend({
   },
   setCurrent: function (unit) {
     this.activeUnit = unit instanceof this.model ? unit : this.getByUnitId(unit);
+    return this.activeUnit;
   },
 
   fetchedIds: function () {
