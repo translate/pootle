@@ -326,7 +326,7 @@ PTL.editor = {
               newUnit = this.units.get(uIdParam);
           if (newUnit && newUnit !== current) {
             this.units.setCurrent(newUnit);
-            this.displayEditUnit();
+            this.renderUnit();
             return;
           } else {
             uId = uIdParam;
@@ -464,7 +464,7 @@ PTL.editor = {
         } else {
           this.units.setFirstAsCurrent();
         }
-        this.displayEditUnit();
+        this.renderUnit();
       });
 
     }, {'unescape': true});
@@ -1196,7 +1196,7 @@ PTL.editor = {
 
 
   /* Sets the edit view for the current active unit */
-  displayEditUnit: function () {
+  renderUnit: function () {
     if (this.units.length) {
       this.fetchUnits();
 
