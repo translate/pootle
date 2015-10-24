@@ -620,12 +620,12 @@ PTL.editor = {
       active.focus();
       autosize.update(active);
       // Make this fuzzy
-      PTL.editor.goFuzzy();
+      this.goFuzzy();
       // Place cursor at start of target text
-      PTL.editor.cpRE.exec($(active).val());
-      i = PTL.editor.cpRE.lastIndex;
+      this.cpRE.exec($(active).val());
+      i = this.cpRE.lastIndex;
       $(active).caret(i, i);
-      PTL.editor.cpRE.lastIndex = 0;
+      this.cpRE.lastIndex = 0;
     }
   },
 
@@ -690,7 +690,7 @@ PTL.editor = {
     $checkbox.prop('checked', true);
 
     if (!this.settings.isAdmin) {
-      if (!PTL.editor.isSuggestMode()) {
+      if (!this.isSuggestMode()) {
         $('.js-fuzzy-block').show();
       }
       $checkbox[0].defaultChecked = true;
@@ -1052,7 +1052,7 @@ PTL.editor = {
           '</div>',
         ].join('');
 
-    PTL.editor.displayMsg({body: html, showClose: false});
+    this.displayMsg({body: html, showClose: false});
   },
 
 
@@ -1673,7 +1673,7 @@ PTL.editor = {
       this.$filterChecksWrapper.css('display', 'inline-block');
     } else { // No results
       this.displayMsg({ body: gettext('No results.') });
-      this.$filterStatus.select2('val', PTL.editor.filter);
+      this.$filterStatus.select2('val', this.filter);
     }
   },
 
@@ -1960,7 +1960,7 @@ PTL.editor = {
   renderTimeline: function (data) {
     const uid = data.uid;
 
-    if (data.timeline && uid === PTL.editor.units.getCurrent().id) {
+    if (data.timeline && uid === this.units.getCurrent().id) {
       if ($("#translator-comment").length) {
         $(data.timeline).hide().insertAfter("#translator-comment")
                         .slideDown(1000, 'easeOutQuad');
@@ -2000,13 +2000,13 @@ PTL.editor = {
     var filtered = [];
 
     if (results.length > 0 && results[0].source === sourceText) {
-      var $element = $(PTL.editor.focused);
+      var $element = $(this.focused);
       // set only if the textarea is empty
       if ($element.val() === '') {
         var text = results[0].target;
         $element.val(text).trigger('input');
         $element.caret(text.length, text.length);
-        PTL.editor.goFuzzy();
+        this.goFuzzy();
       }
     }
 
@@ -2263,7 +2263,7 @@ PTL.editor = {
         if (that.isSupportedSource(provider.pairs, source)) {
           that.addMTButton($(this).find('.js-toolbar-buttons'),
             provider.buttonClassName,
-            provider.hint + ' (' + source.toUpperCase() + '&rarr;' + PTL.editor.settings.targetLang.toUpperCase() + ')');
+            provider.hint + ' (' + source.toUpperCase() + '&rarr;' + that.settings.targetLang.toUpperCase() + ')');
         }
       });
     }
@@ -2312,7 +2312,7 @@ PTL.editor = {
             i, value;
 
         if (translation === undefined && msg) {
-          PTL.editor.displayError(msg);
+          that.displayError(msg);
           return;
         }
 
@@ -2351,7 +2351,7 @@ PTL.editor = {
 
     $areas.eq(0).trigger('input').focus();
 
-    PTL.editor.goFuzzy();
+    that.goFuzzy();
     return false;
   }
 
