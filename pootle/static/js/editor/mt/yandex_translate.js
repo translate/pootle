@@ -46,8 +46,6 @@ const yandex_translate = {
       });
     };
 
-    /* Prepare URL for requests. */
-    this.url += "?callback=?";
     /* Set API key */
     this.apiKey = apiKey;
     /* Bind event handler */
@@ -63,8 +61,9 @@ const yandex_translate = {
       var transData = {key: yandex_translate.apiKey,
                        text: sourceText,
                        lang: `${langFrom}-${langTo}`};
-      $.jsonp({
+      $.ajax({
         url: yandex_translate.url,
+        crossDomain: true,
         data: transData,
         success: function (r) {
           if (r.text) {

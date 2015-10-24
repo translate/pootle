@@ -44,8 +44,6 @@ const google_translate = {
       });
     };
 
-    /* Prepare URL for requests. */
-    this.url += "?callback=?";
     /* Set API key */
     this.apiKey = apiKey;
     /* Bind event handler */
@@ -62,8 +60,9 @@ const google_translate = {
                        q: sourceText,
                        source: langFrom,
                        target: langTo};
-      $.jsonp({
+      $.ajax({
         url: google_translate.url,
+        crossDomain: true,
         data: transData,
         success: function (r) {
           if (r.data && r.data.translations) {
