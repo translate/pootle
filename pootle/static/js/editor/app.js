@@ -223,7 +223,7 @@ PTL.editor = {
     $(document).on('click', '#js-nav-next', () => this.gotoNext());
     $(document).on('click', '.js-suggestion-reject', this.rejectSuggestion);
     $(document).on('click', '.js-suggestion-accept', this.acceptSuggestion);
-    $(document).on('click', '#js-toggle-timeline', this.toggleTimeline);
+    $(document).on('click', '#js-toggle-timeline', (e) => this.toggleTimeline(e));
     $(document).on('click', '.js-toggle-check', this.toggleCheck);
 
     /* Filtering */
@@ -1982,7 +1982,7 @@ PTL.editor = {
     const $timelineToggle = $('#js-toggle-timeline');
     $timelineToggle.toggleClass('selected');
     if ($timelineToggle.hasClass('selected')) {
-      PTL.editor.showTimeline();
+      this.showTimeline();
     } else {
       $("#timeline-results").slideUp(1000, 'easeOutQuad');
     }
