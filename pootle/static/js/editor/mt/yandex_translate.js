@@ -62,7 +62,7 @@ const yandex_translate = {
     PTL.editor.translate(this, function(sourceText, langFrom, langTo, resultCallback) {
       var transData = {key: yandex_translate.apiKey,
                        text: sourceText,
-                       lang: langFrom+"-"+langTo};
+                       lang: `${langFrom}-${langTo}`};
       $.jsonp({
         url: yandex_translate.url,
         data: transData,
