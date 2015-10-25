@@ -2077,9 +2077,7 @@ PTL.editor = {
       dataType: 'jsonp',
       cache: true,
       success: function (data) {
-        var uid = this.callback.slice(6);
-
-        if (uid === unit.id && data.length) {
+        if (data.length) {
           var sourceText = unit.get('source')[0],
               filtered = PTL.editor.filterTMResults(data, sourceText),
               name = gettext("Similar translations"),
