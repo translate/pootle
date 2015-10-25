@@ -2058,11 +2058,11 @@ PTL.editor = {
           "/unit/?source=" + encodeURIComponent(sText) + "&jsoncallback=?";
 
     if (!sText.length) {
-        return;
+      return;
     }
 
     if (pStyle.length && pStyle != "standard") {
-        tmUrl += '&style=' + pStyle;
+      tmUrl += '&style=' + pStyle;
     }
 
     // Always abort previous requests so we only get results for the
