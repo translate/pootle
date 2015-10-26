@@ -8,7 +8,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import datetime
-import difflib
 import logging
 import operator
 import os
@@ -49,6 +48,7 @@ from pootle_misc.util import import_func
 from pootle_statistics.models import (SubmissionFields,
                                       SubmissionTypes, Submission)
 
+from .diff import StoreDiff
 from .fields import (TranslationStoreField, MultiStringField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes
@@ -77,6 +77,7 @@ NEW = 0
 PARSED = 1
 # Quality checks run
 CHECKED = 2
+
 
 
 ############### Quality Check #############
@@ -1644,30 +1645,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         return obsoleted
 
-    def remove_modified_units(self, unit_ids):
-        """Returns a list of UIDs excluding those which have been modified since
-        the last sync.
-
-        :param unit_ids: set of UIDs for this store.
-        :return: set of UIDs.
-        """
-        # Get units that were modified after last sync
-        filter_by = {'store': self}
-        if self.last_sync_revision is not None:
-            filter_by.update({'revision__gt': self.last_sync_revision})
-
-        # If a dbunit is obsolete then the dbunit should be resurrected in any
-        # case
-        modified_units = set(
-            Unit.objects.filter(**filter_by).exclude(state=OBSOLETE)
-                        .values_list('id', flat=True).distinct()
-        )
-
-        # If some units have been modified since last sync keep them safe
-        unit_ids -= modified_units
-
-        return unit_ids
-
     def update_units(self, store, uids_to_update, uid_index_map, user,
                      store_revision, update_revision, submission_type=None):
         """Updates existing units in the store.
@@ -1695,20 +1672,22 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
             # If the unit's revision is greater than the store's add a
             # suggestion instead.
-            conflict_found = (isinstance(store_revision, int)
+            conflict_found = (newunit
+                              and store_revision is not None
                               and store_revision < unit.revision
                               and unit.target != newunit.target)
             if conflict_found:
                 suggestion, created = unit.add_suggestion(newunit.target, user)
                 if created:
                     suggested += 1
-                continue
 
             # FIXME: `old_unit = copy.copy(unit)?`
             old_target = unit.target_f
             old_state = unit.state
+            changed = False
 
-            changed = unit.update(newunit, user=user)
+            if newunit and not conflict_found:
+                changed = unit.update(newunit, user=user)
 
             if uid in uid_index_map:
                 unit.index = uid_index_map[uid]['index']
@@ -1788,72 +1767,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             # `bulk_create()` them in a single go
             sub.save()
 
-    def get_insert_points(self, opcodes, new_unitid_list, old_unitid_list,
-                          old_unitids):
-        """Returns a list of insert points with update index info.
-
-        :param opcodes: result of new and old unitid lists matching.
-        :param new_unitid_list: new list of UIDs.
-        :param old_unitid_list: old list of UIDs.
-        :param old_unitids: dictionary {'dbid': dbid, 'index': index}
-        :return: a list of tuples
-            ``(insert_at, uids_to_add, next_index, update_index_delta)`` where
-            ``insert_at`` is the point for inserting
-            ``uids_to_add`` are the units to be inserted
-            ``update_index_delta`` is the offset for index updating
-            ``next_index`` is the starting point after which
-            ``update_index_delta`` should be applied.
-        """
-
-        inserts = []
-        for (tag, i1, i2, j1, j2) in opcodes:
-            if tag == 'delete':
-                continue
-            elif tag == 'insert':
-                update_index_delta = 0
-                previous_index = 0
-                if i1 > 0:
-                    previous = old_unitids[old_unitid_list[i1 - 1]]
-                    previous_index = previous['index']
-                next_index = previous_index + 1
-                if i1 < len(old_unitid_list):
-                    next = old_unitids[old_unitid_list[i1]]
-                    next_index = next['index']
-                    delta = j2 - j1
-                    update_index_delta = delta - next_index + previous_index + 1
-
-                inserts.append((previous_index,
-                                new_unitid_list[j1:j2],
-                                next_index,
-                                update_index_delta))
-
-            elif tag == 'replace':
-                i1_index = old_unitids[old_unitid_list[i1 - 1]]['index']
-                i2_index = old_unitids[old_unitid_list[i2 - 1]]['index']
-                update_index_delta = j2 - j1 - i2_index + i1_index
-                inserts.append((i1_index,
-                                new_unitid_list[j1:j2],
-                                i2_index,
-                                update_index_delta))
-        return inserts
-
-    def get_common_dbids(self, opcodes, old_unitid_list, old_unitids):
-        """Returns a set of unit DB ids to be updated.
-
-        :param opcodes: result of new and old unitid lists matching.
-        :param old_unitid_list: old list of UIDs.
-        :param old_unitids: dictionary {'dbid': dbid, 'index': index}
-        :return: a set of unit DB ids to be updated.
-        """
-        update_dbids = set()
-
-        for (tag, i1, i2, j1, j2) in opcodes:
-            if tag == 'equal':
-                update_dbids.update(set(old_unitids[uid]['dbid']
-                                        for uid in old_unitid_list[i1:i2]))
-
-        return update_dbids
-
     def update(self, overwrite=False, store=None, only_newer=False, user=None,
                store_revision=None, submission_type=None):
         """Update DB with units from file.
@@ -1901,119 +1814,66 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         if store_revision is None:
             store_revision = parse_pootle_revision(store)
-        max_unit_revision = self.get_max_unit_revision()
-        update_revision = Revision.incr()
+
+        if user is None:
+            User = get_user_model()
+            user = User.objects.get_system_user()
+
+        changes = {}
         try:
-            changes = {
-                'obsolete': 0,
-                'updated': 0,
-                'added': 0,
-            }
-
-            old_unitid_list = []  # unitid list for comparing (DB)
-            old_unitids = {}  # unitids dict (DB)
-            old_unitid_set = set()
-            old_obsolete_unitid_set = set()  # obsolete unitids in DB
-            update_unitids = {}
-
-            unit_values = self.unit_set.order_by('index').values_list(
-                'unitid', 'state', 'id', 'index',
-            )
-            for (unitid, state, dbid, index) in unit_values:
-                if state == OBSOLETE:
-                    old_obsolete_unitid_set.add(unitid)
-                else:
-                    old_unitid_list.append(unitid)
-                old_unitids[unitid] = {'dbid': dbid, 'index': index}
-                old_unitid_set.add(unitid)
-
-            new_unitid_list = sorted(store.getids(),
-                                     key=lambda x: store.findid(x).index)
-            new_unitid_set = set(new_unitid_list)
-
-            if user is None:
-                User = get_user_model()
-                user = User.objects.get_system_user()
-
-            sm = difflib.SequenceMatcher(None, old_unitid_list, new_unitid_list)
-            opcodes = sm.get_opcodes()
-            common_dbids = self.get_common_dbids(opcodes, old_unitid_list,
-                                                 old_unitids)
-            inserts = self.get_insert_points(opcodes, new_unitid_list,
-                                             old_unitid_list, old_unitids)
-
-            # Step 1:
-            # insert new units
-            # save indexes to be updated for existing units
-
-            offset = 0
-            for (insert_at, uids_to_add, next_index, delta) in inserts:
-                current_offset = offset
-                new_units = (store.findid(uid) for uid in uids_to_add)
-                if delta > 0:
-                    self.update_index(start=next_index + offset, delta=delta)
-                    offset += delta
-
-                for index, unit in enumerate(new_units):
-                    new_unit_index = insert_at + index + 1 + current_offset
-                    uid = unit.getid()
-                    if uid not in old_unitid_set:
-                        # Don't add unit if store revision is set and is less
-                        # than max unit revision.
-                        if (not isinstance(store_revision, int)
-                            or max_unit_revision <= store_revision):
-
-                            self.addunit(unit, new_unit_index, user=user,
-                                         update_revision=update_revision)
-                            changes['added'] += 1
-                    else:
-                        update_unitids[uid] = {'dbid': old_unitids[uid]['dbid'],
-                                               'index': new_unit_index}
-
-            # Step 2: mark obsolete units as such
-
-            obsolete_dbids = [old_unitids[uid]['dbid']
-                              for uid in old_unitid_set -
-                                         old_obsolete_unitid_set -
-                                         new_unitid_set]
-            changes['obsolete'] = \
-                self.mark_units_obsolete(obsolete_dbids,
-                                         update_revision=update_revision)
-
-
-            # Step 3: update existing units
-
-            update_dbids = set([x['dbid'] for x in update_unitids.values()])
-            common_dbids.update(update_dbids)
-
-            # Optimization: only go through unchanged units since the last sync
-            if not overwrite:
-                common_dbids = self.remove_modified_units(common_dbids)
-
-            (changes['updated'],
-             changes['suggested']) = self.update_units(store, common_dbids,
-                                                       update_unitids, user,
-                                                       store_revision, update_revision,
-                                                       submission_type=submission_type)
-            self.file_mtime = disk_mtime
-
-            if (filter(lambda x: changes[x] > 0, changes) and
-                store == self.file.store):
-                if self.last_sync_revision is not None:
-                    changes['unsynced'] = \
-                        self.increment_unsynced_unit_revision(update_revision)
-
-                self.last_sync_revision = update_revision
-
+            to_change = StoreDiff(self, store, store_revision).diff()
+            changes = self.update_from_diff(store, store_revision, to_change,
+                                            user, submission_type)
         finally:
             # Unlock store
             self.state = old_state
             self.save()
             if filter(lambda x: changes[x] > 0, changes):
-                log(u"[update] %s units in %s [revision: %d]" % (
-                    get_change_str(changes), self.pootle_path,
-                    self.get_max_unit_revision())
-                )
+                log(u"[update] %s units in %s [revision: %d]"
+                    % (get_change_str(changes),
+                       self.pootle_path,
+                       self.get_max_unit_revision()))
+
+    def update_from_diff(self, store, store_revision,
+                         to_change, user, submission_type):
+        changes = {}
+        update_revision = Revision.incr()
+
+        # Update indexes
+        for start, delta in to_change["index"]:
+            self.update_index(start=start, delta=delta)
+
+        # Add new units
+        for unit, new_unit_index in to_change["add"]:
+            self.addunit(unit, new_unit_index, user=user,
+                         update_revision=update_revision)
+        changes["added"] = len(to_change["add"])
+
+        # Obsolete units
+        changes["obsoleted"] = self.mark_units_obsolete(to_change["obsolete"],
+                                                        update_revision)
+
+        # Update units
+        update_dbids, uid_index_map = to_change['update']
+        (changes['updated'],
+         changes['suggested']) = (
+            self.update_units(store, update_dbids,
+                              uid_index_map, user,
+                              store_revision, update_revision,
+                              submission_type=submission_type))
+
+        self.file_mtime = self.get_file_mtime()
+
+        update_sync_revision = (
+            filter(lambda x: changes[x] > 0, changes)
+            and store == self.file.store)
+
+        if update_sync_revision:
+            if self.last_sync_revision is not None:
+                changes['unsynced'] = (
+                    self.increment_unsynced_unit_revision(update_revision))
+            self.last_sync_revision = update_revision
+        return changes
 
     def increment_unsynced_unit_revision(self, update_revision):
         filter_by = {
