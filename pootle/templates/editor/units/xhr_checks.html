@@ -9,8 +9,8 @@
       <a href="{% url 'pootle-checks-descriptions' %}#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
       {% if canreview %}
       <a class="js-toggle-check toggle-check" data-check-id="{{ check.id }}">
-	<i title="{% trans 'Mute quality check' %}" class="mute-check icon-block"></i>
-	<i title="{% trans 'Unmute quality check' %}" class="unmute-check icon-block-muted"></i>
+        <i title="{% trans 'Mute quality check' %}" class="mute-check icon-block"></i>
+        <i title="{% trans 'Unmute quality check' %}" class="unmute-check icon-block-muted"></i>
       </a>
       {% endif %}
     </li>
