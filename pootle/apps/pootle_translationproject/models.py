@@ -16,7 +16,6 @@ from translate.storage.base import ParseError
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError
-from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.functional import cached_property

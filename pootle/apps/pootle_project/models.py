@@ -34,7 +34,7 @@ from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
                                      split_pootle_path, to_tp_relative_path)
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
-from pootle_store.filetypes import filetype_choices, factory_classes
+from pootle_store.filetypes import factory_classes
 from pootle_store.util import absolute_real_path
 
 
