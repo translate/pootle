@@ -25,4 +25,9 @@
   data-href="{% url 'pootle-language-admin-permissions' language.code %}">
   {% trans "Permissions" %}
 </option>
+<option
+  value="admin-characters" class="admin"
+  data-href="{% url 'pootle-language-admin-characters' language.code %}">
+  {% trans 'Special Characters' %}
+</option>
 {% endif %}

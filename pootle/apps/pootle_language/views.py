@@ -7,7 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from pootle.core.browser import (make_project_item,
                                  get_table_headings)
@@ -18,6 +18,8 @@ from pootle.core.helpers import (get_export_view_context,
 from pootle.core.utils.json import jsonify
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.admin.permissions import admin_permissions
+
+from .forms import LanguageSpecialCharsForm
 
 
 @get_path_obj
@@ -108,3 +110,23 @@ def language_admin(request, language):
     }
     return admin_permissions(request, language.directory,
                              'languages/admin/permissions.html', ctx)
+
+
+@get_path_obj
+@permission_required('administrate')
+def language_characters_admin(request, language):
+    form = LanguageSpecialCharsForm(request.POST if request.method == 'POST'
+                                                 else None, instance=language)
+    if form.is_valid():
+        form.save()
+        return redirect('pootle-language-browse', language.code)
+
+    ctx = {
+        'page': 'admin-characters',
+
+        'language': language,
+        'directory': language.directory,
+        'form': form,
+    }
+
+    return render(request, 'languages/admin/characters.html', ctx)

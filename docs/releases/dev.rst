@@ -59,6 +59,7 @@ Details of changes
   :doc:`migrate to either MySQL (InnoDB) or PostgreSQL </server/database_migration>`.
 - Close a database connection before and after each rqworker job once it exceeds
   the maximum age to imitate Django's request/response cycle.
+- Language managers can now edit their language's special characters.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of

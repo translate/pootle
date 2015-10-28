@@ -1,0 +1,24 @@
+{% extends "languages/base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Special Characters" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
+  <h2>{% trans 'Special Characters' %}</h2>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    <p>{{ field.errors }}
+      <label for="{{ field.id_for_label }}">{{ field.help_text }}</label>
+      {{ field }}
+    </p>
+    {% endfor %}
+    <p class="buttons">
+      <input type="submit" class="btn" value="{% trans 'Save' %} "/>
+    </p>
+  </form>
+</div>
+{% endblock %}

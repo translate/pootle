@@ -27,4 +27,7 @@ urlpatterns = patterns('pootle_language.views',
     url(r'^(?P<language_code>[^/]*)/admin/permissions/$',
         'language_admin',
         name='pootle-language-admin-permissions'),
+    url(r'^(?P<language_code>[^/]*)/admin/characters/$',
+        'language_characters_admin',
+        name='pootle-language-admin-characters'),
 )
