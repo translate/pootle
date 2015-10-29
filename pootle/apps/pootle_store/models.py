@@ -1620,9 +1620,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return disk_mtime
 
     def update_index(self, start, delta):
-        op = operator.add if delta > 0 else operator.sub
         Unit.objects.filter(store_id=self.id, index__gte=start).update(
-            index=op(F('index'), delta)
+            index=operator.add(F('index'), delta)
         )
 
     def mark_units_obsolete(self, uids_to_obsolete, revision=None):
