@@ -342,11 +342,11 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         return self.project.code in Project.accessible_by_user(user)
 
-    def update(self, overwrite=True):
+    def update(self):
         """Update all stores to reflect state on disk"""
         stores = self.stores.live().exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
-            store.update(overwrite=overwrite)
+            store.update()
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
         """Sync unsaved work on all stores to disk"""

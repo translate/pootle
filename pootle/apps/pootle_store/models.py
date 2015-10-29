@@ -1069,7 +1069,6 @@ class Unit(models.Model, base.TranslationUnit):
         """Merges :param:`merge_unit` with the current unit.
 
         :param merge_unit: The unit that will be merged into the current unit.
-        :param overwrite: Whether to replace the existing translation or not.
         :param comments: Whether to merge translator comments or not.
         :param authoritative: Not used. Kept for Toolkit API consistenty.
         :return: True if the current unit has been changed.
@@ -1767,7 +1766,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             # `bulk_create()` them in a single go
             sub.save()
 
-    def update(self, overwrite=False, store=None, only_newer=False, user=None,
+    def update(self, store=None, only_newer=False, user=None,
                store_revision=None, submission_type=None):
         """Update DB with units from file.
 
