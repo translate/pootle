@@ -49,7 +49,7 @@ def import_file(file, user=None):
                                 "Project/Language? (%s)", (file.name, e)))
 
     try:
-        store.update(overwrite=True, store=f, user=user,
+        store.update(store=f, user=user,
                      submission_type=SubmissionTypes.UPLOAD)
     except Exception as e:
         # This should not happen!
