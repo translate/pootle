@@ -673,7 +673,8 @@ def update_cache_job(instance):
     """RQ job"""
     # The script prefix needs to be set here because the generated
     # URLs need to be aware of that and they are cached. Ideally
-    # Django should take care of setting this up, but it doesn't yet:
+    # Django should take care of setting this up, but it doesn't yet
+    # (fixed in Django 1.10):
     # https://code.djangoproject.com/ticket/16734
     script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
                         else force_unicode(settings.FORCE_SCRIPT_NAME))
