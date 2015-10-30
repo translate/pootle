@@ -820,9 +820,12 @@ def get_edit_unit(request, unit):
     else:
         t = loader.get_template('editor/units/edit.html')
     c = RequestContext(request, template_vars)
-    json['editor'] = t.render(c)
-    json['tm_suggestions'] = unit.get_tm_suggestions()
-    json['is_obsolete'] = unit.isobsolete()
+
+    json.update({
+        'editor': t.render(c),
+        'tm_suggestions': unit.get_tm_suggestions(),
+        'is_obsolete': unit.isobsolete(),
+    })
 
     return JsonResponse(json)
 
