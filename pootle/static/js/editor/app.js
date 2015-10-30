@@ -1375,6 +1375,7 @@ PTL.editor = {
   setEditUnit: function (data) {
     const currentUnit = this.units.getCurrent();
     currentUnit.set('isObsolete', data.is_obsolete);
+    currentUnit.set('sources', data.sources);
 
     this.tmData = data.tm_suggestions || null;
     this.editorRow = data.editor;

@@ -768,8 +768,16 @@ def get_edit_unit(request, unit):
     store = unit.store
     directory = store.parent
     user = request.profile
-    alt_src_langs = get_alt_src_langs(request, user, translation_project)
     project = translation_project.project
+
+    alt_src_langs = get_alt_src_langs(request, user, translation_project)
+    altsrcs = find_altsrcs(unit, alt_src_langs, store=store, project=project)
+    source_language = translation_project.project.source_language
+    sources = {
+        unit.store.translation_project.language.code: unit.target_f.strings
+        for unit in altsrcs
+    }
+    sources[source_language.code] = unit.source_f.strings
 
     priority = None
 
@@ -806,13 +814,12 @@ def get_edit_unit(request, unit):
         'user': request.user,
         'project': project,
         'language': language,
-        'source_language': translation_project.project.source_language,
+        'source_language': source_language,
         'cantranslate': check_user_permission(user, "translate", directory),
         'cansuggest': check_user_permission(user, "suggest", directory),
         'canreview': check_user_permission(user, "review", directory),
         'is_admin': check_user_permission(user, 'administrate', directory),
-        'altsrcs': find_altsrcs(unit, alt_src_langs, store=store,
-                                project=project),
+        'altsrcs': altsrcs,
     }
 
     if translation_project.project.is_terminology or store.is_terminology:
@@ -825,6 +832,7 @@ def get_edit_unit(request, unit):
         'editor': t.render(c),
         'tm_suggestions': unit.get_tm_suggestions(),
         'is_obsolete': unit.isobsolete(),
+        'sources': sources,
     })
 
     return JsonResponse(json)
