@@ -77,6 +77,9 @@ PARSED = 1
 # Quality checks run
 CHECKED = 2
 
+# Resolve conflict flags for Store.update
+POOTLE_WINS = 1
+FILE_WINS = 2
 
 
 ############### Quality Check #############
@@ -1644,7 +1647,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return obsoleted
 
     def update_units(self, store, uids_to_update, uid_index_map, user,
-                     store_revision, update_revision, submission_type=None):
+                     store_revision, update_revision, submission_type=None,
+                     resolve_conflict=POOTLE_WINS):
         """Updates existing units in the store.
 
         :param uids_to_update: UIDs of the units to be updated.
@@ -1673,18 +1677,19 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             conflict_found = (newunit
                               and store_revision is not None
                               and store_revision < unit.revision
-                              and unit.target != newunit.target)
-            if conflict_found:
-                suggestion, created = unit.add_suggestion(newunit.target, user)
-                if created:
-                    suggested += 1
+                              and (unit.target != newunit.target
+                                   or unit.source != newunit.source))
 
             # FIXME: `old_unit = copy.copy(unit)?`
             old_target = unit.target_f
             old_state = unit.state
+            old_submitter = unit.submitted_by
             changed = False
 
-            if newunit and not conflict_found:
+            should_update = (newunit
+                             and not (conflict_found
+                                      and resolve_conflict == POOTLE_WINS))
+            if should_update:
                 changed = unit.update(newunit, user=user)
 
             if uid in uid_index_map:
@@ -1712,6 +1717,15 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
                 unit.save(revision=update_revision)
 
+            if conflict_found:
+                if resolve_conflict == POOTLE_WINS:
+                    (suggestion,
+                     created) = unit.add_suggestion(newunit.target, user)
+                else:
+                    (suggestion,
+                     created) = unit.add_suggestion(old_target, old_submitter)
+                if created:
+                    suggested += 1
         return updated, suggested
 
     def record_submissions(self, unit, old_target, old_state, current_time, user,
@@ -1766,7 +1780,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             sub.save()
 
     def update(self, store, user=None, store_revision=None,
-               submission_type=None):
+               submission_type=None, resolve_conflict=POOTLE_WINS):
         """Update DB with units from file.
 
         :param store: a source `Store` instance from TTK.
@@ -1810,7 +1824,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 changes = self.update_from_diff(store,
                                                 store_revision,
                                                 diff, update_revision,
-                                                user, submission_type)
+                                                user, submission_type,
+                                                resolve_conflict)
         finally:
             # Unlock store
             self.state = old_state
@@ -1823,7 +1838,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return update_revision, changes
 
     def update_from_diff(self, store, store_revision,
-                         to_change, update_revision, user, submission_type):
+                         to_change, update_revision, user,
+                         submission_type, resolve_conflict=POOTLE_WINS):
         changes = {}
 
         # Update indexes
@@ -1847,8 +1863,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             self.update_units(store, update_dbids,
                               uid_index_map, user,
                               store_revision, update_revision,
-                              submission_type=submission_type))
-
+                              submission_type=submission_type,
+                              resolve_conflict=resolve_conflict))
         return changes
 
     def increment_unsynced_unit_revision(self, update_revision):
