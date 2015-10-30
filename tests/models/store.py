@@ -98,6 +98,7 @@ def test_update_unit_order(ru_tutorial_po):
 
     # Parse stores
     ru_tutorial_po.update(overwrite=False, only_newer=False)
+
     # Set last sync revision
     ru_tutorial_po.sync()
 
@@ -145,8 +146,10 @@ def test_update_save_changed_units(ru_update_save_changed_units_po):
             assert unit.mtime == updated_unit.mtime
 
 
+# TEST DISABLED: last_sync_revision is no longer set in Store.update
+#   - instead set in mgmt command - so we should probs test that instead
 @pytest.mark.django_db
-def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
+def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     """Tests setting last_sync_revision after store creation.
     """
     store = ru_update_set_last_sync_revision_po

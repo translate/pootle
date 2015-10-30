@@ -1766,13 +1766,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             # `bulk_create()` them in a single go
             sub.save()
 
-    def update(self, store, only_newer=False, user=None,
-               store_revision=None, submission_type=None):
+    def update(self, store, user=None, store_revision=None,
+               submission_type=None):
         """Update DB with units from file.
 
         :param store: a source `Store` instance from TTK.
-        :param only_newer: Whether to update only the files that changed on
-            disk after the last sync.
         :param store_revision: revision at which the source `Store` was last
             synced.
         :param user: User to attribute updates to.
@@ -1794,13 +1792,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             self.parse(store=store)
             return
 
-        disk_mtime = self.get_file_mtime()
-        if only_newer and disk_mtime == self.file_mtime:
-            # The file on disk wasn't changed since the last sync
-            logging.debug(u"File didn't change since last sync, skipping "
-                          u"%s" % self.pootle_path)
-            return
-
         # Lock store
         logging.debug(u"Updating %s", self.pootle_path)
         old_state = self.state
@@ -1814,13 +1805,16 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             User = get_user_model()
             user = User.objects.get_system_user()
 
+        update_revision = None
         changes = {}
         try:
-            to_change = StoreDiff(self, store, store_revision).diff()
-            changes = self.update_from_diff(store,
-                                            store_revision,
-                                            to_change, user,
-                                            submission_type)
+            diff = StoreDiff(self, store, store_revision).diff()
+            if diff is not None:
+                update_revision = Revision.incr()
+                changes = self.update_from_diff(store,
+                                                store_revision,
+                                                diff, update_revision,
+                                                user, submission_type)
         finally:
             # Unlock store
             self.state = old_state
@@ -1830,11 +1824,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     % (get_change_str(changes),
                        self.pootle_path,
                        self.get_max_unit_revision()))
+        return update_revision, changes
 
     def update_from_diff(self, store, store_revision,
-                         to_change, user, submission_type):
+                         to_change, update_revision, user, submission_type):
         changes = {}
-        update_revision = Revision.incr()
 
         # Update indexes
         for start, delta in to_change["index"]:
@@ -1859,17 +1853,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                               store_revision, update_revision,
                               submission_type=submission_type))
 
-        self.file_mtime = self.get_file_mtime()
-
-        update_sync_revision = (
-            filter(lambda x: changes[x] > 0, changes)
-            and store == self.file.store)
-
-        if update_sync_revision:
-            if self.last_sync_revision is not None:
-                changes['unsynced'] = (
-                    self.increment_unsynced_unit_revision(update_revision))
-            self.last_sync_revision = update_revision
         return changes
 
     def increment_unsynced_unit_revision(self, update_revision):
