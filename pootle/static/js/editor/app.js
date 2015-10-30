@@ -502,10 +502,6 @@ PTL.editor = {
       firstArea.focus();
     }
 
-    this.settings.targetLang = normalizeCode(
-      $('.js-translation-area').attr('lang')
-    );
-
     const $devComments = $('.js-developer-comments');
     $devComments.html(linkHashtags($devComments.html()));
 
@@ -2250,7 +2246,8 @@ PTL.editor = {
    * in the editor toolbar if the language is supported
    */
   addMTButtons: function (provider) {
-    if (this.isSupportedTarget(provider.pairs, PTL.editor.settings.targetLang)) {
+    const targetLang = this.units.getCurrent().get('store').get('target_lang');
+    if (this.isSupportedTarget(provider.pairs, targetLang)) {
       var that = this,
           $sources = $(".translate-toolbar");
 
