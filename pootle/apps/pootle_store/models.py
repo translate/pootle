@@ -52,8 +52,7 @@ from .diff import StoreDiff
 from .fields import (TranslationStoreField, MultiStringField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes
-from .util import (OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED, get_change_str,
-                   parse_pootle_revision)
+from .util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED, get_change_str
 
 
 TM_BROKER = None
@@ -1797,9 +1796,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         old_state = self.state
         self.state = LOCKED
         self.save()
-
-        if store_revision is None:
-            store_revision = parse_pootle_revision(store)
 
         if user is None:
             User = get_user_model()

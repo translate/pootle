@@ -18,17 +18,21 @@ from translate.storage.factory import getclass
 from pootle.core.models import Revision
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.models import NEW, PARSED, Store
+from pootle_store.util import parse_pootle_revision
 
 from .unit import _update_translation
+from ..utils import create_store_from_string
 
 
-def _update_from_upload_file(tutorial, update_file,
+def _update_from_upload_file(store, update_file,
                              content_type="text/x-gettext-translation",
                              user=None, submission_type=None):
     with open(update_file, "r") as f:
         upload = SimpleUploadedFile(os.path.basename(update_file),
                                     f.read(),
                                     content_type)
+    if store.state < PARSED:
+        store.update(store.file.store)
     test_store = getclass(upload)(upload.read())
     tutorial.update(overwrite=False, only_newer=False)
     tutorial.update(overwrite=True, store=test_store,
