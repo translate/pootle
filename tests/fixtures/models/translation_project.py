@@ -73,3 +73,9 @@ def russian_tutorial(russian, tutorial):
 def afrikaans_vfolder_test(afrikaans, vfolder_test):
     """Require Afrikaans Virtual Folder Test."""
     return _require_tp(afrikaans, vfolder_test)
+
+
+@pytest.fixture
+def templates_tutorial(templates, tutorial):
+    """Require Template Tutorial."""
+    return _require_tp(templates, tutorial)

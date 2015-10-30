@@ -31,10 +31,10 @@ def _import_file(file_name, file_dir=TEST_PO_DIR,
 
 
 @pytest.mark.django_db
-def test_import_success(en_tutorial_po):
-    assert en_tutorial_po.state == NEW
+def test_import_success(en_tutorial_po_no_file):
+    assert en_tutorial_po_no_file.state == NEW
     _import_file(IMPORT_SUCCESS)
-    store = Store.objects.get(pk=en_tutorial_po.pk)
+    store = Store.objects.get(pk=en_tutorial_po_no_file.pk)
     assert store.state == PARSED
 
 

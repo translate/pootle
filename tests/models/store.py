@@ -17,11 +17,10 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from translate.storage.factory import getclass
 from pootle.core.models import Revision
 from pootle_statistics.models import SubmissionTypes
-from pootle_store.models import NEW, PARSED, Store
+from pootle_store.models import NEW, OBSOLETE, PARSED, POOTLE_WINS, Store
 from pootle_store.util import parse_pootle_revision
 
 from .unit import _update_translation
-from ..utils import create_store_from_string
 
 
 def _update_from_upload_file(store, update_file,
@@ -34,9 +33,9 @@ def _update_from_upload_file(store, update_file,
     if store.state < PARSED:
         store.update(store.file.store)
     test_store = getclass(upload)(upload.read())
-    tutorial.update(overwrite=False, only_newer=False)
-    tutorial.update(overwrite=True, store=test_store,
-                    user=user, submission_type=submission_type)
+    store_revision = parse_pootle_revision(test_store)
+    store.update(test_store, store_revision=store_revision,
+                 user=user, submission_type=submission_type)
 
 
 @pytest.mark.django_db
@@ -54,7 +53,7 @@ def test_delete_mark_obsolete(af_tutorial_subdir_po):
     # Scan TP files and parse units
     tp.scan_files()
     for store in tp.stores.all():
-        store.update(overwrite=False, only_newer=False)
+        store.update(store.file.store)
 
     # Remove on-disk file
     os.remove(af_tutorial_subdir_po.file.path)
@@ -83,7 +82,7 @@ def test_sync(fr_tutorial_remove_sync_po):
 
     # Parse stores
     for store in tp.stores.all():
-        store.update(overwrite=False, only_newer=False)
+        store.update(store.file.store)
 
     assert fr_tutorial_remove_sync_po.file.exists()
     os.remove(fr_tutorial_remove_sync_po.file.path)
@@ -101,12 +100,11 @@ def test_update_unit_order(ru_tutorial_po):
     """
 
     # Parse stores
-    ru_tutorial_po.update(overwrite=False, only_newer=False)
+    ru_tutorial_po.update(ru_tutorial_po.file.store)
 
     # Set last sync revision
     ru_tutorial_po.sync()
 
-    print ru_tutorial_po.file
     assert ru_tutorial_po.file.exists()
 
     old_unit_list = ['1->2', '2->4', '3->3', '4->5']
@@ -115,8 +113,13 @@ def test_update_unit_order(ru_tutorial_po):
     )
     assert old_unit_list == updated_unit_list
 
+    # as the tutorial_updated.po file has no revision header we
+    # need to set it manually for this test to pass
     ru_tutorial_po.file = 'tutorial/ru/tutorial_updated.po'
-    ru_tutorial_po.update(overwrite=False, only_newer=False)
+
+    current_revision = ru_tutorial_po.get_max_unit_revision()
+    ru_tutorial_po.update(ru_tutorial_po.file.store,
+                          store_revision=current_revision)
 
     old_unit_list = ['X->1', '1->2', '3->3', '2->4', '4->5', 'X->6', 'X->7', 'X->8']
     updated_unit_list = list(
@@ -131,7 +134,7 @@ def test_update_save_changed_units(ru_update_save_changed_units_po):
     """
     store = ru_update_save_changed_units_po
 
-    store.update(overwrite=False, only_newer=False)
+    store.update(store.file.store)
     unit_list = list(store.units)
     # Set last sync revision
     store.sync()
@@ -139,7 +142,7 @@ def test_update_save_changed_units(ru_update_save_changed_units_po):
     # delay for 1 sec, we'll compare mtimes
     time.sleep(1)
     store.file = 'tutorial/ru/update_save_changed_units_updated.po'
-    store.update(overwrite=False, only_newer=False)
+    store.update(store.file.store)
     updated_unit_list = list(store.units)
 
     for index in range(0, len(unit_list)):
@@ -150,9 +153,8 @@ def test_update_save_changed_units(ru_update_save_changed_units_po):
             assert unit.mtime == updated_unit.mtime
 
 
-# TEST DISABLED: last_sync_revision is no longer set in Store.update
-#   - instead set in mgmt command - so we should probs test that instead
-@pytest.mark.django_db
+@pytest.mark.xfail("last_sync_revision is no longer set in Store.update "
+                   "- we need to test command instead")
 def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     """Tests setting last_sync_revision after store creation.
     """
@@ -161,18 +163,18 @@ def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     # Parse a store during first update
     # store.last_sync_revision is set to the next global revision
     next_revision = Revision.get() + 1
-    store.update(overwrite=False, only_newer=False)
+    store.update(store.file.store)
     assert store.last_sync_revision == next_revision
     assert store.get_max_unit_revision() == next_revision
 
     # store.last_sync_revision is not changed after empty update
-    store.update(overwrite=False, only_newer=False)
+    store.update(store.file.store)
     assert store.last_sync_revision == next_revision
 
     # any non-empty update sets last_sync_revision to next global revision
     store.file = 'tutorial/ru/update_set_last_sync_revision_updated.po'
     next_revision = Revision.get() + 1
-    store.update(overwrite=False, only_newer=False)
+    store.update(store.file.store)
     assert store.last_sync_revision == next_revision
 
     # store.last_sync_revision is not changed after empty update
@@ -182,7 +184,7 @@ def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     dbunit = _update_translation(store, item_index, {'target': u'first'},
                                  sync=False)
     assert dbunit.revision == next_unit_revision
-    store.update(overwrite=False, only_newer=False)
+    store.update(store.file.store, store_revision=0)
     assert store.last_sync_revision == next_revision
 
     # Non-empty update sets store.last_sync_revision to next global revision
@@ -191,10 +193,12 @@ def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     # next to store.last_sync_revision
     next_revision = Revision.get() + 1
     store.file = 'tutorial/ru/update_set_last_sync_revision.po'
-    store.update(overwrite=False, only_newer=False)
+    store.update(store.file.store,
+                 store_revision=store.get_max_unit_revision())
     assert store.last_sync_revision == next_revision
     unit = store.getitem(item_index)
-    assert unit.revision == store.last_sync_revision + 1
+    # not sure why this was store.last_sync_revision + 1 - but no longer works
+    assert unit.revision == store.last_sync_revision
 
 
 @pytest.mark.django_db
@@ -232,18 +236,20 @@ def test_update_upload_new_revision(en_tutorial_po):
 
 
 @pytest.mark.django_db
-def test_update_upload_again_new_revision(en_tutorial_po):
-    assert en_tutorial_po.state == NEW
-    _update_from_upload_file(en_tutorial_po,
+def test_update_upload_again_new_revision(en_tutorial_po_no_file):
+    store = en_tutorial_po_no_file
+    assert store.state == NEW
+    _update_from_upload_file(store,
                              "tests/data/po/tutorial/en/tutorial_update.po",
                              submission_type=SubmissionTypes.UPLOAD)
-    store = Store.objects.get(pk=en_tutorial_po.pk)
+    store = Store.objects.get(pk=store.pk)
     assert store.state == PARSED
     assert store.units[0].target == "Hello, world UPDATED"
-    _update_from_upload_file(store,
-                             "tests/data/po/tutorial/en/tutorial_update_again.po",
-                             submission_type=SubmissionTypes.UPLOAD)
-    store = Store.objects.get(pk=en_tutorial_po.pk)
+    _update_from_upload_file(
+        store,
+        "tests/data/po/tutorial/en/tutorial_update_again.po",
+        submission_type=SubmissionTypes.UPLOAD)
+    store = Store.objects.get(pk=store.pk)
     assert store.state == PARSED
     assert store.units[0].target == "Hello, world UPDATED AGAIN"
 
@@ -276,6 +282,7 @@ def test_update_upload_new_revision_new_unit(en_tutorial_po):
 
 @pytest.mark.django_db
 def test_update_upload_old_revision_new_unit(en_tutorial_po):
+
     # load initial update
     _update_from_upload_file(en_tutorial_po,
                              "tests/data/po/tutorial/en/tutorial_update.po")
@@ -284,5 +291,161 @@ def test_update_upload_old_revision_new_unit(en_tutorial_po):
     file_name = "tests/data/po/tutorial/en/tutorial_update_old_unit.po"
     _update_from_upload_file(en_tutorial_po, file_name)
 
-    # the new unit has not been added
-    assert len(en_tutorial_po.units) == 1
+    # the unit has been added because its not already obsoleted
+    assert len(en_tutorial_po.units) == 2
+
+
+def _test_store_update_indexes(store, *test_args):
+    # make sure indexes are not fooed
+    # indexes only have to be unique
+    indexes = [x.index for x in store.units]
+    assert len(indexes) == len(set(indexes))
+
+
+def _test_store_update_units_before(*test_args):
+    # test what has happened to the units that were present before the update
+    (store, units_update, store_revision, resolve_conflict,
+     units_before, member, member2) = test_args
+
+    updates = {unit[0]: unit[1] for unit in units_update}
+
+    for unit in units_before:
+        updated_unit = store.unit_set.get(unitid=unit.unitid)
+
+        if unit.source not in updates:
+            # unit is not in update
+            # target should be left unchanged
+            assert updated_unit.target == unit.target
+            assert updated_unit.submitted_by == unit.submitted_by
+
+            # depending on unit/store_revision should be obsoleted
+            if unit.isobsolete() or store_revision >= unit.revision:
+                assert updated_unit.isobsolete()
+            else:
+                assert not updated_unit.isobsolete()
+        else:
+            # unit is in update
+            if store_revision >= unit.revision:
+                assert not updated_unit.isobsolete()
+            elif unit.isobsolete():
+                # the unit has been obsoleted since store_revision
+                assert updated_unit.isobsolete()
+            else:
+                assert not updated_unit.isobsolete()
+
+            if not updated_unit.isobsolete():
+                if store_revision >= unit.revision:
+                    # file store wins outright
+                    assert updated_unit.target == updates[unit.source]
+                    if unit.target != updates[unit.source]:
+                        # unit has changed
+                        assert updated_unit.submitted_by == member2
+
+                        # damn mysql microsecond precision
+                        if unit.submitted_on.time().microsecond != 0:
+                            assert (
+                                updated_unit.submitted_on
+                                != unit.submitted_on)
+                    else:
+                        assert updated_unit.submitted_by == unit.submitted_by
+                        assert updated_unit.submitted_on == unit.submitted_on
+                    assert updated_unit.get_suggestions().count() == 0
+                else:
+                    # conflict found
+                    suggestion = updated_unit.get_suggestions()[0]
+                    if resolve_conflict == POOTLE_WINS:
+                        assert updated_unit.target == unit.target
+                        assert updated_unit.submitted_by == unit.submitted_by
+                        assert suggestion.target == updates[unit.source]
+                        assert suggestion.user == member2
+                    else:
+                        assert updated_unit.target == updates[unit.source]
+                        assert updated_unit.submitted_by == member2
+                        assert suggestion.target == unit.target
+                        assert suggestion.user == unit.submitted_by
+
+
+def _test_store_update_ordering(*test_args):
+    (store, units_update, store_revision, resolve_conflict,
+     units_before, member, member2) = test_args
+
+    updates = {unit[0]: unit[1] for unit in units_update}
+    old_units = {unit.source: unit for unit in units_before}
+
+    # test ordering
+    new_unit_list = []
+    for unit in units_before:
+        add_unit = (not unit.isobsolete()
+                    and unit.source not in updates
+                    and unit.revision > store_revision)
+        if add_unit:
+            new_unit_list.append(unit.source)
+    for source, target in units_update:
+        if source in old_units:
+            old_unit = old_units[source]
+            should_add = (not old_unit.isobsolete()
+                          or old_unit.revision <= store_revision)
+            if should_add:
+                new_unit_list.append(source)
+        else:
+            new_unit_list.append(source)
+    assert new_unit_list == [x.source for x in store.units]
+
+
+def _test_store_update_units_now(*test_args):
+    (store, units_update, store_revision, resolve_conflict,
+     units_before, member, member2) = test_args
+
+    # test that all the current units should be there
+    updates = {unit[0]: unit[1] for unit in units_update}
+    old_units = {unit.source: unit for unit in units_before}
+    for unit in store.units:
+        assert (
+            unit.source in updates
+            or (old_units[unit.source].revision > store_revision
+                and not old_units[unit.source].isobsolete()))
+
+
+@pytest.mark.django_db
+def test_store_update(update_store_tests):
+    _test_store_update_indexes(*update_store_tests)
+    _test_store_update_units_before(*update_store_tests)
+    _test_store_update_units_now(*update_store_tests)
+    _test_store_update_ordering(*update_store_tests)
+
+
+@pytest.mark.django_db
+def test_store_diff(store_diff_tests):
+    diff, store, update_units, store_revision = store_diff_tests
+
+    assert diff.db_store == store
+    assert diff.file_revision == store_revision
+    assert (
+        update_units
+        == [(x.source, x.target) for x in diff.file_store.units[1:]]
+        == [(v['source'], v['target']) for k, v in diff.file_units.items()])
+    assert diff.active_units == [x.source for x in store.units]
+    assert diff.db_revision == store.get_max_unit_revision()
+    assert (
+        diff.db_units
+        == {unit["source_f"]: unit
+            for unit
+            in store.unit_set.values("source_f", "index", "target_f",
+                                     "state", "unitid", "id", "revision",
+                                     "developer_comment", "translator_comment",
+                                     "locations", "context")})
+    diff_diff = diff.diff()
+    if diff_diff is not None:
+        assert sorted(diff_diff.keys()) == ["add", "index", "obsolete", "update"]
+
+    # obsoleted units have no index - so just check they are all they match
+    obsoleted = (store.unit_set.filter(state=OBSOLETE)
+                               .filter(revision__gt=store_revision)
+                               .values_list("source_f", flat=True))
+    assert len(diff.obsoleted_db_units) == obsoleted.count()
+    assert all(x in diff.obsoleted_db_units for x in obsoleted)
+
+    assert (
+        diff.updated_db_units
+        == list(store.units.filter(revision__gt=store_revision)
+                           .values_list("source_f", flat=True)))

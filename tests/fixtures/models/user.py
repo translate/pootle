@@ -71,6 +71,12 @@ def member(db):
 
 
 @pytest.fixture
+def trans_system(transactional_db):
+    """Require the system user."""
+    return _require_user('trans_system', 'Transactional system user')
+
+
+@pytest.fixture
 def trans_member(transactional_db):
     """Require a member user."""
     return _require_user('trans_member', 'Transactional member')

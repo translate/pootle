@@ -29,7 +29,7 @@ def test_delete_mark_obsolete_resurrect_sync(fr_tutorial_subdir_to_remove_po):
 
     # Parse stores
     for store in tp.stores.all():
-        store.update(overwrite=False, only_newer=False)
+        store.update(store.file.store)
 
     # Remove on-disk directory
     os.remove(fr_tutorial_subdir_to_remove_po.file.path)

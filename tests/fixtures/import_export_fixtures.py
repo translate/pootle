@@ -6,7 +6,6 @@
 
 import os
 import shutil
-import tempfile
 import pytest
 
 from .models import store
@@ -35,14 +34,16 @@ def pytest_generate_tests(metafunc):
 
 
 @pytest.fixture
-def ts_directory(request, settings):
+def ts_directory(request, tmpdir):
     """Sets up a tmp directory with test ts files."""
+
+    from django.conf import settings
+    from pootle_store.models import fs
+
+    test_base_dir = str(tmpdir)
+
     ts_translation_dir = os.path.join(settings.ROOT_DIR,
                                       'tests', 'data', 'ts')
-    temp_dir = os.path.join(ts_translation_dir, ".tmp")
-    if not os.path.exists(temp_dir):
-        os.mkdir(temp_dir)
-    test_base_dir = tempfile.mkdtemp(dir=temp_dir)
 
     projects = [dirname for dirname
                 in os.listdir(ts_translation_dir)
@@ -53,8 +54,17 @@ def ts_directory(request, settings):
         # Copy files over the temporal dir
         shutil.copytree(src_dir, os.path.join(test_base_dir, project))
 
+    pootle_dir = settings.POOTLE_TRANSLATION_DIRECTORY
+
+    # Adjust locations
+    settings.POOTLE_TRANSLATION_DIRECTORY = test_base_dir
+    fs.location = test_base_dir
+
     def _cleanup():
         shutil.rmtree(test_base_dir)
+        settings.POOTLE_TRANSLATION_DIRECTORY = pootle_dir
+        fs.location = pootle_dir
+
     request.addfinalizer(_cleanup)
 
     return test_base_dir
