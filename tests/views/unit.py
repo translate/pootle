@@ -37,9 +37,6 @@ def test_get_units_ordered(rf, default, admin, test_get_units_po):
     """Tests units can be retrieved while applying order filters."""
     view = get_units
 
-    # Load up stores
-    test_get_units_po.require_units()
-
     url = '/?path=/af/tutorial/&filter=incomplete&sort=newest&initial=true'
 
     request = create_api_request(rf, url=url, user=default)
