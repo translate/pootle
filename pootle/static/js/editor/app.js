@@ -2259,7 +2259,7 @@ PTL.editor = {
         if (that.isSupportedSource(provider.pairs, source)) {
           that.addMTButton($(this).find('.js-toolbar-buttons'),
             provider.buttonClassName,
-            provider.hint + ' (' + source.toUpperCase() + '&rarr;' + that.settings.targetLang.toUpperCase() + ')');
+            provider.hint + ' (' + source.toUpperCase() + '&rarr;' + targetLang.toUpperCase() + ')');
         }
       });
     }
