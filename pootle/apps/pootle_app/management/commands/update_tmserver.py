@@ -20,7 +20,9 @@ from translate.storage import factory
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.utils import dateparse
 
+from pootle.core.utils import dateformat
 from pootle_store.models import Unit
 
 
@@ -57,6 +59,7 @@ class DBParser(object):
                 'revision',
                 'source_f',
                 'target_f',
+                'submitted_on',
                 'submitted_by__username',
                 'submitted_by__full_name',
                 'submitted_by__email',
@@ -76,6 +79,14 @@ class DBParser(object):
         if unit['submitted_by__email']:
             email_md5 = md5(unit['submitted_by__email']).hexdigest()
 
+        iso_submitted_on = unit.get('submitted_on', None)
+
+        display_submitted_on = None
+        if iso_submitted_on:
+            display_submitted_on = dateformat.format(
+                dateparse.parse_datetime(str(iso_submitted_on))
+            )
+
         return {
             '_index': self.INDEX_NAME,
             '_type': unit['store__translation_project__language__code'],
@@ -88,6 +99,8 @@ class DBParser(object):
             'email_md5': email_md5,
             'source': unit['source_f'],
             'target': unit['target_f'],
+            'iso_submitted_on': iso_submitted_on,
+            'display_submitted_on': display_submitted_on,
         }
 
 
@@ -153,6 +166,8 @@ class FileParser(object):
             'email_md5': None,
             'source': unit.source,
             'target': unit.target,
+            'iso_submitted_on': None,
+            'display_submitted_on': None,
         }
 
 
