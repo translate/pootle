@@ -1418,7 +1418,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if hasattr(self, '_units'):
             return self._units
 
-        self.require_units()
         return self.unit_set.filter(state__gt=OBSOLETE).order_by('index') \
                             .select_related('store__translation_project')
 
@@ -1518,11 +1517,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             get_editor_filter(**kwargs),
         ])
 
-    def require_units(self):
-        """Make sure file is parsed and units are created."""
-        if self.state < PARSED and self.unit_set.count() == 0:
-            self.parse()
-
     def require_dbid_index(self, update=False, obsolete=False):
         """build a quick mapping index between unit ids and database ids"""
         if update or not hasattr(self, "dbid_index"):
@@ -1564,55 +1558,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             return True
 
         return False
-
-    @transaction.atomic
-    def parse(self, store=None):
-        self.clean_stale_lock()
-
-        if self.state == LOCKED:
-            # File currently being updated
-            # FIXME: shall we idle wait for lock to be released first? what
-            # about stale locks?
-            logging.info(u"Attemped to update %s while locked",
-                         self.pootle_path)
-            return
-
-        if store is None:
-            store = self.file.store
-
-        if self.state < PARSED:
-            logging.debug(u"Parsing %s", self.pootle_path)
-            # no existing units in db, file hasn't been parsed before
-            # no point in merging, add units directly
-            old_state = self.state
-            self.state = LOCKED
-            self.save()
-            keys = []
-            try:
-                update_revision = Revision.incr()
-                for index, unit in enumerate(store.units):
-                    # Dont add duplicates
-                    if unit.getid() in keys:
-                        logging.warning(u'Unable to add duplicate unit: %s'
-                                        % unit.getid())
-                        continue
-                    keys.append(unit.getid())
-                    if unit.istranslatable():
-                        self.addunit(unit, index,
-                                     update_revision=update_revision)
-            except:
-                # Something broke, delete any units that got created
-                # and return store state to its original value
-                self.unit_set.all().delete()
-                self.state = old_state
-                self.save()
-                raise
-
-            self.state = PARSED
-            self.last_sync_revision = update_revision
-            self.mark_all_dirty()
-            self.save()
-            return
 
     def get_file_mtime(self):
         disk_mtime = datetime.datetime \
@@ -1798,12 +1743,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             logging.info(u"Attempted to update %s while locked",
                          self.pootle_path)
             return
-        elif self.state < PARSED:
-            # File has not been parsed before
-            logging.debug(u"Attempted to update unparsed file %s",
-                          self.pootle_path)
-            self.parse(store=store)
-            return
 
         # Lock store
         logging.debug(u"Updating %s", self.pootle_path)
@@ -1828,7 +1767,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                                 resolve_conflict)
         finally:
             # Unlock store
-            self.state = old_state
+            if old_state < PARSED:
+                self.state = PARSED
+            else:
+                self.state = old_state
             self.save()
             if filter(lambda x: changes[x] > 0, changes):
                 log(u"[update] %s units in %s [revision: %d]"
