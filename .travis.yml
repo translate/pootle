@@ -23,6 +23,7 @@ install:
 before_script:
   - if [[ $DATABASE_BACKEND == 'postgres' ]]; then psql -c 'create database pootle;' -U postgres; fi
   - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e 'create database pootle CHARACTER SET utf8 COLLATE utf8_general_ci;'; fi
+  - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e "SET GLOBAL wait_timeout = 36000;"; fi
 script:
   - python -m compileall -q -f .
   - make docs
