@@ -1453,6 +1453,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def save(self, *args, **kwargs):
         created = not self.id
+        update_cache = kwargs.pop("update_cache", True)
+
         self.pootle_path = self.parent.pootle_path + self.name
 
         super(Store, self).save(*args, **kwargs)
@@ -1470,7 +1472,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 unit.index = index + i
                 unit.save(revision=revision)
 
-        if self.state >= PARSED:
+        if update_cache:
             self.update_dirty_cache()
 
     def delete(self, *args, **kwargs):
@@ -1748,7 +1750,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         logging.debug(u"Updating %s", self.pootle_path)
         old_state = self.state
         self.state = LOCKED
-        self.save()
+        self.save(update_cache=False)
 
         if user is None:
             User = get_user_model()
@@ -1771,8 +1773,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 self.state = PARSED
             else:
                 self.state = old_state
-            self.save()
-            if filter(lambda x: changes[x] > 0, changes):
+            has_changed = any(x > 0 for x in changes.values())
+            self.save(update_cache=has_changed)
+            if has_changed:
                 log(u"[update] %s units in %s [revision: %d]"
                     % (get_change_str(changes),
                        self.pootle_path,

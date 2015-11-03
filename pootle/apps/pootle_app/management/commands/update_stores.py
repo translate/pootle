@@ -80,7 +80,7 @@ class Command(PootleCommand):
                 logging.info(u"[update] unsynced %d units in %s [revision: %d]"
                              % (update_unsynced, store.pootle_path,
                                 update_revision))
-        store.save()
+        store.save(update_cache=False)
 
     def handle_all(self, **options):
         scan_translation_projects(languages=self.languages,
