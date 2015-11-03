@@ -80,3 +80,5 @@ log/
 # custom manage shell script
 rqworker
 manage
+
+.coverage
