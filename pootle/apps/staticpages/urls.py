@@ -9,8 +9,8 @@
 from django.conf.urls import include, url
 
 from .views import (AdminTemplateView, PageCreateView, PageDeleteView,
-                    PageUpdateView, display_page, legal_agreement,
-                    preview_content)
+                    PageUpdateView, display_page, edit_announcement,
+                    legal_agreement, preview_content)
 
 
 page_patterns = [
@@ -43,6 +43,9 @@ xhr_patterns = [
     url(r'^preview/?$',
         preview_content,
         name='pootle-xhr-preview'),
+    url(r'^announcement/(?P<announcement_pk>\d+)/edit/$',
+        edit_announcement,
+        name='pootle-staticpages-edit-announcement'),
 ]
 
 

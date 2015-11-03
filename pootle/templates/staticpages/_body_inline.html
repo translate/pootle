@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load cleanhtml %}
+<div class="staticpage js-announcement-{{ announcement.pk }}">
+  <h1 class="title">
+    {{ announcement.title }}
+    {% if can_be_edited %}
+    <span class="edit-link">
+      <a href="{% url 'pootle-staticpages-edit-announcement' announcement.pk %}"
+         data-announcement-pk="{{ announcement.pk }}"
+         class="js-edit-sidebar-toggle">{% trans "edit" %}</a>
+    </span>
+    {% endif %}
+  </h1>
+
+  {% with language_code=language.code %}
+    {{ announcement.body|rewrite_language_links:language_code }}
+  {% endwith %}
+</div>

@@ -11,7 +11,35 @@ from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Agreement
+from .models import ANN_VPATH, Agreement, StaticPage
+
+
+class AnnouncementForm(forms.ModelForm):
+
+    class Meta:
+        model = StaticPage
+        fields = ('title', 'virtual_path', 'active', 'body', )
+        help_texts = {
+            'virtual_path': '',
+            'active': '',
+        }
+        labels = {
+            'virtual_path': '',
+            'active': '',
+            'title': '',
+            'body': '',
+        }
+        widgets = {
+            'virtual_path': forms.HiddenInput(),
+            'active': forms.HiddenInput(),
+        }
+
+    def save(self, *args, **kwargs):
+        if not self.cleaned_data['virtual_path'].startswith(ANN_VPATH):
+            orig_vpath = self.cleaned_data['virtual_path']
+            self.instance.virtual_path = ANN_VPATH + orig_vpath
+
+        return super(AnnouncementForm, self).save(*args, **kwargs)
 
 
 def agreement_form_factory(pages, user):

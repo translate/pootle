@@ -144,6 +144,47 @@ PTL.common = {
       cookie(cookieName, JSON.stringify(cookieData), { path: '/' });
     });
 
+    $(document).on('click', '.js-edit-sidebar-toggle', (e) => {
+      e.preventDefault();
+
+      const $sidebar = $('.js-sidebar');
+      const $sidebarEditContent = $('.js-sidebar-edit-content');
+      const openClassName = 'sidebar-edit-open';
+
+      $sidebar.toggleClass(openClassName);
+
+      if ($sidebar.hasClass(openClassName)) {
+        const announcementPk = e.target.dataset.announcementPk;
+
+        $.ajax({
+          url: `/xhr/announcement/${announcementPk}/edit/`,
+          type: 'GET',
+          success: (data) => {
+            $sidebarEditContent.html(data.formSnippet);
+            $sidebarEditContent.show();
+
+            PTL.commonAdmin.init({
+              page: 'staticpages',
+              opts: {
+                htmlName: data.htmlName,
+                initialValue: data.initialValue,
+                markup: PTL.settings.MARKUP_FILTER,
+              },
+            });
+          },
+          complete: (xhr) => {
+            if (xhr.status === 400) {
+              const formSnippet = $.parseJSON(xhr.responseText).formSnippet;
+              $sidebarEditContent.html(data.formSnippet);
+              $sidebarEditContent.show();
+            }
+          },
+
+
+        });
+      }
+    });
+
     /* Popups */
     $(document).magnificPopup({
       type: 'ajax',

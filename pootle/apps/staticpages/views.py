@@ -7,11 +7,11 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.template import RequestContext
-from django.template.loader import get_template
+from django.template.loader import get_template, render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
@@ -19,9 +19,11 @@ from django.views.generic import (CreateView, DeleteView, TemplateView,
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.markup.filters import apply_markup_filter
 from pootle.core.views import SuperuserRequiredMixin
+from pootle_app.models.directory import Directory
+from pootle_app.models.permissions import check_user_permission
 from pootle_misc.util import ajax_required
 
-from .forms import agreement_form_factory
+from .forms import AnnouncementForm, agreement_form_factory
 from .models import ANN_TYPE, ANN_VPATH, AbstractPage, LegalPage, StaticPage
 
 
@@ -233,4 +235,61 @@ def preview_content(request):
 
     return JsonResponse({
         'rendered': apply_markup_filter(request.POST['text']),
+    })
+
+
+@ajax_required
+def edit_announcement(request, announcement_pk):
+    try:
+        announcement = StaticPage.objects.get(
+            pk=announcement_pk,
+            virtual_path__startswith=ANN_TYPE,
+        )
+    except StaticPage.DoesNotExist:
+        return JsonResponseBadRequest({
+            'msg': _('Only announcements can be edited here.'),
+        })
+
+    dir_path = '/' + announcement.virtual_path.replace(ANN_VPATH, '') + '/'
+    try:
+        directory = Directory.objects.get(pootle_path=dir_path)
+    except StaticPage.DoesNotExist:
+        return JsonResponseBadRequest({
+            'msg': _('Insufficient rights to edit the announcement.'),
+        })
+
+    can_be_edited = check_user_permission(request.user, 'administrate',
+                                          directory)
+
+    if not can_be_edited:
+        return JsonResponseBadRequest({
+            'msg': _('Insufficient rights to edit the announcement.'),
+        })
+
+    form = AnnouncementForm(request.POST if request.method == 'POST' else None,
+                            instance=announcement)
+
+    ctx = {
+        'form': form,
+        'form_action': reverse('pootle-staticpages-edit-announcement',
+                               args=[announcement.pk]),
+    }
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return JsonResponse({})
+        else:
+            return JsonResponseBadRequest({
+                'formSnippet': render_to_string('staticpages/_edit_inline.html',
+                                                ctx, RequestContext(request)),
+                'htmlName': form['body'].html_name,
+                'initialValue': form.initial['body'].raw,
+            })
+
+    return JsonResponse({
+        'formSnippet': render_to_string('staticpages/_edit_inline.html', ctx,
+                                        RequestContext(request)),
+        'htmlName': form['body'].html_name,
+        'initialValue': form.initial['body'].raw,
     })

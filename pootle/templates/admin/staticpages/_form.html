@@ -8,7 +8,7 @@
 </form>
 {% endif %}
 
-<form action="" method="post" class="staticpages-form">
+<form action="{{ form_action }}" method="post" class="staticpages-form">
   {% csrf_token %}
   {{ form.non_field_errors }}
   {% include 'admin/staticpages/_field.html' with field=form.title %}

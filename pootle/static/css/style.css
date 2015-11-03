@@ -544,6 +544,7 @@ td.stats-name a:hover > i + span,
     transition: all 0.3s ease 0s;
 }
 
+#sidebar-edit-content,
 #sidebar-content
 {
     margin: 2em auto;
@@ -556,6 +557,12 @@ td.stats-name a:hover > i + span,
     width: 30%;
 }
 
+#sidebar.sidebar-edit-open
+{
+    width: 60%;
+    max-width: 1920px;
+}
+
 html[dir="rtl"] #sidebar
 {
     right: auto;
@@ -564,6 +571,7 @@ html[dir="rtl"] #sidebar
     box-shadow: 1px 0px 2px rgba(0, 0, 0, 0.2);
 }
 
+#sidebar #sidebar-edit-content,
 #sidebar #sidebar-content
 {
     display: none;
@@ -572,6 +580,23 @@ html[dir="rtl"] #sidebar
 #sidebar.sidebar-open #sidebar-content
 {
     display: block;
+}
+
+#sidebar.sidebar-edit-open #sidebar-edit-content,
+#sidebar.sidebar-edit-open #sidebar-content
+{
+    display: block;
+    width: 40%;
+}
+
+#sidebar.sidebar-edit-open #sidebar-edit-content
+{
+    float: left;
+}
+
+#sidebar.sidebar-edit-open #sidebar-content
+{
+    float: right;
 }
 
 .sidebar-open #sidebar-toggle:after
@@ -610,6 +635,11 @@ html[dir="rtl"] #sidebar-toggle
 
     box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.2);
     border-radius: 0 2px 2px 0;
+}
+
+#sidebar.sidebar-edit-open .edit-link
+{
+    display: none;
 }
 
 .sidebar-group,
