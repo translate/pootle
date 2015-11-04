@@ -41,7 +41,7 @@ def highlight_whitespace(text):
             '\n': '\\n\n',
             '\t': '\\t',
             '\\': '\\\\',
-            }
+        }
         return submap[match.group()]
 
     return FORM_RE.sub(replace, text)
@@ -59,10 +59,11 @@ def unhighlight_whitespace(text):
             '\\n': '\n',
             '\\r': '\r',
             '\\\\': '\\',
-            }
+        }
         return submap[match.group()]
 
     return FORM_UNRE.sub(replace, text)
+
 
 class MultiStringWidget(forms.MultiWidget):
     """Custom Widget for editing multistrings, expands number of text
