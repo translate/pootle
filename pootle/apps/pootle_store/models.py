@@ -1766,16 +1766,15 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             # `bulk_create()` them in a single go
             sub.save()
 
-    def update(self, store=None, only_newer=False, user=None,
+    def update(self, store, only_newer=False, user=None,
                store_revision=None, submission_type=None):
         """Update DB with units from file.
 
-        :param overwrite: Whether to update all existing translations or
-            keep safe units that updated after the last sync.
-        :param store: an optional source `Store` instance from TTK. If unset,
-            the current DB store's FS store will be used as a source.
+        :param store: a source `Store` instance from TTK.
         :param only_newer: Whether to update only the files that changed on
             disk after the last sync.
+        :param store_revision: revision at which the source `Store` was last
+            synced.
         :param user: User to attribute updates to.
         :param submission_type: Submission type of saved updates.
         """
@@ -1802,9 +1801,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                           u"%s" % self.pootle_path)
             return
 
-        if store is None:
-            store = self.file.store
-
         # Lock store
         logging.debug(u"Updating %s", self.pootle_path)
         old_state = self.state
@@ -1821,8 +1817,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         changes = {}
         try:
             to_change = StoreDiff(self, store, store_revision).diff()
-            changes = self.update_from_diff(store, store_revision, to_change,
-                                            user, submission_type)
+            changes = self.update_from_diff(store,
+                                            store_revision,
+                                            to_change, user,
+                                            submission_type)
         finally:
             # Unlock store
             self.state = old_state
