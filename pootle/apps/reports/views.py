@@ -555,14 +555,63 @@ def get_daily_activity(user, scores, start, end):
     return result
 
 
+def get_tasks(user, start, end):
+    return PaidTask.objects \
+                   .filter(user=user,
+                           datetime__gte=start,
+                           datetime__lte=end) \
+                   .order_by('pk')
+
+
+def get_rates(user, start, end):
+    """Get user rates that were set for the user during a period
+    from start to end. Raise an exception if the user has multiple rates
+    during the period.
+
+    :param user: get rates for this User object.
+    :param start: datetime
+    :param end: datetime
+    :return: a tuple ``(rate, review_rate, hourly_rate)`` where ``rate`` is the
+        translation rate, and ``review_rate`` is the review rate, and ``hourly_rate``
+        is the rate for hourly work that can be added as PaidTask.
+    """
+
+    scores = get_scores(user, start, end)
+    rate, review_rate, hourly_rate = 0, 0, 0
+    rates = scores.values('rate', 'review_rate').distinct()
+    if len(rates) > 1:
+        raise Exception("Multiple user [%s] rate values." % user.username)
+    elif len(rates) == 1:
+        rate = rates[0]['rate']
+        review_rate = rates[0]['review_rate']
+
+    tasks = get_tasks(user, start, end)
+    task_rates = tasks.values('task_type', 'rate').distinct()
+    for task_rate in task_rates:
+        if (task_rate['task_type'] == PaidTaskTypes.TRANSLATION and
+            rate > 0 and
+            task_rate['rate'] != rate):
+            raise Exception("Multiple user [%s] rate values." % user.username)
+        if (task_rate['task_type'] == PaidTaskTypes.REVIEW and
+            review_rate > 0 and
+            task_rate['rate'] != review_rate):
+            raise Exception("Multiple user [%s] rate values." % user.username)
+        if task_rate['task_type'] == PaidTaskTypes.HOURLY_WORK:
+            if hourly_rate > 0 and task_rate['rate'] != hourly_rate:
+                raise Exception("Multiple user [%s] rate values." % user.username)
+            hourly_rate = task_rate['rate']
+
+    rate = rate if rate > 0 else user.rate
+    review_rate = review_rate if review_rate > 0 else user.review_rate
+    hourly_rate = hourly_rate if hourly_rate > 0 else user.hourly_rate
+
+    return rate, review_rate, hourly_rate
+
+
 def get_paid_tasks(user, start, end):
     result = []
 
-    tasks = PaidTask.objects \
-        .filter(user=user,
-                datetime__gte=start,
-                datetime__lte=end) \
-        .order_by('pk')
+    tasks = get_tasks(user, start, end)
 
     for task in tasks:
         result.append({
