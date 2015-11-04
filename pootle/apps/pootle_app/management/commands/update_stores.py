@@ -51,11 +51,14 @@ class Command(PootleCommand):
         return False
 
     def handle_store(self, store, **options):
+        if not store.file:
+            return
         if options["overwrite"]:
             store_revision = store.get_max_unit_revision()
         else:
             store_revision = store.last_sync_revision
         store.update(
+            store.file.store,
             store_revision=store_revision,
             only_newer=not options['force']
         )
