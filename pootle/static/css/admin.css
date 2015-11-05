@@ -50,6 +50,7 @@ div#depchecks ul li.error
 {
     position: absolute;
     right: 0;
+    z-index: 999;
 }
 
 html[dir="rtl"] .staticpages-edit
