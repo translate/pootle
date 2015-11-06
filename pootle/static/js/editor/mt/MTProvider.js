@@ -1,0 +1,134 @@
+/*
+ * Copyright (C) Pootle contributors.
+ *
+ * This file is a part of the Pootle project. It is distributed under the GPL3
+ * or later license. See the LICENSE file for a copy of the license and the
+ * AUTHORS file for copyright and authorship information.
+ */
+
+import $ from 'jquery';
+import assign from 'object-assign';
+
+import fetch from 'utils/fetch';
+import { normalizeCode } from '../utils';
+import PlaceholderCleaner from './PlaceholderCleaner';
+
+
+class MTProvider {
+
+  constructor(opts) {
+    assign(this, opts);
+
+    $(document).on('click', `.js-${opts.name}`, (e) => {
+      const sourceLang = e.currentTarget.dataset.sourceLang;
+      this.translate(this.unit.sources[sourceLang][0], sourceLang,
+                     this.unit.store.target_lang)
+          .then(
+            (result) => PTL.editor.setTranslation(result)
+          );
+    });
+  }
+
+  init(props) {
+    this.unit = props.unit;
+
+    this.injectUI(props);
+  }
+
+  /**
+   * Checks whether the provided source language is supported
+   * @param {string} target - language code
+   */
+  isSupportedSource(source) {
+    for (let i in this.pairs) {
+      if (source === this.pairs[i].source) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Checks whether the provided target language is supported
+   * @param {string} target - language code
+   */
+  isSupportedTarget(target) {
+    for (let i in this.pairs) {
+      if (target === this.pairs[i].target) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Translates a text into another language
+   * @param {string} text - text to be translated
+   * @param {string} sourceLanguage - language code
+   * @param {string} targetLanguage - language code
+   */
+  translate(sourceText, sourceLanguage, targetLanguage) {
+    const placeholderCleaner = new PlaceholderCleaner();
+    const bodyOpts =  {
+      sourceLanguage,
+      targetLanguage,
+      text: placeholderCleaner.replace(sourceText),
+    };
+
+    return fetch({
+      crossDomain: true,
+      url: this.url,
+      body: this.getRequestBody(bodyOpts)
+    }).then(
+      (response) => this.handleSuccess(response)
+    ).then(
+      (result) => {
+        if (!'translation' in result) {
+          return result;
+        }
+        result.translation = placeholderCleaner.recover(result.translation);
+        return result;
+      }
+    );
+  }
+
+  handleSuccess(response) {
+    throw new Error('Not Implemented');
+  }
+
+  /**
+   * Injects the controls in the UI.
+   * @param {object} props - the current unit
+   */
+  injectUI(props) {
+    const { unit } = props;
+    const targetLang = normalizeCode(unit.store.target_lang);
+
+    if (this.isSupportedTarget(targetLang)) {
+
+      Object.keys(unit.sources).forEach((sourceLanguage) => {
+        const sourceLang = normalizeCode(sourceLanguage);
+
+        if (this.isSupportedSource(sourceLang)) {
+          $(`.js-mt-${sourceLang}`).append(
+            this.renderIcon(sourceLang, targetLang)
+          );
+        }
+      });
+    }
+  }
+
+  renderIcon(sourceLang, targetLang) {
+    const hint = `${this.displayName} (${sourceLang.toUpperCase()} &rarr; ` +
+                 `${targetLang.toUpperCase()})`;
+    return (
+      `<a class="translate-mt js-${this.name}" data-source-lang="${sourceLang}">` +
+        `<i class="icon-${this.name}" title="${hint}">` +
+      `</a>`
+    );
+  }
+
+}
+
+
+export default MTProvider;

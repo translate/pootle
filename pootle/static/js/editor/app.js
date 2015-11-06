@@ -40,9 +40,7 @@ import msg from '../msg';
 import score from '../score';
 import search from '../search';
 import utils from '../utils';
-import {
-  escapeUnsafeRegexSymbols, makeRegexForMultipleWords, normalizeCode
-} from './utils';
+import { escapeUnsafeRegexSymbols, makeRegexForMultipleWords } from './utils';
 
 
 const CTX_STEP = 1;
@@ -518,8 +516,7 @@ PTL.editor = {
       $('#extras-container').append(tmContent);
     }
 
-    // All is ready, let's call the ready functions of the MT backends
-    mtBackends.forEach((backend) => backend.ready());
+    this.runHooks();
 
     this.isUnitDirty = false;
     this.keepState = false;
@@ -2213,142 +2210,35 @@ PTL.editor = {
    * Machine Translation
    */
 
-  /* Checks whether the provided source is supported */
-  isSupportedSource: function (pairs, source) {
-    for (var i in pairs) {
-      if (source === pairs[i].source) {
-        return true;
-      }
+  runHooks: function () {
+    mtBackends.forEach((provider) => provider.init({
+      unit: this.units.getCurrent().toJSON(),
+    }));
+  },
+
+  /* FIXME: provide an alternative to such an ad-hoc entry point */
+  setTranslation: function(opts) {
+    const { translation } = opts;
+    if (translation === undefined && opts.msg) {
+      that.displayError(opts.msg);
+      return false;
     }
-    return false;
+
+    const area = document.querySelector('.js-translation-area');
+
+    area.value = translation;
+    autosize.update(area);
+
+    // Save a copy of the resulting text in the DOM for further
+    // similarity comparisons
+    area.dataset.translationAidMt = translation;
+
+    area.dispatchEvent((new Event('input')));
+    area.focus();
+
+    this.goFuzzy();
+
+    return true;
   },
-
-
-  /* Checks whether the provided target is supported */
-  isSupportedTarget: function (pairs, target) {
-    for (var i in pairs) {
-      if (target === pairs[i].target) {
-        return true;
-      }
-    }
-    return false;
-  },
-
-
-  /* Adds a new MT service button in the editor toolbar */
-  addMTButton: function (container, aClass, tooltip) {
-      var btn = '<a class="translate-mt ' + aClass + '">';
-      btn += '<i class="icon-' + aClass+ '" title="' + tooltip + '"><i/></a>';
-      $(container).first().prepend(btn);
-  },
-
-  /* Goes through all source languages and adds a new MT service button
-   * in the editor toolbar if the language is supported
-   */
-  addMTButtons: function (provider) {
-    const targetLang = this.units.getCurrent().get('store').get('target_lang');
-    if (this.isSupportedTarget(provider.pairs, targetLang)) {
-      var that = this,
-          $sources = $(".translate-toolbar");
-
-      $sources.each(function () {
-        var source = normalizeCode(
-          $(this).parents('.source-language').find('.translation-text').attr('lang')
-        );
-
-        if (that.isSupportedSource(provider.pairs, source)) {
-          that.addMTButton($(this).find('.js-toolbar-buttons'),
-            provider.buttonClassName,
-            provider.hint + ' (' + source.toUpperCase() + '&rarr;' + targetLang.toUpperCase() + ')');
-        }
-      });
-    }
-  },
-
-  collectArguments: function (s) {
-    this.argSubs[this.argPos] = s;
-    return "[" + (this.argPos++) + "]";
-  },
-
-  translate: function (linkObject, providerCallback) {
-    var that = this,
-        $areas = $('.js-translation-area'),
-        $sources = $(linkObject).parents('.source-language').find('.translation-text'),
-        langFrom = normalizeCode($sources[0].lang),
-        langTo = normalizeCode($areas[0].lang);
-
-    var htmlPat = /<[\/]?\w+.*?>/g,
-    // The printf regex based on http://phpjs.org/functions/sprintf:522
-        cPrintfPat = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g,
-        csharpStrPat = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g,
-        percentNumberPat = /%\d+/g,
-        pos = 0;
-
-    $sources.each(function (j) {
-      // Reset collected arguments array and counter
-      that.argSubs = [];
-      that.argPos = 0;
-
-      // Walk through known patterns and replace them with [N] placeholders
-      var sourceText = $(this).text()
-                              .replace(htmlPat,
-                                       that.collectArguments.bind(that))
-                              .replace(cPrintfPat,
-                                       that.collectArguments.bind(that))
-                              .replace(csharpStrPat,
-                                       that.collectArguments.bind(that))
-                              .replace(percentNumberPat,
-                                       that.collectArguments.bind(that));
-
-      providerCallback(sourceText, langFrom, langTo, function (opts) {
-        var translation = opts.translation,
-            msg = opts.msg,
-            area = $areas[j],
-            $area = $areas.eq(j),
-            i, value;
-
-        if (translation === undefined && msg) {
-          that.displayError(msg);
-          return;
-        }
-
-        // Fix whitespace which may have been added around [N] blocks
-        for (i=0; i<that.argSubs.length; i++) {
-          if (sourceText.match(new RegExp("\\[" + i + "\\][^\\s]"))) {
-            translation = translation.replace(
-              new RegExp("\\[" + i + "\\]\\s+"), "[" + i + "]"
-            );
-          }
-          if (sourceText.match(new RegExp("[^\\s]\\[" + i + "\\]"))) {
-            translation = translation.replace(
-              new RegExp("\\s+\\[" + i + "\\]"), "[" + i + "]"
-            );
-          }
-        }
-
-        // Replace temporary [N] placeholders back to their real values
-        for (i=0; i<that.argSubs.length; i++) {
-          value = that.argSubs[i].replace(/\&/g, '&amp;')
-                                 .replace(/\</g, '&lt;')
-                                 .replace(/\>/g, '&gt;');
-          translation = translation.replace("[" + i + "]", value);
-        }
-
-        $area.val($('<div />').html(translation).text());
-        autosize.update(area);
-
-        // Save a copy of the resulting text in the DOM for further
-        // similarity comparisons
-        if (opts.storeResult) {
-          $area.attr('data-translation-aid-mt', translation);
-        }
-      });
-    });
-
-    $areas.eq(0).trigger('input').focus();
-
-    that.goFuzzy();
-    return false;
-  }
 
 };
