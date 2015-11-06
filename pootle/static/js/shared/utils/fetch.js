@@ -12,7 +12,8 @@ import $ from 'jquery';
 let requests = {};
 
 
-function fetch({url, body, method='GET', dataType='json', queue=null}) {
+function fetch({ url, body, method='GET', dataType='json', queue=null,
+                 crossDomain=false }) {
   queue = queue || url;
 
   if (requests[queue]) {
@@ -21,6 +22,7 @@ function fetch({url, body, method='GET', dataType='json', queue=null}) {
 
   requests[queue] = (
     $.ajax({
+      crossDomain,
       method,
       url: l(url),
       data: body,
