@@ -8,8 +8,13 @@
 
 import pytest
 
+from django.forms import Form
+
+from translate.misc import multistring
+
 from pootle_app.models.permissions import get_matching_permissions
-from pootle_store.forms import UnitStateField, unit_form_factory
+from pootle_store.forms import (MultiStringFormField, MultiStringWidget,
+                                UnitStateField, unit_form_factory)
 from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
 
 
@@ -137,3 +142,92 @@ def test_unit_state():
     assert not field.clean('True')  # Unknown state value evaluates to False
     assert not field.clean(False)
     assert not field.clean('False')
+
+
+@pytest.mark.parametrize('nplurals, decompressed_value', [
+    (1, [None]),
+    (2, [None, None]),
+    (3, [None, None, None]),
+    (4, [None, None, None, None]),
+])
+def test_multistringwidget_decompress_none(nplurals, decompressed_value):
+    """Tests unit's `MultiStringWidget` decompresses None values."""
+    widget = MultiStringWidget(nplurals=nplurals)
+    assert widget.decompress(None) == decompressed_value
+
+
+@pytest.mark.parametrize('value', [
+    ['foo\\bar'],
+    ['foö\r\nbär'],
+    ['foö\\r\\nbär'],
+    ['foö\r\n\\r\\nbär', 'bär\r\n\\r\\nbäz'],
+    ['nfoö\nbär'],
+    ['nfoö\\nbär'],
+    ['foö\n\\nbär', 'bär\n\\nbäz'],
+])
+def test_multistringwidget_decompress_list_of_values(value):
+    """Tests unit's `MultiStringWidget` decompresses a list of values."""
+    widget = MultiStringWidget()
+    assert widget.decompress(value) == value
+
+
+@pytest.mark.parametrize('value', [
+    'foo\\bar',
+    'foö\r\nbär',
+    'foö\\r\\nbär',
+    'foö\r\n\\r\\nbär',
+    'nfoö\nbär',
+    'nfoö\\nbär',
+    'foö\n\\nbär',
+])
+def test_multistringwidget_decompress_strings(value):
+    """Tests unit's `MultiStringWidget` decompresses string values."""
+    widget = MultiStringWidget()
+    assert widget.decompress(value) == [value]
+
+
+@pytest.mark.parametrize('value', [
+    'foo\\bar',
+    'foö\r\nbär',
+    'foö\\r\\nbär',
+    'foö\r\n\\r\\nbär',
+    'nfoö\nbär',
+    'nfoö\\nbär',
+    'foö\n\\nbär',
+    ['foo\\bar'],
+    ['foö\r\nbär'],
+    ['foö\\r\\nbär'],
+    ['foö\r\n\\r\\nbär', 'bär\r\n\\r\\nbäz'],
+    ['nfoö\nbär'],
+    ['nfoö\\nbär'],
+    ['foö\n\\nbär', 'bär\n\\nbäz'],
+])
+def test_multistringwidget_decompress_multistrings(value):
+    """Tests unit's `MultiStringWidget` decompresses string values."""
+    widget = MultiStringWidget()
+    expected_value = [value] if isinstance(value, basestring) else value
+    assert widget.decompress(multistring.multistring(value)) == expected_value
+
+
+@pytest.mark.parametrize('value', [
+    [u'foo\\bar'],
+    [u'foö\r\nbär'],
+    [u'foö\\r\\nbär'],
+    [u'foö\r\n\\r\\nbär', u'bär\r\n\\r\\nbäz'],
+    [u'nfoö\nbär'],
+    [u'nfoö\\nbär'],
+    [u'foö\n\\nbär', u'bär\n\\nbäz'],
+])
+def test_form_multistringformfield(value):
+    """Tests `MultiStringFormField`'s value compression in a form."""
+    def test_form_factory(nplurals):
+        class TestForm(Form):
+            value = MultiStringFormField(nplurals=nplurals)
+
+        return TestForm
+
+    data = {'value_%d' % i: val for i, val in enumerate(value)}
+    form_class = test_form_factory(nplurals=len(value))
+    form = form_class(data=data)
+    assert form.is_valid()
+    assert form.cleaned_data == {'value': value}
