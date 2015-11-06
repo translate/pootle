@@ -34,7 +34,7 @@ def image_urls(text):
     return map(lambda x: x[0], IMAGE_URL_RE.findall(text))
 
 
-ESCAPE_RE = re.compile('<[^<]*?>|\\\\|\r\n|[\r\n\t&<>]')
+ESCAPE_RE = re.compile('<[^<]*?>|\r\n|[\r\n\t&<>]')
 
 
 def fancy_escape(text):
@@ -42,17 +42,18 @@ def fancy_escape(text):
     whitespaces.
     """
     def replace(match):
-        escape_highlight = ('<span class="highlight-escape '
-                            'js-editor-copytext">%s</span>')
+        escape_nonprintable = (
+            '<span class="non-printable js-editor-copytext %s" '
+            'data-string="%s"></span>'
+        )
         submap = {
-            '\r\n': (escape_highlight % '\\r\\n') + '<br/>\n',
-            '\r': (escape_highlight % '\\r') + '<br/>\n',
-            '\n': (escape_highlight % '\\n') + '<br/>\n',
-            '\t': (escape_highlight % '\\t'),
+            '\r\n': (escape_nonprintable % ('newline', '&#10;')) + '<br/>',
+            '\r': (escape_nonprintable % ('newline', '&#10;')) + '<br/>',
+            '\n': (escape_nonprintable % ('newline', '&#10;')) + '<br/>',
+            '\t': escape_nonprintable % ('tab', '&#9;'),
             '&': '&amp;',
             '<': '&lt;',
             '>': '&gt;',
-            '\\': (escape_highlight % '\\\\'),
         }
         try:
             return submap[match.group()]
