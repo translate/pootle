@@ -17,31 +17,23 @@ class GoogleTranslate extends MTProvider {
       name: 'google-translate',
       displayName: 'Google Translate',
       url: 'https://www.googleapis.com/language/translate/v2',
+      /* For a list of currently supported languages:
+       * https://developers.google.com/translate/v2/using_rest#language-params
+       *
+       * Google supports translations between any of the supported languages
+       * (any combination is acceptable)
+       *
+       * FIXME Note that an API does exist to query if Google supports
+       * a given language
+       */
+      supportedLanguages: [
+        'af','sq','ar','az','eu','bn','be','bg','ca','zh-CN','zh-TW','hr',
+        'cs','da','nl','en','eo','et','tl','fi','fr','gl','ka','de','el',
+        'gu','ht','iw','hi','hu','is','id','ga','it','ja','kn','ko','la',
+        'lv','lt','mk','ms','mt','no','fa','pl','pt','ro','ru','sr','sk',
+        'sl','es','sw','sv','ta','te','th','tr','uk','ur','vi','cy','yi'
+      ],
     });
-
-    /* For a list of currently supported languages:
-     * https://developers.google.com/translate/v2/using_rest#language-params
-     *
-     * Google supports translations between any of the supported languages
-     * (any combination is acceptable)
-     *
-     * FIXME Note that an API does exist to query if Google supports
-     * a given language
-     */
-    const supportedLanguages = [
-      'af','sq','ar','az','eu','bn','be','bg','ca','zh-CN','zh-TW','hr',
-      'cs','da','nl','en','eo','et','tl','fi','fr','gl','ka','de','el',
-      'gu','ht','iw','hi','hu','is','id','ga','it','ja','kn','ko','la',
-      'lv','lt','mk','ms','mt','no','fa','pl','pt','ro','ru','sr','sk',
-      'sl','es','sw','sv','ta','te','th','tr','uk','ur','vi','cy','yi'
-    ];
-    this.pairs = [];
-    for (var i=0; i<supportedLanguages.length; i++) {
-      this.pairs.push({
-        'source': supportedLanguages[i],
-        'target': supportedLanguages[i],
-      });
-    };
   }
 
   getRequestBody(opts) {

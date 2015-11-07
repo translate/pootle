@@ -19,6 +19,15 @@ class MTProvider {
   constructor(opts) {
     assign(this, opts);
 
+    // FIXME: retrieve pairs asynchronously using provider APIs (#3718)
+    this.pairs = [];
+    for (var i=0; i<opts.supportedLanguages.length; i++) {
+      this.pairs.push({
+        'source': opts.supportedLanguages[i],
+        'target': opts.supportedLanguages[i]
+      });
+    };
+
     $(document).on('click', `.js-${opts.name}`, (e) => {
       const sourceLang = e.currentTarget.dataset.sourceLang;
       this.translate(this.unit.sources[sourceLang][0], sourceLang,
