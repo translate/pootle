@@ -6,7 +6,7 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import MTProvider from './MTProvider';
+import MTProvider from '../MTProvider';
 
 
 class GoogleTranslate extends MTProvider {
