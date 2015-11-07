@@ -28,10 +28,11 @@ $(function() {
     userId: {{ request.profile.id }},
   };
   {% if cansuggest or cantranslate %}
-  options.mt = [];
-    {% for backend, apikey in POOTLE_MT_BACKENDS %}
-    options.mt.push({name: "{{ backend|lower }}", key: "{{ apikey }}"});
+  options.mt = [
+    {% for provider, apikey in POOTLE_MT_BACKENDS %}
+    { name: '{{ provider|lower }}', key: '{{ apikey }}' },
     {% endfor %}
+  ];
   {% endif %}
   PTL.editor.init(options);
 });
