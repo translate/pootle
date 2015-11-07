@@ -55,7 +55,7 @@ const sortSelectOpts = assign({
 }, filterSelectOpts);
 
 
-let mtBackends = [];
+let mtProviders = [];
 
 
 function _refreshChecksSnippet(newChecks) {
@@ -313,11 +313,11 @@ PTL.editor = {
       }
     });
 
-    /* Load MT backends */
-    this.settings.mt.forEach((backend) => {
+    /* Load MT providers */
+    this.settings.mt.forEach((provider) => {
       require.ensure([], () => {
-        const Module = require('./mt/providers/' + backend.name);
-        mtBackends.push(new Module(backend.key));
+        const Module = require('./mt/providers/' + provider.name);
+        mtProviders.push(new Module(provider.key));
       });
     });
 
@@ -2210,7 +2210,7 @@ PTL.editor = {
    */
 
   runHooks: function () {
-    mtBackends.forEach((provider) => provider.init({
+    mtProviders.forEach((provider) => provider.init({
       unit: this.units.getCurrent().toJSON(),
     }));
   },
