@@ -30,7 +30,7 @@ $(function() {
   {% if cansuggest or cantranslate %}
   options.mt = [
     {% for provider, apikey in POOTLE_MT_BACKENDS %}
-    { name: '{{ provider|lower }}', key: '{{ apikey }}' },
+    { name: '{{ provider }}', key: '{{ apikey }}' },
     {% endfor %}
   ];
   {% endif %}

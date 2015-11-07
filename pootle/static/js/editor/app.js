@@ -316,7 +316,11 @@ PTL.editor = {
     /* Load MT providers */
     this.settings.mt.forEach((provider) => {
       require.ensure([], () => {
-        const Module = require('./mt/providers/' + provider.name);
+        // Retrieve actual module name: FOO_BAR_BAZ => FooBarBaz
+        const moduleName = provider.name.split('_').map(
+          (x) => x[0] + x.slice(1).toLowerCase()
+        ).join('');
+        const Module = require('./mt/providers/' + moduleName);
         mtProviders.push(new Module(provider.key));
       });
     });
