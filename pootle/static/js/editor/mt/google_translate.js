@@ -6,87 +6,72 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import $ from 'jquery';
+import MTProvider from './MTProvider';
 
 
-const google_translate = {
+class GoogleTranslate extends MTProvider {
 
-  buttonClassName: "google-translate",
-  hint: "Google Translate",
+  constructor(apiKey) {
+    super({
+      apiKey,
+      name: 'google-translate',
+      displayName: 'Google Translate',
+      url: 'https://www.googleapis.com/language/translate/v2',
+    });
 
-  /* using Google Translate API v2 */
-  url: "https://www.googleapis.com/language/translate/v2",
-
-  /* For a list of currently supported languages:
-   * https://developers.google.com/translate/v2/using_rest#language-params
-   *
-   * Google supports translations between any of the supported languages
-   * (any combination is acceptable)
-   *
-   * FIXME Note that an API does exist to query if Google supports
-   * a given language */
-
-  supportedLanguages: [
-    'af','sq','ar','az','eu','bn','be','bg','ca','zh-CN','zh-TW','hr',
-    'cs','da','nl','en','eo','et','tl','fi','fr','gl','ka','de','el',
-    'gu','ht','iw','hi','hu','is','id','ga','it','ja','kn','ko','la',
-    'lv','lt','mk','ms','mt','no','fa','pl','pt','ro','ru','sr','sk',
-    'sl','es','sw','sv','ta','te','th','tr','uk','ur','vi','cy','yi'
-  ],
-
-  init: function (apiKey) {
-    /* Init variables */
+    /* For a list of currently supported languages:
+     * https://developers.google.com/translate/v2/using_rest#language-params
+     *
+     * Google supports translations between any of the supported languages
+     * (any combination is acceptable)
+     *
+     * FIXME Note that an API does exist to query if Google supports
+     * a given language
+     */
+    const supportedLanguages = [
+      'af','sq','ar','az','eu','bn','be','bg','ca','zh-CN','zh-TW','hr',
+      'cs','da','nl','en','eo','et','tl','fi','fr','gl','ka','de','el',
+      'gu','ht','iw','hi','hu','is','id','ga','it','ja','kn','ko','la',
+      'lv','lt','mk','ms','mt','no','fa','pl','pt','ro','ru','sr','sk',
+      'sl','es','sw','sv','ta','te','th','tr','uk','ur','vi','cy','yi'
+    ];
     this.pairs = [];
-    for (var i=0; i<this.supportedLanguages.length; i++) {
+    for (var i=0; i<supportedLanguages.length; i++) {
       this.pairs.push({
-        'source': this.supportedLanguages[i],
-        'target': this.supportedLanguages[i]
+        'source': supportedLanguages[i],
+        'target': supportedLanguages[i],
       });
     };
-
-    /* Set API key */
-    this.apiKey = apiKey;
-    /* Bind event handler */
-    $(document).on("click", ".google-translate", this.translate);
-  },
-
-  ready: function () {
-    PTL.editor.addMTButtons(this);
-  },
-
-  translate: function () {
-    PTL.editor.translate(this, function(sourceText, langFrom, langTo, resultCallback) {
-      var transData = {key: google_translate.apiKey,
-                       q: sourceText,
-                       source: langFrom,
-                       target: langTo};
-      $.ajax({
-        url: google_translate.url,
-        crossDomain: true,
-        data: transData,
-        success: function (r) {
-          if (r.data && r.data.translations) {
-            resultCallback({
-              translation: r.data.translations[0].translatedText,
-              storeResult: true
-            });
-          } else {
-            if (r.error && r.error.message) {
-              resultCallback({
-                msg: "Google Translate Error: " + r.error.message
-              });
-            } else {
-              resultCallback({
-                msg: "Malformed response from Google Translate API"
-              });
-            }
-          }
-        }
-      });
-    });
   }
 
-};
+  getRequestBody(opts) {
+    return {
+      key: this.apiKey,
+      q: opts.text,
+      source: opts.sourceLanguage,
+      target: opts.targetLanguage,
+    };
+  }
+
+  handleSuccess(response) {
+    if (!response.data && !response.error) {
+      return {
+        msg: 'Malformed response from Google Translate API',
+      };
+    }
+
+    if (response.error) {
+      return {
+        msg: `Google Translate Error: ${response.error.message}`,
+      };
+    }
+
+    return {
+      translation: response.data.translations[0].translatedText,
+    };
+  }
+
+}
 
 
-export default google_translate;
+export default GoogleTranslate;

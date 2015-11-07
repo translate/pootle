@@ -316,9 +316,8 @@ PTL.editor = {
     /* Load MT backends */
     this.settings.mt.forEach((backend) => {
       require.ensure([], () => {
-        module = require('./mt/' + backend.name);
-        module.init(backend.key);
-        mtBackends.push(module);
+        const Module = require('./mt/' + backend.name);
+        mtBackends.push(new Module(backend.key));
       });
     });
 

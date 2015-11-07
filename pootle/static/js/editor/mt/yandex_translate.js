@@ -6,90 +6,58 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import $ from 'jquery';
+import MTProvider from './MTProvider';
 
 
-const yandex_translate = {
+class YandexTranslate extends MTProvider {
 
-  buttonClassName: "yandex-translate",
-  hint: "Yandex.Translate",
+  constructor(apiKey) {
+    super({
+      apiKey,
+      name: 'yandex-translate',
+      displayName: 'Yandex.Translate',
+      url: 'https://translate.yandex.net/api/v1.5/tr.json/translate',
+    });
 
-  /* using Yandex.Tanslate API v1.5 */
-  url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
-
-  /* For a list of currently supported languages:
-   * https://tech.yandex.com/translate/doc/dg/concepts/langs-docpage/
-   * The service translates between any of these listed languages.
-   *
-   * For a list of language pairs:
-   * https://translate.yandex.net/api/v1.5/tr.json/getLangs?key=API_KEY
-   * The results returned indicate permissible pairs, this code makes no
-   * assumptions about directionality.
-   *
-   *
-   */
-
-  supportedLanguages: [
-    'ar', 'az', 'be', 'bg', 'bs', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es',
-    'et', 'fi', 'fr', 'he', 'hr', 'hu', 'hy', 'id', 'is', 'it', 'ja', 'ka',
-    'ko', 'lt', 'lv', 'mk', 'ms', 'mt', 'nl', 'no', 'pl', 'pt', 'ro', 'ru',
-    'sk', 'sl', 'sq', 'sr', 'sv', 'th', 'tr', 'uk', 'vi', 'zh'
-  ],
-
-  init: function (apiKey) {
-    /* Init variables */
+    /* For a list of currently supported languages:
+     * https://tech.yandex.com/translate/doc/dg/concepts/langs-docpage/
+     * The service translates between any of these listed languages.
+     *
+     * For a list of language pairs:
+     * https://translate.yandex.net/api/v1.5/tr.json/getLangs?key=API_KEY
+     * The results returned indicate permissible pairs, this code makes no
+     * assumptions about directionality.
+     */
+    const supportedLanguages = [
+      'ar', 'az', 'be', 'bg', 'bs', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es',
+      'et', 'fi', 'fr', 'he', 'hr', 'hu', 'hy', 'id', 'is', 'it', 'ja', 'ka',
+      'ko', 'lt', 'lv', 'mk', 'ms', 'mt', 'nl', 'no', 'pl', 'pt', 'ro', 'ru',
+      'sk', 'sl', 'sq', 'sr', 'sv', 'th', 'tr', 'uk', 'vi', 'zh'
+    ];
     this.pairs = [];
-    for (var i=0; i<this.supportedLanguages.length; i++) {
+    for (var i=0; i<supportedLanguages.length; i++) {
       this.pairs.push({
-        'source': this.supportedLanguages[i],
-        'target': this.supportedLanguages[i]
+        'source': supportedLanguages[i],
+        'target': supportedLanguages[i]
       });
     };
-
-    /* Set API key */
-    this.apiKey = apiKey;
-    /* Bind event handler */
-    $(document).on("click", ".yandex-translate", this.translate);
-  },
-
-  ready: function () {
-    PTL.editor.addMTButtons(this);
-  },
-
-  translate: function () {
-    PTL.editor.translate(this, function(sourceText, langFrom, langTo, resultCallback) {
-      var transData = {key: yandex_translate.apiKey,
-                       text: sourceText,
-                       lang: `${langFrom}-${langTo}`};
-      $.ajax({
-        url: yandex_translate.url,
-        crossDomain: true,
-        data: transData,
-        success: function (r) {
-          if (r.text) {
-            resultCallback({
-              translation: r.text[0]
-            });
-          }
-        },
-        error: function (dbg, textStatus) {
-          if(textStatus === "timeout")
-          {
-            resultCallback({
-              msg: "Yandex.Translate: timeout"
-            });
-          }
-          else {
-            resultCallback({
-              msg: "Yandex.Translate: error"
-            });
-          }
-        }
-      });
-    });
   }
 
-};
+  getRequestBody(opts) {
+    return {
+      key: this.apiKey,
+      text: opts.text,
+      lang: `${opts.sourceLanguage}-${opts.targetLanguage}`,
+    };
+  }
+
+  handleSuccess(response) {
+    return {
+      translation: response.text[0],
+    };
+  }
+
+}
 
 
-export default yandex_translate;
+export default YandexTranslate;
