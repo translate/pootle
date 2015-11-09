@@ -11,44 +11,39 @@
     </tr>
     </thead>
     <tbody>
-    <% var total =  0; %>
     <% _.each(data.summary, function (row) { %>
-      <% var subTotal = Math.round(row.amount) * row.rate; %>
-      <% total += subTotal; %>
       <tr class="item">
         <td><%= PTL.reports.dateRangeString(row.start, row.end, false) %></td>
         <td><%= row.action %></td>
         <td class="number"><%= Math.round(row.amount) %> <%= ngettext("word", "words", Math.round(row.amount)) %></td>
         <td class="number"><%= row.rate %> <%= data.meta.user.currency %></td>
-        <td class="number"><%= subTotal.toFixed(2) %> <%= data.meta.user.currency %></td>
+        <td class="number"><%= row.subTotal %> <%= data.meta.user.currency %></td>
         <td></td>
       </tr>
     <% }); %>
     <% _.each(data.paid_task_summary, function (row) { %>
-      <% var subTotal = row.amount * row.rate; %>
       <%
-        var amount = row.amount;
+        var amountStr = row.amount;
         if (row.type === paidTaskTypes.hourlyWork) {
-          amount += ' ' + ngettext("hour", "hours", Math.round(row.amount));
+          amountStr += ' ' + ngettext("hour", "hours", Math.round(row.amount));
         } else if (row.type === paidTaskTypes.translation ||
                    row.type === paidTaskTypes.review) {
-          amount += ' ' + ngettext("word", "words", Math.round(row.amount));
+          amountStr += ' ' + ngettext("word", "words", Math.round(row.amount));
         }
       %>
-      <% total += subTotal; %>
       <tr class="item">
         <td><%= row.period %></td>
         <td><%= row.action %> <%= gettext("(registered tasks)") %></td>
-        <td class="number"><%= amount %></td>
+        <td class="number"><%= amountStr %></td>
         <td class="number"><%= row.rate %> <%= data.meta.user.currency %></td>
-        <td class="number"><%= subTotal.toFixed(2) %> <%= data.meta.user.currency %></td>
+        <td class="number"><%= row.subTotal %> <%= data.meta.user.currency %></td>
         <td></td>
       </tr>
     <% }); %>
       <tr class="total">
           <td><%= interpolate(gettext('Total (%(currency)s)'), {'currency': data.meta.user.currency}, true) %></td>
           <td colspan="3"></td>
-          <td class="number"><%= total.toFixed(2) %> <%= data.meta.user.currency %></td>
+          <td class="number"><%= data.total.toFixed(2) %> <%= data.meta.user.currency %></td>
           <td></td>
       </tr>
     </tbody>
