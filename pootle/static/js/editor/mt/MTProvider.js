@@ -20,13 +20,7 @@ class MTProvider {
     assign(this, opts);
 
     // FIXME: retrieve pairs asynchronously using provider APIs (#3718)
-    this.pairs = [];
-    for (var i=0; i<opts.supportedLanguages.length; i++) {
-      this.pairs.push({
-        'source': opts.supportedLanguages[i],
-        'target': opts.supportedLanguages[i]
-      });
-    };
+    this.pairs = opts.supportedLanguages.map((langCode) => [langCode, langCode]);
 
     $(document).on('click', `.js-${opts.name}`, (e) => {
       const sourceLang = e.currentTarget.dataset.sourceLang;
@@ -49,12 +43,7 @@ class MTProvider {
    * @param {string} target - language code
    */
   isSupportedSource(source) {
-    for (let i in this.pairs) {
-      if (source === this.pairs[i].source) {
-        return true;
-      }
-    }
-    return false;
+    return this.pairs.filter((pair) => pair[0] === source).length > 0;
   }
 
   /**
@@ -62,12 +51,7 @@ class MTProvider {
    * @param {string} target - language code
    */
   isSupportedTarget(target) {
-    for (let i in this.pairs) {
-      if (target === this.pairs[i].target) {
-        return true;
-      }
-    }
-    return false;
+    return this.pairs.filter((pair) => pair[1] === target).length > 0;
   }
 
   /**
