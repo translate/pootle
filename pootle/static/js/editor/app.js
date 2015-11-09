@@ -200,7 +200,7 @@ PTL.editor = {
     $(document).on('click', '.js-copyoriginal', (e) => {
       const uId = e.currentTarget.dataset.uid;
       const sources = [
-        ...document.querySelectorAll(`#js-unit-${uId} .translation-text`)
+        ...document.querySelectorAll(`#js-unit-${uId} .js-translation-text`)
       ].map((el) => el.textContent);
       this.copyOriginal(sources);
     });
@@ -558,7 +558,7 @@ PTL.editor = {
     const selMap = {
       notes: 'div.developer-comments',
       locations: 'div.translate-locations',
-      source: 'td.translate-original, div.original div.translation-text',
+      source: 'td.translate-original, .original .js-translation-text',
       target: 'td.translate-translation'
     };
 
