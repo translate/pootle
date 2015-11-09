@@ -161,7 +161,7 @@ def reports(request):
 def get_detailed_report_context(user, month):
     [start, end] = get_date_interval(month)
 
-    totals = {'translated': {}, 'reviewed': {}, 'suggested': 0, 'total': 0,
+    totals = {'translated': {}, 'reviewed': {}, 'suggested': 0,
               'paid_tasks': {},
               'all': 0}
     items = []
