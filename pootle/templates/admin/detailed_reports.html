@@ -234,12 +234,12 @@
       <tr>
         <td>&nbsp;</td>
         <td colspan="4">{% trans "Translation (subtotal)" %}</td>
-        <td class="number">{% if item.words > 0 %}{{ item.words }}{% else %}&mdash;{% endif %}</td>
+        <td class="number">{% if item.words > 0 %}{{ item.rounded_words }}{% if item.words != item.rounded_words %} ({{ item.words}}){% endif %}{% else %}&mdash;{% endif %}</td>
         {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
           <td class="number">{{ rate }} {{ object.currency }}</td>
           <td class="number">
             {% if item.subtotal > 0 %}
-              {{ item.subtotal|floatformat:4 }} {{ object.currency }}
+              {{ item.subtotal|floatformat:2 }} {{ object.currency }}
             {% else %}&mdash;{% endif %}
           </td>
         {% endif %}
@@ -273,7 +273,7 @@
         <tr class="total">
           <td>&nbsp;</td>
           <td colspan="6">{% trans "Total" %}</td>
-          <td class="number">{{ totals.all|floatformat:4 }} {{ object.currency }}</td>
+          <td class="number">{{ totals.all|floatformat:2 }} {{ object.currency }}</td>
         </tr>
       {% endif %}
     {% endif %}

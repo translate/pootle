@@ -256,16 +256,17 @@ def get_detailed_report_context(user, month):
                 }
 
         for rate, words in totals['translated'].items():
-            totals['translated'][rate]['words'] = totals['translated'][rate]['words']
-            totals['translated'][rate]['subtotal'] = rate * totals['translated'][rate]['words']
+            totals['translated'][rate]['rounded_words'] = \
+                int(round(totals['translated'][rate]['words']))
+            totals['translated'][rate]['subtotal'] = \
+                rate * totals['translated'][rate]['rounded_words']
             totals['all'] += totals['translated'][rate]['subtotal']
 
         for rate, words in totals['reviewed'].items():
-            totals['reviewed'][rate]['words'] = totals['reviewed'][rate]['words']
             totals['reviewed'][rate]['subtotal'] = rate * totals['reviewed'][rate]['words']
             totals['all'] += totals['reviewed'][rate]['subtotal']
 
-        totals['all'] = totals['all']
+        totals['all'] = round(totals['all'], 2) + 0
 
         items = sorted(items, key=lambda x: x['creation_time'])
 
