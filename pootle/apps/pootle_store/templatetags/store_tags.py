@@ -98,10 +98,11 @@ def call_highlight(old, new):
         old_value = old.strings
     else:
         old_value = old
+
     if list_empty(old_value):
         return fancy_highlight(new)
-    else:
-        return highlight_diffs(old, new)
+
+    return highlight_diffs(old, new)
 
 
 differencer = diff_match_patch()
@@ -135,56 +136,61 @@ def highlight_diffs(old, new):
 
 @register.filter('pluralize_source')
 def pluralize_source(unit):
-    if unit.hasplural():
-        count = len(unit.source.strings)
-        if count == 1:
-            return [(0, unit.source.strings[0], "%s+%s" % (_('Singular'), _('Plural')))]
-        elif count == 2:
-            return [(0, unit.source.strings[0], _('Singular')), (1, unit.source.strings[1], _('Plural'))]
-        else:
-            forms = []
-            for i, source in enumerate(unit.source.strings):
-                forms.append((i, source, _('Plural Form %d', i)))
-            return forms
-    else:
+    if not unit.hasplural():
         return [(0, unit.source, None)]
+
+    count = len(unit.source.strings)
+    if count == 1:
+        return [(0, unit.source.strings[0], "%s+%s" % (_('Singular'), _('Plural')))]
+
+    if count == 2:
+        return [(0, unit.source.strings[0], _('Singular')), (1, unit.source.strings[1], _('Plural'))]
+
+    forms = []
+    for i, source in enumerate(unit.source.strings):
+        forms.append((i, source, _('Plural Form %d', i)))
+    return forms
+
 
 @register.filter('pluralize_target')
 def pluralize_target(unit, nplurals=None):
-    if unit.hasplural():
-        if nplurals is None:
-            try:
-                nplurals = unit.store.translation_project.language.nplurals
-            except ObjectDoesNotExist:
-                pass
-        forms = []
-        if nplurals is None:
-            for i, target in enumerate(unit.target.strings):
-                forms.append((i, target, _('Plural Form %d', i)))
-        else:
-            for i in range(nplurals):
-                try:
-                    target = unit.target.strings[i]
-                except IndexError:
-                    target = ''
-                forms.append((i, target, _('Plural Form %d', i)))
-        return forms
-    else:
+    if not unit.hasplural():
         return [(0, unit.target, None)]
+
+    if nplurals is None:
+        try:
+            nplurals = unit.store.translation_project.language.nplurals
+        except ObjectDoesNotExist:
+            pass
+    forms = []
+    if nplurals is None:
+        for i, target in enumerate(unit.target.strings):
+            forms.append((i, target, _('Plural Form %d', i)))
+    else:
+        for i in range(nplurals):
+            try:
+                target = unit.target.strings[i]
+            except IndexError:
+                target = ''
+            forms.append((i, target, _('Plural Form %d', i)))
+
+    return forms
+
 
 @register.filter('pluralize_diff_sugg')
 def pluralize_diff_sugg(sugg):
     unit = sugg.unit
-    if unit.hasplural():
-        forms = []
-        for i, target in enumerate(sugg.target.strings):
-            if i < len(unit.target.strings):
-                forms.append((i, target, call_highlight(unit.target.strings[i], target), _('Plural Form %d', i)))
-            else:
-                forms.append((i, target, call_highlight('', target), _('Plural Form %d', i)))
-        return forms
-    else:
+    if not unit.hasplural():
         return [(0, sugg.target, call_highlight(unit.target, sugg.target), None)]
+
+    forms = []
+    for i, target in enumerate(sugg.target.strings):
+        if i < len(unit.target.strings):
+            forms.append((i, target, call_highlight(unit.target.strings[i], target), _('Plural Form %d', i)))
+        else:
+            forms.append((i, target, call_highlight('', target), _('Plural Form %d', i)))
+
+    return forms
 
 
 @register.tag(name="include_raw")
