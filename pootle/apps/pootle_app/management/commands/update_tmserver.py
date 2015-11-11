@@ -55,18 +55,18 @@ class DBParser(object):
             )
 
         units_qs = units_qs.values(
-                'id',
-                'revision',
-                'source_f',
-                'target_f',
-                'submitted_on',
-                'submitted_by__username',
-                'submitted_by__full_name',
-                'submitted_by__email',
-                'store__translation_project__project__fullname',
-                'store__pootle_path',
-                'store__translation_project__language__code'
-            ).order_by()
+            'id',
+            'revision',
+            'source_f',
+            'target_f',
+            'submitted_on',
+            'submitted_by__username',
+            'submitted_by__full_name',
+            'submitted_by__email',
+            'store__translation_project__project__fullname',
+            'store__pootle_path',
+            'store__translation_project__language__code'
+        ).order_by()
 
         return units_qs.iterator(), units_qs.count()
 
