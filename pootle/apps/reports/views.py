@@ -223,6 +223,7 @@ def get_detailed_report_context(user, month):
                     'similarity': score.get_similarity() * 100,
                     'subtotal': subtotal,
                     'wordcount': wordcount,
+                    'source_wordcount': score.wordcount,
                     'creation_time': score.creation_time,
                 })
 

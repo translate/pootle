@@ -165,7 +165,7 @@
                 <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
               {% endif %}
             </td>
-            <td class="number">{{ item.wordcount }}</td>
+            <td class="number">{{ item.source_wordcount }}</td>
             <td class="number">
               {% if score.is_similarity_taken_from_mt %}<sup>MT</sup>{% endif %}
               {% if item.action == action_types.REVIEW %}
