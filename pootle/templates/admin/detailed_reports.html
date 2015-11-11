@@ -174,7 +174,7 @@
                 {% if item.similarity == 0 %}&lt; 50{% else %}{{ item.similarity|floatformat }}{% endif %}%
               {% endif %}
             </td>
-            <td class="number">{{ item.wordcount|floatformat:2 }}</td>
+            <td class="number">{{ item.wordcount|floatformat:4 }}</td>
             {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
               <td class="number">
                 {% if item.action != action_types.SUGGESTION %}
