@@ -188,11 +188,19 @@ def get_detailed_report_context(user, month):
             wordcount = None
 
             translated, reviewed = score.get_paid_wordcounts()
+            translated_details = {}
             if translated is not None:
                 action = ReportActionTypes.TRANSLATION
                 subtotal = score.rate * translated
                 wordcount = translated
-
+                translated_details['raw_rate'] = score.rate - score.review_rate
+                translated_details['raw_translated_wordcount'] = \
+                    score.wordcount * (1 - score.get_similarity())
+                translated_details['raw_subtotal'] = \
+                    (translated_details['raw_translated_wordcount'] *
+                     translated_details['raw_rate'])
+                translated_details['review_subtotal'] = \
+                    score.wordcount * score.review_rate
                 if score.rate in totals['translated']:
                     totals['translated'][score.rate]['words'] += translated
                 else:
@@ -224,6 +232,7 @@ def get_detailed_report_context(user, month):
                     'subtotal': subtotal,
                     'wordcount': wordcount,
                     'source_wordcount': score.wordcount,
+                    'translated_details': translated_details,
                     'creation_time': score.creation_time,
                 })
 

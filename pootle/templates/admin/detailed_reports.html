@@ -120,6 +120,13 @@
     {
       font-size: 130%;
     }
+
+    .subaction
+    {
+      background: #eee;
+      color: #999;
+    }
+
   </style>
 </head>
 <body>
@@ -140,8 +147,8 @@
     <thead>
       <tr>
         <th id="datetime">{% trans "Local server time" %} (GMT{{ utc_offset }})</th>
-        <th id="action">{% trans "Action" %}</th>
         <th id="unit">{% trans "Unit" %}</th>
+        <th id="action">{% trans "Action" %}</th>
         <th id="source-words">{% trans "Source words" %}</th>
         <th id="similarity">{% trans "Similarity" %}</th>
         <th id="words">{% trans "Words" %}</th>
@@ -156,8 +163,7 @@
       {% if item.score %}
         {% with score=item.score %}
           <tr>
-            <td>{{ item.creation_time }}</td>
-            <td>{{ item.action_name }}</td>
+            <td {% if item.action == action_types.TRANSLATION and item.similarity != 0 %}rowspan="3"{% endif %}>{{ item.creation_time }}</td>
             <td class="unit">
               {% if score.submission.unit.isobsolete %}
                 <strike>#{{ score.submission.unit.id }}</strike>
@@ -165,16 +171,26 @@
                 <a href="{{ score.submission.unit.get_translate_url }}">#{{ score.submission.unit.id }}</a>
               {% endif %}
             </td>
-            <td class="number">{{ item.source_wordcount }}</td>
+            <td>{{ item.action_name }}</td>
             <td class="number">
-              {% if score.is_similarity_taken_from_mt %}<sup>MT</sup>{% endif %}
+              {% if item.action == action_types.TRANSLATION and item.similarity != 0 %}
+                &mdash;
+              {% else %}
+                {{ item.source_wordcount }}
+              {% endif %}
+            </td>
+            <td class="number">
+              {% if item.action == action_types.TRANSLATION and item.similarity != 0 %}&mdash;{% else %}
+              {% if score.is_similarity_taken_from_mt %}<sup>{% trans 'MT' %}</sup>{% endif %}
               {% if item.action == action_types.REVIEW %}
                 &mdash;
               {% elif item.action == action_types.TRANSLATION or item.action == action_types.SUGGESTION %}
                 {% if item.similarity == 0 %}&lt; 50{% else %}{{ item.similarity|floatformat }}{% endif %}%
-              {% endif %}
+              {% endif %}{% endif %}
             </td>
-            <td class="number">{{ item.wordcount|floatformat:4 }}</td>
+            <td class="number">
+              {{ item.wordcount|floatformat:4 }}
+            </td>
             {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
               <td class="number">
                 {% if item.action != action_types.SUGGESTION %}
@@ -197,6 +213,33 @@
               </td>
             {% endif %}
           </tr>
+          {% if item.action == action_types.TRANSLATION and item.similarity != 0 %}
+            <tr class="subaction">
+              <td rowspan="2">{% trans "Subactions" %}</td>
+              <td>{% trans "Raw Translation" %}</td>
+              <td class="number">{{ item.source_wordcount }}</td>
+              <td class="number">
+              {% if score.is_similarity_taken_from_mt %}<sup>{% trans 'MT' %}</sup>{% endif %}
+              {% if item.similarity == 0 %}&lt; 50{% else %}{{ item.similarity|floatformat }}{% endif %}%
+              </td>
+              <td class="number">{{ item.translated_details.raw_translated_wordcount|floatformat:4 }}</td>
+              {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
+                <td class="number" title="{{ score.rate }} {{ object.currency }} - {{ score.review_rate }} {{ object.currency }}">{{ item.translated_details.raw_rate }} {{ object.currency }}</td>
+                <td class="number">{{ item.translated_details.raw_subtotal|floatformat:4 }} {{ object.currency }}</td>
+              {% endif %}
+            </tr>
+            <tr class="subaction">
+              <td>{% trans "Review" %}</td>
+              <td class="number">{{ item.source_wordcount }}</td>
+              <td class="number">&mdash;</td>
+              <td class="number">{{ item.source_wordcount }}</td>
+              {% if object.rate > 0 and own_report or object.rate > 0 and admin_report %}
+                <td class="number">{{ score.review_rate }} {{ object.currency }}</td>
+                <td class="number">{{ item.translated_details.review_subtotal|floatformat:4 }} {{ object.currency }}</td>
+              </td>
+              {% endif %}
+            </tr>
+          {% endif %}
         {% endwith %}
       {% else %}
         {% if own_report and object.rate > 0 or admin_report and object.rate > 0 %}
