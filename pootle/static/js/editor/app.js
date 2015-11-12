@@ -619,7 +619,7 @@ PTL.editor = {
       this.goFuzzy();
       // Place cursor at start of target text
       this.cpRE.exec($(active).val());
-      i = this.cpRE.lastIndex;
+      let i = this.cpRE.lastIndex;
       $(active).caret(i, i);
       this.cpRE.lastIndex = 0;
     }
