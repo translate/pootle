@@ -21,6 +21,17 @@ const UnitAPI = {
     });
   },
 
+
+  /* Unit suggestions */
+
+  addSuggestion(uId, body) {
+    return fetch({
+      body,
+      method: 'POST',
+      url: `${this.apiRoot}${uId}/suggestions/`,
+    });
+  },
+
 };
 
 

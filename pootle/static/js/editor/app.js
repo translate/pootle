@@ -1483,14 +1483,11 @@ PTL.editor = {
 
     assign(body, this.getReqData(), this.getSimilarityData(), captchaCallbacks);
 
-    fetch({
-      body,
-      url: `/xhr/units/${this.units.getCurrent().id}/suggestions/`,
-      method: 'POST',
-    }).then(
-      (data) => this.processSuggestion(data),
-      this.error
-    );
+    UnitAPI.addSuggestion(this.units.getCurrent().id, body)
+      .then(
+        (data) => this.processSuggestion(data),
+        this.error
+      );
   },
 
   processSuggestion: function (data) {
