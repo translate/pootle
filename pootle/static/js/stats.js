@@ -14,6 +14,7 @@ import 'jquery-utils';
 import assign from 'object-assign';
 import 'sorttable';
 
+import StatsAPI from 'api/StatsAPI';
 import LastUpdate from 'components/LastUpdate';
 import TimeSince from 'components/TimeSince';
 import UserEvent from 'components/UserEvent';
@@ -355,29 +356,20 @@ const stats = {
     $('#autorefresh-notice strong').text(noticeStr);
   },
 
-  load(url, data) {
+  load(methodName) {
     $('body').spin();
-    return (
-      $.ajax({
-        url,
-        data,
-        dataType: 'json',
-      }).always(() => $('body').spin(false))
-    );
+    return StatsAPI[methodName](this.pootlePath)
+      .always(() => $('body').spin(false));
   },
 
   loadStats() {
-    return (
-      this.load(l('/xhr/stats/'), {path: this.pootlePath})
-          .done((data) => this.setState({data}))
-    );
+    return this.load('getStats')
+      .done((data) => this.setState({ data }));
   },
 
   loadChecks() {
-    return (
-      this.load(l('/xhr/stats/checks'), {path: this.pootlePath})
-          .done((data) => this.setState({isExpanded: true, checksData: data}))
-    );
+    return this.load('getChecks')
+      .done((data) => this.setState({ isExpanded: true, checksData: data }));
   },
 
   /* Path summary */
