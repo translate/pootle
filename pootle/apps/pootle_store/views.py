@@ -1045,15 +1045,10 @@ def accept_suggestion(request, unit, suggid):
 @ajax_required
 @get_unit_context('review')
 def toggle_qualitycheck(request, unit, check_id):
-    json = {
-        'udbid': unit.id,
-        'checkid': check_id,
-    }
-
     try:
         unit.toggle_qualitycheck(check_id, bool(request.POST.get('mute')),
                                  request.profile)
     except ObjectDoesNotExist:
         raise Http404
 
-    return JsonResponse(json)
+    return JsonResponse({})
