@@ -276,8 +276,8 @@ class Command(BaseCommand):
             self.project = options.pop('project')
 
             if not self.project:
-                raise CommandError('You must specify a project with '
-                                   '--project.')
+                raise CommandError('You must specify a project name with '
+                                   '--display-name.')
             self.parser = FileParser(stdout=self.stdout, index=self.INDEX_NAME,
                                      language=self.target_language,
                                      project=self.project)
