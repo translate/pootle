@@ -1051,8 +1051,8 @@ def toggle_qualitycheck(request, unit, check_id):
     }
 
     try:
-        unit.toggle_qualitycheck(check_id,
-            bool(request.POST.get('mute')), request.profile)
+        unit.toggle_qualitycheck(check_id, bool(request.POST.get('mute')),
+                                 request.profile)
     except ObjectDoesNotExist:
         raise Http404
 
