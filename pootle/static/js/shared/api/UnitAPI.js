@@ -21,6 +21,13 @@ const UnitAPI = {
     });
   },
 
+  getContext(uId, body) {
+    return fetch({
+      body,
+      url: `${this.apiRoot}${uId}/context/`,
+    });
+  },
+
   getTimeline(uId) {
     return fetch({
       url: `${this.apiRoot}${uId}/timeline/`,

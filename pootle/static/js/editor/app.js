@@ -1749,18 +1749,6 @@ PTL.editor = {
     $('tr.edit-ctx.after').replaceWith(ctxRowAfter);
   },
 
-  loadContext: function (unitId, amount) {
-    return (
-      fetch({
-        url: `/xhr/units/${unitId}/context/`,
-        body: {
-          gap: this.ctxGap,
-          qty: amount,
-        },
-      })
-    );
-  },
-
   handleContextSuccess: function (data) {
     if (!data.ctx.before.length && !data.ctx.after.length) {
       return undefined;
@@ -1783,14 +1771,13 @@ PTL.editor = {
 
   /* Gets more context units */
   moreContext: function (amount=CTX_STEP) {
-    const uId = this.units.getCurrent().id;
-
     return (
-      this.loadContext(uId, amount)
-          .then(
-            (data) => this.handleContextSuccess(data),
-            this.error
-          )
+      UnitAPI.getContext(this.units.getCurrent().id,
+                         { gap: this.ctxGap, qty: amount })
+        .then(
+          (data) => this.handleContextSuccess(data),
+          this.error
+        )
     );
   },
 
