@@ -13,6 +13,13 @@ const UnitAPI = {
 
   apiRoot: '/xhr/units/',
 
+  fetchUnits(body) {
+    return fetch({
+      body,
+      url: this.apiRoot,
+    });
+  },
+
   fetchUnit(uId) {
     return fetch({
       queue: 'unitWidget',

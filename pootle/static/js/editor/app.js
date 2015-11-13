@@ -1320,15 +1320,11 @@ PTL.editor = {
 
     assign(reqData, this.getReqData());
 
-    return $.ajax({
-      url: l('/xhr/units/'),
-      data: reqData,
-      dataType: 'json',
-      cache: false,
-    }).then(
-      (data) => this.storeUnitData(data),
-      this.error
-    );
+    return UnitAPI.fetchUnits(reqData)
+      .then(
+        (data) => this.storeUnitData(data),
+        this.error
+      );
   },
 
   storeUnitData: function (data) {
