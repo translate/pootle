@@ -30,8 +30,8 @@ import Levenshtein from 'levenshtein';
 import assign from 'object-assign';
 import 'shortcut';
 
+import StatsAPI from 'api/StatsAPI';
 import UnitAPI from 'api/UnitAPI';
-import fetch from 'utils/fetch';
 import linkHashtags from 'utils/linkHashtags';
 
 import captcha from '../captcha';
@@ -463,9 +463,7 @@ PTL.editor = {
         // if the checks selector is empty (i.e. the 'change' event was not fired
         // because the selection did not change), force the update to populate the selector
         if (this.$filterChecks.is(':hidden')) {
-          this.getCheckOptions()
-              .then((data) => this.appendChecks(data),
-                    this.error);
+          this.getCheckOptions();
         }
       }
 
@@ -1600,14 +1598,11 @@ PTL.editor = {
 
   /* Gets the failing check options for the current query */
   getCheckOptions: function () {
-    return (
-      fetch({
-        url: '/xhr/stats/checks/',
-        body: {
-          path: this.settings.pootlePath,
-        },
-      })
-    );
+    StatsAPI.getChecks(this.settings.pootlePath)
+      .then(
+        (data) => this.appendChecks(data),
+        this.error
+      );
   },
 
   /* Loads units based on checks filtering */
@@ -1705,9 +1700,7 @@ PTL.editor = {
         isUserFilter = $selected.data('user');
 
     if (filterBy === "checks") {
-      this.getCheckOptions()
-          .then((data) => this.appendChecks(data),
-                this.error);
+      this.getCheckOptions();
     } else { // Normal filtering options (untranslated, fuzzy...)
       this.$filterChecksWrapper.hide();
 
