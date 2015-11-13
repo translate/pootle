@@ -13,6 +13,13 @@ const UnitAPI = {
 
   apiRoot: '/xhr/units/',
 
+  fetchUnit(uId) {
+    return fetch({
+      queue: 'unitWidget',
+      url: `${this.apiRoot}${uId}/edit/`,
+    });
+  },
+
   addTranslation(uId, body) {
     return fetch({
       body,

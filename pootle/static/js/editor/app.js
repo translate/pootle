@@ -1353,21 +1353,6 @@ PTL.editor = {
     return true;
   },
 
-  /* Fetches the HTML widget for a specific unit */
-  fetchUnit: function (uId) {
-    let body = {};
-    this.settings.vFolder && (body.vfolder = this.settings.vFolder);
-
-    return fetch({
-      body,
-      queue: 'unitWidget',
-      url: `/xhr/units/${uId}/edit/`,
-    }).then(
-      (data) => this.setEditUnit(data),
-      this.error
-    );
-  },
-
   /* Stores editor data for the current unit */
   setEditUnit: function (data) {
     const currentUnit = this.units.getCurrent();
@@ -1386,9 +1371,17 @@ PTL.editor = {
 
     this.fetchUnits();
 
-    this.fetchUnit(newUnit.id).then(
-      () => this.renderUnit()
-    );
+    let body = {};
+    this.settings.vFolder && (body.vfolder = this.settings.vFolder);
+
+    UnitAPI.fetchUnit(newUnit.id, body)
+      .then(
+        (data) => {
+          this.setEditUnit(data);
+          this.renderUnit();
+        },
+        this.error
+      );
   },
 
   /* Pushes translation submissions and moves to the next unit */
