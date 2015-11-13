@@ -229,7 +229,9 @@ PTL.editor = {
       this.acceptSuggestion(e.currentTarget.dataset.suggId);
     });
     $(document).on('click', '#js-toggle-timeline', (e) => this.toggleTimeline(e));
-    $(document).on('click', '.js-toggle-check', this.toggleCheck);
+    $(document).on('click', '.js-toggle-check', (e) => {
+      this.toggleCheck(e.currentTarget.dataset.checkId);
+    });
 
     /* Filtering */
     $(document).on('change', '#js-filter-status', () => this.filterStatus());
@@ -2137,28 +2139,25 @@ PTL.editor = {
   },
 
   /* Mutes or unmutes a quality check marking it as false positive or not */
-  toggleCheck: function () {
-    var check = $(this).parent(),
-        checkId = $(this).data("check-id"),
-        uId = PTL.editor.units.getCurrent().id,
-        url = l(`/xhr/units/${uId}/checks/${checkId}/toggle/`),
-        falsePositive = !check.hasClass('false-positive'), // toggled value
-        post = {},
-        error;
+  toggleCheck: function (checkId) {
+    const $check = $(`.js-check-${checkId}`);
+    const isFalsePositive = !$check.hasClass('false-positive');
 
-    if (falsePositive) {
-      post.mute = 1;
-    }
+    UnitAPI.toggleCheck(this.units.getCurrent().id, checkId,
+                        { mute: isFalsePositive })
+      .then(
+        () => this.processToggleCheck(checkId, isFalsePositive),
+        this.error
+      );
+  },
 
-    $.post(url, post,
-      function (data) {
-        check.toggleClass('false-positive', falsePositive);
+  processToggleCheck: function (checkId, isFalsePositive) {
+    $(`.js-check-${checkId}`).toggleClass('false-positive', isFalsePositive);
 
-        error = $('#translate-checks-block .check')
-                  .not('.false-positive').size() > 0;
+    const hasError = $('#translate-checks-block .check')
+      .not('.false-positive').size() > 0;
 
-        $('.translate-container').toggleClass('error', error);
-      }, "json");
+    $('.translate-container').toggleClass('error', hasError);
   },
 
   /*

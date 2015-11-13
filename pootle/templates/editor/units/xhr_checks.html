@@ -5,7 +5,7 @@
   <span class="sidetitle" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Critical issues with the translation' %}">{% trans "Critical errors:" %}</span>
   <ul class="checks checks-critical">
     {% for check in checks_critical %}
-    <li class="check{% if check.false_positive %} false-positive{% endif %}">
+    <li class="check{% if check.false_positive %} false-positive{% endif %} js-check-{{ check.id }}">
       <a href="{% url 'pootle-checks-descriptions' %}#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
       {% if canreview %}
       <a class="js-toggle-check toggle-check" data-check-id="{{ check.id }}">

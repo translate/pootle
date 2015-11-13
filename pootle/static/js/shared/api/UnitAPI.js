@@ -80,6 +80,16 @@ const UnitAPI = {
     });
   },
 
+  /* Quality checks */
+
+  toggleCheck(uId, checkId, { mute=false }) {
+    return fetch({
+      body: { mute },
+      method: 'POST',
+      url: `${this.apiRoot}${uId}/checks/${checkId}/toggle/`,
+    });
+  },
+
 };
 
 
