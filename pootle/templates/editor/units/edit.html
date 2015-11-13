@@ -301,14 +301,12 @@
                   <i class="icon-reject" dir="{% locale_dir %}"
                     title="{% trans 'Reject suggestion' %}"></i>
                 </a>
-                {% else %}
-                {% if user.is_authenticated and profile == sugg.user %}
+                {% elif user.is_authenticated and profile == sugg.user %}
                 <a accesskey="r" class="suggestion-action js-suggestion-reject"
                   data-sugg-id="{{ sugg.id }}">
                   <i class="icon-reject" dir="{% locale_dir %}"
                     title="{% trans 'Remove suggestion' %}"></i>
                 </a>
-                {% endif %}
                 {% endif %}
 
                 <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation"
