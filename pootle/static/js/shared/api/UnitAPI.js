@@ -73,6 +73,13 @@ const UnitAPI = {
     });
   },
 
+  rejectSuggestion(uId, suggId) {
+    return fetch({
+      method: 'DELETE',
+      url: `${this.apiRoot}${uId}/suggestions/${suggId}/`,
+    });
+  },
+
 };
 
 

@@ -220,7 +220,10 @@ PTL.editor = {
     });
     $(document).on('click', '#js-nav-prev', () => this.gotoPrev());
     $(document).on('click', '#js-nav-next', () => this.gotoNext());
-    $(document).on('click', '.js-suggestion-reject', this.rejectSuggestion);
+    $(document).on('click', '.js-suggestion-reject', (e) => {
+      e.stopPropagation();
+      this.rejectSuggestion(e.currentTarget.dataset.suggId);
+    });
     $(document).on('click', '.js-suggestion-accept', (e) => {
       e.stopPropagation();
       this.acceptSuggestion(e.currentTarget.dataset.suggId);
@@ -2058,32 +2061,26 @@ PTL.editor = {
 
 
   /* Rejects a suggestion */
-  rejectSuggestion: function (e) {
-    e.stopPropagation(); //we don't want to trigger a click on the text below
-    var suggId = $(this).data("sugg-id"),
-        element = $("#suggestion-" + suggId),
-        unit = PTL.editor.units.getCurrent();
+  rejectSuggestion: function (suggId) {
+    UnitAPI.rejectSuggestion(this.units.getCurrent().id, suggId)
+      .then(
+        (data) => this.processRejectSuggestion(data, suggId),
+        this.error
+      );
+  },
 
-    const url = l(`/xhr/units/${unit.id}/suggestions/${suggId}/`);
+  processRejectSuggestion: function (data, suggId) {
+    if (data.user_score) {
+      score.set(data.user_score);
+    }
 
-    $.ajax({
-      url: url,
-      type: 'DELETE',
-      success: (data) => {
-        if (data.user_score) {
-          score.set(data.user_score);
-        }
+    $(`#suggestion-${suggId}`).fadeOut(200, function () {
+      $(this).remove();
 
-        element.fadeOut(200, function () {
-          $(this).remove();
-
-          // Go to the next unit if there are no more suggestions left
-          if (!$('.js-user-suggestion').length) {
-            PTL.editor.gotoNext();
-          }
-        });
-      },
-      error: PTL.editor.error,
+      // Go to the next unit if there are no more suggestions left
+      if (!$('.js-user-suggestion').length) {
+        PTL.editor.gotoNext();
+      }
     });
   },
 
