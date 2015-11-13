@@ -1737,11 +1737,11 @@ PTL.editor = {
   renderCtxControls: function ({ hasData=false }) {
     const ctxRowBefore = this.tmpl.editCtx({
       hasData,
-      extraCls: 'before'
+      extraCls: 'before',
     });
     const ctxRowAfter = this.tmpl.editCtx({
       hasData,
-      extraCls: 'after'
+      extraCls: 'after',
     });
 
     return [ctxRowBefore, ctxRowAfter];
