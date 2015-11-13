@@ -246,7 +246,7 @@ PTL.editor = {
         $elem.css('display', 'none');
       }
     });
-    $(document).on('submit', '#js-comment-form', this.comment);
+    $(document).on('submit', '#js-comment-form', this.addComment);
     $(document).on('click', '.js-comment-remove', this.removeComment);
 
     /* Misc */
@@ -1880,7 +1880,8 @@ PTL.editor = {
   /*
    * Comments
    */
-  comment: function (e) {
+
+  addComment: function (e) {
     e.preventDefault();
 
     PTL.editor.updateCommentDefaultProperties();
