@@ -66,6 +66,13 @@ const UnitAPI = {
     });
   },
 
+  acceptSuggestion(uId, suggId) {
+    return fetch({
+      method: 'POST',
+      url: `${this.apiRoot}${uId}/suggestions/${suggId}/`,
+    });
+  },
+
 };
 
 

@@ -221,7 +221,10 @@ PTL.editor = {
     $(document).on('click', '#js-nav-prev', () => this.gotoPrev());
     $(document).on('click', '#js-nav-next', () => this.gotoNext());
     $(document).on('click', '.js-suggestion-reject', this.rejectSuggestion);
-    $(document).on('click', '.js-suggestion-accept', this.acceptSuggestion);
+    $(document).on('click', '.js-suggestion-accept', (e) => {
+      e.stopPropagation();
+      this.acceptSuggestion(e.currentTarget.dataset.suggId);
+    });
     $(document).on('click', '#js-toggle-timeline', (e) => this.toggleTimeline(e));
     $(document).on('click', '.js-toggle-check', this.toggleCheck);
 
@@ -1391,7 +1394,7 @@ PTL.editor = {
     const suggestions = $('.js-user-suggestion').map(function () {
       return {
         text: this.dataset.translationAid,
-        id: this.id
+        id: this.dataset.suggId,
       };
     }).get();
     const captchaCallbacks = {
@@ -1411,8 +1414,7 @@ PTL.editor = {
     const suggestionIndex = suggestionTexts.indexOf(newTranslation);
 
     if (suggestionIndex !== -1 && !this.isFuzzy()) {
-      $(`#${suggestionIds[suggestionIndex]}`)
-        .find('.js-suggestion-accept').trigger('click', [true]);
+      this.acceptSuggestion(suggestionIds[suggestionIndex], { skipToNext: true });
       return;
     }
 
@@ -2088,63 +2090,54 @@ PTL.editor = {
 
 
   /* Accepts a suggestion */
-  acceptSuggestion: function (e, skipToNext) {
-    e.stopPropagation(); //we don't want to trigger a click on the text below
-    var suggId = $(this).data("sugg-id"),
-        element = $("#suggestion-" + suggId),
-        unit = PTL.editor.units.getCurrent(),
-        skipToNext = skipToNext || false,
-        translations;
+  acceptSuggestion: function (suggId, { skipToNext=false } = {}) {
+    UnitAPI.acceptSuggestion(this.units.getCurrent().id, suggId)
+      .then(
+        (data) => this.processAcceptSuggestion(data, suggId, skipToNext),
+        this.error
+      );
+  },
 
-    const url = l(`/xhr/units/${unit.id}/suggestions/${suggId}/`);
-
-    $.ajax({
-      url: url,
-      type: 'POST',
-      success: (data) => {
-        // Update target textareas
-        $.each(data.newtargets, function (i, target) {
-          $("#id_target_f_" + i).val(target).focus();
-        });
-
-        // Update remaining suggestion's diff
-        $.each(data.newdiffs, function (suggId, sugg) {
-          $.each(sugg, function (i, target) {
-             $("#suggdiff-" + suggId + "-" + i).html(target);
-          });
-        });
-
-        // FIXME: handle this via events
-        translations = $('.js-translation-area').map(function (i, el) {
-          return $(el).val();
-        }).get();
-        unit.setTranslation(translations);
-        unit.set('isfuzzy', false);
-
-        if (data.user_score) {
-          score.set(data.user_score);
-        }
-
-        let hasCriticalChecks = !!data.checks;
-        $('.translate-container').toggleClass('error', hasCriticalChecks);
-        if (hasCriticalChecks) {
-          _refreshChecksSnippet(data.checks);
-        }
-
-        element.fadeOut(200, function () {
-          $(this).remove();
-
-          // Go to the next unit if there are no more suggestions left,
-          // providing there are no critical failing checks
-          if (!hasCriticalChecks &&
-              (skipToNext || !$('.js-user-suggestion').length)) {
-            PTL.editor.gotoNext();
-          }
-        });
-      },
-      error: PTL.editor.error,
+  processAcceptSuggestion: function (data, suggId, skipToNext) {
+    // Update target textareas
+    $.each(data.newtargets, function (i, target) {
+      $(`#id_target_f_${i}`).val(target).focus();
     });
 
+    // Update remaining suggestion's diff
+    $.each(data.newdiffs, function (suggId, sugg) {
+      $.each(sugg, function (i, target) {
+         $(`#suggdiff-${suggId}-${i}`).html(target);
+      });
+    });
+
+    // FIXME: handle this via events
+    const translations = $('.js-translation-area').map(function (i, el) {
+      return $(el).val();
+    }).get();
+    const unit = this.units.getCurrent();
+    unit.setTranslation(translations);
+    unit.set('isfuzzy', false);
+
+    if (data.user_score) {
+      score.set(data.user_score);
+    }
+
+    const hasCriticalChecks = !!data.checks;
+    $('.translate-container').toggleClass('error', hasCriticalChecks);
+    if (hasCriticalChecks) {
+      _refreshChecksSnippet(data.checks);
+    }
+
+    $(`#suggestion-${suggId}`).fadeOut(200, function () {
+      $(this).remove();
+
+      // Go to the next unit if there are no more suggestions left,
+      // provided there are no critical failing checks
+      if (!hasCriticalChecks && (skipToNext || !$('.js-user-suggestion').length)) {
+        PTL.editor.gotoNext();
+      }
+    });
   },
 
   /* Mutes or unmutes a quality check marking it as false positive or not */

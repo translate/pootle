@@ -281,6 +281,7 @@
           <div id="suggestion-{{ sugg.id }}"
             class="js-user-suggestion js-editor-copytext extra-item-block"
             data-action="overwrite" data-translation-aid="{{ sugg.target }}"
+            data-sugg-id="{{ sugg.id }}"
             data-suggestor-id="{{ sugg.user.id }}">
             {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
             <div class="extra-item-content">
