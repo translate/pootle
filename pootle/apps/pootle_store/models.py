@@ -1251,6 +1251,10 @@ class Unit(models.Model, base.TranslationUnit):
         # Update timestamp
         self.save()
 
+    def has_critical_checks(self):
+        return self.qualitycheck_set.filter(
+            category=Category.CRITICAL,
+        ).exists()
 
     def toggle_qualitycheck(self, check_id, false_positive, user):
         check = self.qualitycheck_set.get(id=check_id)

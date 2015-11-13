@@ -432,11 +432,7 @@ def _get_critical_checks_snippet(request, unit):
     :return: rendered HTML snippet with the failing checks, or `None` if
         there are no critical failing checks.
     """
-    has_critical_checks = unit.qualitycheck_set.filter(
-        category=Category.CRITICAL,
-    ).exists()
-
-    if not has_critical_checks:
+    if not unit.has_critical_checks():
         return None
 
     can_review = check_user_permission(request.profile, 'review',
