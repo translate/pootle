@@ -13,6 +13,13 @@ const StatsAPI = {
 
   apiRoot: '/xhr/stats/',
 
+  getStats(path) {
+    return fetch({
+      body: { path },
+      url: this.apiRoot,
+    });
+  },
+
   getChecks(path) {
     return fetch({
       body: { path },
