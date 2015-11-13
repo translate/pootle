@@ -1390,7 +1390,7 @@ PTL.editor = {
     const newTranslation = $('.js-translation-area')[0].value;
     const suggestions = $('.js-user-suggestion').map(function () {
       return {
-        text: $(this).data('translation-aid'),
+        text: this.dataset.translationAid,
         id: this.id
       };
     }).get();
