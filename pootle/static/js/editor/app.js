@@ -1195,7 +1195,7 @@ PTL.editor = {
       end = unitCount;
     }
 
-    return _.reduce(this.units.slice(begin, end), function (out, unit) {
+    return this.units.slice(begin, end).reduce((out, unit) => {
       pootlePath = unit.get('store').get('pootlePath');
 
       if (pootlePath === prevPath) {
