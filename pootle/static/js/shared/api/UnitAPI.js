@@ -20,8 +20,9 @@ const UnitAPI = {
     });
   },
 
-  fetchUnit(uId) {
+  fetchUnit(uId, body={}) {
     return fetch({
+      body,
       queue: 'unitWidget',
       url: `${this.apiRoot}${uId}/edit/`,
     });
