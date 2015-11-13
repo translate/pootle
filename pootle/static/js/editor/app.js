@@ -30,6 +30,7 @@ import Levenshtein from 'levenshtein';
 import assign from 'object-assign';
 import 'shortcut';
 
+import UnitAPI from 'api/UnitAPI';
 import fetch from 'utils/fetch';
 import linkHashtags from 'utils/linkHashtags';
 
@@ -1434,14 +1435,11 @@ PTL.editor = {
 
     el.disabled = true;
 
-    fetch({
-      body,
-      url: `/xhr/units/${this.units.getCurrent().id}`,
-      method: 'POST',
-    }).then(
-      (data) => this.processSubmission(data),
-      this.error
-    );
+    UnitAPI.addTranslation(this.units.getCurrent().id, body)
+      .then(
+        (data) => this.processSubmission(data),
+        this.error
+      );
   },
 
   processSubmission: function (data) {
