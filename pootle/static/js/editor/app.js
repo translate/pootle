@@ -1783,19 +1783,18 @@ PTL.editor = {
 
   /* Shrinks context lines */
   lessContext: function () {
-
-    var before = $(".ctx-row.before"),
-        after = $(".ctx-row.after");
+    const $before = $('.ctx-row.before');
+    const $after = $('.ctx-row.after');
 
     // Make sure there are context rows before decreasing the gap and
     // removing any context rows
-    if (before.length || after.length) {
-      if (before.length === this.ctxGap) {
-        before.slice(0, CTX_STEP).remove();
+    if ($before.length || $after.length) {
+      if ($before.length === this.ctxGap) {
+        $before.slice(0, CTX_STEP).remove();
       }
 
-      if (after.length === this.ctxGap) {
-        after.slice(-CTX_STEP).remove();
+      if ($after.length === this.ctxGap) {
+        $after.slice(-CTX_STEP).remove();
       }
 
       this.ctxGap -= CTX_STEP;
