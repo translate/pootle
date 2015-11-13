@@ -247,8 +247,8 @@ PTL.editor = {
         $elem.css('display', 'none');
       }
     });
-    $(document).on('submit', '#js-comment-form', this.addComment);
-    $(document).on('click', '.js-comment-remove', this.removeComment);
+    $(document).on('submit', '#js-comment-form', (e) => this.addComment(e));
+    $(document).on('click', '.js-comment-remove', (e) => this.removeComment(e));
 
     /* Misc */
     $(document).on('click', '.js-editor-msg-hide', () => this.hideMsg());
@@ -1864,52 +1864,40 @@ PTL.editor = {
 
   addComment: function (e) {
     e.preventDefault();
+    this.updateCommentDefaultProperties();
 
-    PTL.editor.updateCommentDefaultProperties();
+    UnitAPI.addComment(this.units.getCurrent().id, $(e.target).serializeObject())
+      .then(
+        (data) => this.processAddComment(data),
+        this.error
+      );
+  },
 
-    var url = $(this).attr('action'),
-        reqData = $(this).serializeObject();
+  processAddComment: function (data) {
+    $('.js-editor-comment').removeClass('selected');
+    $("#editor-comment").fadeOut(200);
 
-    $.ajax({
-      url: url,
-      type: 'POST',
-      data: reqData,
-      success: function (data) {
-        $('.js-editor-comment').removeClass('selected');
-        $("#editor-comment").fadeOut(200);
+    if ($("#translator-comment").length) {
+      $(data.comment).hide().prependTo("#translator-comment").delay(200)
+        .animate({height: 'show'}, 1000, 'easeOutQuad');
+    } else {
+      $(`<div id="translator-comment">${data.comment}</div>`)
+        .prependTo("#extras-container").delay(200)
+        .hide().animate({height: 'show'}, 1000, 'easeOutQuad');
+    }
 
-        if ($("#translator-comment").length) {
-          $(data.comment).hide().prependTo("#translator-comment").delay(200)
-                         .animate({height: 'show'}, 1000, 'easeOutQuad');
-        } else {
-          var commentHtml = '<div id="translator-comment">' + data.comment
-                          + '</div>';
-          $(commentHtml).prependTo("#extras-container").delay(200)
-                        .hide().animate({height: 'show'}, 1000, 'easeOutQuad');
-        }
-
-        helpers.updateRelativeDates();
-      },
-      error: PTL.editor.error
-    });
-
-    return false;
+    helpers.updateRelativeDates();
   },
 
   /* Removes last comment */
   removeComment: function (e) {
     e.preventDefault();
 
-    var url = $(this).data('url');
-
-    $.ajax({
-      url: url,
-      type: 'DELETE',
-      success: function () {
-        $('.js-comment-first').fadeOut(200);
-      },
-      error: PTL.editor.error
-    });
+    UnitAPI.removeComment(this.units.getCurrent().id)
+      .then(
+        () => $('.js-comment-first').fadeOut(200),
+        this.error
+      );
   },
 
 

@@ -253,8 +253,7 @@
         {% block translator_comment_edit_form %}
         {% if cantranslate %}
         <div id="editor-comment" class="js-editor-comment-form hide">
-          <form id="js-comment-form" method="POST"
-            action="{% url 'pootle-xhr-units-comment' unit.id %}">
+          <form id="js-comment-form">
             {{ comment_form.translator_comment }}
             <input type="submit" class="btn btn-xs btn-primary"
                       value="{% trans 'Submit' %}" />

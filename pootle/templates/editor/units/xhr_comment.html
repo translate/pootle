@@ -9,8 +9,7 @@
     {% endif %}
     <div class="extra-item">
       {% if cansuggest or cantranslate %}
-      <a class="comment-action js-comment-remove"
-        data-url="{% url 'pootle-xhr-units-comment' unit.id %}">
+      <a class="comment-action js-comment-remove">
         <i class="icon-reject" dir="{% locale_dir %}"
           title="{% trans 'Remove comment' %}"></i>
       </a>

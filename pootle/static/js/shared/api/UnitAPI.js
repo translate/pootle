@@ -34,6 +34,20 @@ const UnitAPI = {
     });
   },
 
+  addComment(uId, body) {
+    return fetch({
+      body,
+      method: 'POST',
+      url: `${this.apiRoot}${uId}/comment/`,
+    });
+  },
+
+  removeComment(uId) {
+    return fetch({
+      method: 'DELETE',
+      url: `${this.apiRoot}${uId}/comment/`,
+    });
+  },
 
   /* Unit suggestions */
 
