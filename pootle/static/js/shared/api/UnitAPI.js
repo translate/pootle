@@ -21,6 +21,12 @@ const UnitAPI = {
     });
   },
 
+  getTimeline(uId) {
+    return fetch({
+      url: `${this.apiRoot}${uId}/timeline/`,
+    });
+  },
+
 
   /* Unit suggestions */
 

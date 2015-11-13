@@ -1942,12 +1942,12 @@ PTL.editor = {
     const $node = $('.translate-container');
     $node.spin();
 
-    fetch({
-      url: `/xhr/units/${this.units.getCurrent().id}/timeline/`,
-    }).then(
-      (data) => this.renderTimeline(data),
-      this.error
-    ).always(() => $node.spin(false));
+    UnitAPI.getTimeline(this.units.getCurrent().id)
+      .then(
+        (data) => this.renderTimeline(data),
+        this.error
+      )
+      .always(() => $node.spin(false));
   },
 
   renderTimeline: function (data) {
