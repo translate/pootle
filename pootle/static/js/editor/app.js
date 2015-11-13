@@ -2082,7 +2082,6 @@ PTL.editor = {
             PTL.editor.gotoNext();
           }
         });
-        $('.js-comment-first').fadeOut(200);
       },
       error: PTL.editor.error,
     });
