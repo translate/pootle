@@ -105,8 +105,6 @@ const UserEvent = React.createClass({
   },
 
   render() {
-    const actionText = this.getActionText();
-
     return (
       <div className="last-action">
         <Avatar
