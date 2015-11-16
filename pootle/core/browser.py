@@ -199,7 +199,7 @@ def make_vfolder_treeitem(vfolder_treeitem):
         'code': vfolder_treeitem.code,
         'priority': vfolder_treeitem.vfolder.priority,
         'is_grayed': not vfolder_treeitem.is_visible,
-        'icon': 'folder',
+        'icon': 'vfolder',
     }
 
 
