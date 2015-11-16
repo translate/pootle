@@ -16,6 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 from contact_form.forms import ContactForm as OriginalContactForm
 
 from pootle.core.forms import MathCaptchaForm
+from pootle.core.mail import send_mail
 
 
 class ContactForm(MathCaptchaForm, OriginalContactForm):
@@ -55,6 +56,15 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
 
     def recipient_list(self):
         return [settings.POOTLE_CONTACT_EMAIL]
+
+    def save(self, fail_silently=False):
+        """Build and send the email message."""
+
+        kwargs = self.get_message_dict()
+        kwargs["headers"] = {"Reply-To": kwargs["from_email"]}
+        kwargs["from_email"] = settings.DEFAULT_FROM_EMAIL
+        send_mail(fail_silently=fail_silently, **kwargs)
+
 
 # Alters form's field order. Use `self.field_order` when in Django 1.9+
 ContactForm.base_fields = OrderedDict(
