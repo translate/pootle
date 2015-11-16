@@ -1,0 +1,216 @@
+<html>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Invoice - {{ name }} - {{ id }}</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #eee;
+    }
+
+    div.border {
+      background: #fff;
+      display: table;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.1);
+      padding: 2em 2em;
+      margin: 3em auto;
+    }
+
+    @media print {
+      body {
+        background: none;
+      }
+
+      div.border {
+        background: none;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0 auto;
+      }
+    }
+
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      width: 40em;
+      margin: 2em auto;
+    }
+
+    th,
+    td {
+      /*border: 1px solid #ccc; /* DEBUG */
+      padding: 0.6em;
+    }
+
+    td.logo {
+      width: 35%;
+      vertical-align: top;
+      position: relative;
+      top: -10pt;
+    }
+
+    table.header td.label {
+      width: 30%;
+      white-space: nowrap;
+    }
+
+    table.header td.value {
+      font-weight: bold;
+    }
+
+    table.body th,
+    table.body td {
+      border: 1px solid black;
+    }
+
+    table.body th {
+      font-size: 80%;
+      font-weight: normal;
+      background: #ddd;
+    }
+
+    table.body tr.total td {
+      font-weight: bold;
+      text-align: right;
+    }
+
+    table.body .label {
+      text-align: left;
+    }
+
+    table.body .number {
+      text-align: right;
+      width: 20%;
+    }
+
+    table.footer th {
+      font-size: 80%;
+      font-weight: normal;
+      color: #666;
+      border-bottom: 1px solid #999;
+      text-align: left;
+    }
+
+    table.footer th,
+    table.footer td {
+      vertical-align: top;
+      padding-left: 0;
+      padding-right: 2em;
+    }
+
+    table.footer th:last-child,
+    table.footer td:last-child {
+      padding-right: 0;
+    }
+
+    td.wire-info {
+      width: 100%;
+    }
+
+  </style>
+  <body>
+    <div class="border">
+      <table class="header">
+        <tr>
+          <td rowspan="4" class="logo"></td>
+          <td class="label">INVOICE:</td>
+          <td class="value">{{ id }}</td>
+        </tr>
+
+        <tr>
+          <td class="label">Invoice date:</td>
+          <td class="value">{{ date|date:'d.m.Y' }}</td>
+        </tr>
+
+        <tr>
+          <td class="label">Name of the payee:</td>
+          <td class="value">{{ name }}</td>
+        </tr>
+
+        <tr>
+          <td class="label">Service period covered:</td>
+          <td class="value">{{ month|date:'F, Y' }}</td>
+        </tr>
+      </table>
+
+      <table class="body">
+        {% if user.rate > 0 or user.review_rate > 0 %}
+        <tr>
+          <th class="label">Description</th>
+          <th class="number">Rate, per word,<br/>{{ user.currency }}</th>
+          <th class="number">Quantity,<br/>words</th>
+          <th class="number">Amount,<br/>{{ user.currency }}</th>
+        </tr>
+        {% endif %}
+
+        {% if user.rate > 0 %}
+        <tr>
+          <td class="label">New Translations</td>
+          <td class="number">{{ rate }}</td>
+          <td class="number">{{ translated_words }}</td>
+          <td class="number">{{ translation_amount|floatformat:2 }}</td>
+        </tr>
+        {% endif %}
+
+        {% if user.review_rate > 0 %}
+        <tr>
+          <td class="label">Reviewed Translations</td>
+          <td class="number">{{ review_rate }}</td>
+          <td class="number">{{ reviewed_words }}</td>
+          <td class="number">{{ review_amount|floatformat:2 }}</td>
+        </tr>
+        {% endif %}
+
+        {% if user.hourly_rate > 0 %}
+        <tr>
+          <th class="label">Description</th>
+          <th class="number">Rate, per hour,<br/>{{ user.currency }}</th>
+          <th class="number">Quantity,<br/>hours</th>
+          <th class="number">Amount,<br/>{{ user.currency }}</th>
+        </tr>
+
+        <tr>
+          <td class="label">New Translations</td>
+          <td class="number">{{ hourly_rate }}</td>
+          <td class="number">{{ hours_count }}</td>
+          <td class="number">{{ hours_amount|floatformat:2 }}</td>
+        </tr>
+       {% endif %}
+
+        {% if extra_amount > 0 %}
+        <tr>
+          <td colspan="3">Additional paid tasks</td>
+          <td class="number">{{ extra_amount|floatformat:2 }}</td>
+        </tr>
+        {% endif %}
+
+        {% if correction != 0 %}
+        <tr>
+          <td colspan="3">Correction</td>
+          <td class="number">{{ correction|floatformat:2 }}</td>
+        </tr>
+        {% endif %}
+
+        <tr class="total">
+          <td colspan="3">Total amount to be paid:</td>
+          <td class="number">{{ total|floatformat:2 }}</td>
+        </tr>
+      </table>
+
+      <table class="footer">
+        <tr>
+          <th>Wire Information</th>
+          <th>Paid By:</th>
+          <th>In:</th>
+        </tr>
+
+        <tr>
+          <td class="wire-info">{{ wire_info|linebreaks }}</td>
+          <td>{{ paid_by|linebreaks }}</td>
+          <td>{{ user.currency|linebreaks }}</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

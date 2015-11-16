@@ -1,0 +1,151 @@
+<html>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Invoice - {{ name }} - {{ id }}</title>
+  <body style="font-family: sans-serif; font-size: 1.1em">
+    {% if debug_emails %}
+      <p style="color: red">*** DEBUG_EMAILS mode ON; the message would be sent
+        {% if to_email_list %}TO: {% endif %}
+        {% for email in to_email_list %}<strong>{{ email }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}
+        {% if cc_email_list %}, CC: {% endif %}
+        {% for email in cc_email_list %}<strong>{{ email }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}
+        {% if bcc_email_list %}, BCC: {% endif %}
+        {% for email in bcc_email_list %}<strong>{{ email }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}
+        ***
+      </p>
+    {% endif %}
+
+    {% if accounting %}
+      <p>This email is sent automatically by {{ POOTLE_TITLE }} on behalf of the user.</p>
+
+      <p>In case of questions, please contact administrator at admin@your-server.com</p>
+    {% else %}
+      <p>This is to inform you that the following invoice will be paid.</p>
+
+      <p>In case of questions, please contact our your managers at manager@your-server.com</p>
+    {% endif %}
+
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#e6e6e6">
+      <tr>
+        <td width="100%" style="background-color: #e6e6e6; padding: 40px">
+          <table align="center" width="850" style="background: #fff" cellpadding="30" cellspacing="0">
+            <tr>
+              <td>
+                <!-- content -->
+
+                <table width="100%" cellspacing="10">
+                  <tr>
+                    <td width="35%" rowspan="4">
+                      <div style="font-size: 2.7em; color: #20c05c">{{ POOTLE_INVOICES_COMPANY }}</div>
+                      <div style="color: #999">{{ POOTLE_INVOICES_DEPARTMENT }}</div>
+                    </td>
+                    <td style="text-align: left">INVOICE:</td>
+                    <td class="value" style="font-weight: bold">{{ id }}</td>
+                  </tr>
+
+                  <tr>
+                    <td width="25%" style="text-align: left">Invoice date:</td>
+                    <td width="35%" class="value" style="font-weight: bold">{{ date|date:'d.m.Y' }}</td>
+                  </tr>
+
+                  <tr>
+                    <td style="text-align: left">Name of the payee:</td>
+                    <td class="value" style="font-weight: bold">{{ name }}</td>
+                  </tr>
+
+                  <tr>
+                    <td style="text-align: left">Service period covered:</td>
+                    <td class="value" style="font-weight: bold">{{ month|date:'F, Y' }}</td>
+                  </tr>
+                </table>
+
+                <p>&nbsp;</p>
+
+                <table width="100%" border="1" cellspacing="0" cellpadding="5" bordercolor="#ccc" style="font-size: 1.1em">
+                  {% if user.rate > 0 or user.review_rate > 0 %}
+                  <tr>
+                    <th bgcolor="#ddd" style="font-size: 0.8em; text-align: left">Description</th>
+                    <th bgcolor="#ddd" style="font-size: 0.8em; text-align: right; width: 20%;">Rate, per word,<br/>{{ user.currency }}</th>
+                    <th bgcolor="#ddd" style="font-size: 0.8em; text-align: right; width: 20%;">Quantity,<br/>words</th>
+                    <th bgcolor="#ddd" style="font-size: 0.8em; text-align: right; width: 20%;">Amount,<br/>{{ user.currency }}</th>
+                  </tr>
+                  {% endif %}
+
+                  {% if user.rate > 0 %}
+                  <tr>
+                    <td style="text-align: left">New Translations</td>
+                    <td style="text-align: right; width: 20%;">{{ rate }}</td>
+                    <td style="text-align: right; width: 20%;">{{ translated_words }}</td>
+                    <td style="text-align: right; width: 20%;">{{ translation_amount|floatformat:2 }}</td>
+                  </tr>
+                  {% endif %}
+
+                  {% if user.review_rate > 0 %}
+                  <tr>
+                    <td style="text-align: left">Reviewed Translations</td>
+                    <td style="text-align: right; width: 20%;">{{ review_rate }}</td>
+                    <td style="text-align: right; width: 20%;">{{ reviewed_words }}</td>
+                    <td style="text-align: right; width: 20%;">{{ review_amount|floatformat:2 }}</td>
+                  </tr>
+                  {% endif %}
+
+                  {% if user.hourly_rate > 0 %}
+                  <tr>
+                    <th bgcolor="#ddd" style="font-size: 0.8em; text-align: left">Description</th>
+                    <th bgcolor="#ddd" style="font-size: 0.8em; text-align: right; width: 20%;">Rate, per hour,<br/>{{ user.currency }}</th>
+                    <th bgcolor="#ddd" style="font-size: 0.8em; text-align: right; width: 20%;">Quantity,<br/>hours</th>
+                    <th bgcolor="#ddd" style="font-size: 0.8em; text-align: right; width: 20%;">Amount,<br/>{{ user.currency }}</th>
+                  </tr>
+
+                  <tr>
+                    <td style="text-align: left">New Translations</td>
+                    <td style="text-align: right; width: 20%;">{{ hourly_rate }}</td>
+                    <td style="text-align: right; width: 20%;">{{ hours_count }}</td>
+                    <td style="text-align: right; width: 20%;">{{ hours_amount|floatformat:2 }}</td>
+                  </tr>
+                 {% endif %}
+
+                  {% if extra_amount > 0 %}
+                  <tr>
+                    <td colspan="3">Additional paid tasks</td>
+                    <td style="text-align: right; width: 20%;">{{ extra_amount|floatformat:2 }}</td>
+                  </tr>
+                  {% endif %}
+
+                  {% if correction != 0 %}
+                  <tr>
+                    <td colspan="3">Correction</td>
+                    <td style="text-align: right; width: 20%;">{{ correction|floatformat:2 }}</td>
+                  </tr>
+                  {% endif %}
+
+                  <tr>
+                    <td colspan="3" style="font-weight: bold">Total amount to be paid:</td>
+                    <td style="text-align: right; width: 20%; font-weight: bold">{{ total|floatformat:2 }}</td>
+                  </tr>
+                </table>
+
+                <p>&nbsp;</p>
+
+                <table width="100%" style="font-size: 0.9em">
+                  <tr>
+                    <th style="text-align: left; padding-bottom: 0.2em; border-bottom: 1px solid #ccc" width="60%">Wire Information</th>
+                    <th style="text-align: left; padding-bottom: 0.2em; border-bottom: 1px solid #ccc" width="30%">Paid By:</th>
+                    <th style="text-align: left; padding-bottom: 0.2em; border-bottom: 1px solid #ccc" width="10%">In:</th>
+                  </tr>
+
+                  <tr valign="top">
+                    <td style="font-size: 1.1em">{{ wire_info|linebreaks }}</td>
+                    <td style="font-size: 1.1em">{{ paid_by|linebreaks }}</td>
+                    <td style="font-size: 1.1em">{{ user.currency|linebreaks }}</td>
+                  </tr>
+                </table>
+
+                <!-- /content -->
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

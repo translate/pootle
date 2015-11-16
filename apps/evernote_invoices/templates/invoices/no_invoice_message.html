@@ -1,0 +1,30 @@
+<html>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Notice: No payment will be sent this month to {{ name }}</title>
+  <body style="font-family: sans-serif; font-size: 1.1em">
+    {% if debug_emails %}
+      <p style="color: red">*** DEBUG_EMAILS mode ON; the message would be sent
+        {% if to_email_list %}TO: {% endif %}
+        {% for email in to_email_list %}<strong>{{ email }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}
+        {% if cc_email_list %}, CC: {% endif %}
+        {% for email in cc_email_list %}<strong>{{ email }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}
+        {% if bcc_email_list %}, BCC: {% endif %}
+        {% for email in bcc_email_list %}<strong>{{ email }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}
+        ***
+      </p>
+    {% endif %}
+
+    {% if correction_added %}
+      <p>This is to inform you that your balance at {{ POOTLE_TITLE }} is {{ balance }} {{ user.currency }}, which is less than the minimal payment of {{ minimal_payment }} {{ user.currency }} defined for your account.</p>
+      <p>Because of this, there will be no payments from us during this payment cycle. The amount of {{ balance }} {{ user.currency }} will be carried over to the next payment cycle. You will see two corrections in your statistics dashboard reflecting the carry-over (one in the previous month, and on in the current one).</p>
+    {% else %}
+    <p>
+      This is to inform you that your balance at {{ POOTLE_TITLE }} is 0 {{ user.currency }}, and thus there will be no payments from us during this payment cycle.
+    </p>
+    {% endif %}
+
+    <p>
+      In case of questions, please contact our managers at managers@your-server.com
+    </p>
+  </body>
+</html>
