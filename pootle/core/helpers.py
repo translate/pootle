@@ -7,9 +7,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import json
 from itertools import groupby
+from urllib import quote, unquote
 
 from django.conf import settings
+from django.utils import dateformat
 from django.utils.translation import ugettext as _
 
 from pootle_app.models.directory import Directory
@@ -26,6 +29,8 @@ from .url_helpers import get_path_parts, get_previous_url
 
 
 EXPORT_VIEW_QUERY_LIMIT = 10000
+
+SIDEBAR_COOKIE_NAME = 'pootle-browser-sidebar'
 
 
 def get_filter_name(GET):
@@ -142,6 +147,57 @@ def get_export_view_context(request):
     })
 
     return res
+
+
+def get_sidebar_announcements_context(request, objects):
+    """Return the announcements context for the browser pages sidebar.
+
+    :param request: a :cls:`django.http.HttpRequest` object.
+    :param objects: a tuple of Project, Language and TranslationProject to
+                    retrieve the announcements for. Any of those can be
+                    missing, but it is recommended for them to be in that exact
+                    order.
+    """
+    announcements = []
+    new_cookie_data = {}
+    cookie_data = {}
+
+    if SIDEBAR_COOKIE_NAME in request.COOKIES:
+        json_str = unquote(request.COOKIES[SIDEBAR_COOKIE_NAME])
+        cookie_data = json.loads(json_str)
+
+    is_sidebar_open = cookie_data.get('isOpen', True)
+
+    for item in objects:
+        announcement = item.get_announcement(request.user)
+
+        if announcement is None:
+            continue
+
+        announcements.append(announcement)
+        # The virtual_path cannot be used as is for JSON.
+        ann_key = announcement.virtual_path.replace('/', '_')
+        ann_mtime = dateformat.format(announcement.modified_on, 'U')
+        stored_mtime = cookie_data.get(ann_key, None)
+
+        if ann_mtime != stored_mtime:
+            new_cookie_data[ann_key] = ann_mtime
+
+    if new_cookie_data:
+        # Some announcement has been changed or was never displayed before, so
+        # display sidebar and save the changed mtimes in the cookie to not
+        # display it next time unless it is necessary.
+        is_sidebar_open = True
+        cookie_data.update(new_cookie_data)
+        new_cookie_data = quote(json.dumps(cookie_data))
+
+    ctx = {
+        'announcements': announcements,
+        'is_sidebar_open': is_sidebar_open,
+        'has_sidebar': len(announcements) > 0,
+    }
+
+    return ctx, new_cookie_data
 
 
 def get_browser_context(request):

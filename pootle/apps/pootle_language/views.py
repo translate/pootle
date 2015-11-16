@@ -12,7 +12,8 @@ from django.shortcuts import redirect, render
 from pootle.core.browser import make_project_item, get_table_headings
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import (get_export_view_context, get_browser_context,
-                                 get_translation_context)
+                                 get_sidebar_announcements_context,
+                                 get_translation_context, SIDEBAR_COOKIE_NAME)
 from pootle.core.utils.json import jsonify
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.admin.permissions import admin_permissions
@@ -29,7 +30,12 @@ def browse(request, language):
     table_fields = ['name', 'progress', 'total', 'need-translation',
                     'suggestions', 'critical', 'last-updated', 'activity']
 
-    ctx = get_browser_context(request)
+    ctx, cookie_data = get_sidebar_announcements_context(
+        request,
+        (language, ),
+    )
+
+    ctx.update(get_browser_context(request))
     ctx.update({
         'language': {
           'code': language.code,
@@ -48,6 +54,9 @@ def browse(request, language):
 
     response = render(request, 'browser/index.html', ctx)
     response.set_cookie('pootle-language', language.code)
+
+    if cookie_data:
+        response.set_cookie(SIDEBAR_COOKIE_NAME, cookie_data)
 
     return response
 

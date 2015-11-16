@@ -7,26 +7,20 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import json
-from urllib import quote, unquote
-
 from django.conf import settings
 from django.shortcuts import render
-from django.utils import dateformat
 
 from pootle.core.browser import (get_children, get_table_headings, get_parent,
                                  get_vfolders)
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.helpers import (get_export_view_context, get_browser_context,
-                                 get_translation_context)
+                                 get_sidebar_announcements_context,
+                                 get_translation_context, SIDEBAR_COOKIE_NAME)
 from pootle.core.utils.json import jsonify
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from staticpages.models import StaticPage
-
-
-SIDEBAR_COOKIE_NAME = 'pootle-browser-sidebar'
 
 
 @get_path_obj
@@ -46,49 +40,6 @@ def admin_permissions(request, translation_project):
 
     return admin_perms(request, translation_project.directory,
                        'translation_projects/admin/permissions.html', ctx)
-
-
-def get_sidebar_announcements_context(request, objects):
-    announcements = []
-    new_cookie_data = {}
-    cookie_data = {}
-
-    if SIDEBAR_COOKIE_NAME in request.COOKIES:
-        json_str = unquote(request.COOKIES[SIDEBAR_COOKIE_NAME])
-        cookie_data = json.loads(json_str)
-
-    is_sidebar_open = cookie_data.get('isOpen', True)
-
-    for item in objects:
-        announcement = item.get_announcement(request.user)
-
-        if announcement is None:
-            continue
-
-        announcements.append(announcement)
-        # The virtual_path cannot be used as is for JSON.
-        ann_key = announcement.virtual_path.replace('/', '_')
-        ann_mtime = dateformat.format(announcement.modified_on, 'U')
-        stored_mtime = cookie_data.get(ann_key, None)
-
-        if ann_mtime != stored_mtime:
-            new_cookie_data[ann_key] = ann_mtime
-
-    if new_cookie_data:
-        # Some announcement has been changed or was never displayed before, so
-        # display sidebar and save the changed mtimes in the cookie to not
-        # display it next time unless it is necessary.
-        is_sidebar_open = True
-        cookie_data.update(new_cookie_data)
-        new_cookie_data = quote(json.dumps(cookie_data))
-
-    ctx = {
-        'announcements': announcements,
-        'is_sidebar_open': is_sidebar_open,
-        'has_sidebar': len(announcements) > 0,
-    }
-
-    return ctx, new_cookie_data
 
 
 @get_path_obj
