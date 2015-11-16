@@ -131,7 +131,7 @@ def browse(request, translation_project, dir_path, filename=None):
     if "import_export" in settings.INSTALLED_APPS and request.user.is_authenticated():
         from import_export.views import handle_upload_form
 
-        ctx.update(handle_upload_form(request))
+        ctx.update(handle_upload_form(request, project))
 
         has_download = (not translation_project.is_terminology_project and
                         (check_permission('translate', request) or
