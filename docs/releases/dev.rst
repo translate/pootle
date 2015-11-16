@@ -22,7 +22,8 @@ Major Changes
 
 - Pulled latest translations.
 - Added support for Elasticsearch-based external Translation Memory servers.
-
+- Cleaned up connection logic for Translation Memory servers
+- Added checks for misconfigured Translation Memory servers
 
 Below we provide much more detail. These are by no means exhaustive, view the
 `git log <https://github.com/translate/pootle/compare/2.7.2...2.7.3>`_ for

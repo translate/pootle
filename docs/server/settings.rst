@@ -290,7 +290,9 @@ Translation environment configuration settings.
      another default TM used to import external translations from files.
 
 
-  Default:
+  Default: ``{}`` (empty dict)
+
+  Example configuration for local/external TM server:
 
   .. code-block:: python
 

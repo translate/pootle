@@ -79,7 +79,12 @@ Pootle supports two types of Elasticsearch-based TMs:
 
 
 Both local and external TM settings can be adjusted in
-:setting:`POOTLE_TM_SERVER`.
+:setting:`POOTLE_TM_SERVER`. A configuration example for local and external TM
+can be found in the default :file:`~/.pootle/pootle.conf`, and can be enabled by
+uncommenting the example.
+
+Please see the :setting:`POOTLE_TM_SERVER-WEIGHT` for a full example of the
+configuration necessary to set up local/external TM.
 
 You may want to disable Amagama by setting :setting:`AMAGAMA_URL` to ``''`` if
 you are using Elasticsearch-based TMs, though both can operate together.
