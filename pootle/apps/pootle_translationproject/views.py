@@ -18,8 +18,7 @@ from pootle.core.browser import (get_children, get_table_headings, get_parent,
                                  get_vfolders)
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
-from pootle.core.helpers import (get_export_view_context,
-                                 get_browser_context,
+from pootle.core.helpers import (get_export_view_context, get_browser_context,
                                  get_translation_context)
 from pootle.core.utils.json import jsonify
 from pootle_app.models.permissions import check_permission

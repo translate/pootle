@@ -118,12 +118,12 @@ class Language(models.Model, TreeItem):
         """Localized fullname for the language."""
         return tr_lang(self.fullname)
 
-    ############################ Methods ######################################
-
     @property
     def direction(self):
         """Return the language direction."""
         return language_dir(self.code)
+
+    ############################ Methods ######################################
 
     def __unicode__(self):
         return u"%s - %s" % (self.name, self.code)

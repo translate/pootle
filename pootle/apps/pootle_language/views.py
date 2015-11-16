@@ -9,11 +9,9 @@
 
 from django.shortcuts import redirect, render
 
-from pootle.core.browser import (make_project_item,
-                                 get_table_headings)
+from pootle.core.browser import make_project_item, get_table_headings
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.helpers import (get_export_view_context,
-                                 get_browser_context,
+from pootle.core.helpers import (get_export_view_context, get_browser_context,
                                  get_translation_context)
 from pootle.core.utils.json import jsonify
 from pootle.i18n.gettext import tr_lang

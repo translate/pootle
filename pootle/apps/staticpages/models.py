@@ -22,6 +22,10 @@ from pootle.core.mixins import DirtyFieldsMixin
 from .managers import PageManager
 
 
+ANN_TYPE = u'announcements'
+ANN_VPATH = ANN_TYPE + u'/'
+
+
 class AbstractPage(DirtyFieldsMixin, models.Model):
 
     active = models.BooleanField(
@@ -124,8 +128,8 @@ class StaticPage(AbstractPage):
 
     def get_edit_url(self):
         page_type = 'static'
-        if self.virtual_path.startswith('announcements/'):
-            page_type = 'announcements'
+        if self.virtual_path.startswith(ANN_VPATH):
+            page_type = ANN_TYPE
         return reverse('pootle-staticpages-edit', args=[page_type, self.pk])
 
 
