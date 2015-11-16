@@ -10,6 +10,7 @@
 from django.conf import settings
 from django.shortcuts import render
 
+from import_export.views import handle_upload_form
 from pootle.core.browser import (get_children, get_table_headings, get_parent,
                                  get_vfolders)
 from pootle.core.decorators import (get_path_obj, get_resource,
@@ -61,18 +62,13 @@ def browse(request, translation_project, dir_path, filename=None):
     ctx.update(get_browser_context(request))
 
     # TODO improve plugin logic
-    if "import_export" in settings.INSTALLED_APPS and request.user.is_authenticated():
-        from import_export.views import handle_upload_form
-
-        ctx.update(handle_upload_form(request, project))
-
-        has_download = (not translation_project.is_terminology_project and
-                        (check_permission('translate', request) or
-                         check_permission('suggest', request)))
-        ctx.update({
-            'display_download': has_download,
-            'has_sidebar': True,
-        })
+    if "import_export" in settings.INSTALLED_APPS:
+        if not translation_project.is_terminology_project:
+            if request.user.is_authenticated():
+                if check_permission('translate', request):
+                    ctx.update(handle_upload_form(request, project))
+                ctx.update({'display_download': True,
+                            'has_sidebar': True})
 
     stats = request.resource_obj.get_stats()
 
