@@ -52,6 +52,11 @@ Details of changes
   - Added a new :setting:`WEIGHT <POOTLE_TM_SERVER-WEIGHT>` option to raise or
     lower the TM results score for each specific TM server.
 
+- :djadmin:`import`:
+
+  - Added a new :option:`--user` to allow setting of user to attribute changes to
+    on file import.
+
 - The Apertium MT backend has been dropped.
 - Report string errors form subject and body can be overriden.
 - `InnoDB <https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html>`_

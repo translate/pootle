@@ -563,6 +563,15 @@ counter is older than on Pootle, that is someone has translated while the file
 was offline, then it will be rejected.  Otherwise the translations in the file
 are accepted.
 
+Available options:
+
+:option:`--user`
+  .. versionadded:: 2.7.3
+
+  Import file(s) as given user. The user with the provided username must exist.
+
+  Default: ``system``.
+
 
 .. _commands#manually_installing_pootle:
 
