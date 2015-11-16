@@ -11,6 +11,8 @@ from __future__ import absolute_import
 
 __all__ = ('ElasticSearchBackend',)
 
+import logging
+
 try:
     from elasticsearch import Elasticsearch
     from elasticsearch.exceptions import ConnectionError
@@ -74,6 +76,21 @@ class ElasticSearchBackend(SearchBackend):
                 }
             }
         )
+
+        if not isinstance(es_res, dict):
+            logging.error("Elasticsearch 'es_res' is '%s' not 'dict', '%s'" %
+                          (type(es_res), es_res))
+            return []
+
+        if not isinstance(es_res['hits'], dict):
+            logging.error("Elasticsearch 'es_res['hits']' is '%s' not 'dict', '%s'" %
+                          (type(es_res['hits']), es_res['hits']))
+            return []
+
+        if not isinstance(es_res['hits']['hits'], list):
+            logging.error("Elasticsearch 'es_res['hits']['hits']' is '%s' not 'list', '%s'" %
+                          (type(es_res['hits']['hits']), es_res['hits']['hits']))
+            return []
 
         for hit in es_res['hits']['hits']:
             if self._is_valuable_hit(unit, hit):
