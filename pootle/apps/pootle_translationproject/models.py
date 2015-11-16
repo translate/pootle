@@ -29,6 +29,7 @@ from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
 from pootle_store.models import Store, Unit, PARSED
 from pootle_store.util import absolute_real_path, relative_real_path, OBSOLETE
+from staticpages.models import StaticPage
 
 
 class TranslationProjectNonDBState(object):
@@ -322,6 +323,10 @@ class TranslationProject(models.Model, CachedTreeItem):
             reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
             get_editor_filter(**kwargs),
         ])
+
+    def get_announcement(self, user=None):
+        """Return the related announcement, if any."""
+        return StaticPage.get_announcement_for(self.pootle_path, user)
 
     def filtererrorhandler(self, functionname, str1, str2, e):
         logging.error(u"Error in filter %s: %r, %r, %s", functionname, str1,

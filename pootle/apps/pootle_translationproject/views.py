@@ -48,7 +48,7 @@ def admin_permissions(request, translation_project):
                        'translation_projects/admin/permissions.html', ctx)
 
 
-def get_sidebar_announcements_context(request, project_code, language_code):
+def get_sidebar_announcements_context(request, objects):
     announcements = []
     new_cookie_data = {}
     cookie_data = {}
@@ -59,28 +59,8 @@ def get_sidebar_announcements_context(request, project_code, language_code):
 
     is_sidebar_open = cookie_data.get('isOpen', True)
 
-    def _get_announcement(language_code=None, project_code=None):
-        if language_code is None:
-            virtual_path = u'announcements/projects/%s' % project_code
-        else:
-            path = u'/'.join(filter(None, [language_code, project_code]))
-            virtual_path = u'announcements/%s' % path
-
-        try:
-            return StaticPage.objects.live(request.user).get(
-                virtual_path=virtual_path,
-            )
-        except StaticPage.DoesNotExist:
-            return None
-
-    args_list = [
-        (None, project_code),
-        (language_code, None),
-        (language_code, project_code),
-    ]
-
-    for args in args_list:
-        announcement = _get_announcement(*args)
+    for item in objects:
+        announcement = item.get_announcement(request.user)
 
         if announcement is None:
             continue
@@ -122,8 +102,10 @@ def browse(request, translation_project, dir_path, filename=None):
     store = request.store
     is_admin = check_permission('administrate', request)
 
-    ctx, cookie_data = get_sidebar_announcements_context(request, project.code,
-                                                         language.code)
+    ctx, cookie_data = get_sidebar_announcements_context(
+        request,
+        (project, language, translation_project, ),
+    )
 
     ctx.update(get_browser_context(request))
 

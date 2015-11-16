@@ -36,6 +36,7 @@ from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_store.filetypes import factory_classes
 from pootle_store.util import absolute_real_path
+from staticpages.models import StaticPage
 
 
 RESERVED_PROJECT_CODES = ('admin', 'translate', 'settings')
@@ -408,6 +409,10 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     def get_children_for_user(self, user):
         """Returns children translation projects for a specific `user`."""
         return self.translationproject_set.for_user(user)
+
+    def get_announcement(self, user=None):
+        """Return the related announcement, if any."""
+        return StaticPage.get_announcement_for(self.pootle_path, user)
 
     def get_real_path(self):
         return absolute_real_path(self.code)

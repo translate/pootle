@@ -126,6 +126,15 @@ class StaticPage(AbstractPage):
 
     display_name = _('Regular Page')
 
+    @classmethod
+    def get_announcement_for(cls, pootle_path, user=None):
+        """Return the announcement for the specified pootle path and user."""
+        virtual_path = ANN_VPATH + pootle_path.strip('/')
+        try:
+            return cls.objects.live(user).get(virtual_path=virtual_path)
+        except StaticPage.DoesNotExist:
+            return None
+
     def get_edit_url(self):
         page_type = 'static'
         if self.virtual_path.startswith(ANN_VPATH):
