@@ -65,7 +65,7 @@ def test_delete_mark_obsolete_resurrect_sync(fr_tutorial_subdir_to_remove_po):
         unit.save()
 
     # Recover store and directory by syncing
-    updated_store.sync(only_newer=False)
+    updated_store.sync(force=True)
     # Now file and directory for the store should exist
     assert os.path.exists(updated_store.file.path)
 

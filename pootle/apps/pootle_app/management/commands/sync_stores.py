@@ -16,14 +16,6 @@ from pootle_app.management.commands import PootleCommand
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
         make_option(
-            '--overwrite',
-            action='store_true',
-            dest='overwrite',
-            default=False,
-            help="Don't just save translations, but "
-                 "overwrite files to reflect state in database",
-        ),
-        make_option(
             '--skip-missing',
             action='store_true',
             dest='skip_missing',
@@ -42,15 +34,12 @@ class Command(PootleCommand):
 
     def handle_all_stores(self, translation_project, **options):
         translation_project.sync(
-                conservative=not options['overwrite'],
+                force=options['force'],
                 skip_missing=options['skip_missing'],
-                only_newer=not options['force']
         )
 
     def handle_store(self, store, **options):
         store.sync(
-            conservative=not options['overwrite'],
-            update_structure=options['overwrite'],
+            force=options['force'],
             skip_missing=options['skip_missing'],
-            only_newer=not options['force']
         )

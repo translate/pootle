@@ -2044,16 +2044,14 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         return ret
 
-    def sync(self, update_structure=False, conservative=True,
-             user=None, skip_missing=False, only_newer=True):
+    def sync(self, force=False, user=None, skip_missing=False):
         """Sync file with translations from DB."""
         if skip_missing and not self.file.exists():
             return
 
         last_revision = self.get_max_unit_revision()
 
-        #TODO only_newer -> not force
-        if (only_newer and self.file.exists() and
+        if (not force and self.file.exists() and
             self.last_sync_revision >= last_revision):
             logging.info(u"[sync] No updates for %s after [revision: %d]" %
                 (self.pootle_path, self.last_sync_revision))
@@ -2083,7 +2081,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
             return
 
-        if conservative and self.translation_project.is_template_project:
+        if not force and self.translation_project.is_template_project:
             # don't save to templates
             return
 
@@ -2101,13 +2099,13 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             'added': 0,
         }
 
-        if update_structure:
+        if force:
             obsolete_units = (disk_store.findid(uid)
                               for uid in old_ids - new_ids)
             for unit in obsolete_units:
                 if not unit.istranslated():
                     del unit
-                elif not conservative:
+                else:
                     changes['obsolete'] += 1
                     unit.makeobsolete()
 
@@ -2139,7 +2137,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         common_dbids = set(self.dbid_index.get(uid)
                            for uid in old_ids & new_ids)
 
-        if conservative:
+        if not force:
             # Sync only modified units
             common_dbids &= modified_units
 
@@ -2153,8 +2151,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     changes['updated'] += 1
                     file_changed = True
 
-        #TODO conservative -> not overwrite
-        if file_changed or not conservative:
+        if file_changed or force:
             self.update_store_header(user=user)
             self.file.savestore()
             self.file_mtime = self.get_file_mtime()
