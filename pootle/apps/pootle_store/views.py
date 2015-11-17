@@ -24,7 +24,6 @@ from django.utils import timezone
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
 
-from translate.filters.decorators import Category
 from translate.lang import data
 
 from pootle.core.dateparse import parse_datetime
