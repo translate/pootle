@@ -278,7 +278,14 @@ def edit_announcement(request, announcement_pk):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return JsonResponse({})
+            ctx = {
+                'announcement': announcement,
+                'can_be_edited': can_be_edited,
+            }
+            return JsonResponse({
+                'snippet': render_to_string('staticpages/_body_inline.html',
+                                            ctx, RequestContext(request)),
+            })
         else:
             return JsonResponseBadRequest({
                 'formSnippet': render_to_string('staticpages/_edit_inline.html',
