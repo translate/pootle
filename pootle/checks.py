@@ -274,15 +274,47 @@ def check_settings(app_configs=None, **kwargs):
                     id="pootle.C008",
                 ))
             elif settings.POOTLE_TM_SERVER[server]['INDEX_NAME'] in tm_indexes:
-                errors.append(checks.Warning(
+                errors.append(checks.Critical(
                     _("Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER.",
                       settings.POOTLE_TM_SERVER[server]['INDEX_NAME']),
                     hint=_("Set different INDEX_NAME for all servers in "
                            "POOTLE_TM_SERVER."),
-                    id="pootle.W018",
+                    id="pootle.C009",
                 ))
             else:
                 tm_indexes.append(settings.POOTLE_TM_SERVER[server]['INDEX_NAME'])
+
+            if 'ENGINE' not in settings.POOTLE_TM_SERVER[server]:
+                errors.append(checks.Critical(
+                    _("POOTLE_TM_SERVER['%s'] has no ENGINE.", server),
+                    hint=_("Set a ENGINE for POOTLE_TM_SERVER['%s'].",
+                           server),
+                    id="pootle.C010",
+                ))
+
+            if 'HOST' not in settings.POOTLE_TM_SERVER[server]:
+                errors.append(checks.Critical(
+                    _("POOTLE_TM_SERVER['%s'] has no HOST.", server),
+                    hint=_("Set a HOST for POOTLE_TM_SERVER['%s'].",
+                           server),
+                    id="pootle.C011",
+                ))
+
+            if 'PORT' not in settings.POOTLE_TM_SERVER[server]:
+                errors.append(checks.Critical(
+                    _("POOTLE_TM_SERVER['%s'] has no PORT.", server),
+                    hint=_("Set a PORT for POOTLE_TM_SERVER['%s'].",
+                           server),
+                    id="pootle.C012",
+                ))
+
+            if 'MIN_SCORE' not in settings.POOTLE_TM_SERVER[server]:
+                errors.append(checks.Critical(
+                    _("POOTLE_TM_SERVER['%s'] has no MIN_SCORE.", server),
+                    hint=_("Set a MIN_SCORE for POOTLE_TM_SERVER['%s'].",
+                           server),
+                    id="pootle.C013",
+                ))
 
             if ('WEIGHT' in settings.POOTLE_TM_SERVER[server] and
                 not (0.0 <= settings.POOTLE_TM_SERVER[server]['WEIGHT'] <= 1.0)):

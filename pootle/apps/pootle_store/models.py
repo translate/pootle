@@ -56,6 +56,15 @@ from .util import (OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED, get_change_str,
                    parse_pootle_revision)
 
 
+TM_BROKER = None
+
+
+def get_tm_broker():
+    global TM_BROKER
+    if TM_BROKER is None:
+        TM_BROKER = SearchBroker()
+    return TM_BROKER
+
 #
 # Store States
 #
@@ -213,9 +222,6 @@ def stringcount(string):
         return len(string.strings)
     except AttributeError:
         return 1
-
-
-TMServer = SearchBroker()
 
 
 class UnitManager(models.Manager):
@@ -915,10 +921,11 @@ class Unit(models.Model, base.TranslationUnit):
                 'email_md5': md5(self.submitted_by.email).hexdigest(),
             })
 
-        TMServer.update(self.store.translation_project.language.code, obj)
+        get_tm_broker().update(self.store.translation_project.language.code,
+                               obj)
 
     def get_tm_suggestions(self):
-        return TMServer.search(self)
+        return get_tm_broker().search(self)
 
 ##################### TranslationUnit ############################
 
