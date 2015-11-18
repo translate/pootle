@@ -8,7 +8,7 @@
 
 import DMP from 'diff-match-patch';
 
-import { fancyEscape } from '../../utils';
+import { fancyHl } from '../../utils';
 
 
 const dmp = new DMP();
@@ -22,7 +22,7 @@ export default function diff(a, b) {
 
   for (let i = 0; i < result.length; i++) {
     const op = result[i][0];
-    const text = fancyEscape(result[i][1]);
+    const text = fancyHl(result[i][1]);
     if (op === DMP.DIFF_INSERT) {
       html[i] = `<span class="diff-insert">${text}</span>`;
     } else if (op === DMP.DIFF_DELETE) {

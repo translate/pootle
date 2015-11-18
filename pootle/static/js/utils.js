@@ -227,7 +227,6 @@ export function blinkClass($elem, className, n, delay) {
 export default {
   blinkClass,
   executeFunctionByName,
-  fancyEscape,
   fancyHl,
   getHash,
   getParsedHash,
