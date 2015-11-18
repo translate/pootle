@@ -290,8 +290,8 @@ class Submission(models.Model):
             "mtime": int(dateformat.format(self.creation_time, 'U')),
         })
 
-        #TODO Fix bug 3011 and remove the following code related
-        # to TranslationActionTypes.
+        # TODO Fix bug 3011 and remove the following code related to
+        # TranslationActionTypes.
 
         if self.type in SubmissionTypes.EDIT_TYPES:
             translation_action_type = None

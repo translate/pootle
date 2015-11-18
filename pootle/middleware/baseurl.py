@@ -29,9 +29,8 @@ class BaseUrlMiddleware(object):
             else:
                 settings.BASE_URL = 'http://' + domain
 
-            #FIXME: DIRTY HACK ALERT if this works then something is
-            #wrong with the universe
-            # poison sites cache using detected domain
+            # FIXME: DIRTY HACK ALERT if this works then something is wrong
+            # with the universe poison sites cache using detected domain
             from django.contrib.sites import models as sites_models
 
             new_site = sites_models.Site(settings.SITE_ID, request.get_host(),

@@ -103,7 +103,7 @@ class TranslationProjectManager(models.Manager):
         )
 
     def get_terminology_project(self, language_id):
-        #FIXME: the code below currently uses the same approach to determine
+        # FIXME: the code below currently uses the same approach to determine
         # the 'terminology' kind of a project as 'Project.is_terminology()',
         # which means it checks the value of 'checkstyle' field
         # (see pootle_project/models.py:240).

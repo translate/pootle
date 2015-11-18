@@ -51,7 +51,7 @@ def match_template_filename(project, filename):
     """
     name, ext = os.path.splitext(os.path.basename(filename))
 
-    #FIXME: is the test for matching extension redundant?
+    # FIXME: is the test for matching extension redundant?
     if ext == os.path.extsep + project.get_template_filetype():
         if ext != os.path.extsep + project.localfiletype:
             # Template extension is distinct, surely file is a template.
@@ -297,7 +297,7 @@ def translation_project_should_exist(language, project):
             # find files with the language name in the project dir
             for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
                 for filename in filenames:
-                    #FIXME: don't reuse already used file
+                    # FIXME: don't reuse already used file
                     if project.file_belongs_to_project(filename, match_templates=False) and \
                            direct_language_match_filename(language.code, filename):
                         return True
@@ -371,7 +371,7 @@ def get_translated_name_gnu(translation_project, store):
     if use_prefix:
         if store.translation_project.language.code == 'templates':
             tprefix = os.path.splitext(store.name)[0]
-            #FIXME: we should detect separator
+            # FIXME: we should detect separator
             prefix = tprefix + '-'
         else:
             prefix = os.path.splitext(store.name)[0][:-len(store.translation_project.language.code)]

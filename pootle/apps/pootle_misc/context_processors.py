@@ -41,7 +41,7 @@ def _get_social_auth_providers(request):
 
 def pootle_context(request):
     """Exposes settings to templates."""
-    #FIXME: maybe we should expose relevant settings only?
+    # FIXME: maybe we should expose relevant settings only?
     return {
         'settings': {
             'POOTLE_TITLE': settings.POOTLE_TITLE,

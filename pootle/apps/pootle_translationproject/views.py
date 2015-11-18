@@ -103,7 +103,8 @@ def browse(request, translation_project, dir_path, filename=None):
                     },
                 })
 
-                #FIXME: set vfolders stats in the resource, don't inject them here.
+                # FIXME: set vfolders stats in the resource, don't inject them
+                # here.
                 stats['vfolders'] = {}
 
                 for vfolder_treeitem in directory.vf_treeitems.iterator():

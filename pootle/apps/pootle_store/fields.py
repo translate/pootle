@@ -180,7 +180,7 @@ class TranslationStoreFieldFile(FieldFile):
             if self._store_tuple.mod_info != mod_info:
                 self._store_tuple.mod_info = mod_info
         else:
-            #FIXME: do we really need that?
+            # FIXME: do we really need that?
             self._update_store_cache()
 
     def _delete_store_cache(self):
@@ -210,7 +210,8 @@ class TranslationStoreFieldFile(FieldFile):
         self._touch_store_cache()
 
     def save(self, name, content, save=True):
-        #FIXME: implement save to tmp file then move instead of directly saving
+        # FIXME: implement save to tmp file then move instead of directly
+        # saving
         super(TranslationStoreFieldFile, self).save(name, content, save)
         self._delete_store_cache()
 

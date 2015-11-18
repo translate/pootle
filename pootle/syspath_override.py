@@ -9,8 +9,8 @@
 
 """ Adds pootle directories to the python import path """
 
-#FIXME: is this useful on an installed codebase or only when running
-# from source?
+# FIXME: is this useful on an installed codebase or only when running from
+# source?
 
 import os
 import sys

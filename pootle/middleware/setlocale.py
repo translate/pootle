@@ -26,9 +26,9 @@ class SetLocale(object):
         if os.name == 'nt':
             return
 
-        #FIXME: some languages like arabic don't have a language only
-        # locale for no good reason. we need a function to pick default
-        # locale for these
+        # FIXME: some languages like arabic don't have a language only locale
+        # for no good reason. we need a function to pick default locale for
+        # these
         lang = translation.to_locale(translation.get_language())
         try:
             if lang == 'tr' or lang.startswith('tr_'):

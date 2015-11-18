@@ -355,7 +355,7 @@ def _filter_ctx_units(units_qs, unit, how_many, gap=0):
         result['before'] = _build_units_list(before, reverse=True)
         result['before'].reverse()
 
-    #FIXME: can we avoid this query if length is known?
+    # FIXME: can we avoid this query if length is known?
     if how_many:
         after = units_qs.filter(store=unit.store_id,
                                 index__gt=unit.index)[gap:how_many+gap]
@@ -954,8 +954,8 @@ def suggest(request, unit):
     if form.is_valid():
         if form.instance._target_updated:
             # TODO: Review if this hackish method is still necessary
-            #HACKISH: django 1.2 stupidly modifies instance on
-            # model form validation, reload unit from db
+            # HACKISH: django 1.2 stupidly modifies instance on model form
+            # validation, reload unit from db
             unit = Unit.objects.get(id=unit.id)
             unit.add_suggestion(
                 form.cleaned_data['target_f'],

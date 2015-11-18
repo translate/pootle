@@ -713,8 +713,8 @@ class Unit(models.Model, base.TranslationUnit):
             self.target = unit.target
 
             if filter(None, self.target_f.strings) or notempty:
-                #FIXME: we need to do this cause we discard nplurals
-                # for empty plurals
+                # FIXME: we need to do this cause we discard nplurals for empty
+                # plurals
                 changed = True
 
         notes = unit.getnotes(origin="developer")
@@ -1389,7 +1389,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     @property
     def is_terminology(self):
         """is this a project specific terminology store?"""
-        #TODO: Consider if this should check if the store belongs to a
+        # TODO: Consider if this should check if the store belongs to a
         # terminology project. Probably not, in case this might be called over
         # several files in a project.
         return self.name.startswith('pootle-terminology')
@@ -1532,7 +1532,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         mtime = max_column(self.unit_set.all(), 'mtime', None)
         if mtime is None:
-            #FIXME: we can't tell stale locks if store has no units at all
+            # FIXME: we can't tell stale locks if store has no units at all
             return
 
         delta = timezone.now() - mtime
@@ -2052,7 +2052,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         last_revision = self.get_max_unit_revision()
 
-        #TODO only_newer -> not force
+        # TODO only_newer -> not force
         if (only_newer and self.file.exists() and
             self.last_sync_revision >= last_revision):
             logging.info(u"[sync] No updates for %s after [revision: %d]" %
@@ -2153,7 +2153,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     changes['updated'] += 1
                     file_changed = True
 
-        #TODO conservative -> not overwrite
+        # TODO conservative -> not overwrite
         if file_changed or not conservative:
             self.update_store_header(user=user)
             self.file.savestore()
@@ -2185,7 +2185,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             output.settargetlanguage(self.translation_project.language.code)
         except ObjectDoesNotExist:
             pass
-        #FIXME: we should add some headers
+        # FIXME: we should add some headers
         for unit in self.units.iterator():
             output.addunit(unit.convert(output.UnitClass))
         return output
@@ -2264,7 +2264,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             return self.units.values_list('unitid', flat=True)
 
     def header(self):
-        #FIXME: we should store some metadata in db
+        # FIXME: we should store some metadata in db
         if self.file and hasattr(self.file.store, 'header'):
             return self.file.store.header()
 
@@ -2448,7 +2448,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 headerupdates['Last_Translator'] = '%s <%s>' % \
                         (user.display_name, user.email)
             else:
-                #FIXME: maybe insert settings.POOTLE_TITLE or domain here?
+                # FIXME: maybe insert settings.POOTLE_TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'
             disk_store.updateheader(add=True, **headerupdates)
 

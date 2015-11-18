@@ -115,14 +115,13 @@ class HiddenMultiStringWidget(MultiStringWidget):
         return super(MultiStringWidget, self).format_output(rendered_widgets)
 
     def __call__(self):
-        #HACKISH: Django is inconsistent in how it handles
-        # Field.widget and Field.hidden_widget, it expects widget to
-        # be an instantiated object and hidden_widget to be a class,
-        # since we need to specify nplurals at run time we can let
-        # django instantiate hidden_widget.
+        # HACKISH: Django is inconsistent in how it handles Field.widget and
+        # Field.hidden_widget, it expects widget to be an instantiated object
+        # and hidden_widget to be a class, since we need to specify nplurals at
+        # run time we can let django instantiate hidden_widget.
         #
-        # making the object callable let's us get away with forcing an
-        # object where django expects a class
+        # making the object callable let's us get away with forcing an object
+        # where django expects a class
         return self
 
 
