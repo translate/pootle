@@ -21,7 +21,6 @@ from pootle.core.helpers import (get_export_view_context, get_browser_context,
 from pootle.core.utils.json import jsonify
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
-from staticpages.models import StaticPage
 
 
 @get_path_obj
