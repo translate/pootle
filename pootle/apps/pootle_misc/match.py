@@ -13,6 +13,7 @@ from translate.search import match, terminology
 
 delimiters = re.compile(u"[\W]+", re.U)
 
+
 class Matcher(match.terminologymatcher):
     def __init__(self, store, max_candidates=10, min_similarity=75,
                  max_length=500, comparer=None):

@@ -481,7 +481,9 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         return self.non_db_state.termmatcher
 
+
     ###########################################################################
+
 
 @receiver(post_save, sender=Project)
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):

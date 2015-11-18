@@ -33,6 +33,7 @@ sys.path[:0] = new_sys_path
 # Set the Pootle settings module as DJANGO_SETTINGS_MODULE.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
+
 # Set the WSGI application.
 def application(environ, start_response):
     """Wrapper for Django's WSGIHandler().

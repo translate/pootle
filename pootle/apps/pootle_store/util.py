@@ -32,6 +32,7 @@ STATES_MAP = {
     TRANSLATED: _("Translated"),
 }
 
+
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
 

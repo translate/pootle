@@ -243,6 +243,7 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     unit.accept_suggestion(suggestion, tp, system)
     assert unit.state == TRANSLATED
 
+
 @pytest.mark.django_db
 def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
     """Tests that accepting a suggestion for an untranslated unit will

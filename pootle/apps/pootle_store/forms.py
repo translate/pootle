@@ -31,6 +31,7 @@ from .util import UNTRANSLATED, FUZZY, TRANSLATED, OBSOLETE
 
 FORM_RE = re.compile('\r\n|\r|\n|\t|\\\\')
 
+
 def highlight_whitespace(text):
     """Make whitespace chars visible."""
 
@@ -46,7 +47,10 @@ def highlight_whitespace(text):
 
     return FORM_RE.sub(replace, text)
 
+
 FORM_UNRE = re.compile('\r|\n|\t|\\\\r|\\\\n|\\\\t|\\\\\\\\')
+
+
 def unhighlight_whitespace(text):
     """Replace visible whitespace with proper whitespace."""
 
@@ -103,6 +107,7 @@ class MultiStringWidget(forms.MultiWidget):
             return [highlight_whitespace(value)]
         else:
             raise ValueError
+
 
 class HiddenMultiStringWidget(MultiStringWidget):
     """Uses hidden input instead of textareas."""

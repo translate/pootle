@@ -17,6 +17,7 @@ from pootle.core.url_helpers import (get_editor_filter, split_pootle_path,
                                      to_tp_relative_path)
 from pootle_misc.baseurl import l
 
+
 class DirectoryManager(models.Manager):
     use_for_related_fields = True
 

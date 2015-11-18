@@ -72,6 +72,7 @@ def url_target_blank(text):
 
 TRIM_URL_LENGTH = 70
 
+
 def trim_url(link):
     """Trims `link` if it's longer than `TRIM_URL_LENGTH` chars.
 
@@ -106,6 +107,7 @@ def url_trim(html):
 
 
 LANGUAGE_LINK_RE = re.compile(ur'/xx/', re.IGNORECASE)
+
 
 @register.filter
 @stringfilter

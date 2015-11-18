@@ -22,6 +22,7 @@ from translate.misc.multistring import multistring
 SEPARATOR = "__%$%__%$%__%$%__"
 PLURAL_PLACEHOLDER = "__%POOTLE%_$NUMEROUS$__"
 
+
 def list_empty(strings):
     """check if list is exclusively made of empty strings.
 

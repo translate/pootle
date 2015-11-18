@@ -108,6 +108,7 @@ class QualityCheck(models.Model):
 
 ################# Suggestion ################
 
+
 class SuggestionManager(models.Manager):
 
     def get_queryset(self):
@@ -197,6 +198,7 @@ class Suggestion(models.Model, base.TranslationUnit):
 
 wordcount_f = import_func(settings.POOTLE_WORDCOUNT_FUNC)
 
+
 def count_words(strings):
     wordcount = 0
 
@@ -204,6 +206,7 @@ def count_words(strings):
         wordcount += wordcount_f(string)
 
     return wordcount
+
 
 def stringcount(string):
     try:

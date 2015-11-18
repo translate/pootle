@@ -13,6 +13,7 @@ from optparse import make_option
 
 from pootle_app.management.commands import PootleCommand
 
+
 class Command(PootleCommand):
     option_list = PootleCommand.option_list + (
         make_option(

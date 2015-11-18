@@ -31,6 +31,7 @@ SCORE_CHANGED = 'SC'
 PAID_TASK_ADDED = 'PTA'
 PAID_TASK_DELETED = 'PTD'
 
+
 def log(message):
     logger = logging.getLogger('action')
     logger.info(message)
