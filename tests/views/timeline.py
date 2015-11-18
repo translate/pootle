@@ -208,7 +208,7 @@ def _calculate_timeline(request, unit):
     context['entries_group'] = entries_group
     t = loader.get_template('editor/units/xhr_timeline.html')
     c = RequestContext(request, context)
-    return t.render(c).replace('\n', '')
+    return t.render(c)
 
 
 def _timeline_test(client, request_user, unit):

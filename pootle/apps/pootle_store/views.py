@@ -349,8 +349,7 @@ class UnitTimelineJSON(PootleUnitJSON):
             'timeline': self.render_timeline(context)}
 
     def render_timeline(self, context):
-        return loader.get_template(
-            self.template_name).render(context).replace('\n', '')
+        return loader.get_template(self.template_name).render(context)
 
     def get_entries_group_data(self, context):
         result = []
