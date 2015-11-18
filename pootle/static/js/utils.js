@@ -97,12 +97,6 @@ export function strCmp(a, b) {
 }
 
 
-/* Cleans '\n' escape sequences and adds '\t' sequences */
-export function cleanEscape(s) {
-  return s.replace(/\\t/g, '\t').replace(/\\n/g, '');
-}
-
-
 /* Fancy escapes to highlight parts of the text such as HTML tags */
 export function fancyEscape(text) {
   function replace(match) {
@@ -232,7 +226,6 @@ export function blinkClass($elem, className, n, delay) {
 
 export default {
   blinkClass,
-  cleanEscape,
   executeFunctionByName,
   fancyEscape,
   fancyHl,
