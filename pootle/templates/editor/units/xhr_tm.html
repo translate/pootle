@@ -5,10 +5,12 @@
     data-action="overwrite" data-translation-aid="<%- sugg.target %>">
     <div class="extra-item-content">
       <div class="extra-item">
-        <div class="suggestion-original" lang="<%= store.source_lang %>"
-          dir="<%= store.source_dir %>"><%= PTL.utils.diff(unit.source[0], sugg.source) %></div>
-        <div class="suggestion-translation" lang="<%= store.target_lang %>"
-          dir="<%= store.target_dir %>"><%= PTL.utils.fancyHl(sugg.target) %></div>
+        <div class="suggestion-wrapper">
+          <div class="suggestion-original" lang="<%= store.source_lang %>"
+            dir="<%= store.source_dir %>"><%= PTL.utils.diff(unit.source[0], sugg.source) %></div>
+          <div class="suggestion-translation" lang="<%= store.target_lang %>"
+            dir="<%= store.target_dir %>"><%= PTL.utils.fancyHl(sugg.target) %></div>
+        </div>
         <% if (sugg.project) { %>
         <% if (sugg.iso_submitted_on) { %>
         <div class="tm-context">

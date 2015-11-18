@@ -823,6 +823,16 @@ html[dir="rtl"] .suggestion-action
     margin: 0 0.3em 0 0;
 }
 
+.suggestion-wrapper
+{
+    display: flex;
+}
+
+.suggestion-wrapper > div
+{
+    flex: 1;
+}
+
 .translation-text,
 .suggestion-original,
 .suggestion-translation
