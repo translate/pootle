@@ -148,6 +148,12 @@ html[dir="rtl"] .control-group .controls .radio-pre
     margin: 0 1.5em;
 }
 
+#sidebar .controls-btn ul
+{
+    margin: 0;
+    clear: both;
+}
+
 .control-group-separator
 {
     margin-left: 2em;
