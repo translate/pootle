@@ -62,12 +62,11 @@ def browse(request, translation_project, dir_path, filename=None):
 
     # TODO improve plugin logic
     if "import_export" in settings.INSTALLED_APPS:
-        if not translation_project.is_terminology_project:
-            if request.user.is_authenticated():
-                if check_permission('translate', request):
-                    ctx.update(handle_upload_form(request, project))
-                ctx.update({'display_download': True,
-                            'has_sidebar': True})
+        if request.user.is_authenticated():
+            if check_permission('translate', request):
+                ctx.update(handle_upload_form(request, project))
+            ctx.update({'display_download': True,
+                        'has_sidebar': True})
 
     stats = request.resource_obj.get_stats()
 
