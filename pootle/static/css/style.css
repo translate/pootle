@@ -592,6 +592,7 @@ html[dir="rtl"] #sidebar
 #sidebar.sidebar-edit-open #sidebar-edit-content
 {
     float: left;
+    padding: 0 0 0 2em;
 }
 
 #sidebar.sidebar-edit-open #sidebar-content

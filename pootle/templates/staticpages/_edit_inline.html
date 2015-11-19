@@ -2,7 +2,6 @@
 {% load assets %}
 
 <div class="staticpages" lang="{{ LANGUAGE_CODE }}">
-  <div class="staticpages-edit">
   <form action="{{ form_action }}" method="post" class="staticpages-form">
     {% csrf_token %}
     {{ form.non_field_errors }}
@@ -35,5 +34,4 @@
       </div>
     </div>
   </form>
-  </div>
 </div>
