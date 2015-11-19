@@ -1,7 +1,39 @@
+{% load i18n %}
 {% load assets %}
 
 <div class="staticpages" lang="{{ LANGUAGE_CODE }}">
   <div class="staticpages-edit">
-  {% include 'admin/staticpages/_form.html' %}
+  <form action="{{ form_action }}" method="post" class="staticpages-form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% include 'admin/staticpages/_field.html' with field=form.title %}
+
+    <div class="control-group">
+      <div class="controls">
+        <div class="js-staticpage-editor"></div>
+      </div>
+    </div>
+
+    <div class="control-group js-staticpage-non-content">
+      <div class="controls controls-btn">
+        <input type="submit" class="btn" value="{% trans 'Save' %}" />
+        <ul>
+          <li>
+            {% blocktrans trimmed %}
+            Use <code>&lt;a href="<strong>#/page-slug</strong>"&gt;Link text&lt;/a&gt;</code>
+            code to provide links between static pages. Such links will be rewritten with
+            full paths to static pages.
+            {% endblocktrans %}
+          </li>
+          <li>
+            {% blocktrans trimmed %}
+            In Announcement pages use <code><strong>/xx/</strong></code> within URLs for a
+            dynamic language code.
+            {% endblocktrans %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
   </div>
 </div>
