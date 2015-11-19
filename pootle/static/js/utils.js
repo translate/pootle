@@ -137,7 +137,7 @@ function highlightEscapes(text) {
 }
 
 
-const spaceHl = '<span class="translation-space"> </span>';
+const spaceHl = '<span class="highlight-whitespace js-editor-copytext" data-string=" "></span>';
 const WHITESPACE_RE = /^( +)|( +)$/gm;
 
 function highlightWhitespace(text) {

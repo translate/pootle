@@ -328,15 +328,6 @@ div.sources .translation-text
     padding-top: 0.5em;
 }
 
-.translation-space
-{
-    padding: 0 4px;
-    margin: 0 0.2em;
-    background-image: url('../images/squiggle.png');
-    background-repeat: repeat-x;
-    background-position: text-bottom;
-    vertical-align: middle;
-}
 
 /* TRANSLATION UNIT LAYOUT */
 
@@ -351,13 +342,6 @@ div.translate-container
     background-color: #f1f7f8;
     overflow: hidden;
     clear: both;
-}
-
-/* in translation editor, make hanging spaces more prominent */
-div.translate-container .translation-space
-{
-    background-color: yellow;
-    border: 1px solid red;
 }
 
 div.translate-container.error
@@ -1544,6 +1528,17 @@ a.editor-specialchar:hover
 .non-printable.newline::before
 {
     content: 'LF';
+}
+
+.highlight-whitespace
+{
+    color: rgba(153, 102, 0, 0.7);
+    line-height: 100%;
+}
+
+.highlight-whitespace::before
+{
+    content: '\2423'; /* U+2423 = "Open box" symbol */
 }
 
 .highlight-escape
