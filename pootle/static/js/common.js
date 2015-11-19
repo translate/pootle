@@ -185,6 +185,18 @@ PTL.common = {
       }
     });
 
+    $(document).on('click', '.js-cancel-edit-announcement', (e) => {
+      e.preventDefault();
+
+      const $sidebar = $('.js-sidebar');
+      const $sidebarEditContent = $('.js-sidebar-edit-content');
+      const openClassName = 'sidebar-edit-open';
+
+      $sidebarEditContent.hide();
+      $sidebarEditContent.html('');
+      $sidebar.toggleClass(openClassName);
+    });
+
     /* Popups */
     $(document).magnificPopup({
       type: 'ajax',
