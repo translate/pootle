@@ -151,17 +151,16 @@ PTL.common = {
       const $sidebarEditContent = $('.js-sidebar-edit-content');
       const openClassName = 'sidebar-edit-open';
 
-      $sidebar.toggleClass(openClassName);
-
-      if ($sidebar.hasClass(openClassName)) {
+      if (!$sidebar.hasClass(openClassName)) {
         const announcementPk = e.target.dataset.announcementPk;
 
         $.ajax({
           url: `/xhr/announcement/${announcementPk}/edit/`,
           type: 'GET',
           success: (data) => {
+            $sidebar.toggleClass(openClassName);
+
             $sidebarEditContent.html(data.formSnippet);
-            $sidebarEditContent.show();
 
             PTL.commonAdmin.init({
               page: 'staticpages',
@@ -171,6 +170,8 @@ PTL.common = {
                 markup: PTL.settings.MARKUP_FILTER,
               },
             });
+
+            $sidebarEditContent.show();
           },
           complete: (xhr) => {
             if (xhr.status === 400) {
