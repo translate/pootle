@@ -86,6 +86,14 @@ class ElasticSearchBackend(SearchBackend):
         if es_res is None:
             # ElasticsearchException - eg ConnectionError.
             return []
+        elif es_res == "":
+            # There seems to be an issue with urllib where an empty string is
+            # returned
+            logger.error("Elasticsearch search (%s:%s) returned an empty string: %s"
+                         % (self._settings["HOST"],
+                            self._settings["PORT"],
+                            unit))
+            return []
 
         for hit in es_res['hits']['hits']:
             if self._is_valuable_hit(unit, hit):
