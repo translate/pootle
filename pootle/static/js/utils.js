@@ -11,10 +11,6 @@ import $ from 'jquery';
 import 'jquery-select2';
 
 
-const escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
-const whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
-
-
 /* Gets current URL's hash */
 export function getHash(win) {
   // Mozilla has a bug when it automatically unescapes %26 to '&'
@@ -96,17 +92,68 @@ export function strCmp(a, b) {
   return rv;
 }
 
+/* eslint-disable no-irregular-whitespace */
+const PUNCTUATION_RE = /[™©®]|[℃℉°]|[±πθ×÷−√∞∆Σ′″]|[‘’ʼ‚‛“”„‟]|[«»]|[£¥€]|…|—|–|[ ]/g;
+/* eslint-enable no-irregular-whitespace */
+// Marks + Degree-related + Maths + Quote characters + Guillemets + Currencies +
+// U2026 horizontal ellipsis + U2014 em dash + U2013 en dash +
+// U202F narrow no-break space
 
-/* Fancy escapes to highlight parts of the text such as HTML tags */
-export function fancyEscape(text) {
+function highlightPunctuation(text) {
   function replace(match) {
-    const escapeHl = '<span class="highlight-escape">%s</span>';
-    const htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
+    return `<span class="highlight-punctuation js-editor-copytext">${match}</span>`;
+  }
+
+  return text.replace(PUNCTUATION_RE, replace);
+}
+
+
+const nonPrintable = '<span class="non-printable js-editor-copytext %1$s" ' +
+                     'data-string="%2$s"></span>';
+const newLineHl = nonPrintable.replace('%1$s', 'newline')
+                              .replace('%2$s', '&#10;') + '<br/>';
+const tabHl = nonPrintable.replace('%1$s', 'tab').replace('%2$s', '&#9;');
+const escapeHl = '<span class="highlight-escape js-editor-copytext">%s</span>';
+
+const ESCAPE_RE = /\r\n|[\r\n\t]|\\r|\\n|\\t/gm;
+
+
+function highlightEscapes(text) {
+  function replace(match) {
     const submap = {
-      '\r\n': `${escapeHl.replace(/%s/, '\\r\\n')}<br/>\n`,
-      '\r': `${escapeHl.replace(/%s/, '\\r')}<br/>\n`,
-      '\n': `${escapeHl.replace(/%s/, '\\n')}<br/>\n`,
-      '\t': escapeHl.replace(/%s/, '\\t'),
+      '\r\n': newLineHl,
+      '\r': newLineHl,
+      '\n': newLineHl,
+      '\t': tabHl,
+      '\\r': escapeHl.replace(/%s/, '\\r'),
+      '\\n': escapeHl.replace(/%s/, '\\n'),
+      '\\t': escapeHl.replace(/%s/, '\\t'),
+    };
+
+    return submap[match];
+  }
+
+  return text.replace(ESCAPE_RE, replace);
+}
+
+
+const spaceHl = '<span class="translation-space"> </span>';
+const WHITESPACE_RE = /^( +)|( +)$/gm;
+
+function highlightWhitespace(text) {
+  function replace(match) {
+    return Array(match.length + 1).join(spaceHl);
+  }
+  return text.replace(WHITESPACE_RE, replace);
+}
+
+
+const htmlHl = '<span class="highlight-html js-editor-copytext">&lt;%s&gt;</span>';
+const HTML_RE = /<[^>]+>|[&<>]/gm;
+
+function highlightHtml(text) {
+  function replace(match) {
+    const submap = {
       '&': '&amp;',
       '<': '&lt;',
       '>': '&gt;',
@@ -116,33 +163,30 @@ export function fancyEscape(text) {
 
     if (replaced === undefined) {
       replaced = htmlHl.replace(
-            /%s/,
-            fancyEscape(match.slice(1, match.length - 1))
-        );
+        /%s/,
+        highlightHtml(match.slice(1, match.length - 1))
+      );
     }
 
     return replaced;
   }
 
-  return text.replace(escapeRE, replace);
+  return text.replace(HTML_RE, replace);
 }
 
 
-/* Highlight spaces to make them easily visible */
-function fancySpaces(text) {
-  function replace(match) {
-    const spaceHl = '<span class="translation-space"> </span>';
-
-    return Array(match.length + 1).join(spaceHl);
-  }
-
-  return text.replace(whitespaceRE, replace);
-}
-
-
-/* Fancy highlight: fancy spaces + fancy escape */
 export function fancyHl(text) {
-  return fancySpaces(fancyEscape(text));
+  return (
+    highlightPunctuation(
+      highlightEscapes(
+        highlightWhitespace(
+          highlightHtml(
+            text
+          )
+        )
+      )
+    )
+  );
 }
 
 
