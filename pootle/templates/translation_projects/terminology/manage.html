@@ -15,6 +15,11 @@
 {% assets "js_admin_general_app" %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
+<script type="text/javascript">
+  $(function () {
+    PTL.utils.fancyHlNodes('.js-translation-text');
+  });
+</script>
 {% endblock scripts_extra %}
 
 {% block content %}

@@ -14,7 +14,7 @@
           {% for entry in entry_group.entries %}
           {% if entry.suggestion_text %}
           <div class="timeline-type-{{ entry.type }}">
-            <div class="timeline-field-body">{{ entry.suggestion_text }}</div>
+            <div class="timeline-field-body js-unit-highlight">{{ entry.suggestion_text }}</div>
             <div class="sidetitle">{{ entry.suggestion_description }}</div>
           </div>
           {% elif entry.field > -1 %}
@@ -31,7 +31,7 @@
             {% if entry.field == 4 and entry.new_value == '' %}
               <span class="unit-empty">{% trans 'Last comment removed' %}</span>
             {% elif entry.field != 3 and entry.field != 0 %}
-              <span class="timeline-field-body" lang="{{ language.code }}">{{ entry.new_value }}</span>
+              <span class="timeline-field-body js-unit-highlight" lang="{{ language.code }}">{{ entry.new_value }}</span>
             {% elif entry.field == 0 %}
               {% if entry.check_name %}
                 {% if entry.type == 6 %}

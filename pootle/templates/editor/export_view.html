@@ -1,4 +1,4 @@
-{% load assets cleanhtml i18n locale store_tags %}
+{% load core assets i18n locale store_tags %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
 <head>
@@ -122,11 +122,11 @@
         <td>
         {% for i, source, title in unit|pluralize_source %}
           <div
-            class="translation-text"
+            class="translation-text js-translation-text"
             dir="{{ source_language.direction }}"
             lang="{{ source_language.code }}"
           >
-            {{ source|fancy_highlight }}
+            {{ source }}
           </div>
         {% endfor %}
         {% if unit.getcontext %}
@@ -138,11 +138,11 @@
         <td>
         {% for i, target, title in unit|pluralize_target %}
           <div
-            class="translation-text"
+            class="translation-text js-translation-text"
             dir="{{ language.direction }}"
             lang="{{ language.code }}"
           >
-            {{ target|fancy_highlight }}
+            {{ target }}
           </div>
         {% endfor %}
         <div class="unit-number">
@@ -169,5 +169,26 @@
     {% endif %}
     </tbody>
   </table>
+  {# XXX: All this is needed in order to include the common bundle #}
+  <script type="text/javascript">
+  window.PTL = window.PTL || {};
+  PTL.settings = {
+    CONTACT_ENABLED: {{ settings.POOTLE_CONTACT_ENABLED|yesno:'true, false' }},
+    SIGNUP_ENABLED: {{ settings.POOTLE_SIGNUP_ENABLED|yesno:'true, false' }},
+    MARKUP_FILTER: '{{ settings.POOTLE_MARKUP_FILTER }}',
+    SOCIAL_AUTH_PROVIDERS: {{ SOCIAL_AUTH_PROVIDERS|to_js }},
+  };
+  </script>
+  {% assets "js_vendor" %}
+  <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+  {% assets "js_common" %}
+  <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+  <script type="text/javascript">
+    $(function () {
+      PTL.utils.fancyHlNodes('.js-translation-text');
+    });
+  </script>
 </body>
 </html>

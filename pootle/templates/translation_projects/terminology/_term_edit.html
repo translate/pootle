@@ -19,7 +19,8 @@
   {% endif %}
   <div id="trans{{ unit.index }}" class="translate-term-translation" dir="{% locale_dir %}">
     <!-- Translation -->
-    <div dir="{{ language.direction }}" lang="{{ language.code }}" class="translation-text">{{ unit.target|fancy_highlight }}</div>
+    <div dir="{{ language.direction }}" lang="{{ language.code }}"
+      class="js-translation-text translation-text">{{ unit.target }}</div>
   </div>
   {% if unit.getcontext %}
   <div class="translate-context">

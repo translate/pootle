@@ -587,6 +587,8 @@ PTL.editor = {
 
     autosize(q('textarea.expanding:not([disabled="disabled"])'));
 
+    utils.fancyHlNodes('.js-translation-text');
+
     // set direction of the comment body
     $('.extra-item-comment').filter(':not([dir])').bidi();
     // set direction of the suggestion body
@@ -2160,6 +2162,8 @@ PTL.editor = {
           ReactRenderer.render(<TimeSince {...props} />, el);
         }
       });
+
+      utils.fancyHlNodes('.js-unit-highlight');
 
       $('.timeline-field-body').filter(':not([dir])').bidi();
       $('#js-show-timeline').addClass('selected');

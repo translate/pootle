@@ -146,6 +146,16 @@ export function fancyHl(text) {
 }
 
 
+export function fancyHlNodes(selector) {
+  [...document.querySelectorAll(selector)].forEach(
+    (translationTextNode) => {
+      // eslint-disable-next-line no-param-reassign
+      translationTextNode.innerHTML = fancyHl(translationTextNode.textContent);
+    }
+  );
+}
+
+
 /* Returns a string representing a relative datetime */
 export function relativeDate(date) {
   const delta = Date.now() - date;
@@ -228,6 +238,7 @@ export default {
   blinkClass,
   executeFunctionByName,
   fancyHl,
+  fancyHlNodes,
   getHash,
   getParsedHash,
   makeSelectableInput,
