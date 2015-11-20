@@ -15,6 +15,9 @@ import 'shortcut';
 import cookie from 'utils/cookie';
 
 
+const SEARCH_COOKIE_NAME = 'pootle-search';
+
+
 let search = {
 
   init(options) {
@@ -116,8 +119,7 @@ let search = {
 
     if (searchFields.length || searchOptions.length) {
       // Remember field selection in a cookie
-      var cookieName = 'pootle-search',
-          cookieData = {};
+      let cookieData = {};
       if (searchFields.length) {
         cookieData.sfields = searchFields;
       }
@@ -125,7 +127,7 @@ let search = {
         cookieData.soptions = searchOptions;
       }
 
-      cookie(cookieName, JSON.stringify(cookieData), { path: '/' });
+      cookie(SEARCH_COOKIE_NAME, JSON.stringify(cookieData), { path: '/' });
     }
 
     return query;
