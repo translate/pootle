@@ -36,7 +36,7 @@ let SignInPanel = React.createClass({
   /* Handlers */
 
   handleChange(index) {
-    cookie(SIGNIN_TAB_COOKIE_NAME, index);
+    cookie(SIGNIN_TAB_COOKIE_NAME, index, { path: '/' });
   },
 
 
