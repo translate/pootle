@@ -138,14 +138,6 @@ $(function () {
     isInitiallyExpanded: {{ is_store|yesno:"true,false" }},
     initialData: {{ stats|safe }},
   });
-
-  {% if 'finished' in request.GET %}
-  PTL.msg.show({
-    text: '{% trans "Congratulations! You have completed this task!" %}',
-    level: 'success',
-    language: '{{ LANGUAGE_CODE }}'
-  });
-  {% endif %}
 });
 </script>
 {% endblock %}

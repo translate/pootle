@@ -65,7 +65,6 @@ PTL.browser = require('./browser.js');
 PTL.captcha = require('./captcha.js');
 PTL.contact = require('./contact.js');
 PTL.dropdown = require('./dropdown.js');
-PTL.msg = require('./msg.js');
 PTL.search = require('./search.js');
 PTL.score = require('./score.js');
 PTL.stats = require('./stats.js');

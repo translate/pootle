@@ -1488,7 +1488,8 @@ PTL.editor = {
       var newHash = utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
     } else if (opts.isSubmission) {
-      window.location.href = `${this.backToBrowserEl.getAttribute('href')}?finished`;
+      $.cookie('finished', '1', { path: '/' });
+      window.location.href = this.backToBrowserEl.getAttribute('href');
     }
   },
 

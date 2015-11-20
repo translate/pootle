@@ -18,7 +18,10 @@ import StatsAPI from 'api/StatsAPI';
 import LastUpdate from 'components/LastUpdate';
 import TimeSince from 'components/TimeSince';
 import UserEvent from 'components/UserEvent';
+import cookie from 'utils/cookie';
+
 import helpers from './helpers';
+import msg from './msg';
 
 
 const nicePercentage = function (part, total, noTotalDefault) {
@@ -41,6 +44,14 @@ function cssId(id) {
 const stats = {
 
   init(options) {
+    if (cookie('finished')) {
+      msg.show({
+        text: gettext('Congratulations! You have completed this task!'),
+        level: 'success',
+      });
+      $.cookie('finished', null, { path: '/' });
+    }
+
     this.retries = 0;
 
     const isExpanded = (options.isInitiallyExpanded ||
