@@ -19,7 +19,6 @@ import configureStore from './store';
 var $ = require('jquery');
 
 // jQuery plugins
-require('jquery-cookie');
 require('jquery-magnific-popup');
 require('jquery-select2');
 require('jquery-tipsy');
@@ -141,12 +140,12 @@ PTL.common = {
       var $sidebar = $('.js-sidebar'),
           openClass = 'sidebar-open',
           cookieName = 'pootle-browser-sidebar',
-          cookieData = JSON.parse($.cookie(cookieName)) || {};
+          cookieData = JSON.parse(cookie(cookieName)) || {};
 
       $sidebar.toggleClass(openClass);
 
       cookieData.isOpen = $sidebar.hasClass(openClass);
-      $.cookie(cookieName, JSON.stringify(cookieData), {path: '/'});
+      cookie(cookieName, JSON.stringify(cookieData), { path: '/' });
     });
 
     /* Popups */

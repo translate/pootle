@@ -6,12 +6,12 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import 'jquery-cookie';
 import assign from 'object-assign';
 import React from 'react';
 import { PureRenderMixin } from 'react/addons';
 
 import { Tabs, Tab } from 'components/Tabs';
+import cookie from 'utils/cookie';
 
 import AuthProgress from './AuthProgress';
 import SignInForm from './SignInForm';
@@ -36,7 +36,7 @@ let SignInPanel = React.createClass({
   /* Handlers */
 
   handleChange(index) {
-    $.cookie(SIGNIN_TAB_COOKIE_NAME, index);
+    cookie(SIGNIN_TAB_COOKIE_NAME, index);
   },
 
 
@@ -53,7 +53,7 @@ let SignInPanel = React.createClass({
       );
     }
 
-    let initialTabIndex = parseInt($.cookie(SIGNIN_TAB_COOKIE_NAME), 10) || 0;
+    let initialTabIndex = parseInt(cookie(SIGNIN_TAB_COOKIE_NAME), 10) || 0;
 
     return (
       <Tabs onChange={this.handleChange} initialTab={initialTabIndex}>

@@ -11,7 +11,6 @@
 var $ = require('jquery');
 var _ = require('underscore');
 
-require('jquery-cookie');
 require('jquery-select2');
 
 var utils = require('./utils.js');
@@ -231,11 +230,11 @@ var browser = {
 
     var changed = projChanged ? 'project' :
                   langChanged ? 'language' : 'resource';
-    $.cookie('user-choice', changed, {path: '/'});
+    cookie('user-choice', changed, { path: '/' });
 
     // Remember the latest language the user switched to
     if (langChanged) {
-      $.cookie('pootle-language', languageCode, {path: '/'});
+      cookie('pootle-language', languageCode, { path: '/' });
     }
 
     window.location.href = newUrl;

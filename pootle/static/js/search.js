@@ -9,9 +9,10 @@
 'use strict';
 
 import $ from 'jquery';
-import 'jquery-cookie';
 import assign from 'object-assign';
 import 'shortcut';
+
+import cookie from 'utils/cookie';
 
 
 let search = {
@@ -124,7 +125,7 @@ let search = {
         cookieData.soptions = searchOptions;
       }
 
-      $.cookie(cookieName, JSON.stringify(cookieData), {path: '/'});
+      cookie(cookieName, JSON.stringify(cookieData), { path: '/' });
     }
 
     return query;

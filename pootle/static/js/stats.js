@@ -49,7 +49,7 @@ const stats = {
         text: gettext('Congratulations! You have completed this task!'),
         level: 'success',
       });
-      $.cookie('finished', null, { path: '/' });
+      cookie('finished', null, { path: '/' });
     }
 
     this.retries = 0;

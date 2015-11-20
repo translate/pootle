@@ -11,7 +11,6 @@ import _ from 'underscore';
 
 // jQuery plugins
 import 'jquery-caret';
-import 'jquery-cookie';
 import 'jquery-easing';
 import 'jquery-highlightRegex';
 import 'jquery-history';
@@ -29,6 +28,7 @@ import 'shortcut';
 
 import StatsAPI from 'api/StatsAPI';
 import UnitAPI from 'api/UnitAPI';
+import cookie from 'utils/cookie';
 import linkHashtags from 'utils/linkHashtags';
 
 import captcha from '../captcha';
@@ -108,7 +108,7 @@ PTL.editor = {
     this.modifiedSince = null;
     this.user = null;
     this.ctxGap = 0;
-    this.ctxQty = parseInt($.cookie('ctxQty'), 10) || 1;
+    this.ctxQty = parseInt(cookie('ctxQty'), 10) || 1;
     this.preventNavigation = false;
 
     this.isUnitDirty = false;
@@ -1488,7 +1488,7 @@ PTL.editor = {
       var newHash = utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
     } else if (opts.isSubmission) {
-      $.cookie('finished', '1', { path: '/' });
+      cookie('finished', '1', { path: '/' });
       window.location.href = this.backToBrowserEl.getAttribute('href');
     }
   },
@@ -1718,7 +1718,7 @@ PTL.editor = {
     // As we now have got more context rows, increase its gap
     this.ctxGap += Math.max(data.ctx.before.length,
                             data.ctx.after.length);
-    $.cookie('ctxQty', this.ctxGap, {path: '/'});
+    cookie('ctxQty', this.ctxGap, { path: '/' });
 
     // Create context rows HTML
     const before = this.renderCtxRows(data.ctx.before, 'before');
@@ -1765,7 +1765,7 @@ PTL.editor = {
           this.replaceCtxControls(this.renderCtxControls({ hasData: false }));
         }
 
-        $.cookie('ctxQty', this.ctxGap, {path: '/'});
+        cookie('ctxQty', this.ctxGap, { path: '/' });
       }
     }
   },
