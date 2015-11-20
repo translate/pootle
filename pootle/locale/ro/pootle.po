@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-28 10:08+0100\n"
+"POT-Creation-Date: 2015-11-20 13:21+0000\n"
 "PO-Revision-Date: 2013-10-31 10:10+0000\n"
 "Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
 "Language-Team: Romanian\n"
@@ -49,12 +49,12 @@ msgstr ""
 msgid "Email Address"
 msgstr "Adresă e-mail"
 
-#: apps/accounts/models.py:71 apps/pootle_language/models.py:80
-#: apps/pootle_project/models.py:149
+#: apps/accounts/models.py:71 apps/pootle_language/models.py:81
+#: apps/pootle_project/models.py:150
 msgid "Full Name"
 msgstr "Nume întreg"
 
-#: apps/accounts/models.py:73 apps/staticpages/models.py:28
+#: apps/accounts/models.py:73 apps/staticpages/models.py:32
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Activ"
@@ -88,7 +88,7 @@ msgstr "Numărul de rânduri"
 msgid "Alternative Source Languages"
 msgstr "Limbă sursă alternativă"
 
-#: apps/accounts/models.py:90 templates/admin/detailed_reports.html:149
+#: apps/accounts/models.py:90 templates/admin/detailed_reports.html:156
 msgid "Rate"
 msgstr ""
 
@@ -138,35 +138,35 @@ msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:26
 msgid "Summary"
 msgstr "Sumar"
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:28
 msgid "Please enter your message summary"
 msgstr ""
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:32 core/browser.py:17
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:32 core/browser.py:17
 msgid "Name"
 msgstr "Nume"
 
-#: apps/contact/forms.py:35
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr ""
 
-#: apps/contact/forms.py:38
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "Adresă e-mail"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr ""
 
-#: apps/contact/forms.py:42
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "Mesaj"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr ""
 
@@ -214,24 +214,24 @@ msgstr ""
 msgid "There was an error uploading your file"
 msgstr "Poate suprascrie traducerile prin upload"
 
-#: apps/pootle_app/forms.py:37
+#: apps/pootle_app/forms.py:38
 msgid "Language code does not follow the ISO convention"
 msgstr "Codul limbi nu urmărește convențiile ISO"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:172
+#: apps/pootle_app/forms.py:46 apps/pootle_project/models.py:173
 msgid "Source Language"
 msgstr "Limbă sursă"
 
-#: apps/pootle_app/forms.py:91 apps/pootle_project/models.py:391
+#: apps/pootle_app/forms.py:97 apps/pootle_project/models.py:392
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "\"%s\" nu se poate folosi ca cod proiect"
 
-#: apps/pootle_app/forms.py:98 custom/templates/profiles/_tabs.html:5
+#: apps/pootle_app/forms.py:104 custom/templates/profiles/_tabs.html:5
 msgid "Password"
 msgstr "Parolă"
 
-#: apps/pootle_app/forms.py:133 apps/pootle_profile/forms.py:28
+#: apps/pootle_app/forms.py:139 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr ""
 
@@ -299,7 +299,7 @@ msgstr "Nu sunt fișiere în acet proiect."
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Sunt greșeli în formular. Vă rog verificați problemele de mai jos."
 
-#: apps/pootle_language/models.py:73
+#: apps/pootle_language/models.py:74
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -309,36 +309,38 @@ msgstr ""
 "codul ISO 3166 a țării. <a href=\"http://www.w3.org/International/articles/"
 "language-tags/\">Mai multe detalii</a>"
 
-#: apps/pootle_language/models.py:78 apps/pootle_project/models.py:146
+#: apps/pootle_language/models.py:79 apps/pootle_project/models.py:147
 msgid "Code"
 msgstr "Cod"
 
-#: apps/pootle_language/models.py:82
+#: apps/pootle_language/models.py:83
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 "Introduceți orice caracter special, care este dificil de introdus pentru "
 "utilizatori"
 
-#: apps/pootle_language/models.py:85
+#: apps/pootle_language/models.py:86 templates/languages/_nav.html:31
+#: templates/languages/admin/characters.html:5
+#: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Caractere speciale"
 
-#: apps/pootle_language/models.py:88
+#: apps/pootle_language/models.py:89
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
 
-#: apps/pootle_language/models.py:93
+#: apps/pootle_language/models.py:94
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: apps/pootle_language/models.py:96
+#: apps/pootle_language/models.py:97
 msgid "Number of Plurals"
 msgstr "Număr de plurale"
 
-#: apps/pootle_language/models.py:98
+#: apps/pootle_language/models.py:99
 msgid "Plural Equation"
 msgstr "Ecuaţie plural"
 
@@ -525,7 +527,7 @@ msgid "Unchanged"
 msgstr "Nemodificat"
 
 #: apps/pootle_misc/checks.py:82 apps/pootle_misc/stats.py:27
-#: apps/pootle_store/util.py:30 core/helpers.py:58
+#: apps/pootle_store/util.py:30 core/helpers.py:63
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Netradus"
@@ -661,7 +663,7 @@ msgid "Percent brace placeholders"
 msgstr "Înlocuitori"
 
 #. Translators: This is the name of a filter
-#: apps/pootle_misc/forms.py:90 core/helpers.py:62
+#: apps/pootle_misc/forms.py:90 core/helpers.py:67
 msgid "Search"
 msgstr "Căutare"
 
@@ -692,12 +694,12 @@ msgstr "Locații"
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: apps/pootle_misc/stats.py:24 core/browser.py:45
-#: templates/admin/detailed_reports.html:275
+#: templates/admin/detailed_reports.html:318
 msgid "Total"
 msgstr "Total"
 
 #: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32
-#: core/helpers.py:57 templates/editor/_filters.html:7
+#: core/helpers.py:62 templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Tradus"
 
@@ -726,7 +728,7 @@ msgstr "Alegeți unul sau mai multe limbi"
 msgid "Language"
 msgstr "Limba"
 
-#: apps/pootle_project/models.py:143
+#: apps/pootle_project/models.py:144
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -734,49 +736,49 @@ msgstr ""
 "Codul proiectului. Acesta poate conține numai caractere ASCII, numere și "
 "caracterul liniuță jos (_)."
 
-#: apps/pootle_project/models.py:157
+#: apps/pootle_project/models.py:158
 msgid "Quality Checks"
 msgstr "Verificarea calității"
 
-#: apps/pootle_project/models.py:160
+#: apps/pootle_project/models.py:161
 msgid "File Type"
 msgstr "Tip fişier"
 
-#: apps/pootle_project/models.py:164
+#: apps/pootle_project/models.py:165
 msgid "Automatic detection (slower)"
 msgstr "Detecție automată (mai încet)"
 
-#: apps/pootle_project/models.py:165
+#: apps/pootle_project/models.py:166
 msgid "GNU style: files named by language code"
 msgstr "Stil GNU: nume de fișiere după codul limbii"
 
-#: apps/pootle_project/models.py:166
+#: apps/pootle_project/models.py:167
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Non-GNU: Fiecare limbă în directorul propriu"
 
-#: apps/pootle_project/models.py:169
+#: apps/pootle_project/models.py:170
 msgid "Project Tree Style"
 msgstr "Stilul Arbore Proiect"
 
-#: apps/pootle_project/models.py:175
+#: apps/pootle_project/models.py:176
 msgid "Ignore Files"
 msgstr "Ignoră fișierele"
 
-#: apps/pootle_project/models.py:180
+#: apps/pootle_project/models.py:181
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:181
+#: apps/pootle_project/models.py:182
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Un URL sau o adresă de e-mail unde problemele legate de texte se pot raporta."
 
-#: apps/pootle_project/models.py:185
+#: apps/pootle_project/models.py:186
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:190
+#: apps/pootle_project/models.py:191
 msgid "Disabled"
 msgstr ""
 
@@ -824,7 +826,7 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr "Drepturi insuficiente la acest proiect de traducere."
 
-#: apps/pootle_store/decorators.py:32 apps/pootle_store/views.py:1012
+#: apps/pootle_store/decorators.py:32 apps/pootle_store/views.py:1001
 msgid "Insufficient rights to access review mode."
 msgstr ""
 
@@ -865,60 +867,60 @@ msgstr "Excel CSV"
 msgid "Mozilla .lang"
 msgstr "Mozilla .lang"
 
-#: apps/pootle_store/forms.py:88
-#: apps/pootle_store/templatetags/store_tags.py:147
-#: apps/pootle_store/templatetags/store_tags.py:163
-#: apps/pootle_store/templatetags/store_tags.py:170
-#: apps/pootle_store/templatetags/store_tags.py:182
-#: apps/pootle_store/templatetags/store_tags.py:184
+#: apps/pootle_store/forms.py:93
+#: apps/pootle_store/templatetags/store_tags.py:151
+#: apps/pootle_store/templatetags/store_tags.py:168
+#: apps/pootle_store/templatetags/store_tags.py:175
+#: apps/pootle_store/templatetags/store_tags.py:189
+#: apps/pootle_store/templatetags/store_tags.py:191
 #, python-format
 msgid "Plural Form %d"
 msgstr "Formă plural %d"
 
-#: apps/pootle_store/forms.py:211 apps/pootle_store/util.py:31
-#: core/helpers.py:59 templates/editor/_filters.html:10
+#: apps/pootle_store/forms.py:216 apps/pootle_store/util.py:31
+#: core/helpers.py:64 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Necesită lucru"
 
-#: apps/pootle_store/forms.py:247
+#: apps/pootle_store/forms.py:252
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:290
+#: apps/pootle_store/forms.py:295
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:300
+#: apps/pootle_store/forms.py:305
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:325
+#: apps/pootle_store/forms.py:330
 msgid "Translator comment"
 msgstr "Comentariile traducătorului"
 
-#: apps/pootle_store/models.py:146
+#: apps/pootle_store/models.py:156
 msgid "Pending"
 msgstr "În așteptare"
 
-#: apps/pootle_store/models.py:147
+#: apps/pootle_store/models.py:157
 msgid "Accepted"
 msgstr "Acceptat"
 
-#: apps/pootle_store/models.py:148
+#: apps/pootle_store/models.py:158
 msgid "Rejected"
 msgstr "Respinge"
 
-#: apps/pootle_store/models.py:1343
+#: apps/pootle_store/models.py:1366
 msgid "Path"
 msgstr "Cale"
 
-#: apps/pootle_store/templatetags/store_tags.py:141
-#: apps/pootle_store/templatetags/store_tags.py:143
+#: apps/pootle_store/templatetags/store_tags.py:144
+#: apps/pootle_store/templatetags/store_tags.py:147
 msgid "Singular"
 msgstr "Singular"
 
-#: apps/pootle_store/templatetags/store_tags.py:141
-#: apps/pootle_store/templatetags/store_tags.py:143
+#: apps/pootle_store/templatetags/store_tags.py:144
+#: apps/pootle_store/templatetags/store_tags.py:147
 msgid "Plural"
 msgstr "Plural"
 
@@ -926,23 +928,23 @@ msgstr "Plural"
 msgid "Obsolete"
 msgstr "Învechit"
 
-#: apps/pootle_store/views.py:467 core/decorators.py:46
+#: apps/pootle_store/views.py:462 core/decorators.py:46
 msgid "Arguments missing."
 msgstr "Lipsesc argumente."
 
-#: apps/pootle_store/views.py:708
+#: apps/pootle_store/views.py:700
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:742
+#: apps/pootle_store/views.py:734
 msgid "Comment submission failed."
 msgstr "Trimiterea comentariului eșuat."
 
-#: apps/pootle_store/views.py:941
+#: apps/pootle_store/views.py:930
 msgid "Failed to process submission."
 msgstr "Eroare la procesarea trimiterii."
 
-#: apps/pootle_store/views.py:982
+#: apps/pootle_store/views.py:971
 msgid "Failed to process suggestion."
 msgstr "Eroare la procesarea sugestiei."
 
@@ -961,11 +963,12 @@ msgstr ""
 #: apps/reports/models.py:31 apps/reports/models.py:43
 #: templates/editor/export_view.html:106
 #: templates/translation_projects/terminology/manage.html:35
-#: templates/user/settings.html:29
+#: templates/user/settings.html:28
 msgid "Translation"
 msgstr "Traducere"
 
 #: apps/reports/models.py:32 apps/reports/models.py:44
+#: templates/admin/detailed_reports.html:232
 msgid "Review"
 msgstr "Recenzie"
 
@@ -998,12 +1001,12 @@ msgstr ""
 msgid "Description"
 msgstr "Descriere"
 
-#: apps/reports/views.py:320
+#: apps/reports/views.py:331
 #, python-format
 msgid "User %s not found"
 msgstr ""
 
-#: apps/reports/views.py:397
+#: apps/reports/views.py:408
 msgid "Invalid request method"
 msgstr ""
 
@@ -1014,65 +1017,70 @@ msgid ""
 "a>"
 msgstr ""
 
-#: apps/staticpages/models.py:30
+#: apps/staticpages/models.py:34
 msgid "Whether this page is active or not."
 msgstr "Dacă această pagină este activă sau nu."
 
-#: apps/staticpages/models.py:33 templates/admin/staticpages/_table.html:7
+#: apps/staticpages/models.py:37 templates/admin/staticpages/_table.html:7
 msgid "Virtual Path"
 msgstr ""
 
-#: apps/staticpages/models.py:40
+#: apps/staticpages/models.py:44
 msgid "Title"
 msgstr "Titlu"
 
 #. Translators: Content that will be used to display this static page
-#: apps/staticpages/models.py:43
+#: apps/staticpages/models.py:47
 msgid "Display Content"
 msgstr ""
 
-#: apps/staticpages/models.py:45
+#: apps/staticpages/models.py:49
 #, python-format
 msgid "Allowed markup: %s"
 msgstr "Semne acceptate: %s"
 
-#: apps/staticpages/models.py:48 templates/admin/staticpages/_table.html:9
+#: apps/staticpages/models.py:52 templates/admin/staticpages/_table.html:9
 msgid "Redirect to URL"
 msgstr ""
 
-#: apps/staticpages/models.py:50
+#: apps/staticpages/models.py:54
 #, fuzzy
-msgid "If set, any references to this page will redirect to this URL"
+msgid "If set, this page will redirect to this URL"
 msgstr ""
 "Dacă e selectat, orice referință la această pagină va redirecționată către "
 "URL-ul introdus:"
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:96
+#: apps/staticpages/models.py:99
 msgid "URL or content must be provided."
 msgstr "Trebuie să introduceți un URL sau un conținut."
 
-#: apps/staticpages/models.py:104
+#: apps/staticpages/models.py:107
 msgid "Virtual path already in use."
 msgstr ""
 
-#: apps/staticpages/models.py:113
+#: apps/staticpages/models.py:116
 msgid "Legal Page"
 msgstr "Pagină Legal"
 
-#: apps/staticpages/models.py:124
+#: apps/staticpages/models.py:127
 msgid "Regular Page"
 msgstr "Pagină Regular"
 
-#: apps/staticpages/views.py:121 templates/admin/staticpages/_table.html:8
+#: apps/staticpages/views.py:119 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "Pagină Titlu"
 
 #. Translators: 'projects' must not be translated.
-#: apps/staticpages/views.py:138
+#: apps/staticpages/views.py:136
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
+
+#: apps/staticpages/views.py:231
+#, fuzzy
+msgid "Text is missing"
+msgstr "Lipsesc argumente."
 
 #: apps/virtualfolder/models.py:34
 #, fuzzy
@@ -1304,29 +1312,99 @@ msgstr ""
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:284
+#: checks.py:271
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
+msgstr ""
+
+#: checks.py:272
+#, python-format
+msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:278
+#, python-format
+msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
+msgstr ""
+
+#: checks.py:280
+msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
+msgstr ""
+
+#: checks.py:289
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
+msgstr ""
+
+#: checks.py:290
+#, python-format
+msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:297
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no HOST."
+msgstr ""
+
+#: checks.py:298
+#, python-format
+msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:305
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no PORT."
+msgstr ""
+
+#: checks.py:306
+#, python-format
+msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:313
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no MIN_SCORE."
+msgstr ""
+
+#: checks.py:314
+#, python-format
+msgid "Set a MIN_SCORE for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:323
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
+msgstr ""
+
+#: checks.py:325
+#, python-format
+msgid ""
+"Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:349
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 
-#: checks.py:286
+#: checks.py:351
 msgid "Remove the 'admin' user or change its password."
 msgstr ""
 
-#: checks.py:301
+#: checks.py:366
 msgid "Database connection does not implement on_commit."
 msgstr ""
 
-#: checks.py:302
+#: checks.py:367
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
 
-#: checks.py:322
+#: checks.py:387
 msgid "Email server is not available."
 msgstr ""
 
-#: checks.py:323
+#: checks.py:388
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 
@@ -1339,7 +1417,7 @@ msgstr "Proiect"
 msgid "Progress"
 msgstr "Progres"
 
-#: core/browser.py:50 templates/browser/index.html:39
+#: core/browser.py:50 templates/browser/index.html:37
 #, fuzzy
 msgid "Last updated"
 msgstr "Ultima editare"
@@ -1366,12 +1444,12 @@ msgstr "Înapoi la pagina principală"
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:322
+#: core/decorators.py:323
 #, fuzzy
 msgid "Insufficient rights to access this page."
 msgstr "Drepturi insuficiente pentru acces la director."
 
-#: core/decorators.py:335 core/views.py:34
+#: core/decorators.py:336 core/views.py:34
 msgid "You do not have rights to administer Pootle."
 msgstr "Nu aveţi dreptul de a administra Pootle."
 
@@ -1387,39 +1465,39 @@ msgstr "Introduceți un număr"
 msgid "Incorrect"
 msgstr "Incorect"
 
-#: core/helpers.py:44
+#: core/helpers.py:49
 msgid "User missing"
 msgstr ""
 
 #. Translators: This refers to "All strings"
-#: core/helpers.py:56 templates/editor/_filters.html:6
+#: core/helpers.py:61 templates/editor/_filters.html:6
 msgid "All"
 msgstr "Toate"
 
-#: core/helpers.py:60 templates/editor/_filters.html:8
+#: core/helpers.py:65 templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Incomplet"
 
-#: core/helpers.py:63 templates/editor/_filters.html:18
+#: core/helpers.py:68 templates/editor/_filters.html:18
 msgid "Checks"
 msgstr "Verificări"
 
-#: core/helpers.py:64 templates/editor/_filters.html:13
+#: core/helpers.py:69 templates/editor/_filters.html:13
 msgid "My submissions"
 msgstr "Traducerea mea"
 
-#: core/helpers.py:65 templates/admin/dashboard.html:13
+#: core/helpers.py:70 templates/admin/dashboard.html:13
 msgid "Submissions"
 msgstr "Traduceri"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
-#: core/helpers.py:66 templates/editor/_filters.html:17
+#: core/helpers.py:71 templates/editor/_filters.html:17
 msgid "My overwritten submissions"
 msgstr "Traducerea mea suprascrisă"
 
-#: core/helpers.py:67
+#: core/helpers.py:72
 #, fuzzy
 msgid "Overwritten submissions"
 msgstr "Traducerea mea suprascrisă"
@@ -1462,7 +1540,7 @@ msgstr ""
 msgid "License Terms"
 msgstr "Licență"
 
-#: custom/templates/profiles/_tabs.html:4 templates/layout.html:112
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:113
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
 msgid "Settings"
 msgstr "Configurări"
@@ -1511,7 +1589,7 @@ msgstr "Termeni de utilizare"
 msgid "Terms of Service"
 msgstr "Termeni de serviciu"
 
-#: templates/about.html:7 templates/layout.html:168
+#: templates/about.html:7 templates/layout.html:169
 msgid "About"
 msgstr "Despre"
 
@@ -1670,74 +1748,89 @@ msgstr ""
 msgid "Report for %(user)s, "
 msgstr ""
 
-#: templates/admin/detailed_reports.html:129
+#: templates/admin/detailed_reports.html:136
 #, python-format
 msgid "Report for %(user)s"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:133
+#: templates/admin/detailed_reports.html:140
 #: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
 msgid "Previous month"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:135
+#: templates/admin/detailed_reports.html:142
 #: templates/admin/reports/header.html:15 templates/user/detailed_stats.html:9
 msgid "Next month"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:142
+#: templates/admin/detailed_reports.html:149
 msgid "Local server time"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:143
+#: templates/admin/detailed_reports.html:150
+msgid "Unit"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:151
 #, fuzzy
 msgid "Action"
 msgstr "Acțiuni"
 
-#: templates/admin/detailed_reports.html:144
-msgid "Unit"
-msgstr ""
-
-#: templates/admin/detailed_reports.html:145
+#: templates/admin/detailed_reports.html:152
 #, fuzzy
 msgid "Source words"
 msgstr "Termeni sursă"
 
-#: templates/admin/detailed_reports.html:146
+#: templates/admin/detailed_reports.html:153
 msgid "Similarity"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:147
+#: templates/admin/detailed_reports.html:154
 msgid "Words"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:150
+#: templates/admin/detailed_reports.html:157
 msgid "Subtotal"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:206
-#: templates/admin/detailed_reports.html:265
+#: templates/admin/detailed_reports.html:184
+#: templates/admin/detailed_reports.html:222
+msgid "MT"
+msgstr ""
+
+#: templates/admin/detailed_reports.html:218
+#, fuzzy
+msgid "Subactions"
+msgstr "Funcții"
+
+#: templates/admin/detailed_reports.html:219
+#, fuzzy
+msgid "Raw Translation"
+msgstr "Traducere"
+
+#: templates/admin/detailed_reports.html:249
+#: templates/admin/detailed_reports.html:308
 msgid "registered tasks"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:217
+#: templates/admin/detailed_reports.html:260
 msgid "No activity recorded in a given period"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:226
+#: templates/admin/detailed_reports.html:269
 #, fuzzy
 msgid "Suggestion (subtotal)"
 msgstr "Sugestii"
 
-#: templates/admin/detailed_reports.html:236
+#: templates/admin/detailed_reports.html:279
 msgid "Translation (subtotal)"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:251
+#: templates/admin/detailed_reports.html:294
 msgid "Review (subtotal)"
 msgstr ""
 
-#: templates/admin/detailed_reports.html:283
+#: templates/admin/detailed_reports.html:326
 msgid "Please select a valid user."
 msgstr ""
 
@@ -1802,27 +1895,29 @@ msgid "Set Rates"
 msgstr ""
 
 #: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:24 templates/user/settings.html:40
+#: templates/admin/staticpages/_form.html:34
+#: templates/languages/admin/characters.html:20
+#: templates/user/settings.html:39
 msgid "Save"
 msgstr "Salvează"
 
-#: templates/admin/staticpages/_form.html:6
+#: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:36
 msgid "Delete"
 msgstr "Șterge"
 
-#: templates/admin/staticpages/_form.html:18
+#: templates/admin/staticpages/_form.html:21
 msgid "or"
 msgstr "sau"
 
-#: templates/admin/staticpages/_form.html:30
+#: templates/admin/staticpages/_form.html:37
 msgid ""
 "Use <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/a&gt;"
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
 
-#: templates/admin/staticpages/_form.html:37
+#: templates/admin/staticpages/_form.html:44
 msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
@@ -1923,37 +2018,37 @@ msgstr ""
 msgid "Expand details"
 msgstr "Deschide detaliile"
 
-#: templates/browser/index.html:20
+#: templates/browser/index.html:19
 msgid "Translation Statistics"
 msgstr "Statistici de traducere"
 
-#: templates/browser/index.html:43
+#: templates/browser/index.html:41
 msgid "Last action"
 msgstr ""
 
-#: templates/browser/index.html:51
+#: templates/browser/index.html:48
 msgid "Failing Checks"
 msgstr "Verificări greșite"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:98
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
-#: templates/browser/index.html:107
+#: templates/browser/index.html:103
 msgid ""
 "Some data on this page is currently being calculated, and the page will be "
 "refreshed automatically in <strong>30 seconds</strong>."
 msgstr ""
 
-#: templates/browser/index.html:111
+#: templates/browser/index.html:107
 msgid "Refresh now"
 msgstr ""
 
-#: templates/browser/index.html:148
+#: templates/browser/index.html:144
 msgid "Congratulations! You have completed this task!"
 msgstr ""
 
-#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:100
+#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:101
 msgid "Contact Us"
 msgstr "Contactaţi-ne"
 
@@ -2131,118 +2226,118 @@ msgstr ""
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:111 templates/editor/units/edit.html:139
+#: templates/editor/units/edit.html:111 templates/editor/units/edit.html:138
 msgid "Copy into translation"
 msgstr "Copiază în traducere"
 
-#: templates/editor/units/edit.html:134
+#: templates/editor/units/edit.html:133
 #, fuzzy
 msgid "Report a problem with this string"
 msgstr "Reportarea problemei cu textul sursă"
 
-#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:169
-#: templates/editor/units/edit.html:262
+#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:167
+#: templates/editor/units/edit.html:259
 msgid "Submit"
 msgstr "Postează"
 
-#: templates/editor/units/edit.html:159
+#: templates/editor/units/edit.html:157
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Trimiteți traducerea și treceți la textul următor (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:164 templates/editor/units/edit.html:170
+#: templates/editor/units/edit.html:162 templates/editor/units/edit.html:168
 msgid "Suggest"
 msgstr "Sugerează"
 
-#: templates/editor/units/edit.html:165
+#: templates/editor/units/edit.html:163
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Trimiteți sugestia și treceți la textul următor (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:169
+#: templates/editor/units/edit.html:167
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Schimbare la modul de traducere (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:170
+#: templates/editor/units/edit.html:168
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Schimbare la modul de sugerare (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:175
+#: templates/editor/units/edit.html:173
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Marchează acest text pentru revizualizare (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:190
+#: templates/editor/units/edit.html:188
 msgid "Show Timeline"
 msgstr "Afișare cronologie"
 
-#: templates/editor/units/edit.html:192
+#: templates/editor/units/edit.html:190
 msgid "Add Comment"
 msgstr "Adaugă comentariu"
 
-#: templates/editor/units/edit.html:194
+#: templates/editor/units/edit.html:192
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:204
+#: templates/editor/units/edit.html:202
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "revizualizat de <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:214
+#: templates/editor/units/edit.html:212
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "Inserare RLM (Semnul Dreapta-La-Stânga) în editor"
 
-#: templates/editor/units/edit.html:217
+#: templates/editor/units/edit.html:215
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "Inserare LRM (Semn Stânga-La-Dreapta) în editor"
 
-#: templates/editor/units/edit.html:220
+#: templates/editor/units/edit.html:218
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "Inserare RLM (Semn Dreapta-La-Stânga) în editor"
 
-#: templates/editor/units/edit.html:223
+#: templates/editor/units/edit.html:221
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "Inserare LRE (Încorporare Stânga-La-Dreapta) în editor"
 
-#: templates/editor/units/edit.html:226
+#: templates/editor/units/edit.html:224
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "Inserare RLO (Tăiere Dreapta-La-Stânga) în editor"
 
-#: templates/editor/units/edit.html:229
+#: templates/editor/units/edit.html:227
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "Inserare LRO (Tăiere Stânga-La-Dreapta) în editor"
 
-#: templates/editor/units/edit.html:232
+#: templates/editor/units/edit.html:230
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "Inserare PDF (Pop Directional Format) în editor"
 
-#: templates/editor/units/edit.html:235
+#: templates/editor/units/edit.html:233
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "Inserare ZWJ (Zero Width Joiner) în editor"
 
-#: templates/editor/units/edit.html:238
+#: templates/editor/units/edit.html:236
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "Inserare ZWNJ (Zero Width Non Joiner) în editor"
 
-#: templates/editor/units/edit.html:245
+#: templates/editor/units/edit.html:243
 msgid "Insert this symbol into the editor"
 msgstr "Inserarea acestui simbol în editor"
 
-#: templates/editor/units/edit.html:282
+#: templates/editor/units/edit.html:279
 msgid "User suggestions"
 msgstr "Sugestiile utilizatorilor"
 
-#: templates/editor/units/edit.html:300
+#: templates/editor/units/edit.html:298
 msgid "Accept suggestion"
 msgstr "Acceptă sugestia"
 
-#: templates/editor/units/edit.html:305
+#: templates/editor/units/edit.html:303
 msgid "Reject suggestion"
 msgstr "Respinge sugestia"
 
-#: templates/editor/units/edit.html:312
+#: templates/editor/units/edit.html:309
 msgid "Remove suggestion"
 msgstr "Elimină sugestia"
 
-#: templates/editor/units/edit.html:327
+#: templates/editor/units/edit.html:323
 msgid "A long time ago"
 msgstr ""
 
@@ -2261,11 +2356,13 @@ msgid "Critical errors:"
 msgstr "Critic"
 
 #: templates/editor/units/xhr_checks.html:12
+#: templates/editor/units/xhr_checks.html:32
 #, fuzzy
 msgid "Mute quality check"
 msgstr "Eliminarea verificărilor calitative"
 
 #: templates/editor/units/xhr_checks.html:13
+#: templates/editor/units/xhr_checks.html:33
 #, fuzzy
 msgid "Unmute quality check"
 msgstr "Eliminarea verificărilor calitative"
@@ -2278,11 +2375,11 @@ msgstr "Posibile probleme cu traducerea"
 msgid "Watch out for:"
 msgstr ""
 
-#: templates/editor/units/xhr_comment.html:15
+#: templates/editor/units/xhr_comment.html:14
 msgid "Remove comment"
 msgstr ""
 
-#: templates/editor/units/xhr_comment.html:18
+#: templates/editor/units/xhr_comment.html:17
 msgid "Last comment:"
 msgstr ""
 
@@ -2294,11 +2391,17 @@ msgstr "Cronologie"
 msgid "Last comment removed"
 msgstr ""
 
-#: templates/editor/units/xhr_timeline.html:37
-msgid "check"
-msgstr ""
+#: templates/editor/units/xhr_timeline.html:38
+#, fuzzy, python-format
+msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
+msgstr "<a href=\"%(url)s\">%(num)d cuvinte</a>"
 
-#: templates/editor/units/xhr_timeline.html:46
+#: templates/editor/units/xhr_timeline.html:42
+#, fuzzy, python-format
+msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
+msgstr "<a href=\"%(url)s\">%(num)d cuvinte</a>"
+
+#: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
 msgstr ""
 
@@ -2386,39 +2489,39 @@ msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
 "Aici puteți adăuga, edita sau șterge permisiunile pentru această limbă."
 
-#: templates/layout.html:80
+#: templates/layout.html:81
 msgid "Pootle requires JavaScript"
 msgstr ""
 
-#: templates/layout.html:81
+#: templates/layout.html:82
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 "Vă rugăm activați JavaScript în preferințele navigatorului apoi reîncărcați "
 "pagina."
 
-#: templates/layout.html:90
+#: templates/layout.html:91
 msgid "skip to navigation"
 msgstr "săriți la navigare"
 
-#: templates/layout.html:111
+#: templates/layout.html:112
 msgid "Public Profile"
 msgstr ""
 
-#: templates/layout.html:113 templates/user/stats.html:46
+#: templates/layout.html:114 templates/user/stats.html:46
 #: templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr ""
 
-#: templates/layout.html:115
+#: templates/layout.html:116
 msgid "Admin"
 msgstr "Admin"
 
-#: templates/layout.html:118
+#: templates/layout.html:119
 msgid "Sign out"
 msgstr ""
 
-#: templates/layout.html:122
+#: templates/layout.html:123
 msgid "Sign In"
 msgstr ""
 
@@ -2629,7 +2732,7 @@ msgid ""
 "will initiate the process of setting a new password."
 msgstr ""
 
-#: templates/user/settings.html:26
+#: templates/user/settings.html:25
 msgid "Reset Password"
 msgstr "Resetare parolă"
 
@@ -4363,9 +4466,6 @@ msgstr ""
 
 #~ msgid "Search (Ctrl+Shift+S)<br/>Type in, then press Enter to search"
 #~ msgstr "Căutare (Ctrl+Shift+S)<br/>Scrieți, apoi dați Enter pentru căutare"
-
-#~ msgid "<a href=\"%(url)s\">%(num)d words</a>"
-#~ msgstr "<a href=\"%(url)s\">%(num)d cuvinte</a>"
 
 #~ msgid "(%(num)d units)"
 #~ msgstr "(%(num)d unități)"

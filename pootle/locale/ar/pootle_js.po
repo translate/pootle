@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-09-22 16:16+0100\n"
+"POT-Creation-Date: 2015-11-20 13:21+0000\n"
 "PO-Revision-Date: 2015-09-27 07:23+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -21,102 +21,243 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1443338589.000000\n"
 
-#: static/js/admin/components/AdminController.js:95
+#: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
 msgstr "حُفظ(ت) بنجاح."
 
-#: static/js/admin/components/AdminController.js:103
+#: static/js/admin/components/AdminController.js:105
 msgid "Deleted successfully."
 msgstr "حُذف(ت) بنجاح."
 
-#: static/js/admin/components/ItemDelete.js:51
+#: static/js/admin/components/ItemDelete.js:49
 msgid "Delete"
 msgstr "احذف"
 
-#: static/js/admin/components/LanguageForm.js:58
-#: static/js/admin/components/ProjectForm.js:61
+#: static/js/admin/components/Language/LanguageAdd.js:25
+#: static/js/admin/components/Language/LanguageEdit.js:31
+msgid "Add Language"
+msgstr "أضف لغة"
+
+#: static/js/admin/components/Language/LanguageAdd.js:30
+#: static/js/admin/components/Project/ProjectAdd.js:30
+#: static/js/admin/components/User/UserAdd.js:30
+msgid "Cancel"
+msgstr "ألغِ"
+
+#: static/js/admin/components/Language/LanguageController.js:50
+#, python-format
+msgid "%(count)s language matches your query."
+msgid_plural "%(count)s languages match your query."
+msgstr[0] "لا لغات تطابق استعلامك."
+msgstr[1] "لغة واحدة تطابق استعلامك."
+msgstr[2] "لغتان تطابقان استعلامك."
+msgstr[3] "%(count)s لغات تطابق استعلامك."
+msgstr[4] "%(count)s لغةً تطابق استعلامك."
+msgstr[5] "%(count)s لغة تطابق استعلامك."
+
+#: static/js/admin/components/Language/LanguageController.js:54
+#, python-format
+msgid "There is %(count)s language."
+msgid_plural ""
+"There are %(count)s languages. Below are the most recently added ones."
+msgstr[0] "لا توجد لغات."
+msgstr[1] "توجد لغة واحدة."
+msgstr[2] "توجد لغتان. أدناه هي المضافة حديثًا."
+msgstr[3] "توجد %(count)s لغات. أدناه هي المضافة حديثًا."
+msgstr[4] "توجد %(count)s لغةً. أدناه هي المضافة حديثًا."
+msgstr[5] "توجد %(count)s لغة. أدناه هي المضافة حديثًا."
+
+#: static/js/admin/components/Language/LanguageController.js:70
+msgid "Search Languages"
+msgstr "ابحث في اللغات"
+
+#: static/js/admin/components/Language/LanguageController.js:71
+msgid "Find language by name, code"
+msgstr "ابحث عن لغة باسمها أو برمزها"
+
+#: static/js/admin/components/Language/LanguageEdit.js:26
+msgid "Edit Language"
+msgstr "حرّر اللغة"
+
+#: static/js/admin/components/Language/LanguageEdit.js:36
+msgid ""
+"Use the search form to find the language, then click on a language to edit."
+msgstr "استخدم استمارة البحث للعثور على لغة، ثمّ انقر على واحدة لتحريرها."
+
+#: static/js/admin/components/Language/LanguageForm.js:56
+#: static/js/admin/components/Project/ProjectForm.js:59
 msgid "Code"
 msgstr "الرّمز"
 
-#: static/js/admin/components/LanguageForm.js:64
-#: static/js/admin/components/ProjectForm.js:67
-#: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:75
+#: static/js/admin/components/Language/LanguageForm.js:62
+#: static/js/admin/components/Project/ProjectForm.js:65
+#: static/js/admin/components/User/UserForm.js:87 static/js/user/forms.jsx:75
 msgid "Full Name"
 msgstr "الاسم الكامل"
 
-#: static/js/admin/components/LanguageForm.js:70
+#: static/js/admin/components/Language/LanguageForm.js:68
 msgid "Special Characters"
 msgstr "المحارف الخاصّة"
 
-#: static/js/admin/components/LanguageForm.js:79
+#: static/js/admin/components/Language/LanguageForm.js:77
 msgid "Number of Plurals"
 msgstr "عدد الجموع"
 
-#: static/js/admin/components/LanguageForm.js:85
+#: static/js/admin/components/Language/LanguageForm.js:83
 msgid "Plural Equation"
 msgstr "معادلة الجموع"
 
-#: static/js/admin/components/LanguageForm.js:95
-#: static/js/admin/components/ProjectForm.js:137
-#: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:121
+#: static/js/admin/components/Language/LanguageForm.js:93
+#: static/js/admin/components/Project/ProjectForm.js:135
+#: static/js/admin/components/User/UserForm.js:142
+#: static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "احفظ"
 
-#: static/js/admin/components/LanguageForm.js:98
-#: static/js/admin/components/ProjectForm.js:140
+#: static/js/admin/components/Language/LanguageForm.js:96
+#: static/js/admin/components/Project/ProjectForm.js:138
 msgid "Overview"
 msgstr "نظرة عامّة"
 
-#: static/js/admin/components/LanguageForm.js:99
-#: static/js/admin/components/ProjectForm.js:142
+#: static/js/admin/components/Language/LanguageForm.js:97
+#: static/js/admin/components/Project/ProjectForm.js:140
 msgid "Permissions"
 msgstr "الصّلاحيّات"
 
-#: static/js/admin/components/ProjectForm.js:76
+#: static/js/admin/components/Project/ProjectAdd.js:25
+#: static/js/admin/components/Project/ProjectEdit.js:31
+msgid "Add Project"
+msgstr "أضف مشروعًا"
+
+#: static/js/admin/components/Project/ProjectController.js:50
+#, python-format
+msgid "%(count)s project matches your query."
+msgid_plural "%(count)s projects match your query."
+msgstr[0] "لا مشاريع تطابق استعلامك."
+msgstr[1] "مشروع واحد يطابق استعلامك."
+msgstr[2] "مشروعان يطابقان استعلامك."
+msgstr[3] "%(count)s مشاريع تطابق استعلامك."
+msgstr[4] "%(count)s مشروعًا يطابق استعلامك."
+msgstr[5] "%(count)s مشروع يطابق استعلامك."
+
+#: static/js/admin/components/Project/ProjectController.js:54
+#, python-format
+msgid "There is %(count)s project."
+msgid_plural ""
+"There are %(count)s projects. Below are the most recently added ones."
+msgstr[0] "لا توجد مشاريع"
+msgstr[1] "يوجد مشروع واحد."
+msgstr[2] "يوجد مشروعان. أدناه هي المضافة حديثًا."
+msgstr[3] "توجد %(count)s مشاريع. أدناه هي المضافة حديثًا."
+msgstr[4] "يوجد %(count)s مشروعًا. أدناه هي المضافة حديثًا."
+msgstr[5] "يوجد %(count)s مشروع. أدناه هي المضافة حديثًا."
+
+#: static/js/admin/components/Project/ProjectController.js:70
+msgid "Search Projects"
+msgstr "ابحث في المشاريع"
+
+#: static/js/admin/components/Project/ProjectController.js:71
+msgid "Find project by name, code"
+msgstr "ابحث عن مشروع باسمه أو برمزه"
+
+#: static/js/admin/components/Project/ProjectEdit.js:26
+msgid "Edit Project"
+msgstr "حرّر المشروع"
+
+#: static/js/admin/components/Project/ProjectEdit.js:36
+msgid ""
+"Use the search form to find the project, then click on a project to edit."
+msgstr "استخدم استمارة البحث للعثور على مشروع، ثمّ انقر على واحد لتحريره."
+
+#: static/js/admin/components/Project/ProjectForm.js:74
 msgid "Quality Checks"
 msgstr "فحوص الجودة"
 
-#: static/js/admin/components/ProjectForm.js:85
+#: static/js/admin/components/Project/ProjectForm.js:83
 msgid "File Type"
 msgstr "نوع الملفّ"
 
-#: static/js/admin/components/ProjectForm.js:94
+#: static/js/admin/components/Project/ProjectForm.js:92
 msgid "Project Tree Style"
 msgstr "نمط شجرة ملفّات المشروع"
 
-#: static/js/admin/components/ProjectForm.js:103
+#: static/js/admin/components/Project/ProjectForm.js:101
 msgid "Source Language"
 msgstr "اللغة المصدر"
 
-#: static/js/admin/components/ProjectForm.js:109
+#: static/js/admin/components/Project/ProjectForm.js:107
 msgid "Ignore Files"
 msgstr "الملفّات المتجاهلة"
 
-#: static/js/admin/components/ProjectForm.js:116
+#: static/js/admin/components/Project/ProjectForm.js:114
 msgid "String Errors Contact"
 msgstr "التّواصل عند الأخطاء في المقاطع"
 
-#: static/js/admin/components/ProjectForm.js:122
+#: static/js/admin/components/Project/ProjectForm.js:120
 msgid "Screenshot Search Prefix"
 msgstr "بادئة البحث عن لقطات الشّاشة"
 
-#: static/js/admin/components/ProjectForm.js:129
+#: static/js/admin/components/Project/ProjectForm.js:127
 msgid "Disabled"
 msgstr "معطّل"
 
-#: static/js/admin/components/ProjectForm.js:141
+#: static/js/admin/components/Project/ProjectForm.js:139
 msgid "Languages"
 msgstr "اللغات"
 
-#: static/js/admin/components/Search.js:66
+#: static/js/admin/components/Search.js:64
 msgid "Load More"
 msgstr "تعلّم المزيد"
 
-#: static/js/admin/components/Search.js:89
+#: static/js/admin/components/Search.js:87
 msgid "Loading..."
 msgstr "يحمّل..."
 
-#: static/js/admin/components/UserForm.js:52
+#: static/js/admin/components/User/UserAdd.js:25
+#: static/js/admin/components/User/UserEdit.js:31
+msgid "Add User"
+msgstr "أضف مستخدمًا"
+
+#: static/js/admin/components/User/UserController.js:50
+#, python-format
+msgid "%(count)s user matches your query."
+msgid_plural "%(count)s users match your query."
+msgstr[0] "لا مستخدمين يطابقون استعلامك."
+msgstr[1] "مستخدم واحد يطابق استعلامك."
+msgstr[2] "مستخدمان يطابقان استعلامك."
+msgstr[3] "%(count)s مستخدمين يطابقون استعلامك."
+msgstr[4] "%(count)s مستخدمًا يطابق استعلامك."
+msgstr[5] "%(count)s مستخدم يطابق استعلامك."
+
+#: static/js/admin/components/User/UserController.js:54
+#, python-format
+msgid "There is %(count)s user."
+msgid_plural ""
+"There are %(count)s users. Below are the most recently added ones."
+msgstr[0] "لا يوجد مستخدمين."
+msgstr[1] "يوجد مستخدم واحد."
+msgstr[2] "يوجد مستخدمان. أدناه هم المضافين حديثًا."
+msgstr[3] "يوجد %(count)s مستخدمين. أدناه هم المضافين حديثًا."
+msgstr[4] "يوجد %(count)s مستخدمًا. أدناه هم المضافين حديثًا."
+msgstr[5] "يوجد %(count)s مستخدم. أدناه هم المضافين حديثًا."
+
+#: static/js/admin/components/User/UserController.js:70
+msgid "Search Users"
+msgstr "ابحث في المستخدمين"
+
+#: static/js/admin/components/User/UserController.js:71
+msgid "Find user by name, email, properties"
+msgstr "ابحث عن مستخدم باسمه، أو ببريده أو بخصائصه"
+
+#: static/js/admin/components/User/UserEdit.js:26
+msgid "Edit User"
+msgstr "حرّر المستخدم"
+
+#: static/js/admin/components/User/UserEdit.js:36
+msgid "Use the search form to find the user, then click on a user to edit."
+msgstr "استخدم استمارة البحث للعثور على مستخدم، ثمّ انقر على واحد لتحريره."
+
+#: static/js/admin/components/User/UserForm.js:50
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
@@ -124,166 +265,131 @@ msgstr ""
 "لاحظ: عند حذف مستخدم، ستُنسب مساهماته في الموقع (كالتّعليقات، والاقتراحات "
 "والتّرجمات) إلى المستخدم المجهول (nobody)."
 
-#: static/js/admin/components/UserForm.js:64
-#: static/js/auth/components/SignInForm.js:95
-#: static/js/auth/components/SignUpForm.js:84
+#: static/js/admin/components/User/UserForm.js:62
+#: static/js/auth/components/SignInForm.js:94
+#: static/js/auth/components/SignUpForm.js:83
 msgid "Username"
 msgstr "اسم المستخدم"
 
-#: static/js/admin/components/UserForm.js:73
+#: static/js/admin/components/User/UserForm.js:71
 msgid "Active"
 msgstr "نشط"
 
-#: static/js/admin/components/UserForm.js:80
-#: static/js/auth/components/SignInForm.js:104
-#: static/js/auth/components/SignUpForm.js:100
-#: static/js/auth/components/SocialVerification.js:94
-#: static/js/auth/components/PasswordResetForm.js:113
+#: static/js/admin/components/User/UserForm.js:78
+#: static/js/auth/components/SignInForm.js:103
+#: static/js/auth/components/SignUpForm.js:99
+#: static/js/auth/components/SocialVerification.js:93
+#: static/js/auth/components/PasswordResetForm.js:112
 msgid "Password"
 msgstr "كلمة المرور"
 
-#: static/js/admin/components/UserForm.js:81
+#: static/js/admin/components/User/UserForm.js:79
 msgid "Set a new password"
 msgstr "عيّن كلمة مرور جديدة"
 
-#: static/js/admin/components/UserForm.js:95
-#: static/js/auth/components/SignUpForm.js:92
+#: static/js/admin/components/User/UserForm.js:93
+#: static/js/auth/components/SignUpForm.js:91
 msgid "Email"
 msgstr "البريد الإلكترونيّ"
 
-#: static/js/admin/components/UserForm.js:104
+#: static/js/admin/components/User/UserForm.js:102
 msgid "Administrator"
 msgstr "المدير"
 
-#: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:89
+#: static/js/admin/components/User/UserForm.js:109 static/js/user/forms.jsx:89
 msgid "Twitter"
 msgstr "تويتر"
 
-#: static/js/admin/components/UserForm.js:113
+#: static/js/admin/components/User/UserForm.js:111
 msgid "Twitter username"
 msgstr "اسم مستخدم تويتر"
 
-#: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:96
+#: static/js/admin/components/User/UserForm.js:117 static/js/user/forms.jsx:96
 msgid "LinkedIn"
 msgstr "لِنكدإن"
 
-#: static/js/admin/components/UserForm.js:121
+#: static/js/admin/components/User/UserForm.js:119
 msgid "LinkedIn profile URL"
 msgstr "عنوان ملفّ لِنكدإن الشّخصيّ"
 
-#: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:102
+#: static/js/admin/components/User/UserForm.js:124
+#: static/js/user/forms.jsx:102
 msgid "Website"
 msgstr "موقع الوِبّ"
 
-#: static/js/admin/components/UserForm.js:128
+#: static/js/admin/components/User/UserForm.js:126
 msgid "Personal website URL"
 msgstr "عنوان موقع الوِبّ الشّخصيّ"
 
-#: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:109
+#: static/js/admin/components/User/UserForm.js:132
+#: static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "السّيرة مختصرةً"
 
-#: static/js/admin/components/UserForm.js:136
+#: static/js/admin/components/User/UserForm.js:134
 msgid "Personal description"
 msgstr "الوصف الشّخصيّ"
 
-#: static/js/admin/components/UserForm.js:147
+#: static/js/admin/components/User/UserForm.js:145
 msgid "Public Profile"
 msgstr "الملفّ الشّخصيّ العامّ"
 
-#: static/js/admin/components/UserForm.js:148
+#: static/js/admin/components/User/UserForm.js:146
 msgid "Settings"
 msgstr "الإعدادات"
 
-#: static/js/admin/components/UserForm.js:149
+#: static/js/admin/components/User/UserForm.js:147
 msgid "Statistics"
 msgstr "الإحصائيّات"
 
-#: static/js/admin/components/UserForm.js:150
+#: static/js/admin/components/User/UserForm.js:148
 msgid "Reports"
 msgstr "التّقارير"
 
-#: static/js/auth/components/AccountActivation.js:33
-#: static/js/auth/components/RequestPasswordResetSent.js:44
+#: static/js/admin/general/components/ContentPreview.js:32
+msgid "Preview will be displayed here."
+msgstr ""
+
+#: static/js/auth/components/AccountActivation.js:31
+#: static/js/auth/components/RequestPasswordResetSent.js:43
 #, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr "لقد أرسلنا بريدًا يحوي الوصلة الخاصّة إلى <span>%s</span>"
 
-#: static/js/auth/components/AccountActivation.js:38
+#: static/js/auth/components/AccountActivation.js:36
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
 "لقد أرسلنا بريدًا يحوي وصلة خاصّة إلى العنوان المستخدم لتسجيل هذا الحساب."
 
-#: static/js/auth/components/AccountActivation.js:42
+#: static/js/auth/components/AccountActivation.js:40
 msgid "Your account needs activation."
 msgstr "حسابك يحتاج تنشيطًا."
 
-#: static/js/auth/components/AccountActivation.js:43
+#: static/js/auth/components/AccountActivation.js:41
 msgid "Please follow that link to continue the account creation."
 msgstr "فضلًا اتّبع الوصلة للمتابعة إلى إنشاء الحساب."
 
-#: static/js/auth/components/AccountActivation.js:57
-#: static/js/auth/components/AccountInactive.js:36
-#: static/js/auth/components/EmailConfirmation.js:36
+#: static/js/auth/components/AccountActivation.js:55
+#: static/js/auth/components/AccountInactive.js:34
+#: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
 msgstr "أغلق"
 
-#: static/js/auth/components/AccountInactive.js:30
+#: static/js/auth/components/AccountInactive.js:28
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr "حسابك غير نشط لأنّ أحد المدراء عطّله."
 
-#: static/js/auth/components/AuthController.js:85
-msgid "Sign In With..."
-msgstr "لِج بِـ..."
-
-#: static/js/auth/components/AuthController.js:85
-#: static/js/auth/components/SignInForm.js:122
-#: static/js/auth/components/SocialVerification.js:112
-msgid "Sign In"
-msgstr "لِج"
-
-#: static/js/auth/components/AuthController.js:92
-msgid "Account Inactive"
-msgstr "الحساب غير نشط"
-
-#: static/js/auth/components/AuthController.js:99
-#: static/js/auth/components/SignUpForm.js:121
-msgid "Sign Up"
-msgstr "سجّل"
-
-#: static/js/auth/components/AuthController.js:106
-msgid "Account Activation"
-msgstr "تنشيط الحساب"
-
-#: static/js/auth/components/AuthController.js:113
-msgid "Email Confirmation"
-msgstr "تأكيد البريد"
-
-#: static/js/auth/components/AuthController.js:120
-#: static/js/auth/components/AuthController.js:127
-#: static/js/auth/components/AuthController.js:134
-msgid "Reset Your Password"
-msgstr "صفّر كلمة مرورك"
-
-#: static/js/auth/components/AuthController.js:141
-msgid "Oops..."
-msgstr "آخ..."
-
-#: static/js/auth/components/AuthController.js:148
-msgid "Social Verification"
-msgstr "التّحقّق الاجتماعيّ"
-
-#: static/js/auth/components/AuthWindow.js:29
+#: static/js/auth/components/AuthWindow.js:27
 msgid "Contact Us"
 msgstr "اتّصل بنا"
 
-#: static/js/auth/components/EmailConfirmation.js:30
+#: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
 msgstr "انتهت صلاحية وصلة تأكيد البريد، أو ربما ليست صحيحة."
 
-#: static/js/auth/components/PasswordResetForm.js:80
+#: static/js/auth/components/PasswordResetForm.js:79
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
@@ -291,106 +397,146 @@ msgstr ""
 "وصلة تصفير كلمة المرور غير صالحة، لربمّا لأنّها استُخدمت بالفعل. فضلًا اطلب طلبًا "
 "جديدًا لتصفير كلمة المرور."
 
-#: static/js/auth/components/PasswordResetForm.js:86
+#: static/js/auth/components/PasswordResetForm.js:85
 msgid "Reset Password"
 msgstr "صفّر كلمة المرور"
 
-#: static/js/auth/components/PasswordResetForm.js:98
+#: static/js/auth/components/PasswordResetForm.js:97
 msgid "Password changed, signing in..."
 msgstr "تغيّرت كلمة المرور، يلج..."
 
-#: static/js/auth/components/PasswordResetForm.js:122
-#: static/js/auth/components/SignUpForm.js:108
+#: static/js/auth/components/PasswordResetForm.js:121
+#: static/js/auth/components/SignUpForm.js:107
 msgid "Repeat Password"
 msgstr "كرّر كلمة المرور"
 
-#: static/js/auth/components/PasswordResetForm.js:135
+#: static/js/auth/components/PasswordResetForm.js:134
 msgid "Set New Password"
 msgstr "عيّن كلمة مرور جديدة"
 
-#: static/js/auth/components/PasswordResetForm.js:139
+#: static/js/auth/components/PasswordResetForm.js:138
 msgid "After changing your password you will sign in automatically."
 msgstr "بعد تغيير كلمة مرورك ستلج آليًّا."
 
-#: static/js/auth/components/RequestPasswordResetProgress.js:25
+#: static/js/auth/components/RequestPasswordResetProgress.js:23
 #, python-format, javascript-format
 msgid "Sending email to %s..."
 msgstr "يرسل بريدًا إلى %s..."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:47
+#: static/js/auth/components/RequestPasswordResetSent.js:46
 msgid "Please follow that link to continue the password reset procedure."
 msgstr "فضلًا اتّبع الوصلة للمتابعة إلى إجراء تصفير كلمة المرور."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:48
+#: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
 "لم تستقبل الرّسالة؟ تحقّق إن لم تُرشّح بالخطأ كسخام، أو جرّب طلب نسخة أخرى منها."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:62
+#: static/js/auth/components/RequestPasswordResetSent.js:61
 msgid "Resend Email"
 msgstr "أعد إرسال الرّسالة"
 
-#: static/js/auth/components/SignInForm.js:83
-#: static/js/auth/components/RequestPasswordResetForm.js:120
+#: static/js/auth/components/SignInForm.js:82
+#: static/js/auth/components/RequestPasswordResetForm.js:119
 msgid "Sign up as a new user"
 msgstr "سجّل بمستخدم جديد"
 
-#: static/js/auth/components/SignInForm.js:111
-#: static/js/auth/components/SocialVerification.js:101
+#: static/js/auth/components/SignInForm.js:110
+#: static/js/auth/components/SocialVerification.js:100
 msgid "I forgot my password"
 msgstr "نسيت كلمة مروري"
 
-#: static/js/auth/components/SignInPanel.js:49
-#: static/js/auth/components/SocialVerification.js:72
+#: static/js/auth/components/SignInForm.js:121
+#: static/js/auth/components/SocialVerification.js:111
+#: static/js/auth/containers/Auth.js:81
+msgid "Sign In"
+msgstr "لِج"
+
+#: static/js/auth/components/SignInPanel.js:47
+#: static/js/auth/components/SocialVerification.js:71
 msgid "Signed in. Redirecting..."
 msgstr "ولجت. يعيد التّوجيه..."
 
-#: static/js/auth/components/SignInPanel.js:62
+#: static/js/auth/components/SignInPanel.js:60
 msgid "Social Services"
 msgstr "الخدمات الاجتماعيّة"
 
-#: static/js/auth/components/SignInPanel.js:65
+#: static/js/auth/components/SignInPanel.js:63
 msgid "Login / Password"
 msgstr "لِج / كلمة المرور"
 
-#: static/js/auth/components/SignUpForm.js:126
+#: static/js/auth/components/SignUpForm.js:120
+#: static/js/auth/containers/Auth.js:95
+msgid "Sign Up"
+msgstr "سجّل"
+
+#: static/js/auth/components/SignUpForm.js:125
 msgid "Sign in as an existing user"
 msgstr "لِج بحساب موجود"
 
-#: static/js/auth/components/SocialAuthError.js:31
+#: static/js/auth/components/SocialAuthError.js:29
 #, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
 msgstr "حدث خطأ أثناء محاولة الولوج عبر %s."
 
-#: static/js/auth/components/SocialAuthError.js:35
+#: static/js/auth/components/SocialAuthError.js:33
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr "حدث خطأ أثناء محاولة الولوج عبر حسابك الاجتماعيّ."
 
-#: static/js/auth/components/SocialAuthError.js:51
+#: static/js/auth/components/SocialAuthError.js:49
 msgid "Try again"
 msgstr "جرّب مجدّدًا"
 
-#: static/js/auth/components/SocialSignInForm.js:40
+#: static/js/auth/components/SocialSignInForm.js:38
 #, python-format, javascript-format
 msgid "Sign In With %s"
 msgstr "لِج بِـ %s"
 
-#: static/js/auth/components/SocialSignInForm.js:46
+#: static/js/auth/components/SocialSignInForm.js:44
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr "الولوج بخدمة خارجيّة لأوّل مرّة ستنشئ حسابًا لك آليًّا."
 
-#: static/js/editor/app.js:241 static/js/editor/app.js:537
+#: static/js/auth/containers/Auth.js:81
+msgid "Sign In With..."
+msgstr "لِج بِـ..."
+
+#: static/js/auth/containers/Auth.js:88
+msgid "Account Inactive"
+msgstr "الحساب غير نشط"
+
+#: static/js/auth/containers/Auth.js:102
+msgid "Account Activation"
+msgstr "تنشيط الحساب"
+
+#: static/js/auth/containers/Auth.js:109
+msgid "Email Confirmation"
+msgstr "تأكيد البريد"
+
+#: static/js/auth/containers/Auth.js:116 static/js/auth/containers/Auth.js:123
+#: static/js/auth/containers/Auth.js:130
+msgid "Reset Your Password"
+msgstr "صفّر كلمة مرورك"
+
+#: static/js/auth/containers/Auth.js:137
+msgid "Oops..."
+msgstr "آخ..."
+
+#: static/js/auth/containers/Auth.js:144
+msgid "Social Verification"
+msgstr "التّحقّق الاجتماعيّ"
+
+#: static/js/editor/app.js:275 static/js/editor/app.js:549
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 "لديك تعديلات غير محفوظة في المقطع. التّنقل إلى غيره سيتجاهل هذه التّعديلات."
 
-#: static/js/editor/app.js:267
+#: static/js/editor/app.js:301
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -398,7 +544,7 @@ msgstr ""
 "اذهب إلى المقطع التّالي (Ctrl+.)<br/><br/>أيضًا:<br/>الصّفحة التّالية: Ctrl+Shift"
 "+.<br/>الصّفحة الأخيرة: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:271
+#: static/js/editor/app.js:305
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -406,76 +552,68 @@ msgstr ""
 "اذهب إلى المقطع السّابق (Ctrl+,)<br/><br/>أيضًا:</br>الصّفحة السّابقة: Ctrl+Shift"
 "+,<br/>الصّفحة الأولى: Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:383
+#: static/js/editor/app.js:409
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "اقتراحات %s المعلّقة"
 
-#: static/js/editor/app.js:386
+#: static/js/editor/app.js:412
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "اقتراحات %s المقبولة"
 
-#: static/js/editor/app.js:389
+#: static/js/editor/app.js:415
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "اقتراحات %s المرفوضة"
 
-#: static/js/editor/app.js:392
+#: static/js/editor/app.js:418
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "مساهمات %s"
 
-#: static/js/editor/app.js:396
+#: static/js/editor/app.js:422
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "مساهمات %s المُستبدَلة"
 
-#: static/js/editor/app.js:529 static/js/editor/app.js:1741
+#: static/js/editor/app.js:541 static/js/editor/app.js:1658
 msgid "No results."
 msgstr "لا نتائج."
 
-#: static/js/editor/app.js:1043
+#: static/js/editor/app.js:1022
 msgid "Error while connecting to the server"
 msgstr "خطأ أثناء الاتّصال بالخادوم"
 
-#: static/js/editor/app.js:1047
+#: static/js/editor/app.js:1026
 msgid "Not found"
 msgstr "لم يُعثر عليها"
 
-#: static/js/editor/app.js:1049
+#: static/js/editor/app.js:1028
 msgid "Server error"
 msgstr "خطأ في الخادوم"
 
-#: static/js/editor/app.js:1051
+#: static/js/editor/app.js:1030
 msgid "The server seems down. Try again later."
 msgstr "تعذّر الوصول إلى الخادوم. جرّب مجدّدًا لاحقًا."
 
-#: static/js/editor/app.js:1058
+#: static/js/editor/app.js:1037
 msgid "Unknown error"
 msgstr "خطأ مجهول"
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1045
 msgid "This string no longer exists."
 msgstr "لم يعد هذا المقطع موجودًا."
 
-#: static/js/editor/app.js:1067
+#: static/js/editor/app.js:1046
 msgid "Go back to browsing"
 msgstr "ارجع إلى التّصفّح"
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1048
 msgid "Reload page"
 msgstr "أعد تحميل الصّفحة"
 
-#: static/js/editor/app.js:2095
-msgid "some anonymous user"
-msgstr "مستخدم ما مجهول"
-
-#: static/js/editor/app.js:2097
-msgid "someone"
-msgstr "أحدهم"
-
-#: static/js/editor/app.js:2115 static/js/editor/app.js:2164
+#: static/js/editor/app.js:2039 static/js/editor/app.js:1991
 msgid "Similar translations"
 msgstr "التّرجمات المشابهة"
 
@@ -483,7 +621,7 @@ msgstr "التّرجمات المشابهة"
 msgid "disabled"
 msgstr "معطّل"
 
-#: static/js/stats.js:353
+#: static/js/stats.js:354
 #, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
@@ -494,11 +632,11 @@ msgstr[3] "%s ثوانٍ"
 msgstr[4] "%s ثانيةً"
 msgstr[5] "%s ثانية"
 
-#: static/js/stats.js:397
+#: static/js/stats.js:389
 msgid "Collapse details"
 msgstr "أخفِ التّفاصيل"
 
-#: static/js/stats.js:397
+#: static/js/stats.js:389
 msgid "Expand details"
 msgstr "اعرض التّفاصيل"
 
@@ -585,30 +723,30 @@ msgstr[5] "منذ %s دقيقة"
 msgid "A few seconds ago"
 msgstr "منذ بضعة ثوان"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:95
+#: static/js/auth/components/RequestPasswordResetForm.js:94
 msgid "Email Address"
 msgstr "عنوان البريد الالكترونيّ"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:96
+#: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
 "أدخل عنوان البريد الإلكترونيّ، سنرسل إليك رسالة بوصلة خاصّة لتصفير كلمة المرور."
 
-#: static/js/auth/components/RequestPasswordResetForm.js:106
+#: static/js/auth/components/RequestPasswordResetForm.js:105
 msgid "No, thanks"
 msgstr "لا شكرًا"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:114
+#: static/js/auth/components/RequestPasswordResetForm.js:113
 msgid "Send Email"
 msgstr "أرسل البريد"
 
-#: static/js/auth/components/SignInForm.js:85
+#: static/js/auth/components/SignInForm.js:84
 msgid "Creating new user accounts is prohibited."
 msgstr "إنشاء حسابات مستخدمين جدد ممنوع."
 
-#: static/js/auth/components/SocialVerification.js:79
+#: static/js/auth/components/SocialVerification.js:78
 #, python-format
 msgid ""
 "We found a user with <span>%s</span> email in our system. Please provide the "
@@ -616,217 +754,29 @@ msgid ""
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
 
-#: static/js/browser.js:163
+#: static/js/browser.js:164
 msgid "All Languages"
 msgstr "كلّ اللغات"
 
-#: static/js/browser.js:166
+#: static/js/browser.js:167
 msgid "All Projects"
 msgstr "كلّ المشاريع"
 
-#: static/js/browser.js:170
+#: static/js/browser.js:171
 msgid "Entire Project"
 msgstr "المشروع بالكامل"
 
-#: static/js/shared/components/UserEvent.js:73
-#: static/js/shared/components/UserEvent.js:94
-#, python-brace-format
-msgid "removed translation for ${sourceString}"
-msgstr "أزال ترجمة ${sourceString}"
+#: static/js/editor/app.js:1971
+msgid "some anonymous user"
+msgstr "مستخدم ما مجهول"
 
-#: static/js/shared/components/UserEvent.js:75
-#, python-brace-format
-msgid "accepted suggestion for ${sourceString}"
-msgstr "قبل اقتراحًا لِـ ${sourceString}"
+#: static/js/editor/app.js:1973
+msgid "someone"
+msgstr "أحدهم"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
 msgstr "رفع ملفًّا"
-
-#: static/js/shared/components/UserEvent.js:79
-#, python-brace-format
-msgid "muted ${check} for ${sourceString}"
-msgstr "كتم ${check}لِـ ${sourceString}"
-
-#: static/js/shared/components/UserEvent.js:81
-#, python-brace-format
-msgid "unmuted ${check} for ${sourceString}"
-msgstr "أطلق ${check}لِـ ${sourceString}"
-
-#: static/js/shared/components/UserEvent.js:83
-#, python-brace-format
-msgid "added suggestion for ${sourceString}"
-msgstr "أضاف اقتراحًا لِـ ${sourceString}"
-
-#: static/js/shared/components/UserEvent.js:85
-#, python-brace-format
-msgid "rejected suggestion for ${sourceString}"
-msgstr "رفض اقتراحًا لِـ ${sourceString}"
-
-#: static/js/shared/components/UserEvent.js:88
-#, python-brace-format
-msgid "translated ${sourceString}"
-msgstr "ترجم ${sourceString}"
-
-#: static/js/shared/components/UserEvent.js:90
-#, python-brace-format
-msgid "edited ${sourceString}"
-msgstr "حرّر ${sourceString}"
-
-#: static/js/shared/components/UserEvent.js:92
-#, python-brace-format
-msgid "pre-translated ${sourceString}"
-msgstr "ترجم ${sourceString} مسبقًا"
-
-#: static/js/shared/components/UserEvent.js:96
-#, python-brace-format
-msgid "reviewed ${sourceString}"
-msgstr "راجع ${sourceString}"
-
-#: static/js/shared/components/UserEvent.js:98
-#, python-brace-format
-msgid "marked as needs work ${sourceString}"
-msgstr "علّم ${sourceString} على أنّها تحتاج للعمل"
-
-#: static/js/admin/components/language.jsx:52
-#, python-format
-msgid "%(count)s language matches your query."
-msgid_plural "%(count)s languages match your query."
-msgstr[0] "لا لغات تطابق استعلامك."
-msgstr[1] "لغة واحدة تطابق استعلامك."
-msgstr[2] "لغتان تطابقان استعلامك."
-msgstr[3] "%(count)s لغات تطابق استعلامك."
-msgstr[4] "%(count)s لغةً تطابق استعلامك."
-msgstr[5] "%(count)s لغة تطابق استعلامك."
-
-#: static/js/admin/components/language.jsx:56
-#, python-format
-msgid "There is %(count)s language."
-msgid_plural ""
-"There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] "لا توجد لغات."
-msgstr[1] "توجد لغة واحدة."
-msgstr[2] "توجد لغتان. أدناه هي المضافة حديثًا."
-msgstr[3] "توجد %(count)s لغات. أدناه هي المضافة حديثًا."
-msgstr[4] "توجد %(count)s لغةً. أدناه هي المضافة حديثًا."
-msgstr[5] "توجد %(count)s لغة. أدناه هي المضافة حديثًا."
-
-#: static/js/admin/components/language.jsx:74
-msgid "Search Languages"
-msgstr "ابحث في اللغات"
-
-#: static/js/admin/components/language.jsx:75
-msgid "Find language by name, code"
-msgstr "ابحث عن لغة باسمها أو برمزها"
-
-#: static/js/admin/components/language.jsx:103
-#: static/js/admin/components/language.jsx:138
-msgid "Add Language"
-msgstr "أضف لغة"
-
-#: static/js/admin/components/language.jsx:106
-#: static/js/admin/components/project.jsx:106
-#: static/js/admin/components/user.jsx:106
-msgid "Cancel"
-msgstr "ألغِ"
-
-#: static/js/admin/components/language.jsx:135
-msgid "Edit Language"
-msgstr "حرّر اللغة"
-
-#: static/js/admin/components/language.jsx:142
-msgid ""
-"Use the search form to find the language, then click on a language to edit."
-msgstr "استخدم استمارة البحث للعثور على لغة، ثمّ انقر على واحدة لتحريرها."
-
-#: static/js/admin/components/project.jsx:52
-#, python-format
-msgid "%(count)s project matches your query."
-msgid_plural "%(count)s projects match your query."
-msgstr[0] "لا مشاريع تطابق استعلامك."
-msgstr[1] "مشروع واحد يطابق استعلامك."
-msgstr[2] "مشروعان يطابقان استعلامك."
-msgstr[3] "%(count)s مشاريع تطابق استعلامك."
-msgstr[4] "%(count)s مشروعًا يطابق استعلامك."
-msgstr[5] "%(count)s مشروع يطابق استعلامك."
-
-#: static/js/admin/components/project.jsx:56
-#, python-format
-msgid "There is %(count)s project."
-msgid_plural ""
-"There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] "لا توجد مشاريع"
-msgstr[1] "يوجد مشروع واحد."
-msgstr[2] "يوجد مشروعان. أدناه هي المضافة حديثًا."
-msgstr[3] "توجد %(count)s مشاريع. أدناه هي المضافة حديثًا."
-msgstr[4] "يوجد %(count)s مشروعًا. أدناه هي المضافة حديثًا."
-msgstr[5] "يوجد %(count)s مشروع. أدناه هي المضافة حديثًا."
-
-#: static/js/admin/components/project.jsx:74
-msgid "Search Projects"
-msgstr "ابحث في المشاريع"
-
-#: static/js/admin/components/project.jsx:75
-msgid "Find project by name, code"
-msgstr "ابحث عن مشروع باسمه أو برمزه"
-
-#: static/js/admin/components/project.jsx:103
-#: static/js/admin/components/project.jsx:138
-msgid "Add Project"
-msgstr "أضف مشروعًا"
-
-#: static/js/admin/components/project.jsx:135
-msgid "Edit Project"
-msgstr "حرّر المشروع"
-
-#: static/js/admin/components/project.jsx:142
-msgid ""
-"Use the search form to find the project, then click on a project to edit."
-msgstr "استخدم استمارة البحث للعثور على مشروع، ثمّ انقر على واحد لتحريره."
-
-#: static/js/admin/components/user.jsx:52
-#, python-format
-msgid "%(count)s user matches your query."
-msgid_plural "%(count)s users match your query."
-msgstr[0] "لا مستخدمين يطابقون استعلامك."
-msgstr[1] "مستخدم واحد يطابق استعلامك."
-msgstr[2] "مستخدمان يطابقان استعلامك."
-msgstr[3] "%(count)s مستخدمين يطابقون استعلامك."
-msgstr[4] "%(count)s مستخدمًا يطابق استعلامك."
-msgstr[5] "%(count)s مستخدم يطابق استعلامك."
-
-#: static/js/admin/components/user.jsx:56
-#, python-format
-msgid "There is %(count)s user."
-msgid_plural ""
-"There are %(count)s users. Below are the most recently added ones."
-msgstr[0] "لا يوجد مستخدمين."
-msgstr[1] "يوجد مستخدم واحد."
-msgstr[2] "يوجد مستخدمان. أدناه هم المضافين حديثًا."
-msgstr[3] "يوجد %(count)s مستخدمين. أدناه هم المضافين حديثًا."
-msgstr[4] "يوجد %(count)s مستخدمًا. أدناه هم المضافين حديثًا."
-msgstr[5] "يوجد %(count)s مستخدم. أدناه هم المضافين حديثًا."
-
-#: static/js/admin/components/user.jsx:74
-msgid "Search Users"
-msgstr "ابحث في المستخدمين"
-
-#: static/js/admin/components/user.jsx:75
-msgid "Find user by name, email, properties"
-msgstr "ابحث عن مستخدم باسمه، أو ببريده أو بخصائصه"
-
-#: static/js/admin/components/user.jsx:103
-#: static/js/admin/components/user.jsx:138
-msgid "Add User"
-msgstr "أضف مستخدمًا"
-
-#: static/js/admin/components/user.jsx:135
-msgid "Edit User"
-msgstr "حرّر المستخدم"
-
-#: static/js/admin/components/user.jsx:142
-msgid "Use the search form to find the user, then click on a user to edit."
-msgstr "استخدم استمارة البحث للعثور على مستخدم، ثمّ انقر على واحد لتحريره."
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
@@ -962,7 +912,7 @@ msgid "Subtotal"
 msgstr "المجموع الفرعيّ"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:32
+#: templates/admin/xhr_summary_report.html:28
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] ""
@@ -973,8 +923,8 @@ msgstr[4] ""
 msgstr[5] ""
 
 #: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:21
-#: templates/admin/xhr_summary_report.html:35
+#: templates/admin/xhr_summary_report.html:18
+#: templates/admin/xhr_summary_report.html:31
 msgid "word"
 msgid_plural "words"
 msgstr[0] ""
@@ -1000,11 +950,11 @@ msgstr "الملخّص"
 msgid "Period"
 msgstr "الفترة"
 
-#: templates/admin/xhr_summary_report.html:41
+#: templates/admin/xhr_summary_report.html:36
 msgid "(registered tasks)"
 msgstr "(المهامّ المسجّلة)"
 
-#: templates/admin/xhr_summary_report.html:49
+#: templates/admin/xhr_summary_report.html:44
 #, python-format
 msgid "Total (%(currency)s)"
 msgstr "المجموع (%(currency)s)"
@@ -1025,7 +975,16 @@ msgstr "أقلّ"
 msgid "Show"
 msgstr "أظهر"
 
-#: templates/editor/units/xhr_tm.html:13
+#: templates/editor/units/xhr_tm.html:15
+#, fuzzy, python-format
+msgid ""
+"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo; project %(time_ago)s"
+msgstr ""
+"ترجمها %(fullname)s في مشروع &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo;"
+
+#: templates/editor/units/xhr_tm.html:18
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
@@ -1033,6 +992,39 @@ msgid ""
 msgstr ""
 "ترجمها %(fullname)s في مشروع &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo;"
+
+#~ msgid "removed translation for ${sourceString}"
+#~ msgstr "أزال ترجمة ${sourceString}"
+
+#~ msgid "accepted suggestion for ${sourceString}"
+#~ msgstr "قبل اقتراحًا لِـ ${sourceString}"
+
+#~ msgid "muted ${check} for ${sourceString}"
+#~ msgstr "كتم ${check}لِـ ${sourceString}"
+
+#~ msgid "unmuted ${check} for ${sourceString}"
+#~ msgstr "أطلق ${check}لِـ ${sourceString}"
+
+#~ msgid "added suggestion for ${sourceString}"
+#~ msgstr "أضاف اقتراحًا لِـ ${sourceString}"
+
+#~ msgid "rejected suggestion for ${sourceString}"
+#~ msgstr "رفض اقتراحًا لِـ ${sourceString}"
+
+#~ msgid "translated ${sourceString}"
+#~ msgstr "ترجم ${sourceString}"
+
+#~ msgid "edited ${sourceString}"
+#~ msgstr "حرّر ${sourceString}"
+
+#~ msgid "pre-translated ${sourceString}"
+#~ msgstr "ترجم ${sourceString} مسبقًا"
+
+#~ msgid "reviewed ${sourceString}"
+#~ msgstr "راجع ${sourceString}"
+
+#~ msgid "marked as needs work ${sourceString}"
+#~ msgstr "علّم ${sourceString} على أنّها تحتاج للعمل"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "أمتأكّد من المتابعة؟"
