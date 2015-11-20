@@ -137,12 +137,15 @@ function highlightEscapes(text) {
 }
 
 
-const spaceHl = '<span class="highlight-whitespace js-editor-copytext" data-string=" "></span>';
-const WHITESPACE_RE = /^( +)|( +)$/gm;
+const spaceHl = '<span class="highlight-whitespace js-editor-copytext" data-string="%s"></span>';
+const WHITESPACE_RE = /^([ \u{00a0}]+)|([ \u{00a0}]+)$|[ \u{00a0}]{2,}/gmu;
 
 function highlightWhitespace(text) {
   function replace(match) {
-    return Array(match.length + 1).join(spaceHl);
+    return (
+      Array(match.length + 1)
+        .join(spaceHl.replace('%s', `&#${match.charCodeAt()};`))
+    );
   }
   return text.replace(WHITESPACE_RE, replace);
 }
