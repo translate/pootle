@@ -9,6 +9,7 @@
 'use strict';
 
 import cookie from 'utils/cookie';
+import diff from 'utils/diff';
 
 import configureStore from './store';
 
@@ -69,6 +70,7 @@ PTL.search = require('./search.js');
 PTL.score = require('./score.js');
 PTL.stats = require('./stats.js');
 PTL.utils = require('./utils.js');
+PTL.utils.diff = diff;
 
 
 var helpers = require('./helpers.js');

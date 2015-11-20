@@ -22,9 +22,6 @@ import 'jquery-utils';
 // Other plugins
 import autosize from 'autosize';
 import cx from 'classnames';
-// XXX: this weirdness is temporarily needed because the version of
-// diff-match-patch we bundle is not CommonJS-friendly
-require('imports?this=>window!diff-match-patch');
 import 'iso8601';
 import Levenshtein from 'levenshtein';
 import assign from 'object-assign';
@@ -125,8 +122,6 @@ PTL.editor = {
     /* TM requests handler */
     this.tmReq = null;
 
-    /* Differencer */
-    this.differencer = new diff_match_patch();
     /* Levenshtein word comparer */
     this.wordComparer = new Levenshtein({compare: 'words'});
 
@@ -644,30 +639,6 @@ PTL.editor = {
 
     commentInput.focus();
     commentInput.value = text;
-  },
-
-
-  /* Does the actual diffing */
-  doDiff: function (a, b) {
-    var html = [],
-        diff = this.differencer.diff_main(a, b),
-        op, text, i;
-
-    this.differencer.diff_cleanupSemantic(diff);
-
-    for (i=0; i<diff.length; i++) {
-      op = diff[i][0];
-      text = utils.fancyEscape(diff[i][1]);
-      if (op === DIFF_INSERT) {
-        html[i] = `<span class="diff-insert">${text}</span>`;
-      } else if (op === DIFF_DELETE) {
-        html[i] = `<span class="diff-delete">${text}</span>`;
-      } else if (op === DIFF_EQUAL) {
-        html[i] = text;
-      }
-    }
-
-    return html.join('');
   },
 
 
