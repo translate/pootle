@@ -6,8 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
 
 // TODO: should also be able to set cookies
 export default function cookie(name) {
