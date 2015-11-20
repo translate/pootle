@@ -377,7 +377,7 @@ sorttable = {
 
     var cookieData = JSON.stringify({columnId: theadId,
                                      order: sortOrder});
-    $.cookie(cookieId, cookieData, {path: '/'});
+    PTL.cookie(cookieId, cookieData, { path: '/' });
   },
 
   /*
@@ -385,7 +385,7 @@ sorttable = {
    */
   getSortCookie: function (cookieId) {
     try {
-      return JSON.parse($.cookie(cookieId));
+      return JSON.parse(PTL.cookie(cookieId));
     } catch(e) {
       return {};
     }
