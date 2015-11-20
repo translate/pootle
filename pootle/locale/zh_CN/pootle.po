@@ -186,7 +186,7 @@ msgstr "上传翻译"
 #: apps/import_export/utils.py:29
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
-msgstr "不支持的文件类型'%s'，暂时只支持PO文件"
+msgstr "不支持的文件类型'%s'，暂时只支持PO文件\n"
 
 #: apps/import_export/utils.py:35
 #, python-format
