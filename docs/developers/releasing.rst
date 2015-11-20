@@ -82,13 +82,6 @@ changes. It also ensures that someone else could replicate your process.
     $ git submodule update --init
 
 
-Double check version dependencies
----------------------------------
-
-Make sure the versions listed in :file:`docs/server/installation.rst` match
-those in :file:`requirements/base.txt`.
-
-
 Update requirements versions
 ----------------------------
 
@@ -96,6 +89,11 @@ Update the minimum version number for the requirements in:
 
 - :file:`requirements/`
 - :file:`pootle/checks.py`
+- :file:`docs/server/requirements.rst`
+
+
+Make sure version numbers displayed on documentation examples match the latest
+requirements on the above files.
 
 
 Check copyright dates
@@ -240,6 +238,8 @@ Up version numbers
 Update the version number in:
 
 - :file:`pootle/__init__.py:VERSION`
+- Documentation examples, especially :file:`docs/server/installation.rst` and
+  :file:`docs/server/upgrading.rst`
 
 The version tuple should follow the pattern::
 
