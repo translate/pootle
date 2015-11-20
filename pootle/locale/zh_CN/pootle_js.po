@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2015-09-26 07:11+0000\n"
-"Last-Translator: Heyang <qysnn1@gmail.com>\n"
+"PO-Revision-Date: 2015-11-10 03:59+0000\n"
+"Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1443251508.000000\n"
+"X-POOTLE-MTIME: 1447127987.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -452,9 +452,8 @@ msgid "This string no longer exists."
 msgstr "这个字符串已不存在。"
 
 #: static/js/editor/app.js:1067
-#, fuzzy
 msgid "Go back to browsing"
-msgstr "返回概览"
+msgstr "返回浏览"
 
 #: static/js/editor/app.js:1069
 msgid "Reload page"
@@ -564,9 +563,8 @@ msgid "No, thanks"
 msgstr "不，谢了"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:114
-#, fuzzy
 msgid "Send Email"
-msgstr "重发电子邮件"
+msgstr "发送邮件"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2015-08-03 12:59+0000\n"
+"PO-Revision-Date: 2015-11-03 09:39+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1438606789.000000\n"
+"X-POOTLE-MTIME: 1446543597.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
@@ -571,7 +571,7 @@ msgstr "Duela segundo batzuk"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
-msgstr ""
+msgstr "Helbide elektronikoa"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""

@@ -9,47 +9,47 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2013-10-28 17:40+0000\n"
-"Last-Translator: AivoK <aivoke@hot.ee>\n"
+"PO-Revision-Date: 2015-10-20 07:49+0000\n"
+"Last-Translator: juhan <aasaru@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1382982005.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1445327381.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "Salvestamine õnnestus."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Kustutamine õnnestus."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "Kustuta"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "Kood"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:75
 msgid "Full Name"
-msgstr ""
+msgstr "Täielik nimi"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "Erimärgid"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Mitmuste arv"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"

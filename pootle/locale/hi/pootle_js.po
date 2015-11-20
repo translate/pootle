@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2015-10-12 19:36+0000\n"
+"Last-Translator: GautamMKGarg <GautamMKGarg@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.9.1-pre\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1444678599.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "सफलतापूर्वक बनाया गया."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
@@ -29,7 +30,7 @@ msgstr ""
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "मिटाएँ"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
@@ -40,11 +41,11 @@ msgstr ""
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:75
 msgid "Full Name"
-msgstr ""
+msgstr "पूरा नाम"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "विशेष अक्षर"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
@@ -63,12 +64,12 @@ msgstr ""
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "सारांश"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "अनुमति"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
@@ -84,7 +85,7 @@ msgstr ""
 
 #: static/js/admin/components/ProjectForm.js:103
 msgid "Source Language"
-msgstr ""
+msgstr "स्रोत भाषा"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
@@ -124,11 +125,11 @@ msgstr ""
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "उपयोक्ता नाम"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "सक्रिय"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
@@ -136,20 +137,20 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:94
 #: static/js/auth/components/PasswordResetForm.js:113
 msgid "Password"
-msgstr ""
+msgstr "पासवर्ड"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "एक नया पासवर्ड भरें:"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "ई-मेल"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "प्रशासक"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:89
 msgid "Twitter"

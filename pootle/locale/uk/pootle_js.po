@@ -9,44 +9,44 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2014-05-18 10:25+0000\n"
-"Last-Translator: Serhij Dubyk - Сергій Дубик <dubyk@library.lviv.ua>\n"
+"PO-Revision-Date: 2015-11-01 12:13+0000\n"
+"Last-Translator: Maks <m_lyashuk@ukr.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1400408701.000000\n"
+"X-POOTLE-MTIME: 1446380037.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "Збереження успішне."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Видалення успішне."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "Стерти"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "Код"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:75
 msgid "Full Name"
-msgstr ""
+msgstr "Повне ім'я"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "Спеціальні символи"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
@@ -60,38 +60,37 @@ msgstr ""
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:121
 msgid "Save"
-msgstr ""
+msgstr "Зберегти"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "Огляд"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "Права доступу"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "Перевірки якості"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "Тип файлу"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
 msgstr ""
 
 #: static/js/admin/components/ProjectForm.js:103
-#, fuzzy
 msgid "Source Language"
-msgstr "Усі мови"
+msgstr "Початкова мова"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "Ігнорувати файли"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
@@ -143,40 +142,40 @@ msgstr ""
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "Встановити новий пароль"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "Ел. пошта"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "Адміністратор"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:89
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
-msgstr ""
+msgstr "Користувач Twitter"
 
 #: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:96
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "Адреса профілю LinkedIn"
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:102
 msgid "Website"
-msgstr ""
+msgstr "Веб-сайт"
 
 #: static/js/admin/components/UserForm.js:128
 msgid "Personal website URL"
-msgstr ""
+msgstr "Адреса персонального web-сайту"
 
 #: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:109
 msgid "Short Bio"
@@ -226,7 +225,7 @@ msgstr ""
 #: static/js/auth/components/AccountInactive.js:36
 #: static/js/auth/components/EmailConfirmation.js:36
 msgid "Close"
-msgstr ""
+msgstr "Закрити"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
@@ -240,11 +239,11 @@ msgstr ""
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "Увійти"
 
 #: static/js/auth/components/AuthController.js:92
 msgid "Account Inactive"
-msgstr ""
+msgstr "Обліковий запис не активний"
 
 #: static/js/auth/components/AuthController.js:99
 #: static/js/auth/components/SignUpForm.js:121
@@ -289,20 +288,20 @@ msgstr ""
 
 #: static/js/auth/components/PasswordResetForm.js:86
 msgid "Reset Password"
-msgstr ""
+msgstr "Скинути пароль"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Пароль змінено, триває процедура входу..."
 
 #: static/js/auth/components/PasswordResetForm.js:122
 #: static/js/auth/components/SignUpForm.js:108
 msgid "Repeat Password"
-msgstr ""
+msgstr "Повторіть пароль"
 
 #: static/js/auth/components/PasswordResetForm.js:135
 msgid "Set New Password"
-msgstr ""
+msgstr "Встановіть новий пароль"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
@@ -311,7 +310,7 @@ msgstr ""
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, python-format, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Триває відсилання листа на %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
@@ -340,19 +339,19 @@ msgstr ""
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Ви увійшли. Перенаправлення..."
 
 #: static/js/auth/components/SignInPanel.js:62
 msgid "Social Services"
-msgstr ""
+msgstr "Соціальні сервіси"
 
 #: static/js/auth/components/SignInPanel.js:65
 msgid "Login / Password"
-msgstr ""
+msgstr "Лоґін / Пароль"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "Увійти як існуючий користувач"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, python-format, javascript-format
@@ -365,12 +364,12 @@ msgstr ""
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "Спробувати знову"
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, python-format, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Увійти з допомогою %s"
 
 #: static/js/auth/components/SocialSignInForm.js:46
 msgid ""
@@ -431,7 +430,7 @@ msgstr "Помилка при підключенні до сервера"
 
 #: static/js/editor/app.js:1047
 msgid "Not found"
-msgstr ""
+msgstr "Не знайдено"
 
 #: static/js/editor/app.js:1049
 msgid "Server error"
@@ -447,7 +446,7 @@ msgstr "Невідома помилка"
 
 #: static/js/editor/app.js:1066
 msgid "This string no longer exists."
-msgstr ""
+msgstr "Цей рядок більше не існує."
 
 #: static/js/editor/app.js:1067
 msgid "Go back to browsing"
@@ -455,15 +454,15 @@ msgstr ""
 
 #: static/js/editor/app.js:1069
 msgid "Reload page"
-msgstr ""
+msgstr "Перезавантажити сторінку"
 
 #: static/js/editor/app.js:2095
 msgid "some anonymous user"
-msgstr ""
+msgstr "якийсь анонімний корисувач"
 
 #: static/js/editor/app.js:2097
 msgid "someone"
-msgstr ""
+msgstr "хтось"
 
 #: static/js/editor/app.js:2115 static/js/editor/app.js:2164
 msgid "Similar translations"
@@ -471,15 +470,15 @@ msgstr "Схожі переклади"
 
 #: static/js/shared/models/project.js:59
 msgid "disabled"
-msgstr ""
+msgstr "вимкнено"
 
 #: static/js/stats.js:353
 #, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s секунда"
+msgstr[1] "%s секунди"
+msgstr[2] "%s секунд"
 
 #: static/js/stats.js:397
 msgid "Collapse details"
@@ -491,7 +490,7 @@ msgstr "Розкрити подробиці"
 
 #: static/js/user/components/UserProfileEdit.js:106
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "Редагувати свій публічний профіль"
 
 #: static/js/user/components/UserProfileEdit.js:113
 msgid "My Public Profile"
@@ -522,7 +521,7 @@ msgstr[1] "%1 роки тому"
 msgstr[2] "%1 років тому"
 
 #: static/js/utils.js:154
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Тиждень тому"
@@ -530,11 +529,11 @@ msgstr[1] "%s тижні тому"
 msgstr[2] "%s тижнів тому"
 
 #: static/js/utils.js:157
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Вчора"
-msgstr[1] "%s дня тому"
+msgstr[1] "%s дні тому"
 msgstr[2] "%s днів тому"
 
 #: static/js/utils.js:160
@@ -559,7 +558,7 @@ msgstr "Кілька секунд тому"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
-msgstr ""
+msgstr "Електронна адреса"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
@@ -569,15 +568,15 @@ msgstr ""
 
 #: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
-msgstr ""
+msgstr "Ні, дякую"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:114
 msgid "Send Email"
-msgstr ""
+msgstr "Надіслати листа"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Створення новий користувачів заборонене"
 
 #: static/js/auth/components/SocialVerification.js:79
 #, python-format

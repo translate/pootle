@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-28 10:08+0100\n"
-"PO-Revision-Date: 2015-09-26 07:55+0000\n"
-"Last-Translator: Heyang <qysnn1@gmail.com>\n"
+"PO-Revision-Date: 2015-11-10 04:00+0000\n"
+"Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1443254103.000000\n"
+"X-POOTLE-MTIME: 1447128007.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -87,7 +87,6 @@ msgid "Alternative Source Languages"
 msgstr "可选源语言"
 
 #: apps/accounts/models.py:90 templates/admin/detailed_reports.html:149
-#, fuzzy
 msgid "Rate"
 msgstr "比率"
 
@@ -173,18 +172,16 @@ msgid "Download translation files for offline translation"
 msgstr "下载翻译文件进行离线翻译"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "下载 XLIFF 文件进行离线翻译"
+msgstr "为离线翻译下载"
 
 #: apps/import_export/templates/browser/index.html:19
 msgid "Upload translation files or archives in .zip format"
 msgstr "上传翻译文件或 .zip 格式的归档"
 
 #: apps/import_export/templates/browser/index.html:20
-#, fuzzy
 msgid "Upload translations"
-msgstr "导出翻译"
+msgstr "上传翻译"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -1059,7 +1056,6 @@ msgstr ""
 "projects/<project_code> 或 <language_code> 或 <language_code>/<project_code>"
 
 #: apps/virtualfolder/models.py:34
-#, fuzzy
 msgid "Location"
 msgstr "位置"
 

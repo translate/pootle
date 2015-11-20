@@ -9,88 +9,87 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2014-08-31 19:52+0000\n"
+"PO-Revision-Date: 2015-11-07 15:13+0000\n"
 "Last-Translator: Mohomodou  <mh@bollag-areal.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: son\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1409514763.000000\n"
+"X-POOTLE-MTIME: 1446909183.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "A gaabundi ka boori."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "A tuusandi ka boori."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "Tuusu"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "Ašariya"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:75
 msgid "Full Name"
-msgstr ""
+msgstr "Maa timmante"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "Cerecere harfey"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Booboyan hinnawey"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "Booboyan sawandiyan"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:121
 msgid "Save"
-msgstr ""
+msgstr "Gaabu"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "Moofur"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "Duɲewey"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "Booriyan korošiyaney"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "Tuku dumi"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Porože tuuri fasal"
 
 #: static/js/admin/components/ProjectForm.js:103
-#, fuzzy
 msgid "Source Language"
-msgstr "Šenney kul"
+msgstr "Aššil šenni"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "Tukey muray"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"

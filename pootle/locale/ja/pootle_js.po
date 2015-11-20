@@ -9,43 +9,43 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2013-10-29 00:59+0000\n"
-"Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
+"PO-Revision-Date: 2015-10-26 04:34+0000\n"
+"Last-Translator: taraki <taraki@cc.miyazaki-u.ac.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383008386.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1445834097.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "正常に保存されました。"
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "正常に削除されました。"
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "削除"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "コード"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:75
 msgid "Full Name"
-msgstr ""
+msgstr "フルネーム"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "特殊文字"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
@@ -59,12 +59,12 @@ msgstr ""
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:121
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "概要"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
@@ -73,24 +73,23 @@ msgstr ""
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "クオリティー・チェック"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "ファイル形式"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "プロジェクト・ツリー・スタイル"
 
 #: static/js/admin/components/ProjectForm.js:103
-#, fuzzy
 msgid "Source Language"
-msgstr "すべての言語"
+msgstr "元の言語"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "ファイルを無視"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
@@ -102,35 +101,37 @@ msgstr ""
 
 #: static/js/admin/components/ProjectForm.js:129
 msgid "Disabled"
-msgstr ""
+msgstr "無効"
 
 #: static/js/admin/components/ProjectForm.js:141
 msgid "Languages"
-msgstr ""
+msgstr "言語"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
-msgstr ""
+msgstr "さらに読み込む"
 
 #: static/js/admin/components/Search.js:89
 msgid "Loading..."
-msgstr ""
+msgstr "読み込み中..."
 
 #: static/js/admin/components/UserForm.js:52
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
+"注意: ユーザを削除すると、そのユーザの貢献（例: コメント、提案、訳）は、匿名"
+"のユーザのものとして分類されます。"
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "ユーザ名"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "有効"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
@@ -138,48 +139,48 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:94
 #: static/js/auth/components/PasswordResetForm.js:113
 msgid "Password"
-msgstr ""
+msgstr "パスワード"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "新しいパスワードを設定"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "メールアドレス"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "管理者"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:89
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
-msgstr ""
+msgstr "Twitterのユーザ名"
 
 #: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:96
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "LinkedInのプロフィールURL"
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:102
 msgid "Website"
-msgstr ""
+msgstr "ウェブサイト"
 
 #: static/js/admin/components/UserForm.js:128
 msgid "Personal website URL"
-msgstr ""
+msgstr "個人ウェブサイトのURL"
 
 #: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:109
 msgid "Short Bio"
-msgstr ""
+msgstr "簡単な自己紹介"
 
 #: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
@@ -205,45 +206,47 @@ msgstr ""
 #: static/js/auth/components/RequestPasswordResetSent.js:44
 #, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr ""
+msgstr "特別なリンクを含んだEメールを<span>%s</span>に送信しました。"
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"特別なリンクを含んだEメールを、本アカウントの登録時に使用されたアドレスに送信"
+"しました。 "
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "あなたのアカウントは有効化が必要です。"
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "リンクをクリックの上、アカウント作成に進んでください。"
 
 #: static/js/auth/components/AccountActivation.js:57
 #: static/js/auth/components/AccountInactive.js:36
 #: static/js/auth/components/EmailConfirmation.js:36
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "管理者が無効化したため、あなたのアカウントは有効ではありません。"
 
 #: static/js/auth/components/AuthController.js:85
 msgid "Sign In With..."
-msgstr ""
+msgstr "...でサインインする。"
 
 #: static/js/auth/components/AuthController.js:85
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "サインイン"
 
 #: static/js/auth/components/AuthController.js:92
 msgid "Account Inactive"
-msgstr ""
+msgstr "有効化されていないアカウント"
 
 #: static/js/auth/components/AuthController.js:99
 #: static/js/auth/components/SignUpForm.js:121
@@ -288,7 +291,7 @@ msgstr ""
 
 #: static/js/auth/components/PasswordResetForm.js:86
 msgid "Reset Password"
-msgstr ""
+msgstr "パスワードのリセット"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."

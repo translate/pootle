@@ -9,128 +9,129 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-09-22 16:16+0100\n"
-"PO-Revision-Date: 2013-10-28 17:18+0000\n"
+"PO-Revision-Date: 2015-11-13 00:09+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1382980707.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1447373356.000000\n"
 
 #: static/js/admin/components/AdminController.js:95
 msgid "Saved successfully."
-msgstr ""
+msgstr "مۇۋەپپەقىيەتلىك ساقلاندى."
 
 #: static/js/admin/components/AdminController.js:103
 msgid "Deleted successfully."
-msgstr ""
+msgstr "مۇۋەپپەقىيەتلىك ئۆچۈرۈلدى."
 
 #: static/js/admin/components/ItemDelete.js:51
 msgid "Delete"
-msgstr ""
+msgstr "ئۆچۈر"
 
 #: static/js/admin/components/LanguageForm.js:58
 #: static/js/admin/components/ProjectForm.js:61
 msgid "Code"
-msgstr ""
+msgstr "كود"
 
 #: static/js/admin/components/LanguageForm.js:64
 #: static/js/admin/components/ProjectForm.js:67
 #: static/js/admin/components/UserForm.js:89 static/js/user/forms.jsx:75
 msgid "Full Name"
-msgstr ""
+msgstr "تولۇق ئاتى"
 
 #: static/js/admin/components/LanguageForm.js:70
 msgid "Special Characters"
-msgstr ""
+msgstr "ئالاھىدە ھەرپلەر"
 
 #: static/js/admin/components/LanguageForm.js:79
 msgid "Number of Plurals"
-msgstr ""
+msgstr "كۆپلۈك سانى"
 
 #: static/js/admin/components/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "كۆپلۈك ئىپادىسى"
 
 #: static/js/admin/components/LanguageForm.js:95
 #: static/js/admin/components/ProjectForm.js:137
 #: static/js/admin/components/UserForm.js:144 static/js/user/forms.jsx:121
 msgid "Save"
-msgstr ""
+msgstr "ساقلا"
 
 #: static/js/admin/components/LanguageForm.js:98
 #: static/js/admin/components/ProjectForm.js:140
 msgid "Overview"
-msgstr ""
+msgstr "قىسقىچە بايان"
 
 #: static/js/admin/components/LanguageForm.js:99
 #: static/js/admin/components/ProjectForm.js:142
 msgid "Permissions"
-msgstr ""
+msgstr "ھوقۇقلار"
 
 #: static/js/admin/components/ProjectForm.js:76
 msgid "Quality Checks"
-msgstr ""
+msgstr "سۈپەت تەكشۈرۈش"
 
 #: static/js/admin/components/ProjectForm.js:85
 msgid "File Type"
-msgstr ""
+msgstr "ھۆججەت تىپى"
 
 #: static/js/admin/components/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "قۇرۇلۇش شاخ ئۇسلۇبى"
 
 #: static/js/admin/components/ProjectForm.js:103
-#, fuzzy
 msgid "Source Language"
-msgstr "بارلىق تىللار"
+msgstr "مەنبە تىل"
 
 #: static/js/admin/components/ProjectForm.js:109
 msgid "Ignore Files"
-msgstr ""
+msgstr "ھۆججەتكە پەرۋا قىلما"
 
 #: static/js/admin/components/ProjectForm.js:116
 msgid "String Errors Contact"
-msgstr ""
+msgstr "ھەرپ تىزمىسى خاتالىق ئالاقىسى"
 
 #: static/js/admin/components/ProjectForm.js:122
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "ئېكران كەسمىسى ئىزدەش ئالدى قوشۇلغۇچى"
 
 #: static/js/admin/components/ProjectForm.js:129
 msgid "Disabled"
-msgstr ""
+msgstr "چەكلەنگەن"
 
 #: static/js/admin/components/ProjectForm.js:141
 msgid "Languages"
-msgstr ""
+msgstr "تىللار"
 
 #: static/js/admin/components/Search.js:66
 msgid "Load More"
-msgstr ""
+msgstr "تېخىمۇ كۆپ يۈكلە"
 
 #: static/js/admin/components/Search.js:89
 msgid "Loading..."
-msgstr ""
+msgstr "يۈكلەۋاتىدۇ…"
 
 #: static/js/admin/components/UserForm.js:52
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
+"دىققەت: ئىشلەتكۈچى ئۆچۈرۈلسە ئۇنىڭ تۆھپىسى، مەسىلەن باھا، تەكلىپ ۋە "
+"تەرجىمىلىرى ئاتسىز ئىشلەتكۈچىگە تەۋە بولىدۇ."
 
 #: static/js/admin/components/UserForm.js:64
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "ئىشلەتكۈچى ئاتى"
 
 #: static/js/admin/components/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "ئاكتىپ"
 
 #: static/js/admin/components/UserForm.js:80
 #: static/js/auth/components/SignInForm.js:104
@@ -138,262 +139,278 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:94
 #: static/js/auth/components/PasswordResetForm.js:113
 msgid "Password"
-msgstr ""
+msgstr "ئىم"
 
 #: static/js/admin/components/UserForm.js:81
 msgid "Set a new password"
-msgstr ""
+msgstr "يېڭى ئىم تەڭشەك"
 
 #: static/js/admin/components/UserForm.js:95
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "تورخەت"
 
 #: static/js/admin/components/UserForm.js:104
 msgid "Administrator"
-msgstr ""
+msgstr "باشقۇرغۇچى"
 
 #: static/js/admin/components/UserForm.js:111 static/js/user/forms.jsx:89
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/UserForm.js:113
 msgid "Twitter username"
-msgstr ""
+msgstr "‫Twitter ئىشلەتكۈچى ئاتى"
 
 #: static/js/admin/components/UserForm.js:119 static/js/user/forms.jsx:96
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/UserForm.js:121
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "‫LinkedIn سەپلىمە ھۆججەت تور ئادرېسى"
 
 #: static/js/admin/components/UserForm.js:126 static/js/user/forms.jsx:102
 msgid "Website"
-msgstr ""
+msgstr "تورتۇرا"
 
 #: static/js/admin/components/UserForm.js:128
 msgid "Personal website URL"
-msgstr ""
+msgstr "شەخسىي تورتۇرا ئادرېسى"
 
 #: static/js/admin/components/UserForm.js:134 static/js/user/forms.jsx:109
 msgid "Short Bio"
-msgstr ""
+msgstr "قىسقىچە تونۇشتۇرۇش"
 
 #: static/js/admin/components/UserForm.js:136
 msgid "Personal description"
-msgstr ""
+msgstr "شەخسىي چۈشەندۈرۈش"
 
 #: static/js/admin/components/UserForm.js:147
 msgid "Public Profile"
-msgstr ""
+msgstr "ئاممىۋى سەپلىمە ھۆججەت"
 
 #: static/js/admin/components/UserForm.js:148
 msgid "Settings"
-msgstr ""
+msgstr "تەڭشەكلەر"
 
 #: static/js/admin/components/UserForm.js:149
 msgid "Statistics"
-msgstr ""
+msgstr "ستاتىستىكا"
 
 #: static/js/admin/components/UserForm.js:150
 msgid "Reports"
-msgstr ""
+msgstr "دوكلات"
 
 #: static/js/auth/components/AccountActivation.js:33
 #: static/js/auth/components/RequestPasswordResetSent.js:44
 #, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
+"بىز بىر پارچە تورخەت ئەۋەتتۇق، خەتتە <span>%s</span> نىڭ ئۇلانمىسى بار."
 
 #: static/js/auth/components/AccountActivation.js:38
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"ھېسابات خەتلىتىش ئۇلانمىسىنى ئۆز ئىچىگە ئالغان ئادرېس بار تورخەت ئەۋەتتۇق."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "ھېساباتىڭىزنى ئاكتىپلاش زۆرۈر."
 
 #: static/js/auth/components/AccountActivation.js:43
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "بۇ ئۇلانمىنى چېكىپ ھېسابات قۇرۇشنى داۋاملاشتۇرۇڭ."
 
 #: static/js/auth/components/AccountActivation.js:57
 #: static/js/auth/components/AccountInactive.js:36
 #: static/js/auth/components/EmailConfirmation.js:36
 msgid "Close"
-msgstr ""
+msgstr "تاقا"
 
 #: static/js/auth/components/AccountInactive.js:30
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "ھېساباتىڭىز ئاكتىپ ئەمەس چۈنكى ئۇنى باشقۇرغۇچى توختىتىۋەتكەن."
 
 #: static/js/auth/components/AuthController.js:85
 msgid "Sign In With..."
-msgstr ""
+msgstr "باشقىچە تىزىمغا كىرىش…"
 
 #: static/js/auth/components/AuthController.js:85
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:112
 msgid "Sign In"
-msgstr ""
+msgstr "تىزىمغا كىر"
 
 #: static/js/auth/components/AuthController.js:92
 msgid "Account Inactive"
-msgstr ""
+msgstr "ھېسابات چەكلەنگەن"
 
 #: static/js/auth/components/AuthController.js:99
 #: static/js/auth/components/SignUpForm.js:121
 msgid "Sign Up"
-msgstr ""
+msgstr "خەتلەت"
 
 #: static/js/auth/components/AuthController.js:106
 msgid "Account Activation"
-msgstr ""
+msgstr "ھېسابات ئاكتىپلاش"
 
 #: static/js/auth/components/AuthController.js:113
 msgid "Email Confirmation"
-msgstr ""
+msgstr "تورخەت جەزملەش"
 
 #: static/js/auth/components/AuthController.js:120
 #: static/js/auth/components/AuthController.js:127
 #: static/js/auth/components/AuthController.js:134
 msgid "Reset Your Password"
-msgstr ""
+msgstr "ئىمنى ئەسلىگە قايتۇر"
 
 #: static/js/auth/components/AuthController.js:141
 msgid "Oops..."
-msgstr ""
+msgstr "ۋاييەي…"
 
 #: static/js/auth/components/AuthController.js:148
 msgid "Social Verification"
-msgstr ""
+msgstr "ئىجتىمائىي دەلىللەش"
 
 #: static/js/auth/components/AuthWindow.js:29
 msgid "Contact Us"
-msgstr ""
+msgstr "بىز بىلەن ئالاقىلىشىڭ"
 
 #: static/js/auth/components/EmailConfirmation.js:30
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "بۇ تورخەتتىكى جەزملەش ئۇلانمىسىنىڭ ۋاقتى ئۆتكەن ياكى ئىناۋەتسىز."
 
 #: static/js/auth/components/PasswordResetForm.js:80
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"ئىمنى ئەسلىگە قايتۇرۇش ئۇالنمىسى ئىناۋەتسىز، بەلكىم ئۇ ئاللىبۇرۇن ئىشلىتىلىپ "
+"بولغان. يېڭىدىن ئىمنى ئەسلىگە قايتۇرۇش ئىلتىماسى ئەۋەتىڭ."
 
 #: static/js/auth/components/PasswordResetForm.js:86
 msgid "Reset Password"
-msgstr ""
+msgstr "ئىمنى ئەسلىگە قايتۇرۇش"
 
 #: static/js/auth/components/PasswordResetForm.js:98
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "ئىم ئۆزگەردى، تىزىمغا كىرىۋاتىدۇ…"
 
 #: static/js/auth/components/PasswordResetForm.js:122
 #: static/js/auth/components/SignUpForm.js:108
 msgid "Repeat Password"
-msgstr ""
+msgstr "ئىم تەكرارلا"
 
 #: static/js/auth/components/PasswordResetForm.js:135
 msgid "Set New Password"
-msgstr ""
+msgstr "يېڭى ئىم تەڭشەش"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "ئىمنى ئۆزگەرتكەندىن كېيىن ئۆزلۈكىدىن تىزىمغا كىرىسىز."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:25
 #, python-format, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "ھازىر %s غا تورخەت يوللاۋاتىدۇ…"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
-msgstr ""
+msgstr "ئۇلانمىنى چېكىپ ئىم قايتۇرۇۋېلىش جەريانىنى داۋاملاشتۇرۇڭ."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"تورخەتنى تاپشۇرۇۋالمىدىڭىزمۇ؟ ئەخلەت خەتلەر قاتارىغا كىرىپ قالدىمۇ تەكشۈرۈپ "
+"بېقىڭ ياكى تورخەتنى قايتا يوللاشنى ئىلتىماس قىلىڭ."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
-msgstr ""
+msgstr "تورخەتنى قايتا يوللا"
 
 #: static/js/auth/components/SignInForm.js:83
 #: static/js/auth/components/RequestPasswordResetForm.js:120
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "يېڭى ئىشلەتكۈچى خەتلىتىش"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:101
 msgid "I forgot my password"
-msgstr ""
+msgstr "ئىمنى ئۇنۇتتۇم"
 
 #: static/js/auth/components/SignInPanel.js:49
 #: static/js/auth/components/SocialVerification.js:72
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "تىزىمغا كىردى. نىشاننى يۆتكەۋاتىدۇ…"
 
 #: static/js/auth/components/SignInPanel.js:62
 msgid "Social Services"
-msgstr ""
+msgstr "ئىجتىمائىي مۇلازىمەتلەر"
 
 #: static/js/auth/components/SignInPanel.js:65
 msgid "Login / Password"
-msgstr ""
+msgstr "تىزىمغا كىر /ئىم"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "مەۋجۇت ئىشلەتكۈچى سۈپىتىدە تىزىمغا كىرىڭ"
 
 #: static/js/auth/components/SocialAuthError.js:31
 #, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "‫%s سالاھىيىتىدە تىزىمغا كىرگەندە خاتالىق كۆرۈلدى."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
+"ئىجتىمائىي ئالاقە ھېساباتىڭىز ئارقىلىق تىزىمغا كىرىشنى سىنىغاندا خاتالىق "
+"كۆرۈلدى."
 
 #: static/js/auth/components/SocialAuthError.js:51
 msgid "Try again"
-msgstr ""
+msgstr "قايتا سىنا"
 
 #: static/js/auth/components/SocialSignInForm.js:40
 #, python-format, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "تىزىمغا %s بىلەن كىرىڭ"
 
 #: static/js/auth/components/SocialSignInForm.js:46
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"سىرتقى ھېسابات ئارقىلىق تۇنجى قېتىم تىزىمغا كىرگەندە ئۆزلۈكىدىن سىزگە يېڭى "
+"ھېساباتتىن بىرنى قۇرىدۇ"
 
 #: static/js/editor/app.js:241 static/js/editor/app.js:537
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
+"بۇ تىزىقتا تېخى ساقلىمىغان ئۆزگەرتىشىڭىز بار. ئايرىلسىڭىز بۇ سانلىق "
+"مەلۇماتلار يوقىلىدۇ."
 
 #: static/js/editor/app.js:267
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"كېيىنكى تىزىققا يۆتكىلىشتە (Ctrl+.)<br/><br/> يەنە: <br/>كېيىنكى بەت: Ctrl"
+"+Shift+.<br/>ئاخىرقى بەت: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:271
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"ئالدىنقى تىزىققا يۆتكىلىشتە (Ctrl+,)<br/><br/>يەنە:</br>ئالدىنقى بەت: Ctrl"
+"+Shift+,<br/>بىرىنچى بەت: Ctrl+Shift+Home"
 
 #: static/js/editor/app.js:383
 #, python-format, javascript-format
@@ -430,7 +447,7 @@ msgstr "مۇلازىمېتىرغا باغلانغاندا خاتالىق كۆر�
 
 #: static/js/editor/app.js:1047
 msgid "Not found"
-msgstr ""
+msgstr "تېپىلمىدى"
 
 #: static/js/editor/app.js:1049
 msgid "Server error"
@@ -446,23 +463,23 @@ msgstr "يوچۇن خاتالىق"
 
 #: static/js/editor/app.js:1066
 msgid "This string no longer exists."
-msgstr ""
+msgstr "بۇ تىزىق ئەمدى مەۋجۇد ئەمەس."
 
 #: static/js/editor/app.js:1067
 msgid "Go back to browsing"
-msgstr ""
+msgstr "كۆز يۈگۈرتۈشكە قايت"
 
 #: static/js/editor/app.js:1069
 msgid "Reload page"
-msgstr ""
+msgstr "بەتنى قايتا يۈكلە"
 
 #: static/js/editor/app.js:2095
 msgid "some anonymous user"
-msgstr ""
+msgstr "بەزى ئاتسىز ئىشلەتكۈچى"
 
 #: static/js/editor/app.js:2097
 msgid "someone"
-msgstr ""
+msgstr "بىرسى"
 
 #: static/js/editor/app.js:2115 static/js/editor/app.js:2164
 msgid "Similar translations"
@@ -470,13 +487,13 @@ msgstr "ئوخشايدىغان تەرجىمىلەر"
 
 #: static/js/shared/models/project.js:59
 msgid "disabled"
-msgstr ""
+msgstr "چەكلەنگەن"
 
 #: static/js/stats.js:353
 #, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] ""
+msgstr[0] "%s سېكۇنت"
 
 #: static/js/stats.js:397
 msgid "Collapse details"
@@ -488,27 +505,27 @@ msgstr "تەپسىلاتىنى ياي"
 
 #: static/js/user/components/UserProfileEdit.js:106
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "ئاممىۋى سەپلىمە ھۆججىتىمنى تەھرىرلە"
 
 #: static/js/user/components/UserProfileEdit.js:113
 msgid "My Public Profile"
-msgstr ""
+msgstr "ئاممىۋى سەپلىمە ھۆججىتىم"
 
 #: static/js/user/components/UserProfileEdit.js:125
 msgid "Discard changes."
-msgstr ""
+msgstr "ئۆزگەرتىشلەرنى تاشلىۋەت"
 
 #: static/js/user/components/UserProfileEdit.js:126
 msgid "Yes"
-msgstr ""
+msgstr "ھەئە"
 
 #: static/js/user/components/UserProfileEdit.js:127
 msgid "No"
-msgstr ""
+msgstr "ياق"
 
 #: static/js/user/components/UserProfileEdit.js:128
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "تېخى ساقلىمىغان ئۆزگەرتىشلەر بار. ئۇلارنى تاشلىۋېتەمسىز؟"
 
 #: static/js/utils.js:151
 #, javascript-format
@@ -546,25 +563,27 @@ msgstr "بىر قانچە سېكۇنت ئىلگىرى"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
-msgstr ""
+msgstr "تورخەت ئادرېسى"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"تورخەت ئادرېسىڭىزنى كىرگۈزۈڭ، بىز ئىمنى قايتا ئۆزگەرتىدىغان ئۇلانمىنى ئۆز "
+"ئىچىگە ئالغان تورخەتنى خەت ساندۇقىڭىزغا يوللايمىز."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
-msgstr ""
+msgstr "ياق، رەھمەت"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:114
 msgid "Send Email"
-msgstr ""
+msgstr "تورخەت يوللا"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "يېڭى ئىشلەتكۈچىنى خەتلىتىش چەكلەنگەن."
 
 #: static/js/auth/components/SocialVerification.js:79
 #, python-format
@@ -573,6 +592,9 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"سىستېمىمىزدا <span>%s</span> تورخەت ئادرېسى بار ئىشلەتكۈچى بايقالدى. تىزىمغا "
+"كىرىشنى تاماملاش ئۈچۈن ئىمنى تەمىنلەڭ. بۇ Pootle ۋە %s ھېسابات ئارىسىدا "
+"ئۇلانما قۇرۇشتىكى بىر قېتىملىق جەريان."
 
 #: static/js/browser.js:163
 msgid "All Languages"
@@ -591,7 +613,7 @@ msgstr "ھەممە قۇرۇلۇشلار"
 #: static/js/shared/components/UserEvent.js:94
 #, python-brace-format
 msgid "removed translation for ${sourceString}"
-msgstr ""
+msgstr "${sourceString} نىڭ تەرجىمىسىنى چىقىرىۋەتتى"
 
 #: static/js/shared/components/UserEvent.js:75
 #, fuzzy, python-brace-format
@@ -600,7 +622,7 @@ msgstr "%s نىڭ قوبۇل قىلىنغان تەكلىپلىرى"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "يۈكلەنگەن ھۆججەت"
 
 #: static/js/shared/components/UserEvent.js:79
 #, python-brace-format
