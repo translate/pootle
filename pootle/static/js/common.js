@@ -63,6 +63,7 @@ PTL.auth = require('./auth');
 PTL.agreement = require('./agreement.js');
 PTL.browser = require('./browser.js');
 PTL.captcha = require('./captcha.js');
+PTL.cookie = cookie;
 PTL.contact = require('./contact.js');
 PTL.dropdown = require('./dropdown.js');
 PTL.search = require('./search.js');
