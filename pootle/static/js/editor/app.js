@@ -21,7 +21,6 @@ import 'jquery-utils';
 // Other plugins
 import autosize from 'autosize';
 import cx from 'classnames';
-import 'iso8601';
 import Levenshtein from 'levenshtein';
 import assign from 'object-assign';
 import 'shortcut';

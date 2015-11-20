@@ -68,11 +68,6 @@ Directory contents
 
       https://code.google.com/p/google-diff-match-patch/
 
-    - iso8601.js :
-      Date.parse with progressive enhancement for ISO 8601.
-
-      https://github.com/csnover/js-iso8601
-
     - levenshtein.js :
       Library to calculate Levenshtein edit distance/similarity ratio.
 

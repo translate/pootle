@@ -55,7 +55,6 @@ var resolve = {
     'jquery-tipsy': __dirname + '/vendor/jquery/jquery.tipsy.js',
     'jquery-utils': __dirname + '/vendor/jquery/jquery.utils.js',
 
-    iso8601: __dirname + '/vendor/iso8601.js', // FIXME: use npm module
     levenshtein: __dirname + '/vendor/levenshtein.js', // FIXME: use npm module
     moment: __dirname + '/vendor/moment.js', // FIXME: use npm module
     odometer: __dirname + '/vendor/odometer.js', // FIXME: use npm module
