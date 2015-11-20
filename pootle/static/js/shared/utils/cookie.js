@@ -7,8 +7,7 @@
  */
 
 
-// TODO: should also be able to set cookies
-export default function cookie(name) {
+function getCookie(name) {
   let value = null;
   if (document.cookie && document.cookie !== '') {
     const cookies = document.cookie.split(';');
@@ -22,4 +21,44 @@ export default function cookie(name) {
     }
   }
   return value;
+}
+
+
+function setCookie(name, value, options={}) {
+  if (value === null) {
+    value = '';
+    options.expires = -1;
+  }
+
+  let expires = '';
+
+  if (options.expires &&
+      (typeof options.expires === 'number' || options.expires.toUTCString)) {
+    let date;
+    if (typeof options.expires === 'number') {
+      date = new Date();
+      date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
+    } else {
+      date = options.expires;
+    }
+    // use expires attribute, max-age is not supported by IE
+    expires = `; expires=${date.toUTCString()}`;
+  }
+
+  // CAUTION: Needed to parenthesize options.path and options.domain
+  // in the following expressions, otherwise they evaluate to undefined
+  // in the packed version for some reason...
+  const path = options.path ? `; path=${options.path}` : '';
+  const domain = options.domain ? `; domain=${options.domain}` : '';
+  const secure = options.secure ? '; secure' : '';
+  document.cookie = `${name}=${encodeURIComponent(value)}` +
+                    `${expires}${path}${domain}${secure}`;
+}
+
+
+export default function cookie(name, value, options) {
+  if (value === undefined) {
+    return getCookie(name);
+  }
+  setCookie(name, value, options);
 }
