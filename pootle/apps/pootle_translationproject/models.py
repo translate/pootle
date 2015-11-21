@@ -304,7 +304,7 @@ class TranslationProject(models.Model, CachedTreeItem):
                 # Trigger stats refresh for TP added from UI.
                 # FIXME: This won't be necessary once #3547 is fixed.
                 for store in self.stores.live().iterator():
-                    store.update()
+                    store.save(update_cache=True)
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -345,7 +345,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         """Update all stores to reflect state on disk"""
         stores = self.stores.live().exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
-            store.update()
+            store.update(store.file.store)
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
         """Sync unsaved work on all stores to disk"""
