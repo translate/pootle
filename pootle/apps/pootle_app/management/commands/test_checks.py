@@ -62,14 +62,20 @@ class Command(NoArgsCommand):
         logging.getLogger().setLevel(debug_level)
         self.name = self.__class__.__module__.split('.')[-1]
 
+        if ((options['unit'] is not None
+             and (options['source'] or options['target']))
+            or (options['unit'] is None
+                and not options['source']
+                and not options['target'])):
+            raise CommandError("Either --unit or a pair of --source "
+                               "and --target must be provided.")
+        if bool(options['source']) != bool(options['target']):
+            raise CommandError("Use a pair of --source and --target.")
+
         source = options.get('source', '')
         target = options.get('target', '')
         unit_id = options.get('unit', '')
         checks = options.get('checks', [])
-
-        if (source and target) == bool(unit_id):
-            raise CommandError("Either --unit or a pair of --source "
-                               "and --target must be provided.")
 
         if unit_id:
             try:
