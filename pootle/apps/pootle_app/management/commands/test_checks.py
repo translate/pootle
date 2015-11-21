@@ -13,8 +13,9 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from optparse import make_option
 
-from translate.filters.checks import FilterFailure
+from translate.filters.checks import FilterFailure, projectcheckers
 
+from django.conf import settings
 from django.core.management.base import NoArgsCommand, CommandError
 
 from pootle_misc.checks import ENChecker, get_qualitychecks
@@ -72,41 +73,52 @@ class Command(NoArgsCommand):
         if bool(options['source']) != bool(options['target']):
             raise CommandError("Use a pair of --source and --target.")
 
-        source = options.get('source', '')
-        target = options.get('target', '')
-        unit_id = options.get('unit', '')
         checks = options.get('checks', [])
 
-        if unit_id:
+        if options['unit'] is not None:
+            unit_id = options.get('unit', '')
             try:
                 unit = Unit.objects.get(id=unit_id)
                 source = unit.source
                 target = unit.target
             except Unit.DoesNotExist, e:
                 raise CommandError(e.message)
+        else:
+            source = options.get('source', '').decode('utf-8')
+            target = options.get('target', '').decode('utf-8')
 
-        checker = ENChecker()
+        if settings.POOTLE_QUALITY_CHECKER:
+            checkers = [import_func(settings.POOTLE_QUALITY_CHECKER)()]
+        else:
+            checkers = [checker() for checker in projectcheckers.values()]
 
         if not checks:
             checks = get_qualitychecks().keys()
 
         error_checks = []
-        for check in checks:
-            filtermessage = ''
-            try:
-                test = getattr(checker, check)
-                filterresult = test(source, target)
-            except FilterFailure, e:
-                filterresult = False
-                filtermessage = unicode(e)
+        for checker in checkers:
+            for check in checks:
+                filtermessage = ''
+                if check in error_checks:
+                    continue
+                try:
+                    if hasattr(checker, check):
+                        test = getattr(checker, check)
+                        try:
+                            filterresult = test(source, target)
+                        except AttributeError:
+                            continue
+                except FilterFailure, e:
+                    filterresult = False
+                    filtermessage = unicode(e)
 
-            message = "%s - %s" % (filterresult, check)
-            if filtermessage:
-                message += ": %s" % filtermessage
-            logging.info(message)
+                message = "%s - %s" % (filterresult, check)
+                if filtermessage:
+                    message += ": %s" % filtermessage
+                logging.info(message)
 
-            if not filterresult:
-                error_checks.append(check)
+                if not filterresult:
+                    error_checks.append(check)
 
         if error_checks:
             self.stdout.write('Failing checks: %s' % ', '.join(error_checks))
