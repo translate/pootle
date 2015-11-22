@@ -27,10 +27,12 @@ class YandexTranslate extends MTProvider {
        * assumptions about directionality.
        */
       supportedLanguages: [
-        'ar', 'az', 'be', 'bg', 'bs', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es',
-        'et', 'fi', 'fr', 'he', 'hr', 'hu', 'hy', 'id', 'is', 'it', 'ja', 'ka',
-        'ko', 'lt', 'lv', 'mk', 'ms', 'mt', 'nl', 'no', 'pl', 'pt', 'ro', 'ru',
-        'sk', 'sl', 'sq', 'sr', 'sv', 'th', 'tr', 'uk', 'vi', 'zh'
+        'af', 'ar', 'az', 'ba', 'be', 'bg', 'bs', 'ca', 'cs', 'cy', 'da', 'de',
+        'el', 'en', 'es', 'et', 'eu', 'fa', 'fi', 'fr', 'ga', 'gl', 'he', 'hr',
+        'ht', 'hu', 'hy', 'id', 'is', 'it', 'ja', 'ka', 'kk', 'ko', 'ky', 'la',
+        'lt', 'lv', 'mg', 'mk', 'mn', 'ms', 'mt', 'nl', 'no', 'pl', 'pt', 'ro',
+        'ru', 'sk', 'sl', 'sq', 'sr', 'sv', 'sw', 'tg', 'th', 'tl', 'tr', 'tt',
+        'uk', 'uz', 'vi', 'zh'
       ],
     });
   }
