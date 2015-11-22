@@ -224,32 +224,32 @@ const stats = {
 
     const isFullRatio = item.total === 0 || item.total === null;
     const ratio = isFullRatio ? 1 : item.translated / item.total;
-    $table.find('#translated-ratio-' + code).text(ratio);
+    $table.find(`#translated-ratio-${code}`).text(ratio);
 
-    $td = $table.find('#need-translation-' + code);
+    $td = $table.find(`#need-translation-${code}`);
     const needTranslationCount = (item.total !== null ?
                                   item.total - item.translated :
                                   null);
     this.updateItemStats($td, needTranslationCount);
 
-    $td = $table.find('#suggestions-' + code);
+    $td = $table.find(`#suggestions-${code}`);
     this.updateItemStats($td, item.suggestions);
 
-    $td = $table.find('#progressbar-' + code);
+    $td = $table.find(`#progressbar-${code}`);
     this.updateProgressbar($td, item);
 
     if (item.lastaction) {
-      $td = $table.find('#last-activity-' + code);
+      $td = $table.find(`#last-activity-${code}`);
       $td.removeClass('not-inited');
       this.renderLastEvent($td[0], item.lastaction);
       $td.attr('sorttable_customkey', now - item.lastaction.mtime);
     }
 
-    $td = $table.find('#critical-' + code);
+    $td = $table.find(`#critical-${code}`);
     this.updateItemStats($td, item.critical);
 
     if (item.lastupdated) {
-      $td = $table.find('#last-updated-' + code);
+      $td = $table.find(`#last-updated-${code}`);
       $td.removeClass('not-inited');
       this.renderLastUpdatedTime($td[0], item.lastupdated);
       $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
@@ -297,7 +297,7 @@ const stats = {
       for (let name in data.children) {
         const item = data.children[name];
         const code = cssId(name);
-        const $td = $table.find('#total-words-' + code);
+        const $td = $table.find(`#total-words-${code}`);
 
         this.processTableItem(item, code, $table, $td, now);
       }
@@ -306,7 +306,7 @@ const stats = {
         for (let name in data.vfolders) {
           const item = data.vfolders[name];
           const code = cssId(name);
-          const $td = $vfoldersTable.find('#total-words-' + code);
+          const $td = $vfoldersTable.find(`#total-words-${code}`);
 
           // Display only the virtual folders that must be displayed.
           if (this.isAdmin || item.isVisible) {
