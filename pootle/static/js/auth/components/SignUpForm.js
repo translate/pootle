@@ -15,7 +15,7 @@ import { FormElement } from 'components/forms';
 import { FormMixin } from 'mixins/forms';
 
 
-let SignUpForm = React.createClass({
+const SignUpForm = React.createClass({
   mixins: [FormMixin],
 
   propTypes: {

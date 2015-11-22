@@ -12,7 +12,7 @@ import { PureRenderMixin } from 'react/addons';
 import AuthContent from './AuthContent';
 
 
-let AccountInactive = React.createClass({
+const AccountInactive = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {

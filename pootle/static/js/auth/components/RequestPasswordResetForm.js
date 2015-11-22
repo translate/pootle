@@ -18,7 +18,7 @@ import AuthContent from './AuthContent';
 import RequestPasswordResetProgress from './RequestPasswordResetProgress';
 
 
-let RequestPasswordResetForm = React.createClass({
+const RequestPasswordResetForm = React.createClass({
   mixins: [PureRenderMixin, FormMixin],
 
   propTypes: {

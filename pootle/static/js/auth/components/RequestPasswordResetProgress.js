@@ -12,7 +12,7 @@ import { PureRenderMixin } from 'react/addons';
 import AuthProgress from './AuthProgress';
 
 
-let RequestPasswordResetProgress = React.createClass({
+const RequestPasswordResetProgress = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {

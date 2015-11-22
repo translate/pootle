@@ -14,7 +14,7 @@ import AuthContent from './AuthContent';
 import RequestPasswordResetProgress from './RequestPasswordResetProgress';
 
 
-let RequestPasswordResetSent = React.createClass({
+const RequestPasswordResetSent = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {

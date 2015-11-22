@@ -12,7 +12,7 @@ import { PureRenderMixin } from 'react/addons';
 import AuthContent from './AuthContent';
 
 
-let AuthProgress = React.createClass({
+const AuthProgress = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {

@@ -12,7 +12,7 @@ import { PureRenderMixin } from 'react/addons';
 import AuthContent from './AuthContent';
 
 
-let AccountActivation = React.createClass({
+const AccountActivation = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {

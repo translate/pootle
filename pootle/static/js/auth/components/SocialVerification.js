@@ -16,7 +16,7 @@ import { gotoScreen, verifySocial } from '../actions';
 import AuthProgress from './AuthProgress';
 
 
-let SocialVerification = React.createClass({
+const SocialVerification = React.createClass({
   mixins: [FormMixin],
 
   propTypes: {

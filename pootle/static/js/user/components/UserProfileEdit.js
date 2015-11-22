@@ -16,7 +16,7 @@ import { Dialog, Modal } from 'components/lightbox';
 import { UserProfileForm } from '../forms';
 
 
-let UserProfileEdit = React.createClass({
+const UserProfileEdit = React.createClass({
 
   /* Lifecycle */
 

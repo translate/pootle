@@ -9,7 +9,7 @@
 import React from 'react';
 
 
-let ItemDelete = React.createClass({
+const ItemDelete = React.createClass({
 
   propTypes: {
     item: React.PropTypes.object.isRequired,

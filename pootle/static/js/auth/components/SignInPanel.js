@@ -21,7 +21,7 @@ import SocialSignInForm from './SocialSignInForm';
 const SIGNIN_TAB_COOKIE_NAME = 'pootle-auth-signin-tab';
 
 
-let SignInPanel = React.createClass({
+const SignInPanel = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {

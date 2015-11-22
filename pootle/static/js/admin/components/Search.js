@@ -13,7 +13,7 @@ import _ from 'underscore';
 import ItemTable from './ItemTable';
 
 
-let Search = React.createClass({
+const Search = React.createClass({
 
   propTypes: {
     fields: React.PropTypes.array.isRequired,
@@ -104,7 +104,7 @@ let Search = React.createClass({
 });
 
 
-let SearchBox = React.createClass({
+const SearchBox = React.createClass({
 
   propTypes: {
     onSearch: React.PropTypes.func.isRequired,

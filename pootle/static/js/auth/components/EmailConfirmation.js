@@ -12,7 +12,7 @@ import { PureRenderMixin } from 'react/addons';
 import AuthContent from './AuthContent';
 
 
-let EmailConfirmation = React.createClass({
+const EmailConfirmation = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {

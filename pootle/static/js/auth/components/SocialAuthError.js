@@ -12,7 +12,7 @@ import { PureRenderMixin } from 'react/addons';
 import AuthContent from './AuthContent';
 
 
-let SocialAuthError = React.createClass({
+const SocialAuthError = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {

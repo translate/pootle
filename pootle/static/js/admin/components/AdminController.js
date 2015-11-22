@@ -13,7 +13,7 @@ import _ from 'underscore';
 import msg from '../../msg';
 
 
-let AdminController = React.createClass({
+const AdminController = React.createClass({
 
   /* Lifecycle */
 

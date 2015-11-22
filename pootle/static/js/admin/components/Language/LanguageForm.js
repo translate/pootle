@@ -14,7 +14,7 @@ import { ModelFormMixin } from 'mixins/forms';
 import ItemDelete from '../ItemDelete';
 
 
-let LanguageForm = React.createClass({
+const LanguageForm = React.createClass({
   mixins: [ModelFormMixin],
 
   propTypes: {

@@ -11,7 +11,7 @@ import React from 'react';
 import { Modal } from 'components/lightbox';
 
 
-let AuthWindow = React.createClass({
+const AuthWindow = React.createClass({
   propTypes: {
     canContact: React.PropTypes.bool.isRequired,
   },
