@@ -1,0 +1,4 @@
+**/*.bundle.js
+**/*.js.map
+vendor/**
+webpack.config.js
