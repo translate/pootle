@@ -24,7 +24,7 @@ import helpers from './helpers';
 import msg from './msg';
 
 
-const nicePercentage = function (part, total, noTotalDefault) {
+function nicePercentage(part, total, noTotalDefault) {
   const percentage = total ? part / total * 100 : noTotalDefault;
   if (99 < percentage && percentage < 100) {
     return 99;
@@ -33,7 +33,7 @@ const nicePercentage = function (part, total, noTotalDefault) {
     return 1;
   }
   return Math.round(percentage);
-};
+}
 
 
 function cssId(id) {
