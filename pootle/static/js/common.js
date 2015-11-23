@@ -163,17 +163,25 @@ PTL.common = {
 
             $sidebarContent.outerWidth(contentWidth);
             $sidebar.toggleClass(openClassName);
-
+            /*
             const sidebarWidth = $sidebar.outerWidth();
+            */
             const editContentWidth = contentWidth;
-
+            /* eslint-disable no-console */
+            /*
             console.log('Content: ' + contentWidth);
             console.log('Sidebar: ' + sidebarWidth);
             console.log('Edit: ' + editContentWidth);
-
+            */
             $sidebarEditContent.outerWidth(editContentWidth);
 
+            const $contentEdited = $(`.js-announcement-${announcementPk}`);
+            const topOffset = $contentEdited.offset().top;
+            console.log(`Offset: ${topOffset}`);
+            /* eslint-enable no-console */
+
             $sidebarEditContent.html(data.formSnippet);
+            $sidebarEditContent.children().first().offset({ top: topOffset });
 
             PTL.commonAdmin.init({
               page: 'staticpages',
@@ -189,7 +197,7 @@ PTL.common = {
           complete: (xhr) => {
             if (xhr.status === 400) {
               const formSnippet = $.parseJSON(xhr.responseText).formSnippet;
-              $sidebarEditContent.html(data.formSnippet);
+              $sidebarEditContent.html(formSnippet);
               $sidebarEditContent.show();
             }
           },
