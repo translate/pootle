@@ -186,9 +186,13 @@ def pluralize_diff_sugg(sugg):
     forms = []
     for i, target in enumerate(sugg.target.strings):
         if i < len(unit.target.strings):
-            forms.append((i, target, call_highlight(unit.target.strings[i], target), _('Plural Form %d', i)))
+            sugg_text = unit.target.strings[i]
         else:
-            forms.append((i, target, call_highlight('', target), _('Plural Form %d', i)))
+            sugg_text = ''
+
+        forms.append((
+            i, target, call_highlight(sugg_text, target), _('Plural Form %d', i)
+        ))
 
     return forms
 
