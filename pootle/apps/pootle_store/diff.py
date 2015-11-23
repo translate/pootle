@@ -15,6 +15,55 @@ from .util import OBSOLETE
 from .fields import to_python as multistring_to_python
 
 
+class UnitProxy(object):
+    """Wraps File/DB Unit dicts used by StoreDiff for equality comparison"""
+
+    match_attrs = ["context", "developer_comment", "locations",
+                   "source", "target", "translator_comment"]
+
+    def __init__(self, unit):
+        self.unit = unit
+
+    def __eq__(self, other):
+        return all(getattr(self, k) == getattr(other, k)
+                   for k in self.match_attrs)
+
+    def __ne__(self, other):
+        return not self == other
+
+    def __getattr__(self, k):
+        try:
+            return self.__dict__["unit"][k] or ""
+        except KeyError:
+            return self.__getattribute__(k)
+
+
+class DBUnit(UnitProxy):
+
+    @property
+    def source(self):
+        return multistring_to_python(self.unit["source_f"])
+
+    @property
+    def target(self):
+        return multistring_to_python(self.unit["target_f"])
+
+
+class FileUnit(UnitProxy):
+
+    @property
+    def locations(self):
+        return "\n".join(self.unit["locations"])
+
+    @property
+    def source(self):
+        return multistring_to_python(self.unit["source"])
+
+    @property
+    def target(self):
+        return multistring_to_python(self.unit["target"])
+
+
 class StoreDiff(object):
 
     def __init__(self, db_store, file_store, file_revision):
@@ -201,7 +250,9 @@ class StoreDiff(object):
                 update_dbids.update(
                     set(self.db_units[uid]['id']
                         for uid in self.active_units[i1:i2]
-                        if uid in self.file_units))
+                        if (uid in self.file_units
+                            and (DBUnit(self.db_units[uid])
+                                 != FileUnit(self.file_units[uid])))))
         return update_dbids
 
     def has_changes(self, diff):
