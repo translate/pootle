@@ -33,6 +33,7 @@ script:
   - make mo
   - DJANGO_SETTINGS_MODULE=pootle.settings ./setup.py build_checks_templates
   - ./manage.py migrate --noinput --traceback
+  - ./manage.py migrate | (egrep "Your models have changes" && exit 1 || exit 0)
   - ./manage.py initdb --traceback
   - ./manage.py runserver --traceback &
   - TESTPID=$!
