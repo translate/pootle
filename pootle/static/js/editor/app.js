@@ -33,6 +33,7 @@ import assign from 'object-assign';
 import StatsAPI from 'api/StatsAPI';
 import UnitAPI from 'api/UnitAPI';
 import cookie from 'utils/cookie';
+import diff from 'utils/diff';
 import { q, qAll } from 'utils/dom';
 import fetch from 'utils/fetch';
 import linkHashtags from 'utils/linkHashtags';
@@ -67,6 +68,17 @@ const sortSelectOpts = assign({
 
 
 const mtProviders = [];
+
+
+function highlightSuggestionsDiff(currentUnit) {
+  qAll('.js-suggestion-text').forEach(
+    (translationTextNode) => {
+      // eslint-disable-next-line no-param-reassign
+      translationTextNode.innerHTML = diff(currentUnit.get('target')[0],
+                                           translationTextNode.dataset.string);
+    }
+  );
+}
 
 
 function _refreshChecksSnippet(newChecks) {
@@ -588,6 +600,7 @@ PTL.editor = {
     autosize(q('textarea.expanding:not([disabled="disabled"])'));
 
     utils.fancyHlNodes('.js-translation-text');
+    highlightSuggestionsDiff(currentUnit);
 
     // set direction of the comment body
     $('.extra-item-comment').filter(':not([dir])').bidi();
@@ -2355,21 +2368,14 @@ PTL.editor = {
       });
     }
 
-    if (data.newdiffs !== undefined) {
-      // Update remaining suggestion's diff
-      $.each(data.newdiffs, (suggestionId, sugg) => {
-        $.each(sugg, (i, target) => {
-          $(`#suggdiff-${suggestionId}-${i}`).html(target);
-        });
-      });
-    }
-
     // FIXME: handle this via events
     const translations = $('.js-translation-area').map((i, el) => $(el).val())
                                                   .get();
     const unit = this.units.getCurrent();
     unit.setTranslation(translations);
     unit.set('isfuzzy', false);
+
+    highlightSuggestionsDiff(unit);
 
     if (data.user_score) {
       score.set(data.user_score);

@@ -43,8 +43,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 from .decorators import get_unit_context
 from .forms import unit_comment_form_factory, unit_form_factory, UnitSearchForm
 from .models import Unit
-from .templatetags.store_tags import (highlight_diffs, pluralize_source,
-                                      pluralize_target)
+from .templatetags.store_tags import pluralize_source, pluralize_target
 from .unit.results import GroupedResults
 from .unit.timeline import Timeline
 from .util import find_altsrcs
@@ -697,12 +696,7 @@ def accept_suggestion(request, unit, suggid):
         'user_score': request.user.public_score,
         'newtargets': [target for target in unit.target.strings],
         'checks': _get_critical_checks_snippet(request, unit),
-        'newdiffs': {},
     }
-    for sugg in unit.get_suggestions():
-        json['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i],
-                                                     target) for i, target in
-                                     enumerate(sugg.target.strings)]
     return JsonResponse(json)
 
 

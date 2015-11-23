@@ -331,12 +331,14 @@
                 </a>
               {% endif %}
             </div>
-            {% for i, target, diff, title in sugg|pluralize_diff_sugg %}
+            {% for i, target, diff, title in sugg|pluralize_sugg %}
             <div class="extra-item-content">
               <div class="extra-item">
-                <div id="suggdiff-{{sugg.id}}-{{i}}" class="suggestion-translation"
+                <div
+                  class="js-suggestion-text suggestion-translation"
+                  data-string="{{ target }}"
                   lang="{{ language.code }}" {% if title %} title="{{ title }}"{% endif %}
-                  >{{ diff }}</div>
+                  >{{ target }}</div>
               </div>
             </div>
             {% endfor %}

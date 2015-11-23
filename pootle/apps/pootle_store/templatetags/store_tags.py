@@ -8,18 +8,11 @@
 
 import re
 
-from diff_match_patch import diff_match_patch
-from translate.misc.multistring import multistring
-from translate.storage.placeables import general
-
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
-from django.template.defaultfilters import stringfilter
-from django.utils.safestring import mark_safe
 
 from pootle.core.utils.templates import get_template_source
 from pootle.i18n.gettext import ugettext as _
-from pootle_store.fields import list_empty
 
 
 register = template.Library()
@@ -32,119 +25,6 @@ IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))", re.IGNORECASE)
 def image_urls(text):
     """Return a list of image URLs extracted from `text`."""
     return map(lambda x: x[0], IMAGE_URL_RE.findall(text))
-
-
-ESCAPE_RE = re.compile('<[^<]*?>|\r\n|[\r\n\t&<>]')
-
-
-def fancy_escape(text):
-    """Replace special chars with entities, and highlight XML tags and
-    whitespaces.
-    """
-    def replace(match):
-        escape_nonprintable = (
-            '<span class="non-printable js-editor-copytext %s" '
-            'data-string="%s"></span>'
-        )
-        submap = {
-            '\r\n': (escape_nonprintable % ('newline', '&#10;')) + '<br/>',
-            '\r': (escape_nonprintable % ('newline', '&#10;')) + '<br/>',
-            '\n': (escape_nonprintable % ('newline', '&#10;')) + '<br/>',
-            '\t': escape_nonprintable % ('tab', '&#9;'),
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-        }
-        try:
-            return submap[match.group()]
-        except KeyError:
-            html_highlight = ('<span class="highlight-html '
-                              'js-editor-copytext">&lt;%s&gt;</span>')
-            return html_highlight % fancy_escape(match.group()[1:-1])
-
-    return ESCAPE_RE.sub(replace, text)
-
-
-WHITESPACE_RE = re.compile('^ +| +$|[\r\n\t] +| {2,}')
-
-
-def fancy_spaces(text):
-    """Highlight spaces to make them easily visible."""
-    def replace(match):
-        fancy_space = '<span class="translation-space"> </span>'
-        if match.group().startswith(' '):
-            return fancy_space * len(match.group())
-        return match.group()[0] + fancy_space * (len(match.group()) - 1)
-    return WHITESPACE_RE.sub(replace, text)
-
-
-PUNCTUATION_RE = general.PunctuationPlaceable().regex
-
-
-def fancy_punctuation_chars(text):
-    """Wrap punctuation chars found in the ``text`` around tags."""
-    def replace(match):
-        fancy_special_char = ('<span class="highlight-punctuation '
-                              'js-editor-copytext">%s</span>')
-        return fancy_special_char % match.group()
-
-    return PUNCTUATION_RE.sub(replace, text)
-
-
-@register.filter
-@stringfilter
-def fancy_highlight(text):
-    return mark_safe(fancy_punctuation_chars(fancy_spaces(fancy_escape(text))))
-
-
-def call_highlight(old, new):
-    """Calls diff highlighting code only if the target is set.
-    Otherwise, highlight as a normal unit.
-    """
-    if isinstance(old, multistring):
-        old_value = old.strings
-    else:
-        old_value = old
-
-    if list_empty(old_value):
-        return fancy_highlight(new)
-
-    return highlight_diffs(old, new)
-
-
-differencer = diff_match_patch()
-
-
-def highlight_diffs(old, new):
-    """Highlight the differences between old and new."""
-
-    textdiff = u""  # to store the final result
-    removed = u""  # the removed text that we might still want to add
-    diff = differencer.diff_main(old, new)
-    differencer.diff_cleanupSemantic(diff)
-    for op, text in diff:
-        if op == 0:  # equality
-            if removed:
-                textdiff += '<span class="diff-delete">%s</span>' % \
-                    fancy_escape(removed)
-                removed = u""
-            textdiff += fancy_escape(text)
-        elif op == 1:  # insertion
-            if removed:
-                # this is part of a substitution, not a plain insertion. We
-                # will format this differently.
-                textdiff += '<span class="diff-replace">%s</span>' % \
-                    fancy_escape(text)
-                removed = u""
-            else:
-                textdiff += '<span class="diff-insert">%s</span>' % \
-                    fancy_escape(text)
-        elif op == -1:  # deletion
-            removed = text
-    if removed:
-        textdiff += '<span class="diff-delete">%s</span>' % \
-            fancy_escape(removed)
-    return mark_safe(textdiff)
 
 
 @register.filter('pluralize_source')
@@ -192,25 +72,15 @@ def pluralize_target(unit, nplurals=None):
     return forms
 
 
-@register.filter('pluralize_diff_sugg')
-def pluralize_diff_sugg(sugg):
+@register.filter
+def pluralize_sugg(sugg):
     unit = sugg.unit
     if not unit.hasplural():
-        return [
-            (0, sugg.target, call_highlight(unit.target, sugg.target), None)
-        ]
+        return [(0, sugg.target, None)]
 
     forms = []
     for i, target in enumerate(sugg.target.strings):
-        if i < len(unit.target.strings):
-            sugg_text = unit.target.strings[i]
-        else:
-            sugg_text = ''
-
-        forms.append((
-            i, target, call_highlight(sugg_text, target),
-            _('Plural Form %d', i)
-        ))
+        forms.append((i, target, _('Plural Form %d', i)))
 
     return forms
 
