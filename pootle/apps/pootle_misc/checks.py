@@ -877,7 +877,7 @@ class ENChecker(checks.TranslationChecker):
     @critical
     def double_quotes_in_tags(self, str1, str2):
         """Checks whether double quotation mark `"` in tags is consistent between the
--        two strings.
+        two strings.
         """
         def get_fingerprint(str, is_source=False, translation=''):
             chunks = unbalanced_tag_braces_regex.split(str)
