@@ -323,7 +323,7 @@ PTL.editor = {
         const moduleName = provider.name.split('_').map(
           (x) => x[0] + x.slice(1).toLowerCase()
         ).join('');
-        const Module = require('./mt/providers/' + moduleName);
+        const Module = require('./mt/providers/' + moduleName).default;
         mtProviders.push(new Module(provider.key));
       });
     });
