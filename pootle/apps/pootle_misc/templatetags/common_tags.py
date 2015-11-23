@@ -74,7 +74,7 @@ def top_scorers(*args, **kwargs):
 def format_date_range(date_from, date_to, separator=" - ",
     format_str="{dt:%B} {dt.day}, {dt:%Y}", year_f=", {dt:%Y}",
     month_f="{dt:%B}"):
-    """ Takes a start date, end date, separator and formatting strings and
+    """Takes a start date, end date, separator and formatting strings and
     returns a pretty date range string
     """
     if (isinstance(date_to, datetime.datetime) and
