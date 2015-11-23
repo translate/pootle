@@ -88,7 +88,8 @@ var FormElement = React.createClass({
         <span className="helptext">{hint}</span>}
       </div>
     );
-  }
+  },
+
 });
 
 
@@ -109,7 +110,7 @@ var FormValueInput = React.createClass({
     }
 
     return <input onChange={this.handleChange} {...this.props} />;
-  }
+  },
 
 });
 
@@ -128,7 +129,7 @@ var FormCheckedInput = React.createClass({
   render: function () {
     return <input checked={this.props.value} onChange={this.handleChange}
                   {...this.props} />;
-  }
+  },
 
 });
 
@@ -161,11 +162,11 @@ var FormSelectInput = React.createClass({
         {...this.props}
       />
     );
-  }
+  },
 
 });
 
 
 module.exports = {
-  FormElement: FormElement
+  FormElement: FormElement,
 };

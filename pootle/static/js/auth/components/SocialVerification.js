@@ -116,7 +116,7 @@ const SocialVerification = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 
 });
 

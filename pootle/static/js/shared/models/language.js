@@ -27,7 +27,7 @@ var Language = Backbone.Model.extend({
   fieldChoices: {
     'nplurals': [
       // FIXME: using `gettext()` here breaks everything
-      [0, 'Unknown'], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]
+      [0, 'Unknown'], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6],
     ],
   },
 

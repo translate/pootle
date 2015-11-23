@@ -36,7 +36,7 @@ const EmailConfirmation = React.createClass({
         </div>
       </AuthContent>
     );
-  }
+  },
 
 });
 

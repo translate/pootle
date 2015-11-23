@@ -45,7 +45,7 @@ const LastUpdate = React.createClass({
         />
       </div>
     );
-  }
+  },
 
 });
 

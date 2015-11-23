@@ -22,7 +22,7 @@ var classNames = {
 };
 
 var keys = {
-  ESC: 27
+  ESC: 27,
 };
 
 
@@ -253,5 +253,5 @@ var Dialog = React.createClass({
 
 module.exports = {
   Modal: Modal,
-  Dialog: Dialog
+  Dialog: Dialog,
 };

@@ -36,7 +36,7 @@ const AccountInactive = React.createClass({
         </div>
       </AuthContent>
     );
-  }
+  },
 
 });
 

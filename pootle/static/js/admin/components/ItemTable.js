@@ -81,7 +81,7 @@ const ItemTableRow = React.createClass({
         {this.props.fields.map(createColumn)}
       </tr>
     );
-  }
+  },
 
 });
 

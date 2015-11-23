@@ -39,7 +39,7 @@ const LanguageAdd = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 
 });
 

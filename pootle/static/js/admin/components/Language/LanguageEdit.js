@@ -45,7 +45,7 @@ const LanguageEdit = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 
 });
 

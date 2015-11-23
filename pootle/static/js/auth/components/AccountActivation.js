@@ -59,7 +59,7 @@ const AccountActivation = React.createClass({
         </div>
       </AuthContent>
     );
-  }
+  },
 
 });
 

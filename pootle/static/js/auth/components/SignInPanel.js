@@ -65,7 +65,7 @@ const SignInPanel = React.createClass({
         </Tab>
       </Tabs>
     );
-  }
+  },
 
 });
 

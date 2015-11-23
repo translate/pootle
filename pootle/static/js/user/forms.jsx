@@ -21,7 +21,7 @@ import Avatar from 'components/Avatar';
 // XXX: should probably live somewhere else
 var linkify = function (input) {
   return {
-    __html: link(input)
+    __html: link(input),
   };
 };
 
@@ -122,11 +122,11 @@ var UserProfileForm = React.createClass({
         </p>
       </form>
     );
-  }
+  },
 
 });
 
 
 module.exports = {
-  UserProfileForm: UserProfileForm
+  UserProfileForm: UserProfileForm,
 };

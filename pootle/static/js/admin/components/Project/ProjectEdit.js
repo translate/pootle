@@ -45,7 +45,7 @@ const ProjectEdit = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 
 });
 

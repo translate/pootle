@@ -22,7 +22,7 @@ const ItemDelete = React.createClass({
 
   getInitialState() {
     return {
-      buttonDisabled: true
+      buttonDisabled: true,
     };
   },
 
@@ -51,7 +51,7 @@ const ItemDelete = React.createClass({
         <span className="helptext">{this.props.helpText}</span>}
       </div>
     );
-  }
+  },
 
 });
 

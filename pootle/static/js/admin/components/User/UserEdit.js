@@ -45,7 +45,7 @@ const UserEdit = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 
 });
 

@@ -168,7 +168,7 @@ const Auth = React.createClass({
         />
       </AuthWindow>
     );
-  }
+  },
 
 });
 

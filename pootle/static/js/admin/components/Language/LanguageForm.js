@@ -106,7 +106,7 @@ const LanguageForm = React.createClass({
         </div>}
       </form>
     );
-  }
+  },
 
 });
 

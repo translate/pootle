@@ -64,7 +64,7 @@ const RequestPasswordResetSent = React.createClass({
         </div>
       </AuthContent>
     );
-  }
+  },
 
 });
 

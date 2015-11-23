@@ -65,7 +65,7 @@ collections.UnitSet = Backbone.Collection.extend({
 
   hasPrev: function () {
     return this.prev() !== null;
-  }
+  },
 
 });
 

@@ -127,7 +127,8 @@ const SignInForm = React.createClass({
         </div>
       </form>
     );
-  }
+  },
+
 });
 
 

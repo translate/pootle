@@ -149,7 +149,7 @@ const ProjectForm = React.createClass({
         </div>}
       </form>
     );
-  }
+  },
 
 });
 

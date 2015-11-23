@@ -50,6 +50,6 @@ export function escapeUnsafeRegexSymbols(s) {
  */
 export function makeRegexForMultipleWords(s) {
   return [
-    '(', escapeUnsafeRegexSymbols(s).trim().replace(/ +/g, '|'), ')'
+    '(', escapeUnsafeRegexSymbols(s).trim().replace(/ +/g, '|'), ')',
   ].join('');
 }

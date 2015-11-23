@@ -37,7 +37,7 @@ const AuthWindow = React.createClass({
         {...this.props}
       />
     );
-  }
+  },
 
 });
 

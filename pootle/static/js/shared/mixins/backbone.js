@@ -12,7 +12,7 @@ var BackboneMixin = {
 
   componentWillUnmount: function () {
     this.getResource().off('all', this._boundForceUpdate);
-  }
+  },
 
 };
 

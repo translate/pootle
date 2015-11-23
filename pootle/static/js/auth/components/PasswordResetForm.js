@@ -141,7 +141,7 @@ const PasswordResetForm = React.createClass({
         </form>
       </AuthContent>
     );
-  }
+  },
 
 });
 

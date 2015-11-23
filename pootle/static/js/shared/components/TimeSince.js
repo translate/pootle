@@ -80,7 +80,7 @@ const TimeSince = React.createClass({
         {displayTime}
       </time>
     );
-  }
+  },
 
 });
 

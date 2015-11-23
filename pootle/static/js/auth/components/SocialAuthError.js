@@ -51,7 +51,7 @@ const SocialAuthError = React.createClass({
       }
       </AuthContent>
     );
-  }
+  },
 
 });
 

@@ -32,7 +32,7 @@ class YandexTranslate extends MTProvider {
         'ht', 'hu', 'hy', 'id', 'is', 'it', 'ja', 'ka', 'kk', 'ko', 'ky', 'la',
         'lt', 'lv', 'mg', 'mk', 'mn', 'ms', 'mt', 'nl', 'no', 'pl', 'pt', 'ro',
         'ru', 'sk', 'sl', 'sq', 'sr', 'sv', 'sw', 'tg', 'th', 'tl', 'tr', 'tt',
-        'uk', 'uz', 'vi', 'zh'
+        'uk', 'uz', 'vi', 'zh',
       ],
     });
   }

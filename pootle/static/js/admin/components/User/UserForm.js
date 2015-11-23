@@ -23,7 +23,7 @@ const UserForm = React.createClass({
 
   fields: [
       'username', 'is_active', 'password', 'full_name', 'email',
-      'is_superuser', 'twitter', 'linkedin', 'website', 'bio'
+      'is_superuser', 'twitter', 'linkedin', 'website', 'bio',
   ],
 
 
@@ -161,7 +161,7 @@ const UserForm = React.createClass({
         </div>}
       </form>
     );
-  }
+  },
 
 });
 

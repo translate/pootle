@@ -71,7 +71,7 @@ class MTProvider {
     return fetch({
       crossDomain: true,
       url: this.url,
-      body: this.getRequestBody(bodyOpts)
+      body: this.getRequestBody(bodyOpts),
     }).then(
       (response) => this.handleSuccess(response)
     ).then(

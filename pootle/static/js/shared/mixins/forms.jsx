@@ -18,7 +18,7 @@ var FormValidationMixin = {
 
   getInitialState: function () {
     return {
-      errors: {}
+      errors: {},
     };
   },
 
@@ -100,7 +100,7 @@ var FormMixin = {
     this.clearValidation();
     this.initialData = _.extend({}, this.state.formData);
     this.setState({
-      isDirty: false
+      isDirty: false,
     });
 
     this.handleSuccess && this.handleSuccess(this.getResource());
@@ -169,5 +169,5 @@ var ModelFormMixin = {
 module.exports = {
   FormMixin: FormMixin,
   FormValidationMixin: FormValidationMixin,
-  ModelFormMixin: ModelFormMixin
+  ModelFormMixin: ModelFormMixin,
 };

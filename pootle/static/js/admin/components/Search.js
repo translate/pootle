@@ -67,7 +67,7 @@ const Search = React.createClass({
 
     let resultsClassNames = cx({
       'search-results': true,
-      'loading': isLoading
+      'loading': isLoading,
     });
 
     return (
@@ -99,7 +99,7 @@ const Search = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 
 });
 
@@ -117,7 +117,7 @@ const SearchBox = React.createClass({
   getInitialState() {
     return {
       // XXX: review, prop should be explicitly named `initialSearchQuery`
-      searchQuery: this.props.searchQuery
+      searchQuery: this.props.searchQuery,
     };
   },
 
@@ -166,7 +166,7 @@ const SearchBox = React.createClass({
         {...this.props}
       />
     );
-  }
+  },
 
 });
 

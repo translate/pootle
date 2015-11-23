@@ -68,7 +68,8 @@ var LayeredComponentMixin = {
         }
 
         React.unmountComponentAtNode(this._layer);
-    }
+    },
+
 };
 
 

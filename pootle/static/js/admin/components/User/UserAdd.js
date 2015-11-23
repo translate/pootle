@@ -39,7 +39,7 @@ const UserAdd = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 
 });
 

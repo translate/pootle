@@ -39,7 +39,7 @@ const ProjectAdd = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 
 });
 

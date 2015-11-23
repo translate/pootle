@@ -32,8 +32,8 @@ var Unit = Backbone.RelationalModel.extend({
     key: 'store',
     relatedModel: Store,
     reverseRelation: {
-      key: 'units'
-    }
+      key: 'units',
+    },
   }],
 
   /*
@@ -46,7 +46,7 @@ var Unit = Backbone.RelationalModel.extend({
     this.set('target', _.map(value, function (item) {
       return utils.cleanEscape(item);
     }));
-  }
+  },
 
 });
 

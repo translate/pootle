@@ -39,7 +39,7 @@ const ProjectController = React.createClass({
               collection={this.props.items}
               onAdd={this.props.onAdd}
               onSuccess={this.props.onSuccess}
-              onDelete={this.props.onDelete} />
+              onDelete={this.props.onDelete} />,
     };
     const args = {
       count: this.props.items.count,
@@ -79,7 +79,7 @@ const ProjectController = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 
 });
 

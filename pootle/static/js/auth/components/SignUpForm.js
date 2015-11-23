@@ -128,7 +128,8 @@ const SignUpForm = React.createClass({
         </div>
       </form>
     );
-  }
+  },
+
 });
 
 
