@@ -6,14 +6,11 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
+import $ from 'jquery';
+import 'jquery-select2';
+import _ from 'underscore';
 
-var $ = require('jquery');
-var _ = require('underscore');
-
-require('jquery-select2');
-
-var utils = require('./utils.js');
+import utils from './utils';
 
 
 var sel = {
@@ -243,4 +240,4 @@ var browser = {
 };
 
 
-module.exports = browser;
+export default browser;
