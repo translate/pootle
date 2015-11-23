@@ -20,7 +20,7 @@ def test_max_revision(af_tutorial_po):
     """Tests `max_revision()` gets the latest revision."""
 
     # update a store first, initial_revision = 1 after this update
-    af_tutorial_po.update(overwrite=False, only_newer=False)
+    af_tutorial_po.update(af_tutorial_po.file.store)
 
     initial_max_revision = Unit.max_revision()
     initial_revision = Revision.get()

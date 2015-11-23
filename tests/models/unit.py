@@ -251,7 +251,7 @@ def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
     """
 
     # Parse store
-    it_tutorial_po.update(overwrite=False, only_newer=False)
+    it_tutorial_po.update(it_tutorial_po.file.store)
 
     untranslated_unit = it_tutorial_po.getitem(0)
     suggestion_text = 'foo bar baz'

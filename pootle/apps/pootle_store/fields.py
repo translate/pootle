@@ -133,7 +133,12 @@ class TranslationStoreFieldFile(FieldFile):
     def _get_realpath(self):
         """Return realpath resolving symlinks if necessary."""
         if not hasattr(self, "_realpath"):
-            self._realpath = os.path.realpath(self.path)
+            # Django's db.models.fields.files.FieldFile raises ValueError if
+            # if the file field has no name - and tests "if self" to check
+            if self:
+                self._realpath = os.path.realpath(self.path)
+            else:
+                self._realpath = ''
         return self._realpath
 
     @property
@@ -154,7 +159,10 @@ class TranslationStoreFieldFile(FieldFile):
     def _update_store_cache(self):
         """Add translation store to dictionary cache, replace old cached
         version if needed."""
-        mod_info = self.getpomtime()
+        if self.exists():
+            mod_info = self.getpomtime()
+        else:
+            mod_info = 0
         if (not hasattr(self, "_store_tuple") or
             self._store_tuple.mod_info != mod_info):
             try:

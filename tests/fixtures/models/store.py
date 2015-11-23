@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from collections import OrderedDict
 import os
 import shutil
 import tempfile
@@ -15,14 +16,174 @@ from django.utils import timezone
 
 import pytest
 
+from ...utils import update_store, create_store
+
+
+DEFAULT_STORE_UNITS_1 = [("Unit 1", "Unit 1"),
+                         ("Unit 2", "Unit 2")]
+
+DEFAULT_STORE_UNITS_2 = [("Unit 3", "Unit 3"),
+                         ("Unit 4", "Unit 4"),
+                         ("Unit 5", "Unit 5")]
+
+DEFAULT_STORE_UNITS_3 = [("Unit 6", "Unit 6"),
+                         ("Unit 7", "Unit 7"),
+                         ("Unit 8", "Unit 8")]
+
+UPDATED_STORE_UNITS_1 = [(src, "UPDATED %s" % target)
+                         for src, target
+                         in DEFAULT_STORE_UNITS_1]
+
+UPDATED_STORE_UNITS_2 = [(src, "UPDATED %s" % target)
+                         for src, target
+                         in DEFAULT_STORE_UNITS_2]
+
+UPDATED_STORE_UNITS_3 = [(src, "UPDATED %s" % target)
+                         for src, target
+                         in DEFAULT_STORE_UNITS_3]
+
 
 TEST_UPDATE_PO = "tests/data/po/tutorial/en/tutorial_update.po"
 TEST_EVIL_UPDATE_PO = "tests/data/po/tutorial/en/tutorial_update_evil.po"
 
+UPDATE_STORE_TESTS = OrderedDict()
+UPDATE_STORE_TESTS['min_empty'] = {"update_store": (0, [])}
+UPDATE_STORE_TESTS['min_new_units'] = {
+    "update_store": (0, DEFAULT_STORE_UNITS_3)
+    }
+
+UPDATE_STORE_TESTS['old_empty'] = {"update_store": ("MID", [])}
+UPDATE_STORE_TESTS['old_subset_1'] = {
+    "update_store": ("MID", UPDATED_STORE_UNITS_1)
+    }
+UPDATE_STORE_TESTS['old_subset_2'] = {
+    "update_store": ("MID", UPDATED_STORE_UNITS_2)
+    }
+UPDATE_STORE_TESTS['old_same_updated'] = {
+    "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_2)
+    }
+
+UPDATE_STORE_TESTS['old_unobsolete'] = {
+    "setup": [DEFAULT_STORE_UNITS_1,
+              DEFAULT_STORE_UNITS_2,
+              []],
+    "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_2)
+    }
+
+UPDATE_STORE_TESTS['old_merge'] = {
+    "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_3)
+    }
+
+UPDATE_STORE_TESTS['old_same_updated_fs_wins'] = {
+    "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_2),
+    "fs_wins": True
+    }
+
+UPDATE_STORE_TESTS['max_empty'] = {"update_store": ("MAX", [])}
+UPDATE_STORE_TESTS['max_subset'] = {
+    "update_store": ("MAX", DEFAULT_STORE_UNITS_1)
+    }
+UPDATE_STORE_TESTS['max_same'] = {
+    "update_store": ("MAX", DEFAULT_STORE_UNITS_1 + DEFAULT_STORE_UNITS_2)
+    }
+UPDATE_STORE_TESTS['max_new_units'] = {
+    "update_store": ("MAX",
+                     (DEFAULT_STORE_UNITS_1
+                      + DEFAULT_STORE_UNITS_2
+                      + DEFAULT_STORE_UNITS_3))
+    }
+UPDATE_STORE_TESTS['max_change_order'] = {
+    "update_store": ("MAX", DEFAULT_STORE_UNITS_2 + DEFAULT_STORE_UNITS_1)
+    }
+UPDATE_STORE_TESTS['max_unobsolete'] = {
+    "setup": [DEFAULT_STORE_UNITS_1 + DEFAULT_STORE_UNITS_2,
+              DEFAULT_STORE_UNITS_1],
+    "update_store": ("MAX", DEFAULT_STORE_UNITS_1 + DEFAULT_STORE_UNITS_2)
+    }
+
+
+UPDATE_STORE_TESTS['max_obsolete'] = {
+    "setup": [DEFAULT_STORE_UNITS_1,
+              (DEFAULT_STORE_UNITS_1
+               + DEFAULT_STORE_UNITS_2
+               + DEFAULT_STORE_UNITS_3)],
+    "update_store": ("MAX", DEFAULT_STORE_UNITS_1 + DEFAULT_STORE_UNITS_3)
+    }
+
+
+def pytest_generate_tests(metafunc):
+    if "_update_store_tests" in metafunc.fixturenames:
+        metafunc.parametrize("_update_store_tests", UPDATE_STORE_TESTS)
+
+
+def _setup_store_test(store, member, member2, test):
+    from pootle_store.models import FILE_WINS, POOTLE_WINS
+
+    setup = test.get("setup", None)
+
+    if setup is None:
+        setup = [(DEFAULT_STORE_UNITS_1),
+                 (DEFAULT_STORE_UNITS_1 + DEFAULT_STORE_UNITS_2)]
+
+    for units in setup:
+        store_revision = store.get_max_unit_revision()
+        print "setup store: %s %s" % (store_revision, units)
+        update_store(store, store_revision=store_revision, units=units,
+                     user=member)
+        for unit in store.units:
+            comment = ("Set up unit(%s) with store_revision: %s"
+                       % (unit.source_f, store_revision))
+            _create_comment_on_unit(unit, member, comment)
+
+    store_revision, units_update = test["update_store"]
+    revision_min = store.get_max_unit_revision()
+    units_before = [unit for unit in store.unit_set.all()]
+
+    fs_wins = test.get("fs_wins", True)
+    if fs_wins:
+        resolve_conflict = FILE_WINS
+    else:
+        resolve_conflict = POOTLE_WINS
+
+    if store_revision == "MAX":
+        store_revision = store.get_max_unit_revision()
+
+    elif store_revision == "MIN":
+        store_revision = revision_min
+
+    elif store_revision == "MID":
+        revisions = [unit.revision for unit in units_before]
+        store_revision = sum(revisions) / len(revisions)
+
+    return (store, units_update, store_revision, resolve_conflict,
+            units_before, member, member2)
+
+
+@pytest.fixture
+def store_diff_tests(en_tutorial_po, member, member2, _update_store_tests):
+    from pootle_store.models import StoreDiff
+
+    test = _setup_store_test(en_tutorial_po, member, member2,
+                             UPDATE_STORE_TESTS[_update_store_tests])
+    test_store = create_store(units=test[1])
+    return [StoreDiff(test[0], test_store, test[2])] + list(test[:3])
+
+
+@pytest.fixture
+def update_store_tests(en_tutorial_po, member, member2, _update_store_tests):
+    test = _setup_store_test(en_tutorial_po, member, member2,
+                             UPDATE_STORE_TESTS[_update_store_tests])
+    update_store(test[0],
+                 units=test[1],
+                 store_revision=test[2],
+                 user=member2,
+                 resolve_conflict=test[3])
+    return test
+
 
 def _require_store(tp, po_dir, name):
     """Helper to get/create a new store."""
-    from pootle_store.models import Store
+    from pootle_store.models import Store, PARSED
 
     file_path = os.path.join(po_dir, tp.real_path, name)
     parent_dir = tp.directory
@@ -40,6 +201,10 @@ def _require_store(tp, po_dir, name):
             name=name,
             translation_project=tp,
         )
+
+    if store.file.exists():
+        if store.state < PARSED:
+            store.update(store.file.store)
 
     return store
 
@@ -153,6 +318,13 @@ def en_tutorial_po(settings, english_tutorial, system):
 
 
 @pytest.fixture
+def en_tutorial_po_no_file(settings, english_tutorial, system):
+    """Require an empty store."""
+    return _require_store(english_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY, 'no_file.po')
+
+
+@pytest.fixture
 def en_tutorial_po_member_updated(settings, english_tutorial,
                                   system, member):
     """Require the /en/tutorial/tutorial.po store."""
@@ -248,3 +420,11 @@ def af_vfolder_test_browser_defines_po(settings, afrikaans_vfolder_test,
     return _require_store(afrikaans_vfolder_test,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
                           'browser/defines.po')
+
+
+@pytest.fixture
+def templates_tutorial_pot(settings, templates_tutorial, system):
+    """Require the /templates/tutorial/tutorial.pot store."""
+    return _require_store(templates_tutorial,
+                          settings.POOTLE_TRANSLATION_DIRECTORY,
+                          'tutorial.pot')

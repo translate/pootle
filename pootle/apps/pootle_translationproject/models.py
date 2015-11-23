@@ -236,7 +236,6 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     @property
     def units(self):
-        self.require_units()
         # FIXME: we rely on implicit ordering defined in the model. We might
         # want to consider pootle_path as well
         return Unit.objects.filter(store__translation_project=self,
@@ -296,7 +295,9 @@ class TranslationProject(models.Model, CachedTreeItem):
                 # disk, so initialize the TP files using the templates TP ones.
                 from pootle_app.project_tree import init_store_from_template
 
-                for template_store in template_tp.stores.live().iterator():
+                template_stores = [ts for ts in template_tp.stores.live().iterator()
+                                   if ts.file.exists()]
+                for template_store in template_stores:
                     init_store_from_template(self, template_store)
 
             self.scan_files()
@@ -342,11 +343,11 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         return self.project.code in Project.accessible_by_user(user)
 
-    def update(self, overwrite=True):
+    def update(self):
         """Update all stores to reflect state on disk"""
         stores = self.stores.live().exclude(file='').filter(state__gte=PARSED)
         for store in stores.iterator():
-            store.update(overwrite=overwrite)
+            store.update()
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
         """Sync unsaved work on all stores to disk"""
@@ -355,18 +356,6 @@ class TranslationProject(models.Model, CachedTreeItem):
             store.sync(update_structure=not conservative,
                        conservative=conservative,
                        skip_missing=skip_missing, only_newer=only_newer)
-
-    def require_units(self):
-        """Makes sure all stores are parsed"""
-        for store in self.stores.live().filter(state__lt=PARSED).iterator():
-            try:
-                store.require_units()
-            except IntegrityError:
-                logging.info(u"Duplicate IDs in %s", store.abs_real_path)
-            except ParseError as e:
-                logging.info(u"Failed to parse %s\n%s", store.abs_real_path, e)
-            except (IOError, OSError) as e:
-                logging.info(u"Can't access %s\n%s", store.abs_real_path, e)
 
     ### TreeItem
     def get_children(self):
