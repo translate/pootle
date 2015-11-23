@@ -149,6 +149,7 @@ PTL.common = {
 
       const $sidebar = $('.js-sidebar');
       const $sidebarEditContent = $('.js-sidebar-edit-content');
+      const $sidebarContent = $('.js-sidebar-content');
       const openClassName = 'sidebar-edit-open';
 
       if (!$sidebar.hasClass(openClassName)) {
@@ -158,7 +159,19 @@ PTL.common = {
           url: `/xhr/announcement/${announcementPk}/edit/`,
           type: 'GET',
           success: (data) => {
+            const contentWidth = $sidebarContent.outerWidth();
+
+            $sidebarContent.outerWidth(contentWidth);
             $sidebar.toggleClass(openClassName);
+
+            const sidebarWidth = $sidebar.outerWidth();
+            const editContentWidth = contentWidth;
+
+            console.log('Content: ' + contentWidth);
+            console.log('Sidebar: ' + sidebarWidth);
+            console.log('Edit: ' + editContentWidth);
+
+            $sidebarEditContent.outerWidth(editContentWidth);
 
             $sidebarEditContent.html(data.formSnippet);
 

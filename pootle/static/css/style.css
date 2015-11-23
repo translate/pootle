@@ -586,7 +586,6 @@ html[dir="rtl"] #sidebar
 #sidebar.sidebar-edit-open #sidebar-content
 {
     display: block;
-    width: 43%;
 }
 
 #sidebar.sidebar-edit-open #sidebar-edit-content
