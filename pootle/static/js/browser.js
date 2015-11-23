@@ -10,6 +10,8 @@ import $ from 'jquery';
 import 'jquery-select2';
 import _ from 'underscore';
 
+import cookie from 'utils/cookie';
+
 import utils from './utils';
 
 
