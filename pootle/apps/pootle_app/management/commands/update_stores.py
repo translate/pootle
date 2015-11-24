@@ -59,28 +59,8 @@ class Command(PootleCommand):
             logging.debug(u"File didn't change since last sync, skipping "
                           u"%s" % store.pootle_path)
             return
-        if options["overwrite"]:
-            store_revision = store.get_max_unit_revision()
-        else:
-            store_revision = store.last_sync_revision or 0
 
-        update_revision, changes = store.update(
-            store.file.store,
-            store_revision=store_revision,
-        )
-        store.file_mtime = disk_mtime
-        if changes and any(x > 0 for x in changes.values()):
-            update_unsynced = None
-            if store.last_sync_revision is not None:
-                updated_unsynced = store.increment_unsynced_unit_revision(
-                    update_revision
-                )
-            store.last_sync_revision = update_revision
-            if update_unsynced:
-                logging.info(u"[update] unsynced %d units in %s [revision: %d]"
-                             % (update_unsynced, store.pootle_path,
-                                update_revision))
-        store.save(update_cache=False)
+        store.update_from_disk(overwrite=options["overwrite"])
 
     def handle_all(self, **options):
         scan_translation_projects(languages=self.languages,

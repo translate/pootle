@@ -1728,7 +1728,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def update(self, store, user=None, store_revision=None,
                submission_type=None, resolve_conflict=POOTLE_WINS):
-        """Update DB with units from file.
+        """Update DB with units from a ttk Store.
 
         :param store: a source `Store` instance from TTK.
         :param store_revision: revision at which the source `Store` was last
@@ -1811,6 +1811,42 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                               submission_type=submission_type,
                               resolve_conflict=resolve_conflict))
         return changes
+
+    def update_from_disk(self, overwrite=False):
+        """Update DB with units from the disk Store.
+
+        :param overwrite: make db match file regardless of last_sync_revision.
+        """
+        if not self.file:
+            return False
+
+        if overwrite:
+            store_revision = self.get_max_unit_revision()
+        else:
+            store_revision = self.last_sync_revision or 0
+
+        # update the units
+        update_revision, changes = self.update(
+            self.file.store,
+            store_revision=store_revision,
+        )
+
+        # update file_mtime
+        self.file_mtime = self.get_file_mtime()
+
+        # update last_sync_revision if anything changed
+        if changes and any(x > 0 for x in changes.values()):
+            update_unsynced = None
+            if self.last_sync_revision is not None:
+                updated_unsynced = self.increment_unsynced_unit_revision(
+                    update_revision
+                )
+            self.last_sync_revision = update_revision
+            if update_unsynced:
+                logging.info(u"[update] unsynced %d units in %s [revision: %d]"
+                             % (update_unsynced, self.pootle_path,
+                                update_revision))
+        self.save(update_cache=False)
 
     def increment_unsynced_unit_revision(self, update_revision):
         filter_by = {
