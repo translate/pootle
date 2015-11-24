@@ -297,10 +297,14 @@ class TranslationProject(models.Model, CachedTreeItem):
 
             self.scan_files()
 
-            if initialize_from_templates:
+            # Create units from disk store
+            for store in self.stores.live().iterator():
+                changed = store.update_from_disk()
+
+                # If there were changes stats will be refreshed anyway - otherwise...
                 # Trigger stats refresh for TP added from UI.
                 # FIXME: This won't be necessary once #3547 is fixed.
-                for store in self.stores.live().iterator():
+                if not changed:
                     store.save(update_cache=True)
 
     def delete(self, *args, **kwargs):
