@@ -82,7 +82,7 @@ def russian(english):
 
 @pytest.fixture
 def fish(english):
-    """Require the Fish language ><(((º>"""
+    u"""Require the Fish language ><(((º>"""
     return _require_language(code='fish', fullname='Fish')
 
 
