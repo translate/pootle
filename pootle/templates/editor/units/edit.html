@@ -254,7 +254,9 @@
         {% if cantranslate %}
         <div id="editor-comment" class="js-editor-comment-form hide">
           <form id="js-comment-form">
+            {% block translator_comment_form %}
             {{ comment_form.translator_comment }}
+            {% endblock %}
             <input type="submit" class="btn btn-xs btn-primary"
                       value="{% trans 'Submit' %}" />
           </form>
