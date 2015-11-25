@@ -58,6 +58,7 @@ class User(AbstractBaseUser):
     Note that the ``password`` and ``last_login`` fields are inherited
     from ``AbstractBaseUser``.
     """
+
     username = models.CharField(_('Username'), max_length=30, unique=True,
         help_text=_('Required. 30 characters or fewer. Letters, numbers and '
                     '@/./+/-/_ characters'),

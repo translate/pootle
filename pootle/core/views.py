@@ -40,6 +40,7 @@ class SuperuserRequiredMixin(object):
 
 class LoginRequiredMixin(object):
     """Require a logged-in user."""
+
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
@@ -54,6 +55,7 @@ class TestUserFieldMixin(LoginRequiredMixin):
 
     Note that there's free way for admins.
     """
+
     test_user_field = 'username'
 
     def dispatch(self, *args, **kwargs):
@@ -70,6 +72,7 @@ class TestUserFieldMixin(LoginRequiredMixin):
 
 class NoDefaultUserMixin(object):
     """Removes the `default` special user from views."""
+
     def dispatch(self, request, *args, **kwargs):
         username = kwargs.get('username', None)
         if username is not None and username == 'default':
@@ -84,6 +87,7 @@ class AjaxResponseMixin(object):
 
     This needs to be used with a `FormView`.
     """
+
     def form_invalid(self, form):
         super(AjaxResponseMixin, self).form_invalid(form)
         return JsonResponseBadRequest({'errors': form.errors})
@@ -98,6 +102,7 @@ class APIView(View):
 
     Based on djangbone https://github.com/af/djangbone
     """
+
     # Model on which this view operates. Setting this is required
     model = None
 

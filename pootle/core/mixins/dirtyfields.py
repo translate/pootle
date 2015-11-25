@@ -18,6 +18,7 @@ class DirtyFieldsMixin(object):
     Initial code borrowed from django-dirtyfields, which is
     Copyright (c) Praekelt Foundation and individual contributors
     """
+
     def __init__(self, *args, **kwargs):
         super(DirtyFieldsMixin, self).__init__(*args, **kwargs)
         post_save.connect(

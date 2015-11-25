@@ -22,6 +22,7 @@ class UserManager(BaseUserManager):
     queries, since they are special users. Code that needs access to these
     users should use the methods get_default_user and get_nobody_user.
     """
+
     PERMISSION_USERS = ('default', 'nobody')
     META_USERS = ('default', 'nobody', 'system')
 

@@ -27,6 +27,7 @@ class PootleAccountAdapter(DefaultAccountAdapter):
       - the html key is removed for performance reasons
       - form_errors is renamed to errors
     """
+
     def ajax_response(self, request, response, redirect_to=None, form=None):
         data = {}
         if redirect_to:

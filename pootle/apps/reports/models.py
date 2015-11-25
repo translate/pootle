@@ -39,6 +39,7 @@ class PaidTask(models.Model):
 
     ``task_type``, ``amount`` and ``date`` are required.
     """
+
     type_choices = [
         (PaidTaskTypes.TRANSLATION, _('Translation')),
         (PaidTaskTypes.REVIEW, _('Review')),

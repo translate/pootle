@@ -21,6 +21,7 @@ from pootle_translationproject.models import TranslationProject
 
 class PootleCommand(NoArgsCommand):
     """Base class for handling recursive pootle store management commands."""
+
     shared_option_list = (
         make_option(
             '--project',
@@ -151,6 +152,7 @@ class BaseRunCommand(BaseCommand):
     Based on code from `django-shoes
     <https://bitbucket.org/mlzboy/django-shoes/>`_.
     """
+
     hostport_option_list = (
         make_option(
             '--host',

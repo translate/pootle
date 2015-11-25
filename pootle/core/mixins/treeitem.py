@@ -60,6 +60,7 @@ class NoCachedStats(Exception):
 
 class CachedMethods(object):
     """Cached method names."""
+
     CHECKS = 'get_checks'
     WORDCOUNT_STATS = 'get_wordcount_stats'
     LAST_ACTION = 'get_last_action'
@@ -558,6 +559,7 @@ class JobWrapper():
     encapsulates work with external to RQ job params which is needed
     because of possible race conditions
     """
+
     def __init__(self, id, connection):
         self.id = id
         self.func = None

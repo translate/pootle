@@ -42,6 +42,7 @@ class LiveLanguageManager(models.Manager):
     A live language is any language containing at least a project with
     translatable files.
     """
+
     def get_queryset(self):
         return super(LiveLanguageManager, self).get_queryset().filter(
                 translationproject__isnull=False,

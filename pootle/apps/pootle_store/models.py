@@ -97,6 +97,7 @@ class QualityCheckManager(models.Manager):
 
 class QualityCheck(models.Model):
     """Database cache of results of qualitychecks on unit."""
+
     name = models.CharField(max_length=64, db_index=True)
     unit = models.ForeignKey("pootle_store.Unit", db_index=True)
     category = models.IntegerField(null=False, default=Category.NO_CATEGORY)
@@ -145,6 +146,7 @@ class Suggestion(models.Model, base.TranslationUnit):
     """Suggested translation for a :cls:`~pootle_store.models.Unit`, provided
     by users or automatically generated after a merge.
     """
+
     target_f = MultiStringField()
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit')
@@ -1350,6 +1352,7 @@ class StoreManager(models.Manager):
 
 class Store(models.Model, CachedTreeItem, base.TranslationStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
+
     UnitClass = Unit
     Name = "Model Store"
     is_dir = False

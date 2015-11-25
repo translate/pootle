@@ -84,6 +84,7 @@ def make_search_form(*args, **kwargs):
 
 class SearchForm(forms.Form):
     """Normal search form for translation projects."""
+
     search = forms.CharField(
         widget=forms.TextInput(attrs={
             'size': '15',

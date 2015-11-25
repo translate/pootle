@@ -26,6 +26,7 @@ class PootleJSONEncoder(DjangoJSONEncoder):
     certain types of objects.
     https://docs.djangoproject.com/en/1.4/topics/serialization/#id2
     """
+
     def default(self, obj):
         if isinstance(obj, Promise) or isinstance(obj, Markup):
             return force_unicode(obj)

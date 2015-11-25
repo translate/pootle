@@ -87,6 +87,7 @@ class VirtualResource(TreeItem):
     Don't use this object as-is, rather subclass it and adapt the
     implementation details for each context.
     """
+
     def __init__(self, resources, pootle_path, *args, **kwargs):
         self.resources = resources  #: Collection of underlying resources
         self.pootle_path = pootle_path

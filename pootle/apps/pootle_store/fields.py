@@ -110,6 +110,7 @@ class StoreTuple(object):
     since LRUCachingDict is based on a weakref.WeakValueDictionary
     which cannot reference normal tuples
     """
+
     def __init__(self, store, mod_info, realpath):
         self.store = store
         self.mod_info = mod_info
@@ -120,6 +121,7 @@ class TranslationStoreFieldFile(FieldFile):
     """FieldFile is the file-like object of a FileField, that is found in a
     TranslationStoreField.
     """
+
     from translate.misc.lru import LRUCachingDict
     from django.conf import settings
 
