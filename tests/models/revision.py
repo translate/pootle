@@ -25,7 +25,6 @@ def test_max_revision(af_tutorial_po):
     initial_max_revision = Unit.max_revision()
     initial_revision = Revision.get()
     assert initial_max_revision == initial_revision
-    assert initial_max_revision == 1
 
     # Let's make 10 translation updates, this must also update their
     # revision numbers

@@ -33,7 +33,7 @@ def _require_language(code, fullname, plurals=2, plural_equation='(n != 1)'):
 
 
 @pytest.fixture
-def english(root):
+def english(root, system):
     """Require the English language."""
     return _require_language('en', 'English')
 
@@ -84,3 +84,18 @@ def russian(english):
 def fish(english):
     """Require the Fish language ><(((º>"""
     return _require_language(code='fish', fullname='Fish')
+
+
+# due to issues with tests not having a clean slate ie:
+# (https://github.com/translate/pootle/issues/3898)
+# please do not use the klingon fixtures 8)
+@pytest.fixture
+def klingon(english):
+    """Require the Klingon language."""
+    return _require_language('kl', 'Klingon')
+
+
+@pytest.fixture
+def klingon_vpw(english):
+    """Require the Klingon language (VPW dialect)."""
+    return _require_language('kl_VPW', 'Klingon vegan peace warriors')
