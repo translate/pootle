@@ -20,7 +20,7 @@ from pootle_project.models import Project
 from staticpages.models import StaticPage as Announcement
 
 
-def initdb():
+def initdb(create_projects=True):
     """Populate the database with default initial data.
 
     This creates the default database to get a working Pootle installation.
@@ -29,10 +29,12 @@ def initdb():
     create_essential_users()
     create_root_directories()
     create_template_languages()
-    create_terminology_project()
+    if create_projects:
+        create_terminology_project()
     create_pootle_permissions()
     create_pootle_permission_sets()
-    create_default_projects()
+    if create_projects:
+        create_default_projects()
     create_default_languages()
 
 
