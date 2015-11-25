@@ -666,11 +666,6 @@ tutorial project.
 
 :djadmin:`initdb` can only be run after :ref:`commands#migrate`.
 
-.. note:: :djadmin:`initdb` will not import translations into the database, so
-   the first visit to Pootle after :djadmin:`initdb` will be very slow. **It is
-   best to run** :djadmin:`refresh_stats` **immediately after initdb**.
-
-
 :djadmin:`initdb` accepts the following option:
 
 .. versionadded:: 2.7.3
@@ -678,6 +673,9 @@ tutorial project.
 :option:`--no-projects`:
    Don't create the default ``terminology`` and ``tutorial`` projects.
 
+.. note:: :djadmin:`initdb` will import translations into the database, so
+   can be slow to run. You should have an ``rqworker`` running or run with
+   the :option:`--no-rq`.
 
 .. _commands#collectstatic:
 

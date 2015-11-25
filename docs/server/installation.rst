@@ -46,7 +46,7 @@ Setting up the virtual environment
 
 In order to install Pootle first create a virtual environment. The virtual
 environment allows you to install dependencies independent of your system
-packages. 
+packages.
 
 Please install ``virtualenv`` from your system packages, e.g. on Debian:
 
@@ -167,29 +167,17 @@ Before you run Pootle for the first time, you need to create the schema for
 the database and populate it with initial data. This is done by executing the
 :djadmin:`migrate` and :djadmin:`initdb` management commands:
 
+.. note:: You will need to have an :ref:`RQ worker running
+   <installation#running-rqworker>` to complete this. Alternately, you can
+   use the :option:`--no-rq`.
+
 .. code-block:: bash
 
   (env) $ pootle migrate
   (env) $ pootle initdb
 
-
-.. _installation#refreshing-stats:
-
-Refreshing stats
-----------------
-
-On first installation you will need to generate the statistics from your
-database. You will need to have an :ref:`RQ worker running 
-<installation#running-rqworker>` to complete this.
-
-.. code-block:: bash
-
-   (env) $ pootle refresh_stats
-
-This command will dispatch jobs to the RQ worker and may take some time.
-
-If you wish to run :djadmin:`refresh_stats` in the foreground without using the RQ
-worker you can use the :option:`--no-rq` option.
+Running :djadmin:`initdb` will take some time as it will create the default
+Projects and Stores.
 
 
 .. _installation#admin-user:
