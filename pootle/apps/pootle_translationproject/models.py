@@ -55,7 +55,7 @@ def create_or_resurrect_translation_project(language, project):
 
 def create_translation_project(language, project):
     from pootle_app import project_tree
-    if project_tree.translation_project_should_exist(language, project):
+    if project_tree.translation_project_dir_exists(language, project):
         try:
             translation_project, created = TranslationProject.objects.all() \
                     .get_or_create(language=language, project=project)
@@ -265,16 +265,15 @@ class TranslationProject(models.Model, CachedTreeItem):
         created = self.id is None
 
         if created:
-            from pootle_app.project_tree import translation_project_should_exist
+            from pootle_app.project_tree import translation_project_dir_exists
 
             template_tp = self.project.get_template_translationproject()
             initialize_from_templates = False
 
             if (not self.is_template_project and
                 template_tp is not None and
-                not translation_project_should_exist(self.language,
-                                                     self.project)):
-
+                translation_project_dir_exists(self.language,
+                                               self.project)):
                 initialize_from_templates = True
 
         self.directory = self.language.directory \

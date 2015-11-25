@@ -279,7 +279,7 @@ def find_lang_postfix(filename):
             return code
 
 
-def translation_project_should_exist(language, project):
+def translation_project_dir_exists(language, project):
     """Tests if there are translation files corresponding to the given
     :param:`language` and :param:`project`.
     """
