@@ -149,7 +149,8 @@ class BaseRunCommand(BaseCommand):
     """Base class to build new server runners.
 
     Based on code from `django-shoes
-    <https://bitbucket.org/mlzboy/django-shoes/>`_."""
+    <https://bitbucket.org/mlzboy/django-shoes/>`_.
+    """
     hostport_option_list = (
         make_option(
             '--host',

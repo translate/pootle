@@ -57,8 +57,9 @@ class MathCaptchaForm(forms.Form):
             self.reset_captcha()
 
     def reset_captcha(self):
-        """Generate new question and valid token
-        for it, reset previous answer if any."""
+        """Generate new question and valid token for it, reset previous answer
+        if any.
+        """
         q, a = self._generate_captcha()
         expires = time.time() + \
             getattr(settings, 'CAPTCHA_EXPIRES_SECONDS', 60*60)
@@ -80,8 +81,7 @@ class MathCaptchaForm(forms.Form):
         self.fields['captcha_answer'].label = mark_safe(self.knotty_question)
 
     def _generate_captcha(self):
-        """Generate question and return it along with correct
-        answer."""
+        """Generate question and return it along with correct answer."""
         a, b = randint(1, 9), randint(1, 9)
         return ("%s+%s" % (a, b), a+b)
 
@@ -103,7 +103,8 @@ class MathCaptchaForm(forms.Form):
     def knotty_question(self):
         """Wrap plain_question in some invisibe for humans markup with random
         nonexisted classes, that makes life of spambots a bit harder because
-        form of question is vary from request to request."""
+        form of question is vary from request to request.
+        """
         digits = self._plain_question.split('+')
         return "+".join(['<span class="captcha-random-%s">%s</span>' %
                          (randint(1, 9), d) for d in digits])

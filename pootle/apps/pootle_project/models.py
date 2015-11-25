@@ -433,15 +433,16 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             return self.localfiletype
 
     def get_file_class(self):
-        """Returns the TranslationStore subclass required for parsing
-        project files."""
+        """Returns the TranslationStore subclass required for parsing project
+        files.
+        """
         return factory_classes[self.localfiletype]
 
     def file_belongs_to_project(self, filename, match_templates=True):
         """Tests if ``filename`` matches project filetype (ie. extension).
 
-        If ``match_templates`` is ``True``, this will also check if the
-        file matches the template filetype.
+        If ``match_templates`` is ``True``, this will also check if the file
+        matches the template filetype.
         """
         template_ext = os.path.extsep + self.get_template_filetype()
         return (filename.endswith(os.path.extsep + self.localfiletype)

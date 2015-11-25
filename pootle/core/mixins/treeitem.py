@@ -516,8 +516,9 @@ class CachedTreeItem(TreeItem):
         self.update_dirty_cache()
 
     def _update_cache_job(self, keys, decrement):
-        """Update dirty cached stats of current TreeItem and add RQ job for updating
-        dirty cached stats of parent"""
+        """Update dirty cached stats of current TreeItem and add RQ job for
+        updating dirty cached stats of parent
+        """
         if self.can_be_updated():
             # children should be recalculated to avoid using of obsolete directories
             # or stores which could be saved in `children` property

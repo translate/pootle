@@ -138,8 +138,9 @@ def override_gettext(real_translation):
 
 
 def get_language_bidi():
-    """Override for Django's get_language_bidi that's aware of more
-    RTL languages."""
+    """Override for Django's get_language_bidi that's aware of more RTL
+    languages.
+    """
     return gettext.language_dir(translation.get_language()) == 'rtl'
 
 

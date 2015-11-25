@@ -186,7 +186,8 @@ class StoreDiff(object):
 
     def diff(self):
         """Return a dictionary of change actions or None if there are no
-        changes to be made"""
+        changes to be made.
+        """
         diff = {"index": self.get_indexes_to_update(),
                 "obsolete": self.get_units_to_obsolete(),
                 "add": self.get_units_to_add(),

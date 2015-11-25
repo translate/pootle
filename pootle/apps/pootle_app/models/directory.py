@@ -195,7 +195,8 @@ class Directory(models.Model, CachedTreeItem):
         to this directory, recurse the path and return the object
         (either a Directory or a Store) named 'c'.
 
-        This does not currently deal with .. path components."""
+        This does not currently deal with .. path components.
+        """
 
         from pootle_store.models import Store
 

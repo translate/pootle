@@ -71,7 +71,8 @@ def unhighlight_whitespace(text):
 
 class MultiStringWidget(forms.MultiWidget):
     """Custom Widget for editing multistrings, expands number of text
-    area based on number of plural forms."""
+    area based on number of plural forms.
+    """
 
     def __init__(self, attrs=None, nplurals=1, textarea=True):
         if textarea:

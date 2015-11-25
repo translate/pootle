@@ -132,7 +132,8 @@ def form_set_as_table(formset, link=None, linkfield='code'):
 
 def process_modelformset(request, model_class, queryset, **kwargs):
     """With the Django model class `model_class` and the given `queryset`,
-    construct a formset process its submission."""
+    construct a formset process its submission.
+    """
 
     # Create a formset class for the model `model_class` (i.e. it will contain
     # forms whose contents are based on the fields of `model_class`);

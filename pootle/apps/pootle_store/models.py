@@ -604,7 +604,8 @@ class Unit(models.Model, base.TranslationUnit):
 
     def convert(self, unitclass):
         """Convert to a unit of type :param:`unitclass` retaining as much
-        information from the database as the target format can support."""
+        information from the database as the target format can support.
+        """
         newunit = unitclass(self.source)
         newunit.target = self.target
         newunit.markfuzzy(self.isfuzzy())
@@ -2228,7 +2229,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def refresh_stats(self, include_children=True, cached_methods=None):
         """This TreeItem method is used on directories, translation projects,
-        languages and projects. For stores do nothing"""
+        languages and projects. For stores do nothing
+        """
         return
 
     def all_pootle_paths(self):

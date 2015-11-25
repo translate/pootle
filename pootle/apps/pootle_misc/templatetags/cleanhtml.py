@@ -43,7 +43,8 @@ def clean(text):
 @stringfilter
 def obfuscate(text):
     """Obfuscates the given text in case it is an email address.
-    Based on the implementation used in addons.mozilla.org"""
+    Based on the implementation used in addons.mozilla.org
+    """
 
     if not email_re.match(text):
         return text

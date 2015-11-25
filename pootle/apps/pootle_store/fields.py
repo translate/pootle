@@ -27,7 +27,8 @@ def list_empty(strings):
     """check if list is exclusively made of empty strings.
 
     useful for detecting empty multistrings and storing them as a
-    simple empty string in db."""
+    simple empty string in db.
+    """
     for string in strings:
         if len(string) > 0:
             return False
@@ -36,7 +37,8 @@ def list_empty(strings):
 
 def to_db(value):
     """Flatten the given value (string, list of plurals or multistring) into
-    the database string representation."""
+    the database string representation.
+    """
     if value is None:
         return None
     elif isinstance(value, multistring):
@@ -106,7 +108,8 @@ class MultiStringField(models.Field):
 class StoreTuple(object):
     """Encapsulates toolkit stores in the in memory cache, needed
     since LRUCachingDict is based on a weakref.WeakValueDictionary
-    which cannot reference normal tuples"""
+    which cannot reference normal tuples
+    """
     def __init__(self, store, mod_info, realpath):
         self.store = store
         self.mod_info = mod_info
@@ -115,7 +118,8 @@ class StoreTuple(object):
 
 class TranslationStoreFieldFile(FieldFile):
     """FieldFile is the file-like object of a FileField, that is found in a
-    TranslationStoreField."""
+    TranslationStoreField.
+    """
     from translate.misc.lru import LRUCachingDict
     from django.conf import settings
 
@@ -152,13 +156,15 @@ class TranslationStoreFieldFile(FieldFile):
     @property
     def store(self):
         """Get translation store from dictionary cache, populate if store not
-        already cached."""
+        already cached.
+        """
         self._update_store_cache()
         return self._store_tuple.store
 
     def _update_store_cache(self):
         """Add translation store to dictionary cache, replace old cached
-        version if needed."""
+        version if needed.
+        """
         if self.exists():
             mod_info = self.getpomtime()
         else:
@@ -208,8 +214,9 @@ class TranslationStoreFieldFile(FieldFile):
         return os.path.exists(self.realpath)
 
     def savestore(self):
-        """Saves to temporary file then moves over original file. This
-        way we avoid the need for locking."""
+        """Saves to temporary file then moves over original file. This way we
+        avoid the need for locking.
+        """
         import shutil
         from pootle_misc import ptempfile as tempfile
         tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
@@ -232,13 +239,15 @@ class TranslationStoreFieldFile(FieldFile):
 
 class TranslationStoreField(FileField):
     """This is the field class to represent a FileField in a model that
-    represents a translation store."""
+    represents a translation store.
+    """
 
     attr_class = TranslationStoreFieldFile
 
     def __init__(self, ignore=None, **kwargs):
         """ignore: postfix to be stripped from filename when trying to
-        determine file format for parsing, useful for .pending files"""
+        determine file format for parsing, useful for .pending files
+        """
         self.ignore = ignore
         super(TranslationStoreField, self).__init__(**kwargs)
 
