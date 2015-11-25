@@ -694,7 +694,6 @@ class Unit(models.Model, base.TranslationUnit):
         return changed
 
     def update(self, unit, user=None):
-
         """Update in-DB translation from the given :param:`unit`.
 
         :param user: User to attribute updates to.
