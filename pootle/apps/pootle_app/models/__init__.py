@@ -11,4 +11,4 @@ from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 
 
-__all__ = ["Directory", "PermissionSet"]
+__all__ = ("Directory", "PermissionSet")
