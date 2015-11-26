@@ -637,11 +637,11 @@ Available options:
 initdb
 ^^^^^^
 
-Initialises a new Pootle install.
+Initializes a new Pootle install.
 
 This is an optional part of Pootle's install process, it creates the default
 *admin* user, populates the language table with several languages, initializes
-the terminology projects, and creates the tutorial project.
+the terminology project, and creates the tutorial project among other tasks.
 
 :djadmin:`initdb` can only be run after :djadmin:`django:migrate`.
 
