@@ -1817,8 +1817,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         :param overwrite: make db match file regardless of last_sync_revision.
         """
+        changed = False
+
         if not self.file:
-            return False
+            return changed
 
         if overwrite:
             store_revision = self.get_max_unit_revision()
@@ -1835,7 +1837,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         self.file_mtime = self.get_file_mtime()
 
         # update last_sync_revision if anything changed
-        if changes and any(x > 0 for x in changes.values()):
+        changed = changes and any(x > 0 for x in changes.values())
+        if changed:
             update_unsynced = None
             if self.last_sync_revision is not None:
                 updated_unsynced = self.increment_unsynced_unit_revision(
@@ -1847,6 +1850,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                              % (update_unsynced, self.pootle_path,
                                 update_revision))
         self.save(update_cache=False)
+        return changed
 
     def increment_unsynced_unit_revision(self, update_revision):
         filter_by = {
