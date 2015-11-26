@@ -639,10 +639,9 @@ initdb
 
 Initialises a new Pootle install.
 
-This is part an optional part of Pootle's install process, it creates the
-default *admin* user, populates the language table with several languages with
-their correct fields, initializes several terminology projects, and creates the
-tutorial project.
+This is an optional part of Pootle's install process, it creates the default
+*admin* user, populates the language table with several languages, initializes
+the terminology projects, and creates the tutorial project.
 
 :djadmin:`initdb` can only be run after :djadmin:`django:migrate`.
 
@@ -656,6 +655,7 @@ tutorial project.
 .. note:: :djadmin:`initdb` will import translations into the database, so
    can be slow to run. You should have an ``rqworker`` running or run with
    the :option:`--no-rq`.
+
 
 .. _commands#collectstatic:
 
