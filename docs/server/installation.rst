@@ -177,7 +177,7 @@ the database and populate it with initial data. This is done by executing the
   (env) $ pootle initdb
 
 Running :djadmin:`initdb` will take some time as it will create the default
-Projects and Stores.
+projects and stores.
 
 
 .. _installation#admin-user:
