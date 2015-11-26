@@ -268,13 +268,11 @@ class TranslationProject(models.Model, CachedTreeItem):
             from pootle_app.project_tree import translation_project_dir_exists
 
             template_tp = self.project.get_template_translationproject()
-            initialize_from_templates = False
-
-            if (not self.is_template_project and
-                template_tp is not None and
-                translation_project_dir_exists(self.language,
-                                               self.project)):
-                initialize_from_templates = True
+            initialize_from_templates = (
+                not self.is_template_project
+                and template_tp is not None
+                and not translation_project_dir_exists(self.language,
+                                                       self.project))
 
         self.directory = self.language.directory \
                                       .get_or_make_subdir(self.project.code)
