@@ -66,7 +66,8 @@ Details of changes
 - Close a database connection before and after each rqworker job once it exceeds
   the maximum age to imitate Django's request/response cycle.
 - Language managers can now edit their language's special characters.
-
+- :djadmin:`initdb` now has an :option:`--no-projects` to prevent creating
+  the default projects at set up.
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of
 course, loads of bugs were fixed.

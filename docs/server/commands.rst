@@ -671,6 +671,14 @@ tutorial project.
    best to run** :djadmin:`refresh_stats` **immediately after initdb**.
 
 
+:djadmin:`initdb` accepts the following option:
+
+.. versionadded:: 2.7.3
+
+:option:`--no-projects`:
+   Don't create the default ``terminology`` and ``tutorial`` projects.
+
+
 .. _commands#collectstatic:
 
 collectstatic
