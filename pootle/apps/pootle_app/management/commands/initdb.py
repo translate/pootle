@@ -26,7 +26,10 @@ class Command(NoArgsCommand):
             '--no-projects',
             action='store_false',
             dest='create_projects',
-            default=True), )
+            default=True,
+            help="Do not create the default 'terminology' and 'tutorial'"
+                 "projects.",
+        ), )
 
     def handle_noargs(self, **options):
         self.stdout.write('Populating the database.')
