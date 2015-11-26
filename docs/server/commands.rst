@@ -632,26 +632,6 @@ Available options:
   Not used with sqlite.
 
 
-.. _commands#migrate:
-
-migrate
-^^^^^^^
-
-.. versionchanged:: 2.7
-
-
-.. note::
-
-  Since the addition of the :command:`setup` management command it is not
-  necessary to directly run this command. Please refer to the :ref:`Upgrading
-  <upgrading>` or :ref:`Installation <installation>` instructions to see how to
-  run the :command:`setup` management command in those scenarios.
-
-
-This is Django's :djadmin:`django:migrate` command, which syncs the state of
-models with the DB and applies migrations for them.
-
-
 .. django-admin:: initdb
 
 initdb
@@ -664,7 +644,7 @@ default *admin* user, populates the language table with several languages with
 their correct fields, initializes several terminology projects, and creates the
 tutorial project.
 
-:djadmin:`initdb` can only be run after :ref:`commands#migrate`.
+:djadmin:`initdb` can only be run after :djadmin:`django:migrate`.
 
 :djadmin:`initdb` accepts the following option:
 
