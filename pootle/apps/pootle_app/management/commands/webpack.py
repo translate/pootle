@@ -49,7 +49,7 @@ class Command(BaseCommand):
                 '--colors']
 
         if options['dev']:
-            args.append('--watch')
+            args.extend(['--watch',  '--display-error-details'])
         else:
             os.environ['NODE_ENV'] = 'production'
 
