@@ -15,7 +15,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.core.management.base import NoArgsCommand
 
-from pootle.core.initdb import initdb
+from pootle.core.initdb import InitDB
 
 
 class Command(NoArgsCommand):
@@ -33,7 +33,7 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         self.stdout.write('Populating the database.')
-        initdb(options["create_projects"])
+        InitDB().init_db(options["create_projects"])
         self.stdout.write('Successfully populated the database.')
         self.stdout.write("To create an admin user, use the `pootle "
                           "createsuperuser` command.")
