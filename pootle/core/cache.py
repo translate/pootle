@@ -55,7 +55,7 @@ def get_cache(cache=None):
         if (cache in PERSISTENT_STORES and
             (cache not in settings.CACHES or
             'RedisCache' not in settings.CACHES[cache]['BACKEND'] or
-            settings.CACHES[cache].get('TIMEOUT', '') != None)):
+            settings.CACHES[cache].get('TIMEOUT', '') is not None)):
             raise ImproperlyConfigured(
                 'Pootle requires a Redis-backed caching backend for %r '
                 'with `TIMEOUT: None`. Please review your settings.' % cache
