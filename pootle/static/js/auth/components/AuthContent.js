@@ -6,6 +6,7 @@
  * AUTHORS file for copyright and authorship information.
  */
 
+import assign from 'object-assign';
 import React from 'react';
 import { PureRenderMixin } from 'react/addons';
 
@@ -15,12 +16,13 @@ const AuthContent = React.createClass({
 
   render() {
     // FIXME: use flexbox when possible
-    let style = {
-      outer: {
-        display: 'table',
-        height: '22em',
-        width: '100%',
-      },
+    const outer = assign({
+      display: 'table',
+      height: '22em',
+      width: '100%',
+    }, this.props.style);
+    const style = {
+      outer,
       inner: {
         display: 'table-cell',
         verticalAlign: 'middle',
