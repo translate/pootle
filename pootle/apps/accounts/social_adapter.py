@@ -7,6 +7,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import traceback
+
 from django.shortcuts import render
 
 from allauth.exceptions import ImmediateHttpResponse
@@ -14,6 +16,7 @@ from allauth.socialaccount import providers
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 
 from pootle.core.utils.json import jsonify
+from pootle.middleware.errorpages import log_exception
 
 from .utils import get_user_by_email
 from .views import SocialVerificationView
@@ -71,6 +74,9 @@ class PootleSocialAccountAdapter(DefaultSocialAccountAdapter):
         provider = providers.registry.by_id(provider_id)
         retry_url = provider.get_login_url(request,
                                            **dict(request.GET.iteritems()))
+
+        tb = traceback.format_exc()
+        log_exception(request, exception, tb)
 
         ctx = {
             'social_error': jsonify({
