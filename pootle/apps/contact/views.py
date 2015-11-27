@@ -82,19 +82,18 @@ class ReportFormView(ContactFormView):
                             unit.get_translate_url())
                         initial.update({
                             'subject': render_to_string(
-                                'contact_form/report_form_subject.txt', {
+                                'contact_form/report_form_subject.txt',
+                                {
                                     'unit': unit,
-                                    'language': unit.store \
-                                                    .translation_project \
-                                                    .language.code,
-                            }),
+                                    'language': unit.store.translation_project.language.code,
+                                }),
                             'body': render_to_string(
-                                'contact_form/report_form_body.txt', {
+                                'contact_form/report_form_body.txt',
+                                {
                                     'unit': unit,
                                     'unit_absolute_url': unit_absolute_url,
-                            }),
-                            'report_email': unit.store.translation_project \
-                                                      .project.report_email,
+                                }),
+                            'report_email': unit.store.translation_project.project.report_email,
                         })
                 except Unit.DoesNotExist:
                     pass
