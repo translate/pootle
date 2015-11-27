@@ -18,7 +18,7 @@ from pootle.core.views import APIView
 from accounts.models import User
 
 from ..factories import UserFactory
-from ..utils import create_api_request
+from pootle_pytest.utils import create_api_request
 
 
 class UserAPIView(APIView):

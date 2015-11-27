@@ -13,7 +13,8 @@ from pootle_project.models import Project
 
 from ..factories import UserFactory
 from ..fixtures.models.permission_set import _require_permission_set
-from ..utils import items_equal
+
+from pootle_pytest.utils import items_equal
 
 
 @pytest.mark.django_db

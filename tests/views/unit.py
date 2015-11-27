@@ -13,7 +13,7 @@ from pootle.core.exceptions import Http400
 
 from pootle_store.views import get_units
 
-from ..utils import create_api_request
+from pootle_pytest.utils import create_api_request
 
 
 @pytest.mark.django_db
