@@ -43,8 +43,7 @@ class Command(NoArgsCommand):
             after_revision = int(options['after_revision'])
         else:
             after_revision = Store.objects.all().aggregate(
-                    Max('last_sync_revision')
-                )['last_sync_revision__max'] or -1
+                Max('last_sync_revision'))['last_sync_revision__max'] or -1
 
         self.stderr.write(
             'Will show languages changed between revisions %s (exclusive) '
@@ -59,7 +58,7 @@ class Command(NoArgsCommand):
             return
 
         q = Unit.objects.filter(
-                revision__gt=after_revision
+            revision__gt=after_revision
             ).values(
                 'store__translation_project__language__code',
             ).order_by(

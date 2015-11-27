@@ -38,8 +38,8 @@ def browse(request, language):
     ctx.update(get_browser_context(request))
     ctx.update({
         'language': {
-          'code': language.code,
-          'name': tr_lang(language.fullname),
+            'code': language.code,
+            'name': tr_lang(language.fullname),
         },
         'table': {
             'id': 'language',
@@ -48,7 +48,6 @@ def browse(request, language):
             'items': items,
         },
         'stats': jsonify(request.resource_obj.get_stats_for_user(request.user)),
-
         'browser_extends': 'languages/base.html',
     })
 

@@ -81,8 +81,8 @@ def get_alt_src_langs(request, user, translation_project):
     source_language = project.source_language
 
     langs = user.alt_src_langs.exclude(
-            id__in=(language.id, source_language.id)
-        ).filter(translationproject__project=project)
+        id__in=(language.id, source_language.id)
+    ).filter(translationproject__project=project)
 
     if not user.alt_src_langs.count():
         from pootle_language.models import Language
@@ -220,36 +220,35 @@ def get_step_query(request, units_queryset):
                 )
             elif unit_filter == 'suggestions':
                 match_queryset = units_queryset.filter(
-                        suggestion__state=SuggestionStates.PENDING
-                    ).distinct()
+                    suggestion__state=SuggestionStates.PENDING).distinct()
             elif unit_filter in ('my-suggestions', 'user-suggestions'):
                 match_queryset = units_queryset.filter(
-                        suggestion__state=SuggestionStates.PENDING,
-                        suggestion__user=user,
-                    ).distinct()
+                    suggestion__state=SuggestionStates.PENDING,
+                    suggestion__user=user,
+                ).distinct()
                 sort_on = 'suggestions'
             elif unit_filter == 'user-suggestions-accepted':
                 match_queryset = units_queryset.filter(
-                        suggestion__state=SuggestionStates.ACCEPTED,
-                        suggestion__user=user,
-                    ).distinct()
+                    suggestion__state=SuggestionStates.ACCEPTED,
+                    suggestion__user=user,
+                ).distinct()
             elif unit_filter == 'user-suggestions-rejected':
                 match_queryset = units_queryset.filter(
-                        suggestion__state=SuggestionStates.REJECTED,
-                        suggestion__user=user,
-                    ).distinct()
+                    suggestion__state=SuggestionStates.REJECTED,
+                    suggestion__user=user,
+                ).distinct()
             elif unit_filter in ('my-submissions', 'user-submissions'):
                 match_queryset = units_queryset.filter(
-                        submission__submitter=user,
-                        submission__type__in=SubmissionTypes.EDIT_TYPES,
-                    ).distinct()
+                    submission__submitter=user,
+                    submission__type__in=SubmissionTypes.EDIT_TYPES,
+                ).distinct()
                 sort_on = 'submissions'
             elif (unit_filter in ('my-submissions-overwritten',
                                   'user-submissions-overwritten')):
                 match_queryset = units_queryset.filter(
-                        submission__submitter=user,
-                        submission__type__in=SubmissionTypes.EDIT_TYPES,
-                    ).exclude(submitted_by=user).distinct()
+                    submission__submitter=user,
+                    submission__type__in=SubmissionTypes.EDIT_TYPES,
+                ).exclude(submitted_by=user).distinct()
             elif unit_filter == 'checks':
                 if 'checks' in request.GET:
                     checks = request.GET['checks'].split(',')

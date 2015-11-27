@@ -122,9 +122,8 @@ class ErrorPagesMiddleware(object):
                 ctx["login_message"] = login_msg
 
             return HttpResponseForbidden(
-                    render_to_string('errors/403.html', ctx,
-                                     RequestContext(request))
-                )
+                render_to_string('errors/403.html', ctx,
+                                 RequestContext(request)))
         elif (exception.__class__.__name__ in
                 ('OperationalError', 'ProgrammingError', 'DatabaseError')):
             # HACKISH: Since exceptions thrown by different databases do

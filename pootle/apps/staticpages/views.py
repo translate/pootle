@@ -176,9 +176,8 @@ def display_page(request, virtual_path):
     page = None
     for page_model in AbstractPage.__subclasses__():
         try:
-            page = page_model.objects.live(request.user).get(
-                    virtual_path=virtual_path,
-                )
+            page = page_model.objects.live(
+                request.user).get(virtual_path=virtual_path,)
         except ObjectDoesNotExist:
             pass
 

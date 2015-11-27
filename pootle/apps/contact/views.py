@@ -79,8 +79,7 @@ class ReportFormView(ContactFormView):
                     ).get(id=uid)
                     if unit.is_accessible_by(self.request.user):
                         unit_absolute_url = self.request.build_absolute_uri(
-                                unit.get_translate_url()
-                            )
+                            unit.get_translate_url())
                         initial.update({
                             'subject': render_to_string(
                                 'contact_form/report_form_subject.txt', {

@@ -78,9 +78,8 @@ def scan_translation_projects(languages=None, projects=None):
             project.save()
         else:
             lang_query = Language.objects.exclude(
-                    id__in=project.translationproject_set.live() \
-                                  .values_list('language', flat=True)
-                )
+                id__in=project.translationproject_set.live().values_list('language',
+                                                                         flat=True))
             if languages is not None:
                 lang_query = lang_query.filter(code__in=languages)
 

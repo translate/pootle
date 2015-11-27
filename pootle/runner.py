@@ -195,10 +195,8 @@ def configure_app(project, config_path, django_settings_module, runner_name):
     settings_envvar = project.upper() + '_SETTINGS'
 
     # Normalize path and expand ~ constructions
-    config_path = os.path.normpath(os.path.abspath(
-            os.path.expanduser(config_path),
-        )
-    )
+    config_path = os.path.normpath(
+        os.path.abspath(os.path.expanduser(config_path),))
 
     if not (os.path.exists(config_path) or
             os.environ.get(settings_envvar, None)):

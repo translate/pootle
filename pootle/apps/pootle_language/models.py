@@ -45,9 +45,9 @@ class LiveLanguageManager(models.Manager):
 
     def get_queryset(self):
         return super(LiveLanguageManager, self).get_queryset().filter(
-                translationproject__isnull=False,
-                project__isnull=True,
-            ).distinct()
+            translationproject__isnull=False,
+            project__isnull=True,
+        ).distinct()
 
     def cached_dict(self, locale_code='en-us'):
         """Retrieves a sorted list of live language codes and names.

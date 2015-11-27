@@ -259,11 +259,11 @@ class Command(BaseCommand):
         self.INDEX_NAME = self.tm_settings['INDEX_NAME']
         self.is_local_tm = options.get('tm') == 'local'
 
-        self.es = Elasticsearch([{
+        self.es = Elasticsearch([
+            {
                 'host': self.tm_settings['HOST'],
                 'port': self.tm_settings['PORT'],
-            }],
-            retry_on_timeout=True
+            }], retry_on_timeout=True
         )
 
         # If files to import have been provided.
