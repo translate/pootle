@@ -1,6 +1,6 @@
-=====================================
-Welcome to the new Pootle 2.7.3-beta1
-=====================================
+=================================
+Welcome to the new Pootle 2.7.3b1
+=================================
 
 *Released on 27 November 2015*
 
@@ -115,8 +115,6 @@ Details of changes
 - Language managers can now edit their language's special characters by using
   the `Special Characters` page accessible through the browse dropdown in the
   language overview page.
-- Quality checks for newly created Translation projects are not calculated in
-  order to speed up its initialization.
 - Added extra data to reports.
 - Added more languages for Yandex machine translation.
 - Fixed :djadmin:`test_checks` errors when being run with no options and
