@@ -3,7 +3,7 @@ Making a Pootle Release
 
 This page is divided in four sections. The first one lists the tasks that must
 be performed before creating a package. The second section includes a list of
-tasks  to get a valid package. The third one to get the package published and
+tasks to get a valid package. The third one to get the package published and
 the release announced. The last one lists and suggests some possible cleanup
 tasks to be done after releasing.
 
