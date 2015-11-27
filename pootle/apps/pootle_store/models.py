@@ -1844,7 +1844,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if changed:
             update_unsynced = None
             if self.last_sync_revision is not None:
-                updated_unsynced = self.increment_unsynced_unit_revision(
+                update_unsynced = self.increment_unsynced_unit_revision(
                     update_revision
                 )
             self.last_sync_revision = update_revision
