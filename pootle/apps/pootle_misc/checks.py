@@ -215,10 +215,10 @@ accelerators_regex_1 = re.compile(u"(%s)(?=\w)" % fmt, re.U)
 
 fmt = u"&#?[0-9a-zA-Z]+;?"
 broken_entities_regex_0 = re.compile(u"(%s)" % fmt, re.U)
-entities = ['amp', 'deg', 'frac14', 'frac12', 'frac34',
-    'lt', 'gt', 'nbsp', 'mdash', 'ndash', 'hellip',
-    'laquo', 'raquo', 'ldquo', 'rdquo',
-    'lsquo', 'rsquo', 'larr', 'rarr'
+entities = [
+    'amp', 'deg', 'frac14', 'frac12', 'frac34', 'lt', 'gt', 'nbsp', 'mdash',
+    'ndash', 'hellip', 'laquo', 'raquo', 'ldquo', 'rdquo', 'lsquo', 'rsquo',
+    'larr', 'rarr'
 ]
 broken_entities_regex_1 = re.compile(u"^&(%s)$" % '|'.join(entities), re.U)
 broken_entities_regex_2 = re.compile(u"^&#x?[0-9a-fA-F]+$", re.U)

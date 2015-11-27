@@ -496,11 +496,9 @@ class Unit(models.Model, base.TranslationUnit):
 
         if not created and hasattr(self, '_save_action'):
             action_log(user=self._log_user, action=self._save_action,
-                lang=self.store.translation_project.language.code,
-                unit=self.id,
-                translation=self.target_f,
-                path=self.store.pootle_path
-            )
+                       lang=self.store.translation_project.language.code,
+                       unit=self.id, translation=self.target_f,
+                       path=self.store.pootle_path)
 
         if (self._state_updated and self.state == TRANSLATED and
             self._save_action == TRANSLATION_CHANGED and
@@ -529,11 +527,9 @@ class Unit(models.Model, base.TranslationUnit):
                 self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
 
             action_log(user=self._log_user, action=self._save_action,
-                lang=self.store.translation_project.language.code,
-                unit=self.id,
-                translation=self.target_f,
-                path=self.store.pootle_path
-            )
+                       lang=self.store.translation_project.language.code,
+                       unit=self.id, translation=self.target_f,
+                       path=self.store.pootle_path)
 
             self.add_initial_submission(user=user)
 
@@ -1294,14 +1290,10 @@ class Unit(models.Model, base.TranslationUnit):
             sub_type = SubmissionTypes.UNMUTE_CHECK
 
         sub = Submission(creation_time=timezone.now(),
-            translation_project=self.store.translation_project,
-            submitter=user,
-            field=SubmissionFields.NONE,
-            unit=self,
-            store=self.store,
-            type=sub_type,
-            quality_check=check
-        )
+                         translation_project=self.store.translation_project,
+                         submitter=user, field=SubmissionFields.NONE,
+                         unit=self, store=self.store, type=sub_type,
+                         quality_check=check)
         sub.save()
 
         # update timestamp
