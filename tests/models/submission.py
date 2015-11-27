@@ -15,7 +15,7 @@ from pootle_statistics.models import (Submission,
                                       SubmissionTypes, SubmissionFields)
 from pootle_store.util import TRANSLATED, UNTRANSLATED
 
-from ..factories import SubmissionFactory
+from pootle_pytest.factories import SubmissionFactory
 
 
 def _create_comment_submission(unit, user, creation_time, comment):

@@ -17,7 +17,7 @@ from django.http import Http404
 from pootle.core.views import APIView
 from accounts.models import User
 
-from ..factories import UserFactory
+from pootle_pytest.factories import UserFactory
 from pootle_pytest.utils import create_api_request
 
 
