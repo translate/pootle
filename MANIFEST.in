@@ -1,4 +1,4 @@
-include CREDITS INSTALL LICENSE README.rst
+include CREDITS INSTALL LICENSE README.rst CONTRIBUTING.rst
 include requirements/base.txt
 include requirements/tests.txt
 include pootle/dbs/README
