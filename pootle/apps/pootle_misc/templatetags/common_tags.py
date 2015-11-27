@@ -72,8 +72,8 @@ def top_scorers(*args, **kwargs):
 
 @register.simple_tag
 def format_date_range(date_from, date_to, separator=" - ",
-    format_str="{dt:%B} {dt.day}, {dt:%Y}", year_f=", {dt:%Y}",
-    month_f="{dt:%B}"):
+                      format_str="{dt:%B} {dt.day}, {dt:%Y}",
+                      year_f=", {dt:%Y}", month_f="{dt:%B}"):
     """Takes a start date, end date, separator and formatting strings and
     returns a pretty date range string
     """

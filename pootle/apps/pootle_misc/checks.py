@@ -783,8 +783,7 @@ class ENChecker(checks.TranslationChecker):
                 mo = broken_entities_regex_5.match(chunk)
                 if mo:
                     regex = re.compile(u"\D", re.U)
-                    if regex.match(mo.group(1)) or \
-                        regex.match(mo.group(2)):
+                    if regex.match(mo.group(1)) or regex.match(mo.group(2)):
                         fingerprint += 1
 
                 # the checks below are conservative, i.e. they do not include
