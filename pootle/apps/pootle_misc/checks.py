@@ -961,8 +961,8 @@ def run_given_filters(checker, unit, check_names=None):
             filtermessage = unicode(e)
         except Exception, e:
             if checker.errorhandler is None:
-                raise ValueError("error in filter %s: %r, %r, %s" % \
-                        (functionname, unit.source, unit.target, e))
+                raise ValueError("error in filter %s: %r, %r, %s" %
+                                 (functionname, unit.source, unit.target, e))
             else:
                 filterresult = checker.errorhandler(functionname, unit.source,
                                                  unit.target, e)
