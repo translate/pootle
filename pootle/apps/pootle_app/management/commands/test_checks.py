@@ -18,7 +18,8 @@ from translate.filters.checks import FilterFailure, projectcheckers
 from django.conf import settings
 from django.core.management.base import NoArgsCommand, CommandError
 
-from pootle_misc.checks import ENChecker, get_qualitychecks
+from pootle_misc.checks import get_qualitychecks
+from pootle_misc.utils import import_func
 from pootle_store.models import Unit
 
 

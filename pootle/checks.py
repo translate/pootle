@@ -111,7 +111,7 @@ def check_redis(app_configs=None, **kwargs):
 
     try:
         queue = get_queue()
-        workers = Worker.all(queue.connection)
+        Worker.all(queue.connection)
     except Exception as e:
         conn_settings = queue.connection.connection_pool.connection_kwargs
         errors.append(checks.Critical(_("Could not connect to Redis (%s)", e),
@@ -360,7 +360,7 @@ def check_db_transaction_on_commit(app_configs=None, **kwargs):
     from django.db import connection
     errors = []
     try:
-        on_commit = connection.on_commit
+        connection.on_commit
     except AttributeError:
         errors.append(checks.Critical(
             _("Database connection does not implement on_commit."),

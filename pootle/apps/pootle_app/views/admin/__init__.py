@@ -7,6 +7,11 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from .languages import *
-from .projects import *
-from .users import *
+from .languages import LanguageAdminView, LanguageAPIView
+from .projects import ProjectAdminView, ProjectAPIView
+from .users import UserAdminView, UserAPIView
+
+
+__all__ = (
+    LanguageAdminView, LanguageAPIView, ProjectAdminView, ProjectAPIView,
+    UserAdminView, UserAPIView)

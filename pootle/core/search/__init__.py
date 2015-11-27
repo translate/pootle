@@ -7,6 +7,10 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from .backends import *
-from .base import *
-from .broker import *
+from .base import SearchBackend
+from .broker import SearchBroker
+from .backends import ElasticSearchBackend
+
+
+__all__ = (
+    SearchBackend, SearchBroker, ElasticSearchBackend)
