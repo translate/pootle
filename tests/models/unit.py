@@ -96,15 +96,18 @@ def test_empty_plural_target(af_tutorial_po):
 @pytest.mark.django_db
 def test_update_plural_target(af_tutorial_po):
     """Tests plural translations are stored and sync'ed."""
-    db_unit = _update_translation(af_tutorial_po, 2,
-                                 {'target': [u'samaka', u'samak']})
+    db_unit = _update_translation(
+        af_tutorial_po, 2,
+        {'target': [u'samaka', u'samak']})
     store_unit = db_unit.getorig()
 
     assert db_unit.target.strings == [u'samaka', u'samak']
     assert db_unit.target.strings == store_unit.target.strings
 
     po_file = factory.getobject(af_tutorial_po.file.path)
-    assert db_unit.target.strings == po_file.units[db_unit.index].target.strings
+    assert (
+        db_unit.target.strings
+        == po_file.units[db_unit.index].target.strings)
 
     assert db_unit.target == u'samaka'
     assert db_unit.target == store_unit.target
@@ -114,15 +117,18 @@ def test_update_plural_target(af_tutorial_po):
 @pytest.mark.django_db
 def test_update_plural_target_dict(af_tutorial_po):
     """Tests plural translations are stored and sync'ed (dict version)."""
-    db_unit = _update_translation(af_tutorial_po, 2,
-                                 {'target': {0: u'samaka', 1: u'samak'}})
+    db_unit = _update_translation(
+        af_tutorial_po, 2,
+        {'target': {0: u'samaka', 1: u'samak'}})
     store_unit = db_unit.getorig()
 
     assert db_unit.target.strings == [u'samaka', u'samak']
     assert db_unit.target.strings == store_unit.target.strings
 
     po_file = factory.getobject(af_tutorial_po.file.path)
-    assert db_unit.target.strings == po_file.units[db_unit.index].target.strings
+    assert (
+        db_unit.target.strings
+        == po_file.units[db_unit.index].target.strings)
 
     assert db_unit.target == u'samaka'
     assert db_unit.target == store_unit.target
@@ -132,8 +138,9 @@ def test_update_plural_target_dict(af_tutorial_po):
 @pytest.mark.django_db
 def test_update_fuzzy(af_tutorial_po):
     """Tests fuzzy state changes are stored and sync'ed."""
-    db_unit = _update_translation(af_tutorial_po, 0,
-                                 {'target': u'samaka', 'fuzzy': True})
+    db_unit = _update_translation(
+        af_tutorial_po, 0,
+        {'target': u'samaka', 'fuzzy': True})
     store_unit = db_unit.getorig()
 
     assert db_unit.isfuzzy()
@@ -155,17 +162,20 @@ def test_update_fuzzy(af_tutorial_po):
 @pytest.mark.django_db
 def test_update_comment(af_tutorial_po):
     """Tests translator comments are stored and sync'ed."""
-    db_unit = _update_translation(af_tutorial_po, 0,
-                                 {'translator_comment': u'7amada'})
+    db_unit = _update_translation(
+        af_tutorial_po, 0,
+        {'translator_comment': u'7amada'})
     store_unit = db_unit.getorig()
 
     assert db_unit.getnotes(origin='translator') == u'7amada'
-    assert db_unit.getnotes(origin='translator') == \
-            store_unit.getnotes(origin='translator')
+    assert (
+        db_unit.getnotes(origin='translator')
+        == store_unit.getnotes(origin='translator'))
 
     po_file = factory.getobject(af_tutorial_po.file.path)
-    assert db_unit.getnotes(origin='translator') == \
-            po_file.units[db_unit.index].getnotes(origin='translator')
+    assert (
+        db_unit.getnotes(origin='translator')
+        == po_file.units[db_unit.index].getnotes(origin='translator'))
 
 
 @pytest.mark.django_db
@@ -261,10 +271,14 @@ def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
     assert added
     assert len(untranslated_unit.get_suggestions()) == 1
     assert it_tutorial_po.get_cached(CachedMethods.SUGGESTIONS) == 1
-    assert it_tutorial_po.get_cached(CachedMethods.WORDCOUNT_STATS)['translated'] == 1
+    assert (
+        it_tutorial_po.get_cached(CachedMethods.WORDCOUNT_STATS)['translated']
+        == 1)
     assert untranslated_unit.state == UNTRANSLATED
     untranslated_unit.accept_suggestion(sugg,
                                         it_tutorial_po.translation_project,
                                         system)
     assert untranslated_unit.state == TRANSLATED
-    assert it_tutorial_po.get_cached(CachedMethods.WORDCOUNT_STATS)['translated'] == 2
+    assert (
+        it_tutorial_po.get_cached(CachedMethods.WORDCOUNT_STATS)['translated']
+        == 2)

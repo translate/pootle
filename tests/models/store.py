@@ -121,7 +121,9 @@ def test_update_unit_order(ru_tutorial_po):
     ru_tutorial_po.update(ru_tutorial_po.file.store,
                           store_revision=current_revision)
 
-    old_unit_list = ['X->1', '1->2', '3->3', '2->4', '4->5', 'X->6', 'X->7', 'X->8']
+    old_unit_list = [
+        'X->1', '1->2', '3->3', '2->4',
+        '4->5', 'X->6', 'X->7', 'X->8']
     updated_unit_list = list(
         [unit.unitid for unit in ru_tutorial_po.units]
     )
@@ -189,8 +191,8 @@ def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
 
     # Non-empty update sets store.last_sync_revision to next global revision
     # (even the store has unsynced units)
-    # There is only one unsynced unit in this case so its revision should be set
-    # next to store.last_sync_revision
+    # There is only one unsynced unit in this case so its revision should be
+    # set next to store.last_sync_revision
     next_revision = Revision.get() + 1
     store.file = 'tutorial/ru/update_set_last_sync_revision.po'
     store.update(store.file.store,
@@ -436,7 +438,9 @@ def test_store_diff(store_diff_tests):
                                      "locations", "context")})
     diff_diff = diff.diff()
     if diff_diff is not None:
-        assert sorted(diff_diff.keys()) == ["add", "index", "obsolete", "update"]
+        assert (
+            sorted(diff_diff.keys())
+            == ["add", "index", "obsolete", "update"])
 
     # obsoleted units have no index - so just check they are all they match
     obsoleted = (store.unit_set.filter(state=OBSOLETE)

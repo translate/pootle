@@ -32,11 +32,12 @@ def test_no_root_view_permissions(nobody, default, admin, view,
     _require_permission_set(foo_user, project_foo.directory, [view])
 
     assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
-    assert items_equal(Project.accessible_by_user(foo_user), [project_foo.code])
+    assert items_equal(
+        Project.accessible_by_user(foo_user),
+        [project_foo.code])
     assert items_equal(Project.accessible_by_user(bar_user), [])
     assert items_equal(Project.accessible_by_user(default), [])
     assert items_equal(Project.accessible_by_user(nobody), [])
-
 
     # Now let's allow showing `project_bar` to all registered users, but
     # keep `project_foo` visible only to `foo_user`.
@@ -44,7 +45,9 @@ def test_no_root_view_permissions(nobody, default, admin, view,
 
     assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
     assert items_equal(Project.accessible_by_user(foo_user), ALL_PROJECTS)
-    assert items_equal(Project.accessible_by_user(bar_user), [project_bar.code])
+    assert items_equal(
+        Project.accessible_by_user(bar_user),
+        [project_bar.code])
     assert items_equal(Project.accessible_by_user(default), [project_bar.code])
     assert items_equal(Project.accessible_by_user(nobody), [])
 
@@ -67,12 +70,12 @@ def test_root_view_permissions(nobody, default, admin, view,
     assert items_equal(Project.accessible_by_user(default), [])
     assert items_equal(Project.accessible_by_user(nobody), [])
 
-
     # Now we'll also allow `foo_user` access `project_foo`
     _require_permission_set(foo_user, project_foo.directory, [view])
 
-    assert items_equal(Project.accessible_by_user(foo_user), [project_foo.code])
-
+    assert items_equal(
+        Project.accessible_by_user(foo_user),
+        [project_foo.code])
 
     # Let's change server-wide defaults: all registered users have access
     # to all projects. `foo_user`, albeit having explicit access for
@@ -85,7 +88,6 @@ def test_root_view_permissions(nobody, default, admin, view,
     assert items_equal(Project.accessible_by_user(bar_user), ALL_PROJECTS)
     assert items_equal(Project.accessible_by_user(default), ALL_PROJECTS)
     assert items_equal(Project.accessible_by_user(nobody), [])
-
 
     # Let's give anonymous users access to all projects too
     _require_permission_set(nobody, root, [view])
@@ -115,9 +117,12 @@ def test_no_root_hide_permissions(nobody, default, admin, hide, view,
     assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
     assert items_equal(Project.accessible_by_user(default), [project_bar.code])
     assert items_equal(Project.accessible_by_user(nobody), [project_bar.code])
-    assert items_equal(Project.accessible_by_user(foo_user), [project_bar.code])
-    assert items_equal(Project.accessible_by_user(bar_user), [project_bar.code])
-
+    assert items_equal(
+        Project.accessible_by_user(foo_user),
+        [project_bar.code])
+    assert items_equal(
+        Project.accessible_by_user(bar_user),
+        [project_bar.code])
 
     # ...and anonymous users as well
     _require_permission_set(nobody, project_foo.directory,
@@ -125,12 +130,10 @@ def test_no_root_hide_permissions(nobody, default, admin, hide, view,
 
     assert items_equal(Project.accessible_by_user(nobody), [project_bar.code])
 
-
     # Let's make `project_foo` accessible for `foo_user`
     _require_permission_set(foo_user, project_foo.directory, [view])
 
     assert items_equal(Project.accessible_by_user(foo_user), ALL_PROJECTS)
-
 
     # `project_bar` is now inaccessible for anonymous users
     _require_permission_set(nobody, project_bar.directory,
@@ -160,16 +163,16 @@ def test_root_hide_permissions(nobody, default, admin, hide, view,
     assert items_equal(Project.accessible_by_user(foo_user), [])
     assert items_equal(Project.accessible_by_user(bar_user), [])
 
-
     # Now let's make `project_foo` accessible to `foo_user`.
     _require_permission_set(foo_user, project_foo.directory, [view])
 
     assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
     assert items_equal(Project.accessible_by_user(default), [])
     assert items_equal(Project.accessible_by_user(nobody), [])
-    assert items_equal(Project.accessible_by_user(foo_user), [project_foo.code])
+    assert items_equal(
+        Project.accessible_by_user(foo_user),
+        [project_foo.code])
     assert items_equal(Project.accessible_by_user(bar_user), [])
-
 
     # Making projects accessible for anonymous users should open the door
     # for everyone

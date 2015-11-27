@@ -20,9 +20,11 @@ from .fixtures import models as fixture_models
 def pytest_configure():
     if not settings.configured:
         from pootle import syspath_override  # Needed for monkey-patching
+        syspath_override
         os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
         WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
-        os.environ['POOTLE_SETTINGS'] = os.path.join(WORKING_DIR, 'settings.py')
+        os.environ['POOTLE_SETTINGS'] = os.path.join(WORKING_DIR,
+                                                     'settings.py')
         setup()  # Required until pytest-dev/pytest-django#146 is fixed
 
 

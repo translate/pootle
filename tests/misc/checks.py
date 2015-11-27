@@ -234,7 +234,8 @@ def test_date_format():
     tests = [
         (u"EEE, MMM d h:mm a", u"EEE, MMM d HH:mm", True),
         (u"EEE, MMM", u"EEEMMM", False),
-        (u"yyyy.MM.dd G 'at' HH:mm:ss z", u"yyyy.MM.dd G 'в' HH:mm:ss z", True),
+        (u"yyyy.MM.dd G 'at' HH:mm:ss z",
+         u"yyyy.MM.dd G 'в' HH:mm:ss z", True),
         (u"EEE, MMM d, ''yy", u"dd-MM-yy", True),
         (u"h:mm a", u"dd-MM-yy", True),
         (u"hh 'o''clock' a, zzzz", u"dd-MM-yy", True),
