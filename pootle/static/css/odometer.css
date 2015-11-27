@@ -19,6 +19,11 @@
     float: right;
 }
 
+html[dir='rtl'] .odometer-inside
+{
+    direction: ltr;
+}
+
 .odometer.odometer-auto-theme,
 .odometer.odometer-theme-default
 {
