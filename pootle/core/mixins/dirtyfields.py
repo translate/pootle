@@ -24,7 +24,7 @@ class DirtyFieldsMixin(object):
         post_save.connect(
             reset_state, sender=self.__class__,
             dispatch_uid='%s-DirtyFieldsMixin-sweeper' %
-                self.__class__.__name__,
+                         self.__class__.__name__,
         )
         reset_state(sender=self.__class__, instance=self)
 

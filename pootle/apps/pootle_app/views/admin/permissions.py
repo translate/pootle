@@ -64,8 +64,8 @@ def admin_permissions(request, current_directory, template, ctx):
 
     querysets.append((
         _('All Users'),
-        base_queryset.exclude(username__in=('nobody', 'default'))
-                     .order_by('username'),
+        base_queryset.exclude(username__in=('nobody',
+                                            'default')).order_by('username'),
     ))
 
 

@@ -634,8 +634,8 @@ def get_grouped_word_stats(scores, user=None, month=None):
         if tp != score.submission.translation_project:
             tp = score.submission.translation_project
             row = {
-                'translation_project': u'%s / %s' %
-                    (tp.project.fullname, tp.language.fullname),
+                'translation_project': u'%s / %s' % (tp.project.fullname,
+                                                     tp.language.fullname),
                 'project_code': tp.project.code,
                 'score_delta': 0,
                 'translated': 0,
