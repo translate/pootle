@@ -17,9 +17,10 @@ from allauth.account.models import EmailAddress
 import accounts
 from pootle_store.util import FUZZY, TRANSLATED
 
-from tests.fixtures.models.store import (TEST_EVIL_UPDATE_PO,
-                                         _create_submission_and_suggestion,
-                                         _create_comment_on_unit)
+from pootle_pytest.fixtures.models.store import (
+    TEST_EVIL_UPDATE_PO,
+    _create_submission_and_suggestion,
+    _create_comment_on_unit)
 
 
 def _make_evil_member_updates(store, evil_member):

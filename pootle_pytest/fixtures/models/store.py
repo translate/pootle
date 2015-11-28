@@ -111,11 +111,6 @@ UPDATE_STORE_TESTS['max_obsolete'] = {
 }
 
 
-def pytest_generate_tests(metafunc):
-    if "_update_store_tests" in metafunc.fixturenames:
-        metafunc.parametrize("_update_store_tests", UPDATE_STORE_TESTS)
-
-
 def _setup_store_test(store, member, member2, test):
     from pootle_store.models import FILE_WINS, POOTLE_WINS
 
@@ -160,19 +155,20 @@ def _setup_store_test(store, member, member2, test):
 
 
 @pytest.fixture
-def store_diff_tests(en_tutorial_po, member, member2, _update_store_tests):
+def store_diff_tests(en_tutorial_po, member, member2, update_store_test_names):
     from pootle_store.models import StoreDiff
 
     test = _setup_store_test(en_tutorial_po, member, member2,
-                             UPDATE_STORE_TESTS[_update_store_tests])
+                             UPDATE_STORE_TESTS[update_store_test_names])
     test_store = create_store(units=test[1])
     return [StoreDiff(test[0], test_store, test[2])] + list(test[:3])
 
 
 @pytest.fixture
-def update_store_tests(en_tutorial_po, member, member2, _update_store_tests):
+def param_update_store_test(en_tutorial_po, member, member2,
+                            update_store_test_names):
     test = _setup_store_test(en_tutorial_po, member, member2,
-                             UPDATE_STORE_TESTS[_update_store_tests])
+                             UPDATE_STORE_TESTS[update_store_test_names])
     update_store(test[0],
                  units=test[1],
                  store_revision=test[2],

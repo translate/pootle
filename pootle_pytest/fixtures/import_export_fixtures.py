@@ -4,6 +4,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from collections import OrderedDict
 import os
 import shutil
 import pytest
@@ -11,26 +12,21 @@ import pytest
 from .models import store
 
 
+FILE_IMPORT_FAIL_TESTS = OrderedDict()
+FILE_IMPORT_FAIL_TESTS["revision_header_missing.po"] = "MissingPootleRevError"
+FILE_IMPORT_FAIL_TESTS["revision_header_invalid.po"] = "MissingPootleRevError"
+FILE_IMPORT_FAIL_TESTS["path_header_missing.po"] = "MissingPootlePathError"
+FILE_IMPORT_FAIL_TESTS["path_header_invalid.po"] = "FileImportError"
+
+
 @pytest.fixture
-def file_import_failure(request):
-    return request.params
+def file_import_failure(file_import_failure_names):
+    from import_export import exceptions
 
-
-def pytest_generate_tests(metafunc):
-    if "file_import_failure" not in metafunc.fixturenames:
-        return
-    from import_export.exceptions import (MissingPootlePathError,
-                                          MissingPootleRevError,
-                                          FileImportError)
-    metafunc.parametrize("file_import_failure",
-                         [(u"revision_header_missing.po",
-                           MissingPootleRevError),
-                          (u"revision_header_invalid.po",
-                           MissingPootleRevError),
-                          ("path_header_missing.po",
-                           MissingPootlePathError),
-                          ("path_header_invalid.po",
-                           FileImportError)])
+    return (
+        file_import_failure_names,
+        getattr(
+            exceptions, FILE_IMPORT_FAIL_TESTS[file_import_failure_names]))
 
 
 @pytest.fixture

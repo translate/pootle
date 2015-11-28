@@ -11,7 +11,7 @@ import pytest
 
 
 @pytest.fixture
-def root(transactional_db):
+def root(transactional_db, system):
     """Require the root directory."""
     from pootle_app.models import Directory
     root, created = Directory.objects.get_or_create(name='')

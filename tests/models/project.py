@@ -12,7 +12,8 @@ import pytest
 from pootle_project.models import Project
 
 from pootle_pytest.factories import UserFactory
-from ..fixtures.models.permission_set import _require_permission_set
+from pootle_pytest.fixtures.models.permission_set import (
+    _require_permission_set)
 
 from pootle_pytest.utils import items_equal
 

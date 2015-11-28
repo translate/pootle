@@ -12,7 +12,8 @@ import pytest
 from pootle.core.utils.timezone import aware_datetime
 from staticpages.models import LegalPage
 
-from pootle_pytest.factories import AgreementFactory, LegalPageFactory, UserFactory
+from pootle_pytest.factories import (
+    AgreementFactory, LegalPageFactory, UserFactory)
 
 
 @pytest.mark.django_db(transaction=True)

@@ -406,11 +406,11 @@ def _test_store_update_units_now(*test_args):
 
 
 @pytest.mark.django_db
-def test_store_update(update_store_tests):
-    _test_store_update_indexes(*update_store_tests)
-    _test_store_update_units_before(*update_store_tests)
-    _test_store_update_units_now(*update_store_tests)
-    _test_store_update_ordering(*update_store_tests)
+def test_store_update(param_update_store_test):
+    _test_store_update_indexes(*param_update_store_test)
+    _test_store_update_units_before(*param_update_store_test)
+    _test_store_update_units_now(*param_update_store_test)
+    _test_store_update_ordering(*param_update_store_test)
 
 
 @pytest.mark.django_db

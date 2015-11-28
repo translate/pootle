@@ -33,7 +33,7 @@ def _require_language(code, fullname, plurals=2, plural_equation='(n != 1)'):
 
 
 @pytest.fixture
-def english(root, system):
+def english(root):
     """Require the English language."""
     return _require_language('en', 'English')
 
