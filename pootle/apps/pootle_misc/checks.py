@@ -174,7 +174,7 @@ df_regex_str = u"^(%(blocks)s)(%(glued_blocks)s)?((%(delimiter)s)+(%(blocks)s))*
     'delimiter': df_delimiter,
 }
 date_format_regex = re.compile(df_regex_str, re.U)
-date_format_exception_regex = re.compile(u"^(M|S|W|F)$", re.I|re.U)
+date_format_exception_regex = re.compile(u"^(M|S|W|F)$", re.I | re.U)
 
 fmt = u"^\s+|\s+$"
 whitespace_regex = re.compile(u"(%s)" % fmt, re.U)
