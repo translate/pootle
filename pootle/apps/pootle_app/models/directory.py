@@ -22,8 +22,8 @@ class DirectoryManager(models.Manager):
     use_for_related_fields = True
 
     def get_queryset(self):
-        # ForeignKey fields with null=True are not selected by
-        # select_related unless explicitly specified
+        # ForeignKey fields with null=True are not selected by select_related
+        # unless explicitly specified
         return super(DirectoryManager, self).get_queryset() \
                                             .select_related('parent')
 

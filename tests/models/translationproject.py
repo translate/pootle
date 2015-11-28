@@ -29,8 +29,8 @@ def test_tp_create_fail(tutorial, english):
 
 @pytest.mark.django_db
 def test_tp_create_no_files(tutorial, fish):
-    # There are no files on disk so TP was not automagically created
-    # and there are no templates loaded
+    # There are no files on disk so TP was not automagically created and there
+    # are no templates loaded
     tp = TranslationProject.objects.create(project=tutorial, language=fish)
     assert list(tp.stores.all()) == []
 

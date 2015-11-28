@@ -104,8 +104,8 @@ def test_needs_scorelog():
     )
     assert not submission.needs_scorelog()
 
-    # Changing other fields (or even STATE, in a different direction)
-    # should need to record a score log
+    # Changing other fields (or even STATE, in a different direction) should
+    # need to record a score log
     submission = SubmissionFactory.build(
         field=SubmissionFields.STATE,
         type=SubmissionTypes.NORMAL,

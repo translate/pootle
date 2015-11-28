@@ -51,8 +51,8 @@ class Command(NoArgsCommand):
             (after_revision, last_known_revision)
         )
 
-        # if the requested revision is the same or is greater than
-        # the last known one, return nothing
+        # if the requested revision is the same or is greater than the last
+        # known one, return nothing
         if after_revision >= last_known_revision:
             self.stderr.write('(no known changes)')
             return

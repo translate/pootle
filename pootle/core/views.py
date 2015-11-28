@@ -106,8 +106,8 @@ class APIView(View):
     # Model on which this view operates. Setting this is required
     model = None
 
-    # Base queryset for accessing data. If `None`, model's default manager
-    # will be used
+    # Base queryset for accessing data. If `None`, model's default manager will
+    # be used
     base_queryset = None
 
     # Set this to restrict the view to a subset of the available methods
@@ -116,13 +116,13 @@ class APIView(View):
     # Field names to be included
     fields = ()
 
-    # Individual forms to use for each method. By default it'll
-    # auto-populate model forms built using `self.model` and `self.fields`
+    # Individual forms to use for each method. By default it'll auto-populate
+    # model forms built using `self.model` and `self.fields`
     add_form_class = None
     edit_form_class = None
 
-    # Tuple of sensitive field names that will be excluded from any
-    # serialized responses
+    # Tuple of sensitive field names that will be excluded from any serialized
+    # responses
     sensitive_field_names = ('password', 'pw')
 
     # Set to an integer to enable GET pagination
@@ -231,9 +231,8 @@ class APIView(View):
 
         if form.is_valid():
             new_object = form.save()
-            # Serialize the new object to json using our built-in methods.
-            # The extra DB read here is not ideal, but it keeps the code
-            # DRY:
+            # Serialize the new object to json using our built-in methods. The
+            # extra DB read here is not ideal, but it keeps the code DRY:
             wrapper_qs = self.base_queryset.filter(pk=new_object.pk)
             return self.json_response(
                 self.serialize_qs(wrapper_qs, single_object=True)

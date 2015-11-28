@@ -59,8 +59,7 @@ def test_convert(af_tutorial_po):
     """Tests that in-DB and on-disk units match after format conversion."""
     for db_unit in af_tutorial_po.units.iterator():
         if db_unit.hasplural() and not db_unit.istranslated():
-            # Skip untranslated plural units, they will always look
-            # different
+            # Skip untranslated plural units, they will always look different
             continue
 
         store_unit = db_unit.getorig()

@@ -24,8 +24,8 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'pootle-tests'
     },
-    # Must set up entries for persistent stores here because we have a
-    # check in place that will abort everything otherwise
+    # Must set up entries for persistent stores here because we have a check in
+    # place that will abort everything otherwise
     'redis': {
         'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': 'redis://127.0.0.1:6379/15',

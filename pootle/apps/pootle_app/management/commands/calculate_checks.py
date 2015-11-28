@@ -88,8 +88,8 @@ def calculate_checks(check_names=None, translation_project=None):
     units = Unit.simple_objects.filter(**unit_filter) \
                                .order_by('store__id')
     store = None
-    # units are ordered by store, we update dirty cache after we switch
-    # to another store
+    # units are ordered by store, we update dirty cache after we switch to
+    # another store
     for unit_count, unit in enumerate(units.iterator(), start=1):
         if store is None or unit.store_id != store.id:
             if store is not None:
@@ -109,9 +109,8 @@ def calculate_checks(check_names=None, translation_project=None):
                                      check_names=check_names,
                                      existing=unit_checks):
 
-            # update unit.mtime but avoid to use unit.save()
-            # because it can trigger unnecessary things:
-            # logging, stats cache updating
+            # update unit.mtime but avoid to use unit.save() because it can
+            # trigger unnecessary things: logging, stats cache updating
             # TODO: add new action type `quality checks were updated`?
             Unit.simple_objects.filter(id=unit.id).update(mtime=timezone.now())
 

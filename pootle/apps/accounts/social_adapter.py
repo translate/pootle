@@ -28,14 +28,14 @@ class PootleSocialAccountAdapter(DefaultSocialAccountAdapter):
         """Controls whether signups are enabled on the site when using
         social authentication methods.
         """
-        # Allauth's default behavior is to disallow creating *any* users
-        # if the account adapter forbids so. In Pootle's case, the
-        # adapter's `is_open_for_signup()` is controlled by
-        # `settings.POOTLE_SIGNUP_ENABLED`, and we want to apply its
-        # semantics only to regular user accounts, not social accounts. So
-        # social accounts can sign up for new user accounts anytime.
-        # If this is considered to be problematic in the future, we might
-        # want to introduce a new setting to control this, separate from
+        # Allauth's default behavior is to disallow creating *any* users if the
+        # account adapter forbids so. In Pootle's case, the adapter's
+        # `is_open_for_signup()` is controlled by
+        # `settings.POOTLE_SIGNUP_ENABLED`, and we want to apply its semantics
+        # only to regular user accounts, not social accounts. So social
+        # accounts can sign up for new user accounts anytime.  If this is
+        # considered to be problematic in the future, we might want to
+        # introduce a new setting to control this, separate from
         # `POOTLE_SIGNUP_ENABLED`.
         return True
 
@@ -58,8 +58,8 @@ class PootleSocialAccountAdapter(DefaultSocialAccountAdapter):
         if sociallogin.user.pk is not None or not email_address:
             return
 
-        # If there's already an existing email address on the system,
-        # we'll ask for its connected user's password before proceeding.
+        # If there's already an existing email address on the system, we'll ask
+        # for its connected user's password before proceeding.
         user = get_user_by_email(email_address)
         if user is not None:
             # Save `SocialLogin` instance for our custom view

@@ -284,8 +284,8 @@ def test_apiview_delete(rf, trans_nobody):
 @pytest.mark.django_db(transaction=True)
 def test_apiview_search(rf):
     """Tests filtering through a search query."""
-    # Note that `UserAPIView` is configured to search in all defined
-    # fields, which are `username` and `full_name`
+    # Note that `UserAPIView` is configured to search in all defined fields,
+    # which are `username` and `full_name`
     view = UserAPIView.as_view()
 
     # Let's create some users to search for

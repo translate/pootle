@@ -113,8 +113,8 @@ def test_update_unit_order(ru_tutorial_po):
     )
     assert old_unit_list == updated_unit_list
 
-    # as the tutorial_updated.po file has no revision header we
-    # need to set it manually for this test to pass
+    # as the tutorial_updated.po file has no revision header we need to set it
+    # manually for this test to pass
     ru_tutorial_po.file = 'tutorial/ru/tutorial_updated.po'
 
     current_revision = ru_tutorial_po.get_max_unit_revision()
@@ -162,8 +162,8 @@ def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     """
     store = ru_update_set_last_sync_revision_po
 
-    # Parse a store during first update
-    # store.last_sync_revision is set to the next global revision
+    # Parse a store during first update store.last_sync_revision is set to the
+    # next global revision
     next_revision = Revision.get() + 1
     store.update(store.file.store)
     assert store.last_sync_revision == next_revision
@@ -179,8 +179,8 @@ def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     store.update(store.file.store)
     assert store.last_sync_revision == next_revision
 
-    # store.last_sync_revision is not changed after empty update
-    # (even if it has unsynced units)
+    # store.last_sync_revision is not changed after empty update (even if it
+    # has unsynced units)
     item_index = 0
     next_unit_revision = Revision.get() + 1
     dbunit = _update_translation(store, item_index, {'target': u'first'},
@@ -190,9 +190,8 @@ def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     assert store.last_sync_revision == next_revision
 
     # Non-empty update sets store.last_sync_revision to next global revision
-    # (even the store has unsynced units)
-    # There is only one unsynced unit in this case so its revision should be
-    # set next to store.last_sync_revision
+    # (even the store has unsynced units).  There is only one unsynced unit in
+    # this case so its revision should be set next to store.last_sync_revision
     next_revision = Revision.get() + 1
     store.file = 'tutorial/ru/update_set_last_sync_revision.po'
     store.update(store.file.store,
@@ -298,8 +297,7 @@ def test_update_upload_old_revision_new_unit(en_tutorial_po):
 
 
 def _test_store_update_indexes(store, *test_args):
-    # make sure indexes are not fooed
-    # indexes only have to be unique
+    # make sure indexes are not fooed indexes only have to be unique
     indexes = [x.index for x in store.units]
     assert len(indexes) == len(set(indexes))
 
@@ -315,8 +313,7 @@ def _test_store_update_units_before(*test_args):
         updated_unit = store.unit_set.get(unitid=unit.unitid)
 
         if unit.source not in updates:
-            # unit is not in update
-            # target should be left unchanged
+            # unit is not in update, target should be left unchanged
             assert updated_unit.target == unit.target
             assert updated_unit.submitted_by == unit.submitted_by
 

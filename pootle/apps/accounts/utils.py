@@ -121,8 +121,8 @@ class UserMerger(object):
         # Delete orphaned submissions.
         self.src_user.submission_set.filter(unit__isnull=True).delete()
 
-        # Before we can save we first have to remove existing score_logs
-        # for src_user - they will be recreated on save for target_user
+        # Before we can save we first have to remove existing score_logs for
+        # src_user - they will be recreated on save for target_user
         self.src_user.scorelog_set.all().delete()
 
         # Update submitter on submissions
@@ -244,8 +244,8 @@ class UserPurger(object):
                 unit.submitted_on = last_edit.creation_time
                 logger.debug("Unit edit reverted: %s" % repr(unit))
             else:
-                # if there is no previous submissions set the target to ""
-                # and set the unit.submitted_by to None
+                # if there is no previous submissions set the target to "" and
+                # set the unit.submitted_by to None
                 unit.target_f = ""
                 unit.submitted_by = None
                 unit.submitted_on = unit.creation_time

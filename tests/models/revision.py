@@ -26,8 +26,8 @@ def test_max_revision(af_tutorial_po):
     initial_revision = Revision.get()
     assert initial_max_revision == initial_revision
 
-    # Let's make 10 translation updates, this must also update their
-    # revision numbers
+    # Let's make 10 translation updates, this must also update their revision
+    # numbers
     for i in range(10):
         _update_translation(af_tutorial_po, 0, {'target': str(i)},
                             sync=False)

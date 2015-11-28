@@ -123,8 +123,8 @@ def _test_user_purging(store, member, evil_member, purge):
 
     unit = store.units[0]
 
-    # Test submitted/commented/reviewed times on the unit
-    # This is an unreliable test on mysql due to datetime precision
+    # Test submitted/commented/reviewed times on the unit.  This is an
+    # unreliable test on MySQL due to datetime precision
     if unit.submitted_on.time().microsecond != 0:
 
         # Times have changed

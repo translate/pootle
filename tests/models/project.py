@@ -27,8 +27,8 @@ def test_no_root_view_permissions(nobody, default, admin, view,
     foo_user = UserFactory.create(username='foo')
     bar_user = UserFactory.create(username='bar')
 
-    # By setting explicit `view` permissions for `foo_user` in
-    # `project_foo`, only `foo_user` will be able to access that project
+    # By setting explicit `view` permissions for `foo_user` in `project_foo`,
+    # only `foo_user` will be able to access that project
     _require_permission_set(foo_user, project_foo.directory, [view])
 
     assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
@@ -39,8 +39,8 @@ def test_no_root_view_permissions(nobody, default, admin, view,
     assert items_equal(Project.accessible_by_user(default), [])
     assert items_equal(Project.accessible_by_user(nobody), [])
 
-    # Now let's allow showing `project_bar` to all registered users, but
-    # keep `project_foo` visible only to `foo_user`.
+    # Now let's allow showing `project_bar` to all registered users, but keep
+    # `project_foo` visible only to `foo_user`.
     _require_permission_set(default, project_bar.directory, [view])
 
     assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
@@ -77,10 +77,10 @@ def test_root_view_permissions(nobody, default, admin, view,
         Project.accessible_by_user(foo_user),
         [project_foo.code])
 
-    # Let's change server-wide defaults: all registered users have access
-    # to all projects. `foo_user`, albeit having explicit access for
-    # `project_foo`, will be able to access any project because they fall
-    # back and extend with the defaults.
+    # Let's change server-wide defaults: all registered users have access to
+    # all projects. `foo_user`, albeit having explicit access for
+    # `project_foo`, will be able to access any project because they fall back
+    # and extend with the defaults.
     _require_permission_set(default, root, [view])
 
     assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)
@@ -174,8 +174,8 @@ def test_root_hide_permissions(nobody, default, admin, hide, view,
         [project_foo.code])
     assert items_equal(Project.accessible_by_user(bar_user), [])
 
-    # Making projects accessible for anonymous users should open the door
-    # for everyone
+    # Making projects accessible for anonymous users should open the door for
+    # everyone
     _require_permission_set(nobody, root, [view])
 
     assert items_equal(Project.accessible_by_user(admin), ALL_PROJECTS)

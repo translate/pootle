@@ -47,10 +47,10 @@ def lang_choices():
     for code, name in supported_langs():
         name = data.tr_lang(translation.to_locale('en'))(name)
         tr_name = data.tr_lang(translation.to_locale(code))(name)
-        # We have to use the bidi.insert_embeding() to ensure that brackets
-        # in the English part of the name is rendered correctly in an RTL
-        # layout like Arabic. We can't use markup because this is used
-        # inside an option tag.
+        # We have to use the bidi.insert_embeding() to ensure that brackets in
+        # the English part of the name is rendered correctly in an RTL layout
+        # like Arabic. We can't use markup because this is used inside an
+        # option tag.
         if tr_name != name:
             name = u"%s | %s" % (bidi.insert_embeding(tr_name),
                                  bidi.insert_embeding(name))

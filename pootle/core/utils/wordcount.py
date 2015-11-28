@@ -128,7 +128,8 @@ def _count_words(aref):
     for chunk in aref:
         if chunk['translate']:
             s = chunk['string']
-            # Replace the date with just the month name (i.e. count as a single word)
+            # Replace the date with just the month name (i.e. count as a single
+            # word)
             s = english_date.sub(u'\g<1>\g<2>\g<3>', s)
 
             s = remove.sub(u'', s)

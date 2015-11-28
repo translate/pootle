@@ -59,8 +59,8 @@ class Command(BaseCommand):
 
         if custom_static_dirs:
             # XXX: review this for css
-            # Append `js/` so that it's not necessary to reference it
-            # from the `webpack.config.js` file
+            # Append `js/` so that it's not necessary to reference it from the
+            # `webpack.config.js` file
             custom_static_dirs = map(lambda x: os.path.join(x, 'js/'),
                                      custom_static_dirs)
             os.environ['WEBPACK_ROOT'] = ':'.join(custom_static_dirs)

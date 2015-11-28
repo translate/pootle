@@ -182,8 +182,8 @@ def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
     func(request, tutorial, '', store_name)
     assert isinstance(request.resource_obj, ProjectResource)
 
-    # Two languages had this file, but it was marked as obsolete
-    # for the Arabic language!
+    # Two languages had this file, but it was marked as obsolete for the Arabic
+    # language!
     # Should only contain a single file resource
     assert len(request.resource_obj.resources) == 1
     assert isinstance(request.resource_obj.resources[0], Store)
@@ -192,8 +192,8 @@ def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
     func(request, tutorial, subdir_name, '')
     assert isinstance(request.resource_obj, ProjectResource)
 
-    # Two languages have this dir, but it was marked as obsolete for
-    # the Arabic language!
+    # Two languages have this dir, but it was marked as obsolete for the Arabic
+    # language!
     # Should only contain a single dir resource
     assert len(request.resource_obj.resources) == 1
     assert isinstance(request.resource_obj.resources[0], Directory)

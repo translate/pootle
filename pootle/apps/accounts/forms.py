@@ -26,9 +26,9 @@ class SocialVerificationForm(LoginForm):
         self.fields['login'].required = False
 
     def clean_login(self):
-        # The plan is: let's gather the user based on the email
-        # information we have available on the session, this way we don't
-        # have to fiddle around customizing `user_credentials()`
+        # The plan is: let's gather the user based on the email information we
+        # have available on the session, this way we don't have to fiddle
+        # around customizing `user_credentials()`
         email = self.sociallogin.user.email
 
         if app_settings.AUTHENTICATION_METHOD == AuthenticationMethod.EMAIL:

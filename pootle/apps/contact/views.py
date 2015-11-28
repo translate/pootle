@@ -48,8 +48,8 @@ class ContactFormView(AjaxResponseMixin, OriginalContactFormView):
         return initial
 
     def get_success_url(self):
-        # XXX: This is unused. We don't need a `/contact/sent/` URL, but
-        # the parent :cls:`ContactView` enforces us to set some value here
+        # XXX: This is unused. We don't need a `/contact/sent/` URL, but the
+        # parent :cls:`ContactView` enforces us to set some value here
         return reverse('pootle-contact')
 
 
